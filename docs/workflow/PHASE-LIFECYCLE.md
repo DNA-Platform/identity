@@ -14,6 +14,19 @@ docs/phases/
     ...
 ```
 
+## Design Prerequisites (teams with frontend/UX)
+
+Before any phase that includes frontend implementation, these must exist and be populated:
+
+| Document | Owner | Required Before |
+|----------|-------|-----------------|
+| `docs/ux/MARKET-RESEARCH.md` | Marketing Director | Brand work |
+| `docs/ux/BRAND.md` | Marketing Director | Any frontend work |
+| `docs/ux/DESIGN-SYSTEM.md` | UX Designer | Any frontend work |
+| `docs/ux/journeys/` | UX Designer | Per-phase UI stories |
+
+If these are missing, plan a **Design Foundation** phase first. `/new-phase` will flag this automatically.
+
 ## Phase Flow
 
 ```
