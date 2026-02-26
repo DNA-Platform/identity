@@ -6,7 +6,7 @@ A reusable project template for **spec-driven development** with Claude Code. St
 
 ```bash
 # 1. Copy this template to your new project
-cp -r claude-workflow-template/ my-project/
+cp -r identity/my-project/
 cd my-project/
 
 # 2. Start Claude Code and kick off your project
