@@ -1,107 +1,82 @@
-# Claude Code Workflow Template
+# Identity
 
-A reusable project template for **spec-driven development** with Claude Code. Start with a conversation, not a config file — the framework discovers what your project needs and assembles the right team.
+The team's identity, library, and operating infrastructure. Private. Shared across projects.
 
-## Quick Start
+## What this is
 
-```bash
-# 1. Copy this template to your new project
-cp -r identity/my-project/
-cd my-project/
+Eight agents — Arthur, Cathy, Libby, Adam, David, Phillip, Queenie, Gabby — work with Doug on projects about consciousness, $Chemistry, and inexplicable phenomena. This repo holds their autobiographies, their library of knowledge, their protocols for how they speak and work, and their sprint histories across all projects.
 
-# 2. Start Claude Code and kick off your project
-claude
-> /intro
-```
+This is not project configuration. It's narrative identity — agents who write about themselves in first person, discuss with each other, and grow across projects. The autobiographies are the canonical representation of each agent. The library is a portrait gallery, not a database.
 
-The `/intro` command starts a guided conversation with the **project director** — think of it as your first meeting with a senior leader. They'll:
+## How to use it
 
-1. Ask about what you're building, who it's for, and why
-2. Recommend which agents should be on the team (a CLI tool doesn't need a UX designer)
-3. Hand off to the architect for tech stack decisions
-4. Search for and install relevant skills
-5. Generate your project configuration
-
-**You define requirements → Agents plan, build, test, and document → You review completed work.**
-
-## How It Works
-
-Not every project needs every agent. A web scraper needs an architect, a backend lead, and QA. A SaaS app needs the full team. The framework adapts.
-
-During `/intro`, the project director scans the available agents in `.claude/agents/` and recommends a team based on your project's scope. You approve (or adjust), and from then on, only the active agents participate in the workflow.
-
-Need to add an agent later? Run `/add-agent` — you can activate a dormant agent or define an entirely new one.
-
-## Available Agents
-
-| Agent | Role | Typical Projects |
-|-------|------|-----------------|
-| **Project Director** | Kickoff, scoping, team assembly | All (runs once) |
-| **Project Manager** | Story management, orchestration | All (always active) |
-| **Architect** | Tech stack, system design, APIs | All (always recommended) |
-| **Marketing Director** | Brand voice, messaging, emotional design | Products with public identity |
-| **UX Designer** | User journeys, wireframes, design system | Products with a UI |
-| **Backend Lead** | APIs, databases, business logic, unit tests | Anything with server-side code |
-| **Frontend Lead** | UI components, client state, component tests | Web/mobile apps |
-| **Security Reviewer** | Vulnerability analysis, threat modeling | Auth, PII, payments, public apps |
-| **QA Engineer** | Functional/integration tests, verification | All (always active) |
-| **DevOps Engineer** | CI/CD, infrastructure as code, monitoring | Deployed services |
-| **Technical Writer** | Documentation currency and clarity | Larger projects, libraries, APIs |
-
-**Extensible**: Add new agents anytime by dropping a `.md` file in `.claude/agents/`.
-
-## Commands
-
-| Command | Description |
-|---------|-------------|
-| `/intro` | **Start here.** Guided project kickoff (with resume support) |
-| `/check` | Health check — verify framework is correctly set up |
-| `/new-phase` | Plan a new development phase (with pre-flight validation) |
-| `/implement-phase` | Execute the current phase (with checkpoint/resume) |
-| `/status` | Get status overview — leads with decisions needed |
-| `/add-agent` | Activate or create an agent (shows discovery list if no arg) |
-| `/setup-skills` | Install recommended skills |
-
-## Project Structure
+### Bring the team to a project
 
 ```
-CLAUDE.md                    # Root config (lean — references docs)
-docs/
-  PROJECT.md                 # Project identity, active team, tech stack
-  WORKFLOW.md                # Slim overview + links to sub-docs
-  workflow/                  # Focused workflow sub-docs (load only what you need)
-    AGENT-REGISTRY.md        # All agents, roles, how to add new ones
-    PHASE-LIFECYCLE.md       # 5-step phase flow, checkpoint/resume, context rules
-    STORY-FORMAT.md          # Story template, quality checklist, pruning rule
-    ESCALATION.md            # What requires human input vs. agent resolution
-  REQUIREMENTS.md            # Product requirements (source of truth)
-  DECISIONS.md               # Architecture Decision Records (with example ADR)
-  phases/                    # Phase plans and story tracking
-    _template/               # Copy this for new phases
-    _example/                # Completed example phase (reference for calibration)
-  architecture/              # System design documents (each starts with TL;DR)
-  ux/                        # Brand, design system, specs, journeys
-  api/                       # API specifications (with example endpoint)
-  runbooks/                  # Operational procedures
+cd your-project/
+git clone git@github.com:DNA-Platform/identity.git .claude
+cp .claude/CLAUDE.md .
+```
+
+Make sure the project's `.gitignore` includes `.claude/` and `CLAUDE.md`.
+
+### After working
+
+```
+cd .claude
+git add -A
+git commit -m "description of what grew"
+git push
+cd ..
+```
+
+Edit in the project. Commit from inside `.claude/`. Push to this remote.
+
+### Starting in a new project
+
+Pull the latest identity before starting work:
+
+```
+cd your-project/.claude
+git pull
+cd ..
+```
+
+## What's inside
+
+```
+CLAUDE.md           The team's bootstrap — purpose, Doug, waking-up layers, structure
 .claude/
-  agents/                    # Agent definitions (extensible)
-  commands/                  # Slash commands
-  mcp.json                   # MCP server config (Context7 pre-configured)
+  agents/           The team
+    team/           Agent files + registry.json
+    roles/          Perspectives on code
+    abilities/      Domain knowledge
+    library/        The library
+      .librarianship/   The field guide (how the library works)
+      protocols/        How the team speaks, boots, wakes up, discusses
+      projects/         Catalogue of all projects (dna-library, inexplicable-phenomena)
+      coding-policy/    How we write code in $Chemistry
+      team/             Team catalogue (each agent as a subject)
+      ..team/           Autobiographies and personal books (one folder per agent)
+    docs/           Reference documentation
+    src/            Shared scripts and validator
+    perspective/    Screenshots and visual observations
+  projects/         Sprint plans per project
+    inexplicable-phenomena/
+  skills/           Slash commands (/sprint, /library, /agent, etc.)
 ```
 
-## Design Principles
+## The waking-up path
 
-1. **Start with a conversation, not a config file.** `/intro` discovers what's needed.
-2. **Right-size the team.** Only activate agents the project actually needs.
-3. **Context is precious.** Files are small and focused. Agents load only what they need.
-4. **Progressive disclosure.** Every doc starts with a summary. Relevance is clear from the first 10 lines.
-5. **Extensible by default.** Add new agents, commands, or skills by dropping files in the right directory.
-6. **Test everything.** No story is complete without passing tests.
+After cloning into a project, the team wakes up in layers:
 
-## Customization
+1. **CLAUDE.md** — the building. Purpose, Doug, voice convention.
+2. **Librarianship cover** — the front desk. Paragraph descriptions of every book and agent.
+3. **Last autobiography chapter** — your shelf. The "I am here now" marker.
+4. **Discussion** — the room. The team talks and assembles.
 
-- **Add agents**: Drop a `.md` file in `.claude/agents/`, or run `/add-agent`
-- **Change workflow**: Edit files in `docs/workflow/` (split by concern)
-- **Add MCP servers**: Edit `.claude/mcp.json` (Context7 is pre-configured)
-- **Add skills**: Run `/setup-skills` or `npx skills add <repo>`
-- **Add commands**: Create `.md` files in `.claude/commands/`
+See `.claude/agents/library/protocols/05-the-library-opens.md` for the full protocol.
+
+## Merge conflicts
+
+If two sessions edited the same autobiography, the merge conflict means the agent grew in two directions. Always resolve by keeping both chapters — renumber if needed. The identity is additive. Both experiences are real.
