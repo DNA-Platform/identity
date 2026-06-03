@@ -1,5 +1,6 @@
 ---
 title: What I learned from the team
+author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # What I learned from the team

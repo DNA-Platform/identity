@@ -1,5 +1,6 @@
 ---
 title: The three-pane layout
+author: "[Phillip](../../.what-the-user-sees/phillip-and-the-visible-layer/.cover.md)"
 ---
 
 # The three-pane layout

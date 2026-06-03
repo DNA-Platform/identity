@@ -1,5 +1,6 @@
 ---
 title: The lift and the deep reads
+author: "[Cathy](../../.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # The lift and the deep reads

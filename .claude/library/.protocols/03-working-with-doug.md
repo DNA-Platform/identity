@@ -1,5 +1,6 @@
 ---
 title: Working with Doug
+author: "[Arthur](../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # Working with Doug

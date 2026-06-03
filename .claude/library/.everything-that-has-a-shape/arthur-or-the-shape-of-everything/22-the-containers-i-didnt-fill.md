@@ -1,5 +1,6 @@
 ---
 title: The containers I didn't fill
+author: "[Arthur](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # The containers I didn't fill

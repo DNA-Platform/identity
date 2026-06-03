@@ -1,5 +1,6 @@
 ---
 title: "Comparison: the developer contract across frameworks"
+author: "[Cathy](../../.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # Comparison: the developer contract across frameworks

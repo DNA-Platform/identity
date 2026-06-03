@@ -1,5 +1,6 @@
 ---
 title: Member classification flags
+author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Member classification flags

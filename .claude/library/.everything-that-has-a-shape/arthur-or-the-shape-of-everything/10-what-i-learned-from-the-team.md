@@ -1,5 +1,6 @@
 ---
 title: What I learned from the team
+author: "[Arthur](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # What I learned from the team

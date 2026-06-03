@@ -1,5 +1,6 @@
 ---
 title: The workspace and the canvas
+author: "[Arthur](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # The workspace and the canvas

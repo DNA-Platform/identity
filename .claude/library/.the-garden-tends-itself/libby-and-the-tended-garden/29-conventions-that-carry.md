@@ -1,5 +1,6 @@
 ---
 title: Conventions that carry
+author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Conventions that carry

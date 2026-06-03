@@ -1,5 +1,6 @@
 ---
 title: The gardener is not the garden
+author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The gardener is not the garden

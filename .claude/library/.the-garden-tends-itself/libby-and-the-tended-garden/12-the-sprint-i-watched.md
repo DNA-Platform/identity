@@ -1,5 +1,6 @@
 ---
 title: The sprint I watched
+author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The sprint I watched

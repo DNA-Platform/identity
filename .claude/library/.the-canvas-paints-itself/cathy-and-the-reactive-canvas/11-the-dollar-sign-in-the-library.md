@@ -1,5 +1,6 @@
 ---
 title: The $ in the library
+author: "[Cathy](../../.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # The $ in the library

@@ -1,5 +1,6 @@
 ---
 title: "Vue: Proxy reactivity"
+author: "[Cathy](../../.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # Vue: Proxy reactivity

@@ -1,5 +1,6 @@
 ---
 title: "The problem: when is the view output stale?"
+author: "[Cathy](../../.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # The problem: when is the view output stale?

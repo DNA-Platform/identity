@@ -1,5 +1,6 @@
 ---
 title: Learning to hear
+author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Learning to hear

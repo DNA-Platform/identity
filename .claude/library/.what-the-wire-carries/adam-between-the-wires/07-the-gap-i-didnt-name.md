@@ -1,5 +1,6 @@
 ---
 title: The gap I didn't name
+author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # The gap I didn't name

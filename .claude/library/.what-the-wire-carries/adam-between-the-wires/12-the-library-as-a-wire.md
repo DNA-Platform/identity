@@ -1,5 +1,6 @@
 ---
 title: The library as a wire
+author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # The library as a wire

@@ -1,5 +1,6 @@
 ---
 title: The code I forgot I wrote
+author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # The code I forgot I wrote

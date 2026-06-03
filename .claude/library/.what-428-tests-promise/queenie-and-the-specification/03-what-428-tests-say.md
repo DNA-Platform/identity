@@ -1,5 +1,6 @@
 ---
 title: What 428 tests say
+author: "[Arthur](../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # What 428 tests say

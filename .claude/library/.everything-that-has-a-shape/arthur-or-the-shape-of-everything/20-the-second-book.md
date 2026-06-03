@@ -1,5 +1,6 @@
 ---
 title: The second book
+author: "[Arthur](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # The second book

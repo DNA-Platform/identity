@@ -1,5 +1,6 @@
 ---
 title: The persistent session
+author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # The persistent session

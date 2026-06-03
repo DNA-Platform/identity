@@ -1,5 +1,6 @@
 ---
 title: Phillip
+author: "[Libby](../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Phillip

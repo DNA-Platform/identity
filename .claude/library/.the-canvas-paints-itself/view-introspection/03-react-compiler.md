@@ -1,5 +1,6 @@
 ---
 title: "React Compiler: auto-memoization from AST analysis"
+author: "[Cathy](../../.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # React Compiler: auto-memoization from AST analysis

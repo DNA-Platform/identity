@@ -1,5 +1,6 @@
 ---
 title: The unification
+author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # The unification

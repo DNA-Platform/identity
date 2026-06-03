@@ -1,5 +1,6 @@
 ---
 title: The loop that isn't
+author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # The loop that isn't

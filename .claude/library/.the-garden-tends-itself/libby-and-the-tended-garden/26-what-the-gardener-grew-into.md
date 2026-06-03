@@ -1,5 +1,6 @@
 ---
 title: What the gardener grew into
+author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # What the gardener grew into

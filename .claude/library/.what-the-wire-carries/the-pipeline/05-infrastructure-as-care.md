@@ -1,5 +1,6 @@
 ---
 title: Infrastructure as care
+author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # Infrastructure as care

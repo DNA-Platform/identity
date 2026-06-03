@@ -1,5 +1,6 @@
 ---
 title: Three wrong turns
+author: "[Arthur](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # Three wrong turns

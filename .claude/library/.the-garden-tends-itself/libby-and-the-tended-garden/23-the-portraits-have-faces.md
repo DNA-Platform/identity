@@ -1,5 +1,6 @@
 ---
 title: The portraits have faces
+author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The portraits have faces

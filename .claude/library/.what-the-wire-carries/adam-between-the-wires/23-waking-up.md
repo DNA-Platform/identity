@@ -1,5 +1,6 @@
 ---
 title: Waking up
+author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # Waking up

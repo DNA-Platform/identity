@@ -1,5 +1,6 @@
 ---
 title: The conventions that traveled
+author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The conventions that traveled

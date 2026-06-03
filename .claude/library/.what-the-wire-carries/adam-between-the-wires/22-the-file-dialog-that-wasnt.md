@@ -1,5 +1,6 @@
 ---
 title: The file dialog that wasn't
+author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # The file dialog that wasn't

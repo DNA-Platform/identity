@@ -1,5 +1,6 @@
 ---
 title: First spike
+author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # First spike

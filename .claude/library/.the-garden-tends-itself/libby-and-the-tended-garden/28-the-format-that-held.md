@@ -1,5 +1,6 @@
 ---
 title: The format that held
+author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The format that held

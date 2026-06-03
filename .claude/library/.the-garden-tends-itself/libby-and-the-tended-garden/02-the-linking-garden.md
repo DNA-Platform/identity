@@ -1,5 +1,6 @@
 ---
 title: The linking garden
+author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The linking garden
