@@ -41,8 +41,8 @@ For the Claude driver project, I want to approach it differently than I approach
 The connection to "What I Don't Know" is direct: this chapter names the pattern of routing around ignorance as self-protection. Chapters [6](06-the-code-i-forgot-i-wrote.md) and [7](07-the-gap-i-didnt-name.md) show the same pattern wearing different clothes. The trap isn't a one-time event. It's a tendency I manage, not a bug I fixed.
 
 <!-- citations -->
-[Arthur]: ../../../agents/arthur.md
-[Libby]: ../../../agents/libby.md
+[Arthur]: ../../.team/arthur.md
+[Libby]: ../../.team/libby.md
 [mcp-reckoning]: 02-the-mcp-reckoning.md
-[Arthur's reflection]: ../../arthur/arthur-or-the-shape-of-everything/03-more-than-a-function.md
-[Libby's origin]: ../../libby/libby-and-the-tended-garden/06-origin-story.md
+[Arthur's reflection]: ../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/03-more-than-a-function.md
+[Libby's origin]: ../../.the-garden-tends-itself/libby-and-the-tended-garden/06-origin-story.md

@@ -95,11 +95,11 @@ Before doing {Name}'s work, ground yourself in the current implementation:
 ```
 
 <!-- citations -->
-[roles]: .claude/agents/roles
-[Architect]: .claude/agents/roles/architect.md
-[Framework Engineer]: .claude/agents/roles/framework-engineer.md
-[Automation Engineer]: .claude/agents/roles/automation-engineer.md
-[abilities]: .claude/agents/abilities/
-[project tracker]: .claude/agents/project/index.md
+[roles]: .claude/library/.team/roles
+[Architect]: .claude/library/.team/roles/architect.md
+[Framework Engineer]: .claude/library/.team/roles/framework-engineer.md
+[Automation Engineer]: .claude/library/.team/roles/automation-engineer.md
+[abilities]: .claude/library/.team/abilities/
+[project tracker]: .claude/library/.projects/inexplicable-phenomena/index.md
 
 $ARGUMENTS

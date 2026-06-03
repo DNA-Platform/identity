@@ -41,6 +41,6 @@ The connection I didn't see when I wrote it: the "dead wire" metaphor in [chapte
 What I'd change: the `author: .cover.md` line at the top was leftover frontmatter noise that I should have cleaned up earlier. The chapter earns its authority through argument, not through metadata.
 
 <!-- citations -->
-[Arthur]: ../../../agents/arthur.md
-[Arthur's fixed point]: ../../arthur/arthur-or-the-shape-of-everything/04-the-fixed-point.md
-[Libby's self-link]: ../../libby/libby-and-the-tended-garden/08-the-self-link.md
+[Arthur]: ../../.team/arthur.md
+[Arthur's fixed point]: ../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/04-the-fixed-point.md
+[Libby's self-link]: ../../.the-garden-tends-itself/libby-and-the-tended-garden/08-the-self-link.md

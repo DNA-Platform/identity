@@ -87,6 +87,6 @@ Libby: Write a proper team catalogue — a book at the objective library level t
 - [ ] Identity is ready to push to the identity repo
 
 <!-- citations -->
-[field guide]: ../../agents/library/.librarianship/.cover.md
-[spec - anatomy]: ../../agents/library/.librarianship/01-anatomy-of-a-book.md
-[spec - catalogues]: ../../agents/library/.librarianship/04-subjects-and-catalogues.md
+[field guide]: ../.team/library/..librarianship/.cover.md
+[spec - anatomy]: ../.team/library/..librarianship/01-anatomy-of-a-book.md
+[spec - catalogues]: ../.team/library/..librarianship/04-subjects-and-catalogues.md

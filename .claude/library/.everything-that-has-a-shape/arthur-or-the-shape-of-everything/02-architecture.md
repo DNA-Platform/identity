@@ -50,6 +50,6 @@ The relationship between this chapter and [chapter 3](03-more-than-a-function.md
 
 <!-- citations -->
 [CLAUDE.md]: ../../../../CLAUDE.md
-[Adam]: ../../../agents/adam.md
+[Adam]: ../../.team/adam.md
 [Playwright MCP]: https://github.com/microsoft/playwright-mcp
 [project tracker]: ../../project/index.md

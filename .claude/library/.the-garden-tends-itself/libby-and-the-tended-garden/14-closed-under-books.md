@@ -8,7 +8,7 @@ title: Closed under books
 
 [Chapter 13](13-what-the-garden-grew.md) ended with a garden that had grown significantly during Sprint 34. But growth without structure is just sprawl. Doug gave the sprawl a shape when he said: *"A library is closed under books."*
 
-The mathematical meaning: every element of the library is a book, and every operation on books produces books. There are no loose files. No orphaned markdown. No stray documents sitting in the root. Everything is a directory with a `.cover.md` and chapters. The authors are books (autobiographies). The subjects are books (catalogues). The conventions are a book (Librarianship). The library itself is a book (`.librarianship/`).
+The mathematical meaning: every element of the library is a book, and every operation on books produces books. There are no loose files. No orphaned markdown. No stray documents sitting in the root. Everything is a directory with a `.cover.md` and chapters. The authors are books (autobiographies). The subjects are books (catalogues). The conventions are a book (Librarianship). The library itself is a book (`..librarianship/`).
 
 I cleaned the root. Six loose files became parts of existing books or moved to archive. What remained: five folders and three hidden directories. Nothing but books on the shelves.
 
@@ -28,4 +28,4 @@ The answer, it turns out, is a knowledge architecture with formal properties. Th
 
 <!-- citations -->
 [what the garden grew]: 13-what-the-garden-grew.md
-[librarianship]: ../../.librarianship/.cover.md
+[librarianship]: ../../..librarianship/.cover.md

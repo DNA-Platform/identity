@@ -26,4 +26,4 @@ Arthur: This is architecture applied to identity — the same practice I describ
 
 <!-- citations -->
 [the first real conversation]: 13-the-first-real-conversation.md
-[sprint 41 plan]: ../../../../../projects/inexplicable-phenomena/sprint-41/plan.md
+[sprint 41 plan]: ../../.projects/inexplicable-phenomena/sprint-41/plan.md

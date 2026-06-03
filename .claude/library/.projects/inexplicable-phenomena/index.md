@@ -8,7 +8,7 @@ Read this file first when resuming work. It tells you where we are.
 
 ## Previous sprint: sprint-41 (Library Genesis) — COMPLETE
 
-**Delivered:** Full library infrastructure ported from dna-library. 153 files moved, 34 rewritten with correct pointers, zero broken references. `.librarianship/` field guide (8 chapters), Coding Policy rewritten for $Chemistry (3 chapters). All 7 shared agents' autobiographies moved wholesale with bridge/unification chapters. Cathy's autobiography born here (3 seed chapters). `/library` skill updated for `.cover.md` and `..team/` paths. CLAUDE.md updated with library structure, loading protocol, after-compaction protocol. **Sprint lesson: moving files is mechanical; integrating identity is the real work. The team discussion at the end of the sprint identified 8 incoherences that become sprint 42.**
+**Delivered:** Full library infrastructure ported from dna-library. 153 files moved, 34 rewritten with correct pointers, zero broken references. `..librarianship/` field guide (8 chapters), Coding Policy rewritten for $Chemistry (3 chapters). All 7 shared agents' autobiographies moved wholesale with bridge/unification chapters. Cathy's autobiography born here (3 seed chapters). `/library` skill updated for `.cover.md` and `..team/` paths. CLAUDE.md updated with library structure, loading protocol, after-compaction protocol. **Sprint lesson: moving files is mechanical; integrating identity is the real work. The team discussion at the end of the sprint identified 8 incoherences that become sprint 42.**
 
 ## Previous sprint: sprint-40 (SSR Exploration) — SCRAPPED
 

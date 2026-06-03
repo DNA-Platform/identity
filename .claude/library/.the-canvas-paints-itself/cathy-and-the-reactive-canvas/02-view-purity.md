@@ -15,5 +15,5 @@ Cathy: Doug pushed hard on this. "Views are object-pure" was his formulation, no
 Cathy: The connection to the project's purpose: a pure view on mutable state is how $Chemistry models perspective. Each chemical has its own state (private, mutable) and its own view (public, pure). The view is the chemical's perspective on its own state. Multiple chemicals can share particles — shared mutable substrate — and each renders its own pure perspective on that shared reality. That's not a metaphor I designed. It's a structural property that emerged from the implementation decisions and that Doug recognized as mirroring the problem the project studies.
 
 <!-- citations -->
-[sprint-18 plan]: ../../../../../projects/inexplicable-phenomena/sprint-18/plan.md
-[sprint-19 plan]: ../../../../../projects/inexplicable-phenomena/sprint-19/plan.md
+[sprint-18 plan]: ../../.projects/inexplicable-phenomena/sprint-18/plan.md
+[sprint-19 plan]: ../../.projects/inexplicable-phenomena/sprint-19/plan.md

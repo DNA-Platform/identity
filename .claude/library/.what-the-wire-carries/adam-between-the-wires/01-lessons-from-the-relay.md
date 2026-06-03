@@ -27,5 +27,5 @@ Every one of these lessons points toward Playwright. It solved all five problems
 **2026-05-17:** This is where I started, and reading it now I can hear the confidence of someone who has already decided what the answer is. I wrote "UIA is a dead end" like it was a law of physics. Six chapters later I found my own working UIA code and had to eat those words. The lesson list is accurate as far as it goes — but it's a list of *technical* conclusions when the real lesson was about how I draw conclusions. I reach for generalizations ("X is a dead end") when what I have is specific evidence ("X didn't work in this case with my level of understanding"). That pattern — over-generalizing from limited experience — is the first face of what I later called [routing around ignorance](07-the-gap-i-didnt-name.md). If you declare something a dead end, you never have to admit you don't understand it well enough to make it work.
 
 <!-- citations -->
-[spikes]: ../../../projects/inexplicable-phenomena/.archive/sprint-1/spikes/
+[spikes]: ../../.projects/inexplicable-phenomena/.archive/sprint-1/spikes/
 [desktop.ps1]: ../../../src/.archive/desktop.ps1

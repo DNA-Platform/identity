@@ -4,15 +4,25 @@ description: Browse an agent's library — list books with summaries, or show th
 argument-hint: "[agent] [book-slug]"
 ---
 
-Browse an agent's library. Libraries live at `.claude/agents/library/..team/{agent}/`. Each agent folder contains book subdirectories. Each book has a `.cover.md` with frontmatter (title, author, summary) and chapters as `NN-slug.md` files.
+Browse the team library. Agent libraries are directories with `.` prefix under `.claude/library/` — each named with a literary title. Books within have `.cover.md` files with frontmatter (title, author, summary) and chapters as `NN-slug.md` files.
+
+Agent to library directory mapping:
+- arthur → `.everything-that-has-a-shape`
+- cathy → `.the-canvas-paints-itself`
+- libby → `.the-garden-tends-itself`
+- adam → `.what-the-wire-carries`
+- david → `.what-the-pipeline-delivers`
+- phillip → `.what-the-user-sees`
+- queenie → `.what-428-tests-promise`
+- gabby → `.what-beauty-serves`
 
 ## Modes
 
 **No arguments** — list all agent libraries with book counts.
 
-**One argument (`{agent}`)** — list that agent's books with title and summary from the book's `.cover.md` frontmatter.
+**One argument (`{agent}`)** — list that agent's books with title and summary from each book's `.cover.md` frontmatter.
 
-**Two arguments (`{agent} {book-slug}`)** — show the book's chapter list (the table of contents) and the summary from frontmatter.
+**Two arguments (`{agent} {book-slug}`)** — show the book's chapter list and summary.
 
 ## Steps
 
@@ -20,67 +30,38 @@ Browse an agent's library. Libraries live at `.claude/agents/library/..team/{age
 
 2. **Zero args — all libraries.**
 
-   List every directory under `.claude/agents/library/..team/` excluding any top-level files. For each agent, count the number of book subdirectories (directories that contain a `.cover.md`). Output:
+   List every `.` prefixed directory under `.claude/library/` that is NOT `..librarianship`, `.protocols`, `.projects`, `.team`, `.chemistry`, `.src`, or `.perspective`. These are agent libraries. For each, count books (subdirectories with `.cover.md`). Output:
 
    ```
-   ## Libraries
+   ## Agent Libraries
 
-   | Agent | Books |
-   |-------|-------|
-   | cathy | 4 |
-   | arthur | 2 |
+   | Agent | Library | Books |
+   |-------|---------|-------|
+   | cathy | .the-canvas-paints-itself | 4 |
+   | arthur | .everything-that-has-a-shape | 2 |
    ```
-
-   Then: "Use `/library {agent}` to see a specific library's books."
 
 3. **One arg — agent's books.**
 
-   Look in `.claude/agents/library/..team/{agent}/`. For each subdirectory that contains a `.cover.md`, parse the frontmatter of that `.cover.md`. Extract `title`, `summary`, and (if present) `author`. Output:
+   Use the mapping above to find the library directory. For each subdirectory with a `.cover.md`, parse frontmatter. Output:
 
    ```
-   ## {agent}'s library
+   ## {agent}'s library ({library-name})
 
-   - **{title}** (`{book-slug}`) — {summary}
    - **{title}** (`{book-slug}`) — {summary}
    ```
-
-   End with: "Use `/library {agent} {book-slug}` to see a book's chapters."
-
-   If the agent directory doesn't exist, say: "No library for agent `{agent}`. Known agents: {list}."
-
-   If it exists but has no books yet, say: "Agent `{agent}` has a library but no books yet."
 
 4. **Two args — book chapters.**
 
-   Read `.claude/agents/library/..team/{agent}/{book-slug}/.cover.md`. If missing, say: "No book `{book-slug}` in {agent}'s library. Available books: {list or 'none'}."
-
-   Parse frontmatter (title, summary, author, links). List all `.md` files in the book directory except `.cover.md`, sorted alphabetically (the `NN-` numeric prefix orders them). For each chapter file, parse its frontmatter for `title`. Output:
-
-   ```
-   ## {book title}
-   _{summary}_
-
-   Author: {author path}
-
-   ### Chapters
-   - {chapter title} (`{chapter-slug}`)
-   - {chapter title} (`{chapter-slug}`)
-   ...
-
-   ### Cross-links
-   - {agent/book-slug}
-   - {agent/book-slug}
-   ```
-
-   Omit "Cross-links" if the book has no `links` field. If a chapter file lacks frontmatter `title`, use the filename slug.
+   Read `.claude/library/{library-dir}/{book-slug}/.cover.md`. Parse frontmatter. List chapter `.md` files. Output as before.
 
 ## Notes
 
-- Book slugs are the directory names (kebab-case).
-- Chapter slugs are filenames without extension (e.g., `03-signals-solid.md` → slug `03-signals-solid`, title from frontmatter).
+- Navigate the library by reading covers and following links, not by browsing the filesystem
+- The library catalogue at `.claude/library/..librarianship/.cover.md` has paragraph descriptions of everything
 - Use `Read`, `Glob`, `Bash` (for `ls`). Read-only skill; do not modify files.
 
 <!-- citations -->
-[library]: ../../agents/library/..team/
+[library catalogue]: ../../library/..librarianship/.cover.md
 
 $ARGUMENTS

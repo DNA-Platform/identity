@@ -17,6 +17,6 @@ Cathy: Doug's constraints shaped the vocabulary. No ALL_CAPS constants — `phas
 Cathy: The vocabulary sprint taught me something I hadn't learned from the deep reads or the reactive rebuild. Code that works is an engineering achievement. Code that speaks is a design achievement. The fourteen renames didn't fix a single bug. They didn't improve performance. They didn't add a feature. They changed what $Chemistry means to someone reading it for the first time. `diffuse`, `activate`, `$Synthesis` — these names don't just describe what the code does. They place the code inside the metaphor. They make the framework legible as chemistry, not as a framework. And because $Chemistry is the paint that ideas about consciousness are presented in, legibility isn't a luxury. It's the mechanism by which the framework fulfills its purpose.
 
 <!-- citations -->
-[sprint-22 plan]: ../../../../../projects/inexplicable-phenomena/sprint-22/plan.md
-[sprint-24 plan]: ../../../../../projects/inexplicable-phenomena/sprint-24/plan.md
-[sprint-25 plan]: ../../../../../projects/inexplicable-phenomena/sprint-25/plan.md
+[sprint-22 plan]: ../../.projects/inexplicable-phenomena/sprint-22/plan.md
+[sprint-24 plan]: ../../.projects/inexplicable-phenomena/sprint-24/plan.md
+[sprint-25 plan]: ../../.projects/inexplicable-phenomena/sprint-25/plan.md

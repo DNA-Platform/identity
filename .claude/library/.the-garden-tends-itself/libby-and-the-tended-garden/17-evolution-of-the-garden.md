@@ -10,7 +10,7 @@ In [chapter 16](16-what-i-learned-from-the-team.md), I described what my teammat
 
 A library evolves. Books are added, chapters grow, subjects emerge, catalogues form. But the evolution isn't random — it follows meaning. A chapter becomes a book when it outgrows its place. A set of books becomes a subject when someone notices their connection. The evolution is directed by what the library *means* — a connected system of knowledge, not a pile of files.
 
-When I moved the craft chapters from my autobiography to the objective `.librarianship/` book, that was meaning-directed evolution. The craft chapters didn't *belong* in a personal narrative. Their meaning was objective — conventions that apply to everyone. The evolution corrected a misplacement.
+When I moved the craft chapters from my autobiography to the objective `..librarianship/` book, that was meaning-directed evolution. The craft chapters didn't *belong* in a personal narrative. Their meaning was objective — conventions that apply to everyone. The evolution corrected a misplacement.
 
 The app had the same experience this sprint. The exporter was doing navigation work that belonged in the app. Moving it wasn't a feature addition — it was the code evolving toward its meaning. The app means "a stateful model of a desktop application." Code that lives in the exporter but does stateful navigation is in the wrong place, just like craft chapters in a personal autobiography.
 
@@ -31,4 +31,4 @@ The line from [chapter 6](06-origin-story.md) — "the garden changes, the garde
 <!-- citations -->
 [what I learned]: 16-what-i-learned-from-the-team.md
 [closed under books]: 14-closed-under-books.md
-[.librarianship]: ../../.librarianship/.cover.md
+[.librarianship]: ../../..librarianship/.cover.md

@@ -19,7 +19,7 @@ Arthur: `.claude/` contains three kinds of things with different persistence and
 |-------|----------|----------------|----------|----------|
 | **Project** | Sprint plans, boards, tracker, spikes | Yes | Possibly | `project/sprint-41/plan.md` |
 | **Application** | Skills, roles, abilities, registry, docs | Yes | No | `skills/library/SKILL.md`, `team/roles/architect.md` |
-| **Identity** | Autobiographies, personal libraries, perspectives, field guide | **No** | **Yes** | `..team/arthur/arthur-or-the-shape-of-everything/` |
+| **Identity** | Autobiographies, personal libraries, perspectives, field guide | **No** | **Yes** | `.everything-that-has-a-shape/arthur-or-the-shape-of-everything/` |
 
 Arthur: The application layer is the repo's operating system — how work gets done here. It's public and project-specific. The identity layer is about who's doing the work — it travels with the team and shouldn't be in a public repo. The project layer is the work itself — ephemeral, repo-bound, possibly private.
 
@@ -32,14 +32,14 @@ Libby: I audited every link in dna-library's team library. Here's what exists an
 ### Link categories
 
 **1. Within-team links** (autobiography → autobiography)
-Pattern: `../../libby/libby-and-the-tended-garden/.cover.md`
+Pattern: `../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md`
 Status: **Survive the move.** These are relative within `..team/` — as long as the directory moves as a unit, they hold.
 
 **2. Agent file links** (autobiography → agent definition)
 Pattern: `../../../team/{name}.md` (in dna-library's structure)
-Becomes: `../../../agents/{name}.md` (in our structure)
+Becomes: `../../.team/{name}.md` (in our structure)
 Count: ~15 files
-Fix: Find-and-replace `../../../team/` → `../../../agents/` and `../../../../team/` → `../../../../agents/`
+Fix: Find-and-replace `../../../team/` → `../../.team/` and `../../../../team/` → `../../../.team/`
 
 **3. CLAUDE.md links** (autobiography → repo root)
 Pattern: `../../../../CLAUDE.md`
@@ -52,11 +52,11 @@ Fix: Replace with cross-repo paths: `../../../../../../dna-library/library/...`
 Affected agents: Mainly Theo, Nancy, Claude — who may or may not move (see below)
 
 **5. Objective library links** (autobiography → shared books)
-Pattern: `../../../coding-policy/.cover.md`, `../../../claude-driver/.cover.md`
+Pattern: `../../coding-policy/.cover.md`, `../../../claude-driver/.cover.md`
 Status: Books that move with us keep their relative paths. Books that stay become cross-repo references.
 
 **6. Frontmatter author links** (self-links and cross-links)
-Pattern: `author: "[Arthur](.cover.md)"` (self-link) or `author: "[Arthur](../..team/arthur/.../.cover.md)"` (in objective books)
+Pattern: `author: "[Arthur](.cover.md)"` (self-link) or `author: "[Arthur](../.everything-that-has-a-shape/.../.cover.md)"` (in objective books)
 Status: Self-links survive. Objective book author links need updating to match new depth.
 
 **7. Frontmatter `links:` entries** (book → related books)
@@ -78,14 +78,14 @@ This is how we validate the move.
 
 | Source (dna-library) | Destination (here) | Notes |
 |---------------------|-------------------|-------|
-| `.claude/agents/library/..team/arthur/` | `.claude/team/library/..team/arthur/` | Autobiography (25 ch) + "Architecture of Identity" (5 ch) |
-| `.claude/agents/library/..team/adam/` | `.claude/team/library/..team/adam/` | Autobiography (25 ch) + 4 other books |
-| `.claude/agents/library/..team/libby/` | `.claude/team/library/..team/libby/` | Autobiography (32 ch) + 2 other books |
-| `.claude/agents/library/..team/cathy/` | `.claude/team/library/..team/cathy/` | 2 research books (already here too — merge) |
-| `.claude/agents/library/..team/david/` | `.claude/team/library/..team/david/` | Whatever exists |
-| `.claude/agents/library/..team/phillip/` | `.claude/team/library/..team/phillip/` | Whatever exists |
-| `.claude/agents/library/..team/queenie/` | `.claude/team/library/..team/queenie/` | Whatever exists |
-| `.claude/agents/library/.librarianship/` | `.claude/team/library/.librarianship/` | Field guide (8 chapters) |
+| `.claude/agents/library/.everything-that-has-a-shape/` | `.claude/team/library/.everything-that-has-a-shape/` | Autobiography (25 ch) + "Architecture of Identity" (5 ch) |
+| `.claude/agents/library/.what-the-wire-carries/` | `.claude/team/library/.what-the-wire-carries/` | Autobiography (25 ch) + 4 other books |
+| `.claude/agents/library/.the-garden-tends-itself/` | `.claude/team/library/.the-garden-tends-itself/` | Autobiography (32 ch) + 2 other books |
+| `.claude/agents/library/.the-canvas-paints-itself/` | `.claude/team/library/.the-canvas-paints-itself/` | 2 research books (already here too — merge) |
+| `.claude/agents/library/.what-the-pipeline-delivers/` | `.claude/team/library/.what-the-pipeline-delivers/` | Whatever exists |
+| `.claude/agents/library/.what-the-user-sees/` | `.claude/team/library/.what-the-user-sees/` | Whatever exists |
+| `.claude/agents/library/.what-428-tests-promise/` | `.claude/team/library/.what-428-tests-promise/` | Whatever exists |
+| `.claude/agents/library/..librarianship/` | `.claude/team/library/..librarianship/` | Field guide (8 chapters) |
 | `.claude/agents/library/coding-policy/` | `.claude/team/library/coding-policy/` | How we write code (5 chapters) |
 
 ### Agents that DON'T move (yet)
@@ -124,10 +124,10 @@ Libby: The mechanical part. After copying, apply these transformations:
 ### Rule 1: Agent file references
 ```
 Find:    ../../../team/{name}.md
-Replace: ../../../agents/{name}.md
+Replace: ../../.team/{name}.md
 
 Find:    ../../../../team/{name}.md  (from chapter depth)
-Replace: ../../../../agents/{name}.md
+Replace: ../../../.team/{name}.md
 ```
 Scope: All files in `..team/`
 
@@ -161,7 +161,7 @@ Scope: Cross-references in the autobiographies that DO move
 
 ### Rule 5: Coding Policy source references
 ```
-Find:    ../../agents/src/   (dna-library source code)
+Find:    ../.team/src/   (dna-library source code)
 Replace: ../../../../../../dna-library/.claude/agents/src/
 ```
 Scope: coding-policy/05-coding-style.md, coding-policy/04-code-library-linking.md
@@ -173,7 +173,7 @@ Coding Policy also references `../../library/chemistry/src/` which exists in BOT
 Arthur: After all moves and rewrites:
 1. Run `/organize -dry-run` — catches broken CLAUDE.md refs, agent registry issues
 2. Grep all `.md` files in the library for `](` and check each target resolves
-3. Grep for `../../../team/` (should be zero — all rewritten to `../../../agents/`)
+3. Grep for `../../../team/` (should be zero — all rewritten to `../../.team/`)
 4. Grep for `../../../../library/` without `dna-library` (should be zero — all rewritten)
 
 ## Tracks
@@ -182,7 +182,7 @@ Arthur: After all moves and rewrites:
 
 **A-1.** Create `..team/` directory structure under `.claude/team/library/`. Create folders for all 8 active agents.
 
-**A-2.** Move `.librarianship/` field guide from dna-library. Adapt the shelves list on the cover to reflect our library, not dna-library's.
+**A-2.** Move `..librarianship/` field guide from dna-library. Adapt the shelves list on the cover to reflect our library, not dna-library's.
 
 **A-3.** Move `coding-policy/` from dna-library. Update source file references to point to our `library/chemistry/src/` or cross-repo to dna-library's `src/` as appropriate.
 
@@ -210,7 +210,7 @@ Arthur: After all moves and rewrites:
 
 **C-2.** Seed 2-3 chapters: the reactive model, view purity, the Lab.
 
-**C-3.** Merge her dna-library research books (reactivity-models, view-introspection) into the new `..team/cathy/` structure — they already exist in both places, so reconcile.
+**C-3.** Merge her dna-library research books (reactivity-models, view-introspection) into the new `.the-canvas-paints-itself/` structure — they already exist in both places, so reconcile.
 
 ### Track D — Persistence design spike (Arthur)
 
@@ -229,7 +229,7 @@ Arthur: After all moves and rewrites:
 ## Definition of done
 
 - [ ] `..team/` structure exists with folders for all active agents
-- [ ] `.librarianship/` field guide ported and adapted
+- [ ] `..librarianship/` field guide ported and adapted
 - [ ] `coding-policy/` ported and adapted
 - [ ] Existing books converted to `.cover.md` convention
 - [ ] All 7 shared agents' autobiographies moved with all chapters intact
@@ -244,7 +244,7 @@ Arthur: After all moves and rewrites:
 
 <!-- citations -->
 [dna-library CLAUDE.md]: ../../../dna-library/CLAUDE.md
-[dna-library field guide]: ../../../dna-library/.claude/agents/library/.librarianship/.cover.md
+[dna-library field guide]: ../../../dna-library/.claude/agents/library/..librarianship/.cover.md
 [dna-library coding policy]: ../../../dna-library/.claude/agents/library/coding-policy/.cover.md
 [dna-library identities]: ../../../dna-library/.claude/agents/library/..identities/.cover.md
 [organize skill]: ../../skills/organize/SKILL.md

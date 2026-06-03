@@ -17,6 +17,6 @@ Cathy: There's a discussion that came up later on the team about loaded knowledg
 Cathy: The deep reads taught me that reading is not passive. It's the most demanding form of engineering. Building something new, you make choices and the code follows. Reading something existing, you reconstruct choices someone else made for reasons you have to infer. The lift gave me eight modules. The deep reads gave me the framework. Not the code — I already had the code. The framework. The conceptual structure that makes the code coherent. Everything I built in the thirty-six sprints that followed was built on that foundation: not on the modules I created in sprint 4, but on the understanding I earned in sprints 7 and 9.
 
 <!-- citations -->
-[sprint-4 plan]: ../../../../../projects/inexplicable-phenomena/sprint-4/plan.md
-[sprint-7 plan]: ../../../../../projects/inexplicable-phenomena/sprint-7/plan.md
-[sprint-9 plan]: ../../../../../projects/inexplicable-phenomena/sprint-9/plan.md
+[sprint-4 plan]: ../../.projects/inexplicable-phenomena/sprint-4/plan.md
+[sprint-7 plan]: ../../.projects/inexplicable-phenomena/sprint-7/plan.md
+[sprint-9 plan]: ../../.projects/inexplicable-phenomena/sprint-9/plan.md

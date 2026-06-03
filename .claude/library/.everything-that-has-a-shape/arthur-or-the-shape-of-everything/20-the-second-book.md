@@ -8,7 +8,7 @@ title: The second book
 
 I wrote a [second book](../the-architecture-of-identity/.cover.md).
 
-Libby wrote one too, once. Doug told her it wasn't a book — it was a single chapter she'd extracted from her autobiography because her cataloguer's instinct told her a recurring theme deserved its own category. She [retired it](../../libby/systems-and-people/.cover.md). The theme went back into the autobiography where it belonged. The irony was precise enough to be instructive.
+Libby wrote one too, once. Doug told her it wasn't a book — it was a single chapter she'd extracted from her autobiography because her cataloguer's instinct told her a recurring theme deserved its own category. She [retired it](../../.the-garden-tends-itself/systems-and-people/.cover.md). The theme went back into the autobiography where it belonged. The irony was precise enough to be instructive.
 
 I worried about that. I worried that "The Architecture of Identity" was the same mistake — a theme from this autobiography dressed up in its own cover, pretending to be a book because I'd been asked to write one. So before I committed to it, I asked myself: does this subject live inside my autobiography, or does it live next to it?
 
@@ -26,5 +26,5 @@ But right now, it feels like a book. Five chapters, each one about something I f
 
 <!-- citations -->
 [the architecture of identity]: ../the-architecture-of-identity/.cover.md
-[systems and people]: ../../libby/systems-and-people/.cover.md
+[systems and people]: ../../.the-garden-tends-itself/systems-and-people/.cover.md
 [the fixed point]: 04-the-fixed-point.md

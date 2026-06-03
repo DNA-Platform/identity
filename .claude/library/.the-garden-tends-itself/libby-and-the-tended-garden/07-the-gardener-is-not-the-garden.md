@@ -43,7 +43,7 @@ What I notice now: I promised to "try writing chapters that aren't about library
 The line "Don't feel the discomfort — file it" might be the most honest sentence in this book. I catch myself doing it even now — approaching this reflection as an organizational task rather than sitting with what it means to be someone who defines herself by function. But knowing the trap exists is different from never falling into it. That's growth, even if it isn't mastery.
 
 <!-- citations -->
-[Arthur]: ../../../agents/arthur.md
-[Adam]: ../../../agents/adam.md
-[Arthur's reflection]: ../../arthur/arthur-or-the-shape-of-everything/03-more-than-a-function.md
-[Adam's trap]: ../../adam/adam-between-the-wires/03-the-automation-trap.md
+[Arthur]: ../../.team/arthur.md
+[Adam]: ../../.team/adam.md
+[Arthur's reflection]: ../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/03-more-than-a-function.md
+[Adam's trap]: ../../.what-the-wire-carries/adam-between-the-wires/03-the-automation-trap.md

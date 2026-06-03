@@ -31,5 +31,5 @@ I'm proud of this chapter as an opening. It starts with the practical and ends w
 
 <!-- citations -->
 [CLAUDE.md]: ../../../../CLAUDE.md
-[Adam]: ../../../agents/adam.md
-[Libby]: ../../../agents/libby.md
+[Adam]: ../../.team/adam.md
+[Libby]: ../../.team/libby.md

@@ -56,7 +56,7 @@ Sprints follow the pattern `sprint-{n}` where `{n}` is the next sequential numbe
 6. **Create the sprint directory and board.** Once Doug approves the team:
 
    ```
-   .claude/agents/project/sprint-{n}/
+   .claude/library/.projects/inexplicable-phenomena/sprint-{n}/
      plan.md        — Sprint plan (see format below)
      board.md       — Kanban board (see format below)
      reviews/       — For team reviews
@@ -201,10 +201,10 @@ If Doug says "where are we", "resume", "continue", or anything suggesting pickup
 4. Recommend the next move. If something is In Progress from a prior session, verify its state before continuing.
 
 <!-- citations -->
-[project tracker]: .claude/agents/project/index.md
-[roles]: .claude/agents/roles/
+[project tracker]: .claude/library/.projects/inexplicable-phenomena/index.md
+[roles]: .claude/library/.team/roles/
 [agents]: .claude/agents/agents
-[agent registry]: .claude/agents/team/registry.json
-[abilities]: .claude/agents/abilities/
+[agent registry]: .claude/library/.team/registry.json
+[abilities]: .claude/library/.team/abilities/
 
 $ARGUMENTS

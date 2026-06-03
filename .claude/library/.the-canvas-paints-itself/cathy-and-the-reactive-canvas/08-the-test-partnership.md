@@ -17,5 +17,5 @@ Cathy: The relationship taught me that QA is not gatekeeping. Gatekeeping is bin
 Cathy: Four hundred and twenty-eight tests. Each one a sentence in a contract. Queenie wrote the sentences. I signed them in code. The test suite is the most complete description of what $Chemistry is — not what it does internally, not how it's implemented, but what it guarantees to anyone who uses it. The partnership isn't about catching bugs. It's about making promises and keeping them.
 
 <!-- citations -->
-[sprint-20 plan]: ../../../../../projects/inexplicable-phenomena/sprint-20/plan.md
-[sprint-32 plan]: ../../../../../projects/inexplicable-phenomena/sprint-32/plan.md
+[sprint-20 plan]: ../../.projects/inexplicable-phenomena/sprint-20/plan.md
+[sprint-32 plan]: ../../.projects/inexplicable-phenomena/sprint-32/plan.md

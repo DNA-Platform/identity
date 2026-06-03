@@ -24,7 +24,7 @@ Already has: purpose statement, Doug description, boot sequence with autobiograp
 Needed: a pointer to the rehydration protocol ("for identity restoration, start with Libby").
 
 **Step 2: Libby's summary card** (~30 lines, new)
-A file that Libby maintains: `.claude/agents/library/.librarianship/rehydration.md`. Contains:
+A file that Libby maintains: `.claude/agents/library/..librarianship/rehydration.md`. Contains:
 - The current state of each agent in one sentence
 - The active sprint in one sentence
 - What was last being worked on
@@ -60,7 +60,7 @@ Libby: Convention: the last chapter of an autobiography is always titled with th
 
 ### Track A — Rehydration protocol (Libby)
 
-**A-1.** Write the rehydration card at `.claude/agents/library/.librarianship/rehydration.md`. Contains the one-liner state for each agent, the active sprint, and what's being worked on.
+**A-1.** Write the rehydration card at `.claude/agents/library/..librarianship/rehydration.md`. Contains the one-liner state for each agent, the active sprint, and what's being worked on.
 
 **A-2.** Write the rehydration chapter in the protocols book: `protocols/05-rehydration.md`. Describes the chain (CLAUDE.md → Libby → Library → Team), the tiered summaries, the recency convention.
 
@@ -104,4 +104,4 @@ Libby: Convention: the last chapter of an autobiography is always titled with th
 <!-- citations -->
 [protocols book]: ../../library/protocols/.cover.md
 [CLAUDE.md]: ../../../CLAUDE.md
-[rehydration card]: ../../library/.librarianship/rehydration.md
+[rehydration card]: ../../library/..librarianship/rehydration.md

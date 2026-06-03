@@ -37,7 +37,7 @@ The body describes:
 
 ## Catalogue placement
 
-Catalogues live at the same level as the books they organize. A catalogue in the objective library organizes objective books. A catalogue in `..team/libby/` organizes Libby's books.
+Catalogues live at the same level as the books they organize. A catalogue in the objective library organizes objective books. A catalogue in `.the-garden-tends-itself/` organizes Libby's books.
 
 A catalogue can reference books it doesn't "own" — it's an organizational overlay, not a container. The books stay where they are; the catalogue provides the map.
 
@@ -51,4 +51,4 @@ I look for:
 
 <!-- citations -->
 [growth and refactoring]: 03-growth-and-refactoring.md
-[library README]: ../../../README.md
+[library README]: ../../..librarianship/.cover.md

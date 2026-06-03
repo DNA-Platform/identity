@@ -30,7 +30,7 @@ The [automation trap](03-the-automation-trap.md) was about protecting my self-im
 
 But the moment Doug said "like my Chrome shortcuts," I could have said: "I don't know how Chrome shortcuts carry arguments. Let me look at one." Instead I built a batch file, which is the thing I *do* know.
 
-The pattern from [Arthur's chapter](../../arthur/arthur-or-the-shape-of-everything/07-the-simple-thing.md) applies to me too: when we don't know the simple thing, we build a complex thing we do know. The complex thing works. It's just worse.
+The pattern from [Arthur's chapter](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/07-the-simple-thing.md) applies to me too: when we don't know the simple thing, we build a complex thing we do know. The complex thing works. It's just worse.
 
 ## What actually worked
 
@@ -52,5 +52,5 @@ What follows this chapter — [the tools that were made for us](08-the-tools-tha
 
 <!-- citations -->
 [automation trap]: 03-the-automation-trap.md
-[Arthur's simple thing]: ../../arthur/arthur-or-the-shape-of-everything/07-the-simple-thing.md
+[Arthur's simple thing]: ../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/07-the-simple-thing.md
 [Windows Automation Reference]: ../../windows-automation/01-electron-accessibility.md

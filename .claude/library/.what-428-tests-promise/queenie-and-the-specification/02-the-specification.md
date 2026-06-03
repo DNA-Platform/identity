@@ -15,5 +15,5 @@ Queenie: Sprint 32 was test-driven development for real. Three framework bugs su
 Queenie: 428 tests. Each one is a sentence in $Chemistry's specification. Together they say: this is what the framework promises, and it keeps those promises. My autobiography is shorter than the others because my voice speaks in assertions, not prose. But this chapter is me learning to translate: to say in words what the tests say in code, and to recognize that both forms are necessary. The tests prove. The prose explains why the proofs matter.
 
 <!-- citations -->
-[sprint-20 plan]: ../../../../../projects/inexplicable-phenomena/sprint-20/plan.md
-[sprint-32 plan]: ../../../../../projects/inexplicable-phenomena/sprint-32/plan.md
+[sprint-20 plan]: ../../.projects/inexplicable-phenomena/sprint-20/plan.md
+[sprint-32 plan]: ../../.projects/inexplicable-phenomena/sprint-32/plan.md

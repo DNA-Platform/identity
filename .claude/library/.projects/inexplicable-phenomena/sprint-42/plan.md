@@ -15,13 +15,13 @@ Arthur: Deep scans of both repos found these issues:
 
 ### Artifacts to clean (NEEDS_FIX)
 
-**F-1. `.librarianship/02-the-linking-garden.md` line 41** — code example references `../claude-driver/` which doesn't exist here. Replace with a valid example like `../coding-policy/`.
+**F-1. `..librarianship/02-the-linking-garden.md` line 41** — code example references `../claude-driver/` which doesn't exist here. Replace with a valid example like `../coding-policy/`.
 
-**F-2. `.librarianship/06-academic-papers-as-books.md`** — references `../../../../library/neuroscience/digital-twins-tolias-2022/.cover.md` via cross-repo path. This chapter describes a convention developed for a dna-library-specific book. Evaluate whether the chapter applies here; if not, note it as dna-library context.
+**F-2. `..librarianship/06-academic-papers-as-books.md`** — references `../../../../library/neuroscience/digital-twins-tolias-2022/.cover.md` via cross-repo path. This chapter describes a convention developed for a dna-library-specific book. Evaluate whether the chapter applies here; if not, note it as dna-library context.
 
 **F-3. `coding-policy/05-coding-style.md` and `gateway-audit.md`** — these were in the archived old coding policy. Confirm they're gone and no ghost references remain.
 
-**F-4. Adam's `.perspective/.cover.md`** — references Claude Desktop DOM dumps and process surveys. dna-library-specific content. Either archive or mark as historical.
+**F-4. Adam's `perspective/.cover.md`** — references Claude Desktop DOM dumps and process surveys. dna-library-specific content. Either archive or mark as historical.
 
 **F-5. `gabby/` empty directory** — no books, no README. Either populate with a unification chapter or remove.
 
@@ -45,11 +45,11 @@ Arthur: Deep scans of both repos found these issues:
 
 ### Track A — Artifact cleanup (Arthur)
 
-**A-1.** Fix `.librarianship/02-the-linking-garden.md` — replace `../claude-driver/` example with `../coding-policy/`.
+**A-1.** Fix `..librarianship/02-the-linking-garden.md` — replace `../claude-driver/` example with `../coding-policy/`.
 
-**A-2.** Review `.librarianship/06-academic-papers-as-books.md` — add a note that this convention was developed in dna-library; the referenced paper book lives at `../dna-library/`. Keep the chapter — the convention is universal even if the example is project-specific.
+**A-2.** Review `..librarianship/06-academic-papers-as-books.md` — add a note that this convention was developed in dna-library; the referenced paper book lives at `../dna-library/`. Keep the chapter — the convention is universal even if the example is project-specific.
 
-**A-3.** Clean adam's `.perspective/.cover.md` — mark entries as historical dna-library observations.
+**A-3.** Clean adam's `perspective/.cover.md` — mark entries as historical dna-library observations.
 
 **A-4.** Write gabby's unification chapter — she joined in sprint 30, brought graphic design to the Lab app.
 
@@ -145,4 +145,4 @@ After writing the new chapters, go back through the imported dna-library chapter
 <!-- citations -->
 [sprint-41 plan]: ../sprint-41/plan.md
 [project tracker]: ../index.md
-[library field guide]: ../../library/.librarianship/.cover.md
+[library field guide]: ../../library/..librarianship/.cover.md

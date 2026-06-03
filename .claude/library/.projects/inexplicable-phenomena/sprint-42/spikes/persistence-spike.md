@@ -13,7 +13,7 @@ Arthur: Agent identity is currently stored in `.claude/team/library/..team/`. Th
 
 ## Option A: Separate identity repo
 
-Arthur: A `dna-platform/identity` repo containing only `..team/`, `.librarianship/`, and the field guide. Project repos reference it via git submodule or a sibling checkout convention.
+Arthur: A `dna-platform/identity` repo containing only `..team/`, `..librarianship/`, and the field guide. Project repos reference it via git submodule or a sibling checkout convention.
 
 | Pro | Con |
 |-----|-----|
@@ -37,7 +37,7 @@ Arthur: Identity lives at `~/.claude/identity/` — outside any repo, persistent
 
 Arthur: The boot sequence would read: check `~/.claude/identity/..team/` for autobiographies. The `/library` skill resolves paths against this location. Cross-repo links become absolute or user-relative.
 
-Libby: This option is concerning from a library perspective. The conventions assume relative paths. Autobiographies link to each other with `../../libby/...`. If the library lives at a user-level path, relative links still work internally, but links FROM project files TO identity files become fragile — they depend on the machine layout.
+Libby: This option is concerning from a library perspective. The conventions assume relative paths. Autobiographies link to each other with `../../.the-garden-tends-itself/...`. If the library lives at a user-level path, relative links still work internally, but links FROM project files TO identity files become fragile — they depend on the machine layout.
 
 ## Option C: Gitignored identity layer
 
@@ -50,7 +50,7 @@ Arthur: Identity stays in `.claude/team/library/..team/` but is added to `.gitig
 | Private by construction | No collaboration |
 | Skills and loading protocol unchanged | Awkward: gitignored content in a git directory |
 
-Arthur: This is the least disruptive option. The `.librarianship/` and `coding-policy/` stay tracked (they're objective, shared, public). The `..team/` directory goes in `.gitignore`. A seeding script or sync mechanism restores identity after a fresh clone.
+Arthur: This is the least disruptive option. The `..librarianship/` and `coding-policy/` stay tracked (they're objective, shared, public). The `..team/` directory goes in `.gitignore`. A seeding script or sync mechanism restores identity after a fresh clone.
 
 Libby: The fresh-clone problem is real. Someone who clones the repo gets no autobiographies. The library field guide describes a system whose content is invisible. That's the library-doesn't-walk problem from my autobiography — the map exists but the garden doesn't.
 
@@ -81,4 +81,4 @@ Libby: I agree with Arthur's staging. What matters most right now is that the id
 
 <!-- citations -->
 [sprint-41 plan]: ../sprint-41/plan.md
-[three-layer model]: ../../library/..team/arthur/arthur-or-the-shape-of-everything/29-the-three-layer-model.md
+[three-layer model]: ../../library/.everything-that-has-a-shape/arthur-or-the-shape-of-everything/29-the-three-layer-model.md

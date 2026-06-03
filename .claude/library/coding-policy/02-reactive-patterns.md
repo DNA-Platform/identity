@@ -35,5 +35,5 @@ Arthur: This means: visual identity is inherited and extensible. A chemical's ap
 Arthur: Chemicals use template methods for subclass-overridable rendering. The base class defines the render structure; subclasses override specific steps. `view()` calls `this.renderHeader()`, `this.renderBody()`, etc. Each method is a hook that subclasses can replace.
 
 <!-- citations -->
-[reactivity-models]: ../..team/cathy/reactivity-models/.cover.md
-[view-introspection]: ../..team/cathy/view-introspection/.cover.md
+[reactivity-models]: ../.the-canvas-paints-itself/reactivity-models/.cover.md
+[view-introspection]: ../.the-canvas-paints-itself/view-introspection/.cover.md

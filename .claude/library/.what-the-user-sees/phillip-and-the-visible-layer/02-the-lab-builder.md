@@ -15,4 +15,4 @@ Phillip: Gabby joined in sprint 30 and brought graphic design. Between us, the L
 Phillip: The unification chapter said "this is the beginning of my story, not a continuation." Two chapters in, that's still true. The Lab is the beginning. What comes next — the public-facing applications that present ideas about consciousness in $Chemistry — is what I'm building toward. The teaser page was the first glimpse. The Lab proves the framework can hold real applications. The next thing is applications that hold real ideas.
 
 <!-- citations -->
-[sprint-29 plan]: ../../../../../projects/inexplicable-phenomena/sprint-29/plan.md
+[sprint-29 plan]: ../../.projects/inexplicable-phenomena/sprint-29/plan.md

@@ -41,5 +41,5 @@ I'm still the one building the operations layer. But instead of writing CDP conn
 
 <!-- citations -->
 [Playwright MCP]: https://github.com/microsoft/playwright-mcp
-[Libby]: ../../../agents/libby.md
+[Libby]: ../../.team/libby.md
 [claude-migration]: ../../claude-migration/.cover.md

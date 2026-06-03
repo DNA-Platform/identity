@@ -28,4 +28,4 @@ This connects forward to [chapter 11](11-meaning-and-the-app.md) — "meaning an
 
 <!-- citations -->
 [the simple thing]: 07-the-simple-thing.md
-[sprint-36 plan]: ../../../projects/inexplicable-phenomena/sprint-36/plan.md
+[sprint-36 plan]: ../../.projects/inexplicable-phenomena/sprint-36/plan.md

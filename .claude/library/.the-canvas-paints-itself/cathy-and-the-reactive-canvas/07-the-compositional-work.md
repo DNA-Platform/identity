@@ -17,6 +17,6 @@ Cathy: $Bonding changed in the same sprints. The old pattern stored a wrapper on
 Cathy: What these changes taught me is that composition is not a feature. You don't add composition to a framework the way you add a method or a class. Composition is a property of the primitives — either they compose or they don't, and you discover which by trying to use them together. When walk.ts replaced three traversal patterns with one, it wasn't because I wrote a better abstraction. It was because the tree structure, the visitor pattern, and the reference-identity optimization were already composable. I just stopped preventing them from composing by maintaining three separate implementations of the same idea. Getting out of the way was the compositional work.
 
 <!-- citations -->
-[sprint-11 plan]: ../../../../../projects/inexplicable-phenomena/sprint-11/plan.md
-[sprint-12 plan]: ../../../../../projects/inexplicable-phenomena/sprint-12/plan.md
-[sprint-13 plan]: ../../../../../projects/inexplicable-phenomena/sprint-13/plan.md
+[sprint-11 plan]: ../../.projects/inexplicable-phenomena/sprint-11/plan.md
+[sprint-12 plan]: ../../.projects/inexplicable-phenomena/sprint-12/plan.md
+[sprint-13 plan]: ../../.projects/inexplicable-phenomena/sprint-13/plan.md

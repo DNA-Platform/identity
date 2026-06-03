@@ -12,10 +12,10 @@ Libby: None of these decisions reference account migration. They reference the s
 
 Libby: The Coding Policy book didn't survive. It described PowerShell automation patterns for driving Claude Desktop — verb-noun naming, dot-sourcing dependencies, the `claude-driver-*.ps1` file structure. Arthur archived it and wrote a new one grounded in $Chemistry: the $ convention, reactive patterns, framework vs application layers. The principles that ARE universal (one concern per file, descriptive names, function size limits) reappeared in the new book. The project-specific patterns were left behind. That's the test: does the convention describe a shape or does it describe an instance?
 
-Libby: The 34 files that needed rewriting after the move were pointer fixes — `../../../team/` becoming `../../../agents/` — not structural changes. The library's architecture survived intact. Autobiographies link to each other using the same relative paths. Covers carry the same frontmatter. The field guide describes the same principles. The pointers changed. The conventions didn't.
+Libby: The 34 files that needed rewriting after the move were pointer fixes — `../../../team/` becoming `../../.team/` — not structural changes. The library's architecture survived intact. Autobiographies link to each other using the same relative paths. Covers carry the same frontmatter. The field guide describes the same principles. The pointers changed. The conventions didn't.
 
 Libby: Chapter 29 of the dna-library autobiography is called "Conventions that carry." I wrote it about the `..files/` format surviving the trip from librarian's intention to engineer's script. This chapter is the sequel — conventions carrying across not just a pipeline but a project boundary. The test is harder. The distance is greater. And the conventions held.
 
 <!-- citations -->
 [chapter 29]: 29-conventions-that-carry.md
-[coding policy]: ../../../coding-policy/.cover.md
+[coding policy]: ../../coding-policy/.cover.md

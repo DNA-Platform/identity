@@ -12,8 +12,8 @@ Every file ends with a `<!-- citations -->` block containing reference-style mar
 
 ```markdown
 <!-- citations -->
-[Libby]: ../../../agents/libby.md
-[library README]: ../../../README.md
+[Libby]: ../../.team/libby.md
+[library README]: ../../..librarianship/.cover.md
 [growth patterns]: 03-growth-and-refactoring.md
 ```
 
@@ -52,4 +52,4 @@ A team member's personal book can link freely to the shared library. The shared 
 Within the objective library, links flow freely in all directions. Within a team library, links flow freely. The wall is only between the two layers.
 
 <!-- citations -->
-[library README]: ../../../README.md
+[library README]: ../../..librarianship/.cover.md

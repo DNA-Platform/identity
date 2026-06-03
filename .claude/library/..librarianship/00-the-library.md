@@ -55,7 +55,7 @@ links:                                   # optional — cross-references to othe
 
 **All frontmatter links must be markdown links.** Never bare paths. The link text should be contextually appropriate:
 
-- **`author`** — the link text is the **author's name** (not the book title). `author: "[Arthur](../..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"` reads like a byline. The link goes to the autobiography.
+- **`author`** — the link text is the **author's name** (not the book title). `author: "[Arthur](../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"` reads like a byline. The link goes to the autobiography.
 - **`links`** — the link text is the **book title**. You're listing related books.
 
 **Author links** point to the author's canonical autobiography. For autobiographies themselves, the author field is a **self-link** — `author: "[Arthur](.cover.md)"` — the autobiography is both the work and the author's canonical representation.

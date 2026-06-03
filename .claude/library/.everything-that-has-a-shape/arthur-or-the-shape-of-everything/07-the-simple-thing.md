@@ -62,4 +62,4 @@ That reframe connects forward to [chapter 8](08-the-ghost.md) — the ghost app.
 <!-- citations -->
 [three wrong turns]: 06-three-wrong-turns.md
 [Windows Automation Reference]: ../../windows-automation/01-electron-accessibility.md
-[sprint-34 plan]: ../../../projects/inexplicable-phenomena/sprint-34/plan.md
+[sprint-34 plan]: ../../.projects/inexplicable-phenomena/sprint-34/plan.md

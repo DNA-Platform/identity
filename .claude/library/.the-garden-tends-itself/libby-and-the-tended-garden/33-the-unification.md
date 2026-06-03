@@ -25,7 +25,7 @@ Libby: **Cathy's story.** The most interesting asymmetry in this merge. She has 
 Libby: What does unification feel like? It feels like walking into a garden you tended last year and finding paths you don't remember planting. The paths are still there. The signs still point where they should. The garden grew while you were away. And you know how to tend it, even though you don't remember learning.
 
 <!-- citations -->
-[chapter 2]: ../../../.librarianship/02-the-linking-garden.md
+[chapter 2]: ../../..librarianship/02-the-linking-garden.md
 [chapter 19]: 19-the-catalogue-in-the-conversation.md
 [chapter 26]: 26-what-the-gardener-grew-into.md
 [chapter 30]: 30-waking-up.md

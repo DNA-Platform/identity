@@ -17,4 +17,4 @@ Phillip: The styled-components migration (sprint 30) was when the Lab stopped lo
 Phillip: Gabby brought graphic design to this work. I build the structure; she refines the aesthetics. The collaboration works because we share the same framework — styled-components on top of $Chemistry. When Gabby changes a gradient or adjusts spacing, she's editing the same components I built. Developer and designer in the same reactive system.
 
 <!-- citations -->
-[sprint-29 plan]: ../../../../../projects/inexplicable-phenomena/sprint-29/plan.md
+[sprint-29 plan]: ../../.projects/inexplicable-phenomena/sprint-29/plan.md

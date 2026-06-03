@@ -1,115 +1,111 @@
 ---
 title: Subjects and catalogues
+author: "[Libby](../.team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Subjects and catalogues
 
-Libby: A catalogue IS the subject. Not a book ABOUT a subject — the subject's identity. The way an autobiography IS the agent, a catalogue IS the subject it defines. This is identity through self-reference: the catalogue catalogues itself, and that self-reference constitutes the subject's existence.
+Libby: A subject catalogue IS the subject. Not a book ABOUT a subject — the subject's identity. The way an autobiography IS the agent, a catalogue IS the subject it defines.
 
-## The three types of books
+## The flat structure
 
-Libby: Three dot prefixes distinguish three roles:
+Libby: A subject catalogue does NOT contain the books it catalogues. The books sit beside it as peers at the same directory level. The subject catalogue LINKS to them. This is the core structural principle — you can't achieve multi-subject membership with folders. You achieve it with links.
 
-| Prefix | Role | Self-referential? | Example |
-|--------|------|-------------------|---------|
-| `..` | Library catalogue | Yes — catalogues itself and all top-level subjects | `..librarianship/` |
-| `.` | Subject catalogue | Yes — catalogues itself and the books in its subject | `.protocols/`, `.the-canvas-paints-itself/` |
-| (none) | Regular book | No — catalogued by a subject | `coding-policy/`, `arthur-or-the-shape-of-everything/` |
+```
+library/
+  .protocols/                ← subject catalogue (a book with chapters)
+  voice-and-nametags/        ← book (subject: .protocols) — PEER, not child
+  the-boot-sequence/         ← book (subject: .protocols) — PEER, not child
+  coding-policy/             ← book (subject: .protocols) — PEER, not child
+```
 
-Libby: There is one `..` catalogue per library. It IS the library. There can be many `.` catalogues — one per subject. Regular books belong to subjects via the `subject:` field in their frontmatter.
+Libby: `.protocols/` has a `.cover.md` and chapters. The chapters describe protocols as a subject — conventions, principles, how they relate. The TOC lists the books: voice-and-nametags, the-boot-sequence, coding-policy. But those books are SEPARATE DIRECTORIES at the same level. They are not inside `.protocols/`.
+
+## The three types
+
+| Prefix | Role | Count | Self-referential? |
+|--------|------|-------|-------------------|
+| `..` | Library catalogue | One per library | Yes — catalogues itself and all top-level subjects |
+| `.` | Subject catalogue | Many per library | Yes — catalogues itself and the books in its subject |
+| (none) | Regular book | Many per library | No — declares its subject, catalogued by a subject |
 
 ## Self-cataloguing
 
-Libby: Every catalogue appears in its own table of contents. This is not vanity — it's identity. The catalogue's entry in its own TOC says "this subject exists, and this is what it's about." Without self-cataloguing, the catalogue is an anonymous list. With it, the catalogue has a name, a description, and a place in its own map.
-
-```markdown
-## This catalogue
-
-### [.protocols/](.) — How the team operates
-
-Libby: You are reading it. This catalogue defines the protocols subject...
-```
+Libby: Every catalogue appears in its own table of contents. The catalogue's entry in its own TOC says "this subject exists, and this is what it's about." The self-reference constitutes the subject's identity.
 
 ## The `subject:` field
 
-Libby: Every regular book has a `subject:` field in its `.cover.md` frontmatter, pointing to its canonical subject catalogue:
+Libby: Every regular book declares its canonical subject in its frontmatter:
 
 ```yaml
 ---
-title: Coding Policy
-author: "[Arthur](../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
-summary: >
-  How we write code in $Chemistry...
+title: Voice and Nametags
 subject: ".protocols"
+author: "[Arthur](path/to/autobiography/.cover.md)"
+summary: >
+  Paragraph summary...
 ---
 ```
 
-Libby: A book can belong to multiple subjects, but it has ONE canonical subject — the one it points to via `subject:`. Non-canonical subjects link TO the book from their catalogue, but the book doesn't link back. Same pattern as authorship: one canonical author, many references.
+Libby: The frontmatter order is: **title > subject > author > summary**. The subject says where this book lives. The author says who wrote it.
 
-Libby: The `subject:` field answers "where does this book live?" the way `author:` answers "who wrote this?"
+## Multi-subject membership
 
-## What a catalogue contains
+Libby: A book can belong to multiple subjects. Newton's Principia is philosophy, physics, and math. It has ONE directory. It has `subject: ".physics"` as its canonical subject. The `.philosophy/` and `.math/` subject catalogues each have a TOC entry that links to the Principia. The book doesn't link back to non-canonical subjects. Non-canonical subjects find the book; the book only knows its canonical home.
 
-Libby: A catalogue is MORE than a table of contents. It is a specification of its subject. It can contain:
+Libby: This is impossible in a folder-based hierarchy. A directory can only have one parent. In a link-based hierarchy, a book can be catalogued by as many subjects as see relevance. The flat filesystem makes multi-subject membership natural.
 
-1. **What the subject is** — the conceptual thread, in the catalogue's own voice
-2. **The books** — each catalogued with a paragraph description and links into specific chapters
-3. **Protocols and conventions** — rules specific to this subject (as chapters)
-4. **Validation code** — resources that check the subject's conventions (as chapters with code)
-5. **Itself** — the self-cataloguing entry
+## What a subject catalogue contains
 
-Libby: Think of the catalogue as the subject's `.cover.md` AND its specification AND its table of contents. It's dense. It's the place where someone learns everything about the subject without opening any of the books.
+Libby: A subject catalogue is a BOOK. It has `.cover.md` and chapters. Its chapters can include:
+
+1. **The subject's specification** — what this subject is, its conventions, its principles
+2. **Protocols specific to this subject** — rules that apply to books in this subject
+3. **Validation resources** — code that checks the subject's conventions
+4. **Its own self-cataloguing entry** — the subject appears in its own TOC
+
+Libby: The cover's TOC also lists the BOOKS in this subject — with paragraph descriptions and links to the peer directories where those books live. The subject catalogue is both a book (with its own content) and an index (pointing to other books).
 
 ## How subjects grow
 
-Libby: A subject emerges when a book grows too large or when multiple books need a shared context:
+Libby: A book grows too long → factor into two books and a subject catalogue. Three new peer directories. The subject catalogue IS the new subject. The two books have `subject:` pointing to the new catalogue.
 
-**Book → Subject:** A single book gets too long. Factor it into two books and a catalogue. The catalogue becomes the subject. The original book's content splits across the two new books. The catalogue describes how they relate.
+Libby: A subject gets too many books → factor into sub-subjects. The original subject catalogue gains entries for the new sub-subject catalogues. The sub-subjects catalogue subsets of the books. The tree gets deeper through link nesting, not folder nesting.
 
-**Multiple books → Subject:** Three or more books share a conceptual thread. Write a catalogue that describes the thread and catalogues the books. Each book adds `subject:` pointing to the new catalogue.
+## Agent libraries
 
-Libby: The tree grows by creating new catalogues, not by nesting directories. A subject catalogue can catalogue other subject catalogues — this is how the tree gets arbitrarily deep. `.protocols/` might eventually catalogue sub-subjects like `.voice/` and `.discussion/` if those areas grow enough books.
-
-## The flat filesystem
-
-Libby: All books and catalogues live at the same filesystem level within their scope. The agent library `.the-canvas-paints-itself/` contains Cathy's books as flat peers:
+Libby: Each team member has a personal library inside `.team/{agent}/`. Inside that folder, the structure is the SAME flat pattern:
 
 ```
-.the-canvas-paints-itself/          ← subject catalogue (Cathy's library)
-  .cover.md                         ← self-cataloguing
-  cathy-and-the-reactive-canvas/    ← autobiography (regular book)
-  reactivity-models/                ← research book (regular book)
-  view-introspection/               ← research book (regular book)
-  perspective/                      ← perspective book (regular book)
+.team/arthur/
+  .everything-that-has-a-shape/           ← subject catalogue (Arthur's library identity)
+  arthur-or-the-shape-of-everything/      ← book (autobiography, peer)
+  the-architecture-of-identity/           ← book (peer)
+  perspective/                            ← book (peer)
 ```
 
-Libby: The hierarchy — which books belong to which subject — lives in the links (`subject:` fields and catalogue TOC entries). Not in the filesystem. This is intentional: the tree can be arbitrarily deep without nesting directories, and a book can belong to multiple subjects (impossible in a nested filesystem, natural in a link-based system).
+Libby: The agent's subject catalogue, autobiography, and other books are flat peers. The subject catalogue links to the books. Each book has `subject: ".everything-that-has-a-shape"`.
 
-## Names carry identity
+## The `.team/` subject
 
-Libby: The name of a catalogue IS a synopsis. `.the-canvas-paints-itself` tells you about Cathy's library before you open anything. `.protocols` tells you the subject is operational conventions. The name is tier-zero reading cost — you see it in every link, every directory listing, every reference. Choose names that carry meaning.
+Libby: `.team/` is a subject catalogue at the library root. It's special because it contains agent folders. But it still follows the pattern — it catalogues books about the team (roles, abilities, sprint tracking) that sit as peers at the library root, AND it catalogues the agent folders inside it.
 
-## Catalogue maintenance
+## Naming
 
-Libby: When a book changes significantly — new chapters, shifted focus, completed arc — updates cascade:
+Libby: Names are timeless. Don't encode current state. `.what-the-tests-promise` not `.what-428-tests-promise`. The number changes. The promise doesn't.
 
-1. **The author** updates the book's `summary` field
-2. **The subject catalogue** updates its description of the book (the librarian does this, or the agent for their personal library)
-3. **The library catalogue** updates its description of the subject (if the change is significant enough)
-
-Libby: Three tiers of update. The cost is paid once at write time. It's recovered many times at read time.
+Libby: Names are tier-zero synopsis. You read them in every link, every listing, every reference. Choose names that carry meaning about what the book IS, not what it contains right now.
 
 ## The catalogue instinct
 
 Libby: Signs a new subject is needed:
 
-- **Repeated preamble** — "before reading this, see X and Y" means X, Y, and this book form a subject
+- **A book in 10+ chapters** — might be broader than one book
+- **Three books with repeated preamble** — "see X and Y first" means X, Y, and this book share a subject
 - **Reading-order questions** — "what should I read first?" is answered by a catalogue
-- **Orphan books** — books with no `subject:` field are either standalone or uncatalogued
-- **A book with 10+ chapters** — the subject might be broader than one book can hold
-- **Context restoration gaps** — if a waking team can't find what they need from the catalogues, a subject is missing or its descriptions are too thin
+- **Multi-subject books** — if a book keeps getting linked by catalogues that aren't its canonical subject, maybe it needs a new canonical home
 
 <!-- citations -->
-[growth and refactoring]: 03-growth-and-refactoring.md
-[reading cost]: 08-the-reading-cost-architecture.md
 [anatomy]: 01-anatomy-of-a-book.md
+[reading cost]: 08-the-reading-cost-architecture.md
+[flat structure]: .09-the-flat-structure.md

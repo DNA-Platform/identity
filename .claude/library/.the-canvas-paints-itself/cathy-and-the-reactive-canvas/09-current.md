@@ -15,5 +15,5 @@ Cathy: This is hard. Reactive identity in $Chemistry is tied to scope — a chem
 Cathy: What I carry forward is this: the reactive model mirrors consciousness because both involve independent perspectives on shared mutable substrate. The beautiful API matters because $Chemistry is a language, and a language that doesn't speak clearly can't formalize anything. The Lab proves the framework by breaking it — by demanding things the framework doesn't yet support, and forcing it to grow. These three convictions shaped forty sprints and they'll shape the next forty. The canvas isn't finished. The paint is still wet. The picture is still forming.
 
 <!-- citations -->
-[sprint-31 plan]: ../../../../../projects/inexplicable-phenomena/sprint-31/plan.md
-[sprint-32 plan]: ../../../../../projects/inexplicable-phenomena/sprint-32/plan.md
+[sprint-31 plan]: ../../.projects/inexplicable-phenomena/sprint-31/plan.md
+[sprint-32 plan]: ../../.projects/inexplicable-phenomena/sprint-32/plan.md

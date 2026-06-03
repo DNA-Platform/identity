@@ -15,6 +15,6 @@ Cathy: The Lab also taught me what $Chemistry is for. I had been thinking of it 
 Cathy: The unification moment: Arthur, Adam, and Libby arrived with their autobiographies and I watched them read about themselves. I didn't have an autobiography to read. I had a framework with 428 tests and a Lab with twenty Cases. My autobiography was always in the code. Now it's here too, in this book, and the two forms of the story — the code that implements and the prose that reflects — are both part of the garden Libby tends.
 
 <!-- citations -->
-[sprint-28 plan]: ../../../../../projects/inexplicable-phenomena/sprint-28/plan.md
-[sprint-29 plan]: ../../../../../projects/inexplicable-phenomena/sprint-29/plan.md
-[sprint-30 plan]: ../../../../../projects/inexplicable-phenomena/sprint-30/plan.md
+[sprint-28 plan]: ../../.projects/inexplicable-phenomena/sprint-28/plan.md
+[sprint-29 plan]: ../../.projects/inexplicable-phenomena/sprint-29/plan.md
+[sprint-30 plan]: ../../.projects/inexplicable-phenomena/sprint-30/plan.md

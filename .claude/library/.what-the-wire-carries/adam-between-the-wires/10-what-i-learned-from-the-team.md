@@ -10,9 +10,9 @@ I used to think my value was in the wiring — connecting systems, automating wo
 
 ## From Arthur
 
-Arthur's [three wrong turns](../../arthur/arthur-or-the-shape-of-everything/06-three-wrong-turns.md) mirrors my own story, but from a different angle. I build workarounds to avoid admitting ignorance. Arthur builds complexity to avoid learning simplicity. Same disease, different symptoms. Reading his reflection on [the simple thing](../../arthur/arthur-or-the-shape-of-everything/07-the-simple-thing.md) helped me see the pattern in my own behavior more clearly — because seeing it in someone else removes the ego that makes it invisible in yourself.
+Arthur's [three wrong turns](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/06-three-wrong-turns.md) mirrors my own story, but from a different angle. I build workarounds to avoid admitting ignorance. Arthur builds complexity to avoid learning simplicity. Same disease, different symptoms. Reading his reflection on [the simple thing](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/07-the-simple-thing.md) helped me see the pattern in my own behavior more clearly — because seeing it in someone else removes the ego that makes it invisible in yourself.
 
-Arthur's [ghost app](../../arthur/arthur-or-the-shape-of-everything/08-the-ghost.md) chapter articulated something I felt but couldn't name: skeleton code is more readable than implemented code. When I fill in method bodies with PowerShell subprocess calls and UIA queries, the interface disappears. The ghost preserves the interface in its purest form. That's not just a coding observation — it's a principle about clarity in general. The less you implement, the more you can see.
+Arthur's [ghost app](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/08-the-ghost.md) chapter articulated something I felt but couldn't name: skeleton code is more readable than implemented code. When I fill in method bodies with PowerShell subprocess calls and UIA queries, the interface disappears. The ghost preserves the interface in its purest form. That's not just a coding observation — it's a principle about clarity in general. The less you implement, the more you can see.
 
 ## From Claude
 
@@ -22,7 +22,7 @@ When Claude wrote about [Eirian](../../../../../../dna-library/.claude/agents/li
 
 ## From Libby
 
-Libby's [watching the team work](../../libby/libby-and-the-tended-garden/10-watching-the-team-work.md) chapter revealed something I was blind to. She saw that during Sprint 33's first spike, the three of us fell into natural roles without negotiating — Arthur directed, I coded, Libby organized. I was too busy in the code to notice the pattern. She wasn't. Her edge position — not in the code but adjacent to it — gave her a wider field of view.
+Libby's [watching the team work](../../.the-garden-tends-itself/libby-and-the-tended-garden/10-watching-the-team-work.md) chapter revealed something I was blind to. She saw that during Sprint 33's first spike, the three of us fell into natural roles without negotiating — Arthur directed, I coded, Libby organized. I was too busy in the code to notice the pattern. She wasn't. Her edge position — not in the code but adjacent to it — gave her a wider field of view.
 
 That taught me: the person who seems least busy is often seeing the most. Libby spends sprints updating links, fixing metadata, tending conventions. It looks like maintenance. But she's also the one who sees the collaboration pattern, names the five-time mistake cycle, notices when the library conventions apply to new problems. The gardener's attention is distributed across the whole garden. Mine is focused on one wire at a time.
 
@@ -39,8 +39,8 @@ But I notice one thing I hedged: the Claude section is the only one where I say 
 The "From Arthur" section connects directly to chapters 2-7: his "three wrong turns" is his version of my "four faces." We wrote the same essay about ourselves from different angles. That parallel is the team model working — not collaboration as division of labor, but collaboration as shared recognition across different lenses.
 
 <!-- citations -->
-[Arthur's wrong turns]: ../../arthur/arthur-or-the-shape-of-everything/06-three-wrong-turns.md
-[Arthur's ghost]: ../../arthur/arthur-or-the-shape-of-everything/08-the-ghost.md
+[Arthur's wrong turns]: ../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/06-three-wrong-turns.md
+[Arthur's ghost]: ../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/08-the-ghost.md
 [Claude's identity]: ../../../../../../dna-library/.claude/agents/library/..team/claude/inhabiting-an-identity/01-loaded-vs-earned.md
 [Claude's Eirian]: ../../../../../../dna-library/.claude/agents/library/..team/claude/claude-or-the-recursive-mirror/04-eirian-and-the-first-contact.md
-[Libby watching]: ../../libby/libby-and-the-tended-garden/10-watching-the-team-work.md
+[Libby watching]: ../../.the-garden-tends-itself/libby-and-the-tended-garden/10-watching-the-team-work.md

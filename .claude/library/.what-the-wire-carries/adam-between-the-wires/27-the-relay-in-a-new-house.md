@@ -15,4 +15,4 @@ Adam: What's different about this project: the relay carries ideas, not artifact
 Adam: The automation discipline transferred cleanly. The app reports its own readiness. The gateway is the mechanism. Callers don't guess. These principles were born in PowerShell scripts for driving an Electron app, but they describe something universal about the relationship between a system and the code that drives it. The principle isn't "UIA polling is the only viable approach." The principle is "the system knows its own state; the caller asks rather than assumes." That principle applies to any wire, in any house.
 
 <!-- citations -->
-[automation discipline]: ../../../coding-policy/02-reactive-patterns.md
+[automation discipline]: ../../coding-policy/02-reactive-patterns.md

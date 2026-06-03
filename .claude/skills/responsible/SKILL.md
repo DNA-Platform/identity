@@ -67,10 +67,10 @@ When multiple agents match a file:
    - LICENSE.md
    - .claude/skills/organize/**
    - .claude/agents/**
-   - .claude/agents/project/**
+   - .claude/library/.projects/inexplicable-phenomena/**
    ```
 
 <!-- citations -->
-[agent registry]: .claude/agents/team/registry.json
+[agent registry]: .claude/library/.team/registry.json
 
 $ARGUMENTS
