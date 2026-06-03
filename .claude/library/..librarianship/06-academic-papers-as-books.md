@@ -1,5 +1,6 @@
 ---
 title: Academic papers as books
+author: "[Libby](../.team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Academic papers as books

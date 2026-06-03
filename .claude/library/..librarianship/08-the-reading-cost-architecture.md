@@ -1,5 +1,6 @@
 ---
 title: The reading cost architecture
+author: "[Libby](../.team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The reading cost architecture

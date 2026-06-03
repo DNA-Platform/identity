@@ -1,101 +1,56 @@
-# Library
+---
+title: The library
+author: "[Libby](../.team/libby/libby-and-the-tended-garden/.cover.md)"
+---
 
-A connected wiki with two layers: objective shared knowledge at the top level, and subjective team knowledge under `..team/`.
+# The library
 
-The librarian ([Libby]) curates this system. For the field guide — how books work, how links work, how knowledge grows — see [Librarianship].
+Libby: A flat wiki where identity, knowledge, and specification live as books. Everything in the library is a book. The hierarchy exists in links between covers, not in the filesystem. Walk links, not folders.
 
 ## Structure
 
-```
-library/
-  README.md               You are here
-  {topic}/                A book (directory)
-    .cover.md             Book cover — metadata, summary, table of contents
-    01-{slug}.md          Chapters (ordered by numeric prefix)
-    02-{slug}.md
-    ...
-  {catalogue-slug}/       A catalogue — a book that organizes other books
-    .cover.md             Describes the subject, links to related books
-  ..team/                 Subjective team libraries
-    {agent}/              One agent's personal library
-      README.md           Agent's library intro
-      perspective/        Screenshots, DOM scrapes, visual observations
-      {book-slug}/        Books authored in first person
-  .archive/               Old documents kept as examples
-```
+Libby: The library is ONE directory under `.claude/`. It contains three kinds of things, distinguished by dot prefix:
 
-## Two layers
+| Prefix | Role | Self-referential? | Example |
+|--------|------|-------------------|---------|
+| `..` | Library catalogue | Yes — IS the library | [`..librarianship/`](.cover.md) |
+| `.` | Subject catalogue | Yes — IS the subject | [`.team/`](../.team/.cover.md) |
+| (none) | Regular book | No — belongs to a subject | [`coding-policy/`](../coding-policy/.cover.md) |
 
-**Objective library** (top level) — third-person, shared, normative. The source of truth. Written as if no individual wrote it.
+Libby: All three kinds are PEERS at the same directory level. A subject catalogue does NOT contain the books it catalogues. The books sit beside it. The subject links to them in its [cover](.cover.md). Each book declares its canonical subject in its frontmatter with a [`subject:` field](01-anatomy-of-a-book.md).
 
-**Subjective team libraries** (`..team/{agent}/`) — first-person notes, research, and books. Each agent writes in their own voice. Cross-references flow **inward**: team libraries link to the objective library, not the other way around. The objective library never points into an individual's space.
+Libby: A book can belong to multiple subjects. It lives in ONE place. Its `subject:` field points to its canonical home. Other subjects link to it from their TOCs with [descriptions shaped by that subject's perspective](04-subjects-and-catalogues.md) — the same book described differently by different subjects.
 
-## Anatomy of a book
+## Two perspectives
 
-A book is a **directory**. Its contents:
+Libby: The library has a public space and personal spaces:
 
-| File | Purpose |
-|------|---------|
-| `.cover.md` | The cover. Dot-prefixed so it sorts first. Carries YAML frontmatter (title, author, summary, subject, links) and the table of contents. |
-| `NN-slug.md` | Chapters. Numbered for reading order. Each has light frontmatter (title only). |
+Libby: **Public** (the library root) — third-person, shared, normative. Books here represent what the team knows. The [library catalogue](.cover.md) and subject catalogues organise them. Anyone can read them. They're written as shared knowledge.
 
-### Cover frontmatter
+Libby: **Personal** (inside [`.team/{agent}/`](../.team/.cover.md)) — first-person, subjective, experiential. Each agent has a personal library inside their `.team/` folder with their [autobiography](05-authorship-and-autobiography.md), their [perspective](.10-the-perspective-practice.md), and their research books. The same flat structure applies inside: the agent's subject catalogue and their books are peers.
 
-```yaml
----
-title: Human-readable book title
-author: "[Author Name](path/to/autobiography/.cover.md)"
-summary: One-line summary
-subject: subject-slug                    # optional — which catalogue this belongs to
-links:                                   # optional — cross-references to other books
-  - "[Related Book Title](path/to/other-book/)"
-  - "[Another Title](path/to/another/)"
----
-```
+Libby: Public books link freely to each other. Personal books link to public books. Public books link to personal libraries through the [`.team/` catalogue](../.team/.cover.md) — which bridges the perspectives.
 
-**All frontmatter links must be markdown links.** Never bare paths. The link text should be contextually appropriate:
+## Navigation
 
-- **`author`** — the link text is the **author's name** (not the book title). `author: "[Arthur](../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"` reads like a byline. The link goes to the autobiography.
-- **`links`** — the link text is the **book title**. You're listing related books.
+Libby: Start at the [library catalogue](.cover.md) — `..librarianship/.cover.md`. It catalogues every subject and every agent library with [paragraph descriptions](08-the-reading-cost-architecture.md) rich enough that you rarely need to follow a link. Four layers of synopsis before primary source: library catalogue → subject catalogue → book cover → chapter. Read the shallowest that answers your question.
 
-**Author links** point to the author's canonical autobiography. For autobiographies themselves, the author field is a **self-link** — `author: "[Arthur](.cover.md)"` — the autobiography is both the work and the author's canonical representation.
+Libby: Every link is a real markdown link — `[text](path)` inline in the prose, clickable, woven where the reader needs it. Not prose paths in backticks. The library is a wiki. The links ARE the navigation.
 
-**Folder names must match titles.** The folder slug is the kebab-case address of the book. When the title changes, rename the folder and update all references. Titles and addresses must agree.
+## The platform
 
-### Chapter frontmatter
+Libby: The library lives inside Claude Code's `.claude/` directory alongside [platform artifacts](../../rules/) that the platform reads automatically. The [platform interface](.02-the-platform-interface.md) chapter describes this relationship: platform artifacts embed the minimum for enforcement, then link inline into the library for depth. The library is the source of truth. The platform is a projection.
 
-```yaml
----
-title: Chapter title
----
-```
+## Closedness
 
-## Linking
-
-Three kinds of links, each serving a different navigational purpose:
-
-1. **Citations** — reference-style links in a `<!-- citations -->` block at the bottom of each file. These are the section's wiki links — every concept, person, or artifact mentioned gets a citation.
-
-2. **Inline links** — standard markdown links woven into prose, pointing to other books or chapters. These are the paths you walk through the garden.
-
-3. **Cross-references** (`links` in frontmatter) — book-level connections declared on the cover. These tell the catalogue system which books relate.
-
-## Growth patterns
-
-Books grow. When they outgrow their shape, they refactor:
-
-- **Chapter → Book**: a chapter gets long enough to need its own table of contents. Extract it into a new book. Leave a summary paragraph in the original that links heavily to the new book.
-- **Book → Anthology**: a book's chapters each become books. The original becomes a catalogue — its cover describes how the constituent books relate.
-- **Catalogue**: a book whose purpose is to organize other books into a **subject**. It describes the relationships, reading order, and conceptual thread that connects them.
-
-## When to write
-
-When knowledge is non-obvious, learned the hard way, acquired from research, or likely needed in future sessions. Don't write what the code already says. Libraries capture what the code *doesn't* say.
-
-## When to read
-
-Before making decisions that require expertise not loaded in context. Check the library before reaching for the web.
+Libby: The library is closed under specification of itself. Everything the library depends on — including things outside `library/` like [CLAUDE.md](../../../CLAUDE.md), [rules/](../../rules/), [agents/](../../agents/), and [settings.json](../../settings.json) — has representation IN the library with real links OUT to the actual artifacts. The field guide specifies what those artifacts must contain. The library describes the world it lives in.
 
 <!-- citations -->
-[Libby]: ../team/libby.md
-[Librarianship]: librarianship/.cover.md
+[cover]: .cover.md
+[anatomy]: 01-anatomy-of-a-book.md
+[subjects]: 04-subjects-and-catalogues.md
+[authorship]: 05-authorship-and-autobiography.md
+[reading cost]: 08-the-reading-cost-architecture.md
+[platform]: .02-the-platform-interface.md
+[perspective]: .10-the-perspective-practice.md
+[team]: ../.team/.cover.md

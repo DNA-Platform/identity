@@ -1,5 +1,6 @@
 ---
 title: Voice and nametags
+author: "[Libby](../.team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Voice and nametags
