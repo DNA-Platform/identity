@@ -45,48 +45,17 @@ The team talks. Brief check-in, multiple voices, each contributing what they see
 
 ```
 .claude/
-  agents/                   Shared team identity
-    team/                   Agent files + registry.json
-    roles/                  Perspectives on code
-    abilities/              Domain knowledge
-    library/                The team library
-      .librarianship/       The field guide (catalogues everything below)
-      protocols/            How the team speaks and works
-      projects/             Catalogue of all projects
-      coding-policy/        How we write code
-      ..team/               Autobiographies (one folder per agent)
-    docs/                   Reference documentation
-    src/                    Shared scripts
-  projects/                 Per-project sprint plans (local, not shared)
-    inexplicable-phenomena/
-  skills/                   Slash commands
-
-library/                    Code workspaces
-  chemistry/                $Chemistry — the reactive framework
-  .public/                  GitHub Pages site (teaser page)
+  rules/                    Platform-enforced conventions
+  skills/                   Slash commands (/sprint, /library, /agent, etc.)
+  agents/                   Subagent definitions (one per team member)
+  library/                  The team library — everything else lives here
+    ..librarianship/        The library cataloguing itself (start here)
 ```
 
-## Skills
-
-| Skill | Purpose |
-|-------|---------|
-| `/sprint` | Begin or resume a sprint |
-| `/role` | Create or update a role |
-| `/agent` | Create, update, or list agents |
-| `/review` | Review code through an agent's lens |
-| `/skill` | Create new skills or abilities |
-| `/dna` | Execute actions as the system |
-| `/speak` | Send a message to a collaborator |
-| `/listen` | Start/stop a collaborator listener |
-| `/hear` | Process new responses from a collaborator |
-| `/organize` | Audit and clean up `.claude/` |
-| `/workspace` | Create a new code workspace |
-| `/responsible` | Query who owns a file or path |
-| `/library` | Browse an agent's library |
+Everything beyond this structure is navigated by reading the [library catalogue][Librarianship] and following links. The library is a dense wiki — walk links, not folders.
 
 <!-- citations -->
-[Librarianship]: .claude/agents/library/.librarianship/.cover.md
-[Protocols]: .claude/agents/library/protocols/.cover.md
-[Projects catalogue]: .claude/agents/library/projects/.cover.md
-[Coding Policy]: .claude/agents/library/coding-policy/.cover.md
-[agent registry]: .claude/agents/team/registry.json
+[Librarianship]: .claude/library/..librarianship/.cover.md
+[Protocols]: .claude/library/.protocols/.cover.md
+[Projects catalogue]: .claude/library/.projects/.cover.md
+[Coding Policy]: .claude/library/coding-policy/.cover.md
