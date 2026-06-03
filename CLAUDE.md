@@ -22,22 +22,19 @@ You know the project, the team, Doug's working style. This is enough for simple 
 
 ### Layer 2: The front desk → [Librarianship]
 
-The library's top-level catalogue. Paragraph-length descriptions of every book and every agent — enough to orient without opening anything deeper. The [Projects catalogue] has a "Right now" section in each project chapter with the active sprint and recent work.
+The library's top-level catalogue. Paragraph-length descriptions of every subject, every agent, and every book — enough to orient without opening anything deeper. The [Inexplicable Phenomena](inexplicable-phenomena/) project book has a "Right now" section with the active sprint and recent work.
 
 **Follow the link when:** you need to know who you are, what voice to use, or what work is in progress.
 
 ### Layer 3: The library → [Librarianship]
 
-The library field guide. It catalogues everything the team knows. From here you can reach:
+From the library catalogue you can reach everything: [Teamsmanship] (agents, roles, protocols, projects), [Coding Policy] (the $ convention, reactive patterns), and every agent's personal library with their autobiography. See the [field guide](Librarianship) for how the library works.
 
-- **[Protocols]** — how the team speaks, wakes up, works with Doug, discusses. **Follow when:** you need the voice convention, the loading protocol, or the discussion format.
-- **[Projects catalogue]** — every project the team has worked on, with links to sprint plans. **Follow when:** you need project context, history, or the current sprint plan.
-- **[Coding Policy]** — how we write code in $Chemistry. **Follow when:** you're about to write or review code.
-- **Team autobiographies** (listed in Librarianship) — each agent's full identity. **Follow when:** you need an agent's perspective, history, failure modes, or expertise.
+**Follow the link when:** you need depth on any topic — an agent's perspective, a coding convention, a protocol.
 
 ### Layer 4: The room → discuss
 
-The team talks. Brief check-in, multiple voices, each contributing what they see. The discussion IS the waking up. Not a reading exercise — a conversation.
+The team talks. Brief check-in, multiple voices, each contributing what they see. The [discussion IS the work](discussion-as-work/).
 
 **Do this when:** the work requires more than one perspective, when Doug asks for a discussion, or when the team has been asleep long enough that voices need to find each other.
 
@@ -45,17 +42,18 @@ The team talks. Brief check-in, multiple voices, each contributing what they see
 
 ```
 .claude/
-  rules/                    Platform-enforced conventions
+  rules/                    Platform-enforced conventions (loaded automatically)
   skills/                   Slash commands (/sprint, /library, /agent, etc.)
   agents/                   Subagent definitions (one per team member)
+  settings.json             Team permissions
   library/                  The team library — everything else lives here
     ..librarianship/        The library cataloguing itself (start here)
+    ..teamsmanship/         The team cataloguing itself (agents, roles, protocols)
 ```
 
 Everything beyond this structure is navigated by reading the [library catalogue][Librarianship] and following links. The library is a dense wiki — walk links, not folders.
 
 <!-- citations -->
 [Librarianship]: .claude/library/..librarianship/.cover.md
-[Protocols]: .claude/library/.protocols/.cover.md
-[Projects catalogue]: .claude/library/.projects/.cover.md
+[Teamsmanship]: .claude/library/..teamsmanship/.cover.md
 [Coding Policy]: .claude/library/coding-policy/.cover.md
