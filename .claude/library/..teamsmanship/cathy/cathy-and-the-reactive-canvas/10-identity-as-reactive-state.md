@@ -1,6 +1,6 @@
 ---
 title: Identity as reactive state
-author: "[Cathy](../../.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
+author: "[Cathy](../../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # Identity as reactive state

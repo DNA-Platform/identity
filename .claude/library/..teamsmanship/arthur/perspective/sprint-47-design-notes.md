@@ -1,6 +1,6 @@
 ---
 title: Sprint 47 design notes — what Doug said and what I heard
-author: "[Arthur](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # Sprint 47 design notes

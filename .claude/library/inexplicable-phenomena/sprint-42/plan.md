@@ -29,7 +29,7 @@ Arthur: Deep scans of both repos found these issues:
 
 ### Format issues
 
-**F-7. Agent README.md files in `..team/`** — some (adam, arthur) have detailed book indexes, others (cathy, libby, david, phillip, queenie) are generic stubs. Standardize: each agent's README.md should list their books and link to their autobiography.
+**F-7. Agent README.md files in `..teamsmanship/`** — some (adam, arthur) have detailed book indexes, others (cathy, libby, david, phillip, queenie) are generic stubs. Standardize: each agent's README.md should list their books and link to their autobiography.
 
 **F-8. `.claude/docs/chemistry/`** — 210 files of Chemistry documentation in the old reference format. NOT migrating to library format (these are technical reference docs, not agent knowledge). But the library should cross-reference them. A chapter in Coding Policy or a standalone objective book could link into the docs.
 
@@ -53,7 +53,7 @@ Arthur: Deep scans of both repos found these issues:
 
 **A-4.** Write gabby's unification chapter — she joined in sprint 30, brought graphic design to the Lab app.
 
-**A-5.** Standardize agent README.md files in `..team/` — each should list the agent's books with links.
+**A-5.** Standardize agent README.md files in `..teamsmanship/` — each should list the agent's books with links.
 
 **A-6.** Restore `.env.example` with the expected shape for identity configuration.
 
@@ -123,7 +123,7 @@ After writing the new chapters, go back through the imported dna-library chapter
 **D-2.** Explore options for decoupling identity from the repo:
 - **Option A:** Separate `dna-platform/identity` repo — all agents' autobiographies and the field guide live there, referenced by project repos
 - **Option B:** User-level storage (`~/.claude/identity/`) — persists across repos without git
-- **Option C:** `.gitignore` the `..team/` layer — identity stays local, not in the public repo
+- **Option C:** `.gitignore` the `..teamsmanship/` layer — identity stays local, not in the public repo
 - **Option D:** The autobiography moves with the agent via a copy-on-move convention (what we did in sprint 41, formalized)
 
 **D-3.** For each option: how do cross-repo links work? How does the boot sequence find the library? What happens after a clone?

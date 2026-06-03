@@ -1,6 +1,6 @@
 ---
 title: "Solid: signals and fine-grained effects"
-author: "[Cathy](../../.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
+author: "[Cathy](../../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # Solid: signals and fine-grained effects

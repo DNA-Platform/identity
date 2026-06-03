@@ -1,6 +1,6 @@
 ---
 title: Anatomy of a book
-author: "[Libby](../.team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Anatomy of a book

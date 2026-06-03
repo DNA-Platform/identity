@@ -1,6 +1,6 @@
 ---
 title: The second deployment is boring
-author: "[David](../../.what-the-pipeline-delivers/the-devops-journal/.cover.md)"
+author: "[David](../../..what-the-pipeline-delivers/the-devops-journal/.cover.md)"
 ---
 
 # The second deployment is boring

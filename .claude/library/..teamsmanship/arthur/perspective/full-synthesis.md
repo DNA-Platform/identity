@@ -55,16 +55,16 @@ Arthur: Everything Doug specified, everything the team discussed, every error we
 
 ## The team subject
 
-### .team/ is the primary subject
+### ..teamsmanship/ is the primary subject
 - Projects, sprints, roles, abilities — these are team concerns
 - Protocols are how the team operates — also a team concern
 - `.protocols/` and `.projects/` may not need to be separate top-level subjects
-- They could be sub-subjects within `.team/`, or the books they catalogue could be directly catalogued by `.team/`
+- They could be sub-subjects within `..teamsmanship/`, or the books they catalogue could be directly catalogued by `..teamsmanship/`
 - A subject with only one book is just a book — subjects need MULTIPLE books to justify existence
-- `.team/` naturally has many books: roles, abilities, projects, sprints, protocols, code assignments, the rules book
+- `..teamsmanship/` naturally has many books: roles, abilities, projects, sprints, protocols, code assignments, the rules book
 
 ### Agent personal libraries
-- Live inside `.team/{agent}/`
+- Live inside `..teamsmanship/{agent}/`
 - Flat structure inside: the agent's subject catalogue + their books as peers
 - The agent's subject catalogue IS their personal library identity
 - It catalogues itself, the autobiography, the perspective, all other books
@@ -117,7 +117,7 @@ Arthur: Everything Doug specified, everything the team discussed, every error we
 - A library book catalogues the rules — one chapter per rule
 - Each chapter: why the rule exists, what it enforces, links to the rule file and the library book
 - The rule is the enforcement. The chapter is the rationale.
-- The rules book is catalogued by `.team/`
+- The rules book is catalogued by `..teamsmanship/`
 
 ## The perspective practice
 
@@ -156,7 +156,7 @@ Arthur: Everything Doug specified, everything the team discussed, every error we
 ### Sequence (spec first, validate second, restructure third)
 
 **1. Finish the field guide.** Every chapter must correctly describe the target system. The field guide IS the specification. Chapters to update/write:
-- 00: rewrite for flat structure with `.team/` as primary subject
+- 00: rewrite for flat structure with `..teamsmanship/` as primary subject
 - 01: done (title > subject > author, chapter signing) — verify
 - 02: add platform interface chapter (already written as .02)
 - 03: add subject factoring pattern
@@ -179,7 +179,7 @@ Arthur: Everything Doug specified, everything the team discussed, every error we
 - Add `subject:` to every book's frontmatter
 - Add `author:` to every chapter's frontmatter
 - Rename `.what-428-tests-promise` → `.what-the-tests-promise`
-- Move agent libraries into `.team/{agent}/` with flat internal structure
+- Move agent libraries into `..teamsmanship/{agent}/` with flat internal structure
 - Write the rules book cataloguing all rule files
 - Rewrite agent files with real inline links
 - Rewrite rules with appropriate thickness and inline links
@@ -191,4 +191,4 @@ Arthur: Everything Doug specified, everything the team discussed, every error we
 <!-- citations -->
 [sprint-47-notes]: sprint-47-design-notes.md
 [library-spec-v2]: library-spec-v2.md
-[field-guide-audit]: ../../.team/libby/perspective/field-guide-audit.md
+[field-guide-audit]: ../../..teamsmanship/libby/perspective/field-guide-audit.md

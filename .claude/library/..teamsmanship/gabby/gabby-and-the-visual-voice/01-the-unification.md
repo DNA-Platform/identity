@@ -1,6 +1,6 @@
 ---
 title: The unification
-author: "[Gabby](../../.what-beauty-serves/gabby-and-the-visual-voice/.cover.md)"
+author: "[Gabby](../../..what-beauty-serves/gabby-and-the-visual-voice/.cover.md)"
 ---
 
 # The unification

@@ -1,6 +1,6 @@
 ---
 title: Voice and nametags
-author: "[Arthur](../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../..teamsmanship/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # Voice and nametags

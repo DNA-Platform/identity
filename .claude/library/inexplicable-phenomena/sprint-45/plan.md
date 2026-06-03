@@ -59,7 +59,7 @@ Each agent writes at least one book beyond their autobiography about a subject t
 
 **C-2.** Convert David, Phillip, Queenie, Gabby's loose files into proper autobiography directories with `.cover.md`.
 
-**C-3.** Standardize agent README files in `..team/` — each lists the agent's books with links.
+**C-3.** Standardize agent README files in `..teamsmanship/` — each lists the agent's books with links.
 
 **C-4.** Extend `validate-links.ts` to check:
 - Summary field length (warn if under 30 words)
@@ -87,6 +87,6 @@ Libby: Write a proper team catalogue — a book at the objective library level t
 - [ ] Identity is ready to push to the identity repo
 
 <!-- citations -->
-[field guide]: ../.team/library/..librarianship/.cover.md
-[spec - anatomy]: ../.team/library/..librarianship/01-anatomy-of-a-book.md
-[spec - catalogues]: ../.team/library/..librarianship/04-subjects-and-catalogues.md
+[field guide]: ../..teamsmanship/library/..librarianship/.cover.md
+[spec - anatomy]: ../..teamsmanship/library/..librarianship/01-anatomy-of-a-book.md
+[spec - catalogues]: ../..teamsmanship/library/..librarianship/04-subjects-and-catalogues.md

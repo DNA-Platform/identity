@@ -1,6 +1,6 @@
 ---
 title: Growth and refactoring
-author: "[Libby](../.team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Growth and refactoring
@@ -49,7 +49,7 @@ Libby: **Procedure:**
 2. The catalogue's cover describes the conceptual thread and catalogues the books with [subject-shaped descriptions](04-subjects-and-catalogues.md) — each book described from the subject's perspective.
 3. Each book adds `subject: ".new-subject"` to its frontmatter pointing to the new catalogue.
 4. The new subject catalogue [self-catalogues](04-subjects-and-catalogues.md) — it appears in its own TOC.
-5. The parent catalogue (e.g., `..librarianship/` or `.team/`) adds the new subject to ITS TOC.
+5. The parent catalogue (e.g., `..librarianship/` or `..teamsmanship/`) adds the new subject to ITS TOC.
 
 Libby: Three new peer directories: the subject catalogue and at least two books. A subject with only one book is just a book — subjects need MULTIPLE books to justify existence.
 

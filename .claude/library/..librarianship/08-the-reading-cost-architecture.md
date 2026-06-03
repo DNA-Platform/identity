@@ -1,6 +1,6 @@
 ---
 title: The reading cost architecture
-author: "[Libby](../.team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The reading cost architecture
@@ -23,7 +23,7 @@ Libby: Budget: ~150-200 lines for the full library catalogue.
 
 Libby: One level deeper. TOC entries here are **paragraphs** — one per book in the subject. Each paragraph is SUBJECTIVE: not just "what this book covers" but "what you'll learn and why it matters from this subject's perspective." Each paragraph contains **links into specific chapters** of the book it describes.
 
-Libby: A reader at this layer already knows which subject they need. They're deciding which BOOK. The paragraph should answer that without opening the book. "The voice-and-nametags book explains the nametag convention: every paragraph starts with `Name:`, Arthur is default, don't batch. If nametags are missing after compaction, [chapter 1](../.protocols/01-voice-and-nametags.md) has the rule; [chapter 3](../.protocols/01-voice-and-nametags.md) has the territory assignments."
+Libby: A reader at this layer already knows which subject they need. They're deciding which BOOK. The paragraph should answer that without opening the book. "The voice-and-nametags book explains the nametag convention: every paragraph starts with `Name:`, Arthur is default, don't batch. If nametags are missing after compaction, [chapter 1](../voice-and-nametags/01-01-voice-and-nametags.md) has the rule; [chapter 3](../voice-and-nametags/01-01-voice-and-nametags.md) has the territory assignments."
 
 Libby: Budget: ~80-120 lines per subject catalogue.
 

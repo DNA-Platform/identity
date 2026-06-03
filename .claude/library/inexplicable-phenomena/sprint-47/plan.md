@@ -16,7 +16,7 @@ A subject catalogue IS the subject. It self-catalogues (appears in its own TOC).
 
 Each agent has two minimum books: a canonical autobiography (self-authored) and a library catalogue (self-cataloguing, authored by the autobiography). The library catalogue catalogues: itself, the autobiography, the perspective book, and all other books.
 
-Perspective is an active practice: represent → look → reflect → change. Each agent's library catalogues their perspective book. The `.team/` subject describes how perspectives operate.
+Perspective is an active practice: represent → look → reflect → change. Each agent's library catalogues their perspective book. The `..teamsmanship/` subject describes how perspectives operate.
 
 CLAUDE.md is a platform artifact specified by the library (chapter `.01-claude-md-spec.md` in `..librarianship/`). It bridges Claude Code's spec and the library.
 
@@ -27,14 +27,14 @@ We spell it "catalogue" throughout.
 - `.claude/` restructured: `library/`, `skills/`, `agents/`, `rules/` at top level
 - Claude Code spec satisfied: subagent definitions in `agents/`, rules in `rules/`, skills in `skills/`
 - Agent libraries named with literary self-referential names:
-  - `.everything-that-has-a-shape/` (Arthur)
-  - `.the-canvas-paints-itself/` (Cathy)
-  - `.the-garden-tends-itself/` (Libby)
-  - `.what-the-wire-carries/` (Adam)
-  - `.what-the-pipeline-delivers/` (David)
-  - `.what-the-user-sees/` (Phillip)
+  - `..everything-that-has-a-shape/` (Arthur)
+  - `..the-canvas-paints-itself/` (Cathy)
+  - `..the-garden-tends-itself/` (Libby)
+  - `..what-the-wire-carries/` (Adam)
+  - `..what-the-pipeline-delivers/` (David)
+  - `..what-the-user-sees/` (Phillip)
   - `.what-428-tests-promise/` (Queenie)
-  - `.what-beauty-serves/` (Gabby)
+  - `..what-beauty-serves/` (Gabby)
 - CLAUDE.md rewritten as bootstrap (under 200 lines, points into library)
 - Perspective files merged into agent libraries (148 files)
 - Reading cost architecture formalized (chapter 08 of field guide)
@@ -54,16 +54,16 @@ We spell it "catalogue" throughout.
     ..librarianship/                  Library catalogue [NEEDS REWRITE]
     .protocols/                       Subject: how the team operates [NEEDS REWRITE]
     .projects/                        Subject: work done [NEEDS REWRITE]
-    .team/                            Subject: who we are [NEEDS REWRITE]
+    ..teamsmanship/                            Subject: who we are [NEEDS REWRITE]
     .chemistry/                       Subject: framework reference [NEEDS SCAFFOLD]
-    .everything-that-has-a-shape/     Arthur's library [NEEDS COVER]
-    .the-canvas-paints-itself/        Cathy's library [NEEDS COVER]
-    .the-garden-tends-itself/         Libby's library [NEEDS COVER]
-    .what-the-wire-carries/           Adam's library [NEEDS COVER]
-    .what-the-pipeline-delivers/      David's library [NEEDS COVER]
-    .what-the-user-sees/              Phillip's library [NEEDS COVER]
+    ..everything-that-has-a-shape/     Arthur's library [NEEDS COVER]
+    ..the-canvas-paints-itself/        Cathy's library [NEEDS COVER]
+    ..the-garden-tends-itself/         Libby's library [NEEDS COVER]
+    ..what-the-wire-carries/           Adam's library [NEEDS COVER]
+    ..what-the-pipeline-delivers/      David's library [NEEDS COVER]
+    ..what-the-user-sees/              Phillip's library [NEEDS COVER]
     .what-428-tests-promise/          Queenie's library [NEEDS COVER]
-    .what-beauty-serves/              Gabby's library [NEEDS COVER]
+    ..what-beauty-serves/              Gabby's library [NEEDS COVER]
     .src/                             Scripts and validator
     coding-policy/                    Regular book [NEEDS subject: FIELD]
 ```
@@ -94,19 +94,19 @@ Libby: The phases should reflect that rhythm. Each phase: read a layer, edit it,
 
 ## Phase 2: The team and agents (1 session)
 
-**Read:** `.team/.cover.md`, the agent files in `.team/`, the role and ability files, the team catalogue chapters (01-08).
+**Read:** `..teamsmanship/.cover.md`, the agent files in `..teamsmanship/`, the role and ability files, the team catalogue chapters (01-08).
 
 **Edit:**
-- Rewrite `.team/.cover.md` as a self-cataloguing subject catalogue
+- Rewrite `..teamsmanship/.cover.md` as a self-cataloguing subject catalogue
 - Write chapter on the perspective practice (represent → look → reflect → change)
 - Write chapter on agent identity structure (two-book minimum, self-authored autobiography, self-cataloguing library)
 - Ensure registry.json, roles/, abilities/ are catalogued
 - Add `subject:` fields to team-related book covers
 
 **Validate:**
-- `.team/` self-catalogues
+- `..teamsmanship/` self-catalogues
 - Every team member referenced in the cover has an agent library
-- Run link validator on `.team/` and agent subagent definitions in `.claude/agents/`
+- Run link validator on `..teamsmanship/` and agent subagent definitions in `.claude/agents/`
 
 ## Phase 3: Agent libraries (1-2 sessions)
 
@@ -220,18 +220,18 @@ Libby: The phases should reflect that rhythm. Each phase: read a layer, edit it,
 
 Libby: Seven phases across 5-6 sessions. Phase 1 (Librarianship root) is the highest priority — it defines everything else. Phase 3 (agent libraries) is the largest — 8 covers to write. Phase 5 (links) is mechanical and scriptable. Phase 6 (cleanup) is the audit — read everything, find what doesn't belong, fill validator gaps.
 
-Libby: Each session completes one phase. Each phase ends at a validation checkpoint. If a compaction happens mid-sprint, the recovery path is: read this plan, read Arthur's perspective notes at `.everything-that-has-a-shape/perspective/sprint-47-design-notes.md`, identify which phase we're in from the validator output, continue.
+Libby: Each session completes one phase. Each phase ends at a validation checkpoint. If a compaction happens mid-sprint, the recovery path is: read this plan, read Arthur's perspective notes at `..everything-that-has-a-shape/perspective/sprint-47-design-notes.md`, identify which phase we're in from the validator output, continue.
 
 Libby: The cleanup phase (6) is NON-OPTIONAL. It's where we catch everything the other phases missed — files outside the pattern, validator gaps, detritus from migration. The library isn't done until cleanup passes clean.
 
 ## Definition of done
 
 - [ ] `..librarianship/.cover.md` self-catalogues the entire library
-- [ ] Every subject catalogue (`.protocols/`, `.projects/`, `.team/`, `.chemistry/`) self-catalogues
+- [ ] Every subject catalogue (`.protocols/`, `.projects/`, `..teamsmanship/`, `.chemistry/`) self-catalogues
 - [ ] Every agent library catalogue self-catalogues, authored by autobiography
 - [ ] Every book has `subject:` pointing to canonical subject
 - [ ] Every agent has a perspective book with `.cover.md`
-- [ ] `.team/` has chapters on perspective practice and agent identity structure
+- [ ] `..teamsmanship/` has chapters on perspective practice and agent identity structure
 - [ ] Field guide chapters updated (01, 04, 08 + new chapters)
 - [ ] All links rewritten for new paths
 - [ ] All skills updated for new paths
@@ -257,6 +257,6 @@ Libby: The cleanup phase (6) is NON-OPTIONAL. It's where we catch everything the
 10. **Catalogue = specification.** A subject catalogue doesn't just list — it defines, validates, specifies.
 
 <!-- citations -->
-[perspective notes]: ../../.everything-that-has-a-shape/perspective/sprint-47-design-notes.md
+[perspective notes]: ../../..everything-that-has-a-shape/perspective/sprint-47-design-notes.md
 [reading cost]: ../../..librarianship/08-the-reading-cost-architecture.md
 [claude-md-spec]: ../../..librarianship/.01-claude-md-spec.md

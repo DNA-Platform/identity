@@ -1,6 +1,6 @@
 ---
 title: The other library
-author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The other library

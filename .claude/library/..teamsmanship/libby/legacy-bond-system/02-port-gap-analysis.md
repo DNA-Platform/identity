@@ -1,6 +1,6 @@
 ---
 title: Port gap analysis
-author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Port gap analysis

@@ -1,6 +1,6 @@
 ---
 title: Voice is the unit of identity
-author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Voice is the unit of identity

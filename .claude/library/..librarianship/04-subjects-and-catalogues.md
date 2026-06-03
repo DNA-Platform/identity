@@ -1,6 +1,6 @@
 ---
 title: Subjects and catalogues
-author: "[Libby](../.team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Subjects and catalogues
@@ -74,11 +74,11 @@ Libby: A subject gets too many books → factor into sub-subjects. The original 
 
 ## Agent libraries
 
-Libby: Each team member has a personal library inside `.team/{agent}/`. Inside that folder, the structure is the SAME flat pattern:
+Libby: Each team member has a personal library inside `..teamsmanship/{agent}/`. Inside that folder, the structure is the SAME flat pattern:
 
 ```
-.team/arthur/
-  .everything-that-has-a-shape/           ← subject catalogue (Arthur's library identity)
+..teamsmanship/arthur/
+  ..everything-that-has-a-shape/           ← subject catalogue (Arthur's library identity)
   arthur-or-the-shape-of-everything/      ← book (autobiography, peer)
   the-architecture-of-identity/           ← book (peer)
   perspective/                            ← book (peer)
@@ -86,9 +86,9 @@ Libby: Each team member has a personal library inside `.team/{agent}/`. Inside t
 
 Libby: The agent's subject catalogue, autobiography, and other books are flat peers. The subject catalogue links to the books. Each book has `subject: ".everything-that-has-a-shape"`.
 
-## The `.team/` subject
+## The `..teamsmanship/` subject
 
-Libby: `.team/` is a subject catalogue at the library root. It's special because it contains agent folders. But it still follows the pattern — it catalogues books about the team (roles, abilities, sprint tracking) that sit as peers at the library root, AND it catalogues the agent folders inside it.
+Libby: `..teamsmanship/` is a subject catalogue at the library root. It's special because it contains agent folders. But it still follows the pattern — it catalogues books about the team (roles, abilities, sprint tracking) that sit as peers at the library root, AND it catalogues the agent folders inside it.
 
 ## Naming
 

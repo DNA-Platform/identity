@@ -9,7 +9,7 @@ Libby: Representing the current state of the field guide against what Doug speci
 
 ## Chapter 00 — The library
 
-Libby: Describes the two-layer model (objective/subjective) and the old `..team/` structure. The two-layer concept is still correct but the structural description is wrong — references `..team/` at the library root which doesn't exist anymore. **Needs significant rewrite** to describe the flat structure with `.team/` as a subject catalogue containing agent folders.
+Libby: Describes the two-layer model (objective/subjective) and the old `..teamsmanship/` structure. The two-layer concept is still correct but the structural description is wrong — references `..teamsmanship/` at the library root which doesn't exist anymore. **Needs significant rewrite** to describe the flat structure with `..teamsmanship/` as a subject catalogue containing agent folders.
 
 ## Chapter 01 — Anatomy of a book
 

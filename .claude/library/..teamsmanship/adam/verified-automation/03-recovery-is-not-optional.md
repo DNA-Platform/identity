@@ -1,6 +1,6 @@
 ---
 title: Recovery is not optional
-author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
+author: "[Adam](../../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # Recovery is not optional

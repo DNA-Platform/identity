@@ -1,6 +1,6 @@
 ---
 title: GitHub Actions for $Chemistry
-author: "[David](../../.what-the-pipeline-delivers/the-devops-journal/.cover.md)"
+author: "[David](../../..what-the-pipeline-delivers/the-devops-journal/.cover.md)"
 ---
 
 # GitHub Actions for $Chemistry

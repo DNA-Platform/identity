@@ -1,6 +1,6 @@
 ---
 title: The garden no one else has
-author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The garden no one else has

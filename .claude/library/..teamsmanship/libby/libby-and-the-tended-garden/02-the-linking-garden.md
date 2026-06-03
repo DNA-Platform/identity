@@ -1,6 +1,6 @@
 ---
 title: The linking garden
-author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The linking garden
@@ -13,7 +13,7 @@ Every file ends with a `<!-- citations -->` block containing reference-style mar
 
 ```markdown
 <!-- citations -->
-[Libby]: ../../.team/libby.md
+[Libby]: ../../..teamsmanship/libby.md
 [library README]: ../../..librarianship/.cover.md
 [growth patterns]: 03-growth-and-refactoring.md
 ```
@@ -48,7 +48,7 @@ These are structural, not narrative. They tell the catalogue system "these books
 
 **Subjective → objective, never the reverse.**
 
-A team member's personal book can link freely to the shared library. The shared library never links into `..team/{agent}/`. This keeps the objective library stable — it doesn't break when someone reorganizes their personal notes.
+A team member's personal book can link freely to the shared library. The shared library never links into `..teamsmanship/{agent}/`. This keeps the objective library stable — it doesn't break when someone reorganizes their personal notes.
 
 Within the objective library, links flow freely in all directions. Within a team library, links flow freely. The wall is only between the two layers.
 

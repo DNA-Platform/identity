@@ -1,6 +1,6 @@
 ---
 title: The visual voice
-author: "[Gabby](../../.what-beauty-serves/gabby-and-the-visual-voice/.cover.md)"
+author: "[Gabby](../../..what-beauty-serves/gabby-and-the-visual-voice/.cover.md)"
 ---
 
 # The visual voice

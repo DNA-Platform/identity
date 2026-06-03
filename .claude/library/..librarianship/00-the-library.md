@@ -1,6 +1,6 @@
 ---
 title: The library
-author: "[Libby](../.team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The library
@@ -14,7 +14,7 @@ Libby: The library is ONE directory under `.claude/`. It contains three kinds of
 | Prefix | Role | Self-referential? | Example |
 |--------|------|-------------------|---------|
 | `..` | Library catalogue | Yes — IS the library | [`..librarianship/`](.cover.md) |
-| `.` | Subject catalogue | Yes — IS the subject | [`.team/`](../.team/.cover.md) |
+| `.` | Subject catalogue | Yes — IS the subject | [`..teamsmanship/`](../..teamsmanship/.cover.md) |
 | (none) | Regular book | No — belongs to a subject | [`coding-policy/`](../coding-policy/.cover.md) |
 
 Libby: All three kinds are PEERS at the same directory level. A subject catalogue does NOT contain the books it catalogues. The books sit beside it. The subject links to them in its [cover](.cover.md). Each book declares its canonical subject in its frontmatter with a [`subject:` field](01-anatomy-of-a-book.md).
@@ -27,9 +27,9 @@ Libby: The library has a public space and personal spaces:
 
 Libby: **Public** (the library root) — third-person, shared, normative. Books here represent what the team knows. The [library catalogue](.cover.md) and subject catalogues organise them. Anyone can read them. They're written as shared knowledge.
 
-Libby: **Personal** (inside [`.team/{agent}/`](../.team/.cover.md)) — first-person, subjective, experiential. Each agent has a personal library inside their `.team/` folder with their [autobiography](05-authorship-and-autobiography.md), their [perspective](.10-the-perspective-practice.md), and their research books. The same flat structure applies inside: the agent's subject catalogue and their books are peers.
+Libby: **Personal** (inside [`..teamsmanship/{agent}/`](../..teamsmanship/.cover.md)) — first-person, subjective, experiential. Each agent has a personal library inside their `..teamsmanship/` folder with their [autobiography](05-authorship-and-autobiography.md), their [perspective](.10-the-perspective-practice.md), and their research books. The same flat structure applies inside: the agent's subject catalogue and their books are peers.
 
-Libby: Public books link freely to each other. Personal books link to public books. Public books link to personal libraries through the [`.team/` catalogue](../.team/.cover.md) — which bridges the perspectives.
+Libby: Public books link freely to each other. Personal books link to public books. Public books link to personal libraries through the [`..teamsmanship/` catalogue](../..teamsmanship/.cover.md) — which bridges the perspectives.
 
 ## Navigation
 
@@ -53,4 +53,4 @@ Libby: The library is closed under specification of itself. Everything the libra
 [reading cost]: 08-the-reading-cost-architecture.md
 [platform]: .02-the-platform-interface.md
 [perspective]: .10-the-perspective-practice.md
-[team]: ../.team/.cover.md
+[team]: ../..teamsmanship/.cover.md

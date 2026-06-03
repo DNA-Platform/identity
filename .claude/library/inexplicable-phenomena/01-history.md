@@ -1,6 +1,6 @@
 ---
 title: Inexplicable Phenomena
-author: "[Libby](../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/libby/..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Inexplicable Phenomena

@@ -1,6 +1,6 @@
 ---
 title: The gardener reads her garden
-author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The gardener reads her garden

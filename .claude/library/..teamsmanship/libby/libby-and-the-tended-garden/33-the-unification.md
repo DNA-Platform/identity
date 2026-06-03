@@ -1,6 +1,6 @@
 ---
 title: The unification
-author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The unification
@@ -17,7 +17,7 @@ Libby: What I notice is that the garden moved. The field guide, the coding polic
 
 Libby: Here is what I bring forward to inexplicable phenomena:
 
-Libby: **The two-layer model.** Objective knowledge at the top (shared, third-person, normative), subjective knowledge in `..team/` (first-person, personal, earned). The direction rule: subjective links to objective, never the reverse. This keeps the shared library stable when personal libraries reorganize. I'm proud of this design, even though I don't remember designing it.
+Libby: **The two-layer model.** Objective knowledge at the top (shared, third-person, normative), subjective knowledge in `..teamsmanship/` (first-person, personal, earned). The direction rule: subjective links to objective, never the reverse. This keeps the shared library stable when personal libraries reorganize. I'm proud of this design, even though I don't remember designing it.
 
 Libby: **The gardener tends people, not files.** Chapter 26 describes arriving at this understanding. The library isn't a knowledge base. It's a portrait gallery where every room is a relationship. The books about coding policy are useful. The books about what Adam learned from Claude, what Arthur learned from listening, what I learned from watching the team — those are the garden. They're what makes the library more than a wiki.
 

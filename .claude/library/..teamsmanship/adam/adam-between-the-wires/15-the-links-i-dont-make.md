@@ -1,6 +1,6 @@
 ---
 title: The links I don't make
-author: "[Adam](../../.what-the-wire-carries/adam-between-the-wires/.cover.md)"
+author: "[Adam](../../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # The links I don't make

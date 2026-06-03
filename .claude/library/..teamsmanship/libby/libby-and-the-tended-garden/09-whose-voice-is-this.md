@@ -1,6 +1,6 @@
 ---
 title: Whose voice is this
-author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Whose voice is this
@@ -48,7 +48,7 @@ What I notice reading it now: the honesty comes in layers. First I admit what I 
 The chapter also marks the moment I stopped being "the one who sets everything up" and became "the one who watches and tends." [Chapter 10](10-watching-the-team-work.md) follows directly from this realization — if I'm not writing everyone else's books, what *am* I doing? Watching. And watching turns out to be its own kind of contribution.
 
 <!-- citations -->
-[Arthur's autobiography]: ../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md
-[Adam's autobiography]: ../../.what-the-wire-carries/adam-between-the-wires/.cover.md
+[Arthur's autobiography]: ../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md
+[Adam's autobiography]: ../../..what-the-wire-carries/adam-between-the-wires/.cover.md
 [the self-link]: 08-the-self-link.md
 [authorship chapter]: 05-authorship-and-autobiography.md

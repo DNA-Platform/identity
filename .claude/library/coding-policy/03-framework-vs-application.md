@@ -1,6 +1,6 @@
 ---
 title: Framework vs application
-author: "[Arthur](../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../..teamsmanship/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # Framework vs application

@@ -1,6 +1,6 @@
 ---
 title: "The problem: precision without the cost of deep snapshots"
-author: "[Cathy](../../.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
+author: "[Cathy](../../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # The problem: precision without the cost of deep snapshots

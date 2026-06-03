@@ -1,6 +1,6 @@
 ---
 title: "Svelte: compile-time invalidation"
-author: "[Cathy](../../.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
+author: "[Cathy](../../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # Svelte: compile-time invalidation

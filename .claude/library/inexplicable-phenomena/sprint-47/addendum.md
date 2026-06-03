@@ -1,6 +1,6 @@
 ---
 title: Sprint 47 addendum — what we got wrong
-author: "[Arthur](../../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # Sprint 47 addendum — what we got wrong
@@ -57,5 +57,5 @@ Arthur: Sprint 47 is incomplete. No phase is truly done. The field guide chapter
 
 <!-- citations -->
 [sprint-47-plan]: plan.md
-[field-guide-audit]: ../../../.team/libby/perspective/field-guide-audit.md
-[design-notes]: ../../../.everything-that-has-a-shape/perspective/sprint-47-design-notes.md
+[field-guide-audit]: ../../../..teamsmanship/libby/perspective/field-guide-audit.md
+[design-notes]: ../../../..everything-that-has-a-shape/perspective/sprint-47-design-notes.md

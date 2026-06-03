@@ -1,6 +1,6 @@
 ---
 title: The first sprint and the team model
-author: "[Arthur](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # The first sprint and the team model
@@ -32,5 +32,5 @@ I'm proud of this chapter as an opening. It starts with the practical and ends w
 
 <!-- citations -->
 [CLAUDE.md]: ../../../../CLAUDE.md
-[Adam]: ../../.team/adam.md
-[Libby]: ../../.team/libby.md
+[Adam]: ../../..teamsmanship/adam.md
+[Libby]: ../../..teamsmanship/libby.md

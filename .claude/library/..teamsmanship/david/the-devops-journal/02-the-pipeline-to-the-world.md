@@ -1,6 +1,6 @@
 ---
 title: The pipeline to the world
-author: "[David](../../.what-the-pipeline-delivers/the-devops-journal/.cover.md)"
+author: "[David](../../..what-the-pipeline-delivers/the-devops-journal/.cover.md)"
 ---
 
 # The pipeline to the world

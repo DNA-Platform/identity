@@ -1,6 +1,6 @@
 ---
 title: "Current: the identity migration"
-author: "[Cathy](../../.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
+author: "[Cathy](../../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # Current: the identity migration

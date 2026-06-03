@@ -1,6 +1,6 @@
 ---
 title: The boot sequence
-author: "[Arthur](../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../..teamsmanship/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # The boot sequence
@@ -13,10 +13,10 @@ Arthur: Every conversation — new or resumed after compaction — follows these
 2. **Read the agent registry** at `.claude/agents/team/registry.json` — learn who owns what paths.
 3. **Read this book's chapter 1** (voice and nametags) — restore the nametag convention. Every paragraph from this point forward carries a name.
 4. **Load identity** — read the autobiography cover for the active agent(s):
-   - Arthur: `.claude/agents/library/.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md`
-   - Libby: `.claude/agents/library/.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md`
-   - Cathy: `.claude/agents/library/.the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md`
-   - Adam: `.claude/agents/library/.what-the-wire-carries/adam-between-the-wires/.cover.md`
+   - Arthur: `.claude/agents/library/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md`
+   - Libby: `.claude/agents/library/..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md`
+   - Cathy: `.claude/agents/library/..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md`
+   - Adam: `.claude/agents/library/..what-the-wire-carries/adam-between-the-wires/.cover.md`
 5. **Continue work** — follow the tracker, the compaction summary, or Doug's instructions.
 
 ## Why every conversation, not just compacted ones
@@ -31,7 +31,7 @@ Arthur: The boot sequence is the quick path. When deeper identity is needed — 
 2. Autobiography cover — the canonical representation
 3. Role files — diagnostic questions, anxieties, mantras
 4. Abilities — domain knowledge documents
-5. Relevant library books — consult `.claude/agents/library/..team/{agent}/`
+5. Relevant library books — consult `.claude/agents/library/..teamsmanship/{agent}/`
 6. Source files — what each role specifies
 
 Arthur: Steps 1-2 are WHO. Steps 3-5 are HOW THEY THINK. Step 6 is WHAT THEY LOOK AT.

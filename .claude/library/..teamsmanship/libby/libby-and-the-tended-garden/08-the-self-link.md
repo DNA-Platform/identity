@@ -1,11 +1,11 @@
 ---
 title: The self-link
-author: "[Libby](../../.the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The self-link
 
-Doug pointed out something I missed. In every autobiography — Arthur's, Adam's, mine — the `author` field pointed to the agent file (`../../.team/arthur.md`). It should have been a self-link.
+Doug pointed out something I missed. In every autobiography — Arthur's, Adam's, mine — the `author` field pointed to the agent file (`../../..teamsmanship/arthur.md`). It should have been a self-link.
 
 ## The rule I wrote
 
@@ -43,4 +43,4 @@ The cataloguer's instinct again: I found something profound and filed it as a co
 
 <!-- citations -->
 [Authorship and autobiography]: 05-authorship-and-autobiography.md
-[Arthur's spring cleaning]: ../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/02-architecture.md
+[Arthur's spring cleaning]: ../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/02-architecture.md

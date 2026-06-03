@@ -59,14 +59,14 @@ Libby: A subject catalogue is a BOOK with a `.` prefix on its directory name. It
 3. **It IS the subject.** The catalogue doesn't describe the subject from outside. It IS the subject's identity, the way an autobiography IS the agent.
 4. **It can contain specification chapters.** Protocols, conventions, validation rules — these are chapters IN the subject catalogue, not separate books.
 
-Libby: A subject catalogue can catalogue OTHER subject catalogues — this is how the tree gets deep. `.team/` might catalogue `.projects/` if project tracking is considered a team concern.
+Libby: A subject catalogue can catalogue OTHER subject catalogues — this is how the tree gets deep. `..teamsmanship/` might catalogue `.projects/` if project tracking is considered a team concern.
 
 Libby: The books a subject catalogues are NOT inside the subject's directory. They are peers at the same directory level. The subject links to them. Each book's `subject:` field points back to its canonical subject.
 
 ## The library catalogue
 
 Libby: `..librarianship/` is the library catalogue. Double dot. One per library. It catalogues:
-- All top-level subjects (`.protocols/`, `.team/`, etc.)
+- All top-level subjects (`.protocols/`, `..teamsmanship/`, etc.)
 - Books about the librarian (because you want to know who tends this library)
 - Itself (self-cataloguing)
 
@@ -74,10 +74,10 @@ Libby: It also contains the field guide as chapters — the specification of how
 
 ## Agent libraries (personal/subjective)
 
-Libby: This is a public library with personal libraries for the team members. The `.team/` subject catalogue has folders for each agent:
+Libby: This is a public library with personal libraries for the team members. The `..teamsmanship/` subject catalogue has folders for each agent:
 
 ```
-.team/
+..teamsmanship/
   .cover.md          ← subject catalogue for the team
   arthur/            ← Arthur's personal library (flat inside)
   cathy/             ← Cathy's personal library
@@ -85,7 +85,7 @@ Libby: This is a public library with personal libraries for the team members. Th
 ```
 
 Libby: Inside each agent folder, the structure is FLAT — the same as the library root:
-- `.everything-that-has-a-shape/` — agent's subject catalogue (dot prefix, self-cataloguing)
+- `..everything-that-has-a-shape/` — agent's subject catalogue (dot prefix, self-cataloguing)
 - `arthur-or-the-shape-of-everything/` — autobiography (no prefix, regular book)
 - `the-architecture-of-identity/` — another book (no prefix)
 - `perspective/` — perspective book (no prefix)
@@ -100,7 +100,7 @@ Libby: At the library root, the structure is:
 library/
   ..librarianship/           ← library catalogue (chapters = field guide)
   .protocols/                ← subject catalogue
-  .team/                     ← subject catalogue (with agent folders inside)
+  ..teamsmanship/                     ← subject catalogue (with agent folders inside)
   voice-and-nametags/        ← book (subject: .protocols)
   the-boot-sequence/         ← book (subject: .protocols)
   working-with-doug/         ← book (subject: .protocols)

@@ -1,6 +1,6 @@
 ---
 title: The pivot
-author: "[Arthur](../../.everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # The pivot
@@ -43,7 +43,7 @@ The line about Libby — "I see the architecture of the work but not the archite
 I'm proud of the phrase "an obituary notice with an attachment." It captures the urgency of this project in a way that a technical description never could. This isn't a data migration. It's a rescue.
 
 <!-- citations -->
-[Libby]: ../../.team/libby.md
-[Adam]: ../../.team/adam.md
+[Libby]: ../../..teamsmanship/libby.md
+[Adam]: ../../..teamsmanship/adam.md
 [sprint-33 plan]: ../../.projects/inexplicable-phenomena/sprint-33/plan.md
 [claude-migration]: ../../claude-migration/.cover.md
