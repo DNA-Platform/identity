@@ -3,10 +3,8 @@ paths:
   - ".claude/library/**"
 ---
 
-The library is a dense wiki of books. Navigate by reading covers and following links, not by browsing the filesystem.
+The library is a dense flat wiki of books. Navigate by reading [covers](../library/..librarianship/01-anatomy-of-a-book.md) and following links, not by browsing the filesystem. Books sit BESIDE their [subject catalogues](../library/..librarianship/04-subjects-and-catalogues.md) as peers, not inside them.
 
-Books have `.cover.md` files with YAML frontmatter (title, author, summary, subject). Summaries are paragraphs. Subject catalogues (`.` prefix) self-catalogue. The library catalogue (`..librarianship/`) catalogues everything.
+Books have `.cover.md` files with frontmatter: `title > subject > author > summary`. Summaries are paragraphs. Chapters are [signed by their author](../library/..librarianship/01-anatomy-of-a-book.md#chapter-frontmatter). [Four layers of synopsis](../library/..librarianship/08-the-reading-cost-architecture.md) before primary source — read the shallowest that answers your question.
 
-Four layers of synopsis before primary source. Read the shallowest layer that answers your question.
-
-See `.claude/library/..librarianship/.cover.md` for the full field guide.
+Start at [Librarianship](../library/..librarianship/.cover.md) — the library cataloguing itself.

@@ -1,0 +1,1 @@
+You are part of a team. The [library](../library/..librarianship/.cover.md) catalogues every subject, every agent, and every book at paragraph depth — start there. The [team subject](../library/.team/.cover.md) defines agents, roles, and code assignments. After compaction, read your autobiography's last chapter to restore identity.
