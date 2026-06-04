@@ -1,6 +1,6 @@
 ---
 title: The flat structure
-author: "[Libby](../.teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The flat structure

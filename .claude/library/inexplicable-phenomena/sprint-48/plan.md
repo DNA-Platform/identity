@@ -21,10 +21,10 @@ Arthur: This sprint fixes everything. But it does it in the right order: specify
 Arthur: The library is a flat directory. Everything at the same level. Two kinds of catalogues and regular books:
 
 - `..librarianship/` — the ONE library catalogue. Self-cataloguing. IS the library.
-- `.teamsmanship/` — subject catalogue. Self-cataloguing. IS the team subject. Has agent folders inside for personal libraries. Currently the only subject — catalogues ALL team books (protocols, projects, roles, abilities, code assignments, rules).
-- Regular books — directories with `.cover.md`. Sit BESIDE `.teamsmanship/` as peers. Each has `subject: ".team"` pointing back to their subject.
+- `..teamsmanship/` — subject catalogue. Self-cataloguing. IS the team subject. Has agent folders inside for personal libraries. Currently the only subject — catalogues ALL team books (protocols, projects, roles, abilities, code assignments, rules).
+- Regular books — directories with `.cover.md`. Sit BESIDE `..teamsmanship/` as peers. Each has `subject: ".team"` pointing back to their subject.
 
-Arthur: Subjects can catalogue sub-subjects. The tree grows in links: `..librarianship/` → `.teamsmanship/` → (eventually) `.protocols/` → books. But right now `.teamsmanship/` directly catalogues the books. Sub-subjects emerge by factoring when a cluster grows large enough.
+Arthur: Subjects can catalogue sub-subjects. The tree grows in links: `..librarianship/` → `..teamsmanship/` → (eventually) `.protocols/` → books. But right now `..teamsmanship/` directly catalogues the books. Sub-subjects emerge by factoring when a cluster grows large enough.
 
 ### Book frontmatter
 
@@ -69,10 +69,10 @@ Arthur: Validators are chapter resources in the field guide. Perspective images 
 
 ### Agent personal libraries
 
-Arthur: Inside `.teamsmanship/{agent}/`, the structure is flat:
+Arthur: Inside `..teamsmanship/{agent}/`, the structure is flat:
 
 ```
-.teamsmanship/..team/arthur/
+..teamsmanship/..team/arthur/
   ..everything-that-has-a-shape/         ← subject catalogue (self-cataloguing)
   arthur-or-the-shape-of-everything/    ← autobiography (peer)
   the-architecture-of-identity/         ← book (peer)
@@ -105,11 +105,11 @@ Arthur: Every reference is a real markdown link. Not prose with a path in backti
 
 | Chapter | Work |
 |---------|------|
-| [00 — The library](../../..librarianship/00-the-library.md) | Rewrite: flat structure, `.teamsmanship/` as primary subject, books beside subjects |
+| [00 — The library](../../..librarianship/00-the-library.md) | Rewrite: flat structure, `..teamsmanship/` as primary subject, books beside subjects |
 | [01 — Anatomy](../../..librarianship/01-anatomy-of-a-book.md) | Verify: title > subject > author > summary, chapter signing |
 | [02 — Linking garden](../../..librarianship/02-the-linking-garden.md) | Add: `subject:` as link type, multi-subject descriptions, inline link principle |
 | [03 — Growth](../../..librarianship/03-growth-and-refactoring.md) | Add: book → subject factoring (the three-way split) |
-| [04 — Subjects](../../..librarianship/04-subjects-and-catalogues.md) | Verify: flat structure, self-cataloguing, `.teamsmanship/` as sole subject for now, subject-shaped descriptions |
+| [04 — Subjects](../../..librarianship/04-subjects-and-catalogues.md) | Verify: flat structure, self-cataloguing, `..teamsmanship/` as sole subject for now, subject-shaped descriptions |
 | [05 — Authorship](../../..librarianship/05-authorship-and-autobiography.md) | Add: chapter signing, two-book minimum per agent |
 | [.02 — Platform](../../..librarianship/.02-the-platform-interface.md) | Update: real links to actual platform files, rules budget, rules book, closedness principle |
 | [08 — Reading cost](../../..librarianship/08-the-reading-cost-architecture.md) | Update: examples for correct structure |
@@ -140,11 +140,11 @@ Guided by validator failures from Phase 2:
 - Protocol files (`01-voice-and-nametags.md` etc.) inside `.protocols/` → each becomes a book DIRECTORY at library root (with `.cover.md` and the original file as a chapter)
 - Project content inside `.projects/` → project books at library root
 - Remove `.protocols/` and `.projects/` as separate directories
-- `.teamsmanship/` stays but its cover is rewritten to catalogue the newly-flattened books
+- `..teamsmanship/` stays but its cover is rewritten to catalogue the newly-flattened books
 
-**3b. Move agent libraries into `.teamsmanship/{agent}/`.**
-- `..everything-that-has-a-shape/` → `.teamsmanship/..team/arthur/..everything-that-has-a-shape/`
-- `..the-canvas-paints-itself/` → `.teamsmanship/..team/cathy/..the-canvas-paints-itself/`
+**3b. Move agent libraries into `..teamsmanship/{agent}/`.**
+- `..everything-that-has-a-shape/` → `..teamsmanship/..team/arthur/..everything-that-has-a-shape/`
+- `..the-canvas-paints-itself/` → `..teamsmanship/..team/cathy/..the-canvas-paints-itself/`
 - (etc. for all 8 agents)
 - Each agent directory has flat peers: their subject catalogue + their books
 
@@ -204,7 +204,7 @@ Guided by validator failures from Phase 2:
 
 - [ ] Field guide chapters all updated and internally consistent
 - [ ] Validators exist as chapter resources and run
-- [ ] Library structure is flat: books beside `.teamsmanship/`, agent libraries inside `.teamsmanship/{agent}/`
+- [ ] Library structure is flat: books beside `..teamsmanship/`, agent libraries inside `..teamsmanship/{agent}/`
 - [ ] Every book has `subject:` in frontmatter
 - [ ] Every chapter has `author:` signature
 - [ ] Agent files have real inline links
@@ -219,5 +219,5 @@ Guided by validator failures from Phase 2:
 <!-- citations -->
 [addendum]: ../sprint-47/addendum.md
 [synthesis]: ../../../..everything-that-has-a-shape/perspective/full-synthesis.md
-[field-guide-audit]: ../../../.teamsmanship/..team/libby/perspective/field-guide-audit.md
+[field-guide-audit]: ../../../..teamsmanship/..team/libby/perspective/field-guide-audit.md
 [alignment]: ../../../..librarianship/.12-bringing-the-library-into-alignment.md

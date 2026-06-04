@@ -1,6 +1,6 @@
 ---
 title: Chemistry
-author: "[Cathy](../.teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
+author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # Chemistry

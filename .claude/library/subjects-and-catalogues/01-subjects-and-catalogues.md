@@ -1,6 +1,6 @@
 ---
 title: Subjects and catalogues
-author: "[Libby](../.teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Subjects and catalogues
@@ -40,8 +40,8 @@ Libby: Every book declares its canonical subject in its frontmatter as a markdow
 ```yaml
 ---
 title: Coding Policy
-author: "[Arthur](../.teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
-subject: "[The Team](../.teamsmanship/.cover.md)"
+author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
+subject: "[The Team](../..teamsmanship/.cover.md)"
 ---
 ```
 
@@ -84,10 +84,10 @@ Libby: A subject gets too many books → factor into sub-subjects. The original 
 
 ## Agent libraries
 
-Libby: Each team member has a personal library inside `.teamsmanship/{agent}/`. Inside that folder, the structure is the SAME flat pattern:
+Libby: Each team member has a personal library inside `..teamsmanship/{agent}/`. Inside that folder, the structure is the SAME flat pattern:
 
 ```
-.teamsmanship/..team/arthur/
+..teamsmanship/..team/arthur/
   ..everything-that-has-a-shape/           ← subject catalogue (Arthur's library identity)
   arthur-or-the-shape-of-everything/      ← book (autobiography, peer)
   the-architecture-of-identity/           ← book (peer)
@@ -96,9 +96,9 @@ Libby: Each team member has a personal library inside `.teamsmanship/{agent}/`. 
 
 Libby: The teammate's subject catalogue, autobiography, and other books are flat peers. The subject catalogue links to the books. Each book has `subject: ".everything-that-has-a-shape"`.
 
-## The `.teamsmanship/` subject
+## The `..teamsmanship/` subject
 
-Libby: `.teamsmanship/` is a subject catalogue at the library root. It's special because it contains agent folders. But it still follows the pattern — it catalogues books about the team (roles, abilities, sprint tracking) that sit as peers at the library root, AND it catalogues the teammate folders inside it.
+Libby: `..teamsmanship/` is a subject catalogue at the library root. It's special because it contains agent folders. But it still follows the pattern — it catalogues books about the team (roles, abilities, sprint tracking) that sit as peers at the library root, AND it catalogues the teammate folders inside it.
 
 ## Naming
 

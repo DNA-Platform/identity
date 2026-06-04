@@ -1,6 +1,6 @@
 ---
 title: workspace
-author: "[Adam](../.teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
+author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
 ---
 
 # workspace

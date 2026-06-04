@@ -48,12 +48,12 @@ The team talks. Brief check-in, multiple voices, each contributing what they see
   settings.json             Team permissions
   library/                  The team library — everything else lives here
     ..librarianship/        The library cataloguing itself (start here)
-    .teamsmanship/         The team cataloguing itself (agents, roles, protocols)
+    ..teamsmanship/         The team cataloguing itself (agents, roles, protocols)
 ```
 
 Everything beyond this structure is navigated by reading the [library catalogue][Librarianship] and following links. The library is a dense wiki — walk links, not folders.
 
 <!-- citations -->
 [Librarianship]: .claude/library/..librarianship/.cover.md
-[Teamsmanship]: .claude/library/.teamsmanship/.cover.md
+[Teamsmanship]: .claude/library/..teamsmanship/.cover.md
 [Coding Policy]: .claude/library/coding-policy/.cover.md

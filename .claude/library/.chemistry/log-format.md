@@ -1,7 +1,7 @@
 ---
 kind: reference
 title: Conversation Log Format
-author: "[Cathy](../.teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
+author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 status: stable
 ---
 

@@ -136,7 +136,10 @@ for (const bookDir of allBooks) {
   }
 }
 for (const [scope, doubleDots] of scopeLevels) {
-  if (doubleDots.length > 1) {
+  if (doubleDots.length > 1 && scope !== '/') {
+    // At the library root, multiple .. is allowed (..librarianship + ..teamsmanship)
+    // because this public library contains personal libraries within ..teamsmanship
+    // At all other scopes (inside agent folders), only ONE .. is allowed
     console.log(`ERROR   ${scope}  Multiple .. prefixed directories (${doubleDots.join(', ')}). Only ONE library catalogue per scope.`);
     errors++;
   }

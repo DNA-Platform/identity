@@ -1,6 +1,6 @@
 ---
 title: The reading cost architecture
-author: "[Libby](../.teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The reading cost architecture

@@ -1,6 +1,6 @@
 ---
 title: Voice and nametags
-author: "[Libby](../.teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Voice and nametags

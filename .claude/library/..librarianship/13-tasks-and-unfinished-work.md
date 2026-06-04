@@ -1,6 +1,6 @@
 ---
 title: Tasks and unfinished work
-author: "[Libby](../.teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Tasks and unfinished work

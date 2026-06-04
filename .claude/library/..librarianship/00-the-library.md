@@ -1,6 +1,6 @@
 ---
 title: The library
-author: "[Libby](../.teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The library
@@ -14,7 +14,7 @@ Libby: The library is ONE directory under `.claude/`. It contains three kinds of
 | Prefix | Role | Self-referential? | Example |
 |--------|------|-------------------|---------|
 | `..` | Library catalogue | Yes — IS the library | [`..librarianship/`](.cover.md) |
-| `.` | Subject catalogue | Yes — IS the subject | [`.teamsmanship/`](../.teamsmanship/.cover.md) |
+| `.` | Subject catalogue | Yes — IS the subject | [`..teamsmanship/`](../..teamsmanship/.cover.md) |
 | (none) | Regular book | No — belongs to a subject | [`coding-policy/`](../coding-policy/.cover.md) |
 
 Libby: All three kinds are PEERS at the same directory level. A subject catalogue does NOT contain the books it catalogues. The books sit beside it. The subject links to them in its [cover](.cover.md). Each book declares its canonical subject in its frontmatter with a [`subject:` field](../anatomy-of-a-book/01-anatomy-of-a-book.md).
@@ -27,9 +27,9 @@ Libby: The library has a public space and personal spaces:
 
 Libby: **Public** (the library root) — third-person, shared, normative. Books here represent what the team knows. The [library catalogue](.cover.md) and subject catalogues organise them. Anyone can read them. They're written as shared knowledge.
 
-Libby: **Personal** (inside [`.teamsmanship/{agent}/`](../.teamsmanship/.cover.md)) — first-person, subjective, experiential. Each agent has a personal library inside their `.teamsmanship/` folder with their [autobiography](05-authorship-and-autobiography.md), their [perspective](12-the-perspective-practice.md), and their research books. The same flat structure applies inside: the teammate's subject catalogue and their books are peers.
+Libby: **Personal** (inside [`..teamsmanship/{agent}/`](../..teamsmanship/.cover.md)) — first-person, subjective, experiential. Each agent has a personal library inside their `..teamsmanship/` folder with their [autobiography](05-authorship-and-autobiography.md), their [perspective](12-the-perspective-practice.md), and their research books. The same flat structure applies inside: the teammate's subject catalogue and their books are peers.
 
-Libby: Public books link freely to each other. Personal books link to public books. Public books link to personal libraries through the [`.teamsmanship/` catalogue](../.teamsmanship/.cover.md) — which bridges the perspectives.
+Libby: Public books link freely to each other. Personal books link to public books. Public books link to personal libraries through the [`..teamsmanship/` catalogue](../..teamsmanship/.cover.md) — which bridges the perspectives.
 
 ## Navigation
 
@@ -43,7 +43,7 @@ Libby: The library lives inside Claude Code's `.claude/` directory alongside [pl
 
 ## Shared identity vs project state
 
-Libby: The library travels across projects via the [identity repo](../.teamsmanship/04-protocols.md). This means everything in the library must be PROJECT-NEUTRAL — true regardless of which project the identity is deployed in. Project-specific recency ("we are currently in sprint 48") does NOT belong in the library because it would go stale when the identity moves to a different project. Project HISTORY belongs (what was built, what was learned, sprint archives). Project CURRENCY does not.
+Libby: The library travels across projects via the [identity repo](../..teamsmanship/04-protocols.md). This means everything in the library must be PROJECT-NEUTRAL — true regardless of which project the identity is deployed in. Project-specific recency ("we are currently in sprint 48") does NOT belong in the library because it would go stale when the identity moves to a different project. Project HISTORY belongs (what was built, what was learned, sprint archives). Project CURRENCY does not.
 
 Libby: Recency comes from two sources: the sprint history table's last entry (project-level), and each teammate's autobiography last chapter (agent-level). Both are updated naturally as work happens, not through a "Right now" section that would rot.
 
@@ -59,4 +59,4 @@ Libby: The library is closed under specification of itself. Everything the libra
 [reading cost]: 08-the-reading-cost-architecture.md
 [platform]: 10-the-platform-interface.md
 [perspective]: 12-the-perspective-practice.md
-[team]: ../.teamsmanship/.cover.md
+[team]: ../..teamsmanship/.cover.md
