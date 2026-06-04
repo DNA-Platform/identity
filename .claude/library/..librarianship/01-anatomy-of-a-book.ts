@@ -61,6 +61,14 @@ function checkCover(coverPath: string): void {
   const dirName = dirname(coverPath).split(/[\\/]/).pop() || '';
   const isCatalogue = dirName.startsWith('.');
 
+  // catalogues: required for subject catalogues (. or .. prefix), must be a plain string
+  if (isCatalogue) {
+    if (!fm.catalogues) {
+      console.log(`ERROR   ${relPath}  Catalogue missing 'catalogues' field (what subject does this catalogue?)`);
+      errors++;
+    }
+  }
+
   // author: required, must be a markdown link
   if (!fm.author) {
     console.log(`ERROR   ${relPath}  Missing 'author'`);
@@ -85,17 +93,19 @@ function checkCover(coverPath: string): void {
     warnings++;
   }
 
-  // Check frontmatter order: title > author > subject
+  // Check frontmatter order
+  // Regular books: title > author > subject
+  // Catalogues: title > catalogues > author > subject
   const lines = content.split('\n');
-  let titleLine = -1, subjectLine = -1, authorLine = -1, summaryLine = -1;
+  let titleLine = -1, subjectLine = -1, authorLine = -1, summaryLine = -1, cataloguesLine = -1;
   for (let i = 0; i < lines.length; i++) {
     if (lines[i].startsWith('title:')) titleLine = i;
+    if (lines[i].startsWith('catalogues:')) cataloguesLine = i;
     if (lines[i].startsWith('subject:')) subjectLine = i;
     if (lines[i].startsWith('author:')) authorLine = i;
     if (lines[i].startsWith('summary:')) summaryLine = i;
   }
 
-  // Order: title > author > subject
   if (titleLine > 0 && authorLine > 0 && titleLine > authorLine) {
     console.log(`WARN    ${relPath}  Frontmatter order: title should come before author`);
     warnings++;
