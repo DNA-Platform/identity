@@ -46,28 +46,27 @@ Arthur: The name matters. What do we call the subject? Doug suggested it relates
 - "Cognition" — the cognitive architecture
 - "Claude" — the platform itself
 
-## Carry-forward from Sprint 49
+## Fix what's broken first
 
-### Validator extension for `..team/`
+Arthur: The retro surfaced something critical: the library has beautiful structure and broken links. Gabby said "frames but no paintings." Queenie asked "how many links are broken RIGHT NOW?" We need to answer that question and fix what it reveals BEFORE continuing to build.
 
-Cathy: Design the extension pattern in [Librarianship](../..librarianship/.cover.md). Implement for Teamsmanship — the `..team/` folder validator checks that the folder contains exactly the teammates catalogued in the book.
+### Run all validators, capture the full damage (Queenie + Libby)
 
-### Restructure `.chemistry/` `[DEFERRED]`
+Queenie: Run every validator against the full library. The anatomy validator, the subjects validator, the link validator. Capture the COMPLETE error count. That number is the truth about how healthy the library actually is.
 
-Cathy: The 210 reference files need proper book structure. This is large enough to be its own sprint. Defer to a future session.
+Libby: The validators are chapter resources in the field guide books. The code lives with the chapter it validates. The library validates ITSELF — [closedness](../..librarianship/00-the-library.md#closedness).
 
-### Fix remaining broken links
+### Fix every broken link (Adam + Libby)
 
-Libby: Run the link validator. Fix everything. The restructures broke many paths.
+Adam: Write a comprehensive link-fixing script that handles the new path structure. Run it. Then run the link validator again. The delta between before and after tells us how much the restructures damaged.
 
-### Formalize the compilation pattern
+Libby: Every fix is relative to a validator check. Don't fix by hand and hope — fix, validate, fix again until clean. The [test-first principle](../..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md) applies to the library too.
 
-Cathy: The agent compiler exists. Write compilers for:
-- Territory rules (from Teamsmanship ch 05 → `.claude/rules/{territory}.md`)
-- CLAUDE.md (from Librarianship ch 09 → `CLAUDE.md`)
-- Skills (from the skills book → `.claude/skills/*/SKILL.md`)
+### Validator extension for `..team/` (Cathy)
 
-Arthur: Document the compilation architecture in the [platform interface book](../the-platform-interface/.cover.md). The library is the source. Platform files are build output. Compilers are chapter resources.
+Cathy: The `..team/` folder inside Teamsmanship is an exception to the flat rule. It needs its own validator — a chapter resource in Teamsmanship that checks the folder contains exactly the teammates catalogued in the book. The extension pattern itself needs specifying in the [platform interface book](../the-platform-interface/.cover.md).
+
+## The three pillars
 
 ## Process
 
