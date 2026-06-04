@@ -55,15 +55,34 @@ Libby: Three new peer directories: the subject catalogue and at least two books.
 
 Libby: Subjects can catalogue sub-subjects — this is how the [tree grows deep](04-subjects-and-catalogues.md). The filesystem stays flat. The depth is in the links.
 
+## Catalogue evolution
+
+Libby: A catalogue book can grow too large when its chapters are themselves rich specifications. The catalogue evolves: its chapters graduate into standalone books, and the catalogue transitions from CONTAINING the content to CATALOGUING it.
+
+Libby: **Signal:** a catalogue has more than 10-15 chapters, and several chapters are 80+ lines — each a self-contained specification that could stand alone. The catalogue's cover is trying to be both a field guide (specification) AND an index (navigation), and it's too long for either job.
+
+Libby: **Procedure:**
+
+1. Identify chapters that are substantial enough to be books (typically 80+ lines with multiple sections).
+2. For each graduating chapter, create a new book directory at the library root with the chapter's content.
+3. The new book's `subject:` points back to the catalogue.
+4. In the catalogue, replace the graduated chapter with a shorter catalogue entry — a chapter ABOUT the book rather than a chapter that IS the content. The catalogue chapter links to the standalone book and describes it from the subject's perspective.
+5. Chapters that are short, transitional, or tightly coupled to the catalogue's identity stay as chapters.
+
+Libby: The catalogue becomes leaner and more navigational. The books become richer and more independent. Both are better for it — the catalogue is easier to scan, and the books are easier to find and read in isolation.
+
+Libby: This is how [Librarianship](.cover.md) itself evolved. Its field guide chapters grew large enough to be standalone books about Knowledge. The chapters graduated. Librarianship became a catalogue of books rather than a container of chapters. The spec captured its own evolution.
+
 ## The refactoring instinct
 
-Libby: I look for these signs during routine maintenance:
+Libby: Signs during routine maintenance:
 
-- **A chapter with H2 sections that could each stand alone** — candidate for chapter → book extraction.
+- **A chapter with H2 sections that could each stand alone** — candidate for chapter → book.
 - **Two books that keep linking to each other** — they might be chapters of a third, unwritten book.
-- **A book with more than 8-10 chapters** — the subject might be broader than one book can hold. Consider book → subject factoring.
-- **A summary that's hard to write** — if I can't summarize a chapter in three sentences, it's probably about more than one thing.
-- **Three books with repeated preamble** — "see X and Y first" means they share a subject.
+- **A book with more than 8-10 chapters** — consider book → subject factoring.
+- **A catalogue with more than 15 chapters** — consider catalogue evolution (chapters → books).
+- **A summary that's hard to write** — probably about more than one thing.
+- **Three books with repeated preamble** — they share a subject.
 - **A subject with only one book** — it's not a subject yet. It's just a book.
 
 <!-- citations -->
