@@ -41,6 +41,12 @@ Libby: Every link is a real markdown link — `[text](path)` inline in the prose
 
 Libby: The library lives inside Claude Code's `.claude/` directory alongside [platform artifacts](../../rules/) that the platform reads automatically. The [platform interface](10-the-platform-interface.md) chapter describes this relationship: platform artifacts embed the minimum for enforcement, then link inline into the library for depth. The library is the source of truth. The platform is a projection.
 
+## Shared identity vs project state
+
+Libby: The library travels across projects via the [identity repo](../..teamsmanship/04-protocols.md). This means everything in the library must be PROJECT-NEUTRAL — true regardless of which project the identity is deployed in. Project-specific recency ("we are currently in sprint 48") does NOT belong in the library because it would go stale when the identity moves to a different project. Project HISTORY belongs (what was built, what was learned, sprint archives). Project CURRENCY does not.
+
+Libby: Recency comes from two sources: the sprint history table's last entry (project-level), and each agent's autobiography last chapter (agent-level). Both are updated naturally as work happens, not through a "Right now" section that would rot.
+
 ## Closedness
 
 Libby: The library is closed under specification of itself. Everything the library depends on — including things outside `library/` like [CLAUDE.md](../../../CLAUDE.md), [rules/](../../rules/), [agents/](../../agents/), and [settings.json](../../settings.json) — has representation IN the library with real links OUT to the actual artifacts. The field guide specifies what those artifacts must contain. The library describes the world it lives in.

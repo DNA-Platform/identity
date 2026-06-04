@@ -29,14 +29,6 @@ Cathy: $Chemistry's reactive model mirrors the problem the project studies. Two 
 
 Libby: The waking-up protocol — "the library opens." After compaction, Libby briefs the team. Four layers: the building, the front desk, your shelf, the room. The team assembles through conversation, not through reading.
 
-## Right now
-
-Libby: Sprint 45 (The Garden in Full) — getting every autobiography to fighting weight, every agent's library following the spec, and preparing the identity for its first push to the identity repo. Every agent now has a proper autobiography book with `.cover.md` and paragraph summaries. Cathy has 9 chapters. David, Phillip, Queenie, Gabby each have proper books with 2-3 chapters plus domain books. The team catalogue, protocols book, and coding policy all have rich TOC entries. The library field guide spec has evolved to require paragraph summaries and tiered descriptions.
-
-Libby: After this sprint: push to the identity repo, then return to $Chemistry work — the Lab (sprint 31-32), framework bugs, and eventually the content workspaces.
-
-Libby: To know what each agent is doing right now, read their most recent autobiography chapter. The last chapter is the "I am here now" marker.
-
 ## Sprint history
 
 Arthur: Sprint plans live at `.claude/projects/inexplicable-phenomena/`. Key sprints:

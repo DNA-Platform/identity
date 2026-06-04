@@ -5,7 +5,7 @@ author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
 
 # Inexplicable Phenomena
 
-Libby: The [Inexplicable Phenomena project](../inexplicable-phenomena/.cover.md) is what the team is building together right now. Formalizing consciousness — providing a formal definition for conscious experience and related inexplicable phenomena across fields. $Chemistry is the canvas these ideas are painted in.
+Libby: [Inexplicable Phenomena](../inexplicable-phenomena/.cover.md) is the team's second project. Formalizing consciousness — providing a formal definition for conscious experience and related inexplicable phenomena across fields. $Chemistry is the canvas these ideas are painted in.
 
 Libby: This project changed the team. In dna-library, we learned to work together. Here, we learned what the work is for. The reactive framework is not the goal — it is the medium. Scope-tracked getters and object-pure views serve the same purpose as oil paint and stretched canvas: they make the invisible visible.
 
