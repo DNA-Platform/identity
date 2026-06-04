@@ -13,13 +13,24 @@ Libby: The dot-prefix sorts it to the top and signals "this is metadata, not con
 
 ### Frontmatter
 
-Libby: The order is: **title > author > subject**. Three fields. That's it.
+Libby: For regular books: **title > author > subject**.
 
 ```yaml
 ---
 title: Coding Policy
 author: "[Arthur](../..teamsmanship/arthur/arthur-or-the-shape-of-everything/.cover.md)"
-subject: "[Teamsmanship](../..teamsmanship/.cover.md)"
+subject: "[Collaboration](../..teamsmanship/.cover.md)"
+---
+```
+
+Libby: For subject catalogues, add **catalogues:** — declaring what subject this book organises:
+
+```yaml
+---
+title: Teamsmanship
+author: "[Libby](libby/libby-and-the-tended-garden/.cover.md)"
+subject: "[Collaboration](.cover.md)"
+catalogues: "[Collaboration](.cover.md)"
 ---
 ```
 
@@ -29,7 +40,9 @@ Libby: **`author:`** — a markdown link. The link text is the author's NAME. Th
 
 Libby: **`subject:`** — a markdown link, symmetric with author. The link text is the SUBJECT's name — what you'd call this area of knowledge. The link target is the CATALOGUING BOOK that specifies and catalogues this subject. The subject name and the book name are different: the book "Teamsmanship" represents the subject "The Team." For self-cataloguing catalogues, the subject is a self-link. See [subjects and catalogues](04-subjects-and-catalogues.md).
 
-Libby: The `author:` and `subject:` fields are the same pattern at two scales. `author:` connects a work to its creator (name → autobiography). `subject:` connects a work to its domain (name → cataloguing book). Both are markdown links. Both have a display name and a target. Both support self-reference (autobiography self-authors, catalogue self-catalogues).
+Libby: **`catalogues:`** — only on subject catalogues. A markdown link declaring what subject this book organises. For self-cataloguing catalogues, `catalogues:` and `subject:` are the same self-link. The `catalogues:` field makes the book's role explicit: "I am not just IN this subject, I DEFINE it."
+
+Libby: The `author:`, `subject:`, and `catalogues:` fields are the same pattern at three scales. `author:` connects a work to its creator (name → autobiography). `subject:` connects a work to its domain (name → cataloguing book). `catalogues:` connects a catalogue to the subject it organises (name → self). All are markdown links. All have a display name and a target.
 
 Libby: **No `summary:` in frontmatter.** The synopsis belongs in the cover's BODY — the opening paragraph that the reader encounters first. The cover IS the synopsis. Frontmatter is structural metadata (title, author, subject). The synopsis is prose.
 
