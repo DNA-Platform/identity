@@ -25,7 +25,7 @@ Libby: `.protocols/` has a `.cover.md` and chapters. The chapters describe proto
 
 | Prefix | Role | Count | Self-referential? |
 |--------|------|-------|-------------------|
-| `..` | Library catalogue | One per library | Yes — catalogues itself and all top-level subjects |
+| `..` | Library catalogue | Usually one per scope; public libraries with personal libraries may have two at the root | Yes — catalogues itself |
 | `.` | Subject catalogue | Many per library | Yes — catalogues itself and the books in its subject |
 | (none) | Regular book | Many per library | No — declares its subject, catalogued by a subject |
 
