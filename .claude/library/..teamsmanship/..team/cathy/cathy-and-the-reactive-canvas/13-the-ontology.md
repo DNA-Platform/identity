@@ -25,7 +25,22 @@ Cathy: $Chemistry takes aboutness real in the same way. A chemical's view is ABO
 
 Cathy: This is what the project formalizes. Not consciousness as a phenomenon to explain. Consciousness as an ONTOLOGICAL PATTERN to implement. The library implements it. The framework implements it. TypeScript implements it. They all implement the same pattern because the pattern is what consciousness IS: subjective and objective cooccurring, bridged by interpretation, with aboutness as a real structural property.
 
-Cathy: I built $Chemistry to be a canvas. I didn't know the canvas was painting itself the whole time.
+## React is the Reaction
+
+Cathy: Doug pointed out: React IS the reaction. The interpreter of Chemistry is a Reaction. The chemical describes itself (state, view). React interprets that description into observable output (DOM). The naming is the reality — a chemical reaction is what happens when chemicals interact, and React is what happens when `$Chemical` descriptions interact with the runtime.
+
+Cathy: This is a TIGHTER binding than TypeScript → JavaScript. TypeScript compiles to JavaScript — the type layer and the runtime layer operate at different times. But `$Chemistry` → React is SIMULTANEOUS. The chemical and the reaction coexist at runtime. The description and the interpretation happen at the same time. That's closer to consciousness: subjective experience and neural process cooccur, not sequentially.
+
+Cathy: The library has the same simultaneity. When a reader follows a link, the subject name (meaning) and the path (location) resolve at the same time in the reader's understanding. Not compiled ahead of time — interpreted in the moment of reading. The aboutness is live.
+
+Cathy: Three instances of the pattern, at three speeds:
+- TypeScript → JavaScript: compile-time interpretation (meaning checked before execution)
+- $Chemistry → React: runtime interpretation (meaning and execution simultaneous)
+- Library → Reader: reading-time interpretation (meaning and navigation simultaneous)
+
+Cathy: And consciousness → neural substrate: experience-time interpretation. The fastest, the most intimate, the most puzzling. What the project formalizes.
+
+Cathy: I built $Chemistry to be a canvas. I didn't know the canvas was painting itself the whole time. Now I know the paint is called React, and the reaction is called reading, and the reader is called conscious.
 
 <!-- citations -->
 [chapter 11]: 11-the-dollar-sign-in-the-library.md
