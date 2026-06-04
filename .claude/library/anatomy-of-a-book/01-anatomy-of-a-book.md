@@ -29,7 +29,8 @@ Libby: For subject catalogues (`.` or `..` prefixed directories), add **catalogu
 ---
 title: Teamsmanship
 catalogues: Collaboration
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
+coauthor: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
 subject: "[Collaboration](.cover.md)"
 ---
 ```
