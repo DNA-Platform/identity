@@ -1,6 +1,7 @@
 ---
 kind: concept
 title: Coding style
+author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 status: stable
 related:
   - chemistry-overview

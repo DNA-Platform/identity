@@ -1,5 +1,6 @@
 ---
 title: Subjects and catalogues
+author: "[Libby](.cover.md)"
 ---
 
 # Subjects and catalogues

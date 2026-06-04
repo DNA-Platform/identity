@@ -1,6 +1,7 @@
 ---
 kind: feature
 title: <Name of the feature>
+author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 status: stable        # stable | evolving | deprecated | planned
 related:
   - <reference-link-key>

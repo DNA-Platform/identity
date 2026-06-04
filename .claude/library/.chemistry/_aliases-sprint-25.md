@@ -1,6 +1,7 @@
 ---
 kind: index
 title: Sprint-25 alias index
+author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 status: temporary
 ---
 

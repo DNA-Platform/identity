@@ -1,5 +1,6 @@
 ---
 title: Anatomy of a book
+author: "[Libby](.cover.md)"
 ---
 
 # Anatomy of a book

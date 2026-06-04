@@ -1,5 +1,6 @@
 ---
 title: Authorship and autobiography
+author: "[Libby](.cover.md)"
 ---
 
 # Authorship and autobiography

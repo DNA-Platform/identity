@@ -1,6 +1,7 @@
 ---
 kind: reference
 title: Voice Spec
+author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 status: stable
 ---
 

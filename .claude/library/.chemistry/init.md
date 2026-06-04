@@ -1,6 +1,7 @@
 ---
 kind: guide
 title: Initialization
+author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 status: stable
 ---
 

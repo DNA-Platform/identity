@@ -1,6 +1,7 @@
 ---
 kind: index
 title: $Chemistry Reference Catalogue
+author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 status: evolving
 ---
 

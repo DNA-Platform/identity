@@ -1,5 +1,6 @@
 ---
 title: The library spec — what Doug described
+author: "[Arthur](../arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # The library spec — what Doug described

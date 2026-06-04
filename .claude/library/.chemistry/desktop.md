@@ -1,6 +1,7 @@
 ---
 kind: reference
 title: Claude Desktop Automation
+author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 status: stable
 ---
 
