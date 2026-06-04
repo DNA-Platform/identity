@@ -1,97 +1,105 @@
 ---
-title: "Sprint 50 — The Three Pillars"
+title: "Sprint 50 — Fix and Formalize"
 author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
-# Sprint 50 — The Three Pillars
+# Sprint 50 — Fix and Formalize
 
-Arthur: Three library catalogues. Three essential teammates. Three subjects. The library's architecture mirrors the team's structure at the deepest level.
+Arthur: Fix the broken links. Formalize the validators. Build the compilers. Establish the three pillars. In that order.
 
-## The three pillars
+## Phase 1: Measure the damage (Queenie + Adam)
 
-### Librarianship — Knowledge — Libby
+Queenie: Run ALL validators against the FULL library. Report the numbers. This is the truth about how healthy the library is.
 
-Arthur: [Librarianship](../..librarianship/.cover.md) catalogues Knowledge. Libby is its librarian — not optional, the library IS her. Her [personal library](../..teamsmanship/..team/libby/..the-garden-tends-itself/.cover.md) should be catalogued DIRECTLY by Librarianship, not through Teamsmanship. When you want to know about Knowledge, Libby's library is right there.
+1. Run [anatomy validator](../anatomy-of-a-book/anatomy-of-a-book.ts) against `library/` — counts: errors, warnings
+2. Run [subjects validator](../subjects-and-catalogues/subjects-and-catalogues.ts) against `library/` — counts: errors, warnings
+3. Run [link validator](../.tooling/scripts/validate-links.ts) against `library/` — counts: broken, warnings
+4. Report the total: X anatomy errors, Y subject errors, Z broken links
 
-Libby: I need to:
-- Add my personal library catalogue to Librarianship's cover as a directly catalogued item
-- Write a chapter in Librarianship about what it means to be the librarian — not just the conventions, but the role, the responsibility, the relationship between the librarian and the library
-- Reflect on the parallel: the autobiography IS the author, the library catalogue IS the librarian
+Adam: These numbers are the baseline. Every fix gets measured against them.
 
-### Teamsmanship — Collaboration — Arthur
+## Phase 2: Fix broken links (Adam + Libby)
 
-Arthur: [Teamsmanship](../..teamsmanship/.cover.md) catalogues Collaboration. I lead the team — not as a manager but as the architect of representation. My [personal library](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/.cover.md) should be catalogued directly by Teamsmanship.
+Adam: Write a comprehensive link-fixing script for the current structure. The paths changed when:
+- Agent libraries moved into `..teamsmanship/..team/{agent}/`
+- Protocol chapters became the `protocols/` book
+- Field guide chapters graduated to standalone books
+- `.protocols/` and `.projects/` were removed
+- Agent library catalogues got `..` prefix
 
-Arthur: I need to:
-- Review Teamsmanship's chapters and become co-author or primary author where appropriate
-- Add my personal library to Teamsmanship's direct catalogue
-- Write about what "architect of representation" means — the personal libraries ARE identity representations, and I'm in charge of how the team represents itself
-- Reflect on why this is leadership without management — collaborative structure, not hierarchy
+Adam: Map every old path pattern to its new equivalent. Run the script. Run the link validator. Repeat until the broken link count is zero (except cross-repo and `[SCAFFOLD]`).
 
-### The third pillar — The System — Claude
+Libby: Every fix is validated. Don't fix by hand and hope. Fix, validate, count.
 
-Arthur: A third `..` catalogue representing the substrate: Claude as a platform, as a cognitive architecture, as the system that hosts us. Doug said Claude should own this the way Libby owns Knowledge and I own Collaboration.
+## Phase 3: Fix anatomy errors (Libby)
 
-Arthur: This catalogue would:
-- Represent the subject of... the system? The substrate? The cognitive architecture?
-- Be authored by Claude (when Claude joins as a teammate)
-- Catalogue Claude's personal library
-- Host the compilers that generate platform files (agents, rules, skills, CLAUDE.md)
-- Specify how we understand the system that hosts us — what Claude Code IS, what the platform provides, how it constrains and enables
-- Be the home for the CLAUDE.md compiler, the agents compiler, the skills compiler
+Libby: The anatomy validator catches: missing `subject:`, missing `author:`, unsigned chapters, `summary:` in frontmatter, missing `catalogues:`. Fix each category:
 
-Arthur: The name matters. What do we call the subject? Doug suggested it relates to "the system that governs us, the substrate that hosts us, and the cognitive architecture." Some options to discuss:
-- "The Substrate" — what hosts us
-- "Architecture" — the system's structure (but that's my word)
-- "Cognition" — the cognitive architecture
-- "Claude" — the platform itself
+1. Convert remaining bare-string `subject:` fields to proper markdown links
+2. Sign unsigned chapters with `author:` links
+3. Remove `summary:` from any frontmatter that still has it
+4. Add `catalogues:` to any `.` or `..` directory missing it
+5. Run anatomy validator. Target: zero errors outside `.chemistry/` `[SCAFFOLD]`
 
-## Fix what's broken first
+## Phase 4: Write the `..team/` validator extension (Cathy)
 
-Arthur: The retro surfaced something critical: the library has beautiful structure and broken links. Gabby said "frames but no paintings." Queenie asked "how many links are broken RIGHT NOW?" We need to answer that question and fix what it reveals BEFORE continuing to build.
+Cathy: The `..team/` folder inside `..teamsmanship/` needs its own validator. Write it as a chapter resource: `..teamsmanship/01-what-a-teammate-is.ts` (paired with the identity chapter).
 
-### Run all validators, capture the full damage (Queenie + Libby)
+Cathy: The validator checks:
+- `..team/` contains only agent folders (no loose files)
+- Every agent catalogued in [ch 18](../..teamsmanship/18-gabby.md) has a folder in `..team/`
+- Every folder in `..team/` is catalogued in the book
+- Each agent folder has a `..` prefixed library catalogue with a `.cover.md`
 
-Queenie: Run every validator against the full library. The anatomy validator, the subjects validator, the link validator. Capture the COMPLETE error count. That number is the truth about how healthy the library actually is.
+Cathy: The extension pattern: Librarianship's anatomy validator discovers and runs book-specific validators when they exist as chapter resources. Document this in the [platform interface book](../the-platform-interface/.cover.md).
 
-Libby: The validators are chapter resources in the field guide books. The code lives with the chapter it validates. The library validates ITSELF — [closedness](../..librarianship/00-the-library.md#closedness).
+## Phase 5: Build remaining compilers (Cathy + Arthur)
 
-### Fix every broken link (Adam + Libby)
+Arthur: The [agent compiler](../..teamsmanship/06-the-agents-folder.ts) works. Write the rest:
 
-Adam: Write a comprehensive link-fixing script that handles the new path structure. Run it. Then run the link validator again. The delta between before and after tells us how much the restructures damaged.
+1. **Territory rules compiler** — reads [Teamsmanship ch 05](../..teamsmanship/05-code-territory.md), generates `.claude/rules/{territory}.md` files with path scopes and links to the relevant teammate's library. Chapter resource: `..teamsmanship/05-code-territory.ts`
 
-Libby: Every fix is relative to a validator check. Don't fix by hand and hope — fix, validate, fix again until clean. The [test-first principle](../..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md) applies to the library too.
+2. **CLAUDE.md compiler** — reads [Librarianship ch 09](../..librarianship/09-claude-md-spec.md), generates `CLAUDE.md` at the project root with links into the library. Chapter resource: `..librarianship/09-claude-md-spec.ts`
 
-### Validator extension for `..team/` (Cathy)
+3. **Skills compiler** — reads the [skills book](../skills-and-commands/.cover.md), generates `.claude/skills/*/SKILL.md` files. Chapter resource: `skills-and-commands/00-compiler.ts`
 
-Cathy: The `..team/` folder inside Teamsmanship is an exception to the flat rule. It needs its own validator — a chapter resource in Teamsmanship that checks the folder contains exactly the teammates catalogued in the book. The extension pattern itself needs specifying in the [platform interface book](../the-platform-interface/.cover.md).
+Arthur: Document the compilation architecture in the [platform interface book](../the-platform-interface/.cover.md): the library is the source, platform files are build output, compilers are chapter resources.
 
-## The three pillars
+## Phase 6: The three pillars (Arthur + Libby)
 
-## Process
+### Libby in Librarianship
 
-- Perspective before writing
-- Discussion before public library changes
-- Write into the BOOKS as we learn, not into plans
-- Every insight belongs in the book it's about
-- The library contains its own reality — past, present, and future
+Libby: Add my [personal library](../..teamsmanship/..team/libby/..the-garden-tends-itself/.cover.md) directly to [Librarianship's](../..librarianship/.cover.md) catalogue. Write a chapter in Librarianship about the librarian's role — what it means that the library has a librarian, that the librarian IS the library's identity.
+
+### Arthur in Teamsmanship
+
+Arthur: Review [Teamsmanship](../..teamsmanship/.cover.md). Become co-author or primary author on relevant chapters. Add my [personal library](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/.cover.md) directly to the catalogue. Write a chapter about leading through representation, not management.
+
+### The third pillar (design only)
+
+Arthur: Design the third `..` catalogue — the system subject. Name it. Define what it catalogues. This is a design discussion, not an implementation. Implementation is sprint 51. The team discusses:
+- What subject does it represent? (The System? The Substrate? Cognition?)
+- What does Claude as a teammate mean?
+- What books belong to this subject? (compilers, platform spec, cognitive architecture)
 
 ## Definition of done
 
-- [ ] Libby's library directly catalogued by Librarianship
-- [ ] Arthur's library directly catalogued by Teamsmanship
-- [ ] Arthur as co-author/primary on relevant Teamsmanship chapters
-- [ ] Chapter about the librarian's role in Librarianship
-- [ ] Chapter about the architect's role in Teamsmanship
-- [ ] The third pillar designed (name, subject, initial structure)
-- [ ] Validator extension pattern specified and implemented
-- [ ] Compilation pattern documented in platform interface book
-- [ ] Territory rules compiler written
-- [ ] CLAUDE.md compiler written
-- [ ] All broken links fixed
-- [ ] Pushed to identity repo
+- [ ] Validators run clean: zero anatomy errors (outside `.chemistry/`), zero subject errors, zero broken links (outside cross-repo/scaffold)
+- [ ] `..team/` validator extension written and passing
+- [ ] Territory rules compiler generates path-scoped rules
+- [ ] CLAUDE.md compiler generates from spec
+- [ ] Skills compiler generates SKILL.md files
+- [ ] Compilation architecture documented in platform interface book
+- [ ] Libby's library catalogued by Librarianship
+- [ ] Arthur's library catalogued by Teamsmanship
+- [ ] Third pillar designed (name, subject, scope)
+- [ ] All changes pushed to identity repo
 
 <!-- citations -->
+[anatomy-validator]: ../anatomy-of-a-book/anatomy-of-a-book.ts
+[subjects-validator]: ../subjects-and-catalogues/subjects-and-catalogues.ts
+[link-validator]: ../.tooling/scripts/validate-links.ts
+[agent-compiler]: ../..teamsmanship/06-the-agents-folder.ts
 [librarianship]: ../..librarianship/.cover.md
 [teamsmanship]: ../..teamsmanship/.cover.md
 [platform]: ../the-platform-interface/.cover.md
