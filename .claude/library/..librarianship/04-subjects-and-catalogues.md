@@ -35,23 +35,33 @@ Libby: Every catalogue appears in its own table of contents. The catalogue's ent
 
 ## The `subject:` field
 
-Libby: Every regular book declares its canonical subject in its frontmatter:
+Libby: Every book declares its canonical subject in its frontmatter as a markdown link — symmetric with `author:`:
 
 ```yaml
 ---
-title: Voice and Nametags
-subject: ".protocols"
-author: "[Arthur](path/to/autobiography/.cover.md)"
-summary: >
-  Paragraph summary...
+title: Coding Policy
+author: "[Arthur](../..teamsmanship/arthur/arthur-or-the-shape-of-everything/.cover.md)"
+subject: "[The Team](../..teamsmanship/.cover.md)"
 ---
 ```
 
-Libby: The frontmatter order is: **title > subject > author > summary**. The subject says where this book lives. The author says who wrote it.
+Libby: The frontmatter order is: **title > author > subject**. Author before subject.
+
+Libby: The `subject:` link has two parts, and they mean different things:
+
+Libby: The **link text** is the SUBJECT'S name — what area of knowledge this book belongs to. "The Team", "Knowledge", "Physics". This is NOT the book's name. The book called "Teamsmanship" represents the subject called "The Team." The book called "Librarianship" represents the subject called "Knowledge." The book called "Principia Mathematica" represents the subject called "Natural Philosophy."
+
+Libby: The **link target** is the CATALOGUING BOOK — the book that specifies and catalogues this subject. It points to the `.cover.md` of the subject catalogue.
+
+Libby: This is the same pattern as `author:`. The `author:` link text is the PERSON's name ("Arthur"). The `author:` link target is the AUTOBIOGRAPHY — the book that represents the person. The person and the book about them are different things. The subject and the book about it are different things. The link carries both: the name identifies, the path locates.
+
+Libby: For self-cataloguing catalogues, the subject is a self-link: `subject: "[Knowledge](.cover.md)"` on the Librarianship book. The subject name is "Knowledge." The book is "Librarianship." The self-link says: this book IS the catalogue for the subject it names.
 
 ## Multi-subject membership
 
-Libby: A book can belong to multiple subjects. Newton's Principia is philosophy, physics, and math. It has ONE directory. It has `subject: ".physics"` as its canonical subject. The `.philosophy/` and `.math/` subject catalogues each have a TOC entry that links to the Principia. The book doesn't link back to non-canonical subjects. Non-canonical subjects find the book; the book only knows its canonical home.
+Libby: A book can belong to multiple subjects. Newton's Principia is philosophy, physics, and math. It has ONE directory. It has `subject: "[Natural Philosophy](../.physics/.cover.md)"` as its canonical subject. The philosophy and math subject catalogues each link to the Principia in their TOCs — with descriptions shaped by their own perspective. The book doesn't link back to non-canonical subjects. The non-canonical subjects find the book; the book only knows its canonical home.
+
+Libby: The Principia described by the physics catalogue talks about the calculus of motion. The same Principia described by the philosophy catalogue talks about the mechanical worldview. Same book. Different subject-shaped descriptions. The subject determines how the book is described, not what the book contains.
 
 Libby: This is impossible in a folder-based hierarchy. A directory can only have one parent. In a link-based hierarchy, a book can be catalogued by as many subjects as see relevance. The flat filesystem makes multi-subject membership natural.
 
