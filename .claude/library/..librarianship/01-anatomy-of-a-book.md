@@ -13,27 +13,23 @@ Libby: The dot-prefix sorts it to the top and signals "this is metadata, not con
 
 ### Frontmatter
 
-Libby: The order is: **title > subject > author > summary**.
+Libby: The order is: **title > subject > author**. Three fields. That's it.
 
 ```yaml
 ---
 title: Human-readable book title
-subject: ".protocols"
+subject: "..teamsmanship"
 author: "[Author Name](relative/path/to/autobiography/.cover.md)"
-summary: >
-  A paragraph (3-5 sentences, ~50 words) that answers "what is this book
-  and why would I read it?" Rich enough that a reader encountering this
-  book in a catalogue can decide whether to open it.
-links:
-  - "[Related Book Title](relative/path/to/other-book/)"
 ---
 ```
 
 Libby: **`title:`** — the book's name. Names are tier-zero synopsis — you read them in every link, every listing. Choose names that carry meaning about what the book IS. Don't encode current state (not "What 428 Tests Promise" — the number changes).
 
-Libby: **`subject:`** — the canonical subject catalogue this book belongs to. The value is the catalogue's directory name (e.g., `".protocols"`, `".everything-that-has-a-shape"`). A book can be linked by multiple subject catalogues, but it declares ONE canonical subject. See [subjects and catalogues](04-subjects-and-catalogues.md).
+Libby: **`subject:`** — the canonical subject catalogue this book belongs to. The value is the catalogue's directory name (e.g., `"..teamsmanship"`, `"..everything-that-has-a-shape"`). Catalogues are self-cataloguing: `subject: "..librarianship"` on Librarianship itself. A book can be linked by multiple subject catalogues, but it declares ONE canonical subject. See [subjects and catalogues](04-subjects-and-catalogues.md).
 
 Libby: **`author:`** — a markdown link. The link text is the **author's name** (not the book title). `author: "[Libby](path/to/autobiography/.cover.md)"` reads like a byline: *by Libby*. The link target is the autobiography — because the autobiography IS the author. For autobiographies, the author field is a self-link: `author: "[Libby](.cover.md)"`.
+
+Libby: **No `summary:` in frontmatter.** The summary is PROSE — it belongs in the cover's body, as the opening paragraph. The cover IS the synopsis. Putting a summary in metadata duplicates what the prose already says and creates maintenance burden. Write the synopsis as the first thing the reader encounters in the body.
 
 Libby: **`summary:`** — a paragraph, not a sentence. This is the most-read field in the library. It appears in catalogues and search results. A summary that says "How we write code" labels the topic without helping the reader decide. A summary that says "How we write code in $Chemistry — the $ prefix convention, the reactive patterns, and the three layers of code that keep concerns separated" helps the reader decide without opening the book.
 

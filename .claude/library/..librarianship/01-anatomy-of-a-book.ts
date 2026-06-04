@@ -74,13 +74,17 @@ function checkCover(coverPath: string): void {
     errors++;
   }
 
-  if (!fm.summary) {
-    console.log(`WARN    ${relPath}  Missing 'summary'`);
+  // summary: is NOT in frontmatter — it's prose in the body
+  if (fm.summary) {
+    console.log(`WARN    ${relPath}  'summary' in frontmatter — should be prose in the body, not metadata`);
     warnings++;
-  } else {
-    const wordCount = fm.summary.replace(/[>"]/g, '').trim().split(/\s+/).length;
-    if (wordCount < 15) {
-      console.log(`WARN    ${relPath}  Summary too short (${wordCount} words): ${fm.summary.substring(0, 60)}...`);
+  }
+
+  // Catalogues must self-catalogue: subject: points to themselves
+  if (isCatalogue && fm.subject) {
+    const subjectVal = fm.subject.replace(/"/g, '');
+    if (subjectVal !== dirName) {
+      console.log(`WARN    ${relPath}  Catalogue subject "${subjectVal}" doesn't match own name "${dirName}" (should self-catalogue)`);
       warnings++;
     }
   }
