@@ -58,19 +58,24 @@ function checkCover(coverPath: string): void {
     errors++;
   }
 
-  // subject: required for regular books (not for catalogues)
   const dirName = dirname(coverPath).split(/[\\/]/).pop() || '';
   const isCatalogue = dirName.startsWith('.');
-  if (!isCatalogue && !fm.subject) {
-    console.log(`ERROR   ${relPath}  Missing 'subject' (regular book must declare canonical subject)`);
-    errors++;
-  }
 
+  // author: required, must be a markdown link
   if (!fm.author) {
     console.log(`ERROR   ${relPath}  Missing 'author'`);
     errors++;
   } else if (!isMarkdownLink(fm.author)) {
     console.log(`ERROR   ${relPath}  'author' is not a markdown link: ${fm.author}`);
+    errors++;
+  }
+
+  // subject: required for ALL books (including catalogues which self-catalogue)
+  if (!fm.subject) {
+    console.log(`ERROR   ${relPath}  Missing 'subject'`);
+    errors++;
+  } else if (!isMarkdownLink(fm.subject)) {
+    console.log(`ERROR   ${relPath}  'subject' is not a markdown link: ${fm.subject}`);
     errors++;
   }
 
@@ -80,16 +85,7 @@ function checkCover(coverPath: string): void {
     warnings++;
   }
 
-  // Catalogues must self-catalogue: subject: points to themselves
-  if (isCatalogue && fm.subject) {
-    const subjectVal = fm.subject.replace(/"/g, '');
-    if (subjectVal !== dirName) {
-      console.log(`WARN    ${relPath}  Catalogue subject "${subjectVal}" doesn't match own name "${dirName}" (should self-catalogue)`);
-      warnings++;
-    }
-  }
-
-  // Check frontmatter order: title should come before subject, subject before author
+  // Check frontmatter order: title > author > subject
   const lines = content.split('\n');
   let titleLine = -1, subjectLine = -1, authorLine = -1, summaryLine = -1;
   for (let i = 0; i < lines.length; i++) {
@@ -99,11 +95,12 @@ function checkCover(coverPath: string): void {
     if (lines[i].startsWith('summary:')) summaryLine = i;
   }
 
+  // Order: title > author > subject
   if (titleLine > 0 && authorLine > 0 && titleLine > authorLine) {
     console.log(`WARN    ${relPath}  Frontmatter order: title should come before author`);
     warnings++;
   }
-  if (subjectLine > 0 && authorLine > 0 && subjectLine > authorLine) {
+  if (authorLine > 0 && subjectLine > 0 && authorLine > subjectLine) {
     console.log(`WARN    ${relPath}  Frontmatter order: subject should come before author`);
     warnings++;
   }

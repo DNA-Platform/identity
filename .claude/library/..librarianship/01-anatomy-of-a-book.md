@@ -13,19 +13,23 @@ Libby: The dot-prefix sorts it to the top and signals "this is metadata, not con
 
 ### Frontmatter
 
-Libby: The order is: **title > subject > author**. Three fields. That's it.
+Libby: The order is: **title > author > subject**. Three fields. That's it.
 
 ```yaml
 ---
-title: Human-readable book title
-subject: "..teamsmanship"
-author: "[Author Name](relative/path/to/autobiography/.cover.md)"
+title: Coding Policy
+author: "[Arthur](../..teamsmanship/arthur/arthur-or-the-shape-of-everything/.cover.md)"
+subject: "[Teamsmanship](../..teamsmanship/.cover.md)"
 ---
 ```
 
-Libby: **`title:`** — the book's name. Names are tier-zero synopsis — you read them in every link, every listing. Choose names that carry meaning about what the book IS. Don't encode current state (not "What 428 Tests Promise" — the number changes).
+Libby: **`title:`** — the book's name. Names are tier-zero synopsis — you read them in every link, every listing. Choose names that carry meaning about what the book IS. Don't encode current state.
 
-Libby: **`subject:`** — the canonical subject catalogue this book belongs to. The value is the catalogue's directory name (e.g., `"..teamsmanship"`, `"..everything-that-has-a-shape"`). Catalogues are self-cataloguing: `subject: "..librarianship"` on Librarianship itself. A book can be linked by multiple subject catalogues, but it declares ONE canonical subject. See [subjects and catalogues](04-subjects-and-catalogues.md).
+Libby: **`author:`** — a markdown link. The link text is the **author's name**. The link target is the **autobiography**. `author: "[Libby](path/to/autobiography/.cover.md)"` reads as a byline: *by Libby*. For autobiographies, the author field is a self-link: `author: "[Libby](.cover.md)"`. The autobiography IS the author.
+
+Libby: **`subject:`** — a markdown link, symmetric with `author:`. The link text is the **subject's name** — what you'd call this area of knowledge. The link target is the **cataloguing book**. `subject: "[Teamsmanship](path/to/..teamsmanship/.cover.md)"`. The subject name doesn't have to match the directory name — it's the human-readable name for this area of knowledge. For self-cataloguing catalogues, the subject is a self-link: `subject: "[Librarianship](.cover.md)"`. See [subjects and catalogues](04-subjects-and-catalogues.md).
+
+Libby: The `author:` and `subject:` fields are the same pattern at two scales. `author:` connects a work to its creator (name → autobiography). `subject:` connects a work to its domain (name → cataloguing book). Both are markdown links. Both have a display name and a target. Both support self-reference (autobiography self-authors, catalogue self-catalogues).
 
 Libby: **`author:`** — a markdown link. The link text is the **author's name** (not the book title). `author: "[Libby](path/to/autobiography/.cover.md)"` reads like a byline: *by Libby*. The link target is the autobiography — because the autobiography IS the author. For autobiographies, the author field is a self-link: `author: "[Libby](.cover.md)"`.
 
