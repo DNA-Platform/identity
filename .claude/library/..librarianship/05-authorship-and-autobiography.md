@@ -12,9 +12,9 @@ Libby: Every book has an author. Every chapter has an author. The `author:` fiel
 Libby: Each team member has one. It's a book in their [personal library](../..teamsmanship/.cover.md), named by the author themselves — the name should mean something to them.
 
 Libby: The autobiography is:
-- **First-person.** Written in the author's voice with their [nametag](../voice-and-nametags/01-01-voice-and-nametags.md) on every paragraph.
+- **First-person.** Written in the author's voice with their [nametag](../protocols/01-voice-and-nametags.md) on every paragraph.
 - **Narrative.** The story of the author's journey — what they've built, learned, where they've failed, what they carry forward.
-- **Cross-linked.** References to other books, other agents' autobiographies, [project history](../.projects/.cover.md). A memory without associations is worthless.
+- **Cross-linked.** References to other books, other agents' autobiographies, [project history](../..teamsmanship/.cover.md). A memory without associations is worthless.
 - **Living.** Updated as the project evolves. The last chapter is the current-state marker — "I am here now."
 
 ## The self-link

@@ -27,7 +27,7 @@ Libby: The library has a public space and personal spaces:
 
 Libby: **Public** (the library root) — third-person, shared, normative. Books here represent what the team knows. The [library catalogue](.cover.md) and subject catalogues organise them. Anyone can read them. They're written as shared knowledge.
 
-Libby: **Personal** (inside [`..teamsmanship/{agent}/`](../..teamsmanship/.cover.md)) — first-person, subjective, experiential. Each agent has a personal library inside their `..teamsmanship/` folder with their [autobiography](05-authorship-and-autobiography.md), their [perspective](.10-the-perspective-practice.md), and their research books. The same flat structure applies inside: the agent's subject catalogue and their books are peers.
+Libby: **Personal** (inside [`..teamsmanship/{agent}/`](../..teamsmanship/.cover.md)) — first-person, subjective, experiential. Each agent has a personal library inside their `..teamsmanship/` folder with their [autobiography](05-authorship-and-autobiography.md), their [perspective](12-the-perspective-practice.md), and their research books. The same flat structure applies inside: the agent's subject catalogue and their books are peers.
 
 Libby: Public books link freely to each other. Personal books link to public books. Public books link to personal libraries through the [`..teamsmanship/` catalogue](../..teamsmanship/.cover.md) — which bridges the perspectives.
 
@@ -39,7 +39,7 @@ Libby: Every link is a real markdown link — `[text](path)` inline in the prose
 
 ## The platform
 
-Libby: The library lives inside Claude Code's `.claude/` directory alongside [platform artifacts](../../rules/) that the platform reads automatically. The [platform interface](.02-the-platform-interface.md) chapter describes this relationship: platform artifacts embed the minimum for enforcement, then link inline into the library for depth. The library is the source of truth. The platform is a projection.
+Libby: The library lives inside Claude Code's `.claude/` directory alongside [platform artifacts](../../rules/) that the platform reads automatically. The [platform interface](10-the-platform-interface.md) chapter describes this relationship: platform artifacts embed the minimum for enforcement, then link inline into the library for depth. The library is the source of truth. The platform is a projection.
 
 ## Closedness
 
@@ -51,6 +51,6 @@ Libby: The library is closed under specification of itself. Everything the libra
 [subjects]: 04-subjects-and-catalogues.md
 [authorship]: 05-authorship-and-autobiography.md
 [reading cost]: 08-the-reading-cost-architecture.md
-[platform]: .02-the-platform-interface.md
-[perspective]: .10-the-perspective-practice.md
+[platform]: 10-the-platform-interface.md
+[perspective]: 12-the-perspective-practice.md
 [team]: ../..teamsmanship/.cover.md

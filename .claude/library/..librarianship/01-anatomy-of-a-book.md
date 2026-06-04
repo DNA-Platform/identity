@@ -25,19 +25,13 @@ subject: "[Teamsmanship](../..teamsmanship/.cover.md)"
 
 Libby: **`title:`** — the book's name. Names are tier-zero synopsis — you read them in every link, every listing. Choose names that carry meaning about what the book IS. Don't encode current state.
 
-Libby: **`author:`** — a markdown link. The link text is the **author's name**. The link target is the **autobiography**. `author: "[Libby](path/to/autobiography/.cover.md)"` reads as a byline: *by Libby*. For autobiographies, the author field is a self-link: `author: "[Libby](.cover.md)"`. The autobiography IS the author.
+Libby: **`author:`** — a markdown link. The link text is the author's NAME. The link target is the AUTOBIOGRAPHY. In the example above, Arthur's name displays as the byline and the link goes to his autobiography. For autobiographies, the author field is a self-link: the autobiography IS the author. See [authorship and autobiography](05-authorship-and-autobiography.md).
 
-Libby: **`subject:`** — a markdown link, symmetric with `author:`. The link text is the **subject's name** — what you'd call this area of knowledge. The link target is the **cataloguing book**. `subject: "[Teamsmanship](path/to/..teamsmanship/.cover.md)"`. The subject name doesn't have to match the directory name — it's the human-readable name for this area of knowledge. For self-cataloguing catalogues, the subject is a self-link: `subject: "[Librarianship](.cover.md)"`. See [subjects and catalogues](04-subjects-and-catalogues.md).
+Libby: **`subject:`** — a markdown link, symmetric with author. The link text is the SUBJECT's name — what you'd call this area of knowledge. The link target is the CATALOGUING BOOK that specifies and catalogues this subject. The subject name and the book name are different: the book "Teamsmanship" represents the subject "The Team." For self-cataloguing catalogues, the subject is a self-link. See [subjects and catalogues](04-subjects-and-catalogues.md).
 
 Libby: The `author:` and `subject:` fields are the same pattern at two scales. `author:` connects a work to its creator (name → autobiography). `subject:` connects a work to its domain (name → cataloguing book). Both are markdown links. Both have a display name and a target. Both support self-reference (autobiography self-authors, catalogue self-catalogues).
 
-Libby: **`author:`** — a markdown link. The link text is the **author's name** (not the book title). `author: "[Libby](path/to/autobiography/.cover.md)"` reads like a byline: *by Libby*. The link target is the autobiography — because the autobiography IS the author. For autobiographies, the author field is a self-link: `author: "[Libby](.cover.md)"`.
-
-Libby: **No `summary:` in frontmatter.** The summary is PROSE — it belongs in the cover's body, as the opening paragraph. The cover IS the synopsis. Putting a summary in metadata duplicates what the prose already says and creates maintenance burden. Write the synopsis as the first thing the reader encounters in the body.
-
-Libby: **`summary:`** — a paragraph, not a sentence. This is the most-read field in the library. It appears in catalogues and search results. A summary that says "How we write code" labels the topic without helping the reader decide. A summary that says "How we write code in $Chemistry — the $ prefix convention, the reactive patterns, and the three layers of code that keep concerns separated" helps the reader decide without opening the book.
-
-Libby: **`links:`** — optional cross-references to related books. The link text is the book title.
+Libby: **No `summary:` in frontmatter.** The synopsis belongs in the cover's BODY — the opening paragraph that the reader encounters first. The cover IS the synopsis. Frontmatter is structural metadata (title, author, subject). The synopsis is prose.
 
 ### Body
 
@@ -89,4 +83,4 @@ Libby: Choose names that carry identity, not just labels. Not `cathys-library` b
 <!-- citations -->
 [subjects]: 04-subjects-and-catalogues.md
 [self-link]: 05-authorship-and-autobiography.md
-[flat structure]: .09-the-flat-structure.md
+[flat structure]: 11-the-flat-structure.md

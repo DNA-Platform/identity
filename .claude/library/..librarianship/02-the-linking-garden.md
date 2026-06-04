@@ -13,7 +13,7 @@ Libby: Links are the paths through the garden. The library's hierarchy lives ent
 
 Libby: Standard markdown links woven into prose. These are the paths the reader walks. Use them when the reader's natural next question is "tell me more about X."
 
-Libby: Every reference in the library is inline. Not "see file at path/to/thing" — that's a string. A real link: "the [voice convention](../voice-and-nametags/01-01-voice-and-nametags.md) describes nametag rules." The link IS the reference. It's clickable where you're reading it.
+Libby: Every reference in the library is inline. Not "see file at path/to/thing" — that's a string. A real link: "the [voice convention](../protocols/01-voice-and-nametags.md) describes nametag rules." The link IS the reference. It's clickable where you're reading it.
 
 Libby: **Guideline:** link on first mention in a section. Don't re-link the same target in the same paragraph. Don't over-link — if every word is blue, nothing stands out.
 
@@ -50,7 +50,7 @@ Libby: Every book's [frontmatter](01-anatomy-of-a-book.md) includes `subject:` �
 
 ### The `author:` field
 
-Libby: On covers AND chapters. A real markdown link where the text is the author's name and the target is the [autobiography](05-authorship-and-autobiography.md). `author: "[Cathy](path/to/autobiography/.cover.md)"`. This keeps the autobiography one link away from any chapter in any book.
+Libby: On covers AND chapters. A real markdown link where the text is the author's name and the target is the [autobiography](05-authorship-and-autobiography.md). The author link keeps the autobiography one link away from any chapter in any book.
 
 ## Links target sections
 
@@ -65,13 +65,13 @@ Libby: **Public → public**: freely in all directions.
 
 ## Links are the hierarchy
 
-Libby: The library's filesystem is [flat](09-the-flat-structure.md). Books and catalogues are peers. The tree — library → subjects → books, arbitrarily deep — exists ONLY in the links. Subject catalogues link to their books. Books point to their subjects via `subject:`. The tree is navigated by reading [covers](.cover.md) and following links. Never by browsing directories.
+Libby: The library's filesystem is [flat](11-the-flat-structure.md). Books and catalogues are peers. The tree — library → subjects → books, arbitrarily deep — exists ONLY in the links. Subject catalogues link to their books. Books point to their subjects via `subject:`. The tree is navigated by reading [covers](.cover.md) and following links. Never by browsing directories.
 
 <!-- citations -->
 [anatomy]: 01-anatomy-of-a-book.md
 [subjects]: 04-subjects-and-catalogues.md
 [authorship]: 05-authorship-and-autobiography.md
 [reading cost]: 08-the-reading-cost-architecture.md
-[flat]: .09-the-flat-structure.md
+[flat]: 11-the-flat-structure.md
 [team]: ../..teamsmanship/.cover.md
 [cover]: .cover.md

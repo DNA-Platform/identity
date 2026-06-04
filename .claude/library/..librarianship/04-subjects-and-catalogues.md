@@ -118,4 +118,4 @@ Libby: Signs a new subject is needed:
 <!-- citations -->
 [anatomy]: 01-anatomy-of-a-book.md
 [reading cost]: 08-the-reading-cost-architecture.md
-[flat structure]: .09-the-flat-structure.md
+[flat structure]: 11-the-flat-structure.md

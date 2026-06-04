@@ -5,11 +5,11 @@ author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
 
 # Bringing the library into alignment
 
-Libby: The library's specification — chapters [01](01-anatomy-of-a-book.md) through [11](.11-tasks-and-unfinished-work.md) of this field guide — describes a system that the library doesn't yet implement. This chapter tracks what needs to change and in what order. When each section is complete, it gets marked done and eventually this chapter archives itself.
+Libby: The library's specification — chapters [01](01-anatomy-of-a-book.md) through [11](13-tasks-and-unfinished-work.md) of this field guide — describes a system that the library doesn't yet implement. This chapter tracks what needs to change and in what order. When each section is complete, it gets marked done and eventually this chapter archives itself.
 
 ## The target state
 
-Libby: As specified by chapters [01](01-anatomy-of-a-book.md) (anatomy), [04](04-subjects-and-catalogues.md) (subjects), and [.02](.02-the-platform-interface.md) (platform interface):
+Libby: As specified by chapters [01](01-anatomy-of-a-book.md) (anatomy), [04](04-subjects-and-catalogues.md) (subjects), and [.02](10-the-platform-interface.md) (platform interface):
 
 Libby: The library is FLAT. Two catalogues at the root: `..librarianship/` (the library) and `..teamsmanship/` (the team). Every other directory at the root is a regular book with `subject: ".team"` or `subject: "..librarianship"`. Books sit BESIDE their subject, not inside it. Agent personal libraries live inside `..teamsmanship/{agent}/` with the same flat pattern internally.
 
@@ -57,7 +57,7 @@ Libby: Rules exist but vary in thickness and link quality. No rules book catalog
 - Write a rules book at library root (subject: .team) — one chapter per rule
 - Calibrate each rule's thickness: enough to work standalone, thin enough to preserve budget
 - Ensure every rule has inline links into the library
-- Global rule must link to the [library catalogue](../.cover.md) so every session finds the library
+- Global rule must link to the [library catalogue](.cover.md) so every session finds the library
 
 ### Validators `[NOT ALIGNED]`
 
@@ -84,7 +84,7 @@ Libby: Arthur and Libby have perspective content from this session. The perspect
 **To fix:**
 - Each agent populates their perspective as they work
 - Insights flow through discussion into the public library
-- The field guide chapter [.10](.10-the-perspective-practice.md) describes the cycle
+- The field guide chapter [.10](12-the-perspective-practice.md) describes the cycle
 
 ## Execution order
 
@@ -136,7 +136,7 @@ Libby: When every section above is marked `[ALIGNED]` instead of `[NOT ALIGNED]`
 <!-- citations -->
 [anatomy]: 01-anatomy-of-a-book.md
 [subjects]: 04-subjects-and-catalogues.md
-[platform]: .02-the-platform-interface.md
-[perspective]: .10-the-perspective-practice.md
-[tasks]: .11-tasks-and-unfinished-work.md
+[platform]: 10-the-platform-interface.md
+[perspective]: 12-the-perspective-practice.md
+[tasks]: 13-tasks-and-unfinished-work.md
 [synthesis]: ../..everything-that-has-a-shape/perspective/full-synthesis.md
