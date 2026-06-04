@@ -1,6 +1,6 @@
 ---
 title: Bringing the library into alignment
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../.teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Bringing the library into alignment
@@ -11,7 +11,7 @@ Libby: The library's specification — chapters [01](../anatomy-of-a-book/01-ana
 
 Libby: As specified by chapters [01](../anatomy-of-a-book/01-anatomy-of-a-book.md) (anatomy), [04](../subjects-and-catalogues/01-subjects-and-catalogues.md) (subjects), and [.02](../the-platform-interface/01-the-platform-interface.md) (platform interface):
 
-Libby: The library is FLAT. Two catalogues at the root: `..librarianship/` (the library) and `..teamsmanship/` (the team). Every other directory at the root is a regular book with `subject: ".team"` or `subject: "..librarianship"`. Books sit BESIDE their subject, not inside it. Agent personal libraries live inside `..teamsmanship/{agent}/` with the same flat pattern internally.
+Libby: The library is FLAT. Two catalogues at the root: `..librarianship/` (the library) and `.teamsmanship/` (the team). Every other directory at the root is a regular book with `subject: ".team"` or `subject: "..librarianship"`. Books sit BESIDE their subject, not inside it. Agent personal libraries live inside `.teamsmanship/{agent}/` with the same flat pattern internally.
 
 Libby: Every book cover has frontmatter in order: `title > subject > author > summary`. Every chapter has frontmatter: `title > author`. The `author:` field is a real markdown link to the autobiography. The `subject:` field names the canonical subject catalogue.
 
@@ -23,14 +23,14 @@ Libby: Validators are chapter resources — sharing a name with the field guide 
 
 ### Structure `[NOT ALIGNED]`
 
-Libby: Books are inside subject directories. Protocol chapters are inside `.protocols/`. Agent books are inside agent library directories at the library root. The `.protocols/` and `.projects/` directories exist as separate subjects when they should be books catalogued by `..teamsmanship/`.
+Libby: Books are inside subject directories. Protocol chapters are inside `.protocols/`. Agent books are inside agent library directories at the library root. The `.protocols/` and `.projects/` directories exist as separate subjects when they should be books catalogued by `.teamsmanship/`.
 
 **To fix:**
 - Move all protocol chapter files out of `.protocols/` — each becomes its own book directory at library root
 - Move all project content out of `.projects/` — project books become peers at library root
-- Move agent library directories from library root into `..teamsmanship/{agent}/`
-- Remove `.protocols/` and `.projects/` directories (their content becomes part of `..teamsmanship/`'s catalogue)
-- `..teamsmanship/` becomes the sole subject catalogue, cataloguing all team books at the root
+- Move agent library directories from library root into `.teamsmanship/{agent}/`
+- Remove `.protocols/` and `.projects/` directories (their content becomes part of `.teamsmanship/`'s catalogue)
+- `.teamsmanship/` becomes the sole subject catalogue, cataloguing all team books at the root
 
 ### Frontmatter `[NOT ALIGNED]`
 
@@ -96,11 +96,11 @@ Libby: The remaining field guide chapters need updating. The field guide IS the 
 
 | Chapter | Status | Work needed |
 |---------|--------|-------------|
-| 00 — The library | `[NEEDS REWRITE]` | Describe flat structure with `..teamsmanship/` as primary subject |
+| 00 — The library | `[NEEDS REWRITE]` | Describe flat structure with `.teamsmanship/` as primary subject |
 | 01 — Anatomy of a book | `[RECENTLY UPDATED]` | Verify against full synthesis |
 | 02 — The linking garden | `[NEEDS ADDITIONS]` | Add `subject:` as a link type, multi-subject pattern |
 | 03 — Growth and refactoring | `[NEEDS ADDITIONS]` | Add book → subject factoring pattern |
-| 04 — Subjects and catalogues | `[RECENTLY UPDATED]` | Verify; update to show `..teamsmanship/` as sole subject |
+| 04 — Subjects and catalogues | `[RECENTLY UPDATED]` | Verify; update to show `.teamsmanship/` as sole subject |
 | 05 — Authorship and autobiography | `[NEEDS ADDITIONS]` | Chapter signing, two-book minimum |
 | .02 — Platform interface | `[RECENTLY UPDATED]` | Verify; rules budget, rules book |
 | 08 — Reading cost architecture | `[NEEDS EXAMPLE UPDATES]` | Examples reference old structure |

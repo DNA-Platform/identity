@@ -122,7 +122,27 @@ for (const bookDir of allBooks) {
   }
 }
 
-// Check 4: Autobiography self-links
+// Check 4: Only ONE .. prefix at any scope level
+// At the library root: exactly one .. (the library catalogue)
+// Inside each agent folder: exactly one .. (the agent's library catalogue)
+const scopeLevels = new Map<string, string[]>();
+for (const bookDir of allBooks) {
+  const dirName = basename(bookDir);
+  if (dirName.startsWith('..')) {
+    const parent = bookDir.replace(/[\\/][^\\/]+$/, '');
+    const parentRel = parent.replace(root, '').replace(/\\/g, '/') || '/';
+    if (!scopeLevels.has(parentRel)) scopeLevels.set(parentRel, []);
+    scopeLevels.get(parentRel)!.push(dirName);
+  }
+}
+for (const [scope, doubleDots] of scopeLevels) {
+  if (doubleDots.length > 1) {
+    console.log(`ERROR   ${scope}  Multiple .. prefixed directories (${doubleDots.join(', ')}). Only ONE library catalogue per scope.`);
+    errors++;
+  }
+}
+
+// Check 5: Autobiography self-links
 for (const bookDir of allBooks) {
   const coverPath = join(bookDir, '.cover.md');
   const content = readFileSync(coverPath, 'utf-8');

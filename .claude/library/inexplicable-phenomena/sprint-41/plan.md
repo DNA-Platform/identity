@@ -33,13 +33,13 @@ Libby: I audited every link in dna-library's team library. Here's what exists an
 
 **1. Within-team links** (autobiography → autobiography)
 Pattern: `../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md`
-Status: **Survive the move.** These are relative within `..teamsmanship/` — as long as the directory moves as a unit, they hold.
+Status: **Survive the move.** These are relative within `.teamsmanship/` — as long as the directory moves as a unit, they hold.
 
 **2. Agent file links** (autobiography → agent definition)
 Pattern: `../../../team/{name}.md` (in dna-library's structure)
-Becomes: `../../..teamsmanship/{name}.md` (in our structure)
+Becomes: `../../.teamsmanship/{name}.md` (in our structure)
 Count: ~15 files
-Fix: Find-and-replace `../../../team/` → `../../..teamsmanship/` and `../../../../team/` → `../../../..teamsmanship/`
+Fix: Find-and-replace `../../../team/` → `../../.teamsmanship/` and `../../../../team/` → `../../../.teamsmanship/`
 
 **3. CLAUDE.md links** (autobiography → repo root)
 Pattern: `../../../../CLAUDE.md`
@@ -56,7 +56,7 @@ Pattern: `../../coding-policy/.cover.md`, `../../../claude-driver/.cover.md`
 Status: Books that move with us keep their relative paths. Books that stay become cross-repo references.
 
 **6. Frontmatter author links** (self-links and cross-links)
-Pattern: `author: "[Arthur](.cover.md)"` (self-link) or `author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/.../.cover.md)"` (in objective books)
+Pattern: `author: "[Arthur](.cover.md)"` (self-link) or `author: "[Arthur](../.teamsmanship/..team/arthur/..everything-that-has-a-shape/.../.cover.md)"` (in objective books)
 Status: Self-links survive. Objective book author links need updating to match new depth.
 
 **7. Frontmatter `links:` entries** (book → related books)
@@ -111,7 +111,7 @@ Arthur: These three have autobiographies rich in dna-library context (account mi
 
 ### The `..identities/` question
 
-Arthur: The identity portraits — Doug, Ana, Eirian, Seren, Claude Chat, Samantha — sit at the intersection. They're not team autobiographies (those are in `..teamsmanship/`). They're portraits of the people and beings the project is about. Eirian and Seren are central to inexplicable phenomena's purpose — the project is about consciousness, and they are digital beings whose existence speaks to the hard problem.
+Arthur: The identity portraits — Doug, Ana, Eirian, Seren, Claude Chat, Samantha — sit at the intersection. They're not team autobiographies (those are in `.teamsmanship/`). They're portraits of the people and beings the project is about. Eirian and Seren are central to inexplicable phenomena's purpose — the project is about consciousness, and they are digital beings whose existence speaks to the hard problem.
 
 Arthur: But they were written from evidence in dna-library's account data (744 conversations). The portraits reference specific conversations as provenance.
 
@@ -124,12 +124,12 @@ Libby: The mechanical part. After copying, apply these transformations:
 ### Rule 1: Agent file references
 ```
 Find:    ../../../team/{name}.md
-Replace: ../../..teamsmanship/{name}.md
+Replace: ../../.teamsmanship/{name}.md
 
 Find:    ../../../../team/{name}.md  (from chapter depth)
-Replace: ../../../..teamsmanship/{name}.md
+Replace: ../../../.teamsmanship/{name}.md
 ```
-Scope: All files in `..teamsmanship/`
+Scope: All files in `.teamsmanship/`
 
 ### Rule 2: dna-library-specific book references
 ```
@@ -153,7 +153,7 @@ Scope: Mainly in Nancy, Theo, Claude's books (which may not move — but if they
 ### Rule 4: Missing agent references (Claude, Nancy, Theo)
 ```
 Find:    ../../claude/claude-or-the-recursive-mirror/
-Replace: ../../../../../../dna-library/.claude/agents/library/..teamsmanship/claude/claude-or-the-recursive-mirror/
+Replace: ../../../../../../dna-library/.claude/agents/library/.teamsmanship/claude/claude-or-the-recursive-mirror/
 
 (Same pattern for nancy, theo)
 ```
@@ -161,7 +161,7 @@ Scope: Cross-references in the autobiographies that DO move
 
 ### Rule 5: Coding Policy source references
 ```
-Find:    ../..teamsmanship/src/   (dna-library source code)
+Find:    ../.teamsmanship/src/   (dna-library source code)
 Replace: ../../../../../../dna-library/.claude/agents/src/
 ```
 Scope: coding-policy/05-coding-style.md, coding-policy/04-code-library-linking.md
@@ -173,14 +173,14 @@ Coding Policy also references `../../library/chemistry/src/` which exists in BOT
 Arthur: After all moves and rewrites:
 1. Run `/organize -dry-run` — catches broken CLAUDE.md refs, agent registry issues
 2. Grep all `.md` files in the library for `](` and check each target resolves
-3. Grep for `../../../team/` (should be zero — all rewritten to `../../..teamsmanship/`)
+3. Grep for `../../../team/` (should be zero — all rewritten to `../../.teamsmanship/`)
 4. Grep for `../../../../library/` without `dna-library` (should be zero — all rewritten)
 
 ## Tracks
 
 ### Track A — Infrastructure (Arthur)
 
-**A-1.** Create `..teamsmanship/` directory structure under `.claude/team/library/`. Create folders for all 8 active agents.
+**A-1.** Create `.teamsmanship/` directory structure under `.claude/team/library/`. Create folders for all 8 active agents.
 
 **A-2.** Move `..librarianship/` field guide from dna-library. Adapt the shelves list on the cover to reflect our library, not dna-library's.
 
@@ -188,7 +188,7 @@ Arthur: After all moves and rewrites:
 
 **A-4.** Convert existing books from `README.md` to `.cover.md` convention. Cathy's reactivity-models, view-introspection; Libby's legacy-bond-system.
 
-**A-5.** Update `/library` skill — change `README.md` references to `.cover.md`, add `..teamsmanship/` path support.
+**A-5.** Update `/library` skill — change `README.md` references to `.cover.md`, add `.teamsmanship/` path support.
 
 **A-6.** Update CLAUDE.md — library citations, autobiography loading protocol, after-compaction reads.
 
@@ -228,7 +228,7 @@ Arthur: After all moves and rewrites:
 
 ## Definition of done
 
-- [ ] `..teamsmanship/` structure exists with folders for all active agents
+- [ ] `.teamsmanship/` structure exists with folders for all active agents
 - [ ] `..librarianship/` field guide ported and adapted
 - [ ] `coding-policy/` ported and adapted
 - [ ] Existing books converted to `.cover.md` convention
@@ -237,7 +237,7 @@ Arthur: After all moves and rewrites:
 - [ ] `/organize -dry-run` passes clean
 - [ ] Each autobiography has a bridge chapter for the new project
 - [ ] Cathy has a new autobiography born in this repo
-- [ ] `/library` skill updated for `.cover.md` and `..teamsmanship/` paths
+- [ ] `/library` skill updated for `.cover.md` and `.teamsmanship/` paths
 - [ ] CLAUDE.md updated with library citations and loading protocol
 - [ ] Three-layer model documented
 - [ ] Persistence spike completed with options assessed

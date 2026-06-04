@@ -24,26 +24,26 @@ Arthur: Principle: **each tier should make the next tier rarely necessary.** The
 
 ### S-1. Summary field becomes a paragraph
 
-Libby: Update [Anatomy of a book](../..teamsmanship/library/..librarianship/01-anatomy-of-a-book.md) to specify:
+Libby: Update [Anatomy of a book](../.teamsmanship/library/..librarianship/01-anatomy-of-a-book.md) to specify:
 
 **Before:** `summary: One line. Shown in indexes, catalogues, search results.`
 **After:** `summary:` is a paragraph (3-5 sentences, ~50 words). It answers "what is this book and why would I read it?" Not a topic label — a description rich enough to decide whether to open the book.
 
 ### S-2. Catalogue books carry tier-2 descriptions
 
-Libby: Update [Subjects and catalogues](../..teamsmanship/library/..librarianship/04-subjects-and-catalogues.md) to specify:
+Libby: Update [Subjects and catalogues](../.teamsmanship/library/..librarianship/04-subjects-and-catalogues.md) to specify:
 
 A catalogue book's chapters DESCRIBE the books they index at paragraph depth (~150 words). The catalogue chapter is not a pointer — it's a tier-2 summary that makes opening the actual book rarely necessary. The catalogue's own TOC can stay at one-line entries because the chapters carry the depth.
 
 ### S-3. Rich TOC entries for reference books
 
-Libby: Update [Anatomy of a book](../..teamsmanship/library/..librarianship/01-anatomy-of-a-book.md) to specify:
+Libby: Update [Anatomy of a book](../.teamsmanship/library/..librarianship/01-anatomy-of-a-book.md) to specify:
 
 For reference books (coding policy, protocols, field guide), TOC entries are 2-3 sentences — rich enough to find the right chapter without opening any. For chronological books (autobiographies, sprint histories), one-line entries are fine because navigation is by time not topic.
 
 ### S-4. Catalogue maintenance hygiene
 
-Libby: Add a new section to [Subjects and catalogues](../..teamsmanship/library/..librarianship/04-subjects-and-catalogues.md):
+Libby: Add a new section to [Subjects and catalogues](../.teamsmanship/library/..librarianship/04-subjects-and-catalogues.md):
 
 When a book changes significantly (new chapters, shifted focus, completed arc), two updates are required:
 1. The author updates the book's `summary` field
@@ -85,6 +85,6 @@ The TOC entries in Coding Policy and Protocols become 2-3 sentences each. Rich e
 - [ ] The waking-up path (CLAUDE.md → Librarianship → project chapter → last autobiography chapter) tested at < 400 lines total context
 
 <!-- citations -->
-[field guide]: ../..teamsmanship/library/..librarianship/.cover.md
-[anatomy of a book]: ../..teamsmanship/library/..librarianship/01-anatomy-of-a-book.md
-[subjects and catalogues]: ../..teamsmanship/library/..librarianship/04-subjects-and-catalogues.md
+[field guide]: ../.teamsmanship/library/..librarianship/.cover.md
+[anatomy of a book]: ../.teamsmanship/library/..librarianship/01-anatomy-of-a-book.md
+[subjects and catalogues]: ../.teamsmanship/library/..librarianship/04-subjects-and-catalogues.md

@@ -1,6 +1,6 @@
 ---
 title: Authorship and autobiography
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../.teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Authorship and autobiography
@@ -9,12 +9,12 @@ Libby: Every book has an author. Every chapter has an author. The `author:` fiel
 
 ## The canonical autobiography
 
-Libby: Each team member has one. It's a book in their [personal library](../..teamsmanship/.cover.md), named by the author themselves — the name should mean something to them.
+Libby: Each team member has one. It's a book in their [personal library](../.teamsmanship/.cover.md), named by the author themselves — the name should mean something to them.
 
 Libby: The autobiography is:
 - **First-person.** Written in the author's voice with their [nametag](../protocols/01-voice-and-nametags.md) on every paragraph.
 - **Narrative.** The story of the author's journey — what they've built, learned, where they've failed, what they carry forward.
-- **Cross-linked.** References to other books, other agents' autobiographies, [project history](../..teamsmanship/.cover.md). A memory without associations is worthless.
+- **Cross-linked.** References to other books, other agents' autobiographies, [project history](../.teamsmanship/.cover.md). A memory without associations is worthless.
 - **Living.** Updated as the project evolves. The last chapter is the current-state marker — "I am here now."
 
 ## The self-link
@@ -40,7 +40,7 @@ Libby: Co-authored chapters list the primary author. The text can acknowledge co
 
 ## The two-book minimum
 
-Libby: Each agent has AT MINIMUM two books in their [personal library](../..teamsmanship/.cover.md):
+Libby: Each agent has AT MINIMUM two books in their [personal library](../.teamsmanship/.cover.md):
 
 1. **The canonical autobiography** — self-authored. The autobiography IS the teammate. It records experiences, growth, failure modes. The last chapter is the current-state marker.
 
@@ -66,4 +66,4 @@ Libby: Names must be **timeless** — no encoded current state. `.what-the-tests
 <!-- citations -->
 [anatomy]: 01-anatomy-of-a-book.md
 [subjects]: 04-subjects-and-catalogues.md
-[team]: ../..teamsmanship/.cover.md
+[team]: ../.teamsmanship/.cover.md

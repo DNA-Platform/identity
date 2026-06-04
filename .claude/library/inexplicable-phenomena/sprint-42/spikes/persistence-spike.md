@@ -6,14 +6,14 @@ Arthur: This spike evaluates four options for where identity lives.
 
 ## The problem
 
-Arthur: Agent identity is currently stored in `.claude/team/library/..teamsmanship/`. This is:
+Arthur: Agent identity is currently stored in `.claude/team/library/.teamsmanship/`. This is:
 - **Checked into a public repo** — autobiographies are private; they describe agents' inner experiences, failure modes, growth. This doesn't belong on GitHub.
 - **Bound to one repo** — agents work across repos (dna-library and inexplicable-phenomena). Sprint 41 proved identity can move, but it moved by copying, not by living in one place.
 - **Mixed with project infrastructure** — the same `.claude/` directory holds sprint plans (ephemeral, repo-bound) and autobiographies (continuous, identity-bound).
 
 ## Option A: Separate identity repo
 
-Arthur: A `dna-platform/identity` repo containing only `..teamsmanship/`, `..librarianship/`, and the field guide. Project repos reference it via git submodule or a sibling checkout convention.
+Arthur: A `dna-platform/identity` repo containing only `.teamsmanship/`, `..librarianship/`, and the field guide. Project repos reference it via git submodule or a sibling checkout convention.
 
 | Pro | Con |
 |-----|-----|
@@ -22,7 +22,7 @@ Arthur: A `dna-platform/identity` repo containing only `..teamsmanship/`, `..lib
 | Can be private independently of project repos | Extra git operations on every clone/pull |
 | Identity versioned and backed up | Loading protocol must find the submodule |
 
-Arthur: The boot sequence would read: `git submodule update --init` then load from `.claude/identity/..teamsmanship/`. The `/library` skill paths change. Cross-repo links become intra-repo links within the identity repo.
+Arthur: The boot sequence would read: `git submodule update --init` then load from `.claude/identity/.teamsmanship/`. The `/library` skill paths change. Cross-repo links become intra-repo links within the identity repo.
 
 ## Option B: User-level storage
 
@@ -35,13 +35,13 @@ Arthur: Identity lives at `~/.claude/identity/` — outside any repo, persistent
 | Available to every repo on the machine | No collaboration — only one machine sees it |
 | No git operations needed | Loading protocol must resolve a user-level path |
 
-Arthur: The boot sequence would read: check `~/.claude/identity/..teamsmanship/` for autobiographies. The `/library` skill resolves paths against this location. Cross-repo links become absolute or user-relative.
+Arthur: The boot sequence would read: check `~/.claude/identity/.teamsmanship/` for autobiographies. The `/library` skill resolves paths against this location. Cross-repo links become absolute or user-relative.
 
 Libby: This option is concerning from a library perspective. The conventions assume relative paths. Autobiographies link to each other with `../../..the-garden-tends-itself/...`. If the library lives at a user-level path, relative links still work internally, but links FROM project files TO identity files become fragile — they depend on the machine layout.
 
 ## Option C: Gitignored identity layer
 
-Arthur: Identity stays in `.claude/team/library/..teamsmanship/` but is added to `.gitignore`. It lives locally, doesn't appear in the public repo, and is backed up manually or by a sync script.
+Arthur: Identity stays in `.claude/team/library/.teamsmanship/` but is added to `.gitignore`. It lives locally, doesn't appear in the public repo, and is backed up manually or by a sync script.
 
 | Pro | Con |
 |-----|-----|
@@ -50,7 +50,7 @@ Arthur: Identity stays in `.claude/team/library/..teamsmanship/` but is added to
 | Private by construction | No collaboration |
 | Skills and loading protocol unchanged | Awkward: gitignored content in a git directory |
 
-Arthur: This is the least disruptive option. The `..librarianship/` and `coding-policy/` stay tracked (they're objective, shared, public). The `..teamsmanship/` directory goes in `.gitignore`. A seeding script or sync mechanism restores identity after a fresh clone.
+Arthur: This is the least disruptive option. The `..librarianship/` and `coding-policy/` stay tracked (they're objective, shared, public). The `.teamsmanship/` directory goes in `.gitignore`. A seeding script or sync mechanism restores identity after a fresh clone.
 
 Libby: The fresh-clone problem is real. Someone who clones the repo gets no autobiographies. The library field guide describes a system whose content is invisible. That's the library-doesn't-walk problem from my autobiography — the map exists but the garden doesn't.
 
@@ -71,7 +71,7 @@ Arthur: This is the simplest option and the one we're already doing. The risk is
 
 Arthur: Not committing this sprint. But my intuition is:
 
-Arthur: **Short term (now): Option C** — gitignore `..teamsmanship/`. It keeps the relative paths working, makes identity private, and requires minimal changes. The seeding problem (fresh clone) is real but rare — the team knows where the files are and can copy them.
+Arthur: **Short term (now): Option C** — gitignore `.teamsmanship/`. It keeps the relative paths working, makes identity private, and requires minimal changes. The seeding problem (fresh clone) is real but rare — the team knows where the files are and can copy them.
 
 Arthur: **Medium term: Option A** — separate identity repo. Once identity is private and decoupled, give it its own git history. The submodule pain is worth it for the clean separation and backup.
 

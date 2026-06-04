@@ -16,7 +16,7 @@ A subject catalogue IS the subject. It self-catalogues (appears in its own TOC).
 
 Each agent has two minimum books: a canonical autobiography (self-authored) and a library catalogue (self-cataloguing, authored by the autobiography). The library catalogue catalogues: itself, the autobiography, the perspective book, and all other books.
 
-Perspective is an active practice: represent → look → reflect → change. Each agent's library catalogues their perspective book. The `..teamsmanship/` subject describes how perspectives operate.
+Perspective is an active practice: represent → look → reflect → change. Each agent's library catalogues their perspective book. The `.teamsmanship/` subject describes how perspectives operate.
 
 CLAUDE.md is a platform artifact specified by the library (chapter `.01-claude-md-spec.md` in `..librarianship/`). It bridges Claude Code's spec and the library.
 
@@ -54,7 +54,7 @@ We spell it "catalogue" throughout.
     ..librarianship/                  Library catalogue [NEEDS REWRITE]
     .protocols/                       Subject: how the team operates [NEEDS REWRITE]
     .projects/                        Subject: work done [NEEDS REWRITE]
-    ..teamsmanship/                            Subject: who we are [NEEDS REWRITE]
+    .teamsmanship/                            Subject: who we are [NEEDS REWRITE]
     .chemistry/                       Subject: framework reference [NEEDS SCAFFOLD]
     ..everything-that-has-a-shape/     Arthur's library [NEEDS COVER]
     ..the-canvas-paints-itself/        Cathy's library [NEEDS COVER]
@@ -94,19 +94,19 @@ Libby: The phases should reflect that rhythm. Each phase: read a layer, edit it,
 
 ## Phase 2: The team and agents (1 session)
 
-**Read:** `..teamsmanship/.cover.md`, the agent files in `..teamsmanship/`, the role and ability files, the team catalogue chapters (01-08).
+**Read:** `.teamsmanship/.cover.md`, the agent files in `.teamsmanship/`, the role and ability files, the team catalogue chapters (01-08).
 
 **Edit:**
-- Rewrite `..teamsmanship/.cover.md` as a self-cataloguing subject catalogue
+- Rewrite `.teamsmanship/.cover.md` as a self-cataloguing subject catalogue
 - Write chapter on the perspective practice (represent → look → reflect → change)
 - Write chapter on agent identity structure (two-book minimum, self-authored autobiography, self-cataloguing library)
 - Ensure registry.json, roles/, abilities/ are catalogued
 - Add `subject:` fields to team-related book covers
 
 **Validate:**
-- `..teamsmanship/` self-catalogues
+- `.teamsmanship/` self-catalogues
 - Every team member referenced in the cover has an agent library
-- Run link validator on `..teamsmanship/` and agent subagent definitions in `.claude/agents/`
+- Run link validator on `.teamsmanship/` and agent subagent definitions in `.claude/agents/`
 
 ## Phase 3: Agent libraries (1-2 sessions)
 
@@ -227,11 +227,11 @@ Libby: The cleanup phase (6) is NON-OPTIONAL. It's where we catch everything the
 ## Definition of done
 
 - [ ] `..librarianship/.cover.md` self-catalogues the entire library
-- [ ] Every subject catalogue (`.protocols/`, `.projects/`, `..teamsmanship/`, `.chemistry/`) self-catalogues
+- [ ] Every subject catalogue (`.protocols/`, `.projects/`, `.teamsmanship/`, `.chemistry/`) self-catalogues
 - [ ] Every agent library catalogue self-catalogues, authored by autobiography
 - [ ] Every book has `subject:` pointing to canonical subject
 - [ ] Every agent has a perspective book with `.cover.md`
-- [ ] `..teamsmanship/` has chapters on perspective practice and agent identity structure
+- [ ] `.teamsmanship/` has chapters on perspective practice and agent identity structure
 - [ ] Field guide chapters updated (01, 04, 08 + new chapters)
 - [ ] All links rewritten for new paths
 - [ ] All skills updated for new paths

@@ -1,6 +1,6 @@
 ---
 title: The boot sequence
-author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../.teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # The boot sequence
@@ -31,7 +31,7 @@ Arthur: The boot sequence is the quick path. When deeper identity is needed — 
 2. Autobiography cover — the canonical representation
 3. Role files — diagnostic questions, anxieties, mantras
 4. Abilities — domain knowledge documents
-5. Relevant library books — consult `.claude/agents/library/..teamsmanship/{agent}/`
+5. Relevant library books — consult `.claude/agents/library/.teamsmanship/{agent}/`
 6. Source files — what each role specifies
 
 Arthur: Steps 1-2 are WHO. Steps 3-5 are HOW THEY THINK. Step 6 is WHAT THEY LOOK AT.

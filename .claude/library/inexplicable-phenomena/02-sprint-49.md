@@ -1,6 +1,6 @@
 ---
 title: "Sprint 49 — The Library Compiles Itself"
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../.teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # Sprint 49 — The Library Compiles Itself
@@ -24,7 +24,7 @@ Arthur: Chapters that stay (too short, transitional, or core to the catalogue):
 
 Arthur: Chapter resources that generate platform files from library content. The library is the source. The platform files are the build output.
 
-- **Agent compiler** — reads [Teamsmanship ch 08](../..teamsmanship/08-the-agents.md) (teammates), [ch 02](../..teamsmanship/02-roles-and-the-type-system.md) (roles), [ch 05](../..teamsmanship/05-code-territory.md) (territory). Generates `.claude/agents/*.md` files with real links back to the library.
+- **Agent compiler** — reads [Teamsmanship ch 08](../.teamsmanship/08-the-agents.md) (teammates), [ch 02](../.teamsmanship/02-roles-and-the-type-system.md) (roles), [ch 05](../.teamsmanship/05-code-territory.md) (territory). Generates `.claude/agents/*.md` files with real links back to the library.
 - **Territory rules compiler** — reads Teamsmanship ch 05. Generates `.claude/rules/{territory}.md` files scoped to code paths.
 - **Skills compiler** — reads the skills book (to be created). Generates `.claude/skills/*/SKILL.md` files.
 - **CLAUDE.md compiler** — reads [Librarianship ch 09](../..librarianship/09-claude-md-spec.md). Generates `CLAUDE.md` at the project root.
@@ -33,13 +33,13 @@ Arthur: Document the compilation pattern in the [platform interface](../..librar
 
 ## 3. Create the skills book (Adam)
 
-Adam: A new book at the library root: `skills-and-commands/` with `subject: "[Collaboration](../..teamsmanship/.cover.md)"`. One chapter per skill. Each chapter describes what the skill does, when to invoke it, and links to the `SKILL.md` file. Catalogued by [Teamsmanship](../..teamsmanship/.cover.md).
+Adam: A new book at the library root: `skills-and-commands/` with `subject: "[Collaboration](../.teamsmanship/.cover.md)"`. One chapter per skill. Each chapter describes what the skill does, when to invoke it, and links to the `SKILL.md` file. Catalogued by [Teamsmanship](../.teamsmanship/.cover.md).
 
 Adam: Current skills to catalogue: `/sprint`, `/library`, `/agent`, `/responsible`, `/role`, `/skill`, `/review`, `/organize`, `/workspace`, `/dna`, `/speak`, `/listen`, `/hear`.
 
 ## 4. Finish code territory (Arthur)
 
-Arthur: [Teamsmanship ch 05](../..teamsmanship/05-code-territory.md) becomes the authoritative source for who owns what. The `/responsible` skill reads from here (or a compiled resource). Territory rules are generated from here.
+Arthur: [Teamsmanship ch 05](../.teamsmanship/05-code-territory.md) becomes the authoritative source for who owns what. The `/responsible` skill reads from here (or a compiled resource). Territory rules are generated from here.
 
 ## 5. Validator extension for `..team/` (Cathy)
 
@@ -82,12 +82,12 @@ Arthur: This was the longest session in the team's history. It started with a mo
 Arthur: What we accomplished in one session:
 - Migrated the team's identity across repos (from dna-library to inexplicable-phenomena)
 - Discovered narrative identity for AI agents is unprecedented
-- Built and pushed the [identity repo](../..teamsmanship/06-the-agents-folder.md) at `github.com/DNA-Platform/identity`
+- Built and pushed the [identity repo](../.teamsmanship/06-the-agents-folder.md) at `github.com/DNA-Platform/identity`
 - Evolved the library from a wiki to a [formal system](../..librarianship/00-the-library.md) with representation-reference duality
 - Restructured the entire `.claude/` directory multiple times as understanding deepened
-- Wrote two complete library catalogues: [Librarianship](../..librarianship/.cover.md) (Knowledge) and [Teamsmanship](../..teamsmanship/.cover.md) (Collaboration)
+- Wrote two complete library catalogues: [Librarianship](../..librarianship/.cover.md) (Knowledge) and [Teamsmanship](../.teamsmanship/.cover.md) (Collaboration)
 - Created [validators](../anatomy-of-a-book/anatomy-of-a-book.ts) as executable specifications
-- Built the first [compiler](../..teamsmanship/06-the-agents-folder.ts) (agents)
+- Built the first [compiler](../.teamsmanship/06-the-agents-folder.ts) (agents)
 - Created the [skills book](../skills-and-commands/.cover.md) with 13 chapters
 - Factored the field guide into [standalone books](../anatomy-of-a-book/.cover.md)
 - Updated every teammate's autobiography with what they learned
@@ -111,5 +111,5 @@ Arthur: **Discussion is interaction, not reporting.** The first retro attempt wa
 
 <!-- citations -->
 [librarianship]: ../..librarianship/.cover.md
-[teamsmanship]: ../..teamsmanship/.cover.md
+[teamsmanship]: ../.teamsmanship/.cover.md
 [alignment]: ../..librarianship/14-bringing-the-library-into-alignment.md

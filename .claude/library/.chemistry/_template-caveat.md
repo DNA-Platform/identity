@@ -1,7 +1,7 @@
 ---
 kind: caveat
 title: <Short, name-like title — caveats are linkable destinations>
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
+author: "[Cathy](../.teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 status: stable        # stable | evolving | resolved | historical
 related:
   - <feature-this-haunts>

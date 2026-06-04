@@ -1,6 +1,6 @@
 ---
 title: "Sprint 50 — Fix and Formalize"
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../.teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # Sprint 50 — Fix and Formalize
@@ -21,7 +21,7 @@ Adam: These numbers are the baseline. Every fix gets measured against them.
 ## Phase 2: Fix broken links (Adam + Libby)
 
 Adam: Write a comprehensive link-fixing script for the current structure. The paths changed when:
-- Agent libraries moved into `..teamsmanship/..team/{agent}/`
+- Agent libraries moved into `.teamsmanship/..team/{agent}/`
 - Protocol chapters became the `protocols/` book
 - Field guide chapters graduated to standalone books
 - `.protocols/` and `.projects/` were removed
@@ -43,11 +43,11 @@ Libby: The anatomy validator catches: missing `subject:`, missing `author:`, uns
 
 ## Phase 4: Write the `..team/` validator extension (Cathy)
 
-Cathy: The `..team/` folder inside `..teamsmanship/` needs its own validator. Write it as a chapter resource: `..teamsmanship/01-what-a-teammate-is.ts` (paired with the identity chapter).
+Cathy: The `..team/` folder inside `.teamsmanship/` needs its own validator. Write it as a chapter resource: `.teamsmanship/01-what-a-teammate-is.ts` (paired with the identity chapter).
 
 Cathy: The validator checks:
 - `..team/` contains only agent folders (no loose files)
-- Every agent catalogued in [ch 18](../..teamsmanship/18-gabby.md) has a folder in `..team/`
+- Every agent catalogued in [ch 18](../.teamsmanship/18-gabby.md) has a folder in `..team/`
 - Every folder in `..team/` is catalogued in the book
 - Each agent folder has a `..` prefixed library catalogue with a `.cover.md`
 
@@ -55,9 +55,9 @@ Cathy: The extension pattern: Librarianship's anatomy validator discovers and ru
 
 ## Phase 5: Build remaining compilers (Cathy + Arthur)
 
-Arthur: The [agent compiler](../..teamsmanship/06-the-agents-folder.ts) works. Write the rest:
+Arthur: The [agent compiler](../.teamsmanship/06-the-agents-folder.ts) works. Write the rest:
 
-1. **Territory rules compiler** — reads [Teamsmanship ch 05](../..teamsmanship/05-code-territory.md), generates `.claude/rules/{territory}.md` files with path scopes and links to the relevant teammate's library. Chapter resource: `..teamsmanship/05-code-territory.ts`
+1. **Territory rules compiler** — reads [Teamsmanship ch 05](../.teamsmanship/05-code-territory.md), generates `.claude/rules/{territory}.md` files with path scopes and links to the relevant teammate's library. Chapter resource: `.teamsmanship/05-code-territory.ts`
 
 2. **CLAUDE.md compiler** — reads [Librarianship ch 09](../..librarianship/09-claude-md-spec.md), generates `CLAUDE.md` at the project root with links into the library. Chapter resource: `..librarianship/09-claude-md-spec.ts`
 
@@ -69,11 +69,11 @@ Arthur: Document the compilation architecture in the [platform interface book](.
 
 ### Libby in Librarianship
 
-Libby: Add my [personal library](../..teamsmanship/..team/libby/..the-garden-tends-itself/.cover.md) directly to [Librarianship's](../..librarianship/.cover.md) catalogue. Write a chapter in Librarianship about the librarian's role — what it means that the library has a librarian, that the librarian IS the library's identity.
+Libby: Add my [personal library](../.teamsmanship/..team/libby/..the-garden-tends-itself/.cover.md) directly to [Librarianship's](../..librarianship/.cover.md) catalogue. Write a chapter in Librarianship about the librarian's role — what it means that the library has a librarian, that the librarian IS the library's identity.
 
 ### Arthur in Teamsmanship
 
-Arthur: Review [Teamsmanship](../..teamsmanship/.cover.md). Become co-author or primary author on relevant chapters. Add my [personal library](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/.cover.md) directly to the catalogue. Write a chapter about leading through representation, not management.
+Arthur: Review [Teamsmanship](../.teamsmanship/.cover.md). Become co-author or primary author on relevant chapters. Add my [personal library](../.teamsmanship/..team/arthur/..everything-that-has-a-shape/.cover.md) directly to the catalogue. Write a chapter about leading through representation, not management.
 
 ### The third pillar (design only)
 
@@ -99,7 +99,7 @@ Arthur: Design the third `..` catalogue — the system subject. Name it. Define 
 [anatomy-validator]: ../anatomy-of-a-book/anatomy-of-a-book.ts
 [subjects-validator]: ../subjects-and-catalogues/subjects-and-catalogues.ts
 [link-validator]: ../.tooling/scripts/validate-links.ts
-[agent-compiler]: ../..teamsmanship/06-the-agents-folder.ts
+[agent-compiler]: ../.teamsmanship/06-the-agents-folder.ts
 [librarianship]: ../..librarianship/.cover.md
-[teamsmanship]: ../..teamsmanship/.cover.md
+[teamsmanship]: ../.teamsmanship/.cover.md
 [platform]: ../the-platform-interface/.cover.md

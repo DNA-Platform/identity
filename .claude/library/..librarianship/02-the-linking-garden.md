@@ -1,6 +1,6 @@
 ---
 title: The linking garden
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../.teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The linking garden
@@ -25,7 +25,7 @@ Libby: Reference-style links in a `<!-- citations -->` block at the bottom of ea
 <!-- citations -->
 [anatomy]: 01-anatomy-of-a-book.md
 [subjects]: 04-subjects-and-catalogues.md
-[team]: ../..teamsmanship/.cover.md
+[team]: ../.teamsmanship/.cover.md
 ```
 
 Libby: Citations serve as the file's **local glossary** — reusable link targets for concepts mentioned multiple times. Use `[anatomy]` anywhere in the text. The URL is defined once at the bottom. Keeps prose clean, links maintainable.
@@ -39,7 +39,7 @@ Libby: Book-level connections declared on the [cover](../anatomy-of-a-book/01-an
 ```yaml
 links:
   - "[Coding Policy](../coding-policy/.cover.md)"
-  - "[Reactivity Models](../..teamsmanship/..team/cathy/reactivity-models/.cover.md)"
+  - "[Reactivity Models](../.teamsmanship/..team/cathy/reactivity-models/.cover.md)"
 ```
 
 Libby: These are structural — they tell the catalogue system "these books are related." All frontmatter links must be real markdown links with descriptive text, never bare paths.
@@ -60,8 +60,8 @@ Libby: Links can point to specific sections within a file using heading anchors:
 
 Libby: **Public → public**: freely in all directions.
 **Personal → public**: freely — personal books reference shared knowledge.
-**Public → personal**: through the [`..teamsmanship/` catalogue](../..teamsmanship/.cover.md) only — the team subject bridges the perspectives. The public library doesn't link directly into individual agents' spaces, but `..teamsmanship/` catalogues all personal libraries.
-**Personal → personal**: through the public library or through the `..teamsmanship/` catalogue.
+**Public → personal**: through the [`.teamsmanship/` catalogue](../.teamsmanship/.cover.md) only — the team subject bridges the perspectives. The public library doesn't link directly into individual agents' spaces, but `.teamsmanship/` catalogues all personal libraries.
+**Personal → personal**: through the public library or through the `.teamsmanship/` catalogue.
 
 ## Links are the hierarchy
 
@@ -73,5 +73,5 @@ Libby: The library's filesystem is [flat](11-the-flat-structure.md). Books and c
 [authorship]: 05-authorship-and-autobiography.md
 [reading cost]: 08-the-reading-cost-architecture.md
 [flat]: 11-the-flat-structure.md
-[team]: ../..teamsmanship/.cover.md
+[team]: ../.teamsmanship/.cover.md
 [cover]: .cover.md

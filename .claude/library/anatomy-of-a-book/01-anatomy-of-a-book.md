@@ -1,6 +1,6 @@
 ---
 title: Anatomy of a book
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../.teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Anatomy of a book
@@ -18,8 +18,8 @@ Libby: For regular books: **title > author > subject**.
 ```yaml
 ---
 title: Coding Policy
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
-subject: "[Collaboration](../..teamsmanship/.cover.md)"
+author: "[Arthur](../.teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
+subject: "[Collaboration](../.teamsmanship/.cover.md)"
 ---
 ```
 

@@ -1,7 +1,7 @@
 ---
 kind: guide
 title: L-2 backlog — sprint history capture
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
+author: "[Cathy](../.teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 status: planned
 related:
   - _backlog-l3
