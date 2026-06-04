@@ -17,7 +17,7 @@ if (!libraryPath) {
 
 const root = resolve(libraryPath);
 const skillsDir = resolve(root, '..', 'skills');
-const bookDir = join(root, 'skills-and-commands');
+const bookDir = join(root, 'skills');
 
 // --- Utilities ---
 
@@ -162,8 +162,8 @@ for (const skill of skills) {
 
   // Body: preserve existing body entirely when it exists (it's richer).
   // Add or update the library link at the bottom.
-  const libraryLink = `<!-- library: .claude/library/skills-and-commands/${skill.chapterFile} -->`;
-  const libraryLinkPattern = /<!-- library: \.claude\/library\/skills-and-commands\/\S+ -->/;
+  const libraryLink = `<!-- library: .claude/library/skills/${skill.chapterFile} -->`;
+  const libraryLinkPattern = /<!-- library: \.claude\/library\/skills\/\S+ -->/;
 
   let body: string;
   if (hasExisting && existingBody.length > 0) {
@@ -177,7 +177,7 @@ for (const skill of skills) {
     // No existing SKILL.md or it's empty — generate from the chapter.
     // Use the cover description as the opening line, then note the library source.
     body = `${skill.coverDescription.charAt(0).toUpperCase() + skill.coverDescription.slice(1)}\n\n`;
-    body += `For detailed instructions, see the [library chapter](.claude/library/skills-and-commands/${skill.chapterFile}).\n\n`;
+    body += `For detailed instructions, see the [library chapter](.claude/library/skills/${skill.chapterFile}).\n\n`;
     body += `$ARGUMENTS\n\n`;
     body += libraryLink;
   }

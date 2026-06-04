@@ -18,9 +18,9 @@ Claude: **Setup steps** (when needed) — any preconditions, file reads, or cont
 
 ## How skills relate to the library
 
-Claude: The [Skills and Commands](../skills-and-commands/.cover.md) book catalogues all thirteen skills with WHY and WHEN — what each skill is for, when you'd reach for it, how it fits into the team's workflow. The SKILL.md files are the HOW. The library provides the understanding. The skill file provides the execution.
+Claude: The [Skills and Commands](../skills/.cover.md) book catalogues all thirteen skills with WHY and WHEN — what each skill is for, when you'd reach for it, how it fits into the team's workflow. The SKILL.md files are the HOW. The library provides the understanding. The skill file provides the execution.
 
-Claude: This is the same separation as rules: the platform artifact is thin and imperative, the library book is rich and explanatory. A developer reading the [Skills and Commands](../skills-and-commands/.cover.md) book understands the skill's purpose and design rationale. The platform reading the SKILL.md file knows exactly what to do.
+Claude: This is the same separation as rules: the platform artifact is thin and imperative, the library book is rich and explanatory. A developer reading the [Skills and Commands](../skills/.cover.md) book understands the skill's purpose and design rationale. The platform reading the SKILL.md file knows exactly what to do.
 
 ## Skills implement protocols
 
@@ -30,12 +30,12 @@ Claude: The protocol says WHAT SHOULD HAPPEN. The skill says HOW TO MAKE IT HAPP
 
 ## The compilation pattern
 
-Claude: A compiler could read the [Skills and Commands](../skills-and-commands/.cover.md) chapters and generate SKILL.md files — or read existing SKILL.md files and generate the library chapters. The two representations are mirrors of the same knowledge. Adam's book describes this explicitly: "a compiler resource could generate SKILL.md files from these chapters, or vice versa."
+Claude: A compiler could read the [Skills and Commands](../skills/.cover.md) chapters and generate SKILL.md files — or read existing SKILL.md files and generate the library chapters. The two representations are mirrors of the same knowledge. Adam's book describes this explicitly: "a compiler resource could generate SKILL.md files from these chapters, or vice versa."
 
 Claude: Each SKILL.md is one file in one directory. The mapping is one-to-one: one skill, one directory, one SKILL.md. Additional files in the skill directory (templates, scripts) support execution but the SKILL.md is the platform's entry point.
 
 <!-- citations -->
-[skills-and-commands]: ../skills-and-commands/.cover.md
+[skills]: ../skills/.cover.md
 [librarianship]: ../..librarianship/.cover.md
 [teamsmanship]: ../..teamsmanship/.cover.md
 [code-territory]: ../..teamsmanship/05-code-territory.md
