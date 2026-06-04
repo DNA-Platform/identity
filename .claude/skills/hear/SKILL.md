@@ -101,3 +101,5 @@ The log is **append-only** — never rewrite it. Entries are separated by `---` 
 - **Never rewrite conversation.log.** Status lives only in the sidecar.
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/13-hear.md -->

@@ -116,6 +116,6 @@ Libby: Signs a new subject is needed:
 - **Multi-subject books** — if a book keeps getting linked by catalogues that aren't its canonical subject, maybe it needs a new canonical home
 
 <!-- citations -->
-[anatomy]: 01-anatomy-of-a-book.md
+[anatomy]: ../bookkeeping/01-on-books.md
 [reading cost]: 08-the-reading-cost-architecture.md
 [flat structure]: 11-the-flat-structure.md

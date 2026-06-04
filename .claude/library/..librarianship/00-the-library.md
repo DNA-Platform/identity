@@ -17,7 +17,7 @@ Libby: The library is ONE directory under `.claude/`. It contains three kinds of
 | `.` | Subject catalogue | Yes — IS the subject | [`..teamsmanship/`](../..teamsmanship/.cover.md) |
 | (none) | Regular book | No — belongs to a subject | [`coding-policy/`](../coding-policy/.cover.md) |
 
-Libby: All three kinds are PEERS at the same directory level. A subject catalogue does NOT contain the books it catalogues. The books sit beside it. The subject links to them in its [cover](.cover.md). Each book declares its canonical subject in its frontmatter with a [`subject:` field](../anatomy-of-a-book/01-anatomy-of-a-book.md).
+Libby: All three kinds are PEERS at the same directory level. A subject catalogue does NOT contain the books it catalogues. The books sit beside it. The subject links to them in its [cover](.cover.md). Each book declares its canonical subject in its frontmatter with a [`subject:` field](../bookkeeping/05-on-frontmatter.md#subject).
 
 Libby: A book can belong to multiple subjects. It lives in ONE place. Its `subject:` field points to its canonical home. Other subjects link to it from their TOCs with [descriptions shaped by that subject's perspective](../subjects-and-catalogues/01-subjects-and-catalogues.md) — the same book described differently by different subjects.
 
@@ -53,7 +53,7 @@ Libby: The library is closed under specification of itself. Everything the libra
 
 <!-- citations -->
 [cover]: .cover.md
-[anatomy]: 01-anatomy-of-a-book.md
+[anatomy]: ../bookkeeping/01-on-books.md
 [subjects]: 04-subjects-and-catalogues.md
 [authorship]: 05-authorship-and-autobiography.md
 [reading cost]: 08-the-reading-cost-architecture.md

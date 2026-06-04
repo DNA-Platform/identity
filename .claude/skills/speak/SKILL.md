@@ -86,3 +86,5 @@ Messages over ~80KB may be truncated by Claude Desktop's clipboard paste. If the
 The message to send (everything the user typed after /speak):
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/11-speak.md -->

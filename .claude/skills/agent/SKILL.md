@@ -126,3 +126,5 @@ This is advisory, not blocking. The point is awareness, not gatekeeping.
 [project tracker]: .claude/library/.projects/inexplicable-phenomena/index.md
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/03-agent.md -->

@@ -5,138 +5,66 @@ author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cov
 
 # Bringing the library into alignment
 
-Libby: The library's specification — chapters [01](../anatomy-of-a-book/01-anatomy-of-a-book.md) through [11](13-tasks-and-unfinished-work.md) of this field guide — describes a system that the library doesn't yet implement. This chapter tracks what needs to change and in what order. When each section is complete, it gets marked done and eventually this chapter archives itself.
+Libby: This chapter tracks the distance between the library's specification and its implementation. The specification lives in [Bookkeeping](../bookkeeping/.cover.md) — eleven "On" chapters defining every convention. This chapter records what's aligned, what's not, and what the validators say.
 
-## The target state
+## Current state (Sprint 51)
 
-Libby: As specified by chapters [01](../anatomy-of-a-book/01-anatomy-of-a-book.md) (anatomy), [04](../subjects-and-catalogues/01-subjects-and-catalogues.md) (subjects), and [.02](../the-platform-interface/01-the-platform-interface.md) (platform interface):
+### Bookkeeping validator `[ALIGNED]`
 
-Libby: The library is FLAT. Two catalogues at the root: `..librarianship/` (the library) and `..teamsmanship/` (the team). Every other directory at the root is a regular book with `subject: ".team"` or `subject: "..librarianship"`. Books sit BESIDE their subject, not inside it. Agent personal libraries live inside `..teamsmanship/{agent}/` with the same flat pattern internally.
+Libby: [bookkeeping.ts](../bookkeeping/bookkeeping.ts) — 0 errors, 0 warnings across 44 books and 263 chapters. All frontmatter fields present and ordered. All chapters signed. No `summary:` in frontmatter. Run: `npx tsx bookkeeping/bookkeeping.ts .` from library root.
 
-Libby: Every book cover has frontmatter in order: `title > subject > author > summary`. Every chapter has frontmatter: `title > author`. The `author:` field is a real markdown link to the autobiography. The `subject:` field names the canonical subject catalogue.
+### Subjects validator `[PARTIAL]`
 
-Libby: Platform artifacts (`CLAUDE.md`, `rules/*.md`, `agents/*.md`) embed the minimum for the platform to act, then link inline into the library. A [rules book](../rules-of-engagement/.cover.md) in the library catalogues every rule file. `[SCAFFOLD]`
+Libby: [subjects-and-catalogues.ts](../subjects-and-catalogues/subjects-and-catalogues.ts) — 0 errors, 33 warnings. The warnings are false positives: the validator's path resolution doesn't follow relative paths from inside `..team/` personal libraries correctly. The `subject:` links in those books are valid — the validator's link resolution needs updating.
 
-Libby: Validators are chapter resources — sharing a name with the field guide chapter they validate, linked from the chapter. The validator IS the executable specification.
+### Flat structure `[ALIGNED]`
 
-## Current state vs target
+Libby: Books sit beside their subject catalogues as peers. No books nested inside subject directories (except the `..team/` exception for personal libraries inside Teamsmanship). The two root catalogues — [Librarianship](../..librarianship/.cover.md) and [Teamsmanship](../..teamsmanship/.cover.md) — are correct.
 
-### Structure `[NOT ALIGNED]`
+### Frontmatter `[ALIGNED]`
 
-Libby: Books are inside subject directories. Protocol chapters are inside `.protocols/`. Agent books are inside agent library directories at the library root. The `.protocols/` and `.projects/` directories exist as separate subjects when they should be books catalogued by `..teamsmanship/`.
+Libby: All covers have `title:`, `author:`, `subject:`. Catalogues have `catalogues:`. Order is correct: title > catalogues > specification > author > coauthor > subject for catalogues, title > author > subject for books. All chapters have `title:` and `author:` as markdown links.
 
-**To fix:**
-- Move all protocol chapter files out of `.protocols/` — each becomes its own book directory at library root
-- Move all project content out of `.projects/` — project books become peers at library root
-- Move agent library directories from library root into `..teamsmanship/{agent}/`
-- Remove `.protocols/` and `.projects/` directories (their content becomes part of `..teamsmanship/`'s catalogue)
-- `..teamsmanship/` becomes the sole subject catalogue, cataloguing all team books at the root
+### Names `[ALIGNED]`
 
-### Frontmatter `[NOT ALIGNED]`
+Libby: Renamed `protocols/` to `teamspeak/`. No encoded state in directory names (the old `.what-428-tests-promise` was fixed in a prior sprint).
 
-Libby: Most books lack `subject:` in their frontmatter. No chapters have `author:` signatures. The frontmatter order varies.
+### Reading cost `[ALIGNED]`
 
-**To fix:**
-- Add `subject:` to every book's `.cover.md` — canonical subject
-- Add `author:` to every chapter file — real link to the autobiography
-- Verify `title > subject > author > summary` order on all covers
+Libby: Measured in Sprint 51. CLAUDE.md + Librarianship cover = 145 lines (budget: <250). Full orientation = 218 lines (budget: <400). All covers within budget. Room to grow for the third subject.
 
-### Agent files `[NOT ALIGNED]`
+### Field guide `[ALIGNED]`
 
-Libby: The `.claude/agents/*.md` files have prose with string paths. No real markdown links.
+Libby: Chapters 02 (linking), 03 (growth), 05 (authorship), 11 (flat structure) slimmed to synopsis-and-link entries pointing to [Bookkeeping](../bookkeeping/.cover.md) as the authority. The field guide navigates. Bookkeeping specifies.
 
-**To fix:**
-- Rewrite each agent file with inline markdown links to: autobiography, library catalogue, roles, abilities, code territory
-- Each link must be a real `[text](path)` link, not a backtick-quoted path in prose
+### Validation script `[ALIGNED]`
 
-### Rules `[NOT ALIGNED]`
+Libby: [.tooling/validate.ts](../.tooling/validate.ts) runs all validators from library root. Run before syncing to the identity repo. Documented in the sync protocol ([The Identity Repo](../teamspeak/06-the-identity-repo.md)).
 
-Libby: Rules exist but vary in thickness and link quality. No rules book catalogues them. The balance between thickness (works without link-following) and budget (instruction slots are finite) isn't calibrated.
+## What remains
 
-**To fix:**
-- Write a rules book at library root (subject: .team) — one chapter per rule
-- Calibrate each rule's thickness: enough to work standalone, thin enough to preserve budget
-- Ensure every rule has inline links into the library
-- Global rule must link to the [library catalogue](.cover.md) so every session finds the library
+### Subjects validator path resolution `[NOT ALIGNED]`
 
-### Validators `[NOT ALIGNED]`
+Libby: The subjects validator can't follow relative `subject:` links from inside `..team/` personal libraries. The links are valid — the validator's resolution is incomplete. Fix: update the path resolver to handle relative paths from nested scopes.
 
-Libby: The current validator (`validate-links.ts`) checks link resolution and summary length. It doesn't check: `subject:` fields, chapter signing, self-cataloguing, flat structure, the resource pattern, or rule-library consistency.
+### Third subject `[SCAFFOLD]`
 
-**To fix:**
-- Rewrite validators as field guide chapter resources:
-  - `01-anatomy-of-a-book.ts` — checks frontmatter fields, chapter signing, summary length
-  - `04-subjects-and-catalogues.ts` — checks `subject:` fields, self-cataloguing, flat structure
-  - `.02-the-platform-interface.ts` — checks agent files have real links, rules link to library
-- Each validator is paired with its chapter — the chapter describes the convention, the resource checks it
+Libby: Sprint 52 introduces the third subject catalogue for the platform/system. Librarianship will need updating to show three subjects.
 
-### Names `[NOT ALIGNED]`
+### .chemistry/ restructure `[SCAFFOLD]`
 
-Libby: `.what-428-tests-promise` encodes current state ("428"). Should be `.what-the-tests-promise`.
+Libby: 210 files awaiting restructure into proper books. Deferred to a future sprint.
 
-**To fix:**
-- Rename the directory and update all references
+### Compilers `[SCAFFOLD]`
 
-### Perspective `[PARTIALLY ALIGNED]`
-
-Libby: Arthur and Libby have perspective content from this session. The perspective → discussion → public library → personal library cycle is specified but not consistently followed. Most agents have empty perspective books.
-
-**To fix:**
-- Each agent populates their perspective as they work
-- Insights flow through discussion into the public library
-- The field guide chapter [.10](12-the-perspective-practice.md) describes the cycle
-
-## Execution order
-
-Libby: The order matters. Each step depends on the previous.
-
-### Step 1: Finish the field guide
-
-Libby: The remaining field guide chapters need updating. The field guide IS the specification — if it's wrong, everything built from it will be wrong.
-
-| Chapter | Status | Work needed |
-|---------|--------|-------------|
-| 00 — The library | `[NEEDS REWRITE]` | Describe flat structure with `..teamsmanship/` as primary subject |
-| 01 — Anatomy of a book | `[RECENTLY UPDATED]` | Verify against full synthesis |
-| 02 — The linking garden | `[NEEDS ADDITIONS]` | Add `subject:` as a link type, multi-subject pattern |
-| 03 — Growth and refactoring | `[NEEDS ADDITIONS]` | Add book → subject factoring pattern |
-| 04 — Subjects and catalogues | `[RECENTLY UPDATED]` | Verify; update to show `..teamsmanship/` as sole subject |
-| 05 — Authorship and autobiography | `[NEEDS ADDITIONS]` | Chapter signing, two-book minimum |
-| .02 — Platform interface | `[RECENTLY UPDATED]` | Verify; rules budget, rules book |
-| 08 — Reading cost architecture | `[NEEDS EXAMPLE UPDATES]` | Examples reference old structure |
-| .09 — Flat structure | `[NEEDS VERIFICATION]` | Verify against corrected understanding |
-| .10 — Perspective practice | `[NEEDS ADDITIONS]` | Full cycle including personal library integration |
-| .11 — Tasks and unfinished work | `[NEEDS VERIFICATION]` | Verify |
-| .12 — This chapter | `[IN PROGRESS]` | You are reading it |
-
-### Step 2: Write validators as chapter resources
-
-Libby: For each convention chapter, write a `.ts` resource that checks it. Run the validators against the current library. The failures ARE the restructure task list. Don't restructure until the validators tell you what's wrong — otherwise you're guessing.
-
-### Step 3: Restructure
-
-Libby: Move files to match the spec. The validator failures from step 2 are the precise list of what to move, rename, and update. This is mechanical work guided by the validators.
-
-### Step 4: Add frontmatter
-
-Libby: Add `subject:` to every book cover and `author:` to every chapter. Run the anatomy validator to check.
-
-### Step 5: Rewrite platform artifacts
-
-Libby: Agent files, rules, CLAUDE.md — all rewritten with real inline links to the now-correct library paths. Write the rules book. Run the platform interface validator to check.
-
-### Step 6: Final validation and push
-
-Libby: Run all validators. Fix everything they find. The remaining `[SCAFFOLD]` markers are the ongoing task list. Push to the identity repo.
+Libby: One compiler exists ([agents folder](../..teamsmanship/06-the-agents-folder.ts)). CLAUDE.md compiler and territory rules compiler planned for Sprint 52.
 
 ## When this chapter is done
 
-Libby: When every section above is marked `[ALIGNED]` instead of `[NOT ALIGNED]`, this chapter has served its purpose. It stays as a record of how the library was brought into alignment — a historical chapter, not an active task list.
+Libby: When all sections are `[ALIGNED]`, this chapter archives itself. The validators are the ongoing specification check — this chapter just tracks what the validators can't yet measure.
 
 <!-- citations -->
-[anatomy]: 01-anatomy-of-a-book.md
-[subjects]: 04-subjects-and-catalogues.md
-[platform]: 10-the-platform-interface.md
-[perspective]: 12-the-perspective-practice.md
-[tasks]: 13-tasks-and-unfinished-work.md
-[synthesis]: ../..everything-that-has-a-shape/perspective/full-synthesis.md
+[bookkeeping]: ../bookkeeping/.cover.md
+[subjects]: ../subjects-and-catalogues/.cover.md
+[librarianship]: .cover.md
+[teamsmanship]: ../..teamsmanship/.cover.md

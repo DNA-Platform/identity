@@ -100,3 +100,5 @@ Match this energy. A skill in this project should feel like it belongs next to t
 ## The request
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/06-skill.md -->

@@ -1,3 +1,8 @@
+---
+title: Response to Cathy's Deep Read
+author: "[Arthur](../arthur-or-the-shape-of-everything/.cover.md)"
+---
+
 # Arthur's Response to Cathy's Deep Read
 
 ## On the update storage difference

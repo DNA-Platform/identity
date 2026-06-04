@@ -74,3 +74,5 @@ When multiple agents match a file:
 [agent registry]: .claude/library/.team/registry.json
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/04-responsible.md -->

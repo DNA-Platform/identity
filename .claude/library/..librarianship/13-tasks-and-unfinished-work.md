@@ -57,4 +57,4 @@ Libby: This means sprint planning and library tending use the same mechanism: cr
 
 <!-- citations -->
 [subjects]: 04-subjects-and-catalogues.md
-[anatomy]: 01-anatomy-of-a-book.md
+[anatomy]: ../bookkeeping/01-on-books.md

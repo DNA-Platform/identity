@@ -103,3 +103,5 @@ Before doing {Name}'s work, ground yourself in the current implementation:
 [project tracker]: .claude/library/.projects/inexplicable-phenomena/index.md
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/05-role.md -->

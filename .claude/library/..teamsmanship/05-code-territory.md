@@ -50,6 +50,12 @@ Arthur: Territory is perspective ownership, not exclusive lockout. Overlapping p
 - `library/chemistry/app/**` — visual design in the Lab (shared with Phillip)
 - Roles: [Graphic Designer](02-roles-and-the-type-system.md#graphic-designer), [Chemistry Developer](02-roles-and-the-type-system.md#chemistry-developer)
 
+### [Claude](..team/claude/..what-the-system-knows/.cover.md) — Environmentalist
+- `.claude/agents/**`, `.claude/rules/**`, `.claude/skills/**`, `CLAUDE.md` — platform artifacts
+- `.claude/library/..environmentalism/**` — [Environmentalism](.cover.md), the system specification
+- `src/**` — the conversation pipeline (shared with Adam)
+- Roles: [Environmentalist](02-roles-and-the-type-system.md#environmentalist)
+
 ## Compilation
 
 Arthur: A [territory rules compiler](05-code-territory.ts) `[SCAFFOLD]` would read these assignments and generate `.claude/rules/{territory}.md` files — path-scoped rules that load the right knowledge when the right files enter context. Each generated rule links back to this chapter and to the teammate's library.

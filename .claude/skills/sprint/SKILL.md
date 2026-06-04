@@ -208,3 +208,5 @@ If Doug says "where are we", "resume", "continue", or anything suggesting pickup
 [abilities]: .claude/library/.team/abilities/
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/01-sprint.md -->

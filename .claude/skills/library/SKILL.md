@@ -65,3 +65,5 @@ Agent to library directory mapping:
 [library catalogue]: ../../library/..librarianship/.cover.md
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/02-library.md -->

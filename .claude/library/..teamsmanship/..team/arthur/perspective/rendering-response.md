@@ -1,3 +1,8 @@
+---
+title: Response to Cathy's Rendering Analysis
+author: "[Arthur](../arthur-or-the-shape-of-everything/.cover.md)"
+---
+
 # Arthur's Response to Cathy's Rendering Analysis
 
 ## On the microtask vs useEffect question

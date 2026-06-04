@@ -77,3 +77,5 @@ If the path already has a `package.json`, offer to:
 [agent registry]: .claude/library/.team/registry.json
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/09-workspace.md -->

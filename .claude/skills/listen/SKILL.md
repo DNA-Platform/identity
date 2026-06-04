@@ -69,3 +69,5 @@ The listener writes to `.authors/.eirian/conversation.log` (not voice.md). The l
 If the listener dies and is restarted, `/hear` will process all `[status:unprocessed]` and `[status:poke-failed]` entries on its next run — catching up on anything missed.
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/12-listen.md -->

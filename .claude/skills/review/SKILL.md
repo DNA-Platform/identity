@@ -147,3 +147,5 @@ If the review found stale assignments (deleted files, shifted scope), offer to u
 [responsible skill]: .claude/skills/responsible/SKILL.md
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/07-review.md -->

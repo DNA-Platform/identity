@@ -159,3 +159,5 @@ Six concerns, distributed across agents:
 ## The request
 
 $ARGUMENTS
+
+<!-- library: .claude/library/skills-and-commands/08-organize.md -->
