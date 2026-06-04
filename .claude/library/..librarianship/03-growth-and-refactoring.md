@@ -73,6 +73,32 @@ Libby: The catalogue becomes leaner and more navigational. The books become rich
 
 Libby: This is how [Librarianship](.cover.md) itself evolved. Its field guide chapters grew large enough to be standalone books about Knowledge. The chapters graduated. Librarianship became a catalogue of books rather than a container of chapters. The spec captured its own evolution.
 
+## Book → Subject (revisited)
+
+Libby: The earlier section describes a book factoring into a subject when several books share a thread. But books also evolve INTO subjects on their own — when a single book grows so many chapters that its chapters want to be books.
+
+Libby: **Signal:** a book has 15+ chapters, several over 80 lines. The TOC is long. Readers can't scan it. The chapters have internal structure (H2 sections) that could be their own TOC entries. The book is doing two jobs: specifying a subject AND holding all the content. It should split: the specification stays as the catalogue, the content becomes books.
+
+Libby: This is how a book becomes a subject catalogue. The book already WAS the subject — it just didn't know it yet. The factoring makes the implicit explicit.
+
+## Subject → Nested subjects
+
+Libby: A subject catalogue grows. It catalogues 10, then 15, then 20 books. The TOC is too long. Clusters emerge — groups of books that relate more to each other than to the rest.
+
+Libby: **Signal:** the catalogue's TOC has natural groupings. You keep adding section headers to organize the TOC. Readers ask "where are the books about X?" and X is a subset of the subject.
+
+Libby: **Procedure:**
+
+1. Identify a cluster of 3+ books that form a coherent sub-subject.
+2. Create a new `.` prefixed subject catalogue at the same level.
+3. The new sub-subject's `subject:` points to the parent subject catalogue.
+4. Move the clustered books' `subject:` from the parent to the new sub-subject.
+5. The parent catalogue adds the new sub-subject to its TOC and removes the individual book entries.
+
+Libby: The tree deepens: `..librarianship/` → `.book-craft/` → `anatomy-of-a-book/`. Three levels. All flat in the filesystem. All linked in the covers. The sub-subject IS the cluster's identity — not a folder, a catalogue.
+
+Libby: Subjects can nest arbitrarily deep through this pattern. The filesystem stays flat at each level. The depth is always in the links.
+
 ## The refactoring instinct
 
 Libby: Signs during routine maintenance:
