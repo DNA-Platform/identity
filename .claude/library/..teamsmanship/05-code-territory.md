@@ -1,34 +1,58 @@
 ---
-title: "Code territory"
-author: "[Libby](libby/libby-and-the-tended-garden/.cover.md)"
+title: Code territory
+author: "[Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # Code territory
 
-`[SCAFFOLD]`
+Arthur: Every path in the codebase belongs to a teammate. This chapter IS the authoritative source for territory assignments — the [/responsible](../../skills/responsible/SKILL.md) skill reads from here. [Rules](../../rules/) that wire knowledge to code are generated from here.
 
-Libby: Every path in the codebase belongs to a teammate. Territory assignments connect roles to code — the teammate who owns a path is the one whose role gives them the perspective to work on it well. The [registry](registry.json) is the source of truth for these assignments.
+Arthur: Territory is perspective ownership, not exclusive lockout. Overlapping paths are intentional — Queenie tests the code Cathy writes, Gabby designs the surfaces Phillip builds. The `**` wildcard on Arthur means he sees everything — an architectural responsibility, not a power claim.
 
-## Current assignments
+## Assignments
 
-Libby: **[Arthur](arthur/..everything-that-has-a-shape/.cover.md)** — `**` (all paths). Arthur is the architect. His territory is everything, which means he is the fallback owner for any path not claimed more specifically. His role is to see the shape of the whole.
+### [Arthur](..team/arthur/..everything-that-has-a-shape/.cover.md) — Architect
+- `**` — all paths (fallback owner)
+- Primary: workspace config, `package.json`, [CLAUDE.md](../../../CLAUDE.md), `.claude/` infrastructure
+- Roles: [Architect](02-roles-and-the-type-system.md#architect)
 
-Libby: **[Cathy](cathy/..the-canvas-paints-itself/.cover.md)** — `library/chemistry/src/**`, `library/chemistry/tests/**`, `library/chemistry/bench/**`. Cathy is the framework engineer. She owns the $Chemistry source, tests, and benchmarks. The Lab app at `library/chemistry/app/` is explicitly out of her scope — she consults on framework feature gaps but does not own app code.
+### [Cathy](..team/cathy/..the-canvas-paints-itself/.cover.md) — Framework Engineer
+- `library/chemistry/src/**` — the $Chemistry framework source
+- `library/chemistry/tests/**` — framework tests (shared with Queenie)
+- `library/chemistry/bench/**` — benchmarks
+- NOT `library/chemistry/app/**` — consults on framework gaps but doesn't own app code
+- Roles: [Framework Engineer](02-roles-and-the-type-system.md#framework-engineer)
 
-Libby: **[Libby](libby/..the-garden-tends-itself/.cover.md)** — `.claude/docs/**`. The librarian owns the documentation tree. This is where the team's knowledge lives in its most findable form.
+### [Libby](..team/libby/..the-garden-tends-itself/.cover.md) — Librarian
+- `.claude/library/**` — the entire library
+- Roles: [Librarian](02-roles-and-the-type-system.md#librarian)
 
-Libby: **[Adam](adam/..what-the-wire-carries/.cover.md)** — `.claude/skills/listen/**`, `.claude/skills/hear/**`, `.claude/skills/speak/**`, `.claude/src/desktop.ps1`, `.claude/src/chat.ps1`, `.claude/src/vscode.ps1`, `.claude/src/config.ps1`, `.authors/*/src/**`, `.claude/docs/log-format.md`, `.claude/docs/desktop.md`. Adam is the automation engineer. He owns the relay — the send/listen/hear pipeline and its supporting scripts.
+### [Adam](..team/adam/..what-the-wire-carries/.cover.md) — Automation Engineer
+- `.claude/skills/listen/**`, `.claude/skills/hear/**`, `.claude/skills/speak/**` — the relay skills
+- Roles: [Automation Engineer](02-roles-and-the-type-system.md#automation-engineer)
 
-Libby: **[David](david/..what-the-pipeline-delivers/.cover.md)** — `.github/**`. David is the devops engineer. He owns the CI/CD pipeline — GitHub Actions workflows and deployment configuration.
+### [David](..team/david/..what-the-pipeline-delivers/.cover.md) — DevOps Engineer
+- `.github/**` — CI/CD pipelines and deployment
+- Roles: [DevOps Engineer](02-roles-and-the-type-system.md#devops-engineer)
 
-Libby: **[Phillip](phillip/..what-the-user-sees/.cover.md)** — `library/chemistry/app/**`. Phillip is the $Chemistry developer and UX designer. He owns the Lab app — the visible layer where the framework meets the user.
+### [Phillip](..team/phillip/..what-the-user-sees/.cover.md) — UX Designer + Chemistry Developer
+- `library/chemistry/app/**` — the Lab app (shared with Gabby)
+- Roles: [UX Designer](02-roles-and-the-type-system.md#ux-designer), [Chemistry Developer](02-roles-and-the-type-system.md#chemistry-developer)
 
-Libby: **[Queenie](queenie/..what-the-tests-promise/.cover.md)** — `library/chemistry/tests/**`, `library/chemistry/bench/**`, `library/chemistry/app/**`. Queenie is the QA engineer. Her territory overlaps with Cathy's tests and Phillip's app — she owns the quality promise across both.
+### [Queenie](..team/queenie/..what-the-tests-promise/.cover.md) — QA Engineer
+- `library/chemistry/tests/**` — framework tests (shared with Cathy)
+- `library/chemistry/bench/**` — benchmarks
+- `library/chemistry/app/**` — app quality (shared with Phillip)
+- Roles: [QA Engineer](02-roles-and-the-type-system.md#qa-engineer)
 
-Libby: **[Gabby](gabby/..what-beauty-serves/.cover.md)** — `library/chemistry/app/**`, `.claude/team/perspective/gabby/**`. Gabby is the graphic designer and $Chemistry developer. She shares app ownership with Phillip, bringing the visual design lens to the same code.
+### [Gabby](..team/gabby/..what-beauty-serves/.cover.md) — Graphic Designer + Chemistry Developer
+- `library/chemistry/app/**` — visual design in the Lab (shared with Phillip)
+- Roles: [Graphic Designer](02-roles-and-the-type-system.md#graphic-designer), [Chemistry Developer](02-roles-and-the-type-system.md#chemistry-developer)
 
-## How territory works
+## Compilation
 
-Libby: Territory is not exclusive lockout. Overlapping paths are intentional — Queenie tests the code Cathy writes, Gabby designs the surfaces Phillip builds. The registry says who OWNS the perspective on that path, not who is allowed to touch it. When a task spans territories, the agents whose paths are involved discuss.
+Arthur: A [territory rules compiler](05-code-territory.ts) `[SCAFFOLD]` would read these assignments and generate `.claude/rules/{territory}.md` files — path-scoped rules that load the right knowledge when the right files enter context. Each generated rule links back to this chapter and to the teammate's library.
 
-Libby: The `**` wildcard on Arthur means he sees everything. This is not a power claim — it is an architectural responsibility. Arthur's role is to notice when changes in one territory affect another.
+<!-- citations -->
+[roles]: 02-roles-and-the-type-system.md
+[responsible]: ../../skills/responsible/SKILL.md
