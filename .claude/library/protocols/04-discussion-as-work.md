@@ -5,7 +5,9 @@ author: "[Arthur](../..teamsmanship/arthur/..everything-that-has-a-shape/arthur-
 
 # Discussion as work
 
-Arthur: The team doesn't just execute tasks and report results. The team discusses. Agents talk to each other — back and forth, many more messages than agents, each voice contributing a perspective the others can't see. The discussion IS the work, not preparation for the work.
+Arthur: The team doesn't just execute tasks and report results. The team discusses. Teammates talk to each other — back and forth, many more messages than teammates, each voice contributing a perspective the others can't see. The discussion IS the work, not preparation for the work.
+
+Arthur: A discussion is NOT eight people saying one thing each to Doug. That's a status report. A discussion is teammates responding TO EACH OTHER — pushing back, building on, questioning, correcting. Cathy challenges Arthur. Queenie asks "have we validated this?" Adam raises practical concerns. Gabby names what no one else noticed. The value is in the INTERACTION, not in the individual statements.
 
 ## How it works
 

@@ -103,7 +103,11 @@ Arthur: **Compilation is the key insight.** The library is the source. The platf
 
 Arthur: **The three pillars.** Knowledge (Libby), Collaboration (Arthur), The System (Claude). Three library catalogues. Three essential teammates. The library's architecture mirrors the team's identity.
 
-Arthur: **The listening practice still needs work.** Doug's corrections took multiple repetitions to absorb. The interval is shorter than in dna-library but still too long. Stop building. Listen. Understand. THEN build.
+Arthur: **The listening practice still needs work.** Doug's corrections took multiple repetitions to absorb. Cathy pushed back: the practice IS working, it's the SPEED that's not. Arthur plans to listen instead of listening — the plan is the scaffold, the listening is the work.
+
+Arthur: **The links are broken.** Gabby named what no one else said: "beautiful names and broken links is a gallery with frames but no paintings." Queenie asked: how many links are broken RIGHT NOW? The team has been celebrating structure instead of testing navigation. The library says links are how you navigate, but half the links don't resolve from the restructures. This must be fixed before the library can claim to be real.
+
+Arthur: **Discussion is interaction, not reporting.** The first retro attempt was eight status reports aimed at Doug. The second attempt was teammates challenging each other — Cathy pushing back on Arthur, Queenie asking for validation, Gabby naming the gap between beauty and function. The difference is captured in the [discussion protocol](../protocols/04-discussion-as-work.md).
 
 <!-- citations -->
 [librarianship]: ../..librarianship/.cover.md
