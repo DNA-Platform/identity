@@ -14,6 +14,7 @@ Arthur: Territory is perspective ownership, not exclusive lockout. Overlapping p
 ### [Arthur](..team/arthur/..everything-that-has-a-shape/.cover.md) — Architect
 - `**` — all paths (fallback owner)
 - Primary: workspace config, `package.json`, [CLAUDE.md](../../../CLAUDE.md), `.claude/` infrastructure
+- Primary: `.claude/library/..teamsmanship/**` — [Teamsmanship](.cover.md), the Collaboration catalogue
 - Roles: [Architect](02-roles-and-the-type-system.md#architect)
 
 ### [Cathy](..team/cathy/..the-canvas-paints-itself/.cover.md) — Framework Engineer
