@@ -7,7 +7,7 @@ author: "[Libby](libby/libby-and-the-tended-garden/.cover.md)"
 
 `[SCAFFOLD]`
 
-Libby: Abilities are domain knowledge documents. Each one is a file in `abilities/` that encodes expertise a role can load before acting. They are not instructions — they are knowledge. Loading an ability changes what the agent knows, which changes what the agent notices, which changes how the agent works.
+Libby: Abilities are domain knowledge documents. Each one is a file in `abilities/` that encodes expertise a role can load before acting. They are not instructions — they are knowledge. Loading an ability changes what the teammate knows, which changes what the teammate notices, which changes how the teammate works.
 
 ## Universal abilities
 
@@ -55,4 +55,4 @@ Libby: Operational concerns for the relay system. Log protocol, crash recovery, 
 
 ## The loading pattern
 
-Libby: A role's documentation says "load these before acting." This means: read the ability file into context before beginning work in that role. The knowledge shapes attention — an agent who has loaded relay-transport thinks about clipboard race conditions; one who has loaded framework-design thinks about prototype delegation. The abilities are the lenses beneath the lens.
+Libby: A role's documentation says "load these before acting." This means: read the ability file into context before beginning work in that role. The knowledge shapes attention — a teammate who has loaded relay-transport thinks about clipboard race conditions; one who has loaded framework-design thinks about prototype delegation. The abilities are the lenses beneath the lens.

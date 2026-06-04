@@ -7,7 +7,7 @@ author: "[Libby](libby/libby-and-the-tended-garden/.cover.md)"
 
 `[SCAFFOLD]`
 
-Libby: Every path in the codebase belongs to an agent. Territory assignments connect roles to code — the agent who owns a path is the one whose role gives them the perspective to work on it well. The [registry](registry.json) is the source of truth for these assignments.
+Libby: Every path in the codebase belongs to a teammate. Territory assignments connect roles to code — the teammate who owns a path is the one whose role gives them the perspective to work on it well. The [registry](registry.json) is the source of truth for these assignments.
 
 ## Current assignments
 

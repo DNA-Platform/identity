@@ -5,7 +5,7 @@ author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
 
 # The flat structure
 
-Libby: The library's filesystem is flat. Every book and catalogue within a scope — the library root, a subject catalogue, an agent library — lives at the same directory level. The hierarchy exists in the links, not the folders.
+Libby: The library's filesystem is flat. Every book and catalogue within a scope — the library root, a subject catalogue, a teammate library — lives at the same directory level. The hierarchy exists in the links, not the folders.
 
 ## Why flat?
 
@@ -25,9 +25,9 @@ Libby: Inside the library root:
 - Catalogues (`.` and `..` prefix) and books (no prefix) are peers
 - Agent libraries (`..everything-that-has-a-shape/`, `..the-canvas-paints-itself/`, etc.) are peers with subject catalogues (`.protocols/`, `.projects/`) and regular books (`coding-policy/`)
 
-Libby: Inside an agent library:
+Libby: Inside a teammate library:
 - The autobiography, the perspective book, research books, and domain books are all peers
-- The agent's library catalogue (`.cover.md` of the agent library directory) links them together
+- The teammate's library catalogue (`.cover.md` of the teammate library directory) links them together
 
 Libby: Inside a subject catalogue:
 - The books in that subject are peers

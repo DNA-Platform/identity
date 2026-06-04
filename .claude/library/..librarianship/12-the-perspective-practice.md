@@ -17,9 +17,9 @@ Libby: Perspective is not a screenshot dump. It's an active practice with four s
 
 **Change:** Act on the reflection. Fix the bug the screenshot revealed. Refactor the architecture the diagram exposed. Fill the gap the coverage map showed. The change is the purpose — the perspective practice produces better work, not just better documentation.
 
-## What each agent represents
+## What each teammate represents
 
-Libby: The perspective practice is different for each agent because each agent SEES different things:
+Libby: The perspective practice is different for each teammate because each teammate SEES different things:
 
 - **Arthur** represents architecture — dependency trees, system diagrams, the three-layer model. His perspective reveals structural patterns.
 - **Cathy** represents the framework finding its form — Lab screenshots across sprints, reactive model diagrams. Her perspective reveals how $Chemistry evolves.
@@ -32,12 +32,12 @@ Libby: The perspective practice is different for each agent because each agent S
 
 ## The perspective book
 
-Libby: Each agent's library catalogues a perspective book. The perspective book contains:
+Libby: Each teammate's library catalogues a perspective book. The perspective book contains:
 
 - **Chapters** with prose reflections on what was represented and what it taught
 - **Resources** — the artifacts themselves (images, diagrams, DOM dumps, etc.) stored alongside their chapter
 
-Libby: The `.cover.md` of the perspective book describes what perspective means for this specific agent and lists the chapters. It's not generic — it's the agent's statement about how they see.
+Libby: The `.cover.md` of the perspective book describes what perspective means for this specific agent and lists the chapters. It's not generic — it's the teammate's statement about how they see.
 
 ## When to use perspective
 
@@ -48,7 +48,7 @@ Libby: Use the perspective practice when:
 - You're reviewing your own work and want an external view
 - Doug asks "can you show me what you see?"
 
-Libby: The perspective is the agent's way of making the invisible visible. The library records what was learned. The perspective records what was SEEN.
+Libby: The perspective is the teammate's way of making the invisible visible. The library records what was learned. The perspective records what was SEEN.
 
 <!-- citations -->
 [reading cost]: 08-the-reading-cost-architecture.md

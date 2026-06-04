@@ -5,7 +5,7 @@ author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
 
 # Subjects and catalogues
 
-Libby: A subject catalogue IS the subject. Not a book ABOUT a subject — the subject's identity. The way an autobiography IS the agent, a catalogue IS the subject it defines.
+Libby: A subject catalogue IS the subject. Not a book ABOUT a subject — the subject's identity. The way an autobiography IS the teammate, a catalogue IS the subject it defines.
 
 ## The flat structure
 
@@ -94,11 +94,11 @@ Libby: Each team member has a personal library inside `..teamsmanship/{agent}/`.
   perspective/                            ← book (peer)
 ```
 
-Libby: The agent's subject catalogue, autobiography, and other books are flat peers. The subject catalogue links to the books. Each book has `subject: ".everything-that-has-a-shape"`.
+Libby: The teammate's subject catalogue, autobiography, and other books are flat peers. The subject catalogue links to the books. Each book has `subject: ".everything-that-has-a-shape"`.
 
 ## The `..teamsmanship/` subject
 
-Libby: `..teamsmanship/` is a subject catalogue at the library root. It's special because it contains agent folders. But it still follows the pattern — it catalogues books about the team (roles, abilities, sprint tracking) that sit as peers at the library root, AND it catalogues the agent folders inside it.
+Libby: `..teamsmanship/` is a subject catalogue at the library root. It's special because it contains agent folders. But it still follows the pattern — it catalogues books about the team (roles, abilities, sprint tracking) that sit as peers at the library root, AND it catalogues the teammate folders inside it.
 
 ## Naming
 
