@@ -72,7 +72,7 @@ Arthur: Validators are chapter resources in the field guide. Perspective images 
 Arthur: Inside `..teamsmanship/{agent}/`, the structure is flat:
 
 ```
-..teamsmanship/arthur/
+..teamsmanship/..team/arthur/
   ..everything-that-has-a-shape/         ← subject catalogue (self-cataloguing)
   arthur-or-the-shape-of-everything/    ← autobiography (peer)
   the-architecture-of-identity/         ← book (peer)
@@ -143,8 +143,8 @@ Guided by validator failures from Phase 2:
 - `..teamsmanship/` stays but its cover is rewritten to catalogue the newly-flattened books
 
 **3b. Move agent libraries into `..teamsmanship/{agent}/`.**
-- `..everything-that-has-a-shape/` → `..teamsmanship/arthur/..everything-that-has-a-shape/`
-- `..the-canvas-paints-itself/` → `..teamsmanship/cathy/..the-canvas-paints-itself/`
+- `..everything-that-has-a-shape/` → `..teamsmanship/..team/arthur/..everything-that-has-a-shape/`
+- `..the-canvas-paints-itself/` → `..teamsmanship/..team/cathy/..the-canvas-paints-itself/`
 - (etc. for all 8 agents)
 - Each agent directory has flat peers: their subject catalogue + their books
 
@@ -219,5 +219,5 @@ Guided by validator failures from Phase 2:
 <!-- citations -->
 [addendum]: ../sprint-47/addendum.md
 [synthesis]: ../../../..everything-that-has-a-shape/perspective/full-synthesis.md
-[field-guide-audit]: ../../../..teamsmanship/libby/perspective/field-guide-audit.md
+[field-guide-audit]: ../../../..teamsmanship/..team/libby/perspective/field-guide-audit.md
 [alignment]: ../../../..librarianship/.12-bringing-the-library-into-alignment.md

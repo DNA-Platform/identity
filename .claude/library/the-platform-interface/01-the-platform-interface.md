@@ -1,6 +1,6 @@
 ---
 title: The platform interface
-author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The platform interface
@@ -27,7 +27,7 @@ Libby: [CLAUDE.md](../../../CLAUDE.md) embeds the project purpose, Doug's workin
 
 ## Rules as wiring
 
-Libby: Rules with `paths:` frontmatter are the wiring between the codebase and the library. When Claude opens a file in `library/chemistry/src/`, a rule loads that says: this is [Cathy's territory](../..teamsmanship/cathy/), here's the [coding policy](../coding-policy/.cover.md), here's the [reactive model](../..teamsmanship/cathy/reactivity-models/.cover.md). The agent is immediately connected to the right knowledge for the code they're touching.
+Libby: Rules with `paths:` frontmatter are the wiring between the codebase and the library. When Claude opens a file in `library/chemistry/src/`, a rule loads that says: this is [Cathy's territory](../..teamsmanship/..team/cathy/), here's the [coding policy](../coding-policy/.cover.md), here's the [reactive model](../..teamsmanship/..team/cathy/reactivity-models/.cover.md). The agent is immediately connected to the right knowledge for the code they're touching.
 
 Libby: This is how code assignments work. The [registry](../..teamsmanship/registry.json) maps agents to paths. The rules ENACT those assignments by loading the right knowledge when the right files enter context. `/responsible` queries the registry. Rules enforce the assignments automatically.
 

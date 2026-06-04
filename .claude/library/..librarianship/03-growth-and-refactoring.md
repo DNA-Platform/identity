@@ -1,6 +1,6 @@
 ---
 title: Growth and refactoring
-author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Growth and refactoring
@@ -45,15 +45,15 @@ Libby: **Signal:** several books share a conceptual thread that none fully artic
 
 Libby: **Procedure:**
 
-1. Create a new [subject catalogue](04-subjects-and-catalogues.md) — a `.` prefixed directory with `.cover.md`.
-2. The catalogue's cover describes the conceptual thread and catalogues the books with [subject-shaped descriptions](04-subjects-and-catalogues.md) — each book described from the subject's perspective.
+1. Create a new [subject catalogue](../subjects-and-catalogues/01-subjects-and-catalogues.md) — a `.` prefixed directory with `.cover.md`.
+2. The catalogue's cover describes the conceptual thread and catalogues the books with [subject-shaped descriptions](../subjects-and-catalogues/01-subjects-and-catalogues.md) — each book described from the subject's perspective.
 3. Each book adds `subject: ".new-subject"` to its frontmatter pointing to the new catalogue.
-4. The new subject catalogue [self-catalogues](04-subjects-and-catalogues.md) — it appears in its own TOC.
+4. The new subject catalogue [self-catalogues](../subjects-and-catalogues/01-subjects-and-catalogues.md) — it appears in its own TOC.
 5. The parent catalogue (e.g., `..librarianship/` or `..teamsmanship/`) adds the new subject to ITS TOC.
 
 Libby: Three new peer directories: the subject catalogue and at least two books. A subject with only one book is just a book — subjects need MULTIPLE books to justify existence.
 
-Libby: Subjects can catalogue sub-subjects — this is how the [tree grows deep](04-subjects-and-catalogues.md). The filesystem stays flat. The depth is in the links.
+Libby: Subjects can catalogue sub-subjects — this is how the [tree grows deep](../subjects-and-catalogues/01-subjects-and-catalogues.md). The filesystem stays flat. The depth is in the links.
 
 ## Catalogue evolution
 

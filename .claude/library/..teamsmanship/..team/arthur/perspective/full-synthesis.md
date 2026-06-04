@@ -191,4 +191,4 @@ Arthur: Everything Doug specified, everything the team discussed, every error we
 <!-- citations -->
 [sprint-47-notes]: sprint-47-design-notes.md
 [library-spec-v2]: library-spec-v2.md
-[field-guide-audit]: ../../..teamsmanship/libby/perspective/field-guide-audit.md
+[field-guide-audit]: ../../..teamsmanship/..team/libby/perspective/field-guide-audit.md

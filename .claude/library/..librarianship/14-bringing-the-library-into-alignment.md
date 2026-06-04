@@ -1,15 +1,15 @@
 ---
 title: Bringing the library into alignment
-author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Bringing the library into alignment
 
-Libby: The library's specification — chapters [01](01-anatomy-of-a-book.md) through [11](13-tasks-and-unfinished-work.md) of this field guide — describes a system that the library doesn't yet implement. This chapter tracks what needs to change and in what order. When each section is complete, it gets marked done and eventually this chapter archives itself.
+Libby: The library's specification — chapters [01](../anatomy-of-a-book/01-anatomy-of-a-book.md) through [11](13-tasks-and-unfinished-work.md) of this field guide — describes a system that the library doesn't yet implement. This chapter tracks what needs to change and in what order. When each section is complete, it gets marked done and eventually this chapter archives itself.
 
 ## The target state
 
-Libby: As specified by chapters [01](01-anatomy-of-a-book.md) (anatomy), [04](04-subjects-and-catalogues.md) (subjects), and [.02](10-the-platform-interface.md) (platform interface):
+Libby: As specified by chapters [01](../anatomy-of-a-book/01-anatomy-of-a-book.md) (anatomy), [04](../subjects-and-catalogues/01-subjects-and-catalogues.md) (subjects), and [.02](../the-platform-interface/01-the-platform-interface.md) (platform interface):
 
 Libby: The library is FLAT. Two catalogues at the root: `..librarianship/` (the library) and `..teamsmanship/` (the team). Every other directory at the root is a regular book with `subject: ".team"` or `subject: "..librarianship"`. Books sit BESIDE their subject, not inside it. Agent personal libraries live inside `..teamsmanship/{agent}/` with the same flat pattern internally.
 

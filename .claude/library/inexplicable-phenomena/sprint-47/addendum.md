@@ -57,5 +57,5 @@ Arthur: Sprint 47 is incomplete. No phase is truly done. The field guide chapter
 
 <!-- citations -->
 [sprint-47-plan]: plan.md
-[field-guide-audit]: ../../../..teamsmanship/libby/perspective/field-guide-audit.md
+[field-guide-audit]: ../../../..teamsmanship/..team/libby/perspective/field-guide-audit.md
 [design-notes]: ../../../..everything-that-has-a-shape/perspective/sprint-47-design-notes.md

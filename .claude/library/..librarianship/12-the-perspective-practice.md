@@ -1,6 +1,6 @@
 ---
 title: The perspective practice
-author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The perspective practice

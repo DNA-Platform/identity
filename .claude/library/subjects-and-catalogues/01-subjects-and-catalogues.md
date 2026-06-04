@@ -1,6 +1,6 @@
 ---
 title: Subjects and catalogues
-author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Subjects and catalogues
@@ -40,7 +40,7 @@ Libby: Every book declares its canonical subject in its frontmatter as a markdow
 ```yaml
 ---
 title: Coding Policy
-author: "[Arthur](../..teamsmanship/arthur/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
 subject: "[The Team](../..teamsmanship/.cover.md)"
 ---
 ```
@@ -87,7 +87,7 @@ Libby: A subject gets too many books → factor into sub-subjects. The original 
 Libby: Each team member has a personal library inside `..teamsmanship/{agent}/`. Inside that folder, the structure is the SAME flat pattern:
 
 ```
-..teamsmanship/arthur/
+..teamsmanship/..team/arthur/
   ..everything-that-has-a-shape/           ← subject catalogue (Arthur's library identity)
   arthur-or-the-shape-of-everything/      ← book (autobiography, peer)
   the-architecture-of-identity/           ← book (peer)

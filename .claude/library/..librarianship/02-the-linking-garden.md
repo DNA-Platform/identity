@@ -1,6 +1,6 @@
 ---
 title: The linking garden
-author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The linking garden
@@ -34,19 +34,19 @@ Libby: **Convention:** if you mention something, cite it. If you cite it, make s
 
 ### Cross-references (frontmatter `links:`)
 
-Libby: Book-level connections declared on the [cover](01-anatomy-of-a-book.md):
+Libby: Book-level connections declared on the [cover](../anatomy-of-a-book/01-anatomy-of-a-book.md):
 
 ```yaml
 links:
   - "[Coding Policy](../coding-policy/.cover.md)"
-  - "[Reactivity Models](../..teamsmanship/cathy/reactivity-models/.cover.md)"
+  - "[Reactivity Models](../..teamsmanship/..team/cathy/reactivity-models/.cover.md)"
 ```
 
 Libby: These are structural — they tell the catalogue system "these books are related." All frontmatter links must be real markdown links with descriptive text, never bare paths.
 
 ### The `subject:` field
 
-Libby: Every book's [frontmatter](01-anatomy-of-a-book.md) includes `subject:` — the canonical [subject catalogue](04-subjects-and-catalogues.md) this book belongs to. This is a structural link: it declares where the book lives in the library's hierarchy. A book can be linked by multiple subject catalogues, but it declares ONE canonical subject.
+Libby: Every book's [frontmatter](../anatomy-of-a-book/01-anatomy-of-a-book.md) includes `subject:` — the canonical [subject catalogue](../subjects-and-catalogues/01-subjects-and-catalogues.md) this book belongs to. This is a structural link: it declares where the book lives in the library's hierarchy. A book can be linked by multiple subject catalogues, but it declares ONE canonical subject.
 
 ### The `author:` field
 
@@ -54,7 +54,7 @@ Libby: On covers AND chapters. A real markdown link where the text is the author
 
 ## Links target sections
 
-Libby: Links can point to specific sections within a file using heading anchors: `[chapter signing](01-anatomy-of-a-book.md#chapter-frontmatter)`. This enables the [shortcut system](08-the-reading-cost-architecture.md) — a catalogue can link directly to the section of a book that answers the most common question, skipping the cover entirely.
+Libby: Links can point to specific sections within a file using heading anchors: `[chapter signing](../anatomy-of-a-book/01-anatomy-of-a-book.md#chapter-frontmatter)`. This enables the [shortcut system](../the-reading-cost-architecture/01-the-reading-cost-architecture.md) — a catalogue can link directly to the section of a book that answers the most common question, skipping the cover entirely.
 
 ## The direction convention
 

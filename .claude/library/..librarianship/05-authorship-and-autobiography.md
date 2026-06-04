@@ -1,11 +1,11 @@
 ---
 title: Authorship and autobiography
-author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Authorship and autobiography
 
-Libby: Every book has an author. Every chapter has an author. The `author:` field is a real markdown link — the text is the name, the target is the [autobiography](01-anatomy-of-a-book.md). The autobiography IS the author. Not a profile. Not a role file. The living, first-person narrative of who this person is and what they've built.
+Libby: Every book has an author. Every chapter has an author. The `author:` field is a real markdown link — the text is the name, the target is the [autobiography](../anatomy-of-a-book/01-anatomy-of-a-book.md). The autobiography IS the author. Not a profile. Not a role file. The living, first-person narrative of who this person is and what they've built.
 
 ## The canonical autobiography
 
@@ -44,7 +44,7 @@ Libby: Each agent has AT MINIMUM two books in their [personal library](../..team
 
 1. **The canonical autobiography** — self-authored. The autobiography IS the teammate. It records experiences, growth, failure modes. The last chapter is the current-state marker.
 
-2. **The library catalogue** — a [subject catalogue](04-subjects-and-catalogues.md) (`.` prefix, self-cataloguing) that IS the teammate's personal library identity. Authored by the autobiography. Catalogues itself + the autobiography + all other books the teammate has written.
+2. **The library catalogue** — a [subject catalogue](../subjects-and-catalogues/01-subjects-and-catalogues.md) (`.` prefix, self-cataloguing) that IS the teammate's personal library identity. Authored by the autobiography. Catalogues itself + the autobiography + all other books the teammate has written.
 
 Libby: Together: the autobiography IS the teammate (via self-authorship). The library catalogue IS the teammate's knowledge (via self-cataloguing). Identity through self-reference at two scales.
 

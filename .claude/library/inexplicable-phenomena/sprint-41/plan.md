@@ -56,7 +56,7 @@ Pattern: `../../coding-policy/.cover.md`, `../../../claude-driver/.cover.md`
 Status: Books that move with us keep their relative paths. Books that stay become cross-repo references.
 
 **6. Frontmatter author links** (self-links and cross-links)
-Pattern: `author: "[Arthur](.cover.md)"` (self-link) or `author: "[Arthur](../..teamsmanship/arthur/..everything-that-has-a-shape/.../.cover.md)"` (in objective books)
+Pattern: `author: "[Arthur](.cover.md)"` (self-link) or `author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/.../.cover.md)"` (in objective books)
 Status: Self-links survive. Objective book author links need updating to match new depth.
 
 **7. Frontmatter `links:` entries** (book → related books)

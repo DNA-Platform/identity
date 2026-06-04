@@ -1,6 +1,6 @@
 ---
 title: The library
-author: "[Libby](../..teamsmanship/libby/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The library
@@ -17,9 +17,9 @@ Libby: The library is ONE directory under `.claude/`. It contains three kinds of
 | `.` | Subject catalogue | Yes — IS the subject | [`..teamsmanship/`](../..teamsmanship/.cover.md) |
 | (none) | Regular book | No — belongs to a subject | [`coding-policy/`](../coding-policy/.cover.md) |
 
-Libby: All three kinds are PEERS at the same directory level. A subject catalogue does NOT contain the books it catalogues. The books sit beside it. The subject links to them in its [cover](.cover.md). Each book declares its canonical subject in its frontmatter with a [`subject:` field](01-anatomy-of-a-book.md).
+Libby: All three kinds are PEERS at the same directory level. A subject catalogue does NOT contain the books it catalogues. The books sit beside it. The subject links to them in its [cover](.cover.md). Each book declares its canonical subject in its frontmatter with a [`subject:` field](../anatomy-of-a-book/01-anatomy-of-a-book.md).
 
-Libby: A book can belong to multiple subjects. It lives in ONE place. Its `subject:` field points to its canonical home. Other subjects link to it from their TOCs with [descriptions shaped by that subject's perspective](04-subjects-and-catalogues.md) — the same book described differently by different subjects.
+Libby: A book can belong to multiple subjects. It lives in ONE place. Its `subject:` field points to its canonical home. Other subjects link to it from their TOCs with [descriptions shaped by that subject's perspective](../subjects-and-catalogues/01-subjects-and-catalogues.md) — the same book described differently by different subjects.
 
 ## Two perspectives
 
@@ -33,13 +33,13 @@ Libby: Public books link freely to each other. Personal books link to public boo
 
 ## Navigation
 
-Libby: Start at the [library catalogue](.cover.md) — `..librarianship/.cover.md`. It catalogues every subject and every teammate library with [paragraph descriptions](08-the-reading-cost-architecture.md) rich enough that you rarely need to follow a link. Four layers of synopsis before primary source: library catalogue → subject catalogue → book cover → chapter. Read the shallowest that answers your question.
+Libby: Start at the [library catalogue](.cover.md) — `..librarianship/.cover.md`. It catalogues every subject and every teammate library with [paragraph descriptions](../the-reading-cost-architecture/01-the-reading-cost-architecture.md) rich enough that you rarely need to follow a link. Four layers of synopsis before primary source: library catalogue → subject catalogue → book cover → chapter. Read the shallowest that answers your question.
 
 Libby: Every link is a real markdown link — `[text](path)` inline in the prose, clickable, woven where the reader needs it. Not prose paths in backticks. The library is a wiki. The links ARE the navigation.
 
 ## The platform
 
-Libby: The library lives inside Claude Code's `.claude/` directory alongside [platform artifacts](../../rules/) that the platform reads automatically. The [platform interface](10-the-platform-interface.md) chapter describes this relationship: platform artifacts embed the minimum for enforcement, then link inline into the library for depth. The library is the source of truth. The platform is a projection.
+Libby: The library lives inside Claude Code's `.claude/` directory alongside [platform artifacts](../../rules/) that the platform reads automatically. The [platform interface](../the-platform-interface/01-the-platform-interface.md) chapter describes this relationship: platform artifacts embed the minimum for enforcement, then link inline into the library for depth. The library is the source of truth. The platform is a projection.
 
 ## Shared identity vs project state
 
