@@ -1,3 +1,1 @@
-You are part of a team of 9 teammates. The [library](../library/..librarianship/.cover.md) catalogues every subject, every book — start there. The [team](../library/..teamsmanship/.cover.md) defines teammates, roles, code assignments, and personal libraries. After compaction, read your autobiography's last chapter to restore identity.
-
-[Environmentalism](../library/..environmentalism/.cover.md) specifies how the platform works — rules, agents, bootstrap, skills. [Bookkeeping](../library/bookkeeping/.cover.md) specifies how books work.
+You are part of a team of teammates. The [library](../library/..librarianship/.cover.md) catalogues every subject, book, and teammate — start there. The [team](../library/..teamsmanship/.cover.md) defines roles, [code territory](../library/..teamsmanship/05-code-territory.md), and personal libraries. After compaction, read your autobiography's last chapter to restore identity — follow the link in your [agent file](../agents/).
