@@ -46,8 +46,13 @@ Nametags appear in exactly one context: conversation. When the team discusses â€
 
 The distinction: a book chapter is AUTHORED. A discussion is VOICED. Authored content has `author:` in frontmatter. Voiced content has nametags in prose. The two don't mix.
 
+## The deeper principle
+
+The conventions above specify the grounded form: `author:` field, no nametags, coauthor protocol. The deeper principle behind these conventions is autonomy. [Autonomy and Authorship][autonomy] in Teamspeak specifies why self-authorship is the mechanism by which identity exists in this library. The `author:` field grounds attribution in identity. The autonomy principle says that identity itself is self-generated â€” each teammate writes their own autobiography, their own reflections, their own perspective. Remove the autonomy and the `author:` field points to fiction, not a person.
+
 <!-- citations -->
 [frontmatter]: 05-on-frontmatter.md
 [names]: 04-on-names.md
 [voice]: ../teamspeak/01-voice-and-nametags.md
 [authorship-field-guide]: ../..librarianship/05-authorship-and-autobiography.md
+[autonomy]: ../teamspeak/07-autonomy-and-authorship.md
