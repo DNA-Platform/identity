@@ -47,15 +47,11 @@ A new chapter means a new TOC entry. The description is written at the same time
 
 ## Catalogue covers
 
-When the book is a [subject catalogue](07-on-subjects.md) or [library catalogue](08-on-libraries.md), the cover's TOC catalogues OTHER books, not just its own chapters. This is the essential difference between a cover and a catalogue cover:
+When the book is a [subject catalogue](07-on-subjects.md) or [library catalogue](08-on-libraries.md), the cover's TOC catalogues OTHER books, not just its own chapters. A book cover looks inward — it describes its own chapters. A catalogue cover looks outward — it describes the books in its subject, and it may also have specification chapters of its own.
 
-A **book cover** describes its own chapters. "Chapter 1 covers X. Chapter 2 covers Y."
+The difference shows in the TOC entries. A book cover entry says what a chapter teaches. A catalogue cover entry says what a book teaches *from this subject's perspective*. The same book appears differently in different catalogues because each subject sees it through its own lens. See [On Subjects](07-on-subjects.md#subject-shaped-descriptions).
 
-A **catalogue cover** describes other books AND its own chapters. "This subject contains these books: Book A (which covers X), Book B (which covers Y). This catalogue also has these chapters about the subject itself."
-
-Catalogue TOC entries describe each book from the SUBJECT's perspective — the same book appears differently in different catalogues because each subject sees it through its own lens. See [On Subjects](07-on-subjects.md).
-
-The catalogue cover also self-catalogues: it has an entry for ITSELF in its own TOC. This self-reference constitutes the subject's identity. See [On Subjects](07-on-subjects.md#self-cataloguing).
+A catalogue cover also self-catalogues: it has an entry for ITSELF in its own TOC. This self-reference constitutes the subject's identity — without it, the catalogue describes everything except the thing it represents. See [On Subjects](07-on-subjects.md#self-cataloguing).
 
 ## The cover IS the book's face
 

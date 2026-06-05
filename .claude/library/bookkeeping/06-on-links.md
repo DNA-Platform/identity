@@ -55,6 +55,8 @@ Citations are the file's local glossary — reusable link targets for concepts m
 
 A link carries two things: the text (what the reader sees) and the target (where the reader goes). The text matters as much as the target. `[01-on-books.md](01-on-books.md)` is a link but a poor one — it shows a filename where it should show a name. `[On Books](01-on-books.md)` shows the reader what they'll find. Link text is [tier-zero synopsis](04-on-names.md) for the target.
 
+This distinction runs deeper than formatting. A [subject link](07-on-subjects.md) like `subject: "[Knowledge](.cover.md)"` carries two different meanings in two different parts of the same syntax: the text names the subject, the path locates the book that represents it. "Knowledge" is what the catalogue IS ABOUT. ".cover.md" is where the catalogue LIVES. See [chapter 38 of the autobiography](../..teamsmanship/..team/libby/libby-and-the-tended-garden/38-the-library-i-didnt-understand.md) for the longer story of learning to see this distinction.
+
 <!-- citations -->
 [books]: 01-on-books.md
 [chapters]: 02-on-chapters.md

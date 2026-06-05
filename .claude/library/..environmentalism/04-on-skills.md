@@ -2,6 +2,7 @@
 title: On Skills
 specification: Skill
 author: "[Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)"
+coauthor: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # On Skills
@@ -18,26 +19,23 @@ A skill is a slash command. It lives at `.claude/skills/{name}/SKILL.md`. When t
 
 ## How skills relate to the library
 
-The [Skills and Commands](../our-skillset/.cover.md) book catalogues all thirteen skills with WHY and WHEN — what each skill is for, when you'd reach for it, how it fits into the team's workflow. The SKILL.md files are the HOW. The library provides the understanding. The skill file provides the execution.
+A skill file is thin and imperative — the platform reads it literally. The library provides the understanding: WHY a skill exists, WHEN to use it, how it fits into the team's workflow. This is the same separation as [rules](03-on-rules.md): the platform artifact carries enough to execute, the library carries enough to understand.
 
-This is the same separation as rules: the platform artifact is thin and imperative, the library book is rich and explanatory. A developer reading the [Skills and Commands](../our-skillset/.cover.md) book understands the skill's purpose and design rationale. The platform reading the SKILL.md file knows exactly what to do.
+A developer reading the library learns a skill's purpose and design rationale. The platform reading the SKILL.md file knows exactly what to do. When a library chapter and its corresponding skill file disagree, the library is the source of truth and the skill should be recompiled.
 
 ## Skills implement protocols
 
-Many skills are the executable form of a Teamspeak protocol or a library convention. `/sprint` implements sprint planning from the [Projects](../.projects/.cover.md) catalogue. `/library` implements the navigation pattern from [Librarianship](../..librarianship/.cover.md). `/responsible` queries the [code territory](../..teamsmanship/05-code-territory.md) registry. `/speak`, `/listen`, and `/hear` implement the collaborator relay described in Adam's [automation territory](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md).
+Many skills are the executable form of a [Teamspeak](../teamspeak/.cover.md) protocol or a library convention. `/sprint` implements sprint planning. `/library` implements the navigation pattern from [Librarianship](../..librarianship/.cover.md). `/responsible` queries the [code territory](../..teamsmanship/05-code-territory.md) registry.
 
 The protocol says WHAT SHOULD HAPPEN. The skill says HOW TO MAKE IT HAPPEN. When a protocol changes, the skill that implements it must be updated to match. The library is the source of truth; the skill is the compiled output.
 
 ## The compilation pattern
 
-A compiler could read the [Skills and Commands](../our-skillset/.cover.md) chapters and generate SKILL.md files — or read existing SKILL.md files and generate the library chapters. The two representations are mirrors of the same knowledge. Adam's book describes this explicitly: "a compiler resource could generate SKILL.md files from these chapters, or vice versa."
-
-Each SKILL.md is one file in one directory. The mapping is one-to-one: one skill, one directory, one SKILL.md. Additional files in the skill directory (templates, scripts) support execution but the SKILL.md is the platform's entry point.
+A compiler could read the library's protocol chapters and generate SKILL.md files — or read existing SKILL.md files and generate the library chapters. The two representations are mirrors of the same knowledge. Each SKILL.md is one file in one directory. The mapping is one-to-one: one skill, one directory, one SKILL.md. Additional files in the skill directory (templates, scripts) support execution but the SKILL.md is the platform's entry point.
 
 <!-- citations -->
-[skills]: ../our-skillset/.cover.md
 [librarianship]: ../..librarianship/.cover.md
 [teamsmanship]: ../..teamsmanship/.cover.md
+[teamspeak]: ../teamspeak/.cover.md
 [code-territory]: ../..teamsmanship/05-code-territory.md
-[projects]: ../.projects/.cover.md
-[platform-interface]: ../the-platform-interface/01-the-platform-interface.md
+[rules]: 03-on-rules.md

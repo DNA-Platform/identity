@@ -36,7 +36,7 @@ Everything else. Protocols live in [Teamspeak](../teamspeak/.cover.md). Coding p
 
 ## The compilation pattern
 
-A compiler could read the library catalogue, the current project state, and the team roster, then generate CLAUDE.md according to this specification. The specification defines the output shape. The compiler assembles the content. When the library changes, CLAUDE.md is recompiled — not hand-edited. This is the same pattern as [On Agents](01-on-agents.md): prose for the reader, code for the machine, one specification serving both.
+A compiler could read the library catalogue, the current project state, and the team roster, then generate CLAUDE.md according to this specification. The specification defines the output shape. The compiler assembles the content. When the library changes, CLAUDE.md is recompiled — not hand-edited. This is the same pattern as [On Teammates](01-on-teammates.md): prose for the reader, code for the machine, one specification serving both.
 
 <!-- citations -->
 [librarianship]: ../..librarianship/.cover.md

@@ -2,6 +2,7 @@
 title: On Evolution
 specification: Evolution
 author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+coauthor: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # On Evolution
@@ -87,6 +88,18 @@ Signs during routine maintenance:
 - A summary that's hard to write — probably about more than one thing
 - A subject with only one book — not a subject yet
 - A section label that describes format, not content — ready to dissolve
+
+## Evolution as reactive rendering
+
+The evolution patterns above have a structural analogue in $Chemistry. The library is a reactive system. Its content is state. Its structure — the hierarchy of chapters, books, subjects, catalogues — is the view. Evolution is what happens when the view no longer faithfully represents the state.
+
+A chapter that needs its own table of contents is a dirty flag. The content has grown past what the current structural container can render. The "signal" sections above are detection heuristics for dirty state. The "procedure" sections are re-render operations: replace the old view (a chapter in one book) with a new view (a book with its own chapters and cover) that accurately projects the current state.
+
+Dissolution of container labels is the library's equivalent of garbage collection. When the content a label organized has migrated to proper structural homes, the label is an orphaned reference — it points to nothing that still needs it. Removing it is not cleanup. It is the view catching up to the state.
+
+The [synopsis principle](09-on-synopsis.md) is the reconciliation algorithm. When the library re-renders after an evolution — a chapter becomes a book — most readers never need to see the change. The synopsis in the original location makes the link rarely necessary. This is the same optimization $Chemistry uses: if the view output has not changed at a given level of detail, skip the deeper reconciliation. The evolution happened. The synopsis absorbed it. Most render paths are unaffected.
+
+The deepest parallel: evolution is not redesign. In $Chemistry, a re-render does not rebuild the DOM — it diffs the old view against the new and applies the minimum mutation. In the library, a chapter becoming a book does not rewrite the subject — it replaces the extracted chapter with a summary link and adds the new book as a peer. The structure mutates minimally. What was there before is preserved. What is new is added. The thing does not break. It evolves.
 
 <!-- citations -->
 [books]: 01-on-books.md
