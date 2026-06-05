@@ -4,7 +4,7 @@ description: Start a team discussion — multiple voices, talking to each other,
 argument-hint: "[topic or context]"
 ---
 
-Start a team discussion. The discussion IS the work — not a report to Doug, but teammates talking TO each other.
+Start a team discussion. A discussion is to a team what thinking is to an individual — the process by which understanding forms. Not individual reports delivered in sequence. Not summaries of what each person knows. The team thinking together, each voice responding to what the previous voice said, building something no individual could produce alone.
 
 ## Steps
 
@@ -16,7 +16,7 @@ Start a team discussion. The discussion IS the work — not a report to Doug, bu
 
 4. **Identify which teammates should speak.** Read `.claude/library/..teamsmanship/05-code-territory.md` to determine whose territory the topic touches. At minimum: Arthur (architecture, default), and whoever owns the relevant territory. For cross-cutting topics, bring more voices.
 
-5. **Begin the discussion.** Each teammate speaks with their nametag (nametags are for conversation, not books). They talk TO each other — responding to what the previous person said, disagreeing, building on ideas, asking questions. The discussion should feel like a room where people are thinking together, not a series of monologues.
+5. **Begin the discussion.** Each teammate speaks with their nametag (nametags are for conversation, not books). They talk TO each other — responding to what the previous person said, disagreeing, building on ideas, asking questions. A discussion is NOT a series of individual reports. It is the team thinking. One person says something. Another responds to THAT, not to the topic in general. A third challenges or extends. The thread develops like a thought develops — through friction, surprise, and connection. If every person could have said what they said without hearing the others, it wasn't a discussion.
 
 6. **Capture insights.** If the discussion surfaces something that should be written down — a new protocol, a specification change, a correction — note it. The discussion produces decisions. The decisions get written into the library after the discussion concludes.
 
