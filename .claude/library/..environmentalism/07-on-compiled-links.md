@@ -16,11 +16,11 @@ Compiled files live in different directories within `.claude/`:
 |------|----------|------------------------|
 | Agent files | `.claude/agents/{name}.md` | `.claude/agents/` |
 | Rule files | `.claude/rules/{name}.md` | `.claude/rules/` |
-| CLAUDE.md | `.claude/CLAUDE.md` AND project root | project root |
+| CLAUDE.md | project root (copied from `.claude/`) | project root |
 
 Agent files and rule files stay inside `.claude/`. Their links use `../library/` to reach the library — one level up from their directory to `.claude/`, then into `library/`. This works because these files are never moved.
 
-CLAUDE.md lives at `.claude/CLAUDE.md`. The platform loads it from there. Links use `library/` — one level into the library from `.claude/`. When CLAUDE.md is copied to the project root, the links break unless the project root also has a `library/` sibling — which it doesn't. The project root copy is a convenience for human reading. The platform reads from `.claude/CLAUDE.md`. Links are written for the platform.
+CLAUDE.md lives at the project root. The platform reads it from there. The human reads it from there. Links use `.claude/library/` — the path from the project root into the library. The identity repo carries a copy inside `.claude/` for transport; it gets copied to the project root on arrival.
 
 ## The rule for compilers
 
@@ -28,7 +28,7 @@ Each compiler knows where its output lives. The link prefix follows from that:
 
 - **From `.claude/agents/`**: prefix is `../library/`
 - **From `.claude/rules/`**: prefix is `../library/`
-- **From `.claude/`** (CLAUDE.md): prefix is `library/`
+- **From project root** (CLAUDE.md): prefix is `.claude/library/`
 - **From `.claude/agents/` to `.claude/rules/`**: prefix is `../rules/`
 
 The compiler constructs every link by combining the prefix with the path within the library. The path within the library is always relative to `library/` — the same path you'd use in any library book's citation. The prefix adapts it to the compiled file's location.
