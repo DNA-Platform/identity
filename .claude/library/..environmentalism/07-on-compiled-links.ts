@@ -39,11 +39,11 @@ function checkLinks(filePath: string, resolveFrom: string): void {
 
 console.log(`Validating compiled links from: ${root}\n`);
 
-// Check CLAUDE.md (resolves from project root)
+// Check CLAUDE.md (resolves from .claude/ where the platform loads it)
 const claudeMd = join(root, 'CLAUDE.md');
 if (existsSync(claudeMd)) {
-  console.log('Checking CLAUDE.md (resolves from project root)...');
-  checkLinks(claudeMd, projectRoot);
+  console.log('Checking CLAUDE.md (resolves from .claude/)...');
+  checkLinks(claudeMd, root);
 }
 
 // Check agent files (resolve from .claude/agents/)
