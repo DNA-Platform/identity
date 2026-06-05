@@ -1,9 +1,8 @@
----
-title: The container and the thing contained
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The container and the thing contained
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [The Architecture of Identity](.cover.md)] | [Next: [Sedimentary identity](02-sedimentary-identity.md)]
 

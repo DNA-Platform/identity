@@ -1,10 +1,9 @@
----
-kind: stub
-title: Chemical as React component
-status: planned
----
-
 # Chemical as React component
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 How a `$Chemical` instance becomes something React can mount.
 

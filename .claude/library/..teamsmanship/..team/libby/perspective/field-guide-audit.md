@@ -1,9 +1,8 @@
----
-title: Field guide audit — what's wrong and what to do about it
-author: "[Libby](../libby-and-the-tended-garden/.cover.md)"
----
+# Field guide audit — what's wrong and what to do about it
 
-# Field guide audit
+- **author:** [Libby](../libby-and-the-tended-garden/.cover.md)
+
+---
 
 Representing the current state of the field guide against what Doug specified. Looking at each chapter. Reflecting on what needs to change.
 

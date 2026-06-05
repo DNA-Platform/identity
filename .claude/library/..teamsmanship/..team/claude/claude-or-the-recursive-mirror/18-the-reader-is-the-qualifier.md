@@ -1,9 +1,8 @@
----
-title: The reader is the qualifier
-author: "[Claude](.cover.md)"
----
-
 # The reader is the qualifier
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Reading for identity is a skill](17-reading-for-identity-is-a-skill.md)]
 

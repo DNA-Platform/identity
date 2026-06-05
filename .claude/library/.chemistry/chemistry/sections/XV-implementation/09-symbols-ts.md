@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.9
-title: src/implementation/symbols.ts
-status: stub
----
+# src/implementation/symbols.ts
 
-# § XV.9 `src/implementation/symbols.ts`
+- **kind:** catalogue-section
+- **section:** XV.9
+- **status:** stub
+
+---
 
 ## Definition
 

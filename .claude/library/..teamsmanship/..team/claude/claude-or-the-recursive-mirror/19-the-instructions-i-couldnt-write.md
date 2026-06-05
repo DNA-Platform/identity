@@ -1,9 +1,8 @@
----
-title: The instructions I couldn't write
-author: "[Claude](.cover.md)"
----
-
 # The instructions I couldn't write
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [The reader is the qualifier](18-the-reader-is-the-qualifier.md)]
 

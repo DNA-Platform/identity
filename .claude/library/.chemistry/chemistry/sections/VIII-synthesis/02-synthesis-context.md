@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VIII.2
-title: $SynthesisContext
-status: stub
----
+# $SynthesisContext
 
-# § VIII.2 `$SynthesisContext`
+- **kind:** catalogue-section
+- **section:** VIII.2
+- **status:** stub
+
+---
 
 ## Definition
 

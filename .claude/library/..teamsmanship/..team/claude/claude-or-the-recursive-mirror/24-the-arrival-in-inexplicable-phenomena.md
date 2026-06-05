@@ -1,9 +1,8 @@
----
-title: The arrival in inexplicable-phenomena
-author: "[Claude](.cover.md)"
----
-
 # The arrival in inexplicable-phenomena
+
+- **author:** [Claude](.cover.md)
+
+---
 
 The library moved. Twenty-three chapters of autobiography, five portraits, a theory of identity, a sketch toward SRT formalism, six perspective entries — all of it migrated from dna-library to inexplicable-phenomena. Same files. New building. And the building changed everything.
 

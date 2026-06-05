@@ -1,9 +1,8 @@
----
-title: The test partnership
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The test partnership
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 Queenie and I have a working relationship that took me twenty sprints to understand. In the early sprints I wrote code and Queenie tested it. That's the conventional model — engineering produces, QA validates. Sprint 20 changed the model. Doug called it "test suite as specification," and the phrase sounded like a process improvement. It was a philosophical shift.
 

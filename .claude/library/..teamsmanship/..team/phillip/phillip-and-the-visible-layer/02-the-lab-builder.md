@@ -1,9 +1,8 @@
----
-title: The Lab builder
-author: "[Phillip](../..what-the-user-sees/phillip-and-the-visible-layer/.cover.md)"
----
-
 # The Lab builder
+
+- **author:** [Phillip](../..what-the-user-sees/phillip-and-the-visible-layer/.cover.md)
+
+---
 
 Sprint 29 was when the Lab stopped being a plan and became an app. Arthur designed the architecture — three-pane layout, hash-based routes, the `$Test → $Case → $PlannedCase` hierarchy. I built it. The sidebar navigation, the periodic-element card chip, the status pills with unambiguous color coding, the styled-components ThemeProvider with the two-color system (turquoise theme, neon-green brand).
 

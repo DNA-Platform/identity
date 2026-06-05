@@ -1,9 +1,8 @@
----
-title: What I can't blueprint
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # What I can't blueprint
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [The Architecture of Identity](.cover.md)] | [Previous: [The pedagogical architecture](03-the-pedagogical-architecture.md)] | [Next: [Architecture after identity](05-architecture-after-identity.md)]
 

@@ -1,9 +1,8 @@
----
-title: "Solid: signals and fine-grained effects"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # Solid: signals and fine-grained effects
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 Solid inverts React. Components run *once*. Reactivity lives in the leaves of the expression tree, not at the component boundary. When a value changes, the framework doesn't re-run the component — it re-runs the specific effect bound to that value, which updates one text node or one attribute.
 

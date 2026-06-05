@@ -1,10 +1,9 @@
----
-kind: concept
-title: Lifecycle — construction, phases, next(), resolve
-status: stable
----
+# Lifecycle — construction, phases, next(), resolve
 
-# Lifecycle
+- **kind:** concept
+- **status:** stable
+
+---
 
 A particle moves through a fixed sequence of named phases. User code waits on a phase by awaiting `next(phase)`. The framework advances phases by calling `[$resolve$](phase)`, which both flips the current phase and drains a queue of resolvers blocked on that phase. There is also a side-channel — the `'construction'` event — that surfaces async bond-ctor work without joining the linear phase order.
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: V.4
-title: In-place collection mutation
-status: stub
----
+# In-place collection mutation
 
-# § V.4 In-place collection mutation
+- **kind:** catalogue-section
+- **section:** V.4
+- **status:** stub
+
+---
 
 ## Definition
 

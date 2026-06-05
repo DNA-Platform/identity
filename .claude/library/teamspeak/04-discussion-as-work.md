@@ -1,9 +1,8 @@
----
-title: Discussion as work
-author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Discussion as work
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 The team doesn't just execute tasks and report results. The team discusses. Teammates talk to each other — back and forth, many more messages than teammates, each voice contributing a perspective the others can't see. The discussion IS the work, not preparation for the work.
 

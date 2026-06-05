@@ -1,10 +1,9 @@
----
-title: On Bootstrap
-specification: Bootstrap
-author: "[Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)"
----
-
 # On Bootstrap
+
+- **specification:** Bootstrap
+- **author:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 CLAUDE.md is the entrance to the building. Claude Code loads it every session — new conversation or resumed after compaction. It is the first thing any agent reads and the last thing that survives a compaction. That makes it simultaneously the least important file in the library (it contains almost nothing) and the most important file in the environment (without it, the library is unreachable).
 

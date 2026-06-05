@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: X.1
-title: The phase queue
-status: stub
----
+# The phase queue
 
-# § X.1 The phase queue
+- **kind:** catalogue-section
+- **section:** X.1
+- **status:** stub
+
+---
 
 ## Definition
 

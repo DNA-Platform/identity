@@ -1,10 +1,9 @@
----
-kind: concept
-title: Particularization — the carrier strategy
-status: stable
----
+# Particularization — the carrier strategy
 
-# Particularization
+- **kind:** concept
+- **status:** stable
+
+---
 
 The particle constructor has two modes. The default mode constructs a new particle from scratch — fresh identity, fresh phases map, prototype-chain everything from `$Particle.prototype`. The second mode, *particularization*, takes an existing object as its `particular` argument and turns *that object* into the carrier: the returned `this` is the user's original reference, with particle methods grafted on as own properties and the prototype chain re-pointed at the original object.
 

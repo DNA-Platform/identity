@@ -1,24 +1,23 @@
----
-title: On Books
-specification: Book
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # On Books
+
+- **specification:** Book
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 A book is a directory. Inside it: one [cover](03-on-covers.md) and any number of [chapters](02-on-chapters.md). That is the entire model. The directory IS the book. The cover IS the face. The chapters ARE the content. Nothing else belongs.
 
 ## The base type
 
-In the library's [type system](.cover.md#the-dot-type-system), a book with no prefix is the base type. It holds content. It belongs to a [subject](07-on-subjects.md) declared in its [frontmatter](05-on-frontmatter.md). It is catalogued by a [subject catalogue](07-on-subjects.md) that links to it from a table of contents with a description shaped by the subject's perspective.
+In the library's [type system](.cover.md#the-dot-type-system), a book with no prefix is the base type. It holds content. It belongs to a [subject](07-on-subjects.md) declared in its [frontmatter](03-on-covers.md). It is catalogued by a [subject catalogue](07-on-subjects.md) that links to it from a table of contents with a description shaped by the subject's perspective.
 
 The dot prefix marks specialization. A `.`-prefixed directory is a [subject catalogue](07-on-subjects.md) — a book that catalogues other books. A `..`-prefixed directory is a [library catalogue](08-on-libraries.md) — a subject catalogue that IS the library. Each level adds behavior while preserving the base structure: directory, cover, chapters.
 
 ## What a book contains
 
-**`.cover.md`** — the entry point. [Frontmatter](05-on-frontmatter.md) with title, author, subject. An opening paragraph. A table of contents. The cover is the [synopsis](09-on-synopsis.md) that makes opening a chapter rarely necessary. See [On Covers](03-on-covers.md).
+**`.cover.md`** — the entry point. [Frontmatter](03-on-covers.md) with title, author, subject. An opening paragraph. A table of contents. The cover is the [synopsis](09-on-synopsis.md) that makes opening a chapter rarely necessary. See [On Covers](03-on-covers.md).
 
-**`NN-slug.md`** — numbered chapters. Each one [signed](05-on-frontmatter.md) by its author. The number is a sort key for reading order, not semantic. See [On Chapters](02-on-chapters.md).
+**`NN-slug.md`** — numbered chapters. Each one [signed](03-on-covers.md) by its author. The number is a sort key for reading order, not semantic. See [On Chapters](02-on-chapters.md).
 
 **Resource files** — non-markdown files that sit beside the chapter they serve. A `.ts` validator beside the chapter that documents it. An image beside the chapter that displays it. The chapter is documentation for the resource; the resource is evidence for the chapter. See [On Chapters](02-on-chapters.md#resources).
 
@@ -46,7 +45,7 @@ When a book [grows](10-on-evolution.md) too large, it factors into multiple book
 [covers]: 03-on-covers.md
 [chapters]: 02-on-chapters.md
 [names]: 04-on-names.md
-[frontmatter]: 05-on-frontmatter.md
+[frontmatter]: 03-on-covers.md
 [links]: 06-on-links.md
 [subjects]: 07-on-subjects.md
 [libraries]: 08-on-libraries.md

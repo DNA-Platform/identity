@@ -1,11 +1,10 @@
----
-kind: guide
-title: Initialization
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
-status: stable
----
-
 # Initialization
+
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **kind:** guide
+- **status:** stable
+
+---
 
 This is the setup procedure for creating your own collaborator workspace.
 

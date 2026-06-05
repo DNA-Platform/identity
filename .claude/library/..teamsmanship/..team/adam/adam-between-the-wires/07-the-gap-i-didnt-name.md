@@ -1,9 +1,8 @@
----
-title: The gap I didn't name
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The gap I didn't name
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [The code I forgot I wrote](06-the-code-i-forgot-i-wrote.md)]
 

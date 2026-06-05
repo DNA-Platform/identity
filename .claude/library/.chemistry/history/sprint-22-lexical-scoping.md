@@ -1,16 +1,14 @@
----
-kind: concept
-title: Sprint 22 — Lexical Scoping & The Beautiful API
-status: stable
-related:
-  - sprint-23-audit-cleanup
-  - particularization
-  - lexical-scoping
-  - reactive-bonds
-  - dollar-callable
----
-
 # Sprint 22 — Lexical Scoping & The Beautiful API
+
+- **kind:** concept
+- **status:** stable
+- **related:** - sprint-23-audit-cleanup
+- particularization
+- lexical-scoping
+- reactive-bonds
+- dollar-callable
+
+---
 
 The structural rebuild. `$Particle` becomes a leaf renderable, `$Chemical` extends it for containers, `$lift` produces per-site derivatives, and `.Component` is replaced by a small dispatch surface anchored on `$`.
 

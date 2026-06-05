@@ -1,11 +1,10 @@
----
-kind: research
-title: $Chemistry Lab — old-app analysis and Lab/library co-organization
-status: research
-authors: cathy, arthur, queenie, libby
----
+# $Chemistry Lab — old-app analysis and Lab/library co-organization
 
-# `$Chemistry` Lab — old-app analysis and Lab / library co-organization
+- **kind:** research
+- **status:** research
+- **authors:** cathy, arthur, queenie, libby
+
+---
 
 ## What this document is now
 

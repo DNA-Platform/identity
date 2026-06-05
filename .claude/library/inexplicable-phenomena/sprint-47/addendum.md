@@ -1,9 +1,8 @@
----
-title: Sprint 47 addendum — what we got wrong
-author: "[Arthur](../../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Sprint 47 addendum — what we got wrong
+
+- **author:** [Arthur](../../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Sprint 47 was titled "The Library Is More Than What You Think." It is. We didn't think enough before building.
 

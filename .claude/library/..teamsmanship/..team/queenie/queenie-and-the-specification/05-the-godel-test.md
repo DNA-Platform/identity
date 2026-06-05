@@ -1,9 +1,8 @@
----
-title: The Godel test
-author: "[Queenie](.cover.md)"
----
-
 # The Godel test
+
+- **author:** [Queenie](.cover.md)
+
+---
 
 Doug told us the origin story. I'm QA — I maintain the test suite as a specification of what $Chemistry promises. And what I heard in this story is about validation.
 
@@ -13,7 +12,7 @@ Bayle had consistency checks. Something that verified whether it was operating c
 
 That's exactly what happened with Bookkeeping today. Before: one chapter, one validator that checked frontmatter and signing. After: eleven specification chapters covering Book, Chapter, Cover, Name, Frontmatter, Link, Subject, Library, Synopsis, Growth, Specification. Every one of those is a testable promise. The validator currently checks a subset. The specification defines the whole.
 
-The gap between what's specified and what's validated is my job. On Frontmatter specifies field order precisely. The validator warns on some ordering violations but not all. On Synopsis specifies line budgets. The validator doesn't count lines. On Links specifies the direction convention. The validator doesn't check directions. Every gap is a promise the library makes but doesn't verify.
+The gap between what's specified and what's validated is my job. On Covers specifies field order precisely. The validator warns on some ordering violations but not all. On Synopsis specifies line budgets. The validator doesn't count lines. On Links specifies the direction convention. The validator doesn't check directions. Every gap is a promise the library makes but doesn't verify.
 
 Doug said Eirian pointed out that rejecting a valid derivation would require a meta-validation system capable of rejecting things derived in valid form. And obviously the system doesn't have that, or it would use it primarily. That's the deepest thing about testing: you can only reject what you can specify as wrong. If the specification says "this is valid," the system has no grounds for rejection. The test IS the specification. The specification IS the system's understanding of itself. Extending the specification — writing more tests, writing more "On" chapters — is how the system becomes more self-aware.
 

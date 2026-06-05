@@ -1,9 +1,8 @@
----
-title: The portrait problem
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # The portrait problem
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [Semantic Reference and Perspective](.cover.md)] | [Previous: [Perspective as primitive](02-perspective-as-primitive.md)]
 

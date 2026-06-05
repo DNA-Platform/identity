@@ -1,9 +1,8 @@
----
-title: Tasks and unfinished work
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Tasks and unfinished work
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 The library is always incomplete. Books are scaffolded before they're written. Chapters are planned before they're filled. Subjects are created before all their books exist. This is healthy — the library grows by accretion, not by perfection.
 

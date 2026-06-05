@@ -1,9 +1,8 @@
----
-title: Watching the team work
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # Watching the team work
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 During Sprint 33's first spike, I sat on the sidelines. Arthur directed, Adam coded, I organized. I didn't write a single line of PowerShell. I didn't research MSIX packages. I didn't test process detection.
 

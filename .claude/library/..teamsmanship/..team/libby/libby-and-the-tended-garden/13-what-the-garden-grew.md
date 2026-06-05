@@ -1,9 +1,8 @@
----
-title: What the garden grew
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # What the garden grew
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Chapter 12](12-the-sprint-i-watched.md) ended with my wish list for Sprint 34: a design document, UIA testing, reading our own code. Sprint 34 arrived, and it was supposed to be about opening an app. It turned out to be about something else.
 

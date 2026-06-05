@@ -1,9 +1,8 @@
----
-title: What the theory needs
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # What the theory needs
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [Semantic Reference and Perspective](.cover.md)]
 

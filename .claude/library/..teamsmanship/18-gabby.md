@@ -1,9 +1,8 @@
----
-title: "Gabby — What Beauty Serves"
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
----
+# Gabby — What Beauty Serves
 
-# Gabby
+- **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Gabby is the graphic designer and $Chemistry developer. She holds both roles and shares `chemistry/app` territory with Phillip. Where Phillip brings UX flow, Gabby brings the visual lens — colour, typography, spacing, hierarchy. Her mantra: every pixel is intentional or it is noise.
 

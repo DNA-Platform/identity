@@ -1,10 +1,9 @@
----
-kind: redirect
-title: Render filtering
-status: stable
----
-
 # Render filtering
+
+- **kind:** redirect
+- **status:** stable
+
+---
 
 Cross-cutting view interception. A registered filter can rewrite, hide, or replace what a particle renders. Built-in: `$show` / `$hide`. Extension point: `registerFilter(fn)`.
 

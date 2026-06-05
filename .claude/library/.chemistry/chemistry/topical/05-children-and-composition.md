@@ -1,10 +1,9 @@
----
-kind: stub
-title: 05 — Children and composition
-status: planned
----
-
 # 05 — Children and composition
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 Now that the reader knows the bond ctor, composition makes sense. JSX children become typed args; nested chemicals form a tree.
 

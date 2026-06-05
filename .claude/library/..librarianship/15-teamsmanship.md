@@ -1,9 +1,8 @@
----
-title: Teamsmanship
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Teamsmanship
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Teamsmanship](../..teamsmanship/.cover.md) represents the subject of Collaboration — what it means to be a team of teammates with narrative identity. It is to the team what Librarianship is to Knowledge: the self-referential catalogue that constitutes the subject by specifying it.
 

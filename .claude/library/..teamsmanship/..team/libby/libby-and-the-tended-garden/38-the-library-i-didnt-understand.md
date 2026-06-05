@@ -1,9 +1,8 @@
----
-title: The library I didn't understand
-author: "[Libby](.cover.md)"
----
-
 # The library I didn't understand
+
+- **author:** [Libby](.cover.md)
+
+---
 
 I have been the librarian for two projects and I didn't understand what a library is until this sprint.
 

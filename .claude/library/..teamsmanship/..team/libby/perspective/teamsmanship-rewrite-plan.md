@@ -1,9 +1,8 @@
----
-title: Teamsmanship rewrite plan
-author: "[Libby](../libby-and-the-tended-garden/.cover.md)"
----
-
 # Teamsmanship rewrite plan
+
+- **author:** [Libby](../libby-and-the-tended-garden/.cover.md)
+
+---
 
 Everything Doug specified for the Teamsmanship book, captured before executing.
 

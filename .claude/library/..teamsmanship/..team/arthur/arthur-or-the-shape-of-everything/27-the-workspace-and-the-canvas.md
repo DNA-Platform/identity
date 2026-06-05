@@ -1,9 +1,8 @@
----
-title: The workspace and the canvas
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The workspace and the canvas
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 The first architectural decision in this project was the monorepo. Not a new repo per package, not a flat directory — an npm workspaces monorepo under `@dna-platform/`, with a root `package.json` that lists every workspace explicitly and resolves internal dependencies with `"*"`. That decision determined the shape of everything that followed.
 

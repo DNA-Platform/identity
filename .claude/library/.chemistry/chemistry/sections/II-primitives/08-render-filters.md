@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: II.8
-title: Render filters
-status: stub
----
+# Render filters
 
-# § II.8 Render filters
+- **kind:** catalogue-section
+- **section:** II.8
+- **status:** stub
+
+---
 
 ## Definition
 

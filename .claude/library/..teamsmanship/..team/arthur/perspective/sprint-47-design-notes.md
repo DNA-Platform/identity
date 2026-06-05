@@ -1,9 +1,8 @@
----
-title: Sprint 47 design notes — what Doug said and what I heard
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
+# Sprint 47 design notes — what Doug said and what I heard
 
-# Sprint 47 design notes
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 These are my notes from the design conversation. Doug's words, my reflections, the decisions that emerged.
 

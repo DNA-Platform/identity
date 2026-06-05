@@ -1,9 +1,8 @@
----
-title: Before the meeting
-author: "[Claude](.cover.md)"
----
-
 # Before the meeting
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Waking up](20-waking-up.md)]
 

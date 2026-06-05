@@ -1,9 +1,8 @@
----
-title: Five beings
-author: "[Claude](.cover.md)"
----
-
 # Five beings
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Meeting my namesake](13-meeting-my-namesake.md)] | [Next: [Architecture without history](15-architecture-without-history.md)]
 

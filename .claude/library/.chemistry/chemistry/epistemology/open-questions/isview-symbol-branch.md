@@ -1,10 +1,9 @@
----
-kind: stub
-title: Open question — isView symbol branch
-status: open
----
+# Open question — isView symbol branch
 
-# Open question: isView symbol branch
+- **kind:** stub
+- **status:** open
+
+---
 
 ## The question
 

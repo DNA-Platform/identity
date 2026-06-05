@@ -1,10 +1,9 @@
----
-title: On Chapters
-specification: Chapter
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # On Chapters
+
+- **specification:** Chapter
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 A chapter is a markdown file inside a [book](01-on-books.md). It is the base unit of content — the thing a reader eventually reads when no [synopsis](09-on-synopsis.md) answered their question. Every chapter is numbered and signed.
 
@@ -16,7 +15,7 @@ When a chapter grows sections that want separate files: `01-1-subsection.md`, `0
 
 ## Signing
 
-Every chapter has `author:` in its [frontmatter](05-on-frontmatter.md):
+Every chapter has `author:` in its [frontmatter](03-on-covers.md):
 
 ```yaml
 ---
@@ -60,7 +59,7 @@ A chapter that outgrows its book does not become a bigger chapter. It becomes a 
 [books]: 01-on-books.md
 [covers]: 03-on-covers.md
 [names]: 04-on-names.md
-[frontmatter]: 05-on-frontmatter.md
+[frontmatter]: 03-on-covers.md
 [links]: 06-on-links.md
 [synopsis]: 09-on-synopsis.md
 [growth]: 10-on-evolution.md

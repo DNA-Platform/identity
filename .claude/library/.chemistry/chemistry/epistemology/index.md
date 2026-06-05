@@ -1,10 +1,9 @@
----
-kind: index
-title: Epistemology of $Chemistry
-status: evolving
----
-
 # Epistemology of $Chemistry
+
+- **kind:** index
+- **status:** evolving
+
+---
 
 How we *know* `$Chemistry` works. Where the [ontology][ontology] is the spine of what *is*, the epistemology is the spine of what we have *verified*. The framework's behavior is not knowable by reading source; it must be confirmed.
 

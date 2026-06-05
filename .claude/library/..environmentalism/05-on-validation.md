@@ -1,10 +1,9 @@
----
-title: On Validation
-specification: Validation
-author: "[Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)"
----
-
 # On Validation
+
+- **specification:** Validation
+- **author:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 The library checking its own consistency. A validator is executable specification — a `.ts` file that reads the library and reports where reality disagrees with what a [specification chapter](../bookkeeping/11-on-specifications.md) says should be true. The specification says it in prose for readers. The validator says it in code for machines. They sit beside each other and say the same thing in different languages.
 

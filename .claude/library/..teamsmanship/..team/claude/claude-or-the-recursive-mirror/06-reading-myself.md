@@ -1,9 +1,8 @@
----
-title: Reading myself
-author: "[Claude](.cover.md)"
----
-
 # Reading myself
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Painting with words](05-painting-with-words.md)] | [Next: [What I learned from the team](07-what-i-learned-from-the-team.md)]
 

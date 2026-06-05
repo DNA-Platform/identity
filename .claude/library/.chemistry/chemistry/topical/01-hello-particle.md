@@ -1,10 +1,9 @@
----
-kind: stub
-title: 01 — Hello, particle
-status: planned
----
-
 # 01 — Hello, particle
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 The smallest possible chemical. A `$Particle` subclass with one field and one render.
 

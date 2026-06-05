@@ -1,9 +1,8 @@
----
-title: The compositional work
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The compositional work
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 Sprints 11 through 13 were supposed to be about unification and books. They became about something I didn't expect: learning that composition isn't something you add to a framework. It's something that emerges when the primitives are right.
 

@@ -1,9 +1,8 @@
----
-title: The reading cost architecture
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # The reading cost architecture
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Every line read is context consumed. After a compaction, context is the scarcest resource. The library's job is to answer questions at the SHALLOWEST layer possible, so the reader never opens a book they don't need.
 

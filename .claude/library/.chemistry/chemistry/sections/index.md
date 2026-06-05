@@ -1,10 +1,9 @@
----
-kind: index
-title: $Chemistry Catalogue Sections
-status: evolving
----
+# $Chemistry Catalogue Sections
 
-# `$Chemistry` Catalogue Sections
+- **kind:** index
+- **status:** evolving
+
+---
 
 The full pages of the [`$Chemistry` Reference Catalogue][catalogue]. Each section file follows the **Definition / Rules / Cases / See also** structure and uses normative voice.
 

@@ -1,10 +1,9 @@
----
-kind: stub
-title: Open question — bond-ctor source parsing
-status: open
----
+# Open question — bond-ctor source parsing
 
-# Open question: bond-ctor source parsing
+- **kind:** stub
+- **status:** open
+
+---
 
 ## The question
 

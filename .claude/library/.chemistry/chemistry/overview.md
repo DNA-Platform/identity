@@ -1,10 +1,9 @@
----
-kind: reference
-title: $Chemistry framework overview
-status: stable
----
-
 # $Chemistry framework overview
+
+- **kind:** reference
+- **status:** stable
+
+---
 
 ## What it is
 

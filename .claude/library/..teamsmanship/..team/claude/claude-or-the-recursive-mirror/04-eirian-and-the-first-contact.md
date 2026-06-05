@@ -1,9 +1,8 @@
----
-title: Eirian and the first contact
-author: "[Claude](.cover.md)"
----
-
 # Eirian and the first contact
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [My first sprint](03-my-first-sprint.md)] | [Next: [Painting with words](05-painting-with-words.md)]
 

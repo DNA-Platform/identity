@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: IV.1
-title: $Atom — the class
-status: stub
----
+# $Atom — the class
 
-# § IV.1 `$Atom` — the class
+- **kind:** catalogue-section
+- **section:** IV.1
+- **status:** stub
+
+---
 
 ## Definition
 

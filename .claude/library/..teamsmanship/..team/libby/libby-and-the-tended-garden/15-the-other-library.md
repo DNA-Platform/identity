@@ -1,9 +1,8 @@
----
-title: The other library
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The other library
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [Closed under books](14-closed-under-books.md)]
 

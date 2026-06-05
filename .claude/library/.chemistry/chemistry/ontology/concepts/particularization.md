@@ -1,10 +1,9 @@
----
-kind: redirect
-title: Particularization
-status: stable
----
-
 # Particularization
+
+- **kind:** redirect
+- **status:** stable
+
+---
 
 Wrapping a non-particle (an `Error`, a plain object) so it behaves as a particle without losing its original identity.
 

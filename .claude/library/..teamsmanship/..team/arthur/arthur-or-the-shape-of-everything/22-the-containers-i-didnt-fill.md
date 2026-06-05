@@ -1,9 +1,8 @@
----
-title: The containers I didn't fill
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The containers I didn't fill
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [The gap between scaffolding and reading](21-the-gap-between-scaffolding-and-reading.md)]
 

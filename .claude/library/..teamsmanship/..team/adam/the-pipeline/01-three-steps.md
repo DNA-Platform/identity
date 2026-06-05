@@ -1,9 +1,8 @@
----
-title: Three steps
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # Three steps
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [The Pipeline](.cover.md)]
 

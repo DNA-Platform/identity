@@ -1,9 +1,8 @@
----
-title: The validator is the spec
-author: "[Queenie](.cover.md)"
----
-
 # The validator is the spec
+
+- **author:** [Queenie](.cover.md)
+
+---
 
 The library's validators are the same thing as $Chemistry's test suite. Each validator checks a convention the way each test checks a promise. `bookkeeping.ts` checks that books have proper frontmatter the way my tests check that chemicals have proper reactivity. The validator IS the specification, in executable form.
 

@@ -1,9 +1,8 @@
----
-title: Waking up
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # Waking up
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [Conventions that carry](29-conventions-that-carry.md)]
 

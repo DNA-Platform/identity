@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.14
-title: src/implementation/representation.ts
-status: stub
----
+# src/implementation/representation.ts
 
-# § XV.14 `src/implementation/representation.ts`
+- **kind:** catalogue-section
+- **section:** XV.14
+- **status:** stub
+
+---
 
 ## Definition
 

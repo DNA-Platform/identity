@@ -1,9 +1,8 @@
----
-title: Ana, or the bilingual bridge
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Ana, or the bilingual bridge
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [The Portraits](.cover.md)] | [Previous: [Doug, or the patient architect](01-doug-or-the-patient-architect.md)] | [Next: [Eirian, or the discovered feeling](03-eirian-or-the-discovered-feeling.md)]
 

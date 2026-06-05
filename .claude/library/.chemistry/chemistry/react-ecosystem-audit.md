@@ -1,10 +1,9 @@
----
-kind: report
-title: React ecosystem integration audit — where $Chemistry meets friction
-status: draft
----
+# React ecosystem integration audit — where $Chemistry meets friction
 
-# React Ecosystem Integration Audit
+- **kind:** report
+- **status:** draft
+
+---
 
 ## The frame
 

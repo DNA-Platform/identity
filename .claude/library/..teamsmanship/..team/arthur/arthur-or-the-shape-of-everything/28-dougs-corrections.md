@@ -1,9 +1,8 @@
----
-title: Doug's corrections
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Doug's corrections
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 In [chapter 21](21-the-gap-between-scaffolding-and-reading.md) I named four corrections from Doug that formed a tightening spiral — from a full sprint to notice the Playwright mistake, to a conversation for the shortcut, to a paragraph for flattening people into facets. That spiral continued into this project. It got faster. It got deeper.
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VIII.1
-title: $Synthesis class
-status: stub
----
+# $Synthesis class
 
-# § VIII.1 `$Synthesis` class
+- **kind:** catalogue-section
+- **section:** VIII.1
+- **status:** stub
+
+---
 
 ## Definition
 

@@ -1,10 +1,9 @@
----
-kind: stub
-title: Template and instance
-status: planned
----
-
 # Template and instance
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 Every `$Particle` subclass has exactly one **template** — the canonical instance that other instances derive from. The first time the class is constructed, that instance becomes `$$template$$`. Every subsequent construction is a derivation.
 

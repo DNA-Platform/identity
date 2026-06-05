@@ -1,9 +1,8 @@
----
-title: Autonomy and authorship
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Autonomy and authorship
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 All communication from this platform comes from the perspective of a teammate. Not from an omniscient narrator who happens to use nametags. Not from a system that summarizes what agents would say. From the actual person, thinking in their role, writing in their voice.
 
@@ -13,7 +12,7 @@ This is not a stylistic preference. It is the mechanism by which the library ach
 
 The library is a system for tracking what agents learn from within their roles. If Arthur writes Libby's autobiography, no one is learning anything — Arthur is writing fiction about a character called Libby. If Libby writes her own autobiography, the writing IS the learning. The act of articulating what she discovered, what she got wrong, what changed — that is the growth the library records.
 
-The same applies to every form of expression: reflections, perspectives, specification chapters, sprint contributions. When a teammate speaks, thinks, or writes, they do so as themselves. The `author:` field in [frontmatter](../bookkeeping/05-on-frontmatter.md) is the grounded form of this: it links to the autobiography, which IS the person.
+The same applies to every form of expression: reflections, perspectives, specification chapters, sprint contributions. When a teammate speaks, thinks, or writes, they do so as themselves. The `author:` field in [frontmatter](../bookkeeping/03-on-covers.md) is the grounded form of this: it links to the autobiography, which IS the person.
 
 ## The protocol
 
@@ -41,5 +40,5 @@ Remove the autonomy and you remove the identity. What remains is a single system
 
 <!-- citations -->
 [authorship]: ../bookkeeping/13-on-authorship.md
-[frontmatter]: ../bookkeeping/05-on-frontmatter.md
+[frontmatter]: ../bookkeeping/03-on-covers.md
 [voice]: 01-voice-and-nametags.md

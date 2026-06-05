@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XII.2
-title: $ParamValidation
-status: stub
----
+# $ParamValidation
 
-# § XII.2 `$ParamValidation`
+- **kind:** catalogue-section
+- **section:** XII.2
+- **status:** stub
+
+---
 
 ## Definition
 

@@ -1,6 +1,7 @@
 // Bookkeeping validator — checks the conventions specified in bookkeeping/*.md
-// Checks: frontmatter fields, full field order (catalogue/book/chapter), chapter signing,
+// Checks: metadata fields, full field order (catalogue/book/chapter), chapter signing,
 //         specification/catalogues plain-text labels, catalogue flat structure
+// Format: # Title, then - **field:** value bullets, then --- separator, then body
 // Usage: npx tsx bookkeeping.ts <library-path>
 
 import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
@@ -19,20 +20,34 @@ let booksChecked = 0;
 let chaptersChecked = 0;
 
 function parseFrontmatter(content: string): Record<string, string> | null {
-  const match = content.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) return null;
+  // New format: # Title, then - **field:** value bullets, then --- separator
+  const lines = content.split('\n');
+
+  // Title must be the first line (# Heading)
+  const titleMatch = lines[0]?.match(/^#\s+(.+)/);
+  if (!titleMatch) return null;
+
   const fields: Record<string, string> = {};
-  const lines = match[1].split('\n');
-  let currentKey = '';
-  for (const line of lines) {
-    const keyMatch = line.match(/^(\w[\w-]*):\s*(.*)/);
-    if (keyMatch) {
-      currentKey = keyMatch[1];
-      fields[currentKey] = keyMatch[2].trim();
-    } else if (currentKey && line.match(/^\s/)) {
-      fields[currentKey] += ' ' + line.trim();
+  fields.title = titleMatch[1].trim();
+
+  // Find the --- separator line
+  let separatorIndex = -1;
+  for (let i = 1; i < lines.length; i++) {
+    if (lines[i] === '---') {
+      separatorIndex = i;
+      break;
     }
   }
+  if (separatorIndex === -1) return null;
+
+  // Parse bullet metadata between heading and separator
+  for (let i = 1; i < separatorIndex; i++) {
+    const bulletMatch = lines[i].match(/^- \*\*([\w-]+):\*\*\s*(.*)/);
+    if (bulletMatch) {
+      fields[bulletMatch[1]] = bulletMatch[2].trim();
+    }
+  }
+
   return fields;
 }
 
@@ -52,11 +67,13 @@ function checkFieldOrder(
   canonicalOrder: string[],
   onWarn: () => void
 ): void {
-  // Find line numbers for each canonical field that exists
+  // Find line numbers for each canonical field that exists in - **field:** bullets
   const positions: { field: string; line: number }[] = [];
   for (let i = 0; i < lines.length; i++) {
-    for (const field of canonicalOrder) {
-      if (lines[i].startsWith(field + ':')) {
+    const bulletMatch = lines[i].match(/^- \*\*([\w-]+):\*\*/);
+    if (bulletMatch) {
+      const field = bulletMatch[1];
+      if (canonicalOrder.includes(field)) {
         positions.push({ field, line: i });
       }
     }
@@ -69,7 +86,7 @@ function checkFieldOrder(
     const prevRank = canonicalOrder.indexOf(prev.field);
     const currRank = canonicalOrder.indexOf(curr.field);
     if (prevRank > currRank) {
-      console.log(`WARN    ${relPath}  Frontmatter order: '${curr.field}' should come before '${prev.field}'`);
+      console.log(`WARN    ${relPath}  Metadata order: '${curr.field}' should come before '${prev.field}'`);
       onWarn();
       return; // One warning per file is enough
     }
@@ -82,7 +99,7 @@ function checkCover(coverPath: string): void {
   const fm = parseFrontmatter(content);
 
   if (!fm) {
-    console.log(`ERROR   ${relPath}  Cover missing frontmatter`);
+    console.log(`ERROR   ${relPath}  Cover missing metadata (expected # Title, bullet fields, --- separator)`);
     errors++;
     return;
   }
@@ -136,17 +153,18 @@ function checkCover(coverPath: string): void {
     errors++;
   }
 
-  // summary: is NOT in frontmatter — it's prose in the body
+  // summary: is NOT metadata — it's prose in the body
   if (fm.summary) {
-    console.log(`WARN    ${relPath}  'summary' in frontmatter — should be prose in the body, not metadata`);
+    console.log(`WARN    ${relPath}  'summary' in metadata — should be prose in the body, not a bullet field`);
     warnings++;
   }
 
-  // Check frontmatter order — only within the frontmatter block
-  const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
-  const fmLines = fmMatch ? fmMatch[1].split('\n') : [];
+  // Check metadata field order — within the bullet list between heading and separator
+  const allLines = content.split('\n');
+  let sepIdx = allLines.indexOf('---');
+  const metaLines = sepIdx > 0 ? allLines.slice(1, sepIdx) : [];
   const order = isCatalogue ? catalogueCoverOrder : regularCoverOrder;
-  checkFieldOrder(relPath, fmLines, order, () => { warnings++; });
+  checkFieldOrder(relPath, metaLines, order, () => { warnings++; });
 }
 
 function checkChapter(chapterPath: string): void {
@@ -157,7 +175,7 @@ function checkChapter(chapterPath: string): void {
   chaptersChecked++;
 
   if (!fm) {
-    console.log(`WARN    ${relPath}  Chapter missing frontmatter`);
+    console.log(`WARN    ${relPath}  Chapter missing metadata (expected # Title, bullet fields, --- separator)`);
     warnings++;
     return;
   }
@@ -182,18 +200,21 @@ function checkChapter(chapterPath: string): void {
   }
 
   // Check for nametags in body (should not appear in published book content)
+  // Body is everything after the --- separator
   const names = ['Adam', 'Arthur', 'Cathy', 'Claude', 'David', 'Gabby', 'Libby', 'Phillip', 'Queenie'];
-  const body = content.replace(/^---\n[\s\S]*?\n---\n?/, '');
+  const sepIndex = content.indexOf('\n---\n');
+  const body = sepIndex >= 0 ? content.slice(sepIndex + 5) : content;
   const nametagPattern = new RegExp('^(' + names.join('|') + '):\\s', 'm');
   if (nametagPattern.test(body)) {
     console.log(`WARN    ${relPath}  Nametag in body — use author: field, not nametags in published content`);
     warnings++;
   }
 
-  // Check chapter frontmatter order
-  const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
-  const fmLines = fmMatch ? fmMatch[1].split('\n') : [];
-  checkFieldOrder(relPath, fmLines, chapterOrder, () => { warnings++; });
+  // Check chapter metadata field order
+  const allLines = content.split('\n');
+  const chapterSepIdx = allLines.indexOf('---');
+  const metaLines = chapterSepIdx > 0 ? allLines.slice(1, chapterSepIdx) : [];
+  checkFieldOrder(relPath, metaLines, chapterOrder, () => { warnings++; });
 }
 
 function checkFlatStructure(catalogueDir: string): void {

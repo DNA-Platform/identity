@@ -1,9 +1,8 @@
----
-title: dna
-author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
----
-
 # dna
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
 
 `/dna` executes actions against the codebase as the DNA system — the Do Next Action infrastructure layer. It interprets natural language commands and queries: "create X," "rename Y," "what files changed?" It infers command vs. query from context and acts accordingly.
 

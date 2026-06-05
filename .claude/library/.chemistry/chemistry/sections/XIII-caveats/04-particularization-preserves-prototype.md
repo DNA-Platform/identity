@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XIII.4
-title: Particularization preserves prototype
-status: stable
----
+# Particularization preserves prototype
 
-# § XIII.4 Particularization preserves prototype
+- **kind:** catalogue-section
+- **section:** XIII.4
+- **status:** stable
+
+---
 
 ## Definition
 

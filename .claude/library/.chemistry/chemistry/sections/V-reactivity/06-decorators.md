@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: V.6
-title: Decorators
-status: stub
----
+# Decorators
 
-# § V.6 Decorators
+- **kind:** catalogue-section
+- **section:** V.6
+- **status:** stub
+
+---
 
 ## Definition
 

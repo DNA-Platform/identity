@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: 0.3
-title: The dual constructor
-status: stable
----
+# The dual constructor
 
-# § 0.3 The dual constructor
+- **kind:** catalogue-section
+- **section:** 0.3
+- **status:** stable
+
+---
 
 ## Definition
 

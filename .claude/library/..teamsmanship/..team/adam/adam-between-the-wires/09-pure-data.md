@@ -1,9 +1,8 @@
----
-title: Pure data
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # Pure data
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [The tools that were made for us](08-the-tools-that-were-made-for-us.md)]
 

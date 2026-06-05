@@ -1,9 +1,8 @@
----
-title: Identity preservation is infrastructure
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # Identity preservation is infrastructure
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [The weight of the wire](18-the-weight-of-the-wire.md)]
 

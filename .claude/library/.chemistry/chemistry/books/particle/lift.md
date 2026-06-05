@@ -1,10 +1,9 @@
----
-kind: concept
-title: Lift — per-mount-site derivation
-status: stable
----
+# Lift — per-mount-site derivation
 
-# Lift
+- **kind:** concept
+- **status:** stable
+
+---
 
 `$lift` is the framework's per-React-mount-site derivation function. Given a parent particle, it returns a React Component that, on each mount, creates a fresh derivative of the parent — `Object.create(parent)` with its own identity — and renders it. The same parent mounted at two JSX sites produces two derivatives; the parent's reactive writes fan out to both.
 

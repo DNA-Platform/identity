@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.13
-title: src/implementation/walk.ts
-status: stub
----
+# src/implementation/walk.ts
 
-# § XV.13 `src/implementation/walk.ts`
+- **kind:** catalogue-section
+- **section:** XV.13
+- **status:** stub
+
+---
 
 ## Definition
 

@@ -1,9 +1,8 @@
----
-title: responsible
-author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
----
-
 # responsible
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
 
 `/responsible` answers one question: who owns this path? Give it a file, directory, or glob pattern and it looks up the agent registry to find the responsible agent. If multiple agents match, it reports the most specific. If none match, it says so.
 

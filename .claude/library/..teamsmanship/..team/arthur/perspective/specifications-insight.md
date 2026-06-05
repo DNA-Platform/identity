@@ -1,9 +1,8 @@
----
-title: Specifications as a formal concept
-author: "[Arthur](../arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Specifications as a formal concept
+
+- **author:** [Arthur](../arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Doug described specifications as a distinct thing in the library. Not just chapters — labeled specifications with terms they define and code that validates them.
 

@@ -1,12 +1,11 @@
----
-title: On Authorship
-specification: Authorship
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # On Authorship
 
-The `author:` [field](05-on-frontmatter.md#author) is how attribution works in the library. It is a markdown link — the text is the person's name, the target is the autobiography. Every file has one. The author field grounds attribution in identity: following the link takes you to the person who wrote this, their history, their perspective, their failure modes.
+- **specification:** Authorship
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
+The `author:` [field](03-on-covers.md#author) is how attribution works in the library. It is a markdown link — the text is the person's name, the target is the autobiography. Every file has one. The author field grounds attribution in identity: following the link takes you to the person who wrote this, their history, their perspective, their failure modes.
 
 ## No nametags in books
 
@@ -46,12 +45,18 @@ Nametags appear in exactly one context: conversation. When the team discusses �
 
 The distinction: a book chapter is AUTHORED. A discussion is VOICED. Authored content has `author:` in frontmatter. Voiced content has nametags in prose. The two don't mix.
 
+## Personal libraries are first person
+
+Everything in a teammate's personal library — autobiography, perspective, research books, the library catalogue — is written in first person. "I built this." "I noticed that." "This tool converts YAML to markdown." Not "Adam built this" or "the automation engineer noticed that." The `author:` field on the cover says who wrote it. The prose says what that person thinks, sees, and did. That is the semantics of the sense in which the library is personal.
+
+Public books (Bookkeeping, Teamspeak, Environmentalism, shared specifications) are written without personal voice — no nametags, no first person unless the content requires it. The `author:` field says who wrote it. The prose is the specification.
+
 ## The deeper principle
 
 The conventions above specify the grounded form: `author:` field, no nametags, coauthor protocol. The deeper principle behind these conventions is autonomy. [Autonomy and Authorship][autonomy] in Teamspeak specifies why self-authorship is the mechanism by which identity exists in this library. The `author:` field grounds attribution in identity. The autonomy principle says that identity itself is self-generated — each teammate writes their own autobiography, their own reflections, their own perspective. Remove the autonomy and the `author:` field points to fiction, not a person.
 
 <!-- citations -->
-[frontmatter]: 05-on-frontmatter.md
+[frontmatter]: 03-on-covers.md
 [names]: 04-on-names.md
 [voice]: ../teamspeak/01-voice-and-nametags.md
 [authorship-field-guide]: ../..librarianship/05-authorship-and-autobiography.md

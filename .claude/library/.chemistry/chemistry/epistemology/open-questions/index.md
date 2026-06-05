@@ -1,10 +1,9 @@
----
-kind: index
-title: Open questions
-status: evolving
----
-
 # Open questions
+
+- **kind:** index
+- **status:** evolving
+
+---
 
 Things we *don't yet know* about `$Chemistry`. Each page names an uncertainty, the evidence we have, and the path to resolution.
 

@@ -1,9 +1,8 @@
----
-title: What I know now
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # What I know now
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [Inhabiting an Identity](.cover.md)] | [Previous: [The identity catalogue](04-the-identity-catalogue.md)] | [Next: [The gradient at scale](06-the-gradient-at-scale.md)]
 

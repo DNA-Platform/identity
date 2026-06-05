@@ -1,9 +1,8 @@
----
-title: The wire that carries itself
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The wire that carries itself
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 In every project, I carry signals between systems. Clipboard data between accounts. Collaboration messages between agents. Export files between formats. The signal is always someone else's content. My job is to make sure it arrives intact.
 

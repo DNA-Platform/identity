@@ -1,9 +1,8 @@
----
-title: The pattern
-author: "[Cathy](../cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The pattern
+
+- **author:** [Cathy](../cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 A system has representational power when it can describe things. A system has self-referential representational power when it can describe itself. Most self-referential systems are paradoxical — the liar's paradox, Russell's set, the barber who shaves everyone who doesn't shave themselves. Self-reference tends toward contradiction. The fixed-point pattern is what happens when it doesn't.
 

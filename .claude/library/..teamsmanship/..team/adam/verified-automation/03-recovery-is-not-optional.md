@@ -1,9 +1,8 @@
----
-title: Recovery is not optional
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # Recovery is not optional
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Verified Automation](.cover.md)] | [Previous: [The gateway pattern](02-the-gateway-pattern.md)]
 

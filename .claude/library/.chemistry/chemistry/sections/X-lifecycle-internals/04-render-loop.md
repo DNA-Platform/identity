@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: X.4
-title: The render loop
-status: stub
----
+# The render loop
 
-# § X.4 The render loop
+- **kind:** catalogue-section
+- **section:** X.4
+- **status:** stub
+
+---
 
 ## Definition
 

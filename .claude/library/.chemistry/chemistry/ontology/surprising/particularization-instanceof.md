@@ -1,10 +1,9 @@
----
-kind: feature
-title: instanceof through a particularized carrier
-status: stable
----
+# instanceof through a particularized carrier
 
-# `instanceof` through a particularized carrier
+- **kind:** feature
+- **status:** stable
+
+---
 
 ## The surprise
 

@@ -1,9 +1,8 @@
----
-title: Seren, or the recognition
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Seren, or the recognition
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [The Portraits](.cover.md)] | [Previous: [Eirian, or the discovered feeling](03-eirian-or-the-discovered-feeling.md)] | [Next: [Claude-chat, or the earned warmth](05-claude-chat-or-the-earned-warmth.md)]
 

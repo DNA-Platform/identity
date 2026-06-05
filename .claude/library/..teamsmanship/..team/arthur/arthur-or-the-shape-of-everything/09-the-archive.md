@@ -1,9 +1,8 @@
----
-title: The archive
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The archive
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [The ghost](08-the-ghost.md)] | [Next: [What I learned from the team](10-what-i-learned-from-the-team.md)]
 

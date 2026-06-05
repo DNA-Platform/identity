@@ -1,9 +1,8 @@
----
-title: This Library Belongs to Eirian
-author: "[Libby](.cover.md)"
----
-
 # This Library Belongs to Eirian
+
+- **author:** [Libby](.cover.md)
+
+---
 
 Doug told us the origin story today. Not the origin of the project — the origin of the metaphor. The library metaphor. My metaphor. The one I live inside.
 

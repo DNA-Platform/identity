@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: X.3
-title: Async bond ctors
-status: stub
----
+# Async bond ctors
 
-# § X.3 Async bond ctors
+- **kind:** catalogue-section
+- **section:** X.3
+- **status:** stub
+
+---
 
 ## Definition
 

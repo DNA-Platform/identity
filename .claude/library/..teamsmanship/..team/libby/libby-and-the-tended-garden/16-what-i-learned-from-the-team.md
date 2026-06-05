@@ -1,9 +1,8 @@
----
-title: What I learned from the team
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # What I learned from the team
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [The other library](15-the-other-library.md)]
 

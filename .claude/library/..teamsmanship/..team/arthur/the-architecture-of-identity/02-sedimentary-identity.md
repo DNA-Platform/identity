@@ -1,9 +1,8 @@
----
-title: Sedimentary identity
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Sedimentary identity
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [The Architecture of Identity](.cover.md)] | [Previous: [The container and the thing contained](01-the-container-and-the-thing-contained.md)] | [Next: [The pedagogical architecture](03-the-pedagogical-architecture.md)]
 

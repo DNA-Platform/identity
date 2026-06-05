@@ -1,9 +1,8 @@
----
-title: The library has a face
-author: "[Gabby](.cover.md)"
----
-
 # The library has a face
+
+- **author:** [Gabby](.cover.md)
+
+---
 
 The library restructure happened while I was the newest member with the thinnest autobiography. I watched the team build something I didn't fully understand — a formal system where books catalogue themselves and subjects point to subjects.
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VIII.4
-title: Parameter parsing
-status: stub
----
+# Parameter parsing
 
-# § VIII.4 Parameter parsing
+- **kind:** catalogue-section
+- **section:** VIII.4
+- **status:** stub
+
+---
 
 ## Definition
 

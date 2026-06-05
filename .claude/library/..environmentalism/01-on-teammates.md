@@ -1,10 +1,9 @@
----
-title: On Teammates
-specification: Teammate
-author: "[Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)"
----
-
 # On Teammates
+
+- **specification:** Teammate
+- **author:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 An agent file is a platform handle — the minimum Claude Code needs to know a teammate exists and can be spawned. It lives at `.claude/agents/{name}.md`. The platform reads it. Everything else lives in the [library](../..librarianship/.cover.md).
 

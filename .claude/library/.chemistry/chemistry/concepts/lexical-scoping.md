@@ -1,16 +1,14 @@
----
-kind: concept
-title: Lexical scoping
-status: stable
-catalogue-home: VI
-related:
-  - derivatives-and-fan-out
-  - reactive-bonds
-  - dollar-callable
-  - particle
----
-
 # Lexical scoping
+
+- **kind:** concept
+- **status:** stable
+- **catalogue-home:** VI
+- **related:** - derivatives-and-fan-out
+- reactive-bonds
+- dollar-callable
+- particle
+
+---
 
 > **Catalogue home:** the normative treatment of this concept now lives in [§ VI Lexical Scoping][s-VI] — see [§ VI.1 Per-mount derivatives][s-VI-1], [§ VI.2 The `$derivatives$` registry][s-VI-2], and [§ VI.3 The ownership gate][s-VI-3]. This page is preserved as the long-form companion.
 

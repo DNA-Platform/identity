@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XII.1
-title: $check(arg, ...types)
-status: stub
----
+# $check(arg, ...types)
 
-# § XII.1 `$check(arg, ...types)`
+- **kind:** catalogue-section
+- **section:** XII.1
+- **status:** stub
+
+---
 
 ## Definition
 

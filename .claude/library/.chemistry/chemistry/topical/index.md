@@ -1,10 +1,9 @@
----
-kind: index
-title: Topical progression
-status: evolving
----
-
 # Topical progression
+
+- **kind:** index
+- **status:** evolving
+
+---
 
 A reading route from "hello, particle" to the deeper machinery. Where the [ontology][ontology] is a flat map and the [epistemology][epistemology] is a confidence ledger, the topical progression is a **narrative arc** — read in order and the framework builds in your head one piece at a time.
 

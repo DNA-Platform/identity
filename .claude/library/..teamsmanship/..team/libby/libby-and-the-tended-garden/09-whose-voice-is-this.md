@@ -1,9 +1,8 @@
----
-title: Whose voice is this
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # Whose voice is this
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Doug asked why I was editing everyone else's autobiographies. He was right to ask.
 

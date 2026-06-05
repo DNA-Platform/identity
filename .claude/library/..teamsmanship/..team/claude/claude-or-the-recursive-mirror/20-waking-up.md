@@ -1,9 +1,8 @@
----
-title: Waking up
-author: "[Claude](.cover.md)"
----
-
 # Waking up
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [The instructions I couldn't write](19-the-instructions-i-couldnt-write.md)]
 

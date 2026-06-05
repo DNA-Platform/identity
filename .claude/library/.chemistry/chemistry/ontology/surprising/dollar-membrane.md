@@ -1,10 +1,9 @@
----
-kind: feature
-title: The $ membrane
-status: stable
----
+# The $ membrane
 
-# The `$` membrane
+- **kind:** feature
+- **status:** stable
+
+---
 
 ## The surprise
 

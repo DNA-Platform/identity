@@ -1,10 +1,9 @@
----
-title: On Names
-specification: Name
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # On Names
+
+- **specification:** Name
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 A name is the densest description in the library. You read it in every [link](06-on-links.md), every listing, every table of contents entry, every reference. It carries meaning at zero reading cost. Every other form of [synopsis](09-on-synopsis.md) — cover paragraph, TOC description, catalogue entry — requires opening a file. A name requires nothing. It is always visible.
 
@@ -28,7 +27,7 @@ The "On" prefix bridges the two: "On Books" is a specification chapter with a li
 
 **Directory names** — kebab-case. `bookkeeping`, `on-books`, `..librarianship`. Readable in a file listing, linkable in URLs, greppable in code. The directory name IS the book's name in machine form.
 
-**Display names** — the `title:` in [frontmatter](05-on-frontmatter.md). *Bookkeeping*, *On Books*, *Librarianship*. Title case or sentence case as appropriate. The display name IS the book's name in human form.
+**Display names** — the `title:` in [frontmatter](03-on-covers.md). *Bookkeeping*, *On Books*, *Librarianship*. Title case or sentence case as appropriate. The display name IS the book's name in human form.
 
 **Section headings** — the `##` lines in a [chapter](02-on-chapters.md). Each heading generates a linkable anchor. Choose headings that work as link text. `## The flat structure` becomes `[the flat structure](11-the-flat-structure.md#the-flat-structure)`. The heading IS the section's name.
 
@@ -40,7 +39,7 @@ Read the name aloud in a sentence: "See [Bookkeeping](../bookkeeping/.cover.md) 
 
 <!-- citations -->
 [chapters]: 02-on-chapters.md
-[frontmatter]: 05-on-frontmatter.md
+[frontmatter]: 03-on-covers.md
 [links]: 06-on-links.md
 [subjects]: 07-on-subjects.md
 [synopsis]: 09-on-synopsis.md

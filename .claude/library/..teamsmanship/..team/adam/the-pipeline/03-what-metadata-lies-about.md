@@ -1,9 +1,8 @@
----
-title: What metadata lies about
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # What metadata lies about
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [The Pipeline](.cover.md)] | [Previous: [The bracket counter](02-the-bracket-counter.md)]
 

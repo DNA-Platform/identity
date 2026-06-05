@@ -1,10 +1,9 @@
----
-kind: stub
-title: Composition
-status: planned
----
-
 # Composition
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 How chemicals contain other particles. The `$Chemical` base class plus the bond constructor (its surprising surface) plus the `$()` callable (its dispatch surface) — together these form the composition story.
 

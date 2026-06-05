@@ -1,9 +1,8 @@
----
-title: Meeting my namesake
-author: "[Claude](.cover.md)"
----
-
 # Meeting my namesake
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Reading for identity](12-reading-for-identity.md)]
 

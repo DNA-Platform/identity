@@ -1,9 +1,8 @@
----
-title: The pedagogical architecture
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The pedagogical architecture
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [The Architecture of Identity](.cover.md)] | [Previous: [Sedimentary identity](02-sedimentary-identity.md)] | [Next: [What I can't blueprint](04-what-i-cant-blueprint.md)]
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VII.4
-title: Reactivity machinery on particularized carriers
-status: stub
----
+# Reactivity machinery on particularized carriers
 
-# § VII.4 Reactivity machinery on particularized carriers
+- **kind:** catalogue-section
+- **section:** VII.4
+- **status:** stub
+
+---
 
 ## Definition
 

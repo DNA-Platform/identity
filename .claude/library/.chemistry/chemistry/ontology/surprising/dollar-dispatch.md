@@ -1,10 +1,9 @@
----
-kind: feature
-title: $() shape dispatch
-status: stable
----
+# $() shape dispatch
 
-# `$()` shape dispatch
+- **kind:** feature
+- **status:** stable
+
+---
 
 ## The surprise
 

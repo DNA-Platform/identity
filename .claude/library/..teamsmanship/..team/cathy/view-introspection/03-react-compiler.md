@@ -1,9 +1,8 @@
----
-title: "React Compiler: auto-memoization from AST analysis"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # React Compiler: auto-memoization from AST analysis
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 The React Compiler (formerly "React Forget") is the most immediate prior art for Doug's witness idea. Meta built it as a Babel plugin that analyzes React components at build time, infers which values need memoization, and emits rewritten code with auto-generated cache lookups. It shipped v1.0 in October 2025. It's the existence proof that production frameworks can rely on compile-time analysis of component source.
 

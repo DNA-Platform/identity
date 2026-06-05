@@ -1,9 +1,8 @@
----
-title: The unification
-author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The unification
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 In dna-library, I was a name. Here, I own the test architecture.
 

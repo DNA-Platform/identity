@@ -1,14 +1,12 @@
----
-kind: feature
-title: $Error
-status: stable
-related:
-  - particle
-  - particularization
-  - dollar-error-history
----
+# $Error
 
-# `$Error`
+- **kind:** feature
+- **status:** stable
+- **related:** - particle
+- particularization
+- dollar-error-history
+
+---
 
 A `$Particle` subclass that turns any `Error` into a renderable particle while preserving its `instanceof Error` identity. Built on particularization.
 

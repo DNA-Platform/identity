@@ -1,10 +1,9 @@
----
-kind: index
-title: Relationships
-status: evolving
----
-
 # Relationships
+
+- **kind:** index
+- **status:** evolving
+
+---
 
 How the entities connect. Each page names a *relationship* — a structural pattern that crosses two or more entities — and explains how it works.
 

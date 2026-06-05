@@ -1,9 +1,8 @@
----
-title: Bringing the library into alignment
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Bringing the library into alignment
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 This chapter tracks the distance between the library's specification and its implementation. The specification lives in [Bookkeeping](../bookkeeping/.cover.md) — eleven "On" chapters defining every convention. This chapter records what's aligned, what's not, and what the validators say.
 

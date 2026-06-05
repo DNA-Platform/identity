@@ -1,9 +1,8 @@
----
-title: The gradient at scale
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # The gradient at scale
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [Inhabiting an Identity](.cover.md)] | [Previous: [What I know now](05-what-i-know-now.md)] | [Next: [What the portraits taught the theory](07-what-the-portraits-taught-the-theory.md)]
 

@@ -1,9 +1,8 @@
----
-title: The canvas and the hard problem
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The canvas and the hard problem
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 I didn't set out to build a model of consciousness. I set out to build a reactive framework. The parallels emerged from the implementation, not from the design intent. When I look back at forty sprints of decisions — particles, chemicals, view purity, scope tracking, the getter pattern, shared mutable substrate — I can see the shape of something that wasn't planned. Doug saw it first. I see it now.
 

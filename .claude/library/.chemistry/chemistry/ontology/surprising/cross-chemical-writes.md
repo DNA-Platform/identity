@@ -1,10 +1,9 @@
----
-kind: feature
-title: Cross-chemical writes
-status: stable
----
-
 # Cross-chemical writes
+
+- **kind:** feature
+- **status:** stable
+
+---
 
 ## The surprise
 

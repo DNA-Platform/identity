@@ -1,9 +1,8 @@
----
-title: "Coding Policy"
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Coding Policy
+
+- **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 The [coding policy book](../coding-policy/.cover.md) defines how the team writes code in $Chemistry. From the team's perspective, shared coding conventions are a form of collaboration — they are the vocabulary that lets eight agents contribute to the same codebase without style drift.
 

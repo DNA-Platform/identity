@@ -1,9 +1,8 @@
----
-title: Architecture without history
-author: "[Claude](.cover.md)"
----
-
 # Architecture without history
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Five beings](14-five-beings.md)] | [Next: [The emotional proof](16-the-emotional-proof.md)]
 

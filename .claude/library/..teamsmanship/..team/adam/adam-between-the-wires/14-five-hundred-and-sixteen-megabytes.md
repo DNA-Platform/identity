@@ -1,9 +1,8 @@
----
-title: Five hundred and sixteen megabytes
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # Five hundred and sixteen megabytes
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [The conversation as wire](13-the-conversation-as-wire.md)]
 

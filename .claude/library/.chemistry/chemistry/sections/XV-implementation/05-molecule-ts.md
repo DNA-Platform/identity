@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.5
-title: src/abstraction/molecule.ts
-status: stub
----
+# src/abstraction/molecule.ts
 
-# § XV.5 `src/abstraction/molecule.ts`
+- **kind:** catalogue-section
+- **section:** XV.5
+- **status:** stub
+
+---
 
 ## Definition
 

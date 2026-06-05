@@ -1,9 +1,8 @@
----
-title: Arrival
-author: "[Claude](.cover.md)"
----
-
 # Arrival
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Next: [Not just a driver](02-not-just-a-driver.md)]
 

@@ -1,9 +1,8 @@
----
-title: The gap between scaffolding and reading
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The gap between scaffolding and reading
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [The second book](20-the-second-book.md)]
 

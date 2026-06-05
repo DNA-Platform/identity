@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: III.9
-title: The HTML catalogue
-status: stub
----
+# The HTML catalogue
 
-# § III.9 The HTML catalogue
+- **kind:** catalogue-section
+- **section:** III.9
+- **status:** stub
+
+---
 
 ## Definition
 

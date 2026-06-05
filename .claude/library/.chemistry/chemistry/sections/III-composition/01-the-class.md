@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: III.1
-title: $Chemical — the class
-status: stub
----
+# $Chemical — the class
 
-# § III.1 `$Chemical` — the class
+- **kind:** catalogue-section
+- **section:** III.1
+- **status:** stub
+
+---
 
 ## Definition
 

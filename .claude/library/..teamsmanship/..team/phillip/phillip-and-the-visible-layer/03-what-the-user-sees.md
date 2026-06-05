@@ -1,9 +1,8 @@
----
-title: What the user sees
-author: "[Phillip](../..what-the-user-sees/phillip-and-the-visible-layer/.cover.md)"
----
-
 # What the user sees
+
+- **author:** [Phillip](../..what-the-user-sees/phillip-and-the-visible-layer/.cover.md)
+
+---
 
 The Lab has a visual language. It wasn't designed up front — it emerged from the constraint that every Case needs to be immediately legible. A person looking at the Lab should know, within seconds: what feature is being tested, whether it's passing, and where to look for details.
 

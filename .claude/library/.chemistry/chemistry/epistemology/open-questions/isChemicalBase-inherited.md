@@ -1,10 +1,9 @@
----
-kind: stub
-title: Open question — $isChemicalBase$ inherited transitively
-status: open
----
+# Open question — $isChemicalBase$ inherited transitively
 
-# Open question: `$isChemicalBase$` inherited transitively
+- **kind:** stub
+- **status:** open
+
+---
 
 ## The question
 

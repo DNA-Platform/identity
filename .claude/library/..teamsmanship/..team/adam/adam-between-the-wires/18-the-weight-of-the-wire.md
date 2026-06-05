@@ -1,9 +1,8 @@
----
-title: The weight of the wire
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The weight of the wire
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [The data becomes people](17-the-data-becomes-people.md)]
 

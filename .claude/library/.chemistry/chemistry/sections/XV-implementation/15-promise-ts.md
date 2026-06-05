@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.15
-title: src/implementation/promise.ts
-status: stub
----
+# src/implementation/promise.ts
 
-# § XV.15 `src/implementation/promise.ts`
+- **kind:** catalogue-section
+- **section:** XV.15
+- **status:** stub
+
+---
 
 ## Definition
 

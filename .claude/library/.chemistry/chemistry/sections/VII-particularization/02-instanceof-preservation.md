@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VII.2
-title: instanceof preservation
-status: stub
----
+# instanceof preservation
 
-# § VII.2 `instanceof` preservation
+- **kind:** catalogue-section
+- **section:** VII.2
+- **status:** stub
+
+---
 
 ## Definition
 

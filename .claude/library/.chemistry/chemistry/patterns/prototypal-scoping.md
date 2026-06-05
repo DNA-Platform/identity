@@ -1,10 +1,9 @@
----
-kind: concept
-title: Prototypal scoping
-status: historical
----
+# Prototypal scoping
 
-# Prototypal Scoping
+- **kind:** concept
+- **status:** historical
+
+---
 
 > This page predates the lexical-scoping concept page and the `chemistry/concepts/` directory. Its subject is now covered, in more depth and with current vocabulary, in [lexical scoping][concept-lexical-scoping] and [derivatives and fan-out][concept-derivatives]. Kept as institutional memory for the original framing.
 

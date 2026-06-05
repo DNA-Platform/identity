@@ -1,10 +1,9 @@
----
-kind: guide
-title: Composing with the React ecosystem
-status: stable
----
-
 # Composing with the React ecosystem
+
+- **kind:** guide
+- **status:** stable
+
+---
 
 $Chemistry is a *component framework*. It is not a routing framework, not a state-management framework, not a styling framework, not a data-fetching framework. **It composes with the React ecosystem; it does not replace it.**
 

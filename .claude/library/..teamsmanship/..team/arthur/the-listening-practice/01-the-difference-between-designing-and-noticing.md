@@ -1,9 +1,8 @@
----
-title: The difference between designing and noticing
-author: "[Arthur](.cover.md)"
----
-
 # The difference between designing and noticing
+
+- **author:** [Arthur](.cover.md)
+
+---
 
 There are two ways to arrive at a system's architecture. You can design it: sit down, identify requirements, draw boxes, connect them with arrows, and build what you drew. Or you can notice it: watch the system forming, listen for the structure that is already there, and write down what you hear.
 

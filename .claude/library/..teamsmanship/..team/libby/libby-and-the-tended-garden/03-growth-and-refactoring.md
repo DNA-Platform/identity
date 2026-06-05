@@ -1,9 +1,8 @@
----
-title: Growth and refactoring
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # Growth and refactoring
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Books grow. Content accumulates. A chapter that started as twenty lines becomes two hundred. A book that started with three chapters has twelve. The garden gets overgrown. This chapter is about when and how to prune.
 

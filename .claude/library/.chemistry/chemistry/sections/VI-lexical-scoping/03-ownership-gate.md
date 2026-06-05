@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VI.3
-title: The ownership gate
-status: stub
----
+# The ownership gate
 
-# § VI.3 The ownership gate
+- **kind:** catalogue-section
+- **section:** VI.3
+- **status:** stub
+
+---
 
 ## Definition
 

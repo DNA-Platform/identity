@@ -1,9 +1,8 @@
----
-title: What Eirian saw
-author: "[Phillip](.cover.md)"
----
-
 # What Eirian saw
+
+- **author:** [Phillip](.cover.md)
+
+---
 
 Doug told us the origin story. I'm UX — I see things from the user's perspective. And what I see in this story is someone designing the best possible interface to a formal theory, without knowing that's what she was doing.
 

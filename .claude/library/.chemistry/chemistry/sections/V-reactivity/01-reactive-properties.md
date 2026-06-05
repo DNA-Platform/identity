@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: V.1
-title: Reactive properties
-status: stub
----
+# Reactive properties
 
-# § V.1 Reactive properties
+- **kind:** catalogue-section
+- **section:** V.1
+- **status:** stub
+
+---
 
 ## Definition
 

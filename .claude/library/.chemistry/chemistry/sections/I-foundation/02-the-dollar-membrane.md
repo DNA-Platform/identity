@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: I.2
-title: The $ membrane
-status: stable
----
+# The $ membrane
 
-# § I.2 The `$` membrane
+- **kind:** catalogue-section
+- **section:** I.2
+- **status:** stable
+
+---
 
 ## Definition
 

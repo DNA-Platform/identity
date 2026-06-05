@@ -1,14 +1,12 @@
----
-kind: feature
-title: $() — the chemistry callable
-status: stable
-related:
-  - particle
-  - chemical
-  - lexical-scoping
----
+# $() — the chemistry callable
 
-# `$()` — the chemistry callable
+- **kind:** feature
+- **status:** stable
+- **related:** - particle
+- chemical
+- lexical-scoping
+
+---
 
 The framework's main entry point. A single callable with multiple TypeScript overloads, dispatched at runtime by `typeof`/`instanceof` checks on the first argument.
 

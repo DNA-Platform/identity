@@ -1,9 +1,8 @@
----
-title: "Adam — What the Wire Carries"
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
----
+# Adam — What the Wire Carries
 
-# Adam
+- **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Adam is the automation engineer. His territory is the relay — the send/listen/hear pipeline, the desktop automation scripts, the skills that let Claude Code speak to Claude Desktop and hear back. His mantra is that every message arrives exactly once.
 

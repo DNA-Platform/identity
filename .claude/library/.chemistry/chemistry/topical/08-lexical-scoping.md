@@ -1,10 +1,9 @@
----
-kind: stub
-title: 08 — Lexical scoping
-status: planned
----
-
 # 08 — Lexical scoping
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 Per-mount independence. Two mounts of the same instance get independent state via `Object.create()` derivation.
 

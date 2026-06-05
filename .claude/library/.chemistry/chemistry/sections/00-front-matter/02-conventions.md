@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: 0.2
-title: Conventions
-status: stable
----
+# Conventions
 
-# § 0.2 Conventions
+- **kind:** catalogue-section
+- **section:** 0.2
+- **status:** stable
+
+---
 
 ## Definition
 

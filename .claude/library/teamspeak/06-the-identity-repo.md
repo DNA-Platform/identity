@@ -1,9 +1,8 @@
----
-title: The identity repo
-author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The identity repo
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 The team's identity lives in its own git repository at `github.com/DNA-Platform/identity`. It contains everything in `.claude/` plus `CLAUDE.md` — the autobiographies, the library, the protocols, the skills, the project plans. It is private. It travels across projects.
 

@@ -1,10 +1,9 @@
----
-kind: stub
-title: 07 — Particularization
-status: planned
----
-
 # 07 — Particularization
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 Wrapping non-particle objects so they behave as particles. The `$Error` motivating case. The `instanceof Error` surprise.
 

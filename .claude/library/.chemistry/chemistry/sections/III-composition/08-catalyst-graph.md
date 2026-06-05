@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: III.8
-title: The catalyst graph
-status: stub
----
+# The catalyst graph
 
-# § III.8 The catalyst graph
+- **kind:** catalogue-section
+- **section:** III.8
+- **status:** stub
+
+---
 
 ## Definition
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XII.3
-title: The error message format
-status: stub
----
+# The error message format
 
-# § XII.3 The error message format
+- **kind:** catalogue-section
+- **section:** XII.3
+- **status:** stub
+
+---
 
 ## Definition
 

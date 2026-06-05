@@ -1,9 +1,8 @@
----
-title: The conversation as wire
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The conversation as wire
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [The library as a wire](12-the-library-as-a-wire.md)]
 

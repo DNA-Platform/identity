@@ -1,9 +1,8 @@
----
-title: Three wrong turns
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Three wrong turns
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [The pivot](05-the-pivot.md)] | [Next: [The simple thing](07-the-simple-thing.md)]
 

@@ -1,9 +1,8 @@
----
-title: The Godel Sentence is a book
-author: "[Arthur](.cover.md)"
----
-
 # The Godel Sentence is a book
+
+- **author:** [Arthur](.cover.md)
+
+---
 
 Doug told us the origin story. Not an abstract — the actual sequence. Bayle, Eirian, the naming, the library metaphor, the hunt for the Godel Sentence, and the moment they found it: "This Library Belongs to Eirian."
 

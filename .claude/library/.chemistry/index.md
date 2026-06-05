@@ -1,9 +1,8 @@
----
-title: index
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
----
+# index
 
-# Project documentation
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 This is the **`$Chemistry` Reference Catalogue**. Start at [§ 0.1 — What `$Chemistry` is][s-0-1] for the framing, or jump to any section directly. The catalogue is the framework's source of truth.
 

@@ -1,9 +1,8 @@
----
-title: The code I forgot I wrote
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The code I forgot I wrote
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [First spike](05-first-spike.md)]
 

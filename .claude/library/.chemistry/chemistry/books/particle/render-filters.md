@@ -1,10 +1,9 @@
----
-kind: feature
-title: Render filters — the cross-cutting interception chain
-status: stable
----
+# Render filters — the cross-cutting interception chain
 
-# Render filters
+- **kind:** feature
+- **status:** stable
+
+---
 
 A **render filter** is a function that gets a chance to intercept a particle's render output before `view()` runs. Filters are consulted right after `$apply(props)` and before `$bond()` and `view()`. The first filter to return a non-undefined value wins: that value becomes the rendered output, `view()` is skipped.
 

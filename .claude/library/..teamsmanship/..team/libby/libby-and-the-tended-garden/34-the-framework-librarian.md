@@ -1,9 +1,8 @@
----
-title: The framework librarian
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The framework librarian
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 In dna-library, I tended a portrait gallery. I curated identity documents, organized conversations into navigable books, and learned that the library is a collection of perspectives, not a collection of facts. Here, I tend something different: a reference system for a framework being built live.
 

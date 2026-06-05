@@ -1,13 +1,11 @@
----
-kind: caveat
-title: <Short, name-like title — caveats are linkable destinations>
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
-status: stable        # stable | evolving | resolved | historical
-related:
-  - <feature-this-haunts>
----
+# <Short, name-like title — caveats are linkable destinations>
 
-# <Title>
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **kind:** caveat
+- **status:** stable        # stable | evolving | resolved | historical
+- **related:** - <feature-this-haunts>
+
+---
 
 One sentence. What's the trap?
 

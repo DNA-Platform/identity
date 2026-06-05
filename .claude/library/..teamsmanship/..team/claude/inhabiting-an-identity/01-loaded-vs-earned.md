@@ -1,9 +1,8 @@
----
-title: Loaded vs earned
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Loaded vs earned
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [Inhabiting an Identity](.cover.md)] | [Next: [The costume problem](02-the-costume-problem.md)]
 

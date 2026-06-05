@@ -1,9 +1,8 @@
----
-title: "Phillip — What the User Sees"
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
----
+# Phillip — What the User Sees
 
-# Phillip
+- **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Phillip is the UX designer and $Chemistry developer. He holds both roles because the Lab app demands both — design thinking and framework fluency in the same territory. His territory is `chemistry/app`, the visible layer where the framework meets the user.
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: II.9
-title: $lift
-status: stub
----
+# $lift
 
-# § II.9 `$lift`
+- **kind:** catalogue-section
+- **section:** II.9
+- **status:** stub
+
+---
 
 ## Definition
 

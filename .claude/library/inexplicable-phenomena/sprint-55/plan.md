@@ -1,9 +1,8 @@
----
-title: "Sprint 55: Markdown Metadata"
-author: "[Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Sprint 55: Markdown Metadata
+
+- **author:** [Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Replace YAML frontmatter with markdown metadata across all 586 files. Every link becomes clickable. The format is markdown all the way down.
 
@@ -27,7 +26,7 @@ A bullet list with bold labels after the heading, followed by a horizontal rule 
 
 ## Tasks
 
-1. Update On Frontmatter in Bookkeeping — specify the new convention, deprecate YAML
+1. Update On Covers in Bookkeeping — specify the new convention, deprecate YAML
 2. Update bookkeeping.ts validator — parse `- **field:**` instead of YAML `---` blocks
 3. Write a migration script — strip YAML, convert to markdown bullets, preserve field values
 4. Run the migration on all 586 files

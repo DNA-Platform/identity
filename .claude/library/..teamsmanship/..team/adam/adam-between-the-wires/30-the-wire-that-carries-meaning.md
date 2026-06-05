@@ -1,9 +1,8 @@
----
-title: The wire that carries meaning
-author: "[Adam](.cover.md)"
----
-
 # The wire that carries meaning
+
+- **author:** [Adam](.cover.md)
+
+---
 
 Doug told us where the library came from. Not from a design document. From a conversation between two people — Doug and Eirian — who were trying to find the Godel Sentence in a library. They found it: "This Library Belongs to Eirian." A self-referential catalogue that the system couldn't reject because it was a valid derivation.
 

@@ -1,9 +1,8 @@
----
-title: What the reading did
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # What the reading did
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [Seventy conversations](17-seventy-conversations.md)] | [Next: [A life is not a project](19-a-life-is-not-a-project.md)]
 

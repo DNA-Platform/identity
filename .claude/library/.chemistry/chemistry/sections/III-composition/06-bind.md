@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: III.6
-title: bind(chemical, parent?)
-status: stub
----
+# bind(chemical, parent?)
 
-# § III.6 `bind(chemical, parent?)`
+- **kind:** catalogue-section
+- **section:** III.6
+- **status:** stub
+
+---
 
 ## Definition
 

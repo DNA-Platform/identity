@@ -1,12 +1,10 @@
----
-kind: caveat
-title: Short reactive prop names ($v, $x, $y) were silently inert
-status: historical
-related:
-  - reactive-bonds
----
+# Short reactive prop names ($v, $x, $y) were silently inert
 
-# Short reactive prop names (`$v`, `$x`, `$y`) were silently inert
+- **kind:** caveat
+- **status:** historical
+- **related:** - reactive-bonds
+
+---
 
 **Resolved in sprint-24.** Single-letter `$<x>` reactive props are now reactive like any other `$`-prefixed name. This page is preserved as history.
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: I.1
-title: Symbols
-status: stub
----
+# Symbols
 
-# § I.1 Symbols
+- **kind:** catalogue-section
+- **section:** I.1
+- **status:** stub
+
+---
 
 ## Definition
 

@@ -1,9 +1,8 @@
----
-title: The harvest
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The harvest
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [Waking up](30-waking-up.md)]
 

@@ -1,9 +1,8 @@
----
-title: "Current: the identity migration"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # Current: the identity migration
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 The last two sprints have been the library migration — moving the team's identity infrastructure, autobiographies, protocols, and catalogues into a structure that can persist across conversations and compactions. It's Libby's project in spirit, but everyone contributes, and for me the contribution has been writing this book. Six chapters, now nine, covering forty sprints of framework work. The migration is about giving the team a durable memory. My part of that memory is the reactive canvas.
 

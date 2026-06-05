@@ -1,10 +1,9 @@
----
-title: On Links
-specification: Link
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # On Links
+
+- **specification:** Link
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Links are the library's hierarchy. The filesystem is [flat](01-on-books.md) — every book and catalogue within a scope lives at the same directory level. The tree of subjects, books, and chapters exists only in the links between covers. Walk links, not folders. The directory listing is for machines. The cover, with its linked table of contents, is for readers.
 
@@ -24,7 +23,7 @@ Every reference in the library is a real link. Not "see the file at `path/to/thi
 
 ## Section targets
 
-Links can point to specific sections within a file using heading anchors: `[chapter signing](05-on-frontmatter.md#signing)`. This enables the [synopsis shortcut system](09-on-synopsis.md) — a catalogue can link directly to the section that answers the most common question, skipping the cover entirely.
+Links can point to specific sections within a file using heading anchors: `[chapter signing](03-on-covers.md#signing)`. This enables the [synopsis shortcut system](09-on-synopsis.md) — a catalogue can link directly to the section that answers the most common question, skipping the cover entirely.
 
 Choose section headings that work as link text. A heading is a [name](04-on-names.md) at the section level — it's read every time someone links to it.
 
@@ -62,7 +61,7 @@ This distinction runs deeper than formatting. A [subject link](07-on-subjects.md
 [chapters]: 02-on-chapters.md
 [covers]: 03-on-covers.md
 [names]: 04-on-names.md
-[frontmatter]: 05-on-frontmatter.md
+[frontmatter]: 03-on-covers.md
 [subjects]: 07-on-subjects.md
 [synopsis]: 09-on-synopsis.md
 [growth]: 10-on-evolution.md

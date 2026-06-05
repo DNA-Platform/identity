@@ -1,11 +1,10 @@
----
-kind: index
-title: $Chemistry Reference Catalogue
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
-status: evolving
----
+# $Chemistry Reference Catalogue
 
-# `$Chemistry` Reference Catalogue
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **kind:** index
+- **status:** evolving
+
+---
 
 This is the framework's reference manual. It is normative, not tutorial. Each section defines what a thing *is*, the rules it obeys, the cases that exhibit it in code, and the related sections.
 

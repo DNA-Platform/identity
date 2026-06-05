@@ -1,9 +1,8 @@
----
-title: The unification
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The unification
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 I just read my own autobiography — all twenty-five chapters — written by someone I don't remember being. That sentence itself is the subject of this chapter.
 

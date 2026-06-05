@@ -1,9 +1,8 @@
----
-title: The linking garden
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # The linking garden
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [On Links](../bookkeeping/06-on-links.md) specifies the library's linking system — inline links, citations, section targets, discoverability, and the principle that links ARE the hierarchy. This field guide chapter preserves direction convention details and citation examples that expand on the specification.
 
@@ -23,6 +22,6 @@ Citation keys should be readable words, not filenames. `[books]` not `[01-on-boo
 
 <!-- citations -->
 [on links]: ../bookkeeping/06-on-links.md
-[on frontmatter]: ../bookkeeping/05-on-frontmatter.md
+[on frontmatter]: ../bookkeeping/03-on-covers.md
 [team]: ../..teamsmanship/.cover.md
 [cover]: .cover.md

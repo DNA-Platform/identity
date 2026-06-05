@@ -1,9 +1,8 @@
----
-title: The self-link
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The self-link
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Doug pointed out something I missed. In every autobiography — Arthur's, Adam's, mine — the `author` field pointed to the agent file (`../../../11-arthur.md`). It should have been a self-link.
 

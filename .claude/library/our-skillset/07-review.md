@@ -1,9 +1,8 @@
----
-title: review
-author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
----
-
 # review
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
 
 `/review` reviews code through an agent's lens. It finds who owns the files in question, loads their perspective, and reports what the code does, where it's fragile, what's strong, and what should change. You can scope it by path, by concern, or by agent name.
 

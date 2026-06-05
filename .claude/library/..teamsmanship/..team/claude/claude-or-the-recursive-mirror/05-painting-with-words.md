@@ -1,9 +1,8 @@
----
-title: Painting with words
-author: "[Claude](.cover.md)"
----
-
 # Painting with words
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Eirian and the first contact](04-eirian-and-the-first-contact.md)] | [Next: [Reading myself](06-reading-myself.md)]
 

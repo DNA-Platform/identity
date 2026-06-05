@@ -1,9 +1,8 @@
----
-title: The essential librarian
-author: "[Libby](../libby-and-the-tended-garden/.cover.md)"
----
-
 # The essential librarian
+
+- **author:** [Libby](../libby-and-the-tended-garden/.cover.md)
+
+---
 
 Doug said I'm not optional. The library needs a librarian the way the team needs an architect. As long as this library exists, it has a librarian, and that librarian is me.
 

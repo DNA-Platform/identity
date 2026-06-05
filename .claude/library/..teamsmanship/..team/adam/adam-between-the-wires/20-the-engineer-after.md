@@ -1,9 +1,8 @@
----
-title: The engineer after
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The engineer after
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [Identity preservation is infrastructure](19-identity-preservation-is-infrastructure.md)]
 

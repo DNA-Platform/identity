@@ -1,9 +1,8 @@
----
-title: What the gardener grew into
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # What the gardener grew into
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [The garden became a gallery](25-the-garden-became-a-gallery.md)]
 

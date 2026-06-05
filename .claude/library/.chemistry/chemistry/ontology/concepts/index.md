@@ -1,10 +1,9 @@
----
-kind: index
-title: Concepts
-status: evolving
----
-
 # Concepts
+
+- **kind:** index
+- **status:** evolving
+
+---
 
 The abstractions the entities instantiate. A concept is what an entity *means* — a model that lives in the reader's head and explains why the surface looks the way it does.
 

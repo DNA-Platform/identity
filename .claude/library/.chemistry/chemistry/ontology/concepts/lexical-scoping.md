@@ -1,10 +1,9 @@
----
-kind: redirect
-title: Lexical scoping
-status: stable
----
-
 # Lexical scoping
+
+- **kind:** redirect
+- **status:** stable
+
+---
 
 Per-mount independence. When a held particle is rendered at two sites, each site gets its own `Object.create()`-derived instance with independent state.
 

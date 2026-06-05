@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: II.3
-title: Identity
-status: stub
----
+# Identity
 
-# § II.3 Identity
+- **kind:** catalogue-section
+- **section:** II.3
+- **status:** stub
+
+---
 
 ## Definition
 

@@ -1,10 +1,9 @@
----
-kind: stub
-title: 06 — The lifecycle
-status: planned
----
-
 # 06 — The lifecycle
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 Phase ordering: setup, mount, render, layout, effect, unmount. `next(phase)` as the awaitable transition. Async bond ctors.
 

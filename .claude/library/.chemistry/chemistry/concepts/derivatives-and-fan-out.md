@@ -1,14 +1,12 @@
----
-kind: concept
-title: Derivatives and fan-out
-status: stable
-related:
-  - lexical-scoping
-  - reactive-bonds
-  - cross-chemical-handler-fanout
----
-
 # Derivatives and fan-out
+
+- **kind:** concept
+- **status:** stable
+- **related:** - lexical-scoping
+- reactive-bonds
+- cross-chemical-handler-fanout
+
+---
 
 The mechanism behind multi-site rendering. Each chemical instance has a `$derivatives$` Set — a collection of `Object.create(this)` instances live elsewhere in the React tree. When a parent's reactive prop is written, the framework walks `$derivatives$` and fires `react()` on each. This is *fan-out*.
 

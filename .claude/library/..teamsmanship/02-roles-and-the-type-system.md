@@ -1,9 +1,8 @@
----
-title: Roles and the type system
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Roles and the type system
+
+- **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 A role is a perspective on code — a lens that shapes how a teammate approaches work. Roles are not procedures. They don't tell you WHAT to do. They tell you HOW to see.
 

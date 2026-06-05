@@ -1,13 +1,11 @@
----
-kind: feature
-title: Lifecycle phases — next(phase) and async ctors
-status: stable
-related:
-  - particle
-  - chemical
----
+# Lifecycle phases — next(phase) and async ctors
 
-# Lifecycle phases — `next(phase)` and async ctors
+- **kind:** feature
+- **status:** stable
+- **related:** - particle
+- chemical
+
+---
 
 Each chemical moves through named phases (`setup` → `mount` → `ready`). User code can `await this.next('mount')` to suspend until the framework reaches that phase. Constructors and bond ctors can themselves be async.
 

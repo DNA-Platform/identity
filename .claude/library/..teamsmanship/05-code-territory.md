@@ -1,9 +1,8 @@
----
-title: Code territory
-author: "[Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Code territory
+
+- **author:** [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Every path in the codebase belongs to a teammate. This chapter IS the authoritative source for territory assignments — the [/responsible](../../skills/responsible/SKILL.md) skill reads from here. [Rules](../../rules/) that wire knowledge to code are generated from here.
 

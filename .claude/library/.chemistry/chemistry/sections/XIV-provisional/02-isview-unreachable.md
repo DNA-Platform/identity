@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XIV.2
-title: isViewSymbol unreachable branch
-status: provisional
----
+# isViewSymbol unreachable branch
 
-# § XIV.2 `isViewSymbol` unreachable branch
+- **kind:** catalogue-section
+- **section:** XIV.2
+- **status:** provisional
+
+---
 
 ## Definition
 

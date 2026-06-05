@@ -1,10 +1,9 @@
----
-kind: reference
-title: $Chemistry changelog
-status: stable
----
-
 # $Chemistry changelog
+
+- **kind:** reference
+- **status:** stable
+
+---
 
 ## Sprint 31
 

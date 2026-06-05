@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.8
-title: src/implementation/scope.ts
-status: stub
----
+# src/implementation/scope.ts
 
-# § XV.8 `src/implementation/scope.ts`
+- **kind:** catalogue-section
+- **section:** XV.8
+- **status:** stub
+
+---
 
 ## Definition
 

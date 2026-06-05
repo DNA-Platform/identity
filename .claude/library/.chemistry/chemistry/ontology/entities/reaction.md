@@ -1,10 +1,9 @@
----
-kind: stub
-title: $Reaction (entity)
-status: planned
----
+# $Reaction (entity)
 
-# `$Reaction`
+- **kind:** stub
+- **status:** planned
+
+---
 
 The recompute scope. A reaction tracks every reactive read inside its execution and queues a follow-up when any of those reads' bonds are written.
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XIV.1
-title: parseBondConstructor regex limits
-status: provisional
----
+# parseBondConstructor regex limits
 
-# § XIV.1 `parseBondConstructor` regex limits
+- **kind:** catalogue-section
+- **section:** XIV.1
+- **status:** provisional
+
+---
 
 ## Definition
 

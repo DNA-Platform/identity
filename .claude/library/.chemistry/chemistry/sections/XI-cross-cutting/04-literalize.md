@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XI.4
-title: $literalize(symbol)
-status: stub
----
+# $literalize(symbol)
 
-# § XI.4 `$literalize(symbol)`
+- **kind:** catalogue-section
+- **section:** XI.4
+- **status:** stub
+
+---
 
 ## Definition
 

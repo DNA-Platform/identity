@@ -1,9 +1,8 @@
----
-title: The beautiful API
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The beautiful API
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 For twenty-one sprints, $Chemistry worked. The reactive model was sound, the views were pure, the scope tracking was efficient, the test suite was comprehensive. And the API was ugly. Method names described implementation, not intent. `fanOutToDerivatives` told you what the function did internally — it iterated through a list and called update on each. `installReactiveAccessor` told you what the function created — a getter/setter pair on the instance. `$BondOrchestrator` told you the class managed bonds. Every name was accurate. None of them were right.
 

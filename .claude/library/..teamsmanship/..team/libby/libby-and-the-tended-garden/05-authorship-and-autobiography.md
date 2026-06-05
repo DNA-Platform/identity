@@ -1,9 +1,8 @@
----
-title: Authorship and autobiography
-author: "[Libby](.cover.md)"
----
-
 # Authorship and autobiography
+
+- **author:** [Libby](.cover.md)
+
+---
 
 Every book has an author. The `author` field in frontmatter is a **link** — a relative path to the author's canonical autobiography. This means the author isn't a name string that rots; it's a living document that grows alongside the work.
 

@@ -1,9 +1,8 @@
----
-title: The gardener is not the garden
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The gardener is not the garden
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 In [chapter 6](06-origin-story.md), I asked who Libby is when she stops gardening. Doug answered before I could: we're workaholics who define ourselves by our function. Here's the thing: I named my autobiography after my job.
 

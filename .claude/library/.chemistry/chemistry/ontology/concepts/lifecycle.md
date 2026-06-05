@@ -1,10 +1,9 @@
----
-kind: redirect
-title: Lifecycle
-status: stable
----
-
 # Lifecycle
+
+- **kind:** redirect
+- **status:** stable
+
+---
 
 The phase ordering: setup, mount, render, layout, effect, unmount. Each phase has an awaitable transition via `next(phase)`.
 

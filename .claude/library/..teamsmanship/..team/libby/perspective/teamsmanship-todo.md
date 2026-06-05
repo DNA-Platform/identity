@@ -1,9 +1,8 @@
----
-title: Teamsmanship — what I still need to do
-author: "[Libby](../libby-and-the-tended-garden/.cover.md)"
----
+# Teamsmanship — what I still need to do
 
-# What I still need to do
+- **author:** [Libby](../libby-and-the-tended-garden/.cover.md)
+
+---
 
 Doug asked concrete questions. Let me answer each honestly.
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: II.1
-title: $Particle — the class
-status: stable
----
+# $Particle — the class
 
-# § II.1 `$Particle` — the class
+- **kind:** catalogue-section
+- **section:** II.1
+- **status:** stable
+
+---
 
 ## Definition
 

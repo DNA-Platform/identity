@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.11
-title: src/implementation/augment.ts
-status: stub
----
+# src/implementation/augment.ts
 
-# § XV.11 `src/implementation/augment.ts`
+- **kind:** catalogue-section
+- **section:** XV.11
+- **status:** stub
+
+---
 
 ## Definition
 

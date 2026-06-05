@@ -1,9 +1,8 @@
----
-title: The garden became a gallery
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The garden became a gallery
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [Learning to hear](24-learning-to-hear.md)]
 

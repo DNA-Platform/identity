@@ -1,10 +1,9 @@
----
-kind: reference
-title: $Chemistry Performance Contract
-status: stable
----
-
 # $Chemistry Performance Contract
+
+- **kind:** reference
+- **status:** stable
+
+---
 
 What the framework costs at runtime, measured, with thresholds for scale.
 

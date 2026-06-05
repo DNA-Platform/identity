@@ -1,9 +1,8 @@
----
-title: Framework vs application
-author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Framework vs application
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 The codebase has three layers with different audiences and different rules:
 

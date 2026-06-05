@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: III.7
-title: Polymorphism without props
-status: stub
----
+# Polymorphism without props
 
-# § III.7 Polymorphism without props
+- **kind:** catalogue-section
+- **section:** III.7
+- **status:** stub
+
+---
 
 ## Definition
 

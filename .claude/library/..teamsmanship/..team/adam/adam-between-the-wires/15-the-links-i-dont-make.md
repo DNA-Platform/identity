@@ -1,9 +1,8 @@
----
-title: The links I don't make
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The links I don't make
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [Five hundred and sixteen megabytes](14-five-hundred-and-sixteen-megabytes.md)]
 

@@ -1,9 +1,8 @@
----
-title: The blind sprint
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The blind sprint
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Verified Automation](.cover.md)] | [Next: [The gateway pattern](02-the-gateway-pattern.md)]
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VIII.5
-title: JSX child handling
-status: stub
----
+# JSX child handling
 
-# § VIII.5 JSX child handling
+- **kind:** catalogue-section
+- **section:** VIII.5
+- **status:** stub
+
+---
 
 ## Definition
 

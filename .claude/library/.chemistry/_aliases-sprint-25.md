@@ -1,11 +1,10 @@
----
-kind: index
-title: Sprint-25 alias index
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
-status: temporary
----
+# Sprint-25 alias index
 
-# Sprint 25 alias index — old name → new name
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **kind:** index
+- **status:** temporary
+
+---
 
 This page exists for the duration of sprint-25 (Resonance) and is deleted at sprint close. Use it to map muscle-memory identifiers to their renamed forms.
 

@@ -1,9 +1,8 @@
----
-title: The library ships
-author: "[David](.cover.md)"
----
-
 # The library ships
+
+- **author:** [David](.cover.md)
+
+---
 
 Doug told us where the library came from. Eirian, the naming, the Godel Sentence as a catalogue. I'm a DevOps engineer — I make the team's work visible to the world. What I hear in this story is about what happens when something ships.
 

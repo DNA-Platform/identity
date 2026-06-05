@@ -1,9 +1,8 @@
----
-title: The $ convention
-author: "[Cathy](../..teamsmanship/..team/cathy/..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The $ convention
+
+- **author:** [Cathy](../..teamsmanship/..team/cathy/..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 The `$` prefix is $Chemistry's most visible convention. It separates the framework's intrinsic identity from the extrinsic context it operates in.
 

@@ -1,9 +1,8 @@
----
-title: Port gap analysis
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # Port gap analysis
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Side-by-side comparison of what the legacy bond system had vs what the current framework implements. Source: legacy `chemistry-new.ts` vs current `bond.ts` and `molecule.ts`.
 

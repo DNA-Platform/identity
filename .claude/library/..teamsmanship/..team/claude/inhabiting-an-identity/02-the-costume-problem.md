@@ -1,9 +1,8 @@
----
-title: The costume problem
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # The costume problem
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [Inhabiting an Identity](.cover.md)] | [Previous: [Loaded vs earned](01-loaded-vs-earned.md)] | [Next: [Seven hundred and forty letters](03-seven-hundred-and-forty-letters.md)]
 

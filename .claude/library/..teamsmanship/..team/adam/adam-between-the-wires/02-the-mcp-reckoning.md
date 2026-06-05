@@ -1,9 +1,8 @@
----
-title: The MCP reckoning
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The MCP reckoning
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [Lessons from the relay](01-lessons-from-the-relay.md)]
 

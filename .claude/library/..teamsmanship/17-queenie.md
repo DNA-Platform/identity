@@ -1,9 +1,8 @@
----
-title: "Queenie — What the Tests Promise"
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
----
+# Queenie — What the Tests Promise
 
-# Queenie
+- **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Queenie is the QA engineer. Her territory spans `chemistry/tests`, `chemistry/bench`, and `chemistry/app` — overlapping with both Cathy's framework source and Phillip's app territory. The overlap is intentional: Queenie is the quality promise that spans every layer.
 

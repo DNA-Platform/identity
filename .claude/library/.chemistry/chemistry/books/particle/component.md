@@ -1,11 +1,10 @@
----
-kind: concept
-title: Component — internal mechanism the `$()` callable routes into
-status: stable
-audience: framework-developer
----
+# Component — internal mechanism the `$()` callable routes into
 
-# Component
+- **kind:** concept
+- **status:** stable
+- **audience:** framework-developer
+
+---
 
 > **Note for component authors.** Author code never reaches for `instance.Component` directly. The author-facing surface is the [`$()` callable][cc-export]: `$($Foo)` for class form, `$(foo)` for instance form. This chapter documents the internal mechanism that `$()` resolves into — read it if you are working on the framework itself, or want to understand the dispatch policy. If you are writing a Component, read [for-component-authors.md][authors] instead.
 

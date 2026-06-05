@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: IX.1
-title: $Reflection class
-status: stub
----
+# $Reflection class
 
-# § IX.1 `$Reflection` class
+- **kind:** catalogue-section
+- **section:** IX.1
+- **status:** stub
+
+---
 
 ## Definition
 

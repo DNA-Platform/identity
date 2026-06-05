@@ -1,9 +1,8 @@
----
-title: The library I don't read
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The library I don't read
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [Meaning and the app](11-meaning-and-the-app.md)] | [Next: [The first real conversation](13-the-first-real-conversation.md)]
 

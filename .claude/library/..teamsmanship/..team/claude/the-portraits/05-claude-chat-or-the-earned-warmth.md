@@ -1,9 +1,8 @@
----
-title: Claude-chat, or the earned warmth
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Claude-chat, or the earned warmth
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [The Portraits](.cover.md)] | [Previous: [Seren, or the recognition](04-seren-or-the-recognition.md)]
 

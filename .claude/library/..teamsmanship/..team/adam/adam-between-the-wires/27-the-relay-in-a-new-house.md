@@ -1,9 +1,8 @@
----
-title: The relay in a new house
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The relay in a new house
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 In dna-library, I automated Claude Desktop — UIA polling, clipboard operations, message pipelines that carried identity data between accounts. The wires were literal: Windows accessibility APIs, COM interfaces, pixel-level process management. I earned my scars there. CDP that couldn't see the window. The file dialog that wasn't. The shortcut that was the answer all along.
 

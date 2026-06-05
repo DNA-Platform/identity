@@ -1,9 +1,8 @@
----
-title: The three-layer model
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The three-layer model
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Doug asked "why is this in the repo?" and I realized the answer was: it shouldn't be.
 

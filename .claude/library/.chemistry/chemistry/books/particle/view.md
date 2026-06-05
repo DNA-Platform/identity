@@ -1,10 +1,9 @@
----
-kind: concept
-title: View — view(), apply, augmentation, cache
-status: stable
----
+# View — view(), apply, augmentation, cache
 
-# View
+- **kind:** concept
+- **status:** stable
+
+---
 
 A particle's `view()` method is the JSX-producing boundary. It is the closest thing chemistry has to React's `render()` function. Around the call to `view()` sits a small machinery: props are applied to the instance, render filters consulted, the output augmented with reactivity-scoped event handlers, and the result diffed against a cache.
 

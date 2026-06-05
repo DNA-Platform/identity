@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VIII.6
-title: The catalyst graph wiring
-status: stub
----
+# The catalyst graph wiring
 
-# § VIII.6 The catalyst graph wiring
+- **kind:** catalogue-section
+- **section:** VIII.6
+- **status:** stub
+
+---
 
 ## Definition
 

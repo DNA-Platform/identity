@@ -1,9 +1,8 @@
----
-title: "The problem: when is the view output stale?"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The problem: when is the view output stale?
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 A reactive UI framework is a function from *state* to *view*. When state changes, the view needs to change to match. The framework's job is to make that correspondence efficient and correct — to figure out **what view output depends on what state**, and to recompute only the view pieces whose dependencies changed.
 

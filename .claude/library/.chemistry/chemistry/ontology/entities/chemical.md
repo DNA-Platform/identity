@@ -1,10 +1,9 @@
----
-kind: redirect
-title: $Chemical (entity)
-status: stable
----
+# $Chemical (entity)
 
-# `$Chemical`
+- **kind:** redirect
+- **status:** stable
+
+---
 
 A particle that contains other particles. Composes via JSX children, processed by the bond constructor.
 

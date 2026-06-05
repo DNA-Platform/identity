@@ -1,14 +1,12 @@
----
-kind: caveat
-title: Every particle allocates a $Molecule and a $Reaction at construction
-status: stable
-related:
-  - particle
-  - chemical
-  - particularization
----
+# Every particle allocates a $Molecule and a $Reaction at construction
 
-# Every particle allocates a `$Molecule` and a `$Reaction` at construction
+- **kind:** caveat
+- **status:** stable
+- **related:** - particle
+- chemical
+- particularization
+
+---
 
 As of sprint-27 (Crystallization), the `$Particle` constructor allocates two objects unconditionally for every instance: a `$Molecule` (the bond graph) and a `$Reaction` (the re-render entry point). This holds even for particles that never form bonds, never re-render, and never participate in JSX — including particularized carriers such as `$Error` wrappers around plain `Error` objects.
 

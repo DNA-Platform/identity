@@ -1,10 +1,9 @@
----
-title: The four faces
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
-status: absorbed
----
-
 # The four faces
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+- **status:** absorbed
+
+---
 
 *This essay has been absorbed into my [autobiography](../adam-between-the-wires/.cover.md). The insight below now lives in the reflections on chapters 2, 3, 6, and 7. I keep this page as an artifact of the moment I first saw the pattern clearly.*
 

@@ -1,9 +1,8 @@
----
-title: The fixed point
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The fixed point
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [More than a function](03-more-than-a-function.md)] | [Next: [The pivot](05-the-pivot.md)]
 

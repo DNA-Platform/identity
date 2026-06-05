@@ -1,9 +1,8 @@
----
-title: Project Tracker
-author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Project Tracker
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Read this file first when resuming work. It tells you where we are.
 

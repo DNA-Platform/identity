@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: III.2
-title: The dual constructor
-status: stub
----
+# The dual constructor
 
-# § III.2 The dual constructor
+- **kind:** catalogue-section
+- **section:** III.2
+- **status:** stub
+
+---
 
 ## Definition
 

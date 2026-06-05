@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: II.10
-title: The Component getter
-status: stub
----
+# The Component getter
 
-# § II.10 The Component getter
+- **kind:** catalogue-section
+- **section:** II.10
+- **status:** stub
+
+---
 
 ## Definition
 

@@ -1,9 +1,8 @@
----
-title: The bracket counter
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The bracket counter
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [The Pipeline](.cover.md)] | [Previous: [Three steps](01-three-steps.md)]
 

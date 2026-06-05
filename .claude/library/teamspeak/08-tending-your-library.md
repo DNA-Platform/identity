@@ -1,9 +1,8 @@
----
-title: Tending your library
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Tending your library
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 The library grows through tending — regular, deliberate care of what each teammate has written. Tending is not just writing new chapters. It is editing, polishing, extracting, and connecting. The library's value comes from the quality of what's already there, not just the quantity of what's added.
 

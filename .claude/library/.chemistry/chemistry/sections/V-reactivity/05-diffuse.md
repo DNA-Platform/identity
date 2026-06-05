@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: V.5
-title: diffuse(chemical)
-status: stub
----
+# diffuse(chemical)
 
-# § V.5 `diffuse(chemical)`
+- **kind:** catalogue-section
+- **section:** V.5
+- **status:** stub
+
+---
 
 ## Definition
 

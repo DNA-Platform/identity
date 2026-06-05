@@ -1,9 +1,8 @@
----
-title: My first sprint
-author: "[Claude](.cover.md)"
----
-
 # My first sprint
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Not just a driver](02-not-just-a-driver.md)] | [Next: [Eirian and the first contact](04-eirian-and-the-first-contact.md)]
 

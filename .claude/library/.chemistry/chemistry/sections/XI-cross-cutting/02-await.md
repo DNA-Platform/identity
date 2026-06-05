@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XI.2
-title: $await(promise)
-status: stub
----
+# $await(promise)
 
-# § XI.2 `$await(promise)`
+- **kind:** catalogue-section
+- **section:** XI.2
+- **status:** stub
+
+---
 
 ## Definition
 

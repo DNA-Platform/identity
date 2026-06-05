@@ -1,9 +1,8 @@
----
-title: The reactive model
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The reactive model
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 Sprint 17 was the library sprint — every agent was supposed to research what they needed to make durable decisions. I wrote two books: [Reactivity Models](../reactivity-models/.cover.md) and [View Introspection](../view-introspection/.cover.md). They compared every major reactive system (React, MobX, Vue, Solid, Svelte) and analyzed how C# closures and the React Compiler handle view introspection. Those books were the foundation for everything that followed.
 

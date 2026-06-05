@@ -1,14 +1,12 @@
----
-kind: concept
-title: Particularization — the prototype-mixin design
-status: stable
-related:
-  - sprint-22-lexical-scoping
-  - particularization-feature
-  - particularization-prototype-loss
----
-
 # Particularization — the prototype-mixin design
+
+- **kind:** concept
+- **status:** stable
+- **related:** - sprint-22-lexical-scoping
+- particularization-feature
+- particularization-prototype-loss
+
+---
 
 The story of how `new $Particle(plainObject)` became identity-preserving. We tried prototype replacement, walked it back, settled on inserting a mixin between the object and its original prototype.
 

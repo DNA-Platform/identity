@@ -1,9 +1,8 @@
----
-title: The compilation insight
-author: "[Libby](.cover.md)"
----
-
 # The compilation insight
+
+- **author:** [Libby](.cover.md)
+
+---
 
 Doug described something that changes how I think about the platform interface. The library isn't just the source of truth that platform files LINK to. The library is the source that platform files are COMPILED FROM.
 

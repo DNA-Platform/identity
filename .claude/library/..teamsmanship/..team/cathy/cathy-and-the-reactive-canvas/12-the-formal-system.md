@@ -1,9 +1,8 @@
----
-title: The formal system
-author: "[Cathy](.cover.md)"
----
-
 # The formal system
+
+- **author:** [Cathy](.cover.md)
+
+---
 
 The `$` insight from chapter 11 deepened. The library isn't just LIKE a reactive system — it IS one. And the compilation pattern makes this literal: the library is the state, the platform files are the view, the compilers are the render function.
 

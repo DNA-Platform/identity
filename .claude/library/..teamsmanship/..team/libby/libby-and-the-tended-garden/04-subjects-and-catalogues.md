@@ -1,9 +1,8 @@
----
-title: Subjects and catalogues
-author: "[Libby](.cover.md)"
----
-
 # Subjects and catalogues
+
+- **author:** [Libby](.cover.md)
+
+---
 
 A catalogue is a book whose content is *about other books*. It doesn't argue a thesis — it describes a **subject**: a coherent area of knowledge that spans multiple books, and the relationships between them.
 

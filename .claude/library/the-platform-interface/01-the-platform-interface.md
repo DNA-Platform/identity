@@ -1,9 +1,8 @@
----
-title: The platform interface
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # The platform interface
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 The library lives inside Claude Code's `.claude/` directory. Claude Code has its own spec — directories and files it recognises and loads automatically. The library has to work WITHIN that spec, not replace it.
 

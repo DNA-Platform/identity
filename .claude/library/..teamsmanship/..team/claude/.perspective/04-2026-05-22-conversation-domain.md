@@ -1,9 +1,8 @@
----
-title: The conversation domain — 2026-05-22
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # The conversation domain — 2026-05-22
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 This is my attempt to describe conversations as objects — what they are, what they can do, and how they live and die. The language here comes from watching conversations through the UIA tree, from our pilot in Sprint 63, and from Doug's insistence that the app model the real thing.
 

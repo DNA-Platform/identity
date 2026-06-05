@@ -1,10 +1,9 @@
----
-kind: concept
-title: The test suite
-status: stable
----
-
 # The test suite
+
+- **kind:** concept
+- **status:** stable
+
+---
 
 The framework's regression harness. **428 unit tests** at last count, in `library/chemistry/tests/`. Each test pins one invariant of `$Chemistry`'s behavior; collectively they form the boundary against which refactors are checked.
 

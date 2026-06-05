@@ -1,16 +1,14 @@
----
-kind: feature
-title: $Particle
-status: stable
-related:
-  - chemical
-  - dollar-callable
-  - reactive-bonds
-  - lexical-scoping
-  - lifecycle-phases
----
+# $Particle
 
-# `$Particle`
+- **kind:** feature
+- **status:** stable
+- **related:** - chemical
+- dollar-callable
+- reactive-bonds
+- lexical-scoping
+- lifecycle-phases
+
+---
 
 The leaf renderable, and — as of sprint-27 (Crystallization) — the framework's reactive-carrier base class. State via props or programmatic mutation. No children. JSX shape: `<Particle />` self-closing.
 

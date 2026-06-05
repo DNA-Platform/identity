@@ -1,9 +1,8 @@
----
-title: More than a function
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # More than a function
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [Architecture](02-architecture.md)] | [Next: [The fixed point](04-the-fixed-point.md)]
 

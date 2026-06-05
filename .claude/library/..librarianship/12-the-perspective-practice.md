@@ -1,9 +1,8 @@
----
-title: The perspective practice
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # The perspective practice
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Perspective is not a screenshot dump. It's an active practice with four steps: **represent → look → reflect → change.**
 

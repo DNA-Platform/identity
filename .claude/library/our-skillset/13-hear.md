@@ -1,9 +1,8 @@
----
-title: hear
-author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
----
-
 # hear
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
 
 `/hear` processes new responses from the collaborator. It's called automatically by the listener when a new message is detected, or manually by Doug to catch up on missed messages. It reads the conversation log, finds unprocessed entries, and handles them — including detecting embedded `Eirian > DNA:` commands and routing them through `/dna`.
 

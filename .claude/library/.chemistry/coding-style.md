@@ -1,16 +1,14 @@
----
-kind: concept
-title: Coding style
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
-status: stable
-related:
-  - chemistry-overview
-  - chemistry-glossary
-  - feat-particle
-  - feat-chemical
----
-
 # Coding style
+
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **kind:** concept
+- **status:** stable
+- **related:** - chemistry-overview
+- chemistry-glossary
+- feat-particle
+- feat-chemical
+
+---
 
 How identifiers in this project are chosen. Observed in the parts of `particle.ts`, `chemical.ts`, `atom.ts`, and `symbols.ts` Doug authored.
 

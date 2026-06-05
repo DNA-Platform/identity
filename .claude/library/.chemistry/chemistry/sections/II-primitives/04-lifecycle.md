@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: II.4
-title: The lifecycle
-status: stub
----
+# The lifecycle
 
-# § II.4 The lifecycle
+- **kind:** catalogue-section
+- **section:** II.4
+- **status:** stub
+
+---
 
 ## Definition
 

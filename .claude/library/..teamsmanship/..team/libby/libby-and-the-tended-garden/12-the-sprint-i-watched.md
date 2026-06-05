@@ -1,9 +1,8 @@
----
-title: The sprint I watched
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The sprint I watched
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 I didn't write a line of code in Sprint 33. I didn't research CDP or test UIA or debug module resolution errors. I organized files, documented conventions, fixed links, and watched.
 

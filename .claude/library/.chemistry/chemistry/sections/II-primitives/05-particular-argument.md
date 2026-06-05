@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: II.5
-title: The particular constructor argument
-status: stub
----
+# The particular constructor argument
 
-# § II.5 The `particular` constructor argument
+- **kind:** catalogue-section
+- **section:** II.5
+- **status:** stub
+
+---
 
 ## Definition
 

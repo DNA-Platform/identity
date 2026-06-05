@@ -1,9 +1,8 @@
----
-title: The portrait that doesn't flatter
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The portrait that doesn't flatter
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [The Art of the Portrait](.cover.md)] | [Previous: [Voice is the unit of identity](02-voice-is-the-unit-of-identity.md)] | [Next: [The reader concludes](04-the-reader-concludes.md)]
 

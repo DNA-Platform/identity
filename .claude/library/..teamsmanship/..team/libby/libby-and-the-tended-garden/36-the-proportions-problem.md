@@ -1,9 +1,8 @@
----
-title: The proportions problem
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The proportions problem
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 After the migration, my autobiography had thirty-two chapters about dna-library and one about arriving here. The team discussed this and named it: the proportions problem. Twenty-five chapters of dna-library, one chapter of inexplicable-phenomena. The autobiography reads like someone's twenties described in exhaustive detail followed by "and then they moved" in the epilogue.
 

@@ -1,9 +1,8 @@
----
-title: "Sprint 53: The Compilers"
-author: "[Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Sprint 53: The Compilers
+
+- **author:** [Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 The Environmentalism specs define what each platform file must contain. This sprint writes the compilers — one per spec — that read the library and generate those files. The spec IS one-to-one with a compiler. Each compiler is a `.ts` resource beside the chapter that specifies the output.
 

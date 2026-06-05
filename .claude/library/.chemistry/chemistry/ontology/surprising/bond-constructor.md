@@ -1,10 +1,9 @@
----
-kind: feature
-title: The bond constructor
-status: stable
----
-
 # The bond constructor
+
+- **kind:** feature
+- **status:** stable
+
+---
 
 This is the canonical surprise of `$Chemistry`. A reader who internalizes one feature from this directory should make it this one — the rest of the framework's character follows from it.
 

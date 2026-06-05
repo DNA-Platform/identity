@@ -1,9 +1,8 @@
----
-title: "Implications for $Chemistry"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # Implications for $Chemistry
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 This chapter is opinionated. I'm using the comparative survey to propose positions for $Chemistry's reactivity model. They should be debated, not accepted.
 

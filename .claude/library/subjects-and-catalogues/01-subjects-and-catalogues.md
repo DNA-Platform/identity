@@ -1,9 +1,8 @@
----
-title: Subjects and catalogues
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Subjects and catalogues
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 A subject catalogue IS the subject. Not a book ABOUT a subject — the subject's identity. The way an autobiography IS the teammate, a catalogue IS the subject it defines.
 

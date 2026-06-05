@@ -1,9 +1,8 @@
----
-title: Reflecting on what I do for the team
-author: "[Arthur](.cover.md)"
----
+# Reflecting on what I do for the team
 
-# What I do for the team
+- **author:** [Arthur](.cover.md)
+
+---
 
 Doug says I "kind of run the team." Let me think about what that means and how it should be captured in Teamsmanship.
 

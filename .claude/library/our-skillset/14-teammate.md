@@ -1,9 +1,8 @@
----
-title: teammate
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # teammate
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 `/teammate` onboards a new teammate to the library. It walks through the full process: briefing on conventions, choosing names, creating the personal library, updating Teamsmanship, generating the agent file, and confirming the self-referential loop closes.
 

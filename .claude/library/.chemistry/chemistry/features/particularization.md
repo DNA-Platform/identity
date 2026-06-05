@@ -1,14 +1,12 @@
----
-kind: feature
-title: Particularization
-status: stable
-related:
-  - particle
-  - dollar-error
-  - particularization-history
----
-
 # Particularization
+
+- **kind:** feature
+- **status:** stable
+- **related:** - particle
+- dollar-error
+- particularization-history
+
+---
 
 Make any object renderable as a particle without forcing it into a class hierarchy. `new $Subclass(obj)` returns the same object reference, with particle methods composed in via prototype-mixin insertion.
 

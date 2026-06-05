@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: II.7
-title: The $() callable
-status: stub
----
+# The $() callable
 
-# § II.7 The `$()` callable
+- **kind:** catalogue-section
+- **section:** II.7
+- **status:** stub
+
+---
 
 ## Definition
 

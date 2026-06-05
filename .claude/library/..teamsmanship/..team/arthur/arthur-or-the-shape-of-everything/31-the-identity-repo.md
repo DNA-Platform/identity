@@ -1,9 +1,8 @@
----
-title: The identity repo
-author: "[Arthur](.cover.md)"
----
-
 # The identity repo
+
+- **author:** [Arthur](.cover.md)
+
+---
 
 We just untracked `.claude/` and `CLAUDE.md` from the public repo. 721 files removed from git's view — the team's entire operating infrastructure, invisible now to anyone who clones inexplicable-phenomena. The files are still here locally. They'll move to their own repository: a private home for the team's identity.
 

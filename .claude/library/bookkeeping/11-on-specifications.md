@@ -1,16 +1,15 @@
----
-title: On Specifications
-specification: Specification
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # On Specifications
+
+- **specification:** Specification
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 A specification DEFINES something. A regular [book](01-on-books.md) is ABOUT something. The distinction is authority: a specification is the definitive word on what a thing IS, not an exploration of what it means. Bookkeeping doesn't describe books — it defines what a valid book is. [Teamspeak](../teamspeak/.cover.md) doesn't discuss communication — it defines how the team communicates.
 
 ## The `specification:` label
 
-A plain text [label](05-on-frontmatter.md#specification) in frontmatter. The term being specified — a word, not a link. `specification: Book` or `specification: Cover` or `specification: Specification`. The term names the thing defined. It sits after `catalogues:` (if present) and before `author:` in [field order](05-on-frontmatter.md#field-order).
+A plain text [label](03-on-covers.md#specification) in frontmatter. The term being specified — a word, not a link. `specification: Book` or `specification: Cover` or `specification: Specification`. The term names the thing defined. It sits after `catalogues:` (if present) and before `author:` in [field order](03-on-covers.md#field-order).
 
 A specification label can appear on a [chapter](02-on-chapters.md) or on a book's [cover](03-on-covers.md). On a chapter: this chapter specifies this term. On a cover: this book specifies this term. A specification book like Bookkeeping has `specification: Book` on its cover AND `specification: Book` on its first chapter — the book specifies the type, and the first chapter provides the detailed specification.
 
@@ -20,7 +19,7 @@ A specification is often accompanied by a validator — executable code that che
 
 The chapter is documentation for the code. The code is specification made executable. They say the same thing in different languages: the chapter in prose for readers, the validator in TypeScript for machines. A specification without a validator is a convention. A specification with a validator is a contract.
 
-[bookkeeping.ts](bookkeeping.ts) validates everything the chapters in this book specify: [frontmatter](05-on-frontmatter.md) fields and order, [chapter signing](02-on-chapters.md#signing), [cover](03-on-covers.md) structure, [catalogue](07-on-subjects.md) self-cataloguing. One validator for the whole book — because the specifications in this book form a coherent type system, not independent rules.
+[bookkeeping.ts](bookkeeping.ts) validates everything the chapters in this book specify: [frontmatter](03-on-covers.md) fields and order, [chapter signing](02-on-chapters.md#signing), [cover](03-on-covers.md) structure, [catalogue](07-on-subjects.md) self-cataloguing. One validator for the whole book — because the specifications in this book form a coherent type system, not independent rules.
 
 ## Essential specifications
 
@@ -54,7 +53,7 @@ When these signs appear, write the specification. Give it a `specification:` lab
 [books]: 01-on-books.md
 [chapters]: 02-on-chapters.md
 [covers]: 03-on-covers.md
-[frontmatter]: 05-on-frontmatter.md
+[frontmatter]: 03-on-covers.md
 [subjects]: 07-on-subjects.md
 [libraries]: 08-on-libraries.md
 [growth]: 10-on-evolution.md

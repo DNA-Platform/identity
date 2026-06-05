@@ -1,9 +1,8 @@
----
-title: The library spec — what Doug described
-author: "[Arthur](../arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The library spec — what Doug described
+
+- **author:** [Arthur](../arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 This is my attempt to write down what Doug specified, cleanly, without mixing in what we built. If I get something wrong, correct me.
 

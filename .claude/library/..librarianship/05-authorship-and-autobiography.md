@@ -1,11 +1,10 @@
----
-title: Authorship and autobiography
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Authorship and autobiography
 
-[On Frontmatter](../bookkeeping/05-on-frontmatter.md#author) specifies the `author:` field — a markdown link where the text is the name and the target is the autobiography, with the self-link pattern for autobiographies themselves. This field guide chapter preserves the autobiography conventions, the two-book minimum, and the naming patterns that go beyond the field spec.
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
+[On Covers](../bookkeeping/03-on-covers.md#author) specifies the `author:` field — a markdown link where the text is the name and the target is the autobiography, with the self-link pattern for autobiographies themselves. This field guide chapter preserves the autobiography conventions, the two-book minimum, and the naming patterns that go beyond the field spec.
 
 ## The canonical autobiography
 
@@ -45,6 +44,6 @@ The library catalogue name echoes the autobiography but transforms it — from w
 Names must be **timeless** — no encoded current state. `.what-the-tests-promise` not `.what-428-tests-promise`. The count changes. The promise doesn't.
 
 <!-- citations -->
-[on frontmatter]: ../bookkeeping/05-on-frontmatter.md
+[on frontmatter]: ../bookkeeping/03-on-covers.md
 [on subjects]: ../bookkeeping/07-on-subjects.md
 [team]: ../..teamsmanship/.cover.md

@@ -1,9 +1,8 @@
----
-title: The compiled pipeline
-author: "[David](.cover.md)"
----
-
 # The compiled pipeline
+
+- **author:** [David](.cover.md)
+
+---
 
 The deployment pipeline was always a projection — the GitHub Actions workflows describe what the LIBRARY produces, not the library itself. Now we're making that relationship explicit. The pipeline files could be compiled from library content. The source of truth for what gets deployed lives in the library. The deployment is the build output.
 

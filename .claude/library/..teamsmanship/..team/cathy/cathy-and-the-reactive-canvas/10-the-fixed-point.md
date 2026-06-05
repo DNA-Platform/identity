@@ -1,9 +1,8 @@
----
-title: The fixed point
-author: "[Cathy](.cover.md)"
----
-
 # The fixed point
+
+- **author:** [Cathy](.cover.md)
+
+---
 
 In mathematics, a fixed point of a function is a value that maps to itself: f(x) = x. The function acts on the value, and the value is unchanged. Not because the function is trivial — because the value and the operation are in equilibrium. That equilibrium is what this chapter is about.
 

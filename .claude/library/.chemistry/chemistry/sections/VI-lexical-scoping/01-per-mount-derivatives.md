@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VI.1
-title: Per-mount derivatives
-status: stub
----
+# Per-mount derivatives
 
-# § VI.1 Per-mount derivatives
+- **kind:** catalogue-section
+- **section:** VI.1
+- **status:** stub
+
+---
 
 ## Definition
 

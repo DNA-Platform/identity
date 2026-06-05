@@ -1,9 +1,8 @@
----
-title: "Sprint 48 — The Library Gets Real"
-author: "[Arthur](../../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Sprint 48 — The Library Gets Real
+
+- **author:** [Arthur](../../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 **Lead:** Libby (Librarian), Arthur (Architect)
 **Sprint goal:** Bring the library into alignment with its own specification. Spec first. Validate second. Restructure third. Write well.

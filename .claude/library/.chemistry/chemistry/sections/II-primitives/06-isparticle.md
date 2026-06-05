@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: II.6
-title: isParticle(x)
-status: stub
----
+# isParticle(x)
 
-# § II.6 `isParticle(x)`
+- **kind:** catalogue-section
+- **section:** II.6
+- **status:** stub
+
+---
 
 ## Definition
 

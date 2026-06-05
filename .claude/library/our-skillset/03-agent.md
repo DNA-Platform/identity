@@ -1,9 +1,8 @@
----
-title: agent
-author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
----
-
 # agent
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
 
 `/agent` creates, updates, or lists teammates. An agent is a named entity with one or more roles, assigned to specific parts of the codebase. The skill handles the full lifecycle: creating a new agent definition in `.claude/agents/`, updating an existing one's roles or paths, or listing the current team.
 

@@ -1,14 +1,12 @@
----
-kind: concept
-title: I<T> — the identity-shaped type
-status: stable
-related:
-  - particularization
-  - dollar-error
-  - sprint-22-lexical-scoping
----
+# I<T> — the identity-shaped type
 
-# `I<T>` — the identity-shaped type
+- **kind:** concept
+- **status:** stable
+- **related:** - particularization
+- dollar-error
+- sprint-22-lexical-scoping
+
+---
 
 A short page on the `I<T>` type, its evolution from `Omit<T, keyof Object>` to plain `T`, and why the simpler form turned out to be enough.
 

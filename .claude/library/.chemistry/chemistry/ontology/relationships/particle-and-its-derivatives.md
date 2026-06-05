@@ -1,10 +1,9 @@
----
-kind: redirect
-title: Particle and its derivatives
-status: stable
----
-
 # Particle and its derivatives
+
+- **kind:** redirect
+- **status:** stable
+
+---
 
 The relationship between a *held* particle (named, owned, mounted once or many times) and each *derivative* (the `Object.create()`-derived per-mount child that gives each render site its own state).
 

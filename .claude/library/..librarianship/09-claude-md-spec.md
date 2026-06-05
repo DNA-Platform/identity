@@ -1,9 +1,8 @@
----
-title: What CLAUDE.md must contain
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # What CLAUDE.md must contain
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 CLAUDE.md lives at the project root. Claude Code loads it every session. It's the bootstrap — the first thing an agent reads. The library specifies what it should contain; the file at the project root implements the spec.
 

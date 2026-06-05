@@ -1,10 +1,9 @@
----
-kind: index
-title: Ontology of $Chemistry
-status: evolving
----
-
 # Ontology of $Chemistry
+
+- **kind:** index
+- **status:** evolving
+
+---
 
 What `$Chemistry` *is*. This is the static spine of the framework: the entities that exist, the relationships between them, the concepts they instantiate, and the corners that demand explicit teaching.
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.4
-title: src/abstraction/bond.ts
-status: stub
----
+# src/abstraction/bond.ts
 
-# § XV.4 `src/abstraction/bond.ts`
+- **kind:** catalogue-section
+- **section:** XV.4
+- **status:** stub
+
+---
 
 ## Definition
 

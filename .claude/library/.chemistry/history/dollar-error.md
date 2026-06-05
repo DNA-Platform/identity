@@ -1,15 +1,13 @@
----
-kind: concept
-title: $Error — making errors renderable
-status: stable
-related:
-  - particularization
-  - sprint-22-lexical-scoping
-  - i-of-t
-  - dollar-error-feature
----
+# $Error — making errors renderable
 
-# `$Error` — making errors renderable
+- **kind:** concept
+- **status:** stable
+- **related:** - particularization
+- sprint-22-lexical-scoping
+- i-of-t
+- dollar-error-feature
+
+---
 
 A `$Particle` subclass that turns any `Error` into a renderable particle while preserving its `instanceof Error` identity. Designed alongside particularization in sprint 22 as the first real test of the prototype-mixin pattern.
 

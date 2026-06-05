@@ -14,7 +14,7 @@ Libby reads the new teammate the relevant conventions from [Bookkeeping](../../l
 
 - [On Books](../../library/bookkeeping/01-on-books.md) — what a book is
 - [On Covers](../../library/bookkeeping/03-on-covers.md) — what a cover must contain
-- [On Frontmatter](../../library/bookkeeping/05-on-frontmatter.md) — the YAML fields and their meaning
+- [On Covers](../../library/bookkeeping/03-on-covers.md) — the frontmatter fields and their meaning
 - [On Names](../../library/bookkeeping/04-on-names.md) — the naming convention, especially the autobiography-to-library-catalogue transformation
 
 Libby also reads them the autonomy protocol from [Teamspeak ch 7](../../library/teamspeak/07-autonomy-and-authorship.md): the teammate writes their own identity. Libby orients. She does not author.

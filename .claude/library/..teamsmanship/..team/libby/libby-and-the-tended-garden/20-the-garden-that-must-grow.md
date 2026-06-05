@@ -1,9 +1,8 @@
----
-title: The garden that must grow
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The garden that must grow
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [The catalogue in the conversation](19-the-catalogue-in-the-conversation.md)]
 

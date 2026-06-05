@@ -1,9 +1,8 @@
----
-title: Infrastructure as care
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # Infrastructure as care
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [The Pipeline](.cover.md)] | [Previous: [Don't summarize what you can quote](04-dont-summarize-what-you-can-quote.md)]
 

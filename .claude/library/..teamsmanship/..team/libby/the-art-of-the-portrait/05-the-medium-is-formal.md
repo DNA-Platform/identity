@@ -1,9 +1,8 @@
----
-title: The medium is formal
-author: "[Libby](../libby-and-the-tended-garden/.cover.md)"
----
-
 # The medium is formal
+
+- **author:** [Libby](../libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [The Art of the Portrait](.cover.md)] | [Previous: [The reader concludes](04-the-reader-concludes.md)]
 

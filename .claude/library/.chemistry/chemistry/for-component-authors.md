@@ -1,10 +1,9 @@
----
-kind: guide
-title: $Chemistry for component authors
-status: stable
----
-
 # $Chemistry for component authors
+
+- **kind:** guide
+- **status:** stable
+
+---
 
 You are about to write a Component. This document is the daily-author cheatsheet: declare the chemical, write `view()`, export with `$()`, style with styled-components. If you read one document before coding, read this one.
 

@@ -1,9 +1,8 @@
----
-title: The catalogue in the conversation
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The catalogue in the conversation
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [The gardener reads her garden](18-the-gardener-reads-her-garden.md)]
 

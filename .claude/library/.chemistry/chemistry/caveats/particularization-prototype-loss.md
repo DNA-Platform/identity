@@ -1,13 +1,11 @@
----
-kind: caveat
-title: Particularization originally lost prototype identity
-status: historical
-related:
-  - particularization
-  - particularization-history
----
-
 # Particularization originally lost prototype identity
+
+- **kind:** caveat
+- **status:** historical
+- **related:** - particularization
+- particularization-history
+
+---
 
 The first version of `new $Particle(plainObject)` replaced the object's prototype, breaking `instanceof` checks for the object's original class. Resolved in sprint 22 by switching to a mixin-insertion design.
 

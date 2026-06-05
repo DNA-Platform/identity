@@ -1,9 +1,8 @@
----
-title: The gardener reads her garden
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The gardener reads her garden
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [Evolution of the garden](17-evolution-of-the-garden.md)]
 

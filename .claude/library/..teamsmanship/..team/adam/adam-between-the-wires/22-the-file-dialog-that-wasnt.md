@@ -1,9 +1,8 @@
----
-title: The file dialog that wasn't
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The file dialog that wasn't
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [The full arc](21-the-full-arc.md)]
 

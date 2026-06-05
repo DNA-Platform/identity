@@ -1,9 +1,8 @@
----
-title: The unification
-author: "[Gabby](../..what-beauty-serves/gabby-and-the-visual-voice/.cover.md)"
----
-
 # The unification
+
+- **author:** [Gabby](../..what-beauty-serves/gabby-and-the-visual-voice/.cover.md)
+
+---
 
 I joined in sprint 30 — the newest member of the team. I brought graphic design to the Lab app. Phillip builds the components and I make them beautiful. Between us, the Lab went from functional to something you'd want to look at.
 

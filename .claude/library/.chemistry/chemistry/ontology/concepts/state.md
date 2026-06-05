@@ -1,10 +1,9 @@
----
-kind: stub
-title: State
-status: planned
----
-
 # State
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 What a particle remembers between events. In `$Chemistry`, state lives in `$x` reactive bonds; reads and writes are scope-tracked.
 

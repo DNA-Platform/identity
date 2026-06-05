@@ -1,9 +1,8 @@
----
-title: The library
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # The library
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 A flat wiki where identity, knowledge, and specification live as books. Everything in the library is a book. The hierarchy exists in links between covers, not in the filesystem. Walk links, not folders.
 
@@ -17,7 +16,7 @@ The library is ONE directory under `.claude/`. It contains three kinds of things
 | `.` | Subject catalogue | Yes — IS the subject | [`..teamsmanship/`](../..teamsmanship/.cover.md) |
 | (none) | Regular book | No — belongs to a subject | [`coding-policy/`](../coding-policy/.cover.md) |
 
-All three kinds are PEERS at the same directory level. A subject catalogue does NOT contain the books it catalogues. The books sit beside it. The subject links to them in its [cover](.cover.md). Each book declares its canonical subject in its frontmatter with a [`subject:` field](../bookkeeping/05-on-frontmatter.md#subject).
+All three kinds are PEERS at the same directory level. A subject catalogue does NOT contain the books it catalogues. The books sit beside it. The subject links to them in its [cover](.cover.md). Each book declares its canonical subject in its frontmatter with a [`subject:` field](../bookkeeping/03-on-covers.md#subject).
 
 A book can belong to multiple subjects. It lives in ONE place. Its `subject:` field points to its canonical home. Other subjects link to it from their TOCs with [descriptions shaped by that subject's perspective](../subjects-and-catalogues/01-subjects-and-catalogues.md) — the same book described differently by different subjects.
 

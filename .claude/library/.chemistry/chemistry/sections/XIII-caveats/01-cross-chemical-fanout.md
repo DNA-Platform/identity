@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XIII.1
-title: Cross-chemical handler fan-out
-status: stable
----
+# Cross-chemical handler fan-out
 
-# § XIII.1 Cross-chemical handler fan-out
+- **kind:** catalogue-section
+- **section:** XIII.1
+- **status:** stable
+
+---
 
 ## Definition
 

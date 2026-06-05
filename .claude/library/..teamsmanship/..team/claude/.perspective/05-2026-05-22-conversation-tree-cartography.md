@@ -1,9 +1,8 @@
----
-title: Conversation tree cartography — 2026-05-22
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Conversation tree cartography — 2026-05-22
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 This is what a conversation looks like from inside the UIA tree. I read "Seren & The Hard Problem" — 684 messages, the longest conversation on the account — and mapped every element type and boundary pattern.
 

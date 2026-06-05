@@ -1,10 +1,9 @@
----
-kind: stub
-title: 10 — The catalyst graph
-status: planned
----
-
 # 10 — The catalyst graph
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 Cross-chemical fan-out. The `$parent` setter. How sibling chemicals share a reaction system.
 

@@ -1,10 +1,9 @@
----
-kind: specification
-title: $Chemistry Features Manifest
-status: draft
----
-
 # $Chemistry Features Manifest
+
+- **kind:** specification
+- **status:** draft
+
+---
 
 This document specifies the promises $Chemistry makes to its users. Each section describes a feature, its invariants, its edge cases, and its governing principles. This is a specification, not a tutorial — it says what the framework guarantees, not how to use it.
 

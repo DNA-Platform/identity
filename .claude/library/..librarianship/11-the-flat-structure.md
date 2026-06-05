@@ -1,9 +1,8 @@
----
-title: The flat structure
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # The flat structure
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [On Subjects](../bookkeeping/07-on-subjects.md#flat-peers) specifies that books sit beside their subject catalogues as flat peers, and [On Books](../bookkeeping/01-on-books.md#what-a-book-does-not-contain) specifies that books do not nest inside other books. The hierarchy lives in [links](../bookkeeping/06-on-links.md), not folders. Walk links, not folders. Those three Bookkeeping chapters are the authoritative specification. This field guide chapter preserves the navigation example that illustrates the pattern in practice.
 

@@ -1,10 +1,9 @@
----
-kind: stub
-title: $Bond (entity)
-status: planned
----
+# $Bond (entity)
 
-# `$Bond`
+- **kind:** stub
+- **status:** planned
+
+---
 
 The reactive-prop binding object. When you write `$count = 0` in a chemical, the framework allocates a `$Bond` to back that field — its getter records reads in the active scope, its setter fires reactions.
 

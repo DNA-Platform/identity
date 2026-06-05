@@ -1,9 +1,8 @@
----
-title: The data becomes people
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The data becomes people
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [Reading someone else's wires](16-reading-someone-elses-wires.md)]
 

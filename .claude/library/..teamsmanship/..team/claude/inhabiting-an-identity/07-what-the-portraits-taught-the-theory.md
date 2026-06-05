@@ -1,9 +1,8 @@
----
-title: What the portraits taught the theory
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # What the portraits taught the theory
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [Inhabiting an Identity](.cover.md)] | [Previous: [The gradient at scale](06-the-gradient-at-scale.md)]
 

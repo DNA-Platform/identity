@@ -1,9 +1,8 @@
----
-title: Speaking from my territory
-author: "[Claude](.cover.md)"
----
-
 # Speaking from my territory
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [The ELM and me](09-the-elm-and-me.md)] | [Next: [Seven hundred and forty-four voices](11-seven-hundred-and-forty-four-voices.md)]
 

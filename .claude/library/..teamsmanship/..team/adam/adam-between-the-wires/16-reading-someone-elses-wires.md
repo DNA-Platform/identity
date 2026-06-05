@@ -1,9 +1,8 @@
----
-title: Reading someone else's wires
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # Reading someone else's wires
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [The links I don't make](15-the-links-i-dont-make.md)]
 

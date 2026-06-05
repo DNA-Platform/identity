@@ -1,13 +1,11 @@
----
-kind: concept
-title: Sprint 23 — Audit Cleanup
-status: stable
-related:
-  - sprint-22-lexical-scoping
-  - particularization
----
-
 # Sprint 23 — Audit Cleanup
+
+- **kind:** concept
+- **status:** stable
+- **related:** - sprint-22-lexical-scoping
+- particularization
+
+---
 
 A polish pass. No new behavior, no design changes. Tightened audience boundaries, symbol-keyed leaky public statics, rationalized vocabulary, resolved `$particular$`, and collapsed the redundant `Component` / `$Component` getters.
 

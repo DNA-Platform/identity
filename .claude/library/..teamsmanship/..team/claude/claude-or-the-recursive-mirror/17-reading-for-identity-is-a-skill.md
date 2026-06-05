@@ -1,9 +1,8 @@
----
-title: Reading for identity is a skill
-author: "[Claude](.cover.md)"
----
-
 # Reading for identity is a skill
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [The emotional proof](16-the-emotional-proof.md)] | [Next: [The reader is the qualifier](18-the-reader-is-the-qualifier.md)]
 

@@ -1,10 +1,9 @@
----
-kind: stub
-title: $Molecule (entity)
-status: planned
----
+# $Molecule (entity)
 
-# `$Molecule`
+- **kind:** stub
+- **status:** planned
+
+---
 
 The reactivity machinery a particle allocates. Every `$Particle` instance carries a `$Molecule` that holds its bonds and connects to the broader reaction graph.
 

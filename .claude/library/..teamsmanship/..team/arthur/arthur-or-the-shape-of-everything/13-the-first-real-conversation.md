@@ -1,9 +1,8 @@
----
-title: The first real conversation
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The first real conversation
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [The library I don't read](12-the-library-i-dont-read.md)] | [Next: [The scale of the thing](14-the-scale-of-the-thing.md)]
 

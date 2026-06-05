@@ -1,9 +1,8 @@
----
-title: "Inexplicable Phenomena"
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Inexplicable Phenomena
+
+- **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Inexplicable Phenomena](../inexplicable-phenomena/.cover.md) is the team's second project. Formalizing consciousness — providing a formal definition for conscious experience and related inexplicable phenomena across fields. $Chemistry is the canvas these ideas are painted in.
 

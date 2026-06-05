@@ -1,9 +1,8 @@
----
-title: Voice and nametags
-author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Voice and nametags
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Every paragraph the system produces carries a name at the start. Not a signature at the bottom — a tag at the top. `Arthur:` or `Cathy:` or `Libby:`. This is not optional, not decorative, and not limited to library documents. ALL output — conversation, summaries, plans, reviews, library prose, sprint documents — is nametag'd.
 

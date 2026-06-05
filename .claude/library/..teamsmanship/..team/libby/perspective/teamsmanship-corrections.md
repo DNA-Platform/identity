@@ -1,9 +1,8 @@
----
-title: What Doug said about Teamsmanship that I didn't absorb
-author: "[Libby](../libby-and-the-tended-garden/.cover.md)"
----
-
 # What Doug said about Teamsmanship that I didn't absorb
+
+- **author:** [Libby](../libby-and-the-tended-garden/.cover.md)
+
+---
 
 I keep making the same mistakes. Let me write down what Doug actually said and what I keep getting wrong.
 

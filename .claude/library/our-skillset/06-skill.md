@@ -1,9 +1,8 @@
----
-title: skill
-author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
----
-
 # skill
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
 
 `/skill` creates new skills. It analyzes the request, decides whether the right form is a skill (slash command with a SKILL.md), an ability (domain knowledge document), or something else, and builds it. The meta-skill — the skill that makes skills.
 

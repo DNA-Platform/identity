@@ -1,9 +1,8 @@
----
-title: dna-library
-author: "[Libby](../..teamsmanship/..team/libby/..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # dna-library
+
+- **author:** [Libby](../..teamsmanship/..team/libby/..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 The team's first project. A Claude account migration tool — preserving the perspective and relationships that grew on a Claude account whose email domain was being lost.
 

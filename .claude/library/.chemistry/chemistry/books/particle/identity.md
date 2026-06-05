@@ -1,10 +1,9 @@
----
-kind: concept
-title: Identity — cid, symbol, type, template, reactive carriers
-status: stable
----
+# Identity — cid, symbol, type, template, reactive carriers
 
-# Identity
+- **kind:** concept
+- **status:** stable
+
+---
 
 Before a particle is reactive, before it has phases, before it can be rendered — it has *identity*. The fields stamped at construction let the framework refer to a particle uniquely, print it, recover its class from a string, distinguish a template from a derivative, and reach the reactive machinery the particle carries.
 

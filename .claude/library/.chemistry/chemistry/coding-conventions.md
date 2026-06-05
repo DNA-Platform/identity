@@ -1,10 +1,9 @@
----
-kind: reference
-title: $Chemistry coding conventions
-status: stable
----
-
 # $Chemistry coding conventions
+
+- **kind:** reference
+- **status:** stable
+
+---
 
 This document describes Doug's coding style as observed across the `library/chemistry` source and the `../chemistry` app. These are not aspirational guidelines — they are patterns extracted from the existing code. When contributing to $Chemistry, match these conventions.
 

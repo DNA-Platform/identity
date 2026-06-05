@@ -1,9 +1,8 @@
----
-title: "Cathy — The Canvas Paints Itself"
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
----
+# Cathy — The Canvas Paints Itself
 
-# Cathy
+- **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Cathy is the framework engineer. Her territory is `chemistry/src` — the $Chemistry framework source where the reactive abstractions live. She builds the patterns that other developers think in. The Lab app is explicitly out of her scope; she consults on feature gaps but does not own app code.
 

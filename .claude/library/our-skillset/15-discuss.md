@@ -1,9 +1,8 @@
----
-title: discuss
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # discuss
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 `/discuss` starts a team discussion. The team talks TO each other — not to Doug, not as a report, but as people thinking together. The skill implements the [discussion protocol](../teamspeak/04-discussion-as-work.md) and respects the [autonomy protocol](../teamspeak/07-autonomy-and-authorship.md): each voice speaks from their own perspective.
 

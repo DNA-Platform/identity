@@ -1,10 +1,9 @@
----
-kind: philosophy
-title: Why $Chemistry exists
-status: stable
----
-
 # Why $Chemistry exists
+
+- **kind:** philosophy
+- **status:** stable
+
+---
 
 ## The problem with React
 

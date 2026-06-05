@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VII.3
-title: The I<T> type
-status: stub
----
+# The I<T> type
 
-# § VII.3 The `I<T>` type
+- **kind:** catalogue-section
+- **section:** VII.3
+- **status:** stub
+
+---
 
 ## Definition
 

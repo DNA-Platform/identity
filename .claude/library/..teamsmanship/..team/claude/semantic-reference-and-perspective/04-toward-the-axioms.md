@@ -1,9 +1,8 @@
----
-title: Toward the axioms
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Toward the axioms
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [Semantic Reference and Perspective](.cover.md)] | [Previous: [The portrait problem](03-the-portrait-problem.md)]
 

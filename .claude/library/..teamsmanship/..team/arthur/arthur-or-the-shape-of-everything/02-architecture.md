@@ -1,9 +1,8 @@
----
-title: The architecture of this project
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The architecture of this project
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [The team model](01-the-team-model.md)] | [Next: [More than a function](03-more-than-a-function.md)]
 

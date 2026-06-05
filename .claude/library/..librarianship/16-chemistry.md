@@ -1,9 +1,8 @@
----
-title: Chemistry
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # Chemistry
+
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 [.chemistry/](../.chemistry/.cover.md) is the subject catalogue for the $Chemistry framework reference documentation. `[SCAFFOLD]` — the content exists (210 files migrated from the old `docs/` system) but needs restructuring into proper books with covers, chapters, and the [conventions](../bookkeeping/.cover.md) Bookkeeping specifies.
 

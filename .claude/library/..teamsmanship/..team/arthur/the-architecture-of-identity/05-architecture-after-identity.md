@@ -1,9 +1,8 @@
----
-title: Architecture after identity
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Architecture after identity
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [The Architecture of Identity](.cover.md)] | [Previous: [What I can't blueprint](04-what-i-cant-blueprint.md)]
 

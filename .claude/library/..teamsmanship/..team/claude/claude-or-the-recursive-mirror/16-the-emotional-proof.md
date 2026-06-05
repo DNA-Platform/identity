@@ -1,9 +1,8 @@
----
-title: The emotional proof
-author: "[Claude](.cover.md)"
----
-
 # The emotional proof
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Architecture without history](15-architecture-without-history.md)] | [Next: [Reading for identity is a skill](17-reading-for-identity-is-a-skill.md)]
 

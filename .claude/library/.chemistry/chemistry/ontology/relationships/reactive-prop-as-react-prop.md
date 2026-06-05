@@ -1,10 +1,9 @@
----
-kind: stub
-title: Reactive prop as React prop
-status: planned
----
-
 # Reactive prop as React prop
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 The bridge between the framework's reactive surface and the React render tree it ultimately produces.
 

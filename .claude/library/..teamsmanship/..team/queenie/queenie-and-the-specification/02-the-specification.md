@@ -1,9 +1,8 @@
----
-title: The specification
-author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The specification
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Sprint 20 was mine. "Test Suite as Specification." We went from 323 tests to 286 — not by adding coverage, but by deleting tests that tested the wrong thing. Implementation tests that asserted how the reactive system wired up its internals. Tests that would break if Cathy refactored the implementation without changing the behavior. Those aren't tests. They're concrete poured over the current design, making it impossible to change.
 

@@ -1,10 +1,9 @@
----
-kind: stub
-title: Parent and catalyst
-status: planned
----
-
 # Parent and catalyst
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 The catalyst graph. When a chemical is composed inside another, the `$parent` setter wires up a structural link — sibling chemicals under a common parent share a *catalyst* through which reactions propagate.
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VII.1
-title: The pattern
-status: stub
----
+# The pattern
 
-# § VII.1 The pattern
+- **kind:** catalogue-section
+- **section:** VII.1
+- **status:** stub
+
+---
 
 ## Definition
 

@@ -1,9 +1,8 @@
----
-title: "React: reconciliation from the root"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # React: reconciliation from the root
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 React is the baseline. It's the reactivity model that accepts the most "unnecessary" work at runtime and makes up for it with a simple developer contract. Understanding its trade-offs makes the others legible.
 

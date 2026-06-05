@@ -1,9 +1,8 @@
----
-title: "Comparison: the developer contract across frameworks"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # Comparison: the developer contract across frameworks
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 Five frameworks, five answers. The point of this chapter is to collapse them into a single mental model so that reactivity design decisions can be made by consulting a matrix rather than by recollecting five separate documents.
 

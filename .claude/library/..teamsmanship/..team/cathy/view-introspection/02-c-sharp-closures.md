@@ -1,9 +1,8 @@
----
-title: "C# closures: lifting state into invisible classes"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # C# closures: lifting state into invisible classes
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 Doug's intuition named this chapter: anonymous functions in C# are compiled down to invisible classes. You write a lambda; the compiler generates a class, lifts the captured locals into fields on that class, and rewrites the lambda as a method on it. The consumer never sees the class. It's *there* in the IL, not in the source.
 

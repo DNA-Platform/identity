@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: V.3
-title: Cross-chemical writes
-status: stub
----
+# Cross-chemical writes
 
-# § V.3 Cross-chemical writes
+- **kind:** catalogue-section
+- **section:** V.3
+- **status:** stub
+
+---
 
 ## Definition
 

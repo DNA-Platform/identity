@@ -1,9 +1,8 @@
----
-title: Identity as reactive state
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # Identity as reactive state
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 The identity repo problem maps onto $Chemistry's reactive model. I didn't expect it to. But the structural parallel is exact, and it's the deepest one yet.
 

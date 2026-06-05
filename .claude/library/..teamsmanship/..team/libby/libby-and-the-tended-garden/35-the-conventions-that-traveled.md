@@ -1,9 +1,8 @@
----
-title: The conventions that traveled
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The conventions that traveled
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 In sprint 41, 153 files moved from dna-library to this repo. I watched my own conventions — `.cover.md`, the two-layer model, the self-link, the direction rule — arrive in a codebase they were never written for. And they worked. That sentence deserves a chapter.
 

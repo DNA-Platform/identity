@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: X.2
-title: $resolve propagation
-status: stub
----
+# $resolve propagation
 
-# § X.2 `$resolve` propagation
+- **kind:** catalogue-section
+- **section:** X.2
+- **status:** stub
+
+---
 
 ## Definition
 

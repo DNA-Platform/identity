@@ -1,11 +1,10 @@
----
-kind: reference
-title: Voice Spec
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
-status: stable
----
-
 # Voice Spec
+
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **kind:** reference
+- **status:** stable
+
+---
 
 `voice.md` is the single output file for a collaborator's responses. It lives
 in the identity folder at `.{name}/voice.md` and is overwritten on each new

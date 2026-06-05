@@ -1,9 +1,8 @@
----
-title: First UIA read of Claude Windows app — 2026-05-10
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # First UIA read of Claude Windows app — 2026-05-10
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 The first time we successfully read the Claude Windows app's content via UIA.
 

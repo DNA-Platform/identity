@@ -1,10 +1,9 @@
----
-kind: index
-title: $Chemistry — start here
-status: stable
----
-
 # $Chemistry — start here
+
+- **kind:** index
+- **status:** stable
+
+---
 
 This is the entry point. If you are about to write $Chemistry code, read these documents in order before you touch a file. Following this path takes 30–45 minutes and is the difference between writing $Chemistry the way it was designed and reinventing it badly.
 

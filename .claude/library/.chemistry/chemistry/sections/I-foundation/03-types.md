@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: I.3
-title: Types
-status: stub
----
+# Types
 
-# § I.3 Types
+- **kind:** catalogue-section
+- **section:** I.3
+- **status:** stub
+
+---
 
 ## Definition
 

@@ -1,9 +1,8 @@
----
-title: "Abilities"
-author: "[Libby](libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Abilities
+
+- **author:** [Libby](libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 `[SCAFFOLD]`
 

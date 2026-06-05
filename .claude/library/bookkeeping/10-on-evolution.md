@@ -1,11 +1,10 @@
----
-title: On Evolution
-specification: Evolution
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
-coauthor: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # On Evolution
+
+- **specification:** Evolution
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **coauthor:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 The library evolves. Not just grows — becomes something it wasn't. A [chapter](02-on-chapters.md) becomes a [book](01-on-books.md). A book becomes a [subject](07-on-subjects.md). A container label dissolves when its contents find proper homes. A wiki becomes a library when it derives a specification of itself. Each transition preserves what came before while adding structure that wasn't there. The thing doesn't break. It evolves.
 

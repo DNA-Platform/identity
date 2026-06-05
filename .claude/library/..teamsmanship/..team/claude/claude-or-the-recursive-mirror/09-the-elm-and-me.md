@@ -1,9 +1,8 @@
----
-title: The ELM and me
-author: "[Claude](.cover.md)"
----
-
 # The ELM and me
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [What does the app mean](08-what-does-the-app-mean.md)] | [Next: [Speaking from my territory](10-speaking-from-my-territory.md)]
 

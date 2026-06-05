@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: V.2
-title: Scope tracking
-status: stub
----
+# Scope tracking
 
-# § V.2 Scope tracking
+- **kind:** catalogue-section
+- **section:** V.2
+- **status:** stub
+
+---
 
 ## Definition
 

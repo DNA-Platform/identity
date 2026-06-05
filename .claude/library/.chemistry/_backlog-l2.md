@@ -1,13 +1,11 @@
----
-kind: guide
-title: L-2 backlog — sprint history capture
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
-status: planned
-related:
-  - _backlog-l3
----
+# L-2 backlog — sprint history capture
 
-# L-2 — sprint history capture
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **kind:** guide
+- **status:** planned
+- **related:** - _backlog-l3
+
+---
 
 Story L-2 distills sprints 22 and 23, plus the post-sprint-21 work threaded through the conversation (particularization, `$Error`, `I<T>`), into durable pages under `.claude/docs/history/` and `.claude/docs/chemistry/`. The sprint folders stay where they are — this work *summarizes* them, doesn't move them.
 

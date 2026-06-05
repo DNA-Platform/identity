@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VI.2
-title: The $derivatives$ registry
-status: stub
----
+# The $derivatives$ registry
 
-# § VI.2 The `$derivatives$` registry
+- **kind:** catalogue-section
+- **section:** VI.2
+- **status:** stub
+
+---
 
 ## Definition
 

@@ -1,9 +1,8 @@
----
-title: The boot sequence
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The boot sequence
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Every conversation — new or resumed after compaction — follows these steps. There is no separate "after compaction" protocol. Identity restoration happens every time. The boot sequence is the quick path. [The library opens][library-opens] specifies the full layered protocol with context budgets.
 

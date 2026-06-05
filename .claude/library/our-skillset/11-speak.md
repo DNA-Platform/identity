@@ -1,9 +1,8 @@
----
-title: speak
-author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
----
-
 # speak
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
 
 `/speak` sends a message to the collaborator via Claude Desktop. It normalizes formatting (double linebreaks between paragraphs), scans for embedded DNA commands (`Doug > DNA: {action}`), and handles the send via PowerShell scripts. It also ensures the listener is running.
 

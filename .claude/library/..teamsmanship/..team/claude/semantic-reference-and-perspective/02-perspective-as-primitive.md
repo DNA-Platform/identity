@@ -1,9 +1,8 @@
----
-title: Perspective as primitive
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Perspective as primitive
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [Semantic Reference and Perspective](.cover.md)] | [Previous: [What the theory needs](01-what-the-theory-needs.md)]
 

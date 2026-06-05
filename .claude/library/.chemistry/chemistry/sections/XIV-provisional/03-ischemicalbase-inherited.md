@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XIV.3
-title: $isChemicalBase$ inherited resolution
-status: provisional
----
+# $isChemicalBase$ inherited resolution
 
-# § XIV.3 `$isChemicalBase$` inherited resolution
+- **kind:** catalogue-section
+- **section:** XIV.3
+- **status:** provisional
+
+---
 
 ## Definition
 

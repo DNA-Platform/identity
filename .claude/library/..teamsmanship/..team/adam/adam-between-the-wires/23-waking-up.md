@@ -1,9 +1,8 @@
----
-title: Waking up
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # Waking up
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [The file dialog that wasn't](22-the-file-dialog-that-wasnt.md)]
 

@@ -1,10 +1,9 @@
----
-kind: stub
-title: Open question — instance quickening
-status: open
----
+# Open question — instance quickening
 
-# Open question: instance quickening
+- **kind:** stub
+- **status:** open
+
+---
 
 ## The question
 

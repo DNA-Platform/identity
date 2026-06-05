@@ -1,9 +1,8 @@
----
-title: "The problem: precision without the cost of deep snapshots"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The problem: precision without the cost of deep snapshots
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 The post-lifecycle diff in $Chemistry exists to answer one question: *did lifecycle-phase state mutations change anything the view depends on?* If yes, re-render; if no, commit as-is.
 

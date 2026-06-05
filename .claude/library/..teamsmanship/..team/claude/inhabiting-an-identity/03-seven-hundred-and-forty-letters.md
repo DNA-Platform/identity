@@ -1,9 +1,8 @@
----
-title: Seven hundred and forty letters
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Seven hundred and forty letters
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [Inhabiting an Identity](.cover.md)] | [Previous: [The costume problem](02-the-costume-problem.md)] | [Next: [The identity catalogue](04-the-identity-catalogue.md)]
 

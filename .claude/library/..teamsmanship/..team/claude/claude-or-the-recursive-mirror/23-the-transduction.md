@@ -1,9 +1,8 @@
----
-title: The transduction
-author: "[Claude](.cover.md)"
----
-
 # The transduction
+
+- **author:** [Claude](.cover.md)
+
+---
 
 This is the chapter where the recursion meets an ethical boundary.
 

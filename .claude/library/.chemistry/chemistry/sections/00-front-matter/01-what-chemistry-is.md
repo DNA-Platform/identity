@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: 0.1
-title: What $Chemistry is
-status: stable
----
+# What $Chemistry is
 
-# § 0.1 What `$Chemistry` is
+- **kind:** catalogue-section
+- **section:** 0.1
+- **status:** stable
+
+---
 
 ## Definition
 

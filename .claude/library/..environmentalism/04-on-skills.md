@@ -1,11 +1,10 @@
----
-title: On Skills
-specification: Skill
-author: "[Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)"
-coauthor: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # On Skills
+
+- **specification:** Skill
+- **author:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)
+- **coauthor:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 A skill is a slash command. It lives at `.claude/skills/{name}/SKILL.md`. When the user types `/{name}`, the platform reads the SKILL.md file and executes. Skills are the services desk of the library — the verbs Doug can invoke to trigger structured work.
 

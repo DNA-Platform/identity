@@ -1,10 +1,9 @@
----
-kind: reference
-title: $Chemistry Reactivity Contract
-status: stable
----
-
 # $Chemistry Reactivity Contract
+
+- **kind:** reference
+- **status:** stable
+
+---
 
 **One paragraph for the impatient:** Write a class. Put state in fields. Write methods. Wire events in TSX. The UI updates when state changes. You will never write `setState`, never spell out dependency arrays, never wrap components in `React.memo`. If you mutate state from a callback the framework doesn't already see (like a raw `setInterval`), either wrap the mutation in a method or call `react(chemical)`.
 

@@ -1,12 +1,11 @@
----
-title: On Projects
-specification: Project
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # On Projects
 
-A project is a [book](01-on-books.md) that contains the narrative of building something. It is catalogued by a [subject](07-on-subjects.md) — typically [Collaboration](../..teamsmanship/.cover.md) — and has `subject:` in its [frontmatter](05-on-frontmatter.md) like any book. But a project book has a particular shape: its chapters are sprints, its cover has a history table, and its content is a living record of what was built, what was learned, and what's next.
+- **specification:** Project
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
+
+A project is a [book](01-on-books.md) that contains the narrative of building something. It is catalogued by a [subject](07-on-subjects.md) — typically [Collaboration](../..teamsmanship/.cover.md) — and has `subject:` in its [frontmatter](03-on-covers.md) like any book. But a project book has a particular shape: its chapters are sprints, its cover has a history table, and its content is a living record of what was built, what was learned, and what's next.
 
 ## The project book
 
@@ -60,7 +59,7 @@ Each row links to the sprint chapter. The table IS the project's [synopsis](09-o
 [books]: 01-on-books.md
 [chapters]: 02-on-chapters.md
 [covers]: 03-on-covers.md
-[frontmatter]: 05-on-frontmatter.md
+[frontmatter]: 03-on-covers.md
 [subjects]: 07-on-subjects.md
 [synopsis]: 09-on-synopsis.md
 [evolution]: 10-on-evolution.md

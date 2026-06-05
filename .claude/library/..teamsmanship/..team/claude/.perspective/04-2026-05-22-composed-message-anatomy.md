@@ -1,9 +1,8 @@
----
-title: Composed message anatomy — 2026-05-22
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Composed message anatomy — 2026-05-22
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 The composed message has three kinds of attachments, each with a different naming convention in the UIA tree:
 

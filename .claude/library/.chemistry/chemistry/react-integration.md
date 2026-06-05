@@ -1,10 +1,9 @@
----
-kind: report
-title: React ↔ $Chemistry integration — how the two play together
-status: draft
----
+# React ↔ $Chemistry integration — how the two play together
 
-# React ↔ $Chemistry Integration
+- **kind:** report
+- **status:** draft
+
+---
 
 ## The question
 

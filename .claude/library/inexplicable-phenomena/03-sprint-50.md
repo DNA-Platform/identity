@@ -1,9 +1,8 @@
----
-title: "Sprint 50 — Fix and Formalize"
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Sprint 50 — Fix and Formalize
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Fix the broken links. Formalize the validators. Build the compilers. Establish the three pillars. In that order.
 

@@ -1,9 +1,8 @@
----
-title: Anatomy of a book
-author: "[Libby](.cover.md)"
----
-
 # Anatomy of a book
+
+- **author:** [Libby](.cover.md)
+
+---
 
 A book is a directory. Everything inside it is either the cover or a chapter. That's the whole model.
 

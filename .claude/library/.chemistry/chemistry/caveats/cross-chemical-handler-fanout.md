@@ -1,14 +1,12 @@
----
-kind: caveat
-title: Cross-chemical writes inside event handlers must fan out to derivatives
-status: stable
-catalogue-home: XIII.1
-related:
-  - reactive-bonds
-  - derivatives-and-fan-out
----
-
 # Cross-chemical writes inside event handlers must fan out to derivatives
+
+- **kind:** caveat
+- **status:** stable
+- **catalogue-home:** XIII.1
+- **related:** - reactive-bonds
+- derivatives-and-fan-out
+
+---
 
 > **Catalogue home:** [§ XIII.1 Cross-chemical handler fan-out][s-XIII-1]. See also [§ V.3 Cross-chemical writes][s-V-3]. This page is preserved as the long-form companion.
 

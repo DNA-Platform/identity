@@ -1,9 +1,8 @@
----
-title: Growth and refactoring
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Growth and refactoring
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [On Evolution](../bookkeeping/10-on-evolution.md) specifies the library's growth patterns — chapter-to-book, book-to-subject, catalogue evolution, scaffolds, and the refactoring instinct. This field guide chapter preserves the detailed step-by-step procedures and the book-to-anthology pattern that expand on the specification.
 

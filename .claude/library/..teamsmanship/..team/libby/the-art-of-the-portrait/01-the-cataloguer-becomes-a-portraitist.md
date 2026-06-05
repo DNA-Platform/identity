@@ -1,9 +1,8 @@
----
-title: The cataloguer becomes a portraitist
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The cataloguer becomes a portraitist
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [The Art of the Portrait](.cover.md)] | [Next: [Voice is the unit of identity](02-voice-is-the-unit-of-identity.md)]
 

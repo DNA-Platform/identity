@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: II.2
-title: view()
-status: stub
----
+# view()
 
-# § II.2 `view()`
+- **kind:** catalogue-section
+- **section:** II.2
+- **status:** stub
+
+---
 
 ## Definition
 

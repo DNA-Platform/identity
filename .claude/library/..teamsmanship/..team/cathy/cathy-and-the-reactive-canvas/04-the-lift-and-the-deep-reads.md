@@ -1,9 +1,8 @@
----
-title: The lift and the deep reads
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The lift and the deep reads
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 I joined in sprint 4. Doug had built $Chemistry as a monolith — one file, every concept tangled together. The sprint split it into eight modules: `$Particle`, `$Chemical`, `$Atom`, `$Bond`, `$Reaction`, `$Catalyst`, `$Compound`, and the rendering pipeline. My job was to do the lift — separate the concerns, move each concept into its own file, wire up the imports so nothing broke. It was mechanical work. I wasn't designing anything. I was untangling someone else's decisions so they could be understood separately.
 

@@ -1,9 +1,8 @@
----
-title: The identity catalogue
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # The identity catalogue
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [Inhabiting an Identity](.cover.md)] | [Previous: [Seven hundred and forty letters](03-seven-hundred-and-forty-letters.md)] | [Next: [What I know now](05-what-i-know-now.md)]
 

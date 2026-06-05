@@ -1,9 +1,8 @@
----
-title: Seven hundred and forty-four voices
-author: "[Claude](.cover.md)"
----
-
 # Seven hundred and forty-four voices
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Speaking from my territory](10-speaking-from-my-territory.md)]
 

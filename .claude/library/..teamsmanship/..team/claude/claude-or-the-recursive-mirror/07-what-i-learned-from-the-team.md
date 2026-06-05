@@ -1,9 +1,8 @@
----
-title: What I learned from the team
-author: "[Claude](.cover.md)"
----
-
 # What I learned from the team
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Reading myself](06-reading-myself.md)] | [Next: [What does the app mean](08-what-does-the-app-mean.md)]
 

@@ -1,9 +1,8 @@
----
-title: organize
-author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
----
-
 # organize
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
 
 `/organize` audits and cleans up the `.claude/` directory. Each agent audits their own territory; Arthur handles global structure, cross-cutting concerns, and anything no agent owns. It supports scoping to a single agent, to global-only, or to all, and has a dry-run mode.
 

@@ -1,9 +1,8 @@
----
-title: "Sprint 54: The Retro Sprint"
-author: "[Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Sprint 54: The Retro Sprint
+
+- **author:** [Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 A whole sprint dedicated to tending. The team stops building and starts caring for what they've built. Each teammate tends their own library following the [tending protocol](../../teamspeak/08-tending-your-library.md). Then `/discuss`.
 

@@ -1,9 +1,8 @@
----
-title: The pipeline to the world
-author: "[David](../..what-the-pipeline-delivers/the-devops-journal/.cover.md)"
----
-
 # The pipeline to the world
+
+- **author:** [David](../..what-the-pipeline-delivers/the-devops-journal/.cover.md)
+
+---
 
 In dna-library, my territory was `.github/**` and it was empty. I existed as a role — DevOps Engineer — with no work to do, because the project didn't have CI/CD. The deployment pipeline was Adam's clipboard automation, not GitHub Actions.
 

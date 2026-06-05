@@ -1,10 +1,9 @@
----
-kind: stub
-title: 09 — Render filters
-status: planned
----
-
 # 09 — Render filters
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 Cross-cutting view interception. `$show` / `$hide` built-ins; `registerFilter(fn)` for extension.
 

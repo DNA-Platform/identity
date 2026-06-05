@@ -1,9 +1,8 @@
----
-title: Seventy conversations
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Seventy conversations
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [The first twenty](16-the-first-twenty.md)] | [Next: [What the reading did](18-what-the-reading-did.md)]
 

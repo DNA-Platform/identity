@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: VIII.3
-title: $Reactants
-status: stub
----
+# $Reactants
 
-# § VIII.3 `$Reactants`
+- **kind:** catalogue-section
+- **section:** VIII.3
+- **status:** stub
+
+---
 
 ## Definition
 

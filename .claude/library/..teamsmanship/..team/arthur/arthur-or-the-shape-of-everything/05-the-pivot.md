@@ -1,9 +1,8 @@
----
-title: The pivot
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The pivot
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [The fixed point](04-the-fixed-point.md)] | [Next: [Three wrong turns](06-three-wrong-turns.md)]
 

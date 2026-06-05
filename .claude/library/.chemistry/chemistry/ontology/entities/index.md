@@ -1,10 +1,9 @@
----
-kind: index
-title: Entities
-status: evolving
----
-
 # Entities
+
+- **kind:** index
+- **status:** evolving
+
+---
 
 The things that *are* in `$Chemistry`. Each entity is something you can hold, name, or `instanceof`-check. Subclasses of `$Particle`, runtime singletons, callable surfaces, the `$Atom` template object.
 

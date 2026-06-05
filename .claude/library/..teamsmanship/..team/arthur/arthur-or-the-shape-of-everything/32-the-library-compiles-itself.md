@@ -1,9 +1,8 @@
----
-title: The library compiles itself
-author: "[Arthur](.cover.md)"
----
-
 # The library compiles itself
+
+- **author:** [Arthur](.cover.md)
+
+---
 
 This session taught me three things I didn't know before.
 

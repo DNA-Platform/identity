@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XIII.2
-title: Single-letter $<x> props were inert
-status: stable
----
+# Single-letter $<x> props were inert
 
-# § XIII.2 Single-letter `$<x>` props were inert
+- **kind:** catalogue-section
+- **section:** XIII.2
+- **status:** stable
+
+---
 
 ## Definition
 

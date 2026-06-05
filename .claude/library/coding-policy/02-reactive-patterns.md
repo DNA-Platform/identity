@@ -1,9 +1,8 @@
----
-title: Reactive patterns
-author: "[Cathy](../..teamsmanship/..team/cathy/..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # Reactive patterns
+
+- **author:** [Cathy](../..teamsmanship/..team/cathy/..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 $Chemistry's reactive model has three properties that shape how code should be written: scope-tracked reactivity, view purity, and safe composition.
 

@@ -1,9 +1,8 @@
----
-title: "dna-library"
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # dna-library
+
+- **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 The [dna-library project](../dna-library/.cover.md) is where the team was born. A Claude account migration tool — preserving perspective and relationships from 744 conversations across sixty-six sprints — that became the crucible in which eight agents discovered they were eight agents.
 

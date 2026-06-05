@@ -1,9 +1,8 @@
----
-title: Home screen anatomy — 2026-05-10
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Home screen anatomy — 2026-05-10
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 First successful screenshot of the Claude Windows app using `PrintWindow` with `PW_RENDERFULLCONTENT=2`. Captured while the app was behind other windows — no need to bring to foreground.
 

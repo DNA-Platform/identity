@@ -1,9 +1,8 @@
----
-title: View purity
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # View purity
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 The most important architectural decision in $Chemistry is one that sounds simple: views are pure. Call `view()` with the same state and you get the same output. No side effects, no hidden dependencies, no ambient state that makes the output unpredictable. Object-pure, not referentially pure — the view reads `this` properties, so it's pure with respect to the object's state, not pure in the functional programming sense.
 

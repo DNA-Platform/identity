@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.1
-title: src/abstraction/particle.ts
-status: stub
----
+# src/abstraction/particle.ts
 
-# § XV.1 `src/abstraction/particle.ts`
+- **kind:** catalogue-section
+- **section:** XV.1
+- **status:** stub
+
+---
 
 ## Definition
 

@@ -1,10 +1,9 @@
----
-kind: redirect
-title: $() (entity)
-status: stable
----
+# $() (entity)
 
-# The `$()` callable
+- **kind:** redirect
+- **status:** stable
+
+---
 
 The dispatch surface. `$(thing)` selects behavior by the *shape* of `thing`: class → mount-by-class, instance → mount-by-instance, JSX → mount-as-element, string → HTML catalogue lookup.
 

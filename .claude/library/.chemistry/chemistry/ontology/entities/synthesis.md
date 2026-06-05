@@ -1,10 +1,9 @@
----
-kind: stub
-title: $Synthesis (entity)
-status: planned
----
+# $Synthesis (entity)
 
-# `$Synthesis`
+- **kind:** stub
+- **status:** planned
+
+---
 
 Bond-constructor orchestration. Runs once per chemical mount, parses the bond ctor's parameter shape, and processes JSX children into typed args.
 

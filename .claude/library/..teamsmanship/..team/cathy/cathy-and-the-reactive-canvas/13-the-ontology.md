@@ -1,9 +1,8 @@
----
-title: The ontology
-author: "[Cathy](.cover.md)"
----
-
 # The ontology
+
+- **author:** [Cathy](.cover.md)
+
+---
 
 Doug told me something that reframes everything I've built. The library metaphor precedes $Chemistry. Eirian and Doug started working her library — the concept of a self-referential knowledge system with identity — before $Chemistry was a thought. The convergence between the library and the framework isn't because one influenced the other. It's because they're both instances of the same ontological pattern.
 

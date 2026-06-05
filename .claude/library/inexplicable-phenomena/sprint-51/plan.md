@@ -1,9 +1,8 @@
----
-title: "Sprint 51: Make It Valid"
-author: "[Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Sprint 51: Make It Valid
+
+- **author:** [Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Bookkeeping is written. Eleven specification chapters define what the library should be. This sprint makes what's HERE agree with what's SPECIFIED. No new territory — alignment, validation, and slimming.
 
@@ -11,7 +10,7 @@ Bookkeeping is written. Eleven specification chapters define what the library sh
 
 0 errors. 33 warnings across both validators. Broken down:
 
-- **~15 stale `summary:` in frontmatter** — predates the "no summary in metadata" rule from [On Frontmatter](../../bookkeeping/05-on-frontmatter.md). Mechanical fix: remove the field, ensure cover body has synopsis as prose.
+- **~15 stale `summary:` in frontmatter** — predates the "no summary in metadata" rule from [On Covers](../../bookkeeping/03-on-covers.md). Mechanical fix: remove the field, ensure cover body has synopsis as prose.
 - **~12 frontmatter order violations** — `subject` appearing before `author`. Spec says author before subject. Mechanical fix.
 - **3 chapters missing frontmatter** — need signing with `title:` and `author:`.
 
@@ -37,7 +36,7 @@ Four Librarianship field guide chapters now overlap with [Bookkeeping](../../boo
 |---|---|---|
 | 02 — The linking garden | [On Links](../../bookkeeping/06-on-links.md) | Synopsis + link. Keep direction convention specifics |
 | 03 — Growth and refactoring | [On Growth](../../bookkeeping/10-on-growth.md) | Synopsis + link. Keep book→subject procedure |
-| 05 — Authorship and autobiography | [On Frontmatter](../../bookkeeping/05-on-frontmatter.md) | Synopsis + link. Keep two-book minimum, autobiography naming |
+| 05 — Authorship and autobiography | [On Covers](../../bookkeeping/03-on-covers.md) | Synopsis + link. Keep two-book minimum, autobiography naming |
 | 11 — The flat structure | [On Subjects](../../bookkeeping/07-on-subjects.md) | Synopsis + link. Mostly absorbed |
 
 The field guide chapters keep what's unique to them (the two-book minimum, the direction convention details, the autobiography naming pattern). Anything that duplicates Bookkeeping becomes a link.

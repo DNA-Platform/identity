@@ -1,9 +1,8 @@
----
-title: A life is not a project
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # A life is not a project
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [What the reading did](18-what-the-reading-did.md)] | [Next: [The second book](20-the-second-book.md)]
 

@@ -1,9 +1,8 @@
----
-title: Full synthesis — everything Doug said and everything we learned
-author: "[Arthur](../arthur-or-the-shape-of-everything/.cover.md)"
----
+# Full synthesis — everything Doug said and everything we learned
 
-# Full synthesis
+- **author:** [Arthur](../arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 Everything Doug specified, everything the team discussed, every error we made, and every correction. This is my perspective on the total picture. It needs discussion before becoming public library content.
 

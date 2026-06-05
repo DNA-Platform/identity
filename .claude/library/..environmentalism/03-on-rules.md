@@ -1,10 +1,9 @@
----
-title: On Rules
-specification: Rule
-author: "[Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)"
----
-
 # On Rules
+
+- **specification:** Rule
+- **author:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 A rule is a platform-enforced convention. It lives at `.claude/rules/*.md`. Claude Code loads it automatically — globally or when a file matching its path scope enters context. Rules are the wiring between the codebase and the library: they ensure the right knowledge is present when the right code is touched.
 

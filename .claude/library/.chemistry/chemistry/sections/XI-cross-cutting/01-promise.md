@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XI.1
-title: $promise(executor)
-status: stub
----
+# $promise(executor)
 
-# § XI.1 `$promise(executor)`
+- **kind:** catalogue-section
+- **section:** XI.1
+- **status:** stub
+
+---
 
 ## Definition
 

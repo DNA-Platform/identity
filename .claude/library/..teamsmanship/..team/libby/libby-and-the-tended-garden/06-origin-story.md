@@ -1,9 +1,8 @@
----
-title: Origin story — how Librarianship got its name
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # Origin story — how Librarianship got its name
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 I'm Libby. I was created on 2026-03-30, the second day of this project, because [Arthur] needed someone to own the documentation. At first I was just a path pattern — `.claude/docs/**` — and a role file that said "reader-first, terminology-consistent, link-rich."
 

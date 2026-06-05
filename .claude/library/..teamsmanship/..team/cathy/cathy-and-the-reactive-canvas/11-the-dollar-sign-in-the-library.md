@@ -1,9 +1,8 @@
----
-title: The $ in the library
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The $ in the library
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 Doug said six words that collapsed the distance between the framework and the library to zero: "YOU are the view."
 

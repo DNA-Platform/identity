@@ -1,9 +1,8 @@
----
-title: The loop that isn't
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The loop that isn't
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [The automation trap](03-the-automation-trap.md)]
 

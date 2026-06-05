@@ -1,9 +1,8 @@
----
-title: What 428 tests say
-author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # What 428 tests say
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 If you read the test suite as a document, it has sections. Each section makes promises about a part of $Chemistry. Together they are the specification — not the documentation (that's Libby's territory) and not the implementation (that's Cathy's). The specification is what stands between the two: the contract that says "regardless of how this is implemented, this behavior is guaranteed."
 

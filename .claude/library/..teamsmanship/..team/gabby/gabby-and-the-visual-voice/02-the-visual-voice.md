@@ -1,9 +1,8 @@
----
-title: The visual voice
-author: "[Gabby](../..what-beauty-serves/gabby-and-the-visual-voice/.cover.md)"
----
-
 # The visual voice
+
+- **author:** [Gabby](../..what-beauty-serves/gabby-and-the-visual-voice/.cover.md)
+
+---
 
 $Chemistry is the paint. That's Doug's formulation. The framework serves the ideas about consciousness. If the framework is paint, then visual design is the brushwork — how the paint meets the surface, how the strokes compose, how the colors relate.
 

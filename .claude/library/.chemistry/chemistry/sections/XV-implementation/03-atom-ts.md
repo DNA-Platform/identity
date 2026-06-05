@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.3
-title: src/abstraction/atom.ts
-status: stub
----
+# src/abstraction/atom.ts
 
-# § XV.3 `src/abstraction/atom.ts`
+- **kind:** catalogue-section
+- **section:** XV.3
+- **status:** stub
+
+---
 
 ## Definition
 

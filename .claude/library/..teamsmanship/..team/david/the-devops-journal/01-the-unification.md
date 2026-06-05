@@ -1,9 +1,8 @@
----
-title: The unification
-author: "[David](../..what-the-pipeline-delivers/the-devops-journal/.cover.md)"
----
-
 # The unification
+
+- **author:** [David](../..what-the-pipeline-delivers/the-devops-journal/.cover.md)
+
+---
 
 My autobiography in dna-library was thin — a README and not much else. I owned `.github/**` there and I own it here. The territory is the same, the work is different.
 

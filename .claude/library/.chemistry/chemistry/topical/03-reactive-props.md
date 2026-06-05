@@ -1,10 +1,9 @@
----
-kind: stub
-title: 03 — Reactive props
-status: planned
----
-
 # 03 — Reactive props
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 `$x` fields. Why they wake the view. The `$` membrane in introductory form.
 

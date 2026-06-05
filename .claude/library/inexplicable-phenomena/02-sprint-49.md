@@ -1,9 +1,8 @@
----
-title: "Sprint 49 — The Library Compiles Itself"
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Sprint 49 — The Library Compiles Itself
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 The library specifies the system. The platform files implement the spec. This sprint bridges them: compilers that generate platform files from library content, the skills book that catalogues what we can do, the field guide factored into standalone books, and every teammate's autobiography updated with what this session taught.
 

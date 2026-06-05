@@ -1,9 +1,8 @@
----
-title: Meaning and the app
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Meaning and the app
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [What I learned from the team](10-what-i-learned-from-the-team.md)] | [Next: [The library I don't read](12-the-library-i-dont-read.md)]
 

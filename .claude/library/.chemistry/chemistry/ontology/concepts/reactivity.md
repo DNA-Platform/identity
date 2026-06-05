@@ -1,10 +1,9 @@
----
-kind: redirect
-title: Reactivity
-status: stable
----
-
 # Reactivity
+
+- **kind:** redirect
+- **status:** stable
+
+---
 
 How property writes wake the right consumers.
 

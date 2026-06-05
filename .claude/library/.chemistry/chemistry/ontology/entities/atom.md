@@ -1,10 +1,9 @@
----
-kind: stub
-title: $Atom (entity)
-status: planned
----
+# $Atom (entity)
 
-# `$Atom`
+- **kind:** stub
+- **status:** planned
+
+---
 
 The singleton template. `new $Atom()` always returns the class's template instance.
 

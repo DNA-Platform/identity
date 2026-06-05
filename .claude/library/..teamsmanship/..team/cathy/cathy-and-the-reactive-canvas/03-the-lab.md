@@ -1,9 +1,8 @@
----
-title: The Lab
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # The Lab
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 We wrote six sprints of framework code without an app. Sprint 28 designed the Lab. Sprint 29 built it. Sprint 30 was the first functional sprint — real Cases running against real $Chemistry features. The difference was immediate: every wrong pattern surfaced within hours.
 

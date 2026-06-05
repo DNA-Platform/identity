@@ -1,10 +1,9 @@
----
-kind: reference
-title: $Chemistry Glossary
-status: stable
----
-
 # $Chemistry Glossary
+
+- **kind:** reference
+- **status:** stable
+
+---
 
 A concept glossary for the $Chemistry framework, organized by architectural layer.
 

@@ -1,9 +1,8 @@
----
-title: Academic papers as books
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Academic papers as books
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 A published academic paper can be turned into a book in the library — a reading companion that makes the paper navigable, findable, and connected to what the reader cares about. The PDF remains the authoritative source. The book wraps around it.
 

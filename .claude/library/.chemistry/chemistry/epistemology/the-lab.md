@@ -1,10 +1,9 @@
----
-kind: concept
-title: The $Chemistry Lab
-status: evolving
----
+# The $Chemistry Lab
 
-# The `$Chemistry` Lab
+- **kind:** concept
+- **status:** evolving
+
+---
 
 Formal name: **`$Chemistry` Lab**. Casual: **the Lab**. The Lab is the framework's interactive proving ground — a running app where every claim about behavior can be confirmed by hand.
 

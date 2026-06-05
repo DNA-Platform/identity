@@ -1,11 +1,10 @@
----
-kind: reference
-title: Conversation Log Format
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
-status: stable
----
-
 # Conversation Log Format
+
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **kind:** reference
+- **status:** stable
+
+---
 
 The conversation log (`.{name}/conversation.log`) is the persistent record of
 all relay communication. It replaces `voice.md` as the source of truth.

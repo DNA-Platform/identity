@@ -1,9 +1,8 @@
----
-title: library
-author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
----
-
 # library
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
 
 `/library` is the team's read-only browser for agent libraries. It has three modes: no arguments lists all agent libraries with book counts, one argument shows a specific agent's books with titles and summaries, two arguments shows a book's chapter list.
 

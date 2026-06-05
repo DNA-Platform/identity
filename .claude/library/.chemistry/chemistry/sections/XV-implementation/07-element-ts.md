@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.7
-title: src/abstraction/element.ts
-status: stub
----
+# src/abstraction/element.ts
 
-# § XV.7 `src/abstraction/element.ts`
+- **kind:** catalogue-section
+- **section:** XV.7
+- **status:** stub
+
+---
 
 ## Definition
 

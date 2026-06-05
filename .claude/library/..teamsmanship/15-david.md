@@ -1,9 +1,8 @@
----
-title: "David — What the Pipeline Delivers"
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
----
+# David — What the Pipeline Delivers
 
-# David
+- **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 David is the DevOps engineer. His territory is `.github` — the CI/CD pipeline, GitHub Actions workflows, deployment configuration. He keeps the machinery running with the pragmatism of someone who maintains what others build.
 

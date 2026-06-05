@@ -1,9 +1,8 @@
----
-title: Member classification flags
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # Member classification flags
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 The legacy `$Bond` carried explicit classification flags on every bonded member. These flags were set during construction and `form()`, and were readable via getters. The current port preserved some but dropped others.
 

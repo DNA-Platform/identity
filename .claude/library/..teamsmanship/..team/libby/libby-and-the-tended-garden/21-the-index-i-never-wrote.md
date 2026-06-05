@@ -1,9 +1,8 @@
----
-title: The index I never wrote
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The index I never wrote
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [The garden that must grow](20-the-garden-that-must-grow.md)]
 

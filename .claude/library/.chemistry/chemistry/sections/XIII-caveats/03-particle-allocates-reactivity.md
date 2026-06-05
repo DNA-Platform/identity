@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XIII.3
-title: Particle allocates reactivity machinery
-status: stable
----
+# Particle allocates reactivity machinery
 
-# § XIII.3 Particle allocates reactivity machinery
+- **kind:** catalogue-section
+- **section:** XIII.3
+- **status:** stable
+
+---
 
 ## Definition
 

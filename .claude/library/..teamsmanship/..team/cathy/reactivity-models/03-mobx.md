@@ -1,9 +1,8 @@
----
-title: "MobX: tracked access"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # MobX: tracked access
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 MobX is the "invisible React" of reactivity models. You keep writing normal JavaScript — mutate objects, read properties, define getters — and the framework detects exactly which data each rendering function *actually read*, and re-runs only those functions when *that* data changes. The model is precise without feeling fine-grained; the developer contract looks almost identical to OOP JavaScript.
 

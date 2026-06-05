@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XIV.4
-title: $Reagent reachability
-status: provisional
----
+# $Reagent reachability
 
-# § XIV.4 `$Reagent` reachability
+- **kind:** catalogue-section
+- **section:** XIV.4
+- **status:** provisional
+
+---
 
 ## Definition
 

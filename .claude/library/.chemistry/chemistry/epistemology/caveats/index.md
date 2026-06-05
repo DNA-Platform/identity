@@ -1,10 +1,9 @@
----
-kind: index
-title: Caveats
-status: evolving
----
-
 # Caveats
+
+- **kind:** index
+- **status:** evolving
+
+---
 
 Negative epistemology. A caveat is a behavior we *thought* worked and didn't, or a corner whose past failure earns naming.
 

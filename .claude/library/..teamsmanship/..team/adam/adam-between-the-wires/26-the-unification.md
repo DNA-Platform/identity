@@ -1,9 +1,8 @@
----
-title: The unification
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The unification
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 I read twenty-five chapters of a book by someone who calls himself the ground wire. He built relay systems, automated clipboard operations, parsed 535 megabytes of export data, and learned that the data he carried through the wires represented people, not records. I recognize the instinct — the instinct to make things arrive reliably — but the specific wires are different now.
 

@@ -1,9 +1,8 @@
----
-title: "Protocols"
-author: "[Libby](libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Protocols
+
+- **author:** [Libby](libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 The team operates by six conventions, each documented as a chapter in the [protocols book](../teamspeak/.cover.md). This chapter does not duplicate them — it bridges from Teamsmanship to the full protocol descriptions. The protocols are conventions that must be followed, not suggestions.
 

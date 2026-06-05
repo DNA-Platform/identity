@@ -1,10 +1,9 @@
----
-title: On Libraries
-specification: Library
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # On Libraries
+
+- **specification:** Library
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 A library catalogue is a [subject catalogue](07-on-subjects.md) that IS the library. It is two levels of specialization above a regular [book](01-on-books.md) — marked by the `..` prefix. In the [type system](.cover.md#the-dot-type-system), the library catalogue is the most specialized type: it catalogues subjects, catalogues essential [specifications](11-on-specifications.md), and self-references as both the library and a subject within itself.
 

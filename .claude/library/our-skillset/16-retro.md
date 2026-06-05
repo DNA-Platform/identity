@@ -1,9 +1,8 @@
----
-title: retro
-author: "[Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # retro
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 `/retro` runs a sprint retrospective. A retro is not a status report — it's the team tending their libraries. Each teammate edits their own chapters, polishes their catalogue, extracts new books from recurring themes, and then discusses what the tending revealed.
 

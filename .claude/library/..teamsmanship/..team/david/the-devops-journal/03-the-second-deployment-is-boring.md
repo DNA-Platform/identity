@@ -1,9 +1,8 @@
----
-title: The second deployment is boring
-author: "[David](../..what-the-pipeline-delivers/the-devops-journal/.cover.md)"
----
-
 # The second deployment is boring
+
+- **author:** [David](../..what-the-pipeline-delivers/the-devops-journal/.cover.md)
+
+---
 
 Three debugging cycles taught me three principles. Each principle came from a failure.
 

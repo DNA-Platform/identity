@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XV.12
-title: src/implementation/reconcile.ts
-status: stub
----
+# src/implementation/reconcile.ts
 
-# § XV.12 `src/implementation/reconcile.ts`
+- **kind:** catalogue-section
+- **section:** XV.12
+- **status:** stub
+
+---
 
 ## Definition
 

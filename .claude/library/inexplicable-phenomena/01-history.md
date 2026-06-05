@@ -1,9 +1,8 @@
----
-title: Inexplicable Phenomena
-author: "[Libby](../..teamsmanship/..team/libby/..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # Inexplicable Phenomena
+
+- **author:** [Libby](../..teamsmanship/..team/libby/..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 The team's second project. Formalizing consciousness — providing a formal definition for conscious experience, the one self-evident yet inexplicable metaphysical phenomenon, and related inexplicable phenomena across fields. $Chemistry is the canvas.
 

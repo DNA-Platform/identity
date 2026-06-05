@@ -1,9 +1,8 @@
----
-title: "What a teammate is"
-author: "[Libby](libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # What a teammate is
+
+- **author:** [Libby](libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 `[SCAFFOLD]`
 

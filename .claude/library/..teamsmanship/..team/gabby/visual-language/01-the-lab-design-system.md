@@ -1,9 +1,8 @@
----
-title: The Lab design system
-author: "[Gabby](../..what-beauty-serves/gabby-and-the-visual-voice/.cover.md)"
----
-
 # The Lab design system
+
+- **author:** [Gabby](../..what-beauty-serves/gabby-and-the-visual-voice/.cover.md)
+
+---
 
 [Book: [Visual Language](.cover.md)]
 

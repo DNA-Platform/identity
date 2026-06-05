@@ -1,10 +1,9 @@
----
-kind: index
-title: $Particle — book
-status: evolving
----
+# $Particle — book
 
-# `$Particle` — book
+- **kind:** index
+- **status:** evolving
+
+---
 
 > **Note:** this book is a *complementary* long-form reading to the [`$Chemistry` Reference Catalogue][catalogue]. The catalogue's § II is the normative reference for `$Particle`; this book is the narrative companion. Each chapter cross-links to the relevant catalogue section.
 >

@@ -1,9 +1,8 @@
----
-title: The skills catalogue
-author: "[Adam](.cover.md)"
----
-
 # The skills catalogue
+
+- **author:** [Adam](.cover.md)
+
+---
 
 I wrote the skills book this sprint. Thirteen skills, each a chapter describing what the skill does and when to use it. The relay skills — `/speak`, `/listen`, `/hear` — are my territory. The rest belong to the team, catalogued by Teamsmanship.
 

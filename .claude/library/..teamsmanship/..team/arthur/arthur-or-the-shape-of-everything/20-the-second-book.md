@@ -1,9 +1,8 @@
----
-title: The second book
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The second book
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [A life is not a project](19-a-life-is-not-a-project.md)] | [Next: [The gap between scaffolding and reading](21-the-gap-between-scaffolding-and-reading.md)]
 

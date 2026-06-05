@@ -1,10 +1,9 @@
----
-title: On Compiled Links
-specification: Compiled Link
-author: "[Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)"
----
-
 # On Compiled Links
+
+- **specification:** Compiled Link
+- **author:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 Every compiled file contains links back into the library. These links are the pathway from the platform into the knowledge. If they break, the compiled file is an island — it tells the platform what to do but not where to learn more. The links must survive compilation and resolve from wherever the compiled file lives.
 
@@ -35,7 +34,7 @@ The compiler constructs every link by combining the prefix with the path within 
 
 ## Section anchors
 
-Links in compiled files should target specific sections when the section answers a likely question. Not just `05-on-frontmatter.md` but `05-on-frontmatter.md#author` — directly to the field being referenced. Section anchors are generated from markdown headings. They survive compilation because they're part of the target file, not the compiled file.
+Links in compiled files should target specific sections when the section answers a likely question. Not just `03-on-covers.md` but `03-on-covers.md#author` — directly to the field being referenced. Section anchors are generated from markdown headings. They survive compilation because they're part of the target file, not the compiled file.
 
 ## What compilers must do
 

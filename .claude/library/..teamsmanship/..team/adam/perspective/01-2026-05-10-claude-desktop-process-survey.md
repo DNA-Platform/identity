@@ -1,9 +1,8 @@
----
-title: Claude Desktop process survey — 2026-05-10
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # Claude Desktop process survey — 2026-05-10
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 First look at Claude Desktop's process landscape on Doug's Windows 11 machine.
 

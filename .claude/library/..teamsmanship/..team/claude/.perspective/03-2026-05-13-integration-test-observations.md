@@ -1,9 +1,8 @@
----
-title: Integration test observations — 2026-05-13
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Integration test observations — 2026-05-13
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 First full integration test run against the live Claude Desktop app. Eight tests, 40 checks, all passing after bug fixes found during the run.
 

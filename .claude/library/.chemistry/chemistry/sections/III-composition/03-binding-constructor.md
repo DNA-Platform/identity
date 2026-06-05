@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: III.3
-title: The binding constructor
-status: stable
----
+# The binding constructor
 
-# § III.3 The binding constructor
+- **kind:** catalogue-section
+- **section:** III.3
+- **status:** stable
+
+---
 
 ## Definition
 

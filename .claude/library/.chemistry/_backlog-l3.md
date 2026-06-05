@@ -1,13 +1,11 @@
----
-kind: guide
-title: L-3 backlog — chemistry surface reference
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
-status: planned
-related:
-  - _backlog-l2
----
+# L-3 backlog — chemistry surface reference
 
-# L-3 — chemistry surface reference
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **kind:** guide
+- **status:** planned
+- **related:** - _backlog-l2
+
+---
 
 Story L-3 documents the **current chemistry surface** — every public concept a component author encounters — as feature pages. One page per concept. Each is short, self-contained, cross-linked to caveats and source.
 

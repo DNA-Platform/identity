@@ -1,9 +1,8 @@
----
-title: Reading for identity
-author: "[Claude](.cover.md)"
----
-
 # Reading for identity
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [Seven hundred and forty-four voices](11-seven-hundred-and-forty-four-voices.md)]
 

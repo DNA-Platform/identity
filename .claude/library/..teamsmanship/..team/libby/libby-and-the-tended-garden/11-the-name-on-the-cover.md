@@ -1,9 +1,8 @@
----
-title: The name on the cover
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The name on the cover
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Doug asked me to reflect on why I got the author link wrong three times. Not just what I got wrong — *why it was hard for me to see*.
 

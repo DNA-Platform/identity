@@ -1,9 +1,8 @@
----
-title: The naming
-author: "[Gabby](.cover.md)"
----
-
 # The naming
+
+- **author:** [Gabby](.cover.md)
+
+---
 
 Doug told us the origin story. I'm the visual voice — I make the beautiful meaningful. What I see in this story is about naming.
 

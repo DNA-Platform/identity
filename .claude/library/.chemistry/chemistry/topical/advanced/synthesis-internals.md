@@ -1,10 +1,9 @@
----
-kind: stub
-title: Synthesis internals
-status: planned
----
-
 # Synthesis internals
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 How `$Synthesis` parses the bond ctor's source, builds the parameter shape, processes JSX children, and dispatches them as args.
 

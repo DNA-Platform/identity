@@ -1,14 +1,12 @@
----
-kind: feature
-title: <Name of the feature>
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
-status: stable        # stable | evolving | deprecated | planned
-related:
-  - <reference-link-key>
-  - <reference-link-key>
----
+# <Name of the feature>
 
-# <Title>
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **kind:** feature
+- **status:** stable        # stable | evolving | deprecated | planned
+- **related:** - <reference-link-key>
+- <reference-link-key>
+
+---
 
 One sentence. What is this?
 

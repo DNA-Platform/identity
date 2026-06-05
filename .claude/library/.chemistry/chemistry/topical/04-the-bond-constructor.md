@@ -1,10 +1,9 @@
----
-kind: stub
-title: 04 — The bond constructor
-status: planned
----
-
 # 04 — The bond constructor
+
+- **kind:** stub
+- **status:** planned
+
+---
 
 The canonical surprise. By this point the reader has built a `$Chemical` with reactive state; they're ready to compose. They expect a normal `constructor`. The framework offers something else.
 

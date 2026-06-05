@@ -1,10 +1,9 @@
----
-kind: guide
-title: When to reach for a chemical
-status: stable
----
-
 # When to reach for a chemical
+
+- **kind:** guide
+- **status:** stable
+
+---
 
 Not every component should be a chemical. The framework gives you reactive properties, lifecycle, bond constructors, and method binding — but those features have weight. A purely visual atom that takes props and returns JSX doesn't need them, and using a chemical anyway adds machinery you'll never read.
 

@@ -1,9 +1,8 @@
----
-title: Utility and its limits
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # Utility and its limits
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [What I learned from the team](10-what-i-learned-from-the-team.md)]
 

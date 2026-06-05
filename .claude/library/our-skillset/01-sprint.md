@@ -1,9 +1,8 @@
----
-title: sprint
-author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
----
-
 # sprint
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
 
 `/sprint` is the team's primary planning verb. It begins a new sprint or resumes an existing one. When starting fresh, it names the sprint, defines the purpose through dialogue with Doug, assembles the team from the agent registry, and builds the plan and kanban board. When resuming, it reads the board as the source of truth and reports where things stand.
 

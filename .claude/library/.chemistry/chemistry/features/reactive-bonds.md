@@ -1,15 +1,13 @@
----
-kind: feature
-title: Reactive bonds
-status: stable
-related:
-  - particle
-  - chemical
-  - derivatives-and-fan-out
-  - lifecycle-phases
----
-
 # Reactive bonds
+
+- **kind:** feature
+- **status:** stable
+- **related:** - particle
+- chemical
+- derivatives-and-fan-out
+- lifecycle-phases
+
+---
 
 Property accessors that react to writes. Any `$`-prefixed instance field on a `$Particle` (or `$Chemical`) becomes a reactive *bond* — writes go through a setter that records the change, fires the chemical's `react()`, and fans out to derivatives.
 

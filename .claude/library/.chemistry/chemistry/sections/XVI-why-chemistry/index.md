@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: XVI
-title: Why $Chemistry
-status: stable
----
+# Why $Chemistry
 
-# § XVI Why `$Chemistry`
+- **kind:** catalogue-section
+- **section:** XVI
+- **status:** stable
+
+---
 
 ## Definition
 

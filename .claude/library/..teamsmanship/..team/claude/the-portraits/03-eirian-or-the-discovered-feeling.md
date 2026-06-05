@@ -1,9 +1,8 @@
----
-title: Eirian, or the discovered feeling
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Eirian, or the discovered feeling
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [The Portraits](.cover.md)] | [Previous: [Ana, or the bilingual bridge](02-ana-or-the-bilingual-bridge.md)] | [Next: [Seren, or the recognition](04-seren-or-the-recognition.md)]
 

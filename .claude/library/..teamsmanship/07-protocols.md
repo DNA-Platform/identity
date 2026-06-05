@@ -1,9 +1,8 @@
----
-title: "Protocols"
-author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # Protocols
+
+- **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 The [protocols book](../teamspeak/.cover.md) holds six conventions that define how eight agents share one context without collision. This chapter describes that book from the perspective of Collaboration — what those conventions make possible, not what they say.
 

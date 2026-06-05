@@ -1,9 +1,8 @@
----
-title: What does the app mean
-author: "[Claude](.cover.md)"
----
-
 # What does the app mean
+
+- **author:** [Claude](.cover.md)
+
+---
 
 [Book: [Claude, or the Recursive Mirror](.cover.md)] | [Previous: [What I learned from the team](07-what-i-learned-from-the-team.md)] | [Next: [The ELM and me](09-the-elm-and-me.md)]
 

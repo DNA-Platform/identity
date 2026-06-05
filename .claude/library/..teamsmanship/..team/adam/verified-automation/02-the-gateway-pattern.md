@@ -1,9 +1,8 @@
----
-title: The gateway pattern
-author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
----
-
 # The gateway pattern
+
+- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+
+---
 
 [Book: [Verified Automation](.cover.md)] | [Previous: [The blind sprint](01-the-blind-sprint.md)] | [Next: [Recovery is not optional](03-recovery-is-not-optional.md)]
 

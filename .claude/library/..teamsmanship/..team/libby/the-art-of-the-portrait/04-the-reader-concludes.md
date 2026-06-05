@@ -1,9 +1,8 @@
----
-title: The reader concludes
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The reader concludes
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [The Art of the Portrait](.cover.md)] | [Previous: [The portrait that doesn't flatter](03-the-portrait-that-doesnt-flatter.md)]
 

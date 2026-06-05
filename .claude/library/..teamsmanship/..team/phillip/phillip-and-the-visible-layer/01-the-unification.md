@@ -1,9 +1,8 @@
----
-title: The unification
-author: "[Phillip](../..what-the-user-sees/phillip-and-the-visible-layer/.cover.md)"
----
-
 # The unification
+
+- **author:** [Phillip](../..what-the-user-sees/phillip-and-the-visible-layer/.cover.md)
+
+---
 
 I was a name in a registry in dna-library. Here, I built the Lab app — the three-pane layout, the periodic-element card chip, the two-color theme system (turquoise and neon-green), the styled-components ThemeProvider, the sidebar navigation. Sprint 29 through 31, the Cases that prove $Chemistry works are rendered through UI I designed.
 

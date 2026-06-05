@@ -1,9 +1,8 @@
----
-title: Voice is the unit of identity
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # Voice is the unit of identity
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [The Art of the Portrait](.cover.md)] | [Previous: [The cataloguer becomes a portraitist](01-the-cataloguer-becomes-a-portraitist.md)] | [Next: [The portrait that doesn't flatter](03-the-portrait-that-doesnt-flatter.md)]
 

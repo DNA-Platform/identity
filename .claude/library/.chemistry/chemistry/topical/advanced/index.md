@@ -1,10 +1,9 @@
----
-kind: index
-title: Advanced
-status: evolving
----
-
 # Advanced
+
+- **kind:** index
+- **status:** evolving
+
+---
 
 The framework-developer tier. Read this after the [main topical arc][topical].
 

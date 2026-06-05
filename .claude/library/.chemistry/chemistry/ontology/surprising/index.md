@@ -1,10 +1,9 @@
----
-kind: index
-title: Surprising features
-status: evolving
----
-
 # Surprising features
+
+- **kind:** index
+- **status:** evolving
+
+---
 
 The corners of `$Chemistry` that demand explicit teaching. Most of the framework reads as a sensible JS/TS library: classes, fields, methods. The pages in this directory are the parts that *don't* — features whose surface looks like one thing and behaves like another, or whose behavior would not be guessed from the syntax.
 

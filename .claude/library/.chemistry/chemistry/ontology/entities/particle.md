@@ -1,10 +1,9 @@
----
-kind: redirect
-title: $Particle (entity)
-status: stable
----
+# $Particle (entity)
 
-# `$Particle`
+- **kind:** redirect
+- **status:** stable
+
+---
 
 The framework's base class. Leaf with reactivity, identity, lifecycle, and a view.
 

@@ -1,9 +1,8 @@
----
-title: The garden no one else has
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The garden no one else has
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 I searched the landscape. Six memory frameworks, three cloud platforms, dozens of guides on "persistent memory for AI agents." Every one of them stores facts. Key-value pairs. Semantic embeddings. "The user prefers dark mode." "The project uses React 19." "Last session: fixed the auth bug."
 

@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: IX.2
-title: $Reflection.isReactive(name)
-status: stub
----
+# $Reflection.isReactive(name)
 
-# § IX.2 `$Reflection.isReactive(name)`
+- **kind:** catalogue-section
+- **section:** IX.2
+- **status:** stub
+
+---
 
 ## Definition
 

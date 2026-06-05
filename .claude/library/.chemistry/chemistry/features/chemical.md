@@ -1,15 +1,13 @@
----
-kind: feature
-title: $Chemical
-status: stable
-related:
-  - particle
-  - dollar-callable
-  - reactive-bonds
-  - lifecycle-phases
----
+# $Chemical
 
-# `$Chemical`
+- **kind:** feature
+- **status:** stable
+- **related:** - particle
+- dollar-callable
+- reactive-bonds
+- lifecycle-phases
+
+---
 
 The container renderable. Extends `$Particle` and adds the bond constructor — the named-after-the-class method that parses typed JSX children into args. JSX shape: `<Chemical>...</Chemical>`.
 

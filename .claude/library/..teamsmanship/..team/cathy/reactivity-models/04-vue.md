@@ -1,9 +1,8 @@
----
-title: "Vue: Proxy reactivity"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # Vue: Proxy reactivity
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 Vue 3 takes the MobX idea — reads register, writes publish — and bakes it into the framework's primitives. Unlike MobX, where you opt observables into tracking, Vue 3 makes the primitives reactive by default: `reactive()` wraps an object, `ref()` wraps a value, and everything downstream of those participates in the reactive graph.
 

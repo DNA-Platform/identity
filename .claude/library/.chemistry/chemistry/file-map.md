@@ -1,10 +1,9 @@
----
-kind: reference
-title: $Chemistry File Map
-status: evolving
----
-
 # $Chemistry File Map
+
+- **kind:** reference
+- **status:** evolving
+
+---
 
 This document catalogues every source file in the [`library/chemistry/`][chemistry-root] package, grouped by architectural layer.
 

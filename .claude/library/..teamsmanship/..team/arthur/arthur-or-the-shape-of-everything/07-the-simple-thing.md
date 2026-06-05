@@ -1,9 +1,8 @@
----
-title: The simple thing
-author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # The simple thing
+
+- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 [Book: [Arthur, or the Shape of Everything](.cover.md)] | [Previous: [Three wrong turns](06-three-wrong-turns.md)] | [Next: [The ghost](08-the-ghost.md)]
 

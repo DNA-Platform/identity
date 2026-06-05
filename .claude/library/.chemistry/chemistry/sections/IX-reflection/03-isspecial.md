@@ -1,11 +1,10 @@
----
-kind: catalogue-section
-section: IX.3
-title: $Reflection.isSpecial(name)
-status: stub
----
+# $Reflection.isSpecial(name)
 
-# § IX.3 `$Reflection.isSpecial(name)`
+- **kind:** catalogue-section
+- **section:** IX.3
+- **status:** stub
+
+---
 
 ## Definition
 

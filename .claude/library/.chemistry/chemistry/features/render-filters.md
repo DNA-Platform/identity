@@ -1,13 +1,11 @@
----
-kind: feature
-title: Render filters — $Function$, $Html$, passthrough patterns
-status: stable
-related:
-  - particle
-  - chemical
----
+# Render filters — $Function$, $Html$, passthrough patterns
 
-# Render filters — `$Function$`, `$Html$`, passthrough patterns
+- **kind:** feature
+- **status:** stable
+- **related:** - particle
+- chemical
+
+---
 
 Framework-internal particles that wrap React function components and HTML tags so they participate in the chemistry render pipeline without going through bond-ctor orchestration. They pass children through unchanged.
 

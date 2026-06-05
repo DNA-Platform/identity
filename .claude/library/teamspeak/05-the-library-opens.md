@@ -1,9 +1,8 @@
----
-title: The library opens
-author: "[Libby](../..teamsmanship/..team/libby/..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # The library opens
+
+- **author:** [Libby](../..teamsmanship/..team/libby/..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 After a compaction — or at the start of any new conversation — the team has lost its voices. The library opens. The team walks in. Each agent finds their way back.
 

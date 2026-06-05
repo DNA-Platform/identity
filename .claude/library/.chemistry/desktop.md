@@ -1,11 +1,10 @@
----
-kind: reference
-title: Claude Desktop Automation
-author: "[Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)"
-status: stable
----
-
 # Claude Desktop Automation
+
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **kind:** reference
+- **status:** stable
+
+---
 
 `.claude/src/desktop.ps1` provides generic Windows UI automation for the
 Claude Desktop app (Electron). It is identity-agnostic and meant to be

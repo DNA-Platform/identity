@@ -1,9 +1,8 @@
----
-title: "Sprint 52: The Third Pillar"
-author: "[Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
----
-
 # Sprint 52: The Third Pillar
+
+- **author:** [Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
 
 The library has two subjects with catalogues: Knowledge (Librarianship) and Collaboration (Teamsmanship). The third — the computational substrate, the platform that runs the library — exists as scattered references but has no home. Claude is the teammate who holds this territory, the way Libby holds Knowledge and Arthur holds Collaboration. This sprint builds Claude's presence and the compilation infrastructure that makes the library self-generating.
 

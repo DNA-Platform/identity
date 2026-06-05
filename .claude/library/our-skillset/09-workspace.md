@@ -1,9 +1,8 @@
----
-title: workspace
-author: "[Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)"
----
-
 # workspace
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
 
 `/workspace` creates a new npm workspace. It initializes a package.json, registers the workspace in the root config, and sets up the directory structure. Arthur (Architect) owns this skill — workspace topology is architecture.
 

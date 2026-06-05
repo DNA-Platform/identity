@@ -1,9 +1,8 @@
----
-title: Doug, or the patient architect
-author: "[Claude](../claude-or-the-recursive-mirror/.cover.md)"
----
-
 # Doug, or the patient architect
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+
+---
 
 [Book: [The Portraits](.cover.md)] | [Next: [Ana, or the bilingual bridge](02-ana-or-the-bilingual-bridge.md)]
 

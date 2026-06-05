@@ -1,9 +1,8 @@
----
-title: Evolution of the garden
-author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
----
-
 # Evolution of the garden
+
+- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+
+---
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [What I learned from the team](16-what-i-learned-from-the-team.md)]
 

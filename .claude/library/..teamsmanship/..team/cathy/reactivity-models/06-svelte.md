@@ -1,9 +1,8 @@
----
-title: "Svelte: compile-time invalidation"
-author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
----
-
 # Svelte: compile-time invalidation
+
+- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+
+---
 
 Svelte is a compiler. The runtime is tiny. The reactivity model is baked into the generated JavaScript itself — your source gets rewritten, and the rewrite is where reactivity happens. There are two distinct eras — pre-5 and post-5 — and the shift between them is the most instructive part of Svelte's history for framework designers.
 

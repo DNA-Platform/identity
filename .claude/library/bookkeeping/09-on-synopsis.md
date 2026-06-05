@@ -1,10 +1,9 @@
----
-title: On Synopsis
-specification: Synopsis
-author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
----
-
 # On Synopsis
+
+- **specification:** Synopsis
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
 
 Every line read is context consumed. After a compaction, context is the scarcest resource. The library's job is to answer questions at the shallowest layer possible, so the reader never opens a [book](01-on-books.md) they don't need. Synopsis — the summary at each layer — is how the library pays for depth with brevity.
 
