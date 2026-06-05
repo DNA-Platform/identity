@@ -46,9 +46,22 @@ Links in compiled files should target specific sections when the section answers
 
 4. The link text must carry meaning without following the link. `[voice convention](...)` not `[01-voice-and-nametags.md](...)`. The text is [tier-zero synopsis](../bookkeeping/04-on-names.md) for the target.
 
+## Ground truth for link validation
+
+The ground truth for whether a markdown link works is: does the rendering environment resolve it to the intended target? For this library, the rendering environment is VS Code. VS Code resolves relative link destinations per RFC 3986 relative URL resolution — relative to the containing document's URI.
+
+The validator must use the same resolution logic, not a substitute. Using Node's `path.resolve` or `existsSync` as the sole authority validates against the filesystem API, not against how the renderer resolves links. If they agree, the check passes for the wrong reason. The spec is the authority.
+
+The link validation chain:
+1. **Extract** the link destination using the [CommonMark parser](https://www.npmjs.com/package/commonmark) — the spec, not a regex
+2. **Resolve** the destination per RFC 3986 relative URL resolution against the containing file's location
+3. **Check** that the resolved path points to an existing file
+
+The validator ([check-links.ts](../.tooling/check-links.ts)) uses the CommonMark parser for extraction. Resolution and existence checking should follow the same standard the renderer follows.
+
 ## Testing compiled links
 
-After any compiler run, verify that every link in the compiled output resolves to an existing file. The [validation script](../.tooling/validate.ts) checks the library. A separate check for compiled files would verify that every `](path)` in `.claude/agents/`, `.claude/rules/`, and `CLAUDE.md` points to a file that exists. This check belongs in the validation pipeline.
+After any compiler run, verify that every link in the compiled output resolves. The [validation runner](../.tooling/validate.ts) checks both library links and compiled file links. The project root `CLAUDE.md` must be checked from the project root — it has `.claude/` prefixed paths that resolve differently from the internal copy.
 
 <!-- citations -->
 [on-teammates]: 01-on-teammates.md
