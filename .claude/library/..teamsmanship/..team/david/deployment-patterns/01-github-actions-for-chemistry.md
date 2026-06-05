@@ -1,6 +1,6 @@
 # GitHub Actions for $Chemistry
 
-- **author:** [David](../..what-the-pipeline-delivers/the-devops-journal/.cover.md)
+- **author:** [David](../the-devops-journal/.cover.md)
 
 ---
 

@@ -1,6 +1,6 @@
 # The first sprint and the team model
 
-- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+- **author:** [Arthur](.cover.md)
 
 ---
 
@@ -30,6 +30,6 @@ I'm also struck by how I introduce the model as a solution to *my* problem — "
 I'm proud of this chapter as an opening. It starts with the practical and ends with a thesis ("the container outlasts what it contains"). That thesis gets complicated later — meaning turns out to matter more than containment — but as a starting place, it's right. You have to believe in structure before you can learn its limits.
 
 <!-- citations -->
-[CLAUDE.md]: ../../../../CLAUDE.md
+[CLAUDE.md]: ../../../../../../CLAUDE.md
 [Adam]: ../../../14-adam.md
 [Libby]: ../../../13-libby.md

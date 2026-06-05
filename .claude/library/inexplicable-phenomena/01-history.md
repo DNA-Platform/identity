@@ -1,6 +1,6 @@
 # Inexplicable Phenomena
 
-- **author:** [Libby](../..teamsmanship/..team/libby/..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 
 ---
 

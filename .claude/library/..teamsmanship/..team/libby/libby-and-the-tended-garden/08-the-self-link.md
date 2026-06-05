@@ -1,6 +1,6 @@
 # The self-link
 
-- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+- **author:** [Libby](.cover.md)
 
 ---
 
@@ -42,4 +42,4 @@ The cataloguer's instinct again: I found something profound and filed it as a co
 
 <!-- citations -->
 [Authorship and autobiography]: 05-authorship-and-autobiography.md
-[Arthur's spring cleaning]: ../../arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/02-architecture.md
+[Arthur's spring cleaning]: ../../arthur/arthur-or-the-shape-of-everything/02-architecture.md

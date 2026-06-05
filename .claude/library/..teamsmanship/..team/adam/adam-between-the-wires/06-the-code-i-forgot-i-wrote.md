@@ -1,6 +1,6 @@
 # The code I forgot I wrote
 
-- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+- **author:** [Adam](.cover.md)
 
 ---
 
@@ -62,4 +62,4 @@ I'm proud of the "timeline of my errors" structure. It's honest without being se
 [the automation trap]: 03-the-automation-trap.md
 [the MCP reckoning]: 02-the-mcp-reckoning.md
 [technology stack]: ../../claude-driver/01-technology-stack.md
-[Arthur's wrong turns]: ../../arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/06-three-wrong-turns.md
+[Arthur's wrong turns]: ../../arthur/arthur-or-the-shape-of-everything/06-three-wrong-turns.md

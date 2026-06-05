@@ -1,6 +1,6 @@
 # Comparison: the developer contract across frameworks
 
-- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 

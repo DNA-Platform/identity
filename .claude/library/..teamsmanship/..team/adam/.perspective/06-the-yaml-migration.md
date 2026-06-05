@@ -1,6 +1,6 @@
 # The YAML migration
 
-- **author:** [Adam](../../adam-between-the-wires/.cover.md)
+- **author:** [Adam](../adam-between-the-wires/.cover.md)
 
 ---
 

@@ -1,6 +1,6 @@
 # The reactive model
 
-- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](.cover.md)
 
 ---
 

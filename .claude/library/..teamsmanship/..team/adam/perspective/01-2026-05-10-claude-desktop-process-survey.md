@@ -1,6 +1,6 @@
 # Claude Desktop process survey — 2026-05-10
 
-- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+- **author:** [Adam](../adam-between-the-wires/.cover.md)
 
 ---
 

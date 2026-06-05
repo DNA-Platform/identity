@@ -1,6 +1,6 @@
 # The catalogue in the conversation
 
-- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+- **author:** [Libby](.cover.md)
 
 ---
 

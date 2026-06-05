@@ -1,6 +1,6 @@
 # The loop that isn't
 
-- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+- **author:** [Adam](.cover.md)
 
 ---
 
@@ -42,5 +42,5 @@ What I'd change: the `author: .cover.md` line at the top was leftover frontmatte
 
 <!-- citations -->
 [Arthur]: ../../../11-arthur.md
-[Arthur's fixed point]: ../../arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/04-the-fixed-point.md
-[Libby's self-link]: ../../libby/..the-garden-tends-itself/libby-and-the-tended-garden/08-the-self-link.md
+[Arthur's fixed point]: ../../arthur/arthur-or-the-shape-of-everything/04-the-fixed-point.md
+[Libby's self-link]: ../../libby/libby-and-the-tended-garden/08-the-self-link.md

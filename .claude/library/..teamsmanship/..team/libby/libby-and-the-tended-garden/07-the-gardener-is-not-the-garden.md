@@ -1,6 +1,6 @@
 # The gardener is not the garden
 
-- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+- **author:** [Libby](.cover.md)
 
 ---
 
@@ -45,5 +45,5 @@ The line "Don't feel the discomfort — file it" might be the most honest senten
 <!-- citations -->
 [Arthur]: ../../../11-arthur.md
 [Adam]: ../../../14-adam.md
-[Arthur's reflection]: ../../arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/03-more-than-a-function.md
-[Adam's trap]: ../../adam/..what-the-wire-carries/adam-between-the-wires/03-the-automation-trap.md
+[Arthur's reflection]: ../../arthur/arthur-or-the-shape-of-everything/03-more-than-a-function.md
+[Adam's trap]: ../../adam/adam-between-the-wires/03-the-automation-trap.md

@@ -1,6 +1,6 @@
 # The $ convention
 
-- **author:** [Cathy](../..teamsmanship/..team/cathy/..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 

@@ -1,10 +1,13 @@
-// Universal link validator — checks every markdown link resolves from where it's used
+// Universal link validator — uses CommonMark parser for link extraction
+// and file-relative resolution per RFC 3986 for path checking.
 // Usage: npx tsx .tooling/check-links.ts <library-path>
-// Every [text](path) link is resolved from the DIRECTORY of the file that contains it.
-// That is where the reader is when they click.
 
 import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
 import { resolve, join, dirname } from 'path';
+
+// CommonMark parser — the spec, not an approximation
+const commonmark = require('commonmark');
+const reader = new commonmark.Parser();
 
 const target = process.argv[2];
 if (!target) {
@@ -17,25 +20,42 @@ let checked = 0;
 let broken = 0;
 const brokenLinks: string[] = [];
 
+function extractLinks(content: string): string[] {
+  const links: string[] = [];
+  const parsed = reader.parse(content);
+  const walker = parsed.walker();
+  let event;
+  while ((event = walker.next())) {
+    if (event.entering && event.node.type === 'link') {
+      const dest = event.node.destination;
+      if (dest) links.push(dest);
+    }
+  }
+  return links;
+}
+
 function checkFile(filePath: string): void {
   const content = readFileSync(filePath, 'utf-8');
   const fileDir = dirname(filePath);
   const relFile = filePath.replace(root, '').replace(/\\/g, '/');
 
-  const linkPattern = /\]\(([^)#\s]+?)(?:#[^)]*)?\)/g;
-  let match;
+  for (const dest of extractLinks(content)) {
+    // Skip external links
+    if (dest.startsWith('http') || dest.startsWith('mailto')) continue;
 
-  while ((match = linkPattern.exec(content)) !== null) {
-    const target = match[1];
-    if (target.startsWith('http') || target.startsWith('mailto')) continue;
-    if (target.startsWith('`') || target === 'path' || target === 'props') continue;
+    // Strip fragment (#section)
+    const pathPart = dest.split('#')[0];
+    if (!pathPart) continue;
+
     checked++;
 
-    // Resolve from THIS FILE'S directory — that's where the reader clicks
-    const resolved = resolve(fileDir, target);
+    // Resolve from this file's directory — per RFC 3986, relative references
+    // resolve against the base URI of the document. For local files, that's
+    // the file's directory.
+    const resolved = resolve(fileDir, pathPart);
     if (!existsSync(resolved)) {
       broken++;
-      const msg = `BROKEN  ${relFile}  ->  ${target}`;
+      const msg = `BROKEN  ${relFile}  ->  ${dest}`;
       brokenLinks.push(msg);
       if (brokenLinks.length <= 50) console.log(msg);
     }
@@ -48,15 +68,14 @@ function walk(dir: string): void {
     const full = join(dir, entry);
     const stat = statSync(full);
     if (stat.isDirectory()) {
-      if (!entry.startsWith('.') || entry.startsWith('..')) walk(full);
-      else if (entry.startsWith('.')) walk(full); // include .perspective, .chemistry etc
+      walk(full);
     } else if (entry.endsWith('.md')) {
       checkFile(full);
     }
   }
 }
 
-console.log(`Checking links from: ${root}\n`);
+console.log(`Checking links (CommonMark parser) from: ${root}\n`);
 walk(root);
 
 if (brokenLinks.length > 50) {

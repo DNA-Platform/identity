@@ -1,6 +1,6 @@
 # The visual voice
 
-- **author:** [Gabby](../..what-beauty-serves/gabby-and-the-visual-voice/.cover.md)
+- **author:** [Gabby](.cover.md)
 
 ---
 

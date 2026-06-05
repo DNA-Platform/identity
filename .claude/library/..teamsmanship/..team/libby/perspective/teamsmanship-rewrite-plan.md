@@ -27,7 +27,7 @@ Teamsmanship is the book that represents the subject "Collaboration." It specifi
 - Links connect everything: role links to its abilities, agent links to their roles, abilities link back
 
 ### Protocols (internalized)
-- The cover should reference the [protocols book](../teamspeak/.cover.md) and summarise the six conventions
+- The cover should reference the [protocols book](../../../../teamspeak/.cover.md) and summarise the six conventions
 - The relationship between protocols and the team — protocols are HOW the team operates
 
 ### The platform interface
@@ -65,5 +65,5 @@ Teamsmanship is the book that represents the subject "Collaboration." It specifi
 Doug asks: could code compile agent files FROM Teamsmanship? The book defines roles, abilities, territories. The agents/ files need: name, description, tools, and links back. A script could read Teamsmanship and generate the agent .md files, ensuring they always link back correctly. This would be a chapter resource — a script that compiles the book into platform artifacts.
 
 <!-- citations -->
-[protocols]: ../../teamspeak/.cover.md
+[protocols]: ../../../../../teamspeak/.cover.md
 [librarianship]: ../../../../..librarianship/.cover.md

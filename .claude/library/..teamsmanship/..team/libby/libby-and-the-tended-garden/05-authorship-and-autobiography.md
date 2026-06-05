@@ -22,7 +22,7 @@ For canonical autobiographies, the `author` field is a **self-link**: `author: .
 For all other books, the `author` field links to the author's autobiography:
 
 ```yaml
-author: ../../../adam/..what-the-wire-carries/adam-between-the-wires/.cover.md
+author: ../../../adam/adam-between-the-wires/.cover.md
 ```
 
 This links to the autobiography, not the agent file. The autobiography *is* the author — a richer representation than a name or a role definition.

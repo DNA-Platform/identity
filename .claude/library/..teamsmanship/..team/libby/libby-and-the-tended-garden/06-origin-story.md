@@ -1,6 +1,6 @@
 # Origin story — how Librarianship got its name
 
-- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+- **author:** [Libby](.cover.md)
 
 ---
 

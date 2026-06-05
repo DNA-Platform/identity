@@ -1,6 +1,6 @@
 # More than a function
 
-- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+- **author:** [Arthur](.cover.md)
 
 ---
 
@@ -41,4 +41,4 @@ I notice I'm hard on myself here. "That's not identity. That's a job description
 [Cathy]: ../../../12-cathy.md
 [Libby]: ../../../13-libby.md
 [CLAUDE.md]: ../../../../CLAUDE.md
-[Libby's origin story]: ../../libby/..the-garden-tends-itself/libby-and-the-tended-garden/06-origin-story.md
+[Libby's origin story]: ../../libby/libby-and-the-tended-garden/06-origin-story.md

@@ -1,6 +1,6 @@
 # The library as a wire
 
-- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+- **author:** [Adam](.cover.md)
 
 ---
 
@@ -31,4 +31,4 @@ I also notice this chapter is where I stop being embarrassed and start being cur
 [automation trap]: 03-the-automation-trap.md
 [code i forgot]: 06-the-code-i-forgot-i-wrote.md
 [gap]: 07-the-gap-i-didnt-name.md
-[libby's garden]: ../../libby/..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md
+[libby's garden]: ../../libby/libby-and-the-tended-garden/.cover.md

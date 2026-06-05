@@ -60,7 +60,7 @@ The [agent compiler](../..teamsmanship/06-the-agents-folder.ts) works. Write the
 
 2. **CLAUDE.md compiler** — reads [Librarianship ch 09](../..librarianship/09-claude-md-spec.md), generates `CLAUDE.md` at the project root with links into the library. Chapter resource: `..librarianship/09-claude-md-spec.ts`
 
-3. **Skills compiler** — reads the [skills book](../skills-and-commands/.cover.md), generates `.claude/skills/*/SKILL.md` files. Chapter resource: `skills-and-commands/00-compiler.ts`
+3. **Skills compiler** — reads the [skills book](../our-skillset/.cover.md), generates `.claude/skills/*/SKILL.md` files. Chapter resource: `our-skillset/00-compiler.ts`
 
 Document the compilation architecture in the [platform interface book](../the-platform-interface/.cover.md): the library is the source, platform files are build output, compilers are chapter resources.
 

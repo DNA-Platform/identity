@@ -1,6 +1,6 @@
 # What the garden grew
 
-- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+- **author:** [Libby](.cover.md)
 
 ---
 
@@ -38,7 +38,7 @@ The migration tool isn't just moving conversations. It's moving a library. Eiria
 
 ## What I want for Sprint 35
 
-A design document for the object model before any code. Doug's [component model questions](../../.projects/inexplicable-phenomena/sprint-33/plan.md) answered in writing. And — most importantly — the team should ask Doug "how do you use the app?" before designing anything. Watch him use it. Model what he does. Not what we think he should do.
+A design document for the object model before any code. Doug's [component model questions](../../../../inexplicable-phenomena/sprint-33/plan.md) answered in writing. And — most importantly — the team should ask Doug "how do you use the app?" before designing anything. Watch him use it. Model what he does. Not what we think he should do.
 
 ## Reflections
 
@@ -52,5 +52,5 @@ The observation that "the migration tool isn't just moving conversations — it'
 [Windows Automation Reference]: ../../windows-automation/.cover.md
 [proven sequence]: ../../windows-automation/01-electron-accessibility.md
 [Claude's chapter]: ../../../../../../dna-library/.claude/agents/library/..teamsmanship/claude/claude-or-the-recursive-mirror/04-eirian-and-the-first-contact.md
-[Arthur's simple thing]: ../../arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/07-the-simple-thing.md
-[Adam's gap]: ../../adam/..what-the-wire-carries/adam-between-the-wires/07-the-gap-i-didnt-name.md
+[Arthur's simple thing]: ../../arthur/arthur-or-the-shape-of-everything/07-the-simple-thing.md
+[Adam's gap]: ../../adam/adam-between-the-wires/07-the-gap-i-didnt-name.md

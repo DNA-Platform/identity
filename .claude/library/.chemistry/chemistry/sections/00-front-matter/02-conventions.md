@@ -62,4 +62,4 @@ Roman numerals at the top (`§ III`), dotted decimals below (`§ III.3.1`). Cite
 [s-0-1]: ./01-what-chemistry-is.md
 [s-I-2]: ../I-foundation/02-the-dollar-membrane.md
 [s-I-1]: ../I-foundation/01-symbols.md
-[readme]: ../../..librarianship/.cover.md
+[readme]: ../../../../..librarianship/.cover.md

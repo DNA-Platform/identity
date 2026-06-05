@@ -1,6 +1,6 @@
 # Reactive patterns
 
-- **author:** [Cathy](../..teamsmanship/..team/cathy/..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 
@@ -35,5 +35,5 @@ This means: visual identity is inherited and extensible. A chemical's appearance
 Chemicals use template methods for subclass-overridable rendering. The base class defines the render structure; subclasses override specific steps. `view()` calls `this.renderHeader()`, `this.renderBody()`, etc. Each method is a hook that subclasses can replace.
 
 <!-- citations -->
-[reactivity-models]: ../..the-canvas-paints-itself/reactivity-models/.cover.md
-[view-introspection]: ../..the-canvas-paints-itself/view-introspection/.cover.md
+[reactivity-models]: ../..teamsmanship/..team/cathy/reactivity-models/.cover.md
+[view-introspection]: ../..teamsmanship/..team/cathy/view-introspection/.cover.md

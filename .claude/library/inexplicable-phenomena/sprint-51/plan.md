@@ -35,7 +35,7 @@ Four Librarianship field guide chapters now overlap with [Bookkeeping](../../boo
 | Field guide chapter | Bookkeeping authority | Action |
 |---|---|---|
 | 02 — The linking garden | [On Links](../../bookkeeping/06-on-links.md) | Synopsis + link. Keep direction convention specifics |
-| 03 — Growth and refactoring | [On Growth](../../bookkeeping/10-on-growth.md) | Synopsis + link. Keep book→subject procedure |
+| 03 — Growth and refactoring | [On Growth](../../bookkeeping/10-on-evolution.md) | Synopsis + link. Keep book→subject procedure |
 | 05 — Authorship and autobiography | [On Covers](../../bookkeeping/03-on-covers.md) | Synopsis + link. Keep two-book minimum, autobiography naming |
 | 11 — The flat structure | [On Subjects](../../bookkeeping/07-on-subjects.md) | Synopsis + link. Mostly absorbed |
 

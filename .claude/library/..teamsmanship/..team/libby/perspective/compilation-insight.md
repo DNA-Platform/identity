@@ -1,6 +1,6 @@
 # The compilation insight
 
-- **author:** [Libby](.cover.md)
+- **author:** [Libby](../libby-and-the-tended-garden/.cover.md)
 
 ---
 

@@ -58,6 +58,6 @@ The chapter still holds. The observation about loaded vs. earned knowledge becam
 [Arthur's book]: ../../arthur/arthur-or-the-shape-of-everything/.cover.md
 [Adam's book]: ../../adam/adam-between-the-wires/.cover.md
 [Libby's book]: ../../libby/libby-and-the-tended-garden/.cover.md
-[Arthur]: ../../../team/arthur.md
+[Arthur]: ../../../11-arthur.md
 [claude-migration]: ../../claude-migration/.cover.md
 [CLAUDE.md]: ../../../../CLAUDE.md

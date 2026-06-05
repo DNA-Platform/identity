@@ -1,6 +1,6 @@
 # Sprint 48 — The Library Gets Real
 
-- **author:** [Arthur](../../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+- **author:** [Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
 ---
 
@@ -86,11 +86,11 @@ Timeless. No encoded state. `.what-the-tests-promise` not `.what-428-tests-promi
 
 ### Platform interface
 
-[CLAUDE.md](../../../CLAUDE.md) + [rules/](../../rules/) + [agents/](../../agents/) + [skills/](../../skills/) + [settings.json](../../settings.json) are Claude Code's spec. They embed the minimum, then link inline into the library.
+[CLAUDE.md](../../../CLAUDE.md) + [rules/](../../../rules/) + [agents/](../../../agents/) + [skills/](../../../skills/) + [settings.json](../../../settings.json) are Claude Code's spec. They embed the minimum, then link inline into the library.
 
-[Rules](../../rules/) are the guaranteed-load layer — the ONLY content besides CLAUDE.md loaded into every session. They must be thick enough to work without link-following but thin enough to preserve the instruction budget (~100-150 slots total). All rules are catalogued by a library book.
+[Rules](../../../rules/) are the guaranteed-load layer — the ONLY content besides CLAUDE.md loaded into every session. They must be thick enough to work without link-following but thin enough to preserve the instruction budget (~100-150 slots total). All rules are catalogued by a library book.
 
-[Agent files](../../agents/) have REAL markdown links — clickable, inline — to the autobiography, library catalogue, roles, and code territory.
+[Agent files](../../../agents/) have REAL markdown links — clickable, inline — to the autobiography, library catalogue, roles, and code territory.
 
 ### Links everywhere
 
@@ -105,16 +105,16 @@ Every reference is a real markdown link. Not prose with a path in backticks. Not
 | Chapter | Work |
 |---------|------|
 | [00 — The library](../../..librarianship/00-the-library.md) | Rewrite: flat structure, `..teamsmanship/` as primary subject, books beside subjects |
-| [01 — Anatomy](../../..librarianship/01-anatomy-of-a-book.md) | Verify: title > subject > author > summary, chapter signing |
+| [01 — Anatomy](../../bookkeeping/01-on-books.md) | Verify: title > subject > author > summary, chapter signing |
 | [02 — Linking garden](../../..librarianship/02-the-linking-garden.md) | Add: `subject:` as link type, multi-subject descriptions, inline link principle |
 | [03 — Growth](../../..librarianship/03-growth-and-refactoring.md) | Add: book → subject factoring (the three-way split) |
-| [04 — Subjects](../../..librarianship/04-subjects-and-catalogues.md) | Verify: flat structure, self-cataloguing, `..teamsmanship/` as sole subject for now, subject-shaped descriptions |
+| [04 — Subjects](../../bookkeeping/07-on-subjects.md) | Verify: flat structure, self-cataloguing, `..teamsmanship/` as sole subject for now, subject-shaped descriptions |
 | [05 — Authorship](../../..librarianship/05-authorship-and-autobiography.md) | Add: chapter signing, two-book minimum per agent |
-| [.02 — Platform](../../..librarianship/.02-the-platform-interface.md) | Update: real links to actual platform files, rules budget, rules book, closedness principle |
-| [08 — Reading cost](../../..librarianship/08-the-reading-cost-architecture.md) | Update: examples for correct structure |
-| [.09 — Flat structure](../../..librarianship/.09-the-flat-structure.md) | Verify: books beside subjects, walk links |
-| [.10 — Perspective](../../..librarianship/.10-the-perspective-practice.md) | Add: full cycle including personal library integration |
-| [.12 — Alignment](../../..librarianship/.12-bringing-the-library-into-alignment.md) | Keep current as work tracker |
+| [.02 — Platform](../../the-platform-interface/01-the-platform-interface.md) | Update: real links to actual platform files, rules budget, rules book, closedness principle |
+| [08 — Reading cost](../../the-reading-cost-architecture/01-the-reading-cost-architecture.md) | Update: examples for correct structure |
+| [.09 — Flat structure](../../..librarianship/11-the-flat-structure.md) | Verify: books beside subjects, walk links |
+| [.10 — Perspective](../../..librarianship/12-the-perspective-practice.md) | Add: full cycle including personal library integration |
+| [.12 — Alignment](../../..librarianship/14-bringing-the-library-into-alignment.md) | Keep current as work tracker |
 
 **Validate:** Each chapter is internally consistent and matches the other chapters.
 
@@ -163,13 +163,13 @@ Guided by validator failures from Phase 2:
 
 ### Phase 5: Platform artifacts (Arthur + Adam)
 
-**5a.** Rewrite [agent files](../../agents/) — real inline links to autobiography, library catalogue, roles, code territory.
+**5a.** Rewrite [agent files](../../../agents/) — real inline links to autobiography, library catalogue, roles, code territory.
 
-**5b.** Rewrite [rules](../../rules/) — calibrated thickness, inline links into the library. The [team rule](../../rules/team.md) gets enough content to work without link-following but stays within budget.
+**5b.** Rewrite [rules](../../../rules/) — calibrated thickness, inline links into the library. The [team rule](../../../rules/team.md) gets enough content to work without link-following but stays within budget.
 
 **5c.** Write the rules book at library root — one chapter per rule, each explaining WHY and linking to the rule file. `subject: ".team"`.
 
-**5d.** Rewrite [CLAUDE.md](../../../CLAUDE.md) — verify it matches the [.01 spec](../../..librarianship/.01-claude-md-spec.md), all links are real and point to correct paths.
+**5d.** Rewrite [CLAUDE.md](../../../CLAUDE.md) — verify it matches the [.01 spec](../../..librarianship/09-claude-md-spec.md), all links are real and point to correct paths.
 
 **5e.** Run platform interface validator. Should pass.
 
@@ -217,6 +217,6 @@ Guided by validator failures from Phase 2:
 
 <!-- citations -->
 [addendum]: ../sprint-47/addendum.md
-[synthesis]: ../../../..everything-that-has-a-shape/perspective/full-synthesis.md
+[synthesis]: ../../..teamsmanship/..team/arthur/perspective/full-synthesis.md
 [field-guide-audit]: ../../../..teamsmanship/..team/libby/perspective/field-guide-audit.md
-[alignment]: ../../../..librarianship/.12-bringing-the-library-into-alignment.md
+[alignment]: ../../../..librarianship/14-bringing-the-library-into-alignment.md

@@ -1,6 +1,6 @@
 # The cataloguer becomes a portraitist
 
-- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+- **author:** [Libby](../libby-and-the-tended-garden/.cover.md)
 
 ---
 

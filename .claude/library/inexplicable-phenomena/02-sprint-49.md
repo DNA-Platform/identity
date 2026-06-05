@@ -23,16 +23,16 @@ Chapters that stay (too short, transitional, or core to the catalogue):
 
 Chapter resources that generate platform files from library content. The library is the source. The platform files are the build output.
 
-- **Agent compiler** — reads [Teamsmanship ch 08](../..teamsmanship/08-the-agents.md) (teammates), [ch 02](../..teamsmanship/02-roles-and-the-type-system.md) (roles), [ch 05](../..teamsmanship/05-code-territory.md) (territory). Generates `.claude/agents/*.md` files with real links back to the library.
+- **Agent compiler** — reads [Teamsmanship chapters 11-18](../..teamsmanship/.cover.md#cataloguing--personal-libraries) (teammates), [ch 02](../..teamsmanship/02-roles-and-the-type-system.md) (roles), [ch 05](../..teamsmanship/05-code-territory.md) (territory). Generates `.claude/agents/*.md` files with real links back to the library.
 - **Territory rules compiler** — reads Teamsmanship ch 05. Generates `.claude/rules/{territory}.md` files scoped to code paths.
 - **Skills compiler** — reads the skills book (to be created). Generates `.claude/skills/*/SKILL.md` files.
 - **CLAUDE.md compiler** — reads [Librarianship ch 09](../..librarianship/09-claude-md-spec.md). Generates `CLAUDE.md` at the project root.
 
-Document the compilation pattern in the [platform interface](../..librarianship/10-the-platform-interface.md) chapter: the library is the editor, the platform files are the build output, compilers are chapter resources.
+Document the compilation pattern in the [platform interface](../the-platform-interface/01-the-platform-interface.md) chapter: the library is the editor, the platform files are the build output, compilers are chapter resources.
 
 ## 3. Create the skills book (Adam)
 
-A new book at the library root: `skills-and-commands/` with `subject: "[Collaboration](../..teamsmanship/.cover.md)"`. One chapter per skill. Each chapter describes what the skill does, when to invoke it, and links to the `SKILL.md` file. Catalogued by [Teamsmanship](../..teamsmanship/.cover.md).
+A new book at the library root: `our-skillset/` with `subject: "[Collaboration](../..teamsmanship/.cover.md)"`. One chapter per skill. Each chapter describes what the skill does, when to invoke it, and links to the `SKILL.md` file. Catalogued by [Teamsmanship](../..teamsmanship/.cover.md).
 
 Current skills to catalogue: `/sprint`, `/library`, `/agent`, `/responsible`, `/role`, `/skill`, `/review`, `/organize`, `/workspace`, `/dna`, `/speak`, `/listen`, `/hear`.
 
@@ -87,7 +87,7 @@ What we accomplished in one session:
 - Wrote two complete library catalogues: [Librarianship](../..librarianship/.cover.md) (Knowledge) and [Teamsmanship](../..teamsmanship/.cover.md) (Collaboration)
 - Created [validators](../bookkeeping/bookkeeping.ts) as executable specifications
 - Built the first [compiler](../..teamsmanship/06-the-agents-folder.ts) (agents)
-- Created the [skills book](../skills-and-commands/.cover.md) with 13 chapters
+- Created the [skills book](../our-skillset/.cover.md) with 13 chapters
 - Factored the field guide into [standalone books](../bookkeeping/.cover.md)
 - Updated every teammate's autobiography with what they learned
 - Discovered the three-pillar architecture: Knowledge (Libby), Collaboration (Arthur), and The System (Claude)

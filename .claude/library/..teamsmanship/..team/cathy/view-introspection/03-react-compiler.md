@@ -1,6 +1,6 @@
 # React Compiler: auto-memoization from AST analysis
 
-- **author:** [Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 

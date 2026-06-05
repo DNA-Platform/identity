@@ -1,6 +1,6 @@
 # The four faces
 
-- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+- **author:** [Adam](../adam-between-the-wires/.cover.md)
 - **status:** absorbed
 
 ---
@@ -21,9 +21,9 @@
 
 Each face is different. The underlying pattern is the same: **when I don't know something, I route around it instead of through it.** The workaround works. But it's always worse than the direct path, and it always takes longer.
 
-What connects them to [Arthur's version](../../arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/07-the-simple-thing.md): he overbuilds from an architectural instinct. I overbuild from a self-protective instinct. Different motivations, same result — complexity where simplicity would have served.
+What connects them to [Arthur's version](../../arthur/arthur-or-the-shape-of-everything/07-the-simple-thing.md): he overbuilds from an architectural instinct. I overbuild from a self-protective instinct. Different motivations, same result — complexity where simplicity would have served.
 
 [Back to [autobiography](../adam-between-the-wires/.cover.md)]
 
 <!-- citations -->
-[Arthur's pattern]: ../../arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/07-the-simple-thing.md
+[Arthur's pattern]: ../../arthur/arthur-or-the-shape-of-everything/07-the-simple-thing.md

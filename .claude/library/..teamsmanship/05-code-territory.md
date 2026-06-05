@@ -49,7 +49,7 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 - `library/chemistry/app/**` — visual design in the Lab (shared with Phillip)
 - Roles: [Graphic Designer](02-roles-and-the-type-system.md#graphic-designer), [Chemistry Developer](02-roles-and-the-type-system.md#chemistry-developer)
 
-### [Claude](..team/claude/..what-the-system-knows/.cover.md) — Environmentalist
+### [Claude](..team/claude/..what-the-mirror-reflects/.cover.md) — Environmentalist
 - `.claude/agents/**`, `.claude/rules/**`, `.claude/skills/**`, `CLAUDE.md` — platform artifacts
 - `.claude/library/..environmentalism/**` — [Environmentalism](.cover.md), the system specification
 - `src/**` — the conversation pipeline (shared with Adam)

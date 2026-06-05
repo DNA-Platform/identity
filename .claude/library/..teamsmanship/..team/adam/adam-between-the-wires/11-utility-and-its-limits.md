@@ -1,6 +1,6 @@
 # Utility and its limits
 
-- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+- **author:** [Adam](.cover.md)
 
 ---
 

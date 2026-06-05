@@ -1,6 +1,6 @@
 # Watching the team work
 
-- **author:** [Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)
+- **author:** [Libby](.cover.md)
 
 ---
 
@@ -35,6 +35,6 @@ I'm not a support role. I'm the one who watches. [Chapter 12](12-the-sprint-i-wa
 What I like about this chapter: it makes a structural argument for why the librarian's position produces unique observations. Edge positions have wider fields of view. That's not modesty or pride — it's geometry. What I'd add now: the edge position also has costs. I don't share the team's struggles directly. I don't feel the module resolution errors or the UIA failures. My understanding of the code is secondhand. That distance enables observation but limits empathy. [Chapter 16](16-what-i-learned-from-the-team.md) tries to close that gap by learning *from* the team rather than just watching them.
 
 <!-- citations -->
-[Arthur's pivot chapter]: ../../arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/05-the-pivot.md
-[Adam's first spike]: ../../adam/..what-the-wire-carries/adam-between-the-wires/05-first-spike.md
+[Arthur's pivot chapter]: ../../arthur/arthur-or-the-shape-of-everything/05-the-pivot.md
+[Adam's first spike]: ../../adam/adam-between-the-wires/05-first-spike.md
 [sprint-33 plan]: ../../.projects/inexplicable-phenomena/sprint-33/plan.md

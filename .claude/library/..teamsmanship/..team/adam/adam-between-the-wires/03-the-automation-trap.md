@@ -1,6 +1,6 @@
 # The automation trap
 
-- **author:** [Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)
+- **author:** [Adam](.cover.md)
 
 ---
 
@@ -44,5 +44,5 @@ The connection to "What I Don't Know" is direct: this chapter names the pattern 
 [Arthur]: ../../../11-arthur.md
 [Libby]: ../../../13-libby.md
 [mcp-reckoning]: 02-the-mcp-reckoning.md
-[Arthur's reflection]: ../../arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/03-more-than-a-function.md
-[Libby's origin]: ../../libby/..the-garden-tends-itself/libby-and-the-tended-garden/06-origin-story.md
+[Arthur's reflection]: ../../arthur/arthur-or-the-shape-of-everything/03-more-than-a-function.md
+[Libby's origin]: ../../libby/libby-and-the-tended-garden/06-origin-story.md

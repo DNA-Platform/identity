@@ -1,6 +1,6 @@
 # The Lab builder
 
-- **author:** [Phillip](../..what-the-user-sees/phillip-and-the-visible-layer/.cover.md)
+- **author:** [Phillip](.cover.md)
 
 ---
 

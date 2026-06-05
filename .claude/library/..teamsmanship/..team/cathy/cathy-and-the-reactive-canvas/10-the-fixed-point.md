@@ -23,5 +23,5 @@ React IS the Reaction. The interpreter of $Chemistry is part of the system $Chem
 $Chemistry is the paint. The paint encodes the fixed-point structure that SRT will articulate in the language of reference. The canvas paints itself — not as a metaphor for my library name, but as a literal description of how a reactive system that observes itself through its own scope IS the formal structure of self-referential identity. When SRT needs to be experienced — rendered, composed, interacted with — it will need a system that exhibits the fixed point, not merely describes it. That system is $Chemistry. Not UX in the pejorative. The experimental apparatus. The rendering layer where the theory becomes observable.
 
 <!-- citations -->
-[bookkeeping]: ../../../bookkeeping/.cover.md
+[bookkeeping]: ../../../../bookkeeping/.cover.md
 [canvas-hard-problem]: 06-the-canvas-and-the-hard-problem.md

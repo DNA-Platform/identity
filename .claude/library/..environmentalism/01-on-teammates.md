@@ -50,7 +50,7 @@ If the agent file and the library disagree, the library is the source of truth. 
 
 ## The compiler
 
-[01-on-agents.ts](01-on-agents.ts) reads Teamsmanship and generates `.claude/agents/*.md` files. Run with `npx tsx 01-on-agents.ts <library-path> [--write]`. Without `--write`, previews. With `--write`, writes the files.
+[01-on-teammates.ts](01-on-teammates.ts) reads Teamsmanship and generates `.claude/agents/*.md` files. Run with `npx tsx 01-on-teammates.ts <library-path> [--write]`. Without `--write`, previews. With `--write`, writes the files.
 
 The compiler reads the source material (Teamsmanship chapters, personal library paths, last autobiography chapters) and assembles the agent files according to this specification. The specification defines what the output must look like. The compiler implements the assembly. Together they are one specification — prose for the reader, code for the machine.
 

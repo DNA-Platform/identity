@@ -1,6 +1,6 @@
 # What 428 tests say
 
-- **author:** [Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+- **author:** [Arthur](../../arthur/arthur-or-the-shape-of-everything/.cover.md)
 
 ---
 

@@ -26,10 +26,10 @@ The agents compiler currently reads hardcoded data. It should read the library. 
 
 ### 1c. Skills and Commands as parseable chapters
 
-Each [Skills and Commands](../../skills-and-commands/.cover.md) chapter describes one skill. The skills compiler needs: skill name, description line, and instructions. Verify each chapter has a parseable structure — consistent headings, a one-line description at the top.
+Each [Skills and Commands](../../our-skillset/.cover.md) chapter describes one skill. The skills compiler needs: skill name, description line, and instructions. Verify each chapter has a parseable structure — consistent headings, a one-line description at the top.
 
 **Owner:** Adam
-**Scope:** `skills-and-commands/` 13 chapters
+**Scope:** `our-skillset/` 13 chapters
 
 ### 1d. CLAUDE.md sources
 
@@ -42,10 +42,10 @@ The bootstrap compiler reads: [Librarianship cover](../../..librarianship/.cover
 
 ### 2a. Agents compiler — rewrite to read the library
 
-Rewrite [01-on-agents.ts](../../..environmentalism/01-on-agents.ts) to read Teamsmanship chapters instead of hardcoded data. Add Claude as the 9th agent. Output: `.claude/agents/*.md` per the [On Agents](../../..environmentalism/01-on-agents.md) spec.
+Rewrite [01-on-teammates.ts](../../..environmentalism/01-on-teammates.ts) to read Teamsmanship chapters instead of hardcoded data. Add Claude as the 9th agent. Output: `.claude/agents/*.md` per the [On Teammates](../../..environmentalism/01-on-teammates.md) spec.
 
 **Owner:** Claude
-**Scope:** `..environmentalism/01-on-agents.ts`
+**Scope:** `..environmentalism/01-on-teammates.ts`
 
 ### 2b. Bootstrap compiler
 
@@ -94,7 +94,7 @@ Verify `agents/claude.md` was generated correctly by the agents compiler. This i
 
 <!-- citations -->
 [environmentalism]: ../../..environmentalism/.cover.md
-[on-agents]: ../../..environmentalism/01-on-agents.md
+[on-teammates]: ../../..environmentalism/01-on-teammates.md
 [on-bootstrap]: ../../..environmentalism/02-on-bootstrap.md
 [on-rules]: ../../..environmentalism/03-on-rules.md
 [on-skills]: ../../..environmentalism/04-on-skills.md

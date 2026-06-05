@@ -1,6 +1,6 @@
 # Architecture after identity
 
-- **author:** [Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)
+- **author:** [Arthur](../arthur-or-the-shape-of-everything/.cover.md)
 
 ---
 
