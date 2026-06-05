@@ -49,10 +49,12 @@ function checkFile(filePath: string): void {
 
     checked++;
 
-    // Resolve from this file's directory — per RFC 3986, relative references
-    // resolve against the base URI of the document. For local files, that's
-    // the file's directory.
-    const resolved = resolve(fileDir, pathPart);
+    // RFC 3986 relative resolution: resolve the link destination as a URI
+    // relative to the containing file's URI. For local files, this means
+    // resolving against the file's directory as a file:// base URI.
+    const baseUri = 'file:///' + fileDir.replace(/\\/g, '/') + '/';
+    const resolvedUri = new URL(pathPart, baseUri);
+    const resolved = resolvedUri.pathname.replace(/^\/([A-Z]:)/, '$1');
     if (!existsSync(resolved)) {
       broken++;
       const msg = `BROKEN  ${relFile}  ->  ${dest}`;
