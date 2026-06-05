@@ -8,9 +8,12 @@ import { resolve, dirname } from 'path';
 
 const libraryRoot = resolve(dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1')), '..');
 
+const claudeDir = resolve(libraryRoot, '..');
+
 const validators = [
-  { name: 'Bookkeeping', path: 'bookkeeping/bookkeeping.ts' },
-  { name: 'Subjects', path: 'subjects-and-catalogues/subjects-and-catalogues.ts' },
+  { name: 'Bookkeeping', path: 'bookkeeping/bookkeeping.ts', arg: libraryRoot },
+  { name: 'Subjects', path: 'subjects-and-catalogues/subjects-and-catalogues.ts', arg: libraryRoot },
+  { name: 'Compiled Links', path: '..environmentalism/07-on-compiled-links.ts', arg: claudeDir },
 ];
 
 let totalErrors = 0;
@@ -23,7 +26,7 @@ for (const v of validators) {
 
   try {
     const output = execSync(
-      `npx tsx "${resolve(libraryRoot, v.path)}" "${libraryRoot}"`,
+      `npx tsx "${resolve(libraryRoot, v.path)}" "${v.arg}"`,
       { encoding: 'utf-8', cwd: libraryRoot }
     );
     console.log(output);
