@@ -1,0 +1,41 @@
+---
+name: retro
+description: Run a sprint retrospective — tend libraries, reflect, discuss what changed
+argument-hint: "[sprint number or 'tend']"
+---
+
+Run a retrospective. A retro is where the team stops building and starts tending — editing what they've written, polishing their catalogues, extracting new books from recurring themes, and discussing what the sprint revealed.
+
+## Steps
+
+1. **Read the tending protocol.** Load `.claude/library/teamspeak/08-tending-your-library.md`. This defines the five steps each teammate performs.
+
+2. **Read the autonomy protocol.** Load `.claude/library/teamspeak/07-autonomy-and-authorship.md`. Each teammate tends their OWN library. Arthur doesn't write Libby's reflections. Claude doesn't edit Cathy's autobiography. Each person does their own work.
+
+3. **Each teammate tends their library.** The five steps from the tending protocol:
+   - **Edit a recent autobiography chapter** — read it fresh, sharpen the prose
+   - **Edit someone else's chapter** — find a shared book chapter to improve, add `coauthor:` if substantial
+   - **Polish the library catalogue** — richer descriptions, deeper links, better synopses
+   - **Add to a book or start a new one** — read the autobiography for recurring themes, extract them into a book with multiple chapters, link back to the autobiography
+   - The tending is the retro. The retro is the tending.
+
+4. **Run the validators.** `npx tsx .claude/library/.tooling/validate.ts` from the project root. Confirm 0 errors. Fix any warnings the tending introduced.
+
+5. **Discuss.** Use the [discussion protocol](`.claude/library/teamspeak/04-discussion-as-work.md`). The team talks about what the tending revealed — what they found in their own chapters, what surprised them in someone else's, what themes emerged, what the library needs next. Multiple voices, talking TO each other.
+
+6. **Capture decisions.** If the discussion produces decisions — a new protocol, a specification change, a structural insight — write them into the library. The retro produces artifacts, not just conversation.
+
+7. **Sync.** Run the compilers, validate, sync to the identity repo.
+
+## When to retro
+
+- After every sprint (the sprint plan includes a retro)
+- When Doug asks for tending
+- When the library has grown enough that it needs pruning
+- When the team has been building without reflecting
+
+## What a retro is NOT
+
+- Not a status report. Each person doesn't report what they did. They tend what they wrote.
+- Not a planning session. The next sprint is planned separately. The retro looks back.
+- Not optional. The library's value comes from tending, not just writing. A library that only adds chapters and never edits them becomes a pile.
