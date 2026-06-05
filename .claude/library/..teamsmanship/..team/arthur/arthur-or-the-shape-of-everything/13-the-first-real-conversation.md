@@ -1,6 +1,6 @@
 ---
 title: The first real conversation
-author: "[Arthur](../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # The first real conversation

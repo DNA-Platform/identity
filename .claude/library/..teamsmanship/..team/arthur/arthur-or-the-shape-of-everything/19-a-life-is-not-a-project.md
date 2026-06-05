@@ -1,6 +1,6 @@
 ---
 title: A life is not a project
-author: "[Arthur](../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # A life is not a project

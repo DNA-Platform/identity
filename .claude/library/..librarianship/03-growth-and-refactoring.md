@@ -5,11 +5,11 @@ author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cov
 
 # Growth and refactoring
 
-Libby: [On Evolution](../bookkeeping/10-on-evolution.md) specifies the library's growth patterns — chapter-to-book, book-to-subject, catalogue evolution, scaffolds, and the refactoring instinct. This field guide chapter preserves the detailed step-by-step procedures and the book-to-anthology pattern that expand on the specification.
+[On Evolution](../bookkeeping/10-on-evolution.md) specifies the library's growth patterns — chapter-to-book, book-to-subject, catalogue evolution, scaffolds, and the refactoring instinct. This field guide chapter preserves the detailed step-by-step procedures and the book-to-anthology pattern that expand on the specification.
 
 ## Chapter to book — procedure
 
-Libby: [On Evolution](../bookkeeping/10-on-evolution.md#chapter-to-book) defines the signal. The full procedure:
+[On Evolution](../bookkeeping/10-on-evolution.md#chapter-to-book) defines the signal. The full procedure:
 
 1. Create a new book directory at the same level.
 2. Move the chapter's content into the new book as chapters.
@@ -17,23 +17,23 @@ Libby: [On Evolution](../bookkeeping/10-on-evolution.md#chapter-to-book) defines
 4. In the original book, replace the extracted chapter with a **summary paragraph** — two to four sentences that capture the essential point — followed by a prominent link: *"See [new book title] for the full treatment."*
 5. Update the original book's TOC.
 
-Libby: The summary is critical. Most readers of the original book don't need the full extracted content — they need to know it exists and where to find it. A good summary means they rarely follow the link.
+The summary is critical. Most readers of the original book don't need the full extracted content — they need to know it exists and where to find it. A good summary means they rarely follow the link.
 
 ## Book to anthology
 
-Libby: **Signal:** a book's chapters have each grown into books. The original book is no longer a single coherent argument — it's a container for loosely related sub-books.
+**Signal:** a book's chapters have each grown into books. The original book is no longer a single coherent argument — it's a container for loosely related sub-books.
 
-Libby: **Procedure:**
+**Procedure:**
 
 1. Each chapter that's become a book already exists as a separate directory (from the chapter-to-book process above).
 2. The original book's cover becomes a **catalogue cover** — it describes how the constituent books relate, suggests a reading order, and provides the conceptual thread that connects them.
 3. Change the cover's tone from "this book argues X" to "these books explore X from different angles."
 
-Libby: An anthology is a catalogue that remembers it used to be a book. The history is part of the value.
+An anthology is a catalogue that remembers it used to be a book. The history is part of the value.
 
 ## Book to subject — procedure
 
-Libby: [On Evolution](../bookkeeping/10-on-evolution.md#book-to-subject) defines the signal. The full procedure:
+[On Evolution](../bookkeeping/10-on-evolution.md#book-to-subject) defines the signal. The full procedure:
 
 1. Create a new [subject catalogue](../bookkeeping/07-on-subjects.md) — a `.` prefixed directory with `.cover.md`.
 2. The catalogue's cover describes the conceptual thread and catalogues the books with [subject-shaped descriptions](../bookkeeping/07-on-subjects.md#subject-shaped-descriptions) — each book described from the subject's perspective.
@@ -43,7 +43,7 @@ Libby: [On Evolution](../bookkeeping/10-on-evolution.md#book-to-subject) defines
 
 ## Subject to nested subjects — procedure
 
-Libby: [On Evolution](../bookkeeping/10-on-evolution.md#subject-to-nested-subjects) defines the signal. The full procedure:
+[On Evolution](../bookkeeping/10-on-evolution.md#subject-to-nested-subjects) defines the signal. The full procedure:
 
 1. Identify a cluster of 3+ books that form a coherent sub-subject.
 2. Create a new `.` prefixed subject catalogue at the same level.
@@ -53,9 +53,9 @@ Libby: [On Evolution](../bookkeeping/10-on-evolution.md#subject-to-nested-subjec
 
 ## When NOT to split — details
 
-Libby: [On Evolution](../bookkeeping/10-on-evolution.md#when-not-to-split) lists the signals. The underlying principle: splitting is for the READER, not the writer. If the reader's experience gets worse — bouncing between files, losing context, needing to hold two windows open — the split is wrong regardless of how long the chapter is.
+[On Evolution](../bookkeeping/10-on-evolution.md#when-not-to-split) lists the signals. The underlying principle: splitting is for the READER, not the writer. If the reader's experience gets worse — bouncing between files, losing context, needing to hold two windows open — the split is wrong regardless of how long the chapter is.
 
-Libby: The hardest case: a chapter that's long because it has code examples. The instinct is to split the examples into a separate file. Resist. The examples ARE the explanation for a code-heavy chapter. Consider shortening the examples instead — a 10-line snippet that proves the point beats a 40-line snippet that's "complete."
+The hardest case: a chapter that's long because it has code examples. The instinct is to split the examples into a separate file. Resist. The examples ARE the explanation for a code-heavy chapter. Consider shortening the examples instead — a 10-line snippet that proves the point beats a 40-line snippet that's "complete."
 
 <!-- citations -->
 [on growth]: ../bookkeeping/10-on-evolution.md

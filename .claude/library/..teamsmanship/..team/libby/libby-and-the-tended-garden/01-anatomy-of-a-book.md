@@ -67,4 +67,4 @@ The rest lives on the cover. A chapter doesn't repeat the book's author, summary
 - **Duplicated content.** If two books need the same paragraph, one of them should link to the other instead.
 
 <!-- citations -->
-[library README]: ../../..librarianship/.cover.md
+[library README]: ../../../../..librarianship/.cover.md

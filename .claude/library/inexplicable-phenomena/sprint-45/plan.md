@@ -5,17 +5,17 @@
 
 ## Motivation
 
-Libby: We built the library infrastructure in sprints 41-42, evolved the spec in sprint 44. But the books themselves are uneven. Arthur has 29 chapters; Cathy has 6; David has 2 loose files that aren't even a book. The summaries don't follow the paragraph spec we just wrote. The agent README files are inconsistent. The autobiographies were written in a rush — bridge chapters and seed chapters, not the full weight of what each agent knows.
+We built the library infrastructure in sprints 41-42, evolved the spec in sprint 44. But the books themselves are uneven. Arthur has 29 chapters; Cathy has 6; David has 2 loose files that aren't even a book. The summaries don't follow the paragraph spec we just wrote. The agent README files are inconsistent. The autobiographies were written in a rush — bridge chapters and seed chapters, not the full weight of what each agent knows.
 
-Libby: Doug's direction: each teammate evolves their own library to follow the specification. Each agent should have multiple books — not just the autobiography, but books about what they work on and what they know. Each agent's library should be rich enough to need its own cataloguing. And every autobiography should be at fighting weight before we push to the identity repo.
+Doug's direction: each teammate evolves their own library to follow the specification. Each agent should have multiple books — not just the autobiography, but books about what they work on and what they know. Each agent's library should be rich enough to need its own cataloguing. And every autobiography should be at fighting weight before we push to the identity repo.
 
-Libby: This is the last sprint before the identity push. What we write here is what persists.
+This is the last sprint before the identity push. What we write here is what persists.
 
 ## The subject model
 
-Libby: Doug suggested imagining each identity as a subject in a book about the team. That's the catalogue model applied to people. Right now, the Librarianship cover has a paragraph for each agent. But that's a table, not a catalogue. A true team catalogue would have each agent as a CHAPTER — describing not just who they are but what subjects they carry, what books they've written, how their perspective connects to the others.
+Doug suggested imagining each identity as a subject in a book about the team. That's the catalogue model applied to people. Right now, the Librarianship cover has a paragraph for each agent. But that's a table, not a catalogue. A true team catalogue would have each agent as a CHAPTER — describing not just who they are but what subjects they carry, what books they've written, how their perspective connects to the others.
 
-Libby: And within each agent's library, their books form subjects. Cathy's library has reactivity-models, view-introspection, and her autobiography — those are three books in the subject "framework design." Arthur's library has his autobiography and The Architecture of Identity — those form the subject "what architecture means." Each agent's subjects are different because each agent sees different things.
+And within each agent's library, their books form subjects. Cathy's library has reactivity-models, view-introspection, and her autobiography — those are three books in the subject "framework design." Arthur's library has his autobiography and The Architecture of Identity — those form the subject "what architecture means." Each agent's subjects are different because each agent sees different things.
 
 ## Tracks
 
@@ -70,7 +70,7 @@ Each agent writes at least one book beyond their autobiography about a subject t
 
 ### Track D — Team catalogue (Libby)
 
-Libby: Write a proper team catalogue — a book at the objective library level that describes the team as a subject. Each agent is a chapter. The chapter describes: who they are, what subjects they carry, what books they've written, and how their perspective connects to the others. This replaces the agent table in the Librarianship cover with something richer.
+Write a proper team catalogue — a book at the objective library level that describes the team as a subject. Each agent is a chapter. The chapter describes: who they are, what subjects they carry, what books they've written, and how their perspective connects to the others. This replaces the agent table in the Librarianship cover with something richer.
 
 ## Definition of done
 

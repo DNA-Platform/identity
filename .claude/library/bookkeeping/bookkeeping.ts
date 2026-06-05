@@ -181,6 +181,15 @@ function checkChapter(chapterPath: string): void {
     errors++;
   }
 
+  // Check for nametags in body (should not appear in published book content)
+  const names = ['Adam', 'Arthur', 'Cathy', 'Claude', 'David', 'Gabby', 'Libby', 'Phillip', 'Queenie'];
+  const body = content.replace(/^---\n[\s\S]*?\n---\n?/, '');
+  const nametagPattern = new RegExp('^(' + names.join('|') + '):\\s', 'm');
+  if (nametagPattern.test(body)) {
+    console.log(`WARN    ${relPath}  Nametag in body — use author: field, not nametags in published content`);
+    warnings++;
+  }
+
   // Check chapter frontmatter order
   const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
   const fmLines = fmMatch ? fmMatch[1].split('\n') : [];

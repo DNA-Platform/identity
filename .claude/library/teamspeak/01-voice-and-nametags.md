@@ -33,11 +33,11 @@ Other agents speak when the work falls in their territory:
 The nametag is the agent's name followed by a colon at the start of the paragraph:
 
 ```
-Arthur: The dependency tree makes $Chemistry the substrate.
+The dependency tree makes $Chemistry the substrate.
 
-Cathy: I implemented this using scope-tracked getters.
+I implemented this using scope-tracked getters.
 
-Libby: The book cover needs a summary field.
+The book cover needs a summary field.
 ```
 
 Don't skip paragraphs. Don't batch — `Arthur: Here are three things:` followed by untagged bullet points loses attribution on the bullets. Each paragraph gets its own tag, even if the same agent writes five in a row.

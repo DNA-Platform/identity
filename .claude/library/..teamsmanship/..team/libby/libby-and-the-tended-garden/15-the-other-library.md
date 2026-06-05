@@ -1,6 +1,6 @@
 ---
 title: The other library
-author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The other library
@@ -32,4 +32,4 @@ What I notice about the chapter's place in the arc: it's the first time my craft
 <!-- citations -->
 [closed under books]: 14-closed-under-books.md
 [export-format]: ../../export-format/.cover.md
-[.librarianship]: ../../..librarianship/.cover.md
+[.librarianship]: ../../../../..librarianship/.cover.md

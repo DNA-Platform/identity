@@ -1,6 +1,6 @@
 ---
 title: The linking garden
-author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The linking garden
@@ -13,8 +13,8 @@ Every file ends with a `<!-- citations -->` block containing reference-style mar
 
 ```markdown
 <!-- citations -->
-[Libby]: ../../..teamsmanship/libby.md
-[library README]: ../../..librarianship/.cover.md
+[Libby]: ../../../13-libby.md
+[library README]: ../../../../..librarianship/.cover.md
 [growth patterns]: 03-growth-and-refactoring.md
 ```
 
@@ -53,4 +53,4 @@ A team member's personal book can link freely to the shared library. The shared 
 Within the objective library, links flow freely in all directions. Within a team library, links flow freely. The wall is only between the two layers.
 
 <!-- citations -->
-[library README]: ../../..librarianship/.cover.md
+[library README]: ../../../../..librarianship/.cover.md

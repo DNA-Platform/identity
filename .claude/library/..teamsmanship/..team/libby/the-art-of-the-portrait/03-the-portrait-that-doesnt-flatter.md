@@ -1,6 +1,6 @@
 ---
 title: The portrait that doesn't flatter
-author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The portrait that doesn't flatter

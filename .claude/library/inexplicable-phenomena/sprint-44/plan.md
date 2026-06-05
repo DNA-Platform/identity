@@ -5,9 +5,9 @@
 
 ## Motivation
 
-Libby: The library was designed for knowledge preservation. Now it's being used for identity restoration. These have different reading costs. A researcher can afford to open chapters. A team waking up from compaction can't — every line read is context consumed. The current spec says `summary: One line.` That's not enough to decide whether to open a book, let alone restore an agent's identity.
+The library was designed for knowledge preservation. Now it's being used for identity restoration. These have different reading costs. A researcher can afford to open chapters. A team waking up from compaction can't — every line read is context consumed. The current spec says `summary: One line.` That's not enough to decide whether to open a book, let alone restore an agent's identity.
 
-Arthur: Doug identified the gap: the number of levels of description before primary source. Right now it's one-line summary → full chapter. We need intermediate tiers that answer progressively deeper questions, so most reads stop before reaching the primary source.
+Doug identified the gap: the number of levels of description before primary source. Right now it's one-line summary → full chapter. We need intermediate tiers that answer progressively deeper questions, so most reads stop before reaching the primary source.
 
 ## The four-tier model
 
@@ -18,32 +18,32 @@ Arthur: Doug identified the gap: the number of levels of description before prim
 | 3 | Rich TOC entry | ~30 words per entry | `.cover.md` table of contents | "Which chapter has what I need?" |
 | 4 | The chapter itself | Unlimited | The chapter `.md` file | The depth |
 
-Arthur: Principle: **each tier should make the next tier rarely necessary.** The summary should answer 80% of "what is this?" questions. The catalogue description should answer 80% of "do I need this?" questions. The rich TOC entry should answer 80% of "which chapter?" questions.
+Principle: **each tier should make the next tier rarely necessary.** The summary should answer 80% of "what is this?" questions. The catalogue description should answer 80% of "do I need this?" questions. The rich TOC entry should answer 80% of "which chapter?" questions.
 
 ## Spec changes to the field guide
 
 ### S-1. Summary field becomes a paragraph
 
-Libby: Update [Anatomy of a book](../..teamsmanship/library/..librarianship/01-anatomy-of-a-book.md) to specify:
+Update [Anatomy of a book](../..teamsmanship/library/..librarianship/01-anatomy-of-a-book.md) to specify:
 
 **Before:** `summary: One line. Shown in indexes, catalogues, search results.`
 **After:** `summary:` is a paragraph (3-5 sentences, ~50 words). It answers "what is this book and why would I read it?" Not a topic label — a description rich enough to decide whether to open the book.
 
 ### S-2. Catalogue books carry tier-2 descriptions
 
-Libby: Update [Subjects and catalogues](../..teamsmanship/library/..librarianship/04-subjects-and-catalogues.md) to specify:
+Update [Subjects and catalogues](../..teamsmanship/library/..librarianship/04-subjects-and-catalogues.md) to specify:
 
 A catalogue book's chapters DESCRIBE the books they index at paragraph depth (~150 words). The catalogue chapter is not a pointer — it's a tier-2 summary that makes opening the actual book rarely necessary. The catalogue's own TOC can stay at one-line entries because the chapters carry the depth.
 
 ### S-3. Rich TOC entries for reference books
 
-Libby: Update [Anatomy of a book](../..teamsmanship/library/..librarianship/01-anatomy-of-a-book.md) to specify:
+Update [Anatomy of a book](../..teamsmanship/library/..librarianship/01-anatomy-of-a-book.md) to specify:
 
 For reference books (coding policy, protocols, field guide), TOC entries are 2-3 sentences — rich enough to find the right chapter without opening any. For chronological books (autobiographies, sprint histories), one-line entries are fine because navigation is by time not topic.
 
 ### S-4. Catalogue maintenance hygiene
 
-Libby: Add a new section to [Subjects and catalogues](../..teamsmanship/library/..librarianship/04-subjects-and-catalogues.md):
+Add a new section to [Subjects and catalogues](../..teamsmanship/library/..librarianship/04-subjects-and-catalogues.md):
 
 When a book changes significantly (new chapters, shifted focus, completed arc), two updates are required:
 1. The author updates the book's `summary` field

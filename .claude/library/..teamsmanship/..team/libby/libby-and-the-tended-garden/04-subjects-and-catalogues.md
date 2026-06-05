@@ -52,4 +52,4 @@ I look for:
 
 <!-- citations -->
 [growth and refactoring]: 03-growth-and-refactoring.md
-[library README]: ../../..librarianship/.cover.md
+[library README]: ../../../../..librarianship/.cover.md

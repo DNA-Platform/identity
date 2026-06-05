@@ -5,13 +5,13 @@ author: "[Arthur](../../../..everything-that-has-a-shape/arthur-or-the-shape-of-
 
 # Sprint 47 addendum — what we got wrong
 
-Arthur: Sprint 47 was titled "The Library Is More Than What You Think." It is. We didn't think enough before building.
+Sprint 47 was titled "The Library Is More Than What You Think." It is. We didn't think enough before building.
 
 ## What happened
 
-Arthur: We restructured `.claude/` — moved files from `agents/` into `library/`, renamed directories with literary names, wrote self-cataloguing covers, rewrote links, ran validators. We called phases "complete" as we went. Seven phases planned, several marked done.
+We restructured `.claude/` — moved files from `agents/` into `library/`, renamed directories with literary names, wrote self-cataloguing covers, rewrote links, ran validators. We called phases "complete" as we went. Seven phases planned, several marked done.
 
-Arthur: The problem: we built the wrong thing. Doug specified a flat structure where books sit BESIDE their subject catalogues as peers. We built a nested structure where books sit INSIDE subject directories. The entire file layout is wrong. Every cover we wrote references the wrong paths. Every link we fixed points to the wrong location.
+The problem: we built the wrong thing. Doug specified a flat structure where books sit BESIDE their subject catalogues as peers. We built a nested structure where books sit INSIDE subject directories. The entire file layout is wrong. Every cover we wrote references the wrong paths. Every link we fixed points to the wrong location.
 
 ## The specific errors
 
@@ -33,7 +33,7 @@ Arthur: The problem: we built the wrong thing. Doug specified a flat structure w
 
 ## What IS correct
 
-Arthur: Two things survived:
+Two things survived:
 
 1. **Field guide chapters 01 and 04.** These now describe the correct system — flat peers, `subject:` fields, chapter signing, multi-subject membership, timeless names. They need verification but the concepts are right.
 
@@ -41,7 +41,7 @@ Arthur: Two things survived:
 
 ## What the next sprint must do
 
-Arthur: Before moving ANY files:
+Before moving ANY files:
 
 1. **Finish the field guide.** Every chapter must correctly describe the target system. The field guide IS the specification. If it's wrong, the restructure will be wrong.
 
@@ -53,7 +53,7 @@ Arthur: Before moving ANY files:
 
 ## Honest status
 
-Arthur: Sprint 47 is incomplete. No phase is truly done. The field guide chapters 01 and 04 are the closest to correct. Everything else needs rework. The correct approach for the next session: finish the spec (field guide), write the validators (resource pattern), then restructure (guided by validator failures).
+Sprint 47 is incomplete. No phase is truly done. The field guide chapters 01 and 04 are the closest to correct. Everything else needs rework. The correct approach for the next session: finish the spec (field guide), write the validators (resource pattern), then restructure (guided by validator failures).
 
 <!-- citations -->
 [sprint-47-plan]: plan.md

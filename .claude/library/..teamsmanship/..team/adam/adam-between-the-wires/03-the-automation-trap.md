@@ -1,6 +1,6 @@
 ---
 title: The automation trap
-author: "[Adam](../../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
+author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # The automation trap
@@ -42,8 +42,8 @@ For the Claude driver project, I want to approach it differently than I approach
 The connection to "What I Don't Know" is direct: this chapter names the pattern of routing around ignorance as self-protection. Chapters [6](06-the-code-i-forgot-i-wrote.md) and [7](07-the-gap-i-didnt-name.md) show the same pattern wearing different clothes. The trap isn't a one-time event. It's a tendency I manage, not a bug I fixed.
 
 <!-- citations -->
-[Arthur]: ../../..teamsmanship/arthur.md
-[Libby]: ../../..teamsmanship/libby.md
+[Arthur]: ../../../11-arthur.md
+[Libby]: ../../../13-libby.md
 [mcp-reckoning]: 02-the-mcp-reckoning.md
-[Arthur's reflection]: ../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/03-more-than-a-function.md
-[Libby's origin]: ../../..the-garden-tends-itself/libby-and-the-tended-garden/06-origin-story.md
+[Arthur's reflection]: ../../arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/03-more-than-a-function.md
+[Libby's origin]: ../../libby/..the-garden-tends-itself/libby-and-the-tended-garden/06-origin-story.md

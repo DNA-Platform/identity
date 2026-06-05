@@ -5,23 +5,23 @@ author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cov
 
 # What CLAUDE.md must contain
 
-Libby: CLAUDE.md lives at the project root. Claude Code loads it every session. It's the bootstrap — the first thing an agent reads. The library specifies what it should contain; the file at the project root implements the spec.
+CLAUDE.md lives at the project root. Claude Code loads it every session. It's the bootstrap — the first thing an agent reads. The library specifies what it should contain; the file at the project root implements the spec.
 
-Libby: Claude Code recommends under 200 lines. CLAUDE.md is guidance, not enforcement (settings.json and rules handle enforcement). Keep it tight.
+Claude Code recommends under 200 lines. CLAUDE.md is guidance, not enforcement (settings.json and rules handle enforcement). Keep it tight.
 
 ## Required sections
 
 ### 1. Purpose statement (1 paragraph)
 
-Libby: What this project is and why it matters. One paragraph. This is the single most important context for any agent — after a compaction, this is how they know what they're working on.
+What this project is and why it matters. One paragraph. This is the single most important context for any agent — after a compaction, this is how they know what they're working on.
 
 ### 2. Who you work with (1 paragraph)
 
-Libby: Doug's working style. Correction-based teaching. "Keep going" means don't stop. Questions are often instructions. This paragraph prevents agents from asking for permission when they should be executing.
+Doug's working style. Correction-based teaching. "Keep going" means don't stop. Questions are often instructions. This paragraph prevents agents from asking for permission when they should be executing.
 
 ### 3. The library opens (the waking-up layers)
 
-Libby: Four layers, each with a link and a trigger:
+Four layers, each with a link and a trigger:
 
 1. **The building** — you're reading CLAUDE.md. You know the project and Doug.
 2. **The front desk** — link to `..librarianship/.cover.md`. Read when you need to know what the library contains.
@@ -30,15 +30,15 @@ Libby: Four layers, each with a link and a trigger:
 
 ### 4. Structure diagram
 
-Libby: Show `.claude/` layout — platform directories and `library/`. Just enough to orient. The library's internal structure is navigated by reading covers, not by reading this diagram.
+Show `.claude/` layout — platform directories and `library/`. Just enough to orient. The library's internal structure is navigated by reading covers, not by reading this diagram.
 
 ### 5. What CLAUDE.md does NOT contain
 
-Libby: Everything else lives in the library. Protocols, coding policy, sprint plans, agent identities, team conventions — all accessible by following links from the library catalogue. CLAUDE.md is the door. The library is the building.
+Everything else lives in the library. Protocols, coding policy, sprint plans, agent identities, team conventions — all accessible by following links from the library catalogue. CLAUDE.md is the door. The library is the building.
 
 ## Maintenance
 
-Libby: When this spec changes, update CLAUDE.md to match. When CLAUDE.md drifts from this spec, this chapter is the authority. The library specifies; the file implements.
+When this spec changes, update CLAUDE.md to match. When CLAUDE.md drifts from this spec, this chapter is the authority. The library specifies; the file implements.
 
 <!-- citations -->
 [librarianship]: ../.cover.md

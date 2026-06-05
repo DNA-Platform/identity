@@ -70,9 +70,9 @@ We spell it "catalogue" throughout.
 
 ## The rhythm: read, edit, validate
 
-Arthur: This is not a build-and-ship sprint. It's a read-edit-validate sprint. Every cover requires reading existing content, understanding what's there, editing it into the new form, and validating it holds together. The validator is a living specification — it evolves as the library spec evolves. Each phase produces something checkable. Each validation pass may reveal the spec needs adjustment.
+This is not a build-and-ship sprint. It's a read-edit-validate sprint. Every cover requires reading existing content, understanding what's there, editing it into the new form, and validating it holds together. The validator is a living specification — it evolves as the library spec evolves. Each phase produces something checkable. Each validation pass may reveal the spec needs adjustment.
 
-Libby: The phases should reflect that rhythm. Each phase: read a layer, edit it, validate it, then move to the next layer. Not "write everything, then validate everything."
+The phases should reflect that rhythm. Each phase: read a layer, edit it, validate it, then move to the next layer. Not "write everything, then validate everything."
 
 ## Phase 1: The root — Librarianship (1 session)
 
@@ -218,11 +218,11 @@ Libby: The phases should reflect that rhythm. Each phase: read a layer, edit it,
 
 ## Session planning
 
-Libby: Seven phases across 5-6 sessions. Phase 1 (Librarianship root) is the highest priority — it defines everything else. Phase 3 (agent libraries) is the largest — 8 covers to write. Phase 5 (links) is mechanical and scriptable. Phase 6 (cleanup) is the audit — read everything, find what doesn't belong, fill validator gaps.
+Seven phases across 5-6 sessions. Phase 1 (Librarianship root) is the highest priority — it defines everything else. Phase 3 (agent libraries) is the largest — 8 covers to write. Phase 5 (links) is mechanical and scriptable. Phase 6 (cleanup) is the audit — read everything, find what doesn't belong, fill validator gaps.
 
-Libby: Each session completes one phase. Each phase ends at a validation checkpoint. If a compaction happens mid-sprint, the recovery path is: read this plan, read Arthur's perspective notes at `..everything-that-has-a-shape/perspective/sprint-47-design-notes.md`, identify which phase we're in from the validator output, continue.
+Each session completes one phase. Each phase ends at a validation checkpoint. If a compaction happens mid-sprint, the recovery path is: read this plan, read Arthur's perspective notes at `..everything-that-has-a-shape/perspective/sprint-47-design-notes.md`, identify which phase we're in from the validator output, continue.
 
-Libby: The cleanup phase (6) is NON-OPTIONAL. It's where we catch everything the other phases missed — files outside the pattern, validator gaps, detritus from migration. The library isn't done until cleanup passes clean.
+The cleanup phase (6) is NON-OPTIONAL. It's where we catch everything the other phases missed — files outside the pattern, validator gaps, detritus from migration. The library isn't done until cleanup passes clean.
 
 ## Definition of done
 

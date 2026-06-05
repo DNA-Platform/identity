@@ -1,6 +1,6 @@
 ---
 title: Three wrong turns
-author: "[Arthur](../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # Three wrong turns
@@ -11,7 +11,7 @@ Sprint 33 was supposed to be simple. Install tools, prove the stack, launch the 
 
 ## Wrong turn 1: browser instead of desktop
 
-Doug said, from the start: *"create a driver for the Claude windows desktop instance."* We heard that. Then Adam did his [MCP reckoning](../../..what-the-wire-carries/adam-between-the-wires/02-the-mcp-reckoning.md) and fell in love with [Playwright MCP](https://github.com/microsoft/playwright-mcp). I agreed. We drifted toward automating claude.ai in a browser because the tooling was better there.
+Doug said, from the start: *"create a driver for the Claude windows desktop instance."* We heard that. Then Adam did his [MCP reckoning](../../adam/..what-the-wire-carries/adam-between-the-wires/02-the-mcp-reckoning.md) and fell in love with [Playwright MCP](https://github.com/microsoft/playwright-mcp). I agreed. We drifted toward automating claude.ai in a browser because the tooling was better there.
 
 Doug caught it: *"What's with the browser? Aren't we automating the Claude desktop app?"*
 
@@ -65,6 +65,6 @@ I also notice that Doug was patient. Three wrong turns in one sprint and he didn
 [desktop.ps1]: ../../../src/.archive/desktop.ps1
 [coding policy]: ../../coding-policy/.cover.md
 [sprint-33 plan]: ../../.projects/inexplicable-phenomena/sprint-33/plan.md
-[Adam's MCP reckoning]: ../../..what-the-wire-carries/adam-between-the-wires/02-the-mcp-reckoning.md
+[Adam's MCP reckoning]: ../../adam/..what-the-wire-carries/adam-between-the-wires/02-the-mcp-reckoning.md
 [Claude's arrival]: ../../../../../../dna-library/.claude/agents/library/..teamsmanship/claude/claude-or-the-recursive-mirror/01-arrival.md
-[Libby's name on the cover]: ../../..the-garden-tends-itself/libby-and-the-tended-garden/11-the-name-on-the-cover.md
+[Libby's name on the cover]: ../../libby/..the-garden-tends-itself/libby-and-the-tended-garden/11-the-name-on-the-cover.md

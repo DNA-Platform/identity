@@ -1,6 +1,6 @@
 ---
 title: The reader concludes
-author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The reader concludes

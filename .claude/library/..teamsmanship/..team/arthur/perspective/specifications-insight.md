@@ -5,7 +5,7 @@ author: "[Arthur](../arthur-or-the-shape-of-everything/.cover.md)"
 
 # Specifications as a formal concept
 
-Arthur: Doug described specifications as a distinct thing in the library. Not just chapters — labeled specifications with terms they define and code that validates them.
+Doug described specifications as a distinct thing in the library. Not just chapters — labeled specifications with terms they define and code that validates them.
 
 ## What Doug said
 
@@ -18,18 +18,18 @@ Arthur: Doug described specifications as a distinct thing in the library. Not ju
 
 ## What this means
 
-Arthur: Each subject has essential specification books:
+Each subject has essential specification books:
 - Knowledge → Bookkeeping (how books work)
 - Collaboration → Teamspeak (how the team communicates)
 - The System (future) → some spec book (how the platform works)
 
-Arthur: A specification has:
+A specification has:
 - A `specification:` label saying what term it specifies
 - Chapters that define the rules
 - Code resources (validators) that check the rules
 - Evolution from chapter → book as complexity grows
 
-Arthur: The distinction between a regular book and a specification book: a regular book is about something. A specification book DEFINES something. Bookkeeping doesn't just describe books — it DEFINES what a valid book is.
+The distinction between a regular book and a specification book: a regular book is about something. A specification book DEFINES something. Bookkeeping doesn't just describe books — it DEFINES what a valid book is.
 
 ## What to do
 
@@ -41,5 +41,5 @@ Arthur: The distinction between a regular book and a specification book: a regul
 6. Update Librarianship and Teamsmanship to reference new names
 
 <!-- citations -->
-[anatomy]: ../../anatomy-of-a-book/.cover.md
-[protocols]: ../../protocols/.cover.md
+[anatomy]: ../../bookkeeping/.cover.md
+[protocols]: ../../teamspeak/.cover.md

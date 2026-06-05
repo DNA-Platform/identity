@@ -5,9 +5,9 @@
 
 ## Approach
 
-Arthur: Doug's direction: edit here, push there. The identity repo is a mirror of `.claude/` — not a separate workspace. We copy our `.claude/` and `CLAUDE.md` into the identity repo, add a README, commit, push.
+Doug's direction: edit here, push there. The identity repo is a mirror of `.claude/` — not a separate workspace. We copy our `.claude/` and `CLAUDE.md` into the identity repo, add a README, commit, push.
 
-Arthur: The identity repo already has old content (a generic project template). We overwrite everything — Doug said "completely destructive."
+The identity repo already has old content (a generic project template). We overwrite everything — Doug said "completely destructive."
 
 ## What goes to the identity repo
 
@@ -35,7 +35,7 @@ identity/                        <- the repo root
 
 ## What the README says
 
-Arthur: The README is the bootstrap document — the one file someone reads before the library exists. It explains:
+The README is the bootstrap document — the one file someone reads before the library exists. It explains:
 
 1. **What this is:** the team's identity, library, and operating infrastructure — private, shared across projects.
 2. **How to use it:** clone into a project's root as `.claude/`, copy `CLAUDE.md` to the project root.
@@ -44,7 +44,7 @@ Arthur: The README is the bootstrap document — the one file someone reads befo
 
 ## What the protocols book gains
 
-Libby: A new chapter: "The identity repo" — how to bring the team to a project, how to sync back, the bootstrap sequence. This is the library's version of the README, written for agents who are already awake.
+A new chapter: "The identity repo" — how to bring the team to a project, how to sync back, the bootstrap sequence. This is the library's version of the README, written for agents who are already awake.
 
 ## Steps
 

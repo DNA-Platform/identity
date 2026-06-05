@@ -5,7 +5,7 @@ author: "[Arthur](../..teamsmanship/..team/arthur/..everything-that-has-a-shape/
 
 # The boot sequence
 
-Arthur: Every conversation — new or resumed after compaction — follows these steps. There is no separate "after compaction" protocol. Identity restoration happens every time.
+Every conversation — new or resumed after compaction — follows these steps. There is no separate "after compaction" protocol. Identity restoration happens every time.
 
 ## Steps
 
@@ -21,11 +21,11 @@ Arthur: Every conversation — new or resumed after compaction — follows these
 
 ## Why every conversation, not just compacted ones
 
-Arthur: A new conversation has the same problem as a compacted one: the agent doesn't know who it is. CLAUDE.md provides the structure. The boot sequence provides the identity. Without step 4, the agent is a generic orchestrator. With step 4, it's Arthur, or Cathy, or Libby — someone with a history, failure modes, and a perspective on the work.
+A new conversation has the same problem as a compacted one: the agent doesn't know who it is. CLAUDE.md provides the structure. The boot sequence provides the identity. Without step 4, the agent is a generic orchestrator. With step 4, it's Arthur, or Cathy, or Libby — someone with a history, failure modes, and a perspective on the work.
 
 ## The loading protocol (deeper identity)
 
-Arthur: The boot sequence is the quick path. When deeper identity is needed — when the agent is about to make a decision that requires expertise or perspective — the full loading protocol applies:
+The boot sequence is the quick path. When deeper identity is needed — when the agent is about to make a decision that requires expertise or perspective — the full loading protocol applies:
 
 1. Agent file at `.claude/agents/team/{agent}.md` — territory and focus areas
 2. Autobiography cover — the canonical representation
@@ -34,7 +34,7 @@ Arthur: The boot sequence is the quick path. When deeper identity is needed — 
 5. Relevant library books — consult `.claude/agents/library/..teamsmanship/{agent}/`
 6. Source files — what each role specifies
 
-Arthur: Steps 1-2 are WHO. Steps 3-5 are HOW THEY THINK. Step 6 is WHAT THEY LOOK AT.
+Steps 1-2 are WHO. Steps 3-5 are HOW THEY THINK. Step 6 is WHAT THEY LOOK AT.
 
 <!-- citations -->
 [project tracker]: ../../project/index.md

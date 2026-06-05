@@ -5,11 +5,11 @@ author: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
 
 # Roles and the type system
 
-Libby: A role is a perspective on code — a lens that shapes how a teammate approaches work. Roles are not procedures. They don't tell you WHAT to do. They tell you HOW to see.
+A role is a perspective on code — a lens that shapes how a teammate approaches work. Roles are not procedures. They don't tell you WHAT to do. They tell you HOW to see.
 
 ## The type hierarchy
 
-Libby: Four levels, connected by links:
+Four levels, connected by links:
 
 ```
 Universal abilities          ← base type (loaded by ALL roles)
@@ -21,11 +21,11 @@ Roles                        ← compose abilities into perspectives
 Agents                       ← instantiate one or more roles
 ```
 
-Libby: Roles are many-to-one with agents — a teammate can have multiple roles. Abilities are many-to-one with roles — a role loads multiple abilities. Universal abilities are the base type — inherited by every role.
+Roles are many-to-one with agents — a teammate can have multiple roles. Abilities are many-to-one with roles — a role loads multiple abilities. Universal abilities are the base type — inherited by every role.
 
 ## Universal abilities (base type)
 
-Libby: Every role loads these. They form the shared foundation that all perspectives build on.
+Every role loads these. They form the shared foundation that all perspectives build on.
 
 - Research — finding information, evaluating sources
 - Synthesis — combining findings into coherent understanding
@@ -108,13 +108,13 @@ Libby: Every role loads these. They form the shared foundation that all perspect
 
 ## How roles compose on agents
 
-Libby: An teammate's perspective is the union of their roles' questions, anxieties, and abilities, applied to the code they own. See [chapter 08](18-gabby.md) for each teammate's role assignments.
+An teammate's perspective is the union of their roles' questions, anxieties, and abilities, applied to the code they own. See [chapter 08](18-gabby.md) for each teammate's role assignments.
 
-Libby: Example: Phillip has roles [UX Designer](#ux-designer) + [Chemistry Developer](#chemistry-developer). Both inherit from [Framework Engineer](#framework-engineer). His combined lens: "Can the user understand this?" + "Does this Case demonstrate the feature?" + "Is the abstraction faithful?" On his territory (`library/chemistry/app/**`): the Lab must teach, Cases must demonstrate, components must be faithful.
+Example: Phillip has roles [UX Designer](#ux-designer) + [Chemistry Developer](#chemistry-developer). Both inherit from [Framework Engineer](#framework-engineer). His combined lens: "Can the user understand this?" + "Does this Case demonstrate the feature?" + "Is the abstraction faithful?" On his territory (`library/chemistry/app/**`): the Lab must teach, Cases must demonstrate, components must be faithful.
 
 ## Validation `[SCAFFOLD]`
 
-Libby: A [validator resource](02-roles-and-the-type-system.ts) for this chapter would check:
+A [validator resource](02-roles-and-the-type-system.ts) for this chapter would check:
 - Every role has: first question, anxieties, mantra, abilities
 - Parent role links resolve to headings in this chapter
 - Ability links resolve (once abilities are linked)

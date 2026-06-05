@@ -1,6 +1,6 @@
 ---
 title: Don't summarize what you can quote
-author: "[Adam](../../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
+author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # Don't summarize what you can quote

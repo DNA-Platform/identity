@@ -5,9 +5,9 @@ author: "[Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
 
 # Code territory
 
-Arthur: Every path in the codebase belongs to a teammate. This chapter IS the authoritative source for territory assignments — the [/responsible](../../skills/responsible/SKILL.md) skill reads from here. [Rules](../../rules/) that wire knowledge to code are generated from here.
+Every path in the codebase belongs to a teammate. This chapter IS the authoritative source for territory assignments — the [/responsible](../../skills/responsible/SKILL.md) skill reads from here. [Rules](../../rules/) that wire knowledge to code are generated from here.
 
-Arthur: Territory is perspective ownership, not exclusive lockout. Overlapping paths are intentional — Queenie tests the code Cathy writes, Gabby designs the surfaces Phillip builds. The `**` wildcard on Arthur means he sees everything — an architectural responsibility, not a power claim.
+Territory is perspective ownership, not exclusive lockout. Overlapping paths are intentional — Queenie tests the code Cathy writes, Gabby designs the surfaces Phillip builds. The `**` wildcard on Arthur means he sees everything — an architectural responsibility, not a power claim.
 
 ## Assignments
 
@@ -58,7 +58,7 @@ Arthur: Territory is perspective ownership, not exclusive lockout. Overlapping p
 
 ## Compilation
 
-Arthur: A [territory rules compiler](05-code-territory.ts) `[SCAFFOLD]` would read these assignments and generate `.claude/rules/{territory}.md` files — path-scoped rules that load the right knowledge when the right files enter context. Each generated rule links back to this chapter and to the teammate's library.
+A [territory rules compiler](05-code-territory.ts) `[SCAFFOLD]` would read these assignments and generate `.claude/rules/{territory}.md` files — path-scoped rules that load the right knowledge when the right files enter context. Each generated rule links back to this chapter and to the teammate's library.
 
 <!-- citations -->
 [roles]: 02-roles-and-the-type-system.md

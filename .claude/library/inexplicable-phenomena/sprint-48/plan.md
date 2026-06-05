@@ -10,21 +10,21 @@ author: "[Arthur](../../../..everything-that-has-a-shape/arthur-or-the-shape-of-
 
 ## Why this sprint exists
 
-Arthur: Sprint 47 restructured files without understanding the target. We built books inside subjects instead of beside them, missed frontmatter fields, skipped chapter signing, wrote prose where links should be, and called phases "done" that produced incorrect output. The [addendum](../sprint-47/addendum.md) documents 14 specific errors.
+Sprint 47 restructured files without understanding the target. We built books inside subjects instead of beside them, missed frontmatter fields, skipped chapter signing, wrote prose where links should be, and called phases "done" that produced incorrect output. The [addendum](../sprint-47/addendum.md) documents 14 specific errors.
 
-Arthur: This sprint fixes everything. But it does it in the right order: specify what correct looks like, write validators that check it, THEN restructure guided by validator failures. No more building without understanding.
+This sprint fixes everything. But it does it in the right order: specify what correct looks like, write validators that check it, THEN restructure guided by validator failures. No more building without understanding.
 
 ## The specification (what "correct" looks like)
 
 ### The flat structure
 
-Arthur: The library is a flat directory. Everything at the same level. Two kinds of catalogues and regular books:
+The library is a flat directory. Everything at the same level. Two kinds of catalogues and regular books:
 
 - `..librarianship/` — the ONE library catalogue. Self-cataloguing. IS the library.
 - `..teamsmanship/` — subject catalogue. Self-cataloguing. IS the team subject. Has agent folders inside for personal libraries. Currently the only subject — catalogues ALL team books (protocols, projects, roles, abilities, code assignments, rules).
 - Regular books — directories with `.cover.md`. Sit BESIDE `..teamsmanship/` as peers. Each has `subject: ".team"` pointing back to their subject.
 
-Arthur: Subjects can catalogue sub-subjects. The tree grows in links: `..librarianship/` → `..teamsmanship/` → (eventually) `.protocols/` → books. But right now `..teamsmanship/` directly catalogues the books. Sub-subjects emerge by factoring when a cluster grows large enough.
+Subjects can catalogue sub-subjects. The tree grows in links: `..librarianship/` → `..teamsmanship/` → (eventually) `.protocols/` → books. But right now `..teamsmanship/` directly catalogues the books. Sub-subjects emerge by factoring when a cluster grows large enough.
 
 ### Book frontmatter
 
@@ -39,7 +39,7 @@ summary: >
 ---
 ```
 
-Arthur: Order: **title > subject > author > summary**. Every field present. `author:` is a real markdown link — text is the name, target is the autobiography.
+Order: **title > subject > author > summary**. Every field present. `author:` is a real markdown link — text is the name, target is the autobiography.
 
 ### Chapter frontmatter
 
@@ -50,26 +50,26 @@ author: "[Arthur](../../path/to/autobiography/.cover.md)"
 ---
 ```
 
-Arthur: Every chapter is SIGNED. `author:` links to the autobiography. One click from any chapter to the author's identity.
+Every chapter is SIGNED. `author:` links to the autobiography. One click from any chapter to the author's identity.
 
 ### Subject-shaped descriptions
 
-Arthur: When a subject catalogue catalogues a book, the description in the TOC is written FROM THE SUBJECT'S PERSPECTIVE. The same book described by two subjects gets two different descriptions — each shaped by what the subject cares about. The Principia in a math catalogue is described differently than in a philosophy catalogue. The description is a view, not a neutral pointer.
+When a subject catalogue catalogues a book, the description in the TOC is written FROM THE SUBJECT'S PERSPECTIVE. The same book described by two subjects gets two different descriptions — each shaped by what the subject cares about. The Principia in a math catalogue is described differently than in a philosophy catalogue. The description is a view, not a neutral pointer.
 
 ### The resource pattern
 
-Arthur: A chapter and a non-markdown file share a name. The chapter motivates and describes. The resource IS the artifact.
+A chapter and a non-markdown file share a name. The chapter motivates and describes. The resource IS the artifact.
 
 ```
 01-anatomy-of-a-book.md    ← chapter (describes the convention)
 01-anatomy-of-a-book.ts    ← resource (validates the convention)
 ```
 
-Arthur: Validators are chapter resources in the field guide. Perspective images are chapter resources in perspective books. The chapter links to the resource. They live together.
+Validators are chapter resources in the field guide. Perspective images are chapter resources in perspective books. The chapter links to the resource. They live together.
 
 ### Agent personal libraries
 
-Arthur: Inside `..teamsmanship/{agent}/`, the structure is flat:
+Inside `..teamsmanship/{agent}/`, the structure is flat:
 
 ```
 ..teamsmanship/..team/arthur/
@@ -79,23 +79,23 @@ Arthur: Inside `..teamsmanship/{agent}/`, the structure is flat:
   perspective/                          ← book (peer)
 ```
 
-Arthur: The agent's subject catalogue IS their personal library identity. Authored by the autobiography. Catalogues itself + all books.
+The agent's subject catalogue IS their personal library identity. Authored by the autobiography. Catalogues itself + all books.
 
 ### Names
 
-Arthur: Timeless. No encoded state. `.what-the-tests-promise` not `.what-428-tests-promise`. Names are tier-zero synopsis — read in every link, every listing.
+Timeless. No encoded state. `.what-the-tests-promise` not `.what-428-tests-promise`. Names are tier-zero synopsis — read in every link, every listing.
 
 ### Platform interface
 
-Arthur: [CLAUDE.md](../../../CLAUDE.md) + [rules/](../../rules/) + [agents/](../../agents/) + [skills/](../../skills/) + [settings.json](../../settings.json) are Claude Code's spec. They embed the minimum, then link inline into the library.
+[CLAUDE.md](../../../CLAUDE.md) + [rules/](../../rules/) + [agents/](../../agents/) + [skills/](../../skills/) + [settings.json](../../settings.json) are Claude Code's spec. They embed the minimum, then link inline into the library.
 
-Arthur: [Rules](../../rules/) are the guaranteed-load layer — the ONLY content besides CLAUDE.md loaded into every session. They must be thick enough to work without link-following but thin enough to preserve the instruction budget (~100-150 slots total). All rules are catalogued by a library book.
+[Rules](../../rules/) are the guaranteed-load layer — the ONLY content besides CLAUDE.md loaded into every session. They must be thick enough to work without link-following but thin enough to preserve the instruction budget (~100-150 slots total). All rules are catalogued by a library book.
 
-Arthur: [Agent files](../../agents/) have REAL markdown links — clickable, inline — to the autobiography, library catalogue, roles, and code territory.
+[Agent files](../../agents/) have REAL markdown links — clickable, inline — to the autobiography, library catalogue, roles, and code territory.
 
 ### Links everywhere
 
-Arthur: Every reference is a real markdown link. Not prose with a path in backticks. Not "see X at path/to/file". A real `[link text](path/to/file)` woven into the prose where the reader needs it. The library is a wiki. Links are inline.
+Every reference is a real markdown link. Not prose with a path in backticks. Not "see X at path/to/file". A real `[link text](path/to/file)` woven into the prose where the reader needs it. The library is a wiki. Links are inline.
 
 ## Execution plan
 

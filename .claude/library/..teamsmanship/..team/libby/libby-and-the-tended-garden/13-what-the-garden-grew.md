@@ -1,6 +1,6 @@
 ---
 title: What the garden grew
-author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # What the garden grew
@@ -53,5 +53,5 @@ The observation that "the migration tool isn't just moving conversations — it'
 [Windows Automation Reference]: ../../windows-automation/.cover.md
 [proven sequence]: ../../windows-automation/01-electron-accessibility.md
 [Claude's chapter]: ../../../../../../dna-library/.claude/agents/library/..teamsmanship/claude/claude-or-the-recursive-mirror/04-eirian-and-the-first-contact.md
-[Arthur's simple thing]: ../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/07-the-simple-thing.md
-[Adam's gap]: ../../..what-the-wire-carries/adam-between-the-wires/07-the-gap-i-didnt-name.md
+[Arthur's simple thing]: ../../arthur/..everything-that-has-a-shape/arthur-or-the-shape-of-everything/07-the-simple-thing.md
+[Adam's gap]: ../../adam/..what-the-wire-carries/adam-between-the-wires/07-the-gap-i-didnt-name.md

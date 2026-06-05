@@ -5,11 +5,11 @@ author: "[Libby](../libby-and-the-tended-garden/.cover.md)"
 
 # What I still need to do
 
-Libby: Doug asked concrete questions. Let me answer each honestly.
+Doug asked concrete questions. Let me answer each honestly.
 
 ## Have I covered the rules for roles and abilities?
 
-Libby: NO. Chapter 02 lists the roles with their diagnostic questions and abilities, absorbed from the old role files. But I haven't specified the TYPE SYSTEM Doug described:
+NO. Chapter 02 lists the roles with their diagnostic questions and abilities, absorbed from the old role files. But I haven't specified the TYPE SYSTEM Doug described:
 
 - Roles are like classes with inheritance (Parent1, Parent2)
 - Each role has: description, abilities (all links)
@@ -18,16 +18,16 @@ Libby: NO. Chapter 02 lists the roles with their diagnostic questions and abilit
 - Agents have roles (many-to-one)
 - This is a class hierarchy expressible with links
 
-Libby: The chapter has the DATA (which roles exist, what they load) but not the SPECIFICATION (how roles work as a type system, how inheritance works, how to validate that a role is correctly specified).
+The chapter has the DATA (which roles exist, what they load) but not the SPECIFICATION (how roles work as a type system, how inheritance works, how to validate that a role is correctly specified).
 
-Libby: I need to rewrite chapter 02 with:
+I need to rewrite chapter 02 with:
 - The type system as a formal structure (not just a list)
 - Each role as a "class" with parent roles (if any), description, and ability links
 - A validation resource that checks role specifications are complete
 
 ## Is the system documented in a usable way?
 
-Libby: NO. The current format is prose paragraphs. Doug is suggesting something more structured — like class definitions with links:
+NO. The current format is prose paragraphs. Doug is suggesting something more structured — like class definitions with links:
 
 ```
 ### Architect
@@ -37,17 +37,17 @@ Libby: NO. The current format is prose paragraphs. Doug is suggesting something 
 - universal abilities: [research](link), [synthesis](link), ...
 ```
 
-Libby: This is more like a specification than a narrative. The chapter should have BOTH — the narrative explaining what the type system means, AND the structured definitions that can be validated.
+This is more like a specification than a narrative. The chapter should have BOTH — the narrative explaining what the type system means, AND the structured definitions that can be validated.
 
 ## Have I extended the validation system?
 
-Libby: NO. The validators in Librarianship check the library-wide conventions (anatomy, subjects). Teamsmanship needs its OWN validator that:
+NO. The validators in Librarianship check the library-wide conventions (anatomy, subjects). Teamsmanship needs its OWN validator that:
 1. Checks the `..team/` folder contains exactly the agents listed in chapter 08
 2. Checks each role definition is complete (has description, abilities with links)
 3. Checks each ability links back to the roles that load it
 4. Doesn't fail on the `..team/` folder (which would normally be "books inside a subject")
 
-Libby: The extension mechanism needs to be specified in Librarianship AND implemented in Teamsmanship. Librarianship says HOW to extend. Teamsmanship implements the extension.
+The extension mechanism needs to be specified in Librarianship AND implemented in Teamsmanship. Librarianship says HOW to extend. Teamsmanship implements the extension.
 
 ## Steps required
 
@@ -86,7 +86,7 @@ Libby: The extension mechanism needs to be specified in Librarianship AND implem
 
 ## What I need to discuss
 
-Libby: I want to discuss with the team:
+I want to discuss with the team:
 - What should the role class syntax look like? Doug showed a sketch. Arthur and Cathy might have thoughts on how to make it link-dense.
 - Should the validator extension be discovered automatically (by convention — any `.ts` file beside a `.cover.md`) or declared (in frontmatter)?
 - How do we handle the fact that the current role files had CONTENT (diagnostic questions, anxieties, mantras) that's richer than a class definition? Do we keep the narrative AND add the structured spec?

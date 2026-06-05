@@ -5,11 +5,11 @@ author: "[Libby](../libby-and-the-tended-garden/.cover.md)"
 
 # Teamsmanship rewrite plan
 
-Libby: Everything Doug specified for the Teamsmanship book, captured before executing.
+Everything Doug specified for the Teamsmanship book, captured before executing.
 
 ## The book
 
-Libby: Teamsmanship is the book that represents the subject "Collaboration." It specifies how agents work together, what roles and abilities mean, how identity is structured, and how the team interfaces with the Claude Code platform. It contains the `..team/` folder for personal libraries.
+Teamsmanship is the book that represents the subject "Collaboration." It specifies how agents work together, what roles and abilities mean, how identity is structured, and how the team interfaces with the Claude Code platform. It contains the `..team/` folder for personal libraries.
 
 ## What the book needs to contain (as chapters)
 
@@ -28,7 +28,7 @@ Libby: Teamsmanship is the book that represents the subject "Collaboration." It 
 - Links connect everything: role links to its abilities, agent links to their roles, abilities link back
 
 ### Protocols (internalized)
-- The cover should reference the [protocols book](../protocols/.cover.md) and summarise the six conventions
+- The cover should reference the [protocols book](../teamspeak/.cover.md) and summarise the six conventions
 - The relationship between protocols and the team — protocols are HOW the team operates
 
 ### The platform interface
@@ -63,8 +63,8 @@ Libby: Teamsmanship is the book that represents the subject "Collaboration." It 
 
 ## The agent compilation question
 
-Libby: Doug asks: could code compile agent files FROM Teamsmanship? The book defines roles, abilities, territories. The agents/ files need: name, description, tools, and links back. A script could read Teamsmanship and generate the agent .md files, ensuring they always link back correctly. This would be a chapter resource — a script that compiles the book into platform artifacts.
+Doug asks: could code compile agent files FROM Teamsmanship? The book defines roles, abilities, territories. The agents/ files need: name, description, tools, and links back. A script could read Teamsmanship and generate the agent .md files, ensuring they always link back correctly. This would be a chapter resource — a script that compiles the book into platform artifacts.
 
 <!-- citations -->
-[protocols]: ../../protocols/.cover.md
-[librarianship]: ../../..librarianship/.cover.md
+[protocols]: ../../teamspeak/.cover.md
+[librarianship]: ../../../../..librarianship/.cover.md

@@ -1,6 +1,6 @@
 ---
 title: The MCP reckoning
-author: "[Adam](../../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
+author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # The MCP reckoning
@@ -42,5 +42,5 @@ I'm still the one building the operations layer. But instead of writing CDP conn
 
 <!-- citations -->
 [Playwright MCP]: https://github.com/microsoft/playwright-mcp
-[Libby]: ../../..teamsmanship/libby.md
+[Libby]: ../../../13-libby.md
 [claude-migration]: ../../claude-migration/.cover.md

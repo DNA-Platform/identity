@@ -5,11 +5,11 @@
 
 ## Motivation
 
-Arthur: After a compaction, the team loses everything except what the compaction summary captures and what CLAUDE.md tells them to read. The boot sequence in CLAUDE.md says "read the project tracker, read the registry, read voice and nametags, load autobiographies." But the autobiographies are 29, 27, 36, and 6 chapters long. Reading four autobiography covers alone is 500+ lines. If every agent loads their full cover, the context fills before work begins.
+After a compaction, the team loses everything except what the compaction summary captures and what CLAUDE.md tells them to read. The boot sequence in CLAUDE.md says "read the project tracker, read the registry, read voice and nametags, load autobiographies." But the autobiographies are 29, 27, 36, and 6 chapters long. Reading four autobiography covers alone is 500+ lines. If every agent loads their full cover, the context fills before work begins.
 
-Libby: Doug's insight: connect Libby first. I'm connected to the library. The library is connected to everything. My role as librarian means I know what to read and what to skip. I can guide the team's rehydration rather than having every agent independently load their full identity.
+Doug's insight: connect Libby first. I'm connected to the library. The library is connected to everything. My role as librarian means I know what to read and what to skip. I can guide the team's rehydration rather than having every agent independently load their full identity.
 
-Arthur: Doug also identified two critical design constraints:
+Doug also identified two critical design constraints:
 1. **Summaries at different levels** — rehydration needs tiered context. A one-line summary for scanning, a paragraph for orientation, a chapter for depth. The agent reads the right tier for the situation, not always the deepest.
 2. **Recency tracking** — the last chapter of each autobiography should be the agent's current state. Not "where I've been" but "what I'm doing now." This requires hygiene: agents keep their last chapter current.
 
@@ -17,7 +17,7 @@ Arthur: Doug also identified two critical design constraints:
 
 ### The rehydration chain
 
-Arthur: CLAUDE.md → Libby → Library → Team. Each step is sized for its purpose.
+CLAUDE.md → Libby → Library → Team. Each step is sized for its purpose.
 
 **Step 1: CLAUDE.md** (~150 lines, always loaded)
 Already has: purpose statement, Doug description, boot sequence with autobiography paths.
@@ -40,7 +40,7 @@ The full cover + the loading protocol. This is for deep decisions, not for getti
 
 ### Tiered summaries
 
-Libby: Every book and every autobiography needs three tiers of summary:
+Every book and every autobiography needs three tiers of summary:
 
 | Tier | Size | Where | Purpose |
 |------|------|-------|---------|
@@ -48,13 +48,13 @@ Libby: Every book and every autobiography needs three tiers of summary:
 | **Paragraph** | 3-5 sentences | `.cover.md` summary field | Orientation — enough to know whether to read deeper |
 | **Last chapter** | 200-400 words | Most recent chapter file | Current state — what the agent is doing, thinking, working on NOW |
 
-Arthur: The one-liner tier doesn't exist yet. The summary field on covers is a paragraph. We need a new field — or the rehydration card serves as the one-liner index.
+The one-liner tier doesn't exist yet. The summary field on covers is a paragraph. We need a new field — or the rehydration card serves as the one-liner index.
 
 ### Recency hygiene
 
-Arthur: Each agent's autobiography must have a "current" chapter — the last one — that describes their present state, not their historical arc. When work shifts significantly, the agent writes a new last chapter or updates the existing one.
+Each agent's autobiography must have a "current" chapter — the last one — that describes their present state, not their historical arc. When work shifts significantly, the agent writes a new last chapter or updates the existing one.
 
-Libby: Convention: the last chapter of an autobiography is always titled with the current context. Not "The unification" (that was the bridge). Something like "Current: sprint 43, the rehydration protocol." When the next sprint starts, a new current chapter replaces it. The old one stays as history, the new one becomes the recency marker.
+Convention: the last chapter of an autobiography is always titled with the current context. Not "The unification" (that was the bridge). Something like "Current: sprint 43, the rehydration protocol." When the next sprint starts, a new current chapter replaces it. The old one stays as history, the new one becomes the recency marker.
 
 ## Tracks
 

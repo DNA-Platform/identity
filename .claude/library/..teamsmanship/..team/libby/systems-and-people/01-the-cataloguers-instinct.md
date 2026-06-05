@@ -1,6 +1,6 @@
 ---
 title: The cataloguer's instinct
-author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # The cataloguer's instinct

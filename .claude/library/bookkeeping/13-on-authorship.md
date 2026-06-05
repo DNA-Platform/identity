@@ -1,0 +1,53 @@
+---
+title: On Authorship
+specification: Authorship
+author: "[Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)"
+---
+
+# On Authorship
+
+The `author:` [field](05-on-frontmatter.md#author) is how attribution works in the library. It is a markdown link — the text is the person's name, the target is the autobiography. Every file has one. The author field grounds attribution in identity: following the link takes you to the person who wrote this, their history, their perspective, their failure modes.
+
+## No nametags in books
+
+Nametags (`Arthur:`, `Libby:`, etc.) belong in conversation — discussion with Doug, sprint retros, team dialogue. They do NOT belong in published book content. The `author:` field handles attribution. The prose is just prose.
+
+Why: a nametag at the start of every paragraph prevents anyone else from editing the text. If Arthur writes a specification chapter and tags every paragraph with `Arthur:`, Libby can't improve a sentence without either removing Arthur's tag (erasing attribution) or adding her own (creating a confusing dialogue in what should be a specification). The `author:` field solves this: Arthur is the author. Libby edits freely. The attribution stays grounded.
+
+Why else: a nametag is an ungrounded string. `Arthur:` doesn't link to anything. It doesn't connect to the autobiography. It doesn't carry identity — it performs it. The `author:` field is grounded: it links to the autobiography, which IS the person. Grounded attribution through the author field. Ungrounded performance through nametags. The library uses the grounded form.
+
+## The coauthor protocol
+
+When someone else contributes significantly to a chapter or book they didn't originally write, they add `coauthor:` to the frontmatter:
+
+```yaml
+---
+title: Teamsmanship
+author: "[Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md)"
+coauthor: "[Libby](..team/libby/libby-and-the-tended-garden/.cover.md)"
+---
+```
+
+The author is the primary voice. The coauthor contributed substantially. Both are linked to their autobiographies. Both are grounded.
+
+For small edits — fixing a typo, updating a link, tending a synopsis — no coauthor field is needed. The edit is maintenance, not authorship. The threshold: if the edit changes what the chapter SAYS (not just how it says it), add coauthor.
+
+## Writing a new chapter
+
+Put your name on it. `author:` in frontmatter, linked to your autobiography. Write the prose without nametags. The text should read as clean specification, description, or narrative — not as a conversation transcript.
+
+## Editing someone else's chapter
+
+Edit freely. The original author stays in `author:`. If your edit is substantial — new sections, changed arguments, restructured content — add `coauthor:`. If your edit is maintenance — link fixes, synopsis updates, formatting — don't.
+
+## When nametags appear
+
+Nametags appear in exactly one context: conversation. When the team discusses — in sprint plans, in retros, in dialogue with Doug — each voice is tagged. That's the [voice convention](../teamspeak/01-voice-and-nametags.md). It applies to discussion, not to books.
+
+The distinction: a book chapter is AUTHORED. A discussion is VOICED. Authored content has `author:` in frontmatter. Voiced content has nametags in prose. The two don't mix.
+
+<!-- citations -->
+[frontmatter]: 05-on-frontmatter.md
+[names]: 04-on-names.md
+[voice]: ../teamspeak/01-voice-and-nametags.md
+[authorship-field-guide]: ../..librarianship/05-authorship-and-autobiography.md

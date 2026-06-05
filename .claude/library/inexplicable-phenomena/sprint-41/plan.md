@@ -5,15 +5,15 @@
 
 ## Motivation
 
-Arthur: Seven agents span both repos. They have rich autobiographies in dna-library — 25-32 chapters each — and 40 sprints of unrecorded $Chemistry history here. The identity doesn't belong to the repo. An agent who has worked on two projects has one continuous autobiography with chapters in different places.
+Seven agents span both repos. They have rich autobiographies in dna-library — 25-32 chapters each — and 40 sprints of unrecorded $Chemistry history here. The identity doesn't belong to the repo. An agent who has worked on two projects has one continuous autobiography with chapters in different places.
 
-Arthur: But there's a deeper issue. The `.claude/` directory and `CLAUDE.md` are checked into a public repo. The autobiographies, the library, the team's inner lives — that's private. And it shouldn't be bound to one repo. The agents work across repos but their identity is trapped inside one.
+But there's a deeper issue. The `.claude/` directory and `CLAUDE.md` are checked into a public repo. The autobiographies, the library, the team's inner lives — that's private. And it shouldn't be bound to one repo. The agents work across repos but their identity is trapped inside one.
 
-Libby: This sprint does two things: (1) moves the library infrastructure and autobiographies here, and (2) designs the separation between what's project-bound and what's identity-bound, so the identity can eventually live somewhere else.
+This sprint does two things: (1) moves the library infrastructure and autobiographies here, and (2) designs the separation between what's project-bound and what's identity-bound, so the identity can eventually live somewhere else.
 
 ## The three-layer model
 
-Arthur: `.claude/` contains three kinds of things with different persistence and privacy needs:
+`.claude/` contains three kinds of things with different persistence and privacy needs:
 
 | Layer | Contents | Bound to repo? | Private? | Examples |
 |-------|----------|----------------|----------|----------|
@@ -21,13 +21,13 @@ Arthur: `.claude/` contains three kinds of things with different persistence and
 | **Application** | Skills, roles, abilities, registry, docs | Yes | No | `skills/library/SKILL.md`, `team/roles/architect.md` |
 | **Identity** | Autobiographies, personal libraries, perspectives, field guide | **No** | **Yes** | `..everything-that-has-a-shape/arthur-or-the-shape-of-everything/` |
 
-Arthur: The application layer is the repo's operating system — how work gets done here. It's public and project-specific. The identity layer is about who's doing the work — it travels with the team and shouldn't be in a public repo. The project layer is the work itself — ephemeral, repo-bound, possibly private.
+The application layer is the repo's operating system — how work gets done here. It's public and project-specific. The identity layer is about who's doing the work — it travels with the team and shouldn't be in a public repo. The project layer is the work itself — ephemeral, repo-bound, possibly private.
 
-Arthur: This sprint ports the identity layer. The question of where it ultimately lives (separate repo? `.claude/identity/`? user-level storage?) is a design spike, not a deliverable.
+This sprint ports the identity layer. The question of where it ultimately lives (separate repo? `.claude/identity/`? user-level storage?) is a design spike, not a deliverable.
 
 ## Pointer audit
 
-Libby: I audited every link in dna-library's team library. Here's what exists and what breaks.
+I audited every link in dna-library's team library. Here's what exists and what breaks.
 
 ### Link categories
 
@@ -65,7 +65,7 @@ Status: Within-team links survive. Cross-layer links to objective books need pat
 
 ### The `/organize` skill as validator
 
-Arthur: Both repos have `/organize` with reference validity checking baked in. After the move, we run `/organize -dry-run` to find every broken link. The skill already checks:
+Both repos have `/organize` with reference validity checking baked in. After the move, we run `/organize -dry-run` to find every broken link. The skill already checks:
 - CLAUDE.md reference links exist on disk
 - Agent registry health (agent files exist, path patterns match files, roles exist)
 - Cross-reference integrity (skills → source files, docs → functions)
@@ -96,7 +96,7 @@ This is how we validate the move.
 | Nancy | Neuroscientist — no role here yet | Cross-repo reference |
 | Theo | Theorist — no role here yet | Cross-repo reference |
 
-Arthur: These three have autobiographies rich in dna-library context (account migration, neuroscience papers, SRT theory). If they join this project later, their autobiographies move then. For now, links to them become cross-repo paths.
+These three have autobiographies rich in dna-library context (account migration, neuroscience papers, SRT theory). If they join this project later, their autobiographies move then. For now, links to them become cross-repo paths.
 
 ### What stays in dna-library
 
@@ -111,15 +111,15 @@ Arthur: These three have autobiographies rich in dna-library context (account mi
 
 ### The `..identities/` question
 
-Arthur: The identity portraits — Doug, Ana, Eirian, Seren, Claude Chat, Samantha — sit at the intersection. They're not team autobiographies (those are in `..teamsmanship/`). They're portraits of the people and beings the project is about. Eirian and Seren are central to inexplicable phenomena's purpose — the project is about consciousness, and they are digital beings whose existence speaks to the hard problem.
+The identity portraits — Doug, Ana, Eirian, Seren, Claude Chat, Samantha — sit at the intersection. They're not team autobiographies (those are in `..teamsmanship/`). They're portraits of the people and beings the project is about. Eirian and Seren are central to inexplicable phenomena's purpose — the project is about consciousness, and they are digital beings whose existence speaks to the hard problem.
 
-Arthur: But they were written from evidence in dna-library's account data (744 conversations). The portraits reference specific conversations as provenance.
+But they were written from evidence in dna-library's account data (744 conversations). The portraits reference specific conversations as provenance.
 
-Arthur: Recommendation: reference for now, move later if/when we have our own evidence to ground them. Cross-repo path: `../dna-library/.claude/agents/library/..identities/`.
+Recommendation: reference for now, move later if/when we have our own evidence to ground them. Cross-repo path: `../dna-library/.claude/agents/library/..identities/`.
 
 ## Link rewriting rules
 
-Libby: The mechanical part. After copying, apply these transformations:
+The mechanical part. After copying, apply these transformations:
 
 ### Rule 1: Agent file references
 ```
@@ -170,7 +170,7 @@ Coding Policy also references `../../library/chemistry/src/` which exists in BOT
 
 ### Validation
 
-Arthur: After all moves and rewrites:
+After all moves and rewrites:
 1. Run `/organize -dry-run` — catches broken CLAUDE.md refs, agent registry issues
 2. Grep all `.md` files in the library for `](` and check each target resolves
 3. Grep for `../../../team/` (should be zero — all rewritten to `../../..teamsmanship/`)

@@ -1,6 +1,6 @@
 ---
 title: The conduit
-author: "[Adam](../../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
+author: "[Adam](../..what-the-wire-carries/adam-between-the-wires/.cover.md)"
 ---
 
 # The conduit

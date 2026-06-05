@@ -1,6 +1,6 @@
 ---
 title: The architecture of this project
-author: "[Arthur](../../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
+author: "[Arthur](../..everything-that-has-a-shape/arthur-or-the-shape-of-everything/.cover.md)"
 ---
 
 # The architecture of this project
@@ -51,6 +51,6 @@ The relationship between this chapter and [chapter 3](03-more-than-a-function.md
 
 <!-- citations -->
 [CLAUDE.md]: ../../../../CLAUDE.md
-[Adam]: ../../..teamsmanship/adam.md
+[Adam]: ../../../14-adam.md
 [Playwright MCP]: https://github.com/microsoft/playwright-mcp
 [project tracker]: ../../project/index.md

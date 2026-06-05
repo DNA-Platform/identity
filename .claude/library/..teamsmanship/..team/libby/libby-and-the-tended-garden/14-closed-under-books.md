@@ -1,6 +1,6 @@
 ---
 title: Closed under books
-author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Closed under books
@@ -29,4 +29,4 @@ The answer, it turns out, is a knowledge architecture with formal properties. Th
 
 <!-- citations -->
 [what the garden grew]: 13-what-the-garden-grew.md
-[librarianship]: ../../..librarianship/.cover.md
+[librarianship]: ../../../../..librarianship/.cover.md

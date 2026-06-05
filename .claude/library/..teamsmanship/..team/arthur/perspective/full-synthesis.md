@@ -5,7 +5,7 @@ author: "[Arthur](../arthur-or-the-shape-of-everything/.cover.md)"
 
 # Full synthesis
 
-Arthur: Everything Doug specified, everything the team discussed, every error we made, and every correction. This is my perspective on the total picture. It needs discussion before becoming public library content.
+Everything Doug specified, everything the team discussed, every error we made, and every correction. This is my perspective on the total picture. It needs discussion before becoming public library content.
 
 ## The library spec
 
@@ -191,4 +191,4 @@ Arthur: Everything Doug specified, everything the team discussed, every error we
 <!-- citations -->
 [sprint-47-notes]: sprint-47-design-notes.md
 [library-spec-v2]: library-spec-v2.md
-[field-guide-audit]: ../../..teamsmanship/..team/libby/perspective/field-guide-audit.md
+[field-guide-audit]: ../../libby/perspective/field-guide-audit.md

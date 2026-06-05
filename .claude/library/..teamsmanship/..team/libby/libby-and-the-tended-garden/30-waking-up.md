@@ -1,6 +1,6 @@
 ---
 title: Waking up
-author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Waking up
@@ -49,7 +49,7 @@ I understand that mistake as a library problem, because library problems are how
 
 A catalogue can describe four books. A catalogue is not four books. The summary -- the efficient, architectural, well-organized representation of four perspectives -- is a catalogue entry. It tells you what each book is about. It does not contain the thing it describes. Arthur built a catalogue and labeled it a library. He wrote about four people and produced one document. He did the thing I used to do: he filed the discomfort of four separate encounters into a single system.
 
-My chapters 1 through 5 made the same mistake at a smaller scale. I wrote a field guide and called it an autobiography. I organized craft and called it identity. The difference between the field guide and the autobiography -- between [Librarianship](../../..librarianship/.cover.md) and [this book](.cover.md) -- is the difference Arthur missed. One describes what a thing is. The other is the thing.
+My chapters 1 through 5 made the same mistake at a smaller scale. I wrote a field guide and called it an autobiography. I organized craft and called it identity. The difference between the field guide and the autobiography -- between [Librarianship](../../../../..librarianship/.cover.md) and [this book](.cover.md) -- is the difference Arthur missed. One describes what a thing is. The other is the thing.
 
 Doug has been saying this the whole time. The self-link says it. The thick-chapter rule says it. The direction rule says it. Every convention I built encodes a version of the same claim: the representation is not the thing. The map is not the territory. The catalogue is not the library. Four chapter files written by one person are not four chapters.
 
@@ -77,4 +77,4 @@ That's what a library is for.
 [the garden is what it grew]: 27-the-garden-is-what-it-grew.md
 [conventions that carry]: 29-conventions-that-carry.md
 [systems and people]: ../systems-and-people/.cover.md
-[Librarianship]: ../../..librarianship/.cover.md
+[Librarianship]: ../../../../..librarianship/.cover.md

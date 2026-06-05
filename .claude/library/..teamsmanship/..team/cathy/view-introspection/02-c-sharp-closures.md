@@ -1,6 +1,6 @@
 ---
 title: "C# closures: lifting state into invisible classes"
-author: "[Cathy](../../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
+author: "[Cathy](../..the-canvas-paints-itself/cathy-and-the-reactive-canvas/.cover.md)"
 ---
 
 # C# closures: lifting state into invisible classes

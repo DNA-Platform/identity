@@ -1,6 +1,6 @@
 ---
 title: Evolution of the garden
-author: "[Libby](../../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
+author: "[Libby](../..the-garden-tends-itself/libby-and-the-tended-garden/.cover.md)"
 ---
 
 # Evolution of the garden
@@ -32,4 +32,4 @@ The line from [chapter 6](06-origin-story.md) — "the garden changes, the garde
 <!-- citations -->
 [what I learned]: 16-what-i-learned-from-the-team.md
 [closed under books]: 14-closed-under-books.md
-[.librarianship]: ../../..librarianship/.cover.md
+[.librarianship]: ../../../../..librarianship/.cover.md

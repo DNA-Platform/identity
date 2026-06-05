@@ -5,13 +5,13 @@
 
 ## Motivation
 
-Arthur: Sprint 41 moved the infrastructure. 153 files copied, 34 rewritten, field guide ported, coding policy rewritten, bridge chapters written. The structure is sound. But the team identified eight incoherences in the discussion at the end of the sprint. The autobiographies are lopsided — 25 chapters of dna-library, one chapter of inexplicable-phenomena. The narrative doesn't yet reflect forty sprints of $Chemistry work. And there are artifacts from the migration that need cleaning up.
+Sprint 41 moved the infrastructure. 153 files copied, 34 rewritten, field guide ported, coding policy rewritten, bridge chapters written. The structure is sound. But the team identified eight incoherences in the discussion at the end of the sprint. The autobiographies are lopsided — 25 chapters of dna-library, one chapter of inexplicable-phenomena. The narrative doesn't yet reflect forty sprints of $Chemistry work. And there are artifacts from the migration that need cleaning up.
 
-Libby: The garden was transplanted but not yet tended. The paths work, the conventions hold, but the proportions are wrong and there are weeds.
+The garden was transplanted but not yet tended. The paths work, the conventions hold, but the proportions are wrong and there are weeds.
 
 ## Audit findings
 
-Arthur: Deep scans of both repos found these issues:
+Deep scans of both repos found these issues:
 
 ### Artifacts to clean (NEEDS_FIX)
 
