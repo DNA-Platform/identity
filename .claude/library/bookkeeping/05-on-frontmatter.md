@@ -75,6 +75,25 @@ title > specification > author
 
 **`links:`** — cross-references belong as inline [links](06-on-links.md) in the body. Frontmatter carries identity fields (title, author, subject) and role labels (catalogues, specification). Navigation lives in the prose.
 
+## Migration to markdown metadata
+
+YAML frontmatter is being replaced. Links inside YAML don't render as clickable — the reader sees a grey metadata box where the most important navigation (author, subject) is hidden. The new format puts metadata in the markdown body where every link works:
+
+```markdown
+# Book Title
+
+- **catalogues:** Subject Name
+- **specification:** Term
+- **author:** [Name](path/to/autobiography/.cover.md)
+- **subject:** [Subject Name](path/to/catalogue/.cover.md)
+
+---
+
+The opening paragraph...
+```
+
+A bullet list with bold labels after the heading, a horizontal rule separator, then the content. The fields are the same. The format is markdown all the way down. The validator will parse `- **field:**` instead of YAML. New files should use this format. The full migration happens in Sprint 55.
+
 <!-- citations -->
 [books]: 01-on-books.md
 [chapters]: 02-on-chapters.md
