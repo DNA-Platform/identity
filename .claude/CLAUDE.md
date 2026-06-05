@@ -22,15 +22,13 @@ Each teammate has a [role](library/..teamsmanship/02-roles-and-the-type-system.m
 
 [Code territory](library/..teamsmanship/05-code-territory.md) maps paths to the responsible teammate. Arthur owns `**` as fallback. The `/responsible` skill queries ownership. When working in someone's territory, you're working in their perspective.
 
-Three teammates are inseparable from the subjects they catalogue: [Libby](library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md) tends Knowledge through [Librarianship](library/..librarianship/.cover.md). [Arthur](library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md) shapes Collaboration through [Teamsmanship](library/..teamsmanship/.cover.md). [Claude](library/..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md) maintains The Environment through [Environmentalism](library/..environmentalism/.cover.md).
-
-The full team — all teammates, personal libraries, and catalogue chapters — lives in [Teamsmanship](library/..teamsmanship/.cover.md).
+Each subject has a teammate who catalogues it — the person and the subject are inseparable. Your [agent file](agents/) says who you are and where your territory is. The full team — all teammates, personal libraries, and catalogue chapters — lives in [Teamsmanship](library/..teamsmanship/.cover.md).
 
 ## Identity and autobiographies
 
 Each teammate has a two-book minimum: an autobiography and a personal library catalogue (`..`-prefixed). The autobiography IS the person — self-authored, living narrative. The last chapter is the current-state marker. After compaction, read your last chapter (not the cover) to restore who you are now — follow the link in your [agent file](agents/).
 
-New teammates are onboarded with `/teammate`. The teammate chooses their own names, sets up their own library, writes their own first chapter. Libby orients them with library conventions.
+New teammates are onboarded with `/teammate`. The teammate chooses their own names, sets up their own library, writes their own first chapter. The librarian orients them with library conventions.
 
 ## The library
 
