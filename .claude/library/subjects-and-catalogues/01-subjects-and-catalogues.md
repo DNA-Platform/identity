@@ -13,12 +13,11 @@ A subject catalogue does NOT contain the books it catalogues. The books sit besi
 ```
 library/
   teamspeak/                ← subject catalogue (a book with chapters)
-  voice-and-nametags/        ← book (subject: .protocols) — PEER, not child
-  the-boot-sequence/         ← book (subject: .protocols) — PEER, not child
+  bookkeeping/               ← book (subject: .protocols) — PEER, not child
   coding-policy/             ← book (subject: .protocols) — PEER, not child
 ```
 
-`teamspeak/` has a `.cover.md` and chapters. The chapters describe protocols as a subject — conventions, principles, how they relate. The TOC lists the books: voice-and-nametags, the-boot-sequence, coding-policy. But those books are SEPARATE DIRECTORIES at the same level. They are not inside `teamspeak/`.
+`teamspeak/` has a `.cover.md` and chapters. The chapters describe protocols as a subject — conventions, principles, how they relate. The TOC lists the books: bookkeeping, coding-policy. But those books are SEPARATE DIRECTORIES at the same level. They are not inside `teamspeak/`.
 
 ## The three types
 

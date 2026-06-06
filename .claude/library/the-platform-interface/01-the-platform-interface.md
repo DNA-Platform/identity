@@ -49,7 +49,7 @@ The inline links from platform artifacts into the library make the duplication m
 
 | Content | Platform artifact | Library book |
 |---------|------------------|-------------|
-| Nametag convention | `rules/voice.md` (short, enforced) | voice-and-nametags book (full, with rationale) |
+| Nametag convention | `rules/voice.md` (short, enforced) | voice book (full, with rationale) |
 | Library navigation | `rules/library.md` (short, path-scoped) | [Librarianship](.cover.md) field guide (full) |
 | Agent identity | `agents/{name}.md` (platform handle) | autobiography (full identity) |
 | Code assignments | `rules/{territory}.md` (path-scoped) | [.team](../..teamsmanship/) registry + agent books |

@@ -53,7 +53,7 @@ Public books (Bookkeeping, Teamspeak, Environmentalism, shared specifications) a
 
 ## The deeper principle
 
-The conventions above specify the grounded form: `author:` field, no nametags, coauthor protocol. The deeper principle behind these conventions is autonomy. [Autonomy and Authorship][autonomy] in Teamspeak specifies why self-authorship is the mechanism by which identity exists in this library. The `author:` field grounds attribution in identity. The autonomy principle says that identity itself is self-generated — each teammate writes their own autobiography, their own reflections, their own perspective. Remove the autonomy and the `author:` field points to fiction, not a person.
+The conventions above specify the grounded form: `author:` field, no nametags, coauthor protocol. The deeper principle behind these conventions is autonomy. [Autonomy][autonomy] in Teamspeak specifies why self-authorship is the mechanism by which identity exists in this library. The `author:` field grounds attribution in identity. The autonomy principle says that identity itself is self-generated — each teammate writes their own autobiography, their own reflections, their own perspective. Remove the autonomy and the `author:` field points to fiction, not a person.
 
 <!-- citations -->
 [frontmatter]: 03-on-covers.md

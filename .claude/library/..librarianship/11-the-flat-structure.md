@@ -8,7 +8,7 @@
 
 ## The navigation chain
 
-Library catalogue (`..librarianship/.cover.md`) then subject catalogue (`teamspeak/.cover.md`) then book cover (`voice-and-nametags/.cover.md`) then chapter. Each step is a `.cover.md` that you read. Each cover tells you what's inside and whether to go deeper. The cover IS the directory listing — but better, because it has summaries and [synopsis shortcuts](../bookkeeping/09-on-synopsis.md).
+Library catalogue (`..librarianship/.cover.md`) then subject catalogue (`teamspeak/.cover.md`) then book cover (`bookkeeping/.cover.md`) then chapter. Each step is a `.cover.md` that you read. Each cover tells you what's inside and whether to go deeper. The cover IS the directory listing — but better, because it has summaries and [synopsis shortcuts](../bookkeeping/09-on-synopsis.md).
 
 <!-- citations -->
 [on subjects]: ../bookkeeping/07-on-subjects.md
