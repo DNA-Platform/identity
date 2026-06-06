@@ -1,4 +1,4 @@
-# The identity repo
+# Travel
 
 - **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
@@ -52,4 +52,4 @@ The README in the identity repo is the bootstrap — the one file someone reads 
 
 <!-- citations -->
 [CLAUDE.md]: ../../../CLAUDE.md
-[the library opens]: 05-the-library-opens.md
+[waking]: 04-waking.md

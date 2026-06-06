@@ -36,7 +36,7 @@ function parseFrontmatter(content: string): Record<string, string> {
 // Discover teammate names from code territory chapter
 // ---------------------------------------------------------------------------
 
-const codeTerritoryPath = join(root, '..teamsmanship', '05-code-territory.md');
+const codeTerritoryPath = join(root, '..teamsmanship', '05-territory.md');
 const codeTerritoryContent = existsSync(codeTerritoryPath)
   ? readFileSync(codeTerritoryPath, 'utf-8')
   : '';
@@ -93,9 +93,9 @@ function generateVoiceRule(): Rule {
 
 Arthur is the default voice — use when no other agent is more specifically responsible.
 
-Don't batch: each paragraph gets its own tag. Don't skip: even bullet points get tagged if they carry perspective. The [full voice convention](../library/teamspeak/01-voice-and-nametags.md) describes territory assignments and when each agent speaks.
+Don't batch: each paragraph gets its own tag. Don't skip: even bullet points get tagged if they carry perspective. The [full voice convention](../library/teamspeak/01-voice.md) describes territory assignments and when each agent speaks.
 
-The [team](../library/..teamsmanship/.cover.md) discusses — agents talk TO each other, not just to the user. Many voices, back and forth. [Discussion is work](../library/teamspeak/04-discussion-as-work.md).
+The [team](../library/..teamsmanship/.cover.md) discusses — agents talk TO each other, not just to the user. Many voices, back and forth. [Discussion is work](../library/teamspeak/03-discussion.md).
 `;
 
   return { filename: 'voice.md', content };

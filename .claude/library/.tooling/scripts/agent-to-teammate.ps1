@@ -9,9 +9,9 @@ $changed = 0
 $safeFiles = @(
     "$lib\..teamsmanship\.cover.md",
     "$lib\..teamsmanship\01-what-an-agent-is.md",
-    "$lib\..teamsmanship\02-roles-and-the-type-system.md",
+    "$lib\..teamsmanship\02-roles.md",
     "$lib\..teamsmanship\03-abilities.md",
-    "$lib\..teamsmanship\05-code-territory.md",
+    "$lib\..teamsmanship\05-territory.md",
     "$lib\..teamsmanship\08-the-agents.md",
     "$lib\..librarianship\.cover.md",
     "$lib\..librarianship\00-the-library.md",

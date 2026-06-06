@@ -1,4 +1,4 @@
-# Roles and the type system
+# Roles
 
 - **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
 
@@ -113,7 +113,7 @@ Example: Phillip has roles [UX Designer](#ux-designer) + [Chemistry Developer](#
 
 ## Validation `[SCAFFOLD]`
 
-A [validator resource](02-roles-and-the-type-system.ts) for this chapter would check:
+A [validator resource](02-roles.ts) for this chapter would check:
 - Every role has: first question, anxieties, mantra, abilities
 - Parent role links resolve to headings in this chapter
 - Ability links resolve (once abilities are linked)

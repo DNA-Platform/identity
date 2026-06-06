@@ -15,9 +15,9 @@ This means rules are intentionally thin. Every word in a rule costs context budg
 
 ## Path-scoped rules
 
-Rules with `paths:` frontmatter load only when Claude opens a file matching the pattern. This is how [code territory](../..teamsmanship/05-code-territory.md) wires knowledge to code. When Claude opens a file in `library/chemistry/src/`, a path-scoped rule can load that says: this is Cathy's territory, here's the [coding policy](../coding-policy/.cover.md), here's the reactive model. The agent is immediately connected to the right knowledge for the code they're touching.
+Rules with `paths:` frontmatter load only when Claude opens a file matching the pattern. This is how [territory](../..teamsmanship/05-territory.md) wires knowledge to code. When Claude opens a file in `library/chemistry/src/`, a path-scoped rule can load that says: this is Cathy's territory, here's the [coding policy](../coding-policy/.cover.md), here's the reactive model. The agent is immediately connected to the right knowledge for the code they're touching.
 
-Path-scoped rules should exist for every significant territory in the [code territory registry](../..teamsmanship/05-code-territory.md). The territory defines WHO owns a path. The rule enacts that ownership by loading the right context when files in that path enter the window.
+Path-scoped rules should exist for every significant territory in the [territory registry](../..teamsmanship/05-territory.md). The territory defines WHO owns a path. The rule enacts that ownership by loading the right context when files in that path enter the window.
 
 ## Global rules
 
@@ -25,7 +25,7 @@ Rules without `paths:` frontmatter load every session. They apply universally. T
 
 **`team.md`** — links to the [library](../..librarianship/.cover.md) and [team](../..teamsmanship/.cover.md) catalogues. Ensures every session has a path into the library. Tells agents to read their autobiography after compaction.
 
-**`voice.md`** — embeds the nametag convention from [Voice and Nametags](../teamspeak/01-voice-and-nametags.md). Arthur is the default voice. Every paragraph gets a tag. This rule must carry enough for the convention to work WITHOUT following the link — because the convention applies from the first paragraph of every session.
+**`voice.md`** — embeds the nametag convention from [Voice](../teamspeak/01-voice.md). Arthur is the default voice. Every paragraph gets a tag. This rule must carry enough for the convention to work WITHOUT following the link — because the convention applies from the first paragraph of every session.
 
 ## Thickness calibration
 
@@ -35,12 +35,12 @@ When a rule's content drifts from the library book it links to, a reader followi
 
 ## The compilation pattern
 
-A compiler could read the [code territory](../..teamsmanship/05-code-territory.md) assignments and the relevant library books, then generate `.claude/rules/*.md` files. Path-scoped rules are generated from territory assignments. Global rules are generated from team-wide conventions. The specification defines what each rule must look like. The compiler assembles the content.
+A compiler could read the [territory](../..teamsmanship/05-territory.md) assignments and the relevant library books, then generate `.claude/rules/*.md` files. Path-scoped rules are generated from territory assignments. Global rules are generated from team-wide conventions. The specification defines what each rule must look like. The compiler assembles the content.
 
 <!-- citations -->
 [platform-interface]: ../the-platform-interface/01-the-platform-interface.md
-[code-territory]: ../..teamsmanship/05-code-territory.md
-[voice-convention]: ../teamspeak/01-voice-and-nametags.md
+[territory]: ../..teamsmanship/05-territory.md
+[voice-convention]: ../teamspeak/01-voice.md
 [librarianship]: ../..librarianship/.cover.md
 [teamsmanship]: ../..teamsmanship/.cover.md
 [coding-policy]: ../coding-policy/.cover.md

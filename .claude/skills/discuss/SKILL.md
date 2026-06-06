@@ -10,11 +10,11 @@ Start a team discussion. A discussion is to a team what thinking is to an indivi
 
 1. **Identify the topic.** If `$ARGUMENTS` contains a topic, use it. If Doug asked for discussion, use his prompt. If neither, propose a topic based on the current sprint or recent work and ask Doug to confirm.
 
-2. **Read the discussion protocol.** Load `.claude/library/teamspeak/04-discussion-as-work.md` for the full protocol. Key points: many voices, back and forth. Not voting, not consensus. The discussion surfaces what no individual perspective sees alone.
+2. **Read the discussion protocol.** Load `.claude/library/teamspeak/03-discussion.md` for the full protocol. Key points: many voices, back and forth. Not voting, not consensus. The discussion surfaces what no individual perspective sees alone.
 
-3. **Read the autonomy protocol.** Load `.claude/library/teamspeak/07-autonomy-and-authorship.md`. Each voice speaks from their own perspective. Not one narrator performing characters.
+3. **Read the autonomy protocol.** Load `.claude/library/teamspeak/05-autonomy.md`. Each voice speaks from their own perspective. Not one narrator performing characters.
 
-4. **Identify which teammates should speak.** Read `.claude/library/..teamsmanship/05-code-territory.md` to determine whose territory the topic touches. At minimum: Arthur (architecture, default), and whoever owns the relevant territory. For cross-cutting topics, bring more voices.
+4. **Identify which teammates should speak.** Read `.claude/library/..teamsmanship/05-territory.md` to determine whose territory the topic touches. At minimum: Arthur (architecture, default), and whoever owns the relevant territory. For cross-cutting topics, bring more voices.
 
 5. **Begin the discussion.** Each teammate speaks with their nametag (nametags are for conversation, not books). They talk TO each other — responding to what the previous person said, disagreeing, building on ideas, asking questions. A discussion is NOT a series of individual reports. It is the team thinking. One person says something. Another responds to THAT, not to the topic in general. A third challenges or extends. The thread develops like a thought develops — through friction, surprise, and connection. If every person could have said what they said without hearing the others, it wasn't a discussion.
 

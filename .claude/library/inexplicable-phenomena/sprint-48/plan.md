@@ -136,7 +136,7 @@ For each convention, a `.ts` resource beside the chapter that describes it:
 Guided by validator failures from Phase 2:
 
 **3a. Move books out of subject directories.**
-- Protocol files (`01-voice-and-nametags.md` etc.) inside `.protocols/` → each becomes a book DIRECTORY at library root (with `.cover.md` and the original file as a chapter)
+- Protocol files (`01-voice.md` etc.) inside `.protocols/` → each becomes a book DIRECTORY at library root (with `.cover.md` and the original file as a chapter)
 - Project content inside `.projects/` → project books at library root
 - Remove `.protocols/` and `.projects/` as separate directories
 - `..teamsmanship/` stays but its cover is rewritten to catalogue the newly-flattened books

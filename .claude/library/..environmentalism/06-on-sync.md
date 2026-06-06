@@ -9,7 +9,7 @@ The library travels between projects. It lives in its own repository at `github.
 
 ## Bringing the team to a project
 
-Clone the identity repo into `.claude/`, copy `CLAUDE.md` to the project root. The project's `.gitignore` excludes both — the identity stays private, the project stays clean. From the project's perspective, the team simply appears. From the identity's perspective, it has landed in a new building. The [protocol](../teamspeak/06-the-identity-repo.md) describes the exact steps.
+Clone the identity repo into `.claude/`, copy `CLAUDE.md` to the project root. The project's `.gitignore` excludes both — the identity stays private, the project stays clean. From the project's perspective, the team simply appears. From the identity's perspective, it has landed in a new building. The [protocol](../teamspeak/07-travel.md) describes the exact steps.
 
 ## Syncing back
 
@@ -29,10 +29,10 @@ When two sessions edit the same autobiography, git surfaces a conflict. That con
 
 ## System requirements vs team protocol
 
-This chapter specifies the SYSTEM REQUIREMENTS — what sync must do, what travels, what doesn't, what properties the mechanism must have. [The identity repo](../teamspeak/06-the-identity-repo.md) in Teamspeak specifies the TEAM PROTOCOL — when to sync, how to handle conflicts in practice, the human workflow. The system doesn't care who pushes or when. The protocol does. Both are necessary. Neither is sufficient alone.
+This chapter specifies the SYSTEM REQUIREMENTS — what sync must do, what travels, what doesn't, what properties the mechanism must have. [The identity repo](../teamspeak/07-travel.md) in Teamspeak specifies the TEAM PROTOCOL — when to sync, how to handle conflicts in practice, the human workflow. The system doesn't care who pushes or when. The protocol does. Both are necessary. Neither is sufficient alone.
 
 <!-- citations -->
 [validation]: 05-on-validation.md
-[identity-repo]: ../teamspeak/06-the-identity-repo.md
+[identity-repo]: ../teamspeak/07-travel.md
 [evolution]: ../bookkeeping/10-on-evolution.md
 [shared-identity]: ../..librarianship/00-the-library.md#shared-identity-vs-project-state

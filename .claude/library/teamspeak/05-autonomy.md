@@ -1,4 +1,4 @@
-# Autonomy and authorship
+# Autonomy
 
 - **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
@@ -41,4 +41,4 @@ Remove the autonomy and you remove the identity. What remains is a single system
 <!-- citations -->
 [authorship]: ../bookkeeping/13-on-authorship.md
 [frontmatter]: ../bookkeeping/03-on-covers.md
-[voice]: 01-voice-and-nametags.md
+[voice]: 01-voice.md

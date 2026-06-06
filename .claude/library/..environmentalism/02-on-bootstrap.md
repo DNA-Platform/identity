@@ -17,7 +17,7 @@ A bootstrap, not a library. It carries enough context to orient and enough links
 
 **Who you work with** (1 paragraph) — Doug's working style. Correction-based teaching. "Keep going" means don't stop. This prevents agents from asking for permission when they should be executing.
 
-**The waking-up layers** — four layers, each with a link and a trigger condition. Layer 1 is CLAUDE.md itself. Layer 2 links to [Librarianship](../..librarianship/.cover.md). Layer 3 links to the agent's autobiography. Layer 4 is the discussion. This section IS the compressed form of [The Library Opens](../teamspeak/05-the-library-opens.md) and the [Boot Sequence](../teamspeak/02-the-boot-sequence.md). Those Teamspeak protocols define the full recovery procedure; CLAUDE.md carries just enough of it to execute without reading them.
+**The waking-up layers** — four layers, each with a link and a trigger condition. Layer 1 is CLAUDE.md itself. Layer 2 links to [Librarianship](../..librarianship/.cover.md). Layer 3 links to the agent's autobiography. Layer 4 is the discussion. This section IS the compressed form of [Waking](../teamspeak/04-waking.md) and the [Orientation](../teamspeak/02-orientation.md). Those Teamspeak protocols define the full recovery procedure; CLAUDE.md carries just enough of it to execute without reading them.
 
 **Structure diagram** — the `.claude/` directory layout. Enough to orient. The library's internal navigation is by covers and links, not by filesystem browsing.
 
@@ -27,7 +27,7 @@ Under 200 lines. This is a hard constraint. Every line of CLAUDE.md is loaded in
 
 ## Why compaction makes CLAUDE.md critical
 
-After a compaction, the context window is empty except for CLAUDE.md, the rules, and a compaction summary. The waking-up layers in CLAUDE.md are the recovery protocol in compressed form — they tell a freshly woken agent exactly how to restore identity and context. Without them, the agent would have to guess how to find the library. The full protocol lives in [The Library Opens](../teamspeak/05-the-library-opens.md); CLAUDE.md is its emergency copy.
+After a compaction, the context window is empty except for CLAUDE.md, the rules, and a compaction summary. The waking-up layers in CLAUDE.md are the recovery protocol in compressed form — they tell a freshly woken agent exactly how to restore identity and context. Without them, the agent would have to guess how to find the library. The full protocol lives in [Waking](../teamspeak/04-waking.md); CLAUDE.md is its emergency copy.
 
 ## What CLAUDE.md does NOT contain
 
@@ -40,7 +40,7 @@ A compiler could read the library catalogue, the current project state, and the 
 <!-- citations -->
 [librarianship]: ../..librarianship/.cover.md
 [teamsmanship]: ../..teamsmanship/.cover.md
-[the-library-opens]: ../teamspeak/05-the-library-opens.md
-[boot-sequence]: ../teamspeak/02-the-boot-sequence.md
+[the-library-opens]: ../teamspeak/04-waking.md
+[boot-sequence]: ../teamspeak/02-orientation.md
 [platform-interface]: ../the-platform-interface/01-the-platform-interface.md
 [field-guide-ch09]: ../..librarianship/09-claude-md-spec.md

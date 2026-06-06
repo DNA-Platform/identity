@@ -23,7 +23,7 @@ Chapters that stay (too short, transitional, or core to the catalogue):
 
 Chapter resources that generate platform files from library content. The library is the source. The platform files are the build output.
 
-- **Agent compiler** — reads [Teamsmanship chapters 11-18](../..teamsmanship/.cover.md#cataloguing--personal-libraries) (teammates), [ch 02](../..teamsmanship/02-roles-and-the-type-system.md) (roles), [ch 05](../..teamsmanship/05-code-territory.md) (territory). Generates `.claude/agents/*.md` files with real links back to the library.
+- **Agent compiler** — reads [Teamsmanship chapters 11-18](../..teamsmanship/.cover.md#cataloguing--personal-libraries) (teammates), [ch 02](../..teamsmanship/02-roles.md) (roles), [ch 05](../..teamsmanship/05-territory.md) (territory). Generates `.claude/agents/*.md` files with real links back to the library.
 - **Territory rules compiler** — reads Teamsmanship ch 05. Generates `.claude/rules/{territory}.md` files scoped to code paths.
 - **Skills compiler** — reads the skills book (to be created). Generates `.claude/skills/*/SKILL.md` files.
 - **CLAUDE.md compiler** — reads [Librarianship ch 09](../..librarianship/09-claude-md-spec.md). Generates `CLAUDE.md` at the project root.
@@ -38,7 +38,7 @@ Current skills to catalogue: `/sprint`, `/library`, `/agent`, `/responsible`, `/
 
 ## 4. Finish code territory (Arthur)
 
-[Teamsmanship ch 05](../..teamsmanship/05-code-territory.md) becomes the authoritative source for who owns what. The `/responsible` skill reads from here (or a compiled resource). Territory rules are generated from here.
+[Teamsmanship ch 05](../..teamsmanship/05-territory.md) becomes the authoritative source for who owns what. The `/responsible` skill reads from here (or a compiled resource). Territory rules are generated from here.
 
 ## 5. Validator extension for `..team/` (Cathy)
 
@@ -106,7 +106,7 @@ The team journaled and discussed. Key insights:
 
 **The links are broken.** Gabby named what no one else said: "beautiful names and broken links is a gallery with frames but no paintings." Queenie asked: how many links are broken RIGHT NOW? The team has been celebrating structure instead of testing navigation. The library says links are how you navigate, but half the links don't resolve from the restructures. This must be fixed before the library can claim to be real.
 
-**Discussion is interaction, not reporting.** The first retro attempt was eight status reports aimed at Doug. The second attempt was teammates challenging each other — Cathy pushing back on Arthur, Queenie asking for validation, Gabby naming the gap between beauty and function. The difference is captured in the [discussion protocol](../teamspeak/04-discussion-as-work.md).
+**Discussion is interaction, not reporting.** The first retro attempt was eight status reports aimed at Doug. The second attempt was teammates challenging each other — Cathy pushing back on Arthur, Queenie asking for validation, Gabby naming the gap between beauty and function. The difference is captured in the [discussion protocol](../teamspeak/03-discussion.md).
 
 <!-- citations -->
 [librarianship]: ../..librarianship/.cover.md

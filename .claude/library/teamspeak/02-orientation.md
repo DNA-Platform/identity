@@ -1,4 +1,4 @@
-# The boot sequence
+# Orientation
 
 - **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
@@ -26,7 +26,7 @@ A new conversation has the same problem as a compacted one: the teammate does no
 When a teammate is spawned as a subagent, the agent file at `.claude/agents/{name}.md` provides the minimum orientation: name, territory, and three links (personal library, last chapter, autobiography cover). The spawned agent follows those links in order — the same layered pattern as the main session, scoped to one person. See [On Teammates][teammates] for the full specification.
 
 <!-- citations -->
-[library-opens]: 05-the-library-opens.md
+[library-opens]: 04-waking.md
 [synopsis]: ../bookkeeping/09-on-synopsis.md
-[voice and nametags]: 01-voice-and-nametags.md
+[voice]: 01-voice.md
 [teammates]: ../..environmentalism/01-on-teammates.md

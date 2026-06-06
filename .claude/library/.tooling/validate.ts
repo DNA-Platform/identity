@@ -1,7 +1,7 @@
 // Library validation runner — runs all validators from library root
 // Usage: npx tsx .tooling/validate.ts (from inside .claude/library/)
 // Run before syncing to the identity repo to ensure consistency
-// See: teamspeak/06-the-identity-repo.md for the sync protocol
+// See: teamspeak/07-travel.md for the sync protocol
 
 import { execSync } from 'child_process';
 import { resolve, dirname } from 'path';

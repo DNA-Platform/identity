@@ -86,7 +86,7 @@ Pattern: same as the [agents compiler](../../..teamsmanship/06-the-agents-folder
 
 #### 4b. Territory rules compiler
 
-Build a compiler that reads [code-territory.md](../../..teamsmanship/05-code-territory.md) and generates path-scoped `.claude/rules/{territory}.md` files. Each rule embeds the minimum + links to the library.
+Build a compiler that reads [code-territory.md](../../..teamsmanship/05-territory.md) and generates path-scoped `.claude/rules/{territory}.md` files. Each rule embeds the minimum + links to the library.
 
 Input: code territory assignments
 Output: `.claude/rules/*.md` files
@@ -130,7 +130,7 @@ The team discusses what sprint 52 revealed. The naming decision. The compilation
 - Claude exists as a teammate in `..team/claude/` with autobiography and library catalogue
 - Third subject catalogue exists at library root with cover and scaffold TOC
 - CLAUDE.md compiler produces a valid bootstrap file from library content
-- Territory rules compiler generates path-scoped rules from code-territory.md
+- Territory rules compiler generates path-scoped rules from territory.md
 - Project/sprint specification exists as a chapter
 - Teamsmanship catalogues Claude
 - Librarianship shows three subjects
@@ -144,5 +144,5 @@ Sprint 52 depends on sprint 51's alignment. The compilers need valid frontmatter
 [bookkeeping]: ../../bookkeeping/.cover.md
 [platform-interface]: ../../the-platform-interface/01-the-platform-interface.md
 [agents-compiler]: ../../..teamsmanship/06-the-agents-folder.ts
-[code-territory]: ../../..teamsmanship/05-code-territory.md
+[territory]: ../../..teamsmanship/05-territory.md
 [claude-md-spec]: ../../..librarianship/09-claude-md-spec.md

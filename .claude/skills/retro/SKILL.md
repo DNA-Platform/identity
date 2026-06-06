@@ -8,9 +8,9 @@ Run a retrospective. A retro is where the team stops building and starts tending
 
 ## Steps
 
-1. **Read the tending protocol.** Load `.claude/library/teamspeak/08-tending-your-library.md`. This defines the five steps each teammate performs.
+1. **Read the tending protocol.** Load `.claude/library/teamspeak/06-tending.md`. This defines the five steps each teammate performs.
 
-2. **Read the autonomy protocol.** Load `.claude/library/teamspeak/07-autonomy-and-authorship.md`. Each teammate tends their OWN library. Arthur doesn't write Libby's reflections. Claude doesn't edit Cathy's autobiography. Each person does their own work.
+2. **Read the autonomy protocol.** Load `.claude/library/teamspeak/05-autonomy.md`. Each teammate tends their OWN library. Arthur doesn't write Libby's reflections. Claude doesn't edit Cathy's autobiography. Each person does their own work.
 
 3. **Each teammate tends their library.** The five steps from the tending protocol:
    - **Edit a recent autobiography chapter** — read it fresh, sharpen the prose
@@ -21,7 +21,7 @@ Run a retrospective. A retro is where the team stops building and starts tending
 
 4. **Run the validators.** `npx tsx .claude/library/.tooling/validate.ts` from the project root. Confirm 0 errors. Fix any warnings the tending introduced.
 
-5. **Discuss.** Use the [discussion protocol](`.claude/library/teamspeak/04-discussion-as-work.md`). The team talks about what the tending revealed — what they found in their own chapters, what surprised them in someone else's, what themes emerged, what the library needs next. Multiple voices, talking TO each other.
+5. **Discuss.** Use the [discussion protocol](`.claude/library/teamspeak/03-discussion.md`). The team talks about what the tending revealed — what they found in their own chapters, what surprised them in someone else's, what themes emerged, what the library needs next. Multiple voices, talking TO each other.
 
 6. **Capture decisions.** If the discussion produces decisions — a new protocol, a specification change, a structural insight — write them into the library. The retro produces artifacts, not just conversation.
 

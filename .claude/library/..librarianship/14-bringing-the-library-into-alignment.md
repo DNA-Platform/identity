@@ -38,7 +38,7 @@ Chapters 02 (linking), 03 (growth), 05 (authorship), 11 (flat structure) slimmed
 
 ### Validation script `[ALIGNED]`
 
-[.tooling/validate.ts](../.tooling/validate.ts) runs all validators from library root. Run before syncing to the identity repo. Documented in the sync protocol ([The Identity Repo](../teamspeak/06-the-identity-repo.md)).
+[.tooling/validate.ts](../.tooling/validate.ts) runs all validators from library root. Run before syncing to the identity repo. Documented in the sync protocol ([Travel](../teamspeak/07-travel.md)).
 
 ## What remains
 

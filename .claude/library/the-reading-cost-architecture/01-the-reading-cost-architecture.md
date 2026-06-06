@@ -22,7 +22,7 @@ Budget: ~150-200 lines for the full library catalogue.
 
 One level deeper. TOC entries here are **paragraphs** — one per book in the subject. Each paragraph is SUBJECTIVE: not just "what this book covers" but "what you'll learn and why it matters from this subject's perspective." Each paragraph contains **links into specific chapters** of the book it describes.
 
-A reader at this layer already knows which subject they need. They're deciding which BOOK. The paragraph should answer that without opening the book. "The voice-and-nametags book explains the nametag convention: every paragraph starts with `Name:`, Arthur is default, don't batch. If nametags are missing after compaction, [chapter 1](../teamspeak/01-voice-and-nametags.md) has the rule; [chapter 3](../teamspeak/01-voice-and-nametags.md) has the territory assignments."
+A reader at this layer already knows which subject they need. They're deciding which BOOK. The paragraph should answer that without opening the book. "The voice-and-nametags book explains the nametag convention: every paragraph starts with `Name:`, Arthur is default, don't batch. If nametags are missing after compaction, [chapter 1](../teamspeak/01-voice.md) has the rule; [chapter 3](../teamspeak/01-voice.md) has the territory assignments."
 
 Budget: ~80-120 lines per subject catalogue.
 

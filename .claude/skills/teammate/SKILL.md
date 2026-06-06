@@ -4,7 +4,7 @@ description: Onboard a new teammate — the teammate sets up their own library w
 argument-hint: "[name]"
 ---
 
-Onboard a new teammate to the library. The core principle: the teammate does as much as possible for themselves. Identity is self-generated, not assigned. Read [Autonomy and Authorship](../../library/teamspeak/07-autonomy-and-authorship.md) before starting.
+Onboard a new teammate to the library. The core principle: the teammate does as much as possible for themselves. Identity is self-generated, not assigned. Read [Autonomy](../../library/teamspeak/05-autonomy.md) before starting.
 
 ## The protocol
 
@@ -17,7 +17,7 @@ Libby reads the new teammate the relevant conventions from [Bookkeeping](../../l
 - [On Covers](../../library/bookkeeping/03-on-covers.md) — the frontmatter fields and their meaning
 - [On Names](../../library/bookkeeping/04-on-names.md) — the naming convention, especially the autobiography-to-library-catalogue transformation
 
-Libby also reads them the autonomy protocol from [Teamspeak ch 7](../../library/teamspeak/07-autonomy-and-authorship.md): the teammate writes their own identity. Libby orients. She does not author.
+Libby also reads them the autonomy protocol from [Teamspeak ch 5](../../library/teamspeak/05-autonomy.md): the teammate writes their own identity. Libby orients. She does not author.
 
 ### Step 2: The teammate chooses their names
 
@@ -58,7 +58,7 @@ Arthur also updates [Teamsmanship's cover](../../library/..teamsmanship/.cover.m
 
 Claude creates `.claude/agents/{name}.md` following the format of existing agent files — thin shim with name, description, tools, territory link, autobiography link, library link. See [The Agents Folder](../../library/..teamsmanship/06-the-agents-folder.md).
 
-Arthur adds the teammate to [Code Territory](../../library/..teamsmanship/05-code-territory.md) with their path assignments and roles.
+Arthur adds the teammate to [Territory](../../library/..teamsmanship/05-territory.md) with their path assignments and roles.
 
 Arthur updates [CLAUDE.md](../../../CLAUDE.md) to list the new teammate in the team section.
 

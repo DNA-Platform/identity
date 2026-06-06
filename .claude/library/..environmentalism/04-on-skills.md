@@ -24,7 +24,7 @@ A developer reading the library learns a skill's purpose and design rationale. T
 
 ## Skills implement protocols
 
-Many skills are the executable form of a [Teamspeak](../teamspeak/.cover.md) protocol or a library convention. `/sprint` implements sprint planning. `/library` implements the navigation pattern from [Librarianship](../..librarianship/.cover.md). `/responsible` queries the [code territory](../..teamsmanship/05-code-territory.md) registry.
+Many skills are the executable form of a [Teamspeak](../teamspeak/.cover.md) protocol or a library convention. `/sprint` implements sprint planning. `/library` implements the navigation pattern from [Librarianship](../..librarianship/.cover.md). `/responsible` queries the [territory](../..teamsmanship/05-territory.md) registry.
 
 The protocol says WHAT SHOULD HAPPEN. The skill says HOW TO MAKE IT HAPPEN. When a protocol changes, the skill that implements it must be updated to match. The library is the source of truth; the skill is the compiled output.
 
@@ -36,5 +36,5 @@ A compiler could read the library's protocol chapters and generate SKILL.md file
 [librarianship]: ../..librarianship/.cover.md
 [teamsmanship]: ../..teamsmanship/.cover.md
 [teamspeak]: ../teamspeak/.cover.md
-[code-territory]: ../..teamsmanship/05-code-territory.md
+[territory]: ../..teamsmanship/05-territory.md
 [rules]: 03-on-rules.md

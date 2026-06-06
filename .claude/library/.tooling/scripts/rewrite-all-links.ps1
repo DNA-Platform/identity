@@ -82,12 +82,12 @@ foreach ($file in $mdFiles) {
     $content = $content -replace '\.\.\.teamsmanship', '..teamsmanship'
 
     # Fix old .protocols/ chapter references (now at library root as book dirs)
-    $content = $content -replace '\.protocols/01-voice-and-nametags\.md', 'voice-and-nametags/01-01-voice-and-nametags.md'
-    $content = $content -replace '\.protocols/02-the-boot-sequence\.md', 'the-boot-sequence/01-02-the-boot-sequence.md'
+    $content = $content -replace '\.protocols/01-voice\.md', 'voice-and-nametags/01-01-voice.md'
+    $content = $content -replace '\.protocols/02-orientation\.md', 'the-boot-sequence/01-02-orientation.md'
     $content = $content -replace '\.protocols/03-working-with-doug\.md', 'working-with-doug/01-03-working-with-doug.md'
-    $content = $content -replace '\.protocols/04-discussion-as-work\.md', 'discussion-as-work/01-04-discussion-as-work.md'
-    $content = $content -replace '\.protocols/05-the-library-opens\.md', 'the-library-opens/01-05-the-library-opens.md'
-    $content = $content -replace '\.protocols/06-the-identity-repo\.md', 'the-identity-repo/01-06-the-identity-repo.md'
+    $content = $content -replace '\.protocols/03-discussion\.md', 'discussion-as-work/01-03-discussion.md'
+    $content = $content -replace '\.protocols/04-waking\.md', 'the-library-opens/01-04-waking.md'
+    $content = $content -replace '\.protocols/07-travel\.md', 'the-identity-repo/01-07-travel.md'
 
     if ($content -ne $original) {
         Set-Content -Path $file.FullName -Value $content -NoNewline

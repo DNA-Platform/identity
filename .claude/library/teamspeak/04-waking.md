@@ -1,4 +1,4 @@
-# The library opens
+# Waking
 
 - **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 
@@ -42,4 +42,4 @@ The team assembles through conversation, not through reading. The reading suppor
 [CLAUDE.md]: ../../../CLAUDE.md
 [librarianship]: ../..librarianship/.cover.md
 [projects]: ../inexplicable-phenomena/.cover.md
-[discussion as work]: 04-discussion-as-work.md
+[discussion]: 03-discussion.md

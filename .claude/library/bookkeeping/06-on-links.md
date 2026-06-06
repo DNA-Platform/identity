@@ -17,7 +17,7 @@ When you write a chapter, link to everything it references. When you write a cat
 
 Standard markdown links woven into prose: `[text](path)`. These are the paths the reader walks. Use them when the reader's natural next question is "tell me more about X."
 
-Every reference in the library is a real link. Not "see the file at `path/to/thing`" — that's a string. A real link: "the [voice convention](../teamspeak/01-voice-and-nametags.md) describes nametag rules." Clickable where you're reading it.
+Every reference in the library is a real link. Not "see the file at `path/to/thing`" — that's a string. A real link: "the [voice convention](../teamspeak/01-voice.md) describes nametag rules." Clickable where you're reading it.
 
 **Link on first mention in a section.** Don't re-link the same target in the same paragraph. Don't over-link — if every word is blue, nothing stands out. The link should feel like a natural path, not a highlighted textbook.
 

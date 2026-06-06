@@ -44,7 +44,7 @@ Practice notes and navigation. The agent's known failure mode in one sentence. T
 
 ## The relationship to Teamsmanship
 
-The agent file is a thin projection of what [Teamsmanship](../..teamsmanship/.cover.md) specifies in depth. The name comes from [ch 01](../..teamsmanship/01-what-an-agent-is.md). The description comes from [ch 02](../..teamsmanship/02-roles-and-the-type-system.md) (roles). The territory comes from [ch 05](../..teamsmanship/05-code-territory.md). The autobiography link comes from the personal library in [..team/](../..teamsmanship/.cover.md#cataloguing--personal-libraries). The agent file duplicates the minimum. The library holds the depth.
+The agent file is a thin projection of what [Teamsmanship](../..teamsmanship/.cover.md) specifies in depth. The name comes from [ch 01](../..teamsmanship/01-what-an-agent-is.md). The description comes from [ch 02](../..teamsmanship/02-roles.md) (roles). The territory comes from [ch 05](../..teamsmanship/05-territory.md). The autobiography link comes from the personal library in [..team/](../..teamsmanship/.cover.md#cataloguing--personal-libraries). The agent file duplicates the minimum. The library holds the depth.
 
 If the agent file and the library disagree, the library is the source of truth. The agent file should be recompiled.
 

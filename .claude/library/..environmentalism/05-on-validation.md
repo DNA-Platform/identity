@@ -17,11 +17,11 @@ A validator is a [resource](../bookkeeping/02-on-chapters.md#resources) — a `.
 
 ## Validate before sync
 
-The [sync protocol](../teamspeak/06-the-identity-repo.md) requires validation before pushing. Run validators, fix errors, then commit. Don't push with errors — they mean the library's specifications and its actual structure disagree. Warnings are noted but don't block. This is the gate between editing and sharing: the library must pass its own tests before it travels.
+The [sync protocol](../teamspeak/07-travel.md) requires validation before pushing. Run validators, fix errors, then commit. Don't push with errors — they mean the library's specifications and its actual structure disagree. Warnings are noted but don't block. This is the gate between editing and sharing: the library must pass its own tests before it travels.
 
 ## How validators travel
 
-Validators live in the library, not in project CI. They travel with the [identity repo](../teamspeak/06-the-identity-repo.md). This means validation works in ANY project the identity lands in — the library carries its own test suite. No project needs to configure validation. No project can skip it. The validators are part of the identity, not part of the infrastructure.
+Validators live in the library, not in project CI. They travel with the [identity repo](../teamspeak/07-travel.md). This means validation works in ANY project the identity lands in — the library carries its own test suite. No project needs to configure validation. No project can skip it. The validators are part of the identity, not part of the infrastructure.
 
 ## Specifications and validators
 
@@ -34,4 +34,4 @@ Not every specification needs a validator. Some conventions resist automation �
 [bookkeeping-ts]: ../bookkeeping/bookkeeping.ts
 [specifications]: ../bookkeeping/11-on-specifications.md
 [chapters-resources]: ../bookkeeping/02-on-chapters.md#resources
-[identity-repo]: ../teamspeak/06-the-identity-repo.md
+[identity-repo]: ../teamspeak/07-travel.md

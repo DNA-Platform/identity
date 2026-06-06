@@ -42,9 +42,9 @@ Links in compiled files should target specific sections when the section answers
 
 2. Links to teammate-specific content (autobiographies, personal libraries) must use the full path through `..teamsmanship/..team/{name}/`. No shortcuts through intermediate directories.
 
-3. Links to shared books (Bookkeeping, Teamspeak, Environmentalism) use the book's directory name directly: `bookkeeping/.cover.md`, `teamspeak/01-voice-and-nametags.md`.
+3. Links to shared books (Bookkeeping, Teamspeak, Environmentalism) use the book's directory name directly: `bookkeeping/.cover.md`, `teamspeak/01-voice.md`.
 
-4. The link text must carry meaning without following the link. `[voice convention](...)` not `[01-voice-and-nametags.md](...)`. The text is [tier-zero synopsis](../bookkeeping/04-on-names.md) for the target.
+4. The link text must carry meaning without following the link. `[voice convention](...)` not `[01-voice.md](...)`. The text is [tier-zero synopsis](../bookkeeping/04-on-names.md) for the target.
 
 ## Ground truth for link validation
 

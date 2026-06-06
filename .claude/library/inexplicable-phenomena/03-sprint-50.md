@@ -56,7 +56,7 @@ The extension pattern: Librarianship's anatomy validator discovers and runs book
 
 The [agent compiler](../..teamsmanship/06-the-agents-folder.ts) works. Write the rest:
 
-1. **Territory rules compiler** — reads [Teamsmanship ch 05](../..teamsmanship/05-code-territory.md), generates `.claude/rules/{territory}.md` files with path scopes and links to the relevant teammate's library. Chapter resource: `..teamsmanship/05-code-territory.ts`
+1. **Territory rules compiler** — reads [Teamsmanship ch 05](../..teamsmanship/05-territory.md), generates `.claude/rules/{territory}.md` files with path scopes and links to the relevant teammate's library. Chapter resource: `..teamsmanship/05-code-territory.ts`
 
 2. **CLAUDE.md compiler** — reads [Librarianship ch 09](../..librarianship/09-claude-md-spec.md), generates `CLAUDE.md` at the project root with links into the library. Chapter resource: `..librarianship/09-claude-md-spec.ts`
 

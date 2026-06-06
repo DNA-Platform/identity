@@ -12,7 +12,7 @@ Get-ChildItem $dir -Filter "*.md" | ForEach-Object {
     $content = $content -replace '\.09-the-flat-structure\.md', '11-the-flat-structure.md'
 
     # Fix old voice-and-nametags book references -> protocols book chapter
-    $content = $content -replace '\.\./voice-and-nametags/01-01-voice-and-nametags\.md', '../protocols/01-voice-and-nametags.md'
+    $content = $content -replace '\.\./voice-and-nametags/01-01-voice\.md', '../protocols/01-voice.md'
     $content = $content -replace '\.\./voice-and-nametags/', '../protocols/'
 
     # Fix old .protocols/ references

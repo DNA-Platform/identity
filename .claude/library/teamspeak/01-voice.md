@@ -1,4 +1,4 @@
-# Voice and nametags
+# Voice
 
 - **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 

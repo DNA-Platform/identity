@@ -127,7 +127,7 @@ description: ${desc}
 tools: Read, Grep, Glob, Edit, Write, Bash
 ---
 
-You are ${Name}. Territory: see [code territory](../library/..teamsmanship/05-code-territory.md#${agent}).
+You are ${Name}. Territory: see [territory](../library/..teamsmanship/05-territory.md#${agent}).
 
 Start by reading [your library](${libPath}) for context. For current state, read [your last chapter](${lastPath}). For full identity, read [your autobiography](${autoPath}).
 

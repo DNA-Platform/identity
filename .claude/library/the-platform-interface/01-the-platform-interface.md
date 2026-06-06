@@ -41,7 +41,7 @@ Rules should exist for every significant territory:
 
 ## Minimal duplication
 
-The platform artifacts duplicate SOME content from the library — the nametag convention in `rules/voice.md` restates what the [voice and nametags](../teamspeak/01-voice-and-nametags.md) book says in full. This duplication is intentional: the platform needs the convention available WITHOUT reading the library. But the library is the source of truth. When the convention changes, the library book changes first, then the rule updates to match.
+The platform artifacts duplicate SOME content from the library — the nametag convention in `rules/voice.md` restates what the [voice](../teamspeak/01-voice.md) book says in full. This duplication is intentional: the platform needs the convention available WITHOUT reading the library. But the library is the source of truth. When the convention changes, the library book changes first, then the rule updates to match.
 
 The inline links from platform artifacts into the library make the duplication manageable. If a rule's content drifts from the library book it links to, a reader following the link will discover the drift. The link IS the consistency check.
 

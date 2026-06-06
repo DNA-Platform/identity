@@ -77,7 +77,7 @@ The library lives in the identity repo, which travels across projects. A GitHub 
 
 Write a validation runner script in the library (e.g., `.tooling/validate.ts` or beside a chapter that documents it) that runs all validators: bookkeeping.ts, subjects-and-catalogues.ts, and any future validators. The script is the library's self-check — run it before `git push` inside `.claude/`.
 
-Document the validation step in the sync protocol ([The Identity Repo](../../teamspeak/06-the-identity-repo.md)): validate before you sync. The sync method is part of the system, and the system lives in the library.
+Document the validation step in the sync protocol ([Travel](../../teamspeak/07-travel.md)): validate before you sync. The sync method is part of the system, and the system lives in the library.
 
 **Owner:** David
 **Scope:** Library tooling + sync protocol documentation

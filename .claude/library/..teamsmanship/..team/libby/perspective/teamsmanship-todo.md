@@ -92,5 +92,5 @@ I want to discuss with the team:
 
 <!-- citations -->
 [teamsmanship]: ../../.cover.md
-[ch02]: ../../02-roles-and-the-type-system.md
+[ch02]: ../../02-roles.md
 [ch03]: ../../03-abilities.md

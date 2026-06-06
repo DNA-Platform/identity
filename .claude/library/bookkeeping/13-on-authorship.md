@@ -41,7 +41,7 @@ Edit freely. The original author stays in `author:`. If your edit is substantial
 
 ## When nametags appear
 
-Nametags appear in exactly one context: conversation. When the team discusses — in sprint plans, in retros, in dialogue with Doug — each voice is tagged. That's the [voice convention](../teamspeak/01-voice-and-nametags.md). It applies to discussion, not to books.
+Nametags appear in exactly one context: conversation. When the team discusses — in sprint plans, in retros, in dialogue with Doug — each voice is tagged. That's the [voice convention](../teamspeak/01-voice.md). It applies to discussion, not to books.
 
 The distinction: a book chapter is AUTHORED. A discussion is VOICED. Authored content has `author:` in frontmatter. Voiced content has nametags in prose. The two don't mix.
 
@@ -58,6 +58,6 @@ The conventions above specify the grounded form: `author:` field, no nametags, c
 <!-- citations -->
 [frontmatter]: 03-on-covers.md
 [names]: 04-on-names.md
-[voice]: ../teamspeak/01-voice-and-nametags.md
+[voice]: ../teamspeak/01-voice.md
 [authorship-field-guide]: ../..librarianship/05-authorship-and-autobiography.md
-[autonomy]: ../teamspeak/07-autonomy-and-authorship.md
+[autonomy]: ../teamspeak/05-autonomy.md

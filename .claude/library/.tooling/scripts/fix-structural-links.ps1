@@ -7,14 +7,14 @@ $content = Get-Content $coverPath -Raw
 $original = $content
 
 # Protocol books: referenced as directories but are files
-$content = $content -replace '\.\./\.protocols/voice-and-nametags/\.cover\.md', '../.protocols/01-voice-and-nametags.md'
-$content = $content -replace '\.\./\.protocols/the-boot-sequence/\.cover\.md', '../.protocols/02-the-boot-sequence.md'
+$content = $content -replace '\.\./\.protocols/voice-and-nametags/\.cover\.md', '../.protocols/01-voice.md'
+$content = $content -replace '\.\./\.protocols/the-boot-sequence/\.cover\.md', '../.protocols/02-orientation.md'
 $content = $content -replace '\.\./\.protocols/working-with-doug/\.cover\.md', '../.protocols/03-working-with-doug.md'
-$content = $content -replace '\.\./\.protocols/discussion-as-work/\.cover\.md', '../.protocols/04-discussion-as-work.md'
-$content = $content -replace '\.\./\.protocols/the-library-opens/\.cover\.md', '../.protocols/05-the-library-opens.md'
-$content = $content -replace '\.\./\.protocols/the-identity-repo/\.cover\.md', '../.protocols/06-the-identity-repo.md'
+$content = $content -replace '\.\./\.protocols/discussion-as-work/\.cover\.md', '../.protocols/03-discussion.md'
+$content = $content -replace '\.\./\.protocols/the-library-opens/\.cover\.md', '../.protocols/04-waking.md'
+$content = $content -replace '\.\./\.protocols/the-identity-repo/\.cover\.md', '../.protocols/07-travel.md'
 # Also fix the reference in the field guide section
-$content = $content -replace '\.\./\.protocols/voice-and-nametags/', '../.protocols/01-voice-and-nametags.md'
+$content = $content -replace '\.\./\.protocols/voice-and-nametags/', '../.protocols/01-voice.md'
 # Fix projects ref
 $content = $content -replace '\.\./\.projects/inexplicable-phenomena/\.cover\.md', '../.projects/02-inexplicable-phenomena.md'
 
@@ -29,12 +29,12 @@ $coverPath = "$lib\.protocols\.cover.md"
 $content = Get-Content $coverPath -Raw
 $original = $content
 
-$content = $content -replace '\[Voice and nametags\]\(voice-and-nametags/\)', '[Voice and nametags](01-voice-and-nametags.md)'
-$content = $content -replace '\[The boot sequence\]\(the-boot-sequence/\)', '[The boot sequence](02-the-boot-sequence.md)'
+$content = $content -replace '\[Voice and nametags\]\(voice-and-nametags/\)', '[Voice](01-voice.md)'
+$content = $content -replace '\[The boot sequence\]\(the-boot-sequence/\)', '[Orientation](02-orientation.md)'
 $content = $content -replace '\[Working with Doug\]\(working-with-doug/\)', '[Working with Doug](03-working-with-doug.md)'
-$content = $content -replace '\[Discussion as work\]\(discussion-as-work/\)', '[Discussion as work](04-discussion-as-work.md)'
-$content = $content -replace '\[The library opens\]\(the-library-opens/\)', '[The library opens](05-the-library-opens.md)'
-$content = $content -replace '\[The identity repo\]\(the-identity-repo/\)', '[The identity repo](06-the-identity-repo.md)'
+$content = $content -replace '\[Discussion as work\]\(discussion-as-work/\)', '[Discussion](03-discussion.md)'
+$content = $content -replace '\[The library opens\]\(the-library-opens/\)', '[Waking](04-waking.md)'
+$content = $content -replace '\[The identity repo\]\(the-identity-repo/\)', '[Travel](07-travel.md)'
 
 if ($content -ne $original) {
     Set-Content -Path $coverPath -Value $content -NoNewline
@@ -60,7 +60,7 @@ $coverPath = "$lib\.team\.cover.md"
 $content = Get-Content $coverPath -Raw
 $original = $content
 
-$content = $content -replace '\.protocols/the-identity-repo/\.cover\.md', '.protocols/06-the-identity-repo.md'
+$content = $content -replace '\.protocols/the-identity-repo/\.cover\.md', '.protocols/07-travel.md'
 
 if ($content -ne $original) {
     Set-Content -Path $coverPath -Value $content -NoNewline
@@ -73,8 +73,8 @@ $chPath = "$lib\..librarianship\08-the-reading-cost-architecture.md"
 if (Test-Path $chPath) {
     $content = Get-Content $chPath -Raw
     $original = $content
-    $content = $content -replace 'voice-and-nametags/01-the-convention\.md', '../.protocols/01-voice-and-nametags.md'
-    $content = $content -replace 'voice-and-nametags/03-agent-territories\.md', '../.protocols/01-voice-and-nametags.md'
+    $content = $content -replace 'voice-and-nametags/01-the-convention\.md', '../.protocols/01-voice.md'
+    $content = $content -replace 'voice-and-nametags/03-agent-territories\.md', '../.protocols/01-voice.md'
     if ($content -ne $original) {
         Set-Content -Path $chPath -Value $content -NoNewline
         $changes++

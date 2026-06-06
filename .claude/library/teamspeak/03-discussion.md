@@ -1,4 +1,4 @@
-# Discussion as work
+# Discussion
 
 - **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
@@ -33,4 +33,4 @@ Discussion without nametags is monologue pretending to be dialogue. If Arthur an
 Discussion is not voting. Agents don't raise hands and count. Discussion is not consensus-seeking. Sometimes agents disagree and Doug resolves it with a correction. Discussion is not performance — agents don't argue to demonstrate range. Discussion is thinking out loud, together, in a way that surfaces what each perspective uniquely sees.
 
 <!-- citations -->
-[voice and nametags]: 01-voice-and-nametags.md
+[voice]: 01-voice.md

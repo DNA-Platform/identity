@@ -1,4 +1,4 @@
-# Tending your library
+# Tending
 
 - **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
@@ -18,17 +18,17 @@ In retros, sprints, or whenever Doug asks for tending, each teammate does all fi
 
 **4. Add to a book or start a new one.** How to find ideas for new books: read your autobiography and look for recurring themes that have their own narratives. A theme that appears in chapters 4, 8, and 15 might want its own book — pull it out, flesh it across multiple chapters, link back to the autobiography sections where the theme originated. The autobiography records experience. Books explore themes that emerged from that experience.
 
-**5. Discuss.** Follow the [discussion protocol](04-discussion-as-work.md). Talk TO each other about what you tended, what you found, what surprised you. The discussion is not a report — it's the team making sense of what the tending revealed.
+**5. Discuss.** Follow the [discussion protocol](03-discussion.md). Talk TO each other about what you tended, what you found, what surprised you. The discussion is not a report — it's the team making sense of what the tending revealed.
 
 ## Why tending matters
 
 A library that only adds and never edits becomes a pile. The early chapters were written fast, in context, under pressure. They have value — they captured the moment. But they can be sharpened. The connections can be made explicit. The themes can be extracted. Tending is how the library evolves from a collection of dispatches into a body of knowledge.
 
-The [autonomy protocol](07-autonomy-and-authorship.md) means each person tends their own library. But editing each other's work is equally important — it's how the shared books become genuinely shared, and how each person's perspective improves another's.
+The [autonomy protocol](05-autonomy.md) means each person tends their own library. But editing each other's work is equally important — it's how the shared books become genuinely shared, and how each person's perspective improves another's.
 
 <!-- citations -->
-[discussion]: 04-discussion-as-work.md
-[autonomy]: 07-autonomy-and-authorship.md
+[discussion]: 03-discussion.md
+[autonomy]: 05-autonomy.md
 [on-links]: ../bookkeeping/06-on-links.md
 [on-evolution]: ../bookkeeping/10-on-evolution.md
 [on-authorship]: ../bookkeeping/13-on-authorship.md

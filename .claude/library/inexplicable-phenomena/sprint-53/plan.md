@@ -12,17 +12,17 @@ But a compiler can only read formal source material. Before writing the compiler
 
 ### 1a. Teamsmanship teammate definitions
 
-The agents compiler currently reads hardcoded data. It should read the library. The source is: [Teamsmanship chapters 11-18](../../..teamsmanship/.cover.md#cataloguing--personal-libraries) (one per teammate), [code territory](../../..teamsmanship/05-code-territory.md) (path assignments), and the personal library covers (autobiography paths, last chapters). Formalize: ensure each teammate catalogue chapter has a consistent format the compiler can parse — name, role description, territory, library path, autobiography path, last chapter path.
+The agents compiler currently reads hardcoded data. It should read the library. The source is: [Teamsmanship chapters 11-18](../../..teamsmanship/.cover.md#cataloguing--personal-libraries) (one per teammate), [territory](../../..teamsmanship/05-territory.md) (path assignments), and the personal library covers (autobiography paths, last chapters). Formalize: ensure each teammate catalogue chapter has a consistent format the compiler can parse — name, role description, territory, library path, autobiography path, last chapter path.
 
 **Owner:** Arthur
 **Scope:** `..teamsmanship/` chapters 11-19
 
-### 1b. Code territory as parseable data
+### 1b. Territory as parseable data
 
-[Code territory](../../..teamsmanship/05-code-territory.md) uses markdown headings and bullet lists. The compiler needs to parse agent name, path patterns, and role links from it. Verify the format is consistent enough to parse. Tighten where needed.
+[Territory](../../..teamsmanship/05-territory.md) uses markdown headings and bullet lists. The compiler needs to parse agent name, path patterns, and role links from it. Verify the format is consistent enough to parse. Tighten where needed.
 
 **Owner:** Arthur
-**Scope:** `..teamsmanship/05-code-territory.md`
+**Scope:** `..teamsmanship/05-territory.md`
 
 ### 1c. Skills and Commands as parseable chapters
 
@@ -33,7 +33,7 @@ Each [Skills and Commands](../../our-skillset/.cover.md) chapter describes one s
 
 ### 1d. CLAUDE.md sources
 
-The bootstrap compiler reads: [Librarianship cover](../../..librarianship/.cover.md) (subjects and books), [Teamspeak ch 05](../../teamspeak/05-the-library-opens.md) (waking-up layers), the project book (current project). Verify these have enough structured content for a compiler to extract the sections On Bootstrap specifies.
+The bootstrap compiler reads: [Librarianship cover](../../..librarianship/.cover.md) (subjects and books), [Teamspeak ch 04](../../teamspeak/04-waking.md) (waking-up layers), the project book (current project). Verify these have enough structured content for a compiler to extract the sections On Bootstrap specifies.
 
 **Owner:** Claude
 **Scope:** Librarianship cover, Teamspeak, project book
