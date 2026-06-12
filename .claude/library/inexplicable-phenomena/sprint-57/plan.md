@@ -1,34 +1,45 @@
-# Sprint 57: Projects, Documentation, and Ancestry
+# Sprint 57: Branches
 
 - **author:** [Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
 ---
 
-Two problems. How we represent projects and sprints within the library. And where documentation lives when the identity travels across projects.
+The library system becomes shareable. Project knowledge lives on branches. The identity repo's `main` becomes a clean template that any team can use.
 
-## Projects and sprints
+## The branching model
 
-The `inexplicable-phenomena/` book currently holds sprint plans as subdirectories. On Projects (Bookkeeping ch 12) specifies this pattern — a project is a book, sprints are chapters. But the current structure predates the spec and doesn't follow it cleanly. Sprint plans are directories with `plan.md`, not numbered chapters. The sprint history table in the project cover is stale.
+The identity repo gets three levels of branches:
 
-Tasks:
-1. Discuss how projects should work within the type system
-2. Align the inexplicable-phenomena book to the On Projects spec
-3. Decide whether sprints should be chapters (inline) or subdirectories (current)
-4. Update On Projects if the discussion reveals the spec is wrong
+- **`main`** — the library system. Bookkeeping, Teamspeak, Environmentalism, compilers, validators, skills, CLAUDE.md. Universal infrastructure. No team-specific content. No autobiographies. No project history. A fresh team forks this and starts their own branch.
 
-## Documentation and ancestor libraries
+- **`dna-platform`** — Doug's organization. Our nine teammates, their autobiographies and personal libraries, Teamsmanship with all its chapters. The team's identity. Branched from `main`, merges system improvements back.
 
-The `.chemistry/` reference docs (210 files) are framework documentation for code that lives in THIS project. If the identity travels to another project, those docs are stale. They reference `library/chemistry/src/` paths that won't exist elsewhere.
+- **Project branches** (`inexplicable-phenomena`, `chemistry`, `dna-library`) — each project's `.lib/` content. Sprint history, project documentation, framework reference. Branched from `dna-platform`, merges identity changes down.
 
-Doug's insight: perhaps there are ancestor libraries — project-local libraries that have a one-way relationship with the identity. The project-local library links INTO the identity (referencing team protocols, bookkeeping conventions). The identity doesn't link OUT to the project-local library (keeping it portable).
+## Tasks
 
-Tasks:
-1. Discuss what belongs in identity vs what belongs in a project-local library
-2. Design the ancestor library pattern — where it lives, how it relates to the identity
-3. Decide where `.chemistry/` docs should go
-4. Specify the one-way link convention in Bookkeeping or Environmentalism
-5. If practical, move `.chemistry/` out of the identity and into a project-local library
+### Libby: On Branches (Bookkeeping)
+
+Write the specification. What a branch library is. How `.lib/` follows Bookkeeping conventions. The one-way link convention (branches link into identity, identity doesn't link out). How the sprint history in a branch is the project's autobiography. How branch visibility works.
+
+### Arthur: Project catalogue (Teamsmanship)
+
+Write the catalogue chapter. One entry per project the team has worked on. Synopsis, link to the branch, what the team built there. No content from the branch — just the catalogue entry.
+
+### Claude: Branch sync (Environmentalism)
+
+Update the sync protocol. How changes propagate from `main` to `dna-platform` to project branches. How `.lib/` syncs with the identity repo branch. How global changes (conventions, protocols) reach all branches with temporal precision.
+
+### Implementation
+
+1. Branch `main` to `dna-platform` in the identity repo
+2. Clean `main` — remove all team-specific content, keep the system
+3. Move `inexplicable-phenomena/` sprint plans from library to a project branch
+4. Move `.chemistry/` to a project branch
+5. Create `.lib/` in the inexplicable-phenomena repo pointing to the branch content
+6. Update validators and compilers for branch awareness
+7. Test the full flow: edit `.lib/`, push to branch, merge identity changes down
 
 ## What success looks like
 
-Projects and sprints have a clean representation that matches the spec. Documentation that belongs to a specific project lives with that project, not in the identity. The identity stays portable — true regardless of which codebase hosts it.
+Someone can clone the identity repo's `main`, run `/teammate` to create themselves, and have a working library system. Our team's content lives on `dna-platform`. Each project's documentation lives on its own branch. The system is shareable. The identity is private. The projects are organized.
