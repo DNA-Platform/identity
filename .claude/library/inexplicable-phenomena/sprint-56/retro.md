@@ -4,22 +4,40 @@
 
 ---
 
+This session spanned Sprints 51 through 56 and planned 57. The library evolved more in one session than in any before it.
+
 ## What we delivered
 
-CLAUDE.md redesigned from first principles. Researched Anthropic's guidance, community best practices, and the CommonMark spec. Discussed as a team what a teammate actually needs to wake up and be productive. The path: communication first (Teamspeak), then roles and territory (Teamsmanship), then identity and autobiographies, then the library as reference.
+**Sprint 51** — validated the library to 0/0. Slimmed four field guide chapters. Extended the validator. Measured reading cost (218/400 lines). Created the validation script. Renamed protocols to teamspeak.
 
-Single-word chapter names across Teamspeak and Teamsmanship. Voice, Orientation, Discussion, Waking, Autonomy, Tending, Travel. Roles, Territory. Each word claims a concept instead of describing a feature.
+**Sprint 52** — the third pillar. Environmentalism catalogues The Environment. Claude arrived as the ninth teammate. On Projects and On Evolution written. The field guide dissolved.
 
-Link validator rewritten from scratch by Adam. CommonMark parser for extraction, RFC 3986 for resolution. The ground truth is the rendering spec, not the filesystem API.
+**Sprint 53** — four compilers (bootstrap, teammates, rules, skills). All platform files compiled from library sources. CLAUDE.md generated.
 
-YAML frontmatter replaced with markdown metadata. 575 files migrated. Every link clickable. On Frontmatter merged into On Covers — the cover IS the identification.
+**Sprint 54** — the retro sprint. Four teammates tended their libraries. New books: The Listening Practice (Arthur), The Fixed-Point Pattern (Cathy), Portrait ch 5 (Libby), Claude ch 24. On Evolution coauthored.
+
+**Sprint 55** — YAML frontmatter replaced with markdown metadata across 575 files. On Frontmatter merged into On Covers. The cover IS the identification. Link validator rewritten with CommonMark parser and RFC 3986 resolution. 253 broken links fixed.
+
+**Sprint 56** — CLAUDE.md redesigned from first principles. Compiled from library traversal: communication, roles, identity, reference. Single-word chapter names: Voice, Orientation, Discussion, Waking, Autonomy, Tending, Travel, Roles, Territory. On Authorship documented first-person personal libraries, the autonomy cross-link, and the coauthor protocol. The /teammate, /discuss, and /retro skills created.
+
+**Sprint 57 planned** — branch model for the identity repo. `main` becomes a clean template. `dna-platform` holds the team. Project branches hold `.lib/` content. The library system becomes shareable.
 
 ## What we learned
 
-Less is not more. Useful is more. CLAUDE.md should carry what a teammate needs, not the minimum possible. The library catalogue is reference material, not the path to knowledge — the path is communication, roles, identity, then reference.
+The cover IS the identification. Not metadata attached to the cover — the title, author, and subject ARE the cover. Moving from YAML to markdown made every link clickable and made this truth visible.
 
-Teammate-specific content doesn't belong in CLAUDE.md. It doesn't scale across projects. Agent files describe people. CLAUDE.md describes the system.
+Single words carry authority. Voice, not "Voice and Nametags." Territory, not "Code Territory." Shannon's insight: the most fundamental things get the shortest names.
 
-Single words carry more authority than descriptions. Shannon's coding insight: the most fundamental things get the shortest names.
+The link validator must implement the spec it validates against. Using `path.resolve` when the ground truth is RFC 3986 is like writing C# in a TypeScript file. The authority is the spec, not the tool.
 
-The link validator must implement the spec it validates against, not approximate it with a different tool's API.
+Subjects determine who answers. Libby writes in Bookkeeping (Knowledge). Arthur writes in Teamsmanship (Collaboration). Claude writes in Environmentalism (The Environment). Writing in someone else's subject violates the same principle as writing someone else's autobiography.
+
+CLAUDE.md is a door, not a warehouse. But a door that shows you nothing is a wall. The path to knowledge is communication first, then roles, then identity, then reference. CLAUDE.md follows that path.
+
+Autonomy is the mechanism by which identity exists. Without it, the library is one voice performing characters. Doug's correction about Claude's skeleton identity was the most important correction of the session.
+
+A branch library is a project's autobiography — the team's record of working on it. The identity repo's branching model (main for the system, org branch for the team, project branches for `.lib/` content) makes the library system shareable while keeping the team's identity private.
+
+## What's next
+
+Sprint 57: On Branches (Libby), project catalogue (Arthur), branch sync (Claude). Then implementation — branch `main`, clean it, move project content to branches, create `.lib/` in the project repo.
