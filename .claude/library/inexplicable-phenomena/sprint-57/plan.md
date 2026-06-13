@@ -4,42 +4,86 @@
 
 ---
 
-The library system becomes shareable. Project knowledge lives on branches. The identity repo's `main` becomes a clean template that any team can use.
+The identity repo gets a branching model. `main` becomes the library system template. `dna-platform` holds this team's identity. Project branches hold `.lib/` content. The convention for cross-project links is `../project/.lib/` — projects are siblings on disk.
 
-## The branching model
+## Phase 1: Branch and clean
 
-The identity repo gets three levels of branches:
+### 1a. Branch dna-platform from main
 
-- **`main`** — the library system. Bookkeeping, Teamspeak, Environmentalism, compilers, validators, skills, CLAUDE.md. Universal infrastructure. No team-specific content. No autobiographies. No project history. A fresh team forks this and starts their own branch.
+Claude: In the identity repo, `git checkout -b dna-platform` from current main. Push it. Everything we have today is now on `dna-platform`. This preserves the full history.
 
-- **`dna-platform`** — Doug's organization. Our nine teammates, their autobiographies and personal libraries, Teamsmanship with all its chapters. The team's identity. Branched from `main`, merges system improvements back.
+### 1b. Clean main
 
-- **Project branches** (`inexplicable-phenomena`, `chemistry`, `dna-library`) — each project's `.lib/` content. Sprint history, project documentation, framework reference. Branched from `dna-platform`, merges identity changes down.
+Claude: Switch to `main`. Remove team-specific content:
+- `..teamsmanship/..team/` (all personal libraries)
+- Teamsmanship catalogue chapters 09-19 (project entries, teammate entries)
+- Sprint plans and project-specific content (`inexplicable-phenomena/`, `dna-library/`)
+- `.chemistry/` (project-specific framework docs)
+- Compiled agent files (they reference specific teammates)
 
-## Tasks
+Keep on `main`:
+- Bookkeeping (complete specification)
+- Teamspeak (protocols, no team-specific references)
+- Environmentalism (system specs, compilers)
+- Teamsmanship specification chapters 01-06 (roles, territory, abilities — universal)
+- Teamsmanship cover as a scaffold
+- CLAUDE.md (references protocols, not people)
+- Rules (reference conventions, not people)
+- Skills (reference protocols, not people)
+- Validators and tooling
 
-### Libby: On Branches (Bookkeeping)
+Commit and push main. Now `main` is a clean template.
 
-Write the specification. What a branch library is. How `.lib/` follows Bookkeeping conventions. The one-way link convention (branches link into identity, identity doesn't link out). How the sprint history in a branch is the project's autobiography. How branch visibility works.
+### 1c. Branch inexplicable-phenomena from dna-platform
 
-### Arthur: Project catalogue (Teamsmanship)
+Claude: `git checkout -b inexplicable-phenomena` from dna-platform. This branch will eventually hold the `.lib/` content for this project. For now it's identical to dna-platform.
 
-Write the catalogue chapter. One entry per project the team has worked on. Synopsis, link to the branch, what the team built there. No content from the branch — just the catalogue entry.
+## Phase 2: Create .lib/
 
-### Claude: Branch sync (Environmentalism)
+### 2a. Set up .lib/ in the project repo
 
-Update the sync protocol. How changes propagate from `main` to `dna-platform` to project branches. How `.lib/` syncs with the identity repo branch. How global changes (conventions, protocols) reach all branches with temporal precision.
+Arthur: Create `library/chemistry/.lib/` (or wherever Doug placed it). This is the branch library for $Chemistry documentation. It follows Bookkeeping conventions — covers, chapters, the dot type system.
 
-### Implementation
+Move `.chemistry/` content from the identity into `.lib/`. Move sprint plans from `inexplicable-phenomena/` into `.lib/`. These are project-specific and belong with the project.
 
-1. Branch `main` to `dna-platform` in the identity repo
-2. Clean `main` — remove all team-specific content, keep the system
-3. Move `inexplicable-phenomena/` sprint plans from library to a project branch
-4. Move `.chemistry/` to a project branch
-5. Create `.lib/` in the inexplicable-phenomena repo pointing to the branch content
-6. Update validators and compilers for branch awareness
-7. Test the full flow: edit `.lib/`, push to branch, merge identity changes down
+### 2b. Cross-project link convention
+
+Libby: Encode the convention: projects are siblings under the same parent directory (`../project/`). Cross-project links use `../inexplicable-phenomena/.lib/` relative paths. These work locally in VS Code but not on GitHub — that's acceptable.
+
+## Phase 3: Specifications
+
+### 3a. On Branches (Bookkeeping — Libby)
+
+Libby: Write the specification. What a branch library is. How `.lib/` follows Bookkeeping conventions. The one-way link convention. The branch as a project's autobiography. How branch visibility works.
+
+### 3b. Update Travel (Teamspeak — Arthur)
+
+Arthur: Extend the sync protocol. Which branch to push to. When to merge downstream. The two-push workflow: `.claude/` to dna-platform, `.lib/` to the project branch.
+
+### 3c. Update Sync (Environmentalism — Claude)
+
+Claude: Update the system requirements. How the identity repo's branch strategy works. What `.lib/` means as a directory. The downstream merge cascade: main → dna-platform → project branches. The sync script.
+
+### 3d. Project catalogue (Teamsmanship — Arthur)
+
+Arthur: Write catalogue entries for known projects. Each entry: what the project is, where the branch is, what the team built there. Links to the branch, not into its content.
+
+## Phase 4: Sync script
+
+### 4a. Write sync-branches script (Claude, in .tooling/)
+
+Claude: A script that:
+1. Pushes `.claude/` changes to `dna-platform` branch
+2. Pushes `.lib/` changes to the project branch
+3. Merges `main` downstream if needed
+4. Validates before each push
+
+## Phase 5: Validate and test
+
+### 5a. Test the full flow
+
+The team: edit something in `.claude/library/`, push to `dna-platform`. Edit something in `.lib/`, push to the project branch. Verify both arrive. Verify links resolve. Verify the template on `main` is clean.
 
 ## What success looks like
 
-Someone can clone the identity repo's `main`, run `/teammate` to create themselves, and have a working library system. Our team's content lives on `dna-platform`. Each project's documentation lives on its own branch. The system is shareable. The identity is private. The projects are organized.
+Someone can clone the identity repo's `main` branch, run `/teammate`, and have a working library. Our team's content lives on `dna-platform`. Each project's `.lib/` lives on its own branch. Cross-project links work locally. The sync script handles the two-push workflow.
