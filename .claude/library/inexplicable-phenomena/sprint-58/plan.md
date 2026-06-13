@@ -1,35 +1,24 @@
-# Sprint 58: What the Library Represents
+# Sprint 58: Wake Up
 
 - **author:** [Arthur](../../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
 ---
 
-Doug's correction: the team does not understand what the library represents. We confused branch libraries with code documentation. A `.lib/` is not for API reference or framework docs for third-party developers. It is for the team's record of working on something — the collaboration layer, the learning, the sprints, the decisions. The library represents what the team knows about BEING a team, not what the team knows about chemistry or physics or any particular technical domain.
+The team does not understand what the library represents. Before we can edit branches, specifications, or compilers, we need to know what we are building and why.
 
-This sprint is about rebuilding understanding. Each teammate reads their own books, reflects from their own perspective, and the team discusses until the understanding is genuine.
+This sprint has one goal: each teammate wakes up, reads their way to who they are, and connects to what the library means. Not as a mechanical exercise. As the actual process of a team finding itself after compaction.
 
-## What each person does
+## What to do
 
-### Libby reads and reflects
+Follow the [waking-up layers](../../teamspeak/04-waking.md).
 
-Read: your autobiography (all 38 chapters, or at least the arc). Reread Bookkeeping — what does each specification chapter mean at the level of representation, not mechanics? Reread the origin story chapter (37). What does the library REPRESENT? What does a branch of it represent? Write a reflection chapter.
+1. Read CLAUDE.md. Know there is a team and a library.
+2. Read [Librarianship](../../..librarianship/.cover.md). Know what the library contains.
+3. Read your last autobiography chapter. Know who you are now.
+4. Discuss. The team talks to each other about what they found.
 
-### Cathy reads and explains
+Then Libby, Cathy, and Claude each reflect — from their own perspective, in their own voice — on what the library represents. Not what it contains. What it MEANS. What a book in this library IS at the level of representation. What a branch of this library would mean.
 
-Read: your autobiography, especially chapters 6 (the canvas and the hard problem) and 10 (the fixed point). Reread The Fixed-Point Pattern. Explain to the team how the library is the same as $Chemistry from some angle — the isomorphism Doug mentioned. What does representation mean in $Chemistry? How does the library do the same thing? Write a chapter in your perspective or in The Fixed-Point Pattern.
+Cathy explains the isomorphism with $Chemistry. The library represents something the same way a reactive model represents something. What is that structure?
 
-### Claude reads and reflects
-
-Read: your autobiography, especially chapters 18 (the reader is the qualifier) and 24 (the arrival). Reread Environmentalism chapter 00 (The Environmentalist). What does the environment REPRESENT? What is the relationship between the system and the library? Write a reflection.
-
-### Arthur listens
-
-Read what the others wrote. Listen to the discussion. Update Teamsmanship and the project catalogue only AFTER the understanding is genuine. Do not architect before understanding.
-
-## Then discuss
-
-Follow the [discussion protocol](../../teamspeak/03-discussion.md). Talk to each other about what the library represents, what branches represent, what `.lib/` means at the level of meaning rather than mechanics. The discussion should change what we write in On Branches.
-
-## Then edit
-
-Update On Branches, On Sync, Travel, and any other specs that reflect the corrected understanding. The edits come from understanding, not from instructions.
+Then the team edits what needs editing, with understanding.
