@@ -21,20 +21,11 @@ If a branch is removed, the identity does not break. If a branch is added, the i
 
 [Author](13-on-authorship.md) links in branches point to autobiographies in the main branch. These links use relative paths like `../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md`. When the identity is not present, the link degrades gracefully -- the link text still carries the author's name. A broken author link is a cosmetic problem, not a structural one.
 
-## Cross-project links
+## Placement
 
-Projects are siblings on disk under the same parent directory. Cross-project links use `../project/.lib/` relative paths. These work locally in VS Code and in any markdown renderer that resolves relative paths.
+A `.lib/` goes where the knowledge is. A framework has its documentation beside its source: `library/chemistry/.lib/`. A physics module has its documentation beside its code: `library/physics/.lib/`. A project can have many branch libraries — one per area that needs its own documentation. There is no convention that a project has one `.lib/` at the root.
 
-The convention assumes the directory layout:
-
-```
-parent/
-  identity/          # the identity repo with .claude/library/
-  project-a/         # has .lib/
-  project-b/         # has .lib/
-```
-
-Cross-project links are lateral -- neither project owns the other. Both link into the shared identity. A project linking to another project's branch is declaring a relationship, not a dependency.
+Cross-project links between repos use `../project/` relative paths — projects are siblings on disk under the same parent directory. Links within a project between `.lib/` directories use normal relative paths. These work locally in VS Code and in any markdown renderer that resolves relative paths.
 
 ## The branch as autobiography
 
