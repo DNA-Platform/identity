@@ -9,11 +9,11 @@ The library checking its own consistency. A validator is executable specificatio
 
 ## The resource pattern
 
-A validator is a [resource](../bookkeeping/02-on-chapters.md#resources) — a `.ts` file beside the `.md` chapter or cover it checks. [Bookkeeping](../bookkeeping/.cover.md) specifies what books should look like. [bookkeeping.ts](../bookkeeping/bookkeeping.ts) checks that they do. The chapter motivates the resource. The resource evidences the chapter. Together they are one specification expressed twice.
+A validator is a [resource](../bookkeeping/02-on-chapters.md#resources) — a `.ts` file beside the `.md` chapter or cover it checks. [Bookkeeping](../bookkeeping/.cover.md) specifies what books should look like. [11-on-specifications--validator.ts](../bookkeeping/11-on-specifications--validator.ts) checks that they do. The chapter motivates the resource. The resource evidences the chapter. Together they are one specification expressed twice.
 
 ## The validation runner
 
-`.tooling/validate.ts` runs all validators. It discovers every `.ts` file in the library that exports a validation interface, executes them against the library root, and collects errors and warnings. It is the library's self-check — one command that answers "is the library consistent with what it says it should be?"
+[05-on-validation--runner.ts](05-on-validation--runner.ts) runs all validators. It discovers every `.ts` file in the library that exports a validation interface, executes them against the library root, and collects errors and warnings. It is the library's self-check — one command that answers "is the library consistent with what it says it should be?"
 
 ## Validate before sync
 
@@ -31,7 +31,7 @@ Not every specification needs a validator. Some conventions resist automation �
 
 <!-- citations -->
 [bookkeeping]: ../bookkeeping/.cover.md
-[bookkeeping-ts]: ../bookkeeping/bookkeeping.ts
+[bookkeeping-ts]: ../bookkeeping/11-on-specifications--validator.ts
 [specifications]: ../bookkeeping/11-on-specifications.md
 [chapters-resources]: ../bookkeeping/02-on-chapters.md#resources
 [identity-repo]: ../teamspeak/07-travel.md

@@ -19,7 +19,7 @@ A specification is often accompanied by a validator — executable code that che
 
 The chapter is documentation for the code. The code is specification made executable. They say the same thing in different languages: the chapter in prose for readers, the validator in TypeScript for machines. A specification without a validator is a convention. A specification with a validator is a contract.
 
-[bookkeeping.ts](bookkeeping.ts) validates everything the chapters in this book specify: [frontmatter](03-on-covers.md) fields and order, [chapter signing](02-on-chapters.md#signing), [cover](03-on-covers.md) structure, [catalogue](07-on-subjects.md) self-cataloguing. One validator for the whole book — because the specifications in this book form a coherent type system, not independent rules.
+[11-on-specifications--validator.ts](11-on-specifications--validator.ts) validates everything the chapters in this book specify: [frontmatter](03-on-covers.md) fields and order, [chapter signing](02-on-chapters.md#signing), [cover](03-on-covers.md) structure, [catalogue](07-on-subjects.md) self-cataloguing. One validator for the whole book — because the specifications in this book form a coherent type system, not independent rules.
 
 ## Essential specifications
 

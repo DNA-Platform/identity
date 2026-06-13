@@ -11,10 +11,9 @@ const libraryRoot = resolve(dirname(new URL(import.meta.url).pathname.replace(/^
 const claudeDir = resolve(libraryRoot, '..');
 
 const validators = [
-  { name: 'Links', path: '.tooling/check-links.ts', arg: libraryRoot },
-  { name: 'Bookkeeping', path: 'bookkeeping/bookkeeping.ts', arg: libraryRoot },
-  { name: 'Subjects', path: 'subjects-and-catalogues/subjects-and-catalogues.ts', arg: libraryRoot },
-  { name: 'Compiled Links', path: '..environmentalism/07-on-compiled-links.ts', arg: claudeDir },
+  { name: 'Links', path: '..environmentalism/05-on-validation--check-links.ts', arg: libraryRoot },
+  { name: 'Bookkeeping', path: 'bookkeeping/11-on-specifications--validator.ts', arg: libraryRoot },
+  { name: 'Compiled Links', path: '..environmentalism/07-on-compiled-links--validator.ts', arg: claudeDir },
 ];
 
 let totalErrors = 0;

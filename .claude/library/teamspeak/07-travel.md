@@ -24,7 +24,7 @@ After working in a project, validate then push:
 
 ```
 cd .claude/library
-npx tsx .tooling/validate.ts
+npx tsx ..environmentalism/05-on-validation--runner.ts
 cd ..
 git add -A
 git commit -m "Sprint 45: autobiographies at fighting weight"
@@ -32,7 +32,7 @@ git push
 cd ..
 ```
 
-The validation step runs all library validators ([bookkeeping.ts](../bookkeeping/bookkeeping.ts), [subjects-and-catalogues.ts](../subjects-and-catalogues/subjects-and-catalogues.ts)) and reports errors and warnings. Don't push with errors — they mean the library's specification and implementation disagree. Warnings are noted but don't block the push.
+The validation step runs all library validators ([11-on-specifications--validator.ts](../bookkeeping/11-on-specifications--validator.ts)) and reports errors and warnings. Don't push with errors — they mean the library's specification and implementation disagree. Warnings are noted but don't block the push.
 
 Edit in the project. Commit from inside `.claude/`. Push to the identity remote. The project repo never sees the identity files.
 

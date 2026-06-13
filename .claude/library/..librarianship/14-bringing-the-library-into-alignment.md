@@ -10,11 +10,11 @@ This chapter tracks the distance between the library's specification and its imp
 
 ### Bookkeeping validator `[ALIGNED]`
 
-[bookkeeping.ts](../bookkeeping/bookkeeping.ts) — 0 errors, 0 warnings across 44 books and 263 chapters. All frontmatter fields present and ordered. All chapters signed. No `summary:` in frontmatter. Run: `npx tsx bookkeeping/bookkeeping.ts .` from library root.
+[11-on-specifications--validator.ts](../bookkeeping/11-on-specifications--validator.ts) — 0 errors, 0 warnings across 44 books and 263 chapters. All frontmatter fields present and ordered. All chapters signed. No `summary:` in frontmatter. Run: `npx tsx bookkeeping/11-on-specifications--validator.ts .` from library root.
 
 ### Subjects validator `[PARTIAL]`
 
-[subjects-and-catalogues.ts](../subjects-and-catalogues/subjects-and-catalogues.ts) — 0 errors, 33 warnings. The warnings are false positives: the validator's path resolution doesn't follow relative paths from inside `..team/` personal libraries correctly. The `subject:` links in those books are valid — the validator's link resolution needs updating.
+[subjects-and-catalogues.ts](../.archive/subjects-and-catalogues.ts) `[ARCHIVED]` — 0 errors, 33 warnings. The warnings are false positives: the validator's path resolution doesn't follow relative paths from inside `..team/` personal libraries correctly. The `subject:` links in those books are valid — the validator's link resolution needs updating.
 
 ### Flat structure `[ALIGNED]`
 
@@ -38,7 +38,7 @@ Chapters 02 (linking), 03 (growth), 05 (authorship), 11 (flat structure) slimmed
 
 ### Validation script `[ALIGNED]`
 
-[.tooling/validate.ts](../.tooling/validate.ts) runs all validators from library root. Run before syncing to the identity repo. Documented in the sync protocol ([Travel](../teamspeak/07-travel.md)).
+[05-on-validation--runner.ts](../..environmentalism/05-on-validation--runner.ts) runs all validators from library root. Run before syncing to the identity repo. Documented in the sync protocol ([Travel](../teamspeak/07-travel.md)).
 
 ## What remains
 
@@ -56,7 +56,7 @@ Sprint 52 introduces the third subject catalogue for the platform/system. Librar
 
 ### Compilers `[SCAFFOLD]`
 
-One compiler exists ([agents folder](../..teamsmanship/06-the-agents-folder.ts)). CLAUDE.md compiler and territory rules compiler planned for Sprint 52.
+One compiler exists ([agents folder](../../.archive/06-the-agents-folder.ts) `[ARCHIVED]`). CLAUDE.md compiler and territory rules compiler planned for Sprint 52.
 
 ## When this chapter is done
 

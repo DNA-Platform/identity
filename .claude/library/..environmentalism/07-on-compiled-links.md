@@ -57,11 +57,11 @@ The link validation chain:
 2. **Resolve** the destination per RFC 3986 relative URL resolution against the containing file's location
 3. **Check** that the resolved path points to an existing file
 
-The validator ([check-links.ts](../.tooling/check-links.ts)) uses the CommonMark parser for extraction. Resolution and existence checking should follow the same standard the renderer follows.
+The validator ([05-on-validation--check-links.ts](05-on-validation--check-links.ts)) uses the CommonMark parser for extraction. Resolution and existence checking should follow the same standard the renderer follows.
 
 ## Testing compiled links
 
-After any compiler run, verify that every link in the compiled output resolves. The [validation runner](../.tooling/validate.ts) checks both library links and compiled file links. The project root `CLAUDE.md` must be checked from the project root — it has `.claude/` prefixed paths that resolve differently from the internal copy.
+After any compiler run, verify that every link in the compiled output resolves. The [validation runner](05-on-validation--runner.ts) checks both library links and compiled file links. The project root `CLAUDE.md` must be checked from the project root — it has `.claude/` prefixed paths that resolve differently from the internal copy.
 
 <!-- citations -->
 [on-teammates]: 01-on-teammates.md

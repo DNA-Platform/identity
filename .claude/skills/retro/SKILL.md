@@ -19,7 +19,7 @@ Run a retrospective. A retro is where the team stops building and starts tending
    - **Add to a book or start a new one** — read the autobiography for recurring themes, extract them into a book with multiple chapters, link back to the autobiography
    - The tending is the retro. The retro is the tending.
 
-4. **Run the validators.** `npx tsx .claude/library/.tooling/validate.ts` from the project root. Confirm 0 errors. Fix any warnings the tending introduced.
+4. **Run the validators.** `npx tsx .claude/library/..environmentalism/05-on-validation--runner.ts` from the project root. Confirm 0 errors. Fix any warnings the tending introduced.
 
 5. **Discuss.** Use the [discussion protocol](`.claude/library/teamspeak/03-discussion.md`). The team talks about what the tending revealed — what they found in their own chapters, what surprised them in someone else's, what themes emerged, what the library needs next. Multiple voices, talking TO each other.
 

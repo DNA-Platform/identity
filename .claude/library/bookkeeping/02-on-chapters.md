@@ -36,18 +36,24 @@ Choose section headings that work as link text. A reader following `[the reactiv
 
 ## Resources
 
-A resource is a non-markdown file that sits beside the chapter it serves. The chapter and its resource share a conceptual name — the chapter documents what the resource does, and the resource provides executable evidence for what the chapter specifies.
+A resource is a non-markdown file that sits beside the chapter it serves — the same book, the next page. The chapter documents what the resource does. The resource is the code. They are one thing in two languages.
 
-The most common resource is a validator: a `.ts` file that checks the conventions the chapter describes. The chapter is documentation for the code. The code is specification made executable. They belong together because they say the same thing in different languages.
+The naming convention ties them together:
 
 ```
 bookkeeping/
   .cover.md
-  01-on-books.md
-  bookkeeping.ts          ← resource: validates what the chapters specify
+  11-on-specifications.md                    ← the chapter
+  11-on-specifications--validator.ts         ← the resource
 ```
 
-Other resources: images displayed by a chapter, scripts run by a chapter, data files referenced by a chapter. The rule is the same — the chapter motivates the resource, the resource evidences the chapter. A resource without a chapter is an orphan. A chapter about code without the code beside it forces the reader to search.
+The resource shares its chapter's number and name. The `--` separates the chapter name from the resource name. When you open the book directory, the chapter and its resource sort together — you see the documentation and the code side by side.
+
+A resource can be a validator (checks what the chapter specifies), a compiler (assembles what the chapter defines), a migration tool (performs what the chapter describes), an image (illustrates what the chapter explains), or any other non-markdown file. The rule is the same: the chapter motivates the resource, the resource evidences the chapter.
+
+Next and previous links skip resources — they go chapter to chapter. The chapter references its resource near the title, typically as an inline link: "The [validator](11-on-specifications--validator.ts) checks what this chapter specifies."
+
+A resource without a chapter is an orphan. Code that lives in a directory with no markdown chapter explaining it forces the reader to search. A chapter about code without the code beside it forces the reader to leave the book. Both break the promise that the book holds its own tools.
 
 ## What a chapter is not
 
