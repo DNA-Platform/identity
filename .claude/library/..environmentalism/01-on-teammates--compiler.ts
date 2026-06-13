@@ -1,6 +1,6 @@
 // Compiler resource for Environmentalism chapter 01: On Teammates
 // Reads Teamsmanship to generate .claude/agents/*.md files per the Teammate specification
-// Usage: npx tsx ..environmentalism/01-on-teammates.ts <library-path> [--write]
+// Usage: npx tsx ..environmentalism/01-on-teammates--compiler.ts <library-path> [--write]
 // Without --write, previews what would be generated. With --write, writes the files.
 
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs';

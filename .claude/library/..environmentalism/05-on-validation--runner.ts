@@ -1,5 +1,5 @@
 // Library validation runner — runs all validators from library root
-// Usage: npx tsx .tooling/validate.ts (from inside .claude/library/)
+// Usage: npx tsx ..environmentalism/05-on-validation--runner.ts (from inside .claude/library/)
 // Run before syncing to the identity repo to ensure consistency
 // See: teamspeak/07-travel.md for the sync protocol
 

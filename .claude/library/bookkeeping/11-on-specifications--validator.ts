@@ -2,14 +2,14 @@
 // Checks: metadata fields, full field order (catalogue/book/chapter), chapter signing,
 //         specification/catalogues plain-text labels, catalogue flat structure
 // Format: # Title, then - **field:** value bullets, then --- separator, then body
-// Usage: npx tsx bookkeeping.ts <library-path>
+// Usage: npx tsx 11-on-specifications--validator.ts <library-path>
 
 import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
 import { resolve, join, dirname } from 'path';
 
 const target = process.argv[2];
 if (!target) {
-  console.error('Usage: npx tsx bookkeeping.ts <library-path>');
+  console.error('Usage: npx tsx 11-on-specifications--validator.ts <library-path>');
   process.exit(1);
 }
 

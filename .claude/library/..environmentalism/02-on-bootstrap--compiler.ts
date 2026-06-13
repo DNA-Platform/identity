@@ -1,6 +1,6 @@
 // Compiler resource for Environmentalism chapter 02: On Bootstrap
 // Reads the library and generates CLAUDE.md per the Bootstrap specification
-// Usage: npx tsx ..environmentalism/02-on-bootstrap.ts <library-path> [--write]
+// Usage: npx tsx ..environmentalism/02-on-bootstrap--compiler.ts <library-path> [--write]
 // Without --write, previews. With --write, writes CLAUDE.md inside .claude/
 
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs';
@@ -10,7 +10,7 @@ const libraryPath = process.argv[2];
 const doWrite = process.argv.includes('--write');
 
 if (!libraryPath) {
-  console.error('Usage: npx tsx 02-on-bootstrap.ts <library-path> [--write]');
+  console.error('Usage: npx tsx 02-on-bootstrap--compiler.ts <library-path> [--write]');
   process.exit(1);
 }
 

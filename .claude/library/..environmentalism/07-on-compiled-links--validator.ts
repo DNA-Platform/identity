@@ -1,6 +1,6 @@
 // Validator resource for Environmentalism chapter 07: On Compiled Links
 // Checks that every markdown link in compiled files resolves to an existing file
-// Usage: npx tsx ..environmentalism/07-on-compiled-links.ts <claude-dir>
+// Usage: npx tsx ..environmentalism/07-on-compiled-links--validator.ts <claude-dir>
 // Where <claude-dir> is the .claude/ directory (e.g., .claude/)
 
 import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
@@ -8,7 +8,7 @@ import { resolve, join, dirname } from 'path';
 
 const claudeDir = process.argv[2];
 if (!claudeDir) {
-  console.error('Usage: npx tsx 07-on-compiled-links.ts <claude-dir>');
+  console.error('Usage: npx tsx 07-on-compiled-links--validator.ts <claude-dir>');
   process.exit(1);
 }
 

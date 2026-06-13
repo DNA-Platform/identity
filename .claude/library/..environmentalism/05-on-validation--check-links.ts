@@ -5,7 +5,7 @@
 // contains it — the same logic a markdown renderer uses.
 // Checks that the resolved path exists on disk.
 //
-// Usage: npx tsx .tooling/check-links.ts <root-dir> [--verbose]
+// Usage: npx tsx ..environmentalism/05-on-validation--check-links.ts <root-dir> [--verbose]
 //
 // <root-dir> is the directory to scan. Pass the project root to check
 // everything: library files, compiled agent/rule files, and CLAUDE.md.
@@ -18,7 +18,7 @@ const rootArg = process.argv[2];
 const verbose = process.argv.includes('--verbose');
 
 if (!rootArg) {
-  console.error('Usage: npx tsx check-links.ts <root-dir> [--verbose]');
+  console.error('Usage: npx tsx 05-on-validation--check-links.ts <root-dir> [--verbose]');
   process.exit(1);
 }
 

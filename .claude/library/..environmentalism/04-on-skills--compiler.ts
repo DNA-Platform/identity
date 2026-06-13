@@ -1,7 +1,7 @@
 // Compiler resource for Environmentalism chapter 04: On Skills
 // Reads the Skills and Commands book to generate .claude/skills/{name}/SKILL.md files
 // per the On Skills specification.
-// Usage: npx tsx ..environmentalism/04-on-skills.ts <library-path> [--write]
+// Usage: npx tsx ..environmentalism/04-on-skills--compiler.ts <library-path> [--write]
 // Without --write, previews what would change. With --write, writes the files.
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
@@ -11,7 +11,7 @@ const libraryPath = process.argv[2];
 const doWrite = process.argv.includes('--write');
 
 if (!libraryPath) {
-  console.error('Usage: npx tsx 04-on-skills.ts <library-path> [--write]');
+  console.error('Usage: npx tsx 04-on-skills--compiler.ts <library-path> [--write]');
   process.exit(1);
 }
 

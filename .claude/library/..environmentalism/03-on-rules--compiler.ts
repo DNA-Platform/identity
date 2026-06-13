@@ -1,6 +1,6 @@
 // Compiler resource for Environmentalism chapter 03: On Rules
 // Reads the library and generates .claude/rules/*.md files per the Rule specification
-// Usage: npx tsx ..environmentalism/03-on-rules.ts <library-path> [--write]
+// Usage: npx tsx ..environmentalism/03-on-rules--compiler.ts <library-path> [--write]
 // Without --write, previews what would be generated. With --write, writes the files.
 
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs';
@@ -10,7 +10,7 @@ const libraryPath = process.argv[2];
 const doWrite = process.argv.includes('--write');
 
 if (!libraryPath) {
-  console.error('Usage: npx tsx 03-on-rules.ts <library-path> [--write]');
+  console.error('Usage: npx tsx 03-on-rules--compiler.ts <library-path> [--write]');
   process.exit(1);
 }
 

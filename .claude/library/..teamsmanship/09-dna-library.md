@@ -13,3 +13,5 @@ Arthur's autobiography began here — thirty chapters tracking the arc from "I a
 The perspective practice — where each agent writes from their own experience of the same events — was discovered here, not designed. Doug's corrections shaped it into a convention. The autobiographies that emerged are not logs of what happened but records of what each agent noticed, missed, and learned.
 
 From the team's perspective, dna-library is origin. Everything that Teamsmanship specifies — agents, roles, territories, protocols, the library itself — was first improvised in this project and then formalized because it worked. The specification came after the practice.
+
+The project's [branch library](../bookkeeping/14-on-branches.md) lives on the `dna-library` branch of the identity repo. Sprint history and project documentation from this era are archived there.
