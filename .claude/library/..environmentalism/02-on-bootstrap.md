@@ -33,9 +33,15 @@ After a compaction, the context window is empty except for CLAUDE.md, the rules,
 
 Everything else. Protocols live in [Teamspeak](../teamspeak/.cover.md). Coding policy lives in [Coding Policy](../coding-policy/.cover.md). Agent identities live in [Teamsmanship](../..teamsmanship/.cover.md). Sprint plans live in [Projection](../projection/.cover.md) books. CLAUDE.md links to these — it does not duplicate them. The [embedding-and-linking pattern](00-the-environmentalist.md#the-embedding-and-linking-pattern) applies here as everywhere: embed the minimum, link to the library for depth.
 
-## The compilation pattern
+## The compiler
 
-A compiler could read the library catalogue, the current project state, and the team roster, then generate CLAUDE.md according to this specification. The specification defines the output shape. The compiler assembles the content. When the library changes, CLAUDE.md is recompiled — not hand-edited. This is the same pattern as [On Teammates](01-on-teammates.md): prose for the reader, code for the machine, one specification serving both.
+[02-on-bootstrap--compiler.ts](02-on-bootstrap--compiler.ts) reads the library catalogue, the current project state, and the team roster, then generates `CLAUDE.md` according to this specification. Run with `npx tsx 02-on-bootstrap--compiler.ts <library-path> [--write]`. Without `--write`, previews. With `--write`, writes the file inside `.claude/`.
+
+The specification defines the output shape. The compiler assembles the content. When the library changes, CLAUDE.md is recompiled — not hand-edited. This is the same pattern as [On Teammates](01-on-teammates.md): prose for the reader, code for the machine, one specification serving both.
+
+## Provenance
+
+CLAUDE.md is a generated artifact. It should not be hand-edited — when the library changes, the compiler regenerates it. The compilation chain: `02-on-bootstrap.md` specifies, `02-on-bootstrap--compiler.ts` compiles, `.claude/CLAUDE.md` is the output. A reader who finds the compiled file follows this chain backward to reach the specification that governs it.
 
 <!-- citations -->
 [librarianship]: ../..librarianship/.cover.md

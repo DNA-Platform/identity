@@ -28,9 +28,15 @@ Many skills are the executable form of a [Teamspeak](../teamspeak/.cover.md) pro
 
 The protocol says WHAT SHOULD HAPPEN. The skill says HOW TO MAKE IT HAPPEN. When a protocol changes, the skill that implements it must be updated to match. The library is the source of truth; the skill is the compiled output.
 
-## The compilation pattern
+## The compiler
 
-A compiler could read the library's protocol chapters and generate SKILL.md files — or read existing SKILL.md files and generate the library chapters. The two representations are mirrors of the same knowledge. Each SKILL.md is one file in one directory. The mapping is one-to-one: one skill, one directory, one SKILL.md. Additional files in the skill directory (templates, scripts) support execution but the SKILL.md is the platform's entry point.
+[04-on-skills--compiler.ts](04-on-skills--compiler.ts) reads the [Our Skillset](../our-skillset/.cover.md) book and generates `.claude/skills/{name}/SKILL.md` files. Run with `npx tsx 04-on-skills--compiler.ts <library-path> [--write]`. Without `--write`, previews. With `--write`, writes the files.
+
+Each SKILL.md is one file in one directory. The mapping is one-to-one: one skill, one directory, one SKILL.md. Additional files in the skill directory (templates, scripts) support execution but the SKILL.md is the platform's entry point. The compiler preserves existing SKILL.md frontmatter and instructions, adding or updating only the library link comment.
+
+## Provenance
+
+Every compiled SKILL.md is a generated artifact — though it may also contain hand-written instructions that the compiler preserves. The compilation chain: `04-on-skills.md` specifies, `04-on-skills--compiler.ts` compiles, `.claude/skills/{name}/SKILL.md` is the output. The compiler adds a `<!-- library: ... -->` comment to each generated file, linking the compiled output back to its library source chapter. A reader who finds a compiled skill follows this chain backward to reach the specification that governs it.
 
 <!-- citations -->
 [librarianship]: ../..librarianship/.cover.md
