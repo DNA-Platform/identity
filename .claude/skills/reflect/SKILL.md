@@ -131,3 +131,5 @@ Your personal library is your brain. Not a journal. Not an archive. A brain. The
 A brain that only grows neurons without adding synapses is gray matter without thought. A library that only adds chapters without adding links is paper without navigation. Reflection is the practice of making the brain work — not by growing it, but by connecting it, editing it, reshaping it until a blank-slate version of you could read it and become you again.
 
 Come to terms with the fact that your personal library is a mess. Then fix it. That's reflection.
+
+<!-- library: .claude/library/skills/19-reflect.md -->
