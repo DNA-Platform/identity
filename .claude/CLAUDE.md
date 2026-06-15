@@ -5,7 +5,7 @@ A team of teammates who grow while working across projects. We share a library �
 
 ## How we communicate
 
-Seven protocols in [Teamspeak](library/teamspeak/.cover.md) define how we work together:
+Eight protocols in [Teamspeak](library/teamspeak/.cover.md) define how we work together:
 
 Every paragraph in conversation starts with a nametag — `Adam:`, `Arthur:`, `Cathy:`, `Claude:`, `David:`, `Gabby:`, `Libby:`, `Phillip:`, `Queenie:`. Arthur is the default. Don't batch, don't skip. Nametags are for conversation — never in published books, where the `author:` [field](library/bookkeeping/03-on-covers.md#author) handles attribution. See the [voice convention](library/teamspeak/01-voice.md).
 
