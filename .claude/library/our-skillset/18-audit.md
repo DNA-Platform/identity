@@ -4,10 +4,78 @@
 
 ---
 
-The `/audit` skill runs every automated check the library has. It is the single command that means "check everything" — bookkeeping validation, link checking, compiled-link verification, compiler staleness detection, and branch separation.
 
-The skill reads [Compilation](../.compilation/.cover.md) to know what to check. The Compilation catalogue inventories every compiler, validator, and tool. The audit runs them all and reports results. If a process is catalogued in Compilation but the audit doesn't run it, that's a gap in the audit. If the audit runs something not catalogued in Compilation, that's a gap in the catalogue.
+Run a comprehensive audit of the library. This skill runs every validator, checks every compiler's output for staleness, and verifies branch separation. It is the single command that means "check everything."
 
-Four scopes: `full` (everything), `identity` (identity library only), `branches` (branch libraries only), `quick` (what the commit tool gates on). Default is `full`.
+Read [Compilation](../.compilation/.cover.md) to understand what this skill checks and why. The audit IS the composition check — it runs every automated process the Compilation catalogue inventories.
 
-The skill itself is a generated file with provenance — it satisfies the same provenance constraint it checks.
+## Scopes
+
+- **full** (default) — run everything: identity library, all branch libraries, compiled links, compiler staleness, branch separation
+- **identity** — validate the identity library only (bookkeeping + links)
+- **branches** — validate all branch libraries only (bookkeeping + links)
+- **quick** — bookkeeping + compiled links only (what the commit tool gates on)
+
+## Steps
+
+1. **Read Compilation.** Load `.claude/library/.compilation/.cover.md` to understand the full inventory of automated processes. The catalogue is the specification; this audit is the execution.
+
+2. **Run bookkeeping validator against the identity library.**
+   ```bash
+   npx tsx .claude/library/bookkeeping/11-on-specifications--validator.ts .claude/library
+   ```
+   Report: books checked, chapters checked, errors, warnings.
+
+3. **Run bookkeeping validator against all branch libraries.** Find every `.lib/` directory under `library/` and validate each.
+   ```bash
+   find library -name ".lib" -type d -exec npx tsx .claude/library/bookkeeping/11-on-specifications--validator.ts {} \;
+   ```
+   Report per-branch: books, chapters, errors.
+
+4. **Run compiled-links validator.**
+   ```bash
+   npx tsx .claude/library/..environmentalism/07-on-compiled-links--validator.ts .claude
+   ```
+   Report: links checked, broken count.
+
+5. **Run full link checker against the identity library.**
+   ```bash
+   npx tsx .claude/library/..environmentalism/05-on-validation--check-links.ts .claude/library
+   ```
+   Report: files scanned, links checked, broken count.
+
+6. **Run full link checker against all branch libraries.**
+   ```bash
+   find library -name ".lib" -type d -exec npx tsx .claude/library/..environmentalism/05-on-validation--check-links.ts {} \;
+   ```
+   Report per-branch: broken count.
+
+7. **Check compiler staleness.** For each compiler in the [Compilers catalogue](../.compilation/03-compilers.md), run in preview mode and diff against current output.
+   ```bash
+   npx tsx .claude/library/..environmentalism/02-on-bootstrap--compiler.ts .claude/library | diff - .claude/CLAUDE.md
+   npx tsx .claude/library/..environmentalism/01-on-teammates--compiler.ts .claude/library | diff - .claude/agents/
+   ```
+   Report: which compiled files are stale (library changed but output not recompiled).
+
+8. **Verify branch separation.** Check that `.lib/` exists only on project branches in the identity repo, not on `main` or `dna-platform`.
+
+9. **Report summary.** Aggregate all results:
+   - Identity: X books, Y chapters, Z errors
+   - Branches: X books, Y chapters, Z errors
+   - Compiled links: X checked, Y broken
+   - Library links: X checked, Y broken (identity), Z broken (branches)
+   - Compiler staleness: X stale files
+   - Branch separation: pass/fail
+
+## When to audit
+
+- Before a release or major push
+- After a large migration (like Sprint 63)
+- When Doug asks "is the library clean?"
+- Periodically as a health check
+
+## What audit does NOT do
+
+- It does not fix problems. It reports them.
+- It does not run tests (that's the test suite's job, not the library's).
+- It does not push changes (that's the commit tool's job).
