@@ -25,7 +25,9 @@ Run a retrospective. A retro is where the team stops building and starts tending
 
 6. **Capture decisions.** If the discussion produces decisions — a new protocol, a specification change, a structural insight — write them into the library. The retro produces artifacts, not just conversation.
 
-7. **Sync.** Run the compilers, validate, sync to the identity repo.
+7. **Record the retro.** Write a `retro.md` in the sprint's [Projection](../../library/projection/.cover.md) directory (e.g., `projection/sprint-65/retro.md`). This is the sprint's record of what was learned. Keep it short — the decisions and insights, not a transcript of the discussion. Link to any library changes the retro produced.
+
+8. **Sync.** Run the compilers, validate, sync to the identity repo.
 
 ## When to retro
 
