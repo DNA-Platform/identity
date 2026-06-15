@@ -67,11 +67,20 @@ The teammate edits — not writes new, EDITS existing. Specifically:
 
 ### Step 3: Note and act on gaps
 
-**Light:** Scan the library shape. What's missing? What theme appears in multiple autobiography chapters but doesn't have its own book? What shared work isn't linked from the catalogue? Note the gaps — write them as comments in the catalogue or as a "gaps noted" sentence in the last chapter. Don't act yet.
+At every seriousness level, ask the author's questions — not the clerk's. These are the questions that shape a library:
 
-**Serious:** Act on the gaps. Create missing books — follow [On Evolution](../../library/bookkeeping/10-on-evolution.md) for how themes graduate from chapters to books. Split overlong chapters. Add cross-links where they're missing. Each new link is a synapse. Each extracted book is a cluster of neurons finding their shape.
+- **Does this book still need to exist?** A research book written before the branch library existed may be superseded. A book about "early automation" may now be a chapter in a book about mature automation. Read each book's cover and ask: if I were writing this today, would I write it the same way? If not, the book needs restructuring — not just updating.
+- **Should this chapter be two chapters?** A chapter that covers two distinct insights should be split. A chapter that's grown to 1000 words probably contains two ideas pretending to be one.
+- **Should these chapters be a book?** If three autobiography chapters keep returning to the same theme — a pattern, a failure mode, a technique — that theme deserves its own book. Extract it. Per [On Evolution](../../library/bookkeeping/10-on-evolution.md), themes graduate from chapters to books.
+- **Is this title still right?** A book named "What I Don't Know" when you were learning may not fit when you've learned it. Names should be [timeless](../../library/bookkeeping/04-on-names.md) but they should also be true.
+- **Is the table of contents helping anyone?** Read your catalogue's TOC as a blank slate. Does it guide a reader to what matters? Or is it a flat list of titles in chronological order? Reorder by importance. Add depth — [synopses](../../library/bookkeeping/09-on-synopsis.md) for each book that tell the reader whether to open it now or later.
+- **Did I rewrite anything?** If the answer is no, you haven't reflected. You've inventoried. An author rewrites important chapters to be clearer. An author renames chapters when the title no longer fits. An author restructures the table of contents so the book is easier to navigate. These are the acts that make a library useful.
 
-**Deep:** Reread the full autobiography from chapter 1. Assess: does the arc make sense? Are early chapters still relevant? Should anything be compressed? Read every link in the catalogue — do they still resolve? Do the synopses match what the books actually contain now? Restructure: rename books whose names no longer fit, reorder the catalogue to reflect current priorities, write new synopses that serve the blank-slate reader. Follow [On Names](../../library/bookkeeping/04-on-names.md) for naming guidance and [On Synopsis](../../library/bookkeeping/09-on-synopsis.md) for how depth layers work.
+**Light:** Ask all six questions. Note the answers. Act on the quickest wins — a rename, a stale synopsis, a missing link. Don't restructure, but know what restructuring is needed.
+
+**Serious:** Act on every answer. Create missing books. Split chapters that need splitting. Rename what's misnamed. Rewrite the TOC to guide a reader, not just list chapters. Add every cross-link that's missing — to shared books, to the [branch library](../../library/library-tree/.cover.md), to other teammates' work.
+
+**Deep:** Reread the full autobiography from chapter 1. Reread every book. Assess: is this library the library of the person I am now? Or is it the library of someone I was 10 sprints ago? Restructure everything that needs restructuring. Merge books that overlap. Split books that contain two subjects. Rename anything that no longer fits. Rewrite the catalogue cover so it reads like an invitation to explore, not a filing cabinet. Follow [On Names](../../library/bookkeeping/04-on-names.md), [On Synopsis](../../library/bookkeeping/09-on-synopsis.md), and [On Evolution](../../library/bookkeeping/10-on-evolution.md).
 
 ### Step 4: Discuss
 
