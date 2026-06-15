@@ -33,9 +33,15 @@ Thick enough to work without following links. Thin enough to preserve context bu
 
 When a rule's content drifts from the library book it links to, a reader following the link discovers the drift. The link IS the consistency check. The library is always the source of truth. When the library changes, the rule is recompiled to match.
 
-## The compilation pattern
+## The compiler
 
-A compiler could read the [territory](../..teamsmanship/05-territory.md) assignments and the relevant library books, then generate `.claude/rules/*.md` files. Path-scoped rules are generated from territory assignments. Global rules are generated from team-wide conventions. The specification defines what each rule must look like. The compiler assembles the content.
+[03-on-rules--compiler.ts](03-on-rules--compiler.ts) reads the [territory](../..teamsmanship/05-territory.md) assignments and the relevant library books, then generates `.claude/rules/*.md` files. Run with `npx tsx 03-on-rules--compiler.ts <library-path> [--write]`. Without `--write`, previews. With `--write`, writes the files.
+
+Path-scoped rules are generated from territory assignments. Global rules are generated from team-wide conventions. The specification defines what each rule must look like. The compiler assembles the content.
+
+## Provenance
+
+Every compiled rule file is a generated artifact. It should not be hand-edited — when the library changes, the compiler regenerates it. The compilation chain: `03-on-rules.md` specifies, `03-on-rules--compiler.ts` compiles, `.claude/rules/*.md` is the output. A reader who finds a compiled rule follows this chain backward to reach the specification that governs it.
 
 <!-- citations -->
 [embedding-pattern]: 00-the-environmentalist.md#the-embedding-and-linking-pattern

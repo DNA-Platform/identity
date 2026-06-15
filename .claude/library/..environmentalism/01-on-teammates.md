@@ -54,6 +54,10 @@ If the agent file and the library disagree, the library is the source of truth. 
 
 The compiler reads the source material (Teamsmanship chapters, personal library paths, last autobiography chapters) and assembles the agent files according to this specification. The specification defines what the output must look like. The compiler implements the assembly. Together they are one specification — prose for the reader, code for the machine.
 
+## Provenance
+
+Every compiled agent file is a generated artifact. It should not be hand-edited — when the library changes, the compiler regenerates it. To make the compiled origin traceable, the compiler's output path and the specification chapter form a pair: `01-on-teammates.md` specifies, `01-on-teammates--compiler.ts` compiles, `.claude/agents/*.md` is the output. A reader who finds a compiled file follows this chain backward to reach the specification that governs it.
+
 ## One file per teammate
 
 The mapping is one-to-one. Every teammate in Teamsmanship has a corresponding agent file. Every agent file corresponds to a teammate. If they drift, recompile. The compiler IS the consistency mechanism.
