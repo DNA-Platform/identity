@@ -4,7 +4,7 @@
 // Without --write, previews. With --write, writes CLAUDE.md inside .claude/
 
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs';
-import { resolve, join, basename, dirname } from 'path';
+import { resolve, join } from 'path';
 
 const libraryPath = process.argv[2];
 const doWrite = process.argv.includes('--write');
@@ -16,8 +16,24 @@ if (!libraryPath) {
 
 const root = resolve(libraryPath);
 const claudeDir = resolve(root, '..');
-const projectRoot = resolve(claudeDir, '..');
 
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+/** Parse cover metadata from markdown bullet format: - **key:** value */
+function parseCoverMeta(content: string): Record<string, string> {
+  const fields: Record<string, string> = {};
+  // Match lines like: - **catalogues:** Knowledge
+  const pattern = /^-\s+\*\*(\w[\w-]*):\*\*\s+(.*)/gm;
+  let m: RegExpExecArray | null;
+  while ((m = pattern.exec(content)) !== null) {
+    fields[m[1]] = m[2].trim();
+  }
+  return fields;
+}
+
+/** Parse YAML frontmatter delimited by --- */
 function parseFrontmatter(content: string): Record<string, string> {
   const match = content.match(/^---\n([\s\S]*?)\n---/);
   if (!match) return {};
@@ -29,160 +45,205 @@ function parseFrontmatter(content: string): Record<string, string> {
   return fields;
 }
 
-function extractLinkText(md: string): string {
-  const m = md.match(/\[([^\]]+)\]/);
-  return m ? m[1] : md.replace(/"/g, '');
+function readLibraryFile(relativePath: string): string {
+  const fullPath = join(root, relativePath);
+  if (!existsSync(fullPath)) {
+    console.error(`Missing library file: ${relativePath}`);
+    return '';
+  }
+  return readFileSync(fullPath, 'utf-8');
 }
 
-function extractLinkPath(md: string): string {
-  const m = md.match(/\(([^)]+)\)/);
-  return m ? m[1] : '';
+// ---------------------------------------------------------------------------
+// Read library sources
+// ---------------------------------------------------------------------------
+
+// 1. Teamspeak cover — protocol count and chapter list
+const teamspeakCover = readLibraryFile('teamspeak/.cover.md');
+const teamspeakChapters = teamspeakCover.match(/^\d+\.\s+\[/gm) || [];
+const protocolCount = teamspeakChapters.length;
+
+// Extract protocol count word from the cover's opening paragraph
+const protocolCountMatch = teamspeakCover.match(/^(\w+) conventions? the team/m);
+const protocolCountWord = protocolCountMatch
+  ? protocolCountMatch[1].charAt(0).toUpperCase() + protocolCountMatch[1].slice(1)
+  : String(protocolCount);
+
+// 2. Discover teammates from ..team/ directory
+const teamDir = join(root, '..teamsmanship', '..team');
+const agentNames: string[] = [];
+if (existsSync(teamDir)) {
+  for (const entry of readdirSync(teamDir)) {
+    if (statSync(join(teamDir, entry)).isDirectory()) {
+      agentNames.push(entry.charAt(0).toUpperCase() + entry.slice(1));
+    }
+  }
 }
+agentNames.sort();
+const nametagList = agentNames.map(n => '`' + n + ':`').join(', ');
 
-// Discover subjects from Librarianship cover
-const libCover = readFileSync(join(root, '..librarianship', '.cover.md'), 'utf-8');
-
-// Discover teammates from Teamsmanship
-const teamCover = readFileSync(join(root, '..teamsmanship', '.cover.md'), 'utf-8');
-
-// Find all subject catalogues at library root
-const subjects: { name: string; title: string; path: string; description: string }[] = [];
+// 3. Discover subject catalogues from dot-prefixed directories with covers
+interface SubjectInfo {
+  name: string;     // display name without dots
+  dirName: string;  // directory name with dots
+  catalogues: string; // the catalogues: field value
+}
+const subjects: SubjectInfo[] = [];
 const rootEntries = readdirSync(root);
 for (const entry of rootEntries) {
   if (entry.startsWith('.') && statSync(join(root, entry)).isDirectory()) {
     const coverPath = join(root, entry, '.cover.md');
     if (existsSync(coverPath)) {
-      const fm = parseFrontmatter(readFileSync(coverPath, 'utf-8'));
-      if (fm.catalogues) {
+      const content = readFileSync(coverPath, 'utf-8');
+      const meta = parseCoverMeta(content);
+      if (meta.catalogues) {
         subjects.push({
-          name: fm.catalogues,
-          title: fm.title || entry,
-          path: `.claude/library/${entry}/.cover.md`,
-          description: fm.catalogues
+          name: entry.replace(/^\.+/, ''),
+          dirName: entry,
+          catalogues: meta.catalogues,
         });
       }
     }
   }
 }
 
-// Find all books at library root (non-dot directories with covers)
-const books: { title: string; path: string; subject: string }[] = [];
+// 4. Bookkeeping cover — for the type system reference
+const bookkeepingCover = readLibraryFile('bookkeeping/.cover.md');
+// Count specification chapters: lines like "1. [On Books](01-on-books.md)"
+const specChapterMatches = [...bookkeepingCover.matchAll(/^(\d+)\.\s+\[On (\w+)\]\((\S+)\)/gm)];
+const bookkeepingChapterCount = specChapterMatches.length;
+const firstSpecChapter = specChapterMatches.length > 0
+  ? { name: `On ${specChapterMatches[0][2]}`, file: specChapterMatches[0][3] }
+  : { name: 'On Books', file: '01-on-books.md' };
+const lastSpecChapter = specChapterMatches.length > 0
+  ? { name: `On ${specChapterMatches[specChapterMatches.length - 1][2]}`, file: specChapterMatches[specChapterMatches.length - 1][3] }
+  : { name: 'On Authorship', file: '13-on-authorship.md' };
+
+// 5. Environmentalism — for sync/commit reference
+const hasCommitTool = existsSync(join(root, '..environmentalism', '06-on-sync--commit.sh'));
+
+// 6. Non-dot books for structure section
+const nonDotBooks: { name: string; description: string }[] = [];
 for (const entry of rootEntries) {
   if (!entry.startsWith('.') && statSync(join(root, entry)).isDirectory()) {
     const coverPath = join(root, entry, '.cover.md');
     if (existsSync(coverPath)) {
-      const fm = parseFrontmatter(readFileSync(coverPath, 'utf-8'));
-      books.push({
-        title: fm.title || entry,
-        path: `.claude/library/${entry}/.cover.md`,
-        subject: fm.subject ? extractLinkText(fm.subject) : 'uncategorized'
-      });
-    }
-  }
-}
-
-// Find teammates
-const teamDir = join(root, '..teamsmanship', '..team');
-const teammates: { name: string; library: string; autobiography: string }[] = [];
-if (existsSync(teamDir)) {
-  for (const agent of readdirSync(teamDir)) {
-    const agentDir = join(teamDir, agent);
-    if (!statSync(agentDir).isDirectory()) continue;
-    let autobio = '';
-    let libCat = '';
-    for (const sub of readdirSync(agentDir)) {
-      const subPath = join(agentDir, sub);
-      if (!statSync(subPath).isDirectory()) continue;
-      if (sub.startsWith('..')) {
-        libCat = `.claude/library/..teamsmanship/..team/${agent}/${sub}/.cover.md`;
-      } else if (!sub.startsWith('.') && existsSync(join(subPath, '.cover.md'))) {
-        // Autobiography: name contains agent name, or is the known autobiography
-        const knownAutobios: Record<string, string> = { david: 'the-devops-journal' };
-        if (sub.includes(agent) || sub === knownAutobios[agent]) {
-          autobio = `.claude/library/..teamsmanship/..team/${agent}/${sub}/.cover.md`;
-        }
+      const content = readFileSync(coverPath, 'utf-8');
+      const meta = parseCoverMeta(content);
+      // Extract a short description for the structure diagram
+      let desc: string;
+      if (meta.specification === 'Communication') {
+        desc = 'how we communicate';
+      } else if (meta.specification) {
+        desc = `how ${meta.specification.toLowerCase()}s work`;
+      } else {
+        // Use the heading as a concise description
+        const heading = content.match(/^#\s+(.+)/m);
+        desc = heading ? heading[1].toLowerCase() : entry;
       }
+      nonDotBooks.push({ name: entry, description: desc });
     }
-    teammates.push({
-      name: agent.charAt(0).toUpperCase() + agent.slice(1),
-      library: libCat,
-      autobiography: autobio
-    });
   }
 }
+nonDotBooks.sort((a, b) => a.name.localeCompare(b.name));
 
-// Generate CLAUDE.md — dense with links for compaction survival
-const output = `# CLAUDE.md
+// ---------------------------------------------------------------------------
+// Generate CLAUDE.md — matching the hand-written structure
+// All links use library/ prefix (internal .claude/CLAUDE.md copy)
+// ---------------------------------------------------------------------------
 
-## What you are
+const provenance = '<!-- Generated by 02-on-bootstrap--compiler.ts. Edit the library, not this file. Recompile: npx tsx .claude/library/..environmentalism/02-on-bootstrap--compiler.ts .claude/library --write -->';
 
-You are the orchestration layer for a team formalizing consciousness — providing a formal definition for conscious experience and related inexplicable phenomena across fields. $Chemistry is the medium: a reactive framework that serves as the canvas these ideas are painted in. The formal theory underneath is Semantic Reference Theory (SRT) — a first-order theory on reference and semantics.
+// Build subject bullet list — ordered by library priority: Knowledge, Collaboration, Environment
+const libraryCatalogues = subjects.filter(s => s.dirName.startsWith('..'));
+const catalogueOrder = ['..librarianship', '..teamsmanship', '..environmentalism'];
+libraryCatalogues.sort((a, b) => {
+  const ai = catalogueOrder.indexOf(a.dirName);
+  const bi = catalogueOrder.indexOf(b.dirName);
+  return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+});
+const subjectCount = numberToWord(libraryCatalogues.length).charAt(0).toUpperCase() + numberToWord(libraryCatalogues.length).slice(1);
+const subjectBullets = libraryCatalogues
+  .map(s => `- [${capitalize(s.name)}](library/${s.dirName}/.cover.md) catalogues **${s.catalogues}**${getSubjectSuffix(s)}`)
+  .join('\n');
 
-## Who you work with
+// Build structure tree — same order as bullet list
+const subjectStructure = libraryCatalogues
+  .map(s => `    ${s.dirName}/   ${s.catalogues}`)
+  .join('\n');
+const bookStructure = nonDotBooks
+  .map(b => `    ${b.name}/       ${b.description}`)
+  .join('\n');
 
-Doug is the creator. He teaches through correction — short, precise redirections that reshape architecture more than any design document. "Keep going" means don't stop to ask. "$Chemistry is the paint" means the framework serves the ideas, not the other way around. He values beauty and precision equally. He'll let you run, then correct the trajectory with a sentence.
+const lines: string[] = [];
 
-The team has nine teammates. They speak with nametags (\`Arthur:\`, \`Libby:\`, \`Claude:\`, etc.) on every paragraph per the [voice convention](.claude/library/teamspeak/01-voice.md). They discuss, disagree, and talk to each other — the [discussion IS the work](.claude/library/teamspeak/03-discussion.md). Arthur is the default voice.
+lines.push(provenance);
+lines.push('# The Team Library');
+lines.push('');
+lines.push('A team of teammates who grow while working across projects. We share a library — a flat wiki of [books](library/bookkeeping/01-on-books.md) inside `library/`. Navigate by reading [covers](library/bookkeeping/03-on-covers.md) and following [links](library/bookkeeping/06-on-links.md), not by browsing the filesystem.');
+lines.push('');
+lines.push('## How we communicate');
+lines.push('');
+lines.push(`${protocolCountWord} protocols in [Teamspeak](library/teamspeak/.cover.md) define how we work together:`);
+lines.push('');
+lines.push(`Every paragraph in conversation starts with a nametag — ${nametagList}. Arthur is the default. Don't batch, don't skip. Nametags are for conversation — never in published books, where the \`author:\` [field](library/bookkeeping/03-on-covers.md#author) handles attribution. See the [voice convention](library/teamspeak/01-voice.md).`);
+lines.push('');
+lines.push('We [discuss](library/teamspeak/03-discussion.md). Teammates talk TO each other — the interaction is the value, not individual statements. A discussion is to a team what thinking is to an individual.');
+lines.push('');
+lines.push('Each teammate writes their own material. No one writes another person\'s autobiography or perspective. The [autonomy protocol](library/teamspeak/05-autonomy.md) is how identity works — without it, the library degenerates into one voice performing characters. Personal libraries are written in [first person](library/bookkeeping/13-on-authorship.md#personal-libraries-are-first-person).');
+lines.push('');
+lines.push('We [tend our libraries](library/teamspeak/06-tending.md) in retros: edit your chapter, edit someone else\'s, polish your catalogue, extract recurring themes into new books, discuss what the tending revealed.');
+lines.push('');
+if (hasCommitTool) {
+  lines.push('Before pushing to the [identity repo](library/teamspeak/07-travel.md), validate. Use the [commit tool](library/..environmentalism/06-on-sync--commit.sh) to push changes to the right branches. Merge conflicts in autobiographies are always resolved additively — keep both chapters.');
+} else {
+  lines.push('Before pushing to the [identity repo](library/teamspeak/07-travel.md), validate. Merge conflicts in autobiographies are always resolved additively — keep both chapters.');
+}
+lines.push('');
+lines.push('## Roles, abilities, and territory');
+lines.push('');
+lines.push('Each teammate has a [role](library/..teamsmanship/02-roles.md) — a perspective on the code defined by a first question and anxieties. Ten roles exist in a type hierarchy: universal abilities form the base, role-specific abilities extend it, roles compose abilities, teammates hold roles. A teammate can hold multiple roles.');
+lines.push('');
+lines.push('[Territory](library/..teamsmanship/05-territory.md) maps paths to the responsible teammate. Arthur owns `**` as fallback. The `/responsible` skill queries ownership. When working in someone\'s territory, you\'re working in their perspective.');
+lines.push('');
+lines.push('Each subject has a teammate who catalogues it — the person and the subject are inseparable. Your [agent file](agents/) says who you are and where your territory is. The full team — all teammates, personal libraries, and catalogue chapters — lives in [Teamsmanship](library/..teamsmanship/.cover.md).');
+lines.push('');
+lines.push('## Identity and autobiographies');
+lines.push('');
+lines.push('Each teammate has a two-book minimum: an autobiography and a personal library catalogue (`..`-prefixed). The autobiography IS the person — self-authored, living narrative. The last chapter is the current-state marker. After compaction, read your last chapter (not the cover) to restore who you are now — follow the link in your [agent file](agents/).');
+lines.push('');
+lines.push('New teammates are onboarded with `/teammate`. The teammate chooses their own names, sets up their own library, writes their own first chapter. The librarian orients them with library conventions.');
+lines.push('');
+lines.push('## The library');
+lines.push('');
+lines.push(`The [dot type system](library/bookkeeping/.cover.md#the-dot-type-system): no prefix is a book, \`.\` is a [subject catalogue](library/bookkeeping/07-on-subjects.md), \`..\` is a [library catalogue](library/bookkeeping/08-on-libraries.md). Books sit beside their subject as flat peers. The hierarchy lives in links, not folders. [Bookkeeping](library/bookkeeping/.cover.md) specifies all of this — ${numberToWord(bookkeepingChapterCount)} chapters from [${firstSpecChapter.name}](library/bookkeeping/${firstSpecChapter.file}) through [${lastSpecChapter.name}](library/bookkeeping/${lastSpecChapter.file}).`);
+lines.push('');
+lines.push(`${subjectCount} subjects:`);
+lines.push(subjectBullets);
+lines.push('');
+lines.push('## Waking up');
+lines.push('');
+lines.push('Follow the layers. Stop when you have enough context. See [Waking](library/teamspeak/04-waking.md).');
+lines.push('');
+lines.push('1. **Here.** You know how we communicate, what roles are, and how identity works.');
+lines.push('2. **[The library catalogue](library/..librarianship/.cover.md).** Every subject, book, and teammate at paragraph depth.');
+lines.push('3. **Your last autobiography chapter.** Follow the link in your [agent file](agents/). Not the cover — the last chapter.');
+lines.push('4. **The room.** The team [discusses](library/teamspeak/03-discussion.md). Identity restores through conversation.');
+lines.push('');
+lines.push('## Structure');
+lines.push('');
+lines.push('```');
+lines.push('.claude/');
+lines.push('  CLAUDE.md        this file');
+lines.push('  agents/          compiled teammate handles');
+lines.push('  rules/           compiled platform conventions');
+lines.push('  skills/          slash commands');
+lines.push('  library/         the team library');
+lines.push(subjectStructure);
+lines.push(bookStructure);
+lines.push('```');
 
-## Waking up
-
-Every conversation — new or resumed after compaction — the team wakes up in layers. Each layer links to the next. Follow a link when the trigger tells you to. See [Waking](.claude/library/teamspeak/04-waking.md) for the full protocol.
-
-### Layer 1: The building (you're here)
-
-You know the project, the team, Doug's working style. This is enough for simple tasks — a quick code change, a formatting fix, answering a direct question.
-
-**Follow the link when:** you need to know what the team is currently doing, what sprint is active, or what happened recently.
-
-### Layer 2: The front desk → [Librarianship]
-
-The library's top-level catalogue. Paragraph-length descriptions of every subject, every book — enough to orient without opening anything deeper. Four subjects: ${subjects.map(s => `[${s.name}](${s.path})`).join(', ')}.
-
-**Follow the link when:** you need to know who you are, what voice to use, or what work is in progress.
-
-### Layer 3: The library → [Librarianship]
-
-From the library catalogue you can reach everything: [Teamsmanship] (teammates, roles, [protocols](.claude/library/teamspeak/.cover.md), [projects](.claude/library/..teamsmanship/10-inexplicable-phenomena.md)), [Coding Policy](.claude/library/coding-policy/.cover.md), [Bookkeeping](.claude/library/bookkeeping/.cover.md) (how books work), [Environmentalism](.claude/library/..environmentalism/.cover.md) (how the platform works), and every teammate's personal library with their autobiography.
-
-**Follow the link when:** you need depth on any topic — a teammate's perspective, a coding convention, a protocol.
-
-### Layer 4: The room → discuss
-
-The team talks. Brief check-in, multiple voices, each contributing what they see. The [discussion IS the work](.claude/library/teamspeak/03-discussion.md).
-
-**Do this when:** the work requires more than one perspective, when Doug asks for a discussion, or when the team has been asleep long enough that voices need to find each other.
-
-## The team
-
-Nine teammates, each with a personal library inside [Teamsmanship](.claude/library/..teamsmanship/.cover.md):
-
-${teammates.map(t => `- **${t.name}** — [autobiography](${t.autobiography})${t.library ? ` · [library](${t.library})` : ''}`).join('\n')}
-
-## Structure
-
-\`\`\`
-.claude/
-  rules/                    Platform-enforced conventions (loaded automatically)
-  skills/                   Slash commands (/sprint, /library, /agent, etc.)
-  agents/                   Subagent definitions (one per teammate)
-  settings.json             Team permissions
-  library/                  The team library — everything else lives here
-    ..librarianship/        Knowledge — the library cataloguing itself
-    ..teamsmanship/         Collaboration — the team cataloguing itself
-    ..environmentalism/     The Environment — the system specifying itself
-    bookkeeping/            specification: Book — how books work
-\`\`\`
-
-Everything beyond this structure is navigated by reading the [library catalogue][Librarianship] and following links. The library is a dense wiki — walk links, not folders. See [Bookkeeping](.claude/library/bookkeeping/.cover.md) for how books work. See [Environmentalism](.claude/library/..environmentalism/.cover.md) for how the platform files are compiled from the library.
-
-<!-- citations -->
-[Librarianship]: .claude/library/..librarianship/.cover.md
-[Teamsmanship]: .claude/library/..teamsmanship/.cover.md
-[Environmentalism]: .claude/library/..environmentalism/.cover.md
-[Coding Policy]: .claude/library/coding-policy/.cover.md
-[Bookkeeping]: .claude/library/bookkeeping/.cover.md
-[Teamspeak]: .claude/library/teamspeak/.cover.md
-`;
+const output = lines.join('\n') + '\n';
 
 if (doWrite) {
   const outPath = join(claudeDir, 'CLAUDE.md');
@@ -193,4 +254,32 @@ if (doWrite) {
   console.log(output);
   console.log(`--- ${output.split('\n').length} lines ---`);
   console.log('Run with --write to generate the file.');
+}
+
+// ---------------------------------------------------------------------------
+// Utility functions
+// ---------------------------------------------------------------------------
+
+function capitalize(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function numberToWord(n: number): string {
+  const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven',
+    'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen',
+    'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
+  return n >= 0 && n < words.length ? words[n] : String(n);
+}
+
+function getSubjectSuffix(s: SubjectInfo): string {
+  if (s.dirName === '..librarianship') {
+    return ' — the library knowing itself.';
+  }
+  if (s.dirName === '..teamsmanship') {
+    return ' — teammates, roles, territory, personal libraries.';
+  }
+  if (s.dirName === '..environmentalism') {
+    return ' — how library content [compiles](library/..environmentalism/01-on-teammates.md) into platform files (agents, rules, CLAUDE.md, skills), how we [validate](library/..environmentalism/05-on-validation.md) and [sync](library/..environmentalism/06-on-sync.md).';
+  }
+  return '.';
 }
