@@ -27,6 +27,10 @@ A sprint chapter contains:
 
 The last sprint chapter is the current state. A reader who opens the last chapter should know where the project stands right now, the same way the last chapter of an autobiography is the current-state marker.
 
+## Task ownership
+
+Every sprint task must have an explicit owner assigned. The owner is determined by subject: Knowledge tasks go to the librarian, Collaboration tasks go to the architect, Environment tasks go to the environmentalist. See [Roles](../..teamsmanship/02-roles.md) for the full role definitions. When a task spans subjects, the owner is the teammate whose subject is primary. Unowned tasks are a planning failure — they get done by whoever notices them, which means they get done without the right perspective.
+
 ## Projection and project books
 
 A project may have both a project book in the main branch (catalogued by [Teamsmanship](../..teamsmanship/.cover.md) under Collaboration) and a Projection book in its branch. They are not redundant. The project book records the team's cross-cutting perspective — architecture decisions, team dynamics, what mattered at the identity level. Projection records the detailed story in the branch's terms — what was built, what broke, what was learned about this specific subject.

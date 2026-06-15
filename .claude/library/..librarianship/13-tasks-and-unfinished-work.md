@@ -55,5 +55,5 @@ Sprint plans live in project books within the `.projects/` subject. Each sprint 
 This means sprint planning and library tending use the same mechanism: create the structure, mark what's unfinished, write the content, clean the markers. The library IS the project management system.
 
 <!-- citations -->
-[subjects]: 04-subjects-and-catalogues.md
+[subjects]: ../bookkeeping/07-on-subjects.md
 [anatomy]: ../bookkeeping/01-on-books.md

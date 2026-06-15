@@ -33,9 +33,11 @@ Cross-project links between repos use `../project/` relative paths — projects 
 
 ## Known branches
 
-### [$Chemistry](../../../.lib/chemistry/..representivity/.cover.md) — Representation
+See [chapter 05](05-branches.md) for the full catalogue of known branches with repo, location, cataloguing book, and sprint book for each.
 
-The branch for the $Chemistry reactive framework, at `.lib/chemistry/` in the identity repo. Catalogued by [Representivity](../../../.lib/chemistry/..representivity/.cover.md). Sprint history in [Projection](../../../.lib/chemistry/projection/.cover.md). $Chemistry is about representation — how reactive state represents something beyond itself — and the branch records the team's knowledge of building that representational framework.
+### [$Chemistry](../../../library/chemistry/.lib/..representivity/.cover.md) — Representation
+
+The branch for the $Chemistry reactive framework, at `library/chemistry/.lib/` in the inexplicable-phenomena repo. Catalogued by [Representivity](../../../library/chemistry/.lib/..representivity/.cover.md). Sprint history in [Projection](../../../library/chemistry/.lib/projection/.cover.md). $Chemistry is about representation — how reactive state represents something beyond itself — and the branch records the team's knowledge of building that representational framework.
 
 <!-- citations -->
 [bookkeeping]: ../bookkeeping/.cover.md

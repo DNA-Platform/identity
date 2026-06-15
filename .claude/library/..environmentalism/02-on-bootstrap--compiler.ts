@@ -142,7 +142,7 @@ The library's top-level catalogue. Paragraph-length descriptions of every subjec
 
 ### Layer 3: The library → [Librarianship]
 
-From the library catalogue you can reach everything: [Teamsmanship] (teammates, roles, [protocols](.claude/library/teamspeak/.cover.md), [projects](.claude/library/inexplicable-phenomena/.cover.md)), [Coding Policy](.claude/library/coding-policy/.cover.md), [Bookkeeping](.claude/library/bookkeeping/.cover.md) (how books work), [Environmentalism](.claude/library/..environmentalism/.cover.md) (how the platform works), and every teammate's personal library with their autobiography.
+From the library catalogue you can reach everything: [Teamsmanship] (teammates, roles, [protocols](.claude/library/teamspeak/.cover.md), [projects](.claude/library/..teamsmanship/10-inexplicable-phenomena.md)), [Coding Policy](.claude/library/coding-policy/.cover.md), [Bookkeeping](.claude/library/bookkeeping/.cover.md) (how books work), [Environmentalism](.claude/library/..environmentalism/.cover.md) (how the platform works), and every teammate's personal library with their autobiography.
 
 **Follow the link when:** you need depth on any topic — a teammate's perspective, a coding convention, a protocol.
 

@@ -4,7 +4,7 @@
 
 ---
 
-[Inexplicable Phenomena](../inexplicable-phenomena/.cover.md) is the team's second project. Formalizing consciousness — providing a formal definition for conscious experience and related inexplicable phenomena across fields. $Chemistry is the canvas these ideas are painted in.
+Inexplicable Phenomena is the team's second project. Formalizing consciousness — providing a formal definition for conscious experience and related inexplicable phenomena across fields. $Chemistry is the canvas these ideas are painted in.
 
 This project changed the team. In dna-library, we learned to work together. Here, we learned what the work is for. The reactive framework is not the goal — it is the medium. Scope-tracked getters and object-pure views serve the same purpose as oil paint and stretched canvas: they make the invisible visible.
 

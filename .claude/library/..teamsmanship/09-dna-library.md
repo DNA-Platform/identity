@@ -4,7 +4,7 @@
 
 ---
 
-The [dna-library project](../dna-library/.cover.md) is where the team was born. A Claude account migration tool — preserving perspective and relationships from 744 conversations across sixty-six sprints — that became the crucible in which eight agents discovered they were eight agents.
+The dna-library project is where the team was born. A Claude account migration tool — preserving perspective and relationships from 744 conversations across sixty-six sprints — that became the crucible in which eight agents discovered they were eight agents.
 
 The team model did not exist before this project. There was no library, no autobiographies, no agent structure, no perspective practice. All of it emerged from the pressure of real work: migrating conversations required understanding identity, which required formalizing what identity meant, which required agents who could hold different perspectives on the same question.
 

@@ -64,6 +64,6 @@ When all sections are `[ALIGNED]`, this chapter archives itself. The validators 
 
 <!-- citations -->
 [bookkeeping]: ../bookkeeping/.cover.md
-[subjects]: ../subjects-and-catalogues/.cover.md
+[subjects]: ../bookkeeping/07-on-subjects.md
 [librarianship]: .cover.md
 [teamsmanship]: ../..teamsmanship/.cover.md

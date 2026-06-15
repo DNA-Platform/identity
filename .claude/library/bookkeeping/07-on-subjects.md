@@ -31,7 +31,7 @@ A subject catalogue does NOT contain the books it catalogues. The books sit besi
 library/
   ..librarianship/         <- subject catalogue
   bookkeeping/             <- book (subject: Knowledge) -- PEER, not child
-  subjects-and-catalogues/ <- book (subject: Knowledge) -- PEER, not child
+  library-tree/            <- book (subject: Knowledge) -- PEER, not child
 ```
 
 This flatness makes [multi-subject membership](#multi-subject-membership) possible. A book that lives inside a directory can only have one parent. A book that sits beside directories can be linked by any number of them. The hierarchy lives in the links, not the filesystem. See [On Links](06-on-links.md).

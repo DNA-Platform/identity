@@ -50,4 +50,4 @@ Use the perspective practice when:
 The perspective is the teammate's way of making the invisible visible. The library records what was learned. The perspective records what was SEEN.
 
 <!-- citations -->
-[reading cost]: 08-the-reading-cost-architecture.md
+[reading cost]: ../bookkeeping/09-on-synopsis.md
