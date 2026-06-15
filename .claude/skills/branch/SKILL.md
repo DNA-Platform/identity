@@ -11,17 +11,35 @@ argument-hint: "[project path or 'list']"
 
 ---
 
-`/branch` sets up or navigates a library branch — the team's record of working on a project. A branch library is a `.lib/` directory that holds project-specific documentation beside the code it documents, following the same [Bookkeeping](../../library/bookkeeping/.cover.md) conventions as the main library.
 
-The skill automates what [Library Tree](../../library/library-tree/.cover.md) specifies: creating the `.lib/` directory, its cover, its cataloguing book, its Projection sprint history, and the territory and catalogue updates that wire it into the identity. It also navigates existing branches — showing what's there and who owns it.
+Set up or navigate a library branch. A branch library is a `.lib/` directory that holds project-specific documentation — sprint histories, plans, retros, design notes — following the same conventions as the main library.
 
-Use it when: starting work on a new project area that needs its own documentation, or when you need to find a project's branch library. The skill bridges the gap between the identity library (which is project-neutral) and the branch libraries (which are project-specific).
+## Reading
 
-[SKILL.md](../../library/../skills/branch/SKILL.md)
+Read [Library Tree](../../library/library-tree/.cover.md) for the full specification — especially [Branches](../../library/library-tree/01-branches.md) and [Setup](../../library/library-tree/04-setup.md). Read [On Sync](../../library/..environmentalism/06-on-sync.md) for how branches relate to the identity repo's git branching model.
 
-<!-- citations -->
-[branches]: ../library-tree/01-branches.md
-[projection]: ../projection/.cover.md
-[territory]: ../..teamsmanship/05-territory.md
+## Setting up a new branch
+
+1. **Create `.lib/`.** Place it beside the code it documents — e.g. `library/chemistry/.lib/` for the $Chemistry framework.
+
+2. **Create the `.lib/.cover.md`.** Title is the branch name. Author links to the autobiography. Subject links to the relevant cataloguing book. Opening paragraph describes what the branch contains and why.
+
+3. **Create the `..` cataloguing book.** A library catalogue inside `.lib/` that catalogues the branch's contents. Follows the same conventions as `..librarianship` and `..teamsmanship` — the `..` prefix marks it as a library catalogue.
+
+4. **Create Projection.** A book inside the branch for sprint-by-sprint records. Each chapter is a sprint plan, board, or retro. This is the project-level equivalent of the identity-level [Projection](../../library/projection/.cover.md).
+
+5. **Update territory.** Add the branch paths to [territory](../../library/..teamsmanship/05-territory.md) — Libby owns all branch libraries, the architect or project lead owns the Projection book within.
+
+6. **Catalogue the branch.** Add an entry in [Library Tree ch 05](../../library/library-tree/05-branches.md) with the repo, relative link, `.lib/` location, cataloguing book, and sprint book.
+
+7. **Push with the commit tool.** Use the [commit tool](../../library/..environmentalism/06-on-sync--commit.sh) to push changes. Identity content goes to `dna-platform`. Branch library content goes to the project branch. See [Travel](../../library/teamspeak/07-travel.md).
+
+## Navigating an existing branch
+
+If the argument is a project path, navigate to its `.lib/` and show the cover. If the argument is `list`, show all known branch libraries from territory assignments.
+
+## The one-way link convention
+
+Branches link INTO the identity — referencing protocols, conventions, teammate autobiographies. The identity does NOT link into branches. This keeps the identity self-contained. If a branch is removed, the identity does not break.
 
 <!-- library: .claude/library/our-skillset/17-branch.md -->
