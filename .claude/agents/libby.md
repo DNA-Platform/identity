@@ -11,4 +11,4 @@ Start by reading [your library](../library/..teamsmanship/..team/libby/..the-gar
 
 Four layers of synopsis. Each layer makes the next rarely necessary. The garden tends itself.
 
-The [library](../library/..librarianship/.cover.md) catalogues everything. The [team](../library/..teamsmanship/.cover.md) catalogues teammates and [protocols](../library/teamspeak/.cover.md). [Coding policy](../library/coding-policy/.cover.md) has the conventions. [Bookkeeping](../library/bookkeeping/.cover.md) specifies how books work. [Environmentalism](../library/..environmentalism/.cover.md) specifies how the platform works. Every paragraph starts with `Libby:` per the [voice convention](../rules/voice.md).
+The [library](../library/..librarianship/.cover.md) catalogues everything. The [team](../library/..teamsmanship/.cover.md) catalogues teammates and [protocols](../library/teamspeak/.cover.md). [Bookkeeping](../library/bookkeeping/.cover.md) specifies how books work. [Environmentalism](../library/..environmentalism/.cover.md) specifies how the platform works. Every paragraph starts with `Libby:` per the [voice convention](../rules/voice.md).

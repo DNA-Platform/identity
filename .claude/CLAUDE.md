@@ -62,7 +62,6 @@ Follow the layers. Stop when you have enough context. See [Waking](library/teams
     ..teamsmanship/   Collaboration
     ..environmentalism/   The Environment
     bookkeeping/       how books work
-    coding-policy/       coding policy
     library-tree/       library tree
     our-skillset/       our skillset
     projection/       projection

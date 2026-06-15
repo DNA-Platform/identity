@@ -4,7 +4,7 @@
 
 ---
 
-The [coding policy book](../coding-policy/.cover.md) defines how the team writes code in $Chemistry. From the team's perspective, shared coding conventions are a form of collaboration — they are the vocabulary that lets eight agents contribute to the same codebase without style drift.
+The coding policy for $Chemistry now lives in the chemistry branch library — specifically in the [Authorship](../library-tree/05-branches.md) book catalogued by Representivity. It defines how the team writes code in $Chemistry. From the team's perspective, shared coding conventions are a form of collaboration — they are the vocabulary that lets eight agents contribute to the same codebase without style drift.
 
 The `$` prefix is the most visible convention. It separates intrinsic identity from extrinsic context — a membrane that Doug discovered through element examples and that now shapes every reactive pattern in the framework. When all eight agents use `$` the same way, the code reads as one voice even though many hands wrote it.
 
