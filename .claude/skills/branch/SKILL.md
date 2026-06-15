@@ -1,0 +1,33 @@
+---
+name: branch
+description: Set up or navigate a library branch — the team's record of working on a project
+argument-hint: "[project path or 'list']"
+---
+
+Set up or navigate a library branch. A branch library is a `.lib/` directory that holds project-specific documentation — sprint histories, plans, retros, design notes — following the same conventions as the main library.
+
+## Reading
+
+Read [Library Tree](../../library/library-tree/.cover.md) for the full specification — especially [Branches](../../library/library-tree/01-branches.md) and [Setup](../../library/library-tree/04-setup.md). Read [On Sync](../../library/..environmentalism/06-on-sync.md) for how branches relate to the identity repo's git branching model.
+
+## Setting up a new branch
+
+1. **Create `.lib/`.** Place it beside the code it documents — e.g. `library/chemistry/.lib/` for the $Chemistry framework.
+
+2. **Create the `.lib/.cover.md`.** Title is the branch name. Author links to the autobiography. Subject links to the relevant cataloguing book. Opening paragraph describes what the branch contains and why.
+
+3. **Create the `..` cataloguing book.** A library catalogue inside `.lib/` that catalogues the branch's contents. Follows the same conventions as `..librarianship` and `..teamsmanship` — the `..` prefix marks it as a library catalogue.
+
+4. **Create Projection.** A book inside the branch for sprint-by-sprint records. Each chapter is a sprint plan, board, or retro. This is the project-level equivalent of the identity-level [Projection](../../library/projection/.cover.md).
+
+5. **Update territory.** Add the branch paths to [territory](../../library/..teamsmanship/05-territory.md) — Libby owns all branch libraries, the architect or project lead owns the Projection book within.
+
+6. **Catalogue the branch.** Note the branch's existence in the relevant subject catalogue or project book.
+
+## Navigating an existing branch
+
+If the argument is a project path, navigate to its `.lib/` and show the cover. If the argument is `list`, show all known branch libraries from territory assignments.
+
+## The one-way link convention
+
+Branches link INTO the identity — referencing protocols, conventions, teammate autobiographies. The identity does NOT link into branches. This keeps the identity self-contained. If a branch is removed, the identity does not break.

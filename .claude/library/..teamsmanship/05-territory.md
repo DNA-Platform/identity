@@ -14,6 +14,8 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 - `**` — all paths (fallback owner)
 - Primary: workspace config, `package.json`, [CLAUDE.md](../../../CLAUDE.md), `.claude/` infrastructure
 - Primary: `.claude/library/..teamsmanship/**` — [Teamsmanship](.cover.md), the Collaboration catalogue
+- `.claude/library/projection/**` — the identity-level sprint book
+- `../inexplicable-phenomena/library/chemistry/.lib/projection/**` — the $Chemistry sprint book (redundant with Libby, intentional)
 - Roles: [Architect](02-roles.md#architect)
 
 ### [Cathy](..team/cathy/..the-canvas-paints-itself/.cover.md) — Framework Engineer
@@ -25,6 +27,8 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 
 ### [Libby](..team/libby/..the-garden-tends-itself/.cover.md) — Librarian
 - `.claude/library/**` — the entire library
+- `../inexplicable-phenomena/library/chemistry/.lib/**` — the $Chemistry branch library
+- (Future branch libraries get added here as they're created)
 - Roles: [Librarian](02-roles.md#librarian)
 
 ### [Adam](..team/adam/..what-the-wire-carries/.cover.md) — Automation Engineer
