@@ -21,9 +21,19 @@ cp .claude/CLAUDE.md .
 
 The project repo's `.gitignore` should include `.claude/` and `CLAUDE.md` so the identity stays private.
 
-## The two-push workflow
+## Use the commit tool
 
-Identity changes and project changes go to different branches:
+The [commit tool](../..environmentalism/06-on-sync--commit.sh) is how you push changes. Run it from the project root with a commit message:
+
+```
+bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit message"
+```
+
+The tool handles everything: it detects what changed, validates, routes identity changes to the organization branch, routes `.lib/` changes to the project branch, routes project code to the project repo, runs downstream merges, and pushes. Do not run ad-hoc git commands against the identity repo. The commit tool enforces the branching model so you do not have to remember which branch to push to. See [On Sync](../..environmentalism/06-on-sync.md#the-commit-tool) for the full specification.
+
+## The two-push workflow (what the tool automates)
+
+Identity changes and project changes go to different branches. The commit tool automates this separation, but understanding the model matters for debugging and conflict resolution:
 
 **Identity changes** (autobiographies, protocols, specifications, library books) push to the organization branch:
 
@@ -58,11 +68,11 @@ git merge dna-platform
 git push
 ```
 
-The merge direction is always downstream: main → organization → project branches. Never upstream.
+The merge direction is always downstream: main → organization → project branches. Never upstream. The commit tool runs downstream merges automatically when committing branch library changes.
 
 ## Validate before pushing
 
-Run the [validation runner](../..environmentalism/05-on-validation--runner.ts) before every push:
+The commit tool runs [validation](../..environmentalism/05-on-validation.md) before any commits. If validation fails, nothing is pushed. To run validation manually:
 
 ```
 cd .claude/library
