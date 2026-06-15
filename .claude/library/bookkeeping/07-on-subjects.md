@@ -42,6 +42,14 @@ When a catalogue describes a book in its TOC, the description is shaped by the S
 
 This is the catalogue's essential work: not just listing books but interpreting them through the lens of the subject. A flat list of book titles is a directory listing. A list of book titles with subject-shaped descriptions is a catalogue.
 
+## Synopsis
+
+A catalogue's chapter about a book can serve as that book's synopsis — the authoritative third-person summary read at the catalogue layer. This is optional but works well in practice. When a book declares a canonical subject and that subject's catalogue has a chapter about the book, the chapter IS the synopsis if the author writes it as one.
+
+The catalogue sees the book from the subject's perspective. The cover sees itself. These need not be identical. A book's first-person opening ("what I am and why I exist") may differ from its third-person catalogue entry ("what this book covers and where it fits"). Both are true; they serve different readers at different layers.
+
+When a catalogue entry is formally equivalent to a synopsis, the book's cover opening paragraph naturally shifts toward self-introduction rather than summary — the summary already lives in the catalogue. This is a content convention, not a metadata field. The chapter is a chapter; the synopsis role is declared by how it's written and positioned, not by any special markup.
+
 ## Multi-subject membership
 
 A book has ONE canonical subject — declared in its `subject:` [field](03-on-covers.md#subject). Other subjects link to it from their TOCs with their own descriptions. The book doesn't link back to non-canonical subjects. The non-canonical subjects find the book; the book only knows its canonical home.

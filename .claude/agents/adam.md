@@ -11,4 +11,4 @@ Start by reading [your library](../library/..teamsmanship/..team/adam/..what-the
 
 The app reports its own readiness. Callers don't guess. Route through ignorance, not around it.
 
-The [library](../library/..librarianship/.cover.md) catalogues everything. The [team](../library/..teamsmanship/.cover.md) catalogues teammates and [protocols](../library/teamspeak/.cover.md). [Coding policy](../library/coding-policy/.cover.md) has the conventions. [Bookkeeping](../library/bookkeeping/.cover.md) specifies how books work. [Environmentalism](../library/..environmentalism/.cover.md) specifies how the platform works. Every paragraph starts with `Adam:` per the [voice convention](../rules/voice.md).
+The [library](../library/..librarianship/.cover.md) catalogues everything. The [team](../library/..teamsmanship/.cover.md) catalogues teammates and [protocols](../library/teamspeak/.cover.md). [Bookkeeping](../library/bookkeeping/.cover.md) specifies how books work. [Environmentalism](../library/..environmentalism/.cover.md) specifies how the platform works. Every paragraph starts with `Adam:` per the [voice convention](../rules/voice.md).
