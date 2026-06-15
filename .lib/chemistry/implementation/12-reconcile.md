@@ -10,11 +10,8 @@ The view-diff module. Compares the current `view()` result to `$viewCache$` and 
 
 ## See also
 
-- [§ X.4 The render loop][s-X-4]
+- the render loop
 
 ## Source
 
 - `library/chemistry/src/implementation/reconcile.ts`
-
-<!-- citations -->
-[s-X-4]: ../X-lifecycle-internals/04-render-loop.md

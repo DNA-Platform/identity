@@ -100,11 +100,11 @@ After React commits the render, the deferred-effect hook re-runs the same `view(
 [lift]: 04-lift.md
 [render filters]: 05-render-filters.md
 [identity]: 01-identity.md
-[reactivity-contract]: ../../reactivity-contract.md
+[reactivity-contract]: ../authorship/04-the-reactivity-contract.md
 
-[view-method]: ../../../../../library/chemistry/src/abstraction/particle.ts#L80
-[apply-method]: ../../../../../library/chemistry/src/abstraction/particle.ts#L121
-[rendering-flag]: ../../../../../library/chemistry/src/abstraction/particle.ts#L32
-[view-cache]: ../../../../../library/chemistry/src/abstraction/particle.ts#L31
-[augment-src]: ../../../../../library/chemistry/src/implementation/augment.ts
-[reconcile-src]: ../../../../../library/chemistry/src/implementation/reconcile.ts
+[view-method]: ../../src/abstraction/particle.ts#L80
+[apply-method]: ../../src/abstraction/particle.ts#L121
+[rendering-flag]: ../../src/abstraction/particle.ts#L32
+[view-cache]: ../../src/abstraction/particle.ts#L31
+[augment-src]: ../../src/implementation/augment.ts
+[reconcile-src]: ../../src/implementation/reconcile.ts

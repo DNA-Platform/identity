@@ -69,7 +69,7 @@ What it does *not* preserve: `this instanceof $Particle` is **false**. The chain
 
 ## When particularization is used
 
-The canonical use case is [`$Error`][feat-dollar-error]: the framework lets you wrap an existing `Error` with `new $Exception(error)` and get back a renderable particle that *is still* the Error. Logs, stack traces, error-handler dispatch — all the things downstream code does with `instanceof Error` — keep working. The [particularization feature page][feat-particularization] covers the user-facing semantics; the [history page][hist-particularization] covers why the original `setPrototypeOf`-only design was walked back.
+The canonical use case is `$Error`: the framework lets you wrap an existing `Error` with `new $Exception(error)` and get back a renderable particle that *is still* the Error. Logs, stack traces, error-handler dispatch — all the things downstream code does with `instanceof Error` — keep working. The [particularization feature page][feat-particularization] covers the user-facing semantics; the [history page][hist-particularization] covers why the original `setPrototypeOf`-only design was walked back.
 
 In the framework's internal layer, particularization is also how *carriers* in scoping graphs get particle behavior without inheriting from `$Particle` — the chemical layer particularizes shadow objects at lift-time when the prototype-parent is a foreign reference.
 
@@ -77,14 +77,12 @@ In the framework's internal layer, particularization is also how *carriers* in s
 
 - [identity][] — why the marker has to be copied as an own property after the chain is severed.
 - [feature: particularization][feat-particularization] — the user-facing semantics, with diagrams.
-- [particularization history][hist-particularization] — design alternatives that were tried and walked back.
+- particularization history — design alternatives that were tried and walked back.
 - [particularization prototype-loss caveat][cav-particularization] — what the original (replaced-prototype) design broke.
 
 <!-- citations -->
 [identity]: 01-identity.md
-[feat-particularization]: ../../features/particularization.md
-[feat-dollar-error]: ../../features/dollar-error.md
-[hist-particularization]: ../../../history/particularization.md
-[cav-particularization]: ../../caveats/particularization-prototype-loss.md
+[feat-particularization]: ./03-particularization.md
+[cav-particularization]: ../epistemology/04-caveats.md#particularization-prototype-loss
 
-[particle-ctor]: ../../../../../library/chemistry/src/abstraction/particle.ts#L45
+[particle-ctor]: ../../src/abstraction/particle.ts#L45

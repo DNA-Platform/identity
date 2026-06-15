@@ -6,7 +6,7 @@
 
 ## Definition
 
-`diffuse(chemical)` is the fan-out function in `scope.ts` (§ XV.8). It walks the chemical's `$derivatives$` set — but only when the chemical *owns* the set (`hasOwnProperty($derivatives$)`) — and re-renders each derivative.
+`diffuse(chemical)` is the fan-out function in [scope.ts](../implementation/08-scope.md). It walks the chemical's `$derivatives$` set — but only when the chemical *owns* the set (`hasOwnProperty($derivatives$)`) — and re-renders each derivative.
 
 ## Rules
 
@@ -20,11 +20,6 @@
 
 ## See also
 
-- [§ VI.2 The `$derivatives$` registry][s-VI-2] — the set this reads.
-- [§ VI.3 The ownership gate][s-VI-3] — the gate.
-- [§ XV.8 `scope.ts`][s-XV-8] — the source.
-
-<!-- citations -->
-[s-VI-2]: ../VI-lexical-scoping/02-derivatives-registry.md
-[s-VI-3]: ../VI-lexical-scoping/03-ownership-gate.md
-[s-XV-8]: ../XV-implementation/08-scope-ts.md
+- The `$derivatives$` registry — the set this reads.
+- The ownership gate — the `hasOwnProperty` check.
+- [scope.ts](../implementation/08-scope.md) — the source file.

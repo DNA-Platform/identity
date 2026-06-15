@@ -1,6 +1,6 @@
 # Sprint 17: The Library Sprint
 
-Every agent researches what they need to make durable, professional decisions in their domain. The research goes into their library under `.claude/team/library/{agent}/` as books with frontmatter and cross-links. The library system ([README]) and the `/library` skill exist; this sprint fills them.
+Every agent researches what they need to make durable, professional decisions in their domain. The research goes into their library under `.claude/team/library/{agent}/` as books with frontmatter and cross-links. The library system and the `/library` skill exist; this sprint fills them.
 
 ## Why this sprint exists
 
@@ -76,5 +76,4 @@ All listed books exist in their respective libraries. `/library` lists them. Cro
 
 Every subsequent sprint must include: "if you learn something non-obvious about your domain, add it to your library." This sprint seeds the practice. The practice continues.
 
-<!-- citations -->
-[README]: ../../team/library/README.md
+<!-- citations — README removed; the team library predates the current conventions -->

@@ -6,7 +6,7 @@
 
 ## Definition
 
-A write to another chemical's reactive property from inside a handler triggers fan-out to that chemical's derivatives. The in-scope and no-scope paths are symmetric — both call `diffuse` (§ V.5), which gates fan-out on `hasOwnProperty($derivatives$)`. Sibling derivatives that prototype-inherit the registry do not leak writes.
+A write to another chemical's reactive property from inside a handler triggers fan-out to that chemical's derivatives. The in-scope and no-scope paths are symmetric — both call [diffuse](./05-diffuse.md), which gates fan-out on `hasOwnProperty($derivatives$)`. Sibling derivatives that prototype-inherit the registry do not leak writes.
 
 ## Rules
 
@@ -22,9 +22,5 @@ A write to another chemical's reactive property from inside a handler triggers f
 ## See also
 
 - [diffuse](./05-diffuse.md) — the fan-out function.
-- [§ VI.3 The ownership gate][s-VI-3] — the `hasOwnProperty` gate.
-- [§ XIII.1 Cross-chemical handler fan-out][s-XIII-1] — the historical caveat.
-
-<!-- citations -->
-[s-VI-3]: ../VI-lexical-scoping/03-ownership-gate.md
-[s-XIII-1]: ../XIII-caveats/01-cross-chemical-fanout.md
+- The ownership gate — the `hasOwnProperty` check that prevents sibling derivative leaks.
+- [Caveats](../epistemology/04-caveats.md#cross-chemical-handler-fan-out) — the historical caveat (fixed sprint 24).

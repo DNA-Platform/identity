@@ -6,7 +6,7 @@
 
 ## Definition
 
-In-place mutations of `Map`, `Set`, `Array`, and nested objects are detected via `$symbolize` (§ XI.3) snapshot diff. The framework records the value's serialized form on read; on `scope.finalize`, comparing the new serialization against the recorded snapshot reveals mutations even when the reference is unchanged.
+In-place mutations of `Map`, `Set`, `Array`, and nested objects are detected via `$symbolize` snapshot diff. The framework records the value's serialized form on read; on `scope.finalize`, comparing the new serialization against the recorded snapshot reveals mutations even when the reference is unchanged.
 
 ## Rules
 
@@ -21,8 +21,5 @@ In-place mutations of `Map`, `Set`, `Array`, and nested objects are detected via
 
 ## See also
 
-- [§ XI.3 `$symbolize`][s-XI-3] — the serialization function.
+- `$symbolize` — the serialization function in `representation.ts`.
 - [Scope tracking](./02-scope-tracking.md) — where snapshots are taken.
-
-<!-- citations -->
-[s-XI-3]: ../XI-cross-cutting/03-symbolize.md

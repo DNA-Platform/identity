@@ -82,23 +82,22 @@ Recovery exists because chemical references can leak into places that only carry
 - See [particularization][] for why the marker has to be copied as an own property on particularized carriers.
 - See [lifecycle][] for what happens to identity across phase transitions (it is stamped once and never changes; phases churn around it).
 - See [lift][] for how derivatives get their own identity while inheriting state from a prototype parent.
-- The [chemistry glossary][glossary] indexes every identity field by name.
+- The chemistry glossary indexes every identity field by name.
 
 <!-- citations -->
 [particularization]: 03-particularization.md
 [lifecycle]: 02-lifecycle.md
 [lift]: 04-lift.md
-[glossary]: ../../glossary.md
-[caveat-allocates]: ../../caveats/particle-allocates-reactivity-machinery.md
+[caveat-allocates]: ../epistemology/04-caveats.md#particle-allocates-reactivity-machinery
 
-[particle-class-decl]: ../../../../../library/chemistry/src/abstraction/particle.ts#L25
-[is-particle]: ../../../../../library/chemistry/src/abstraction/particle.ts#L21
-[create-symbol]: ../../../../../library/chemistry/src/abstraction/particle.ts#L159
-[is-symbol]: ../../../../../library/chemistry/src/abstraction/particle.ts#L164
-[parse-cid]: ../../../../../library/chemistry/src/abstraction/particle.ts#L168
-[template-slot]: ../../../../../library/chemistry/src/abstraction/particle.ts#L37
-[is-template-getter]: ../../../../../library/chemistry/src/abstraction/particle.ts#L42
-[derived-getter]: ../../../../../library/chemistry/src/abstraction/particle.ts#L43
-[component-getter]: ../../../../../library/chemistry/src/abstraction/particle.ts#L54
-[molecule-slot]: ../../../../../library/chemistry/src/abstraction/particle.ts#L36
-[reaction-slot]: ../../../../../library/chemistry/src/abstraction/particle.ts#L35
+[particle-class-decl]: ../../src/abstraction/particle.ts#L25
+[is-particle]: ../../src/abstraction/particle.ts#L21
+[create-symbol]: ../../src/abstraction/particle.ts#L159
+[is-symbol]: ../../src/abstraction/particle.ts#L164
+[parse-cid]: ../../src/abstraction/particle.ts#L168
+[template-slot]: ../../src/abstraction/particle.ts#L37
+[is-template-getter]: ../../src/abstraction/particle.ts#L42
+[derived-getter]: ../../src/abstraction/particle.ts#L43
+[component-getter]: ../../src/abstraction/particle.ts#L54
+[molecule-slot]: ../../src/abstraction/particle.ts#L36
+[reaction-slot]: ../../src/abstraction/particle.ts#L35

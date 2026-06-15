@@ -10,13 +10,9 @@ The `$symbolize` / `$literalize` module. Deterministic value-to-string and strin
 
 ## See also
 
-- [§ XI.3 `$symbolize`][s-XI-3]
-- [§ XI.4 `$literalize`][s-XI-4]
+- `$symbolize`
+- `$literalize`
 
 ## Source
 
 - `library/chemistry/src/implementation/representation.ts`
-
-<!-- citations -->
-[s-XI-3]: ../XI-cross-cutting/03-symbolize.md
-[s-XI-4]: ../XI-cross-cutting/04-literalize.md

@@ -10,11 +10,8 @@ The React functional component type-definition module. Wraps React's element typ
 
 ## See also
 
-- [§ I.3 Types][s-I-3]
+- Types
 
 ## Source
 
 - `library/chemistry/src/abstraction/element.ts`
-
-<!-- citations -->
-[s-I-3]: ../I-foundation/03-types.md

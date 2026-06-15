@@ -69,9 +69,9 @@ The Component returned by either branch carries a `$bind(parent)` method. The sy
 [identity]: 01-identity.md
 [lift]: 04-lift.md
 [view]: 06-view.md
-[cc-export]: ../../coding-conventions.md#export-pattern
-[authors]: ../../for-component-authors.md
+[cc-export]: ../authorship/01-the-grammar.md#export-pattern
+[authors]: ../authorship/.cover.md
 
-[particle-component-getter]: ../../../../../library/chemistry/src/abstraction/particle.ts#L54
-[chemical-component-getter]: ../../../../../library/chemistry/src/abstraction/chemical.ts#L603
-[is-template-getter]: ../../../../../library/chemistry/src/abstraction/particle.ts#L42
+[particle-component-getter]: ../../src/abstraction/particle.ts#L54
+[chemical-component-getter]: ../../src/abstraction/chemical.ts#L603
+[is-template-getter]: ../../src/abstraction/particle.ts#L42

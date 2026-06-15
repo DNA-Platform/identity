@@ -10,11 +10,8 @@ Every Symbol used by the framework. Grouped by owner — `$Particle` symbols, `$
 
 ## See also
 
-- [§ I.1 Symbols][s-I-1]
+- Symbols
 
 ## Source
 
 - `library/chemistry/src/implementation/symbols.ts`
-
-<!-- citations -->
-[s-I-1]: ../I-foundation/01-symbols.md

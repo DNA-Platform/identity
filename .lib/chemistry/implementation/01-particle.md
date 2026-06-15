@@ -10,17 +10,11 @@ The `$Particle` source module. Defines the class, the `$lift` primitive, the ren
 
 ## See also
 
-- [§ II.1 The class][s-II-1]
-- [§ II.6 `isParticle`][s-II-6]
-- [§ II.8 Render filters][s-II-8]
-- [§ II.9 `$lift`][s-II-9]
+- [The class](../particle/01-identity.md)
+- `isParticle`
+- [Render filters](../particle/05-render-filters.md)
+- [`$lift`](../particle/04-lift.md)
 
 ## Source
 
 - `library/chemistry/src/abstraction/particle.ts`
-
-<!-- citations -->
-[s-II-1]: ../II-primitives/01-the-class.md
-[s-II-6]: ../II-primitives/06-isparticle.md
-[s-II-8]: ../II-primitives/08-render-filters.md
-[s-II-9]: ../II-primitives/09-lift.md

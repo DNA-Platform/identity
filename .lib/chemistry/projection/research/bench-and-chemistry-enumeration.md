@@ -145,16 +145,17 @@ Sprint-28 working name candidates: **The Lab**, **Walkthrough**, **Witness**. My
 - [catalogue][catalogue] — the wiki's reading list, now organized along the three axes
 - [the-lab.md][the-lab] — the substantive epistemology page describing the Lab
 
-<!-- citations -->
-[ontology]: ../../docs/chemistry/ontology/index.md
-[epistemology]: ../../docs/chemistry/epistemology/index.md
-[topical]: ../../docs/chemistry/topical/index.md
-[ont-entities]: ../../docs/chemistry/ontology/entities/index.md
-[ont-relationships]: ../../docs/chemistry/ontology/relationships/index.md
-[ont-concepts]: ../../docs/chemistry/ontology/concepts/index.md
-[ont-surprising]: ../../docs/chemistry/ontology/surprising/index.md
-[ep-caveats]: ../../docs/chemistry/epistemology/caveats/index.md
-[ep-open]: ../../docs/chemistry/epistemology/open-questions/index.md
-[the-lab]: ../../docs/chemistry/epistemology/the-lab.md
-[the-test-suite]: ../../docs/chemistry/epistemology/the-test-suite.md
-[catalogue]: ../../docs/catalogue.md
+<!-- citations — repointed to new book structure after Sprint 63 migration.
+     Ontology/topical not migrated; links point to archive for provenance. -->
+[ontology]: ../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/index.md
+[epistemology]: ../../epistemology/01-the-epistemic-model.md
+[topical]: ../../../../../.claude/.archive/books/.chemistry/chemistry/topical/index.md
+[ont-entities]: ../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/entities/index.md
+[ont-relationships]: ../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/relationships/index.md
+[ont-concepts]: ../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/concepts/index.md
+[ont-surprising]: ../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/surprising/index.md
+[ep-caveats]: ../../epistemology/04-caveats.md
+[ep-open]: ../../epistemology/05-open-questions.md
+[the-lab]: ../../epistemology/02-the-lab.md
+[the-test-suite]: ../../epistemology/03-the-test-suite.md
+[catalogue]: ../../..representivity/.cover.md

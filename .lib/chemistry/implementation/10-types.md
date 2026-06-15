@@ -10,13 +10,9 @@ The TypeScript vocabulary module. Defines `$Properties<T>`, `$Component<T>`, `$E
 
 ## See also
 
-- [§ I.3 Types][s-I-3]
-- [§ VII.3 The `I<T>` type][s-VII-3]
+- Types
+- `I<T>` type
 
 ## Source
 
 - `library/chemistry/src/implementation/types.ts`
-
-<!-- citations -->
-[s-I-3]: ../I-foundation/03-types.md
-[s-VII-3]: ../VII-particularization/03-i-of-t.md

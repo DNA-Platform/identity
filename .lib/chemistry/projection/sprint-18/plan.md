@@ -8,7 +8,7 @@ IN PROGRESS.
 
 ## Design reference
 
-[Composition model notes](../design/composition-model-notes.md) captures the landed design. Cathy's library books ([reactivity-models](../../team/library/cathy/reactivity-models/README.md), [view-introspection](../../team/library/cathy/view-introspection/README.md)) are the background research.
+[Composition model notes](../design/composition-model-notes.md) captures the landed design. Cathy's library books (reactivity-models, view-introspection) are the background research.
 
 ## The contract (developer-facing)
 

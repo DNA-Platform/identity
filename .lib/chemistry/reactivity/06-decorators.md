@@ -6,7 +6,7 @@
 
 ## Definition
 
-`@inert()` opts a `$`-prefixed property out of reactivity; `@reactive()` opts a non-`$` property in. Decoration registers the property in `$Reflection` (§ IX.1) so the per-instance reactivity decision (§ IX.2) yields the intended classification.
+`@inert()` opts a `$`-prefixed property out of reactivity; `@reactive()` opts a non-`$` property in. Decoration registers the property in `$Reflection` so the per-instance reactivity decision yields the intended classification.
 
 ## Rules
 
@@ -20,8 +20,5 @@
 
 ## See also
 
-- [§ IX.1 `$Reflection` class][s-IX-1] — the registry.
+- `$Reflection` class — the decorator registry.
 - [Reactive properties](./01-reactive-properties.md) — the default behavior.
-
-<!-- citations -->
-[s-IX-1]: ../IX-reflection/01-reflection-class.md

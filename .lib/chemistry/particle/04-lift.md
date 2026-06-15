@@ -6,7 +6,7 @@
 
 `$lift` is the framework's per-React-mount-site derivation function. Given a parent particle, it returns a React Component that, on each mount, creates a fresh derivative of the parent — `Object.create(parent)` with its own identity — and renders it. The same parent mounted at two JSX sites produces two derivatives; the parent's reactive writes fan out to both.
 
-This chapter covers the lift mechanism on the `$Particle` layer. The model layer — what derivatives mean, what fan-out is — lives in the [lexical scoping][] and [derivatives and fan-out][derivatives] concept pages, which this chapter assumes.
+This chapter covers the lift mechanism on the `$Particle` layer. The model layer — what derivatives mean, what fan-out is — lives in the lexical scoping and [derivatives and fan-out][derivatives] concept pages, which this chapter assumes.
 
 ## Two parents
 
@@ -78,7 +78,7 @@ What `$lift` registers, the bond layer's setter walks. When `parent.$prop = x`, 
 - [lifecycle][] — what the React hooks resolve at each phase.
 - [view][] — what `view()` does, what augmentation wraps, what the cache compares.
 - [render filters][] — the chain consulted between `$apply` and `view`.
-- [feature: lexical scoping][lexical-scoping] — the model.
+- feature: lexical scoping — the model.
 - [feature: derivatives and fan-out][derivatives] — the mechanism.
 
 <!-- citations -->
@@ -86,7 +86,6 @@ What `$lift` registers, the bond layer's setter walks. When `parent.$prop = x`, 
 [lifecycle]: 02-lifecycle.md
 [view]: 06-view.md
 [render filters]: 05-render-filters.md
-[lexical-scoping]: ../../concepts/lexical-scoping.md
-[derivatives]: ../../concepts/derivatives-and-fan-out.md
+[derivatives]: ../reactivity/05-diffuse.md
 
-[lift-fn]: ../../../../../library/chemistry/src/abstraction/particle.ts#L215
+[lift-fn]: ../../src/abstraction/particle.ts#L215

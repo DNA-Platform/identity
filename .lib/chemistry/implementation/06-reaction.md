@@ -10,13 +10,9 @@ The per-chemical reaction unit module. Defines `$Reaction` and the dirty-set / r
 
 ## See also
 
-- [§ II.1 The class][s-II-1]
-- [§ V.2 Scope tracking][s-V-2]
+- [The class](../particle/01-identity.md)
+- [Scope tracking](../reactivity/02-scope-tracking.md)
 
 ## Source
 
 - `library/chemistry/src/abstraction/reaction.ts`
-
-<!-- citations -->
-[s-II-1]: ../II-primitives/01-the-class.md
-[s-V-2]: ../V-reactivity/02-scope-tracking.md

@@ -99,14 +99,14 @@ Compared to React's `useEffect`-based initialization, the user writes the *inten
 [identity]: 01-identity.md
 [lift]: 04-lift.md
 [particularization]: 03-particularization.md
-[feat-lifecycle]: ../../features/lifecycle-phases.md
-[caveat-allocates]: ../../caveats/particle-allocates-reactivity-machinery.md
+[feat-lifecycle]: ./02-lifecycle.md
+[caveat-allocates]: ../epistemology/04-caveats.md#particle-allocates-reactivity-machinery
 
-[phase-order]: ../../../../../library/chemistry/src/abstraction/particle.ts#L16
-[phase-field]: ../../../../../library/chemistry/src/abstraction/particle.ts#L30
-[particle-ctor]: ../../../../../library/chemistry/src/abstraction/particle.ts#L59
-[particle-next]: ../../../../../library/chemistry/src/abstraction/particle.ts#L110
-[particle-resolve]: ../../../../../library/chemistry/src/abstraction/particle.ts#L128
-[molecule-alloc]: ../../../../../library/chemistry/src/abstraction/particle.ts#L73
-[reaction-alloc]: ../../../../../library/chemistry/src/abstraction/particle.ts#L74
-[template-register]: ../../../../../library/chemistry/src/abstraction/particle.ts#L79
+[phase-order]: ../../src/abstraction/particle.ts#L16
+[phase-field]: ../../src/abstraction/particle.ts#L30
+[particle-ctor]: ../../src/abstraction/particle.ts#L59
+[particle-next]: ../../src/abstraction/particle.ts#L110
+[particle-resolve]: ../../src/abstraction/particle.ts#L128
+[molecule-alloc]: ../../src/abstraction/particle.ts#L73
+[reaction-alloc]: ../../src/abstraction/particle.ts#L74
+[template-register]: ../../src/abstraction/particle.ts#L79

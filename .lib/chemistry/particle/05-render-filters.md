@@ -70,9 +70,9 @@ The two passthrough wrappers (`$Function$`, `$Html$` — see [feature: render fi
 <!-- citations -->
 [view]: 06-view.md
 [lift]: 04-lift.md
-[feat-render-filters]: ../../features/render-filters.md
+[feat-render-filters]: ./05-render-filters.md
 
-[show-hide-fields]: ../../../../../library/chemistry/src/abstraction/particle.ts#L40
-[filter-registry]: ../../../../../library/chemistry/src/abstraction/particle.ts#L177
-[register-filter]: ../../../../../library/chemistry/src/abstraction/particle.ts#L185
-[apply-filters]: ../../../../../library/chemistry/src/abstraction/particle.ts#L192
+[show-hide-fields]: ../../src/abstraction/particle.ts#L40
+[filter-registry]: ../../src/abstraction/particle.ts#L177
+[register-filter]: ../../src/abstraction/particle.ts#L185
+[apply-filters]: ../../src/abstraction/particle.ts#L192

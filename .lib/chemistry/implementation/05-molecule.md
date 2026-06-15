@@ -10,13 +10,9 @@ The bond-graph collection module. Defines `$Molecule` and the per-instance react
 
 ## See also
 
-- [§ II.1 The class][s-II-1]
-- [§ XIV.3 `$isChemicalBase$` inherited resolution][s-XIV-3]
+- [The class](../particle/01-identity.md)
+- `$isChemicalBase$` inherited resolution
 
 ## Source
 
 - `library/chemistry/src/abstraction/molecule.ts`
-
-<!-- citations -->
-[s-II-1]: ../II-primitives/01-the-class.md
-[s-XIV-3]: ../XIV-provisional/03-ischemicalbase-inherited.md
