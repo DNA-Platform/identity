@@ -34,9 +34,9 @@ For each teammate:
 - Every catalogue has self-diagnostic questions with links to answers — things you should know how to do, and if you can't answer, the link teaches you
 - At least one book created, one chapter split, one title renamed across the team
 - Every autobiography chapter from the last 5 sprints has outbound links to shared books and branch libraries
-- The 13 other skills need their rich SKILL.md content moved to library chapters (the compiler now generates from library source)
+- The 14 other skill chapters need to become full-length documents (the compiler now generates SKILL.md from library chapters — short synopses produce thin skills). Each chapter IS the skill. The retro, branch, audit, sprint, teammate, discuss skills all had rich hand-written SKILL.md bodies that were lost when the compiler correctly generated from the thin library source. Recover from git history and move into the library chapters.
 - Each teammate reflects on their failure to use the compilation tools and adds self-tests: "I should know how to run the skills compiler" with a link to [Compilers](../../.compilation/03-compilers.md). If blank-slate-you can't answer the test, the link teaches you how.
 
 ## Team
 
-All nine teammates. Cathy is the star (she has the most work — 15 autobiography chapters, the branch library connection). Libby leads the structural review (she wrote the specifications these libraries follow). Arthur runs the sprint. Everyone else does their own work per the autonomy protocol.
+All nine teammates for reflection. Cathy is the star (she has the most work — 15 autobiography chapters, the branch library connection). Libby leads the structural review (she wrote the specifications these libraries follow). Arthur runs the sprint. Claude owns the skill chapter recovery — recovering the 14 rich SKILL.md bodies from git history and moving them into the library chapters, because skills are compiled environment output and that's Claude's territory per [Environmentalism](../../..environmentalism/.cover.md). Everyone else does their own work per the autonomy protocol.
