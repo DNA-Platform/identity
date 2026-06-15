@@ -48,3 +48,7 @@ A behavior is *pinned* by a test when:
 - The test is run on every commit (i.e., it's not skipped or quarantined).
 
 Tests that are commented out, marked `it.skip`, or never run do not pin anything. They are *aspirations*, not invariants.
+
+## The Testing book
+
+For the full treatment of test organization, the performance contract, specimens, and regression stories, see the [Testing](../testing/.cover.md) book. This chapter covers the epistemic role of testing — what it means to "know" behavior is correct. The Testing book covers the practice — how the suite is structured, what it costs, and how bugs are pinned.
