@@ -4,62 +4,95 @@
 
 ---
 
-If we can't push work to the right place, the whole system fails. This sprint builds and verifies the tool that does it.
+If we can't push work to the right place, the whole system fails. This sprint builds and verifies the commit tool, cleans up branch contamination, and ensures the tool's use is written into the environment so no one forgets.
 
 ## The problem
 
-Changes happen in one working directory but belong on different git branches in different repos:
-- **Project code** (`.ts`, `.tsx`, `package.json`) → project repo (`inexplicable-phenomena`)
-- **Identity** (`.claude/library/`, `.claude/agents/`, `.claude/rules/`, `CLAUDE.md`) → identity repo, `dna-platform` branch
-- **Branch library** (`.lib/` content) → identity repo, `inexplicable-phenomena` branch
-- **Template** (Bookkeeping conventions, Environmentalism specs, compilers) → identity repo, `main` branch (rare, only when the system itself changes)
+Changes happen in one working directory but belong on different git branches:
+- **Identity** (`.claude/`) → `dna-platform` AND `main` (until we have a clean template, both get identity changes)
+- **Branch library** (`.lib/` content) → `inexplicable-phenomena` only (NOT main or dna-platform)
+- **Project code** → project repo's own git
 
-Currently we push everything to `main` and merge down. That's wrong — it puts branch-specific content on `main` where it doesn't belong.
+Currently `.lib/chemistry/` leaked onto `main` and `dna-platform`. That must be fixed.
 
 ## Tasks
 
-### Task 1: Adam audits the current commit procedure
+### Task 1: Adam + Claude + Arthur discuss the commit procedure
 
-Adam: Read [Travel](../../teamspeak/07-travel.md) and [On Sync](../../..environmentalism/06-on-sync.md). Read the identity repo's current branch state. Identify what's wrong with how we've been pushing. Document the correct procedure.
+Adam leads. Claude explains the environment constraints (which branches exist, what goes where). Arthur explains the architectural intent (main=template, dna-platform=team, project branches=.lib). The discussion produces the specification for the tool.
 
-### Task 2: Adam builds the commit tool
+To discuss is to think from many perspectives. This task is not one person designing — it's three perspectives finding the right answer together.
 
-Adam: Write a script that:
-1. Detects what changed (`.claude/` vs `.lib/` vs project code)
-2. Stages the right files for the right destination
-3. Commits to the right branch (switching branches as needed)
-4. Pushes each branch
-5. Copies CLAUDE.md to the project root
-6. Validates before each push
+**Owner:** Adam (leads), Claude, Arthur (contribute)
 
-The tool lives as a resource beside On Sync in Environmentalism: `06-on-sync--commit.ts` (or `.sh`). It is the executable form of the sync specification.
+### Task 2: Adam cleans up branch contamination
 
-### Task 3: Libby catalogues the tool
+Remove `.lib/` from `main` and `dna-platform` in the identity repo. It should only exist on `inexplicable-phenomena`.
 
-Libby: Ensure the commit tool is properly represented in the library. On Sync should reference it. Library Tree should mention it in the setup chapter. The tool is a resource beside its chapter — same pattern as compilers beside their specs.
+```
+git checkout main
+git rm -r .lib/
+git commit -m "Remove .lib from main — branch content belongs on project branches only"
+git push
 
-### Task 4: Claude loads the tool into the environment
+git checkout dna-platform
+git rm -r .lib/
+git commit -m "Remove .lib from dna-platform — branch content belongs on project branches only"
+git push
 
-Claude: Update rules or CLAUDE.md (remembering these are compiled — update the source, then recompile) so the team is always aware of how to commit work. The commit tool should be discoverable from CLAUDE.md or from a rule that loads when `.claude/` files are touched.
+git checkout inexplicable-phenomena
+# .lib stays here — this is the right branch for it
+```
 
-### Task 5: Adam signs off
+**Owner:** Adam
 
-Adam: Run the tool. Verify that:
-- Identity changes arrive on `dna-platform`
-- Branch content arrives on `inexplicable-phenomena`
+### Task 3: Adam builds the commit tool
+
+A script at `.claude/library/..environmentalism/06-on-sync--commit.ts` that:
+1. Detects what changed (`.claude/` vs `.lib/` vs project files)
+2. Pushes `.claude/` and `CLAUDE.md` changes to `dna-platform` AND `main`
+3. Pushes `.lib/` changes to the project branch (`inexplicable-phenomena`)
+4. Pushes project code changes to the project repo
+5. Copies CLAUDE.md to project root
+6. Validates before pushing
+
+The tool is a resource beside On Sync — the executable form of the sync specification.
+
+**Owner:** Adam
+
+### Task 4: Libby ensures the tool is documented
+
+On Sync in Environmentalism should reference the commit tool. Library Tree's setup chapter should mention it. The tool IS the procedure — the chapter documents it, the resource executes it.
+
+Write it down clearly enough that every teammate — especially Arthur — always knows to use it instead of ad-hoc git commands.
+
+**Owner:** Libby
+
+### Task 5: Claude wires the tool into the environment
+
+Update the library rule (`.claude/rules/library.md`) to mention the commit tool when library files are touched. Update CLAUDE.md's "how the team works" section to reference the commit procedure. Remember: CLAUDE.md and rules are compiled — update the SOURCE in the library, then recompile.
+
+**Owner:** Claude
+
+### Task 6: Adam signs off
+
+Run the tool end-to-end. Verify:
+- Identity changes arrive on `dna-platform` and `main`
+- `.lib/` changes arrive ONLY on `inexplicable-phenomena`
 - Project code stays in the project repo
-- Template changes (if any) go to `main`
 - CLAUDE.md is at the project root
+- `.lib/chemistry/` is NOT on `main` or `dna-platform`
 - All validators pass
 
-Sign off: "the commit tool works and changes reach the right place."
+**Owner:** Adam
 
 ## Who does what
 
 | Task | Owner | Why |
 |------|-------|-----|
-| Audit commit procedure | Adam | Automation — the wire carrying changes |
+| Discuss procedure | Adam + Claude + Arthur | Three perspectives on infrastructure, environment, architecture |
+| Clean branch contamination | Adam | Automation — fixing the wire |
 | Build commit tool | Adam | Automation infrastructure |
-| Catalogue the tool | Libby | Library structure |
-| Load into environment | Claude | Platform awareness |
-| Sign off | Adam | QA on his own infrastructure |
+| Document the tool | Libby | Library content |
+| Wire into environment | Claude | Platform awareness |
+| Sign off | Adam | The builder verifies the build |
