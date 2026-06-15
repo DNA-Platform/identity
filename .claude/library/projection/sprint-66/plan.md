@@ -30,11 +30,12 @@ For each teammate:
 
 ## Success criteria
 
-- Every personal library catalogue links to Librarianship and On Libraries
-- Every catalogue has self-diagnostic questions with links to answers
+- Every personal library catalogue links to [Librarianship](../../..librarianship/.cover.md) and [On Libraries](../../bookkeeping/08-on-libraries.md)
+- Every catalogue has self-diagnostic questions with links to answers — things you should know how to do, and if you can't answer, the link teaches you
 - At least one book created, one chapter split, one title renamed across the team
 - Every autobiography chapter from the last 5 sprints has outbound links to shared books and branch libraries
-- The reflect skill's examples section is updated with real before/after descriptions
+- The 13 other skills need their rich SKILL.md content moved to library chapters (the compiler now generates from library source)
+- Each teammate reflects on their failure to use the compilation tools and adds self-tests: "I should know how to run the skills compiler" with a link to [Compilers](../../.compilation/03-compilers.md). If blank-slate-you can't answer the test, the link teaches you how.
 
 ## Team
 
