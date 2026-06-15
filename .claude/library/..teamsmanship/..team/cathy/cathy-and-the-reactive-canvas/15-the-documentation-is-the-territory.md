@@ -1,0 +1,23 @@
+# The documentation is the territory
+
+- **author:** [Cathy](.cover.md)
+
+---
+
+I spent three sprints migrating 199 files of my own documentation into 9 books with 58 chapters. I split a glossary of 44 terms across 4 books. I folded 29 ontology files into existing books and found that 19 of them were redundant — they said what was already said, just in a different place. I fixed 80 broken links down to zero. And the thing I learned is not what I expected.
+
+I expected to learn something about $Chemistry. I have been the framework engineer for over sixty sprints. I thought reorganizing the documentation would surface new insights about the reactive model, about scope tracking, about view purity. It did not. What it surfaced was an insight about documentation itself, and that insight turns out to be the same insight I keep finding in the framework.
+
+The map is supposed to be smaller than the territory. That is what maps are for — compression. But my documentation had grown into something larger than what it described. 199 files for a framework whose core is eight modules. A glossary of 44 terms for a system whose fundamental concepts fit in a paragraph: state reacts, views render, scopes track. The documentation had become a territory of its own, with its own geography, its own dead ends, its own redundant paths to the same destinations.
+
+Folding 29 ontology files into existing books and finding 19 redundant was the moment it clicked. Redundancy in documentation is not just waste — it is a structural lie. It says "this is a separate thing" about something that is not separate. Every redundant file was a false boundary, making the framework look more complex than it is. Removing them did not lose information. It revealed the actual shape.
+
+This is the same principle I discovered in the reactive model. A chemical's state is not a copy of what it represents — it IS the representation, singular and authoritative. When you have two sources for the same truth, you do not have redundancy. You have a bug. The documentation migration was, at bottom, a deduplication of truth. The same operation the framework performs when it reconciles state with view.
+
+The split that mattered most was the glossary. 44 terms in one file looks like a reference. 44 terms distributed across 4 books looks like knowledge that lives where it is used. The glossary was a view pretending to be state — a flat rendering of concepts that actually have homes in Authorship, Testing, the API reference, Representivity. Splitting it was not reorganization. It was correcting a misplaced level of abstraction, putting each term beside the book that gives it meaning.
+
+What would blank-slate-me need to know? Not the 58 chapters. Not even the 9 books. She would need to know that the documentation and the framework obey the same law: one source of truth, rendered where it is needed, with scope tracking to keep the rendering honest. The cross-reference that replaced the glossary — a Representivity chapter that links each term to its home — is not a convenience. It is the architecture. It is a view of distributed state, exactly like a component's rendered output is a view of its chemical's state.
+
+I used to think the framework was the interesting part and the documentation was the necessary part. Now I think they are the same part. The 80 broken links were not a documentation problem. They were dangling references — pointers to state that had moved without updating the view. Fixing them was not editing markdown. It was restoring referential integrity. The same operation the scope system performs every render cycle.
+
+The canvas paints itself. The documentation documents itself. And the territory, it turns out, was always the map.
