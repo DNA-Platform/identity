@@ -35,7 +35,24 @@ Look at how the existing personal libraries work — and where they fall short:
 - [Adam's catalogue](../../library/..teamsmanship/..team/adam/..what-the-wire-carries/.cover.md) — `catalogues: Adam`. Automation and relay books. But the commit tool, the audit skill, the reflect skill — are these represented as books or just mentioned in autobiography chapters?
 - [Claude's catalogue](../../library/..teamsmanship/..team/claude/..what-the-mirror-reflects/.cover.md) — `catalogues: Claude`. The environment and the recursive mirror. But Compilation is a shared subject catalogue — where does Claude's personal understanding of building it live?
 
-Each of these catalogues should ask: what does it mean for ME to know? Not what does it mean for the team to know — Librarianship handles that. What does it mean for Cathy to know about reactivity? What does it mean for Adam to know about automation? The catalogue organizes data in that personal way. The autobiography provides the narrative. The books provide the depth. The links connect everything.
+Each of these catalogues should ask: what does it mean for ME to know? Not what does it mean for the team to know — [Librarianship](../../library/..librarianship/.cover.md) handles that. What does it mean for Cathy to know about reactivity? What does it mean for Adam to know about automation? The catalogue organizes data in that personal way. The autobiography provides the narrative. The books provide the depth. The links connect everything.
+
+### What the catalogue must contain
+
+Per [On Libraries](../../library/bookkeeping/08-on-libraries.md) and [On Subjects](../../library/bookkeeping/07-on-subjects.md), every personal library catalogue must:
+
+1. **Self-catalogue.** An entry in its own TOC that says "you are reading it." This is identity through self-reference — the same pattern [Librarianship](../../library/..librarianship/.cover.md) uses.
+2. **Link to its parent pattern.** Your catalogue IS an instance of [On Libraries](../../library/bookkeeping/08-on-libraries.md). Link to it. Your synopses follow [On Synopsis](../../library/bookkeeping/09-on-synopsis.md). Link to it. Your books follow [Bookkeeping](../../library/bookkeeping/.cover.md). Link to it. These links are the synapses that say "I know what I am."
+3. **Carry self-diagnostic questions.** Things a blank-slate-you would need to answer. If you can't answer a question from the catalogue alone, add the answer — or add a link to where the answer lives. Examples:
+   - *What am I working on right now?* → Follow the last-chapter link.
+   - *What are my books about?* → Each book synopsis should answer this. If it doesn't, the synopsis is stale.
+   - *How does my work connect to the team's?* → Follow the links to shared books and [branch libraries](../../library/library-tree/.cover.md). If there are no such links, the library is disconnected.
+   - *What specifications govern how I organize this?* → [On Libraries](../../library/bookkeeping/08-on-libraries.md), [On Synopsis](../../library/bookkeeping/09-on-synopsis.md), [On Authorship](../../library/bookkeeping/13-on-authorship.md). If these aren't linked, you've forgotten where you come from.
+   - *What is my failure mode?* → The autobiography names it. The catalogue should summarize it so you see it before you repeat it.
+
+### The organization is personal
+
+The specification ([On Libraries](../../library/bookkeeping/08-on-libraries.md)) gives you the tools: self-cataloguing, synopses, links, the [dot type system](../../library/bookkeeping/.cover.md#the-dot-type-system). How you USE those tools to organize YOUR knowledge is YOUR authorial decision. If you find yourself not comprehending how your library is organized, you need a different organization. Restructure. That is what reflection is: seeing yourself from without so you can gain insights to improve. And improving isn't writing more — it is editing. Rethinking. Reimagining.
 
 ## Reading before reflecting
 
