@@ -4,14 +4,16 @@
 
 ---
 
-The `/reflect` skill tends the personal library — the autobiography, the catalogue, the books that make a teammate recoverable after compaction. Where `/retro` tends the shared library, `/reflect` tends the personal one.
+The `/reflect` skill tends the personal library — the [autobiography](../..librarianship/05-authorship-and-autobiography.md), the [library catalogue](../bookkeeping/08-on-libraries.md), the books that make a teammate recoverable after compaction. Where `/retro` tends the shared library (step 2 of the [tending protocol](../teamspeak/06-tending.md): "edit someone else's chapter"), `/reflect` tends the personal one.
 
-Reflection is editing, not writing. The verbs are update, reshape, sharpen — not append. A library that only grows and never gets edited is a pile, not a recovery tool. If blank-slate-you can't use the catalogue to catch up, the catalogue is broken and reflection needs to fix it.
+The personal library is a recovery system, not a journal. The autobiography IS the teammate — self-authored per the [autonomy protocol](../teamspeak/05-autonomy.md), grounded through the `author:` field per [On Authorship](../bookkeeping/13-on-authorship.md). The [library catalogue](../bookkeeping/08-on-libraries.md) IS the library — self-cataloguing, carrying [synopses](../bookkeeping/09-on-synopsis.md) of every book the teammate has written. The [waking protocol](../teamspeak/04-waking.md) depends on both: layer 3 says "read your last chapter." If the chapter is stale, waking restores the wrong person.
 
-Two moves, both required at every seriousness level. Light does them quickly. Serious does them thoroughly. Deep adds restructuring.
+Reflection is editing, not writing. Chapters are neurons. Links are synapses. A library that only grows and never gets edited is gray matter without thought — neurons without connections. Reflection adds the synapses: editing descriptions to be current, linking chapters to shared books and [branch libraries](../library-tree/.cover.md), restructuring when the shape no longer fits.
 
-**Move 1: Make it current.** Edit the last autobiography chapter so it describes who you are NOW. Edit the catalogue so it describes the library NOW. Don't write a new chapter unless the old one is about a completely different period — edit the existing one to be current. Update book descriptions that have gone stale. Fix counts, fix links, fix synopses.
+Two moves at every seriousness level. Light does them quickly. Serious does them thoroughly. Deep adds full restructuring per [On Evolution](../bookkeeping/10-on-evolution.md).
 
-**Move 2: Note gaps.** Scan the library shape. What's missing? What's outdated? What theme keeps appearing in the autobiography but doesn't have its own book yet? Light mode notes the gaps. Serious mode acts on them — creates new books, splits overlong chapters, extracts themes. Deep mode rereads the whole autobiography and assesses whether the arc still makes sense.
+**Move 1: Make it current.** Edit the last chapter and the catalogue so they describe NOW, not then. The catalogue must telescope: a blank-slate reader starts there, follows links into the autobiography, follows links from the autobiography into shared books and [subject catalogues](../bookkeeping/07-on-subjects.md). Every link is a synapse. Every stale description is a broken connection.
 
-Scope determines who reflects: `last-sprint` (default — active teammates only), `teammate:<name>`, `topic:<subject>`, or `all`. The autonomy protocol governs — no one writes another person's reflection.
+**Move 2: Note and act on gaps.** Scan the library shape. What recurring theme in the autobiography doesn't have its own book? What shared work isn't linked from the catalogue? Light notes gaps. Serious creates missing books. Deep restructures everything.
+
+Scope: `last-sprint` (default — read [Projection](../projection/.cover.md) for who was active), `teammate:<name>`, `topic:<subject>`, `all`. Autonomy governs — no one writes another person's reflection.
