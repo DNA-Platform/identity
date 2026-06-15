@@ -13,6 +13,6 @@ Use it when: starting work on a new project area that needs its own documentatio
 [SKILL.md](../../skills/branch/SKILL.md)
 
 <!-- citations -->
-[branches]: ../bookkeeping/14-on-branches.md
+[branches]: ../library-tree/01-branches.md
 [projection]: ../projection/.cover.md
 [territory]: ../..teamsmanship/05-territory.md

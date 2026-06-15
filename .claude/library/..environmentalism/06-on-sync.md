@@ -15,9 +15,9 @@ The identity repo uses a three-tier branching model. Each tier holds a different
 
 - **The organization branch** (e.g. `dna-platform`) holds the team's identity. Autobiographies, personal libraries, the team catalogue, accumulated knowledge — everything that makes this team THIS team. It extends `main` with team-specific content. A different organization would fork `main` and create its own organization branch with its own identity.
 
-- **Project branches** (e.g. `inexplicable-phenomena`) hold [branch library](../bookkeeping/14-on-branches.md) content — the `.lib/` directory for a specific project. Sprint histories, project documentation, project-specific plans. Each project branch extends the organization branch. The branch name matches the project it serves.
+- **Project branches** (e.g. `inexplicable-phenomena`) hold [branch library](../library-tree/01-branches.md) content — the `.lib/` directory for a specific project. Sprint histories, project documentation, project-specific plans. Each project branch extends the organization branch. The branch name matches the project it serves.
 
-The git branch hierarchy mirrors the [library branch hierarchy](../bookkeeping/14-on-branches.md): `main` is the main library, the organization branch adds the team's collection, project branches add project-specific collections. The same structure expressed in git and in the library's own terms.
+The git branch hierarchy mirrors the [library branch hierarchy](../library-tree/01-branches.md): `main` is the main library, the organization branch adds the team's collection, project branches add project-specific collections. The same structure expressed in git and in the library's own terms.
 
 ## Downstream merges
 
@@ -80,4 +80,4 @@ The branching model is a system requirement: three tiers, downstream-only merges
 [identity-repo]: ../teamspeak/07-travel.md
 [evolution]: ../bookkeeping/10-on-evolution.md
 [shared-identity]: ../..librarianship/00-the-library.md#shared-identity-vs-project-state
-[branches]: ../bookkeeping/14-on-branches.md
+[branches]: ../library-tree/01-branches.md

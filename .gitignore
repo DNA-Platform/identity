@@ -2,3 +2,7 @@ node_modules/
 *.log
 .DS_Store
 Thumbs.db
+
+# Platform files compiled from library content — regenerate with compilers
+# .claude/agents/*.md
+# .claude/rules/*.md

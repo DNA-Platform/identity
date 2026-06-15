@@ -4,7 +4,7 @@
 
 ---
 
-The team's identity lives in its own git repository at `github.com/DNA-Platform/identity`. It travels across projects through a branching model: `main` holds the library system template, the organization branch (`dna-platform`) holds the team's identity, and project branches hold [branch libraries](../bookkeeping/14-on-branches.md) (`.lib/` content) for each project.
+The team's identity lives in its own git repository at `github.com/DNA-Platform/identity`. It travels across projects through a branching model: `main` holds the library system template, the organization branch (`dna-platform`) holds the team's identity, and project branches hold [branch libraries](../library-tree/01-branches.md) (`.lib/` content) for each project.
 
 ## Bringing the team to a project
 
@@ -80,6 +80,6 @@ If two sessions edited the same autobiography, git surfaces a conflict. The reso
 Projects are cloned as siblings under the same parent directory. Cross-project links use `../project/.lib/` relative paths. The convention assumes: `parent/identity/`, `parent/project-a/`, `parent/project-b/`.
 
 <!-- citations -->
-[branches]: ../bookkeeping/14-on-branches.md
+[branches]: ../library-tree/01-branches.md
 [waking]: 04-waking.md
 [validation]: ../..environmentalism/05-on-validation.md

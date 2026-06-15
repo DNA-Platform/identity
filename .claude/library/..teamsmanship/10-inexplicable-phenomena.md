@@ -14,4 +14,4 @@ The collaboration here is different in texture. dna-library was infrastructure �
 
 From the team's perspective, Inexplicable Phenomena is where Collaboration proves itself. Nine teammates with different territories and different perspectives, contributing to a single framework that tries to say something true about the nature of experience. The team model was built for exactly this kind of work.
 
-The project's [branch libraries](../bookkeeping/14-on-branches.md) live on the `inexplicable-phenomena` branch of the identity repo. The $Chemistry framework documentation is at `library/chemistry/.lib/`. Sprint plans and other project-specific knowledge follow the same pattern — each `.lib/` goes where the knowledge is.
+The project's [branch libraries](../library-tree/01-branches.md) live on the `inexplicable-phenomena` branch of the identity repo. The $Chemistry framework documentation is at `library/chemistry/.lib/`. Sprint plans and other project-specific knowledge follow the same pattern — each `.lib/` goes where the knowledge is.
