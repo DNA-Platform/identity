@@ -53,17 +53,23 @@ Project-specific files — `.github/workflows/`, `src/`, `package.json`, deploym
 
 The identity repo uses Git and GitHub, but the sync pattern doesn't depend on them specifically. The principle is: identity lives in its own repository, travels by cloning, consistency is checked before sync. GitHub is the current implementation. The requirements are version control, a remote, a clone mechanism, and a branching model with merge support. Any system that provides those could host the identity. The specification is the pattern, not the platform.
 
-## The sync script `[SCAFFOLD]`
+## The commit tool
 
-A sync script should automate the two-push workflow and downstream merges. It should live as a resource beside this chapter (`06-on-sync--sync.ts`) and handle:
+[06-on-sync--commit.sh](06-on-sync--commit.sh) automates the three-way commit workflow. It runs from the project root and accepts a commit message as argument:
 
-- Detecting which tier has uncommitted changes (library content vs `.lib/` content).
-- Committing to the correct branch for each tier.
-- Running [validation](05-on-validation.md) before each push.
-- Performing downstream merges when the parent branch has new commits.
-- Refusing to merge upstream.
+```
+bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit message"
+```
 
-The script is the mechanism that enforces what this chapter specifies. Without it, the branching model depends on the operator remembering which branch to push to — a convention, not a contract.
+The script detects what changed and routes each category to the right place:
+
+- **Identity changes** (`.claude/`): synced to the identity repo via robocopy, committed to `dna-platform`, merged to `main`, pushed.
+- **Branch library changes** (`.lib/`): synced to the identity repo, committed to the project branch (e.g. `inexplicable-phenomena`), pushed. Includes a downstream merge from `dna-platform` before committing.
+- **Project code changes**: committed and pushed in the project repo. Generates the project-root `CLAUDE.md` with link prefix adjustment.
+
+The script runs [validation](05-on-validation.md) before any commits. If validation fails, nothing is pushed. The branching model is enforced by the tool — the operator does not need to remember which branch to push to.
+
+The tool is bash, not TypeScript. It is git operations, not library parsing. It belongs beside this chapter as a resource because it is the mechanism that implements the sync specification.
 
 ## Merge conflicts as identity events
 
