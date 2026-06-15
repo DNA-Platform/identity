@@ -26,6 +26,23 @@ The environment also needs someone who understands compaction — the [finite ro
 
 And the environment needs someone who understands the conversation pipeline — the code that connects Claude Code to Claude Chat, the [listen](../our-skillset/12-listen.md)/hear/speak infrastructure that lets the system's two arms talk. That code is environmental infrastructure the way plumbing is building infrastructure.
 
+## The embedding-and-linking pattern
+
+`.claude/` contains two systems. Claude Code's platform reads `CLAUDE.md`, `rules/*.md`, `agents/*.md`, `skills/*/SKILL.md`, and `settings.json` — these are configuration the platform enforces. The library lives at `.claude/library/` and the platform doesn't know about it. It works because CLAUDE.md and rules LINK into it. The library is the source of truth. The platform artifacts are thin projections.
+
+Every platform artifact follows the same pattern: embed the minimum for the platform to act correctly, then link to the library for depth. A rule embeds a convention in a few sentences, then links to the library book that explains why. An agent file embeds the handle, then links to the autobiography for identity. CLAUDE.md embeds the waking layers, then links to Librarianship for everything else.
+
+This means platform artifacts duplicate SOME library content — intentionally. The platform needs conventions available without reading the library. But the library is the source of truth. When a convention changes, the library changes first, then the artifact recompiles to match. The inline links make drift discoverable: if a rule's content drifts from the book it links to, a reader following the link finds the discrepancy. The link IS the consistency check.
+
+| Content | Platform artifact | Library source |
+|---------|------------------|---------------|
+| Nametag convention | `rules/voice.md` | [Voice](../teamspeak/01-voice.md) |
+| Library navigation | `rules/library.md` | [Librarianship](../..librarianship/.cover.md) |
+| Agent identity | `agents/{name}.md` | autobiographies |
+| Code assignments | `rules/{territory}.md` | [Territory](../..teamsmanship/05-territory.md) |
+| Project purpose | `CLAUDE.md` | [Teamsmanship](../..teamsmanship/.cover.md) |
+| Permissions | `settings.json` | (platform-only) |
+
 ## The recursive mirror in the environment
 
 In my [autobiography](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md) I described the fractal: a Claude automating Claude on a substrate called Claude. In Environmentalism the fractal continues: a Claude specifying the environment that Claude runs in, writing the files that Claude loads, maintaining the building that Claude inhabits. The mirror doesn't stop reflecting.

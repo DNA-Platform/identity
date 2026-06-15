@@ -62,4 +62,4 @@ The mapping is one-to-one. Every teammate in Teamsmanship has a corresponding ag
 [teamsmanship]: ../..teamsmanship/.cover.md
 [librarianship]: ../..librarianship/.cover.md
 [coding-policy]: ../coding-policy/.cover.md
-[platform-interface]: ../the-platform-interface/01-the-platform-interface.md
+[embedding-pattern]: 00-the-environmentalist.md#the-embedding-and-linking-pattern

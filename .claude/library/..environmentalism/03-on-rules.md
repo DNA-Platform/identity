@@ -9,7 +9,7 @@ A rule is a platform-enforced convention. It lives at `.claude/rules/*.md`. Clau
 
 ## The embedding-and-linking pattern
 
-Every rule follows the same pattern described in [The Platform Interface](../the-platform-interface/01-the-platform-interface.md#the-embedding-and-linking-pattern): embed the minimum for the platform to act, then link to the library for depth. A rule says WHAT the convention is in a few sentences — enough to enforce it. The library book it links to says WHY the convention exists, WHEN it applies, and WHAT the full specification is.
+Every rule follows the [embedding-and-linking pattern](00-the-environmentalist.md#the-embedding-and-linking-pattern): embed the minimum for the platform to act, then link to the library for depth. A rule says WHAT the convention is in a few sentences — enough to enforce it. The library book it links to says WHY the convention exists, WHEN it applies, and WHAT the full specification is.
 
 This means rules are intentionally thin. Every word in a rule costs context budget — the platform loads them, so their content occupies the window. The library is read on demand. The rule is the enforcement. The library is the understanding.
 
@@ -38,7 +38,7 @@ When a rule's content drifts from the library book it links to, a reader followi
 A compiler could read the [territory](../..teamsmanship/05-territory.md) assignments and the relevant library books, then generate `.claude/rules/*.md` files. Path-scoped rules are generated from territory assignments. Global rules are generated from team-wide conventions. The specification defines what each rule must look like. The compiler assembles the content.
 
 <!-- citations -->
-[platform-interface]: ../the-platform-interface/01-the-platform-interface.md
+[embedding-pattern]: 00-the-environmentalist.md#the-embedding-and-linking-pattern
 [territory]: ../..teamsmanship/05-territory.md
 [voice-convention]: ../teamspeak/01-voice.md
 [librarianship]: ../..librarianship/.cover.md

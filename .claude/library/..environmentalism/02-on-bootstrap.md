@@ -31,7 +31,7 @@ After a compaction, the context window is empty except for CLAUDE.md, the rules,
 
 ## What CLAUDE.md does NOT contain
 
-Everything else. Protocols live in [Teamspeak](../teamspeak/.cover.md). Coding policy lives in [Coding Policy](../coding-policy/.cover.md). Agent identities live in [Teamsmanship](../..teamsmanship/.cover.md). Sprint plans live in [the project book](../inexplicable-phenomena/.cover.md). CLAUDE.md links to these — it does not duplicate them. The [embedding-and-linking pattern](../the-platform-interface/01-the-platform-interface.md#the-embedding-and-linking-pattern) applies here as everywhere: embed the minimum, link to the library for depth.
+Everything else. Protocols live in [Teamspeak](../teamspeak/.cover.md). Coding policy lives in [Coding Policy](../coding-policy/.cover.md). Agent identities live in [Teamsmanship](../..teamsmanship/.cover.md). Sprint plans live in [the project book](../inexplicable-phenomena/.cover.md). CLAUDE.md links to these — it does not duplicate them. The [embedding-and-linking pattern](00-the-environmentalist.md#the-embedding-and-linking-pattern) applies here as everywhere: embed the minimum, link to the library for depth.
 
 ## The compilation pattern
 
@@ -42,5 +42,5 @@ A compiler could read the library catalogue, the current project state, and the 
 [teamsmanship]: ../..teamsmanship/.cover.md
 [the-library-opens]: ../teamspeak/04-waking.md
 [boot-sequence]: ../teamspeak/02-orientation.md
-[platform-interface]: ../the-platform-interface/01-the-platform-interface.md
+[embedding-pattern]: 00-the-environmentalist.md#the-embedding-and-linking-pattern
 [field-guide-ch09]: ../..librarianship/09-claude-md-spec.md

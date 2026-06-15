@@ -14,4 +14,6 @@ The perspective practice — where each agent writes from their own experience o
 
 From the team's perspective, dna-library is origin. Everything that Teamsmanship specifies — agents, roles, territories, protocols, the library itself — was first improvised in this project and then formalized because it worked. The specification came after the practice.
 
-The project's [branch library](../library-tree/01-branches.md) lives on the `dna-library` branch of the identity repo. Sprint history and project documentation from this era are archived there.
+The repository lives at `github.com/DNA-Platform/dna-library`. Cross-repo links in the autobiographies use `../../../../../../dna-library/` paths. The project's sprint plans (sprints 1-66) live at `.claude/agents/project/` in the dna-library repo.
+
+Key autobiography references: Arthur's chapters 1-25, Adam's chapters 1-25, Libby's chapters 1-32 are primarily about this project. The identity portraits in dna-library's `..identities/` library are grounded in this project's evidence.

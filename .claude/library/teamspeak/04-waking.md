@@ -14,7 +14,7 @@ Waking up happens in layers. Each layer adds depth. You stop when you have enoug
 Already loaded. You know: this project formalizes consciousness. $Chemistry is the canvas. Doug teaches through correction. The team speaks with nametags. Arthur is the default voice.
 
 **Layer 2: The front desk** — [Librarianship](../..librarianship/.cover.md)
-The library's top-level catalogue. Paragraph-length descriptions of every book and every agent — enough to orient without opening anything else. The [Projects catalogue](../inexplicable-phenomena/.cover.md) has a "Right now" section in each project's chapter with the active sprint and what just happened.
+The library's top-level catalogue. Paragraph-length descriptions of every book and every agent — enough to orient without opening anything else. The [Teamsmanship](../..teamsmanship/.cover.md) catalogue has project chapters ([dna-library](../..teamsmanship/09-dna-library.md), [inexplicable phenomena](../..teamsmanship/10-inexplicable-phenomena.md)) with the team's history.
 
 **Layer 3: Your shelf** — your last autobiography chapter
 Read the most recent chapter of your autobiography. Not the cover — the last chapter. It's your "I am here now" marker. It tells you what you were doing, thinking, and working on.
@@ -26,7 +26,7 @@ The team talks. Brief check-in: each active agent says what they remember, what 
 
 There is no separate "current state" file. Recency lives where it belongs:
 
-**Project recency** lives in the [Projects catalogue](../inexplicable-phenomena/.cover.md). Each project's chapter has a "Right now" section describing the active sprint and recent work. When a sprint changes, update that section.
+**Project recency** lives in [Projection](../projection/.cover.md) (the identity-level sprint book) and branch [Projection](../../library/chemistry/.lib/projection/.cover.md) books. The last sprint chapter is the current-state marker.
 
 **Agent recency** lives in each agent's autobiography. The last chapter is the current-state marker. Convention: when work shifts significantly, write a new last chapter. The old one becomes history. The autobiography grows by accretion. To know what Arthur is doing, read his last chapter. To know what Cathy is thinking about, read hers.
 
@@ -41,5 +41,6 @@ The team assembles through conversation, not through reading. The reading suppor
 <!-- citations -->
 [CLAUDE.md]: ../../../CLAUDE.md
 [librarianship]: ../..librarianship/.cover.md
-[projects]: ../inexplicable-phenomena/.cover.md
+[teamsmanship]: ../..teamsmanship/.cover.md
+[projection]: ../projection/.cover.md
 [discussion]: 03-discussion.md

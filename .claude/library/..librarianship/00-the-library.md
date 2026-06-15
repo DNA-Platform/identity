@@ -18,7 +18,7 @@ The library is ONE directory under `.claude/`. It contains three kinds of things
 
 All three kinds are PEERS at the same directory level. A subject catalogue does NOT contain the books it catalogues. The books sit beside it. The subject links to them in its [cover](.cover.md). Each book declares its canonical subject in its frontmatter with a [`subject:` field](../bookkeeping/03-on-covers.md#subject).
 
-A book can belong to multiple subjects. It lives in ONE place. Its `subject:` field points to its canonical home. Other subjects link to it from their TOCs with [descriptions shaped by that subject's perspective](../subjects-and-catalogues/01-subjects-and-catalogues.md) — the same book described differently by different subjects.
+A book can belong to multiple subjects. It lives in ONE place. Its `subject:` field points to its canonical home. Other subjects link to it from their TOCs with descriptions shaped by that subject's perspective — the same book described differently by different subjects.
 
 ## Two perspectives
 
@@ -32,13 +32,13 @@ Public books link freely to each other. Personal books link to public books. Pub
 
 ## Navigation
 
-Start at the [library catalogue](.cover.md) — `..librarianship/.cover.md`. It catalogues every subject and every teammate library with [paragraph descriptions](../the-reading-cost-architecture/01-the-reading-cost-architecture.md) rich enough that you rarely need to follow a link. Four layers of synopsis before primary source: library catalogue → subject catalogue → book cover → chapter. Read the shallowest that answers your question.
+Start at the [library catalogue](.cover.md) — `..librarianship/.cover.md`. It catalogues every subject and every teammate library with [paragraph descriptions](../bookkeeping/09-on-synopsis.md) rich enough that you rarely need to follow a link. Four layers of synopsis before primary source: library catalogue → subject catalogue → book cover → chapter. Read the shallowest that answers your question.
 
 Every link is a real markdown link — `[text](path)` inline in the prose, clickable, woven where the reader needs it. Not prose paths in backticks. The library is a wiki. The links ARE the navigation.
 
 ## The platform
 
-The library lives inside Claude Code's `.claude/` directory alongside [platform artifacts](../../rules/) that the platform reads automatically. The [platform interface](../the-platform-interface/01-the-platform-interface.md) chapter describes this relationship: platform artifacts embed the minimum for enforcement, then link inline into the library for depth. The library is the source of truth. The platform is a projection.
+The library lives inside Claude Code's `.claude/` directory alongside [platform artifacts](../../rules/) that the platform reads automatically. The [embedding-and-linking pattern](../..environmentalism/00-the-environmentalist.md#the-embedding-and-linking-pattern) describes this relationship: platform artifacts embed the minimum for enforcement, then link inline into the library for depth. The library is the source of truth. The platform is a projection.
 
 ## Shared identity vs project state
 
@@ -53,9 +53,8 @@ The library is closed under specification of itself. Everything the library depe
 <!-- citations -->
 [cover]: .cover.md
 [anatomy]: ../bookkeeping/01-on-books.md
-[subjects]: 04-subjects-and-catalogues.md
 [authorship]: 05-authorship-and-autobiography.md
-[reading cost]: 08-the-reading-cost-architecture.md
-[platform]: 10-the-platform-interface.md
+[synopsis]: ../bookkeeping/09-on-synopsis.md
+[embedding]: ../..environmentalism/00-the-environmentalist.md#the-embedding-and-linking-pattern
 [perspective]: 12-the-perspective-practice.md
 [team]: ../..teamsmanship/.cover.md
