@@ -115,6 +115,29 @@ Without the `'key'` argument: `const Card = $use(this.card)` returns just the co
 - **Import groups.** Symbol imports use structural comments: `import {// $SubjectiveRep ... } from './symbols'`. This labels the group without adding a separate comment line.
 - **No inline styles for styling decisions.** Colors, spacing, typography, layout — all flow through styled-components co-located with the chemical. Theme values come from the `ThemeProvider` via `(p) => p.theme.color.X`. **Allowed exception:** truly dynamic per-element values that styled-components can't reasonably express — a CSS variable computed from runtime state, x/y from a drag, width tied to a resize observer.
 
+## Anti-patterns
+
+If you see one of these in the codebase, it is a bug:
+
+| Bad | Why | Right |
+|-----|-----|-------|
+| `new $Book().Component` | `.Component` does not exist on chemicals (the internal accessor is symbol-keyed) | `$($Book)` |
+| `<style={{ ... }}>` in app code | Theme values inaccessible, drift inevitable | styled-component reading from theme |
+| `import { Chemical } from '@dna-platform/chemistry'` | `Chemical` is not exported (it's a base class, nothing to render) | Don't import; `$Chemical` is for extending only |
+| `useState` in app code | Hooks are React's solution to a problem chemicals solve differently | Make it a chemical with a `$` reactive property |
+| Custom hash router, custom event bus, custom focus trap | $Chemistry composes with React; reinventing undermines the thesis | Reach for the package: react-router-dom, etc. |
+
+## Doc-first rule
+
+Before writing any chemical, the authorship chapters and coding policy are the source of truth. If you discover a pattern not documented:
+
+1. Stop coding.
+2. Write the doc.
+3. Get review on the doc.
+4. *Then* write the code.
+
+The team's last attempt to write $Chemistry from a partial reading produced extensive cleanup work. Doc-first prevents this.
+
 ## What not to do
 
 - **Don't add blank lines for "readability."** The compression is intentional.

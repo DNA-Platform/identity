@@ -96,6 +96,15 @@ function Divider() {
 
 Don't make a chemical for this. The chemical machinery has overhead the function component avoids. The moment the component grows state or lifecycle, *then* migrate it to a chemical.
 
+The decision table:
+
+| If... | Use |
+|-------|-----|
+| Pure render, no state, no lifecycle, no children-as-typed-args | **Function component** |
+| Stateful, lifecycle hooks, reactive props, typed JSX children | **Chemical** |
+
+A 5-line function that takes props and returns JSX is a function component. The moment you reach for `useState`, `useEffect`, or anything composing with the framework's reactive system — make it a chemical.
+
 ## Anti-pattern — "we eat our own dogfood"
 
 If you see code commented "no react-router, eats our own dogfood" or "no styled-components, custom CSS-in-JS" or any variant of "we built our own X" — that's the anti-pattern. The dogfood is *components*. Routing, fetching, animation, primitives — those are not what $Chemistry is for.

@@ -4,6 +4,12 @@
 
 ---
 
+## Why this is the canonical surprise
+
+Most languages do not dispatch by class name. JavaScript's `constructor` keyword is fixed. React uses props (a single object) for child shape. Web Components use a `connectedCallback` lifecycle hook with no children-as-args concept. The binding constructor borrows its idea from XML schema — parameter shapes describing child element types — and mounts it on a familiar class-syntax surface. But the *binding* between the method's name and the class's name is the framework's choice, not a language feature.
+
+A reader who didn't know to look for it would see a `$Cookbook` method on a `$Cookbook` class and read it as a coincidence or a self-call. It is neither. It is load-bearing. The framework finds the method by name; renaming the class without renaming the method silently breaks construction. A reader who internalizes one feature from `$Chemistry` should make it this one — the rest of the framework's character follows from it.
+
 ## Definition
 
 The **binding constructor** is a method on a `$Chemical` subclass named after the class itself. Class `$Book` declares a method `$Book(...)`; class `$CardContainer` declares `$CardContainer(title, card)`. It runs at **render time**, after the class constructor has already produced an object, and receives the chemical's children — already bound and typed — as positional arguments.
