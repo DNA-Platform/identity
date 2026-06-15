@@ -64,6 +64,16 @@ Add the branch to [Library Tree's branch catalogue](01-branches.md#known-branche
 
 This step makes the branch discoverable from the main library. Without it, the branch exists but no one can find it by walking links from the identity.
 
+## 6. Push with the commit tool
+
+After creating the branch structure, push your changes with the [commit tool](../..environmentalism/06-on-sync--commit.sh):
+
+```
+bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: set up branch for project-name"
+```
+
+The commit tool detects that you created new `.lib/` content and routes it to the correct project branch in the identity repo. It also detects the territory and catalogue changes you made in the main library and pushes those to the organization branch. Do not push branch setup changes by hand — the tool ensures the [branching model](../..environmentalism/06-on-sync.md#the-branching-model) is respected and runs [validation](../..environmentalism/05-on-validation.md) before anything is pushed. See [On Sync](../..environmentalism/06-on-sync.md#the-commit-tool) for details.
+
 <!-- citations -->
 [branches]: 01-branches.md
 [cataloguing]: 02-cataloguing.md

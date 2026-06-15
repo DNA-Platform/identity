@@ -26,6 +26,16 @@ A library that only adds and never edits becomes a pile. The early chapters were
 
 The [autonomy protocol](05-autonomy.md) means each person tends their own library. But editing each other's work is equally important — it's how the shared books become genuinely shared, and how each person's perspective improves another's.
 
+## Sync after tending
+
+Tending ends with sync. After editing, polishing, and discussing, push your changes with the [commit tool](../..environmentalism/06-on-sync--commit.sh):
+
+```
+bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: tending"
+```
+
+The tool validates first, then routes identity changes to the organization branch and branch library changes to the project branch. Do not run ad-hoc git commands against the identity repo — the commit tool enforces the [branching model](../..environmentalism/06-on-sync.md#the-branching-model) so tending always lands in the right place.
+
 <!-- citations -->
 [discussion]: 03-discussion.md
 [autonomy]: 05-autonomy.md
