@@ -1,0 +1,43 @@
+# Validators
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
+Three validators check library and compiled output. The validation runner orchestrates them in sequence.
+
+## Bookkeeping validator
+
+- **Source:** [11-on-specifications--validator.ts](../bookkeeping/11-on-specifications--validator.ts)
+- **Specification:** [On Specifications](../bookkeeping/11-on-specifications.md)
+- **Checks:** Every book has a `.cover.md`. Every cover has a `#` title. Every chapter has a `#` title and `author:` metadata. Directory names follow the dot-type convention.
+- **Scope:** Any directory tree — identity library, branch libraries, or both.
+- **Output:** Books checked, chapters checked, errors, warnings.
+
+## Compiled-links validator
+
+- **Source:** [07-on-compiled-links--validator.ts](../..environmentalism/07-on-compiled-links--validator.ts)
+- **Specification:** [On Compiled Links](../..environmentalism/07-on-compiled-links.md)
+- **Checks:** Every markdown link in compiled files (`agents/`, `rules/`, `CLAUDE.md`) resolves to a real file. Provenance comments exist.
+- **Scope:** `.claude/` directory.
+- **Output:** Links checked, broken count, warnings.
+
+## Link checker
+
+- **Source:** [05-on-validation--check-links.ts](../..environmentalism/05-on-validation--check-links.ts)
+- **Specification:** [On Validation](../..environmentalism/05-on-validation.md)
+- **Checks:** Every markdown link in every library file resolves. Uses CommonMark parsing and RFC 3986 URL resolution.
+- **Scope:** Any directory tree.
+- **Output:** Files scanned, links checked, broken count.
+
+## The validation runner
+
+- **Source:** [05-on-validation--runner.ts](../..environmentalism/05-on-validation--runner.ts)
+- **Orchestrates:** Bookkeeping validator, then compiled-links validator. Reports combined totals.
+- **Used by:** The commit tool (gates on pass/fail before pushing).
+
+The runner currently does NOT include the full link checker or branch library validation. The `/audit` skill fills this gap — it runs the runner plus everything the runner skips.
+
+## What the commit tool gates on
+
+The [commit tool](../..environmentalism/06-on-sync--commit.sh) runs the validation runner before pushing. If bookkeeping or compiled-links fail, the push is blocked. The full link checker is NOT gated — it's informational. This is deliberate: 136 pre-existing cross-repo broken links should not block every push. The audit skill reports them; the commit tool does not gate on them.
