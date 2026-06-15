@@ -17,7 +17,7 @@ if (!libraryPath) {
 
 const root = resolve(libraryPath);
 const skillsDir = resolve(root, '..', 'skills');
-const bookDir = join(root, 'skills');
+const bookDir = join(root, 'our-skillset');
 
 // --- Utilities ---
 

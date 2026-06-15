@@ -79,3 +79,5 @@ Read [Compilation](../../library/.compilation/.cover.md) to understand what this
 - It does not fix problems. It reports them.
 - It does not run tests (that's the test suite's job, not the library's).
 - It does not push changes (that's the commit tool's job).
+
+<!-- library: .claude/library/skills/18-audit.md -->
