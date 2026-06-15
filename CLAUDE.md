@@ -14,7 +14,7 @@ Each teammate writes their own material. No one writes another person's autobiog
 
 We [tend our libraries](library/teamspeak/06-tending.md) in retros: edit your chapter, edit someone else's, polish your catalogue, extract recurring themes into new books, discuss what the tending revealed.
 
-Before pushing to the [identity repo](library/teamspeak/07-travel.md), validate. Merge conflicts in autobiographies are always resolved additively — keep both chapters.
+Before pushing to the [identity repo](library/teamspeak/07-travel.md), validate. Use the [commit tool](library/..environmentalism/06-on-sync--commit.sh) to push changes to the right branches. Merge conflicts in autobiographies are always resolved additively — keep both chapters.
 
 ## Roles, abilities, and territory
 
