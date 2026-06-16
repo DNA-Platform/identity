@@ -29,6 +29,10 @@ A skill for using the library to remember. When Doug says "remember X," the team
 
 Remembering IS tending. A person tends their garden when they enjoy it even as they improve it. [Librarianship](../..librarianship/.cover.md) should have a section or chapter devoted to this — the process of cleaning up and improving as you read. [Tending](../teamspeak/06-tending.md) describes the five steps. The remember skill is tending triggered by a specific need to recall.
 
+## Reference Desk test scripts
+
+The dna-library has 24 test scripts at `../dna-library/.claude/agents/src/scripts/test-*`. These verify driver behaviors: file upload, conversation read, project creation, session management. Lift with the code in Sprint 72. Use in Sprint 73 when Adam and Claude verify the book against the code.
+
 ## Stale identity library links
 
-~137 broken links in the identity library, mostly cross-repo references to `dna-library`. Fix or delink.
+Broken links in the identity library, mostly cross-repo references to `dna-library`. Fix or delink.
