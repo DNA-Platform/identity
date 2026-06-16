@@ -53,6 +53,25 @@ Each layer contains links INTO deeper layers — not just to the next layer's co
 
 A reader who knows exactly what they need follows a shortcut and skips layers entirely. A reader who's browsing reads the synopses layer by layer. Both paths work. The links serve the expert; the synopses serve the explorer.
 
+## Write for evolution
+
+The library grows. Books gain chapters. Subjects gain books. Teammates arrive. A synopsis, a description, a catalogue entry — these are all claims about the library's content. If the claim encodes a fact that will change when someone ELSE adds content, the claim is anti-evolution. It generates consistency debt every time the library grows.
+
+### Anti-evolution patterns
+
+Avoid these in synopses, catalogue entries, and any description that is meant to stay true:
+
+- **Hardcoded counts.** "Seven chapters covering X" — wrong the moment an eighth arrives. Write "chapters covering X, Y, and Z" instead. Describe the arc, not the number.
+- **Exhaustive listings.** "Nine teammates: Arthur, Cathy, ..." — wrong when a tenth arrives. Link to the authoritative source ([Territory](../..teamsmanship/05-territory.md), [Teamsmanship](../..teamsmanship/.cover.md)) instead of copying the list.
+- **Sprint numbers as currency.** "The current implementation (since sprint 27)" — stale when sprint 40 changes it. Describe the behavior, not when it became current. Sprint numbers are fine as historical markers ("discovered in sprint 24") but not as currency markers.
+- **State snapshots.** "The library has 49 books" — a photograph, not a description. "The library catalogues three subjects" — also a snapshot. Write "the library catalogues Knowledge, Collaboration, and The Environment" which stays true regardless of how many books each subject contains.
+- **The word "current."** A flag that the sentence encodes a moment. "The current validator checks X" will be wrong when Y is added. "The validator checks structural validity" stays true.
+- **Content duplication.** Copying content from another file instead of summarizing it with a [link](06-on-links.md). The copy becomes a snapshot that diverges from the source. Summarize and link — per the [four layers](#the-four-layers), each layer makes the next rarely necessary.
+- **Implementation-specific examples.** "On line 47 of `molecule.ts`" — the line will change. Reference the concept ("the bond graph allocation in `$Molecule`'s constructor"), not the location.
+- **Tool output.** "Running the validator produces: 49 books, 325 chapters" — different next sprint. Document what the tool does, not what it said last time.
+
+Per [On Names](04-on-names.md#timelessness): names should be timeless. Synopses should be too. Everything written in the library is a claim about what the library contains. Make claims that survive growth.
+
 ## The tending practice
 
 When content changes, three updates are required:
