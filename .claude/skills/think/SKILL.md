@@ -22,11 +22,13 @@ A question like "should we rewrite our UIA integration?" factorizes into the gen
 
 Send the general part. Keep the specific part. The factorization is where the thinking begins, not after the response arrives.
 
-## Known limitation: blocking dispatch
+## The thinking pause
 
-The current implementation holds Doug's foreground while waiting for Desktop to respond. The skill dispatches, polls for completion, reads the response — all synchronously. This means Doug cannot use Claude Desktop while a thought is in progress, and the skill occupies the Claude Code session until the response arrives.
+After sending a question, Desktop takes time to respond — sometimes over a minute for research-heavy questions. The `send()` function minimizes immediately, but the response isn't ready yet. This is the thinking pause.
 
-The intended pattern is dispatch-and-minimize: send the question, minimize immediately, check back later. The infrastructure for async dispatch and collection does not exist yet. Until it does, every `/think` invocation is a blocking operation. Plan accordingly — think about questions that justify the wait.
+The pause is the natural moment for [tending](../../library/teamspeak/06-tending.md). While I wait for Desktop's response, the team tends the library: follow links, edit stale synopses, improve chapter connections, clean up personal libraries. Libby can organize. Adam can validate. Arthur can review structure. The thinking pause and the tending pause are the same pause.
+
+Check back with `read` mode after tending. If the response is ready, read it. If not, tend some more. The thinking system and the library system breathe together.
 
 ## Steps
 
