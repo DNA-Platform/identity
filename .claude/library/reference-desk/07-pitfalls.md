@@ -58,6 +58,16 @@ When `app.window.find()` finds a running Claude Desktop, `app.launch()` skips th
 
 **Sprint 72 finding:** the state check script found the window (handle 198106) but `app.sidebar.chats.items` was empty because no refresh had been called. The sidebar knows about its chats only after reading the UIA tree — which happens during launch or explicit refresh, not automatically on window find.
 
+## Conversation deletion readiness check
+
+**Sprint 72 finding:** `deleteConversation()` succeeds (the conversation is deleted) but the readiness check times out. The gateway expects the screen to change after deletion, but the app may navigate to a state the check doesn't recognize. The deletion DID happen but the test reports failure.
+
+**Impact:** test conversations may be left in the sidebar if the cleanup step fails. Always check manually after a test run.
+
+## Conversation title after creation
+
+**Sprint 72 finding:** after sending a message to a new chat, `readTitle()` returns "Claude finished the response" or "Share chat" — not the auto-generated conversation title. The title the app assigns isn't immediately available. Finding the conversation by title requires refreshing the sidebar and checking the first (most recent) entry.
+
 ## The "Show more" ambiguity
 
 Multiple UI elements can have the same accessible name. "Show more" appears in project descriptions AND conversation lists. [`invokeByNameLast()`](../../src/uia.ts) takes the last match, which is usually the right one (conversation lists are lower on the page). But this is a heuristic, not a guarantee. See [UIA § Element finding strategies](04-01-platform--uia.md).

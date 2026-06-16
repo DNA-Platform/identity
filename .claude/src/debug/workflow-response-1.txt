@@ -1,0 +1,21 @@
+Feferman's connection to Turing runs through one specific, beautiful idea, and it's worth being precise about it.
+Excavated Feferman's extensions to Turing's ordinal logics framework
+Feferman's connection to Turing runs through one specific, beautiful idea, and it's worth being precise about it.
+Turing's 1938 Princeton dissertation under Alonzo Church was Systems of Logic Based on Ordinals — what became known as ordinal logics. The motivation was Gödel's second incompleteness theorem. A sound theory like Peano arithmetic can't prove its own consistency statement Con(PA), but Con(PA) is true, so you can honestly strengthen the theory by adjoining it: T₀ = PA, T₁ = T₀ + Con(T₀), T₂ = T₁ + Con(T₁), and so on. At limit stages you take unions. The result is a transfinite progression of theories. Because you have to actually write the theories down, the progression isn't indexed by abstract ordinals but by ordinal notations — members of Kleene's system O of recursive notations.
+Turing's headline result was a completeness theorem: the consistency progression is complete for true Π⁰₁ sentences — every true universally-quantified arithmetic statement becomes provable somewhere along the progression. But the result came with a famous sting. Turing showed the completeness can already be achieved at a notation for an ordinal as small as ω+1. That exposes the catch: the ordinal isn't doing the work; the notation is, because a cleverly chosen notation can smuggle the arithmetic content in. The dependence on notation rather than order type made the whole thing feel, in Turing's own assessment, not entirely satisfactory.
+Feferman's 1962 paper Transfinite Recursive Progressions of Axiomatic Theories is where this gets systematized and pushed much further. His main moves:
+He separated the principles you iterate. Turing essentially iterated consistency. Feferman organized a hierarchy — consistency, then the local (or "simple") reflection schema Prov_T(⌜φ⌝) → φ, then the uniform reflection principle ∀x(Prov_T(⌜φ(ẋ)⌝) → φ(x)), which is strictly stronger. Consistency is just the instance for φ ≡ (0=1).
+With that stronger fuel he proved a sharper completeness theorem: the progression based on uniform reflection is complete for all true sentences of first-order arithmetic, not merely the Π⁰₁ ones. That's a real strengthening of Turing's theorem. At the same time Feferman gave a cleaner account of why the notation-dependence pathology arises and how unavoidable it is, so the result is both stronger and more honest about its own limits.
+The deeper payoff — and the part that turned Turing's somewhat pathological device into a genuine tool — came a couple of years later in the work on predicativity. Feferman (and independently Kurt Schütte) studied autonomous progressions: ones where you're only permitted to climb to a notation for α once you've already proved, at an earlier stage, that that notation denotes a genuine well-ordering. That autonomy condition bootstraps and self-limits. Starting from predicatively acceptable foundations, the autonomous progression of ramified analysis climbs to exactly the ordinal Γ₀, now called the Feferman–Schütte ordinal — the proposed precise upper bound of predicative provability. So Turing's progressions, which originally looked like a curiosity haunted by notation-dependence, became the engine for measuring proof-theoretic strength and for drawing the line between predicative and impredicative mathematics.
+If you want Feferman in his own reflective voice on all this, his essay Turing in the Land of O(z) (the title puns on Kleene's O) is exactly about what Turing did, what was wrong with it, and what he himself made of it.
+One caveat for rigor's sake: the conceptual lineage above I'm confident about, but I'd verify any exact ordinal-bound claim about the path length in Feferman's completeness theorem against the paper itself before relying on it — I deliberately haven't asserted a specific bound there because I'm not certain of it from memory.
+Copy
+Read aloud
+Give positive feedback
+Give negative feedback
+Retry
+Scroll to bottom
+Claude Fable 5 is currently unavailable.
+Learn more
+(opens in new tab)
+Dismiss
