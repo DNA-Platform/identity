@@ -1,6 +1,7 @@
 # Sprint 37 — The Archive
 
 Parse the Claude export into a browsable markdown library that Doug and Ana can read. The account library mirrors the app's organization.
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
 ## Sprint goal
 

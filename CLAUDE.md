@@ -62,10 +62,10 @@ Follow the layers. Stop when you have enough context. See [Waking](library/teams
     ..teamsmanship/   Collaboration
     ..environmentalism/   The Environment
     bookkeeping/       how books work
-    identity/       identity
+    identity-projection/       identity projection
     library-tree/       library tree
     our-skillset/       our skillset
-    research/       research
+    research-projection/       research projection
     teamspeak/       how we communicate
 ```
 
