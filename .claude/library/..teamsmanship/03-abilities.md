@@ -4,8 +4,6 @@
 
 ---
 
-`[SCAFFOLD]`
-
 Abilities are domain knowledge documents. Each one is a file in `abilities/` that encodes expertise a role can load before acting. They are not instructions — they are knowledge. Loading an ability changes what the teammate knows, which changes what the teammate notices, which changes how the teammate works.
 
 ## Universal abilities
