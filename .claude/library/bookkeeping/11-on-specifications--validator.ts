@@ -243,14 +243,43 @@ function walkDir(dir: string): void {
   const entries = readdirSync(dir);
 
   const coverPath = join(dir, '.cover.md');
-  if (existsSync(coverPath)) {
+  const hasCover = existsSync(coverPath);
+  const dirName = dir.split(/[\\/]/).pop() || '';
+  const relDir = dir.replace(root, '').replace(/\\/g, '/') || '/';
+
+  if (hasCover) {
     checkCover(coverPath);
   }
 
   // Flat structure check: if this is a . or .. prefixed catalogue, warn about nested books
-  const dirName = dir.split(/[\\/]/).pop() || '';
-  if (dirName.startsWith('.') && dirName !== '.' && existsSync(coverPath)) {
+  if (dirName.startsWith('.') && dirName !== '.' && hasCover) {
     checkFlatStructure(dir);
+  }
+
+  // Structural check: directory with markdown files but no cover
+  const hasMdFiles = entries.some(e => e.endsWith('.md') && e !== '.cover.md');
+  if (hasMdFiles && !hasCover && dir !== root) {
+    console.log(`WARN    ${relDir}  Directory has markdown files but no .cover.md — not a valid book`);
+    warnings++;
+  }
+
+  // Structural check: subdirectories that look like chapters (sprint-NN/ or similar patterns)
+  if (hasCover) {
+    for (const entry of entries) {
+      const full = join(dir, entry);
+      if (statSync(full).isDirectory() && !entry.startsWith('.') && !entry.startsWith('..')) {
+        // If this subdirectory contains a plan.md or index.md but no .cover.md, it's likely
+        // a chapter in folder form rather than a proper book
+        const subPlan = join(full, 'plan.md');
+        const subIndex = join(full, 'index.md');
+        const subCover = join(full, '.cover.md');
+        if ((existsSync(subPlan) || existsSync(subIndex)) && !existsSync(subCover)) {
+          const subRel = full.replace(root, '').replace(/\\/g, '/');
+          console.log(`WARN    ${subRel}  Subdirectory with plan.md/index.md but no .cover.md — should this be a chapter file (NN-title.md) instead of a folder?`);
+          warnings++;
+        }
+      }
+    }
   }
 
   for (const entry of entries) {
@@ -260,7 +289,7 @@ function walkDir(dir: string): void {
       walkDir(full);
     } else if (entry.endsWith('.md') && entry !== '.cover.md') {
       // It's a chapter if it's inside a directory that has a .cover.md
-      if (existsSync(coverPath)) {
+      if (hasCover) {
         checkChapter(full);
       }
     }
