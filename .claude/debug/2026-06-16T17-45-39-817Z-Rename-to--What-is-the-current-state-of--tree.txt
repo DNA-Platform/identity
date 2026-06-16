@@ -1,0 +1,224 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Playwright support for Electron apps in 2026 - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Group | Sidebar
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Playwright support for Electron apps in 2026
+ControlType.Button | More options for Playwright support for Electron apps in 2026
+ControlType.Button | MCP vs A2A protocol differences
+ControlType.Button | More options for MCP vs A2A protocol differences
+ControlType.Button | Invoke-CommandInDesktopPackage and MSIX package identity
+ControlType.Button | More options for Invoke-CommandInDesktopPackage and MSIX package identity
+ControlType.Button | Enabling Chrome DevTools Protocol on running Electron MSIX apps
+ControlType.Button | More options for Enabling Chrome DevTools Protocol on running Electron MSIX apps
+ControlType.Button | Playwright with MSIX-packaged Electron apps on Windows 11
+ControlType.Button | More options for Playwright with MSIX-packaged Electron apps on Windows 11
+ControlType.Button | Windows desktop automation stack for Electron apps
+ControlType.Button | More options for Windows desktop automation stack for Electron apps
+ControlType.Button | Stefanie
+ControlType.Button | More options for Stefanie
+ControlType.Button | Windows desktop automation stack for Electron apps
+ControlType.Button | More options for Windows desktop automation stack for Electron apps
+ControlType.Button | Rebuilding Windows desktop automation stack for Claude
+ControlType.Button | More options for Rebuilding Windows desktop automation stack for Claude
+ControlType.Button | AI automation frameworks for Windows beyond MCP
+ControlType.Button | More options for AI automation frameworks for Windows beyond MCP
+ControlType.Button | Watching Harry Potter with Russian dubbing and English subtitles
+ControlType.Button | More options for Watching Harry Potter with Russian dubbing and English subtitles
+ControlType.Button | Batumi Summer
+ControlType.Button | More options for Batumi Summer
+ControlType.Button | Georgian Payoneer Help
+ControlType.Button | More options for Georgian Payoneer Help
+ControlType.Button | Feferman's extensions of Turing's doctoral work
+ControlType.Button | More options for Feferman's extensions of Turing's doctoral work
+ControlType.Button | Semantic Primes
+ControlType.Button | More options for Semantic Primes
+ControlType.Button | 💬 Can you look up the research o…
+ControlType.Button | More options for 💬 Can you look up the research o…
+ControlType.Button | Ontic Structural Realism
+ControlType.Button | More options for Ontic Structural Realism
+ControlType.Button | Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | More options for Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | Georgia IE residency income threshold
+ControlType.Button | More options for Georgia IE residency income threshold
+ControlType.Button | Ontic Structural Realism
+ControlType.Button | More options for Ontic Structural Realism
+ControlType.Button | Doug Doug Max
+ControlType.Image | Doug
+ControlType.Text | Doug
+ControlType.Text | Max
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Button | Playwright support for Electron apps in 2026, rename chat
+ControlType.Button | More options for Playwright support for Electron apps in 2026
+ControlType.Button | Share chat
+ControlType.Text | Claude finished the response
+ControlType.Text | You said: What is the current state of Playwright support for Electron apps in 2026?
+ControlType.Text | What is the current state of Playwright support for Electron apps in 2026?
+ControlType.Group | Message actions
+ControlType.Text | 9:42 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: I'll look up the current state of this.
+ControlType.Button | Identified technical query requiring current information search
+ControlType.Text | Identified technical query requiring current information search
+ControlType.Text | I'll look up the current state of this.
+ControlType.Button | Synthesized documentation to address 2026 Playwright-Electron compatibility
+ControlType.Text | Synthesized documentation to address 2026 Playwright-Electron compatibility
+ControlType.Text | As of mid-2026, the short version is that Playwright's Electron support is still officially labeled "experimental," but that label is misleading about how usable it actually is in practice.
+ControlType.Text | The core situation: Playwright has experimental support for Electron automation,
+ControlType.Text |  working via Electron's support for the Chrome DevTools Protocol (CDP).
+ControlType.Text |  You launch your app through the
+ControlType.Text | _electron.launch()
+ControlType.Text |  API, get an
+ControlType.Text | ElectronApplication
+ControlType.Text |  instance, and from there you can drive both renderer windows (as normal
+ControlType.Text | Page
+ControlType.Text |  objects) and the main process via
+ControlType.Text | electronApp.evaluate()
+ControlType.Text | .
+ControlType.Hyperlink | Playwright
+ControlType.Hyperlink | Electron
+ControlType.Text | On the "experimental" designation specifically — it has carried that label for years without much practical instability. The long-running community consensus is that while it is experimental by definition, it is absolutely usable and is used by big clients like Visual Studio Code, with no breaking changes in the past and continued support expected.
+ControlType.Text |  So "experimental" here reflects the API not being formally frozen rather than the feature being flaky. VS Code itself being a flagship dependent is the usual reassurance people cite.
+ControlType.Hyperlink | QA Wiki
+ControlType.Text | What it handles well:
+ControlType.ListItem | Multiple windows (each emitted via a window event and controllable as a Page)
+ControlType.Text | window
+ControlType.Text | Page
+ControlType.ListItem | Main-process access through evaluate() / evaluateHandle(), including stubbing main-process behavior
+ControlType.Text | evaluate()
+ControlType.Text | evaluateHandle()
+ControlType.ListItem | The electronApplication.on('console') event, emitted when the Electron main process calls console API methods Playwright
+ControlType.Text | electronApplication.on('console')
+ControlType.Hyperlink | Playwright
+ControlType.ListItem | Standard renderer-side interaction, selectors, tracing, screenshots, the full Playwright test runner
+ControlType.Text | The real caveats, which haven't gone away:
+ControlType.Text | Native OS-level UI is the main gap. Playwright does not intercept the native Electron dialog API (showOpenDialog, showSaveDialog, showMessageBox, etc.) because those calls happen in the main process and go straight to OS APIs.
+ControlType.Text |  The recommended workaround is to use electronApplication.evaluate() to replace those methods in the main process so tests run deterministically without any OS-level UI
+ControlType.Text |  — e.g. stubbing the open dialog to return a fixed path. The same limitation extends conceptually to things like system tray, native menus, and OS notifications: anything rendered by the OS rather than in a Chromium window isn't directly driveable, so you either stub at the main-process level or reach for something like RobotJS for true native input. This exact set of questions was raised in an early-2026 GitHub issue evaluating Playwright for a large multi-window Electron 40 app, which is a good signal that it's still the live concern for production adopters.
+ControlType.Hyperlink | Playwright
+ControlType.Hyperlink | Playwright
+ControlType.Text | A launch gotcha worth knowing: if
+ControlType.Text | electron.launch()
+ControlType.Text |  times out, the usual cause is the nodeCliInspect (FuseV1Options.EnableNodeCliInspectArguments) fuse being set to false
+ControlType.Text |  — packaged/hardened builds often disable it, which breaks the CDP attach.
+ControlType.Hyperlink | Playwright
+ControlType.Text | One newer development in the ecosystem (2026) is MCP servers that wrap Playwright's Electron support for AI-agent-driven automation — e.g.
+ControlType.Text | @robertn702/playwright-mcp-electron
+ControlType.Text | , a fork of the official Playwright MCP that adds dedicated tools for testing and automating Electron desktop apps, with main-process access and multi-window control, operating on the accessibility tree rather than pixels.
+ControlType.Text |  Relevant if you want Claude or another agent to drive an Electron app rather than just running scripted tests.
+ControlType.Hyperlink | GitHub
+ControlType.Text | So: production-viable for renderer and main-process testing (VS Code is the proof), with the understanding that native OS surfaces need stubbing or a separate tool, and that the API remains nominally experimental.
+ControlType.Text | If you tell me your Electron version and what you're trying to test (the GitHub issue I found was for a multi-window/tray/notifications app on Electron 40), I can get more specific about which parts will need workarounds.
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Read aloud
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | You said: What is the current state of Playwright support for Electron apps in 2026?
+ControlType.Text | What is the current state of Playwright support for Electron apps in 2026?
+ControlType.Group | Message actions
+ControlType.Text | 9:44 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: I covered this just above — looks like the question came through twice.
+ControlType.Button | Recognized duplicate query and weighed response strategy options
+ControlType.Text | Recognized duplicate query and weighed response strategy options
+ControlType.Text | I covered this just above — looks like the question came through twice. Rather than repeat the whole thing, here's the compressed version, and tell me if you were actually after a different angle.
+ControlType.Text | Playwright's Electron support is still officially "experimental" in 2026, but that label understates its real maturity — it's stable enough that VS Code relies on it. It works over the Chrome DevTools Protocol: you launch via
+ControlType.Text | _electron.launch()
+ControlType.Text | , then drive renderer windows as normal
+ControlType.Text | Page
+ControlType.Text |  objects and the main process through
+ControlType.Text | electronApp.evaluate()
+ControlType.Text | . Multi-window, main-process access, and console events all work well.
+ControlType.Text | The persistent gap is native OS UI. Playwright doesn't intercept the native dialog API (open/save/message dialogs) since those bypass Chromium and hit OS APIs directly — same story for system tray, native menus, and OS notifications. The fix is stubbing those methods in the main process via
+ControlType.Text | evaluate()
+ControlType.Text | , or dropping to something like RobotJS for genuine native input. The one launch gotcha: timeouts usually trace back to the
+ControlType.Text | nodeCliInspect
+ControlType.Text |  fuse being disabled in hardened/packaged builds.
+ControlType.Text | New-ish in 2026: MCP server wrappers (e.g.
+ControlType.Text | @robertn702/playwright-mcp-electron
+ControlType.Text | ) that expose this same Electron automation to AI agents via the accessibility tree.
+ControlType.Text | If the repeat was intentional, was there a specific part — native automation, packaged-app testing, the MCP angle — you wanted me to go deeper on?
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Read aloud
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | You said: What is the current state of Playwright support for Electron apps in 2026?
+ControlType.Text | What is the current state of Playwright support for Electron apps in 2026?
+ControlType.Group | Message actions
+ControlType.Text | 9:44 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: That's the same question a third time now.
+ControlType.Text | That's the same question a third time now. I don't want to keep pasting the same answer, so I'll assume something's off rather than that you genuinely want a third copy.
+ControlType.Text | A couple of possibilities: the message may be getting resent on your end (a UI hiccup, a retry, an autocomplete misfire), or you're testing how I respond to repetition, or the earlier answers didn't actually land and you're not seeing them. Any of those is fine — I just can't tell which from here.
+ControlType.Text | The substance hasn't changed: Playwright's Electron support is officially "experimental" but production-stable (VS Code uses it), works over CDP via
+ControlType.Text | _electron.launch()
+ControlType.Text | , handles renderer windows and main-process access well, and its main gap is native OS UI (dialogs, tray, menus) which you stub in the main process or handle with a tool like RobotJS.
+ControlType.Text | If you wanted something different — a deeper dive on one piece, a code example, a comparison with WebdriverIO, or help testing a specific app — tell me what, and I'll take it there. Or if you're seeing a problem on your end where my replies aren't showing up, let me know and we can work around it.
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Read aloud
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | You said: What is the current state of Playwright support for Electron apps in 2026?
+ControlType.Text | What is the current state of Playwright support for Electron apps in 2026?
+ControlType.Group | Message actions
+ControlType.Text | 9:45 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: I've answered this three times, and this is the fourth identical message.
+ControlType.Text | I've answered this three times, and this is the fourth identical message. I'm going to stop repeating the answer — pasting it a fourth time wouldn't help you, and if you're reading this, you already have it above.
+ControlType.Text | Something is clearly happening that the words alone aren't telling me. Most likely it's a technical issue — messages resending, my replies not rendering on your end, a stuck retry loop. If that's it, the fix is on the app side: try reloading, or check whether my previous responses are actually visible to you.
+ControlType.Text | If instead you're doing this deliberately — testing, or hoping a different answer falls out — the honest truth is it won't, because the facts haven't changed since the first reply.
+ControlType.Text | I'm happy to keep going the moment there's something new to work with. Tell me what's actually going on, or ask me something different, and I'm right here.
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Read aloud
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | Claude Fable 5 is currently unavailable.
+ControlType.Hyperlink | Learn more (opens in new tab)
+ControlType.Button | Dismiss
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | Write a message…
+ControlType.Text |
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Model: Opus 4.8 High
+ControlType.Text | Opus 4.8
+ControlType.Text |  High
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Button | Use voice mode
+ControlType.Hyperlink | Claude is AI and can make mistakes. Please double-check responses.
+ControlType.Group | Notifications (F8)

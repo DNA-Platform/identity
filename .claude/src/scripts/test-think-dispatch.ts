@@ -9,7 +9,7 @@
 //   npx tsx test-think-dispatch.ts read
 
 import { Claude } from '../claude.ts';
-import { send, read, readState, hasActiveThought, minimizeOnFailure } from './think.ts';
+import { write, read, readState, hasActiveThought, minimizeOnFailure } from './think.ts';
 import { writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -33,7 +33,7 @@ async function main() {
     console.log('[dispatch] Question:', question.slice(0, 100) + (question.length > 100 ? '...' : ''));
 
     try {
-      const state = await send(app, question);
+      const state = await write(app, question);
       console.log('[dispatch] Sent and minimized.');
       console.log('[dispatch] Title:', state.title);
       console.log('[dispatch] URL:', state.url || '(pending)');
