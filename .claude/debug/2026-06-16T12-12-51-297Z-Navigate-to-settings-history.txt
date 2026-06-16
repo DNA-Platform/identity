@@ -1,2 +1,0 @@
-2026-06-16T12:11:15.202Z [OK] Read chat list (16ms)
-2026-06-16T12:12:51.297Z [FAIL] Navigate to settings (95030ms) — Navigate to settings succeeded but readiness check timed out after 30000ms

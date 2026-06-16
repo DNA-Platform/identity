@@ -73,6 +73,42 @@ After the action completes, `window.minimize()` returns the computer to Doug.
 | `turnCount` | number | Number of turns so far |
 | `ended` | boolean | Whether `end()` has been called |
 
-## For the `/research` skill
+## Use cases
 
-The session is the dispatch mechanism. Claude starts a session, sends a research question, reads the response, stores it in [perspective](../..teamsmanship/..team/claude/.perspective/.cover.md) with annotations. The session tracks continuity — the same conversation can receive multiple questions across the research process.
+### Research dispatch
+Claude starts a session, sends a research question, reads the response, stores it in [perspective](../..teamsmanship/..team/claude/.perspective/.cover.md) with annotations.
+
+### Returning to a conversation
+The session stores `id` and `url`. To return to a previous conversation across sessions or turns:
+```typescript
+await app.openChat('Research: neuroscience paper');
+const turns = await app.conversation.readTurns();
+// Now you have the full conversation history to catch up
+```
+`openChat(title)` finds the conversation in the sidebar by title and opens it. If the app is already showing that conversation (check `app.navigator.screen === 'conversation'` and the URL contains the right ID), no navigation is needed.
+
+### Detecting current context
+Before navigating, check if you're already where you need to be:
+```typescript
+const screen = await app.navigator.detectScreen();
+if (screen === 'conversation') {
+  const url = await app.auto.uia.readUrl();
+  if (url?.includes(targetConversationId)) {
+    // Already here — just read
+    const turns = await app.conversation.readTurns();
+  }
+}
+```
+Don't navigate away and back if you're already in the right place.
+
+### Large text pasting
+Claude will need to paste substantial context when thinking through research. The composer handles pastes up to 73KB (tested in [Sprint 63](../research-projection/27-sprint-63--the-pilot-conversation.md)). For very large context, split across multiple messages.
+
+### Continuing multi-turn research
+The session's `turns` array accumulates. Each `send()` re-reads the full conversation. A research session can span multiple questions:
+```typescript
+const r1 = await session.send('What is the methodology?');
+const r2 = await session.send('How does it compare to prior work?');
+const r3 = await session.send('What are the implications?');
+// session.turns now has all 3 exchanges
+```
