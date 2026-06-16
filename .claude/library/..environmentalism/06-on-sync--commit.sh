@@ -93,14 +93,29 @@ if command -v npx &>/dev/null; then
     library_root="$(cd "$CLAUDE_DIR/library" && pwd)"
     claude_root="$(cd "$CLAUDE_DIR" && pwd)"
 
-    echo "Running Bookkeeping validator..."
+    echo "Running Bookkeeping validator (identity library)..."
     if npx tsx "$bookkeeping_path" "$library_root" 2>&1; then
-        echo "  Bookkeeping: PASS"
+        echo "  Bookkeeping (identity): PASS"
     else
-        echo "  Bookkeeping: FAIL"
+        echo "  Bookkeeping (identity): FAIL"
         validation_passed=false
     fi
     echo ""
+
+    # Validate all branch libraries (.lib/ directories)
+    for lib_dir in "$PROJECT_ROOT"/library/*/.lib; do
+        if [ -d "$lib_dir" ]; then
+            lib_name="$(basename "$(dirname "$lib_dir")")"
+            echo "Running Bookkeeping validator (branch: $lib_name)..."
+            if npx tsx "$bookkeeping_path" "$lib_dir" 2>&1; then
+                echo "  Bookkeeping ($lib_name): PASS"
+            else
+                echo "  Bookkeeping ($lib_name): FAIL"
+                validation_passed=false
+            fi
+            echo ""
+        fi
+    done
 
     echo "Running Compiled Links validator..."
     if npx tsx "$compiled_links_path" "$claude_root" 2>&1; then
