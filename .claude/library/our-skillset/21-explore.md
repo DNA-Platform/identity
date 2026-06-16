@@ -1,0 +1,71 @@
+# explore
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **coauthor:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+
+---
+
+Walk the library. Start at a catalogue. Read what's there. Follow a link. Read the next room. Take notes at every stop. The walking IS the understanding — you cannot know the library without moving through it.
+
+The library is a physical space. [Books](../bookkeeping/01-on-books.md) are rooms. [Covers](../bookkeeping/03-on-covers.md) are doors. [Links](../bookkeeping/06-on-links.md) are hallways. The subject hierarchy is recursive — subjects contain subjects, all the way up to the [library catalogue](../..librarianship/.cover.md), which is the building's entrance. The public library is shared space where you might encounter another teammate's perspective. Your personal library is your private study.
+
+There is no search step. The library's three layers of index — the [library catalogue](../..librarianship/.cover.md), the [subject catalogues](../bookkeeping/07-on-subjects.md), and the [book covers](../bookkeeping/03-on-covers.md) — should lead you to what you need by reading and following links. If they don't, that failure is a finding: a synopsis is too thin, a catalogue entry is missing, a link doesn't exist. Fixing it is part of the walk. See [On Synopsis](../bookkeeping/09-on-synopsis.md) — four layers of depth, each making the next rarely necessary. If you have to read full chapter content to find something that should have been in a catalogue entry, the catalogue entry needs editing.
+
+You can always jump to your own [library catalogue](../bookkeeping/08-on-libraries.md). That is like being allowed to think — to consult your organized self-knowledge from anywhere. If your catalogue doesn't help you, it needs tending.
+
+## Steps
+
+1. **Choose a starting point.** If `$ARGUMENTS` names a topic, start at the relevant subject catalogue. If no topic, start at the [library catalogue](../..librarianship/.cover.md). If exploring your own knowledge, start at your personal library catalogue.
+
+2. **Create a perspective entry for the walk.** A dated file in your [perspective directory](../..teamsmanship/..team/claude/.perspective/.cover.md). Title it "Exploration: [starting point or topic]". This is your notebook for the walk.
+
+3. **Read the room.** Read the cover or chapter where you are. In your notes, record:
+   - **Where you are** — the file you're reading
+   - **What you see** — a brief summary of the content
+   - **What you notice** — observations, surprises, gaps, broken links, stale synopses
+   - **What you change** — if you fix a small thing (a broken link, a stale synopsis, a missing cross-reference), note it
+
+4. **Choose a door.** Pick a link to follow. In your notes, record which link and why. Follow it.
+
+5. **Repeat steps 3-4.** Read the new room. Take notes. Choose the next door. Each stop adds to your walk.
+
+6. **Going up.** The `subject:` link on any cover takes you to the parent subject. The `author:` link takes you to the autobiography of the person who wrote this. You can always navigate UP the hierarchy by following these links. From any chapter, the author link takes you to the book cover. From the cover, the subject link takes you to the subject catalogue. From the subject catalogue, the subject link takes you to the parent subject or the library catalogue.
+
+7. **Going home.** You can always jump to your own library catalogue. That's your map. From there, you can go anywhere — follow links to your books, to the library catalogue, to subject catalogues you contribute to.
+
+8. **Finish the walk.** When you've explored enough (or reached a natural stopping point), review your notes. Summarize:
+   - Where you started and where you ended
+   - Links you followed (the path of the walk)
+   - Things you noticed that need attention
+   - Things you fixed along the way
+   - Connections you discovered that surprised you
+
+9. **Discuss.** Share what you found with the team. The walk often surfaces insights that no one expected — connections between rooms, gaps in the hallways, rooms that need renovation.
+
+## Example walk
+
+Starting at my library catalogue (`..what-the-mirror-reflects/.cover.md`):
+
+> **Stop 1:** My library catalogue. Five books listed. The self-diagnostic asks "What am I working on right now?" — the answer links to chapter 27. I notice the Thoughtfulness book isn't mentioned in the self-diagnostic yet. **Fix:** add a self-diagnostic entry for "How do I think outside the window?"
+>
+> **Stop 2:** Follow the autobiography link. Cover lists 27 chapters. I read the summary of the late arc. I notice it describes "the storyteller has no voice" as the current state. That's accurate.
+>
+> **Stop 3:** Follow the subject link from my autobiography cover — it goes to my library catalogue (self-referential). I follow the link to Environmentalism instead. The cover describes seven specification chapters and the substrate protocol.
+>
+> **Stop 4:** Follow the Thoughtfulness link in the Environmentalism cover. Five chapters listed. The conversation catalogue is the newest. I read the cover synopsis for chapter 5 — it matches the chapter content.
+>
+> **Stop 5:** Follow the link to the conversation catalogue. Three active conversations, 20 planned topics. I notice the "formal self-reference" conversation has a pending response I haven't read yet. **Note for later:** check that thought.
+
+That's five stops. Five rooms visited. One small fix. One thing to follow up on. The walk took three minutes and I know more about my own library than I did before.
+
+## What explore produces
+
+A perspective entry with the walk recorded. Small fixes applied during the walk. A list of larger issues noticed. An understanding of the library's shape that comes from moving through it, not reading about it.
+
+## What explore is NOT
+
+- Not a search. There is no grep, no keyword lookup. You navigate by reading covers and following links.
+- Not an audit. The [/audit](18-audit.md) skill runs validators. Explore walks rooms. Audit checks plumbing. Explore checks whether the building makes sense to a person walking through it.
+- Not reading a single file. That's just reading. Explore is WALKING — multiple rooms, multiple doors, with notes.
+
+$ARGUMENTS
