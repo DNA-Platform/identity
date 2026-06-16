@@ -100,14 +100,35 @@ For each branch listed in [Library Tree ch 05](../../library/library-tree/05-bra
 - Check synopses: does the branch's cataloguing book ([Representivity](../../library/../library/chemistry/.lib/..representivity/.cover.md) for chemistry) accurately describe every book in the branch?
 - Check the one-way link convention: grep the identity library for links INTO the branch. If any exist outside of [Library Tree](../../library/library-tree/.cover.md), flag them — they violate the convention and would break if the branch were removed.
 
-### Step 4: Connect
+### Step 4: Connect and verify consistency
 
-Find isolated content — chapters and books that don't participate in the brain's network:
+Connection is not just adding links — it is verifying that linked content agrees. Use the tools from [On Consistency](../../library/bookkeeping/06-01-on-consistency.md):
 
-- **Chapters with zero outbound links** beyond the `author:` field. These are neurons without synapses. For each, ask: what concept does this chapter mention that has a home elsewhere? Add the link.
-- **Books not referenced from any catalogue.** These are orphaned — they exist but nobody knows about them.
-- **Mentions without links.** Places where a concept is mentioned by name ("scope tracking," "the commit tool," "On Libraries") but not linked to where it lives. Every mention is a potential synapse.
-- **Catalogue entries without deep links.** A book synopsis that says "seven chapters" without linking to any of them is a closed door. Add links to the most important chapters per [On Synopsis](../../library/bookkeeping/09-on-synopsis.md).
+**Run the consistency checker** on your territory:
+```bash
+npx tsx .claude/library/bookkeeping/06-on-links--consistency.ts .claude/library/teamspeak --verbose
+```
+This reads both sides of every link and reports divergences — count mismatches ("seven chapters" when there are eight), keyword mismatches (a synopsis describing something the target no longer says). Every count mismatch is real. Fix them.
+
+**Run the keyword search** to find unlinked mentions:
+```bash
+npx tsx .claude/library/bookkeeping/06-on-links--search.ts .claude/library "scope tracking"
+```
+This finds where concepts are discussed. When you have a paragraph that mentions a concept without linking to it, the search finds the right target.
+
+**The connection-and-consistency protocol:**
+
+1. **Find sections with too few links.** Chapters in your territory with zero or one outbound link. These are isolated neurons. For each: read the chapter, identify every concept mentioned that lives elsewhere in the library, use the keyword search to find the target, add the link.
+
+2. **Check source of truth.** For every link in your territory, ask: is the source side or the target side the source of truth? A [catalogue synopsis](../../library/bookkeeping/09-on-synopsis.md) DESCRIBES a book — the book's cover is the source of truth. A specification chapter DEFINES a term — the specification is the source of truth. When two sides disagree, the source of truth wins and the other side must be updated to match.
+
+3. **Fix consistency at both ends.** When you find a divergence — a synopsis says "seven chapters" but the book has eight — don't just fix the synopsis. Check: is the source of truth (the book cover) also current? Maybe the book grew a chapter that the cover's TOC doesn't list. Fix both ends. The hallway sign AND the room must agree.
+
+4. **Decide source of truth with Libby.** When it's unclear which side is authoritative — two chapters describing the same concept differently, two synopses that have drifted apart — bring it to [Libby](../../library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md). The librarian decides which version is canonical. Then update the other to match.
+
+5. **Check catalogue entries have deep links.** A synopsis that says "seven chapters" without linking to any of them is a closed door. Add links to the most important chapters per [On Synopsis](../../library/bookkeeping/09-on-synopsis.md). The synopsis IS the hallway — it must have doors into the rooms.
+
+6. **Find orphaned books.** Books not referenced from any catalogue. They exist but nobody knows about them. Either add them to the right catalogue or decide they should be archived.
 
 ### Step 5: Compact
 
@@ -116,7 +137,7 @@ Find redundancy and structural debt:
 - **Redundant books.** Content fully covered by another book. Flag for merging per [On Evolution](../../library/bookkeeping/10-on-evolution.md). The ontology migration in Sprint 63 found 19 of 29 files redundant — the same pattern appears across the library.
 - **Thin books.** Books with one chapter. Per [On Evolution](../../library/bookkeeping/10-on-evolution.md), a one-chapter book should either grow or fold back into its parent. Arthur's [Listening Practice](../../library/..teamsmanship/..team/arthur/the-listening-practice/.cover.md) is an example — one chapter, decision pending.
 - **Overlong chapters.** Chapters over 80 lines that contain two ideas. Split per [On Evolution](../../library/bookkeeping/10-on-evolution.md).
-- **Stale synopses.** Catalogue entries that describe a book differently from what the book's cover says. The synopsis should match the cover's opening paragraph.
+- **Stale synopses.** Run the [consistency checker](../../library/bookkeeping/06-on-links--consistency.ts) to find catalogue entries that have diverged from what the book cover actually says. Fix both ends — update the synopsis AND verify the cover is current.
 
 ### Step 6: Discuss and record
 
