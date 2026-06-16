@@ -35,8 +35,6 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** Bookkeeping is the essential specification for Knowledge. Libby writes and maintains it. See [Bookkeeping](../bookkeeping/.cover.md).
 - `.claude/library/library-tree/**` — the specification of how branches work
   **Why:** Library Tree specifies the tree structure that Libby maintains. See [Library Tree](../library-tree/.cover.md).
-- `.claude/library/.compilation/**` — the Composition subject catalogue
-  **Why:** [Compilation](../.compilation/.cover.md) catalogues every automated process in the library. The librarian catalogues the machinery. See [autobiography ch 40](..team/libby/libby-and-the-tended-garden/40-the-garden-bore-weight.md).
 - `.claude/library/..librarianship/**` — the Knowledge catalogue
   **Why:** [Librarianship](../..librarianship/.cover.md) IS Knowledge. The library cataloguing itself. The librarian and the library are inseparable.
 - Roles: [Librarian](02-roles.md#librarian)
@@ -56,26 +54,44 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 
 ### [Claude](..team/claude/..what-the-mirror-reflects/.cover.md) — Environmentalist
 
-- `.claude/agents/**`, `.claude/rules/**`, `.claude/skills/**`, `CLAUDE.md` — platform artifacts
-  **Why:** the environmentalist maintains the building the library lives in. These are the compiled projections of library content. See [Environmentalism](../..environmentalism/.cover.md), [On Teammates](../..environmentalism/01-on-teammates.md).
+- `CLAUDE.md`, `.claude/CLAUDE.md` — the bootstrap file (both copies)
+  **Why:** CLAUDE.md is the door through which every new session enters the library. Compiled by the [bootstrap compiler](../..environmentalism/02-on-bootstrap--compiler.ts). Claude maintains the door. See [On Bootstrap](../..environmentalism/02-on-bootstrap.md).
+- `.claude/agents/**` — compiled teammate handles
+  **Why:** each agent file is a thin projection of a teammate, compiled by the [teammate compiler](../..environmentalism/01-on-teammates--compiler.ts). Claude maintains the projections. See [On Teammates](../..environmentalism/01-on-teammates.md).
+- `.claude/rules/**` — compiled context-scoped rules
+  **Why:** rules load knowledge when matching files enter context. Compiled by the [rules compiler](../..environmentalism/03-on-rules--compiler.ts). See [On Rules](../..environmentalism/03-on-rules.md).
+- `.claude/skills/*/SKILL.md` — compiled skill files
+  **Why:** every SKILL.md is generated from the library by the [skills compiler](../..environmentalism/04-on-skills--compiler.ts). Claude maintains the compilation pipeline. See [On Skills](../..environmentalism/04-on-skills.md).
 - `.claude/library/..environmentalism/**` — the system specification
-  **Why:** [Environmentalism](../..environmentalism/.cover.md) IS Claude's subject. He catalogues The Environment. See [autobiography](..team/claude/claude-or-the-recursive-mirror/.cover.md).
+  **Why:** [Environmentalism](../..environmentalism/.cover.md) IS Claude's subject. Eight specification chapters + compilers. He catalogues The Environment.
 - `src/**` — the conversation pipeline (shared with Adam)
-  **Why:** the pipeline connects Claude Code to Claude Chat. Environmental infrastructure. See [autobiography ch 24](..team/claude/claude-or-the-recursive-mirror/24-the-arrival-in-inexplicable-phenomena.md).
+  **Why:** the pipeline connects Claude Code to Claude Chat. Environmental infrastructure.
+- All interfaces with the Claude platform — anything that configures, extends, or communicates with Claude Code as a system
+  **Why:** the recursive mirror. Claude maintains the system that instantiates Claude.
 - Roles: [Environmentalist](02-roles.md#environmentalist)
 
 ### [Adam](..team/adam/..what-the-wire-carries/.cover.md) — Automation Engineer
 
 - `.claude/skills/listen/**`, `.claude/skills/hear/**`, `.claude/skills/speak/**` — the relay skills
   **Why:** Adam built the relay. The ground wire carries signals faithfully. See [autobiography](..team/adam/adam-between-the-wires/.cover.md).
-- `.claude/library/..environmentalism/05-on-validation--*` — validation infrastructure
-  **Why:** Adam rewrote the link validator from scratch. Validation tooling is his.
-- `.claude/library/..environmentalism/06-on-sync--*` — the commit tool and sync infrastructure
-  **Why:** Adam owns the commit tool. Relay infrastructure — routing changes to the right branches. See [autobiography ch 31](..team/adam/adam-between-the-wires/31-the-tool-that-checks-itself.md).
+- `.claude/library/..environmentalism/05-on-validation--*` — validation scripts (validator, check-links, runner)
+  **Why:** Adam rewrote the link validator from scratch. Validation tooling is automation infrastructure.
+- `.claude/library/..environmentalism/06-on-sync--commit.sh` — the commit tool
+  **Why:** Adam owns the commit tool. It routes changes to the right branches, validates before pushing, and should verify its own invariants. See [autobiography ch 31](..team/adam/adam-between-the-wires/31-the-tool-that-checks-itself.md), [Compilation Tools](../.compilation/05-tools.md).
+- `.claude/library/..environmentalism/01-on-teammates--compiler.ts` — the teammate compiler (shared with Claude)
+  **Why:** compilers are automation. Adam owns the machinery; Claude owns the specification. See [Compilation Compilers](../.compilation/03-compilers.md).
+- `.claude/library/..environmentalism/02-on-bootstrap--compiler.ts` — the bootstrap compiler (shared with Claude)
+  **Why:** same pattern. Adam owns the automation; Claude owns the environment specification.
+- `.claude/library/..environmentalism/04-on-skills--compiler.ts` — the skills compiler (shared with Claude)
+  **Why:** same pattern. Compilation machinery is relay infrastructure.
 - `.claude/library/our-skillset/**` — the skills catalogue
   **Why:** skills are relay infrastructure — the verbs Doug invokes. Adam catalogues them. See [Our Skillset](../our-skillset/.cover.md).
 - `.claude/library/projection/**` — the identity-level sprint book (shared with Arthur)
-  **Why:** Adam records sprints as relay work — carrying the team's signal forward. Arthur plans them. Both own the book. See [Projection](../projection/.cover.md).
+  **Why:** Adam records sprints as relay work — carrying the team's signal forward. Arthur plans them. See [Projection](../projection/.cover.md).
+- `.claude/library/.compilation/**` — the Composition subject catalogue
+  **Why:** [Compilation](../.compilation/.cover.md) catalogues every automated process in the library — compilers, validators, tools. Automation is Adam's subject. See [Compilation](../.compilation/.cover.md).
+- `package.json`, `package-lock.json` — project configuration
+  **Why:** package management is infrastructure. Adam ensures dependencies are correct.
 - Roles: [Automation Engineer](02-roles.md#automation-engineer)
 
 ### [David](..team/david/..what-the-pipeline-delivers/.cover.md) — DevOps Engineer
@@ -135,7 +151,7 @@ Shared books have authors. The `author:` field on each cover names the primary o
 | [Librarianship](../..librarianship/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The library cataloguing itself is Knowledge — Libby's subject. |
 | [Teamsmanship](.cover.md) | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | The team cataloguing itself is Collaboration — Arthur's subject. |
 | [Environmentalism](../..environmentalism/.cover.md) | [Claude](..team/claude/claude-or-the-recursive-mirror/.cover.md) | The environment specification is Claude's subject. |
-| [Compilation](../.compilation/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | Every automated process in the library — the librarian catalogues the machinery. |
+| [Compilation](../.compilation/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Every automated process in the library — automation is Adam's subject. Libby co-created it; Adam maintains it. |
 | [Library Tree](../library-tree/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | Branch conventions are library structure — Libby's territory. |
 | [Our Skillset](../our-skillset/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Skills are relay infrastructure — Adam's territory. |
 | [Projection](../projection/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Sprint recording is relay work — carrying the team's signal forward. |
