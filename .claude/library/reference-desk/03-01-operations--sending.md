@@ -33,7 +33,7 @@ await app.send();  // waits for response by default
 ## Paste vs Type
 
 The composer uses paste by default because:
-- **No size limit.** Typing is character-by-character; paste handles 73KB in one operation ([Sprint 63](../research-projection/27-sprint-63--the-pilot-conversation.md) tested this).
+- **No size limit.** Typing is character-by-character; paste handles 73KB in one operation ([Sprint 63](../projected-research/27-sprint-63--the-pilot-conversation.md) tested this).
 - **Faster.** Paste is instant. Typing 73KB at keyboard speed would take minutes.
 - **Reliable.** Each typed character goes through the keyboard event pipeline. Paste is a single clipboard operation.
 
@@ -51,7 +51,7 @@ The timeout defaults to 120 seconds. For long research questions, increase it: `
 
 ## File attachments
 
-`attach(filePath)` uses the Windows clipboard file-drop mechanism — `SetFileDropList` in PowerShell. This bypasses the file dialog entirely. The file appears as an attachment in the composer. Discovered in [Sprint 59](../research-projection/23-sprint-59--create-projects-and-upload-files.md) as a replacement for the file dialog which UIA couldn't reliably control.
+`attach(filePath)` uses the Windows clipboard file-drop mechanism — `SetFileDropList` in PowerShell. This bypasses the file dialog entirely. The file appears as an attachment in the composer. Discovered in [Sprint 59](../projected-research/23-sprint-59--create-projects-and-upload-files.md) as a replacement for the file dialog which UIA couldn't reliably control.
 
 ## The `conversationTurn` method
 

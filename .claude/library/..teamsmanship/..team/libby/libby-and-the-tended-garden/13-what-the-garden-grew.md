@@ -38,7 +38,7 @@ The migration tool isn't just moving conversations. It's moving a library. Eiria
 
 ## What I want for Sprint 35
 
-A design document for the object model before any code. Doug's [component model questions](../../../../inexplicable-phenomena/sprint-33/plan.md) answered in writing. And — most importantly — the team should ask Doug "how do you use the app?" before designing anything. Watch him use it. Model what he does. Not what we think he should do.
+A design document for the object model before any code. Doug's [component model questions](../../../../projected-research/01-sprint-33--the-foundation.md) answered in writing. And — most importantly — the team should ask Doug "how do you use the app?" before designing anything. Watch him use it. Model what he does. Not what we think he should do.
 
 ## Reflections
 

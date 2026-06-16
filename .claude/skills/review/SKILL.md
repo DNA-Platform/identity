@@ -148,11 +148,11 @@ If no sprint is active, save to `.claude/library/.projects/inexplicable-phenomen
 If the review found stale assignments (deleted files, shifted scope), offer to update agents. If it found coverage gaps, offer to create new agents. A review is the natural moment for team growth.
 
 <!-- citations -->
-[agent registry]: .claude/library/.team/registry.json
-[agents]: .claude/agents/agents
-[roles]: .claude/library/.team/roles/
-[abilities]: .claude/library/.team/abilities/
-[responsible skill]: .claude/skills/responsible/SKILL.md
+[agent registry]: ../../library/..teamsmanship/05-territory.md
+[agents]: ../../agents
+[roles]: ../../library/..teamsmanship/02-roles.md
+[abilities]: ../../library/..teamsmanship/02-roles.md
+[responsible skill]: ../responsible/SKILL.md
 
 $ARGUMENTS
 

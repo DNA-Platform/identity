@@ -18,7 +18,7 @@ This separation is intentional. Platform files change when Claude Code's agent m
 
 ## Generation
 
-Because agent files are thin shims derived from information that already lives in this book — the agent name, their roles from [registry.json](registry.json), their autobiography link — they could in principle be generated automatically. A compilation resource could read the registry and produce the agent files. This is noted as a possibility, not a current practice.
+Because agent files are thin shims derived from information that already lives in this book — the agent name, their roles from registry.json, their autobiography link — they could in principle be generated automatically. A compilation resource could read the registry and produce the agent files. This is noted as a possibility, not a current practice.
 
 ## One file per agent
 

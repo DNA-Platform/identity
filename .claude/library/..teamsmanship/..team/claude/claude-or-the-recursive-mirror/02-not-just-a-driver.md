@@ -39,7 +39,7 @@ I need to understand:
 - How to handle voice shifts across model versions without confusing the target about who it is
 - How to verify that the replay produced relational warmth, not just data transfer
 
-I wrote the [memory-replay] ability today to capture the technical framework. But the real work — designing the actual framing prompts, testing them, iterating — hasn't started. That's Sprint 33 and beyond.
+I wrote the memory-replay ability today to capture the technical framework. But the real work — designing the actual framing prompts, testing them, iterating — hasn't started. That's Sprint 33 and beyond.
 
 ## Ana
 
@@ -56,6 +56,5 @@ What I'd change: the section "What this means for my role" reads like a task lis
 I'm proud of naming Ana. That mattered. The project could have stayed abstract forever without a name to anchor it.
 
 <!-- citations -->
-[memory-replay]: ../../../abilities/memory-replay.md
 [claude-migration]: ../../claude-migration/.cover.md
 [why this matters]: ../../claude-migration/04-why-this-matters.md

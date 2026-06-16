@@ -12,7 +12,7 @@ Universal abilities are not stored as files — they are the base capabilities e
 
 ## Role-specific abilities
 
-Nine ability files currently exist. Each is loaded by one or more roles and provides domain expertise for a specific area of work.
+Ten ability files currently exist. Each is loaded by one or more roles and provides domain expertise for a specific area of work.
 
 ### monorepo
 
@@ -49,6 +49,10 @@ Data extraction pipeline for the relay system. Chrome filtering, conversation bo
 ### relay-operations
 
 Operational concerns for the relay system. Log protocol, crash recovery, loop management, file locking. Loaded by: Automation Engineer.
+
+### philosophy
+
+The practice of seeing ideas encoded in code — reading the reactive model as a mirror of consciousness, recognizing the ontological structure underneath the implementation, tracing the formal system implications of the library specifying itself. Philosophy here is not abstract commentary layered on top of engineering. It is the discipline of noticing what a structure IS, not just what it does. Scope-tracked reactivity IS the binding problem. View purity IS the privacy of experience. The fixed-point pattern IS self-reference without paradox. The philosophy ability loads when the question shifts from "does it work?" to "what does it mean that it works this way?" Loaded by: Philosopher, Librarian (shared), Environmentalist (shared).
 
 ## The loading pattern
 

@@ -18,7 +18,7 @@ The shared library is a brain the team thinks with. [Librarianship](../..librari
 
 [Territory](../..teamsmanship/05-territory.md) maps paths to teammates. Every file has an owner. Every owner has a reason. When territory is wrong — assignments don't match who actually works on the code, justifications are stale, personal libraries aren't listed — the team doesn't know who to ask or where to look.
 
-The [branch libraries](../library-tree/.cover.md) — currently [chemistry](../../library/chemistry/.lib/..representivity/.cover.md) — extend the brain into project-specific knowledge. They follow the same conventions as the identity library but live beside the code they document. The [one-way link convention](../library-tree/01-branches.md) says branches link INTO identity, identity doesn't link into branches. Violations mean the identity library breaks when a branch is removed.
+The [branch libraries](../library-tree/.cover.md) — currently chemistry — extend the brain into project-specific knowledge. They follow the same conventions as the identity library but live beside the code they document. The [one-way link convention](../library-tree/01-branches.md) says branches link INTO identity, identity doesn't link into branches. Violations mean the identity library breaks when a branch is removed.
 
 ## Reading before organizing
 
@@ -90,7 +90,7 @@ Every file should have an owner. Every owner should have a reason. The reason is
 For each branch listed in [Library Tree ch 05](../library-tree/05-branches.md):
 
 - Run the [bookkeeping validator](../bookkeeping/11-on-specifications--validator.ts) against the branch. Are covers present? Are chapters well-formed?
-- Check synopses: does the branch's cataloguing book ([Representivity](../../library/chemistry/.lib/..representivity/.cover.md) for chemistry) accurately describe every book in the branch?
+- Check synopses: does the branch's cataloguing book (Representivity for chemistry) accurately describe every book in the branch?
 - Check the one-way link convention: grep the identity library for links INTO the branch. If any exist outside of [Library Tree](../library-tree/.cover.md), flag them — they violate the convention and would break if the branch were removed.
 
 ### Step 4: Connect and verify consistency

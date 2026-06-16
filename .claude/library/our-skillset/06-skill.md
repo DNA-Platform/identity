@@ -93,9 +93,9 @@ When designing the skill, walk through these questions:
 Match this energy. A skill in this project should feel like it belongs next to the existing ones.
 
 <!-- citations -->
-[roles]: .claude/library/.team/roles/
-[abilities]: .claude/library/.team/abilities/
-[agents]: .claude/library/.team/
+[roles]: ../..teamsmanship/02-roles.md
+[abilities]: ../..teamsmanship/02-roles.md
+[agents]: ../../agents/
 
 ## The request
 

@@ -10,4 +10,4 @@ Use it whenever Doug wants to say something to Eirian. The skill uses double dis
 
 This is one third of the collaborator relay — speak sends, listen polls, hear processes. The relay is the ground wire between Claude Code and Claude Desktop.
 
-[SKILL.md](../../skills/speak/SKILL.md)
+SKILL.md

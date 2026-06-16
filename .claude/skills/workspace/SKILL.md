@@ -82,7 +82,7 @@ If the path already has a `package.json`, offer to:
 - Don't modify other workspaces' package.json files (unless adding a cross-dep that was requested)
 
 <!-- citations -->
-[agent registry]: .claude/library/.team/registry.json
+[agent registry]: ../../library/our-skillset/.claude/library/.team/registry.json
 
 $ARGUMENTS
 

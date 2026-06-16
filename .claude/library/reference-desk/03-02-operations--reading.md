@@ -42,7 +42,7 @@ interface Response {
 }
 ```
 
-`readTurns()` parses the UIA tree text into this structure. The parser handles multi-turn conversations — [Sprint 66](../research-projection/30-sprint-66--the-conversation-object.md) tested it against a 342-turn conversation and parsed it in 750ms.
+`readTurns()` parses the UIA tree text into this structure. The parser handles multi-turn conversations — [Sprint 66](../projected-research/30-sprint-66--the-conversation-object.md) tested it against a 342-turn conversation and parsed it in 750ms.
 
 ## Streaming detection
 

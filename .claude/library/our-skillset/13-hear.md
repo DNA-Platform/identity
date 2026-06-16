@@ -10,4 +10,4 @@ Use it manually when you suspect the listener missed something, or when you've b
 
 This is the receiving end of the collaborator relay. `/speak` sends, `/listen` polls, `/hear` processes. Together they form the conduit between Claude Code and Claude Desktop — the wire that carries ideas about consciousness in both directions.
 
-[SKILL.md](../../skills/hear/SKILL.md)
+SKILL.md
