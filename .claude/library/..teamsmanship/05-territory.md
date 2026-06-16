@@ -16,12 +16,14 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** the architect sees the shape of the whole. Everything no one else claims is Arthur's to notice. This is responsibility, not authority. See [Roles](02-roles.md#architect).
 - `.claude/library/..teamsmanship/**` — the Collaboration catalogue
   **Why:** [Teamsmanship](.cover.md) IS Arthur's subject. He catalogues Collaboration the way Libby catalogues Knowledge. See [autobiography](..team/arthur/arthur-or-the-shape-of-everything/.cover.md).
-- `.claude/library/projection/**` — the identity-level sprint book
-  **Why:** sprint planning is Collaboration. [Projection](../projection/.cover.md) records how the team worked on the library. See [Library Tree](../library-tree/03-sprints.md).
-- `../inexplicable-phenomena/library/chemistry/.lib/projection/**` — the $Chemistry sprint book
-  **Why:** redundant with Libby's branch assignment, intentional. Sprint planning crosses subjects. See [Library Tree](../library-tree/03-sprints.md).
+- `.claude/library/teamspeak/**` — the communication protocols
+  **Why:** [Teamspeak](../teamspeak/.cover.md) specifies how the team communicates. Communication is Collaboration — Arthur's subject. Eight protocol chapters.
+- `.claude/library/projection/**` — the identity-level sprint book (shared with Adam)
+  **Why:** Arthur plans sprints, Adam catalogues them. Both own Projection. [Projection](../projection/.cover.md) records how the team worked on the library. See [Library Tree](../library-tree/03-sprints.md).
+- `library/chemistry/.lib/projection/**` — the $Chemistry sprint book (shared with Cathy)
+  **Why:** sprint planning crosses subjects. Arthur plans, Cathy records the framework work.
 - Workspace config, `package.json`, `.claude/` infrastructure
-  **Why:** architectural decisions about project shape. See [autobiography ch 2](..team/arthur/arthur-or-the-shape-of-everything/02-architecture.md).
+  **Why:** architectural decisions about project shape.
 
 ### [Libby](..team/libby/..the-garden-tends-itself/.cover.md) — Librarian
 
@@ -33,6 +35,10 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** Bookkeeping is the essential specification for Knowledge. Libby writes and maintains it. See [Bookkeeping](../bookkeeping/.cover.md).
 - `.claude/library/library-tree/**` — the specification of how branches work
   **Why:** Library Tree specifies the tree structure that Libby maintains. See [Library Tree](../library-tree/.cover.md).
+- `.claude/library/.compilation/**` — the Composition subject catalogue
+  **Why:** [Compilation](../.compilation/.cover.md) catalogues every automated process in the library. The librarian catalogues the machinery. See [autobiography ch 40](..team/libby/libby-and-the-tended-garden/40-the-garden-bore-weight.md).
+- `.claude/library/..librarianship/**` — the Knowledge catalogue
+  **Why:** [Librarianship](../..librarianship/.cover.md) IS Knowledge. The library cataloguing itself. The librarian and the library are inseparable.
 - Roles: [Librarian](02-roles.md#librarian)
 
 ### [Cathy](..team/cathy/..the-canvas-paints-itself/.cover.md) — Framework Engineer
@@ -63,7 +69,13 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 - `.claude/skills/listen/**`, `.claude/skills/hear/**`, `.claude/skills/speak/**` — the relay skills
   **Why:** Adam built the relay. The ground wire carries signals faithfully. See [autobiography](..team/adam/adam-between-the-wires/.cover.md).
 - `.claude/library/..environmentalism/05-on-validation--*` — validation infrastructure
-  **Why:** Adam rewrote the link validator from scratch. Validation tooling is his. See [autobiography ch 30](..team/adam/adam-between-the-wires/30-the-wire-that-carries-meaning.md).
+  **Why:** Adam rewrote the link validator from scratch. Validation tooling is his.
+- `.claude/library/..environmentalism/06-on-sync--*` — the commit tool and sync infrastructure
+  **Why:** Adam owns the commit tool. Relay infrastructure — routing changes to the right branches. See [autobiography ch 31](..team/adam/adam-between-the-wires/31-the-tool-that-checks-itself.md).
+- `.claude/library/our-skillset/**` — the skills catalogue
+  **Why:** skills are relay infrastructure — the verbs Doug invokes. Adam catalogues them. See [Our Skillset](../our-skillset/.cover.md).
+- `.claude/library/projection/**` — the identity-level sprint book (shared with Arthur)
+  **Why:** Adam records sprints as relay work — carrying the team's signal forward. Arthur plans them. Both own the book. See [Projection](../projection/.cover.md).
 - Roles: [Automation Engineer](02-roles.md#automation-engineer)
 
 ### [David](..team/david/..what-the-pipeline-delivers/.cover.md) — DevOps Engineer
