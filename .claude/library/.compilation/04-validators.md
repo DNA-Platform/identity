@@ -38,6 +38,22 @@ Three validators check library and compiled output. The validation runner orches
 
 The runner currently does NOT include the full link checker or branch library validation. The `/audit` skill fills this gap — it runs the runner plus everything the runner skips.
 
+## Consistency checker
+
+- **Source:** [06-on-links--consistency.ts](../bookkeeping/06-on-links--consistency.ts)
+- **Specification:** [On Consistency](../bookkeeping/06-01-on-consistency.md)
+- **Checks:** Both sides of every link — does the source's description of the target match what the target actually says? Count mismatches (source says "seven chapters," directory has eight). Keyword mismatches (source describes a topic the target's opening doesn't mention).
+- **Scope:** Any directory tree.
+- **Output:** Files scanned, links checked, issues found (count mismatches and keyword mismatches).
+
+## Keyword search
+
+- **Source:** [06-on-links--search.ts](../bookkeeping/06-on-links--search.ts)
+- **Specification:** [On Consistency](../bookkeeping/06-01-on-consistency.md)
+- **Purpose:** Find where concepts are discussed in the library. Given keywords, returns matching files and paragraphs ranked by relevance. Use before creating links.
+- **Scope:** Any directory tree.
+- **Output:** Matching files with excerpts, ranked by score.
+
 ## What the commit tool gates on
 
 The [commit tool](../..environmentalism/06-on-sync--commit.sh) runs the validation runner before pushing. If bookkeeping or compiled-links fail, the push is blocked. The full link checker is NOT gated — it's informational. This is deliberate: 136 pre-existing cross-repo broken links should not block every push. The audit skill reports them; the commit tool does not gate on them.
