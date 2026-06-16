@@ -1,6 +1,7 @@
 # Sprint 38 — Projects as Books
 
 Turn the flat export into a navigable library. Projects become books with covers and conversation summaries. Artifacts are extracted from conversations. The live app provides the project-conversation mapping.
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
 ## Sprint goal
 

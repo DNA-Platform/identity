@@ -1,6 +1,7 @@
 # Sprint 42 — Projects as Books
 
 Turn the flat export into navigable project books. Test with a small project, verify it works, generalize.
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
 ## Sprint goal
 
