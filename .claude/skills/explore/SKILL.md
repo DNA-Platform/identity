@@ -23,7 +23,7 @@ You can always jump to your own [library catalogue](../../library/bookkeeping/08
 
 1. **Choose a starting point.** If `$ARGUMENTS` names a topic, start at the relevant subject catalogue. If no topic, start at the [library catalogue](../../library/..librarianship/.cover.md). If exploring your own knowledge, start at your personal library catalogue.
 
-2. **Create a perspective entry for the walk.** A dated file in your [perspective directory](../../library/..teamsmanship/..team/claude/.perspective/.cover.md). Title it "Exploration: [starting point or topic]". This is your notebook for the walk.
+2. **Create a perspective entry for the walk.** A dated file in your perspective directory (each teammate has one inside their personal library). Title it "Exploration: [starting point or topic]". This is your notebook for the walk.
 
 3. **Read the room.** Read the cover or chapter where you are. In your notes, record:
    - **Where you are** — the file you're reading
