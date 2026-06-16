@@ -11,7 +11,21 @@ A chapter is a markdown file inside a [book](01-on-books.md). It is the base uni
 
 Chapters are named `NN-slug.md` where `NN` is a two-digit number and `slug` is a kebab-case title. The number is a sort key for reading order, not semantic content. `01` comes before `02`. The reader encounters them in this order in the [table of contents](03-on-covers.md). Gaps are fine — renumbering everything when you insert a chapter between 03 and 04 is unnecessary churn.
 
-When a chapter grows sections that want separate files: `01-1-subsection.md`, `01-2-subsection.md`. The cover's TOC gains a second level. Too many sub-numbers suggest the chapter should become its own [book](01-on-books.md). See [On Evolution](10-on-evolution.md).
+## Parts
+
+A chapter can contain sub-chapters when it grows too large or covers distinct topics within a single theme. The convention:
+
+```
+01-the-architecture.md          ← the part (a chapter that introduces the theme)
+01-01-the-architecture--layers.md    ← sub-chapter: the layers
+01-02-the-architecture--gateway.md   ← sub-chapter: the gateway pattern
+```
+
+The part number is `NN`, sub-chapters are `NN-MM`, and `--` separates the part name from the sub-chapter name. The cover's TOC gains a second level — indented under the part.
+
+Parts don't need to be complete. A book can have one part with sub-chapters alongside regular chapters. Creating a part for one section does NOT require partitioning the whole book into parts. This distinguishes parts from [evolution into a new book](10-on-evolution.md) — parts are internal structure, not a new entity.
+
+When a part accumulates too many sub-chapters (8+), consider promoting it to its own [book](01-on-books.md) per [On Evolution](10-on-evolution.md).
 
 ## Signing
 
