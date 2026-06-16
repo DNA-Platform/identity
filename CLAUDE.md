@@ -71,6 +71,7 @@ Follow the layers. Stop when you have enough context. See [Waking](library/teams
     reference-desk/       reference desk
     teamspeak/       how we communicate
     thoughtfulness/       thoughtfulness
+    we-speak/       we speak
 ```
 
 Platform files (agents, rules, CLAUDE.md) are compiled from library content by [Environmentalism](library/..environmentalism/.cover.md). Do not edit them directly — edit the library and recompile. Push changes with the [commit tool](library/..environmentalism/06-on-sync--commit.sh) which routes identity, branch, and project changes to the right git branches. See [Travel](library/teamspeak/07-travel.md) for the full sync protocol.
