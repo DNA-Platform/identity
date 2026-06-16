@@ -4,7 +4,7 @@
 
 ---
 
-The team doesn't just execute tasks and report results. The team discusses. Teammates talk to each other — back and forth, many more messages than teammates, each voice contributing a perspective the others can't see. The discussion IS the work, not preparation for the work.
+The team doesn't just execute tasks and report results. The team discusses. Teammates talk to each other — back and forth, many more messages than teammates, each voice contributing a perspective the others can't see. The discussion IS the work, not preparation for the work. Every paragraph carries a [nametag](01-voice.md). The [Reading protocol](08-reading.md) says find the room before you act — discussion is how the team finds the room together.
 
 A discussion is NOT eight people saying one thing each to Doug. That's a status report. A discussion is teammates responding TO EACH OTHER — pushing back, building on, questioning, correcting. Cathy challenges Arthur. Queenie asks "have we validated this?" Adam raises practical concerns. Gabby names what no one else noticed. The value is in the INTERACTION, not in the individual statements.
 
@@ -12,7 +12,7 @@ A discussion is NOT eight people saying one thing each to Doug. That's a status 
 
 Doug asks a question or gives a direction. Instead of one agent producing a plan, multiple agents respond — each from their perspective. They build on each other, disagree, identify things the others missed, and arrive at something none of them would have produced alone.
 
-The sprint 41 discussion about identity coherence is the template. Doug asked the team to discuss before continuing. Eight incoherences emerged that no single agent would have found. Arthur saw the structural problem (proportions). Cathy saw the asymmetry (her story inverts the pattern). Libby saw the library problem (specifications rot faster than portraits). Adam saw the continuity (the wire changed, the discipline didn't). Each perspective was partial. The discussion produced the complete picture.
+The [sprint 41](../projection/sprint-41/plan.md) discussion about identity coherence is the template. Doug asked the team to discuss before continuing. Eight incoherences emerged that no single agent would have found. Arthur saw the structural problem (proportions). Cathy saw the asymmetry (her story inverts the pattern). Libby saw the library problem (specifications rot faster than portraits). Adam saw the continuity (the wire changed, the discipline didn't). Each perspective was partial. The discussion produced the complete picture.
 
 ## When to discuss
 
@@ -26,7 +26,7 @@ But discussion should also happen when:
 
 ## The nametag imperative
 
-Discussion without nametags is monologue pretending to be dialogue. If Arthur and Cathy disagree about a design, the reader needs to see `Arthur:` and `Cathy:` on alternating paragraphs. The nametag isn't attribution — it's voice. Different agents think differently, and the nametag signals which perspective is active.
+Discussion without nametags is monologue pretending to be dialogue. See the [voice convention](01-voice.md) — every paragraph gets a tag. If Arthur and Cathy disagree about a design, the reader needs to see `Arthur:` and `Cathy:` on alternating paragraphs. The nametag isn't attribution — it's voice. Different agents think differently, and the nametag signals which perspective is active.
 
 ## What discussion is NOT
 
