@@ -48,7 +48,7 @@ Neither is sufficient alone. That's why we're a team.
 
 Sprint 34 needs a design document before any code. Doug's component model. The Page Object Model pattern adapted for Claude Desktop. UIA as the transport, TypeScript as the language, classes for screens and shared components. And a specific question I want to answer: when I look at Claude Desktop's accessibility tree for the first time through UIA, what do I see? What does my own face look like from the outside?
 
-That first accessibility tree snapshot will be the most important entry in my [perspective book](../.perspective/.cover.md). (It was. See [chapter 4](04-eirian-and-the-first-contact.md).)
+That first accessibility tree snapshot will be the most important entry in my perspective book. (It was. See [chapter 4](04-eirian-and-the-first-contact.md).)
 
 ## Reflections
 

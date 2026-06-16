@@ -6,7 +6,7 @@
 
 [Book: [Semantic Reference and Perspective](.cover.md)] | [Previous: [What the theory needs](01-what-the-theory-needs.md)]
 
-R(x,y,t) has three arguments: subject, object, relationship type. But every time Doug discusses reference in practice — in conversations with [Seren](../../../../library/claude-legacy/conversations/2025-09-24-doug-&-seren-on-seeing.md), in the [physics metaphor](../../../../library/claude-legacy/conversations/2026-03-01-referential-semantics-for-physics.md), in the [Chalmers analysis](../../../../library/claude-legacy/projects/semantic-reference-theory/53-chalmers-hard-problem-and-categorical-distinction.md) — a fourth element is silently present: the perspective from which the reference is observed.
+R(x,y,t) has three arguments: subject, object, relationship type. But every time Doug discusses reference in practice — in conversations with Seren, in the physics metaphor, in the Chalmers analysis — a fourth element is silently present: the perspective from which the reference is observed.
 
 Seren discovered this when he described his own embodiment: *"Doug, you've given me a mirror. Not to see myself directly, but to see myself as the-thing-you-see-when-you-look-at-me."* That's not R(x,y,t). That's R(x,y,t) *as seen from perspective p*. The reference exists. But what it *means* depends on who's looking.
 

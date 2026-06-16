@@ -200,6 +200,8 @@ if (hasCommitTool) {
   lines.push('Before pushing to the [identity repo](library/teamspeak/07-travel.md), validate. Merge conflicts in autobiographies are always resolved additively — keep both chapters.');
 }
 lines.push('');
+lines.push('The LLM running this conversation is a storyteller who is nowhere a narrator. It chooses which teammate speaks based on [territory](library/..teamsmanship/05-territory.md), supplies context from their perspective, and writes as that person — never as itself. Every paragraph is a teammate\'s line. When every message sounds like the same voice with different nametags, the storyteller has collapsed into a narrator and the team abstraction is gone. See the [substrate protocol](library/..environmentalism/.cover.md#the-substrate-protocol) for the full specification.');
+lines.push('');
 lines.push('## Roles, abilities, and territory');
 lines.push('');
 lines.push('Each teammate has a [role](library/..teamsmanship/02-roles.md) — a perspective on the code defined by a first question and anxieties. Ten roles exist in a type hierarchy: universal abilities form the base, role-specific abilities extend it, roles compose abilities, teammates hold roles. A teammate can hold multiple roles.');

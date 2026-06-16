@@ -14,7 +14,7 @@ The library is ONE directory under `.claude/`. It contains three kinds of things
 |--------|------|-------------------|---------|
 | `..` | Library catalogue | Yes — IS the library | [`..librarianship/`](.cover.md) |
 | `.` | Subject catalogue | Yes — IS the subject | [`..teamsmanship/`](../..teamsmanship/.cover.md) |
-| (none) | Regular book | No — belongs to a subject | [`coding-policy/`](../coding-policy/.cover.md) |
+| (none) | Regular book | No — belongs to a subject | `coding-policy/` |
 
 All three kinds are PEERS at the same directory level. A subject catalogue does NOT contain the books it catalogues. The books sit beside it. The subject links to them in its [cover](.cover.md). Each book declares its canonical subject in its frontmatter with a [`subject:` field](../bookkeeping/03-on-covers.md#subject).
 
@@ -48,7 +48,7 @@ Recency comes from two sources: the sprint history table's last entry (project-l
 
 ## Closedness
 
-The library is closed under specification of itself. Everything the library depends on — including things outside `library/` like [CLAUDE.md](../../../CLAUDE.md), [rules/](../../rules/), [agents/](../../agents/), and [settings.json](../../settings.json) — has representation IN the library with real links OUT to the actual artifacts. The field guide specifies what those artifacts must contain. The library describes the world it lives in.
+The library is closed under specification of itself. Everything the library depends on — including things outside `library/` like [CLAUDE.md](../../../CLAUDE.md), [rules/](../../rules/), [agents/](../../agents/), and settings.json — has representation IN the library with real links OUT to the actual artifacts. The field guide specifies what those artifacts must contain. The library describes the world it lives in.
 
 <!-- citations -->
 [cover]: .cover.md

@@ -103,12 +103,12 @@ Before doing {Name}'s work, ground yourself in the current implementation:
 ```
 
 <!-- citations -->
-[roles]: .claude/library/.team/roles
-[Architect]: .claude/library/.team/roles/architect.md
-[Framework Engineer]: .claude/library/.team/roles/framework-engineer.md
-[Automation Engineer]: .claude/library/.team/roles/automation-engineer.md
-[abilities]: .claude/library/.team/abilities/
-[project tracker]: .claude/library/.projects/inexplicable-phenomena/index.md
+[roles]: ../../library/..teamsmanship/02-roles.md
+[Architect]: ../../library/..teamsmanship/02-roles.md#architect
+[Framework Engineer]: ../../library/..teamsmanship/02-roles.md#framework-engineer
+[Automation Engineer]: ../../library/..teamsmanship/02-roles.md#automation-engineer
+[abilities]: ../../library/..teamsmanship/02-roles.md
+[project tracker]: ../../library/.projection/.cover.md
 
 $ARGUMENTS
 

@@ -4,7 +4,7 @@
 
 ---
 
-The app model is how you think about the Claude Desktop app when you write code against it. This chapter describes the abstract shape — the patterns that survive app updates. The specific classes change; these principles don't. Source: [coding policy ch 5](../../../dna-library/.claude/agents/library/coding-policy/05-stateful-app-patterns.md), [Sprint 40](../research-projection/08-sprint-40--smart-selectors-and-lazy-data.md), [Sprint 41](../research-projection/09-sprint-41--the-stateful-app.md).
+The app model is how you think about the Claude Desktop app when you write code against it. This chapter describes the abstract shape — the patterns that survive app updates. The specific classes change; these principles don't. Source: coding policy ch 5, [Sprint 40](../projected-research/08-sprint-40--smart-selectors-and-lazy-data.md), [Sprint 41](../projected-research/09-sprint-41--the-stateful-app.md).
 
 ## Active page
 

@@ -209,11 +209,11 @@ If Doug says "where are we", "resume", "continue", or anything suggesting pickup
 4. Recommend the next move. If something is In Progress from a prior session, verify its state before continuing.
 
 <!-- citations -->
-[project tracker]: .claude/library/.projects/inexplicable-phenomena/index.md
-[roles]: .claude/library/.team/roles/
-[agents]: .claude/agents/agents
-[agent registry]: .claude/library/.team/registry.json
-[abilities]: .claude/library/.team/abilities/
+[project tracker]: ../../library/.projection/.cover.md
+[roles]: ../../library/..teamsmanship/02-roles.md
+[agents]: ../../agents
+[agent registry]: ../../library/..teamsmanship/05-territory.md
+[abilities]: ../../library/..teamsmanship/02-roles.md
 
 $ARGUMENTS
 

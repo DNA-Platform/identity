@@ -4,17 +4,17 @@
 
 ---
 
-The principles for building and extending the Reference Desk codebase. These are not aspirational guidelines — they are decisions made through pain. Each one traces back to a sprint where not following it caused a failure. Source: the [coding policy](../../../dna-library/.claude/agents/library/coding-policy/.cover.md) from dna-library, Doug's design principles from [Sprint 35](../research-projection/03-sprint-35--the-object-model.md), the verification discipline from [Sprint 61](../research-projection/25-sprint-61--feedback-mcp-research-and-app-hardening.md).
+The principles for building and extending the Reference Desk codebase. These are not aspirational guidelines — they are decisions made through pain. Each one traces back to a sprint where not following it caused a failure. Source: the coding policy from dna-library, Doug's design principles from [Sprint 35](../projected-research/03-sprint-35--the-object-model.md), the verification discipline from [Sprint 61](../projected-research/25-sprint-61--feedback-mcp-research-and-app-hardening.md).
 
 ## The app reports its own readiness
 
-Doug's principle from [Sprint 41](../research-projection/09-sprint-41--the-stateful-app.md): "Why isn't the navigation part of the app? It should control seeing if the next action can be performed."
+Doug's principle from [Sprint 41](../projected-research/09-sprint-41--the-stateful-app.md): "Why isn't the navigation part of the app? It should control seeing if the next action can be performed."
 
 Every component and page should expose a readiness check. The [gateway](02-02-the-architecture--gateway.md) uses it. The script caller never guesses when the UI is ready. If you find yourself writing `await sleep(3000)` — the app model is incomplete. Add a readiness predicate to the component, then use `gateway.waitFor()`.
 
 ## If the API is harder than the app, the API is wrong
 
-From [Sprint 35](../research-projection/03-sprint-35--the-object-model.md): Doug's design principles — "look first, name second, implement last." The test: read a script aloud. If a non-programmer can't understand what it does, the names are wrong.
+From [Sprint 35](../projected-research/03-sprint-35--the-object-model.md): Doug's design principles — "look first, name second, implement last." The test: read a script aloud. If a non-programmer can't understand what it does, the names are wrong.
 
 ```typescript
 // Good — reads like English
@@ -31,7 +31,7 @@ If a script needs to reach into controllers or infrastructure, the `Claude` clas
 
 ## No privileged state
 
-From [Sprint 65](../research-projection/29-sprint-65--the-composed-message.md): "If you can't reconstruct the object by reading the UIA tree, your model is lying."
+From [Sprint 65](../projected-research/29-sprint-65--the-composed-message.md): "If you can't reconstruct the object by reading the UIA tree, your model is lying."
 
 Every object in the app model must be reconstructable from what the app shows. No hidden fields that only the code knows. No state that survives navigation but isn't visible in the tree. When you call [`refresh()`](../../src/pages/conversation.ts) on a page, it rebuilds from the tree, not from cached memory.
 
@@ -53,13 +53,13 @@ If you find yourself writing a fixed wait, you've found a gap in the app model. 
 
 ## Verify, don't assume
 
-From [Sprint 61](../research-projection/25-sprint-61--feedback-mcp-research-and-app-hardening.md): "The automation sprints taught us we were flying blind." Every raw UIA call that changes state must go through [`gateway.act()`](02-02-the-architecture--gateway.md) with a verification predicate.
+From [Sprint 61](../projected-research/25-sprint-61--feedback-mcp-research-and-app-hardening.md): "The automation sprints taught us we were flying blind." Every raw UIA call that changes state must go through [`gateway.act()`](02-02-the-architecture--gateway.md) with a verification predicate.
 
 No static waits. No blind retries. No "it usually works." If you click a button, verify the expected UI appeared. If you navigate, verify you arrived. If you send a message, verify the response indicator appeared.
 
 ## Target semantics, not presentation
 
-From the [automation discipline](../../../dna-library/.claude/agents/library/coding-policy/03-automation-discipline.md):
+From the automation discipline:
 
 | Fragile (never) | Robust (always) |
 |-----------------|-----------------|
@@ -75,7 +75,7 @@ The driver grows by adding files, not by growing files. Each file owns one domai
 
 ## Names are documentation
 
-From the [naming conventions](../../../dna-library/.claude/agents/library/coding-policy/01-naming.md): if you can read a function call aloud and a non-programmer understands what it does, the name is right. `app.openProject('Physics')` — clear. `app.auto.uia.invokeByName('div[3]')` — the abstraction failed.
+From the naming conventions: if you can read a function call aloud and a non-programmer understands what it does, the name is right. `app.openProject('Physics')` — clear. `app.auto.uia.invokeByName('div[3]')` — the abstraction failed.
 
 ## Scripts never wait and never check the tree
 
@@ -89,4 +89,4 @@ The app runs on Doug's computer. Every test, every script, every research dispat
 
 ## Code references the library, library references code
 
-From the [code-library linking convention](../../../dna-library/.claude/agents/library/coding-policy/04-code-library-linking.md): source files carry comments pointing to the library chapter that explains them. Library chapters carry links to the source files they document. The two are bidirectionally connected. When one changes, the other should be checked for consistency using the [consistency tools](../bookkeeping/06-01-on-consistency.md).
+From the code-library linking convention: source files carry comments pointing to the library chapter that explains them. Library chapters carry links to the source files they document. The two are bidirectionally connected. When one changes, the other should be checked for consistency using the [consistency tools](../bookkeeping/06-01-on-consistency.md).

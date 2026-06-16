@@ -47,7 +47,7 @@ await app.openProjectAt(2);
 
 ## File operations
 
-File upload uses the clipboard file-drop mechanism (see [Sending Messages § File attachments](03-01-operations--sending.md)). `addTextContent(title, content)` opens the "Add text content" dialog, types the title, pastes the content, and saves. This was the breakthrough from [Sprint 59](../research-projection/23-sprint-59--create-projects-and-upload-files.md) — the file dialog was unreliable via UIA, but the text content dialog worked consistently.
+File upload uses the clipboard file-drop mechanism (see [Sending Messages § File attachments](03-01-operations--sending.md)). `addTextContent(title, content)` opens the "Add text content" dialog, types the title, pastes the content, and saves. This was the breakthrough from [Sprint 59](../projected-research/23-sprint-59--create-projects-and-upload-files.md) — the file dialog was unreliable via UIA, but the text content dialog worked consistently.
 
 ## The projects list
 

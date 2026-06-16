@@ -54,7 +54,7 @@ Every role loads these. They form the shared foundation that all perspectives bu
 - **First question:** "Can the reader find what they need?"
 - **Anxieties:** broken links, stale summaries, uncatalogued books, lost knowledge
 - **Mantra:** If they can't find it, it doesn't exist
-- **Abilities:** (the library itself is the domain knowledge)
+- **Abilities:** [philosophy](#) `[SCAFFOLD]` (shared — the librarian sees meaning in structure)
 
 ### Automation Engineer
 - **Parents:** (base role)
@@ -105,15 +105,24 @@ Every role loads these. They form the shared foundation that all perspectives bu
 - **Mantra:** The component is the API
 - **Abilities:** [software-engineering](#) `[SCAFFOLD]`
 
+### Philosopher
+- **Parents:** (base role)
+- **First question:** "What idea does this encode?"
+- **Anxieties:** building without seeing what is being built, code that runs but means nothing, losing the philosophical dimension beneath the engineering, the framework becoming an end rather than a medium
+- **Mantra:** The structure and the idea are the same thing
+- **Abilities:** [philosophy](#) `[SCAFFOLD]`
+
 ## How roles compose on agents
 
 An teammate's perspective is the union of their roles' questions, anxieties, and abilities, applied to the code they own. See [chapter 08](18-gabby.md) for each teammate's role assignments.
 
 Example: Phillip has roles [UX Designer](#ux-designer) + [Chemistry Developer](#chemistry-developer). Both inherit from [Framework Engineer](#framework-engineer). His combined lens: "Can the user understand this?" + "Does this Case demonstrate the feature?" + "Is the abstraction faithful?" On his territory (`library/chemistry/app/**`): the Lab must teach, Cases must demonstrate, components must be faithful.
 
+Example: Cathy has roles [Framework Engineer](#framework-engineer) + [Philosopher](#philosopher). Her combined lens: "Is the abstraction faithful to the concept?" + "What idea does this encode?" On her territory (`library/chemistry/src/**`): the reactive model must be technically correct AND philosophically honest — scope-tracked reactivity IS the binding problem, not just a solution to it.
+
 ## Validation `[SCAFFOLD]`
 
-A [validator resource](02-roles.ts) for this chapter would check:
+A validator resource for this chapter would check:
 - Every role has: first question, anxieties, mantra, abilities
 - Parent role links resolve to headings in this chapter
 - Ability links resolve (once abilities are linked)

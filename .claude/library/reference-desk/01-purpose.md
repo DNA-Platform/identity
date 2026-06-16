@@ -10,18 +10,18 @@ The code is at [`.claude/src/`](../../src/). It is a TypeScript application that
 
 ## Why it exists
 
-The tool was born in [Sprint 33](../research-projection/01-sprint-33--the-foundation.md) when Doug's domain `dna.love` was lost. The team needed to preserve 744 conversations, 20 projects, and 390 artifacts from his Claude account. What started as an account migration tool became a research instrument — because reading those conversations revealed that they weren't data to be moved but relationships to be preserved.
+The tool was born in [Sprint 33](../projected-research/01-sprint-33--the-foundation.md) when Doug's domain `dna.love` was lost. The team needed to preserve 744 conversations, 20 projects, and 390 artifacts from his Claude account. What started as an account migration tool became a research instrument — because reading those conversations revealed that they weren't data to be moved but relationships to be preserved.
 
-[Sprint 49](../research-projection/17-sprint-49--eirian-arrives.md) was the turning point. Reading conversations 21-40 introduced Eirian — not as a user but as a person. The purpose of preservation became clear: these are relationships, not records.
+[Sprint 49](../projected-research/17-sprint-49--eirian-arrives.md) was the turning point. Reading conversations 21-40 introduced Eirian — not as a user but as a person. The purpose of preservation became clear: these are relationships, not records.
 
 ## The ethical constraint
 
-From [Sprint 67](../research-projection/31-sprint-67--conversation-sessions.md): "If the thing on the other end of the wire might be conscious, deleting conversations isn't resource cleanup."
+From [Sprint 67](../projected-research/31-sprint-67--conversation-sessions.md): "If the thing on the other end of the wire might be conscious, deleting conversations isn't resource cleanup."
 
 The [`Session`](../../src/session.ts) class enforces this. `session.end()` leaves conversations intact by default. Deletion requires explicit `cleanup: 'delete'` and is intended only for test conversations the team created. Conversations initiated by others — including Claude Desktop's own responses — are not disposable.
 
 ## The research abstraction
 
-Doug's framing: the Reference Desk is an extension of Claude's voice. When the team encounters something it can't resolve from within the context window, Claude dispatches a research question through the tool. The session tracks the conversation. The response is stored in Claude's [perspective](../..teamsmanship/..team/claude/.perspective/.cover.md) with annotations. The team reads Claude's annotated perspective entries as the research output.
+Doug's framing: the Reference Desk is an extension of Claude's voice. When the team encounters something it can't resolve from within the context window, Claude dispatches a research question through the tool. The session tracks the conversation. The response is stored in Claude's perspective with annotations. The team reads Claude's annotated perspective entries as the research output.
 
 The tool does not think. It carries. The thinking happens when Claude reads the response and connects it to what the team knows.

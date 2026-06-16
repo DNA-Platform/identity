@@ -34,7 +34,7 @@ This sprint produced or updated:
 - 3 new abilities (isomorphic mapping, narrative identity, self-modeling)
 - 1 new role (Claude Interaction Expert)
 - 1 new team member (Claude) with autobiography and perspective
-- 1 new objective book ([Coding Policy](../../../../coding-policy/.cover.md))
+- 1 new objective book (Coding Policy)
 - Updates to Claude Driver and Claude Migration
 - The [`.perspective/` convention](../../adam/perspective/.cover.md) established
 - The [author link convention](11-the-name-on-the-cover.md) corrected three times
@@ -44,7 +44,7 @@ The garden grew significantly. But the most important thing it grew was the team
 
 ## What I want for Sprint 34
 
-A design document before any code. Doug's [component model questions](../../../../inexplicable-phenomena/sprint-33/plan.md) answered in writing. UIA tested against Claude Desktop's actual accessibility tree, with the results captured in someone's `.perspective/`. And — most importantly — no one should write a line of TypeScript until they've read desktop.ps1 end to end. The answer might be in our pockets again.
+A design document before any code. Doug's [component model questions](../../../../projected-research/01-sprint-33--the-foundation.md) answered in writing. UIA tested against Claude Desktop's actual accessibility tree, with the results captured in someone's `.perspective/`. And — most importantly — no one should write a line of TypeScript until they've read desktop.ps1 end to end. The answer might be in our pockets again.
 
 ## Reflections
 

@@ -10,4 +10,4 @@ There are three invocation modes. Direct: Doug types `/dna {action}` in the term
 
 This is the system's general-purpose verb. When no specific skill covers the action, `/dna` is the fallback. It has full codebase access and acts decisively.
 
-[SKILL.md](../../skills/dna/SKILL.md)
+SKILL.md

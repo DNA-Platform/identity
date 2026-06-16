@@ -4,7 +4,7 @@
 
 ---
 
-Scripts are the user-facing layer — what you write when you need the tool to do something. A well-written script reads like a procedure a human would follow. Source: dna-library driver ch 12, the pilot scripts from [Sprint 63](../research-projection/27-sprint-63--the-pilot-conversation.md).
+Scripts are the user-facing layer — what you write when you need the tool to do something. A well-written script reads like a procedure a human would follow. Source: dna-library driver ch 12, the pilot scripts from [Sprint 63](../projected-research/27-sprint-63--the-pilot-conversation.md).
 
 ## The pattern
 

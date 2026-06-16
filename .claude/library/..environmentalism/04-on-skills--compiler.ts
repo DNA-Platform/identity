@@ -6,6 +6,7 @@
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { resolve, join } from 'path';
+import { rewriteLinks } from './07-on-compiled-links--rewriter';
 
 const libraryPath = process.argv[2];
 const doWrite = process.argv.includes('--write');
@@ -166,12 +167,10 @@ for (const skill of skills) {
 
   // Generate the body from the library chapter
   let generatedBody = chapterBody;
-  // Rewrite library-relative links to compiled-output-relative links
-  // From library chapters, links like ../teamspeak/06-tending.md become ../../library/teamspeak/06-tending.md
-  generatedBody = generatedBody.replace(
-    /\]\(\.\.\//g,
-    '](../../library/'
-  );
+  // Rewrite all links from library source location to compiled output location.
+  const sourceDir = bookDir;
+  const outputDir = join(skillsDir, skill.name);
+  generatedBody = rewriteLinks(generatedBody, sourceDir, outputDir);
 
   // Add library link at the end
   generatedBody = generatedBody.trimEnd() + '\n\n' + libraryLink;

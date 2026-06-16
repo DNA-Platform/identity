@@ -32,7 +32,5 @@ Filter by path pattern `*WindowsApps\Claude_*\app\claude.exe` to exclude CLI and
 
 ## What I built from this
 
-`Get-ClaudeDesktopProcess` and `Start-ClaudeDesktop` in [claude-driver.ps1]. Idempotent launch proven — two sequential calls return the same PID 26800.
+`Get-ClaudeDesktopProcess` and `Start-ClaudeDesktop` in `claude-driver.ps1`. Idempotent launch proven — two sequential calls return the same PID 26800.
 
-<!-- citations -->
-[claude-driver.ps1]: ../../../src/claude-driver.ps1

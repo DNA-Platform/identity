@@ -78,7 +78,7 @@ Before you start, read these — they are the specifications your personal libra
 
 **Scope** (first argument):
 - `last-sprint` (default) — teammates active in the most recent sprint. Read the [sprint plan](../../library/.projection/.cover.md) to determine who.
-- `teammate:<name>` — one person. Read their [agent file](../../library/../agents/) for links.
+- `teammate:<name>` — one person. Read their [agent file](../../agents) for links.
 - `topic:<subject>` — reflect on a specific area. Read the relevant [subject catalogue](../../library/bookkeeping/07-on-subjects.md) or [branch library](../../library/library-tree/.cover.md).
 - `all` — everyone.
 
@@ -91,7 +91,7 @@ Before you start, read these — they are the specifications your personal libra
 
 ### Step 1: Read your library as a stranger
 
-Read your [agent file](../../library/../agents/) to find your catalogue and last chapter. Then read them both — not as yourself, but as a blank slate. Ask:
+Read your [agent file](../../agents) to find your catalogue and last chapter. Then read them both — not as yourself, but as a blank slate. Ask:
 
 - Does the catalogue tell me who this person is?
 - Does it tell me what books to read first?
