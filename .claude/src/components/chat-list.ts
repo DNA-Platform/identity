@@ -61,6 +61,13 @@ export class ChatList implements Fallible {
     });
   }
 
+  async addToProject(title: string, projectName: string): Promise<void> {
+    await tracked(this, async () => {
+      await this.controller.addToProject(title, projectName);
+      this.items = await this.controller.readList();
+    });
+  }
+
   async pin(title: string): Promise<void> {
     await tracked(this, () => this.controller.pin(title));
   }

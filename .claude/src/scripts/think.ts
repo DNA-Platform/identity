@@ -363,6 +363,9 @@ async function sendFresh(
   };
 
   try {
+    // Dismiss any open dialogs that might block navigation
+    await app.dismissDialogs();
+
     // Ensure we're on a fresh chat — go home first if in an existing conversation
     const screen = await app.navigator.detectScreen();
     if (screen === 'conversation') {
