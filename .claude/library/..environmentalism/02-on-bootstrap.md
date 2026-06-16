@@ -31,7 +31,7 @@ After a compaction, the context window is empty except for CLAUDE.md, the rules,
 
 ## What CLAUDE.md does NOT contain
 
-Everything else. Protocols live in [Teamspeak](../teamspeak/.cover.md). Coding policy lives in [Coding Policy](../coding-policy/.cover.md). Agent identities live in [Teamsmanship](../..teamsmanship/.cover.md). Sprint plans live in [Projection](../projection/.cover.md) books. CLAUDE.md links to these — it does not duplicate them. The [embedding-and-linking pattern](00-the-environmentalist.md#the-embedding-and-linking-pattern) applies here as everywhere: embed the minimum, link to the library for depth.
+Everything else. Protocols live in [Teamspeak](../teamspeak/.cover.md). Coding policy lives in the [Reference Desk](../reference-desk/05-coding-philosophy.md). Agent identities live in [Teamsmanship](../..teamsmanship/.cover.md). Sprint plans live in [Projection](../.projection/.cover.md) books. CLAUDE.md links to these — it does not duplicate them. The [embedding-and-linking pattern](00-the-environmentalist.md#the-embedding-and-linking-pattern) applies here as everywhere: embed the minimum, link to the library for depth.
 
 ## The compiler
 

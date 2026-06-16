@@ -40,7 +40,7 @@ These three links are the spawned agent's orientation path. The library catalogu
 
 ### Body paragraph 2 (for the session)
 
-Practice notes and navigation. The agent's known failure mode in one sentence. Then links to shared resources: the [library catalogue](../..librarianship/.cover.md), the [team](../..teamsmanship/.cover.md), [coding policy](../coding-policy/.cover.md), and the [voice convention](../../rules/voice.md).
+Practice notes and navigation. The agent's known failure mode in one sentence. Then links to shared resources: the [library catalogue](../..librarianship/.cover.md), the [team](../..teamsmanship/.cover.md), coding policy (archived — now in the [Reference Desk](../reference-desk/05-coding-philosophy.md)), and the [voice convention](../../rules/voice.md).
 
 ## The relationship to Teamsmanship
 
@@ -65,5 +65,4 @@ The mapping is one-to-one. Every teammate in Teamsmanship has a corresponding ag
 <!-- citations -->
 [teamsmanship]: ../..teamsmanship/.cover.md
 [librarianship]: ../..librarianship/.cover.md
-[coding-policy]: ../coding-policy/.cover.md
 [embedding-pattern]: 00-the-environmentalist.md#the-embedding-and-linking-pattern
