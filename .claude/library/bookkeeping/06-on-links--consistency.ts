@@ -184,20 +184,25 @@ function checkFile(filePath: string) {
       });
     }
 
-    // Count check
-    const countInSource = findChapterCount(sourcePara);
-    if (countInSource) {
-      const targetDir = dirname(targetPath);
-      const actualCount = countChaptersInDir(targetDir);
-      if (actualCount >= 0 && actualCount !== countInSource.num) {
-        issues.push({
-          file: relFile,
-          link: linkTarget,
-          type: 'count-mismatch',
-          detail: `Source says "${countInSource.word} chapters" but target directory has ${actualCount}`,
-          sourceExcerpt: sourcePara.slice(0, 150),
-          targetExcerpt: `(directory: ${relative(root, targetDir)})`
-        });
+    // Count check — only in the SENTENCE containing the link, not the whole paragraph
+    // Split paragraph into sentences and find the one with the link
+    const sentences = sourcePara.split(/(?<=[.!?])\s+/);
+    const linkSentence = sentences.find(s => s.includes(`](${match![2]})`));
+    if (linkSentence) {
+      const countInSentence = findChapterCount(linkSentence);
+      if (countInSentence) {
+        const targetDir = dirname(targetPath);
+        const actualCount = countChaptersInDir(targetDir);
+        if (actualCount >= 0 && actualCount !== countInSentence.num) {
+          issues.push({
+            file: relFile,
+            link: linkTarget,
+            type: 'count-mismatch',
+            detail: `Source says "${countInSentence.word} chapters" but target directory has ${actualCount}`,
+            sourceExcerpt: linkSentence.slice(0, 150),
+            targetExcerpt: `(directory: ${relative(root, targetDir)})`
+          });
+        }
       }
     }
   }

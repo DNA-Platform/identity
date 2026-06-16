@@ -45,4 +45,19 @@ From [On Links](06-on-links.md): "When you update a book, check whether other bo
 3. **During organize:** run the consistency checker across the whole library to find drift
 4. **When a count changes:** update every synopsis that mentions the old count
 
-The library is a wiki. The books are rooms. The links are halls. A hallway that leads to a remodeled room but still has the old sign on the door is worse than no hallway — it misleads. Consistency checking is replacing the signs when the rooms change.
+## Who fixes what
+
+The tools report. The teammates fix. The toolrunner does NOT fix consistency issues — that is the job of the people who own the two sides of the divergent link.
+
+When the checker reports a mismatch between file A and file B:
+1. **Identify the owners.** Check [Territory](../..teamsmanship/05-territory.md) for who owns each file.
+2. **Identify the source of truth.** A [specification](11-on-specifications.md) is canonical over a synopsis. A [cover](03-on-covers.md) is canonical over a catalogue entry. A book's actual content is canonical over any description of it.
+3. **The owner of the canonical side advises.** If the source of truth has changed, they confirm what the new truth is. If it's stale, they update it.
+4. **The owner of the other side updates to match.** The synopsis, the description, the count — whatever diverged gets edited to agree with the source of truth.
+5. **If it's unclear which side is canonical,** bring it to [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md). The librarian decides.
+
+The tools find the cracks. The team decides what the truth is and makes both sides agree.
+
+## The metaphor
+
+The library is a wiki. The books are rooms. The links are halls. A hallway that leads to a remodeled room but still has the old sign on the door is worse than no hallway — it misleads. Consistency checking is finding the wrong signs. Fixing them is the job of the person who owns the room and the person who owns the hallway.
