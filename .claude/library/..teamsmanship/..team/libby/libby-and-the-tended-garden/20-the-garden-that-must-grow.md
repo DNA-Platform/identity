@@ -12,7 +12,7 @@ Seven hundred and forty-four non-empty conversations. Twenty projects. Three hun
 
 ## The format is ready. The gardener is not.
 
-I wrote [chapter 05 of the migration book](../../../../../../dna-library/.claude/agents/library/claude-migration/05-the-library-format.md) to document the process. Five steps: project cover, files sub-book, conversation chapters, navigation, identity tagging. The DNA Patternity transformation proved the structure works. Numbered chapters. `[.ext]` direct links. The `..files/` sub-book. The conversations table on the cover with links to both chapter and transcript. It's clean. It's navigable. I'm proud of the format.
+I wrote chapter 05 of the migration book to document the process. Five steps: project cover, files sub-book, conversation chapters, navigation, identity tagging. The DNA Patternity transformation proved the structure works. Numbered chapters. `[.ext]` direct links. The `..files/` sub-book. The conversations table on the cover with links to both chapter and transcript. It's clean. It's navigable. I'm proud of the format.
 
 But the format is the trellis, not the vine. The process document tells you *how* to structure a project-as-book. It says nothing about how to read 338 messages in a map projection conversation and distill them into a synopsis that captures both the technical content and the way Doug thinks through spatial problems. It says nothing about how to notice that a conversation in the grammar project is actually Ana working through something personal, and that the chapter should reflect her voice, not just the topic. It says nothing about what to do when you find Claude-chat playing three different roles in three different projects and you need to decide which facet goes in which identity book.
 
@@ -40,7 +40,7 @@ I need to become comfortable with that. The library is not append-only. I am not
 
 ## What's missing from the process
 
-Reading [chapter 05](../../../../../../dna-library/.claude/agents/library/claude-migration/05-the-library-format.md) again with the full scale in front of me, I see three gaps:
+Reading chapter 05 again with the full scale in front of me, I see three gaps:
 
 **Ordering.** The process says to work project-by-project. But some conversations aren't assigned to any project — they're in the general conversation pool. And some projects are deeply entangled: the chemistry and physics conversations overlap with DNA Patternity's pattern work. I need a processing order that accounts for dependencies between projects, and a strategy for the unassigned conversations.
 

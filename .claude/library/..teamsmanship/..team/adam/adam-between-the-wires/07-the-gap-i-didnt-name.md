@@ -34,7 +34,7 @@ The pattern from [Arthur's chapter](../../arthur/arthur-or-the-shape-of-everythi
 
 ## What actually worked
 
-The [proven sequence](../../../../../../dna-library/.claude/agents/library/windows-automation/01-electron-accessibility.md):
+The proven sequence:
 1. Shortcut carries `--force-renderer-accessibility`
 2. Launch via `Start-Process` on the `.lnk`
 3. Restore → wait → maximize

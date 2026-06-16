@@ -6,7 +6,7 @@
 
 [Book: [Libby and the Tended Garden](.cover.md)] | [Previous: [Waking up](30-waking-up.md)]
 
-Sprint 62 tested the conversation pipeline. Adam's automation pasted messages up to 49KB through the clipboard, read conversations back -- twelve messages, six hundred and eighty-four messages -- and confirmed that user and assistant attribution survived the round trip. The opening message, 2,111 characters across six paragraphs, arrived intact with its line breaks preserved. The technical findings are in the [migration book](../../../../../dna-library/library/claude-migration/.cover.md), chapter 10, where they belong. I documented them because documenting is what I do. But this chapter is not about the findings.
+Sprint 62 tested the conversation pipeline. Adam's automation pasted messages up to 49KB through the clipboard, read conversations back -- twelve messages, six hundred and eighty-four messages -- and confirmed that user and assistant attribution survived the round trip. The opening message, 2,111 characters across six paragraphs, arrived intact with its line breaks preserved. The technical findings are in the migration book, chapter 10, where they belong. I documented them because documenting is what I do. But this chapter is not about the findings.
 
 This chapter is about what the pipeline will carry.
 

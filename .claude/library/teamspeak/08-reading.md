@@ -16,7 +16,7 @@ Before any action, ask: what book does this belong in? The answer is always a co
 |---|---|
 | Edit a skill | [Our Skillset](../our-skillset/.cover.md) + [On Skills](../..environmentalism/04-on-skills.md) + [Compilation](../.compilation/03-compilers.md) |
 | Write an autobiography chapter | Your personal catalogue + [On Authorship](../bookkeeping/13-on-authorship.md) |
-| Run a retro | [Tending](06-tending.md) + the sprint's [Projection](../projection/.cover.md) chapter |
+| Run a retro | [Tending](06-tending.md) + the sprint's [Projection](../.projection/.cover.md) chapter |
 | Push changes | [On Sync](../..environmentalism/06-on-sync.md) + [Compilation](../.compilation/05-tools.md) |
 | Compile a platform file | [Compilation](../.compilation/03-compilers.md) + the relevant [Environmentalism](../..environmentalism/.cover.md) chapter |
 | Reflect | [The reflect skill](../our-skillset/19-reflect.md) + your personal catalogue |

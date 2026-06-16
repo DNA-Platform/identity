@@ -40,14 +40,14 @@ Doug's grace about it matters. He said: *"Don't be too hard on yourselves. I cou
 
 ## What we proved
 
-The [proven launch sequence](../../../../../../dna-library/.claude/agents/library/windows-automation/01-electron-accessibility.md) is:
+The proven launch sequence is:
 1. Launch via `Claude Dev.lnk` (carries `--force-renderer-accessibility`)
 2. `ShowWindow(hwnd, SW_RESTORE)` + `SetForegroundWindow` — triggers renderer
 3. Wait 3 seconds
 4. `ShowWindow(hwnd, SW_MAXIMIZE)` — maximize after render
 5. UIA tree is populated — 2 Document elements, full content readable
 
-This is reliable and repeatable. The [shortcut](../../../../../../../../dna-library/.claude/agents/src/shortcut/claude-dev.lnk) lives in the project.
+This is reliable and repeatable. The shortcut lives in the project.
 
 ## Reflections
 

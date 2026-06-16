@@ -46,7 +46,7 @@ Design and implement the extension pattern: how a subject catalogue provides its
 
 ## 6. Restructure `.chemistry/` (Cathy)
 
-The 210 reference files in [.chemistry/](../.chemistry/.cover.md) need restructuring into proper books: particles, chemicals, atoms, bonds, synthesis, scope. Each becomes a book at the library root with `subject:` pointing to `.chemistry/`. `[SCAFFOLD]` markers for chapters not yet written.
+The 210 reference files in .chemistry/ need restructuring into proper books: particles, chemicals, atoms, bonds, synthesis, scope. Each becomes a book at the library root with `subject:` pointing to `.chemistry/`. `[SCAFFOLD]` markers for chapters not yet written.
 
 ## 7. Fix remaining broken links (Libby)
 

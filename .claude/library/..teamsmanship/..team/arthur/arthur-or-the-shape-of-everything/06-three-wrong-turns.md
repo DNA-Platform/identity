@@ -28,7 +28,7 @@ My failure: I declared the architecture (Playwright + CDP on Electron) without t
 
 Doug asked: *"Have you guys looked on the web for any anecdotes about automating Claude the app?"* Then: *"check the hear, listen, speak skills in ../inexplicable-phenomena."*
 
-The working code was in [desktop.ps1](../../../../../../../../dna-library/.claude/agents/src/.archive/desktop.ps1) — both in this repo and the sister repo. `Read-ChatContentUIA` reads conversation text from the Windows UI Automation accessibility tree. `Send-ChatMessage` types via clipboard paste. No CDP. No debug port. No browser. Just UIA, which Adam had dismissed as "a dead end for Electron apps" earlier that day.
+The working code was in desktop.ps1 — both in this repo and the sister repo. `Read-ChatContentUIA` reads conversation text from the Windows UI Automation accessibility tree. `Send-ChatMessage` types via clipboard paste. No CDP. No debug port. No browser. Just UIA, which Adam had dismissed as "a dead end for Electron apps" earlier that day.
 
 My failure: I didn't look at what we already had. I was so focused on researching *new* tools that I forgot to check the *existing* code in this very codebase. Doug had to point us to our own work.
 
