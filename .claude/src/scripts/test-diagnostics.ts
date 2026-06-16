@@ -108,5 +108,6 @@ async function main() {
 
 main().catch(e => {
   console.error('Test suite failed:', e.message);
+  app.window.minimize();
   process.exit(1);
 });
