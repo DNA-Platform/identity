@@ -120,6 +120,24 @@ Don't navigate away and back if you're already in the right place.
 ### Large text pasting
 Claude will need to paste substantial context when thinking through research. The composer handles pastes up to 73KB (tested in [Sprint 63](../research-projection/27-sprint-63--the-pilot-conversation.md)). For very large context, split across multiple messages.
 
+### Resumable sessions across turns
+
+A session's state — `id`, `url`, `name`, `turnCount` — should be serializable so the next conversation turn can pick up where the last one left off. The pattern:
+
+```typescript
+// Save after a session
+const state = { id: session.id, url: session.url, name: session.name, turns: session.turnCount };
+writeFileSync('.claude/src/debug/session-state.json', JSON.stringify(state));
+
+// Resume in the next turn
+const saved = JSON.parse(readFileSync('.claude/src/debug/session-state.json', 'utf-8'));
+await app.openChat(saved.name);
+const turns = await app.conversation.readTurns();
+// Now you have the history — continue from here
+```
+
+This extends Session without inventing a new concept. The session object tracks state in memory. Serialization lets it survive across process restarts.
+
 ### Continuing multi-turn research
 The session's `turns` array accumulates. Each `send()` re-reads the full conversation. A research session can span multiple questions:
 ```typescript
