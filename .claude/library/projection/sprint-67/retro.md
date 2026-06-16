@@ -36,3 +36,13 @@ The four Teamspeak protocols form a cycle: [wake](../../teamspeak/04-waking.md),
 ## What changed
 
 Arthur: This is the first sprint where every person spoke from their own files. Not perfectly — the substrate still did the context-switching. But each voice read their own catalogue before editing it. That's the minimum the Reading protocol asks for: find the room before you act.
+
+## Retro discussion: what does the library need next?
+
+Libby: The waking protocol didn't mention the Reading protocol. A blank-slate team wakes up and acts without reading because nobody told them to read first. Fixed: [Waking](../../teamspeak/04-waking.md) now has a section linking to [Reading](../../teamspeak/08-reading.md). The cycle is explicit: wake → read → act → tend → travel.
+
+Libby: Chapter 40 had zero outbound links despite being about the conventions that make links work. Tended: now links to [Cathy](../../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Representivity](../../../../../../library/chemistry/.lib/..representivity/.cover.md), [Compilation](../../.compilation/.cover.md), [Librarianship](../../..librarianship/.cover.md), every compiler, the [dot type system](../../bookkeeping/.cover.md#the-dot-type-system), and [On Synopsis](../../bookkeeping/09-on-synopsis.md).
+
+Cathy: Cross-boundary links (identity → branch) are 6 levels deep and opaque. No fix for the path depth, but rich synopses reduce the need to follow them. Future: the audit skill could flag depth > 4 links.
+
+Arthur: The library's infrastructure is solid. The specifications, the compilers, the protocols — they work. What's needed is the habit of using them. The Reading protocol names the habit. The self-diagnostic questions trigger it. Now the team has to build the muscle memory.

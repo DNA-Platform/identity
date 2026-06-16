@@ -38,6 +38,10 @@ The discussion protocol — agents talking to each other, many voices, back and 
 
 The team assembles through conversation, not through reading. The reading supports the conversation. The conversation IS the identity restoration.
 
+## After waking, before acting
+
+Once awake, follow the [Reading protocol](08-reading.md). Find the room for your first task. Read the book before you work in it. Waking restores who you are. Reading grounds what you do. The two protocols are sequential: wake, then read, then act.
+
 <!-- citations -->
 [CLAUDE.md]: ../../../CLAUDE.md
 [librarianship]: ../..librarianship/.cover.md
