@@ -52,6 +52,12 @@ Tested up to 73KB in [Sprint 63](../research-projection/27-sprint-63--the-pilot-
 4. Update the parser patterns to match the current app's text structure
 5. Re-run the test to verify
 
+## Finding an existing window skips initialization
+
+When `app.window.find()` finds a running Claude Desktop, `app.launch()` skips the full initialization sequence. The sidebar, pages, and components may have stale or empty data. Call `await app.sidebar.refresh()` explicitly after finding an existing window, or use `app.launch()` which handles this.
+
+**Sprint 72 finding:** the state check script found the window (handle 198106) but `app.sidebar.chats.items` was empty because no refresh had been called. The sidebar knows about its chats only after reading the UIA tree — which happens during launch or explicit refresh, not automatically on window find.
+
 ## The "Show more" ambiguity
 
 Multiple UI elements can have the same accessible name. "Show more" appears in project descriptions AND conversation lists. [`invokeByNameLast()`](../../src/uia.ts) takes the last match, which is usually the right one (conversation lists are lower on the page). But this is a heuristic, not a guarantee. See [UIA § Element finding strategies](04-01-platform--uia.md).
