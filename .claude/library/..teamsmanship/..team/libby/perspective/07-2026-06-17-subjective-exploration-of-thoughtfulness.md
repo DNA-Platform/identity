@@ -1,6 +1,6 @@
 # Exploration: Who built the thinking system?
 
-- **author:** [Libby](.cover.md)
+- **author:** [Libby](../libby-and-the-tended-garden/.cover.md)
 - **date:** 2026-06-17
 
 ---
