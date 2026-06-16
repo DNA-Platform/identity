@@ -458,11 +458,27 @@ export async function read(app: Claude): Promise<ReadResult> {
   await app.launch();
 
   try {
-    // Check if still streaming
+    // Ensure we're on the right conversation — Doug may have navigated away
+    const screen = await app.navigator.detectScreen();
+    if (screen !== 'conversation') {
+      await app.openChat(state.title);
+    } else {
+      // Verify it's the right conversation by URL
+      const url = await app.auto.uia.readUrl() ?? '';
+      if (state.conversationId && !url.includes(state.conversationId)) {
+        await app.openChat(state.title);
+      }
+    }
+
+    // Scroll to bottom — Electron lazy-renders, so the streaming indicator
+    // at the bottom of a long response won't be in the UIA tree until scrolled.
+    await app.conversation.scrollToBottom();
+    await new Promise(r => setTimeout(r, 300));
+
+    // Now check if still streaming
     const streaming = await app.conversation.checkStreaming();
 
     if (streaming) {
-      app.window.minimize();
       return { ready: false, state };
     }
 
@@ -482,24 +498,22 @@ export async function read(app: Claude): Promise<ReadResult> {
     });
 
     // Rename to a topical name if this is the first exchange
-    // (the auto-generated title from Desktop is usually poor)
     if (state.exchanges.length === 1) {
       const topicName = makeTopicName(state.question);
       try {
         await app.renameConversation(topicName);
         state.title = topicName;
       } catch {
-        // Rename is non-critical — keep the auto-generated title
+        // Rename is non-critical
       }
     }
 
     writeState(state);
-    app.window.minimize();
 
     return { ready: true, response: responseText, state };
-  } catch (e) {
+  } finally {
+    // Always minimize — success, failure, streaming, done. Always.
     minimizeOnFailure(app);
-    throw e;
   }
 }
 

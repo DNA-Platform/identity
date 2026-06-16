@@ -40,6 +40,16 @@ await app.resetToHome();  // recovers from any state
 
 Then navigate to where you need to be. `resetToHome()` is the universal recovery — it closes dialogs, leaves settings, and navigates home. If `resetToHome()` fails, the app is in an unknown state and the script should minimize and abort.
 
+## Lazy rendering
+
+Electron apps render lazily. The DOM and accessibility tree only fully populate what is in the viewport. Content below the visible fold may exist in the virtual DOM but is not exposed to UIA until scrolled into view. This is how Chromium's rendering pipeline works — `--force-renderer-accessibility` enables the tree, but the tree still only materializes what the renderer has painted.
+
+This has a direct consequence for every UIA read: **UIA reads what is visible, not what exists.** A streaming indicator at the bottom of a long response won't appear in the tree until the user (or automation) scrolls down. An element created dynamically below the fold doesn't exist in the accessibility tree until something triggers the renderer to paint that region.
+
+The fix is always the same: scroll to bring the target region into the viewport before reading. `Ctrl+End` scrolls to the bottom of the conversation. `Ctrl+Home` scrolls to the top. The scroll forces the renderer to materialize that section, which populates the UIA tree, which makes the read see the actual state. The scroll IS the read — same as what a human does.
+
+This principle applies to: streaming detection ([`checkStreaming()`](../../src/controllers/conversation-controller.ts)), message reading ([`readTurns()`](../../src/controllers/conversation-controller.ts)), element discovery on long pages, and any operation that depends on elements that might be below the fold.
+
 ## When the model is wrong
 
 The app changes. A button gets renamed. A URL pattern shifts. A dialog's accessible name changes. When this happens:

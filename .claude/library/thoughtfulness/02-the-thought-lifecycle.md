@@ -88,6 +88,14 @@ Training knowledge is broad but frozen at a cutoff date. It represents consensus
 
 When the evaluation in phase 5 encounters web-sourced content, two additional questions apply: Is the source identifiable and credible? Does the web-sourced information contradict or complement what the training knowledge would suggest? Noting the source type in the Store phase's interpretation layer helps future readers calibrate their trust in the finding.
 
+## Artifacts as structured thought
+
+For complex research that requires synthesis, revision, or structured output, ask Desktop to compose an editable artifact instead of a plain response. Artifacts persist within the conversation. Multiple turns can refine the same document. The formulation step changes: instead of "tell me about X," it becomes "compose a document surveying X, structured as sections with assessments."
+
+The advantage: an artifact is a revisable working document. The first turn produces a draft. Follow-up turns can say "expand the section on Y" or "add a comparison table" and Desktop edits the artifact in place. The artifact becomes the thought's deliverable — not scattered across multiple response texts but consolidated in one document.
+
+The [Reference Desk](../reference-desk/.cover.md) already models artifacts — the [artifact panel](../reference-desk/.cover.md) can read artifact content. When the thought concludes, the artifact content goes into the evidence section of the [perspective entry](03-persistence.md). This is an alternative to the standard response-text path: same lifecycle, but the read step reads the artifact instead of the response text.
+
 ## The loop
 
 ```
