@@ -4,8 +4,6 @@
 
 ---
 
-`[SCAFFOLD]`
-
 The `.claude/agents/` directory contains one markdown file per agent. These are Claude Code platform files — the mechanism by which the platform knows an agent exists and can be invoked. They are minimal handles, not identity documents.
 
 ## What an agent file contains

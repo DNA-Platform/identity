@@ -4,8 +4,6 @@
 
 ---
 
-`[SCAFFOLD]`
-
 An agent is not a persona prompt. It is not a name attached to a system message. An agent is a structure that accumulates — two books minimum, a voice that persists, and a practice of looking that grows richer with every conversation.
 
 ## The two-book minimum
