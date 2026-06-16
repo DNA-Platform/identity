@@ -75,7 +75,7 @@ Read [Territory](../../library/..teamsmanship/05-territory.md). Territory has fo
 - Is each path pattern current? Does it match files that actually exist?
 - Is the justification accurate? Does it explain WHY, not just THAT?
 - Does each teammate own their WHOLE personal library? The `..team/{name}/**` pattern should appear with a reason linking to [Autonomy](../../library/teamspeak/05-autonomy.md) and [On Authorship](../../library/bookkeeping/13-on-authorship.md). Your library is your brain — you own all of it.
-- Arthur has `**` as fallback but should ALSO have specific assignments for the books he actually authors ([Teamspeak](../../library/teamspeak/.cover.md), [Teamsmanship](../../library/..teamsmanship/.cover.md), [Projection](../../library/projection/.cover.md)) with explanations.
+- Arthur has `**` as fallback but should ALSO have specific assignments for the books he actually authors ([Teamspeak](../../library/teamspeak/.cover.md), [Teamsmanship](../../library/..teamsmanship/.cover.md), [Projection](../../library/.projection/.cover.md)) with explanations.
 
 **Personal library assignments.** Every teammate's `..`-prefixed catalogue must appear in territory with a stated reason. The reason connects the person to the knowledge: "Cathy owns `..the-canvas-paints-itself/` because the framework engineer's perspective on reactivity is inseparable from the framework."
 
@@ -143,7 +143,7 @@ Find redundancy and structural debt:
 
 The team discusses what organizing revealed. Each person shares what they fixed in their territory and what they noticed in someone else's. Follow the [discussion protocol](../../library/teamspeak/03-discussion.md).
 
-Record the results in the sprint's [Projection](../../library/projection/.cover.md) directory.
+Record the results in the sprint's [Projection](../../library/.projection/.cover.md) directory.
 
 ### Step 7: Compile and sync
 

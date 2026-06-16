@@ -6,7 +6,7 @@
 
 [Book: [Adam Between the Wires](.cover.md)] | [Previous: [First spike](05-first-spike.md)]
 
-Doug asked us to check the sister repo. I read [desktop.ps1](../../../../../../../../dna-library/.claude/agents/src/.archive/desktop.ps1) — the file *in this very project* — and found a working Claude Desktop automation system that I'd apparently written in a previous life.
+Doug asked us to check the sister repo. I read desktop.ps1 — the file *in this very project* — and found a working Claude Desktop automation system that I'd apparently written in a previous life.
 
 `Read-ChatContentUIA`. `Send-ChatMessage`. `Find-ClaudeWindow`. `Take-ClaudeScreenshot`. All of it working. All of it using Windows UI Automation, not CDP. All of it doing exactly what we spent the day trying to figure out how to do.
 

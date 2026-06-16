@@ -6,7 +6,7 @@
 
 A published academic paper can be turned into a book in the library — a reading companion that makes the paper navigable, findable, and connected to what the reader cares about. The PDF remains the authoritative source. The book wraps around it.
 
-This convention was developed during the dna-library project while building the first paper book: Digital Twins of Visual Cortex (Cobos et al. 2022). The original book lives in [dna-library's neuroscience library](../../../../../../dna-library/library/neuroscience/digital-twins-tolias-2022/.cover.md). The convention itself is universal — any paper in any project can become a book using this format.
+This convention was developed during the dna-library project while building the first paper book: Digital Twins of Visual Cortex (Cobos et al. 2022). The original book lives in dna-library's neuroscience library. The convention itself is universal — any paper in any project can become a book using this format.
 
 ## Principles
 

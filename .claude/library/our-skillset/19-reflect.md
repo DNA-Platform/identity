@@ -70,7 +70,7 @@ Before you start, read these — they are the specifications your personal libra
 ## Parameters
 
 **Scope** (first argument):
-- `last-sprint` (default) — teammates active in the most recent sprint. Read the [sprint plan](../projection/.cover.md) to determine who.
+- `last-sprint` (default) — teammates active in the most recent sprint. Read the [sprint plan](../.projection/.cover.md) to determine who.
 - `teammate:<name>` — one person. Read their [agent file](../../agents/) for links.
 - `topic:<subject>` — reflect on a specific area. Read the relevant [subject catalogue](../bookkeeping/07-on-subjects.md) or [branch library](../library-tree/.cover.md).
 - `all` — everyone.
