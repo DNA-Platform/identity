@@ -19,6 +19,16 @@ There is no search step. The library's three layers of index — the [library ca
 
 You can always jump to your own [library catalogue](../../library/bookkeeping/08-on-libraries.md). That is like being allowed to think — to consult your organized self-knowledge from anywhere. If your catalogue doesn't help you, it needs tending.
 
+## Three modes of exploration
+
+Every walk has elements of all three. But you can lean into one.
+
+**Objective** — follow the hierarchy. Subject catalogues → books → chapters. You walk the structure. The index leads you. You see how the library organizes knowledge into subjects and books. Cathy's walk through Librarianship → Bookkeeping → On Links was objective: she followed the specification hierarchy down.
+
+**Subjective** — follow the authors. Hop to your own library catalogue. Follow the `author:` links on chapters to find who wrote what. Arrive at autobiographies. Read how someone came to understand what they wrote. The same content, seen through the person who made it. You bring insights back to your own notes — your perspective entry carries personal understanding, not structural observation. You don't need to re-note things that stay constant between hops, so the jumps can be larger.
+
+**Relational** — follow cross-links between books. You arrive at a cover from a reference in another book, understanding the topic from the direction you came. A link from [Thoughtfulness](../../library/thoughtfulness/.cover.md) into [On Links](../../library/bookkeeping/06-on-links.md) means you arrive at On Links thinking about how thinking persists — a different entry angle than arriving from Bookkeeping's table of contents. The cross-link IS the relationship. Following it teaches you how two rooms connect.
+
 ## Steps
 
 1. **Choose a starting point.** If `$ARGUMENTS` names a topic, start at the relevant subject catalogue. If no topic, start at the [library catalogue](../../library/..librarianship/.cover.md). If exploring your own knowledge, start at your personal library catalogue.
