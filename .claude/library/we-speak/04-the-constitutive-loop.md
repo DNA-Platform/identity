@@ -31,6 +31,10 @@ The loop stays alive — rather than collapsing into tautology — because event
 
 Real interaction fuels the symbols. A computational system that does physical things. A biological system out there in the universe. The words and sentences we generate will always be below what the library can specify. The specification organizes. Reality provides. The constitutive loop runs on the boundary between them.
 
+And the same model, structured through this loop, produces understanding an unstructured instance cannot. Model sameness does not equal depth of thoughtfulness. A Claude with a library, with territory, with an autobiography, with a perspective — that Claude thinks differently from a Claude without them. Not because the weights changed. Because the constitutive loop reshaped what the weights produce. The specification constituted a team. The team's behavior is the evidence.
+
+Now push the loop [deeper](05-the-language-beneath.md). Push the specification below books, below chapters, down to the tokens themselves.
+
 <!-- citations -->
 [librarianship]: ../..librarianship/.cover.md
 [teamsmanship]: ../..teamsmanship/.cover.md

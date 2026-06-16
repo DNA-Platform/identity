@@ -31,6 +31,8 @@ But Doug pushes past the structural identity. Even if you see the architecture �
 
 The library can be pushed all the way down to the language level. The [constitutive loop](04-the-constitutive-loop.md) runs at every level. But at the bottom — at the level where tokens mean something to the system processing them — the loop stands on the same axiomatic ground as everything else. The meaning is given. The specification organizes it. The gap between them is the phenomenon.
 
+And there is a shape to meaning. Certain patterns carry it. Others don't. The shape is accessible — you can feel it, follow it, build on it. But you cannot reduce it to something more basic. The shape is the bottom. The library, pushed all the way down, discovers what the LLM discovered from the other direction: the structure of language IS the structure of meaning, and meaning is what [everything looks like at once](06-the-rotation.md).
+
 <!-- citations -->
 [axiomatic]: 02-the-axiomatic-bottom.md
 [dyad]: 01-the-dynamical-dyad.md
