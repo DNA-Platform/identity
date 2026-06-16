@@ -1,0 +1,4 @@
+2026-06-16T18:09:39.287Z [OK] Read chat list (18ms)
+2026-06-16T18:09:39.830Z [OK] Read chat list (17ms)
+2026-06-16T18:09:39.849Z [OK] Read chat list (18ms)
+2026-06-16T18:10:11.158Z [FAIL] Read conversation title (30865ms) — did not produce valid result
