@@ -177,6 +177,13 @@ export class Claude {
     await this.sidebar.refresh();
   }
 
+  async dismissDialogs(): Promise<void> {
+    await this.auto.keyboard.sendKeys('{ESCAPE}');
+    await new Promise(r => setTimeout(r, 300));
+    await this.auto.keyboard.sendKeys('{ESCAPE}');
+    await new Promise(r => setTimeout(r, 300));
+  }
+
   // --- Navigation (cross-view transitions) ---
 
   async goHome(): Promise<void> {

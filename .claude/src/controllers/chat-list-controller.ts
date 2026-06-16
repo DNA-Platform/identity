@@ -95,6 +95,24 @@ export class ChatListController {
     );
   }
 
+  async addToProject(title: string, projectName: string): Promise<void> {
+    await this.auto.gateway.act(
+      async () => {
+        await this.auto.uia.expandByName(`More options for ${title}`);
+        await new Promise(r => setTimeout(r, 300));
+        await this.auto.uia.invoke('MenuItem', 'Add to project');
+        await new Promise(r => setTimeout(r, 800));
+        await this.auto.uia.invokeByName(projectName);
+      },
+      async () => {
+        // The "Move chat" dialog should close after selecting a project
+        const names = await this.auto.uia.allNames();
+        return !names.some(n => n.includes('Move chat'));
+      },
+      { description: `Add "${title}" to project "${projectName}"` },
+    );
+  }
+
   async pin(title: string): Promise<void> {
     await this.auto.gateway.act(
       async () => {
