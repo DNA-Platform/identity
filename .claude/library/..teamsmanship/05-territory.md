@@ -94,6 +94,8 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 
 - `library/chemistry/tests/**` — framework tests (shared with Cathy)
   **Why:** the test suite IS the specification of what $Chemistry promises. Queenie maintains that specification. See [autobiography](..team/queenie/queenie-and-the-specification/.cover.md).
+- `library/chemistry/.lib/testing/**` — the Testing book in the branch library
+  **Why:** the Testing book documents the test suite — Queenie's territory within Cathy's branch. See [Testing](../../library/chemistry/.lib/testing/.cover.md).
 - `library/chemistry/bench/**` — benchmarks
   **Why:** performance testing is QA.
 - `library/chemistry/app/**` — app quality (shared with Phillip)
@@ -140,13 +142,15 @@ Shared books have authors. The `author:` field on each cover names the primary o
 
 ## Branch library assignments
 
-The chemistry branch at `library/chemistry/.lib/` is shared territory with specific ownership:
+The chemistry branch at `library/chemistry/.lib/` has layered ownership. Cathy owns the whole branch. Specific books within it are assigned to the person whose perspective shapes them. Overlapping ownership is intentional — Queenie owns Testing AND Cathy owns the branch that contains it. Nesting, not conflict.
 
 | Path | Owner | Why |
 |------|-------|-----|
-| `.lib/..representivity/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The cataloguing book. The librarian catalogues the branch. |
-| `.lib/particle/**`, `.lib/reactivity/**`, `.lib/composition/**`, `.lib/authorship/**`, `.lib/implementation/**`, `.lib/epistemology/**`, `.lib/testing/**` | [Cathy](..team/cathy/cathy-and-the-reactive-canvas/.cover.md) | Framework documentation. Cathy built the framework and migrated the docs. |
-| `.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) + [Cathy](..team/cathy/cathy-and-the-reactive-canvas/.cover.md) | Sprint recording is shared between the architect (who plans) and the engineer (who built). |
+| `library/chemistry/.lib/**` | [Cathy](..team/cathy/cathy-and-the-reactive-canvas/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | Cathy owns the framework and its documentation. Libby tends all library content. Shared the way all library content is shared: Cathy owns substance, Libby tends structure. |
+| `.lib/..representivity/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The cataloguing book. The librarian catalogues the branch the way she catalogues the identity library. |
+| `.lib/testing/**` | [Queenie](..team/queenie/queenie-and-the-specification/.cover.md) | The test suite is what Queenie promises. 428 tests, regression stories, performance contract — her territory within Cathy's branch. |
+| `.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Sprint planning within the branch. The architect plans sprints. |
+| `.lib/particle/**`, `.lib/reactivity/**`, `.lib/composition/**`, `.lib/authorship/**`, `.lib/implementation/**`, `.lib/epistemology/**` | [Cathy](..team/cathy/cathy-and-the-reactive-canvas/.cover.md) | Framework documentation. Cathy built the framework, migrated the docs, folded the ontology, split the glossary. |
 
 ## Compilation
 
