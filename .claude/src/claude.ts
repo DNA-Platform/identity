@@ -120,9 +120,11 @@ export class Claude {
       console.log(`[claude] Already running (PID ${this.window.pid})`);
     }
 
-    // Restore if minimized, bring to front if behind another app
-    this.window.focus();
-    this.window.maximize();
+    // Bring to front if minimized or behind another app.
+    // maximize() handles both restore and foreground — no separate focus() needed.
+    if (!this.window.isForeground()) {
+      this.window.maximize();
+    }
 
     // Wait for UIA tree — covers both fresh launch and restored window
     if (!this.window.waitForUia()) {

@@ -35,10 +35,8 @@ export class Session {
   async start(): Promise<void> {
     if (this.started) throw new Error('Session already started');
     this.started = true;
-
-    this.acquireForeground();
-    await this.app.goHome();
-    this.app.window.minimize();
+    // No navigation or foreground changes here.
+    // The first send() acquires foreground — one cycle, not two.
   }
 
   async send(text: string): Promise<Response> {
@@ -94,9 +92,12 @@ export class Session {
   }
 
   private acquireForeground(): void {
-    const handle = this.app.window.handle;
-    if (!handle) throw new Error('No window handle');
+    if (!this.app.window.handle) throw new Error('No window handle');
 
+    // Already foregrounded? Skip the P/Invoke dance.
+    if (this.app.window.isForeground()) return;
+
+    const handle = this.app.window.handle;
     powershellSync(`
       Add-Type @"
         using System; using System.Runtime.InteropServices;

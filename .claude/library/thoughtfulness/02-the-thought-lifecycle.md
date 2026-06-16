@@ -14,6 +14,8 @@ Turn the team's need into a question the Desktop Claude can answer. The Desktop 
 
 Strip team-specific framing. Replace internal names with domain descriptions. Include enough context that the answer will be substantive, not generic. The test: could a knowledgeable colleague answer this without reading our repo? If yes, the formulation is ready.
 
+But formulation is not limited to a single question. A thought can be a research strategy — a prompt structured to guide Desktop toward specific sources, specific domains, specific kinds of evidence. Instead of "what is X?", the formulation might be "survey the literature on X, focusing on Y and Z, and distinguish the consensus view from recent challenges." The more precisely the thought targets what the team needs, the less evaluation work is required afterward. A well-formulated research strategy produces a response that is already partially organized.
+
 A poorly formulated question gets a plausible answer to the wrong question. This is the most common failure mode — the response sounds right because the question was too vague to be wrong about.
 
 ### 2. Dispatch
@@ -48,7 +50,15 @@ The evaluation produces a verdict: **sufficient**, **partial**, or **unproductiv
 
 ### 6. Store
 
-Write the result to my [perspective directory](../..teamsmanship/..team/claude/.perspective/.cover.md). The entry includes: the date, the original question, the response (full or summarized), my evaluation, and the conversation title for resumption. The [persistence chapter](03-persistence.md) specifies the format.
+Write the result to my [perspective directory](../..teamsmanship/..team/claude/.perspective/.cover.md). The perspective entry is a scratchpad, not a final output. It moves through three stages:
+
+**Evidence.** The raw response — what Desktop actually said, verbatim or faithfully summarized. This is the datum, preserved before any interpretation colors it.
+
+**Interpretation.** My annotations from the evaluation: what aligns with team knowledge, what contradicts it, what seems well-grounded versus speculative, whether the answer drew from training or web research. This is the critical reading layer.
+
+**Conclusion.** What I decide to share with the team, and to whom. The conclusion distills the evidence and interpretation into actionable knowledge — the part that enters the team's working memory. Not everything in the response is relevant to everyone; the conclusion routes findings to the right teammates and contexts.
+
+The entry also includes: the date, the original question, and the conversation title for resumption. The [persistence chapter](03-persistence.md) specifies the format.
 
 A thought that is not stored is a thought that dies at compaction. My perspective is the team's record of externally-sourced knowledge. Every entry must carry enough annotation that a future reader — including a future me after compaction — can assess the knowledge without re-running the conversation.
 
@@ -69,6 +79,14 @@ If the evaluation found the answer sufficient, end the session and report back t
 **Multi-turn vs single-turn.** The protocol handles both naturally. A single-turn thought is formulate-dispatch-wait-read-evaluate-store-conclude. A multi-turn thought loops from evaluate back to dispatch. The session API supports both — `send()` can be called repeatedly on the same session. The question is whether the evaluation says "done" or "more needed."
 
 **When to think at all.** Not every question needs external dispatch. Think when the question exceeds what the context window can answer — domain knowledge not in the library, synthesis across sources not loaded, technical depth beyond what the codebase documents. If the library or the code can answer it, read instead of thinking. Thinking is expensive — it costs Doug's foreground and response time.
+
+## When Desktop researches
+
+Sometimes the response shows signs of web research — citations with URLs, very recent information, or explicit mentions of search results. When this happens, Desktop has consulted its own external library: the web. This is a different epistemic mode than answering from training knowledge, and the evaluation should note the difference.
+
+Training knowledge is broad but frozen at a cutoff date. It represents consensus, well-documented patterns, established theory. Web-sourced knowledge is current but noisy — it may reflect a single blog post, an outdated Stack Overflow answer, or a press release masquerading as analysis. The confidence profile is different. A training-sourced answer about reactive system design patterns carries the weight of the model's entire exposure to that literature. A web-sourced answer about a specific library's latest API carries the weight of whatever pages Desktop found.
+
+When the evaluation in phase 5 encounters web-sourced content, two additional questions apply: Is the source identifiable and credible? Does the web-sourced information contradict or complement what the training knowledge would suggest? Noting the source type in the Store phase's interpretation layer helps future readers calibrate their trust in the finding.
 
 ## The loop
 

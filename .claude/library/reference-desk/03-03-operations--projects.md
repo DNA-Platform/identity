@@ -67,10 +67,24 @@ await app.projects.create('New Research Project');
 
 The cards list is `Lazy<>` — it loads on demand and paginates by scrolling. `wait()` scrolls through all pages to build the full list.
 
+## Adding a conversation to a project
+
+Two paths discovered through accessibility tree exploration (Sprint 76):
+
+**Path 1: Three-dot menu.** From the sidebar, the conversation's "More options" button (`More options for {title}`) opens a menu. The menu item is called `Projects` — clicking it opens a project picker to file the conversation.
+
+**Path 2: Navigate to the project.** Open the Claude project directly (`app.openProject('Claude')`), then the conversation should be associable from the project page.
+
+**Idempotency check:** Before attempting either path, check if the conversation is already in a project. The sidebar groups conversations by project — if the conversation appears under the "Claude" heading in the sidebar, it's already filed. The conversation page also shows breadcrumb-like elements when a conversation belongs to a project. Check these indicators before attempting to add.
+
+**The Claude project** is the canonical home for successful research conversations. The [Thoughtfulness](../thoughtfulness/.cover.md) protocol files conversations there after the thought concludes with a sufficient verdict. See the [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md) for the tracking system.
+
+`[SCAFFOLD]` — the `addToProject()` method is not yet implemented. The three-dot menu expansion works (`expandByName('More options for {title}')`), and the "Projects" menu item was confirmed via UIA exploration, but the project picker interaction needs further exploration.
+
 ## For research
 
 The typical research flow:
 1. `app.openProject('Research Topic')` — navigate to the project
 2. Read existing files and instructions for context
-3. `session.send('Research question')` — dispatch through the [session](03-04-operations--sessions.md)
-4. Store results in Claude's perspective
+3. Use the [/think](../our-skillset/20-think.md) skill to dispatch questions — `send()` then `read()`
+4. Store results in Claude's [perspective](../..teamsmanship/..team/claude/.perspective/.cover.md) and update the [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md)

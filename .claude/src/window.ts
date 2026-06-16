@@ -57,6 +57,7 @@ export class Window {
 
   focus(): void {
     this.requireHandle();
+    if (this.isForeground()) return;
     powershell(`
       Add-Type @"
         using System; using System.Runtime.InteropServices;
@@ -97,6 +98,7 @@ export class Window {
 
   maximize(): void {
     this.requireHandle();
+    if (this.isForeground()) return;
     powershell(`
       Add-Type @"
         using System; using System.Runtime.InteropServices;
