@@ -50,13 +50,15 @@ interface Response {
 
 The [gateway pattern](02-02-the-architecture--gateway.md) wraps this: `send()` calls `waitForResponse()` internally. A script that calls `app.say()` never needs to check streaming manually.
 
-## Background reading — minimize after sending
+## Visibility and reading
 
-From [Sprint 67](../research-projection/31-sprint-67--conversation-sessions.md): the app can be read while minimized. `readText()`, `readTurns()`, `checkStreaming()` all work from the background because they read the UIA tree, which is populated regardless of window visibility (as long as `--force-renderer-accessibility` was set at launch — see [UIA](04-01-platform--uia.md)).
+**Sprint 72 finding:** reading requires the app to be VISIBLE. `readTurns()` returned empty when the app was minimized, but returned 91 turns when maximized on the same conversation. The UIA tree may not fully populate when the window is minimized in current versions of Claude Desktop.
 
-**The preferred flow:** foreground to compose and send → minimize immediately → poll `checkStreaming()` from background → when complete, read response from background → only foreground again for the next send. Doug gets his computer back during the entire response generation.
+**The current flow:** maximize to compose and send → keep visible while waiting for response → read response while visible → minimize after reading is complete.
 
-The [session](03-04-operations--sessions.md) implements this. `session.send()` brings the app to foreground only for the compose-and-send step, then minimizes. The response waiting and reading happen from the background. This is critical — Claude Desktop responses can take minutes for complex questions. Doug must have his computer during that time.
+Sprint 67 tested background reading and found it worked at that time. The app has been updated since. Background polling for streaming completion (`checkStreaming()`) may still work from minimized state — this needs re-testing. But `readTurns()` and `readText()` need the app visible.
+
+**Implication for Doug's computer:** the app must be visible during response generation AND reading. Minimize only after the complete response has been read. This is a constraint — Claude Desktop responses can take minutes, during which the app occupies the screen. The session should be updated to keep the window visible until the read is complete, then minimize immediately after.
 
 ## Refresh
 
