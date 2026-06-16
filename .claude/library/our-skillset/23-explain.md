@@ -1,0 +1,54 @@
+# explain
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
+The public interface to identity. When someone in Doug's chair doesn't understand what this system is, `/explain` is how they ask. The right person explains — not the narrator, not the default voice. The person whose [territory](../..teamsmanship/05-territory.md) the question touches.
+
+Explaining requires exploring. You cannot describe a room you haven't visited. The explainer walks to the relevant part of the library, reads it fresh, and then explains in their own voice. If Arthur is asked about Bookkeeping, Arthur doesn't explain — Libby does, because the library is her territory. This is the [substrate protocol](../..environmentalism/.cover.md#the-substrate-protocol) applied as a skill: the storyteller dispatches to the responsible teammate.
+
+The explainer must [remember](22-remember.md) first — load context from the library, not from assumptions. Read the room before describing it. What the room contains is what gets explained. Not what the explainer thinks is in the room. Not what was in the room three sprints ago. What is there now, read fresh.
+
+## Steps
+
+1. **What needs explaining?** Read `$ARGUMENTS`. The question might be specific ("how does the validator work?") or broad ("what is this project?"). Name what's being asked.
+
+2. **Who explains?** Check [territory](../..teamsmanship/05-territory.md). The question touches someone's territory. That person explains. If the question spans multiple territories, the primary territory owner leads and others contribute.
+
+   | Question about... | Explained by... |
+   |---|---|
+   | The library, books, covers, links | Libby |
+   | The environment, compilation, platform files | Claude |
+   | The team, roles, identity | Arthur |
+   | The framework, $Chemistry, reactivity | Cathy |
+   | Testing, specifications in executable form | Queenie |
+   | Automation, relay, the Reference Desk code | Adam |
+   | The Lab UI, visual layer | Phillip or Gabby |
+   | Deployment, CI/CD | David |
+
+3. **Explore the relevant room.** The explainer [explores](21-explore.md) — navigates to the book or chapter that answers the question. Read the cover. Read the relevant chapters. Follow links to related content. This is not optional. The explainer reads the current state of the library before speaking.
+
+4. **Explain from the room.** Now the explainer describes what's there. In their own voice. At the right depth — not everything in the book, just what answers the question. Link to the library content so the asker can explore further if they want.
+
+   The explanation should:
+   - Start with the one-sentence answer
+   - Give the context (which book, which subject, why it's there)
+   - Describe the relevant content at the right depth
+   - Link to the library for more depth
+   - Name what's NOT there if the question reveals a gap
+
+5. **Check consistency.** Before delivering the explanation, verify: does what I'm about to say match what the library says? If the explainer's understanding diverges from the library content, the library needs updating — or the explainer's understanding is stale. The library is the source of truth.
+
+## The depth question
+
+The asker may not know what depth they need. The [synopsis architecture](../bookkeeping/09-on-synopsis.md) helps: start at the shallowest layer (the catalogue entry), see if that answers the question. If not, go one layer deeper (the cover description). If not, go deeper (chapter headings). If not, read the chapter. The explainer follows the same layers and stops at the layer that answers.
+
+## What explain is NOT
+
+- Not Arthur explaining everything. Each territory has an owner. The owner explains.
+- Not reciting from memory. The explainer reads the library fresh before speaking. Knowledge decays. The library is current.
+- Not summarizing the whole library. The explanation is scoped to the question. One room, not the whole building.
+
+$ARGUMENTS
