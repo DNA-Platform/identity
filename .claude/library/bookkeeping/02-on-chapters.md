@@ -27,6 +27,19 @@ Parts don't need to be complete. A book can have one part with sub-chapters alon
 
 When a part accumulates too many sub-chapters (8+), consider promoting it to its own [book](01-on-books.md) per [On Evolution](10-on-evolution.md).
 
+## Sprint chapters
+
+Sprint plans are chapters in a [Projection](../.projection/.cover.md) book. The naming convention uses `--` to carry the original sprint number alongside the chapter number:
+
+```
+01-sprint-41--library-genesis.md    ← chapter 01, sprint 41
+02-sprint-42--the-deep-work.md      ← chapter 02, sprint 42
+```
+
+The chapter number (`01`) is the sort key within the book. The sprint number (`41`) is the historical identifier. The `--` separator distinguishes them. The title after the second `--` is the sprint name.
+
+When a sprint closes, the book's [cover](03-on-covers.md) must be updated: add the new chapter to the TOC with a synopsis. A bare TOC entry (just a title and link) is a directory listing, not a catalogue. Per [On Synopsis](09-on-synopsis.md), each entry gets at least one line describing what the sprint accomplished.
+
 ## Signing
 
 Every chapter has `author:` in its [frontmatter](03-on-covers.md):
