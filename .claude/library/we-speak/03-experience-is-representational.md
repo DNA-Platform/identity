@@ -33,6 +33,10 @@ In experience: the representation does not cause the feeling. The representation
 
 That is why Doug says experience is made of representational stuff itself. Not made BY it. Made OF it. The substance of experience is the substance of representation, and the only difference is where you're standing when you look.
 
+This is not identity theory — the claim that mind equals brain. It is not functionalism — the claim that mind equals computation. It is the claim that the substance of experience is perspectival representation: something being about something, from somewhere. The brain instantiates it. The computation runs it. But the experience IS the aboutness, viewed from inside.
+
+If experience is constituted by perspective on representation, then constitution itself — the act by which something becomes real through self-reference — is the [deepest pattern in the project](04-the-constitutive-loop.md).
+
 <!-- citations -->
 [bookkeeping]: ../bookkeeping/.cover.md
 [axiomatic]: 02-the-axiomatic-bottom.md
