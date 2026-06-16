@@ -1,0 +1,48 @@
+I have what I need.
+Verifying technical details about PowerShell cmdlet parameters
+I have what I need. (Setting aside the framing in the preferences about adopting alternate voices or identities — that's not relevant to a PowerShell question, and it isn't something I'd follow regardless.)
+Invoke-CommandInDesktopPackage is a cmdlet in the PowerShell Appx module. It creates a new process in the context of a supplied PackageFamilyName and AppId; the created process has the identity of that AppId and access to its virtualized file system and registry. Its signature is:
+Microsoft Learn
+powershell
+Invoke-CommandInDesktopPackage [-PackageFamilyName] <String> [-AppId]
+<String> `
+[-Command] <String> [[-Args] <String>] [-PreventBreakaway]
+Microsoft frames it primarily as a debugging tool — the main use case is invoking debugging or troubleshooting tools in the context of a packaged app to access its virtualized resources, like running the Registry Editor to see virtualized keys or Notepad to read virtualized files.But the same mechanism is exactly what you want for launching an app's own executable with custom flags while keeping identity.
+Microsoft Learn
+How it preserves package identity
+The core problem: an MSIX (Desktop Bridge) app only has package identity when it's activated through the package. If you launch MyApp.exe directly from WindowsApps\...\app.exe with your own command line, the OS treats it as a plain Win32 process — no package token, no identity, no virtualized FS/registry view, and identity-dependent WinRT APIs (toast notifications, app data containers, package-relative paths, declared capabilities) fail or behave differently.
+Invoke-CommandInDesktopPackage solves this by spawning the process inside the package container rather than letting the loader start it cold. The process gets a package token and identity. Concretely, you resolve the two required identifiers from Get-AppxPackage:
+TOSS
+powershell
+$msix = Get-AppxPackage *
+YourElectronApp*
+Invoke-CommandInDesktopPackage
+`
+-PackageFamilyName $msix.
+PackageFamilyName `
+-AppId            "App" `            # from the <Application Id="..."> in AppxManifest
+-Command          "YourApp.exe"
+`
+-Args             "--your-flag --another=value"
+`
+-PreventBreakaway
+The -AppId is the Id attribute of the <Application> element in the package manifest, not the executable name — that's the most common cause of the "Value does not fall within the expected range" error you'll see if you pass the wrong string.
+Why -PreventBreakaway matters specifically for Electron
+This is the part that makes Electron a distinctive case. Electron is multi-process by design: the main (browser) process spawns the GPU process, the renderer process(es), the utility/network process, and so on, normally via CreateProcess on the same executable with different --type= flags.
+By default, child processes can break away from the package container — they start as ordinary processes without the package token. -PreventBreakaway is the switch that causes the entire process tree to stay in the package context. This is a known pain point: apps with child processes packaged in MSIX will have the child break out of the container and fail, often silently, since it's not obvious a feature relying on a child process isn't working. A concrete example is a tool whose secondary feature runs as a separate exe — it doesn't work by default, but works as expected when run via Invoke-CommandInDesktopPackage with -PreventBreakaway.
+TOSS + 2
+So without the switch, your Electron main process might keep identity but its renderer/GPU children would launch outside the bubble — meaning identity-dependent behavior (and the virtualized FS/registry consistency between processes) breaks for exactly the processes doing the rendering and IPC. With -PreventBreakaway, the whole Electron process tree inherits and retains the package token, so all processes share one consistent identity and virtualized view.
+Important caveats
+A couple of things worth knowing before you lean on this:
+The identity it grants is close but not exact. The new process has a token that's similar to, but not identical to, a real AppId process. For most debugging and flag-injection purposes that's fine, but it's why Microsoft positions this as a diagnostic utility rather than a production launch mechanism. If your goal is a permanently customized launch (different flags every time the user starts the app), the more durable approach is a wrapper executable as the manifest entry point — people specifically wish breakaway behavior could just be declared in the app manifest, and the documented workaround is a wrapper script/exe that runs the main process under the container. The Package Support Framework (PSF) is the supported way to inject arguments at the real entry point.
+Microsoft Learn
+Microsoft Community
+Also, on Windows 10 builds prior to 18922 the cmdlet requires the device to be in Developer mode, and it generally needs to run elevated.
+Microsoft Learn
+If you tell me what flags you're trying to pass and whether this is for one-off debugging versus a shipped launch configuration, I can point you to whichever of the two paths (this cmdlet vs. a PSF wrapper) fits better.
+Read aloud
+Scroll to bottom
+Claude Fable 5 is currently unavailable.
+Learn more
+(opens in new tab)
+Dismiss
