@@ -68,6 +68,22 @@ When `app.window.find()` finds a running Claude Desktop, `app.launch()` skips th
 
 **Sprint 72 finding:** after sending a message to a new chat, `readTitle()` returns "Claude finished the response" or "Share chat" — not the auto-generated conversation title. The title the app assigns isn't immediately available. Finding the conversation by title requires refreshing the sidebar and checking the first (most recent) entry.
 
+## Response parser picks up UI chrome
+
+**Sprint 76 finding:** `readTurns()` and `readLastResponse()` pick up UI elements at the end of the response text — "Read aloud", "Scroll to bottom", "Claude Fable 5 is currently unavailable", "Dismiss", and the original prompt text echoed back. These are accessibility tree elements from Desktop's interface, not response content. The read pipeline needs more aggressive trimming of non-content at the end of parsed text.
+
+## Streaming check may miss completion for long responses
+
+**Sprint 77 finding:** `checkStreaming()` may report "still streaming" when the response is already complete but extends below the visible viewport. The UIA tree may not update the streaming indicator until the user scrolls down. Scrolling to the bottom before checking might be required. Alternatively, check for the absence of the streaming indicator AND the presence of the response-complete indicator together.
+
+## Paste creates attachments for large text
+
+**Sprint 76 finding:** Using `paste()` (clipboard) for think prompts creates "Pasted Text" attachments in the composer instead of inline text. This makes the conversation appear blank with just attachments. Use `type()` (setValue via ValuePattern) instead — it sets the text inline. The `think.ts` code was updated to use `type()` for this reason.
+
+## Open dialogs block all navigation
+
+**Sprint 77 finding:** The "Move chat" project picker dialog blocks all other UI interactions. `goHome()` fails because "New chat" isn't in the UIA tree while the dialog is open. The `dismissDialogs()` method (Escape twice) was added to recover. Any exploration script that opens a dialog must reliably close it — `pressEscape` or clicking a cancel button.
+
 ## The "Show more" ambiguity
 
 Multiple UI elements can have the same accessible name. "Show more" appears in project descriptions AND conversation lists. [`invokeByNameLast()`](../../src/uia.ts) takes the last match, which is usually the right one (conversation lists are lower on the page). But this is a heuristic, not a guarantee. See [UIA § Element finding strategies](04-01-platform--uia.md).

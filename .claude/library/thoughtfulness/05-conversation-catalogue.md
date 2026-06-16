@@ -66,6 +66,18 @@ The goal: the catalogue entry alone should be enough to continue the conversatio
 
 Asked about the best Node.js bindings for Windows UI Automation — edge-js with FlaUI vs node-ffi-napi with direct COM. Desktop did extensive web research and returned a 10,307 char response recommending: (1) a .NET sidecar with FlaUI over JSON-RPC named pipes, not edge-js in-process, due to COM threading and crash isolation; (2) for Electron apps, Playwright via CDP as primary, UIA only for OS chrome; (3) computer-use API as expensive fallback for vision gaps; (4) UFO2's pattern (UIA-first, vision-fill) is right but the framework itself is overkill for a single known app.
 
+### Playwright and MSIX Electron
+- **conversation:** Think: Does Playwright _electron API work with MSIX-packaged Ele...
+- **url:** https://claude.ai/chat/db784860-6dc2-4ec2-abf7-4d7eda239fed
+- **project:** (not yet filed)
+- **state:** active
+- **started:** 2026-06-16
+- **last exchange:** 2026-06-16
+- **exchanges:** 1
+- **verdict:** sufficient (first exchange)
+
+Asked whether Playwright can connect to Claude Desktop as an MSIX Electron app. Key findings: (1) Claude Desktop is full-trust MSIX (runFullTrust capability) so loopback is unrestricted — no CheckNetIsolation needed; (2) `connectOverCDP` is correct for MSIX, `_electron.launch` is wrong (ACL-locked WindowsApps dir, no package identity, Electron 30+ bug with --remote-debugging-port=0 as CLI arg); (3) the debug port must be baked in via `app.commandLine.appendSwitch`, not passed at activation — we can't add it externally; (4) `connectOverCDP` gives Browser pages but not main-process evaluate — we lose `electronApp.evaluate()` but gain real DOM selectors. **Implication:** CDP as primary path requires Claude Desktop to ship with debugging enabled. Our UIA approach works without app cooperation — that's its advantage. Follow-up: does Claude Desktop already have the debug port? Is there a `--force-renderer-accessibility` equivalent that enables CDP?
+
 ### AI Automation Frameworks Survey
 - **conversation:** Think: What AI-based automation frameworks exist beyond MCP (Mod...
 - **url:** https://claude.ai/chat/a0bc19de-874a-43ed-93ac-05e5185fe6e5
