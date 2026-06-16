@@ -165,6 +165,26 @@ function checkCover(coverPath: string): void {
   const metaLines = sepIdx > 0 ? allLines.slice(1, sepIdx) : [];
   const order = isCatalogue ? catalogueCoverOrder : regularCoverOrder;
   checkFieldOrder(relPath, metaLines, order, () => { warnings++; });
+
+  // Check TOC entries have synopses — not just bare links
+  // A TOC entry looks like: "N. [Title](file.md) — synopsis text"
+  // A bare entry looks like: "N. [Title](file.md)" with nothing after
+  const bodyStart = content.indexOf('\n---\n');
+  if (bodyStart >= 0) {
+    const body = content.slice(bodyStart + 5);
+    const tocPattern = /^\d+\.\s+\[([^\]]+)\]\(([^)]+\.md[^)]*)\)\s*$/gm;
+    let tocMatch: RegExpExecArray | null;
+    let bareTocCount = 0;
+    let totalTocCount = 0;
+    while ((tocMatch = tocPattern.exec(body)) !== null) {
+      totalTocCount++;
+      bareTocCount++;
+    }
+    if (bareTocCount > 0 && totalTocCount > 0) {
+      console.log(`WARN    ${relPath}  ${bareTocCount} of ${totalTocCount} TOC entries have no synopsis — TOC should describe chapters, not just list them. See On Synopsis`);
+      warnings++;
+    }
+  }
 }
 
 function checkChapter(chapterPath: string): void {
