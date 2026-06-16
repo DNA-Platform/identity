@@ -1,0 +1,82 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Maximize
+ControlType.Button | Close
+ControlType.Document | New chat - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Group | Sidebar
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Batumi Summer
+ControlType.Button | More options for Batumi Summer
+ControlType.Button | Semantic Primes
+ControlType.Button | More options for Semantic Primes
+ControlType.Button | 💬 Can you look up the research o…
+ControlType.Button | More options for 💬 Can you look up the research o…
+ControlType.Button | Ontic Structural Realism
+ControlType.Button | More options for Ontic Structural Realism
+ControlType.Button | Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | More options for Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | Georgia IE residency income threshold
+ControlType.Button | More options for Georgia IE residency income threshold
+ControlType.Button | Ontic Structural Realism
+ControlType.Button | More options for Ontic Structural Realism
+ControlType.Button | American grocery options in Saburtalo Tbilisi
+ControlType.Button | More options for American grocery options in Saburtalo Tbilisi
+ControlType.Button | Летняя погода в Батуми
+ControlType.Button | More options for Летняя погода в Батуми
+ControlType.Button | Representation & the Part - Whole Dichotomy
+ControlType.Button | More options for Representation & the Part - Whole Dichotomy
+ControlType.Button | Восстановление аккаунта Бравл Старс без почты
+ControlType.Button | More options for Восстановление аккаунта Бравл Старс без почты
+ControlType.Button | Письмо психотерапевту Меган
+ControlType.Button | More options for Письмо психотерапевту Меган
+ControlType.Button | SRT Axioms & Specialization
+ControlType.Button | More options for SRT Axioms & Specialization
+ControlType.Button | MTONGA
+ControlType.Button | More options for MTONGA
+ControlType.Button | Marie_Siettle
+ControlType.Button | More options for Marie_Siettle
+ControlType.Button | Судебный иск о разделе имущества как рычаг давления
+ControlType.Button | More options for Судебный иск о разделе имущества как рычаг давления
+ControlType.Button | Борьба с тараканами в Тбилиси
+ControlType.Button | More options for Борьба с тараканами в Тбилиси
+ControlType.Button | Administering cat medications as whole capsules
+ControlType.Button | More options for Administering cat medications as whole capsules
+ControlType.Button | Airbnb host refund authority and options
+ControlType.Button | More options for Airbnb host refund authority and options
+ControlType.Button | Illustrator Study
+ControlType.Button | More options for Illustrator Study
+ControlType.Button | Doug Doug Max
+ControlType.Image | Doug
+ControlType.Text | Doug
+ControlType.Text | Max
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Text | Afternoon, Doug
+ControlType.Text | Claude Fable 5 is currently unavailable.
+ControlType.Hyperlink | Learn more (opens in new tab)
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | dim
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Model: Opus 4.8 High
+ControlType.Text | Opus 4.8
+ControlType.Text |  High
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Button | Send message
+ControlType.Group | Notifications (F8)
