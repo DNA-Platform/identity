@@ -5,7 +5,9 @@
 
 ---
 
-This chapter is about what the library cannot specify about itself. Every other chapter in [Librarianship](../..librarianship/.cover.md) extends the library's self-knowledge — how books work, how links connect, how subjects nest, how the [two libraries](15-the-two-libraries.md) inform each other. This chapter names the boundary. Below the library's specification: the thing that makes specification meaningful in the first place.
+This chapter summarizes what the library cannot specify about itself. The full theory lives in [We Speak](../we-speak/.cover.md) — the philosophy of the library of the team, with Doug's ideas at full strength. This chapter is the synopsis; that book is the depth.
+
+Every other chapter in [Librarianship](../..librarianship/.cover.md) extends the library's self-knowledge — how books work, how links connect, how subjects nest, how the [two libraries](15-the-two-libraries.md) inform each other. This chapter names the boundary. Below the library's specification: the thing that makes specification meaningful in the first place.
 
 ## The dynamical dyad
 
