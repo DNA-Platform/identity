@@ -69,14 +69,28 @@ Edit what's stale. Add what's missing. Remove what's dead.
 
 ### Step 2: Organize responsibilities
 
-Read [Territory](../../library/..teamsmanship/05-territory.md). For every assignment:
+Read [Territory](../../library/..teamsmanship/05-territory.md). Territory has four sections that must be verified:
 
-- **Is the path pattern current?** Does it match files that actually exist?
-- **Is the justification accurate?** Does it explain WHY this person owns this path, not just THAT they do?
-- **Are personal libraries listed?** Every teammate's `..`-prefixed catalogue should appear in territory with a reason: "Libby owns `..the-garden-tends-itself/` because the librarian and the library are inseparable."
-- **Are branch libraries assigned?** The chemistry `.lib/` paths should map to the teammates who built the branch: Cathy for framework books, Libby for cataloguing, the team for Projection.
+**Code assignments.** Every teammate has path patterns with WHY annotations. Verify:
+- Is each path pattern current? Does it match files that actually exist?
+- Is the justification accurate? Does it explain WHY, not just THAT?
+- Does each teammate own their WHOLE personal library? The `..team/{name}/**` pattern should appear with a reason linking to [Autonomy](../../library/teamspeak/05-autonomy.md) and [On Authorship](../../library/bookkeeping/13-on-authorship.md). Your library is your brain — you own all of it.
+- Arthur has `**` as fallback but should ALSO have specific assignments for the books he actually authors ([Teamspeak](../../library/teamspeak/.cover.md), [Teamsmanship](../../library/..teamsmanship/.cover.md), [Projection](../../library/projection/.cover.md)) with explanations.
 
-Every file in the library should have an owner. Every owner should have a reason. The reason is the synapse that connects the person to the knowledge.
+**Personal library assignments.** Every teammate's `..`-prefixed catalogue must appear in territory with a stated reason. The reason connects the person to the knowledge: "Cathy owns `..the-canvas-paints-itself/` because the framework engineer's perspective on reactivity is inseparable from the framework."
+
+**Public book assignments.** Every shared book has an `author:` field. Verify:
+- Is the author the right person? The person who wrote it, who maintains it, whose perspective shapes it.
+- Is the author consistent with the code assignment? If Arthur is assigned `.claude/library/teamspeak/**`, the Teamspeak cover's `author:` should point to Arthur's autobiography.
+- Has anyone been writing chapters in a book they don't author? Check for Arthur writing in other people's books — [autonomy](../../library/teamspeak/05-autonomy.md) says each person writes their own.
+
+**Branch library assignments.** For each branch in [Library Tree](../../library/library-tree/05-branches.md):
+- Is the cataloguing book assigned to the librarian?
+- Are the framework books assigned to the framework engineer?
+- Is Projection assigned to the sprint planner?
+- Do assignments use the `../{project}` convention that [Library Tree](../../library/library-tree/01-branches.md) specifies?
+
+Every file should have an owner. Every owner should have a reason. The reason is the synapse that connects the person to the knowledge.
 
 ### Step 3: Organize branches
 
