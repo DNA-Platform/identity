@@ -30,4 +30,7 @@ async function main() {
   console.log('Done. Navigation works.');
 }
 
-main().catch(console.error);
+main().catch(e => {
+  console.error(e.message);
+  app.window.minimize();
+});
