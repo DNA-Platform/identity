@@ -26,7 +26,7 @@ The window module ([`.claude/src/window.ts`](../../src/window.ts)) manages the C
 
 ## Screenshots
 
-`screenshot(outputPath)` captures the window using `PrintWindow` — a Win32 API that renders the window to a bitmap even when it's behind other windows or partially occluded. The screenshot is saved as PNG. Used by the [diagnostics](../../src/diagnostics.ts) system on failure and by Claude's [perspective practice](../..teamsmanship/..team/claude/.perspective/.cover.md) during testing.
+`screenshot(outputPath)` captures the window using `PrintWindow` — a Win32 API that renders the window to a bitmap even when it's behind other windows or partially occluded. The screenshot is saved as PNG. Used by the [diagnostics](../../src/diagnostics.ts) system on failure and by Claude's perspective practice during testing.
 
 ## The handle
 

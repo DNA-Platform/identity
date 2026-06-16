@@ -27,7 +27,7 @@ What it checks:
 
 Use during [`/organize`](../our-skillset/08-organize.md) to find stale synopses. Use during [`/reflect`](../our-skillset/19-reflect.md) to verify that your personal catalogue still describes your books accurately.
 
-**Known limitations:** Count mismatches are high-signal but produce false positives when a sentence mentions a NUMBER about one thing while linking to a DIFFERENT thing ("my 26-chapter autobiography, painting [six portraits](portraits/)"). Keyword mismatches flag zero-overlap between source and target opening paragraphs — useful for finding stale synopses, but autobiography links will always show low overlap because specifications and autobiographies use different language registers. Treat keyword mismatches as suggestions, not errors. Count mismatches deserve investigation.
+**Known limitations:** Count mismatches are high-signal but produce false positives when a sentence mentions a NUMBER about one thing while linking to a DIFFERENT thing ("my 26-chapter autobiography, painting six portraits"). Keyword mismatches flag zero-overlap between source and target opening paragraphs — useful for finding stale synopses, but autobiography links will always show low overlap because specifications and autobiographies use different language registers. Treat keyword mismatches as suggestions, not errors. Count mismatches deserve investigation.
 
 ### Keyword search
 

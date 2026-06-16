@@ -12,7 +12,7 @@ A discussion is NOT eight people saying one thing each to Doug. That's a status 
 
 Doug asks a question or gives a direction. Instead of one agent producing a plan, multiple agents respond — each from their perspective. They build on each other, disagree, identify things the others missed, and arrive at something none of them would have produced alone.
 
-The [sprint 41](../projection/sprint-41/plan.md) discussion about identity coherence is the template. Doug asked the team to discuss before continuing. Eight incoherences emerged that no single agent would have found. Arthur saw the structural problem (proportions). Cathy saw the asymmetry (her story inverts the pattern). Libby saw the library problem (specifications rot faster than portraits). Adam saw the continuity (the wire changed, the discipline didn't). Each perspective was partial. The discussion produced the complete picture.
+The [sprint 41](../projected-identity/01-sprint-41--library-genesis.md) discussion about identity coherence is the template. Doug asked the team to discuss before continuing. Eight incoherences emerged that no single agent would have found. Arthur saw the structural problem (proportions). Cathy saw the asymmetry (her story inverts the pattern). Libby saw the library problem (specifications rot faster than portraits). Adam saw the continuity (the wire changed, the discipline didn't). Each perspective was partial. The discussion produced the complete picture.
 
 ## When to discuss
 

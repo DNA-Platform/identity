@@ -29,4 +29,4 @@ Commands are serialized through `this.queue` — a promise chain. Each `run()` c
 
 ## Performance
 
-12ms per call with the persistent session vs 200ms spawning a process each time. Over a typical script that makes hundreds of UIA queries, this is the difference between 2 seconds and 40 seconds. The persistent session was introduced in [Sprint 57](../research-projection/21-sprint-57--creating-projects-and-pushing-instructions.md) after the upload sprints showed that per-call spawning made automation painfully slow.
+12ms per call with the persistent session vs 200ms spawning a process each time. Over a typical script that makes hundreds of UIA queries, this is the difference between 2 seconds and 40 seconds. The persistent session was introduced in [Sprint 57](../projected-research/21-sprint-57--creating-projects-and-pushing-instructions.md) after the upload sprints showed that per-call spawning made automation painfully slow.

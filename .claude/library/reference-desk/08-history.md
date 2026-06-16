@@ -4,7 +4,7 @@
 
 ---
 
-The tool evolved through nine phases across 32 sprints. This chapter is the reading guide — not a detailed history (that's in [Research Projection](../research-projection/.cover.md)) but the arc that helps you understand why the code is shaped the way it is. When you encounter something in the codebase and wonder "why is it like this?", this chapter points you to the sprint that made that decision.
+The tool evolved through nine phases across 32 sprints. This chapter is the reading guide — not a detailed history (that's in [Projected Research](../projected-research/.cover.md)) but the arc that helps you understand why the code is shaped the way it is. When you encounter something in the codebase and wonder "why is it like this?", this chapter points you to the sprint that made that decision.
 
 ## The arc
 

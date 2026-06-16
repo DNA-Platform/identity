@@ -26,7 +26,7 @@ The team talks. Brief check-in: each active agent says what they remember, what 
 
 There is no separate "current state" file. Recency lives where it belongs:
 
-**Project recency** lives in [Projection](../.projection/.cover.md) (the identity-level sprint book) and branch [Projection](../../library/chemistry/.lib/projection/.cover.md) books. The last sprint chapter is the current-state marker.
+**Project recency** lives in [Projection](../.projection/.cover.md) (the identity-level sprint book) and branch Projection books. The last sprint chapter is the current-state marker.
 
 **Agent recency** lives in each agent's autobiography. The last chapter is the current-state marker. Convention: when work shifts significantly, write a new last chapter. The old one becomes history. The autobiography grows by accretion. To know what Arthur is doing, read his last chapter. To know what Cathy is thinking about, read hers.
 

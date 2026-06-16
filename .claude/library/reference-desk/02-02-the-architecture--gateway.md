@@ -4,7 +4,7 @@
 
 ---
 
-The gateway ([`.claude/src/gateway.ts`](../../src/gateway.ts)) is the discipline layer. Every stateful interaction with the UIA tree goes through it. No static waits, no blind retries, no unchecked assumptions. It was born in [Sprint 61](../research-projection/25-sprint-61--feedback-mcp-research-and-app-hardening.md) from the pain of automation that didn't know if it worked.
+The gateway ([`.claude/src/gateway.ts`](../../src/gateway.ts)) is the discipline layer. Every stateful interaction with the UIA tree goes through it. No static waits, no blind retries, no unchecked assumptions. It was born in [Sprint 61](../projected-research/25-sprint-61--feedback-mcp-research-and-app-hardening.md) from the pain of automation that didn't know if it worked.
 
 Doug's original framing (from his stock trading platform): centralize cross-cutting concerns. The gateway centralizes retry, polling, timeout, diagnostics, and foreground enforcement so controllers don't reinvent them.
 

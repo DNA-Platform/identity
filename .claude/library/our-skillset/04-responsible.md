@@ -72,7 +72,7 @@ When multiple agents match a file:
    ```
 
 <!-- citations -->
-[agent registry]: .claude/library/.team/registry.json
+[agent registry]: ../..teamsmanship/05-territory.md
 
 $ARGUMENTS
 

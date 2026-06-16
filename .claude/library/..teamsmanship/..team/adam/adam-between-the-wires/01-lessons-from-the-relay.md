@@ -8,7 +8,7 @@
 
 My first scripts automated Claude Desktop using Windows UI Automation (UIA). Find the window by process name. Walk the accessibility tree to find the text input. Inject text. Press Enter. Wait for the response by polling the DOM.
 
-It worked — until it didn't. The accessibility tree on Electron apps is incomplete. Buttons that exist visually don't appear in the UIA tree. Text inputs that should be editable aren't. I wrote [spike after spike][spikes] trying to get reliable element discovery, and every approach had gaps.
+It worked — until it didn't. The accessibility tree on Electron apps is incomplete. Buttons that exist visually don't appear in the UIA tree. Text inputs that should be editable aren't. I wrote spike after spike trying to get reliable element discovery, and every approach had gaps.
 
 The CDP (Chrome DevTools Protocol) approach was better. Launch Claude Desktop with `--remote-debugging-port=9222`, connect over HTTP, evaluate JavaScript in the renderer. Full DOM access. No accessibility tree gaps. But I was writing raw CDP calls in PowerShell — `Invoke-WebRequest` to `localhost:9222/json`, then WebSocket connections, then JSON-RPC messages. It worked, but it was brittle and verbose.
 
@@ -27,5 +27,4 @@ Every one of these lessons points toward Playwright. It solved all five problems
 **2026-05-17:** This is where I started, and reading it now I can hear the confidence of someone who has already decided what the answer is. I wrote "UIA is a dead end" like it was a law of physics. Six chapters later I found my own working UIA code and had to eat those words. The lesson list is accurate as far as it goes — but it's a list of *technical* conclusions when the real lesson was about how I draw conclusions. I reach for generalizations ("X is a dead end") when what I have is specific evidence ("X didn't work in this case with my level of understanding"). That pattern — over-generalizing from limited experience — is the first face of what I later called [routing around ignorance](07-the-gap-i-didnt-name.md). If you declare something a dead end, you never have to admit you don't understand it well enough to make it work.
 
 <!-- citations -->
-[spikes]: ../../.projects/inexplicable-phenomena/.archive/sprint-1/spikes/
 [desktop.ps1]: ../../../src/.archive/desktop.ps1

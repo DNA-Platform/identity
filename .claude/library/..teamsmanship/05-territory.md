@@ -39,7 +39,7 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** [Librarianship](../..librarianship/.cover.md) IS Knowledge. The library cataloguing itself. The librarian and the library are inseparable.
 - Roles: [Librarian](02-roles.md#librarian)
 
-### [Cathy](..team/cathy/..the-canvas-paints-itself/.cover.md) — Framework Engineer
+### [Cathy](..team/cathy/..the-canvas-paints-itself/.cover.md) — Framework Engineer + Philosopher
 
 - `library/chemistry/src/**` — the $Chemistry framework source
   **Why:** Cathy built the reactive model. Scope-tracked getters, view purity, composition — these are her territory. See [autobiography](..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Reactivity Models](..team/cathy/reactivity-models/.cover.md).
@@ -50,7 +50,7 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 - `library/chemistry/.lib/**` — the $Chemistry branch library
   **Why:** the branch records the team's knowledge of building the framework Cathy built. Her perspective shapes what's documented. See [The Fixed-Point Pattern](..team/cathy/the-fixed-point-pattern/.cover.md).
 - NOT `library/chemistry/app/**` — consults on framework gaps but doesn't own app code
-- Roles: [Framework Engineer](02-roles.md#framework-engineer)
+- Roles: [Framework Engineer](02-roles.md#framework-engineer), [Philosopher](02-roles.md#philosopher)
 
 ### [Claude](..team/claude/..what-the-mirror-reflects/.cover.md) — Environmentalist
 
@@ -111,7 +111,7 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 - `library/chemistry/tests/**` — framework tests (shared with Cathy)
   **Why:** the test suite IS the specification of what $Chemistry promises. Queenie maintains that specification. See [autobiography](..team/queenie/queenie-and-the-specification/.cover.md).
 - `library/chemistry/.lib/testing/**` — the Testing book in the branch library
-  **Why:** the Testing book documents the test suite — Queenie's territory within Cathy's branch. See [Testing](../../library/chemistry/.lib/testing/.cover.md).
+  **Why:** the Testing book documents the test suite — Queenie's territory within Cathy's branch. See Testing.
 - `library/chemistry/bench/**` — benchmarks
   **Why:** performance testing is QA.
 - `library/chemistry/app/**` — app quality (shared with Phillip)
@@ -170,7 +170,7 @@ The chemistry branch at `library/chemistry/.lib/` has layered ownership. Cathy o
 
 ## Compilation
 
-A [territory rules compiler](05-territory--compiler.ts) `[SCAFFOLD]` would read these assignments and generate `.claude/rules/{territory}.md` files — path-scoped rules that load the right knowledge when the right files enter context. Each generated rule links back to this chapter and to the teammate's library.
+A territory rules compiler `[SCAFFOLD]` would read these assignments and generate `.claude/rules/{territory}.md` files — path-scoped rules that load the right knowledge when the right files enter context. Each generated rule links back to this chapter and to the teammate's library.
 
 <!-- citations -->
 [roles]: 02-roles.md

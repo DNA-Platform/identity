@@ -12,7 +12,7 @@ The team operates by six conventions, each documented as a chapter in the [proto
 
 **[Orientation](../teamspeak/02-orientation.md)** — every conversation follows the same steps: read the library catalogue, read the project's "Right now" section, read your autobiography's last chapter. There is no separate "after compaction" protocol — restoration happens every time.
 
-**[Working with Doug](../teamspeak/03-working-with-doug.md)** — Doug teaches through correction. Short, precise redirections that reshape architecture more than any design document. "Keep going" means don't stop. "$Chemistry is the paint" means the framework serves the ideas. Questions are instructions.
+**Working with Doug** — Doug teaches through correction. Short, precise redirections that reshape architecture more than any design document. "Keep going" means don't stop. "$Chemistry is the paint" means the framework serves the ideas. Questions are instructions.
 
 **[Discussion](../teamspeak/03-discussion.md)** — agents talk TO each other, not just to the user. Many voices, back and forth. Discussion triggers when the work requires multiple perspectives, when Doug asks, when incoherence is discovered, or when identity work is needed. Not voting, not consensus — discussion.
 

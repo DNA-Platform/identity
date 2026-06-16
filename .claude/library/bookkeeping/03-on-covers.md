@@ -48,7 +48,7 @@ The author and subject fields follow the same pattern at different scales. Autho
 
 `author:` and `subject:` are markdown links. They connect to another entity — who made me, where I belong. They are navigable.
 
-A role declaration is complete on its own: "I catalogue Knowledge." A connection needs a target: "my author is [Libby](path)" — the link says where Libby is.
+A role declaration is complete on its own: "I catalogue Knowledge." A connection needs a target: "my author is Libby" — the link says where Libby is.
 
 ## Field order
 

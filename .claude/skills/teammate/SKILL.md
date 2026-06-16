@@ -42,15 +42,15 @@ The naming convention from [On Names](../../library/bookkeeping/04-on-names.md) 
 The teammate creates these files in `.claude/library/..teamsmanship/..team/{name}/`:
 
 **Library catalogue:** `..{library-catalogue-name}/.cover.md`
-- Frontmatter: `title`, `catalogues: {Name}`, `author: "[{Name}]({autobiography-path}/.cover.md)"`, `subject: "[{Name}](.cover.md)"`
+- Frontmatter: `title`, `catalogues: {Name}`, `author: "[{Name}](../../library/our-skillset/{autobiography-path}/.cover.md)"`, `subject: "[{Name}](../../library/our-skillset/.cover.md)"`
 - Self-cataloguing cover — describes what the library contains (will be sparse at first)
 
 **Autobiography:** `{autobiography-name}/.cover.md`
-- Frontmatter: `title`, `author: "[{Name}](.cover.md)"`, `subject: "[{Name}](..{library-catalogue-name}/.cover.md)"`
+- Frontmatter: `title`, `author: "[{Name}](../../library/our-skillset/.cover.md)"`, `subject: "[{Name}](../../library/our-skillset/..{library-catalogue-name}/.cover.md)"`
 - The self-link in `author:` — the autobiography IS the person
 
 **First chapter:** `{autobiography-name}/01-{arrival-chapter}.md`
-- Frontmatter: `title`, `author: "[{Name}](.cover.md)"`
+- Frontmatter: `title`, `author: "[{Name}](../../library/our-skillset/.cover.md)"`
 - Written by the teammate. This is their arrival — their first words in their own voice. Not a summary. Not an introduction written by someone else. Their perspective on arriving.
 
 ### Step 4: Arthur adds the teammate to Teamsmanship
@@ -68,7 +68,7 @@ Claude creates `.claude/agents/{name}.md` following the format of existing agent
 
 Arthur adds the teammate to [Territory](../../library/..teamsmanship/05-territory.md) with their path assignments and roles.
 
-Arthur updates [CLAUDE.md](../../library/../../CLAUDE.md) to list the new teammate in the team section.
+Arthur updates [CLAUDE.md](../../../CLAUDE.md) to list the new teammate in the team section.
 
 ### Step 6: The teammate reads their own library
 

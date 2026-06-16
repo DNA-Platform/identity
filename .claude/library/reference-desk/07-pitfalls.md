@@ -34,7 +34,7 @@ The tool uses the clipboard for pasting text and uploading files. If Doug is usi
 
 ## Large pastes
 
-Tested up to 73KB in [Sprint 63](../research-projection/27-sprint-63--the-pilot-conversation.md). The composer accepts large pastes via clipboard, but the UIA tree read of the composed message becomes slow with very large text. If the paste exceeds ~100KB, consider splitting into multiple messages.
+Tested up to 73KB in [Sprint 63](../projected-research/27-sprint-63--the-pilot-conversation.md). The composer accepts large pastes via clipboard, but the UIA tree read of the composed message becomes slow with very large text. If the paste exceeds ~100KB, consider splitting into multiple messages.
 
 ## Response parsing depends on tree structure
 

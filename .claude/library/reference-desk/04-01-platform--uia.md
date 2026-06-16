@@ -10,7 +10,7 @@ UI Automation ([`.claude/src/uia.ts`](../../src/uia.ts)) is how the tool sees an
 
 Claude Desktop is an Electron app. Electron apps have a Chromium renderer. By default, Chromium does NOT populate the accessibility tree — the tree that UIA reads. Without the accessibility tree, the app is invisible to automation.
 
-The fix: launch Claude Desktop with `--force-renderer-accessibility`. This flag tells Chromium to build the accessibility tree. It was discovered in [Sprint 34](../research-projection/02-sprint-34--can-we-talk-to-claude.md) — the single most important infrastructure detail. Without it, nothing works.
+The fix: launch Claude Desktop with `--force-renderer-accessibility`. This flag tells Chromium to build the accessibility tree. It was discovered in [Sprint 34](../projected-research/02-sprint-34--can-we-talk-to-claude.md) — the single most important infrastructure detail. Without it, nothing works.
 
 The launch shortcut at `.claude/src/shortcut/create-shortcut.ps1` embeds this flag. The [`Window`](../../src/window.ts) class verifies the flag is present when launching.
 

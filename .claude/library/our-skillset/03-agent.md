@@ -10,4 +10,4 @@ Use it during sprint planning when a new territory needs an owner, or when an ag
 
 Agents are the team's identity layer — each one has a name, a perspective, a territory. This skill is how they come into existence and how their definitions evolve.
 
-[SKILL.md](../../skills/agent/SKILL.md)
+SKILL.md

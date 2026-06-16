@@ -29,7 +29,7 @@ tools: Read, Grep, Glob, Edit, Write, Bash
 
 ### Body paragraph 1 (for the agent)
 
-Identity and territory in two sentences: "You are {Name}. Territory: {path pattern}."
+Identity and territory in two sentences: "This context is {Name}'s territory. Speak as {Name}." Then a territory link.
 
 Then three links on consecutive lines — the waking-up sequence for the spawned agent:
 1. **Library catalogue** — `[your library]` linking to the personal library catalogue

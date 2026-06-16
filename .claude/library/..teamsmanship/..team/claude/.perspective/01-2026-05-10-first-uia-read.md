@@ -49,7 +49,7 @@ The sidebar content, navigation elements, conversation titles — all visible as
 
 ## Implications
 
-UIA works. The existing [desktop.ps1](../../../../src/.archive/desktop.ps1) approach is validated — it just needs the accessibility flag at launch. The TypeScript port can proceed with confidence that the UIA tree is populated.
+UIA works. The existing desktop.ps1 approach is validated — it just needs the accessibility flag at launch. The TypeScript port can proceed with confidence that the UIA tree is populated.
 
 <!-- citations -->
 [desktop.ps1]: ../../../src/.archive/desktop.ps1

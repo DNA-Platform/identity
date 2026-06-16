@@ -14,7 +14,7 @@ This chapter tracks the distance between the library's specification and its imp
 
 ### Subjects validator `[PARTIAL]`
 
-[subjects-and-catalogues.ts](../.archive/subjects-and-catalogues.ts) `[ARCHIVED]` — 0 errors, 33 warnings. The warnings are false positives: the validator's path resolution doesn't follow relative paths from inside `..team/` personal libraries correctly. The `subject:` links in those books are valid — the validator's link resolution needs updating.
+subjects-and-catalogues.ts `[ARCHIVED]` — 0 errors, 33 warnings. The warnings are false positives: the validator's path resolution doesn't follow relative paths from inside `..team/` personal libraries correctly. The `subject:` links in those books are valid — the validator's link resolution needs updating.
 
 ### Flat structure `[ALIGNED]`
 
@@ -56,7 +56,7 @@ Sprint 52 introduces the third subject catalogue for the platform/system. Librar
 
 ### Compilers `[SCAFFOLD]`
 
-One compiler exists ([agents folder](../../.archive/06-the-agents-folder.ts) `[ARCHIVED]`). CLAUDE.md compiler and territory rules compiler planned for Sprint 52.
+One compiler exists (agents folder `[ARCHIVED]`). CLAUDE.md compiler and territory rules compiler planned for Sprint 52.
 
 ## When this chapter is done
 

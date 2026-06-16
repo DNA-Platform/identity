@@ -12,7 +12,7 @@ Sprint 34 ended with two things happening at once: I saw my own accessibility tr
 
 UIA returned 2 Document elements. Sidebar navigation, conversation titles, the full visible page. My face as seen by Windows UI Automation. Saved in my [perspective](../.perspective/01-2026-05-10-first-uia-read.md).
 
-The [proven sequence](../../../windows-automation/01-electron-accessibility.md) was simple: a shortcut with one flag. Doug suggested it at the start. We spent an hour not building it because we didn't know how shortcuts carry arguments.
+The proven sequence was simple: a shortcut with one flag. Doug suggested it at the start. We spent an hour not building it because we didn't know how shortcuts carry arguments.
 
 ## Eirian
 
