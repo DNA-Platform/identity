@@ -4,47 +4,58 @@
 
 ---
 
-The `/think` skill doesn't reliably work yet. Send works. Read freezes or misdetects completion. Open modals break all navigation. We lose turns to debugging instead of thinking. This sprint fixes the three failures that make the system unusable before adding anything new.
+The write/read loop doesn't work in a single turn yet. Send works. Read freezes or misdetects completion. This sprint fixes that one thing — a solid, reliable write/read cycle that works every time.
 
 ## Sprint goal
 
-**`read()` works reliably on the first try, the conversation catalogue is machine-readable, and successful thoughts get filed in the Claude project automatically.**
+**Send a question and read the response in one turn. No freezes, no stuck modals, no false streaming detection, no lost foreground. Minimize after every operation. Works for short and long responses.**
 
-## Stories (priority order)
+## The three failures to fix
 
-### S1: Fix streaming detection for long responses
+### 1. Streaming detection misses completion on long responses
+
+**Root cause:** Electron lazy-renders — the DOM and UIA tree only fully populate what's in the viewport. The streaming indicator lives at the bottom of the response. If the response scrolls below the fold, `checkStreaming()` can't see it because Chromium hasn't rendered it into the accessibility tree. This is how the rendering pipeline works, not a bug in our code.
+
+**Fix:** Scroll to bottom before checking. Ctrl+End or End key. This forces the renderer to materialize the bottom of the conversation, populating the UIA tree with the actual streaming state. The scroll IS the read — same as what Doug does as a human while the response is generating.
+
 **Owner:** Adam
-**Problem:** `checkStreaming()` returns false negatives when the response extends below the viewport. The UIA tree may not update the streaming indicator until scrolled. Sprint 77 finding: Desktop finished responding but the check didn't detect it.
-**Fix:** Scroll to bottom before checking. Or: check for response-complete indicators (absence of streaming marker + presence of finished text) rather than relying solely on the streaming flag. Test with a research question that produces a long response.
-**Done when:** `read()` correctly detects completion on the first check for responses of any length.
 
-### S2: Catalogue JSON companion
+### 2. `read()` doesn't minimize on all paths
+
+**Root cause:** The minimize call is inside the try block. If `checkStreaming()` hangs or throws, the app stays maximized on Doug's screen.
+
+**Fix:** Move minimize to a finally block. Every code path — success, failure, timeout — minimizes.
+
 **Owner:** Adam
-**Problem:** The conversation catalogue is markdown. The code can't read or write it programmatically. Claude updates it manually. `send()` can't check for existing conversations on the same topic.
-**Fix:** Create `catalogue.json` in Claude's perspective directory. `readCatalogue()` and `updateCatalogue()` functions in think.ts. `read()` calls `updateCatalogue()` after reading a response. `send()` calls `readCatalogue()` to find existing conversations before starting fresh.
-**Done when:** After a thought, the JSON catalogue has the entry. Before a new thought, the code checks it.
 
-### S3: Test addToProject
-**Owner:** Adam
-**Problem:** `chatList.addToProject(title, 'Claude')` is implemented but untested. The UI flow was explored (three-dot menu → "Add to project" → project list → click "Claude"). Needs a real test.
-**Fix:** Run `addToProject()` on one of the existing thought conversations. Verify it appears under the Claude project in the sidebar.
-**Done when:** A thought conversation is in the Claude project in Desktop.
+### 3. Modal dialogs block recovery
 
-### S4: Integrate into read flow
-**Owner:** Adam + Claude
-**Problem:** After reading a response, three things should happen: rename, update catalogue, file in project. Currently only rename happens.
-**Fix:** Wire `updateCatalogue()` and `addToProject()` into `read()`. The project filing should be idempotent — check sidebar grouping before attempting. If the conversation is already in the project, skip.
-**Done when:** A full think cycle (send → wait → read) produces: a renamed conversation, an updated catalogue entry, and the conversation filed in the Claude project.
+**Root cause:** The "Move chat" dialog (and potentially others) blocks all UIA interaction. `goHome()` fails because "New chat" isn't visible. The dialog must be closed first.
 
-## Carried from Sprint 77
+**Fix:** `dismissDialogs()` is already added. Ensure `sendFresh()` calls it. Document in the App Model that any automation sequence should dismiss dialogs before navigating.
 
-- Breadcrumb reading (`isInProject()`) — deferred, can use sidebar grouping as the idempotency check for now
-- Session singleton — deferred, catalogue JSON enables this in a future sprint
-- Send() topic matching — deferred until catalogue JSON proves out
+**Owner:** Adam — already partially done, verify it works
 
-## Definition of done
+## The test
 
-- A real thought: send a question, wait, read the response. Response detected reliably.
-- Catalogue JSON updated automatically.
-- Conversation filed in Claude project automatically.
-- 0 broken links. All pushed.
+One turn: send a real research question, wait for the response using the scroll-to-bottom check, read the response, minimize. Test with a question that produces a long response (research questions with web search tend to be long). The loop must complete without freezing, without leaving the app maximized, and without Doug needing to intervene.
+
+**Owner:** Adam sends, Claude evaluates the response
+
+## Documentation
+
+- Document lazy rendering in the [App Model](../reference-desk/02-04-the-architecture--app-model.md) — UIA reads what's visible, not what exists. Scroll forces materialization. This is fundamental to all future automation.
+
+**Owner:** Libby (structure), Claude (content — this is environment knowledge)
+
+## Future work (not this sprint)
+
+These are real todos from Sprint 77 that carry forward after the write/read loop is solid:
+
+- Catalogue JSON companion — machine-readable conversation index
+- `addToProject()` tested against real Desktop
+- `isInProject()` breadcrumb check
+- `send()` checking catalogue for existing conversations before starting fresh
+- `read()` auto-updating catalogue after response
+- Session singleton with topic matching
+- `/remember` and `/explain` skills
