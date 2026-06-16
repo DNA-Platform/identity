@@ -38,9 +38,19 @@ Tested up to 73KB in [Sprint 63](../research-projection/27-sprint-63--the-pilot-
 
 ## Response parsing depends on tree structure
 
-**Sprint 72 finding:** `session.send()` returns a `Response` with `text: undefined`. The message sent successfully and Claude Desktop responded, but the turn parser couldn't extract the response text from the UIA tree. This happens when Anthropic changes the conversation UI structure — the parser expects specific element patterns that no longer match.
+**Sprint 72 finding:** `session.send()` threw because `readTurns()` returned an empty array. The message sent successfully, Claude Desktop responded, but `parseStructuredText()` in [`message.ts`](../../src/components/message.ts) couldn't parse the UIA text into messages. The parser uses pattern matching on the raw text to identify user/assistant boundaries — when Anthropic changes the conversation UI, these patterns stop matching and the parser returns nothing.
 
-**What to do:** Read the raw UIA tree (`await app.auto.uia.readText()`) and compare to what `readTurns()` returns. The raw text will show the response; the parser's pattern matching is what broke. Update the turn parser in [`conversation.ts`](../../src/pages/conversation.ts) to match the new structure.
+**Diagnosis path:**
+1. `readTurns()` returns `[]` — the parser found no messages
+2. `session.send()` gets `lastTurn = undefined` from the empty array
+3. The script crashes trying to access `response.text`
+
+**What to do:**
+1. Read the raw text: `const raw = await app.auto.uia.readText()` — this always works
+2. Read `readLastResponse()` as a fallback — it may use a different extraction method
+3. Compare the raw text to what `parseStructuredText()` expects in [`message.ts`](../../src/components/message.ts)
+4. Update the parser patterns to match the current app's text structure
+5. Re-run the test to verify
 
 ## The "Show more" ambiguity
 
