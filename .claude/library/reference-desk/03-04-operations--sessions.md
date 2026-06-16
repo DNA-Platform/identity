@@ -6,6 +6,22 @@
 
 A session ([`.claude/src/session.ts`](../../src/session.ts)) is a managed conversation interaction. It is the API that makes the `/research` skill possible — start a conversation, send messages, read responses, and clean up. Introduced in [Sprint 67](../research-projection/31-sprint-67--conversation-sessions.md).
 
+## The complete research workflow
+
+The tool must support this end-to-end:
+
+1. **Start or return to a conversation.** If this is new research, start a session. If continuing, find the conversation by title, open it, read the turns to catch up.
+2. **Know where you are.** Detect if the app is already at the right chat. Don't navigate away and back.
+3. **Read to catch up.** Before writing the next message, read the full conversation. Know what was said.
+4. **Compose and send.** Paste the prompt (potentially large — research context). Send.
+5. **Minimize and wait.** Minimize immediately after sending. Poll `checkStreaming()` from the background with exponential backoff. Don't steal Doug's computer while waiting.
+6. **Know when it's done.** The streaming check returns false. The response is complete.
+7. **Read the response.** From the background if possible. Bring to foreground only if needed.
+8. **Store it.** Write the response to a file or Claude's perspective. The response object must carry the full text.
+9. **Continue or end.** Send the next message, or end the session.
+
+If ANY of these steps requires working around the app — calling raw UIA methods, writing custom waits, manually parsing text — the app abstraction is incomplete. Fix the app, don't work around it. See [Coding Philosophy](05-coding-philosophy.md).
+
 ## The lifecycle
 
 ```typescript
