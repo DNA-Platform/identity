@@ -37,6 +37,20 @@ Every object in the app model must be reconstructable from what the app shows. N
 
 This is the same principle that makes the library work after compaction — if it's not in the text, it doesn't exist. The UIA tree is the text. The app model is the reader.
 
+## Fixed waits are the biggest code smell
+
+`await sleep(3000)` is a guess. Guesses break. The correct pattern is always: execute, test for the expected result with backoff, respond based on the test.
+
+The [gateway](02-02-the-architecture--gateway.md) implements this with tapering poll — start checking at 50ms, double to 1000ms cap. But the principle is deeper than the gateway. It is the philosophy of automation: never assume something happened. Always verify. And verify efficiently — don't poll at a fixed rate, back off when the response is slow, respond quickly when it's fast.
+
+This applies everywhere:
+- **Sending a message:** don't wait 5 seconds. Poll for the "responding" indicator.
+- **Navigating:** don't wait 2 seconds. Poll for the URL change.
+- **Reading a response:** don't wait for a fixed timeout. Poll `checkStreaming()` until it's false.
+- **Launching the app:** don't wait 10 seconds. Poll for the window handle.
+
+If you find yourself writing a fixed wait, you've found a gap in the app model. The app should expose a readiness check for whatever you're waiting for. If it doesn't, add one.
+
 ## Verify, don't assume
 
 From [Sprint 61](../research-projection/25-sprint-61--feedback-mcp-research-and-app-hardening.md): "The automation sprints taught us we were flying blind." Every raw UIA call that changes state must go through [`gateway.act()`](02-02-the-architecture--gateway.md) with a verification predicate.
