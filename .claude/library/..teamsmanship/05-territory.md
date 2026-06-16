@@ -144,17 +144,17 @@ Every teammate owns their personal library. The `..`-prefixed catalogue IS the p
 
 Shared books have authors. The `author:` field on each cover names the primary owner. These should be consistent with territory assignments.
 
-| Book | Author | Why |
-|------|--------|-----|
-| [Bookkeeping](../bookkeeping/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The librarian specifies how books work. |
-| [Teamspeak](../teamspeak/.cover.md) | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Communication protocols are Collaboration — Arthur's subject. |
-| [Librarianship](../..librarianship/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The library cataloguing itself is Knowledge — Libby's subject. |
-| [Teamsmanship](.cover.md) | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | The team cataloguing itself is Collaboration — Arthur's subject. |
-| [Environmentalism](../..environmentalism/.cover.md) | [Claude](..team/claude/claude-or-the-recursive-mirror/.cover.md) | The environment specification is Claude's subject. |
-| [Compilation](../.compilation/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Every automated process in the library — automation is Adam's subject. Libby co-created it; Adam maintains it. |
-| [Library Tree](../library-tree/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | Branch conventions are library structure — Libby's territory. |
-| [Our Skillset](../our-skillset/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Skills are relay infrastructure — Adam's territory. |
-| [Projection](../projection/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Sprint recording is relay work — carrying the team's signal forward. |
+| Book | Author | Coauthor | Why |
+|------|--------|----------|-----|
+| [Bookkeeping](../bookkeeping/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | — | The librarian specifies how books work. Sole author. |
+| [Library Tree](../library-tree/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | — | Branch conventions are library structure. Sole author. |
+| [Librarianship](../..librarianship/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | — | The library cataloguing itself. Sole author. |
+| [Teamspeak](../teamspeak/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Libby owns the library; Arthur owns the Communication subject. |
+| [Teamsmanship](.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Libby owns the library; Arthur owns the Collaboration subject. |
+| [Environmentalism](../..environmentalism/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Claude](..team/claude/claude-or-the-recursive-mirror/.cover.md) | Libby owns the library; Claude owns the Environment subject. |
+| [Compilation](../.compilation/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Libby owns the library; Adam owns the automation. |
+| [Our Skillset](../our-skillset/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Libby owns the library; Adam owns skills as relay infrastructure. |
+| [Projection](../projection/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Libby owns the library; Adam records sprints as relay. Arthur plans them. |
 
 ## Branch library assignments
 

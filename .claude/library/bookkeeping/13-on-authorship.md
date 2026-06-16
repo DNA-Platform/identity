@@ -31,6 +31,19 @@ The author is the primary voice. The coauthor contributed substantially. Both ar
 
 For small edits — fixing a typo, updating a link, tending a synopsis — no coauthor field is needed. The edit is maintenance, not authorship. The threshold: if the edit changes what the chapter SAYS (not just how it says it), add coauthor.
 
+## Public library authorship
+
+In the public library, the [librarian](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md) is the primary author on every book. The subject expert is the coauthor. The librarian owns all library content per [Territory](../..teamsmanship/05-territory.md) — `.claude/library/**` is her path. The subject expert brings the domain knowledge that fills the book.
+
+```markdown
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **coauthor:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+```
+
+The pattern: Libby tends the structure. The coauthor brings the substance. [Teamspeak](../teamspeak/.cover.md) is authored by Libby with Arthur as coauthor (communication is his subject). [Environmentalism](../..environmentalism/.cover.md) is authored by Libby with Claude as coauthor (the environment is his subject). [Compilation](../.compilation/.cover.md) is authored by Libby with Adam as coauthor (automation is his subject).
+
+Personal libraries are different — each person is the sole author of their own books per [Autonomy](../teamspeak/05-autonomy.md). Branch library books follow the same pattern as public books: the librarian is primary author, the domain expert is coauthor.
+
 ## Writing a new chapter
 
 Put your name on it. `author:` in frontmatter, linked to your autobiography. Write the prose without nametags. The text should read as clean specification, description, or narrative — not as a conversation transcript.
