@@ -36,6 +36,12 @@ The tool uses the clipboard for pasting text and uploading files. If Doug is usi
 
 Tested up to 73KB in [Sprint 63](../research-projection/27-sprint-63--the-pilot-conversation.md). The composer accepts large pastes via clipboard, but the UIA tree read of the composed message becomes slow with very large text. If the paste exceeds ~100KB, consider splitting into multiple messages.
 
+## Response parsing depends on tree structure
+
+**Sprint 72 finding:** `session.send()` returns a `Response` with `text: undefined`. The message sent successfully and Claude Desktop responded, but the turn parser couldn't extract the response text from the UIA tree. This happens when Anthropic changes the conversation UI structure — the parser expects specific element patterns that no longer match.
+
+**What to do:** Read the raw UIA tree (`await app.auto.uia.readText()`) and compare to what `readTurns()` returns. The raw text will show the response; the parser's pattern matching is what broke. Update the turn parser in [`conversation.ts`](../../src/pages/conversation.ts) to match the new structure.
+
 ## The "Show more" ambiguity
 
 Multiple UI elements can have the same accessible name. "Show more" appears in project descriptions AND conversation lists. [`invokeByNameLast()`](../../src/uia.ts) takes the last match, which is usually the right one (conversation lists are lower on the page). But this is a heuristic, not a guarantee. See [UIA § Element finding strategies](04-01-platform--uia.md).
