@@ -28,6 +28,10 @@ export class Composer implements Fallible {
     this.draft += text;
   }
 
+  async readDraft(): Promise<string> {
+    return await this.controller.readDraft();
+  }
+
   async compose(text: string): Promise<void> {
     await tracked(this, () => this.controller.compose(text));
     this.draft = text;
