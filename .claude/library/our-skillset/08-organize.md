@@ -1,163 +1,112 @@
 # organize
 
-- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 
 ---
 
+## What this skill is for
 
-Audit the codebase for structural health. Each agent audits their own territory. Arthur (Architect) handles global structure, cross-cutting concerns, and anything no agent owns.
+The shared library is a brain the team thinks with. [Librarianship](../..librarianship/.cover.md) is its self-knowledge. [Bookkeeping](../bookkeeping/.cover.md) is its specification. The [branch libraries](../library-tree/.cover.md) are its applied knowledge. [Territory](../..teamsmanship/05-territory.md) maps who is responsible for what. When this brain is disorganized — synopses stale, territories unjustified, branches disconnected, books redundant — the team can't navigate its own knowledge.
 
-## What organize means
+`/organize` fixes this. Where `/reflect` tends personal libraries, `/organize` tends the shared library and its branches. Not by adding content — by editing, connecting, compacting, and verifying that the structure serves a blank-slate team waking up for the first time.
 
-Organization is not formatting. It's structural integrity — checked through the lens of whoever is responsible for each part of the codebase.
+## The shared library as the team's brain
 
-Six concerns, distributed across agents:
+[Librarianship](../..librarianship/.cover.md) catalogues four subjects: [Teamsmanship](../..teamsmanship/.cover.md) (Collaboration), [Environmentalism](../..environmentalism/.cover.md) (The Environment), [Compilation](../.compilation/.cover.md) (Composition), and itself (Knowledge). Each subject has books. Each book has chapters. Each chapter has links. The links are the synapses — they connect knowledge across subjects, across books, across the boundary between identity and branches.
 
-1. **Reference validity** — links point to things that exist (Arthur: global, each agent: their files)
-2. **Content consistency** — files match the system they belong to (each agent: their territory)
-3. **Liveness** — no dead or stale content (each agent: their territory)
-4. **Representation fitness** — content is in the right form (each agent: their territory)
-5. **Permission hygiene** — settings.local.json matches what skills actually need (Arthur: global)
-6. **Structural clarity** — the directory tree and cross-references tell a coherent story (Arthur: global)
+[Bookkeeping](../bookkeeping/.cover.md) specifies the structure: [books](../bookkeeping/01-on-books.md), [chapters](../bookkeeping/02-on-chapters.md), [covers](../bookkeeping/03-on-covers.md), [names](../bookkeeping/04-on-names.md), [links](../bookkeeping/06-on-links.md), [subjects](../bookkeeping/07-on-subjects.md), [libraries](../bookkeeping/08-on-libraries.md), [synopses](../bookkeeping/09-on-synopsis.md), [evolution](../bookkeeping/10-on-evolution.md), [specifications](../bookkeeping/11-on-specifications.md), [authorship](../bookkeeping/13-on-authorship.md). These thirteen chapters define what the library must be. Organization verifies that what IS matches what's specified.
 
-## Steps
+[Territory](../..teamsmanship/05-territory.md) maps paths to teammates. Every file has an owner. Every owner has a reason. When territory is wrong — assignments don't match who actually works on the code, justifications are stale, personal libraries aren't listed — the team doesn't know who to ask or where to look.
 
-1. **Parse scope.** Read $ARGUMENTS for flags:
-   - `-scope agent:{name}` — only that agent audits their territory
-   - `-scope global` — only Arthur's global audit
-   - `-scope all` — full audit, all agents + global (default)
-   - `-dry-run` — report findings but don't change anything
-   - No arguments — full audit, apply fixes
+The [branch libraries](../library-tree/.cover.md) — currently [chemistry](../../library/chemistry/.lib/..representivity/.cover.md) — extend the brain into project-specific knowledge. They follow the same conventions as the identity library but live beside the code they document. The [one-way link convention](../library-tree/01-branches.md) says branches link INTO identity, identity doesn't link into branches. Violations mean the identity library breaks when a branch is removed.
 
-2. **Load the registry.** Read the [agent registry]. Build the agent map: for each agent, collect their name, roles, and path patterns.
+## Reading before organizing
 
-3. **Determine territory.** Agents can overlap. Arthur's `**` pattern means every file has at least one owner. For each file, the **primary** owner is the agent with the most specific pattern match. Arthur is secondary (fallback) unless no other agent matches — then he's primary.
+Before you start, read these — they are the specifications the shared library is built on:
 
-4. **Run agent audits.** For each agent in scope, audit their territory through their role's lens:
+1. [Librarianship](../..librarianship/.cover.md) — the master catalogue. What subjects exist, what books exist, what the library knows about itself.
+2. [Bookkeeping](../bookkeeping/.cover.md) — the thirteen specifications. What a book must be.
+3. [Territory](../..teamsmanship/05-territory.md) — who owns what. Path patterns with WHY annotations.
+4. [Library Tree](../library-tree/.cover.md) — how branches work. The `.lib/` convention, one-way links, placement.
+5. [On Synopsis](../bookkeeping/09-on-synopsis.md) — four layers of depth. Each layer makes the next rarely necessary.
+6. [On Evolution](../bookkeeping/10-on-evolution.md) — how chapters graduate to books, books to subjects.
+7. [Compilation](../.compilation/.cover.md) — every automated process. The audit skill runs these; organize checks what the automation can't.
+8. [Reading](../teamspeak/08-reading.md) — find the room before you act.
 
-   ### Arthur (Architect) — global structure + everything not owned by a specific agent
+## Parameters
 
-   Arthur always runs. He audits global structure plus any file where he's the only owner (no specific agent assigned). His audit covers:
+**Scope** (first argument):
+- `full` (default) — the entire shared library, all branches, territory
+- `identity` — only the identity library at `.claude/library/`
+- `branches` — only branch libraries
+- `territory` — only territory assignments and personal library listings
 
-   a. **CLAUDE.md references.** Extract every reference link. Check each target exists on disk. Flag broken links with line numbers.
+**Focus** (second argument):
+- `connect` — find isolated chapters and add links. Neurons without synapses.
+- `compact` — find redundancy and merge. Thin books, duplicate content, stale entries.
+- `verify` — check that structure matches specification. Territory current, synopses accurate, one-way links respected.
+- `all` (default) — do everything.
 
-   b. **Skill table completeness.** Every directory in `.claude/skills/` should have a row in the CLAUDE.md skill table. Flag missing entries.
+## The protocol
 
-   c. **Skill consistency.** For each skill:
-      - Verify frontmatter has `name` and `description`
-      - Check supporting file references resolve
-      - Flag skills over 150 lines (overgrown — consider extracting)
+### Step 1: Tend the shared library
 
-   d. **Agent registry health.** For each agent:
-      - Verify the `.md` file exists
-      - Verify path patterns match at least one existing file
-      - Verify referenced roles exist in `.claude/library/.team/roles/`
-      - Flag orphaned `.md` files not in registry
+Read [Librarianship](../..librarianship/.cover.md) as a stranger. Could a blank-slate team use it to navigate?
 
-   e. **Workspace consistency.** For each workspace in root `package.json`:
-      - Verify the directory exists and contains `package.json`
-      - Verify package names use `@dna-platform/` scope
-      - Check workspace globs resolve correctly
+- Are subject descriptions current? Do they describe the subjects as they ARE, not as they were?
+- Does each book get a paragraph-depth [synopsis](../bookkeeping/09-on-synopsis.md) in the catalogue? Is the synopsis accurate?
+- Are there books listed that no longer exist? Books that exist but aren't listed?
+- Do the chapter descriptions in each book cover match what the chapters actually contain?
 
-   f. **Permission hygiene.** Read `.claude/settings.local.json`:
-      - Grep all skills for shell commands (powershell, git, npm, mkdir in code blocks/backticks)
-      - Flag `Bash(...)` patterns that match no skill command (stale)
-      - Flag skill commands with no matching pattern (missing permission)
-      - Flag overly broad patterns
+Edit what's stale. Add what's missing. Remove what's dead.
 
-   g. **Arthur-only files.** List files where Arthur is the only owner (no specific agent). These aren't gaps — Arthur owns them — but significant clusters may warrant assigning a specific agent. Audit these files: check they're referenced, non-stale, and in the right place.
+### Step 2: Organize responsibilities
 
-   ### Adam (Automation) — relay territory
+Read [Territory](../..teamsmanship/05-territory.md). For every assignment:
 
-   Adam audits files matching his path patterns through the Automation lens:
+- **Is the path pattern current?** Does it match files that actually exist?
+- **Is the justification accurate?** Does it explain WHY this person owns this path, not just THAT they do?
+- **Are personal libraries listed?** Every teammate's `..`-prefixed catalogue should appear in territory with a reason: "Libby owns `..the-garden-tends-itself/` because the librarian and the library are inseparable."
+- **Are branch libraries assigned?** The chemistry `.lib/` paths should map to the teammates who built the branch: Cathy for framework books, Libby for cataloguing, the team for Projection.
 
-   a. **Skill health.** For /listen, /hear, /speak: verify paths in the skill match actual files on disk (e.g., `.authors/.eirian/src/send.ps1` exists).
+Every file in the library should have an owner. Every owner should have a reason. The reason is the synapse that connects the person to the knowledge.
 
-   b. **Script-skill alignment.** Commands in skills should match what the scripts actually accept (flags, parameters).
+### Step 3: Organize branches
 
-   c. **Doc currency.** Check `.claude/library/.chemistry/log-format.md` and `.claude/library/.chemistry/desktop.md` describe current behavior.
+For each branch listed in [Library Tree ch 05](../library-tree/05-branches.md):
 
-   d. **Cross-reference integrity.** Skills reference source files, docs reference functions — verify the chain is unbroken.
+- Run the [bookkeeping validator](../bookkeeping/11-on-specifications--validator.ts) against the branch. Are covers present? Are chapters well-formed?
+- Check synopses: does the branch's cataloguing book ([Representivity](../../library/chemistry/.lib/..representivity/.cover.md) for chemistry) accurately describe every book in the branch?
+- Check the one-way link convention: grep the identity library for links INTO the branch. If any exist outside of [Library Tree](../library-tree/.cover.md), flag them — they violate the convention and would break if the branch were removed.
 
-   ### David (DevOps) — CI/CD territory
+### Step 4: Connect
 
-   David audits files matching his path patterns through the DevOps lens:
+Find isolated content — chapters and books that don't participate in the brain's network:
 
-   a. **Workflow validity.** If `.github/` exists, check workflows reference existing scripts and valid actions.
+- **Chapters with zero outbound links** beyond the `author:` field. These are neurons without synapses. For each, ask: what concept does this chapter mention that has a home elsewhere? Add the link.
+- **Books not referenced from any catalogue.** These are orphaned — they exist but nobody knows about them.
+- **Mentions without links.** Places where a concept is mentioned by name ("scope tracking," "the commit tool," "On Libraries") but not linked to where it lives. Every mention is a potential synapse.
+- **Catalogue entries without deep links.** A book synopsis that says "seven chapters" without linking to any of them is a closed door. Add links to the most important chapters per [On Synopsis](../bookkeeping/09-on-synopsis.md).
 
-   b. **Script health.** Verify scripts have consistent conventions (error handling, exit codes).
+### Step 5: Compact
 
-   ### Any other agent
+Find redundancy and structural debt:
 
-   For agents not explicitly listed above, apply a generic audit through their role's lens:
-   - Load the agent's role file
-   - Read the role's anxieties — each anxiety becomes a check
-   - Audit the agent's path-matched files against those anxieties
-   - Check references, liveness, and consistency within the agent's territory
+- **Redundant books.** Content fully covered by another book. Flag for merging per [On Evolution](../bookkeeping/10-on-evolution.md). The ontology migration in Sprint 63 found 19 of 29 files redundant — the same pattern appears across the library.
+- **Thin books.** Books with one chapter. Per [On Evolution](../bookkeeping/10-on-evolution.md), a one-chapter book should either grow or fold back into its parent. Arthur's [Listening Practice](../..teamsmanship/..team/arthur/the-listening-practice/.cover.md) is an example — one chapter, decision pending.
+- **Overlong chapters.** Chapters over 80 lines that contain two ideas. Split per [On Evolution](../bookkeeping/10-on-evolution.md).
+- **Stale synopses.** Catalogue entries that describe a book differently from what the book's cover says. The synopsis should match the cover's opening paragraph.
 
-5. **Audit roles and abilities** (Arthur — these are global structure):
+### Step 6: Discuss and record
 
-   a. **Roles.** For each file in `.claude/library/.team/roles/`:
-      - Check required sections: domain paragraph, diagnostic question, anxieties, mantra, abilities list, source files list
-      - Verify referenced abilities exist in `.claude/library/.team/abilities/`
-      - Verify referenced source files exist on disk
-      - Check if the role is used by at least one agent
+The team discusses what organizing revealed. Each person shares what they fixed in their territory and what they noticed in someone else's. Follow the [discussion protocol](../teamspeak/03-discussion.md).
 
-   b. **Abilities.** For each file in `.claude/library/.team/abilities/`:
-      - Check it's loaded by at least one role
-      - Flag orphaned abilities no role references
+Record the results in the sprint's [Projection](../projection/.cover.md) directory.
 
-6. **Compile findings.** Group by agent, then by category:
+### Step 7: Compile and sync
 
-   ```
-   ## Arthur (global + arthur-only)
+Recompile any platform files affected by the changes: [CLAUDE.md](../..environmentalism/02-on-bootstrap--compiler.ts), [agents](../..environmentalism/01-on-teammates--compiler.ts), [skills](../..environmentalism/04-on-skills--compiler.ts). Run the [compiled-links validator](../..environmentalism/07-on-compiled-links--validator.ts). Push with the [commit tool](../..environmentalism/06-on-sync--commit.sh).
 
-   ### Broken references
-   - CLAUDE.md:42 — [init guide] points to .claude/library/.chemistry/init.md (missing)
+## The principle
 
-   ### Stale permissions
-   - Bash(mkdir *) — no skill uses mkdir
-
-   ### Arthur-only clusters
-   - .claude/agents/** — significant area, consider specific agent
-   - README.md, LICENSE.md — root docs, fine as Arthur-only
-
-   ## Adam (automation)
-
-   ### Consistency issues
-   - /speak references .authors/.eirian/src/send.ps1 — file exists, OK
-   - /hear references .authors/.eirian/heartbeat — created at runtime, OK
-   ```
-
-7. **Apply fixes** (unless `-dry-run`):
-   - Each agent's fixes stay within their territory
-   - Arthur handles global fixes (CLAUDE.md links, permissions, registry)
-   - Broken references: update or remove
-   - Dead content: delete
-   - Consistency issues: fix frontmatter, update descriptions
-   - Representation issues and structural suggestions: describe and ask before applying
-
-8. **Report.** Summarize per agent:
-   - What each agent found and fixed in their territory
-   - What Arthur found and fixed globally
-   - Deferred recommendations needing Doug's approval
-
-## What NOT to touch
-
-- `.authors/` identity directories — private, outside organize's scope (except path existence checks)
-- `.env` and `.env.example` — identity config
-- Git history — organize is about current file structure
-- Content quality — organize checks structure and references, not whether instructions are well-written
-
-<!-- citations -->
-[agent registry]: .claude/library/.team/registry.json
-[agents]: .claude/library/.team/
-[roles]: .claude/library/.team/roles/
-[abilities]: .claude/library/.team/abilities/
-[project tracker]: .claude/library/.projects/inexplicable-phenomena/index.md
-
-## The request
-
-$ARGUMENTS
-
-<!-- library: .claude/library/skills-and-commands/08-organize.md -->
+The shared library is the team's brain. `/reflect` tends each person's shelf. `/organize` tends the hallways, the catalogue desk, the branch shelves, and the territory map. A library where every person's shelf is perfect but the shared spaces are neglected is a building with beautiful offices and crumbling corridors. Organization is the care that makes the corridors navigable — so that when a blank-slate team walks in, the building itself tells them where to go.
