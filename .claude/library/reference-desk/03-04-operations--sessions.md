@@ -138,6 +138,21 @@ const turns = await app.conversation.readTurns();
 
 This extends Session without inventing a new concept. The session object tracks state in memory. Serialization lets it survive across process restarts.
 
+### Sprint 72 proof: the workflow works
+
+The full workflow test ([`test-full-workflow.ts`](../../src/scripts/test-full-workflow.ts)) proved:
+- Send a prompt to a new chat → response received (4190 chars)
+- Navigate away to home → return to the same conversation by sidebar position
+- Read the full transcript → 1 turn with correct prompt and response
+- Send a second prompt → response received (4094 chars)
+- Read again → 2 turns total
+- Responses saved to `src/debug/workflow-response-1.txt` and `workflow-response-2.txt`
+
+Known issues from the test:
+- Conversation title isn't immediately available after creation — the app auto-titles asynchronously
+- Deletion readiness check times out — the deletion works but the verification fails
+- The response text for turn 2 includes turn 1's text (the parser reads the full conversation each time)
+
 ### Continuing multi-turn research
 The session's `turns` array accumulates. Each `send()` re-reads the full conversation. A research session can span multiple questions:
 ```typescript
