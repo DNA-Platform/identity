@@ -65,6 +65,7 @@ Follow the layers. Stop when you have enough context. See [Waking](library/teams
     identity-projection/       identity projection
     library-tree/       library tree
     our-skillset/       our skillset
+    reference-desk/       reference desk
     research-projection/       research projection
     teamspeak/       how we communicate
 ```

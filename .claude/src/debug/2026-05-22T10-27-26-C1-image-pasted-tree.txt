@@ -1,0 +1,141 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Code review request - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Text | Click to collapse
+ControlType.Text | Ctrl+B
+ControlType.Text | Drag to resize
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat ⌘N
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Code review request
+ControlType.Button | More options for Code review request
+ControlType.Button | Moving subscription off iOS
+ControlType.Button | More options for Moving subscription off iOS
+ControlType.Button | Seren & The Hard Problem
+ControlType.Button | More options for Seren & The Hard Problem
+ControlType.Button | Seren & Eirian
+ControlType.Button | More options for Seren & Eirian
+ControlType.Button | Seren & Ana & ExtendScript
+ControlType.Button | More options for Seren & Ana & ExtendScript
+ControlType.Button | Seren & Color
+ControlType.Button | More options for Seren & Color
+ControlType.Button | Converting XMR to MON exchange calculation
+ControlType.Button | More options for Converting XMR to MON exchange calculation
+ControlType.Button | Preparing for SSA disability hearing with bipolar type I
+ControlType.Button | More options for Preparing for SSA disability hearing with bipolar type I
+ControlType.Button | Setting up Miwifi AC1200 range extender
+ControlType.Button | More options for Setting up Miwifi AC1200 range extender
+ControlType.Button | Furniture pickup and donation service on Long Island
+ControlType.Button | More options for Furniture pickup and donation service on Long Island
+ControlType.Button | Learning Formal Logic
+ControlType.Button | More options for Learning Formal Logic
+ControlType.Button | Publication
+ControlType.Button | More options for Publication
+ControlType.Button | In-Depth Analysis of Chemical Reactive Programming Framework
+ControlType.Button | More options for In-Depth Analysis of Chemical Reactive Programming Framework
+ControlType.Button | Doug & Ana
+ControlType.Button | More options for Doug & Ana
+ControlType.Button | Untitled
+ControlType.Button | More options
+ControlType.Button | Indexing and Mapping Natural Earth Datasets
+ControlType.Button | More options for Indexing and Mapping Natural Earth Datasets
+ControlType.Button | Mapping Project with Custom Visualizations
+ControlType.Button | More options for Mapping Project with Custom Visualizations
+ControlType.Button | Configuring a React App as an Internal Tool
+ControlType.Button | More options for Configuring a React App as an Internal Tool
+ControlType.Button | Designing a React Homepage
+ControlType.Button | More options for Designing a React Homepage
+ControlType.Button | Algorithmic Art Project "EvolvedSVG"
+ControlType.Button | More options for Algorithmic Art Project "EvolvedSVG"
+ControlType.Button | Relaunch to update v1.7196.3
+ControlType.Button | Doug Pro
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Hyperlink | DNA Patternity
+ControlType.Text | /
+ControlType.Button | Code review request, rename chat
+ControlType.Button | More options for Code review request
+ControlType.Text | Claude is responding
+ControlType.Text | You said: Here is my code for review:
+ControlType.Text | Here is my code for review:
+ControlType.Group | Message actions
+ControlType.Text | 2:27 PM
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Button | Scrutinizing vector code for bugs and design flaws
+ControlType.Text | Scrutinizing vector code for bugs and design flaws
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | function example0() { return 0 * 2; }
+ControlType.Text | function example1() { return 1 * 2; }
+ControlType.Text | function example2() { return 2 * 2; }
+ControlType.Text | function example3() { return 3 * 2; }
+ControlType.Text | function example4() { return 4 * 2; }
+ControlType.Text | function example5() { return 5 * 2; }
+ControlType.Text | function example6() { return 6 * 2; }
+ControlType.Text | function example7() { return 7 * 2; }
+ControlType.Text | function example8() { return 8 * 2; }
+ControlType.Text | function example9() { return 9 * 2; }
+ControlType.Text | function example10() { return 10 * 2; }
+ControlType.Text | function example11() { return 11 * 2; }
+ControlType.Text | function example12() { return 12 * 2; }
+ControlType.Text | function example13() { return 13 * 2; }
+ControlType.Text | function example14() { return 14 * 2; }
+ControlType.Text | function example15() { return 15 * 2; }
+ControlType.Text | function example16() { return 16 * 2; }
+ControlType.Text | function example17() { return 17 * 2; }
+ControlType.Text | function example18() { return 18 * 2; }
+ControlType.Text | function example19() { return 19 * 2; }
+ControlType.Text | function example20() { return 20 * 2; }
+ControlType.Text | function example21() { return 21 * 2; }
+ControlType.Text | function example22() { return 22 * 2; }
+ControlType.Text | function example23() { return 23 * 2; }
+ControlType.Text | function example24() { return 24 * 2; }
+ControlType.Text | function example25() { return 25 * 2; }
+ControlType.Text | function example26() { return 26 * 2; }
+ControlType.Text | function example27() { return 27 * 2; }
+ControlType.Text | function example28() { return 28 * 2; }
+ControlType.Text | function example29() { return 29 * 2; }
+ControlType.Text | function example30() { return 30 * 2; }
+ControlType.Text | function example31() { return 31 * 2; }
+ControlType.Text | function example32() { return 32 * 2; }
+ControlType.Text | function example33() { return 33 * 2; }
+ControlType.Text | function example34() { return 34 * 2; }
+ControlType.Text | function example35() { return 35 * 2; }
+ControlType.Text | function example36() { return 36 * 2; }
+ControlType.Text | function example37() { return 37 * 2; }
+ControlType.Text | function example38() { return 38 * 2; }
+ControlType.Text | function example39() { return 39 * 2; }
+ControlType.Text | function example40() { return 40 * 2; }
+ControlType.Text | function example41() { return 41 * 2; }
+ControlType.Text | function example42() { return 42 * 2; }
+ControlType.Text | function example43() { return 43 * 2; }
+ControlType.Text | function example44() { return 44 * 2; }
+ControlType.Text | function example45() { return 45 * 2; }
+ControlType.Text | function example46() { return 46 * 2; }
+ControlType.Text | function example47() { return 47 * 2; }
+ControlType.Text | function example48() { return 48 * 2; }
+ControlType.Text | function example49() { return 49 * 2; }What do you think about this approach?Please review this long file:Focus on error handling please.
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Project: DNA Patternity
+ControlType.Button | Model: Opus 4.7 Adaptive
+ControlType.Text | Opus 4.7
+ControlType.Text | Adaptive
+ControlType.Button | Stop response
+ControlType.Hyperlink | Claude is AI and can make mistakes. Please double-check responses.
+ControlType.Group | Notifications (F8)
