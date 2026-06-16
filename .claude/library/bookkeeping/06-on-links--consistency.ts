@@ -81,13 +81,26 @@ function extractKeywords(text: string): string[] {
 }
 
 function findChapterCount(text: string): { word: string; num: number } | null {
-  // Match "seven chapters" or "7 chapters"
-  const wordMatch = text.match(/(\w+)\s+chapters?/i);
+  // Match "seven chapters" or "7 chapters" but NOT "forty-eight chapters" (compound numbers)
+  // Also skip "first N chapters" or "next N chapters" (subset references, not totals)
+  const wordMatch = text.match(/(?:^|[^-\w])(\w+)\s+chapters?/i);
   if (wordMatch) {
     const w = wordMatch[1].toLowerCase();
+    // Skip subset references
+    if (['first', 'next', 'last', 'other', 'more', 'few', 'several', 'many', 'some'].includes(w)) return null;
+    // Check for compound number: if preceded by "forty-", "twenty-", etc.
+    const compoundMatch = text.match(/(\w+)-(\w+)\s+chapters?/i);
+    if (compoundMatch) {
+      const tens = compoundMatch[1].toLowerCase();
+      const ones = compoundMatch[2].toLowerCase();
+      if (numberWords[ones] && ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'].includes(tens)) {
+        // This is a compound like "forty-eight chapters" — skip, too complex to verify
+        return null;
+      }
+    }
     if (numberWords[w]) return { word: wordMatch[1], num: numberWords[w] };
     const n = parseInt(w);
-    if (!isNaN(n)) return { word: wordMatch[1], num: n };
+    if (!isNaN(n) && n > 0 && n < 100) return { word: wordMatch[1], num: n };
   }
   return null;
 }
