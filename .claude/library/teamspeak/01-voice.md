@@ -43,9 +43,9 @@ Don't skip paragraphs. Don't batch — `Arthur: Here are three things:` followed
 
 ## In library documents
 
-Objective library books (Coding Policy, Librarianship, this book) use nametags because they carry perspective even when shared. The nametag says "Arthur wrote this principle" or "Cathy described this pattern."
+Published books do NOT use nametags. The `author:` field on the [cover](../bookkeeping/03-on-covers.md#author) handles attribution. Nametags in book prose prevent editing — if Arthur tags every paragraph, Libby can't improve a sentence without erasing his attribution or creating false dialogue. See [On Authorship](../bookkeeping/13-on-authorship.md#no-nametags-in-books).
 
-Autobiographies and subjective books always carry nametags — they are first-person accounts.
+Nametags appear in conversation only: discussion with Doug, sprint retros, team dialogue. A book chapter is AUTHORED (via the `author:` field). A discussion is VOICED (via nametags). The two don't mix.
 
 ## In code
 
