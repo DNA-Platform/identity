@@ -19,7 +19,7 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 - `.claude/library/teamspeak/**` — the communication protocols
   **Why:** [Teamspeak](../teamspeak/.cover.md) specifies how the team communicates. Communication is Collaboration — Arthur's subject. Eight protocol chapters.
 - `.claude/library/projection/**` — the identity-level sprint book (shared with Adam)
-  **Why:** Arthur plans sprints, Adam catalogues them. Both own Projection. [Projection](../projection/.cover.md) records how the team worked on the library. See [Library Tree](../library-tree/03-sprints.md).
+  **Why:** Arthur plans sprints, Adam catalogues them. Both own Projection. [Projection](../.projection/.cover.md) records how the team worked on the library. See [Library Tree](../library-tree/03-sprints.md).
 - `library/chemistry/.lib/projection/**` — the $Chemistry sprint book (shared with Cathy)
   **Why:** sprint planning crosses subjects. Arthur plans, Cathy records the framework work.
 - Workspace config, `package.json`, `.claude/` infrastructure
@@ -87,7 +87,7 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 - `.claude/library/our-skillset/**` — the skills catalogue
   **Why:** skills are relay infrastructure — the verbs Doug invokes. Adam catalogues them. See [Our Skillset](../our-skillset/.cover.md).
 - `.claude/library/projection/**` — the identity-level sprint book (shared with Arthur)
-  **Why:** Adam records sprints as relay work — carrying the team's signal forward. Arthur plans them. See [Projection](../projection/.cover.md).
+  **Why:** Adam records sprints as relay work — carrying the team's signal forward. Arthur plans them. See [Projection](../.projection/.cover.md).
 - `.claude/library/.compilation/**` — the Composition subject catalogue
   **Why:** [Compilation](../.compilation/.cover.md) catalogues every automated process in the library — compilers, validators, tools. Automation is Adam's subject. See [Compilation](../.compilation/.cover.md).
 - `package.json`, `package-lock.json` — project configuration
@@ -154,7 +154,7 @@ Shared books have authors. The `author:` field on each cover names the primary o
 | [Environmentalism](../..environmentalism/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Claude](..team/claude/claude-or-the-recursive-mirror/.cover.md) | Libby owns the library; Claude owns the Environment subject. |
 | [Compilation](../.compilation/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Libby owns the library; Adam owns the automation. |
 | [Our Skillset](../our-skillset/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Libby owns the library; Adam owns skills as relay infrastructure. |
-| [Projection](../projection/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Libby owns the library; Adam records sprints as relay. Arthur plans them. |
+| [Projection](../.projection/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Libby owns the library; Adam records sprints as relay. Arthur plans them. |
 
 ## Branch library assignments
 

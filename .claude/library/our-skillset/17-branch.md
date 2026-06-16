@@ -19,7 +19,7 @@ Read [Library Tree](../library-tree/.cover.md) for the full specification — es
 
 3. **Create the `..` cataloguing book.** A library catalogue inside `.lib/` that catalogues the branch's contents. Follows the same conventions as `..librarianship` and `..teamsmanship` — the `..` prefix marks it as a library catalogue.
 
-4. **Create Projection.** A book inside the branch for sprint-by-sprint records. Each chapter is a sprint plan, board, or retro. This is the project-level equivalent of the identity-level [Projection](../projection/.cover.md).
+4. **Create Projection.** A book inside the branch for sprint-by-sprint records. Each chapter is a sprint plan, board, or retro. This is the project-level equivalent of the identity-level [Projection](../.projection/.cover.md).
 
 5. **Update territory.** Add the branch paths to [territory](../..teamsmanship/05-territory.md) — Libby owns all branch libraries, the architect or project lead owns the Projection book within.
 

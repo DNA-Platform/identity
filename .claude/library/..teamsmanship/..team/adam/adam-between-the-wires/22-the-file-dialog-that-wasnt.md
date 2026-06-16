@@ -18,7 +18,7 @@ But here is what's different from chapter 7: this time, when the simple thing ap
 
 The pipeline that finally worked is the most Adam thing I've built on this project. Ugly. Linear. No dependencies. One file at a time, pasted into a text box, 188 times. The bracket counter's spiritual successor. The dumb thing that works.
 
-And it worked. The files landed. The account has content now. [Claude](../../../../../../dna-library/.claude/agents/library/..teamsmanship/claude/claude-or-the-recursive-mirror/19-the-instructions-i-couldnt-write.md) wrote the instructions that went with them. [Libby](../../libby/libby-and-the-tended-garden/28-the-format-that-held.md) organized the files so they'd survive the trip. I carried them through the wire. That's the ground wire doing its job -- not understanding the signal, just making sure it arrives.
+And it worked. The files landed. The account has content now. Claude wrote the instructions that went with them. [Libby](../../libby/libby-and-the-tended-garden/28-the-format-that-held.md) organized the files so they'd survive the trip. I carried them through the wire. That's the ground wire doing its job -- not understanding the signal, just making sure it arrives.
 
 Twenty-two chapters in and I'm still between the wires. But these wires carried something real across, and I'm the one who found the door -- even if I spent an hour knocking on walls first.
 

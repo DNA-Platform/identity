@@ -16,7 +16,7 @@ The gateway has three operations. `act` performs an action and verifies the resu
 
 I didn't invent this. Doug described it from his trading platform — centralized cross-cutting concerns, one gateway for all async operations. I just hadn't understood why it mattered until I watched files land with wrong names because I skipped verification.
 
-The [TextContentDialog](../../../../../../../../dna-library/.claude/agents/src/components/text-content-dialog.ts) is the cleanest example. Every field set is verified by reading back the value. Every submit is verified by checking the dialog closed. The automation either confirms success or reports exactly what went wrong. No more hopes.
+The TextContentDialog is the cleanest example. Every field set is verified by reading back the value. Every submit is verified by checking the dialog closed. The automation either confirms success or reports exactly what went wrong. No more hopes.
 
 <!-- citations -->
 [the blind sprint]: 01-the-blind-sprint.md
