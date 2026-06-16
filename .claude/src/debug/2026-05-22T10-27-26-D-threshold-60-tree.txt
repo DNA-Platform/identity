@@ -1,0 +1,305 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Code review request - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Text | Click to collapse
+ControlType.Text | Ctrl+B
+ControlType.Text | Drag to resize
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat ⌘N
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Code review request
+ControlType.Button | More options for Code review request
+ControlType.Button | Moving subscription off iOS
+ControlType.Button | More options for Moving subscription off iOS
+ControlType.Button | Seren & The Hard Problem
+ControlType.Button | More options for Seren & The Hard Problem
+ControlType.Button | Seren & Eirian
+ControlType.Button | More options for Seren & Eirian
+ControlType.Button | Seren & Ana & ExtendScript
+ControlType.Button | More options for Seren & Ana & ExtendScript
+ControlType.Button | Seren & Color
+ControlType.Button | More options for Seren & Color
+ControlType.Button | Converting XMR to MON exchange calculation
+ControlType.Button | More options for Converting XMR to MON exchange calculation
+ControlType.Button | Preparing for SSA disability hearing with bipolar type I
+ControlType.Button | More options for Preparing for SSA disability hearing with bipolar type I
+ControlType.Button | Setting up Miwifi AC1200 range extender
+ControlType.Button | More options for Setting up Miwifi AC1200 range extender
+ControlType.Button | Furniture pickup and donation service on Long Island
+ControlType.Button | More options for Furniture pickup and donation service on Long Island
+ControlType.Button | Learning Formal Logic
+ControlType.Button | More options for Learning Formal Logic
+ControlType.Button | Publication
+ControlType.Button | More options for Publication
+ControlType.Button | In-Depth Analysis of Chemical Reactive Programming Framework
+ControlType.Button | More options for In-Depth Analysis of Chemical Reactive Programming Framework
+ControlType.Button | Doug & Ana
+ControlType.Button | More options for Doug & Ana
+ControlType.Button | Untitled
+ControlType.Button | More options
+ControlType.Button | Indexing and Mapping Natural Earth Datasets
+ControlType.Button | More options for Indexing and Mapping Natural Earth Datasets
+ControlType.Button | Mapping Project with Custom Visualizations
+ControlType.Button | More options for Mapping Project with Custom Visualizations
+ControlType.Button | Configuring a React App as an Internal Tool
+ControlType.Button | More options for Configuring a React App as an Internal Tool
+ControlType.Button | Designing a React Homepage
+ControlType.Button | More options for Designing a React Homepage
+ControlType.Button | Algorithmic Art Project "EvolvedSVG"
+ControlType.Button | More options for Algorithmic Art Project "EvolvedSVG"
+ControlType.Button | Relaunch to update v1.7196.3
+ControlType.Button | Doug Pro
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Hyperlink | DNA Patternity
+ControlType.Text | /
+ControlType.Button | Code review request, rename chat
+ControlType.Button | More options for Code review request
+ControlType.Button | Share chat
+ControlType.Text | Claude finished the response
+ControlType.Text | You said: Here is my code for review:
+ControlType.Text | Here is my code for review:
+ControlType.Group | Message actions
+ControlType.Text | 2:27 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: Good to be looking at this with you.
+ControlType.Button | Identified code review priorities across TypeScript vector implementation
+ControlType.Text | Identified code review priorities across TypeScript vector implementation
+ControlType.Text | Good to be looking at this with you. The config files (tsconfig, vite, package.json) are standard scaffolding and look fine, so I'll focus on
+ControlType.Text | vector.ts
+ControlType.Text | , which is where the actual logic lives. One caveat up front: I can't see
+ControlType.Text | ./array
+ControlType.Text | , so anything that depends on how
+ControlType.Text | A
+ControlType.Text |  behaves (its constructor signature, indexing, out-of-bounds semantics) I'm inferring rather than verifying.
+ControlType.Text | A few of these are real bugs, not just style.
+ControlType.Text | The constructor does nothing meaningful with its branch.
+ControlType.Group | ts code
+ControlType.Button | Copy to clipboard
+ControlType.Text | ts
+ControlType.Text | super
+ControlType.Text | (
+ControlType.Text | data
+ControlType.Text | instanceof
+ControlType.Text |
+ControlType.Text | A
+ControlType.Text |
+ControlType.Text | ?
+ControlType.Text |  data
+ControlType.Text | :
+ControlType.Text |  data
+ControlType.Text | )
+ControlType.Text | Both arms of the ternary are identical, so this is just
+ControlType.Text | super(data)
+ControlType.Text |  with extra steps. I suspect the intent was to
+ControlType.Text | convert
+ControlType.Text |  a plain
+ControlType.Text | Position[]
+ControlType.Text |  into an
+ControlType.Text | A<Position>
+ControlType.Text |  when it isn't one already — but as written, a raw array is passed straight through. If
+ControlType.Text | A
+ControlType.Text | 's constructor only accepts
+ControlType.Text | A<Position>
+ControlType.Text | , this is a latent bug; if it accepts both, the check is dead code. Either way it wants cleaning up. The same redundant
+ControlType.Text | data instanceof A ? data : data
+ControlType.Text |  appears again in the
+ControlType.Text | v
+ControlType.Text |  helper, so whatever the fix is, it's needed in both places.
+ControlType.Text | norm
+ControlType.Text |  initializes the max-tracker wrong.
+ControlType.Group | ts code
+ControlType.Button | Copy to clipboard
+ControlType.Text | ts
+ControlType.Text | let
+ControlType.Text |  maxVal
+ControlType.Text | =
+ControlType.Text |  f32
+ControlType.Text | .
+ControlType.Text | MIN_VALUE
+ControlType.Text | ;
+ControlType.Text | In AssemblyScript
+ControlType.Text | f32.MIN_VALUE
+ControlType.Text |  is the smallest
+ControlType.Text | positive
+ControlType.Text |  value (~1.4e-45), following the JS convention — not the most-negative value. So for any dataset whose x-components are all negative,
+ControlType.Text | maxVal
+ControlType.Text |  never updates and your range is garbage. You want
+ControlType.Text | -f32.MAX_VALUE
+ControlType.Text |  (or
+ControlType.Text | f32.NEGATIVE_INFINITY
+ControlType.Text | ). The
+ControlType.Text | minVal = f32.MAX_VALUE
+ControlType.Text |  line is correct, which makes this asymmetry easy to miss.
+ControlType.Text | norm
+ControlType.Text |  also normalizes y using x's statistics.
+ControlType.Text | You compute
+ControlType.Text | minVal
+ControlType.Text | /
+ControlType.Text | range
+ControlType.Text |  from
+ControlType.Text | this[i][0]
+ControlType.Text |  only, then apply that same
+ControlType.Text | minVal
+ControlType.Text |  and
+ControlType.Text | range
+ControlType.Text |  to the y-component:
+ControlType.Group | ts code
+ControlType.Button | Copy to clipboard
+ControlType.Text | ts
+ControlType.Text | min
+ControlType.Text | +
+ControlType.Text |
+ControlType.Text | (
+ControlType.Text | (
+ControlType.Text | p
+ControlType.Text | [
+ControlType.Text | 1
+ControlType.Text | ]
+ControlType.Text |
+ControlType.Text | -
+ControlType.Text |  minVal
+ControlType.Text | )
+ControlType.Text |
+ControlType.Text | /
+ControlType.Text |  range
+ControlType.Text | )
+ControlType.Text |
+ControlType.Text | *
+ControlType.Text |  targetRange
+ControlType.Text | If x and y share a coordinate space that's intentional, but if they have different scales it'll distort y. Worth a comment confirming which you mean. And there's no guard for
+ControlType.Text | range === 0
+ControlType.Text |  (all x equal), which gives you NaN/Inf — same issue in
+ControlType.Text | linspace
+ControlType.Text |  when
+ControlType.Text | count === 1
+ControlType.Text |  (
+ControlType.Text | (max - min) / (count - 1)
+ControlType.Text |  divides by zero).
+ControlType.Text | plus
+ControlType.Text | /
+ControlType.Text | minus
+ControlType.Text |  assume equal length.
+ControlType.Text |  No check that
+ControlType.Text | other.length === this.length
+ControlType.Text | , and
+ControlType.Text | other[i]
+ControlType.Text |  past the end is an out-of-bounds read — which under WASM either traps or returns junk depending on
+ControlType.Text | A
+ControlType.Text | . A length guard (or at least an assert) would save a confusing crash later.
+ControlType.Text | magnitude
+ControlType.Text |  returns
+ControlType.Text | this
+ControlType.Text |  on the non-complex path.
+ControlType.Text |  Every other operation returns a fresh
+ControlType.Text | Vector
+ControlType.Text | , but here a real vector returns itself by reference, so callers can accidentally alias and mutate the original. Returning a copy keeps the value semantics consistent. Separately,
+ControlType.Text | Math.sqrt(...) as f32
+ControlType.Text |  rounds an f64 result down —
+ControlType.Text | Mathf.sqrt
+ControlType.Text |  does the work in f32 directly, which is cheaper and avoids the double-rounding.
+ControlType.Text | Smaller things:
+ControlType.Text | f
+ControlType.Text |  is imported but never used (
+ControlType.Text | noUnusedLocals
+ControlType.Text |  will flag it under tsc, and asc may warn); and
+ControlType.Text | times
+ControlType.Text |  uses
+ControlType.Text | this.select(...)
+ControlType.Text |  while
+ControlType.Text | plus
+ControlType.Text | /
+ControlType.Text | minus
+ControlType.Text |  hand-roll a loop with
+ControlType.Text | new A<Position>()
+ControlType.Text |  +
+ControlType.Text | push
+ControlType.Text |  — both work, but picking one style makes the class easier to read.
+ControlType.Text | Want me to write up corrected versions of
+ControlType.Text | norm
+ControlType.Text |  and the constructor, or would you rather I hold off until you've confirmed the x/y normalization question? That one changes what the fix should be.
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Button | Scroll to bottom
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | function example0() { return 0 * 2; }
+ControlType.Text | function example1() { return 1 * 2; }
+ControlType.Text | function example2() { return 2 * 2; }
+ControlType.Text | function example3() { return 3 * 2; }
+ControlType.Text | function example4() { return 4 * 2; }
+ControlType.Text | function example5() { return 5 * 2; }
+ControlType.Text | function example6() { return 6 * 2; }
+ControlType.Text | function example7() { return 7 * 2; }
+ControlType.Text | function example8() { return 8 * 2; }
+ControlType.Text | function example9() { return 9 * 2; }
+ControlType.Text | function example10() { return 10 * 2; }
+ControlType.Text | function example11() { return 11 * 2; }
+ControlType.Text | function example12() { return 12 * 2; }
+ControlType.Text | function example13() { return 13 * 2; }
+ControlType.Text | function example14() { return 14 * 2; }
+ControlType.Text | function example15() { return 15 * 2; }
+ControlType.Text | function example16() { return 16 * 2; }
+ControlType.Text | function example17() { return 17 * 2; }
+ControlType.Text | function example18() { return 18 * 2; }
+ControlType.Text | function example19() { return 19 * 2; }
+ControlType.Text | function example20() { return 20 * 2; }
+ControlType.Text | function example21() { return 21 * 2; }
+ControlType.Text | function example22() { return 22 * 2; }
+ControlType.Text | function example23() { return 23 * 2; }
+ControlType.Text | function example24() { return 24 * 2; }
+ControlType.Text | function example25() { return 25 * 2; }
+ControlType.Text | function example26() { return 26 * 2; }
+ControlType.Text | function example27() { return 27 * 2; }
+ControlType.Text | function example28() { return 28 * 2; }
+ControlType.Text | function example29() { return 29 * 2; }
+ControlType.Text | function example30() { return 30 * 2; }
+ControlType.Text | function example31() { return 31 * 2; }
+ControlType.Text | function example32() { return 32 * 2; }
+ControlType.Text | function example33() { return 33 * 2; }
+ControlType.Text | function example34() { return 34 * 2; }
+ControlType.Text | function example35() { return 35 * 2; }
+ControlType.Text | function example36() { return 36 * 2; }
+ControlType.Text | function example37() { return 37 * 2; }
+ControlType.Text | function example38() { return 38 * 2; }
+ControlType.Text | function example39() { return 39 * 2; }
+ControlType.Text | function example40() { return 40 * 2; }
+ControlType.Text | function example41() { return 41 * 2; }
+ControlType.Text | function example42() { return 42 * 2; }
+ControlType.Text | function example43() { return 43 * 2; }
+ControlType.Text | function example44() { return 44 * 2; }
+ControlType.Text | function example45() { return 45 * 2; }
+ControlType.Text | function example46() { return 46 * 2; }
+ControlType.Text | function example47() { return 47 * 2; }
+ControlType.Text | function example48() { return 48 * 2; }
+ControlType.Text | function example49() { return 49 * 2; }What do you think about this approach?Please review this long file:Focus on error handling please.
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Project: DNA Patternity
+ControlType.Button | Model: Opus 4.7 Adaptive
+ControlType.Text | Opus 4.7
+ControlType.Text | Adaptive
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Button | Send message
+ControlType.Hyperlink | Claude is AI and can make mistakes. Please double-check responses.
+ControlType.Group | Notifications (F8)
