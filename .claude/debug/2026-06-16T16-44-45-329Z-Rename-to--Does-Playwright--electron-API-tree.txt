@@ -1,0 +1,295 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Playwright with MSIX-packaged Electron apps on Windows 11 - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Group | Sidebar
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Playwright with MSIX-packaged Electron apps on Windows 11
+ControlType.Button | More options for Playwright with MSIX-packaged Electron apps on Windows 11
+ControlType.Button | Windows desktop automation stack for Electron apps
+ControlType.Button | More options for Windows desktop automation stack for Electron apps
+ControlType.Button | Stefanie
+ControlType.Button | More options for Stefanie
+ControlType.Button | Windows desktop automation stack for Electron apps
+ControlType.Button | More options for Windows desktop automation stack for Electron apps
+ControlType.Button | Rebuilding Windows desktop automation stack for Claude
+ControlType.Button | More options for Rebuilding Windows desktop automation stack for Claude
+ControlType.Button | AI automation frameworks for Windows beyond MCP
+ControlType.Button | More options for AI automation frameworks for Windows beyond MCP
+ControlType.Button | Watching Harry Potter with Russian dubbing and English subtitles
+ControlType.Button | More options for Watching Harry Potter with Russian dubbing and English subtitles
+ControlType.Button | Batumi Summer
+ControlType.Button | More options for Batumi Summer
+ControlType.Button | Georgian Payoneer Help
+ControlType.Button | More options for Georgian Payoneer Help
+ControlType.Button | Feferman's extensions of Turing's doctoral work
+ControlType.Button | More options for Feferman's extensions of Turing's doctoral work
+ControlType.Button | Semantic Primes
+ControlType.Button | More options for Semantic Primes
+ControlType.Button | 💬 Can you look up the research o…
+ControlType.Button | More options for 💬 Can you look up the research o…
+ControlType.Button | Ontic Structural Realism
+ControlType.Button | More options for Ontic Structural Realism
+ControlType.Button | Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | More options for Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | Georgia IE residency income threshold
+ControlType.Button | More options for Georgia IE residency income threshold
+ControlType.Button | Ontic Structural Realism
+ControlType.Button | More options for Ontic Structural Realism
+ControlType.Button | American grocery options in Saburtalo Tbilisi
+ControlType.Button | More options for American grocery options in Saburtalo Tbilisi
+ControlType.Button | Летняя погода в Батуми
+ControlType.Button | More options for Летняя погода в Батуми
+ControlType.Button | Representation & the Part - Whole Dichotomy
+ControlType.Button | More options for Representation & the Part - Whole Dichotomy
+ControlType.Button | Восстановление аккаунта Бравл Старс без почты
+ControlType.Button | More options for Восстановление аккаунта Бравл Старс без почты
+ControlType.Button | Doug Doug Max
+ControlType.Image | Doug
+ControlType.Text | Doug
+ControlType.Text | Max
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Button | Playwright with MSIX-packaged Electron apps on Windows 11, rename chat
+ControlType.Button | More options for Playwright with MSIX-packaged Electron apps on Windows 11
+ControlType.Button | Share chat
+ControlType.Text | Claude finished the response
+ControlType.Text | You said: Does Playwright electron API work with MSIX-packaged Electron apps on Windows 11?
+ControlType.Text | Does Playwright _electron API work with MSIX-packaged Electron apps on Windows 11? Can Playwright attach to an already-running MSIX Electron process via CDP? What are the MSIX sandboxing constraints for remote debugging ports? Compare connectOverCDP vs _electron.launch for this scenario.
+ControlType.Group | Message actions
+ControlType.Text | 8:36 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: Short version: it depends almost entirely on whether your MSIX is a full-trust package (which is what electron-builder's appx target produces) or a partial-tru…
+ControlType.Button | Synthesized MSIX packaging constraints against Playwright debugging capabilities
+ControlType.Text | Synthesized MSIX packaging constraints against Playwright debugging capabilities
+ControlType.Text | Short version: it depends almost entirely on whether your MSIX is a
+ControlType.Text | full-trust
+ControlType.Text |  package (which is what
+ControlType.Text | electron-builder
+ControlType.Text | 's
+ControlType.Text | appx
+ControlType.Text |  target produces) or a
+ControlType.Text | partial-trust / AppContainer
+ControlType.Text |  package. For the normal Electron MSIX case it's full-trust, and that changes everything about the sandboxing answer.
+ControlType.Text | The MSIX trust distinction (this is the crux)
+ControlType.Text | Electron apps packaged as MSIX declare
+ControlType.Text | <rescap:Capability Name="runFullTrust" />
+ControlType.Text | , and electron-builder adds it automatically — the runFullTrust capability is obligatory for electron apps and will be auto added if not specified.
+ControlType.Text |  Classic Win32 apps converted to MSIX declare this special capability; the name refers to the trust level granted within the container and is not related to UAC elevation.
+ControlType.Hyperlink | electron-builder
+ControlType.Hyperlink | Advanced Installer
+ControlType.Text | What that buys you: these run as Desktop Bridge /
+ControlType.Text | packagedClassicApp
+ControlType.Text |  processes at medium integrity,
+ControlType.Text | not
+ControlType.Text |  inside an AppContainer. As one breakdown puts it, for a packaged Win32 app the Integrity Level is Medium, AppContainer is No, Has Identity is Yes — though it remains subject to filesystem and registry virtualization.
+ControlType.Text |  The
+ControlType.Text | uap10:TrustLevel="mediumIL"
+ControlType.Text |  setting is what determines this versus
+ControlType.Text | appContainer
+ControlType.Text | .
+ControlType.Hyperlink | Nick's .NET Travels
+ControlType.Text | This matters because the famous MSIX loopback restriction is an
+ControlType.Text | AppContainer
+ControlType.Text |  restriction, not a full-trust one.
+ControlType.Text | Remote-debugging-port / loopback constraints
+ControlType.Text | For a full-trust Electron MSIX: loopback (
+ControlType.Text | 127.0.0.1
+ControlType.Text | ) works normally, so a CDP server bound to localhost is reachable with no exemption. You do
+ControlType.Text | not
+ControlType.Text |  need
+ControlType.Text | CheckNetIsolation LoopbackExempt
+ControlType.Text | .
+ControlType.Text | For a partial-trust / AppContainer MSIX (only if you deliberately configured it that way), two things bite:
+ControlType.ListItem | Client loopback requires an exemption: loopback is permitted only for development purposes, and a Windows Runtime app installed outside of Visual Studio is not permitted to use it without CheckNetIsolation LoopbackExempt -a -n=<PackageFamily>. microsoft
+ControlType.Text | CheckNetIsolation LoopbackExempt -a -n=<PackageFamily>
+ControlType.Hyperlink | microsoft
+ControlType.ListItem | More fatally for CDP, an AppContainer app can use an IP loopback only as the target address for a client network request; an app that listens on a loopback address is prevented from receiving any incoming packets. The CDP/remote-debugging endpoint isa loopback listener, so an AppContainer Electron app effectively cannot be debugged over CDP at all without a VS-style dev exemption. microsoft
+ControlType.Text | is
+ControlType.Hyperlink | microsoft
+ControlType.Text | So: full-trust MSIX → no real network-isolation problem. AppContainer MSIX → CDP is essentially blocked.
+ControlType.Text | Can you attach to an already-running MSIX process via CDP?
+ControlType.Text | Yes in principle, but the real obstacle isn't the network — it's
+ControlType.Text | getting the debug flag into the process
+ControlType.Text | . You don't launch an MSIX app by invoking its exe with args; it's shell-activated through package identity. Practical paths:
+ControlType.ListItem | Bake it in (most reliable): app.commandLine.appendSwitch('remote-debugging-port', '9222') in the main process at build time. This survives MSIX activation cleanly. Then activate the app however you like (explorer.exe shell:AppsFolder\<PackageFamilyName>!App) and attach.
+ControlType.Text | Bake it in (most reliable):
+ControlType.Text | app.commandLine.appendSwitch('remote-debugging-port', '9222')
+ControlType.Text | explorer.exe shell:AppsFolder\<PackageFamilyName>!App
+ControlType.ListItem | Pass --remote-debugging-port at launch: unreliable through MSIX activation, since the package alias won't forward arbitrary flags, and there's a current Electron-level hazard regardless of packaging (see below).
+ControlType.Text | Pass
+ControlType.Text | --remote-debugging-port
+ControlType.Text |  at launch:
+ControlType.Text | Then attach the standard way — query
+ControlType.Text | http://localhost:9222/json/version
+ControlType.Text | , pull
+ControlType.Text | webSocketDebuggerUrl
+ControlType.Text | , and pass
+ControlType.Text | that
+ControlType.Text |  to
+ControlType.Text | connectOverCDP
+ControlType.Text | . There's a known gotcha where passing the bare HTTP URL fails because Playwright requests
+ControlType.Text | /json/version/
+ControlType.Text |  with a trailing slash that Chrome doesn't answer cleanly; using the WebSocket URL directly is more reliable than the HTTP URL.
+ControlType.Hyperlink | GitHub
+ControlType.Text | connectOverCDP vs _electron.launch
+ControlType.Text | These aren't interchangeable for MSIX; they target different goals.
+ControlType.Text | _electron.launch
+ControlType.Text |  launches the binary itself. Mechanically, it launches the Electron executable with --remote-debugging-port=0, then reads the allocated port from the application's stderr to establish a CDP connection,
+ControlType.Text |  and it also attaches
+ControlType.Text | --inspect=0
+ControlType.Text |  to the Node main process. That second connection is what gives you
+ControlType.Text | electronApp.evaluate(({ app }) => …)
+ControlType.Text |  against the
+ControlType.Text | main process
+ControlType.Text |  — the privileged capability that makes the
+ControlType.Text | _electron
+ControlType.Text |  API valuable.
+ControlType.Hyperlink | DeepWiki
+ControlType.Text | For MSIX this is the wrong tool in most cases:
+ControlType.ListItem | The binary lives under C:\Program Files\WindowsApps\<PackageFullName>, which is ACL-locked to TrustedInstaller; you generally can't point executablePath at it without permission surgery.
+ControlType.Text | C:\Program Files\WindowsApps\<PackageFullName>
+ControlType.Text | executablePath
+ControlType.ListItem | Even if you launch the raw exe, you launch it without package identity — no VFS/registry redirection, no package context — so the app may not resolve its virtualized resources and won't behave like the installed MSIX app. You'd be testing the unpackaged binary, defeating the purpose.
+ControlType.Text | without package identity
+ControlType.ListItem | There's an active Electron-30+ bug independent of MSIX: Electron 30+ rejects --remote-debugging-port=0 as a CLI argument before any JavaScript executes, so it only works via app.commandLine.appendSwitch(), not as a CLI argument. Since _electron.launchpasses it on the command line, this can break launch outright on recent Electron. GitHub
+ControlType.Text | _electron.launch
+ControlType.Hyperlink | GitHub
+ControlType.Text | connectOverCDP
+ControlType.Text |  attaches to an already-running, properly-activated MSIX process. Advantages: the app runs with full package identity and VFS intact (you're testing the real installed artifact), and you sidestep the WindowsApps ACL problem entirely. The cost:
+ControlType.Text | connectOverCDP
+ControlType.Text |  returns a
+ControlType.Text | Browser
+ControlType.Text | , not an
+ControlType.Text | ElectronApplication
+ControlType.Text | . You get the renderer/
+ControlType.Text | BrowserWindow
+ControlType.Text |  pages via
+ControlType.Text | browser.contexts()[0].pages()
+ControlType.Text | , but you
+ControlType.Text | lose
+ControlType.Text |  the Electron main-process
+ControlType.Text | evaluate
+ControlType.Text |  API — there's no main-process Node handle through the Chromium CDP target.
+ControlType.Text | Recommendation for your scenario
+ControlType.Text | To test the actual MSIX-installed app, use
+ControlType.Text | connectOverCDP
+ControlType.Text | , with the debug switch compiled into the main process (
+ControlType.Text | appCommandLine.appendSwitch
+ControlType.Text | ) so MSIX activation preserves it. Activate via
+ControlType.Text | shell:AppsFolder\<PFN>!App
+ControlType.Text | , then connect to the
+ControlType.Text | webSocketDebuggerUrl
+ControlType.Text | . Accept that you won't have main-process
+ControlType.Text | evaluate
+ControlType.Text | ; if you need privileged main-process assertions, expose them yourself via a test-only IPC channel or a
+ControlType.Text | --inspect
+ControlType.Text |  Node-inspector connection separate from Playwright.
+ControlType.Text | Reserve
+ControlType.Text | _electron.launch
+ControlType.Text |  for testing the
+ControlType.Text | unpackaged
+ControlType.Text |  build in CI (pointing at
+ControlType.Text | dist/.../YourApp.exe
+ControlType.Text |  or
+ControlType.Text | main.js
+ControlType.Text | ), where you legitimately want main-process access and none of the WindowsApps/identity constraints apply. Don't try to make it drive the installed MSIX.
+ControlType.Text | One thing worth verifying on your end before committing: confirm your package's actual
+ControlType.Text | TrustLevel
+ControlType.Text |  in the generated
+ControlType.Text | AppxManifest.xml
+ControlType.Text |  (
+ControlType.Text | mediumIL
+ControlType.Text |  vs
+ControlType.Text | appContainer
+ControlType.Text | ). The entire loopback analysis above flips on that one attribute, and electron-builder's default is full-trust — but it's worth a 10-second check rather than an assumption.
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Read aloud
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | You said: Does Playwright _electron API work with MSIX-packaged Electron apps on Window.
+ControlType.Text | Does Playwright _electron API work with MSIX-packaged Electron apps on Window...
+ControlType.Group | Message actions
+ControlType.Text | 8:44 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: It looks like that message got cut off — and it's the same question I just worked through in detail above.
+ControlType.Button | Recognized duplicate question and opted for concise recap
+ControlType.Text | Recognized duplicate question and opted for concise recap
+ControlType.Text | It looks like that message got cut off — and it's the same question I just worked through in detail above. Rather than repeat the whole thing, here's the one-paragraph bottom line, and tell me which part you want me to go deeper on:
+ControlType.Text | The
+ControlType.Text | _electron
+ControlType.Text |  API technically
+ControlType.Text | can
+ControlType.Text |  point at an MSIX Electron binary, but it's the wrong tool — the exe lives under the ACL-locked
+ControlType.Text | WindowsApps
+ControlType.Text |  directory, launching it directly strips package identity and VFS so you're no longer testing the real installed app, and recent Electron (30+) rejects the
+ControlType.Text | --remote-debugging-port
+ControlType.Text |  CLI flag that
+ControlType.Text | _electron.launch
+ControlType.Text |  relies on. For a standard electron-builder
+ControlType.Text | appx
+ControlType.Text |  package (full-trust
+ControlType.Text | runFullTrust
+ControlType.Text | ,
+ControlType.Text | not
+ControlType.Text |  AppContainer), loopback works without any
+ControlType.Text | CheckNetIsolation
+ControlType.Text |  exemption, so the better path is to bake
+ControlType.Text | app.commandLine.appendSwitch('remote-debugging-port', …)
+ControlType.Text |  into the main process, activate the app through its package alias, and attach with
+ControlType.Text | connectOverCDP
+ControlType.Text |  — accepting that you lose main-process
+ControlType.Text | evaluate
+ControlType.Text |  in exchange for testing the genuinely packaged artifact. The whole loopback story only inverts if your manifest is
+ControlType.Text | appContainer
+ControlType.Text |  rather than
+ControlType.Text | mediumIL
+ControlType.Text | , which is worth confirming.
+ControlType.Text | Was there a specific angle you wanted — the connectOverCDP attach sequence, the main-process
+ControlType.Text | evaluate
+ControlType.Text |  workaround via test-only IPC, the Electron 30+ flag bug, or the AppContainer-vs-full-trust manifest check?
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Read aloud
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Button | Scroll to bottom
+ControlType.Text | Claude Fable 5 is currently unavailable.
+ControlType.Hyperlink | Learn more (opens in new tab)
+ControlType.Button | Dismiss
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | Write a message…
+ControlType.Text |
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Model: Opus 4.8 High
+ControlType.Text | Opus 4.8
+ControlType.Text |  High
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Button | Use voice mode
+ControlType.Hyperlink | Claude is AI and can make mistakes. Please double-check responses.
+ControlType.Group | Notifications (F8)
