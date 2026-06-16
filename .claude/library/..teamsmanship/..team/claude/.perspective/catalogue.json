@@ -1,0 +1,40 @@
+{
+  "conversations": [
+    {
+      "topic": "What is the current state of Playwright support for Electron apps in 2026?",
+      "conversationId": "bc4b49a3-d88a-4d68-b488-0a1f2b630349",
+      "url": "https://claude.ai/chat/bc4b49a3-d88a-4d68-b488-0a1f2b630349",
+      "title": "Think: What is the current state of Playwright support for Elect...",
+      "state": "active",
+      "started": "2026-06-16",
+      "lastExchange": "2026-06-16",
+      "exchanges": 1,
+      "verdict": "(in progress)",
+      "summary": "I'll look up the current state of this.\nIdentified technical query requiring current information search\nI'll look up the current state of this.\nSynthesized documentation to address 2026 Playwright-Electron compatibility\nAs of mid-2026, the short version is that Playwright's Electron support is still officially labeled \"experimental,\" but that label is misleading about how usable it actually is in practice.\nThe core situation: Playwright has experimental support for Electron automation, working v"
+    },
+    {
+      "topic": "What are the practical differences between named pipes and gRPC for IPC betwe...",
+      "conversationId": "a1ef1980-259f-400b-b6fc-dc881bc4130d",
+      "url": "https://claude.ai/chat/a1ef1980-259f-400b-b6fc-dc881bc4130d",
+      "title": "Think: What are the practical differences between named pipes an...",
+      "state": "active",
+      "started": "2026-06-16",
+      "lastExchange": "2026-06-16",
+      "exchanges": 1,
+      "verdict": "(in progress)",
+      "summary": "The split comes down to one being a raw transport and the other a full RPC framework, and on Windows specifically the transport story has a wrinkle worth knowi…\nWeighed transport primitives, typing models, and ecosystem tradeoffs\nThe split comes down to one being a raw transport and the other a full RPC framework, and on Windows specifically the transport story has a wrinkle worth knowing about.\nNamed pipes are a genuine local IPC primitive. On the .NET side you get NamedPipeServerStream/NamedPi"
+    },
+    {
+      "topic": "What are the key differences between StreamJsonRpc and gRPC for Node.js to .N...",
+      "conversationId": "3c2a567f-edd9-438b-9b5b-f1a92ff44f2f",
+      "url": "https://claude.ai/chat/3c2a567f-edd9-438b-9b5b-f1a92ff44f2f",
+      "title": "Think: What are the key differences between StreamJsonRpc and gR...",
+      "state": "active",
+      "started": "2026-06-16",
+      "lastExchange": "2026-06-16",
+      "exchanges": 1,
+      "verdict": "(in progress)",
+      "summary": "The short version: gRPC is contract-first, strongly typed, and language-agnostic but fights you on Windows transport; StreamJsonRpc is schema-less, dynamic, an…\nSynthesized architectural tradeoffs between two IPC frameworks\nThe short version: gRPC is contract-first, strongly typed, and language-agnostic but fights you on Windows transport; StreamJsonRpc is schema-less, dynamic, and built for exactly the kind of local Windows IPC you're describing but gives you weaker type guarantees across the b"
+    }
+  ]
+}

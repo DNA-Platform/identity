@@ -21,6 +21,7 @@ const PERSPECTIVE_DIR = resolve(
 );
 
 const STATE_FILE = resolve(PERSPECTIVE_DIR, 'thought-state.json');
+const CATALOGUE_FILE = resolve(PERSPECTIVE_DIR, 'catalogue.json');
 
 // --- Types ---
 
@@ -73,6 +74,54 @@ export function deleteState(): void {
 
 export function hasActiveThought(): boolean {
   return existsSync(STATE_FILE);
+}
+
+// --- Catalogue ---
+
+interface CatalogueEntry {
+  topic: string;
+  conversationId: string;
+  url: string;
+  title: string;
+  state: 'active' | 'concluded' | 'abandoned';
+  started: string;
+  lastExchange: string;
+  exchanges: number;
+  verdict: string;
+  summary: string;
+}
+
+interface Catalogue {
+  conversations: CatalogueEntry[];
+}
+
+export function readCatalogue(): Catalogue {
+  if (!existsSync(CATALOGUE_FILE)) return { conversations: [] };
+  try {
+    return JSON.parse(readFileSync(CATALOGUE_FILE, 'utf-8'));
+  } catch {
+    return { conversations: [] };
+  }
+}
+
+export function updateCatalogue(entry: CatalogueEntry): void {
+  const cat = readCatalogue();
+  const idx = cat.conversations.findIndex(c => c.conversationId === entry.conversationId);
+  if (idx >= 0) {
+    cat.conversations[idx] = entry;
+  } else {
+    cat.conversations.push(entry);
+  }
+  mkdirSync(PERSPECTIVE_DIR, { recursive: true });
+  writeFileSync(CATALOGUE_FILE, JSON.stringify(cat, null, 2), 'utf-8');
+}
+
+export function findConversationByTopic(topic: string): CatalogueEntry | undefined {
+  const cat = readCatalogue();
+  const lower = topic.toLowerCase();
+  return cat.conversations.find(c =>
+    c.state === 'active' && c.topic.toLowerCase().includes(lower)
+  );
 }
 
 // --- Session title ---
@@ -328,7 +377,7 @@ export function minimizeOnFailure(app: Claude): void {
 // --- Non-blocking dispatch: send a question, minimize, return immediately ---
 // Handles both fresh thoughts and resumptions.
 
-export async function send(
+export async function write(
   app: Claude,
   question: string,
 ): Promise<ThoughtState> {
@@ -336,16 +385,24 @@ export async function send(
 
   const existing = readState();
 
-  if (existing && existing.exchanges.length > 0) {
+  if (existing && existing.url) {
+    // State file exists with a URL — a conversation was already started.
+    // If it has exchanges, this is a resume with a follow-up.
+    // If it has NO exchanges, the send succeeded but we never read — do NOT resend.
+    if (existing.exchanges.length === 0) {
+      // Already sent but never read. Return the state — caller should read(), not send().
+      console.log('[think] Already written. Use read() instead.');
+      return existing;
+    }
     // RESUME: open the existing conversation, verify, then send follow-up
-    return await sendResume(app, existing, question);
+    return await writeResume(app, existing, question);
   } else {
-    // FRESH: new conversation
-    return await sendFresh(app, question);
+    // FRESH: no state file or no URL — truly new conversation
+    return await writeFresh(app, question);
   }
 }
 
-async function sendFresh(
+async function writeFresh(
   app: Claude,
   question: string,
 ): Promise<ThoughtState> {
@@ -366,10 +423,23 @@ async function sendFresh(
     // Dismiss any open dialogs that might block navigation
     await app.dismissDialogs();
 
-    // Ensure we're on a fresh chat — go home first if in an existing conversation
+    // Navigate to home to start a fresh conversation
     const screen = await app.navigator.detectScreen();
     if (screen === 'conversation') {
       await app.goHome();
+    }
+
+    // Verify we're on an empty conversation — read the transcript
+    // Home screen has a composer but no messages. If we're on a conversation
+    // with existing messages, we're in the wrong place.
+    const currentScreen = await app.navigator.detectScreen();
+    if (currentScreen === 'conversation') {
+      const existingMessages = await app.conversation.readMessages();
+      if (existingMessages.length > 0) {
+        // There are messages here — this is NOT a fresh conversation.
+        // Go home to get a truly new chat.
+        await app.goHome();
+      }
     }
 
     // Clear any text Doug may have been typing
@@ -401,7 +471,7 @@ async function sendFresh(
   return state;
 }
 
-async function sendResume(
+async function writeResume(
   app: Claude,
   state: ThoughtState,
   followUpQuestion: string,
@@ -409,22 +479,36 @@ async function sendResume(
 
   try {
     // Navigate to the existing conversation
-    await app.openChat(state.title);
+    // Try by title first, fall back to most recent chat
+    try {
+      await app.openChat(state.title);
+    } catch {
+      await app.sidebar.refresh();
+      await app.openChatAt(0);
+    }
 
-    // Verify we're in the right place
+    // Verify we're in the right place by URL
     const url = await app.auto.uia.readUrl() ?? '';
     if (state.conversationId && !url.includes(state.conversationId)) {
+      // Wrong conversation — abort, don't send into the wrong chat
       throw new Error(`Wrong conversation. Expected ${state.conversationId}, got ${url}`);
     }
 
-    // Read the last response to catch up
+    // Read the transcript to know the current state before sending anything
     const turns = await app.conversation.readTurns();
     const lastTurn = turns[turns.length - 1];
-    if (lastTurn?.response) {
-      console.log(`[send-resume] Last response: ${lastTurn.response.content.text.slice(0, 100)}...`);
+
+    // Check if the follow-up was already sent (duplicate prevention)
+    if (lastTurn?.prompt?.content.text?.includes(followUpQuestion.slice(0, 50))) {
+      console.log('[write-resume] Follow-up already sent. Use read() to get the response.');
+      return state;
     }
 
-    // Update state URL if it changed
+    if (lastTurn?.response) {
+      console.log(`[write-resume] Last response: ${lastTurn.response.content.text.slice(0, 100)}...`);
+    }
+
+    // Update state URL
     state.url = url;
     state.conversationId = url.match(/\/chat\/([a-f0-9-]+)/)?.[1] ?? state.conversationId;
 
@@ -461,12 +545,30 @@ export async function read(app: Claude): Promise<ReadResult> {
     // Ensure we're on the right conversation — Doug may have navigated away
     const screen = await app.navigator.detectScreen();
     if (screen !== 'conversation') {
-      await app.openChat(state.title);
+      // Not on a conversation — find ours.
+      // Use conversation ID if we have it (URL match is most reliable).
+      // Fall back to opening the most recent chat (we just sent, so it should be first).
+      if (state.conversationId) {
+        // Try opening by the first few characters of the title
+        try {
+          await app.openChatAt(0); // most recent conversation
+          const url = await app.auto.uia.readUrl() ?? '';
+          if (!url.includes(state.conversationId)) {
+            // Not the right one — try sidebar refresh and search
+            await app.sidebar.refresh();
+            await app.openChatAt(0);
+          }
+        } catch {
+          await app.openChatAt(0);
+        }
+      } else {
+        await app.openChatAt(0);
+      }
     } else {
-      // Verify it's the right conversation by URL
+      // On a conversation — verify it's the right one
       const url = await app.auto.uia.readUrl() ?? '';
       if (state.conversationId && !url.includes(state.conversationId)) {
-        await app.openChat(state.title);
+        await app.openChatAt(0);
       }
     }
 
@@ -510,9 +612,31 @@ export async function read(app: Claude): Promise<ReadResult> {
 
     writeState(state);
 
+    // Update the conversation catalogue
+    const now = new Date().toISOString().split('T')[0];
+    updateCatalogue({
+      topic: makeTopicName(state.question),
+      conversationId: state.conversationId,
+      url: state.url,
+      title: state.title,
+      state: 'active',
+      started: state.startedAt.split('T')[0],
+      lastExchange: now,
+      exchanges: state.exchanges.length,
+      verdict: '(in progress)',
+      summary: responseText.slice(0, 500),
+    });
+
+    // Try to add to the Claude project (idempotent — no-op if already there)
+    try {
+      await app.sidebar.chats.addToProject(state.title, 'Claude');
+    } catch {
+      // Non-critical — dismiss any dialog the attempt may have opened
+      try { await app.dismissDialogs(); } catch {}
+    }
+
     return { ready: true, response: responseText, state };
   } finally {
-    // Always minimize — success, failure, streaming, done. Always.
     minimizeOnFailure(app);
   }
 }

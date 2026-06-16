@@ -1,0 +1,187 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Named pipes vs gRPC for Node.js/.NET IPC - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Group | Sidebar
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Named pipes vs gRPC for Node.js/.NET IPC
+ControlType.Button | More options for Named pipes vs gRPC for Node.js/.NET IPC
+ControlType.Button | Connecting to MSIX Electron app via connectOverCDP
+ControlType.Button | More options for Connecting to MSIX Electron app via connectOverCDP
+ControlType.Button | Playwright support for Electron apps in 2026
+ControlType.Button | More options for Playwright support for Electron apps in 2026
+ControlType.Button | MCP vs A2A protocol differences
+ControlType.Button | More options for MCP vs A2A protocol differences
+ControlType.Button | Invoke-CommandInDesktopPackage and MSIX package identity
+ControlType.Button | More options for Invoke-CommandInDesktopPackage and MSIX package identity
+ControlType.Button | Enabling Chrome DevTools Protocol on running Electron MSIX apps
+ControlType.Button | More options for Enabling Chrome DevTools Protocol on running Electron MSIX apps
+ControlType.Button | Playwright with MSIX-packaged Electron apps on Windows 11
+ControlType.Button | More options for Playwright with MSIX-packaged Electron apps on Windows 11
+ControlType.Button | Windows desktop automation stack for Electron apps
+ControlType.Button | More options for Windows desktop automation stack for Electron apps
+ControlType.Button | Stefanie
+ControlType.Button | More options for Stefanie
+ControlType.Button | Windows desktop automation stack for Electron apps
+ControlType.Button | More options for Windows desktop automation stack for Electron apps
+ControlType.Button | Rebuilding Windows desktop automation stack for Claude
+ControlType.Button | More options for Rebuilding Windows desktop automation stack for Claude
+ControlType.Button | AI automation frameworks for Windows beyond MCP
+ControlType.Button | More options for AI automation frameworks for Windows beyond MCP
+ControlType.Button | Watching Harry Potter with Russian dubbing and English subtitles
+ControlType.Button | More options for Watching Harry Potter with Russian dubbing and English subtitles
+ControlType.Button | Batumi Summer
+ControlType.Button | More options for Batumi Summer
+ControlType.Button | Georgian Payoneer Help
+ControlType.Button | More options for Georgian Payoneer Help
+ControlType.Button | Feferman's extensions of Turing's doctoral work
+ControlType.Button | More options for Feferman's extensions of Turing's doctoral work
+ControlType.Button | Semantic Primes
+ControlType.Button | More options for Semantic Primes
+ControlType.Button | 💬 Can you look up the research o…
+ControlType.Button | More options for 💬 Can you look up the research o…
+ControlType.Button | Ontic Structural Realism
+ControlType.Button | More options for Ontic Structural Realism
+ControlType.Button | Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | More options for Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | Doug Doug Max
+ControlType.Image | Doug
+ControlType.Text | Doug
+ControlType.Text | Max
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Button | Named pipes vs gRPC for Node.js/.NET IPC, rename chat
+ControlType.Button | More options for Named pipes vs gRPC for Node.js/.NET IPC
+ControlType.Button | Share chat
+ControlType.Text | Claude finished the response
+ControlType.Text | You said: What are the practical differences between named pipes and gRPC for IPC between Node.
+ControlType.Text | What are the practical differences between named pipes and gRPC for IPC between Node.js and .NET on Windows?
+ControlType.Group | Message actions
+ControlType.Text | 9:50 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: The split comes down to one being a raw transport and the other a full RPC framework, and on Windows specifically the transport story has a wrinkle worth knowi…
+ControlType.Button | Weighed transport primitives, typing models, and ecosystem tradeoffs
+ControlType.Text | Weighed transport primitives, typing models, and ecosystem tradeoffs
+ControlType.Text | The split comes down to one being a raw transport and the other a full RPC framework, and on Windows specifically the transport story has a wrinkle worth knowing about.
+ControlType.Text | Named pipes
+ControlType.Text |  are a genuine local IPC primitive. On the .NET side you get
+ControlType.Text | NamedPipeServerStream
+ControlType.Text | /
+ControlType.Text | NamedPipeClientStream
+ControlType.Text |  (
+ControlType.Text | System.IO.Pipes
+ControlType.Text | ), and Node talks to the same
+ControlType.Text | \\.\pipe\name
+ControlType.Text |  path through the
+ControlType.Text | net
+ControlType.Text |  module (
+ControlType.Text | net.createServer
+ControlType.Text | /
+ControlType.Text | net.connect
+ControlType.Text |  accept a pipe path directly). What you get is a bidirectional byte stream — kernel-managed, no TCP stack, no port to allocate, no firewall prompt. Everything above the bytes is yours to build: serialization (JSON, MessagePack, protobuf-by-hand) and framing (length prefixes or delimiters, since the stream won't preserve message boundaries for you).
+ControlType.Text | gRPC
+ControlType.Text |  is schema-first: you write a
+ControlType.Text | .proto
+ControlType.Text | , generate typed stubs for both
+ControlType.Text | @grpc/grpc-js
+ControlType.Text |  and .NET (
+ControlType.Text | Grpc.Net.Client
+ControlType.Text |  /
+ControlType.Text | Grpc.AspNetCore
+ControlType.Text | ), and get request/response semantics, deadlines, cancellation, metadata, status codes, and all four streaming modes for free. The contract is the thing both sides compile against, and protobuf is built for forward/backward compatibility as the schema evolves.
+ControlType.Text | The Windows wrinkle: gRPC runs over HTTP/2, which normally means TCP. .NET 8+ Kestrel can actually listen on a named pipe endpoint, so a .NET↔.NET setup can get gRPC semantics over a pipe transport. But
+ControlType.Text | grpc-js
+ControlType.Text |  on the Node side has no named-pipe transport and only shaky AF_UNIX support on Windows. So in practice,
+ControlType.Text | Node↔.NET gRPC on Windows means localhost TCP
+ControlType.Text |  — which reintroduces a port, the TCP/IP stack, and potential firewall involvement that named pipes sidestep entirely.
+ControlType.Text | That difference drives most of the practical trade-offs:
+ControlType.ListItem | Security. Named pipes carry Windows ACLs — you can restrict access by SID or integrity level, a clean local-auth story. A gRPC TCP listener on loopback is reachable by any local process unless you layer on TLS/mTLS or token auth yourself.
+ControlType.Text | Security.
+ControlType.ListItem | Performance. For high-frequency small messages, raw pipes have lower overhead (no HTTP/2 framing). gRPC adds protocol overhead but protobuf is fast and HTTP/2 multiplexing handles concurrency well; for typical structured RPC workloads the overhead is rarely the bottleneck.
+ControlType.Text | Performance.
+ControlType.ListItem | Concurrency & connection management. gRPC handles multiple concurrent calls over one channel and manages reconnection/channel state. With pipes you manage multiple pipe instances and write your own reconnect logic.
+ControlType.Text | Concurrency & connection management.
+ControlType.ListItem | Setup cost. Pipes need nothing beyond the standard library on both sides. gRPC adds packages, a proto toolchain in your build, and generated code to manage — but pays you back with type safety, interceptors, reflection, and health checks.
+ControlType.Text | Setup cost.
+ControlType.Text | A rough heuristic: if it's strictly same-machine, you want tight Windows ACL control, the protocol is simple, and you'd rather not carry a build-time codegen step, named pipes are the lighter choice. If you want a typed contract across the two languages, real streaming semantics, and the option to move the .NET service off-box later without rewriting the wire protocol, gRPC earns its overhead — just go in expecting localhost TCP rather than a pipe transport on the Node end.
+ControlType.Text | One pragmatic middle path some teams take: named pipes as the transport with protobuf (or JSON) as the payload and a small length-prefix framing layer. You keep the local-IPC benefits and a schema, without the HTTP/2 layer — at the cost of hand-building the RPC dispatch that gRPC would give you.
+ControlType.Text | Want me to sketch a minimal working example on either side, or dig into the framing details if you lean toward pipes?
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Read aloud
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | You said: What are the practical differences between named pipes and gRPC for IPC betwe.
+ControlType.Text | What are the practical differences between named pipes and gRPC for IPC betwe...
+ControlType.Group | Message actions
+ControlType.Text | 9:51 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: Looks like that question came through twice — I just gave you a full rundown above (transport vs.
+ControlType.Button | Recognized duplicate question and deliberated on clarification approach
+ControlType.Text | Recognized duplicate question and deliberated on clarification approach
+ControlType.Text | Looks like that question came through twice — I just gave you a full rundown above (transport vs. RPC framework, the Windows HTTP/2-over-TCP wrinkle on the Node side, and the security/perf/setup trade-offs).
+ControlType.Text | Did you mean to send something different, or do you want me to go deeper on one piece of it? I offered at the end to sketch a minimal working example on either side or dig into pipe framing — happy to do either, or to tackle a specific angle like benchmarking, error handling across the boundary, or what a process-supervision setup looks like if the .NET side crashes.
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Read aloud
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | You said: What are the practical differences between named pipes and gRPC for IPC betwe.
+ControlType.Text | What are the practical differences between named pipes and gRPC for IPC betwe...
+ControlType.Group | Message actions
+ControlType.Text | 9:52 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: Same truncated message a third time — looks like something's stuck on the send side, maybe a glitched retry.
+ControlType.Button | Recognized repeated message glitch, opted for direct helpfulness
+ControlType.Text | Recognized repeated message glitch, opted for direct helpfulness
+ControlType.Text | Same truncated message a third time — looks like something's stuck on the send side, maybe a glitched retry.
+ControlType.Text | The full answer is already up there in my first reply, so I won't re-paste it. If you actually wanted to ask a
+ControlType.Text | different
+ControlType.Text |  question and it's getting clipped to that same string, try typing it fresh in a new message — sometimes that clears whatever's caching the old text.
+ControlType.Text | And if the original IPC question is still the live one, just tell me which direction to take it and I'll go: a minimal code example (pipes or gRPC), the framing details for the pipe-plus-protobuf middle path, error/reconnect handling across the boundary, or benchmarking. Your call.
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Read aloud
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | Claude Fable 5 is currently unavailable.
+ControlType.Hyperlink | Learn more (opens in new tab)
+ControlType.Button | Dismiss
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | Write a message…
+ControlType.Text |
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Model: Opus 4.8 High
+ControlType.Text | Opus 4.8
+ControlType.Text |  High
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Button | Use voice mode
+ControlType.Hyperlink | Claude is AI and can make mistakes. Please double-check responses.
+ControlType.Group | Notifications (F8)
