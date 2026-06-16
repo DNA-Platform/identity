@@ -15,7 +15,7 @@ This means rules are intentionally thin. Every word in a rule costs context budg
 
 ## Path-scoped rules
 
-Rules with `paths:` frontmatter load only when Claude opens a file matching the pattern. This is how [territory](../..teamsmanship/05-territory.md) wires knowledge to code. When Claude opens a file in `library/chemistry/src/`, a path-scoped rule can load that says: this is Cathy's territory, here's the [coding policy](../coding-policy/.cover.md), here's the reactive model. The agent is immediately connected to the right knowledge for the code they're touching.
+Rules with `paths:` frontmatter load only when Claude opens a file matching the pattern. This is how [territory](../..teamsmanship/05-territory.md) wires knowledge to code. When Claude opens a file in `library/chemistry/src/`, a path-scoped rule can load that says: this is Cathy's territory, here's the the [Reference Desk](../reference-desk/05-coding-philosophy.md), here's the reactive model. The agent is immediately connected to the right knowledge for the code they're touching.
 
 Path-scoped rules should exist for every significant territory in the [territory registry](../..teamsmanship/05-territory.md). The territory defines WHO owns a path. The rule enacts that ownership by loading the right context when files in that path enter the window.
 
@@ -49,4 +49,3 @@ Every compiled rule file is a generated artifact. It should not be hand-edited â
 [voice-convention]: ../teamspeak/01-voice.md
 [librarianship]: ../..librarianship/.cover.md
 [teamsmanship]: ../..teamsmanship/.cover.md
-[coding-policy]: ../coding-policy/.cover.md
