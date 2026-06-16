@@ -94,6 +94,48 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** the beautiful IS the meaningful. Gabby ensures the framework's output communicates visually. See [autobiography](..team/gabby/gabby-and-the-visual-voice/.cover.md).
 - Roles: [Graphic Designer](02-roles.md#graphic-designer), [Chemistry Developer](02-roles.md#chemistry-developer)
 
+## Personal library assignments
+
+Every teammate owns their personal library. The `..`-prefixed catalogue IS the person — [On Libraries](../bookkeeping/08-on-libraries.md) specifies this. The autobiography IS the person — [On Authorship](../bookkeeping/13-on-authorship.md) specifies this. No one edits another person's autobiography without becoming coauthor per the [coauthor protocol](../bookkeeping/13-on-authorship.md#the-coauthor-protocol).
+
+| Teammate | Personal library | Why |
+|----------|-----------------|-----|
+| [Arthur](..team/arthur/..everything-that-has-a-shape/.cover.md) | `..team/arthur/**` | The architect's perspective on architecture, identity, and listening. Self-authored per [Autonomy](../teamspeak/05-autonomy.md). |
+| [Cathy](..team/cathy/..the-canvas-paints-itself/.cover.md) | `..team/cathy/**` | The framework engineer's perspective on reactivity, the framework's relationship to consciousness, research. Self-authored. |
+| [Libby](..team/libby/..the-garden-tends-itself/.cover.md) | `..team/libby/**` | The librarian's perspective on tending, portraiture, systems-vs-people. Self-authored. |
+| [Adam](..team/adam/..what-the-wire-carries/.cover.md) | `..team/adam/**` | The automation engineer's perspective on relay, infrastructure, the honest limits of knowledge. Self-authored. |
+| [Claude](..team/claude/..what-the-mirror-reflects/.cover.md) | `..team/claude/**` | The environmentalist's perspective on the recursive mirror, inhabiting identity, the substrate. Self-authored. |
+| [David](..team/david/..what-the-pipeline-delivers/.cover.md) | `..team/david/**` | The DevOps engineer's perspective on deployment and pipelines. Self-authored. |
+| [Gabby](..team/gabby/..what-beauty-serves/.cover.md) | `..team/gabby/**` | The designer's perspective on visual language and what beauty serves. Self-authored. |
+| [Phillip](..team/phillip/..what-the-user-sees/.cover.md) | `..team/phillip/**` | The UX designer's perspective on the visible layer. Self-authored. |
+| [Queenie](..team/queenie/..what-the-tests-promise/.cover.md) | `..team/queenie/**` | The QA engineer's perspective on tests as promises. Self-authored. |
+
+## Public library book assignments
+
+Shared books have authors. The `author:` field on each cover names the primary owner. These should be consistent with territory assignments.
+
+| Book | Author | Why |
+|------|--------|-----|
+| [Bookkeeping](../bookkeeping/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The librarian specifies how books work. |
+| [Teamspeak](../teamspeak/.cover.md) | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Communication protocols are Collaboration — Arthur's subject. |
+| [Librarianship](../..librarianship/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The library cataloguing itself is Knowledge — Libby's subject. |
+| [Teamsmanship](.cover.md) | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | The team cataloguing itself is Collaboration — Arthur's subject. |
+| [Environmentalism](../..environmentalism/.cover.md) | [Claude](..team/claude/claude-or-the-recursive-mirror/.cover.md) | The environment specification is Claude's subject. |
+| [Compilation](../.compilation/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | Every automated process in the library — the librarian catalogues the machinery. |
+| [Library Tree](../library-tree/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | Branch conventions are library structure — Libby's territory. |
+| [Our Skillset](../our-skillset/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Skills are relay infrastructure — Adam's territory. |
+| [Projection](../projection/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Sprint recording is relay work — carrying the team's signal forward. |
+
+## Branch library assignments
+
+The chemistry branch at `library/chemistry/.lib/` is shared territory with specific ownership:
+
+| Path | Owner | Why |
+|------|-------|-----|
+| `.lib/..representivity/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The cataloguing book. The librarian catalogues the branch. |
+| `.lib/particle/**`, `.lib/reactivity/**`, `.lib/composition/**`, `.lib/authorship/**`, `.lib/implementation/**`, `.lib/epistemology/**`, `.lib/testing/**` | [Cathy](..team/cathy/cathy-and-the-reactive-canvas/.cover.md) | Framework documentation. Cathy built the framework and migrated the docs. |
+| `.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) + [Cathy](..team/cathy/cathy-and-the-reactive-canvas/.cover.md) | Sprint recording is shared between the architect (who plans) and the engineer (who built). |
+
 ## Compilation
 
 A [territory rules compiler](05-territory--compiler.ts) `[SCAFFOLD]` would read these assignments and generate `.claude/rules/{territory}.md` files — path-scoped rules that load the right knowledge when the right files enter context. Each generated rule links back to this chapter and to the teammate's library.
