@@ -1,46 +1,27 @@
-Short version: it depends almost entirely on whether your MSIX is a full-trust package (which is what electron-builder's appx target produces) or a partial-tru…
-Synthesized MSIX packaging constraints against Playwright debugging capabilities
-Short version: it depends almost entirely on whether your MSIX is a full-trust package (which is what electron-builder's appx target produces) or a partial-trust / AppContainerpackage. For the normal Electron MSIX case it's full-trust, and that changes everything about the sandboxing answer.
-The MSIX trust distinction (this is the crux)
-Electron apps packaged as MSIX declare <rescap:Capability Name="runFullTrust" />, and electron-builder adds it automatically — the runFullTrust capability is obligatory for electron apps and will be auto added if not specified. Classic Win32 apps converted to MSIX declare this special capability; the name refers to the trust level granted within the container and is not related to UAC elevation.
-electron-builder
-Advanced Installer
-What that buys you: these run as Desktop Bridge / packagedClassicApp processes at medium integrity, not inside an AppContainer. As one breakdown puts it, for a packaged Win32 app the Integrity Level is Medium, AppContainer is No, Has Identity is Yes — though it remains subject to filesystem and registry virtualization. The uap10:TrustLevel="mediumIL" setting is what determines this versus appContainer.
-Nick's .NET Travels
-This matters because the famous MSIX loopback restriction is an AppContainer restriction, not a full-trust one.
-Remote-debugging-port / loopback constraints
-For a full-trust Electron MSIX: loopback (127.0.0.1) works normally, so a CDP server bound to localhost is reachable with no exemption. You do not need CheckNetIsolation LoopbackExempt.
-For a partial-trust / AppContainer MSIX (only if you deliberately configured it that way), two things bite:
-• Client loopback requires an exemption: loopback is permitted only for development purposes, and a Windows Runtime app installed outside of Visual Studio is not permitted to use it without CheckNetIsolation LoopbackExempt -a -n=<PackageFamily>.
-microsoft
-• More fatally for CDP, an AppContainer app can use an IP loopback only as the target address for a client network request; an app that listens on a loopback address is prevented from receiving any incoming packets. The CDP/remote-debugging endpoint isa loopback listener, so an AppContainer Electron app effectively cannot be debugged over CDP at all without a VS-style dev exemption.
-microsoft
-So: full-trust MSIX → no real network-isolation problem. AppContainer MSIX → CDP is essentially blocked.
-Can you attach to an already-running MSIX process via CDP?
-Yes in principle, but the real obstacle isn't the network — it's getting the debug flag into the process. You don't launch an MSIX app by invoking its exe with args; it's shell-activated through package identity. Practical paths:
-1. Bake it in (most reliable): app.commandLine.appendSwitch('remote-debugging-port', '9222') in the main process at build time. This survives MSIX activation cleanly. Then activate the app however you like (explorer.exe shell:AppsFolder\<PackageFamilyName>!App) and attach.
-2. Pass --remote-debugging-port at launch: unreliable through MSIX activation, since the package alias won't forward arbitrary flags, and there's a current Electron-level hazard regardless of packaging (see below).
-Then attach the standard way — query http://localhost:9222/json/version, pull webSocketDebuggerUrl, and pass that to connectOverCDP. There's a known gotcha where passing the bare HTTP URL fails because Playwright requests /json/version/ with a trailing slash that Chrome doesn't answer cleanly; using the WebSocket URL directly is more reliable than the HTTP URL.
-GitHub
-connectOverCDP vs _electron.launch
-These aren't interchangeable for MSIX; they target different goals.
-_electron.launch launches the binary itself. Mechanically, it launches the Electron executable with --remote-debugging-port=0, then reads the allocated port from the application's stderr to establish a CDP connection, and it also attaches --inspect=0 to the Node main process. That second connection is what gives you electronApp.evaluate(({ app }) => …) against the main process — the privileged capability that makes the _electron API valuable.
-DeepWiki
-For MSIX this is the wrong tool in most cases:
-• The binary lives under C:\Program Files\WindowsApps\<PackageFullName>, which is ACL-locked to TrustedInstaller; you generally can't point executablePath at it without permission surgery.
-• Even if you launch the raw exe, you launch it without package identity — no VFS/registry redirection, no package context — so the app may not resolve its virtualized resources and won't behave like the installed MSIX app. You'd be testing the unpackaged binary, defeating the purpose.
-• There's an active Electron-30+ bug independent of MSIX: Electron 30+ rejects --remote-debugging-port=0 as a CLI argument before any JavaScript executes, so it only works via app.commandLine.appendSwitch(), not as a CLI argument. Since _electron.launchpasses it on the command line, this can break launch outright on recent Electron.
-GitHub
-connectOverCDP attaches to an already-running, properly-activated MSIX process. Advantages: the app runs with full package identity and VFS intact (you're testing the real installed artifact), and you sidestep the WindowsApps ACL problem entirely. The cost: connectOverCDP returns a Browser, not an ElectronApplication. You get the renderer/BrowserWindow pages via browser.contexts()[0].pages(), but you lose the Electron main-process evaluate API — there's no main-process Node handle through the Chromium CDP target.
-Recommendation for your scenario
-To test the actual MSIX-installed app, use connectOverCDP, with the debug switch compiled into the main process (appCommandLine.appendSwitch) so MSIX activation preserves it. Activate via shell:AppsFolder\<PFN>!App, then connect to the webSocketDebuggerUrl. Accept that you won't have main-process evaluate; if you need privileged main-process assertions, expose them yourself via a test-only IPC channel or a --inspect Node-inspector connection separate from Playwright.
-Reserve _electron.launch for testing the unpackaged build in CI (pointing at dist/.../YourApp.exe or main.js), where you legitimately want main-process access and none of the WindowsApps/identity constraints apply. Don't try to make it drive the installed MSIX.
-One thing worth verifying on your end before committing: confirm your package's actual TrustLevel in the generated AppxManifest.xml (mediumIL vs appContainer). The entire loopback analysis above flips on that one attribute, and electron-builder's default is full-trust — but it's worth a 10-second check rather than an assumption.
+Short version: the port really is gated at process initialization, and nothing in stock Chromium/Electron lets you turn the browser-level CDP server on after t…
+Dissected Electron CDP architecture and MSIX constraints thoroughly
+Short version: the port really is gated at process initialization, and nothing in stock Chromium/Electron lets you turn the browser-level CDP server on after the fact. But the two protocols you're conflating behave differently, and one of them gives you a live-process path. Let me separate them.
+The browser CDP endpoint (what connectOverCDP needs)
+Playwright's connectOverCDP talks to the Chromium DevToolsHttpHandler — the HTTP server at http://host:port/json/version that hands back the browser webSocketDebuggerUrl. That handler is constructed during browser-process startup if and only if --remote-debugging-port (or --remote-debugging-pipe) is present in the command line. There is no runtime API — no app.enableRemoteDebugging(), no IPC, no documented switch — to start it later. So an untouched, already-running process simply has no such server, and there's no clean way to make one appear.
+Environment variables don't help here. Chromium has no general CHROME_REMOTE_DEBUGGING_PORT-style env var that injects the switch; the only env vars Electron honors broadly are things like ELECTRON_RUN_AS_NODE, which is irrelevant to this. Unless the app's own code reads an env var and forwards it as a flag (some do — worth grepping the app's main bundle), env alone is a dead end.
+The realistic no-source-change method: relaunch with package identity
+The thing that actually works for an MSIX app without touching its source is to relaunch it with the flag while preserving package identity. You can't just exec the inner exe out of C:\Program Files\WindowsApps\… — it'll usually run without identity and break storage/state. And shell activation (shell:AppsFolder\<PFN>!<AppId>) doesn't reliably forward arbitrary args. The documented tool is the Appx module cmdlet:
+powershell
+Invoke-CommandInDesktopPackage -PackageFamilyName "<PFN>"
+`
+-AppId "<AppId>" -Command "App.exe" -Args "--remote-debugging-port=9222"
+This runs the package's exe inside its container with identity intact and passes the switch through. For most MSIX Electron apps the logged-in/session state lives on disk in the package's local data, so a relaunch typically restores it — you usually don't lose much by killing and reopening with the flag. This is the answer I'd actually reach for.
+--inspect and the Node main process — a different protocol
+--inspect is not the same surface. It opens the V8 Inspector (default :9229) scoped to the main process's V8 isolate — JS debugging of your main process, speaking the Inspector protocol. It does not expose page/target CDP, so connectOverCDP can't drive pages through it. Two genuinely different endpoints.
+Does it survive MSIX activation? The flag itself isn't stripped by MSIX — the obstacle is identical to --remote-debugging-port: shell activation won't deliver the arg, so you need the same Invoke-CommandInDesktopPackage (or a manifest-declared launch) to get it onto the command line. Once it reaches the process, Electron's main process honors --inspect/--inspect-brk normally.
+The one place --inspect becomes interesting for your goal: you can enable the V8 inspector on an already-running Node process via process._debugProcess(pid) from a separate Node instance. On Windows this is implemented through a remote-thread mechanism rather than a signal, and it does work against Node processes. Against an Electron main process it's hit-or-miss (depends on the embedded debug-signal handler being registered), so treat it as opportunistic, not reliable. If it attaches, you then have JS execution in the main process, and from there you can script CDP against any webContents via Electron's built-in webContents.debugger.attach() / sendCommand bridge. That gets you CDP-equivalent control of a page on a live process — but you're driving it by hand through main-process JS, not via connectOverCDP.
+Native injection
+Yes, in principle you could inject a DLL or attach WinDbg and call into Chromium to construct the DevToolsHttpHandler on the right thread. In practice this is a reverse-engineering project: content is statically linked, the start path isn't an exported API, it has strict thread-affinity requirements (UI/IO sequencing), and it's recompiled-version-specific. Not a method, more a research effort, and not something I'd build tooling on.
+So, ranked by what I'd actually do: relaunch with --remote-debugging-port via Invoke-CommandInDesktopPackage (clean, no source change, gets you real connectOverCDP); fall back to _debugProcess → webContents.debugger only if a relaunch is genuinely unacceptable and you can tolerate the fragility; skip injection.
+One thing worth checking before any of this: does the app even allow --remote-debugging-port? Some hardened Electron apps strip or refuse it in their own argument handling. Quick test — relaunch with the flag and curl http://127.0.0.1:9222/json/version; if you get a JSON blob with a webSocketDebuggerUrl, you're done. Want help scripting the Invoke-CommandInDesktopPackage call once you have the PFN and AppId (from Get-AppxPackage and the manifest)?
 Read aloud
 Scroll to bottom
 Claude Fable 5 is currently unavailable.
 Learn more
 (opens in new tab)
 Dismiss
-e
-Add files, connectors, and more
