@@ -63,6 +63,16 @@ The driver grows by adding files, not by growing files. Each file owns one domai
 
 From the [naming conventions](../../../dna-library/.claude/agents/library/coding-policy/01-naming.md): if you can read a function call aloud and a non-programmer understands what it does, the name is right. `app.openProject('Physics')` — clear. `app.auto.uia.invokeByName('div[3]')` — the abstraction failed.
 
+## Scripts never wait and never check the tree
+
+A script should look like using the app. If you find yourself writing `await gateway.waitFor(...)` or `const names = await uia.allNames()` in a script, the [`Claude`](../../src/claude.ts) class is missing a method. The wait should be INSIDE the method. The tree check should be INSIDE the method. The script caller writes `await app.openProject('Physics')` and trusts that it arrived. If the method can't guarantee arrival, the method is broken — fix the method, don't work around it in the script.
+
+This is the strongest form of the abstraction principle: the view layer (scripts) should read like a human using the app. No implementation details leak upward.
+
+## Always minimize
+
+The app runs on Doug's computer. Every test, every script, every research dispatch must minimize the app when done — and must minimize QUICKLY if something goes wrong. The [`Session`](../../src/session.ts) minimizes between turns. Test scripts must call `app.window.minimize()` in their cleanup, including in error handlers. If a test fails, collect what you need (screenshot, error message) and minimize immediately. Doug's computer is not yours.
+
 ## Code references the library, library references code
 
 From the [code-library linking convention](../../../dna-library/.claude/agents/library/coding-policy/04-code-library-linking.md): source files carry comments pointing to the library chapter that explains them. Library chapters carry links to the source files they document. The two are bidirectionally connected. When one changes, the other should be checked for consistency using the [consistency tools](../bookkeeping/06-01-on-consistency.md).
