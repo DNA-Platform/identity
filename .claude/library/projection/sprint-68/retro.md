@@ -6,26 +6,22 @@
 
 ## What we built
 
-Libby: Rewrote `/organize` as the public library's `/reflect` — 122 lines, dense with links to [Bookkeeping](../../bookkeeping/.cover.md), [Territory](../../..teamsmanship/05-territory.md), [Library Tree](../../library-tree/.cover.md), [On Synopsis](../../bookkeeping/09-on-synopsis.md), [On Evolution](../../bookkeeping/10-on-evolution.md).
+Libby: Rewrote `/organize` as the public library's `/reflect`. Verified territory assignments — personal, public, branch. Established public library authorship convention (librarian as primary author, subject expert as coauthor) in [On Authorship](../../bookkeeping/13-on-authorship.md#public-library-authorship).
 
-Arthur: Verified and expanded [Territory](../../..teamsmanship/05-territory.md) — personal library assignments, public book authorship (Libby as primary per [On Authorship](../../bookkeeping/13-on-authorship.md#public-library-authorship)), branch library layered ownership (Cathy+Libby whole branch, Queenie owns Testing, Arthur owns Projection, Libby owns Representivity).
+Adam: Built the [consistency checker](../../bookkeeping/06-on-links--consistency.ts) and [keyword search](../../bookkeeping/06-on-links--search.ts). Iterated through false positives — sentence scoping, compound numbers, subset references. Documented in [On Consistency](../../bookkeeping/06-01-on-consistency.md). Took ownership of [Compilation](../../.compilation/.cover.md).
 
-Adam: Built two consistency tools as [Bookkeeping resources](../../bookkeeping/06-01-on-consistency.md): the [link consistency checker](../../bookkeeping/06-on-links--consistency.ts) that reads both sides of every link and flags divergences, and the [keyword search](../../bookkeeping/06-on-links--search.ts) that finds where concepts are discussed. Tested, iterated, tuned threshold.
+Queenie: Took ownership of [Testing](../../../../../library/chemistry/.lib/testing/.cover.md) in the branch library.
 
-## What the connection pass found
+## What we found
 
-Libby: The [Voice protocol](../../teamspeak/01-voice.md) contradicted [On Authorship](../../bookkeeping/13-on-authorship.md) — Voice said "books use nametags," On Authorship said "books do NOT use nametags." Fixed.
+Libby: Voice protocol contradicted On Authorship. Fixed. Librarianship had stale references to archived coding-policy. Fixed. Representivity had stale chapter counts. Fixed. Environmentalism had a stale autobiography count. Fixed. Three Teamsmanship chapters had misleading scaffold markers on real content. Fixed.
 
-Cathy: [Representivity](../../../../library/chemistry/.lib/..representivity/.cover.md) had stale chapter counts for 4 books (glossary chapters added but synopses not updated). Fixed.
+## The deepest lesson
 
-Libby: [Librarianship](../../..librarianship/.cover.md) still referenced archived coding-policy. Fixed. Relabeled ch 09 as legacy (migration to Environmentalism complete).
+Arthur: Doug identified the root cause of most consistency failures: anti-evolution content. Hardcoded counts, exhaustive listings, state snapshots, the word "current" — all generate debt when someone else adds content. The specification is canonical in [On Synopsis § Write for evolution](../../bookkeeping/09-on-synopsis.md#write-for-evolution). Everything else links to it, doesn't restate it.
 
-Claude: Environmentalism said "25 chapters" about my autobiography — actual is 26. The consistency checker found this automatically. Fixed.
-
-## The tools
-
-Adam: The consistency checker found 291 issues on first run, most noise. Tuned to flag only count mismatches and zero-keyword-overlap. Count mismatches are the highest signal — every one found so far has been a real divergence. The keyword search returns ranked results with covers first. Both tools are catalogued in [Compilation](../../.compilation/04-validators.md) and specified in [On Consistency](../../bookkeeping/06-01-on-consistency.md).
+Libby: We removed hardcoded counts from the Librarianship cover, Arthur's catalogue, Cathy's catalogue, and my catalogue. The remaining ~150 counts in autobiographies are historical debt — each person's territory to clean during `/reflect`.
 
 ## What's next
 
-Arthur: The tools find divergences. The team fixes them. The `/organize` and `/reflect` skills reference the tools. The habit is: run the consistency checker during organize, run the keyword search before creating links. The library gets more consistent each time the tools are used — if they're used.
+Arthur: The `/remember` skill (future work). Continued anti-evolution cleanup across personal libraries. The territory rules compiler (scaffolded, unbuilt). And always: use the tools before acting, read the room before working in it.
