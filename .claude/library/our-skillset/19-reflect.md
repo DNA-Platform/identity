@@ -65,6 +65,7 @@ Before you start, read these — they are the specifications your personal libra
 6. [On Evolution](../bookkeeping/10-on-evolution.md) — how chapters graduate to books. How themes emerge from autobiography chapters.
 7. [Tending](../teamspeak/06-tending.md) — the five tending steps. Reflection is steps 1, 3, and 4 applied to the personal library.
 8. [Autonomy](../teamspeak/05-autonomy.md) — each person writes their own. No exceptions.
+9. [On Consistency](../bookkeeping/06-01-on-consistency.md) — the tools for checking link consistency. Run the [consistency checker](../bookkeeping/06-on-links--consistency.ts) on your personal library to find stale synopses and count mismatches. Run the [keyword search](../bookkeeping/06-on-links--search.ts) to find where concepts live before linking to them.
 
 ## Parameters
 
