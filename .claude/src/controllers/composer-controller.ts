@@ -9,6 +9,15 @@ import { formatOutgoing } from '../text.ts';
 export class ComposerController {
   constructor(private readonly auto: Automation) {}
 
+  async readDraft(): Promise<string> {
+    const names = ['Write your prompt to Claude', 'Message Claude', 'How can I help you today?', 'Reply to Claude...'];
+    for (const name of names) {
+      const value = await this.auto.uia.readValue(name);
+      if (value !== null) return value;
+    }
+    return '';
+  }
+
   async type(text: string): Promise<void> {
     this.auto.navigator.requireScreen('home', 'conversation', 'project');
 
@@ -34,18 +43,20 @@ export class ComposerController {
   async paste(text: string): Promise<void> {
     this.auto.navigator.requireScreen('home', 'conversation', 'project');
 
-    await this.auto.gateway.act(
-      async () => {
-        await this.auto.uia.clickByName('Write your prompt to Claude')
-          || await this.auto.uia.clickByName('How can I help you today?')
-          || await this.auto.uia.clickByName('Reply to Claude...');
-        await this.auto.keyboard.typeViaClipboard(text);
-      },
+    // Paste is NOT idempotent — each paste appends text.
+    // Do not use gateway.act() which retries on verification failure.
+    // Click the composer, paste once, verify once.
+    await this.auto.uia.clickByName('Write your prompt to Claude')
+      || await this.auto.uia.clickByName('How can I help you today?')
+      || await this.auto.uia.clickByName('Reply to Claude...');
+    await this.auto.keyboard.typeViaClipboard(text);
+
+    await this.auto.gateway.waitFor(
       async () => {
         return await this.auto.uia.existsByName('Send')
           || await this.auto.uia.existsByName('Send message');
       },
-      { description: `Paste "${text.slice(0, 40)}"` },
+      { description: `Verify paste "${text.slice(0, 40)}"`, timeoutMs: 10_000 },
     );
   }
 

@@ -31,9 +31,19 @@ After compaction, the next instance of me reads the state file, and the resumpti
 
 The title is the stable handle. The conversation ID is the verification. The title survives the sidebar; the ID survives URL changes. Between the two, I can find my way back to any thought in progress.
 
+## The perspective as scratchpad
+
+The raw response goes into my perspective directory, but that is not what I say to the team. The perspective entry is the intermediate step — working notes between response and communication. Three stages:
+
+**Evidence** — the raw response from Desktop. What was literally said. If Desktop's response shows signs of web research (citations, recent data, source references), that is noted here — it affects how much confidence the evidence carries.
+
+**Interpretation** — my annotations and evaluation. What I notice in the response. Where it addresses the original question and where it drifts. Claims I can verify against what the team knows. Claims that are unverifiable and need flagging. The interpretation is where the evaluation protocol from the [lifecycle](02-the-thought-lifecycle.md#5-evaluate) operates — the three questions (did it address this? substantive? consistent?) are answered here.
+
+**Conclusion** — what I decide to tell the team, and to whom. This is the deliberate step between receiving and sharing. Not every piece of the response matters to every teammate. The conclusion names the audience and the message. Sometimes the conclusion is "I need to follow up" — which sends the lifecycle back to formulate.
+
 ## The perspective entry format
 
-When a thought concludes, the result becomes a dated `.md` file in my perspective directory. The format is fixed so that any future reader — including a future me — can assess the knowledge without re-running the conversation:
+When a thought concludes, the result becomes a dated `.md` file in my perspective directory:
 
 ```markdown
 # Thought: [question summary]
@@ -41,14 +51,12 @@ When a thought concludes, the result becomes a dated `.md` file in my perspectiv
 - **conversation:** [title]
 - **verdict:** sufficient | partial | unproductive
 ---
-## Question
-[the formulated question]
-## Response summary
-[key points from the response]
-## Evaluation
-[my assessment — did it address the question? substantive? consistent?]
-## Follow-up
-[if any — what remains unanswered]
+## Evidence
+[raw response text or key excerpts — noting web-sourced vs training-sourced]
+## Interpretation
+[my evaluation — did it address the question? substantive? consistent? what do I notice?]
+## Conclusion
+[what I share with the team, and who needs to hear it]
 ```
 
 The verdict field is the quick-scan signal. Sufficient means the team can trust this entry as knowledge. Partial means the question was partly answered and the entry documents what was learned and what was not. Unproductive means the thinking failed — and that failure is itself knowledge worth keeping.
@@ -64,3 +72,7 @@ The pattern comes from the [sessions chapter](../reference-desk/03-04-operations
 This is not a new concept layered on top of sessions. It is sessions applied to thinking. The [code](04-the-code.md) implements both the serialization and the resume logic. If the state file exists when a thought begins, the thought is a resumption. If it does not, the thought is new. The file's presence is the branch point.
 
 The deepest risk is not losing state — JSON serialization handles that. The risk is losing judgment. The evaluation history in the state file records what I thought of prior exchanges so the next instance of me does not re-evaluate from scratch or, worse, evaluate with different standards. Consistency across compaction boundaries is why the history is stored, not just the latest verdict.
+
+## Project integration
+
+Claude Desktop has a "Claude" project — the canonical home for successful thought conversations. The workflow: start a new conversation (easier than navigating to a project first), think, get the response. On success, add the conversation to the Claude project through the sidebar's "Add to project" option. This integration is part of the conclude step — a thought that produced useful knowledge gets filed in the project alongside other successful interactions. The sidebar's project integration needs to be modeled in the [Reference Desk](../reference-desk/.cover.md) app model — the conversation sidebar has controls for adding to projects that the automation does not yet operate.
