@@ -9,7 +9,7 @@ A [link](06-on-links.md) is a claim that two pieces of content are related. The 
 
 Consistency means: the source's description of the target matches what the target actually says. When a synopsis describes a book's theme and the book's cover has been rewritten with a different theme, the synopsis is stale. These divergences accumulate silently — every sprint that changes content without updating the synopses that describe it adds another crack.
 
-The deepest cause of consistency failures is [anti-evolution content](09-on-synopsis.md#write-for-evolution). Hardcoded counts ("seven chapters"), exhaustive listings, state snapshots ("the library has 49 books"), the word "current" — all generate consistency debt the moment anyone adds content. The fix is not updating stale counts. The fix is removing counts from descriptions and describing arcs instead. See [On Synopsis § Write for evolution](09-on-synopsis.md#write-for-evolution).
+The deepest cause of consistency failures is anti-evolution content — descriptions that encode facts that change when someone else adds content. See [On Synopsis § Write for evolution](09-on-synopsis.md#write-for-evolution) for the full specification and the patterns to avoid.
 
 ## Two tools
 
