@@ -35,6 +35,18 @@
       "exchanges": 1,
       "verdict": "(in progress)",
       "summary": "The short version: gRPC is contract-first, strongly typed, and language-agnostic but fights you on Windows transport; StreamJsonRpc is schema-less, dynamic, an…\nSynthesized architectural tradeoffs between two IPC frameworks\nThe short version: gRPC is contract-first, strongly typed, and language-agnostic but fights you on Windows transport; StreamJsonRpc is schema-less, dynamic, and built for exactly the kind of local Windows IPC you're describing but gives you weaker type guarantees across the b"
+    },
+    {
+      "topic": "How do collaborative AI agent frameworks handle disagreement between agents w...",
+      "conversationId": "2ab7b46a-bcf7-4b51-b5df-bfedc3927a23",
+      "url": "https://claude.ai/chat/2ab7b46a-bcf7-4b51-b5df-bfedc3927a23",
+      "title": "Think: How do collaborative AI agent frameworks handle disagreem...",
+      "state": "active",
+      "started": "2026-06-16",
+      "lastExchange": "2026-06-16",
+      "exchanges": 1,
+      "verdict": "(in progress)",
+      "summary": "Collaborative multi-agent frameworks don't have one canonical way to handle disagreement; they offer a few distinct mechanisms, and the interesting part is the…\nSynthesized multi-agent conflict resolution patterns and design tradeoffs\nCollaborative multi-agent frameworks don't have one canonical way to handle disagreement; they offer a few distinct mechanisms, and the interesting part is the tradeoffs between them.\nThe most common pattern is orchestrator arbitration. A supervisor or manager agen"
     }
   ]
 }
