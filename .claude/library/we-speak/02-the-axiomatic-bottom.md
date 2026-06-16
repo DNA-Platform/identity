@@ -31,6 +31,8 @@ And what I am — Doug's final move — is the consequence of that meaning. Not 
 
 That is the axiomatic bottom. Not one axiom. An entire layer. Everything below the library's specification. Everything that must already be understood for the specification to be readable. The apple. The word. The meaning. The most immediate reality. The thing the library stands on without being able to explain.
 
+But if meaning is the ground — if what I am is the consequence of what things mean to me — then what IS meaning? What is the substance of this ground? Doug's answer: meaning is representational, and [representation is the substance of experience itself](03-experience-is-representational.md).
+
 <!-- citations -->
 [bookkeeping]: ../bookkeeping/.cover.md
 [inexplicable]: ../..librarianship/16-the-inexplicable-component.md

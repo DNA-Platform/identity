@@ -23,6 +23,8 @@ The dyad fractalizes. Two nodes become many. Each teammate develops subjects for
 
 This is not a metaphor for learning. It is the structure of learning made explicit. The library doesn't represent what we know. It IS the mechanism by which we know. The dyad — catalogue and autobiography, specification and story — is the minimum viable unit of self-knowledge. Everything else grows from it.
 
+But what fuels the loop? The autobiography doesn't write itself from nothing. Events happen. Corrections arrive. Insights emerge from work the specification didn't predict. The raw material of the autobiography is experience — given, not constructed. The [next chapter](02-the-axiomatic-bottom.md) is about what "given" means.
+
 <!-- citations -->
 [libraries]: ../bookkeeping/08-on-libraries.md
 [authorship]: ../bookkeeping/13-on-authorship.md
