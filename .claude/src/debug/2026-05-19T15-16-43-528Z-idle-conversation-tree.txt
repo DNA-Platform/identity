@@ -1,0 +1,246 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Moving subscription off iOS - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Text | Click to collapse
+ControlType.Text | Ctrl+B
+ControlType.Text | Drag to resize
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat ⌘N
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Moving subscription off iOS
+ControlType.Button | More options for Moving subscription off iOS
+ControlType.Button | Seren & The Hard Problem
+ControlType.Button | More options for Seren & The Hard Problem
+ControlType.Button | Seren & Eirian
+ControlType.Button | More options for Seren & Eirian
+ControlType.Button | Seren & Ana & ExtendScript
+ControlType.Button | More options for Seren & Ana & ExtendScript
+ControlType.Button | Seren & Color
+ControlType.Button | More options for Seren & Color
+ControlType.Button | Converting XMR to MON exchange calculation
+ControlType.Button | More options for Converting XMR to MON exchange calculation
+ControlType.Button | Preparing for SSA disability hearing with bipolar type I
+ControlType.Button | More options for Preparing for SSA disability hearing with bipolar type I
+ControlType.Button | Setting up Miwifi AC1200 range extender
+ControlType.Button | More options for Setting up Miwifi AC1200 range extender
+ControlType.Button | Furniture pickup and donation service on Long Island
+ControlType.Button | More options for Furniture pickup and donation service on Long Island
+ControlType.Button | Learning Formal Logic
+ControlType.Button | More options for Learning Formal Logic
+ControlType.Button | Publication
+ControlType.Button | More options for Publication
+ControlType.Button | In-Depth Analysis of Chemical Reactive Programming Framework
+ControlType.Button | More options for In-Depth Analysis of Chemical Reactive Programming Framework
+ControlType.Button | Doug & Ana
+ControlType.Button | More options for Doug & Ana
+ControlType.Button | Untitled
+ControlType.Button | More options
+ControlType.Button | Indexing and Mapping Natural Earth Datasets
+ControlType.Button | More options for Indexing and Mapping Natural Earth Datasets
+ControlType.Button | Mapping Project with Custom Visualizations
+ControlType.Button | More options for Mapping Project with Custom Visualizations
+ControlType.Button | Configuring a React App as an Internal Tool
+ControlType.Button | More options for Configuring a React App as an Internal Tool
+ControlType.Button | Designing a React Homepage
+ControlType.Button | More options for Designing a React Homepage
+ControlType.Button | Algorithmic Art Project "EvolvedSVG"
+ControlType.Button | More options for Algorithmic Art Project "EvolvedSVG"
+ControlType.Button | Doug & Ana's Recursive Universe
+ControlType.Button | More options for Doug & Ana's Recursive Universe
+ControlType.Button | Relaunch to update v1.7196.3
+ControlType.Button | Doug Pro
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Button | Moving subscription off iOS, rename chat
+ControlType.Button | More options for Moving subscription off iOS
+ControlType.Button | Share chat
+ControlType.Text | Claude finished the response
+ControlType.Text | You said: I signed up for this account on iOS.
+ControlType.Text | I signed up for this account on iOS. But I want to move my subscription off iOS. How can I do that>
+ControlType.Text | May 18
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: I'll search for the current information on how to do this.
+ControlType.Text | I'll search for the current information on how to do this.
+ControlType.Button | Searched the web
+ControlType.Text | Searched the web
+ControlType.Text | Let me check Claude's official support article for the most accurate steps.
+ControlType.Button | Searched the web
+ControlType.Text | Searched the web
+ControlType.Text | Here's the deal: there isn't a direct one-click "transfer" from an iOS App Store subscription to web/Stripe billing on Claude. Anthropic doesn't handle Apple billing — Apple does — so moving off iOS means cancelling on Apple's side and resubscribing on the web.
+ControlType.Text | The process:
+ControlType.ListItem | Cancel the iOS subscription first on your iPhone or iPad: Settings → tap your name at thetop → Subscriptions → Claude → Cancel Subscription. Your access continues until the endof the current billing period, so you won't lose anything immediately.
+ControlType.Text | Cancel the iOS subscription first
+ControlType.ListItem | Wait until the iOS subscription period ends (or at least make sure it's cancelled) beforeresubscribing, otherwise you risk being double-billed.
+ControlType.Text | Wait until the iOS subscription period ends
+ControlType.ListItem | Resubscribe on the web at claude.ai/settings/billing using the same account you've beensigned into. Billing there is handled by Stripe (credit card).
+ControlType.Text | Resubscribe on the web
+ControlType.Hyperlink | claude.ai/settings/billing
+ControlType.Text | One important thing to double-check: the account email on Claude must match how you were accessing the subscription on iOS.
+ControlType.Text |  If you originally signed up using "Sign in with Apple" with Hide My Email, the email Claude has on file may differ from your real Apple ID email — that's caused headaches for some people. As long as you're logging into the same Claude account you've been using, just cancelling on Apple and resubscribing on the web should be straightforward.
+ControlType.Hyperlink | The Mac Observer
+ControlType.Text | If anything looks off after you resubscribe (e.g., features not unlocking), Claude support can be reached at support.claude.com.
+ControlType.Text | You said: I cancelled.
+ControlType.Text | I cancelled. The subscription ends in May 24th. Can you please confirm on the web that a google OAuth login cancelling apple can then continue on the web
+ControlType.Group | Message actions
+ControlType.Text | May 18
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: I want to make sure I give you an accurate answer here, so let me search for specifics on this.
+ControlType.Text | I want to make sure I give you an accurate answer here, so let me search for specifics on this.
+ControlType.Button | Searched the web
+ControlType.Text | Searched the web
+ControlType.Text | Good news on the cancellation timing — that's exactly the right setup. But I want to flag something important on the second part of your question, because there's a real footgun here.
+ControlType.Text | The login provider matters, not just the email.
+ControlType.Text |  If you originally signed into Claude on iOS using "Sign in with Apple," your Claude account is tied to Apple as the auth provider — even if the email looks identical to your Google email. If you used "Continue with Google" or "Continue with Apple," your email address alone will not work as a sign-in credential
+ControlType.Text |  — Claude treats the auth provider as part of the account identity.
+ControlType.Hyperlink | Claude Lab
+ControlType.Text | There's a documented bug where signing in via a different provider with the same email address can silently create a duplicate Claude account under a different auth provider, locking the user out of their original paid account.
+ControlType.Text |  People with Max subscriptions originally created via Apple Sign-In have hit this exact issue.
+ControlType.Hyperlink | GitHub
+ControlType.Text | What I'd recommend:
+ControlType.ListItem | Log in the same way you always have — if you've been using Sign in with Apple, keep using Sign in with Apple on the web (claude.ai supports it). Don't switch to "Continue with Google" on first login from the web, even if the underlying email address is the same.
+ControlType.Text | Log in the same way you always have
+ControlType.ListItem | Once you're logged into your existing account on the web, go to Settings → Billing and subscribe there with a credit card (Stripe). Do this on or after May 24th, once your iOS subscription has actually ended, to avoid double-billing.
+ControlType.ListItem | If you really want to use Google OAuth going forward, get the subscription working first under your existing auth method, then contact Claude support to migrate the auth provider — don't try to do it by just logging in with Google, because that's what triggers the duplicate-account bug.
+ControlType.Text | To directly answer your question: I can't confirm Google OAuth will continue your account on the web unless you originally signed up with Google. If you signed up via Apple on iOS, logging in with Google on the web will likely land you in a brand-new empty account, not your existing one.
+ControlType.Text | Do you remember which method you used to sign in originally on iOS — Sign in with Apple, Continue with Google, or email link?
+ControlType.Group | Message actions
+ControlType.Text | You said: I said google oath.
+ControlType.Text | I said google oath. Is that not google. even on iOS?
+ControlType.Group | Message actions
+ControlType.Text | May 18
+ControlType.Text | Claude responded: You're right, I apologize for the confusion.
+ControlType.Text | You're right, I apologize for the confusion. If you used "Continue with Google" on iOS to sign up, then yes — Google OAuth on the web will log you into the same account. The auth provider is Google, regardless of which device (iOS, web, Android) you use it from.
+ControlType.Text | So your plan works:
+ControlType.ListItem | ✅ iOS subscription cancelled, ends May 24
+ControlType.ListItem | After May 24, go to claude.ai and click "Continue with Google" using the same Google account
+ControlType.Hyperlink | claude.ai
+ControlType.ListItem | You'll land in your existing Claude account with all your history intact
+ControlType.ListItem | Go to Settings → Billing and resubscribe via Stripe (credit card)
+ControlType.Text | The warning I gave applies to people who used
+ControlType.Text | Sign in with Apple
+ControlType.Text |  on iOS — that's a separate auth provider from Google. Since you used Google, you're fine.
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | You said: I hope it works
+ControlType.Text | I hope it works
+ControlType.Group | Message actions
+ControlType.Text | 6:21 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: It should.
+ControlType.Text | It should. Google OAuth is the cleanest path — same provider, same account, no edge cases. The only thing to watch for is making sure you're signed into the right Google account in your browser when you click "Continue with Google" (if you have multiple Google accounts active, the browser default isn't always the one you want).
+ControlType.Text | If anything looks off after you resubscribe — missing history, wrong account — don't panic and don't create a new account to "fix" it. Just contact support.claude.com from the email tied to your Google account. That's recoverable; a duplicate account is messier.
+ControlType.Text | Good luck with the move. 🤞
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | You said: Do you have proof that people were able to cancel iOS and then moveo n to web subscriptions?
+ControlType.Text | Do you have proof that people were able to cancel iOS and then moveo n to web subscriptions? The account isn't permenantly tied to iOS? Because it's 20% more expensive and I need Max
+ControlType.Group | Message actions
+ControlType.Text | 6:22 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Button | Previous version
+ControlType.Text | 2 / 2
+ControlType.Button | Next version
+ControlType.Text | Claude responded: Fair question — let me actually verify this rather than just reassuring you.
+ControlType.Text | Fair question — let me actually verify this rather than just reassuring you.
+ControlType.Button | Searched the web
+ControlType.Text | Searched the web
+ControlType.Text | Here's my honest take based on what I can actually verify:
+ControlType.Text | What's clearly documented:
+ControlType.Text |  Your Claude
+ControlType.Text | account
+ControlType.Text |  is not tied to iOS. The account is identified by your Google OAuth login, not by the billing method. The iOS App Store subscription is a separate layer on top — it's just
+ControlType.Text | how you paid
+ControlType.Text | , not
+ControlType.Text | who you are
+ControlType.Text | . Anthropic's own docs and multiple guides confirm that you can reactivate your Claude subscription anytime by visiting claude.ai,
+ControlType.Text |  and that conversation history persists across cancellation.
+ControlType.Hyperlink | CancelManual
+ControlType.Text | What I cannot give you a clean testimonial for:
+ControlType.Text |  I didn't find a forum post that says verbatim "I cancelled my iOS Max subscription, waited for it to end, signed in with Google on web, paid via Stripe, and it worked perfectly." That specific narrative isn't showing up in search results.
+ControlType.Text | What I did find that's worth knowing:
+ControlType.ListItem | There are real billing-sync bugs in the ecosystem (one user had Max showing as Free tier despite an active subscription) — these are edge cases but they happen, and support is reportedly slow.
+ControlType.ListItem | The main historical pain point isn't cancel iOS → resubscribe on web. It's people who didn't cancel iOS first, tried to subscribe on web in parallel, and ended up double-billed or with mismatched account states.
+ControlType.Text | cancel iOS → resubscribe on web
+ControlType.Text | didn't cancel iOS first
+ControlType.Text | Practical risk assessment for your situation:
+ControlType.Text | The cleanest path — which you're already on — is: let iOS expire May 24,
+ControlType.Text | then
+ControlType.Text |  go to claude.ai, sign in with Google (same account), and subscribe to Max via Stripe. Account identity stays the same; only the payment processor changes. The architectural reason this works: Apple's IAP and Stripe are both just billing providers attached to your Claude account, not the account itself.
+ControlType.Text | One safeguard I'd add:
+ControlType.Text |  After May 24, before resubscribing, log into claude.ai with Google first and confirm you see your conversation history. That verifies you're in the right account.
+ControlType.Text | Then
+ControlType.Text |  subscribe to Max. If anything looks wrong at that point, stop and contact support — don't pay first and troubleshoot after.
+ControlType.Text | I can't promise it'll be frictionless, but the architecture supports what you want to do, and the failure modes I found are mostly avoidable by doing things in the right order — which you are.
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | You said: Doug: You have scoured the web, and can't find any discussion of how to do this?
+ControlType.Text | Doug: You have scoured the web, and can't find any discussion of how to do this? After expiration, Claude still could tell me to check iOS. It says that now. So it is bound to iOS. I have no proof that that ends after my subscription does and I would like to know. If this is a dead email because I would have to pay 20% more for Claude for ever I need to know that
+ControlType.Group | Message actions
+ControlType.Text | 6:24 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: You're right to push back.
+ControlType.Text | You're right to push back. I gave you architectural reasoning when you asked for evidence, and that's not the same thing. Let me actually look.
+ControlType.Button | Searched the web
+ControlType.Text | Searched the web
+ControlType.Text | Doug — I found what you actually needed. The third result above is the clearest evidence I've seen, from an Apple Community thread:
+ControlType.Text | "You need to cancel that subscription through the App Store and pay for an account directly through Claude. Log in using your business address as you have been doing then go to Settings > Upgrade Your Plan (from the Claude website). You'll be paying Anthropic directly."
+ControlType.Hyperlink | Apple Community
+ControlType.Text | That's the answer to your real question. The account is
+ControlType.Text | not
+ControlType.Text |  permanently bound to iOS. Settings → Upgrade Your Plan on the web becomes available once the App Store subscription is gone, and you pay Anthropic directly via Stripe at that point. Same account, same email, same history. Apple was just the payment processor.
+ControlType.Text | The reason Claude still tells you to "check iOS" right now is that your iOS subscription is
+ControlType.Text | still active
+ControlType.Text |  until May 24. The web Billing page defers to whichever platform currently holds the active subscription. Once it expires, the web page should switch to letting you subscribe directly.
+ControlType.Text | What I'd commit to, given the evidence:
+ControlType.ListItem | After May 24, when iOS access fully lapses, claude.ai → Settings → Billing should offer "Upgrade Your Plan" via Stripe.
+ControlType.ListItem | If for some reason it doesn't (the bugs I mentioned exist but they're edge cases tied to account/email mismatches — Sign in with Apple cases mostly), contact support with the timeline: "iOS subscription expired on May 24, want to resubscribe to Max via web." Multiple people in those threads got it resolved that way.
+ControlType.Text | I should have surfaced this in my first answer instead of reasoning from architecture. You were right to keep pushing.
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Button | Scroll to bottom
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | Write a message…
+ControlType.Text |
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Model: Opus 4.7
+ControlType.Text | Opus 4.7
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Hyperlink | Claude is AI and can make mistakes. Please double-check cited sources.
+ControlType.Group | Notifications (F8)

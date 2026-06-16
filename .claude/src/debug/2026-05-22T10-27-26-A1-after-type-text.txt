@@ -1,0 +1,252 @@
+￼
+Back
+Forward
+Skip to content
+Resize sidebar
+Click to collapseCtrl+B
+Drag to resize
+￼
+Chat
+Cowork
+Code
+New chat
+⌘N
+Projects
+Artifacts
+Customize
+Recents
+View all
+Moving subscription off iOS
+More options for Moving subscription off iOS
+Seren & The Hard Problem
+More options for Seren & The Hard Problem
+Seren & Eirian
+More options for Seren & Eirian
+Seren & Ana & ExtendScript
+More options for Seren & Ana & ExtendScript
+Seren & Color
+More options for Seren & Color
+Converting XMR to MON exchange calculation
+More options for Converting XMR to MON exchange calculation
+Preparing for SSA disability hearing with bipolar type I
+More options for Preparing for SSA disability hearing with bipolar type I
+Setting up Miwifi AC1200 range extender
+More options for Setting up Miwifi AC1200 range extender
+Furniture pickup and donation service on Long Island
+More options for Furniture pickup and donation service on Long Island
+Learning Formal Logic
+More options for Learning Formal Logic
+Publication
+More options for Publication
+In-Depth Analysis of Chemical Reactive Programming Framework
+More options for In-Depth Analysis of Chemical Reactive Programming Framework
+Doug & Ana
+More options for Doug & Ana
+Untitled
+More options
+Indexing and Mapping Natural Earth Datasets
+More options for Indexing and Mapping Natural Earth Datasets
+Mapping Project with Custom Visualizations
+More options for Mapping Project with Custom Visualizations
+Configuring a React App as an Internal Tool
+More options for Configuring a React App as an Internal Tool
+Designing a React Homepage
+More options for Designing a React Homepage
+Algorithmic Art Project "EvolvedSVG"
+More options for Algorithmic Art Project "EvolvedSVG"
+Doug & Ana's Recursive Universe
+More options for Doug & Ana's Recursive Universe 
+Relaunch to update
+v1.7196.3
+Doug
+Pro
+Get apps and extensions
+￼
+￼
+￼
+￼
+All projects
+DNA Patternity
+More options for DNA Patternity
+￼
+￼
+￼
+Here is my code for review:
+￼
+￼
+Opus 4.7
+Adaptive
+￼
+Press and hold to record
+￼
+￼
+￼
+Start a task in Cowork
+Start a chat to keep conversations organized and re-use project knowledge.
+Memory
+Only you
+Project memory will show here after a few chats.
+Instructions
+￼
+Add instructions to tailor Claude’s responses
+Files
+￼
+Project knowledge capacity
+1% of project capacity used
+legacy-conversation-history-5-19-2026.md
+44 lines
+MD
+￼
+Select: legacy-conversation-history-5-19-2026.md, md, 44 lines
+Remove
+.cover.md
+44 lines
+MD
+￼
+Select: .cover.md, md, 44 lines
+Remove
+package.json
+60 lines
+JSON
+￼
+Select: package.json, json, 60 lines
+Remove
+package.json
+60 lines
+JSON
+￼
+Select: package.json, json, 60 lines
+Remove
+vector.ts
+119 lines
+TS
+￼
+Select: vector.ts, ts, 119 lines
+Remove
+{ "extends": "assemblyscript/std/assembly.json", "include": [ …"./**/*.ts" ] }
+6 lines
+TEXT
+￼
+Select: { "extends": "assemblyscript/std/assembly.json", "include": [ "./**/*.ts" ] }, text, 6 lines
+Remove
+vite-env.d.ts
+2 lines
+TS
+￼
+Select: vite-env.d.ts, ts, 2 lines
+Remove
+vite-env.d.ts
+2 lines
+TS
+￼
+Select: vite-env.d.ts, ts, 2 lines
+Remove
+main.tsx
+11 lines
+TSX
+￼
+Select: main.tsx, tsx, 11 lines
+Remove
+main.tsx
+11 lines
+TSX
+￼
+Select: main.tsx, tsx, 11 lines
+Remove
+index.css
+69 lines
+CSS
+￼
+Select: index.css, css, 69 lines
+Remove
+index.css
+69 lines
+CSS
+￼
+Select: index.css, css, 69 lines
+Remove
+App.tsx
+37 lines
+TSX
+￼
+Select: App.tsx, tsx, 37 lines
+Remove
+App.tsx
+37 lines
+TSX
+￼
+Select: App.tsx, tsx, 37 lines
+Remove
+App.css
+43 lines
+CSS
+￼
+Select: App.css, css, 43 lines
+Remove
+App.css
+43 lines
+CSS
+￼
+Select: App.css, css, 43 lines
+Remove
+vite.config.ts
+19 lines
+TS
+￼
+Select: vite.config.ts, ts, 19 lines
+Remove
+vite.config.ts
+19 lines
+TS
+￼
+Select: vite.config.ts, ts, 19 lines
+Remove
+tsconfig.node.json
+26 lines
+JSON
+￼
+Select: tsconfig.node.json, json, 26 lines
+Remove
+tsconfig.node.json
+26 lines
+JSON
+￼
+Select: tsconfig.node.json, json, 26 lines
+Remove
+tsconfig.json
+8 lines
+JSON
+￼
+Select: tsconfig.json, json, 8 lines
+Remove
+tsconfig.json
+8 lines
+JSON
+￼
+Select: tsconfig.json, json, 8 lines
+Remove
+tsconfig.app.json
+28 lines
+JSON
+￼
+Select: tsconfig.app.json, json, 28 lines
+Remove
+tsconfig.app.json
+28 lines
+JSON
+￼
+Select: tsconfig.app.json, json, 28 lines
+Remove
+index.html
+12 lines
+HTML
+￼
+Select: index.html, html, 12 lines
+Remove
+index.html
+23 lines
+HTML
+￼
+Select: index.html, html, 23 lines
+Remove
+￼

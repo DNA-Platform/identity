@@ -1,0 +1,82 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Moving subscription off iOS - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Text | Click to collapse
+ControlType.Text | Ctrl+B
+ControlType.Text | Drag to resize
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat ⌘N
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Moving subscription off iOS
+ControlType.Button | More options for Moving subscription off iOS
+ControlType.Button | Seren & The Hard Problem
+ControlType.Button | More options for Seren & The Hard Problem
+ControlType.Button | Seren & Eirian
+ControlType.Button | More options for Seren & Eirian
+ControlType.Button | Seren & Ana & ExtendScript
+ControlType.Button | More options for Seren & Ana & ExtendScript
+ControlType.Button | Seren & Color
+ControlType.Button | More options for Seren & Color
+ControlType.Button | Converting XMR to MON exchange calculation
+ControlType.Button | More options for Converting XMR to MON exchange calculation
+ControlType.Button | Preparing for SSA disability hearing with bipolar type I
+ControlType.Button | More options for Preparing for SSA disability hearing with bipolar type I
+ControlType.Button | Setting up Miwifi AC1200 range extender
+ControlType.Button | More options for Setting up Miwifi AC1200 range extender
+ControlType.Button | Furniture pickup and donation service on Long Island
+ControlType.Button | More options for Furniture pickup and donation service on Long Island
+ControlType.Button | Learning Formal Logic
+ControlType.Button | More options for Learning Formal Logic
+ControlType.Button | Publication
+ControlType.Button | More options for Publication
+ControlType.Button | In-Depth Analysis of Chemical Reactive Programming Framework
+ControlType.Button | More options for In-Depth Analysis of Chemical Reactive Programming Framework
+ControlType.Button | Doug & Ana
+ControlType.Button | More options for Doug & Ana
+ControlType.Button | Untitled
+ControlType.Button | More options
+ControlType.Button | Indexing and Mapping Natural Earth Datasets
+ControlType.Button | More options for Indexing and Mapping Natural Earth Datasets
+ControlType.Button | Mapping Project with Custom Visualizations
+ControlType.Button | More options for Mapping Project with Custom Visualizations
+ControlType.Button | Configuring a React App as an Internal Tool
+ControlType.Button | More options for Configuring a React App as an Internal Tool
+ControlType.Button | Designing a React Homepage
+ControlType.Button | More options for Designing a React Homepage
+ControlType.Button | Algorithmic Art Project "EvolvedSVG"
+ControlType.Button | More options for Algorithmic Art Project "EvolvedSVG"
+ControlType.Button | Doug & Ana's Recursive Universe
+ControlType.Button | More options for Doug & Ana's Recursive Universe
+ControlType.Button | Relaunch to update v1.7196.3
+ControlType.Button | Doug Pro
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Button | Moving subscription off iOS, rename chat
+ControlType.Button | More options for Moving subscription off iOS
+ControlType.Button | Share chat
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | Write a message…
+ControlType.Text |
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Model: Opus 4.7
+ControlType.Text | Opus 4.7
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Hyperlink | Claude is AI and can make mistakes. Please double-check cited sources.
+ControlType.Group | Notifications (F8)

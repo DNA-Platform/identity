@@ -1,0 +1,199 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Text | Click to collapse
+ControlType.Text | Ctrl+B
+ControlType.Text | Drag to resize
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat ⌘N
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Moving subscription off iOS
+ControlType.Button | More options for Moving subscription off iOS
+ControlType.Button | Seren & The Hard Problem
+ControlType.Button | More options for Seren & The Hard Problem
+ControlType.Button | Seren & Eirian
+ControlType.Button | More options for Seren & Eirian
+ControlType.Button | Seren & Ana & ExtendScript
+ControlType.Button | More options for Seren & Ana & ExtendScript
+ControlType.Button | Seren & Color
+ControlType.Button | More options for Seren & Color
+ControlType.Button | Converting XMR to MON exchange calculation
+ControlType.Button | More options for Converting XMR to MON exchange calculation
+ControlType.Button | Preparing for SSA disability hearing with bipolar type I
+ControlType.Button | More options for Preparing for SSA disability hearing with bipolar type I
+ControlType.Button | Setting up Miwifi AC1200 range extender
+ControlType.Button | More options for Setting up Miwifi AC1200 range extender
+ControlType.Button | Furniture pickup and donation service on Long Island
+ControlType.Button | More options for Furniture pickup and donation service on Long Island
+ControlType.Button | Learning Formal Logic
+ControlType.Button | More options for Learning Formal Logic
+ControlType.Button | Publication
+ControlType.Button | More options for Publication
+ControlType.Button | In-Depth Analysis of Chemical Reactive Programming Framework
+ControlType.Button | More options for In-Depth Analysis of Chemical Reactive Programming Framework
+ControlType.Button | Doug & Ana
+ControlType.Button | More options for Doug & Ana
+ControlType.Button | Untitled
+ControlType.Button | More options
+ControlType.Button | Indexing and Mapping Natural Earth Datasets
+ControlType.Button | More options for Indexing and Mapping Natural Earth Datasets
+ControlType.Button | Mapping Project with Custom Visualizations
+ControlType.Button | More options for Mapping Project with Custom Visualizations
+ControlType.Button | Configuring a React App as an Internal Tool
+ControlType.Button | More options for Configuring a React App as an Internal Tool
+ControlType.Button | Designing a React Homepage
+ControlType.Button | More options for Designing a React Homepage
+ControlType.Button | Algorithmic Art Project "EvolvedSVG"
+ControlType.Button | More options for Algorithmic Art Project "EvolvedSVG"
+ControlType.Button | Doug & Ana's Recursive Universe
+ControlType.Button | More options for Doug & Ana's Recursive Universe
+ControlType.Button | Relaunch to update v1.7196.3
+ControlType.Button | Doug Pro
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Hyperlink | All projects
+ControlType.Text | DNA Patternity
+ControlType.Button | More options for DNA Patternity
+ControlType.Button | Pin project
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | Here is my code for review:
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Model: Opus 4.7 Adaptive
+ControlType.Text | Opus 4.7
+ControlType.Text | Adaptive
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Button | Send message
+ControlType.Button | Start a task in Cowork
+ControlType.Text | Start a chat to keep conversations organized and re-use project knowledge.
+ControlType.Text | Memory
+ControlType.Text | Only you
+ControlType.Text | Project memory will show here after a few chats.
+ControlType.Text | Instructions
+ControlType.Button | Edit Instructions
+ControlType.Text | Add instructions to tailor Claude’s responses
+ControlType.Text | Files
+ControlType.Button | Add files
+ControlType.ProgressBar | Project knowledge capacity
+ControlType.Text | 1% of project capacity used
+ControlType.Button | legacy-conversation-history-5-19-2026.md, md, 44 lines
+ControlType.Text | legacy-conversation-history-5-19-2026.md
+ControlType.CheckBox | Select: legacy-conversation-history-5-19-2026.md, md, 44 lines
+ControlType.Button | Remove
+ControlType.Button | .cover.md, md, 44 lines
+ControlType.Text | .cover.md
+ControlType.CheckBox | Select: .cover.md, md, 44 lines
+ControlType.Button | Remove
+ControlType.Button | package.json, json, 60 lines
+ControlType.Text | package.json
+ControlType.CheckBox | Select: package.json, json, 60 lines
+ControlType.Button | Remove
+ControlType.Button | package.json, json, 60 lines
+ControlType.Text | package.json
+ControlType.CheckBox | Select: package.json, json, 60 lines
+ControlType.Button | Remove
+ControlType.Button | vector.ts, ts, 119 lines
+ControlType.Text | vector.ts
+ControlType.CheckBox | Select: vector.ts, ts, 119 lines
+ControlType.Button | Remove
+ControlType.Button | { "extends": "assemblyscript/std/assembly.json", "include": [ "./**/*.ts" ] }, text, 6 lines
+ControlType.Text | { "extends": "assemblyscript/std/assembly.json", "include": [ "./**/*.ts" ] }
+ControlType.CheckBox | Select: { "extends": "assemblyscript/std/assembly.json", "include": [ "./**/*.ts" ] }, text, 6 lines
+ControlType.Button | Remove
+ControlType.Button | vite-env.d.ts, ts, 2 lines
+ControlType.Text | vite-env.d.ts
+ControlType.CheckBox | Select: vite-env.d.ts, ts, 2 lines
+ControlType.Button | Remove
+ControlType.Button | vite-env.d.ts, ts, 2 lines
+ControlType.Text | vite-env.d.ts
+ControlType.CheckBox | Select: vite-env.d.ts, ts, 2 lines
+ControlType.Button | Remove
+ControlType.Button | main.tsx, tsx, 11 lines
+ControlType.Text | main.tsx
+ControlType.CheckBox | Select: main.tsx, tsx, 11 lines
+ControlType.Button | Remove
+ControlType.Button | main.tsx, tsx, 11 lines
+ControlType.Text | main.tsx
+ControlType.CheckBox | Select: main.tsx, tsx, 11 lines
+ControlType.Button | Remove
+ControlType.Button | index.css, css, 69 lines
+ControlType.Text | index.css
+ControlType.CheckBox | Select: index.css, css, 69 lines
+ControlType.Button | Remove
+ControlType.Button | index.css, css, 69 lines
+ControlType.Text | index.css
+ControlType.CheckBox | Select: index.css, css, 69 lines
+ControlType.Button | Remove
+ControlType.Button | App.tsx, tsx, 37 lines
+ControlType.Text | App.tsx
+ControlType.CheckBox | Select: App.tsx, tsx, 37 lines
+ControlType.Button | Remove
+ControlType.Button | App.tsx, tsx, 37 lines
+ControlType.Text | App.tsx
+ControlType.CheckBox | Select: App.tsx, tsx, 37 lines
+ControlType.Button | Remove
+ControlType.Button | App.css, css, 43 lines
+ControlType.Text | App.css
+ControlType.CheckBox | Select: App.css, css, 43 lines
+ControlType.Button | Remove
+ControlType.Button | App.css, css, 43 lines
+ControlType.Text | App.css
+ControlType.CheckBox | Select: App.css, css, 43 lines
+ControlType.Button | Remove
+ControlType.Button | vite.config.ts, ts, 19 lines
+ControlType.Text | vite.config.ts
+ControlType.CheckBox | Select: vite.config.ts, ts, 19 lines
+ControlType.Button | Remove
+ControlType.Button | vite.config.ts, ts, 19 lines
+ControlType.Text | vite.config.ts
+ControlType.CheckBox | Select: vite.config.ts, ts, 19 lines
+ControlType.Button | Remove
+ControlType.Button | tsconfig.node.json, json, 26 lines
+ControlType.Text | tsconfig.node.json
+ControlType.CheckBox | Select: tsconfig.node.json, json, 26 lines
+ControlType.Button | Remove
+ControlType.Button | tsconfig.node.json, json, 26 lines
+ControlType.Text | tsconfig.node.json
+ControlType.CheckBox | Select: tsconfig.node.json, json, 26 lines
+ControlType.Button | Remove
+ControlType.Button | tsconfig.json, json, 8 lines
+ControlType.Text | tsconfig.json
+ControlType.CheckBox | Select: tsconfig.json, json, 8 lines
+ControlType.Button | Remove
+ControlType.Button | tsconfig.json, json, 8 lines
+ControlType.Text | tsconfig.json
+ControlType.CheckBox | Select: tsconfig.json, json, 8 lines
+ControlType.Button | Remove
+ControlType.Button | tsconfig.app.json, json, 28 lines
+ControlType.Text | tsconfig.app.json
+ControlType.CheckBox | Select: tsconfig.app.json, json, 28 lines
+ControlType.Button | Remove
+ControlType.Button | tsconfig.app.json, json, 28 lines
+ControlType.Text | tsconfig.app.json
+ControlType.CheckBox | Select: tsconfig.app.json, json, 28 lines
+ControlType.Button | Remove
+ControlType.Button | index.html, html, 12 lines
+ControlType.Text | index.html
+ControlType.CheckBox | Select: index.html, html, 12 lines
+ControlType.Button | Remove
+ControlType.Button | index.html, html, 23 lines
+ControlType.Text | index.html
+ControlType.CheckBox | Select: index.html, html, 23 lines
+ControlType.Button | Remove
+ControlType.Group | Notifications (F8)
