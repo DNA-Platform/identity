@@ -33,9 +33,11 @@ Run a retrospective. A retro is where the team stops building and starts tending
 
 6. **Capture decisions.** If the discussion produces decisions — a new protocol, a specification change, a structural insight — write them into the library. The retro produces artifacts, not just conversation.
 
-7. **Record the retro.** Write a `retro.md` in the sprint's [Projection](../../library/projection/.cover.md) directory (e.g., `projection/sprint-65/retro.md`). This is the sprint's record of what was learned. Keep it short — the decisions and insights, not a transcript of the discussion. Link to any library changes the retro produced.
+7. **Update the Projection cover.** The sprint that just closed is a chapter in a [Projection](../../library/.projection/.cover.md) book. Add it to the book's [cover](../../library/bookkeeping/03-on-covers.md) TOC with a synopsis — per [On Synopsis](../../library/bookkeeping/09-on-synopsis.md), each entry describes what the sprint accomplished, not just its title. A bare TOC entry is a directory listing. Per the [sprint chapter convention](../../library/bookkeeping/02-on-chapters.md#sprint-chapters), name the chapter file `NN-sprint-XX--title.md`.
 
-8. **Sync.** Run the compilers, validate, sync to the identity repo.
+8. **Record the retro.** The retro itself can be a section at the end of the sprint chapter, or a separate document. Keep it short — decisions and insights, not a transcript. Link to library changes the retro produced.
+
+9. **Sync.** Run the compilers, validate, sync to the identity repo.
 
 ## When to retro
 
