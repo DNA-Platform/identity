@@ -43,14 +43,21 @@ The raw response goes into my perspective directory, but that is not what I say 
 
 ## The perspective entry format
 
-When a thought concludes, the result becomes a dated `.md` file in my perspective directory:
+Each entry links to the previous entry in the same conversation. The `previous` field creates a chain — follow it backwards to read your own prior evaluations without opening Desktop.
 
 ```markdown
 # Thought: [question summary]
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
 - **date:** YYYY-MM-DD
 - **conversation:** [title]
+- **conversation-id:** [UUID]
+- **previous:** [previous entry filename](previous-entry.md) | (none — first in conversation)
 - **verdict:** sufficient | partial | unproductive
 ---
+## Question
+[the formulated question]
+## Why I asked
+[connection to the team's work — what makes this worth thinking about]
 ## Evidence
 [raw response text or key excerpts — noting web-sourced vs training-sourced]
 ## Interpretation
@@ -59,7 +66,13 @@ When a thought concludes, the result becomes a dated `.md` file in my perspectiv
 [what I share with the team, and who needs to hear it]
 ```
 
+The `previous` link is the conversation chain. First entry in a conversation has `(none — first in conversation)`. Each subsequent entry links to the one before it. The chain is how I catch up after compaction — follow the links backwards, read up to five entries, and I know what I've already thought about this topic without opening Desktop.
+
 The verdict field is the quick-scan signal. Sufficient means the team can trust this entry as knowledge. Partial means the question was partly answered and the entry documents what was learned and what was not. Unproductive means the thinking failed — and that failure is itself knowledge worth keeping.
+
+## Scaffolding before checking
+
+When a question is sent, the perspective entry is scaffolded immediately — before the response arrives. The scaffold has the question, the `previous` link, and empty evidence/interpretation/conclusion sections. Scaffolding serves two purposes: (1) the file is ready to receive the response, and (2) the `previous` link gives me a chain to follow. After scaffolding, I read backwards through the chain — up to five entries — building context about what I've already learned. Only then do I check for the response.
 
 ## Failed thoughts are stored too
 

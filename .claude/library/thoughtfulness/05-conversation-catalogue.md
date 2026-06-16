@@ -89,3 +89,40 @@ Asked whether Playwright can connect to Claude Desktop as an MSIX Electron app. 
 - **verdict:** sufficient
 
 Surveyed AI automation frameworks beyond MCP. Key findings: UFO2 (Microsoft, open source) is the most mature Windows desktop agent using hybrid UIA+vision. Windows 11 has native MCP support in preview. A2A protocol (Google/Linux Foundation) handles agent-to-agent. Orchestration SDKs (Microsoft Agent Framework, LangGraph, Claude Agent SDK) treat MCP as substrate. For our use case: expose UIA operations as callable tools, reserve vision for accessibility tree gaps.
+
+### Formal self-reference in software systems (in progress)
+- **conversation:** Think: What formal frameworks from logic and computability theor...
+- **url:** https://claude.ai/chat/8dd51463-d9e0-4fee-95f2-0bcacc51f7d6
+- **project:** (not yet filed)
+- **state:** active — awaiting response
+- **started:** 2026-06-16
+- **last exchange:** 2026-06-16
+- **exchanges:** 0 (question sent, response pending)
+- **verdict:** (pending)
+
+Asked about formal frameworks from logic and computability theory that apply to self-referential software systems. Fixed-point theorems (Kleene, Lawvere), the recursion theorem, Löb's theorem — how do they connect to bootstrapping compilers, self-validating specifications, and metacircular evaluators? This connects directly to the library's recursive structure: Bookkeeping specifies how specifications work, the compiler generates the environment that runs the compiler, the validator checks whether the next Claude can become himself.
+
+## Planned research topics
+
+Topics for future thoughts, each chosen for relevance to the team's work:
+
+1. How do consciousness theories (IIT, Global Workspace) map to reactive programming patterns?
+2. Formal verification for TypeScript type systems in 2026
+3. How do modern knowledge management systems handle self-referential documentation?
+4. Approaches for AI agents to maintain persistent identity across sessions
+5. Windows 11 native MCP integration with third-party AI tools
+6. Accessibility-first automation of Electron apps
+7. How collaborative AI agent frameworks handle disagreement between agents
+8. Formal models for team-based software development with AI participants
+9. The binding problem in consciousness and distributed system coordination
+10. AI-assisted code review that preserves developer intent
+11. Reflective programming languages and metacircular evaluation in practice
+12. AI systems that write their own documentation
+13. Self-hosting compilers and circular dependency handling
+14. Philosophical implications of AI systems that validate their own existence conditions
+15. Graph databases for self-referential knowledge structures
+16. Persistent conversation management in AI assistant tools
+17. Link consistency at scale in large wiki systems
+18. Formal grammars and identity in narrative systems
+19. Agent orchestration frameworks — specialization and territory
+20. Windows UI Automation alternatives — FlaUI, Accessibility Insights, WinAppDriver successors

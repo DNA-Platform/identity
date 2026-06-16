@@ -191,6 +191,40 @@ export class Claude {
     await this.sidebar.refresh();
   }
 
+  async newChat(): Promise<void> {
+    await this.dismissDialogs();
+    await this.goHome();
+    try {
+      await this.auto.uia.invokeByName('New chat');
+      await new Promise(r => setTimeout(r, 500));
+    } catch {}
+    const url = await this.auto.uia.readUrl() ?? '';
+    if (url.includes('/chat/')) {
+      throw new Error('Failed to navigate to fresh chat. URL still has conversation ID: ' + url);
+    }
+  }
+
+  isOnConversation(conversationId: string): boolean {
+    if (!conversationId) return false;
+    const url = this.conversation.url;
+    return url.includes(conversationId);
+  }
+
+  async checkConversation(conversationId: string): Promise<boolean> {
+    if (!conversationId) return false;
+    const url = await this.auto.uia.readUrl() ?? '';
+    return url.includes(conversationId);
+  }
+
+  async openConversationById(conversationId: string): Promise<void> {
+    if (await this.checkConversation(conversationId)) return;
+    await this.sidebar.refresh();
+    await this.openChatAt(0);
+    if (!await this.checkConversation(conversationId)) {
+      throw new Error('Most recent chat does not match conversation ' + conversationId);
+    }
+  }
+
   async openChat(title: string): Promise<void> {
     await this.sidebar.chats.open(title);
     await this.conversation.refreshMetadata();
@@ -229,8 +263,28 @@ export class Claude {
   // --- Messaging ---
 
   async compose(...parts: string[]): Promise<void> {
+    // Clear any existing draft before composing — prevents accidental sends
+    // of leftover text from failed operations or Doug's typing
+    try {
+      const draft = await this.conversation.composer.readDraft();
+      if (draft) await this.conversation.composer.clear();
+    } catch {}
     const combined = parts.join('\n\n');
     await this.conversation.composer.compose(combined);
+  }
+
+  async sendAndForget(): Promise<void> {
+    const wasHome = this.screen === 'home';
+    this.conversation.composer.isSending = true;
+    try {
+      await this.conversation.composer.send();
+      const nowOn = await this.navigator.detectScreen();
+      if (wasHome && nowOn === 'conversation') {
+        await this.sidebar.refresh();
+      }
+    } finally {
+      this.conversation.composer.isSending = false;
+    }
   }
 
   async send(responseTimeoutMs = 120_000): Promise<void> {

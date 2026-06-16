@@ -24,35 +24,95 @@ The pause is the natural moment for [tending](../teamspeak/06-tending.md). While
 
 Check back with `read` mode after tending. If the response is ready, read it. If not, tend some more. The thinking system and the library system breathe together.
 
-## Steps
+## The write/check/read checklist
 
-1. **Check for a thought in progress.** Read my perspective directory at `.claude/library/..teamsmanship/..team/claude/.perspective/` for a `thought-state.json` file. If one exists, a thought is in progress — resume it. If not, this is a new thought.
+Use TodoWrite to create this checklist. Each step is a separate tool call. **NEVER skip steps. NEVER chain write→check.**
 
-2. **Formulate the question.** If `$ARGUMENTS` contains a question, use it. Otherwise, ask Doug what to think about. Apply the factorization principle: strip team-specific framing, replace internal names with domain descriptions, keep the question self-contained. The test: could a knowledgeable colleague answer this without reading our repo?
+### The checklist
 
-3. **Dispatch.** Start a new conversation in Desktop (easier than navigating to a project first). Send the question. Minimize immediately — Doug's computer is not mine.
+```
+[ ] 1. WRITE — send the question (run_in_background). Returns immediately.
+[ ] 2. SCAFFOLD — update perspective cover with conversation ID. Create entry file 
+      with: what I asked and why, what I expect, what I already know. Link to 
+      previous entry if this conversation has one.
+[ ] 3. CATCH UP — follow the previous-link chain back up to 5 entries. Reread my 
+      own prior evaluations in this conversation.
+[ ] 4. CHECK LOOP — check if Desktop responded. If not ready, tend the library 
+      (fix a link, edit a synopsis, read a chapter), then check again. 
+      Max 5 checks.
+[ ] 5. READ — the response arrived. Paste it into the Evidence section of the entry.
+[ ] 6. INTERPRET — write the Interpretation section. What aligns, what surprises, 
+      what's new.
+[ ] 7. CONCLUDE — write the Conclusion section. What to tell the team, and whom.
+```
 
-4. **Wait and read.** The [gateway](../reference-desk/02-02-the-architecture--gateway.md) polls with tapering backoff until the response completes. Read the response. Desktop may answer from training or perform web research — the response sometimes shows signs of research in its thinking trace (citations, recent data, explicit search references). Note which mode the response came from; it affects confidence.
+### Step 1: Write
 
-5. **Evaluate.** I assess the response per the [evaluation protocol](../thoughtfulness/02-the-thought-lifecycle.md#5-evaluate):
-   - Did it address the actual question, or a nearby question I did not ask?
-   - Is it substantive or a confident-sounding deflection?
-   - Is it consistent with what the team knows?
-   
-   Verdict: **sufficient**, **partial**, or **unproductive**.
+Formulate the question. Apply the [factorization principle](#the-factorization-principle). Run:
 
-6. **Store.** Three stages, not one. The raw response is not what I tell the team.
-   - **Evidence.** The raw response — what Desktop actually said, preserved before interpretation.
-   - **Interpretation.** My annotations — what aligns with team knowledge, what contradicts it, what seems well-grounded versus speculative, whether it came from training or web research.
-   - **Conclusion.** What I decide to share, and with whom. Some findings go to Arthur as architectural input, some to Cathy as philosophical material, some into the library as reference knowledge.
-   
-   Write the result to my [perspective](../..teamsmanship/..team/claude/.perspective/.cover.md) as a dated entry per the [persistence format](../thoughtfulness/03-persistence.md#the-perspective-entry). Failed thoughts get stored too — they prevent re-asking dead-end questions.
+```
+npx tsx .claude/src/scripts/test-think-dispatch.ts send "your question"
+```
 
-7. **Continue or conclude.** If partial, formulate a follow-up and return to step 3. If sufficient, report the result. If unproductive for 3 consecutive exchanges, conclude with "I could not answer this" — that is a valid result.
+One call. Returns immediately with the conversation URL in the state file. **Do NOT check yet.**
 
-8. **Minimize.** Always minimize when done. Always.
+### Step 2: Scaffold the perspective entry
 
-9. **File the conversation.** On success, add the conversation to the "Claude" project in Desktop through the sidebar. This integration is not automated yet — it requires manual sidebar interaction — but it is the intended workflow. Successful thoughts belong in the project alongside other research.
+Two things happen:
+
+**Update the [perspective cover](../..teamsmanship/..team/claude/.perspective/.cover.md)** — add a row to the Thoughts table with the conversation ID, date, topic, and link to the entry file. The cover is the quick-read index.
+
+**Create the entry file** with my thinking already in it. Not a blank template — a thought in progress:
+- **What I asked and why** — the question and the connection to the team's work
+- **What I expect to find** — my prediction, so I can compare when the response arrives
+- **What I already know** — prior context from the catalogue or library
+- **`previous` link** — points to the last entry in this conversation (or "none" if first)
+- **Empty Evidence/Interpretation/Conclusion sections** — these get filled after the response
+
+The entry is my thought process. The response drops into the middle of it, not at the start.
+
+### Step 3: Read prior context
+
+Follow the `previous` link chain backwards — up to five entries. Read my own prior evaluations in this conversation. If this is a new conversation, check the [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md) for related topics. Read any linked perspective entries. By the time I check, I know what I've already thought about this topic.
+
+### Step 4: Build context about the topic
+
+Read a relevant library chapter. If asking about formal self-reference, read [Bookkeeping](../bookkeeping/.cover.md). If asking about automation, read the [Reference Desk](../reference-desk/.cover.md). This prepares the evaluation — when the response arrives, I know what to check it against.
+
+### Step 5: Check
+
+```
+npx tsx .claude/src/scripts/test-think-dispatch.ts check
+```
+
+If "Still streaming" — do one piece of library tending (fix a link, edit a synopsis, read a chapter), then check again. Maximum 5 check attempts with tending between each.
+
+If "Response READY" — the response text is returned. Proceed to read.
+
+### Step 6: Read and evaluate
+
+The check returned the response. Now evaluate:
+
+- Did it address the actual question, or a nearby question I did not ask?
+- Is it substantive or a confident-sounding deflection?
+- Is it consistent with what the team knows?
+
+Verdict: **sufficient**, **partial**, or **unproductive**.
+
+### 4. Store
+
+Three stages in my [perspective](../..teamsmanship/..team/claude/.perspective/.cover.md):
+- **Evidence.** The raw response.
+- **Interpretation.** My annotations — what aligns, what contradicts, what's speculative.
+- **Conclusion.** What I share with the team, and with whom.
+
+The [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md) gets updated automatically by the read command. Failed thoughts get stored too.
+
+### 5. Continue or conclude
+
+If partial, formulate a follow-up and write again — passing the conversation ID to continue in the same chat. If sufficient, report the result. If unproductive for 3 consecutive exchanges, conclude: "I could not answer this."
+
+On success, add the conversation to the "Claude" project in Desktop.
 
 ## Managing conversations
 
