@@ -109,23 +109,9 @@ async function doRead() {
         pasteResponse(chapter, response);
         writeFileSync(resolve(DEBUG, 'think-response.txt'), response, 'utf-8');
 
-        // Rename conversation
-        try {
-          const topicName = state.question.slice(0, 80);
-          await app.renameConversation(topicName);
-          console.log('[read] Renamed:', topicName);
-        } catch { console.log('[read] Rename failed (non-critical).'); }
-
-        // Add to Claude project
-        try {
-          await app.sidebar.chats.addToProject(
-            await app.conversation.readTitle(), 'Claude'
-          );
-          console.log('[read] Added to Claude project.');
-        } catch {
-          try { await app.dismissDialogs(); } catch {}
-          console.log('[read] Project filing failed (non-critical).');
-        }
+        // Future work: rename conversation and add to Claude project.
+        // These require more app exploration — rename clicks hyperlinks,
+        // project filing opens dialogs. Not safe yet.
 
         // Update catalogue
         const now = new Date().toISOString().split('T')[0];
