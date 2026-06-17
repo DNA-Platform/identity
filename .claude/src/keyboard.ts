@@ -1,3 +1,11 @@
+///: Keyboard — input simulation via PowerShell.
+///: typeViaClipboard for large text (pastes from clipboard, no character limit).
+///: sendKeys for keyboard shortcuts (Ctrl+A, Enter, etc.).
+///: Every method focuses the Claude window first.
+///:
+///: [Windows UIA](../library/reference-desk/04-01-platform--uia.md) — the input layer.
+///: [Sending Messages](../library/reference-desk/03-01-operations--sending.md) — how compose uses this.
+
 // Keyboard — input simulation via PowerShell.
 // Types text, presses keys, clicks at window-relative positions, reads clipboard.
 // Every method that sends input focuses the Claude window first.

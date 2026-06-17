@@ -1,3 +1,9 @@
+///: Automation — the toolkit interface injected into controllers.
+///: Controllers receive this bundle; they never construct infrastructure.
+///: Four tools: gateway, uia, keyboard, navigator.
+///:
+///: [Layers](../library/reference-desk/02-01-the-architecture--layers.md) — the dependency direction.
+
 // Automation — the toolkit injected into every controller.
 // Bundles the four tools controllers need:
 // - gateway: retry, timeout, polling, diagnostic screenshots

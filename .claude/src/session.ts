@@ -1,5 +1,11 @@
-// Session — a managed conversation interaction.
-// Foreground while Claude responds. Minimize between turns.
+///: Session — managed conversation lifecycle on Doug's computer.
+///: Foreground to compose and send, minimize between turns. The
+///: [/think skill](../library/our-skillset/20-think.md) uses Session for all
+///: Desktop interaction — the think script does only state file persistence.
+///:
+///: [Sessions](../library/reference-desk/03-04-operations--sessions.md) — full lifecycle.
+///: [Writing Scripts](../library/reference-desk/06-writing-scripts.md) — script patterns.
+///: [Reference Desk](../library/reference-desk/.cover.md) — the book that documents this codebase.
 
 import type { Claude } from './claude.ts';
 import type { Response, Turn } from './components/turn.ts';

@@ -19,6 +19,19 @@ await app.send();  // waits for response by default
 
 `say(text)` composes, sends, waits for the response, and returns the response text. It's the one-liner for research dispatches. `compose()` + `send()` gives more control — useful when building multi-part messages.
 
+## Sharing the computer
+
+The tool runs on Doug's computer. Doug may be typing in the composer when automation starts. `compose()` calls `waitForUserToStopTyping()` before clearing the composer. The method reads the draft, waits for three consecutive identical reads (stability), then clears. This prevents the tool from clobbering Doug's in-progress typing.
+
+```typescript
+// Inside claude.ts — compose() does this automatically
+await this.waitForUserToStopTyping();
+const combined = parts.join('\n\n');
+await this.conversation.composer.compose(combined);
+```
+
+Scripts that use `compose()` or `say()` get this for free. Scripts that call `composer.compose()` directly must handle it themselves.
+
 ## Compose methods
 
 | Method | What it does | When to use |

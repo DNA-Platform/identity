@@ -1,3 +1,11 @@
+///: UIA — Windows UI Automation primitives.
+///: The lowest layer: reads the accessibility tree and invokes elements by
+///: AutomationId or Name. All reads target a specific window handle. Requires
+///: --force-renderer-accessibility on the Electron app or the tree is empty.
+///:
+///: [Windows UIA](../library/reference-desk/04-01-platform--uia.md) — the full UIA surface.
+///: [The Gateway Pattern](../library/reference-desk/02-02-the-architecture--gateway.md) — gateway wraps these calls.
+
 // UIA — UI Automation primitives via PowerShell.
 // All interaction goes through UIA on the specific window handle.
 // No focus stealing, no keyboard simulation, no effect on the visible desktop.
@@ -295,6 +303,22 @@ export class Uia {
       ${windowSetup(this.handle)}
       $cond = New-Object System.Windows.Automation.PropertyCondition(
         $uia::NameProperty, '${escaped}')
+      $el = $window.FindFirst([System.Windows.Automation.TreeScope]::Descendants, $cond)
+      if ($el) { 'true' } else { 'false' }
+    `, 15_000);
+    return result === 'true';
+  }
+
+  async exists(controlType: string, name: string): Promise<boolean> {
+    const escaped = name.replace(/'/g, "''");
+    const result = await this.shell.run(`
+      ${windowSetup(this.handle)}
+      $cond = New-Object System.Windows.Automation.AndCondition(
+        (New-Object System.Windows.Automation.PropertyCondition(
+          $uia::ControlTypeProperty, [System.Windows.Automation.ControlType]::${controlType})),
+        (New-Object System.Windows.Automation.PropertyCondition(
+          $uia::NameProperty, '${escaped}'))
+      )
       $el = $window.FindFirst([System.Windows.Automation.TreeScope]::Descendants, $cond)
       if ($el) { 'true' } else { 'false' }
     `, 15_000);

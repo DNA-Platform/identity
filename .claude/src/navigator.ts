@@ -1,4 +1,9 @@
-// Navigator — screen detection, navigation, and recovery.
+///: Navigator — screen detection, navigation, and recovery.
+///: Tracks which page is active via URL. Detects overlays (dialogs, menus).
+///: goHome() recovers from any state. resetToHome() is the universal safety net.
+///:
+///: [Navigation](../library/reference-desk/02-03-the-architecture--navigation.md) — screens, overlays, recovery.
+///: [The App Model](../library/reference-desk/02-04-the-architecture--app-model.md) — active page concept.
 
 import type { Gateway } from './gateway.ts';
 import type { Uia } from './uia.ts';

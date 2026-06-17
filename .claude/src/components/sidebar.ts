@@ -1,3 +1,9 @@
+///: Sidebar — persistent left panel.
+///: Navigation, projects, and the chat list. Always visible.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the component layer.
+///: [Navigation](../../library/reference-desk/02-03-the-architecture--navigation.md) — sidebar-driven navigation.
+
 // Sidebar — persistent left panel. Navigation, projects, and the chat list.
 // See: library/..team/claude/.perspective/02-2026-05-10-home-screen-anatomy.md
 

@@ -1,3 +1,8 @@
+///: Project — a single project's detail page.
+///: Files, instructions, and scoped conversations.
+///:
+///: [Project Operations](../../library/reference-desk/03-03-operations--projects.md) — project workflows.
+
 // Project — a project's scoped home. Shows files, instructions, and conversations.
 // See: library/..team/claude/.perspective/05-current-state.png
 

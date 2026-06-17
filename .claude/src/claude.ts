@@ -1,6 +1,12 @@
-// Claude — the application.
-// See: library/claude-driver/
-// See: library/..team/claude/.perspective/
+///: Claude — the application. Single entry point for all automation.
+///: Wires all [layers](../library/reference-desk/02-01-the-architecture--layers.md) in the constructor.
+///: Scripts import this class and never reach below it into controllers or UIA.
+///:
+///: Convenience methods use the [object chain](../library/reference-desk/10-architecture-patterns.md):
+///: refresh → find → menu → action. Each step returns a verified View object.
+///:
+///: [Coding Philosophy](../library/reference-desk/05-coding-philosophy.md) — scripts should read like English.
+///: [Reference Desk](../library/reference-desk/.cover.md) — the book that documents this codebase.
 
 import { Shell } from './shell.ts';
 import { Window } from './window.ts';
@@ -219,10 +225,11 @@ export class Claude {
   async openConversationById(conversationId: string): Promise<void> {
     if (await this.checkConversation(conversationId)) return;
     await this.sidebar.refresh();
-    await this.openChatAt(0);
-    if (!await this.checkConversation(conversationId)) {
-      throw new Error('Most recent chat does not match conversation ' + conversationId);
+    for (const item of this.sidebar.chats.items) {
+      await this.openChat(item.title);
+      if (await this.checkConversation(conversationId)) return;
     }
+    throw new Error('Conversation ' + conversationId + ' not found in sidebar');
   }
 
   async openChat(title: string): Promise<void> {

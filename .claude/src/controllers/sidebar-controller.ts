@@ -1,3 +1,9 @@
+///: SidebarController — UIA boundary for the sidebar.
+///: Sensors and actuators only. No orchestration.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
+///: [Navigation](../../library/reference-desk/02-03-the-architecture--navigation.md) — sidebar-driven navigation.
+
 import type { Automation } from '../automation.ts';
 
 export class SidebarController {

@@ -69,17 +69,21 @@ The cards list is `Lazy<>` — it loads on demand and paginates by scrolling. `w
 
 ## Adding a conversation to a project
 
-Two paths discovered through accessibility tree exploration (Sprint 76):
+The sidebar's three-dot menu opens a context menu for any conversation. The "Add to project" item opens a project picker dialog. The full object chain:
 
-**Path 1: Three-dot menu.** From the sidebar, the conversation's "More options" button (`More options for {title}`) opens a menu. The menu item is called `Projects` — clicking it opens a project picker to file the conversation.
+```typescript
+await app.sidebar.refresh();
+const item = app.sidebar.chats.find('Finance');
+const menu = await item.menu();           // ChatMenu — verified open
+const picker = await menu.addToProject(); // ProjectPicker — verified dialog visible
+await picker.select('Claude');            // selects, verifies dialog closed
+```
 
-**Path 2: Navigate to the project.** Open the Claude project directly (`app.openProject('Claude')`), then the conversation should be associable from the project page.
+Each step returns the next [View object](10-architecture-patterns.md) only after verifying state through controller sensors. `menu()` verifies the menu appeared. `addToProject()` verifies the dialog opened and reads the project list. `select()` clicks the `ListItem` by name and verifies the dialog closed.
 
-**Idempotency check:** Before attempting either path, check if the conversation is already in a project. The sidebar groups conversations by project — if the conversation appears under the "Claude" heading in the sidebar, it's already filed. The conversation page also shows breadcrumb-like elements when a conversation belongs to a project. Check these indicators before attempting to add.
+The implementation lives in [`chat-list.ts`](../../src/components/chat-list.ts) (View objects: `ChatItem`, `ChatMenu`, `ProjectPicker`) backed by [`chat-list-controller.ts`](../../src/controllers/chat-list-controller.ts) (sensors and actuators).
 
 **The Claude project** is the canonical home for successful research conversations. The [Thoughtfulness](../thoughtfulness/.cover.md) protocol files conversations there after the thought concludes with a sufficient verdict. See the [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md) for the tracking system.
-
-`[SCAFFOLD]` — the `addToProject()` method is not yet implemented. The three-dot menu expansion works (`expandByName('More options for {title}')`), and the "Projects" menu item was confirmed via UIA exploration, but the project picker interaction needs further exploration.
 
 ## For research
 

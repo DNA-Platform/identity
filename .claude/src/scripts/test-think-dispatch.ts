@@ -54,10 +54,7 @@ async function doRead() {
 
   await app.launch();
   try {
-    if (!await app.checkConversation(state.conversationId)) {
-      await app.sidebar.refresh();
-      await app.openChatAt(0);
-    }
+    await app.openConversationById(state.conversationId);
 
     // Confirm still processing or already done
     let active = false;
@@ -79,6 +76,40 @@ async function doRead() {
         console.log('[read] Response:', response.length, 'chars');
         console.log('[read] Preview:', response.slice(0, 200));
         writeFileSync(resolve(DEBUG, 'think-response.txt'), response, 'utf-8');
+
+        // File in Claude project if not already there
+        const inProject = await app.conversation.isInProject('Claude');
+        if (!inProject) {
+          console.log('[read] Filing in Claude project...');
+          try {
+            await app.sidebar.refresh();
+            const title = app.conversation.title ?? '';
+            if (title) {
+              const item = app.sidebar.chats.find(title);
+              if (item) {
+                const menu = await item.menu();
+                if (!menu.isInProject) {
+                  const picker = await menu.addToProject();
+                  if (picker.has('Claude')) {
+                    await picker.select('Claude');
+                    console.log('[read] Filed in Claude project.');
+                  } else {
+                    await picker.cancel();
+                    console.log('[read] Claude project not in picker.');
+                  }
+                } else {
+                  await menu.close();
+                  console.log('[read] Already in a project.');
+                }
+              }
+            }
+          } catch (e) {
+            console.log('[read] Filing failed:', (e as Error).message);
+          }
+        } else {
+          console.log('[read] Already in Claude project.');
+        }
+
         console.log('[read] Done.');
         return;
       }

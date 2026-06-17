@@ -53,7 +53,7 @@ If you find yourself writing a fixed wait, you've found a gap in the app model. 
 
 ## Verify, don't assume
 
-From [Sprint 61](../projected-research/25-sprint-61--feedback-mcp-research-and-app-hardening.md): "The automation sprints taught us we were flying blind." Every raw UIA call that changes state must go through [`gateway.act()`](02-02-the-architecture--gateway.md) with a verification predicate.
+From [Sprint 61](../projected-research/25-sprint-61--feedback-mcp-research-and-app-hardening.md): "The automation sprints taught us we were flying blind." Every action must be followed by a verification read. The pattern: fire a controller actuator once → poll a controller sensor via [`gateway.waitFor()`](02-02-the-architecture--gateway.md) until it confirms the action worked.
 
 No static waits. No blind retries. No "it usually works." If you click a button, verify the expected UI appeared. If you navigate, verify you arrived. If you send a message, verify the response indicator appeared.
 
@@ -95,7 +95,7 @@ Read [Architecture Patterns](10-architecture-patterns.md) — the object graph, 
 
 Before writing ANY automation code: run the [introspect tool](09-codebase-index--introspect.ts) on [`claude.ts`](../../src/claude.ts) and [`session.ts`](../../src/session.ts). See what methods exist. If the method you need is there, use it. If it's not, add it to the right class — don't build it in a script.
 
-The [/think skill](../our-skillset/20-think.md) uses [`Session.send()`](03-04-operations--sessions.md) for all Desktop interaction. The [Thoughtfulness](../thoughtfulness/.cover.md) book documents the thinking protocol. The think script ([`think.ts`](../../src/scripts/think.ts)) is 110 lines of persistence — state file and catalogue. Every line of Desktop interaction goes through Session. Sprint 78-79 learned this the hard way: 200+ lines of code were written duplicating Session because nobody read this book first.
+The [/think skill](../our-skillset/20-think.md) uses [`Session`](03-04-operations--sessions.md) for all Desktop interaction. The [Thoughtfulness](../thoughtfulness/.cover.md) book documents the thinking protocol. The think script ([`think.ts`](../../src/scripts/think.ts)) is 46 lines of persistence only — state file management. Every line of Desktop interaction goes through Session. Sprint 78-79 learned this the hard way: 200+ lines of code were written duplicating Session because nobody read this book first.
 
 The [Reading protocol](../teamspeak/08-reading.md) applies to code too: find the room before you act. This book IS the room for automation code.
 

@@ -84,7 +84,7 @@ async function main() {
 
     // Screenshot before submit
     const ts = new Date().toISOString().replace(/[:.]/g, '-');
-    await app.screenshot(resolve(__dirname, '..', '..', 'debug', `${ts}-before-submit.png`));
+    await app.screenshot(resolve(__dirname, '..', 'debug', `${ts}-before-submit.png`));
     console.log('  typed path, screenshot saved');
 
     // Step 5: Submit

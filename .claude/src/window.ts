@@ -1,5 +1,10 @@
-// Window — the OS window that Claude runs in.
-// See: library/windows-automation/
+///: Window — the OS window that Claude Desktop runs in.
+///: Find, launch, focus, maximize, minimize, screenshot via Win32 through PowerShell.
+///: isForeground() and requireForeground() enforce the window is active — the
+///: [gateway](../library/reference-desk/02-02-the-architecture--gateway.md) calls requireForeground() before every action.
+///:
+///: [Win32](../library/reference-desk/04-02-platform--win32.md) — window lifecycle, process management.
+///: [The App Model](../library/reference-desk/02-04-the-architecture--app-model.md) — idempotent foreground.
 
 import { powershellSync as powershell } from './shell.ts';
 import { resolve } from 'path';
