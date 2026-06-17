@@ -5,7 +5,9 @@
 
 ---
 
-Store knowledge in the library. Not by dumping it into a file — by [exploring](21-explore.md) until you find where it belongs, then placing it in context with links to its neighbors. If you got the knowledge from some way other than exploring, it is not knowledge in the library — it is data without a home.
+Store knowledge in the library. Not by dumping it into a file — by navigating to where it belongs and placing it in context with links to its neighbors. If you got the knowledge from some way other than navigating the library, it is not knowledge in the library — it is data without a home.
+
+The navigation follows the same traversal strategies as [/explore](21-explore.md) — [objective](21-explore.md#three-modes-of-exploration) (follow the hierarchy), [subjective](21-explore.md#three-modes-of-exploration) (follow the authors), [relational](21-explore.md#three-modes-of-exploration) (follow cross-links). But unlike explore, you don't take notes at each stop. You're looking for a destination, not mapping territory. The walk is directed — you have something to place and you're finding where it goes. Read covers, follow links, find the room. Faster per hop than explore, because you know what you're carrying.
 
 The library's three layers of index — [library catalogue](../..librarianship/.cover.md), [subject catalogues](../bookkeeping/07-on-subjects.md), [book covers](../bookkeeping/03-on-covers.md) — are the map. Navigate them to find the room where this knowledge belongs. If no room exists, create one: a new chapter in an existing book, or a new book in an existing subject. If the catalogue doesn't describe the room, update the catalogue. The act of placing is the act of remembering — knowledge remembers itself by being linked.
 
