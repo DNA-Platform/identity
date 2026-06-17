@@ -55,13 +55,11 @@ async function main() {
     console.log('[think] Chapter:', chapter);
 
     // Poll — conversation object IS the async interface
-    for (let i = 0; i < 120; i++) {
+    for (let i = 0; i < 240; i++) {
       await app.conversation.scrollToBottom();
-      const streaming = await app.conversation.checkStreaming();
-      const hasContent = await app.conversation.hasResponseContent();
+      const complete = await app.conversation.isResponseComplete();
 
-      if (!streaming && hasContent) {
-        // Not streaming AND content exists — response is complete
+      if (complete) {
         const response = await app.conversation.readLastResponse();
         if (response && response.length > 0) {
           console.log('[think] Response:', response.length, 'chars');
@@ -83,12 +81,16 @@ async function main() {
         }
       }
 
-      if (streaming) {
-        if (i % 10 === 0) console.log(`[think] Streaming... (${i}s)`);
+      // Report status periodically
+      if (i % 10 === 0) {
+        const streaming = await app.conversation.checkStreaming();
+        const hasStop = await app.conversation.hasStopButton();
+        const hasContent = await app.conversation.hasResponseContent();
+        console.log(`[think] ${i}s: streaming=${streaming} stop=${hasStop} content=${hasContent}`);
       }
     }
 
-    console.log('[think] Timeout after 120 checks.');
+    console.log('[think] Timeout after 240 checks.');
   } finally {
     try { app.window.minimize(); } catch {}
   }
