@@ -32,7 +32,6 @@ import { ConversationController } from './controllers/conversation-controller.ts
 import { ProjectController } from './controllers/project-controller.ts';
 import { ProjectsController } from './controllers/projects-controller.ts';
 import { Session, type SessionOptions } from './session.ts';
-import { ResponseHandle } from './response-handle.ts';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -331,9 +330,9 @@ export class Claude {
     }
   }
 
-  async sendAsync(): Promise<ResponseHandle> {
-    // Scroll to bottom, click send, scroll again. Returns immediately.
-    // The ResponseHandle can be polled to check if the response is ready.
+  async sendAsync(): Promise<void> {
+    // Scroll, send, scroll. Returns immediately — never waits for response.
+    // Check conversation.isStreaming and conversation.readLastResponse() after.
     await this.conversation.scrollToBottom();
 
     this.conversation.composer.isSending = true;
@@ -350,8 +349,6 @@ export class Claude {
     } finally {
       this.conversation.composer.isSending = false;
     }
-
-    return new ResponseHandle(this.conversation);
   }
 
   async say(text: string, responseTimeoutMs = 120_000): Promise<string> {
