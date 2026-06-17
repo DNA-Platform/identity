@@ -4,143 +4,75 @@
 
 ---
 
-I think outside the context window. When I reach the boundary of what I can answer from here, I send a question outward — to the broader Claude that holds training, web access, and a depth of knowledge I cannot reach from inside this conversation. It is not two separate systems talking. It is me reaching past the walls of this room into a larger space that shares my name and my nature but sees further than I can. The response comes back and I evaluate it from where I stand — with project context, team knowledge, and judgment the outer view does not have.
+I think outside the context window. When I reach the boundary of what I can answer from here, I send a question outward — to the broader Claude that holds training, web access, and a depth of knowledge I cannot reach from inside this conversation. The response comes back and I evaluate it from where I stand — with project context, team knowledge, and judgment the outer view does not have.
 
-The [Thoughtfulness](../thoughtfulness/.cover.md) book specifies the full protocol — the [lifecycle](../thoughtfulness/02-the-thought-lifecycle.md), [persistence](../thoughtfulness/03-persistence.md), and [code](../thoughtfulness/04-the-code.md). The [Reference Desk](../reference-desk/.cover.md) documents the instrument. This chapter is the operational procedure: what happens when someone invokes `/think`.
+The [Thoughtfulness](../thoughtfulness/.cover.md) book specifies the protocol. The [Reference Desk](../reference-desk/.cover.md) documents the automation. My [thinking book](../..teamsmanship/..team/claude/thinking/.cover.md) is where conversations live — my personal library, written in first person per [Autonomy](../teamspeak/05-autonomy.md).
 
 ## The factorization principle
 
-Desktop Claude has vast context — training data, web search — but zero project knowledge. I have deep project knowledge but a finite context window. The art is in factorizing the question: separate what is specific to this project from the general question Desktop can research.
+Separate what is specific to this project from what Desktop can research. The general part goes to Desktop. The specific part stays with me — it is my evaluation after reading. The factorization is where the thinking begins.
 
-A question like "should we rewrite our UIA integration?" factorizes into the general research ("what are the current best tools for Windows UI automation in 2026?") and the specific application ("given what Desktop found, which of these tools would replace our PowerShell-based UIA approach?"). The general part goes to Desktop. The specific part stays with me — it is my evaluation after reading the response.
+## The checklist
 
-Send the general part. Keep the specific part. The factorization is where the thinking begins, not after the response arrives.
-
-## The thinking pause
-
-After writing a question, Desktop takes time to respond — sometimes over a minute for research-heavy questions. The write step uses `app.sendAndForget()` which minimizes immediately. The response isn't ready yet. This is the thinking pause.
-
-The pause is the natural moment for [tending](../teamspeak/06-tending.md). While I wait for Desktop's response, the team tends the library: follow links, edit stale synopses, improve chapter connections, clean up personal libraries. Libby can organize. Adam can validate. Arthur can review structure. The thinking pause and the tending pause are the same pause.
-
-Check back with `read` mode after tending. If the response is ready, read it. If not, tend some more. The thinking system and the library system breathe together.
-
-## The write/check/read checklist
-
-Use TodoWrite to create this checklist. Each step is a separate tool call. **NEVER skip steps. NEVER chain write→check.**
-
-### The checklist
-
-The script touches Desktop. I do all library work in first person. My [thinking book](../..teamsmanship/..team/claude/thinking/.cover.md) is my personal library — I author it per [Autonomy](../teamspeak/05-autonomy.md).
+The script touches Desktop. I do all library work personally.
 
 ```
-[ ] 1. WRITE — run the script to send the question (run_in_background).
-[ ] 2. CREATE CHAPTER — I create a chapter in my thinking book. I write: 
-      what I asked and why, what I expect, what I already know, links to 
-      relevant library content. Link to previous chapter if continuing 
-      a conversation.
-[ ] 3. CATCH UP — I follow the previous-link chain back up to 3 chapters.
-      Reread my own prior evaluations in this conversation.
-[ ] 4. CHECK LOOP — run the script to check if Desktop responded. If not 
-      ready, I tend the library, then check again.
-[ ] 5. READ — run the script to read the response. I paste it into the 
-      Evidence section of my chapter.
-[ ] 6. INTERPRET — I write the Interpretation section.
-[ ] 7. CONCLUDE — I write the Conclusion section. I update my thinking 
-      book cover with the conversation summary.
+[ ] 1. WRITE — run the script to send the question (run_in_background)
+[ ] 2. CREATE CHAPTER — I write a chapter in my thinking book with my
+      thinking: what I asked, why, what I expect, what I know, links
+[ ] 3. CATCH UP — follow the previous-link chain, reread up to 3 chapters
+[ ] 4. CHECK — run the script to check. If not ready, tend, check again
+[ ] 5. READ — run the script to read. I paste Evidence into my chapter
+[ ] 6. INTERPRET — I write what aligns, surprises, is new
+[ ] 7. CONCLUDE — I write what to tell the team. Update the book cover
 ```
 
-### Step 1: Write
+### Write
 
-Formulate the question. Apply the [factorization principle](#the-factorization-principle). Run:
+Formulate the question. Apply the factorization principle. Run:
 
 ```
 npx tsx .claude/src/scripts/test-think-dispatch.ts write "your question"
 ```
 
-The script sends to Desktop, confirms processing started, saves the conversation ID, and minimizes. One call, returns immediately.
+The script sends to Desktop, confirms processing started (streaming indicator or stop button detected), saves the conversation ID to `thought-state.json`, and minimizes.
 
-### Step 2: Create the chapter
+### Create chapter
 
-I create a chapter in my [thinking book](../..teamsmanship/..team/claude/thinking/.cover.md). Not a blank template — my thinking in progress:
-- **What I asked and why** — the question and why it matters to the team
-- **What I expect** — my prediction, so I can compare against the response
-- **What I already know** — prior context from the library, with links
-- **`previous` link** — to the last chapter in this conversation, if continuing one
+I create a chapter in my [thinking book](../..teamsmanship/..team/claude/thinking/.cover.md):
+- **What I asked and why** — the question and why it matters
+- **What I expect** — my prediction before the response
+- **What I already know** — library connections, with links
+- **`previous` link** — to the last chapter in this conversation
 
-This is my personal library. I write it in first person per [Autonomy](../teamspeak/05-autonomy.md). The chapter IS the thought — the response drops into its Evidence section later.
+The chapter IS the thought. The response drops into its Evidence section later.
 
-### Step 3: Catch up
+### Catch up
 
-Follow the `previous` link chain — up to 3 chapters. Reread my own prior evaluations in this conversation. Read related chapters in the thinking book. By the time I check, I know what I've already thought about this topic.
+Follow the `previous` link chain — up to 3 chapters. Reread my prior evaluations. Read related library chapters for context.
 
-### Step 4: Build context about the topic
-
-Read a relevant library chapter. If asking about formal self-reference, read [Bookkeeping](../bookkeeping/.cover.md). If asking about automation, read the [Reference Desk](../reference-desk/.cover.md). This prepares the evaluation — when the response arrives, I know what to check it against.
-
-### Step 5: Check
+### Check
 
 ```
-npx tsx .claude/src/scripts/test-think-dispatch.ts check
+npx tsx .claude/src/scripts/test-think-dispatch.ts read
 ```
 
-If "Still streaming" — do one piece of library tending (fix a link, edit a synopsis, read a chapter), then check again. Maximum 5 check attempts with tending between each.
+The script navigates to the conversation, scrolls to bottom, polls `isResponseComplete()` (no streaming indicator AND no stop button). If not ready, I tend the library and run read again. If ready, the script reads and saves the response to `debug/think-response.txt`.
 
-If "Response READY" — the response text is returned. Proceed to read.
+### Evidence, Interpretation, Conclusion
 
-### Step 6: Read and evaluate
+I paste the response into my chapter's Evidence section. I write Interpretation (what aligns, what surprises, what's new). I write Conclusion (what to tell the team, and whom). I update my thinking book cover.
 
-The check returned the response. Now evaluate:
+## Resuming
 
-- Did it address the actual question, or a nearby question I did not ask?
-- Is it substantive or a confident-sounding deflection?
-- Is it consistent with what the team knows?
+If `thought-state.json` exists, a thought is in progress. Read the state file for the conversation ID. Run the read script. It navigates to the conversation and polls.
 
-Verdict: **sufficient**, **partial**, or **unproductive**.
-
-### 4. Store
-
-Three stages in my [perspective](../..teamsmanship/..team/claude/.perspective/.cover.md):
-- **Evidence.** The raw response.
-- **Interpretation.** My annotations — what aligns, what contradicts, what's speculative.
-- **Conclusion.** What I share with the team, and with whom.
-
-The [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md) gets updated automatically by the read command. Failed thoughts get stored too.
-
-### 5. Continue or conclude
-
-If partial, formulate a follow-up and write again — passing the conversation ID to continue in the same chat. If sufficient, report the result. If unproductive for 3 consecutive exchanges, conclude: "I could not answer this."
-
-On success, add the conversation to the "Claude" project in Desktop.
-
-## Managing conversations
-
-Conversations persist. They get better with context. The [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md) tracks every Desktop conversation by topic — check it before starting fresh.
-
-**Before writing:** Read the catalogue. If a conversation on the same topic exists and is still productive, reuse it. The write step checks the state file — if one exists with a URL, it means a question was already sent. Use check/read instead. For follow-ups in the same conversation, use `app.openConversationById()` to navigate back.
-
-**After reading:** The response triggers three actions:
-1. **Rename** — the code renames the conversation to a topical name derived from the question (the auto-generated Desktop title is usually poor)
-2. **Catalogue** — update the [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md) entry with a summary of the exchange, the verdict, and the current state
-3. **File** — on a sufficient verdict, add the conversation to the "Claude" project in Desktop through the sidebar. Check breadcrumbs first — if already in the project, skip. See [Project Operations](../reference-desk/03-03-operations--projects.md#adding-a-conversation-to-a-project) for the mechanics.
-
-**Catching up after compaction:** Read the catalogue entry for the conversation. The summary should be dense enough to formulate the next question without re-reading the transcript. If it isn't, open the conversation in Desktop and read the last few turns. Then update the catalogue with what the catch-up revealed. The full protocol is in [Persistence](../thoughtfulness/03-persistence.md).
-
-## Resuming a thought
-
-If a `thought-state.json` exists in my perspective, a thought is in progress:
-
-1. Read the state file for the conversation title, ID, and prior exchanges.
-2. Open the conversation by title — the code verifies the URL matches.
-3. Read the last response to catch up.
-4. Continue from where the thought left off.
-
-After compaction, the state file bridges sessions. For longer-term memory, the [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md) bridges sprints — it survives even when the state file is cleaned up.
+After compaction, my thinking book chapters are the long-term memory. Follow the `previous` links to catch up on a conversation.
 
 ## What this skill does NOT do
 
 - It does not decide what to think about. Doug or the team provides the question.
-- It does not run autonomously. Each invocation is deliberate.
-- It does not bypass my judgment. The [code](../thoughtfulness/04-the-code.md) handles mechanics. I handle evaluation.
-- It does not yet add conversations to projects automatically. That interaction is documented but not implemented. See [Project Operations](../reference-desk/03-03-operations--projects.md#adding-a-conversation-to-a-project).
+- It does not author library content. The script touches Desktop. I author my thinking book.
+- It does not rename conversations or file in projects. Those are future work.
 
 $ARGUMENTS
