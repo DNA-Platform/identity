@@ -304,6 +304,9 @@ export class Claude {
   async send(responseTimeoutMs = 120_000): Promise<void> {
     const wasHome = this.screen === 'home';
 
+    // Ensure at bottom before sending — the UI must render from the latest position
+    await this.conversation.scrollToBottom();
+
     this.conversation.composer.isSending = true;
     try {
       await this.conversation.composer.send();
@@ -313,6 +316,9 @@ export class Claude {
       if (wasHome && nowOn === 'conversation') {
         await this.sidebar.refresh();
       }
+
+      // Scroll to bottom again after send — Desktop may have jumped the view
+      await this.conversation.scrollToBottom();
 
       this.conversation.isStreaming = true;
       await this.conversation.waitForResponse(responseTimeoutMs);

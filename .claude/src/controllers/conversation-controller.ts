@@ -179,13 +179,24 @@ export class ConversationController {
       || await this.auto.uia.existsByName('Claude is thinking');
   }
 
+  async isAtBottom(): Promise<boolean> {
+    return !(await this.auto.uia.existsByName('Scroll to bottom'));
+  }
+
   async scrollToBottom(): Promise<void> {
-    // Try the "Scroll to bottom" button first — it's a real UI element
-    // that disappears when already at the bottom (idempotent by design).
-    const clicked = await this.auto.uia.invokeByName('Scroll to bottom');
-    if (!clicked) {
-      // Already at bottom (button not present) or button not found — use keyboard fallback
-      await this.auto.keyboard.sendKeys('^{END}');
+    // The "Scroll to bottom" button disappears when at the bottom.
+    // If it's there, click it and wait for it to disappear (readiness).
+    // If it's not there, we're already at the bottom.
+    const buttonExists = await this.auto.uia.existsByName('Scroll to bottom');
+    if (buttonExists) {
+      await this.auto.gateway.act(
+        async () => {
+          const clicked = await this.auto.uia.invokeByName('Scroll to bottom');
+          if (!clicked) await this.auto.keyboard.sendKeys('^{END}');
+        },
+        async () => !(await this.auto.uia.existsByName('Scroll to bottom')),
+        { description: 'Scroll to bottom', timeoutMs: 5_000 },
+      );
     }
   }
 
