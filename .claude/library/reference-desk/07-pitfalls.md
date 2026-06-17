@@ -84,6 +84,14 @@ When `app.window.find()` finds a running Claude Desktop, `app.launch()` skips th
 
 **Sprint 77 finding:** The "Move chat" project picker dialog blocks all other UI interactions. `goHome()` fails because "New chat" isn't in the UIA tree while the dialog is open. The `dismissDialogs()` method (Escape twice) was added to recover. Any exploration script that opens a dialog must reliably close it — `pressEscape` or clicking a cancel button.
 
+## Silent success when streaming never starts
+
+`waitForResponse()` in [`conversation-controller.ts`](../../src/controllers/conversation-controller.ts) has two phases: wait for streaming to start (15s), then wait for streaming to stop. If streaming never starts — the message wasn't received, Desktop ignored it — phase 1 times out and falls through. Phase 2 immediately succeeds because `!streaming` is true. The method returns silently, and `readTurns()` reads the PREVIOUS conversation's content.
+
+`sendAndForget()` added a check that throws if streaming doesn't start within 15 seconds. But the standard `send()` path through `waitForResponse()` doesn't have this guard. If `session.send()` returns a response that doesn't match the question, this is likely why.
+
+**Diagnosis:** compare the response text to the question. If the response has no relationship to what was asked, the message may not have been received. Check: was the composer cleared? Was a dialog blocking? Was the app on the right screen?
+
 ## The "Show more" ambiguity
 
 Multiple UI elements can have the same accessible name. "Show more" appears in project descriptions AND conversation lists. [`invokeByNameLast()`](../../src/uia.ts) takes the last match, which is usually the right one (conversation lists are lower on the page). But this is a heuristic, not a guarantee. See [UIA § Element finding strategies](04-01-platform--uia.md).
