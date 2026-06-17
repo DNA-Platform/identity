@@ -1,0 +1,97 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Category theory models for self-modifying software - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Group | Sidebar
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Category theory models for self-modifying software
+ControlType.Button | More options for Category theory models for self-modifying software
+ControlType.Button | Graph databases and recursive hierarchies
+ControlType.Button | More options for Graph databases and recursive hierarchies
+ControlType.Button | Self-referential knowledge in graph databases
+ControlType.Button | More options for Self-referential knowledge in graph databases
+ControlType.Button | SpaceX IPO analysis and market reaction
+ControlType.Button | More options for SpaceX IPO analysis and market reaction
+ControlType.Button | Batumi Summer
+ControlType.Button | More options for Batumi Summer
+ControlType.Button | Reconnecting with Jake on hallucinogen research opportunity
+ControlType.Button | More options for Reconnecting with Jake on hallucinogen research opportunity
+ControlType.Button | Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | More options for Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | Consciousness analogy to Gödel, Escher, Bach
+ControlType.Button | More options for Consciousness analogy to Gödel, Escher, Bach
+ControlType.Button | Self-referential systems and fixed-point theorems
+ControlType.Button | More options for Self-referential systems and fixed-point theorems
+ControlType.Button | Перевод письма о рассылке от Клер
+ControlType.Button | More options for Перевод письма о рассылке от Клер
+ControlType.Button | Connecting to MSIX Electron app via connectOverCDP
+ControlType.Button | More options for Connecting to MSIX Electron app via connectOverCDP
+ControlType.Button | Playwright support for Electron apps in 2026
+ControlType.Button | More options for Playwright support for Electron apps in 2026
+ControlType.Button | MCP vs A2A protocol differences
+ControlType.Button | More options for MCP vs A2A protocol differences
+ControlType.Button | Invoke-CommandInDesktopPackage and MSIX package identity
+ControlType.Button | More options for Invoke-CommandInDesktopPackage and MSIX package identity
+ControlType.Button | Enabling Chrome DevTools Protocol on running Electron MSIX apps
+ControlType.Button | More options for Enabling Chrome DevTools Protocol on running Electron MSIX apps
+ControlType.Button | Playwright with MSIX-packaged Electron apps on Windows 11
+ControlType.Button | More options for Playwright with MSIX-packaged Electron apps on Windows 11
+ControlType.Button | Windows desktop automation stack for Electron apps
+ControlType.Button | More options for Windows desktop automation stack for Electron apps
+ControlType.Button | Stefanie
+ControlType.Button | More options for Stefanie
+ControlType.Button | Windows desktop automation stack for Electron apps
+ControlType.Button | More options for Windows desktop automation stack for Electron apps
+ControlType.Button | Rebuilding Windows desktop automation stack for Claude
+ControlType.Button | More options for Rebuilding Windows desktop automation stack for Claude
+ControlType.Button | Relaunch to update v1.13576.0
+ControlType.Button | Doug Doug Max
+ControlType.Image | Doug
+ControlType.Text | Doug
+ControlType.Text | Max
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Button | Category theory models for self-modifying software, rename chat
+ControlType.Button | More options for Category theory models for self-modifying software
+ControlType.Text | Claude is responding
+ControlType.Text | You said: What formal models from category theory apply to self-modifying software systems?
+ControlType.Text | What formal models from category theory apply to self-modifying software systems? I am interested in how endofunctors and fixed-point combinators relate to programs that rewrite their own source code or specifications.
+ControlType.Group | Message actions
+ControlType.Text | 2:31 PM
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Button | Thinking
+ControlType.Text | Thinking
+ControlType.Text | You've used
+ControlType.Text | 75%
+ControlType.Text |  of your weekly limit
+ControlType.Button | Get more usage
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | Write a message…
+ControlType.Text |
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Model: Opus 4.8 High
+ControlType.Text | Opus 4.8
+ControlType.Text |  High
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Button | Stop response
+ControlType.Hyperlink | Claude is AI and can make mistakes. Please double-check responses.
+ControlType.Group | Notifications (F8)

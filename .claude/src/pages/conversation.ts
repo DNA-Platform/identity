@@ -198,6 +198,18 @@ export class Conversation implements Fallible {
     return this.controller.hasResponseContent();
   }
 
+  async canSend(): Promise<boolean> {
+    return this.controller.canSend();
+  }
+
+  async hasStopButton(): Promise<boolean> {
+    return this.controller.hasStopButton();
+  }
+
+  async isResponseComplete(): Promise<boolean> {
+    return this.controller.isResponseComplete();
+  }
+
   async scrollToBottom(): Promise<void> {
     await this.controller.scrollToBottom();
   }
