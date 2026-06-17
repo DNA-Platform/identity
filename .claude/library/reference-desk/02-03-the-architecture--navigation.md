@@ -44,6 +44,16 @@ Beyond the active screen, the navigator detects two kinds of overlays:
 
 `detectScreen()` — reads the URL AND the UIA tree. Returns the current screen. Updates `hasOpenDialog` and `hasOpenMenu`. Call this before any operation that depends on knowing where the app is.
 
+## Conversation navigation
+
+`newChat()` — navigate to a guaranteed fresh conversation. Dismisses dialogs, goes home, clicks "New chat", verifies the URL has no conversation ID. If verification fails, throws.
+
+`checkConversation(id)` — is the current conversation the one with this ID? Reads the URL and checks if it contains the conversation UUID. Returns boolean. Does not navigate.
+
+`openConversationById(id)` — navigate to a conversation by ID. If already on it (checked via `checkConversation`), does nothing. Otherwise refreshes the sidebar and opens the most recent chat, then verifies the URL matches. The most-recent assumption works when the conversation was just created.
+
+`dismissDialogs()` — press Escape twice to close any open modal dialogs (like the "Move chat" project picker). Call before navigation if a dialog might be blocking.
+
 ## The `resetToHome()` contract
 
 From the [`Claude`](../../src/claude.ts) class: `resetToHome()` recovers from ANY state — wrong page, open dialog, open menu, settings. It dismisses overlays (Escape key), leaves settings, then navigates home. A script should be able to call `resetToHome()` as the first line and know it starts from a clean slate. If `resetToHome()` fails, the app is in an unrecoverable state and the script should abort.
