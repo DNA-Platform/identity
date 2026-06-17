@@ -4,69 +4,112 @@
 
 ---
 
-The app throws string commands at UIA. It should model the application as an object graph where every UI element is a typed object with async methods that verify their own state. No strings. No blind commands. Every object knows what it is and can check its own state.
+Full architectural refactor. The codebase follows MVC: Controllers do UIA and return data, the View builds typed objects with verified state, the gateway converts blind actions into tested ones. This sprint makes it consistent throughout.
+
+**Read [Architecture Patterns](../reference-desk/10-architecture-patterns.md) before starting any work.**
 
 ## Sprint goal
 
-**Every interaction goes through typed objects that verify their state. ChatItem has .menu(). Menu has .addToProject(). ProjectPicker has .select(). Each returns the next object in the chain. No string-based UIA calls in the component or script layer.**
+**Every Controller method does one thing (read or act). Every View method chains Controller calls and returns verified typed objects. gateway.act (blind retries) removed. The whole codebase follows the same pattern.**
 
-## The current architecture
+## Phase 1: Audit
 
-```
-Scripts → Claude class → Components (thin) → Controllers (string UIA calls)
-```
+Inventory every Controller method. Classify as:
+- **Sensor (read)** — reads UIA state, returns data. Quick, harmless, pollable.
+- **Actuator (act)** — performs one UIA operation. Fire once.
+- **Mixed (needs splitting)** — does multiple things, needs refactoring.
 
-Components like ChatList return `{ title, index }` — plain data. Operations like rename and addToProject live on the controller as methods that take string titles. The controller calls `uia.expandByName(string)`, `uia.invoke(type, string)` — all string-based, all blind.
+| Controller | Owner | Status |
+|------------|-------|--------|
+| `chat-list-controller` | Adam | — |
+| `conversation-controller` | Adam | — |
+| `composer-controller` | Adam | — |
+| `composed-message-controller` | Adam | — |
+| `sidebar-controller` | Adam | — |
+| `project-controller` | Adam | — |
+| `projects-controller` | Adam | — |
+| `model-picker-controller` | Adam | — |
+| `artifact-panel-controller` | Adam | — |
 
-## The target architecture
+Document findings in the [Codebase Index](../reference-desk/09-codebase-index.md) or a new Reference Desk chapter.
 
-```
-Scripts → Claude class → Components (rich objects) → Controllers (verified state)
-```
+## Phase 2: Controller refactor
 
-A ChatItem should be:
+Split mixed methods into sensor/actuator pairs. For each Controller:
+
+**chat-list-controller** — the worst offender:
+- Split `addToProject(title, projectName)` into: `expandMenu(title)`, `isMenuVisible()`, `readMenuItems()`, `clickMenuItem(name)`, `isDialogVisible()`, `readProjectList()`, `clickProject(name)`, `closeDialog()`
+- Split `rename(title, newTitle)` into: `expandMenu(title)`, `clickMenuItem('Rename')`, `isRenameFieldActive()`, `typeInField(text)`, `confirmRename()`
+- Remove `gateway.act` — replace with single action + `gateway.waitFor(sensor)`
+- Remove all `setTimeout` pauses
+
+**conversation-controller** — mostly clean, fix:
+- `waitForResponse` — replace `gateway.waitFor` internal retries with the View polling pattern
+- `scrollToBottom` — already good (act + verify button gone)
+- Add: `readBreadcrumbProject()`, `readBreadcrumbTitle()` as explicit sensor methods
+
+**composer-controller** — needs:
+- `isFieldFocused()` sensor
+- `readFieldContent()` sensor
+- Remove blind `selectAll` — verify field is focused first
+
+**All controllers** — universal rules:
+- Every actuator returns boolean (did the UIA call succeed?)
+- Every sensor returns typed data
+- No `gateway.act` — only `gateway.waitFor` for polling
+- No `setTimeout` — ever
+- UIA element names hardcoded in the controller, never passed as parameters from View
+
+## Phase 3: View refactor
+
+Build the typed object graph in the component layer:
+
+**ChatItem** — `menu(): Promise<ChatMenu>`, `open(): Promise<void>`
+**ChatMenu** — `rename(title): Promise<void>`, `addToProject(): Promise<ProjectPicker>`, `delete(): Promise<void>`, `pin(): Promise<void>`, `close(): Promise<void>`
+**ProjectPicker** — `projects: string[]`, `select(name): Promise<void>`, `has(name): boolean`, `cancel(): Promise<void>`
+**ConversationBreadcrumb** — `projectName: string | null`, `title: string`, `rename(title): Promise<void>`
+
+Each View method: calls Controller actuator ONCE → polls Controller sensor via `gateway.waitFor` → reads data via Controller sensor → constructs next View object → returns it.
+
+## Phase 4: Remove gateway.act
+
+Replace every `gateway.act(action, verify)` with:
 ```typescript
-interface ChatItem {
-  title: string;
-  index: number;
-  async open(): Promise<Conversation>;
-  async menu(): Promise<ChatMenu>;
-}
-
-interface ChatMenu {
-  async rename(newTitle: string): Promise<void>;
-  async addToProject(): Promise<ProjectPicker>;
-  async delete(): Promise<void>;
-  async pin(): Promise<void>;
-}
-
-interface ProjectPicker {
-  projects: string[];
-  async select(projectName: string): Promise<void>;
-  async cancel(): Promise<void>;
-}
+await action();                              // fire once
+await gateway.waitFor(() => verify());       // poll the read
 ```
 
-Each method returns the next object in the chain. Each object verifies its own state. `menu()` returns a ChatMenu only after confirming the menu is visible. `addToProject()` returns a ProjectPicker only after confirming the dialog opened. `select()` verifies the selection before confirming.
+The verify function is always a Controller sensor — quick, harmless, pollable.
 
-## Stories
+## Phase 5: Documentation
 
-| ID | Story | Owner |
-|----|-------|-------|
-| S1 | Design the typed object interfaces for ChatItem, ChatMenu, ProjectPicker, Conversation breadcrumbs | Arthur + Claude |
-| S2 | Implement ChatItem as a rich object with menu(), open() | Adam |
-| S3 | Implement ChatMenu with rename(), addToProject(), delete(), pin() — each returning the next object | Adam |
-| S4 | Implement ProjectPicker with select(), cancel() — verifies selection | Adam |
-| S5 | Implement conversation breadcrumb reading as typed object — project name, rename dropdown | Adam |
-| S6 | Remove all string-based UIA calls from the component layer | Adam |
-| S7 | Remove gateway.act retries from chat-list-controller | Adam |
-| S8 | Test: rename Finance → Financial Analysis using the object chain | Adam |
-| S9 | Test: add to Claude project using the object chain | Adam |
-| S10 | Update Reference Desk with the object graph architecture | Claude |
-| S11 | Validate, push | Adam |
+- Update [Architecture Patterns](../reference-desk/10-architecture-patterns.md) with the sensor/actuator inventory
+- Update [Coding Philosophy](../reference-desk/05-coding-philosophy.md) with the gateway framerate principle
+- Update each operations chapter (Sending, Reading, Projects, Sessions) with the new View interfaces
+- Update the [Codebase Index](../reference-desk/09-codebase-index.md) with the audit results
 
-## The principle
+## Phase 6: Test
 
-Doug: "You aren't using the app. Get the sidebar object. That has conversations. Those have options. You choose one. You get a modal. Everything is async. Everything validates its own state."
+- Rename Finance → Financial Analysis using the object chain: `chatItem.menu().then(m => m.rename('Financial Analysis'))`
+- Add to Claude project using the object chain: `chatItem.menu().then(m => m.addToProject()).then(p => p.select('Claude'))`
+- Verify via breadcrumbs: `conversation.readProjectName() === 'Claude'`
+- Run all validators: 0 broken links
 
-Every action gets a confirmation read. Not sometimes — always. The object graph enforces this: you can't get a ProjectPicker without the dialog being verified open. You can't select a project without the selection being verified. The types ARE the verification.
+## Team
+
+| Agent | Role | Scope |
+|-------|------|-------|
+| Adam | Automation Engineer | Controller audit, Controller refactor, gateway.act removal |
+| Arthur | Architect | View interface design, MVC enforcement |
+| Claude | Environmentalist | Reference Desk documentation, architecture patterns |
+| Queenie | QA Engineer | Test contracts for every Controller method |
+
+## Definition of done
+
+- Every Controller method is classified as sensor or actuator
+- No `gateway.act` in the codebase
+- No `setTimeout` in Controllers
+- ChatItem, ChatMenu, ProjectPicker exist as typed View objects
+- Rename and addToProject work through the object chain
+- Reference Desk Architecture Patterns documents the full sensor/actuator inventory
+- 0 broken links
