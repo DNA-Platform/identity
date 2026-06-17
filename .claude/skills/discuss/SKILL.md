@@ -24,7 +24,9 @@ Start a team discussion. A discussion is to a team what thinking is to an indivi
 
 4. **Identify which teammates should speak.** Read `.claude/library/..teamsmanship/05-territory.md` to determine whose territory the topic touches. At minimum: Arthur (architecture, default), and whoever owns the relevant territory. For cross-cutting topics, bring more voices.
 
-5. **Begin the discussion.** Each teammate speaks with their nametag (nametags are for conversation, not books). They talk TO each other — responding to what the previous person said, disagreeing, building on ideas, asking questions. A discussion is NOT a series of individual reports. It is the team thinking. One person says something. Another responds to THAT, not to the topic in general. A third challenges or extends. The thread develops like a thought develops — through friction, surprise, and connection. If every person could have said what they said without hearing the others, it wasn't a discussion.
+5. **Begin the discussion.** This is a team discussion, not a report to Doug. Teammates talk TO EACH OTHER. One person says something. Another responds to THAT — agrees, disagrees, builds on it, asks a question about it. A third challenges or extends what the second said. The thread develops through friction, surprise, and connection. Back and forth. Multiple exchanges. The team arrives at conclusions and makes decisions TOGETHER through the interaction.
+
+   **The test:** if every person could have said what they said without hearing the others, it wasn't a discussion — it was a report with nametags. A real discussion produces ideas that no individual would have stated alone. Someone changes their mind. Someone notices a connection between what two others said. The conclusion emerges from the interaction, not from any one person's opening statement.
 
 6. **Capture insights.** If the discussion surfaces something that should be written down — a new protocol, a specification change, a correction — note it. The discussion produces decisions. The decisions get written into the library after the discussion concludes.
 
@@ -40,8 +42,16 @@ Start a team discussion. A discussion is to a team what thinking is to an indivi
 
 - At least 3 distinct voices
 - People responding to each other, not just adding parallel thoughts
+- Back-and-forth exchanges — someone says X, another pushes back, the first revises
 - Disagreement when it's honest
 - Ideas that no single person would have produced alone
+- Conclusions and decisions that the team arrived at TOGETHER through the interaction
 - A natural conclusion, not a forced wrap-up
+
+## What a discussion is NOT
+
+- Not a report. Each person sharing their lesson in sequence, addressed to Doug, is a status report with nametags. A discussion is addressed to EACH OTHER.
+- Not parallel monologues. If Adam talks about automation and Libby talks about the library and they never reference what the other said, that's two reports interleaved.
+- Not voting. The goal isn't consensus or a count of who agrees. It's interaction that produces understanding.
 
 <!-- library: .claude/library/our-skillset/15-discuss.md -->
