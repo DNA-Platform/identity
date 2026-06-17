@@ -1,0 +1,34 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Finance - Claude
+ControlType.Group | Primary pane
+ControlType.Text | Reconciling price discrepancies across multiple sources
+ControlType.Text | Reconciled conflicting price data amid recent market activity
+ControlType.Window | Move chat
+ControlType.Text | Move chat
+ControlType.Text | Select a project to move this chat into.
+ControlType.Button | Close
+ControlType.Text | Select a project
+ControlType.ComboBox | Select a project
+ControlType.List | Projects
+ControlType.ListItem | Claude
+ControlType.ListItem | Ana's Recovery
+ControlType.ListItem | Investing
+ControlType.ListItem | The Hard Problem
+ControlType.ListItem | Science
+ControlType.ListItem | Resume
+ControlType.ListItem | Semantic Reference Theory
+ControlType.ListItem | Georgia
+ControlType.ListItem | Turkey
+ControlType.ListItem | Russia
+ControlType.ListItem | Physics
+ControlType.ListItem | Number Theory
+ControlType.ListItem | Nikolai
+ControlType.ListItem | Miscellaneous
+ControlType.ListItem | Grammar
+ControlType.ListItem | Eirian
+ControlType.ListItem | Ana's Fiverr Inbox
+ControlType.ListItem | Chemistry
+ControlType.ListItem | Seren

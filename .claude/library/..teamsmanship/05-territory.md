@@ -66,6 +66,10 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** [Environmentalism](../..environmentalism/.cover.md) IS Claude's subject. Eight specification chapters + compilers. He catalogues The Environment.
 - `.claude/src/**` — the Reference Desk automation codebase (shared with Adam)
   **Why:** the code that connects Claude Code to Claude Desktop. Claude architected the tool and operates it for thinking. Adam built the gateway pattern and relay infrastructure. See [Reference Desk](../reference-desk/.cover.md), [Thoughtfulness](../thoughtfulness/.cover.md).
+- `..team/claude/thinking/**` — Claude's thinking book (conversations with Desktop)
+  **Why:** records of every research conversation dispatched through the [/think skill](../our-skillset/20-think.md). Each chapter is one exchange. Linked to the [Reference Desk](../reference-desk/.cover.md) codebase and [Thoughtfulness](../thoughtfulness/.cover.md) protocol. Personal library — Claude authors in first person.
+- `..team/claude/research-topics/**` — Claude's research topic catalogue (companion to thinking book)
+  **Why:** research organized by topic, not by conversation. Each chapter summarizes a thread spanning multiple conversations. Links to thinking book chapters via conversation IDs. See [Thoughtfulness](../thoughtfulness/.cover.md).
 - All interfaces with the Claude platform — anything that configures, extends, or communicates with Claude Code as a system
   **Why:** the recursive mirror. Claude maintains the system that instantiates Claude.
 - Roles: [Environmentalist](02-roles.md#environmentalist)

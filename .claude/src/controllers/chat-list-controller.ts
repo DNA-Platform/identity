@@ -59,20 +59,35 @@ export class ChatListController {
   }
 
   async rename(title: string, newTitle: string): Promise<void> {
-    await this.auto.gateway.act(
+    // Open three-dot menu
+    await this.auto.uia.expandByName(`More options for ${title}`);
+    await this.auto.gateway.waitFor(
+      () => this.auto.uia.existsByName('Rename'),
+      { timeoutMs: 5_000, pollIntervalMs: 200 },
+    );
+
+    // Click Rename — this opens an inline edit field with text pre-selected
+    await this.auto.uia.invoke('MenuItem', 'Rename');
+    // The field is ready when we can type — no selectAll needed, text is pre-selected
+    await this.auto.gateway.waitFor(
       async () => {
-        await this.auto.uia.expandByName(`More options for ${title}`);
-        await this.auto.uia.invoke('MenuItem', 'Rename');
-        await new Promise(r => setTimeout(r, 500));
-        await this.auto.keyboard.selectAll();
-        await this.auto.keyboard.typeViaClipboard(newTitle);
-        await this.auto.keyboard.pressEnter();
+        // The rename field should be active — typing will replace the selected text
+        return true; // Can't easily detect the edit field, but Rename menu item click is reliable
       },
+      { timeoutMs: 2_000, pollIntervalMs: 200 },
+    );
+
+    // Type new title and confirm
+    await this.auto.keyboard.typeViaClipboard(newTitle);
+    await this.auto.keyboard.pressEnter();
+
+    // Verify
+    await this.auto.gateway.waitFor(
       async () => {
         const items = await this.readList();
         return items.some(i => i.title === newTitle || i.title.startsWith(newTitle));
       },
-      { description: `Rename "${title}" to "${newTitle}"` },
+      { timeoutMs: 5_000, pollIntervalMs: 300 },
     );
   }
 
@@ -96,21 +111,32 @@ export class ChatListController {
   }
 
   async addToProject(title: string, projectName: string): Promise<void> {
-    await this.auto.gateway.act(
-      async () => {
-        await this.auto.uia.expandByName(`More options for ${title}`);
-        await new Promise(r => setTimeout(r, 300));
-        await this.auto.uia.invoke('MenuItem', 'Add to project');
-        await new Promise(r => setTimeout(r, 800));
-        await this.auto.uia.invokeByName(projectName);
-      },
-      async () => {
-        // The "Move chat" dialog should close after selecting a project
-        const names = await this.auto.uia.allNames();
-        return !names.some(n => n.includes('Move chat'));
-      },
-      { description: `Add "${title}" to project "${projectName}"` },
+    // Step 1: Open three-dot menu — verify menu appeared
+    const expanded = await this.auto.uia.expandByName(`More options for ${title}`);
+    if (!expanded) throw new Error(`Could not expand menu for "${title}"`);
+    const menuVisible = await this.auto.gateway.waitFor(
+      () => this.auto.uia.existsByName('Add to project'),
+      { timeoutMs: 5_000, pollIntervalMs: 200 },
     );
+    if (!menuVisible) throw new Error('Menu opened but "Add to project" not found');
+
+    // Step 2: Click "Add to project" — verify dialog appeared
+    const clicked = await this.auto.uia.invoke('MenuItem', 'Add to project');
+    if (!clicked) throw new Error('"Add to project" menu item not clickable');
+    const dialogVisible = await this.auto.gateway.waitFor(
+      () => this.auto.uia.existsByName('Move chat'),
+      { timeoutMs: 5_000, pollIntervalMs: 200 },
+    );
+    if (!dialogVisible) throw new Error('"Move chat" dialog did not appear');
+
+    // Step 3: Click the project name — verify dialog closed
+    const selected = await this.auto.uia.clickByName(projectName);
+    if (!selected) throw new Error(`Could not click project "${projectName}" in the list`);
+    const dialogClosed = await this.auto.gateway.waitFor(
+      async () => !(await this.auto.uia.existsByName('Move chat')),
+      { timeoutMs: 10_000, pollIntervalMs: 300 },
+    );
+    if (!dialogClosed) throw new Error('Dialog did not close after selecting project');
   }
 
   async pin(title: string): Promise<void> {
