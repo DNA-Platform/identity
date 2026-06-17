@@ -177,7 +177,24 @@ export class ConversationController {
   async hasResponseContent(): Promise<boolean> {
     const text = await this.auto.uia.readText();
     if (!text) return false;
-    return text.includes('Claude responded:') || text.includes('Claude is thinking');
+    return text.includes('Claude responded:');
+  }
+
+  async canSend(): Promise<boolean> {
+    return await this.auto.uia.existsByName('Send')
+      || await this.auto.uia.existsByName('Send message');
+  }
+
+  async hasStopButton(): Promise<boolean> {
+    return await this.auto.uia.existsByName('Stop response');
+  }
+
+  async isResponseComplete(): Promise<boolean> {
+    // Desktop is done when: no stop button AND can send.
+    // This is the definitive signal — independent of content.
+    const stopped = !(await this.hasStopButton());
+    const ready = await this.canSend();
+    return stopped && ready;
   }
 
   async isAtBottom(): Promise<boolean> {
