@@ -87,6 +87,14 @@ This is the strongest form of the abstraction principle: the view layer (scripts
 
 The app runs on Doug's computer. Every test, every script, every research dispatch must minimize the app when done — and must minimize QUICKLY if something goes wrong. The [`Session`](../../src/session.ts) minimizes between turns. Test scripts must call `app.window.minimize()` in their cleanup, including in error handlers. If a test fails, collect what you need (screenshot, error message) and minimize immediately. Doug's computer is not yours.
 
+## Read before you write
+
+Before writing ANY automation code: run the [introspect tool](09-codebase-index--introspect.ts) on [`claude.ts`](../../src/claude.ts) and [`session.ts`](../../src/session.ts). See what methods exist. If the method you need is there, use it. If it's not, add it to the right class — don't build it in a script.
+
+The [/think skill](../our-skillset/20-think.md) uses [`Session.send()`](03-04-operations--sessions.md) for all Desktop interaction. The [Thoughtfulness](../thoughtfulness/.cover.md) book documents the thinking protocol. The think script ([`think.ts`](../../src/scripts/think.ts)) is 110 lines of persistence — state file and catalogue. Every line of Desktop interaction goes through Session. Sprint 78-79 learned this the hard way: 200+ lines of code were written duplicating Session because nobody read this book first.
+
+The [Reading protocol](../teamspeak/08-reading.md) applies to code too: find the room before you act. This book IS the room for automation code.
+
 ## Code references the library, library references code
 
 From the code-library linking convention: source files carry comments pointing to the library chapter that explains them. Library chapters carry links to the source files they document. The two are bidirectionally connected. When one changes, the other should be checked for consistency using the [consistency tools](../bookkeeping/06-01-on-consistency.md).
