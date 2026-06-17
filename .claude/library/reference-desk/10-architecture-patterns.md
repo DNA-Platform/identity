@@ -64,22 +64,45 @@ After every action, read the state and confirm it matches your intent. This is n
 
 The object graph enforces this: each method reads back before returning. `.rename(title)` reads the title after setting it. `.select(project)` reads the selection after clicking. `.open()` reads the URL after navigating. The verification is inside the method, not the caller's responsibility.
 
-## The controller layer
+## MVC — Model, View, Controller
 
-Controllers ([`controllers/`](../../src/controllers/)) are the translation layer between typed objects and raw UIA. Each controller:
-- Knows the UIA element names for its domain (hardcoded, not passed as parameters)
-- Implements the async state-reading methods
-- Implements the action methods with verification
-- Returns typed data, not raw strings
+The codebase follows MVC. The layers are distinct and must not be conflated.
+
+**Model** — plain data types. `ThoughtState`, `CatalogueEntry`, `ChatItem` as `{ title, index }`, `Turn`, `Response`. No methods that touch the app. Just data about what we know.
+
+**Controller** ([`controllers/`](../../src/controllers/)) — the UIA layer. Talks to the raw app. Reads elements, clicks buttons, types text. Returns DATA about what it sees. Each controller:
+- Knows the UIA element names for its domain (hardcoded)
+- Does low-level UIA operations (expand, invoke, click, read)
+- Has its own checks at the UIA level ("I clicked and something appeared")
+- Returns raw data, not View objects
+
+**View** ([`components/`](../../src/components/), [`pages/`](../../src/pages/), [`claude.ts`](../../src/claude.ts)) — the object graph. Typed objects that represent what's on screen. Each View object:
+- Calls Controller methods to read data and perform actions
+- Verifies the data represents a valid state before constructing the next object
+- Returns typed objects to the caller — the object's existence IS the guarantee of state
+- Never touches UIA directly
+
+The flow: View calls Controller → Controller does UIA → Controller returns data → View verifies → View constructs the next typed object → returns to caller.
+
+```
+caller: chatItem.menu()
+  View (ChatList):  calls controller.expandMenu(title)
+  Controller:       does UIA expand, reads menu items, returns string[]
+  View (ChatList):  checks that expected items are present
+  View (ChatList):  constructs ChatMenu object from verified data
+  return:           ChatMenu (the object's existence = menu is open and valid)
+```
+
+The Controller catches UIA failures ("expand didn't work"). The View catches semantic failures ("the menu opened but doesn't have the items I expected"). Two levels of verification.
 
 Run the [introspect tool](09-codebase-index--introspect.ts) to see all controllers and their methods.
 
 ## How to add a new feature
 
 1. Read this chapter
-2. Identify which object in the graph this feature belongs to
-3. Add a method to that object (or create a new object if it's a new UI element)
-4. The method: acts, reads back, verifies, returns the next object or throws
-5. The controller: translates between the typed method and raw UIA calls
-6. Test: call the method, check the result
-7. Update this chapter and the [Reference Desk cover](../reference-desk/.cover.md) with the new method
+2. Identify which View object this feature belongs to
+3. Add a method to the View object
+4. The View method: calls Controller, reads data, verifies, returns the next View object or throws
+5. If the Controller needs new UIA operations, add them to the Controller — they return data, not View objects
+6. Test: call the View method, verify the result object
+7. Update this chapter and the [Reference Desk cover](.cover.md)
