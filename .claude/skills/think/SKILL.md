@@ -39,21 +39,23 @@ Use TodoWrite to create this checklist. Each step is a separate tool call. **NEV
 The script touches Desktop. I do all library work in first person. My [thinking book](../../library/..teamsmanship/..team/claude/thinking/.cover.md) is my personal library — I author it per [Autonomy](../../library/teamspeak/05-autonomy.md).
 
 ```
-[ ] 1. WRITE — run the script to send the question (run_in_background).
-[ ] 2. CREATE CHAPTER — I create a chapter in my thinking book. I write: 
-      what I asked and why, what I expect, what I already know, links to 
-      relevant library content. Link to previous chapter if continuing 
-      a conversation.
-[ ] 3. CATCH UP — I follow the previous-link chain back up to 3 chapters.
-      Reread my own prior evaluations in this conversation.
-[ ] 4. CHECK LOOP — run the script to check if Desktop responded. If not 
-      ready, I tend the library, then check again.
-[ ] 5. READ — run the script to read the response. I paste it into the 
-      Evidence section of my chapter.
-[ ] 6. INTERPRET — I write the Interpretation section.
-[ ] 7. CONCLUDE — I write the Conclusion section. I update my thinking 
-      book cover with the conversation summary.
+[ ] 0. FIND TOPIC — check research topics for an existing thread
+[ ] 1. WRITE — run the script to send the question (run_in_background)
+[ ] 2. CREATE CHAPTER — I write a chapter in my thinking book with my
+      thinking: what I asked, why, what I expect, what I know, links
+[ ] 3. CATCH UP — follow the previous-link chain, reread up to 3 chapters
+[ ] 4. CHECK — run the script to check. If not ready, tend, check again
+[ ] 5. READ — run the script to read. I paste Evidence into my chapter
+[ ] 6. INTERPRET — I write what aligns, surprises, is new
+[ ] 7. CONCLUDE — I write what to tell the team. Update thinking book
+      cover AND research topic chapter with the conversation summary
 ```
+
+### Step 0: Find the topic
+
+Before sending, I check my [research topics](../../library/..teamsmanship/..team/claude/research-topics/.cover.md). Does this question fit an existing topic? If yes, I'll continue that conversation thread — or at minimum, note which topic this belongs to. If no existing topic fits, it goes in [Miscellaneous](../../library/..teamsmanship/..team/claude/research-topics/02-miscellaneous.md).
+
+This determines which Desktop conversation to send to: an existing named chat for the topic, or the Miscellaneous catch-all.
 
 ### Step 1: Write
 

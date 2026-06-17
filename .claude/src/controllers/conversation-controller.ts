@@ -37,19 +37,22 @@ export class ConversationController {
   async rename(newTitle: string): Promise<void> {
     this.auto.navigator.requireScreen('conversation');
 
-    await this.auto.gateway.act(
-      async () => {
-        const title = await this.readTitle();
-        await this.auto.uia.invoke('Hyperlink', title);
-        await this.auto.keyboard.selectAll();
-        await this.auto.keyboard.typeViaClipboard(newTitle);
-        await this.auto.keyboard.pressEnter();
-      },
-      async () => {
-        const current = await this.readTitle();
-        return current === newTitle;
-      },
-      { description: `Rename to "${newTitle}"` },
+    // Click the breadcrumb rename button — it opens the field with text pre-selected
+    const title = await this.readTitle();
+    const clicked = await this.auto.uia.clickByName(`${title}, rename chat`);
+    if (!clicked) {
+      // Fallback: try clicking the title itself
+      await this.auto.uia.clickByName(title);
+    }
+
+    // Type the new title (field should have old text selected)
+    await this.auto.keyboard.typeViaClipboard(newTitle);
+    await this.auto.keyboard.pressEnter();
+
+    // Verify
+    await this.auto.gateway.waitFor(
+      async () => (await this.readTitle()) === newTitle,
+      { timeoutMs: 5_000, pollIntervalMs: 300 },
     );
   }
 

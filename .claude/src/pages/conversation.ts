@@ -194,6 +194,11 @@ export class Conversation implements Fallible {
     return this.controller.isAtBottom();
   }
 
+  async isInProject(projectName: string): Promise<boolean> {
+    const name = await this.readProjectName();
+    return name === projectName;
+  }
+
   async hasResponseContent(): Promise<boolean> {
     return this.controller.hasResponseContent();
   }
