@@ -87,6 +87,10 @@ This is the strongest form of the abstraction principle: the view layer (scripts
 
 The app runs on Doug's computer. Every test, every script, every research dispatch must minimize the app when done — and must minimize QUICKLY if something goes wrong. The [`Session`](../../src/session.ts) minimizes between turns. Test scripts must call `app.window.minimize()` in their cleanup, including in error handlers. If a test fails, collect what you need (screenshot, error message) and minimize immediately. Doug's computer is not yours.
 
+## Architecture patterns
+
+Read [Architecture Patterns](10-architecture-patterns.md) — the object graph, async verification, no strings, confirmation reads. Every feature follows these patterns. If your code doesn't, refactor before committing.
+
 ## Read before you write
 
 Before writing ANY automation code: run the [introspect tool](09-codebase-index--introspect.ts) on [`claude.ts`](../../src/claude.ts) and [`session.ts`](../../src/session.ts). See what methods exist. If the method you need is there, use it. If it's not, add it to the right class — don't build it in a script.
