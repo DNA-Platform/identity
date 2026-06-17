@@ -46,13 +46,19 @@ Beyond the active screen, the navigator detects two kinds of overlays:
 
 ## Conversation navigation
 
+`openChat(title)` — open a conversation by title from the sidebar. Scrolls to bottom after opening — you always arrive at the latest message. Refreshes metadata (URL, title, project name).
+
+`openChatAt(index)` — open a conversation by sidebar position. Delegates to `openChat()`, so it also scrolls to bottom.
+
 `newChat()` — navigate to a guaranteed fresh conversation. Dismisses dialogs, goes home, clicks "New chat", verifies the URL has no conversation ID. If verification fails, throws.
 
 `checkConversation(id)` — is the current conversation the one with this ID? Reads the URL and checks if it contains the conversation UUID. Returns boolean. Does not navigate.
 
-`openConversationById(id)` — navigate to a conversation by ID. If already on it (checked via `checkConversation`), does nothing. Otherwise refreshes the sidebar and opens the most recent chat, then verifies the URL matches. The most-recent assumption works when the conversation was just created.
+`openConversationById(id)` — navigate to a conversation by ID. If already on it (checked via `checkConversation`), does nothing. Otherwise refreshes the sidebar and opens the most recent chat (with scroll-to-bottom), then verifies the URL matches.
 
-`dismissDialogs()` — press Escape twice to close any open modal dialogs (like the "Move chat" project picker). Call before navigation if a dialog might be blocking.
+`dismissDialogs()` — press Escape twice to close any open modal dialogs. Call before navigation if a dialog might be blocking.
+
+`scrollToBottom()` — awaitable. Clicks the "Scroll to bottom" button if present, waits for the button to disappear (readiness check). If button is absent, already at bottom — no-op. Uses the gateway `act` pattern.
 
 ## The `resetToHome()` contract
 

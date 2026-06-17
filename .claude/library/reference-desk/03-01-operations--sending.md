@@ -23,7 +23,7 @@ await app.send();  // waits for response by default
 
 | Method | What it does | When to use |
 |--------|-------------|-------------|
-| `compose(text)` | Paste into the composer (clears first) | Default — handles any size |
+| `compose(text)` | Scroll to bottom, clear draft, paste text | Default — handles any size |
 | `type(text)` | Character-by-character via keyboard | Short text, needs to trigger autocomplete |
 | `paste(text)` | Clipboard paste | Direct control over paste |
 | `append(text)` | Add to existing content without clearing | Multi-part composition |
@@ -47,10 +47,12 @@ Type is used only when the text must trigger the input handler character-by-char
 Two send methods:
 
 **`send(responseTimeoutMs)`** — send and WAIT for the response:
-1. The composer's send button is invoked via UIA
-2. The [gateway](02-02-the-architecture--gateway.md) verifies that Desktop starts responding
-3. The gateway polls until the response completes
-4. The conversation's turns are re-read to capture the response
+1. Scroll to bottom — ensure the UI is at the latest position
+2. The composer's send button is invoked via UIA
+3. Scroll to bottom again — Desktop may jump the view when processing starts
+4. The [gateway](02-02-the-architecture--gateway.md) detects processing started (streaming indicator, thinking text, or response text)
+5. The gateway polls until the response completes
+6. The conversation's turns are re-read to capture the response
 
 The timeout defaults to 120 seconds. For long research questions, increase it: `await app.send(300_000)`.
 
