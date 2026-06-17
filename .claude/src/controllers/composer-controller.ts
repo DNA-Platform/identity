@@ -83,13 +83,25 @@ export class ComposerController {
         }
       },
       async () => {
-        const screen = await this.auto.navigator.detectScreen();
-        if (screen === 'conversation') return true;
-        const streaming = await this.auto.uia.existsByName('Claude is responding')
-          || await this.auto.uia.existsByName('Claude is thinking');
-        return streaming;
+        // Check for the thinking block OR response text — the actual content elements.
+        //
+        // The thinking block is a Button named "Thinking" during active thinking.
+        // It persists permanently — its name changes to the thinking summary after.
+        // This catches: Desktop is thinking (will produce content).
+        //
+        // Response text appears as Text elements during streaming and after completion.
+        // "Claude responded:" appears in readText() once streaming completes.
+        // During streaming, the response words are in readText() without that prefix.
+        // "Claude finished the response" appears at completion.
+        //
+        // Check both: thinking block (Desktop is working) OR response content (words exist).
+        if (await this.auto.uia.exists('Button', 'Thinking')) return true;
+        if (await this.auto.uia.existsByName('Claude finished the response')) return true;
+        const text = await this.auto.uia.readText();
+        if (!text) return false;
+        return text.includes('Claude responded:');
       },
-      { description: 'Send message' },
+      { description: 'Send message', timeoutMs: 120_000 },
     );
   }
 

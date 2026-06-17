@@ -190,6 +190,25 @@ export class ConversationController {
     return text.includes('Claude responded:');
   }
 
+  async hasThinkingBlock(): Promise<boolean> {
+    // The thinking block is a Button element that appears when Desktop starts processing.
+    // During active thinking its name is "Thinking".
+    // After thinking completes its name becomes the thinking summary.
+    // It NEVER disappears — it's permanent once processing begins.
+    // Its presence is proof that Desktop received the message and is working or has worked.
+    //
+    // To find it: look for a Button named "Thinking" (active thinking),
+    // or fall back to checking allNames() for any Button in the conversation area
+    // that isn't sidebar chrome (the thinking summary has a unique long name).
+    if (await this.auto.uia.exists('Button', 'Thinking')) return true;
+    // After thinking completes, the button name changes to the summary.
+    // We can't search by name since the summary is unique per response.
+    // But "Claude responded:" or "Claude finished" appearing means the block exists too.
+    if (await this.hasResponseContent()) return true;
+    if (await this.auto.uia.existsByName('Claude finished the response')) return true;
+    return false;
+  }
+
   async canSend(): Promise<boolean> {
     return await this.auto.uia.existsByName('Send')
       || await this.auto.uia.existsByName('Send message');
