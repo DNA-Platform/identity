@@ -31,7 +31,7 @@ async function doWrite() {
 
     let url = '', id = '';
     for (let i = 0; i < 10; i++) {
-      await new Promise(r => setTimeout(r, 500));
+      await new Promise(r => setTimeout(r, 200));
       url = await app.auto.uia.readUrl() ?? '';
       const m = url.match(/\/chat\/([a-f0-9-]+)/);
       if (m) { id = m[1]; break; }
@@ -59,7 +59,6 @@ async function doCheck() {
       await app.openChatAt(0);
     }
     await app.conversation.scrollToBottom();
-    await new Promise(r => setTimeout(r, 100));
     const streaming = await app.conversation.checkStreaming();
     console.log(streaming ? '[check] Still streaming.' : '[check] Ready. Run "read".');
   } finally { app.window.minimize(); }
@@ -79,7 +78,6 @@ async function doRead() {
       await app.openChatAt(0);
     }
     await app.conversation.scrollToBottom();
-    await new Promise(r => setTimeout(r, 100));
     const response = await app.conversation.readLastResponse();
 
     console.log('[read] Length:', response.length);
