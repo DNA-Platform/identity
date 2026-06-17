@@ -18,12 +18,26 @@ export class ChatMenu {
     readonly items: string[],
   ) {}
 
+  private async verifyStillOpen(): Promise<void> {
+    const open = await this.controller.isMenuVisible();
+    if (!open) throw new Error('Menu is no longer open');
+  }
+
   async rename(newTitle: string): Promise<void> {
-    // Actuator: click Rename menu item
-    const clicked = await this.controller.clickMenuItem('Rename');
+    await this.verifyStillOpen();
+
+    // Actuator: click Rename
+    const clicked = await this.controller.clickRename();
     if (!clicked) throw new Error('Could not click Rename');
 
-    // Actuator: type new title and press Enter
+    // Sensor: verify rename field is active
+    const fieldActive = await this.gateway.waitFor(
+      () => this.controller.isRenameFieldActive(),
+      { timeoutMs: 3_000 },
+    );
+    if (!fieldActive) throw new Error('Rename field did not open');
+
+    // Actuator: type new title and confirm
     await this.controller.typeAndConfirm(newTitle);
 
     // Sensor: verify the rename took effect
@@ -35,9 +49,10 @@ export class ChatMenu {
   }
 
   async addToProject(): Promise<ProjectPicker> {
-    // Actuator: click "Add to project" or "Projects"
-    let clicked = await this.controller.clickMenuItem('Add to project');
-    if (!clicked) clicked = await this.controller.clickMenuItem('Projects');
+    await this.verifyStillOpen();
+
+    // Actuator: click Add to project
+    const clicked = await this.controller.clickAddToProject();
     if (!clicked) throw new Error('Could not click Add to project');
 
     // Sensor: verify dialog appeared
@@ -53,11 +68,15 @@ export class ChatMenu {
   }
 
   async delete(): Promise<void> {
-    await this.controller.clickMenuItem('Delete');
+    await this.verifyStillOpen();
+    const clicked = await this.controller.clickDelete();
+    if (!clicked) throw new Error('Could not click Delete');
   }
 
   async pin(): Promise<void> {
-    await this.controller.clickMenuItem('Pin');
+    await this.verifyStillOpen();
+    const clicked = await this.controller.clickPin();
+    if (!clicked) throw new Error('Could not click Pin');
   }
 
   async close(): Promise<void> {
@@ -76,7 +95,14 @@ export class ProjectPicker {
     return this.projects.includes(name);
   }
 
+  private async verifyStillOpen(): Promise<void> {
+    const open = await this.controller.isDialogVisible();
+    if (!open) throw new Error('Project picker is no longer open');
+  }
+
   async select(projectName: string): Promise<void> {
+    await this.verifyStillOpen();
+
     if (!this.has(projectName)) {
       await this.controller.closeDialog();
       throw new Error(`"${projectName}" not in picker. Available: ${this.projects.join(', ')}`);
@@ -86,10 +112,10 @@ export class ProjectPicker {
     const clicked = await this.controller.clickProjectItem(projectName);
     if (!clicked) {
       await this.controller.closeDialog();
-      throw new Error(`Could not click ListItem "${projectName}"`);
+      throw new Error(`Could not click "${projectName}" in the list`);
     }
 
-    // Sensor: verify dialog closed
+    // Sensor: verify dialog closed (selecting auto-confirms)
     const closed = await this.gateway.waitFor(
       async () => !(await this.controller.isDialogVisible()),
       { timeoutMs: 10_000 },
