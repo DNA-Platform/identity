@@ -84,13 +84,16 @@ When `app.window.find()` finds a running Claude Desktop, `app.launch()` skips th
 
 **Sprint 77 finding:** The "Move chat" project picker dialog blocks all other UI interactions. `goHome()` fails because "New chat" isn't in the UIA tree while the dialog is open. The `dismissDialogs()` method (Escape twice) was added to recover. Any exploration script that opens a dialog must reliably close it — `pressEscape` or clicking a cancel button.
 
-## Silent success when streaming never starts
+## Detecting that Desktop started processing
 
-`waitForResponse()` in [`conversation-controller.ts`](../../src/controllers/conversation-controller.ts) has two phases: wait for streaming to start (15s), then wait for streaming to stop. If streaming never starts — the message wasn't received, Desktop ignored it — phase 1 times out and falls through. Phase 2 immediately succeeds because `!streaming` is true. The method returns silently, and `readTurns()` reads the PREVIOUS conversation's content.
+`waitForResponse()` in [`conversation-controller.ts`](../../src/controllers/conversation-controller.ts) has two phases. Phase 1 detects that Desktop started processing by checking three signals every 500ms:
+1. Streaming indicator ("Claude is responding" or "Claude is thinking")
+2. Thinking text visible in the page (extended thinking content)
+3. Response text appeared ("Claude responded:" in the UIA text)
 
-`sendAndForget()` added a check that throws if streaming doesn't start within 15 seconds. But the standard `send()` path through `waitForResponse()` doesn't have this guard. If `session.send()` returns a response that doesn't match the question, this is likely why.
+If NONE of these appear within 30 seconds, phase 1 throws — the message wasn't received. This replaced an earlier version that silently succeeded when streaming never started.
 
-**Diagnosis:** compare the response text to the question. If the response has no relationship to what was asked, the message may not have been received. Check: was the composer cleared? Was a dialog blocking? Was the app on the right screen?
+**If the error fires:** the message wasn't delivered. Check: was the composer cleared? Was a dialog blocking? Was the app on the right screen? Was the text typed correctly?
 
 ## The "Show more" ambiguity
 

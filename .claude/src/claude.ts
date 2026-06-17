@@ -227,6 +227,7 @@ export class Claude {
 
   async openChat(title: string): Promise<void> {
     await this.sidebar.chats.open(title);
+    await this.conversation.scrollToBottom();
     await this.conversation.refreshMetadata();
   }
 
@@ -263,8 +264,12 @@ export class Claude {
   // --- Messaging ---
 
   async compose(...parts: string[]): Promise<void> {
-    // Clear any existing draft before composing — prevents accidental sends
-    // of leftover text from failed operations or Doug's typing
+    // Scroll to bottom first — ensures the view is at the latest message
+    // and the composer is fully visible. The "Scroll to bottom" button
+    // disappears when already at the bottom, so this is idempotent.
+    try { await this.conversation.scrollToBottom(); } catch {}
+
+    // Clear any existing draft before composing
     try {
       const draft = await this.conversation.composer.readDraft();
       if (draft) await this.conversation.composer.clear();
