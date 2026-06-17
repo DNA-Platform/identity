@@ -42,11 +42,51 @@ Persistence only. 110 lines:
 - `findChapter(state)` — finds the chapter for a given conversation ID
 - `pasteResponse(chapterPath, response)` — writes the response into the Evidence section
 
+## The call chain
+
+When `session.send(question)` runs, this happens inside the app:
+
+1. [`Session.acquireForeground()`](../reference-desk/02-03-the-architecture--navigation.md) — Alt-key hack + ShowWindow + SetForegroundWindow (idempotent — skips if already foreground)
+2. [`Claude.compose(question)`](../reference-desk/03-01-operations--sending.md) — reads draft via `readDraft()`, clears if not empty, then pastes the question
+3. [`Claude.send(timeout)`](../reference-desk/03-01-operations--sending.md#the-send-flow) — clicks Send, then:
+   - [`Conversation.waitForResponse()`](../../src/controllers/conversation-controller.ts) phase 1: polls [`checkStreaming()`](../reference-desk/03-02-operations--reading.md) for streaming start (15s)
+   - Phase 2: polls for streaming end (full timeout)
+   - Reads turns, URL, title, project name
+4. [`Session`](../reference-desk/03-04-operations--sessions.md) captures `id`, `url`, `turns`
+5. [`Session`](../reference-desk/03-04-operations--sessions.md) minimizes
+
+**Known pitfall:** if streaming never starts (message not received), phase 1 times out silently and phase 2 succeeds immediately because `!streaming` is true. The response will be stale content from the previous conversation. See [Pitfalls](../reference-desk/07-pitfalls.md#silent-success-when-streaming-never-starts). Mitigation: check that the response text relates to the question.
+
+## The think script implementation
+
+The test script ([`test-think-dispatch.ts`](../../src/scripts/test-think-dispatch.ts)) has one mode: `think "question"`. It does:
+
+```
+1. app.launch()                          // Reference Desk: Lifecycle
+2. session = app.startSession(180s)      // Reference Desk: Sessions
+3. response = session.send(question)     // The entire Desktop lifecycle
+4. writeState(session.id, url, question) // think.ts: state file
+5. scaffoldChapter(state)                // think.ts: thinking book
+6. pasteResponse(chapter, response)      // think.ts: fill Evidence section
+7. updateCatalogue(...)                  // think.ts: JSON catalogue
+```
+
+Seven steps. Steps 1-3 are app methods documented in the [Reference Desk](../reference-desk/.cover.md). Steps 4-7 are persistence functions in [`think.ts`](../../src/scripts/think.ts). Nothing else.
+
+## Discovering the codebase
+
+Before modifying this code, run the [introspect tool](../reference-desk/09-codebase-index--introspect.ts):
+
+```bash
+npx tsx .claude/library/reference-desk/09-codebase-index--introspect.ts .claude/src/claude.ts
+npx tsx .claude/library/reference-desk/09-codebase-index--introspect.ts .claude/src/session.ts
+```
+
+If the method you need appears in the output, use it. If not, add it to the right class — not to a script.
+
 ## The lesson
 
-Sprint 78 built `sendAndForget()`, `checkConversation()`, `openConversationById()`, `newChat()` — 200+ lines of code duplicating what `Session` already did. The [Reading protocol](../teamspeak/08-reading.md) says: read the room before you act. The room for automation code is the [Reference Desk](../reference-desk/.cover.md). Read the Sessions chapter. Read `session.ts`. If the functionality exists, use it. Do not build a parallel implementation.
-
-The [coding philosophy](../reference-desk/05-coding-philosophy.md) applies: if a script needs to reach below the `Claude` class, the class is missing a method. Add the method, don't bypass the stack. But first CHECK whether the method already exists.
+Sprint 78-79 built 200+ lines of code duplicating what [`Session`](../reference-desk/03-04-operations--sessions.md) already did. The [Reading protocol](../teamspeak/08-reading.md) says: read the room before you act. The room for automation code is the [Reference Desk](../reference-desk/.cover.md). The [coding philosophy](../reference-desk/05-coding-philosophy.md) says: read before you write. Run the introspect tool. Check the Sessions chapter. If the functionality exists, use it.
 
 <!-- citations -->
 [session]: ../reference-desk/03-04-operations--sessions.md
