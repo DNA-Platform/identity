@@ -1,3 +1,8 @@
+///: ArtifactPanel — slide-out panel for artifacts.
+///: Appears on the right edge of a conversation when artifacts exist.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the component layer.
+
 // ArtifactPanel — the slide-out panel showing things Claude has created.
 // Appears on the right edge of a conversation when artifacts exist.
 

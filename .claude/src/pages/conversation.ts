@@ -1,3 +1,12 @@
+///: Conversation — an open chat page.
+///: Streaming detection, scrollToBottom before every read, and
+///: isResponseComplete() as the definitive done signal. The most important
+///: page object — scripts spend most of their time here waiting for and
+///: reading responses.
+///:
+///: [Reading Responses](../../library/reference-desk/03-02-operations--reading.md) — streaming and completion.
+///: [The App Model](../../library/reference-desk/02-04-the-architecture--app-model.md) — page lifecycle.
+
 // Conversation — an open chat between the user and Claude.
 // See: library/..team/claude/.perspective/07-conversation-samantha.png
 

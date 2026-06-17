@@ -1,3 +1,11 @@
+///: ChatListController — sensors and actuators for sidebar conversations.
+///: Sensors: isMenuVisible, readMenuItems, readChatItems.
+///: Actuators: expandMenu, clickRename, clickDelete, clickMoveTo.
+///: No orchestration — the View layer (ChatList) sequences these calls.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
+///: [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — the View-Controller split.
+
 import type { Automation } from '../automation.ts';
 import { ChatNotFoundError } from '../errors.ts';
 import { isMoreOptions, isGreeting, isActionPill, isComposerPlaceholder, normalizeSpaces } from '../text.ts';
@@ -94,15 +102,15 @@ export class ChatListController {
   // --- Granular sensors (reads) ---
 
   async isMenuVisible(): Promise<boolean> {
-    return await this.auto.uia.existsByName('Rename')
-      || await this.auto.uia.existsByName('Delete')
-      || await this.auto.uia.existsByName('Add to project')
-      || await this.auto.uia.existsByName('Projects');
+    return await this.auto.uia.exists('MenuItem', 'Rename')
+      || await this.auto.uia.exists('MenuItem', 'Delete')
+      || await this.auto.uia.exists('MenuItem', 'Add to project')
+      || await this.auto.uia.exists('MenuItem', 'Projects');
   }
 
   async readMenuItems(): Promise<string[]> {
     const names = await this.auto.uia.allNames();
-    const known = ['Pin', 'Rename', 'Add to project', 'Delete', 'Projects', 'Share chat'];
+    const known = ['Pin', 'Rename', 'Add to project', 'Change project', 'Remove from project', 'Delete', 'Projects', 'Share chat'];
     return known.filter(item => names.some(n => n.endsWith(`| ${item}`)));
   }
 
@@ -129,6 +137,10 @@ export class ChatListController {
 
   // --- Granular actuators (single UIA actions) ---
 
+  async hasMenuButton(title: string): Promise<boolean> {
+    return this.auto.uia.existsByName(`More options for ${title}`);
+  }
+
   async expandMenu(title: string): Promise<boolean> {
     return this.auto.uia.expandByName(`More options for ${title}`);
   }
@@ -144,8 +156,8 @@ export class ChatListController {
 
   async clickAddToProject(): Promise<boolean> {
     return await this.auto.uia.invoke('MenuItem', 'Add to project')
-      || await this.auto.uia.invokeByName('Add to project')
-      || await this.auto.uia.invokeByName('Projects');
+      || await this.auto.uia.invoke('MenuItem', 'Projects')
+      || await this.auto.uia.invoke('MenuItem', 'Change project');
   }
 
   async clickPin(): Promise<boolean> {

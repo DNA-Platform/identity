@@ -1,3 +1,9 @@
+///: Composer — the text input for messages.
+///: paste() for large text (via clipboard), type() for inline edits.
+///: compose() clears draft first, then pastes — the primary send path.
+///:
+///: [Sending Messages](../../library/reference-desk/03-01-operations--sending.md) — the compose workflow.
+
 // Composer — the text input where you type and send messages.
 // Reusable: appears on the home screen and in every conversation.
 // See: library/..team/claude/.perspective/02-2026-05-10-home-screen-anatomy.md

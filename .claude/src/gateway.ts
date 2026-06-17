@@ -1,8 +1,14 @@
-// Gateway — the async layer between the skeleton and the transport.
-// Handles retry, readiness polling, timeout, and diagnostics.
-// See: library/..team/claude/.perspective/ for the app's async behavior
-// See: Doug's stock trading platform pattern: centralized cross-cutting concerns
-// See: library/..team/adam/verified-automation/ for the feedback principles
+///: Gateway — act once, look repeatedly.
+///: The discipline layer for all UIA interaction. Fire an action once, then poll
+///: a verify predicate until the app confirms it worked. The verify must be a
+///: quick, harmless [controller sensor](../library/reference-desk/02-02-the-architecture--gateway.md#sensors-and-actuators) — never an action.
+///:
+///: Three methods: act (fire + verify), waitFor (poll a predicate), read (poll
+///: until valid result). All use tapering backoff — 50ms doubling to 1000ms.
+///:
+///: [The Gateway Pattern](../library/reference-desk/02-02-the-architecture--gateway.md) — full specification.
+///: [Coding Philosophy](../library/reference-desk/05-coding-philosophy.md) — the elevator metaphor: open your eyes and look.
+///: [Architecture Patterns](../library/reference-desk/10-architecture-patterns.md) — how View objects use this.
 
 import type { Diagnostics } from './diagnostics.ts';
 import type { Window } from './window.ts';

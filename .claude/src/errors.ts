@@ -1,3 +1,10 @@
+///: Errors — typed errors and the Fallible interface.
+///: ChatNotFoundError, WrongScreenError, and others. The Fallible interface
+///: gives every View object an errors array for tracking partial failures
+///: without throwing — callers check errors after the operation.
+///:
+///: [Pitfalls](../library/reference-desk/07-pitfalls.md) — error patterns.
+
 // Errors — typed errors and error-tracking utilities for the driver.
 
 import type { Screen } from './navigator.ts';

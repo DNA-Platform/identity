@@ -1,3 +1,10 @@
+///: Text — UIA text cleaning utilities.
+///: UIA TextPattern returns the whole window as flat text: sidebar chrome,
+///: image placeholders, timestamps, status lines. These utilities strip
+///: noise so controllers can work with clean conversation content.
+///:
+///: [Windows UIA](../library/reference-desk/04-01-platform--uia.md) — the TextPattern surface.
+
 // Text utilities — shared cleaning and parsing for UIA text streams.
 // The UIA TextPattern returns the entire window as flat text, including
 // sidebar, chrome, and image placeholders. These utilities strip that noise.

@@ -20,6 +20,8 @@ export interface ThoughtState {
   url: string;
   question: string;
   startedAt: string;
+  chapterPath?: string;
+  topicPath?: string;
 }
 
 export function readState(): ThoughtState | null {
@@ -35,6 +37,12 @@ export function writeState(state: ThoughtState): void {
 
 export function deleteState(): void {
   if (existsSync(STATE_FILE)) unlinkSync(STATE_FILE);
+}
+
+export function updateState(partial: Partial<ThoughtState>): void {
+  const current = readState();
+  if (!current) throw new Error('No active thought to update');
+  writeState({ ...current, ...partial });
 }
 
 export function hasActiveThought(): boolean {

@@ -279,8 +279,8 @@ function walkDir(dir: string): void {
   // Structural check: directory with markdown files but no cover
   const hasMdFiles = entries.some(e => e.endsWith('.md') && e !== '.cover.md');
   if (hasMdFiles && !hasCover && dir !== root) {
-    console.log(`WARN    ${relDir}  Directory has markdown files but no .cover.md — not a valid book`);
-    warnings++;
+    console.log(`ERROR   ${relDir}  Directory has markdown files but no .cover.md — unindexed content`);
+    errors++;
   }
 
   // Structural check: subdirectories that look like chapters (sprint-NN/ or similar patterns)
@@ -302,7 +302,10 @@ function walkDir(dir: string): void {
     }
   }
 
+  const skip = new Set(['node_modules', '.git', '.archive']);
+
   for (const entry of entries) {
+    if (skip.has(entry)) continue;
     const full = join(dir, entry);
     const stat = statSync(full);
     if (stat.isDirectory()) {

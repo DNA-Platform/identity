@@ -85,9 +85,27 @@ function resolveLink(dest: string, fileAbsPath: string): string | null {
   }
 }
 
-// -- Step 3: File walking ------------------------------------------------
+// -- Step 3: Extract ///: annotation block from .ts files as markdown -----
 
-const skip = new Set(['.git', 'node_modules', '.archive']);
+function extractAnnotation(tsContent: string): string {
+  const lines = tsContent.split('\n');
+  const annotation: string[] = [];
+  let started = false;
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('///:')) {
+      started = true;
+      annotation.push(trimmed.slice(4).trimStart());
+    } else if (started) {
+      break;
+    }
+  }
+  return annotation.join('\n');
+}
+
+// -- Step 4: File walking ------------------------------------------------
+
+const skip = new Set(['.git', 'node_modules', '.archive', 'debug', 'shortcut']);
 
 function walk(dir: string, files: string[]): void {
   for (const entry of readdirSync(dir)) {
@@ -95,13 +113,16 @@ function walk(dir: string, files: string[]): void {
     const full = join(dir, entry);
     if (statSync(full).isDirectory()) {
       walk(full, files);
-    } else if (extname(full) === '.md') {
-      files.push(full);
+    } else {
+      const ext = extname(full);
+      if (ext === '.md' || ext === '.ts') {
+        files.push(full);
+      }
     }
   }
 }
 
-// -- Step 4: Run ---------------------------------------------------------
+// -- Step 5: Run ---------------------------------------------------------
 
 const files: string[] = [];
 walk(scanRoot, files);
@@ -111,7 +132,9 @@ let broken = 0;
 const problems: string[] = [];
 
 for (const file of files) {
-  const content = readFileSync(file, 'utf-8');
+  const raw = readFileSync(file, 'utf-8');
+  const content = extname(file) === '.ts' ? extractAnnotation(raw) : raw;
+  if (!content) continue;
   const relFile = file.replace(scanRoot, '').replace(/\\/g, '/');
 
   for (const link of extractLinks(content)) {

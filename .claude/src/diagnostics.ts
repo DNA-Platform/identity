@@ -1,3 +1,9 @@
+///: Diagnostics — debug infrastructure for failed actions.
+///: Gateway calls diagnostics on every failed action: UIA tree snapshot,
+///: screenshot, and action history. Output lands in .claude/src/debug/.
+///:
+///: [The Gateway Pattern](../library/reference-desk/02-02-the-architecture--gateway.md) — the act-verify loop.
+
 // Diagnostics — cross-cutting debug infrastructure.
 // Captures UIA tree snapshots, screenshots, and action history
 // when things go wrong. Used by the gateway on every failed action.
@@ -9,7 +15,7 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DEBUG_DIR = resolve(__dirname, '..', 'debug');
+const DEBUG_DIR = resolve(__dirname, 'debug');
 
 export interface ActionRecord {
   timestamp: number;

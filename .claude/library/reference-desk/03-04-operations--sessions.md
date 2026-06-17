@@ -4,7 +4,7 @@
 
 ---
 
-A session ([`.claude/src/session.ts`](../../src/session.ts)) is a managed conversation interaction. It is the API that makes the `/research` skill possible — start a conversation, send messages, read responses, and clean up. Introduced in [Sprint 67](../projected-research/31-sprint-67--conversation-sessions.md).
+A session ([`.claude/src/session.ts`](../../src/session.ts)) is a managed conversation interaction. It is the API that makes the [/think skill](../our-skillset/20-think.md) possible — start a conversation, send messages, read responses, and clean up. Introduced in [Sprint 67](../projected-research/31-sprint-67--conversation-sessions.md).
 
 ## The complete research workflow
 
@@ -92,7 +92,7 @@ After the action completes, `window.minimize()` returns the computer to Doug.
 ## Use cases
 
 ### Research dispatch
-Claude starts a session, sends a research question, reads the response, stores it in perspective with annotations. The [Thoughtfulness](../thoughtfulness/.cover.md) book specifies the full protocol — the write/check/read cycle, the [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md), the perspective entry format. The [/think skill](../our-skillset/20-think.md) uses `sendAndForget()` instead of `session.send()` to avoid blocking.
+Claude starts a session, sends a research question, reads the response, stores it in perspective with annotations. The [Thoughtfulness](../thoughtfulness/.cover.md) book specifies the full protocol — the write/check/read cycle, the [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md), the perspective entry format. The [/think skill](../our-skillset/20-think.md) uses `sendAndForget()` for the write phase (non-blocking) and polls `isResponseComplete()` for the read phase. The think script ([`think.ts`](../../src/scripts/think.ts)) handles only state file persistence — 46 lines. All Desktop interaction goes through Session.
 
 ### Returning to a conversation
 The session stores `id` and `url`. To return to a previous conversation across sessions or turns:

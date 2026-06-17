@@ -1,3 +1,10 @@
+///: ConversationController — UIA boundary for open chats.
+///: Sensors: readMessages, readResponse, isStreaming, isResponseComplete.
+///: Actuators: scrollToBottom, clickStop. No orchestration.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
+///: [Reading Responses](../../library/reference-desk/03-02-operations--reading.md) — streaming detection.
+
 import type { Automation } from '../automation.ts';
 import type { ChatMessage, ConversationMessage } from '../components/message.ts';
 import type { Turn } from '../components/turn.ts';

@@ -50,7 +50,13 @@ interface Automation {
 
 ## Layer 2: Controllers
 
-Controllers read and write the UIA tree. Each controller owns one domain of the UI. They return plain data; they never hold state.
+Controllers read and write the UIA tree. Each controller owns one domain of the UI. They return plain data — never View objects — and never hold state. Controller methods split into two categories:
+
+**Sensors** — read the app's state. Return boolean or data. Quick and harmless. The [gateway](02-02-the-architecture--gateway.md) polls these via `waitFor()` to verify that an action worked. Examples: `isMenuVisible()`, `readMenuItems()`, `isDialogVisible()`, `readProjectList()`, `isRenameFieldActive()`.
+
+**Actuators** — perform a single UIA operation that changes state. Return boolean (did it fire). Called once by the View, then verified with a sensor. Examples: `expandMenu(title)`, `clickRename()`, `clickAddToProject()`, `clickProjectItem(name)`.
+
+No orchestration lives in controllers — no `setTimeout`, no `gateway.act()`, no multi-step sequences. The View layer orchestrates by calling actuators and polling sensors. See [Architecture Patterns](10-architecture-patterns.md) for the full MVC flow.
 
 | Controller | Source | Domain |
 |------------|--------|--------|
@@ -59,7 +65,7 @@ Controllers read and write the UIA tree. Each controller owns one domain of the 
 | [`ProjectController`](../../src/controllers/project-controller.ts) | Project name, files, instructions, conversations |
 | [`ProjectsController`](../../src/controllers/projects-controller.ts) | List projects, open project, create project |
 | [`SidebarController`](../../src/controllers/sidebar-controller.ts) | Navigation buttons, search, new chat |
-| [`ChatListController`](../../src/controllers/chat-list-controller.ts) | Ordered conversation list, open/rename/delete/pin |
+| [`ChatListController`](../../src/controllers/chat-list-controller.ts) | Sensors + actuators for sidebar conversations |
 | [`ModelPickerController`](../../src/controllers/model-picker-controller.ts) | Model selection, thinking mode |
 | [`ArtifactPanelController`](../../src/controllers/artifact-panel-controller.ts) | Artifact list, content reading |
 | [`ComposedMessageController`](../../src/controllers/composed-message-controller.ts) | Message being typed: text, attachments |

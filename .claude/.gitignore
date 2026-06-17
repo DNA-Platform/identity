@@ -1,0 +1,5 @@
+# Debug output — transient, not library content
+src/debug/
+
+# Node.js
+node_modules/

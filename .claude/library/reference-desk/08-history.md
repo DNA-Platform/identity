@@ -30,9 +30,8 @@ The tool evolved through nine phases across 32 sprints. This chapter is the read
 
 The codebase is not complete. It evolves as the app evolves and as the team's needs change. Current directions:
 
+- **MVC audit.** The [ChatList object chain](10-architecture-patterns.md) (ChatItem → ChatMenu → ProjectPicker) is the model. The remaining eight controllers need the same sensor/actuator split, and their components need typed View objects with state verification.
 - **Screen detection generalization.** Each screen needs its own detection test. URL patterns change when the app updates.
-- **The `/research` skill.** Using sessions programmatically for research dispatches. Storing results in Claude's perspective.
-- **Settings navigation.** The Ctrl+, shortcut may not work in current versions. Needs investigation and possibly a different approach.
-- **Composer detection.** The Sprint 72 test run found the composer elements aren't being detected. May need updated element names.
+- **The [/think skill](../our-skillset/20-think.md).** Write/read cycle proven. Full topic-based research with annotation and filing into Claude project remains in progress.
 
 When you fix something, update this chapter. The history is alive.
