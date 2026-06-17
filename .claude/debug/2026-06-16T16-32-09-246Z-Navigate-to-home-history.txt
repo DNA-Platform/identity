@@ -1,2 +1,0 @@
-2026-06-16T16:32:07.014Z [FAIL] Switch to Chat tab (1306ms) — Could not find "Chat" tab in the UIA tree
-2026-06-16T16:32:09.246Z [FAIL] Navigate to home (1177ms) — Could not find "New chat" in the UIA tree
