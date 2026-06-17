@@ -56,13 +56,18 @@ Two send methods:
 
 The timeout defaults to 120 seconds. For long research questions, increase it: `await app.send(300_000)`.
 
-**`sendAsync()`** — send and return a non-blocking `ResponseHandle`:
+**`sendAsync()`** — send without waiting for the response:
 1. Scroll to bottom
 2. Click Send
 3. Scroll to bottom again
-4. Return a [`ResponseHandle`](../../src/response-handle.ts) immediately — never blocks
+4. Return immediately — never blocks
 
-The handle can be polled with `handle.check()` which returns the state: `'pending'`, `'thinking'`, `'streaming'`, `'done'`, or `'error'`. When `handle.isDone` is true, `handle.text` has the response. Use this for `/think` — do other work between checks.
+After calling `sendAsync()`, poll the conversation object directly:
+- `conversation.checkStreaming()` — is Desktop generating?
+- `conversation.readLastResponse()` — read the response text
+- `conversation.isAtBottom()` — is the view at the bottom?
+
+**Detecting processing:** The streaming indicator ("Claude is responding") may not appear immediately. Desktop may show "Please wait" first. The reliable signal is THINKING TEXT appearing in the response — actual content from Desktop's extended thinking. Check `readLastResponse()` for non-empty content, not just the streaming indicator.
 
 **`sendAndForget()`** — send and confirm Desktop started, but DON'T wait for the full response:
 1. The composer's send button is invoked via UIA

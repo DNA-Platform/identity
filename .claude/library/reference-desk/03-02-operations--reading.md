@@ -44,11 +44,27 @@ interface Response {
 
 `readTurns()` parses the UIA tree text into this structure. The parser handles multi-turn conversations — [Sprint 66](../projected-research/30-sprint-66--the-conversation-object.md) tested it against a 342-turn conversation and parsed it in 750ms.
 
-## Streaming detection
+## Streaming and response detection
 
-`checkStreaming()` returns `true` if Claude Desktop is still generating a response. It looks for the "Claude is responding" status indicator in the UIA tree. `waitForResponse(timeoutMs)` polls `checkStreaming()` until it returns `false` — meaning the response is complete.
+Several signals indicate Desktop is processing:
 
-The [gateway pattern](02-02-the-architecture--gateway.md) wraps this: `send()` calls `waitForResponse()` internally. A script that calls `app.say()` never needs to check streaming manually.
+| Signal | What it means | How to check |
+|--------|--------------|--------------|
+| "Claude is responding" | Desktop is generating text | `checkStreaming()` |
+| "Claude is thinking" | Extended thinking in progress | `checkStreaming()` |
+| Thinking text visible | Actual thinking content appeared | `readLastResponse()` returns non-empty |
+| Response text visible | Response content started appearing | `readLastResponse()` returns non-empty |
+| "Please wait" | Desktop is loading, not yet processing | Neither streaming indicator — wait longer |
+
+**The reliable signal is content.** The streaming indicator may not appear immediately. Desktop may show "Please wait" first. The most reliable way to know Desktop is processing is to check for THINKING TEXT or RESPONSE TEXT — actual content in the response area. An empty response means nothing has happened yet.
+
+`checkStreaming()` checks for the streaming indicators. `readLastResponse()` checks for content. Use both. Content appearing is the definitive signal.
+
+**Scroll to bottom before checking.** The UIA tree only renders what's visible ([lazy rendering](02-04-the-architecture--app-model.md#lazy-rendering)). The streaming indicator lives at the bottom of the response. If the view isn't scrolled to the bottom, `checkStreaming()` can't see it. `scrollToBottom()` is awaitable and checks the "Scroll to bottom" button — if the button is gone, you're at the bottom.
+
+`waitForResponse(timeoutMs)` — the blocking wrapper. Polls for processing start (streaming indicator, thinking text, or response text — any signal), then polls for streaming to end. Throws if no signal within 30 seconds. Used by `send()` and `session.send()`. For non-blocking use, call `sendAsync()` and poll `checkStreaming()` / `readLastResponse()` directly.
+
+`isAtBottom()` — returns whether the "Scroll to bottom" button is absent (meaning you're at the bottom). Async.
 
 ## Visibility and reading
 
