@@ -190,11 +190,13 @@ export class ConversationController {
   }
 
   async isResponseComplete(): Promise<boolean> {
-    // Desktop is done when: no stop button AND can send.
-    // This is the definitive signal — independent of content.
-    const stopped = !(await this.hasStopButton());
-    const ready = await this.canSend();
-    return stopped && ready;
+    // Desktop is done when the stop button disappears.
+    // The Send button only appears when the composer has text,
+    // so it can't be used as a done signal.
+    // No streaming indicator + no stop button = done.
+    const streaming = await this.checkStreaming();
+    const hasStop = await this.hasStopButton();
+    return !streaming && !hasStop;
   }
 
   async isAtBottom(): Promise<boolean> {
