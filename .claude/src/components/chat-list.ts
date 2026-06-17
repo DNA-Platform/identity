@@ -1,9 +1,10 @@
 // ChatList — the View layer for sidebar conversations.
-// Each ChatItem is a live object bound to a real UI element.
-// Methods chain Controller calls and return verified typed objects.
+// Each object verifies its state through Controller reads.
 // See: library/reference-desk/10-architecture-patterns.md
 
 import type { ChatListController } from '../controllers/chat-list-controller.ts';
+import type { ChatItemData } from '../controllers/chat-list-controller.ts';
+import type { Gateway } from '../gateway.ts';
 import type { Fallible } from '../errors.ts';
 import { tracked } from '../errors.ts';
 
@@ -12,26 +13,51 @@ import { tracked } from '../errors.ts';
 export class ChatMenu {
   constructor(
     private readonly controller: ChatListController,
+    private readonly gateway: Gateway,
     private readonly chatTitle: string,
     readonly items: string[],
   ) {}
 
   async rename(newTitle: string): Promise<void> {
-    await this.controller.rename(this.chatTitle, newTitle);
+    // Actuator: click Rename menu item
+    const clicked = await this.controller.clickMenuItem('Rename');
+    if (!clicked) throw new Error('Could not click Rename');
+
+    // Actuator: type new title and press Enter
+    await this.controller.typeAndConfirm(newTitle);
+
+    // Sensor: verify the rename took effect
+    const verified = await this.gateway.waitFor(async () => {
+      const items = await this.controller.readList();
+      return items.some(i => i.title === newTitle || i.title.startsWith(newTitle));
+    }, { timeoutMs: 5_000 });
+    if (!verified) throw new Error(`Rename to "${newTitle}" — verify failed`);
   }
 
   async addToProject(): Promise<ProjectPicker> {
-    // Click "Add to project" — Controller does UIA, returns project list
-    const projects = await this.controller.openProjectPicker(this.chatTitle);
-    return new ProjectPicker(this.controller, projects);
+    // Actuator: click "Add to project" or "Projects"
+    let clicked = await this.controller.clickMenuItem('Add to project');
+    if (!clicked) clicked = await this.controller.clickMenuItem('Projects');
+    if (!clicked) throw new Error('Could not click Add to project');
+
+    // Sensor: verify dialog appeared
+    const dialogOpen = await this.gateway.waitFor(
+      () => this.controller.isDialogVisible(),
+      { timeoutMs: 5_000 },
+    );
+    if (!dialogOpen) throw new Error('Project picker dialog did not appear');
+
+    // Sensor: read the project list
+    const projects = await this.controller.readProjectList();
+    return new ProjectPicker(this.controller, this.gateway, projects);
   }
 
   async delete(): Promise<void> {
-    await this.controller.delete(this.chatTitle);
+    await this.controller.clickMenuItem('Delete');
   }
 
   async pin(): Promise<void> {
-    await this.controller.pin(this.chatTitle);
+    await this.controller.clickMenuItem('Pin');
   }
 
   async close(): Promise<void> {
@@ -42,19 +68,36 @@ export class ChatMenu {
 export class ProjectPicker {
   constructor(
     private readonly controller: ChatListController,
+    private readonly gateway: Gateway,
     readonly projects: string[],
   ) {}
 
-  has(projectName: string): boolean {
-    return this.projects.includes(projectName);
+  has(name: string): boolean {
+    return this.projects.includes(name);
   }
 
   async select(projectName: string): Promise<void> {
     if (!this.has(projectName)) {
       await this.controller.closeDialog();
-      throw new Error(`Project "${projectName}" not in picker. Available: ${this.projects.join(', ')}`);
+      throw new Error(`"${projectName}" not in picker. Available: ${this.projects.join(', ')}`);
     }
-    await this.controller.selectProject(projectName);
+
+    // Actuator: click the project ListItem
+    const clicked = await this.controller.clickProjectItem(projectName);
+    if (!clicked) {
+      await this.controller.closeDialog();
+      throw new Error(`Could not click ListItem "${projectName}"`);
+    }
+
+    // Sensor: verify dialog closed
+    const closed = await this.gateway.waitFor(
+      async () => !(await this.controller.isDialogVisible()),
+      { timeoutMs: 10_000 },
+    );
+    if (!closed) {
+      await this.controller.closeDialog();
+      throw new Error('Dialog did not close after selecting project');
+    }
   }
 
   async cancel(): Promise<void> {
@@ -65,6 +108,7 @@ export class ProjectPicker {
 export class ChatItem {
   constructor(
     private readonly controller: ChatListController,
+    private readonly gateway: Gateway,
     readonly title: string,
     readonly index: number,
   ) {}
@@ -74,9 +118,20 @@ export class ChatItem {
   }
 
   async menu(): Promise<ChatMenu> {
-    // Controller expands menu and returns the visible items
-    const items = await this.controller.openMenu(this.title);
-    return new ChatMenu(this.controller, this.title, items);
+    // Actuator: expand the three-dot menu
+    const expanded = await this.controller.expandMenu(this.title);
+    if (!expanded) throw new Error(`Could not expand menu for "${this.title}"`);
+
+    // Sensor: verify menu appeared
+    const visible = await this.gateway.waitFor(
+      () => this.controller.isMenuVisible(),
+      { timeoutMs: 5_000 },
+    );
+    if (!visible) throw new Error('Menu did not appear');
+
+    // Sensor: read menu items
+    const items = await this.controller.readMenuItems();
+    return new ChatMenu(this.controller, this.gateway, this.title, items);
   }
 }
 
@@ -88,7 +143,10 @@ export class ChatList implements Fallible {
   hasError = false;
   lastError: Error | null = null;
 
-  constructor(private readonly controller: ChatListController) {}
+  constructor(
+    private readonly controller: ChatListController,
+    private readonly gateway: Gateway,
+  ) {}
 
   async refresh(): Promise<void> {
     this.isLoading = true;
@@ -96,7 +154,7 @@ export class ChatList implements Fallible {
       await tracked(this, async () => {
         const rawItems = await this.controller.readList();
         this.items = rawItems.map(item =>
-          new ChatItem(this.controller, item.title, item.index)
+          new ChatItem(this.controller, this.gateway, item.title, item.index)
         );
       });
     } finally {
@@ -123,33 +181,6 @@ export class ChatList implements Fallible {
 
   async openAt(index: number): Promise<void> {
     await tracked(this, () => this.controller.openAt(index));
-  }
-
-  // Convenience: keep old string-based methods for backward compat
-  // but prefer using ChatItem.menu() for new code
-  async rename(title: string, newTitle: string): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.rename(title, newTitle);
-      await this.refresh();
-    });
-  }
-
-  async addToProject(title: string, projectName: string): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.addToProject(title, projectName);
-      await this.refresh();
-    });
-  }
-
-  async delete(title: string): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.delete(title);
-      await this.refresh();
-    });
-  }
-
-  async pin(title: string): Promise<void> {
-    await tracked(this, () => this.controller.pin(title));
   }
 
   async showAll(): Promise<void> {
