@@ -81,7 +81,7 @@ export class Claude {
 
     this.sidebar = new Sidebar(
       new SidebarController(auto),
-      new ChatList(new ChatListController(auto)),
+      new ChatList(new ChatListController(auto), this.gateway),
     );
 
     this.home = new Home(composer, this.message, modelPicker);
