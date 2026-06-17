@@ -1,9 +1,10 @@
-// The write/check/read cycle for /think.
-// Each mode is thin — app methods for Desktop, think.ts for persistence.
+// Think — uses Session (the app's conversation manager) for all Desktop work.
+// Session.send() handles: foreground, compose, send, wait, read, minimize.
+// This script adds only: state file, thinking book chapter, catalogue.
 
 import { Claude } from '../claude.ts';
-import { readState, writeState, hasActiveThought, updateCatalogue,
-         scaffoldChapter, findChapter, pasteResponse } from './think.ts';
+import { readState, writeState, deleteState, hasActiveThought,
+         updateCatalogue, scaffoldChapter, findChapter, pasteResponse } from './think.ts';
 import type { ThoughtState } from './think.ts';
 import { writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
@@ -14,86 +15,52 @@ const DEBUG = resolve(__dirname, '..', 'debug');
 const mode = process.argv[2];
 const app = new Claude();
 
-async function doWrite() {
+async function doThink() {
   const question = process.argv[3];
-  if (!question) { console.error('Usage: ... write "question"'); process.exit(1); }
+  if (!question) { console.error('Usage: ... think "question"'); process.exit(1); }
   if (hasActiveThought()) {
-    console.log('[write] Active thought exists. Use check/read.');
+    console.log('[think] Active thought exists. Use "clear" first.');
     return;
   }
 
   await app.launch();
+  const session = await app.startSession({ timeout: 180_000 });
+
   try {
-    await app.newChat();
-    await app.compose(question);
-    try { await app.sendAndForget(); }
-    catch { try { await app.conversation.composer.clear(); } catch {} throw arguments[0]; }
+    const response = await session.send(question);
+    const responseText = response.content.text;
 
-    let url = '', id = '';
-    for (let i = 0; i < 10; i++) {
-      await new Promise(r => setTimeout(r, 200));
-      url = await app.auto.uia.readUrl() ?? '';
-      const m = url.match(/\/chat\/([a-f0-9-]+)/);
-      if (m) { id = m[1]; break; }
-    }
-
-    const state: ThoughtState = { conversationId: id, url, question, startedAt: new Date().toISOString() };
+    const state: ThoughtState = {
+      conversationId: session.id,
+      url: session.url,
+      question,
+      startedAt: new Date().toISOString(),
+    };
     writeState(state);
+
     const chapter = scaffoldChapter(state);
-    console.log('[write] Sent. ID:', id);
-    console.log('[write] Chapter:', chapter);
-  } finally { app.window.minimize(); }
-}
-
-async function doCheck() {
-  const state = readState();
-  if (!state) { console.log('[check] No active thought.'); return; }
-  const chapter = findChapter(state);
-  if (!chapter) { console.log('[check] No chapter — scaffold first.'); return; }
-
-  await app.launch();
-  try {
-    await app.navigator.detectScreen();
-    if (!await app.checkConversation(state.conversationId)) {
-      await app.sidebar.refresh();
-      await app.openChatAt(0);
-    }
-    await app.conversation.scrollToBottom();
-    const streaming = await app.conversation.checkStreaming();
-    console.log(streaming ? '[check] Still streaming.' : '[check] Ready. Run "read".');
-  } finally { app.window.minimize(); }
-}
-
-async function doRead() {
-  const state = readState();
-  if (!state) { console.log('[read] No active thought.'); return; }
-  const chapter = findChapter(state);
-  if (!chapter) { console.log('[read] No chapter.'); return; }
-
-  await app.launch();
-  try {
-    await app.navigator.detectScreen();
-    if (!await app.checkConversation(state.conversationId)) {
-      await app.sidebar.refresh();
-      await app.openChatAt(0);
-    }
-    await app.conversation.scrollToBottom();
-    const response = await app.conversation.readLastResponse();
-
-    console.log('[read] Length:', response.length);
-    console.log('[read] Preview:', response.slice(0, 200));
-    writeFileSync(resolve(DEBUG, 'think-response.txt'), response, 'utf-8');
-    pasteResponse(chapter, response);
-    console.log('[read] Chapter updated.');
+    pasteResponse(chapter, responseText);
 
     const now = new Date().toISOString().split('T')[0];
     updateCatalogue({
-      topic: state.question.slice(0, 100),
-      conversationId: state.conversationId, url: state.url,
-      state: 'active', started: state.startedAt.split('T')[0],
-      lastExchange: now, summary: response.slice(0, 500),
+      topic: question.slice(0, 100),
+      conversationId: session.id,
+      url: session.url,
+      state: 'active',
+      started: now,
+      lastExchange: now,
+      summary: responseText.slice(0, 500),
     });
-  } finally { app.window.minimize(); }
+
+    console.log('[think] Response:', responseText.length, 'chars');
+    console.log('[think] Preview:', responseText.slice(0, 200));
+    console.log('[think] Chapter:', chapter);
+    console.log('[think] ID:', session.id);
+
+    writeFileSync(resolve(DEBUG, 'think-response.txt'), responseText, 'utf-8');
+  } finally {
+    try { app.window.minimize(); } catch {}
+  }
 }
 
 function showState() {
@@ -105,14 +72,13 @@ function showState() {
 }
 
 async function main() {
-  if (mode === 'write') await doWrite();
-  else if (mode === 'check') await doCheck();
-  else if (mode === 'read') await doRead();
+  if (mode === 'think') await doThink();
   else if (mode === 'state') showState();
-  else console.log('Usage: write "q" | check | read | state');
+  else if (mode === 'clear') { deleteState(); console.log('Cleared.'); }
+  else console.log('Usage: think "question" | state | clear');
 }
 
 main().catch(e => {
-  console.error('FAILED:', e.message);
+  console.error('FAILED:', (e as Error).message);
   try { app.window.minimize(); } catch {}
 });
