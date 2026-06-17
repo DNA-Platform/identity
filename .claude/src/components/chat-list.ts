@@ -213,7 +213,13 @@ export class ChatList implements Fallible {
     this.isLoading = true;
     try {
       await tracked(this, async () => {
-        await this.controller.showAll();
+        const clicked = await this.controller.clickShowAll();
+        if (!clicked) throw new Error('Could not click "View all"');
+        const expanded = await this.gateway.waitFor(
+          () => this.controller.hasMoreThan(10),
+          { timeoutMs: 10_000 },
+        );
+        if (!expanded) throw new Error('"View all" did not expand the list');
         await this.refresh();
       });
     } finally {
