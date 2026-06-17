@@ -95,6 +95,24 @@ The [/think skill](../our-skillset/20-think.md) uses [`Session.send()`](03-04-op
 
 The [Reading protocol](../teamspeak/08-reading.md) applies to code too: find the room before you act. This book IS the room for automation code.
 
+## Everything is async
+
+Nothing blocks. Every method that touches Desktop returns a promise. Every check is awaitable. `scrollToBottom()` awaits the button disappearing. `checkStreaming()` awaits the UIA read. `sendAsync()` returns immediately. The conversation object holds the state — poll it asynchronously.
+
+If you find a blocking call in the interaction chain, refactor it to be async. TypeScript has wonderful async/await. Use it everywhere.
+
+## Never wait — always test
+
+Doug's elevator metaphor: you push the button, then you OPEN YOUR EYES AND LOOK. Is the elevator there? Are the doors open? If not, look again. No amount of waiting with your eyes closed equals just looking.
+
+No `sleep()`. No `setTimeout` as a delay. No fixed waits. Every pause in the code is a POLL — check a condition, respond to the result. The [gateway pattern](02-02-the-architecture--gateway.md) embeds this: `act`, `waitFor` (which polls), `read`. If you find `await new Promise(r => setTimeout(r, N))` in code, it should be `await gateway.waitFor(condition)`.
+
+See [Streaming detection](03-02-operations--reading.md#streaming-and-response-detection) for the right way to wait for Desktop to respond — check for content (thinking text, response text), not just the streaming indicator.
+
+## No magic strings
+
+Use string enums for state values. `ConversationState.active`, not `'active'`. `ResponseState.streaming`, not `'streaming'`. Magic strings rot — they're invisible to refactoring tools, they can be misspelled without error, and they carry no documentation. Enums are typed, discoverable, and self-documenting.
+
 ## Code references the library, library references code
 
 From the code-library linking convention: source files carry comments pointing to the library chapter that explains them. Library chapters carry links to the source files they document. The two are bidirectionally connected. When one changes, the other should be checked for consistency using the [consistency tools](../bookkeeping/06-01-on-consistency.md).
