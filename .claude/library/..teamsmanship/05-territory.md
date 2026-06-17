@@ -64,8 +64,8 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** every SKILL.md is generated from the library by the [skills compiler](../..environmentalism/04-on-skills--compiler.ts). Claude maintains the compilation pipeline. See [On Skills](../..environmentalism/04-on-skills.md).
 - `.claude/library/..environmentalism/**` — the system specification
   **Why:** [Environmentalism](../..environmentalism/.cover.md) IS Claude's subject. Eight specification chapters + compilers. He catalogues The Environment.
-- `src/**` — the conversation pipeline (shared with Adam)
-  **Why:** the pipeline connects Claude Code to Claude Chat. Environmental infrastructure.
+- `.claude/src/**` — the Reference Desk automation codebase (shared with Adam)
+  **Why:** the code that connects Claude Code to Claude Desktop. Claude architected the tool and operates it for thinking. Adam built the gateway pattern and relay infrastructure. See [Reference Desk](../reference-desk/.cover.md), [Thoughtfulness](../thoughtfulness/.cover.md).
 - All interfaces with the Claude platform — anything that configures, extends, or communicates with Claude Code as a system
   **Why:** the recursive mirror. Claude maintains the system that instantiates Claude.
 - Roles: [Environmentalist](02-roles.md#environmentalist)
@@ -155,6 +155,11 @@ Shared books have authors. The `author:` field on each cover names the primary o
 | [Compilation](../.compilation/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Libby owns the library; Adam owns the automation. |
 | [Our Skillset](../our-skillset/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Libby owns the library; Adam owns skills as relay infrastructure. |
 | [Projection](../.projection/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Libby owns the library; Adam records sprints as relay. Arthur plans them. |
+| [Thoughtfulness](../thoughtfulness/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Claude](..team/claude/claude-or-the-recursive-mirror/.cover.md) | Libby owns the library; Claude owns the thinking practice and the code. |
+| [Reference Desk](../reference-desk/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md), [Claude](..team/claude/claude-or-the-recursive-mirror/.cover.md) | Libby owns the library; Adam built the gateway; Claude architected and operates the tool. |
+| [We Speak](../we-speak/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Cathy](..team/cathy/cathy-and-the-reactive-canvas/.cover.md) | The philosophy of the library. Libby tends structure; Cathy brings the philosophical lens. |
+| [Projected Identity](../projected-identity/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Sprint records for the identity library. |
+| [Projected Research](../projected-research/.cover.md) | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | [Adam](..team/adam/adam-between-the-wires/.cover.md), [Claude](..team/claude/claude-or-the-recursive-mirror/.cover.md) | Sprint records for the research tool. |
 
 ## Branch library assignments
 
