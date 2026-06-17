@@ -1,4 +1,4 @@
-// Test the write/check/read cycle using app methods directly.
+// The write/check/read cycle for /think.
 // Usage:
 //   npx tsx test-think-dispatch.ts write "your question"
 //   npx tsx test-think-dispatch.ts check
@@ -8,14 +8,100 @@
 import { Claude } from '../claude.ts';
 import { readState, writeState, hasActiveThought, updateCatalogue } from './think.ts';
 import type { ThoughtState } from './think.ts';
-import { writeFileSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync, readdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DEBUG = resolve(__dirname, '..', 'debug');
+const THINKING_BOOK = resolve(__dirname, '..', '..', 'library',
+  '..teamsmanship', '..team', 'claude', 'thinking');
 const mode = process.argv[2];
 const app = new Claude();
+
+// --- Thinking book helpers ---
+
+function nextChapterNumber(): number {
+  if (!existsSync(THINKING_BOOK)) return 1;
+  const files = readdirSync(THINKING_BOOK).filter(f => /^\d+-/.test(f));
+  return files.length + 1;
+}
+
+function chapterPath(state: ThoughtState): string | null {
+  if (!existsSync(THINKING_BOOK)) return null;
+  const files = readdirSync(THINKING_BOOK).filter(f => f.endsWith('.md') && f !== '.cover.md');
+  // Find chapter whose content contains this conversation ID
+  for (const f of files) {
+    const content = readFileSync(resolve(THINKING_BOOK, f), 'utf-8');
+    if (content.includes(state.conversationId)) return resolve(THINKING_BOOK, f);
+  }
+  return null;
+}
+
+function slugify(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50);
+}
+
+function scaffoldChapter(state: ThoughtState): string {
+  const num = String(nextChapterNumber()).padStart(2, '0');
+  const slug = slugify(state.question.slice(0, 60));
+  const filename = `${num}-${slug}.md`;
+  const filepath = resolve(THINKING_BOOK, filename);
+
+  // New conversations have no previous. Follow-ups in the same conversation
+  // would link to the prior exchange, but that requires passing a conversation ID.
+  // For now, all new thoughts start fresh.
+  const previousLink = '(none — new conversation)';
+
+  const content = `# ${state.question.slice(0, 80)}
+
+- **author:** [Claude](../claude-or-the-recursive-mirror/.cover.md)
+- **conversation-id:** ${state.conversationId}
+- **previous:** ${previousLink}
+- **date:** ${new Date().toISOString().split('T')[0]}
+- **verdict:** (pending)
+
+---
+
+## What I asked and why
+
+${state.question}
+
+## What I expect
+
+(to be filled before check)
+
+## Evidence
+
+(awaiting Desktop response)
+
+## Interpretation
+
+(to be written after reading)
+
+## Conclusion
+
+(to be written after interpretation)
+`;
+
+  writeFileSync(filepath, content, 'utf-8');
+
+  // Add a TOC entry to the thinking book cover
+  const coverPath = resolve(THINKING_BOOK, '.cover.md');
+  if (existsSync(coverPath)) {
+    let cover = readFileSync(coverPath, 'utf-8');
+    const tocEntry = `\n### (New conversation — pending)
+- **conversation-id:** \`${state.conversationId}\`
+- **state:** active — response pending
+${num.replace(/^0/, '')}. [${state.question.slice(0, 60)}](${filename}) — (summary to be written after reading)\n`;
+    cover = cover.trimEnd() + '\n' + tocEntry;
+    writeFileSync(coverPath, cover, 'utf-8');
+  }
+
+  return filepath;
+}
+
+// --- Modes ---
 
 async function doWrite() {
   const question = process.argv[3];
@@ -24,7 +110,7 @@ async function doWrite() {
   if (hasActiveThought()) {
     const s = readState()!;
     console.log('[write] Active thought exists:', s.question.slice(0, 60));
-    console.log('[write] Use "check" or "read". Clear with "state" if stale.');
+    console.log('[write] Use "check" or "read".');
     return;
   }
 
@@ -41,7 +127,7 @@ async function doWrite() {
       throw e;
     }
 
-    // Wait for URL to transition from home to /chat/{id}
+    // Wait for URL to contain /chat/{id}
     let url = '';
     let id = '';
     for (let i = 0; i < 10; i++) {
@@ -59,9 +145,11 @@ async function doWrite() {
     };
     writeState(state);
 
+    // Scaffold the thinking book chapter
+    const chapterFile = scaffoldChapter(state);
     console.log('[write] Sent and minimized.');
     console.log('[write] ID:', id);
-    console.log('[write] URL:', url);
+    console.log('[write] Chapter:', chapterFile);
   } finally {
     app.window.minimize();
   }
@@ -71,19 +159,26 @@ async function doCheck() {
   const state = readState();
   if (!state) { console.log('[check] No active thought.'); return; }
 
+  // Verify thinking book chapter exists before touching Desktop
+  const chapter = chapterPath(state);
+  if (!chapter) {
+    console.log('[check] No thinking book chapter found for this conversation.');
+    console.log('[check] Scaffold the chapter first (write mode does this automatically).');
+    return;
+  }
+  console.log('[check] Chapter verified:', chapter);
+
   await app.launch();
 
   try {
-    // Wait for screen to stabilize after launch
     await app.navigator.detectScreen();
 
     if (!await app.checkConversation(state.conversationId)) {
       await app.sidebar.refresh();
       await app.openChatAt(0);
 
-      // Verify we're on the right conversation
       if (state.conversationId && !await app.checkConversation(state.conversationId)) {
-        console.log('[check] WARNING: could not verify conversation. Checking most recent chat.');
+        console.log('[check] WARNING: could not verify conversation.');
       }
     }
 
@@ -106,6 +201,12 @@ async function doRead() {
   const state = readState();
   if (!state) { console.log('[read] No active thought.'); return; }
 
+  const chapter = chapterPath(state);
+  if (!chapter) {
+    console.log('[read] No thinking book chapter found.');
+    return;
+  }
+
   await app.launch();
 
   try {
@@ -116,8 +217,6 @@ async function doRead() {
       await app.openChatAt(0);
     }
 
-    // Scroll to bottom first — lazy rendering means long responses
-    // won't be fully in the UIA tree without scrolling
     await app.conversation.scrollToBottom();
     await new Promise(r => setTimeout(r, 300));
 
@@ -126,9 +225,20 @@ async function doRead() {
     console.log('[read] Length:', response.length);
     console.log('[read] Preview:', response.slice(0, 300));
 
+    // Save to debug
     writeFileSync(resolve(DEBUG, 'think-response.txt'), response, 'utf-8');
-    console.log('[read] Saved to debug/think-response.txt');
 
+    // Paste response into thinking book chapter Evidence section
+    let chapterContent = readFileSync(chapter, 'utf-8');
+    chapterContent = chapterContent.replace(
+      '(awaiting Desktop response)',
+      response.slice(0, 3000) + (response.length > 3000 ? '\n\n(truncated — full response in debug/think-response.txt)' : '')
+    );
+    chapterContent = chapterContent.replace('- **verdict:** (pending)', '- **verdict:** sufficient');
+    writeFileSync(chapter, chapterContent, 'utf-8');
+    console.log('[read] Chapter updated:', chapter);
+
+    // Update catalogue
     const now = new Date().toISOString().split('T')[0];
     updateCatalogue({
       topic: state.question.slice(0, 100),
@@ -152,6 +262,8 @@ function showState() {
   console.log('[state] ID:', state.conversationId);
   console.log('[state] URL:', state.url);
   console.log('[state] Started:', state.startedAt);
+  const chapter = chapterPath(state);
+  console.log('[state] Chapter:', chapter || '(none)');
 }
 
 async function main() {
@@ -161,9 +273,9 @@ async function main() {
   else if (mode === 'state') showState();
   else {
     console.log('Usage:');
-    console.log('  write "question"  — send a question to Desktop');
-    console.log('  check             — is the response ready?');
-    console.log('  read              — read the response');
+    console.log('  write "question"  — send to Desktop, scaffold chapter');
+    console.log('  check             — verify chapter exists, check if response ready');
+    console.log('  read              — read response, paste into chapter');
     console.log('  state             — show current thought state');
   }
 }
