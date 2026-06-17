@@ -45,11 +45,17 @@ export function hasActiveThought(): boolean {
 
 // --- Catalogue ---
 
+export enum ConversationState {
+  active = 'active',
+  concluded = 'concluded',
+  abandoned = 'abandoned',
+}
+
 export interface CatalogueEntry {
   topic: string;
   conversationId: string;
   url: string;
-  state: 'active' | 'concluded';
+  state: ConversationState;
   started: string;
   lastExchange: string;
   summary: string;

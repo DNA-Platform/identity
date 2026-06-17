@@ -3,7 +3,8 @@
 
 import { Claude } from '../claude.ts';
 import { readState, writeState, deleteState, hasActiveThought,
-         updateCatalogue, scaffoldChapter, findChapter, pasteResponse } from './think.ts';
+         updateCatalogue, scaffoldChapter, findChapter, pasteResponse,
+         ConversationState } from './think.ts';
 import type { ThoughtState } from './think.ts';
 import { writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
@@ -72,7 +73,7 @@ async function main() {
           updateCatalogue({
             topic: question.slice(0, 100),
             conversationId: id, url,
-            state: 'active', started: now,
+            state: ConversationState.active, started: now,
             lastExchange: now, summary: response.slice(0, 500),
           });
 
