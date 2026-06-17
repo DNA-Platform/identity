@@ -29,7 +29,7 @@ Run a retrospective. A retro is where the team stops building and starts tending
 
 4. **Run the validators.** `npx tsx .claude/library/..environmentalism/05-on-validation--runner.ts` from the project root. Confirm 0 errors. Fix any warnings the tending introduced.
 
-5. **Discuss.** Use the [discussion protocol](../../library/teamspeak/03-discussion.md). The team talks about what the tending revealed — what they found in their own chapters, what surprised them in someone else's, what themes emerged, what the library needs next. Multiple voices, talking TO each other.
+5. **Discuss.** Run [`/discuss`](../../library/our-skillset/15-discuss.md) — this is required, not optional. The team talks about what the tending revealed — what they found in their own chapters, what surprised them in someone else's, what themes emerged, what the library needs next. The discussion follows the [discussion protocol](../../library/teamspeak/03-discussion.md): multiple voices, talking TO each other. The retro without the discussion is just housekeeping. The discussion is where the retro produces insight.
 
 6. **Capture decisions.** If the discussion produces decisions — a new protocol, a specification change, a structural insight — write them into the library. The retro produces artifacts, not just conversation.
 
