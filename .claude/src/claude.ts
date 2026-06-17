@@ -233,7 +233,17 @@ export class Claude {
   }
 
   async openChat(title: string): Promise<void> {
-    await this.sidebar.chats.open(title);
+    // Try direct open first — works if conversation is visible in sidebar
+    const direct = this.sidebar.chats.find(title);
+    if (direct) {
+      await this.sidebar.chats.open(title);
+    } else {
+      // Search the sidebar to find buried conversations
+      await this.sidebar.search(title);
+      const found = this.sidebar.chats.find(title);
+      if (!found) throw new Error(`Chat "${title}" not found even after search`);
+      await this.sidebar.chats.open(found.title);
+    }
     await this.conversation.scrollToBottom();
     await this.conversation.refreshMetadata();
   }

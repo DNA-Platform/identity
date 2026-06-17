@@ -84,14 +84,27 @@ When `app.window.find()` finds a running Claude Desktop, `app.launch()` skips th
 
 **Sprint 77 finding:** The "Move chat" project picker dialog blocks all other UI interactions. `goHome()` fails because "New chat" isn't in the UIA tree while the dialog is open. The `dismissDialogs()` method (Escape twice) was added to recover. Any exploration script that opens a dialog must reliably close it — `pressEscape` or clicking a cancel button.
 
+## Verify with content, not status indicators
+
+**Sprint 87 finding (rediscovered — this was discussed in earlier sprints but never written down):** "Claude is thinking" and "Claude is responding" are transient server acknowledgements. They appear briefly and disappear. If Desktop processes fast — or if the check starts late — the indicator is already GONE. Checking for a transient that already passed returns false, and the code concludes "Desktop never started" when Desktop already FINISHED.
+
+**The rule:** Verify by checking for ACTUAL WORDS in the thinking block or response area. Response content ("Claude responded:" in UIA text) is permanent — it stays after completion. Status indicators are transient — they vanish. Always check for content first, fall back to indicators.
+
+The correct priority order:
+1. **Response content** ("Claude responded:" in text) — permanent. Catches "still processing" AND "already finished."
+2. **Stop button** ("Stop response") — present during processing, gone after.
+3. **Streaming indicator** ("Claude is responding" / "Claude is thinking") — transient. Last resort.
+
+The `composer.send()` verify was the root bug: it returned `true` on `screen === 'conversation'` — which passes immediately when already on a conversation screen, before Desktop generates a single token. Fixed to check content first.
+
 ## Detecting that Desktop started processing
 
 `waitForResponse()` in [`conversation-controller.ts`](../../src/controllers/conversation-controller.ts) has two phases. Phase 1 detects that Desktop started processing by checking three signals every 500ms:
-1. Streaming indicator ("Claude is responding" or "Claude is thinking")
-2. Thinking text visible in the page (extended thinking content)
-3. Response text appeared ("Claude responded:" in the UIA text)
+1. Response text appeared ("Claude responded:" in the UIA text) — permanent
+2. Streaming indicator ("Claude is responding" or "Claude is thinking") — transient
+3. Thinking text visible in the page (extended thinking content) — visible only after thinking completes
 
-If NONE of these appear within 30 seconds, phase 1 throws — the message wasn't received. This replaced an earlier version that silently succeeded when streaming never started.
+If NONE of these appear within 30 seconds, phase 1 throws — the message wasn't received.
 
 **If the error fires:** the message wasn't delivered. Check: was the composer cleared? Was a dialog blocking? Was the app on the right screen? Was the text typed correctly?
 
