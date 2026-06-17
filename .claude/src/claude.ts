@@ -282,6 +282,12 @@ export class Claude {
       if (wasHome && nowOn === 'conversation') {
         await this.sidebar.refresh();
       }
+      // Wait briefly to confirm Desktop started processing.
+      // Without this, the message may not have been received.
+      await this.gateway.waitFor(
+        () => this.conversation.checkStreaming(),
+        { timeoutMs: 15_000, pollIntervalMs: 500 },
+      );
     } finally {
       this.conversation.composer.isSending = false;
     }
