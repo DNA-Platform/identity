@@ -1,0 +1,225 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Maintaining link consistency at scale in large wikis - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Group | Sidebar
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Maintaining link consistency at scale in large wikis
+ControlType.Button | More options for Maintaining link consistency at scale in large wikis
+ControlType.Button | Batumi Summer
+ControlType.Button | More options for Batumi Summer
+ControlType.Button | Category theory models for self-modifying software
+ControlType.Button | More options for Category theory models for self-modifying software
+ControlType.Button | Graph databases and recursive hierarchies
+ControlType.Button | More options for Graph databases and recursive hierarchies
+ControlType.Button | Self-referential knowledge in graph databases
+ControlType.Button | More options for Self-referential knowledge in graph databases
+ControlType.Button | SpaceX IPO analysis and market reaction
+ControlType.Button | More options for SpaceX IPO analysis and market reaction
+ControlType.Button | Reconnecting with Jake on hallucinogen research opportunity
+ControlType.Button | More options for Reconnecting with Jake on hallucinogen research opportunity
+ControlType.Button | Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | More options for Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | Consciousness analogy to Gödel, Escher, Bach
+ControlType.Button | More options for Consciousness analogy to Gödel, Escher, Bach
+ControlType.Button | Self-referential systems and fixed-point theorems
+ControlType.Button | More options for Self-referential systems and fixed-point theorems
+ControlType.Button | Перевод письма о рассылке от Клер
+ControlType.Button | More options for Перевод письма о рассылке от Клер
+ControlType.Button | Connecting to MSIX Electron app via connectOverCDP
+ControlType.Button | More options for Connecting to MSIX Electron app via connectOverCDP
+ControlType.Button | Playwright support for Electron apps in 2026
+ControlType.Button | More options for Playwright support for Electron apps in 2026
+ControlType.Button | MCP vs A2A protocol differences
+ControlType.Button | More options for MCP vs A2A protocol differences
+ControlType.Button | Invoke-CommandInDesktopPackage and MSIX package identity
+ControlType.Button | More options for Invoke-CommandInDesktopPackage and MSIX package identity
+ControlType.Button | Enabling Chrome DevTools Protocol on running Electron MSIX apps
+ControlType.Button | More options for Enabling Chrome DevTools Protocol on running Electron MSIX apps
+ControlType.Button | Playwright with MSIX-packaged Electron apps on Windows 11
+ControlType.Button | More options for Playwright with MSIX-packaged Electron apps on Windows 11
+ControlType.Button | Windows desktop automation stack for Electron apps
+ControlType.Button | More options for Windows desktop automation stack for Electron apps
+ControlType.Button | Stefanie
+ControlType.Button | More options for Stefanie
+ControlType.Button | Windows desktop automation stack for Electron apps
+ControlType.Button | More options for Windows desktop automation stack for Electron apps
+ControlType.Button | Relaunch to update v1.13576.0
+ControlType.Button | Doug Doug Max
+ControlType.Image | Doug
+ControlType.Text | Doug
+ControlType.Text | Max
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Button | Maintaining link consistency at scale in large wikis, rename chat
+ControlType.Button | More options for Maintaining link consistency at scale in large wikis
+ControlType.Button | Share chat
+ControlType.Text | Claude finished the response
+ControlType.Text | You said: What approaches exist for maintaining link consistency at scale in large wiki systems like Wikipedia and Confluence?
+ControlType.Text | What approaches exist for maintaining link consistency at scale in large wiki systems like Wikipedia and Confluence? How do they detect and handle broken links, moved pages, and stale references across millions of documents?
+ControlType.Group | Message actions
+ControlType.Text | 2:54 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: This is a meaty engineering question.
+ControlType.Button | Weighed technical knowledge against search verification for architectural patterns
+ControlType.Text | Weighed technical knowledge against search verification for architectural patterns
+ControlType.Text | This is a meaty engineering question. Let me verify a few current specifics on how these systems actually implement link tracking before I synthesize.
+ControlType.Button | Synthesized MediaWiki and Confluence link management strategies comprehensively
+ControlType.Text | Synthesized MediaWiki and Confluence link management strategies comprehensively
+ControlType.Text | Good, that confirms the MediaWiki link-table architecture. Let me check Wikipedia's dead-link handling and Confluence's approach.
+ControlType.Button | Leveraged existing knowledge, verified Confluence details through targeted research
+ControlType.Text | Leveraged existing knowledge, verified Confluence details through targeted research
+ControlType.Text | I have what I need. Let me synthesize this into a clear technical answer covering the architecture, detection, and handling strategies. The Confluence side I can speak to from established knowledge of how Atlassian handles it.
+ControlType.Text | Link consistency at scale breaks down into two fundamentally different problems that these systems solve in opposite ways:
+ControlType.Text | internal links
+ControlType.Text |  (page-to-page within the system) and
+ControlType.Text | external links
+ControlType.Text |  (out to the open web). The first is solvable with strong consistency guarantees; the second is fundamentally a best-effort, eventual-cleanup problem.
+ControlType.Text | Internal links: the indexed-reference approach
+ControlType.Text | The core insight in both MediaWiki and Confluence is to
+ControlType.Text | not store links as raw URLs
+ControlType.Text | . Instead, links are parsed at save time and recorded in a separate index that maps source page → target, so the system always knows the full backlink graph without crawling.
+ControlType.Text | In MediaWiki this is the
+ControlType.Text | pagelinks
+ControlType.Text |  table. Each entry contains the source page's ID and a reference to the linktarget table which has the title and namespace that is being linked to from within that source page.
+ControlType.Text |  A key design detail: links target a
+ControlType.Text | namespace + title key
+ControlType.Text | , not a page ID. The target page may or may not exist, and due to renames and deletions may refer to different page records as time goes by.
+ControlType.Text |  This is why a redlink (link to a not-yet-created page) and a working link are stored identically — existence is resolved at render time by joining against the page table, not baked into the link.
+ControlType.Hyperlink | MediaWiki
+ControlType.Hyperlink | MediaWiki
+ControlType.Text | That same index powers the "What links here" backlink feature. The pages linking to and/or embedding a given page are listed, and this info comes from the pagelinks table and the templatelinks table.
+ControlType.Text |  The interesting architectural decision in newer MediaWiki is the
+ControlType.Text | linktarget
+ControlType.Text |  table — an indirection layer where a page namespace-title tuple gets a unique integer ID, used for referenced page titles in templatelinks, pagelinks, and categorylinks.
+ControlType.Text |  This means a single title is stored once and referenced by integer everywhere, which matters enormously when one popular template is transcluded across millions of pages.
+ControlType.Hyperlink | MediaWiki
+ControlType.Hyperlink | MediaWiki
+ControlType.Text | The reason links are stored by
+ControlType.Text | title-key
+ControlType.Text |  rather than
+ControlType.Text | page-ID
+ControlType.Text |  drives how moves work. There are two competing strategies:
+ControlType.Text | Strategy A — Title-keyed links + redirects (MediaWiki).
+ControlType.Text |  When a page moves, its links don't update at all. The old title becomes a redirect record pointing to the new title, and the link resolution simply follows it. This is cheap (one redirect row, no rewrite of millions of referencing pages) but introduces redirect chains. MediaWiki has a dedicated background job and a maintenance report for
+ControlType.Text | double redirects
+ControlType.Text |  (A→B→C), which a bot flattens to A→C. The tradeoff: links technically still "work" but accumulate a layer of indirection, and "What links here" must account for links arriving via redirect.
+ControlType.Text | Strategy B — ID-keyed links + link refactoring (Confluence).
+ControlType.Text |  Confluence links resolve through internal page/content IDs rather than titles, so renaming a page leaves all inbound links intact automatically — the title is just a display label resolved from the ID. When a page is
+ControlType.Text | moved
+ControlType.Text |  (reparented or moved across spaces), Confluence runs "link refactoring" that rewrites the stored references so they continue to resolve. The cost is that the move operation is heavier (it touches the referencing content), but there's no redirect-chain accumulation and no ambiguity about whether a link is live.
+ControlType.Text | Both approaches share the same guarantee that web-style links lack: because the system controls both ends and indexes them at write time, an internal link can
+ControlType.Text | never silently rot
+ControlType.Text | . The worst case is a redlink (clearly flagged) or a redirect (transparently followed).
+ControlType.Text | Scaling the index maintenance
+ControlType.Text | The index has to stay correct as pages change, and at Wikipedia's scale you can't recompute it synchronously. The mechanism is a
+ControlType.Text | deferred-update / job-queue
+ControlType.Text |  model: when you save a page, the parse extracts its links and queues jobs to update
+ControlType.Text | pagelinks
+ControlType.Text | ,
+ControlType.Text | templatelinks
+ControlType.Text | , etc. The genuinely hard case is
+ControlType.Text | template/transclusion changes
+ControlType.Text |  — editing one widely-used template can invalidate the link sets of millions of pages. MediaWiki handles this with
+ControlType.Text | refreshLinks
+ControlType.Text |  jobs fanned out through the job queue (backed by Kafka/Redis at Wikimedia), processing the backlink set in batches rather than blocking the edit. There are also reconciliation maintenance scripts (
+ControlType.Text | refreshLinks.php
+ControlType.Text | ,
+ControlType.Text | pruneUnusedLinkTargetRows.php
+ControlType.Text | ) that sweep for drift between the rendered content and the link tables, since async updates can occasionally be dropped or left stale.
+ControlType.Text | External links: detection and best-effort repair
+ControlType.Text | This is where you lose all guarantees, because the target is outside your control. The model shifts from "prevent inconsistency" to "detect and remediate."
+ControlType.Text | Indexing
+ControlType.Text |  still helps for
+ControlType.Text | finding
+ControlType.Text |  references. MediaWiki records outbound external links in the
+ControlType.Text | externallinks
+ControlType.Text |  table, which powers
+ControlType.Text | Special:LinkSearch
+ControlType.Text |  — letting you query, e.g., every page citing a given domain, with reverse-domain indexing (
+ControlType.Text | org.wikipedia.en
+ControlType.Text | ) so you can search by TLD or domain prefix.
+ControlType.Text | Detection
+ControlType.Text |  is done by crawler bots, not at write time. Wikipedia's
+ControlType.Text | InternetArchiveBot
+ControlType.Text |  monitors every Wikimedia wiki for new outgoing links and actively makes fixes on over 400 Wikimedia wikis.
+ControlType.Text |  Its detection logic is more careful than a naive 404 check — it checks whether untagged dead links are actually dead, with a reported false positive rate of 0.1%,
+ControlType.Text |  and it parses how each URL is used so it can detect if it's in a cite template, a reference, or a bare link, handling sources formatted in various ways.
+ControlType.Text |  The false-positive discipline matters at scale: even a 1% error rate across millions of links produces tens of thousands of bad edits.
+ControlType.Hyperlink | Wikimedia + 2
+ControlType.Text | Remediation
+ControlType.Text |  is a pre-emptive-archiving + substitution pipeline:
+ControlType.ListItem | Links are archived before they die. Links added to the English Wikipedia mainspace are automatically saved to the Wayback Machine within about 24 hours, so a snapshot exists by the time rot is detected. Wikipedia
+ControlType.Text | before
+ControlType.Hyperlink | Wikipedia
+ControlType.ListItem | When a link is found dead, the bot looks into the Wayback Machine to fetch a working archived copy, or uses archives already referenced for that URL. GitHub
+ControlType.Hyperlink | GitHub
+ControlType.ListItem | It then rewrites the citation to point at the archive and, depending on configuration, leaves a message on the talk page for human review rather than silently editing. GitHub
+ControlType.Hyperlink | GitHub
+ControlType.Text | This is a substantial operation: the Internet Archive recovered around 9 million broken links on Wikipedia, with roughly 6 million fixed by the bot across 22 wikis and another 3 million fixed manually by volunteers.
+ControlType.Hyperlink | Silicon Republic
+ControlType.Text | Human-in-the-loop tracking
+ControlType.Text |  backs the automation. Wikipedia maintains tracking categories — articles with dead external links and articles with bare URLs at risk — subdivided by month, which function as a visible backlog/work queue. There's also research showing the limits of the automated approach: one analysis found that usable archived copies exist for over 15% of links deemed "permanently dead,"
+ControlType.Text |  because the availability-API lookup times out and assumes no archive exists, trading coverage for efficiency.
+ControlType.Hyperlink | Wpmucdn
+ControlType.Text | The general pattern
+ControlType.Text | Abstracting across both systems, the toolkit for link consistency at scale is:
+ControlType.ListItem | Parse and index links at write time into a separate structure keyed by something stable — a title-key or, better, an opaque internal ID. Never rely on crawling your own content to know your link graph.
+ControlType.Text | Parse and index links at write time
+ControlType.ListItem | Indirection for identity — store a layer (linktarget IDs, content IDs) between "what's linked" and "where it lives," so renames/moves are cheap and don't require rewriting referencing pages.
+ControlType.Text | Indirection for identity
+ControlType.ListItem | Choose your move strategy: redirects (cheap writes, accumulate chains, need double-redirect cleanup) vs. link refactoring (heavier moves, clean graph).
+ControlType.Text | Choose your move strategy:
+ControlType.ListItem | Async fan-out for cascade updates via a job queue, since transclusion and template edits can invalidate millions of pages at once, plus periodic reconciliation sweeps to catch dropped updates.
+ControlType.Text | Async fan-out for cascade updates
+ControlType.ListItem | For external links, invert the strategy to detect-and-repair: pre-emptive archiving, crawler-based dead-link detection tuned hard for low false positives, archive substitution, and human-reviewed backlogs.
+ControlType.Text | For external links, invert the strategy
+ControlType.Text | The unifying principle is that internal consistency is an
+ControlType.Text | invariant you maintain
+ControlType.Text |  (the link index is the source of truth, kept correct by write-time parsing and async jobs), whereas external consistency is an
+ControlType.Text | entropy you continuously fight
+ControlType.Text |  (you can only detect rot after the fact and patch from archives). The systems that scale are the ones that never let the first problem degrade into the second — they keep internal links in a controlled namespace where the system owns both ends.
+ControlType.Text | If it's useful, I can go deeper on any one piece — the MediaWiki job-queue/
+ControlType.Text | refreshLinks
+ControlType.Text |  cascade mechanics, Confluence's link-refactoring internals, or how you'd design this for a system that isn't a wiki (e.g., a docs site or a knowledge base with Markdown source files in Git).
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Read aloud
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Text | You've used
+ControlType.Text | 75%
+ControlType.Text |  of your weekly limit
+ControlType.Button | Get more usage
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | Write a message…
+ControlType.Text |
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Model: Opus 4.8 High
+ControlType.Text | Opus 4.8
+ControlType.Text |  High
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Button | Use voice mode
+ControlType.Hyperlink | Claude is AI and can make mistakes. Please double-check cited sources.
+ControlType.Group | Notifications (F8)

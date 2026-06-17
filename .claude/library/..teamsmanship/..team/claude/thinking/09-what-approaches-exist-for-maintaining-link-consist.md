@@ -4,7 +4,7 @@
 - **conversation-id:** a6156153-8352-4e6a-bcb2-bc7ebb5571a7
 - **previous:** (none — new conversation)
 - **date:** 2026-06-17
-- **verdict:** (pending)
+- **verdict:** sufficient
 
 ---
 
@@ -24,7 +24,26 @@ Our library has three link-related tools: the [link checker](../../../../..envir
 
 ## Evidence
 
-(awaiting Desktop response)
+This is a meaty engineering question.
+Weighed technical knowledge against search verification for architectural patterns
+This is a meaty engineering question. Let me verify a few current specifics on how these systems actually implement link tracking before I synthesize.
+Synthesized MediaWiki and Confluence link management strategies comprehensively
+Good, that confirms the MediaWiki link-table architecture. Let me check Wikipedia's dead-link handling and Confluence's approach.
+Leveraged existing knowledge, verified Confluence details through targeted research
+I have what I need. Let me synthesize this into a clear technical answer covering the architecture, detection, and handling strategies. The Confluence side I can speak to from established knowledge of how Atlassian handles it.
+Link consistency at scale breaks down into two fundamentally different problems that these systems solve in opposite ways: internal links (page-to-page within the system) and external links (out to the open web). The first is solvable with strong consistency guarantees; the second is fundamentally a best-effort, eventual-cleanup problem.
+Internal links: the indexed-reference approach
+The core insight in both MediaWiki and Confluence is to not store links as raw URLs. Instead, links are parsed at save time and recorded in a separate index that maps source page → target, so the system always knows the full backlink graph without crawling.
+In MediaWiki this is the pagelinks table. Each entry contains the source page's ID and a reference to the linktarget table which has the title and namespace that is being linked to from within that source page. A key design detail: links target a namespace + title key, not a page ID. The target page may or may not exist, and due to renames and deletions may refer to different page records as time goes by. This is why a redlink (link to a not-yet-created page) and a working link are stored identically — existence is resolved at render time by joining against the page table, not baked into the link.
+MediaWiki
+MediaWiki
+That same index powers the "What links here" backlink feature. The pages linking to and/or embedding a given page are listed, and this info comes from the pagelinks table and the templatelinks table. The interesting architectural decision in newer MediaWiki is the linktarget table — an indirection layer where a page namespace-title tuple gets a unique integer ID, used for referenced page titles in templatelinks, pagelinks, and categorylinks. This means a single title is stored once and referenced by integer everywhere, which matters enormously when one popular template is transcluded across millions of pages.
+MediaWiki
+MediaWiki
+The reason links are stored by title-key rather than page-ID drives how moves work. There are two competing strategies:
+Strategy A — Title-keyed links + redirects (MediaWiki). When a page moves, its links don't update at all. The old title becomes a redirect record pointing to the new title, and the
+
+(truncated)
 
 ## Interpretation
 
