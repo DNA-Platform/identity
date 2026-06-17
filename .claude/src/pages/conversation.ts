@@ -194,6 +194,10 @@ export class Conversation implements Fallible {
     return this.controller.isAtBottom();
   }
 
+  async hasResponseContent(): Promise<boolean> {
+    return this.controller.hasResponseContent();
+  }
+
   async scrollToBottom(): Promise<void> {
     await this.controller.scrollToBottom();
   }

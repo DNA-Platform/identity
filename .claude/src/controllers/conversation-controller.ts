@@ -149,15 +149,10 @@ export class ConversationController {
     //   3. Response text appeared (non-empty assistant message)
     const processing = await this.auto.gateway.waitFor(
       async () => {
+        // Check streaming indicators first (fast)
         if (await this.checkStreaming()) return true;
-        // Check for response content — thinking or actual response
-        try {
-          const text = await this.auto.uia.readText();
-          if (text && (text.includes('Claude responded:') || text.includes('Claude is thinking'))) {
-            return true;
-          }
-        } catch {}
-        return false;
+        // Then check for actual content — thinking text or response text
+        return await this.hasResponseContent();
       },
       { timeoutMs: Math.min(timeoutMs, 30_000), pollIntervalMs: 500 },
     );
@@ -177,6 +172,12 @@ export class ConversationController {
   async checkStreaming(): Promise<boolean> {
     return await this.auto.uia.existsByName('Claude is responding')
       || await this.auto.uia.existsByName('Claude is thinking');
+  }
+
+  async hasResponseContent(): Promise<boolean> {
+    const text = await this.auto.uia.readText();
+    if (!text) return false;
+    return text.includes('Claude responded:') || text.includes('Claude is thinking');
   }
 
   async isAtBottom(): Promise<boolean> {

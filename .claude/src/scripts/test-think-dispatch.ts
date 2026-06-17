@@ -54,13 +54,14 @@ async function main() {
     const chapter = scaffoldChapter(state);
     console.log('[think] Chapter:', chapter);
 
-    // Poll — conversation object IS the state
+    // Poll — conversation object IS the async interface
     for (let i = 0; i < 120; i++) {
       await app.conversation.scrollToBottom();
       const streaming = await app.conversation.checkStreaming();
+      const hasContent = await app.conversation.hasResponseContent();
 
-      if (!streaming && i > 5) {
-        // Not streaming and we've waited a bit — check for response
+      if (!streaming && hasContent) {
+        // Not streaming AND content exists — response is complete
         const response = await app.conversation.readLastResponse();
         if (response && response.length > 0) {
           console.log('[think] Response:', response.length, 'chars');
