@@ -263,17 +263,33 @@ export class Claude {
 
   // --- Messaging ---
 
-  async compose(...parts: string[]): Promise<void> {
-    // Scroll to bottom first — ensures the view is at the latest message
-    // and the composer is fully visible. The "Scroll to bottom" button
-    // disappears when already at the bottom, so this is idempotent.
-    try { await this.conversation.scrollToBottom(); } catch {}
+  async waitForUserToStopTyping(): Promise<void> {
+    // Check if Doug is typing. If he is, wait for him to stop.
+    // Three consecutive identical reads = he stopped.
+    const draft = await this.conversation.composer.readDraft();
+    if (!draft) return; // Nothing in the composer
 
-    // Clear any existing draft before composing
-    try {
-      const draft = await this.conversation.composer.readDraft();
-      if (draft) await this.conversation.composer.clear();
-    } catch {}
+    let prev = draft;
+    let stableCount = 0;
+    while (stableCount < 3) {
+      const current = await this.conversation.composer.readDraft();
+      if (current === prev) {
+        stableCount++;
+      } else {
+        stableCount = 0;
+        prev = current;
+      }
+    }
+
+    // Doug stopped typing. Clear the draft.
+    if (prev) {
+      await this.conversation.composer.clear();
+    }
+  }
+
+  async compose(...parts: string[]): Promise<void> {
+    try { await this.conversation.scrollToBottom(); } catch {}
+    await this.waitForUserToStopTyping();
     const combined = parts.join('\n\n');
     await this.conversation.composer.compose(combined);
   }
