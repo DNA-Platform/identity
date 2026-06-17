@@ -30,20 +30,23 @@ Use TodoWrite to create this checklist. Each step is a separate tool call. **NEV
 
 ### The checklist
 
+The script touches Desktop. I do all library work in first person. My [thinking book](../..teamsmanship/..team/claude/thinking/.cover.md) is my personal library — I author it per [Autonomy](../teamspeak/05-autonomy.md).
+
 ```
-[ ] 1. WRITE — send the question (run_in_background). Returns immediately.
-[ ] 2. SCAFFOLD — update perspective cover with conversation ID. Create entry file 
-      with: what I asked and why, what I expect, what I already know. Link to 
-      previous entry if this conversation has one.
-[ ] 3. CATCH UP — follow the previous-link chain back up to 5 entries. Reread my 
-      own prior evaluations in this conversation.
-[ ] 4. CHECK LOOP — check if Desktop responded. If not ready, tend the library 
-      (fix a link, edit a synopsis, read a chapter), then check again. 
-      Max 5 checks.
-[ ] 5. READ — the response arrived. Paste it into the Evidence section of the entry.
-[ ] 6. INTERPRET — write the Interpretation section. What aligns, what surprises, 
-      what's new.
-[ ] 7. CONCLUDE — write the Conclusion section. What to tell the team, and whom.
+[ ] 1. WRITE — run the script to send the question (run_in_background).
+[ ] 2. CREATE CHAPTER — I create a chapter in my thinking book. I write: 
+      what I asked and why, what I expect, what I already know, links to 
+      relevant library content. Link to previous chapter if continuing 
+      a conversation.
+[ ] 3. CATCH UP — I follow the previous-link chain back up to 3 chapters.
+      Reread my own prior evaluations in this conversation.
+[ ] 4. CHECK LOOP — run the script to check if Desktop responded. If not 
+      ready, I tend the library, then check again.
+[ ] 5. READ — run the script to read the response. I paste it into the 
+      Evidence section of my chapter.
+[ ] 6. INTERPRET — I write the Interpretation section.
+[ ] 7. CONCLUDE — I write the Conclusion section. I update my thinking 
+      book cover with the conversation summary.
 ```
 
 ### Step 1: Write
@@ -51,29 +54,24 @@ Use TodoWrite to create this checklist. Each step is a separate tool call. **NEV
 Formulate the question. Apply the [factorization principle](#the-factorization-principle). Run:
 
 ```
-npx tsx .claude/src/scripts/test-think-dispatch.ts send "your question"
+npx tsx .claude/src/scripts/test-think-dispatch.ts write "your question"
 ```
 
-One call. Returns immediately with the conversation URL in the state file. **Do NOT check yet.**
+The script sends to Desktop, confirms processing started, saves the conversation ID, and minimizes. One call, returns immediately.
 
-### Step 2: Scaffold the perspective entry
+### Step 2: Create the chapter
 
-Two things happen:
+I create a chapter in my [thinking book](../..teamsmanship/..team/claude/thinking/.cover.md). Not a blank template — my thinking in progress:
+- **What I asked and why** — the question and why it matters to the team
+- **What I expect** — my prediction, so I can compare against the response
+- **What I already know** — prior context from the library, with links
+- **`previous` link** — to the last chapter in this conversation, if continuing one
 
-**Update the [perspective cover](../..teamsmanship/..team/claude/.perspective/.cover.md)** — add a row to the Thoughts table with the conversation ID, date, topic, and link to the entry file. The cover is the quick-read index.
+This is my personal library. I write it in first person per [Autonomy](../teamspeak/05-autonomy.md). The chapter IS the thought — the response drops into its Evidence section later.
 
-**Create the entry file** with my thinking already in it. Not a blank template — a thought in progress:
-- **What I asked and why** — the question and the connection to the team's work
-- **What I expect to find** — my prediction, so I can compare when the response arrives
-- **What I already know** — prior context from the catalogue or library
-- **`previous` link** — points to the last entry in this conversation (or "none" if first)
-- **Empty Evidence/Interpretation/Conclusion sections** — these get filled after the response
+### Step 3: Catch up
 
-The entry is my thought process. The response drops into the middle of it, not at the start.
-
-### Step 3: Read prior context
-
-Follow the `previous` link chain backwards — up to five entries. Read my own prior evaluations in this conversation. If this is a new conversation, check the [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md) for related topics. Read any linked perspective entries. By the time I check, I know what I've already thought about this topic.
+Follow the `previous` link chain — up to 3 chapters. Reread my own prior evaluations in this conversation. Read related chapters in the thinking book. By the time I check, I know what I've already thought about this topic.
 
 ### Step 4: Build context about the topic
 
