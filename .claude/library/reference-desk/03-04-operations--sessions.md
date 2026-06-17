@@ -92,7 +92,7 @@ After the action completes, `window.minimize()` returns the computer to Doug.
 ## Use cases
 
 ### Research dispatch
-Claude starts a session, sends a research question, reads the response, stores it in perspective with annotations.
+Claude starts a session, sends a research question, reads the response, stores it in perspective with annotations. The [Thoughtfulness](../thoughtfulness/.cover.md) book specifies the full protocol — the write/check/read cycle, the [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md), the perspective entry format. The [/think skill](../our-skillset/20-think.md) uses `sendAndForget()` instead of `session.send()` to avoid blocking.
 
 ### Returning to a conversation
 The session stores `id` and `url`. To return to a previous conversation across sessions or turns:
