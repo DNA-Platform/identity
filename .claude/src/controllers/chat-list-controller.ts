@@ -206,11 +206,8 @@ export class ChatListController {
 
   async readMenuItems(): Promise<string[]> {
     const names = await this.auto.uia.allNames();
-    return names
-      .filter(n => n.includes('MenuItem') || n.includes('Pin') ||
-                   n.includes('Rename') || n.includes('Delete') ||
-                   n.includes('project') || n.includes('Share'))
-      .map(n => n.replace(/^ControlType\.\w+ \| /, ''));
+    const known = ['Pin', 'Rename', 'Add to project', 'Delete', 'Projects', 'Share chat'];
+    return known.filter(item => names.some(n => n.endsWith(`| ${item}`)));
   }
 
   async isDialogVisible(): Promise<boolean> {
@@ -219,9 +216,19 @@ export class ChatListController {
 
   async readProjectList(): Promise<string[]> {
     const names = await this.auto.uia.allNames();
-    return names
-      .filter(n => n.startsWith('ControlType.ListItem | '))
-      .map(n => n.replace('ControlType.ListItem | ', ''));
+    const projects: string[] = [];
+    for (const n of names) {
+      const match = n.match(/^ControlType\.ListItem \| (.+)$/);
+      if (match) projects.push(match[1]);
+    }
+    return projects;
+  }
+
+  async isRenameFieldActive(): Promise<boolean> {
+    // When the rename field opens, the sidebar text changes — the old title
+    // becomes an editable text field. We detect this by checking if the
+    // menu closed (Rename was clicked and the edit field replaced it).
+    return !(await this.isMenuVisible());
   }
 
   // --- Granular actuators (single UIA actions) ---
@@ -230,9 +237,23 @@ export class ChatListController {
     return this.auto.uia.expandByName(`More options for ${title}`);
   }
 
-  async clickMenuItem(name: string): Promise<boolean> {
-    return await this.auto.uia.invoke('MenuItem', name)
-      || await this.auto.uia.invokeByName(name);
+  // Specific menu item actuators — the Controller knows the UIA names
+  async clickRename(): Promise<boolean> {
+    return this.auto.uia.invoke('MenuItem', 'Rename');
+  }
+
+  async clickDelete(): Promise<boolean> {
+    return this.auto.uia.invoke('MenuItem', 'Delete');
+  }
+
+  async clickAddToProject(): Promise<boolean> {
+    return await this.auto.uia.invoke('MenuItem', 'Add to project')
+      || await this.auto.uia.invokeByName('Add to project')
+      || await this.auto.uia.invokeByName('Projects');
+  }
+
+  async clickPin(): Promise<boolean> {
+    return this.auto.uia.invoke('MenuItem', 'Pin');
   }
 
   async clickProjectItem(name: string): Promise<boolean> {
