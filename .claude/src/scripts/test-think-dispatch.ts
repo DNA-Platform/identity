@@ -1,5 +1,8 @@
-// Think — non-blocking. sendAsync() returns immediately.
-// Poll conversation.checkStreaming() and conversation.readLastResponse() directly.
+// Think — two phases. Write sends and confirms started. Read waits for complete.
+// Usage:
+//   npx tsx test-think-dispatch.ts write "question"
+//   npx tsx test-think-dispatch.ts read
+//   npx tsx test-think-dispatch.ts state | clear
 
 import { Claude } from '../claude.ts';
 import { readState, writeState, deleteState, hasActiveThought,
@@ -12,33 +15,35 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DEBUG = resolve(__dirname, '..', 'debug');
-const question = process.argv[2];
+const mode = process.argv[2];
 const app = new Claude();
 
-async function main() {
-  if (!question) {
-    console.error('Usage: npx tsx test-think-dispatch.ts "your question"');
-    process.exit(1);
-  }
-  if (question === 'clear') { deleteState(); console.log('Cleared.'); return; }
-  if (question === 'state') {
-    const s = readState();
-    if (!s) { console.log('No active thought.'); return; }
-    console.log(s.question.slice(0, 80), '\nID:', s.conversationId, '\nChapter:', findChapter(s) || '(none)');
-    return;
-  }
-  if (hasActiveThought()) {
-    console.log('Active thought exists. Use "clear" first.');
-    return;
-  }
+// --- WRITE: send question, confirm started, scaffold, minimize ---
+
+async function doWrite() {
+  const question = process.argv[3];
+  if (!question) { console.error('Usage: write "question"'); process.exit(1); }
+  if (hasActiveThought()) { console.log('[write] Active thought. Use read or clear.'); return; }
 
   await app.launch();
-
   try {
     await app.newChat();
     await app.compose(question);
     await app.sendAsync();
-    console.log('[think] Sent.');
+
+    // Confirm Desktop started — poll for streaming or stop button
+    let started = false;
+    for (let i = 0; i < 30; i++) {
+      await app.conversation.scrollToBottom();
+      const streaming = await app.conversation.checkStreaming();
+      const hasStop = await app.conversation.hasStopButton();
+      if (streaming || hasStop) { started = true; break; }
+    }
+
+    if (!started) {
+      console.log('[write] FAILED: Desktop did not start processing.');
+      return;
+    }
 
     // Capture URL
     const url = await app.auto.uia.readUrl() ?? '';
@@ -49,54 +54,126 @@ async function main() {
       startedAt: new Date().toISOString(),
     };
     writeState(state);
-
-    // Scaffold chapter while Desktop thinks
     const chapter = scaffoldChapter(state);
-    console.log('[think] Chapter:', chapter);
 
-    // Poll — conversation object IS the async interface
+    console.log('[write] Started. ID:', id);
+    console.log('[write] Chapter:', chapter);
+  } finally {
+    app.window.minimize();
+  }
+}
+
+// --- READ: wait for complete, read response, rename, catalogue ---
+
+async function doRead() {
+  const state = readState();
+  if (!state) { console.log('[read] No active thought.'); return; }
+  const chapter = findChapter(state);
+  if (!chapter) { console.log('[read] No chapter. Run write first.'); return; }
+
+  await app.launch();
+  try {
+    // Navigate to the conversation
+    if (!await app.checkConversation(state.conversationId)) {
+      await app.sidebar.refresh();
+      await app.openChatAt(0);
+    }
+
+    // First: confirm Desktop is still processing (streaming or stop button)
+    // This distinguishes "not started" from "already done"
+    let sawProcessing = false;
+    for (let i = 0; i < 30; i++) {
+      await app.conversation.scrollToBottom();
+      const streaming = await app.conversation.checkStreaming();
+      const hasStop = await app.conversation.hasStopButton();
+      if (streaming || hasStop) { sawProcessing = true; break; }
+      // Also check if already done — content exists, no indicators
+      if (await app.conversation.hasResponseContent()) { sawProcessing = true; break; }
+    }
+    if (!sawProcessing) {
+      console.log('[read] No processing detected. Message may not have been received.');
+      return;
+    }
+
+    // Poll for response complete
     for (let i = 0; i < 240; i++) {
       await app.conversation.scrollToBottom();
       const complete = await app.conversation.isResponseComplete();
 
       if (complete) {
         const response = await app.conversation.readLastResponse();
-        if (response && response.length > 0) {
-          console.log('[think] Response:', response.length, 'chars');
-          console.log('[think] Preview:', response.slice(0, 200));
+        console.log('[read] Response:', response.length, 'chars');
+        console.log('[read] Preview:', response.slice(0, 200));
 
-          pasteResponse(chapter, response);
-          writeFileSync(resolve(DEBUG, 'think-response.txt'), response, 'utf-8');
+        // Paste into chapter
+        pasteResponse(chapter, response);
+        writeFileSync(resolve(DEBUG, 'think-response.txt'), response, 'utf-8');
 
-          const now = new Date().toISOString().split('T')[0];
-          updateCatalogue({
-            topic: question.slice(0, 100),
-            conversationId: id, url,
-            state: ConversationState.active, started: now,
-            lastExchange: now, summary: response.slice(0, 500),
-          });
+        // Rename conversation
+        try {
+          const topicName = state.question.slice(0, 80);
+          await app.renameConversation(topicName);
+          console.log('[read] Renamed:', topicName);
+        } catch { console.log('[read] Rename failed (non-critical).'); }
 
-          console.log('[think] Done.');
-          return;
+        // Add to Claude project
+        try {
+          await app.sidebar.chats.addToProject(
+            await app.conversation.readTitle(), 'Claude'
+          );
+          console.log('[read] Added to Claude project.');
+        } catch {
+          try { await app.dismissDialogs(); } catch {}
+          console.log('[read] Project filing failed (non-critical).');
         }
+
+        // Update catalogue
+        const now = new Date().toISOString().split('T')[0];
+        updateCatalogue({
+          topic: state.question.slice(0, 100),
+          conversationId: state.conversationId, url: state.url,
+          state: ConversationState.active, started: state.startedAt.split('T')[0],
+          lastExchange: now, summary: response.slice(0, 500),
+        });
+
+        console.log('[read] Done.');
+        return;
       }
 
-      // Report status periodically
+      // Status report every 10 checks
       if (i % 10 === 0) {
         const streaming = await app.conversation.checkStreaming();
         const hasStop = await app.conversation.hasStopButton();
         const hasContent = await app.conversation.hasResponseContent();
-        console.log(`[think] ${i}s: streaming=${streaming} stop=${hasStop} content=${hasContent}`);
+        console.log(`[read] ${i}: streaming=${streaming} stop=${hasStop} content=${hasContent}`);
       }
     }
 
-    console.log('[think] Timeout after 240 checks.');
+    console.log('[read] Timeout.');
   } finally {
-    try { app.window.minimize(); } catch {}
+    app.window.minimize();
   }
 }
 
+// --- Utilities ---
+
+function showState() {
+  const state = readState();
+  if (!state) { console.log('No active thought.'); return; }
+  console.log('Q:', state.question.slice(0, 80));
+  console.log('ID:', state.conversationId);
+  console.log('Chapter:', findChapter(state) || '(none)');
+}
+
+async function main() {
+  if (mode === 'write') await doWrite();
+  else if (mode === 'read') await doRead();
+  else if (mode === 'state') showState();
+  else if (mode === 'clear') { deleteState(); console.log('Cleared.'); }
+  else console.log('Usage: write "q" | read | state | clear');
+}
+
 main().catch(e => {
-  console.error('[think] FAILED:', (e as Error).message);
+  console.error('FAILED:', (e as Error).message);
   try { app.window.minimize(); } catch {}
 });

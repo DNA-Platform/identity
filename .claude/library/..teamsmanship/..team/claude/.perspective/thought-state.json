@@ -1,0 +1,6 @@
+{
+  "conversationId": "a6156153-8352-4e6a-bcb2-bc7ebb5571a7",
+  "url": "https://claude.ai/chat/a6156153-8352-4e6a-bcb2-bc7ebb5571a7",
+  "question": "What approaches exist for maintaining link consistency at scale in large wiki systems like Wikipedia and Confluence? How do they detect and handle broken links, moved pages, and stale references across millions of documents?",
+  "startedAt": "2026-06-17T10:54:45.440Z"
+}
