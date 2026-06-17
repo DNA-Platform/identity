@@ -129,9 +129,9 @@ export class ChatListController {
     );
     if (!dialogVisible) throw new Error('"Move chat" dialog did not appear');
 
-    // Step 3: Click the project name — verify dialog closed
-    const selected = await this.auto.uia.clickByName(projectName);
-    if (!selected) throw new Error(`Could not click project "${projectName}" in the list`);
+    // Step 3: Click the project name as a ListItem — verify dialog closed
+    const selected = await this.auto.uia.invoke('ListItem', projectName);
+    if (!selected) throw new Error(`Could not select ListItem "${projectName}" in the project picker`);
     const dialogClosed = await this.auto.gateway.waitFor(
       async () => !(await this.auto.uia.existsByName('Move chat')),
       { timeoutMs: 10_000, pollIntervalMs: 300 },
