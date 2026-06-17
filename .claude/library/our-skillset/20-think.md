@@ -108,15 +108,17 @@ If partial, formulate a follow-up and write again. If sufficient, report the res
 
 ## Managing conversations
 
-Conversations persist. They get better with context. My [thinking book](../..teamsmanship/..team/claude/thinking/.cover.md) tracks every Desktop conversation by topic — I check it before starting fresh.
+Two books in my personal library:
 
-**Before writing:** Read my thinking book cover. If a conversation on the same topic exists and is still productive, reuse it. The state file tells me if a thought is in progress — if it has a conversation ID, use read instead of write.
+**[Thinking book](../..teamsmanship/..team/claude/thinking/.cover.md)** — conversations by time. Each chapter is one exchange. I check the cover before starting fresh.
 
-**After reading:** I update my thinking book: the chapter gets its Evidence/Interpretation/Conclusion filled in, the cover gets the conversation summary updated.
+**[Research Topics](../..teamsmanship/..team/claude/research-topics/.cover.md)** — research by topic. Each chapter summarizes a research thread across conversations. The conversation ID links topic chapters to thinking book chapters.
 
-**Future work:** Rename the conversation to a topical name. Add to the "Claude" project in Desktop. These require more app exploration. See [Project Operations](../reference-desk/03-03-operations--projects.md#adding-a-conversation-to-a-project).
+**Before writing:** Read my research topics cover. If a topic exists, read that chapter to catch up. If a conversation on the topic is still active, continue it. The state file tells me if a thought is in progress.
 
-**Catching up after compaction:** Read my thinking book. Follow the `previous` link chain in the conversation's chapters. The summaries should be dense enough to formulate the next question without re-reading the Desktop transcript. The full protocol is in [Persistence](../thoughtfulness/03-persistence.md).
+**After reading:** I update both books: the thinking book chapter gets Evidence/Interpretation/Conclusion, the topic chapter gets its summary updated.
+
+**Catching up after compaction:** Read the topic chapter first — it summarizes all conversations on that thread. Follow conversation ID links to thinking book chapters for details. The full protocol is in [Persistence](../thoughtfulness/03-persistence.md).
 
 ## Resuming a thought
 
