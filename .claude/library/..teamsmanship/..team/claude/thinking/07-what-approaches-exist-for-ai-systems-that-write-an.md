@@ -4,7 +4,7 @@
 - **conversation-id:** c15275be-e6cb-48af-aef9-6e120e629240
 - **previous:** (none — first in this conversation)
 - **date:** 2026-06-17
-- **verdict:** (pending)
+- **verdict:** abandoned — Desktop never responded, likely message not received
 
 ---
 

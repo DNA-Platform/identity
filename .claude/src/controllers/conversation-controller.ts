@@ -142,22 +142,32 @@ export class ConversationController {
   async waitForResponse(timeoutMs: number): Promise<void> {
     this.auto.navigator.requireScreen('conversation');
 
-    // Phase 1: wait for streaming to start (status text appears)
-    // This confirms the message was received and Claude is responding.
-    // Short timeout — streaming should start within a few seconds.
-    const streamStarted = await this.auto.gateway.waitFor(
-      () => this.checkStreaming(),
-      { timeoutMs: Math.min(timeoutMs, 15_000), pollIntervalMs: 500 },
+    // Phase 1: detect that Desktop started processing.
+    // Check three signals — any one means the message was received:
+    //   1. Streaming indicator ("Claude is responding" / "Claude is thinking")
+    //   2. Thinking text appeared (extended thinking content)
+    //   3. Response text appeared (non-empty assistant message)
+    const processing = await this.auto.gateway.waitFor(
+      async () => {
+        if (await this.checkStreaming()) return true;
+        // Check for response content — thinking or actual response
+        try {
+          const text = await this.auto.uia.readText();
+          if (text && (text.includes('Claude responded:') || text.includes('Claude is thinking'))) {
+            return true;
+          }
+        } catch {}
+        return false;
+      },
+      { timeoutMs: Math.min(timeoutMs, 30_000), pollIntervalMs: 500 },
     );
 
-    if (!streamStarted) {
-      // Streaming never started — message may not have sent,
-      // or Claude responded instantly (very short response)
-      return;
+    if (!processing) {
+      // Nothing happened — message likely wasn't received
+      throw new Error('Desktop did not start processing. No streaming indicator, no thinking text, no response detected within 30 seconds.');
     }
 
     // Phase 2: wait for streaming to stop (status text disappears)
-    // This is the main wait — Claude is generating the full response.
     await this.auto.gateway.waitFor(
       async () => !(await this.checkStreaming()),
       { timeoutMs, pollIntervalMs: 1_000 },
@@ -170,7 +180,13 @@ export class ConversationController {
   }
 
   async scrollToBottom(): Promise<void> {
-    await this.auto.keyboard.sendKeys('^{END}');
+    // Try the "Scroll to bottom" button first — it's a real UI element
+    // that disappears when already at the bottom (idempotent by design).
+    const clicked = await this.auto.uia.invokeByName('Scroll to bottom');
+    if (!clicked) {
+      // Already at bottom (button not present) or button not found — use keyboard fallback
+      await this.auto.keyboard.sendKeys('^{END}');
+    }
   }
 
   async scrollToTop(): Promise<void> {
