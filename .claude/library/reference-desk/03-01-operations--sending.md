@@ -29,6 +29,9 @@ await app.send();  // waits for response by default
 | `append(text)` | Add to existing content without clearing | Multi-part composition |
 | `attach(filePath)` | Attach a file via clipboard file-drop | Uploading documents |
 | `clear()` | Clear the composer | Start over |
+| `readDraft()` | Read what's currently in the composer from UIA | Check if Doug has text typed |
+
+**Note:** `compose()` now explicitly reads the draft and clears before typing. This prevents accidental sends of leftover text from failed operations or Doug's typing. The clear is driven by `readDraft()` — it checks before clearing, not blindly.
 
 ## Paste vs Type
 
@@ -41,13 +44,23 @@ Type is used only when the text must trigger the input handler character-by-char
 
 ## The send flow
 
-`send(responseTimeoutMs)`:
+Two send methods:
+
+**`send(responseTimeoutMs)`** — send and WAIT for the response:
 1. The composer's send button is invoked via UIA
-2. The [gateway](02-02-the-architecture--gateway.md) verifies that Claude Desktop starts responding (the "Claude is responding" indicator appears)
-3. The gateway polls until the response completes (the indicator disappears)
+2. The [gateway](02-02-the-architecture--gateway.md) verifies that Desktop starts responding
+3. The gateway polls until the response completes
 4. The conversation's turns are re-read to capture the response
 
 The timeout defaults to 120 seconds. For long research questions, increase it: `await app.send(300_000)`.
+
+**`sendAndForget()`** — send and confirm Desktop started, but DON'T wait for the full response:
+1. The composer's send button is invoked via UIA
+2. The gateway polls to confirm Desktop started processing (streaming indicator appears)
+3. If streaming doesn't start within 15 seconds, throws — the message wasn't received
+4. Returns as soon as streaming starts. Does NOT wait for the response to complete.
+
+Use `sendAndForget()` when you want to minimize and come back later. Use `send()` (or [`session.send()`](03-04-operations--sessions.md)) when you want the response before continuing. For the `/think` skill, [Session](03-04-operations--sessions.md) is the right tool — it handles the full lifecycle.
 
 ## File attachments
 

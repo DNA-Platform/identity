@@ -5,80 +5,53 @@
 
 ---
 
-The code is thin. The app does the work.
+The code is thin because the app already does the work.
 
-[`think.ts`](../../src/scripts/think.ts) handles ONLY persistence — the state file and the conversation catalogue. All Desktop interaction goes through the [`Claude`](../../src/claude.ts) class methods. The [/think skill](../our-skillset/20-think.md) calls app methods directly and uses think.ts for bookkeeping between calls.
+The [`Session`](../../src/session.ts) class in the [Reference Desk](../reference-desk/.cover.md) codebase handles the entire Desktop conversation lifecycle: foreground management, composing, sending, waiting for the response (with gateway polling), reading turns, capturing URL and conversation ID, minimizing. One call — `session.send(question)` — does everything.
 
-## What think.ts exports
-
-**State file** — tracks the active thought between write and check:
-- `readState()` / `writeState()` / `deleteState()` / `hasActiveThought()`
-- `ThoughtState`: conversationId, url, question, startedAt
-
-**Catalogue** — tracks all conversations across sessions:
-- `readCatalogue()` / `updateCatalogue()`
-- `CatalogueEntry`: topic, conversationId, url, state, started, lastExchange, summary
-
-That's it. 77 lines.
+[`think.ts`](../../src/scripts/think.ts) adds only persistence: the thought state file, the conversation catalogue JSON, and the [thinking book](../..teamsmanship/..team/claude/thinking/.cover.md) chapter management. The test script calls `session.send()` for Desktop and think.ts for bookkeeping.
 
 ## What the app provides
 
-The [`Claude`](../../src/claude.ts) class has the methods the skill needs:
-
-| Method | What it does |
-|--------|-------------|
-| `app.newChat()` | Dismiss dialogs, go home, click New Chat, verify blank URL |
-| `app.compose(text)` | Clear any existing draft, then type the text |
-| `app.sendAndForget()` | Click Send, detect screen transition. Does NOT wait for response |
-| `app.checkConversation(id)` | Read URL, return whether it contains the conversation ID |
-| `app.openConversationById(id)` | If not on the right conversation, open the most recent sidebar chat and verify |
-| `app.conversation.scrollToBottom()` | Ctrl+End — forces lazy-rendered content to materialize in the UIA tree |
-| `app.conversation.checkStreaming()` | Is Desktop still generating a response? |
-| `app.conversation.readLastResponse()` | Read the last assistant message |
-| `app.window.minimize()` | Return Doug's computer |
-
-Each method is idempotent — `maximize()`, `focus()`, `checkConversation()` all check state before acting. No redundant Win32 calls. No flicker.
-
-## The write/check/read cycle in code
+The [`Session`](../reference-desk/03-04-operations--sessions.md) class:
 
 ```typescript
-// WRITE
+const app = new Claude();
 await app.launch();
-await app.newChat();
-await app.compose(question);
-await app.sendAndForget();
-const url = await app.auto.uia.readUrl();
-writeState({ conversationId: extractId(url), url, question, startedAt: now() });
-app.window.minimize();
-
-// CHECK (separate invocation, after productive work)
-await app.launch();
-await app.openConversationById(state.conversationId);
-await app.conversation.scrollToBottom();
-const done = !await app.conversation.checkStreaming();
-app.window.minimize();
-
-// READ (only after check says done)
-await app.launch();
-await app.openConversationById(state.conversationId);
-await app.conversation.scrollToBottom();
-const response = await app.conversation.readLastResponse();
-updateCatalogue({ topic, conversationId, url, summary: response.slice(0, 500), ... });
-app.window.minimize();
+const session = await app.startSession({ timeout: 180_000 });
+const response = await session.send(question);
+// response.content.text is the answer
+// session.id and session.url are captured
+// app is minimized
 ```
 
-Each block is a separate invocation. Work happens between them — [scaffolding the perspective entry](03-persistence.md), reading prior context, tending the library. The skill prescribes a [checklist](../our-skillset/20-think.md#the-writecheckread-checklist) that enforces this separation.
+That is the entire Desktop interaction. `session.send()` uses the [gateway](../reference-desk/02-02-the-architecture--gateway.md) pattern internally — it polls for streaming start, polls for streaming end, verifies the response arrived. No fixed waits. No manual foreground management. No scroll-to-bottom hacks. The Session is the tested, reliable path.
 
-## Why the code is thin
+## What think.ts adds
 
-Sprint 78 taught us: functionality that touches Desktop belongs in the [app layer](../reference-desk/.cover.md), not in scripts. The previous think.ts was 670 lines — it had navigation, streaming detection, rename, project filing, retry loops. All of that either moved into the Claude class or was removed. What remains is what ONLY think.ts can do: manage the thought state file and the conversation catalogue. Everything else is reusable app infrastructure.
+Persistence only. 110 lines:
 
-The [coding philosophy](../reference-desk/05-coding-philosophy.md) applies: if the script reaches below the Claude class, the class is missing a method. Add the method, don't bypass the stack.
+**State file** — tracks the active thought between invocations:
+- `readState()` / `writeState()` / `deleteState()` / `hasActiveThought()`
+
+**Catalogue** — JSON index of all conversations:
+- `readCatalogue()` / `updateCatalogue()`
+
+**Thinking book chapters** — the human-readable record in Claude's personal library:
+- `scaffoldChapter(state)` — creates a chapter file and adds a TOC entry to the cover
+- `findChapter(state)` — finds the chapter for a given conversation ID
+- `pasteResponse(chapterPath, response)` — writes the response into the Evidence section
+
+## The lesson
+
+Sprint 78 built `sendAndForget()`, `checkConversation()`, `openConversationById()`, `newChat()` — 200+ lines of code duplicating what `Session` already did. The [Reading protocol](../teamspeak/08-reading.md) says: read the room before you act. The room for automation code is the [Reference Desk](../reference-desk/.cover.md). Read the Sessions chapter. Read `session.ts`. If the functionality exists, use it. Do not build a parallel implementation.
+
+The [coding philosophy](../reference-desk/05-coding-philosophy.md) applies: if a script needs to reach below the `Claude` class, the class is missing a method. Add the method, don't bypass the stack. But first CHECK whether the method already exists.
 
 <!-- citations -->
-[think-ts]: ../../src/scripts/think.ts
-[claude-ts]: ../../src/claude.ts
-[skill]: ../our-skillset/20-think.md
-[persistence]: 03-persistence.md
+[session]: ../reference-desk/03-04-operations--sessions.md
 [reference-desk]: ../reference-desk/.cover.md
+[gateway]: ../reference-desk/02-02-the-architecture--gateway.md
+[reading]: ../teamspeak/08-reading.md
 [coding-philosophy]: ../reference-desk/05-coding-philosophy.md
+[think-ts]: ../../src/scripts/think.ts
