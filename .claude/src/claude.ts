@@ -416,15 +416,27 @@ export class Claude {
   }
 
   async deleteChat(title: string): Promise<void> {
-    await this.sidebar.chats.delete(title);
+    await this.sidebar.refresh();
+    const item = this.sidebar.chats.find(title);
+    if (!item) throw new Error(`Chat "${title}" not found`);
+    const menu = await item.menu();
+    await menu.delete();
   }
 
   async renameChat(title: string, newTitle: string): Promise<void> {
-    await this.sidebar.chats.rename(title, newTitle);
+    await this.sidebar.refresh();
+    const item = this.sidebar.chats.find(title);
+    if (!item) throw new Error(`Chat "${title}" not found`);
+    const menu = await item.menu();
+    await menu.rename(newTitle);
   }
 
   async pinChat(title: string): Promise<void> {
-    await this.sidebar.chats.pin(title);
+    await this.sidebar.refresh();
+    const item = this.sidebar.chats.find(title);
+    if (!item) throw new Error(`Chat "${title}" not found`);
+    const menu = await item.menu();
+    await menu.pin();
   }
 
   // --- Recovery ---
