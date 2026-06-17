@@ -38,6 +38,17 @@ Four compilers generate the platform files that Claude Code loads at runtime. Ea
 - **Generates:** `skills/*/SKILL.md`
 - **What it produces:** Slash commands invokable by the user. Each skill has a SKILL.md with frontmatter and instructions.
 
+## Compiler diff as a review signal
+
+When a compiler warns that the output differs from what the library would generate — "SKILL.md body differs from library chapter" — that is a signal to REVIEW, not just overwrite. The old compiled file may contain content that the library chapter is missing. Before recompiling with `--write`:
+
+1. Read the compiler warning
+2. Diff the old compiled file against what the library chapter would produce
+3. If the compiled file has content the library doesn't — merge it INTO the library chapter first
+4. Then recompile
+
+The library is the source of truth. But if someone hand-edited the compiled file (violating [provenance](02-on-provenance.md)), their edits exist only in the compiled output. Recompiling without merging loses those edits. The warning IS the merge trigger.
+
 ## Running compilers
 
 Each compiler is a TypeScript file run with `npx tsx`. The convention:
