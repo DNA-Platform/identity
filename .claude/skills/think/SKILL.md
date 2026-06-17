@@ -24,7 +24,7 @@ Send the general part. Keep the specific part. The factorization is where the th
 
 ## The thinking pause
 
-After sending a question, Desktop takes time to respond — sometimes over a minute for research-heavy questions. The `send()` function minimizes immediately, but the response isn't ready yet. This is the thinking pause.
+After writing a question, Desktop takes time to respond — sometimes over a minute for research-heavy questions. The write step uses `app.sendAndForget()` which minimizes immediately. The response isn't ready yet. This is the thinking pause.
 
 The pause is the natural moment for [tending](../../library/teamspeak/06-tending.md). While I wait for Desktop's response, the team tends the library: follow links, edit stale synopses, improve chapter connections, clean up personal libraries. Libby can organize. Adam can validate. Arthur can review structure. The thinking pause and the tending pause are the same pause.
 
@@ -124,7 +124,7 @@ On success, add the conversation to the "Claude" project in Desktop.
 
 Conversations persist. They get better with context. The [conversation catalogue](../../library/thoughtfulness/05-conversation-catalogue.md) tracks every Desktop conversation by topic — check it before starting fresh.
 
-**Before sending:** Read the catalogue. If a conversation on the same topic exists and is still productive, reuse it. The `send()` function checks the state file — if one exists with prior exchanges, it opens the existing conversation, verifies the URL, reads the last response to catch up, then sends the follow-up. No duplicate conversations on the same topic.
+**Before writing:** Read the catalogue. If a conversation on the same topic exists and is still productive, reuse it. The write step checks the state file — if one exists with a URL, it means a question was already sent. Use check/read instead. For follow-ups in the same conversation, use `app.openConversationById()` to navigate back.
 
 **After reading:** The response triggers three actions:
 1. **Rename** — the code renames the conversation to a topical name derived from the question (the auto-generated Desktop title is usually poor)
