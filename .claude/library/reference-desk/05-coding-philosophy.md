@@ -101,6 +101,12 @@ Nothing blocks. Every method that touches Desktop returns a promise. Every check
 
 If you find a blocking call in the interaction chain, refactor it to be async. TypeScript has wonderful async/await. Use it everywhere.
 
+## Every action gets a confirmation read
+
+After every action, read the state and confirm it matches your intent. Click a button — verify the expected UI appeared. Select a ListItem — read back which item is selected. Type text — read the field to confirm what's there. Navigate — read the URL to confirm you arrived. Never assume an action produced its intended effect. Always read back.
+
+This is not a safety practice for dangerous operations. It is the ONLY way to automate an async stateful system. The system's state changes independently of your commands. A click might land on the wrong element. A selection might not register. A dialog might close before your action. The ONLY way to know what happened is to read the state after acting.
+
 ## Never wait — always test
 
 Doug's elevator metaphor: you push the button, then you OPEN YOUR EYES AND LOOK. Is the elevator there? Are the doors open? If not, look again. No amount of waiting with your eyes closed equals just looking.
