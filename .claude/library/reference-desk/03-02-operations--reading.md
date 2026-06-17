@@ -48,23 +48,53 @@ interface Response {
 
 Several signals indicate Desktop is processing:
 
-| Signal | What it means | How to check |
-|--------|--------------|--------------|
-| "Claude is responding" | Desktop is generating text | `checkStreaming()` |
-| "Claude is thinking" | Extended thinking in progress | `checkStreaming()` |
-| Thinking text visible | Actual thinking content appeared | `readLastResponse()` returns non-empty |
-| Response text visible | Response content started appearing | `readLastResponse()` returns non-empty |
-| "Please wait" | Desktop is loading, not yet processing | Neither streaming indicator — wait longer |
+### UIA elements during response generation
 
-**The reliable signal is content.** The streaming indicator may not appear immediately. Desktop may show "Please wait" first. The most reliable way to know Desktop is processing is to check for THINKING TEXT or RESPONSE TEXT — actual content in the response area. An empty response means nothing has happened yet.
+From Sprint 82 exploration (120 snapshots during extended thinking):
 
-`checkStreaming()` checks for the streaming indicators. `readLastResponse()` checks for content. Use both. Content appearing is the definitive signal.
+| UIA Element | Present when | Absent when |
+|-------------|-------------|-------------|
+| `"Claude is responding"` (Text) | Desktop is processing | Response complete |
+| `"Claude is thinking"` (Text) | Extended thinking active | Thinking done |
+| `"Stop response"` (Button) | Desktop is processing | Response complete |
+| `"Send"` / `"Send message"` (Button) | Ready for input | Desktop is busy |
+| `"Scroll to bottom"` (Button) | Not at bottom | At bottom |
+| `"Claude responded:"` (in page text) | Response text exists | No response yet |
 
-**Scroll to bottom before checking.** The UIA tree only renders what's visible ([lazy rendering](02-04-the-architecture--app-model.md#lazy-rendering)). The streaming indicator lives at the bottom of the response. If the view isn't scrolled to the bottom, `checkStreaming()` can't see it. `scrollToBottom()` is awaitable and checks the "Scroll to bottom" button — if the button is gone, you're at the bottom.
+**Key finding:** During extended thinking, ONLY the streaming indicator and Stop button appear. The thinking TEXT is not in the UIA tree until thinking finishes. Content (`hasResponseContent()`) stays false the entire thinking phase, which can last minutes for research questions.
 
-`waitForResponse(timeoutMs)` — the blocking wrapper. Polls for processing start (streaming indicator, thinking text, or response text — any signal), then polls for streaming to end. Throws if no signal within 30 seconds. Used by `send()` and `session.send()`. For non-blocking use, call `sendAsync()` and poll `checkStreaming()` / `readLastResponse()` directly.
+### Detectors
 
-`isAtBottom()` — returns whether the "Scroll to bottom" button is absent (meaning you're at the bottom). Async.
+All async. All check real UI state. Call after `scrollToBottom()`.
+
+| Method | What it checks | Use for |
+|--------|---------------|---------|
+| `checkStreaming()` | Streaming indicator text | Server acknowledged, processing |
+| `hasStopButton()` | "Stop response" button present | Desktop actively processing |
+| `canSend()` | Send button active | Desktop ready for input |
+| `hasResponseContent()` | "Claude responded:" in text | Actual response text appeared |
+| `isResponseComplete()` | No stop button AND can send | **Definitive done signal** |
+| `isAtBottom()` | "Scroll to bottom" button absent | View at bottom, safe to read |
+
+**The definitive done signal is `isResponseComplete()`** — stop button gone AND send button active. This works whether or not response text appeared. It detects both successful responses and error states (like Desktop producing nothing).
+
+**Scroll to bottom before every check.** [Lazy rendering](02-04-the-architecture--app-model.md#lazy-rendering) means the UIA tree only contains visible elements. The streaming indicator and stop button are at the bottom. `scrollToBottom()` is awaitable — it clicks the UI button and waits for it to disappear.
+
+### Error states
+
+| State | How to detect |
+|-------|--------------|
+| Acknowledged, generating normally | `checkStreaming()` true, `hasStopButton()` true |
+| Done with response | `isResponseComplete()` true, `hasResponseContent()` true |
+| Done with NO response (error) | `isResponseComplete()` true, `hasResponseContent()` false |
+| Hung — never starts | After 30s: `checkStreaming()` false, `canSend()` true, no content |
+| Hung — starts but never finishes | `checkStreaming()` true for 5+ minutes, no content |
+
+### Blocking vs non-blocking
+
+`waitForResponse(timeoutMs)` — blocking. Polls for processing start, then polls for streaming end. Throws if nothing detected within 30 seconds. Used by `send()` and `session.send()`.
+
+`sendAsync()` — non-blocking. Scrolls, sends, scrolls. Returns immediately. Caller polls `isResponseComplete()` in a loop with `scrollToBottom()` before each check.
 
 ## Visibility and reading
 
