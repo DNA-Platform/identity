@@ -35,39 +35,28 @@ export class Gateway {
 
   async act(
     action: () => void | Promise<void>,
-    isReady: () => boolean | Promise<boolean>,
+    verify: () => boolean | Promise<boolean>,
     options: GatewayOptions = {},
   ): Promise<void> {
     const opts = { ...DEFAULTS, ...options };
     const desc = opts.description ?? 'Action';
-    let lastError: Error | null = null;
     const startTime = Date.now();
 
-    for (let attempt = 0; attempt < opts.retries; attempt++) {
-      try {
-        this.requireForeground();
-        await action();
+    // Fire the action ONCE
+    this.requireForeground();
+    await action();
 
-        if (await this.waitFor(isReady, opts)) {
-          this.diagnostics.record(desc, true, Date.now() - startTime);
-          return;
-        }
+    // Verify with tapering poll — retry the LOOK, not the action
+    const verified = await this.waitFor(verify, opts);
 
-        lastError = new Error(`${desc} succeeded but readiness check timed out after ${opts.timeoutMs}ms`);
-      } catch (err) {
-        lastError = err instanceof Error ? err : new Error(String(err));
-      }
-    }
-
-    // Failed — capture diagnostics
     const duration = Date.now() - startTime;
-    const errorMsg = lastError?.message ?? 'unknown';
-    this.diagnostics.record(desc, false, duration, errorMsg);
-    await this.diagnostics.captureOnFailure(desc);
-
-    throw new Error(
-      `${desc} failed after ${opts.retries} attempts. Last error: ${errorMsg}`
-    );
+    if (verified) {
+      this.diagnostics.record(desc, true, duration);
+    } else {
+      this.diagnostics.record(desc, false, duration, 'verify failed');
+      await this.diagnostics.captureOnFailure(desc);
+      throw new Error(`${desc} — action fired but verify failed after ${opts.timeoutMs}ms`);
+    }
   }
 
   async waitFor(
