@@ -111,32 +111,58 @@ export class ChatListController {
   }
 
   async addToProject(title: string, projectName: string): Promise<void> {
-    // Step 1: Open three-dot menu — verify menu appeared
+    // Step 1: Open three-dot menu
     const expanded = await this.auto.uia.expandByName(`More options for ${title}`);
     if (!expanded) throw new Error(`Could not expand menu for "${title}"`);
-    const menuVisible = await this.auto.gateway.waitFor(
-      () => this.auto.uia.existsByName('Add to project'),
+
+    // Confirm: menu is visible — look for ANY menu item
+    const hasMenu = await this.auto.gateway.waitFor(
+      async () => {
+        return await this.auto.uia.existsByName('Rename')
+          || await this.auto.uia.existsByName('Delete')
+          || await this.auto.uia.existsByName('Add to project')
+          || await this.auto.uia.existsByName('Projects');
+      },
       { timeoutMs: 5_000, pollIntervalMs: 200 },
     );
-    if (!menuVisible) throw new Error('Menu opened but "Add to project" not found');
+    if (!hasMenu) throw new Error('Menu did not appear after expanding');
 
-    // Step 2: Click "Add to project" — verify dialog appeared
-    const clicked = await this.auto.uia.invoke('MenuItem', 'Add to project');
-    if (!clicked) throw new Error('"Add to project" menu item not clickable');
+    // Step 2: Click the project action — try both names
+    let clicked = await this.auto.uia.invoke('MenuItem', 'Add to project');
+    if (!clicked) clicked = await this.auto.uia.invokeByName('Add to project');
+    if (!clicked) clicked = await this.auto.uia.invokeByName('Projects');
+    if (!clicked) throw new Error('Could not click "Add to project" or "Projects"');
+
+    // Confirm: "Move chat" dialog appeared
     const dialogVisible = await this.auto.gateway.waitFor(
       () => this.auto.uia.existsByName('Move chat'),
       { timeoutMs: 5_000, pollIntervalMs: 200 },
     );
     if (!dialogVisible) throw new Error('"Move chat" dialog did not appear');
 
-    // Step 3: Click the project name as a ListItem — verify dialog closed
+    // Confirm: the target project exists in the list
+    const projectExists = await this.auto.uia.existsByName(projectName);
+    if (!projectExists) {
+      await this.auto.keyboard.sendKeys('{ESCAPE}');
+      throw new Error(`Project "${projectName}" not found in picker. Dialog dismissed.`);
+    }
+
+    // Step 3: Click the project ListItem
     const selected = await this.auto.uia.invoke('ListItem', projectName);
-    if (!selected) throw new Error(`Could not select ListItem "${projectName}" in the project picker`);
+    if (!selected) {
+      await this.auto.keyboard.sendKeys('{ESCAPE}');
+      throw new Error(`Could not invoke ListItem "${projectName}". Dialog dismissed.`);
+    }
+
+    // Confirm: dialog closed
     const dialogClosed = await this.auto.gateway.waitFor(
       async () => !(await this.auto.uia.existsByName('Move chat')),
       { timeoutMs: 10_000, pollIntervalMs: 300 },
     );
-    if (!dialogClosed) throw new Error('Dialog did not close after selecting project');
+    if (!dialogClosed) {
+      await this.auto.keyboard.sendKeys('{ESCAPE}');
+      throw new Error('Dialog did not close. Dismissed.');
+    }
   }
 
   async pin(title: string): Promise<void> {
