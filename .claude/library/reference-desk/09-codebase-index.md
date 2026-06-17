@@ -30,6 +30,8 @@ Run the tool on these before writing any automation:
 | [`conversation.ts`](../../src/pages/conversation.ts) | Reading turns, streaming check, scroll | Before reading responses |
 | [`composer.ts`](../../src/components/composer.ts) | Type, paste, compose, send, clear, readDraft | Before sending messages |
 
+Read [Architecture Patterns](10-architecture-patterns.md) before modifying code — every UI element is a typed object with async state verification.
+
 ## The principle
 
 The introspect output is tier-one synopsis for source code. It tells you what's in the file without reading the file. Read the introspect output → check if your method exists → if yes, use it → if no, add it to the right class → update this chapter.
