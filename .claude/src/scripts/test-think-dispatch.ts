@@ -59,7 +59,7 @@ async function doCheck() {
       await app.openChatAt(0);
     }
     await app.conversation.scrollToBottom();
-    await new Promise(r => setTimeout(r, 300));
+    await new Promise(r => setTimeout(r, 100));
     const streaming = await app.conversation.checkStreaming();
     console.log(streaming ? '[check] Still streaming.' : '[check] Ready. Run "read".');
   } finally { app.window.minimize(); }
@@ -79,7 +79,7 @@ async function doRead() {
       await app.openChatAt(0);
     }
     await app.conversation.scrollToBottom();
-    await new Promise(r => setTimeout(r, 300));
+    await new Promise(r => setTimeout(r, 100));
     const response = await app.conversation.readLastResponse();
 
     console.log('[read] Length:', response.length);
