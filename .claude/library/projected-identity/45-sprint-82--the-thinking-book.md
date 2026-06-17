@@ -6,6 +6,8 @@
 
 Finish the think skill. The essential loop — write, scaffold, catch up, check, read — must work end to end. The human-readable record of thinking moves from perspective entries to a proper book in Claude's personal library.
 
+**Prerequisites:** Before touching any automation code, read the [Reference Desk](../reference-desk/.cover.md) — it catalogues the `.claude/src/` codebase. Run the [introspect tool](../reference-desk/09-codebase-index--introspect.ts) on [`claude.ts`](../../src/claude.ts) and [`session.ts`](../../src/session.ts) to see what methods exist. The think script uses [`Session.send()`](../reference-desk/03-04-operations--sessions.md) — do not build parallel implementations.
+
 ## Sprint goal
 
 **Claude can write a question, scaffold a chapter in his thinking book (linked to the previous exchange), catch up on the last 3 thoughts in the conversation, add context, then check and read the response. All in one session, with productive work between write and check.**
