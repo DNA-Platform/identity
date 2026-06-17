@@ -88,8 +88,21 @@ The conversation catalogue JSON (`catalogue.json`) stays as machine state. The t
 ## Definition of done
 
 - Claude has a thinking book with at least one real conversation chapter
-- Write → scaffold → catch up → check → read completes without duplicate messages
-- Check refuses to proceed if scaffold isn't done
+- Write phase: sends, confirms started, scaffolds chapter, minimizes
+- Read phase: navigates back, detects complete, reads, renames, files in project, minimizes
+- No duplicate messages. No blocking. All async.
 - The thinking book cover catalogues the conversation
 - Claude's library catalogue links to the thinking book
 - 0 broken links
+
+## Future work (Doug, Sprint 82)
+
+**Topic catalogue companion book.** Claude's thinking book stores conversations. A companion book (or chapter structure within the thinking book) organizes by TOPIC rather than by conversation. One chapter per topic, linking to the specific conversation chapters. Topics like "Windows automation" span multiple conversations — the topic chapter summarizes them all and links via conversation identifiers.
+
+**Conversation identifiers as links.** Each conversation has a UUID from Desktop's URL. This ID is the stable handle. The thinking book chapters carry the ID in their frontmatter. The topic catalogue chapters carry the ID as a link between topic and conversation. When Claude wants to continue a topic, he reads the topic chapter, finds the latest conversation ID, and uses `openConversationById()` to navigate there.
+
+**Rename on read.** After reading the response, rename the conversation to a meaningful topic name. This happens in the read phase. The renamed title becomes the conversation's handle in the sidebar and in the topic catalogue.
+
+**Project filing on read.** After reading, add the conversation to the "Claude" project in Desktop. Uses `addToProject()` through the three-dot menu. Check breadcrumbs first for idempotency.
+
+**App extensions needed.** The conversation needs `addToProject(projectName)` as a first-class method. The sidebar needs reliable conversation-by-ID navigation (not just most-recent). The rename flow needs to handle Desktop's auto-rename gracefully.
