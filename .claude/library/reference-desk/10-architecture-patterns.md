@@ -58,6 +58,30 @@ String-based UIA calls (`invokeByName`, `expandByName`, `clickByName`) belong in
 
 A script says `chatItem.menu()` — not `uia.expandByName('More options for Finance')`.
 
+## The gateway: converting blindness to seeing
+
+The [gateway](02-02-the-architecture--gateway.md) is the framerate for seeing. It enforces a simple discipline: act once, then LOOK repeatedly until you see the expected result.
+
+```typescript
+// Act: fire the action ONCE
+await uia.expandByName('More options for Finance');
+
+// See: poll a quick, harmless state check with exponential decay
+await gateway.waitFor(
+  () => controller.isMenuVisible(),   // <-- a Controller read, not an action
+  { timeoutMs: 5_000, pollIntervalMs: 200 }
+);
+```
+
+The `verify` function must be:
+- **Quick** — a single UIA read, returns boolean
+- **Harmless** — reads state, doesn't change it
+- **A Controller method** — the Controller knows how to read the app's state
+
+The gateway retries the LOOK, not the ACTION. The action fires once. If the look fails after exponential decay, the gateway gives up and the View throws. No blind retries of the action.
+
+`gateway.act(action, verify)` is the WRONG pattern — it retries the action. Replace with: action once, then `gateway.waitFor(verify)`. The gateway's job is to give you a framerate for seeing — rapid state checks that convert a blind action into a verified one.
+
 ## Every action gets a confirmation read
 
 After every action, read the state and confirm it matches your intent. This is not optional. This is not for "dangerous" operations. This is for EVERY action. See [Coding Philosophy](05-coding-philosophy.md#every-action-gets-a-confirmation-read).
