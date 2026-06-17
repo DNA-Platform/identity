@@ -1,12 +1,17 @@
 import type { Automation } from '../automation.ts';
-import type { ChatItem } from '../components/chat-list.ts';
 import { ChatNotFoundError } from '../errors.ts';
 import { isMoreOptions, isGreeting, isActionPill, isComposerPlaceholder, normalizeSpaces } from '../text.ts';
+
+// Raw data returned by Controller — View wraps this in typed objects
+export interface ChatItemData {
+  title: string;
+  index: number;
+}
 
 export class ChatListController {
   constructor(private readonly auto: Automation) {}
 
-  async readList(): Promise<ChatItem[]> {
+  async readList(): Promise<ChatItemData[]> {
     return this.auto.gateway.read(
       async () => {
         const text = await this.auto.uia.readText();
@@ -190,12 +195,71 @@ export class ChatListController {
     );
   }
 
-  private parseRecents(text: string): ChatItem[] {
+  // --- Granular sensors (reads) ---
+
+  async isMenuVisible(): Promise<boolean> {
+    return await this.auto.uia.existsByName('Rename')
+      || await this.auto.uia.existsByName('Delete')
+      || await this.auto.uia.existsByName('Add to project')
+      || await this.auto.uia.existsByName('Projects');
+  }
+
+  async readMenuItems(): Promise<string[]> {
+    const names = await this.auto.uia.allNames();
+    return names
+      .filter(n => n.includes('MenuItem') || n.includes('Pin') ||
+                   n.includes('Rename') || n.includes('Delete') ||
+                   n.includes('project') || n.includes('Share'))
+      .map(n => n.replace(/^ControlType\.\w+ \| /, ''));
+  }
+
+  async isDialogVisible(): Promise<boolean> {
+    return this.auto.uia.existsByName('Move chat');
+  }
+
+  async readProjectList(): Promise<string[]> {
+    const names = await this.auto.uia.allNames();
+    return names
+      .filter(n => n.startsWith('ControlType.ListItem | '))
+      .map(n => n.replace('ControlType.ListItem | ', ''));
+  }
+
+  // --- Granular actuators (single UIA actions) ---
+
+  async expandMenu(title: string): Promise<boolean> {
+    return this.auto.uia.expandByName(`More options for ${title}`);
+  }
+
+  async clickMenuItem(name: string): Promise<boolean> {
+    return await this.auto.uia.invoke('MenuItem', name)
+      || await this.auto.uia.invokeByName(name);
+  }
+
+  async clickProjectItem(name: string): Promise<boolean> {
+    return this.auto.uia.invoke('ListItem', name);
+  }
+
+  async closeMenu(): Promise<void> {
+    await this.auto.keyboard.sendKeys('{ESCAPE}');
+  }
+
+  async closeDialog(): Promise<void> {
+    await this.auto.keyboard.sendKeys('{ESCAPE}');
+  }
+
+  async typeAndConfirm(text: string): Promise<void> {
+    await this.auto.keyboard.typeViaClipboard(text);
+    await this.auto.keyboard.pressEnter();
+  }
+
+  // --- Parsing ---
+
+  private parseRecents(text: string): ChatItemData[] {
     const lines = text.split('\n');
     const recentsIdx = lines.findIndex(l => l.trim().startsWith('Recents'));
     if (recentsIdx === -1) return [];
 
-    const items: ChatItem[] = [];
+    const items: ChatItemData[] = [];
     for (let i = recentsIdx + 1; i < lines.length; i++) {
       const line = normalizeSpaces(lines[i].trim());
       if (!line || line === '￼') continue;
