@@ -1,3 +1,8 @@
+///: ModelPicker — model and thinking mode selector.
+///: Appears on home and conversation screens.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the component layer.
+
 // ModelPicker — model and thinking mode selector.
 // Reusable: appears on the home screen and in conversations.
 // See: library/..team/claude/.perspective/02-2026-05-10-home-screen-anatomy.md

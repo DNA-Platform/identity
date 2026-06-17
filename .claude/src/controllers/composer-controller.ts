@@ -1,3 +1,9 @@
+///: ComposerController — UIA boundary for the text input.
+///: Sensors and actuators only. No orchestration.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
+///: [Sending Messages](../../library/reference-desk/03-01-operations--sending.md) — the compose workflow.
+
 // Composer controller — types and sends messages via UIA.
 // type() uses ValuePattern (programmatic, strips formatting).
 // paste() uses clipboard (preserves formatting, appends at cursor).

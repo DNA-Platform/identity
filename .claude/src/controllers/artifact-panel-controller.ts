@@ -1,3 +1,8 @@
+///: ArtifactPanelController — UIA boundary for the artifact panel.
+///: Sensors and actuators only. No orchestration.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
+
 import type { Automation } from '../automation.ts';
 import type { Artifact } from '../components/artifact-panel.ts';
 

@@ -1,3 +1,9 @@
+///: ProjectController — UIA boundary for a single project page.
+///: Sensors and actuators only. No orchestration.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
+///: [Project Operations](../../library/reference-desk/03-03-operations--projects.md) — project workflows.
+
 import type { Automation } from '../automation.ts';
 import { ProjectFile } from '../components/project-file.ts';
 import { isMoreOptions, isComposerPlaceholder, normalizeSpaces } from '../text.ts';

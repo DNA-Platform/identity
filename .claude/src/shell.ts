@@ -1,3 +1,9 @@
+///: Shell — persistent PowerShell session.
+///: One process, kept alive. 12ms per call vs 200ms spawning a new process.
+///: Every UIA read and keyboard action runs through this pipe.
+///:
+///: [The Shell](../library/reference-desk/04-03-platform--shell.md) — performance characteristics.
+
 // Shell — persistent PowerShell session.
 // One process stays alive for the lifetime of the app.
 // Commands pipe in, results pipe out. No per-call process startup.

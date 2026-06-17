@@ -1,6 +1,0 @@
-{
-  "conversationId": "f0c6f6c6-561d-450c-963b-31ee42278083",
-  "url": "https://claude.ai/chat/f0c6f6c6-561d-450c-963b-31ee42278083",
-  "question": "How does the binding problem in consciousness studies relate to coordination in distributed systems? The binding problem asks how separate neural processes produce unified experience. Distributed systems face an analogous challenge: how do independent nodes with partial state produce coherent behavior? Are there formal frameworks that treat both as instances of the same coordination problem?",
-  "startedAt": "2026-06-17T11:02:34.422Z"
-}

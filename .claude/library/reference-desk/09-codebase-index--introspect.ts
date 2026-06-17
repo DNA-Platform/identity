@@ -1,19 +1,55 @@
-// Codebase introspection tool — reads .ts files and outputs their public API.
-// Like a cover for a source file: class names, method signatures, exports.
-// Resource for Reference Desk chapter 09.
-//
-// Usage: npx tsx 09-codebase-index--introspect.ts <file-or-directory>
-//   Single file: outputs the API of that file
-//   Directory: outputs the API of every .ts file in it (non-recursive)
+///: Codebase introspection tool — reads .ts files and outputs their public API
+///: alongside their library annotations (///: lines at the top of files).
+///: Annotations are free-form: explain the file's connections to the Reference Desk,
+///: which patterns it instantiates, what to read to understand the code.
+///: The ///: prefix is distinct from TypeScript's /// <reference> directives.
+///:
+///: Usage: npx tsx 09-codebase-index--introspect.ts <file-or-directory>
+///:   Single file: outputs the annotation + API of that file
+///:   Directory: recursively outputs every .ts file's annotation + API
+///:
+///: See Reference Desk: Codebase Index (09) for the browsing workflow.
+///: See Reference Desk: Code-Library Linkage (11) for the annotation convention.
 
 import { readFileSync, readdirSync, statSync } from 'fs';
-import { resolve, join, basename, extname } from 'path';
+import { resolve, join, basename, extname, relative } from 'path';
 
 const target = process.argv[2];
 if (!target) {
   console.error('Usage: npx tsx 09-codebase-index--introspect.ts <file-or-directory>');
   process.exit(1);
 }
+
+// --- Library annotation parsing ---
+// Library annotations use the ///: prefix — three slashes and a colon.
+// Distinct from TypeScript's /// <reference> directives.
+// The tool reads ///: lines from the top of the file and strips the prefix.
+// Authors write as much or as little as the file needs.
+
+function readAnnotation(content: string): string[] {
+  const lines = content.split('\n');
+  const annotation: string[] = [];
+  let started = false;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('///:')) {
+      started = true;
+      const comment = trimmed.slice(4).trimStart();
+      annotation.push(comment);
+    } else if (started) {
+      break;
+    }
+  }
+
+  while (annotation.length > 0 && annotation[annotation.length - 1] === '') {
+    annotation.pop();
+  }
+
+  return annotation;
+}
+
+// --- API introspection ---
 
 interface Member {
   kind: 'method' | 'property' | 'function' | 'class' | 'interface' | 'type' | 'export';
@@ -79,12 +115,28 @@ function introspect(filePath: string): Member[] {
   return members;
 }
 
-function printFile(filePath: string): void {
-  const name = basename(filePath);
-  const members = introspect(filePath);
-  if (members.length === 0) return;
+// --- Output ---
 
-  console.log(`\n## ${name}`);
+function printFile(filePath: string, rootDir?: string): void {
+  const content = readFileSync(filePath, 'utf-8');
+  const annotation = readAnnotation(content);
+  const members = introspect(filePath);
+
+  const displayName = rootDir ? relative(rootDir, filePath).replace(/\\/g, '/') : basename(filePath);
+
+  console.log(`\n## ${displayName}`);
+
+  if (annotation.length > 0) {
+    for (const line of annotation) {
+      console.log(`> ${line}`);
+    }
+  }
+
+  if (members.length === 0) {
+    console.log('\n(no public API)');
+    return;
+  }
+
   console.log('');
 
   const classes = members.filter(m => m.kind === 'class');
@@ -116,6 +168,20 @@ function printFile(filePath: string): void {
   }
 }
 
+function walkDir(dir: string): string[] {
+  const files: string[] = [];
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry);
+    const stat = statSync(full);
+    if (stat.isDirectory() && !entry.startsWith('.') && entry !== 'node_modules' && entry !== 'debug' && entry !== 'shortcut') {
+      files.push(...walkDir(full));
+    } else if (stat.isFile() && extname(entry) === '.ts' && !entry.endsWith('.d.ts')) {
+      files.push(full);
+    }
+  }
+  return files.sort();
+}
+
 // Main
 const fullPath = resolve(target);
 const stat = statSync(fullPath);
@@ -124,11 +190,9 @@ if (stat.isFile()) {
   printFile(fullPath);
 } else if (stat.isDirectory()) {
   console.log(`# ${basename(fullPath)}/`);
-  const files = readdirSync(fullPath)
-    .filter(f => extname(f) === '.ts' && !f.endsWith('.d.ts'))
-    .sort();
+  const files = walkDir(fullPath);
   for (const f of files) {
-    printFile(join(fullPath, f));
+    printFile(f, fullPath);
   }
 } else {
   console.error('Not a file or directory:', fullPath);

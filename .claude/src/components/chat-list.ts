@@ -1,3 +1,13 @@
+///: ChatList — View layer for sidebar conversations.
+///: The ChatItem -> ChatMenu -> ProjectPicker object chain. Each method
+///: returns a verified object: ChatList.find() returns a ChatItem, which
+///: exposes .menu() returning a ChatMenu, which exposes .moveTo() returning
+///: a ProjectPicker. Every step reads from the tree to verify state before
+///: proceeding. This is the canonical View pattern for the whole driver.
+///:
+///: [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — the View object chain.
+///: [The Gateway Pattern](../../library/reference-desk/02-02-the-architecture--gateway.md) — the verify discipline.
+
 // ChatList — the View layer for sidebar conversations.
 // Each object verifies its state through Controller reads.
 // See: library/reference-desk/10-architecture-patterns.md
@@ -21,6 +31,10 @@ export class ChatMenu {
   private async verifyStillOpen(): Promise<void> {
     const open = await this.controller.isMenuVisible();
     if (!open) throw new Error('Menu is no longer open');
+  }
+
+  get isInProject(): boolean {
+    return this.items.includes('Change project') || this.items.includes('Remove from project');
   }
 
   async rename(newTitle: string): Promise<void> {
@@ -144,7 +158,14 @@ export class ChatItem {
   }
 
   async menu(): Promise<ChatMenu> {
-    // Actuator: expand the three-dot menu
+    // Sensor: wait for the menu button to exist (UIA may lag after rename)
+    const buttonReady = await this.gateway.waitFor(
+      () => this.controller.hasMenuButton(this.title),
+      { timeoutMs: 5_000 },
+    );
+    if (!buttonReady) throw new Error(`Menu button not found for "${this.title}"`);
+
+    // Actuator: expand the three-dot menu (once)
     const expanded = await this.controller.expandMenu(this.title);
     if (!expanded) throw new Error(`Could not expand menu for "${this.title}"`);
 

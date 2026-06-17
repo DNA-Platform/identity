@@ -1,3 +1,9 @@
+///: ProjectsController — UIA boundary for the project grid.
+///: Sensors and actuators only. No orchestration.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
+///: [Project Operations](../../library/reference-desk/03-03-operations--projects.md) — project workflows.
+
 import type { Automation } from '../automation.ts';
 import type { ProjectCard } from '../pages/projects.ts';
 import { ProjectNotFoundError } from '../errors.ts';

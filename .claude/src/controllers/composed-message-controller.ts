@@ -1,3 +1,10 @@
+///: MessageController — UIA boundary for the message being composed.
+///: Sensors and actuators only. No orchestration.
+///: Every method reads from the tree. No internal state. The tree is truth.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
+///: [Sending Messages](../../library/reference-desk/03-01-operations--sending.md) — the compose workflow.
+
 // MessageController — reads and modifies the message being built.
 // Every method reads from the tree. No internal state. The tree is truth.
 

@@ -1,3 +1,8 @@
+///: Projects — the project grid page.
+///: Lists all projects as cards. Navigate here to find or create projects.
+///:
+///: [Project Operations](../../library/reference-desk/03-03-operations--projects.md) — project workflows.
+
 // Projects — the grid of project cards.
 // See: library/..team/claude/.perspective/05-current-state.png
 

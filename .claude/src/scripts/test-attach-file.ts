@@ -62,7 +62,7 @@ async function main() {
 
   // 4. Screenshot
   const ts = new Date().toISOString().replace(/[:.]/g, '-');
-  const ssPath = resolve(__dirname, '..', '..', 'debug', `${ts}-attach-file.png`);
+  const ssPath = resolve(__dirname, '..', 'debug', `${ts}-attach-file.png`);
   await app.screenshot(ssPath);
   console.log(`\n  screenshot: ${ssPath}`);
 

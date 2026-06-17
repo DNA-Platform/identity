@@ -1,3 +1,8 @@
+///: Message — the message being composed before sending.
+///: Read from the UIA tree. No privileged state — the tree is truth.
+///:
+///: [Sending Messages](../../library/reference-desk/03-01-operations--sending.md) — the compose workflow.
+
 // Message — the message being built. Read from the UIA tree. No privileged state.
 
 import type { MessageController } from '../controllers/composed-message-controller.ts';

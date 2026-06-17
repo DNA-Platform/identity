@@ -1,3 +1,8 @@
+///: ModelPickerController — UIA boundary for model selection.
+///: Sensors and actuators only. No orchestration.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
+
 import type { Automation } from '../automation.ts';
 import type { ThinkingMode } from '../components/model-picker.ts';
 
