@@ -38,6 +38,8 @@ import { ConversationController } from './controllers/conversation-controller.ts
 import { ProjectController } from './controllers/project-controller.ts';
 import { ProjectsController } from './controllers/projects-controller.ts';
 import { Session, type SessionOptions } from './session.ts';
+import { ProjectsGrid } from './pages/projects-grid.ts';
+import { ProjectConversations } from './pages/project-detail.ts';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -56,6 +58,8 @@ export class Claude {
   readonly conversation: Conversation;
   readonly projects: Projects;
   readonly project: Project;
+  readonly projectsGrid: ProjectsGrid;
+  readonly projectConversations: ProjectConversations;
   readonly sessions: Session[] = [];
 
   constructor() {
@@ -110,6 +114,9 @@ export class Claude {
       new ProjectController(auto),
       filesPane,
     );
+
+    this.projectsGrid = new ProjectsGrid(auto, this.gateway);
+    this.projectConversations = new ProjectConversations(auto, this.gateway);
   }
 
   // --- Lifecycle ---
@@ -259,16 +266,42 @@ export class Claude {
   async openProjects(): Promise<void> {
     this.window.maximize();
     await this.sidebar.openProjects();
-    await this.projects.refresh();
+    // Read project cards using the new ListItem-based reader, not the old text parser
+    await this.projectsGrid.read();
   }
 
   async openProject(name: string): Promise<void> {
     if (this.screen !== 'projects') {
       await this.openProjects();
     }
-    await this.projects.open(name);
-    this.project.resetData();
-    await this.project.refresh();
+
+    // Find the project card and click it — object chain, no old text parser
+    const card = this.projectsGrid.find(name);
+    if (!card) throw new Error(`Project "${name}" not found. Available: ${this.projectsGrid.items.map(c => c.name).join(', ')}`);
+    await card.open();
+
+    // Read project conversations from the ListItem elements on the project page
+    await this.projectConversations.read();
+  }
+
+  async openProjectConversation(projectName: string, conversationTitle: string): Promise<void> {
+    // Navigate through the object chain: projects grid → project → conversation
+    await this.openProject(projectName);
+
+    // Find the conversation in the project's conversation list
+    const conv = this.projectConversations.find(conversationTitle);
+    if (conv) {
+      await conv.open();
+    } else {
+      // Fallback: try the sidebar
+      await this.sidebar.refresh();
+      const sidebarItem = this.sidebar.chats.find(conversationTitle);
+      if (!sidebarItem) throw new Error(`Conversation "${conversationTitle}" not found in project "${projectName}"`);
+      await sidebarItem.open();
+    }
+
+    await this.conversation.scrollToBottom();
+    await this.conversation.refreshMetadata();
   }
 
   async openProjectAt(index: number): Promise<void> {

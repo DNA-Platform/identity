@@ -22,9 +22,23 @@ export class ChatListController {
   async readList(): Promise<ChatItemData[]> {
     return this.auto.gateway.read(
       async () => {
-        const text = await this.auto.uia.readText();
-        if (!text) return [];
-        return this.parseRecents(text);
+        // Read conversation items from the sidebar by finding buttons
+        // that have a matching "More options for {name}" companion.
+        // This is the UIA structure — each conversation is a Button
+        // paired with a "More options" Button. No text parsing.
+        const allButtons = await this.auto.uia.findAllNames('Button');
+        const moreOptions = new Set(
+          allButtons
+            .filter(n => n.startsWith('More options for '))
+            .map(n => n.slice('More options for '.length))
+        );
+
+        const items: ChatItemData[] = [];
+        for (const name of moreOptions) {
+          if (!name || name === 'Claude') continue; // skip project/page "More options"
+          items.push({ title: name, index: items.length });
+        }
+        return items;
       },
       (items) => items.length > 0,
       { description: 'Read chat list' },
