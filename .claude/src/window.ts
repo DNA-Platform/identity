@@ -116,6 +116,11 @@ export class Window {
       [WinState2]::SetForegroundWindow([IntPtr]::new(${this.handle})) | Out-Null
       [WinState2]::ShowWindow([IntPtr]::new(${this.handle}), 3) | Out-Null
     `);
+    // Verify — don't trust the Win32 call. Detect that we're actually foreground.
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500);
+    if (!this.isForeground()) {
+      throw new Error('maximize() called but the app is not foreground. Window may be blocked by another app.');
+    }
   }
 
   minimize(): void {
