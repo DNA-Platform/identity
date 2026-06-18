@@ -1,12 +1,12 @@
-///: Claude — the application. Single entry point for all automation.
-///: Wires all [layers](../library/reference-desk/02-01-the-architecture--layers.md) in the constructor.
-///: Scripts import this class and never reach below it into controllers or UIA.
+///: Claude Desktop — the app you're looking at.
+///: This class IS the window. It has a sidebar (always visible) and
+///: the current page's objects. You navigate by clicking things in the
+///: sidebar or on the page. Every method is a mouse-and-keyboard action.
+///: Nothing works if the app isn't visible.
 ///:
-///: Convenience methods use the [object chain](../library/reference-desk/10-architecture-patterns.md):
-///: refresh → find → menu → action. Each step returns a verified View object.
-///:
-///: [Coding Philosophy](../library/reference-desk/05-coding-philosophy.md) — scripts should read like English.
-///: [Reference Desk](../library/reference-desk/.cover.md) — the book that documents this codebase.
+///: [The App](../library/reference-desk/12-the-app.md) — what the app looks like.
+///: [Architecture Patterns](../library/reference-desk/10-architecture-patterns.md) — the class hierarchy.
+///: [Reference Desk](../library/reference-desk/.cover.md) — the full documentation.
 
 import { Shell } from './shell.ts';
 import { Window } from './window.ts';
@@ -37,7 +37,6 @@ import { ArtifactPanelController } from './controllers/artifact-panel-controller
 import { ConversationController } from './controllers/conversation-controller.ts';
 import { ProjectController } from './controllers/project-controller.ts';
 import { ProjectsController } from './controllers/projects-controller.ts';
-import { Session, type SessionOptions } from './session.ts';
 import { ProjectsGrid } from './pages/projects-grid.ts';
 import { ProjectConversations } from './pages/project-detail.ts';
 import { resolve, dirname } from 'path';
@@ -47,20 +46,29 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const SHORTCUT = resolve(__dirname, 'shortcut', 'claude-dev.lnk');
 
 export class Claude {
+  // The window — maximize, minimize, launch, exit, screenshot.
   readonly window: Window;
-  readonly diagnostics: Diagnostics;
+
+  // The sidebar — always visible. Conversations, New Chat, Projects button.
+  readonly sidebar: Sidebar;
+
+  // The current page's objects. These read from whatever screen is showing.
+  // Calling methods on them when on the wrong screen will fail via requireScreen.
+  readonly conversation: Conversation;
+  readonly home: Home;
+  readonly project: Project;
+  readonly projects: Projects;
+
+  // Lists that read from the current screen's ListItem elements.
+  readonly projectsGrid: ProjectsGrid;
+  readonly projectConversations: ProjectConversations;
+
+  // Infrastructure — not for scripts. Controllers and gateway live here.
   readonly gateway: Gateway;
   readonly auto: Automation;
   readonly navigator: Navigator;
-  readonly sidebar: Sidebar;
+  readonly diagnostics: Diagnostics;
   readonly message: Message;
-  readonly home: Home;
-  readonly conversation: Conversation;
-  readonly projects: Projects;
-  readonly project: Project;
-  readonly projectsGrid: ProjectsGrid;
-  readonly projectConversations: ProjectConversations;
-  readonly sessions: Session[] = [];
 
   constructor() {
     this.window = new Window();
@@ -123,7 +131,6 @@ export class Claude {
 
   async launch(): Promise<void> {
     if (!this.window.find()) {
-      // Not running — start fresh
       console.log('[claude] Not running. Launching...');
       this.window.launch(SHORTCUT);
       if (!this.window.waitForWindow()) {
@@ -133,15 +140,11 @@ export class Claude {
       console.log(`[claude] Already running (PID ${this.window.pid})`);
     }
 
-    // Bring to front if minimized or behind another app.
-    // maximize() handles both restore and foreground — no separate focus() needed.
     if (!this.window.isForeground()) {
       this.window.maximize();
     }
 
-    // Wait for UIA tree — covers both fresh launch and restored window
     if (!this.window.waitForUia()) {
-      // Last resort: close and restart
       console.log('[claude] UIA not available. Restarting...');
       this.window.close();
       this.window.launch(SHORTCUT);
@@ -155,12 +158,9 @@ export class Claude {
       }
     }
 
-    // Ensure Chat tab
     try {
       await this.sidebar.switchToChat();
-    } catch {
-      // May fail if already on Chat — that's fine
-    }
+    } catch {}
 
     this.window.requireForeground();
     console.log(`[claude] Ready (PID ${this.window.pid}, foreground verified)`);
@@ -173,22 +173,7 @@ export class Claude {
     console.log('[claude] Closed');
   }
 
-  // --- Screen ---
-
-  get screen(): Screen {
-    return this.navigator.screen;
-  }
-
-  async detectScreen(): Promise<Screen> {
-    return this.navigator.detectScreen();
-  }
-
-  // --- Refresh ---
-
-  async refresh(): Promise<void> {
-    await this.navigator.detectScreen();
-    await this.sidebar.refresh();
-  }
+  // --- Recovery (keyboard actions) ---
 
   async dismissDialogs(): Promise<void> {
     await this.auto.keyboard.sendKeys('{ESCAPE}');
@@ -196,8 +181,6 @@ export class Claude {
     await this.auto.keyboard.sendKeys('{ESCAPE}');
     await new Promise(r => setTimeout(r, 300));
   }
-
-  // --- Navigation (cross-view transitions) ---
 
   async goHome(): Promise<void> {
     await this.navigator.goHome();
@@ -217,311 +200,13 @@ export class Claude {
     }
   }
 
-  isOnConversation(conversationId: string): boolean {
-    if (!conversationId) return false;
-    const url = this.conversation.url;
-    return url.includes(conversationId);
+  // --- Screen detection (for callers who need to know where they are) ---
+
+  get screen(): Screen {
+    return this.navigator.screen;
   }
 
-  async checkConversation(conversationId: string): Promise<boolean> {
-    if (!conversationId) return false;
-    const url = await this.auto.uia.readUrl() ?? '';
-    return url.includes(conversationId);
-  }
-
-  async openConversationById(conversationId: string): Promise<void> {
-    if (await this.checkConversation(conversationId)) return;
-    await this.sidebar.refresh();
-    for (const item of this.sidebar.chats.items) {
-      await this.openChat(item.title);
-      if (await this.checkConversation(conversationId)) return;
-    }
-    throw new Error('Conversation ' + conversationId + ' not found in sidebar');
-  }
-
-  async openChat(title: string): Promise<void> {
-    // Try direct open first — works if conversation is visible in sidebar
-    const direct = this.sidebar.chats.find(title);
-    if (direct) {
-      await this.sidebar.chats.open(title);
-    } else {
-      // Search the sidebar to find buried conversations
-      await this.sidebar.search(title);
-      const found = this.sidebar.chats.find(title);
-      if (!found) throw new Error(`Chat "${title}" not found even after search`);
-      await this.sidebar.chats.open(found.title);
-    }
-    await this.conversation.scrollToBottom();
-    await this.conversation.refreshMetadata();
-  }
-
-  async openChatAt(index: number): Promise<void> {
-    const items = this.sidebar.chats.items;
-    if (index < 0 || index >= items.length) {
-      throw new RangeError(`Chat index ${index} out of range (${items.length} items)`);
-    }
-    await this.openChat(items[index].title);
-  }
-
-  async openProjects(): Promise<void> {
-    this.window.maximize();
-    await this.sidebar.openProjects();
-    // Read project cards using the new ListItem-based reader, not the old text parser
-    await this.projectsGrid.read();
-  }
-
-  async openProject(name: string): Promise<void> {
-    if (this.screen !== 'projects') {
-      await this.openProjects();
-    }
-
-    // Find the project card and click it — object chain, no old text parser
-    const card = this.projectsGrid.find(name);
-    if (!card) throw new Error(`Project "${name}" not found. Available: ${this.projectsGrid.items.map(c => c.name).join(', ')}`);
-    await card.open();
-
-    // Read project conversations from the ListItem elements on the project page
-    await this.projectConversations.read();
-  }
-
-  async openProjectConversation(projectName: string, conversationTitle: string): Promise<void> {
-    // Navigate through the object chain: projects grid → project → conversation
-    await this.openProject(projectName);
-
-    // Find the conversation in the project's conversation list
-    const conv = this.projectConversations.find(conversationTitle);
-    if (conv) {
-      await conv.open();
-    } else {
-      // Fallback: try the sidebar
-      await this.sidebar.refresh();
-      const sidebarItem = this.sidebar.chats.find(conversationTitle);
-      if (!sidebarItem) throw new Error(`Conversation "${conversationTitle}" not found in project "${projectName}"`);
-      await sidebarItem.open();
-    }
-
-    await this.conversation.scrollToBottom();
-    await this.conversation.refreshMetadata();
-  }
-
-  async openProjectAt(index: number): Promise<void> {
-    this.window.maximize();
-    await this.projects.openAt(index);
-    this.project.resetData();
-    await this.project.refresh();
-  }
-
-  // --- Messaging ---
-
-  async waitForUserToStopTyping(): Promise<void> {
-    // Check if Doug is typing. If he is, wait for him to stop.
-    // Three consecutive identical reads = he stopped.
-    const draft = await this.conversation.composer.readDraft();
-    if (!draft) return; // Nothing in the composer
-
-    let prev = draft;
-    let stableCount = 0;
-    while (stableCount < 3) {
-      const current = await this.conversation.composer.readDraft();
-      if (current === prev) {
-        stableCount++;
-      } else {
-        stableCount = 0;
-        prev = current;
-      }
-    }
-
-    // Doug stopped typing. Clear the draft.
-    if (prev) {
-      await this.conversation.composer.clear();
-    }
-  }
-
-  async compose(...parts: string[]): Promise<void> {
-    try { await this.conversation.scrollToBottom(); } catch {}
-    await this.waitForUserToStopTyping();
-    const combined = parts.join('\n\n');
-    await this.conversation.composer.compose(combined);
-  }
-
-  async sendAndForget(): Promise<void> {
-    const wasHome = this.screen === 'home';
-    this.conversation.composer.isSending = true;
-    try {
-      await this.conversation.composer.send();
-      const nowOn = await this.navigator.detectScreen();
-      if (wasHome && nowOn === 'conversation') {
-        await this.sidebar.refresh();
-      }
-      // Confirm Desktop started processing — poll for streaming indicator.
-      // If it doesn't appear, the message wasn't received.
-      const started = await this.gateway.waitFor(
-        () => this.conversation.checkStreaming(),
-        { timeoutMs: 15_000, pollIntervalMs: 500 },
-      );
-      if (!started) {
-        throw new Error('Desktop did not start processing. Message may not have been received.');
-      }
-    } finally {
-      this.conversation.composer.isSending = false;
-    }
-  }
-
-  async send(responseTimeoutMs = 120_000): Promise<void> {
-    const wasHome = this.screen === 'home';
-
-    // Ensure at bottom before sending — the UI must render from the latest position
-    await this.conversation.scrollToBottom();
-
-    this.conversation.composer.isSending = true;
-    try {
-      await this.conversation.composer.send();
-
-      const nowOn = await this.navigator.detectScreen();
-
-      if (wasHome && nowOn === 'conversation') {
-        await this.sidebar.refresh();
-      }
-
-      // Scroll to bottom again after send — Desktop may have jumped the view
-      await this.conversation.scrollToBottom();
-
-      this.conversation.isStreaming = true;
-      await this.conversation.waitForResponse(responseTimeoutMs);
-    } catch (e) {
-      this.conversation.hasError = true;
-      throw e;
-    } finally {
-      this.conversation.composer.isSending = false;
-    }
-  }
-
-  async sendAsync(): Promise<void> {
-    // Scroll, send, scroll. Returns immediately — never waits for response.
-    // Check conversation.isStreaming and conversation.readLastResponse() after.
-    await this.conversation.scrollToBottom();
-
-    this.conversation.composer.isSending = true;
-    try {
-      await this.conversation.composer.send();
-
-      const wasHome = this.screen === 'home';
-      const nowOn = await this.navigator.detectScreen();
-      if (wasHome && nowOn === 'conversation') {
-        await this.sidebar.refresh();
-      }
-
-      await this.conversation.scrollToBottom();
-    } finally {
-      this.conversation.composer.isSending = false;
-    }
-  }
-
-  async say(text: string, responseTimeoutMs = 120_000): Promise<string> {
-    await this.compose(text);
-    await this.send(responseTimeoutMs);
-    return this.conversation.readLastResponse();
-  }
-
-  async sendMessage(text: string, waitForResponse = true, responseTimeoutMs = 120_000): Promise<void> {
-    const wasHome = this.screen === 'home';
-
-    this.conversation.composer.isSending = true;
-    try {
-      await this.conversation.composer.sendMessage(text);
-
-      const nowOn = await this.navigator.detectScreen();
-
-      if (wasHome && nowOn === 'conversation') {
-        await this.sidebar.refresh();
-      }
-
-      if (waitForResponse) {
-        this.conversation.isStreaming = true;
-        await this.conversation.waitForResponse(responseTimeoutMs);
-      }
-    } catch (e) {
-      this.conversation.hasError = true;
-      throw e;
-    } finally {
-      this.conversation.composer.isSending = false;
-    }
-  }
-
-  async conversationTurn(message: string, responseTimeoutMs = 120_000): Promise<string> {
-    await this.sendMessage(message, true, responseTimeoutMs);
-    return this.conversation.readLastResponse();
-  }
-
-  // --- Conversation management ---
-
-  async renameConversation(newTitle: string): Promise<void> {
-    await this.conversation.rename(newTitle);
-  }
-
-  async deleteConversation(): Promise<void> {
-    await this.conversation.delete();
-    await this.navigator.detectScreen();
-    await this.sidebar.refresh();
-  }
-
-  async deleteChat(title: string): Promise<void> {
-    await this.sidebar.refresh();
-    const item = this.sidebar.chats.find(title);
-    if (!item) throw new Error(`Chat "${title}" not found`);
-    const menu = await item.menu();
-    await menu.delete();
-  }
-
-  async renameChat(title: string, newTitle: string): Promise<void> {
-    await this.sidebar.refresh();
-    const item = this.sidebar.chats.find(title);
-    if (!item) throw new Error(`Chat "${title}" not found`);
-    const menu = await item.menu();
-    await menu.rename(newTitle);
-  }
-
-  async pinChat(title: string): Promise<void> {
-    await this.sidebar.refresh();
-    const item = this.sidebar.chats.find(title);
-    if (!item) throw new Error(`Chat "${title}" not found`);
-    const menu = await item.menu();
-    await menu.pin();
-  }
-
-  // --- Recovery ---
-
-  async resetToHome(): Promise<void> {
-    this.window.maximize();
-    await this.sidebar.switchToChat();
-    await this.navigator.resetToHome();
-    await this.sidebar.refresh();
-  }
-
-  // --- Sessions ---
-
-  async startSession(options: SessionOptions = {}): Promise<Session> {
-    const session = new Session(this, options);
-    this.sessions.push(session);
-    await session.start();
-    return session;
-  }
-
-  get activeSessions(): Session[] {
-    return this.sessions.filter(s => !s.ended);
-  }
-
-  // --- Window ---
-
-  async maximize(): Promise<void> {
-    this.window.maximize();
-  }
-
-  async minimize(): Promise<void> {
-    this.window.minimize();
-  }
-
-  async screenshot(path: string): Promise<string> {
-    return this.window.screenshot(path);
+  async detectScreen(): Promise<Screen> {
+    return this.navigator.detectScreen();
   }
 }
