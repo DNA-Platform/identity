@@ -69,6 +69,7 @@ export class Gateway {
     predicate: () => boolean | Promise<boolean>,
     options: Pick<GatewayOptions, 'timeoutMs' | 'pollIntervalMs' | 'description'> = {},
   ): Promise<boolean> {
+    this.requireForeground();
     const timeoutMs = options.timeoutMs ?? DEFAULTS.timeoutMs;
     const deadline = Date.now() + timeoutMs;
 
@@ -88,6 +89,7 @@ export class Gateway {
     isValid: (result: T) => boolean = () => true,
     options: GatewayOptions = {},
   ): Promise<T> {
+    this.requireForeground();
     const opts = { ...DEFAULTS, ...options };
     const desc = opts.description ?? 'Read';
     let lastResult: T | undefined;

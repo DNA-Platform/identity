@@ -1,132 +1,148 @@
 # Architecture Patterns
 
-- **author:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
 
 ---
 
-The patterns that built this app. Read this before writing or modifying ANY code. These are not suggestions — they are the architectural decisions that make the codebase work. Violating them produces blind, dangerous automation.
+The code models a GUI application. Not an API. A GUI has screens. You navigate between screens by clicking. You can only interact with what's visible. The code enforces this: you can only call methods on objects that represent things currently on screen. If you don't have the object, you can't call the method. If the app isn't visible, nothing works.
 
-## Parts of the app equal objects in the code
-
-Every visible element in Claude Desktop has a corresponding object in the codebase. The sidebar is an object. A conversation in the sidebar is an object. The three-dot menu is an object. Each menu item is an object. The project picker dialog is an object. Each project in the list is an object.
-
-If you're calling `uia.invokeByName('some string')` from a script or component, you're bypassing the object graph. Find the object that represents that UI element. If it doesn't exist, create it. Then call a method on the object.
-
-The object graph mirrors the app:
+## The class hierarchy
 
 ```
-Claude (app)
-  ├── Sidebar
-  │     ├── ChatList
-  │     │     ├── ChatItem → .open() → Conversation
-  │     │     │              .menu() → ChatMenu
-  │     │     │                          .rename(title)
-  │     │     │                          .addToProject() → ProjectPicker
-  │     │     │                                              .select(name)
-  │     │     │                                              .cancel()
-  │     │     │                          .delete()
-  │     │     │                          .pin()
-  │     │     └── ...
-  │     └── Projects, Search, etc.
-  ├── Conversation (page)
-  │     ├── Breadcrumbs → .projectName, .rename()
-  │     ├── Composer → .compose(), .send(), .readDraft(), .clear()
-  │     ├── Messages → .readTurns(), .readLastResponse()
-  │     └── Streaming → .checkStreaming(), .isResponseComplete()
-  ├── Project (page)
-  └── ...
+App
+├── window: Window
+│     maximize(), minimize(), launch(), exit(), screenshot()
+│     isForeground() — everything refuses to work if this is false
+│
+├── sidebar: Sidebar (always visible on every screen)
+│     conversations: ConversationItem[]
+│     newChat() → navigates to home
+│     openProjects() → ProjectsListPage
+│     search(query) — types in the search box
+│
+└── (current page — one of:)
+
+    HomePage extends Page
+    ├── composer: Composer
+    └── (sending from here creates a new conversation)
+
+    ConversationPage extends Page
+    ├── title: string
+    ├── projectName: string | null
+    ├── composer: Composer
+    ├── messages: Message[]
+    ├── response: Response (current/latest, grows during streaming)
+    ├── scrollToBottom()
+    └── readLastResponse(): string
+
+    ProjectsListPage extends Page
+    └── projects: ProjectItem[]
+          find(name) → ProjectItem | undefined
+
+    ProjectDetailPage extends Page
+    ├── name: string
+    ├── instructions: string
+    ├── files: ProjectFile[]
+    ├── conversations: ConversationItem[]
+    └── composer: Composer
 ```
 
-Each node in this graph is a TypeScript class with async methods. Each method verifies the state of the app before acting.
+## Every noun is a class
 
-## Everything is async
+| What you see | Class | What you can do with it |
+|---|---|---|
+| The window | `Window` | maximize, minimize, launch, exit, screenshot |
+| The sidebar | `Sidebar` | access conversations, click New Chat, click Projects |
+| A conversation in the sidebar | `ConversationItem` | open() → ConversationPage, menu() → ConversationMenu |
+| The three-dot menu | `ConversationMenu` | rename(), delete(), pin(), addToProject() → ProjectPicker |
+| The project picker dialog | `ProjectPicker` | items (list of ProjectPickerItem), cancel() |
+| A project in the picker | `ProjectPickerItem` | select() — parameterless, clicks this one |
+| A project in the list | `ProjectItem` | name, open() → ProjectDetailPage |
+| A conversation in a project | `ConversationItem` | same class as sidebar items |
+| The text input | `Composer` | type(text), clear(), readDraft(), send(), attach() |
+| A message | `Message` | text, role, copy(), retry() |
+| The thinking block | `ThinkingBlock` | summary, expand() |
+| The streaming response | `Response` | text (grows), isComplete |
 
-Every method that touches the app returns a Promise. Reading is async (the UIA tree may not be ready). Clicking is async (the result may take time). Verifying is async (the state changes asynchronously).
+## Every action is parameterless (except typing)
 
-No synchronous assumptions. No `sleep()`. No "it should be ready by now."
+A human clicks a button. The click has no parameter. The button knows what it does.
 
-## Every object verifies its own state
+- `item.open()` — not `openChat('Test')`. The item already knows its name.
+- `menu.rename()` — opens the inline edit field. You then type the new name into it.
+- `pickerItem.select()` — not `picker.select('Claude')`. The item IS Claude.
+- `composer.send()` — clicks the Send button. No text parameter. You already typed it.
+- `composer.type(text)` — the ONE exception. Typing IS putting text into a text box.
 
-An object is valid only when the app confirms it. A `ChatMenu` object exists only after the menu is verified open. A `ProjectPicker` object exists only after the dialog is verified visible. A method like `.select(name)` reads back the selection after clicking to confirm it matches.
+Methods that take names, IDs, or navigation targets are API patterns. They don't exist in a GUI. You find the thing in a list, you click it.
 
-This is enforced by the return type: `menu()` returns `Promise<ChatMenu>`. The Promise resolves only when the menu is confirmed visible. If the menu didn't open, the Promise rejects. You can't call `.rename()` on a menu that didn't open — because you don't have the object.
+## Navigation returns the next page
 
-## No strings in the component layer
-
-String-based UIA calls (`invokeByName`, `expandByName`, `clickByName`) belong in controllers ONLY. Controllers are the boundary between typed objects and the raw UIA tree. Components and scripts never touch UIA directly.
-
-A script says `chatItem.menu()` — not `uia.expandByName('More options for Finance')`.
-
-## The gateway: converting blindness to seeing
-
-The [gateway](02-02-the-architecture--gateway.md) is the framerate for seeing. It enforces a simple discipline: act once, then LOOK repeatedly until you see the expected result.
+Clicking something that changes the screen returns the new page object.
 
 ```typescript
-// Act: fire the action ONCE
-await uia.expandByName('More options for Finance');
-
-// See: poll a quick, harmless state check with exponential decay
-await gateway.waitFor(
-  () => controller.isMenuVisible(),   // <-- a Controller read, not an action
-  { timeoutMs: 5_000, pollIntervalMs: 200 }
-);
+const projects = await app.sidebar.openProjects();   // → ProjectsListPage
+const claude = projects.find('Claude');               // → ProjectItem | undefined
+const detail = await claude.open();                   // → ProjectDetailPage
+const test = detail.conversations.find('Test');       // → ConversationItem | undefined
+const conv = await test.open();                       // → ConversationPage
 ```
 
-The `verify` function must be:
-- **Quick** — a single UIA read, returns boolean
-- **Harmless** — reads state, doesn't change it
-- **A Controller method** — the Controller knows how to read the app's state
+If `find()` returns undefined, the thing isn't on screen. That's not a bug — it's the app telling you it's not there. You can't click what doesn't exist.
 
-The gateway retries the LOOK, not the ACTION. The action fires once. If the look fails after exponential decay, the gateway gives up and the View throws. No blind retries of the action.
+## The app must be visible
 
-`gateway.act(action, verify)` is the WRONG pattern — it retries the action. Replace with: action once, then `gateway.waitFor(verify)`. The gateway's job is to give you a framerate for seeing — rapid state checks that convert a blind action into a verified one.
+Nothing works if the window isn't foreground. Not reads. Not clicks. Not polls. The gateway enforces `requireForeground()` on every operation. If the app is minimized, you get an error. You have to `app.window.maximize()` first — that's YOUR action, not something the app does for you.
 
-## Every action gets a confirmation read
+## Every action verifies itself
 
-After every action, read the state and confirm it matches your intent. This is not optional. This is not for "dangerous" operations. This is for EVERY action. See [Coding Philosophy](05-coding-philosophy.md#every-action-gets-a-confirmation-read).
+Opening a project:
+1. You have a `ProjectItem` because it was in the list — verified by construction.
+2. `open()` clicks it — then verifies the screen changed to a project page.
+3. The `ProjectDetailPage` is constructed from what's now on screen — verified by reading.
 
-The object graph enforces this: each method reads back before returning. `.rename(title)` reads the title after setting it. `.select(project)` reads the selection after clicking. `.open()` reads the URL after navigating. The verification is inside the method, not the caller's responsibility.
+If any step fails, you get an error with context. Not a silent wrong state.
 
-## MVC — Model, View, Controller
+## The Composer
 
-The codebase follows MVC. The layers are distinct and must not be conflated.
+One class. Appears on Home, Conversation, and ProjectDetail pages. Same text box, same buttons.
 
-**Model** — plain data types. `ThoughtState`, `CatalogueEntry`, `ChatItem` as `{ title, index }`, `Turn`, `Response`. No methods that touch the app. Just data about what we know.
+- `type(text)` — put text in the box. The ONLY method that takes a string parameter.
+- `clear()` — clear the box. Checks if someone else is typing first (stability check).
+- `readDraft()` — read what's in the box.
+- `send()` — click the Send button. Verifies that new content appeared (text grew).
+- `attach()` — click the attach button.
 
-**Controller** ([`controllers/`](../../src/controllers/)) — the UIA layer. Talks to the raw app. Reads elements, clicks buttons, types text. Returns DATA about what it sees. Each controller:
-- Knows the UIA element names for its domain (hardcoded)
-- Does low-level UIA operations (expand, invoke, click, read)
-- Has its own checks at the UIA level ("I clicked and something appeared")
-- Returns raw data, not View objects
+The Composer doesn't know what page it's on. It types and clicks. The page determines what happens next — Home creates a new conversation, Conversation adds a message, ProjectDetail creates a project conversation.
 
-**View** ([`components/`](../../src/components/), [`pages/`](../../src/pages/), [`claude.ts`](../../src/claude.ts)) — the object graph. Typed objects that represent what's on screen. Each View object:
-- Calls Controller methods to read data and perform actions
-- Verifies the data represents a valid state before constructing the next object
-- Returns typed objects to the caller — the object's existence IS the guarantee of state
-- Never touches UIA directly
+## The Sidebar
 
-The flow: View calls Controller → Controller does UIA → Controller returns data → View verifies → View constructs the next typed object → returns to caller.
+One class. Always visible. Same on every screen.
 
-```
-caller: chatItem.menu()
-  View (ChatList):  calls controller.expandMenu(title)
-  Controller:       does UIA expand, reads menu items, returns string[]
-  View (ChatList):  checks that expected items are present
-  View (ChatList):  constructs ChatMenu object from verified data
-  return:           ChatMenu (the object's existence = menu is open and valid)
-```
+- `conversations` — list of `ConversationItem` objects, read from "More options for X" buttons.
+- `newChat()` — clicks the New Chat button.
+- `openProjects()` — clicks the Projects button, returns `ProjectsListPage`.
+- `search(query)` — types in the search box, list updates.
 
-The Controller catches UIA failures ("expand didn't work"). The View catches semantic failures ("the menu opened but doesn't have the items I expected"). Two levels of verification.
+## What does NOT exist
 
-Run the [introspect tool](09-codebase-index--introspect.ts) to see all controllers and their methods.
+No methods that take navigation targets as parameters:
+- ~~`openProject('Claude')`~~ — find the ProjectItem, call item.open()
+- ~~`openChat('Test')`~~ — find the ConversationItem, call item.open()
+- ~~`openConversationById(id)`~~ — IDs aren't visible, use titles
+- ~~`say(text, timeout)`~~ — type, then send, then wait, then read. Four actions.
+- ~~`sendAsync()`~~ / ~~`sendAndForget()`~~ / ~~`sendMessage(text)`~~ — one send button, one click
+- ~~`renameChat(title, newTitle)`~~ — find the item, open its menu, click rename, type
+- ~~`startSession(options)`~~ — not a GUI concept
 
-## How to add a new feature
+No methods that skip screens:
+- ~~`openProjectConversation('Claude', 'Test')`~~ — navigate projects → find Claude → open → find Test → open
 
-1. Read this chapter
-2. Identify which View object this feature belongs to
-3. Add a method to the View object
-4. The View method: calls Controller, reads data, verifies, returns the next View object or throws
-5. If the Controller needs new UIA operations, add them to the Controller — they return data, not View objects
-6. Test: call the View method, verify the result object
-7. Update this chapter and the [Reference Desk cover](.cover.md)
+No methods that work when the app isn't visible.
+
+## The controller layer
+
+Controllers read the UIA tree and return data. They're the ONLY code that touches UIA. They handle the messy string matching, element finding, and PowerShell calls. The View objects (pages, items, menus) call controllers and get back typed data. Scripts call View objects and get back verified state.
+
+The controllers stay. The View layer above them is what this chapter specifies. The controllers are the implementation. The View is the interface.
