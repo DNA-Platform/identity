@@ -45,14 +45,31 @@ export class ProjectConversations {
   ) {}
 
   async read(): Promise<ProjectConversationItem[]> {
-    const raw = await this.auto.uia.readListItems();
+    // Read conversation titles from "More options for X" buttons in the ListItem area.
+    // The button names carry the clean title — no parsing needed.
+    // Same pattern as ChatListController.readList() for the sidebar.
+    const raw = await this.gateway.read(
+      () => this.auto.uia.readListItems(),
+      (items) => items.length > 0,
+      { description: 'Read project conversations', timeoutMs: 15_000 },
+    );
+
+    // Get clean titles from the "More options for X" buttons
+    const allButtons = await this.auto.uia.findAllNames('Button');
+    const moreOptions = new Set(
+      allButtons
+        .filter(n => n.startsWith('More options for '))
+        .map(n => n.slice('More options for '.length))
+    );
+
+    // Match ListItem entries to their clean button titles
     this.items = [];
-    for (const entry of raw) {
-      const parsed = parseConversationName(entry);
-      if (parsed) {
-        this.items.push(new ProjectConversationItem(
-          this.auto, this.gateway, parsed.title, parsed.lastMessage,
-        ));
+    for (const title of moreOptions) {
+      // Only include titles that correspond to a ListItem (project conversation)
+      // Exclude project-level buttons and sidebar conversation buttons
+      const hasListItem = raw.some(r => r.startsWith(title));
+      if (hasListItem && title.length > 0) {
+        this.items.push(new ProjectConversationItem(this.auto, this.gateway, title, ''));
       }
     }
     return this.items;
@@ -64,7 +81,9 @@ export class ProjectConversations {
 }
 
 function parseConversationName(raw: string): { title: string; lastMessage: string } | null {
-  const match = raw.match(/^(.+?)(Last message .+|Updated .+)$/);
+  // ListItem names concatenate title and date: "TestLast message 7 hours ago"
+  // No space between the title and "Last message" or "Updated"
+  const match = raw.match(/^(.+?)(Last message\s.+|Updated\s.+)$/);
   if (match) return { title: match[1].trim(), lastMessage: match[2].trim() };
   if (raw.length > 0) return { title: raw, lastMessage: '' };
   return null;

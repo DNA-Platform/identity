@@ -74,6 +74,10 @@ export class ComposerController {
   async send(): Promise<void> {
     this.auto.navigator.requireScreen('home', 'conversation', 'project');
 
+    // Capture text length BEFORE sending so we can detect new content
+    const textBefore = await this.auto.uia.readText() ?? '';
+    const lengthBefore = textBefore.length;
+
     await this.auto.gateway.act(
       async () => {
         const sent = await this.auto.uia.invokeByName('Send')
@@ -83,23 +87,14 @@ export class ComposerController {
         }
       },
       async () => {
-        // Check for the thinking block OR response text — the actual content elements.
-        //
-        // The thinking block is a Button named "Thinking" during active thinking.
-        // It persists permanently — its name changes to the thinking summary after.
-        // This catches: Desktop is thinking (will produce content).
-        //
-        // Response text appears as Text elements during streaming and after completion.
-        // "Claude responded:" appears in readText() once streaming completes.
-        // During streaming, the response words are in readText() without that prefix.
-        // "Claude finished the response" appears at completion.
-        //
-        // Check both: thinking block (Desktop is working) OR response content (words exist).
-        if (await this.auto.uia.exists('Button', 'Thinking')) return true;
-        if (await this.auto.uia.existsByName('Claude finished the response')) return true;
-        const text = await this.auto.uia.readText();
-        if (!text) return false;
-        return text.includes('Claude responded:');
+        // A human looks at the screen and sees that something new appeared.
+        // Text that wasn't there before. We do the same: measure text growth.
+        // The page text includes everything — sidebar, messages, chrome.
+        // After sending, the text grows because Desktop adds content:
+        // the thinking block, the thinking summary, the response words.
+        // We detect that growth. This works on both fresh and existing conversations.
+        const text = await this.auto.uia.readText() ?? '';
+        return text.length > lengthBefore + 20;
       },
       { description: 'Send message', timeoutMs: 120_000 },
     );

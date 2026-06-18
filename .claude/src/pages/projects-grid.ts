@@ -39,7 +39,13 @@ export class ProjectsGrid {
   ) {}
 
   async read(): Promise<ProjectCard[]> {
-    const raw = await this.auto.uia.readListItems();
+    // Wait for ListItems to appear — the grid may still be rendering
+    const raw = await this.gateway.read(
+      () => this.auto.uia.readListItems(),
+      (items) => items.length > 0,
+      { description: 'Read project cards', timeoutMs: 15_000 },
+    );
+
     this.items = [];
     for (const entry of raw) {
       const parsed = parseCardName(entry);
@@ -56,7 +62,7 @@ export class ProjectsGrid {
 }
 
 function parseCardName(raw: string): { name: string; date: string } | null {
-  const match = raw.match(/^(.+?)(Updated .+|Last message .+)$/);
+  const match = raw.match(/^(.+?)(Updated\s.+|Last message\s.+)$/);
   if (match) return { name: match[1].trim(), date: match[2].trim() };
   if (raw.length > 0) return { name: raw, date: '' };
   return null;
