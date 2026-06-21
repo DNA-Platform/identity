@@ -1,32 +1,41 @@
-///: Page — base class for all app screens.
-///: Every screen has a sidebar (left panel) and a main content area.
-///: The sidebar reads its state from the UIA tree — no manual refresh.
-///: Subclasses represent specific screens: Home, ProjectsGrid, ProjectDetail, Conversation.
-///: Navigation methods return the next page object. You can only call methods
-///: for the screen you're on because you only have THAT screen's object.
+///: Page — the only base class. Every screen IS-A page (it has the sidebar).
+///: Subclasses carry the properties they actually have (composer, response,
+///: messages, …) as INDEPENDENT properties — a shared feature is not a class, so
+///: there is no ComposerPage; composer is just a property on the pages that have
+///: one. You get a Page by navigating: launch() returns HomePage, item.open()
+///: returns ConversationPage. The type you hold is the screen you're on — if a
+///: method isn't on your page type, you can't call it, because it isn't on that
+///: screen (P3: the type system is the guard, no requireScreen).
 ///:
-///: Both the projects grid and the project detail page use ListItem elements
-///: for their lists (project cards and project conversations respectively).
-///: The same readListItems() UIA method reads both.
+///: If you can't do it with a mouse and keyboard, it can't be on a Page.
 ///:
-///: [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — objects mirror the app.
-///: [Navigation](../../library/reference-desk/02-03-the-architecture--navigation.md) — screen detection.
+///: [The Redesign](../../library/reference-desk/13-the-redesign.md#the-object-model-settled--model-the-objects-not-their-features) — Page is the only base.
+///: [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — the one rule.
 
-import type { Automation } from '../automation.ts';
-import type { Screen } from '../navigator.ts';
 import type { Sidebar } from '../components/sidebar.ts';
-import type { ChatList } from '../components/chat-list.ts';
+import type { Gateway } from '../gateway.ts';
+import type { Automation } from '../automation.ts';
 
 export abstract class Page {
   constructor(
     protected readonly auto: Automation,
-    readonly sidebar: Sidebar,
-    readonly chats: ChatList,
+    protected readonly gateway: Gateway,
+    private readonly _sidebar: Sidebar,
   ) {}
 
-  abstract get screenType(): Screen;
-
-  async url(): Promise<string> {
-    return await this.auto.uia.readUrl() ?? '';
+  /** The one panel on every page — the global conversation list, projects, search. */
+  sidebar(): Sidebar {
+    return this._sidebar;
   }
+
+  /** This page's stable id — its URL (claude.ai/chat/<id>, /project/<id>, /new,
+   *  /projects). Every screen has one. The app has no URL-navigation, but the URL
+   *  is a reliable IDENTITY: the session stores it and validates "are we still on
+   *  this page?" against the live tree — it never assumes (the app may have
+   *  restarted or been navigated away). */
+  async id(): Promise<string> {
+    return (await this.auto.uia.readUrl()) ?? '';
+  }
+
+  abstract get screenType(): string;
 }

@@ -1,11 +1,12 @@
 ///: Claude Desktop — the app you're looking at.
-///: This class IS the window. It has a sidebar (always visible) and
-///: the current page's objects. You navigate by clicking things in the
-///: sidebar or on the page. Every method is a mouse-and-keyboard action.
-///: Nothing works if the app isn't visible.
+///: This class IS the window. It holds the window and infrastructure only — NO
+///: always-on page properties (decision: you reach a page only by navigating, so
+///: a back-reference from a page to Claude does not exist). launch() returns the
+///: HomePage you land on; from there you navigate, and every navigation returns
+///: the next typed Page. Nothing works if the app isn't visible.
 ///:
+///: [The Redesign](../library/reference-desk/13-the-redesign.md#settled-decisions-the-four-open-questions) — launch() returns a Page; no god-class page props.
 ///: [The App](../library/reference-desk/12-the-app.md) — what the app looks like.
-///: [Architecture Patterns](../library/reference-desk/10-architecture-patterns.md) — the class hierarchy.
 ///: [Reference Desk](../library/reference-desk/.cover.md) — the full documentation.
 
 import { Shell } from './shell.ts';
@@ -18,27 +19,14 @@ import { Navigator } from './navigator.ts';
 import type { Screen } from './navigator.ts';
 import type { Automation } from './automation.ts';
 import { Sidebar } from './components/sidebar.ts';
-import { ChatList } from './components/chat-list.ts';
-import { Composer } from './components/composer.ts';
-import { Message } from './components/composed-message.ts';
-import { ModelPicker } from './components/model-picker.ts';
-import { ArtifactPanel } from './components/artifact-panel.ts';
-import { FilesPane } from './components/files-pane.ts';
-import { Home } from './pages/home.ts';
-import { Conversation } from './pages/conversation.ts';
-import { Projects } from './pages/projects.ts';
-import { Project } from './pages/project.ts';
-import { ComposerController } from './controllers/composer-controller.ts';
-import { MessageController } from './controllers/composed-message-controller.ts';
-import { ModelPickerController } from './controllers/model-picker-controller.ts';
 import { SidebarController } from './controllers/sidebar-controller.ts';
 import { ChatListController } from './controllers/chat-list-controller.ts';
-import { ArtifactPanelController } from './controllers/artifact-panel-controller.ts';
-import { ConversationController } from './controllers/conversation-controller.ts';
-import { ProjectController } from './controllers/project-controller.ts';
-import { ProjectsController } from './controllers/projects-controller.ts';
-import { ProjectsGrid } from './pages/projects-grid.ts';
-import { ProjectConversations } from './pages/project-detail.ts';
+import { Navigation } from './pages/navigation.ts';
+import { Session } from './session.ts';
+import type { Page } from './pages/page.ts';
+import type { HomePage } from './pages/home.ts';
+import type { ConversationPage } from './pages/conversation.ts';
+import type { ProjectPage } from './pages/project.ts';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -49,26 +37,20 @@ export class Claude {
   // The window — maximize, minimize, launch, exit, screenshot.
   readonly window: Window;
 
-  // The sidebar — always visible. Conversations, New Chat, Projects button.
+  // The sidebar — the one panel on every page.
   readonly sidebar: Sidebar;
 
-  // The current page's objects. These read from whatever screen is showing.
-  // Calling methods on them when on the wrong screen will fail via requireScreen.
-  readonly conversation: Conversation;
-  readonly home: Home;
-  readonly project: Project;
-  readonly projects: Projects;
-
-  // Lists that read from the current screen's ListItem elements.
-  readonly projectsGrid: ProjectsGrid;
-  readonly projectConversations: ProjectConversations;
+  // The app's memory of where it is — remembers the current page, resumes it.
+  readonly session: Session;
 
   // Infrastructure — not for scripts. Controllers and gateway live here.
   readonly gateway: Gateway;
   readonly auto: Automation;
   readonly navigator: Navigator;
   readonly diagnostics: Diagnostics;
-  readonly message: Message;
+
+  // The page factory — turns "we are on screen X" into the typed Page object.
+  private readonly nav: Navigation;
 
   constructor() {
     this.window = new Window();
@@ -92,44 +74,35 @@ export class Claude {
     };
     this.auto = auto;
 
-    const composer = new Composer(new ComposerController(auto));
-    this.message = new Message(new MessageController(auto));
-    const modelPicker = new ModelPicker(new ModelPickerController(auto));
-    const artifacts = new ArtifactPanel(new ArtifactPanelController(auto));
-
     this.sidebar = new Sidebar(
       new SidebarController(auto),
-      new ChatList(new ChatListController(auto), this.gateway),
+      new ChatListController(auto),
+      this.gateway,
     );
 
-    this.home = new Home(composer, this.message, modelPicker);
+    // The sidebar and the page factory reference each other (the sidebar is on
+    // every page; the factory builds every page). Build the factory, then bind
+    // it into the sidebar.
+    this.nav = new Navigation(auto, this.gateway, this.sidebar);
+    this.sidebar.bind(this.nav);
 
-    this.conversation = new Conversation(
-      new ConversationController(auto),
-      composer,
-      this.message,
-      modelPicker,
-      artifacts,
-    );
+    this.session = new Session(this);
+  }
 
-    this.projects = new Projects(
-      new ProjectsController(auto),
-    );
-
-    const filesPane = new FilesPane(auto, this.window);
-
-    this.project = new Project(
-      new ProjectController(auto),
-      filesPane,
-    );
-
-    this.projectsGrid = new ProjectsGrid(auto, this.gateway);
-    this.projectConversations = new ProjectConversations(auto, this.gateway);
+  /** The URL of the page the app is currently on — the live page id, read fresh
+   *  from the tree. The Session compares this against what it remembered. */
+  async currentUrl(): Promise<string> {
+    return (await this.auto.uia.readUrl()) ?? '';
   }
 
   // --- Lifecycle ---
 
-  async launch(): Promise<void> {
+  /** Launch (or attach to) Claude Desktop and return the page you land on,
+   *  reconstituted and confirmed via detectScreen() (decision #1). The static
+   *  return type is HomePage — the common case after a fresh launch / re-home;
+   *  if the app resumed on another screen, currentPage() inside reconstitutes
+   *  that screen's object, and goHome() is the fallback on mismatch. */
+  async launch(): Promise<HomePage> {
     if (!this.window.find()) {
       console.log('[claude] Not running. Launching...');
       this.window.launch(SHORTCUT);
@@ -164,6 +137,55 @@ export class Claude {
 
     this.window.requireForeground();
     console.log(`[claude] Ready (PID ${this.window.pid}, foreground verified)`);
+
+    // Reconstitute-and-confirm: ensure we are on home, return the HomePage.
+    await this.goHome();
+    return this.nav.home();
+  }
+
+  /** Reconstitute the page for whatever screen the app is actually on now. Used
+   *  to resume (decision #1): read the screen, build that page object, confirmed. */
+  async currentPage(): Promise<Page> {
+    return this.nav.currentPage();
+  }
+
+  /** Restore the running app's window WITHOUT going home (un-minimize + focus), so
+   *  a resume can read whatever screen we are actually on. Returns false if the
+   *  app isn't running or its UIA tree isn't available. */
+  attach(): boolean {
+    if (!this.window.find()) return false;
+    // isForeground() lies when minimized, so check isMinimized() too — otherwise we
+    // never restore, and the UIA tree of a minimized window does NOT update (Doug).
+    if (this.window.isMinimized() || !this.window.isForeground()) this.window.maximize();
+    if (!this.window.waitForUia()) return false;
+    this.window.requireForeground();
+    return true;
+  }
+
+  /** The id→page factory: build the typed page for a URL (the Session uses this to
+   *  reconstitute — to BIND — the page we are currently on). The cast is contained
+   *  in the factory; this is binding to the live screen, not navigating. */
+  pageForUrl(url: string): Page {
+    return this.nav.pageForUrl(url);
+  }
+
+  /** Resume onto the conversation we are already on — TYPED. Returns the
+   *  ConversationPage if the live screen IS a conversation (confirmed against the
+   *  tree), else null so the caller navigates. This is the session: if the WRITE
+   *  left us on the conversation (minimized), we stay there — no re-walking the
+   *  nav tree, and no vague base Page to down-cast. */
+  async currentConversation(): Promise<ConversationPage | null> {
+    if (!this.attach()) return null;
+    const screen = await this.navigator.detectScreen();
+    return screen === 'conversation' ? this.nav.conversation() : null;
+  }
+
+  /** Resume onto the Claude project page — TYPED. Returns the ProjectPage if the
+   *  live screen is a project page, else null. */
+  async currentProject(): Promise<ProjectPage | null> {
+    if (!this.attach()) return null;
+    const screen = await this.navigator.detectScreen();
+    return screen === 'project' ? this.nav.project() : null;
   }
 
   async exit(): Promise<void> {
@@ -184,7 +206,6 @@ export class Claude {
 
   async goHome(): Promise<void> {
     await this.navigator.goHome();
-    await this.sidebar.refresh();
   }
 
   async newChat(): Promise<void> {

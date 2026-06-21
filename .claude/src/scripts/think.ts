@@ -1,50 +1,61 @@
-// think.ts — state file for the think skill.
-// The app (Claude class) handles Desktop interaction.
-// Teammates handle library authorship (chapters, covers, catalogues).
-// This file handles ONLY the machine-readable state between write and read.
+// think.ts — the COMPOSER for the /think skill. It owns no logic; it wires the
+// Thoughtfulness resources to a CLI whose subcommands ARE the two separate
+// processes of the think checklist (library/our-skillset/20-think.md). They are
+// NEVER chained: the WRITE process ends, the teammate does library work across
+// its own turns, and only later does a fresh READ process run.
+//
+//   write <topic> <message> [new]   WRITE half — in the Claude project, a NEW
+//                                    topic ("new") is born in the project composer,
+//                                    an existing one continues. Wait for streaming,
+//                                    minimize, EXIT. Returns immediately.
+//   read                            CHECK-and-READ half — resume the in-flight
+//                                    thought's conversation (from the session),
+//                                    check completion, print it (rename if new),
+//                                    minimize, EXIT. If not complete it reports
+//                                    NOT READY; tend the library and run read again.
+//
+// The operations are resources of the Thoughtfulness book. think.ts only composes
+// them. Each command process.exits so "the first ends" — the driver leaves
+// PowerShell/UIA handles open, so without it the process lingers.
 
-import { readFileSync, writeFileSync, unlinkSync, existsSync, mkdirSync } from 'fs';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { Claude } from '../claude.ts';
+import { dispatch } from '../../library/thoughtfulness/02-the-thought-lifecycle--dispatch.ts';
+import { read } from '../../library/thoughtfulness/02-the-thought-lifecycle--read.ts';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const [cmd, topic, message, newFlag] = process.argv.slice(2);
 
-const PERSPECTIVE_DIR = resolve(__dirname, '..', '..', 'library',
-  '..teamsmanship', '..team', 'claude', '.perspective');
-const STATE_FILE = resolve(PERSPECTIVE_DIR, 'thought-state.json');
+const app = new Claude();
 
-// --- State ---
-
-export interface ThoughtState {
-  conversationId: string;
-  url: string;
-  question: string;
-  startedAt: string;
-  chapterPath?: string;
-  topicPath?: string;
+async function main(): Promise<void> {
+  switch (cmd) {
+    case 'write': {
+      if (!topic || !message) throw new Error('usage: think.ts write <topic> <message> [new]');
+      const isNew = newFlag === 'new';
+      await dispatch(app, topic, message, isNew);
+      console.log(`[think] WRITE done — "${topic}" (${isNew ? 'new topic' : 'continued'}), streaming detected, minimized.`);
+      break;
+    }
+    case 'read': {
+      const { complete, text } = await read(app);
+      if (!complete) {
+        console.log(`[think] NOT READY — still responding. Tend the library, then run read again.`);
+        console.log(`[think] (partial so far: ${text.length} chars)`);
+      } else {
+        console.log('=== RESPONSE (complete) ===');
+        console.log(text);
+        console.log('=== END ===');
+      }
+      break;
+    }
+    default:
+      throw new Error(`unknown command "${cmd ?? ''}" — expected: write | read`);
+  }
 }
 
-export function readState(): ThoughtState | null {
-  if (!existsSync(STATE_FILE)) return null;
-  try { return JSON.parse(readFileSync(STATE_FILE, 'utf-8')); }
-  catch { return null; }
-}
-
-export function writeState(state: ThoughtState): void {
-  mkdirSync(PERSPECTIVE_DIR, { recursive: true });
-  writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), 'utf-8');
-}
-
-export function deleteState(): void {
-  if (existsSync(STATE_FILE)) unlinkSync(STATE_FILE);
-}
-
-export function updateState(partial: Partial<ThoughtState>): void {
-  const current = readState();
-  if (!current) throw new Error('No active thought to update');
-  writeState({ ...current, ...partial });
-}
-
-export function hasActiveThought(): boolean {
-  return existsSync(STATE_FILE);
-}
+main()
+  .then(() => process.exit(0))
+  .catch(err => {
+    console.error('[think] FAILED:', err instanceof Error ? err.message : err);
+    try { app.window.minimize(); } catch {}
+    process.exit(1);
+  });

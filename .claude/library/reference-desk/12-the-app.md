@@ -7,6 +7,8 @@
 
 What Claude Desktop looks like. Every noun in this chapter is a class in the code. Every action is a method. This is the specification the [code](../../src/) implements. If the code doesn't match what's described here, the code is wrong.
 
+> **Migration note:** the object *mapping* below names some classes from the pre-redesign code (e.g. `ChatItem`, `ProjectCard`). The screen descriptions still hold — the app hasn't changed — but the authoritative target class model during the [App Driver Build](../projected-identity/59-sprint-91--the-app-driver-build.md) is [The Redesign](13-the-redesign.md) (`ConversationItem`, `ProjectItem`, the `Page` hierarchy). This chapter is reconciled to the built code as Sprint 92 lands.
+
 The code mirrors the app. The app has screens. Each screen has things on it. Each thing is an object with properties and actions. Navigation between screens returns new objects. You can only call methods for the screen you're on because you only have that screen's object.
 
 ## The window
