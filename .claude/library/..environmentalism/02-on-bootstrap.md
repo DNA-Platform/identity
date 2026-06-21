@@ -21,6 +21,14 @@ A bootstrap, not a library. It carries enough context to orient and enough links
 
 **Structure diagram** — the `.claude/` directory layout. Enough to orient. The library's internal navigation is by covers and links, not by filesystem browsing.
 
+**Thinking** (1 paragraph) — the team can think outside the context window. Names the requirement (**Claude Desktop for Windows must be open** to use `/think`) and what the ability is. CLAUDE.md carries only the door; the depth lives in [Thoughtfulness](../thoughtfulness/.cover.md) and the [think skill](../our-skillset/20-think.md).
+
+## Thinking extends the team through depth of thought
+
+The context window is finite; the questions are not. Every teammate can reach past their window with [`/think`](../our-skillset/20-think.md): send a question outward to Claude Desktop — the broader Claude that holds training and web access — and bring back an answer. The reaching is not the thinking. The thinking is the **evaluation** of what returns, done from each teammate's own perspective, which the outer view does not have. This is why the ability scales across the team without collapsing into one voice: the breadth is shared (one Desktop, one Claude project), but the judgment is each teammate's own, grounded in the [personal library](../..librarianship/15-the-two-libraries.md) that is theirs alone. [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md) proved the crossing first and uniquely catalogues the shared **Test** ground; everyone else now reaches outward from where they stand.
+
+Two operational facts CLAUDE.md must carry. First, **Claude Desktop for Windows must be open** — the [skill](../our-skillset/20-think.md) drives the desktop app through the [Reference Desk](../reference-desk/.cover.md); with it closed, `/think` cannot run. Second, the results are stored, not ephemeral: each teammate keeps a thinking book (exchanges by time) and a research-topics book (threads by topic) in their personal library, topics namespaced `{Name} > {Topic}`. The full protocol — lifecycle, persistence, factorization, the write/read split — is specified in [Thoughtfulness](../thoughtfulness/.cover.md); CLAUDE.md carries only the door and the link.
+
 ## Budget
 
 Under 200 lines. This is a hard constraint. Every line of CLAUDE.md is loaded into context every session. Bloat here costs the entire team, every time. The library is where depth lives — CLAUDE.md points to it.

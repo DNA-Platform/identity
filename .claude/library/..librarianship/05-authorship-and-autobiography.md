@@ -28,6 +28,16 @@ Each agent has AT MINIMUM two books in their [personal library](../..teamsmanshi
 
 Together: the autobiography IS the teammate (via self-authorship). The library catalogue IS the teammate's knowledge (via self-cataloguing). Identity through self-reference at two scales.
 
+## The two thinking books
+
+Beyond the minimum, every teammate also keeps two books for [thinking outside the context window](../our-skillset/20-think.md), set up on the model of [Claude's](../..teamsmanship/..team/claude/thinking/.cover.md):
+
+3. **The thinking book** — conversations by time. Each chapter is one `/think` exchange: what I asked, what I expected, what I found, what I concluded.
+
+4. **The research-topics book** — research by topic. Each chapter summarizes a thread across exchanges. Topics are namespaced `{Name} > {Topic}`; the `Test` topic is shared across the team.
+
+These are created at onboarding alongside the first two and authored in the teammate's first person. They are part of why each [personal library is its own lens](15-the-two-libraries.md): a teammate `/think`s from their own perspective, evaluating the outer answer with their own project knowledge and judgment.
+
 ## Naming
 
 The autobiography's name is chosen by the author. It should reflect their identity — not their function, but their relationship to the work.
