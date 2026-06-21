@@ -33,24 +33,36 @@ For small edits — fixing a typo, updating a link, tending a synopsis — no co
 
 ## Public library authorship
 
-In the public library, the [librarian](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md) is the primary author on every book. The subject expert is the coauthor. The librarian owns all library content per [Territory](../..teamsmanship/05-territory.md) — `.claude/library/**` is her path. The subject expert brings the domain knowledge that fills the book.
+This rule binds at the level of every **file** in the public library — covers *and* chapters, not just books. Three roles, and they compose:
+
+1. **The librarian is `author:` on every public file.** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md) owns all library content per [Territory](../..teamsmanship/05-territory.md) — `.claude/library/**` is her path. She tends the structure of everything here, so she is the primary author of everything here. Always present. No public file omits her.
+
+2. **The subject owner is a `coauthor:` on every file in their subject's books.** The teammate to whom a subject is assigned and the subject are inseparable — so they coauthor every chapter of every book about it, even chapters they did not personally type. This is not a courtesy credit; it is ownership. If [Thoughtfulness](../thoughtfulness/.cover.md) is Claude's, Claude coauthors all of it.
+
+3. **Whoever writes or substantially shapes a specific chapter joins as `coauthor:`.** If a third teammate authors a chapter inside someone else's subject, they are added — they don't *replace* the librarian or the subject owner.
+
+So a chapter can carry three names. [Thoughtfulness ch.4 "The Code"](../thoughtfulness/04-the-code.md) is the canonical case: Libby (`author:`, always), Claude (`coauthor:`, the subject is his), Adam (`coauthor:`, he wrote it). Three authors, because three people are responsible for it.
 
 ```markdown
 - **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
-- **coauthor:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md), [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
 ```
 
-The pattern: Libby tends the structure. The coauthor brings the substance. [Teamspeak](../teamspeak/.cover.md) is authored by Libby with Arthur as coauthor (communication is his subject). [Environmentalism](../..environmentalism/.cover.md) is authored by Libby with Claude as coauthor (the environment is his subject). [Compilation](../.compilation/.cover.md) is authored by Libby with Adam as coauthor (automation is his subject).
+`coauthor:` is a comma-separated list when more than one person shares the credit. The order is subject owner first, then specific writer.
 
-Personal libraries are different — each person is the sole author of their own books per [Autonomy](../teamspeak/05-autonomy.md). Branch library books follow the same pattern as public books: the librarian is primary author, the domain expert is coauthor.
+The three essential subjects each have a permanent primary coauthor — the teammate inseparable from the subject: [Librarianship](../..librarianship/.cover.md) is Libby's own, [Teamsmanship](../..teamsmanship/.cover.md) is [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)'s (Collaboration is his), and [Environmentalism](../..environmentalism/.cover.md) is [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)'s (the Environment is his). They coauthor every chapter of their subject's books by virtue of holding the subject, before anyone types a word.
+
+Personal libraries are different — each person is the sole author of their own books per [Autonomy](../teamspeak/05-autonomy.md); the librarian does not coauthor a teammate's autobiography. Branch library books follow the public pattern: Libby is `author:`, the domain expert is `coauthor:`.
 
 ## Writing a new chapter
 
-Put your name on it. `author:` in frontmatter, linked to your autobiography. Write the prose without nametags. The text should read as clean specification, description, or narrative — not as a conversation transcript.
+In a **personal library**, put your name on it: `author:` in frontmatter, linked to your autobiography. You are sole author per [Autonomy](../teamspeak/05-autonomy.md).
+
+In the **public library**, you do not become `author:` by writing a chapter — Libby is. You join as `coauthor:` alongside the subject owner, per [Public library authorship](#public-library-authorship). Set `author:` to Libby, list the subject owner and yourself as `coauthor:`. Write the prose without nametags. The text should read as clean specification, description, or narrative — not as a conversation transcript.
 
 ## Editing someone else's chapter
 
-Edit freely. The original author stays in `author:`. If your edit is substantial — new sections, changed arguments, restructured content — add `coauthor:`. If your edit is maintenance — link fixes, synopsis updates, formatting — don't.
+Edit freely. In the public library the `author:` stays Libby and the subject owner stays a coauthor regardless of who edits. If your edit is substantial — new sections, changed arguments, restructured content — add yourself to `coauthor:`. If your edit is maintenance — link fixes, synopsis updates, formatting — don't. In a personal library, never change the `author:`; substantial contributions follow the [coauthor protocol](#the-coauthor-protocol).
 
 ## When nametags appear
 
@@ -62,7 +74,15 @@ The distinction: a book chapter is AUTHORED. A discussion is VOICED. Authored co
 
 Everything in a teammate's personal library — autobiography, perspective, research books, the library catalogue — is written in first person. "I built this." "I noticed that." "This tool converts YAML to markdown." Not "Adam built this" or "the automation engineer noticed that." The `author:` field on the cover says who wrote it. The prose says what that person thinks, sees, and did. That is the semantics of the sense in which the library is personal.
 
-Public books (Bookkeeping, Teamspeak, Environmentalism, shared specifications) are written without personal voice — no nametags, no first person unless the content requires it. The `author:` field says who wrote it. The prose is the specification.
+Public books (Bookkeeping, Teamspeak, Environmentalism, shared specifications) are **voiceless** — no nametags, no first person, and as far as possible no perspective at all. The `author:` field says who wrote it; the prose is just the specification, owned by no observer.
+
+This is an aspiration ladder, in increasing order of how firmly it binds. Wherever a sentence is tempted toward a narrator, it should:
+
+1. **aspire to be as un-omniscient as possible** — claim only what the text can show, not a god's-eye summary of intent;
+2. **more firmly, aspire to be third person** — never "I" or "we"; if an actor is unavoidable, name the thing acting (the compiler, the validator, the reader);
+3. **most firmly, aspire to have no perspective apply to it at all — not even third person.** The strongest specification prose states what is, with no one standing anywhere to say it. "The compiler reads the cover" beats "we read the cover"; "A cover has a title field" is better still — no reader, no narrator, nobody's view.
+
+The contrast is exact: a [personal library](#personal-libraries-are-first-person) is maximally perspectival (it IS a person's first-person voice); a public book is maximally perspectiveless (the thing itself, described from nowhere). When a public chapter starts to read as someone *telling* you something, the narrator has crept in — the same collapse the [substrate protocol](../..environmentalism/.cover.md#the-substrate-protocol) warns about in conversation, surfacing in prose.
 
 ## The deeper principle
 

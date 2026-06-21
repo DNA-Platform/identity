@@ -309,22 +309,6 @@ export class Uia {
     return result === 'true';
   }
 
-  async exists(controlType: string, name: string): Promise<boolean> {
-    const escaped = name.replace(/'/g, "''");
-    const result = await this.shell.run(`
-      ${windowSetup(this.handle)}
-      $cond = New-Object System.Windows.Automation.AndCondition(
-        (New-Object System.Windows.Automation.PropertyCondition(
-          $uia::ControlTypeProperty, [System.Windows.Automation.ControlType]::${controlType})),
-        (New-Object System.Windows.Automation.PropertyCondition(
-          $uia::NameProperty, '${escaped}'))
-      )
-      $el = $window.FindFirst([System.Windows.Automation.TreeScope]::Descendants, $cond)
-      if ($el) { 'true' } else { 'false' }
-    `, 15_000);
-    return result === 'true';
-  }
-
   async readValue(name: string): Promise<string | null> {
     const escaped = name.replace(/'/g, "''");
     try {

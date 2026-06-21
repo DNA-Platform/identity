@@ -1,0 +1,98 @@
+# stream-01
+# url: https://claude.ai/chat/329a8ccf-685c-4220-a66f-116bddb7e70c
+# count: 94
+
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Arguments for and against P ≠ NP - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Group | Sidebar
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Arguments for and against P ≠ NP
+ControlType.Button | More options for Arguments for and against P ≠ NP
+ControlType.Button | Why the sky is blue and sunsets are red
+ControlType.Button | More options for Why the sky is blue and sunsets are red
+ControlType.Button | Hannah map
+ControlType.Button | More options for Hannah map
+ControlType.Button | Оптимизация бюджета и учет расходов
+ControlType.Button | More options for Оптимизация бюджета и учет расходов
+ControlType.Button | Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | More options for Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | Batumi Summer
+ControlType.Button | More options for Batumi Summer
+ControlType.Button | Sarah Boston maraphon map
+ControlType.Button | More options for Sarah Boston maraphon map
+ControlType.Button | Axiomatizing inheritance and relationship structure
+ControlType.Button | More options for Axiomatizing inheritance and relationship structure
+ControlType.Button | Lulish project
+ControlType.Button | More options for Lulish project
+ControlType.Button | Understanding a tax adjustment notice
+ControlType.Button | More options for Understanding a tax adjustment notice
+ControlType.Button | Georgian Payoneer Help
+ControlType.Button | More options for Georgian Payoneer Help
+ControlType.Button | Simplifying architecture explanation for the team
+ControlType.Button | More options for Simplifying architecture explanation for the team
+ControlType.Button | Claude Code weekly limit and credit usage
+ControlType.Button | More options for Claude Code weekly limit and credit usage
+ControlType.Button | Claude Code weekly limit and credit usage
+ControlType.Button | More options for Claude Code weekly limit and credit usage
+ControlType.Button | Test
+ControlType.Button | More options for Test
+ControlType.Button | Prime numbers greater than 100
+ControlType.Button | More options for Prime numbers greater than 100
+ControlType.Button | Eiffel Tower completion date
+ControlType.Button | More options for Eiffel Tower completion date
+ControlType.Button | Отказ в регистрации детей по месту пребывания
+ControlType.Button | More options for Отказ в регистрации детей по месту пребывания
+ControlType.Button | Marie_Siettle
+ControlType.Button | More options for Marie_Siettle
+ControlType.Button | Stefanie
+ControlType.Button | More options for Stefanie
+ControlType.Button | Relaunch to update v1.14271.0
+ControlType.Button | Design
+ControlType.Button | Doug Doug Max
+ControlType.Image | Doug
+ControlType.Text | Doug
+ControlType.Text | Max
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Button | Arguments for and against P ≠ NP, rename chat
+ControlType.Button | More options for Arguments for and against P ≠ NP
+ControlType.Text | Claude is responding
+ControlType.Text | You said: Think carefully, step by step, before answering: what are the strongest arguments for and against P ≠ NP, and which way does the evidence lean?
+ControlType.Text | Think carefully, step by step, before answering: what are the strongest arguments for and against P ≠ NP, and which way does the evidence lean? Reason it through, then give a concise conclusion.
+ControlType.Group | Message actions
+ControlType.Text | 10:42 AM
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Button | Thinking
+ControlType.Text | Thinking
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | Write a message…
+ControlType.Text |
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Model: Opus 4.8 High
+ControlType.Text | Opus 4.8
+ControlType.Text |  High
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Button | Stop response
+ControlType.Hyperlink | Claude is AI and can make mistakes. Please double-check responses.
+ControlType.Group | Notifications (F8)

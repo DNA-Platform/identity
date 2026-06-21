@@ -51,7 +51,7 @@ File upload uses the clipboard file-drop mechanism (see [Sending Messages § Fil
 
 ## The projects list
 
-The [`Projects`](../../src/pages/projects.ts) page (plural) shows the grid of all projects. It provides:
+The [`Projects`](../../src/pages/projects-grid.ts) page (plural) shows the grid of all projects. It provides:
 
 ```typescript
 // List all project cards
@@ -69,19 +69,19 @@ The cards list is `Lazy<>` — it loads on demand and paginates by scrolling. `w
 
 ## Adding a conversation to a project
 
-The sidebar's three-dot menu opens a context menu for any conversation. The "Add to project" item opens a project picker dialog. The full object chain:
+The three-dot menu on a conversation (in the sidebar **or** on the conversation page) opens a [`ConversationMenu`](../../src/components/chat-list.ts). Its `addToProject()` opens the **Move conversation modal** — a real dialog (UIA title "Move chat"), **not a unitary action**: it lists the projects and offers a search bar to narrow a long list. The full object chain follows the two laws ([P2/P4](13-the-redesign.md#p2--clicks-are-parameterless-only-typing-takes-a-parameter)) — clicks are parameterless, only typing takes a string, and the caller reads the list and `.find()`s its own match:
 
 ```typescript
-await app.sidebar.refresh();
-const item = app.sidebar.chats.find('Finance');
-const menu = await item.menu();           // ChatMenu — verified open
-const picker = await menu.addToProject(); // ProjectPicker — verified dialog visible
-await picker.select('Claude');            // selects, verifies dialog closed
+const item = (await sidebar.conversations()).find(c => c.name === 'Finance');
+const menu = await item.menu();                  // ConversationMenu — verified open
+const modal = await menu.addToProject();         // MoveConversationModal — verified "Move chat" visible
+const claude = (await modal.projects()).find(p => p.name === 'Claude'); // or: await modal.search('Claude')
+await claude.select();                            // clicks the ListItem, verifies the modal closed
 ```
 
-Each step returns the next [View object](10-architecture-patterns.md) only after verifying state through controller sensors. `menu()` verifies the menu appeared. `addToProject()` verifies the dialog opened and reads the project list. `select()` clicks the `ListItem` by name and verifies the dialog closed.
+Each step returns the next [View object](10-architecture-patterns.md) only after verifying state through controller sensors. `menu()` verifies the menu appeared. `addToProject()` verifies the modal opened. `projects()` reads the `ListItem`s; `search(text)` filters them. `select()` clicks the `ListItem` by name and verifies the modal closed (selecting **auto-confirms** — there is no separate OK button).
 
-The implementation lives in [`chat-list.ts`](../../src/components/chat-list.ts) (View objects: `ChatItem`, `ChatMenu`, `ProjectPicker`) backed by [`chat-list-controller.ts`](../../src/controllers/chat-list-controller.ts) (sensors and actuators).
+The implementation lives in [`chat-list.ts`](../../src/components/chat-list.ts) (`ConversationItem`, `ConversationMenu`) and [`move-conversation-modal.ts`](../../src/components/move-conversation-modal.ts) (`MoveConversationModal`, `ProjectChoice`), backed by [`chat-list-controller.ts`](../../src/controllers/chat-list-controller.ts) (sensors and actuators).
 
 **The Claude project** is the canonical home for successful research conversations. The [Thoughtfulness](../thoughtfulness/.cover.md) protocol files conversations there after the thought concludes with a sufficient verdict. See the [conversation catalogue](../thoughtfulness/05-conversation-catalogue.md) for the tracking system.
 

@@ -1,6 +1,7 @@
 # Reading Responses
 
-- **author:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **coauthor:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md), [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
 
 ---
 
@@ -61,7 +62,11 @@ From Sprint 82 exploration (120 snapshots during extended thinking):
 | `"Scroll to bottom"` (Button) | Not at bottom | At bottom |
 | `"Claude responded:"` (in page text) | Response text exists | No response yet |
 
-**Key finding:** During extended thinking, ONLY the streaming indicator and Stop button appear. The thinking TEXT is not in the UIA tree until thinking finishes. Content (`hasResponseContent()`) stays false the entire thinking phase, which can last minutes for research questions.
+**Key finding — the notification is not the text.** `thinking-active` and `streaming` share *every* named marker (`Claude is responding`, `Stop response`, one `Message actions`). The only thing that differs is the **Document body growing**. So "Claude is responding" / "Claude is thinking" is a *notification* (`hasStreamingIndicator()`) that can sit frozen with zero output — never proof that text is flowing. The honest "is it streaming" is `checkStreaming(baseline)`: the Document's `readText()` has grown past the length captured right after send, AND Stop is present. The WRITE half waits on *that*, so it minimizes only once real tokens have arrived, not on the bare notification (Doug, Sprint 93).
+
+**Captured ground truth (2026-06-21, app v1.14271.0).** Real tree snapshots live in [`.claude/src/trees/`](../../src/trees/README.md), catalogued by state. They confirm and update the above:
+- The live "processing" indicator is `ControlType.Text | Claude is responding`; extended thinking shows a `ControlType.Button | Thinking` whose **name becomes the thinking summary** when thinking completes (e.g. "Weighing intuitive evidence against mathematical proof barriers").
+- **The response body text is NOT a named element.** Through the entire response stream the `allNames()` count was constant — the body lives only in the `ControlType.Document` TextPattern, read via `readText()`. So the structured `Response` fetches its *structure* (thinking summary, `Stop response`, `You said:`, `Message actions`) directly from named elements, and reads its *content* from the Document. Controllers point to the specific tree-states they depend on via `///:` links.
 
 ### Detectors
 
@@ -69,14 +74,15 @@ All async. All check real UI state. Call after `scrollToBottom()`.
 
 | Method | What it checks | Use for |
 |--------|---------------|---------|
-| `checkStreaming()` | Streaming indicator text | Server acknowledged, processing |
+| `checkStreaming(baseline)` | Document grew past the post-send baseline AND Stop present | **Real streamed text is flowing** |
+| `hasStreamingIndicator()` | "Claude is responding"/"thinking" notification | Server acknowledged — NOT proof of text (can freeze) |
 | `hasStopButton()` | "Stop response" button present | Desktop actively processing |
 | `canSend()` | Send button active | Desktop ready for input |
-| `hasResponseContent()` | "Claude responded:" in text | Actual response text appeared |
-| `isResponseComplete()` | No stop button AND can send | **Definitive done signal** |
+| `hasResponseContent()` | "Claude responded:" in text | Response finished with text |
+| `isResponseComplete()` | No stop button AND content present | **Definitive done signal** |
 | `isAtBottom()` | "Scroll to bottom" button absent | View at bottom, safe to read |
 
-**The definitive done signal is `isResponseComplete()`** — stop button gone AND send button active. This works whether or not response text appeared. It detects both successful responses and error states (like Desktop producing nothing).
+**The definitive done signal is `isResponseComplete()`** — stop button gone AND real content present (`"Claude responded:"`). The content guard avoids the false "done" in the instant after send (no Stop yet, no content yet), and it distinguishes a real answer from an error state (Desktop producing nothing).
 
 **Scroll to bottom before every check.** [Lazy rendering](02-04-the-architecture--app-model.md#lazy-rendering) means the UIA tree only contains visible elements. The streaming indicator and stop button are at the bottom. `scrollToBottom()` is awaitable — it clicks the UI button and waits for it to disappear.
 
@@ -84,11 +90,11 @@ All async. All check real UI state. Call after `scrollToBottom()`.
 
 | State | How to detect |
 |-------|--------------|
-| Acknowledged, generating normally | `checkStreaming()` true, `hasStopButton()` true |
-| Done with response | `isResponseComplete()` true, `hasResponseContent()` true |
-| Done with NO response (error) | `isResponseComplete()` true, `hasResponseContent()` false |
-| Hung — never starts | After 30s: `checkStreaming()` false, `canSend()` true, no content |
-| Hung — starts but never finishes | `checkStreaming()` true for 5+ minutes, no content |
+| Acknowledged, generating normally | `checkStreaming(baseline)` true (Document growing), `hasStopButton()` true |
+| Done with response | `isResponseComplete()` true (no Stop AND `hasResponseContent()`) |
+| Done with NO response (error) | `hasStopButton()` false but `hasResponseContent()` false |
+| Hung — never starts | After 30s: Document never grew (`checkStreaming` false), `hasStreamingIndicator()` may be true (frozen notification) |
+| Hung — starts but never finishes | `hasStopButton()` true for 5+ minutes, Document not growing |
 
 ### Blocking vs non-blocking
 

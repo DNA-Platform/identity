@@ -1,9 +1,28 @@
 # The Code
 
-- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- **coauthor:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **coauthor:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md), [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
 
 ---
+
+> **Superseded — pending the Sprint 92 rebuild.** This chapter describes a `Session` class and a 110-line `think.ts` that the [driver redesign](../reference-desk/13-the-redesign.md) removed; `session.ts` is now neutralized and the `/think` flow is being rebuilt on the new page object model. Do not trust the specifics below until this chapter is rewritten *from the built code* (not from intention). The honest current state is in [Claude's perspective entry](../..teamsmanship/..team/claude/.perspective/06-2026-06-18-think-current-state.md); the target is [The Redesign](../reference-desk/13-the-redesign.md).
+
+## The architecture: think operations are Thoughtfulness resources
+
+`/think` is **composed, not monolithic.** Each operation it performs is a **resource file** attached to the Thoughtfulness chapter that specifies it — the same `--` convention by which [the commit tool](../..environmentalism/06-on-sync--commit.sh) is a resource of [On Sync](../..environmentalism/06-on-sync.md) (see [On Names](../bookkeeping/04-on-names.md), [Compilation Tools](../.compilation/05-tools.md)). **The architecture test (Doug): if a think operation is not a resource file in this book, used by `think.ts`, it is architected wrong.**
+
+The resources, by chapter:
+- [Persistence](03-persistence.md) → `03-persistence--state.ts` (the thought-state file — read/write/delete/update; this is today's [`think.ts`](../../src/scripts/think.ts), to be moved here).
+- [Conversation Catalogue](05-conversation-catalogue.md) → `05-conversation-catalogue--catalogue.ts` (every Desktop conversation by topic; new-vs-existing resolution).
+- [The Thought Lifecycle](02-the-thought-lifecycle.md) → `02-the-thought-lifecycle--dispatch.ts` (formulate → send → wait-for-streaming → **minimize**) and `--read.ts` (re-attach → wait-complete → read), both driving the app's live [`Response`](../reference-desk/02-01-the-architecture--layers.md#response-and-message-objects).
+
+`think.ts` becomes the **composition** — it imports these resources and runs the lifecycle. It carries no Desktop logic of its own; the operations are the resources, and the resources drive the [Reference Desk](../reference-desk/.cover.md) View objects (the app).
+
+**Two cases:**
+- **New topic** — sending creates a conversation; success means the read step **names it by topic and moves it into the Claude project** ([Conversation Catalogue](05-conversation-catalogue.md)).
+- **Existing topic** — navigate to the existing conversation in the Claude project, *as a human would*: click Projects → find the project → open → find the conversation (e.g. `Test`) → open. That is the app object model — `sidebar.openProjects() → ProjectsListPage.projects.find() → ProjectDetailPage.conversations.find() → open()` — specified in [Reference Desk Navigation](../reference-desk/02-03-the-architecture--navigation.md) and the [layers](../reference-desk/02-01-the-architecture--layers.md).
+
+The code below this line is the prior (Session-based) design, retained until the resources above replace it.
 
 The code is thin because the app already does the work.
 

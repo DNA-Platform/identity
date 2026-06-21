@@ -38,7 +38,7 @@ Sprint plans are chapters in a [Projection](../.projection/.cover.md) book. The 
 
 The chapter number (`01`) is the sort key within the book. The sprint number (`41`) is the historical identifier. The `--` separator distinguishes them. The title after the second `--` is the sprint name.
 
-When a sprint closes, the book's [cover](03-on-covers.md) must be updated: add the new chapter to the TOC with a synopsis. A bare TOC entry (just a title and link) is a directory listing, not a catalogue. Per [On Synopsis](09-on-synopsis.md), each entry gets at least one line describing what the sprint accomplished.
+**Write the chapter and update the cover in the same pass** — never as a later chore. The [cover](03-on-covers.md) TOC is how the team navigates the book; a chapter that exists on disk but is not in the cover is invisible — you cannot reach it by [reading covers and following links](06-on-links.md), which is the only sanctioned way to navigate. So every new chapter (a sprint plan, a sprint retro) gets a TOC entry the moment it is written. A bare entry (just a title and link) is a directory listing, not a catalogue: per [On Synopsis](09-on-synopsis.md), each entry gets at least one line describing what the chapter accomplished, not merely its title.
 
 ## Signing
 

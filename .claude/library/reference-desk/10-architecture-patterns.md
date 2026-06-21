@@ -5,7 +5,21 @@
 
 ---
 
-The code models a GUI application. Not an API. A GUI has screens. You navigate between screens by clicking. You can only interact with what's visible. The code enforces this: you can only call methods on objects that represent things currently on screen. If you don't have the object, you can't call the method. If the app isn't visible, nothing works.
+## The one rule
+
+**If you can't do it with a mouse and keyboard, it can't be in the app.**
+
+Every method in the View layer must correspond to something a human can do while sitting in front of the screen. Click a button. Type text into a text box. Press Enter. Press Escape. Scroll down. Read what's on screen. That's the complete list of actions.
+
+If a method takes a parameter that isn't text being typed into a visible text box, the method is wrong. If a method navigates to a screen without the user clicking through each intermediate screen, the method is wrong. If a method works when the app isn't visible, the method is wrong. If a method combines multiple user actions into one call, the method is wrong.
+
+This is not a guideline. This is the test for whether code belongs in the app. Every method. Every parameter. Every return value. Can the human do this? Then the code can do it. Can't the human do it? Then the code can't either.
+
+## Why
+
+A GUI is stateful. You are somewhere. You can only do what you can see. You can't skip screens. You can't invoke things that aren't visible. You can't interact with a minimized window. The code must enforce the same constraints the GUI enforces, because the code IS driving the GUI. If the code can do things the GUI doesn't allow, the code will fail — not loudly, not immediately, but by being in a state the GUI never intended, where nothing works and the errors are cryptic.
+
+The object model protects the code from itself. If you can only call `.open()` on a `ProjectItem` you got from a list you read from a screen you navigated to, then you KNOW the project exists and you KNOW you're on the right screen. The types enforce the navigation. The types enforce the state. You can't make a mistake the GUI wouldn't let you make.
 
 ## The class hierarchy
 

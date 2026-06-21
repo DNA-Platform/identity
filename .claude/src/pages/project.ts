@@ -1,173 +1,66 @@
-///: Project — a single project's detail page.
-///: Files, instructions, and scoped conversations.
+///: ProjectPage — one project's detail screen. Files, instructions, scoped
+///: conversations, and its own composer.
 ///:
+///: composer — start a new conversation in this project (send() returns the page).
+///: conversations() — the project's conversations as ConversationItem[] (the SAME
+///:   class as the sidebar — the redesign unified them). Find by name with
+///:   `.find(c => c.name === …)`.
+///: files() — the project's files as ProjectFile[]; each carries its own actions
+///:   (read/remove/download), no parametered container methods.
+///: instructions() — read the project instructions.
+///:
+///: [The Redesign](../../library/reference-desk/13-the-redesign.md#decompose-the-god-objects) — Project → ProjectPage + ProjectFile.
 ///: [Project Operations](../../library/reference-desk/03-03-operations--projects.md) — project workflows.
 
-// Project — a project's scoped home. Shows files, instructions, and conversations.
-// See: library/..team/claude/.perspective/05-current-state.png
-
-import type { ProjectController } from '../controllers/project-controller.ts';
+import type { Automation } from '../automation.ts';
+import type { Gateway } from '../gateway.ts';
+import type { Sidebar } from '../components/sidebar.ts';
+import type { Composer } from '../components/composer.ts';
 import type { FilesPane } from '../components/files-pane.ts';
 import type { ProjectFile } from '../components/project-file.ts';
-import type { Fallible } from '../errors.ts';
-import { tracked } from '../errors.ts';
-import { Lazy } from '../lazy.ts';
+import type { ProjectController } from '../controllers/project-controller.ts';
+import type { Navigation } from './navigation.ts';
+import { Page } from './page.ts';
+import { ConversationItem } from '../components/chat-list.ts';
+import { ChatListController } from '../controllers/chat-list-controller.ts';
 
 export type { ProjectFile };
 
-export interface ProjectConversation {
-  title: string;
-  lastMessage: string;
-}
-
-export class Project implements Fallible {
-  id = '';
-  url = '';
-  name = '';
-  description = '';
-  instructions = '';
-  isLoading = false;
-  hasError = false;
-  lastError: Error | null = null;
-
-  filesPane: FilesPane | null = null;
-
-  readonly conversations: Lazy<ProjectConversation[]>;
-  readonly files: Lazy<ProjectFile[]>;
+export class ProjectPage extends Page {
+  private nav!: Navigation;
 
   constructor(
+    auto: Automation,
+    gateway: Gateway,
+    sidebar: Sidebar,
     private readonly controller: ProjectController,
-    private readonly _filesPane: FilesPane,
+    private readonly filesPane: FilesPane,
+    readonly composer: Composer,
   ) {
-    this.conversations = new Lazy<ProjectConversation[]>(
-      [],
-      () => this.controller.loadAllConversations(),
-    );
-    this.files = new Lazy<ProjectFile[]>(
-      [],
-      () => this.controller.listFiles(),
-    );
+    super(auto, gateway, sidebar);
   }
 
-  async refresh(): Promise<void> {
-    this.isLoading = true;
-    try {
-      await tracked(this, async () => {
-        this.url = await this.controller.readUrl();
-        this.id = this.url.match(/\/project\/([a-f0-9-]+)/)?.[1] ?? '';
-        this.name = await this.controller.readName();
-        this.description = await this.controller.readDescription();
-        this.instructions = await this.controller.readInstructions();
-        // Quick initial read — preview only, not fully loaded
-        this.conversations.preview(await this.controller.readConversations());
-        this.files.preview(await this.controller.listFiles());
-        // Detect if files pane is showing
-        await this._filesPane.detect();
-        this.filesPane = this._filesPane.showing ? this._filesPane : null;
-      });
-    } finally {
-      this.isLoading = false;
-    }
+  bind(nav: Navigation): this { this.nav = nav; return this; }
+
+  get screenType(): string { return 'project'; }
+
+  /** The project's conversations — unified ConversationItem (same as sidebar). */
+  async conversations(): Promise<ConversationItem[]> {
+    const raw = await this.controller.loadAllConversations();
+    const chatList = new ChatListController(this.auto);
+    return raw.map(c => new ConversationItem(chatList, this.gateway, this.nav, c.title));
   }
 
-  resetData(): void {
-    this.conversations.reset();
-    this.files.reset();
+  /** The project's files — each ProjectFile carries its own actions. */
+  async files(): Promise<ProjectFile[]> {
+    return this.controller.listFiles();
   }
 
-  // --- Reading ---
-
-  async readName(): Promise<string> {
-    return tracked(this, async () => {
-      this.name = await this.controller.readName();
-      return this.name;
-    });
+  /** Read the project instructions. */
+  async instructions(): Promise<string> {
+    return this.controller.readInstructions();
   }
 
-  async readDescription(): Promise<string> {
-    return tracked(this, async () => {
-      this.description = await this.controller.readDescription();
-      return this.description;
-    });
-  }
-
-  async readInstructions(): Promise<string> {
-    return tracked(this, async () => {
-      this.instructions = await this.controller.readInstructions();
-      return this.instructions;
-    });
-  }
-
-  // --- Writing ---
-
-  async rename(newName: string): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.rename(newName);
-      this.name = newName;
-    });
-  }
-
-  async editDescription(text: string): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.editDescription(text);
-      this.description = text;
-    });
-  }
-
-  async writeInstructions(text: string): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.writeInstructions(text);
-      this.instructions = text;
-    });
-  }
-
-  // --- Files ---
-
-  async uploadFile(localPath: string): Promise<void> {
-    if (!this.filesPane) throw new Error('Files pane is not showing');
-    this.isLoading = true;
-    try {
-      await tracked(this, async () => {
-        await this.filesPane!.uploadFromDevice(localPath);
-        this.files.reset();
-      });
-    } finally {
-      this.isLoading = false;
-    }
-  }
-
-  async addTextContent(title: string, content: string): Promise<void> {
-    if (!this.filesPane) throw new Error('Files pane is not showing');
-    this.isLoading = true;
-    try {
-      await tracked(this, async () => {
-        await this.filesPane!.addTextContent(title, content);
-        this.files.reset();
-      });
-    } finally {
-      this.isLoading = false;
-    }
-  }
-
-  async downloadFile(name: string, outputPath: string): Promise<void> {
-    await this.controller.downloadFile(name, outputPath);
-  }
-
-  async removeFile(name: string): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.removeFile(name);
-      this.files.reset();
-    });
-  }
-
-  async readFileContent(name: string): Promise<string> {
-    return this.controller.readFileContent(name);
-  }
-
-  // --- Conversations ---
-
-  async newConversation(): Promise<void> {
-    await tracked(this, () => this.controller.newConversation());
-    this.conversations.reset();
-  }
+  /** The files pane (Add files menu, upload, add text content). */
+  get filesPanel(): FilesPane { return this.filesPane; }
 }

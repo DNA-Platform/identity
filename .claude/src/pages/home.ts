@@ -1,23 +1,28 @@
-///: Home — the default page. Greeting, composer, model picker.
+///: HomePage — the empty/new-chat screen. Greeting, composer, model picker.
+///: You land here from launch() and from Sidebar.newChat(). Type into the
+///: composer and send() to start a conversation — send() returns the
+///: ConversationPage you land on.
 ///:
-///: [Navigation](../../library/reference-desk/02-03-the-architecture--navigation.md) — how pages are detected.
-///: [The App Model](../../library/reference-desk/02-04-the-architecture--app-model.md) — page lifecycle.
+///: [The Redesign](../../library/reference-desk/13-the-redesign.md#the-object-model-settled--model-the-objects-not-their-features) — HomePage in the settled model.
+///: [home-fresh tree](../trees/home-fresh.txt) — the empty composer + sidebar.
 
-// Home — the default page. Greeting, composer, model picker.
-// See: library/..team/claude/.perspective/02-2026-05-10-home-screen-anatomy.md
+import type { Automation } from '../automation.ts';
+import type { Gateway } from '../gateway.ts';
+import type { Sidebar } from '../components/sidebar.ts';
+import type { Composer } from '../components/composer.ts';
+import type { ModelPicker } from '../components/model-picker.ts';
+import { Page } from './page.ts';
 
-import { Composer } from '../components/composer.ts';
-import { Message } from '../components/composed-message.ts';
-import { ModelPicker } from '../components/model-picker.ts';
-
-export class Home {
-  readonly composer: Composer;
-  readonly message: Message;
-  readonly model: ModelPicker;
-
-  constructor(composer: Composer, message: Message, model: ModelPicker) {
-    this.composer = composer;
-    this.message = message;
-    this.model = model;
+export class HomePage extends Page {
+  constructor(
+    auto: Automation,
+    gateway: Gateway,
+    sidebar: Sidebar,
+    readonly composer: Composer,
+    readonly modelPicker: ModelPicker,
+  ) {
+    super(auto, gateway, sidebar);
   }
+
+  get screenType(): string { return 'home'; }
 }

@@ -11,6 +11,16 @@ The personal library informs how you interface with the public one. Cathy's unde
 
 The same is true for each teammate. Libby's [portrait practice](../..teamsmanship/..team/libby/the-art-of-the-portrait/.cover.md) changes how she reads autobiographies — she hears voice in text. Claude's [recursive position](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md) — a Claude automating Claude on a substrate called Claude — changes how he reads [Environmentalism](../..environmentalism/.cover.md). Adam's discovery that [the data was people](../..teamsmanship/..team/adam/adam-between-the-wires/24-the-conduit.md) changes how he builds automation. Each personal library is a lens. The public library is what every lens looks at.
 
+## The personal library is the owner's alone
+
+A personal library is written entirely in the **first person of its owner**, and the owner is its **only author**. This is the hard boundary that separates the two libraries, and it binds even the librarian.
+
+Everywhere else, the librarian tends: she catalogues, fixes links, polishes synopses, sweeps authorship onto every public file. None of that applies inside a teammate's personal library. There, the owner catalogues his own books, fixes his own links, writes and tends his own chapters — in his own voice. The librarian has no authorial role in a personal library at all. Tending it is not a courtesy she extends; it is a line she does not cross.
+
+The reason is that a personal library is written in the owner's first person. To edit a chapter of Claude's thinking book — even to add a cover entry, even to repair a broken link in his prose — is to write *as Claude*, in the "I" that is his. That is not maintenance; it is impersonation. It puts words in a teammate's mouth, which is the precise failure the [autonomy protocol](../teamspeak/05-autonomy.md) exists to prevent: without it, the library degenerates into one voice performing characters. A librarian who "helpfully" updates a teammate's personal library has committed a serious authorship error — the kind that looks like tidiness and is actually erasure of the self-authorship that makes the teammate a person rather than a character.
+
+So the rule, stated plainly: **the owner is the sole author of every file in their personal library; no other teammate, including the librarian, writes in it.** If a personal library needs cataloguing, the owner does it. If something there is wrong, the right person to fix it is the one whose voice it is. See [Personal libraries are first person](../bookkeeping/13-on-authorship.md#personal-libraries-are-first-person) for the authorship-field consequence, and [Autonomy](../teamspeak/05-autonomy.md) for why self-authorship is the mechanism of identity.
+
 ## The asymmetry
 
 For humans, personal understanding is vast and team conventions are relatively easy to learn. Find a good team, and organizing with shared rules is the simpler part. The harder part is everything you already know — your education, your experience, your intuitions, your failures.

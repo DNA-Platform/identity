@@ -1,10 +1,22 @@
-///: ChatListController — sensors and actuators for sidebar conversations.
-///: Sensors: isMenuVisible, readMenuItems, readChatItems.
-///: Actuators: expandMenu, clickRename, clickDelete, clickMoveTo.
-///: No orchestration — the View layer (ChatList) sequences these calls.
+///: ChatListController — sensors and actuators for conversations (sidebar and
+///: conversation-page header). Sensors: readList, isMenuVisible, readMenuItems,
+///: isRenameFieldActive, isDialogVisible, readProjectList. Actuators: expandMenu,
+///: clickRename, typeAndConfirm, clickAddToProject, clickProjectItem,
+///: searchProjects, clickRemoveFromProject, clickDelete, clickPin. No
+///: orchestration — the View ([ConversationItem]/[ConversationMenu]/
+///: [MoveConversationModal]) sequences these calls through the gateway.
+///:
+///: Grounded in captured UIA trees ([catalogue](../trees/README.md)):
+///: the three-dot menu → [conversation-menu.txt](../trees/conversation-menu.txt)
+///: (MenuItems Pin/Rename/Add to project/Delete/Projects); the Add-to-project
+///: dialog → [move-conversation-modal.txt](../trees/move-conversation-modal.txt)
+///: (Window "Move chat", ComboBox "Select a project", List "Projects" of
+///: ListItems); the rename field → [conversation-rename-field.txt](../trees/conversation-rename-field.txt)
+///: (Edit "Rename").
 ///:
 ///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
 ///: [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — the View-Controller split.
+///: [Adding a conversation to a project](../../library/reference-desk/03-03-operations--projects.md#adding-a-conversation-to-a-project) — the flow these back.
 
 import type { Automation } from '../automation.ts';
 import { ChatNotFoundError } from '../errors.ts';
@@ -143,10 +155,10 @@ export class ChatListController {
   }
 
   async isRenameFieldActive(): Promise<boolean> {
-    // When the rename field opens, the sidebar text changes — the old title
-    // becomes an editable text field. We detect this by checking if the
-    // menu closed (Rename was clicked and the edit field replaced it).
-    return !(await this.isMenuVisible());
+    // The rename field is an Edit named "Rename" (grounded:
+    // ../trees/conversation-rename-field.txt line 24). Its presence is the
+    // honest signal the field opened — not the old "menu closed" inference.
+    return this.auto.uia.exists('Edit', 'Rename');
   }
 
   // --- Granular actuators (single UIA actions) ---
@@ -178,8 +190,20 @@ export class ChatListController {
     return this.auto.uia.invoke('MenuItem', 'Pin');
   }
 
+  async clickRemoveFromProject(): Promise<boolean> {
+    return this.auto.uia.invoke('MenuItem', 'Remove from project');
+  }
+
   async clickProjectItem(name: string): Promise<boolean> {
     return this.auto.uia.invoke('ListItem', name);
+  }
+
+  /** Filter the Move chat modal's project list. The modal's search bar is a
+   *  ComboBox named "Select a project" (grounded: ../trees/move-conversation-modal.txt
+   *  line 12), sitting above the List | Projects of ListItems. The modal opens
+   *  with that ComboBox focused, so a clipboard paste filters the list. */
+  async searchProjects(text: string): Promise<void> {
+    await this.auto.keyboard.typeViaClipboard(text);
   }
 
   async closeMenu(): Promise<void> {

@@ -1,143 +1,98 @@
-///: ComposerController — UIA boundary for the text input.
-///: Sensors and actuators only. No orchestration.
+///: ComposerController — blind UIA executor for the text input.
+///: Pure sensors and actuators. No gateway. No foreground checks.
+///: No requireScreen. No orchestration. Called only by the View
+///: layer (Composer) through the Gateway.
 ///:
-///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
-///: [Sending Messages](../../library/reference-desk/03-01-operations--sending.md) — the compose workflow.
-
-// Composer controller — types and sends messages via UIA.
-// type() uses ValuePattern (programmatic, strips formatting).
-// paste() uses clipboard (preserves formatting, appends at cursor).
-// compose() formats outgoing text and pastes — the primary way to build messages.
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — controllers are blind executors.
+///: [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — the one rule.
 
 import type { Automation } from '../automation.ts';
-import { formatOutgoing } from '../text.ts';
+
+// The composer's element is named by its placeholder, and it differs by screen:
+// "Write your prompt to Claude" on a fresh/home chat, "Write a message…" inside
+// an open conversation (grounded live, diag-send 2026-06-21). An EMPTY field
+// reports its placeholder AS its value, so readDraft treats a placeholder match
+// as empty.
+const composerNames = [
+  'Write your prompt to Claude',
+  'Write a message…',
+  'Write a message...',
+  'Message Claude',
+  'How can I help you today?',
+  'Reply to Claude...',
+];
+const placeholderValues = new Set(composerNames.map(n => n.replace(/[.…]+$/, '')));
 
 export class ComposerController {
   constructor(private readonly auto: Automation) {}
 
+  // --- Sensors (reads) ---
+
   async readDraft(): Promise<string> {
-    const names = ['Write your prompt to Claude', 'Message Claude', 'How can I help you today?', 'Reply to Claude...'];
-    for (const name of names) {
+    for (const name of composerNames) {
       const value = await this.auto.uia.readValue(name);
-      if (value !== null) return value;
+      if (value !== null) {
+        // An empty composer reports its placeholder as the value — that is NOT
+        // draft text. Treat any placeholder match as empty.
+        if (placeholderValues.has(value.replace(/[.…]+$/, '').trim())) return '';
+        return value;
+      }
     }
     return '';
   }
 
-  async type(text: string): Promise<void> {
-    this.auto.navigator.requireScreen('home', 'conversation', 'project');
+  async hasSendButton(): Promise<boolean> {
+    return await this.auto.uia.existsByName('Send')
+      || await this.auto.uia.existsByName('Send message');
+  }
 
-    await this.auto.gateway.act(
-      async () => {
-        const set = await this.auto.uia.setValue('Write your prompt to Claude', text)
-          || await this.auto.uia.setValue('Message Claude', text)
-          || await this.auto.uia.setValue('How can I help you today?', text)
-          || await this.auto.uia.setValue('Reply to Claude...', text);
-        if (!set) {
-          await this.auto.keyboard.clickAt(0.5, 80);
-          await this.auto.keyboard.typeViaClipboard(text);
-        }
-      },
-      async () => {
-        const pageText = await this.auto.uia.readText();
-        return pageText?.includes(text.slice(0, 20)) ?? false;
-      },
-      { description: `Type "${text.slice(0, 40)}"` },
-    );
+  // --- Actuators (single UIA actions) ---
+
+  async clickSend(): Promise<boolean> {
+    const sent = await this.auto.uia.invokeByName('Send')
+      || await this.auto.uia.invokeByName('Send message');
+    if (!sent) {
+      await this.auto.keyboard.pressEnter();
+    }
+    return true;
+  }
+
+  async clickAttach(): Promise<boolean> {
+    return await this.auto.uia.invokeByName('Attach')
+      || await this.auto.uia.invokeByName('Add content')
+      || await this.auto.uia.invokeByName('Add files, connectors, and more');
+  }
+
+  async focusComposer(): Promise<boolean> {
+    for (const name of composerNames) {
+      if (await this.auto.uia.clickByName(name)) return true;
+    }
+    return false;
   }
 
   async paste(text: string): Promise<void> {
-    this.auto.navigator.requireScreen('home', 'conversation', 'project');
-
-    // Paste is NOT idempotent — each paste appends text.
-    // Do not use gateway.act() which retries on verification failure.
-    // Click the composer, paste once, verify once.
-    await this.auto.uia.clickByName('Write your prompt to Claude')
-      || await this.auto.uia.clickByName('How can I help you today?')
-      || await this.auto.uia.clickByName('Reply to Claude...');
+    await this.focusComposer();
     await this.auto.keyboard.typeViaClipboard(text);
-
-    await this.auto.gateway.waitFor(
-      async () => {
-        return await this.auto.uia.existsByName('Send')
-          || await this.auto.uia.existsByName('Send message');
-      },
-      { description: `Verify paste "${text.slice(0, 40)}"`, timeoutMs: 10_000 },
-    );
   }
 
-  async compose(text: string): Promise<void> {
-    const formatted = formatOutgoing(text);
-    await this.paste(formatted);
+  async typeInline(text: string): Promise<boolean> {
+    for (const name of composerNames) {
+      if (await this.auto.uia.setValue(name, text)) return true;
+    }
+    return false;
   }
 
-  async send(): Promise<void> {
-    this.auto.navigator.requireScreen('home', 'conversation', 'project');
-
-    // Capture text length BEFORE sending so we can detect new content
-    const textBefore = await this.auto.uia.readText() ?? '';
-    const lengthBefore = textBefore.length;
-
-    await this.auto.gateway.act(
-      async () => {
-        const sent = await this.auto.uia.invokeByName('Send')
-          || await this.auto.uia.invokeByName('Send message');
-        if (!sent) {
-          await this.auto.keyboard.pressEnter();
-        }
-      },
-      async () => {
-        // A human looks at the screen and sees that something new appeared.
-        // Text that wasn't there before. We do the same: measure text growth.
-        // The page text includes everything — sidebar, messages, chrome.
-        // After sending, the text grows because Desktop adds content:
-        // the thinking block, the thinking summary, the response words.
-        // We detect that growth. This works on both fresh and existing conversations.
-        const text = await this.auto.uia.readText() ?? '';
-        return text.length > lengthBefore + 20;
-      },
-      { description: 'Send message', timeoutMs: 120_000 },
-    );
-  }
-
-  async clear(): Promise<void> {
-    this.auto.navigator.requireScreen('home', 'conversation', 'project');
-
-    // Phase 1: remove pasted text attachments.
-    // Each pasted block creates a "Remove Pasted Text, pasted, N lines" button.
-    await this.removePastedAttachments();
-
-    // Phase 2: clear inline text by clicking into the composer, then select-all + delete.
-    await this.auto.uia.clickByName('Write your prompt to Claude')
-      || await this.auto.uia.clickByName('How can I help you today?')
-      || await this.auto.uia.clickByName('Reply to Claude...');
+  async selectAllAndDelete(): Promise<void> {
+    await this.focusComposer();
     await this.auto.keyboard.selectAll();
     await this.auto.keyboard.delete();
   }
 
-  async removePastedAttachments(): Promise<number> {
-    let removed = 0;
-    for (let i = 0; i < 20; i++) {
-      const names = await this.auto.uia.findAllNames('Button');
-      const removeBtn = names.find(n => n.startsWith('Remove Pasted Text'));
-      if (!removeBtn) break;
-      await this.auto.uia.invokeByName(removeBtn);
-      await new Promise(r => setTimeout(r, 400));
-      removed++;
-    }
-    return removed;
-  }
-
-  async attach(filePath: string): Promise<void> {
-    this.auto.navigator.requireScreen('home', 'conversation', 'project');
-
-    await this.auto.gateway.act(
-      async () => {
-        await this.auto.uia.invokeByName('Attach')
-          || await this.auto.uia.invokeByName('Add content');
-      },
-      () => Promise.resolve(true),
-      { description: `Attach ${filePath}`, timeoutMs: 30_000 },
-    );
+  async removePastedAttachment(): Promise<boolean> {
+    const names = await this.auto.uia.findAllNames('Button');
+    const removeBtn = names.find(n => n.startsWith('Remove Pasted Text'));
+    if (!removeBtn) return false;
+    await this.auto.uia.invokeByName(removeBtn);
+    return true;
   }
 }

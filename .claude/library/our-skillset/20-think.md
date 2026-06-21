@@ -16,6 +16,16 @@ A question like "should we rewrite our UIA integration?" factorizes into the gen
 
 Send the general part. Keep the specific part. The factorization is where the thinking begins, not after the response arrives.
 
+## Framing the workload
+
+Desktop Claude's response time scales with how much I ask for. An open-ended "research everything about X" can run for minutes — long enough that the read window times out and the turn is lost (this is a common failure, and there is no clean resume once the conversation state is gone). So frame the *size* of the ask in the prompt, not just its content:
+
+- "Give me a **quick summary** of …"
+- "What are your **top-of-mind thoughts** on …"
+- "The **three main considerations** for …"
+
+A bounded ask returns faster and is often sufficient. When it isn't, the lifecycle is multi-turn — follow up for depth on the same conversation rather than asking for everything at once. This is a technique to try, not a proven rule (Doug, 2026-06-18): smaller, faster asks may dodge the timeouts that have cost us turns. It pairs with the [thinking pause](#the-thinking-pause) below — frame the ask small, do library work while Desktop computes, then read. And it does not remove the need for [timeout recovery](#resuming-a-thought): even a bounded ask can run long, so a later invocation resumes the read by **topic** — reopening the topic's conversation in the Claude project (the topic is recorded in the state file).
+
 ## The thinking pause
 
 After writing a question, Desktop takes time to respond — sometimes over a minute for research-heavy questions. The script sends and minimizes immediately. The response isn't ready yet. This is the thinking pause.
@@ -56,10 +66,10 @@ This determines which Desktop conversation to send to: an existing named chat fo
 Formulate the question. Apply the [factorization principle](#the-factorization-principle). Run:
 
 ```
-npx tsx .claude/src/scripts/test-think-dispatch.ts write "your question"
+npx tsx .claude/src/scripts/think.ts write "<topic>" "<question>"
 ```
 
-The script sends to Desktop, confirms processing started, saves the conversation ID, and minimizes. One call, returns immediately.
+The [composer](../../src/scripts/think.ts) runs the [dispatch resource](../thoughtfulness/02-the-thought-lifecycle--dispatch.ts): it sends to Desktop and — if the topic has no conversation in the Claude project yet — names the new conversation by the topic and files it into Claude. It waits only until streaming is detected, records the in-flight thought by topic, minimizes, and **exits**. One call, returns immediately. **Never chain a check after it** — that is a separate process (step 5).
 
 ### Step 2: Create the chapter
 
@@ -82,10 +92,10 @@ Read a relevant library chapter. If asking about formal self-reference, read [Bo
 ### Step 5: Check and read
 
 ```
-npx tsx .claude/src/scripts/test-think-dispatch.ts read
+npx tsx .claude/src/scripts/think.ts read "<topic>"
 ```
 
-The script navigates to the conversation, scrolls to bottom, polls `isResponseComplete()`. If still processing, I tend the library and run read again. If complete, the script reads the response and saves to `debug/think-response.txt`.
+The [composer](../../src/scripts/think.ts) runs the [read resource](../thoughtfulness/02-the-thought-lifecycle--read.ts): it reopens the topic's conversation, scrolls to the bottom, and checks completion **once** — it does not block. If still processing, it reports `NOT READY` and exits; I tend the library and run read again. If complete, it prints the full response for me to evaluate. This is a **separate process** from write — never chained, and it ends promptly so the turn closes.
 
 ### Step 6: Evaluate
 

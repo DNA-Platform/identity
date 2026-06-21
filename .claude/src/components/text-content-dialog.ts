@@ -38,7 +38,7 @@ export class TextContentDialog {
   }
 
   async readTitleField(): Promise<string> {
-    const handle = this.auto.gateway['window'].handle;
+    const handle = this.auto.window.handle;
     const result = await this.auto.shell.run(`
       Add-Type -AssemblyName UIAutomationClient
       Add-Type -AssemblyName UIAutomationTypes

@@ -89,7 +89,6 @@ No gateway. No retry. No verify. Just the raw UIA call.
 | [`ComposerController`](../../src/controllers/composer-controller.ts) | Text input — type, paste, click Send |
 | [`ConversationController`](../../src/controllers/conversation-controller.ts) | Messages — read turns, read response, scroll |
 | [`ProjectController`](../../src/controllers/project-controller.ts) | Project page — read name, instructions, files |
-| [`ProjectsController`](../../src/controllers/projects-controller.ts) | Projects grid — read cards, click cards |
 | [`SidebarController`](../../src/controllers/sidebar-controller.ts) | Sidebar navigation — click Projects, New Chat, search |
 | [`ModelPickerController`](../../src/controllers/model-picker-controller.ts) | Model selection |
 | [`ArtifactPanelController`](../../src/controllers/artifact-panel-controller.ts) | Artifact panel |
@@ -213,10 +212,17 @@ Every method is parameterless. The item knows its own name. `select()` doesn't t
 ### Response and Message objects
 
 ```typescript
+// LIVE View object — you get it from send() and as conversation.lastResponse.
+// Until it detects the response is over, it is live: every read hits the
+// current tree. Async throughout (no sync toString). Models the whole response
+// as an ordered list of Parts (text, code, thinking/research, artifact).
 class Response {
-  text: string                // the response text — grows during streaming
-  isComplete: boolean         // text stopped growing AND completion marker present
-  hasContent: boolean         // any text exists (thinking block or response)
+  read(): Promise<string>        // the whole response text, read live (replaces toString)
+  parts(): Promise<Part[]>       // the ordered, typed parts
+  isComplete(): Promise<boolean> // is the response over?
+  hasContent(): Promise<boolean> // any content yet? false = empty state
+  isStreaming(): Promise<boolean>// at least one real PART exists and not yet over
+  readToEnd(): Promise<string>   // block until over, then return the final text
 }
 
 class Message {
@@ -232,6 +238,8 @@ class ThinkingBlock {
   expand(): Promise<string>   // click to expand, returns thinking text
 }
 ```
+
+`isStreaming()` verifies a real **part** exists — not the `Claude is responding` indicator, which can sit there while frozen. Those indicators (`Claude is responding`, `Stop response`, `Claude finished the response`) are **status**, read by `isComplete()`/`isStreaming()`; they are never parts. The page hands the `Response` back from `conversation.send()`, and exposes it as `conversation.lastResponse`. See [The Redesign](13-the-redesign.md#the-response-as-a-polymorphic-collection-of-parts-doug-2026-06-21) for the parts and the live model.
 
 ## How a script reads
 
