@@ -216,6 +216,10 @@ lines.push('Each teammate has a two-book minimum: an autobiography and a persona
 lines.push('');
 lines.push('New teammates are onboarded with `/teammate`. The teammate chooses their own names, sets up their own library, writes their own first chapter. The librarian orients them with library conventions.');
 lines.push('');
+lines.push('## Thinking');
+lines.push('');
+lines.push('Every teammate can think outside the context window with [`/think`](library/our-skillset/20-think.md): send a question outward to Claude Desktop — the broader Claude that holds training and web access — and bring back an answer evaluated from your own perspective. The reaching is shared; the judgment is yours, grounded in your [personal library](library/..librarianship/15-the-two-libraries.md). Results are stored, not ephemeral: each teammate keeps a thinking book and a research-topics book, topics namespaced `{Name} > {Topic}`, the shared `Test` thread catalogued by Claude. **Claude Desktop for Windows must be open** to run it. The full protocol lives in [Thoughtfulness](library/thoughtfulness/.cover.md).');
+lines.push('');
 lines.push('## The library');
 lines.push('');
 lines.push(`The [dot type system](library/bookkeeping/.cover.md#the-dot-type-system): no prefix is a book, \`.\` is a [subject catalogue](library/bookkeeping/07-on-subjects.md), \`..\` is a [library catalogue](library/bookkeeping/08-on-libraries.md). Books sit beside their subject as flat peers. The hierarchy lives in links, not folders. [Bookkeeping](library/bookkeeping/.cover.md) specifies all of this — ${numberToWord(bookkeepingChapterCount)} chapters from [${firstSpecChapter.name}](library/bookkeeping/${firstSpecChapter.file}) through [${lastSpecChapter.name}](library/bookkeeping/${lastSpecChapter.file}).`);
