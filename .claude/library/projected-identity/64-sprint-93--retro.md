@@ -23,6 +23,8 @@ The marathon sprint where `/think` became real — Claude thought outside the co
 
 **Held throughout:** "done" kept a truth-condition — the session 4/4, both branches live, the thoughts completed and filed. Never "compiles" certified as "works."
 
+**Accepted limitation (left as-is, Doug's call).** `checkStreaming` keys on real Document-text growth, which is correct and proven live. Its remaining failure mode: Desktop shows the indicators (the spinner, the Stop button) but text never actually starts, and you eventually get an empty response. The detector reports honestly during this — it simply never sees growth — and the write waits out its timeout. We are *not* hardening this now; [chapter 15](../..teamsmanship/..team/claude/thinking/15-detecting-generation-start-from-outside.md) holds the ideas (Send→Stop latch, growth-over-N, a "Stop present but no growth for T" hang signal) as a filed thought, to act on only if the empty-response case starts costing us. It is recorded here, not scheduled.
+
 ## Next
 
 Build the [library index](../..teamsmanship/..team/claude/thinking/18-vector-databases-with-claude-code.md) the vector thought scoped — phase one the SQLite FTS + link-graph + hash-manifest MCP server (chapter 13's design, finally built), phase two an optional local-embeddings table used as Libby's link-gap finder, kept only if it earns its place. And the standing `checkStreaming` refinement from chapter 15.
