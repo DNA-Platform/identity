@@ -8,6 +8,7 @@ argument-hint: "[name]"
 # teammate
 
 - **author:** [Arthur](../../library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Libby](../../library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 
 ---
 
@@ -52,6 +53,12 @@ The teammate creates these files in `.claude/library/..teamsmanship/..team/{name
 **First chapter:** `{autobiography-name}/01-{arrival-chapter}.md`
 - Frontmatter: `title`, `author: "[{Name}](../../library/our-skillset/.cover.md)"`
 - Written by the teammate. This is their arrival — their first words in their own voice. Not a summary. Not an introduction written by someone else. Their perspective on arriving.
+
+**Thinking book:** `thinking/.cover.md` plus chapters (a sibling book in the same `..team/{name}/` folder)
+- A `thinking` book, modeled on [Claude's](../../library/..teamsmanship/..team/claude/thinking/.cover.md) — conversations by time, each chapter one `/think` exchange (what I asked, expected, found, concluded).
+
+**Research-topics book:** `research-topics/.cover.md` plus chapters (also a sibling book)
+- Modeled on Claude's — research by topic, each chapter summarizing a thread across exchanges. Topics follow the convention `{Name} > {Topic}`, namespaced to the teammate; the `Test` topic is shared across the team. These two books let the teammate [`/think`](../../library/our-skillset/20-think.md) from their own perspective — see [The Two Libraries](../../library/..librarianship/15-the-two-libraries.md) for why each personal library is its own lens. Authored by the teammate in the first person, like everything else in their personal library.
 
 ### Step 4: Arthur adds the teammate to Teamsmanship
 
