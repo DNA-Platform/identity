@@ -1,124 +1,61 @@
-///: Session — managed conversation lifecycle on Doug's computer.
-///: Foreground to compose and send, minimize between turns. The
-///: [/think skill](../library/our-skillset/20-think.md) uses Session for all
-///: Desktop interaction — the think script does only state file persistence.
+///: Session — the app's memory of WHERE IT IS. An app-level construct (held by
+///: Claude as `app.session`), not a think-level one: it records the current page
+///: by its [id](pages/page.ts) (URL) so a separate later process can tell whether
+///: the app is STILL there. It holds no topic, no thought — only the page.
 ///:
-///: [Sessions](../library/reference-desk/03-04-operations--sessions.md) — full lifecycle.
-///: [Writing Scripts](../library/reference-desk/06-writing-scripts.md) — script patterns.
-///: [Reference Desk](../library/reference-desk/.cover.md) — the book that documents this codebase.
+///: It answers one question: are we in SYNC with the app (still on the page we
+///: remembered)? It never assumes — the app may have been restarted or navigated
+///: away — so it reads the LIVE URL and compares. If in sync, the caller binds the
+///: page it is on; if not, the caller starts from home and navigates as it would
+///: have. The Session is not an API for navigation; it is a memory you check.
+///:
+///: Persisted to a small JSON file beside the driver so it survives process exit
+///: (write and read are separate processes).
+///:
+///: [The Redesign](../library/reference-desk/13-the-redesign.md#settled-decisions-the-four-open-questions) — pages are identified by URL.
+///: [Reference Desk](../library/reference-desk/.cover.md) — the driver this belongs to.
 
+import { readFileSync, writeFileSync, existsSync, unlinkSync, mkdirSync } from 'fs';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import type { Claude } from './claude.ts';
-import type { Response, Turn } from './components/turn.ts';
-import { powershellSync } from './shell.ts';
 
-export interface SessionOptions {
-  name?: string;
-  project?: string;
-  timeout?: number;
-  cleanup?: 'delete' | 'keep';
-}
+const SESSION_FILE = resolve(dirname(fileURLToPath(import.meta.url)), '.session.json');
 
 export class Session {
-  id = '';
-  url = '';
-  name: string;
-  turns: Turn[] = [];
+  constructor(private readonly app: Claude) {}
 
-  private started = false;
-  ended = false;
-
-  constructor(
-    private readonly app: Claude,
-    private readonly options: SessionOptions = {},
-  ) {
-    this.name = options.name ?? '';
+  /** Remember the page the app is on now, by its URL. */
+  async remember(): Promise<void> {
+    this.save(await this.app.currentUrl());
   }
 
-  get turnCount(): number {
-    return this.turns.length;
+  /** The URL the session last remembered (read-only — for inspection/tests). */
+  get rememberedUrl(): string | null {
+    return this.load();
   }
 
-  async start(): Promise<void> {
-    if (this.started) throw new Error('Session already started');
-    this.started = true;
-    // No navigation or foreground changes here.
-    // The first send() acquires foreground — one cycle, not two.
+  /** Are we in SYNC with the app — still on the page we remembered? Restores the
+   *  window, reads the LIVE URL, and compares. False if nothing is remembered, the
+   *  app isn't running, or it has moved. Never assumes. */
+  async inSync(): Promise<boolean> {
+    const remembered = this.load();
+    if (!remembered || !this.app.attach()) return false;
+    return (await this.app.currentUrl()) === remembered;
   }
 
-  async send(text: string): Promise<Response> {
-    if (!this.started) throw new Error('Session not started');
-    if (this.ended) throw new Error('Session already ended');
-
-    const timeout = this.options.timeout ?? 120_000;
-
-    // Foreground: compose, send, wait for response
-    this.acquireForeground();
-    await this.app.compose(text);
-    await this.app.send(timeout);
-
-    // Read the full conversation
-    this.turns = await this.app.conversation.readTurns();
-    this.url = await this.app.auto.uia.readUrl() ?? '';
-    this.id = this.url.match(/\/chat\/([a-f0-9-]+)/)?.[1] ?? '';
-
-    // Minimize — Doug gets his computer back
-    this.app.window.minimize();
-
-    const lastTurn = this.turns[this.turns.length - 1];
-    if (!lastTurn?.response) {
-      throw new Error('No response received');
-    }
-
-    return lastTurn.response;
+  forget(): void {
+    if (existsSync(SESSION_FILE)) unlinkSync(SESSION_FILE);
   }
 
-  async end(): Promise<void> {
-    if (this.ended) return;
-    this.ended = true;
-
-    this.acquireForeground();
-
-    const shouldDelete = this.options.cleanup === 'delete';
-
-    if (this.name && this.turnCount > 0 && !shouldDelete) {
-      try {
-        await this.app.conversation.rename(this.name);
-      } catch {
-        // non-critical
-      }
-    }
-
-    if (shouldDelete && this.turnCount > 0) {
-      await this.app.deleteConversation();
-    } else {
-      await this.app.goHome();
-    }
-
-    this.app.window.minimize();
+  private save(url: string): void {
+    mkdirSync(dirname(SESSION_FILE), { recursive: true });
+    writeFileSync(SESSION_FILE, JSON.stringify({ url }, null, 2), 'utf-8');
   }
 
-  private acquireForeground(): void {
-    if (!this.app.window.handle) throw new Error('No window handle');
-
-    // Already foregrounded? Skip the P/Invoke dance.
-    if (this.app.window.isForeground()) return;
-
-    const handle = this.app.window.handle;
-    powershellSync(`
-      Add-Type @"
-        using System; using System.Runtime.InteropServices;
-        public class SessionFg {
-          [DllImport("user32.dll")] public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
-          [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr h);
-          [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h, int n);
-        }
-"@
-      [SessionFg]::keybd_event(0x12, 0, 0, [UIntPtr]::Zero)
-      [SessionFg]::keybd_event(0x12, 0, 2, [UIntPtr]::Zero)
-      [SessionFg]::ShowWindow([IntPtr]::new(${handle}), 3) | Out-Null
-      [SessionFg]::SetForegroundWindow([IntPtr]::new(${handle})) | Out-Null
-    `);
-
-    this.app.window.requireForeground();
+  private load(): string | null {
+    if (!existsSync(SESSION_FILE)) return null;
+    try { return (JSON.parse(readFileSync(SESSION_FILE, 'utf-8')) as { url?: string }).url ?? null; }
+    catch { return null; }
   }
 }

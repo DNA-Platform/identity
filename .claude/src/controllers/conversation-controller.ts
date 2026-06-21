@@ -1,6 +1,14 @@
 ///: ConversationController — UIA boundary for open chats.
-///: Sensors: readMessages, readResponse, isStreaming, isResponseComplete.
+///: It fetches the conversation STRUCTURE directly from named UIA elements; the
+///: response BODY text is NOT a named element — it lives in the
+///: `ControlType.Document` and is read via readText() (confirmed by the trees).
 ///: Actuators: scrollToBottom, clickStop. No orchestration.
+///:
+///: UIA trees this controller reads (the states it depends on — captured 2026-06-21):
+///: [just-sent](../trees/conversation-just-sent.txt) — `You said:` user message, no response, no Stop.
+///: [thinking-active](../trees/conversation-thinking-active.txt) — `Button | Thinking`, `Text | Claude is responding`, `Button | Stop response`.
+///: [streaming](../trees/conversation-streaming.txt) — the Thinking button's name has become the summary; body still in the Document, not named elements.
+///: See the [tree catalogue](../trees/README.md) for what each state proves.
 ///:
 ///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the controller boundary.
 ///: [Reading Responses](../../library/reference-desk/03-02-operations--reading.md) — streaming detection.
@@ -149,6 +157,59 @@ export class ConversationController {
     return parseResponseFromText(text);
   }
 
+  // --- Live Response reads (used by the Response View object) ---
+  // The structure (part markers, order) lives in the named elements; the clean
+  // body content lives in the Document text. See src/trees/ for the captures.
+
+  /** The latest assistant response's body text, sliced from the Document. */
+  async readResponseText(): Promise<string> {
+    await this.scrollToBottom(); // lazy rendering — the body is at the bottom
+    const text = (await this.auto.uia.readText()) ?? '';
+    const marker = 'Claude responded:';
+    const idx = text.lastIndexOf(marker);
+    if (idx === -1) return ''; // empty state — no response yet
+    let body = text.slice(idx + marker.length);
+    // Trim trailing composer chrome.
+    for (const end of ['Write a message', 'Reply to Claude', 'How can I help']) {
+      const e = body.indexOf(end);
+      if (e !== -1) { body = body.slice(0, e); break; }
+    }
+    return body.trim();
+  }
+
+  /** Every named element, in document order — the Response assembles parts from it. */
+  async readElements(): Promise<string[]> {
+    await this.scrollToBottom(); // lazy rendering — the latest elements are at the bottom
+    return this.auto.uia.allNames();
+  }
+
+  /** Rapidly wait (gateway, 50ms tapering) for the response to START — scroll to
+   *  bottom, then checkStreaming, each poll (lazy rendering). As soon as this
+   *  returns true, the caller should MINIMIZE and read later. False on timeout. */
+  async waitForStreamingStart(timeoutMs = 30_000): Promise<boolean> {
+    // Capture how much text the Document holds right after send (user message +
+    // chrome, NO response yet). Real streaming GROWS the Document past this
+    // baseline — that is the honest signal, NOT the "Claude is thinking/
+    // responding" notification, which is a static element that can sit frozen
+    // with no output (Doug). thinking-active and streaming share every named
+    // marker; only the Document body differs (src/trees/conversation-streaming.txt).
+    await this.scrollToBottom();
+    const baseline = ((await this.auto.uia.readText()) ?? '').length;
+    return this.auto.gateway.waitFor(async () => {
+      await this.scrollToBottom();
+      return (await this.checkStreaming(baseline)) || (await this.isResponseComplete());
+    }, { timeoutMs });
+  }
+
+  /** Rapidly wait (gateway) for the response to be OVER — scroll, then no Stop
+   *  button AND content present (the "and content" guard avoids the false done). */
+  async waitForComplete(timeoutMs = 300_000): Promise<boolean> {
+    return this.auto.gateway.waitFor(async () => {
+      await this.scrollToBottom();
+      return (await this.isResponseComplete()) && (await this.hasResponseContent());
+    }, { timeoutMs });
+  }
+
   async waitForResponse(timeoutMs: number): Promise<void> {
     this.auto.navigator.requireScreen('conversation');
 
@@ -160,7 +221,7 @@ export class ConversationController {
     const processing = await this.auto.gateway.waitFor(
       async () => {
         // Check streaming indicators first (fast)
-        if (await this.checkStreaming()) return true;
+        if (await this.hasStreamingIndicator()) return true;
         // Then check for actual content — thinking text or response text
         return await this.hasResponseContent();
       },
@@ -174,12 +235,27 @@ export class ConversationController {
 
     // Phase 2: wait for streaming to stop (status text disappears)
     await this.auto.gateway.waitFor(
-      async () => !(await this.checkStreaming()),
+      async () => !(await this.hasStreamingIndicator()),
       { timeoutMs, pollIntervalMs: 1_000 },
     );
   }
 
-  async checkStreaming(): Promise<boolean> {
+  /** Real streamed TEXT is flowing: the Document has grown past `baselineLength`
+   *  (new tokens arrived) AND generation is active (Stop button present). This is
+   *  the honest "is it streaming" — distinct from hasStreamingIndicator(), the
+   *  "Claude is responding/thinking" notification, which is a status element that
+   *  can be present with zero output. Grounded: src/trees/conversation-streaming.txt
+   *  (the body lives only in the Document's text, not in named elements). */
+  async checkStreaming(baselineLength = 0): Promise<boolean> {
+    const text = ((await this.auto.uia.readText()) ?? '');
+    const grew = text.length > baselineLength + 60;   // ≈ real content, not chrome jitter
+    return grew && (await this.hasStopButton());
+  }
+
+  /** The "Claude is responding" / "Claude is thinking" NOTIFICATION — a status
+   *  element, NOT response text. Present during both thinking and streaming, and
+   *  it can freeze with no output (Doug). Never use it to prove text is flowing. */
+  async hasStreamingIndicator(): Promise<boolean> {
     return await this.auto.uia.existsByName('Claude is responding')
       || await this.auto.uia.existsByName('Claude is thinking');
   }
@@ -218,14 +294,51 @@ export class ConversationController {
     return await this.auto.uia.existsByName('Stop response');
   }
 
+  /** Click the page header's rename affordance, a Button named "<title>, rename
+   *  chat". Matched by the ", rename chat" SUFFIX, not the title — Desktop
+   *  re-titles a new conversation (sometimes twice) while we work, so the title
+   *  prefix is unstable. Grounded: src/trees/conversation-streaming.txt and the
+   *  new-conversation capture (the affordance is on the page we're already on, so
+   *  no sidebar-name match is needed). */
+  async clickRenameChat(): Promise<boolean> {
+    const buttons = await this.auto.uia.findAllNames('Button');
+    const renameBtn = buttons.find(n => n.endsWith(', rename chat'));
+    if (!renameBtn) return false;
+    return this.auto.uia.invokeByName(renameBtn);
+  }
+
+  /** The conversation's EXACT current title, read from the header's
+   *  "<title>, rename chat" button — authoritative and guaranteed to match the
+   *  "More options for <title>" button, unlike parseTitleFromText (a heuristic on
+   *  the page text). Returns null if no conversation header is present. */
+  async currentTitle(): Promise<string | null> {
+    const suffix = ', rename chat';
+    const buttons = await this.auto.uia.findAllNames('Button');
+    const renameBtn = buttons.find(n => n.endsWith(suffix));
+    return renameBtn ? renameBtn.slice(0, -suffix.length) : null;
+  }
+
+  /** The header rename opens an Edit named "Chat name" (grounded: diag-rename,
+   *  the new-conversation capture) — distinct from the sidebar menu's
+   *  "Edit | Rename". Its presence is the field-active signal. */
+  async isChatNameFieldActive(): Promise<boolean> {
+    return this.auto.uia.exists('Edit', 'Chat name');
+  }
+
+  /** Type into the open "Chat name" field and commit. The field opens with the
+   *  current title selected, so a paste replaces it; Enter commits. */
+  async typeChatName(text: string): Promise<void> {
+    await this.auto.keyboard.typeViaClipboard(text);
+    await this.auto.keyboard.pressEnter();
+  }
+
   async isResponseComplete(): Promise<boolean> {
-    // Desktop is done when the stop button disappears.
-    // The Send button only appears when the composer has text,
-    // so it can't be used as a done signal.
-    // No streaming indicator + no stop button = done.
-    const streaming = await this.checkStreaming();
-    const hasStop = await this.hasStopButton();
-    return !streaming && !hasStop;
+    // Done = generation stopped (no Stop button) AND real content is present.
+    // "Claude responded:" appears when the response finishes; the content guard
+    // avoids the false "complete" in the instant after send (no Stop yet, no
+    // content yet). Independent of the streaming notification.
+    if (await this.hasStopButton()) return false;
+    return this.hasResponseContent();
   }
 
   async isAtBottom(): Promise<boolean> {
@@ -353,7 +466,7 @@ export class ConversationController {
     return null;
   }
 
-  private parseMessages(text: string, _listItems: string[]): Message[] {
+  private parseMessages(text: string, _listItems: string[]): ChatMessage[] {
     const rawLines = text.split('\n').map(l => normalizeSpaces(l.trim()));
     const lines = deduplicateConsecutive(rawLines);
     const messages: ChatMessage[] = [];

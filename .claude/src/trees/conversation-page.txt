@@ -1,0 +1,100 @@
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Smoke test confirmation - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Group | Sidebar
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | Smoke test confirmation
+ControlType.Button | More options for Smoke test confirmation
+ControlType.Button | OK
+ControlType.Button | More options for OK
+ControlType.Button | Smoke test confirmation
+ControlType.Button | More options for Smoke test confirmation
+ControlType.Button | P = NP: arguments, barriers, and cryptographic implications
+ControlType.Button | More options for P = NP: arguments, barriers, and cryptographic implications
+ControlType.Button | P = NP: arguments, barriers, and implications
+ControlType.Button | More options for P = NP: arguments, barriers, and implications
+ControlType.Button | P versus NP problem explained
+ControlType.Button | More options for P versus NP problem explained
+ControlType.Button | Iterative Fibonacci function in Python
+ControlType.Button | More options for Iterative Fibonacci function in Python
+ControlType.Button | SpaceX valuation trajectory and funding milestones
+ControlType.Button | More options for SpaceX valuation trajectory and funding milestones
+ControlType.Button | SpaceX valuation trajectory and funding milestones
+ControlType.Button | More options for SpaceX valuation trajectory and funding milestones
+ControlType.Button | Is P equal to NP?
+ControlType.Button | More options for Is P equal to NP?
+ControlType.Button | Arguments for and against P ≠ NP
+ControlType.Button | More options for Arguments for and against P ≠ NP
+ControlType.Button | Why the sky is blue and sunsets are red
+ControlType.Button | More options for Why the sky is blue and sunsets are red
+ControlType.Button | Hannah map
+ControlType.Button | More options for Hannah map
+ControlType.Button | Оптимизация бюджета и учет расходов
+ControlType.Button | More options for Оптимизация бюджета и учет расходов
+ControlType.Button | Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | More options for Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | Batumi Summer
+ControlType.Button | More options for Batumi Summer
+ControlType.Button | Sarah Boston maraphon map
+ControlType.Button | More options for Sarah Boston maraphon map
+ControlType.Button | Axiomatizing inheritance and relationship structure
+ControlType.Button | More options for Axiomatizing inheritance and relationship structure
+ControlType.Button | Lulish project
+ControlType.Button | More options for Lulish project
+ControlType.Button | Understanding a tax adjustment notice
+ControlType.Button | More options for Understanding a tax adjustment notice
+ControlType.Button | Design
+ControlType.Button | Doug Doug Max
+ControlType.Image | Doug
+ControlType.Text | Doug
+ControlType.Text | Max
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Button | Smoke test confirmation, rename chat
+ControlType.Button | More options for Smoke test confirmation
+ControlType.Button | Share chat
+ControlType.Text | You said: This is an automated smoke test of the /think dispatch pipeline.
+ControlType.Text | This is an automated smoke test of the /think dispatch pipeline. Please reply with a single short sentence confirming you received it.
+ControlType.Group | Message actions
+ControlType.Text | 2:47 PM
+ControlType.Button | Retry
+ControlType.Button | Edit
+ControlType.Button | Copy
+ControlType.Text | Claude responded: Received — the /think dispatch pipeline is working.
+ControlType.Text | Received — the /think dispatch pipeline is working.
+ControlType.Group | Message actions
+ControlType.Button | Copy
+ControlType.Button | Read aloud
+ControlType.Button | Give positive feedback
+ControlType.Button | Give negative feedback
+ControlType.Button | Retry
+ControlType.Edit | Write your prompt to Claude
+ControlType.Text | Write a message…
+ControlType.Text |
+ControlType.Button | Add files, connectors, and more
+ControlType.Button | Model: Opus 4.8 High
+ControlType.Text | Opus 4.8
+ControlType.Text |  High
+ControlType.Button | Settings
+ControlType.Button | Press and hold to record
+ControlType.Button | Use voice mode
+ControlType.Hyperlink | Claude is AI and can make mistakes. Please double-check responses.
+ControlType.Group | Notifications (F8)

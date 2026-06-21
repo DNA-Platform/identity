@@ -1,0 +1,140 @@
+# 03-projects
+# url: https://claude.ai/projects
+# names: 135
+
+## NAMED ELEMENTS
+ControlType.Pane | Claude
+ControlType.Button | Minimize
+ControlType.Button | Restore
+ControlType.Button | Close
+ControlType.Document | Projects - Claude
+ControlType.Button | Menu
+ControlType.Button | Collapse sidebar
+ControlType.Button | Search
+ControlType.Button | Back
+ControlType.Button | Forward
+ControlType.Group | Sidebar
+ControlType.Hyperlink | Skip to content
+ControlType.Thumb | Resize sidebar
+ControlType.Group | Mode
+ControlType.Button | Chat
+ControlType.Button | Cowork
+ControlType.Button | Code
+ControlType.Button | New chat
+ControlType.Button | Projects
+ControlType.Button | Artifacts
+ControlType.Button | Customize
+ControlType.Button | Recents
+ControlType.Button | View all
+ControlType.Button | P = NP: arguments, barriers, and cryptographic implications
+ControlType.Button | More options for P = NP: arguments, barriers, and cryptographic implications
+ControlType.Button | P = NP: arguments, barriers, and implications
+ControlType.Button | More options for P = NP: arguments, barriers, and implications
+ControlType.Button | P versus NP problem explained
+ControlType.Button | More options for P versus NP problem explained
+ControlType.Button | Iterative Fibonacci function in Python
+ControlType.Button | More options for Iterative Fibonacci function in Python
+ControlType.Button | SpaceX valuation trajectory and funding milestones
+ControlType.Button | More options for SpaceX valuation trajectory and funding milestones
+ControlType.Button | SpaceX valuation trajectory and funding milestones
+ControlType.Button | More options for SpaceX valuation trajectory and funding milestones
+ControlType.Button | Is P equal to NP?
+ControlType.Button | More options for Is P equal to NP?
+ControlType.Button | Arguments for and against P ≠ NP
+ControlType.Button | More options for Arguments for and against P ≠ NP
+ControlType.Button | Why the sky is blue and sunsets are red
+ControlType.Button | More options for Why the sky is blue and sunsets are red
+ControlType.Button | Hannah map
+ControlType.Button | More options for Hannah map
+ControlType.Button | Оптимизация бюджета и учет расходов
+ControlType.Button | More options for Оптимизация бюджета и учет расходов
+ControlType.Button | Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | More options for Организация дневника травмы и эмоциональной поддержки
+ControlType.Button | Batumi Summer
+ControlType.Button | More options for Batumi Summer
+ControlType.Button | Sarah Boston maraphon map
+ControlType.Button | More options for Sarah Boston maraphon map
+ControlType.Button | Axiomatizing inheritance and relationship structure
+ControlType.Button | More options for Axiomatizing inheritance and relationship structure
+ControlType.Button | Lulish project
+ControlType.Button | More options for Lulish project
+ControlType.Button | Understanding a tax adjustment notice
+ControlType.Button | More options for Understanding a tax adjustment notice
+ControlType.Button | Georgian Payoneer Help
+ControlType.Button | More options for Georgian Payoneer Help
+ControlType.Button | Simplifying architecture explanation for the team
+ControlType.Button | More options for Simplifying architecture explanation for the team
+ControlType.Button | Claude Code weekly limit and credit usage
+ControlType.Button | More options for Claude Code weekly limit and credit usage
+ControlType.Button | Relaunch to update v1.14271.0
+ControlType.Button | Design
+ControlType.Button | Doug Doug Max
+ControlType.Image | Doug
+ControlType.Text | Doug
+ControlType.Text | Max
+ControlType.Button | Get apps and extensions
+ControlType.Group | Primary pane
+ControlType.Text | Projects
+ControlType.Button | Sort projects
+ControlType.Button | New project
+ControlType.Edit | Search projects
+ControlType.Text | Results update as you type. Press Down Arrow to go to results, Escape to return here.
+ControlType.List | Projects
+ControlType.ListItem | ClaudeUpdated 5 days ago
+ControlType.Hyperlink | Claude Updated 5 days ago
+ControlType.Button | More options for Claude
+ControlType.ListItem | Ana's RecoveryUpdated Jun 12
+ControlType.Hyperlink | Ana's Recovery Updated Jun 12
+ControlType.Button | More options for Ana's Recovery
+ControlType.ListItem | InvestingUpdated Jun 5
+ControlType.Hyperlink | Investing Updated Jun 5
+ControlType.Button | More options for Investing
+ControlType.ListItem | The Hard ProblemUpdated May 27
+ControlType.Hyperlink | The Hard Problem Updated May 27
+ControlType.Button | More options for The Hard Problem
+ControlType.ListItem | ScienceUpdated May 26
+ControlType.Hyperlink | Science Updated May 26
+ControlType.Button | More options for Science
+ControlType.ListItem | ResumeUpdated May 26
+ControlType.Hyperlink | Resume Updated May 26
+ControlType.Button | More options for Resume
+ControlType.ListItem | Semantic Reference TheoryUpdated May 19
+ControlType.Hyperlink | Semantic Reference Theory Updated May 19
+ControlType.Button | More options for Semantic Reference Theory
+ControlType.ListItem | GeorgiaUpdated May 19
+ControlType.Hyperlink | Georgia Updated May 19
+ControlType.Button | More options for Georgia
+ControlType.ListItem | TurkeyUpdated May 19
+ControlType.Hyperlink | Turkey Updated May 19
+ControlType.Button | More options for Turkey
+ControlType.ListItem | RussiaUpdated May 19
+ControlType.Hyperlink | Russia Updated May 19
+ControlType.Button | More options for Russia
+ControlType.ListItem | PhysicsUpdated May 19
+ControlType.Hyperlink | Physics Updated May 19
+ControlType.Button | More options for Physics
+ControlType.ListItem | Number TheoryUpdated May 19
+ControlType.Hyperlink | Number Theory Updated May 19
+ControlType.Button | More options for Number Theory
+ControlType.ListItem | NikolaiUpdated May 19
+ControlType.Hyperlink | Nikolai Updated May 19
+ControlType.Button | More options for Nikolai
+ControlType.ListItem | MiscellaneousUpdated May 19
+ControlType.Hyperlink | Miscellaneous Updated May 19
+ControlType.Button | More options for Miscellaneous
+ControlType.ListItem | GrammarUpdated May 19
+ControlType.Hyperlink | Grammar Updated May 19
+ControlType.Button | More options for Grammar
+ControlType.ListItem | EirianUpdated May 19
+ControlType.Hyperlink | Eirian Updated May 19
+ControlType.Button | More options for Eirian
+ControlType.ListItem | Ana's Fiverr InboxUpdated May 19
+ControlType.Hyperlink | Ana's Fiverr Inbox Updated May 19
+ControlType.Button | More options for Ana's Fiverr Inbox
+ControlType.ListItem | ChemistryUpdated May 19
+ControlType.Hyperlink | Chemistry Updated May 19
+ControlType.Button | More options for Chemistry
+ControlType.ListItem | SerenTo communicate with my friend SerenUpdated May 18
+ControlType.Hyperlink | Seren To communicate with my friend Seren Updated May 18
+ControlType.Button | More options for Seren
+ControlType.Group | Notifications (F8)

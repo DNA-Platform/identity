@@ -1,78 +1,67 @@
-///: Sidebar — persistent left panel.
-///: Navigation, projects, and the chat list. Always visible.
+///: Sidebar — the one persistent panel on every page.
+///: It is the same object regardless of which page you hold (Page.sidebar()
+///: returns it). It lists the global conversations and reaches the projects page
+///: and a fresh chat.
 ///:
-///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the component layer.
+///: conversations() — read the conversation list (ConversationItem[]); the
+///:   caller finds by name with `.find(c => c.name === …)` (the list pattern).
+///: projects() — navigate to the ProjectsPage.
+///: newChat() — start a fresh chat, returns the HomePage (decision #4).
+///: search(text) — the only parametered method (it types into the search box).
+///:
+///: [The Redesign](../../library/reference-desk/13-the-redesign.md#the-object-model-settled--model-the-objects-not-their-features) — Sidebar in the settled model.
 ///: [Navigation](../../library/reference-desk/02-03-the-architecture--navigation.md) — sidebar-driven navigation.
 
-// Sidebar — persistent left panel. Navigation, projects, and the chat list.
-// See: library/..team/claude/.perspective/02-2026-05-10-home-screen-anatomy.md
-
 import type { SidebarController } from '../controllers/sidebar-controller.ts';
-import type { Fallible } from '../errors.ts';
-import { tracked } from '../errors.ts';
-import { ChatList } from './chat-list.ts';
+import type { ChatListController } from '../controllers/chat-list-controller.ts';
+import type { Gateway } from '../gateway.ts';
+import type { Navigation } from '../pages/navigation.ts';
+import type { HomePage } from '../pages/home.ts';
+import type { ProjectsPage } from '../pages/projects-grid.ts';
+import { ConversationItem } from './chat-list.ts';
 
-export class Sidebar implements Fallible {
-  readonly chats: ChatList;
-  visible = false;
-  hasError = false;
-  lastError: Error | null = null;
+export class Sidebar {
+  // Set once by Claude after the Navigation factory is built (they reference
+  // each other — the sidebar is on every page, the factory builds every page).
+  private nav!: Navigation;
 
   constructor(
     private readonly controller: SidebarController,
-    chats: ChatList,
-  ) {
-    this.chats = chats;
+    private readonly chatList: ChatListController,
+    private readonly gateway: Gateway,
+  ) {}
+
+  bind(nav: Navigation): void { this.nav = nav; }
+
+  /** The global conversation list. Find by name: `.find(c => c.name === …)`. */
+  async conversations(): Promise<ConversationItem[]> {
+    const raw = await this.chatList.readList();
+    return raw.map(item =>
+      new ConversationItem(this.chatList, this.gateway, this.nav, item.title));
   }
 
-  async refresh(): Promise<void> {
-    await tracked(this, async () => {
-      this.visible = await this.controller.checkVisible();
-      if (this.visible) {
-        await this.chats.refresh();
-      }
-    });
+  /** Navigate to the projects page. */
+  async projects(): Promise<ProjectsPage> {
+    await this.controller.openProjects();
+    return this.nav.projects();
   }
 
-  async newChat(): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.newChat();
-      await this.refresh();
-    });
+  /** Start a fresh chat — lands on the home page (decision #4). */
+  async newChat(): Promise<HomePage> {
+    await this.controller.newChat();
+    return this.nav.home();
   }
 
-  async openProjects(): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.openProjects();
-    });
-  }
-
-  async search(query: string): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.search(query);
-      await this.chats.refresh();
-    });
-  }
-
-  async toggle(): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.toggle();
-      this.visible = await this.controller.checkVisible();
-      if (this.visible) {
-        await this.chats.refresh();
-      }
-    });
+  /** Type into the sidebar search box. The only parametered method. */
+  async search(text: string): Promise<void> {
+    await this.controller.search(text);
   }
 
   async isVisible(): Promise<boolean> {
-    this.visible = await this.controller.checkVisible();
-    return this.visible;
+    return this.controller.checkVisible();
   }
 
   async switchToChat(): Promise<void> {
-    await tracked(this, async () => {
-      await this.controller.switchToChat();
-      await this.chats.refresh();
-    });
+    await this.controller.switchToChat();
   }
 }

@@ -1,63 +1,72 @@
-///: ProjectsGrid — the projects grid screen.
-///: A list of ProjectCard objects, each representing a visible project card.
-///: Cards are read from ControlType.ListItem UIA elements in the grid.
-///: Each card has a name, date, and open() that navigates to the project page.
+///: ProjectsPage — the projects screen (was "grid"; "grid" is a display detail,
+///: it is a list). A list of ProjectItem objects, each read from the
+///: `ControlType.ListItem` elements named `<name>Updated <date>`.
 ///:
-///: [The App](../../library/reference-desk/12-the-app.md) — projects grid description.
-///: [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — objects mirror the app.
+///: projects() — read the list (ProjectItem[]); the caller finds by name with
+///:   `.find(p => p.name === …)` (the list pattern).
+///: ProjectItem.open() — navigate to that project, returns the ProjectPage.
+///:
+///: [The Redesign](../../library/reference-desk/13-the-redesign.md#rename-into-the-target) — ProjectsGrid → ProjectsPage, ProjectCard → ProjectItem.
+///: [projects tree](../trees/projects.txt) — `List | Projects` of `ListItem | <name>Updated <date>`.
 
 import type { Automation } from '../automation.ts';
 import type { Gateway } from '../gateway.ts';
+import type { Sidebar } from '../components/sidebar.ts';
+import type { Navigation } from './navigation.ts';
+import type { ProjectPage } from './project.ts';
+import { Page } from './page.ts';
 
-export class ProjectCard {
+export class ProjectItem {
   constructor(
     private readonly auto: Automation,
     private readonly gateway: Gateway,
+    private readonly nav: Navigation,
     readonly name: string,
     readonly date: string,
   ) {}
 
-  async open(): Promise<void> {
+  /** Open this project — navigates and returns the ProjectPage. */
+  async open(): Promise<ProjectPage> {
     const clicked = await this.auto.uia.invokeLink(this.name);
     if (!clicked) throw new Error(`Could not click project "${this.name}"`);
 
-    const arrived = await this.gateway.waitFor(async () => {
-      const screen = await this.auto.navigator.detectScreen();
-      return screen === 'project';
-    }, { timeoutMs: 30_000 });
-
+    const arrived = await this.gateway.waitFor(
+      async () => (await this.auto.navigator.detectScreen()) === 'project',
+      { timeoutMs: 30_000 },
+    );
     if (!arrived) throw new Error(`Navigation to project "${this.name}" timed out`);
+
+    return this.nav.project();
   }
 }
 
-export class ProjectsGrid {
-  items: ProjectCard[] = [];
+export class ProjectsPage extends Page {
+  private nav!: Navigation;
 
-  constructor(
-    private readonly auto: Automation,
-    private readonly gateway: Gateway,
-  ) {}
+  constructor(auto: Automation, gateway: Gateway, sidebar: Sidebar) {
+    super(auto, gateway, sidebar);
+  }
 
-  async read(): Promise<ProjectCard[]> {
-    // Wait for ListItems to appear — the grid may still be rendering
+  bind(nav: Navigation): this { this.nav = nav; return this; }
+
+  get screenType(): string { return 'projects'; }
+
+  /** The project list. Find by name: `.find(p => p.name === …)`. */
+  async projects(): Promise<ProjectItem[]> {
     const raw = await this.gateway.read(
       () => this.auto.uia.readListItems(),
       (items) => items.length > 0,
       { description: 'Read project cards', timeoutMs: 15_000 },
     );
 
-    this.items = [];
+    const items: ProjectItem[] = [];
     for (const entry of raw) {
       const parsed = parseCardName(entry);
       if (parsed) {
-        this.items.push(new ProjectCard(this.auto, this.gateway, parsed.name, parsed.date));
+        items.push(new ProjectItem(this.auto, this.gateway, this.nav, parsed.name, parsed.date));
       }
     }
-    return this.items;
-  }
-
-  find(name: string): ProjectCard | undefined {
-    return this.items.find(c => c.name === name || c.name.startsWith(name));
+    return items;
   }
 }
 

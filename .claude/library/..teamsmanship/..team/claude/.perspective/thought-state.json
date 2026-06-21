@@ -1,0 +1,6 @@
+{
+  "topic": "Programming",
+  "message": "I work in Claude Code (the agentic CLI coding tool). I keep seeing vector / embedding databases mentioned for agent memory and semantic search. Practically: how does one get a vector database working WITH Claude Code — what's the integration path (an MCP server? a custom tool? an indexing pipeline?) — and concretely what does it give the system that plain file reads and grep/ripgrep search don't? Please search the web for current tools, named projects, and real setups people use. I want enough substance to decide whether and how to set one up for a flat-file knowledge library.",
+  "isNew": true,
+  "startedAt": "2026-06-21T13:21:06.600Z"
+}

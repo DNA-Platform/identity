@@ -47,7 +47,13 @@ After working in a project, [validate](05-on-validation.md) first. Fix errors. T
 
 ## What doesn't sync
 
-Project-specific files — `.github/workflows/`, `src/`, `package.json`, deployment configs — stay in the project. The identity is project-neutral. It contains what is true regardless of which codebase hosts it: who the team is, what the library knows, how books are structured. The line between [shared identity and project state](../..librarianship/00-the-library.md#shared-identity-vs-project-state) is sharp: if it would go stale when the identity moves to a different project, it doesn't belong in the identity.
+Project-specific files — `.github/workflows/`, the project's own `src/`, `package.json`, deployment configs — stay in the project. The identity is project-neutral. It contains what is true regardless of which codebase hosts it: who the team is, what the library knows, how books are structured. The line between [shared identity and project state](../..librarianship/00-the-library.md#shared-identity-vs-project-state) is sharp: if it would go stale when the identity moves to a different project, it doesn't belong in the identity.
+
+### Beware the two `src/` directories
+
+There are two `src/` directories and they belong to opposite tiers — confusing them wastes real time. The **project's own `src/`** (the codebase the team is working *on*) stays in the project repo. But **`.claude/src/`** — the [Reference Desk](../reference-desk/.cover.md) driver codebase — is *identity*: it lives under `.claude/`, so the commit tool's `/MIR` sync sends it to the identity repo on `dna-platform`, and it is **gitignored in the project repo**. The driver travels with the team because reaching Claude Desktop is part of who the team is, not part of any one project.
+
+The consequence for archaeology: **to find a previous version of driver code, look at the identity repo (`../identity`), checked out on `dna-platform`/`main` — not the project repo's git history (where `.claude/src` is invisible, gitignored), and not [dna-library](../..teamsmanship/09-dna-library.md) (the out-of-date original the driver was lifted from in Sprint 70).** The working version always lives in identity.
 
 ## GitHub as implementation
 

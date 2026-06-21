@@ -63,17 +63,7 @@ export class Window {
   focus(): void {
     this.requireHandle();
     if (this.isForeground()) return;
-    powershell(`
-      Add-Type @"
-        using System; using System.Runtime.InteropServices;
-        public class WinState {
-          [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr h);
-          [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h, int n);
-        }
-"@
-      [WinState]::ShowWindow([IntPtr]::new(${this.handle}), 3) | Out-Null
-      [WinState]::SetForegroundWindow([IntPtr]::new(${this.handle})) | Out-Null
-    `);
+    this.bringToForegroundOnce(false);
   }
 
   isForeground(): boolean {
@@ -91,36 +81,45 @@ export class Window {
     return result?.trim() === 'true';
   }
 
+  // Is the window minimized? Use this to CONFIRM a minimize — isForeground()
+  // wrongly stays true for a minimized Claude window (Electron/Win quirk), so it
+  // cannot verify a minimize. IsIconic is the honest check.
+  isMinimized(): boolean {
+    this.requireHandle();
+    const result = powershell(`
+      Add-Type @"
+        using System; using System.Runtime.InteropServices;
+        public class IconicCheck {
+          [DllImport("user32.dll")] public static extern bool IsIconic(IntPtr h);
+        }
+"@
+      if ([IconicCheck]::IsIconic([IntPtr]::new(${this.handle}))) { 'true' } else { 'false' }
+    `);
+    return result?.trim() === 'true';
+  }
+
   requireForeground(): void {
-    if (!this.isForeground()) {
-      this.focus();
-      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500);
-      if (!this.isForeground()) {
-        throw new Error('Claude window is not the foreground window. Cannot proceed safely.');
-      }
+    if (this.isForeground() && !this.isMinimized()) return;  // isForeground lies when minimized
+    // Racy steal — retry with the Alt-key trick, verify each time.
+    for (let attempt = 0; attempt < 5; attempt++) {
+      this.bringToForegroundOnce(false);
+      this.sleep(400);
+      if (this.isForeground()) return;
     }
+    throw new Error('Claude window is not the foreground window after 5 attempts. Cannot proceed safely.');
   }
 
   maximize(): void {
     this.requireHandle();
-    if (this.isForeground()) return;
-    powershell(`
-      Add-Type @"
-        using System; using System.Runtime.InteropServices;
-        public class WinState2 {
-          [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h, int n);
-          [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr h);
-        }
-"@
-      [WinState2]::ShowWindow([IntPtr]::new(${this.handle}), 9) | Out-Null
-      [WinState2]::SetForegroundWindow([IntPtr]::new(${this.handle})) | Out-Null
-      [WinState2]::ShowWindow([IntPtr]::new(${this.handle}), 3) | Out-Null
-    `);
-    // Verify — don't trust the Win32 call. Detect that we're actually foreground.
-    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500);
-    if (!this.isForeground()) {
-      throw new Error('maximize() called but the app is not foreground. Window may be blocked by another app.');
+    if (this.isForeground() && !this.isMinimized()) return;  // isForeground lies when minimized — restore it
+    // Retry the foreground steal — Windows can refuse it once and grant it the
+    // next attempt (the steal is racy). Verify each time; never trust the call.
+    for (let attempt = 0; attempt < 5; attempt++) {
+      this.bringToForegroundOnce(true);
+      this.sleep(400);
+      if (this.isForeground()) return;
     }
+    throw new Error('maximize() could not bring Claude to the foreground after 5 attempts. Window may be blocked by another app.');
   }
 
   minimize(): void {
@@ -217,6 +216,32 @@ export class Window {
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 1000);
     }
     return false;
+  }
+
+  private sleep(ms: number): void {
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+  }
+
+  // Bring the window forward using the Alt-key trick: Windows grants foreground
+  // rights to a process that just synthesized input, so without the keybd_event
+  // SetForegroundWindow is silently ignored and the steal loses the race.
+  private bringToForegroundOnce(maximizeWindow: boolean): void {
+    this.requireHandle();
+    const show = maximizeWindow ? 3 : 9; // 3 = SW_MAXIMIZE, 9 = SW_RESTORE
+    powershell(`
+      Add-Type @"
+        using System; using System.Runtime.InteropServices;
+        public class WinFg {
+          [DllImport("user32.dll")] public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
+          [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h, int n);
+          [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr h);
+        }
+"@
+      [WinFg]::keybd_event(0x12, 0, 0, [UIntPtr]::Zero)
+      [WinFg]::keybd_event(0x12, 0, 2, [UIntPtr]::Zero)
+      [WinFg]::ShowWindow([IntPtr]::new(${this.handle}), ${show}) | Out-Null
+      [WinFg]::SetForegroundWindow([IntPtr]::new(${this.handle})) | Out-Null
+    `);
   }
 
   private requireHandle(): void {
