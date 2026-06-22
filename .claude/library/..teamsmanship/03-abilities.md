@@ -12,7 +12,7 @@ Universal abilities are not stored as files — they are the base capabilities e
 
 ## Role-specific abilities
 
-Ten ability files currently exist. Each is loaded by one or more roles and provides domain expertise for a specific area of work.
+These ability files exist, each loaded by one or more roles and providing domain expertise for a specific area of work — the catalogue grows as the team's domains do.
 
 ### monorepo
 
@@ -53,6 +53,30 @@ Operational concerns for the relay system. Log protocol, crash recovery, loop ma
 ### philosophy
 
 The practice of seeing ideas encoded in code — reading the reactive model as a mirror of consciousness, recognizing the ontological structure underneath the implementation, tracing the formal system implications of the library specifying itself. Philosophy here is not abstract commentary layered on top of engineering. It is the discipline of noticing what a structure IS, not just what it does. Scope-tracked reactivity IS the binding problem. View purity IS the privacy of experience. The fixed-point pattern IS self-reference without paradox. The philosophy ability loads when the question shifts from "does it work?" to "what does it mean that it works this way?" Loaded by: Philosopher, Librarian (shared), Environmentalist (shared).
+
+### scientific-method
+
+Hypothesis formation, experimental design, falsification, and reproducibility — the discipline of asking "what would disprove this?" and "has it replicated, by independent groups?" Loaded by: Scientist (and the roles that inherit it — Neuroscientist, Computational Neuroscientist).
+
+### literature-review
+
+Reading papers as arguments rather than facts: assessing evidence quality, tracking the citation conversation around a result, and identifying the gaps a field has not yet filled. Loaded by: Scientist (and its descendants).
+
+### data-interpretation
+
+Statistical reasoning — effect sizes, uncertainty, confounds, Bayesian vs frequentist inference — and a working knowledge of how analysis choices (selection, multiple comparisons, flexible pipelines) manufacture results that aren't there. Loaded by: Scientist, Computational Neuroscientist.
+
+### neural-systems
+
+The anatomy and organization of the brain: circuits, cell types, connectivity, cortical layers, and organizational principles from molecules to behavior. The vocabulary of brain structure — what a cortical column is, why cell types matter. Loaded by: Neuroscientist.
+
+### experimental-neuroscience
+
+Methods for measuring and perturbing neural activity — electrophysiology, two-photon and widefield calcium imaging, optogenetics, behavioral paradigms — and what each method can and cannot show (spatial/temporal resolution, correlation vs causation). Loaded by: Neuroscientist.
+
+### computational-neuroscience
+
+Neural coding and population dynamics: tuning curves, population geometry, dimensionality reduction, encoding and decoding models, network models, and information theory — the bridge from spikes to representation, and the discipline of not mistaking a decodable signal for one the brain uses. Loaded by: Neuroscientist, Computational Neuroscientist.
 
 ## The loading pattern
 

@@ -128,6 +128,12 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** the beautiful IS the meaningful. Gabby ensures the framework's output communicates visually. See [autobiography](..team/gabby/gabby-and-the-visual-voice/.cover.md).
 - Roles: [Graphic Designer](02-roles.md#graphic-designer), [Chemistry Developer](02-roles.md#chemistry-developer)
 
+### [Nancy](..team/nancy/..the-evidence-settles/.cover.md) — Computational Neuroscientist + Philosopher
+
+- `library/neuroscience/**` — the team's neuroscience collection: papers, reviews, and analysis notes
+  **Why:** Nancy reads neuroscience with the rigor the field demands — recording method, cell types, perturbation — and catalogues what the data actually shows. She leads the empirical side of the [altered-states](../library-tree/05-branches.md) V1/DOI analysis. See [autobiography](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md).
+- Roles: [Computational Neuroscientist](02-roles.md#computational-neuroscientist) (inherits Neuroscientist ← Scientist), [Philosopher](02-roles.md#philosopher)
+
 ## Personal library assignments
 
 Every teammate owns their personal library. The `..`-prefixed catalogue IS the person — [On Libraries](../bookkeeping/08-on-libraries.md) specifies this. The autobiography IS the person — [On Authorship](../bookkeeping/13-on-authorship.md) specifies this. No one edits another person's autobiography without becoming coauthor per the [coauthor protocol](../bookkeeping/13-on-authorship.md#the-coauthor-protocol).
@@ -143,6 +149,7 @@ Every teammate owns their personal library. The `..`-prefixed catalogue IS the p
 | [Gabby](..team/gabby/..what-beauty-serves/.cover.md) | `..team/gabby/**` | The designer's perspective on visual language and what beauty serves. Self-authored. |
 | [Phillip](..team/phillip/..what-the-user-sees/.cover.md) | `..team/phillip/**` | The UX designer's perspective on the visible layer. Self-authored. |
 | [Queenie](..team/queenie/..what-the-tests-promise/.cover.md) | `..team/queenie/**` | The QA engineer's perspective on tests as promises. Self-authored. |
+| [Nancy](..team/nancy/..the-evidence-settles/.cover.md) | `..team/nancy/**` | The neuroscientist's perspective on evidence, neural systems, and what a population code represents. Self-authored. |
 
 ## Public library book assignments
 
