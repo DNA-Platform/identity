@@ -39,6 +39,10 @@ See [chapter 05](05-branches.md) for the full catalogue of known branches with r
 
 The branch for the $Chemistry reactive framework, at `library/chemistry/.lib/` in the inexplicable-phenomena repo. Catalogued by [Representivity](../../../../inexplicable-phenomena/library/chemistry/.lib/..representivity/.cover.md). Sprint history in [Projection](../../../../inexplicable-phenomena/library/chemistry/.lib/projection/.cover.md). $Chemistry is about representation — how reactive state represents something beyond itself — and the branch records the team's knowledge of building that representational framework.
 
+### [Altered States](../../../../altered-states/library/.lib/..altered-states/.cover.md) — Altered States
+
+The branch for the altered-states project, at `library/.lib/` in the altered-states repo. Catalogued by [Altered States](../../../../altered-states/library/.lib/..altered-states/.cover.md). Sprint history in [Projection](../../../../altered-states/library/.lib/projection/.cover.md). Altered-states is a psychedelic exploration into altered states of consciousness using mouse visual cortex as its lens — the branch records the team's applied knowledge of that exploration.
+
 <!-- citations -->
 [bookkeeping]: ../bookkeeping/.cover.md
 [covers]: ../bookkeeping/03-on-covers.md

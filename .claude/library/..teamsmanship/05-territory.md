@@ -177,6 +177,14 @@ The chemistry branch at `library/chemistry/.lib/` has layered ownership. Cathy o
 | `.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Sprint planning within the branch. The architect plans sprints. |
 | `.lib/particle/**`, `.lib/reactivity/**`, `.lib/composition/**`, `.lib/authorship/**`, `.lib/implementation/**`, `.lib/epistemology/**` | [Cathy](..team/cathy/cathy-and-the-reactive-canvas/.cover.md) | Framework documentation. Cathy built the framework, migrated the docs, folded the ontology, split the glossary. |
 
+The altered-states branch at `library/.lib/` is the project-root library branch. Libby owns all branch content (`**/.lib/**`); the explicit entries name the per-book owners within it.
+
+| Path | Owner | Why |
+|------|-------|-----|
+| `library/.lib/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The librarian tends all branch content; she ensures the altered-states branch meets library standards. |
+| `library/.lib/..altered-states/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The cataloguing book — the branch's identity. The librarian catalogues the branch as she catalogues the main library. |
+| `library/.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Sprint planning within the branch. The architect plans sprints. |
+
 ## Compilation
 
 A territory rules compiler `[SCAFFOLD]` would read these assignments and generate `.claude/rules/{territory}.md` files — path-scoped rules that load the right knowledge when the right files enter context. Each generated rule links back to this chapter and to the teammate's library.

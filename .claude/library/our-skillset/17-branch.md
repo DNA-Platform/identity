@@ -13,7 +13,9 @@ Read [Library Tree](../library-tree/.cover.md) — especially [Branches](../libr
 
 ## Setting up a branch
 
-1. **Create `.lib/`** beside the code it documents — `library/<area>/.lib/`.
+**Fast path:** `bash .claude/library/library-tree/04-setup--scaffold.sh <lib-dir> "<Subject>"` scaffolds steps 1–3 — it creates the cataloguing book and Projection covers with correct frontmatter and author-link depth, and prints the territory and catalogue snippets to paste. Then fill the TODO prose, do steps 4–5, and push. The steps below are what it generates.
+
+1. **Create `.lib/`** beside the code it documents — `library/<area>/.lib/`, or `library/.lib/` for a project-root branch.
 2. **Cataloguing book.** A `..`-prefixed book inside `.lib/` named for the *subject* the branch represents (as `..representivity` is for $Chemistry). Cover per [On Covers](../bookkeeping/03-on-covers.md): title, `catalogues:`, `author:`, `subject:` self-link, opening paragraph, TOC.
 3. **Projection.** A `projection/` book for sprint-by-sprint records — the branch's autobiography, authored by the sprint-shaper.
 4. **Territory.** Add the `.lib/` paths to [territory](../..teamsmanship/05-territory.md): Libby owns `**/.lib/**`; assign books within to the perspective that shapes them.
