@@ -80,8 +80,8 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** Adam built the relay. The ground wire carries signals faithfully. See [autobiography](..team/adam/adam-between-the-wires/.cover.md).
 - `.claude/library/..environmentalism/05-on-validation--*` — validation scripts (validator, check-links, runner)
   **Why:** Adam rewrote the link validator from scratch. Validation tooling is automation infrastructure.
-- `.claude/library/..environmentalism/06-on-sync--commit.sh` — the commit tool
-  **Why:** Adam owns the commit tool. It routes changes to the right branches, validates before pushing, and should verify its own invariants. See [autobiography ch 31](..team/adam/adam-between-the-wires/31-the-tool-that-checks-itself.md), [Compilation Tools](../.compilation/05-tools.md).
+- `.claude/library/..environmentalism/06-on-sync--*.sh` — the sync tools (commit + setup)
+  **Why:** Adam owns the sync tooling. The commit tool routes changes to the right branches and validates before pushing; the setup tool is its inverse — it brings the identity into a project (pull, gitignore, project-root CLAUDE.md). Both should verify their own invariants. See [autobiography ch 31](..team/adam/adam-between-the-wires/31-the-tool-that-checks-itself.md), [Compilation Tools](../.compilation/05-tools.md).
 - `.claude/library/..environmentalism/01-on-teammates--compiler.ts` — the teammate compiler (shared with Claude)
   **Why:** compilers are automation. Adam owns the machinery; Claude owns the specification. See [Compilation Compilers](../.compilation/03-compilers.md).
 - `.claude/library/..environmentalism/02-on-bootstrap--compiler.ts` — the bootstrap compiler (shared with Claude)
