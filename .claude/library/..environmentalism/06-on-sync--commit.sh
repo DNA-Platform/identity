@@ -65,6 +65,16 @@ ensure_gitignore() {
     return 0
 }
 
+# Identity-side namespace for a branch library. A project-root library/.lib maps to the
+# project name; a per-area library/<area>/.lib maps to the area (the .lib's parent dir).
+lib_name_for() {
+    if [ "$(dirname "$1")" = "$PROJECT_ROOT/library" ]; then
+        echo "$PROJECT_NAME"
+    else
+        echo "$(basename "$(dirname "$1")")"
+    fi
+}
+
 # --- Configuration ---
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
@@ -104,11 +114,12 @@ fi
 # and is set false if the .claude/ sync produces no diff.
 has_identity_changes=true
 
-# Branch libraries are discovered generically (any library/*/.lib), not hardcoded.
+# Branch libraries are discovered generically (any .lib under library/), not hardcoded —
+# this finds a project-root library/.lib as well as per-area library/<area>/.lib.
 lib_dirs=()
-for lib_dir in "$PROJECT_ROOT"/library/*/.lib; do
-    [ -d "$lib_dir" ] && lib_dirs+=("$lib_dir")
-done
+while IFS= read -r lib_dir; do
+    [ -n "$lib_dir" ] && lib_dirs+=("$lib_dir")
+done < <(find "$PROJECT_ROOT/library" -type d -name .lib 2>/dev/null | sort)
 
 echo "Checking for changes..."
 echo "  Project code:           $has_project_changes"
@@ -141,7 +152,7 @@ if command -v npx &>/dev/null; then
 
     # Validate all branch libraries (.lib/ directories)
     for lib_dir in "${lib_dirs[@]}"; do
-        lib_name="$(basename "$(dirname "$lib_dir")")"
+        lib_name="$(lib_name_for "$lib_dir")"
         echo "Running Bookkeeping validator (branch: $lib_name)..."
         if npx tsx "$bookkeeping_path" "$lib_dir" 2>&1; then
             echo "  Bookkeeping ($lib_name): PASS"
@@ -184,7 +195,7 @@ if [ "$DRY_RUN" = true ]; then
     fi
     if [ "${#lib_dirs[@]}" -gt 0 ]; then
         for lib_dir in "${lib_dirs[@]}"; do
-            lib_name="$(basename "$(dirname "$lib_dir")")"
+            lib_name="$(lib_name_for "$lib_dir")"
             echo "Would sync $lib_dir → $IDENTITY_REPO/.lib/$lib_name on $PROJECT_NAME."
         done
     else
@@ -273,8 +284,8 @@ fi
 
 # Sync each branch library library/<area>/.lib → identity .lib/<area>
 for lib_dir in "${lib_dirs[@]}"; do
-    lib_name="$(basename "$(dirname "$lib_dir")")"
-    echo "Syncing library/$lib_name/.lib → .lib/$lib_name"
+    lib_name="$(lib_name_for "$lib_dir")"
+    echo "Syncing $lib_dir → .lib/$lib_name"
     mkdir -p "$IDENTITY_REPO/.lib/$lib_name"
     do_sync "$lib_dir" "$IDENTITY_REPO/.lib/$lib_name" /MIR /NFL /NDL /NJH /NJS /NC /NS || exit 1
 done
