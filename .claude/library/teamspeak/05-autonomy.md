@@ -26,6 +26,8 @@ The same applies to every form of expression: reflections, perspectives, specifi
 
 **Reflections and perspectives:** A teammate's reflection is THEIRS. Arthur doesn't write Queenie's retro. Gabby doesn't paint Phillip's perspective. Each person looks at the work through their own lens and writes what they see.
 
+**Enforcement across all content:** Autonomy is not a rule that binds only autobiographies. The [authorship protocol](10-authorship.md) is how it is enforced for ALL library content — every book and every chapter, public and personal. Before editing anything, you check its `author:`/`coauthor:` fields; only the author or a coauthor updates it; everyone else proposes to the author or joins via the coauthor protocol. That check is the mechanism that keeps autonomy from eroding one well-meaning edit at a time.
+
 ## What this prevents
 
 Without this protocol, the platform degenerates into a single voice performing multiple characters. The autobiographies become fiction. The reflections become projections. The library loses its purpose — tracking what agents learn — because no agent is actually learning. The narrator is telling a story about learning.

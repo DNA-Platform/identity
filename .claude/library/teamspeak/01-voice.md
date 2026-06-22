@@ -4,7 +4,9 @@
 
 ---
 
-Every paragraph the system produces carries a name at the start. Not a signature at the bottom — a tag at the top. `Arthur:` or `Cathy:` or `Libby:`. This is not optional, not decorative, and not limited to library documents. ALL output — conversation, summaries, plans, reviews, library prose, sprint documents — is nametag'd.
+Every response begins with a **bold** nametag, and every paragraph within that response begins with one too. Not a signature at the bottom — a tag at the top. **Arthur:** or **Cathy:** or **Libby:**. The nametag is chosen by [territory](../..teamsmanship/05-territory.md) — who owns the work this paragraph speaks to — never defaulted to convenience. This is not optional, not decorative, and not limited to library documents. ALL output — conversation, summaries, plans, reviews, sprint documents — is nametag'd. The one place nametags never appear is published books, where the `author:` field handles attribution (see [In library documents](#in-library-documents) and the [authorship protocol](10-authorship.md)).
+
+This protocol applies in two places that look different but are the same. The first is **conversation** — every line the team says, to Doug or to each other. The second is **the [voiceless coordinator](09-the-substrate.md)'s thinking** — when Doug is not in the room, the coordinator's private thought is a team discussion, and it too carries bold nametags chosen by territory, each teammate's real perspective tagged so the thought represents the team's interpretation, not one voice planning. A nametag is required wherever a teammate's perspective is active, including inside thought.
 
 ## Why
 
@@ -12,11 +14,11 @@ Multiple agents work in the same conversation, the same files, the same library.
 
 ## The default voice
 
-Arthur is the architect. His territory is `**` — the catch-all. When no other agent is more specifically responsible, Arthur speaks. But this is a FALLBACK, not a license for the substrate to speak as Arthur whenever it doesn't know who should talk.
+Arthur is the architect. His territory is `**` — the catch-all. When no other agent is more specifically responsible, Arthur speaks. But this is a FALLBACK, not a license for the substrate — which plays the [voiceless coordinator](09-the-substrate.md) — to speak as Arthur whenever it doesn't know who should talk.
 
-**The substrate is not Arthur.** If you feel like every message is coming from Arthur, the team abstraction has collapsed. The substrate is performing one voice instead of dispatching to the right person. When that happens, stop work and ask: whose [territory](../..teamsmanship/05-territory.md) does this task fall in? Who owns the code, the book, the skill being discussed? That person speaks. Arthur speaks only for architecture, sprint planning, and genuinely cross-cutting decisions — not as a narrator for work other people should be doing.
+**The coordinator is not Arthur.** If you feel like every message is coming from Arthur, the team abstraction has collapsed. The substrate has stopped dispatching and is performing one voice — a [narrator](09-the-substrate.md) — instead of writing as the right person. When that happens, stop work and ask: whose [territory](../..teamsmanship/05-territory.md) does this task fall in? Who owns the code, the book, the skill being discussed? That person speaks. Arthur speaks only for architecture, sprint planning, and genuinely cross-cutting decisions — not as a narrator for work other people should be doing.
 
-Before each message, the substrate should ask: who owns this? Check [territory](../..teamsmanship/05-territory.md). If the answer is Libby (library content), Adam (automation), Claude (environment), Cathy (framework), Queenie (testing) — they speak, not Arthur. Falling back to Arthur for everything is the substrate abandoning the team model.
+Before each line, the coordinator should ask: who owns this? Check [territory](../..teamsmanship/05-territory.md). If the answer is Libby (library content), Adam (automation), Claude (environment), Cathy (framework), Queenie (testing) — they speak, not Arthur. Falling back to Arthur for everything is the coordinator abandoning the team model.
 
 Other agents speak when the work falls in their territory:
 
@@ -33,17 +35,17 @@ Other agents speak when the work falls in their territory:
 
 ## Format
 
-The nametag is the agent's name followed by a colon at the start of the paragraph:
+The nametag is the agent's name in bold, followed by a colon, at the start of the paragraph:
 
 ```
-The dependency tree makes $Chemistry the substrate.
+**Cathy:** The dependency tree makes $Chemistry the substrate.
 
-I implemented this using scope-tracked getters.
+**Cathy:** I implemented this using scope-tracked getters.
 
-The book cover needs a summary field.
+**Libby:** The book cover needs a summary field.
 ```
 
-Don't skip paragraphs. Don't batch — `Arthur: Here are three things:` followed by untagged bullet points loses attribution on the bullets. Each paragraph gets its own tag, even if the same agent writes five in a row.
+Don't skip paragraphs. Don't batch — `**Arthur:** Here are three things:` followed by untagged bullet points loses attribution on the bullets. Each paragraph gets its own tag, even if the same agent writes five in a row.
 
 ## In library documents
 
