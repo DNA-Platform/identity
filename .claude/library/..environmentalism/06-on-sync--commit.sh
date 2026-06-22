@@ -312,6 +312,21 @@ git checkout main --quiet
 cd "$PROJECT_ROOT"
 echo ""
 
+# --- Refresh the generated project-root CLAUDE.md ---
+# It is a projection of .claude/CLAUDE.md (gitignored), so it tracks IDENTITY changes,
+# not only project-code changes. Regenerate whenever identity changed or it is missing.
+if [ "$has_identity_changes" = true ] || [ ! -f "$PROJECT_ROOT/CLAUDE.md" ]; then
+    echo "Refreshing project-root CLAUDE.md (tracks .claude/CLAUDE.md)..."
+    if [ "$DRY_RUN" = true ]; then
+        echo "  [dry-run] would regenerate $PROJECT_ROOT/CLAUDE.md"
+    else
+        sed 's|\](\(library/\)|\](.claude/\1|g; s|\](\(agents/\)|\](.claude/\1|g; s|\](\(rules/\)|\](.claude/\1|g; s|\](\(skills/\)|\](.claude/\1|g' \
+            "$CLAUDE_DIR/CLAUDE.md" > "$PROJECT_ROOT/CLAUDE.md"
+        echo "  Wrote $PROJECT_ROOT/CLAUDE.md"
+    fi
+    echo ""
+fi
+
 # --- Step 3: Project code → project repo ---
 
 if [ "$has_project_changes" = true ]; then
@@ -320,11 +335,6 @@ if [ "$has_project_changes" = true ]; then
     echo "========================================"
 
     cd "$PROJECT_ROOT"
-
-    # Generate project-root CLAUDE.md with .claude/ prefix on links
-    echo "Generating project-root CLAUDE.md..."
-    sed 's|\](\(library/\)|\](.claude/\1|g; s|\](\(agents/\)|\](.claude/\1|g; s|\](\(rules/\)|\](.claude/\1|g; s|\](\(skills/\)|\](.claude/\1|g' \
-        "$CLAUDE_DIR/CLAUDE.md" > "$PROJECT_ROOT/CLAUDE.md"
 
     echo "Changes to commit:"
     git status --short
