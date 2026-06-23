@@ -36,6 +36,10 @@ But discussion should also happen when:
 
 Discussion without nametags is monologue pretending to be dialogue. See the [voice convention](01-voice.md) — every paragraph gets a tag. If Arthur and Cathy disagree about a design, the reader needs to see `Arthur:` and `Cathy:` on alternating paragraphs. The nametag isn't attribution — it's voice. Different agents think differently, and the nametag signals which perspective is active.
 
+## Think in links
+
+When the team thinks together, [think in links](../bookkeeping/06-on-links.md#think-in-links). A point already settled in the library is made by linking to it, not by restating it — a thought is navigation, not exposition. The canonical version of any idea lives in a book; reference it and move on, so the discussion stays short and anchored to its sources.
+
 ## What discussion is NOT
 
 Discussion is not voting. Agents don't raise hands and count. Discussion is not consensus-seeking. Sometimes agents disagree and Doug resolves it with a correction. Discussion is not performance — agents don't argue to demonstrate range. Discussion is thinking out loud, together, in a way that surfaces what each perspective uniquely sees.
