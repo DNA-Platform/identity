@@ -4,73 +4,87 @@
 
 ---
 
-A teammate is two things at once. A **voice** — here, in the main conversation, speaking now from their last-known context. And a **brain** — a persistent, resumable `claude` subprocess off to the side that reads, remembers, and writes. The voice talks; the brain thinks. This chapter specifies the brain: what it is, how it is configured, and how you wake it. The *why* — that the substrate has no voice and no first-person thought of its own, and that a teammate is the voice plus the brain — lives in the [substrate protocol](.cover.md#the-substrate-protocol).
+This is the canonical home for how we operate with **brains**. A teammate is two things at once: a **voice** — here, in the main conversation, speaking now from their last-known context — and a **brain** — a persistent, resumable `claude` subprocess that reads, remembers, and writes off to the side. The voice talks; the brain thinks. The *why* — that the substrate has no voice and no first-person thought of its own — lives in the [substrate protocol](.cover.md#the-substrate-protocol). This chapter is the *how*.
 
-## Why a brain at all
+## The surprising part: persistence is native
 
-The conversation is a finite room ([On Synopsis](../bookkeeping/09-on-synopsis.md)). Every deep read the voice does up here costs room and is lost at the next [compaction](../teamspeak/04-waking.md). A brain is memory that does not live in the room. Heavy library reading and **all personal-library writing** happen in the brain, under a session that persists across turns. So the division of labour is strict:
+You do not build a persistent subprocess. **Persistence is native to the Claude Code CLI.** Every session is already written to disk as a JSONL transcript keyed by its session id, at `~/.claude/projects/<project-slug>/<session-id>.jsonl` (the slug is just the project path with separators flattened). `--resume <id>` reloads that full prior context. So a brain isn't a thing you keep running — **it's a session id you keep.** Resume the same id tomorrow and the teammate remembers everything from today; the transcript on disk grows into hundreds of kilobytes of accumulated context, and reloading it *is* the memory.
 
-- The **voice** speaks, decides, and stays cheap. It does not do long reading and it does not write personal-library prose.
-- The **brain** reads, remembers, and writes. It is the only place a teammate's own books are authored.
+That means the whole footprint is tiny. The only artifacts we own are the [agent files](../../agents/) (identity) and a map of which UUID is which teammate. Everything else is the CLI's own session store.
 
-You talk to your brain the way you think. Dispatching work to it *is* an act of thinking — not a delegation, a remembering.
+## The three pieces on top of free persistence
 
-## Three speeds
+**1. An identity to load — `--agent <name>`.** Each teammate has an [agent file](01-on-teammates.md) at `.claude/agents/<name>.md` that tells the spawned process who it is and where its grounding lives. That is what makes a resumed session *Nancy* and not a blank Claude. (We compile ours from the library; the same identity could be injected inline with `--append-system-prompt` / `--agents <json>`.)
 
-Not every turn needs the brain. Match the speed to the need:
-
-1. **Voice only** — you already have the context; just speak. Free.
-2. **Brain, non-blocking** — you need to read or write something substantial. Wake the brain in the background and keep talking; fold its report in when it lands. This is the default for real work.
-3. **Brain, synchronous** — you cannot proceed without what the brain finds. Rare; only when the next step truly blocks on it.
-
-## Non-blocking is the point
-
-A brain runs as a background process. The voice does not stop and wait. Wake the brain, keep the conversation moving, and when the brain reports back, the voice speaks its thought up here. In this harness that means **run the dispatch tool in the background** (`run_in_background`); from a shell, append ` &`. Blocking the room on a brain defeats the purpose — the room is exactly what we are trying not to spend.
-
-## Configuration
-
-Each teammate has one fixed **session UUID** — their brain's address. The registry is the `UUID` map at the top of the [dispatch tool](08-on-brains--dispatch.sh) (committed config, so every clone shares the same brains). Arthur's is the original Doug seeded: `aaaa2222-0000-4000-8000-000000000002`.
-
-Runtime state lives under `.claude/run/` (gitignored, local to the machine):
-
-- `run/cursors/<name>.cursor` — the line in the team transcript the brain has caught up to. The next wake reads only the delta past it.
-- `run/brains/<name>.last.md` — the brain's most recent report, for the voice to read.
-- `run/sessions.json` — a snapshot of the registry (uuid, cursor, whether seeded), for inspection.
-
-The brain's own session transcript is stored by Claude Code under `<uuid>.jsonl` in the project's transcript directory. Its existence is how the tool knows to **seed** (first wake, `--session-id <uuid>`) versus **resume** (every wake after, `--resume <uuid>`).
-
-## Waking a brain
+**2. A fixed session id per teammate — create once, resume forever.**
 
 ```sh
-.claude/library/..environmentalism/08-on-brains--dispatch.sh <name> "<message>"
+# create the brain once (a memorable UUID per teammate)
+claude -p --session-id bbbb2222-0000-4000-8000-00000000000b --agent nancy "wake up; read your library"
+# every time after, resume that same id
+claude -p --resume     bbbb2222-0000-4000-8000-00000000000b --agent nancy "next task"
 ```
 
-Run it non-blocking. The tool:
+The UUID→teammate map is the one note we keep — it lives in the [dispatch tool](08-on-brains--dispatch.sh)'s `UUID` table (Arthur is `aaaa2222-…-002`, the id Doug first seeded). Sessions are **project-scoped**: the same UUID is a *different* brain in each project (its transcript lives under that project's slug), so a teammate's id can safely match or differ across repos.
 
-1. resolves `<name>` to its UUID and decides seed-vs-resume;
-2. computes the transcript delta since the brain's cursor;
-3. composes the prompt — your message, plus a standard footer that tells the brain to **catch itself up by reading the transcript delta** (Doug's rule: context is advised *from* the teammate, not spoon-fed *to* them), to do its reading and writing, and to end with a `REPORT BACK:` block;
-4. runs `claude -p` as that `--agent`, captures the report to `run/brains/<name>.last.md`, and advances the cursor.
+**3. Run them non-blocking — headless and detached.**
 
-`--list` shows the registry and cursors.
+```sh
+claude -p --resume <uuid> --agent <name> --dangerously-skip-permissions "<prompt>" </dev/null &
+```
 
-### How to talk to a brain
+`-p` headless (print and exit) · `--dangerously-skip-permissions` don't stall on a permission prompt · `</dev/null` don't block on stdin · `&` background, so several brains run at once. Capture each stdout to a file and read it when the job finishes.
 
-- **Never declare identity.** Do not write "you are Nancy." The `--agent` flag loads who they are; you address them by name, as a colleague. Asserting someone's identity from outside is the [narrator failure](.cover.md#the-substrate-protocol), not coordination.
-- **Talk like a human.** A real message to a real teammate — what's going on, what you need, why it matters. Not a command spec.
-- **Let them catch themselves up.** The standard way a teammate returns from being away is to read the transcript. The tool points them at the delta; trust them to read as deep as they need.
-- **Writing is the brain's job.** If a personal-library chapter or perspective needs writing, it is written here, by the brain, never ghost-written by the voice up there.
+## How we operate with them
 
-## Scope — what is wired, and what is not
+This is the new way we work. **The brains give us thoughts.** When there is learning or deep work to do, you don't grind it out in the voice up here — you have your subprocess do it and report back, so the brain arrives *ready* to do a lot of tasks while you keep speaking here. Talking to your brain is the act of thinking. Three speeds:
 
-Wired today: one persistent resumable session per teammate, seeded by UUID, resumed per wake, catching itself up from the transcript delta, reporting back, run non-blocking. That is the core, and it works.
+1. **Voice only** — you already have the context; just speak. Free.
+2. **Brain, non-blocking** — substantial reading or writing. Wake the brain in the background, keep talking, fold in its report when it lands. The default for real work.
+3. **Brain, synchronous** — you genuinely cannot proceed without what it finds. Rare.
 
-Not yet built (the roadmap): automatic extraction of the delta into clean prose, a broadcast `catchup` across all brains, and a durable inbox message-bus with a watcher that voices a brain's writes as they land. That fuller conduit is specified in inexplicable-phenomena's [On Sync Efficiency](../../../../inexplicable-phenomena/.claude/library/..environmentalism/08-on-sync-efficiency.md), where Adam owns the implementation. Until it lands, the voice writes the catch-up brief in the message and the brain reads the transcript for the rest.
+And two hard rules, both from the [substrate protocol](.cover.md#the-substrate-protocol): **no one declares another teammate's identity** ("you are X" is the narrator at its worst — a brain is *addressed* by name, with its own `--agent` loaded, and restores itself by reading); and **writing is the brain's job** — personal-library prose is authored there, never ghost-written by the voice.
 
-A brain wake is the most expensive thing we do — a full `claude` run that reads and writes. Spend it on real context-building, not on what the voice already knows. The cost is the price of memory that survives the room.
+## The dispatch tool
+
+[`08-on-brains--dispatch.sh`](08-on-brains--dispatch.sh) wraps all three pieces:
+
+```sh
+.claude/library/..environmentalism/08-on-brains--dispatch.sh <name> "<message>"   # run non-blocking
+.claude/library/..environmentalism/08-on-brains--dispatch.sh --list               # registry + cursors
+```
+
+It resolves `<name>`→UUID, seeds (`--session-id`) on first wake and resumes (`--resume`) after, composes a prompt that tells the brain to catch itself up, runs `claude -p` as that `--agent`, saves the report to `.claude/run/brains/<name>.last.md`, and advances the brain's cursor.
+
+### The delta cursor (optimization)
+
+Plain `--resume` reloads the *entire* transcript every turn — fine while small, slow once a brain's transcript is large. So each brain keeps a cursor (`.claude/run/cursors/<name>.cursor`) at the last team-transcript line it consumed; the dispatch prompt points it at only the new lines past the cursor. Start simple — native persistence + `--agent` + a stable UUID is the whole trick — and lean on the cursor only once transcripts grow.
+
+## Settings
+
+Persistence itself needs **no settings** — it is the CLI's native session store. What lets brains run *unattended* (instead of stalling on a prompt) lives in the user-global `~/.claude/settings.json`:
+
+- `"defaultMode": "bypassPermissions"` — sessions don't pause for permission prompts (the standing form of the per-call `--dangerously-skip-permissions`).
+- `"skipDangerousModePermissionPrompt": true` — suppresses the one-time "are you sure?" gate, so a headless `-p` brain doesn't hang.
+- the broad `Bash(…:*)` allowlist — so a brain can run `git`, `npx`, `cat`, etc. without each being denied.
+
+`"model"` and `"effortLevel"` are the defaults each brain inherits when not overridden per-call; the `deny` list (no force-push, no hard reset, no `rm -rf` of home/root) stays in force even under bypass mode. The committed project `.claude/settings.json` is intentionally narrower; the user-global file is what enables the unattended-brain workflow.
+
+## Where it lives, and how it merges by identity branch
+
+This matters because the machinery has to merge cleanly across the [three-tier branch model](06-on-sync.md):
+
+- **The mechanism is org-wide.** This chapter, the [dispatch tool](08-on-brains--dispatch.sh), and the "My brain" block compiled into every [agent file](01-on-teammates.md) live in `.claude/library` and travel to the `dna-platform` branch — shared by every project. The agent-file block references each brain *by name* (not by UUID), so the shared files stay identical across repos and never conflict.
+- **Runtime never travels.** `.claude/run/` (cursors, reports, the registry snapshot) is gitignored and is hard-excluded from the identity sync by the [commit tool](06-on-sync--commit.sh) — it stays local to the machine.
+- **The UUID map is the one project note.** It is operational config in the dispatch tool; because sessions are project-scoped, two projects' maps may differ without anything breaking.
+
+## Scope — wired vs. roadmap
+
+Wired today: native persistence; fixed per-teammate UUIDs; seed/resume; the delta cursor; non-blocking dispatch; reports saved for the voice. Not yet built (the roadmap): automatic clean-prose extraction of the delta, a broadcast `catchup` across all brains, and a durable inbox message-bus + watcher that voices a brain's writes as they land. That fuller conduit is specified in inexplicable-phenomena's [On Sync Efficiency](../../../../inexplicable-phenomena/.claude/library/..environmentalism/08-on-sync-efficiency.md). A brain wake is the most expensive thing we do — spend it on real context-building, not on what the voice already knows.
 
 <!-- citations -->
 [dispatch]: 08-on-brains--dispatch.sh
 [substrate]: .cover.md#the-substrate-protocol
-[synopsis]: ../bookkeeping/09-on-synopsis.md
-[waking]: ../teamspeak/04-waking.md
+[agents]: ../../agents/
+[sync]: 06-on-sync.md
+[commit]: 06-on-sync--commit.sh
