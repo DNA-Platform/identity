@@ -7,7 +7,7 @@
 
 [Book: [Datasets](.cover.md)]
 
-Each scan is a self-contained directory in the **neuralpredictors `FileTreeDataset`** layout — the Sensorium lineage's static-scan format. That this is the exact lineage format is *why* the Sensorium tooling loads it directly, with no custom reader (see [The Workspace](../the-workspace/.cover.md)). A scan has two parts: `data/` (the per-trial arrays) and `meta/` (the per-neuron and per-trial metadata).
+Each scan is a self-contained directory in the **neuralpredictors `FileTreeDataset`** layout — the Sensorium lineage's static-scan format. That this is the exact lineage format is *why* the Sensorium tooling loads it directly, with no custom reader (see [The Build](../the-build/.cover.md)). A scan has two parts: `data/` (the per-trial arrays) and `meta/` (the per-neuron and per-trial metadata).
 
 ## `data/` — one `.npy` per trial
 
@@ -36,7 +36,7 @@ Aligned to the order of the `responses` vector: `unit_ids.npy`, `animal_ids.npy`
 
 ## The relative-path gotcha
 
-The [walkthrough](../../altered-states-doi/data/dataset_walkthrough.ipynb) loads `responses/{i}` and `images/{i}` but `data/behavior/{i}` and `data/pupil_center/{i}` — inconsistent prefixes. On disk **all four live under `data/`**. Loaders must set the working directory to the scan root (or use absolute paths); the relative paths in the walkthrough only resolve from a particular, undocumented working directory. [The Workspace](../the-workspace/.cover.md) records how the analysis fixes this.
+The [walkthrough](../../altered-states-doi/data/dataset_walkthrough.ipynb) loads `responses/{i}` and `images/{i}` but `data/behavior/{i}` and `data/pupil_center/{i}` — inconsistent prefixes. On disk **all four live under `data/`**. Loaders must set the working directory to the scan root (or use absolute paths); the relative paths in the walkthrough only resolve from a particular, undocumented working directory. [The Build](../the-build/.cover.md) records how the analysis fixes this.
 
 ---
 
