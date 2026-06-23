@@ -72,7 +72,7 @@ The two passthrough wrappers (`$Function$`, `$Html$` — see [feature: render fi
 [lift]: 04-lift.md
 [feat-render-filters]: ./05-render-filters.md
 
-[show-hide-fields]: ../../src/abstraction/particle.ts#L40
-[filter-registry]: ../../src/abstraction/particle.ts#L177
-[register-filter]: ../../src/abstraction/particle.ts#L185
-[apply-filters]: ../../src/abstraction/particle.ts#L192
+[show-hide-fields]: ../../package/src/abstraction/particle.ts#L40
+[filter-registry]: ../../package/src/abstraction/particle.ts#L177
+[register-filter]: ../../package/src/abstraction/particle.ts#L185
+[apply-filters]: ../../package/src/abstraction/particle.ts#L192

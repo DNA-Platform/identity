@@ -90,14 +90,14 @@ Recovery exists because chemical references can leak into places that only carry
 [lift]: 04-lift.md
 [caveat-allocates]: ../epistemology/04-caveats.md#particle-allocates-reactivity-machinery
 
-[particle-class-decl]: ../../src/abstraction/particle.ts#L25
-[is-particle]: ../../src/abstraction/particle.ts#L21
-[create-symbol]: ../../src/abstraction/particle.ts#L159
-[is-symbol]: ../../src/abstraction/particle.ts#L164
-[parse-cid]: ../../src/abstraction/particle.ts#L168
-[template-slot]: ../../src/abstraction/particle.ts#L37
-[is-template-getter]: ../../src/abstraction/particle.ts#L42
-[derived-getter]: ../../src/abstraction/particle.ts#L43
-[component-getter]: ../../src/abstraction/particle.ts#L54
-[molecule-slot]: ../../src/abstraction/particle.ts#L36
-[reaction-slot]: ../../src/abstraction/particle.ts#L35
+[particle-class-decl]: ../../package/src/abstraction/particle.ts#L25
+[is-particle]: ../../package/src/abstraction/particle.ts#L21
+[create-symbol]: ../../package/src/abstraction/particle.ts#L159
+[is-symbol]: ../../package/src/abstraction/particle.ts#L164
+[parse-cid]: ../../package/src/abstraction/particle.ts#L168
+[template-slot]: ../../package/src/abstraction/particle.ts#L37
+[is-template-getter]: ../../package/src/abstraction/particle.ts#L42
+[derived-getter]: ../../package/src/abstraction/particle.ts#L43
+[component-getter]: ../../package/src/abstraction/particle.ts#L54
+[molecule-slot]: ../../package/src/abstraction/particle.ts#L36
+[reaction-slot]: ../../package/src/abstraction/particle.ts#L35

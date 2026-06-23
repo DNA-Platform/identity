@@ -102,9 +102,9 @@ After React commits the render, the deferred-effect hook re-runs the same `view(
 [identity]: 01-identity.md
 [reactivity-contract]: ../authorship/04-the-reactivity-contract.md
 
-[view-method]: ../../src/abstraction/particle.ts#L80
-[apply-method]: ../../src/abstraction/particle.ts#L121
-[rendering-flag]: ../../src/abstraction/particle.ts#L32
-[view-cache]: ../../src/abstraction/particle.ts#L31
-[augment-src]: ../../src/implementation/augment.ts
-[reconcile-src]: ../../src/implementation/reconcile.ts
+[view-method]: ../../package/src/abstraction/particle.ts#L80
+[apply-method]: ../../package/src/abstraction/particle.ts#L121
+[rendering-flag]: ../../package/src/abstraction/particle.ts#L32
+[view-cache]: ../../package/src/abstraction/particle.ts#L31
+[augment-src]: ../../package/src/implementation/augment.ts
+[reconcile-src]: ../../package/src/implementation/reconcile.ts

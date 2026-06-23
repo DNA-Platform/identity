@@ -88,4 +88,4 @@ What `$lift` registers, the bond layer's setter walks. When `parent.$prop = x`, 
 [render filters]: 05-render-filters.md
 [derivatives]: ../reactivity/05-diffuse.md
 
-[lift-fn]: ../../src/abstraction/particle.ts#L215
+[lift-fn]: ../../package/src/abstraction/particle.ts#L215

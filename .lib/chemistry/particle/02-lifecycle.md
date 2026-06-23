@@ -102,11 +102,11 @@ Compared to React's `useEffect`-based initialization, the user writes the *inten
 [feat-lifecycle]: ./02-lifecycle.md
 [caveat-allocates]: ../epistemology/04-caveats.md#particle-allocates-reactivity-machinery
 
-[phase-order]: ../../src/abstraction/particle.ts#L16
-[phase-field]: ../../src/abstraction/particle.ts#L30
-[particle-ctor]: ../../src/abstraction/particle.ts#L59
-[particle-next]: ../../src/abstraction/particle.ts#L110
-[particle-resolve]: ../../src/abstraction/particle.ts#L128
-[molecule-alloc]: ../../src/abstraction/particle.ts#L73
-[reaction-alloc]: ../../src/abstraction/particle.ts#L74
-[template-register]: ../../src/abstraction/particle.ts#L79
+[phase-order]: ../../package/src/abstraction/particle.ts#L16
+[phase-field]: ../../package/src/abstraction/particle.ts#L30
+[particle-ctor]: ../../package/src/abstraction/particle.ts#L59
+[particle-next]: ../../package/src/abstraction/particle.ts#L110
+[particle-resolve]: ../../package/src/abstraction/particle.ts#L128
+[molecule-alloc]: ../../package/src/abstraction/particle.ts#L73
+[reaction-alloc]: ../../package/src/abstraction/particle.ts#L74
+[template-register]: ../../package/src/abstraction/particle.ts#L79

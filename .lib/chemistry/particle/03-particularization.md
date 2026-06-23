@@ -85,4 +85,4 @@ In the framework's internal layer, particularization is also how *carriers* in s
 [feat-particularization]: ./03-particularization.md
 [cav-particularization]: ../epistemology/04-caveats.md#particularization-prototype-loss
 
-[particle-ctor]: ../../src/abstraction/particle.ts#L45
+[particle-ctor]: ../../package/src/abstraction/particle.ts#L45

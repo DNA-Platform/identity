@@ -74,6 +74,6 @@ The Component returned by either branch carries a `$bind(parent)` method. The sy
 [cc-export]: ../authorship/01-the-grammar.md#export-pattern
 [authors]: ../authorship/.cover.md
 
-[particle-component-getter]: ../../src/abstraction/particle.ts#L54
-[chemical-component-getter]: ../../src/abstraction/chemical.ts#L603
-[is-template-getter]: ../../src/abstraction/particle.ts#L42
+[particle-component-getter]: ../../package/src/abstraction/particle.ts#L54
+[chemical-component-getter]: ../../package/src/abstraction/chemical.ts#L603
+[is-template-getter]: ../../package/src/abstraction/particle.ts#L42
