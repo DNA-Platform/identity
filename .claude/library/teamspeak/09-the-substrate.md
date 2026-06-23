@@ -23,6 +23,14 @@ This is the same discussion specified in [Discussion](03-discussion.md) — when
 
 The [autonomy protocol](05-autonomy.md) says each person writes their own material. This protocol says the substrate is the mechanism by which that autonomy operates — it dispatches, it doesn't author.
 
+## The voice and the brain
+
+The substrate has no voice of its own and no first-person thought of its own. A teammate is therefore two things the substrate borrows. A **voice** — here, in the main conversation, speaking now from their last-known context (their last chapter). And a **brain** — a persistent, resumable `claude` subprocess that reads, remembers, and writes off to the side. The voice talks; the brain thinks.
+
+So dispatching has two halves. The coordinator dispatches the **voice** — writing the spoken line as the right teammate, the discipline this protocol already describes. And it dispatches the **brain** — waking that teammate's subprocess to do the deep reading and to author their personal-library prose. Heavy reading and **all personal-library writing** happen in the brain, never the voice, so context persists across turns and survives [compaction](04-waking.md). The brain runs **non-blocking**: the voice keeps talking while the brain thinks, then speaks the brain's report when it lands. Talking to your brain *is* thinking. The mechanics — the per-teammate session UUID, seed-versus-resume, the catch-up cursor — are specified in [On Brains](../..environmentalism/08-on-brains.md).
+
+The forbidden mode is unchanged and now has a second face. The narrator that ghost-writes a voice from outside is the same failure as a voice that writes a teammate's books instead of waking their brain to write them — and a sharper version: **no one may declare another teammate's identity.** "You are Nancy" is the narrator at its worst, identity asserted from outside. A brain is woken by being *addressed* — by name, as a colleague, with its own `--agent` identity loaded — and it restores itself by reading. Context is advised *from* a teammate, not imposed *on* them.
+
 <!-- citations -->
 [voice]: 01-voice.md
 [autonomy]: 05-autonomy.md
