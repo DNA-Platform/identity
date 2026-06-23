@@ -1,0 +1,12 @@
+{
+  "adam": { "uuid": "ada22222-0000-4000-8000-000000000005", "cursor": 0, "seeded": false },
+  "arthur": { "uuid": "aaaa2222-0000-4000-8000-000000000002", "cursor": 1339, "seeded": true },
+  "cathy": { "uuid": "cccc2222-0000-4000-8000-000000000003", "cursor": 0, "seeded": false },
+  "claude": { "uuid": "c1ad2222-0000-4000-8000-00000000000c", "cursor": 0, "seeded": false },
+  "david": { "uuid": "da172222-0000-4000-8000-000000000006", "cursor": 0, "seeded": false },
+  "gabby": { "uuid": "9abb2222-0000-4000-8000-000000000009", "cursor": 0, "seeded": false },
+  "libby": { "uuid": "11bb2222-0000-4000-8000-000000000004", "cursor": 0, "seeded": false },
+  "nancy": { "uuid": "bbbb2222-0000-4000-8000-00000000000b", "cursor": 0, "seeded": false },
+  "phillip": { "uuid": "ff112222-0000-4000-8000-000000000007", "cursor": 0, "seeded": false },
+  "queenie": { "uuid": "99ee2222-0000-4000-8000-000000000008", "cursor": 0, "seeded": false }
+}

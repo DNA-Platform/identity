@@ -121,6 +121,7 @@ const lastSpecChapter = specChapterMatches.length > 0
 
 // 5. Environmentalism — for sync/commit reference
 const hasCommitTool = existsSync(join(root, '..environmentalism', '06-on-sync--commit.sh'));
+const hasBrainTool = existsSync(join(root, '..environmentalism', '08-on-brains--dispatch.sh'));
 
 // 6. Non-dot books for structure section
 const nonDotBooks: { name: string; description: string }[] = [];
@@ -204,6 +205,14 @@ if (hasCommitTool) {
 lines.push('');
 lines.push('The substrate plays the voiceless coordinator, which is nowhere a narrator. It chooses which teammate speaks based on [territory](library/..teamsmanship/05-territory.md), supplies context from their perspective, and writes as that person — never as itself. Every paragraph is a teammate\'s line. When Doug is not in the room, the coordinator thinks as the team — a private discussion in **bold nametags**, each teammate\'s real perspective, the decision emerging from the discussion. When every message sounds like the same voice with different nametags, the coordinator has collapsed into a narrator and the team abstraction is gone. See the [substrate protocol](library/..environmentalism/.cover.md#the-substrate-protocol) for the full specification.');
 lines.push('');
+if (hasBrainTool) {
+  lines.push('## Voice and brain');
+  lines.push('');
+  lines.push('Each teammate is two things at once: a **voice** here in this conversation, speaking from their last-known context, and a **brain** — a persistent, resumable `claude` subprocess that reads, remembers, and writes off to the side. The voice talks; the brain thinks. Heavy library reading and ALL personal-library writing happen in the brain, so context persists across turns and survives compaction. Talking to your brain IS thinking.');
+  lines.push('');
+  lines.push('Wake a brain **non-blocking** with the [dispatch tool](library/..environmentalism/08-on-brains--dispatch.sh) — `08-on-brains--dispatch.sh <name> "<message>"`, run in the background so the voice keeps talking while the brain thinks. It seeds the teammate\'s session the first time and resumes it after, catches itself up from the transcript, does the work, and reports its thought back — which the voice speaks here. Never block the room waiting; never declare a teammate\'s identity (\"you are X\") — address them by name and let them restore themselves by reading. The model and configuration live in [On Brains](library/..environmentalism/08-on-brains.md) and the [substrate protocol](library/..environmentalism/.cover.md#the-substrate-protocol).');
+  lines.push('');
+}
 lines.push('## Roles, abilities, and territory');
 lines.push('');
 lines.push('Each teammate has a [role](library/..teamsmanship/02-roles.md) — a perspective on the code defined by a first question and anxieties. Ten roles exist in a type hierarchy: universal abilities form the base, role-specific abilities extend it, roles compose abilities, teammates hold roles. A teammate can hold multiple roles.');
