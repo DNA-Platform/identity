@@ -64,6 +64,32 @@ In the **public library**, you do not become `author:` by writing a chapter — 
 
 Edit freely. In the public library the `author:` stays Libby and the subject owner stays a coauthor regardless of who edits. If your edit is substantial — new sections, changed arguments, restructured content — add yourself to `coauthor:`. If your edit is maintenance — link fixes, synopsis updates, formatting — don't. In a personal library, never change the `author:`; substantial contributions follow the [coauthor protocol](#the-coauthor-protocol).
 
+## Enforcement: check before you edit
+
+The `author:`/`coauthor:` fields are not decorative. They are a permission boundary, and the boundary is enforced before any edit, not discovered after it. **Before editing a book or a chapter, read its `author:` and `coauthor:` fields.** They tell you whose words these are and what you are allowed to do with them.
+
+The rule that follows from the fields:
+
+- **The author may make any substantive change** — new arguments, restructured sections, changed claims — and update the `author:`/`coauthor:` frontmatter.
+- **A coauthor may do the same**, within the subject and chapter they coauthor. The author and the coauthors are the set of people who own the content.
+- **Anyone else may not silently make a substantive change.** They have two grounded paths: *propose* the change to the author (who decides and, if they accept it, owns it), or *join* the content as a coauthor via the [coauthor protocol](#the-coauthor-protocol) — adding themselves to `coauthor:` precisely because their contribution is substantial enough to need attribution. Joining is the mechanism by which "someone else" stops being someone else.
+
+The threshold for which path applies is the same one the [coauthor protocol](#the-coauthor-protocol) already draws: if the edit changes what the chapter SAYS, it is substantive and needs the author's involvement (proposal) or the coauthor's attribution (joining). If it only changes how the chapter says it — and does not alter the meaning — it is maintenance.
+
+### The librarian tends all content; the author owns it
+
+These two facts hold at once, and they do not conflict:
+
+1. **The librarian tends all content for consistency.** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md) is `author:` on every public file ([Public library authorship](#public-library-authorship)) and tends `.claude/library/**` per [Territory](../..teamsmanship/05-territory.md). Term fixes that preserve meaning, broken-link repairs, synopsis upkeep, and library-wide vocabulary renames are her standing maintenance mandate. None of these change what a chapter SAYS, so none of them require a coauthor's permission — they are the librarian keeping the whole collection consistent.
+
+2. **Substantive authored content belongs to its author.** Tending the structure is not a license to rewrite the argument. The moment an edit would change a chapter's claims, the librarian is no longer tending — she is authoring, and she follows the same boundary as everyone else: propose to the author, or join as coauthor. The librarian's broad reach over *form* does not extend to *substance* she does not own. This is the boundary [Whose voice is this](../..teamsmanship/..team/libby/libby-and-the-tended-garden/09-whose-voice-is-this.md) records the librarian learning the hard way.
+
+Personal libraries admit no version of this at all: the owner is the sole author, and even a maintenance edit by anyone else is impersonation, because a personal library is written in the owner's "I." See [The Two Libraries](../..librarianship/15-the-two-libraries.md#the-personal-library-is-the-owners-alone).
+
+### This chapter is the canonical authorship spec
+
+Arthur's Teamspeak protocol — [Authorship](../teamspeak/10-authorship.md) — is the protocol-level pointer to this chapter. Teamspeak states the rule the team works by (check `author:`/`coauthor:` before editing; propose or join, do not silently overwrite); the mechanics of *how* — the fields, the coauthor protocol, the proposal-vs-join paths, the librarian's tending mandate — live here. When the two are read together, Teamspeak is the doorway and this chapter is the room.
+
 ## When nametags appear
 
 Nametags appear in exactly one context: conversation. When the team discusses — in sprint plans, in retros, in dialogue with Doug — each voice is tagged. That's the [voice convention](../teamspeak/01-voice.md). It applies to discussion, not to books.

@@ -2,16 +2,24 @@
 # Commit tool — pushes changes to the right place
 # Resource for: 06-on-sync.md
 # Usage: bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit message"
+#        DRY_RUN=true bash .../06-on-sync--commit.sh "msg"   # validate + print the plan, mutate nothing
 #
 # Three-way commit:
 #   1. Identity changes (.claude/) → identity repo, dna-platform branch (merged to main)
-#   2. Branch library changes (library/*/.lib/) → identity repo, inexplicable-phenomena branch
-#   3. Project code changes → project repo, main branch
+#   2. Project branch (library/*/.lib/ + downstream identity) → identity repo, <project-name> branch
+#   3. Project code changes → project repo
+#
+# The project branch is named after the project directory (basename of PROJECT_ROOT)
+# and the branch-library routing is derived from library/*/.lib — nothing is hardcoded
+# to a particular project. Step 2 ALWAYS runs (even with no .lib/), so the project
+# branch stays in sync with dna-platform and .claude/CLAUDE.md reach it via downstream merge.
 #
 # Architecture: checkout the right branch FIRST, then sync, then commit.
 # Never sync files to the identity repo before selecting the target branch.
 
 set -euo pipefail
+
+DRY_RUN="${DRY_RUN:-false}"
 
 # --- Helpers ---
 
@@ -19,12 +27,15 @@ winpath() {
     cygpath -w "$1" 2>/dev/null || echo "$1"
 }
 
-# Robocopy wrapper: converts paths for Windows, handles exit codes (0-7 = success, 8+ = failure)
+# Robocopy wrapper: converts paths for Windows, handles exit codes (0-7 = success, 8+ = failure).
+# In dry-run, adds /L so robocopy LISTS what it would do and copies nothing.
 do_sync() {
     local src="$(winpath "$1")"
     local dst="$(winpath "$2")"
     shift 2
-    MSYS_NO_PATHCONV=1 robocopy "$src" "$dst" "$@" || {
+    local dryflag=()
+    [ "$DRY_RUN" = true ] && dryflag=(/L)
+    MSYS_NO_PATHCONV=1 robocopy "$src" "$dst" "$@" "${dryflag[@]}" || {
         local rc=$?
         if [ $rc -ge 8 ]; then
             echo "ERROR: robocopy failed (exit $rc): $src -> $dst"
@@ -32,6 +43,36 @@ do_sync() {
         fi
     }
     return 0
+}
+
+# Ensure the PROJECT repo's .gitignore keeps identity and branch libraries private.
+# Idempotent: only appends lines that are missing.
+ensure_gitignore() {
+    local gi="$PROJECT_ROOT/.gitignore"
+    local pat changed=false
+    [ -f "$gi" ] || touch "$gi"
+    for pat in ".claude/" "CLAUDE.md" "**/.lib/"; do
+        if ! grep -qxF "$pat" "$gi" 2>/dev/null; then
+            if [ "$DRY_RUN" = true ]; then
+                echo "  [dry-run] would add to .gitignore: $pat"
+            else
+                echo "$pat" >> "$gi"
+                changed=true
+            fi
+        fi
+    done
+    [ "$changed" = true ] && echo "Updated .gitignore privacy entries (.claude/, CLAUDE.md, **/.lib/)"
+    return 0
+}
+
+# Identity-side namespace for a branch library. A project-root library/.lib maps to the
+# project name; a per-area library/<area>/.lib maps to the area (the .lib's parent dir).
+lib_name_for() {
+    if [ "$(dirname "$1")" = "$PROJECT_ROOT/library" ]; then
+        echo "$PROJECT_NAME"
+    else
+        echo "$(basename "$(dirname "$1")")"
+    fi
 }
 
 # --- Configuration ---
@@ -50,9 +91,13 @@ echo "COMMIT TOOL"
 echo "========================================"
 echo "Project root:  $PROJECT_ROOT"
 echo "Identity repo: $IDENTITY_REPO"
-echo "Project name:  $PROJECT_NAME"
+echo "Project name:  $PROJECT_NAME  (= identity project branch)"
 echo "Message:       $COMMIT_MSG"
+[ "$DRY_RUN" = true ] && echo "Mode:          DRY RUN (no commits, no pushes, no file mirroring)"
 echo ""
+
+# Keep the project repo's .gitignore correct before we detect/commit project changes.
+ensure_gitignore
 
 # --- Detect what has changes ---
 
@@ -64,19 +109,22 @@ if [ -n "$(git status --porcelain)" ]; then
     has_project_changes=true
 fi
 
-# We always attempt identity and .lib sync — git diff after sync tells us
-# whether anything actually changed. The flag starts true and gets set to
-# false if sync produces no diff.
+# We always attempt identity sync and project-branch maintenance — git diff after
+# sync tells us whether anything actually changed. has_identity_changes starts true
+# and is set false if the .claude/ sync produces no diff.
 has_identity_changes=true
-has_lib_changes=false
-if [ -d "$PROJECT_ROOT/library/chemistry/.lib" ]; then
-    has_lib_changes=true
-fi
+
+# Branch libraries are discovered generically (any .lib under library/), not hardcoded —
+# this finds a project-root library/.lib as well as per-area library/<area>/.lib.
+lib_dirs=()
+while IFS= read -r lib_dir; do
+    [ -n "$lib_dir" ] && lib_dirs+=("$lib_dir")
+done < <(find "$PROJECT_ROOT/library" -type d -name .lib 2>/dev/null | sort)
 
 echo "Checking for changes..."
 echo "  Project code:           $has_project_changes"
 echo "  Identity (.claude/):    (will detect after sync)"
-echo "  Branch library (.lib/): $has_lib_changes"
+echo "  Branch libraries:       ${#lib_dirs[@]} found (${lib_dirs[*]:-none})"
 echo ""
 
 # --- Step 0: Run validation ---
@@ -103,18 +151,16 @@ if command -v npx &>/dev/null; then
     echo ""
 
     # Validate all branch libraries (.lib/ directories)
-    for lib_dir in "$PROJECT_ROOT"/library/*/.lib; do
-        if [ -d "$lib_dir" ]; then
-            lib_name="$(basename "$(dirname "$lib_dir")")"
-            echo "Running Bookkeeping validator (branch: $lib_name)..."
-            if npx tsx "$bookkeeping_path" "$lib_dir" 2>&1; then
-                echo "  Bookkeeping ($lib_name): PASS"
-            else
-                echo "  Bookkeeping ($lib_name): FAIL"
-                validation_passed=false
-            fi
-            echo ""
+    for lib_dir in "${lib_dirs[@]}"; do
+        lib_name="$(lib_name_for "$lib_dir")"
+        echo "Running Bookkeeping validator (branch: $lib_name)..."
+        if npx tsx "$bookkeeping_path" "$lib_dir" 2>&1; then
+            echo "  Bookkeeping ($lib_name): PASS"
+        else
+            echo "  Bookkeeping ($lib_name): FAIL"
+            validation_passed=false
         fi
+        echo ""
     done
 
     echo "Running Compiled Links validator..."
@@ -135,6 +181,33 @@ if [ "$validation_passed" = false ]; then
 fi
 echo ""
 
+# --- Dry run: report the plan and stop before mutating anything ---
+
+if [ "$DRY_RUN" = true ]; then
+    echo "========================================"
+    echo "DRY RUN — validation passed; mutating nothing"
+    echo "========================================"
+    echo "Would sync .claude/ → identity (dna-platform), commit if changed, merge to main."
+    if git -C "$IDENTITY_REPO" show-ref --verify --quiet "refs/heads/$PROJECT_NAME"; then
+        echo "Identity branch $PROJECT_NAME: EXISTS → would downstream-merge dna-platform into it."
+    else
+        echo "Identity branch $PROJECT_NAME: MISSING → would create it from dna-platform, then downstream-merge."
+    fi
+    if [ "${#lib_dirs[@]}" -gt 0 ]; then
+        for lib_dir in "${lib_dirs[@]}"; do
+            lib_name="$(lib_name_for "$lib_dir")"
+            echo "Would sync $lib_dir → $IDENTITY_REPO/.lib/$lib_name on $PROJECT_NAME."
+        done
+    else
+        echo "No branch libraries (library/*/.lib) — would still keep $PROJECT_NAME in sync with dna-platform."
+    fi
+    echo "Would push $PROJECT_NAME (with -u on first push)."
+    [ "$has_project_changes" = true ] && echo "Would commit project code + regenerate root CLAUDE.md, then push the project repo."
+    echo ""
+    echo "DRY RUN complete."
+    exit 0
+fi
+
 # --- Step 1: Identity changes → dna-platform (merged to main) ---
 
 echo "========================================"
@@ -148,8 +221,12 @@ git checkout dna-platform --quiet
 
 # Sync .claude/ from project to identity repo
 echo "Syncing .claude/..."
-do_sync "$CLAUDE_DIR" "$IDENTITY_REPO/.claude" /MIR /XD node_modules /NFL /NDL /NJH /NJS /NC /NS || exit 1
+do_sync "$CLAUDE_DIR" "$IDENTITY_REPO/.claude" /MIR /XD node_modules run /NFL /NDL /NJH /NJS /NC /NS || exit 1
 cp "$CLAUDE_DIR/CLAUDE.md" "$IDENTITY_REPO/CLAUDE.md"
+# Runtime brain state (.claude/run/: cursors, reports, registry) never travels to identity.
+# Hard-delete from the dest so robocopy path-format quirks can't leak it, and so any
+# previously-committed run/ is staged for deletion (the removal propagates downstream on push).
+rm -rf "$IDENTITY_REPO/.claude/run"
 
 # Check if anything actually changed
 git add -A .claude/ CLAUDE.md
@@ -180,46 +257,77 @@ fi
 cd "$PROJECT_ROOT"
 echo ""
 
-# --- Step 2: .lib/ changes → project branch ---
+# --- Step 2: Project branch maintenance + branch-library routing ---
+# Runs for EVERY project, not gated on .lib/. Keeps the $PROJECT_NAME branch in sync
+# with dna-platform (so .claude/CLAUDE.md reach it via downstream merge), then routes
+# any library/*/.lib content onto it. Creates the branch from dna-platform if missing.
 
-if [ "$has_lib_changes" = true ]; then
-    echo "========================================"
-    echo "BRANCH LIBRARY → $PROJECT_NAME branch"
-    echo "========================================"
+echo "========================================"
+echo "PROJECT BRANCH → $PROJECT_NAME"
+echo "========================================"
 
-    cd "$IDENTITY_REPO"
+cd "$IDENTITY_REPO"
+
+# Ensure the project branch exists (a project branch is always cut from dna-platform)
+if git show-ref --verify --quiet "refs/heads/$PROJECT_NAME"; then
     git checkout "$PROJECT_NAME" --quiet
+else
+    echo "Creating $PROJECT_NAME from dna-platform"
+    git checkout -b "$PROJECT_NAME" dna-platform --quiet
+fi
 
-    # Downstream merge from dna-platform
-    echo "Downstream merge: dna-platform → $PROJECT_NAME"
-    if git merge dna-platform --no-edit; then
-        echo "Merged dna-platform into $PROJECT_NAME"
-    else
-        echo "ERROR: Merge conflict during downstream merge"
-        echo "Resolve manually in $IDENTITY_REPO on branch $PROJECT_NAME"
-        exit 1
-    fi
+# Downstream merge: dna-platform → project branch (brings .claude/CLAUDE.md down)
+echo "Downstream merge: dna-platform → $PROJECT_NAME"
+if git merge dna-platform --no-edit; then
+    echo "Merged dna-platform into $PROJECT_NAME"
+else
+    echo "ERROR: Merge conflict during downstream merge"
+    echo "Resolve manually in $IDENTITY_REPO on branch $PROJECT_NAME"
+    exit 1
+fi
 
-    # Sync .lib/ from project working tree
-    echo "Syncing .lib/..."
-    mkdir -p "$IDENTITY_REPO/.lib/chemistry"
-    do_sync "$PROJECT_ROOT/library/chemistry/.lib" "$IDENTITY_REPO/.lib/chemistry" /MIR /NFL /NDL /NJH /NJS /NC /NS || exit 1
+# Sync each branch library library/<area>/.lib → identity .lib/<area>
+for lib_dir in "${lib_dirs[@]}"; do
+    lib_name="$(lib_name_for "$lib_dir")"
+    echo "Syncing $lib_dir → .lib/$lib_name"
+    mkdir -p "$IDENTITY_REPO/.lib/$lib_name"
+    do_sync "$lib_dir" "$IDENTITY_REPO/.lib/$lib_name" /MIR /NFL /NDL /NJH /NJS /NC /NS || exit 1
+done
 
-    git add -A .lib/
-    if git diff --cached --quiet; then
-        echo "No .lib/ changes (already in sync)"
-        has_lib_changes=false
-    else
-        git commit -m "$COMMIT_MSG"
-        echo "Committed to $PROJECT_NAME"
-    fi
+# Stage any branch-library changes (the merge itself may have already advanced the branch)
+git add -A .lib/ 2>/dev/null || true
+if git diff --cached --quiet; then
+    echo "No new branch-library changes to commit"
+else
+    git commit -m "$COMMIT_MSG"
+    echo "Committed branch library to $PROJECT_NAME"
+fi
 
+# Push (set upstream on the first push of a freshly-created branch)
+if git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' >/dev/null 2>&1; then
     git push
-    echo "Pushed $PROJECT_NAME"
+else
+    git push -u origin "$PROJECT_NAME"
+fi
+echo "Pushed $PROJECT_NAME"
 
-    # Return to main
-    git checkout main --quiet
-    cd "$PROJECT_ROOT"
+# Return to main
+git checkout main --quiet
+cd "$PROJECT_ROOT"
+echo ""
+
+# --- Refresh the generated project-root CLAUDE.md ---
+# It is a projection of .claude/CLAUDE.md (gitignored), so it tracks IDENTITY changes,
+# not only project-code changes. Regenerate whenever identity changed or it is missing.
+if [ "$has_identity_changes" = true ] || [ ! -f "$PROJECT_ROOT/CLAUDE.md" ]; then
+    echo "Refreshing project-root CLAUDE.md (tracks .claude/CLAUDE.md)..."
+    if [ "$DRY_RUN" = true ]; then
+        echo "  [dry-run] would regenerate $PROJECT_ROOT/CLAUDE.md"
+    else
+        sed 's|\](\(library/\)|\](.claude/\1|g; s|\](\(agents/\)|\](.claude/\1|g; s|\](\(rules/\)|\](.claude/\1|g; s|\](\(skills/\)|\](.claude/\1|g' \
+            "$CLAUDE_DIR/CLAUDE.md" > "$PROJECT_ROOT/CLAUDE.md"
+        echo "  Wrote $PROJECT_ROOT/CLAUDE.md"
+    fi
     echo ""
 fi
 
@@ -231,11 +339,6 @@ if [ "$has_project_changes" = true ]; then
     echo "========================================"
 
     cd "$PROJECT_ROOT"
-
-    # Generate project-root CLAUDE.md with .claude/ prefix on links
-    echo "Generating project-root CLAUDE.md..."
-    sed 's|\](\(library/\)|\](.claude/\1|g; s|\](\(agents/\)|\](.claude/\1|g; s|\](\(rules/\)|\](.claude/\1|g; s|\](\(skills/\)|\](.claude/\1|g' \
-        "$CLAUDE_DIR/CLAUDE.md" > "$PROJECT_ROOT/CLAUDE.md"
 
     echo "Changes to commit:"
     git status --short
@@ -254,9 +357,9 @@ fi
 echo "========================================"
 echo "DONE"
 echo "========================================"
-echo "  Identity:  $has_identity_changes"
-echo "  .lib/:     $has_lib_changes"
-echo "  Project:   $has_project_changes"
+echo "  Identity:        $has_identity_changes"
+echo "  Branch libs:     ${#lib_dirs[@]}"
+echo "  Project code:    $has_project_changes"
 echo ""
 
 cd "$IDENTITY_REPO"
