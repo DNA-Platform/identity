@@ -39,13 +39,7 @@ A downstream merge is a git merge from the parent branch into the child branch. 
 
 ## Bringing the team to a project
 
-The [setup tool](06-on-sync--setup.sh) automates this — run it once against a new (or existing) project directory:
-
-```
-bash ../identity/.claude/library/..environmentalism/06-on-sync--setup.sh /path/to/project
-```
-
-It locates the sibling identity repo, ensures the project's branch exists (created from `dna-platform` if missing — the branch is named after the project directory), mirrors the identity `.claude/` into the project as a **plain mirror** (no nested `.git`), generates the project-root `CLAUDE.md` with `.claude/` link prefixes, and writes the project `.gitignore` (`.claude/`, `CLAUDE.md`, `**/.lib/`) so the identity stays private and the project stays clean. From the project's perspective, the team simply appears. From the identity's perspective, it has landed in a new building. The [protocol](../teamspeak/07-travel.md) describes the steps; the [setup tool](06-on-sync--setup.sh) is the fast path.
+Clone the identity repo into `.claude/`, check out the organization branch, copy `CLAUDE.md` to the project root. The project's `.gitignore` excludes both — the identity stays private, the project stays clean. From the project's perspective, the team simply appears. From the identity's perspective, it has landed in a new building. The [protocol](../teamspeak/07-travel.md) describes the exact steps.
 
 ## Syncing back
 
@@ -76,22 +70,12 @@ bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit
 The script detects what changed and routes each category to the right place:
 
 - **Identity changes** (`.claude/`): synced to the identity repo via robocopy, committed to `dna-platform`, merged to `main`, pushed.
-- **The project branch** (named after the project directory): the tool always downstream-merges `dna-platform` into it — so `.claude`/`CLAUDE.md` reach the project branch even when there is no branch library — then syncs every discovered `library/*/.lib` to the identity repo (`.lib/<area>`), commits, and pushes. The branch is created from `dna-platform` on first push if it does not exist. Routing is derived from the project directory name and the `library/*/.lib` glob, not hardcoded to any one project.
+- **Branch library changes** (`.lib/`): synced to the identity repo, committed to the project branch (e.g. `inexplicable-phenomena`), pushed. Includes a downstream merge from `dna-platform` before committing.
 - **Project code changes**: committed and pushed in the project repo. Generates the project-root `CLAUDE.md` with link prefix adjustment.
 
 The script runs [validation](05-on-validation.md) before any commits. If validation fails, nothing is pushed. The branching model is enforced by the tool — the operator does not need to remember which branch to push to.
 
 The tool is bash, not TypeScript. It is git operations, not library parsing. It belongs beside this chapter as a resource because it is the mechanism that implements the sync specification.
-
-## The setup tool
-
-[06-on-sync--setup.sh](06-on-sync--setup.sh) is the inverse of the commit tool — it brings the team *into* a project so a new repo gets the identity fast. Run it once, pointing at the project directory:
-
-```
-bash ../identity/.claude/library/..environmentalism/06-on-sync--setup.sh /path/to/project
-```
-
-It is idempotent (re-running re-syncs the identity into the project) and supports `DRY_RUN=true` to print the plan without mutating anything. It assumes repos are siblings under one parent (`parent/identity`, `parent/<project>`) and derives the project branch from the project directory name. Where the commit tool pushes a project's changes outward to the right branches, the setup tool pulls the identity in and wires the project's `.gitignore` and `CLAUDE.md`. Together they are the two directions of [travel](../teamspeak/07-travel.md) — pull in, push back — and both keep `.claude/` a plain mirror of the identity rather than a nested clone.
 
 ## Merge conflicts as identity events
 

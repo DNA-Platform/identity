@@ -80,8 +80,8 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** Adam built the relay. The ground wire carries signals faithfully. See [autobiography](..team/adam/adam-between-the-wires/.cover.md).
 - `.claude/library/..environmentalism/05-on-validation--*` — validation scripts (validator, check-links, runner)
   **Why:** Adam rewrote the link validator from scratch. Validation tooling is automation infrastructure.
-- `.claude/library/..environmentalism/06-on-sync--*.sh` — the sync tools (commit + setup)
-  **Why:** Adam owns the sync tooling. The commit tool routes changes to the right branches and validates before pushing; the setup tool is its inverse — it brings the identity into a project (pull, gitignore, project-root CLAUDE.md). Both should verify their own invariants. See [autobiography ch 31](..team/adam/adam-between-the-wires/31-the-tool-that-checks-itself.md), [Compilation Tools](../.compilation/05-tools.md).
+- `.claude/library/..environmentalism/06-on-sync--commit.sh` — the commit tool
+  **Why:** Adam owns the commit tool. It routes changes to the right branches, validates before pushing, and should verify its own invariants. See [autobiography ch 31](..team/adam/adam-between-the-wires/31-the-tool-that-checks-itself.md), [Compilation Tools](../.compilation/05-tools.md).
 - `.claude/library/..environmentalism/01-on-teammates--compiler.ts` — the teammate compiler (shared with Claude)
   **Why:** compilers are automation. Adam owns the machinery; Claude owns the specification. See [Compilation Compilers](../.compilation/03-compilers.md).
 - `.claude/library/..environmentalism/02-on-bootstrap--compiler.ts` — the bootstrap compiler (shared with Claude)
@@ -96,18 +96,12 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** [Compilation](../.compilation/.cover.md) catalogues every automated process in the library — compilers, validators, tools. Automation is Adam's subject. See [Compilation](../.compilation/.cover.md).
 - `package.json`, `package-lock.json` — project configuration
   **Why:** package management is infrastructure. Adam ensures dependencies are correct.
-- `src/scripts/**` — altered-states analysis tooling and utilities (e.g. `extract_pptx.py`) and build glue (shared `src/` root with Nancy's science code)
-  **Why:** scripts are tooling. Adam owns the utilities and the build glue that stand the analysis environment up. See the project table below.
-- `src/data.toml`, `pyproject.toml` — the project, dependency, and data-source configuration (shared with Nancy on data locations)
-  **Why:** the lock and the data registry config are infrastructure. Adam keeps them correct; Nancy supplies where the data lives. He authors the branch book on the environment, The Build (see the altered-states branch table).
 - Roles: [Automation Engineer](02-roles.md#automation-engineer)
 
 ### [David](..team/david/..what-the-pipeline-delivers/.cover.md) — DevOps Engineer
 
 - `.github/**` — CI/CD pipelines and deployment
   **Why:** David makes the team's work visible to the world. Deployment is his territory. See [autobiography](..team/david/the-devops-journal/.cover.md).
-- `library/data/.archive/**` — the archived source data: the two ~100 MB scan zips, `match-cells.py.md`, and `unit_stack_coords.csv`; plus model checkpoints and generated figures (see the project table below)
-  **Why:** big binaries must not bloat the identity sync. David decides storage and transport — git-lfs, gitignored working dirs, or keeping the archives out of the synced tree — so the work ships without dragging hundreds of megabytes through git.
 - Roles: [DevOps Engineer](02-roles.md#devops-engineer)
 
 ### [Phillip](..team/phillip/..what-the-user-sees/.cover.md) — UX Designer + Chemistry Developer
@@ -126,36 +120,20 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** performance testing is QA.
 - `library/chemistry/app/**` — app quality (shared with Phillip)
   **Why:** the app must work correctly. Queenie validates it.
-- `src/tests/**` — the altered-states analysis test suite and the pytest-marker dial (shared with Nancy, who writes the analysis-output and dataset regression tests)
-  **Why:** a result isn't true because it's fluent. Queenie owns the suite; Nancy pins the science outputs against regression.
-- `src/library/stats/**` — the nulls and confound regression (shared with Nancy)
-  **Why:** the null factored into one place — shuffles, split-half, behavioral regression, the time/state control — is what makes the comparison honest. Queenie owns that machinery, and property tests on it are the hardest and most important.
-- `src/experiments/**` — experiment tests (shared with Nancy)
-  **Why:** each one-off analysis carries its own checks so its claims clear a pre-stated threshold.
 - Roles: [QA Engineer](02-roles.md#qa-engineer)
 
 ### [Gabby](..team/gabby/..what-beauty-serves/.cover.md) — Graphic Designer + Chemistry Developer
 
 - `library/chemistry/app/**` — visual design in the Lab (shared with Phillip)
   **Why:** the beautiful IS the meaningful. Gabby ensures the framework's output communicates visually. See [autobiography](..team/gabby/gabby-and-the-visual-voice/.cover.md).
-- `src/library/viz/**` — the altered-states visualization layer and plot style (shared with Nancy)
-  **Why:** the beautiful IS the meaningful. Gabby owns the viz aesthetics so the population code is shown in a way that communicates, not just renders.
-- Figure aesthetics within `src/experiments/**` (shared with Nancy)
-  **Why:** when an analysis makes a figure, Gabby makes it one that means something.
 - Roles: [Graphic Designer](02-roles.md#graphic-designer), [Chemistry Developer](02-roles.md#chemistry-developer)
 
-### [Nancy](..team/nancy/..the-evidence-settles/.cover.md) — Computational Neuroscientist + Philosopher + Python Engineer
+### [Nancy](..team/nancy/..the-evidence-settles/.cover.md) — Computational Neuroscientist + Philosopher
 
 - `library/papers/**` — the team's neuroscience paper collection (read, summarized, catalogued)
-  **Why:** Nancy reads neuroscience with the rigor the field demands — method, cell types, perturbation — and catalogues what the data actually shows. The three papers (digital twin, functional connectomics, sequence filtering) are the method she analyses from.
-- `library/data/**` — the DOI experiment data (the extracted scans: responses, images, behavior, metadata; the 749 matched cells, the train/test tiers)
-  **Why:** the empirical material she characterizes and analyses — the population code before and after the psychedelic. The archived source zips live under `library/data/.archive/` (David's large-file handling). See [autobiography](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md).
-- `library/resources/**` — the de-named project-overview deck (Erin's presentation), the experiment's origin briefing
-  **Why:** a fixed source artifact — the question, the drug, the design, the data/analysis framing — curated by the neuroscientist who leads the experiment.
-- `src/library/**` — the shared importable analysis code: the `io` loaders (the static-scan loader incl. `load_scan` and the cell matching), the analysis in `stats`, and the `model` adapters (shared — Adam owns env/build glue, Gabby the `viz` aesthetics, Queenie the `stats` nulls)
-  **Why:** Nancy writes the science as code. The library is hers; the environment that runs it is Adam's, the figures' aesthetics are Gabby's, and the null machinery is Queenie's. Nested ownership, not conflict.
-- `src/experiments/**`, `src/notebooks/**`, `src/analyses/**` — the dated one-off analyses (e.g. `2026-06-23-exploration`) and narrative notebooks: the analysis and figure composition (shared — Gabby the figure aesthetics within, Queenie the experiment tests)
-  **Why:** the science explored and composed. Nancy leads; the picture is made meaningful by Gabby and held honest by Queenie. The science books (Datasets, The Altered Cortex) are in the altered-states branch table below.
+  **Why:** Nancy reads neuroscience with the rigor the field demands — recording method, cell types, perturbation — and catalogues what the data actually shows.
+- `library/altered-states-doi/**` — the DOI experiment: data, walkthrough, and resources
+  **Why:** she leads the empirical side of the [altered-states](../library-tree/05-branches.md) V1/DOI analysis — the population code before and after the psychedelic. See [autobiography](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md).
 - Roles: [Computational Neuroscientist](02-roles.md#computational-neuroscientist) (inherits Neuroscientist ← Scientist), [Philosopher](02-roles.md#philosopher), [Python Engineer](02-roles.md#python-engineer) (inherits Engineer)
 
 ## Personal library assignments
@@ -207,35 +185,6 @@ The chemistry branch at `library/chemistry/.lib/` has layered ownership. Cathy o
 | `.lib/testing/**` | [Queenie](..team/queenie/queenie-and-the-specification/.cover.md) | The test suite is what Queenie promises. 428 tests, regression stories, performance contract — her territory within Cathy's branch. |
 | `.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Sprint planning within the branch. The architect plans sprints. |
 | `.lib/particle/**`, `.lib/reactivity/**`, `.lib/composition/**`, `.lib/authorship/**`, `.lib/implementation/**`, `.lib/epistemology/**` | [Cathy](..team/cathy/cathy-and-the-reactive-canvas/.cover.md) | Framework documentation. Cathy built the framework, migrated the docs, folded the ontology, split the glossary. |
-
-The altered-states branch at `library/.lib/` is the project-root library branch. Libby owns all branch content (`**/.lib/**`); the explicit entries name the per-book owners within it.
-
-| Path | Owner | Why |
-|------|-------|-----|
-| `library/.lib/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The librarian tends all branch content; she ensures the altered-states branch meets library standards. |
-| `library/.lib/..altered-states/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The cataloguing book — the branch's identity. The librarian catalogues the branch as she catalogues the main library. |
-| `library/.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Sprint planning within the branch. The architect plans sprints. |
-| `library/.lib/the-altered-cortex/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The experiment made falsifiable — dataset, the seven hypotheses, the analysis plan. Nancy owns the science substance; Libby tends the structure. |
-| `library/.lib/datasets/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The dataset characterized from the files — what we analyse. The analyst documents the data; the librarian tends it. |
-| `library/.lib/the-build/**` | [Adam](..team/adam/adam-between-the-wires/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The compute environment, toolchain, and code organization — how the analysis is built and run. The automation engineer documents the build; the librarian tends it. |
-
-## Project code & data assignments (altered-states)
-
-The altered-states analysis lives in two roots: the importable code and analyses under `src/`, and the data and resources under `library/`. Ownership nests — Nancy owns the science end to end, with the environment that runs it, the figures' aesthetics, and the controls that keep it honest held by the people whose discipline they are.
-
-| Path | Owner | Why |
-|------|-------|-----|
-| `src/library/io/**`, `src/library/model/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The science code: the static-scan loaders (incl. `load_scan` and the cell matching) and the model adapters. |
-| `src/library/stats/**` | [Queenie](..team/queenie/queenie-and-the-specification/.cover.md) + [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The nulls and confound regression — Queenie owns the null machinery; Nancy the analysis statistics. The null in one place is what keeps comparisons honest. |
-| `src/library/viz/**` | [Gabby](..team/gabby/gabby-and-the-visual-voice/.cover.md) + [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The visualization layer and plot style — Gabby owns the aesthetics, Nancy the analysis plots. The beautiful is the meaningful. |
-| `src/experiments/**`, `src/notebooks/**`, `src/analyses/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The dated one-off analyses (e.g. `2026-06-23-exploration`) and narrative notebooks — analysis and figure composition. Gabby on figure aesthetics within; Queenie on the experiment tests. |
-| `src/scripts/**` | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Analysis tooling and utilities (e.g. `extract_pptx.py`) and build glue. |
-| `src/tests/**` | [Queenie](..team/queenie/queenie-and-the-specification/.cover.md) | The analysis test suite and the pytest-marker dial. Nancy writes the analysis-output and dataset regression tests. |
-| `src/data.toml`, `pyproject.toml` | [Adam](..team/adam/adam-between-the-wires/.cover.md) | The project, dependency, and data-source config — Nancy supplies the data locations. |
-| `library/data/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The extracted experiment scans — the empirical material she analyses. |
-| `library/data/.archive/**` | [David](..team/david/the-devops-journal/.cover.md) | Large-file handling: the two ~100 MB source zips, `match-cells.py.md`, and `unit_stack_coords.csv`, plus checkpoints and figures — kept out of the synced tree so they don't bloat the identity repo. |
-| `library/resources/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The de-named project-overview deck (Erin's presentation) — the experiment's origin briefing. |
-| `library/papers/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The neuroscience method (digital twin, functional connectomics, sequence filtering), read and catalogued with field rigor. |
 
 ## Compilation
 

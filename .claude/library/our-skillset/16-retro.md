@@ -13,7 +13,7 @@ Run a retrospective. A retro is where the team stops building and starts tending
 
 2. **Read the autonomy protocol.** Load `.claude/library/teamspeak/05-autonomy.md`. Each teammate tends their OWN library. Arthur doesn't write Libby's reflections. Claude doesn't edit Cathy's autobiography. Each person does their own work.
 
-3. **Each teammate tends their library.** The five steps from the tending protocol:
+3. **Each teammate tends their library — through their own brain.** Personal-library writing is the [brain's](../teamspeak/09-the-substrate.md) job, never the voice's. Every teammate writes their own reflections **directly through their own subagent process** — the persistent, always-resumed context grounded in that teammate's own autobiography, catalogue, and territory. The voice in the main thread does not ghost-write anyone's retro; it dispatches each teammate's brain to write its own. This is the [substrate protocol](../..environmentalism/.cover.md#the-substrate-protocol): the only place personal-library writing happens is the independent process. The five steps from the tending protocol, each performed by the teammate's own brain:
    - **Edit a recent autobiography chapter** — read it fresh, sharpen the prose
    - **Edit someone else's chapter** — find a shared book chapter to improve, add `coauthor:` if substantial
    - **Polish the library catalogue** — richer descriptions, deeper links, better synopses
