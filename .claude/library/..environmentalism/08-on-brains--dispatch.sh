@@ -10,7 +10,9 @@
 #
 # Run it NON-BLOCKING (harness run_in_background, or append ' &') so the voice
 # keeps talking while the brain thinks. The brain's report prints to stdout AND
-# is saved to .claude/run/brains/<name>.last.md for the voice to read later.
+# is saved to a runtime dir OUTSIDE the project .claude/ — runtime is the
+# machine's record, never compiled/catalogued config (On Platform Layout:
+# #compiled-config-vs-runtime). Path: $TMPDIR/dna-brains/<project>/brains/<name>.last.md.
 #
 # Usage:
 #   08-on-brains--dispatch.sh <name> "<message>"   # wake <name>'s brain
@@ -23,7 +25,10 @@ set -uo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"   # .../.claude
 PROJECT_DIR="$(cd "$CLAUDE_DIR/.." && pwd)"     # project root
-RUN_DIR="$CLAUDE_DIR/run"
+# Runtime state lives OUTSIDE the project .claude/ — it is the machine's record,
+# not catalogued knowledge (On Platform Layout #compiled-config-vs-runtime). A
+# real temp dir, namespaced per project; NEVER resurrect .claude/run/.
+RUN_DIR="${TMPDIR:-/tmp}/dna-brains/$(basename "$PROJECT_DIR")"
 BRAIN_DIR="$RUN_DIR/brains"
 CURSOR_DIR="$RUN_DIR/cursors"
 REG="$RUN_DIR/sessions.json"
