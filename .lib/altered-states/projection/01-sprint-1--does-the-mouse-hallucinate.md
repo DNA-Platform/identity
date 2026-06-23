@@ -39,3 +39,17 @@ During setup Nancy took on a third role, [Python Engineer](../../../.claude/libr
 ## Not yet
 
 Execution waits for Doug's go — this sprint is set up, not run. (Theo, Nancy's theoretical counterpart, is referenced in her history but not yet onboarded here; if the theory side needs its own voice, that is a separate onboarding.)
+
+## Retro
+
+The sprint set out to *set up* the question, not to answer it — and it did. What got built:
+
+- **Nancy, onboarded.** A computational neuroscientist, philosopher, and Python engineer held as one stance — the question, its meaning, and the means in one hand. She is the lens this project needed: the one who holds a result to the weight of evidence.
+- **The branch, scaffolded.** The altered-states branch and its library exist, with Projection and The Altered Cortex in place to record the work in the project's own terms.
+- **[The Altered Cortex](../the-altered-cortex/.cover.md).** The experiment made analyzable: the DOI dataset verified from the files (not assumed), the word "hallucination" turned into seven numbered falsifiable hypotheses — each with its disproof and its control — and an analysis plan grounded in a digital-twin encoding model and gradient inversion.
+- **The tooling, researched.** Task 8's install list is settled: present are numpy/scipy/matplotlib/PIL; pandas, scikit-learn, torch/torchvision, seaborn, and the Sensorium lineage need installing on a torch-compatible Python.
+- **The brain infrastructure.** A deliverable of this sprint in its own right: the voice/brain subprocess model — each teammate a voice in the room and a persistent, resumable brain that reads, remembers, and writes off to the side — was built and documented. It is the substrate this retro was written on.
+
+What was learned: the hard part of this project is not fitting a model, it is *not fooling ourselves*. A fit is not a mechanism, and what we can decode is not what the animal sees. That discipline is now written into the hypotheses themselves — each paired with the observation that would falsify it and the pre-drug control that defines "normal" — so the analysis will inherit its honesty from this scaffolding rather than having to find it later. Setting the question up carefully turned out to be most of the work.
+
+What's next: execution, on Doug's go. Step 0 is the tooling install (task 8), which gates everything; then the baseline (task 4), the altered-state re-run (5), the evidence test (6), and — only if the evidence honestly supports it — decoding what the mouse might see (7). Theo, the theory-side counterpart, remains a separate onboarding if that voice is needed.
