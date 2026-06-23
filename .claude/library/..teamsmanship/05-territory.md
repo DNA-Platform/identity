@@ -130,8 +130,10 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 
 ### [Nancy](..team/nancy/..the-evidence-settles/.cover.md) — Computational Neuroscientist + Philosopher
 
-- `library/neuroscience/**` — the team's neuroscience collection: papers, reviews, and analysis notes
-  **Why:** Nancy reads neuroscience with the rigor the field demands — recording method, cell types, perturbation — and catalogues what the data actually shows. She leads the empirical side of the [altered-states](../library-tree/05-branches.md) V1/DOI analysis. See [autobiography](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md).
+- `library/papers/**` — the team's neuroscience paper collection (read, summarized, catalogued)
+  **Why:** Nancy reads neuroscience with the rigor the field demands — recording method, cell types, perturbation — and catalogues what the data actually shows.
+- `library/altered-states-doi/**` — the DOI experiment: data, walkthrough, and resources
+  **Why:** she leads the empirical side of the [altered-states](../library-tree/05-branches.md) V1/DOI analysis — the population code before and after the psychedelic. See [autobiography](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md).
 - Roles: [Computational Neuroscientist](02-roles.md#computational-neuroscientist) (inherits Neuroscientist ← Scientist), [Philosopher](02-roles.md#philosopher)
 
 ## Personal library assignments
