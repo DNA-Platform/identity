@@ -108,8 +108,10 @@ Do your reading and any personal-library writing now (writing is the brain's job
 # --- run the brain (this is the expensive part; run me non-blocking) --------
 echo ">>> waking ${name}'s brain (${mode[0]} ${uuid}); catching up ${delta} lines..." >&2
 out="$(cd "$PROJECT_DIR" && claude -p "${mode[@]}" --agent "$name" \
-        --dangerously-skip-permissions "$PROMPT" 2>&1)"
+        --dangerously-skip-permissions "$PROMPT" </dev/null 2>&1)"
 rc=$?
+# </dev/null so a backgrounded brain never blocks on stdin. Persistence is native:
+# the CLI stores each session at ~/.claude/projects/<slug>/<uuid>.jsonl; --resume reloads it.
 
 # --- save report + advance cursor + refresh registry ------------------------
 { echo "# ${name} — brain report"; echo; echo "$out"; } > "$BRAIN_DIR/$name.last.md"
