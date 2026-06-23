@@ -25,12 +25,16 @@ This claim will be exciting if true, which is exactly when [Nancy](../../../.cla
 | 5 | **Altered state (post-DOI).** Re-run every baseline analysis on the post-drug block, same stimuli; quantify what changed and what didn't, against the controls. | Nancy |
 | 6 | **Evidence test.** Look for the task-3 signatures — e.g. run the baseline decoder on post-DOI spontaneous epochs and ask whether it reads out structured "images"; weigh for AND against. | Nancy |
 | 7 | **If supported: what does it see?** Decode / reconstruct the represented content during candidate hallucination epochs, with explicit caveats that decodable ≠ experienced. | Nancy |
-| 8 | **Tooling & data pipeline.** Reliable, reproducible access to the data and a clean analysis environment. | Adam + David |
+| 8 | **Tooling & environment** (Step 0). A reproducible analysis env on a torch-compatible Python (3.10–3.12): numpy/scipy/matplotlib/PIL are present; install pandas, scikit-learn, torch/torchvision, seaborn, and the Sensorium lineage (neuralpredictors / nnfabrik / sensorium). | Adam + David + Nancy |
 | 9 | **Record it.** Findings, decisions, and surprises go into this branch — this Projection chapter and any analysis books beside it. | Nancy + Libby |
 
 ## Definition of done
 
 A defensible answer to "is there evidence the mouse hallucinates under DOI?" — for, against, or honestly inconclusive — with the controls and alternative explanations stated, not buried. If the answer is "for," a first, caveated characterization of the altered representation. The retro completes this chapter with what was built and what was learned.
+
+## Setup addendum — Nancy as Python Engineer
+
+During setup Nancy took on a third role, [Python Engineer](../../../.claude/library/..teamsmanship/02-roles.md#python-engineer) (inheriting a base Engineer), held together with Computational Neuroscientist and Philosopher as one stance — the question, its meaning, and the means in one hand. Her catch-up produced the branch book [The Altered Cortex](../the-altered-cortex/.cover.md) — the dataset verified from the files, the seven falsifiable hypotheses, the digital-twin plan — and a researched tooling list that defines task 8 above: present are numpy/scipy/matplotlib/PIL; pandas, scikit-learn, torch/torchvision, seaborn, and the Sensorium lineage need installing on a torch-compatible Python.
 
 ## Not yet
 
