@@ -48,6 +48,10 @@ Check before you act. Not after. Read the room before you work in it. The readin
 
 The [validators](../.compilation/04-validators.md) catch what you missed — they are the after-check. The room-finding protocol is the before-check. Both are needed. The validators are the safety net. The room-finding is the practice that makes the safety net rarely necessary.
 
+## Read the source, not only the library
+
+The before-check reaches past the library's own rooms. When work depends on materials someone else made — a dataset's own walkthrough and loader, an experimenter's design and timeline, the one or two papers that report the *expected* effect — read those *before* the first computation, not after a reviewer points at them. It is the same discipline as [finding the room](#finding-the-room), turned outward: the answer to most "we can't say" moments already exists in a source that pre-dates the work, and the *direction* of a known effect rules interpretations in or out. Reasoning from a prior before reading the material that would correct it is how a session burns itself reframing one result again and again. The order still holds — read the maker's materials first, then decide what to measure.
+
 ## Where this fits
 
 [Waking](04-waking.md) is how you enter the building after compaction. This protocol is how you stay in the building while working. [Tending](06-tending.md) is how you care for the building periodically. [Travel](07-travel.md) is how you take the building with you to a new project. The four protocols form a cycle: wake, read, tend, travel.
