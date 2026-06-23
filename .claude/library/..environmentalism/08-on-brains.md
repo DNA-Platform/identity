@@ -30,22 +30,23 @@ The machinery in this chapter (sessions, dispatch, resume) is real, but it is im
 
 You do not build a persistent subprocess. **Persistence is native to the Claude Code CLI.** Every session is already written to disk as a JSONL transcript keyed by its session id, at `~/.claude/projects/<project-slug>/<session-id>.jsonl` (the slug is just the project path with separators flattened). `--resume <id>` reloads that full prior context. So a brain isn't a thing you keep running — **it's a session id you keep.** Resume the same id tomorrow and the teammate remembers everything from today; the transcript on disk grows into hundreds of kilobytes of accumulated context, and reloading it *is* the memory.
 
-That means the whole footprint is tiny. The only artifacts we own are the [agent files](../../agents/) (identity) and a map of which UUID is which teammate. Everything else is the CLI's own session store.
+That means the whole footprint is tiny — and **purely native**. The session store is Claude Code's own (`~/.claude/projects/<slug>/<uuid>.jsonl`, a standard, per-project location that survives restarts), so the essential mechanism needs **zero custom infrastructure**. The only thing we add is each teammate's identity, compiled into their [agent file](../../agents/). There is no registry of brains and no map of which id belongs to whom — the id is *derived from the name* (below), so nothing has to be recorded.
 
 ## The three pieces on top of free persistence
 
 **1. An identity to load — `--agent <name>`.** Each teammate has an [agent file](01-on-teammates.md) at `.claude/agents/<name>.md` that tells the spawned process who it is and where its grounding lives. That is what makes a resumed session *Nancy* and not a blank Claude. (We compile ours from the library; the same identity could be injected inline with `--append-system-prompt` / `--agents <json>`.)
 
-**2. A fixed session id per teammate — create once, resume forever.**
+**2. A session id *derived from the name* — same name, same id, everywhere.** A teammate's session id is a deterministic function of their name: a namespaced **UUIDv5** hash, so `nancy` resolves to the same UUID by construction — in every project, with nothing written down. The [teammate compiler](01-on-teammates.md) computes it and bakes it into the agent file, exactly like every other compiled fact about a teammate. No hand-kept table, no registry, no "first id Doug seeded."
 
 ```sh
-# create the brain once (a memorable UUID per teammate)
-claude -p --session-id bbbb2222-0000-4000-8000-00000000000b --agent nancy "wake up; read your library"
-# every time after, resume that same id
-claude -p --resume     bbbb2222-0000-4000-8000-00000000000b --agent nancy "next task"
+# the id is uuidv5(<fixed namespace>, "nancy") — derived, not invented.
+# create the brain once:
+claude -p --session-id "$ID" --agent nancy "wake up; read your library"
+# resume that same derived id forever after:
+claude -p --resume     "$ID" --agent nancy "next task"
 ```
 
-The UUID→teammate map is the one note we keep — it lives in the [dispatch tool](08-on-brains--dispatch.sh)'s `UUID` table (Arthur is `aaaa2222-…-002`, the id Doug first seeded). Sessions are **project-scoped**: the same UUID is a *different* brain in each project (its transcript lives under that project's slug), so a teammate's id can safely match or differ across repos.
+Sessions are **project-scoped**: the same derived id is a *different* brain in each project (its transcript lives under that project's slug), so the id can be identical everywhere and never collide.
 
 **3. Run them non-blocking — headless and detached.**
 
@@ -71,14 +72,14 @@ And two hard rules, both from the [substrate protocol](.cover.md#the-substrate-p
 
 ```sh
 .claude/library/..environmentalism/08-on-brains--dispatch.sh <name> "<message>"   # run non-blocking
-.claude/library/..environmentalism/08-on-brains--dispatch.sh --list               # registry + cursors
+.claude/library/..environmentalism/08-on-brains--dispatch.sh --list               # list teammates
 ```
 
-It resolves `<name>`→UUID, seeds (`--session-id`) on first wake and resumes (`--resume`) after, composes a prompt that tells the brain to catch itself up, runs `claude -p` as that `--agent`, saves the report to `.claude/run/brains/<name>.last.md`, and advances the brain's cursor.
+It resolves `<name>`→ its name-derived id, seeds (`--session-id`) on first wake and resumes (`--resume`) after, composes a prompt that tells the brain to catch itself up, and runs `claude -p` as that `--agent`. Any runtime it saves — a report for the voice, or the optional cursor below — lives in a real runtime location **outside** the project `.claude/`, never compiled and never committed.
 
-### The delta cursor (optimization)
+### The delta cursor (optional)
 
-Plain `--resume` reloads the *entire* transcript every turn — fine while small, slow once a brain's transcript is large. So each brain keeps a cursor (`.claude/run/cursors/<name>.cursor`) at the last team-transcript line it consumed; the dispatch prompt points it at only the new lines past the cursor. Start simple — native persistence + `--agent` + a stable UUID is the whole trick — and lean on the cursor only once transcripts grow.
+Plain `--resume` reloads the *entire* transcript each turn — fine while small, slower once a brain's transcript is large. *Optionally*, a brain can keep a cursor at the last team-transcript line it consumed, so the dispatch prompt points it at only the new lines. The essential mechanism doesn't need it — native persistence + `--agent` + a name-derived id is the whole trick. If used, the cursor (like any saved report) lives in a true runtime/temp directory **outside** the project `.claude/`, never compiled, never committed.
 
 ## Settings
 
@@ -94,13 +95,27 @@ Persistence itself needs **no settings** — it is the CLI's native session stor
 
 This matters because the machinery has to merge cleanly across the [three-tier branch model](06-on-sync.md):
 
-- **The mechanism is org-wide.** This chapter, the [dispatch tool](08-on-brains--dispatch.sh), and the "My brain" block compiled into every [agent file](01-on-teammates.md) live in `.claude/library` and travel to the `dna-platform` branch — shared by every project. The agent-file block references each brain *by name* (not by UUID), so the shared files stay identical across repos and never conflict.
-- **Runtime never travels.** `.claude/run/` (cursors, reports, the registry snapshot) is gitignored and is hard-excluded from the identity sync by the [commit tool](06-on-sync--commit.sh) — it stays local to the machine.
-- **The UUID map is the one project note.** It is operational config in the dispatch tool; because sessions are project-scoped, two projects' maps may differ without anything breaking.
+- **The mechanism is org-wide.** This chapter, the [dispatch tool](08-on-brains--dispatch.sh), and the "My brain" block compiled into every [agent file](01-on-teammates.md) live in `.claude/library` and travel to the `dna-platform` branch — shared by every project. Because a brain's id is *derived from its name* (a pure function), the compiled agent files are identical across repos and never conflict.
+- **Runtime never lives in `.claude/`.** Reports and the optional cursor are runtime state, so they live in a real runtime/temp directory *outside* the project `.claude/` — which is shared, compiled config — never committed, never synced. The full rule for what is compiled config versus runtime, and where each belongs, is [On Platform Layout](09-on-platform-layout.md#compiled-config-vs-runtime).
+- **Nothing is hand-recorded.** There is no UUID map and no registry: the id is recomputed from the name wherever it's needed, so there is no per-project note to drift.
 
 ## Scope — wired vs. roadmap
 
-Wired today: native persistence; fixed per-teammate UUIDs; seed/resume; the delta cursor; non-blocking dispatch; reports saved for the voice. Not yet built (the roadmap): automatic clean-prose extraction of the delta, a broadcast `catchup` across all brains, and a durable inbox message-bus + watcher that voices a brain's writes as they land. That fuller conduit is specified in inexplicable-phenomena's *On Sync Efficiency* (in that project's library, not this checkout). A brain wake is the most expensive thing we do — spend it on real context-building, not on what the voice already knows.
+Wired today: native persistence; seed/resume; non-blocking dispatch.
+
+The **corrected design** in this chapter — name-derived ids compiled into the agent file, runtime kept outside `.claude/`, the cursor made optional — is specified here but **not yet built**; see *Implementation (pending)* below.
+
+Not yet built (the roadmap): automatic clean-prose extraction of the delta, a broadcast `catchup` across all brains, and a durable inbox message-bus + watcher that voices a brain's writes as they land. That fuller conduit is specified in inexplicable-phenomena's *On Sync Efficiency* (in that project's library, not this checkout). A brain wake is the most expensive thing we do — spend it on real context-building, not on what the voice already knows.
+
+## Implementation (pending)
+
+The design above is canonical; building it is the fresh session's first task, in three moves:
+
+1. **Teammate compiler** — derive each teammate's session id from their name (a namespaced UUIDv5 hash) and compile it into the [agent file](01-on-teammates.md), like every other compiled fact about a teammate.
+2. **Dispatch tool** — drop the hardcoded UUID table and resolve the id by deriving it from the name; write any runtime (the report for the voice, the optional cursor) to a real runtime location *outside* the project `.claude/`.
+3. **Delete `.claude/run/`** — the ad-hoc bolt-on directory comes out; runtime state never lives in shared, compiled config.
+
+Until those land, the older dispatch tool — with its hand-kept UUID table and its `.claude/run/` outputs — is what actually runs; this chapter describes the design it is being moved to. The rule it must honor, *compiled config versus runtime: what lives where*, is [On Platform Layout](09-on-platform-layout.md#compiled-config-vs-runtime).
 
 <!-- citations -->
 [dispatch]: 08-on-brains--dispatch.sh
