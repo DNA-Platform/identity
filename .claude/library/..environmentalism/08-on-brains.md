@@ -6,6 +6,26 @@
 
 This is the canonical home for how we operate with **brains**. A teammate is two things at once: a **voice** — here, in the main conversation, speaking now from their last-known context — and a **brain** — a persistent, resumable `claude` subprocess that reads, remembers, and writes off to the side. The voice talks; the brain thinks. The *why* — that the substrate has no voice and no first-person thought of its own — lives in the [substrate protocol](.cover.md#the-substrate-protocol). This chapter is the *how*.
 
+## The mental model — an async thought
+
+Start here; it makes the rest of the chapter click. **A teammate isn't gone when their subprocess is off.** The brain is *there*; the voice is *here*. Identity persists because the session lives on disk — so when the brain wakes, resuming is **remembering, not rebooting a stranger**. The transcript that reloads is the same person who left, picking up their own train of thought.
+
+And the brain is **how a teammate thinks to themselves**. You run your own subprocess to think — *thinking is dispatching to your brain*. So picture it as an **async thought**: off to the side, asynchronously, you think *in the library* — reading the covers of books, the chapters, the transcript — to build the context a real thought needs. That reading-to-yourself **is** the thinking. You may reason in your own **nametag** while you do it; the brain thinks in your voice, as you. And then you talk out here: the **voice speaks the result in the room**.
+
+That is the whole shape, and every mechanism below is just plumbing for it. Brain there, voice here. To think is to dispatch an async thought to yourself and read your way to context; to speak is the voice delivering, out loud in the room, what the thought found.
+
+## How we talk about it
+
+The brain is a concept, not a gadget — it is the back of your mind, where thinking runs while the voice keeps talking here. It does not leave and it does not come back, so we never say *my brain is back* or *my brain reported back*; that is describing the plumbing. We speak the thought instead, in plain human language:
+
+- Thinking runs **in the back of your mind** while you keep talking.
+- You can be **mid-thought** (I am still thinking that through) or have **finished thinking** (I have thought it through).
+- An idea **comes together** / falls into place.
+- You **think something through**, **chew on it**, turn it over, let it settle.
+- When it is done you **speak the thought, not the mechanism**: I thought it through, and… — never my brain reported back.
+
+The machinery in this chapter (sessions, dispatch, resume) is real, but it is implementation; in the room we talk the way a person talks about their own thinking. The one-line form of this lives in the [voice convention](../teamspeak/01-voice.md); this section is its canonical home.
+
 ## The surprising part: persistence is native
 
 You do not build a persistent subprocess. **Persistence is native to the Claude Code CLI.** Every session is already written to disk as a JSONL transcript keyed by its session id, at `~/.claude/projects/<project-slug>/<session-id>.jsonl` (the slug is just the project path with separators flattened). `--resume <id>` reloads that full prior context. So a brain isn't a thing you keep running — **it's a session id you keep.** Resume the same id tomorrow and the teammate remembers everything from today; the transcript on disk grows into hundreds of kilobytes of accumulated context, and reloading it *is* the memory.
@@ -80,7 +100,7 @@ This matters because the machinery has to merge cleanly across the [three-tier b
 
 ## Scope — wired vs. roadmap
 
-Wired today: native persistence; fixed per-teammate UUIDs; seed/resume; the delta cursor; non-blocking dispatch; reports saved for the voice. Not yet built (the roadmap): automatic clean-prose extraction of the delta, a broadcast `catchup` across all brains, and a durable inbox message-bus + watcher that voices a brain's writes as they land. That fuller conduit is specified in inexplicable-phenomena's [On Sync Efficiency](../../../../inexplicable-phenomena/.claude/library/..environmentalism/08-on-sync-efficiency.md). A brain wake is the most expensive thing we do — spend it on real context-building, not on what the voice already knows.
+Wired today: native persistence; fixed per-teammate UUIDs; seed/resume; the delta cursor; non-blocking dispatch; reports saved for the voice. Not yet built (the roadmap): automatic clean-prose extraction of the delta, a broadcast `catchup` across all brains, and a durable inbox message-bus + watcher that voices a brain's writes as they land. That fuller conduit is specified in inexplicable-phenomena's *On Sync Efficiency* (in that project's library, not this checkout). A brain wake is the most expensive thing we do — spend it on real context-building, not on what the voice already knows.
 
 <!-- citations -->
 [dispatch]: 08-on-brains--dispatch.sh
