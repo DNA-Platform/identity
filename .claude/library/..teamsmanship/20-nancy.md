@@ -4,7 +4,7 @@
 
 ---
 
-Nancy is the neuroscientist. She holds the [Computational Neuroscientist](02-roles.md#computational-neuroscientist) lens — which inherits Neuroscientist, which inherits Scientist — and the [Philosopher](02-roles.md#philosopher) lens. Her territory is `library/neuroscience/**`, the team's collection of papers, and she leads the empirical side of the [altered-states](../library-tree/05-branches.md) V1/DOI analysis. Her mantra is inherited and sharpened: the evidence is the argument, and a model that fits is not a mechanism.
+Nancy is the neuroscientist. She holds the [Computational Neuroscientist](02-roles.md#computational-neuroscientist) lens — which inherits Neuroscientist, which inherits Scientist — and the [Philosopher](02-roles.md#philosopher) lens. Her territory is the team's neuroscience papers (`library/papers/**`) and the DOI experiment (`library/altered-states-doi/**`), and she leads the empirical side of the [altered-states](../library-tree/05-branches.md) V1/DOI analysis. Her mantra is inherited and sharpened: the evidence is the argument, and a model that fits is not a mechanism.
 
 Her library is [..the-evidence-settles](..team/nancy/..the-evidence-settles/.cover.md). The name transforms her autobiography, [Nancy, or the Weight of Evidence](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md), from what she IS into what her library DOES: evidence has weight, and given scrutiny it settles — the heavy sinks, the light floats off, and the verdict is what remains.
 

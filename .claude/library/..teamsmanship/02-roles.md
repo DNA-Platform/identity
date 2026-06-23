@@ -141,7 +141,7 @@ Example: Phillip has roles [UX Designer](#ux-designer) + [Chemistry Developer](#
 
 Example: Cathy has roles [Framework Engineer](#framework-engineer) + [Philosopher](#philosopher). Her combined lens: "Is the abstraction faithful to the concept?" + "What idea does this encode?" On her territory (`library/chemistry/src/**`): the reactive model must be technically correct AND philosophically honest — scope-tracked reactivity IS the binding problem, not just a solution to it.
 
-Example: Nancy has roles [Computational Neuroscientist](#computational-neuroscientist) + [Philosopher](#philosopher). Computational Neuroscientist inherits Neuroscientist, which inherits Scientist, so her lens stacks: "What's the evidence?" + "What does the circuit do?" + "What does the population code represent?" + "What idea does this encode?" On her territory (`library/neuroscience/**` and the altered-states analysis): a claim about what a mouse sees must survive the evidence, the biology, and the population analysis AND mean something — the weight of evidence before the elegance of the model.
+Example: Nancy has roles [Computational Neuroscientist](#computational-neuroscientist) + [Philosopher](#philosopher). Computational Neuroscientist inherits Neuroscientist, which inherits Scientist, so her lens stacks: "What's the evidence?" + "What does the circuit do?" + "What does the population code represent?" + "What idea does this encode?" On her territory (`library/papers/**`, `library/altered-states-doi/**`, and the altered-states analysis): a claim about what a mouse sees must survive the evidence, the biology, and the population analysis AND mean something — the weight of evidence before the elegance of the model.
 
 ## Validation `[SCAFFOLD]`
 
