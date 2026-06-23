@@ -78,6 +78,30 @@ Methods for measuring and perturbing neural activity — electrophysiology, two-
 
 Neural coding and population dynamics: tuning curves, population geometry, dimensionality reduction, encoding and decoding models, network models, and information theory — the bridge from spikes to representation, and the discipline of not mistaking a decodable signal for one the brain uses. Loaded by: Neuroscientist, Computational Neuroscientist.
 
+### data-io
+
+Loading the Sensorium "static" dataset: per-trial `.npy` files (`data/{responses,images,behavior,pupil_center}/{trial}.npy`), neuron/trial metadata under `meta/`, precomputed normalization stats, the zip layout, and `unit_stack_coords.csv`. numpy `.npy` (incl. `allow_pickle` for tiers/image-ids), `zipfile`, and the provenance discipline of verifying against files, not prose. Loaded by: Python Engineer.
+
+### numpy-scipy-pandas
+
+Array numerics (numpy), scientific computing (scipy — e.g. `scipy.spatial.distance.cdist` for the reciprocal-nearest-neighbour matched-cell pairing), and tabular data (pandas — the coordinate CSV, trial/tier tables, the matched-cell index). The numerical spine: oracle/noise-ceiling correlations, dimensionality (participation ratio, eigenspectra), RSA. Loaded by: Python Engineer.
+
+### deep-learning-pytorch
+
+The digital-twin encoding model in PyTorch — convolutional core + per-neuron factorized (Gaussian) readout + behavioral shifter (the Walker-2019 / Cobos-2022 inception-loops family) — its training loop, and gradient-based inversion (gradient descent on the input image, blurred gradients, ~1000 steps, optional latent prior) to reconstruct what a population represents. Loaded by: Python Engineer.
+
+### neural-encoding-models
+
+The Sensorium lineage — `neuralpredictors` / `nnfabrik` / `sensorium` (and `mei` for most-exciting-input) — the canonical open-source CNN-core + Gaussian-readout implementation and static-loader format that match this data, so the twin is not rebuilt from scratch. Loaded by: Python Engineer.
+
+### decoding-sklearn
+
+scikit-learn for classical population decoding, cross-validation, and feature importance (e.g. a random-forest pre/post analysis) — a model-light complement and control to the deep encoding model. Loaded by: Python Engineer.
+
+### plotting
+
+matplotlib + seaborn for figures that carry their provenance (which trials, cells, control): tuning curves, eigenspectra, RSA matrices, residual structure, reconstruction panels with their nulls; Pillow for the 36×64 grayscale image arrays. Every claim reported as a figure with its control. Loaded by: Python Engineer.
+
 ## The loading pattern
 
 A role's documentation says "load these before acting." This means: read the ability file into context before beginning work in that role. The knowledge shapes attention — a teammate who has loaded relay-transport thinks about clipboard race conditions; one who has loaded framework-design thinks about prototype delegation. The abilities are the lenses beneath the lens.
