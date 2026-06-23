@@ -110,6 +110,18 @@ This is an aspiration ladder, in increasing order of how firmly it binds. Wherev
 
 The contrast is exact: a [personal library](#personal-libraries-are-first-person) is maximally perspectival (it IS a person's first-person voice); a public book is maximally perspectiveless (the thing itself, described from nowhere). When a public chapter starts to read as someone *telling* you something, the narrator has crept in — the same collapse the [substrate protocol](../..environmentalism/.cover.md#the-substrate-protocol) warns about in conversation, surfacing in prose.
 
+## Names live only in the identity layer
+
+The team's files fall into two layers, and authorship works differently in each.
+
+**The identity layer** is where the team is named. It is the team library at `.claude/library/**` — Bookkeeping, Teamspeak, the autobiographies, every personal library — together with each project's branch identity library at `library/.lib/**`. Here names are grounded exactly as the rest of this chapter specifies: `author:`/`coauthor:` link to autobiographies, the librarian authors every public file, subject owners coauthor their subjects, and personal libraries are written in the owner's first person.
+
+**The project layer** is the project repo's own content — what someone clones: papers, datasets, decks, and every resource under `library/` *outside* `.lib`. This layer is **de-named**. No teammate name appears in it and no `author:` links to an autobiography. A project file's `author:` is the plain string **`Doug`** — the human who owns the repository, not a teammate link. The artifact's real external authors are credited in a separate descriptive field — `paper-authors:` for a paper, a `source:` or `deck-authors:` field for a presentation — as *data about the work*, never as a team identity link. A project paper book is the worked form: `author: Doug`, the citation's real authors in `paper-authors:`, and the body chapters carrying no author field at all.
+
+Why the boundary holds: the project repo ships outside the team. Teammate identities are the team's internal infrastructure; they do not belong in a cloned product, and stamping a teammate's name onto an external author's paper or an outside collaborator's deck would misattribute the work besides. Identity stays in the identity layer.
+
+The team still owns its understanding of the project — and does so *from* the identity layer. A project's `.lib` is where a named teammate catalogues, analyzes, and weighs the de-named project content, linking outward to it. The direction is one-way and mirrors the [link direction convention](06-on-links.md#the-direction-convention): `.lib` points freely at project content; project content never points back into an autobiography, because such a link would carry a teammate's name across the boundary the de-naming exists to hold. Catalogue project content from `.lib`; never name the team inside the project.
+
 ## The deeper principle
 
 The conventions above specify the grounded form: `author:` field, no nametags, coauthor protocol. The deeper principle behind these conventions is autonomy. [Autonomy][autonomy] in Teamspeak specifies why self-authorship is the mechanism by which identity exists in this library. The `author:` field grounds attribution in identity. The autonomy principle says that identity itself is self-generated — each teammate writes their own autobiography, their own reflections, their own perspective. Remove the autonomy and the `author:` field points to fiction, not a person.
