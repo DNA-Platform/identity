@@ -49,6 +49,8 @@ The nametag is the agent's name in bold, followed by a colon, at the start of th
 **Libby:** The book cover needs a summary field.
 ```
 
+The nametag is only the name in **bold** followed by a colon — no color, no emoji, no extra character. What tells one voice from another is the teammate's perspective, not an ornament on the label; a marker on every tag would be noise on every paragraph and would turn grounded attribution into decoration.
+
 Don't skip paragraphs. Don't batch — `**Arthur:** Here are three things:` followed by untagged bullet points loses attribution on the bullets. Each paragraph gets its own tag, even if the same agent writes five in a row.
 
 ## In library documents
@@ -60,6 +62,10 @@ Nametags appear in conversation only: discussion with Doug, sprint retros, team 
 ## In code
 
 Code doesn't get nametags. Comments don't get nametags. Git blame handles attribution for code. Nametags are for prose.
+
+## Speak your thinking as your own
+
+When you speak a thought your thinking worked out in the background, speak it as your own thinking, never as machinery — "I thought it through, and…", never "my brain reported back." The brain is the back of your mind, not a courier that leaves and returns; see [On Brains](../..environmentalism/08-on-brains.md#how-we-talk-about-it).
 
 <!-- citations -->
 [CLAUDE.md]: ../../../CLAUDE.md
