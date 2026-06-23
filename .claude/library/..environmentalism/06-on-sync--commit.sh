@@ -221,7 +221,7 @@ git checkout dna-platform --quiet
 
 # Sync .claude/ from project to identity repo
 echo "Syncing .claude/..."
-do_sync "$CLAUDE_DIR" "$IDENTITY_REPO/.claude" /MIR /XD node_modules /NFL /NDL /NJH /NJS /NC /NS || exit 1
+do_sync "$CLAUDE_DIR" "$IDENTITY_REPO/.claude" /MIR /XD node_modules "$CLAUDE_DIR/run" /NFL /NDL /NJH /NJS /NC /NS || exit 1
 cp "$CLAUDE_DIR/CLAUDE.md" "$IDENTITY_REPO/CLAUDE.md"
 
 # Check if anything actually changed
