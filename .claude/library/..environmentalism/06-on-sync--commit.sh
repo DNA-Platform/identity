@@ -223,9 +223,10 @@ git checkout dna-platform --quiet
 echo "Syncing .claude/..."
 do_sync "$CLAUDE_DIR" "$IDENTITY_REPO/.claude" /MIR /XD node_modules run /NFL /NDL /NJH /NJS /NC /NS || exit 1
 cp "$CLAUDE_DIR/CLAUDE.md" "$IDENTITY_REPO/CLAUDE.md"
-# Runtime brain state (.claude/run/: cursors, reports, registry) never travels to identity.
-# Hard-delete from the dest so robocopy path-format quirks can't leak it, and so any
-# previously-committed run/ is staged for deletion (the removal propagates downstream on push).
+# Brain runtime now lives OUTSIDE the project entirely ($TMPDIR/dna-brains/<project>/:
+# cursors, reports, registry), so it never enters .claude/ and never travels to identity.
+# Defensively hard-delete any legacy .claude/run/ from the dest so a previously-committed
+# run/ is staged for deletion (the removal propagates downstream on push).
 rm -rf "$IDENTITY_REPO/.claude/run"
 
 # Check if anything actually changed

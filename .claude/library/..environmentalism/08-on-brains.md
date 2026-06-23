@@ -103,19 +103,19 @@ This matters because the machinery has to merge cleanly across the [three-tier b
 
 Wired today: native persistence; seed/resume; non-blocking dispatch.
 
-The **corrected design** in this chapter — name-derived ids compiled into the agent file, runtime kept outside `.claude/`, the cursor made optional — is specified here but **not yet built**; see *Implementation (pending)* below.
+The **corrected design** in this chapter is now **partly built**: runtime lives *outside* `.claude/` (the dispatch tool writes to `${TMPDIR:-/tmp}/dna-brains/<project>/`, and the ad-hoc `.claude/run/` is deleted) and the cursor is optional. Still pending: name-derived ids compiled into the agent file. See *Implementation* below.
 
 Not yet built (the roadmap): automatic clean-prose extraction of the delta, a broadcast `catchup` across all brains, and a durable inbox message-bus + watcher that voices a brain's writes as they land. That fuller conduit is specified in inexplicable-phenomena's *On Sync Efficiency* (in that project's library, not this checkout). A brain wake is the most expensive thing we do — spend it on real context-building, not on what the voice already knows.
 
-## Implementation (pending)
+## Implementation
 
-The design above is canonical; building it is the fresh session's first task, in three moves:
+Three moves; two are done, one remains:
 
-1. **Teammate compiler** — derive each teammate's session id from their name (a namespaced UUIDv5 hash) and compile it into the [agent file](01-on-teammates.md), like every other compiled fact about a teammate.
-2. **Dispatch tool** — drop the hardcoded UUID table and resolve the id by deriving it from the name; write any runtime (the report for the voice, the optional cursor) to a real runtime location *outside* the project `.claude/`.
-3. **Delete `.claude/run/`** — the ad-hoc bolt-on directory comes out; runtime state never lives in shared, compiled config.
+1. **Teammate compiler** *(pending)* — derive each teammate's session id from their name (a namespaced UUIDv5 hash) and compile it into the [agent file](01-on-teammates.md), like every other compiled fact about a teammate. Not yet built: the dispatch tool still carries a hand-kept UUID table. Mind the migration cost — the live brains are already seeded under those ids, so switching id schemes without a migration would orphan every brain's accumulated memory; the table stays until move 1 lands *with* a migration.
+2. **Dispatch tool — runtime relocated** *(done)* — the tool writes its runtime (the report for the voice, the optional cursor) to a real runtime location *outside* the project `.claude/`: `${TMPDIR:-/tmp}/dna-brains/<project>/`.
+3. **`.claude/run/` deleted** *(done)* — the ad-hoc bolt-on directory is gone; runtime state never lives in shared, compiled config.
 
-Until those land, the older dispatch tool — with its hand-kept UUID table and its `.claude/run/` outputs — is what actually runs; this chapter describes the design it is being moved to. The rule it must honor, *compiled config versus runtime: what lives where*, is [On Platform Layout](09-on-platform-layout.md#compiled-config-vs-runtime).
+The rule all of this honors, *compiled config versus runtime: what lives where*, is [On Platform Layout](09-on-platform-layout.md#compiled-config-vs-runtime).
 
 <!-- citations -->
 [dispatch]: 08-on-brains--dispatch.sh

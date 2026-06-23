@@ -110,8 +110,9 @@ function extractAnnotation(tsContent: string): string {
 
 // -- Step 4: File walking ------------------------------------------------
 
-// 'run' = .claude/run/, gitignored runtime (brain reports, cursors) — not library
-// content, so its incidental links shouldn't count as broken library links.
+// 'run' = the legacy .claude/run/ runtime dir (now retired — brain runtime lives
+// outside the project at $TMPDIR/dna-brains/<project>/, per On Platform Layout). Kept
+// in the skip set defensively so any stray run/ never counts as library content.
 const skip = new Set(['.git', 'node_modules', '.archive', 'debug', 'shortcut', 'run']);
 
 function walk(dir: string, files: string[]): void {
