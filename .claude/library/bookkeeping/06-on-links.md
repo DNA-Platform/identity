@@ -56,12 +56,6 @@ A link carries two things: the text (what the reader sees) and the target (where
 
 This distinction runs deeper than formatting. A [subject link](07-on-subjects.md) like `subject: "[Knowledge](.cover.md)"` carries two different meanings in two different parts of the same syntax: the text names the subject, the path locates the book that represents it. "Knowledge" is what the catalogue IS ABOUT. ".cover.md" is where the catalogue LIVES. See [chapter 38 of the autobiography](../..teamsmanship/..team/libby/libby-and-the-tended-garden/38-the-library-i-didnt-understand.md) for the longer story of learning to see this distinction.
 
-## Think in links
-
-A link is the unit of navigation, and in the team's reasoning it is also the unit of thought. When the team thinks — the [coordinator's discussion](../teamspeak/03-discussion.md), which is the [substrate's](../teamspeak/09-the-substrate.md) thinking when Doug is not in the room — a point already settled in the library is made by *linking* to it, not by restating it. A thought is navigation, not exposition: it names where the answer lives and points there, rather than re-deriving what a chapter already holds.
-
-This is [Discoverability](#discoverability) turned inward. Every link is a door, so reasoning built from links is reasoning the reader can walk. Re-explaining what a book already says does three harms: it duplicates the canonical statement, so the two drift apart; it buries the argument in prose the reader must wade through; and it hides the fact that the team already knows the thing. Pointing into the library instead keeps one source of truth, keeps the thought short, and shows the reader the path. And where a point has no link to reach for, that absence is itself the signal — the thought has found a gap for a new chapter, not a paragraph to improvise.
-
 <!-- citations -->
 [books]: 01-on-books.md
 [chapters]: 02-on-chapters.md
@@ -72,5 +66,3 @@ This is [Discoverability](#discoverability) turned inward. Every link is a door,
 [synopsis]: 09-on-synopsis.md
 [growth]: 10-on-evolution.md
 [team]: ../..teamsmanship/.cover.md
-[discussion]: ../teamspeak/03-discussion.md
-[substrate]: ../teamspeak/09-the-substrate.md

@@ -10,27 +10,16 @@
 ///: overwrites the title when it finishes, so the rename has to be after.
 
 import type { Claude } from '../../src/claude.ts';
-import type { ConversationPage } from '../../src/pages/conversation.ts';
 import { readState } from './03-persistence--state.ts';
-import { claudeProject, openTopic } from './02-the-thought-lifecycle--dispatch.ts';
+import { resume } from './02-the-thought-lifecycle--dispatch.ts';
 
 export interface ReadResult { complete: boolean; text: string; }
-
-/** The topic's conversation — bound from the live screen if the session is still
- *  in sync, else navigated to from home the same way the write reached it. */
-async function conversation(app: Claude, topic: string): Promise<ConversationPage> {
-  if (await app.session.inSync()) {
-    const here = await app.currentConversation();
-    if (here) return here;
-  }
-  return openTopic(await claudeProject(app), topic);
-}
 
 export async function read(app: Claude): Promise<ReadResult> {
   const state = readState();
   if (!state) throw new Error('No in-flight thought to read');
 
-  const page = await conversation(app, state.topic);
+  const page = await resume(app, state.topic);
   await page.scrollToBottom();
   const complete = await page.response.waitUntilComplete();      // hold the app open and wait
   const text = await page.response.read();

@@ -1,6 +1,6 @@
 {
-  "topic": "Programming",
-  "message": "I work in Claude Code (the agentic CLI coding tool). I keep seeing vector / embedding databases mentioned for agent memory and semantic search. Practically: how does one get a vector database working WITH Claude Code — what's the integration path (an MCP server? a custom tool? an indexing pipeline?) — and concretely what does it give the system that plain file reads and grep/ripgrep search don't? Please search the web for current tools, named projects, and real setups people use. I want enough substance to decide whether and how to set one up for a flat-file knowledge library.",
-  "isNew": true,
-  "startedAt": "2026-06-21T13:21:06.600Z"
+  "topic": "Arthur > Team",
+  "message": "Follow-up on agent teams in Claude Code (experimental CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS). Concrete UX question: when a multi-teammate agent-team session is running, what does the HUMAN OPERATOR actually SEE in the terminal? Walk me through it concretely. (a) The split-pane layout — what's in each pane, one teammate per pane? (b) When one teammate MESSAGES another through the mailbox, does that appear on screen as readable natural-language dialogue, or only as a status line / tool-call event / JSON write you don't normally see? (c) Does watching a team session READ like a conversation between people — interleaved turns you can follow as prose — or does it read more like a system log / dashboard of separate workers each emitting their own output? (d) Is there any view where you see the actual TEXT teammates send each other, as sentences? Be concrete about what's on the glass, not the underlying mechanism. A focused answer is fine.",
+  "isNew": false,
+  "startedAt": "2026-06-21T15:03:52.799Z"
 }

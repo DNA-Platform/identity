@@ -27,10 +27,7 @@ const scanRoot = resolve(rootArg);
 // -- Step 1: CommonMark link extraction ----------------------------------
 
 const commonmark = require('commonmark');
-// sourcepos: true populates source positions. NOTE: commonmark.js attaches
-// sourcepos to BLOCK nodes only (paragraph, heading, item…), never to inline
-// link nodes — so we read the line from the enclosing block, not the link.
-const parser = new commonmark.Parser({ sourcepos: true });
+const parser = new commonmark.Parser();
 
 interface Link {
   destination: string;
@@ -43,10 +40,8 @@ function extractLinks(markdown: string): Link[] {
   const doc = parser.parse(markdown);
   const walker = doc.walker();
   let ev;
-  let currentLine = 0; // enclosing block's start line (links carry no sourcepos)
   while ((ev = walker.next())) {
     const node = ev.node;
-    if (ev.entering && node.sourcepos) currentLine = node.sourcepos[0][0];
     if (ev.entering && node.type === 'link' && node.destination) {
       // Collect visible text of the link for reporting
       let text = '';
@@ -57,7 +52,7 @@ function extractLinks(markdown: string): Link[] {
       }
       links.push({
         destination: node.destination,
-        line: currentLine,
+        line: node.sourcepos ? node.sourcepos[0][0] : 0,
         text: text.slice(0, 40),
       });
     }
@@ -110,9 +105,7 @@ function extractAnnotation(tsContent: string): string {
 
 // -- Step 4: File walking ------------------------------------------------
 
-// 'run' = .claude/run/, gitignored runtime (brain reports, cursors) — not library
-// content, so its incidental links shouldn't count as broken library links.
-const skip = new Set(['.git', 'node_modules', '.archive', 'debug', 'shortcut', 'run']);
+const skip = new Set(['.git', 'node_modules', '.archive', 'debug', 'shortcut']);
 
 function walk(dir: string, files: string[]): void {
   for (const entry of readdirSync(dir)) {

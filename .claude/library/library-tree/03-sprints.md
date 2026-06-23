@@ -27,8 +27,6 @@ A sprint chapter contains:
 
 The last sprint chapter is the current state. A reader who opens the last chapter should know where the project stands right now, the same way the last chapter of an autobiography is the current-state marker.
 
-**Write the entry when the sprint begins.** Create the sprint chapter as soon as the plan is known — its goal, tasks, and owners — so the intent is committed before the work, then carry it through the sprint and complete it at the [retro](../our-skillset/16-retro.md) with what was built and what was learned. Every sprint gets an entry; a sprint with no Projection chapter is work the branch will forget. Each branch's Projection cover repeats this reminder and links back here; the branches themselves are indexed in [Known Branches](05-branches.md).
-
 ## Task ownership
 
 Every sprint task must have an explicit owner assigned. The owner is determined by subject: Knowledge tasks go to the librarian, Collaboration tasks go to the architect, Environment tasks go to the environmentalist. See [Roles](../..teamsmanship/02-roles.md) for the full role definitions. When a task spans subjects, the owner is the teammate whose subject is primary. Unowned tasks are a planning failure — they get done by whoever notices them, which means they get done without the right perspective.

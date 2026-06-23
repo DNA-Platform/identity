@@ -29,18 +29,21 @@ CURSOR_DIR="$RUN_DIR/cursors"
 REG="$RUN_DIR/sessions.json"
 mkdir -p "$BRAIN_DIR" "$CURSOR_DIR"
 
-# --- canonical brain UUIDs (committed config; arthur's is Doug's original) ---
+# --- canonical brain UUIDs (committed config) -------------------------------
+# Merged map: our session's four brains keep their aaaa-series ids (libby/arthur/
+# claude/cathy); the other six are retained from the other team's tool. Arthur's
+# id is Doug's original (aaaa2222), consistent across both teams.
 declare -A UUID=(
+  [libby]=aaaa1111-0000-4000-8000-000000000001
   [arthur]=aaaa2222-0000-4000-8000-000000000002
-  [cathy]=cccc2222-0000-4000-8000-000000000003
-  [libby]=11bb2222-0000-4000-8000-000000000004
+  [claude]=aaaa3333-0000-4000-8000-000000000003
+  [cathy]=aaaa4444-0000-4000-8000-000000000004
   [adam]=ada22222-0000-4000-8000-000000000005
   [david]=da172222-0000-4000-8000-000000000006
   [phillip]=ff112222-0000-4000-8000-000000000007
   [queenie]=99ee2222-0000-4000-8000-000000000008
   [gabby]=9abb2222-0000-4000-8000-000000000009
   [nancy]=bbbb2222-0000-4000-8000-00000000000b
-  [claude]=c1ad2222-0000-4000-8000-00000000000c
 )
 
 # --- locate the active team transcript (for self-catchup deltas) ------------

@@ -4,6 +4,8 @@
 
 ---
 
+[Book: [Deployment Patterns](.cover.md)]
+
 Two workflows deploy $Chemistry to the world. `publish-packages.yml` publishes `@dna-platform/chemistry` and `@dna-platform/public-library` to GitHub Packages. `deploy-pages.yml` builds the teaser page and pushes it to GitHub Pages. Both run on Node 22, both trigger on push to main, and both are designed to be safe to run twice.
 
 The publish workflow installs dependencies, builds each package, and runs `npm publish` with the `--registry` flag pointed at GitHub Packages. The critical line is the error handler: `|| echo "Version already published, skipping"`. Without it, the workflow fails on repeat runs because npm refuses to publish a version that already exists. That one line is the difference between a pipeline that works once and a pipeline that works every time. Idempotency is not a default -- it's something you build, and the failure mode that teaches you to build it is a red badge on a commit that changed nothing.
