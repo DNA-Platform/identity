@@ -20,9 +20,11 @@ A poorly formulated question gets a plausible answer to the wrong question. This
 
 ### 2. Dispatch
 
-Start or resume a [session](../reference-desk/03-04-operations--sessions.md). If this is a new thought, call `startSession()` with a descriptive name. If continuing a prior thought, open the existing conversation by title and read its turns to catch up. The [persistence chapter](03-persistence.md) specifies when and how to resume.
+A new thought is born in the Claude project's composer. A continued thought reopens its conversation — and before it navigates anywhere it applies the resume discipline: *check whether the app is already on the right conversation before navigating.* The [session](../../src/session.ts) is the memory I check; it **never assumes** — it reads the live URL and compares (that file is the canonical statement of the rule). If in sync, bind the conversation in place and send with zero navigation; if not, go to the project and reopen it the way the write first reached it.
 
-The decision: **new vs resume.** Resume when the topic is the same and the prior conversation is still relevant — the Desktop Claude's context from earlier turns will improve the follow-up. Start fresh when the topic shifted, the prior conversation was resolved, or the prior turns would confuse more than help.
+This discipline runs in **both halves** of the thought. The [dispatch](02-the-thought-lifecycle--dispatch.ts) (write) and [read](02-the-thought-lifecycle--read.ts) share one resume helper — the only place the write skips the check is a known-new topic, which has no conversation yet to bind. Read always checks, because by the time it runs the app may have moved.
+
+The remaining decision is **new vs continue.** Continue when the topic is the same and the prior conversation is still relevant — the Desktop Claude's context from earlier turns will improve the follow-up. Start fresh when the topic shifted, the prior conversation was resolved, or the prior turns would confuse more than help. The [persistence chapter](03-persistence.md) specifies how the state file carries this across the write/read split.
 
 ### 3. Wait
 

@@ -4,7 +4,7 @@
 
 ---
 
-How to set up a new branch. This chapter IS the procedure — follow the steps in order. To go fast, the [scaffold tool](04-setup--scaffold.sh) automates steps 1–3 — it creates the covers with correct frontmatter and author-link depth and prints the territory + catalogue snippets to paste: `bash .claude/library/library-tree/04-setup--scaffold.sh <lib-dir> "<Subject>"`. Then fill the prose and finish steps 4–6.
+How to set up a new branch. This chapter IS the procedure — follow the steps in order.
 
 ## 1. Create `.lib/`
 
