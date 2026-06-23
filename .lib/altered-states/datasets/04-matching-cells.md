@@ -11,22 +11,19 @@ The two scans hold independently segmented populations — 1654 cells pre-DOI, 1
 
 ## The registration file
 
-[`unit_stack_coords.csv`](../../altered-states-doi/data/unit_stack_coords.csv) holds 4750 rows with columns `animal_id, session_id, scan_id, unit_id, stack_x, stack_y, stack_z` — every segmented unit's position in a common anatomical "stack" coordinate frame that places both scans in the same space. It spans both conditions (`scan_id` 2 = pre / session 6, `scan_id` 1 = post / session 7) and contains more units than either functional export, so it is first filtered to each scan's exported `unit_ids` before matching.
+[`unit_stack_coords.csv`](../../data/.archive/unit_stack_coords.csv) holds 4750 rows with columns `animal_id, session_id, scan_id, unit_id, stack_x, stack_y, stack_z` — every segmented unit's position in a common anatomical "stack" coordinate frame that places both scans in the same space. It spans both conditions (`scan_id` 2 = pre / session 6, `scan_id` 1 = post / session 7) and contains more units than either functional export, so it is first filtered to each scan's exported `unit_ids` before matching. It is itself a *derived* registration output, now archived under [`library/data/.archive/`](../../data/.archive/) alongside the raw inputs.
 
 ## The matcher
 
-[`match-cells.py.md`](../../altered-states-doi/data/match-cells.py.md) implements a **reciprocal-nearest-neighbour** match: filter the CSV to each scan's exported cells, take the `(x, y, z)` stack coordinates, compute the full pairwise distance matrix (`scipy.spatial.distance.cdist`), and within a **10 µm** cutoff keep only mutual pairs — for each pre cell the nearest post cell (forward) and for each post cell the nearest pre cell (reverse), merged on both ids. The expected result is **about 749 matched cells**, the figure from the team's exploration. Because the script names scans by `scan_idx`, its `scan2` column is the pre-DOI cell and `scan1` is the post-DOI cell.
+[`matching.py`](../../../src/library/io/matching.py) — the verified matcher, now part of the shared core at `src/library/io/` — implements a **reciprocal-nearest-neighbour** match: load each scan's exported `unit_ids` from its *own* folder via the data registry, take the `(x, y, z)` stack coordinates, compute the full pairwise distance matrix (`scipy.spatial.distance.cdist`), and within a **10 µm** cutoff keep only mutual pairs — for each pre cell the nearest post cell (forward) and for each post cell the nearest pre cell (reverse), merged on both ids. Because the module keys scans by `scan_idx` (`PRE = 2`, `POST = 1`), the pre-DOI cell is `scan_id 2` and the post-DOI cell is `scan_id 1`.
 
-## The bug in the current stub
+## Fixed and verified
 
-The stub loads the neuron id list from the **same path for both scans**:
+The original stub had a real bug: it loaded the neuron id list from the **same path for both scans**, so the per-scan filtering was wrong and its count could not be trusted. That is **fixed**. [`matching.py`](../../../src/library/io/matching.py) loads each scan's `unit_ids` from its own folder via the data registry; the matching *algorithm* (`cdist`, reciprocal nearest neighbour, the 10 µm cutoff) was always correct, and only the data-loading needed the path correction.
 
-```python
-unit_ids_scan2 = np.load("meta/neurons/unit_ids.npy")  # path to scan 1 data
-unit_ids_scan1 = np.load("meta/neurons/unit_ids.npy")  # path to scan 2 data
-```
+The result is now **verified**: **749 reciprocal pairs**, **median nearest-neighbour distance 2.68 µm** — well inside the 10 µm cutoff — and **guarded by a regression test** ([`src/tests/test_matching.py`](../../../src/tests/test_matching.py), run under `pytest -m v1_doi`), so any future change that moves the count is caught immediately. The original `match-cells.py.md` stub is archived at [`library/data/.archive/`](../../data/.archive/).
 
-Both lines read one file, so both scans are filtered by the same id set and the per-scan filtering is wrong; the printed match count cannot be trusted until each scan's `unit_ids.npy` is loaded from its own scan directory. The matching *algorithm* — `cdist`, reciprocal nearest neighbour, the 10 µm cutoff — is correct; only the data-loading is broken, so the fix is a path correction. Until it is fixed and the count reproduced, treat 749 as the expected pair count, not a verified one. The matched index is the substrate for the per-cell pre/post tests (H1–H3) in [The Altered Cortex analysis plan](../the-altered-cortex/03-the-analysis-plan.md), Steps 3–5; it is reused by every one of them, so its correctness is load-bearing.
+The matched index is the substrate for the per-cell pre/post tests (H1–H3) in [The Altered Cortex analysis plan](../the-altered-cortex/03-the-analysis-plan.md), Steps 3–5; it is reused by every one of them, so its correctness — now pinned by the test — is load-bearing.
 
 ---
 

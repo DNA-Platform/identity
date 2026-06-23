@@ -7,7 +7,7 @@
 
 [Book: [The Build](.cover.md)]
 
-With the environment locked, the analysis code is laid out so that dependencies run one way and the expensive artifact is produced once. The code lives at [`src/scripts/altered-states-doi/`](../../../src/scripts/altered-states-doi/).
+With the environment locked, the analysis code is laid out so that dependencies run one way and the expensive artifact is produced once. The code lives at [`src/scripts/`](../../../src/scripts/).
 
 ## The three-layer split
 

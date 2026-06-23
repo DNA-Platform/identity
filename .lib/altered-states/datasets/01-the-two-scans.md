@@ -7,7 +7,7 @@
 
 [Book: [Datasets](.cover.md)]
 
-The dataset is two scans of one animal, **33328** — the same V1 population approach recorded twice, before and after the psychedelic, with the same GrayImageNet natural-image stimulus shown both times. Everything the analysis does begins from these two directories, found under [`library/altered-states-doi/data/`](../../altered-states-doi/data/) (the immutable archives, plus an `extracted/` copy the loaders read).
+The dataset is two scans of one animal, **33328** — the same V1 population approach recorded twice, before and after the psychedelic, with the same GrayImageNet natural-image stimulus shown both times. Everything the analysis does begins from these two directories, found under [`library/data/`](../../data/) (the immutable archives, plus an `extracted/` copy the loaders read).
 
 ## Reading the directory name
 
@@ -29,6 +29,12 @@ Each scan is a directory whose name encodes its identity, e.g. `static-33328-6-2
 | trials | **5936** | **5996** |
 
 The pre/post assignment — session 6 is the baseline, session 7 is after the 2 mg/kg DOI injection — is the design's central structure; it is established from the protocol and recorded in [The Altered Cortex, chapter 1](../the-altered-cortex/01-the-dataset-and-the-design.md). This book takes that assignment as given and documents what the files contain.
+
+## One continuous session, recorded volumetrically
+
+The two scans are **one recording session**, not two days. Per Erin's protocol timeline the animal stays on the same 4 mm cranial window throughout: a ~45-minute baseline scan, then **DOI 2 mg/kg subcutaneous**, a ~45-minute wait, then a ~45-minute post scan — about ninety minutes start to finish. The metadata's differing session indices (6 vs 7) are the rig's session numbering *within that one mount*; read them as "two recordings of the same mounted animal," not "two days." (Easy to misread — the index numbers invite a different-days story the protocol does not support.) [source: deck, [the experimental design](../../resources/erins-presentation/02-the-experimental-design.md) — Erin's timeline slide]
+
+The imaging is **volumetric two-photon** of GCaMP8m expressed in excitatory cells (AAV-CamKII-Cre): each scan is a *stack of depth planes* through layer 2/3, not a single focal plane. [source: deck, [the experimental design](../../resources/erins-presentation/02-the-experimental-design.md) — Erin's rig slide] This matters downstream: across ninety minutes the stack can drift in z, and a cell that moves off its best plane both reads **dimmer** and may **fail to re-match** across the two scans — one mechanism behind both the modest cross-scan match rate and a uniform amplitude difference (see [caveats](05-caveats.md)).
 
 ## Two gotchas worth stating once
 
