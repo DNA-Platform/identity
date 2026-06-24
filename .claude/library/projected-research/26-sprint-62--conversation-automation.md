@@ -1,5 +1,9 @@
 # Sprint 62 — Conversation Automation
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Build, test, and verify the app extensions needed to have real-time conversations with Claude-Chat on the new account. Test exhaustively against existing conversations — create no new ones. Take screenshots of every UI state. The goal: when we sit down to run the pilot conversation with DNA Patternity, the automation is solid and we aren't troubleshooting every message.
 
 ## Context

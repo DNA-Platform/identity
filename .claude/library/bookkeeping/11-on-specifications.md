@@ -21,6 +21,8 @@ The chapter is documentation for the code. The code is specification made execut
 
 [11-on-specifications--validator.ts](11-on-specifications--validator.ts) validates everything the chapters in this book specify: [frontmatter](03-on-covers.md) fields and order, [chapter signing](02-on-chapters.md#signing), [cover](03-on-covers.md) structure, [catalogue](07-on-subjects.md) self-cataloguing. One validator for the whole book — because the specifications in this book form a coherent type system, not independent rules.
 
+The validator reports **errors only** — there is no warning tier. A warning would be a rule the validator checks and then tells the reader to ignore, and no one returns to a deferred warning; it accumulates as drift until the library quietly stops meaning what it says. So every clause it checks — a missing field, an unsigned chapter, a [nametag](../teamspeak/01-voice.md) in a published body, a [bare TOC entry](03-on-covers.md) — is an error, fixed immediately, before it compiles into the platform or travels to another repo. A contract has no soft clauses.
+
 ## Essential specifications
 
 Every [subject](07-on-subjects.md) depends on terms defined in specification books. The [library catalogue](08-on-libraries.md) identifies these as essential specifications — the books without which the subject's other books cannot be properly formed.

@@ -1,5 +1,9 @@
 # Sprint 63 — The Pilot Conversation
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 The first live conversation with Claude-Chat. Project: DNA Patternity. Claude leads.
 
 ## Context

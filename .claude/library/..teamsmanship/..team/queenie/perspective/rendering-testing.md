@@ -1,5 +1,9 @@
 # Queenie's Perspective: Testing the Rendering Model
 
+- **author:** [Queenie](../queenie-and-the-specification/.cover.md)
+
+---
+
 ## What I need to be able to test
 
 Whatever rendering model we choose, I need to verify:

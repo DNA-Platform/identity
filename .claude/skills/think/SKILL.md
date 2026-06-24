@@ -86,13 +86,7 @@ The [read resource](../../library/thoughtfulness/02-the-thought-lifecycle--read.
 Did it answer the actual question, or a nearby one? Substantive or a confident deflection? Consistent with what the team knows? Verdict: **sufficient**, **partial**, or **unproductive**.
 
 ### Step 7 — Conclude
-**Catalogue the response, then act on it — never the reverse.** A response that has already shaped code or a decision but was never filed is a response we have half-lost. So before the thinking goes anywhere: three stages in my chapter — **Evidence** (the printed response), **Interpretation** (what aligns, contradicts, surprises), **Conclusion** (what to tell the team, and whom).
-
-The two books hold the response two ways, and both are required:
-- **The thinking book catalogues responses as a chain.** Each response is its own chapter carrying a `previous` link to the **last response in this topic** — so a topic's exchanges form an ordered chain you can walk back through, newest to oldest.
-- **The research-topic catalogues the responses as a running summary** — one entry per exchange, what it settled or left open, linked to its thinking chapter. The topic is the *index of responses*; each thinking chapter is one response that points back to the one before it.
-
-Update my thinking-book cover and the research-topic chapter. Store failed thoughts too — they prevent re-asking dead ends. A `/think` result is a *filed thought to refer back to*, not automatically team work.
+Three stages in my chapter: **Evidence** (the printed response), **Interpretation** (what aligns, contradicts, surprises), **Conclusion** (what to tell the team, and whom). Update my thinking-book cover and the research-topic chapter. Store failed thoughts too — they prevent re-asking dead ends. A `/think` result is a *filed thought to refer back to*, not automatically team work.
 
 ## Resuming a thought
 

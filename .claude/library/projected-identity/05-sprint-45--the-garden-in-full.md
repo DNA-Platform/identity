@@ -1,5 +1,9 @@
 # Sprint 45 — The Garden in Full
 
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
+
 **Lead:** Libby (Librarian)
 **Sprint goal:** Every agent's library follows the spec, every autobiography is at fighting weight, every subject is coherent, and the identity is ready to push.
 

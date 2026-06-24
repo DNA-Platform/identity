@@ -1,12 +1,8 @@
----
-title: "The toolchain, and what to leave out"
-date: 2026-06-23
-topic: "Nancy > Neuroscience"
----
-
 # The toolchain, and what to leave out
 
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
+- **date:** 2026-06-23
+- **topic:** Nancy > Neuroscience
 
 ---
 

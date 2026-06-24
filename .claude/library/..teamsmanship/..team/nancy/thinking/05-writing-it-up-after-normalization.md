@@ -1,13 +1,9 @@
----
-title: "Writing it up after normalization"
-date: 2026-06-23
-topic: "Nancy > Neuroscience"
-previous: 04-the-scale-difference-and-two-photon.md
----
-
 # Writing it up after normalization
 
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
+- **date:** 2026-06-23
+- **topic:** Nancy > Neuroscience
+- **previous:** [The scale difference, and whether two-photon makes it](04-the-scale-difference-and-two-photon.md)
 
 ---
 

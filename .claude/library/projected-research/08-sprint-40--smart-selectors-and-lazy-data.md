@@ -1,5 +1,9 @@
 # Sprint 40 — Smart Selectors and Lazy Data
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Make the app robust. Scoped selectors that understand page context. Lazy async data properties that load on demand and stay consistent.
 
 ## Sprint goal

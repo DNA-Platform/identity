@@ -1,13 +1,9 @@
----
-title: "The publication twin, and the metric mismatch"
-date: 2026-06-23
-topic: "Nancy > The Twin"
-previous: 05-writing-it-up-after-normalization.md
----
-
 # The publication twin, and the metric mismatch
 
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
+- **date:** 2026-06-23
+- **topic:** Nancy > The Twin
+- **previous:** [Writing it up after normalization](05-writing-it-up-after-normalization.md)
 
 ---
 

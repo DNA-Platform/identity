@@ -1,5 +1,9 @@
 # Sprint 35 — The Object Model
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Build the TypeScript class hierarchy that models the Claude Windows app as a human sees it.
 
 ## Sprint goal
