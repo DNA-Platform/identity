@@ -35,7 +35,7 @@ Branch separation invariant: `.lib/` exists only on project branches (`inexplica
 
 - **Source:** [03-on-covers--toc.ts](../bookkeeping/03-on-covers--toc.ts)
 - **Specification:** [On Covers](../bookkeeping/03-on-covers.md)
-- **What it does:** Inserts or updates a single chapter entry in a cover's table of contents, reading only the cover and the chapter's title line — never the whole book. It validates the cover's structure first and refuses a non-standard cover. With `--check` it validates a cover and lists every TOC entry still missing its synopsis.
+- **What it does:** Inserts, overwrites (with `--force`), or reads back (`--get`) one entry in a cover's table of contents, reading only the cover and the chapter's title line — never the whole book. It parses the whole TOC into a model and rebuilds it on change, round-tripping first: if any entry will not serialize back to its source line it refuses, so it never mangles a cover; and an insert onto an existing entry errors unless forced, so no synopsis is lost. `--check` lists bare and non-round-trip entries.
 
 It is the interim form of the real convention (synopsis written in the chapter, the whole TOC assembled from the chapters), which is deferred. Arthur uses it to add a sprint to the projection cover; everyone uses it to file a thought into a thinking cover.
 
