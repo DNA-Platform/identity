@@ -77,7 +77,7 @@ Doug's directive: **know every source, no guessing.** This is the audit of where
 | `CONSTRAINT_NORM = 25` | **OPEN — to tune** | not a published value; tuned empirically so the clip rarely fires (which also gates the shared-scale display). |
 | metric / ceiling labels | **corrected** | the validation noise ceiling is a **leave-one-out oracle** (`get_signal_correlations`), **not** "split-half"; our CC_norm is **in the spirit of Schoppe 2016, not the literal formula**. Labels fixed across the catalogue. |
 
-Until the two gates clear, the [archive README](../../reports/dataset-archive/README.md) stays the clean procedure and these flags stay here, in our voice. The [full-pipeline audit](../../../.claude/library/..teamsmanship/..team/nancy/thinking/07-the-full-pipeline-audit.md) confirmed the recipe; this is the provenance underneath it.
+Until the two gates clear, the [archive README](../../reports/dataset-archive/README.md) stays the clean procedure and these flags stay here, in our voice. The [full-pipeline audit](../../../.claude/library/..teamsmanship/..team/nancy/thinking/07-the-full-pipeline-audit.md) confirmed the recipe; this is the provenance underneath it. The durable aggregate — these flags plus every other settled-or-open answer — is [The Ledger](../the-ledger/.cover.md), the standing register kept apart from this live record.
 
 ## Where the outputs go
 
