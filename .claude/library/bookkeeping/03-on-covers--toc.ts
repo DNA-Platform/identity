@@ -76,6 +76,16 @@ if (secondArg === '--check') {
   process.exit(bare.length ? 1 : 0);
 }
 
+// --- --get: print one entry's current line, so it can be read and improved ---
+if (secondArg === '--get') {
+  const target = (synopsisArg ?? '').trim();
+  if (!target) fail('Usage: 03-on-covers--toc.ts <cover.md> --get <NN-chapter.md>');
+  const entry = entries.find(e => base(e.target) === base(target));
+  if (!entry) { console.log(`No TOC entry for ${target} in ${coverPath}`); process.exit(1); }
+  console.log(`${entry.num}. [${entry.text}](${entry.target}) — ${entry.synopsis}`);
+  process.exit(0);
+}
+
 // --- insert or update an entry ---
 const chapterFile = secondArg;
 const synopsis = (synopsisArg ?? '').trim();
