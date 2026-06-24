@@ -1,5 +1,9 @@
 # Sprint 36 — The Ghost App
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Build the full skeleton of the Claude controller. Every class, method, and property named and typed. Constructors wired. Bodies empty. The ghost of the app before any flesh goes on the bones.
 
 ## Sprint goal

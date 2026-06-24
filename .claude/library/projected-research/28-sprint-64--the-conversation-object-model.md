@@ -1,5 +1,9 @@
 # Sprint 64 — The Conversation Object Model
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 The app needs to model conversations the way the real app does. Not just send-and-read — the full lifecycle. Create, rename, delete, compose, stream, copy, track state.
 
 ## Context

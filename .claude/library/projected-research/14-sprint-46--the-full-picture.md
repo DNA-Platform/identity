@@ -1,5 +1,9 @@
 # Sprint 46 — The Full Picture
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Run the infrastructure. Get the data current. Then step back and look at the whole account — 694 conversations across a year — and decide how to process it.
 
 ## Sprint goal

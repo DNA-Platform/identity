@@ -1,22 +1,26 @@
 # Sprint 65 — The Composed Message
 
-Arthur: The composed message is not text in a box. It's a stateful object — part of the conversation — with structure the UIA tree can describe. Doug's rule: **no privileged state**. If you can't reconstruct the message object by reading the tree, your model is lying.
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
+**Arthur —** The composed message is not text in a box. It's a stateful object — part of the conversation — with structure the UIA tree can describe. Doug's rule: **no privileged state**. If you can't reconstruct the message object by reading the tree, your model is lying.
 
 ## The insight
 
-Arthur: When you compose a message, you're building something. A small paste might be inline text. A large paste becomes an attachment. An upload is a file reference. Streaming (character-by-character typing) stays inline. Each of these produces a different UIA tree structure — different elements, different names, different patterns.
+**Arthur —** When you compose a message, you're building something. A small paste might be inline text. A large paste becomes an attachment. An upload is a file reference. Streaming (character-by-character typing) stays inline. Each of these produces a different UIA tree structure — different elements, different names, different patterns.
 
-Arthur: The message object must represent what's *there*, not what you *did*. If you composed by pasting 200 lines, the tree shows "Pasted Text, pasted, 200 lines" as a button. If you typed 200 lines character by character, the tree shows inline text. Same content, different tree, different message object.
+**Arthur —** The message object must represent what's *there*, not what you *did*. If you composed by pasting 200 lines, the tree shows "Pasted Text, pasted, 200 lines" as a button. If you typed 200 lines character by character, the tree shows inline text. Same content, different tree, different message object.
 
-Arthur: And here's the verification pattern Doug gave us: after every action, read the tree, reconstruct the message object from scratch, and compare it to what you think you have. If they match, the action worked. If they don't, the model is wrong.
+**Arthur —** And here's the verification pattern Doug gave us: after every action, read the tree, reconstruct the message object from scratch, and compare it to what you think you have. If they match, the action worked. If they don't, the model is wrong.
 
 ## The constraint
 
-Adam: When you open a conversation with an unsent draft, that draft has state — text in the composer, maybe attachments, maybe pasted blocks. The message object you construct from discovery must be identical to the message object you'd have if you'd built it yourself. No shortcuts, no memory of what you did — only what the tree says.
+**Adam —** When you open a conversation with an unsent draft, that draft has state — text in the composer, maybe attachments, maybe pasted blocks. The message object you construct from discovery must be identical to the message object you'd have if you'd built it yourself. No shortcuts, no memory of what you did — only what the tree says.
 
 ## Hard rules (from Doug)
 
-Arthur: These are non-negotiable:
+**Arthur —** These are non-negotiable:
 
 1. **Verify the app is active before any interaction.** Before executing anything — reads, writes, keyboard, clicks — confirm Claude Desktop is the foreground window. Never assume.
 2. **Click into the composer before select-all.** Without clicking into the text area first, Ctrl+A selects the whole page, not the composer content.
@@ -26,7 +30,7 @@ Arthur: These are non-negotiable:
 
 ## Experiment results (E-0 through E-5)
 
-Claude: First batch of experiments ran. Key findings:
+**Claude —** First batch of experiments ran. Key findings:
 
 ### The UIA tree structure of a composed message
 
@@ -41,15 +45,15 @@ Claude: First batch of experiments ran. Key findings:
 
 ### Attachment anatomy
 
-Claude: When paste becomes an attachment, the tree creates:
+**Claude —** When paste becomes an attachment, the tree creates:
 - `ControlType.Button | Pasted Text, pasted, N lines` — the attachment itself
 - `ControlType.Button | Remove Pasted Text, pasted, N lines` — the remove button
 
-Claude: Each attachment is separate. Multiple pastes create multiple attachment buttons.
+**Claude —** Each attachment is separate. Multiple pastes create multiple attachment buttons.
 
 ### Project knowledge files
 
-Claude: DNA Patternity already has files attached (project knowledge). They follow a similar but distinct pattern:
+**Claude —** DNA Patternity already has files attached (project knowledge). They follow a similar but distinct pattern:
 - `ControlType.Button | filename.ext, ext, N lines` — the file
 - `ControlType.CheckBox | Select: filename.ext, ext, N lines` — selection checkbox
 - `ControlType.Button | Remove` — generic remove button (not name-specific)
@@ -100,7 +104,7 @@ Claude: DNA Patternity already has files attached (project knowledge). They foll
 
 ### Adam — Findings from API tests
 
-Adam: Two test runs on 2026-05-22:
+**Adam —** Two test runs on 2026-05-22:
 
 **Test 1 (`test-composed-message.ts`)** — initial API validation. All 8 steps passed. Found that `write()` using `setValue`/clipboard collapsed newlines to spaces. The round-trip was consistent (both read back collapsed), but multi-line body text was lost.
 
@@ -124,7 +128,7 @@ Adam: Two test runs on 2026-05-22:
 
 ## Code changes this sprint
 
-Adam: Infrastructure and ComposedMessage API:
+**Adam —** Infrastructure and ComposedMessage API:
 
 1. **`window.ts`** — Added `isForeground()` and `requireForeground()`. Checks `GetForegroundWindow()` matches our handle. Attempts `focus()` once if not foreground, throws if still not.
 2. **`gateway.ts`** — `act()` calls `requireForeground()` before every action attempt. Takes Window reference in constructor.
@@ -139,7 +143,7 @@ Adam: Infrastructure and ComposedMessage API:
 
 ## Test approach
 
-Adam: Use `src/scripts/` for experiments. DNA Patternity as the test project. Each experiment script must:
+**Adam —** Use `src/scripts/` for experiments. DNA Patternity as the test project. Each experiment script must:
 1. Verify Claude Desktop is the foreground window
 2. Verify the screen (project page, conversation, home)
 3. Run the experiment

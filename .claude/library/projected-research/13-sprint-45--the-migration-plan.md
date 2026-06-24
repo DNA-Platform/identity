@@ -1,5 +1,9 @@
 # Sprint 45 — The Migration Plan
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 A brainstorming sprint. The deliverable is a decision document: what gets pushed to the new account, in what form, and how the library stays in sync afterward.
 
 ## Sprint type

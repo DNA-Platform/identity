@@ -1,5 +1,9 @@
 # Sprint 57 — Creating Projects and Pushing Instructions
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Implementation sprint. Create all projects on the new account, push trimmed project-level instructions, upload project files and covers.
 
 ## Sprint goal

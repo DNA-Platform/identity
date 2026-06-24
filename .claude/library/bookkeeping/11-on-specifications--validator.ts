@@ -15,7 +15,6 @@ if (!target) {
 
 const root = resolve(target);
 let errors = 0;
-let warnings = 0;
 let booksChecked = 0;
 let chaptersChecked = 0;
 
@@ -86,7 +85,7 @@ function checkFieldOrder(
     const prevRank = canonicalOrder.indexOf(prev.field);
     const currRank = canonicalOrder.indexOf(curr.field);
     if (prevRank > currRank) {
-      console.log(`WARN    ${relPath}  Metadata order: '${curr.field}' should come before '${prev.field}'`);
+      console.log(`ERROR   ${relPath}  Metadata order: '${curr.field}' should come before '${prev.field}'`);
       onWarn();
       return; // One warning per file is enough
     }
@@ -156,8 +155,8 @@ function checkCover(coverPath: string): void {
 
   // summary: is NOT metadata — it's prose in the body
   if (fm.summary) {
-    console.log(`WARN    ${relPath}  'summary' in metadata — should be prose in the body, not a bullet field`);
-    warnings++;
+    console.log(`ERROR   ${relPath}  'summary' in metadata — should be prose in the body, not a bullet field`);
+    errors++;
   }
 
   // Check metadata field order — within the bullet list between heading and separator
@@ -165,7 +164,7 @@ function checkCover(coverPath: string): void {
   let sepIdx = allLines.indexOf('---');
   const metaLines = sepIdx > 0 ? allLines.slice(1, sepIdx) : [];
   const order = isCatalogue ? catalogueCoverOrder : regularCoverOrder;
-  checkFieldOrder(relPath, metaLines, order, () => { warnings++; });
+  checkFieldOrder(relPath, metaLines, order, () => { errors++; });
 
   // Check TOC entries have synopses — not just bare links
   // A TOC entry looks like: "N. [Title](file.md) — synopsis text"
@@ -182,8 +181,8 @@ function checkCover(coverPath: string): void {
       bareTocCount++;
     }
     if (bareTocCount > 0 && totalTocCount > 0) {
-      console.log(`WARN    ${relPath}  ${bareTocCount} of ${totalTocCount} TOC entries have no synopsis — TOC should describe chapters, not just list them. See On Synopsis`);
-      warnings++;
+      console.log(`ERROR   ${relPath}  ${bareTocCount} of ${totalTocCount} TOC entries have no synopsis — TOC should describe chapters, not just list them. See On Synopsis`);
+      errors++;
     }
   }
 }
@@ -197,14 +196,14 @@ function checkChapter(chapterPath: string): void {
   chaptersChecked++;
 
   if (!fm) {
-    console.log(`WARN    ${relPath}  Chapter missing metadata (expected # Title, bullet fields, --- separator)`);
-    warnings++;
+    console.log(`ERROR   ${relPath}  Chapter missing metadata (expected # Title, bullet fields, --- separator)`);
+    errors++;
     return;
   }
 
   if (!fm.title) {
-    console.log(`WARN    ${relPath}  Chapter missing 'title'`);
-    warnings++;
+    console.log(`ERROR   ${relPath}  Chapter missing 'title'`);
+    errors++;
   }
 
   if (!fm.author) {
@@ -223,20 +222,20 @@ function checkChapter(chapterPath: string): void {
 
   // Check for nametags in body (should not appear in published book content)
   // Body is everything after the --- separator
-  const names = ['Adam', 'Arthur', 'Cathy', 'Claude', 'David', 'Gabby', 'Libby', 'Phillip', 'Queenie'];
+  const names = ['Adam', 'Arthur', 'Cathy', 'Claude', 'David', 'Gabby', 'Libby', 'Nancy', 'Phillip', 'Queenie'];
   const sepIndex = content.indexOf('\n---\n');
   const body = sepIndex >= 0 ? content.slice(sepIndex + 5) : content;
   const nametagPattern = new RegExp('^(' + names.join('|') + '):\\s', 'm');
   if (nametagPattern.test(body)) {
-    console.log(`WARN    ${relPath}  Nametag in body — use author: field, not nametags in published content`);
-    warnings++;
+    console.log(`ERROR   ${relPath}  Nametag in body — use author: field, not nametags in published content`);
+    errors++;
   }
 
   // Check chapter metadata field order
   const allLines = content.split('\n');
   const chapterSepIdx = allLines.indexOf('---');
   const metaLines = chapterSepIdx > 0 ? allLines.slice(1, chapterSepIdx) : [];
-  checkFieldOrder(relPath, metaLines, chapterOrder, () => { warnings++; });
+  checkFieldOrder(relPath, metaLines, chapterOrder, () => { errors++; });
 }
 
 function checkFlatStructure(catalogueDir: string): void {
@@ -254,8 +253,8 @@ function checkFlatStructure(catalogueDir: string): void {
       const nestedCover = join(full, '.cover.md');
       if (existsSync(nestedCover)) {
         const nestedRel = nestedCover.replace(root, '').replace(/\\/g, '/');
-        console.log(`WARN    ${nestedRel}  Book inside catalogue '${relDir}' — catalogues should be flat (books as peers, not children)`);
-        warnings++;
+        console.log(`ERROR   ${nestedRel}  Book inside catalogue '${relDir}' — catalogues should be flat (books as peers, not children)`);
+        errors++;
       }
     }
   }
@@ -297,8 +296,8 @@ function walkDir(dir: string): void {
         const subCover = join(full, '.cover.md');
         if ((existsSync(subPlan) || existsSync(subIndex)) && !existsSync(subCover)) {
           const subRel = full.replace(root, '').replace(/\\/g, '/');
-          console.log(`WARN    ${subRel}  Subdirectory with plan.md/index.md but no .cover.md — should this be a chapter file (NN-title.md) instead of a folder?`);
-          warnings++;
+          console.log(`ERROR   ${subRel}  Subdirectory with plan.md/index.md but no .cover.md — should this be a chapter file (NN-title.md) instead of a folder?`);
+          errors++;
         }
       }
     }
@@ -328,6 +327,5 @@ console.log(`\n--- Anatomy Summary ---`);
 console.log(`Books checked: ${booksChecked}`);
 console.log(`Chapters checked: ${chaptersChecked}`);
 console.log(`Errors: ${errors}`);
-console.log(`Warnings: ${warnings}`);
 
 if (errors > 0) process.exit(1);

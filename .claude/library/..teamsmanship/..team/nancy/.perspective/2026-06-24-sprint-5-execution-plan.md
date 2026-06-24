@@ -1,11 +1,7 @@
----
-title: "Sprint 5 execution invariants — Phases 2–4"
-date: 2026-06-24
----
-
 # Sprint 5 execution invariants — the do-this checklist (Phases 2–4)
 
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
+- **date:** 2026-06-24
 
 ---
 

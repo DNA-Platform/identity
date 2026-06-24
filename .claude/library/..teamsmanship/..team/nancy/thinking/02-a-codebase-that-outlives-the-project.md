@@ -1,13 +1,9 @@
----
-title: "A codebase that outlives the project"
-date: 2026-06-23
-topic: "Nancy > Neuroscience"
-previous: 01-the-toolchain-and-what-to-leave-out.md
----
-
 # A codebase that outlives the project
 
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
+- **date:** 2026-06-23
+- **topic:** Nancy > Neuroscience
+- **previous:** [The toolchain, and what to leave out](01-the-toolchain-and-what-to-leave-out.md)
 
 ---
 

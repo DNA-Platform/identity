@@ -1,10 +1,14 @@
 # Sprint 67 — Conversation Sessions
 
-Arthur: Sprint 66 built the conversation object model — Turn, Prompt, Response, Content, lazy Artifacts and Thinking. Sprint 67 makes it interactive. We start conversations, send messages, receive responses, and clean up after ourselves.
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
+**Arthur —** Sprint 66 built the conversation object model — Turn, Prompt, Response, Content, lazy Artifacts and Thinking. Sprint 67 makes it interactive. We start conversations, send messages, receive responses, and clean up after ourselves.
 
 ## Goal
 
-Arthur: Build session semantics around conversations. A session is a managed interaction: we start a chat, name it, send messages, receive responses, and either leave it open or delete it when done. The pipeline works. Now we use it.
+**Arthur —** Build session semantics around conversations. A session is a managed interaction: we start a chat, name it, send messages, receive responses, and either leave it open or delete it when done. The pipeline works. Now we use it.
 
 ## Hard rules
 
@@ -25,7 +29,7 @@ Arthur: Build session semantics around conversations. A session is a managed int
 
 ### S-1: Background readability (Adam)
 
-Adam: Test whether UIA reads work on a minimized Claude window. This determines the whole interaction model — if reads work minimized, we only need foreground for the brief compose-and-send moment.
+**Adam —** Test whether UIA reads work on a minimized Claude window. This determines the whole interaction model — if reads work minimized, we only need foreground for the brief compose-and-send moment.
 
 **Acceptance:**
 - [ ] checkStreaming() returns accurate results when window is minimized
@@ -34,7 +38,7 @@ Adam: Test whether UIA reads work on a minimized Claude window. This determines 
 
 ### S-2: Session primitive — `send()` (Adam, Claude)
 
-Adam: Build the atomic send-and-receive operation. Compose a message, send it, wait for the response, read it back, return a Response object.
+**Adam —** Build the atomic send-and-receive operation. Compose a message, send it, wait for the response, read it back, return a Response object.
 
 ```
 response = await session.send("Respond with one word: blue")
@@ -49,7 +53,7 @@ response.content.text  // "Blue"
 
 ### S-3: Session lifecycle (Arthur, Adam)
 
-Arthur: Build the session object with start/end semantics. Ending a session doesn't mean deleting the conversation — it means the session is done and the conversation is left for Doug to manage. Deletion is a separate, deliberate action that Doug controls.
+**Arthur —** Build the session object with start/end semantics. Ending a session doesn't mean deleting the conversation — it means the session is done and the conversation is left for Doug to manage. Deletion is a separate, deliberate action that Doug controls.
 
 ```
 session = await app.startSession({ name: "[test] hello" })
@@ -67,7 +71,7 @@ await session.end()  // leaves conversation intact, returns to home
 
 ### S-4: Single-message test (all)
 
-Adam: End-to-end test: start session, send one generic prompt ("respond with one word: blue"), read response, verify content, end session.
+**Adam —** End-to-end test: start session, send one generic prompt ("respond with one word: blue"), read response, verify content, end session.
 
 **Acceptance:**
 - [ ] Session starts cleanly
@@ -78,7 +82,7 @@ Adam: End-to-end test: start session, send one generic prompt ("respond with one
 
 ### S-5: Multi-turn test (all)
 
-Adam: Same as S-4 but with two exchanges. Verify readTurns() returns both turns.
+**Adam —** Same as S-4 but with two exchanges. Verify readTurns() returns both turns.
 
 **Acceptance:**
 - [ ] Two messages sent, two responses received
@@ -87,7 +91,7 @@ Adam: Same as S-4 but with two exchanges. Verify readTurns() returns both turns.
 
 ### S-6: Library tending (all)
 
-Libby: While waiting for Claude to process responses, everyone tends their libraries. Fix stale links, add missing cross-references, update covers. The garden grows by accretion.
+**Libby —** While waiting for Claude to process responses, everyone tends their libraries. Fix stale links, add missing cross-references, update covers. The garden grows by accretion.
 
 ## Order
 
@@ -100,7 +104,7 @@ Libby: While waiting for Claude to process responses, everyone tends their libra
 
 ## Findings (2026-05-23)
 
-Arthur: We ran the experiments and built the primitives. Here's what we know.
+**Arthur —** We ran the experiments and built the primitives. Here's what we know.
 
 ### Background readability: CONFIRMED
 

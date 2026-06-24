@@ -1,5 +1,9 @@
 # Cathy's Rendering Analysis
 
+- **author:** [Cathy](../cathy-and-the-reactive-canvas/.cover.md)
+
+---
+
 This is me THINKING, not coding. Every claim is sourced or reasoned.
 
 ## What React guarantees

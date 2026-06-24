@@ -1,5 +1,9 @@
 # Sprint 39 — The App Export
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Write an app exporter that drives Claude Desktop to capture project-conversation mappings. Iterative — expect multiple runs to get right.
 
 ## Sprint goal

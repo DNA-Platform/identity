@@ -78,6 +78,10 @@ When the book is a [subject catalogue](07-on-subjects.md) or [library catalogue]
 
 The cover is layer 3 in the [synopsis architecture](09-on-synopsis.md) — the last layer before primary source. A well-written cover means most readers never open a chapter. The chapter exists for the reader who needs depth no synopsis can replace.
 
+## Keeping the TOC current
+
+A chapter without a TOC entry is invisible, and a bare entry — a link with no description — is a list pretending to be a synopsis. Both are errors, not warnings: a cover that lists without describing has abandoned its job as the layer before primary source. Keeping the TOC honest by hand means re-reading the whole book on every change. The [TOC tool](03-on-covers--toc.ts) avoids that — given a cover and a chapter it reads only the cover and the chapter's title line. It parses the whole table of contents into a model and rebuilds it on every change, and it round-trips first: if any entry will not serialize back to its exact source line it refuses to write and names the lines to standardize, so it never quietly mangles a cover. An insert that lands on an existing entry is an overwrite, so it errors by default and requires `--force` — no synopsis is lost by accident. Use `--get` to read an entry before improving it, and `--check` to list every bare or non-round-trip entry. It is the interim form of the eventual convention, in which the synopsis is written in the chapter and the whole table of contents is assembled from the chapters; until then, it is how a sprint or a thought is filed without a full re-read.
+
 <!-- citations -->
 [books]: 01-on-books.md
 [chapters]: 02-on-chapters.md

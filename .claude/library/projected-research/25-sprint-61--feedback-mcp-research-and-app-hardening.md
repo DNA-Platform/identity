@@ -1,5 +1,9 @@
 # Sprint 61 — Feedback, MCP Research, and App Hardening
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Three parallel tracks. The automation sprints taught us we were flying blind. This sprint addresses that at every level: the code, the architecture, the knowledge, and the narrative.
 
 ## Track A — App hardening (Adam + Arthur)

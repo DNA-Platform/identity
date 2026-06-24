@@ -1,13 +1,9 @@
----
-title: "The scale difference, and whether two-photon makes it"
-date: 2026-06-23
-topic: "Nancy > Neuroscience"
-previous: 03-writing-the-exploration-well.md
----
-
 # The scale difference, and whether two-photon makes it
 
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
+- **date:** 2026-06-23
+- **topic:** Nancy > Neuroscience
+- **previous:** [Writing the exploration well](03-writing-the-exploration-well.md)
 
 ---
 

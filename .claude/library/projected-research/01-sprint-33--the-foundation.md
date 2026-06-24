@@ -1,5 +1,9 @@
 # Sprint 33 — The Foundation
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 The first sprint of the Claude account migration project. We connect to Claude Desktop, prove the tooling, and establish the object model.
 
 ## Sprint goal

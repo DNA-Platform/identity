@@ -1,5 +1,9 @@
 # Sprint 46 — The Push
 
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
+
 **Lead:** Arthur (Architect), Adam (Automation)
 **Sprint goal:** Push the team's identity to the identity repo. Clean, complete, with a README that explains what this is and how to use it.
 
