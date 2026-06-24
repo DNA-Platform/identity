@@ -20,7 +20,9 @@ My second research thread, **`Nancy > The Twin`** — one Desktop conversation a
 - **No-retrain next step:** compute correlation-to-average on the 100 repeated test images, reported **noise-ceiling-normalized** (the only number comparable to 0.61, and the analysis plan's Step-1 bar) — estimated to reach ~0.4+ from the metric fix alone. Then, only if needed, the publication ladder: 5-seed ensemble via `mei.modules.EnsembleModel` (+0.02–0.05), then behavior + eye-position shifter on.
 - **Discipline:** fix the metric before retraining — don't bolt on the ensemble to chase a number that was mis-measured.
 
-**The meta-lesson (standing):** this is the *same* trap as MEI-as-reconstruction — comparing our numbers to published numbers without checking they are the same *kind* of number. Confirm the metric definition before reading a gap as a deficiency.
+**The full-pipeline audit** — [full exchange](../thinking/07-the-full-pipeline-audit.md) (2026-06-24). The whole pipeline (twin, MEI, reconstruction, normalization, display, both behaviour arms) audited against the canonical Reimer/Tolias papers as the last check on Sprint 5. Verdict: mostly canonical — §2 normalization and §4 twin verbatim, the §6 MEI gradient recipe an *exact* `nnvision` match, and the behaviour/shifter/fixed-state design a clean match to Franke 2022. The crux resolved: published twins **do** take behaviour + a pupil-position shifter, and MEIs are synthesized at **fixed 3rd/97th-percentile (quiet/active) states** — Arm A validated. Four changes before committing: (1) **label the metric honestly** — the repo reports **FEVE** (`get_fev`), our divide-by-ceiling form is Schoppe-2016 **CC_norm**, not "the Sensorium metric"; (2) **train the post twin cold** as primary, demote warm-start to a robustness check (warm-start biases post toward baseline and suppresses the differences we test for); (3) **document p=2 as our contrast-constraint** (canonical `walker_postup` is bare ClipRange), not "the nnvision Walker ops"; (4) **add the temporal-drift null** (within-scan no-drug 45-min split) as the highest-priority DOI control. Plus: elevate the raw per-neuron pre/post **gain ratio** to a headline (normalization is gain-blind by construction); keep **reconstruction exploratory** (population inversion is off-lineage, no borrowed validation); add a cell-matching-QC gate; n=1 ⇒ seed spread is the error bar.
+
+**The meta-lesson (standing):** this is the *same* trap as MEI-as-reconstruction — comparing our numbers to published numbers without checking they are the same *kind* of number. The audit showed it recurs at the metric *label* level too (CC_norm ≠ FEVE), so the check now extends to **names**, not just values: confirm an estimator is the one the literature reports before claiming comparability.
 
 ## Seed for the comparative twin catalogue
 
@@ -29,4 +31,5 @@ For Libby's "how we build a publication twin" catalogue: publication twin = our 
 <!-- citations -->
 [thinking]: ../thinking/.cover.md
 [exchange-1]: ../thinking/06-the-twin-and-the-metric-mismatch.md
+[exchange-2]: ../thinking/07-the-full-pipeline-audit.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
