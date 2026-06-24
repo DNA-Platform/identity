@@ -11,7 +11,7 @@ Every branch has a cataloguing book — a `..` prefixed [library catalogue](../b
 
 The `..` prefix marks a [library catalogue](../bookkeeping/08-on-libraries.md) — a subject catalogue that IS the library. In the main branch, Librarianship is that book: `..librarianship/`. In a branch, the cataloguing book serves the same role: it catalogues every book in the branch, carries a `catalogues:` label, and self-links in its own table of contents.
 
-The cataloguing book's name carries meaning about what the branch represents. It is not called "..library" or "..catalogue" — it is named for the subject the branch represents. $Chemistry's cataloguing book is [Representivity](../../../library/chemistry/.lib/..representivity/.cover.md), because $Chemistry is about representation. A physics branch might call its cataloguing book "..dynamics" because the branch represents the team's understanding of physical dynamics. The name is a [tier-zero synopsis](../bookkeeping/09-on-synopsis.md#layer-0-the-name) — a reader sees the name and knows what the branch is about.
+The cataloguing book's name carries meaning about what the branch represents. It is not called "..library" or "..catalogue" — it is named for the subject the branch represents. $Chemistry's cataloguing book is [Representivity](../../../../inexplicable-phenomena/library/chemistry/.lib/..representivity/.cover.md), because $Chemistry is about representation. A physics branch might call its cataloguing book "..dynamics" because the branch represents the team's understanding of physical dynamics. The name is a [tier-zero synopsis](../bookkeeping/09-on-synopsis.md#layer-0-the-name) — a reader sees the name and knows what the branch is about.
 
 ## What the cataloguing book catalogues
 

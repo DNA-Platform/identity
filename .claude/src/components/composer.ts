@@ -31,11 +31,34 @@ export class Composer {
     private readonly nav: Navigation,
   ) {}
 
+  /** Type text directly into the box — the value is set in place, not a clipboard
+   *  event, so it never becomes a pasted attachment; text added this way always
+   *  stays as composer text. Verifies the draft actually changed, so it is safe to
+   *  call before or after `paste`. The human equivalent: typing. */
   async type(text: string): Promise<void> {
+    const before = await this.controller.readDraft();
     await this.gateway.act(
-      () => this.controller.paste(text),
-      () => this.controller.hasSendButton(),
-      { description: 'Type text into composer' },
+      async () => { await this.controller.typeInline(text); },
+      async () => (await this.controller.readDraft()) !== before,
+      { description: 'Type text into composer (direct)' },
+    );
+  }
+
+  /** Paste text via the clipboard. A large paste is turned into a pasted attachment
+   *  by the app — which is how a big payload is attached. If the box already holds
+   *  text, two newlines are pasted ahead of it so the add lands cleanly. Verifies
+   *  the message changed — the draft grew, or an attachment appeared — so calling
+   *  this after `type` is safe. The human equivalent: pasting. */
+  async paste(text: string): Promise<void> {
+    const before = await this.controller.readDraft();
+    const beforeAttachments = await this.controller.countPastedAttachments();
+    const payload = before ? `\n\n${text}` : text;
+    await this.gateway.act(
+      () => this.controller.paste(payload),
+      async () =>
+        (await this.controller.readDraft()) !== before ||
+        (await this.controller.countPastedAttachments()) > beforeAttachments,
+      { description: 'Paste text into composer' },
     );
   }
 

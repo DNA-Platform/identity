@@ -10,7 +10,9 @@
 #
 # Run it NON-BLOCKING (harness run_in_background, or append ' &') so the voice
 # keeps talking while the brain thinks. The brain's report prints to stdout AND
-# is saved to .claude/run/brains/<name>.last.md for the voice to read later.
+# is saved to a runtime dir OUTSIDE the project .claude/ — runtime is the
+# machine's record, never compiled/catalogued config (On Platform Layout:
+# #compiled-config-vs-runtime). Path: $TMPDIR/dna-brains/<project>/brains/<name>.last.md.
 #
 # Usage:
 #   08-on-brains--dispatch.sh <name> "<message>"   # wake <name>'s brain
@@ -23,27 +25,27 @@ set -uo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"   # .../.claude
 PROJECT_DIR="$(cd "$CLAUDE_DIR/.." && pwd)"     # project root
-RUN_DIR="$CLAUDE_DIR/run"
+# Runtime state lives OUTSIDE the project .claude/ — it is the machine's record,
+# not catalogued knowledge (On Platform Layout #compiled-config-vs-runtime). A
+# real temp dir, namespaced per project; NEVER resurrect .claude/run/.
+RUN_DIR="${TMPDIR:-/tmp}/dna-brains/$(basename "$PROJECT_DIR")"
 BRAIN_DIR="$RUN_DIR/brains"
 CURSOR_DIR="$RUN_DIR/cursors"
 REG="$RUN_DIR/sessions.json"
 mkdir -p "$BRAIN_DIR" "$CURSOR_DIR"
 
-# --- canonical brain UUIDs (committed config) -------------------------------
-# Merged map: our session's four brains keep their aaaa-series ids (libby/arthur/
-# claude/cathy); the other six are retained from the other team's tool. Arthur's
-# id is Doug's original (aaaa2222), consistent across both teams.
+# --- canonical brain UUIDs (committed config; arthur's is Doug's original) ---
 declare -A UUID=(
-  [libby]=aaaa1111-0000-4000-8000-000000000001
   [arthur]=aaaa2222-0000-4000-8000-000000000002
-  [claude]=aaaa3333-0000-4000-8000-000000000003
-  [cathy]=aaaa4444-0000-4000-8000-000000000004
+  [cathy]=cccc2222-0000-4000-8000-000000000003
+  [libby]=11bb2222-0000-4000-8000-000000000004
   [adam]=ada22222-0000-4000-8000-000000000005
   [david]=da172222-0000-4000-8000-000000000006
   [phillip]=ff112222-0000-4000-8000-000000000007
   [queenie]=99ee2222-0000-4000-8000-000000000008
   [gabby]=9abb2222-0000-4000-8000-000000000009
   [nancy]=bbbb2222-0000-4000-8000-00000000000b
+  [claude]=c1ad2222-0000-4000-8000-00000000000c
 )
 
 # --- locate the active team transcript (for self-catchup deltas) ------------

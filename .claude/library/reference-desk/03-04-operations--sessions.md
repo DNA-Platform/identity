@@ -117,6 +117,26 @@ if (screen === 'conversation') {
 ```
 Don't navigate away and back if you're already in the right place.
 
+### The think write and read share this standard
+
+The "are we already here?" check above is no longer just advice — it is the standard the [/think](../our-skillset/20-think.md) dispatch follows for **both** the write and the read, through one shared helper, [`locateConversation(app, topic)`](../thoughtfulness/02-the-thought-lifecycle--dispatch.ts):
+
+```typescript
+export async function locateConversation(app: Claude, topic: string): Promise<ConversationPage> {
+  const here = await app.currentConversation();
+  if (here && (await here.title()) === topic) return here;  // already on the right topic — reuse untouched
+  return openTopic(await claudeProject(app), topic);         // else: project -> open the topic
+}
+```
+
+If the app is already on the conversation we want, reuse the live screen untouched — no navigating to the project and back. Otherwise open the project and navigate to the topic. The write and the read call the same helper, so they cannot disagree about where "here" is.
+
+**The title check is the topic-correctness guard.** The [Session](../../src/session.ts) remembers a *URL*, not a *topic* — `inSync()` answers "are we still on the same page?", which is not the same as "are we on the RIGHT conversation?". So the write needs something the read used to take on faith: [`ConversationPage.title()`](../../src/pages/conversation.ts) reads the header title, and comparing it to the topic turns "already on a conversation" into "already on the *right* conversation." That closes the asymmetry.
+
+This sits on top of the Session, not inside it — **the Session class is unchanged**, still recording only the page URL. The topic guard lives one level up, in `locateConversation`, which the [write resource](../thoughtfulness/02-the-thought-lifecycle--dispatch.ts) and the read both call.
+
+**Write signature:** `dispatch(app, topic, say, isNew, attach)`. A *new* topic is born in the project's own composer (it is in the project from the start — no move to make); an *existing* topic is located through `locateConversation`, reusing the live screen when we are already on it.
+
 ### Large text pasting
 Claude will need to paste substantial context when thinking through research. The composer handles pastes up to 73KB (tested in [Sprint 63](../projected-research/27-sprint-63--the-pilot-conversation.md)). For very large context, split across multiple messages.
 

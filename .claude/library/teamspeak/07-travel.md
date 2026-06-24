@@ -8,18 +8,15 @@ The team's identity lives in its own git repository at `github.com/DNA-Platform/
 
 ## Bringing the team to a project
 
-Clone the identity repo into `.claude/`, check out the organization branch, and copy CLAUDE.md to the project root:
+The fast path is the [setup tool](../..environmentalism/06-on-sync--setup.sh) — run it once against the project directory (repos are siblings under one parent, so the identity is found at `../identity`):
 
 ```
-cd your-project/
-git clone git@github.com:DNA-Platform/identity.git .claude
-cd .claude
-git checkout dna-platform
-cd ..
-cp .claude/CLAUDE.md .
+bash ../identity/.claude/library/..environmentalism/06-on-sync--setup.sh /path/to/project
 ```
 
-The project repo's `.gitignore` should include `.claude/` and `CLAUDE.md` so the identity stays private.
+It ensures the project's branch exists (cut from `dna-platform` if the repo is new), mirrors the identity `.claude/` into the project, generates the project-root `CLAUDE.md`, and writes the project `.gitignore` (`.claude/`, `CLAUDE.md`, `**/.lib/`) so the identity stays private and the project stays clean. Use `DRY_RUN=true` to preview without changing anything. See [On Sync](../..environmentalism/06-on-sync.md#the-setup-tool).
+
+The `.claude/` it creates is a **plain mirror** of the identity (no nested `.git`); the local sibling identity repo at `../identity` is the source of truth, and the [commit tool](../..environmentalism/06-on-sync--commit.sh) syncs changes back. New branches are inferred from the repo name and the branch catalogue — if no branch is catalogued for a repo, it is new.
 
 ## Use the commit tool
 
