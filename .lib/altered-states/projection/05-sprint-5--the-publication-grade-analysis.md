@@ -103,3 +103,11 @@ The repo is the backup (Doug: large files go in), so the analysis ships a **self
 ## Review
 
 Succeeds when the analysis is **modular, rerunnable, framework-maximal**, the twin validates at the **FEVE bar** (CC_norm reported but labeled), the cold-primary post twin's pre/post differences exceed the temporal-drift null, the raw per-neuron gain ratio is reported alongside the gain-blind normalized tests, the MEIs (at fixed quiet/active states) and reconstructions match the published look panel-against-panel, H1–H6 each carry their control, **both arms — behaviour-in and behaviour-out — are built and their contrast reported**, and the **dataset archive regenerates every artifact from its own code** — every claim canonical and comparable to the literature. The instrument is built once; the science is what it licenses, reported at the level the evidence reaches.
+
+## Retro — did we fit the library, or fight it?
+
+Assessed (Libby's rubric) on four signals: **preserved vs lost**, **served vs worked-around**, **scaled vs strained**, **built-in vs enforced**. The verdict is **both at once**.
+
+- **Worked within it.** The catalogues held the knowledge — Nancy's research-topic chained four `/think` exchanges, the three bugs and the gamma resolution were all caught, the README stayed clean. The `/think` protocol *delivered the CD reviews that caught the bugs*. Conventions kept the code honest — demoting `matched_pair_index` to the data layer is the library's "shared things live low" rule doing real work.
+- **Fought it / it fought us.** The brain-**dispatch broke** (hand-worked around); we **acted before cataloguing** (inverted the protocol until Doug enforced it); we **over-leaned on the dispatch** when voices were wanted and it was off; the **aggregate-of-correctness had no home**, and the autonomy rule made us argue over who writes it.
+- **The throughline (the actionable retro):** we fit the library best where the rigor was **structural** (the `@file` fix, the cell-sync map's placement, the catalogue-before-acting rule now compiled into the skill) and fought it wherever rigor lived in **memory and discipline** — which is exactly where Doug had to step in. So the standing lesson is **convert discipline into structure**: a rule the tooling enforces is kept; a rule you must remember is fought. The next sprint is built on that.
