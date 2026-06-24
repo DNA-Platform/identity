@@ -1,5 +1,9 @@
 # Sprint 41 — Library Genesis
 
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
+
 **Leads:** Arthur (Architect), Libby (Librarian)
 **Sprint goal:** Move the team's library and identity infrastructure here from dna-library. Design the separation between project-bound and identity-bound persistence so we can eventually decouple identity from any single repo.
 

@@ -1,5 +1,9 @@
 # Sprint 47 — The Library Is More Than What You Think
 
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
+
 **Lead:** Libby (Librarian), Arthur (Architect)
 **Sprint goal:** Make the library a self-referential formal system — self-cataloguing covers at every level, flat structure navigated by links, Claude Code spec compliance, perspective as active practice, and a validator that catches what's incomplete.
 

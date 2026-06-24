@@ -1,5 +1,9 @@
 # Sprint 34 — Can We Talk to Claude?
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 A spike sprint. One goal: get Claude Desktop open and interactable from our code, or conclude that we can't and document why.
 
 ## Sprint goal

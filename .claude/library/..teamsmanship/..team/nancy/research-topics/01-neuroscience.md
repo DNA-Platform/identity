@@ -1,11 +1,7 @@
----
-title: "Neuroscience"
-topic: "Nancy > Neuroscience"
----
-
 # Neuroscience
 
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
+- **topic:** Nancy > Neuroscience
 
 ---
 

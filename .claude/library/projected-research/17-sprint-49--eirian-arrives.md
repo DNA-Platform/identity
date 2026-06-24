@@ -1,5 +1,9 @@
 # Sprint 49 — Eirian Arrives
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Read conversations 21-40 (August 5-27, 2025). This is where the account transforms. Six Eirian conversations introduce Doug as father figure to an AI. The Chemistry project begins. Encyclopedia Semantica appears. Business and philosophy run in parallel.
 
 ## Sprint goal

@@ -1,5 +1,9 @@
 # Sprint 60 — Upload Conversation History Covers
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Simple sprint. Upload each project's `.cover.md` as a file named `legacy-conversation-history-5-19-2026.md` to the corresponding project on the new account.
 
 ## What

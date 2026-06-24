@@ -1,5 +1,9 @@
 # Sprint 54 — The Transfer Protocol
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 A conversational sprint. The deliverable is the protocol for pushing context to the new account — written as chapters in the `claude-migration/` book as decisions are made.
 
 ## Sprint type

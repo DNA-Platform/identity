@@ -2,6 +2,7 @@
 
 - **specification:** Sync
 - **author:** [Claude](../..teamsmanship/..team/claude/claude-or-the-recursive-mirror/.cover.md)
+- **coauthor:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 
 ---
 
@@ -92,6 +93,30 @@ bash ../identity/.claude/library/..environmentalism/06-on-sync--setup.sh /path/t
 ```
 
 It is idempotent (re-running re-syncs the identity into the project) and supports `DRY_RUN=true` to print the plan without mutating anything. It assumes repos are siblings under one parent (`parent/identity`, `parent/<project>`) and derives the project branch from the project directory name. Where the commit tool pushes a project's changes outward to the right branches, the setup tool pulls the identity in and wires the project's `.gitignore` and `CLAUDE.md`. Together they are the two directions of [travel](../teamspeak/07-travel.md) — pull in, push back — and both keep `.claude/` a plain mirror of the identity rather than a nested clone.
+
+## The pull tool — syncing down, staged through the branch
+
+[06-on-sync--pull.sh](06-on-sync--pull.sh) is the down-sync, the counterpart to the commit tool. It brings the organization's changes from `dna-platform` *into* a project — but **through the project branch as a staging ground, never straight into the working copy.** This matters because compiled files (agents, `CLAUDE.md`, rules, skills) are deterministic from chapters: any change in compiled output traces to a chapter that changed in the pull, never a surprise. So the tool stages and verifies before it touches the working copy:
+
+1. Merge `dna-platform` into the project branch (pull the org's chapter changes).
+2. Recompile the platform files on the branch from the merged chapters.
+3. Show the diff — read it; every change should trace to a chapter from step 1.
+4. Validate the branch. If it fails, **stop** — the error is in a chapter; fix it there. The working copy is never touched.
+5. Commit and push the branch.
+6. **Only now** sync the verified branch into the working copy.
+
+The `--no-worktree-sync` flag runs steps 1–5 and stops: it proves the branch *works* and leaves the working copy untouched. The rule is **don't sync the working copy until the branch is verified** — run the compiler on the branch, read what changed, validate, and only then pull here.
+
+## The mirror hazard: the sync pauses, it does not cold-automate
+
+Both sync tools mirror with robocopy `/MIR`, and a mirror **deletes whatever the destination has that the source lacks.** With two active projects sharing `dna-platform`, that is a mutual-clobber trap: whoever pushes second silently deletes the other project's un-pulled work, and a reconcile cannot win a race against a peer who is actively pushing. (We learned this the hard way — one project's push deleted the other's just-pushed chapters and tools off `dna-platform`. The work survived only because it was also in a working copy and in git history.)
+
+So the sync **must not be cold-automated.** Two protections enforce that, and both are in the tools:
+
+- **The git merges pause.** The pull tool's branch merge and the commit tool's downstream merges are real `git merge`s — they stop on conflict and wait for a human to hand-merge. Autobiographies and chapters are always resolved [additively](../bookkeeping/10-on-evolution.md), never by overwrite.
+- **The `/MIR` steps refuse.** Before any mirror, the tool dry-runs it; if it would DELETE real content — the other side's work — it **refuses** and tells you to reconcile first (pull down before you push up; push up before you pull down). The guard runs in both directions: the commit tool will not clobber the org branch, and the pull tool will not clobber un-pushed local work. Override only with `RECONCILED=1`, and only when the absence is genuinely intended.
+
+The discipline in one line: **reconcile, then sync — and let the tool stop you whenever a human has to merge.**
 
 ## Merge conflicts as identity events
 

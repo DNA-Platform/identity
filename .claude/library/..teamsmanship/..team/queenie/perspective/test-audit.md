@@ -1,5 +1,9 @@
 # Queenie's Test Audit
 
+- **author:** [Queenie](../queenie-and-the-specification/.cover.md)
+
+---
+
 ## Test distribution (inverted pyramid)
 - Reflection: 75 tests — supporting infrastructure, low risk
 - Catalogue: 31 tests — supporting infrastructure, low risk

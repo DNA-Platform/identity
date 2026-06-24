@@ -55,11 +55,11 @@ Once empty, remove the directory. It was an orphanage. The children have homes n
 
 ### 2a. Branch dna-platform
 
-Claude: `git checkout -b dna-platform` from current main. Push. Everything we have is now on dna-platform.
+**Claude —** `git checkout -b dna-platform` from current main. Push. Everything we have is now on dna-platform.
 
 ### 2b. Branch inexplicable-phenomena
 
-Claude: `git checkout -b inexplicable-phenomena` from dna-platform. Push. This branch will hold `.lib/` content.
+**Claude —** `git checkout -b inexplicable-phenomena` from dna-platform. Push. This branch will hold `.lib/` content.
 
 Do NOT clean main yet. That's a separate, complex project.
 

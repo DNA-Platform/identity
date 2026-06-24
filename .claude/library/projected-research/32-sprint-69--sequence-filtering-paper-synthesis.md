@@ -1,10 +1,14 @@
 # Sprint 69 — Sequence Filtering (Paper Synthesis)
 
-Arthur: Sprint 68 was an export update sprint — parse, diff, update the archive. Sprint 69 shifts to the neuroscience shelf. Doug added a new paper: **Sequence Filtering** by Histed (2025). We use the established paper-as-book procedure to synthesize it into a navigable reading companion — the same approach that produced the Digital Twins and Functional Connectomics books.
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
+**Arthur —** Sprint 68 was an export update sprint — parse, diff, update the archive. Sprint 69 shifts to the neuroscience shelf. Doug added a new paper: **Sequence Filtering** by Histed (2025). We use the established paper-as-book procedure to synthesize it into a navigable reading companion — the same approach that produced the Digital Twins and Functional Connectomics books.
 
 ## Goal
 
-Nancy + Theo: Read the paper, write the book. Writing the book IS reading the paper — chapters are the byproduct of careful reading, not post-hoc summaries. Every claim carries provenance tags. Figures are first-class chapters with extracted PNGs. The PDF is the authority; the book wraps around it.
+**Nancy + Theo —** Read the paper, write the book. Writing the book IS reading the paper — chapters are the byproduct of careful reading, not post-hoc summaries. Every claim carries provenance tags. Figures are first-class chapters with extracted PNGs. The PDF is the authority; the book wraps around it.
 
 ## Hard rules
 
@@ -31,9 +35,9 @@ Nancy + Theo: Read the paper, write the book. Writing the book IS reading the pa
 
 ### S-1: Read the paper (Nancy + Theo)
 
-Nancy: Read the full PDF page by page. Identify the structure: how many main figures, supplementary figures, key methods, central claims, relationship to the existing Tolias papers.
+**Nancy —** Read the full PDF page by page. Identify the structure: how many main figures, supplementary figures, key methods, central claims, relationship to the existing Tolias papers.
 
-Theo: Track the mathematical framework — models, statistics, theoretical claims.
+**Theo —** Track the mathematical framework — models, statistics, theoretical claims.
 
 **Acceptance:**
 - [ ] Paper fully read, structure mapped
@@ -43,9 +47,9 @@ Theo: Track the mathematical framework — models, statistics, theoretical claim
 
 ### S-2: Create the book structure (Arthur + Libby)
 
-Arthur: Create the folder structure following the established convention.
+**Arthur —** Create the folder structure following the established convention.
 
-Libby: Verify conventions — cover frontmatter, TOC format, navigation links, resource pairs.
+**Libby —** Verify conventions — cover frontmatter, TOC format, navigation links, resource pairs.
 
 **Acceptance:**
 - [ ] PDF renamed to slug format: `sequence-filtering-histed-2025.pdf`
@@ -55,7 +59,7 @@ Libby: Verify conventions — cover frontmatter, TOC format, navigation links, r
 
 ### S-3: Extract figures (Adam)
 
-Adam: Use PyMuPDF (fitz) at 3× zoom to extract page crops of each figure with caption text. Save as `NN-figN-descriptive-name.png` alongside `NN-figN-descriptive-name.md`.
+**Adam —** Use PyMuPDF (fitz) at 3× zoom to extract page crops of each figure with caption text. Save as `NN-figN-descriptive-name.png` alongside `NN-figN-descriptive-name.md`.
 
 **Acceptance:**
 - [ ] All main figures extracted as PNGs at 3× zoom
@@ -65,9 +69,9 @@ Adam: Use PyMuPDF (fitz) at 3× zoom to extract page crops of each figure with c
 
 ### S-4: Write the section chapters (Nancy + Theo)
 
-Nancy: Biological content — what was measured, how, what the data shows, experimental design, cell types, circuits.
+**Nancy —** Biological content — what was measured, how, what the data shows, experimental design, cell types, circuits.
 
-Theo: Mathematical framework — models, statistics, theoretical implications, formal claims.
+**Theo —** Mathematical framework — models, statistics, theoretical implications, formal claims.
 
 **Acceptance:**
 - [ ] Synopsis chapter: title explained, paper in one paragraph
@@ -78,7 +82,7 @@ Theo: Mathematical framework — models, statistics, theoretical implications, f
 
 ### S-5: Write figure chapters (Nancy + Theo)
 
-Nancy + Theo: Panel-by-panel explanations. Full quoted captions. What you're looking at and why it matters.
+**Nancy + Theo —** Panel-by-panel explanations. Full quoted captions. What you're looking at and why it matters.
 
 **Acceptance:**
 - [ ] Every figure has a `.md` chapter alongside its `.png`
@@ -88,9 +92,9 @@ Nancy + Theo: Panel-by-panel explanations. Full quoted captions. What you're loo
 
 ### S-6: Commentary, glossary, references (Theo + Libby)
 
-Theo: Commentary — significance, field context, relationship to the two Tolias papers.
+**Theo —** Commentary — significance, field context, relationship to the two Tolias papers.
 
-Libby: Glossary — technical terms defined. References — citation network with DOIs. Cross-links to existing books. Update `.notes/.cover.md` with 03-NN section.
+**Libby —** Glossary — technical terms defined. References — citation network with DOIs. Cross-links to existing books. Update `.notes/.cover.md` with 03-NN section.
 
 **Acceptance:**
 - [ ] Commentary chapter written with field context
@@ -102,7 +106,7 @@ Libby: Glossary — technical terms defined. References — citation network wit
 
 ### S-7: Commit and push
 
-Arthur: Clean commit, verify all files, push.
+**Arthur —** Clean commit, verify all files, push.
 
 **Acceptance:**
 - [ ] All book files committed (cover, chapters, PNGs, PDF slug rename)

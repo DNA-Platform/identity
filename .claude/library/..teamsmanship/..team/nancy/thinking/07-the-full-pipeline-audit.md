@@ -1,14 +1,10 @@
----
-title: "The full-pipeline audit (thought in progress)"
-date: 2026-06-24
-topic: "Nancy > The Twin"
-previous: 06-the-twin-and-the-metric-mismatch.md
-status: concluded
----
-
 # The full-pipeline audit (thought in progress)
 
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
+- **date:** 2026-06-24
+- **topic:** Nancy > The Twin
+- **previous:** [The publication twin, and the metric mismatch](06-the-twin-and-the-metric-mismatch.md)
+- **status:** concluded
 
 ---
 

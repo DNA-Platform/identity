@@ -30,13 +30,13 @@ Three validators check library and compiled output. The validation runner orches
 - **Scope:** Any directory tree.
 - **Output:** Files scanned, links checked, broken count.
 
-## The validation runner
+## The validation runner — the centralized type-check
 
 - **Source:** [05-on-validation--runner.ts](../..environmentalism/05-on-validation--runner.ts)
-- **Orchestrates:** Bookkeeping validator, then compiled-links validator. Reports combined totals.
-- **Used by:** The commit tool (gates on pass/fail before pushing).
+- **Orchestrates:** the link checker, the bookkeeping validator, and the compiled-links validator — across the identity library **and every branch library** (`library/*/.lib`). Reports anatomy errors, compiled-broken links, library/branch broken links, and warnings as separate totals.
+- **Used by:** the commit tool and the pull tool (gate before pushing/syncing), and `/audit`.
 
-The runner currently does NOT include the full link checker or branch library validation. The `/audit` skill fills this gap — it runs the runner plus everything the runner skips.
+This is the library's **type-check: all links and all books, across `.claude`, `CLAUDE.md`, and every branch.** A clean run is the end-of-work "good state" signal. Anatomy errors and broken *compiled* links are **blocking — fix immediately** (compiled output mirrors the library; each is a chapter or link to fix now, before it travels). Broken *library/branch* links are reported but not blocking, because they include intentional cross-repo links that degrade to text; real breaks among them should still be fixed. Warnings are surfaced as drift to clean up.
 
 ## Consistency checker
 

@@ -1,5 +1,9 @@
 # Sprint 43 — Spring Cleaning
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Archive dead code, dead skills, dead roles. Update CLAUDE.md. Verify links. Leave the repo clean and honest about what's active.
 
 ## Sprint goal

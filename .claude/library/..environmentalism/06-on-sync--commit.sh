@@ -215,9 +215,26 @@ echo "IDENTITY → dna-platform branch"
 echo "========================================"
 
 cd "$IDENTITY_REPO"
-# Ensure clean working tree
+# Ensure clean working tree, and that local dna-platform reflects the real org state
 git stash --quiet 2>/dev/null || true
+git fetch origin dna-platform --quiet 2>/dev/null || true
 git checkout dna-platform --quiet
+git merge --ff-only origin/dna-platform --quiet 2>/dev/null || true
+
+# --- RECONCILED guard: refuse to clobber another project's work --------------
+# /MIR makes the org branch match THIS copy, DELETING anything the org has that
+# we lack. With two active projects sharing dna-platform, that silently deletes
+# the other project's un-pulled work — whoever pushes second wins. So dry-run the
+# mirror first: if it would DELETE real content, REFUSE. Reconcile down first
+# (06-on-sync--pull.sh); override only when the absence is genuinely intended.
+would_delete="$(MSYS_NO_PATHCONV=1 robocopy "$(winpath "$CLAUDE_DIR")" "$(winpath "$IDENTITY_REPO/.claude")" /MIR /L /XD node_modules run .git /NJH /NJS /NC /NS /FP 2>&1 | grep -ciE '\*EXTRA' || true)"
+if [ "${would_delete:-0}" -gt 0 ] && [ "${RECONCILED:-0}" != "1" ]; then
+  echo "REFUSING identity push: dna-platform holds ${would_delete} path(s) this copy lacks."
+  echo "A /MIR would DELETE them — almost certainly another project's work. Reconcile DOWN first:"
+  echo "    bash \"$(dirname "${BASH_SOURCE[0]}")/06-on-sync--pull.sh\""
+  echo "then re-run. Override ONLY if the absence is genuinely intended: RECONCILED=1 $0 \"<msg>\""
+  exit 1
+fi
 
 # Sync .claude/ from project to identity repo
 echo "Syncing .claude/..."

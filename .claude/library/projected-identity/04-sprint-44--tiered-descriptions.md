@@ -1,5 +1,9 @@
 # Sprint 44 — Tiered Descriptions
 
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
+
 **Leads:** Libby (Librarian), Arthur (Architect)
 **Sprint goal:** Evolve the library spec so that cataloguing books and summaries carry enough depth to restore context incrementally — making the primary source rarely necessary for routine work.
 

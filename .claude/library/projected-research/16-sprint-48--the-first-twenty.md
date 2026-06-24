@@ -1,5 +1,9 @@
 # Sprint 48 — The First Twenty
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Read the first 20 conversations chronologically. Build understanding of Doug, Ana, and Claude-chat as we go. Write file book chapters only when files surface naturally in conversations. Edit as we learn. Stop periodically to reflect on how it's going.
 
 ## Sprint goal
