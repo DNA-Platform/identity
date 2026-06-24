@@ -21,7 +21,7 @@ Packages already frozen in the [lockfile](../../../requirements.in) are marked *
 | scikit-learn | classical ML — decoders, PCA, cross-val for drug-state classification | [docs](https://scikit-learn.org/stable/) | [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | active | data · pinned |
 | pytorch (`torch`) | tensor/autograd backend for the digital twin and CEBRA | [docs](https://pytorch.org/docs/stable/) | [pytorch/pytorch](https://github.com/pytorch/pytorch) | active | model · pinned (CPU wheel) |
 | statsmodels | GLM / mixed-effects to regress out the pupil+running confound | [docs](https://www.statsmodels.org/stable/) | [statsmodels/statsmodels](https://github.com/statsmodels/statsmodels) | active | data · **★ add** |
-| matplotlib | plotting | [docs](https://matplotlib.org/stable/) | [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | active | data · pinned |
+| matplotlib | every project figure — we render them ourselves to match the published paper figures; the lab packages ship none ([note](#figures-rendered-by-us-not-the-packages)) | [docs](https://matplotlib.org/stable/) | [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | active | data · pinned |
 | seaborn | statistical plotting over matplotlib | [docs](https://seaborn.pydata.org/) | [mwaskom/seaborn](https://github.com/mwaskom/seaborn) | active | data · pinned |
 
 ## Neuroscience-specific
@@ -44,6 +44,12 @@ Packages already frozen in the [lockfile](../../../requirements.in) are marked *
 | sensorium | the 2022 **static-scan** competition repo — our data loaders and model-builder template | [sinzlab/sensorium](https://github.com/sinzlab/sensorium) | [sinzlab/sensorium](https://github.com/sinzlab/sensorium) | 2022, git-only | model · pinned (git SHA) |
 | mei | Most-Exciting-Input synthesis — gradient ascent for what drives a neuron (use instead of `ecobost/featurevis`) | [sinzlab/mei](https://github.com/sinzlab/mei) | [sinzlab/mei](https://github.com/sinzlab/mei) | active | model · **★ add (git)** |
 | datajoint | relational data pipeline / provenance (opt-in; pinned `<1` for the pre-1.0 API the lab code uses) | [docs](https://docs.datajoint.com/) | [datajoint/datajoint-python](https://github.com/datajoint/datajoint-python) | active (we pin `<1`) | model · pinned (`<1`) |
+
+## Figures: rendered by us, not the packages
+
+The lab toolchain ships **no plotting or figure utilities** — verified by reading the installed source, not assumed. `sensorium` and `mei` touch matplotlib nowhere; `neuralpredictors` has a single match, `PiecewiseLinearExpNonlinearity.visualize()` in `layers/activations.py`, which draws an activation transfer curve ("Response before alteration" on the x-axis) — a debug plot of a nonlinearity, **not** a figure tool. The published paper figures live in the authors' demo notebooks, not the importable package; matplotlib and seaborn are general framework tools, not lab ones.
+
+So there is no `plot_reconstruction()` or `plot_mei()` to call: **we render every project figure ourselves in matplotlib**, styled to *match* the published figures — which we hold pixel-for-pixel in [the digital-twins paper book](../../papers/digital-twins-tolias-2022/.cover.md) as the reference (e.g. [Fig 2 — evaluation](../../papers/digital-twins-tolias-2022/11-fig2-evaluation-natural.md), [Fig S1 — extended gallery](../../papers/digital-twins-tolias-2022/13-sup-fig-s1-extended-gallery.md)). This is about plotting *tools* only; the science figures themselves are still pending the [twin run](10-the-digital-twin-recipe.md#where-it-is-built). The check is the same one that confirmed the [MEI paths](10-the-digital-twin-recipe.md) — the [installed source on disk is the fact](../../../.claude/library/teamspeak/08-reading.md#read-the-source-not-only-the-library), not the assumption that a modelling package must arrive with its own plots.
 
 ## Skip list — deliberately not carried
 
