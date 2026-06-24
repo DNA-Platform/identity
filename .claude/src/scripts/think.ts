@@ -18,21 +18,31 @@
 // them. Each command process.exits so "the first ends" — the driver leaves
 // PowerShell/UIA handles open, so without it the process lingers.
 
+import { readFileSync } from 'fs';
 import { Claude } from '../claude.ts';
 import { dispatch } from '../../library/thoughtfulness/02-the-thought-lifecycle--dispatch.ts';
 import { read } from '../../library/thoughtfulness/02-the-thought-lifecycle--read.ts';
 
-const [cmd, topic, message, newFlag] = process.argv.slice(2);
+const [cmd, topic, say, ...rest] = process.argv.slice(2);
 
 const app = new Claude();
+
+// A content arg (say or attach) may be given inline, OR as `@<path>` to read it
+// from a file. The big attach (a top-to-bottom review) cannot ride a Windows
+// command line — cmd.exe caps at 8191 chars — so it is written to a file and
+// passed as `@file`, read here. Small inline content still works unchanged.
+function resolveArg(s: string | undefined): string | undefined {
+  return s && s.startsWith('@') ? readFileSync(s.slice(1), 'utf8') : s;
+}
 
 async function main(): Promise<void> {
   switch (cmd) {
     case 'write': {
-      if (!topic || !message) throw new Error('usage: think.ts write <topic> <message> [new]');
-      const isNew = newFlag === 'new';
-      await dispatch(app, topic, message, isNew);
-      console.log(`[think] WRITE done — "${topic}" (${isNew ? 'new topic' : 'continued'}), streaming detected, minimized.`);
+      if (!topic || !say) throw new Error('usage: think.ts write <topic> <say|@file> [attach|@file] [new]');
+      const isNew = rest.includes('new');
+      const attach = resolveArg(rest.find(a => a !== 'new'));   // optional attachment — anything but the 'new' flag; @file reads from disk
+      await dispatch(app, topic, resolveArg(say)!, isNew, attach);
+      console.log(`[think] WRITE done — "${topic}" (${isNew ? 'new topic' : 'continued'}${attach ? ', + attachment' : ''}), streaming detected, minimized.`);
       break;
     }
     case 'read': {

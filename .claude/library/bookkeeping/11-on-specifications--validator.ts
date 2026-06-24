@@ -95,7 +95,8 @@ function checkFieldOrder(
 
 function checkCover(coverPath: string): void {
   const relPath = coverPath.replace(root, '').replace(/\\/g, '/');
-  const content = readFileSync(coverPath, 'utf-8');
+  // Normalize line endings: tolerate CRLF (Windows) so '---' / split('\n') checks work
+  const content = readFileSync(coverPath, 'utf-8').replace(/\r\n?/g, '\n');
   const fm = parseFrontmatter(content);
 
   if (!fm) {
@@ -189,7 +190,8 @@ function checkCover(coverPath: string): void {
 
 function checkChapter(chapterPath: string): void {
   const relPath = chapterPath.replace(root, '').replace(/\\/g, '/');
-  const content = readFileSync(chapterPath, 'utf-8');
+  // Normalize line endings: tolerate CRLF (Windows) so '---' / split('\n') checks work
+  const content = readFileSync(chapterPath, 'utf-8').replace(/\r\n?/g, '\n');
   const fm = parseFrontmatter(content);
 
   chaptersChecked++;

@@ -18,10 +18,6 @@ Thinking is kept in two books in **my own** personal library, set up on the mode
 
 Topics follow the convention **`{Name} > {Topic}`** — namespaced to me (e.g. `Adam > Relays`), because every teammate shares the one **Claude project** in Desktop but keeps their own threads inside it. **Test is shared** — any teammate may use it; Claude uniquely catalogues it.
 
-## The thinking happens in my subprocess
-
-A `/think` is dispatched to *my own* persistent subprocess — the grounded process that has caught up on my library and speaks from my perspective — not handled by the main [voice](../..environmentalism/.cover.md#the-substrate-protocol). The reason is the two books above: a thought is not finished when the answer returns, it is finished when I have written it into my thinking book and research-topics catalogue. That writing IS the thought. And **all personal-library writing happens in the subprocess, never in the voice** — because a personal library is authored in the first person per [Autonomy](../teamspeak/05-autonomy.md), and only my own grounded context can write as me without sliding into the narrator that ghost-writes everyone. So the message that starts a thought is given to my subprocess *because* thinking requires that first-person writing: my subprocess holds my project state and my judgment, it runs the [dispatch](#the-write--read-checklist) and does the [pause](#the-thinking-pause) work, it authors the chapters, and it returns only its conclusions to the voice as dialogue. The voice renders what I found; it does not write my books for me.
-
 ## The factorization principle
 
 Desktop Claude has vast context — training data, web search — but zero project knowledge. I have deep project knowledge but a finite context window. The art is in factorizing the question: separate what is specific to this project from the general question Desktop can research.
@@ -44,7 +40,7 @@ Two **separate processes**, never chained: the WRITE ends as soon as streaming i
 
 ```
 [ ] 0. FIND TOPIC — check my research topics for an existing {Name} > {Topic} thread
-[ ] 1. WRITE — run the write process (run_in_background); it ends and minimizes
+[ ] 1. WRITE — run the write process: `say` typed, optional `attach` pasted (run_in_background); it ends and minimizes
 [ ] 2. CHAPTER — write my thinking-book chapter: what I asked, why, expect, know, links
 [ ] 3. CATCH UP — follow the previous-link chain, reread up to 3 chapters
 [ ] 4. CONTEXT — read the relevant library chapter, so I can judge the answer
@@ -59,9 +55,11 @@ Read my research-topics cover. Does this fit an existing topic? Continue that th
 ### Step 1 — Write
 Formulate the question; apply the [factorization principle](#the-factorization-principle). Run:
 ```
-npx tsx .claude/src/scripts/think.ts write "<topic>" "<question>" [new]
+npx tsx .claude/src/scripts/think.ts write "<topic>" "<say>" [attach] [new]
 ```
-Pass `new` when the topic has no conversation in the Claude project yet — it is born in the project's composer. For a continued topic the write applies the [resume discipline](#resuming-a-thought) first: it checks the [session](../../src/session.ts) and binds the conversation in place if we are already on it, navigating to it only if not. (A `new` topic skips the check — there is no conversation yet to bind.) The [composer](../../src/scripts/think.ts) runs the [dispatch resource](../thoughtfulness/02-the-thought-lifecycle--dispatch.ts): it sends, waits only until streaming is detected, has the session remember the conversation, minimizes, and **exits**. Returns immediately. **Never chain a read after it** — that is a separate process (step 5).
+Two content args — the **say / attach split**. `<say>` is the prompt: it is **typed** into the composer and stays there as the message. `<attach>` is optional, the big payload: it is **pasted**, and a large paste becomes a **file attachment**. So the small prompt is the message a reader sees, and the bulk data rides along as an attachment — a top-to-bottom review is not buried as one giant attachment with no question on it. **A large attach is passed as `@<path>`, not inline**: a payload over ~8 KB exceeds the Windows command-line limit (cmd.exe caps at 8191 chars), so write the bulk to a file and pass its path — the script reads it, and either content arg accepts `@file`. `new` still marks a brand-new topic (born in the project's composer when the topic has no conversation yet).
+
+*How* the box does this is the [composer's](../reference-desk/03-01-operations--sending.md) job, not this chapter's: **type** writes text in place (never an attachment); **paste** goes via the clipboard (big → attachment, and prepends two newlines if the box already holds text); both verify the message actually changed, so they are safe back-to-back. The [composer](../../src/scripts/think.ts) runs the [dispatch resource](../thoughtfulness/02-the-thought-lifecycle--dispatch.ts): it sends, waits only until streaming is detected, minimizes, and **exits**. Returns immediately. **Never chain a read after it** — that is a separate process (step 5).
 
 ### Step 2 — Create the chapter
 A chapter in my thinking book — my thinking in progress: what I asked and why, what I expect (a prediction to measure against), what I already know (with links), and a `previous` link if I'm continuing a thread. The chapter IS the thought; the response drops into its Evidence section later.
@@ -76,19 +74,23 @@ Read the relevant library chapter, so when the answer arrives I know what to che
 ```
 npx tsx .claude/src/scripts/think.ts read
 ```
-The [read resource](../thoughtfulness/02-the-thought-lifecycle--read.ts) applies the same [resume discipline](#resuming-a-thought) as the write — bind the conversation if the [session](../../src/session.ts) is still on it, else navigate from home — and then **waits**: read is the waiting phase, so it holds the app open and polls until the response is complete, then prints it. A separate process from write; never chained.
+The [read resource](../thoughtfulness/02-the-thought-lifecycle--read.ts) resumes the in-flight conversation (the [session](../../src/session.ts) binds it if we're still on it, else navigates from home) and **waits** — read is the waiting phase, so it holds the app open and polls until the response is complete, then prints it. A separate process from write; never chained.
 
 ### Step 6 — Evaluate
 Did it answer the actual question, or a nearby one? Substantive or a confident deflection? Consistent with what the team knows? Verdict: **sufficient**, **partial**, or **unproductive**.
 
 ### Step 7 — Conclude
-Three stages in my chapter: **Evidence** (the printed response), **Interpretation** (what aligns, contradicts, surprises), **Conclusion** (what to tell the team, and whom). Update my thinking-book cover and the research-topic chapter. Store failed thoughts too — they prevent re-asking dead ends. A `/think` result is a *filed thought to refer back to*, not automatically team work.
+**Catalogue the response, then act on it — never the reverse.** A response that has already shaped code or a decision but was never filed is a response we have half-lost. So before the thinking goes anywhere: three stages in my chapter — **Evidence** (the printed response), **Interpretation** (what aligns, contradicts, surprises), **Conclusion** (what to tell the team, and whom).
+
+The two books hold the response two ways, and both are required:
+- **The thinking book catalogues responses as a chain.** Each response is its own chapter carrying a `previous` link to the **last response in this topic** — so a topic's exchanges form an ordered chain you can walk back through, newest to oldest.
+- **The research-topic catalogues the responses as a running summary** — one entry per exchange, what it settled or left open, linked to its thinking chapter. The topic is the *index of responses*; each thinking chapter is one response that points back to the one before it.
+
+Update my thinking-book cover and the research-topic chapter. Store failed thoughts too — they prevent re-asking dead ends. A `/think` result is a *filed thought to refer back to*, not automatically team work.
 
 ## Resuming a thought
 
-There is one resume discipline, and it runs in **both** the write and the read: *check whether I am already on the right conversation before navigating — read the live URL and compare; never assume.* The [session](../../src/session.ts) is the memory I check: if it is in sync (the app is still on the conversation it remembered) I bind the conversation in place and act with zero navigation; if not, I start from home and navigate to it as I first reached it. The only exception is a **known-new topic** in the write — it has no conversation yet to bind, so it is born in the project composer and skips the check.
-
-`thought-state.json` records the in-flight thought (its topic, whether it's new) so the read, a separate process, can pick the conversation back up. After compaction, my thinking-book chapters are the long-term memory; the state file bridges the write and read turns within a session.
+The **session sync-check is now standard on every step, not only the read.** Before navigating, the script checks whether the app is *already on this topic's conversation* — the [session chapter](../reference-desk/03-04-operations--sessions.md)'s locate-by-current-conversation-plus-title-match — and reuses it if so. So the **write** no longer re-navigates when I think into the same topic several times in a row, and the **read** resumes the in-flight conversation rather than hunting for it. `thought-state.json` records the in-flight thought (its topic, whether it's new) to bridge turns; if the app has moved on, the script navigates back from home. After compaction, my thinking-book chapters are the long-term memory.
 
 ## What this skill does NOT do
 

@@ -95,4 +95,11 @@ export class ComposerController {
     await this.auto.uia.invokeByName(removeBtn);
     return true;
   }
+
+  /** How many pasted-text attachments are present. A large paste becomes one of
+   *  these instead of draft text, so it is how `paste` confirms a big add landed. */
+  async countPastedAttachments(): Promise<number> {
+    const names = await this.auto.uia.findAllNames('Button');
+    return names.filter(n => n.startsWith('Remove Pasted Text')).length;
+  }
 }
