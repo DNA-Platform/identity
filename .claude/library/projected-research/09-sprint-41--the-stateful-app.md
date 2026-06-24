@@ -1,5 +1,9 @@
 # Sprint 41 — The Stateful App
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Implement the app model design from the [design document](../reference-desk/02-04-the-architecture--app-model.md). The app is the product. When it works elegantly, everything built on it is trivial.
 
 ## Sprint goal

@@ -1,5 +1,9 @@
 # Sprint 59 — Create Projects and Upload Files
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Implementation sprint. Two concrete deliverables: create all projects on the new account, then upload files to each one.
 
 ## Sprint goal

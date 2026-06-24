@@ -1,5 +1,9 @@
 # Sprint 44 — A Complete Project Book
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Build one project book with everything: project files, conversation summaries, artifact links. Make it navigable for Doug. Meanwhile, polish project file operations in the app model.
 
 ## Sprint goal

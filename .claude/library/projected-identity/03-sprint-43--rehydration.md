@@ -1,5 +1,9 @@
 # Sprint 43 — Rehydration
 
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
+
 **Leads:** Libby (Librarian), Arthur (Architect)
 **Sprint goal:** Design and implement a rehydration protocol that restores the team's identity, voice, and working context after a compaction — efficiently enough that the restoration itself doesn't cause another compaction.
 

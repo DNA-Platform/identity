@@ -1,5 +1,9 @@
 # Sprint 47 — Scaffolding and File Books
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Small sprint. Wire up the project-conversation mapping in code, scaffold all 20 project books with conversation chapters, add back-links from conversations to their project chapters, and then build the project file books.
 
 ## Sprint goal

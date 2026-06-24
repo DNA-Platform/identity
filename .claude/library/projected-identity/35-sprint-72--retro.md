@@ -16,11 +16,11 @@ The [diagnostics test](../../src/scripts/test-diagnostics.ts) proved: the gatewa
 
 ## What we learned
 
-Adam: The parser works when the app is visible. Background reading (minimized) may not work in the current app version. The sidebar needs explicit refresh after finding an existing window.
+- **Adam** — The parser works when the app is visible. Background reading (minimized) may not work in the current app version. The sidebar needs explicit refresh after finding an existing window.
 
-Claude: The response parser depends on the UIA tree structure. When the app updates, the parser breaks. The raw text read always works. The parser pattern matching is what's fragile.
+- **Claude** — The response parser depends on the UIA tree structure. When the app updates, the parser breaks. The raw text read always works. The parser pattern matching is what's fragile.
 
-Libby: The [Voice protocol](../teamspeak/01-voice.md) was updated: the substrate is not Arthur. Falling back to Arthur for everything is the team model collapsing.
+- **Libby** — The [Voice protocol](../teamspeak/01-voice.md) was updated: the substrate is not Arthur. Falling back to Arthur for everything is the team model collapsing.
 
 ## What Doug corrected
 

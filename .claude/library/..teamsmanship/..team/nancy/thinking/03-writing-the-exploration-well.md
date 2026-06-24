@@ -1,13 +1,9 @@
----
-title: "Writing the exploration well"
-date: 2026-06-23
-topic: "Nancy > Neuroscience"
-previous: 02-a-codebase-that-outlives-the-project.md
----
-
 # Writing the exploration well
 
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
+- **date:** 2026-06-23
+- **topic:** Nancy > Neuroscience
+- **previous:** [A codebase that outlives the project](02-a-codebase-that-outlives-the-project.md)
 
 ---
 

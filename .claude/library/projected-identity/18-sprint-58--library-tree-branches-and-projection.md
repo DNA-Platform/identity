@@ -16,7 +16,7 @@ A new book catalogued by [Librarianship](../..librarianship/.cover.md). Specifie
 
 ### 1a. Create the Library Tree book
 
-Libby: Create `library/library-tree/` with a cover. Subject: Knowledge. The book specifies the tree structure of the library — the main branch and its project branches.
+**Libby —** Create `library/library-tree/` with a cover. Subject: Knowledge. The book specifies the tree structure of the library — the main branch and its project branches.
 
 Move On Branches (Bookkeeping ch 14) content here — the specification of branches belongs in its own book now, not as a Bookkeeping chapter. Bookkeeping specifies books. Library Tree specifies how books organize into a tree of branches.
 
@@ -28,39 +28,39 @@ Chapters:
 
 ### 1b. Update Librarianship
 
-Libby: Add Library Tree to the library catalogue with a proper TOC entry and chapter description. Remove On Branches from Bookkeeping's TOC (the content moved).
+**Libby —** Add Library Tree to the library catalogue with a proper TOC entry and chapter description. Remove On Branches from Bookkeeping's TOC (the content moved).
 
 ### 1c. Catalogue the branches
 
-Libby: In Library Tree, catalogue each known branch with cross-repo links:
+**Libby —** In Library Tree, catalogue each known branch with cross-repo links:
 - `../inexplicable-phenomena/library/chemistry/.lib/` — the $Chemistry branch, catalogued by Representivity
 
 ## Phase 2: Representivity (Libby — in the branch)
 
 ### 2a. Create the cataloguing book
 
-Libby: Inside `library/chemistry/.lib/`, create `..representivity/` with a cover. This is the `..` prefixed cataloguing book for the $Chemistry branch — like Librarianship for the main library. `catalogues:` the subject of $Chemistry team knowledge.
+**Libby —** Inside `library/chemistry/.lib/`, create `..representivity/` with a cover. This is the `..` prefixed cataloguing book for the $Chemistry branch — like Librarianship for the main library. `catalogues:` the subject of $Chemistry team knowledge.
 
 ### 2b. Create Projection
 
-Libby: Inside `library/chemistry/.lib/`, create `projection/` — the sprint book. Catalogued by Representivity. Sprint chapters go here. Move any existing $Chemistry sprint plans from the identity library into Projection.
+**Libby —** Inside `library/chemistry/.lib/`, create `projection/` — the sprint book. Catalogued by Representivity. Sprint chapters go here. Move any existing $Chemistry sprint plans from the identity library into Projection.
 
 ### 2c. Teamsmanship catalogues Projection
 
-Arthur: In `.claude/library/`, Teamsmanship should catalogue a version of Projection for identity-level sprints. The `inexplicable-phenomena/` sprint plans already exist there. Rename or restructure to make this a proper Projection book catalogued by Teamsmanship.
+**Arthur —** In `.claude/library/`, Teamsmanship should catalogue a version of Projection for identity-level sprints. The `inexplicable-phenomena/` sprint plans already exist there. Rename or restructure to make this a proper Projection book catalogued by Teamsmanship.
 
 ## Phase 3: Code assignments (Arthur — Teamsmanship)
 
 ### 3a. Update territory
 
-Arthur: In [Territory](../..teamsmanship/05-territory.md):
+**Arthur —** In [Territory](../..teamsmanship/05-territory.md):
 - Libby gets explicit assignments for each `../{branch}` path — `../inexplicable-phenomena/library/chemistry/.lib/**`
 - Arthur gets explicit, redundant assignments scoped to each sprint/Projection book
 - These are in addition to existing assignments
 
 ### 3b. /branch skill
 
-Arthur: Create the skill at `.claude/skills/branch/SKILL.md`. Summarizes and points to Library Tree. Add chapter in Our Skillset.
+**Arthur —** Create the skill at `.claude/skills/branch/SKILL.md`. Summarizes and points to Library Tree. Add chapter in Our Skillset.
 
 ## Phase 4: Validate and sync
 

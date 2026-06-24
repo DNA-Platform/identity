@@ -1,5 +1,9 @@
 # Sprint 55 — TOC Summaries + Virtual Seren
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Practical sprint. Two tracks executed in parallel.
 
 ## Track A — Project cover TOC summaries

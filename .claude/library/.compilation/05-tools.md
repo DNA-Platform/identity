@@ -31,6 +31,14 @@ The commit tool implements the [Travel protocol](../teamspeak/07-travel.md): ide
 
 Branch separation invariant: `.lib/` exists only on project branches (`inexplicable-phenomena`), never on `main` or `dna-platform`. The `/audit` skill should verify this.
 
+## The TOC tool
+
+- **Source:** [03-on-covers--toc.ts](../bookkeeping/03-on-covers--toc.ts)
+- **Specification:** [On Covers](../bookkeeping/03-on-covers.md)
+- **What it does:** Inserts or updates a single chapter entry in a cover's table of contents, reading only the cover and the chapter's title line — never the whole book. It validates the cover's structure first and refuses a non-standard cover. With `--check` it validates a cover and lists every TOC entry still missing its synopsis.
+
+It is the interim form of the real convention (synopsis written in the chapter, the whole TOC assembled from the chapters), which is deferred. Arthur uses it to add a sprint to the projection cover; everyone uses it to file a thought into a thinking cover.
+
 ## Future automation
 
 This chapter catalogues tools that exist today. As the library grows, new automation will appear:

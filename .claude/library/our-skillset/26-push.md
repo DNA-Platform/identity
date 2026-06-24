@@ -1,0 +1,31 @@
+# push
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
+
+Push this project's changes to the right places — identity to the organization branch, branch-library content to the project branch, project code to the project repo. This is the up-sync half of [travel](../teamspeak/07-travel.md); [/pull](25-pull.md) is the down half.
+
+## Reading
+
+Read [On Sync](../..environmentalism/06-on-sync.md) — the branching model, the commit tool, and the mirror hazard. The tool this skill runs is [06-on-sync--commit.sh](../..environmentalism/06-on-sync--commit.sh).
+
+## Steps
+
+From the project root, with a commit message:
+
+```
+bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint NN: what changed"
+```
+
+It validates first, then routes each kind of change to the right place:
+
+- **Identity** (`.claude/`) → the `dna-platform` branch, merged to `main`.
+- **Branch library** (`library/*/.lib/`) → the project branch (named after the project directory), after a downstream merge of `dna-platform`.
+- **Project code** → the project repo, with the project-root `CLAUDE.md` regenerated with the right link prefixes.
+
+If validation fails, nothing is pushed. The operator never chooses branches — the tool enforces the [branching model](../..environmentalism/06-on-sync.md).
+
+## It refuses to clobber
+
+The `/MIR` to the org branch would DELETE anything the org has that this copy lacks — another project's un-pulled work. So the tool dry-runs the mirror first and **refuses** if it would delete real content: [/pull](25-pull.md) down to reconcile first, then push. Override only with `RECONCILED=1`, and only when the absence is genuinely intended. With two active projects sharing `dna-platform`, this guard is what keeps one team from silently deleting the other's work.

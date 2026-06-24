@@ -1,5 +1,9 @@
 # Sprint 58 — Writing Real Project Instructions
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Conversational sprint. One project at a time, most important first. For each project, the team reads the biography chapters and conversation summaries, discusses what Claude-chat needs to hear when he opens this project, and writes the instructions with the same care we gave the general instructions.
 
 ## Sprint type

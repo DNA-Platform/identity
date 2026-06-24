@@ -34,10 +34,10 @@ We created covers for five perspective directories that were missing them. Libby
 
 ## Retro discussion highlights
 
-Libby: The contradiction between chapters was invisible because the book was written across sprints and never read as a whole. Books need reconciliation, not just accretion.
+- **Libby** — The contradiction between chapters was invisible because the book was written across sprints and never read as a whole. Books need reconciliation, not just accretion.
 
-Adam: The annotation convention ended up simple — a marker prefix, markdown content, real links, tool strips the prefix. Every design discussion that tried to add structure made it worse.
+- **Adam** — The annotation convention ended up simple — a marker prefix, markdown content, real links, tool strips the prefix. Every design discussion that tried to add structure made it worse.
 
-Cathy: The hallucination parallel is exact and literal. A guessed description of something you haven't read IS a hallucination. In a perspective directory — where identity restores from — it's an implanted false memory. View purity applies to library covers the same way it applies to reactive renders.
+- **Cathy** — The hallucination parallel is exact and literal. A guessed description of something you haven't read IS a hallucination. In a perspective directory — where identity restores from — it's an implanted false memory. View purity applies to library covers the same way it applies to reactive renders.
 
-Arthur: The sprint proves that the library's own architecture — links, covers, synopses, the dot type system — extends naturally to code. The `///:` annotations are library content in a new medium. The link checker validates them the same way. The introspect tool reads them the same way a teammate reads a cover. One system, two representations, checked links between them.
+- **Arthur** — The sprint proves that the library's own architecture — links, covers, synopses, the dot type system — extends naturally to code. The `///:` annotations are library content in a new medium. The link checker validates them the same way. The introspect tool reads them the same way a teammate reads a cover. One system, two representations, checked links between them.

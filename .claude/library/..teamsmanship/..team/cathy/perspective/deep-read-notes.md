@@ -1,5 +1,9 @@
 # Cathy's Deep Read Notes
 
+- **author:** [Cathy](../cathy-and-the-reactive-canvas/.cover.md)
+
+---
+
 Reading the old archive and new code side by side. Thinking out loud.
 
 ## $Chemical constructor — old vs new

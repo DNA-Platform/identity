@@ -1,5 +1,9 @@
 # Sprint 42 — The Deep Work
 
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
+
 **Leads:** Arthur (Architect), Libby (Librarian)
 **Sprint goal:** Make the imported library coherent — clean up artifacts, deepen the autobiographies with 40 sprints of unrecorded $Chemistry history, and design where identity lives beyond the repo.
 

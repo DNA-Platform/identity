@@ -1,5 +1,9 @@
 # Sprint 56 — App Implementation: Instructions & Migration
 
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
 Implementation sprint. The content is written. Now the app needs to read and write it.
 
 ## Sprint goal
