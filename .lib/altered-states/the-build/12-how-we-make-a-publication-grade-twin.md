@@ -31,6 +31,13 @@ Our **core** (Lurz-2021 `stacked_core_full_gauss_readout`) and **trainer** (`sta
 
 The validation row is a **[MEASUREMENT] fix, not a [MODEL] change** — and it comes first. Compute normalized correlation-to-average on the twin we already have *before* bolting on ensemble or behavior; corr-to-average **alone** still won't reach 0.61 because it rides on *our* lower noise ceiling, so only the **normalized** form is apples-to-apples. Changing the instrument to chase a mis-measured number would be fixing a model that isn't broken.
 
+## Final-audit update — supersedes two rows above
+
+The [full-pipeline audit](../../../.claude/library/..teamsmanship/..team/nancy/thinking/07-the-full-pipeline-audit.md) (verified against `nnvision` / `sensorium` source + Franke 2022) corrected two things in the gap table:
+
+- **Alignment — *cold-primary*, not warm-start.** Warm-starting post from the pre core is *our* invention, in no canonical paper, and for a change-detection study it **biases the post twin toward pre-drug features and suppresses the effect we test for**. So the independent **cold-seeded** post ensemble is the **primary** model; the warm-start is kept only as a **robustness check** (an effect that appears *only* warm-started is suspect; one that survives cold init is real).
+- **Metric — *FEVE* is the published number; our CC_norm is labeled.** The Sensorium/Lurz tables report **FEVE** (`get_fev`, `fev_threshold=0.15`) with `get_signal_correlations`, not corr-to-average ÷ a separately-estimated ceiling. Our normalized form is a CC_norm **in the spirit of Schoppe 2016 (not the literal formula)**, its ceiling a leave-one-out oracle — report it, but never call it "the Sensorium metric." And the per-neuron **raw gain-ratio** (the ratio of the two shipped `responses/std` vectors) is promoted to a **headline** result, since per-neuron std-normalization is gain-blind by construction.
+
 ## Where the rest lives
 
 - The **MEI** half (synthesis + display, non-Gabor framing): [ch 11](11-how-we-make-a-publication-form-mei.md).

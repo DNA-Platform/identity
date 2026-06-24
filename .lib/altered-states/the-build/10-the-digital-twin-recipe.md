@@ -28,6 +28,8 @@ The concrete recipe for the **Sensorium-2022 baseline encoding model** — the "
 - **`gamma_input` = 6.3831** — a Laplacian smoothness penalty on the first-layer filters. This is the *Gabor-shaper*: it is what makes the learned receptive fields come out as smooth, oriented Gabor / centre-surround structure rather than high-frequency noise.
 - **`gamma_readout` = 0.0076** — an L1 penalty on the readout feature weights (sparsity).
 
+> **Provenance flag.** These two `gamma` values, plus `lr_init` 0.009 and `lr_decay_steps` 4 in Training below, appear only in our files and this recipe — **not** in the installed `sensorium` / `neuralpredictors` source. They trace to an external Sensorium-2022 baseline not on disk, and are a **Phase-3 gate** in the [parameter-provenance audit](13-the-active-image-run.md#parameter-provenance), awaiting Doug's resolution. Treat them as the working values, not as repo-confirmed.
+
 ## The readout — `FullGaussian2d`
 
 | parameter | value |

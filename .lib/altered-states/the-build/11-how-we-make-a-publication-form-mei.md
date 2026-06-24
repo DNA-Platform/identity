@@ -37,4 +37,11 @@ Nancy's first reading transferred the reconstruction rule (per-image) onto MEIs;
 4. Reframe the [report](../../reports/2026-06-23-twin-mei/the-twin-and-mei.md) captions: MEIs complex by design; "clean" = low-noise; the Gabor is the LN-RF control.
 5. Leave the **reconstruction** display as-is (per-image + bicubic).
 
+## Final-audit update — the constraint is ours, and the fixed states
+
+The [full-pipeline audit](../../../.claude/library/..teamsmanship/..team/nancy/thinking/07-the-full-pipeline-audit.md) (read against `nnvision/mei/regularizers.py`) confirmed the **gradient + image-blur recipe is verbatim canonical** (`walker_gradient` / `walker_postup`), and corrected two framings above:
+
+- **`PNormConstraintAndClip` p=2 is *ours*, not the canonical post-up.** The literal `walker_postup` is bare `ClipRange` — no explicit norm constraint; energy is governed by the gradient schedule. Keep our p=2 budget (it is closer to Walker-2019 / Franke-2022's *stated* contrast-constrained method than bare clip), but **document it as our contrast-constraint implementation, not "the nnvision ops,"** and verify the clip rarely fires — if it fires often, the shared-panel display breaks.
+- **Fixed behavioural states (Franke 2022).** MEIs are synthesized at a **held-fixed** state — a **separate MEI per state, quiet = 3rd percentile, active = 97th percentile** of (locomotion, pupil), at the percentiles of the **pre**-session distribution, with the shifter's eye-position **clamped identically** pre/post.
+
 This is the work the [figure-display print](../projection/print--faithful-figure-display.md) tracks; the working recipe it scales from is [ch 10](10-the-digital-twin-recipe.md). Recorded as evolution — accreted, not overwritten — because the *path* (what we did → what we learned → what's left) is the value.
