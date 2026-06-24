@@ -4,6 +4,9 @@
   "private": true,
   "description": "Claude Code hosting infrastructure — skills, team system, automation",
   "dependencies": {
+    "commonmark": "0.31.2"
+  },
+  "optionalDependencies": {
     "@dna-platform/chemistry": "*"
   }
 }

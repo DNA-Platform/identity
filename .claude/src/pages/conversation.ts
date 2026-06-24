@@ -48,6 +48,14 @@ export class ConversationPage extends Page {
 
   get screenType(): string { return 'conversation'; }
 
+  /** This conversation's title, read from the page header. The one fact a caller
+   *  needs to confirm we are on the RIGHT topic before reusing the page — the
+   *  session remembers a URL, not a topic, so "on a conversation" is not "on the
+   *  right conversation". Empty string if the header has no readable title yet. */
+  async title(): Promise<string> {
+    return (await this.controller.currentTitle()) ?? '';
+  }
+
   /** The conversation's messages, read from the tree. */
   async messages(): Promise<ChatMessage[]> {
     return this.controller.readMessages();
