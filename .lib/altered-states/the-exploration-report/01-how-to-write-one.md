@@ -1,5 +1,9 @@
 # How to write one
 
+- **author:** [Nancy](../../../.claude/library/..teamsmanship/..team/nancy/nancy-or-the-weight-of-evidence/.cover.md)
+
+---
+
 An exploration report is a descriptive walk through a dataset for **peers who already know the data but do not know you, or what you intend to do with it** — they may have collected it themselves. So its job is *not* to re-describe the data back to them (that is the trap), but to **motivate an analysis**: why these analyses, in this order, what each one accomplishes, and what the pass as a whole achieves for someone deciding how the data should be analyzed. It is figures plus woven prose, every computation reproducible on its face, caveats woven in beside the claims they qualify, and it ends on the constraint that most threatens its own story. This chapter is the recipe; the [Initial Data Exploration](../../reports/2026-06-23-exploration/initial-data-exploration.md) is the worked example.
 
 ## The frame — get this right first
