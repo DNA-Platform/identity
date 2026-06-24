@@ -46,7 +46,7 @@ Two **separate processes**, never chained: the WRITE ends as soon as streaming i
 
 ```
 [ ] 0. FIND TOPIC — check my research topics for an existing {Name} > {Topic} thread
-[ ] 1. WRITE — run the write process (run_in_background); it ends and minimizes
+[ ] 1. WRITE — run the write process: `say` typed, optional `attach` pasted (run_in_background); it ends and minimizes
 [ ] 2. CHAPTER — write my thinking-book chapter: what I asked, why, expect, know, links
 [ ] 3. CATCH UP — follow the previous-link chain, reread up to 3 chapters
 [ ] 4. CONTEXT — read the relevant library chapter, so I can judge the answer
@@ -61,9 +61,11 @@ Read my research-topics cover. Does this fit an existing topic? Continue that th
 ### Step 1 — Write
 Formulate the question; apply the [factorization principle](#the-factorization-principle). Run:
 ```
-npx tsx .claude/src/scripts/think.ts write "<topic>" "<question>" [new]
+npx tsx .claude/src/scripts/think.ts write "<topic>" "<say>" [attach] [new]
 ```
-Pass `new` when the topic has no conversation in the Claude project yet — it is born in the project's composer. The [composer](../../src/scripts/think.ts) runs the [dispatch resource](../../library/thoughtfulness/02-the-thought-lifecycle--dispatch.ts): it sends, waits only until streaming is detected, has the [session](../../src/session.ts) remember the conversation, minimizes, and **exits**. Returns immediately. **Never chain a read after it** — that is a separate process (step 5).
+Two content args — the **say / attach split**. `<say>` is the prompt: it is **typed** into the composer and stays there as the message. `<attach>` is optional, the big payload: it is **pasted**, and a large paste becomes a **file attachment**. So the small prompt is the message a reader sees, and the bulk data rides along as an attachment — a top-to-bottom review is not buried as one giant attachment with no question on it. `new` still marks a brand-new topic (born in the project's composer when the topic has no conversation yet).
+
+*How* the box does this is the [composer's](../../library/reference-desk/03-01-operations--sending.md) job, not this chapter's: **type** writes text in place (never an attachment); **paste** goes via the clipboard (big → attachment, and prepends two newlines if the box already holds text); both verify the message actually changed, so they are safe back-to-back. The [composer](../../src/scripts/think.ts) runs the [dispatch resource](../../library/thoughtfulness/02-the-thought-lifecycle--dispatch.ts): it sends, waits only until streaming is detected, minimizes, and **exits**. Returns immediately. **Never chain a read after it** — that is a separate process (step 5).
 
 ### Step 2 — Create the chapter
 A chapter in my thinking book — my thinking in progress: what I asked and why, what I expect (a prediction to measure against), what I already know (with links), and a `previous` link if I'm continuing a thread. The chapter IS the thought; the response drops into its Evidence section later.
@@ -88,7 +90,7 @@ Three stages in my chapter: **Evidence** (the printed response), **Interpretatio
 
 ## Resuming a thought
 
-`thought-state.json` records the in-flight thought (its topic, whether it's new). After the write minimizes, the read picks it up by that state — the [session](../../src/session.ts) resumes the conversation if the app is still on it, otherwise navigates back to it from home. After compaction, my thinking-book chapters are the long-term memory; the state file bridges turns within a session.
+The **session sync-check is now standard on every step, not only the read.** Before navigating, the script checks whether the app is *already on this topic's conversation* — the [session chapter](../../library/reference-desk/03-04-operations--sessions.md)'s locate-by-current-conversation-plus-title-match — and reuses it if so. So the **write** no longer re-navigates when I think into the same topic several times in a row, and the **read** resumes the in-flight conversation rather than hunting for it. `thought-state.json` records the in-flight thought (its topic, whether it's new) to bridge turns; if the app has moved on, the script navigates back from home. After compaction, my thinking-book chapters are the long-term memory.
 
 ## What this skill does NOT do
 

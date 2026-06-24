@@ -22,17 +22,18 @@ import { Claude } from '../claude.ts';
 import { dispatch } from '../../library/thoughtfulness/02-the-thought-lifecycle--dispatch.ts';
 import { read } from '../../library/thoughtfulness/02-the-thought-lifecycle--read.ts';
 
-const [cmd, topic, message, newFlag] = process.argv.slice(2);
+const [cmd, topic, say, ...rest] = process.argv.slice(2);
 
 const app = new Claude();
 
 async function main(): Promise<void> {
   switch (cmd) {
     case 'write': {
-      if (!topic || !message) throw new Error('usage: think.ts write <topic> <message> [new]');
-      const isNew = newFlag === 'new';
-      await dispatch(app, topic, message, isNew);
-      console.log(`[think] WRITE done — "${topic}" (${isNew ? 'new topic' : 'continued'}), streaming detected, minimized.`);
+      if (!topic || !say) throw new Error('usage: think.ts write <topic> <say> [attach] [new]');
+      const isNew = rest.includes('new');
+      const attach = rest.find(a => a !== 'new');   // optional attachment — anything but the 'new' flag
+      await dispatch(app, topic, say, isNew, attach);
+      console.log(`[think] WRITE done — "${topic}" (${isNew ? 'new topic' : 'continued'}${attach ? ', + attachment' : ''}), streaming detected, minimized.`);
       break;
     }
     case 'read': {

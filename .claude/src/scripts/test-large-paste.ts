@@ -30,9 +30,9 @@ async function testOpeningMessage() {
   console.log(`  Message length: ${OPENING_MESSAGE.length} chars`);
   console.log(`  Line breaks: ${(OPENING_MESSAGE.match(/\n/g) || []).length}`);
 
-  // Use composer.type() which handles setValue + clipboard fallback
-  console.log('  Using composer.type()...');
-  await app.conversation.composer.type(OPENING_MESSAGE);
+  // Use composer.paste() — the clipboard path; a large paste becomes an attachment
+  console.log('  Using composer.paste()...');
+  await app.conversation.composer.paste(OPENING_MESSAGE);
   await new Promise(r => setTimeout(r, 1_000));
 
   // Read page text to verify content arrived

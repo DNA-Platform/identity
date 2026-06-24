@@ -12,18 +12,16 @@
 import type { Claude } from '../../src/claude.ts';
 import type { ConversationPage } from '../../src/pages/conversation.ts';
 import { readState } from './03-persistence--state.ts';
-import { claudeProject, openTopic } from './02-the-thought-lifecycle--dispatch.ts';
+import { locateConversation } from './02-the-thought-lifecycle--dispatch.ts';
 
 export interface ReadResult { complete: boolean; text: string; }
 
 /** The topic's conversation — bound from the live screen if the session is still
  *  in sync, else navigated to from home the same way the write reached it. */
 async function conversation(app: Claude, topic: string): Promise<ConversationPage> {
-  if (await app.session.inSync()) {
-    const here = await app.currentConversation();
-    if (here) return here;
-  }
-  return openTopic(await claudeProject(app), topic);
+  // The same standard the write uses — reuse the live screen if we are already on
+  // this topic, else navigate. (See locateConversation in dispatch.)
+  return locateConversation(app, topic);
 }
 
 export async function read(app: Claude): Promise<ReadResult> {

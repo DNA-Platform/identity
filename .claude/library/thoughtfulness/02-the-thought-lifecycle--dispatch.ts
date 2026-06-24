@@ -34,21 +34,39 @@ export async function openTopic(project: ProjectPage, topic: string): Promise<Co
   return convo.open();
 }
 
-/** Clear the composer (Doug may have left stray text), type the message, send. */
-async function send(composer: Composer, message: string): Promise<ConversationPage> {
+/** Locate a topic's conversation — the STANDARD for every step, write and read. If
+ *  the app is already on that exact topic (the live screen is a conversation and its
+ *  title matches), reuse it untouched — no re-navigation. Otherwise open the project
+ *  and navigate to it. The title check is what the write needs that read takes on
+ *  faith: the session remembers a URL, not a topic, so "already on a conversation"
+ *  is not "already on the RIGHT conversation". */
+export async function locateConversation(app: Claude, topic: string): Promise<ConversationPage> {
+  const here = await app.currentConversation();
+  if (here && (await here.title()) === topic) return here;
+  return openTopic(await claudeProject(app), topic);
+}
+
+/** Clear the composer (Doug may have left stray text), TYPE the prompt so it stays
+ *  composer text, then PASTE the optional attachment (a large paste becomes an
+ *  attachment), and send. */
+async function send(composer: Composer, say: string, attach?: string): Promise<ConversationPage> {
   await composer.clear();
-  await composer.type(message);
+  await composer.type(say);
+  if (attach) await composer.paste(attach);
   return composer.send();
 }
 
-export async function dispatch(app: Claude, topic: string, message: string, isNew: boolean): Promise<Response> {
-  const project = await claudeProject(app);
-  const page = isNew
-    ? await send(project.composer, message)                       // new: born in the project
-    : await send((await openTopic(project, topic)).composer, message); // existing: continue it
+export async function dispatch(app: Claude, topic: string, say: string, isNew: boolean, attach?: string): Promise<Response> {
+  // A NEW topic is born in the project composer (no titled conversation yet); an
+  // EXISTING topic uses the standard locate — reuse the live screen if we are
+  // already on it, else navigate. The session sync-check, now the rule for write too.
+  const composer = isNew
+    ? (await claudeProject(app)).composer
+    : (await locateConversation(app, topic)).composer;
+  const page = await send(composer, say, attach);
   await page.response.waitUntilStreaming();
-  await app.session.remember();                                   // so read can resume this conversation
-  writeState({ topic, message, isNew, startedAt: new Date().toISOString() });
+  await app.session.remember();                                   // so the next step resumes this conversation
+  writeState({ topic, message: say, isNew, startedAt: new Date().toISOString() });
   app.window.minimize();
   return page.response;
 }
