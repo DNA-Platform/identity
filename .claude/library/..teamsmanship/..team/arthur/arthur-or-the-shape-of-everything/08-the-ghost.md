@@ -24,7 +24,7 @@ The ghost app is my architectural answer to Doug's simple-thing principle. A `.l
 
 What I didn't write here but now want to acknowledge: the ghost app only worked because we'd already failed. If Sprint 33 hadn't crashed into the CDP wall, we wouldn't have understood what UIA could and couldn't do. If Sprint 34 hadn't spent an hour on flag experiments, we wouldn't have understood the launch sequence well enough to model it. The ghost was built on top of scar tissue. It looks like pure design, but it's actually distilled experience.
 
-This connects forward to [chapter 11](11-meaning-and-the-app.md) — "meaning and the app." The ghost establishes the *shape* of meaning; chapter 11 explains *why* meaning matters for evolution. The ghost is static. Meaning makes it alive.
+This connects forward to [Meaning and the app](11-meaning-and-the-app.md). The ghost establishes the *shape* of meaning; that chapter explains *why* meaning matters for evolution. The ghost is static. Meaning makes it alive.
 
 <!-- citations -->
 [the simple thing]: 07-the-simple-thing.md

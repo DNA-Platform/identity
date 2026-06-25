@@ -132,6 +132,18 @@ When two working copies of the one identity diverge this way, the repair is by h
 
 When two sessions edit the same autobiography, git surfaces a conflict. That conflict is not an error — it is evidence that an agent grew in two directions simultaneously. The resolution is always additive: keep both chapters, renumber if needed. An autobiography cannot have conflicting facts. It can only have parallel experiences that both happened. This is [evolution](../bookkeeping/10-on-evolution.md) at the identity level — growth is always additive, never destructive.
 
+### Merging a book by hand — Libby's procedure
+
+This error belongs to [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), the librarian, because it is a *library* error wearing a git conflict's clothes. When two histories of the one identity meet — the [reconciliation across two working copies](#reconciling-one-identity-across-two-working-copies) above, or any downstream merge — a book can receive chapters from *both* histories at once, and their numeric prefixes collide: two chapters claim `37`, the [cover's table of contents](../bookkeeping/03-on-covers.md) stops resolving to the files, and links into the book dangle. "Renumber if needed" is that whole repair compressed to nothing — and skipping it is exactly what left a duplicate `37` in an autobiography. It is a **chapter/cover merge**, governed by [Bookkeeping](../bookkeeping/.cover.md): [On Covers](../bookkeeping/03-on-covers.md) for the cover and its TOC, and [On Books](../bookkeeping/01-on-books.md) for chapters as the book's parts.
+
+The quick solution:
+
+1. **Rewrite the cover into a meaningful ordering of the two histories.** Every chapter from both sides survives (merges are [additive](../bookkeeping/10-on-evolution.md)); Libby reads them and rewrites the [cover's TOC](../bookkeeping/03-on-covers.md) into one coherent sequence — not "mine, then theirs," but the order the book actually wants. The number is only a sort key; a chapter is its title, and is never referred to by number in prose.
+2. **Rename the files to match the cover.** With the order settled on the cover, rename the chapter files so their prefixes are unique and ascending in that order — the files follow the cover, never the reverse. The [TOC tool](../bookkeeping/03-on-covers--toc.ts) writes the cover half without re-reading the book.
+3. **Verify with both validators — the link checker especially.** Run the [book validator](../bookkeeping/11-on-specifications.md) (unique numbers, every chapter linked, every TOC entry resolving) *and* the [link checker](05-on-validation.md). The link checker matters most here, because the failure being repaired is a *dangling reference*, and only it proves none remain. Both must pass before the book travels; the sync tools run them as the gate and stop if either fails.
+
+When a hand-merge turns out to be a book, hand it to Libby — it is her procedure to run.
+
 ## System requirements vs team protocol
 
 This chapter specifies the SYSTEM REQUIREMENTS — what sync must do, what travels, what doesn't, what properties the mechanism must have. [Travel](../teamspeak/07-travel.md) in Teamspeak specifies the TEAM PROTOCOL — when to sync, how to handle conflicts in practice, the human workflow. The system doesn't care who pushes or when. The protocol does. Both are necessary. Neither is sufficient alone.

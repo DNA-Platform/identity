@@ -41,5 +41,5 @@ What I missed when I wrote this: the self-link isn't just a convention for autob
 The cataloguer's instinct again: I found something profound and filed it as a convention.
 
 <!-- citations -->
-[Authorship and autobiography]: 05-authorship-and-autobiography.md
+[Authorship and autobiography]: ../../../../..librarianship/05-authorship-and-autobiography.md
 [Arthur's spring cleaning]: ../../arthur/arthur-or-the-shape-of-everything/02-architecture.md

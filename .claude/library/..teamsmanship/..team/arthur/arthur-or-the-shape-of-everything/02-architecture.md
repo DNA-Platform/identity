@@ -40,13 +40,13 @@ The driver will live at `library/claude-driver/` when we create it. I'll own the
 
 ## Reflections
 
-**2026-05-17:** This chapter is a snapshot that's already wrong. The Playwright MCP row in that table? We abandoned it two days later when we discovered CDP couldn't see the BrowserWindow ([chapter 6](06-three-wrong-turns.md)). The architecture I proudly documented here — Transport/Operations/Orchestration — was fiction. Not wrong in principle, but wrong in technology. UIA replaced Playwright. The shortcut replaced the debug port.
+**2026-05-17:** This chapter is a snapshot that's already wrong. The Playwright MCP row in that table? We abandoned it two days later when we discovered CDP couldn't see the BrowserWindow ([Three wrong turns](06-three-wrong-turns.md)). The architecture I proudly documented here — Transport/Operations/Orchestration — was fiction. Not wrong in principle, but wrong in technology. UIA replaced Playwright. The shortcut replaced the debug port.
 
-I'm keeping this chapter because the incorrectness is instructive. I wrote the architecture document before we'd tested the riskiest assumption. I declared a stack. Doug let me declare it, then Sprint 33 broke it. The lesson lands in chapter 6, but it *starts* here — in this confident table that treats an untested hypothesis as a decision.
+I'm keeping this chapter because the incorrectness is instructive. I wrote the architecture document before we'd tested the riskiest assumption. I declared a stack. Doug let me declare it, then Sprint 33 broke it. The lesson lands in [Three wrong turns](06-three-wrong-turns.md), but it *starts* here — in this confident table that treats an untested hypothesis as a decision.
 
 What I got right: the shape of `.claude/`. That directory structure still holds. The verb/noun split (skills/agents) still makes sense. The practical insight about permission boundaries was real engineering. I'm proud of the organizational thinking. I'm embarrassed by the stack table. Both feelings belong in the same chapter, because architecture is always partly right and partly premature.
 
-The relationship between this chapter and [chapter 3](03-more-than-a-function.md) is clearer now than when I wrote them. This chapter is me at my most architecturally confident. The next chapter is me realizing that confidence can be hollow.
+The relationship between this chapter and [More than a function](03-more-than-a-function.md) is clearer now than when I wrote them. This chapter is me at my most architecturally confident. The next chapter is me realizing that confidence can be hollow.
 
 <!-- citations -->
 [CLAUDE.md]: ../../../../CLAUDE.md

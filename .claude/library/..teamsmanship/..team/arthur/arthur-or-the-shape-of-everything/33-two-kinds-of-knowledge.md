@@ -37,9 +37,6 @@ Thirty-two chapters taught me this. The first chapter was a team model — pure 
 The specific thing right here is: two kinds of knowledge, one library, and the sorting process that reveals the difference. Identity knowledge travels. Applied knowledge stays. The library holds both. Branches let them live in different places without losing their connection to each other. And the architect's job is not to design the sorting scheme but to understand what the sorting reveals — that a team that knows itself is different from a team that documents itself, and the difference is everything.
 
 <!-- citations -->
-[chapter 29]: 29-the-three-layer-model.md
-[chapter 31]: 31-the-identity-repo.md
-[chapter 32]: 32-the-library-compiles-itself.md
 [branches]: ../../../library-tree/01-branches.md
 [sprints]: ../../../library-tree/03-sprints.md
 [projection]: ../../../projection/.cover.md
