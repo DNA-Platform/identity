@@ -39,7 +39,9 @@ do_sync() {
 }
 # count paths the DEST holds that the SRC lacks (a /MIR would DELETE them)
 extra_in_dest() {
-  MSYS_NO_PATHCONV=1 robocopy "$(winpath "$1")" "$(winpath "$2")" /MIR /L /XD node_modules .git run /NJH /NJS /NC /NS /FP 2>&1 | grep -ciE '\*EXTRA' || true
+  # NOTE: no /NC here — /NC (no-class) suppresses the "*EXTRA" marker this grep needs,
+  # which silently broke the clobber guard. The actual do_sync mirrors may keep /NC.
+  MSYS_NO_PATHCONV=1 robocopy "$(winpath "$1")" "$(winpath "$2")" /MIR /L /XD node_modules .git run /NJH /NJS /NS /FP 2>&1 | grep -ciE '\*EXTRA' || true
 }
 
 PROJECT_ROOT="$(cd "$PULL_ORIG_DIR/../../.." && pwd)"
