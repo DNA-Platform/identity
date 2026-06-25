@@ -72,22 +72,30 @@ git diff --cached --quiet || git commit -m "Sync $PROJECT_NAME working-copy libr
 
 echo ""; echo ">>> 2  Merge dna-platform into '$PROJECT_NAME'"
 if ! git merge origin/dna-platform --no-edit; then
-  echo ""
-  echo "STOP (the manual step): merge conflict pulling dna-platform into '$PROJECT_NAME'."
-  echo "  No tool can resolve a merge — but here is the procedure. In $IDENTITY_REPO (on '$PROJECT_NAME'):"
-  echo "  * If a conflicting file is a chapter or a .cover.md, this is a CHAPTER/COVER MERGE, not text:"
-  echo "      read  .claude/library/..environmentalism/06-on-sync.md  (\"Merging a book by hand\")"
-  echo "      and   .claude/library/bookkeeping/03-on-covers.md       (the cover / TOC spec)."
-  echo "      Keep every chapter (ADDITIVE); settle the order ON THE COVER; then rename files to unique"
-  echo "      ascending numbers and rewrite the cover's TOC to match. A chapter is its TITLE, never its"
-  echo "      number; a number collision is the artifact to fix, not a fact to keep."
-  echo "  * Otherwise resolve the conflict by hand, additively (keep both)."
-  echo "    1) git add -A && git commit --no-edit"
-  echo "    2) RUN 06-on-sync--resolve.sh — the separate finisher. It recompiles, validates as the"
-  echo "       gate (a botched book-merge is caught before the working copy is touched), pushes, syncs down."
-  echo "  Ask Libby (librarian) if a book-merge is unclear — it is her procedure to run."
-  exit 1
+  conf="$(git diff --name-only --diff-filter=U)"
+  # A compiled file (CLAUDE.md, agents/, rules/, skills/) is regenerated from chapters, so its
+  # conflict is the COMPILER's to settle, not a hand-merge. Only a chapter/cover conflict is a
+  # real merge — and that is the part no tool can do.
+  chapters="$(printf '%s\n' "$conf" | grep -vE '^(CLAUDE\.md$|\.claude/agents/|\.claude/rules/|\.claude/skills/)' || true)"
+  if [ -n "$chapters" ]; then
+    echo ""
+    echo "STOP — a CHAPTER/COVER MERGE, the part no tool can do (merging is not algorithmic). Conflicted source:"
+    printf '%s\n' "$chapters" | sed 's/^/      /'
+    echo "  In $IDENTITY_REPO (on '$PROJECT_NAME'):"
+    echo "  * Read .claude/library/..environmentalism/06-on-sync.md (\"Merging a book by hand\") + bookkeeping/03-on-covers.md."
+    echo "    Keep every chapter (ADDITIVE); settle the order ON THE COVER; rename files to unique ascending"
+    echo "    numbers and rewrite the cover's TOC. A chapter is its TITLE, never its number."
+    echo "  * Then: git add -A && git commit --no-edit"
+    echo "  * Then RUN 06-on-sync--resolve.sh — it recompiles (the compiler owns the compiled files),"
+    echo "    validates as the gate, pushes, and syncs down."
+    echo "  Ask Libby — chapter/cover merges are hers to run."
+    exit 1
+  fi
+  echo ">>> merge conflicts are COMPILED artifacts only — the compiler owns these, not a hand-merge."
+  echo "    Clearing them; resolve regenerates the truth from the merged chapters."
+  printf '%s\n' "$conf" | while IFS= read -r f; do [ -n "$f" ] && { git checkout --theirs -- "$f" 2>/dev/null || true; git add -- "$f"; }; done
+  git commit --no-edit --quiet
 fi
 
-echo ""; echo ">>> merge clean — handing off to 06-on-sync--resolve.sh"
+echo ""; echo ">>> merge resolved — handing off to 06-on-sync--resolve.sh (recompile -> validate -> push -> sync down)"
 exec bash "$RESOLVE" "$@"
