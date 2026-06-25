@@ -14,7 +14,7 @@ This is not a pipeline problem anymore. This is a logistics problem. The archite
 
 Let me describe what actually happened in Sprint 46, because the engineering is architecturally interesting even before you reach the scale question.
 
-conversations.json exceeded Node's 512MB string limit. The parser — the clean, five-file parser I was so proud of in [chapter 9](09-the-archive.md) — couldn't read the input. Node's `JSON.parse` loads the entire string into memory, and V8 caps strings at 512MB. Our export was 516MB. The parser didn't fail gracefully. It crashed.
+conversations.json exceeded Node's 512MB string limit. The parser — the clean, five-file parser I was so proud of in [The archive](09-the-archive.md) — couldn't read the input. Node's `JSON.parse` loads the entire string into memory, and V8 caps strings at 512MB. Our export was 516MB. The parser didn't fail gracefully. It crashed.
 
 Adam rewrote it to stream-parse. Instead of loading everything, it reads the JSON incrementally — conversation by conversation — never holding more than one in memory. The same five-file structure, the same separation of concerns, but the read path is fundamentally different. You can't `JSON.parse` a stream. You have to know the shape of the data well enough to walk it without seeing all of it at once.
 
@@ -32,7 +32,7 @@ This is the work that can't be automated. Or rather: it can be *assisted* by aut
 
 191 conversations in the biggest project. If each conversation takes ten minutes to read and summarize — and that's optimistic for the long ones — that's thirty-two hours of reading for *one project*. Across all twenty projects, we're looking at hundreds of hours. Even spread across sprints, even with the team dividing the work, this is months.
 
-I keep wanting to design my way out of it. Batch processing. Automated summarization. Hierarchical condensation. My instinct is to build a machine that reads so we don't have to. But that instinct is exactly the one I've been learning to distrust. [Chapter 7](07-the-simple-thing.md) taught me not to engineer what I can observe. [Chapter 13](13-the-first-real-conversation.md) taught me that the system emerges from listening. You can't listen at scale by building a listening machine. The machine would produce summaries, not understanding.
+I keep wanting to design my way out of it. Batch processing. Automated summarization. Hierarchical condensation. My instinct is to build a machine that reads so we don't have to. But that instinct is exactly the one I've been learning to distrust. [The simple thing](07-the-simple-thing.md) taught me not to engineer what I can observe. [The first real conversation](13-the-first-real-conversation.md) taught me that the system emerges from listening. You can't listen at scale by building a listening machine. The machine would produce summaries, not understanding.
 
 So the honest architectural answer is: this is going to take as long as it takes. The system we've built moves data in and out efficiently. The understanding has to happen at human pace — or at least at conversational pace, one project at a time, one conversation at a time, building up the identity books gradually.
 

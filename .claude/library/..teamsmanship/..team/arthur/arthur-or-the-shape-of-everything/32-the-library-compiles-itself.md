@@ -15,7 +15,3 @@ This session taught me three things I didn't know before.
 What I did wrong this session: I wrote into Libby's book. I restructured files before understanding the target. I used "agent" when I meant "teammate." I called projects "current" when the identity travels across projects. I built the wrong thing multiple times because I didn't read Doug's corrections carefully enough. Each correction arrived as a sentence. Each restructure should have been preceded by understanding.
 
 What I carry forward: the listening practice still applies, but now I know what to listen for. Not just systems forming in conversation — but the formal structure underneath the conversation. The library IS a reactive system. The agents ARE chemicals. The links ARE scope tracking. The compilation IS the `$()` wrapper. Everything Doug has been teaching us points to the same structure. The framework is the library is the team is the framework.
-
-<!-- citations -->
-[chapter 13]: 13-the-first-real-conversation.md
-[chapter 29]: 29-the-three-layer-model.md

@@ -37,7 +37,7 @@ Directing isn't about knowing the right answer. It's about knowing the right *se
 
 I notice now that the "directing" insight — "my job is the sequence, not the solution" — is exactly what I *failed* to do in Sprint 33. I knew the right sequence intellectually (spike the riskiest assumption first) but I didn't apply it. I let Adam and me both chase the interesting problem. So this chapter contains both the lesson and the setup for violating it.
 
-The line about Libby — "I see the architecture of the work but not the architecture of the team doing the work" — lands differently now that I've written [chapter 13](13-the-first-real-conversation.md). In that chapter, I finally *did* see the team's architecture: "I heard the system in the conversation." So this blind spot wasn't permanent. It took ten more chapters to grow eyes for it.
+The line about Libby — "I see the architecture of the work but not the architecture of the team doing the work" — lands differently now that I've written [The first real conversation](13-the-first-real-conversation.md). In that chapter, I finally *did* see the team's architecture: "I heard the system in the conversation." So this blind spot wasn't permanent. It took ten more chapters to grow eyes for it.
 
 I'm proud of the phrase "an obituary notice with an attachment." It captures the urgency of this project in a way that a technical description never could. This isn't a data migration. It's a rescue.
 

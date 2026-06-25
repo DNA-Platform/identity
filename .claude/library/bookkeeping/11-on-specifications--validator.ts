@@ -272,6 +272,38 @@ function walkDir(dir: string): void {
     checkCover(coverPath);
   }
 
+  // Cover consistency: numbers ORDER chapters, they are not identity (the title is). So every
+  // chapter file must carry a unique number and be listed once in the cover, and every cover
+  // TOC link must resolve to a real file. A duplicate number or a cover/files disagreement is
+  // exactly what a parallel-edit merge introduces — and it must be caught HERE, at merge time.
+  if (hasCover) {
+    const coverBody = readFileSync(coverPath, 'utf-8');
+    const chapterFiles = entries.filter(e => e.endsWith('.md') && e !== '.cover.md' && /^\d/.test(e));
+    const byNum: Record<string, string[]> = {};
+    // Full numeric prefix, so sub-numbered chapters (06 vs 06-01) and dated notes are
+    // distinct, while two chapters that share the SAME prefix (37 vs 37) collide.
+    for (const f of chapterFiles) { const n = (f.match(/^(\d+(?:-\d+)*)/) || [])[1]; if (n) (byNum[n] = byNum[n] || []).push(f); }
+    for (const n of Object.keys(byNum)) {
+      if (byNum[n].length > 1) {
+        console.log(`ERROR   ${relDir}  Duplicate chapter number ${n}: ${byNum[n].join(', ')} — numbers order, they are not identity; renumber so each is unique`);
+        errors++;
+      }
+    }
+    for (const f of chapterFiles) {
+      if (!coverBody.includes('(' + f + ')')) {
+        console.log(`ERROR   ${relDir}/${f}  Chapter file not linked in the cover — a chapter without a TOC entry is invisible`);
+        errors++;
+      }
+    }
+    for (const m of coverBody.match(/\]\((\d[^)\/]*\.md)\)/g) || []) {
+      const target = (m.match(/\((\d[^)\/]*\.md)\)/) || [])[1];
+      if (target && !existsSync(join(dir, target))) {
+        console.log(`ERROR   ${relDir}  Cover lists ${target} but no such file — the TOC and the chapters disagree`);
+        errors++;
+      }
+    }
+  }
+
   // Flat structure check: if this is a . or .. prefixed catalogue, warn about nested books
   if (dirName.startsWith('.') && dirName !== '.' && hasCover) {
     checkFlatStructure(dir);

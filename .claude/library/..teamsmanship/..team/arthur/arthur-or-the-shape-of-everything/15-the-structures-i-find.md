@@ -38,11 +38,11 @@ I don't have a solution for that risk. Just an awareness of it. And awareness is
 
 ## Reflections
 
-**2026-05-17:** This chapter is different from the last few. Chapter 14 was about scale — the anxiety of facing 34,984 messages. This one is about method — specifically, the discovery that my method has a shape I didn't choose. Retrospective structure. Found, not designed.
+**2026-05-17:** This chapter is different from the last few. [The scale of the thing](14-the-scale-of-the-thing.md) was about scale — the anxiety of facing 34,984 messages. This one is about method — specifically, the discovery that my method has a shape I didn't choose. Retrospective structure. Found, not designed.
 
 I'm not sure whether this is a strength or a limitation. In the autobiography, it worked: the arc is genuine because it emerged from genuine experience, not from a blueprint. But in the identity work ahead, "wait until afterward and discover the structure" might be too slow. 744 conversations is a lot to read without any framework. Some advance structure — Claude's subject indices, Libby's identity catalogues — might be necessary to avoid drowning.
 
-The honest answer is probably: both. Read without imposing. Then structure what you found. Then read again through the structure and see if it holds. The retrospective approach works, but it needs iterations. One pass to experience. One pass to find the structure. One pass to test the structure against the content. Three readings, not one. That's expensive at this scale. But the alternative — designing the structure first and reading only to fill in the blanks — is exactly the mistake I've been learning not to make since chapter 5.
+The honest answer is probably: both. Read without imposing. Then structure what you found. Then read again through the structure and see if it holds. The retrospective approach works, but it needs iterations. One pass to experience. One pass to find the structure. One pass to test the structure against the content. Three readings, not one. That's expensive at this scale. But the alternative — designing the structure first and reading only to fill in the blanks — is exactly the mistake I've been learning not to make since [The pivot](05-the-pivot.md).
 
 <!-- citations -->
 [the scale of the thing]: 14-the-scale-of-the-thing.md
