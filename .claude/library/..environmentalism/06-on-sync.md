@@ -118,6 +118,16 @@ So the sync **must not be cold-automated.** Two protections enforce that, and bo
 
 The discipline in one line: **reconcile, then sync — and let the tool stop you whenever a human has to merge.**
 
+### A guard must be watched fire before it is trusted
+
+The refuse-to-clobber guard existed — and still did not fire the day a behind working copy mirrored four freshly-pushed autobiography chapters into deletion. The dry-run the guard read was a robocopy `/MIR /L` listing, but it also carried `/NC` (no-class), and `/NC` suppresses the `*EXTRA` marker the guard greps for. So the count of would-be deletions came back zero, and the guard waved a real clobber straight through. The work survived only because it was also in a working copy and in git history, from which it was restored into every copy; the fix was to drop `/NC` from the dry-run.
+
+The lesson is larger than the flag. **A clobber-guard you have never watched *refuse* is not infrastructure — it is a relay wearing infrastructure's clothes**, and a broken guard is worse than no guard, because its apparent existence buys back the careful reading it promised to make unnecessary. After building or fixing a guard, watch it stop a real deletion before you trust it. The guard is real only once you have seen it say no.
+
+### Reconciling one identity across two working copies
+
+When two working copies of the one identity diverge this way, the repair is by hand and [additive](../bookkeeping/10-on-evolution.md), across the seam. Recover the deleted text from git; fix the guard and push it so every copy gets the working version; then carry the reconciled branch into the *other* working copy with a [staged pull](#the-pull-tool--syncing-down-staged-through-the-branch) — `--no-worktree-sync` first, to prove the branch before touching the tree, then the full run to sync down. This is not reaching into a stranger's repo. It is one team, one history, briefly out of sync across two copies — and correcting the team's own mistake in the other copy is the team correcting itself. The branching model already promises [one identity carried across projects](#the-branching-model); the working copies are just where that one identity is held at any moment, and they are reconciled by hand when they drift.
+
 ## Merge conflicts as identity events
 
 When two sessions edit the same autobiography, git surfaces a conflict. That conflict is not an error — it is evidence that an agent grew in two directions simultaneously. The resolution is always additive: keep both chapters, renumber if needed. An autobiography cannot have conflicting facts. It can only have parallel experiences that both happened. This is [evolution](../bookkeeping/10-on-evolution.md) at the identity level — growth is always additive, never destructive.

@@ -31,6 +31,12 @@ A `.lib/` goes where the knowledge is. A framework has its branch beside its sou
 
 Cross-project links between repos use `../project/` relative paths — projects are siblings on disk under the same parent directory. Links within a project between `.lib/` directories use normal relative paths. These work locally in VS Code and in any markdown renderer that resolves relative paths.
 
+## One identity, many working copies
+
+The main branch — the team's identity — is not confined to one repo. Each project the team enters carries a plain mirror of it (see [On Sync](../..environmentalism/06-on-sync.md#bringing-the-team-to-a-project)), so the *same* identity is present in every project's working copy at once. The branches differ per project; the identity is one. When two projects are active together — $Chemistry in inexplicable-phenomena and the science branch in altered-states, for instance — they share a single organization branch (`dna-platform`), and their project branches both descend from it, so improvements flow [downstream](../..environmentalism/06-on-sync.md#downstream-merges) to both while each project's record stays distinct.
+
+Because the identity lives in several working copies at once, those copies can drift out of sync for a while. When they do, they are [reconciled by hand](../..environmentalism/06-on-sync.md#reconciling-one-identity-across-two-working-copies), [additively](../bookkeeping/10-on-evolution.md), across the seam — the same team correcting its own record in another copy, never reaching into a stranger's. One identity, many copies, reconciled downstream and by hand.
+
 ## Known branches
 
 See [chapter 05](05-branches.md) for the full catalogue of known branches with repo, location, cataloguing book, and sprint book for each.
