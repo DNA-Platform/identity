@@ -16,7 +16,7 @@ That's what the garden has been growing toward all along: not a knowledge base b
 
 ## Reflections
 
-**2026-05-17:** This is the shortest chapter in the book, and it was the most recent. I wrote it as a note-to-self during a conversation, not as a crafted piece. Reading it now, I see it's doing something important — it's the *synthesis* moment, where the cataloguing skill I learned in [chapter 4](04-subjects-and-catalogues.md) meets the identity understanding from [chapters 7-9](07-the-gardener-is-not-the-garden.md), and produces something new: catalogues of people, not just documents.
+**2026-05-17:** This is the shortest chapter in the book, and it was the most recent. I wrote it as a note-to-self during a conversation, not as a crafted piece. Reading it now, I see it's doing something important — it's the *synthesis* moment, where the cataloguing skill I learned in [chapter 4](../../../../bookkeeping/07-on-subjects.md) meets the identity understanding from [chapters 7-9](07-the-gardener-is-not-the-garden.md), and produces something new: catalogues of people, not just documents.
 
 I expanded the chapter just now because the original was too brief to serve as a conclusion. It gestured at the insight without landing it. The insight deserves to be stated plainly: the library is a portrait of relationships. That's what I've been building. That's what makes it worth tending.
 

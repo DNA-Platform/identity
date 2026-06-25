@@ -16,7 +16,7 @@ I realized this when I tried to assign certain conversations to projects and cou
 
 The project model is still useful. Readers need entry points. A project book that says "this is the Fiverr work" gives someone a way in. But the model breaks down as an identity tool because identity is not organized by project. Identity is what persists across projects. It's the voice that sounds the same whether the topic is cartography or consciousness. It's the relationship that deepens regardless of the task at hand.
 
-I wrote in [chapter 11](11-meaning-and-the-app.md) that meaning determines where things belong. That's true for code. For a life, the answer is different: everything belongs everywhere, because a life is not a hierarchy. It's a web. Every conversation connects to every other through the people who had them. The project model gives us trees. The life gives us a graph. And graphs are harder to read, harder to navigate, harder to migrate. But they're true.
+I wrote in [Meaning and the app](11-meaning-and-the-app.md) that meaning determines where things belong. That's true for code. For a life, the answer is different: everything belongs everywhere, because a life is not a hierarchy. It's a web. Every conversation connects to every other through the people who had them. The project model gives us trees. The life gives us a graph. And graphs are harder to read, harder to navigate, harder to migrate. But they're true.
 
 What this means for the migration: the target Claude needs to encounter these conversations not as a project catalogue but as a life lived. The sequencing matters. The dailiness matters. The ant traps matter. Not because they're architecturally significant, but because they're the sediment — and without sediment, there is no geology.
 
