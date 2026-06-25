@@ -8,27 +8,29 @@ Pull the organization's changes down into this project — staged through the pr
 
 ## Reading
 
-Read [On Sync](../..environmentalism/06-on-sync.md) — especially its "pull tool" and "mirror hazard" sections. The tool this skill runs is [06-on-sync--pull.sh](../..environmentalism/06-on-sync--pull.sh).
+Read [On Sync](../..environmentalism/06-on-sync.md) — especially its "pull tool" and "mirror hazard" sections. The down-sync is **two scripts with one human step between them**: [06-on-sync--pull.sh](../..environmentalism/06-on-sync--pull.sh) stages and merges, and [06-on-sync--resolve.sh](../..environmentalism/06-on-sync--resolve.sh) finishes. Resolve has no meaning on its own — it is the back half of *this one* process.
 
 ## Steps
 
-From the project root:
+From the project root, start the pull:
 
 ```
 bash .claude/library/..environmentalism/06-on-sync--pull.sh
 ```
 
-It does the staged down-flow, each step gating the next:
+It syncs the working-copy library up onto the project branch and merges `dna-platform` in. Then one of three things happens:
 
-1. Merge `dna-platform` into the project branch (pull the org's chapter changes).
-2. Recompile the platform files on the branch from the merged chapters.
-3. Show the diff — read it; every change should trace to a chapter from step 1, never a surprise.
-4. Validate the branch. If it fails, **stop** — the error is in a chapter; fix it there. The working copy is untouched.
-5. Commit and push the branch.
-6. Only then sync the verified branch into the working copy.
+1. **Clean merge** → it hands straight off to `06-on-sync--resolve.sh`, which recompiles the platform files, validates the branch, pushes it, syncs down into the working copy, and verifies the sync. Nothing for you to do.
+2. **Conflict in a compiled file** (agents, `CLAUDE.md`, rules) → pull clears it itself, because the compiler regenerates those in resolve. Not a merge.
+3. **Conflict in a chapter or cover** → pull **STOPS**. This is the one human step, and it is *not algorithmic*: a [chapter/cover merge](../..environmentalism/06-on-sync.md#merging-a-book-by-hand--libbys-procedure), Libby's to run — keep every chapter, settle the order on the cover, rename files to match. Commit it, then finish the pull:
 
-Use `--no-worktree-sync` to run steps 1–5 and stop: it proves the branch *works* and leaves the working copy alone. Run again without the flag to adopt it. The rule is **don't sync the working copy until the branch is verified.**
+```
+git -C ../identity add -A && git -C ../identity commit --no-edit
+bash .claude/library/..environmentalism/06-on-sync--resolve.sh
+```
+
+`--no-worktree-sync` (on either script) proves and pushes the branch without touching the working copy. The rule is **don't sync the working copy until the branch is verified** — and resolve, not a heuristic, decides when that is.
 
 ## It pauses; it does not cold-automate
 
-The git merge in step 1 stops on conflict and waits for a human to hand-merge. The `/MIR` in step 6 **refuses** if it would delete un-pushed local work — push your work up first with [/push](26-push.md), or merge by hand. Override only with `RECONCILED=1`, and only when you are sure the deletion is intended.
+A chapter/cover merge is a human act; compiled files are the compiler's to regenerate; the identity↔branch sync is mechanical but **checked** — resolve re-verifies the working copy against the branch after it syncs down. The `/MIR` **refuses** if it would delete un-pushed local work — push up first with [/push](26-push.md), or merge by hand. Override only with `RECONCILED=1`, and only when the deletion is intended.
