@@ -227,7 +227,10 @@ git merge --ff-only origin/dna-platform --quiet 2>/dev/null || true
 # the other project's un-pulled work — whoever pushes second wins. So dry-run the
 # mirror first: if it would DELETE real content, REFUSE. Reconcile down first
 # (06-on-sync--pull.sh); override only when the absence is genuinely intended.
-would_delete="$(MSYS_NO_PATHCONV=1 robocopy "$(winpath "$CLAUDE_DIR")" "$(winpath "$IDENTITY_REPO/.claude")" /MIR /L /XD node_modules run .git /NJH /NJS /NC /NS /FP 2>&1 | grep -ciE '\*EXTRA' || true)"
+# NOTE: no /NC — /NC (no-class) suppresses the "*EXTRA" marker this grep needs, which
+# silently broke this guard: it counted 0 and never refused, so a /MIR clobbered the other
+# project's un-pulled work. The do_sync mirror below may keep /NC for quiet output.
+would_delete="$(MSYS_NO_PATHCONV=1 robocopy "$(winpath "$CLAUDE_DIR")" "$(winpath "$IDENTITY_REPO/.claude")" /MIR /L /XD node_modules run .git /NJH /NJS /NS /FP 2>&1 | grep -ciE '\*EXTRA' || true)"
 if [ "${would_delete:-0}" -gt 0 ] && [ "${RECONCILED:-0}" != "1" ]; then
   echo "REFUSING identity push: dna-platform holds ${would_delete} path(s) this copy lacks."
   echo "A /MIR would DELETE them — almost certainly another project's work. Reconcile DOWN first:"
