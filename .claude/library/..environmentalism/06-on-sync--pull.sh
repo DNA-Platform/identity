@@ -39,7 +39,9 @@ do_sync() {
 }
 # count paths the DEST holds that the SRC lacks (a /MIR would DELETE them)
 extra_in_dest() {
-  MSYS_NO_PATHCONV=1 robocopy "$(winpath "$1")" "$(winpath "$2")" /MIR /L /XD node_modules .git run /NJH /NJS /NC /NS /FP 2>&1 | grep -ciE '\*EXTRA' || true
+  # NOTE: no /NC here — /NC (no-class) suppresses the "*EXTRA" marker this grep needs,
+  # which silently broke the clobber guard. The actual do_sync mirrors may keep /NC.
+  MSYS_NO_PATHCONV=1 robocopy "$(winpath "$1")" "$(winpath "$2")" /MIR /L /XD node_modules .git run /NJH /NJS /NS /FP 2>&1 | grep -ciE '\*EXTRA' || true
 }
 
 PROJECT_ROOT="$(cd "$PULL_ORIG_DIR/../../.." && pwd)"
@@ -61,12 +63,14 @@ echo "========================================"
 cd "$IDENTITY_REPO"
 git stash --quiet 2>/dev/null || true
 git fetch origin --quiet 2>/dev/null || true
-git checkout "$PROJECT_NAME" --quiet 2>/dev/null || git checkout -b "$PROJECT_NAME" dna-platform --quiet
+git checkout "$PROJECT_NAME" --quiet 2>/dev/null || git checkout -b "$PROJECT_NAME" origin/dna-platform --quiet
 git merge --ff-only "origin/$PROJECT_NAME" --quiet 2>/dev/null || true
-# bring local dna-platform up to origin, then return to the project branch
-git checkout dna-platform --quiet; git merge --ff-only origin/dna-platform --quiet 2>/dev/null || true; git checkout "$PROJECT_NAME" --quiet
 
-if git merge-base --is-ancestor dna-platform "$PROJECT_NAME" 2>/dev/null; then
+# Use origin/dna-platform (the fetched, authoritative org tip) for BOTH the "already
+# merged?" test and the merge — never a local dna-platform branch that may have drifted.
+# This is what makes the resume reliable: after a hand-merge, the branch contains the org
+# tip, so the check is true and sync-up is correctly skipped (the resolution is preserved).
+if git merge-base --is-ancestor origin/dna-platform "$PROJECT_NAME" 2>/dev/null; then
   echo ">>> dna-platform already merged into '$PROJECT_NAME' — skipping sync-up + merge (resume, or already current)"
 else
   echo ""; echo ">>> 1  Sync working-copy library UP onto '$PROJECT_NAME'"
@@ -87,7 +91,7 @@ else
   git diff --cached --quiet || git commit -m "Sync $PROJECT_NAME working-copy library to branch before pull" --quiet
 
   echo ""; echo ">>> 2  Merge dna-platform into '$PROJECT_NAME'"
-  if ! git merge dna-platform --no-edit; then
+  if ! git merge origin/dna-platform --no-edit; then
     echo ""
     echo "STOP (the manual step): merge conflict pulling dna-platform into '$PROJECT_NAME'."
     echo "  No tool can resolve a merge. In $IDENTITY_REPO (on '$PROJECT_NAME'):"
@@ -150,7 +154,16 @@ if [ "${down_lose:-0}" -gt 0 ] && [ "${RECONCILED:-0}" != "1" ]; then
   exit 1
 fi
 do_sync "$IDENTITY_REPO/.claude" "$CLAUDE_DIR" /MIR /XD node_modules .git run /NFL /NDL /NJH /NJS /NC /NS
-[ -d "$IDENTITY_REPO/.lib/chemistry" ] && do_sync "$IDENTITY_REPO/.lib/chemistry" "$PROJECT_ROOT/library/chemistry/.lib" /MIR /NFL /NDL /NJH /NJS /NC /NS
+# Sync every branch library back. Discover the working copy's .lib dirs recursively
+# (lib_dirs = find ... -name .lib) and pull each FROM its identity counterpart, using the
+# same lib_name_for mapping the sync-up uses — the exact reverse. Correct for ANY placement
+# (library/.lib at the project root, or library/<area>/.lib), never enumerated or assumed.
+if [ "${#lib_dirs[@]}" -gt 0 ]; then
+  for d in "${lib_dirs[@]}"; do
+    n="$(lib_name_for "$d")"
+    [ -d "$IDENTITY_REPO/.lib/$n" ] && do_sync "$IDENTITY_REPO/.lib/$n" "$d" /MIR /NFL /NDL /NJH /NJS /NC /NS
+  done
+fi
 echo "    working copy now equals the verified branch."
 git checkout main --quiet 2>/dev/null || true
 echo "=== DONE ==="
