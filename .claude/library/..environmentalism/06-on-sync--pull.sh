@@ -154,6 +154,11 @@ if [ "${down_lose:-0}" -gt 0 ] && [ "${RECONCILED:-0}" != "1" ]; then
   exit 1
 fi
 do_sync "$IDENTITY_REPO/.claude" "$CLAUDE_DIR" /MIR /XD node_modules .git run /NFL /NDL /NJH /NJS /NC /NS
+# Regenerate the project-root CLAUDE.md projection. It is gitignored and lives OUTSIDE
+# .claude, so the /MIR above never carries it — same .claude/-prefix transform the commit
+# tool applies, so the repo root stays current even when a pull changes .claude/CLAUDE.md.
+sed 's|\](\(library/\)|\](.claude/\1|g; s|\](\(agents/\)|\](.claude/\1|g; s|\](\(rules/\)|\](.claude/\1|g; s|\](\(skills/\)|\](.claude/\1|g' \
+  "$CLAUDE_DIR/CLAUDE.md" > "$PROJECT_ROOT/CLAUDE.md"
 # Sync every branch library back. Discover the working copy's .lib dirs recursively
 # (lib_dirs = find ... -name .lib) and pull each FROM its identity counterpart, using the
 # same lib_name_for mapping the sync-up uses — the exact reverse. Correct for ANY placement
