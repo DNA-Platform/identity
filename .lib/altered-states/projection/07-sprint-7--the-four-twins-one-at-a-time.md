@@ -52,6 +52,25 @@ not re-discovered:
 3. **The pre-flight** (data-clip, metamer SSIM, fixed-neuron-set, shifter ablation, ceilings) —
    wire while it trains, before the analysis reads.
 
+## Investigation — the y-retinotopy collapse, and the step we dropped (2026-06-25)
+
+The first arm-A seed trained, and the by-eye gate earned its place: filters healthy, FEVE 0.30,
+predictions non-negative — **but the readout retinotopy collapsed in y** (y-std 0.004, a flat
+horizontal line; the automated spread-flag of 0.222 missed it because x-variance carries it — the
+*eye* caught what the number hid). A fast comparison against the Sprint-4 known-good twin (no
+re-train) isolated it cleanly: **same cells, identical config, identical cortical `source_grid` —
+the only difference is the shifter.** Arm B (`shifter=None`) keeps y-std 0.071; arm A
+(`MLPShifter`) collapses it. In the code, we enable it with bare `shifter=True`, which takes the
+sensorium builder defaults — **`gamma_shifter=0`, no shifter regularization.** The lead: an
+unregularized shifter co-adapts with the `grid_mean_predictor` and absorbs the vertical retinotopy.
+
+**The lesson (Doug's, confirmed):** this is not a wrong computation, it is a *forgotten step* — we
+catalogued the competition baseline (stimulus-only) but never the Franke behaviour-shifter config
+(the `gamma_shifter` and its companions), so enabling the shifter fell back to the wrong default. A
+cataloguing/reading failure, found in the code, caught by the by-eye gate before four more seeds
+burned. Canonical shifter config sourced from CD (async); the run is **paused with seed 1 saved**;
+no re-train until the config is corrected **and catalogued in [the twin recipe](../the-build/12-how-we-make-a-publication-grade-twin.md) where the next person will read it** — not left in a sprint note that scrolls away.
+
 ## Review
 
 Succeeds when: the runner trains `pre A` to convergence as a checkable background process; the by-eye panel and validation come back and the team inspects them; the MEIs and metamers match the published look; and only a clean inspection licenses `pre B`. The gate is a phase, not a hope — and the long run is now something Doug can watch, not a black box.
