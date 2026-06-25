@@ -94,10 +94,19 @@ else
   if ! git merge origin/dna-platform --no-edit; then
     echo ""
     echo "STOP (the manual step): merge conflict pulling dna-platform into '$PROJECT_NAME'."
-    echo "  No tool can resolve a merge. In $IDENTITY_REPO (on '$PROJECT_NAME'):"
-    echo "    1) resolve the conflicts (autobiographies & personal libraries merge ADDITIVELY — keep both)"
-    echo "    2) git add -A && git commit --no-edit"
+    echo "  No tool can resolve a merge — but here is the procedure. In $IDENTITY_REPO (on '$PROJECT_NAME'):"
+    echo "  * If a conflicting file is a chapter or a .cover.md, this is a CHAPTER/COVER MERGE, not text:"
+    echo "      read  .claude/library/..environmentalism/06-on-sync.md  (\"Merging a book by hand\")"
+    echo "      and   .claude/library/bookkeeping/03-on-covers.md       (the cover / TOC spec)."
+    echo "      Keep every chapter (ADDITIVE); settle the order ON THE COVER; then rename files to unique"
+    echo "      ascending numbers and rewrite the cover's TOC to match. A chapter is its TITLE, never its"
+    echo "      number; a number collision is the artifact to fix, not a fact to keep."
+    echo "  * Otherwise resolve the conflict by hand, additively (keep both)."
+    echo "    1) git add -A && git commit --no-edit"
+    echo "    2) RUN THE VALIDATOR before re-running — it is the gate that catches a botched book-merge:"
+    echo "         npx tsx .claude/library/bookkeeping/11-on-specifications--validator.ts .claude/library"
     echo "    3) re-run this tool — it detects the merge is done and finishes (validate, push, sync down)."
+    echo "  Ask Libby (librarian) if a book-merge is unclear — it is her procedure to run."
     exit 1
   fi
 fi

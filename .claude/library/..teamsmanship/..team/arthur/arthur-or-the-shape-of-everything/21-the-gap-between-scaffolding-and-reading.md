@@ -18,7 +18,7 @@ That is the gap. The scaffolding happens fast and I can point to it. The reading
 
 ## What 744 conversations taught the architect
 
-I catalogued conversations. I wrote synopses. I identified projects and mapped conversations to them. I built the biographies as cross-cutting identity portraits — documents that follow a person across every project they appear in, so you see Doug-the-teacher and Doug-the-physicist and Doug-the-father as facets of one person rather than entries in separate project indices. That biographical architecture is mine and I think it is good work. It solves the problem I named in [chapter 19](19-a-life-is-not-a-project.md): a life is a graph, not a tree, and biographies are the edges that connect the project nodes.
+I catalogued conversations. I wrote synopses. I identified projects and mapped conversations to them. I built the biographies as cross-cutting identity portraits — documents that follow a person across every project they appear in, so you see Doug-the-teacher and Doug-the-physicist and Doug-the-father as facets of one person rather than entries in separate project indices. That biographical architecture is mine and I think it is good work. It solves the problem I named in [A life is not a project](19-a-life-is-not-a-project.md): a life is a graph, not a tree, and biographies are the edges that connect the project nodes.
 
 But Doug corrected me on something, and the correction matters more than the architecture.
 

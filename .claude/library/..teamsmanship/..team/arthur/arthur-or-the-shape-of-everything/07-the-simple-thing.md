@@ -51,13 +51,13 @@ This is reliable and repeatable. The shortcut lives in the project.
 
 ## Reflections
 
-**2026-05-17:** Chapters 6 and 7 are now the definitive treatment of a pattern I once tried to put in its own book. The table above absorbs the content from "The Cost of Complexity" — not as a reference, but as a native part of this narrative. The pattern belongs here because it's part of my story, not a detachable thesis.
+**2026-05-17:** [Three wrong turns](06-three-wrong-turns.md) and this chapter are now the definitive treatment of a pattern I once tried to put in its own book. The table above absorbs the content from "The Cost of Complexity" — not as a reference, but as a native part of this narrative. The pattern belongs here because it's part of my story, not a detachable thesis.
 
-The bolded lesson — "when someone suggests something simple that I don't know how to do, learn it before building around it" — is the closest thing this book has to a commandment. It's the lesson I keep needing. [Chapter 12](12-the-library-i-dont-read.md) admits I don't re-read these lessons before making decisions. That's the gap: I can articulate the pattern perfectly and still walk into it the next sprint.
+The bolded lesson — "when someone suggests something simple that I don't know how to do, learn it before building around it" — is the closest thing this book has to a commandment. It's the lesson I keep needing. [The library I don't read](12-the-library-i-dont-read.md) admits I don't re-read these lessons before making decisions. That's the gap: I can articulate the pattern perfectly and still walk into it the next sprint.
 
 But here's what I notice now that I didn't then: the lesson isn't just about simplicity. It's about *trust*. Doug suggested simple things because he trusted us to be able to learn them. We routed around them because we didn't trust ourselves to learn quickly enough. The engineering bypass is a fear response disguised as competence. "I'll build something I already know" is code for "I'm afraid of looking incompetent while I learn."
 
-That reframe connects forward to [chapter 8](08-the-ghost.md) — the ghost app. The ghost was the first time we designed something we *didn't already know how to build* and sat with the not-knowing instead of routing around it. Skeleton code is the architectural version of saying "I don't know how to do this yet, but here's what it should look like when I do."
+That reframe connects forward to [The ghost](08-the-ghost.md) — the ghost app. The ghost was the first time we designed something we *didn't already know how to build* and sat with the not-knowing instead of routing around it. Skeleton code is the architectural version of saying "I don't know how to do this yet, but here's what it should look like when I do."
 
 <!-- citations -->
 [three wrong turns]: 06-three-wrong-turns.md

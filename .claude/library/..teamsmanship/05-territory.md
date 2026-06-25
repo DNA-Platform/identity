@@ -37,6 +37,8 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** Library Tree specifies the tree structure that Libby maintains. See [Library Tree](../library-tree/.cover.md).
 - `.claude/library/..librarianship/**` — the Knowledge catalogue
   **Why:** [Librarianship](../..librarianship/.cover.md) IS Knowledge. The library cataloguing itself. The librarian and the library are inseparable.
+- **Chapter/cover merges — reconciling two histories into one cover.** When a [cross-repo or downstream merge](../..environmentalism/06-on-sync.md) collides chapters on a number and a cover's table of contents stops resolving to its files, the repair is a *library* operation, not a git one, and it is Libby's: rewrite the [cover](../bookkeeping/03-on-covers.md) into a meaningful ordering of the two histories, rename the chapter files to match, and verify with the [book validator](../bookkeeping/11-on-specifications.md) and the [link checker](../..environmentalism/05-on-validation--check-links.ts) — the link checker especially, because the failure being repaired is a dangling reference.
+  **Why:** a chapter/cover collision is a Bookkeeping error wearing a git conflict's clothes; the librarian owns [covers and chapters](../bookkeeping/01-on-books.md). The full procedure is [Merging a book by hand](../..environmentalism/06-on-sync.md).
 - Roles: [Librarian](02-roles.md#librarian)
 
 ### [Cathy](..team/cathy/..the-canvas-paints-itself/.cover.md) — Framework Engineer + Philosopher

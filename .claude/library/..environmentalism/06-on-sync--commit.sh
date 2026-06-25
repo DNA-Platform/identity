@@ -269,8 +269,13 @@ if [ "$has_identity_changes" = true ]; then
         git push
         echo "Pushed main"
     else
-        echo "ERROR: Merge conflict merging dna-platform into main"
-        echo "Resolve manually in $IDENTITY_REPO"
+        echo "ERROR: Merge conflict merging dna-platform into main."
+        echo "  If a conflicting file is a chapter or .cover.md, this is a CHAPTER/COVER MERGE — Libby's:"
+        echo "  rewrite the cover into ONE meaningful ordering of the two histories, then rename files to match."
+        echo "  Read .claude/library/..environmentalism/06-on-sync.md (\"Merging a book by hand\") and bookkeeping/03-on-covers.md."
+        echo "  Resolve in $IDENTITY_REPO, then verify with BOTH validators (the link checker especially):"
+        echo "    npx tsx .claude/library/bookkeeping/11-on-specifications--validator.ts .claude/library"
+        echo "    npx tsx .claude/library/..environmentalism/05-on-validation--check-links.ts .claude/library"
         exit 1
     fi
 fi
@@ -302,8 +307,13 @@ echo "Downstream merge: dna-platform → $PROJECT_NAME"
 if git merge dna-platform --no-edit; then
     echo "Merged dna-platform into $PROJECT_NAME"
 else
-    echo "ERROR: Merge conflict during downstream merge"
-    echo "Resolve manually in $IDENTITY_REPO on branch $PROJECT_NAME"
+    echo "ERROR: Merge conflict during downstream merge into $PROJECT_NAME."
+    echo "  If a conflicting file is a chapter or .cover.md, this is a CHAPTER/COVER MERGE — Libby's:"
+    echo "  rewrite the cover into ONE meaningful ordering of the two histories, then rename files to match."
+    echo "  Read .claude/library/..environmentalism/06-on-sync.md (\"Merging a book by hand\") and bookkeeping/03-on-covers.md."
+    echo "  Resolve in $IDENTITY_REPO on branch $PROJECT_NAME, then verify with BOTH validators (link especially):"
+    echo "    npx tsx .claude/library/bookkeeping/11-on-specifications--validator.ts .claude/library"
+    echo "    npx tsx .claude/library/..environmentalism/05-on-validation--check-links.ts .claude/library"
     exit 1
 fi
 
