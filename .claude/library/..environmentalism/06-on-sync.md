@@ -96,16 +96,13 @@ It is idempotent (re-running re-syncs the identity into the project) and support
 
 ## The pull tool — syncing down, staged through the branch
 
-[06-on-sync--pull.sh](06-on-sync--pull.sh) is the down-sync, the counterpart to the commit tool. It brings the organization's changes from `dna-platform` *into* a project — but **through the project branch as a staging ground, never straight into the working copy.** This matters because compiled files (agents, `CLAUDE.md`, rules, skills) are deterministic from chapters: any change in compiled output traces to a chapter that changed in the pull, never a surprise. So the tool stages and verifies before it touches the working copy:
+The down-sync brings the organization's changes from `dna-platform` *into* a project — but **through the project branch as a staging ground, never straight into the working copy.** Compiled files (agents, `CLAUDE.md`, rules, skills) are deterministic from chapters, so any change in compiled output traces to a chapter that changed in the pull, never a surprise. It is **two commands, not one**, because a merge that needs hand-resolution must not be entangled with a tool that also guesses whether it is resuming:
 
-1. Merge `dna-platform` into the project branch (pull the org's chapter changes).
-2. Recompile the platform files on the branch from the merged chapters.
-3. Show the diff — read it; every change should trace to a chapter from step 1.
-4. Validate the branch. If it fails, **stop** — the error is in a chapter; fix it there. The working copy is never touched.
-5. Commit and push the branch.
-6. **Only now** sync the verified branch into the working copy.
+**Phase 1 — [pull](06-on-sync--pull.sh).** Sync the working-copy library up onto the project branch, then merge `dna-platform` in. On a clean merge it hands straight off to phase 2. On a **conflict it STOPS** with the [chapter/cover merge procedure](#merging-a-book-by-hand--libbys-procedure) — resolve by hand, commit, then run phase 2 yourself.
 
-The `--no-worktree-sync` flag runs steps 1–5 and stops: it proves the branch *works* and leaves the working copy untouched. The rule is **don't sync the working copy until the branch is verified** — run the compiler on the branch, read what changed, validate, and only then pull here.
+**Phase 2 — [resolve](06-on-sync--resolve.sh).** The separate finisher: recompile the platform files on the branch, show the diff (every change traces to a merged chapter), validate the branch (a failure **stops** here — the error is in a chapter, the working copy untouched), commit and push the branch, and **only then** sync the verified branch down into the working copy. It refuses to run while any path is still in conflict, and it carries **no resume heuristic** — you run it *because the merge is done*, not because a tool guessed it was. `--no-worktree-sync` proves and pushes the branch without touching the working copy.
+
+Why split? A single command had to *infer* "fresh run versus resume" from an ancestor check, and that inference mis-fired — skipping the sync-up when it shouldn't have. Resolving a merge is its own act with its own autonomy; the tool that finishes a merge should never have to guess that a merge happened. **Don't sync the working copy until the branch is verified** — and let resolve, not a heuristic, decide when that is.
 
 ## The mirror hazard: the sync pauses, it does not cold-automate
 
