@@ -130,5 +130,17 @@ if [ "${#lib_dirs[@]}" -gt 0 ]; then
   done
 fi
 echo "    working copy now equals the verified branch."
+
+echo ""; echo ">>> Verify the sync — mechanical, but checked, never blindly trusted"
+post_up="$(extra_in_dest "$IDENTITY_REPO/.claude" "$CLAUDE_DIR")"
+post_dn="$(extra_in_dest "$CLAUDE_DIR" "$IDENTITY_REPO/.claude")"
+wc_err="$(npx tsx "$CLAUDE_DIR/library/bookkeeping/11-on-specifications--validator.ts" "$CLAUDE_DIR/library" 2>&1 | grep -oE 'Errors: [0-9]+')"
+if [ "${post_up:-0}" = "0" ] && [ "${post_dn:-0}" = "0" ]; then
+  echo "    working copy <-> branch: IN SYNC (0 path differences)"
+else
+  echo "    WARNING: working copy and branch differ (branch-only=$post_up, wc-only=$post_dn) — inspect before trusting"
+fi
+echo "    working-copy validation: ${wc_err:-unknown}"
+echo "    >>> CHECK BY HAND: the sync is automatic, the verdict is not — confirm the working copy loaded as expected."
 git checkout main --quiet 2>/dev/null || true
 echo "=== DONE ==="
