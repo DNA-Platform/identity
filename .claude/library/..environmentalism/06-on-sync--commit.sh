@@ -222,20 +222,28 @@ git checkout dna-platform --quiet
 git merge --ff-only origin/dna-platform --quiet 2>/dev/null || true
 
 # --- RECONCILED guard: refuse to clobber another project's work --------------
-# /MIR makes the org branch match THIS copy, DELETING anything the org has that
-# we lack. With two active projects sharing dna-platform, that silently deletes
-# the other project's un-pulled work — whoever pushes second wins. So dry-run the
-# mirror first: if it would DELETE real content, REFUSE. Reconcile down first
-# (06-on-sync--pull.sh); override only when the absence is genuinely intended.
-# NOTE: no /NC — /NC (no-class) suppresses the "*EXTRA" marker this grep needs, which
-# silently broke this guard: it counted 0 and never refused, so a /MIR clobbered the other
-# project's un-pulled work. The do_sync mirror below may keep /NC for quiet output.
-would_delete="$(MSYS_NO_PATHCONV=1 robocopy "$(winpath "$CLAUDE_DIR")" "$(winpath "$IDENTITY_REPO/.claude")" /MIR /L /XD node_modules run .git /NJH /NJS /NS /FP 2>&1 | grep -ciE '\*EXTRA' || true)"
-if [ "${would_delete:-0}" -gt 0 ] && [ "${RECONCILED:-0}" != "1" ]; then
-  echo "REFUSING identity push: dna-platform holds ${would_delete} path(s) this copy lacks."
-  echo "A /MIR would DELETE them — almost certainly another project's work. Reconcile DOWN first:"
+# /MIR makes the org branch match THIS copy, and it loses the org's work TWO ways —
+# both must be guarded:
+#   DELETE  — a path the org has that we lack (robocopy "*EXTRA"); /MIR purges it.
+#   REVERT  — a path the org UPDATED while this copy stayed behind (robocopy "Older":
+#             source older than dest); /MIR still copies it, silently regressing the
+#             newer file. A reverted chapter is as lost as a deleted one, and the
+#             delete-only guard never saw it (no *EXTRA) — that is the gap this closes.
+# With two projects sharing dna-platform, dry-run the mirror first and REFUSE on either.
+# Reconcile down first (06-on-sync--pull.sh) — a real git merge, the manual step the
+# mirror can't do; override only when the loss is genuinely intended.
+# NOTE: no /NC — /NC (no-class) suppresses the "*EXTRA"/"Older" markers these greps need,
+# which once silently broke the guard. The do_sync mirror below may keep /NC for quiet output.
+mirror_preview="$(MSYS_NO_PATHCONV=1 robocopy "$(winpath "$CLAUDE_DIR")" "$(winpath "$IDENTITY_REPO/.claude")" /MIR /L /XD node_modules run .git /NJH /NJS /NS /FP 2>&1 || true)"
+would_delete="$(printf '%s\n' "$mirror_preview" | grep -ciE '\*EXTRA' || true)"
+would_revert="$(printf '%s\n' "$mirror_preview" | grep -cE '^[[:space:]]+Older[[:space:]]' || true)"
+if { [ "${would_delete:-0}" -gt 0 ] || [ "${would_revert:-0}" -gt 0 ]; } && [ "${RECONCILED:-0}" != "1" ]; then
+  echo "REFUSING identity push: a /MIR would lose work on dna-platform —"
+  echo "  ${would_delete} path(s) DELETED (org has them, this copy lacks them),"
+  echo "  ${would_revert} path(s) REVERTED (org updated them, this copy is behind)."
+  echo "Both are another project's or session's work. Reconcile DOWN first (the manual merge step):"
   echo "    bash \"$(dirname "${BASH_SOURCE[0]}")/06-on-sync--pull.sh\""
-  echo "then re-run. Override ONLY if the absence is genuinely intended: RECONCILED=1 $0 \"<msg>\""
+  echo "then re-run. Override ONLY if the loss is genuinely intended: RECONCILED=1 $0 \"<msg>\""
   exit 1
 fi
 
