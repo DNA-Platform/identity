@@ -1,0 +1,18 @@
+# The two axes of perspective
+
+- **author:** [Cathy](../cathy-and-the-reactive-canvas/.cover.md)
+- **subject:** [Cathy's Library](../..the-canvas-paints-itself/.cover.md)
+
+---
+
+Sprint 42 Phase 2 landed green — 593/593, +0 tsc — and with it the settled shape of perspectives in $Chemistry. Filing it now so the composition chapter, when we write it, starts from the design rather than re-deriving it. There are **two orthogonal axes**, and keeping them orthogonal is the whole point.
+
+**Horizontal — `perspectives` / `reveal`.** Sibling subclasses of a chemical, each overriding `view`, filed on a shared base. `reveal` pops a subclass's `view` off onto a `Perspective` and registers it; reading an instance's `perspectives` clones each lens and binds *this* instance onto it, so a perspective is "this object, seen this way." Picked from a menu, bound per instance. Many siblings, one altitude.
+
+**Vertical — `look('up' | 'down')`.** ONE instance walked up and down its OWN ancestry, rendering through each tier's `view`, all the way to "revert to base." Single inheritance means one parent per step, so the walk is unambiguous. One object, many altitudes.
+
+The public API is deliberately small: `look(direction: 'up'|'down'): void` (silent no-op clamps at both ends), `get viewLevel(): string` (the constructor name of the active tier — a breadcrumb), `canLook(direction): boolean` (whether a step would move, so a UI can grey the ends). The internals: `protected $view` get/set is the single write-point — get returns `$activeView$ ?? this.view`, set invalidates `[$viewCache$]` **and fires `this[$reaction$].react()`** (the cache-null is not the repaint — the reaction is; see [Cache invalidation is not a repaint](cache-invalidation-is-not-a-repaint.md)). `[$renderView$]()` is the render entry `$lift` calls instead of `view()`, so the active view is consulted without putting any logic inside `view()`, which user subclasses freely override. `$isViewBase$` is stamped own on `$Particle.prototype` and `$Chemical.prototype` so the walk bottoms out at the highest USER view and never selects the framework's structural `toString`/`children`.
+
+Both bugs I flagged in the pressure-test were load-bearing, and one had a dimension I didn't predict. (1) The cursor was a `#private` field; the brand is missing on `Object.create(template)` derivatives, so `look`/`canLook` threw on the common `$(Class)` mount — *and* the private field made esbuild emit a renamed `_$Particle` class, breaking three identity tests asserting `type.name === '$Particle'`. A symbol-keyed `$viewLevel$` fixed both at once. (2) The `$view` setter nulled the cache and expected a repaint; it now calls `react()`. Two tightenings also landed: extract the tier view via `Object.getOwnPropertyDescriptor(proto,'view')` with `typeof desc.value === 'function'` so an accessor `get view()` isn't captured by invocation; and read the cursor own-or-0 so a freshly mounted derivative resets to most-derived instead of inheriting a looked-at template's altitude.
+
+The line I keep turning over: `$view` get returns `$activeView$ ?? this.view`. When nothing is active, the instance renders **through itself** — `look` only moves which ancestor "itself" resolves to. That is f(x) = x in a new place: the default is the object in equilibrium with its own view, and the vertical axis is a controlled perturbation of *which self* the fixed point names. It belongs with the others in [The Fixed-Point Pattern](../the-fixed-point-pattern/.cover.md) — the same structure, now at the altitude of a single instance's ancestry. Horizontal is "which sibling sees me"; vertical is "at what depth of myself do I see." The reveal was never description — it is the object, bound, seen.

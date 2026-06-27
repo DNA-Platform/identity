@@ -36,4 +36,10 @@ If validation fails, nothing is pushed. The operator never chooses branches — 
 
 The `/MIR` to the org branch would DELETE anything the org has that this copy lacks — another project's un-pulled work. So the tool dry-runs the mirror first and **refuses** if it would delete real content: [/pull](../../library/our-skillset/25-pull.md) down to reconcile first, then push. Override only with `RECONCILED=1`, and only when the absence is genuinely intended. With two active projects sharing `dna-platform`, this guard is what keeps one team from silently deleting the other's work.
 
+## Pull before you push — the rule the guard does not enforce
+
+The clobber guard catches **deletions** — paths the org has that this copy lacks. It does **not** catch a **stale overwrite**: a file you both have, that the platform updated while your working copy stayed behind. The mirror copies by timestamp and is direction-blind, so a push from a behind working copy silently **reverts** those newer files on `dna-platform` — and because nothing was deleted, no `*EXTRA` appears and the guard never fires. A reverted skill or someone else's newer chapter is just as lost as a deleted one; the guard simply cannot see it.
+
+So the discipline is unconditional, and it is the correct way to use git here: **[/pull](../../library/our-skillset/25-pull.md) to reconcile before you /push**, any time the platform may have advanced — and with two projects sharing `dna-platform`, assume it always has. Pull reconciles by a real **git merge** of `dna-platform` (content-aware and [additive](../../library/bookkeeping/10-on-evolution.md) — it keeps the newer file *and* your additions), which is exactly the judgment the timestamp mirror cannot make. The order is the whole rule: **reconcile down, then push up. Never push from a working copy you have not just reconciled.** When the push only carries genuine additions on top of a current copy, the mirror has nothing to revert and the guard has nothing to refuse.
+
 <!-- library: .claude/library/our-skillset/26-push.md -->
