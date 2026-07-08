@@ -3,7 +3,7 @@
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
 - **date:** 2026-06-28
 - **topic:** Nancy > Neuroscience
-- **previous:** [The baseline re-anchor — Franke demoted, Walker's modulator found](16-the-baseline-re-anchor-and-walkers-modulator.md)
+- **previous:** [The baseline re-anchor — Franke demoted, Walker's modulator found](08-the-baseline-re-anchor-and-walkers-modulator.md)
 - **verdict:** pending (read not yet done)
 - **status:** in progress
 

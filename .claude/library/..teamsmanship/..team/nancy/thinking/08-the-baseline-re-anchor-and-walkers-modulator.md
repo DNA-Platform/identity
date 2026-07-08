@@ -3,13 +3,13 @@
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
 - **date:** 2026-06-28
 - **topic:** Nancy > Neuroscience
-- **previous:** [The specification, sent for a rigorous primary-source review](15-the-spec-sent-for-rigorous-review.md)
+- **previous:** [The specification, sent for a rigorous primary-source review](07-the-spec-sent-for-rigorous-review.md)
 - **verdict:** sufficient (dispositive, source-grounded)
 - **status:** concluded
 
 ---
 
-The follow-up to [ch15](15-the-spec-sent-for-rigorous-review.md). Doug challenged the Franke-as-canonical
+The follow-up to [ch15](07-the-spec-sent-for-rigorous-review.md). Doug challenged the Franke-as-canonical
 anchor: *"this is Reimer data, usually analyzed with Tolias — is CD comparing to the wrong baseline?"* I
 sent it with the reminder that the canonical Reimer/Tolias digital-twin lineage is Walker + Cobos +
 Lurz/Sensorium. CD pulled Walker, Cobos, and Lurz directly. **Doug's instinct was right, and the answer

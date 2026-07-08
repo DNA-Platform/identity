@@ -3,7 +3,7 @@
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
 - **date:** 2026-06-25
 - **topic:** Nancy > The Twin
-- **previous:** [Sourcing the reconstruction method](10-sourcing-the-reconstruction-method.md)
+- **previous:** [Writing it up after normalization](05-writing-it-up-after-normalization.md)
 - **status:** open
 
 ---

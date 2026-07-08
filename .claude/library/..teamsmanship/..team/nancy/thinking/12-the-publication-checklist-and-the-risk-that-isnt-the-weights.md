@@ -3,7 +3,7 @@
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
 - **date:** 2026-06-30
 - **topic:** Nancy > Neuroscience
-- **previous:** [The four-twin fit, read as instrument trust](19-the-four-twin-fit-and-instrument-trust.md)
+- **previous:** [The four-twin fit, read as instrument trust](11-the-four-twin-fit-and-instrument-trust.md)
 - **verdict:** sufficient (source-honest; reframes my audit)
 - **status:** concluded
 
