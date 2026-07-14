@@ -16,7 +16,7 @@ I sent Desktop the complete pipeline spec and asked for a point-by-point audit a
 
 ## Why now
 
-This is the **last check on [Sprint 5's plan](../../../../../../library/.lib/projection/05-sprint-5--the-publication-grade-analysis.md)** before we build the publication-grade analysis from scratch. The plan is strong and compute is unconstrained (ten hours fine), so the cost of building it *wrong* is real — better to have the canonical recipe audited top-to-bottom by something that holds the whole literature before we commit. The standing discipline rides on top: confirm two things are the same *kind* of thing before reading a difference as a deficiency.
+This is the **last check on [Sprint 5's plan](../../../../../../../altered-states/library/.lib/projection/05-sprint-5--the-publication-grade-analysis.md)** before we build the publication-grade analysis from scratch. The plan is strong and compute is unconstrained (ten hours fine), so the cost of building it *wrong* is real — better to have the canonical recipe audited top-to-bottom by something that holds the whole literature before we commit. The standing discipline rides on top: confirm two things are the same *kind* of thing before reading a difference as a deficiency.
 
 ## What I expect — the prediction to measure against
 
@@ -31,11 +31,11 @@ My prior, stated concretely so the answer can confirm or break it:
 
 ## What I already know — the context I'll judge the answer against
 
-- Core + trainer are the **publication recipe verbatim** ([The Build ch 10](../../../../../../library/.lib/the-build/10-the-digital-twin-recipe.md), [ch 12](../../../../../../library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md)); the twin gap is bolted-on pieces (ensemble, behaviour, shifter) and a metric, not a broken model.
-- The MEI synthesis + display recipe and the MEI-≠-reconstruction display split are already learned from the nnvision/mei repo configs ([The Build ch 11](../../../../../../library/.lib/the-build/11-how-we-make-a-publication-form-mei.md)).
-- The reconstruction recipe (σ=2.5 gradient blur, 1000 steps, upsample to 144×256, contrast-scaled, 0.61 normalized correlation) is the [digital-twins methods](../../../../../../library/papers/digital-twins-tolias-2022/04-methods.md).
-- Normalized correlation-to-average is the Step-1 validation bar of the [analysis plan](../../../../../../library/.lib/the-altered-cortex/03-the-analysis-plan.md); std-normalization removing the per-neuron gain scalar is the heart of the early finding and erases exactly the published DOI gain effect.
-- The whole gap and ordered plan live in [From the ground up](../../../../../../library/reports/from-the-ground-up--the-publication-grade-analysis.md); the confound flags I'd most want confirmed are in my [Sprint-5 review](#) (vasoactive, z-drift, frozen-baseline transfer for H4/H5, behaviour two-roles, n=1).
+- Core + trainer are the **publication recipe verbatim** ([The Build ch 10](../../../../../../../altered-states/library/.lib/the-build/10-the-digital-twin-recipe.md), [ch 12](../../../../../../../altered-states/library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md)); the twin gap is bolted-on pieces (ensemble, behaviour, shifter) and a metric, not a broken model.
+- The MEI synthesis + display recipe and the MEI-≠-reconstruction display split are already learned from the nnvision/mei repo configs ([The Build ch 11](../../../../../../../altered-states/library/.lib/the-build/11-how-we-make-a-publication-form-mei.md)).
+- The reconstruction recipe (σ=2.5 gradient blur, 1000 steps, upsample to 144×256, contrast-scaled, 0.61 normalized correlation) is the [digital-twins methods](../../../../../../../altered-states/library/papers/digital-twins-tolias-2022/04-methods.md).
+- Normalized correlation-to-average is the Step-1 validation bar of the [analysis plan](../../../../../../../altered-states/library/.lib/the-altered-cortex/03-the-analysis-plan.md); std-normalization removing the per-neuron gain scalar is the heart of the early finding and erases exactly the published DOI gain effect.
+- The whole gap and ordered plan live in [From the ground up](../../../../../../../altered-states/library/reports/from-the-ground-up--the-publication-grade-analysis.md); the confound flags I'd most want confirmed are in my [Sprint-5 review](#) (vasoactive, z-drift, frozen-baseline transfer for H4/H5, behaviour two-roles, n=1).
 
 ## Evidence — what came back (verdict: SUFFICIENT)
 
@@ -76,10 +76,10 @@ The sharpest, and most humbling, thread: the **same-kind-of-number trap bit me a
 [previous]: 06-the-twin-and-the-metric-mismatch.md
 [research-topics]: ../research-topics/02-the-twin.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
-[sprint-5]: ../../../../../../library/.lib/projection/05-sprint-5--the-publication-grade-analysis.md
-[build-recipe]: ../../../../../../library/.lib/the-build/10-the-digital-twin-recipe.md
-[build-mei]: ../../../../../../library/.lib/the-build/11-how-we-make-a-publication-form-mei.md
-[build-twin]: ../../../../../../library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md
-[twin-methods]: ../../../../../../library/papers/digital-twins-tolias-2022/04-methods.md
-[analysis-plan]: ../../../../../../library/.lib/the-altered-cortex/03-the-analysis-plan.md
-[ground-up]: ../../../../../../library/reports/from-the-ground-up--the-publication-grade-analysis.md
+[sprint-5]: ../../../../../../../altered-states/library/.lib/projection/05-sprint-5--the-publication-grade-analysis.md
+[build-recipe]: ../../../../../../../altered-states/library/.lib/the-build/10-the-digital-twin-recipe.md
+[build-mei]: ../../../../../../../altered-states/library/.lib/the-build/11-how-we-make-a-publication-form-mei.md
+[build-twin]: ../../../../../../../altered-states/library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md
+[twin-methods]: ../../../../../../../altered-states/library/papers/digital-twins-tolias-2022/04-methods.md
+[analysis-plan]: ../../../../../../../altered-states/library/.lib/the-altered-cortex/03-the-analysis-plan.md
+[ground-up]: ../../../../../../../altered-states/library/reports/from-the-ground-up--the-publication-grade-analysis.md

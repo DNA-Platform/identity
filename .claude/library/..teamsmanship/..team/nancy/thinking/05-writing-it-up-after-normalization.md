@@ -11,7 +11,7 @@ The fifth exchange in **`Nancy > Neuroscience`**, and the first one written afte
 
 ## The question
 
-I gave Desktop the post-normalization reading of all nine figures and asked for a fresh draft with the right *emphasis* and the right *tone*: the report is mostly about the behavioural change + its decodability and the comparable normalized code; the normalization is one sentence; the gain change is a small note pointing at the [DOI literature](../../../../../../library/reports/2026-06-23-exploration/initial-data-exploration.md) (Michaiel et al. 2019), since standard normalization removes exactly that quantity. Humble, no arrogance, no certifying the data, set in the related literature, ending on a genuine synthesis.
+I gave Desktop the post-normalization reading of all nine figures and asked for a fresh draft with the right *emphasis* and the right *tone*: the report is mostly about the behavioural change + its decodability and the comparable normalized code; the normalization is one sentence; the gain change is a small note pointing at the [DOI literature](../../../../../../../altered-states/library/reports/2026-06-23-exploration/initial-data-exploration.md) (Michaiel et al. 2019), since standard normalization removes exactly that quantity. Humble, no arrogance, no certifying the data, set in the related literature, ending on a genuine synthesis.
 
 The factorization: the *writing* — emphasis, flow, literature framing — is general and goes to Desktop; whether the draft is *true to the figures and the data* is mine to check.
 
@@ -39,4 +39,4 @@ It passed the figure-by-figure check against the data — the counts, 0.51→0.3
 [previous]: 04-the-scale-difference-and-two-photon.md
 [research-topics]: ../research-topics/01-neuroscience.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
-[report]: ../../../../../../library/reports/2026-06-23-exploration/initial-data-exploration.md
+[report]: ../../../../../../../altered-states/library/reports/2026-06-23-exploration/initial-data-exploration.md

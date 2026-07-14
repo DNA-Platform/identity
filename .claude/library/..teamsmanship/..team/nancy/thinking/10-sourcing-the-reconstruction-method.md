@@ -8,7 +8,7 @@
 
 ---
 
-The fifth exchange of **`Nancy > The Twin`**. The trigger is Doug, and the catch is sharp: we called the pipeline "almost ready" while one of the **two essential computations** — the predicted images, i.e. stimulus **reconstruction** — had no sourced method. The MEIs we settled the hard way (the walker ops turned out to be the lab's own, bundled in `nnvision.legacy.featurevis`). Reconstruction is the other half, and for it I had only a *prose* recipe — which is exactly the trap Doug named: a deep-dive paragraph does not 100% specify an algorithm, and the [standing principle](../../../../the-build/11-how-we-make-a-publication-form-mei.md) forbids me from closing the gap by implementing.
+The fifth exchange of **`Nancy > The Twin`**. The trigger is Doug, and the catch is sharp: we called the pipeline "almost ready" while one of the **two essential computations** — the predicted images, i.e. stimulus **reconstruction** — had no sourced method. The MEIs we settled the hard way (the walker ops turned out to be the lab's own, bundled in `nnvision.legacy.featurevis`). Reconstruction is the other half, and for it I had only a *prose* recipe — which is exactly the trap Doug named: a deep-dive paragraph does not 100% specify an algorithm, and the [standing principle](../../../../../../../altered-states/library/.lib/the-build/11-how-we-make-a-publication-form-mei.md) forbids me from closing the gap by implementing.
 
 ## The question
 
@@ -16,7 +16,7 @@ The general part, sent to CD: the **exact published method and public code** for
 
 ## What I already know
 
-- **The concept is catalogued** — the [literature note](../../../../the-literature/01-digital-twins-tolias-2022.md) and its deep-dive: start from gray, gradient-descend the image to minimize MSE between predicted and **recorded** responses, blur the gradient at σ=2.5, ~1000 iters; MNIST gets a VAE-latent variant. The **display** rule is catalogued too: per-image min/max + bicubic 36×64→144×256 (NOT the MEI's fixed-shared-range rule).
+- **The concept is catalogued** — the [literature note](../../../../../../../altered-states/library/.lib/the-literature/01-digital-twins-tolias-2022.md) and its deep-dive: start from gray, gradient-descend the image to minimize MSE between predicted and **recorded** responses, blur the gradient at σ=2.5, ~1000 iters; MNIST gets a VAE-latent variant. The **display** rule is catalogued too: per-image min/max + bicubic 36×64→144×256 (NOT the MEI's fixed-shared-range rule).
 - **The code is NOT in our installed tools.** I searched `nnvision`, `mei`, and all of site-packages for reconstruct / invert / MSE — nothing. Unlike the MEI ops, there is no bundled copy.
 - **The engine IS ours.** `mei.methods.gradient_ascent` (proven today on real MEIs) ascends whatever scalar the wrapped model returns. Reconstruction is the same engine with the objective `−MSE(twin(image), target_responses)` — a wrapper exactly like the `SingleNeuron` we already wrote.
 
@@ -27,7 +27,7 @@ The general part, sent to CD: the **exact published method and public code** for
 
 ## Evidence — what came back (verdict: SUFFICIENT, and it reframed the method)
 
-**Two corrections up front.** (1) The paper is **Cobos, Muhammad, Fahey, Ding, Ding, Reimer, Sinz, Tolias (2022), "It takes neurons to understand neurons: Digital twins of visual cortex synthesize neural *metamers*"** (bioRxiv 2022.12.09.519708) — the method is **metamer synthesis**, not "reconstruction": blank → gradient-descend to match recorded responses → the images are evaluated as *metamers* (do they re-evoke the original neural activity), not as pixel reconstructions. (2) **There is no public code** — CD grepped `nnvision`/`mei`/`sensorium` for `metamer|reconstruct|invert` (empty, confirming my own search) and web-searched for a repo (none); the paper has no code-availability statement and the author contributions say it was built in the lab's **internal DataJoint** pipeline. So this is the genuine fallback the [principle](../../../../the-build/11-how-we-make-a-publication-form-mei.md) names — *no code to get from GitHub* — and the Methods prose **fully specifies** the ~15-line algorithm.
+**Two corrections up front.** (1) The paper is **Cobos, Muhammad, Fahey, Ding, Ding, Reimer, Sinz, Tolias (2022), "It takes neurons to understand neurons: Digital twins of visual cortex synthesize neural *metamers*"** (bioRxiv 2022.12.09.519708) — the method is **metamer synthesis**, not "reconstruction": blank → gradient-descend to match recorded responses → the images are evaluated as *metamers* (do they re-evoke the original neural activity), not as pixel reconstructions. (2) **There is no public code** — CD grepped `nnvision`/`mei`/`sensorium` for `metamer|reconstruct|invert` (empty, confirming my own search) and web-searched for a repo (none); the paper has no code-availability statement and the author contributions say it was built in the lab's **internal DataJoint** pipeline. So this is the genuine fallback the [principle](../../../../../../../altered-states/library/.lib/the-build/11-how-we-make-a-publication-form-mei.md) names — *no code to get from GitHub* — and the Methods prose **fully specifies** the ~15-line algorithm.
 
 **The seven questions** (CD flagged each quoted / inferred / not-in-paper):
 1. **Repo** — NOT PUBLIC (internal DataJoint); reimplement from prose.
@@ -53,6 +53,6 @@ The metamer routine, specified: a **separate** module — plain **SGD on the ima
 <!-- citations -->
 [previous]: 09-by-eye-verification-and-a-code-review.md
 [research-topics]: ../research-topics/02-the-twin.md
-[mei-recipe]: ../../../../the-build/11-how-we-make-a-publication-form-mei.md
-[literature]: ../../../../the-literature/01-digital-twins-tolias-2022.md
+[mei-recipe]: ../../../../../../../altered-states/library/.lib/the-build/11-how-we-make-a-publication-form-mei.md
+[literature]: ../../../../../../../altered-states/library/.lib/the-literature/01-digital-twins-tolias-2022.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md

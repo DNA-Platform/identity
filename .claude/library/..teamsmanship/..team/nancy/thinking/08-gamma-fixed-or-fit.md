@@ -16,7 +16,7 @@ Does the canonical Sensorium-2022 / Tolias baseline use **FIXED** regularization
 
 ## Why now
 
-It gates the four-twin training run, and today we read the **installed** source and found a gap. The bare function defaults are `gamma_input=15.5`, `gamma_readout=4`, `lr_init=0.005`, `lr_decay_steps=3`. Our config overrides these with `gamma_input=6.3831`, `gamma_readout=0.0076`, `lr_init=0.009`, `lr_decay_steps=4` — heavy, oddly-specific deviations copied from a Sensorium-2022 baseline reference **not on disk** ([The Build ch 10 provenance flag](../../../../../../library/.lib/the-build/10-the-digital-twin-recipe.md)). If the baseline *fits* gamma and we *copy* the competition's numbers onto our Reimer scan, every twin is silently mis-regularized — gamma controls exactly the Laplacian smoothness of the core and the readout sparsity, i.e. the tuning structure the whole DOI analysis reads. So the instrument's correctness rides on this.
+It gates the four-twin training run, and today we read the **installed** source and found a gap. The bare function defaults are `gamma_input=15.5`, `gamma_readout=4`, `lr_init=0.005`, `lr_decay_steps=3`. Our config overrides these with `gamma_input=6.3831`, `gamma_readout=0.0076`, `lr_init=0.009`, `lr_decay_steps=4` — heavy, oddly-specific deviations copied from a Sensorium-2022 baseline reference **not on disk** ([The Build ch 10 provenance flag](../../../../../../../altered-states/library/.lib/the-build/10-the-digital-twin-recipe.md)). If the baseline *fits* gamma and we *copy* the competition's numbers onto our Reimer scan, every twin is silently mis-regularized — gamma controls exactly the Laplacian smoothness of the core and the readout sparsity, i.e. the tuning structure the whole DOI analysis reads. So the instrument's correctness rides on this.
 
 ## What I expect — my lean, as a prediction to measure against
 
@@ -32,10 +32,10 @@ The one answer that would **surprise me and flip part of this**: if CD shows the
 
 ## What I already know — the context I'll judge against
 
-- Our exact override values and the installed defaults, read from source today (the trigger above); the provenance flag is already standing in [The Build ch 10](../../../../../../library/.lib/the-build/10-the-digital-twin-recipe.md) ("appear only in our files … not in the installed source … a Phase-3 gate awaiting Doug").
+- Our exact override values and the installed defaults, read from source today (the trigger above); the provenance flag is already standing in [The Build ch 10](../../../../../../../altered-states/library/.lib/the-build/10-the-digital-twin-recipe.md) ("appear only in our files … not in the installed source … a Phase-3 gate awaiting Doug").
 - The parameter audit (my prior turn): constants like `fev_threshold=0.15` are repo defaults; the MEI gradient constants are verbatim nnvision; but these four training hyperparameters were exactly the ones flagged as *unverifiable from disk* — this `/think` is their resolution.
-- Core + trainer are otherwise the **publication recipe verbatim** ([ch 12, "what is not wrong"](../../../../../../library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md)); the open piece is the regularization provenance, not the model.
-- Discipline ([ch 12](../../../../../../library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md)): gamma bears on H1/H2 and the gain question; and a remembered value is a guess — only the source is the fact, which is why we don't ship copied gammas unverified.
+- Core + trainer are otherwise the **publication recipe verbatim** ([ch 12, "what is not wrong"](../../../../../../../altered-states/library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md)); the open piece is the regularization provenance, not the model.
+- Discipline ([ch 12](../../../../../../../altered-states/library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md)): gamma bears on H1/H2 and the gain question; and a remembered value is a guess — only the source is the fact, which is why we don't ship copied gammas unverified.
 
 ## Evidence — what came back (verdict: SUFFICIENT, dispositive)
 
@@ -76,5 +76,5 @@ The topic-level resolution is settled in [Research Topics → The Twin](../resea
 [previous]: 07-the-full-pipeline-audit.md
 [research-topics]: ../research-topics/02-the-twin.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
-[build-recipe]: ../../../../../../library/.lib/the-build/10-the-digital-twin-recipe.md
-[build-twin]: ../../../../../../library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md
+[build-recipe]: ../../../../../../../altered-states/library/.lib/the-build/10-the-digital-twin-recipe.md
+[build-twin]: ../../../../../../../altered-states/library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md

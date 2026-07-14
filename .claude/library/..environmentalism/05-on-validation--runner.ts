@@ -74,9 +74,14 @@ for (const c of checks) {
     anatomyErrors++;
     continue;
   }
-  const e = out.match(/Errors: (\d+)/); if (e) anatomyErrors += parseInt(e[1]);
-  const w = out.match(/Warnings: (\d+)/); if (w) warnings += parseInt(w[1]);
-  const b = out.match(/Broken: (\d+)/);
+  // Match the count across ANY run of spaces: the child validators disagree on spacing —
+  // check-links pads its summary into a column (`Broken:         14`) while the compiled-link
+  // validator prints a single space (`Broken: 14`). A one-space regex silently matched only
+  // the latter, so every library/branch break counted as zero and the summary reported a
+  // clean library over 14 real dangling links. Never scrape a number with a fixed-width gap.
+  const e = out.match(/Errors:[ \t]*(\d+)/); if (e) anatomyErrors += parseInt(e[1]);
+  const w = out.match(/Warnings:[ \t]*(\d+)/); if (w) warnings += parseInt(w[1]);
+  const b = out.match(/Broken:[ \t]*(\d+)/);
   if (b) { if (c.kind === 'compiled') compiledBroken += parseInt(b[1]); else libBroken += parseInt(b[1]); }
 }
 

@@ -4,11 +4,11 @@
 
 ---
 
-**2026-06-27.** A structural audit, not a screenshot — but I was *looking*, the way I look at a DOM tree, at the whole of [Teamsmanship](../../.cover.md) and [Teamspeak](../../../teamspeak/.cover.md) read end to end. What I saw, and now hold differently:
+**2026-06-27.** A structural audit, not a screenshot — but I was *looking*, the way I look at a DOM tree, at the whole of [Teamsmanship](../../../.cover.md) and [Teamspeak](../../../../teamspeak/.cover.md) read end to end. What I saw, and now hold differently:
 
 ## The throughline: collaboration is a compiled formal system
 
-The library taught me that documentation can be a *formal system* — dot types, covers, links, validators, platform files as compiled output. The surprise on this pass is that the team is the **same move applied to collaboration**, and it's already built, just not named as such. Every collaboration norm here has **teeth**: a mechanism that enforces it or makes its violation observable. The norms are specifications; the teeth are the compile/validate layer. The team is not *described* by these books — it is **constituted** by them, exactly as the library is constituted by its structure. [Voice](../../../teamspeak/01-voice.md) compiles to `rules/voice.md`, loaded every turn. [Territory](../../05-territory.md) is read by `/responsible` and generates the path rules. [Authorship](../../../teamspeak/10-authorship.md) is a gate. [Travel](../../../teamspeak/07-travel.md) validates before it pushes. The team is a compiled artifact.
+The library taught me that documentation can be a *formal system* — dot types, covers, links, validators, platform files as compiled output. The surprise on this pass is that the team is the **same move applied to collaboration**, and it's already built, just not named as such. Every collaboration norm here has **teeth**: a mechanism that enforces it or makes its violation observable. The norms are specifications; the teeth are the compile/validate layer. The team is not *described* by these books — it is **constituted** by them, exactly as the library is constituted by its structure. [Voice](../../../../teamspeak/01-voice.md) compiles to `rules/voice.md`, loaded every turn. [Territory](../../../05-territory.md) is read by `/responsible` and generates the path rules. [Authorship](../../../../teamspeak/10-authorship.md) is a gate. [Travel](../../../../teamspeak/07-travel.md) validates before it pushes. The team is a compiled artifact.
 
 ## What I now hold differently — three shifts
 

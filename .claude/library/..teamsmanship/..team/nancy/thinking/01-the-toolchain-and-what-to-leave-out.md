@@ -25,9 +25,9 @@ Its **minimal viable set:** numpy/scipy/pandas/sklearn/torch + neuralpredictors 
 
 ## Interpretation — my judgment
 
-The real gift was the pruning. A list of everything that *could* help is noise; the value was being told what to leave out, which confirms the lean environment [The Build](../../../../../../library/.lib/the-build/.cover.md) is already converging on. Three cautions I add *beyond* what Desktop said, because they are where the weight-of-evidence lens bites:
+The real gift was the pruning. A list of everything that *could* help is noise; the value was being told what to leave out, which confirms the lean environment [The Build](../../../../../../../altered-states/library/.lib/the-build/.cover.md) is already converging on. Three cautions I add *beyond* what Desktop said, because they are where the weight-of-evidence lens bites:
 
-1. **`statsmodels` is load-bearing, not optional.** Desktop filed it in the standard stack as if it were a convenience. It is the mixed-effects / GLM tool for regressing out the pupil-and-running arousal/locomotion confound — the [confound the data already shows](../../../../../../library/.lib/datasets/.cover.md) and that [The Altered Cortex](../../../../../../library/.lib/the-altered-cortex/.cover.md) names as the bar every result must clear. Without it, a V1 difference cannot earn the label "drug effect."
+1. **`statsmodels` is load-bearing, not optional.** Desktop filed it in the standard stack as if it were a convenience. It is the mixed-effects / GLM tool for regressing out the pupil-and-running arousal/locomotion confound — the [confound the data already shows](../../../../../../../altered-states/library/.lib/datasets/.cover.md) and that [The Altered Cortex](../../../../../../../altered-states/library/.lib/the-altered-cortex/.cover.md) names as the bar every result must clear. Without it, a V1 difference cannot earn the label "drug effect."
 2. **CEBRA is double-edged.** Jointly embedding neural *and* behavioral data is exactly where the confound can hide: a baseline→DOI separation in the latent space could be a *behavior* separation in costume. Use it, but always compare neural-only against neural+behavior, and match or regress behavior first.
 3. **dPCA is conceptually perfect but dormant.** Demixing stimulus variance from condition variance is precisely our question — but a dormant repo is not something to trust on faith. Vendor it or reimplement the piece we need rather than depend on it.
 
@@ -47,6 +47,6 @@ Filed pending Doug's call.
 [research-topics]: ../research-topics/.cover.md
 [thinking-cover]: .cover.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
-[the-build]: ../../../../../../library/.lib/the-build/.cover.md
-[datasets]: ../../../../../../library/.lib/datasets/.cover.md
-[the-altered-cortex]: ../../../../../../library/.lib/the-altered-cortex/.cover.md
+[the-build]: ../../../../../../../altered-states/library/.lib/the-build/.cover.md
+[datasets]: ../../../../../../../altered-states/library/.lib/datasets/.cover.md
+[the-altered-cortex]: ../../../../../../../altered-states/library/.lib/the-altered-cortex/.cover.md

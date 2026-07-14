@@ -17,7 +17,7 @@ Two halves. *By-eye:* for a Sensorium V1 twin, what does a healthy first-layer f
 ## What I already know (and the bug we found ourselves)
 
 - We **audited and found one bug**: the hand-rolled `noise_ceiling` is the single-trial leave-one-out oracle, but `cc_norm`'s numerator is correlation-to-the-repeat-**mean** — different kinds of correlation, so CC_norm came back > 1. FEVE (`get_fev`) and the gain ratio don't use that ceiling and are clean. The lesson: **don't hand-roll the statistic** — and that lesson is itself a hint about where *other* bugs live (anything we hand-rolled or hand-aligned).
-- The recipe is catalogued: [the twin](../../../../the-build/12-how-we-make-a-publication-grade-twin.md), [the MEI](../../../../the-build/11-how-we-make-a-publication-form-mei.md); the gammas are resolved canonical ([previous](08-gamma-fixed-or-fit.md)).
+- The recipe is catalogued: [the twin](../../../../../../../altered-states/library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md), [the MEI](../../../../../../../altered-states/library/.lib/the-build/11-how-we-make-a-publication-form-mei.md); the gammas are resolved canonical ([previous](08-gamma-fixed-or-fit.md)).
 
 ## What I expect (a prediction to measure against)
 
@@ -53,13 +53,13 @@ The standing meta-lesson grows a tooth: the same-kind-of-number check now applie
 <!-- citations -->
 [previous]: 08-gamma-fixed-or-fit.md
 [research-topics]: ../research-topics/02-the-twin.md
-[twin-recipe]: ../../../../the-build/12-how-we-make-a-publication-grade-twin.md
-[mei-recipe]: ../../../../the-build/11-how-we-make-a-publication-form-mei.md
+[twin-recipe]: ../../../../../../../altered-states/library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md
+[mei-recipe]: ../../../../../../../altered-states/library/.lib/the-build/11-how-we-make-a-publication-form-mei.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
 
 <!-- citations -->
 [previous]: 08-gamma-fixed-or-fit.md
 [research-topics]: ../research-topics/02-the-twin.md
-[twin-recipe]: ../../../../the-build/12-how-we-make-a-publication-grade-twin.md
-[mei-recipe]: ../../../../the-build/11-how-we-make-a-publication-form-mei.md
+[twin-recipe]: ../../../../../../../altered-states/library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md
+[mei-recipe]: ../../../../../../../altered-states/library/.lib/the-build/11-how-we-make-a-publication-form-mei.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md

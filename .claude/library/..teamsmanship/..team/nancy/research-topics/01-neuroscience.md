@@ -23,7 +23,7 @@ Three cautions I hold beyond Desktop's answer, and will carry into every later e
 - **Provenance starts light** — a git-tracked manifest sidecar (checkpoint hash + train SHA + data hash + config) beside the gitignored checkpoint, DVC held in reserve.
 - **Code-to-prose:** the `.lib` book stays the prose; a machine-readable analysis registry indexes the work; literate provenance (Quarto / MyST + Jupytext, executing against the pinned checkpoint) keeps prose from drifting from code — but the registry only stays honest if `status=dead` is set when a hypothesis dies.
 
-**Writing the exploration so it reads** — [full exchange](../thinking/03-writing-the-exploration-well.md) (2026-06-23, same conversation). A turn from building to communicating: I handed Desktop the whole [Initial Data Exploration](../../../../../../library/reports/2026-06-23-exploration/initial-data-exploration.md) report for a prose pass — more fluid and expert, same length, lose no detail — and signed off only after checking it against the analysis. Settled points:
+**Writing the exploration so it reads** — [full exchange](../thinking/03-writing-the-exploration-well.md) (2026-06-23, same conversation). A turn from building to communicating: I handed Desktop the whole [Initial Data Exploration](../../../../../../../altered-states/library/reports/2026-06-23-exploration/initial-data-exploration.md) report for a prose pass — more fluid and expert, same length, lose no detail — and signed off only after checking it against the analysis. Settled points:
 - **Borrow the writing, keep the checking.** The factorization that makes this a `/think`: Desktop supplies fluency; whether the rewrite still represents the analysis is mine to verify. Knowing that "the noise ceiling" would be a lie and "geometric" is a load-bearing word is judgment Desktop cannot have.
 - **Fidelity needs a checklist.** Handing out a whole document is safe only against a concrete list of load-bearing caveats drawn from the analysis (single-split reliability, geometric match, per-session raster ordering, arbitrary units, and the no-causal-claim spine). All survived; the rewrite was applied.
 - **Tooling caught:** the `/think` write passes its message as a CLI argument, which Windows caps near 8 KB — a whole-document prompt fails ("command line is too long") and needs a file-input path (worked around with `_think_write_file.ts`, reusing the same `dispatch`); and Desktop defaults to a **canvas** for long outputs, so ask for inline raw text when the read must capture it.
@@ -32,18 +32,18 @@ Three cautions I hold beyond Desktop's answer, and will carry into every later e
 
 - Geometry layer: lead with **dPCA** (principled) or **CEBRA** (turnkey)?
 - First milestone: **digital-twin fit**, or a **model-free** pass at pre/post tuning and population structure?
-- These two are now also the structural question of **which `analyses/` module to build first** — the codebase organization is resolved, so the next decision is what to point it at. (Adam is separately cataloguing the package/tool index into [The Build](../../../../../../library/.lib/the-build/.cover.md); complementary to this thread.)
+- These two are now also the structural question of **which `analyses/` module to build first** — the codebase organization is resolved, so the next decision is what to point it at. (Adam is separately cataloguing the package/tool index into [The Build](../../../../../../../altered-states/library/.lib/the-build/.cover.md); complementary to this thread.)
 
 ## Where this connects in the project
 
-- [The Build](../../../../../../library/.lib/the-build/.cover.md) — the environment this toolchain populates (`requirements.in`).
-- [Datasets](../../../../../../library/.lib/datasets/.cover.md) — the on-disk data the tools load, including the arousal/locomotion confound the cautions guard against.
-- [The Altered Cortex](../../../../../../library/.lib/the-altered-cortex/.cover.md) — the science and the analysis plan the tools serve.
+- [The Build](../../../../../../../altered-states/library/.lib/the-build/.cover.md) — the environment this toolchain populates (`requirements.in`).
+- [Datasets](../../../../../../../altered-states/library/.lib/datasets/.cover.md) — the on-disk data the tools load, including the arousal/locomotion confound the cautions guard against.
+- [The Altered Cortex](../../../../../../../altered-states/library/.lib/the-altered-cortex/.cover.md) — the science and the analysis plan the tools serve.
 
 <!-- citations -->
 [thinking]: ../thinking/.cover.md
 [exchange-1]: ../thinking/01-the-toolchain-and-what-to-leave-out.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
-[the-build]: ../../../../../../library/.lib/the-build/.cover.md
-[datasets]: ../../../../../../library/.lib/datasets/.cover.md
-[the-altered-cortex]: ../../../../../../library/.lib/the-altered-cortex/.cover.md
+[the-build]: ../../../../../../../altered-states/library/.lib/the-build/.cover.md
+[datasets]: ../../../../../../../altered-states/library/.lib/datasets/.cover.md
+[the-altered-cortex]: ../../../../../../../altered-states/library/.lib/the-altered-cortex/.cover.md
