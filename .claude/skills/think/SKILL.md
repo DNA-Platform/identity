@@ -15,6 +15,23 @@ Any teammate can think outside the context window. When I reach the boundary of 
 
 The [Thoughtfulness](../../library/thoughtfulness/.cover.md) book specifies the full protocol — the [lifecycle](../../library/thoughtfulness/02-the-thought-lifecycle.md), [persistence](../../library/thoughtfulness/03-persistence.md), and [code](../../library/thoughtfulness/04-the-code.md) — and is owned by Claude but open to everyone. The [Reference Desk](../../library/reference-desk/.cover.md) documents the instrument. **Claude Desktop for Windows must be open** for any of this to run. This chapter is the operational procedure: what happens when a teammate invokes `/think`.
 
+## Never loop — this runs on a real person's computer
+
+> **The rule, taken permanently.** Never run a looping or polling command on the human's machine — **no `while`, no `sleep`, no background watches.** When you hand work to a brain, it reports back on its own and the harness notifies you; you wait for that, you don't poll. **One dispatch, then silence until it answers.**
+
+**No looping code, ever — not in this procedure, and not in anything you run around it.** No `while` loop, no `sleep`-poll, no busy-wait, no background "watch" that re-checks a file or a process on a timer. `/think` drives **Claude Desktop on a real human's physical machine** — it moves their mouse, types on their keyboard, and takes their screen focus. A loop here does not spin harmlessly in a sandbox; it seizes a person's computer and can make it unusable until the process is killed. This is a safety rule, not a style preference — getting it wrong breaks a real human's computer.
+
+The design already makes looping unnecessary: the [write and read are two separate one-shot processes](#the-write--read-checklist) that each **hand the computer back** and exit. The write returns the instant streaming is detected; the read runs once and does its waiting *inside its own single invocation* — you never poll it from the outside. When work runs in the background, it **reports back on its own** and you are notified when it finishes; you wait for that event, you do not poll for it. The moment you are tempted to write `while … sleep`, stop — that temptation is exactly the mistake this rule exists to prevent.
+
+**The exact commands — the entire surface, each run once, never wrapped in anything:**
+
+```
+npx tsx .claude/src/scripts/think.ts write "<topic>" "<say>" [attach] [new]   # returns immediately, hands the computer back
+npx tsx .claude/src/scripts/think.ts read                                     # runs ONCE; it does all its waiting inside this single call, then prints and exits
+```
+
+Run `write` once; it returns. Later, run `read` **once**; it holds the app open and waits *internally*, then prints the answer and exits. That is all you run. Do **not** wrap either in a `while`/`sleep`, do **not** add a watcher that re-runs them, do **not** poll a file or a process to see if it is "done." If `read` errors, run it **one** more time — a single retry, never a loop. For a backgrounded brain the command is likewise run once (`08-on-brains--dispatch.sh <name> "<message>"`), and then you **stop and wait** for the harness to notify you it finished — you never write a loop to watch for its report.
+
 ## The two books are yours
 
 Thinking is kept in two books in **my own** personal library, set up on the model of [Claude's](../../library/..teamsmanship/..team/claude/thinking/.cover.md) (explore his as the worked example), and I author them in the first person per [Autonomy](../../library/teamspeak/05-autonomy.md) — no one writes another teammate's books:

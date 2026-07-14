@@ -7,7 +7,7 @@
 
 [Book: [The Build](.cover.md)]
 
-How we build and validate the digital twin so it is the **publication instrument**, not a single-seed sketch — the comparative method, beside [How we make a publication-form MEI](11-how-we-make-a-publication-form-mei.md). The full ground-up gap across the *whole* analysis (data → twin → validation → MEI → reconstruction → science) is the report [From the ground up](../../reports/from-the-ground-up--the-publication-grade-analysis.md); this entry is the durable **twin** half. Seeded by Nancy's filed thought, [The twin and the metric mismatch](../../../.claude/library/..teamsmanship/..team/nancy/thinking/06-the-twin-and-the-metric-mismatch.md). Nothing here is verified until the run.
+How we build and validate the digital twin so it is the **publication instrument**, not a single-seed sketch — the comparative method, beside [How we make a publication-form MEI](11-how-we-make-a-publication-form-mei.md). The full ground-up gap across the *whole* analysis (data → twin → validation → MEI → reconstruction → science) is the report [From the ground up](../../reports/from-the-ground-up--the-publication-grade-analysis.md); this entry is the durable **twin** half. Seeded by Nancy's filed thought, [The twin and the metric mismatch](../../../.claude/library/..teamsmanship/..team/nancy/thinking/.cover.md). Nothing here is verified until the run.
 
 **The principle on top.** Before reading any difference from a published number as a deficiency, confirm it is the **same *kind* of number.** Twice-bitten this sprint: MEI-as-reconstruction, and single-trial-vs-correlation-to-average. The check is standing.
 
@@ -33,7 +33,7 @@ The validation row is a **[MEASUREMENT] fix, not a [MODEL] change** — and it c
 
 ## Final-audit update — supersedes two rows above
 
-The [full-pipeline audit](../../../.claude/library/..teamsmanship/..team/nancy/thinking/07-the-full-pipeline-audit.md) (verified against `nnvision` / `sensorium` source + Franke 2022) corrected two things in the gap table:
+The [full-pipeline audit](../../../.claude/library/..teamsmanship/..team/nancy/thinking/.cover.md) (verified against `nnvision` / `sensorium` source + Franke 2022) corrected two things in the gap table:
 
 - **Alignment — *cold-primary*, not warm-start.** Warm-starting post from the pre core is *our* invention, in no canonical paper, and for a change-detection study it **biases the post twin toward pre-drug features and suppresses the effect we test for**. So the independent **cold-seeded** post ensemble is the **primary** model; the warm-start is kept only as a **robustness check** (an effect that appears *only* warm-started is suspect; one that survives cold init is real).
 - **Metric — *FEVE* is the published number; our CC_norm is labeled.** The Sensorium/Lurz tables report **FEVE** (`get_fev`, `fev_threshold=0.15`) with `get_signal_correlations`, not corr-to-average ÷ a separately-estimated ceiling. Our normalized form is a CC_norm **in the spirit of Schoppe 2016 (not the literal formula)**, its ceiling a leave-one-out oracle — report it, but never call it "the Sensorium metric." And the per-neuron **raw gain-ratio** (the ratio of the two shipped `responses/std` vectors) is promoted to a **headline** result, since per-neuron std-normalization is gain-blind by construction.

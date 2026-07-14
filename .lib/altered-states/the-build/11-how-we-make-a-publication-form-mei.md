@@ -39,7 +39,7 @@ Nancy's first reading transferred the reconstruction rule (per-image) onto MEIs;
 
 ## Final-audit update — the constraint is ours, and the fixed states
 
-The [full-pipeline audit](../../../.claude/library/..teamsmanship/..team/nancy/thinking/07-the-full-pipeline-audit.md) (read against `nnvision/mei/regularizers.py`) confirmed the **gradient + image-blur recipe is verbatim canonical** (`walker_gradient` / `walker_postup`), and corrected two framings above:
+The [full-pipeline audit](../../../.claude/library/..teamsmanship/..team/nancy/thinking/.cover.md) (read against `nnvision/mei/regularizers.py`) confirmed the **gradient + image-blur recipe is verbatim canonical** (`walker_gradient` / `walker_postup`), and corrected two framings above:
 
 - **`PNormConstraintAndClip` p=2 is *ours*, not the canonical post-up.** The literal `walker_postup` is bare `ClipRange` — no explicit norm constraint; energy is governed by the gradient schedule. Keep our p=2 budget (it is closer to Walker-2019 / Franke-2022's *stated* contrast-constrained method than bare clip), but **document it as our contrast-constraint implementation, not "the nnvision ops,"** and verify the clip rarely fires — if it fires often, the shared-panel display breaks.
 - **Fixed behavioural states (Franke 2022).** MEIs are synthesized at a **held-fixed** state — a **separate MEI per state, quiet = 3rd percentile, active = 97th percentile** of (locomotion, pupil), at the percentiles of the **pre**-session distribution, with the shifter's eye-position **clamped identically** pre/post.
