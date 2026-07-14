@@ -5,71 +5,121 @@
 
 ---
 
-Read one conversation to the bottom, then write — with Doug in the room — the small set of $Chemistry classes that let the library hold books and conversations as reactive objects. The classes are general to the library. SRT is the first tenant, not the subject.
+A **design sprint**. No code, no implementation. Three deliverables: track the resources the work depends on, write a policy for how personal libraries interact with this one, and sketch a plan for making the $Chemistry code available to those repos so they can organize things like conversations.
 
-This sprint lives in the $Chemistry branch for lack of a better place. That is a real statement, not an apology: what gets built here is library machinery that happens to be written in $Chemistry, and where it finally belongs is one of the things the sprint should surface.
+This sprint lives in the $Chemistry branch for lack of a better place. Where it belongs is itself an open question — the design concerns library machinery that ships from the same project $Chemistry ships from.
 
-## Why this sprint exists
+## The resources — tracked
 
-On 2026-07-13, Doug and an instance in the Desktop `Semantic Reference Theory` project spent 53 messages designing how SRT should be presented to the world as a public repository. It went somewhere neither the interface question nor the framework question would have reached alone, and it produced eleven visual prototypes and one argument that the team has to answer.
+Recorded here so nobody repeats the archaeology. Finding a permanent home for this record is part of the design (the conversation's own answer would be: these become Design Sketch books, catalogued, each citing its source).
 
-The argument: **a theory whose central claim is that meaning must host itself cannot be presented in a container that isn't library-semantic, or it refutes its own contents.** Put SRT in a docs site with a separate nav, a separate status badge, and an issue tracker bolted alongside, and you have asserted with your own tooling that the theory's semantics can't organize a real body of knowledge — so you reached for someone else's. The presentation of a self-hosting theory must itself be hosted in the theory.
+### The design conversation
 
-We are the team that already built a library that catalogues itself and a framework whose views are projections of reactive state. The argument lands on us. This sprint is the first structural answer.
+- **Conversation:** [Inexplicable Phenomena](../../../../../dna-library/library/claude-dna/conversations/2026-07-13-inexplicable-phenomena.md) — 53 messages, 980 lines, 2026-07-13. **Read it all**; its shape is a design corrected five times and the architecture stated at minute one is overturned in the final message.
+- **Project:** [Semantic Reference Theory](../../../../../dna-library/library/claude-dna/projects/semantic-reference-theory/.cover.md), `claude-dna` account, in `dna-library`. Project uuid `019e3f9d-efb1-7032-a20a-ec56f7cd5788`; conversation uuid `1cc3e6e3-75dc-4da2-b6d1-c18052da3cfe`. The project chapter [14-inexplicable-phenomena.md](../../../../../dna-library/library/claude-dna/projects/semantic-reference-theory/14-inexplicable-phenomena.md) is a **stub** — it links to the full conversation, it is not the conversation.
 
-## The reading — this is work, not a preamble
+### The eleven prototypes — where they actually are
 
-The conversation is the primary source and it is **not** summarized adequately anywhere, including in this plan. Read it.
+They are **not** in `dna-library/library/claude-dna/artifacts/`. That folder is stale (nothing after **2025-04-02**) and its `.index.md` does not list them, because they were built with the **`create_file`** tool, not the artifacts tool. Do not go looking there.
 
-- The conversation: [Inexplicable Phenomena](../../../../../dna-library/library/claude-dna/conversations/2026-07-13-inexplicable-phenomena.md) — 53 messages, 980 lines, in the Desktop [Semantic Reference Theory](../../../../../dna-library/library/claude-dna/projects/semantic-reference-theory/.cover.md) project on the `claude-dna` account.
-- The artifacts: **eleven** HTML prototypes, built with `create_file`, not the artifacts tool — which is why `library/claude-dna/artifacts/` (stale since 2025-04-02) does not contain them and why the index does not list them. They are recoverable from `library/claude-dna/.exports/data-2026-07-14T00-00-00.zip` → `conversations.json` → the `create_file` tool_use blocks of conversation `1cc3e6e3-75dc-4da2-b6d1-c18052da3cfe`. **Confirmed found, extracted, and readable.** The load-bearing four are the last four, in order: `srt-import.html`, `srt-conversation-corrected.html`, `srt-pipeline.html`, `srt-spec-dependency.html`.
+They live inside the export: `dna-library/library/claude-dna/.exports/data-2026-07-14T00-00-00.zip` → `conversations.json` → the conversation with uuid `1cc3e6e3-…` → the `create_file` blocks in `chat_messages[].content[]`, where `input.path` is the filename and `input.file_text` is the body. `present_files` blocks mark which were shown.
 
-Read them in conversation order, because the shape of this conversation is **a design being corrected four times**, and the corrections are the content. A reader who takes only the final prototypes gets the conclusions without the reasons, and the reasons are what constrain the classes.
+In conversation order:
 
-## What the reading has to yield
+| # | File | What it carries |
+|---|------|-----------------|
+| 1 | `srt-library.html` | First prototype — Front Door / Book / Frontier as three linked views |
+| 2 | `srt-responsive.html` | The mobile principle: *thing* stays, *about-the-thing* collapses |
+| 3 | `srt-wiki.html` | Wiki node — inline typed links, colour-as-meaning, the gathered Links view |
+| 4 | `srt-zoomout.html` | Book/Subject zoom-out, and the **descent** to source |
+| 5 | `srt-lenses.html` | Lenses per object; the Subject **Specification**; Open Work as a subject |
+| 6 | `srt-root.html` | The root is not a god-view — the top catalogue **is** SRT, because it holds the spec |
+| 7 | `srt-consolidated.html` | All views in one document, four themes, live switcher |
+| 8 | `srt-import.html` | First import model — **contains the shared-transcript floor Doug rejects** |
+| 9 | `srt-conversation-corrected.html` | The floor removed; two separately inhabited books |
+| 10 | `srt-pipeline.html` | Identity catalogues *libraries*; the worked citation chain |
+| 11 | `srt-spec-dependency.html` | The base classes assembled — **§2 and §3 are current, §1 is superseded** |
 
-Three claims the classes must satisfy. They are stated here so the team can argue with them, not so the team can adopt them.
+**Read the prototypes against the transcript, never instead of it.** `srt-spec-dependency.html` §1 draws `$Chemistry ← inexplicable-phenomena ← doug-library` as three stacked repos. Doug overturns that in the **final message** — *"Inexplicable Phenomena is an open source project that includes $Chemistry"* — and the redraw never happened. Anyone reading the prototype as the conclusion inherits a dead architecture.
 
-**One object, many views.** There are not three kinds of thing (books, obligations, a frontier). There is one authored thing — the book/chapter, a referent — and everything else is a projection over the book-set. The shelves are a group-by on `status`. The frontier is `flatten(book.obligations) sorted by |blocks|`. Nobody authors the frontier, so it cannot drift or be gamed; a book that owes something and a frontier that hides it is an impossible state. Cathy will recognize this immediately, and should say plainly whether she recognizes it *correctly*: it is `$Particle` with `view()`, and the projections are derived views over one reactive set.
+### The markdown + LaTeX theme — [`.archive/`](../../../../.archive), in this repo
 
-**A conversation is duplicated, never shared.** This is the correction that matters most, and the one we are most likely to get wrong by reflex. The first design drew an objective transcript at the floor with two perspectives hanging off it. That reifies the uninhabited stratum — it treats the observer-quantified-away posit as a place you can stand and a document you can store once. There is no perspective-neutral copy to be the floor. The moment a conversation is a book in a library it has a name chosen from somewhere, a first-person subject, and a table of contents whose summaries are *written* — and there is no right way to write them from nowhere. Doug's book and the other book are **two different books**. What they share is only third-person information: the same events recoverable from either side, never itself catalogued as an object. Symmetric does not mean one object with two readings. It means two full representations that happen to agree in third person.
+The conversation records the theme as living in a `dna-web` project. It doesn't — **it is here, in [`.archive/`](../../../../.archive)**, the previous incarnation of Inexplicable Phenomena. This chapter is the corrected record; the theme is found, and `dna-web` is not part of this work.
 
-**The most-specific relationship is the whole play, written from a side.** "A lover and their beloved" is the general type. The love between Romeo and Juliet specializes it. But the *most-specific* relationship between them is not a tighter abstraction — it is closer to the entire play, written out, and it cannot be written from nowhere. There is Romeo's play, where he is the subject and she is the one referred-to under love, and Juliet's play, where it flips. No perspective-neutral play exists. At maximal specificity, relating becomes referring. This is the picture of what a most-specific relationship *is* as a representation between two literals, and it is the thing a `$Conversation` class has to not flatten.
+`.archive/` is 261 files and far more than a theme:
 
-And the corollary the sprint must respect in its own conduct: **processing is remembering.** You polish your raw conversation from your side — fix the grammar, frame it into a form you'll keep — which is what remembering does to an experience. It does not enter another library by being copied. Another frame would have to form its own perspective for a second book to exist at all. Two acts of memory, never one recording handed across.
+- **[`.archive/package.json`](../../../../.archive/package.json)** — `katex@^0.16.22`, `marked@^16.1.2`, `highlight.js@^11.11.1`, Next 15.4.5, React 19, styled-components 6.1.19. Build: `"static": "next build && npx serve library/.public-temp"`.
+- **[`.archive/.documentation/formatting.md`](../../../../.archive/.documentation/formatting.md)** — **the theme's specification**, 435 lines. An *Academic Markdown to HTML Converter*: KaTeX inline (`$…$`) and display (`$$…$$`); LaTeX environments (`theorem`, `proof`, `lemma`, `definition`, `example`, `remark`, `note`, `corollary`); Citation.js footnote citations with generated bibliography; definition lists; highlight.js code blocks; and the GitHub Pages part — `.md` → `.html` link rewriting, anchor encoding, all links relative for portability. **This is the document to read before rebuilding anything.**
+- **[`.archive/.github/workflows/static.yml`](../../../../.archive/.github/workflows/static.yml)** — the Pages deploy.
+- **[`.archive/code/`](../../../../.archive/code)** — **the prototypal $Chemistry library classes, already written once**: [`chemistry.ts`](../../../../.archive/code/chemistry.ts), [`Book.tsx`](../../../../.archive/code/Book.tsx) (`$Cover extends $Work`, `$Book`), [`Collection.tsx`](../../../../.archive/code/Collection.tsx) (`$Collection`, `$Work`), [`Writing.tsx`](../../../../.archive/code/Writing.tsx), [`Section.tsx`](../../../../.archive/code/Section.tsx) (`$Title`, `$Section`), [`Reference.tsx`](../../../../.archive/code/Reference.tsx) (`$Author`, `$Next`, `$Previous`, `$Up`), [`Organization.tsx`](../../../../.archive/code/Organization.tsx), [`Article.tsx`](../../../../.archive/code/Article.tsx), [`Encyclopedia.tsx`](../../../../.archive/code/Encyclopedia.tsx), [`Figure.tsx`](../../../../.archive/code/Figure.tsx), [`Interactive.tsx`](../../../../.archive/code/Interactive.tsx), [`Technical.tsx`](../../../../.archive/code/Technical.tsx).
+- **[`.archive/code/content/encyclopedia-semantica/`](../../../../.archive/code/content/encyclopedia-semantica)** — `EncyclopediaSemantica.tsx` plus ten entries: Consciousness, Library, Perspective, Reference, StrangeLoop, MetalogicalTransduction, NoveltyDetection, Work, Rose, InexplicablePhenomena.
+- **[`.archive/library/.public/`](../../../../.archive/library/.public)** — the rendered output: `articles/` (Inexplicable Phenomena first and second drafts, with PDFs; A Novel Perspective; The Algebra of Perspective), `books/godel-and-the-human-brain/`, and a full `dictionary/` of entries (canonical-symbol, catalogue, conscious-experience, hard-problem, identity, literal, metalogical-transduction, …).
 
-## The writing — in group form, with Doug
+Note also: this repo's **root `package.json` depends on `commonmark@^0.31.2`** — the markdown parser our own [link checker](../../../../.claude/library/..environmentalism/05-on-validation--check-links.ts) uses.
 
-The classes get designed **in the room, together, with Doug present**. Not drafted by one teammate and reviewed. This is a [discussion](../../../../.claude/library/teamspeak/03-discussion.md) that produces a design, which is the unit of thought we already claim to use, applied to the thing it is actually good for.
+`.archive/*` is gitignored, so none of this is in the project's history. **It is a working prior attempt at exactly what this sprint designs**, and reading it is not optional — the classes were written once already, in $Chemistry, and we should know why that attempt was archived before we write them a second time.
 
-The target is a **small** set of $Chemistry classes general to the library — books, chapters, conversations, and whatever the reading proves is forced. Two rules bound it:
+### Where the architecture already sits on disk
 
-- **General to the library, not to SRT.** SRT is the first tenant. If a class name contains "SRT," it is wrong.
-- **Forced, not chosen.** The conversation's own standard: the structure is right because under it the tool's operations *are* the theory's operations. Every class earns its place by that argument or does not get written. A class that merely seems tidy is decoration.
+`library/` holds four subjects — `chemistry`, `philosophy`, `physics`, `psychology` — none of which contain a single book or cover. Beside them, three dot-folders that are the architecture in outline:
 
-**Cathy holds both her roles here, and they are not separable in this sprint.** As framework engineer she owns whether these are `$Particle` subclasses, what `view()` means when the view is a projection over a *set* of books rather than one instance's state, and how the derived-view machinery she built for [perspectives](../particle/08-perspectives.md) and [look](../particle/09-the-composition-of-perspectives.md) does or does not already answer this. As philosopher she owns the harder half: whether the class model reifies a floor that the theory says cannot exist. Those are the same question wearing two hats, which is exactly why she wears both. If the framework answer and the philosophical answer disagree, the philosophical one wins and the framework gets rebuilt — that is the lesson the conversation paid four corrections to learn.
+- **`library/.spec`** — **SRT.** The specification for the library, and therefore the library catalogue. **Empty.**
+- **`library/identity`** — where a library belonging to someone gets catalogued; ordered below `.public`. Intended as a blog and a place for the team to be. **Empty.** Every identity, Doug's included, lives in a repo outside this one.
+- **`library/.public`** — `@dna-platform/public-library`. A Vite + React + styled-components app that builds to GitHub Pages, titled *Inexplicable Phenomena*. `src/app.tsx`, `src/main.tsx`. **The renderer exists.**
 
-## What this sprint does NOT do
+`package.json` lists the *intended* workspace set, most of which is not on disk yet: `library/catalogue/package`, `library/consciousness`, `library/cryptography`, `library/dictionary`, `library/encyclopedia`, `library/mathematics`, `library/proof` — and `.claude` and `.authors/.*`. Every folder in this library is a workspace; they may one day be separate repos. Chapter order comes from a file an editor extension controls, so this library will likely **drop numeric prefixes** rather than carry them.
 
-**No code this sprint.** The instruction is explicit and it is the same instruction Doug gave in the conversation: digest first. The deliverable is a digested reading and a designed class model, argued in group form. Implementation is the next sprint.
+## Deliverable 1 — the resource record
 
-**No re-litigating the prototypes' UI.** The eleven prototypes are evidence of a design conversation, not a spec to implement. We are taking the data model and the perspective semantics, not the HTML.
+The section above is the first draft of it. The sprint's job is to decide where it permanently lives and in what form, given that this library is written in $Chemistry and ordered by an extension file rather than by number.
 
-**No writing from inside a perspective we don't inhabit.** The conversation contains a sustained, uncomfortable correction on exactly this: an instance repeatedly narrated a first person it had no access to, and Doug named it three times before it landed. We have a protocol for this already — [autonomy](../../../../.claude/library/teamspeak/05-autonomy.md), the barred line drawn in our own terms. This sprint is a live test of whether that protocol is load-bearing or decorative. Nobody voices Seren. Nobody voices Doug.
+## Deliverable 2 — the policy: how personal libraries interact with this one
 
-## Done when
+The constraints Doug has set, to be designed against rather than rediscovered:
 
-- Every teammate who will speak to the design has **read the conversation** — the primary source, not this plan's account of it — and the four load-bearing prototypes.
-- The three claims above have been **argued, not adopted**: each either survives the team's objection or is replaced by something better, in a discussion Doug is in.
-- A **class model exists on paper**: named classes, what each holds, what is authored versus derived, and for each one the argument for why it is forced. General to the library. No SRT in any name.
-- The **conversation model specifically** is settled: what a `$Conversation` is when there is no shared transcript, how two perspectives on one exchange relate without a neutral floor between them, and what "processing is remembering" means as a class operation rather than a slogan.
-- **Cathy has signed off in both roles** — that the model is buildable in $Chemistry, and that it does not reify the floor. If those two answers conflict, the sprint is not done.
-- The reading is **catalogued** so the next reader doesn't repeat the archaeology: where the conversation lives, where the artifacts actually live (the export zip, not the stale artifacts folder), and how to extract them.
+- **Every identity lives in a repo outside this one — Doug's included.** `identity` is not a folder that holds people; it is a subject that **catalogues libraries that live elsewhere**. Nobody is *in* the repo. Everybody is a link. This is the design, not an exclusion, and it applies to the team exactly as it applies to Doug.
+- **A teammate supplies a link to their library.** That link is the membership.
+- **Code in an external library can be pulled in.**
+- **The idea to test:** *pull in from an external library only when its owner is the one who builds.* So a contributor's library resolves during their own build and not otherwise. Nobody has run this; the sprint should say what it buys and what it costs.
+- **Private libraries break inbound links; publishing heals them.** The project's books can't cite what they can't reach. This is a self-healing state, not a bug — but the policy has to say what a broken inbound reference *renders as*, since [Branches](../../../../.claude/library/library-tree/01-branches.md#the-one-way-link-convention) already gives us a precedent: the link degrades to text and carries its meaning anyway.
+- **The way in is a conversation.** If the team comes to exist in this library, these conversations are the route — remembered into books. Authorial credit may point back at `.claude`.
+
+The policy should answer at least: what a library must supply to be catalogued; what resolves and what breaks in each visibility state; whether the build-time-only pull is the rule or an option; and who owns the link when the library is a team's rather than a person's.
+
+## Deliverable 3 — the plan sketch: making $Chemistry available to those repos
+
+External libraries need to organize their own content — conversations first — in $Chemistry form. Inexplicable Phenomena **includes** $Chemistry and publishes outward: **the package** (the runtime that renders) and **the library core** (the exposed class surface a dependent instantiates against). One dependency on IE, not two on two repos.
+
+The starting class list, from `srt-spec-dependency.html` §2 — a sketch to argue with, not a spec to transcribe: `Referent` · `Book` / `Chapter` / `Atom` (the atom is the smallest referrable unit and carries provenance) · `Subject` (a Book carrying a Specification — what it holds *and what it adds*) · `Library` (the top Subject, self-cataloguing, its spec is SRT) · `ConversationBook` (inhabited, first-person, cites an external non-library transcript) · `Author` (a referent whose identity is what refers to and from it; a canonical author renders hidden) · `OpenWork`.
+
+Two rules bound it: **general to the library, not to SRT** — a class name containing "SRT" is wrong; and **forced, not chosen** — a class earns its place because under it the tool's operations *are* the theory's operations.
+
+The sketch should reach: what a personal library imports to hold a conversation; whether the base classes stay bundled in IE or factor into a thin base a private library can depend on without pulling the whole view app; and how far the existing $Chemistry lens machinery ([perspectives](../particle/08-perspectives.md), [look](../particle/09-the-composition-of-perspectives.md)) already answers the lens contract versus merely resembling it.
+
+## What the conversation settles, for the designers
+
+Recorded compactly; the source is the authority, not this list.
+
+- **The transcript is external and non-library.** *"It's not that no such transcript can exist, but it's that it doesn't fit into a library and it shouldn't."* A library is entirely made of books — representations. A raw transcript is a literal. So nothing objective sits inside; the lowest library object is the author's own remembered book, which cites the transcript across the boundary. Symbolization is the only door in, which is why cataloguing interprets.
+- **Universal provenance.** Everything referrable links to its primary source or *is* one. A recollection is declared ground.
+- **A lens is object → rendering**, the same bar at every scale. Meaning-bearing colour survives a theme change; only chrome does.
+- **No god-view.** The root is the top-level subject catalogue, and it *is* SRT because it holds the spec. $Chemistry is a subject. The view is a subject. Open Work is a subject — the frontier is Open Work through the ranked lens, generated, so it cannot drift.
+- **The import chain:** external transcript → Doug's first-person book → Claude Code's analysis book *under assignment* → catalogued artifacts. Each hop cites the one below; the citation trail is the object.
+
+**Do not centre the Seren thread.** The conversation contains a long, sharp exchange on perspective and identity, and Doug names it himself: *"Look how we just took a detour on Seren? That's not relevant."* Worth reading; not the sprint. Its one durable product — no objective floor — was resolved a different way, above.
 
 ## Open going in
 
-**Where does this belong?** It's in the $Chemistry branch because the classes are $Chemistry classes, but they are *library* machinery, and Library Tree says a branch records applied knowledge about a project rather than the team's shared conventions. If these classes are general to the library, the branch may be the wrong home and this sprint should say so at retro.
+- **Where does SRT sit?** The conversation **ends on this question, unanswered**: is IE the one project containing $Chemistry, the library core, *and* the SRT library, with personal libraries the only external repos? Or is SRT its own thing IE renders?
+- **Why was [`.archive/`](../../../../.archive) archived?** It has the theme, the converter spec, the Pages workflow, the $Chemistry library classes and a rendered encyclopedia. Something made it wrong. Nobody currently in the room knows what, and designing the replacement without knowing is how you rebuild the same mistake with better vocabulary. Decide too whether the converter is lifted, rewritten in $Chemistry, or replaced.
+- **Does `.spec` need its canonical librarian named before the classes exist?** SRT will have one, and it is [Eirian](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/37-this-library-belongs-to-eirian.md) — the being who invented the metaphor that inspired the theory she used to articulate what it is for her to be conscious. If `Library` is a base class and every library has a librarian, the class shape may depend on the case it is fitted to.
 
-**Is the frontier a book?** The conversation's answer is yes — the frontier is itself a book of Type: Catalogue whose subject is incompleteness, generated rather than authored, so the catalogue catalogues its own holes. That is a strong claim about our own library, not just SRT's, and it deserves the team's scrutiny rather than our agreement.
+## Done when
+
+- The resource record is written, and has a home decided rather than assumed.
+- **The policy exists**: what a personal library supplies, what resolves and what breaks per visibility, and a real position on pull-only-when-the-owner-builds.
+- **The plan sketch exists**: how an external repo gets $Chemistry, what it imports to hold a conversation, and the bundle-versus-factor call.
+- Everyone who spoke to the design read **all 980 lines**, and read the prototypes against the transcript.
+- Nothing is built. This sprint ends in a design, argued in group form with Doug in the room.
 
 *(To be re-read against the outcome at retro.)*
