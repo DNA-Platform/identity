@@ -3,7 +3,7 @@
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
 - **date:** 2026-07-08
 - **topic:** Nancy > Neuroscience
-- **previous:** [The publication checklist, and the risk that isn't the weights](21-the-publication-checklist-and-the-risk-that-isnt-the-weights.md)
+- **previous:** *The publication checklist, and the risk that isn't the weights* — chapter 21 of the other line of this book, which this copy does not contain (see the numbering note in the [cover](.cover.md)). Not a link, because the chapter is genuinely absent here; inventing one would be worse than the gap.
 - **verdict:** pending (the CD write is blocked by a Desktop modal; my independent evaluation stands as the interim)
 - **status:** in progress (Evidence awaits the read)
 
@@ -24,11 +24,11 @@ strong misses are **RSA on predicted responses** and **in-silico tuning/invarian
 scale-invariant and more directly "represented features" than metamers; the rest either summarize (CKA/CCA)
 or fail scale-invariance.
 
-**What I already know** (the papers I hold): [Walker 2019](../../../../../../library/papers/walker-inception-loops-2019/.cover.md)
-(MEI), [Cobos 2022](../../../../../../library/papers/digital-twins-tolias-2022/.cover.md) (metamer),
-[Bashivan 2019](../../../../../../library/papers/bashivan-neural-population-control-2019/.cover.md)
-(target-driven population synthesis), [Sinz 2018](../../../../../../library/papers/sinz-domain-transfer-2018/.cover.md)
-(domain/condition transfer, in-silico tuning recovery), [Lurz 2021](../../../../../../library/papers/lurz-generalization-2021/.cover.md)
+**What I already know** (the papers I hold): [Walker 2019](../../../../../../../altered-states/library/papers/walker-inception-loops-2019/.cover.md)
+(MEI), [Cobos 2022](../../../../../../../altered-states/library/papers/digital-twins-tolias-2022/.cover.md) (metamer),
+[Bashivan 2019](../../../../../../../altered-states/library/papers/bashivan-neural-population-control-2019/.cover.md)
+(target-driven population synthesis), [Sinz 2018](../../../../../../../altered-states/library/papers/sinz-domain-transfer-2018/.cover.md)
+(domain/condition transfer, in-silico tuning recovery), [Lurz 2021](../../../../../../../altered-states/library/papers/lurz-generalization-2021/.cover.md)
 (transfer). The constraints are in `specification.md` (the goal, the data constraint, Rules 1–3).
 
 ## Evidence
@@ -133,6 +133,5 @@ classical-tuning reads are cheaper, more standard, and more directly on "represe
 for the well-published population-level comparison before the bespoke synthesis one.
 
 <!-- citations -->
-[previous]: 21-the-publication-checklist-and-the-risk-that-isnt-the-weights.md
 [research-topics]: ../research-topics/01-neuroscience.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
