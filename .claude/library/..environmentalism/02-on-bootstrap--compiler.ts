@@ -238,6 +238,8 @@ lines.push('');
 lines.push(`${subjectCount} subjects:`);
 lines.push(subjectBullets);
 lines.push('');
+lines.push('Project code carries its own **branch library** — a `.lib/` directory beside the code, its fastest catch-up catalogue. Working in a project? Read the `.lib/` next to what you\'re editing before the code itself — see [Library Tree](library/library-tree/.cover.md).');
+lines.push('');
 lines.push('## Waking up');
 lines.push('');
 lines.push('Follow the layers. Stop when you have enough context. See [Waking](library/teamspeak/04-waking.md).');

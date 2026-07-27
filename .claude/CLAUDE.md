@@ -54,6 +54,8 @@ Three subjects:
 - [Teamsmanship](library/..teamsmanship/.cover.md) catalogues **Collaboration** — teammates, roles, territory, personal libraries.
 - [Environmentalism](library/..environmentalism/.cover.md) catalogues **The Environment** — how library content [compiles](library/..environmentalism/01-on-teammates.md) into platform files (agents, rules, CLAUDE.md, skills), how we [validate](library/..environmentalism/05-on-validation.md) and [sync](library/..environmentalism/06-on-sync.md).
 
+Project code carries its own **branch library** — a `.lib/` directory beside the code, its fastest catch-up catalogue. Working in a project? Read the `.lib/` next to what you're editing before the code itself — see [Library Tree](library/library-tree/.cover.md).
+
 ## Waking up
 
 Follow the layers. Stop when you have enough context. See [Waking](library/teamspeak/04-waking.md).
