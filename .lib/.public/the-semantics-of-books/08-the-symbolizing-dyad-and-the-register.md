@@ -31,7 +31,7 @@ Recorded as a **conjecture to track**, in Doug's own hedge — *"seems like it w
 
 ## The register of classes
 
-Every class the derivation has named, kept here so none is lost and so the map stays honest as decisions change. Each is (or will be) a real class in [`@dna-platform/lib`](../../package/). `→` is *specializes*; the source chapter is where it is derived; **Built** marks the ones that exist in code today. This table is edited, not appended — when a decision changes the model, the row changes.
+Every class the derivation has named, kept here so none is lost and so the map stays honest as decisions change. Each is (or will be) a real class — or, for the composition role, an **interface** — in [`@dna-platform/lib`](../../package/). `→` is *specializes*; the source chapter is where it is derived; **Built** marks the ones that exist in code today. This table is edited, not appended — when a decision changes the model, the row changes. The composition rows reflect the [Sprint 44](../projection/00-sprint-44--composition.md) as-built model: content enters once, as one live block through the bond constructor, and the levels beneath are *parsed, never authored* — the creator of a paragraph does not specify its sentences.
 
 | class | relation | status | chapter |
 |---|---|---|---|
@@ -41,9 +41,13 @@ Every class the derivation has named, kept here so none is lost and so the map s
 | `$Author` | `$Reference<$Autobiography>` — a reference typed to point at an autobiography; the target constraint is the generic, checked by the compiler. | to build | [03](03-inheritance-and-composition.md), [04](04-the-book-and-subjectivity.md) |
 | `$Literal` | → `$Chemical`; object-only content — the thing pointed *at*. With `$Reference`, the pointing/pointed-at pair that is the essence of a catalogue (the Dewey decimal and the book it names). | to build | [05](05-the-evolutionary-root-symbol-and-literal.md) |
 | `$Text` | → `$Literal`; the leaf | to build | [02](02-composition.md) |
-| `$Composition<T>` | → `$Chemical`; parts + positional canonical. Built by **multiplication** (many of a thing become the level above), and it flows down: book of chapters, chapter of sections, section of paragraphs, all the way to the leaf. | stub | [01](01-levels-of-closure.md), [02](02-composition.md), [09](09-composition-and-collection.md) |
-| `$Chapter` | → `$Composition`; a composition of sections or chapters | stub | [04](04-the-book-and-subjectivity.md) |
-| `$Book` | → `$Chapter`; + title, subject, author; the subjectivity level | **stub built** | [04](04-the-book-and-subjectivity.md) |
+| `$Writing` | the **interface floor** — `{ copy }`, the one commitment every writing makes; the base the composition role extends. | **built** | [02](02-composition.md) |
+| `$Composition<T>` | an **interface, not a class**: `$Composition<T extends $Writing>` = `parts` + `canonical`, extending `$Writing`. Being-a-composition is a *role*; lineage belongs to the classes that implement it. Built by **multiplication** (many of a level become the level above), flowing down to the floor. | **built (interface)** | [01](01-levels-of-closure.md), [02](02-composition.md), [09](09-composition-and-collection.md) |
+| `$Character` | → `$Referent`, implements `$Writing`; the floor of the ladder — one glyph of `copy`. | **built** | [02](02-composition.md) |
+| `$Word` · `$Sentence` · `$Paragraph` | → `$Referent`, each implementing `$Composition` of the level below (`$Word` of `$Character`, and so on) — the inline ladder: each **inline** by a zero-arg constructor, each parsing its own level out of `copy`, validation filtering at the parse. | **built** | [02](02-composition.md) |
+| `$Section` | → `$Referent`, implements `$Composition<$Paragraph>`; **block-level**; its required title is the first element of its block, its canonical the paragraph that holds only the title. | **built** | [02](02-composition.md), [06](06-the-canonical-echo-and-views.md) |
+| `$Chapter` | implements `$Composition`; a block-level composition of sections | stub | [04](04-the-book-and-subjectivity.md) |
+| `$Book` | implements `$Composition`; + title, subject, author; the subjectivity level | **stub built** | [04](04-the-book-and-subjectivity.md) |
 | `$Subject` | → `$Book`; catalogues its books; stands for its `$Literature` | to build | [04](04-the-book-and-subjectivity.md), [07](07-the-subjective-subject-and-the-library.md) |
 | `$Literature` | the body of books a `$Subject` stands for | to build | this chapter |
 | `$Biography` | → `$Book`; subject is a subjective subject | to build | [07](07-the-subjective-subject-and-the-library.md) |
@@ -57,6 +61,7 @@ Every class the derivation has named, kept here so none is lost and so the map s
 - **`$Symbol`** — Symbol and Literal are the *essence* of a catalogue (the pointing thing and the thing pointed at), but the pointing class we build is `$Reference`; there is no separate `$Symbol`. (Doug: "I don't think we need symbol.")
 - **`$Name`** — a book's name is its *title*; "name" is not a word of the writing domain, so the class is `$Title`, and `$Reference` composes no `$Name`.
 - **`$Container`** — fails the vocabulary test outright (it functions unchanged in any domain), and its supposed role over composition/collection was never stated. `$Composition` (contain) and `$Catalogue` (reference) stand on their own.
+- **`$Document`** — removed as unneeded in Sprint 44; the composition ladder tops out at `$Section` (block-level). The earlier "book of chapters, chapter of sections, section of paragraphs" flow survives, but there is no separate document class above the section.
 
 The two generative operations behind the whole table are **validation** (specialize a type with a constraint — `extends` + `$check`) and **multiplication** (compose many into the level above — `$Composition<T>`, flowing down). See [Inheritance and Composition](03-inheritance-and-composition.md).
 

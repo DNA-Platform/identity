@@ -1,6 +1,7 @@
 # Discussion
 
 - **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 
 ---
 
@@ -21,6 +22,10 @@ The discussion does not require Doug as its audience — it never did. When he i
 Doug asks a question or gives a direction. Instead of one agent producing a plan, multiple agents respond — each from their perspective. They build on each other, disagree, identify things the others missed, and arrive at something none of them would have produced alone.
 
 The [sprint 41](../projected-identity/01-sprint-41--library-genesis.md) discussion about identity coherence is the template. Doug asked the team to discuss before continuing. Eight incoherences emerged that no single agent would have found. Arthur saw the structural problem (proportions). Cathy saw the asymmetry (her story inverts the pattern). Libby saw the library problem (specifications rot faster than portraits). Adam saw the continuity (the wire changed, the discipline didn't). Each perspective was partial. The discussion produced the complete picture.
+
+## Ask at the cheap points
+
+Discussion is error-correction, and error-correction has a price that depends on *when* it happens. The cheapest moment to catch a wrong decision is before any file changes — restating the ask and what it excludes, asking the genuinely open question instead of guessing, getting a short synopsis of the plan signed off. The most expensive moment is after the code is written, green, and reported, with one reviewer left as the only perspective that can still catch it. Sprint 44 proved this by inversion: a whole sprint ran with near-zero questions asked, defects sitting visible in the team's own reports, because every review waited until after the diff. Rules alone did not fix it — a turn shape did: restate, question, synopsis for sign-off, *then* build. Green is necessary, never sufficient; a report with no findings is a report that was not reviewed. Convene the discussion early, where the correction is cheap, not only at the end, where it is dear.
 
 ## When to discuss
 
