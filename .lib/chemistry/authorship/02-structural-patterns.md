@@ -110,7 +110,8 @@ Without the `'key'` argument: `const Card = $use(this.card)` returns just the co
 - **No spaces inside parentheses.** `$check(label, $Label)` not `$check( label, $Label )`.
 - **No spaces before colons in type annotations.** `name: string` not `name : string`.
 - **Minimal semicolons.** Present on statements, absent on declarations where TypeScript doesn't require them. The code follows whatever the existing file does.
-- **Single-line getters for simple properties.** `get $name(): string { return this[$name$]; }` — the entire accessor on one line.
+- **One-line form is for PROPERTIES only, and they stack.** C#-style: field declarations and simple accessors sit one per line, adjacent, no gaps. A get/set pair takes one line each, stacked. `get $name(): string { return this[$name$]; }`
+- **Methods are never one-line, and every pair of methods is separated by an empty line.** A constructor, a bond constructor, a static factory, `view()` — all methods. Even a one-statement body takes the multi-line form: signature, indented body, closing brace. A property whose body outgrows one line is written like a method and spaced like one. (Doug, 2026-07-28.)
 - **Chained member access on one line.** Ternaries stay inline unless they genuinely need wrapping.
 - **Import groups.** Symbol imports use structural comments: `import {// $SubjectiveRep ... } from './symbols'`. This labels the group without adding a separate comment line.
 - **No inline styles for styling decisions.** Colors, spacing, typography, layout — all flow through styled-components co-located with the chemical. Theme values come from the `ThemeProvider` via `(p) => p.theme.color.X`. **Allowed exception:** truly dynamic per-element values that styled-components can't reasonably express — a CSS variable computed from runtime state, x/y from a drag, width tied to a resize observer.

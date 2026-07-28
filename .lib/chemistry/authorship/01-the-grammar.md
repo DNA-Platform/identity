@@ -11,7 +11,7 @@ The `$` is a linguistic system, not a naming prefix. Read `$` as "representation
 The code is dense by design. "If the code can't be compressed, it must not be simple enough."
 
 - **No blank lines inside methods.** A method is one thought. If it needs blank lines, it is doing too many things.
-- **No blank lines between related declarations.** Symbol declarations, property declarations, and short methods stack vertically without gaps.
+- **No blank lines between related declarations.** Symbol declarations and property declarations stack vertically without gaps. Methods do not stack — every method is multi-line, with an empty line between methods (Doug, 2026-07-28).
 - **Blank lines between *conceptual* sections only.** Between the interface block and the class. Between the class and the exports. Between test suites. These mark architectural boundaries, not "readability."
 - **No explanatory comments.** The code is the explanation. If the code needs a comment, the code should be rewritten until it doesn't. The only comments in the codebase are structural markers (e.g., `{// $SubjectiveRep` on an import line to label a group of symbol imports).
 - **No utility functions.** If something is done once, write it inline. If something is done twice, consider whether the duplication is actually clearer than the abstraction. Three similar lines are better than a premature helper.
