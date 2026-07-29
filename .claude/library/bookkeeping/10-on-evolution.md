@@ -3,6 +3,7 @@
 - **specification:** Evolution
 - **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 - **coauthor:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **coauthor:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
 ---
 
@@ -55,6 +56,8 @@ Signs of a container ready to dissolve:
 - A label that describes the format ("field guide") rather than the content
 - Content that duplicates what exists more authoritatively elsewhere
 - A section that's really just a table of contents for books described elsewhere
+
+**Removal sweeps its references.** Dissolving a node is two acts, never one: remove the node, then sweep everything that pointed at it. The references do not vanish when their target does — they dangle. A removed chapter leaves broken links; a removed default leaves a dead fallback that routes to nothing. A removal is not finished until every reference and default that named the thing is redirected or removed, so nothing is left pointing at the gap. The [link validator](../..environmentalism/05-on-validation--check-links.ts) catches the broken-link half after the fact — but the discipline is to sweep at the moment of removal, before the gap can route a reader to a dead screen.
 
 ## When NOT to split
 
