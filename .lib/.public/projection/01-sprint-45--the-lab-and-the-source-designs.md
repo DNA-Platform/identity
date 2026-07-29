@@ -1,0 +1,52 @@
+# Sprint 45 — The Lab and the Source Designs
+
+- **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
+
+Two movements, in order. First, **the Lab**: a test app for `@dna-platform/lib` with the same setup as [chemistry's](../../../chemistry/package/app) — Vite, the case-shell apparatus, sections registered in a catalogue, `npm run dev` serving it — but its own content: the composition classes demonstrating themselves. Second, **the source designs**: the [*Semantics of Books*](../../../../../dna-library/library/claude-dna/conversations/2026-07-18-the-semantics-of-books.md) and [*Inexplicable Phenomena*](../../../../../dna-library/library/claude-dna/conversations/2026-07-13-inexplicable-phenomena.md) conversations and the related artifacts of the [Semantic Reference Theory project](../../../../../dna-library/library/claude-dna/projects/semantic-reference-theory/.cover.md) — the designs this branch exists to make real, using the sprint-44 classes as the basis.
+
+The order is binding, per Doug: **the design is discussed with him in the room before anything substantial is built.** Setting up the sprint and the app scaffold is authorized now; realizing the designs is not — it follows the design conversation. The [sign-off loop](00-sprint-44--composition.md#second-amendment--the-loop-after-rules-alone-failed-twice) governs every increment.
+
+**Refocused mid-sprint, per Doug: this sprint is about putting together the demo.** The centrepiece is markdown-with-LaTeX inserted *into the object model* — not converted past it: `$Latex` as an inline class that joins blocks through the grouping machinery; `$Markdown` as an authoring adapter whose parse mints real ladder objects through eval (two authoring surfaces, one object model); a correctly-styled page container; and a live source-editor case in the Lab where every sprint-44 mechanism is visible — the one door re-admitting changed prose, inline math grouping into blocks, and readings recomputing on every keystroke because nothing is cached. The design was discussed as a team ([Designing Inexplicable Phenomena, ch. 2](../designing-inexplicable-phenomena/02-markdown-with-latex.md) records it); the wholesale-HTML spike retires once the adapter lands.
+
+## Owners
+
+- **Arthur — runs the sprint.** This record, the design-conversation coordination, register coherence.
+- **Cathy, Queenie, Phillip — the work.** Cathy: the classes meeting the designs — where the sprint-44 model stretches or breaks against the prototypes. Queenie: the Lab as specification — every case a promise with title-body correspondence. Phillip: the visible layer — the Lab's apparatus and what the SRT prototypes ask of the UI.
+- Each reflects on the task in their own library at sprint start; covers updated with synopses for every chapter created.
+
+## The demo, itemized (signed 2026-07-30 — all of it demo code in the app; reusable extraction deferred)
+
+1. **`$Latex`** — inline demo class in `app/src/sections/page/`: copy is the TeX source, KaTeX view, `display` prop for block math; joins paragraph blocks through the grouping machinery.
+2. **`$Markdown`** — the authoring adapter as a demo class: `marked`'s lexer drives a parse that mints real `$Paragraph` objects through eval, inline children included (`text`, `b`/`i`/`code`, `$Latex`); title is the first heading; readings (`paragraphs`, `words`, `formulas`) read from the minted objects. Minting is keyed to the source (research PROBE 7 — remint on change, stable identity for mounting, no runaway); the package-level wholesale-HTML spike is retired.
+3. **`$Page`** — the styled skin: paper page, serif reading typography, KaTeX styles, display-math rhythm, drop cap, footer readings bar. Demo-local; extraction later.
+4. **The Styled Page** — a full-page Lab section (`fullPage: true`): one beautiful, complete document — masthead, prose, emphasis, inline and display math, a rule, and a live readings footer — with a way back to the Lab.
+5. **The Living Page** — a case-mode section: markdown source in an editor beside the rendered page; typing re-enters the one door, math typesets inline in place, and the readings recompute every keystroke because nothing is cached. Pass/fail reader-checkable.
+6. **Records** — the design book's markdown chapter updated to as-built; this chapter completed at retro.
+
+**Second refocus (Doug, 2026-07-30): one demo, styles as perspectives.** Items 4 and 5 merged into a single full-page surface — **The Page** — after Doug rejected the Composition/Designs split: one `$Sheet` chemical holds the source; **Book / GitHub / Night** are `Perspective` subclasses revealed onto it (the framework's own lens machinery, the color-demo pattern exactly), toggled by chips; *edit* opens the source pane beside the sheet (writes go to the bonded sheet's `$source`, every lens re-expresses live); *the classes* opens a drawer showing the real implementations — `$Latex`, `$Markdown`, `$Sheet` — since seeing the way it was implemented is the point. The readings metadata rides inside every skin. Driver-verified: skins swap by `data-skin`, 226 words constant across all three lenses (one object, many renderings), editing in the night skin ticked 226→227, all three class sources visible.
+
+**Third refocus (Doug, 2026-07-30): single demo, plus the model as a lens.** The Ladder section removed — The Page *is* the app. A fourth perspective, **anatomy**, is the "metadata-ish other view": the same `$Sheet` rendered as what the model knows — per-entry rows (title flagged *parsed, not authored*; each paragraph with live sentence/word/math counts; display math as raw TeX; rules), totals in the footer. The debug pass found the strangeness Doug reported: `defaultSectionId` still pointed at `'ladder'`, so the root URL — and therefore the **browser back button** — landed on a dead screen; fixed (`page` is the default, and any unknown section now falls back to the demo), the dangling `← The Lab` pill removed with its target, the favicon 404 silenced. Full driver sweep after: four lenses, edit, classes, back/forward, unknown routes — zero console errors or warnings.
+
+## Tasks
+
+- Open the sprint; scaffold `library/.public/package/app` mirroring chemistry's app setup (index.html, vite config, case-shell apparatus, catalogue, sections registry, `dev` script) with a first composition section proving the harness. — **Arthur** (setup), then **Phillip** owns the apparatus
+- Inventory and read the source material: both conversations end to end, the SRT project chapters, the `..files` artifacts, and the eleven prototypes in the export (per [Sprint 43's resource record](../../../chemistry/.lib/projection/42-sprint-43--the-library-hosts-itself.md)). — **Cathy, Queenie, Phillip**
+- The design conversation with Doug: how the conversations' designs map onto the sprint-44 classes; what the Lab must demonstrate; what gets designed before built. **No substantial building precedes it.** — **everyone, Doug in the room**
+- Realize the agreed designs in the Lab, increment by increment under the loop. — **Cathy/Queenie/Phillip**, after sign-off
+
+## Done when
+
+- The Lab runs (`npm run dev`), builds clean, and its cases follow title-body correspondence.
+- The source material is read end to end and its design decisions are catalogued against the sprint-44 register — what maps, what stretches, what's missing.
+- The design conversation happened with Doug in the room, and what was built matches what was signed there.
+- Covers carry synopses for every chapter this sprint creates; validators green.
+
+## The retro — done, 2026-07-30
+
+**What was built.** The Lab for `@dna-platform/lib` — chemistry's setup mirrored (vite, apparatus, catalogue, `dev` script), then refocused three times by Doug into **one demo**: *The Page* at the root URL. A `$Sheet` chemical holds markdown-with-LaTeX source; **four `Perspective` lenses** render it — Book (paper, serif, drop cap), GitHub (readme, generous margins after Doug's note), Night (gold-on-ink), and **anatomy**, the metadata view: the page rendered as what the model knows about itself, per-entry rows with live sentence/word/math counts. *Edit* opens the source beside the sheet — every keystroke re-enters the one door and every lens re-expresses, nothing cached; *the classes* shows the implementations (`$Latex` inline in blocks, `$Markdown` minting ladder objects through eval, `$Sheet` with its reveals). The [Designing Inexplicable Phenomena](../designing-inexplicable-phenomena/.cover.md) book opened with the gathered archive notes and records the as-built design. Driver-verified end to end with screenshots reviewed by eye: 226 words constant across four lenses, 226→227 on one typed word, zero console errors or warnings.
+
+**What was learned.** Styles-as-perspectives is the framework paying for itself — the color-demo pattern carried the whole feature; the SRT lens contract (meaning survives the theme change) ran as code before the SRT reading even starts. The keyed mint (PROBE 7) is the sanctioned bridge between fresh readings and mounted stability. Verification has three rungs now: green, driven, *seen* — the title-font defect and the off-center stage were caught only by looking at screenshots. And the sprint's bug was a consolidation lesson: removing a section without sweeping `defaultSectionId` left the root — and therefore the browser back button — pointing at a dead screen; the fix pattern is fallback-to-default so no route can dead-end.
+
+**Open at close.** The SRT source reading (both conversations, eleven prototypes, the `..files`) — untouched this sprint, the next one's spine. The archive converter's remaining features (environments, citations, highlighting, link rewriting). Extracting `$Latex`/`$Markdown`/the skins from demo code into the package — deferred by decision. Doug: "looking forward to collecting all sorts of demos" — the Lab is now the shelf for them.
