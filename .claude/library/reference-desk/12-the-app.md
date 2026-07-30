@@ -7,7 +7,7 @@
 
 What Claude Desktop looks like. Every noun in this chapter is a class in the code. Every action is a method. This is the specification the [code](../../src/) implements. If the code doesn't match what's described here, the code is wrong.
 
-> **Migration note:** the object *mapping* below names some classes from the pre-redesign code (e.g. `ChatItem`, `ProjectCard`). The screen descriptions still hold — the app hasn't changed — but the authoritative target class model during the [App Driver Build](../projected-identity/59-sprint-91--the-app-driver-build.md) is [The Redesign](13-the-redesign.md) (`ConversationItem`, `ProjectItem`, the `Page` hierarchy). This chapter is reconciled to the built code as Sprint 92 lands.
+> **Reconciled to the built code.** The object mapping below now names the classes that actually ship in [`.claude/src/`](../../src/), verified against the source. It carried the pre-redesign names (`ChatItem`, `ProjectCard`, `ChatList`) for six sprints after [Sprint 92](../projected-identity/61-sprint-92--the-driver-live.md) landed, because the migration note promising reconciliation "as Sprint 92 lands" outlived the sprint that was supposed to honour it. A promise to reconcile later is not a reconciliation; if you write one, it is a debt, and this is what it looks like unpaid.
 
 The code mirrors the app. The app has screens. Each screen has things on it. Each thing is an object with properties and actions. Navigation between screens returns new objects. You can only call methods for the screen you're on because you only have that screen's object.
 
@@ -25,7 +25,7 @@ The sidebar is a vertical panel present on every screen. From top to bottom:
 
 **Projects button** — navigates to the projects grid. Pure action.
 
-**Conversation list** — labeled "Recents." A scrollable list of conversations. Each conversation is a **ConversationListItem**: it has a title, and on hover a **three-dot button** appears ("More options for [title]"). Clicking the item opens the conversation. Clicking the three-dot button opens a **ConversationMenu** with items: Pin, Rename, Delete, and either "Add to project" / "Projects" (if not in a project) or "Change project" / "Remove from project" (if in one). Clicking Rename makes the title editable inline. Clicking Delete shows a confirmation. Clicking "Add to project" opens a **ProjectPicker** dialog with a list of projects to choose from.
+**Conversation list** — labeled "Recents." A scrollable list of conversations. Each conversation is a **ConversationListItem**: it has a title, and on hover a **three-dot button** appears ("More options for [title]"). Clicking the item opens the conversation. Clicking the three-dot button opens a **ConversationMenu** with items: Pin, Rename, Delete, and either "Add to project" / "Projects" (if not in a project) or "Change project" / "Remove from project" (if in one). Clicking Rename makes the title editable inline. Clicking Delete shows a confirmation. Clicking "Add to project" opens the **Move chat** dialog (`MoveConversationModal`) — a list of projects *plus* a search bar, not a one-shot picker.
 
 **View All button** — expands the conversation list if more exist. Pure action.
 
@@ -77,7 +77,7 @@ The main area when you click Projects in the sidebar.
 
 **Search bar** — text input for filtering.
 
-**Project card list** — a grid of **ProjectCard** objects. Each card has:
+**Project card list** — a grid of **ProjectItem** objects ("grid" is a display detail; it is a list). Each card has:
 - Project name (bold)
 - Description
 - Date ("Updated yesterday")
@@ -121,20 +121,31 @@ Every transition is a click that produces a new screen:
 
 Every noun above is a class. Every pure action is a method. The [Architecture Patterns](10-architecture-patterns.md) chapter shows how the object graph is built. The [Layers](02-01-the-architecture--layers.md) chapter shows how controllers read UIA elements to populate these objects.
 
-| App noun | Code class | Key methods |
-|----------|-----------|-------------|
-| Sidebar | `Sidebar` | tabs, newChat(), openProjects() |
-| Conversation list | `ChatList` | items, find(title), showAll() |
-| Conversation list item | `ChatItem` | title, open() → Conversation, menu() → ChatMenu |
-| Conversation menu | `ChatMenu` | rename(), delete(), pin(), addToProject() → ProjectPicker |
-| Project picker | `ProjectPicker` | projects, select(name), cancel() |
-| Projects grid | `ProjectsGrid` | cards, find(name) |
-| Project card | `ProjectCard` | name, description, open() → ProjectDetailPage |
-| Project detail | `ProjectDetailPage` | name, instructions, files, conversations |
-| Project conversation item | `ProjectConversationItem` | title, open() → Conversation |
-| Conversation | `Conversation` | title, messages, composer, send(text), waitForResponse() |
-| Message | `Message` / `Turn` | text, role, copy(), retry() |
-| Thinking block | detected via `hasThinkingBlock()` | exists/doesn't, has summary label |
-| Response | `Response` | text (grows during streaming) |
-| Composer | `Composer` | compose(), send(), readDraft(), clear(), attach() |
-| Model picker | `ModelPicker` | currentModel(), selectModel() |
+| App noun | Code class | Source |
+|----------|-----------|--------|
+| The window | `Claude` (holds `window`, `sidebar`, `session`) | [claude.ts](../../src/claude.ts) |
+| Any screen | `Page` (abstract — holds the sidebar, `id()`) | [pages/page.ts](../../src/pages/page.ts) |
+| Home screen | `HomePage extends Page` | [pages/home.ts](../../src/pages/home.ts) |
+| Conversation screen | `ConversationPage extends Page` | [pages/conversation.ts](../../src/pages/conversation.ts) |
+| Projects grid screen | `ProjectsPage extends Page` | [pages/projects-grid.ts](../../src/pages/projects-grid.ts) |
+| Project detail screen | `ProjectPage extends Page` | [pages/project.ts](../../src/pages/project.ts) |
+| Sidebar | `Sidebar` — the conversation list lives here; there is no separate list class | [components/sidebar.ts](../../src/components/sidebar.ts) |
+| Conversation list item | `ConversationItem` — one class for the sidebar **and** the project page | [components/chat-list.ts](../../src/components/chat-list.ts) |
+| Conversation menu | `ConversationMenu` | [components/chat-list.ts](../../src/components/chat-list.ts) |
+| "Add to project" dialog | `MoveConversationModal` (UIA title "Move chat") — a project list **plus** a search bar | [components/move-conversation-modal.ts](../../src/components/move-conversation-modal.ts) |
+| A project in that dialog | `ProjectChoice` — `select()` auto-confirms and closes | [components/move-conversation-modal.ts](../../src/components/move-conversation-modal.ts) |
+| Project card | `ProjectItem` | [pages/projects-grid.ts](../../src/pages/projects-grid.ts) |
+| A file on a project | `ProjectFile`, listed by `FilesPane` | [components/project-file.ts](../../src/components/project-file.ts) |
+| Message | `Message` | [components/message.ts](../../src/components/message.ts) |
+| The streaming response | `Response` — an ordered list of `Part`s | [components/response.ts](../../src/components/response.ts) |
+| A piece of a response | `Part` → `TextPart`, `CodePart`, `ThinkingPart`, `ArtifactPart` | [components/part.ts](../../src/components/part.ts) |
+| Thinking block | `ThinkingPart` — a part of the response, **not** a standalone class | [components/part.ts](../../src/components/part.ts) |
+| Artifact panel | `ArtifactPanel`; an artifact in a response is an `ArtifactPart` | [components/artifact-panel.ts](../../src/components/artifact-panel.ts) |
+| Composer | `Composer` — `type(text)`, `clear()`, `readDraft()`, `send()`, `attach()` | [components/composer.ts](../../src/components/composer.ts) |
+| Model picker | `ModelPicker` | [components/model-picker.ts](../../src/components/model-picker.ts) |
+| Where the app *is* | `Session` — remembers the current page by URL, re-binds on resume | [session.ts](../../src/session.ts) |
+| The page factory | `Navigation` — turns "we are on screen X" into the typed `Page` | [pages/navigation.ts](../../src/pages/navigation.ts) |
+
+**Two things this table records that no chapter had before.** `Page.id()` is URL-as-identity — the live page id, read fresh from the tree, which the `Session` compares against what it remembered; it is load-bearing and was catalogued nowhere. And `Navigation` is a real class, the id→page factory, likewise uncatalogued.
+
+**One thing it cannot yet reconcile.** Two classes named `Response` ship at once: the structured [components/response.ts](../../src/components/response.ts) (the parts model, used by `ConversationPage`) and the legacy [components/turn.ts](../../src/components/turn.ts) (`Response`/`Content`/`Prompt`, still imported by [message.ts](../../src/components/message.ts), [conversation-controller.ts](../../src/controllers/conversation-controller.ts), and [exports/format.ts](../../src/exports/format.ts)). The new model runs the page; the old model still runs the read-and-export path. The row above names the one that is current. The seam is real and is scheduled work, not a documentation choice.

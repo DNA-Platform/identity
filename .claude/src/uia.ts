@@ -12,6 +12,7 @@
 
 import type { Window } from './window.ts';
 import type { Shell } from './shell.ts';
+import { TreeSnapshot } from './tree.ts';
 
 const UIA_PREAMBLE = `
   Add-Type -AssemblyName UIAutomationClient
@@ -101,6 +102,19 @@ export class Uia {
       }
     `, 30_000);
     return result ? result.split('\n').map(s => s.trim()).filter(Boolean) : [];
+  }
+
+  /** The tree as a value you can hold, query, print, and send — one walk, parsed.
+   *  This is the read that serves a precondition, a verification, and an error's
+   *  evidence, so take it once and pass the snapshot rather than asking the shell
+   *  again per question. Never throws: an unreadable app yields an EMPTY snapshot,
+   *  which means "we could not see", not "it is not there". */
+  async snapshot(): Promise<TreeSnapshot> {
+    try {
+      return TreeSnapshot.from(await this.allNames());
+    } catch {
+      return TreeSnapshot.empty();
+    }
   }
 
   async expandByName(name: string): Promise<boolean> {
