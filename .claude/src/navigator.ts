@@ -8,9 +8,19 @@
 import type { Gateway } from './gateway.ts';
 import type { Uia } from './uia.ts';
 import type { Keyboard } from './keyboard.ts';
-import { WrongScreenError } from './errors.ts';
+import { WrongScreenError, DriverError } from './errors.ts';
 
 export type Screen = 'home' | 'conversation' | 'projects' | 'project' | 'settings' | 'customize' | 'unknown';
+
+/** The names Claude Desktop has used for "start a fresh chat", newest first.
+ *
+ *  Grounded in captured trees, not guessed: `New` is what the 2026-07 build shows
+ *  on its "New task" screen; `New chat` is what every build before it showed. The
+ *  list exists because the app renames things, and a driver that hard-codes one
+ *  name breaks silently and opaquely when it changes — which is exactly what
+ *  happened. Looking for whichever is present is not a retry; it is reading the
+ *  screen before acting on it. */
+const HOME_AFFORDANCES = ['New chat', 'New'] as const;
 
 export class Navigator {
   screen: Screen = 'unknown';
@@ -70,20 +80,48 @@ export class Navigator {
       await this.leaveSettings();
     }
 
+    // LOOK FIRST, then act once. The app renames things: it shipped "New chat" for
+    // months, and as of 2026-07 the button is named "New" on a "New task" screen
+    // (Chat / Cowork / Code became mode tabs). Rather than guessing a name and
+    // failing opaquely, read the tree and use whichever affordance is actually
+    // there. This is NOT a retry — the action still fires exactly once; we simply
+    // find the door before opening it.
+    const home = await this.findHomeAffordance();
+    if (!home) {
+      const tree = await this.uia.snapshot();
+      throw new DriverError(
+        'No way home: none of the known "new chat" affordances is on screen ' +
+        `(tried: ${HOME_AFFORDANCES.join(', ')}). The app may have been updated — ` +
+        'the tree below is what it actually shows.',
+      ).withTree(tree);
+    }
+
     await this.gateway.act(
       async () => {
-        const invoked = await this.uia.invokeByName('New chat');
+        const invoked = await this.uia.invokeByName(home);
         if (!invoked) {
-          throw new Error('Could not find "New chat" in the UIA tree');
+          throw new DriverError(`"${home}" was on the tree but could not be invoked`);
         }
       },
       async () => {
         const screen = await this.detectScreen();
         return screen === 'home';
       },
-      { description: 'Navigate to home' },
+      { description: `Navigate to home via "${home}"`, target: { name: home } },
     );
     this.screen = 'home';
+  }
+
+  /** Which "new chat" affordance is on screen right now, if any. One tree read
+   *  answers for every candidate — cheaper than one UIA query per name, and it is
+   *  the same snapshot the error carries when none of them is there. */
+  private async findHomeAffordance(): Promise<string | null> {
+    const tree = await this.uia.snapshot();
+    if (tree.isEmpty) return null;   // could not see — not the same as "not there"
+    for (const name of HOME_AFFORDANCES) {
+      if (tree.has({ name })) return name;
+    }
+    return null;
   }
 
   async leaveSettings(): Promise<void> {
