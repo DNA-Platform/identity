@@ -48,6 +48,22 @@ Six classes that talk to the OS. None know about Claude Desktop. None check fore
 
 These are bundled into the [`Automation`](../../src/automation.ts) interface and injected into controllers.
 
+### The inverted edge
+
+`Automation` bundles **seven** tools — `shell`, `window`, `gateway`, `diagnostics`, `uia`, `keyboard`, `navigator` — and injects all seven into every controller. One of them does not belong there: the **gateway**. The diagram above puts the gateway *above* the controllers, as the bridge the View crosses to reach them. The bundle hands it *downward*, into the controllers themselves. That single inverted dependency edge is what makes [invariant 5](13-the-redesign.md#layer-invariants--the-sanity-test) — *controllers have no gateway* — unenforceable: nothing stops a controller from calling a tool it was handed.
+
+The consequence, measured against the code: **51 `gateway.*` call sites across 7 of the 8 controllers.** `conversation` 13, `project` 13, `artifact-panel` 7, `composed-message` 7, `sidebar` 5, `model-picker` 4, `chat-list` 2. Only [`ComposerController`](../../src/controllers/composer-controller.ts) is clean.
+
+**There is a second route to the same violation.** [`Navigator`](../../src/navigator.ts) holds a `Gateway` of its own, so a controller reaches the gateway *transitively* through `auto.navigator` even after the direct member is removed. What controllers actually reach for, counted: `uia` 134, `navigator` 51, `gateway` 51, `keyboard` 46, `shell` 2 — and **46 of those 51 navigator calls are `requireScreen`**, which [P3](13-the-redesign.md#p3--the-object-is-the-screen-an-unreachable-method-is-a-hierarchy-bug) already sentences to deletion because the page *type* is the guard. Only 5 are the legitimate `detectScreen`. So `navigator` leaves on a later stage, after `requireScreen` dies — not on the first one.
+
+### Instruments — the narrowed set
+
+The fix is the edge, not the call sites. Split a gateway-free interface out of `Automation` — **`Instruments`**, starting as `{ uia, keyboard, shell }` — and have `Automation extends Instruments`. Then change each controller's constructor parameter from `Automation` to `Instruments`, one controller at a time. Every one of that controller's gateway calls becomes a compile error, and the orchestration they were doing is forced up into the View where it belongs. The compiler audits the layer boundary instead of a reviewer's memory.
+
+The name is the point. Controllers are **sensors and actuators**, and sensors and actuators are *instruments* — the things a blind executor reads the world with and acts on it through. The driver models [a human at a screen with eyes and hands](13-the-redesign.md#the-one-rule); instruments are exactly what that human has, and the gateway is the **judgment** they are not given. An earlier draft called it `ControllerKit`, which names the thing by *who receives it* and so says nothing about what it is.
+
+It is **not a cache.** Nothing is stored, reused, or invalidated — it is the same object graph handed over through a smaller opening, a narrowing enforced at compile time. The genuine cache in this design is the `TreeSnapshot`: one tree read, memoized for one action's lifetime, serving precheck, verify, and error capture.
+
 ## Layer 2: Controllers
 
 Controllers are blind UIA executors. They do ONE thing: translate a named operation into UIA calls. They are **sensors** (read something) and **actuators** (do something). Nothing else.
@@ -96,7 +112,9 @@ No gateway. No retry. No verify. Just the raw UIA call.
 
 ### Implementation note: cleaning controllers
 
-Currently 8 of 9 controllers use the gateway internally (`auto.gateway.act()`, `auto.gateway.read()`). This is WRONG. The gateway belongs in the View layer. Controllers should be pure sensors and actuators. The `ChatListController` is the model — it was cleaned in Sprint 84. The other 8 need the same treatment:
+Seven of the eight controllers use the gateway internally (`auto.gateway.act()`, `auto.gateway.read()`) — [51 call sites](#the-inverted-edge). This is WRONG. The gateway belongs in the View layer. Controllers should be pure sensors and actuators.
+
+[`ComposerController`](../../src/controllers/composer-controller.ts) is the one clean model. **`ChatListController` is not** — it was cleaned in Sprint 84 and has been cited as the reference model ever since, but its granular half is pure while `readList` and `open` still call the gateway (2 sites). Do not clean the others by imitating it; imitating it copies the violation. The seven need this treatment:
 
 1. Every `gateway.act(action, verify)` in a controller becomes: the actuator (action) stays in the controller, the verify moves to the View.
 2. Every `gateway.read(reader, validator)` in a controller becomes: the reader stays in the controller, the polling moves to the View.
@@ -125,11 +143,11 @@ The View layer IS the app on screen. Every visible thing is a typed object. Ever
 Page (abstract)
 ├── HomePage
 ├── ConversationPage
-├── ProjectsListPage
-└── ProjectDetailPage
+├── ProjectsPage
+└── ProjectPage
 ```
 
-Each page is constructed AFTER navigation completes, from what's on screen. The page reads its content during construction. You can't have a ProjectsListPage without being on the projects screen.
+Each page is constructed AFTER navigation completes, from what's on screen. The page reads its content during construction. You can't have a ProjectsPage without being on the projects screen.
 
 ### The Sidebar
 
@@ -145,7 +163,7 @@ class Sidebar {
 }
 ```
 
-After `openProjects()`, the caller constructs a `ProjectsListPage` from the new screen.
+After `openProjects()`, the caller constructs a `ProjectsPage` from the new screen.
 
 ### Item objects
 
@@ -251,10 +269,10 @@ await app.launch();                                    // app visible, foregroun
 
 // Navigate to Claude project
 app.sidebar.openProjects();                            // click Projects button
-const projectsPage = new ProjectsListPage(app);        // read project list from screen
+const projectsPage = new ProjectsPage(app);        // read project list from screen
 const claude = projectsPage.projects.find('Claude');    // find in list
 await claude.open();                                    // click → navigates to project page
-const projectPage = new ProjectDetailPage(app);         // read project from screen
+const projectPage = new ProjectPage(app);         // read project from screen
 const test = projectPage.conversations.find('Test');    // find in project conversation list
 await test.open();                                      // click → navigates to conversation
 
