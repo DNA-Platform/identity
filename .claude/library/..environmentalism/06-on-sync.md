@@ -109,11 +109,15 @@ sed 's|\](\(library/\)|\](.claude/\1|g; s|\](\(agents/\)|\](.claude/\1|g; \
 
 The general lesson is worth more than the fix: **a tool that only ever runs outward leaves its own house unmaintained.** The compiled output was correct everywhere the tool was pointed, and wrong in the only place nobody thought to point it.
 
-### No branch libraries in the identity repo
+### No branch libraries in the identity repo — remove `.lib` on sight
 
-[Library Tree](../library-tree/01-branches.md#placement) places every branch beside the code it records — `$Chemistry` at `library/chemistry/.lib/` and Publicity at `library/.public/.lib/` in the inexplicable-phenomena repo, Altered States in the altered-states repo. **None of them lives in the identity repo**, and the `dna-platform` branch has never carried one: its tree is `.claude/`, `CLAUDE.md`, `README.md`, and the two dotfiles. That is the identity layer, entire.
+**The identity repo is the organization's identity, not a project.** It is where we work on `.claude`. There are no library branches in it, and its root is exactly five things: `.claude/`, `CLAUDE.md`, `README.md`, `.gitattributes`, `.gitignore`. The `dna-platform` branch has never carried anything else. That is the identity layer, entire.
 
-The commit tool's project-branch step mirrors each discovered `library/*/.lib` into the identity repo as `.lib/<area>`, which put a 200-file copy of two branch libraries onto the project branch here. That mirror is **not a home** — the originals are in the project repo — and it is now removed. If it comes back, it is the commit tool doing it, not a branch that belongs. **A branch library goes where its code is; the identity repo holds the identity.**
+[Library Tree](../library-tree/01-branches.md#placement) places every branch beside the code it records — `$Chemistry` at `library/chemistry/.lib/` and Publicity at `library/.public/.lib/` in the inexplicable-phenomena repo, Altered States in the altered-states repo. **None of them lives here.**
+
+The commit tool's project-branch step mirrors each discovered `library/*/.lib` into this repo as `.lib/<area>`, so `.lib/` reappears every time another project pushes. It is a mirror, never a home. **Delete it whenever it appears — always, without asking.** The one thing to do first is confirm each file exists in the project repo it belongs to; that is a thirty-second count, and it is the difference between removing a mirror and destroying a branch library.
+
+**And never reconcile by mirroring — diff, then select specifically.** Two working copies of one identity will drift, and the repair is always: diff the two, name the files that differ, and restore or keep *each one on its merits*. A directory-level mirror in either direction is what causes this whole class of damage, and reaching for one to fix damage a mirror caused is how a bad afternoon becomes a bad week.
 
 ### Uncommitted work is not protected by any of this
 
