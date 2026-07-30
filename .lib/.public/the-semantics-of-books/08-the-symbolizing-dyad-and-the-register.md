@@ -31,7 +31,7 @@ Recorded as a **conjecture to track**, in Doug's own hedge — *"seems like it w
 
 ## The register of classes
 
-Every class the derivation has named, kept here so none is lost and so the map stays honest as decisions change. Each is (or will be) a real class — or, for the composition role, an **interface** — in [`@dna-platform/lib`](../../package/). `→` is *specializes*; the source chapter is where it is derived; **Built** marks the ones that exist in code today. This table is edited, not appended — when a decision changes the model, the row changes. The composition rows reflect the [Sprint 44](../projection/00-sprint-44--composition.md) as-built model: content enters once, as one live block through the bond constructor, and the levels beneath are *parsed, never authored* — the creator of a paragraph does not specify its sentences.
+Every class the derivation has named, kept here so none is lost and so the map stays honest as decisions change. Each is (or will be) a real class — or, for the composition role, an **interface** — in [`@dna-platform/lib`](../../package/). `→` is *specializes*; the source chapter is where it is derived; **Built** marks the ones that exist in code today. This table is edited, not appended — when a decision changes the model, the row changes. The composition rows reflect the [Sprint 44](../projection/01-sprint-44--composition.md) as-built model: content enters once, as one live block through the bond constructor, and the levels beneath are *parsed, never authored* — the creator of a paragraph does not specify its sentences.
 
 | class | relation | status | chapter |
 |---|---|---|---|
