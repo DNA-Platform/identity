@@ -1,0 +1,177 @@
+///: The CLI — drive Claude Desktop by moving through it.
+///:
+///: Usage:
+///:   npx tsx cli/cli.ts look                    print the room you are in
+///:   npx tsx cli/cli.ts go <exit>               take an exit, print the new room
+///:   npx tsx cli/cli.ts do <command> [args…]    run a look or an action
+///:   npx tsx cli/cli.ts tree [--type T] [--name N] [--contains S] [--json]
+///:   npx tsx cli/cli.ts copy <command> [args…]  run a look, hand the result over
+///:   npx tsx cli/cli.ts help
+///:
+///: This file parses arguments and prints. It holds no app behaviour — that lives in
+///: [`.claude/src/`](../../src/), reached through [Runtime](runtime.ts).
+///:
+///: It always minimizes in a `finally`, BEFORE closing the shell (minimizing needs
+///: the shell), and it never forces focus: if Claude Desktop is not readable it says
+///: so rather than racing the user for their own screen
+///: ([ch.5](../library/reference-desk/05-coding-philosophy.md)).
+///:
+///: [The Runtime](../library/reference-desk/14-the-runtime.md) — the specification.
+
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { Claude } from '../src/claude.ts';
+import { readSurfaces } from './surface.ts';
+import { Runtime, renderValue } from './runtime.ts';
+import { renderScreen } from './render.ts';
+import { WindowsClipboard, copyReport, nothingToCopy } from './clipboard.ts';
+import type { ScreenModel } from './describe.ts';
+
+const SRC = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'src');
+
+const HELP = `
+Drive Claude Desktop by moving through it. Every move prints the room.
+
+  look | where            print the room you are in
+  go <exit>               take an exit — prints the room you arrive in
+  do <command> [args…]    run a look (reads the screen) or an action (changes it)
+  tree [filters]          the live UIA tree — what the app ACTUALLY shows
+  copy <command> [args…]  run a look and put the result on your clipboard
+  help                    this
+
+Commands are read from the code, so the room always lists what the app can really
+do. Three kinds:
+  Exits  return a new screen        (go)
+  Look   read and tell you          (do / copy)
+  Do     change something           (do)
+
+tree filters:  --type Button   --name "Send"   --contains inexplicable   --json
+
+When a command is missing or the screen disagrees with what you expected, run
+\`tree\` — it is the app's own account of itself, and the fastest way to find out
+why an implementation is failing.
+`.trimStart();
+
+function observationsFor(_model: ScreenModel): Record<string, string> {
+  // Live observations are read by explicit `look` commands, not gathered here — a
+  // hand-picked list of "interesting facts per screen" is the same drift as a
+  // hand-maintained command table. The room shows the surface; you ask for readings.
+  return {};
+}
+
+async function main(): Promise<number> {
+  const argv = process.argv.slice(2);
+  const verb = argv[0] ?? 'help';
+
+  if (verb === 'help' || verb === '--help' || verb === '-h') {
+    console.log(HELP);
+    return 0;
+  }
+
+  const app = new Claude();
+  let launched = false;
+
+  try {
+    await app.launch();
+    launched = true;
+
+    const runtime = new Runtime(app, readSurfaces(SRC));
+    await runtime.bind();
+
+    switch (verb) {
+      case 'look':
+      case 'where': {
+        console.log(renderScreen(runtime.model(), observationsFor(runtime.model())));
+        return 0;
+      }
+
+      case 'tree': {
+        const tree = await runtime.tree();
+        const filtered = applyTreeFilters(tree, argv.slice(1));
+        console.log(argv.includes('--json')
+          ? JSON.stringify((filtered as { toJSON(): unknown }).toJSON(), null, 2)
+          : String(filtered));
+        return 0;
+      }
+
+      case 'go':
+      case 'do':
+      case 'copy': {
+        const path = argv[1];
+        if (!path) {
+          console.error(`"${verb}" needs a command. Run \`look\` to see what is here.`);
+          return 2;
+        }
+        const args = argv.slice(2);
+        const outcome = await runtime.run(path, args);
+
+        switch (outcome.kind) {
+          case 'refused':
+            console.error(outcome.message);
+            return 2;
+
+          case 'moved':
+            console.log(renderScreen(outcome.model, observationsFor(outcome.model)));
+            return 0;
+
+          case 'acted':
+            console.log(`✓ ${outcome.command.path}`);
+            console.log('');
+            console.log(renderScreen(outcome.model, observationsFor(outcome.model)));
+            return 0;
+
+          case 'read': {
+            const text = renderValue(outcome.value);
+            if (verb !== 'copy') { console.log(text); return 0; }
+            if (outcome.value === null || outcome.value === undefined || text === '(empty)' || text === '(none)') {
+              console.log(nothingToCopy(outcome.command.path));
+              return 0;
+            }
+            await new WindowsClipboard().write(text);
+            console.log(copyReport(outcome.command.path, text));
+            return 0;
+          }
+        }
+        return 0;
+      }
+
+      default:
+        console.error(`Unknown verb "${verb}".\n`);
+        console.error(HELP);
+        return 2;
+    }
+  } catch (e) {
+    const err = e as { detail?: string; message?: string };
+    console.error(err.detail ?? err.message ?? String(e));
+    return 1;
+  } finally {
+    // Give the computer back. Minimize BEFORE closing the shell — minimizing needs it.
+    if (launched) {
+      try { app.window.minimize(); } catch { /* nothing to give back */ }
+      try { await app.exit(); } catch { /* already gone */ }
+    }
+  }
+}
+
+/** `--type X --name Y --contains Z`, applied left to right. Unknown flags are
+ *  ignored rather than fatal: `tree` is the command you reach for when things are
+ *  already going wrong, and it should never be the thing that fails. */
+function applyTreeFilters(tree: unknown, flags: readonly string[]): unknown {
+  let current = tree as { where(q: Record<string, string>): unknown };
+  for (let i = 0; i < flags.length; i++) {
+    const key = flags[i];
+    const value = flags[i + 1];
+    if (!value || value.startsWith('--')) continue;
+    if (key === '--type') { current = current.where({ type: value }) as typeof current; i++; }
+    else if (key === '--name') { current = current.where({ name: value }) as typeof current; i++; }
+    else if (key === '--contains') { current = current.where({ contains: value }) as typeof current; i++; }
+  }
+  return current;
+}
+
+// Not top-level await: tsx transpiles this file to CJS, where top-level await is a
+// hard error. The .then keeps the entry point runnable under both module formats.
+main().then(
+  code => process.exit(code),
+  err => { console.error(err); process.exit(1); },
+);
