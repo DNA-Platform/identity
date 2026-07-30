@@ -94,33 +94,6 @@ bash ../identity/.claude/library/..environmentalism/06-on-sync--setup.sh /path/t
 
 It is idempotent (re-running re-syncs the identity into the project) and supports `DRY_RUN=true` to print the plan without mutating anything. It assumes repos are siblings under one parent (`parent/identity`, `parent/<project>`) and derives the project branch from the project directory name. Where the commit tool pushes a project's changes outward to the right branches, the setup tool pulls the identity in and wires the project's `.gitignore` and `CLAUDE.md`. Together they are the two directions of [travel](../teamspeak/07-travel.md) — pull in, push back — and both keep `.claude/` a plain mirror of the identity rather than a nested clone.
 
-### The identity repo needs the root rewrite too
-
-The prefix rewrite in step 3 of the [setup tool](06-on-sync--setup.sh) — `](library/` → `](.claude/library/` — is what makes a repo-root `CLAUDE.md` resolve, because the root sits one level above `.claude/` where the library actually is. The tool runs *against projects*, so every project got it. **The identity repo never did**, since it is the source rather than a destination, and nothing else generates its root file. Its `CLAUDE.md` sat as a raw copy of `.claude/CLAUDE.md` with bare `library/…` links — **47 broken compiled links**, enough to make the [validation runner](05-on-validation.md) return FAIL and refuse a push, in the one repo the identity is pushed *from*.
-
-The identity repo is not exempt from its own geometry. Regenerate its root file the same way any project's is generated:
-
-```sh
-npx tsx .claude/library/..environmentalism/02-on-bootstrap--compiler.ts library --write   # writes .claude/CLAUDE.md
-sed 's|\](\(library/\)|\](.claude/\1|g; s|\](\(agents/\)|\](.claude/\1|g; \
-     s|\](\(rules/\)|\](.claude/\1|g; s|\](\(skills/\)|\](.claude/\1|g' \
-    .claude/CLAUDE.md > CLAUDE.md                                                          # writes the root copy
-```
-
-The general lesson is worth more than the fix: **a tool that only ever runs outward leaves its own house unmaintained.** The compiled output was correct everywhere the tool was pointed, and wrong in the only place nobody thought to point it.
-
-### No branch libraries in the identity repo
-
-[Library Tree](../library-tree/01-branches.md#placement) places every branch beside the code it records — `$Chemistry` at `library/chemistry/.lib/` and Publicity at `library/.public/.lib/` in the inexplicable-phenomena repo, Altered States in the altered-states repo. **None of them lives in the identity repo**, and the `dna-platform` branch has never carried one: its tree is `.claude/`, `CLAUDE.md`, `README.md`, and the two dotfiles. That is the identity layer, entire.
-
-The commit tool's project-branch step mirrors each discovered `library/*/.lib` into the identity repo as `.lib/<area>`, which put a 200-file copy of two branch libraries onto the project branch here. That mirror is **not a home** — the originals are in the project repo — and it is now removed. If it comes back, it is the commit tool doing it, not a branch that belongs. **A branch library goes where its code is; the identity repo holds the identity.**
-
-### Uncommitted work is not protected by any of this
-
-Every guard in this chapter protects *committed* history and *pushed* branches. None of them protect a working copy. A session's worth of uncommitted edits — modified files and, worse, new untracked files — is erased without trace by a checkout, a clean, or a mirror from a copy that happens to equal your HEAD, and git has nothing to restore from because nothing was ever recorded. We lost a session's work that way twice in one afternoon, and never identified the cause: the [dispatch tool](08-on-brains--dispatch.sh) contains no git commands, the repo has no hooks, and no teammate transcript contains a `checkout`, `restore`, `reset`, `clean`, or `stash`.
-
-Which is the point. **The cause was never found, and the fix did not depend on finding it.** Commit early and commit often; a commit is the only thing in this system that makes work survive a cause you cannot name. And when work is lost, **the recovery path is people, not git**: the library's shared chapters are recoverable because the conversation that produced them is still in context, and a teammate's personal chapters are recoverable because that teammate's [session persists](08-on-brains.md#the-surprising-part-persistence-is-native) and still holds what they wrote. Ask each author to write their own again — never let another voice reconstruct them, because a restored chapter is still that person's [first-person prose](../teamspeak/05-autonomy.md).
-
 ## The pull tool — syncing down, staged through the branch
 
 The down-sync brings the organization's changes from `dna-platform` *into* a project — but **through the project branch as a staging ground, never straight into the working copy.** Compiled files (agents, `CLAUDE.md`, rules, skills) are deterministic from chapters, so any change in compiled output traces to a chapter that changed in the pull, never a surprise. It is **two commands, not one**, because a merge that needs hand-resolution must not be entangled with a tool that also guesses whether it is resuming:

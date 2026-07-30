@@ -32,7 +32,7 @@ App
 ├── sidebar: Sidebar (always visible on every screen)
 │     conversations: ConversationItem[]
 │     newChat() → navigates to home
-│     openProjects() → ProjectsPage
+│     openProjects() → ProjectsListPage
 │     search(query) — types in the search box
 │
 └── (current page — one of:)
@@ -50,11 +50,11 @@ App
     ├── scrollToBottom()
     └── readLastResponse(): string
 
-    ProjectsPage extends Page
+    ProjectsListPage extends Page
     └── projects: ProjectItem[]
           find(name) → ProjectItem | undefined
 
-    ProjectPage extends Page
+    ProjectDetailPage extends Page
     ├── name: string
     ├── instructions: string
     ├── files: ProjectFile[]
@@ -72,7 +72,7 @@ App
 | The three-dot menu | `ConversationMenu` | rename(), delete(), pin(), addToProject() → ProjectPicker |
 | The project picker dialog | `ProjectPicker` | items (list of ProjectPickerItem), cancel() |
 | A project in the picker | `ProjectPickerItem` | select() — parameterless, clicks this one |
-| A project in the list | `ProjectItem` | name, open() → ProjectPage |
+| A project in the list | `ProjectItem` | name, open() → ProjectDetailPage |
 | A conversation in a project | `ConversationItem` | same class as sidebar items |
 | The text input | `Composer` | type(text), clear(), readDraft(), send(), attach() |
 | A message | `Message` | text, role, copy(), retry() |
@@ -96,9 +96,9 @@ Methods that take names, IDs, or navigation targets are API patterns. They don't
 Clicking something that changes the screen returns the new page object.
 
 ```typescript
-const projects = await app.sidebar.openProjects();   // → ProjectsPage
+const projects = await app.sidebar.openProjects();   // → ProjectsListPage
 const claude = projects.find('Claude');               // → ProjectItem | undefined
-const detail = await claude.open();                   // → ProjectPage
+const detail = await claude.open();                   // → ProjectDetailPage
 const test = detail.conversations.find('Test');       // → ConversationItem | undefined
 const conv = await test.open();                       // → ConversationPage
 ```
@@ -114,7 +114,7 @@ Nothing works if the window isn't foreground. Not reads. Not clicks. Not polls. 
 Opening a project:
 1. You have a `ProjectItem` because it was in the list — verified by construction.
 2. `open()` clicks it — then verifies the screen changed to a project page.
-3. The `ProjectPage` is constructed from what's now on screen — verified by reading.
+3. The `ProjectDetailPage` is constructed from what's now on screen — verified by reading.
 
 If any step fails, you get an error with context. Not a silent wrong state.
 
@@ -136,7 +136,7 @@ One class. Always visible. Same on every screen.
 
 - `conversations` — list of `ConversationItem` objects, read from "More options for X" buttons.
 - `newChat()` — clicks the New Chat button.
-- `openProjects()` — clicks the Projects button, returns `ProjectsPage`.
+- `openProjects()` — clicks the Projects button, returns `ProjectsListPage`.
 - `search(query)` — types in the search box, list updates.
 
 ## What does NOT exist

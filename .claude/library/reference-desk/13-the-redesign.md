@@ -65,7 +65,7 @@ Documentation never runs ahead of code (that is this chapter's job, and only bec
 
 ## Target object model
 
-The full model is specified in [Sprint 90 Part 3](../projected-identity/57-sprint-90--the-app-driver-refactor.md#part-3--target-object-model). Summary: `Claude` holds only `window` and `launch(): Page`. `Page` is abstract, holds the one universal `Sidebar`. `HomePage`, `ConversationPage`, `ProjectsPage`, `ProjectPage` extend it. Items (`ConversationItem`, `ProjectItem`, `ProjectPickerItem`, `Message`, `Artifact`, `ProjectFile`, `ModelOption`) carry their own actions. `ConversationItem` is shared by the sidebar and the project detail page. `Composer` is page-unaware.
+The full model is specified in [Sprint 90 Part 3](../projected-identity/57-sprint-90--the-app-driver-refactor.md#part-3--target-object-model). Summary: `Claude` holds only `window` and `launch(): Page`. `Page` is abstract, holds the one universal `Sidebar`. `HomePage`, `ConversationPage`, `ProjectsListPage`, `ProjectDetailPage` extend it. Items (`ConversationItem`, `ProjectItem`, `ProjectPickerItem`, `Message`, `Artifact`, `ProjectFile`, `ModelOption`) carry their own actions. `ConversationItem` is shared by the sidebar and the project detail page. `Composer` is page-unaware.
 
 ## Class catalogue
 
@@ -78,8 +78,8 @@ Every target class, its layer, responsibility, and public surface. Parameter rul
 | `Page` (abstract) | What every screen shares | `sidebar: Sidebar`; `screenType` |
 | `HomePage extends Page` | The empty/new-chat screen | `composer: Composer`; `modelPicker: ModelPicker` |
 | `ConversationPage extends Page` | An open chat | `title`; `projectName`; `composer`; `messages: Message[]`; `response: Response`; `scrollToBottom()`; `scrollToTop()`; sensors `isResponseComplete()`, `hasResponseContent()`, `hasStopButton()`, `canSend()` |
-| `ProjectsPage extends Page` | The projects screen (was "grid") | `projects: ProjectItem[]`; `find(name)`; `create(): NewProjectForm` |
-| `ProjectPage extends Page` | One project | `name`; `instructions`; `files: ProjectFile[]`; `conversations: ConversationItem[]`; `composer` |
+| `ProjectsListPage extends Page` | The projects screen (was "grid") | `projects: ProjectItem[]`; `find(name)`; `create(): NewProjectForm` |
+| `ProjectDetailPage extends Page` | One project | `name`; `instructions`; `files: ProjectFile[]`; `conversations: ConversationItem[]`; `composer` |
 
 ### View — items and components (each carries its own actions)
 
@@ -157,7 +157,7 @@ Five theorems. Every file Sprint 91 touches is audited against them; a violation
 
 6. **Everything that touches the app is async and never blocks.** Any method that reaches the shell, the UIA tree, or the window returns a `Promise` and `await`s. The gateway polls with awaited sleeps (tapering 50ms→1s) — it never busy-waits and never blocks the event loop. Only pure data transforms (parsers, `toMarkdown()`, getters over already-read data) may be synchronous, because they don't touch the app. *Current breach to fix: `window.ts` (Win32 lifecycle — `find`/`launch`/`focus`/`maximize`/`minimize`/`isForeground`/`requireForeground`) is synchronous via `powershellSync`, which spawns a fresh shell and blocks (~200ms). Convert it to the async persistent shell (also faster, 12ms). This cascades: `Gateway.requireForeground()` and its call sites — `act`/`waitFor`/`read`, `claude.launch()` — become async.*
 
-**Status against the code.** Only `composer-controller.ts` satisfies invariant 5 — it has zero gateway calls, and says so in its own annotation. `chat-list-controller.ts` was cited here as the second reference model and **is not one**: its granular sensors and actuators are pure, but `readList` and `open` still call the gateway. Invariant 5 is breached at [51 call sites across 7 of 8 controllers](02-01-the-architecture--layers.md#the-inverted-edge), and `Navigator` carries a gateway of its own so there is a second, transitive route; invariant 4 is breached by three View components (`files-pane`, `project-file`, `text-content-dialog`) that touch `uia` and `gateway` directly; invariant 6 is breached by `window.ts`, still fully synchronous — the breach that [failed in the field](../projected-identity/61-sprint-92--the-driver-live.md#grounded-targets-from-sprint-91s-live-testing) with HRESULT 80004005. The root cause of the invariant-5 breach is the [inverted edge](02-01-the-architecture--layers.md#the-inverted-edge) in `Automation`, and the fix is [`Instruments`](02-01-the-architecture--layers.md#instruments--the-narrowed-set) — a narrowing of that edge, not a sweep of the call sites.
+`chat-list-controller.ts` and `composer-controller.ts` already satisfy 3–6; they are the reference models.
 
 ## Patterns (worked examples against real classes)
 
@@ -194,19 +194,19 @@ What Sprint 91 deletes, renames, and decomposes. Grounded in the current files. 
 
 ### Delete outright
 
-- **`pages/projects.ts`** (`Projects`) — duplicates `pages/projects-grid.ts`. Its `open(name)`/`openAt(index)`/`create(name,desc)`/`remove(name)` collapse into the list pattern on `ProjectsPage`.
-- **`pages/project-detail.ts`** (`ProjectConversations`, `ProjectConversationItem`) — both it and `chat-list.ts` read "More options for X" list items. Unify on one `ConversationItem`; `ProjectPage.conversations` reuses it.
+- **`pages/projects.ts`** (`Projects`) — duplicates `pages/projects-grid.ts`. Its `open(name)`/`openAt(index)`/`create(name,desc)`/`remove(name)` collapse into the list pattern on `ProjectsListPage`.
+- **`pages/project-detail.ts`** (`ProjectConversations`, `ProjectConversationItem`) — both it and `chat-list.ts` read "More options for X" list items. Unify on one `ConversationItem`; `ProjectDetailPage.conversations` reuses it.
 
 ### Rename into the target
 
-- **`pages/projects-grid.ts`**: `ProjectsGrid` → `ProjectsPage extends Page`; `ProjectCard` → `ProjectItem`. "Grid" is a display detail; it's a list.
+- **`pages/projects-grid.ts`**: `ProjectsGrid` → `ProjectsListPage extends Page`; `ProjectCard` → `ProjectItem`. "Grid" is a display detail; it's a list.
 - **`pages/home.ts`**: `Home` → `HomePage extends Page` (holds `composer`, `modelPicker`).
 - **`components/chat-list.ts`**: `ChatItem` → `ConversationItem`; `ChatMenu` → `ConversationMenu`. `ChatList` dissolves into `Sidebar.conversations` (the list pattern). `ProjectPicker.select(projectName: string)` → `ProjectPickerItem.select()`.
 
 ### Decompose the god objects
 
 - **`pages/conversation.ts`** (`Conversation`, 30 methods) → `ConversationPage` + `Message` + `ThinkingBlock` + `Response` + `Artifact` + `EditField`. Move off the page: `copyMessage(index)` → `Message.copy()`; `editMessage(index,text)` → `Message.edit(): EditField`; `expandThinking(index)` → `Message.thinkingBlock.expand()`; `openArtifact/copyArtifact/downloadArtifact(title,…)` → `Artifact.open()/copy()/download()`. Delete the infrastructure-as-method: `waitForResponse(timeout)` (caller does `gateway.waitFor(page.isResponseComplete)`), `refresh()`, `refreshMetadata()`, `isInProject(name)` (read `projectName`, caller compares), `regenerateLastResponse()` → `response`/`Message.retry()`. Consolidate the four readers (`readLastResponse`, `readTurns`, `readStructuredMessages`, `readResponse`) behind `messages`/`response`.
-- **`pages/project.ts`** (`Project`, 14 methods) → `ProjectPage` + `ProjectFile` + `EditField`. Split `rename`/`editDescription`/`writeInstructions` into click→`EditField`→`type`→`confirm`. Move `removeFile/readFileContent/downloadFile(name)` → `ProjectFile.remove()/read()/download()`. `addTextContent(title,content)` → dialog steps via existing `TextContentDialog`. Delete `resetData()`, `refresh()`.
+- **`pages/project.ts`** (`Project`, 14 methods) → `ProjectDetailPage` + `ProjectFile` + `EditField`. Split `rename`/`editDescription`/`writeInstructions` into click→`EditField`→`type`→`confirm`. Move `removeFile/readFileContent/downloadFile(name)` → `ProjectFile.remove()/read()/download()`. `addTextContent(title,content)` → dialog steps via existing `TextContentDialog`. Delete `resetData()`, `refresh()`.
 
 ### Reconcile the fragmented message model — into a *structure*, not root text
 
@@ -274,7 +274,7 @@ The object model must be able to *express* each of the [19 acceptance requiremen
 | 3 | Robust to user typing; clear the box; in the view model | `Composer.clear()` waits for typing stability (3 identical reads) then clears — a View method on the composer. | M2 |
 | 4 | State verified before any action; behind the app; via gateways | Every View action is `gateway.act(actuator, sensor)`; the gateway checks foreground and verifies. The page *type* guarantees the screen — no action exists on the wrong page. | all |
 | 5 | Create a new conversation on send | `Sidebar.newChat(): HomePage` → `composer.type()/send()` → reconstitute `ConversationPage`. | M2 |
-| 6 | Navigate to an existing conversation in the project | `ProjectPage.conversations.find(title)?.open(): ConversationPage` (or `Sidebar.conversations.find`). | post-spike |
+| 6 | Navigate to an existing conversation in the project | `ProjectDetailPage.conversations.find(title)?.open(): ConversationPage` (or `Sidebar.conversations.find`). | post-spike |
 | 7 | Sanity-check it's the right conversation | `ConversationPage.messages` — read and compare content. | post-spike |
 | 8 | Send and wait for streaming to start before handing back control | After `composer.send()`, wait `gateway.waitFor(page.hasResponseContent)` where `hasResponseContent` detects **actual response text**, not the "thinking"/"responding" ack (which can hang, especially after minimize). Minimize/hand-back only after this passes. | M2/M3 |
 | 9 | Read names the conversation by topic and moves it to the project | `ConversationMenu.rename(name)` + `addToProject(): MoveConversationModal` → `projects().find()` → `ProjectChoice.select()`. | post-spike |

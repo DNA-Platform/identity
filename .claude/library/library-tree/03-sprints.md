@@ -31,7 +31,7 @@ The last sprint chapter is the current state. A reader who opens the last chapte
 
 ## The planning scratchpad — chapter zero
 
-Every Projection book may carry **`00-planning.md`** — the planning scratchpad, a true **chapter zero**: a numbered chapter like every part of a book (chapters have numbers; a file that dodges numbering isn't part of the book and loses alphabetical ordering). It sits first in the TOC, before every sprint, and holds the team's *temporary* planning notes — the long-term ladder, open design questions, notes-to-selves. Sprint chapters number from `01`.
+Every Projection book may carry **`00-planning.md`** — the planning scratchpad, a true **chapter zero**: a numbered chapter like every part of a book (chapters have numbers; a file that dodges numbering isn't part of the book and loses alphabetical ordering). It sits first in the TOC, before every sprint, and holds the team's *temporary* planning notes — the sprint plan ahead, open design questions, notes-to-selves. Sprint chapters number from `01`.
 
 Its TOC synopsis is **specification-shaped** and therefore survives every overwrite: it describes what the chapter *always is* — the planning scratchpad, the current plan — never what it currently says. Its law is the inverse of every other chapter: **notes are overwritten when addressed.** A sprint chapter records what happened, forever; the scratchpad records what is *intended*, only until it is. When a note becomes a sprint, the sprint chapter absorbs it and the note is deleted or rewritten. A plan note that outlives its intention is the scratchpad's form of rot — at each retro, sweep it.
 
