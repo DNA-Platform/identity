@@ -148,6 +148,20 @@ export function parseSource(source: string, fileName = ''): ClassSurface[] {
     return found;
   };
 
+  // Constructor parameter properties — `constructor(readonly composer: Composer, …)`.
+  // The driver declares most components this way, so a parser that only reads class
+  // fields sees `response` and misses `composer`, `artifacts`, `modelPicker`: the
+  // page appears to have no composer, and its send() door disappears with it.
+  for (const c of source.matchAll(/constructor\s*\(([\s\S]*?)\)\s*\{/g)) {
+    const target = owner(c.index ?? 0);
+    for (const raw of splitParams(c[1])) {
+      const m = /^(?:(public|readonly)\s+)+(\w+)\s*:\s*([\s\S]+)$/.exec(raw.trim());
+      if (!m) continue;                       // a plain parameter is not a property
+      if (/^\s*(private|protected)\b/.test(raw)) continue;
+      target.properties.push({ name: m[2], type: m[3].trim() });
+    }
+  }
+
   for (const m of source.matchAll(MEMBER_RE)) {
     const [, visibility, readonly, isAsync, getter, name, params, returns] = m;
     if (visibility === 'private' || visibility === 'protected') continue;
