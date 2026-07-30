@@ -31,17 +31,6 @@ Memory against compaction. The *why* was the full-pipeline audit (a since-retire
 
 The insight to hold: **the first number costs nothing.** Phase 2 needs no GPU-hours and no retrain — it runs on what we already have, so it lands before the two ten-hour runs and tells us how much of the "gap" was ever real.
 
-<<<<<<< HEAD
-*Why each of these: [chapter 07](../thinking/07-the-full-pipeline-audit.md) (the audit), [From the ground up](../../../../../../../altered-states/library/reports/from-the-ground-up--the-publication-grade-analysis.md) (the gap), [Sprint 5](../../../../../../../altered-states/library/.lib/projection/05-sprint-5--the-publication-grade-analysis.md) (the phases), [The Build ch 11](../../../../../../../altered-states/library/.lib/the-build/11-how-we-make-a-publication-form-mei.md)/[ch 12](../../../../../../../altered-states/library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md), [analysis plan](../../../../../../../altered-states/library/.lib/the-altered-cortex/03-the-analysis-plan.md) (H1–H6).*
-
-<!-- citations -->
-[chapter-07]: ../thinking/07-the-full-pipeline-audit.md
-[ground-up]: ../../../../../../../altered-states/library/reports/from-the-ground-up--the-publication-grade-analysis.md
-[sprint-5]: ../../../../../../../altered-states/library/.lib/projection/05-sprint-5--the-publication-grade-analysis.md
-[build-mei]: ../../../../../../../altered-states/library/.lib/the-build/11-how-we-make-a-publication-form-mei.md
-[build-twin]: ../../../../../../../altered-states/library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md
-[analysis-plan]: ../../../../../../../altered-states/library/.lib/the-altered-cortex/03-the-analysis-plan.md
-=======
 *Why each of these: the full-pipeline audit (retired Twin-thread exchange; conclusions in the spec), [From the ground up](../../../../../../library/reports/from-the-ground-up--the-publication-grade-analysis.md) (the gap), [Sprint 5](../../../../../../library/.lib/projection/05-sprint-5--the-publication-grade-analysis.md) (the phases), [The Build ch 11](../../../../../../library/.lib/the-build/11-how-we-make-a-publication-form-mei.md)/[ch 12](../../../../../../library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md), [analysis plan](../../../../../../library/.lib/the-altered-cortex/03-the-analysis-plan.md) (H1–H6).*
 
 <!-- citations -->
@@ -50,5 +39,4 @@ The insight to hold: **the first number costs nothing.** Phase 2 needs no GPU-ho
 [build-mei]: ../../../../../../library/.lib/the-build/11-how-we-make-a-publication-form-mei.md
 [build-twin]: ../../../../../../library/.lib/the-build/12-how-we-make-a-publication-grade-twin.md
 [analysis-plan]: ../../../../../../library/.lib/the-altered-cortex/03-the-analysis-plan.md
->>>>>>> origin/dna-platform
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
