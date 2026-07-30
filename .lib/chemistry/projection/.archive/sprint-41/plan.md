@@ -1,0 +1,36 @@
+# Sprint 41 — Perspectives
+
+> **Synopsis.** A chemical renders one view; this sprint lets it render *many* — switchable **perspectives** over the same reactive state. The design is recovered and catalogued below after a drift: the implementation, tests, and examples were rebuilt mid-sprint onto the *wrong* model (an external `Perspective` class taking the chemical as a public argument) and must be rebuilt onto the real one (perspectives are **subclasses of the chemical** that reveal themselves). **Confirm the design with Doug before rebuilding.**
+
+## The design — canonical (built & green 2026-06-23)
+
+A perspective is a **subclass of the chemical itself**. You subclass; override `view()` for a real perspective, or change nothing so the base view **transfers** (that subclass is the default — no special-casing). Because the view is a method on a chemical subclass, **`this` is the instance** — it reaches *protected* members. An outside object handed the chemical as a public argument cannot; that is why it must be a subclass.
+
+There is **no `view`/`preview` in the framework** — those are app concerns. The framework primitive is: a perspective **controls the context of the thing**, and the framework only tracks which perspectives exist and which is the **default**.
+
+- **`Perspective<T = any>`** (`package/src/abstraction/perspective.ts`): a plain holder — `name`, `default`, `view` (the subclass's view, **popped off** by reveal), `instance` (the live instance it's bound to), and **`render()`** = `view.call(instance)`.
+- **No bond constructor.** A perspectival subclass uses a plain constructor that calls protected **`reveal(new Perspective(name, isDefault?))`**. Seed each with an **unassigned `new Cover()`** — where you'd normally export the component. Guard a subclass that will itself be subclassed with **`if (new.target === ThisClass)`** so `super()` doesn't re-fire the parent's reveal.
+- **`reveal(perspective)`** (protected, on `$Chemical`): **pops the subclass's view** — `perspective.view = this.view`; marks the subclass static with untyped **`$isPerspective$`**; walks **transitively** to the base; files on the base's static **`$perspectives$`**. Idempotent per class.
+- **Binding (the live re-expression).** `view()` is **never touched**, and there's **no `$view`, no `change`, no render filter** (those were intermediate). Reading **`get perspectives`** clones each lens, **stores the instance on the clone** (`instance = this`), and **caches** per instance (a `WeakMap`) — so a perspective is "this object, seen this way," and `render()` draws the live instance through it. A consumer renders the bound lenses (`active.render()` on the stage, each `p.render()` in the menu) and bonds the instance as a child; mutating the instance (a slider) repaints, because the consumer reads its live data while rendering. One live object, many lenses, all live; a menu tracks its own highlight (`default` marks the start).
+
+**Why it matters — a new form of inheritance** (the representational reading, Cathy): a perspective *holds the chemical's own Component*, so it **is a representation** of the thing — the objective face as a first-class particle (ch 13, *aboutness real*; ch 14, *representation representing representation*). It's a subclass (it IS the thing, `this`-deep) yet revealed from outside onto a base it never edited — the `$` membrane (ch 11) turned dynamic: intrinsic identity sealed, *ways of being seen* open to anyone. Same ontological shape as the team itself — grounded perspectives on one shared thing.
+
+**Status: built, 568/568 green, examples live.** Framework: `perspective.ts` (holder + `render()`), `$Chemical` (`reveal` + the binding `get perspectives` with clone/bind/cache). No `$view`/`change`/filter. The **full package suite (568/568)** passes. `package/tests/react/perspectives.test.tsx` (8): augment-from-outside, a fetched lens is **bound** and renders the instance (reaching a *protected* member), `default`, per-instance bound+cached, the **live re-expression** (a consumer renders a lens, mutate the instance, it repaints), transitive reveal, and a **bond-constructor** chemical gaining lenses without rewriting it.
+
+**Examples — live at localhost:5173** (`· Perspectives`): **One Color** (a live `$Color`, hue slider re-expressing through swatch/HEX/RGB/HSL at once) and **The Book** (cover/synopsis/reading/links). The **views are implemented in the classes** — `$Color` carries `css`/`rgb`/`hex` and a protected `channels()` template; each lens overrides `view()` using `this`. Only styled is imported. The slider works (the color is bonded as a child); the book previews fit (scale tuned). Perspectival augmentation: the base classes were never written for this.
+
+## Checklist
+
+- [x] **Working model documented** — "brains plan, voices do" sharpened in On Brains + the substrate protocol. — *Adam · Libby · Claude*
+- [x] **Sprint catalogued in the Projection cover.** — *Arthur*
+- [x] **Design recovered and catalogued** (this file) after the drift. — *Cathy · Arthur*
+- [x] **Design confirmed with Doug and built** on the subclass model (the `default`/menu-holds-selection refinement is his). — *Cathy*
+- [x] **Implementation — done.** `perspective.ts` (`Perspective` particle: `name`/`held`/`default`) + `$Chemical` (`reveal`, `perspectives`); subclass self-reveal in the ctor, dynamic static marking, transitive walk-to-base, `held = $lift(this)`. No `change`, no render filter. Typechecks clean. — *Cathy*
+- [x] **Tests — done, 8/8 promise-shaped** (`package/tests/react/perspectives.test.tsx`): augment-from-outside, protected-member view, default-marked, consumer repaints on pick (in a handler), renderable, transitive, bond-ctor-safe. — *Queenie*
+- [x] **Examples — done & live.** Two on one page (`· Perspectives`): **One Color** (swatch/hex/rgb/hsl) and **The Book** (cover/synopsis/reading/links). Each: four override subclasses augmenting an untouched base, a **live-preview menu** (each tile renders the perspective's own `held`, kept small), a fixed stage. Sources are **pristine** — main class, overrides, `new X()` seeds, menu — with styling hidden in `faces.tsx`. Compiles; live at localhost:5173. — *Phillip · Cathy*
+- [ ] **Open: the live hue slider.** One Color is now *static* (a fixed color, four lenses). The original's live slider — one reactive state re-expressed through every lens — doesn't fit the `held` model (each `held` is bound to its perspective's template at reveal; there's no single live instance flowing through all lenses). Recovering it needs a perspective to render against a *live instance* the viewer supplies, not its captured template — a model extension. Doug to decide whether to revisit. — *Cathy*
+- [ ] **Perspectives chapter** — `10-perspectives.md` in the composition book, one-way code links, no `///:`. — *Cathy (body) · Libby (bookkeeping)*
+
+## Process note
+
+The design was lost because it lived only in conversation and a drifting context — never written down — so a long session overwrote it with a guess. The correction (Arthur's to hold): **catalogue a design the moment it's settled**, in the project record, and treat "I'm not sure my context is current" as "it isn't." This file is now that record; it is the source of truth for the design, above any code currently in the tree.
