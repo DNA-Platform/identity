@@ -23,6 +23,7 @@ import { SidebarController } from './controllers/sidebar-controller.ts';
 import { ChatListController } from './controllers/chat-list-controller.ts';
 import { Navigation } from './pages/navigation.ts';
 import { Session } from './session.ts';
+import { TreeSnapshot } from './tree.ts';
 import type { Page } from './pages/page.ts';
 import type { HomePage } from './pages/home.ts';
 import type { ConversationPage } from './pages/conversation.ts';
@@ -93,6 +94,20 @@ export class Claude {
    *  from the tree. The Session compares this against what it remembered. */
   async currentUrl(): Promise<string> {
     return (await this.auto.uia.readUrl()) ?? '';
+  }
+
+  /** **What is on the screen right now.** Available at any time, for any reason,
+   *  with no failure required — this is the one call you make when the driver
+   *  misbehaves, because the fastest way to adjust the code is to look at the screen
+   *  and see why the current implementation fails.
+   *
+   *  Restores the window first (a minimized window's tree does not update), so it is
+   *  safe to call on an app you have not otherwise touched. Returns an EMPTY snapshot
+   *  rather than throwing if the app is not running or not readable — "we could not
+   *  see" is an answer, and it is a different answer from "it is not there". */
+  async tree(): Promise<TreeSnapshot> {
+    if (!this.attach()) return TreeSnapshot.empty();
+    return this.auto.uia.snapshot();
   }
 
   // --- Lifecycle ---

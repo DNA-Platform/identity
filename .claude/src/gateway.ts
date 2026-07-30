@@ -12,6 +12,8 @@
 
 import type { Diagnostics } from './diagnostics.ts';
 import type { Window } from './window.ts';
+import type { TreeQuery, TreeSnapshot } from './tree.ts';
+import { DriverError, PreconditionError } from './errors.ts';
 
 export interface GatewayOptions {
   timeoutMs?: number;
@@ -19,9 +21,16 @@ export interface GatewayOptions {
   retries?: number;
   screenshotOnFailure?: string;
   description?: string;
+  /** The element this action is about to touch — the actuator's assumption, made
+   *  explicit. When given, `act` reads the tree BEFORE firing and refuses if the
+   *  element is not there, so a "not found" fails immediately and legibly instead
+   *  of firing into nothing and timing out on a verify that could never pass.
+   *  Optional while call sites are converted; a call site without one still works
+   *  exactly as before. */
+  target?: TreeQuery;
 }
 
-const DEFAULTS: Required<Omit<GatewayOptions, 'screenshotOnFailure' | 'description'>> = {
+const DEFAULTS: Required<Omit<GatewayOptions, 'screenshotOnFailure' | 'description' | 'target'>> = {
   timeoutMs: 30_000,
   pollIntervalMs: 500,
   retries: 3,
@@ -39,6 +48,24 @@ export class Gateway {
     }
   }
 
+  /** The screen right now. Cheap enough to take per action; one walk answers many
+   *  questions. Never throws — an unreadable app yields an empty snapshot. */
+  async tree(): Promise<TreeSnapshot> {
+    return this.diagnostics.snapshot();
+  }
+
+  /** Precheck → act → verify.
+   *
+   *  **Precheck** (only when `options.target` is given): read the tree and confirm
+   *  the element the actuator is about to touch is actually on screen. If it is not,
+   *  throw before firing — the action did not happen, the error names what was
+   *  expected, and it carries the tree that disagreed. This is not a new failure:
+   *  `uia.invoke` already returns false for a missing element and `act` already
+   *  discarded that boolean, so today a missing target becomes a 30-second timeout
+   *  with an opaque message. The precheck makes an existing failure legible and fast.
+   *
+   *  **Act** fires exactly once. **Verify** polls a controller sensor with tapering
+   *  backoff — we retry the LOOK, never the action. */
   async act(
     action: () => void | Promise<void>,
     verify: () => boolean | Promise<boolean>,
@@ -48,8 +75,22 @@ export class Gateway {
     const desc = opts.description ?? 'Action';
     const startTime = Date.now();
 
-    // Fire the action ONCE
     this.requireForeground();
+
+    // --- Precheck: is the assumption true before we act on it? ---
+    let snapshot: TreeSnapshot | undefined;
+    if (options.target) {
+      snapshot = await this.tree();
+      // An EMPTY tree means we could not see, not that the target is absent. Do not
+      // refuse on blindness — fall through and let the verify be the judge.
+      if (!snapshot.isEmpty && !snapshot.has(options.target)) {
+        this.diagnostics.record(desc, false, Date.now() - startTime, 'precondition failed');
+        await this.diagnostics.captureOnFailure(desc);
+        throw new PreconditionError(desc, options.target).withTree(snapshot);
+      }
+    }
+
+    // Fire the action ONCE
     await action();
 
     // Verify with tapering poll — retry the LOOK, not the action
@@ -61,7 +102,9 @@ export class Gateway {
     } else {
       this.diagnostics.record(desc, false, duration, 'verify failed');
       await this.diagnostics.captureOnFailure(desc);
-      throw new Error(`${desc} — action fired but verify failed after ${opts.timeoutMs}ms`);
+      throw new DriverError(
+        `${desc} — action fired but verify failed after ${opts.timeoutMs}ms`,
+      ).withTree(await this.tree());
     }
   }
 
@@ -105,7 +148,9 @@ export class Gateway {
       this.diagnostics.record(desc, false, duration, 'did not produce valid result');
       await this.diagnostics.captureOnFailure(desc);
 
-      throw new Error(`${desc} did not produce valid result within ${opts.timeoutMs}ms`);
+      throw new DriverError(
+        `${desc} did not produce valid result within ${opts.timeoutMs}ms`,
+      ).withTree(await this.tree());
     }
 
     this.diagnostics.record(desc, true, Date.now() - startTime);

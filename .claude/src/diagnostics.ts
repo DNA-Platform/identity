@@ -10,6 +10,7 @@
 
 import type { Window } from './window.ts';
 import type { Uia } from './uia.ts';
+import type { TreeSnapshot } from './tree.ts';
 import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -33,6 +34,13 @@ export class Diagnostics {
     private readonly uia: Uia,
   ) {
     if (!existsSync(DEBUG_DIR)) mkdirSync(DEBUG_DIR, { recursive: true });
+  }
+
+  /** The screen right now, as a value. Diagnostics is where "look at what is
+   *  actually there" lives, so the gateway asks here rather than holding its own
+   *  Uia — the gateway stays a discipline layer that knows nothing about trees. */
+  async snapshot(): Promise<TreeSnapshot> {
+    return this.uia.snapshot();
   }
 
   record(description: string, success: boolean, durationMs: number, error?: string): void {
