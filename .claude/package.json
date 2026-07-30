@@ -10,7 +10,8 @@
     "@dna-platform/chemistry": "*"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "npx tsx --test src/tests/*.test.ts"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
