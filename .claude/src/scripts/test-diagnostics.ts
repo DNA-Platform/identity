@@ -21,7 +21,7 @@ async function testFailureCapture() {
     await app.auto.gateway.act(
       async () => { await app.auto.uia.invokeByName('NonexistentButton12345'); },
       async () => false,
-      { description: 'Click nonexistent button', timeoutMs: 2_000, retries: 1 },
+      { description: 'Click nonexistent button' },
     );
     console.log('  FAIL — should have thrown');
   } catch (e: any) {
@@ -59,7 +59,7 @@ async function testProjectNavigation() {
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url?.includes('/project/') ?? false;
-  }, { timeoutMs: 10_000 });
+  });
   app.navigator.screen = 'project';
 
   // Detect files pane
@@ -90,7 +90,7 @@ async function main() {
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 5_000 });
+  });
 
   console.log('Running diagnostic integration tests...\n');
 

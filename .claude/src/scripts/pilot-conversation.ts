@@ -43,7 +43,7 @@ async function main() {
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 10_000 });
+  });
 
   const screen = await app.detectScreen();
   console.log(`[adam] Screen: ${screen}`);

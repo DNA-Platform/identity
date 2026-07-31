@@ -158,7 +158,8 @@ async function main(): Promise<number> {
           case 'acted':
             // Local change only — not the whole room. See renderChange.
             console.log(renderChange(
-              outcome.command.path, outcome.scope, outcome.changed, outcome.surface));
+              outcome.command.path, outcome.scope, outcome.changed, outcome.surface,
+              renderValue(outcome.result)));
             return 0;
 
           case 'read': {

@@ -281,6 +281,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
       { name: "hasThinkingBlock", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "isAtBottom", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "isChatNameFieldActive", params: [], returns: "Promise<boolean>", isAsync: true, doc: "The header rename opens an Edit named \"Chat name\" (grounded: diag-rename, the new-conversation capture) — distinct from the sidebar menu's \"Edit | Rename\". Its presence is the field-active signal." },
+      { name: "isComplete", params: [{ name: "settleMs", type: "unknown", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "IS the response over? Settle once, look once, answer honestly. This used to poll for up to FIVE MINUTES, scrolling the user's window on every iteration. A driver does not get to hold a screen for five minutes. \"Not yet\" is a perfectly good answer: ask again when you have reason to think it changed, and if it never finishes, read the tree and find out why." },
       { name: "isResponseComplete", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "readElements", params: [], returns: "Promise<string[]>", isAsync: true, doc: "Every named element, in document order — the Response assembles parts from it." },
       { name: "readLastResponse", params: [], returns: "Promise<string>", isAsync: true, doc: "" },
@@ -298,9 +299,8 @@ export const APP_SURFACE: readonly ClassSurface[] = [
       { name: "scrollToBottom", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "scrollToTop", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "typeChatName", params: [{ name: "text", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "Type into the open \"Chat name\" field and commit. The field opens with the current title selected, so a paste replaces it; Enter commits." },
-      { name: "waitForComplete", params: [{ name: "timeoutMs", type: "unknown", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "Rapidly wait (gateway) for the response to be OVER — scroll, then no Stop button AND content present (the \"and content\" guard avoids the false done)." },
-      { name: "waitForResponse", params: [{ name: "timeoutMs", type: "number", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
-      { name: "waitForStreamingStart", params: [{ name: "timeoutMs", type: "unknown", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "Rapidly wait (gateway, 50ms tapering) for the response to START — scroll to bottom, then checkStreaming, each poll (lazy rendering). As soon as this returns true, the caller should MINIMIZE and read later. False on timeout." },
+      { name: "waitForResponse", params: [{ name: "settleMs", type: "unknown", optional: true }], returns: "Promise<void>", isAsync: true, doc: "" },
+      { name: "waitForStreamingStart", params: [{ name: "settleMs", type: "unknown", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "Rapidly wait (gateway, 50ms tapering) for the response to START — scroll to bottom, then checkStreaming, each poll (lazy rendering). As soon as this returns true, the caller should MINIMIZE and read later. False on timeout." },
     ],
     properties: [
 
@@ -399,7 +399,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
       { name: "detect", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "submit", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "typePath", params: [{ name: "filePath", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
-      { name: "waitUntilOpen", params: [{ name: "timeoutMs", type: "unknown", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "" },
+      { name: "waitUntilOpen", params: [{ name: "settleMs", type: "unknown", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "Settle once, then look once. Not a poll: \"is the dialog open?\" has an answer, and asking it fifty times does not make the answer better." },
     ],
     properties: [
       { name: "isOpen", type: "unknown" },
@@ -431,10 +431,11 @@ export const APP_SURFACE: readonly ClassSurface[] = [
     extends: null,
     origin: "gateway.ts",
     methods: [
-      { name: "act", params: [{ name: "action", type: "() => void | Promise<void>", optional: false }, { name: "verify", type: "() => boolean | Promise<boolean>", optional: false }, { name: "options", type: "GatewayOptions", optional: true }], returns: "Promise<void>", isAsync: true, doc: "Precheck → act → verify. **Precheck** (only when `options.target` is given): read the tree and confirm the element the actuator is about to touch is actually on screen. If it is not, throw before firing — the action did not happen, the error names what was expected, and it carries the tree that disagreed. This is not a new failure: `uia.invoke` already returns false for a missing element and `act` already discarded that boolean, so today a missing target becomes a 30-second timeout with an opaque message. The precheck makes an existing failure legible and fast. **Act** fires exactly once. **Verify** polls a controller sensor with tapering backoff — we retry the LOOK, never the action." },
-      { name: "read", params: [{ name: "reader", type: "() => T | Promise<T>", optional: false }, { name: "isValid", type: "(result: T) => boolean", optional: true }, { name: "options", type: "GatewayOptions", optional: true }], returns: "Promise<T>", isAsync: true, doc: "" },
-      { name: "tree", params: [], returns: "Promise<TreeSnapshot>", isAsync: true, doc: "The screen right now. Cheap enough to take per action; one walk answers many questions. Never throws — an unreadable app yields an empty snapshot." },
-      { name: "waitFor", params: [{ name: "predicate", type: "() => boolean | Promise<boolean>", optional: false }, { name: "options", type: "Pick<GatewayOptions, 'timeoutMs' | 'pollIntervalMs' | 'description'>", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "" },
+      { name: "act", params: [{ name: "action", type: "() => void | Promise<void>", optional: false }, { name: "verify", type: "() => boolean | Promise<boolean>", optional: false }, { name: "options", type: "GatewayOptions", optional: true }], returns: "Promise<void>", isAsync: true, doc: "Precheck → act once → settle → look once. **Precheck** (when `options.target` is given): confirm the element the actuator is about to touch is on screen. If it is not, throw BEFORE firing — the action did not happen, the error names what was expected, and it carries the tree that disagreed. **Act** fires exactly once. **Look** happens exactly once, after a single settle. If the look says no, we do not look again: we hand back the tree and minimize. Read the tree, fix the code, run it again." },
+      { name: "check", params: [{ name: "predicate", type: "() => boolean | Promise<boolean>", optional: false }, { name: "options", type: "Pick<GatewayOptions, 'settleMs' | 'description'>", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "Settle once, then look once. Returns what it saw — no loop, no deadline. Callers that used this to wait for something slow now get a straight answer about the moment they asked. If the answer is wrong, the tree says why." },
+      { name: "read", params: [{ name: "reader", type: "() => T | Promise<T>", optional: false }, { name: "isValid", type: "(result: T) => boolean", optional: true }, { name: "options", type: "GatewayOptions", optional: true }], returns: "Promise<T>", isAsync: true, doc: "Read once. If what came back is not valid, hand over the tree and stand down — do not read again hoping for a different answer." },
+      { name: "tree", params: [], returns: "Promise<TreeSnapshot>", isAsync: true, doc: "The screen right now. One walk answers many questions, and it is the cheapest thing in the driver (~80ms). Never throws — an unreadable app yields an empty snapshot, which means \"we could not see\", not \"it is not there\"." },
+      { name: "waitFor", params: [{ name: "predicate", type: "() => boolean | Promise<boolean>", optional: false }, { name: "options", type: "Pick<GatewayOptions, 'settleMs' | 'description'>", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "The old name, kept so call sites read the same. It does NOT wait for anything repeatedly — it settles once and looks once, exactly like `check`." },
     ],
     properties: [
 
@@ -523,7 +524,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
       { name: "readText", params: [], returns: "Promise<string>", isAsync: true, doc: "" },
       { name: "removeAttachment", params: [{ name: "name", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "send", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
-      { name: "write", params: [{ name: "text", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
+      { name: "write", params: [{ name: "text", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "Write the whole message in ONE action. This used to loop the lines: paste a line, press Shift+Enter, paste the next — N clipboard writes and N keystrokes synthesised into the user's window for one message. `setValue` through the ValuePattern sets the entire text, newlines included, in a single call, and it is the mechanism the pitfalls chapter already recommends over pasting (a paste becomes an ATTACHMENT, not text)." },
     ],
     properties: [
 
@@ -586,7 +587,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
       { name: "pageForUrl", params: [{ name: "url", type: "string", optional: false }], returns: "Page", isAsync: false, doc: "The id→page factory: parse a URL and build the typed page for it. The one cast lives here, contained — each branch constructs a concrete page returned as Page. A conversation is /chat/<id>, a project /project/<id>, the projects list /projects, anything else is home." },
       { name: "project", params: [], returns: "ProjectPage", isAsync: false, doc: "" },
       { name: "projects", params: [], returns: "ProjectsPage", isAsync: false, doc: "" },
-      { name: "waitForConversation", params: [{ name: "timeoutMs", type: "unknown", optional: true }], returns: "Promise<ConversationPage>", isAsync: true, doc: "Wait for the conversation screen, then reconstitute the ConversationPage. This is the home→conversation transition (decision #4) — no macro, just navigate-and-confirm." },
+      { name: "waitForConversation", params: [{ name: "settleMs", type: "unknown", optional: true }], returns: "Promise<ConversationPage>", isAsync: true, doc: "Wait for the conversation screen, then reconstitute the ConversationPage. This is the home→conversation transition (decision #4) — no macro, just navigate-and-confirm." },
     ],
     properties: [
       { name: "auto", type: "Automation" },
@@ -680,7 +681,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
       { name: "downloadFile", params: [{ name: "name", type: "string", optional: false }, { name: "outputPath", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "editDescription", params: [{ name: "text", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "listFiles", params: [], returns: "Promise<ProjectFile[]>", isAsync: true, doc: "" },
-      { name: "loadAllConversations", params: [], returns: "Promise<{ title: string; lastMessage: string }[]>", isAsync: true, doc: "" },
+      { name: "loadAllConversations", params: [], returns: "Promise<{ title: string; lastMessage: string }[]>", isAsync: true, doc: "Scroll to the end, expand the list once, read it. **One pass.** This used to loop up to twenty times: scroll, click \"Show more\", wait for growth, repeat — each iteration synthesising an END keypress and a click into the app. That is a background process typing and clicking into someone's window, over and over, for as long as it felt like it. Nothing justifies that. If one expansion does not reveal everything, the answer is a better read — not more clicking. Read the tree, see how the list is actually paged, and change this code." },
       { name: "newConversation", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "readConversations", params: [], returns: "Promise<{ title: string; lastMessage: string }[]>", isAsync: true, doc: "" },
       { name: "readDescription", params: [], returns: "Promise<string>", isAsync: true, doc: "" },
@@ -959,11 +960,12 @@ export const APP_SURFACE: readonly ClassSurface[] = [
       { name: "launch", params: [{ name: "shortcutPath", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "maximize", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "minimize", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
-      { name: "requireForeground", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
+      { name: "requireForeground", params: [], returns: "Promise<void>", isAsync: true, doc: "Bring the window forward. **Once.** This used to try five times, each attempt synthesising an Alt keypress and calling `SetForegroundWindow`, with a 400ms sleep between. That is two seconds of a background process repeatedly taking the keyboard away from whoever is using the machine. It is not a driver being careful; it is a driver fighting the user for their own computer, and it is not allowed. One attempt. One check. If Windows refuses, we GIVE UP AND GIVE THE SCREEN BACK — `stepAside()` minimizes and the caller fails. Never a second grab." },
       { name: "screenshot", params: [{ name: "outputPath", type: "string", optional: false }], returns: "Promise<string>", isAsync: true, doc: "" },
       { name: "state", params: [], returns: "Promise<WindowState>", isAsync: true, doc: "Foreground AND minimized, in one crossing. Asking them separately is two round trips for one question about one window, and the gateway asks on every action." },
-      { name: "waitForUia", params: [{ name: "timeoutMs", type: "unknown", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "" },
-      { name: "waitForWindow", params: [{ name: "timeoutMs", type: "unknown", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "" },
+      { name: "stepAside", params: [], returns: "Promise<void>", isAsync: true, doc: "Get out of the way. The one recovery this driver has: when something is stuck, minimize and stop — never try again, never hold the screen. Best effort by design; if even this fails there is nothing further to do and nothing further is attempted." },
+      { name: "waitForUia", params: [{ name: "settleMs", type: "unknown", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "Give the renderer time to build its accessibility tree, then look ONCE." },
+      { name: "waitForWindow", params: [{ name: "settleMs", type: "unknown", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "Give a launching app time to appear, then look ONCE. A launch genuinely takes a while, so waiting is honest — \"I did not wait long enough\" is real evidence. Polling for thirty seconds is not: it is the same question asked sixty times. Wait the time an app takes to start, then look. If it is not there, say so and stop." },
     ],
     properties: [
       { name: "handle", type: "number | null" },

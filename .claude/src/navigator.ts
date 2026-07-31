@@ -213,7 +213,7 @@ export class Navigator {
       await this.gateway.waitFor(async () => {
         const n = await this.uia.allNames();
         return !n.some(x => x === 'ControlType.Window | Open');
-      }, { timeoutMs: 5_000 });
+      });
     }
 
     // Check for text content dialog and close it
@@ -222,7 +222,7 @@ export class Navigator {
       await this.gateway.waitFor(async () => {
         const n = await this.uia.allNames();
         return !n.some(x => x === 'ControlType.Window | Add text content');
-      }, { timeoutMs: 5_000 });
+      });
     }
 
     const current = await this.detectScreen();

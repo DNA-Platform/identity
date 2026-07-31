@@ -68,7 +68,7 @@ async function doRead() {
     const hasContent = await app.gateway.waitFor(async () => {
       await app.conversation.scrollToBottom();
       return app.conversation.controller.hasThinkingBlock();
-    }, { timeoutMs: 30_000 });
+    });
 
     if (!hasContent) {
       console.log('[read] No content detected. Desktop may not have processed this.');
@@ -80,7 +80,7 @@ async function doRead() {
     const complete = await app.gateway.waitFor(async () => {
       await app.conversation.scrollToBottom();
       return app.conversation.isResponseComplete();
-    }, { timeoutMs: 300_000 });
+    });
 
     if (!complete) { console.log('[read] Timeout — still processing.'); return; }
 

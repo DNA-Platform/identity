@@ -145,7 +145,7 @@ await app.conversation.scrollToTop();
 await app.gateway.waitFor(async () => {
   const names = await app.auto.uia.allNames();
   return names.length !== countBefore;
-}, { timeoutMs: 3_000 }).catch(() => false);
+}).catch(() => false);
 
 const allNamesAfter = await app.auto.uia.allNames();
 console.log(`Elements after scroll to top: ${allNamesAfter.length}`);

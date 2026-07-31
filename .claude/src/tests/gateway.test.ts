@@ -32,9 +32,10 @@ const LINES = [
 
 /** A window that counts what it was asked, and never touches Windows. */
 function countingWindow() {
-  const calls = { requireForeground: 0 };
+  const calls = { requireForeground: 0, stepAside: 0 };
   const window = {
     requireForeground: async () => { calls.requireForeground++; },
+    stepAside: async () => { calls.stepAside++; },
   } as unknown as Window;
   return { window, calls };
 }
@@ -80,12 +81,29 @@ test('a bare waitFor is its own operation, so it does pay for its own check', as
   assert.equal(windowCalls.requireForeground, 1);
 });
 
-test('a verify that passes late still only checks the foreground once', async () => {
+test('THE LOOK HAPPENS EXACTLY ONCE — a verify is not retried either', async () => {
   const { gateway, windowCalls } = build();
-  let n = 0;
-  await gateway.act(async () => {}, async () => ++n >= 4, { description: 'slow verify' });
-  assert.equal(n, 4, 'the LOOK was retried');
-  assert.equal(windowCalls.requireForeground, 1, 'the CHECK was not');
+  let looks = 0;
+  await assert.rejects(
+    () => gateway.act(async () => {}, async () => { looks++; return false; },
+      { description: 'a verify that says no', settleMs: 1 }),
+    (e: Error) => /did not show what was expected/.test(e.message));
+  assert.equal(looks, 1,
+    'it looked once and stopped. The old gateway polled with a tapering backoff for ' +
+    'up to thirty seconds, holding the screen while it asked the same question again ' +
+    'and again. If one look says no, hand over the tree and stand down.');
+  assert.equal(windowCalls.requireForeground, 1);
+});
+
+test('a failed action hands back the tree and gives the screen back', async () => {
+  const { gateway, windowCalls } = build();
+  let raised: { tree?: { size: number } } | undefined;
+  try {
+    await gateway.act(async () => {}, async () => false, { description: 'nope', settleMs: 1 });
+  } catch (e) { raised = e as { tree?: { size: number } }; }
+  assert.ok(raised?.tree, 'the failure carries what the app actually showed');
+  assert.equal(raised.tree.size, 3);
+  assert.equal(windowCalls.stepAside, 1, 'and the window was minimized — the screen is not ours');
 });
 
 // --- The precheck, and the handoff that keeps it from re-reading ---

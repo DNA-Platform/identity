@@ -25,7 +25,7 @@ async function main() {
   await app.window.maximize();
   await app.auto.gateway.waitFor(async () => {
     return (await app.auto.uia.readUrl()) !== null;
-  }, { timeoutMs: 5_000 });
+  });
   console.log('  App ready. Screen:', await app.navigator.detectScreen());
 
   // Step 2: Send first prompt

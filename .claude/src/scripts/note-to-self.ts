@@ -21,7 +21,7 @@ async function main() {
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 5_000 });
+  });
 
   await app.openProjects();
   const allProjects = app.projects.cards;

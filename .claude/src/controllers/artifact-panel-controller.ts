@@ -92,7 +92,7 @@ export class ArtifactPanelController {
         const after = await this.auto.keyboard.readClipboard();
         return after.length > 0 && after !== clipboardBefore;
       },
-      { description: 'Copy artifact to clipboard', timeoutMs: 5_000 },
+      { description: 'Copy artifact to clipboard' },
     );
 
     return this.auto.keyboard.readClipboard();
@@ -108,7 +108,7 @@ export class ArtifactPanelController {
         const names = await this.auto.uia.allNames();
         return names.some(n => n.includes('Downloaded') || n.includes('Saved'));
       },
-      { description: `Download artifact to ${outputPath}`, timeoutMs: 10_000 },
+      { description: `Download artifact to ${outputPath}` },
     );
   }
 

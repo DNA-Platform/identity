@@ -69,20 +69,18 @@ export class Response {
   /** Rapidly wait (gateway poll, 50ms tapering) for the response to START.
    *  As soon as this returns true, MINIMIZE — the send unit is done; read later.
    *  Returns false on timeout. */
-  async waitUntilStreaming(timeoutMs = 30_000): Promise<boolean> {
-    return this.controller.waitForStreamingStart(timeoutMs);
+  async waitUntilStreaming(settleMs = 2_000): Promise<boolean> {
+    return this.controller.waitForStreamingStart(settleMs);
   }
 
-  /** Rapidly wait (gateway poll) for the response to be OVER (no stop + content).
-   *  Call this after re-maximizing, before read(). Returns false on timeout. */
-  async waitUntilComplete(timeoutMs = 300_000): Promise<boolean> {
-    return this.controller.waitForComplete(timeoutMs);
-  }
-
-  /** Block until the response is over, then return its final text. Use this when
-   *  you want the finished answer rather than the live, partial one. */
-  async readToEnd(timeoutMs = 300_000): Promise<string> {
-    await this.waitUntilComplete(timeoutMs);
-    return this.read();
+  /** Scroll to the bottom, settle once, then ask `isComplete()`.
+   *
+   *  This replaces `waitUntilComplete`, which polled for up to FIVE MINUTES,
+   *  scrolling the user's window on every iteration. Nothing may hold this screen.
+   *  If the answer is "not yet", ask again when you have reason to think it
+   *  changed — and if it never finishes, read the tree and find out why rather than
+   *  waiting harder. */
+  async isSettledComplete(settleMs = 2_000): Promise<boolean> {
+    return this.controller.isComplete(settleMs);
   }
 }

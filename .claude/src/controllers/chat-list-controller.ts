@@ -79,7 +79,7 @@ export class ChatListController {
         if (!url || url === urlBefore) return false;
         return url.includes('/chat/');
       },
-      { timeoutMs: 30_000, pollIntervalMs: 1_000 },
+      {},
     );
 
     if (!arrived) {

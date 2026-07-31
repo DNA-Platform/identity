@@ -25,10 +25,15 @@ export abstract class Page {
 }
 export class Composer {
   /** Type text into the box. */
-  async type(text: string): Promise<void> {}
+  async type(text: string): Promise<DraftState> { return null as any; }
   async readDraft(): Promise<string> { return ''; }
+  /** Is there anything to send? A SENSOR — the only shape the CLI calls unasked. */
+  async canSend(): Promise<boolean> { return false; }
   /** Click Send. */
   async send(): Promise<ConversationPage> { return null as any; }
+  /** Empty the box. Parameterless, returns data, and DESTRUCTIVE — the exact shape
+   *  that made "parameterless + returns data = harmless reading" a dangerous rule. */
+  async clear(): Promise<DraftState> { return null as any; }
 }
 export class HomePage extends Page {
   readonly composer: Composer;
@@ -60,9 +65,18 @@ function named<T extends new (...a: any[]) => any>(name: string, C: T): T {
 const Composer = named('Composer', class {
   typed: string[] = [];
   sent = 0;
-  async type(text: string): Promise<void> { this.typed.push(text); }
+  cleared = 0;
+  async type(text: string): Promise<object> {
+    this.typed.push(text);
+    return { text: this.typed.join(''), canSend: true };
+  }
   async readDraft(): Promise<string> { return this.typed.join(''); }
+  async canSend(): Promise<boolean> { return this.typed.length > 0; }
   async send(): Promise<object> { this.sent++; return new ConversationPage(); }
+  async clear(): Promise<object> {
+    this.cleared++; this.typed = [];
+    return { text: '', canSend: false };
+  }
 });
 
 const ProjectsPage = named('ProjectsPage', class {
@@ -154,14 +168,44 @@ test('a component action is scoped to that component and reports what moved', as
   assert.equal(out.kind, 'acted');
   assert.equal(out.kind === 'acted' && out.scope, 'composer');
 
+  // The APP's own return value is the report — Composer.type hands back its state.
+  assert.deepEqual(out.kind === 'acted' ? out.result : null,
+    { text: 'what is a sheaf?', canSend: true },
+    'the CLI reports what the app said, it does not compose its own account');
+
+  // And the app's SENSORS corroborate it.
   const changed = out.kind === 'acted' ? out.changed : [];
-  const draft = changed.find(c => c.path === 'composer.readDraft');
-  assert.ok(draft, `expected composer.readDraft to change; got ${JSON.stringify(changed)}`);
-  assert.equal(draft.before, '(empty)');
-  assert.equal(draft.after, 'what is a sheaf?');
+  const sensor = changed.find(c => c.path === 'composer.canSend');
+  assert.ok(sensor, `expected composer.canSend to change; got ${JSON.stringify(changed)}`);
+  assert.equal(sensor.before, 'false');
+  assert.equal(sensor.after, 'true');
 
   assert.ok(out.kind === 'acted' && out.surface.every(c => c.path.startsWith('composer.')),
     "only the composer's own surface is offered back");
+});
+
+test('THE CLI NEVER CALLS AN ACTION IT WAS NOT ASKED TO — not send, not clear', async () => {
+  // The bug this pins: `send()` and `clear()` take no parameters and return data,
+  // so the old rule called them a harmless "look" — and looks were read before AND
+  // after every action to report what changed. Typing would have SENT THE MESSAGE.
+  const page = new ConversationPage();
+  const { rt } = await runtimeOn(page);
+  await rt.run('composer.type', ['hello']);
+  assert.equal(page.composer.sent, 0, 'typing must never send');
+  assert.equal(page.composer.cleared, 0, 'typing must never clear');
+
+  await rt.run('rename', ['x']);
+  assert.equal(page.composer.sent, 0);
+  assert.equal(page.composer.cleared, 0);
+});
+
+test('only sensors are sampled — is/has/can, the app\'s own word for harmless', async () => {
+  const page = new ConversationPage();
+  const { rt } = await runtimeOn(page);
+  const sampled = await rt.readSensors('composer');
+  assert.deepEqual([...sampled.keys()], ['composer.canSend'],
+    'readDraft is a reading, but only the app can say a method is safe to call ' +
+    'unasked, and is/has/can is how it says it');
 });
 
 test('an action that moves nothing observable SAYS so — a checkmark would hide it', async () => {
@@ -170,10 +214,16 @@ test('an action that moves nothing observable SAYS so — a checkmark would hide
   const out = await rt.run('scrollToBottom');
   assert.equal(out.kind, 'acted');
   assert.deepEqual(out.kind === 'acted' ? out.changed : null, [],
-    'nothing readable changed, and the outcome reports that honestly');
+    'no sensor moved, and the outcome reports that honestly');
   const text = renderChange('scrollToBottom', '(screen)', [], []);
-  assert.match(text, /nothing/i);
-  assert.match(text, /tree/, 'and points at the tree if you expected a change');
+  assert.match(text, /No sensor/i, 'a bare checkmark would hide it');
+});
+
+test('the app\'s own words lead the report — the CLI quotes, it does not narrate', () => {
+  const text = renderChange('composer.clear', 'composer', [], [],
+    'text:   canSend: false');
+  assert.match(text, /✓ composer\.clear/);
+  assert.match(text, /canSend: false/, "what the app returned is IN the report");
 });
 
 test('the change report reads as a difference, not a dump', () => {

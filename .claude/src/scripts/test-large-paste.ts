@@ -181,7 +181,7 @@ async function main() {
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 10_000 });
+  });
 
   // Navigate to home — we'll paste into the home composer (no sending needed)
   await app.navigator.resetToHome();

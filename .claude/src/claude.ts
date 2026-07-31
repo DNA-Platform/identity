@@ -140,17 +140,17 @@ export class Claude {
     }
 
     if (!await this.window.waitForUia()) {
-      console.log('[claude] UIA not available. Restarting...');
-      await this.window.close();
-      await this.window.launch(SHORTCUT);
-      if (!await this.window.waitForWindow()) {
-        throw new Error('Timeout waiting for Claude window after restart');
-      }
-      await this.window.focus();
-      await this.window.maximize();
-      if (!await this.window.waitForUia()) {
-        throw new Error('UIA tree not available even after restart');
-      }
+      // NOT a restart. This used to close Claude Desktop and launch it again —
+      // killing whatever the user was doing, in order to retry. A driver does not
+      // get to restart someone's app because it did not like what it saw. Stand
+      // down, say exactly what is wrong, and let a person decide.
+      await this.window.stepAside();
+      throw new Error(
+        'Claude Desktop is running but exposes no accessibility tree, so nothing can ' +
+        'be read or driven. Nothing was retried and the window has been minimized.\n' +
+        'Almost always this means it was started without --force-renderer-accessibility. ' +
+        'Quit it and relaunch it yourself, then run this again.',
+      );
     }
 
     try {

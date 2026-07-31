@@ -16,7 +16,7 @@ async function navigateToProject(title: string): Promise<boolean> {
   await app.auto.gateway.act(
     async () => { await app.auto.uia.invokeByName('Projects'); },
     async () => (await app.auto.uia.readUrl())?.includes('/projects') ?? false,
-    { description: 'Go to projects', timeoutMs: 10_000 },
+    { description: 'Go to projects' },
   );
 
   await app.auto.gateway.act(
@@ -25,7 +25,7 @@ async function navigateToProject(title: string): Promise<boolean> {
       if (!clicked) await app.auto.uia.clickByName(title);
     },
     async () => (await app.auto.uia.readUrl())?.includes('/project/') ?? false,
-    { description: `Open ${title}`, timeoutMs: 10_000 },
+    { description: `Open ${title}` },
   );
 
   app.navigator.screen = 'project';
@@ -54,7 +54,7 @@ async function main() {
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 5_000 });
+  });
 
   // 1. Fix Number Theory — remove bad .cover.md file
   console.log('[Number Theory] Fixing...');

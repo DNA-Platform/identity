@@ -116,14 +116,23 @@ export function renderChange(
   scope: string,
   changed: readonly { path: string; before: string; after: string }[],
   surface: readonly Command[],
+  said = '',
 ): string {
   const where = scope === '(screen)' ? 'this screen' : scope;
   const out: string[] = [`✓ ${commandPath}`];
 
+  // What the APP returned, first and in its own words. The driver's actions hand
+  // back their own state — `Message.clear()` returns a MessageState — and that is
+  // the authoritative account of what just happened. The sensor diff below is
+  // corroboration, not the report.
+  if (said && said !== '(nothing)') {
+    out.push('');
+    out.push(said);
+  }
+
   if (changed.length === 0) {
     out.push('');
-    out.push(`No reading on ${where} changed. The action reported success but nothing`);
-    out.push('observable moved — check `tree` if you expected it to.');
+    out.push(`No sensor on ${where} changed.`);
   } else {
     out.push('');
     out.push(`Changed on ${where}:`);

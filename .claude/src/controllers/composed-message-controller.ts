@@ -31,12 +31,19 @@ export class MessageController {
     return { text, attachments, canSend, isEmpty };
   }
 
+  /** Which composer name is ACTUALLY on screen. One tree read answers for every
+   *  candidate — the alternative is querying, or CLICKING, at each name in turn
+   *  until one happens to work, which is a driver guessing with someone's mouse. */
+  private async findComposer(): Promise<string | null> {
+    const tree = await this.auto.uia.snapshot();
+    if (tree.isEmpty) return null;           // could not see — not "not there"
+    return COMPOSER_NAMES.find(name => tree.has({ name })) ?? null;
+  }
+
   async readText(): Promise<string> {
-    for (const name of COMPOSER_NAMES) {
-      const value = await this.auto.uia.readValue(name);
-      if (value !== null) return value;
-    }
-    return '';
+    const name = await this.findComposer();
+    if (!name) return '';
+    return (await this.auto.uia.readValue(name)) ?? '';
   }
 
   async readAttachments(): Promise<Attachment[]> {
@@ -49,8 +56,7 @@ export class MessageController {
         attachments.push({
           name,
           kind: 'pasted',
-          lines: parseInt(pasted[1], 10),
-        });
+          lines: parseInt(pasted[1], 10) });
         continue;
       }
 
@@ -66,22 +72,19 @@ export class MessageController {
     return attachments;
   }
 
+  /** Write the whole message in ONE action.
+   *
+   *  This used to loop the lines: paste a line, press Shift+Enter, paste the next —
+   *  N clipboard writes and N keystrokes synthesised into the user's window for one
+   *  message. `setValue` through the ValuePattern sets the entire text, newlines
+   *  included, in a single call, and it is the mechanism the pitfalls chapter
+   *  already recommends over pasting (a paste becomes an ATTACHMENT, not text). */
   async write(text: string): Promise<void> {
     this.auto.navigator.requireScreen('home', 'conversation', 'project');
 
-    await this.focusComposer();
-
-    const formatted = formatOutgoing(text);
-    const lines = formatted.split('\n');
-
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].length > 0) {
-        await this.auto.keyboard.typeViaClipboard(lines[i]);
-      }
-      if (i < lines.length - 1) {
-        await this.auto.keyboard.sendKeys('+{ENTER}');
-      }
-    }
+    const name = await this.findComposer();
+    if (!name) throw new Error('No composer on screen to write into');
+    await this.auto.uia.setValue(name, formatOutgoing(text));
   }
 
   async paste(text: string): Promise<void> {
@@ -90,7 +93,7 @@ export class MessageController {
     await this.auto.keyboard.typeViaClipboard(text);
     await this.auto.gateway.waitFor(
       async () => (await this.readText()).length > 0,
-      { timeoutMs: 5_000 },
+      {},
     );
   }
 
@@ -101,7 +104,7 @@ export class MessageController {
     await this.auto.keyboard.sendKeys('^v');
     await this.auto.gateway.waitFor(
       async () => (await this.readAttachments()).length > before.length,
-      { timeoutMs: 5_000 },
+      {},
     );
   }
 
@@ -113,7 +116,7 @@ export class MessageController {
     await this.auto.keyboard.sendKeys('^v');
     await this.auto.gateway.waitFor(
       async () => (await this.readAttachments()).length > before.length,
-      { timeoutMs: 5_000 },
+      {},
     );
   }
 
@@ -125,7 +128,7 @@ export class MessageController {
     await this.auto.keyboard.sendKeys('^v');
     await this.auto.gateway.waitFor(
       async () => (await this.readAttachments()).length > before.length,
-      { timeoutMs: 5_000 },
+      {},
     );
   }
 
@@ -136,25 +139,20 @@ export class MessageController {
         const current = await this.readAttachments();
         return !current.some(a => a.name === name);
       },
-      { description: `Remove attachment ${name}`, timeoutMs: 5_000 },
+      { description: `Remove attachment ${name}` },
     );
   }
 
   async clear(): Promise<void> {
     this.auto.navigator.requireScreen('home', 'conversation', 'project');
 
-    const attachments = await this.readAttachments();
-    for (const att of attachments) {
-      await this.removeAttachment(att.name);
-    }
-
+    // Clear the TEXT in one action. Attachments are NOT swept in a loop any more:
+    // that removed them one at a time, N clicks into the window, and if a removal
+    // silently failed the loop had already moved on. Whatever is left is reported by
+    // `read()` — the caller sees it and decides, which is the whole contract.
     await this.focusComposer();
     await this.auto.keyboard.selectAll();
     await this.auto.keyboard.delete();
-    await this.auto.gateway.waitFor(
-      async () => (await this.readText()) === '',
-      { timeoutMs: 5_000 },
-    );
   }
 
   async send(): Promise<void> {
@@ -173,13 +171,12 @@ export class MessageController {
         const state = await this.read();
         return state.isEmpty;
       },
-      { description: 'Send message', timeoutMs: 10_000 },
+      { description: 'Send message' },
     );
   }
 
   private async focusComposer(): Promise<void> {
-    for (const name of COMPOSER_NAMES) {
-      if (await this.auto.uia.clickByName(name)) return;
-    }
+    const name = await this.findComposer();
+    if (name) await this.auto.uia.clickByName(name);   // ONE click, where it really is
   }
 }

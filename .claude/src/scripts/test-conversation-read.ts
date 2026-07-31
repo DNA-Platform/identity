@@ -57,7 +57,7 @@ async function navigateToConversation(index = 0) {
     const text = await app.auto.uia.readText();
     if (!text) return false;
     return text.includes('You said:') || text.includes('Claude responded:') || text.includes('Write your prompt');
-  }, { timeoutMs: 30_000 });
+  });
   console.log(`  Content loaded: ${loaded}`);
 }
 
@@ -225,7 +225,7 @@ async function main() {
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 10_000 });
+  });
 
   // Start from home
   console.log('Navigating to home for clean start...');

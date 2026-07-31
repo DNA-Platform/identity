@@ -32,7 +32,7 @@ export class ProjectItem {
 
     const arrived = await this.gateway.waitFor(
       async () => (await this.auto.navigator.detectScreen()) === 'project',
-      { timeoutMs: 30_000 },
+      {},
     );
     if (!arrived) throw new Error(`Navigation to project "${this.name}" timed out`);
 
@@ -56,7 +56,7 @@ export class ProjectsPage extends Page {
     const raw = await this.gateway.read(
       () => this.auto.uia.readListItems(),
       (items) => items.length > 0,
-      { description: 'Read project cards', timeoutMs: 15_000 },
+      { description: 'Read project cards' },
     );
 
     const items: ProjectItem[] = [];

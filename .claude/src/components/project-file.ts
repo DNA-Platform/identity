@@ -41,7 +41,7 @@ export class ProjectFile {
         const names = await this.auto.uia.allNames();
         return names.some(n => n.includes(`ControlType.Window | ${this.name}`));
       },
-      { description: `View file "${this.name}"`, timeoutMs: 5_000, retries: 2 },
+      { description: `View file "${this.name}"` },
     );
 
     // Read the content from the detail view
@@ -63,7 +63,7 @@ export class ProjectFile {
           await this.auto.gateway.waitFor(async () => {
             const names = await this.auto.uia.allNames();
             return names.some(n => n === 'ControlType.Button | Remove');
-          }, { timeoutMs: 3_000 });
+          });
           await this.auto.uia.invokeByName('Remove');
         }
       },
@@ -74,10 +74,7 @@ export class ProjectFile {
       },
       {
         description: `Remove file "${this.name}"`,
-        timeoutMs: 10_000,
-        retries: 2,
-        screenshotOnFailure: 'file-remove-failed',
-      },
+        screenshotOnFailure: 'file-remove-failed' },
     );
   }
 }

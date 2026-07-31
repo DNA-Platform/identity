@@ -15,7 +15,7 @@ async function main() {
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 5_000 });
+  });
 
   // Detect screen
   const screen = await app.navigator.detectScreen();

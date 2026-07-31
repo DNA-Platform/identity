@@ -142,35 +142,55 @@ export class Window {
     return (await this.state()).minimized;
   }
 
+  /** Bring the window forward. **Once.**
+   *
+   *  This used to try five times, each attempt synthesising an Alt keypress and
+   *  calling `SetForegroundWindow`, with a 400ms sleep between. That is two seconds
+   *  of a background process repeatedly taking the keyboard away from whoever is
+   *  using the machine. It is not a driver being careful; it is a driver fighting
+   *  the user for their own computer, and it is not allowed.
+   *
+   *  One attempt. One check. If Windows refuses, we GIVE UP AND GIVE THE SCREEN
+   *  BACK — `stepAside()` minimizes and the caller fails. Never a second grab. */
   async requireForeground(): Promise<void> {
-    let state = await this.state();
+    const state = await this.state();
     if (state.foreground && !state.minimized) return;
-    // Racy steal — retry with the Alt-key trick, verify each time. The verify now
-    // checks BOTH bits: the old loop asked only isForeground(), which lies while
-    // minimized, so a minimized window could satisfy a check whose entire purpose
-    // was to guarantee a readable screen.
-    for (let attempt = 0; attempt < 5; attempt++) {
-      await this.bringToForegroundOnce(false);
-      await sleep(400);
-      state = await this.state();
-      if (state.foreground && !state.minimized) return;
-    }
-    throw new Error('Claude window is not the foreground window after 5 attempts. Cannot proceed safely.');
+
+    await this.bringToForegroundOnce(false);
+    await sleep(400);
+    const now = await this.state();
+    if (now.foreground && !now.minimized) return;
+
+    await this.stepAside();
+    throw new Error(
+      'Claude Desktop would not come forward, so the driver stood down and minimized it. ' +
+      'Nothing was retried and nothing was fired. Run the command again when the screen is free.',
+    );
   }
 
   async maximize(): Promise<void> {
     this.requireHandle();
     const state = await this.state();
     if (state.foreground && !state.minimized) return;
-    // Retry the foreground steal — Windows can refuse it once and grant it the
-    // next attempt (the steal is racy). Verify each time; never trust the call.
-    for (let attempt = 0; attempt < 5; attempt++) {
-      await this.bringToForegroundOnce(true);
-      await sleep(400);
-      const now = await this.state();
-      if (now.foreground && !now.minimized) return;
+
+    await this.bringToForegroundOnce(true);
+    await sleep(400);
+    const now = await this.state();
+    if (now.foreground && !now.minimized) {
+      await this.stepAside();
+      throw new Error(
+        'Claude Desktop would not come forward, so the driver stood down and minimized it. ' +
+        'Nothing was retried. Another window may have the foreground.',
+      );
     }
-    throw new Error('maximize() could not bring Claude to the foreground after 5 attempts. Window may be blocked by another app.');
+  }
+
+  /** Get out of the way. The one recovery this driver has: when something is stuck,
+   *  minimize and stop — never try again, never hold the screen. Best effort by
+   *  design; if even this fails there is nothing further to do and nothing further
+   *  is attempted. */
+  async stepAside(): Promise<void> {
+    try { await this.minimize(); } catch { /* nothing left to give back */ }
   }
 
   async minimize(): Promise<void> {
@@ -220,32 +240,31 @@ export class Window {
     return absPath;
   }
 
-  async waitForWindow(timeoutMs = 30_000): Promise<boolean> {
-    const deadline = Date.now() + timeoutMs;
-    while (Date.now() < deadline) {
-      if (await this.find()) return true;
-      await sleep(500);
-    }
-    return false;
+  /** Give a launching app time to appear, then look ONCE.
+   *
+   *  A launch genuinely takes a while, so waiting is honest — "I did not wait long
+   *  enough" is real evidence. Polling for thirty seconds is not: it is the same
+   *  question asked sixty times. Wait the time an app takes to start, then look. If
+   *  it is not there, say so and stop. */
+  async waitForWindow(settleMs = 8_000): Promise<boolean> {
+    await sleep(settleMs);
+    return this.find();
   }
 
-  async waitForUia(timeoutMs = 20_000): Promise<boolean> {
+  /** Give the renderer time to build its accessibility tree, then look ONCE. */
+  async waitForUia(settleMs = 4_000): Promise<boolean> {
     this.requireHandle();
-    const deadline = Date.now() + timeoutMs;
-    while (Date.now() < deadline) {
-      const count = await this.shell.run(`
-        Add-Type -AssemblyName UIAutomationClient
-        Add-Type -AssemblyName UIAutomationTypes
-        $uia = [System.Windows.Automation.AutomationElement]
-        $window = $uia::FromHandle([IntPtr]::new(${this.handle}))
-        $cond = New-Object System.Windows.Automation.PropertyCondition(
-          $uia::ControlTypeProperty, [System.Windows.Automation.ControlType]::Document)
-        $window.FindAll([System.Windows.Automation.TreeScope]::Descendants, $cond).Count
-      `, 10_000);
-      if (parseInt(count, 10) > 0) return true;
-      await sleep(1000);
-    }
-    return false;
+    await sleep(settleMs);
+    const count = await this.shell.run(`
+      Add-Type -AssemblyName UIAutomationClient
+      Add-Type -AssemblyName UIAutomationTypes
+      $uia = [System.Windows.Automation.AutomationElement]
+      $window = $uia::FromHandle([IntPtr]::new(${this.handle}))
+      $cond = New-Object System.Windows.Automation.PropertyCondition(
+        $uia::ControlTypeProperty, [System.Windows.Automation.ControlType]::Document)
+      $window.FindAll([System.Windows.Automation.TreeScope]::Descendants, $cond).Count
+    `, 10_000);
+    return parseInt(count, 10) > 0;
   }
 
   // Bring the window forward using the Alt-key trick: Windows grants foreground

@@ -42,7 +42,7 @@ async function navigateToProject(title: string): Promise<boolean> {
       const url = await app.auto.uia.readUrl();
       return url?.includes('/projects') ?? false;
     },
-    { description: `Navigate to projects list`, timeoutMs: 10_000 },
+    { description: `Navigate to projects list` },
   );
 
   await app.auto.gateway.act(
@@ -54,7 +54,7 @@ async function navigateToProject(title: string): Promise<boolean> {
       const url = await app.auto.uia.readUrl();
       return url?.includes('/project/') ?? false;
     },
-    { description: `Open project "${title}"`, timeoutMs: 10_000 },
+    { description: `Open project "${title}"` },
   );
 
   app.navigator.screen = 'project';
@@ -85,7 +85,7 @@ async function main() {
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 5_000 });
+  });
 
   for (const project of PROJECTS) {
     const coverPath = resolve(PROJECTS_DIR, project.folder, '.cover.md');

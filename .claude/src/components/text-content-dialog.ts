@@ -32,7 +32,7 @@ export class TextContentDialog {
     await this.gateway.act(
       async () => {},
       async () => this.verifyOpen(),
-      { description: 'Wait for text content dialog', timeoutMs: 10_000, retries: 1 },
+      { description: 'Wait for text content dialog' },
     );
     this.isOpen = true;
   }
@@ -76,10 +76,7 @@ export class TextContentDialog {
       },
       {
         description: `Set title to "${title.slice(0, 30)}"`,
-        timeoutMs: 5_000,
-        retries: 2,
-        screenshotOnFailure: 'title-set-failed',
-      },
+        screenshotOnFailure: 'title-set-failed' },
     );
 
     this.title = title;
@@ -100,10 +97,7 @@ export class TextContentDialog {
         return this.verifyOpen();
       },
       {
-        description: 'Set content',
-        timeoutMs: 5_000,
-        retries: 2,
-      },
+        description: 'Set content' },
     );
 
     this.content = content;
@@ -127,10 +121,7 @@ export class TextContentDialog {
       },
       {
         description: 'Submit text content',
-        timeoutMs: 10_000,
-        retries: 1,
-        screenshotOnFailure: 'submit-failed',
-      },
+        screenshotOnFailure: 'submit-failed' },
     );
 
     this.isOpen = false;
@@ -150,7 +141,7 @@ export class TextContentDialog {
         await this.detect();
         return !this.isOpen;
       },
-      { description: 'Cancel text content dialog', timeoutMs: 5_000, retries: 2 },
+      { description: 'Cancel text content dialog' },
     );
 
     this.isOpen = false;

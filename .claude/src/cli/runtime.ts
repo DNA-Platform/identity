@@ -46,9 +46,14 @@ export type Outcome =
       command: Command;
       /** Where the change happened: a component's name, or the screen itself. */
       scope: string;
-      /** What actually changed, read from the scope's own looks. Empty means the
-       *  action reported success but nothing observable moved — worth saying out
-       *  loud rather than hiding behind a checkmark. */
+      /** **What the app said.** The driver's actions return their own state —
+       *  `Message.clear()` hands back a `MessageState`, `send()` hands back whether
+       *  it left. That return value IS the local change report, written by the layer
+       *  that actually knows. The CLI prints it; it does not compose its own. */
+      result: unknown;
+      /** Sensor readings that moved. Sensors only — `is*`/`has*`/`can*` — because
+       *  those are the app's declared harmless signals, the ones the gateway already
+       *  polls. Empty means nothing the app exposes as a signal changed. */
       changed: readonly Change[];
       /** What you can do in that scope now — the LOCAL surface, not the whole room.
        *  A local action should not make you re-read the building. */
@@ -163,10 +168,10 @@ export class Runtime {
     if (argError) return { kind: 'refused', message: argError };
 
     const from = this.model().screen;
-    // Read the scope's state BEFORE acting, so the action can report what it moved.
+    // Sample the scope's SENSORS before acting, so the action can report what moved.
     // Only for a `do` — a look changes nothing and a move re-reads everything anyway.
     const beforeReadings = command.kind === 'do'
-      ? await this.readScope(scopeOf(command))
+      ? await this.readSensors(scopeOf(command))
       : new Map<string, string>();
     const target = this.targetFor(command);
     const method = (target as Record<string, unknown>)[leafName(command.path)];
@@ -190,32 +195,38 @@ export class Runtime {
 
     if (command.kind === 'look') return { kind: 'read', command, value };
 
-    // A local action reports LOCAL change. Re-printing the whole room after every
-    // keystroke buries the one thing that moved, and makes the operator re-read a
-    // building to learn that a text box now holds text. So: read the scope's own
-    // looks before and after, and report the difference.
-    //
-    // The set of readings is DERIVED — it is the parameterless looks the surface
-    // already knows about for that scope — so a new sensor on a component is
-    // automatically part of what an action on it reports.
+    // A local action reports LOCAL change: what the APP returned, plus which of its
+    // own sensors moved. Re-printing the whole room after every keystroke buries the
+    // one thing that changed.
     const scope = scopeOf(command);
-    const after = await this.readScope(scope);
+    const after = await this.readSensors(scope);
     const changed: Change[] = [];
     for (const [path, value] of after) {
       const was = beforeReadings.get(path);
       if (was !== undefined && was !== value) changed.push({ path, before: was, after: value });
     }
-    return { kind: 'acted', command, scope, changed, surface: this.surfaceOf(scope) };
+    return { kind: 'acted', command, scope, result: value, changed, surface: this.surfaceOf(scope) };
   }
 
-  /** Every parameterless look in a scope, read now. Parameterless because a reading
-   *  that needs an argument is a question, not a state; and cheap because these are
-   *  the same controller sensors the gateway polls. Failures are swallowed per
-   *  reading — one unreadable sensor must not lose the whole report. */
-  async readScope(scope: string): Promise<Map<string, string>> {
+  /** The scope's SENSORS, read now.
+   *
+   *  **Sensors only.** A sensor is `is*` / `has*` / `can*` — the app's own naming
+   *  convention for a quick, harmless state check, and precisely what the
+   *  [gateway](../gateway.ts) already polls as a `verify`. Nothing else is invoked.
+   *
+   *  This used to call every parameterless method that returned data, on the theory
+   *  that such a method must be a reading. It is not: `Message.send()` takes no
+   *  parameters and returns `boolean`. Under the old rule, an unrelated action would
+   *  have SENT THE MESSAGE — twice, once before and once after. `ProjectFile.view()`
+   *  and `Message.clear()` were the same shape. No signature can express
+   *  harmlessness; the app has to say, and its convention is how it says.
+   *
+   *  Failures are swallowed per reading — one unreadable sensor must not lose the
+   *  whole report. */
+  async readSensors(scope: string): Promise<Map<string, string>> {
     const out = new Map<string, string>();
     for (const c of this.surfaceOf(scope)) {
-      if (c.kind !== 'look' || c.params.length > 0) continue;
+      if (c.params.length > 0 || !isSensorName(leafName(c.path))) continue;
       const target = scope === SCREEN ? this.page! : (this.page as Record<string, unknown>)[scope];
       if (!target || typeof target !== 'object') continue;
       const fn = (target as Record<string, unknown>)[leafName(c.path)];
@@ -251,6 +262,17 @@ export class Runtime {
 function leafName(path: string): string {
   const dot = path.lastIndexOf('.');
   return dot < 0 ? path : path.slice(dot + 1);
+}
+
+/** The app's own name for a harmless state check: `isResponseComplete`,
+ *  `hasStopButton`, `canSend`. Documented in
+ *  [ch.14](../../library/reference-desk/14-the-runtime.md#the-conventions-are-now-contracts)
+ *  and relied on by the gateway, which requires a `verify` to be a sensor.
+ *
+ *  This is the ONE thing the CLI is willing to call without being asked, and the
+ *  convention is why. Everything else waits for the operator. */
+export function isSensorName(name: string): boolean {
+  return /^(is|has|can)[A-Z]/.test(name);
 }
 
 /** The name used for "the page itself" rather than one of its components. */

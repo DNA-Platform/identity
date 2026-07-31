@@ -62,7 +62,7 @@ async function main() {
     const st = await app.conversation.hasStopButton();
     if (s || st) console.log(`[poll] streaming=${s} stop=${st}`);
     return s || st;
-  }, { timeoutMs: 30_000 });
+  });
   console.log('[23] Started:', started);
 
   if (started) {
