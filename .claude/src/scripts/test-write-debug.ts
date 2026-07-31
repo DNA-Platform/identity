@@ -8,7 +8,7 @@ const app = new Claude();
 async function main() {
   console.log('[1] Launching...');
   await app.launch();
-  console.log('[2] Launched. Foreground:', app.window.isForeground());
+  console.log('[2] Launched. Foreground:', await app.window.isForeground());
 
   console.log('[3] Opening new chat...');
   await app.newChat();
@@ -22,7 +22,7 @@ async function main() {
 
   console.log('[8] Sending (sendAsync — returns immediately)...');
   await app.sendAsync();
-  console.log('[9] sendAsync returned. Window visible:', app.window.isForeground());
+  console.log('[9] sendAsync returned. Window visible:', await app.window.isForeground());
 
   console.log('[10] Scrolling to bottom...');
   await app.conversation.scrollToBottom();
@@ -73,11 +73,11 @@ async function main() {
   }
 
   console.log('[26] Minimizing...');
-  app.window.minimize();
+  await app.window.minimize();
   console.log('[27] Done.');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('FAILED:', (e as Error).message);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

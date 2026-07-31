@@ -11,7 +11,7 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "npx tsx --test src/tests/tree.test.ts src/tests/cli.test.ts src/tests/runtime.test.ts",
+    "test": "npx tsx --test src/tests/tree.test.ts src/tests/cli.test.ts src/tests/runtime.test.ts src/tests/gateway.test.ts",
     "test:integration": "npx tsx --test src/tests/integration/*.test.ts",
     "generate": "npx tsx src/cli/generate-surface.ts --write"
   },

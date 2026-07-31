@@ -54,7 +54,7 @@ async function testOpeningMessage() {
 
   // Screenshot
   const ssPath = resolve(__dirname, '..', 'debug', `paste-opening-message.png`);
-  app.window.screenshot(ssPath);
+  await app.window.screenshot(ssPath);
   console.log(`  Screenshot: ${ssPath}`);
 
   // Clear
@@ -114,7 +114,7 @@ async function testLargeTranscript() {
 
     // Screenshot
     const ssPath = resolve(__dirname, '..', 'debug', `paste-${sizeKB}kb.png`);
-    app.window.screenshot(ssPath);
+    await app.window.screenshot(ssPath);
 
     // Verify by reading page text
     const text = await app.auto.uia.readText();
@@ -149,7 +149,7 @@ async function testSmallPaste() {
 
   // Screenshot
   const ssPath = resolve(__dirname, '..', 'debug', `paste-small.png`);
-  app.window.screenshot(ssPath);
+  await app.window.screenshot(ssPath);
   console.log(`  Screenshot: ${ssPath}`);
 
   // Clear
@@ -169,14 +169,14 @@ async function main() {
   console.log('================================');
 
   // Fresh launch
-  if (app.window.find()) {
+  if (await app.window.find()) {
     console.log('Closing existing Claude instance...');
-    app.window.close();
+    await app.window.close();
     await new Promise(r => setTimeout(r, 3_000));
   }
 
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
@@ -195,15 +195,15 @@ async function main() {
 
   // Cleanup
   await app.navigator.resetToHome();
-  app.window.minimize();
+  await app.window.minimize();
 
   console.log('\n================================');
   console.log(`Results: small=${r1 ? 'PASS' : 'FAIL'}, opening=${r2 ? 'PASS' : 'FAIL'}, large=${r3 ? 'PASS' : 'FAIL'}`);
   if (!r1 || !r2 || !r3) process.exit(1);
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('Test suite failed:', e.message);
-  app.window.minimize();
+  await app.window.minimize();
   process.exit(1);
 });

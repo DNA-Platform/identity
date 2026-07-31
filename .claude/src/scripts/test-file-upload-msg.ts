@@ -19,8 +19,8 @@ function printState(label: string, state: { text: string; attachments: { name: s
 
 async function main() {
   await app.launch();
-  app.window.maximize();
-  app.window.requireForeground();
+  await app.window.maximize();
+  await app.window.requireForeground();
 
   console.log('[test] Opening DNA Patternity...');
   await app.openProject('DNA Patternity');
@@ -75,12 +75,12 @@ async function main() {
   const afterClear = await app.message.clear();
   printState('after clear', afterClear);
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\n[test] Done. App minimized.');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[test] Failed: ${e.message}`);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
   process.exit(1);
 });

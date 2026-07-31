@@ -8,8 +8,8 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
-  app.window.requireForeground();
+  await app.window.maximize();
+  await app.window.requireForeground();
 
   await app.openProject('DNA Patternity');
   await new Promise(r => setTimeout(r, 1500));
@@ -34,12 +34,12 @@ async function main() {
     console.log('after remove — att:', afterRemove.attachments.length, 'empty:', afterRemove.isEmpty);
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('done');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('FAIL:', e.message);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
   process.exit(1);
 });

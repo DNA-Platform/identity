@@ -64,7 +64,7 @@ before(async () => {
 // This hook runs whether the tests passed, failed, or threw.
 after(async () => {
   if (!app) return;
-  try { app.window.minimize(); } catch { /* nothing to give back */ }
+  try { await app.window.minimize(); } catch { /* nothing to give back */ }
   try { app.auto.shell.close(); } catch { /* already closed */ }
 });
 

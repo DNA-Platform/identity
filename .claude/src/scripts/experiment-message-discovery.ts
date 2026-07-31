@@ -38,7 +38,7 @@ interface TreeSnapshot {
 async function readTree(label: string): Promise<TreeSnapshot> {
   const prefix = `${TS}-${label}`;
 
-  app.window.screenshot(resolve(DEBUG, `${prefix}.png`));
+  await app.window.screenshot(resolve(DEBUG, `${prefix}.png`));
 
   const text = await app.auto.uia.readText();
   if (text) {
@@ -102,8 +102,8 @@ async function verifyScreen(expected: string) {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
-  app.window.requireForeground();
+  await app.window.maximize();
+  await app.window.requireForeground();
 
   console.log('[discovery] Navigating to DNA Patternity...');
   await app.openProject('DNA Patternity');
@@ -220,7 +220,7 @@ async function main() {
   `, 10_000);
 
   // Paste image via Ctrl+V
-  app.window.requireForeground();
+  await app.window.requireForeground();
   await app.auto.keyboard.sendKeys('^v');
   await new Promise(r => setTimeout(r, 2000));
   const afterImage = await readTree('05b-image-pasted');
@@ -253,13 +253,13 @@ async function main() {
   const afterFullClear = await readTree('06b-fully-cleared');
 
   // === DONE ===
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\n\n[discovery] All experiments complete. App minimized.');
   console.log(`[discovery] Screenshots and tree dumps in: ${DEBUG}`);
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[discovery] Failed: ${e.message}`);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
   process.exit(1);
 });

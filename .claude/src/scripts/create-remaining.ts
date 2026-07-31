@@ -39,7 +39,7 @@ async function createProject(name: string): Promise<boolean> {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   for (const name of PROJECTS) {
@@ -48,7 +48,7 @@ async function main() {
     console.log(ok ? 'OK' : 'FAILED');
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('Done.');
 }
 

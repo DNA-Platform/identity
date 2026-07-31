@@ -12,8 +12,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = new Claude();
 await app.launch();
 
-process.on('unhandledRejection', (e) => { console.error(e); app.window.minimize(); });
-process.on('uncaughtException', (e) => { console.error(e); app.window.minimize(); });
+process.on('unhandledRejection', async (e) => { console.error(e); await app.window.minimize(); });
+process.on('uncaughtException', async (e) => { console.error(e); await app.window.minimize(); });
 
 console.log('Opening "Seren & The Hard Problem"...');
 await app.sidebar.refresh();
@@ -123,4 +123,4 @@ console.log(`Lines: ${md.split('\n').length}`);
 console.log(`Size: ${(md.length / 1024).toFixed(1)} KB`);
 
 console.log('\n=== Done ===');
-app.window.minimize();
+await app.window.minimize();

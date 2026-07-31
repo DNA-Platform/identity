@@ -47,6 +47,7 @@ do. Three kinds:
   Do     change something           (do)
 
 tree filters:  --type Button   --name "Send"   --contains inexplicable   --json
+tree --history  what the screen looked like on each earlier read this process
 
 When a command is missing or the screen disagrees with what you expected, run
 \`tree\` — it is the app's own account of itself, and the fastest way to find out
@@ -73,7 +74,12 @@ async function main(): Promise<number> {
   let launched = false;
 
   try {
-    await app.launch();
+    // Use the app WHERE IT IS. `launch()` ends with `goHome()`, so going through it
+    // would navigate you home before telling you where you were — which is both
+    // slow and wrong: `look` is the one command that must not move you. Attach to
+    // the running app and bind to whatever screen it is actually on; only start the
+    // app when there is no app.
+    if (!await app.attach()) await app.launch();
     launched = true;
 
     const runtime = new Runtime(app, SURFACE_BY_NAME);
@@ -103,6 +109,14 @@ async function main(): Promise<number> {
       }
 
       case 'tree': {
+        // `--history` is for looking BACKWARDS: what did the screen look like
+        // before the thing that just went wrong? Never a source of truth about now.
+        if (argv.includes('--history')) {
+          await runtime.tree();               // include the screen as it is right now
+          console.log('Trees read in this process (oldest first):');
+          console.log(app.diagnostics.treeHistory());
+          return 0;
+        }
         const tree = await runtime.tree();
         const filtered = applyTreeFilters(tree, argv.slice(1));
         console.log(argv.includes('--json')
@@ -162,10 +176,17 @@ async function main(): Promise<number> {
     console.error(err.detail ?? err.message ?? String(e));
     return 1;
   } finally {
-    // Give the computer back. Minimize BEFORE closing the shell — minimizing needs it.
+    // Give the computer back: minimize the WINDOW, close the SHELL.
+    //
+    // NOT app.exit() — that closes Claude Desktop itself, taking the user's live
+    // conversation with it, and then the NEXT command has to relaunch the app from
+    // cold (waitForWindow + waitForUia + switchToChat + goHome). Every invocation
+    // paid for a fresh app. A driver attached to a running app closes the shell,
+    // not the app (Sprint 92). Minimize BEFORE closing the shell — minimizing
+    // speaks through it.
     if (launched) {
-      try { app.window.minimize(); } catch { /* nothing to give back */ }
-      try { await app.exit(); } catch { /* already gone */ }
+      try { await app.window.minimize(); } catch { /* nothing to give back */ }
+      try { app.auto.shell.close(); } catch { /* already closed */ }
     }
   }
 }

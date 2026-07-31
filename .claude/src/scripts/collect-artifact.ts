@@ -72,9 +72,9 @@ try {
   let minimized = false;
   for (let i = 0; i < 5 && !minimized; i++) {
     try {
-      claude.window.minimize();
+      await claude.window.minimize();
       await sleep(400);
-      minimized = !claude.window.isForeground();
+      minimized = !await claude.window.isForeground();
     } catch (e) {
       console.log('minimize attempt failed:', e instanceof Error ? e.message : e);
     }

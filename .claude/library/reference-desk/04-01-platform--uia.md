@@ -56,6 +56,28 @@ The `windowSetup()` helper generates the preamble for every call — loading ass
 
 The app model is designed around what UIA CAN do. If a UI element isn't accessible through the tree, the approach is to find a different way to access it — usually through keyboard shortcuts or by reading text content instead of element properties.
 
+## What the tree costs
+
+Measured, July 2026, on the real app:
+
+| | |
+|---|---|
+| raw descendants in the window | **161** |
+| named elements after parsing | **121–123** |
+| `allNames()` as written | **77–133ms** |
+| the same walk with a `CacheRequest` | **310ms** |
+| `readUrl()` | **~40ms** |
+
+**Reading the whole tree is cheap, and it is not what makes the driver slow.** This is worth writing down because it is the opposite of the intuition. UIA property reads are cross-process, so the textbook fix is a [`CacheRequest`](https://learn.microsoft.com/dotnet/api/system.windows.automation.cacherequest) — bulk-fetch the properties, then read `$el.Cached.Name` for free. On a tree of a few hundred elements the setup costs more than the crossings it saves, and the "optimised" version measured **four times slower**. Do not apply it here without re-measuring; the trade only turns over on trees an order of magnitude larger.
+
+Two consequences the driver is built on. A tree read is affordable **per action**, which is what makes the [precondition](02-02-the-architecture--gateway.md) and [`TreeSnapshot`](../../src/tree.ts) practical rather than aspirational. And a *duplicate* tree read is worth removing not because it is slow, but because reading the same screen three times in one navigation means three different moments were each treated as now.
+
+## What a verify predicate must not do
+
+[`detectScreen()`](../../src/navigator.ts) is the verify predicate for nearly every navigation in the app, and it used to walk the whole tree on every call — to set `hasOpenDialog` and `hasOpenMenu`, which nothing in the driver reads. The screen is decided entirely by the URL. So a poll loop paid a full tree walk per iteration for two booleans only three debug scripts ever printed. Overlay detection moved to `detectOverlays()`, and `detectScreen()` went from **136ms to 17ms**.
+
+The rule: **a verify predicate should read the one thing it is deciding on.** Anything else it gathers is paid for on every iteration of every poll in the app.
+
 ## Element finding strategies
 
 The codebase uses three strategies, from most to least robust:

@@ -84,7 +84,7 @@ async function auditProject(name: string): Promise<void> {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   for (const name of PROJECTS) {
@@ -96,7 +96,7 @@ async function main() {
     }
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\nAudit complete.');
 }
 

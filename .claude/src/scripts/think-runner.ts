@@ -24,7 +24,7 @@ async function main() {
       console.log(result.response);
       console.log('---RESPONSE-END---');
       console.log('[think-runner] Minimizing...');
-      app.window.minimize();
+      await app.window.minimize();
     } catch (e) {
       console.error('[think-runner] Error:', (e as Error).message);
       console.error('[think-runner] Stack:', (e as Error).stack);
@@ -47,7 +47,7 @@ async function main() {
       } else {
         console.log('[think-runner] No active thought state found');
       }
-      app.window.minimize();
+      await app.window.minimize();
     } catch (e) {
       console.error('[think-runner] Error:', (e as Error).message);
       minimizeOnFailure(app);
@@ -65,7 +65,7 @@ async function main() {
       console.log('---RESPONSE-START---');
       console.log(result.response);
       console.log('---RESPONSE-END---');
-      app.window.minimize();
+      await app.window.minimize();
     } catch (e) {
       console.error('[think-runner] Error:', (e as Error).message);
       minimizeOnFailure(app);

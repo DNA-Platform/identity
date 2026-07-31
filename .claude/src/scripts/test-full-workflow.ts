@@ -22,7 +22,7 @@ async function main() {
   // Step 1: Launch and maximize
   console.log('Step 1: Launch');
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await app.auto.gateway.waitFor(async () => {
     return (await app.auto.uia.readUrl()) !== null;
   }, { timeoutMs: 5_000 });
@@ -123,13 +123,13 @@ async function main() {
   console.log('  Conversation deleted.');
 
   await app.resetToHome();
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\n=== WORKFLOW TEST COMPLETE ===');
   console.log('All steps passed. Responses saved to debug/');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('\nFAILED:', e.message);
   console.error(e.stack?.split('\n').slice(0, 3).join('\n'));
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

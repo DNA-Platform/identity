@@ -80,7 +80,7 @@ async function getTopFileName(): Promise<string | null> {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
@@ -141,7 +141,7 @@ async function main() {
     }
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\nDone.');
 }
 

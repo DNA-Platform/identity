@@ -8,6 +8,7 @@
 import type { Gateway } from './gateway.ts';
 import type { Uia } from './uia.ts';
 import type { Keyboard } from './keyboard.ts';
+import type { TreeSnapshot } from './tree.ts';
 import { WrongScreenError, DriverError } from './errors.ts';
 
 export type Screen = 'home' | 'conversation' | 'projects' | 'project' | 'settings' | 'customize' | 'unknown';
@@ -38,11 +39,24 @@ export class Navigator {
     this.keyboard = keyboard!;
   }
 
+  /** Which screen are we on? **The URL is the whole answer** — `screenFromUrl` is
+   *  the only thing that decides, and it needs nothing else.
+   *
+   *  This used to walk the entire UIA tree on every call, to set `hasOpenDialog`
+   *  and `hasOpenMenu`. Nothing in the driver reads those. Meanwhile this method is
+   *  the verify predicate for nearly every navigation in the app, so a poll loop
+   *  paid a full tree walk per iteration for two booleans no one consumed. Overlay
+   *  detection now lives in [`detectOverlays`](#) and is asked for when wanted. */
   async detectScreen(): Promise<Screen> {
-    const url = await this.uia.readUrl();
-    const urlScreen = this.screenFromUrl(url);
+    this.screen = this.screenFromUrl(await this.uia.readUrl());
+    return this.screen;
+  }
 
-    // Also read the UIA tree to detect overlays and dialogs
+  /** Is a dialog or a menu sitting over the app? One tree read, both answers, and
+   *  it also updates `hasOpenDialog` / `hasOpenMenu` for anyone reading the fields.
+   *  Separate from `detectScreen` because knowing WHERE you are and knowing WHAT is
+   *  covering it are different questions with very different costs. */
+  async detectOverlays(): Promise<{ dialog: boolean; menu: boolean }> {
     const names = await this.uia.allNames();
     this.hasOpenDialog = names.some(n =>
       n === 'ControlType.Window | Add text content' ||
@@ -54,9 +68,7 @@ export class Navigator {
       n.includes('ControlType.Menu | Doug Pro') ||
       n.includes('ControlType.Menu | Settings')
     );
-
-    this.screen = urlScreen;
-    return this.screen;
+    return { dialog: this.hasOpenDialog, menu: this.hasOpenMenu };
   }
 
   requireScreen(...allowed: Screen[]): void {
@@ -86,9 +98,8 @@ export class Navigator {
     // failing opaquely, read the tree and use whichever affordance is actually
     // there. This is NOT a retry — the action still fires exactly once; we simply
     // find the door before opening it.
-    const home = await this.findHomeAffordance();
+    const { home, tree } = await this.findHomeAffordance();
     if (!home) {
-      const tree = await this.uia.snapshot();
       throw new DriverError(
         'No way home: none of the known "new chat" affordances is on screen ' +
         `(tried: ${HOME_AFFORDANCES.join(', ')}). The app may have been updated — ` +
@@ -107,21 +118,24 @@ export class Navigator {
         const screen = await this.detectScreen();
         return screen === 'home';
       },
-      { description: `Navigate to home via "${home}"`, target: { name: home } },
+      // Hand over the tree we just read to choose the affordance. Without this the
+      // gateway walks the tree again to precheck the very element we found IN that
+      // walk — the same screen, read twice, milliseconds apart.
+      { description: `Navigate to home via "${home}"`, target: { name: home }, snapshot: tree },
     );
     this.screen = 'home';
   }
 
-  /** Which "new chat" affordance is on screen right now, if any. One tree read
-   *  answers for every candidate — cheaper than one UIA query per name, and it is
-   *  the same snapshot the error carries when none of them is there. */
-  private async findHomeAffordance(): Promise<string | null> {
+  /** Which "new chat" affordance is on screen right now, if any — and the tree that
+   *  says so. One read answers for every candidate, prechecks the action, and
+   *  carries the error when none of them is there. */
+  private async findHomeAffordance(): Promise<{ home: string | null; tree: TreeSnapshot }> {
     const tree = await this.uia.snapshot();
-    if (tree.isEmpty) return null;   // could not see — not the same as "not there"
+    if (tree.isEmpty) return { home: null, tree };  // could not see — not "not there"
     for (const name of HOME_AFFORDANCES) {
-      if (tree.has({ name })) return name;
+      if (tree.has({ name })) return { home: name, tree };
     }
-    return null;
+    return { home: null, tree };
   }
 
   async leaveSettings(): Promise<void> {
@@ -179,11 +193,17 @@ export class Navigator {
   async resetToHome(): Promise<void> {
     this.lastError = null;
 
-    // Close any open dialogs, menus, overlays
+    // Close any open dialogs, menus, overlays.
+    //
+    // The pause is an honest `setTimeout`, not `waitFor(() => true)`. That
+    // predicate passes on its first evaluation, so it never waited for anything —
+    // it only appeared to settle the UI because the foreground check inside it cost
+    // most of a second. Once that cost was removed the disguise fell off. A brief
+    // settle after a keystroke is not a retry: nothing fires twice.
     await this.keyboard.sendKeys('{ESCAPE}');
-    await this.gateway.waitFor(async () => true, { timeoutMs: 300 });
+    await settle();
     await this.keyboard.sendKeys('{ESCAPE}');
-    await this.gateway.waitFor(async () => true, { timeoutMs: 300 });
+    await settle();
 
     // Check for file browser dialog and close it
     const names = await this.uia.allNames();
@@ -225,4 +245,11 @@ export class Navigator {
     if (url.endsWith('/new') || url.endsWith('.ai') || url.endsWith('.ai/')) return 'home';
     return 'unknown';
   }
+}
+
+/** Escape is dispatched by the OS, not by us; the app needs a moment to act on it
+ *  before the tree tells the truth about what is still open. Fixed and short — it
+ *  is a settle, not a poll, and nothing is fired twice while it runs. */
+function settle(ms = 300): Promise<void> {
+  return new Promise(r => setTimeout(r, ms));
 }

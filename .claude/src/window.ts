@@ -1,12 +1,26 @@
 ///: Window — the OS window that Claude Desktop runs in.
-///: Find, launch, focus, maximize, minimize, screenshot via Win32 through PowerShell.
-///: isForeground() and requireForeground() enforce the window is active — the
-///: [gateway](../library/reference-desk/02-02-the-architecture--gateway.md) calls requireForeground() before every action.
+///: Find, launch, focus, maximize, minimize, screenshot via Win32 through the
+///: persistent [shell](shell.ts). isForeground() and requireForeground() enforce the
+///: window is active — the [gateway](../library/reference-desk/02-02-the-architecture--gateway.md) calls requireForeground() before every action.
+///:
+///: **Everything here is async, and that is a performance fix, not a style choice.**
+///: This class used to call `powershellSync`, which spawns a whole new PowerShell
+///: process per call — measured at 300–450ms each, against 0–1ms on the persistent
+///: shell that was sitting right beside it. Since the gateway calls
+///: `requireForeground()` before every action, and that cost two spawns, *a
+///: do-nothing action with an instantly-true verify cost 1.7 seconds of pure Win32
+///: bookkeeping.* The shell was introduced to end exactly this
+///: ([ch.4-03](../library/reference-desk/04-03-platform--shell.md)); Window was
+///: simply never moved over.
+///:
+///: The P/Invoke declarations are compiled ONCE per shell session, guarded by a
+///: `PSTypeName` check. `Add-Type` with inline C# runs the C# compiler, and in a
+///: fresh process it is always the first time.
 ///:
 ///: [Win32](../library/reference-desk/04-02-platform--win32.md) — window lifecycle, process management.
 ///: [The App Model](../library/reference-desk/02-04-the-architecture--app-model.md) — idempotent foreground.
 
-import { powershellSync as powershell } from './shell.ts';
+import type { Shell } from './shell.ts';
 import { resolve } from 'path';
 
 const MSIX_EXE_PATTERN = 'WindowsApps.*Claude.*app.*claude\\.exe';
@@ -16,8 +30,44 @@ interface ProcessInfo {
   handle: number;
 }
 
+/** Both facts about a window, from one crossing. `foreground` lies when the window
+ *  is minimized (an Electron/Windows quirk), so the two are only meaningful
+ *  together — which is the other reason to read them together. */
+export interface WindowState {
+  readonly foreground: boolean;
+  readonly minimized: boolean;
+}
+
+/** Every Win32 entry point the driver uses, declared once. The `PSTypeName` guard
+ *  is the whole point: without it, every single call re-invokes the C# compiler. */
+const WIN32 = `
+if (-not ([System.Management.Automation.PSTypeName]'DriverWin32').Type) {
+  Add-Type @'
+    using System; using System.Runtime.InteropServices;
+    public class DriverWin32 {
+      [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();
+      [DllImport("user32.dll")] public static extern bool IsIconic(IntPtr h);
+      [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h, int n);
+      [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr h);
+      [DllImport("user32.dll")] public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
+      [DllImport("user32.dll")] public static extern IntPtr SendMessage(IntPtr h, uint msg, IntPtr w, IntPtr l);
+      [DllImport("user32.dll")] public static extern bool GetWindowRect(IntPtr h, out RECT r);
+      [DllImport("user32.dll")] public static extern bool PrintWindow(IntPtr h, IntPtr hdc, uint flags);
+      [StructLayout(LayoutKind.Sequential)] public struct RECT { public int Left, Top, Right, Bottom; }
+    }
+'@
+}
+`;
+
+const SW_MAXIMIZE = 3;
+const SW_RESTORE = 9;
+const SW_MINIMIZE = 6;
+const WM_CLOSE = 0x0010;
+
 export class Window {
   private process: ProcessInfo | null = null;
+
+  constructor(private readonly shell: Shell) {}
 
   get pid(): number | null {
     return this.process?.pid ?? null;
@@ -31,8 +81,8 @@ export class Window {
     return this.process !== null;
   }
 
-  find(): boolean {
-    const result = powershell(`
+  async find(): Promise<boolean> {
+    const result = await this.shell.run(`
       Get-Process -Name claude -ErrorAction SilentlyContinue |
         Where-Object {
           $_.Path -match '${MSIX_EXE_PATTERN}' -and
@@ -50,107 +100,95 @@ export class Window {
     return true;
   }
 
-  launch(shortcutPath: string): void {
+  async launch(shortcutPath: string): Promise<void> {
     // Resolve the exe and args from the MSIX package directly,
     // since Start-Process on .lnk files may be blocked in non-interactive mode.
-    powershell(`
+    await this.shell.run(`
       $pkg = Get-AppxPackage -Name Claude -ErrorAction Stop
       $exe = Join-Path $pkg.InstallLocation 'app\\claude.exe'
       Start-Process -FilePath $exe -ArgumentList '--force-renderer-accessibility'
-    `);
+    `, 30_000);
   }
 
-  focus(): void {
+  async focus(): Promise<void> {
     this.requireHandle();
-    if (this.isForeground()) return;
-    this.bringToForegroundOnce(false);
+    if ((await this.state()).foreground) return;
+    await this.bringToForegroundOnce(false);
   }
 
-  isForeground(): boolean {
+  /** Foreground AND minimized, in one crossing. Asking them separately is two
+   *  round trips for one question about one window, and the gateway asks on every
+   *  action. */
+  async state(): Promise<WindowState> {
     this.requireHandle();
-    const result = powershell(`
-      Add-Type @"
-        using System; using System.Runtime.InteropServices;
-        public class FgCheck {
-          [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();
-        }
-"@
-      $fg = [FgCheck]::GetForegroundWindow()
-      if ($fg -eq [IntPtr]::new(${this.handle})) { 'true' } else { 'false' }
+    const result = await this.shell.run(`${WIN32}
+      $h = [IntPtr]::new(${this.handle})
+      $fg = [DriverWin32]::GetForegroundWindow() -eq $h
+      $min = [DriverWin32]::IsIconic($h)
+      "$fg|$min"
     `);
-    return result?.trim() === 'true';
+    const [fg, min] = result.trim().split('|');
+    return { foreground: fg === 'True', minimized: min === 'True' };
   }
 
-  // Is the window minimized? Use this to CONFIRM a minimize — isForeground()
-  // wrongly stays true for a minimized Claude window (Electron/Win quirk), so it
-  // cannot verify a minimize. IsIconic is the honest check.
-  isMinimized(): boolean {
-    this.requireHandle();
-    const result = powershell(`
-      Add-Type @"
-        using System; using System.Runtime.InteropServices;
-        public class IconicCheck {
-          [DllImport("user32.dll")] public static extern bool IsIconic(IntPtr h);
-        }
-"@
-      if ([IconicCheck]::IsIconic([IntPtr]::new(${this.handle}))) { 'true' } else { 'false' }
-    `);
-    return result?.trim() === 'true';
+  async isForeground(): Promise<boolean> {
+    return (await this.state()).foreground;
   }
 
-  requireForeground(): void {
-    if (this.isForeground() && !this.isMinimized()) return;  // isForeground lies when minimized
-    // Racy steal — retry with the Alt-key trick, verify each time.
+  // Is the window minimized? isForeground() wrongly stays true for a minimized
+  // Claude window (Electron/Win quirk), so it cannot verify a minimize. IsIconic
+  // is the honest check.
+  async isMinimized(): Promise<boolean> {
+    return (await this.state()).minimized;
+  }
+
+  async requireForeground(): Promise<void> {
+    let state = await this.state();
+    if (state.foreground && !state.minimized) return;
+    // Racy steal — retry with the Alt-key trick, verify each time. The verify now
+    // checks BOTH bits: the old loop asked only isForeground(), which lies while
+    // minimized, so a minimized window could satisfy a check whose entire purpose
+    // was to guarantee a readable screen.
     for (let attempt = 0; attempt < 5; attempt++) {
-      this.bringToForegroundOnce(false);
-      this.sleep(400);
-      if (this.isForeground()) return;
+      await this.bringToForegroundOnce(false);
+      await sleep(400);
+      state = await this.state();
+      if (state.foreground && !state.minimized) return;
     }
     throw new Error('Claude window is not the foreground window after 5 attempts. Cannot proceed safely.');
   }
 
-  maximize(): void {
+  async maximize(): Promise<void> {
     this.requireHandle();
-    if (this.isForeground() && !this.isMinimized()) return;  // isForeground lies when minimized — restore it
+    const state = await this.state();
+    if (state.foreground && !state.minimized) return;
     // Retry the foreground steal — Windows can refuse it once and grant it the
     // next attempt (the steal is racy). Verify each time; never trust the call.
     for (let attempt = 0; attempt < 5; attempt++) {
-      this.bringToForegroundOnce(true);
-      this.sleep(400);
-      if (this.isForeground()) return;
+      await this.bringToForegroundOnce(true);
+      await sleep(400);
+      const now = await this.state();
+      if (now.foreground && !now.minimized) return;
     }
     throw new Error('maximize() could not bring Claude to the foreground after 5 attempts. Window may be blocked by another app.');
   }
 
-  minimize(): void {
+  async minimize(): Promise<void> {
     this.requireHandle();
-    powershell(`
-      Add-Type @"
-        using System; using System.Runtime.InteropServices;
-        public class WinState3 {
-          [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h, int n);
-        }
-"@
-      [WinState3]::ShowWindow([IntPtr]::new(${this.handle}), 6) | Out-Null
+    await this.shell.run(`${WIN32}
+      [DriverWin32]::ShowWindow([IntPtr]::new(${this.handle}), ${SW_MINIMIZE}) | Out-Null
     `);
   }
 
-  close(): void {
+  async close(): Promise<void> {
     // Graceful close via WM_CLOSE, then force-kill stragglers
     if (this.handle) {
-      powershell(`
-        Add-Type @"
-          using System; using System.Runtime.InteropServices;
-          public class WinClose {
-            [DllImport("user32.dll")]
-            public static extern IntPtr SendMessage(IntPtr h, uint msg, IntPtr w, IntPtr l);
-          }
-"@
-        [WinClose]::SendMessage([IntPtr]::new(${this.handle}), 0x0010, [IntPtr]::Zero, [IntPtr]::Zero) | Out-Null
+      await this.shell.run(`${WIN32}
+        [DriverWin32]::SendMessage([IntPtr]::new(${this.handle}), ${WM_CLOSE}, [IntPtr]::Zero, [IntPtr]::Zero) | Out-Null
       `);
     }
     // Clean up child processes
-    powershell(`
+    await this.shell.run(`
       Start-Sleep -Seconds 2
       Get-Process -Name claude -ErrorAction SilentlyContinue |
         Where-Object { $_.Path -match '${MSIX_EXE_PATTERN}' } |
@@ -159,30 +197,22 @@ export class Window {
     this.process = null;
   }
 
-  screenshot(outputPath: string): string {
+  async screenshot(outputPath: string): Promise<string> {
     this.requireHandle();
     const absPath = resolve(outputPath);
     // PrintWindow captures the window's own content regardless of Z-order.
     // No need to bring to foreground. Works while minimized (after restore-behind).
-    powershell(`
+    await this.shell.run(`${WIN32}
       Add-Type -AssemblyName System.Drawing
-      Add-Type @"
-        using System; using System.Runtime.InteropServices;
-        public class WinShot {
-          [DllImport("user32.dll")] public static extern bool GetWindowRect(IntPtr h, out RECT r);
-          [DllImport("user32.dll")] public static extern bool PrintWindow(IntPtr h, IntPtr hdc, uint flags);
-          [StructLayout(LayoutKind.Sequential)] public struct RECT { public int Left, Top, Right, Bottom; }
-        }
-"@
-      $rect = New-Object WinShot+RECT
-      [WinShot]::GetWindowRect([IntPtr]::new(${this.handle}), [ref]$rect) | Out-Null
+      $rect = New-Object DriverWin32+RECT
+      [DriverWin32]::GetWindowRect([IntPtr]::new(${this.handle}), [ref]$rect) | Out-Null
       $w = $rect.Right - $rect.Left; $h = $rect.Bottom - $rect.Top
       $dir = Split-Path '${absPath}' -Parent
       if ($dir) { New-Item -ItemType Directory -Path $dir -Force | Out-Null }
       $bmp = New-Object System.Drawing.Bitmap($w, $h)
       $g = [System.Drawing.Graphics]::FromImage($bmp)
       $hdc = $g.GetHdc()
-      [WinShot]::PrintWindow([IntPtr]::new(${this.handle}), $hdc, 2) | Out-Null
+      [DriverWin32]::PrintWindow([IntPtr]::new(${this.handle}), $hdc, 2) | Out-Null
       $g.ReleaseHdc($hdc)
       $bmp.Save('${absPath}')
       $g.Dispose(); $bmp.Dispose()
@@ -190,20 +220,20 @@ export class Window {
     return absPath;
   }
 
-  waitForWindow(timeoutMs = 30_000): boolean {
+  async waitForWindow(timeoutMs = 30_000): Promise<boolean> {
     const deadline = Date.now() + timeoutMs;
     while (Date.now() < deadline) {
-      if (this.find()) return true;
-      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500);
+      if (await this.find()) return true;
+      await sleep(500);
     }
     return false;
   }
 
-  waitForUia(timeoutMs = 20_000): boolean {
+  async waitForUia(timeoutMs = 20_000): Promise<boolean> {
     this.requireHandle();
     const deadline = Date.now() + timeoutMs;
     while (Date.now() < deadline) {
-      const count = powershell(`
+      const count = await this.shell.run(`
         Add-Type -AssemblyName UIAutomationClient
         Add-Type -AssemblyName UIAutomationTypes
         $uia = [System.Windows.Automation.AutomationElement]
@@ -213,34 +243,22 @@ export class Window {
         $window.FindAll([System.Windows.Automation.TreeScope]::Descendants, $cond).Count
       `, 10_000);
       if (parseInt(count, 10) > 0) return true;
-      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 1000);
+      await sleep(1000);
     }
     return false;
-  }
-
-  private sleep(ms: number): void {
-    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
   }
 
   // Bring the window forward using the Alt-key trick: Windows grants foreground
   // rights to a process that just synthesized input, so without the keybd_event
   // SetForegroundWindow is silently ignored and the steal loses the race.
-  private bringToForegroundOnce(maximizeWindow: boolean): void {
+  private async bringToForegroundOnce(maximizeWindow: boolean): Promise<void> {
     this.requireHandle();
-    const show = maximizeWindow ? 3 : 9; // 3 = SW_MAXIMIZE, 9 = SW_RESTORE
-    powershell(`
-      Add-Type @"
-        using System; using System.Runtime.InteropServices;
-        public class WinFg {
-          [DllImport("user32.dll")] public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
-          [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h, int n);
-          [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr h);
-        }
-"@
-      [WinFg]::keybd_event(0x12, 0, 0, [UIntPtr]::Zero)
-      [WinFg]::keybd_event(0x12, 0, 2, [UIntPtr]::Zero)
-      [WinFg]::ShowWindow([IntPtr]::new(${this.handle}), ${show}) | Out-Null
-      [WinFg]::SetForegroundWindow([IntPtr]::new(${this.handle})) | Out-Null
+    const show = maximizeWindow ? SW_MAXIMIZE : SW_RESTORE;
+    await this.shell.run(`${WIN32}
+      [DriverWin32]::keybd_event(0x12, 0, 0, [UIntPtr]::Zero)
+      [DriverWin32]::keybd_event(0x12, 0, 2, [UIntPtr]::Zero)
+      [DriverWin32]::ShowWindow([IntPtr]::new(${this.handle}), ${show}) | Out-Null
+      [DriverWin32]::SetForegroundWindow([IntPtr]::new(${this.handle})) | Out-Null
     `);
   }
 
@@ -249,4 +267,10 @@ export class Window {
       throw new Error('No window handle. Call find() or execute() first.');
     }
   }
+}
+
+/** A real timer, not `Atomics.wait`. The old blocking sleep froze the event loop,
+ *  which matters the moment these calls are async. */
+function sleep(ms: number): Promise<void> {
+  return new Promise(r => setTimeout(r, ms));
 }

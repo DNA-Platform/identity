@@ -3,7 +3,7 @@ import { Claude } from '../claude.ts';
 import { powershellSync } from '../shell.ts';
 
 const app = new Claude();
-app.window.find();
+await app.window.find();
 
 // Force maximize and foreground
 powershellSync(`
@@ -22,11 +22,11 @@ powershellSync(`
 `);
 await new Promise(r => setTimeout(r, 2000));
 
-const fg = app.window.isForeground();
+const fg = await app.window.isForeground();
 console.log('Foreground:', fg);
 
 // Screenshot
-app.window.screenshot('C:\\Source\\dna-platform\\dna-library\\.claude\\agents\\debug\\recovery.png');
+await app.window.screenshot('C:\\Source\\dna-platform\\dna-library\\.claude\\agents\\debug\\recovery.png');
 console.log('Screenshot saved');
 
 // Check state
@@ -45,4 +45,4 @@ if (fg) {
   console.log('Home. Screen:', app.navigator.screen);
 }
 
-app.window.minimize();
+await app.window.minimize();

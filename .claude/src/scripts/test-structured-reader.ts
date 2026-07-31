@@ -7,8 +7,8 @@ import { Claude } from '../claude.ts';
 const app = new Claude();
 await app.launch();
 
-process.on('unhandledRejection', () => { app.window.minimize(); });
-process.on('uncaughtException', () => { app.window.minimize(); });
+process.on('unhandledRejection', async () => { await app.window.minimize(); });
+process.on('uncaughtException', async () => { await app.window.minimize(); });
 
 const screen = await app.detectScreen();
 if (screen !== 'conversation') {
@@ -88,4 +88,4 @@ console.log(`readStructuredMessages(): ${elapsed}ms (${structured.length} messag
 console.log(`readMessages() [legacy]:  ${legacyElapsed}ms (${legacy.length} messages)`);
 
 console.log('\n=== Done ===');
-app.window.minimize();
+await app.window.minimize();

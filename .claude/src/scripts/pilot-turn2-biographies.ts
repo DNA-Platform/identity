@@ -40,7 +40,7 @@ Claude Code Team: Take your time with these. When you're ready, we'll paste Ana 
   console.log(`[claude] Reply length: ${reply.length} chars`);
 
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   const screen = await app.detectScreen();
   console.log(`[adam] Screen: ${screen}`);
@@ -49,7 +49,7 @@ Claude Code Team: Take your time with these. When you're ready, we'll paste Ana 
   const response = await app.say(reply, 300_000);
 
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-04-after-bios.png');
-  app.window.screenshot(ssPath);
+  await app.window.screenshot(ssPath);
   console.log(`[adam] Screenshot: ${ssPath}`);
 
   console.log();
@@ -58,9 +58,9 @@ Claude Code Team: Take your time with these. When you're ready, we'll paste Ana 
   console.log(`=== Length: ${response.length} chars ===`);
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[adam] Failed: ${e.message}`);
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-turn2-error.png');
-  try { app.window.screenshot(ssPath); console.error(`[adam] Screenshot: ${ssPath}`); } catch {}
+  try { await app.window.screenshot(ssPath); console.error(`[adam] Screenshot: ${ssPath}`); } catch {}
   process.exit(1);
 });

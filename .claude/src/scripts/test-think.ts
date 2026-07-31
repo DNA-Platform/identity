@@ -90,7 +90,7 @@ async function main() {
   console.log('  Active thought:', hasActiveThought() ? 'YES — ERROR' : 'NO — correct');
 
   // Minimize
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 
   console.log('\n=== THINK TEST COMPLETE ===');
 }

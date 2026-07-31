@@ -33,7 +33,7 @@ async function navigateToProject(name: string): Promise<boolean> {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   const folders = readdirSync(PROJECTS_DIR)
@@ -72,7 +72,7 @@ async function main() {
     await new Promise(r => setTimeout(r, 1000));
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\nDone.');
 }
 

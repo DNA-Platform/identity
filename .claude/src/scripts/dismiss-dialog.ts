@@ -10,7 +10,7 @@ async function main() {
   await new Promise(r => setTimeout(r, 500));
   const screen = await app.navigator.detectScreen();
   console.log('Screen:', screen);
-  app.window.minimize();
+  await app.window.minimize();
   console.log('Done.');
 }
 

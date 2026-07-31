@@ -56,6 +56,6 @@ main()
   .catch(e => console.error('[collect] FAILED:', (e as Error).message))
   .finally(async () => {
     try { await claude.dismissDialogs(); } catch {}
-    claude.window.minimize();
+    await claude.window.minimize();
     console.log('[collect] done, minimized.');
   });

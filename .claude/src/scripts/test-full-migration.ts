@@ -4,7 +4,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   // Navigate to create if not there
@@ -43,7 +43,7 @@ async function main() {
   );
   console.log('Relevant elements:', relevant);
 
-  app.window.minimize();
+  await app.window.minimize();
 }
 
 main().catch(console.error);

@@ -28,9 +28,20 @@ export interface GatewayOptions {
    *  Optional while call sites are converted; a call site without one still works
    *  exactly as before. */
   target?: TreeQuery;
+  /** "I already looked, and this is what I saw." A caller that had to read the tree
+   *  to decide WHAT to do — the navigator picking whichever home affordance is
+   *  present, say — hands that same reading over instead of making the gateway walk
+   *  the tree again milliseconds later.
+   *
+   *  Deliberately a handoff and NOT a cache with a staleness window: a timed cache
+   *  would eventually let an old tree authorize an action, which is the exact thing
+   *  the precheck exists to prevent. Here the caller is stating a fact it observed
+   *  before asking to act, and the gateway is entitled to rely on it. */
+  snapshot?: TreeSnapshot;
 }
 
-const DEFAULTS: Required<Omit<GatewayOptions, 'screenshotOnFailure' | 'description' | 'target'>> = {
+const DEFAULTS: Required<Omit<GatewayOptions,
+  'screenshotOnFailure' | 'description' | 'target' | 'snapshot'>> = {
   timeoutMs: 30_000,
   pollIntervalMs: 500,
   retries: 3,
@@ -42,9 +53,9 @@ export class Gateway {
     private readonly window?: Window,
   ) {}
 
-  private requireForeground(): void {
+  private async requireForeground(): Promise<void> {
     if (this.window) {
-      this.window.requireForeground();
+      await this.window.requireForeground();
     }
   }
 
@@ -75,12 +86,12 @@ export class Gateway {
     const desc = opts.description ?? 'Action';
     const startTime = Date.now();
 
-    this.requireForeground();
+    await this.requireForeground();
 
     // --- Precheck: is the assumption true before we act on it? ---
     let snapshot: TreeSnapshot | undefined;
     if (options.target) {
-      snapshot = await this.tree();
+      snapshot = options.snapshot ?? await this.tree();
       // An EMPTY tree means we could not see, not that the target is absent. Do not
       // refuse on blindness — fall through and let the verify be the judge.
       if (!snapshot.isEmpty && !snapshot.has(options.target)) {
@@ -93,8 +104,11 @@ export class Gateway {
     // Fire the action ONCE
     await action();
 
-    // Verify with tapering poll — retry the LOOK, not the action
-    const verified = await this.waitFor(verify, opts);
+    // Verify with tapering poll — retry the LOOK, not the action.
+    // `poll`, not `waitFor`: we already required the foreground at the top of this
+    // method, and asking Windows the same question twice for one action was the
+    // single most expensive thing the driver did.
+    const verified = await this.poll(verify, opts);
 
     const duration = Date.now() - startTime;
     if (verified) {
@@ -112,7 +126,19 @@ export class Gateway {
     predicate: () => boolean | Promise<boolean>,
     options: Pick<GatewayOptions, 'timeoutMs' | 'pollIntervalMs' | 'description'> = {},
   ): Promise<boolean> {
-    this.requireForeground();
+    await this.requireForeground();
+    return this.poll(predicate, options);
+  }
+
+  /** The tapering poll itself, with no foreground check of its own.
+   *
+   *  The check belongs to an OPERATION, not to every loop inside it. `act` and
+   *  `read` require the foreground once and then poll; only a bare `waitFor` — which
+   *  is an operation in its own right — pays for its own check. */
+  private async poll(
+    predicate: () => boolean | Promise<boolean>,
+    options: Pick<GatewayOptions, 'timeoutMs' | 'pollIntervalMs' | 'description'> = {},
+  ): Promise<boolean> {
     const timeoutMs = options.timeoutMs ?? DEFAULTS.timeoutMs;
     const deadline = Date.now() + timeoutMs;
 
@@ -132,13 +158,13 @@ export class Gateway {
     isValid: (result: T) => boolean = () => true,
     options: GatewayOptions = {},
   ): Promise<T> {
-    this.requireForeground();
+    await this.requireForeground();
     const opts = { ...DEFAULTS, ...options };
     const desc = opts.description ?? 'Read';
     let lastResult: T | undefined;
     const startTime = Date.now();
 
-    const ready = await this.waitFor(async () => {
+    const ready = await this.poll(async () => {
       lastResult = await reader();
       return isValid(lastResult);
     }, opts);

@@ -4,7 +4,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   // Detect current screen
   let screen = await app.navigator.detectScreen();
@@ -26,11 +26,11 @@ async function main() {
   screen = await app.navigator.detectScreen();
   console.log('4. After resetToHome:', screen);
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('Done. Navigation works.');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(e.message);
-  app.window.minimize();
+  await app.window.minimize();
 });

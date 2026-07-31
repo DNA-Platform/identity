@@ -41,11 +41,11 @@ async function main() {
 
     console.log(`[test-15] ${passed ? 'PASS' : 'FAIL'}: ${results.filter(r => r.length > 0).length}/10 reads returned valid data`);
   } finally {
-    app.window.minimize();
+    await app.window.minimize();
   }
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[test-15] FAIL: ${(e as Error).message}`);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

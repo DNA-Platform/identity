@@ -54,8 +54,10 @@ export class Claude {
   private readonly nav: Navigation;
 
   constructor() {
-    this.window = new Window();
+    // The shell first: Window now speaks Win32 through the persistent session
+    // rather than spawning a process per call.
     const shell = new Shell();
+    this.window = new Window(shell);
     const uia = new Uia(this.window, shell);
     this.diagnostics = new Diagnostics(this.window, uia);
     this.gateway = new Gateway(this.diagnostics, this.window);
@@ -106,8 +108,10 @@ export class Claude {
    *  rather than throwing if the app is not running or not readable — "we could not
    *  see" is an answer, and it is a different answer from "it is not there". */
   async tree(): Promise<TreeSnapshot> {
-    if (!this.attach()) return TreeSnapshot.empty();
-    return this.auto.uia.snapshot();
+    if (!await this.attach()) return TreeSnapshot.empty();
+    // Through diagnostics, not straight to uia, so every tree the system takes —
+    // whoever asked for it — lands in the same remembered history.
+    return this.diagnostics.snapshot();
   }
 
   // --- Lifecycle ---
@@ -118,30 +122,33 @@ export class Claude {
    *  if the app resumed on another screen, currentPage() inside reconstitutes
    *  that screen's object, and goHome() is the fallback on mismatch. */
   async launch(): Promise<HomePage> {
-    if (!this.window.find()) {
+    if (!await this.window.find()) {
       console.log('[claude] Not running. Launching...');
-      this.window.launch(SHORTCUT);
-      if (!this.window.waitForWindow()) {
+      await this.window.launch(SHORTCUT);
+      if (!await this.window.waitForWindow()) {
         throw new Error('Timeout waiting for Claude window');
       }
     } else {
       console.log(`[claude] Already running (PID ${this.window.pid})`);
     }
 
-    if (!this.window.isForeground()) {
-      this.window.maximize();
+    // One read answers both: a minimized window reports itself foreground, so
+    // asking only isForeground() would leave a minimized app un-restored.
+    const state = await this.window.state();
+    if (!state.foreground || state.minimized) {
+      await this.window.maximize();
     }
 
-    if (!this.window.waitForUia()) {
+    if (!await this.window.waitForUia()) {
       console.log('[claude] UIA not available. Restarting...');
-      this.window.close();
-      this.window.launch(SHORTCUT);
-      if (!this.window.waitForWindow()) {
+      await this.window.close();
+      await this.window.launch(SHORTCUT);
+      if (!await this.window.waitForWindow()) {
         throw new Error('Timeout waiting for Claude window after restart');
       }
-      this.window.focus();
-      this.window.maximize();
-      if (!this.window.waitForUia()) {
+      await this.window.focus();
+      await this.window.maximize();
+      if (!await this.window.waitForUia()) {
         throw new Error('UIA tree not available even after restart');
       }
     }
@@ -150,7 +157,7 @@ export class Claude {
       await this.sidebar.switchToChat();
     } catch {}
 
-    this.window.requireForeground();
+    await this.window.requireForeground();
     console.log(`[claude] Ready (PID ${this.window.pid}, foreground verified)`);
 
     // Reconstitute-and-confirm: ensure we are on home, return the HomePage.
@@ -167,13 +174,15 @@ export class Claude {
   /** Restore the running app's window WITHOUT going home (un-minimize + focus), so
    *  a resume can read whatever screen we are actually on. Returns false if the
    *  app isn't running or its UIA tree isn't available. */
-  attach(): boolean {
-    if (!this.window.find()) return false;
-    // isForeground() lies when minimized, so check isMinimized() too — otherwise we
-    // never restore, and the UIA tree of a minimized window does NOT update (Doug).
-    if (this.window.isMinimized() || !this.window.isForeground()) this.window.maximize();
-    if (!this.window.waitForUia()) return false;
-    this.window.requireForeground();
+  async attach(): Promise<boolean> {
+    if (!await this.window.find()) return false;
+    // foreground lies when minimized, so read BOTH — otherwise we never restore, and
+    // the UIA tree of a minimized window does NOT update (Doug). One read, two facts:
+    // this used to be two fresh PowerShell processes, ~0.9s, on every attach.
+    const state = await this.window.state();
+    if (state.minimized || !state.foreground) await this.window.maximize();
+    if (!await this.window.waitForUia()) return false;
+    await this.window.requireForeground();
     return true;
   }
 
@@ -190,7 +199,7 @@ export class Claude {
    *  left us on the conversation (minimized), we stay there — no re-walking the
    *  nav tree, and no vague base Page to down-cast. */
   async currentConversation(): Promise<ConversationPage | null> {
-    if (!this.attach()) return null;
+    if (!await this.attach()) return null;
     const screen = await this.navigator.detectScreen();
     return screen === 'conversation' ? this.nav.conversation() : null;
   }
@@ -198,14 +207,18 @@ export class Claude {
   /** Resume onto the Claude project page — TYPED. Returns the ProjectPage if the
    *  live screen is a project page, else null. */
   async currentProject(): Promise<ProjectPage | null> {
-    if (!this.attach()) return null;
+    if (!await this.attach()) return null;
     const screen = await this.navigator.detectScreen();
     return screen === 'project' ? this.nav.project() : null;
   }
 
+  /** Close Claude Desktop itself. **Almost never what you want** — a driver attached
+   *  to a RUNNING app should give the computer back with `window.minimize()` and
+   *  `auto.shell.close()`, which leaves the user's live conversation alone. Closing
+   *  the window BEFORE the shell, because the window now speaks through it. */
   async exit(): Promise<void> {
+    await this.window.close();
     this.auto.shell.close();
-    this.window.close();
     this.navigator.screen = 'unknown';
     console.log('[claude] Closed');
   }

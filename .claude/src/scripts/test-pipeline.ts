@@ -7,8 +7,8 @@ import { turnsToMarkdown } from '../exports/format.ts';
 const app = new Claude();
 await app.launch();
 
-process.on('unhandledRejection', () => { app.window.minimize(); });
-process.on('uncaughtException', () => { app.window.minimize(); });
+process.on('unhandledRejection', async () => { await app.window.minimize(); });
+process.on('uncaughtException', async () => { await app.window.minimize(); });
 
 await app.sidebar.refresh();
 const chats = app.sidebar.chats.items;
@@ -78,4 +78,4 @@ for (const title of targets) {
 
 console.log(`\n${'='.repeat(60)}`);
 console.log('=== Done ===');
-app.window.minimize();
+await app.window.minimize();

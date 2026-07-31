@@ -44,7 +44,7 @@ Claude Code Team: Take your time with these. When you're ready, your suggested o
   console.log(`[claude] Paragraphs: ${reply.split('\n\n').length}`);
 
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   const screen = await app.detectScreen();
   console.log(`[adam] Screen: ${screen}`);
@@ -53,7 +53,7 @@ Claude Code Team: Take your time with these. When you're ready, your suggested o
   const response = await app.say(reply, 180_000);
 
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-05-after-bios.png');
-  app.window.screenshot(ssPath);
+  await app.window.screenshot(ssPath);
   console.log(`[adam] Screenshot: ${ssPath}`);
 
   console.log();
@@ -62,9 +62,9 @@ Claude Code Team: Take your time with these. When you're ready, your suggested o
   console.log(`=== Length: ${response.length} chars ===`);
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[adam] Failed: ${e.message}`);
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-step3-error.png');
-  try { app.window.screenshot(ssPath); console.error(`[adam] Screenshot: ${ssPath}`); } catch {}
+  try { await app.window.screenshot(ssPath); console.error(`[adam] Screenshot: ${ssPath}`); } catch {}
   process.exit(1);
 });

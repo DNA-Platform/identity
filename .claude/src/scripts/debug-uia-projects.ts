@@ -5,7 +5,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   const h = app.window.handle;
 
   console.log('Searching for elements matching "Project"...');

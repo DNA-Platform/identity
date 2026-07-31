@@ -10,8 +10,8 @@ const app = new Claude();
 await app.launch();
 
 // Ensure we minimize even on error
-process.on('unhandledRejection', () => { app.window.minimize(); });
-process.on('uncaughtException', () => { app.window.minimize(); });
+process.on('unhandledRejection', async () => { await app.window.minimize(); });
+process.on('uncaughtException', async () => { await app.window.minimize(); });
 
 // Check if we're already on a conversation
 const screen = await app.detectScreen();
@@ -85,4 +85,4 @@ console.log(`\nButtons that disappeared after scrolling to bottom:`);
 for (const b of missingButtons) console.log(`  ${b}`);
 
 console.log('\n=== Done ===');
-app.window.minimize();
+await app.window.minimize();
