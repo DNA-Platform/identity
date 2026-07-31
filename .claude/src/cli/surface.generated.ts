@@ -128,7 +128,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
     extends: null,
     origin: "controllers/chat-list-controller.ts",
     methods: [
-      { name: "clickAddToProject", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
+      { name: "clickAddToProject", params: [], returns: "Promise<boolean>", isAsync: true, doc: "\"Add to project\" has been renamed twice — it is \"Change project\" on a conversation already in one. Read the menu ONCE and take whichever is there, rather than firing three invokes at the app hoping one lands." },
       { name: "clickDelete", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "clickDeleteConfirm", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "clickPin", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
@@ -144,12 +144,12 @@ export const APP_SURFACE: readonly ClassSurface[] = [
       { name: "isDeleteDialogVisible", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "isDialogVisible", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "isItemGone", params: [{ name: "title", type: "string", optional: false }], returns: "Promise<boolean>", isAsync: true, doc: "" },
-      { name: "isMenuVisible", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
+      { name: "isMenuVisible", params: [], returns: "Promise<boolean>", isAsync: true, doc: "Is a conversation menu open? **Any MenuItem means yes.** This used to ask for `MenuItem` named exactly `Rename`, `Delete`, `Add to project` or `Projects`. Every one of those is now wrong: the app appends the keyboard hint to the label, so the tree shows `\"Rename R\"`, `\"Delete D\"`, `\"Pin P\"`, and `Add to project` has become `Change project` / `Remove from project`. The menu was wide open and the sensor said no. A menu is a menu. There is no reason to name its contents to notice it." },
       { name: "isRenameFieldActive", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "open", params: [{ name: "title", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "openAt", params: [{ name: "index", type: "number", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "readList", params: [], returns: "Promise<ChatItemData[]>", isAsync: true, doc: "" },
-      { name: "readMenuItems", params: [], returns: "Promise<string[]>", isAsync: true, doc: "" },
+      { name: "readMenuItems", params: [], returns: "Promise<string[]>", isAsync: true, doc: "What is IN the open menu, as the app labels it — with the trailing keyboard hint trimmed for reading. Whatever is there is reported; nothing is filtered against a list of items we expected, because a hand-kept list of expected labels is what hid the rename in the first place." },
       { name: "readProjectList", params: [], returns: "Promise<string[]>", isAsync: true, doc: "" },
       { name: "searchProjects", params: [{ name: "text", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "Filter the Move chat modal's project list. The modal's search bar is a ComboBox named \"Select a project\" (grounded: ../trees/move-conversation-modal.txt line 12), sitting above the List | Projects of ListItems. The modal opens with that ComboBox focused, so a clipboard paste filters the list." },
       { name: "typeAndConfirm", params: [{ name: "text", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -723,6 +723,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
     ],
     properties: [
       { name: "date", type: "string" },
+      { name: "label", type: "string" },
       { name: "name", type: "string" },
     ],
   },
@@ -759,7 +760,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
     origin: "pages/projects-grid.ts",
     methods: [
       { name: "bind", params: [{ name: "nav", type: "Navigation", optional: false }], returns: "this", isAsync: false, doc: "" },
-      { name: "projects", params: [], returns: "Promise<ProjectItem[]>", isAsync: true, doc: "The project list. Find by name: `.find(p => p.name === …)`." },
+      { name: "projects", params: [], returns: "Promise<ProjectItem[]>", isAsync: true, doc: "The project list. Find by name: `.find(p => p.name === …)`. Read from the HYPERLINKS, not the list items. The hyperlink is the thing you click, so its name is the only string that is guaranteed to work as a click target — and it is kept verbatim as `label`. Reading `ListItem` names and then clicking hyperlinks meant reading one string and acting on a different one." },
     ],
     properties: [
       { name: "screenType", type: "string" },
@@ -826,11 +827,12 @@ export const APP_SURFACE: readonly ClassSurface[] = [
     origin: "components/sidebar.ts",
     methods: [
       { name: "bind", params: [{ name: "nav", type: "Navigation", optional: false }], returns: "void", isAsync: false, doc: "" },
+      { name: "closeSearch", params: [], returns: "Promise<void>", isAsync: true, doc: "Close the search overlay — it is a window over the app, and leaving it open blocks everything behind it." },
       { name: "conversations", params: [], returns: "Promise<ConversationItem[]>", isAsync: true, doc: "The global conversation list. Find by name: `.find(c => c.name === …)`." },
       { name: "isVisible", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "newChat", params: [], returns: "Promise<HomePage>", isAsync: true, doc: "Start a fresh chat — lands on the home page (decision #4)." },
       { name: "projects", params: [], returns: "Promise<ProjectsPage>", isAsync: true, doc: "Navigate to the projects page." },
-      { name: "search", params: [{ name: "text", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "Type into the sidebar search box. The only parametered method." },
+      { name: "search", params: [{ name: "text", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "switchToChat", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
     ],
     properties: [
@@ -843,9 +845,10 @@ export const APP_SURFACE: readonly ClassSurface[] = [
     origin: "controllers/sidebar-controller.ts",
     methods: [
       { name: "checkVisible", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
-      { name: "newChat", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
+      { name: "closeSearch", params: [], returns: "Promise<void>", isAsync: true, doc: "Close the search overlay. Escape is what a person presses." },
+      { name: "newChat", params: [], returns: "Promise<void>", isAsync: true, doc: "Start a fresh chat. LOOK FIRST. This hard-coded `'New chat'` and broke silently when the app renamed the button to `'New'` — the same drift the [navigator](../navigator.ts) had already been taught to survive, in a second place that had not been. One list, read from the tree before acting." },
       { name: "openProjects", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
-      { name: "search", params: [{ name: "query", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
+      { name: "search", params: [{ name: "query", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "Search opens a SEPARATE WINDOW, not an inline box. Grounded in the tree: invoking `Search` adds `Window | Search`, a `ComboBox | Search chats and projects`, and a `List | Search results`. The old code called `setValue('Search', …)` — there is no element by that name to write into — and then verified by looking for the query in `readText()`, which reads the MAIN window and never sees the overlay at all. It could not have passed." },
       { name: "switchToChat", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "toggle", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
     ],
@@ -955,6 +958,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
       { name: "close", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "find", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "focus", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
+      { name: "holdScreen", params: [{ name: "session", type: "() => Promise<T>", optional: false }], returns: "Promise<T>", isAsync: true, doc: "Hold the window up for the duration of a session, then give it back once." },
       { name: "isForeground", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "isMinimized", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "launch", params: [{ name: "shortcutPath", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -969,6 +973,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
     ],
     properties: [
       { name: "handle", type: "number | null" },
+      { name: "holdingScreen", type: "unknown" },
       { name: "isRunning", type: "boolean" },
       { name: "pid", type: "number | null" },
     ],

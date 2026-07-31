@@ -60,6 +60,12 @@ before(async () => {
   app = new Claude();
   if (!await app.attach()) await app.launch();
 
+  // The window goes up ONCE for the whole run and comes down ONCE at the end.
+  // Without this the app blinks: tier 5 deliberately provokes failures, each
+  // failure minimizes, and the next test re-maximizes. Showing and hiding the
+  // window belongs to the session, not to every step inside it.
+  app.window.holdingScreen = true;
+
   // Start from a KNOWN place. Every test below assumes Home, and a suite that
   // begins wherever the user happened to leave the app is a suite whose failures
   // are about the starting state rather than the code.
@@ -77,6 +83,7 @@ before(async () => {
 // This hook runs whether the tests passed, failed, or threw.
 after(async () => {
   if (!app) return;
+  app.window.holdingScreen = false;                 // the session is over
   try { await app.navigator.resetToHome(); } catch { /* best effort */ }
   try { await app.window.minimize(); } catch { /* nothing to give back */ }
   try { app.auto.shell.close(); } catch { /* already closed */ }
@@ -282,6 +289,8 @@ test('3.8 back to Home through the sidebar — the round trip closes', { skip: !
 // ===========================================================================
 
 test('4.1 typing into the composer changes the draft, and clearing restores it', { skip: !LIVE }, async () => {
+  await app!.navigator.resetToHome();     // a tier must stand alone — `test:live 4`
+  await runtime!.bind();
   const page = await app!.currentPage() as unknown as {
     composer: { type(t: string): Promise<void>; readDraft(): Promise<string>; clear(): Promise<void> };
   };
@@ -318,7 +327,10 @@ test('4.3 the sidebar search box takes text, and gives it back', { skip: !LIVE }
   const out = await runtime!.run('search', ['zzz-driver-probe']);
   assert.equal(out.kind, 'acted');
   say('searched the sidebar');
-  await runtime!.run('search', ['']);            // put it back
+  // Search is a WINDOW over the app. Leaving it open blocks every test after this
+  // one — which is exactly what happened: 4.4 failed reading an empty sidebar
+  // because the overlay was still up.
+  await runtime!.run('closeSearch');
   await app!.navigator.resetToHome();
   await runtime!.bind();
 });

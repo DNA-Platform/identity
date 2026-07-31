@@ -176,21 +176,43 @@ export class Window {
     await this.bringToForegroundOnce(true);
     await sleep(400);
     const now = await this.state();
-    if (now.foreground && !now.minimized) {
-      await this.stepAside();
-      throw new Error(
-        'Claude Desktop would not come forward, so the driver stood down and minimized it. ' +
-        'Nothing was retried. Another window may have the foreground.',
-      );
-    }
+    if (now.foreground && !now.minimized) return;   // it came forward — done
+
+    await this.stepAside();
+    throw new Error(
+      'Claude Desktop would not come forward, so the driver stood down and minimized it. ' +
+      'Nothing was retried. Another window may have the foreground.',
+    );
   }
+
+  /** Set while a SESSION is deliberately holding the window up — a test run, a
+   *  server handling a burst of commands. It suppresses the per-failure minimize
+   *  ONLY; the session still gives the screen back when it ends.
+   *
+   *  Without it the app blinks: a failure minimizes, the next command re-maximizes,
+   *  and a suite with expected failures in it flickers the window open and shut
+   *  dozens of times. Showing and hiding the window belongs to the session, not to
+   *  each individual step inside it. */
+  holdingScreen = false;
 
   /** Get out of the way. The one recovery this driver has: when something is stuck,
    *  minimize and stop — never try again, never hold the screen. Best effort by
    *  design; if even this fails there is nothing further to do and nothing further
    *  is attempted. */
   async stepAside(): Promise<void> {
+    if (this.holdingScreen) return;   // a session owns the window; it will hand it back
     try { await this.minimize(); } catch { /* nothing left to give back */ }
+  }
+
+  /** Hold the window up for the duration of a session, then give it back once. */
+  async holdScreen<T>(session: () => Promise<T>): Promise<T> {
+    this.holdingScreen = true;
+    try {
+      return await session();
+    } finally {
+      this.holdingScreen = false;
+      await this.stepAside();
+    }
   }
 
   async minimize(): Promise<void> {

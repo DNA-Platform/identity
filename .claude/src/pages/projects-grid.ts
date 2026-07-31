@@ -23,12 +23,19 @@ export class ProjectItem {
     private readonly nav: Navigation,
     readonly name: string,
     readonly date: string,
+    /** The hyperlink's accessible name, EXACTLY as the tree reports it. This is
+     *  what gets clicked. It is kept verbatim and never reconstructed, because the
+     *  app names the same project two different ways: the `ListItem` glues the date
+     *  on with no space (`"Investingyesterday"`) while the `Hyperlink` you actually
+     *  click separates it (`"Investing yesterday"`). Reading one and clicking the
+     *  other is why `open()` failed with "Could not click project". */
+    readonly label: string,
   ) {}
 
   /** Open this project — navigates and returns the ProjectPage. */
   async open(): Promise<ProjectPage> {
-    const clicked = await this.auto.uia.invokeLink(this.name);
-    if (!clicked) throw new Error(`Could not click project "${this.name}"`);
+    const clicked = await this.auto.uia.invokeLink(this.label);
+    if (!clicked) throw new Error(`Could not click project link "${this.label}"`);
 
     const arrived = await this.gateway.waitFor(
       async () => (await this.auto.navigator.detectScreen()) === 'project',
@@ -51,28 +58,37 @@ export class ProjectsPage extends Page {
 
   get screenType(): string { return 'projects'; }
 
-  /** The project list. Find by name: `.find(p => p.name === …)`. */
+  /** The project list. Find by name: `.find(p => p.name === …)`.
+   *
+   *  Read from the HYPERLINKS, not the list items. The hyperlink is the thing you
+   *  click, so its name is the only string that is guaranteed to work as a click
+   *  target — and it is kept verbatim as `label`. Reading `ListItem` names and then
+   *  clicking hyperlinks meant reading one string and acting on a different one. */
   async projects(): Promise<ProjectItem[]> {
-    const raw = await this.gateway.read(
-      () => this.auto.uia.readListItems(),
-      (items) => items.length > 0,
+    const tree = await this.gateway.read(
+      () => this.auto.uia.snapshot(),
+      (t) => !t.isEmpty,
       { description: 'Read project cards' },
     );
 
-    const items: ProjectItem[] = [];
-    for (const entry of raw) {
-      const parsed = parseCardName(entry);
-      if (parsed) {
-        items.push(new ProjectItem(this.auto, this.gateway, this.nav, parsed.name, parsed.date));
-      }
-    }
-    return items;
+    return tree.filter({ type: 'Hyperlink' }).map(el => {
+      const { name, date } = splitTrailingDate(el.name);
+      return new ProjectItem(this.auto, this.gateway, this.nav, name, date, el.name);
+    });
   }
 }
 
-function parseCardName(raw: string): { name: string; date: string } | null {
-  const match = raw.match(/^(.+?)(Updated\s.+|Last message\s.+)$/);
-  if (match) return { name: match[1].trim(), date: match[2].trim() };
-  if (raw.length > 0) return { name: raw, date: '' };
-  return null;
+/** Take the "when" off the end of a project label, for display.
+ *
+ *  Purely cosmetic — nothing is ever clicked with the result, so a miss costs a
+ *  slightly ugly name and nothing else. That matters: the previous version required
+ *  the date to start with `"Updated "` or `"Last message "`, prefixes the app stopped
+ *  rendering, so every project's name silently became its label with the date glued
+ *  on and every click failed.
+ *
+ *  Grounded in what the tree actually shows: `yesterday`, `Jul 24`, `17 hours ago`. */
+function splitTrailingDate(label: string): { name: string; date: string } {
+  const m = label.match(
+    /^(.*?)\s+(Updated\s.+|Last message\s.+|yesterday|today|\d+\s+\w+\s+ago|[A-Z][a-z]{2}\s+\d{1,2})$/);
+  return m ? { name: m[1].trim(), date: m[2].trim() } : { name: label, date: '' };
 }

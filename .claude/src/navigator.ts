@@ -21,7 +21,7 @@ export type Screen = 'home' | 'conversation' | 'projects' | 'project' | 'setting
  *  name breaks silently and opaquely when it changes — which is exactly what
  *  happened. Looking for whichever is present is not a retry; it is reading the
  *  screen before acting on it. */
-const HOME_AFFORDANCES = ['New chat', 'New'] as const;
+export const HOME_AFFORDANCES = ['New chat', 'New'] as const;
 
 export class Navigator {
   screen: Screen = 'unknown';
