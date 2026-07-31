@@ -11,13 +11,13 @@
 ///:
 ///: The classification is the whole idea, and it comes from the app's own laws:
 ///:   - EXIT      — returns a Page. Navigation returns the next page, so a page-typed
-///:                 return IS a door. ([Architecture Patterns](../library/reference-desk/10-architecture-patterns.md))
+///:                 return IS a door. ([Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md))
 ///:   - LOOK      — returns data and takes nothing. Reading the screen.
-///:   - DO        — everything else. [P2](../library/reference-desk/13-the-redesign.md#p2--clicks-are-parameterless-only-typing-takes-a-parameter):
+///:   - DO        — everything else. [P2](../../library/reference-desk/13-the-redesign.md#p2--clicks-are-parameterless-only-typing-takes-a-parameter):
 ///:                 a click is parameterless; only typing takes a string, so a
 ///:                 parametered DO is a typing action and is marked as one.
 ///:
-///: [The Claude Nexus](../library/projected-identity/71-sprint-99--the-claude-nexus.md) — describe() in the app, not the command.
+///: [The Claude Nexus](../../library/projected-identity/71-sprint-99--the-claude-nexus.md) — describe() in the app, not the command.
 
 import type { ClassSurface, MethodSurface, Param } from './surface.ts';
 import { flatten, namesAPage, unwrapPromise } from './surface.ts';

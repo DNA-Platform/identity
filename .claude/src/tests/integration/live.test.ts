@@ -21,10 +21,10 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { Claude } from '../../claude.ts';
 import { TreeSnapshot } from '../../tree.ts';
-import { readSurfaces } from '../../../cli/surface.ts';
-import { describeScreen } from '../../../cli/describe.ts';
-import { renderScreen } from '../../../cli/render.ts';
-import { Runtime } from '../../../cli/runtime.ts';
+import { readSurfaces } from '../../cli/surface.ts';
+import { describeScreen } from '../../cli/describe.ts';
+import { renderScreen } from '../../cli/render.ts';
+import { Runtime } from '../../cli/runtime.ts';
 
 const LIVE = process.env.CLAUDE_DESKTOP_LIVE === '1';
 const SRC = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');

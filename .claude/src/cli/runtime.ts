@@ -6,14 +6,14 @@
 ///: app behaviour**: no UIA, no gateway, no waiting, no retries. Anything it cannot
 ///: express as a call on an existing View method is a sign the View is missing
 ///: something, and the fix belongs in `.claude/src/`
-///: ([ch.5](../library/reference-desk/05-coding-philosophy.md)).
+///: ([ch.5](../../library/reference-desk/05-coding-philosophy.md)).
 ///:
 ///: The app is reached through `AppHandle` — the narrow slice of [`Claude`](../../src/claude.ts)
 ///: the CLI needs. A narrow interface is what lets the hermetic tests drive a fake
 ///: screen with no Claude Desktop present, which is what makes those tests get run.
 ///:
-///: [The Runtime](../library/reference-desk/14-the-runtime.md) — the specification.
-///: [Sprint 102](../library/projected-identity/74-sprint-102--lifting-the-app-into-the-cli.md) — the lift.
+///: [The Runtime](../../library/reference-desk/14-the-runtime.md) — the specification.
+///: [Sprint 102](../../library/projected-identity/74-sprint-102--lifting-the-app-into-the-cli.md) — the lift.
 
 import type { ClassSurface } from './surface.ts';
 import type { Command, ScreenModel } from './describe.ts';
@@ -30,17 +30,37 @@ export interface AppHandle {
   tree(): Promise<{ toString(): string; isEmpty: boolean }>;
 }
 
+/** One reading that changed because of an action — how the operator keeps track of
+ *  app state without re-reading the whole screen. */
+export interface Change {
+  readonly path: string;
+  readonly before: string;
+  readonly after: string;
+}
+
 export type Outcome =
   | { kind: 'moved'; model: ScreenModel; from: string }
   | { kind: 'read'; command: Command; value: unknown }
-  | { kind: 'acted'; command: Command; model: ScreenModel }
+  | {
+      kind: 'acted';
+      command: Command;
+      /** Where the change happened: a component's name, or the screen itself. */
+      scope: string;
+      /** What actually changed, read from the scope's own looks. Empty means the
+       *  action reported success but nothing observable moved — worth saying out
+       *  loud rather than hiding behind a checkmark. */
+      changed: readonly Change[];
+      /** What you can do in that scope now — the LOCAL surface, not the whole room.
+       *  A local action should not make you re-read the building. */
+      surface: readonly Command[];
+    }
   | { kind: 'refused'; message: string };
 
 /** The value of a look, rendered for a person.
  *
  *  Deliberately generic: a per-type renderer here would be a hand-maintained list by
  *  another name, and the right home for "how does a Message print itself" is the
- *  class, not the CLI ([Sprint 102 open question 1](../library/projected-identity/74-sprint-102--lifting-the-app-into-the-cli.md#open-questions--honest-ones)).
+ *  class, not the CLI ([Sprint 102 open question 1](../../library/projected-identity/74-sprint-102--lifting-the-app-into-the-cli.md#open-questions--honest-ones)).
  *  So: strings pass through, arrays list, and anything with its own `toString` is
  *  trusted to know how it wants to look. */
 export function renderValue(value: unknown): string {
@@ -132,7 +152,7 @@ export class Runtime {
    *
    *  An **exit** re-binds to whatever it returned, so the caller prints the new room.
    *  A **do** re-binds too: a change you cannot see is a change you cannot verify
-   *  ([every action gets a confirmation read](../library/reference-desk/05-coding-philosophy.md)).
+   *  ([every action gets a confirmation read](../../library/reference-desk/05-coding-philosophy.md)).
    *  A **look** returns its value and does not disturb where we are. */
   async run(path: string, args: readonly string[] = []): Promise<Outcome> {
     const resolved = this.resolve(path);
@@ -143,6 +163,11 @@ export class Runtime {
     if (argError) return { kind: 'refused', message: argError };
 
     const from = this.model().screen;
+    // Read the scope's state BEFORE acting, so the action can report what it moved.
+    // Only for a `do` — a look changes nothing and a move re-reads everything anyway.
+    const beforeReadings = command.kind === 'do'
+      ? await this.readScope(scopeOf(command))
+      : new Map<string, string>();
     const target = this.targetFor(command);
     const method = (target as Record<string, unknown>)[leafName(command.path)];
     if (typeof method !== 'function') {
@@ -165,8 +190,50 @@ export class Runtime {
 
     if (command.kind === 'look') return { kind: 'read', command, value };
 
-    await this.bind();
-    return { kind: 'acted', command, model: this.model() };
+    // A local action reports LOCAL change. Re-printing the whole room after every
+    // keystroke buries the one thing that moved, and makes the operator re-read a
+    // building to learn that a text box now holds text. So: read the scope's own
+    // looks before and after, and report the difference.
+    //
+    // The set of readings is DERIVED — it is the parameterless looks the surface
+    // already knows about for that scope — so a new sensor on a component is
+    // automatically part of what an action on it reports.
+    const scope = scopeOf(command);
+    const after = await this.readScope(scope);
+    const changed: Change[] = [];
+    for (const [path, value] of after) {
+      const was = beforeReadings.get(path);
+      if (was !== undefined && was !== value) changed.push({ path, before: was, after: value });
+    }
+    return { kind: 'acted', command, scope, changed, surface: this.surfaceOf(scope) };
+  }
+
+  /** Every parameterless look in a scope, read now. Parameterless because a reading
+   *  that needs an argument is a question, not a state; and cheap because these are
+   *  the same controller sensors the gateway polls. Failures are swallowed per
+   *  reading — one unreadable sensor must not lose the whole report. */
+  async readScope(scope: string): Promise<Map<string, string>> {
+    const out = new Map<string, string>();
+    for (const c of this.surfaceOf(scope)) {
+      if (c.kind !== 'look' || c.params.length > 0) continue;
+      const target = scope === SCREEN ? this.page! : (this.page as Record<string, unknown>)[scope];
+      if (!target || typeof target !== 'object') continue;
+      const fn = (target as Record<string, unknown>)[leafName(c.path)];
+      if (typeof fn !== 'function') continue;
+      try {
+        out.set(c.path, renderValue(await (fn as () => unknown).call(target)));
+      } catch { /* an unreadable sensor is not a reason to lose the rest */ }
+    }
+    return out;
+  }
+
+  /** The commands belonging to one scope — a component's, or the screen's own. */
+  surfaceOf(scope: string): Command[] {
+    const model = this.model();
+    const all = [...model.exits, ...model.looks, ...model.actions];
+    return scope === SCREEN
+      ? all.filter(c => !c.path.includes('.'))
+      : all.filter(c => c.path.startsWith(`${scope}.`));
   }
 
   /** `composer.type` runs on the page's `composer`; `rename` runs on the page. */
@@ -184,4 +251,13 @@ export class Runtime {
 function leafName(path: string): string {
   const dot = path.lastIndexOf('.');
   return dot < 0 ? path : path.slice(dot + 1);
+}
+
+/** The name used for "the page itself" rather than one of its components. */
+export const SCREEN = '(screen)';
+
+/** `composer.type` is scoped to the composer; `rename` is scoped to the screen. */
+export function scopeOf(command: Command): string {
+  const dot = command.path.indexOf('.');
+  return dot < 0 ? SCREEN : command.path.slice(0, dot);
 }

@@ -14,25 +14,26 @@
 ///: It always minimizes in a `finally`, BEFORE closing the shell (minimizing needs
 ///: the shell), and it never forces focus: if Claude Desktop is not readable it says
 ///: so rather than racing the user for their own screen
-///: ([ch.5](../library/reference-desk/05-coding-philosophy.md)).
+///: ([ch.5](../../library/reference-desk/05-coding-philosophy.md)).
 ///:
-///: [The Runtime](../library/reference-desk/14-the-runtime.md) — the specification.
+///: [The Runtime](../../library/reference-desk/14-the-runtime.md) — the specification.
 
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { Claude } from '../src/claude.ts';
+import { Claude } from '../claude.ts';
 import { readSurfaces } from './surface.ts';
 import { Runtime, renderValue } from './runtime.ts';
-import { renderScreen } from './render.ts';
+import { renderScreen, renderChange } from './render.ts';
 import { WindowsClipboard, copyReport, nothingToCopy } from './clipboard.ts';
 import type { ScreenModel } from './describe.ts';
 
-const SRC = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'src');
+const SRC = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
 const HELP = `
 Drive Claude Desktop by moving through it. Every move prints the room.
 
   look | where            print the room you are in
+  next                    just the command names — fast, for automation
   go <exit>               take an exit — prints the room you arrive in
   do <command> [args…]    run a look (reads the screen) or an action (changes it)
   tree [filters]          the live UIA tree — what the app ACTUALLY shows
@@ -79,6 +80,22 @@ async function main(): Promise<number> {
     await runtime.bind();
 
     switch (verb) {
+      case 'next': {
+        // "What can I do from here?" — the surface, quickly, with no prose. Built
+        // from the same model as the room, so it can never advertise something the
+        // room does not offer.
+        const m = runtime.model();
+        const line = (label: string, cs: readonly { path: string }[]) =>
+          cs.length ? `${label}: ${cs.map(c => c.path).join(' ')}` : '';
+        console.log([
+          `screen: ${m.screen}`,
+          line('exits', m.exits),
+          line('look', m.looks),
+          line('do', m.actions),
+        ].filter(Boolean).join('\n'));
+        return 0;
+      }
+
       case 'look':
       case 'where': {
         console.log(renderScreen(runtime.model(), observationsFor(runtime.model())));
@@ -115,9 +132,9 @@ async function main(): Promise<number> {
             return 0;
 
           case 'acted':
-            console.log(`✓ ${outcome.command.path}`);
-            console.log('');
-            console.log(renderScreen(outcome.model, observationsFor(outcome.model)));
+            // Local change only — not the whole room. See renderChange.
+            console.log(renderChange(
+              outcome.command.path, outcome.scope, outcome.changed, outcome.surface));
             return 0;
 
           case 'read': {

@@ -12,10 +12,11 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseSource } from '../../cli/surface.ts';
-import { Runtime, renderValue } from '../../cli/runtime.ts';
-import type { AppHandle } from '../../cli/runtime.ts';
-import { RecordingClipboard, copyReport, nothingToCopy } from '../../cli/clipboard.ts';
+import { parseSource } from '../cli/surface.ts';
+import { Runtime, renderValue } from '../cli/runtime.ts';
+import type { AppHandle } from '../cli/runtime.ts';
+import { RecordingClipboard, copyReport, nothingToCopy } from '../cli/clipboard.ts';
+import { renderChange } from '../cli/render.ts';
 
 const SOURCE = `
 export abstract class Page {
@@ -135,13 +136,56 @@ test('a look returns its value and does not move you', async () => {
 
 // --- Doing ---
 
-test('an action runs and the screen is re-read, so the change can be seen', async () => {
+test('an action reports LOCAL change, not the whole room', async () => {
   const page = new ConversationPage();
   const { rt } = await runtimeOn(page);
   const out = await rt.run('rename', ['Sheaf cohomology']);
   assert.equal(out.kind, 'acted');
   assert.equal(page.renamed, 'Sheaf cohomology', 'the app method really ran');
-  assert.equal(out.kind === 'acted' && out.model.screen, 'ConversationPage');
+  assert.equal(out.kind === 'acted' && out.scope, '(screen)', 'scoped to the page itself');
+  assert.ok(out.kind === 'acted' && out.surface.every(c => !c.path.includes('.')),
+    "the local surface is the screen's own commands, not the components'");
+});
+
+test('a component action is scoped to that component and reports what moved', async () => {
+  const page = new ConversationPage();
+  const { rt } = await runtimeOn(page);
+  const out = await rt.run('composer.type', ['what is a sheaf?']);
+  assert.equal(out.kind, 'acted');
+  assert.equal(out.kind === 'acted' && out.scope, 'composer');
+
+  const changed = out.kind === 'acted' ? out.changed : [];
+  const draft = changed.find(c => c.path === 'composer.readDraft');
+  assert.ok(draft, `expected composer.readDraft to change; got ${JSON.stringify(changed)}`);
+  assert.equal(draft.before, '(empty)');
+  assert.equal(draft.after, 'what is a sheaf?');
+
+  assert.ok(out.kind === 'acted' && out.surface.every(c => c.path.startsWith('composer.')),
+    "only the composer's own surface is offered back");
+});
+
+test('an action that moves nothing observable SAYS so — a checkmark would hide it', async () => {
+  const page = new ConversationPage();
+  const { rt } = await runtimeOn(page);
+  const out = await rt.run('scrollToBottom');
+  assert.equal(out.kind, 'acted');
+  assert.deepEqual(out.kind === 'acted' ? out.changed : null, [],
+    'nothing readable changed, and the outcome reports that honestly');
+  const text = renderChange('scrollToBottom', '(screen)', [], []);
+  assert.match(text, /nothing/i);
+  assert.match(text, /tree/, 'and points at the tree if you expected a change');
+});
+
+test('the change report reads as a difference, not a dump', () => {
+  const text = renderChange('composer.type', 'composer',
+    [{ path: 'composer.readDraft', before: '(empty)', after: 'hello' }],
+    [{ path: 'composer.send' } as never]);
+  assert.match(text, /✓ composer\.type/);
+  assert.match(text, /Changed on composer/);
+  assert.match(text, /composer\.readDraft/);
+  assert.match(text, /→/);
+  assert.match(text, /Here in composer/);
+  assert.ok(!/Exits/.test(text), 'a local action does NOT reprint the whole room');
 });
 
 test('an action on a component reaches the component, not the page', async () => {

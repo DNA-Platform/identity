@@ -6,3 +6,9 @@ Thumbs.db
 # Platform files compiled from library content — regenerate with compilers
 # .claude/agents/*.md
 # .claude/rules/*.md
+
+# Branch libraries live beside their code in the project repos, never here.
+# The identity repo is the organization identity: .claude/, CLAUDE.md, README.md.
+# The commit tool mirrors library/*/.lib into .lib/ from project working copies —
+# this keeps that mirror from ever being committed to the identity repo again.
+.lib/

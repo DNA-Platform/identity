@@ -13,9 +13,9 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseSource, flatten, unwrapPromise, namesAPage } from '../../cli/surface.ts';
-import { describeScreen, findCommand, candidates } from '../../cli/describe.ts';
-import { renderScreen, renderUnknown, placeName } from '../../cli/render.ts';
+import { parseSource, flatten, unwrapPromise, namesAPage } from '../cli/surface.ts';
+import { describeScreen, findCommand, candidates } from '../cli/describe.ts';
+import { renderScreen, renderUnknown, placeName } from '../cli/render.ts';
 
 /** A stand-in written in the shape of the real driver: a Page base, a concrete page,
  *  and a component the page holds. Small on purpose — a clever fake becomes a second

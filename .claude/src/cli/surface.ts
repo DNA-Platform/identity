@@ -1,7 +1,7 @@
 ///: Surface — what the code says you can do, read from the code itself.
 ///:
 ///: The screen model must never be hand-listed. A hand-maintained command table is
-///: the drift that put deleted class names in [ch.12](../library/reference-desk/12-the-app.md)
+///: the drift that put deleted class names in [ch.12](../../library/reference-desk/12-the-app.md)
 ///: for six sprints while reading as authoritative. So the CLI derives its command
 ///: list from two sources that both track the code and cannot disagree with it:
 ///:
@@ -11,15 +11,15 @@
 ///:      a method is an EXIT (`Promise<ConversationPage>`) rather than an action.
 ///:
 ///: Return types are erased at runtime, which is why (2) exists. This is the same
-///: read the [introspect tool](../library/reference-desk/09-codebase-index--introspect.ts)
+///: read the [introspect tool](../../library/reference-desk/09-codebase-index--introspect.ts)
 ///: performs, narrowed to what the CLI needs.
 ///:
 ///: Add a method to a page and it appears in the CLI with no second edit. That
-///: property is the point, and it is what [Sprint 100](../library/projected-identity/72-sprint-100--the-cli-test-suite.md)
+///: property is the point, and it is what [Sprint 100](../../library/projected-identity/72-sprint-100--the-cli-test-suite.md)
 ///: tests by adding a real method rather than comparing to a frozen list.
 ///:
-///: [The Claude Nexus](../library/projected-identity/71-sprint-99--the-claude-nexus.md) — describe() derived, never declared.
-///: [Codebase Index](../library/reference-desk/09-codebase-index.md) — reading the source before writing code.
+///: [The Claude Nexus](../../library/projected-identity/71-sprint-99--the-claude-nexus.md) — describe() derived, never declared.
+///: [Codebase Index](../../library/reference-desk/09-codebase-index.md) — reading the source before writing code.
 
 import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, extname } from 'path';
@@ -196,7 +196,7 @@ export function readSurfaces(root: string): Map<string, ClassSurface> {
       const full = join(dir, entry);
       if (statSync(full).isDirectory()) {
         // Scaffolding and tests are not part of the app's surface.
-        if (entry === 'scripts' || entry === 'tests' || entry === 'debug' || entry === 'trees') continue;
+        if (entry === 'scripts' || entry === 'tests' || entry === 'debug' || entry === 'trees' || entry === 'cli') continue;
         walk(full);
       } else if (extname(entry) === '.ts') {
         for (const cls of parseSource(readFileSync(full, 'utf-8'), full)) {

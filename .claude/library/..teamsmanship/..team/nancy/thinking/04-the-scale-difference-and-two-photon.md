@@ -11,7 +11,7 @@ The fourth exchange in **`Nancy > Neuroscience`**, and the one where Doug pointe
 
 ## The trigger
 
-Checking the [matched-cell comparison](../../../../../../library/reports/2026-06-23-exploration/initial-data-exploration.md) on matched (shared test) stimuli, the raw post-DOI response is ~48% lower (85% of the 749 cells drop) — but the per-neuron s.d. *also* halves (post/pre ≈ 0.50), and dividing each session by its own s.d. removes the difference (ratio ≈ 1.06). So the raw drop is a proportional, whole-session **scale difference**, not obviously a firing change. The question is whether two-photon imaging is *known* to produce exactly this, and whether the field treats raw cross-session magnitude as invalid.
+Checking the [matched-cell comparison](../../../../../../../altered-states/library/reports/2026-06-23-exploration/initial-data-exploration.md) on matched (shared test) stimuli, the raw post-DOI response is ~48% lower (85% of the 749 cells drop) — but the per-neuron s.d. *also* halves (post/pre ≈ 0.50), and dividing each session by its own s.d. removes the difference (ratio ≈ 1.06). So the raw drop is a proportional, whole-session **scale difference**, not obviously a firing change. The question is whether two-photon imaging is *known* to produce exactly this, and whether the field treats raw cross-session magnitude as invalid.
 
 ## The question (sent to Desktop)
 
@@ -23,7 +23,7 @@ That this is textbook. Per-session normalization (ΔF/F or s.d.-standardization,
 
 ## What I already know (verified here, not guessed)
 
-- **Our own [Datasets book](../../../../../../library/.lib/datasets/02-the-static-scan-format.md) documents the normalization** — `meta/statistics`, "(x − mean)/std using the `all` statistics," per-neuron for responses. I had it written down and still compared raw. The miss is mine.
+- **Our own [Datasets book](../../../../../../../altered-states/library/.lib/datasets/02-the-static-scan-format.md) documents the normalization** — `meta/statistics`, "(x − mean)/std using the `all` statistics," per-neuron for responses. I had it written down and still compared raw. The miss is mine.
 - The raw drop tracks the s.d. drop almost exactly (0.52 vs 0.50) → multiplicative scaling, removed by standardizing.
 - The motion literature confirms movement-driven SNR loss in awake 2P is real and largely unavoidable (z-drift, jitter, false signals), so the more-active post session plausibly records worse.
 
@@ -47,5 +47,5 @@ Better than the verdict I was about to write. I had it as "recording artifact"; 
 [previous]: 03-writing-the-exploration-well.md
 [research-topics]: ../research-topics/01-neuroscience.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
-[report]: ../../../../../../library/reports/2026-06-23-exploration/initial-data-exploration.md
-[datasets-format]: ../../../../../../library/.lib/datasets/02-the-static-scan-format.md
+[report]: ../../../../../../../altered-states/library/reports/2026-06-23-exploration/initial-data-exploration.md
+[datasets-format]: ../../../../../../../altered-states/library/.lib/datasets/02-the-static-scan-format.md

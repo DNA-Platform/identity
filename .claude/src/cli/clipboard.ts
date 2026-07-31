@@ -5,10 +5,10 @@
 ///:
 ///: It is behind a seam (`ClipboardWriter`) for two reasons: tests must not touch the
 ///: real clipboard, and the clipboard is **shared with Doug**
-///: ([ch.7](../library/reference-desk/07-pitfalls.md#clipboard-collisions)) — so every
+///: ([ch.7](../../library/reference-desk/07-pitfalls.md#clipboard-collisions)) — so every
 ///: write is announced, and nothing is ever written unasked.
 ///:
-///: [The Runtime](../library/reference-desk/14-the-runtime.md#always-available) — copy in the always-available set.
+///: [The Runtime](../../library/reference-desk/14-the-runtime.md#always-available) — copy in the always-available set.
 
 import { spawn } from 'child_process';
 
@@ -18,7 +18,7 @@ export interface ClipboardWriter {
 
 /** Windows clipboard via PowerShell `Set-Clipboard`. Text arrives on stdin rather
  *  than in the command line, so size and quoting are not a problem — the same
- *  reasoning as the [shell's base64 encoding](../library/reference-desk/04-03-platform--shell.md). */
+ *  reasoning as the [shell's base64 encoding](../../library/reference-desk/04-03-platform--shell.md). */
 export class WindowsClipboard implements ClipboardWriter {
   write(text: string): Promise<void> {
     return new Promise((resolve, reject) => {

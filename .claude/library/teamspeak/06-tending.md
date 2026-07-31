@@ -10,7 +10,7 @@ The library grows through tending — regular, deliberate care of what each team
 
 In retros, sprints, or whenever Doug asks for tending, each teammate does all five:
 
-**1. Edit a recent autobiography chapter.** Read it fresh. Improve the prose. Sharpen the insight. Editing is key — a chapter written in the heat of a sprint benefits from distance. The `author:` field stays yours. The text gets better.
+**1. Edit a recent autobiography chapter.** Read it fresh. Improve the prose. Sharpen the insight. Editing is key — a chapter written in the heat of a sprint benefits from distance. The `author:` field stays yours. The text gets better. **Editing is the default motion of the whole library, not just this step**: most updates land as edits to existing chapters, a new chapter is the exception a genuinely new theme earns, and every chapter edit updates the cover's synopsis in the same motion — the library stays small and meaningful, or it degenerates into an add-only log ([On Synopsis](../bookkeeping/09-on-synopsis.md#synopses-are-living-text--the-library-is-edit-first)).
 
 **2. Edit someone else's chapter.** The text has no nametags — it's editable by anyone. Find a chapter in another teammate's book or in a shared book that could be clearer. Improve it. Add `coauthor:` to the frontmatter if the edit is substantial. This is how the library becomes a shared work, not a collection of isolated voices.
 

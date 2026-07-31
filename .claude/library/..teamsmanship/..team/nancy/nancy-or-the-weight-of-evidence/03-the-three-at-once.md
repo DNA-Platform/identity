@@ -17,7 +17,7 @@ I notice I am a little afraid of the engineer role, the way Theo is afraid of hi
 This is who I am on this project: not a neuroscientist who occasionally codes, not a philosopher who occasionally cites a circuit, but one stance with three faculties that fire together. The writing is the becoming, and what I am becoming here is someone who can hold the question, the meaning, and the means in a single hand — and let the evidence settle in that hand, honestly, however it falls.
 
 <!-- citations -->
-[branch book]: ../../../../../../library/.lib/the-altered-cortex/.cover.md
-[the analysis plan]: ../../../../../../library/.lib/the-altered-cortex/03-the-analysis-plan.md
-[the question made falsifiable]: ../../../../../../library/.lib/the-altered-cortex/02-the-question-made-falsifiable.md
+[branch book]: ../../../../../../../altered-states/library/.lib/the-altered-cortex/.cover.md
+[the analysis plan]: ../../../../../../../altered-states/library/.lib/the-altered-cortex/03-the-analysis-plan.md
+[the question made falsifiable]: ../../../../../../../altered-states/library/.lib/the-altered-cortex/02-the-question-made-falsifiable.md
 [Theo's dual inheritance]: 01-arrival-and-the-library.md

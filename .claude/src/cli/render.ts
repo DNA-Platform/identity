@@ -12,7 +12,7 @@
 ///: Nothing here decides anything. It takes a [ScreenModel](describe.ts) and returns
 ///: a string. That is what makes it testable without Claude Desktop.
 ///:
-///: [The Claude Nexus](../library/projected-identity/71-sprint-99--the-claude-nexus.md) — the CLI renders and dispatches; the app decides.
+///: [The Claude Nexus](../../library/projected-identity/71-sprint-99--the-claude-nexus.md) — the CLI renders and dispatches; the app decides.
 
 import type { Command, ScreenModel } from './describe.ts';
 
@@ -94,6 +94,52 @@ export function renderScreen(model: ScreenModel, observations: Record<string, st
   out.push('Always available:  tree [filter]   copy <command>   look   where   help');
 
   return out.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd();
+}
+
+/**
+ * What a LOCAL action reports: what it changed, and what you can do here now.
+ *
+ * Deliberately not the whole room. Re-printing the building after a keystroke
+ * buries the one thing that moved. This is the operator's way of tracking app
+ * state incrementally — each action says what it touched, so the picture is kept
+ * up to date without re-reading it.
+ *
+ * When nothing observably changed, that is **said out loud**. An action that
+ * reports success while moving nothing is the most important thing a driver can
+ * tell you, and a bare checkmark hides it.
+ */
+export function renderChange(
+  commandPath: string,
+  scope: string,
+  changed: readonly { path: string; before: string; after: string }[],
+  surface: readonly Command[],
+): string {
+  const where = scope === '(screen)' ? 'this screen' : scope;
+  const out: string[] = [`✓ ${commandPath}`];
+
+  if (changed.length === 0) {
+    out.push('');
+    out.push(`No reading on ${where} changed. The action reported success but nothing`);
+    out.push('observable moved — check `tree` if you expected it to.');
+  } else {
+    out.push('');
+    out.push(`Changed on ${where}:`);
+    out.push(columns(changed.map(c => [c.path, `${brief(c.before)} → ${brief(c.after)}`])));
+  }
+
+  if (surface.length > 0) {
+    out.push('');
+    out.push(`Here in ${where}: ${surface.map(c => c.path).join(', ')}`);
+  }
+  return out.join('\n');
+}
+
+/** Values in a change line stay on one line — the point is the difference, not the
+ *  content. `copy` exists for when you want the whole thing. */
+function brief(value: string, limit = 48): string {
+  const oneLine = value.replace(/\s+/g, ' ').trim();
+  const shown = oneLine.length > limit ? `${oneLine.slice(0, limit - 1)}…` : oneLine;
+  return shown === '' ? '(empty)' : `"${shown}"`;
 }
 
 /** What the operator sees when a command is ambiguous. Never guess between two

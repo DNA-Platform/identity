@@ -10,7 +10,7 @@ import { renderScreen } from './render.ts';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-const SRC = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'src');
+const SRC = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const surfaces = readSurfaces(SRC);
 const want = process.argv[2] ?? 'ConversationPage';
 

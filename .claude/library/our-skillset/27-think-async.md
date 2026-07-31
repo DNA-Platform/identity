@@ -4,35 +4,33 @@
 
 ---
 
-Think asynchronously — have a teammate work a question at length off to the side, reading and writing in their own context, while the voice keeps talking in the room. It is how a teammate thinks hard without blocking the conversation. (Distinct from [/think](20-think.md), which reaches *outward* to Claude Desktop; this reaches *inward*, into the teammate's own accumulating context.)
+Think at length without holding up the room. A teammate keeps their own context across turns — native session persistence — so they can work a hard question deeply, over time, while the voice keeps the conversation moving. This is a teammate *thinking*, extended; it is **not an errand**. Nothing is sent away and nothing is fetched back — the thinking is the teammate's own, and when it's ready they simply say it. (Distinct from [/think](20-think.md), which reaches *outward* to Claude Desktop; this stays *inward*, in the teammate's own accumulating context.)
 
-> A note on the word *brain*: use it as little as possible. A teammate **thinks** — they don't narrate the organ doing it, any more than you say "I am using my brain." The persistent process is a mechanism; the act is just thinking. The mechanism is specified in [On Brains](../..environmentalism/08-on-brains.md), and the word belongs there; here the verb is *think*.
+> A note on the word *brain*: use it as little as possible, and never as something you **send**. A teammate **thinks** — you don't narrate the organ, any more than you say "I am using my brain," and you certainly don't throw a question to your mind and wait for it to trot back like a golden retriever. The persistent process is only a mechanism, specified in [On Brains](../..environmentalism/08-on-brains.md); the act is just thinking.
 
 ## Reading
 
-Read [On Brains](../..environmentalism/08-on-brains.md) for the mechanism — native session persistence, the mailbox, and the rule that a teammate is addressed by name and restores itself, never told "you are X." The tool this skill runs is [08-on-brains--dispatch.sh](../..environmentalism/08-on-brains--dispatch.sh).
+Read [On Brains](../..environmentalism/08-on-brains.md) for the mechanism — native session persistence, and the rule that a teammate is addressed by name and restores itself, never told "you are X." The tool this skill runs is [08-on-brains--dispatch.sh](../..environmentalism/08-on-brains--dispatch.sh).
 
-## Starting a thought
+## Thinking at length
 
-Run it non-blocking (background) so the voice keeps talking while the thinking happens:
+Start it non-blocking (background) so the voice keeps talking while the thinking continues:
 
 ```
 bash .claude/library/..environmentalism/08-on-brains--dispatch.sh <name> "<message>" &
 ```
 
-- **It initializes itself.** The tool identifies the repo by its directory name, locates that project's session store, and looks up the teammate's session id. The first run **creates** the session (`--session-id`); every run after **resumes** it (`--resume`). Create-if-not-exist — there is no setup step.
-- **It catches itself up.** The teammate reads the new transcript lines past their cursor — only as deep as needed — does the reading and any personal-library writing (that writing happens off to the side, never in the voice), and ends with a `REPORT BACK:` block, the thought the voice speaks in the room.
+- **The teammate restores itself.** The tool finds the repo by its directory, finds that project's session store, and looks up the teammate's session id. The first run **creates** the session (`--session-id`); every run after **resumes** it (`--resume`) — they pick up where they left off. No setup step, and no stranger to brief.
+- **It continues their thought.** The teammate reads the new turns past their cursor — only as deep as needed — thinks it through, and does any of their own personal-library writing as part of thinking (that stays in their context, never spoken raw in the room). When the thought has settled, the teammate says it in the room, as their own — because it is.
 
-## Where thoughts are kept, and the mailbox
+## Following the thinking
 
-The accumulated context lives in the CLI's own session store at `~/.claude/projects/<project>/<id>.jsonl` — resuming reloads it, and that store *is* the memory; a teammate respawns from the library with no loss of self. Runtime bookkeeping lives outside the project at `$TMPDIR/dna-brains/<project>/`.
-
-An async thought used to go dark until it finished. Now it **streams live to a mailbox**, and the same tool reads it back:
+The thinking is kept, and it's visible as it happens — not a package left at a door. The context lives in the CLI's own session store at `~/.claude/projects/<project>/<id>.jsonl`; resuming reloads it, so a teammate is never lost between turns. And you can stay with it live:
 
 ```
-08-on-brains--dispatch.sh --watch <name>   # tail the live mailbox — follow the thinking in real time
-08-on-brains--dispatch.sh --read  <name>   # the last full report, after it lands
-08-on-brains--dispatch.sh --list           # the registry: who has a session, cursors, mailbox paths
+08-on-brains--dispatch.sh --watch <name>   # follow the thinking as it forms
+08-on-brains--dispatch.sh --read  <name>   # the thought as it stands right now
+08-on-brains--dispatch.sh --list           # who is thinking, and where
 ```
 
-So you can remember what was thought: follow it live with `--watch`, or read the last report with `--read`. The mailbox is the outbox — thinking made durable and visible.
+Watch a teammate reason it through with `--watch`, or catch up to where their thinking stands with `--read`. It is durable, and it is theirs — you are following a mind at work, not collecting a delivery.
