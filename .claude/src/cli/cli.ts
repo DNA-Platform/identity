@@ -21,13 +21,13 @@
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { Claude } from '../claude.ts';
-import { readSurfaces } from './surface.ts';
+import { SURFACE_BY_NAME } from './surface.generated.ts';
 import { Runtime, renderValue } from './runtime.ts';
 import { renderScreen, renderChange } from './render.ts';
 import { WindowsClipboard, copyReport, nothingToCopy } from './clipboard.ts';
 import type { ScreenModel } from './describe.ts';
 
-const SRC = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+
 
 const HELP = `
 Drive Claude Desktop by moving through it. Every move prints the room.
@@ -76,7 +76,7 @@ async function main(): Promise<number> {
     await app.launch();
     launched = true;
 
-    const runtime = new Runtime(app, readSurfaces(SRC));
+    const runtime = new Runtime(app, SURFACE_BY_NAME);
     await runtime.bind();
 
     switch (verb) {

@@ -86,7 +86,7 @@ function toCommand(m: MethodSurface, prefix = ''): Command {
  *  composer; a `ProjectsPage` does not). `surfaces` supplies the signatures. */
 export function describeScreen(
   page: object,
-  surfaces: Map<string, ClassSurface>,
+  surfaces: ReadonlyMap<string, ClassSurface>,
   id: string | null = null,
 ): ScreenModel {
   const screen = page.constructor.name;

@@ -21,7 +21,7 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { Claude } from '../../claude.ts';
 import { TreeSnapshot } from '../../tree.ts';
-import { readSurfaces } from '../../cli/surface.ts';
+import { SURFACE_BY_NAME } from '../../cli/surface.generated.ts';
 import { describeScreen } from '../../cli/describe.ts';
 import { renderScreen } from '../../cli/render.ts';
 import { Runtime } from '../../cli/runtime.ts';
@@ -38,11 +38,11 @@ if (!LIVE) {
 
 let app: Claude | undefined;
 let runtime: Runtime | undefined;
-let surfaces: ReturnType<typeof readSurfaces> | undefined;
+let surfaces: typeof SURFACE_BY_NAME | undefined;
 
 before(async () => {
   if (!LIVE) return;
-  surfaces = readSurfaces(SRC);
+  surfaces = SURFACE_BY_NAME;
   app = new Claude();
   await app.launch();                       // shows the window, once
 

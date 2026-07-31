@@ -97,7 +97,7 @@ export class Runtime {
 
   constructor(
     private readonly app: AppHandle,
-    private readonly surfaces: Map<string, ClassSurface>,
+    private readonly surfaces: ReadonlyMap<string, ClassSurface>,
   ) {}
 
   /** Bind to the screen the app is actually on. Every move re-binds, because a held

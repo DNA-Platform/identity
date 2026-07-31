@@ -16,6 +16,8 @@ import assert from 'node:assert/strict';
 import { parseSource, flatten, unwrapPromise, namesAPage } from '../cli/surface.ts';
 import { describeScreen, findCommand, candidates } from '../cli/describe.ts';
 import { renderScreen, renderUnknown, placeName } from '../cli/render.ts';
+import { isGeneratedCurrent } from '../cli/generate-surface.ts';
+import { APP_SURFACE, SURFACE_BY_NAME } from '../cli/surface.generated.ts';
 
 /** A stand-in written in the shape of the real driver: a Page base, a concrete page,
  *  and a component the page holds. Small on purpose — a clever fake becomes a second
@@ -206,4 +208,48 @@ test('placeName turns a class into a place', () => {
   assert.equal(placeName('ConversationPage'), 'Conversation');
   assert.equal(placeName('HomePage'), 'Home');
   assert.equal(placeName('ProjectsPage'), 'Projects');
+});
+
+// ---------------------------------------------------------------------------
+// The generated surface — the bridge between the driver's types and the CLI.
+// ---------------------------------------------------------------------------
+
+test('the generated surface is CURRENT — a stale one is a failing build', () => {
+  assert.ok(isGeneratedCurrent(),
+    'surface.generated.ts does not match the source it is derived from.\n' +
+    'Run: npx tsx src/cli/generate-surface.ts --write\n' +
+    'This is the whole point of generating it — the CLI cannot quietly offer a\n' +
+    'method the app no longer has, because the artifact and the code are checked\n' +
+    'against each other rather than trusted to agree.');
+});
+
+test('the generated surface names the real screens, and only real ones', () => {
+  const names = APP_SURFACE.map(c => c.name);
+  for (const screen of ['HomePage', 'ConversationPage', 'ProjectsPage', 'ProjectPage']) {
+    assert.ok(names.includes(screen), `${screen} must be in the generated surface`);
+  }
+  // The CLI must never describe itself as part of the app.
+  for (const own of ['Runtime', 'WindowsClipboard', 'RecordingClipboard']) {
+    assert.ok(!names.includes(own), `${own} is CLI machinery and must not be in the app surface`);
+  }
+});
+
+test('the AST parser sees constructor parameter properties — the case regex missed', () => {
+  const cls = SURFACE_BY_NAME.get('ConversationPage')!;
+  const props = cls.properties.map(p => p.name);
+  assert.ok(props.includes('composer'),
+    'composer is declared as a constructor parameter property; missing it removes the screen\'s only exit');
+  assert.ok(props.includes('artifacts'));
+});
+
+test('inherited members reach the generated screens too', () => {
+  const flat = flatten('ConversationPage', SURFACE_BY_NAME);
+  assert.ok(flat.methods.some(m => m.name === 'id'), 'Page.id() is on every page');
+  assert.ok(flat.methods.some(m => m.name === 'messages'), 'and the page keeps its own');
+});
+
+test('doc comments survive generation — a command explains itself in the author\'s words', () => {
+  const cls = SURFACE_BY_NAME.get('ConversationPage')!;
+  const messages = cls.methods.find(m => m.name === 'messages')!;
+  assert.match(messages.doc, /read from the tree/i);
 });

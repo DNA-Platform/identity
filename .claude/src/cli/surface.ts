@@ -1,26 +1,24 @@
-///: Surface — what the code says you can do, read from the code itself.
+///: Surface — what the code says you can do, read from the code's own syntax tree.
 ///:
 ///: The screen model must never be hand-listed. A hand-maintained command table is
 ///: the drift that put deleted class names in [ch.12](../../library/reference-desk/12-the-app.md)
-///: for six sprints while reading as authoritative. So the CLI derives its command
-///: list from two sources that both track the code and cannot disagree with it:
+///: for six sprints while reading as authoritative.
 ///:
-///:   1. the LIVE INSTANCE — what page object we are actually holding, and which
-///:      components it actually has (runtime reflection);
-///:   2. the SOURCE — the method signatures, because a return type is what tells us
-///:      a method is an EXIT (`Promise<ConversationPage>`) rather than an action.
+///: **This reads the TypeScript AST, not the text.** The first version matched source
+///: with regular expressions and failed exactly the way regex parsers fail: it
+///: understood class fields but not *constructor parameter properties*, which is how
+///: the driver declares most of its components — so `composer` and `artifacts` were
+///: invisible and the Conversation screen showed no exits at all. The compiler
+///: already knows the answer; asking it is both simpler and correct.
 ///:
-///: Return types are erased at runtime, which is why (2) exists. This is the same
-///: read the [introspect tool](../../library/reference-desk/09-codebase-index--introspect.ts)
-///: performs, narrowed to what the CLI needs.
+///: One parser serves two callers, which is what keeps them honest: the
+///: [generator](generate-surface.ts) runs it over `.claude/src/**` to emit
+///: [the typed surface](surface.generated.ts), and the tests run it over fixtures.
+///: They cannot disagree about what a method is.
 ///:
-///: Add a method to a page and it appears in the CLI with no second edit. That
-///: property is the point, and it is what [Sprint 100](../../library/projected-identity/72-sprint-100--the-cli-test-suite.md)
-///: tests by adding a real method rather than comparing to a frozen list.
-///:
-///: [The Claude Nexus](../../library/projected-identity/71-sprint-99--the-claude-nexus.md) — describe() derived, never declared.
-///: [Codebase Index](../../library/reference-desk/09-codebase-index.md) — reading the source before writing code.
+///: [The Runtime](../../library/reference-desk/14-the-runtime.md) — derived, never declared.
 
+import ts from 'typescript';
 import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, extname } from 'path';
 
@@ -30,13 +28,14 @@ export interface Param {
   readonly optional: boolean;
 }
 
-/** What one method promises. `returns` is the declared type with `Promise<>` peeled. */
+/** What one method promises. `returns` is the declared type, verbatim from source. */
 export interface MethodSurface {
   readonly name: string;
   readonly params: readonly Param[];
   readonly returns: string;
   readonly isAsync: boolean;
-  /** The `/** … *\/` line above it, if any — the author's own words about the method. */
+  /** The author's own doc comment — a better description than anything we could
+   *  generate, and already written. */
   readonly doc: string;
 }
 
@@ -52,6 +51,11 @@ export interface ClassSurface {
   readonly properties: readonly PropertySurface[];
 }
 
+/** Directories that are not part of the app's surface: throwaway capture
+ *  scaffolding, the migration exporters, evidence, and the CLI itself — the CLI
+ *  must never describe itself as something you can do to the app. */
+export const NOT_SURFACE_DIRS = new Set(['scripts', 'tests', 'debug', 'trees', 'exports', 'cli', 'shortcut']);
+
 /** `Promise<ConversationPage>` → `ConversationPage`; `Promise<void>` → `void`. */
 export function unwrapPromise(type: string): string {
   const m = /^Promise\s*<([\s\S]*)>$/.exec(type.trim());
@@ -59,149 +63,120 @@ export function unwrapPromise(type: string): string {
 }
 
 /** Does this type name a screen you can be on? That is what makes a method an EXIT
- *  rather than an action — the app hands you the next page, which is precisely the
- *  navigation contract in [Architecture Patterns]. Also true through a union or an
- *  array, so `ConversationPage | null` still reads as an exit. */
+ *  rather than an action — navigation returns the next page, so a page-typed return
+ *  IS a door.
+ *
+ *  Match the SUFFIX, never a word boundary: `/\bPage\b/` has no boundary between
+ *  "n" and "P" in `ConversationPage`, and that bug silently classified every door in
+ *  the app as a look. */
 export function namesAPage(type: string): boolean {
-  // Match the SUFFIX, not a word boundary: `ConversationPage` has no boundary
-  // between "n" and "P", so /\bPage\b/ silently classifies every door as a look.
   return unwrapPromise(type)
     .split('|')
     .map(part => part.replace(/\[\]$/, '').trim())
     .some(part => /Page$/.test(part));
 }
 
-/** Split a parameter list on top-level commas — `a: Map<string, number>, b` has one
- *  comma that does NOT separate parameters. Depth-counting, not splitting on ','. */
-function splitParams(raw: string): string[] {
-  const out: string[] = [];
-  let depth = 0;
-  let current = '';
-  for (const ch of raw) {
-    if (ch === '<' || ch === '(' || ch === '[' || ch === '{') depth++;
-    else if (ch === '>' || ch === ')' || ch === ']' || ch === '}') depth--;
-    if (ch === ',' && depth === 0) { out.push(current); current = ''; continue; }
-    current += ch;
-  }
-  if (current.trim()) out.push(current);
-  return out.map(s => s.trim()).filter(Boolean);
+// ---------------------------------------------------------------------------
+// Reading the syntax tree
+// ---------------------------------------------------------------------------
+
+function isPublic(node: ts.HasModifiers): boolean {
+  const mods = ts.getModifiers(node) ?? [];
+  return !mods.some(m =>
+    m.kind === ts.SyntaxKind.PrivateKeyword || m.kind === ts.SyntaxKind.ProtectedKeyword);
 }
 
-function parseParams(raw: string): Param[] {
-  return splitParams(raw).map(p => {
-    const eq = p.indexOf('=');
-    const withoutDefault = eq >= 0 ? p.slice(0, eq).trim() : p;
-    const colon = withoutDefault.indexOf(':');
-    const namePart = (colon >= 0 ? withoutDefault.slice(0, colon) : withoutDefault).trim();
-    const type = colon >= 0 ? withoutDefault.slice(colon + 1).trim() : 'unknown';
-    const optional = namePart.endsWith('?') || eq >= 0;
-    return { name: namePart.replace(/\?$/, ''), type, optional };
-  });
+function hasModifier(node: ts.HasModifiers, kind: ts.SyntaxKind): boolean {
+  return (ts.getModifiers(node) ?? []).some(m => m.kind === kind);
 }
 
-/** The doc comment immediately above `index`, flattened to one line.
- *
- *  "Immediately" is enforced: if anything but whitespace sits between the comment's
- *  close and the member, the comment belongs to something else and is not borrowed.
- *  The author's own words are the best description a command can have — better than
- *  anything the CLI could invent — so this is how a method explains itself. */
-function docAbove(source: string, index: number): string {
-  const before = source.slice(0, index);
-  const open = before.lastIndexOf('/**');
-  if (open < 0) return '';
-  const close = before.indexOf('*/', open);
-  if (close < 0) return '';
-  if (before.slice(close + 2).trim().length > 0) return '';
-  return before.slice(open + 3, close)
-    .split('\n')
-    .map(line => line.replace(/^\s*\*+/, '').trim())
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+/** The JSDoc above a member, flattened to one line. The compiler hands us the
+ *  association, so there is no "is this comment really attached?" guesswork — which
+ *  the text-matching version had to do by hand, and got wrong. */
+function docOf(node: ts.Node): string {
+  const jsDoc = (node as { jsDoc?: ts.JSDoc[] }).jsDoc;
+  if (!jsDoc || jsDoc.length === 0) return '';
+  const comment = jsDoc[jsDoc.length - 1].comment;
+  const text = typeof comment === 'string'
+    ? comment
+    : (comment ?? []).map(c => (c as ts.JSDocText).text ?? '').join('');
+  return text.split('\n').map(l => l.trim()).filter(Boolean).join(' ').trim();
 }
 
-const CLASS_RE = /export\s+(?:abstract\s+)?class\s+(\w+)(?:\s+extends\s+(\w+))?/g;
-// `async name(params): Promise<X> {` or `name(params): X {` or `get name(): X {`
-const MEMBER_RE = /^[ \t]{2}(?!\/\/)(?:(private|protected|public)\s+)?(?:(readonly)\s+)?(?:(async)\s+)?(?:(get)\s+)?(\w+)\s*(?:\(([\s\S]*?)\))?\s*:\s*([^;{=]+?)\s*[;{]/gm;
+function typeText(node: ts.TypeNode | undefined, source: ts.SourceFile, fallback = 'unknown'): string {
+  return node ? node.getText(source).replace(/\s+/g, ' ').trim() : fallback;
+}
 
-/** Read one source file's exported classes. Members are attributed to the class
- *  whose declaration most recently preceded them — the files here declare classes
- *  top-level and in order, which is what makes that safe. */
-export function parseSource(source: string, fileName = ''): ClassSurface[] {
-  const classes: { name: string; extends: string | null; at: number }[] = [];
-  for (const m of source.matchAll(CLASS_RE)) {
-    classes.push({ name: m[1], extends: m[2] ?? null, at: m.index ?? 0 });
-  }
-  if (classes.length === 0) return [];
+/** Parse one file's classes from its syntax tree. */
+export function parseSource(text: string, fileName = 'source.ts'): ClassSurface[] {
+  const source = ts.createSourceFile(fileName, text, ts.ScriptTarget.ES2022, true);
+  const classes: ClassSurface[] = [];
 
-  const built = classes.map(c => ({
-    name: c.name,
-    extends: c.extends,
-    at: c.at,
-    methods: [] as MethodSurface[],
-    properties: [] as PropertySurface[],
-  }));
+  const visit = (node: ts.Node): void => {
+    if (ts.isClassDeclaration(node) && node.name) {
+      const methods: MethodSurface[] = [];
+      const properties: PropertySurface[] = [];
 
-  const owner = (at: number) => {
-    let found = built[0];
-    for (const c of built) if (c.at <= at) found = c;
-    return found;
+      for (const member of node.members) {
+        // Constructor parameter properties — `constructor(readonly composer: Composer)`.
+        // This is how the driver declares most components, and it is exactly the case
+        // the regex parser could not see.
+        if (ts.isConstructorDeclaration(member)) {
+          for (const p of member.parameters) {
+            const declaresProperty =
+              hasModifier(p, ts.SyntaxKind.ReadonlyKeyword) || hasModifier(p, ts.SyntaxKind.PublicKeyword);
+            if (declaresProperty && isPublic(p)) {
+              properties.push({ name: p.name.getText(source), type: typeText(p.type, source) });
+            }
+          }
+          continue;
+        }
+        if (!isPublic(member as ts.HasModifiers)) continue;
+
+        if (ts.isMethodDeclaration(member) && member.name) {
+          methods.push({
+            name: member.name.getText(source),
+            params: member.parameters.map(p => ({
+              name: p.name.getText(source),
+              type: typeText(p.type, source),
+              optional: Boolean(p.questionToken) || Boolean(p.initializer),
+            })),
+            returns: typeText(member.type, source, 'void'),
+            isAsync: hasModifier(member, ts.SyntaxKind.AsyncKeyword),
+            doc: docOf(member),
+          });
+        } else if (ts.isPropertyDeclaration(member) && member.name) {
+          properties.push({ name: member.name.getText(source), type: typeText(member.type, source) });
+        } else if (ts.isGetAccessor(member) && member.name) {
+          properties.push({ name: member.name.getText(source), type: typeText(member.type, source) });
+        }
+      }
+
+      const base = node.heritageClauses
+        ?.find(h => h.token === ts.SyntaxKind.ExtendsKeyword)
+        ?.types[0]?.expression.getText(source) ?? null;
+
+      classes.push({ name: node.name.getText(source), extends: base, methods, properties });
+    }
+    ts.forEachChild(node, visit);
   };
 
-  // Constructor parameter properties — `constructor(readonly composer: Composer, …)`.
-  // The driver declares most components this way, so a parser that only reads class
-  // fields sees `response` and misses `composer`, `artifacts`, `modelPicker`: the
-  // page appears to have no composer, and its send() door disappears with it.
-  for (const c of source.matchAll(/constructor\s*\(([\s\S]*?)\)\s*\{/g)) {
-    const target = owner(c.index ?? 0);
-    for (const raw of splitParams(c[1])) {
-      const m = /^(?:(public|readonly)\s+)+(\w+)\s*:\s*([\s\S]+)$/.exec(raw.trim());
-      if (!m) continue;                       // a plain parameter is not a property
-      if (/^\s*(private|protected)\b/.test(raw)) continue;
-      target.properties.push({ name: m[2], type: m[3].trim() });
-    }
-  }
-
-  for (const m of source.matchAll(MEMBER_RE)) {
-    const [, visibility, readonly, isAsync, getter, name, params, returns] = m;
-    if (visibility === 'private' || visibility === 'protected') continue;
-    if (name === 'constructor') continue;
-    const at = m.index ?? 0;
-    const target = owner(at);
-    const doc = docAbove(source, at);
-    if (params === undefined) {
-      target.properties.push({ name, type: returns.trim() });
-    } else if (getter) {
-      target.properties.push({ name, type: returns.trim() });
-    } else {
-      target.methods.push({
-        name,
-        params: parseParams(params),
-        returns: returns.trim(),
-        isAsync: Boolean(isAsync),
-        doc,
-      });
-    }
-  }
-
-  return built.map(({ name, extends: ext, methods, properties }) =>
-    ({ name, extends: ext, methods, properties }));
+  visit(source);
+  return classes;
 }
 
-/** Every exported class in a directory tree, keyed by class name. */
+/** Every class in the app's surface, keyed by class name. The generator walks the
+ *  disk with this; the CLI reads the generated artifact instead. */
 export function readSurfaces(root: string): Map<string, ClassSurface> {
   const map = new Map<string, ClassSurface>();
   const walk = (dir: string): void => {
-    for (const entry of readdirSync(dir)) {
+    for (const entry of readdirSync(dir).sort()) {
       const full = join(dir, entry);
       if (statSync(full).isDirectory()) {
-        // Scaffolding and tests are not part of the app's surface.
-        if (entry === 'scripts' || entry === 'tests' || entry === 'debug' || entry === 'trees' || entry === 'cli') continue;
+        if (NOT_SURFACE_DIRS.has(entry)) continue;
         walk(full);
-      } else if (extname(entry) === '.ts') {
-        for (const cls of parseSource(readFileSync(full, 'utf-8'), full)) {
-          map.set(cls.name, cls);
-        }
+      } else if (extname(entry) === '.ts' && !entry.endsWith('.generated.ts')) {
+        for (const cls of parseSource(readFileSync(full, 'utf-8'), full)) map.set(cls.name, cls);
       }
     }
   };
@@ -210,7 +185,7 @@ export function readSurfaces(root: string): Map<string, ClassSurface> {
 }
 
 /** A class's own members plus everything it inherits, nearest declaration winning. */
-export function flatten(className: string, surfaces: Map<string, ClassSurface>): ClassSurface {
+export function flatten(className: string, surfaces: ReadonlyMap<string, ClassSurface>): ClassSurface {
   const chain: ClassSurface[] = [];
   let current: string | null = className;
   const seen = new Set<string>();
@@ -223,8 +198,7 @@ export function flatten(className: string, surfaces: Map<string, ClassSurface>):
   }
   const methods = new Map<string, MethodSurface>();
   const properties = new Map<string, PropertySurface>();
-  // Walk base-first so a subclass override replaces the base's entry.
-  for (const cls of [...chain].reverse()) {
+  for (const cls of [...chain].reverse()) {          // base first, so overrides win
     for (const m of cls.methods) methods.set(m.name, m);
     for (const p of cls.properties) properties.set(p.name, p);
   }

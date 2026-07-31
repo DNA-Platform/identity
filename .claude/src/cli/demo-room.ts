@@ -4,14 +4,14 @@
 ///:
 ///: Run: npx tsx cli/demo-room.ts [ConversationPage|HomePage|ProjectsPage|ProjectPage]
 
-import { readSurfaces } from './surface.ts';
+import { SURFACE_BY_NAME } from './surface.generated.ts';
 import { describeScreen } from './describe.ts';
 import { renderScreen } from './render.ts';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-const SRC = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const surfaces = readSurfaces(SRC);
+
+const surfaces = SURFACE_BY_NAME;
 const want = process.argv[2] ?? 'ConversationPage';
 
 // Stand in for the live page: the class name is the screen, and a property that is
