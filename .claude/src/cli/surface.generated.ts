@@ -70,6 +70,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ArtifactPanel",
     extends: null,
+    origin: "components/artifact-panel.ts",
     methods: [
       { name: "close", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "copy", params: [], returns: "Promise<string>", isAsync: true, doc: "" },
@@ -93,6 +94,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ArtifactPanelController",
     extends: null,
+    origin: "controllers/artifact-panel-controller.ts",
     methods: [
       { name: "checkOpen", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "close", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -110,6 +112,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ArtifactPart",
     extends: "Part",
+    origin: "components/part.ts",
     methods: [
       { name: "toMarkdown", params: [], returns: "string", isAsync: false, doc: "" },
     ],
@@ -123,6 +126,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ChatListController",
     extends: null,
+    origin: "controllers/chat-list-controller.ts",
     methods: [
       { name: "clickAddToProject", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "clickDelete", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
@@ -157,6 +161,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ChatNotFoundError",
     extends: "DriverError",
+    origin: "errors.ts",
     methods: [
 
     ],
@@ -167,6 +172,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Claude",
     extends: null,
+    origin: "claude.ts",
     methods: [
       { name: "attach", params: [], returns: "Promise<boolean>", isAsync: true, doc: "Restore the running app's window WITHOUT going home (un-minimize + focus), so a resume can read whatever screen we are actually on. Returns false if the app isn't running or its UIA tree isn't available." },
       { name: "currentConversation", params: [], returns: "Promise<ConversationPage | null>", isAsync: true, doc: "Resume onto the conversation we are already on — TYPED. Returns the ConversationPage if the live screen IS a conversation (confirmed against the tree), else null so the caller navigates. This is the session: if the WRITE left us on the conversation (minimized), we stay there — no re-walking the nav tree, and no vague base Page to down-cast." },
@@ -196,6 +202,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "CodePart",
     extends: "Part",
+    origin: "components/part.ts",
     methods: [
       { name: "toMarkdown", params: [], returns: "string", isAsync: false, doc: "" },
     ],
@@ -208,6 +215,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Composer",
     extends: null,
+    origin: "components/composer.ts",
     methods: [
       { name: "attach", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "clear", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -223,6 +231,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ComposerController",
     extends: null,
+    origin: "controllers/composer-controller.ts",
     methods: [
       { name: "clickAttach", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "clickSend", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
@@ -242,6 +251,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Content",
     extends: null,
+    origin: "components/turn.ts",
     methods: [
       { name: "[Symbol.iterator]", params: [], returns: "Iterator<ContentBlock>", isAsync: false, doc: "" },
       { name: "toMarkdown", params: [], returns: "string", isAsync: false, doc: "" },
@@ -255,6 +265,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ConversationController",
     extends: null,
+    origin: "controllers/conversation-controller.ts",
     methods: [
       { name: "canSend", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "checkStreaming", params: [{ name: "baselineLength", type: "unknown", optional: true }], returns: "Promise<boolean>", isAsync: true, doc: "Real streamed TEXT is flowing: the Document has grown past `baselineLength` (new tokens arrived) AND generation is active (Stop button present). This is the honest \"is it streaming\" — distinct from hasStreamingIndicator(), the \"Claude is responding/thinking\" notification, which is a status element that can be present with zero output. Grounded: src/trees/conversation-streaming.txt (the body lives only in the Document's text, not in named elements)." },
@@ -298,6 +309,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ConversationItem",
     extends: null,
+    origin: "components/chat-list.ts",
     methods: [
       { name: "menu", params: [], returns: "Promise<ConversationMenu>", isAsync: true, doc: "Open the three-dot menu — returns the ConversationMenu." },
       { name: "open", params: [], returns: "Promise<ConversationPage>", isAsync: true, doc: "Open this conversation — navigates and returns the ConversationPage." },
@@ -309,6 +321,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ConversationMenu",
     extends: null,
+    origin: "components/chat-list.ts",
     methods: [
       { name: "addToProject", params: [], returns: "Promise<MoveConversationModal>", isAsync: true, doc: "Click Add to project — returns the Move chat modal (a real dialog with a project list and a search bar; NOT a unitary action). Read its projects() or search() to narrow, then select() one." },
       { name: "close", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -325,6 +338,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ConversationPage",
     extends: "Page",
+    origin: "pages/conversation.ts",
     methods: [
       { name: "canSend", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "hasResponseContent", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
@@ -347,6 +361,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Diagnostics",
     extends: null,
+    origin: "diagnostics.ts",
     methods: [
       { name: "captureOnFailure", params: [{ name: "description", type: "string", optional: false }], returns: "Promise<string>", isAsync: true, doc: "" },
       { name: "record", params: [{ name: "description", type: "string", optional: false }, { name: "success", type: "boolean", optional: false }, { name: "durationMs", type: "number", optional: false }, { name: "error", type: "string", optional: true }], returns: "void", isAsync: false, doc: "" },
@@ -365,6 +380,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "DriverError",
     extends: "Error",
+    origin: "errors.ts",
     methods: [
       { name: "toJSON", params: [], returns: "{ name: string; message: string; tree?: ReturnType<TreeSnapshot['toJSON']> }", isAsync: false, doc: "Serializable form — the error payload that travels back to a caller." },
       { name: "withTree", params: [{ name: "tree", type: "TreeSnapshot | undefined", optional: false }], returns: "this", isAsync: false, doc: "Attach the evidence and return this, so a raise site reads as one expression." },
@@ -377,6 +393,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "FileDialog",
     extends: null,
+    origin: "components/file-dialog.ts",
     methods: [
       { name: "cancel", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "detect", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -392,6 +409,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "FilesPane",
     extends: null,
+    origin: "components/files-pane.ts",
     methods: [
       { name: "addTextContent", params: [{ name: "title", type: "string", optional: false }, { name: "content", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "collapseMenu", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -411,6 +429,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Gateway",
     extends: null,
+    origin: "gateway.ts",
     methods: [
       { name: "act", params: [{ name: "action", type: "() => void | Promise<void>", optional: false }, { name: "verify", type: "() => boolean | Promise<boolean>", optional: false }, { name: "options", type: "GatewayOptions", optional: true }], returns: "Promise<void>", isAsync: true, doc: "Precheck → act → verify. **Precheck** (only when `options.target` is given): read the tree and confirm the element the actuator is about to touch is actually on screen. If it is not, throw before firing — the action did not happen, the error names what was expected, and it carries the tree that disagreed. This is not a new failure: `uia.invoke` already returns false for a missing element and `act` already discarded that boolean, so today a missing target becomes a 30-second timeout with an opaque message. The precheck makes an existing failure legible and fast. **Act** fires exactly once. **Verify** polls a controller sensor with tapering backoff — we retry the LOOK, never the action." },
       { name: "read", params: [{ name: "reader", type: "() => T | Promise<T>", optional: false }, { name: "isValid", type: "(result: T) => boolean", optional: true }, { name: "options", type: "GatewayOptions", optional: true }], returns: "Promise<T>", isAsync: true, doc: "" },
@@ -424,6 +443,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "HomePage",
     extends: "Page",
+    origin: "pages/home.ts",
     methods: [
 
     ],
@@ -436,6 +456,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Keyboard",
     extends: null,
+    origin: "keyboard.ts",
     methods: [
       { name: "clickAt", params: [{ name: "xFraction", type: "number", optional: false }, { name: "yFromBottom", type: "number", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "copyFileToClipboard", params: [{ name: "filePath", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -454,6 +475,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Lazy",
     extends: null,
+    origin: "lazy.ts",
     methods: [
       { name: "preview", params: [{ name: "value", type: "T", optional: false }], returns: "void", isAsync: false, doc: "" },
       { name: "reset", params: [], returns: "void", isAsync: false, doc: "" },
@@ -469,6 +491,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Message",
     extends: null,
+    origin: "components/composed-message.ts",
     methods: [
       { name: "attachFile", params: [{ name: "filePath", type: "string", optional: false }], returns: "Promise<MessageState>", isAsync: true, doc: "" },
       { name: "clear", params: [], returns: "Promise<MessageState>", isAsync: true, doc: "" },
@@ -488,6 +511,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "MessageController",
     extends: null,
+    origin: "controllers/composed-message-controller.ts",
     methods: [
       { name: "attachFile", params: [{ name: "filePath", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "clear", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -508,6 +532,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ModelPicker",
     extends: null,
+    origin: "components/model-picker.ts",
     methods: [
       { name: "currentModel", params: [], returns: "Promise<string>", isAsync: true, doc: "" },
       { name: "currentThinking", params: [], returns: "Promise<ThinkingMode>", isAsync: true, doc: "" },
@@ -525,6 +550,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ModelPickerController",
     extends: null,
+    origin: "controllers/model-picker-controller.ts",
     methods: [
       { name: "readModel", params: [], returns: "Promise<string>", isAsync: true, doc: "" },
       { name: "readThinking", params: [], returns: "Promise<ThinkingMode>", isAsync: true, doc: "" },
@@ -538,6 +564,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "MoveConversationModal",
     extends: null,
+    origin: "components/move-conversation-modal.ts",
     methods: [
       { name: "cancel", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "projects", params: [], returns: "Promise<ProjectChoice[]>", isAsync: true, doc: "The projects currently listed in the modal (filtered, if you searched)." },
@@ -550,6 +577,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Navigation",
     extends: null,
+    origin: "pages/navigation.ts",
     methods: [
       { name: "conversation", params: [], returns: "ConversationPage", isAsync: false, doc: "" },
       { name: "currentPage", params: [], returns: "Promise<Page>", isAsync: true, doc: "Reconstitute the page for the screen we are actually on, confirming via detectScreen(). Used by launch() and any navigation that can land on more than one screen." },
@@ -567,6 +595,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "NavigationError",
     extends: "DriverError",
+    origin: "errors.ts",
     methods: [
 
     ],
@@ -578,6 +607,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Navigator",
     extends: null,
+    origin: "navigator.ts",
     methods: [
       { name: "detectOverlays", params: [], returns: "Promise<{ dialog: boolean; menu: boolean }>", isAsync: true, doc: "Is a dialog or a menu sitting over the app? One tree read, both answers, and it also updates `hasOpenDialog` / `hasOpenMenu` for anyone reading the fields. Separate from `detectScreen` because knowing WHERE you are and knowing WHAT is covering it are different questions with very different costs." },
       { name: "detectScreen", params: [], returns: "Promise<Screen>", isAsync: true, doc: "Which screen are we on? **The URL is the whole answer** — `screenFromUrl` is the only thing that decides, and it needs nothing else. This used to walk the entire UIA tree on every call, to set `hasOpenDialog` and `hasOpenMenu`. Nothing in the driver reads those. Meanwhile this method is the verify predicate for nearly every navigation in the app, so a poll loop paid a full tree walk per iteration for two booleans no one consumed. Overlay detection now lives in [`detectOverlays`](#) and is asked for when wanted." },
@@ -599,6 +629,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Page",
     extends: null,
+    origin: "pages/page.ts",
     methods: [
       { name: "id", params: [], returns: "Promise<string>", isAsync: true, doc: "This page's stable id — its URL (claude.ai/chat/<id>, /project/<id>, /new, /projects). Every screen has one. The app has no URL-navigation, but the URL is a reliable IDENTITY: the session stores it and validates \"are we still on this page?\" against the live tree — it never assumes (the app may have restarted or been navigated away)." },
       { name: "sidebar", params: [], returns: "Sidebar", isAsync: false, doc: "The one panel on every page — the global conversation list, projects, search." },
@@ -610,6 +641,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Part",
     extends: null,
+    origin: "components/part.ts",
     methods: [
       { name: "toMarkdown", params: [], returns: "string", isAsync: false, doc: "" },
     ],
@@ -620,6 +652,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "PreconditionError",
     extends: "DriverError",
+    origin: "errors.ts",
     methods: [
 
     ],
@@ -631,6 +664,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ProjectChoice",
     extends: null,
+    origin: "components/move-conversation-modal.ts",
     methods: [
       { name: "select", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
     ],
@@ -641,6 +675,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ProjectController",
     extends: null,
+    origin: "controllers/project-controller.ts",
     methods: [
       { name: "downloadFile", params: [{ name: "name", type: "string", optional: false }, { name: "outputPath", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "editDescription", params: [{ name: "text", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -665,6 +700,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ProjectFile",
     extends: null,
+    origin: "components/project-file.ts",
     methods: [
       { name: "remove", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "view", params: [], returns: "Promise<string>", isAsync: true, doc: "" },
@@ -680,6 +716,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ProjectItem",
     extends: null,
+    origin: "pages/projects-grid.ts",
     methods: [
       { name: "open", params: [], returns: "Promise<ProjectPage>", isAsync: true, doc: "Open this project — navigates and returns the ProjectPage." },
     ],
@@ -691,6 +728,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ProjectNotFoundError",
     extends: "DriverError",
+    origin: "errors.ts",
     methods: [
 
     ],
@@ -701,6 +739,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ProjectPage",
     extends: "Page",
+    origin: "pages/project.ts",
     methods: [
       { name: "bind", params: [{ name: "nav", type: "Navigation", optional: false }], returns: "this", isAsync: false, doc: "" },
       { name: "conversations", params: [], returns: "Promise<ConversationItem[]>", isAsync: true, doc: "The project's conversations — unified ConversationItem (same as sidebar)." },
@@ -716,6 +755,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ProjectsPage",
     extends: "Page",
+    origin: "pages/projects-grid.ts",
     methods: [
       { name: "bind", params: [{ name: "nav", type: "Navigation", optional: false }], returns: "this", isAsync: false, doc: "" },
       { name: "projects", params: [], returns: "Promise<ProjectItem[]>", isAsync: true, doc: "The project list. Find by name: `.find(p => p.name === …)`." },
@@ -727,6 +767,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Prompt",
     extends: null,
+    origin: "components/turn.ts",
     methods: [
       { name: "edit", params: [{ name: "_newText", type: "string", optional: false }], returns: "Promise<void>", isAsync: true, doc: "" },
     ],
@@ -739,6 +780,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Response",
     extends: null,
+    origin: "components/turn.ts",
     methods: [
       { name: "copy", params: [], returns: "Promise<string>", isAsync: true, doc: "" },
       { name: "dislike", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -755,6 +797,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Session",
     extends: null,
+    origin: "session.ts",
     methods: [
       { name: "forget", params: [], returns: "void", isAsync: false, doc: "" },
       { name: "inSync", params: [], returns: "Promise<boolean>", isAsync: true, doc: "Are we in SYNC with the app — still on the page we remembered? Restores the window, reads the LIVE URL, and compares. False if nothing is remembered, the app isn't running, or it has moved. Never assumes." },
@@ -767,6 +810,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Shell",
     extends: null,
+    origin: "shell.ts",
     methods: [
       { name: "close", params: [], returns: "void", isAsync: false, doc: "" },
       { name: "run", params: [{ name: "script", type: "string", optional: false }, { name: "timeoutMs", type: "unknown", optional: true }], returns: "Promise<string>", isAsync: true, doc: "" },
@@ -778,6 +822,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Sidebar",
     extends: null,
+    origin: "components/sidebar.ts",
     methods: [
       { name: "bind", params: [{ name: "nav", type: "Navigation", optional: false }], returns: "void", isAsync: false, doc: "" },
       { name: "conversations", params: [], returns: "Promise<ConversationItem[]>", isAsync: true, doc: "The global conversation list. Find by name: `.find(c => c.name === …)`." },
@@ -794,6 +839,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "SidebarController",
     extends: null,
+    origin: "controllers/sidebar-controller.ts",
     methods: [
       { name: "checkVisible", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
       { name: "newChat", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -809,6 +855,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "TextContentDialog",
     extends: null,
+    origin: "components/text-content-dialog.ts",
     methods: [
       { name: "cancel", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "detect", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
@@ -828,6 +875,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "TextPart",
     extends: "Part",
+    origin: "components/part.ts",
     methods: [
       { name: "toMarkdown", params: [], returns: "string", isAsync: false, doc: "" },
     ],
@@ -839,6 +887,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "ThinkingPart",
     extends: "Part",
+    origin: "components/part.ts",
     methods: [
       { name: "toMarkdown", params: [], returns: "string", isAsync: false, doc: "" },
     ],
@@ -850,6 +899,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "TreeSnapshot",
     extends: null,
+    origin: "tree.ts",
     methods: [
       { name: "empty", params: [{ name: "capturedAt", type: "number", optional: true }], returns: "TreeSnapshot", isAsync: false, doc: "An empty tree — the app was unreadable. Distinguishable from a tree with no matches: `isEmpty` is true only here, and it means \"we could not see\", not \"it is not there\". Never let the two collapse; that is how a precondition turns into a lie." },
       { name: "filter", params: [{ name: "query", type: "TreeQuery", optional: false }], returns: "TreeElement[]", isAsync: false, doc: "Every element matching the query, in document order." },
@@ -871,6 +921,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Uia",
     extends: null,
+    origin: "uia.ts",
     methods: [
       { name: "allNames", params: [], returns: "Promise<string[]>", isAsync: true, doc: "" },
       { name: "clickByName", params: [{ name: "name", type: "string", optional: false }], returns: "Promise<boolean>", isAsync: true, doc: "" },
@@ -898,6 +949,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "Window",
     extends: null,
+    origin: "window.ts",
     methods: [
       { name: "close", params: [], returns: "Promise<void>", isAsync: true, doc: "" },
       { name: "find", params: [], returns: "Promise<boolean>", isAsync: true, doc: "" },
@@ -922,6 +974,7 @@ export const APP_SURFACE: readonly ClassSurface[] = [
   {
     name: "WrongScreenError",
     extends: "DriverError",
+    origin: "errors.ts",
     methods: [
 
     ],

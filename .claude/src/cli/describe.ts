@@ -20,7 +20,7 @@
 ///: [The Claude Nexus](../../library/projected-identity/71-sprint-99--the-claude-nexus.md) — describe() in the app, not the command.
 
 import type { ClassSurface, MethodSurface, Param } from './surface.ts';
-import { flatten, namesAPage, unwrapPromise } from './surface.ts';
+import { flatten, namesAPlace, unwrapPromise } from './surface.ts';
 
 export type CommandKind = 'exit' | 'look' | 'do';
 
@@ -58,15 +58,21 @@ const NOT_APP_SURFACE = new Set([
   'auto', 'gateway', 'diagnostics', 'navigator', 'nav', 'session', 'window',
 ]);
 
-function classify(m: MethodSurface): CommandKind {
+/** A door leads to a PLACE — a page, a menu, a modal, a panel. A look is
+ *  parameterless and hands back DATA. Everything else changes something.
+ *
+ *  The order matters: "leads somewhere" is decided first, because a method can be
+ *  both parameterless and a door, and calling it as though it were a reading is how
+ *  the CLI opened a menu behind the operator's back. */
+function classify(m: MethodSurface, surfaces: ReadonlyMap<string, ClassSurface>): CommandKind {
   const returns = unwrapPromise(m.returns);
-  if (namesAPage(m.returns)) return 'exit';
+  if (namesAPlace(m.returns, surfaces)) return 'exit';
   if (m.params.length === 0 && returns !== 'void') return 'look';
   return 'do';
 }
 
-function toCommand(m: MethodSurface, prefix = ''): Command {
-  const kind = classify(m);
+function toCommand(m: MethodSurface, surfaces: ReadonlyMap<string, ClassSurface>, prefix = ''): Command {
+  const kind = classify(m, surfaces);
   const returns = unwrapPromise(m.returns);
   return {
     path: prefix ? `${prefix}.${m.name}` : m.name,
@@ -94,7 +100,7 @@ export function describeScreen(
 
   const commands: Command[] = surface.methods
     .filter(m => !NOT_APP_SURFACE.has(m.name))
-    .map(m => toCommand(m));
+    .map(m => toCommand(m, surfaces));
 
   // Components: a property on the live instance whose class we also have a surface
   // for. Reading the instance (not the declaration) is what keeps this honest — an
@@ -111,7 +117,7 @@ export function describeScreen(
     components.push(prop.name);
     for (const m of flatten(componentClass, surfaces).methods) {
       if (NOT_APP_SURFACE.has(m.name)) continue;
-      commands.push(toCommand(m, prop.name));
+      commands.push(toCommand(m, surfaces, prop.name));
     }
   }
 

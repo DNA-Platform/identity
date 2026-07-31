@@ -63,6 +63,7 @@ function serialize(surfaces: Map<string, ClassSurface>): string {
     return `  {
     name: ${q(c.name)},
     extends: ${c.extends ? q(c.extends) : 'null'},
+    origin: ${q(c.origin)},
     methods: [
 ${m}
     ],

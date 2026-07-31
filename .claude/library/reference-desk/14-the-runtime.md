@@ -62,11 +62,28 @@ Every command is classified by what its signature promises. The classification i
 
 | Kind | Test | The law it comes from |
 |---|---|---|
-| **Exit** | returns a type whose name ends in `Page` | [Navigation returns the next page](10-architecture-patterns.md#navigation-returns-the-next-page) — a page-typed return *is* a door |
+| **Exit** | returns a single **place** | [Navigation returns the next page](10-architecture-patterns.md#navigation-returns-the-next-page) — a place-typed return *is* a door |
 | **Look** | parameterless, returns data | [Every action gets a confirmation read](05-coding-philosophy.md); reading is how you know where you are |
 | **Do** | everything else | [P2](13-the-redesign.md#p2--clicks-are-parameterless-only-typing-takes-a-parameter) — a click is parameterless, so a *parametered* Do is a typing action and is shown as one |
 
 A method's own doc comment becomes its description. The author's words are better than anything the CLI could generate, and they are already there.
+
+### A place is not only a page
+
+A **place** is somewhere you can stand and act from: a page, a menu, a modal, a panel, the sidebar. `isPlaceClass` decides it by asking where the app declared the class — `pages/` and `components/` are the View layer, the objects that model what is on screen ([layers](02-01-the-architecture--layers.md)). Everything else is infrastructure or a value.
+
+Two refusals make the rule work:
+
+- **A list is not a place.** `projects(): ProjectItem[]` hands you data *about* the screen; `menu(): ConversationMenu` puts you somewhere new. Same "returns a class we know about", opposite meaning, and the `[]` is the whole distinction.
+- **Having methods is not enough.** `TreeSnapshot` has seven and is a value. You read it; you do not stand in it. Where the app puts the class is the answer it already gave, and it is not a list anyone maintains.
+
+**This began as a safety bug, not a feature.** The rule used to be "returns a type ending in `Page`". `ConversationPage.menu()` takes no parameters and returns a value, so it classified as a **look** — and [the runtime](../../src/cli/runtime.ts) reads every parameterless look *before and after every action* to report what changed. Calling `menu()` opens the conversation menu. An unrelated action would have opened it twice, on the user's screen, silently. A look must be harmless; going through a door need not be. [`places.test.ts`](../../src/tests/places.test.ts) sweeps the entire generated surface for the next one.
+
+Generalising it turned out to be the **lift**. Once a menu is a room, `go menu` walks into it and `look` shows what is there — and the way out is the app's own `ConversationMenu.close()`, offered like any other action. No CLI special-casing, because the app already modelled it as an object with its own actions. The CLI did not need new features; it needed to stop assuming a place had to be a page.
+
+### `back` keeps no trail
+
+`back` re-binds to whatever screen the app says it is on. The CLI holds no history stack and no remembered route, because the app is the only thing that knows where you are — walking out of a menu you left open puts you back on the screen the app is actually showing, which is the truth rather than a reconstruction.
 
 ## The conventions are now contracts
 

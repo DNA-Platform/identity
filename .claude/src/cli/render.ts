@@ -16,9 +16,12 @@
 
 import type { Command, ScreenModel } from './describe.ts';
 
-/** `ConversationPage` → `Conversation`; `HomePage` → `Home`. The screen as a place. */
+/** `ConversationPage` → `Conversation`; `ConversationMenu` → `Conversation Menu`.
+ *  The class name as somewhere you are standing. A place is not only a page — a
+ *  menu, a modal and a panel are all rooms you can be in and act from. */
 export function placeName(screen: string): string {
-  return screen.replace(/Page$/, '') || screen;
+  const withoutPage = screen.replace(/Page$/, '') || screen;
+  return withoutPage.replace(/([a-z])([A-Z])/g, '$1 $2');
 }
 
 function signature(c: Command): string {
@@ -91,7 +94,7 @@ export function renderScreen(model: ScreenModel, observations: Record<string, st
     out.push('');
   }
 
-  out.push('Always available:  tree [filter]   copy <command>   look   where   help');
+  out.push('Always available:  tree [filter]   copy <command>   look   back   help');
 
   return out.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd();
 }

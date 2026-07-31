@@ -35,6 +35,7 @@ Drive Claude Desktop by moving through it. Every move prints the room.
   look | where            print the room you are in
   next                    just the command names — fast, for automation
   go <exit>               take an exit — prints the room you arrive in
+  back                    ask the app where it is and stand there
   do <command> [args…]    run a look (reads the screen) or an action (changes it)
   tree [filters]          the live UIA tree — what the app ACTUALLY shows
   copy <command> [args…]  run a look and put the result on your clipboard
@@ -42,9 +43,9 @@ Drive Claude Desktop by moving through it. Every move prints the room.
 
 Commands are read from the code, so the room always lists what the app can really
 do. Three kinds:
-  Exits  return a new screen        (go)
-  Look   read and tell you          (do / copy)
-  Do     change something           (do)
+  Exits  return a PLACE — a screen, a menu, a modal, a panel   (go)
+  Look   read and tell you; always harmless                    (do / copy)
+  Do     change something                                      (do)
 
 tree filters:  --type Button   --name "Send"   --contains inexplicable   --json
 tree --history  what the screen looked like on each earlier read this process
@@ -105,6 +106,15 @@ async function main(): Promise<number> {
       case 'look':
       case 'where': {
         console.log(renderScreen(runtime.model(), observationsFor(runtime.model())));
+        return 0;
+      }
+
+      case 'back': {
+        // Ask the APP where it is and stand there. Not a history stack, not a
+        // remembered trail — the CLI keeps no model of where you have been, because
+        // the app is the only thing that knows where you are. Walking out of a menu
+        // you left open puts you back on the screen the app is actually showing.
+        console.log(renderScreen(await runtime.bind()));
         return 0;
       }
 

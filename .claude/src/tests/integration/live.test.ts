@@ -10,7 +10,9 @@
 ///: the app cannot be read we stop and say so — we never race the user for their own
 ///: screen.
 ///:
-///: Run: CLAUDE_DESKTOP_LIVE=1 npm run test:integration
+///: One suite, one run. `npm test` runs these too — they skip themselves unless
+///: armed, so they can never quietly rot in a command nobody types.
+///: Run: npm run test:live
 ///:
 ///: [Coding Philosophy](../../../library/reference-desk/05-coding-philosophy.md) — always minimize; never force focus.
 ///: [The Runtime](../../../library/reference-desk/14-the-runtime.md) — the room and its readout.
@@ -31,8 +33,8 @@ const SRC = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 
 if (!LIVE) {
   console.log(
-    '\n  Integration tests SKIPPED — they drive the real app and take the screen.\n' +
-    '  To run:  CLAUDE_DESKTOP_LIVE=1 npm run test:integration\n',
+    '\n  Live tests SKIPPED — they drive the real app and take the screen.\n' +
+    '  To arm them:  npm run test:live   (same suite, same run, app tests on)\n',
   );
 }
 
