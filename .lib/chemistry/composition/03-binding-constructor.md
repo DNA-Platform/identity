@@ -14,20 +14,20 @@ A reader who didn't know to look for it would see a `$Cookbook` method on a `$Co
 
 The **binding constructor** is a method on a `$Chemical` subclass named after the class itself. Class `$Book` declares a method `$Book(...)`; class `$CardContainer` declares `$CardContainer(title, card)`. It runs at **render time**, after the class constructor has already produced an object, and receives the chemical's children — already bound and typed — as positional arguments.
 
-The framework discovers it by looking up `(chemical as any)[chemical[$type$].name]`. The lookup is performed by `$Synthesis` when a chemical's component is invoked with JSX children. The binding constructor's parameter list is parsed at runtime to determine arity, types, and spread positions; arguments are validated with `$check` and stored on the chemical.
+The framework discovers it by walking the class chain: `$Synthesis` tries `(chemical as any)[cls.name]` for the chemical's own class first, then each ancestor class in turn, and binds with the nearest method it finds (2026-07-31 — before this, only the leaf class's name was tried). A subclass whose writing lives in its `view()` therefore needs **no constructor at all** — the ancestor's binding constructor binds for it. The binding constructor's parameter list is parsed at runtime to determine arity, types, and spread positions; arguments are validated with `$check` and stored on the chemical.
 
 This is the single most surprising feature in `$Chemistry`. React conflates object creation and child-binding into one function call; `$Chemistry` separates them because they answer different questions. The class constructor answers *"what does this component own?"*; the binding constructor answers *"what children did this instance receive?"*.
 
 ## Rules
 
-- The binding constructor's name **must** equal the class name. The framework does no fall-back lookup; mis-naming the method silently disables it.
+- The binding constructor's name must equal **a class name on the chain** — the chemical's own, or an ancestor's. Mis-spelling a name still silently disables it (the chain walk only tries real class names).
 - The binding constructor is invoked **once per render** of the chemical's component, *after* `$apply` writes incoming React props to `$`-prefixed fields, *before* `view()` runs.
 - Parameters are extracted from the method's source via regex. Arrow-form constructors, default parameter values, and destructured parameters are not currently supported.
 - A spread parameter (`...items`) accumulates remaining children of the matching type into an array.
 - Each non-spread parameter accepts exactly one child; arity mismatches raise validation errors.
 - Every parameter type is checked at runtime with `$check`. The first parameter with a wrong type produces a formatted error and aborts the binding.
 - The binding constructor's `this` is the chemical instance being bound for this mount. Writes to `this.$x` are writes to the bound instance, not to the template.
-- The class hierarchy must be respected: if a parent class declares a binding constructor, every concrete subclass must also declare one with its own name. `assertViewConstructors` validates this at component-creation time.
+- **Never write a ceremonial binding constructor.** An empty `$X() {}` — or a body that only delegates upward — makes the synthesis parse parameters and build chemicals for inputs nobody binds: a performance hazard, and unnecessary since the chain resolves (Doug, 2026-07-31). `assertViewConstructors` no longer demands that ancestors declare constructors; it only rejects a class-named property that is not a function.
 - An `async` binding constructor is permitted; the framework awaits `$construction` before completing the bind.
 
 ## Cases
@@ -35,7 +35,7 @@ This is the single most surprising feature in `$Chemistry`. React conflates obje
 - A simple `$List(...items: $Item[])` accumulating spread children.
 - `$CardContainer($Title, $Card)` with two positional parameters of different types.
 - Mixing types via union: `$Toolbar(...controls: ($Button | $Spacer)[])`.
-- The class-hierarchy violation: a `$VeganRecipe` subclass of `$Recipe` without its own `$VeganRecipe(...)` method — the error.
+- A `$VeganRecipe` subclass of `$Recipe` without its own `$VeganRecipe(...)` method — binds through `$Recipe(...)`, by design.
 - The wrong-type case: `<Container><Recipe /></Container>` where `$Container` declares `$Container($Item)` — the formatted error message gallery.
 - An `async $AsyncList(...items: $Item[])` that awaits a fetch before binding.
 

@@ -113,7 +113,7 @@ export class ProjectController {
         }
 
         // Wait for native file dialog (#32770)
-        const dialogOpened = await this.waitForFileDialog();
+        const dialogOpened = await this.isFileDialogOpen();
         if (!dialogOpened) throw new Error('File dialog did not open');
 
         // Type path and submit
@@ -123,24 +123,25 @@ export class ProjectController {
         const afterCount = (await this.listFiles()).length;
         return afterCount > beforeCount;
       },
-      { description: `Upload ${localPath}`, timeoutMs: 60_000 },
+      { description: `Upload ${localPath}` },
     );
   }
 
-  private async waitForFileDialog(): Promise<boolean> {
-    for (let i = 0; i < 20; i++) {
-      await new Promise(r => setTimeout(r, 500));
-      const found = await this.auto.shell.run(`
-        Add-Type -AssemblyName UIAutomationClient
-        $uia = [System.Windows.Automation.AutomationElement]
-        $cond = New-Object System.Windows.Automation.PropertyCondition(
-          $uia::ClassNameProperty, '#32770')
-        $d = $uia::RootElement.FindFirst([System.Windows.Automation.TreeScope]::Children, $cond)
-        if ($d) { 'found' } else { 'none' }
-      `, 5000);
-      if (found?.trim() === 'found') return true;
-    }
-    return false;
+  /** Is the file dialog open? Settle once, look once. No loop: this used to poll
+   *  twenty times at 500ms, holding the screen for ten seconds to answer a question
+   *  one look can answer. If it is not open, that is the answer — read the tree and
+   *  fix the code that was supposed to open it. */
+  private async isFileDialogOpen(): Promise<boolean> {
+    await new Promise(r => setTimeout(r, 500));
+    const found = await this.auto.shell.run(`
+      Add-Type -AssemblyName UIAutomationClient
+      $uia = [System.Windows.Automation.AutomationElement]
+      $cond = New-Object System.Windows.Automation.PropertyCondition(
+        $uia::ClassNameProperty, '#32770')
+      $d = $uia::RootElement.FindFirst([System.Windows.Automation.TreeScope]::Children, $cond)
+      if ($d) { 'found' } else { 'none' }
+    `, 5000);
+    return found?.trim() === 'found';
   }
 
   private async typePathInDialog(filePath: string): Promise<void> {
@@ -229,51 +230,31 @@ export class ProjectController {
         return this.parseScopedConversations(text);
       },
       () => true,
-      { description: 'Read project conversations', timeoutMs: 10_000, pollIntervalMs: 1_000 },
+      { description: 'Read project conversations' },
     );
   }
 
+  /** Scroll to the end, expand the list once, read it.
+   *
+   *  **One pass.** This used to loop up to twenty times: scroll, click "Show more",
+   *  wait for growth, repeat — each iteration synthesising an END keypress and a
+   *  click into the app. That is a background process typing and clicking into
+   *  someone's window, over and over, for as long as it felt like it. Nothing
+   *  justifies that.
+   *
+   *  If one expansion does not reveal everything, the answer is a better read — not
+   *  more clicking. Read the tree, see how the list is actually paged, and change
+   *  this code. */
   async loadAllConversations(): Promise<{ title: string; lastMessage: string }[]> {
     this.auto.navigator.requireScreen('project');
 
-    let previousCount = 0;
-    let attempts = 0;
+    await this.auto.keyboard.sendKeys('{END}');
+    await new Promise(r => setTimeout(r, 1_000));
 
-    while (attempts < 20) {
-      const conversations = await this.readConversations();
-
-      if (conversations.length === previousCount && attempts > 0) {
-        // No new conversations loaded — we have them all
-        return conversations;
-      }
-
-      previousCount = conversations.length;
-
-      // Scroll down to bring "Show more" into the rendered DOM
-      await this.auto.keyboard.sendKeys('{END}');
-      await this.auto.gateway.waitFor(
-        () => Promise.resolve(true),
-        { timeoutMs: 1_000, pollIntervalMs: 1_000 },
-      );
-
-      // Click the LAST "Show more" — the one in the conversation list, not the description
-      const clicked = await this.auto.uia.invokeByNameLast('Show more');
-      if (!clicked) {
-        // No "Show more" button even after scrolling — we have them all
-        return conversations;
-      }
-
-      // Wait for the list to update
-      await this.auto.gateway.waitFor(
-        async () => {
-          const updated = await this.readConversations();
-          return updated.length > previousCount;
-        },
-        { timeoutMs: 5_000, pollIntervalMs: 500 },
-      );
-
-      attempts++;
-    }
+    // Click the LAST "Show more" — the one in the conversation list, not the
+    // description. If it is not there, the list is already whole.
+    await this.auto.uia.invokeByNameLast('Show more');
+    await new Promise(r => setTimeout(r, 1_000));
 
     return this.readConversations();
   }
@@ -306,7 +287,7 @@ export class ProjectController {
         const screen = await this.auto.navigator.detectScreen();
         return screen === 'conversation';
       },
-      { timeoutMs: 30_000, pollIntervalMs: 1_000 },
+      {},
     );
 
     if (!arrived) {

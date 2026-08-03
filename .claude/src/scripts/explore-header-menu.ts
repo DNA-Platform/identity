@@ -11,7 +11,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   const title = 'Migrating Claude Chat account history and relationships';
 
@@ -29,7 +29,7 @@ async function main() {
 
   if (clicked) {
     await new Promise(r => setTimeout(r, 1500));
-    app.window.screenshot(resolve(DEBUG, 'explore-05-header-menu.png'));
+    await app.window.screenshot(resolve(DEBUG, 'explore-05-header-menu.png'));
 
     // Get menu items
     const names = await app.auto.uia.allNames();
@@ -62,7 +62,7 @@ async function main() {
 
     if (titleClicked) {
       await new Promise(r => setTimeout(r, 1000));
-      app.window.screenshot(resolve(DEBUG, 'explore-06-rename-mode.png'));
+      await app.window.screenshot(resolve(DEBUG, 'explore-06-rename-mode.png'));
 
       const names = await app.auto.uia.allNames();
       const editElements = names.filter(name =>

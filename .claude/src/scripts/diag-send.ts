@@ -46,5 +46,5 @@ async function main(): Promise<void> {
 }
 
 main()
-  .catch(e => console.error('[diag] FAILED:', (e as Error).message))
-  .finally(() => { app.window.minimize(); console.log('[diag] minimized.'); });
+  .catch(async e => console.error('[diag] FAILED:', (e as Error).message))
+  .finally(async () => { await app.window.minimize(); console.log('[diag] minimized.'); });

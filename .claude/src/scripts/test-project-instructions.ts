@@ -4,7 +4,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   // The Edit Instructions modal should still be open
@@ -34,7 +34,7 @@ async function main() {
     console.log(' ', name);
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\nDone. First project created with instructions!');
 }
 

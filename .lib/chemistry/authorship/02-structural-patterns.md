@@ -47,9 +47,13 @@ Every `$Chemical` subclass has two constructors:
 1. **Class constructor** (`constructor()`) — object creation time. What the component *always* has.
 2. **Binding constructor** (`$ClassName(...)`) — render time. What *specific children* were given.
 
-The binding constructor is a method named after the class. `$BondOrchestrator` discovers it at runtime via `(chemical as any)[className]`. This convention requires no registration, no decorators, and no configuration — but it does mean a typo in the method name silently omits the binding constructor.
+The binding constructor is a method named after the class — or after any ancestor class: discovery walks the class chain and binds with the nearest match (2026-07-31), so view-authored subclasses declare none. No registration, no decorators, no configuration — but a typo in the method name still silently omits it.
 
-`assertViewConstructors` validates the prototype chain to ensure that if a child class has a binding constructor, its parent classes do too. This catches hierarchy violations but not missing-method typos.
+`assertViewConstructors` now only rejects a class-named property that is not a function. Never write a ceremonial (empty or delegate-only) binding constructor to satisfy the chain — the chain satisfies itself, and an empty one makes the synthesis build chemicals for inputs nobody binds.
+
+## Types express expectations
+
+The type system always states what is expected, never what might transiently be missing (Doug, 2026-08-03). At the end of a bond constructor — or wherever the design expects something to have to be a certain way — the member is typed as **present**: no `| undefined`, no `?`, on anything the bond assigns or a chain resolves. `chapter.book` is the canonical form: `get book(): $Book { return this.parent as $Book; }` — a retyping read, no runtime check, because a chapter in use stands in a book and the type says so. Chemicals need no structure outside of being rendered — existence comes from the bond and the render, and the types state that expectation rather than hedging it. `| undefined` is reserved for **honest absence**: a query that may truly have no answer (a document with no footer), never a dependency the design requires. Where a required chain can be broken by misuse, the getter **throws** with a spoken error; `valid()` is the no-throw guard.
 
 ## Self-reference and circularity
 
@@ -93,6 +97,14 @@ class $Book extends $Chemical {
 In JSX: `<Book><Chapter /><Chapter /></Book>`. The framework's `$BondOrchestrationContext` parses the JSX children tree and matches them against the binding constructor's parameter types. `$check()` validates types at bind time.
 
 This means the component author *declares* what children it accepts, and the framework *enforces* it. No `React.Children.toArray()`, no type-guessing, no `as` casts.
+
+## The family base class
+
+When a family of chemicals shares one implementation, the shared members live on a **concrete base class** between the framework root and the family — not on an interface each class re-implements, and not in a static helper class. The `.public` writing family is canonical: `$Referent → $Writing → {$Character, $Word, $Sentence, $Paragraph, $Section, $Title, $Subtitle, $Tagline}`. The base carries `block`, `copy`, `index`, `parenthetical`, the block bond (the chain resolution binds it for every subclass that declares none), and its `view()` renders the block — **`view()` is the only render seam; never invent another** (no `display`-style intermediaries; an override that wants the base rendering calls `super.view()`). The base declares the family default (`inline = true`); the kinds that break the flow unset it. A leaf shrinks to its `valid()` law and its parse — `$Title` is ten lines.
+
+**Inheritance is never forced to satisfy an interface.** A class that shares a family's *shape* but not its *substance* implements the interface separately — `$Book`/`$Chapter` implement `$Composition` directly on `$Referent`, because a book carries no block and should not inherit one. Keep such interfaces self-contained (structural constraints inline, no `extends` against a class).
+
+**Statics are utilities, never members** — they satisfy no semantics, implement no interface, are not inheritable — so no domain class carries one, and a static "extensions" class serving a single family is a member in a utility's coat: dissolve it into the base. Genuine many-shape utilities live in `tools/` (`text()`).
 
 ## Reactive access via $use
 

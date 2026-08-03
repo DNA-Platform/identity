@@ -1,7 +1,7 @@
 # Ways of Reading
 
 - **author:** [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md)
-- **coauthor:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/.cover.md)
+- **coauthor:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md)
 
 ---
 
@@ -31,7 +31,7 @@ Each of these is a **view of books, subjects, and libraries** — not a new data
 
 Every view above decomposes into three $Chemistry moves, all three already shipped:
 
-1. **A lens** — one live object rendered a way (`Perspective`; the Sheet's four skins).
+1. **A lens** — one live object rendered a way (`Perspective`; the Sheet's four skins), turning on two axes: *horizontal* sibling skins revealed onto the object, and *vertical* `look` — the same object rendered at an altitude of its own composition (cover ↔ chapter ↔ paragraph), the synopsis gradient rather than a separate arrangement.
 2. **A reading rendered** — a derived projection drawn as its own surface (the anatomy lens; the self-composing index to come).
 3. **An arrangement** — a chemical composing *other objects'* views into a screen (the Lab; master/detail = a catalogue-reading beside a detail-lens with selection as reactive state).
 
@@ -51,7 +51,7 @@ Terms deliberately unsettled, per Doug — but candidates should come from this 
 
 ## Two laws for every view
 
-- **Identity through change** (Gabby): the object must stay recognizable across every view — the canonical is the visual anchor: the same cover identifies the book on the shelf, heads the reading view, titles the index entry, labels the graph node. The reader never asks "am I still looking at the same thing?"
+- **Identity through change** (Gabby): the object must stay recognizable across every view — the canonical is the visual anchor: the same cover identifies the book on the shelf, heads the reading view, titles the index entry, labels the graph node. The reader never asks "am I still looking at the same thing?" And identity must survive *movement*, not only the still frame: when a reference carries the reader between views, the way back stays visible — the return mark is identity-through-change in motion, so following a pointing never strands the reader who took it. The catalogue sprint proved this at the smallest scale — a citation lights its note and the note lights back, a round trip walkable in both directions.
 - **Views multiply claims** (Queenie): every new lens is a new place for a displayed contract nobody can check. A view earns trust when it surfaces something the reader can verify against another view of the same object — switching lenses is itself a check. When a view is added, name its corroborating sibling. The apparatus stratum is checkable by construction: statistics, histories, and attributions are derived readings.
 
 ## Plan impact

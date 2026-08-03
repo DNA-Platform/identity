@@ -6,3 +6,15 @@ Thumbs.db
 # Platform files compiled from library content — regenerate with compilers
 # .claude/agents/*.md
 # .claude/rules/*.md
+
+# NO .lib/ RULE ON THIS BRANCH — and that is deliberate.
+#
+# `.lib/` is blocked on dna-platform, because the organization identity is
+# .claude/, CLAUDE.md and README.md, and a branch-library mirror has no business
+# there. On a PROJECT branch the opposite is true: `.lib/` IS the project's branch
+# library, mirrored from library/*/.lib in the project repo, and it must be tracked.
+#
+# The rule arrived here by a downstream merge from dna-platform and silently made
+# every file under .lib/ uncommittable — which is exactly what stopped this team
+# from committing. If you merge dna-platform again and this rule comes back, take
+# THIS side.

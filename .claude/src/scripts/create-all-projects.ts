@@ -56,7 +56,7 @@ async function createProject(name: string): Promise<boolean> {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   let success = 0;
@@ -77,7 +77,7 @@ async function main() {
   console.log(`\nDone. ${success} created, ${fail} failed.`);
   console.log(`Total projects on account: ${success + 2} (+ Chemistry + Seren)`);
 
-  app.window.minimize();
+  await app.window.minimize();
 }
 
 main().catch(console.error);

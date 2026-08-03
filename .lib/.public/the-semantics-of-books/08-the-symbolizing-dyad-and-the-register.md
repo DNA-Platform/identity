@@ -53,7 +53,16 @@ Every class the derivation has named, kept here so none is lost and so the map s
 | `$Biography` | → `$Book`; subject is a subjective subject | to build | [07](07-the-subjective-subject-and-the-library.md) |
 | `$Autobiography` | → `$Biography`; author-ref equals subject-ref; auto-categorical | to build | [07](07-the-subjective-subject-and-the-library.md) |
 | `$SubjectiveSubject` | → `$Subject`; canonical is a `$Biography` | to build | [07](07-the-subjective-subject-and-the-library.md) |
-| `$Catalogue` | the referencing operation — where references are organized. The native word for the "collect by reference" side, as against `$Composition`'s "contain." | to build | this chapter, [09](09-composition-and-collection.md) |
+| `$Catalogue` | the referencing operation — where references are organized. The native word for the "collect by reference" side, as against `$Composition`'s "contain." | **built (interface)** | this chapter, [09](09-composition-and-collection.md) |
+| `$Document` | concrete; the general unit above sections — sections, summary, title, the apparatus; `$Chapter` → `$Document` (the book's kind) | **built** | this chapter |
+| `$Footer` | → `$Section`; the filing section — keyed entries, numbered at the bond, its `$Legend` implicit | **built** | this chapter |
+| `$Footnote` | → `$Sentence`; a keyed note — the key stands before the colon | **built** | this chapter |
+| `$Denote` | → `$Writing`; the inline command (*Denote seam*) — its key is its copy; reads its note through document → footer → legend | **built** | this chapter |
+| `$Bibliography` | → `$Footer`; the filing section whose entries are citations | **built** | this chapter |
+| `$Citation` | → `$Footnote`; a keyed note that stands for a spot — carries the path reference for it, resolved at its own document; another document's address declines locally | **built** | this chapter |
+| `$Cite` | → `$Denote`; the inline command that reaches the bibliography instead — the triad retypes, get-only | **built** | this chapter |
+| `$Legend` | → `$Paragraph`, parenthetical; the filing section's own table of keys — implicit, kept once asked | **built** | this chapter |
+| `$Key` | one hop of lookup as a name — a key stands for its entry | **built** | this chapter |
 | `$Library` | → `$SubjectiveSubject`; canonical is an `$Autobiography`; self-cataloguing summit (likely a singleton [`$Atom`](../../../chemistry/.lib/particle/.cover.md)) | to build | [07](07-the-subjective-subject-and-the-library.md) |
 
 **Dropped, by decision:**
@@ -61,7 +70,7 @@ Every class the derivation has named, kept here so none is lost and so the map s
 - **`$Symbol`** — Symbol and Literal are the *essence* of a catalogue (the pointing thing and the thing pointed at), but the pointing class we build is `$Reference`; there is no separate `$Symbol`. (Doug: "I don't think we need symbol.")
 - **`$Name`** — a book's name is its *title*; "name" is not a word of the writing domain, so the class is `$Title`, and `$Reference` composes no `$Name`.
 - **`$Container`** — fails the vocabulary test outright (it functions unchanged in any domain), and its supposed role over composition/collection was never stated. `$Composition` (contain) and `$Catalogue` (reference) stand on their own.
-- **`$Document`** — removed as unneeded in Sprint 44; the composition ladder tops out at `$Section` (block-level). The earlier "book of chapters, chapter of sections, section of paragraphs" flow survives, but there is no separate document class above the section.
+- **`$Document`** — removed as unneeded in Sprint 44 (the ladder topped out at `$Section`), and **reinstated by Doug at Sprint 47's close (2026-08-03)** with better cause: this document *earns* existence — a concrete class above the section carrying the reference apparatus (sections, summary, title, and the footer/bibliography with their legends), of which a chapter is the book's kind. The Sprint-44 version was a bare ladder rung; this one is the general unit an article will also be. Rows below.
 
 The two generative operations behind the whole table are **validation** (specialize a type with a constraint — `extends` + `$check`) and **multiplication** (compose many into the level above — `$Composition<T>`, flowing down). See [Inheritance and Composition](03-inheritance-and-composition.md).
 

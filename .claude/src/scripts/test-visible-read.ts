@@ -8,14 +8,14 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   console.log('App maximized.');
 
   // Wait for the UIA tree to be ready
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 5_000 });
+  });
 
   // Detect screen
   const screen = await app.navigator.detectScreen();
@@ -68,11 +68,11 @@ async function main() {
 
   // Reset and minimize
   await app.resetToHome();
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\nMinimized. Done.');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('FAILED:', e.message);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

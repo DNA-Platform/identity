@@ -44,4 +44,4 @@ for (const c of convs) {
   console.log(`  "${c.title}" — ${c.lastMessage}`);
 }
 
-claude.window.minimize();
+await claude.window.minimize();

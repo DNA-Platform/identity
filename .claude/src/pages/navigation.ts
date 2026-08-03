@@ -105,10 +105,10 @@ export class Navigation {
   /** Wait for the conversation screen, then reconstitute the ConversationPage.
    *  This is the home→conversation transition (decision #4) — no macro, just
    *  navigate-and-confirm. */
-  async waitForConversation(timeoutMs = 30_000): Promise<ConversationPage> {
-    const arrived = await this.gateway.waitFor(
+  async waitForConversation(settleMs = 2_000): Promise<ConversationPage> {
+    const arrived = await this.gateway.check(
       async () => (await this.auto.navigator.detectScreen()) === 'conversation',
-      { timeoutMs },
+      { settleMs },
     );
     if (!arrived) throw new Error('Did not land on a conversation page');
     return this.conversation();

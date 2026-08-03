@@ -7,8 +7,8 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
-  app.window.requireForeground();
+  await app.window.maximize();
+  await app.window.requireForeground();
 
   const screen = await app.detectScreen();
   console.log(`[cleanup] Screen: ${screen}`);
@@ -23,12 +23,12 @@ async function main() {
   }
 
   await new Promise(r => setTimeout(r, 1000));
-  app.window.minimize();
+  await app.window.minimize();
   console.log('[cleanup] Done. App minimized.');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[cleanup] Failed: ${e.message}`);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
   process.exit(1);
 });

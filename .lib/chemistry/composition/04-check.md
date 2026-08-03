@@ -14,6 +14,13 @@
 - *(TBD — accepts union types.)*
 - *(TBD — throws a formatted error on mismatch.)*
 
+## Instance validity (2026-07-31)
+
+- `valid()` is the accruing instance specification: born permissive on the consumer's base class, extended by overriding and calling `super.valid()`. **The valid method is the specification** — specializations differ chiefly by it.
+- At the end of every binding constructor the instance must be valid: `bond()` runs `assertValid` after the constructor and `$paramValidation.evaluate()`; any chemical defining `valid()` is held to it.
+- **Templates are not judged** — they are blank molds, not bound instances; `assertValid` skips them.
+- A failed binding renders as a viewable exception: the caught `Error` is stored (`$devError$`/`$devException$`) and the render path asks `$exceptions.render(error).view()` — `$Exception extends $Particle`, swappable, panel by default. Modes: `render` (dev default), `silent` (production default — caught, logged, renders nothing), `throw`.
+
 ## Cases
 
 - Accepts subclass.

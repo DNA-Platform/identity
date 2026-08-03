@@ -18,7 +18,7 @@ async function screenshotAndTree(label: string) {
   const slug = label.replace(/[^a-z0-9]/gi, '-');
 
   const ssPath = resolve(DEBUG_DIR, `${ts}-${slug}.png`);
-  app.window.screenshot(ssPath);
+  await app.window.screenshot(ssPath);
   console.log(`  Screenshot: ${ssPath}`);
 
   const names = await app.auto.uia.allNames();
@@ -57,7 +57,7 @@ async function navigateToConversation(index = 0) {
     const text = await app.auto.uia.readText();
     if (!text) return false;
     return text.includes('You said:') || text.includes('Claude responded:') || text.includes('Write your prompt');
-  }, { timeoutMs: 30_000 });
+  });
   console.log(`  Content loaded: ${loaded}`);
 }
 
@@ -212,20 +212,20 @@ async function main() {
   console.log('================================');
 
   // Close any existing instance and launch fresh
-  if (app.window.find()) {
+  if (await app.window.find()) {
     console.log('Closing existing Claude instance...');
-    app.window.close();
+    await app.window.close();
     await new Promise(r => setTimeout(r, 3_000));
   }
 
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   // Wait for UIA URL to be readable
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 10_000 });
+  });
 
   // Start from home
   console.log('Navigating to home for clean start...');
@@ -240,15 +240,15 @@ async function main() {
 
   // Reset and minimize
   await app.navigator.resetToHome();
-  app.window.minimize();
+  await app.window.minimize();
 
   console.log('\n================================');
   console.log('All conversation read tests passed.');
   console.log(`Debug files in: ${DEBUG_DIR}`);
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('Test suite failed:', e.message);
-  app.window.minimize();
+  await app.window.minimize();
   process.exit(1);
 });

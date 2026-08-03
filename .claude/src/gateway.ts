@@ -1,14 +1,27 @@
-///: Gateway — act once, look repeatedly.
-///: The discipline layer for all UIA interaction. Fire an action once, then poll
-///: a verify predicate until the app confirms it worked. The verify must be a
-///: quick, harmless [controller sensor](../library/reference-desk/02-02-the-architecture--gateway.md#sensors-and-actuators) — never an action.
+///: Gateway — act once, look once, and if it did not work, STAND DOWN.
 ///:
-///: Three methods: act (fire + verify), waitFor (poll a predicate), read (poll
-///: until valid result). All use tapering backoff — 50ms doubling to 1000ms.
+///: **There are no loops in this file.** Not a retry, not a poll, not a backoff.
+///: This is Doug's machine, and a driver that loops is a driver holding a computer
+///: hostage while its owner tries to type. The rule, in his words: *if it fails, you
+///: get the UIA tree, see what went wrong, edit the code and start again. You do not
+///: loop.*
+///:
+///: So every failure produces the same three things and then gets out of the way:
+///:   1. **the tree** — what the app actually showed at the moment it failed,
+///:      attached to the error and written to `debug/`;
+///:   2. **a minimize** — the screen goes back to its owner immediately;
+///:   3. **a throw** — the caller stops. Nothing is attempted a second time.
+///:
+///: That is not a weaker guarantee than polling. It is a stronger one: a poll that
+///: eventually succeeds hides the fact that the first look was wrong, and a poll
+///: that eventually fails has spent thirty seconds of someone's screen to tell you
+///: nothing you could not learn from one tree read. The tree IS the diagnosis.
+///:
+///: Three methods: act (precheck, fire once, settle, look once), check (settle, look
+///: once), read (read once, validate).
 ///:
 ///: [The Gateway Pattern](../library/reference-desk/02-02-the-architecture--gateway.md) — full specification.
 ///: [Coding Philosophy](../library/reference-desk/05-coding-philosophy.md) — the elevator metaphor: open your eyes and look.
-///: [Architecture Patterns](../library/reference-desk/10-architecture-patterns.md) — how View objects use this.
 
 import type { Diagnostics } from './diagnostics.ts';
 import type { Window } from './window.ts';
@@ -16,25 +29,27 @@ import type { TreeQuery, TreeSnapshot } from './tree.ts';
 import { DriverError, PreconditionError } from './errors.ts';
 
 export interface GatewayOptions {
-  timeoutMs?: number;
-  pollIntervalMs?: number;
-  retries?: number;
-  screenshotOnFailure?: string;
+  /** How long to let the app settle before looking. **One wait, then one look** —
+   *  this is not a timeout on a poll, because there is no poll. */
+  settleMs?: number;
   description?: string;
+  screenshotOnFailure?: string;
   /** The element this action is about to touch — the actuator's assumption, made
-   *  explicit. When given, `act` reads the tree BEFORE firing and refuses if the
-   *  element is not there, so a "not found" fails immediately and legibly instead
-   *  of firing into nothing and timing out on a verify that could never pass.
-   *  Optional while call sites are converted; a call site without one still works
-   *  exactly as before. */
+   *  explicit. `act` reads the tree BEFORE firing and refuses if the element is not
+   *  there, so a "not found" fails immediately and legibly instead of firing into
+   *  nothing. */
   target?: TreeQuery;
+  /** "I already looked, and this is what I saw." A caller that had to read the tree
+   *  to decide WHAT to do hands that same reading over instead of making the gateway
+   *  walk the tree again milliseconds later.
+   *
+   *  A handoff, not a cache: the caller is stating a fact it observed immediately
+   *  before asking to act. It is not a bypass — a target absent from the handed-over
+   *  tree is still refused. */
+  snapshot?: TreeSnapshot;
 }
 
-const DEFAULTS: Required<Omit<GatewayOptions, 'screenshotOnFailure' | 'description' | 'target'>> = {
-  timeoutMs: 30_000,
-  pollIntervalMs: 500,
-  retries: 3,
-};
+const DEFAULT_SETTLE_MS = 1_000;
 
 export class Gateway {
   constructor(
@@ -42,122 +57,132 @@ export class Gateway {
     private readonly window?: Window,
   ) {}
 
-  private requireForeground(): void {
-    if (this.window) {
-      this.window.requireForeground();
-    }
+  private async requireForeground(): Promise<void> {
+    if (this.window) await this.window.requireForeground();
   }
 
-  /** The screen right now. Cheap enough to take per action; one walk answers many
-   *  questions. Never throws — an unreadable app yields an empty snapshot. */
+  /** The screen right now. One walk answers many questions, and it is the cheapest
+   *  thing in the driver (~80ms). Never throws — an unreadable app yields an empty
+   *  snapshot, which means "we could not see", not "it is not there". */
   async tree(): Promise<TreeSnapshot> {
     return this.diagnostics.snapshot();
   }
 
-  /** Precheck → act → verify.
+  /** Precheck → act once → settle → look once.
    *
-   *  **Precheck** (only when `options.target` is given): read the tree and confirm
-   *  the element the actuator is about to touch is actually on screen. If it is not,
-   *  throw before firing — the action did not happen, the error names what was
-   *  expected, and it carries the tree that disagreed. This is not a new failure:
-   *  `uia.invoke` already returns false for a missing element and `act` already
-   *  discarded that boolean, so today a missing target becomes a 30-second timeout
-   *  with an opaque message. The precheck makes an existing failure legible and fast.
+   *  **Precheck** (when `options.target` is given): confirm the element the actuator
+   *  is about to touch is on screen. If it is not, throw BEFORE firing — the action
+   *  did not happen, the error names what was expected, and it carries the tree that
+   *  disagreed.
    *
-   *  **Act** fires exactly once. **Verify** polls a controller sensor with tapering
-   *  backoff — we retry the LOOK, never the action. */
+   *  **Act** fires exactly once. **Look** happens exactly once, after a single
+   *  settle. If the look says no, we do not look again: we hand back the tree and
+   *  minimize. Read the tree, fix the code, run it again. */
   async act(
     action: () => void | Promise<void>,
     verify: () => boolean | Promise<boolean>,
     options: GatewayOptions = {},
   ): Promise<void> {
-    const opts = { ...DEFAULTS, ...options };
-    const desc = opts.description ?? 'Action';
+    const desc = options.description ?? 'Action';
+    const settleMs = options.settleMs ?? DEFAULT_SETTLE_MS;
     const startTime = Date.now();
 
-    this.requireForeground();
+    await this.requireForeground();
 
     // --- Precheck: is the assumption true before we act on it? ---
-    let snapshot: TreeSnapshot | undefined;
     if (options.target) {
-      snapshot = await this.tree();
+      const snapshot = options.snapshot ?? await this.tree();
       // An EMPTY tree means we could not see, not that the target is absent. Do not
-      // refuse on blindness — fall through and let the verify be the judge.
+      // refuse on blindness — fall through and let the look be the judge.
       if (!snapshot.isEmpty && !snapshot.has(options.target)) {
         this.diagnostics.record(desc, false, Date.now() - startTime, 'precondition failed');
-        await this.diagnostics.captureOnFailure(desc);
+        await this.standDown(desc);
         throw new PreconditionError(desc, options.target).withTree(snapshot);
       }
     }
 
-    // Fire the action ONCE
+    // Fire the action ONCE.
     await action();
 
-    // Verify with tapering poll — retry the LOOK, not the action
-    const verified = await this.waitFor(verify, opts);
+    // Let the app settle, once, then look, once.
+    await sleep(settleMs);
+    const ok = await verify();
 
     const duration = Date.now() - startTime;
-    if (verified) {
+    if (ok) {
       this.diagnostics.record(desc, true, duration);
-    } else {
-      this.diagnostics.record(desc, false, duration, 'verify failed');
-      await this.diagnostics.captureOnFailure(desc);
-      throw new DriverError(
-        `${desc} — action fired but verify failed after ${opts.timeoutMs}ms`,
-      ).withTree(await this.tree());
+      return;
     }
+
+    this.diagnostics.record(desc, false, duration, 'verify failed');
+    const tree = await this.tree();
+    await this.standDown(desc);
+    throw new DriverError(
+      `${desc} — the action fired, and ${settleMs}ms later the app did not show what was expected.\n` +
+      'It was NOT tried again. The tree below is what the app actually showed; ' +
+      'read it, change the code, and run it once more.',
+    ).withTree(tree);
   }
 
+  /** Settle once, then look once. Returns what it saw — no loop, no deadline.
+   *
+   *  Callers that used this to wait for something slow now get a straight answer
+   *  about the moment they asked. If the answer is wrong, the tree says why. */
+  async check(
+    predicate: () => boolean | Promise<boolean>,
+    options: Pick<GatewayOptions, 'settleMs' | 'description'> = {},
+  ): Promise<boolean> {
+    await this.requireForeground();
+    await sleep(options.settleMs ?? DEFAULT_SETTLE_MS);
+    return predicate();
+  }
+
+  /** The old name, kept so call sites read the same. It does NOT wait for anything
+   *  repeatedly — it settles once and looks once, exactly like `check`. */
   async waitFor(
     predicate: () => boolean | Promise<boolean>,
-    options: Pick<GatewayOptions, 'timeoutMs' | 'pollIntervalMs' | 'description'> = {},
+    options: Pick<GatewayOptions, 'settleMs' | 'description'> = {},
   ): Promise<boolean> {
-    this.requireForeground();
-    const timeoutMs = options.timeoutMs ?? DEFAULTS.timeoutMs;
-    const deadline = Date.now() + timeoutMs;
-
-    // Tapering poll: start fast (50ms), double each time, cap at 1000ms
-    let interval = 50;
-    while (Date.now() < deadline) {
-      if (await predicate()) return true;
-      await this.sleep(Math.min(interval, 1000));
-      interval = Math.min(interval * 2, 1000);
-    }
-
-    return false;
+    return this.check(predicate, options);
   }
 
+  /** Read once. If what came back is not valid, hand over the tree and stand down —
+   *  do not read again hoping for a different answer. */
   async read<T>(
     reader: () => T | Promise<T>,
     isValid: (result: T) => boolean = () => true,
     options: GatewayOptions = {},
   ): Promise<T> {
-    this.requireForeground();
-    const opts = { ...DEFAULTS, ...options };
-    const desc = opts.description ?? 'Read';
-    let lastResult: T | undefined;
+    await this.requireForeground();
+    const desc = options.description ?? 'Read';
     const startTime = Date.now();
 
-    const ready = await this.waitFor(async () => {
-      lastResult = await reader();
-      return isValid(lastResult);
-    }, opts);
-
-    if (!ready) {
-      const duration = Date.now() - startTime;
-      this.diagnostics.record(desc, false, duration, 'did not produce valid result');
-      await this.diagnostics.captureOnFailure(desc);
-
-      throw new DriverError(
-        `${desc} did not produce valid result within ${opts.timeoutMs}ms`,
-      ).withTree(await this.tree());
+    const result = await reader();
+    if (isValid(result)) {
+      this.diagnostics.record(desc, true, Date.now() - startTime);
+      return result;
     }
 
-    this.diagnostics.record(desc, true, Date.now() - startTime);
-    return lastResult as T;
+    this.diagnostics.record(desc, false, Date.now() - startTime, 'invalid result');
+    const tree = await this.tree();
+    await this.standDown(desc);
+    throw new DriverError(
+      `${desc} — read the screen once and what came back was not usable. It was NOT ` +
+      're-read. The tree below is what the app actually showed.',
+    ).withTree(tree);
   }
 
-  private sleep(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  /** Capture the evidence, then give the computer back.
+   *
+   *  Minimizing on failure is deliberate and is the ONLY recovery this driver has.
+   *  A failed automation that keeps the window forward is an automation still
+   *  standing between someone and their own keyboard. */
+  private async standDown(description: string): Promise<void> {
+    try { await this.diagnostics.captureOnFailure(description); } catch { /* evidence is best effort */ }
+    try { await this.window?.stepAside(); } catch { /* nothing left to give back */ }
   }
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

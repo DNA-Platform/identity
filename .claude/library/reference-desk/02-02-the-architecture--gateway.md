@@ -20,9 +20,27 @@ The View decides WHAT to do. The gateway ensures it's SAFE and VERIFIED. The con
 
 ## Foreground enforcement
 
-Every gateway method checks `isForeground()` before doing anything. If the app is not visible, it throws: "App is not visible. Call app.window.maximize() first."
+**One check per operation.** `act`, `read` and a bare `waitFor` each require the foreground once, at the top. If the app is not visible and cannot be brought forward, they throw rather than acting on a screen nobody can see.
 
-This is the ONLY place foreground is checked. Not in UIA. Not in controllers. Not duplicated anywhere. One check. One place. Standard error.
+This is the ONLY place foreground is checked. Not in UIA. Not in controllers. Not duplicated anywhere.
+
+It used to be duplicated inside the gateway itself, and it was expensive. `act` required the foreground, then called `waitFor`, which required it again — and each check was two fresh PowerShell processes ([the shell](04-03-platform--shell.md)). A do-nothing action with an instantly-true verify cost **1675ms**, none of it the app. The tapering poll now lives in a private `poll` with no check of its own; only an operation pays.
+
+The lesson generalises past this bug: **a check belongs to an operation, not to every loop inside it.** Discipline that re-asserts itself at every level reads as rigour and behaves as a tax. [Gateway tests](../../src/tests/gateway.test.ts) assert the count — `one action asks for the foreground exactly once` — because counting how many times the code asked is a fact, where timing on a machine that also runs Claude Desktop is a flaky test.
+
+### The snapshot handoff
+
+The precheck reads the tree to confirm the element an action is about to touch is really there. But a caller often *already* read the tree — the [navigator](02-03-the-architecture--navigation.md) reads it to choose which "new chat" affordance the current build shows. It hands that reading over:
+
+```typescript
+const { home, tree } = await this.findHomeAffordance();
+await this.gateway.act(action, verify,
+  { description: `Navigate to home via "${home}"`, target: { name: home }, snapshot: tree });
+```
+
+Without it, `goHome()` walked the same screen three times in a few milliseconds.
+
+This is a **handoff, not a cache**. There is no staleness window, because a staleness window would eventually let an old tree authorise an action — precisely what the precheck exists to prevent. The caller is stating a fact it observed immediately before asking to act. And the handoff is not a bypass: a target absent from the handed-over tree is still refused, and the action still never fires.
 
 ## The three methods
 

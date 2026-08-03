@@ -11,7 +11,9 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "npx tsx --test src/tests/*.test.ts"
+    "test": "npx tsx --test \"src/tests/**/*.test.ts\"",
+    "test:live": "npx tsx src/tests/run-live.ts",
+    "generate": "npx tsx src/cli/generate-surface.ts --write"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",

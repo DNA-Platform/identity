@@ -61,7 +61,7 @@ async function main() {
   writeFileSync(mappingPath, JSON.stringify(mapping, null, 2), 'utf-8');
   console.log(`[patch] Patched ${mappingPath}`);
 
-  claude.window.minimize();
+  await claude.window.minimize();
   console.log('[patch] Done.');
 }
 

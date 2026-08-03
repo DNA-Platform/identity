@@ -77,7 +77,7 @@ export class ConversationPage extends Page {
 
     const visible = await this.gateway.waitFor(
       () => this.chatList.isMenuVisible(),
-      { timeoutMs: 5_000 },
+      {},
     );
     if (!visible) throw new Error('Conversation menu did not appear');
 
@@ -95,13 +95,13 @@ export class ConversationPage extends Page {
     if (!clicked) throw new Error('Could not find the rename-chat button on the conversation header');
     const active = await this.gateway.waitFor(
       () => this.controller.isChatNameFieldActive(),
-      { timeoutMs: 3_000 },
+      {},
     );
     if (!active) throw new Error('Chat name field did not open');
     await this.controller.typeChatName(name);
     const committed = await this.gateway.waitFor(
       async () => !(await this.controller.isChatNameFieldActive()),
-      { timeoutMs: 3_000 },
+      {},
     );
     if (!committed) throw new Error('Rename did not commit (Chat name field stayed open)');
   }

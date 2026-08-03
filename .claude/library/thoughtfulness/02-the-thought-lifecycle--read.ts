@@ -70,9 +70,11 @@ export async function read(app: Claude): Promise<ReadResult> {
 
   const page = await locate(app, state);
   await page.scrollToBottom();
-  const complete = await page.response.waitUntilComplete();      // hold the app open and wait
+  // Ask ONCE. If the thought is not finished, that is the answer and this returns
+  // it — run the read again later. Nothing here holds the screen waiting.
+  const complete = await page.response.isSettledComplete();
   const text = await page.response.read();
   if (complete && state.isNew) await page.rename(state.topic);   // rename now — Desktop's title is set
-  app.window.minimize();
+  await app.window.minimize();
   return { complete, text };
 }

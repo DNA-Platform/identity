@@ -12,8 +12,8 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
-  app.window.requireForeground();
+  await app.window.maximize();
+  await app.window.requireForeground();
 
   console.log('[explore] Opening DNA Patternity...');
   await app.openProject('DNA Patternity');
@@ -78,12 +78,12 @@ async function main() {
   // Clear
   await app.message.clear();
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\n[explore] Done. App minimized.');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[explore] Failed: ${e.message}`);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
   process.exit(1);
 });

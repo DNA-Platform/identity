@@ -130,7 +130,7 @@ async function uploadFilesToProject(projectFolder: string, displayName: string):
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   // Get project list
@@ -162,7 +162,7 @@ async function main() {
     console.log('');
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('Done.');
 }
 

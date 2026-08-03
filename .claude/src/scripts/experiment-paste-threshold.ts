@@ -55,7 +55,7 @@ async function testPaste(lineCount: number): Promise<boolean> {
 
   // Screenshot for the interesting ones
   if (lineCount >= 40 && lineCount <= 80) {
-    app.window.screenshot(resolve(DEBUG, `${TIMESTAMP}-threshold-${lineCount}-lines.png`));
+    await app.window.screenshot(resolve(DEBUG, `${TIMESTAMP}-threshold-${lineCount}-lines.png`));
   }
 
   await clearAll();
@@ -66,7 +66,7 @@ async function testPaste(lineCount: number): Promise<boolean> {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   // Navigate to DNA Patternity
   console.log('[threshold] Opening DNA Patternity...');

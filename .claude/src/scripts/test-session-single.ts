@@ -6,9 +6,9 @@ import { Claude } from '../claude.ts';
 const app = new Claude();
 await app.launch();
 
-process.on('unhandledRejection', (err) => {
+process.on('unhandledRejection', async (err) => {
   console.error('[FATAL]', err);
-  app.window.minimize();
+  await app.window.minimize();
   process.exit(1);
 });
 

@@ -18,7 +18,7 @@ async function main() {
     console.log(`[test-16] Foreground: ${namesFg.length} elements, ${textFg.length} chars`);
 
     // Minimize
-    app.window.minimize();
+    await app.window.minimize();
     await new Promise(r => setTimeout(r, 1000));
 
     // Read with app minimized
@@ -49,13 +49,13 @@ async function main() {
     }
 
     // Restore for cleanup
-    app.window.maximize();
+    await app.window.maximize();
   } finally {
-    app.window.minimize();
+    await app.window.minimize();
   }
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[test-16] FAIL: ${(e as Error).message}`);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

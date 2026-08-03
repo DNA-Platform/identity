@@ -55,11 +55,11 @@ async function main() {
       for (const n of names.slice(-30)) console.log(`  ${n}`);
     }
   } finally {
-    app.window.minimize();
+    await app.window.minimize();
   }
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[test-02] FAIL: ${(e as Error).message}`);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

@@ -49,7 +49,7 @@ async function doWrite() {
 
     console.log('[write] Conversation ID:', id);
   } finally {
-    app.window.minimize();
+    await app.window.minimize();
     console.log('[write] Minimized.');
   }
 }
@@ -68,7 +68,7 @@ async function doRead() {
     const hasContent = await app.gateway.waitFor(async () => {
       await app.conversation.scrollToBottom();
       return app.conversation.controller.hasThinkingBlock();
-    }, { timeoutMs: 30_000 });
+    });
 
     if (!hasContent) {
       console.log('[read] No content detected. Desktop may not have processed this.');
@@ -80,7 +80,7 @@ async function doRead() {
     const complete = await app.gateway.waitFor(async () => {
       await app.conversation.scrollToBottom();
       return app.conversation.isResponseComplete();
-    }, { timeoutMs: 300_000 });
+    });
 
     if (!complete) { console.log('[read] Timeout — still processing.'); return; }
 
@@ -125,7 +125,7 @@ async function doRead() {
     deleteState();
     console.log('[read] Done. State cleared.');
   } finally {
-    app.window.minimize();
+    await app.window.minimize();
   }
 }
 
@@ -142,8 +142,8 @@ async function main() {
   else console.log('Usage: write "q" | read | state | clear');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('FAILED:', (e as Error).message);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });
 

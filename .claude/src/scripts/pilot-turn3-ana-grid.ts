@@ -27,7 +27,7 @@ Claude Code Team: What to watch for — Doug rejects your surface-level explanat
   console.log(`[claude] Total: ${fullMessage.length} chars (${(fullMessage.length / 1024).toFixed(1)} KB)`);
 
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   const screen = await app.detectScreen();
   console.log(`[adam] Screen: ${screen}`);
@@ -36,7 +36,7 @@ Claude Code Team: What to watch for — Doug rejects your surface-level explanat
   const response = await app.say(fullMessage, 300_000);
 
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-05-after-anagrid.png');
-  app.window.screenshot(ssPath);
+  await app.window.screenshot(ssPath);
   console.log(`[adam] Screenshot: ${ssPath}`);
 
   console.log();
@@ -45,9 +45,9 @@ Claude Code Team: What to watch for — Doug rejects your surface-level explanat
   console.log(`=== Length: ${response.length} chars ===`);
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[adam] Failed: ${e.message}`);
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-turn3-error.png');
-  try { app.window.screenshot(ssPath); console.error(`[adam] Screenshot: ${ssPath}`); } catch {}
+  try { await app.window.screenshot(ssPath); console.error(`[adam] Screenshot: ${ssPath}`); } catch {}
   process.exit(1);
 });

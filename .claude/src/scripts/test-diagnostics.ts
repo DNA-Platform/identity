@@ -21,7 +21,7 @@ async function testFailureCapture() {
     await app.auto.gateway.act(
       async () => { await app.auto.uia.invokeByName('NonexistentButton12345'); },
       async () => false,
-      { description: 'Click nonexistent button', timeoutMs: 2_000, retries: 1 },
+      { description: 'Click nonexistent button' },
     );
     console.log('  FAIL — should have thrown');
   } catch (e: any) {
@@ -40,6 +40,7 @@ async function testNavigationFeedback() {
   console.log('Test 3: Navigation with screen detection');
   await app.navigator.resetToHome();
   const screen = await app.navigator.detectScreen();
+  await app.navigator.detectOverlays();  // detectScreen is URL-only now
   console.log(`  Screen: ${screen}`);
   console.log(`  Has open dialog: ${app.navigator.hasOpenDialog}`);
   console.log(`  Has open menu: ${app.navigator.hasOpenMenu}`);
@@ -58,7 +59,7 @@ async function testProjectNavigation() {
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url?.includes('/project/') ?? false;
-  }, { timeoutMs: 10_000 });
+  });
   app.navigator.screen = 'project';
 
   // Detect files pane
@@ -85,11 +86,11 @@ async function testDiagnosticsSummary() {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 5_000 });
+  });
 
   console.log('Running diagnostic integration tests...\n');
 
@@ -101,13 +102,13 @@ async function main() {
 
   // Reset to home and minimize
   await app.navigator.resetToHome();
-  app.window.minimize();
+  await app.window.minimize();
 
   console.log('\nAll tests passed.');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('Test suite failed:', e.message);
-  app.window.minimize();
+  await app.window.minimize();
   process.exit(1);
 });

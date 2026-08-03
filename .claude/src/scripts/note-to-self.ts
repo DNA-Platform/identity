@@ -16,12 +16,12 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 5_000 });
+  });
 
   await app.openProjects();
   const allProjects = app.projects.cards;
@@ -55,13 +55,13 @@ async function main() {
       completed++;
       console.log(`  DONE (${completed}/${projects.length})\n`);
 
-      app.window.minimize();
+      await app.window.minimize();
     } catch (e: any) {
       console.log(`  FAILED: ${e.message}\n`);
     }
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log(`\nComplete: ${completed}/${projects.length} projects.`);
 }
 

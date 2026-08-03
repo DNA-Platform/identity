@@ -23,7 +23,7 @@ for (const c of chats.slice(0, 10)) {
 
 if (chats.length === 0) {
   console.log('No conversations found. Exiting.');
-  app.window.minimize();
+  await app.window.minimize();
   process.exit(1);
 }
 
@@ -145,7 +145,7 @@ await app.conversation.scrollToTop();
 await app.gateway.waitFor(async () => {
   const names = await app.auto.uia.allNames();
   return names.length !== countBefore;
-}, { timeoutMs: 3_000 }).catch(() => false);
+}).catch(() => false);
 
 const allNamesAfter = await app.auto.uia.allNames();
 console.log(`Elements after scroll to top: ${allNamesAfter.length}`);
@@ -164,4 +164,4 @@ for (const n of scrollAfter) {
 await app.conversation.scrollToBottom();
 
 console.log('\n=== Done ===');
-app.window.minimize();
+await app.window.minimize();

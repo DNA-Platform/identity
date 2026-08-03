@@ -26,19 +26,30 @@ const placeholderValues = new Set(composerNames.map(n => n.replace(/[.…]+$/, '
 export class ComposerController {
   constructor(private readonly auto: Automation) {}
 
+  /** Which composer name is ACTUALLY on screen right now.
+   *
+   *  One tree read answers for every candidate. Everything below used to loop the
+   *  list instead — `focusComposer` CLICKED at up to six different places until one
+   *  worked, and `typeInline` typed into up to six elements. That is a driver
+   *  guessing with someone's mouse and keyboard. Look first, then act once, on the
+   *  one that is there. */
+  private async findComposer(): Promise<string | null> {
+    const tree = await this.auto.uia.snapshot();
+    if (tree.isEmpty) return null;           // could not see — not "not there"
+    return composerNames.find(name => tree.has({ name })) ?? null;
+  }
+
   // --- Sensors (reads) ---
 
   async readDraft(): Promise<string> {
-    for (const name of composerNames) {
-      const value = await this.auto.uia.readValue(name);
-      if (value !== null) {
-        // An empty composer reports its placeholder as the value — that is NOT
-        // draft text. Treat any placeholder match as empty.
-        if (placeholderValues.has(value.replace(/[.…]+$/, '').trim())) return '';
-        return value;
-      }
-    }
-    return '';
+    const name = await this.findComposer();
+    if (!name) return '';
+    const value = await this.auto.uia.readValue(name);
+    if (value === null) return '';
+    // An empty composer reports its placeholder as the value — that is NOT draft
+    // text. Treat any placeholder match as empty.
+    if (placeholderValues.has(value.replace(/[.…]+$/, '').trim())) return '';
+    return value;
   }
 
   async hasSendButton(): Promise<boolean> {
@@ -64,10 +75,9 @@ export class ComposerController {
   }
 
   async focusComposer(): Promise<boolean> {
-    for (const name of composerNames) {
-      if (await this.auto.uia.clickByName(name)) return true;
-    }
-    return false;
+    const name = await this.findComposer();
+    if (!name) return false;
+    return this.auto.uia.clickByName(name);   // ONE click, at the one that is there
   }
 
   async paste(text: string): Promise<void> {
@@ -76,10 +86,9 @@ export class ComposerController {
   }
 
   async typeInline(text: string): Promise<boolean> {
-    for (const name of composerNames) {
-      if (await this.auto.uia.setValue(name, text)) return true;
-    }
-    return false;
+    const name = await this.findComposer();
+    if (!name) return false;
+    return this.auto.uia.setValue(name, text);   // ONE write, to the one that is there
   }
 
   async selectAllAndDelete(): Promise<void> {

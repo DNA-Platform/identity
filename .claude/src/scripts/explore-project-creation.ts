@@ -4,7 +4,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   // We should be on projects page from last run
@@ -31,7 +31,7 @@ async function main() {
     if (name && name.trim()) console.log(' ', name);
   }
 
-  app.window.minimize();
+  await app.window.minimize();
 }
 
 main().catch(console.error);

@@ -56,7 +56,7 @@ async function main() {
   console.log('State file preserved for potential follow-up.');
   console.log('Conversation ID:', result.state.conversationId);
 
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
   console.log('\n=== FOLLOW-UP COMPLETE ===');
 }
 
