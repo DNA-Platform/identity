@@ -29,6 +29,10 @@ The last sprint chapter is the current state. A reader who opens the last chapte
 
 **Write the entry when the sprint begins.** Create the sprint chapter as soon as the plan is known — its goal, tasks, and owners — so the intent is committed before the work, then carry it through the sprint and complete it at the [retro](../our-skillset/16-retro.md) with what was built and what was learned. Every sprint gets an entry; a sprint with no Projection chapter is work the branch will forget. Each branch's Projection cover repeats this reminder and links back here; the branches themselves are indexed in [Known Branches](05-branches.md).
 
+## The sprint opens with its literature
+
+A sprint begins by **choosing what to read** — and the choosing is part of the sprint, not preparation for it (Doug, 2026-08-01). The team selects the most relevant books and chapters for the work ahead — from the identity library, the branch libraries, and the primary sources — lists them **in the sprint chapter** with a line on why each earns its place, and reads them before building. The library is the lifeblood of the team: a sprint that starts from memory instead of from reading repeats what the library already corrected. The list is itself a record — a later reader of the sprint chapter sees not only what was built but what the team had in its head while building. Choose by relevance, not habit; re-choose mid-sprint when the work turns; and when a needed chapter doesn't exist, that absence is a finding for the retro.
+
 ## The planning scratchpad — chapter zero
 
 Every Projection book may carry **`00-planning.md`** — the planning scratchpad, a true **chapter zero**: a numbered chapter like every part of a book (chapters have numbers; a file that dodges numbering isn't part of the book and loses alphabetical ordering). It sits first in the TOC, before every sprint, and holds the team's *temporary* planning notes — the sprint plan ahead, open design questions, notes-to-selves. Sprint chapters number from `01`.
