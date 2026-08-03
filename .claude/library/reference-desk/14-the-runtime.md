@@ -5,7 +5,7 @@
 
 ---
 
-**The app is the runtime. The CLI is its face.** Everything in [`.claude/src/`](../../src/) knows how to drive Claude Desktop; everything in [`.claude/cli/`](../../cli/) knows how to *ask* it and how to *show* the answer. That division is not stylistic — it is [ch.5's rule](05-coding-philosophy.md) applied to a new caller: *if a script reaches below the `Claude` class, the class is missing a method.* A CLI is a script with a prompt attached, and it obeys the same law.
+**The app is the runtime. The CLI is its face.** Everything in [`.claude/src/`](../../src/) knows how to drive Claude Desktop; everything in [`.claude/src/cli/`](../../src/cli/) knows how to *ask* it and how to *show* the answer. That division is not stylistic — it is [ch.5's rule](05-coding-philosophy.md) applied to a new caller: *if a script reaches below the `Claude` class, the class is missing a method.* A CLI is a script with a prompt attached, and it obeys the same law.
 
 This chapter grows as the runtime grows. It describes what exists; the plan for what comes next is [Sprint 102](../projected-identity/74-sprint-102--lifting-the-app-into-the-cli.md).
 
@@ -50,7 +50,7 @@ A hand-maintained table of what you can do is exactly the failure this book has 
 So the model comes from two sources that both track the code and cannot disagree with it:
 
 1. **The live instance** — which page object we are actually holding, and which components it actually has. A `ConversationPage` has a composer; a `ProjectsPage` does not; an undefined component is simply not offered.
-2. **The source signatures** — parsed from `.claude/src/**` by [`surface.ts`](../../cli/surface.ts), because *return types are erased at runtime*. `tsx` transpiles the annotations away, so reflection alone can see a method's name and arity but not what it promises. The source still says `Promise<ConversationPage>`, and that is the fact that matters most.
+2. **The source signatures** — parsed from `.claude/src/**` by [`surface.ts`](../../src/cli/surface.ts), because *return types are erased at runtime*. `tsx` transpiles the annotations away, so reflection alone can see a method's name and arity but not what it promises. The source still says `Promise<ConversationPage>`, and that is the fact that matters most.
 
 The property this buys: **add a method to a page and it appears in the CLI with no second edit.** [Sprint 100](../projected-identity/72-sprint-100--the-cli-test-suite.md) tests it by adding a real method, never by comparing against a frozen list of expected commands — a frozen list would re-introduce the very drift the design exists to prevent.
 
