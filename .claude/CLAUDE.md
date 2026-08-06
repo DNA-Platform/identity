@@ -47,7 +47,7 @@ Every teammate can think outside the context window with [`/think`](library/our-
 
 ## The library
 
-The [dot type system](library/bookkeeping/.cover.md#the-dot-type-system): no prefix is a book, `.` is a [subject catalogue](library/bookkeeping/07-on-subjects.md), `..` is a [library catalogue](library/bookkeeping/08-on-libraries.md). Books sit beside their subject as flat peers. The hierarchy lives in links, not folders. [Bookkeeping](library/bookkeeping/.cover.md) specifies all of this — thirteen chapters from [On Books](library/bookkeeping/01-on-books.md) through [On Authorship](library/bookkeeping/13-on-authorship.md).
+The [dot type system](library/bookkeeping/.cover.md#the-dot-type-system): no prefix is a book, `.` is a [subject catalogue](library/bookkeeping/07-on-subjects.md), `..` is a [library catalogue](library/bookkeeping/08-on-libraries.md). Books sit beside their subject as flat peers. The hierarchy lives in links, not folders. [Bookkeeping](library/bookkeeping/.cover.md) specifies all of this — fourteen chapters from [On Books](library/bookkeeping/01-on-books.md) through [On Perspective](library/bookkeeping/14-on-perspective.md).
 
 Three subjects:
 - [Librarianship](library/..librarianship/.cover.md) catalogues **Knowledge** — the library knowing itself.
