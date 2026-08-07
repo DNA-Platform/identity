@@ -105,6 +105,26 @@
 
 **Not started, and it did not exist when this sprint was planned.** Named here rather than absorbed, because [a sprint that grows a framework change mid-work and does not say so](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md) is how 47 became a forever sprint.
 
+### R25. `$` becomes a dependency-injection container — a `$Chemistry`-level feature *(Doug, 2026-08-07)*
+
+> **"I think we want `$` to operate as a DI container for the framework, and that is a `$Chemistry` level feature, but I think it's a really interesting one."**
+
+**This is the proper answer to a hole this sprint papered over twice.** [R55](06-sprint-48--subjects-and-the-library.md#r55--as-a-container-and-cards-built-at-build) proposed it and left it design owed; when the author needed to reach the library catalogue, the implementer invented a module-level holder, and Doug removed it — *"a library catalogue is just a catalogue."* **The right shape is not a holder anywhere; it is `$` supplying what a chemical asks for**, which it is already positioned to do because it is already what constructs instances.
+
+**Framework work, not lib work.** It belongs in [`library/chemistry/package`](../../../chemistry/package/), and it is **not this sprint's** — recorded here because this sprint is where the need was demonstrated rather than argued.
+
+**U15 — `$` as a container.** *`$Chemistry` work. **DESIGN OWED** and therefore refused files and scenarios. Realizes: R25, and closes R55. **Visible end:** a reference that asks for the library catalogue and is given it, with nothing holding a singleton.*
+
+### R26. A figure is a paragraph that draws itself — BLOCKED, and the block is R24
+
+The demo's figures — the loop drawn from the model, a card printing its own fields, a code listing — **are written and do not render.** Three shapes were tried and each failed differently, which is the finding:
+
+1. **A block-level `$Paragraph`** ends the section's block early: the figure and **every paragraph after it** disappear.
+2. **An inline `$Paragraph`** is refused at binding — `$Paragraph.valid()` demands letters and a figure has none — so the whole chapter refuses with *"the binding rejects ''"*.
+3. **An inline `$Paragraph` declared valid** renders and then **loops** — *too many re-renders* — and it still loops with sentence-minting suppressed and with array props hoisted out of render.
+
+**This is [R24](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07) biting exactly where it was predicted to.** A figure is a part that must be **authored**, and every route available today smuggles it in as inline writing instead. *The demo ships without figures rather than with a page that renders an error*, and the classes stay in the tree as the specification for what U14 has to make possible.
+
 ## Key flows
 
 - **F1 — A book declares its author.** An author writes a cover; the cover carries a name that is a reference. The book reads it through the cover as a property.
