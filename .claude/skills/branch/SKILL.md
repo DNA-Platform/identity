@@ -25,6 +25,8 @@ Read [Library Tree](../../library/library-tree/.cover.md) — especially [Branch
 1. **Create `.lib/`** beside the code it documents — `library/<area>/.lib/`, or `library/.lib/` for a project-root branch.
 2. **Cataloguing book.** A `..`-prefixed book inside `.lib/` named for the *subject* the branch represents (as `..representivity` is for $Chemistry). Cover per [On Covers](../../library/bookkeeping/03-on-covers.md): title, `catalogues:`, `author:`, `subject:` self-link, opening paragraph, TOC.
 3. **Projection.** A `projection/` book for sprint-by-sprint records — the branch's autobiography, authored by the sprint-shaper.
+
+   **Solutions is not scaffolded.** A branch may also carry a [Solutions](../../library/library-tree/06-solutions.md) book — defects indexed by symptom, orthogonal to Projection's index by time — but it is created **on demand by [`/ce-compound`](../../library/our-skillset/31-ce-compound.md) with its first diagnosed defect**. A branch that has broken nothing should not carry an empty book claiming otherwise.
 4. **Territory.** Add the `.lib/` paths to [territory](../../library/..teamsmanship/05-territory.md): Libby owns `**/.lib/**`; assign books within to the perspective that shapes them.
 5. **Catalogue it.** Add an entry to [Known Branches](../../library/library-tree/05-branches.md) — repo, location, cataloguing book, Projection. Reference the branch with a cross-repo `../<repo>/...` link (repos are siblings under one parent).
 6. **Push** with the [commit tool](../../library/..environmentalism/06-on-sync--commit.sh): it discovers any `library/*/.lib`, routes it to the project branch, and validates first. See [Travel](../../library/teamspeak/07-travel.md).

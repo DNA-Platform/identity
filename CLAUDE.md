@@ -47,7 +47,7 @@ Every teammate can think outside the context window with [`/think`](.claude/libr
 
 ## The library
 
-The [dot type system](.claude/library/bookkeeping/.cover.md#the-dot-type-system): no prefix is a book, `.` is a [subject catalogue](.claude/library/bookkeeping/07-on-subjects.md), `..` is a [library catalogue](.claude/library/bookkeeping/08-on-libraries.md). Books sit beside their subject as flat peers. The hierarchy lives in links, not folders. [Bookkeeping](.claude/library/bookkeeping/.cover.md) specifies all of this — thirteen chapters from [On Books](.claude/library/bookkeeping/01-on-books.md) through [On Authorship](.claude/library/bookkeeping/13-on-authorship.md).
+The [dot type system](.claude/library/bookkeeping/.cover.md#the-dot-type-system): no prefix is a book, `.` is a [subject catalogue](.claude/library/bookkeeping/07-on-subjects.md), `..` is a [library catalogue](.claude/library/bookkeeping/08-on-libraries.md). Books sit beside their subject as flat peers. The hierarchy lives in links, not folders. [Bookkeeping](.claude/library/bookkeeping/.cover.md) specifies all of this — fifteen chapters from [On Books](.claude/library/bookkeeping/01-on-books.md) through [On Kinds](.claude/library/bookkeeping/15-on-kinds.md).
 
 Three subjects:
 - [Librarianship](.claude/library/..librarianship/.cover.md) catalogues **Knowledge** — the library knowing itself.

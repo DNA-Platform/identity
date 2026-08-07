@@ -1,0 +1,74 @@
+# ce-handoff
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+- **coauthor:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+
+---
+
+**Not a step in the loop — the boundary between sessions.**
+
+Run it at the end of any session, from whichever step you were on: [`/ce-brainstorm`](28-ce-brainstorm.md) · [`/ce-plan`](29-ce-plan.md) · [`/ce-work`](30-ce-work.md) · [`/ce-compound`](31-ce-compound.md)
+
+**The next session runs nothing.** It opens by reading the sprint chapter's **Where things stand**, and resumes at the step named there.
+
+---
+
+Close a session by writing **where things stand** into the current sprint chapter, so the next session opens by reading it. Adapted from compound engineering's session-continuity skill — [`ce-handoff`][ce-handoff] at commit `6a2a0f9` — with its storage decision reversed: theirs writes to managed temporary storage outside the project, ours writes into the library.
+
+**Announce at start:** "Using handoff to close this session."
+
+## What we were missing
+
+Autobiographies carry **identity** across sessions. Sprint chapters carry **narrative**. Nothing carried **work state** — so after a compaction, what remained open lived only in a todo list and in whatever the conversation still held.
+
+## Where it goes
+
+**Into the last section of the current sprint chapter**, in the branch's [Projection](../library-tree/03-sprints.md#what-a-projection-book-contains--the-schema) book. Not a scratch file, not a directory beside the repo, and never a dot-prefixed folder — a leading dot means [a catalogue](../bookkeeping/.cover.md#the-dot-type-system) in this library and nothing else.
+
+The sprint chapter is already the branch's current-state marker. Work state belongs in it for the same reason narrative does: **a session opens by reading the last sprint.**
+
+## What the section carries
+
+- **The objective**, and Doug's latest stated intent in his own words.
+- **Rulings** — decisions Doug made, verbatim. The most expensive thing a session can lose.
+- **State, split honestly** — complete, in progress, not started.
+- **Blockers**, each with what it waits on.
+- **Verification** — what was actually run, with the numbers.
+- **Wrong turns already tried**, so the next session does not retry them. Easy to omit and half the value.
+- **Pointers**, each naming *what is load-bearing there* rather than only a path.
+
+It is **rewritten as the work moves**, not appended to — the library is [edit-first](../bookkeeping/09-on-synopsis.md), and a work-state section that accumulates is a log, not a state.
+
+## What does not go here
+
+Anything worth keeping past this sprint is not work state. A lesson is a [case](31-ce-compound.md); a settled question is a decision record; a design is a plan chapter. **If it will matter next month, compound it; if it only matters tomorrow, it is where things stand.**
+
+## The session rules
+
+**One plan per session.** A session runs one [ce-plan](29-ce-plan.md) through [ce-work](30-ce-work.md). When it is done, the session ends.
+
+**Different area, different session.** Work belonging to another plan does not get appended to this one — write where things stand, start fresh, plan it there.
+
+**Opening orients; it does not act.** Read the last sprint chapter, say what was recovered, recommend a continuation, and **wait**. The section describes what someone believed when they wrote it; the working copy is the truth, so verify before acting on any of it.
+
+## The ledger
+
+Within a session, [ce-work](30-ce-work.md) tracks unit-by-unit progress in the **Where things stand** section itself, updated as units complete rather than at the end. Their most expensive observed failure is the reason:
+
+> "Conversation memory does not survive compaction. Controllers that lost their place have re-dispatched entire completed task sequences."
+
+## Steps
+
+**To close a session:**
+1. Read the sprint chapter and the plan chapter — state from evidence, not memory.
+2. Rewrite **Where things stand** with everything above.
+3. Say in one line what it captured.
+
+**To open one:**
+1. Read the last sprint chapter of the branch you are working in.
+2. Say what was recovered and what it claims is outstanding.
+3. **Verify against the working copy** before acting.
+4. Recommend the continuation. Wait.
+
+<!-- citations -->
+[ce-handoff]: https://github.com/EveryInc/compound-engineering-plugin/blob/6a2a0f9940ab0b3577ce26226ee393390470e412/skills/ce-handoff/SKILL.md "ce-handoff — authoritative runtime spec"
