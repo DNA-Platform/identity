@@ -89,6 +89,22 @@
 - **R22. Following an author name arrives at *The Team*; following *its* author arrives back where you started.**
 - **R23. The shelf's catalogue entries read title and synopsis off the cards** rather than from hand-authored prose — [R37](06-sprint-48--subjects-and-the-library.md#subject-author-and-the-summit), and a violation the demo carries today. *Proposed at the brainstorm and not explicitly ruled; adopted because the sprint went to plan without a no. **Flag it at review if it was not wanted.***
 
+### R24. Every part is authorable — and it supersedes the parse-only law *(Doug, 2026-08-07)*
+
+> **"Every part should be authorable. You should be able to author a sentence one word at a time if you want. Maybe if one word is found, the whole sentence needs to have them? We obviously care more about this at the paragraph and section level. But we need to be able to insert things into sections."**
+
+**This changes the composition model.** The standing law is that a composition's creator writes **prose** and the levels beneath are **found by the parse, never authored** — *"the creator of a paragraph does not specify sentences."* Doug is not repealing the parse; he is saying **authored parts must be able to stand beside found ones**, and the level that matters most is a section accepting something written into it.
+
+**How it surfaced, which is the useful part.** The demo needed a **figure** — a drawn plate inside a chapter. It can be written into a section's text and it renders exactly where it stands, but `$Section.parts()` parses paragraphs out of the section's *copy*, so **the figure is invisible to the model**: it appears on the page and is not one of the section's parts. *A thing that renders and does not exist is the failure mode this whole framework was built to make impossible.*
+
+- **R24a. The mechanism, sketched.** `$Section.parts()` walks its text **in order**, yielding authored block-level writing as parts in place and parsing the prose between them. Nothing above section grade changes.
+- **R24b. The open question is Doug's own** — *"maybe if one word is found, the whole sentence needs to have them?"* Whether a level may **mix** authored and found parts, or must be wholly one or the other once anything is authored. **Not answered, and not to be answered by the implementer.**
+- **R24c. A code block is owed, and it is PARAGRAPH level.** *"We haven't even invented a code block."* Doug means the **``` fenced** kind — *"I would think a code block is paragraph level. You think code is an insert into a sentence? It can, but I am talking about ``` markdown."* **Inline code is a different thing and may well be sentence-level; the fenced block is a paragraph.** It may be implemented through markdown behind the scenes — his own allowance — but it must exist as a **part**. *Recorded as a correction: the implementer first wrote this down as sentence-level, taking an earlier line too literally.*
+
+**U14 — every part authorable.** *Framework work in `library/.public/package/src/writing/`. **DESIGN OWED on R24b** and therefore refused files and scenarios beyond the sketch until it is ruled. Realizes: R24. **Visible end:** a figure that is a paragraph of its section, and a code block that is a part rather than a rendering.*
+
+**Not started, and it did not exist when this sprint was planned.** Named here rather than absorbed, because [a sprint that grows a framework change mid-work and does not say so](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md) is how 47 became a forever sprint.
+
 ## Key flows
 
 - **F1 — A book declares its author.** An author writes a cover; the cover carries a name that is a reference. The book reads it through the cover as a property.
@@ -304,6 +320,27 @@
 **THE LOOP CLOSES.** An author resolves **by name** through the library catalogue and never holds or imports a book — its only book reference is a `type` import, which erases at runtime, **so [AE8](#acceptance-examples)'s negative proof is a fact about the compiled output rather than a discipline anyone keeps.** The autobiography authors itself; every other book arrives at it; following the destination's own author lands back. *And the name Doug chose is what makes it work: an author's display name and its book's name are the same words, so resolution by name is the loop.*
 
 **Not started:** **U1** — *The Team*, the book itself, written in full · **U10** the four hand-built cards in the demo · **U11** the card shown as a card · **U12** the shelf's entries read off cards · **U13** the records.
+
+### Members invented without consulting Doug — ALL PROXIES, for the review
+
+*Doug, 2026-08-07: **"bring up all members that you invented in the framework without consulting me. They should be considered proxies."** Every name below is the implementer's, held only until it is ruled on. **None of them is adopted.** Recorded here rather than in conversation because a proxy that is never surfaced becomes a name by default, which is [the naming law failing quietly](00-planning.md#the-standing-sprint-discipline-added-2026-08-03-out-of-47s-cost).*
+
+| member | on | what it does |
+|---|---|---|
+| `name` / `$name` | `$IndexCard` | what the card is filed under, and its heading |
+| `of` / `$of` | `$IndexCard` | how the card reaches its referent — **held lazily, which is what lets a card exist before its book** |
+| `properties()` | `$IndexCard` | the fields the card carries, enumerated |
+| `written(property)` | `$IndexCard` | one field's value, as writing |
+| `printed(value)` | `$IndexCard` | how a value becomes a string |
+| `cards` | `$CardCatalogue` | its parts, as cards |
+| `card(name)` | `$CardCatalogue` | the lookup; refuses and names what was asked |
+| `holds(name)` | `$CardCatalogue` | whether the lookup would succeed |
+| `name` | `$Author` | its display name — its own copy |
+| `card` | `$Author` | the library card it holds |
+
+**Not invented, and named so the list is honest:** `$for` on `$Author` follows `$Bookmark.$for`, which is shipped precedent rather than a new name.
+
+**And a `$…$`-wrapped property is a code smell** *(Doug)*. Two were written this session — `$machinery$` and `$held$` — and both are gone: the first when the enumeration stopped caching, the second with the singleton it served.
 
 ### Two structural findings, both from the framework rather than the design
 
