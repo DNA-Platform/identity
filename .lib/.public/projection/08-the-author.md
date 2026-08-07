@@ -4,110 +4,313 @@
 
 ---
 
-*Opened 2026-08-07, the first of the [five sprints](00-planning.md#the-five-sprints--each-with-three-things-doug-can-check-planned-2026-08-06) cut from the demo. **Status: `implementation-ready`** — requirements and plan below, from [Sprint 48](06-sprint-48--subjects-and-the-library.md)'s design session.*
+*Opened 2026-08-07, the first of the [five sprints](00-planning.md#the-five-sprints--each-with-three-things-doug-can-check-planned-2026-08-06) cut from the demo. **Status: `implementation-ready`.** The requirements below were worked out from scratch with Doug on 2026-08-07 and **supersede the first draft of this chapter**, which was written before the card system was pulled into scope.*
 
-***Sprints are NAMED, not numbered*** *(Doug, 2026-08-07). These five are **The Author**, **The Card**, **The Subject**, **The Library**, **The Compilation**. Numbers have been a churn source all sprint; names do not collide. The numbered plans in [chapter zero](00-planning.md) keep their numbers as a record of what was planned when.*
+***Sprints are NAMED, not numbered*** *(Doug, 2026-08-07). Numbers have been a churn source; names do not collide.*
 
 ## The workflow
 
 [ce-brainstorm](../../../../.claude/library/our-skillset/28-ce-brainstorm.md) → [ce-plan](../../../../.claude/library/our-skillset/29-ce-plan.md) → [ce-work](../../../../.claude/library/our-skillset/30-ce-work.md) → [ce-review](../../../../.claude/library/our-skillset/33-ce-review.md) → [ce-compound](../../../../.claude/library/our-skillset/31-ce-compound.md).
 
-## The three things Doug can check
+## What this sprint is, stated so it cannot drift
 
-**SEEN.** Follow an author's name from a book on the shelf and arrive at the autobiography. Follow *that* book's author and arrive back where you started. **Four books, four author links, one destination, and one of them points at itself.**
+**The author, made to work as a real reference — which means building the card system it resolves through.** Doug, 2026-08-07: *"Let's get the author on all books in the library, minimally, along with the autobiography. Let's get the author as a reference working, which means implementing enough of the catalogue and card system to make that work."* And on how much card: ***"The full types, hand built."***
 
-**REVEALED — collected in review, and it supersedes what I first wrote.** *Whether the narrative closure and the structural closure can be made to **coincide**, not merely coexist* — **one closure at two levels** (Doug, 2026-08-07). Concretely: **does what the book SAYS line up with what its references DO?** The passage in which the book records the decision to write itself, and the author link by which it authors itself, must be the same closure — not a story about a loop sitting next to a loop. My first version asked only the mechanical half — what closing a self-pointing link took, given the autobiography must exist before its own link resolves — and that stays: **Doug checks the shape the solution took**, and machinery nobody anticipated means the design was incomplete. **If the two cannot be made to land together, the demo is two things stapled rather than one thing seen twice.**
+**So this sprint absorbs the core of what chapter zero planned as [Sprint Two — The Card](00-planning.md#sprint-two--the-card), and the record says so rather than pretending it is still a small first sprint.** The reason it merged is not ambition: an author link that resolves by importing a book is not a reference, it is a variable. The card is what makes pointing real.
 
-**SCOPE, ruled 2026-08-07:** *"We aren't formalizing what the first person perspective means for now. That is far outside of the scope of this part of the theory."* **Both closures above are structural and checkable** — text and references. **Nothing here claims anything about what the loop is like from inside**, and no unit may reach for it. *This is the territory [chapter 13](../the-semantics-of-books/13-the-authors-fixed-point.md) pointed at with an unwritten chapter 14 on the first person and the third; it stays unwritten by ruling, not by neglect.*
+**And the merge paid for itself immediately.** The bootstrap — *how does a book author itself before it exists* — was this sprint's stated open question. **The card dissolves it**: a surrogate is minted independently of the book, so the self-pointing link has something to point at before the book is built. That is the card earning its place rather than being asserted.
 
-**PROMISED.** Listed per unit below.
+## Rulings, verbatim — the most expensive thing to lose
 
-## The standing conditions
-
-- **One author, not ten.** *"The author is always something that represents the identity that makes the library."* **It is the loop because it cannot be reduced to anything else** — an author decomposable into teammates would point at parts, and the self-loop would dissolve into a list.
-- **The team is not in the demo library.** We appear *inside* the book: informal signatures in the account of its making, and **appendix chapters** the writing refers to. The library holds books; the book holds us.
-- **The demo library is the demo's own** — four books, not this repository.
-- **A reference does not announce itself as a link** ([R35](06-sprint-48--subjects-and-the-library.md#collected-in-review)). An author name is set as a name.
-
-## Units
-
-**U1 — The autobiography.** The fourth book. **Its subject matter is constrained, and this is semantic validation rather than editorial preference** *(Doug, 2026-08-07)*: **"The book can't lie about its authors. Don't write a cookbook as the canonical autobiography. It has to host the story of the creation of that which is represented in the library, if not the invention of the library itself. It needs to be a narrative of how the thing being catalogued came to be."**
-
-So it is **the account of how these books came to be** — the algebra book, the manifold, the shelf — and at the summit, of the invention of the library itself. A well-written book by the same author that narrates something else **fails**: the canonical autobiography is not canonical because we designated it, but because it **is** that account.
-
-*This closes the bar that was [flagged as stated-and-unmeasurable](#where-things-stand): the test is not "is the writing good" but **does it narrate the coming-to-be of what is catalogued**.*
-
-**Fiction inspired by a true story**, claiming authorship through **quoted references in its own writing** rather than an asserted field. **It must contain the decision to write the very book being written** — the fixed point, not a memoir about one. Teammates appear as informal signatures and as **appendix chapters**. It grows a chapter per sprint hereafter.
-*Mechanism: an ordinary `$Book`, authored the way algebra and the manifold are — `$(<Book><Cover/><Synopsis/>…</Book>)`. Files: new under `app/src/sections/book/library/`. Visible end: a book you can read that describes its own writing.*
-
-**U2 — `$Author`, a book reference with a display name.** It reads to a book and carries a name to render. **The display name is what appears on a cover.** Doug's optional parsing form, for when the reference is not specified: `[the link](Name)` — markdown-shaped, the name as fallback. **A naming convention is owed and is not invented here.**
-*Mechanism: a reference kind that renders itself — the shipped `$RibbonMark`/`$Return` pattern, subclass plus `view()`, zero framework change. Files: `src/book/Author.tsx` (currently empty), `src/index.ts`. Visible end: an author's name on a cover, followable, not dressed as a link.*
-
-**U3 — The links, and the loop.** Each of the demo's four books gets an author link to the autobiography; **the autobiography's own author link points at itself.**
-*Mechanism: this is where the sprint's REVEALED question is answered — the self-reference must resolve without the book being complete when the link is made. Files: the four demo books. Visible end: following any author arrives at one book; following that book's author arrives back.*
-
-**U4 — The team's name.** The display name the autobiography represents. **Proposed: `Inexplicable Press`, changeable by Doug's own terms** — and the finding behind it is ours: Sprint 47's open questions already say **publisher → team**, so a book's publisher is the standing entity responsible for it, which is exactly what a shared author link means.
-
-## Test scenarios
-
-**U1.** The autobiography binds as a valid book — a cover at zero, a synopsis, at most one table of contents. Its quoted references resolve. Its appendix chapters are reachable and are not mistaken for its narrative chapters.
-
-**U2.** An author reads to its book. An author renders its display name. An author with no reference but a written name still renders the name. An author with neither is refused.
-
-**U3.** Every demo book's author reads to the autobiography. The autobiography's author reads to **itself**. A book with no author is refused. An author pointing at a book that does **not** author itself is refused — *the canonical autobiography is recognised structurally, never declared* ([R9](06-sprint-48--subjects-and-the-library.md#subject-author-and-the-summit)).
-
-**Regression.** Chemistry **630/630**, lib **107/108** (the refusal-message defect, [carried to its own work](00-planning.md#validation-that-says-why--carried-out-of-sprint-48-doug-2026-08-06)), three packages **tsc 0**.
-
-## Risks
-
-1. **The bootstrap may need machinery we have not designed.** That is the sprint's whole REVEALED question, so it is a finding rather than a failure — **but it must be raised the moment it appears**, never designed around.
-2. **The autobiography is real writing**, not scaffolding. A book that reads as filler cannot carry the demo, and the demo law stands: impressive, aesthetically unique, a meaningful use case.
-3. **The naming convention for `[link](Name)` is owed and unruled.** No unit invents it.
-
-## Where things stand
-
-*Written 2026-08-07 at the session boundary. **The next session opens by reading this and verifies against the working copy before acting** — this records what was believed, and the working copy is the truth.*
-
-### The objective
-
-Write the demo library's fourth book — **the canonical autobiography** — and give the demo's four books author links to it, with its own author link pointing at itself. **Doug's latest stated intent, in his own words:** *"It has to host the story of the creation of that which is represented in the library, if not the invention of the library itself. It needs to be a narrative of how the thing being catalogued came to be."*
-
-### Rulings, verbatim — the most expensive thing to lose
+**From 2026-08-06/07, carried:**
 
 - **"The book can't lie about its authors. There's semantic validation. Don't write a cookbook as the canonical autobiography."**
 - **"The author is always something that represents the identity that makes the library in some way. It is the loop because it cannot be reduced to some other thing."** — hence **one author, not ten**; a decomposable author points at parts and the loop dissolves into a list.
 - **"You don't exist in the demo library."** Teammates appear as informal signatures in the account of the making, and as **appendix chapters**.
 - **"We aren't formalizing what the first person perspective means for now. That is far outside of the scope of this part of the theory."**
 - **The two closures are one** — narrative and structural — and the sprint reveals whether they can be made to **coincide**.
-- **Sprints are named, not numbered.**
 - **"You own being done and the review is where I weigh in."**
+
+**From 2026-08-07, new:**
+
+- **"Write it now. It's part of the demo… It's certainly not the hard part although I expect it to be executed flawlessly as it is an essential demo to show what kind of representation authorship must be embodied within."** — the autobiography is **written in full this sprint**.
+- **"The full types, hand built."**
+- **"The shelf is still the library catalogue, which is a book called the shelf. The card catalogue… it's not really something viewable, but if you'd like to write a chapter about it where you give a card-like display within a specification chapter in The Shelf, that would be okay… The card still has writing. It is a valid thing to exist in a book."**
+- **"I think we want the `$CardCatalogue`, `$IndexCard<T>`, `$LibraryCatalogue > $CardCatalogue`, `$LibraryCard > $IndexCard<$Book>`. There are interfaces these need to implement. A card catalogue catalogues T through index cards, and the library catalogue catalogues books through library cards."**
+- **The correction that fixed the model**, after a false choice was put to him: *"The author reference is on the book through the cover and set as a property. The LibraryCard is a computed type based on `$IndexCard<$Book>` though it will have dynamic properties. The author reference on the book turns into a library card reference on the book's library card. So too for subject… when the library card is initialized, it is initialized from the code with all static information. If it's a derived type, there should be additional dynamic properties on the library card… And the actual author link has a card from the catalogue at runtime. The library card is a book reference and the author link can be a book reference through its library card."*
+- **The team's name, and the book's: "The Team."**
+- **"There is a library folder for the card abstraction to go in."**
+
+---
+
+# Requirements
+
+*Approved 2026-08-07. Identifiers are stable and never renumbered. Every requirement names what would be observed if it held.*
+
+## Actors
+
+- **A1 — The author.** Writes a book: its prose, its cover, and the references its cover declares.
+- **A2 — The librarian.** Organizes the library: which cards are in the catalogue, and what each stands for.
+- **A3 — The reader.** Reads a book and follows its references outward — to its author, and home.
+- **A4 — The implementer.** Writes classes against the model and is judged by validation rather than by convention.
+
+## The card family
+
+- **R1. `$IndexCard<T>` is a reference to a T carrying T's surrogate** — what you consult instead of handling the thing. It implements `$Reference$<T>`. *Seen: a card reads to its referent.*
+- **R2. `$CardCatalogue` catalogues T through index cards** — a composition of cards that is also a reference to that composition, which is `$Catalogue$<T>`, the interface [Sprint 47](05-sprint-47--the-catalogue.md) already carved. *Seen: it satisfies the interface with no change to the interface.*
+- **R3. `$LibraryCard` extends `$IndexCard<$Book>`; `$LibraryCatalogue` extends `$CardCatalogue`** and catalogues books through library cards. *This is what replaces `$$Book` ([R58](06-sprint-48--subjects-and-the-library.md#r58-librarycard-replaces-book--and-the-notation-becomes-vocabulary-at-book-level)).*
+- **R4. A card's shape is its book's shape with references converted.** Property names stay **identical**; a property whose value is a book becomes that book's **card**. A book's `author` is an `$Author`; its card's `author` is a `$LibraryCard`. Same for subject. *Seen: the two property lists match name for name.*
+- **R5. The card graph is closed — card to card, never card to book.** *Seen: a check completes without any book's module being reached.*
+- **R6. A card is initialized from the code with its static information**, and a **derived book type puts additional dynamic properties on its card**. Hand-built this sprint — and **what has to be written by hand is exactly the list the build must later generate** ([R53](06-sprint-48--subjects-and-the-library.md#r53-the-card-is-a-compilation-defined-by-the-public-build-doug-2026-08-06)).
+- **R7. A card is writing, and it is a valid thing to exist in a book.** *Seen: a card renders inside a chapter as a card, not as prose.*
+- **R8. The author link is a book reference through its library card**, and it takes that card **from the catalogue at runtime**. *Seen: the link resolves with the direct import of the autobiography removed.*
+
+## The author and the loop
+
+- **R9. All four books carry an author on their cover.** *Seen: four names on four covers.*
+- **R10. An author renders as its name and nothing else** — the name **is** the reference, with no affordance beside it ([R35](06-sprint-48--subjects-and-the-library.md#collected-in-review)). *Seen: no underline, no button, no label.*
+- **R11. All four links arrive at one book: *The Team*.**
+- **R12. *The Team*'s own author link arrives at *The Team*.** The self-loop is **in the model**, not in the prose.
+- **R13. The canonical autobiography is recognised structurally** — by that self-pointing link — and **never by a field declaring it.** *Seen: a book whose author link points at a book that does not author itself is refused.*
+- **R14. An author with a name and no card still renders its name; one with neither is refused.** References degrade honestly.
+
+## The book — *The Team*
+
+- **R15. It narrates how the catalogued books came to be** — the algebra book, the manifold, the shelf — and at the summit, **the invention of the library**. A well-written book by the same author narrating something else **fails**. *This is semantic validation, not editorial taste.*
+- **R16. It contains the decision to write the very book being written.** The fixed point, not a memoir about one.
+- **R17. Fiction inspired by a true story**, claiming authorship through **quoted references in its own writing** rather than an asserted field — the citation machinery from [Sprint 47](05-sprint-47--the-catalogue.md), doing real work.
+- **R18. Teammates appear inside it** — informal signatures and **appendix chapters**. **We are not in the demo library**; the library holds books, the book holds us.
+- **R19. It grows a chapter per sprint hereafter.**
+
+## What is seen
+
+- **R20. The Shelf stays the library catalogue, and stays a book.**
+- **R21. The Shelf gains a specification chapter that displays a card as a card** — card-like, not prose, and **the card still has writing**. This is the card made visible without pretending the catalogue is a view.
+- **R22. Following an author name arrives at *The Team*; following *its* author arrives back where you started.**
+- **R23. The shelf's catalogue entries read title and synopsis off the cards** rather than from hand-authored prose — [R37](06-sprint-48--subjects-and-the-library.md#subject-author-and-the-summit), and a violation the demo carries today. *Proposed at the brainstorm and not explicitly ruled; adopted because the sprint went to plan without a no. **Flag it at review if it was not wanted.***
+
+## Key flows
+
+- **F1 — A book declares its author.** An author writes a cover; the cover carries a name that is a reference. The book reads it through the cover as a property.
+- **F2 — A card is minted.** A library card is initialized from the code with the book's static information, and takes its place in the library catalogue.
+- **F3 — The loop closes.** An author link asks the catalogue for its card at runtime and reads through it to a book. *The Team*'s link arrives at *The Team*.
+- **F4 — A card is read as writing.** A card stands inside a chapter of The Shelf and renders as a card.
+
+## Acceptance examples
+
+- **AE1.** A library card reads to its book.
+- **AE2.** The library catalogue answers a card for each of the four books and satisfies `$Catalogue$` **without the interface changing**.
+- **AE3.** A book's card carries the **same property names** as the book, with `author` typed as a card rather than as an `$Author`.
+- **AE4.** Following any book's author name arrives at *The Team*.
+- **AE5.** *The Team*'s author link reads to *The Team*.
+- **AE6.** An author link pointing at a book that does **not** author itself is **refused** (R13).
+- **AE7.** An author with a name and no card renders the name; with neither, it is refused (R14).
+- **AE8.** The author link resolves **with the direct import of *The Team* removed** (R8) — the negative proof.
+- **AE9.** A card renders **as a card** inside a chapter of The Shelf (R7, R21).
+- **AE10.** The shelf's entries show title and synopsis **read off cards** (R23).
+
+## Out of scope, named
+
+- **`$Subject` validating.** A card carries the subject link as data; only the **author** link is a working, validating reference this sprint. The subject's refusal is [its own sprint's demo](00-planning.md#sprint-three--the-subject).
+- **`$Type`.** Its mechanism is still design owed and it gets no unit ([the rule this plan carries](../../../../.claude/library/our-skillset/29-ce-plan.md)).
+- **The build.** Cards are hand-built; that hand-built list is the compiler's specification, and the compiler is [Sprint Five](00-planning.md#sprint-five--the-compilation).
+- **`$Book.valid()` requiring an author.** Every book in both suites would have to be migrated, and no requirement here asks for it. *Named so it is not discovered as scope mid-work.*
+- **The `[link](Name)` parsing form**, whose naming convention is **owed and unruled**. No unit invents it.
+- **Anything about the first person**, by ruling.
+
+---
+
+---
+
+# Plan
+
+*Set 2026-08-07. **WHAT, not HOW.** Unit identifiers are never renumbered — U1–U4 keep the concepts they had in this chapter's first draft; the card family takes U5 onward.*
+
+## Decisions
+
+**D1 — The card family lands before any author link is written.** The author points at a card, so building the links first would mean building them on direct imports and retrofitting. *Chosen over: links first — which is precisely what makes AE8's negative proof unprovable, because a retrofit leaves the import in place.*
+
+**D2 — The card graph is closed card-to-card.** A book-valued property on a card is a **card**, never a book. *Chosen over: cards holding their books — which would make "validation without opening a book" a claim the code does not make, and would reintroduce the traversal [R63 deleted](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place).*
+
+**D3 — The self-loop is closed by the card, not by new machinery.** A card is minted independently of its book, so *The Team*'s author link has a target before *The Team* is built. *Chosen over: a late-resolving reference kind — new machinery for a problem the surrogate already solves.* **If this turns out false, it is [raised the moment it appears](00-planning.md#the-standing-sprint-discipline-added-2026-08-03-out-of-47s-cost), never designed around.**
+
+**D4 — Cards are hand-built, and their contents are the specification for the compiler.** Doug ruled the compilation out of the critical path. *Chosen over: generating them now — which would guess the mapping instead of discovering it.*
+
+**D5 — Only the author link validates this sprint.** Subject rides on the card as data. *Chosen over: building `$Subject` alongside — two refusals in one sprint, and the subject's refusal is the next sprint's whole visible end.*
+
+**D6 — The card is made visible inside a book, not as a view of the catalogue.** Doug: the card catalogue *"is not really something viewable."* *Chosen over: a catalogue screen — which would invent a surface he explicitly declined.*
+
+**D7 — Nothing is named that Doug has not named.** `$IndexCard`, `$CardCatalogue`, `$LibraryCard`, `$LibraryCatalogue` and *The Team* are his. Where a unit needs a name he has not given, **it stops and reports the population**.
+
+## Units
+
+### The card family — `library/.public/package/src/library/`
+
+- **U5 — `$IndexCard<T>`.** A reference to a T that carries T's surrogate, implementing `$Reference$<T>`.
+  *Mechanism: the shipped reference-kind pattern — a writing-level chemical holding static metadata, `read()` answering the referent, `then()` composing a path, exactly as `$Bookmark` and `$RibbonMark` do. Zero framework change expected. Files: new under `src/library/`, `src/index.ts`. Depends on: nothing. Realizes: R1. **Visible end:** a card that reads to its referent — AE1.*
+
+- **U6 — `$CardCatalogue`.** Catalogues T through index cards; a composition of cards that is also a reference to that composition.
+  *Mechanism: implement `$Catalogue$<T>` against `$Composible$`, the way `$TableOfContents` already does one level down — the interface is not to be changed to fit. Files: new under `src/library/`, `src/index.ts`. Depends on: U5. Realizes: R2. **Visible end:** the interface satisfied unchanged — AE2.*
+
+- **U7 — `$LibraryCard`.** Extends `$IndexCard<$Book>`. The book's surrogate: property names identical to the book's, with book-valued properties carried as **cards**.
+  *Mechanism: a subclass fixing T to `$Book` and declaring the surrogate members; `author` typed as `$LibraryCard`. Files: new under `src/library/`, `src/index.ts`. Depends on: U5. Realizes: R3, R4, R5. **Visible end:** a card whose property names match its book's, `author` among them — AE3.*
+
+- **U8 — `$LibraryCatalogue`.** Extends `$CardCatalogue`, cataloguing books through library cards. The one catalogue the demo's four books are in.
+  *Mechanism: a subclass fixing the card kind; lookup from a book's identity to its card. **How an author link obtains the catalogue instance is a HOW**, decided with the code open — and if it needs machinery the framework does not have, it is raised. Files: new under `src/library/`, `src/index.ts`. Depends on: U6, U7. Realizes: R3, R8. **Visible end:** four books, four cards, one catalogue — AE2.*
+
+- **U9 — The card's computed type.** The mapping from a book's type to its card's type expressed **as a type** where it can be, with dynamic properties for derived book types.
+  *Mechanism: a mapped type over the book's members converting book-valued properties to their card references, plus an informal extension surface for subtype-derived information. Files: the card unit's files. Depends on: U7. Realizes: R4, R6. **Visible end:** the mapping holds at `tsc` rather than by convention — AE3.*
+
+### The author — `library/.public/package/src/book/`
+
+- **U2 — `$Author`, revised.** A book reference carrying a display name, resolving **through its library card**, taken from the catalogue at runtime. Declared on the cover and read by the book as a property.
+  *Mechanism: a writing-level reference kind whose copy is the display name; `read()` goes card → book. **Partly built already** — the class, the cover accessor and 8 green tests exist in the working tree from before the card system was in scope, and they resolve through a `$Reference$<$Book>` rather than through a card. **That is the part this unit changes.** Files: `src/book/Author.tsx`, `src/book/Cover.tsx`, `src/book/Book.tsx`, `src/index.ts`. Depends on: U8. Realizes: R8, R10, R14. **Visible end:** a name on a cover that follows — AE4, AE7.*
+
+- **U4 — The team's name.** ***The Team*** — the display name every author link prints, and the title of the book it arrives at. **The same words**, so the fixed point is legible before anything is followed.
+  *Mechanism: none — it is a name, and it is Doug's. Realizes: R11. **Visible end:** the name on four covers.*
+
+### The book — `library/.public/package/app/src/sections/book/library/`
+
+- **U1 — *The Team*, the autobiography.** The fourth book, **written in full**: the account of how the algebra book, the manifold and the shelf came to be, and at the summit the invention of the library. It contains **the decision to write the very book being written**. Fiction inspired by a true story; authorship claimed through **quoted references in its own writing**. Teammates appear as informal signatures and appendix chapters.
+  *Mechanism: an ordinary `$Book`, authored the way algebra and the manifold are, using Sprint 47's citation apparatus for the quoted references. Files: new under `app/src/sections/book/library/the-team/`. Depends on: U4. Realizes: R15–R19. **Visible end:** a book you can read that describes its own writing — and it is [the thing a hand-authored page cannot fake](00-planning.md#the-fourth-book--the-canonical-autobiography).*
+  ***Doug's standard, in his words: "I expect it to be executed flawlessly."** Cycles are budgeted for this rather than squeezed after the model.*
+
+- **U10 — The four hand-built cards.** One library card per demo book, initialized from the code with its static information, placed in the library catalogue.
+  *Mechanism: hand-authored card construction in the demo code; the list of everything that had to be written by hand is **recorded as it is written**, because that list is the compiler's specification. Files: new under `app/src/sections/book/library/`. Depends on: U8, U9. Realizes: R6. **Visible end:** the list itself, reviewable — and every entry on it either derivable from the code or a finding.*
+
+- **U3 — The links, and the loop.** Each of the four books gets an author link to *The Team*; *The Team*'s own link points at *The Team*. A link pointing at a book that does not author itself is refused.
+  *Mechanism: this is where D3 is tested — the card is minted before the book, so the self-pointing link resolves. Files: the four demo books. Depends on: U2, U10. Realizes: R9, R11, R12, R13. **Visible end:** following any author arrives at one book; following that book's author arrives back — AE4, AE5, AE6.*
+
+### What is seen — `library/.public/package/app/src/sections/`
+
+- **U11 — The card, displayed as a card.** A specification chapter in The Shelf that shows a library card **as a card** rather than as prose, with its writing intact.
+  *Mechanism: a `$Chapter` subclass whose view renders the card's own writing in card form — the self-rendering-reference pattern, subclass plus `view()`. Files: new under `app/src/sections/book/library/the-shelf/`, a styled sheet. Depends on: U7, U10. Realizes: R7, R21. **Visible end:** a page where a card looks like a card — AE9.*
+
+- **U12 — The shelf's entries read off cards.** The written face of the shelf takes title and synopsis from the cards instead of from hand-authored prose.
+  *Mechanism: the entry view reads the card rather than a written chapter; the hand-authored entry chapters die. Files: `app/src/sections/the-books.tsx`, the shelf's entry chapters. Depends on: U10. Realizes: R23. **Visible end:** entries whose text cannot drift from the books — AE10.*
+
+### Records
+
+- **U13 — The branch library moves with the code**, and **the session ends with a push**. The register is brought to the built truth by its authors, and the work reaches the [object of record](../../../../.claude/library/..environmentalism/06-on-sync.md) rather than sitting in a working copy.
+  *Files: this chapter, `../the-semantics-of-books/`. Depends on: everything.*
+
+## Test scenarios
+
+*Each names input, action and expected outcome, and says which acceptance example it covers.*
+
+**U5 — `$IndexCard<T>`.** A card made for a referent: `read()` answers that referent — **AE1**. · A card with a name and no referent: renders its name, and `read()` refuses with a sentence saying it never pointed. · A card composed with `then()`: answers a path, like every other reference kind.
+
+**U6 — `$CardCatalogue`.** A catalogue of three cards: its parts are cards, following them arrives at the referents, and it reads back as a reference to that composition — **AE2**. · An empty catalogue: answers an empty composition, **not an absence**. · The interface is satisfied **with no edit to `$Catalogue$`** — if an edit is needed, that is a finding and it is reported.
+
+**U7, U9 — `$LibraryCard` and its type.** A card for a book: every property name on the card matches a property name on the book — **AE3**. · The card's `author` is a **card**, not an `$Author` — **AE3**, and this is D2. · A card for a book **subtype**: the subtype's derived information is reachable on the card without the card class knowing it in advance. · No path from a card reaches a `$Book` module — **the closed-graph check, D2**.
+
+**U8 — `$LibraryCatalogue`.** Four books, four cards, one catalogue; each card found from its book's identity — **AE2**. · A lookup for a book with no card: refuses, naming the book rather than answering undefined.
+
+**U2 — `$Author`.** An author reads to its book **through its card** — **AE4**. · An author renders its display name and **nothing announcing it is a reference** — R10. · An author with a name and no card: renders the name; `read()` refuses — **AE7**. · An author with neither: refused — **AE7**. · A book answers the author standing in its cover; a book with none answers nothing. *(Regression: the 8 tests already written must still pass, or their promise changed and the change is stated.)*
+
+**U3 — the loop.** Each of the four books' author reads to *The Team* — **AE4**. · *The Team*'s author reads to *The Team* — **AE5**. · An author link pointing at a book whose own link points elsewhere: **refused** — **AE6**. · **The negative proof:** the link resolves with the direct import of *The Team* removed — **AE8**.
+
+**U1 — *The Team*.** It binds as a valid book — a cover at zero, a synopsis, at most one table of contents. · Its quoted references resolve. · Its appendix chapters are reachable and are **not** mistaken for its narrative chapters. · It contains the passage recording the decision to write it, and that passage is **findable in the model**, not only on the page — R16.
+
+**U11, U12 — what is seen.** Driven and **read**: a card renders as a card in a chapter of The Shelf — **AE9**. · The shelf's entries show title and synopsis read off cards — **AE10**. · Following an author name on a cover arrives at *The Team*; following its author arrives back — **AE4, AE5**. Per the standing law: green → driven → **seen**.
+
+**Regression, the whole time.** Chemistry **630/630**, lib **≥115/116** (the one red is the [refusal-message defect](00-planning.md#validation-that-says-why--carried-out-of-sprint-48-doug-2026-08-06), carried and **not this sprint's to fix**), three packages **tsc 0**.
+
+## Origin tracing
+
+| requirement | lands in |
+|---|---|
+| R1 | U5 |
+| R2 | U6 |
+| R3 | U7, U8 |
+| R4, R5 | U7, U9 |
+| R6 | U9, U10 |
+| R7 | U11 |
+| R8 | U2, U8 |
+| R9, R11, R12, R13 | U3 |
+| R10, R14 | U2 |
+| R11 | U4 |
+| R15–R19 | U1 |
+| R20 | **held, not built** — The Shelf already is the library catalogue and already is a book; U12 must not change that |
+| R21 | U11 |
+| R22 | U3, U11 |
+| R23 | U12 |
+| A1–A4 | F1–F4, and through them the units above |
+| F1 | U2, U3 |
+| F2 | U8, U10 |
+| F3 | U2, U3 |
+| F4 | U11 |
+| AE1–AE10 | named in the scenarios above |
+
+**And back the other way — every unit names a mechanism and a visible end.** U4 is the one unit with no mechanism, because it is a name and not a build; it is marked so rather than dressed as work.
+
+## Order
+
+1. **U5 → U6 → U7 → U9 → U8** — the card family, complete before anything points through it.
+2. **U4** — the name, which every later unit prints.
+3. **U2** — the author reference, revised onto cards.
+4. **U10** — the four hand-built cards, with the hand-written list recorded as it is written.
+5. **U1** — *The Team*, written in full. **Its own stretch, not a tail on the model's.**
+6. **U3** — the links and the loop, **driven the day they exist** rather than after content piles on them.
+7. **U11 → U12** — the card seen, and the entries read off cards.
+8. **U13** — the records and the push, in the same act as the work.
+
+## Risks, and what mitigates each
+
+1. **This is two sprints in one**, merged by ruling. *Mitigation: the order front-loads the card family. **The honest signal to watch:** if U5–U9 have not closed before *The Team* is being written, the sprint is running long and Doug hears it then, not at the retro.*
+2. **The computed card type may not be fully expressible.** A mapped type over a class of getters and methods is not free. *Mitigation: U9 may fall back to a per-book hand-written type **with the mapping stated**, and the gap is reported as the compiler's problem rather than hidden — that report is exactly what [Sprint Five](00-planning.md#sprint-five--the-compilation) needs.*
+3. **The autobiography is real writing and must be flawless** (Doug's word). *Mitigation: it is its own step in the order with cycles budgeted, never squeezed in after the model.*
+4. **How an author link obtains the catalogue is a HOW, undecided here.** *Mitigation: decided with the code open; if it needs framework machinery, it is **raised the moment it appears**.*
+5. **D3 may be wrong** — the card may not dissolve the bootstrap. *Mitigation: it is the sprint's REVEALED question, so a surprise here is a **finding**, not a failure — but it must be raised, never designed around.*
+6. **The demo law binds:** impressive, aesthetically unique, a meaningful use case. *Mitigation: the *extremely well-designed* filter runs before Doug sees it, per [ce-review](../../../../.claude/library/our-skillset/33-ce-review.md).*
+
+## Self-check
+
+*Where this plan is thin, stated rather than hidden.*
+
+- **U8 is the unit most likely to grow.** Lookup, identity and catalogue access are one idea in the requirements and may be two in practice. A split keeps U8 and takes the next unused identifier.
+- **U9 is the unit least proven.** Nothing in the codebase does type-level mapping today, so it is the one place the plan is reasoning rather than pointing at prior art.
+- **R20 has no unit and that is correct** — it is a constraint on U12, not work. It is in the tracing table as *held, not built* so it cannot be read as a drop.
+- **R23 was proposed, not ruled.** It is adopted, and it is flagged in its own requirement so the review can undo it cheaply.
+- **U2 is partly built already**, from before cards were in scope. The plan says what changes rather than pretending the tree is clean.
+
+## The team
+
+**Cathy** on the card family and the author reference. **Arthur** on the ontology and this chapter. **Libby** on *The Team* as a book, and on the quoted references doing real work. **Queenie** on the loop's promises and the negative proof. **Phillip** and **Gabby** on the card seen as a card. Bench: Adam, David, Nancy; Claude on call.
+
+## Where things stand
+
+*Written 2026-08-07 at the plan. **The next session opens by reading this and verifies against the working copy before acting.***
 
 ### State
 
-**Complete:** nothing in this sprint. **In progress:** nothing. **Not started:** U1–U4, all of them. The chapter is `implementation-ready` and was deliberately left unbegun — the session that planned it had no context left, and [starting work at the end of a long session is this branch's filed failure](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md).
+**Complete:** the requirements and this plan. **In progress:** U2, partly — `$Author` exists with a cover accessor and **8 green tests**, built before the card system was in scope, resolving through a plain book reference rather than through a card; **uncommitted**. **Not started:** U5–U13, U1, U3, U4.
+
+### Verification, with numbers — from fresh runs this session
+
+Chemistry **630/630** (58 files). Lib **115/116** (10 files) — the one red is the refusal-message defect, carried and not this sprint's. Lib **tsc 0**. Chemistry `dist` **rebuilt before the lib suite ran**, without which the number proves nothing.
+
+### Pushed this session
+
+Library to identity `inexplicable-phenomena` at `cfe7fb0` — **the branch was three chapters behind and nobody knew**. Code to the project repo at `fe4e41c`.
 
 ### Blockers
 
-- **The `[link](Name)` naming convention** — owed, unruled, Doug's. U2 needs it and **no unit may invent it**.
-- **The team's display name** — `Inexplicable Press` proposed on the *publisher → team* finding, changeable by Doug's own terms. U4 stands on it.
-- **The bootstrap may need machinery nobody designed.** That is the sprint's REVEALED question, so it is a finding rather than a failure — **but raise it the moment it appears, never design around it.**
-
-### Verification, with numbers — from fresh runs, not memory
-
-Chemistry **630/630** (58 files; baseline was 622 before Sprint 48's framework work). Chemistry **tsc 0**, lib **tsc 0**, app **tsc 0**. Lib **107/108** — one red, the refusal-message defect, [carried to its own work](00-planning.md#validation-that-says-why--carried-out-of-sprint-48-doug-2026-08-06) and **not** this sprint's to fix.
+- **The `[link](Name)` convention** — owed, unruled, Doug's. No unit invents it, and none is blocked on it.
+- **Nothing else.** The team's name and the card family's names are ruled.
 
 ### Wrong turns already taken — do not repeat these
 
-- **Wrapping a bond constructor on the INSTANCE** looks correct and silently misses every `super.` call. It must sit on the prototype.
-- **Running the lib suite without rebuilding chemistry's `dist`** gives a false green — [filed](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
-- **Adding an affordance beside a name to make it followable** — a button, a label, an underline. Three rounds were spent on this; the name *is* the reference. [Filed](../solutions/03-the-link-i-built-three-times.md).
-- **Treating a role as if it needed a single filler** — asking which one thing `$$Book` "is". References are not unique.
-- **An unexplained pass is as suspicious as an unexplained failure.** Two happened in one session; both numbers were true about something other than the claim.
+- **Running the lib suite without rebuilding chemistry's `dist`** gives a false green. [Filed](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
+- **Adding an affordance beside a name to make it followable.** The name *is* the reference. [Filed](../solutions/03-the-link-i-built-three-times.md).
+- **Interpolating a built chemical instance into JSX.** It does not bind; author the element instead.
+- **Putting a false choice to Doug** — asking whether an author *holds* its card or *reaches* for it, when the real answer was that the card graph is card-to-card and the link takes its card from the catalogue at runtime. **A question with two wrong options is worse than no question.**
+- **Writing a handoff that does not commit.** The branch library sat three chapters behind the working copy because the last session's handoff wrote the record and never pushed it.
 
 ### Pointers, with what is load-bearing at each
 
-- [Chapter zero](00-planning.md) — **read the twenty paragraphs first**; they are the only place the whole design is said at once. Then the demo spec, then the five named sprints.
-- [Sprint 48](06-sprint-48--subjects-and-the-library.md) — **R38–R64 with the reasoning that produced each**, and the design pseudocode. Closed; do not reopen.
-- [`app/src/sections/book/library/`](../../package/app/src/sections/book/library/) — how a book is authored here: `$(<Book><Cover/><Synopsis/>…</Book>)`. **`the-shelf/` is the hand-authored catalogue whose prose dies in the next sprint.**
-- [`marks.tsx`](../../package/app/src/sections/book/library/the-manifold/marks.tsx) — **the prior art for a reference that renders itself**: subclass plus `view()`, zero framework change. `$Author` is built on this. **Open it before writing U2.**
+- [Chapter zero](00-planning.md) — **the twenty paragraphs**, the only place the whole design is said at once.
+- [Sprint 48](06-sprint-48--subjects-and-the-library.md) — **R38–R64 with the reasoning behind each**. Closed; do not reopen. Note **R54 is superseded** here: the catalogue is a class, not a variable.
+- [`marks.tsx`](../../package/app/src/sections/book/library/the-manifold/marks.tsx) — the prior art for a reference that renders itself. **Open it before U5.**
+- [`Bookmark.tsx`](../../package/src/book/Bookmark.tsx) — the reference-kind template `$Author` was built on, and the one `$IndexCard` should follow.
 - [Solutions](../solutions/.cover.md) — five chapters, indexed by symptom.
