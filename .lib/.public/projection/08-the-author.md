@@ -140,6 +140,21 @@
 
 **D6 — The card is made visible inside a book, not as a view of the catalogue.** Doug: the card catalogue *"is not really something viewable."* *Chosen over: a catalogue screen — which would invent a surface he explicitly declined.*
 
+**D8 — The transform is four rules and two exclusions, and it has no exceptions.** *(Doug, 2026-08-07 — this replaced five hand-listed special cases, which was the implementer failing to find a rule.)*
+
+| | |
+|---|---|
+| a **basic** value | passes through |
+| a list of **chapters** | becomes their **title strings** |
+| a **book reference** | becomes that book's **card** |
+| **everything else complex** | compresses to a **string** — *"replace things you find with the value input to them"* |
+
+**Excluded, as rules rather than lists.** ***Composed*** — everything below chapter grade, `copy` among them: *"You think an index card representation of something includes all words in it? No."* ***Reflexive*** — what points back at the very book the card is for, which the card already **is**. *The second exclusion is the implementer's, not Doug's; applying his rule literally would make `cover`, `canonical` and `ref` each resolve to this card, which is cohesive but redundant. **Flagged for the review.***
+
+**And the rule has no exception for the synopsis.** *Doug: "What part of an index card representation don't you understand? If it has a chapter named Synopsis, what's wrong with having that in the list? It tells you a book has a synopsis."* The implementer proposed an exception; it was refused, and rightly. **The check it turned into:** `$Synopsis` must let an author override its title — *"if a person can't override the title of synopsis by inputting it, that's a bug on synopsis that needs to be fixed."* **Verified: it can.** `$Synopsis` extends `$Chapter` with no bond constructor and no forced title, so its title is whatever the author writes. No bug.
+
+**D9 — `$LibraryCard` is a computed type; `$LibraryCard$` is the class that implements it.** The `$Html$` pattern from `$Chemistry`. *Chosen over: a hand-written class alone — because `implements $LibraryCard` makes **`tsc` prove the mapping is implementable**, not merely expressible, so a future rule that produces something nobody can build stops compiling.*
+
 **D7 — Nothing is named that Doug has not named.** `$IndexCard`, `$CardCatalogue`, `$LibraryCard`, `$LibraryCatalogue` and *The Team* are his. Where a unit needs a name he has not given, **it stops and reports the population**.
 
 ## Units
