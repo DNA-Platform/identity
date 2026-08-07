@@ -115,7 +115,32 @@
 
 **U15 — `$` as a container.** *`$Chemistry` work. **DESIGN OWED** and therefore refused files and scenarios. Realizes: R25, and closes R55. **Visible end:** a reference that asks for the library catalogue and is given it, with nothing holding a singleton.*
 
-### R26. A figure is a paragraph that draws itself — BLOCKED, and the block is R24
+### R27. Specializing how book content looks is the point of the framework *(Doug, 2026-08-07)*
+
+> **"We are definitely going to have to itemize the markdown implementation… When a block has a paragraph, maybe it just parses around it and that paragraph has to be one of them. Maybe we decide that it has to render at the paragraph level in its view. What if we want special types of sentences or words? We need to find a way to support this. There is no point to this framework if we can't specialize how book content looks."**
+
+**This is the strongest statement of [R24](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07) and it raises it from a gap to the framework's reason for existing.** Three things in it, each separable:
+
+- **R27a. Itemize the markdown implementation.** Today a chapter is one prose blob per section, parsed. It must resolve into items.
+- **R27b. A block containing an authored paragraph parses AROUND it**, and that paragraph is one of the block's parts — Doug's own sketch. The alternative he names: **the part must render at its own level in its view.**
+- **R27c. Specialized sentences and words too**, not only paragraphs. *"What if we want special types of sentences or words?"*
+
+**Naming, corrected the same day.** The implementer wrote `$TheLoop`, `$TheCard` and `$TheCode` — *"What is a loop and why does it have a view? I don't use the phrase loop and it certainly isn't in the semantics of books. You are confusing it with the semantics of knots."* **All three are deleted.** What ships is `$Figure`, a book word, and `$Heading`.
+
+### R26. A figure is writing that draws itself — PARTLY SOLVED, and what remains is R27
+
+**It works, and the answer was Doug's.** *"Can't you just create an inline element that can insert into markdown?"* — **yes.** A figure is a `$Sentence` **whose copy is its caption**: it is valid because it has words, it stands inside a section's prose, and it draws itself around them. That is the shipped `$RibbonMark`/`$Author` seam, and the demo renders with a figure in *The Decision*.
+
+**What was tried and failed, each for a different reason — recorded because each looked correct:**
+
+1. **A block-level `$Paragraph`** ends the section's block early: the figure and **every paragraph after it** vanish.
+2. **An inline `$Paragraph` with no copy** is refused at binding — `$Paragraph.valid()` demands letters.
+3. **Forcing it valid** renders and then **loops** — *too many re-renders*.
+4. **A `$Sentence` subclass declaring props** loops **as well** — and it still loops with the array prop replaced by a scalar, with the derived getter removed, and with sentence-minting suppressed. **A bare `$Figure` with no subclass does not loop.**
+
+**So the residue is precise and it is a framework question, not a demo one: a `$Figure` subclass that declares its own props and overrides a method its `view()` calls will not render.** That is the thing [U14](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07) and R27 have to make possible, and until they do, **a figure can carry a caption but cannot carry data.** Nobody should re-attempt route 1, 2 or 3.
+
+### R26a. The earlier reading of R26, superseded
 
 The demo's figures — the loop drawn from the model, a card printing its own fields, a code listing — **are written and do not render.** Three shapes were tried and each failed differently, which is the finding:
 
