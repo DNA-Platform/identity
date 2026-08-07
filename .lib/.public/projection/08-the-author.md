@@ -431,6 +431,9 @@ Library to identity `inexplicable-phenomena` at `cfe7fb0` — **the branch was t
 - **Running the lib suite without rebuilding chemistry's `dist`** gives a false green. [Filed](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
 - **Adding an affordance beside a name to make it followable.** The name *is* the reference. [Filed](../solutions/03-the-link-i-built-three-times.md).
 - **Interpolating a built chemical instance into JSX.** It does not bind; author the element instead.
+- **Reflecting over a chemical as if it were the class you wrote.** Four instruments failed differently before a twelve-line probe printed the chain and settled it in one run — [filed](../solutions/06-the-class-that-was-not-the-class.md). **When three attempts at one problem fail differently, stop attempting and instrument.**
+- **Scripted edits that insert escape sequences.** `re.sub` processes backslashes **in the replacement**, so an insert meant to write `{'\n\n'}` wrote a real line break inside a string literal and broke three covers at once. Use a function replacement, or write the file by hand.
+- **Trusting the app's `tsc` for the app's own sources.** It reported **0** with a wrong relative import path and again with imports of deleted exports. **Only driving the app catches those.**
 - **Putting a false choice to Doug** — asking whether an author *holds* its card or *reaches* for it, when the real answer was that the card graph is card-to-card and the link takes its card from the catalogue at runtime. **A question with two wrong options is worse than no question.**
 - **Writing a handoff that does not commit.** The branch library sat three chapters behind the working copy because the last session's handoff wrote the record and never pushed it.
 
