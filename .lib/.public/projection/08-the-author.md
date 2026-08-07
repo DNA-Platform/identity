@@ -284,11 +284,24 @@
 
 ### State
 
-**Complete:** the requirements and this plan. **In progress:** U2, partly — `$Author` exists with a cover accessor and **8 green tests**, built before the card system was in scope, resolving through a plain book reference rather than through a card; **uncommitted**. **Not started:** U5–U13, U1, U3, U4.
+**Complete:** the requirements, this plan, and **U5 — `$IndexCard<T>`, 8 tests**. **In progress:** U6, written and not yet verified; U2, partly — `$Author` with a cover accessor and 8 green tests, built before the card system was in scope and still resolving through a plain book reference rather than through a card, which is what U2 changes. **Not started:** U7–U13, U1, U3, U4.
+
+### What U5 turned out to be — Doug's correction, and it improved the design
+
+**I built a bookmark with a label on it and called it a card.** Doug: *"Why is index card a bookmark? It is a thing that is intended to have metadata. It doesn't function on its own… It is a card that prints what's on it. It is not special because it has a reference system. It is a card. Look at the name."*
+
+So a card's defining behaviour is **enumerating its own fields and printing them**, and the reference system is incidental to being a card. **The same mechanism satisfies two requirements at once** — [R4](#the-card-family) (property names identical to the book's) and [R6](#the-card-family) (a derived card's extra properties appear without the class knowing them) are one behaviour, not two features.
+
+**Three wrong instruments before the right one, all corrected by Doug and worth recording because each looked reasonable:**
+1. **Walking the prototype chain for getters** — *"Fields are not prototype level. This is basic JavaScript."*
+2. **`Object.keys(this)`** — *"many chemicals are made by object create. You don't want the instance's own prototype."* Under `Object.create` the fields live on the object the instance was made from, so own-keys misses them.
+3. **`for…in` over `$`-prefixed keys** — correct. And the machinery is excluded by **diffing against a bare card** rather than by a hardcoded list, so it cannot fall out of step with the framework.
+
+**And the property D3 depends on is now proven rather than argued:** a card made *before* its book exists reads correctly once the book arrives — `tests/library/card.test.tsx`, *"reaches its referent late."*
 
 ### Verification, with numbers — from fresh runs this session
 
-Chemistry **630/630** (58 files). Lib **115/116** (10 files) — the one red is the refusal-message defect, carried and not this sprint's. Lib **tsc 0**. Chemistry `dist` **rebuilt before the lib suite ran**, without which the number proves nothing.
+Chemistry **630/630** (58 files). Lib **123/124** (11 files) — the one red is the refusal-message defect, carried and not this sprint's. Lib **tsc 0**. Chemistry `dist` **rebuilt before the lib suite ran**, without which the number proves nothing.
 
 ### Pushed this session
 
