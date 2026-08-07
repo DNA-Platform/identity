@@ -299,7 +299,24 @@
 
 ### State
 
-**Complete:** the requirements, this plan, and **U5 — `$IndexCard<T>`, 8 tests**. **In progress:** U6, written and not yet verified; U2, partly — `$Author` with a cover accessor and 8 green tests, built before the card system was in scope and still resolving through a plain book reference rather than through a card, which is what U2 changes. **Not started:** U7–U13, U1, U3, U4.
+**Complete and verified.** **U5** `$IndexCard` (8 tests) · **U6** `$CardCatalogue` · **U7/U9** the `$LibraryCard` computed type and `$LibraryCard$`, the class that implements it · **U8** `$LibraryCatalogue` · **U2** `$Author`, resolving through the catalogue · **U4** the name, *The Team* · **U3 in the model** — the loop closes, 12 tests.
+
+**THE LOOP CLOSES.** An author resolves **by name** through the library catalogue and never holds or imports a book — its only book reference is a `type` import, which erases at runtime, **so [AE8](#acceptance-examples)'s negative proof is a fact about the compiled output rather than a discipline anyone keeps.** The autobiography authors itself; every other book arrives at it; following the destination's own author lands back. *And the name Doug chose is what makes it work: an author's display name and its book's name are the same words, so resolution by name is the loop.*
+
+**Not started:** **U1** — *The Team*, the book itself, written in full · **U10** the four hand-built cards in the demo · **U11** the card shown as a card · **U12** the shelf's entries read off cards · **U13** the records.
+
+### Two structural findings, both from the framework rather than the design
+
+1. **A card must declare itself NOT inline.** `$Writing` makes everything inline, so cards were absorbed into the catalogue's *text* instead of arriving as its children — the same mechanism that lets an `$Author` sit inside a sentence. A card is a block, as a section is.
+2. **The held catalogue cannot be a `static`.** Chemistry **lifts classes**, so a static assigned inside a bond constructor lands on the lifted copy and is never seen through the imported class. It lives in module state. *This is the same lifting that defeated three attempts at property enumeration; it is worth knowing once.* **The holder is provisional plumbing and wants Doug's [R55](06-sprint-48--subjects-and-the-library.md#r55--as-a-container-and-cards-built-at-build) design (`$` as a container) rather than a name.**
+
+### The demo's existing range — read before designing the fourth book
+
+- **The Algebra** — indigo night chrome (`#232a4d → #0f1326`) around a **warm cream sheet** (`#fbf9f3`), gold accent, serif on the paper and monospace on the frame.
+- **The Manifold** — green night (`#213528 → #0e1a12`), sage text, mint accent, a wooden rail at `#8a6238`.
+- **The Shelf** — graphite spines turning over to warm parchment (`#eae4d8 → #dcd4c3`).
+
+**Both readers are dark chrome around a light page, and both are cool.** *The Team* must not be a third of those. **Proposed and not yet approved:** full light, no chrome — a working manuscript, warm paper edge to edge, with **the citation apparatus visible as the design**, since its quoted references *are* its authorship claim ([R17](#the-book--the-team)).
 
 ### What U5 turned out to be — Doug's correction, and it improved the design
 
