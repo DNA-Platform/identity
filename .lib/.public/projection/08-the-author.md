@@ -356,11 +356,40 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 ## Where things stand
 
-*Written 2026-08-07 at the plan. **The next session opens by reading this and verifies against the working copy before acting.***
+# → NEXT: nothing runs until Doug rules on ONE thing.
+
+**The sprint is built, driven and pushed. What is left is blocked on a decision, not on work.**
+
+**The decision:** *a figure that carries data will not render.* A `$Figure` subclass that declares its own props and overrides a method its `view()` calls re-renders forever. Every route around it was tried and filed. **Until that is solved, the demo's plates, its drawn diagram and its code listings cannot ship** — the book has prose, a margin card and one captioned figure, and nothing else visual.
+
+**Doug's own framing of the fix**, 2026-08-07: *"This is why we need DI — you should be able to create a new form of section and have that be what's used for a certain type of book."* **He shelved it deliberately** and said the DI sprint *"is going to be all about getting references where we need them."*
+
+**So the next action is `/ce-brainstorm` on the DI sprint**, not more work here. If Doug would rather close this sprint out first, the two remaining pieces are *the shelf's entries reading off cards* and *a book with a false author link being refused* — both small, both unblocked.
+
+### Read these four things, and nothing else
+
+1. **This section.** It is the state.
+2. [**Chapter zero, the twenty paragraphs**](00-planning.md#how-this-codebase-will-work-and-what-would-show-it) — the only place the whole design is said at once.
+3. [**Solutions**](../solutions/.cover.md) — six chapters, indexed by symptom. **Read chapter six before touching reflection or anything that renders.**
+4. [**`figures.tsx`**](../../package/app/src/sections/book/library/the-team/figures.tsx) and [**`marks.tsx`**](../../package/app/src/sections/book/library/the-manifold/marks.tsx) — what a self-rendering piece of writing looks like when it works, and the one that does not.
+
+*Orienting for this sprint cost twenty-four files. If four is not enough, that is a finding about this chapter, not a reason to read twenty more.*
+
+### Said plainly, for whoever is not tracking identifiers
+
+**The library now knows who wrote it.** Every book on the shelf carries an author; every author arrives at one book called *The Team*; *The Team* points at itself. You can see it: open the shelf, turn it to its written face, and each entry carries a byline read off its card — click one and you arrive at the book. **Nothing about that is typed prose.** The names come out of the model.
+
+**It works without any book importing another.** An author holds a card, and a card is not a book, so the link resolves with nothing loaded. That was the hard claim of the sprint and it holds by construction rather than by discipline.
+
+**And the fourth book exists and can be read** — eight chapters on how the other three were made, including the passage where it decides to write itself, and two appendices carrying the framework's own code as chapters.
+
+*Written 2026-08-07 at the session's close.*
 
 ### State
 
-**Complete and verified.** **U5** `$IndexCard` (8 tests) · **U6** `$CardCatalogue` · **U7/U9** the `$LibraryCard` computed type and `$LibraryCard$`, the class that implements it · **U8** `$LibraryCatalogue` · **U2** `$Author`, resolving through the catalogue · **U4** the name, *The Team* · **U3 in the model** — the loop closes, 12 tests.
+**Complete, verified and seen.** The card (**U5**, 8 tests) · the card catalogue (**U6**) · the computed card type and the class that implements it (**U7/U9**) · the library catalogue (**U8**) · the author resolving through a card (**U2**) · the name (**U4**) · **the loop, closed in the model and followable on screen** (**U3**, 13 tests) · the book, written in eight chapters with its own reader (**U1**) · the four hand-built cards (**U10**) · the records (**U13**).
+
+**Not done, and why.** The card shown as a card in The Shelf (**U11**) and the shelf's entries read off cards (**U12**) — the first is blocked by the figure problem above, the second is unblocked and small. **A book with a false author link is not refused**, because no validation was built at all. **The book's quoted references** landed in two chapters and not the rest.
 
 **THE LOOP CLOSES.** An author resolves **by name** through the library catalogue and never holds or imports a book — its only book reference is a `type` import, which erases at runtime, **so [AE8](#acceptance-examples)'s negative proof is a fact about the compiled output rather than a discipline anyone keeps.** The autobiography authors itself; every other book arrives at it; following the destination's own author lands back. *And the name Doug chose is what makes it work: an author's display name and its book's name are the same words, so resolution by name is the loop.*
 

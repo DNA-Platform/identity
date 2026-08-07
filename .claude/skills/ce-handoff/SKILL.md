@@ -23,6 +23,34 @@ Close a session by writing **where things stand** into the current sprint chapte
 
 **Announce at start:** "Using handoff to close this session."
 
+## The four things that made a handoff fail — added 2026-08-07, out of the one that did
+
+*Doug, on the session that opened from it: **"Handoff should have created something to follow… figure out how to handoff better as this one clearly didn't work well."** Each fix below is a step, not an aspiration.*
+
+### 1. It ends with a push, or it did not happen
+
+**A handoff that leaves the library uncommitted has written a note nobody will read.** The last one did exactly that: the record was correct, it sat in a working copy, and the branch on the [object of record](../../library/..environmentalism/06-on-sync.md) was **three chapters behind** without anyone knowing.
+
+**So the final step is the push**, and the handoff is not finished until it reports the commit. *Work state that only exists locally is the thing this section was invented to replace.*
+
+### 2. The first line is the next action, written as the command
+
+**Status is not an instruction.** `implementation-ready` told the next session what the chapter *was* and not what to *do*, so the session opened by guessing — and guessed a step that had already run.
+
+**Where things stand opens with one line: the exact command to run, and where it resumes.** Not "the plan is ready" — `/ce-work on this chapter, starting at U5`. **If the next action is a decision Doug must make rather than work, say that instead**, and name the decision.
+
+### 3. It is written for the person reading it, not for the implementer
+
+*Doug: **"Guys I don't know your codes."*** A section built out of `U2` and `R35` is unreadable by the one person whose intent it is preserving.
+
+**Every part of it says the thing in plain words first**, and carries the identifier afterwards for whoever is tracing. Identifiers are for the origin trace; **the state is for a human.**
+
+### 4. It names what to read, and the list is short
+
+**Orienting cost twenty-four files.** That is not thoroughness, it is the absence of a reading list — and it is paid at the start of every session until someone writes one.
+
+**The handoff names three to five things and claims they are sufficient.** Each with what is load-bearing in it. If five are not enough, the sprint chapter is not doing its job and *that* is the finding.
+
 ## What we were missing
 
 Autobiographies carry **identity** across sessions. Sprint chapters carry **narrative**. Nothing carried **work state** — so after a compaction, what remained open lived only in a todo list and in whatever the conversation still held.
@@ -67,8 +95,9 @@ Within a session, [ce-work](../../library/our-skillset/30-ce-work.md) tracks uni
 
 **To close a session:**
 1. Read the sprint chapter and the plan chapter — state from evidence, not memory.
-2. Rewrite **Where things stand** with everything above.
-3. Say in one line what it captured.
+2. Rewrite **Where things stand** with everything above, **opening with the next action as a command**.
+3. **Push.** The branch library to the [object of record](../../library/..environmentalism/06-on-sync.md), the code to the project repo. Report both commits.
+4. Say in one line what it captured.
 
 **To open one:**
 1. Read the last sprint chapter of the branch you are working in.
