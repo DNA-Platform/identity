@@ -356,32 +356,32 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 ## Where things stand
 
-# → NEXT: nothing runs until Doug rules on ONE thing.
+# → NEXT: `/ce-brainstorm`. Doug decides what follows; nothing here prescribes it.
 
-**The sprint is built, driven and pushed. What is left is blocked on a decision, not on work.**
+**The sprint is built, driven and pushed.** The next session **opens a brainstorm** — [`/ce-brainstorm`](../../../../.claude/library/our-skillset/28-ce-brainstorm.md) — and Doug chooses the subject. *Nothing below is a recommendation about what comes next; it is the state, so that a brainstorm has something to stand on.*
 
-**The decision:** *a figure that carries data will not render.* A `$Figure` subclass that declares its own props and overrides a method its `view()` calls re-renders forever. Every route around it was tried and filed. **Until that is solved, the demo's plates, its drawn diagram and its code listings cannot ship** — the book has prose, a margin card and one captioned figure, and nothing else visual.
+**Explicitly NOT next** *(Doug, 2026-08-07):* [**figures / authored parts**](#r27-specializing-how-book-content-looks-is-the-point-of-the-framework-doug-2026-08-07) and [**`$` as a DI container**](#r25--becomes-a-dependency-injection-container--a-chemistry-level-feature-doug-2026-08-07). *"They were added to the plan. Not necessarily what's next."* **They are recorded, not queued** — this chapter is where they wait, and a previous draft of this section wrongly promoted them to the next action.
 
-**Doug's own framing of the fix**, 2026-08-07: *"This is why we need DI — you should be able to create a new form of section and have that be what's used for a certain type of book."* **He shelved it deliberately** and said the DI sprint *"is going to be all about getting references where we need them."*
+### The scope that must not slip
 
-**So the next action is `/ce-brainstorm` on the DI sprint**, not more work here. If Doug would rather close this sprint out first, the two remaining pieces are *the shelf's entries reading off cards* and *a book with a false author link being refused* — both small, both unblocked.
+**`The Team` is the author of the DEMO's library, not of this repository.** *Doug: "the team only applies to the library defined in the demo."* [Chapter zero is explicit](00-planning.md#the-demo-specified-at-last-doug-2026-08-06): *"the demo's library is the demo's own"* — **four books**, being [the algebra book](../../package/app/src/sections/book/library/algebra/book.tsx), [the manifold](../../package/app/src/sections/book/library/the-manifold/book.tsx), [the shelf](../../package/app/src/sections/book/library/the-shelf/book.tsx) and [*The Team*](../../package/app/src/sections/book/library/the-team/book.tsx). It says nothing about the team's own library, and [we do not appear in it](#the-book--the-team) — *"you don't exist in the demo library."*
 
 ### Read these four things, and nothing else
 
-1. **This section.** It is the state.
-2. [**Chapter zero, the twenty paragraphs**](00-planning.md#how-this-codebase-will-work-and-what-would-show-it) — the only place the whole design is said at once.
-3. [**Solutions**](../solutions/.cover.md) — six chapters, indexed by symptom. **Read chapter six before touching reflection or anything that renders.**
-4. [**`figures.tsx`**](../../package/app/src/sections/book/library/the-team/figures.tsx) and [**`marks.tsx`**](../../package/app/src/sections/book/library/the-manifold/marks.tsx) — what a self-rendering piece of writing looks like when it works, and the one that does not.
+1. **This section**, then the [Requirements](#requirements) and [Plan](#plan) above it — [decisions](#decisions) `D1`–`D9`, [units](#units), [what was collected in review](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07).
+2. [**Chapter zero, the twenty paragraphs**](00-planning.md#how-this-codebase-will-work-and-what-would-show-it) — the only place the whole design is said at once; then [the demo as Doug specified it](00-planning.md#the-demo-specified-at-last-doug-2026-08-06) and [the five sprints](00-planning.md#the-five-sprints--each-with-three-things-doug-can-check-planned-2026-08-06).
+3. [**Solutions**](../solutions/.cover.md) — six chapters, indexed by symptom. **[Chapter six](../solutions/06-the-class-that-was-not-the-class.md) before touching reflection or anything that renders**; [chapter five](../solutions/05-the-suite-that-passed-against-a-stale-build.md) before trusting a suite number.
+4. **The code this sprint made:** [`IndexCard`](../../package/src/library/IndexCard.tsx) · [`CardCatalogue`](../../package/src/library/CardCatalogue.tsx) · [`LibraryCard`](../../package/src/library/LibraryCard.tsx) (the computed type **and** the class implementing it) · [`LibraryCatalogue`](../../package/src/library/LibraryCatalogue.tsx) · [`Author`](../../package/src/book/Author.tsx) · [the four hand-built cards](../../package/app/src/sections/book/library/the-team/card.tsx) · [the book's reader](../../package/app/src/sections/the-team.tsx) · [`figures.tsx`](../../package/app/src/sections/book/library/the-team/figures.tsx) beside [`marks.tsx`](../../package/app/src/sections/book/library/the-manifold/marks.tsx), which is self-rendering writing that works.
 
 *Orienting for this sprint cost twenty-four files. If four is not enough, that is a finding about this chapter, not a reason to read twenty more.*
 
 ### Said plainly, for whoever is not tracking identifiers
 
-**The library now knows who wrote it.** Every book on the shelf carries an author; every author arrives at one book called *The Team*; *The Team* points at itself. You can see it: open the shelf, turn it to its written face, and each entry carries a byline read off its card — click one and you arrive at the book. **Nothing about that is typed prose.** The names come out of the model.
+**The demo's library now knows who wrote it.** Each of its four books carries an author; every author arrives at *The Team*; *The Team* points at itself. You can see it — open the shelf, turn it to its written face, and each entry carries a byline **read off its card**. Click one and you arrive at the book. **None of that is typed prose;** the names come out of the model.
 
-**It works without any book importing another.** An author holds a card, and a card is not a book, so the link resolves with nothing loaded. That was the hard claim of the sprint and it holds by construction rather than by discipline.
+**It works without any book importing another.** [An author holds a card](../../package/src/book/Author.tsx), and a card is not a book, so the link resolves with nothing loaded. That was [the sprint's hard claim](#the-card-family) and it holds by construction rather than by discipline.
 
-**And the fourth book exists and can be read** — eight chapters on how the other three were made, including the passage where it decides to write itself, and two appendices carrying the framework's own code as chapters.
+**And the fourth book exists and can be read** — [eight chapters](../../package/app/src/sections/book/library/the-team/) on how the other three were made, including [the passage where it decides to write itself](../../package/app/src/sections/book/library/the-team/06-the-decision.tsx), and two appendices carrying the framework's own code as chapters.
 
 *Written 2026-08-07 at the session's close.*
 
