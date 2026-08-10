@@ -243,9 +243,9 @@ R8 is the one held requirement, in the table. U9 most likely to grow. U10's decl
 
 **Cathy** on the model. **Arthur** on the ontology, this chapter, the counts. **Libby** on the subject book's construction. **Queenie** on validation failures as promises and the migration. **Phillip** and **Gabby** on the design gate. Bench: Adam, David, Nancy; Claude on call.
 
-## Where things stand
+## The session record — batch by batch
 
-*Written 2026-08-07/08 at the work session's close; reconstructed after the sync incident below. The working copy is the truth; this orients.*
+*What follows is the narrative record of the work as it happened, kept for its verbatim rulings and its findings. The current state lives once, in [Where things stand](#where-things-stand) at the chapter's end.*
 
 ### State
 
@@ -361,4 +361,22 @@ The blocked name (opened the catalogue-is-not-writing ground, recorded); the car
 - [The constructor that captured the wrong instance](../solutions/11-the-constructor-that-captured-the-wrong-instance.md) — a constructor knows it ran, not that it was kept; register in `view()`.
 - **Distributed to [On Sync](../../../../.claude/library/..environmentalism/06-on-sync.md#uncommitted-work-is-not-protected-by-any-of-this)** (Claude's chapter, edited not duplicated): treat every reconcile as a session boundary — push or copy the branch library aside before pull/resolve. The environmentalism cover's stale On Sync paragraph was brought to the built truth in the same act.
 
-# → NEXT: queued and not yet run — the VOCABULARY SWEEP of the older records (chapters 01–08, Sprint 48, the older Solutions entries, the skills: *refuse* and *mint* out, per R26) and the COMPACTION DIRECTIVE (knowledge moves from sprint chapters into the topical books; the chapters shrink to narrative and rulings) — both tending-scale, both belong to the next session or the retro. Then the loop closes: `/ce-brainstorm` for the next sprint, reading what this one filed.
+## Where things stand
+
+*One state, written 2026-08-10 at the session's close. Everything above is the record; this is the present.*
+
+**→ NEXT: `/ce-brainstorm` — Doug chooses the next sprint's subject.** Chapter zero holds the cut stones: [Types](00-planning.md#types--a-whole-sprint-ruled-2026-08-07) (a whole sprint, code-in-chapters riding with it), The Library's remaining half (disagreement made visible), The Compilation. **One decision is Doug's before or beside that:** whether the queued tending — sweeping *refuse* and *mint* from the older records, and compacting sprint chapters into the topical books — runs as its own session or waits for the retro.
+
+**The objective, and Doug's latest intent in his words:** the sprint built the subject; his close was *"go back to the start of this session and improve the handoff each time to make it more seamless"* — done in the handoff's own chapter, which now carries eight fixes.
+
+**Complete and signed off by Doug at review:** the subject link as a **back arrow** — *← The Shelf* in every open book, the shelf presenting DEMONSTRATION on its written side; the card catalogue chapter, its caveat written into its own text; the recursive library property on every card. Also standing: the synopsis is a parenthetical chapter carried on the book, displayed only when its author unsets parenthetical; the contents lists the numbered chapters by one law; all three books draw their own pages; `find`/`file` verified in code — the catalogue is a build-time compilation handing out references.
+
+**Verified, fresh runs this session:** lib **154/154** (14 files) · chemistry **630/630** (58 files) · both `tsc` **0** · the full click-through with zero page errors.
+
+**The demo, and how to see it:** `npm run dev` in `library/.public/package`, open `/books` at the port vite prints. See first: click *the shelf* above the spines — it flips to the written catalogue saying DEMONSTRATION under its title; open *The Team* and follow *← The Shelf* in its top line home.
+
+**Open, each with its owner:** the types sprint — Doug's, at sprint planning · `file()` stands as proxy for his `index(…)`, blocked by the writing's own `index`, and his thought that the catalogue may not be writing at all is recorded, not acted on · canonical reciprocity answers through `valid()`, and where that check runs (books loading their subjects, or build-time in `.public`) is open design · `$` as the container, recorded since The Author.
+
+**Read these, and they are sufficient:** (1) this chapter's Requirements — R26–R33 are the review's rulings in Doug's words; (2) the [Solutions cover](../solutions/.cover.md) — five chapters filed this sprint, indexed by symptom; (3) chapter zero's [Types section](00-planning.md#types--a-whole-sprint-ruled-2026-08-07); (4) the three self-viewing books — [the shelf](../../package/app/src/sections/book/library/the-shelf/book.tsx) with [its contents](../../package/app/src/sections/book/library/the-shelf/contents.tsx), [the team](../../package/app/src/sections/book/library/the-team/book.tsx), [the manifold](../../package/app/src/sections/the-manifold.tsx).
+
+**Wrong turns, the four that cost most:** speak Doug's words — *refuse*, *mint*, and invented vocabulary are not domain terms, and he reads neither our identifiers nor our conversations · a stopped push is a session boundary — secure the branch library before any reconcile · when three theories each fit some of the evidence, print the actual shape instead of forming a fourth · a `$Book` subclass lives in its book's name space — check every state name against the model's members.
