@@ -153,7 +153,9 @@ On screen it stays what it already is: a shelf of spines, and the same library m
 
 **PROMISED.** The build emits one card per book. Property names identical. Dirty ⇒ fail, with a message naming the fix. The hand-built cards can be deleted and the demo still runs.
 
-### Types — a whole sprint *(ruled 2026-08-07)*
+### Types — a whole sprint *(ruled 2026-08-07)* — and it now waits behind Writing *(2026-08-10)*
+
+**Set behind [Writing](10-writing.md) by Doug, 2026-08-10:** *"Before we do types, I want us to design `$Writing`."* Types is unchanged and still ruled; it is second in line. Writing runs as **two steps of one arc** — the mechanism, then the specialization, the second being [the end of the first](10-writing.md#the-second-sprint--the-specialization--which-is-the-end-of-this-one) rather than a new subject.
 
 **`$Type` now has a sprint, by Doug's ruling at The Subject's brainstorm:** *"Types are another sprint. Let's get subject basics. In the sprint planning, put types as a whole sprint to figure out, with code in chapters as a part of it. We'll get it at sprint planning."* The rulings already made ride in [The Subject's record](09-the-subject.md#types--another-sprint-by-ruling) — code writeable in a chapter (the toString route), `$Type` a reference like an import proceeding up the subject chain, code weighing in at validation, the library self-specifying. **Its mechanism remains design owed until that sprint's own brainstorm** — it still gets no files and no scenarios until it can answer *what runs, and when*.
 
