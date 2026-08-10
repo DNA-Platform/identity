@@ -133,13 +133,11 @@ On screen it stays what it already is: a shelf of spines, and the same library m
 
 ### Sprint Three — The Subject
 
-**SEEN.** Point a subject at a book that is not a catalogue, and **read the refusal on the page** — naming the type demanded and the book that failed it.
-
-**REVEALED.** **Whether in-place validation is actually possible** ([R63](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place)). If any check has to reach the book rather than the card, the card's shape is wrong and we learn it here rather than in Sprint Five. **Doug checks: did anything have to open a book to validate?**
-
-**PROMISED.** A subject refuses a non-catalogue. `$Canonical` is unique, and reciprocal — the canonical has that book in its subject. A subject validates without loading its referent.
+*REAL and left this scratchpad (2026-08-07): see [The Subject](09-the-subject.md). The charge was restated by Doug in his own words there — the three axes below were superseded by his cut: subject basics on the author's syntax, `index(key, keyword, card)` and `find('…')`, the table of contents extended with the subject's books, the library property recursive and reflected on the card, and the subject link's UI designed cleverly inside the sprint.*
 
 ### Sprint Four — The Library
+
+*Partly pulled forward (2026-08-07): [The Subject](09-the-subject.md) carries the library property by ruling — every book has a library, `$Library` a reference to its own card if it catalogues itself or its subject's library, recursive, reflected on the card. What remains here is the refusal side: agreement validated, disagreement named.*
 
 **SEEN.** The library recognising itself: every book showing the same library, and a book made to disagree **named in a refusal**.
 
@@ -155,9 +153,9 @@ On screen it stays what it already is: a shelf of spines, and the same library m
 
 **PROMISED.** The build emits one card per book. Property names identical. Dirty ⇒ fail, with a message naming the fix. The hand-built cards can be deleted and the demo still runs.
 
-### What is deliberately absent
+### Types — a whole sprint *(ruled 2026-08-07)*
 
-**`$Type` has no sprint.** Its mechanism is still design owed, and by [the rule this plan now carries](../../../../.claude/library/our-skillset/29-ce-plan.md) it gets no files and no scenarios until it can answer *what runs, and when*. Sprints Two and Three will teach us what a type has to do, because cards and subject validation are where types would bite. **Planning it now would repeat 48 exactly.**
+**`$Type` now has a sprint, by Doug's ruling at The Subject's brainstorm:** *"Types are another sprint. Let's get subject basics. In the sprint planning, put types as a whole sprint to figure out, with code in chapters as a part of it. We'll get it at sprint planning."* The rulings already made ride in [The Subject's record](09-the-subject.md#types--another-sprint-by-ruling) — code writeable in a chapter (the toString route), `$Type` a reference like an import proceeding up the subject chain, code weighing in at validation, the library self-specifying. **Its mechanism remains design owed until that sprint's own brainstorm** — it still gets no files and no scenarios until it can answer *what runs, and when*.
 
 ## The earlier split, superseded by the five sprints above
 
