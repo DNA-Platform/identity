@@ -45,6 +45,26 @@ Close a session by writing **where things stand** into the current sprint chapte
 
 **The handoff names three to five things and claims they are sufficient.** Each with what is load-bearing in it. If five are not enough, the sprint chapter is not doing its job and *that* is the finding.
 
+## Four more, walked back out of one full session — added 2026-08-10
+
+*The Subject ran the whole loop in one stretch — opened from a handoff, closed through brainstorm, plan, work, review and compound — and Doug's instruction at its close was to walk back to the start and improve the handoff at every seam that showed. These are the seams.*
+
+### 5. One state, no layers — a second state means the handoff failed
+
+The handoff this session **opened from** carried two states at once: an older list still saying work had not started beneath a newer one saying it was done, with two different suite counts standing in one section. The reader reconciled them from the cover — which is the reader doing the writer's job. **Rewritten means the old state is deleted in the same act.** If two states coexist in Where things stand, the section has become a log, and a log is precisely what this section was invented to replace. *This sprint's own record accreted the same way — batch after batch — and was compacted at the close under [the compaction directive](../bookkeeping/09-on-synopsis.md): state lives once, at the end; narrative lives above it, as record.*
+
+### 6. The reading list is shaped for the step it hands into
+
+The handoff this session opened from listed four things to read — all of them code — and the session it opened was a **brainstorm**, whose first need was the design's source material. Doug's first instruction was to go read thirty documents. **A handoff into work names the code; a handoff into a brainstorm or plan names the sources the designing reads** — the primary material, the sprint records that bind, the model books. Name the reading for the step the first line commands, not for the step that just ended.
+
+### 7. A stopped push is a session boundary, not an errand
+
+Mid-session, a push was stopped for reconciliation, the tool's advice was followed on the spot — and the reconcile's down-sync **overwrote the session's unpushed records**, which survived only because the conversation still held every word. The law now lives in [On Sync](../..environmentalism/06-on-sync.md#uncommitted-work-is-not-protected-by-any-of-this): **treat every reconcile as a session boundary — push the branch library or copy it aside before running pull or resolve.** For the handoff, the rule is simpler still: if step 3's push is refused, **securing the branch library comes before obeying any tool's next suggestion.**
+
+### 8. A sprint with a demo hands over the way to see it
+
+Doug asked for the link mid-session, and the serve had to be rediscovered — the port, the route, the command. **When the sprint has something to look at, Where things stand says how:** the command that serves it, the route to open, and what the reader should see first. A demonstration that must be rediscovered is not handed off.
+
 ## What we were missing
 
 Autobiographies carry **identity** across sessions. Sprint chapters carry **narrative**. Nothing carried **work state** — so after a compaction, what remained open lived only in a todo list and in whatever the conversation still held.
