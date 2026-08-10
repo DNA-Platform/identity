@@ -39,7 +39,7 @@ A book today is a composition of chapters, and it already knows two things about
 
 The turn this design makes is to move work **out of classes and into references**. There was a version of this sprint in which `$Catalogue`, `$Biography`, `$Autobiography`, `$Subject`, `$Author` and `$Library` were all classes in a hierarchy, and it collapsed under its own weight — six new names, a one-word law straining, and subjectivity asserted by declaration rather than computed. What replaced it is smaller and stronger: `$Subject`, `$Author` and `$Library` are **book references that validate**, and cataloguing-ness is a **type** those references check for. The hierarchy disappears and the checking is what remains.
 
-So a subject is a reference declared on a book, carried as parenthetical writing on its cover, that reads to another book — and refuses unless that book wears the catalogue type. This is the whole mechanism of belonging. A book does not announce its subject to a registry; it points, and the pointing is only valid if what it points at is the kind of thing that catalogues. The refusal is the semantics: a subject that could point anywhere would mean nothing.
+So a subject is a reference declared on a book, carried as parenthetical writing on its cover, that reads to another book — and is invalid unless that book wears the catalogue type. This is the whole mechanism of belonging. A book does not announce its subject to a registry; it points, and the pointing is only valid if what it points at is the kind of thing that catalogues. The failed validation is the semantics: a subject that could point anywhere would mean nothing.
 
 The obvious way to check that is to follow the reference and look, and that turns out to be wrong. Reading another book to validate a reference means every book must be loaded before anything can be judged, which is impractical at build and worse at runtime. It also gets the model backwards, because a real catalogue is exactly the thing you consult *instead of* handling the books. The correction is that there is no walk at all: a book's library is a **computed property** of its subject, and validation happens **in place**.
 
@@ -69,7 +69,7 @@ The build is where cards come from. The `.public` build parses the code — plau
 
 Which brings us to the demo, and it is small. The demo's library is its own — not this repository's — and it holds four books. Two are already there: the algebra book and the manifold. The third is the shelf's own catalogue. The fourth is new: **a book that tells the story of the team building this demo**, fiction inspired by a true story, claiming authorship through quoted references in its own writing, and — this is the load-bearing part — **including the decision to write the very book being written**. That book is the library's canonical autobiography. Its author link is itself. Every other book's author link points at it.
 
-That demo is reviewable in a way none of the alternatives were, and the test is whether a hand-authored page could fake it. A catalogue can be faked with prose. A card can be faked. A refusal can be faked with a hardcoded string. **A book whose author link is itself and which contains the decision to write itself cannot be faked**, because the loop is either closed in the model or it is not, and closing it requires the references to be real. The thing you look at *is* the claim.
+That demo is reviewable in a way none of the alternatives were, and the test is whether a hand-authored page could fake it. A catalogue can be faked with prose. A card can be faked. A validation failure can be faked with a hardcoded string. **A book whose author link is itself and which contains the decision to write itself cannot be faked**, because the loop is either closed in the model or it is not, and closing it requires the references to be real. The thing you look at *is* the claim.
 
 On screen it stays what it already is: a shelf of spines, and the same library met as writing, with the card catalogue as the face that can validate. The author link appears where an author appears — a name, on a cover, which follows to the autobiography — and, like every title in this system, it does not announce itself as a link. Reference-hood is what a thing already is, never something applied to it. If the demo works, the library will simply look like a library that happens to know itself; the proof is that it could not have been written any other way.
 
@@ -107,7 +107,7 @@ On screen it stays what it already is: a shelf of spines, and the same library m
 
 **And this is the method, not a shortcut.** *"It will give you hints about what you need to autogenerate."* **What has to be written by hand is exactly the list of what the compilation must generate.** The demo is therefore the specification for Sprint D, discovered rather than guessed — which is the opposite of how `$Type` got a unit with no mechanism.
 
-**Why this is reviewable, which nothing I proposed before was:** a hand-authored page can fake a catalogue, a card, or a refusal. It cannot fake **a book whose author link is itself and which contains the decision to write itself**. The loop is either closed or it is not, and it is legible on the page.
+**Why this is reviewable, which nothing I proposed before was:** a hand-authored page can fake a catalogue, a card, or a validation failure. It cannot fake **a book whose author link is itself and which contains the decision to write itself**. The loop is either closed or it is not, and it is legible on the page.
 
 ## The five sprints — each with three things Doug can check *(planned 2026-08-06)*
 
@@ -121,7 +121,7 @@ On screen it stays what it already is: a shelf of spines, and the same library m
 
 **REVEALED.** Whether a self-pointing author link can be constructed at all. The autobiography must exist before its own author link resolves, so the bootstrap stops being a philosophical claim and becomes a construction-order fact. **Doug checks: what shape did closing the loop actually take — lazy resolution, a reference that resolves late, or something the model already had?** If it needed machinery we did not expect, the design was incomplete there.
 
-**PROMISED.** A book's author reads to the autobiography. The autobiography's author reads to itself. A book with no author is refused. An author pointing at a book that does not author itself is refused.
+**PROMISED.** A book's author reads to the autobiography. The autobiography's author reads to itself. A book with no author is not valid. An author pointing at a book that does not author itself is not valid.
 
 ### Sprint Two — The Card
 
@@ -137,13 +137,13 @@ On screen it stays what it already is: a shelf of spines, and the same library m
 
 ### Sprint Four — The Library
 
-*Partly pulled forward (2026-08-07): [The Subject](09-the-subject.md) carries the library property by ruling — every book has a library, `$Library` a reference to its own card if it catalogues itself or its subject's library, recursive, reflected on the card. What remains here is the refusal side: agreement validated, disagreement named.*
+*Partly pulled forward (2026-08-07): [The Subject](09-the-subject.md) carries the library property by ruling — every book has a library, `$Library` a reference to its own card if it catalogues itself or its subject's library, recursive, reflected on the card. What remains here is the disagreement side: agreement validated, disagreement named.*
 
-**SEEN.** The library recognising itself: every book showing the same library, and a book made to disagree **named in a refusal**.
+**SEEN.** The library recognising itself: every book showing the same library, and a book made to disagree **named in a validation failure**.
 
 **REVEALED.** **How agreement is computed with no traversal.** The walk is gone by ruling; the implementation shows what replaced it. **Doug checks: is there a traversal anywhere in the code?** If one crept back, the aggregate design failed and cards are not carrying enough.
 
-**PROMISED.** Every book computes the same library. A book that computes a different one is refused. The library catalogues itself — its subject reference reads to its own cover. The author chain terminates in a self-loop, never a longer cycle.
+**PROMISED.** Every book computes the same library. A book that computes a different one is not valid. The library catalogues itself — its subject reference reads to its own cover. The author chain terminates in a self-loop, never a longer cycle.
 
 ### Sprint Five — The Compilation
 
@@ -168,11 +168,11 @@ On screen it stays what it already is: a shelf of spines, and the same library m
 **Demo:** the card catalogue as a face of the demo — cards you can read, and following a card opens its book. **This is where the hand-authored entry prose dies.**
 
 ### B — The Subject
-**Checkable in code:** `$Subject` is a book reference that **validates in place** against a card, with no traversal ([R63](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place)); it refuses a book that is not a catalogue; `$Canonical` is declared, reciprocal, and unique ([R47](06-sprint-48--subjects-and-the-library.md)).
-**Demo:** repoint a subject at a book that is not a catalogue and **watch the refusal appear on the page.** A guard is not real until it has been seen refusing.
+**Checkable in code:** `$Subject` is a book reference that **validates in place** against a card, with no traversal ([R63](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place)); it is invalid pointing at a book that is not a catalogue; `$Canonical` is declared, reciprocal, and unique ([R47](06-sprint-48--subjects-and-the-library.md)).
+**Demo:** repoint a subject at a book that is not a catalogue and **watch the validation failure appear on the page.** A guard is not real until it has been seen failing a bad book.
 
 ### C — The Library
-**Checkable in code:** `$Library` is a **computed property of the subject**; every book's computed library is **the same book** ([R61](06-sprint-48--subjects-and-the-library.md#r61-a-library-is-the-universe--there-is-one-and-library-validation-is-that-they-all-agree)); a book that disagrees is refused; `$Author` validates a self-authoring card ([R58](06-sprint-48--subjects-and-the-library.md), [R59](06-sprint-48--subjects-and-the-library.md#r59-having-a-library-card-is-a-structural-fact-not-a-possession)).
+**Checkable in code:** `$Library` is a **computed property of the subject**; every book's computed library is **the same book** ([R61](06-sprint-48--subjects-and-the-library.md#r61-a-library-is-the-universe--there-is-one-and-library-validation-is-that-they-all-agree)); a book that disagrees is not valid; `$Author` validates a self-authoring card ([R58](06-sprint-48--subjects-and-the-library.md), [R59](06-sprint-48--subjects-and-the-library.md#r59-having-a-library-card-is-a-structural-fact-not-a-possession)).
 **Demo:** the library recognising itself — every book agreeing on which book is the library — and a **library card** whose author link is itself.
 
 ### D — The Compilation
@@ -183,13 +183,13 @@ On screen it stays what it already is: a shelf of spines, and the same library m
 
 ## Validation that says why — carried out of Sprint 48 *(Doug, 2026-08-06)*
 
-**Goal.** *"I think we want it to work like `$check`, but in the validation, we should have it express **why**, and if there are validation failures, things should **halt**."* Today `assertValid` throws one generic sentence — *"`$Chapter` is not valid after its bond constructor"* — and a class cannot say which of its constraints refused.
+**Goal.** *"I think we want it to work like `$check`, but in the validation, we should have it express **why**, and if there are validation failures, things should **halt**."* Today `assertValid` throws one generic sentence — *"`$Chapter` is not valid after its bond constructor"* — and a class cannot say which of its constraints failed.
 
 **Why it is real and not theoretical.** [Sprint 48](06-sprint-48--subjects-and-the-library.md) left the lib at **107/108** on exactly this. Two tests have asserted the *reason* since long before that sprint (`/title/`, `/summary/`), and no arrangement of the bond-constructor chain satisfies both: `$Cover` and `$Chapter` mean different things by *valid* — a cover's summary is its canonical — so whichever ancestor throws first speaks for a class that meant something else. It is not an ordering problem, and 48 proved that by trying every ordering.
 
-**The open questions, Doug's own.** **When** does validation run so the system works? **Do we generalize the check system and plug into it** — `$check` already refuses with a formatted message naming the offending parameter, which is the shape wanted one level up. And the tension he named: *reporting comprehensively* versus *halting when it must* — report everything and the code runs past a problem; stop at the first and you learn one thing. His proposed way through: **collect the exception and display it with the validation errors**, so a reader can see whether they are related.
+**The open questions, Doug's own.** **When** does validation run so the system works? **Do we generalize the check system and plug into it** — `$check` already throws with a formatted message naming the offending parameter, which is the shape wanted one level up. And the tension he named: *reporting comprehensively* versus *halting when it must* — report everything and the code runs past a problem; stop at the first and you learn one thing. His proposed way through: **collect the exception and display it with the validation errors**, so a reader can see whether they are related.
 
-**What 48 settled that this now assumes.** **`formed` is not needed and `$form` is not to be touched** — `$form` belongs to the phase abstraction (once, after mount, `$formRan$`-guarded), and validation already runs after the whole chain because the chain unwinds synchronously inside the one call the framework makes. **A class states its own refusal by continuing after it calls up** — proven, `$Cover` does it — and the only gap is where an *ancestor's* generic message fires first. The remaining unproven case is **async construction**, where `assertValid` runs before the chain settles; `$construction$` exists for it.
+**What 48 settled that this now assumes.** **`formed` is not needed and `$form` is not to be touched** — `$form` belongs to the phase abstraction (once, after mount, `$formRan$`-guarded), and validation already runs after the whole chain because the chain unwinds synchronously inside the one call the framework makes. **A class states its own validation failure by continuing after it calls up** — proven, `$Cover` does it — and the only gap is where an *ancestor's* generic message fires first. The remaining unproven case is **async construction**, where `assertValid` runs before the chain settles; `$construction$` exists for it.
 
 **Candidates.** `valid()` answering the reason rather than a boolean (no new name; already accrues via `super.valid()`; the shape `$Type` will need when several types weigh in — cost: 736 tests see the change), or a separate member carrying the sentence (smaller, but needs a name and two members that must agree).
 

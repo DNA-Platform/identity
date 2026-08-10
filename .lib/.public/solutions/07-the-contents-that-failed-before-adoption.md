@@ -1,4 +1,4 @@
-# The contents that refused before adoption
+# The contents that failed before adoption
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **keywords:** model · missing-parent · construction-order · render
@@ -22,14 +22,14 @@
 
 Two layers had to be fixed, and they are the shipped `$Cover` pattern plus its validity half:
 
-1. **The bond catches the ancestor's demand** when the demand cannot apply yet — a contents' summary lawfully arrives on adoption, so its absence at bind is not a refusal.
-2. **`valid()` states the class's own law** — unadopted and empty is lawful; adopted runs the accrued law — otherwise the framework's generic `assertValid` refuses in the ancestor's voice.
+1. **The bond catches the ancestor's demand** when the demand cannot apply yet — a contents' summary lawfully arrives on adoption, so its absence at bind is not a failure.
+2. **`valid()` states the class's own law** — unadopted and empty is lawful; adopted runs the accrued law — otherwise the framework’s generic `assertValid` throws in the ancestor’s voice.
 
 And the getters stop reaching through a parent they may not have: `summary` and `cover` answer `undefined` before adoption instead of throwing.
 
 ## The fix
 
-[`TableOfContents.tsx`](../../package/src/book/TableOfContents.tsx) — guarded `summary`/`cover`, the try-catch bond with the rethrow-when-it-has-one, and `valid()` answering for itself. `read()` refuses honestly — *"stands outside any book"* — instead of crashing.
+[`TableOfContents.tsx`](../../package/src/book/TableOfContents.tsx) — guarded `summary`/`cover`, the try-catch bond with the rethrow-when-it-has-one, and `valid()` answering for itself. `read()` throws honestly — *"stands outside any book"* — instead of crashing.
 
 ## The lesson
 

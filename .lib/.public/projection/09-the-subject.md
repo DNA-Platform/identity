@@ -12,7 +12,7 @@
 
 ## The charge, Doug's — 2026-08-07, verbatim
 
-*Given at the brainstorm's opening, after refusing the implementer's aggregation of the record: "I have no clue what that means. That is an aggregation of something that is not my domain language." The charge is these words, not chapter zero's compression of them.*
+*Given at the brainstorm's opening, after setting aside the implementer's aggregation of the record: "I have no clue what that means. That is an aggregation of something that is not my domain language." The charge is these words, not chapter zero's compression of them.*
 
 > "Some books catalogue other books. It is not unlike how the author tag points to a certain type of book. Such a book defines its subject. Much like a TableOfContents reaches into a book's chapters, grabs the summaries and taglines and constructs something, a book that represents a subject will largely be constructed from the books that declare themselves part of the subject. It won't appear from nowhere."
 
@@ -34,28 +34,28 @@
 
 *Carried from [the five sprints](00-planning.md#the-five-sprints--each-with-three-things-doug-can-check-planned-2026-08-06), written 2026-08-06. The three axes, verbatim:*
 
-> **SEEN.** Point a subject at a book that is not a catalogue, and **read the refusal on the page** — naming the type demanded and the book that failed it.
+> **SEEN.** Point a subject at a book that is not a catalogue, and **read the validation failure on the page** — naming the type demanded and the book that failed it.
 >
 > **REVEALED.** **Whether in-place validation is actually possible** ([R63](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place)). If any check has to reach the book rather than the card, the card's shape is wrong and we learn it here rather than in Sprint Five. **Doug checks: did anything have to open a book to validate?**
 >
-> **PROMISED.** A subject refuses a non-catalogue. `$Canonical` is unique, and reciprocal — the canonical has that book in its subject. A subject validates without loading its referent.
+> **PROMISED.** A subject pointing at a non-catalogue is invalid. `$Canonical` is unique, and reciprocal — the canonical has that book in its subject. A subject validates without loading its referent.
 
 ## Rulings carried, verbatim — the most expensive thing to lose
 
-- **[R39](06-sprint-48--subjects-and-the-library.md#the-reference-checks-type-design-doug-2026-08-06):** "`$Subject` is a book reference that validates its referent wears the catalogue type." A subject refuses to point at a book that is not a catalogue. The check lives in the reference, not in a class hierarchy.
+- **[R39](06-sprint-48--subjects-and-the-library.md#the-reference-checks-type-design-doug-2026-08-06):** "`$Subject` is a book reference that validates its referent wears the catalogue type." A subject cannot point at a book that is not a catalogue. The check lives in the reference, not in a class hierarchy.
 - **[R63](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place):** "The whole point of library cards is that enough metadata floats around to do in-place validation." No walk, no climb, no `seen` set.
 - **[R47](06-sprint-48--subjects-and-the-library.md#what-a-catalogue-specifies-and-how-validation-runs-doug-2026-08-06):** `$Canonical` — a book reference a subject declares. The canonical must actually **have that book in its subject**, and **there can be only one**.
 - **[R46](06-sprint-48--subjects-and-the-library.md#what-a-catalogue-specifies-and-how-validation-runs-doug-2026-08-06):** a catalogue may have unwritten chapters — it **reaches to see what books have it as their subject**, and those appear automatically.
 - **[R61](06-sprint-48--subjects-and-the-library.md#r61-a-library-is-the-universe--there-is-one-and-library-validation-is-that-they-all-agree):** a library is the universe; the point of subject validation is that **everything in the library catalogue shares one single book that is the library** — held for Sprint Four, but the subject is what it computes from.
-- **[The Author's D5](08-the-author.md#decisions):** only the author link validated that sprint; **"the subject's refusal is the next sprint's whole visible end."**
-- **Validation that says why** ([carried out of 48](00-planning.md#validation-that-says-why--carried-out-of-sprint-48-doug-2026-08-06)): a refusal states its reason. The Author sprint proved the shape — the more specific class states its own reason (`$Cover`, and the suite went fully green on it).
+- **[The Author's D5](08-the-author.md#decisions):** only the author link validated that sprint; **"the subject's validation failure is the next sprint's whole visible end."**
+- **Validation that says why** ([carried out of 48](00-planning.md#validation-that-says-why--carried-out-of-sprint-48-doug-2026-08-06)): a validation failure states its reason. The Author sprint proved the shape — the more specific class states its own reason (`$Cover`, and the suite went fully green on it).
 
 ## The starting condition, verified 2026-08-07
 
 - [`Subject.tsx`](../../package/src/book/Subject.tsx) and [`Literature.tsx`](../../package/src/library/Literature.tsx) were **zero bytes** — the files existed and nothing was in them.
 - The word *subject* appeared **nowhere in the package source** (`grep -i subject src/` — no matches). No cover carried one, no card carried one, no book read one.
 - What The Author left standing: the card family ([`IndexCard`](../../package/src/library/IndexCard.tsx), [`LibraryCard`](../../package/src/library/LibraryCard.tsx), [`LibraryCatalogue`](../../package/src/library/LibraryCatalogue.tsx)), the [author resolving through a card](../../package/src/book/Author.tsx), [four hand-built cards](../../package/app/src/sections/book/library/the-team/card.tsx), and the loop closed in the model.
-- **[The Author's R13](08-the-author.md#the-author-and-the-loop) was never built:** a book whose author link points at a book that does not author itself is not refused — no author validation existed at all.
+- **[The Author's R13](08-the-author.md#the-author-and-the-loop) was never built:** a book whose author link points at a book that does not author itself is not caught — no author validation existed at all.
 
 ## Rulings from the interview, 2026-08-07
 
@@ -91,21 +91,21 @@
 
 ### The book — every book, period
 
-- **R1. A cover has to have a title, an author and a subject — and the book receives them from there.** `valid()` requires all three. *Seen: a book missing any of the three refuses, and the refusal says which.*
-- **R2. A refusal states its reason in the refusing class's own words** — the shape The Author proved with `$Cover` stating its own sentence. No generic "is not valid."
+- **R1. A cover has to have a title, an author and a subject — and the book receives them from there.** `valid()` requires all three. *Seen: a book missing any of the three does not bind, and the error says which.*
+- **R2. A validation failure states its reason in the class's own words** — the shape The Author proved with `$Cover` stating its own sentence. No generic "is not valid."
 - **R3. The migration is counted before it starts.** Every book in the demo and every book specimen in both suites gains an author and a subject. The count is a deliverable of the plan, not a discovery of the work.
 
 ### The table of contents
 
-- **R4. Books have to put a table of contents there.** *Doug: "It doesn't appear out of nowhere, but it can have its parts automatically created. Change that."* A book without a declared table of contents refuses.
+- **R4. Books have to put a table of contents there.** *Doug: "It doesn't appear out of nowhere, but it can have its parts automatically created. Change that."* A book without a declared table of contents does not bind.
 - **R5. Its parts auto-create.** Declaring the table of contents is the author's act; its rows derive from the book's chapters exactly as today. Nothing hand-lists chapters.
 
 ### The subject reference
 
 - **R6. A subject is a reference on the book, carried through its cover, holding the subject book's card — using the same syntax the author uses, for now** *(Doug: "Use the same syntax author uses for now")*.
 - **R7. The name is the writer's chosen representational form.** No authority, no enforced heading, no uniqueness — the association is the **held card**. Many names, one referent.
-- **R8. A subject refuses a referent that is not a cataloguing book** ([R39](06-sprint-48--subjects-and-the-library.md#the-reference-checks-type-design-doug-2026-08-06) carried). **HELD — see the tracing note.**
-- **R9. A subject with a name and no card renders its name; `read()` refuses** — the degrade law ([The Author's R14](08-the-author.md#the-author-and-the-loop)), generalized to subjects.
+- **R8. A subject pointing at anything but a cataloguing book is invalid** ([R39](06-sprint-48--subjects-and-the-library.md#the-reference-checks-type-design-doug-2026-08-06) carried). **HELD — see the tracing note.**
+- **R9. A subject with a name and no card renders its name; `read()` throws** — the degrade law ([The Author's R14](08-the-author.md#the-author-and-the-loop)), generalized to subjects.
 
 ### The subject book
 
@@ -129,7 +129,19 @@
 *Doug, closing the interview: **"Types are another sprint. Let's get subject basics. In the sprint planning, put types as a whole sprint to figure out, with code in chapters as a part of it. We'll get it at sprint planning."***
 
 - **R14–R16 move to the types sprint, rulings intact:** code writeable in a chapter (the toString route — the same object the running constraint and the printed chapter); `$Type` a reference like an import, proceeding up the subject chain to the library; code weighing in at validation — *"the library system should be extensible through code… It is self-specifying."* Recorded here because this interview ruled them; **built nowhere until that sprint's brainstorm**. The identifiers keep their numbers so nothing silently drops when that chapter cites them.
-- **R17. NOT ADOPTED — the synopsis constraint** (*a demonstration says what it demonstrates*, refusing today's placeholder synopses). Proposed twice; no yes; out of the requirements, kept so it is not re-proposed cold. The placeholder synopses on all four cards remain an honest debt.
+- **R17. NOT ADOPTED — the synopsis constraint** (*a demonstration says what it demonstrates*, failing today's placeholder synopses). Proposed twice; no yes; out of the requirements, kept so it is not re-proposed cold. The placeholder synopses on all four cards remain an honest debt.
+
+### Collected at the review — 2026-08-10, from Doug's answers
+
+- **R26. VOCABULARY LAW, re-affirmed and made a sweep:** *"Refusal and mint are not domain terms. Mint is money. Books are not minted. Delete both of these concepts from all documentation and sprint writeups. Speak in natural sentences using the names of members and the functionality I specified."* Both words were already banned 2026-08-02 and this sprint wrote them anyway. **Executed:** the model, the new tests, this chapter, chapter zero, and Solutions 07 (retitled *The contents that failed before adoption*) are swept clean. **Queued:** the historical sweep — chapters 01–08, Sprint 48's record, the older Solutions entries and cover lines, and the skills — a compound-scale pass.
+- **R27. The contents pulls itself together, and validation covers the half-formed case.** *Doug: "I asked for a table of contents to pull together its contents if unspecified, which it normally will be. If the chapters are not fully formed, it might fail to do this, so there is still validation required. Make this as elegant as possible."* **Executed as:** `valid()` keyed on the one condition that matters — no cover answering for it yet means it stands outside a book and an empty contents is lawful; inside a book, the accrued law runs. Elegance reviewed again when validation's why-shape lands.
+- **R28. Canonical reciprocity is the subject's check, not a throw on read.** *Doug: "This would be a validation for the subject. If it has a canonical, it should be able to check. Perhaps the subjects in a library will always be loaded when a book is loaded. Perhaps there will be build-time validation in .public."* **Executed as:** `$Canonical.read()` just reads through its card; `valid()` answers the reciprocity check without throwing, whenever the cards are in place — and **where the check runs is open design** (books loading their subjects, or build-time in `.public`), recorded for the types/library sprints.
+
+- **R29. THE SUBJECT LINK IS A BACK ARROW — and it never stands on the index.** *Doug, verbatim: "The subject link is like a link back to the index. You put it on the index. The subject catalogues its books. You are failing to understand the way that the subject link is a back arrow."* The link lives **in a book**, pointing back to the catalogue that files it — never on the catalogue itself, where it is a self-link and worthless (*"three self-links to the self in a row"*). **Executed:** the spine labels on the shelf are deleted, along with their light-up-and-flip interaction; what remains is exactly the back arrows — the open book's top line (*THE SHELF*) and the manifold's *← The Shelf* chip and cover line. The design-gate idea he had actually approved — a mark on **a book's own spine view** — awaits a book having a spine view at all, and is direction, not scope.
+
+- **R30. The demonstration presents its subject, and its links instruct.** *Doug: "'demonstration' standing alone isn't enough to signal that it is the subject. The Shelf is much clearer… You are showing them a shelf but perhaps not showing demonstration, so referring to it as such is missing in the UI."* **Executed:** the shelf's written side now says **DEMONSTRATION** under its title — the subject's own words off the cover, so the name has a home in the UI — and every subject link reads **← The Shelf**: the arrow instructs, the title says where.
+- **R31. The synopsis is a parenthetical chapter carried on the book.** *Doug: "Maybe a synopsis is a parenthetical chapter, but one that is carried on the book." And: "We need a way for a book author to decide to display the synopsis, but it is essential that books have one so they can be catalogued."* **Executed:** `$Synopsis` marks itself parenthetical — the summary's pattern one grade up; an author displays it by writing `parenthetical={false}` (the legend's shipped affordance); validation still demands one; and the contents filter became one law — **the numbered chapters are the chapters that are neither the canonical, nor parenthetical, nor the contents itself.** The card carries `synopsis` because **the card inherits the book's properties** — Doug's own closing of the loop.
+- **R32. A card is an abstraction for assigning references on books, not a live part of the library.** *Doug: "A card is not a live part of the library. It is an abstraction to help specify references. Maybe it needs one to satisfy an abstraction, but the card is just a way of assigning references on books."* Properties stand on the card to satisfy the book's shape, and for no other reason.
 
 ### The demo
 
@@ -150,12 +162,12 @@
 
 - **The book already spliced in a table of contents from nowhere** — [`$Book.$Book`](../../package/src/book/Book.tsx) inserted one when none was authored. The ruling kills exactly this line; the rows' derivation survives it.
 - **The author's syntax is an element found in the cover's writing** — [`$Cover.author`](../../package/src/book/Cover.tsx) scans its sections' elements. The subject reuses the scan, the element shape, and both authoring forms: bare `<Author>Name</Author>` pointed in a second act, and `<Author for={card}>Name</Author>` direct.
-- **The self-subject must mint-then-point.** A cover cannot import its own card without cycling through the books the catalogue holds — the author self-loop's shipped pattern, reused for The Shelf.
-- **The migration, COUNTED (R3):** **ten construction sites in the suites** — `book.test.tsx` builds through **one factory** plus six direct specimens (three deliberately invalid, which keep their refusals and re-assert the new messages), `author.test.tsx` one, `card.test.tsx` one — **plus the four demo books.** The factory carries the bulk.
+- **The self-subject must card-before-book.** A cover cannot import its own card without cycling through the books the catalogue holds — the author self-loop's shipped pattern, reused for The Shelf.
+- **The migration, COUNTED (R3):** **ten construction sites in the suites** — `book.test.tsx` builds through **one factory** plus six direct specimens (three deliberately invalid, which keep their errors and re-assert the new messages), `author.test.tsx` one, `card.test.tsx` one — **plus the four demo books.** The factory carries the bulk.
 
 ## Decisions
 
-**D1 — The subject reuses the author's built shape wholesale.** Element in the cover's writing, display as copy, a held card, read through it, mint-then-point where imports would cycle. *Chosen over: any new declaration form — "use the same syntax author uses for now" is the ruling.*
+**D1 — The subject reuses the author's built shape wholesale.** Element in the cover's writing, display as copy, a held card, read through it, card-before-book where imports would cycle. *Chosen over: any new declaration form — "use the same syntax author uses for now" is the ruling.*
 
 **D2 — The auto-spliced table of contents dies; declaring one is the author's act.** The bond stops splicing; validation requires exactly one; the rows keep deriving. *Chosen over: keeping the splice as a default — "it doesn't appear out of nowhere. Change that."*
 
@@ -174,21 +186,21 @@
 ## Units
 
 - **U1 — `$Subject`, the reference.** *Mechanism: the author's reference kind exactly — writing-level, copy the display form, a held `$LibraryCard`, `read()` card → book, honest degrade. Files: `src/book/Subject.tsx`, `src/index.ts`. Realizes: R6, R7, R9. **Visible end:** a subject written on a cover that follows to The Shelf.*
-- **U2 — The cover's three, and the refusal that names the missing one.** *Mechanism: the cover scans for its subject as it does its author; the book receives the three through the cover; `valid()` demands them; the refusing class states its own sentence. Files: `src/book/Cover.tsx`, `src/book/Book.tsx`. Realizes: R1, R2. **Visible end:** a book missing one of the three refusing, the reason readable.*
-- **U3 — The table of contents is declared, not spliced.** *Mechanism: the bond's splice deleted; `valid()` requires exactly one; rows keep deriving. Files: `src/book/Book.tsx`. Realizes: R4, R5. **Visible end:** a book that authors none refuses.*
+- **U2 — The cover's three, and the error that names the missing one.** *Mechanism: the cover scans for its subject as it does its author; the book receives the three through the cover; `valid()` demands them; the class states its own sentence. Files: `src/book/Cover.tsx`, `src/book/Book.tsx`. Realizes: R1, R2. **Visible end:** a book missing one of the three failing to bind, the reason readable.*
+- **U3 — The table of contents is declared, not spliced.** *Mechanism: the bond's splice deleted; `valid()` requires exactly one; rows keep deriving. Files: `src/book/Book.tsx`. Realizes: R4, R5. **Visible end:** a book that authors none does not bind.*
 - **U4 — The migration, in the counted order.** *Files: the three test files, the four demo books. Realizes: R3. **Visible end:** both suites green with the new laws on, against a rebuilt chemistry `dist`.*
-- **U5 — `index` and `find` on the library catalogue.** *Mechanism: saved indexings keyed `key → keyword → card`; `find` parses the way, answers a card, refuses naming the query; initialization files titles; registration timing under mint-then-point decided with the code open and **raised if it needs framework machinery**. Files: `src/library/LibraryCatalogue.tsx`, `src/index.ts`. Realizes: R23, R24, R25. **Visible end:** `find('subject: Demonstration')` answering The Shelf's card.*
+- **U5 — `index` and `find` on the library catalogue.** *Mechanism: saved indexings keyed `key → keyword → card`; `find` parses the way, answers a card, throws naming the query; initialization files titles; registration timing under card-before-book decided with the code open and **raised if it needs framework machinery**. Files: `src/library/LibraryCatalogue.tsx`, `src/index.ts`. Realizes: R23, R24, R25. **Visible end:** `find('subject: Demonstration')` answering The Shelf's card.*
 - **U6 — The card carries subject and library.** *Files: `src/library/LibraryCard.tsx`, the demo's `card.tsx`. Realizes: R22 (reflected half), R6. **Visible end:** a card printing subject and library lines it was never hand-typed with.*
 - **U7 — The library, recursive.** *Mechanism: own card when the subject's card is its own; else the subject book's library, recursing on cards; the card mirrors. Files: `src/book/Book.tsx`, `src/library/LibraryCard.tsx`. Realizes: R22. **Visible end:** four books asked, one answer.*
 - **U8 — The self-cataloguing subject.** *Mechanism: The Shelf's cover writes its subject; the card pointed in the second act; display form* Demonstration *(hedge kept). Files: the shelf's cover, `card.tsx`. Realizes: R13, R18. **Visible end:** the shelf's subject following home.*
 - **U9 — The table of contents, extended with the subject's books.** *Mechanism: member entries beside derived rows, **inferred when absent, overridable when authored**; if the row wants a name or kind the model lacks, the unit stops and reports. Files: `src/book/TableOfContents.tsx`, the shelf's book files. Realizes: R10, R11, R19. **Visible end:** contents entries nobody hand-listed.*
-- **U10 — The canonical: one, declared, reciprocal.** *Files: `src/book/Canonical.tsx` (the declaration place decided with code open, reported). Realizes: R12. **Visible end:** the canonical named; a second refused.*
+- **U10 — The canonical: one, declared, reciprocal.** *Files: `src/book/Canonical.tsx` (the declaration place decided with code open, reported). Realizes: R12. **Visible end:** the canonical named; a second failing to bind.*
 - **U11 — The subject link in the UI — THE DESIGN GATE.** *No mechanism written **by instruction** — Doug reserved this design. Refused files and scenarios until the ruling. Realizes: R20.*
 - **U12 — The records move with the code, and the session ends with a push.**
 
 ## Test scenarios
 
-**U1** — reads through the card; prints the written form; renders card-less; refuses reading card-less naming itself; neither → invalid. **U2/U3** — the three present binds; each missing one refused naming it; no declared contents refused; the three invalid specimens keep refusing with the new sentences. **U4** — both suites green against a rebuilt `dist`, counts stated. **U5** — title/author/subject finds answer their cards; unfiled queries refused naming the query; a new key by one call. **U6/U7** — every demo card answers subject; every book answers The Shelf's card; the shelf answers its own; card and book agree (one truth). **U8** — the shelf's subject reads home; exactly one self-cataloguer. **U9** — a row per member; authored overrides win; undeclared books absent. **U10** — reciprocal reads; elsewhere refused; two refused. **U11** — none by design until ruled.
+**U1** — reads through the card; prints the written form; renders card-less; throws on a card-less read, naming itself; neither → invalid. **U2/U3** — the three present binds; each missing one failing with its name; no declared contents failing to bind; the three invalid specimens keep failing with the new sentences. **U4** — both suites green against a rebuilt `dist`, counts stated. **U5** — title/author/subject finds answer their cards; unfiled queries throwing, naming the query; a new key by one call. **U6/U7** — every demo card answers subject; every book answers The Shelf's card; the shelf answers its own; card and book agree (one truth). **U8** — the shelf's subject reads home; exactly one self-cataloguer. **U9** — a row per member; authored overrides win; undeclared books absent. **U10** — reciprocal reads; elsewhere is invalid; two not binding. **U11** — none by design until ruled.
 
 ## Origin tracing — both directions
 
@@ -198,7 +210,7 @@
 | R3 | U4 |
 | R4, R5 | U3 |
 | R6, R7, R9 | U1, U6 |
-| **R8** | **HELD, flagged for Doug:** *a subject refuses a non-catalogue* is the catalogue **TYPE** check, and **types are another sprint by his ruling this same interview.** This sprint validates presence, resolution and the structural loop. |
+| **R8** | **HELD, flagged for Doug:** *a subject pointing at a non-catalogue is invalid* is the catalogue **TYPE** check, and **types are another sprint by his ruling this same interview.** This sprint validates presence, resolution and the structural loop. |
 | R10, R11, R19 | U9 |
 | R12 | U10 |
 | R13, R18 | U8 |
@@ -218,10 +230,10 @@ U1 → U2/U3 → U4 (immediately) → U6 → U5 → U8 → U7 → U9 → U10 →
 
 1. The validation change touches every book in two suites — counted; migrate immediately after the law.
 2. The extension may brush the authored-parts residue — member rows are chapter-grade; if it bites, raise.
-3. The self-subject import cycle — mint-then-point, filed pattern.
+3. The self-subject import cycle — card-before-book, filed pattern.
 4. R8 held — the honest gap, stated.
 5. U11 gates the close.
-6. Registration timing under mint-then-point — decided in code; raised if framework machinery is needed.
+6. Registration timing under card-before-book — decided in code; raised if framework machinery is needed.
 
 ## Self-check
 
@@ -229,7 +241,7 @@ R8 is the one held requirement, in the table. U9 most likely to grow. U10's decl
 
 ## The team
 
-**Cathy** on the model. **Arthur** on the ontology, this chapter, the counts. **Libby** on the subject book's construction. **Queenie** on refusals as promises and the migration. **Phillip** and **Gabby** on the design gate. Bench: Adam, David, Nancy; Claude on call.
+**Cathy** on the model. **Arthur** on the ontology, this chapter, the counts. **Libby** on the subject book's construction. **Queenie** on validation failures as promises and the migration. **Phillip** and **Gabby** on the design gate. Bench: Adam, David, Nancy; Claude on call.
 
 ## Where things stand
 
@@ -237,19 +249,19 @@ R8 is the one held requirement, in the table. U9 most likely to grow. U10's decl
 
 ### State
 
-**Built and verified.** The subject reference, the author's shape exactly (**U1**, 5 tests) · the cover's three with refusals naming the missing one, and the splice deleted (**U2/U3**) · the migration in the counted order (**U4**) · `find('way: keyword')` answering a library card, titles auto-filed, ways extensible, unfiled queries refused naming the query (**U5**, 6 tests) · cards carrying subject, the library **computed recursively on cards** and reflected as one truth (**U6/U7**, 5 tests) · the shelf's self-subject and declared canonical, minted-then-pointed (**U8**) · the contents-extension slot with the override-skip, suite-proven (**U9**, 3 tests) · the canonical — one, reciprocal, a second refused (**U10**, 3 tests) · the design gate ruled and built (**U11**, below) · the records (**U12**).
+**Built and verified.** The subject reference, the author's shape exactly (**U1**, 5 tests) · the cover's three with errors naming the missing one, and the splice deleted (**U2/U3**) · the migration in the counted order (**U4**) · `find('way: keyword')` answering a library card, titles auto-filed, ways extensible, unfiled queries throwing, naming the query (**U5**, 6 tests) · cards carrying subject, the library **computed recursively on cards** and reflected as one truth (**U6/U7**, 5 tests) · the shelf's self-subject and declared canonical, made before the book and pointed after (**U8**) · the contents-extension slot with the override-skip, suite-proven (**U9**, 3 tests) · the canonical — one, reciprocal, a second failing to bind (**U10**, 3 tests) · the design gate ruled and built (**U11**, below) · the records (**U12**).
 
 **Verification, from fresh runs.** Chemistry **630/630** (58 files). Lib **154/154** (14 files, up from 129 — every new promise counted). Lib `tsc` **0**. App `tsc` **0**. The lib ran against chemistry's `dist` **rebuilt this session**, per [the filed law](../solutions/05-the-suite-that-passed-against-a-stale-build.md). **Two drives with zero page errors** (below).
 
 ### Promise changes, stated
 
-1. *"Answers undefined when no author stands in the cover"* became **a refusal naming author**.
-2. *"The bond constructor renders a table of contents into the chapters"* became **a refusal naming the table of contents** — the splice is dead by ruling.
+1. *"Answers undefined when no author stands in the cover"* became **a validation failure naming author**.
+2. *"The bond constructor renders a table of contents into the chapters"* became **a validation failure naming the table of contents** — the splice is dead by ruling.
 3. *"At most one table of contents"* became **exactly one**.
 
 ### Findings — each filed or queued
 
-1. **Authored contents pages always dev-erred at bind and nobody knew** — children bind before adoption, and the contents' summary derives from the book. Filed: [The contents that refused before adoption](../solutions/07-the-contents-that-refused-before-adoption.md).
+1. **Authored contents pages always dev-erred at bind and nobody knew** — children bind before adoption, and the contents' summary derives from the book. Filed: [The contents that failed before adoption](../solutions/07-the-contents-that-failed-before-adoption.md).
 2. **`index` is a blocked name.** Doug's signature collides with `index` the number, which the catalogue carries because it implements `$Catalogue$`. **`file(...)` stands as the PROXY.** His answer opened deeper ground, verbatim: *"The library catalogue is not, at this time, a piece of writing. Odd to say, perhaps, but unless we invent a book for this — which then kind of deprecates the need for subjects as cataloguing books — it's not a piece of writing in the sense that it's not a part of any book. I'm not sure what to say about that. I'm not sure the library catalogue implements the catalogue interface. This thing is more of a utility that is used to connect books to each other. Hmm."* **Recorded, not acted on** — a hmm is not a ruling; if the catalogue stops being writing, `index` frees itself, and the interface question is a design session.
 3. **The manifold's card drifted from its book** — Doug: *"The title is the title. You are taking me too literally."* Fixed: the card carries *The Manifold of Sentences*, subtitle *A Geometry of Prose*; filing name stays *The Manifold*.
 4. **Author, subject and canonical are parenthetical writing** — 48's R3 honored; copy and tagline stay clean while the faces render.
@@ -291,8 +303,8 @@ The blocked name (opened the catalogue-is-not-writing ground, recorded); the car
 
 - **Theorizing three times about the render failure.** The probe (devError + chapters + innerHTML written to a file) answered in one run. The runner eats `console.log`; write probe reports to a file.
 - **Typing test cards as the computed `$LibraryCard`** when the test must point them — the backings are class members.
-- **Expecting the catalogue to auto-file author and subject at initialization** — they arrive mint-then-point; the demo files them explicitly, which is what *"register"* meant.
-- **THE SYNC CLOBBER — the expensive one.** Running `06-on-sync--resolve.sh` mid-session, on the tool's own advice from a refused push, **overwrote the working copy's `.lib` with the identity branch's older state** — this chapter, Solutions 07, chapter zero's edits and two cover entries were deleted and had to be reconstructed from the conversation. The resolve's down-sync is built for session OPENINGS, not for mid-session reconciles with unpushed `.lib` work. **Before running any reconcile, commit or copy the branch library aside** — and the tool's closing line ("CHECK BY HAND") is not ceremony; it is what caught this.
+- **Expecting the catalogue to auto-file author and subject at initialization** — they arrive card-before-book; the demo files them explicitly, which is what *"register"* meant.
+- **THE SYNC CLOBBER — the expensive one.** Running `06-on-sync--resolve.sh` mid-session, on the tool's own advice from a stopped push, **overwrote the working copy's `.lib` with the identity branch's older state** — this chapter, Solutions 07, chapter zero's edits and two cover entries were deleted and had to be reconstructed from the conversation. The resolve's down-sync is built for session OPENINGS, not for mid-session reconciles with unpushed `.lib` work. **Before running any reconcile, commit or copy the branch library aside** — and the tool's closing line ("CHECK BY HAND") is not ceremony; it is what caught this.
 
 ### The inspection batch — Doug's feedback, and what it built (2026-08-10)
 
@@ -301,7 +313,7 @@ The blocked name (opened the catalogue-is-not-writing ground, recorded); the car
 **Built, and the framework-correctness ledger:**
 
 1. **The contents law (model):** a table of contents lists **numbered chapters only** — not itself, not the cover, not the synopsis. Three shipped promises re-stated in the suite.
-2. **The elegance surfaced and closed:** the card's `synopsis` was a placeholder string on all four cards. Now it **derives through the model's own compression chain** — synopsis chapter → summary → **tagline** — at minting for the three standing books, and **`shelve()` backfills The Team's when the book arrives**, which is what shelving always meant. Summary and tagline are chapter-grade and stay off the card; the card's one line IS the tagline. *Flagged for review as the compression rule for R53's mapping.*
+2. **The elegance surfaced and closed:** the card's `synopsis` was a placeholder string on all four cards. Now it **derives through the model's own compression chain** — synopsis chapter → summary → **tagline** — at making for the three standing books, and **`shelve()` backfills The Team's when the book arrives**, which is what shelving always meant. Summary and tagline are chapter-grade and stay off the card; the card's one line IS the tagline. *Flagged for review as the compression rule for R53's mapping.*
 3. **Membership from the subject links, self included:** `libraryCatalogue.cards.filter(c => c.subject === theShelf)` — all four cards, the shelf's own among them — feeds the contents extension and the drawer.
 4. **The shelf is a `$Book` subclass viewing itself**, and Doug's insight is the architecture: the two faces are **two views of ONE table of contents** — a contents subclass carries the flip, spines on one face, the written catalogue on the other, rows and member cards both from the model. The hand-authored entry chapters **died** (The Author's U12, finally executed); entries read **title, tagline-synopsis and byline off cards**; the self-card is filtered from the faces by the contents' own self-exclusion law.
 5. **The drawer chapter** — *The Card Catalogue*, the specification chapter Doug pre-authorized — four cards rendered **as cards**, printing their own fields; The Team's slip reads *subject: The Shelf, library: The Shelf, author: The Team* — **the loop on paper**. This also completes The Author's U11 (the card displayed as a card).
@@ -318,4 +330,16 @@ The blocked name (opened the catalogue-is-not-writing ground, recorded); the car
 
 **Verified:** lib **154/154**, lib `tsc` **0**, app `tsc` **0**, full drive with **zero page errors** — spines/marks, the flip, the drawer, the team masthead and numeral contents, both returns, byline, algebra's route. Seen in screenshots (scratchpad).
 
-# → NEXT: `/ce-review` — and `/ce-compound` has three fresh lessons queued behind Solutions 07.
+### The review, round by round — 2026-08-10
+
+**Round one collected R26–R28** (the vocabulary law and its sweep; the contents pulling itself together with validation for the half-formed case; canonical reciprocity as the subject's check). **Round two collected R29** — the subject link is a back arrow, and the shelf's self-pointing spine labels were deleted for what they were: three links to where you already stand. **Round three collected R30–R32** — the demonstration presents its subject (DEMONSTRATION on the shelf's written side), links instruct (**← The Shelf**), the synopsis became a parenthetical chapter carried on the book with the author deciding display, the contents filter became one law by parentheticality, and the card was set right as an abstraction for assigning references. **Filing ruled acceptable as built** (later filings replace earlier). Suite **154/154** through every correction, both `tsc` **0**, drives with **zero page errors**.
+
+**SIGNED OFF as a demonstration: the subject link** — ← The Shelf in each open book, the shelf presenting its subject, `$Subject`/`$Book.subject`/`$Book.library` reading through The Shelf's card.
+
+**SIGNED OFF as a demonstration: the card catalogue chapter** — with Doug's caveat recorded and written into the chapter itself: *"this isn't a standard form of UI, and we are doing this for demonstration. A library catalogue doesn't always show its cards so don't make it as if it does."* The chapter now says a catalogue answers questions with its cards rather than showing them, and lays them out only to be seen.
+
+**SIGNED OFF as a demonstration: the library property** — every book computing its library through its subject to The Shelf's own card, seen on every card, five tests including the subject chain.
+
+**R33 — the catalogue's place, ruled at the review:** *Doug: "The catalogue is a build time compilation that is used to hand out references. It is not necessarily used at all. Yes the code can verify it."* `find()` and `file()` stand verified by their six tests; no screen owes them a face; the catalogue's role is **compile-time reference assignment**, which is R53's compilation frame confirmed from the other side.
+
+# → NEXT: the review continues feature by feature; `/ce-compound` has four lessons queued behind Solutions 07.
