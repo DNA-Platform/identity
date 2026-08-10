@@ -352,4 +352,13 @@ The blocked name (opened the catalogue-is-not-writing ground, recorded); the car
 
 **After the fixes:** suite **154/154**, both `tsc` **0**, the full click-through with **zero page errors**.
 
-# → NEXT: `/ce-compound` — six lessons queued behind Solutions 07, the vocabulary sweep of the older records, and the compaction directive.
+### Compounded — 2026-08-10, five runs, one lesson each
+
+- [The contents that failed before adoption](../solutions/07-the-contents-that-failed-before-adoption.md) — filed during the work session.
+- [The field that buried a method](../solutions/08-the-field-that-buried-a-method.md) — a `$Book` subclass's state field shadowed `$Book.at()`; a subclass lives in its book's name space.
+- [The parent that changed on screen](../solutions/09-the-parent-that-changed-on-screen.md) — one hop of `parent` is a bind-time fact; derived members climb, and the climb now ships in the model.
+- [The prop that emptied the shelf](../solutions/10-the-prop-that-emptied-the-shelf.md) — props belong to construction; a singleton that accumulates state renders bare. The in-framework path is flagged, not asserted.
+- [The constructor that captured the wrong instance](../solutions/11-the-constructor-that-captured-the-wrong-instance.md) — a constructor knows it ran, not that it was kept; register in `view()`.
+- **Distributed to [On Sync](../../../../.claude/library/..environmentalism/06-on-sync.md#uncommitted-work-is-not-protected-by-any-of-this)** (Claude's chapter, edited not duplicated): treat every reconcile as a session boundary — push or copy the branch library aside before pull/resolve. The environmentalism cover's stale On Sync paragraph was brought to the built truth in the same act.
+
+# → NEXT: queued and not yet run — the VOCABULARY SWEEP of the older records (chapters 01–08, Sprint 48, the older Solutions entries, the skills: *refuse* and *mint* out, per R26) and the COMPACTION DIRECTIVE (knowledge moves from sprint chapters into the topical books; the chapters shrink to narrative and rulings) — both tending-scale, both belong to the next session or the retro. Then the loop closes: `/ce-brainstorm` for the next sprint, reading what this one filed.
