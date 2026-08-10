@@ -11,7 +11,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   // Try clicking the "More options" button on the conversation header
   // (the one without "for {title}" suffix — standalone on the page)
@@ -30,7 +30,7 @@ async function main() {
     await new Promise(r => setTimeout(r, 1500));
 
     // Screenshot the menu
-    app.window.screenshot(resolve(DEBUG, 'explore-04-more-options-menu.png'));
+    await app.window.screenshot(resolve(DEBUG, 'explore-04-more-options-menu.png'));
 
     // Dump all elements to find menu items
     const names = await app.auto.uia.allNames();

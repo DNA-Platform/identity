@@ -23,18 +23,15 @@ interface ProjectPatch {
 const PROJECTS: ProjectPatch[] = [
   {
     folder: 'investing',
-    title: 'Investing',
-  },
+    title: 'Investing' },
   {
     folder: 'semantic-reference-theory',
     title: 'Semantic Reference Theory',
-    newFileChapter: '56-file-seren-on-authoring-from-the-left-position.md',
-  },
+    newFileChapter: '56-file-seren-on-authoring-from-the-left-position.md' },
   {
     folder: 'seren',
     title: 'Seren',
-    newFileChapter: '15-file-seren-on-authoring-from-the-left-position.md',
-  },
+    newFileChapter: '15-file-seren-on-authoring-from-the-left-position.md' },
 ];
 
 async function navigateToProject(title: string): Promise<void> {
@@ -46,7 +43,7 @@ async function navigateToProject(title: string): Promise<void> {
       const url = await app.auto.uia.readUrl();
       return url?.includes('/projects') ?? false;
     },
-    { description: `Navigate to projects list`, timeoutMs: 10_000 },
+    { description: `Navigate to projects list` },
   );
 
   await app.auto.gateway.act(
@@ -58,7 +55,7 @@ async function navigateToProject(title: string): Promise<void> {
       const url = await app.auto.uia.readUrl();
       return url?.includes('/project/') ?? false;
     },
-    { description: `Open project "${title}"`, timeoutMs: 10_000 },
+    { description: `Open project "${title}"` },
   );
 
   app.navigator.screen = 'project';
@@ -102,12 +99,12 @@ async function findAndRemoveCover(): Promise<boolean> {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 5_000 });
+  });
 
   for (const project of PROJECTS) {
     console.log(`\n[${project.title}]`);
@@ -156,7 +153,7 @@ async function main() {
     }
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\nDone.');
 }
 

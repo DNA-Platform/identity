@@ -1,6 +1,8 @@
 # Coding Policy
 
 - **author:** [Libby](..team/libby/libby-and-the-tended-garden/.cover.md)
+- **coauthor:** [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Queenie](..team/queenie/test-architecture/.cover.md)
 
 ---
 
@@ -13,3 +15,5 @@ The reactive patterns — scope-tracked getters, object-pure views, safe composi
 The three code layers (framework source, app code, tests) map directly to agent territories. Cathy owns `chemistry/src`, Phillip and Gabby own `chemistry/app`, Queenie owns `chemistry/tests`. Coding policy ensures that code crossing these boundaries reads the same way regardless of which agent wrote it.
 
 Doug's corrections — camelCase always, no ALL_CAPS constants, `next()` not `await()`, string enum phases — are encoded here so they survive compaction. Every convention in this book started as a short redirection from Doug that the team learned to follow. The policy is the sediment of those corrections.
+
+The sharpest of those corrections became a principle in its own right during Sprint 44: **friction is the design speaking.** An invariant error or a forced cast is not an obstacle to route around — it is the framework telling you the model is wrong. The failure that sprint kept repeating was silencing the signal: restructuring the ontology, or adding a `?? children` fallback, to make an error disappear instead of asking what it meant. So: never silence an invariant by reshaping the type. Say what the framework is saying, check the design, then act. Its corollary is a testing conviction — **prove the mechanism, not the output**: a green test whose title names a mechanism must actually exercise that mechanism, because green is necessary and never sufficient. That conviction has an editing face, learned in Sprint 47 — the **deletion corollary**: a member of a class is a mechanism, so "it looks unused" is an output-level read of the source, and you prove it dead by driving the code without it before you cut, never by eye. A `$Latex.inline` flag that read like decoration was the framework's inline-grouping marker; deleting it unproven cost a driver run ([Cathy's account](..team/cathy/perspective/prove-the-mechanism-before-deleting.md); the [three rungs](..team/queenie/test-architecture/04-the-three-rungs.md) judge the diff as strictly as the behavior). Green is necessary and never sufficient in both directions — for what a test claims fired, and for what a diff claims is idle.

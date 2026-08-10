@@ -221,6 +221,14 @@ The altered-states branch at `library/.lib/` is the project-root library branch.
 | `library/.lib/datasets/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The dataset characterized from the files — what we analyse. The analyst documents the data; the librarian tends it. |
 | `library/.lib/the-build/**` | [Adam](..team/adam/adam-between-the-wires/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The compute environment, toolchain, and code organization — how the analysis is built and run. The automation engineer documents the build; the librarian tends it. |
 
+The Publicity branch at `library/.public/.lib/` is the branch for `.public` — the public view onto the repository and the home of `@dna-platform/lib`, the canonical code library for creating libraries. Libby owns all branch content (`**/.lib/**`); the explicit entries name the per-book owners within it.
+
+| Path | Owner | Why |
+|------|-------|-----|
+| `library/.public/.lib/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The librarian tends all branch content; she ensures the Publicity branch meets library standards. |
+| `library/.public/.lib/..publicity/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The cataloguing book — the branch's identity. The librarian catalogues the branch as she catalogues the main library. |
+| `library/.public/.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Sprint planning within the branch. The architect plans sprints. |
+
 ## Project code & data assignments (altered-states)
 
 The altered-states analysis lives in two roots: the importable code and analyses under `src/`, and the data and resources under `library/`. Ownership nests — Nancy owns the science end to end, with the environment that runs it, the figures' aesthetics, and the controls that keep it honest held by the people whose discipline they are.

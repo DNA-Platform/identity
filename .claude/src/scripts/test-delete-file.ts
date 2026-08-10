@@ -4,7 +4,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   // The file detail view should be open with "Remove" visible
@@ -30,7 +30,7 @@ async function main() {
   const fileStill = names.filter(n => n.includes('catalogue'));
   console.log('\ncatalogue.ts still present:', fileStill.length > 0);
 
-  app.window.minimize();
+  await app.window.minimize();
 }
 
 main().catch(console.error);

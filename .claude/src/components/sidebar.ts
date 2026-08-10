@@ -53,6 +53,12 @@ export class Sidebar {
   }
 
   /** Type into the sidebar search box. The only parametered method. */
+  /** Close the search overlay — it is a window over the app, and leaving it open
+   *  blocks everything behind it. */
+  async closeSearch(): Promise<void> {
+    await this.controller.closeSearch();
+  }
+
   async search(text: string): Promise<void> {
     await this.controller.search(text);
   }

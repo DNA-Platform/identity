@@ -40,7 +40,7 @@ export class Session {
    *  app isn't running, or it has moved. Never assumes. */
   async inSync(): Promise<boolean> {
     const remembered = this.load();
-    if (!remembered || !this.app.attach()) return false;
+    if (!remembered || !await this.app.attach()) return false;
     return (await this.app.currentUrl()) === remembered;
   }
 

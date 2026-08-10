@@ -34,7 +34,7 @@ async function checkBounds(handle: number, name: string): Promise<string> {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   const handle = app.window.handle;
   if (!handle) throw new Error('No window handle');

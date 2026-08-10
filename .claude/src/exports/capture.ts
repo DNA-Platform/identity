@@ -89,7 +89,7 @@ async function main() {
   console.log(`[capture] Wrote ${outputPath}`);
   console.log(`[capture] ${result.projects.length}/${cards.length} projects captured`);
 
-  claude.window.minimize();
+  await claude.window.minimize();
   console.log('[capture] Done.');
 }
 

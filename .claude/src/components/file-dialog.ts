@@ -37,13 +37,15 @@ export class FileDialog {
     this.isOpen = result?.trim() === 'open';
   }
 
-  async waitUntilOpen(timeoutMs = 10000): Promise<boolean> {
-    return this.gateway.waitFor(
+  /** Settle once, then look once. Not a poll: "is the dialog open?" has an answer,
+   *  and asking it fifty times does not make the answer better. */
+  async waitUntilOpen(settleMs = 1_000): Promise<boolean> {
+    return this.gateway.check(
       async () => {
         await this.detect();
         return this.isOpen;
       },
-      { timeoutMs },
+      { settleMs },
     );
   }
 
@@ -89,7 +91,7 @@ export class FileDialog {
         await this.detect();
         return !this.isOpen;
       },
-      { description: 'Submit file dialog', timeoutMs: 10_000, retries: 1 },
+      { description: 'Submit file dialog' },
     );
   }
 
@@ -125,7 +127,7 @@ export class FileDialog {
         await this.detect();
         return !this.isOpen;
       },
-      { description: 'Cancel file dialog', timeoutMs: 5_000, retries: 2 },
+      { description: 'Cancel file dialog' },
     );
 
     this.path = '';

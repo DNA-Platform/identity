@@ -5,7 +5,7 @@ const app = new Claude();
 
 async function main() {
   console.log('Finding window...');
-  const found = app.window.find();
+  const found = await app.window.find();
   console.log('Found:', found, 'Handle:', app.window.handle);
 
   if (!found) {
@@ -21,11 +21,12 @@ async function main() {
 
   console.log('Detecting screen...');
   const screen = await app.navigator.detectScreen();
+  await app.navigator.detectOverlays();  // detectScreen is URL-only now
   console.log('Screen:', screen);
   console.log('Has dialog:', app.navigator.hasOpenDialog);
   console.log('Has menu:', app.navigator.hasOpenMenu);
 
-  const fg = app.window.isForeground();
+  const fg = await app.window.isForeground();
   console.log('Is foreground:', fg);
 
   // Read the URL
@@ -41,11 +42,11 @@ async function main() {
     console.log('Sidebar read failed:', e.message);
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('Minimized. Done.');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('FAILED:', e.message);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

@@ -30,20 +30,20 @@ async function main() {
   console.log();
 
   // Step 1: Fresh launch
-  if (app.window.find()) {
+  if (await app.window.find()) {
     console.log('[adam] Closing existing Claude instance for fresh launch...');
-    app.window.close();
+    await app.window.close();
     await new Promise(r => setTimeout(r, 3_000));
   }
 
   console.log('[adam] Launching Claude Desktop...');
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   await app.auto.gateway.waitFor(async () => {
     const url = await app.auto.uia.readUrl();
     return url !== null;
-  }, { timeoutMs: 10_000 });
+  });
 
   const screen = await app.detectScreen();
   console.log(`[adam] Screen: ${screen}`);
@@ -55,7 +55,7 @@ async function main() {
 
   // Screenshot the project state
   const projectSS = resolve(__dirname, '..', 'debug', 'pilot-01-project.png');
-  app.window.screenshot(projectSS);
+  await app.window.screenshot(projectSS);
   console.log(`[adam] Screenshot: ${projectSS}`);
 
   // Step 3: Start a new conversation
@@ -68,7 +68,7 @@ async function main() {
 
   // Screenshot the fresh conversation
   const composerSS = resolve(__dirname, '..', 'debug', 'pilot-02-composer.png');
-  app.window.screenshot(composerSS);
+  await app.window.screenshot(composerSS);
   console.log(`[adam] Screenshot: ${composerSS}`);
 
   // Step 4: Send the opening message
@@ -81,7 +81,7 @@ async function main() {
 
   // Screenshot after response
   const responseSS = resolve(__dirname, '..', 'debug', 'pilot-03-response.png');
-  app.window.screenshot(responseSS);
+  await app.window.screenshot(responseSS);
   console.log(`[adam] Screenshot: ${responseSS}`);
 
   // Step 5: Print the response
@@ -97,10 +97,10 @@ async function main() {
   console.log('[claude] Next steps depend on what Claude-Chat said.');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('[adam] Pilot failed:', e.message);
   const errorSS = resolve(__dirname, '..', 'debug', 'pilot-error.png');
-  try { app.window.screenshot(errorSS); } catch { /* best effort */ }
+  try { await app.window.screenshot(errorSS); } catch { /* best effort */ }
   console.error(`[adam] Error screenshot: ${errorSS}`);
   process.exit(1);
 });

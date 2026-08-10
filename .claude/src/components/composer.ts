@@ -77,12 +77,16 @@ export class Composer {
       const current = await this.controller.readDraft();
       if (current === prev) { stable++; } else { stable = 0; prev = current; }
       return stable >= 3;
-    }, { timeoutMs: 30_000 });
+    });
 
-    // Remove pasted attachments first
-    while (await this.controller.removePastedAttachment()) {
-      await new Promise(r => setTimeout(r, 400));
-    }
+    // Remove a pasted attachment. ONCE.
+    //
+    // This used to be `while (await removePastedAttachment())` — an UNBOUNDED loop
+    // clicking the app until it stopped answering, 400ms apart, with no ceiling at
+    // all. If the app ever answered true without removing anything it would click
+    // forever, holding the screen. If one call is not enough, that is a defect to
+    // read off the tree and fix here — not something to paper over by clicking again.
+    await this.controller.removePastedAttachment();
 
     // Select all and delete
     await this.gateway.act(

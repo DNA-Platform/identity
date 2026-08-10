@@ -32,7 +32,7 @@ async function main() {
   try {
     await app.launch();
     console.log('Launched. Minimizing while we prepare...');
-    app.window.minimize();
+    await app.window.minimize();
 
     // Start a session — will foreground, send, then minimize
     console.log('Starting session...');
@@ -61,7 +61,7 @@ async function main() {
   } catch (e: any) {
     console.error('FAILED:', e.message);
   } finally {
-    app.window.minimize();
+    await app.window.minimize();
     console.log('Minimized. Done.');
   }
 }

@@ -4,10 +4,11 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   // Detect current state
   const screen = await app.navigator.detectScreen();
+  await app.navigator.detectOverlays();  // detectScreen is URL-only now
   console.log('Current screen:', screen);
   console.log('Has open dialog:', app.navigator.hasOpenDialog);
   console.log('Has open menu:', app.navigator.hasOpenMenu);
@@ -23,7 +24,7 @@ async function main() {
     console.log('FAILED:', e.message);
   }
 
-  app.window.minimize();
+  await app.window.minimize();
 }
 
 main().catch(console.error);

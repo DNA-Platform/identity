@@ -16,7 +16,7 @@ async function main() {
   const target = chats[0]; // most recent
   if (!target) {
     console.log('No chats in sidebar');
-    app.window.minimize();
+    await app.window.minimize();
     return;
   }
   console.log('Target chat:', target.title);
@@ -101,7 +101,7 @@ async function main() {
     console.error('Failed:', (e as Error).message);
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\nDone.');
 }
 

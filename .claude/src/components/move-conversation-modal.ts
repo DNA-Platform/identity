@@ -37,7 +37,7 @@ export class ProjectChoice {
     }
     const closed = await this.gateway.waitFor(
       async () => !(await this.controller.isDialogVisible()),
-      { timeoutMs: 10_000 },
+      {},
     );
     if (!closed) {
       await this.controller.closeDialog();
@@ -63,7 +63,7 @@ export class MoveConversationModal {
         const names = await this.controller.readProjectList();
         return names.some(n => n.toLowerCase().includes(text.toLowerCase()));
       },
-      { timeoutMs: 3_000 },
+      {},
     );
     if (!filtered) throw new Error(`No project matched "${text}" in the Move conversation modal`);
   }

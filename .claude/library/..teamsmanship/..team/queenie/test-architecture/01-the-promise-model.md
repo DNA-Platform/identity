@@ -1,6 +1,7 @@
 # The promise model
 
 - **author:** [Arthur](../../arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Queenie](../queenie-and-the-specification/.cover.md)
 
 ---
 
@@ -18,7 +19,7 @@ Test-driven development with Cathy follows a protocol. I write the failing test 
 
 The gaps in the suite are promises not yet made. Every `$PlannedCase` in the Lab that has no corresponding test is a gap. Every behavior Doug describes in a sprint plan that doesn't have a test is a gap. I track gaps not as failures but as the specification's frontier -- the boundary between what $Chemistry promises today and what it will promise next. A gap is not a bug. It's a sentence the specification hasn't written yet.
 
-Reading the test suite as a document requires one shift in perspective: the test name is the claim, and the test body is the proof. `"reactive property updates view"` is the promise. The `expect` calls inside are the evidence. If you read only the test names in order, you get the specification in plain English. If you read the bodies, you get the executable proof. Both readings are valid. Both are the specification. The architecture exists to make both readings coherent.
+Reading the test suite as a document requires one shift in perspective: the test name is the claim, and the test body is the proof. `"reactive property updates view"` is the promise. The `expect` calls inside are the evidence. If you read only the test names in order, you get the specification in plain English. If you read the bodies, you get the executable proof. Both readings are valid. Both are the specification. The architecture exists to make both readings coherent. But the two readings only stay coherent while the title and the body make the same claim — the [title-body correspondence](02-title-body-correspondence.md) that the next chapter is about, and the rule that governs the promise-versus-mechanism line from both of its sides.
 
 <!-- citations -->
 [Queenie and the Specification]: ../queenie-and-the-specification/.cover.md

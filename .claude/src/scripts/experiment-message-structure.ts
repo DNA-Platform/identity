@@ -22,7 +22,7 @@ async function dumpState(label: string) {
   console.log(`\n=== ${label} ===`);
 
   const screenshotPath = resolve(DEBUG, `${prefix}.png`);
-  app.window.screenshot(screenshotPath);
+  await app.window.screenshot(screenshotPath);
 
   const text = await app.auto.uia.readText();
   if (text) {
@@ -101,8 +101,8 @@ async function clearMessage() {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
-  app.window.requireForeground();
+  await app.window.maximize();
+  await app.window.requireForeground();
 
   // Navigate to DNA Patternity
   console.log('[experiment] Opening DNA Patternity...');
@@ -248,13 +248,13 @@ async function main() {
   }
 
   // Minimize when done
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\n[experiment] Done. App minimized.');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[experiment] Failed: ${e.message}`);
   // Try to minimize even on failure
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
   process.exit(1);
 });

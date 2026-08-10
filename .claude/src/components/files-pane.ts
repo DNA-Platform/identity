@@ -40,7 +40,7 @@ export class FilesPane {
         this.menuExpanded = hasItems;
         return hasItems;
       },
-      { description: 'Expand Add files menu', timeoutMs: 5_000, retries: 2 },
+      { description: 'Expand Add files menu' },
     );
   }
 
@@ -58,7 +58,7 @@ export class FilesPane {
         this.menuExpanded = !menuGone;
         return menuGone;
       },
-      { description: 'Collapse Add files menu', timeoutMs: 3_000, retries: 2 },
+      { description: 'Collapse Add files menu' },
     );
   }
 
@@ -87,7 +87,7 @@ export class FilesPane {
         await this.fileDialog.detect();
         return this.fileDialog.isOpen;
       },
-      { description: 'Open file dialog via Upload from device', timeoutMs: 10_000, retries: 2 },
+      { description: 'Open file dialog via Upload from device' },
     );
 
     await this.fileDialog.typePath(filePath);
@@ -133,10 +133,7 @@ export class FilesPane {
       },
       {
         description: 'Open Add text content dialog',
-        timeoutMs: 10_000,
-        retries: 3,
-        screenshotOnFailure: 'add-text-content-failed',
-      },
+        screenshotOnFailure: 'add-text-content-failed' },
     );
 
     // Dialog is confirmed open — proceed
@@ -170,7 +167,7 @@ export class FilesPane {
           n.toLowerCase().includes('connect')
         );
       },
-      { description: 'Connect GitHub', timeoutMs: 10_000 },
+      { description: 'Connect GitHub' },
     );
   }
 }

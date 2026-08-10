@@ -25,9 +25,9 @@ if (claude.project.conversations.length > 5) {
   console.log(`  ... and ${claude.project.conversations.length - 5} more`);
 }
 
-const path = claude.window.screenshot(
+const path = await claude.window.screenshot(
   `C:/Source/dna-platform/dna-library/.claude/agents/library/..team/claude/.perspective/11-${projectName.toLowerCase()}-interior.png`
 );
 console.log(`[script] Screenshot saved`);
 
-claude.window.minimize();
+await claude.window.minimize();

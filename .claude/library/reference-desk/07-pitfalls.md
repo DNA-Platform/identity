@@ -7,6 +7,31 @@
 
 Bugs we hit, lessons we forgot, and how to avoid them. This chapter is alive — add to it when something breaks. Source: dna-library driver ch 13, plus findings from the Sprint 72 test run.
 
+## A chapter that describes the intention
+
+**Sprint 103 finding.** [The Shell](04-03-platform--shell.md) said `powershellSync` was "used only at startup before the persistent shell exists — specifically in `Session.acquireForeground()`." There is no such method. [`Window`](../../src/window.ts) used `powershellSync` for all eleven of its methods, permanently, at ~400ms a call. The chapter recorded what we meant to do; the code did something else; and the chapter read as authoritative, so nobody looked.
+
+This is the same failure as the deleted class names that sat in [The App](12-the-app.md) for six sprints. A chapter that describes the intention rather than the code is worse than no chapter, because it answers the question and stops the search.
+
+**What to do:** when a chapter makes a claim about *cost* or *call sites*, check it against the code before relying on it — and when you find it false, fix the chapter in the same change as the code.
+
+## Glacial automation is almost never the app
+
+**Sprint 103 finding.** The driver was unusably slow, and every plausible suspect was wrong. It was not the UIA tree (161 elements, 77ms — see [UIA § What the tree costs](04-01-platform--uia.md)). It was not the app. It was:
+
+1. **Fresh PowerShell processes.** ~300ms floor per spawn, ~440ms with an inline `Add-Type`. `Window` did this for every Win32 call.
+2. **Discipline charged twice.** `act()` required the foreground, then `waitFor()` inside it required it again — 1675ms for an action that did nothing.
+3. **A verify predicate gathering what it did not need.** `detectScreen()` walked the whole tree for two booleans nobody read, on every poll iteration.
+4. **The CLI closing the app in its `finally`.** `app.exit()` sent WM_CLOSE, slept two seconds, and force-killed Claude Desktop — so the *next* command relaunched it cold, and the user's live conversation died with it.
+
+Together: **35s → 7s** on the integration suite, **1675ms → 2ms** on a disciplined action.
+
+**What to do when something feels slow:** measure each layer separately before theorising. Run [`measure.ts`](../../src/scripts/measure.ts) — `npx tsx src/scripts/measure.ts`. It is read-only, it times every layer in one pass, and it found all of this immediately. Three plausible theories about the tree would have found nothing, because the tree was innocent.
+
+## Never `app.exit()` from a tool
+
+`exit()` closes **Claude Desktop itself**, taking whatever the user was doing with it. A driver attached to a running app gives the computer back with `window.minimize()` and `auto.shell.close()` — the window goes away, the app does not. Minimize *before* closing the shell, because minimizing speaks through it.
+
 ## The app changes under you
 
 Claude Desktop is an Electron app that updates regularly. UI elements get renamed. URLs change. New dialogs appear. Old ones disappear. The [coding philosophy](05-coding-philosophy.md) says target semantics not presentation — but even semantic identifiers change when Anthropic redesigns the app.

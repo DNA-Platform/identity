@@ -55,4 +55,4 @@ if (claude.projects.cards.length > 0) {
   }
 }
 
-claude.window.minimize();
+await claude.window.minimize();

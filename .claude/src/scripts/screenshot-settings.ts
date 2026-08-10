@@ -5,7 +5,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   const url = await app.auto.uia.readUrl();
@@ -42,7 +42,7 @@ async function main() {
   console.log('All Edit controls on settings page:');
   console.log(result);
 
-  app.window.minimize();
+  await app.window.minimize();
 }
 
 main().catch(console.error);

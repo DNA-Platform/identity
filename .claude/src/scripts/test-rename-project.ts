@@ -27,11 +27,11 @@ async function main() {
     console.log('[test] Done.');
   } finally {
     try { await app.dismissDialogs(); } catch {}
-    app.window.minimize();
+    await app.window.minimize();
   }
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('[test] FAILED:', (e as Error).message);
-  try { app.dismissDialogs().then(() => app.window.minimize()).catch(() => app.window.minimize()); } catch {}
+  try { app.dismissDialogs().then(async () => await app.window.minimize()).catch(async () => await app.window.minimize()); } catch {}
 });

@@ -49,11 +49,11 @@ async function main() {
       console.log(`[test-08] FAIL: Nothing found — send returned without any verification.`);
     }
   } finally {
-    app.window.minimize();
+    await app.window.minimize();
   }
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[test-08] FAIL: ${(e as Error).message}`);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

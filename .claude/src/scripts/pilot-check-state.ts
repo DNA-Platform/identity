@@ -8,7 +8,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   // Scroll to bottom
   await app.auto.uia.invokeByName('Scroll to bottom');
@@ -16,7 +16,7 @@ async function main() {
 
   // Screenshot
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-08-state.png');
-  app.window.screenshot(ssPath);
+  await app.window.screenshot(ssPath);
   console.log(`[adam] Screenshot: ${ssPath}`);
 
   // Check streaming

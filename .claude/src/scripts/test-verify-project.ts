@@ -21,11 +21,11 @@ async function main() {
     console.log('Project:', project);
     console.log('In Claude:', project === 'Claude' ? 'YES' : 'NO');
   } finally {
-    app.window.minimize();
+    await app.window.minimize();
   }
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('FAILED:', (e as Error).message);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

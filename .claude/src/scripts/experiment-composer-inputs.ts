@@ -21,7 +21,7 @@ async function dumpState(label: string) {
 
   // Screenshot
   const screenshotPath = resolve(DEBUG, `${prefix}.png`);
-  app.window.screenshot(screenshotPath);
+  await app.window.screenshot(screenshotPath);
   console.log(`  Screenshot: ${screenshotPath}`);
 
   // Full text dump
@@ -66,7 +66,7 @@ async function clearComposer() {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   // Navigate to DNA Patternity project
   console.log('[sprint-65] Opening DNA Patternity...');

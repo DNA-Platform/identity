@@ -23,7 +23,7 @@ async function main() {
   console.log('[claude] Step 2: Navigate to project and send opening message');
 
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   let screen = await app.detectScreen();
   console.log(`[adam] Current screen: ${screen}`);
@@ -38,7 +38,7 @@ async function main() {
 
   // Screenshot project state
   const projectSS = resolve(__dirname, '..', 'debug', 'pilot-02-project.png');
-  app.window.screenshot(projectSS);
+  await app.window.screenshot(projectSS);
   console.log(`[adam] Screenshot: ${projectSS}`);
 
   console.log(`[claude] Message length: ${OPENING_MESSAGE.length} chars`);
@@ -50,7 +50,7 @@ async function main() {
 
   // Screenshot
   const responseSS = resolve(__dirname, '..', 'debug', 'pilot-03-response.png');
-  app.window.screenshot(responseSS);
+  await app.window.screenshot(responseSS);
   console.log(`[adam] Screenshot: ${responseSS}`);
 
   console.log();
@@ -62,9 +62,9 @@ async function main() {
   console.log(`[adam] Response length: ${response.length} chars`);
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[adam] Failed: ${e.message}`);
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-step2-error.png');
-  try { app.window.screenshot(ssPath); console.error(`[adam] Screenshot: ${ssPath}`); } catch {}
+  try { await app.window.screenshot(ssPath); console.error(`[adam] Screenshot: ${ssPath}`); } catch {}
   process.exit(1);
 });

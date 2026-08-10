@@ -74,7 +74,7 @@ Read the relevant library chapter, so when the answer arrives I know what to che
 ```
 npx tsx .claude/src/scripts/think.ts read
 ```
-The [read resource](../thoughtfulness/02-the-thought-lifecycle--read.ts) resumes the in-flight conversation (the [session](../../src/session.ts) binds it if we're still on it, else navigates from home) and **waits** — read is the waiting phase, so it holds the app open and polls until the response is complete, then prints it. A separate process from write; never chained.
+The [read resource](../thoughtfulness/02-the-thought-lifecycle--read.ts) **resumes** the conversation by the [session](../../src/session.ts) — it binds the open conversation in place if Desktop is still on it (no navigation, no title read), else navigates to it in the project — then **waits**, holding the app open and polling until the response is complete, and prints it. **For a NEW topic it then renames the conversation to `{Name} > {Topic}`**, which is what finally gives it its title (see [New topic vs existing topic](#new-topic-vs-existing-topic--how-the-conversation-is-found)). A separate process from write; never chained.
 
 ### Step 6 — Evaluate
 Did it answer the actual question, or a nearby one? Substantive or a confident deflection? Consistent with what the team knows? Verdict: **sufficient**, **partial**, or **unproductive**.
@@ -82,9 +82,22 @@ Did it answer the actual question, or a nearby one? Substantive or a confident d
 ### Step 7 — Conclude
 Three stages in my chapter: **Evidence** (the printed response), **Interpretation** (what aligns, contradicts, surprises), **Conclusion** (what to tell the team, and whom). Update my thinking-book cover and the research-topic chapter. Store failed thoughts too — they prevent re-asking dead ends. A `/think` result is a *filed thought to refer back to*, not automatically team work.
 
-## Resuming a thought
+## New topic vs existing topic — how the conversation is found
 
-The **session sync-check is now standard on every step, not only the read.** Before navigating, the script checks whether the app is *already on this topic's conversation* — the [session chapter](../reference-desk/03-04-operations--sessions.md)'s locate-by-current-conversation-plus-title-match — and reuses it if so. So the **write** no longer re-navigates when I think into the same topic several times in a row, and the **read** resumes the in-flight conversation rather than hunting for it. `thought-state.json` records the in-flight thought (its topic, whether it's new) to bridge turns; if the app has moved on, the script navigates back from home. After compaction, my thinking-book chapters are the long-term memory.
+Every thought lives as one conversation inside the shared **Claude project**, and it is found the same cheap way on both the write and the read, through one shared `resume`. The session remembers the conversation **by its page URL, not by its topic** — so "find it" means: if Claude Desktop is **still on that page** (the session is in sync), bind the conversation in place with **zero navigation** and no title read; only if the app has moved on do we go to the project and re-open it by name. Because several thoughts to one topic usually run back-to-back while the app is already open on it, that in-sync path is the normal one — this is why the write stays fast.
+
+**A NEW topic** (`new`) has no conversation yet, so there is nothing to find:
+
+1. The **write** is born in the project's own composer and sends. Desktop auto-titles the fresh conversation with something generic — *not* `{Name} > {Topic}` — while it answers.
+2. The **read** resumes that conversation through the still-in-sync session (the app is right where the write left it), waits for the answer, and only **then renames it to `{Name} > {Topic}`** — Desktop overwrites the title while answering, so the rename has to come after. That rename is the single moment a new topic gets its real name; from then on it is findable by title like any other.
+
+So a new topic's order is fixed: **write (born in the composer) → read (waits, then names it).** Do not expect to find a new topic by its `{Name} > {Topic}` title until its first read has renamed it.
+
+The read never *fails* a new topic for being out of sync. If Desktop was closed or moved between the write and the read, the new conversation is still among the **most recent** in the Claude project — so the read **scans from the top** (the just-made conversation is normally first; a buried thread is further down), takes the one that **carries the message we sent**, and renames *that*. A new topic always ends up named, and a buried thread is recovered rather than lost.
+
+**An EXISTING topic** already has its `{Name} > {Topic}` conversation. Both the write (continuing the thread) and the read simply **resume** it: in sync → bind the open conversation in place, no navigation; out of sync → navigate to it in the project by its title. No rename — it is already named.
+
+`thought-state.json` records the in-flight thought (its topic and whether it is new) so the separate read process knows which conversation to resume and whether to rename. After compaction, my thinking-book chapters are the long-term memory.
 
 ## What this skill does NOT do
 

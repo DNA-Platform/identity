@@ -24,7 +24,7 @@ async function main() {
     }
   }
 
-  app.window.minimize();
+  await app.window.minimize();
 }
 
 main().catch(e => {

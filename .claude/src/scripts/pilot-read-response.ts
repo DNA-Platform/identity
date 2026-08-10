@@ -8,14 +8,14 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   const screen = await app.detectScreen();
   console.log(`[adam] Screen: ${screen}`);
 
   // Screenshot current state
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-04-current.png');
-  app.window.screenshot(ssPath);
+  await app.window.screenshot(ssPath);
   console.log(`[adam] Screenshot: ${ssPath}`);
 
   // Check if streaming

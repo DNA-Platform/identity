@@ -10,9 +10,9 @@ import { Claude } from '../claude.ts';
 const app = new Claude();
 const results: Record<string, { pass: boolean; detail: string }> = {};
 
-process.on('unhandledRejection', (err) => {
+process.on('unhandledRejection', async (err) => {
   console.error('[FATAL]', err);
-  app.window.minimize();
+  await app.window.minimize();
   process.exit(1);
 });
 
@@ -36,7 +36,7 @@ const screen = await app.navigator.detectScreen();
 console.log(`[setup] Screen: ${screen}`);
 if (screen !== 'conversation') {
   console.log('[setup] ERROR: Not on conversation screen.');
-  app.window.minimize();
+  await app.window.minimize();
   process.exit(1);
 }
 
@@ -58,7 +58,7 @@ console.log(`[baseline] Turns: ${baselineTurns.length}`);
 // --- MINIMIZE — Phase 2: read from background ---
 
 console.log('\n[MINIMIZE] Window minimized. All reads from background.\n');
-app.window.minimize();
+await app.window.minimize();
 await new Promise(r => setTimeout(r, 1000));
 
 // --- E-0: checkStreaming() while minimized ---
@@ -138,8 +138,8 @@ try {
 
 console.log('\n--- E-0b: Live streaming detection from background ---');
 console.log('  Restoring briefly to send second message...');
-app.window.focus();
-app.window.maximize();
+await app.window.focus();
+await app.window.maximize();
 await new Promise(r => setTimeout(r, 500));
 
 await app.compose('Write a longer paragraph about the ocean');
@@ -147,7 +147,7 @@ await app.conversation.composer.send();
 await app.navigator.detectScreen();
 
 // Minimize immediately and check streaming
-app.window.minimize();
+await app.window.minimize();
 console.log('  Minimized. Checking streaming...');
 await new Promise(r => setTimeout(r, 500));
 
@@ -194,8 +194,8 @@ console.log(`\n  Overall: ${allPass ? 'ALL PASS — background reads work!' : 'S
 // --- Cleanup ---
 
 console.log('[cleanup] Restoring to rename conversation...');
-app.window.focus();
-app.window.maximize();
+await app.window.focus();
+await app.window.maximize();
 await new Promise(r => setTimeout(r, 500));
 
 // Wait for any remaining streaming
@@ -213,5 +213,5 @@ try {
 }
 
 await app.goHome();
-app.window.minimize();
+await app.window.minimize();
 console.log('[cleanup] Done. Conversation left for Doug to review.');

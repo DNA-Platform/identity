@@ -4,7 +4,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   // Expand Add files menu
@@ -21,7 +21,7 @@ async function main() {
 
   // Close menu
   await app.auto.keyboard.sendKeys('{ESCAPE}');
-  app.window.minimize();
+  await app.window.minimize();
 }
 
 main().catch(console.error);

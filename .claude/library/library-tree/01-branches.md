@@ -49,6 +49,10 @@ The branch for the $Chemistry reactive framework, at `library/chemistry/.lib/` i
 
 The branch for the altered-states project, at `library/.lib/` in the altered-states repo. Catalogued by [Altered States](../../../../altered-states/library/.lib/..altered-states/.cover.md). Sprint history in [Projection](../../../../altered-states/library/.lib/projection/.cover.md). Altered-states is a psychedelic exploration into altered states of consciousness using mouse visual cortex as its lens — the branch records the team's applied knowledge of that exploration.
 
+### [The Public Library](../../../../inexplicable-phenomena/library/.public/.lib/..publicity/.cover.md) — Publicity
+
+The branch for `.public`, at `library/.public/.lib/` in the inexplicable-phenomena repo. Catalogued by [Publicity](../../../../inexplicable-phenomena/library/.public/.lib/..publicity/.cover.md). Sprint history in [Projection](../../../../inexplicable-phenomena/library/.public/.lib/projection/.cover.md). `.public` is the subject of publicity — the public view onto the repository and the home of `@dna-platform/lib`, the canonical code library for creating libraries — and the branch records the team's knowledge of building the library metaphor as renderable code.
+
 <!-- citations -->
 [bookkeeping]: ../bookkeeping/.cover.md
 [covers]: ../bookkeeping/03-on-covers.md

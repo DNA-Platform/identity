@@ -64,8 +64,8 @@ async function main(): Promise<void> {
 
 main()
   .then(() => process.exit(0))
-  .catch(err => {
+  .catch(async err => {
     console.error('[think] FAILED:', err instanceof Error ? err.message : err);
-    try { app.window.minimize(); } catch {}
+    try { await app.window.minimize(); } catch {}
     process.exit(1);
   });

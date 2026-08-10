@@ -31,8 +31,8 @@ function assert(test: string, condition: boolean) {
 
 async function main() {
   await app.launch();
-  app.window.maximize();
-  app.window.requireForeground();
+  await app.window.maximize();
+  await app.window.requireForeground();
 
   console.log('[test] Opening DNA Patternity...');
   await app.openProject('DNA Patternity');
@@ -96,12 +96,12 @@ async function main() {
   // Summary
   console.log(`\n===== RESULTS: ${passed} passed, ${failed} failed =====`);
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('[test] Done.');
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[test] Failed: ${e.message}`);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
   process.exit(1);
 });
