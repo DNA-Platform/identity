@@ -138,7 +138,7 @@
 - **AE6.** `parts()` called twice answers the same content.
 - **AE7.** Both suites green — chemistry from 630, lib from 154 — against a **rebuilt** chemistry `dist`, per [the filed law](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
 
-## The second sprint — the specialization, which is THE END OF THIS ONE
+## The second sprint — the specialization
 
 *Doug, 2026-08-10, closing the interview: **the next sprint is the end of this one.** The cut is a session boundary, not a change of subject — one arc in two steps, and this chapter is not finished until the second has run. Recorded so it cannot drop, and so nobody reads the first half's green suite as the work being done.*
 
@@ -305,7 +305,7 @@ Reproduced with `$Chemical`, `$check` and `$Html<'block'>` and **no lib class in
 3. **U4 is a regression on the shipped demo** — the cover's author is exactly the case the kind test must not break. *Mitigation: it is a named scenario, not a hope.*
 4. **U6 can be skipped under pressure**, and it is the one thing here that is purely discipline. *Mitigation: it is in the order, before U3, and Doug's ruling on it is recorded in this chapter.*
 5. **U3 is the unit most likely to grow** — one generic parse over four levels with four differences each. *Mitigation: a split keeps U3 and takes the next unused number.*
-6. **The sprint spans two packages**, which is what made 47 a forever sprint. *Mitigation: U1 is bounded to one defect with a written reproduction, and the second half of this arc is [already cut out](#the-second-sprint--the-specialization--which-is-the-end-of-this-one).*
+6. **The sprint spans two packages**, which is what made 47 a forever sprint. *Mitigation: U1 is bounded to one defect with a written reproduction, and the second half of this arc is [already cut out](#the-second-sprint--the-specialization).*
 
 ## Self-check
 
@@ -416,43 +416,6 @@ sections given as CHILDREN:   0 extra builds
 
 **Verified, fresh runs:** lib **160/160** (15 files, up from 154) · lib `tsc` **0** · app `tsc` **0** · **driven, zero page errors** — the shelf's spines and its written face, The Team opening with its sections wrapped and reading, the manifold, the algebra, the lab.
 
-## Epiphenomenal decisions — the unruled ones, and what they say about the design
-
-*Doug asked for these to be kept: **"keep note of epiphenomenal design decisions that might help indicate whether or not the original design was correct or needs modification."** Each is a choice nobody ruled, with what it suggests.*
-
-1. **The sequence is normalized into the block, not stored beside it.** The plan's [D2](#decisions) said `parts()` would walk the argument sequence. In code it was better to flatten once at the bond, so there is **one** place the parse reads at every grade. *Signal: the design got simpler under contact — a good sign. It also means D2's "two arrival paths" are a fact about the framework, not about the model.*
-2. **`declaration()` sets `$view` rather than adding a flag.** Nobody ruled it; it uses a seam that already existed for exactly this. *Signal: **the framework had anticipated this and the implementer had not used it.** A shipped seam going unused for the problem it was built for is evidence the original design was right and the code drifted.*
-3. **The self-check was deleted with nothing put in its place**, and nothing broke. *Signal: it was guarding a case that resolves itself — ceremony, not logic.*
-4. **The `.section` wrapper now appears** around the sections of view-writing chapters, where before it did not. **Two stylesheets already carried `.section` rules** — [catalogue.styled.ts](../../package/app/src/sections/book/catalogue.styled.ts) and [the-team.styled.ts](../../package/app/src/sections/the-team.styled.ts). *Signal, and it is the strongest one here: **the styling was written against the intended design, and the implementation had drifted away from it.** Somebody styled a wrapper that never arrived and nobody noticed.* **Driven and seen: The Team opens with `.section` = 2 and reads correctly; zero page errors across the whole click-through.**
-5. **`$Writing` was made GENERIC over what it composes** rather than typed loosely. The interfaces forced it — `$Composition$<$Section>` will not accept a surface typed to bare writing. *Signal: the interface layer was already carrying the constraint the class layer lacked, which is why the duplication was survivable for so long. The types knew; the classes did not.*
-6. **The two defects the collapse surfaced were both about `$Document` not being writing** — an unreached bond constructor and an inherited `inline`. Neither is about the parse. *Signal: **the cost of a level living outside its own base is paid in ways nobody connects back to the cause.** Seventy failures from one missing `super` call and one boolean.*
-7. **`divide()` and `compose()` are PROXIES** — the two halves of a parse, named by the implementer. Doug's `level` and `role` are his. *Signal: the fact that exactly two hooks were needed, and no more, is evidence the four-differences reading was right.*
-
-## Where things stand
-
-**→ NEXT: `/ce-work` against this chapter.** The requirements were accepted and the [Plan](#plan) is set.
-
-**AND THE SPRINT AFTER THAT IS THIS SPRINT'S END** *(Doug, 2026-08-10)*. [The specialization](#the-second-sprint--the-specialization--which-is-the-end-of-this-one) is not a follow-on subject — it is the back half of one arc, and **this chapter stays open until it has run.** A green suite at the end of the first step is not this sprint being done; it is the mechanism existing. Whoever writes the handoff at that boundary says so, and whoever opens the next session reads this line before anything else.
-
-### The unit ledger — checked 2026-08-10, not recalled
-
-| unit | state |
-|---|---|
-| **U2** the bond keeps the sequence | **DONE** — 4 promises |
-| **U3** the mixing parse | **DONE** — written once, on `$Writing` |
-| **U4** the kind test | **DONE** — AE2's promise written; it was missing until it was checked for |
-| **U5** numbering settled | **DONE** — section from 0, every level below from 1, with a promise |
-| **U6** the `$Writing` review — THE GATE | **DONE** — presented, ruled by Doug, and the ruling built |
-| **U1** the inline-prop loop | **DONE** — cause found, fixed in the bond, 5 promises in chemistry |
-| **U7** `$Figure` in the framework | **DONE** — paragraph level, valid by having content |
-| **U8** the three figures stand | **DONE** — driven and seen |
-| **U9** a code part showing real source | **DONE** — the file itself, read at build |
-| **U10** the claim that cannot be faked | **DONE** — the parse beside the chapter |
-| **U12** both defects filed in Solutions | **DONE** — [12](../solutions/12-the-writing-that-looped-its-page.md) and [13](../solutions/13-the-chapter-that-wrote-its-sections-twice.md) |
-| **U11** records and the push | **DONE** |
-
-**SO: DONE — twelve of twelve.** The mechanism half of the arc is complete, verified and seen. [The specialization half](#the-second-sprint--the-specialization--which-is-the-end-of-this-one) is what closes the sprint.
-
 ### U1 — the loop, and what it actually was
 
 **The filed law was false.** *"A subclass that declares its own props and overrides a method its `view()` calls will not render"* — that exact shape renders fine standing alone. The true rule, from five one-variable cases: **inline, passed a prop, inside a block.** Host renders 41 times, child renders zero.
@@ -478,18 +441,87 @@ counted: 11 parts · 490 words used · 491 mentioned
 
 **The figures stand at 7 and 8 and the prose keeps counting around them.** In *The Author, In Code* the listing is part 5 and prose resumes at 6. That is the claim a hand-authored page cannot fake: a rendered figure is easy, a parts list that accounts for it is not.
 
-**DONE — U2, U3, U4, U5, U6, and the `$Document` audit.** The bond keeps the whole sequence; the mixing parse is written **once**, on `$Writing`, generic over what it composes; the six levels declare only their four differences; `role` and `$Punctuation` are built; `$Document` is a writing level; a document writes its sections once and draws the ones it holds. **`Summary.tsx` deleted.**
+## Epiphenomenal decisions — the unruled ones, and what they say about the design
 
-**DONE — U1, U7, U8, U9, U10, U12 as well.** The framework loop found and fixed, `$Figure` in the framework, the three figures standing and driven, the code part showing the real file, the parse beside the chapter, both defects filed.
+*Doug asked for these to be kept: **"keep note of epiphenomenal design decisions that might help indicate whether or not the original design was correct or needs modification."** Each is a choice nobody ruled, with what it suggests.*
 
-**OWED, raised not taken:** a document requiring a **title** as well as a summary, consistent with how chapters work — the canonical part at each level already carries the title, so this is one validity line, not a new abstraction. **Doug's, at the review or at the specialization sprint.**
+1. **The sequence is normalized into the block, not stored beside it.** The plan's [D2](#decisions) said `parts()` would walk the argument sequence. In code it was better to flatten once at the bond, so there is **one** place the parse reads at every grade. *Signal: the design got simpler under contact — a good sign. It also means D2's "two arrival paths" are a fact about the framework, not about the model.*
+2. **`declaration()` sets `$view` rather than adding a flag.** Nobody ruled it; it uses a seam that already existed for exactly this. *Signal: **the framework had anticipated this and the implementer had not used it.** A shipped seam going unused for the problem it was built for is evidence the original design was right and the code drifted.*
+3. **The self-check was deleted with nothing put in its place**, and nothing broke. *Signal: it was guarding a case that resolves itself — ceremony, not logic.*
+4. **The `.section` wrapper now appears** around the sections of view-writing chapters, where before it did not. **Two stylesheets already carried `.section` rules** — [catalogue.styled.ts](../../package/app/src/sections/book/catalogue.styled.ts) and [the-team.styled.ts](../../package/app/src/sections/the-team.styled.ts). *Signal, and it is the strongest one here: **the styling was written against the intended design, and the implementation had drifted away from it.** Somebody styled a wrapper that never arrived and nobody noticed.* **Driven and seen: The Team opens with `.section` = 2 and reads correctly; zero page errors across the whole click-through.**
+5. **`$Writing` was made GENERIC over what it composes** rather than typed loosely. The interfaces forced it — `$Composition$<$Section>` will not accept a surface typed to bare writing. *Signal: the interface layer was already carrying the constraint the class layer lacked, which is why the duplication was survivable for so long. The types knew; the classes did not.*
+6. **The two defects the collapse surfaced were both about `$Document` not being writing** — an unreached bond constructor and an inherited `inline`. Neither is about the parse. *Signal: **the cost of a level living outside its own base is paid in ways nobody connects back to the cause.** Seventy failures from one missing `super` call and one boolean.*
+7. **`divide()` and `compose()` are PROXIES** — the two halves of a parse, named by the implementer. Doug's `level` and `role` are his. *Signal: the fact that exactly two hooks were needed, and no more, is evidence the four-differences reading was right.*
 
-**→ READ THIS INSTEAD OF THIS CHAPTER: [The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md).** The settled account — six levels, the two arrival paths, the parse, use and mention, what a figure is, and what is still owed — compressed to one page. **This chapter is the record of how it was found; that one is what it turned out to be.** A session opening on this work reads that first and comes here only for the reasoning behind a particular ruling.
+## Where things stand
 
-**→ NEXT: the specialization half**, which is what closes this sprint. Review was **skipped by Doug's word** — *"I'm going to skip review because this is a two part sprint"* — so the demonstrations here are **not signed off** and are reviewed together with the second half.
+*One state, written 2026-08-10 at the session's close. Everything above is the record; this is the present.*
 
-**Doug's prior was half right, and the halves matter.** *"I would imagine that our code in this package is the more likely culprit."* The **vanishing part is ours** — `$Writing` takes one block where the framework hands it three arguments. The **loop is the framework's** — it reproduces with no lib class in the file.
+**→ NEXT: `/ce-brainstorm` for the specialization — the back half, which is what closes this sprint.** It opens a **new chapter in this book** and starts from [the rulings already given for it](#the-second-sprint--the-specialization), which are Doug's own words and enough to interview against. **Not `/ce-plan`:** two things in it are open design — what replaces `$Page`, and what each book's specialization actually is.
 
-**Verified at the close, fresh runs, all three packages:** chemistry **635/635** (59 files, up from 630) · lib **164/164** (15 files, up from 154) · chemistry `tsc` **0** · lib `tsc` **0** · app `tsc` **0** · **the full click-through with zero page errors** — the shelf's spines and written face, The Team opening and reading with its figures standing and its parse beside it, the manifold, the algebra, the lab. Chemistry's `dist` was **rebuilt after the framework fix and before the lib ran**, per [the filed law](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
+**Said plainly, for whoever is not tracking identifiers.** The machinery is built and **nothing has been made beautiful with it yet**. A chapter can now hold a figure, a code listing, or a specialized word: the model sees them, numbers the prose around them, and draws them where they were written. What has not happened is *using* that on the four books.
 
-**Nothing is left in the package that does not belong there** — every probe deleted, the working tree carrying only source and promises.
+### What the remaining half is, in Doug's words
+
+> "Both, but spruce up all the books in the library. It doesn't need to be in one place. Don't forget to add ways to view key pieces of code. Also, I don't think you should be reusing `$Page`. Consider replacing it entirely. **Our books don't really have pages. Think harder.** And don't reuse across books in the demo. Make it easy to customize. Also remember that each demo should have a unique aesthetics — different colors, different organizations, different functions. **Always move the whole demo app in the direction of specialization of the parts.**"
+
+And earlier in the same interview: *"we want to rewrite the markdown implementation, itemizing it at various levels to give a targeted code block or other features that prove we can customize."*
+
+**One reading already offered and not yet ruled:** `$Page` may want no replacement name at all — the three shipped books each became *a book viewing itself*, and a chapter that draws itself is the same move one level down. Naming a view after paper is the error the manifold's reader made when it invented page notation the model could not speak.
+
+### The state, once
+
+**Complete, verified and seen** — the mechanism half, twelve units. The bond keeps the whole ordered sequence it is handed; the parse is written **once**, on `$Writing`, generic over what it composes; six levels declare only their four differences; `role` (`use`/`mention`), `$Punctuation`, and *a mention is not parsed*; `$Document` is a writing level rather than a thing beside one; a document writes its sections **once** and draws the ones it holds; `$Figure` at paragraph level, valid because it has something to draw; three figures standing in The Team, a listing showing the real file, and each chapter's own parse beside it.
+
+**Not started** — everything in the remaining half: the markdown itemized, `$Page` replaced, the four books specialized, code viewable in more than one place, The Team's chapter for this sprint.
+
+**Owed and Doug's** — a document requiring a **title** as well as a summary, consistent with chapters. The canonical part at every level already carries one (section to canonical paragraph, document to canonical section, book to cover), so it is one validity line, not a new abstraction.
+
+**Skipped by ruling** — the review. *"I'm going to skip review because this is a two part sprint."* **So nothing here is signed off**, and the demonstrations are reviewed together with the second half. Do not read the green numbers below as acceptance.
+
+**Queued, older than this sprint** — the historical vocabulary sweep (*refuse*, *mint*, *minting*) across chapters 01–08, Sprint 48's record, the older Solutions entries and the skills.
+
+### Blockers
+
+**None.** The half that remains is unblocked; the framework defect that would have stopped it is fixed and covered by promises.
+
+### Verified — fresh runs at the close, all three packages
+
+Chemistry **635/635** (59 files, from 630) · lib **164/164** (15 files, from 154) · chemistry `tsc` **0** · lib `tsc` **0** · app `tsc` **0** · the full click-through with **zero page errors**. Chemistry's `dist` was rebuilt after the framework fix and **before** the lib suite ran, per [the filed law](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
+
+### How to see it
+
+Run `npm run dev` in `library/.public/package` and open **`/books`** at the port vite prints.
+
+**See first:** click *the shelf* above the spines — it turns to the written catalogue saying DEMONSTRATION. Open **The Team**, then **The Decision** from the margin's contents. **Two figures stand in the prose** — the loop drawn from the model, and this book's own card printing its fields — and in the margin, under *What this chapter is made of*, the chapter's own parse:
+
+```
+7  figure    | Four books, four author links, one destination
+8  figure    | This book's own card, printing what is on it
+9  paragraph | Nothing new had to be invented…
+counted: 11 parts · 490 words used · 491 mentioned
+```
+
+**That is the thing to look at.** A rendered figure is easy to fake; a parts list that accounts for it, with the prose still counting around it, is not. Then open **The Author, In Code** — the listing there is `Author.tsx` itself, read at build.
+
+### Wrong turns already taken — do not repeat
+
+- **Do not guard the reactive setter** to fix a render loop. Guarding on *"this chemical has not mounted"* looks equivalent to guarding prop assignment and is not: it silently drops real mutations of an instance rendered through a lens. Chemistry's perspectives suite catches it immediately, which is the only reason it was caught.
+- **Do not theorize about a loop from the reconciler.** The reading that `equivalent()` refuses class instances is **true and was not the cause**. Five one-variable cases found the real rule in minutes.
+- **Do not add a figure or a listing to a chapter without driving it.** The previous appendix held a hand-pasted copy of the source in a constant that was **never rendered at all**, and nothing complained for two sprints.
+- **Do not run a reconcile with unpushed library work.** If the push is refused, secure the branch library first — and when the guard reports paths "reverted", **diff ignoring line endings before overriding**; this session's three were pure CRLF.
+- **Probe files do not live in the package.** Write them, read them, delete them; their inputs and outputs belong in the chapter.
+
+### Read these five, and they are sufficient — shaped for a brainstorm
+
+1. **[The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md)** — the settled account of what writing now is, on one page. **Read this before the code.** It exists so this chapter does not have to be read.
+2. **[The remaining half](#the-second-sprint--the-specialization)**, in this chapter — Doug's rulings for the work ahead, verbatim.
+3. **[Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md)** — the view catalogue and the two laws every view answers to. Load-bearing for *"each demo a unique aesthetic"*: patterns are compositions of three shipped moves, and a new lens must name the sibling that corroborates it.
+4. **[Markdown with LaTeX](../designing-inexplicable-phenomena/02-markdown-with-latex.md)** — what `$Markdown`, `$Latex` and `$Page` are today. This is the thing being rewritten, and its open questions are already written down.
+5. **[Solutions 12](../solutions/12-the-writing-that-looped-its-page.md) and [13](../solutions/13-the-chapter-that-wrote-its-sections-twice.md)** — the two defects this sprint diagnosed. Read 13 before writing any chapter that draws itself.
+
+*If five are not enough, that is a finding about this chapter rather than a reason to read twenty more.*
+
+### Pushed this session
+
+Project code to `DNA-Platform/inexplicable-phenomena` at **`bc9c57e`**. Branch libraries to the identity repo, branch `inexplicable-phenomena`, at **`b6a96a3`**. Identity itself unchanged — it had nothing to contribute.

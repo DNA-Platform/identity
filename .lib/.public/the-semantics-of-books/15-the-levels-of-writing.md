@@ -68,4 +68,4 @@ Whether the caption reads as prose is **the kind's to decide**: a listing's labe
 
 - **A document requires a summary and not a title**, though the canonical part at every level already carries one — section → canonical paragraph, document → canonical section, book → cover. One validity line, Doug's to rule.
 - **Syntax as a typed word** ([48's R24](../projection/06-sprint-48--subjects-and-the-library.md#writing)) — punctuation is a mentioned word today and carries no type. The walk allows more; nothing was built.
-- **The specialization** — the markdown implementation itemized, `$Page` replaced because books do not have pages, and each book given its own specialized parts. That is [the second half of the same arc](../projection/10-writing.md#the-second-sprint--the-specialization--which-is-the-end-of-this-one).
+- **The specialization** — the markdown implementation itemized, `$Page` replaced because books do not have pages, and each book given its own specialized parts. That is [the second half of the same arc](../projection/10-writing.md#the-second-sprint--the-specialization).
