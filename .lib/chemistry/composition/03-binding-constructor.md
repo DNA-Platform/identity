@@ -18,12 +18,39 @@ The framework discovers it by walking the class chain: `$Synthesis` tries `(chem
 
 This is the single most surprising feature in `$Chemistry`. React conflates object creation and child-binding into one function call; `$Chemistry` separates them because they answer different questions. The class constructor answers *"what does this component own?"*; the binding constructor answers *"what children did this instance receive?"*.
 
+## What it actually receives — the grouping
+
+**Children are not handed over one for one.** Before a bond constructor sees anything, [`groupInline`](../../package/src/abstraction/chemical.ts) rewrites the child list: *"each maximal run of consecutive inline children becomes one `<block>`; block children pass through."*
+
+So a bond constructor is handed **an ordered sequence**, and the two grades arrive by two different routes:
+
+| what was written | how it arrives |
+|---|---|
+| raw text, numbers, inline tags, **and chemicals whose template declares `inline`** | gathered into one `$Html<'block'>` argument per maximal run, reachable as that block's **`$elements`**, in order |
+| anything else — a chemical that declares itself **not inline** | **its own argument**, in place between the blocks either side of it |
+
+Written out, prose interrupted by a block-level child is **three arguments**, not one:
+
+```
+<Section>Before.  <Plate/>  After.</Section>
+
+  bond receives:  $Html$<'block'>   $Plate   $Html$<'block'>
+```
+
+**The signal is `inline`, and it is read off the type** — an inline tag, or a chemical whose template sets `inline` ([`isInline`](../../package/src/abstraction/chemical.ts)). *"This is the only signal grouping has at runtime."* A chemical that means to stand as a part of its parent must declare `inline = false`, or it is absorbed into the surrounding text instead of arriving beside it.
+
+**Two consequences worth stating, because both were paid for.**
+
+A bond constructor that declares **one** parameter keeps the first argument and **drops the rest** — so a block-level child written into prose, and every argument after it, vanishes silently. It renders nothing, throws nothing, and the parent's own text stops at the insertion point. `@dna-platform/lib`'s `$Writing` was written this way and discarded the mechanism it needed for two sprints ([Writing](../../../.public/.lib/projection/10-writing.md)).
+
+And **grouping runs only inside a bond constructor's own interpretation** — never over a block's own run, never over a tag's text. A class with no bond constructor sees no grouping at all.
+
 ## Rules
 
 - The binding constructor's name must equal **a class name on the chain** — the chemical's own, or an ancestor's. Mis-spelling a name still silently disables it (the chain walk only tries real class names).
 - The binding constructor is invoked **once per render** of the chemical's component, *after* `$apply` writes incoming React props to `$`-prefixed fields, *before* `view()` runs.
 - Parameters are extracted from the method's source via regex. Arrow-form constructors, default parameter values, and destructured parameters are not currently supported.
-- A spread parameter (`...items`) accumulates remaining children of the matching type into an array.
+- A spread parameter (`...items`) accumulates remaining children of the matching type into an array. **Where children may be a mix of prose and block-level parts, a spread is the only signature that keeps them all** — see the grouping above.
 - Each non-spread parameter accepts exactly one child; arity mismatches raise validation errors.
 - Every parameter type is checked at runtime with `$check`. The first parameter with a wrong type produces a formatted error and aborts the binding.
 - The binding constructor's `this` is the chemical instance being bound for this mount. Writes to `this.$x` are writes to the bound instance, not to the template.

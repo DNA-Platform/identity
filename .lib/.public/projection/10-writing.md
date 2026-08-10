@@ -484,7 +484,9 @@ counted: 11 parts · 490 words used · 491 mentioned
 
 **OWED, raised not taken:** a document requiring a **title** as well as a summary, consistent with how chapters work — the canonical part at each level already carries the title, so this is one validity line, not a new abstraction. **Doug's, at the review or at the specialization sprint.**
 
-**→ NEXT: [`/ce-review`](../../../../.claude/library/our-skillset/33-ce-review.md).** The mechanism half is done and there is finally something to look at.
+**→ READ THIS INSTEAD OF THIS CHAPTER: [The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md).** The settled account — six levels, the two arrival paths, the parse, use and mention, what a figure is, and what is still owed — compressed to one page. **This chapter is the record of how it was found; that one is what it turned out to be.** A session opening on this work reads that first and comes here only for the reasoning behind a particular ruling.
+
+**→ NEXT: the specialization half**, which is what closes this sprint. Review was **skipped by Doug's word** — *"I'm going to skip review because this is a two part sprint"* — so the demonstrations here are **not signed off** and are reviewed together with the second half.
 
 **Doug's prior was half right, and the halves matter.** *"I would imagine that our code in this package is the more likely culprit."* The **vanishing part is ours** — `$Writing` takes one block where the framework hands it three arguments. The **loop is the framework's** — it reproduces with no lib class in the file.
 
