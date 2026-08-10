@@ -17,7 +17,7 @@ Delivered in [Sprint 98](70-sprint-98--the-precondition-and-the-visible-tree.md)
 
 - **[`TreeSnapshot`](../../src/tree.ts)** — the screen as a value: query, print, serialize. `Claude.tree()` answers *what is on screen right now*, any time, no failure required.
 - **The gateway's third beat** — `precheck → act → verify`. A `target` on `act()` reads the tree before firing; a missing element refuses immediately, names what it expected, carries the tree, and the action never happens. `target` is optional so existing call sites are untouched.
-- **[`.claude/cli/`](../../cli/)** — `surface.ts` (parses `.claude/src/**` for signatures), `describe.ts` (builds the screen model from live instance + source), `render.ts` (prints the room). `demo-room.ts` renders a real screen from real source with no app running.
+- **[`.claude/src/cli/`](../../src/cli/)** — `surface.ts` (parses `.claude/src/**` for signatures), `describe.ts` (builds the screen model from live instance + source), `render.ts` (prints the room). `demo-room.ts` renders a real screen from real source with no app running.
 - **34 hermetic tests**, and a **guarded integration harness** that refuses to run without `CLAUDE_DESKTOP_LIVE=1`.
 
 Two bugs already found by running it, both invisible to inspection and both now regression-tested: the `\bPage\b` matcher that classified **every door as a look**, and the surface parser that missed **constructor parameter properties**, taking the Conversation screen's only exit with them.
