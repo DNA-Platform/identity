@@ -342,4 +342,14 @@ The blocked name (opened the catalogue-is-not-writing ground, recorded); the car
 
 **R33 — the catalogue's place, ruled at the review:** *Doug: "The catalogue is a build time compilation that is used to hand out references. It is not necessarily used at all. Yes the code can verify it."* `find()` and `file()` stand verified by their six tests; no screen owes them a face; the catalogue's role is **compile-time reference assignment**, which is R53's compilation frame confirmed from the other side.
 
-# → NEXT: the review continues feature by feature; `/ce-compound` has four lessons queued behind Solutions 07.
+### The review's last round — Doug's rule applied to the three leftovers
+
+*His test: "Are you using the code wrong or right based on what I said? If it's wrong so that the demonstration is not correct, fix it. Look at the other sprints. Do they say we are working on this later? If not, this is the time to fix it."*
+
+1. **The Team's chapter list — FIXED.** It now reads `tableOfContents.chapters`, the member that owns that answer. What had blocked it was a defect worth its own filing: **a field named `at` on The Team** (its open-page number) **shadowed `$Book.at()`**, the location method every contents row builds with — so the first honest read of the contents threw *"this.book.at is not a function."* The field is renamed `page`. **The lesson: a book subclass shares its book's name space — a state field can silently bury a model method, and nothing complains until someone asks the model.** The contents also now says plainly, when it stands under something that is not a book, what it found instead.
+2. **The Manifold — FIXED.** Its page code is now the manifold book's own `view()` — `$TheManifold extends $Book`, built with its chapters, exactly as The Shelf and The Team are. Its page data derives from the book instance itself.
+3. **The page switcher — RIDES, by the record.** [R25 / `$` as a container](08-the-author.md#r25--becomes-a-dependency-injection-container--a-chemistry-level-feature-doug-2026-08-07) is already written down as the later answer for how things reach each other without holders; this is that, and its sprint is recorded.
+
+**After the fixes:** suite **154/154**, both `tsc` **0**, the full click-through with **zero page errors**.
+
+# → NEXT: `/ce-compound` — six lessons queued behind Solutions 07, the vocabulary sweep of the older records, and the compaction directive.
