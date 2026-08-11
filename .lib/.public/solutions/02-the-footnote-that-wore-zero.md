@@ -43,6 +43,6 @@ Occurrence order, 1-indexed, cited or not. The prose-walk was deleted with the m
 
 **Ask the nearest thing that knows.** A derivation that reaches past the obvious owner to a distant source is a coupling, and it fails the moment the distant source is legitimately absent.
 
-**Counting starts at one.** A `+ 1` on an `indexOf` is a zero waiting for a miss — if the answer is a position, the not-found case must be an error or a refusal, never a number.
+**Counting starts at one.** A `+ 1` on an `indexOf` is a zero waiting for a miss — if the answer is a position, the not-found case must be an error or a validation failure, never a number.
 
 **The driver proves flows; only reading proves the page.** This shipped through a green suite and a green driver. Doug found it by looking at a footnote.

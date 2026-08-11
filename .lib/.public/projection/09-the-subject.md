@@ -195,7 +195,7 @@
 - **U8 — The self-cataloguing subject.** *Mechanism: The Shelf's cover writes its subject; the card pointed in the second act; display form* Demonstration *(hedge kept). Files: the shelf's cover, `card.tsx`. Realizes: R13, R18. **Visible end:** the shelf's subject following home.*
 - **U9 — The table of contents, extended with the subject's books.** *Mechanism: member entries beside derived rows, **inferred when absent, overridable when authored**; if the row wants a name or kind the model lacks, the unit stops and reports. Files: `src/book/TableOfContents.tsx`, the shelf's book files. Realizes: R10, R11, R19. **Visible end:** contents entries nobody hand-listed.*
 - **U10 — The canonical: one, declared, reciprocal.** *Files: `src/book/Canonical.tsx` (the declaration place decided with code open, reported). Realizes: R12. **Visible end:** the canonical named; a second failing to bind.*
-- **U11 — The subject link in the UI — THE DESIGN GATE.** *No mechanism written **by instruction** — Doug reserved this design. Refused files and scenarios until the ruling. Realizes: R20.*
+- **U11 — The subject link in the UI — THE DESIGN GATE.** *No mechanism written **by instruction** — Doug reserved this design. Given no files and scenarios until the ruling. Realizes: R20.*
 - **U12 — The records move with the code, and the session ends with a push.**
 
 ## Test scenarios

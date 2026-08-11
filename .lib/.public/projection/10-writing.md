@@ -57,7 +57,7 @@
 
 1. **Every render runs `view()` a second time and compares.** **Read** — [`particle.ts:504-513`](../../../chemistry/package/src/abstraction/particle.ts): an effect with **no dependency array** calls `$renderView$()` again, `diff`s it against `$viewCache$`, and calls `$update$()` when they differ. So a render schedules another render **whenever `view()` does not equal itself**.
 2. **`diff` is a structural reconcile, not identity** — **read**, [`reconcile.ts`](../../../chemistry/package/src/implementation/reconcile.ts): element type, key, and props compared through `equivalent()`, which handles functions by source, arrays element-wise, and elements recursively.
-3. **But `equivalent()` refuses any value that is a class instance.** **Read** — [`reconcile.ts:97-100`](../../../chemistry/package/src/implementation/reconcile.ts): `if (protoA !== Object.prototype && protoA !== null) return false`. A prop whose value is a chemical is equivalent **only when it is the same object by reference**.
+3. **But `equivalent()` never accepts any value that is a class instance.** **Read** — [`reconcile.ts:97-100`](../../../chemistry/package/src/implementation/reconcile.ts): `if (protoA !== Object.prototype && protoA !== null) return false`. A prop whose value is a chemical is equivalent **only when it is the same object by reference**.
 4. **Therefore** — **inferred** — a `view()` that carries a freshly-constructed chemical anywhere in its props can never settle, and loops forever.
 
 **Why this fits every filed data point, where "a subclass with props cannot render" fit none of them.** A bare `$Figure` returns one stable `<Rule />` and does not loop. A subclass overriding `drawn()` builds its output from data every call. Hoisting the array out of render did not help, because it was never the array. Removing the derived getter did not help. Suppressing the sentence parse did not help. And ordinary writing is fine because [`$Writing.view()`](../../package/src/writing/Writing.tsx) renders `$(this.text)`, which is **cached**, so it hands back the same reference both times.
@@ -91,7 +91,7 @@
 
 - **R7. `$Figure` is framework, at paragraph level**, in `src/writing/`. *Doug: "Make `$Figure`, in the framework, the beginning of something at the paragraph level."*
 - **R8. A figure's content is what it interprets, and it is not writing.** In all three written figures the content arrives as the figure kind's own member — a list of titles, a library card, a source string — and the figure draws it. *Seen: three figure kinds carrying three different content types, none of them prose.*
-- **R9. A figure is valid because it has content, not because it has letters** — and **each kind states its own reason**, which is the `$Cover` pattern that took the suite fully green in [The Author](08-the-author.md). *This is what actually refused all three written figures: `$Paragraph.valid()` demands a letter or number in `copy`. **The earlier record read that as a copy problem; it is a validity problem.*** *Seen: a code listing with no caption at all binds, and a figure with neither content nor caption is refused, in its own words.*
+- **R9. A figure is valid because it has content, not because it has letters** — and **each kind states its own reason**, which is the `$Cover` pattern that took the suite fully green in [The Author](08-the-author.md). *This is what actually invalid all three written figures: `$Paragraph.valid()` demands a letter or number in `copy`. **The earlier record read that as a copy problem; it is a validity problem.*** *Seen: a code listing with no caption at all binds, and a figure with neither content nor caption is invalid, in its own words.*
 - **R10. A figure's caption is per-kind, including whether it is parenthetical.** *Doug: "It can be different for different types of figures."* *Seen: two figure kinds in the same chapter, one whose caption reads into the chapter's prose and one whose does not — and the chapter's tagline demonstrably drawn from the prose rather than from a caption.*
 
 ## `$Writing`, reviewed
@@ -102,7 +102,7 @@
 
 ## The loop
 
-- **R14. The loop is diagnosed by a probe that prints the actual comparison that fails** — not by a fifth theory. *Seen: one run's printed output naming the prop, the element or the value that `equivalent()` refuses.*
+- **R14. The loop is diagnosed by a probe that prints the actual comparison that fails** — not by a fifth theory. *Seen: one run's printed output naming the prop, the element or the value that `equivalent()` is invalid.*
 - **R15. The mechanism is filed in [Solutions](../solutions/.cover.md), indexed by the symptom as observed, and the earlier reading is corrected in place** — *"a `$Figure` subclass that declares its own props will not render"* is the wrong law and it is currently written down in two chapters.
 - **R16. A figure that draws data renders without looping.** *Seen: the loop figure, the card figure and the code listing all standing in a chapter, driven, with no page errors and no re-render warning.*
 
@@ -132,7 +132,7 @@
 
 - **AE1.** A section written *prose · `<Figure/>` · prose* answers three parts, the figure at index 1.
 - **AE2.** An `$Author` written inline in a cover's prose is not a part at any level above the sentence that holds it. *(Regression: the shipped demo depends on this.)*
-- **AE3.** A code figure with no caption binds and is valid; one with neither content nor caption is refused in its own words.
+- **AE3.** A code figure with no caption binds and is valid; one with neither content nor caption is invalid in its own words.
 - **AE4.** A chapter's tagline derives from its prose and never from a parenthetical caption.
 - **AE5.** The three figures render, driven, with no console error and no re-render warning.
 - **AE6.** `parts()` called twice answers the same content.
@@ -214,7 +214,7 @@ Reproduced with `$Chemical`, `$check` and `$Html<'block'>` and **no lib class in
 
 **What it is not:** not the array, not reading the prop in `view()`, not the override, not the derived getter. Reading the prop is irrelevant — case two loops without it. Scalar and array behave identically.
 
-**Where to look, stated as a lead rather than a diagnosis.** The host loops and the child never renders, so **the host's own output is unstable**. [`particle.ts:504-513`](../../../chemistry/package/src/abstraction/particle.ts) runs `view()` a second time per render with no dependency array and calls `$update$()` when `diff` disagrees; [`reconcile.ts:97-100`](../../../chemistry/package/src/implementation/reconcile.ts) refuses any prop value that is a class instance unless it is reference-identical; and [`$apply$`](../../../chemistry/package/src/abstraction/particle.ts) writes `$`-backed fields **during** render. **Which of those it is, is U1's to determine by instrument, not by argument.**
+**Where to look, stated as a lead rather than a diagnosis.** The host loops and the child never renders, so **the host's own output is unstable**. [`particle.ts:504-513`](../../../chemistry/package/src/abstraction/particle.ts) runs `view()` a second time per render with no dependency array and calls `$update$()` when `diff` disagrees; [`reconcile.ts:97-100`](../../../chemistry/package/src/implementation/reconcile.ts) never accepts any prop value that is a class instance unless it is reference-identical; and [`$apply$`](../../../chemistry/package/src/abstraction/particle.ts) writes `$`-backed fields **during** render. **Which of those it is, is U1's to determine by instrument, not by argument.**
 
 ## Decisions
 
@@ -269,7 +269,7 @@ Reproduced with `$Chemical`, `$check` and `$Html<'block'>` and **no lib class in
 
 ## Test scenarios
 
-**U1** — the four framework cases: inline child with a prop passed inside a block (the failing one); no prop; standalone; block-level; declared-with-default. · Chemistry's own suite still 630/630. **U2** — a section with a block-level part renders every argument; `copy` spans the whole sequence; `elements` includes the authored part; a section of pure prose is unchanged. **U3** — prose · figure · prose gives three parts, figure at index 1 — AE1 · numbering re-counts around the insert · `parts()` twice answers the same content — AE6 · a level with no authored parts behaves exactly as today. **U4** — an `$Author` inline in a cover is not a part above its sentence — **AE2, and it is a regression on the shipped demo** · a `$RibbonMark` likewise. **U5** — the stated rule holds at every level; any moved test is named. **U6** — none; it produces a report. **U7** — a code listing with no caption binds; a figure with neither content nor caption is refused **in its own words** — AE3 · a chapter's tagline derives from prose, never from a parenthetical caption — AE4. **U8** — three figures render, driven, no console error and no re-render warning — AE5. **U9** — the listing's text equals the file's. **U10** — the parts list on screen matches the written order. **Throughout** — chemistry from **630**, lib from **154**, both `tsc` **0**, against a **rebuilt** `dist` — AE7.
+**U1** — the four framework cases: inline child with a prop passed inside a block (the failing one); no prop; standalone; block-level; declared-with-default. · Chemistry's own suite still 630/630. **U2** — a section with a block-level part renders every argument; `copy` spans the whole sequence; `elements` includes the authored part; a section of pure prose is unchanged. **U3** — prose · figure · prose gives three parts, figure at index 1 — AE1 · numbering re-counts around the insert · `parts()` twice answers the same content — AE6 · a level with no authored parts behaves exactly as today. **U4** — an `$Author` inline in a cover is not a part above its sentence — **AE2, and it is a regression on the shipped demo** · a `$RibbonMark` likewise. **U5** — the stated rule holds at every level; any moved test is named. **U6** — none; it produces a report. **U7** — a code listing with no caption binds; a figure with neither content nor caption is invalid **in its own words** — AE3 · a chapter's tagline derives from prose, never from a parenthetical caption — AE4. **U8** — three figures render, driven, no console error and no re-render warning — AE5. **U9** — the listing's text equals the file's. **U10** — the parts list on screen matches the written order. **Throughout** — chemistry from **630**, lib from **154**, both `tsc` **0**, against a **rebuilt** `dist` — AE7.
 
 ## Origin tracing — both directions
 
@@ -507,9 +507,9 @@ counted: 11 parts · 490 words used · 491 mentioned
 ### Wrong turns already taken — do not repeat
 
 - **Do not guard the reactive setter** to fix a render loop. Guarding on *"this chemical has not mounted"* looks equivalent to guarding prop assignment and is not: it silently drops real mutations of an instance rendered through a lens. Chemistry's perspectives suite catches it immediately, which is the only reason it was caught.
-- **Do not theorize about a loop from the reconciler.** The reading that `equivalent()` refuses class instances is **true and was not the cause**. Five one-variable cases found the real rule in minutes.
+- **Do not theorize about a loop from the reconciler.** The reading that `equivalent()` never accepts class instances is **true and was not the cause**. Five one-variable cases found the real rule in minutes.
 - **Do not add a figure or a listing to a chapter without driving it.** The previous appendix held a hand-pasted copy of the source in a constant that was **never rendered at all**, and nothing complained for two sprints.
-- **Do not run a reconcile with unpushed library work.** If the push is refused, secure the branch library first — and when the guard reports paths "reverted", **diff ignoring line endings before overriding**; this session's three were pure CRLF.
+- **Do not run a reconcile with unpushed library work.** If the push is rejected, secure the branch library first — and when the guard reports paths "reverted", **diff ignoring line endings before overriding**; this session's three were pure CRLF.
 - **Probe files do not live in the package.** Write them, read them, delete them; their inputs and outputs belong in the chapter.
 
 ### Read these five, and they are sufficient — shaped for a brainstorm

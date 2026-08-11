@@ -65,6 +65,20 @@ Every class the derivation has named, kept here so none is lost and so the map s
 | `$Key` | one hop of lookup as a name — a key stands for its entry | **built** | this chapter |
 | `$Library` | → `$SubjectiveSubject`; canonical is an `$Autobiography`; self-cataloguing summit (likely a singleton [`$Atom`](../../../chemistry/.lib/particle/.cover.md)) | to build | [07](07-the-subjective-subject-and-the-library.md) |
 
+## Notation — a third axis, and it is one row rather than a family
+
+Doug asked, working on markdown: *"Are you sure that markdown is the only level you want to use markdown?"* The answer turned out to be that **markdown is not a level at all.**
+
+A **notation** is the system of marks writing is authored in. It is not a [level](../projection/10-writing.md) — levels compose downward and a notation appears at *every* level. It is not a `role` — `role` is a property of writing that a notation *deploys* (its syntax is mentioned) rather than something it is. **It supplies exactly three things and nothing else: how prose divides, what each piece composes into, and which marks are mentioned.**
+
+**Plain prose is the identity notation.** Markdown is one instance; LaTeX is another. A markdown section differs from a plain section **only** in its two overrides — same level, same composition, different marks — and that *only* is what makes notation forced rather than chosen.
+
+| the axis | what it supplies | its instances |
+|---|---|---|
+| **notation** | `divide`, `compose`, and which marks are mentioned | plain prose (the identity), markdown, LaTeX |
+
+**One row, not a class per notation per level.** Notation is to the level ladder what a lens is to a chemical: one concept spent across all of them. *Built and proven in [Markdown](../projection/11-markdown.md) — three classes, each declaring only its two differences, and everything ordinary a person writes falling out as a fork rather than a kind.*
+
 **Dropped, by decision:**
 
 - **`$Symbol`** — Symbol and Literal are the *essence* of a catalogue (the pointing thing and the thing pointed at), but the pointing class we build is `$Reference`; there is no separate `$Symbol`. (Doug: "I don't think we need symbol.")

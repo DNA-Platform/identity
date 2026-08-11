@@ -49,7 +49,7 @@ Verified against the package: **35 classes, exactly one multiword** — `$TableO
 ## Subject, author, and the summit
 
 - **R3.** A **subject is a reference declared on the book**, carried as **parenthetical writing on the cover**. It reads to a subject catalogue in the library.
-- **R4. BOTH — the `$Catalogue` class exists, and the catalogue TYPE constrains it.** *Ruled 2026-08-06 at the first review, over two earlier readings of mine.* Doug's argument for the class: **without it, libraries do not belong in the framework at all** — the summit needs somewhere to exist. The type is what a book wears to be judged as one. **Still open and Doug's to design: what is being SPECIFIED in a `$Catalogue`** — what its parts must be, what it may catalogue, what it refuses.
+- **R4. BOTH — the `$Catalogue` class exists, and the catalogue TYPE constrains it.** *Ruled 2026-08-06 at the first review, over two earlier readings of mine.* Doug's argument for the class: **without it, libraries do not belong in the framework at all** — the summit needs somewhere to exist. The type is what a book wears to be judged as one. **Still open and Doug's to design: what is being SPECIFIED in a `$Catalogue`** — what its parts must be, what it may catalogue, what it rules out.
 - **R37. A catalogue derives what it lists.** It **automatically grabs the title and the synopsis** of each book it catalogues, **unless explicitly specified** — *"just like the table of contents up a level."* `$TableOfContents.parts()` already derives its rows from `this.book.parts()`; a catalogue does the same one level up, over books. **A hand-maintained catalogue drifts; a derived one cannot** — Libby's finding in 47, now a requirement. *Buildable today: `$Book.synopsis` exists and `$Document.summary` is its parenthetical section. The demo currently violates this — its entries are hand-authored prose.*
 - **~~R4 (superseded)~~. `$Catalogue` as a type only**, alongside `$Biography` and `$Autobiography` — Doug: *"`$Catalogue`, `$Biography`, `$Autobiography` are all valid types and one of the things they can do is put constraints on the type."* The interface `$Catalogue$` (trailing `$`) stays what it is: a composition of references that is also a reference for its composition. **CORRECTED 2026-08-06** — this requirement previously said `$Catalogue` was the kind of book a subject references, and [the plan's D4](#decisions) invented an exception making it *"a real cataloguing book with parts of its own."* **Doug never ruled that; the implementer did.** U12 is built on the invention and must be removed rather than implemented.
 
@@ -58,16 +58,16 @@ Verified against the package: **35 classes, exactly one multiword** — `$TableO
 **The move: deprecate the `$Catalogue` class in favour of references that check.** `$Subject`, `$Library` and `$Author` are **book references that validate structure — and validate types.**
 
 - **R38. `$Catalogue` the class is deprecated.** It does not need to exist in the library. Cataloguing-ness is a **type**, and the reference is what enforces it. *(Supersedes R4 in both its earlier readings.)*
-- **R39. `$Subject` is a book reference that validates its referent wears the catalogue type.** A subject refuses to point at a book that is not a catalogue. The check lives in the reference, not in a class hierarchy.
+- **R39. `$Subject` is a book reference that validates its referent wears the catalogue type.** A subject may not point at a book that is not a catalogue. The check lives in the reference, not in a class hierarchy.
 - **R40. `$Library` may be on every book, and it is read rather than stored.** A book's library is reached **through its canonical subject**, which gives *that* subject's library, **recursively — and the walk must terminate.** The terminus **must be a library**, and the `$Library` reference **validates that**, as the subject does.
 - **R41. `$Author` is the same kind of thing** — a book reference that checks structure and type, rather than a class.
 - **R42. Because references check types, the library is FORCED to define types.** This is the point, not a side effect: the type system stops being optional decoration, because **the reference system cannot work without it.** A library that defines no types can validate nothing.
 - **R43. The bootstrap is the self-reference, and it is already ruled.** *We know a library because it catalogues itself; we know the canonical autobiography because it authors itself* (R9). A library is recognised **structurally**, without a type lookup — which is what stops the walk without requiring the very type system the walk exists to reach. **The circle closes on the fixed point rather than on a lookup.**
-- **R44. The author chain and the library chain share one termination law.** [R12](#subject-author-and-the-summit) already demands the author chain terminate in a self-loop and never a longer cycle. R40's walk needs exactly the same guarantee. **One law, two chains** — and a mutual-subject two-cycle must be refused for the same reason a mutual biography is.
+- **R44. The author chain and the library chain share one termination law.** [R12](#subject-author-and-the-summit) already demands the author chain terminate in a self-loop and never a longer cycle. R40's walk needs exactly the same guarantee. **One law, two chains** — and a mutual-subject two-cycle must be invalid for the same reason a mutual biography is.
 
 **What this buys, stated so it can be argued with:** no class hierarchy for the referential family; subjectivity genuinely **computed** rather than declared, because a reference's validity *is* the computation; and the type system made load-bearing by necessity instead of by assertion.
 
-**Still open and Doug's:** what a catalogue type actually **specifies** — what parts a book must have to wear it, and what it refuses.
+**Still open and Doug's:** what a catalogue type actually **specifies** — what parts a book must have to wear it, and what it rules out.
 
 ## What a catalogue specifies, and how validation runs *(Doug, 2026-08-06)*
 
@@ -240,7 +240,7 @@ Three things follow, and each is load-bearing.
 
 **Consequence for [R58](#r58-librarycard-replaces-book--and-the-notation-becomes-vocabulary-at-book-level) and [R59](#r59-having-a-library-card-is-a-structural-fact-not-a-possession):** the library card's *"author in other libraries"* means **other perspectives — possibly outside this framework entirely** — not a second library modelled here. The card is what survives leaving the universe, which is a stronger claim than portability within it.
 
-**Consequence for the demo:** a two-library demonstration is **out**. The visible claim is one library where **every book agrees on which book is the library** — and a book that disagrees is refused.
+**Consequence for the demo:** a two-library demonstration is **out**. The visible claim is one library where **every book agrees on which book is the library** — and a book that disagrees is invalid.
 
 ### R62. The library card is a formal literary joke — the second one, and that is a method
 
@@ -288,14 +288,14 @@ libraryOf(book):
     b    = book
     forever:
         s = b.canonical_subject                 // R47 — declared, exactly one
-        if s is absent:      refuse "a book must declare a canonical subject"
+        if s is absent:      invalid: "a book must declare a canonical subject"
         next = s.read()
         if next === b:       return b           // self-cataloguing — the terminus
-        if next in seen:     refuse "the chain cycles without a fixed point"   // R44
+        if next in seen:     invalid: "the chain cycles without a fixed point"   // R44
         seen += next;  b = next
 ```
 
-**The same shape terminates the author chain** — self-loop returns, longer cycle refuses. One law, two chains, one implementation.
+**The same shape terminates the author chain** — self-loop returns, longer cycle is invalid. One law, two chains, one implementation.
 
 **And what has to be true for any of it to run:** every one of these `valid()`s **reads another book**. So validation needs **every book reachable at once** — which is exactly why R49 is a build-and-runtime question and not a per-class one. The three shapes differ only in *where the books are all present*: at `.public` build, in an app run in validation mode, or through generated references available on every page.
 
@@ -316,7 +316,7 @@ libraryOf(book):
 - **R10.** An **author reference points to the canonical autobiography of a subject.** Only one subject in a library can have that: the subject representing the librarian, which is the subject representing the library. *The four-hop walk in [The Author's Fixed Point](../the-semantics-of-books/13-the-authors-fixed-point.md) is the derivation, not the mechanism — steps are not validation.*
 - **R11.** A **biography is a book about a subject in the subjective sense.** One subject may have **more than one** biography, and none need be a comprehensive account of a life. For a subject that represents a being, **the canonical book of the subject must be a biography**.
 - **R34. `$Literature$` is an interface, not a class** — the trailing `$`, consistent with the rename that freed `$Catalogue`. It names **a catalogue of references to books**, which the type system does not yet have: `$TableOfContents` catalogues *chapter* references, and nothing catalogues *book* references. **The `$Subject` reference, through the table of contents, is what implements it.** *(Doug, ruled 2026-08-06 during the plan.)* Two ends stay open and are named rather than guessed: **how to find the part of a table of contents that catalogues a given book** — an inverse lookup the model has no move for today — and **whether a reference kind is needed that specifies across the levels of writing**. Neither is designed; both are raised.
-- **R12. The author chain terminates in a self-loop, never a longer cycle.** Arthur's edge case from [chapter 13](../the-semantics-of-books/13-the-authors-fixed-point.md): mutual biography — A files to a subject whose canonical is B, B's files back to A — never escapes and has **no self**. Validation must refuse it, or "the chain stops" does not mean "someone is home."
+- **R12. The author chain terminates in a self-loop, never a longer cycle.** Arthur's edge case from [chapter 13](../the-semantics-of-books/13-the-authors-fixed-point.md): mutual biography — A files to a subject whose canonical is B, B's files back to A — never escapes and has **no self**. Validation must reject it, or "the chain stops" does not mean "someone is home."
 
 ## The type system
 
@@ -372,7 +372,7 @@ libraryOf(book):
 - **R30. Skipping is fine.** A subclass that declares no bond constructor still binds through its ancestor's; the system starts at the last declared. *The standing ban on ceremonial binding constructors (Doug, 2026-07-31) survives untouched.*
 - **R31. Async is already handled** — `$construction$` awaits, and the wrapper monitors completion. The compiler cannot help here: bond constructors are **named after their own class**, so TypeScript sees unrelated methods with no override relationship, no signature check and no missing-await check. Enforcement must be runtime by construction.
 - **R32.** A **`formed`** method, called after all bond constructors complete — the natural place for validation. *Consequence: moving `assertValid` off the bond constructor changes behaviour for every chemical — 622 tests in chemistry, 108 in the lib.*
-- **R33. Validation is diagnosable in the UI.** *Verified already built: a failed bond stores [`$devError$`/`$devException$`](../../../chemistry/package/src/abstraction/chemical.ts) on the chemical and renders through `$exceptions.render(error).view()`. The invalid instance survives and renders its own refusal.* What is missing: `assertValid` throws one generic sentence — *"`$Book` is not valid after its bond constructor"* — with no reason and no source. With types weighing in from several places, a refusal must say **which** refused.
+- **R33. Validation is diagnosable in the UI.** *Verified already built: a failed bond stores [`$devError$`/`$devException$`](../../../chemistry/package/src/abstraction/chemical.ts) on the chemical and renders through `$exceptions.render(error).view()`. The invalid instance survives and renders its own validation failure.* What is missing: `assertValid` throws one generic sentence — *"`$Book` is not valid after its bond constructor"* — with no reason and no source. With types weighing in from several places, a validation failure must say **which** check failed.
 
 ## Out of scope, named
 
@@ -385,18 +385,18 @@ libraryOf(book):
 - **F1 — A book declares itself.** An author writes a cover; the cover carries the book's title, its subject reference, its author reference, and its types as parenthetical writing. The book reads them at its bond and `valid()` judges.
 - **F2 — A type resolves.** A written type name on a cover reaches its type by climbing the subjects the book declares, recursively, up to the library. Every type found must hold.
 - **F3 — The loop closes.** The library's subject reference points at its own cover. Following it arrives back where it started; validation confirms the library catalogues itself and its canonical authors itself.
-- **F4 — A refusal is read.** A book fails a type; the bond refuses; the exception carries which type refused and why; the page renders it.
+- **F4 — A validation failure is read.** A book fails a type; the bond reports it invalid; the exception carries which type failed and why; the page renders it.
 - **F5 — A subject specifies.** A subject's reference manual states what books in that subject must be. A book declaring membership is judged by it.
 
 ## Acceptance examples
 
-- **AE1.** A book with no subject and no author on its cover **refuses to bind**, and the refusal says which is missing.
-- **AE2.** A book whose cover declares a type it does not satisfy **refuses**, and names the type that refused and the constraint it broke — not "is not valid."
+- **AE1.** A book with no subject and no author on its cover **does not bind**, and it says which is missing.
+- **AE2.** A book whose cover declares a type it does not satisfy **is invalid**, and names the type that failed and the constraint it broke — not "is not valid."
 - **AE3.** The library's subject reference reads to its own cover, and following it arrives at the library. `valid()` answers true for exactly one such book.
-- **AE4.** Two books in mutual biography — each author reference leading to the other's subject — are **refused**. The chain has no self and the model says so (R12).
+- **AE4.** Two books in mutual biography — each author reference leading to the other's subject — are **invalid**. The chain has no self and the model says so (R12).
 - **AE5.** A book in the trees subject wearing the dictionary type validates against the trees subject's reference manual, and the same book without that type does not (R18, R20).
-- **AE6.** A subclass whose bond constructor calls its parent's binds correctly; one that does **not** call upward is refused with a message naming the ancestor never reached (R27–R30).
-- **AE7.** A `$Preface` and a `$Foreword` before the chapters validate; two prefaces, or a preface after chapter one, refuse (R25, R26).
+- **AE6.** A subclass whose bond constructor calls its parent's binds correctly; one that does **not** call upward is invalid with a message naming the ancestor never reached (R27–R30).
+- **AE7.** A `$Preface` and a `$Foreword` before the chapters validate; two prefaces, or a preface after chapter one, are invalid (R25, R26).
 - **AE8.** A sentence containing a period yields a word typed *Period*, marked **use**, and the sentence's prose is unchanged by its presence (R23, R24).
 
 ## Names — what was ruled, and what stays unnamed
@@ -442,9 +442,9 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 ### The framework — `library/chemistry/package`
 
 - **U1 — The bond-constructor chain.** All declared bond constructors on a class chain are reachable; the framework invokes the most-derived, the author calls upward, arguments may be adapted on the way. A subclass that declares none still binds through its ancestor's, unchanged. *Files: `src/abstraction/chemical.ts`. Depends on: nothing. Realizes: R27, R28, R30.*
-- **U2 — Chain-completion enforcement.** Each declared constructor's having run is observable, and a chain that failed to reach an ancestor is refused with the unreached ancestor named. *Files: `src/abstraction/chemical.ts`. Depends on: U1. Realizes: R29.*
+- **U2 — Chain-completion enforcement.** Each declared constructor's having run is observable, and a chain that failed to reach an ancestor is invalid with the unreached ancestor named. *Files: `src/abstraction/chemical.ts`. Depends on: U1. Realizes: R29.*
 - **U3 — `formed`.** A hook the framework calls after the whole chain completes and after async construction settles; validation moves here from immediately-after-the-bond-constructor. *Files: `src/abstraction/chemical.ts`. Depends on: U1, U2. Realizes: R31, R32.*
-- **U4 — A refusal that names its source.** A refusal carries which constraint refused and why, instead of one generic sentence, and reaches the existing exception rendering path unchanged. *Files: `src/abstraction/chemical.ts`. Depends on: U3. Realizes: R33.*
+- **U4 — A validation failure that names its source.** A validation failure carries which constraint failed and why, instead of one generic sentence, and reaches the existing exception rendering path unchanged. *Files: `src/abstraction/chemical.ts`. Depends on: U3. Realizes: R33.*
 - **U5 — Framework documentation.** The branch library's account of binding and validation is brought to the built truth in the same act. *Files: `library/chemistry/.lib/composition/03-binding-constructor.md`, `04-check.md`, `library/chemistry/.lib/particle/02-lifecycle.md`. Depends on: U1–U4.*
 
 ### The type system — `library/.public/package`
@@ -457,11 +457,11 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 
 - **U9 — `$Subject`.** A reference declared on the book, carried as parenthetical writing on the cover, reading to a cataloguing book. One canonical; further memberships may be declared. *Files: `src/book/Subject.tsx` (currently empty), `src/book/Cover.tsx`, `src/index.ts`. Depends on: U6. Realizes: R3, R6.*
 - **U10 — `$Author`.** A reference to the canonical autobiography of a subject. The four-hop derivation is not the mechanism; the constraint is validated, not walked. *Files: `src/book/Author.tsx` (currently empty), `src/book/Cover.tsx`, `src/index.ts`. Depends on: U9. Realizes: R10.*
-- **U11 — The cover carries both, and `valid()` requires them.** Every book reaches its author and subject through its cover, and a book missing either is refused. **This is the migration**: every book in the demos and the test suites gains both. *Files: `src/book/Book.tsx`, `src/book/Cover.tsx`, every book in `library/.public/app` and both test suites. Depends on: U9, U10, U4. Realizes: R5.*
+- **U11 — The cover carries both, and `valid()` requires them.** Every book reaches its author and subject through its cover, and a book missing either is invalid. **This is the migration**: every book in the demos and the test suites gains both. *Files: `src/book/Book.tsx`, `src/book/Cover.tsx`, every book in `library/.public/app` and both test suites. Depends on: U9, U10, U4. Realizes: R5.*
 - **U12 — `$Catalogue`.** The cataloguing book — a composition of references to books that is also a reference, satisfying the interface `$Catalogue$` already describes. It carries its subject's specification as a part until that outgrows the entry, and it may catalogue books that do not declare it. *Files: new under `src/book/` or `src/library/`, `src/reference/Catalogue.tsx`, `src/index.ts`. Depends on: U9. Realizes: R4, R7, R19.*
 - **U13 — Biography and autobiography, as types.** A book about a subject in the subjective sense; a subject may have more than one. The autobiography is the one whose author reference and subject reference are the same reference — it **authors itself**, confirmed by validation. A subject representing a being must have a biography as its canonical. *Files: the `$Type` unit's files, `src/book/Subject.tsx`. Depends on: U7, U8, U10. Realizes: R9, R11.*
 - **U14 — `$Library`, the self-cataloguing summit.** A book declares it catalogues itself by pointing its subject reference at its own cover; validation confirms exactly that, and confirms its canonical authors itself. *Files: `src/library/Literature.tsx`'s directory, `src/book/Subject.tsx`, the `$Type` unit's files, `src/index.ts`. Depends on: U12, U13. Realizes: R8, R9.*
-- **U15 — The author chain terminates in a self-loop.** A chain that cycles without a fixed point — mutual biography — is refused. *Files: the validation added by U13, U14. Depends on: U14. Realizes: R12.*
+- **U15 — The author chain terminates in a self-loop.** A chain that cycles without a fixed point — mutual biography — is invalid. *Files: the validation added by U13, U14. Depends on: U14. Realizes: R12.*
 - **U16 — `$Literature$`.** The interface naming a catalogue of references to books, and the subject reference implementing it through the catalogue book's table of contents. **The unit stops at its two open ends** (R34) and reports rather than inventing: the inverse lookup from a book to the part of a table of contents that catalogues it, and whether a reference kind spanning the levels of writing is needed. *Files: `src/library/Literature.tsx` (currently empty), `src/book/Subject.tsx`, `src/book/TableOfContents.tsx`, `src/index.ts`. Depends on: U9, U12. Realizes: R34.*
 
 ### The parts of books — `library/.public/package`
@@ -477,7 +477,7 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 ### The demo — `library/.public/app`
 
 - **U21 — The shelf is the library of the demo.** The shelf page is the library; its books are the demos, each keeping its own aesthetic world. *Files: `library/.public/app`. Depends on: U14. Realizes: F3.*
-- **U22 — The alternate view, switchable.** A textual representation of the library itself beside the shelf, showing what the shelf cannot: subjects, types, and the auto-categorical loop **followed on screen**, arriving home. Types shown as **form** — a book wearing a type, and the type changing what it must be. A **refusal read on the page**, naming which type refused. *Files: `library/.public/app`. Depends on: U21, U8, U4. Realizes: R18, R33, AE2, AE3.*
+- **U22 — The alternate view, switchable.** A textual representation of the library itself beside the shelf, showing what the shelf cannot: subjects, types, and the auto-categorical loop **followed on screen**, arriving home. Types shown as **form** — a book wearing a type, and the type changing what it must be. A **validation failure read on the page**, naming which type failed. *Files: `library/.public/app`. Depends on: U21, U8, U4. Realizes: R18, R33, AE2, AE3.*
 - **U23 — The demos' subject catalogue.** Each demo catalogued with its use case, its aesthetic identity and what it proves; the shelf's untitled spines become its entries. *Files: `library/.public/app`. Depends on: U12, U21.*
 
 ### Records
@@ -488,29 +488,29 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 
 *Each names input, action and expected outcome. Where a scenario covers an acceptance example, it says which.*
 
-**U1, U2 — the chain.** A three-class chain where each declares a bond constructor and each calls upward: all three run, in order, and children reach the most-derived signature. · A subclass declaring **no** constructor: binds through its ancestor's exactly as today — the ceremonial ban survives (regression against `tests/react/synthesis-bond-ctor.test.tsx`, `tests/regression/bond-behavior.test.tsx`). · A subclass declaring one and **not** calling upward: refused, naming the ancestor never reached — **AE6**. · A subclass adapting arguments on the way up: the ancestor receives the adapted children, not the authored ones.
+**U1, U2 — the chain.** A three-class chain where each declares a bond constructor and each calls upward: all three run, in order, and children reach the most-derived signature. · A subclass declaring **no** constructor: binds through its ancestor's exactly as today — the ceremonial ban survives (regression against `tests/react/synthesis-bond-ctor.test.tsx`, `tests/regression/bond-behavior.test.tsx`). · A subclass declaring one and **not** calling upward: invalid, naming the ancestor never reached — **AE6**. · A subclass adapting arguments on the way up: the ancestor receives the adapted children, not the authored ones.
 
 **U3 — `formed`.** A chemical whose chain completes: `formed` runs once, after the last constructor. · An **async** constructor in the chain: `formed` runs only after construction settles (regression against `tests/abstraction/async-construction.test.ts`). · A chemical defining no `formed`: unchanged behaviour. · **Templates are not judged** — the existing exemption holds.
 
-**U4 — the refusal.** A chemical failing one constraint: the refusal names that constraint and its reason. · Failing several: all are reported, not just the first. · The refusal reaches the existing exception rendering path and is readable on the page (regression against `tests/abstraction/error.test.tsx`, `tests/react/validation.test.tsx`).
+**U4 — the validation failure.** A chemical failing one constraint: the validation failure names that constraint and its reason. · Failing several: all are reported, not just the first. · The validation failure reaches the existing exception rendering path and is readable on the page (regression against `tests/abstraction/error.test.tsx`, `tests/react/validation.test.tsx`).
 
-**U6, U7 — `$Type`.** A cover declaring one type: the book carries it, and the declaration does not print in the prose. · A cover declaring several: all hold, and the book is valid only if every one does. · A type deriving from two types: both inherited constraints hold. · A type whose constraint the book breaks: refused, naming the type — **AE2**.
+**U6, U7 — `$Type`.** A cover declaring one type: the book carries it, and the declaration does not print in the prose. · A cover declaring several: all hold, and the book is valid only if every one does. · A type deriving from two types: both inherited constraints hold. · A type whose constraint the book breaks: invalid, naming the type — **AE2**.
 
-**U8 — resolution and scope.** A type name declared on a book whose subject specifies it: resolves. · The same name where **no declared subject** specifies it: refused, unresolved. · A name specified only by a subject that catalogues the book **without the book declaring it**: does **not** resolve (R7). · A book in one subject wearing a type from that subject's specification validates; the same book without the type does not — **AE5**.
+**U8 — resolution and scope.** A type name declared on a book whose subject specifies it: resolves. · The same name where **no declared subject** specifies it: invalid, unresolved. · A name specified only by a subject that catalogues the book **without the book declaring it**: does **not** resolve (R7). · A book in one subject wearing a type from that subject's specification validates; the same book without the type does not — **AE5**.
 
-**U9, U10, U11 — subject, author, cover.** A book whose cover declares both: binds. · Missing either: refused, saying which — **AE1**. · A book declaring a canonical subject and one further membership: both reachable, one canonical. · Every existing book in both suites and the demos, migrated: full suites green.
+**U9, U10, U11 — subject, author, cover.** A book whose cover declares both: binds. · Missing either: invalid, saying which — **AE1**. · A book declaring a canonical subject and one further membership: both reachable, one canonical. · Every existing book in both suites and the demos, migrated: full suites green.
 
 **U12 — `$Catalogue`.** A catalogue of three books: its parts are references, following them arrives at the books, and it reads back to itself as a reference. · A catalogue holding its subject's specification as a part; and the same specification as a separate book it catalogues — both valid (R19).
 
 **U16 — `$Literature$`.** A subject whose catalogue holds three books: asked for its literature, it answers a catalogue of three book references, and following them arrives at the books. · A catalogue with no books: answers an empty catalogue, not an absence. · The inverse lookup — given a book, find the part of the table of contents that catalogues it — is **not implemented on a guess**; the unit stops and reports (R34).
 
-**U13, U14, U15 — the summit.** A subject whose canonical reads to a biography: the subject is subjective. · A book whose author reference and subject reference are the same reference: it authors itself. · A book whose subject reference points at its own cover: it catalogues itself; following arrives home; exactly one such book answers valid — **AE3**. · Two books in mutual biography: **refused** — **AE4**.
+**U13, U14, U15 — the summit.** A subject whose canonical reads to a biography: the subject is subjective. · A book whose author reference and subject reference are the same reference: it authors itself. · A book whose subject reference points at its own cover: it catalogues itself; following arrives home; exactly one such book answers valid — **AE3**. · Two books in mutual biography: **invalid** — **AE4**.
 
-**U17, U18 — parts of books.** A preface and a foreword before the chapters: valid. Two prefaces: refused. A preface after chapter one: refused — **AE7**. · Today's four checks (cover at zero, no second cover, a synopsis, at most one table of contents) still hold under the general rule.
+**U17, U18 — parts of books.** A preface and a foreword before the chapters: valid. Two prefaces: invalid. A preface after chapter one: invalid — **AE7**. · Today's four checks (cover at zero, no second cover, a synopsis, at most one table of contents) still hold under the general rule.
 
 **U19, U20 — writing.** Writing with no stated role: `use`. · Writing marked mention: reads as mention. · A sentence containing a period: yields a word for the mark, typed, marked **use**, and the sentence's flattened prose is unchanged by its presence — **AE8**. · Regression: `$Sentence` still composes its words and `$$Sentence` still catalogues references to them (**D7**, R21); `book.ref` is still the cover and the table of contents still reaches the book through it (**D7**, R22).
 
-**U21, U22, U23 — the demo.** Driven and **read**: the loop followed on screen arrives home; a book wearing a type shows the type changing what it must be; a refusal renders on the page rather than in a console. Per the standing law: green → driven → **seen**, and a demo's real test is being read.
+**U21, U22, U23 — the demo.** Driven and **read**: the loop followed on screen arrives home; a book wearing a type shows the type changing what it must be; a validation failure renders on the page rather than in a console. Per the standing law: green → driven → **seen**, and a demo's real test is being read.
 
 ## Origin tracing
 
@@ -597,7 +597,7 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 
 Two views of one library — spines and writing — is the [perspectives](../../../chemistry/.lib/particle/08-perspectives.md) design doing exactly what it was built for. **Phillip and Gabby lead**; the *extremely well-designed* filter runs here before Doug sees it.
 
-**What it must show.** The auto-categorical loop **followed on screen** — the library's subject reference pointing at its own cover, followed, arriving home (R8, AE3). Types as **form** — the same book wearing a type, and the type changing what it must be (R18). And a **refusal read on the page** rather than in a console, naming which type refused (R33, AE2).
+**What it must show.** The auto-categorical loop **followed on screen** — the library's subject reference pointing at its own cover, followed, arriving home (R8, AE3). Types as **form** — the same book wearing a type, and the type changing what it must be (R18). And a **validation failure read on the page** rather than in a console, naming which type failed (R33, AE2).
 
 **Folded in from Doug's standing note, now due:** each demo catalogued with its use case, its aesthetic identity and what it proves. The subject machinery demonstrating itself on our own demos is the self-referential proof, and the shelf's untitled placeholder spines are its waiting slots.
 
@@ -628,7 +628,7 @@ Two views of one library — spines and writing — is the [perspectives](../../
 
 **What it costs us to say honestly:** we adopted [Compound Engineering's](https://github.com/EveryInc/compound-engineering-plugin/tree/6a2a0f9940ab0b3577ce26226ee393390470e412) loop *as-is* for the trial. Their loop is **four** steps. **The fifth is ours**, and the record says so rather than blurring it into theirs.
 
-**And work gets stricter in the same act.** A demo is a **stop condition**, not a closing flourish — no unit reports done without one. That law already existed (green → driven → **seen**; the demo was already in this chapter) and I broke it. The augmentation is not a new idea; it is the existing one made refusable.
+**And work gets stricter in the same act.** A demo is a **stop condition**, not a closing flourish — no unit reports done without one. That law already existed (green → driven → **seen**; the demo was already in this chapter) and I broke it. The augmentation is not a new idea; it is the existing one made enforceable.
 
 ## The sprint closes — 2026-08-06
 
@@ -636,7 +636,7 @@ Two views of one library — spines and writing — is the [perspectives](../../
 
 ### What this sprint actually accomplished
 
-**In code, and verified.** The **bond-constructor chain**: U1 turned out to need no code and became a specification; **U2 is built** — every declared constructor on a chain must be reached, refused by name when it is not, observed on the prototype so `super.` counts, keyed per instance so nested binds cannot contaminate. **8 tests.** It fired on four real violations, and migrating them **deleted duplicated code** — `$Footer`'s constructor was `$Section`'s verbatim and is gone. Chemistry **630/630** (from 622), three packages **tsc 0**.
+**In code, and verified.** The **bond-constructor chain**: U1 turned out to need no code and became a specification; **U2 is built** — every declared constructor on a chain must be reached, invalid by name when it is not, observed on the prototype so `super.` counts, keyed per instance so nested binds cannot contaminate. **8 tests.** It fired on four real violations, and migrating them **deleted duplicated code** — `$Footer`'s constructor was `$Section`'s verbatim and is gone. Chemistry **630/630** (from 622), three packages **tsc 0**.
 
 **In design — which was the charge, and arrived only at the review.** R38–R64: references that check types rather than a class hierarchy; the card as *a book present without the book*; `$LibraryCard` replacing `$$Book`; **a library is the universe** and `$Library` validation is that every book agrees; **no walk** — the library is computed and validation is in place; **canonicality is contextual**; and the **second proved double entendre**, standing on the first.
 
@@ -658,7 +658,7 @@ Two views of one library — spines and writing — is the [perspectives](../../
 
 **U1 — DONE, and it needed no code.** The chain was already callable: `this.$Ancestor(...)` and `super.$Ancestor(...)` both work, a subclass declaring none still binds through its ancestor's, and arguments can be adapted on the way up. Four of the five scenarios passed against unmodified source. U1 is now a **specification** rather than a change — `tests/react/bond-ctor-chain.test.tsx`, 6 tests.
 
-**U2 — DONE.** `$Synthesis` discovers every declaring class on the chain (own property on each class's prototype named after the class), and refuses when the most-derived fails to reach one. The observation sits on the **prototype**, not the instance, because `super.$Ancestor()` resolves there and never sees an instance property — that hole was found and closed, and the `super` form has its own test. The record is keyed per instance in a `WeakMap` so a nested bind cannot contaminate an outer one. Zero cost where a class has fewer than two declared constructors, which is 50 of the 56.
+**U2 — DONE.** `$Synthesis` discovers every declaring class on the chain (own property on each class's prototype named after the class), and is invalid when the most-derived fails to reach one. The observation sits on the **prototype**, not the instance, because `super.$Ancestor()` resolves there and never sees an instance property — that hole was found and closed, and the `super` form has its own test. The record is keyed per instance in a `WeakMap` so a nested bind cannot contaminate an outer one. Zero cost where a class has fewer than two declared constructors, which is 50 of the 56.
 
 **The audit that made this safe — and it was wrong twice before it was right.** `scratchpad/chain-audit.mjs`. Final answer: **56 classes declare a bond constructor; 6 have a declaring ancestor; all 6 failed to call up.** The first run keyed class names globally and let chemistry's test specimens overwrite the lib's real `$Book`/`$Cover`/`$Chapter`; the second missed `super.` calls and wrongly accused `$TextbookChapter`. **Do not trust a count from that script without re-reading how it scopes.**
 
@@ -666,17 +666,17 @@ Two views of one library — spines and writing — is the [perspectives](../../
 
 **THE ONE FAILURE, diagnosed in two moves — and both halves are findings.**
 
-*First diagnosis, mine, and only half right:* `$Document` hardcodes its refusal text, so once `$Cover` chained the ancestor threw first and `$Cover`'s title check was unreachable.
+*First diagnosis, mine, and only half right:* `$Document` hardcodes its validation message, so once `$Cover` chained the ancestor threw first and `$Cover`'s title check was unreachable.
 
 *Doug's correction, which was the better diagnosis:* **the problem is WHERE validation runs.** `$Document` threw **mid-chain** — an ancestor judging an object that is not finished being built, while `$Cover` still had work to do. That is exactly what `formed` (U3) exists to prevent, and the framework **already** runs `assertValid` after the bond constructor, so `$Document`'s in-body throw was redundant. Removing it **fixed the cover test.** *Verified by deleting one line.*
 
-*What the fix then exposed, which is R33 standing on its own feet:* the failure moved to *"a chapter without a summary is rejected at binding"*, which expects `/summary/` and gets `assertValid`'s generic **"$Chapter is not valid after its bond constructor."** **Two different tests each assert WHY something was refused, and the framework can only say THAT it was.** R33 is not decoration — the suite already demands it. **Not hacked around**: it needs a member Doug has not named, and the naming law stops there.
+*What the fix then exposed, which is R33 standing on its own feet:* the failure moved to *"a chapter without a summary is rejected at binding"*, which expects `/summary/` and gets `assertValid`'s generic **"$Chapter is not valid after its bond constructor."** **Two different tests each assert WHY something was invalid, and the framework can only say THAT it was.** R33 is not decoration — the suite already demands it. **Not hacked around**: it needs a member Doug has not named, and the naming law stops there.
 
 **Wrong turns already taken, so nobody repeats them.** Wrapping the bond constructor on the **instance** looks right and silently misses every `super.` call. Running the lib suite without rebuilding chemistry's `dist` gives a false green. And an unexplained pass is as suspicious as an unexplained failure — both audit errors surfaced that way.
 
-**Doug's ruling on the refusal (2026-08-06):** **wait for `formed`** — the shape falls out of where validation ends up running, and the lib stays at 107/108 until it does. Direction, not today's build: *"we will want something similar to `$check` if possible"*, and the tension is named — **reporting comprehensively versus stopping the code when it must stop.** Report everything and the code runs on past a problem; stop at the first and you learn one thing. His proposed way through: **collect the exception and display it with the validation errors**, so a reader can see whether they are related.
+**Doug's ruling on validation (2026-08-06):** **wait for `formed`** — the shape falls out of where validation ends up running, and the lib stays at 107/108 until it does. Direction, not today's build: *"we will want something similar to `$check` if possible"*, and the tension is named — **reporting comprehensively versus stopping the code when it must stop.** Report everything and the code runs on past a problem; stop at the first and you learn one thing. His proposed way through: **collect the exception and display it with the validation errors**, so a reader can see whether they are related.
 
-**THE THREE-PART SHAPE, proven (Doug's question: "can a type do its configuration, then run its parent bond constructor, and then continue on?").** **Yes** — `tests/react/bond-ctor-chain.test.tsx`, 8 tests. A subclass may **configure**, **call up**, and **continue on what the parent did**, in that order, verified by recorded sequence. And the continuing part **states its own refusal in its own words** — which is how `$Cover` keeps "A cover requires a title" without any new member. **That is where a class owns its reason**; the only gap left is when the framework's generic `assertValid` fires instead of the class's own check.
+**THE THREE-PART SHAPE, proven (Doug's question: "can a type do its configuration, then run its parent bond constructor, and then continue on?").** **Yes** — `tests/react/bond-ctor-chain.test.tsx`, 8 tests. A subclass may **configure**, **call up**, and **continue on what the parent did**, in that order, verified by recorded sequence. And the continuing part **states its own validation failure in its own words** — which is how `$Cover` keeps "A cover requires a title" without any new member. **That is where a class owns its reason**; the only gap left is when the framework's generic `assertValid` fires instead of the class's own check.
 
 **U3's prerequisite, read and it changed the unit.** **`$form` already exists** in `$Chemistry` — a lifecycle hook that runs **once after mount**, guarded by `$formRan$` so it never repeats, with `$formPromise$` carrying async completion (`particle.ts`, `tests/react/form-lifecycle.test.tsx`). **It is not what U3 needs.** `formed` must run **after the bond-constructor chain completes, on every bind** — a different moment and a different frequency. Reusing `$form` would be wrong.
 
@@ -690,6 +690,6 @@ Two views of one library — spines and writing — is the [perspectives](../../
 
 ## The team
 
-**Cathy** (the model — subject, author, `$Type`), **Arthur** (the ontology, this chapter, and the framework scope), **Libby at the center** (subject catalogues are her lived subject; the reference manual), **Queenie** (validation as specification, the refusal, and the loop's tests), **Phillip** and **Gabby** (the demo and the demos' own catalogue). Bench: Adam, David, Nancy; Claude on call.
+**Cathy** (the model — subject, author, `$Type`), **Arthur** (the ontology, this chapter, and the framework scope), **Libby at the center** (subject catalogues are her lived subject; the reference manual), **Queenie** (validation as specification, the validation failure, and the loop's tests), **Phillip** and **Gabby** (the demo and the demos' own catalogue). Bench: Adam, David, Nancy; Claude on call.
 
 *(Requirements written 2026-08-06 from the design session. The plan step enriches this chapter in place; the retro completes it.)*

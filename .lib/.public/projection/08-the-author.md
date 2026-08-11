@@ -71,8 +71,8 @@
 - **R10. An author renders as its name and nothing else** — the name **is** the reference, with no affordance beside it ([R35](06-sprint-48--subjects-and-the-library.md#collected-in-review)). *Seen: no underline, no button, no label.*
 - **R11. All four links arrive at one book: *The Team*.**
 - **R12. *The Team*'s own author link arrives at *The Team*.** The self-loop is **in the model**, not in the prose.
-- **R13. The canonical autobiography is recognised structurally** — by that self-pointing link — and **never by a field declaring it.** *Seen: a book whose author link points at a book that does not author itself is refused.*
-- **R14. An author with a name and no card still renders its name; one with neither is refused.** References degrade honestly.
+- **R13. The canonical autobiography is recognised structurally** — by that self-pointing link — and **never by a field declaring it.** *Seen: a book whose author link points at a book that does not author itself is invalid.*
+- **R14. An author with a name and no card still renders its name; one with neither is invalid.** References degrade honestly.
 
 ## The book — *The Team*
 
@@ -101,7 +101,7 @@
 - **R24b. The open question is Doug's own** — *"maybe if one word is found, the whole sentence needs to have them?"* Whether a level may **mix** authored and found parts, or must be wholly one or the other once anything is authored. **Not answered, and not to be answered by the implementer.**
 - **R24c. A code block is owed, and it is PARAGRAPH level.** *"We haven't even invented a code block."* Doug means the **``` fenced** kind — *"I would think a code block is paragraph level. You think code is an insert into a sentence? It can, but I am talking about ``` markdown."* **Inline code is a different thing and may well be sentence-level; the fenced block is a paragraph.** It may be implemented through markdown behind the scenes — his own allowance — but it must exist as a **part**. *Recorded as a correction: the implementer first wrote this down as sentence-level, taking an earlier line too literally.*
 
-**U14 — every part authorable.** *Framework work in `library/.public/package/src/writing/`. **DESIGN OWED on R24b** and therefore refused files and scenarios beyond the sketch until it is ruled. Realizes: R24. **Visible end:** a figure that is a paragraph of its section, and a code block that is a part rather than a rendering.*
+**U14 — every part authorable.** *Framework work in `library/.public/package/src/writing/`. **DESIGN OWED on R24b** and therefore given no files and scenarios beyond the sketch until it is ruled. Realizes: R24. **Visible end:** a figure that is a paragraph of its section, and a code block that is a part rather than a rendering.*
 
 **Not started, and it did not exist when this sprint was planned.** Named here rather than absorbed, because [a sprint that grows a framework change mid-work and does not say so](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md) is how 47 became a forever sprint.
 
@@ -113,7 +113,7 @@
 
 **Framework work, not lib work.** It belongs in [`library/chemistry/package`](../../../chemistry/package/), and it is **not this sprint's** — recorded here because this sprint is where the need was demonstrated rather than argued.
 
-**U15 — `$` as a container.** *`$Chemistry` work. **DESIGN OWED** and therefore refused files and scenarios. Realizes: R25, and closes R55. **Visible end:** a reference that asks for the library catalogue and is given it, with nothing holding a singleton.*
+**U15 — `$` as a container.** *`$Chemistry` work. **DESIGN OWED** and therefore given no files and scenarios. Realizes: R25, and closes R55. **Visible end:** a reference that asks for the library catalogue and is given it, with nothing holding a singleton.*
 
 ### R27. Specializing how book content looks is the point of the framework *(Doug, 2026-08-07)*
 
@@ -134,7 +134,7 @@
 **What was tried and failed, each for a different reason — recorded because each looked correct:**
 
 1. **A block-level `$Paragraph`** ends the section's block early: the figure and **every paragraph after it** vanish.
-2. **An inline `$Paragraph` with no copy** is refused at binding — `$Paragraph.valid()` demands letters.
+2. **An inline `$Paragraph` with no copy** is invalid at binding — `$Paragraph.valid()` demands letters.
 3. **Forcing it valid** renders and then **loops** — *too many re-renders*.
 4. **A `$Sentence` subclass declaring props** loops **as well** — and it still loops with the array prop replaced by a scalar, with the derived getter removed, and with sentence-minting suppressed. **A bare `$Figure` with no subclass does not loop.**
 
@@ -145,7 +145,7 @@
 The demo's figures — the loop drawn from the model, a card printing its own fields, a code listing — **are written and do not render.** Three shapes were tried and each failed differently, which is the finding:
 
 1. **A block-level `$Paragraph`** ends the section's block early: the figure and **every paragraph after it** disappear.
-2. **An inline `$Paragraph`** is refused at binding — `$Paragraph.valid()` demands letters and a figure has none — so the whole chapter refuses with *"the binding rejects ''"*.
+2. **An inline `$Paragraph`** is invalid at binding — `$Paragraph.valid()` demands letters and a figure has none — so the whole chapter is invalid with *"the binding rejects ''"*.
 3. **An inline `$Paragraph` declared valid** renders and then **loops** — *too many re-renders* — and it still loops with sentence-minting suppressed and with array props hoisted out of render.
 
 **This is [R24](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07) biting exactly where it was predicted to.** A figure is a part that must be **authored**, and every route available today smuggles it in as inline writing instead. *The demo ships without figures rather than with a page that renders an error*, and the classes stay in the tree as the specification for what U14 has to make possible.
@@ -164,15 +164,15 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 - **AE3.** A book's card carries the **same property names** as the book, with `author` typed as a card rather than as an `$Author`.
 - **AE4.** Following any book's author name arrives at *The Team*.
 - **AE5.** *The Team*'s author link reads to *The Team*.
-- **AE6.** An author link pointing at a book that does **not** author itself is **refused** (R13).
-- **AE7.** An author with a name and no card renders the name; with neither, it is refused (R14).
+- **AE6.** An author link pointing at a book that does **not** author itself is **invalid** (R13).
+- **AE7.** An author with a name and no card renders the name; with neither, it is invalid (R14).
 - **AE8.** The author link resolves **with the direct import of *The Team* removed** (R8) — the negative proof.
 - **AE9.** A card renders **as a card** inside a chapter of The Shelf (R7, R21).
 - **AE10.** The shelf's entries show title and synopsis **read off cards** (R23).
 
 ## Out of scope, named
 
-- **`$Subject` validating.** A card carries the subject link as data; only the **author** link is a working, validating reference this sprint. The subject's refusal is [its own sprint's demo](00-planning.md#sprint-three--the-subject).
+- **`$Subject` validating.** A card carries the subject link as data; only the **author** link is a working, validating reference this sprint. The subject's validation failure is [its own sprint's demo](00-planning.md#sprint-three--the-subject).
 - **`$Type`.** Its mechanism is still design owed and it gets no unit ([the rule this plan carries](../../../../.claude/library/our-skillset/29-ce-plan.md)).
 - **The build.** Cards are hand-built; that hand-built list is the compiler's specification, and the compiler is [Sprint Five](00-planning.md#sprint-five--the-compilation).
 - **`$Book.valid()` requiring an author.** Every book in both suites would have to be migrated, and no requirement here asks for it. *Named so it is not discovered as scope mid-work.*
@@ -197,7 +197,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 **D4 — Cards are hand-built, and their contents are the specification for the compiler.** Doug ruled the compilation out of the critical path. *Chosen over: generating them now — which would guess the mapping instead of discovering it.*
 
-**D5 — Only the author link validates this sprint.** Subject rides on the card as data. *Chosen over: building `$Subject` alongside — two refusals in one sprint, and the subject's refusal is the next sprint's whole visible end.*
+**D5 — Only the author link validates this sprint.** Subject rides on the card as data. *Chosen over: building `$Subject` alongside — two validations in one sprint, and the subject's validation is the next sprint's whole visible end.*
 
 **D6 — The card is made visible inside a book, not as a view of the catalogue.** Doug: the card catalogue *"is not really something viewable."* *Chosen over: a catalogue screen — which would invent a surface he explicitly declined.*
 
@@ -212,7 +212,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 **Excluded, as rules rather than lists.** ***Composed*** — everything below chapter grade, `copy` among them: *"You think an index card representation of something includes all words in it? No."* ***Reflexive*** — what points back at the very book the card is for, which the card already **is**. *The second exclusion is the implementer's, not Doug's; applying his rule literally would make `cover`, `canonical` and `ref` each resolve to this card, which is cohesive but redundant. **Flagged for the review.***
 
-**And the rule has no exception for the synopsis.** *Doug: "What part of an index card representation don't you understand? If it has a chapter named Synopsis, what's wrong with having that in the list? It tells you a book has a synopsis."* The implementer proposed an exception; it was refused, and rightly. **The check it turned into:** `$Synopsis` must let an author override its title — *"if a person can't override the title of synopsis by inputting it, that's a bug on synopsis that needs to be fixed."* **Verified: it can.** `$Synopsis` extends `$Chapter` with no bond constructor and no forced title, so its title is whatever the author writes. No bug.
+**And the rule has no exception for the synopsis.** *Doug: "What part of an index card representation don't you understand? If it has a chapter named Synopsis, what's wrong with having that in the list? It tells you a book has a synopsis."* The implementer proposed an exception; it was invalid, and rightly. **The check it turned into:** `$Synopsis` must let an author override its title — *"if a person can't override the title of synopsis by inputting it, that's a bug on synopsis that needs to be fixed."* **Verified: it can.** `$Synopsis` extends `$Chapter` with no bond constructor and no forced title, so its title is whatever the author writes. No bug.
 
 **D9 — `$LibraryCard` is a computed type; `$LibraryCard$` is the class that implements it.** The `$Html$` pattern from `$Chemistry`. *Chosen over: a hand-written class alone — because `implements $LibraryCard` makes **`tsc` prove the mapping is implementable**, not merely expressible, so a future rule that produces something nobody can build stops compiling.*
 
@@ -254,7 +254,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 - **U10 — The four hand-built cards.** One library card per demo book, initialized from the code with its static information, placed in the library catalogue.
   *Mechanism: hand-authored card construction in the demo code; the list of everything that had to be written by hand is **recorded as it is written**, because that list is the compiler's specification. Files: new under `app/src/sections/book/library/`. Depends on: U8, U9. Realizes: R6. **Visible end:** the list itself, reviewable — and every entry on it either derivable from the code or a finding.*
 
-- **U3 — The links, and the loop.** Each of the four books gets an author link to *The Team*; *The Team*'s own link points at *The Team*. A link pointing at a book that does not author itself is refused.
+- **U3 — The links, and the loop.** Each of the four books gets an author link to *The Team*; *The Team*'s own link points at *The Team*. A link pointing at a book that does not author itself is invalid.
   *Mechanism: this is where D3 is tested — the card is minted before the book, so the self-pointing link resolves. Files: the four demo books. Depends on: U2, U10. Realizes: R9, R11, R12, R13. **Visible end:** following any author arrives at one book; following that book's author arrives back — AE4, AE5, AE6.*
 
 ### What is seen — `library/.public/package/app/src/sections/`
@@ -274,23 +274,23 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 *Each names input, action and expected outcome, and says which acceptance example it covers.*
 
-**U5 — `$IndexCard<T>`.** A card made for a referent: `read()` answers that referent — **AE1**. · A card with a name and no referent: renders its name, and `read()` refuses with a sentence saying it never pointed. · A card composed with `then()`: answers a path, like every other reference kind.
+**U5 — `$IndexCard<T>`.** A card made for a referent: `read()` answers that referent — **AE1**. · A card with a name and no referent: renders its name, and `read()` throws with a sentence saying it never pointed. · A card composed with `then()`: answers a path, like every other reference kind.
 
 **U6 — `$CardCatalogue`.** A catalogue of three cards: its parts are cards, following them arrives at the referents, and it reads back as a reference to that composition — **AE2**. · An empty catalogue: answers an empty composition, **not an absence**. · The interface is satisfied **with no edit to `$Catalogue$`** — if an edit is needed, that is a finding and it is reported.
 
 **U7, U9 — `$LibraryCard` and its type.** A card for a book: every property name on the card matches a property name on the book — **AE3**. · The card's `author` is a **card**, not an `$Author` — **AE3**, and this is D2. · A card for a book **subtype**: the subtype's derived information is reachable on the card without the card class knowing it in advance. · No path from a card reaches a `$Book` module — **the closed-graph check, D2**.
 
-**U8 — `$LibraryCatalogue`.** Four books, four cards, one catalogue; each card found from its book's identity — **AE2**. · A lookup for a book with no card: refuses, naming the book rather than answering undefined.
+**U8 — `$LibraryCatalogue`.** Four books, four cards, one catalogue; each card found from its book's identity — **AE2**. · A lookup for a book with no card: throws, naming the book rather than answering undefined.
 
-**U2 — `$Author`.** An author reads to its book **through its card** — **AE4**. · An author renders its display name and **nothing announcing it is a reference** — R10. · An author with a name and no card: renders the name; `read()` refuses — **AE7**. · An author with neither: refused — **AE7**. · A book answers the author standing in its cover; a book with none answers nothing. *(Regression: the 8 tests already written must still pass, or their promise changed and the change is stated.)*
+**U2 — `$Author`.** An author reads to its book **through its card** — **AE4**. · An author renders its display name and **nothing announcing it is a reference** — R10. · An author with a name and no card: renders the name; `read()` throws — **AE7**. · An author with neither: invalid — **AE7**. · A book answers the author standing in its cover; a book with none answers nothing. *(Regression: the 8 tests already written must still pass, or their promise changed and the change is stated.)*
 
-**U3 — the loop.** Each of the four books' author reads to *The Team* — **AE4**. · *The Team*'s author reads to *The Team* — **AE5**. · An author link pointing at a book whose own link points elsewhere: **refused** — **AE6**. · **The negative proof:** the link resolves with the direct import of *The Team* removed — **AE8**.
+**U3 — the loop.** Each of the four books' author reads to *The Team* — **AE4**. · *The Team*'s author reads to *The Team* — **AE5**. · An author link pointing at a book whose own link points elsewhere: **invalid** — **AE6**. · **The negative proof:** the link resolves with the direct import of *The Team* removed — **AE8**.
 
 **U1 — *The Team*.** It binds as a valid book — a cover at zero, a synopsis, at most one table of contents. · Its quoted references resolve. · Its appendix chapters are reachable and are **not** mistaken for its narrative chapters. · It contains the passage recording the decision to write it, and that passage is **findable in the model**, not only on the page — R16.
 
 **U11, U12 — what is seen.** Driven and **read**: a card renders as a card in a chapter of The Shelf — **AE9**. · The shelf's entries show title and synopsis read off cards — **AE10**. · Following an author name on a cover arrives at *The Team*; following its author arrives back — **AE4, AE5**. Per the standing law: green → driven → **seen**.
 
-**Regression, the whole time.** Chemistry **630/630**, lib **≥115/116** (the one red is the [refusal-message defect](00-planning.md#validation-that-says-why--carried-out-of-sprint-48-doug-2026-08-06), carried and **not this sprint's to fix**), three packages **tsc 0**.
+**Regression, the whole time.** Chemistry **630/630**, lib **≥115/116** (the one red is the [validation-message defect](00-planning.md#validation-that-says-why--carried-out-of-sprint-48-doug-2026-08-06), carried and **not this sprint's to fix**), three packages **tsc 0**.
 
 ## Origin tracing
 
@@ -389,7 +389,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 **Complete, verified and seen.** The card (**U5**, 8 tests) · the card catalogue (**U6**) · the computed card type and the class that implements it (**U7/U9**) · the library catalogue (**U8**) · the author resolving through a card (**U2**) · the name (**U4**) · **the loop, closed in the model and followable on screen** (**U3**, 13 tests) · the book, written in eight chapters with its own reader (**U1**) · the four hand-built cards (**U10**) · the records (**U13**).
 
-**Not done, and why.** The card shown as a card in The Shelf (**U11**) and the shelf's entries read off cards (**U12**) — the first is blocked by the figure problem above, the second is unblocked and small. **A book with a false author link is not refused**, because no validation was built at all. **The book's quoted references** landed in two chapters and not the rest.
+**Not done, and why.** The card shown as a card in The Shelf (**U11**) and the shelf's entries read off cards (**U12**) — the first is blocked by the figure problem above, the second is unblocked and small. **A book with a false author link is not invalid**, because no validation was built at all. **The book's quoted references** landed in two chapters and not the rest.
 
 **THE LOOP CLOSES.** An author resolves **by name** through the library catalogue and never holds or imports a book — its only book reference is a `type` import, which erases at runtime, **so [AE8](#acceptance-examples)'s negative proof is a fact about the compiled output rather than a discipline anyone keeps.** The autobiography authors itself; every other book arrives at it; following the destination's own author lands back. *And the name Doug chose is what makes it work: an author's display name and its book's name are the same words, so resolution by name is the loop.*
 
@@ -407,7 +407,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 | `written(property)` | `$IndexCard` | one field's value, as writing |
 | `printed(value)` | `$IndexCard` | how a value becomes a string |
 | `cards` | `$CardCatalogue` | its parts, as cards |
-| `card(name)` | `$CardCatalogue` | the lookup; refuses and names what was asked |
+| `card(name)` | `$CardCatalogue` | the lookup; throws and names what was asked |
 | `holds(name)` | `$CardCatalogue` | whether the lookup would succeed |
 | `name` | `$Author` | its display name — its own copy |
 | `card` | `$Author` | the library card it holds |
@@ -444,7 +444,7 @@ So a card's defining behaviour is **enumerating its own fields and printing them
 
 ### Verification, with numbers — from fresh runs this session
 
-Chemistry **630/630** (58 files). Lib **123/124** (11 files) — the one red is the refusal-message defect, carried and not this sprint's. Lib **tsc 0**. Chemistry `dist` **rebuilt before the lib suite ran**, without which the number proves nothing.
+Chemistry **630/630** (58 files). Lib **123/124** (11 files) — the one red is the validation-message defect, carried and not this sprint's. Lib **tsc 0**. Chemistry `dist` **rebuilt before the lib suite ran**, without which the number proves nothing.
 
 ### Pushed this session
 

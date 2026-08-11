@@ -16,7 +16,7 @@
 
 ## What did not work
 
-Four routes had been tried and filed, each failing differently, and none of them was the cause: hoisting the array prop out of render, removing the derived getter, suppressing the sentence parse, replacing the array with a scalar. Reading the reconciler suggested a fifth theory — that `equivalent()` refuses class instances — which is true and was **not** the mechanism.
+Four routes had been tried and filed, each failing differently, and none of them was the cause: hoisting the array prop out of render, removing the derived getter, suppressing the sentence parse, replacing the array with a scalar. Reading the reconciler suggested a fifth theory — that `equivalent()` never accepts class instances — which is true and was **not** the mechanism.
 
 ## The instrument that settled it
 

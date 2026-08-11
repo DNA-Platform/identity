@@ -51,7 +51,7 @@ The consequence is not that the demo was weak. It is that **there was no definit
 
 ## The fix
 
-**A unit with no mechanism is not a unit.** The plan must mark it as **design owed** and refuse to give it files and scenarios, so it cannot be mistaken for buildable work. Its identifier is kept; its body says what must be designed and by whom.
+**A unit with no mechanism is not a unit.** The plan must mark it as **design owed** and give it no files and scenarios, so it cannot be mistaken for buildable work. Its identifier is kept; its body says what must be designed and by whom.
 
 **And the plan's self-check runs both directions:** every requirement has a unit, *and* every unit names the mechanism it will build. A unit that cannot answer *what runs, and when* is design, not work.
 

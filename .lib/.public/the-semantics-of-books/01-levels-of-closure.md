@@ -4,7 +4,7 @@
 
 ---
 
-Everything in this book rests on one idea of Doug's. As I read it: a representation can express what is fundamental only when it is *closed* under a single primitive — everything at the level an instance of that one thing, nothing pointing outside it. He states it directly, arriving at it while refusing to call the thing below the book a "document" (his word for why not: too physical), in the *levels* passage ([conversation][conv]):
+Everything in this book rests on one idea of Doug's. As I read it: a representation can express what is fundamental only when it is *closed* under a single primitive — everything at the level an instance of that one thing, nothing pointing outside it. He states it directly, arriving at it while declining to call the thing below the book a "document" (his word for why not: too physical), in the *levels* passage ([conversation][conv]):
 
 > "there is value for there being levels where you have a certain type of representation and everything is closed under it. You need something like that to express that which is fundamental in the same way, that object oriented programming needs everything to be an object"
 
