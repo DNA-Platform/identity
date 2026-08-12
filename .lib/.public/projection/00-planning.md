@@ -235,17 +235,33 @@ Speak within the **semantics of books** — the vocabulary of the domain is the 
 - **How writing refers to writing** — the last string in the system. Prose still authors `[text](#3.2)`, which the reader interprets as typesetting; the document apparatus proved the alternative shape (refer by key, the legend holds real references, built at binding). Whether book-grade references take that shape is Doug's to design.
 - Which parentheticals on the cover are *metadata* (publisher, date — the imprint's content) versus *writing* (the cover's summary is its title) — and whether the imprint page derives from a metadata reading the way the table of contents derives from chapters.
 
-## Cleanup, schedulable in any sprint — the type-only imports *(Doug, 2026-08-12)*
+## DONE 2026-08-12 — the type keyword left lib's imports
 
-**Doug's question, and it was right:** *"Why do we have `import { type $Author } from './Author';`? That type can't be necessary."*
+*Doug: **"none of the type imports are necessary. Or if they are, you have to explain why. It makes for ugly code for no reason."***
 
-**Measured, not assumed.** Removing that import **and the annotation it served** — `get author(): $Author | undefined` → `get author()` — leaves `tsc` clean, because `$Cover.author` is already typed and TypeScript infers the rest. The import existed only so the annotation could be written, and the annotation restated what the source already said.
+**Tested rather than argued, and he was right.** Removing every `import { type X }` across `lib` — **116 keywords, 35 files** — leaves `tsc` clean, **203/203** green, and the circular dependencies **unchanged**: the same three as before (`Path→Path`, `Canonical↔Book`, `Book↔TableOfContents`). No new edges. The keyword was habit.
 
-**There are 101 type-only imports across `@dna-platform/lib`**, thickest in the book layer: `Book.tsx` 9, `Chapter.tsx` 5, `TableOfContents.tsx` 5, `Author.tsx`/`Cover.tsx`/`Subject.tsx`/`Document.tsx` 4 each.
+**One construct genuinely requires it and it is not an import.** A **re-export** — `export { X } from …` — cannot be elided under `isolatedModules`, so `index.ts` keeps `export type` for the one name that is a type. The two beside it are **values**, and making all three type-only would have broken every consumer **silently**; the package's own `tsc` cannot see past its own boundary.
 
-**The check is per site, not a sweep.** A **forwarding getter** whose source is already typed does not need either — drop the annotation and the import goes with it. A **field declaration** (`author!: $Author`) or a **parameter** does need the type, and there the `type` keyword is load-bearing for a second reason: it is erased, so it carries no runtime import edge and cannot form a cycle. Deleting one of those would either lose the type or reintroduce the cycle it was written to avoid.
+**The rule that remains:** `type` on an import is never needed here. `export type` on a re-export is — and when you write one, check each name, because a class and a const hiding among types is a break nobody's gate catches.
 
-**So the rule is: remove the annotation first, and see whether the import follows.** Where it does not, leave it — and the ones that remain are then meaningful rather than habitual.
+## Queued — the root of the model, and it is ONE job wearing three symptoms *(Doug, 2026-08-12)*
+
+Three separate-looking instructions turned out to be the same change. **Attempted at the session's close, measured, and reverted** — the working copy is back at the committed state, `tsc` clean, 203/203.
+
+**The three symptoms.**
+
+- *"`$Referent` should be a class."* It is an interface declaring one member, `valid()`, and its three implementors — `$Book`, `$Writing`, `$Document` — all already extend `$Chemical`.
+- *"`$LibraryCard$` isn't supposed to exist."* Correct, and here is why it does: **`$LibraryCard` is taken by a type alias** in the same file, so the class had to wear a suffix.
+- *"Change the `$X$` names back to `$X`."* Two exist. **`$Composible$` is free** — nothing owns the bare name, so it is a pure rename. `$LibraryCard$` is not, per above.
+
+**What the attempt measured, and why it is not cleanup.** Making `$Referent` a class that extends `$Chemical` breaks immediately, and not at its three implementors — at the **generic constraints**. `$Location<T extends $Referent>`, `$Composible$`, `$Catalogue$` all name `$Referent` as a bound, and **five reference forms are plain classes rather than chemicals** — `$$Chapter`, `$$Section`, `$$Sentence`, `$$Word`, `$$Paragraph`. The moment `$Referent` carries a chemical base, every one of those constraints demands 41 members from something that is not a chemical. Decoupling the interfaces from it does not help: the constraints name `$Referent` directly.
+
+**So the `$$` prefix and the `$X$` suffix have the same cause.** Both mark a place where **something that is not a chemical had to share a name space with something that is.** That is the actual question, and it is a design session: *what is a reference form, and does it belong to the chemical hierarchy at all?*
+
+**On doing it with a tool.** `ts-morph` is **not installed**; it is the right instrument for the mechanical half and would need adding. But a rename tool cannot do this job, because **only `$Composible$` is a rename.** The others are collisions, and a collision is a decision.
+
+**The order that would work:** decide what a reference form is → resolve the type alias → then rename, mechanically, with a tool. **Not the other way round.** And it belongs with types-and-validation, because `valid()` is what `$Referent` carries and what that sprint is about.
 
 ## The standing sprint discipline *(added 2026-08-03, out of 47's cost)*
 
