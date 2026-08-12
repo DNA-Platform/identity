@@ -63,3 +63,14 @@ Raise the rendering flag for exactly the length of the prop assignment, in the b
 **A filed law is a claim, and claims decay.** The recorded rule named the wrong cause — props and overriding — and named it confidently enough that nobody re-tested it for two sprints, which is exactly how a wrong law survives: it is *close enough* to the symptom to keep predicting it.
 
 The habit that caught it: **isolate one variable at a time and write the table down.** Five cases, five minutes, and the true rule fell out — *inline, passed a prop, inside a block* — which no amount of reasoning about the reconciler had produced. And when the theory that reading suggested turned out to be true-but-irrelevant, that was a signal to keep instrumenting rather than to start fixing.
+
+## There is a second render loop in this branch, and it is not this one
+
+[The parse that woke its own parents](16-the-parse-that-woke-its-own-parents.md) reads the same from a distance — a page that never settles — and has a different cause, a different trigger and a different fix. **Check which shape you have before reaching for either.**
+
+| | this chapter | [chapter 16](16-the-parse-that-woke-its-own-parents.md) |
+|---|---|---|
+| the error | *"Too many re-renders"* | *"Maximum update depth exceeded"* |
+| the trigger | an **inline** child **passed a prop**, inside a block | a **parse** given a **parent** while it writes to what it composes |
+| what loops | props re-binding over an already-built instance | a write **diffusing up** the composition tree and re-running the reading |
+| the tell | the host renders many times, **the child zero** | the first page fails immediately, and **every unit suite stays green** |

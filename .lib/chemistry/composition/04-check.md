@@ -10,9 +10,15 @@
 
 ## Rules
 
-- *(TBD — accepts subclass instances.)*
-- *(TBD — accepts union types.)*
-- *(TBD — throws a formatted error on mismatch.)*
+- **It returns its argument**, so the idiom is an assignment: `this.toast = $check(toast, 'div')`. The check is a pass-through, never a guard you branch on.
+- **A class type accepts subclasses** — the test is `instanceof`, so a `$VeganRecipe` satisfies `$Recipe`.
+- **Several types read as a union**, tried in order, first match wins: `$check(part, $Paragraph, $Figure)`.
+- **A tag name is a type.** `$check(x, 'div')` passes when `x` is an `$Html$` whose `type` is `'div'` — which is how a lifted HTML child is validated without naming the wrapper class.
+- **`'block'` materializes rather than failing.** An empty inline run produces no block at all, so `$check(x, 'block')` given `undefined` **creates an empty `$Html$('block')`** and returns it. The block is simply empty and renders nothing — callers need no null guard.
+- **Primitives are named by their constructors** — `String`, `Number`, `Boolean`, `Function`, `Object` — and `'any'` accepts anything that is a valid React node.
+- **An array type checks every element**: `$check(items, [$Item])` requires an array in which each element satisfies `$Item`.
+- **Mismatches accumulate; the throw is once.** Each call records its error; `evaluate()` raises a single message carrying the expected signature and every failing parameter. The error is written to be read on a page, not in a stack trace.
+- **The validator is a module singleton** (`$paramValidation`), reset by the synthesis before each bond and told the chemical and the parameter count. It is state shared across the process, which is why the bind path resets it rather than allocating.
 
 ## Instance validity (2026-07-31)
 

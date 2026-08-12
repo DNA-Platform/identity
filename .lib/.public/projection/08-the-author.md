@@ -18,7 +18,7 @@
 
 **So this sprint absorbs the core of what chapter zero planned as [Sprint Two — The Card](00-planning.md#sprint-two--the-card), and the record says so rather than pretending it is still a small first sprint.** The reason it merged is not ambition: an author link that resolves by importing a book is not a reference, it is a variable. The card is what makes pointing real.
 
-**And the merge paid for itself immediately.** The bootstrap — *how does a book author itself before it exists* — was this sprint's stated open question. **The card dissolves it**: a surrogate is minted independently of the book, so the self-pointing link has something to point at before the book is built. That is the card earning its place rather than being asserted.
+**And the merge paid for itself immediately.** The bootstrap — *how does a book author itself before it exists* — was this sprint's stated open question. **The card dissolves it**: a surrogate is written independently of the book, so the self-pointing link has something to point at before the book is built. That is the card earning its place rather than being asserted.
 
 ## Rulings, verbatim — the most expensive thing to lose
 
@@ -136,7 +136,7 @@
 1. **A block-level `$Paragraph`** ends the section's block early: the figure and **every paragraph after it** vanish.
 2. **An inline `$Paragraph` with no copy** is invalid at binding — `$Paragraph.valid()` demands letters.
 3. **Forcing it valid** renders and then **loops** — *too many re-renders*.
-4. **A `$Sentence` subclass declaring props** loops **as well** — and it still loops with the array prop replaced by a scalar, with the derived getter removed, and with sentence-minting suppressed. **A bare `$Figure` with no subclass does not loop.**
+4. **A `$Sentence` subclass declaring props** loops **as well** — and it still loops with the array prop replaced by a scalar, with the derived getter removed, and with sentence-creation suppressed. **A bare `$Figure` with no subclass does not loop.**
 
 **So the residue is precise and it is a framework question, not a demo one: a `$Figure` subclass that declares its own props and overrides a method its `view()` calls will not render.** That is the thing [U14](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07) and R27 have to make possible, and until they do, **a figure can carry a caption but cannot carry data.** Nobody should re-attempt route 1, 2 or 3.
 
@@ -146,14 +146,14 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 1. **A block-level `$Paragraph`** ends the section's block early: the figure and **every paragraph after it** disappear.
 2. **An inline `$Paragraph`** is invalid at binding — `$Paragraph.valid()` demands letters and a figure has none — so the whole chapter is invalid with *"the binding rejects ''"*.
-3. **An inline `$Paragraph` declared valid** renders and then **loops** — *too many re-renders* — and it still loops with sentence-minting suppressed and with array props hoisted out of render.
+3. **An inline `$Paragraph` declared valid** renders and then **loops** — *too many re-renders* — and it still loops with sentence-creation suppressed and with array props hoisted out of render.
 
 **This is [R24](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07) biting exactly where it was predicted to.** A figure is a part that must be **authored**, and every route available today smuggles it in as inline writing instead. *The demo ships without figures rather than with a page that renders an error*, and the classes stay in the tree as the specification for what U14 has to make possible.
 
 ## Key flows
 
 - **F1 — A book declares its author.** An author writes a cover; the cover carries a name that is a reference. The book reads it through the cover as a property.
-- **F2 — A card is minted.** A library card is initialized from the code with the book's static information, and takes its place in the library catalogue.
+- **F2 — A card is written.** A library card is initialized from the code with the book's static information, and takes its place in the library catalogue.
 - **F3 — The loop closes.** An author link asks the catalogue for its card at runtime and reads through it to a book. *The Team*'s link arrives at *The Team*.
 - **F4 — A card is read as writing.** A card stands inside a chapter of The Shelf and renders as a card.
 
@@ -193,7 +193,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 **D2 — The card graph is closed card-to-card.** A book-valued property on a card is a **card**, never a book. *Chosen over: cards holding their books — which would make "validation without opening a book" a claim the code does not make, and would reintroduce the traversal [R63 deleted](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place).*
 
-**D3 — The self-loop is closed by the card, not by new machinery.** A card is minted independently of its book, so *The Team*'s author link has a target before *The Team* is built. *Chosen over: a late-resolving reference kind — new machinery for a problem the surrogate already solves.* **If this turns out false, it is [raised the moment it appears](00-planning.md#the-standing-sprint-discipline-added-2026-08-03-out-of-47s-cost), never designed around.**
+**D3 — The self-loop is closed by the card, not by new machinery.** A card is written independently of its book, so *The Team*'s author link has a target before *The Team* is built. *Chosen over: a late-resolving reference kind — new machinery for a problem the surrogate already solves.* **If this turns out false, it is [raised the moment it appears](00-planning.md#the-standing-sprint-discipline-added-2026-08-03-out-of-47s-cost), never designed around.**
 
 **D4 — Cards are hand-built, and their contents are the specification for the compiler.** Doug ruled the compilation out of the critical path. *Chosen over: generating them now — which would guess the mapping instead of discovering it.*
 
@@ -255,7 +255,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
   *Mechanism: hand-authored card construction in the demo code; the list of everything that had to be written by hand is **recorded as it is written**, because that list is the compiler's specification. Files: new under `app/src/sections/book/library/`. Depends on: U8, U9. Realizes: R6. **Visible end:** the list itself, reviewable — and every entry on it either derivable from the code or a finding.*
 
 - **U3 — The links, and the loop.** Each of the four books gets an author link to *The Team*; *The Team*'s own link points at *The Team*. A link pointing at a book that does not author itself is invalid.
-  *Mechanism: this is where D3 is tested — the card is minted before the book, so the self-pointing link resolves. Files: the four demo books. Depends on: U2, U10. Realizes: R9, R11, R12, R13. **Visible end:** following any author arrives at one book; following that book's author arrives back — AE4, AE5, AE6.*
+  *Mechanism: this is where D3 is tested — the card is written before the book, so the self-pointing link resolves. Files: the four demo books. Depends on: U2, U10. Realizes: R9, R11, R12, R13. **Visible end:** following any author arrives at one book; following that book's author arrives back — AE4, AE5, AE6.*
 
 ### What is seen — `library/.public/package/app/src/sections/`
 

@@ -48,14 +48,14 @@ And **grouping runs only inside a bond constructor's own interpretation** — ne
 ## Rules
 
 - The binding constructor's name must equal **a class name on the chain** — the chemical's own, or an ancestor's. Mis-spelling a name still silently disables it (the chain walk only tries real class names).
-- The binding constructor is invoked **once per render** of the chemical's component, *after* `$apply` writes incoming React props to `$`-prefixed fields, *before* `view()` runs.
+- The bind runs on every render, *after* `$apply` writes incoming React props to `$`-prefixed fields and *before* `view()` — but **the constructor itself is skipped when the arguments are identical to last time.** `$Synthesis` snapshots the argument list and compares it by identity (`sameArgs`, arrays compared element-wise); unchanged children mean the body does not run again. So a bond constructor is *not* a per-render hook, and putting a counter in one measures argument changes rather than renders.
 - Parameters are extracted from the method's source via regex. Arrow-form constructors, default parameter values, and destructured parameters are not currently supported.
 - A spread parameter (`...items`) accumulates remaining children of the matching type into an array. **Where children may be a mix of prose and block-level parts, a spread is the only signature that keeps them all** — see the grouping above.
 - Each non-spread parameter accepts exactly one child; arity mismatches raise validation errors.
-- Every parameter type is checked at runtime with `$check`. The first parameter with a wrong type produces a formatted error and aborts the binding.
+- Every parameter type is checked at runtime with `$check`. **Mismatches accumulate rather than aborting at the first** — each `$check` records its error and the run throws once, at `evaluate()`, with a message carrying the whole expected signature and every parameter that failed. That is deliberate: the error is designed to be read on a page, so it says what the class wanted, not merely where it stopped.
 - The binding constructor's `this` is the chemical instance being bound for this mount. Writes to `this.$x` are writes to the bound instance, not to the template.
 - **Never write a ceremonial binding constructor.** An empty `$X() {}` — or a body that only delegates upward — makes the synthesis parse parameters and build chemicals for inputs nobody binds: a performance hazard, and unnecessary since the chain resolves (Doug, 2026-07-31). `assertViewConstructors` no longer demands that ancestors declare constructors; it only rejects a class-named property that is not a function.
-- An `async` binding constructor is permitted; the framework awaits `$construction` before completing the bind.
+- An `async` binding constructor is permitted, and **the bind does not wait for it.** The returned promise is recorded as the chemical's `$construction`; when it settles the chemical re-reacts and renders again. A caller who must wait awaits `next('construction')`. **Only the chain-reached assertion is skipped** for an async constructor — it cannot be judged before the body settles. `assertValid` is *not* skipped: it runs immediately, against an instance whose async constructor has not finished, which is a known gap rather than a design.
 
 ## Cases
 
@@ -68,11 +68,9 @@ And **grouping runs only inside a bond constructor's own interpretation** — ne
 
 ## See also
 
-- [Dual constructor][s-III-2] — the two-moments framing.
 - [`$check`][s-III-4] — runtime parameter validation invoked from inside this method.
 - [`$is<T>(ctor)`][s-III-5] — the type-only helper for `$check` signatures.
 
 <!-- citations -->
-[s-III-2]: ./02-dual-constructor.md
 [s-III-4]: ./04-check.md
 [s-III-5]: ./05-is.md

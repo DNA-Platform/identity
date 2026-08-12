@@ -196,7 +196,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 - **Promotion of the mini framework into `src/`.** Doug: *"we can consider it for the main framework if it works."* An explicit later decision, and this sprint does not lobby for it.
 - **Renaming `$Page`.** The population is reported above; the name is Doug's and [naming is not the implementer's](08-the-author.md). Nothing is renamed on our own word.
 - **Types.** Still ruled a sprint of its own, still behind this arc.
-- **The historical vocabulary sweep, now part done.** *Refuse* was swept from the whole branch library and from the code on Doug's order, 2026-08-10 — **"Remove the concept of refusal from all documents. You are referring to validation right?"** *Mint* and *minting* remain queued, and so does *refuse* across the team library, the personal libraries and the skills.
+- **The historical vocabulary sweep, now done for both words.** *Refuse* was swept from the whole branch library and from the code on Doug's order, 2026-08-10 — **"Remove the concept of refusal from all documents. You are referring to validation right?"** *Mint* was swept 2026-08-11 on his third asking — **"We aren't in the business of money. Minting is not a domain word."** — leaving only the chapters that record the ruling itself and one use of *mint* as a colour. The replacement was not chosen: [Sprint 46](03-sprint-46--the-book.md) already carried his word — *"minting is a coin word, not a book word — the word is **rendering**."* Still queued: *refuse* across the team library, the personal libraries and the skills.
 - **The standing direction outlives both halves:** *"Always move the whole demo app in the direction of specialization of the parts."*
 
 ## Key flows

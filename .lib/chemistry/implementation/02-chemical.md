@@ -10,7 +10,6 @@ The `$Chemical` source module. Defines the class, the `$Synthesis` orchestrator,
 
 ## See also
 
-- [`$Chemical` — the class](../composition/01-the-class.md)
 - [The binding constructor](../composition/03-binding-constructor.md)
 - [`$check`](../composition/04-check.md)
 - `$Synthesis` class

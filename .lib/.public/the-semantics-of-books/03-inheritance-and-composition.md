@@ -12,7 +12,7 @@ Those are the two edges of the whole hierarchy, and they are not the same move.
 
 ## Composition ascends scale; inheritance refines within a scale
 
-- **Composition** — one type differs because it *is composed of* the other, and Doug's later word for this operation is **multiplication**: many of a thing become the level above (*"multiplication can turn a sentence into a paragraph"*). It ascends a rung, minting new structure, and — his instinct, which I share — it **flows down**: a book is a composition of chapters, a chapter of sections, a section of paragraphs, all the way to the leaf. One recursive operation at every rung.
+- **Composition** — one type differs because it *is composed of* the other, and Doug's later word for this operation is **multiplication**: many of a thing become the level above (*"multiplication can turn a sentence into a paragraph"*). It ascends a rung, creating new structure, and — his instinct, which I share — it **flows down**: a book is a composition of chapters, a chapter of sections, a section of paragraphs, all the way to the leaf. One recursive operation at every rung.
 
 - **Inheritance by validation** — one type differs because it *is the same shape with a constraint enforced on it* (*"adding a validation lets a symbol become a word or a sentence"*). A subclass says "everything the parent says, plus this must hold." It refines within a rung; it changes no scale. The type checker (and a runtime `$check`) enforces the constraint, which is why the compiler is a co-author: a bad `extends` fails to compile before it becomes a bad idea.
 

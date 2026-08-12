@@ -235,6 +235,18 @@ Speak within the **semantics of books** — the vocabulary of the domain is the 
 - **How writing refers to writing** — the last string in the system. Prose still authors `[text](#3.2)`, which the reader interprets as typesetting; the document apparatus proved the alternative shape (refer by key, the legend holds real references, built at binding). Whether book-grade references take that shape is Doug's to design.
 - Which parentheticals on the cover are *metadata* (publisher, date — the imprint's content) versus *writing* (the cover's summary is its title) — and whether the imprint page derives from a metadata reading the way the table of contents derives from chapters.
 
+## Cleanup, schedulable in any sprint — the type-only imports *(Doug, 2026-08-12)*
+
+**Doug's question, and it was right:** *"Why do we have `import { type $Author } from './Author';`? That type can't be necessary."*
+
+**Measured, not assumed.** Removing that import **and the annotation it served** — `get author(): $Author | undefined` → `get author()` — leaves `tsc` clean, because `$Cover.author` is already typed and TypeScript infers the rest. The import existed only so the annotation could be written, and the annotation restated what the source already said.
+
+**There are 101 type-only imports across `@dna-platform/lib`**, thickest in the book layer: `Book.tsx` 9, `Chapter.tsx` 5, `TableOfContents.tsx` 5, `Author.tsx`/`Cover.tsx`/`Subject.tsx`/`Document.tsx` 4 each.
+
+**The check is per site, not a sweep.** A **forwarding getter** whose source is already typed does not need either — drop the annotation and the import goes with it. A **field declaration** (`author!: $Author`) or a **parameter** does need the type, and there the `type` keyword is load-bearing for a second reason: it is erased, so it carries no runtime import edge and cannot form a cycle. Deleting one of those would either lose the type or reintroduce the cycle it was written to avoid.
+
+**So the rule is: remove the annotation first, and see whether the import follows.** Where it does not, leave it — and the ones that remain are then meaningful rather than habitual.
+
 ## The standing sprint discipline *(added 2026-08-03, out of 47's cost)*
 
 Recorded because it is the plan's most expensive lesson, not a mood: **raise, don't take.** A blocked name gets one sentence and Doug picks the word once, for the whole abstraction. "I don't know what this means" is an explanation order, never a change order. A structural surprise (unparented elements, an import cycle, a reserved prop) gets bubbled up the moment it's found, never designed around. And functionality nobody asked for — addresses, prefixes, aliases — is not scope. The full form lives in the memory record; the plan carries it because it is what determines how long a sprint takes.
