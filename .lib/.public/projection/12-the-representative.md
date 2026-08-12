@@ -554,7 +554,7 @@ That is the **Types** sprint, ruled long ago and waiting since. It is a brainsto
 
 **None.** Two decisions are open and both are Doug's, named above.
 
-**One cleanup is queued** rather than done: `lib` carries **101 type-only imports**, and at least some exist only so a forwarding getter could restate a type its source already declared — measured on `$Book.author`, where removing both leaves `tsc` clean. It is schedulable in any sprint and the per-site rule lives in [chapter zero](00-planning.md#cleanup-schedulable-in-any-sprint--the-type-only-imports).
+**Two cleanups, one done and one queued.** The `type` keyword left `lib`'s imports — **116 across 35 files**, no new cycles — and one exception is now law: a *re-export* genuinely needs `export type`, and its names must be checked one by one, because a value made type-only breaks consumers where no gate can see it. What remains is the model's root, and it is [one job wearing three symptoms](00-planning.md#queued--what-a-reference-form-is-and-whether-it-belongs-to-the-chemical-hierarchy): `$Referent` as a class, the `$$` reference forms, and the `$X$` names. **`ts-morph` 28.0.0 is installed** for the mechanical half of it.
 
 ## Verified — every gate this branch has, including the ones not run
 

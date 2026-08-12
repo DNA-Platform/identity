@@ -245,23 +245,25 @@ Speak within the **semantics of books** — the vocabulary of the domain is the 
 
 **The rule that remains:** `type` on an import is never needed here. `export type` on a re-export is — and when you write one, check each name, because a class and a const hiding among types is a break nobody's gate catches.
 
-## Queued — the root of the model, and it is ONE job wearing three symptoms *(Doug, 2026-08-12)*
+## Queued — what a reference form is, and whether it belongs to the chemical hierarchy *(Doug, 2026-08-12)*
 
-Three separate-looking instructions turned out to be the same change. **Attempted at the session's close, measured, and reverted** — the working copy is back at the committed state, `tsc` clean, 203/203.
+**Attempted at the session's close, measured, and reverted.** The working copy is back at the committed state, `tsc` 0, 203/203.
 
-**The three symptoms.**
+**`$Referent` should be a class** — Doug's ruling, and it is right on its own terms: the interface declares one member, `valid()`, and its three implementors already extend `$Chemical`. **It broke immediately, and not at those three.** It broke at the **generic constraints**: `$Location<T extends $Referent>`, `$Composible$` and `$Catalogue$` all name `$Referent` as a bound, and **five reference forms are plain classes rather than chemicals** — `$$Chapter`, `$$Section`, `$$Sentence`, `$$Word`, `$$Paragraph`. The moment `$Referent` carries a chemical base, every one of those constraints demands 41 members from something that is not a chemical. Decoupling the interfaces from it does not help, because the constraints name `$Referent` directly.
 
-- *"`$Referent` should be a class."* It is an interface declaring one member, `valid()`, and its three implementors — `$Book`, `$Writing`, `$Document` — all already extend `$Chemical`.
-- *"`$LibraryCard$` isn't supposed to exist."* Correct, and here is why it does: **`$LibraryCard` is taken by a type alias** in the same file, so the class had to wear a suffix.
-- *"Change the `$X$` names back to `$X`."* Two exist. **`$Composible$` is free** — nothing owns the bare name, so it is a pure rename. `$LibraryCard$` is not, per above.
+**So the `$$` prefix is the finding.** It marks every place where something that is **not** a chemical had to share a name space with something that is. The question underneath is not naming: *what is a reference form, and does it belong to the chemical hierarchy at all?* Answer that and `$Referent` becomes a class in one move.
 
-**What the attempt measured, and why it is not cleanup.** Making `$Referent` a class that extends `$Chemical` breaks immediately, and not at its three implementors — at the **generic constraints**. `$Location<T extends $Referent>`, `$Composible$`, `$Catalogue$` all name `$Referent` as a bound, and **five reference forms are plain classes rather than chemicals** — `$$Chapter`, `$$Section`, `$$Sentence`, `$$Word`, `$$Paragraph`. The moment `$Referent` carries a chemical base, every one of those constraints demands 41 members from something that is not a chemical. Decoupling the interfaces from it does not help: the constraints name `$Referent` directly.
+**The other three interfaces are not extraneous, measured:** `$Reference$` has **17** implementors, `$Composition$` **6**, `$Catalogue$` **7** — and **`$Catalogue$` cannot be a class at all**, because it extends two interfaces. Doug's instruction stands: remove if redundant, and **do not switch any of them to a class without asking**.
 
-**So the `$$` prefix and the `$X$` suffix have the same cause.** Both mark a place where **something that is not a chemical had to share a name space with something that is.** That is the actual question, and it is a design session: *what is a reference form, and does it belong to the chemical hierarchy at all?*
+### SETTLED — `$LibraryCard$` is intentional, and this is why
 
-**On doing it with a tool.** `ts-morph` is **not installed**; it is the right instrument for the mechanical half and would need adding. But a rename tool cannot do this job, because **only `$Composible$` is a rename.** The others are collisions, and a collision is a decision.
+*Asked and answered in the same session, recorded so it is not re-raised: **"Yes I remember the type alias. Because we want there to be dynamic properties. Yes, `$LibraryCard$` is fine."***
 
-**The order that would work:** decide what a reference form is → resolve the type alias → then rename, mechanically, with a tool. **Not the other way round.** And it belongs with types-and-validation, because `valid()` is what `$Referent` carries and what that sprint is about.
+`$LibraryCard` is a **type alias**, an intersection — `$IndexCard<$Book> & {…}` — and it takes the plain name, which is why the class wears a suffix. That is not drift. It is [R53's own requirement](06-sprint-48--subjects-and-the-library.md#r53-the-card-is-a-compilation-defined-by-the-public-build-doug-2026-08-06) holding: **a card cannot be a closed shape, because derived information on a book's subtypes must be dynamically reachable.** An intersection is how a type stays open. **Leave it.**
+
+### The remaining rename is one name, and the tool is now installed
+
+**`$Composible$` → `$Composible`** is free — nothing owns the bare name — so it is a pure mechanical rename. **`ts-morph` 28.0.0 is installed** at the workspace root for exactly this: a rename through the language service updates every reference without touching a file by hand, and it is the right instrument the moment the design question above is answered.
 
 ## The standing sprint discipline *(added 2026-08-03, out of 47's cost)*
 
