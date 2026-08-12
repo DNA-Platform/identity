@@ -62,13 +62,13 @@ Added out of [The Parse](../projection/13-the-parse.md), where the same mistake 
 
 It is not harmless, and here is how it failed:
 
-- **It sniffed what the model knows.** `p.startsWith('> ')` asked a *string* whether it was a quotation. When the model learned that a quotation is a `$Quoted`, the string stopped carrying its angle and every quote on the page silently became prose.
+- **It sniffed what the model knows.** `p.startsWith('> ')` asked a *string* whether it was a quotation. When the model took that fact onto itself — a quotation became a `$Paragraph` carrying `mark='>'`, the angle lifted out of the copy onto the paragraph — the string stopped carrying its angle and every quote on the page silently became prose.
 - **It invented addresses.** `#{r.index}.{si + 1}` built an anchor by arithmetic over array positions, while a reference resolved by walking the model. The two agreed by coincidence until the model's numbering changed, and then a link followed to nothing.
 - **It borrowed the model's members for its own state.** A ribbon's slot among the other ribbons was stored as `mark.index` — the writing's number — because a number happened to be there.
 
 **So the law is: a view asks the model, and draws the answer.** Concretely, three things follow, and all three are greppable:
 
-- **Ask, do not test the output.** `p instanceof $Quoted`, never `p.copy.startsWith('> ')`. A view that re-derives what a class already decides will disagree with it the first time the class learns something.
+- **Ask, do not test the output.** `p.mark === '>'`, never `p.copy.startsWith('> ')`. A view that re-derives what the model already carries will disagree with it the first time the model learns something.
 - **An address is a position, not a formula.** The anchor a view renders should be the same string a reference resolves — then following one lands on the very part that was drawn, and the two cannot drift because there is one numbering.
 - **A view's own state lives on the view.** If the demo needs to remember something, it declares a member for it. Borrowing a model member because it is unused is how app state ends up inside the writing.
 

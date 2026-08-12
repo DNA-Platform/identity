@@ -18,7 +18,7 @@ Doug's list: **letter, word, sentence, paragraph, section, document.** Those are
 | level | composes | how prose divides | valid when |
 |---|---|---|---|
 | document | sections | *(not divided — handed or written)* | it has a summary |
-| section | **sections or paragraphs** | at blank lines, and at everything else the notation marks | its title is not empty |
+| section | paragraphs | at blank lines, and at everything else the notation marks | its title is not empty |
 | paragraph | sentences | at its stops, stepping over code spans and targets | it has a letter or number |
 | sentence | words | into words and the syntax between them, composites whole | it has a letter or number |
 | word | letters | into graphemes | one unbroken run with a letter or number |
@@ -62,7 +62,7 @@ The prose between written parts is divided and composed as that level divides pr
 
 **Markdown is not a kind of writing. It is how writing is written** — *"just a part of `$Section`, not `$MarkdownSection`… the canonical language for writing compositions"* (Doug). So the levels speak it themselves, and the word appears nowhere in the package.
 
-A section divides at blank lines **and** pulls a fence whole **and** cuts at a heading. A **heading is not a part** — it opens a section that holds everything written under it until a heading of equal or higher rank, which is how `#` depth becomes nesting. A composite at word grade — a link, a code span, a formula, an escape — is pulled **whole** before anything is split into words, so a target never becomes prose and mathematics keeps its underscores.
+A section divides at blank lines **and** pulls a fence whole **and** cuts at a heading. A **heading is a `$Title`, standing among the paragraphs** — and a heading of *any* depth is the same grade, so `# X / ## Y / ### Z / # A` is **four sections and no tree**. *Doug: "the levels and nesting can be handled elsewhere."* Depth is a containment to bolt on later; the parse does not carry one it was never asked for. A composite at word grade — a link, a code span, a formula, an escape — is pulled **whole** before anything is split into words, so a target never becomes prose and mathematics keeps its underscores.
 
 **Only a blank line divides prose.** Three lines under single newlines are one paragraph — a stanza — and a quotation broken over several lines is one quoted paragraph. A **list** is the exception and it is not one: the notation marks each item, so each item is a paragraph in its own right.
 
@@ -81,9 +81,11 @@ Used writing means what it says. **Mentioned writing stands for itself** — a s
 
 ## A figure, and a name
 
-A figure is a **paragraph that draws something**. What it draws is its **content, and content is not writing** — a list of names, a card, a piece of source. The only words a figure has are its **caption**, which is its copy. So **a figure is valid because it has something to draw**, not because it has letters.
+**A figure is a caption.** *Doug: "maybe the default figure is just a caption and to subclass it is to add something that's pure view… the whole point of the caption is that you have satisfied its role as a paragraph. So now you can do whatever you want with the subclasses."* So `$Figure` is a paragraph carrying a `$Caption` — a sentence, possibly parenthetical but **never absent** — and it is valid because it has one. `drawn()` returns nothing. A subclass overrides `drawn()` and nothing else.
 
-*Content that is not writing* recurs by grade: an inline formula and an inline code span are the same shape one level down, **a word whose content is not writing**. `$Figure` is its paragraph-grade form and is Doug's name; **its word-grade sibling is still unnamed and still owed.**
+**That is the whole of it, and it is deliberately the top.** `$Figure` is *the thing added* at this level; the framework ships no kind beneath it. A book that wants an equation, a rule, a plate declares its own — as the demo does with `$Equation` and `$Rule`. *The earlier reading of a figure as "content that is not writing" was wrong: it swept a picture, a thematic rule and a code listing together, and a listing is source rather than a picture.*
+
+**Content that is not writing is a separate idea, and it has its own class.** `$Code` is Doug's name and is framework-level *because code is going to be live in this framework*. It recurs one grade down as **a word whose content is not writing** — an inline formula, an inline code span — which stand today as `$Formula` and `$Snippet`, both phrases that mention rather than say. *The real answer is Doug's and is owed: **one `$Code` with an `inline` boolean whose LEVEL moves** between paragraph and phrase. That needs dynamic layering, which the framework does not have.*
 
 **A `$Phrase` is a name, and it is word grade.** *"Why not make a `$Phrase` a type of word — maybe it's a word that can contribute multiple words if that's possible (if not we treat it as one)"* (Doug). It is the second: one word that admits what a name contains, spaces among them. It exists because an author's name was claiming to be a **sentence**, and a name sits inside a sentence rather than standing as one — so the misfit was never in the parse, it was in the level the name declared. `$Author`, `$Subject` and `$Canonical` are phrases.
 
@@ -97,5 +99,7 @@ A class states **why** it is not valid, in the same place `$check` states that a
 
 - **A document requires a summary, and it is the first paragraph of the first section** — ruled by Doug, and **not yet built**. The demo is written the other way round, so landing it moves fifteen chapters' summaries to the top as parenthetical opening paragraphs, which is authorial work rather than a refactor.
 - **Syntax as a typed word** ([48's R24](../projection/06-sprint-48--subjects-and-the-library.md#writing)) — punctuation is a mentioned word and carries no type. The walk allows more; nothing was built.
-- **The word-grade form of *content that is not writing*** — reached for three times now, and still unnamed.
+- **The word-grade form of *content that is not writing*** — `$Formula` and `$Snippet` stand there now, but as two classes where Doug named **one**: a single `$Code` whose `inline` boolean moves its level. That is **dynamic layering**, and it is the largest thing this account is missing.
+- **A list is a paragraph and its items are its sentences.** *Doug: "I would put list at the paragraph level and let items be the sentences within it — see how much more elegant that is?"* Today the parse makes each item its own marked paragraph. The change was attempted, broke six promises, and was reverted rather than left red.
+- **Whether the fixed hierarchy holds.** *Doug: "ultimately we will probably need to make the composition types dynamic, and `$Letter`–`$Document` become canonical starting points that start in the right type. Maybe. But I want to see how far we can go with a fixed hierarchy and see what happens."* That is the standing instruction for this whole chapter.
 - **Whether a written part should survive to its own level.** A word-grade part written inside a section is *too low*, so its copy joins the text run and the object does not reach the sentence that would hold it. `compose` receives text; carrying elements would keep it. Nothing needs it today, and that is why it was not built.

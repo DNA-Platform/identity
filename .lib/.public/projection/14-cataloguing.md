@@ -530,9 +530,9 @@ Seven classes stopped **assigning** `parenthetical` in a constructor and now **d
 |---|---|---|
 | `$Fenced` | **`$Code`** | Doug's name. Framework-level **because code will be live** in this framework |
 | — | **`$Caption`** | Doug's class: a sentence, **possibly parenthetical but never absent**, so a figure always has copy |
-| `$Plate` `$Break` `$Displayed` | kinds of **`$Figure`**, one file each | Doug's ruling: `$Figure` is the base of all **visual** things |
-| `$Quoted` | **`$Quotation`**, and **`mark` moved to `$Paragraph`** | the duplication Doug named as *framework rot* |
-| `$Item` | its own file, keeping only `ordered` | one idea per file |
+| `$Plate` `$Break` `$Displayed` | ~~kinds of **`$Figure`**, one file each~~ — **struck by [the last cut](#the-last-cut--doug-stopped-the-implementer-adding-words)**; `$Figure` **is** the thing added | Doug's ruling: `$Figure` is the base of all **visual** things |
+| `$Quoted` | ~~**`$Quotation`**~~ — **struck**; only **`mark` moved to `$Paragraph`** survives | the duplication Doug named as *framework rot* |
+| `$Item` | ~~its own file~~ — **struck**: *"an `$Item` is not an essential element in the writing ontology"* | one idea per file |
 | `$Pointing` | **dissolved** | `$Link` was the right word at the wrong level and had **zero consumers**, so it became word grade. **No name was needed.** |
 | `$Inline` | **`$Formula`** and **`$Snippet`** | *"$Inline sounds like it can be a phrase"* — and `$Phrase` already admits them, being `$Word` with the whitespace rule lifted |
 
@@ -587,23 +587,94 @@ Doug ruled `$$Chapter` the canonical table of contents entry, and the merge with
 
 ## Every gate, at the close
 
+*(Superseded — the closing numbers are [at the very end](#every-gate-at-the-actual-close).)*
+
+## THE LAST CUT — Doug stopped the implementer adding words
+
+***"You have figure now have a plate. You created fenced again. You need to stop. Make figure the thing that's added. No wrapper. Figure out how to make it the top. Stop adding in extra things and stop adding words to the framework. You think Plate is part of the semantics of writing?"***
+
+**Five classes the implementer had just added are deleted:** `Plate.tsx`, `Break.tsx`, `Displayed.tsx`, `Quotation.tsx`, `Item.tsx`. The table above records them because they were built; this records that **they were wrong**, and the correction is not a rename.
+
+**`$Figure` IS the thing added, and Doug said what it is:** *"maybe the default figure is just a caption and to subclass it is to add something that's pure view."* So `$Figure extends $Paragraph`, carrying a necessary `$Caption` — **that alone satisfies its role as a paragraph** — and `drawn()` returns `null`. A subclass overrides `drawn()` and nothing else. There is no wrapper above it and no kind beneath it in the framework.
+
+**Which is why the demo now declares its own figure kinds** — `$Equation` and `$Rule` in [`markdown/section.tsx`](../../package/app/src/sections/book/../../markdown/section.tsx) — and the framework ships none. *This caught a live defect: with every figure drawn by the demo's katex, a thematic rule was being typeset as mathematics. Both drivers were green only because no driven page contained a `---`.*
+
+**`$Item` was struck on its own ruling:** *"Item is not a form of paragraph… it needs to either be more specific than the writing folder, or something else, but an `$Item` is not an essential element in the writing ontology."* And Doug's replacement is the elegant one, **designed and not yet built**: *"I would put list at the paragraph level and let items be the sentences within it."* Attempted, it broke six promises, and was **reverted to the commit rather than left red** — carried forward as owed work.
+
+## A SECTION COMPOSES PARAGRAPHS — the flattening, and why each layer earns its level
+
+***Doug: "`# X / ## Y / ### Z / # A` — that's just 4 sections, and the levels and nesting can be handled elsewhere."*** *And: "sections add titled paragraphs, the title still has to be at the paragraph level to interpret the section as a composition of paragraphs anyways."*
+
+`$Section extends $Writing<$Paragraph>` and implements `$Composition$<$Paragraph>` — **flat**. The `$Paragraph | $Section` union is gone, `blocks()` no longer absorbs anything under a heading, and a heading of **any** depth becomes a `$Title` standing among the paragraphs. Depth is a containment to bolt on later.
+
+**And that flattening is what let the algebra close.** *Doug: "Make the paragraph section thing feel good… Sections add titles as a canonical to multiple paragraphs. Documents add summary as a canonical to multiple sections along with the first title — see the elegance of introducing things. Each layer adds something interesting."* So: a section's **canonical is part zero, the title**, standing where it was written rather than lifted into a member; a document's **canonical is the section that carries the title and the summary**, and `summarised()` is what recognises it.
+
+## THE `$$` FAMILY IS WRITING — and a reference mentions its referent
+
+***Doug: "Why aren't the `$$` classes writing?"***
+
+They are. **Each reference form is a chemical one grade below what it stands for**, and catalogues the level beneath:
+
+| form | is | catalogues |
+|---|---|---|
+| `$$Chapter` | a `$Section` | `$$Section` |
+| `$$Section` | a `$Paragraph` | `$$Paragraph` |
+| `$$Paragraph` | a `$Sentence` | `$$Sentence` |
+| `$$Sentence` | a `$Word` | `$$Word` |
+| `$$Word` | a `$Letter` | — |
+
+**The floor had to open for it.** `$Letter` stopped implementing `$Reference$<$Letter>` and no longer answers `read()`, because a reference form must be free to read **elsewhere** and the floor was the one place that forbade it. *Doug: "If it's blocking anything change it. Not important."* A letter is still its own `ref`.
+
+**`$Row` is deleted, and `$$Chapter` is the row.** This is [D1](#d1) landing after [U7](#u7) stopped at its bound — and it landed **for free**, because once `$$Chapter extends $Section` the two classes were the same shape. The merge U7 could not force became a deletion. `$TableOfContents` builds `$$Chapter` entries directly and drops the position-carrying filter, since a row holds no number of its own.
+
+**And Doug named the view:** *"The sentence reference is literal. Maybe you display the sentence as the reference in quotes?"* So every reference declares `$role = 'mention'` — **the framework's existing word, no new one** — and draws its referent **named where the referent has a name, quoted where it has none**. Four promises hold it.
+
+*One mechanism worth keeping: `$role? = 'mention' as const` broke every `$$` class's inheritance, because `as const` narrows the property out of the reach of the `$` machinery. `$role?: Role = 'mention'` compiles.*
+
+## `$Referent` IS A CLASS — and the one thing it could not cover is the finding
+
+Doug ruled this in sprint 47 and it had been queued ever since, blocked on exactly one thing: **five reference forms were plain classes rather than chemicals**, so every generic constraint naming `$Referent` demanded 41 members from something that was not one. Making the `$$` family writing removed the block, and then it went in one move — `$Referent extends $Chemical` declaring `valid()`, with `$Writing`, `$Book`, `$Key`, `$Location` and `$Path` extending it. **Sixty-three sites renamed, `tsc` 0.**
+
+**What it could not cover is worth more than the rename.** `$Composible$.follow()` answers a **reading** — the composition you get by dereferencing a catalogue's entries — and a reading is not a chemical. So:
+
+- **`$Composition$` stopped extending `$Referent`** and asks for `valid()` on its own. Everything anyone *writes* that has parts is a chemical besides; a reading is the exception.
+- **`$Catalogue$` spells out its reference half** rather than inheriting `$Reference$<$Composition$<T>>`. It still reads to a composition and still continues onto another reference — the equation is unchanged — but the compiler is no longer asked to prove that a reading is a thing in the library.
+
+**One direction was tried and abandoned rather than forced:** dropping the bound on a reference's *target*, so that a reference could point at anything. It produced **95 errors from variance**, not from semantics, and was reverted. *The sentence it was trying to say — a reference is a chemical, what it points at need not be — is still true, and `$Catalogue$` now says it in one place instead of in a type parameter.*
+
+**Three promises hold it**, including the one that asserts a reading is **not** a referent, so the exception cannot be quietly closed later.
+
+## AND THE DRIVER CAUGHT A REAL DEFECT, not just its own staleness
+
+The book driver went red at two manifold checkpoints. **One was the driver's own staleness** — it asserted the manuscript shows `class $Book extends $Chemical`, which is now `$Referent`; that is the gate reading the model correctly and being told the model changed.
+
+**The other was a live bug in the demo.** *"A turned page opens at its head"* failed with `scrollTop` at **9**, not 0. `head()` reset the scroll in a `setTimeout(0)`, which could land **before the turn had painted** — and `light()` leaves a `scrollIntoView({behavior: 'smooth'})` still animating, which then carries the freshly turned page a few pixels down after the reset. It now waits two frames and **jumps rather than glides**. *This was latent: the reset had always been a guess about ordering, and it happened to win until this sprint's extra render work changed the timing. Both drivers were re-run twice to confirm it was not a flake.*
+
+## Every gate, at the actual close
+
 | gate | baseline | now |
 |---|---|---|
 | chemistry suite + `tsc` | 674/674, 61 files, 0 | **674/674**, 61 files, **0** *(untouched)* |
-| lib suite | 224/224, 22 files | **233/233**, **23 files** |
+| lib suite | 224/224, 22 files | **239/239**, **23 files** |
 | lib `tsc` | 0 | **0** |
-| app typecheck | 65 files, **4** baselined, 0 unexpected | **66 files, 1 baselined, 0 unexpected** |
+| app typecheck | 65 files, **4** baselined, 0 unexpected | **66 files, 1/1 baselined, 0 unexpected** |
 | `verify-book.mjs` | exit 0, 51 checkpoints | **exit 0, 51 checkpoints** |
 | `verify-demo.mjs` | exit 0, 25 checkpoints | **exit 0, 25 checkpoints** |
 
-**Files deleted this sprint:** `Fenced.tsx`, `Quoted.tsx`, `Pointing.tsx`, `Inline.tsx`, `LibraryCard.tsx`, `LibraryCatalogue.tsx`. **Added:** `Caption.tsx`, `Code.tsx`, `Plate.tsx`, `Break.tsx`, `Displayed.tsx`, `Quotation.tsx`, `Item.tsx`, `Formula.tsx`, `Snippet.tsx`, and the demo's `librarycard.tsx`.
+**Files deleted this sprint:** `Fenced.tsx`, `Quoted.tsx`, `Pointing.tsx`, `Inline.tsx`, `LibraryCard.tsx`, `LibraryCatalogue.tsx`, `Row.tsx`, `utilities/Composible.tsx`, and the five the last cut struck — `Plate.tsx`, `Break.tsx`, `Displayed.tsx`, `Quotation.tsx`, `Item.tsx`. **Added and standing:** `Caption.tsx`, `Code.tsx`, `Formula.tsx`, `Snippet.tsx`, and the demo's `librarycard.tsx`, `$Equation` and `$Rule`.
+
+*`$Composible$` moved below `$Composition$` in `writing/Composition.tsx` on Doug's word — "small cleanup but I like simplicity" — removing a file from `utilities/`.*
 
 ## Not done, and named rather than omitted
 
 - **[U15](#u15) — the drivers gained no new checkpoints.** They pass at 51 and 25 unchanged, which means the Shelf's new entries are **driven but not asserted**. The next session's first job.
 - **[U13](#u13) — the refusal is not drawn.** Reciprocity left the framework on Doug's ruling and has not been rebuilt as the demo's own law.
-- **[U11](#u11), [U14](#u14), [U16](#u16)'s library edits** — not reached.
-- **[C1](#c1) and [C12](#c12)** — the loose module bindings and the parse re-deriving what the lexer already answered. Both still stand, and C12 is the strongest Solutions candidate on the list.
+- **[U11](#u11) and [U16](#u16)'s remaining library edits** — not reached. *([U14](#u14) is done: the Shelf's cover and synopsis were rewritten true, because both said a catalogue is not one of its own entries and that is now false.)*
+- **A list is a paragraph and its items are its sentences** — Doug's design, attempted and reverted. The strongest single piece of owed work.
+- **Dynamic layering** — one `$Code` whose level moves with an `inline` boolean. `$Formula`/`$Snippet` stand until it exists.
+- **[C1](#c1), [C3](#c3), [C6](#c6) and [C12](#c12)** — the loose module bindings, `$IndexCard`'s missing level, the `$Composible$` rename, and the parse re-deriving what the lexer already answered. C12 is still the strongest Solutions candidate on the list.
+
+**Next sprint is the build**, as planned before this one opened.
 
 <!-- citations -->
 [conv]: ../../../../../dna-library/library/claude-dna/conversations/2026-07-18-the-semantics-of-books.md "The Semantics of Books — Doug, 2026-07-18; the primary source"
