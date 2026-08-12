@@ -526,11 +526,13 @@ Seemann's objection has two halves and **neither survives contact with what our 
 
 *One state, written 2026-08-12 at the session's close. Everything above is the record; this is the present.*
 
-## → NEXT: `/ce-brainstorm` — code in books made live
+## → NEXT: [The Parse](13-the-parse.md) — *superseded 2026-08-12, twice, by Doug*
 
-**Doug, at this session's close:** *"Next sprint is making code in books live so we can implement types and other forms of validation."*
+**What this session closed on:** *"Next sprint is making code in books live so we can implement types and other forms of validation."*
 
-That is the **Types** sprint, ruled long ago and waiting since. It is a brainstorm, not work: its central mechanism has never been designed, and [the failure filed against Sprint 48](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md) is exactly what happens when that gets a unit instead of a design session.
+**Reversed the same day, in two steps.** First to the build — *"I think we need to do the .public build before we do types. We need to know what it's like to lift this code first before we try to guess at what point code might be made to run."* Then to the writing model, which now runs first: see [The Parse](13-the-parse.md). **Types still waits, and the build still precedes it.**
+
+The reason both reversals hold is the same one: [the failure filed against Sprint 48](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md) is what happens when an undesigned mechanism gets a unit instead of a design session, and guessing where code runs before lifting the code is that move again.
 
 **Two decisions are Doug's and neither blocks starting.** Whether the Lab's two cases stand in for the demonstration this sprint's plan named — two books of one class, which does not exist. And whether the remainder — the dresses, the region-scoping design, the `.public` demo redesign — is a sprint of its own.
 

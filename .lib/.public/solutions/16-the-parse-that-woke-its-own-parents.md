@@ -59,6 +59,21 @@ Before the threading, a composed part was its own parent, so the write had nowhe
 
 The consequence is a real limit rather than a bug to fix quietly: **region-scoped substitution through the parse is unavailable** until `parts()` stops writing to what it composes. That is a design question about what a reading is allowed to do, and it belongs in a design session rather than in a patch.
 
+## DISCHARGED — [The Parse](../projection/13-the-parse.md), 2026-08-12
+
+**The law above still holds. Its condition no longer does, so the limit is gone.**
+
+The design session happened, and Doug's answer was to remove the writing rather than to work around it. `parts()` wrote **twice** — a number onto every part, and `$role = 'mention'` where mentioning propagates — and both are gone:
+
+- **Nothing carries a number.** Position answers where a part stands, and `at(n)` reads `parts()[n]`. A number is what a **reference** holds; `$Location` keeps its own, because that is what it *is*.
+- **Mentioning propagates by lineage.** A part is mentioned if what holds it is, so `role` reads its parent instead of being assigned one. That makes this defect's fix and mention-propagation **one mechanism** rather than two.
+
+With nothing written, the parse threads lineage into what it composes and **both drivers stay green** — `verify-book.mjs` at 51 checkpoints, `verify-demo.mjs` at 25. The change that produced this chapter is the change that now works.
+
+**The second write was nearly missed, and the record is why it was not.** The plan for the repair said threading a parent was safe "once nothing is written," counting only the number. Rereading *this chapter* while planning surfaced `part.$role = 'mention'` — which fires for exactly the same reason — and it was fixed before it could take the drivers red a second time. **That is the whole return on filing a defect: the next attempt read the chapter and found the half the plan had missed.**
+
+**What is still true, and worth keeping:** a reading may not write to what it composes. The limit was never about parents.
+
 ## The gate that missed it, and it is the fourth filing
 
 The change was made to enable region scoping, run against the unit suite, seen green, and **never driven**. The suite could not have caught it: **no test renders a book**, so 203/203 proved compatibility and nothing about the parse under a paint.

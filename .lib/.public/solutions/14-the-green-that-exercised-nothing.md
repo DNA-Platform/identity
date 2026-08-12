@@ -53,3 +53,27 @@ Never a bare `PASS`. A count of files, a count of known debt **named by identity
 **The habit that would have caught it, and it is cheap: watch the gate go red before trusting its green.** Break the thing it checks, on purpose, and confirm it fails *with a reason*. Three deliberate breakages took minutes here and produced three named failures. **A gate nobody has watched fail is a relay wearing infrastructure's clothes.**
 
 *Filed as the third appearance of [the stale-build law](05-the-suite-that-passed-against-a-stale-build.md) — and a symptom filed three times is a cause nobody has fixed. The cause is not any one gate. It is reporting a number without its scope.*
+
+---
+
+## Two more of it, from [The Parse](../projection/13-the-parse.md) — and one of them is a false RED
+
+**The relative `-p` does it too, and the gate is what caught it.** Running `tsc -p tsconfig.json` from inside `app/` printed nothing and exited 0, while `node app/typecheck.mjs` — the same config, reached by **absolute path** — reported four genuine errors in the same tree.
+
+```
+cd app && tsc -p tsconfig.json --noEmit                    →  silence, exit 0
+node app/typecheck.mjs   (tsc -p <absolute>/tsconfig.json) →  65 files, 4 baselined, 4 unexpected
+```
+
+It was run as a shortcut, believed, and the real gate contradicted it. **The gate won because it states its scope and the shortcut does not** — which is the fix above, doing exactly the job it was built for. *Do not reach around a gate for a faster answer; the gate is the faster answer, because its number arrives with its meaning.*
+
+**And the same disease inverted: a driver reported four failures that did not exist.** The dev server had been running since before three modules were deleted, so `verify-book.mjs` walked a page built from a **module graph that no longer existed** — four FAILs, all fictitious. The unit suite disagreed with the screen, and the suite was right.
+
+```
+server started before the deletions  →  4 FAIL, all against modules that are gone
+server restarted, same commit        →  0 FAIL
+```
+
+**A false red costs what a false green does**, and it costs it faster: it sends you diagnosing code that is already correct. The tell is exact and worth memorising — **when a driver and the unit suite disagree about the same objects, suspect the process before the code.**
+
+**So the scope rule extends to what the gate is RUNNING AGAINST, not only what it looked at.** A suite states which build; a typecheck states which files; **a driver states which server** — and a server that has outlived a file deletion is serving a build nobody wrote. *Restart the server after deleting a module, before believing anything it says.*

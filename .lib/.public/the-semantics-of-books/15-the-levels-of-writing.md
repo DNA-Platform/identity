@@ -5,76 +5,97 @@
 
 ---
 
-*The derivation stops at [Level One has one primitive](02-composition.md). This chapter is what that primitive turned out to be when it was built — the settled account, written to be read instead of a sprint. Built in [Writing](../projection/10-writing.md); the record of how it was found is there.*
+*The derivation stops at [Level One has one primitive](02-composition.md). This chapter is what that primitive turned out to be once it was built — the settled account, written to be read instead of a sprint. Built in [Writing](../projection/10-writing.md), reshaped in [The Parse](../projection/13-the-parse.md); the records of how it was found are there.*
 
 ## Six levels, and a document is one of them
 
-Doug's list, given 2026-08-10: **letter, word, sentence, paragraph, section, document.** Those are the *types of writing*. **Chapter, book, subject and library are things done with a document** — they are not further levels of writing, which is why `$Book` composes chapters and is not itself writing.
+Doug's list: **letter, word, sentence, paragraph, section, document.** Those are the *types of writing*. **Chapter, book, subject and library are things done with a document** — they are not further levels, which is why `$Book` composes chapters and is not itself writing.
 
-`$Writing` is the base and the generalization. A level **composes the level below it**; a letter composes nothing and is the floor. There is no separate abstraction for "a composition" — the class was always there, and two levels had simply been built outside it and were copying it out by hand.
+`$Writing` is the base and the generalization. A level **composes the level below it**; a letter composes nothing and is the floor.
 
-**Each level declares exactly four things**, and nothing else:
+**Each level declares exactly three things**, and nothing else:
 
-| level | composes | how prose divides | counts from | valid when |
-|---|---|---|---|---|
-| document | sections | *(not divided — handed or written)* | 1 | it has a summary |
-| section | paragraphs | at blank lines | **0** | its title is not empty |
-| paragraph | sentences | at its stops | 1 | it has a letter or number |
-| sentence | words | words and the syntax between | 1 | it has a letter or number |
-| word | letters | into graphemes | 1 | letters, numbers, apostrophes |
-| letter | — | — | — | it is one grapheme |
+| level | composes | how prose divides | valid when |
+|---|---|---|---|
+| document | sections | *(not divided — handed or written)* | it has a summary |
+| section | **sections or paragraphs** | at blank lines, and at everything else the notation marks | its title is not empty |
+| paragraph | sentences | at its stops, stepping over code spans and targets | it has a letter or number |
+| sentence | words | into words and the syntax between them, composites whole | it has a letter or number |
+| word | letters | into graphemes | one unbroken run with a letter or number |
+| letter | — | — | it is one grapheme |
 
-*A section counts from 0 because its first paragraph is its title — the canonical is the special first, at every level.*
+**A section composes sections OR paragraphs, and the union is not a compromise.** *A section is like a subject, which can have other subjects inside it* (Doug). Prose can only ever divide into paragraphs, so a **written** part may be a section and a **composed** one never is. Nesting is structural — the tree is kept — and the flat list is a getter that reaches through it, exactly as `$Book.paragraphs` always did.
 
-## Writing arrives two ways, and both are the framework's
+**There is no counting column, because nothing carries a number.** A part's place is its position in what composes it; `at(n)` reads `parts()[n]`. A number is something a **reference** holds — that is what a `$Location` *is* — never a property of a part.
 
-A bond constructor is handed **an ordered sequence**, not one child per child ([the grouping](../../../chemistry/.lib/composition/03-binding-constructor.md#what-it-actually-receives--the-grouping)):
+## The canonical stands at zero, at every level
 
-- **inline** writing — text, and any chemical whose template declares `inline` — is gathered into one block per run, reachable as that block's `$elements`;
-- **anything not inline** arrives as **its own argument**, in place.
+A section's title **is its part zero**: not a member lifted out of the block, not a paragraph rebuilt from its text on every ask, but the written object standing where it was written. `$Title` is **paragraph grade**, because that is the level it stands at.
 
-So a chapter written *prose · figure · prose* reaches its bond as **three arguments**. Keeping only the first is what made written parts disappear for two sprints, and the fix was to keep the sequence — there was never anything to invent.
+That makes the shape one law seen at two scales: a book is a **cover at chapter zero** plus a parenthetical synopsis; a section is a **title at paragraph zero** plus a summary that may be parenthetical. Where a construct is carved right, the same figure turns up one grade down.
+
+## Writing arrives as one block
+
+**Everything below a document is inline**, so the framework groups a writing's own writing into **one block** and hands it over as one thing. A bond that receives a sequence throws, because that means something inside it declared itself apart from the prose.
+
+`inline` therefore means only what chemistry means by it — *this arrives inside the block* — and it carries no part of the parse's judgement. It used to carry both, and a figure made inline vanished from its own section until the two jobs were separated.
 
 ## The parse
 
-`parts()` walks the writing in order. A **written part** stands where it was written; the prose between written parts is divided as that level divides prose. **Mixing is the point** — a figure between two paragraphs leaves the paragraphs alone, and the numbering counts across both.
+**One walk, written once, and it is a tool**: it takes a block and the levels that block accepts, and treats each element by its level.
 
-**A part is recognised by two facts, and both are needed:** it is at the **level below**, and it is **not inline**. Level alone is not enough — an author's name *is* a sentence, but it sits **inside** one, so its level would make it a part of the paragraph holding it. Standing and kind are different questions.
+- **too high** — it cannot stand here, so it **throws**, naming both levels;
+- **too low** — it is text, and its copy joins the prose around it;
+- **at an accepted level** — it **is** a part, the very object that was written.
+
+The prose between written parts is divided and composed as that level divides prose. **Mixing is the point** — a figure between two paragraphs leaves the paragraphs alone, and both are read in the order they were written.
+
+**LEVEL ALONE DECIDES, and this is what makes derived kinds free.** `level` is a getter, so it is inherited: a kind the model has never heard of is handled without the walk being told anything about it. There is no class name anywhere in the walk, and no registry of kinds. A section subclass is a section; a figure is a paragraph; a kind derived from *those* is handled at the same depth, because inheritance is not a case.
+
+**The parse writes nothing.** Not a number, not a role. That is what lets a composed part **carry a parent** — and a lineage is what a scope needs in order to reach through prose. While the parse wrote, threading a parent looped the page, because a write to a parented chemical wakes its whole ancestry and re-runs the reading that made it.
+
+**The parse does not judge, either.** An empty piece is not a piece; a whitespace one is, because a space between two words is syntax. Everything else it composes is kept — and a part that will not validate is a **validation failure**, which the framework catches, keeps on the instance and draws where it stands. Dropping it made the parts shorter than the writing and told nobody.
 
 **The parse is post-hoc and pure** — a reading of the writing, recomputed, never stored. *"Someone has to be doing something interesting to render the parsed input. It shouldn't be used in the standard view at all"* (Doug). The standard view renders the **block**, which is why a written part already draws itself; what the parse adds is that it **exists**.
 
+## The notation is the levels' own
+
+**Markdown is not a kind of writing. It is how writing is written** — *"just a part of `$Section`, not `$MarkdownSection`… the canonical language for writing compositions"* (Doug). So the levels speak it themselves, and the word appears nowhere in the package.
+
+A section divides at blank lines **and** pulls a fence whole **and** cuts at a heading. A **heading is not a part** — it opens a section that holds everything written under it until a heading of equal or higher rank, which is how `#` depth becomes nesting. A composite at word grade — a link, a code span, a formula, an escape — is pulled **whole** before anything is split into words, so a target never becomes prose and mathematics keeps its underscores.
+
+**Only a blank line divides prose.** Three lines under single newlines are one paragraph — a stanza — and a quotation broken over several lines is one quoted paragraph. A **list** is the exception and it is not one: the notation marks each item, so each item is a paragraph in its own right.
+
+**A notation is still an axis rather than a level** — `divide` and `compose` are the axis, and anyone may answer them differently. What changed is the **default**: the levels now come with the canonical language already spoken.
+
 ## Used and mentioned
 
-`role` is a property of writing: **`use` | `mention`**, `use` the default, declared per class and never assigned.
+`role` is a property of writing: **`use` | `mention`**, `use` the default.
 
 Used writing means what it says. **Mentioned writing stands for itself** — a space, a comma, a quoted word. `$Punctuation` is a word that is mentioned.
 
-Two laws follow, and they are one law seen twice:
-
-- **Mentioning propagates.** A mention **is** parsed, and what stands inside it is mentioned too. *Doug's image is the argument: it is like a thing in quotes, and quoting a word does not dissolve its letters — `"cat"` still has a c, an a and a t, all inside the quotation.* ([`$Writing.parts()`](../../package/src/writing/Writing.tsx): `if (this.role === 'mention') part.$role = 'mention'`.)
-- **What is written is present; what is used is what is read.** A sentence's *parts* are everything in it, syntax included, so positions count the syntax. Its **words** are the used ones.
+- **Mentioning propagates by LINEAGE.** A part is mentioned if what holds it is. *Doug's image is the argument: it is like a thing in quotes, and quoting a word does not dissolve its letters — `"cat"` still has a c, an a and a t, all inside the quotation.* It used to be **written** onto every composed part, and that write is exactly what a parse may not do.
+- **What is written is present; what is used is what is read.** A sentence's *parts* are everything in it, syntax included. Its **words** are the used ones.
 
 **This is `parenthetical` one level up.** A book's copy passes over its parenthetical chapters exactly as a sentence's words pass over its syntax — present in the writing, absent from the reading, **and its own parts still its own.**
 
-*The rule this replaces was **"a mention is not parsed."** It was wrong in a way that only showed at the floor: **a letter is its own reference**, so every grapheme in the writing must be addressable, and stopping the parse at a mention made a comma unpointable. Correcting it cost one promise and made it stronger — following every part down to its letters now returns the writing itself rather than a reading with the spaces squeezed out.*
+## A figure, and a name
 
-## A figure
+A figure is a **paragraph that draws something**. What it draws is its **content, and content is not writing** — a list of names, a card, a piece of source. The only words a figure has are its **caption**, which is its copy. So **a figure is valid because it has something to draw**, not because it has letters.
 
-A figure is a **paragraph that draws something**. What it draws is its **content, and content is not writing** — a list of names, a card, a piece of source. The only words a figure has are its **caption**, which is its copy.
+*Content that is not writing* recurs by grade: an inline formula and an inline code span are the same shape one level down, **a word whose content is not writing**. `$Figure` is its paragraph-grade form and is Doug's name; **its word-grade sibling is still unnamed and still owed.**
 
-So **a figure is valid because it has something to draw**, not because it has letters. That distinction is the whole of it: a paragraph of prose with no letters is nothing, but a code listing with no caption at all is a perfectly good figure. Each kind states what it means by having content, in its own words — the `$Cover` pattern.
+**A `$Phrase` is a name, and it is word grade.** *"Why not make a `$Phrase` a type of word — maybe it's a word that can contribute multiple words if that's possible (if not we treat it as one)"* (Doug). It is the second: one word that admits what a name contains, spaces among them. It exists because an author's name was claiming to be a **sentence**, and a name sits inside a sentence rather than standing as one — so the misfit was never in the parse, it was in the level the name declared. `$Author`, `$Subject` and `$Canonical` are phrases.
 
-Whether the caption reads as prose is **the kind's to decide**: a listing's label is parenthetical, a plate's caption is read.
+## Validation says why
 
-**And the pattern is not only a paragraph's.** [Markdown](../projection/11-markdown.md) reached for it twice one level down — an inline formula and an inline code span are both **a word whose content is not writing**, present as a part and absent from the words. **The model said so before anyone decided it:** a code span composed to a `$Word` and the suite went red, because `$Word` demands letters and `parts()` has parentheses.
+A class states **why** it is not valid, in the same place `$check` states that a parameter was wrong: one collection per bond, one raise, **both kinds together**, so a reader can see whether they are related.
 
-So *content that is not writing* is a shape that recurs by grade, exactly as the canonical does. `$Figure` is its paragraph-grade form and is Doug's name. **Its word-grade sibling is unnamed and is owed.**
+`$valid(condition, reason)` works exactly as `$check` does — it **returns its condition** and records the reason when the condition is false. So `valid()` keeps answering true or false and every call site is unchanged. The rule that comes with it: **never short-circuit in front of a `$valid` call**, because a swallowed call is a reason nobody hears.
 
 ## What is not settled
 
-- **A document requires a summary and not a title**, though the canonical part at every level already carries one — section → canonical paragraph, document → canonical section, book → cover. One validity line, Doug's to rule.
-- **Syntax as a typed word** ([48's R24](../projection/06-sprint-48--subjects-and-the-library.md#writing)) — punctuation is a mentioned word today and carries no type. The walk allows more; nothing was built.
-- **The word-grade form of *content that is not writing*** — reached for twice in [Markdown](../projection/11-markdown.md) and still unnamed.
-- **A notation is a third axis**, orthogonal to these levels — it supplies how prose divides, what each piece composes into, and which marks are mentioned, and nothing else. Settled and [written into the register](08-the-symbolizing-dyad-and-the-register.md#notation--a-third-axis-and-it-is-one-row-rather-than-a-family); named here because a reader of the levels needs to know that notation is **not** one of them.
-
-*The specialization — the markdown implementation itemized, and each book's own parts — is no longer open. It ran as [Markdown](../projection/11-markdown.md): three classes, each declaring only its two differences, with everything ordinary a person writes falling out as a fork rather than a kind. **`$Page` was not replaced, and did not need to be** — Doug's reading was that the concept holds where a page is genuinely modelled, and the demo that carried its name was never modelling one.*
+- **A document requires a summary, and it is the first paragraph of the first section** — ruled by Doug, and **not yet built**. The demo is written the other way round, so landing it moves fifteen chapters' summaries to the top as parenthetical opening paragraphs, which is authorial work rather than a refactor.
+- **Syntax as a typed word** ([48's R24](../projection/06-sprint-48--subjects-and-the-library.md#writing)) — punctuation is a mentioned word and carries no type. The walk allows more; nothing was built.
+- **The word-grade form of *content that is not writing*** — reached for three times now, and still unnamed.
+- **Whether a written part should survive to its own level.** A word-grade part written inside a section is *too low*, so its copy joins the text run and the object does not reach the sentence that would hold it. `compose` receives text; carrying elements would keep it. Nothing needs it today, and that is why it was not built.

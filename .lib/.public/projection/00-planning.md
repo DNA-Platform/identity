@@ -183,17 +183,15 @@ On screen it stays what it already is: a shelf of spines, and the same library m
 
 **Where `$Type` goes:** unresolved, and deliberately so. Its mechanism ([R16](06-sprint-48--subjects-and-the-library.md), R16a) is still design owed, and it must not be given files and scenarios until it can answer *what runs, and when*.
 
-## Validation that says why — carried out of Sprint 48 *(Doug, 2026-08-06)*
+## DONE — validation says why *(built in [The Parse](13-the-parse.md), 2026-08-12)*
 
-**Goal.** *"I think we want it to work like `$check`, but in the validation, we should have it express **why**, and if there are validation failures, things should **halt**."* Today `assertValid` throws one generic sentence — *"`$Chapter` is not valid after its bond constructor"* — and a class cannot say which of its constraints failed.
+Doug's ask — *"it should work like `$check`, but express **why**"* — is built, and both of his open questions were answered by the same move.
 
-**Why it is real and not theoretical.** [Sprint 48](06-sprint-48--subjects-and-the-library.md) left the lib at **107/108** on exactly this. Two tests have asserted the *reason* since long before that sprint (`/title/`, `/summary/`), and no arrangement of the bond-constructor chain satisfies both: `$Cover` and `$Chapter` mean different things by *valid* — a cover's summary is its canonical — so whichever ancestor throws first speaks for a class that meant something else. It is not an ordering problem, and 48 proved that by trying every ordering.
+**`$valid(condition, reason)` sits beside `$check` and works the same way: it returns its condition and records the reason.** So `valid()` keeps its boolean, every call site is unchanged, and `assertValid` stops throwing its own generic sentence — it **states**, and `evaluate()` raises **once** with parameter mismatches and validity reasons together. That is his *"collect the exception and display it with the validation errors"*, and it resolves *report comprehensively* versus *halt at the first* by making them the same act.
 
-**The open questions, Doug's own.** **When** does validation run so the system works? **Do we generalize the check system and plug into it** — `$check` already throws with a formatted message naming the offending parameter, which is the shape wanted one level up. And the tension he named: *reporting comprehensively* versus *halting when it must* — report everything and the code runs past a problem; stop at the first and you learn one thing. His proposed way through: **collect the exception and display it with the validation errors**, so a reader can see whether they are related.
+**The one rule that comes with it:** never short-circuit in front of a `$valid` call, because a swallowed call is a reason nobody hears. There is a promise that fails the moment someone writes one.
 
-**What 48 settled that this now assumes.** **`formed` is not needed and `$form` is not to be touched** — `$form` belongs to the phase abstraction (once, after mount, `$formRan$`-guarded), and validation already runs after the whole chain because the chain unwinds synchronously inside the one call the framework makes. **A class states its own validation failure by continuing after it calls up** — proven, `$Cover` does it — and the only gap is where an *ancestor's* generic message fires first. The remaining unproven case is **async construction**, where `assertValid` runs before the chain settles; `$construction$` exists for it.
-
-**Candidates.** `valid()` answering the reason rather than a boolean (no new name; already accrues via `super.valid()`; the shape `$Type` will need when several types weigh in — cost: 736 tests see the change), or a separate member carrying the sentence (smaller, but needs a name and two members that must agree).
+**And the estimate here was wrong by an order of magnitude, which is why this waited two sprints.** It said *"736 tests see the change."* Counted by call site: **36 `valid()` implementations in `lib/src`, 29 `.valid()` calls in the tests, 11 overrides in the demo — 76**, and under the shape above **none of them moved.** 736 was the suite's size, not its exposure. *A cost estimate nobody checked kept a cheap change queued.*
 
 ## Sprint 49 — Dialogue and Lineage
 
@@ -232,18 +230,12 @@ Speak within the **semantics of books** — the vocabulary of the domain is the 
 - What a human-AI dialogue's author field carries — one name, two, or a new relation. IXP's question, Doug's call.
 - How the Lab loads a book-as-folder — imports, registration, and what the book file exports.
 - The personal-library reference: how `doug-library` is cited from IXP so links resolve when present and degrade honestly when not.
-- **How writing refers to writing** — the last string in the system. Prose still authors `[text](#3.2)`, which the reader interprets as typesetting; the document apparatus proved the alternative shape (refer by key, the legend holds real references, built at binding). Whether book-grade references take that shape is Doug's to design.
+- ~~**How writing refers to writing** — the last string in the system.~~ **CLOSED by [The Parse](13-the-parse.md).** Prose authored `[text](#3.2)` and the *reader* interpreted it as typesetting; now the **model** does. A link is a `$Pointing` — a word that points, carrying its target off the writing — because the notation is the levels' own. The string that survived is gone, and the anchor a view renders is the position a reference resolves, so the two cannot drift.
 - Which parentheticals on the cover are *metadata* (publisher, date — the imprint's content) versus *writing* (the cover's summary is its title) — and whether the imprint page derives from a metadata reading the way the table of contents derives from chapters.
 
 ## DONE 2026-08-12 — the type keyword left lib's imports
 
-*Doug: **"none of the type imports are necessary. Or if they are, you have to explain why. It makes for ugly code for no reason."***
-
-**Tested rather than argued, and he was right.** Removing every `import { type X }` across `lib` — **116 keywords, 35 files** — leaves `tsc` clean, **203/203** green, and the circular dependencies **unchanged**: the same three as before (`Path→Path`, `Canonical↔Book`, `Book↔TableOfContents`). No new edges. The keyword was habit.
-
-**One construct genuinely requires it and it is not an import.** A **re-export** — `export { X } from …` — cannot be elided under `isolatedModules`, so `index.ts` keeps `export type` for the one name that is a type. The two beside it are **values**, and making all three type-only would have broken every consumer **silently**; the package's own `tsc` cannot see past its own boundary.
-
-**The rule that remains:** `type` on an import is never needed here. `export type` on a re-export is — and when you write one, check each name, because a class and a const hiding among types is a break nobody's gate catches.
+*Doug: **"none of the type imports are necessary."*** Removed — **116 keywords across 35 files**, `tsc` clean, no new circular edges. **The rule that remains:** `type` on an import is never needed here; `export type` on a **re-export** is, because it cannot be elided under `isolatedModules` — and when you write one, check each name, since a value made type-only breaks consumers where no gate can see it.
 
 ## Queued — what a reference form is, and whether it belongs to the chemical hierarchy *(Doug, 2026-08-12)*
 

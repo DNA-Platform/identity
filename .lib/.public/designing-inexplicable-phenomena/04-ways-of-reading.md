@@ -54,6 +54,26 @@ Terms deliberately unsettled, per Doug — but candidates should come from this 
 - **Identity through change** (Gabby): the object must stay recognizable across every view — the canonical is the visual anchor: the same cover identifies the book on the shelf, heads the reading view, titles the index entry, labels the graph node. The reader never asks "am I still looking at the same thing?" And identity must survive *movement*, not only the still frame: when a reference carries the reader between views, the way back stays visible — the return mark is identity-through-change in motion, so following a pointing never strands the reader who took it. The catalogue sprint proved this at the smallest scale — a citation lights its note and the note lights back, a round trip walkable in both directions.
 - **Views multiply claims** (Queenie): every new lens is a new place for a displayed contract nobody can check. A view earns trust when it surfaces something the reader can verify against another view of the same object — switching lenses is itself a check. When a view is added, name its corroborating sibling. The apparatus stratum is checkable by construction: statistics, histories, and attributions are derived readings.
 
+## A third law: a view READS, it does not re-derive
+
+Added out of [The Parse](../projection/13-the-parse.md), where the same mistake surfaced three times in one surface and each time looked like something else.
+
+**The manifold flattened a chapter into strings before drawing it** — about 55 lines building `{ head, sub, paragraphs: string[] }` out of the model, and every view then read that. **It is a second population of the model wearing a data structure**, which is [the defect this branch has filed three times](../solutions/13-the-chapter-that-wrote-its-sections-twice.md) arriving in the place least likely to be checked, because a copy that is *only* read looks harmless.
+
+It is not harmless, and here is how it failed:
+
+- **It sniffed what the model knows.** `p.startsWith('> ')` asked a *string* whether it was a quotation. When the model learned that a quotation is a `$Quoted`, the string stopped carrying its angle and every quote on the page silently became prose.
+- **It invented addresses.** `#{r.index}.{si + 1}` built an anchor by arithmetic over array positions, while a reference resolved by walking the model. The two agreed by coincidence until the model's numbering changed, and then a link followed to nothing.
+- **It borrowed the model's members for its own state.** A ribbon's slot among the other ribbons was stored as `mark.index` — the writing's number — because a number happened to be there.
+
+**So the law is: a view asks the model, and draws the answer.** Concretely, three things follow, and all three are greppable:
+
+- **Ask, do not test the output.** `p instanceof $Quoted`, never `p.copy.startsWith('> ')`. A view that re-derives what a class already decides will disagree with it the first time the class learns something.
+- **An address is a position, not a formula.** The anchor a view renders should be the same string a reference resolves — then following one lands on the very part that was drawn, and the two cannot drift because there is one numbering.
+- **A view's own state lives on the view.** If the demo needs to remember something, it declares a member for it. Borrowing a model member because it is unused is how app state ends up inside the writing.
+
+**And the corroboration that proves it is doing this** — one piece of writing read at four altitudes, each altitude walking its own count. If a view is genuinely reading the model, the readings agree; if it is reading a copy, they agree only until the copy goes stale. *The failure mode of a corroboration built the lazy way is [a number compared to itself](../solutions/18-the-checkpoint-that-compared-a-number-to-itself.md).*
+
 ## Plan impact
 
 The sprint demos each adopt a different arrangement, so flexibility is demonstrated rather than claimed: Sprint 46 the shelf and the reading view; 47 master/detail with the self-composing index; 48 the portal (the Front Door); 49 the dialogue's three dresses and the attribution lens.
