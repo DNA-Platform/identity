@@ -487,7 +487,11 @@ Each claim was checked against the source, and the counts are what make the requ
 
 *One state, written 2026-08-12 at the session's close. Everything above is the record; this is the present.*
 
-## → NEXT: `/ce-brainstorm` — the `.public` build
+## → NEXT: two things, and the first is small
+
+**1. `/ce-work` the sync ruling, then push this sprint's code.** Doug, this session: *"Identity only ever needs to go to the branch on identity with the repo name… This branch is always the object of record for `.claude` and the library branches there."* The change is in [`06-on-sync--commit.sh`](../../../../.claude/library/..environmentalism/06-on-sync--commit.sh) and [On Sync](../../../../.claude/library/..environmentalism/06-on-sync.md) — 29 references, three steps to two. **This sprint's code is not pushed until it lands**; see [Blockers](#blockers).
+
+**2. `/ce-brainstorm` — the `.public` build**
 
 **Run `/ce-brainstorm` for the build.** It is Doug's own reordering, in his words: *"I think we need to do the .public build before we do types. We need to know what it's like to lift this code first before we try to guess at what point code might be made to run."*
 
@@ -512,6 +516,21 @@ It is [Sprint D — The Compilation](00-planning.md#d--the-compilation), already
 ## Blockers
 
 **None for the build.** The one open item above blocks nothing; it is a decision about prose.
+
+**One blocker for PUSHING, and Doug ruled its fix mid-session.** *"Identity only ever needs to go to the branch on identity with the repo name. We need to update the system to make that the standard push."* And: ***"This branch is always the object of record for `.claude` and the library branches there."***
+
+**The branch library IS pushed** — identity commit `4825df4` on `inexplicable-phenomena` carries this sprint's records, both new Solutions chapters and this handoff, verified by reading them back off the branch. **The project CODE is committed nowhere**: 52 changed files and 8 new ones sit in the working copy.
+
+**Why the tool refuses, diagnosed rather than guessed.** [`06-on-sync--commit.sh`](../../../../.claude/library/..environmentalism/06-on-sync--commit.sh) step 1 pushes `.claude/` to the shared `dna-platform` branch and refuses when a `/MIR` would lose work. Its final two flagged paths are the **project-root** `CLAUDE.md` and `.gitignore` — and `dna-platform:CLAUDE.md` is **byte-identical to `.claude/CLAUDE.md`**, because the identity root file is a copy of it while the project root file is the *projection* with `.claude/` prefixes. **The check compares two files the system is designed to keep different**, so the refusal is an artifact and `RECONCILED=1` would force past a check that is measuring the wrong pair.
+
+**Do not chase it the way this session first did.** Copying the org's root `CLAUDE.md` down to satisfy the comparison **broke 47 compiled links**, because the project root file must be regenerated, never copied:
+
+```bash
+sed 's|\](\(library/\)|\](.claude/\1|g; s|\](\(agents/\)|\](.claude/\1|g; s|\](\(rules/\)|\](.claude/\1|g; s|\](\(skills/\)|\](.claude/\1|g' \
+    .claude/CLAUDE.md > CLAUDE.md
+```
+
+**The fix is Doug's ruling, and it is a real change: 29 references to `dna-platform` in that script, three steps collapsing to two.** It was raised rather than patched at a session's tail, because getting it wrong breaks how every project syncs.
 
 ## Verified — every gate this branch has, including the ones not run
 

@@ -71,24 +71,6 @@ Mid-session, a push was stopped for reconciliation, the tool's advice was follow
 
 Doug asked for the link mid-session, and the serve had to be rediscovered — the port, the route, the command. **When the sprint has something to look at, Where things stand says how:** the command that serves it, the route to open, and what the reader should see first. A demonstration that must be rediscovered is not handed off.
 
-## Two more, out of the session that opened from the last one — added 2026-08-12
-
-### 9. The verification list names every gate that EXISTS, including the ones not run
-
-The handoff that opened The Representative reported four gates — chemistry, lib, the app typecheck, `verify-book` — and **every number in it was true**. It did not mention `verify-demo.mjs`, which existed, and which **was red on `main`**. Nothing lied; a gate was simply absent from the list, and the reader concluded from four greens that the branch was green.
-
-**So the list is of gates, not of runs.** Enumerate every gate the branch has, and against each say what it reported *or that it was not run*. **An unrun gate is a fact to state, not an omission** — and a red one that is known is worth more to the next session than four greens.
-
-The rule generalises the one this book already holds: a green whose scope was never stated is not evidence. Here the scope is *which gates*, and the omission is invisible precisely because everything present is accurate.
-
-### 10. A deliberate breakage left in the tree is a lie the next session pays for
-
-A previous session broke a driver on purpose to watch it fail — the right discipline — and the session ended with the breakage still in the file. The next session found the driver red, and spent its diagnosis on **a bug that was a probe**.
-
-**Restore every deliberate breakage before writing the handoff, and if one must survive the session, name it in Where things stand** — the file, the line, and what it is proving. A probe nobody can distinguish from a defect has become a defect.
-
-The same applies to anything else left mid-experiment: a commented-out registration, a stubbed return, a temporary throw. **The tree is read as intent.**
-
 ## What we were missing
 
 Autobiographies carry **identity** across sessions. Sprint chapters carry **narrative**. Nothing carried **work state** — so after a compaction, what remained open lived only in a todo list and in whatever the conversation still held.
