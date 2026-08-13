@@ -155,11 +155,7 @@ Worked through [On Kinds](../../../../.claude/library/bookkeeping/15-on-kinds.md
 
 ## Risks
 
-1. **Ceremony without retrieval.** A casebook nobody reads is the cover/chapter gap with extra steps. The review point exists to kill it.
-2. **A workflow declared and not followed** is worse than none, because the record then lies. The performing skill exists so that following is cheaper than pretending.
-3. **Two homes for one lesson.** A learning belongs to its author *and* to the problem. The chapter must state which is the account and which the pointer, or they drift.
-4. **Their file conventions instead of their mechanisms.** `docs/solutions/` would fracture the library as source of truth. We take the mechanisms; the books stay books.
-5. **The session rules will chafe first.** One plan per session cuts against how we have worked all along. That friction is data for the review point, not a reason to soften the rule early.
+*Compacted at compounding — The pre-flight risk list stood here. **A risk that fired is in the record below**, with what it cost; the rest did not.*
 
 ## The team
 

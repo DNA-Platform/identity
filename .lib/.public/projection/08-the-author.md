@@ -272,25 +272,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 ## Test scenarios
 
-*Each names input, action and expected outcome, and says which acceptance example it covers.*
-
-**U5 — `$IndexCard<T>`.** A card made for a referent: `read()` answers that referent — **AE1**. · A card with a name and no referent: renders its name, and `read()` throws with a sentence saying it never pointed. · A card composed with `then()`: answers a path, like every other reference kind.
-
-**U6 — `$CardCatalogue`.** A catalogue of three cards: its parts are cards, following them arrives at the referents, and it reads back as a reference to that composition — **AE2**. · An empty catalogue: answers an empty composition, **not an absence**. · The interface is satisfied **with no edit to `$Catalogue$`** — if an edit is needed, that is a finding and it is reported.
-
-**U7, U9 — `$LibraryCard` and its type.** A card for a book: every property name on the card matches a property name on the book — **AE3**. · The card's `author` is a **card**, not an `$Author` — **AE3**, and this is D2. · A card for a book **subtype**: the subtype's derived information is reachable on the card without the card class knowing it in advance. · No path from a card reaches a `$Book` module — **the closed-graph check, D2**.
-
-**U8 — `$LibraryCatalogue`.** Four books, four cards, one catalogue; each card found from its book's identity — **AE2**. · A lookup for a book with no card: throws, naming the book rather than answering undefined.
-
-**U2 — `$Author`.** An author reads to its book **through its card** — **AE4**. · An author renders its display name and **nothing announcing it is a reference** — R10. · An author with a name and no card: renders the name; `read()` throws — **AE7**. · An author with neither: invalid — **AE7**. · A book answers the author standing in its cover; a book with none answers nothing. *(Regression: the 8 tests already written must still pass, or their promise changed and the change is stated.)*
-
-**U3 — the loop.** Each of the four books' author reads to *The Team* — **AE4**. · *The Team*'s author reads to *The Team* — **AE5**. · An author link pointing at a book whose own link points elsewhere: **invalid** — **AE6**. · **The negative proof:** the link resolves with the direct import of *The Team* removed — **AE8**.
-
-**U1 — *The Team*.** It binds as a valid book — a cover at zero, a synopsis, at most one table of contents. · Its quoted references resolve. · Its appendix chapters are reachable and are **not** mistaken for its narrative chapters. · It contains the passage recording the decision to write it, and that passage is **findable in the model**, not only on the page — R16.
-
-**U11, U12 — what is seen.** Driven and **read**: a card renders as a card in a chapter of The Shelf — **AE9**. · The shelf's entries show title and synopsis read off cards — **AE10**. · Following an author name on a cover arrives at *The Team*; following its author arrives back — **AE4, AE5**. Per the standing law: green → driven → **seen**.
-
-**Regression, the whole time.** Chemistry **630/630**, lib **≥115/116** (the one red is the [validation-message defect](00-planning.md#validation-that-says-why--carried-out-of-sprint-48-doug-2026-08-06), carried and **not this sprint's to fix**), three packages **tsc 0**.
+*Compacted at compounding — The sprint's test scenarios stood here. **They are now the suite** — a scenario that survived is a promise, and a promise is read where it runs, not where it was planned.*
 
 ## Origin tracing
 
@@ -322,33 +304,15 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 ## Order
 
-1. **U5 → U6 → U7 → U9 → U8** — the card family, complete before anything points through it.
-2. **U4** — the name, which every later unit prints.
-3. **U2** — the author reference, revised onto cards.
-4. **U10** — the four hand-built cards, with the hand-written list recorded as it is written.
-5. **U1** — *The Team*, written in full. **Its own stretch, not a tail on the model's.**
-6. **U3** — the links and the loop, **driven the day they exist** rather than after content piles on them.
-7. **U11 → U12** — the card seen, and the entries read off cards.
-8. **U13** — the records and the push, in the same act as the work.
+*Compacted at compounding — The build order stood here, and the sprint ran it.*
 
-## Risks, and what mitigates each
+## Risks
 
-1. **This is two sprints in one**, merged by ruling. *Mitigation: the order front-loads the card family. **The honest signal to watch:** if U5–U9 have not closed before *The Team* is being written, the sprint is running long and Doug hears it then, not at the retro.*
-2. **The computed card type may not be fully expressible.** A mapped type over a class of getters and methods is not free. *Mitigation: U9 may fall back to a per-book hand-written type **with the mapping stated**, and the gap is reported as the compiler's problem rather than hidden — that report is exactly what [Sprint Five](00-planning.md#sprint-five--the-compilation) needs.*
-3. **The autobiography is real writing and must be flawless** (Doug's word). *Mitigation: it is its own step in the order with cycles budgeted, never squeezed in after the model.*
-4. **How an author link obtains the catalogue is a HOW, undecided here.** *Mitigation: decided with the code open; if it needs framework machinery, it is **raised the moment it appears**.*
-5. **D3 may be wrong** — the card may not dissolve the bootstrap. *Mitigation: it is the sprint's REVEALED question, so a surprise here is a **finding**, not a failure — but it must be raised, never designed around.*
-6. **The demo law binds:** impressive, aesthetically unique, a meaningful use case. *Mitigation: the *extremely well-designed* filter runs before Doug sees it, per [ce-review](../../../../.claude/library/our-skillset/33-ce-review.md).*
+*Compacted at compounding — The pre-flight risk list stood here. **A risk that fired is in the record below**, with what it cost; the rest did not.*
 
 ## Self-check
 
-*Where this plan is thin, stated rather than hidden.*
-
-- **U8 is the unit most likely to grow.** Lookup, identity and catalogue access are one idea in the requirements and may be two in practice. A split keeps U8 and takes the next unused identifier.
-- **U9 is the unit least proven.** Nothing in the codebase does type-level mapping today, so it is the one place the plan is reasoning rather than pointing at prior art.
-- **R20 has no unit and that is correct** — it is a constraint on U12, not work. It is in the tracing table as *held, not built* so it cannot be read as a drop.
-- **R23 was proposed, not ruled.** It is adopted, and it is flagged in its own requirement so the review can undo it cheaply.
-- **U2 is partly built already**, from before cards were in scope. The plan says what changes rather than pretending the tree is clean.
+*Compacted at compounding — The plan's self-check stood here, and it passed before work started.*
 
 ## The team
 
@@ -371,7 +335,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 1. **This section**, then the [Requirements](#requirements) and [Plan](#plan) above it — [decisions](#decisions) `D1`–`D9`, [units](#units), [what was collected in review](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07).
 2. [**Chapter zero, the twenty paragraphs**](00-planning.md#how-this-codebase-will-work-and-what-would-show-it) — the only place the whole design is said at once; then [the demo as Doug specified it](00-planning.md#the-demo-specified-at-last-doug-2026-08-06) and [the five sprints](00-planning.md#the-five-sprints--each-with-three-things-doug-can-check-planned-2026-08-06).
 3. [**Solutions**](../solutions/.cover.md) — six chapters, indexed by symptom. **[Chapter six](../solutions/06-the-class-that-was-not-the-class.md) before touching reflection or anything that renders**; [chapter five](../solutions/05-the-suite-that-passed-against-a-stale-build.md) before trusting a suite number.
-4. **The code this sprint made:** [`IndexCard`](../../package/src/library/IndexCard.tsx) · [`CardCatalogue`](../../package/src/library/CardCatalogue.tsx) · [`LibraryCard`](../../package/src/library/LibraryCard.tsx) (the computed type **and** the class implementing it) · [`LibraryCatalogue`](../../package/src/library/LibraryCatalogue.tsx) · [`Author`](../../package/src/book/Author.tsx) · [the four hand-built cards](../../package/app/src/sections/book/library/the-team/card.tsx) · [the book's reader](../../package/app/src/sections/the-team.tsx) · [`figures.tsx`](../../package/app/src/sections/book/library/the-team/figures.tsx) beside [`marks.tsx`](../../package/app/src/sections/book/library/the-manifold/marks.tsx), which is self-rendering writing that works.
+4. **The code this sprint made:** [`IndexCard`](../../package/src/library/IndexCard.tsx) · [`CardCatalogue`](../../package/src/library/CardCatalogue.tsx) · `LibraryCard` *(deleted; the demo declares its own card)* (the computed type **and** the class implementing it) · `LibraryCatalogue` *(deleted)* · [`Author`](../../package/src/book/Author.tsx) · [the four hand-built cards](../../package/app/src/sections/book/library/the-team/card.tsx) · the book's reader *(since restructured into `sections/book/library/the-team/`)* · [`figures.tsx`](../../package/app/src/sections/book/library/the-team/figures.tsx) beside [`marks.tsx`](../../package/app/src/sections/book/library/the-manifold/marks.tsx), which is self-rendering writing that works.
 
 *Orienting for this sprint cost twenty-four files. If four is not enough, that is a finding about this chapter, not a reason to read twenty more.*
 

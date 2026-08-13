@@ -227,7 +227,7 @@ Three things follow, and each is load-bearing.
 
 **And it answers a question chapter zero has carried since Sprint 46** — *"the personal-library reference: how `doug-library` is cited from IXP so links resolve when present and degrade honestly when not."* A self-authoring card is the mechanism: present, it validates; absent, it degrades to the names it carries.
 
-**Open:** whether [`$Author`](#the-reference-checks-type-design-doug-2026-08-06) is *typed* as a `$LibraryCard` — which would make every author link portable by construction — and whether a card validates the same way at home and abroad.
+**Open:** whether [`$Author`](#the-reference-checks-type-design-doug-2026-08-06--supersedes-r4) is *typed* as a `$LibraryCard` — which would make every author link portable by construction — and whether a card validates the same way at home and abroad.
 
 ### R61. A library is the universe — there is one, and `$Library` validation is that they all agree
 
@@ -266,7 +266,7 @@ Three things follow, and each is load-bearing.
 - Cards are **generated with metadata in the code**, much of it **dynamic**.
 - **The subject link can itself BE a library card with special properties** — because the assignments of **subject, author and canonical must be aggregated** to assign properties to the library catalogue. The aggregation is what gives the catalogue its content; the card is what carries it back to the point of use.
 
-**And [R44](#the-reference-checks-type-design-doug-2026-08-06)'s cycle law changes shape with it.** A termination guarantee was needed for a walk. With no walk, what remains is that the aggregated assignments **agree** — every book's computed library is the same book ([R61](#r61-a-library-is-the-universe--there-is-one-and-library-validation-is-that-they-all-agree)) — which is a property of the aggregate, not of a traversal.
+**And [R44](#the-reference-checks-type-design-doug-2026-08-06--supersedes-r4)'s cycle law changes shape with it.** A termination guarantee was needed for a walk. With no walk, what remains is that the aggregated assignments **agree** — every book's computed library is the same book ([R61](#r61-a-library-is-the-universe--there-is-one-and-library-validation-is-that-they-all-agree)) — which is a property of the aggregate, not of a traversal.
 
 ### R64. A card is writing, at paragraph grade — and the catalogue is injected, not reached
 
@@ -486,31 +486,7 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 
 ## Test scenarios
 
-*Each names input, action and expected outcome. Where a scenario covers an acceptance example, it says which.*
-
-**U1, U2 — the chain.** A three-class chain where each declares a bond constructor and each calls upward: all three run, in order, and children reach the most-derived signature. · A subclass declaring **no** constructor: binds through its ancestor's exactly as today — the ceremonial ban survives (regression against `tests/react/synthesis-bond-ctor.test.tsx`, `tests/regression/bond-behavior.test.tsx`). · A subclass declaring one and **not** calling upward: invalid, naming the ancestor never reached — **AE6**. · A subclass adapting arguments on the way up: the ancestor receives the adapted children, not the authored ones.
-
-**U3 — `formed`.** A chemical whose chain completes: `formed` runs once, after the last constructor. · An **async** constructor in the chain: `formed` runs only after construction settles (regression against `tests/abstraction/async-construction.test.ts`). · A chemical defining no `formed`: unchanged behaviour. · **Templates are not judged** — the existing exemption holds.
-
-**U4 — the validation failure.** A chemical failing one constraint: the validation failure names that constraint and its reason. · Failing several: all are reported, not just the first. · The validation failure reaches the existing exception rendering path and is readable on the page (regression against `tests/abstraction/error.test.tsx`, `tests/react/validation.test.tsx`).
-
-**U6, U7 — `$Type`.** A cover declaring one type: the book carries it, and the declaration does not print in the prose. · A cover declaring several: all hold, and the book is valid only if every one does. · A type deriving from two types: both inherited constraints hold. · A type whose constraint the book breaks: invalid, naming the type — **AE2**.
-
-**U8 — resolution and scope.** A type name declared on a book whose subject specifies it: resolves. · The same name where **no declared subject** specifies it: invalid, unresolved. · A name specified only by a subject that catalogues the book **without the book declaring it**: does **not** resolve (R7). · A book in one subject wearing a type from that subject's specification validates; the same book without the type does not — **AE5**.
-
-**U9, U10, U11 — subject, author, cover.** A book whose cover declares both: binds. · Missing either: invalid, saying which — **AE1**. · A book declaring a canonical subject and one further membership: both reachable, one canonical. · Every existing book in both suites and the demos, migrated: full suites green.
-
-**U12 — `$Catalogue`.** A catalogue of three books: its parts are references, following them arrives at the books, and it reads back to itself as a reference. · A catalogue holding its subject's specification as a part; and the same specification as a separate book it catalogues — both valid (R19).
-
-**U16 — `$Literature$`.** A subject whose catalogue holds three books: asked for its literature, it answers a catalogue of three book references, and following them arrives at the books. · A catalogue with no books: answers an empty catalogue, not an absence. · The inverse lookup — given a book, find the part of the table of contents that catalogues it — is **not implemented on a guess**; the unit stops and reports (R34).
-
-**U13, U14, U15 — the summit.** A subject whose canonical reads to a biography: the subject is subjective. · A book whose author reference and subject reference are the same reference: it authors itself. · A book whose subject reference points at its own cover: it catalogues itself; following arrives home; exactly one such book answers valid — **AE3**. · Two books in mutual biography: **invalid** — **AE4**.
-
-**U17, U18 — parts of books.** A preface and a foreword before the chapters: valid. Two prefaces: invalid. A preface after chapter one: invalid — **AE7**. · Today's four checks (cover at zero, no second cover, a synopsis, at most one table of contents) still hold under the general rule.
-
-**U19, U20 — writing.** Writing with no stated role: `use`. · Writing marked mention: reads as mention. · A sentence containing a period: yields a word for the mark, typed, marked **use**, and the sentence's flattened prose is unchanged by its presence — **AE8**. · Regression: `$Sentence` still composes its words and `$$Sentence` still catalogues references to them (**D7**, R21); `book.ref` is still the cover and the table of contents still reaches the book through it (**D7**, R22).
-
-**U21, U22, U23 — the demo.** Driven and **read**: the loop followed on screen arrives home; a book wearing a type shows the type changing what it must be; a validation failure renders on the page rather than in a console. Per the standing law: green → driven → **seen**, and a demo's real test is being read.
+*Compacted at compounding — The sprint's test scenarios stood here. **They are now the suite** — a scenario that survived is a promise, and a promise is read where it runs, not where it was planned.*
 
 ## Origin tracing
 
@@ -548,37 +524,15 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 
 ## Order
 
-1. **U1 → U2 → U3 → U4 → U5** — the framework, in the other package, complete before anything depends on it.
-2. **U19** — independent of everything; can run alongside the framework work.
-3. **U6 → U7** — `$Type` and its composition.
-4. **U9 → U10 → U12 → U16** — subject, author, the cataloguing book, and the literature it answers.
-5. **U8** — resolution, which needs both the type and the subject.
-6. **U11** — the migration, once the cover knows what it carries.
-7. **U18 → U17** — the general rule before the two kinds that use it.
-8. **U13 → U14 → U15** — the summit, and **drive the loop the day it exists** rather than after content piles on it.
-9. **U20** — syntax, which needs the type system.
-10. **U21 → U22 → U23** — the demo.
-11. **U24** — the records, in the same act as the work, not after it.
+*Compacted at compounding — The build order stood here, and the sprint ran it.*
 
 ## Self-check
 
-*Where this plan is thin, stated rather than hidden.*
+*Compacted at compounding — The plan's self-check stood here, and it passed before work started.*
 
-- **`$Literature` was the plan's one gap, and it is closed.** The charge named it, the design session never reached it, and the self-check surfaced it rather than letting it pass. Doug ruled it during the plan (R34): an **interface**, `$Literature$`, a catalogue of references to books, implemented by the subject reference through the table of contents. **U16 is filled** — no gap in the identifiers after all. *This is the self-check doing the job it exists for: it found the one thing that would have been discovered mid-work.*
-- **U16 carries two open ends and must stop at them.** The inverse lookup — book to the part of a table of contents that catalogues it — has no move in the model today, and whether a reference kind spanning the levels of writing is needed is unanswered. **The unit reports; it does not invent.** *Raise, don't take.*
-- **U17's meaning is owed.** What a preface *is* versus a foreword is design Doug flagged as still owed. The unit builds the parts and the validation; the meaning gets raised, not invented.
-- **U8 is the largest single unit** and the one most likely to want splitting once the code is open. Resolution and catalogue-supplied constraints are one idea in the requirements and may be two in practice. A split keeps U8 on resolution and takes the next unused identifier.
-- **The migration in U11 is unmeasured.** Every book in two test suites and the demo app gains a subject and an author. The count is not known until the work starts, and it should be counted first rather than discovered.
+## Risks
 
-## Risks, and what mitigates each
-
-1. **Size.** The referential family, the summit, a type system and a framework change — four sprints' worth by 47's measure. Doug ruled the full family knowingly. *Mitigation: the [order](#order) front-loads the framework so nothing is built twice, and U8 and U11 are pre-identified as the two most likely to grow. **The honest signal to watch:** if U1–U5 have not closed before the referential family starts, the sprint is running long and Doug should hear it then, not at the retro.*
-2. **The auto-categorical loop** (U14) is a genuine cycle in code, not only in theory — rendering and reference-resolution both run through a book that points at itself. *Mitigation: order step 8 drives the loop **the day it exists**, before content piles on it. AE3 is its test and it is written already.*
-3. **The `valid()` migration** (U11) touches every book in two suites and the demo app. It is the change most likely to be discovered late. *Mitigation: **count it before starting it.** The count is unknown today and that is stated in the self-check rather than assumed away.*
-4. **Moving `assertValid` into `formed`** (U3) changes behaviour for **730 tests across two packages** — 622 chemistry, 108 lib. *Mitigation: U3's scenarios are written as regressions against the named existing tests, so the change is measured against them rather than discovered through them.*
-5. **Class inflation.** *Mitigation: D4 makes biography, autobiography and the summit **types rather than classes**, so the sprint adds far fewer classes than the derivation names. D6 stops any unit that needs a name Doug has not given.*
-6. **Code in books, running in two places** (R16a, R16b) is **out of this sprint's build** by Doug's call — feasibility established, construction deferred to [Sprint 50](00-planning.md) with parts of a demo committed to it then. *Mitigation: the one unproven step is bare-Node materialization; a single probe settles it, and 50 should not start without one.*
-7. **`$Literature$`'s two open ends** (R34, U16) — the inverse lookup from a book to its part in a table of contents, and whether a reference kind spanning the levels of writing is needed. *Mitigation: named in the requirement and built into the unit's own scenarios as a stopping point. U16 reports rather than inventing, and neither question is designed around.*
+*Compacted at compounding — The pre-flight risk list stood here. **A risk that fired is in the record below**, with what it cost; the rest did not.*
 
 ## Demo
 

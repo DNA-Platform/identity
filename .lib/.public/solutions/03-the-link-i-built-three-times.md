@@ -1,6 +1,6 @@
 # The link I built three times
 
-- **author:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/.cover.md)
+- **author:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **keywords:** research · prior-art-unread · reference · ui · reviewer-as-compiler · demo
 - **sprint:** [48 — Subjects and the Library](../projection/06-sprint-48--subjects-and-the-library.md)

@@ -18,7 +18,7 @@
 
 Four answers, and **three of them declined the menu they were offered.** Each decline was a correction of altitude, and each one is recorded because the question it replaced was the wrong question.
 
-- **On `$Page`, declining a routing decision:** *"You don't need to get rid of the concept of `$Page`. What does it mean? What role does it play in each part of the demo? To keep demos isolated, what does that mean? You can repeat implementations for the demo. Think more abstractly. I doubt you are modeling a page in all cases. Maybe you are in one."* **The question was where `$Page` should go; the question is what it means.** Answered by reading — see [What each surface models](#what-each-surface-models-read-2026-08-10).
+- **On `$Page`, declining a routing decision:** *"You don't need to get rid of the concept of `$Page`. What does it mean? What role does it play in each part of the demo? To keep demos isolated, what does that mean? You can repeat implementations for the demo. Think more abstractly. I doubt you are modeling a page in all cases. Maybe you are in one."* **The question was where `$Page` should go; the question is what it means.** Answered by reading — see [What each surface models](#what-each-surface-models--read-2026-08-10).
 
 - **On markdown, declining one class at one level:** *"Well, maybe `$Markdown` is itemized? You can have a markdown section, or a markdown paragraph. Maybe you can make references out of markdown, or a markdown code block as a code block. Are you sure that markdown is the only level you want to use markdown? Think a bit harder about it."*
 
@@ -47,7 +47,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 ## The starting condition — verified 2026-08-10 by reading the source
 
-- **`$Markdown` is not writing.** **Read** — it extends `$Chemical` and runs its own parse into a hand-rolled `Entry[]` union of `heading | paragraph | math | rule`, builds `$Paragraph`s through `$()`, and re-implements `words`, `formulas` and `title` by hand ([markdown.tsx:8-93](../../package/app/src/sections/page/markdown.tsx)).
+- **`$Markdown` is not writing.** **Read** — it extends `$Chemical` and runs its own parse into a hand-rolled `Entry[]` union of `heading | paragraph | math | rule`, builds `$Paragraph`s through `$()`, and re-implements `words`, `formulas` and `title` by hand (`markdown.tsx:8-93` *(since replaced by `app/src/markdown/`)*).
 - **And the same parse runs a second time, inline.** **Read** — the anatomy lens calls `parse(this.$source)` again and re-derives paragraphs, words and formula counts in its own `view()` ([sheet.tsx:78-85](../../package/app/src/sections/page/sheet.tsx)). **Two populations of one reading** — which is [the chapter that wrote its sections twice](../solutions/13-the-chapter-that-wrote-its-sections-twice.md) wearing a different coat, one level up, and it is still standing.
 - **The itemization is a four-line override per level, and one level already does the hard part.** **Read** — `$Section.divide` splits on `/\n{2,}/` ([Section.tsx:52](../../package/src/writing/Section.tsx)), which **is markdown's paragraph rule**; `$Sentence.compose` already **forks on kind**, making a `$Word` where there are letters and a mentioned `$Punctuation` where there are not ([Sentence.tsx:41-43](../../package/src/writing/Sentence.tsx)). That fork is where a markdown link becomes a reference. One more branch, not a new mechanism.
 - **`$Latex` is a `$Chemical`, not writing.** **Read** — [latex.tsx:6](../../package/app/src/sections/page/latex.tsx). A formula is therefore outside the model entirely: it cannot be a part, cannot be numbered, and cannot be counted except by the hand-written `formulas` getter that reaches into `$elements` looking for instances.
@@ -461,99 +461,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 ## Test scenarios
 
-*Queenie's, written out per unit so the implementer invents no coverage. Each names **input → action → expected** and cites the acceptance example it covers.*
-
-### The floor
-
-**U23 · the driver's entry**
-- *happy* — run `verify-book.mjs` → **it reaches the manifold.** Landmarks resolved by card name, not by the dead `[data-book="algebra"]`; `.shelf-card` derived from the shelf's own membership, not the literal `2`. **[AE17]**
-- *failure* — rename a spine deliberately → the run **fails naming the missing landmark**, rather than passing the next check against stale state.
-
-**U1 · the manifold's crash — RED FIRST**
-- *regression, red first* — against `main`, open the manifold's cover → **the check must reproduce** `ReferenceError: held is not defined` and the error boundary. *A regression check that never went red is not a check.*
-- *happy, after the fix* — open the cover and read → no `pageerror`, no boundary, zero console errors. **[AE15]**
-
-**U2 · the gate**
-- *structure* — run `npm run test` → package `tsc`, then `tsc -p app/tsconfig.json` over **46** files, then `vitest`. Every counted test typechecked by exactly one project. **[AE14]**
-- *failure* — introduce a deliberate type error in an app file → **the gate fails.** *Today it would not.*
-
-**U3 · the baseline, by identity**
-- *happy* — run the gate → prints `46 files — 4 baselined [named], 0 unexpected. PASS`. **[AE14]**
-- *failure* — introduce a fifth error → **fails**, naming it as unexpected.
-- *failure* — fix one baselined error → **fails until the baseline is updated.** *That is the point: a baseline policed by count is where a fifth error hides.*
-
-**U24 · the substrate probe**
-- *happy* — a plain hand-written `$Section` with a figure between two paragraphs and a reference inside one sentence → read `parts()` → the figure at **paragraph grade** at its index; the reference **inside the sentence**, not beside it, not in the paragraph above; prose numbered around both. **[AE5]**
-- *probe* — if the inline reference does **not** surface as a part of its sentence, **that is the finding**, reported before U7 is built on the assumption.
-
-### The mini framework
-
-**U4/U5 · the sentence, with use and mention**
-- *happy* — `**bold**` → read `parts()`/`words` → parts are `**`(mention) · `bold`(use) · `**`(mention); `words` is `[bold]`. **[AE1]**
-- *happy* — `` `code` `` → same shape; backticks mentioned, `code` used.
-- *edge, escape* — `\*` → the escape and its mark are **one** mentioned part, not two. **[R12]**
-- *invariant* — any markdown sentence → `role` ∈ `{use, mention}`. **No third value.** **[AE13]**
-- *happy, section* — `## Heading` then a body → the heading bounds the section and **is** its title, the canonical paragraph. **[R11]**
-- *edge* — `---` → bounds without titling.
-- *baseline* — a source with no markdown syntax → parses **identically** to a regular section.
-
-**U6 · the fence**
-- *happy* — ```` ```python ```` → the fence is a part at its written index, kind from the info string; prose still counted around it. **[AE2]**
-- *edge* — a fence **containing a blank line** → still **one** part. *The blank-line split must not cut it.*
-- *edge* — two fences, two info strings → **two different kinds** in one section. **[AE3]**
-- *failure* — an unterminated fence → **invalid in its own words**, and it does **not** swallow the rest of the section. **[AE11]**
-
-**U7 · the link**
-- *happy, internal* — a target the library holds → `read()` **dereferences to the object** — a citation, the same act as `$Author`.
-- *happy, external* — `[site](https://x.com)` → reads to a **place**.
-- *failure, broken* — an unresolvable target → **renders as its text.** Cosmetic, never structural.
-- *regression* — a link inside a sentence inside a paragraph → read the paragraph's `parts()` → the link is a part of the **sentence** and **never** of the paragraph. **[AE4] — red if it breaks, and it guards the shipped cover's author.**
-- *negative* — `words` counts `text`; it does **not** count `https`, `x` or `com`. **[AE10]**
-
-**U8 · inline math** — `$x$` inside a sentence → a part whose content is **not writing**, counted through `parts()` and never by scanning `$elements`. **[AE16]**
-
-**U19 · display math** — `$$x^2$$` between paragraphs → a paragraph-grade figure at its own index, prose numbered around it. **[AE16]**
-
-**U20 · `$Latex` joins the model — guarded**
-- *structural* — grep the demo → **no** `instanceof $Latex` scan of `$elements` survives; `formulas` reads off `parts()`. **[AE16]**
-- *regression* — **`$Latex.inline` still present.** Two formulas in one paragraph do not become block-level same-type siblings and do not trip the keys warning. *[The defect we already filed once.](../solutions/01-the-formulas-that-rendered-empty.md)*
-
-**U9 · the unpaired mark**
-- *corroboration — the oracle is the other code path* — `2 * 3` parsed in a **regular** section and a **markdown** section → **identical** parts, words and count. *Do not hand-write the expected markdown parse; the regular section IS the expectation, so it cannot drift.* **[AE9]**
-- *paired with an absolute* — AE1 pins the shared base reading, because **a differential test alone cannot catch a bug both notations share.**
-- *edge* — `**bold` unclosed → renders literally, and is **not** invalid.
-- *edge* — the twin again with `**bold**` → `words` equal both sides; they differ **only** in that markdown recognised the pair.
-
-### The port and what is seen
-
-**U10 · the port** — the anatomy lens reads `parts()` rather than calling `parse()` a second time; `parse()` and the `Entry[]` union are **gone**; `/page` renders all four lenses with no console error. *Lens-to-lens corroboration:* the report's `words`/`formulas`/`paragraphs` **agree with the book dress**. **[AE7, AE16]**
-
-**U11 · the dresses** — grep the three dresses → **no `.markdown <tag>` selector remains**; each differs by what its parts draw. **[AE12]** · the Living Page's count moves **226 → 227** on one keystroke. **[AE7]**
-
-**U22 · the script** — walk every step of [the walk](#the-walk--what-doug-clicks-and-what-each-click-confirms) → **each has something to point at.** *Checked by walking it, not by intending to.*
-
-**U12 · the twin** — the two parts lists agree **except where a pairing occurred**. **[AE5, AE9]**
-
-**U13 · the figure**
-- *happy* — click a part in the figure → **the matching prose part lights**, through one held bookmark handed down by the section. **[AE6]**
-- *transition, not state* — assert **not-lit before → lit after**. *A state check passes whether or not the click fired.*
-- *invariant* — the figure's content is **not** among the words; the prose numbering is unchanged. **[AE6]**
-- *edge* — attend a **written** part with no letters → it lights **as itself**, not as a highlight. *You cannot run a highlighter over a plate.*
-- *structural* — grep → the manifold's `light(id)`/`.lit`/`setTimeout` is **gone**; no second highlighting exists. **[AE18]**
-
-**U14 · the drawer** — the listing's text **equals the file's**, because it is read at build. The drawer's tab token and the rendered fence's label are **the same word**.
-
-### The gates, closed
-
-**U15 · the driver, rebuilt**
-- *happy* — it **completes**, reporting `44 of 44 checkpoints reached`. **[AE17]**
-- *failure, watched* — break the spine, static-print a count, unwire the figure → **each produces a named failure**, e.g. `stalled at checkpoint 3 of 44: shelf spine not found — the entry point moved`. *This is the unit's real deliverable: a driver nobody has watched fail is a relay wearing infrastructure's clothes.*
-- *action-binding* — a click that finds nothing **fails the run** rather than no-opping into the next check.
-- *the reporter* — `verify-demo.mjs` stops exiting 0 unconditionally; every observation becomes an assertion.
-
-**U16 · the promises** — the count, where they live, **and their typecheck status stated with them.**
-
-**Throughout** — chemistry from **635**, lib from **164**, against a **rebuilt** chemistry `dist`, with every number reported **with the project it exercised**. **[AE8, AE14]**
+*Compacted at compounding — The sprint's test scenarios stood here. **They are now the suite** — a scenario that survived is a promise, and a promise is read where it runs, not where it was planned.*
 
 ## Origin tracing — both directions
 
@@ -582,29 +490,9 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 **Three units exist because a teammate's thinking found them, and none was in the plan an hour ago:** **U22** (Phillip — the demo source is the script, not a sample), **U23** (Queenie — the driver's entry blocks AE15's observability), **U24** (Cathy — R8's substrate is also the probe that sizes the link). **U19 and U20** exist because Cathy sized math at three units rather than one.
 
-## Order within each track
+## Order
 
-*Cathy's sequencing. **The principle that keeps the suite green: every markdown class is built and tested in isolation while the old `parse()`/`Entry` demo sits untouched — so the suite only risks red at the port, once, briefly.** The three tracks and the join are [above](#the-work-runs-in-three-tracks-in-parallel--and-the-boundary-is-the-files).*
-
-**Track A — nothing this sprint says about *"driven"* means anything until these are true:**
-
-> **U23** (the driver's entry) **→ U1** (the crash, red-first) **→ U2** (the gate) **→ U3** (baselined by identity)
-
-**U23 before U1** is Queenie's, and it reorders the sprint: the driver cannot reach the manifold, so U1's green would be unexercised.
-
-**Track B — the de-risk first, then a strictly serial spine, then the one real parallel:**
-
-> **U24** — R8's substrate, hand-authored, **before any markdown.** A probe as much as a unit.
->
-> **U4/U5** (sentence, with use and mention) **→ paragraph → section** — serial, because it is the compose chain and **it runs DOWNWARD.** *This reverses the reading order: the sentence is the root, and everything above composes down to it.*
->
-> **U6** (the fence — the **section's** `divide`) **∥ U7** (the link — the **sentence's** `compose`) — genuinely concurrent, different files.
->
-> **→ U8 → U19 → U20** (math, three steps, the last one guarded) **→ U9** (the unpaired mark)
-
-**Track C — the script first, because everything downstream lands on it:**
-
-> **U22** (the demo source) **→** the part faces for U11 **∥** the drawer machinery for U14
+*Compacted at compounding — The build order stood here, and the sprint ran it.*
 
 ## The work runs in three tracks, in parallel — and the boundary is the FILES
 
@@ -638,29 +526,11 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 ## Risks
 
-1. **This plan has twenty-three units, and that is the risk before any of them.** *(U1–U20 and U22–U24; U21 is unused and the gap stays.)* Six are the floor and the gates (U23, U1, U2, U3, U15, U16) and are not this sprint's subject — they are here because [R15](#math-and-the-gate) found them and because **a sprint reporting "driven" on top of a broken gate reports nothing.** **Doug ruled: all of it, this sprint, with all issues resolved.** *Mitigation: they are Track A's, they run concurrently with the real work rather than ahead of it, and they are small.*
-2. **Parallel tracks on one working copy is the new risk this ruling introduces.** *Mitigation: D11 — the boundary is the file set, stated in the table above. **A track that needs a file outside its own set stops and says so** rather than reaching for it. And the join is explicitly serial.*
-3. **Math was one unit and is three.** Cathy sized it: it changes `$Latex`'s base class, which ripples into every `instanceof $Latex` in the demo; it spans two grades; and `$Latex.inline` is chemistry's inline-grouping marker. *Mitigation: U8, U19 and U20, with U20 guarded and carrying the filed defect by name.*
-4. **The link is bigger than a `compose()` fork.** It must recognise the span **whole** before word-splitting, produce a reference that is **not a word**, and hold the never-a-paragraph-part law. *Mitigation: U24 sizes it before it is built, and its shape is settled with Libby rather than guessed.*
-5. **The fence could become a figure taxonomy.** *Mitigation: **two** info strings for the demo. Not three.*
-6. **U11 is the largest unnamed quantity** — three dresses rewritten against parts is a rendering redesign wearing a refactor's clothes, and R7 says nothing regresses. *Mitigation: it lands alone after U10, with the keystroke check run before anything else moves.*
-7. **U3 can become a card redesign.** *Mitigation: bounded to two files; stops-and-reports if a fix reaches past them.*
-8. **The demonstration could be built last and be thin** — [Sprint 48's failure exactly](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md). *Mitigation: it is designed before the units, U12 is the stop condition rather than the flourish, and U22 makes the script itself a unit.*
-9. **A name gets invented under pressure at U8.** *Mitigation: D9, and the unit says so in its own body.*
-10. **A track finishes early and reaches into another's files** — which is how a parallel sprint becomes a merge conflict nobody planned. *Mitigation: an idle track deepens its **own** tests rather than helping, and says it is idle at the next checkpoint.*
+*Compacted at compounding — The pre-flight risk list stood here. **A risk that fired is in the record below**, with what it cost; the rest did not.*
 
 ## Self-check
 
-- **U17 is the thinnest** and that is correct — bookkeeping, depending on everything.
-- **R5 has no unit and that is correct** — a constraint on where U4 lives, in the tracing table as *held* so it cannot read as a drop.
-- **Four requirements land off the screen and the plan says so** — [the three rungs](#the-three-rungs--and-the-four-things-no-click-can-prove). Without that, Doug reaches at review for a click that cannot exist. **Every negative claim here is a grep, and the grep is part of the demonstration.**
-- **AE9 is a differential test and is designed as one** — the regular section is the oracle, so the expectation cannot drift. **Paired with AE1 as an absolute**, because a differential alone cannot catch a bug both notations share.
-- **AE15 is written RED against `main` before it is fixed.** A regression check that never reproduced the failure is not a check.
-- **The one thing no unit fully owns** is whether the three dresses stay recognisably themselves without their selectors. U11 carries it, and it is risk 5 rather than a hidden assumption.
-
----
-
----
+*Compacted at compounding — The plan's self-check stood here, and it passed before work started.*
 
 # The session record — batch by batch
 

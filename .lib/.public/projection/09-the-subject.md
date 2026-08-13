@@ -54,7 +54,7 @@
 
 - [`Subject.tsx`](../../package/src/book/Subject.tsx) and [`Literature.tsx`](../../package/src/library/Literature.tsx) were **zero bytes** — the files existed and nothing was in them.
 - The word *subject* appeared **nowhere in the package source** (`grep -i subject src/` — no matches). No cover carried one, no card carried one, no book read one.
-- What The Author left standing: the card family ([`IndexCard`](../../package/src/library/IndexCard.tsx), [`LibraryCard`](../../package/src/library/LibraryCard.tsx), [`LibraryCatalogue`](../../package/src/library/LibraryCatalogue.tsx)), the [author resolving through a card](../../package/src/book/Author.tsx), [four hand-built cards](../../package/app/src/sections/book/library/the-team/card.tsx), and the loop closed in the model.
+- What The Author left standing: the card family ([`IndexCard`](../../package/src/library/IndexCard.tsx), `LibraryCard` *(deleted; the demo declares its own card)*, `LibraryCatalogue` *(deleted)*), the [author resolving through a card](../../package/src/book/Author.tsx), [four hand-built cards](../../package/app/src/sections/book/library/the-team/card.tsx), and the loop closed in the model.
 - **[The Author's R13](08-the-author.md#the-author-and-the-loop) was never built:** a book whose author link points at a book that does not author itself is not caught — no author validation existed at all.
 
 ## Rulings from the interview, 2026-08-07
@@ -200,7 +200,7 @@
 
 ## Test scenarios
 
-**U1** — reads through the card; prints the written form; renders card-less; throws on a card-less read, naming itself; neither → invalid. **U2/U3** — the three present binds; each missing one failing with its name; no declared contents failing to bind; the three invalid specimens keep failing with the new sentences. **U4** — both suites green against a rebuilt `dist`, counts stated. **U5** — title/author/subject finds answer their cards; unfiled queries throwing, naming the query; a new key by one call. **U6/U7** — every demo card answers subject; every book answers The Shelf's card; the shelf answers its own; card and book agree (one truth). **U8** — the shelf's subject reads home; exactly one self-cataloguer. **U9** — a row per member; authored overrides win; undeclared books absent. **U10** — reciprocal reads; elsewhere is invalid; two not binding. **U11** — none by design until ruled.
+*Compacted at compounding — The sprint's test scenarios stood here. **They are now the suite** — a scenario that survived is a promise, and a promise is read where it runs, not where it was planned.*
 
 ## Origin tracing — both directions
 
@@ -224,20 +224,15 @@
 
 ## Order
 
-U1 → U2/U3 → U4 (immediately) → U6 → U5 → U8 → U7 → U9 → U10 → U11 (the gate) → U12.
+*Compacted at compounding — The build order stood here, and the sprint ran it.*
 
 ## Risks
 
-1. The validation change touches every book in two suites — counted; migrate immediately after the law.
-2. The extension may brush the authored-parts residue — member rows are chapter-grade; if it bites, raise.
-3. The self-subject import cycle — card-before-book, filed pattern.
-4. R8 held — the honest gap, stated.
-5. U11 gates the close.
-6. Registration timing under card-before-book — decided in code; raised if framework machinery is needed.
+*Compacted at compounding — The pre-flight risk list stood here. **A risk that fired is in the record below**, with what it cost; the rest did not.*
 
 ## Self-check
 
-R8 is the one held requirement, in the table. U9 most likely to grow. U10's declaration place reported, not invented. U5's timing is the one framework-gravity touch. U11 has no scenarios by design.
+*Compacted at compounding — The plan's self-check stood here, and it passed before work started.*
 
 ## The team
 

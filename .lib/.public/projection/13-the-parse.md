@@ -6,7 +6,7 @@
 
 *Opened 2026-08-12 as a brainstorm, planned, built, driven and compounded the same day. **Status: `closed`** — seventeen of eighteen units; the one that remains is [named at the end](#the-state-once) and waits on Doug's prose rather than on code.*
 
-*Doug's charge at the plan: **"Hold the code to the same standard of excellence. This is an extra sprint. I want it done right before we move on to build. But I also don't want it to take forever."** The cut line that answers the second half is [D9](#d9); the order that answers the first is [at the end](#order).*
+*Doug's charge at the plan: **"Hold the code to the same standard of excellence. This is an extra sprint. I want it done right before we move on to build. But I also don't want it to take forever."** The cut line that answers the second half is [D9](#d9); the order that answers the first ran and is recorded below.*
 
 *Sprints are **named, not numbered**; the title is the implementer's and stands for correction. **The Parse** is proposed because every requirement below routes through it — what it walks, what it may write, what it may judge, what supplies its rules.*
 
@@ -220,7 +220,7 @@ Each claim was checked against the source, and the counts are what make the requ
 
 <a id="d7"></a>**D7 — `compose` keeps receiving text; carrying elements stays design owed.** *Verified rather than assumed: **no approved requirement needs it.** R10 fixes the sentence count on its own, and `$Cover.author` finds the author on the block rather than in the parts. Named as a decision because "obviously we need this" is how a bounded sprint acquires an unbounded unit.*
 
-**D8 — A phrase is one word that admits what a name contains.** *Doug's own fallback — "if not we treat it as one." The several-words form is owed and gets no unit.*
+<a id="d8"></a>**D8 — A phrase is one word that admits what a name contains.** *Doug's own fallback — "if not we treat it as one." The several-words form is owed and gets no unit.*
 
 <a id="d9"></a>**D9 — THE CUT LINE: marked's lexer is bounded to the notation the demo already exercises.** *Headings, paragraphs, lists, quotes, fences, images, rules, emphasis, links, inline code, and the two math forms — because that is what the demo's own three classes handle today. Anything the lexer surfaces beyond it — tables, reference links, setext headings, footnotes, HTML blocks — is **recorded in this chapter, not built.** This is the answer to "I don't want it to take forever," and it is a list rather than a feeling.*
 
@@ -299,82 +299,19 @@ Each claim was checked against the source, and the counts are what make the requ
 
 ## Test scenarios
 
-**U2 · numbers** — `at(7).read()` answers the part at position 7 with no search **[AE8]** · a location out of range is invalid rather than throwing · the five reference forms number their references without writing to them · grep: `.index` in `src/` returns only `$Location`'s **[AE7]** · *the row's printed number changes from the chapter's place in the full list to its own place among rows — asserted, because it is what a reader sees.*
-
-**U3 · the walk** — an element above the accepted level throws, naming both levels **[AE6]** · one below contributes its copy to the run **[AE6]** · one at the level is used as itself, and is the same object the author wrote **[AE6]** · a block of pure text divides and composes as before · grep: one implementation, six callers **[AE5]**.
-
-**U4 · inline** — `gathered()` is gone and every existing lib promise is green **[AE1]** · a figure written between two paragraphs still stands as a part with the paragraphs either side untouched · *driven, because this one cannot be judged by a suite.*
-
-**U5 · nesting** — a section written with a subsection holds it as a part **and** answers the flat paragraph list **[AE2]** · a section with no subsection behaves exactly as today · three levels of nesting recurse without special-casing.
-
-**U6 · the document** — a document with no summary is refused and the message names the summary **[AE3]** · a parenthetical summary is valid and is not drawn · the title reads off the first section · the existing chapter and cover specimens migrate and keep their meanings.
-
-**U7 · the title** — `section.parts()[0] === section.parts()[0]` **[AE4]** · it is the title · a section whose title is empty is invalid, with its own sentence · the colon-split subtitle and the tagline still derive.
-
-**U8 · judgment** — a malformed piece stays in the parts and draws its failure **[AE9]** · the parts count equals the writing count for every book in the demo **[AE9]** · `divide` returns no empty piece at any of the six levels · *red first: the console warning is proven gone by asserting nothing is dropped, not by asserting nothing is logged.*
-
-**U9 · words** — `33A3a-112and-skjdfh` is one word **[AE10]** · a hyphen, a digit and an apostrophe each survive · a run of pure punctuation is still mentioned rather than used · the facing-page comparison still agrees.
-
-**U10 · validation**
-- *both at once* — a bond failing a parameter check **and** a validity constraint reports both in one message **[AE11]**
-- *accrual* — a subclass's reasons appear beside its superclass's rather than replacing them **[AE12]**
-- *no short-circuit* — a class with two failing constraints reports **two** reasons. *This is the promise that enforces [D2](#d2); it fails the moment someone writes an `&&` chain.*
-- *drawn* — the message reaches the page through the existing exception path, seen rather than asserted
-- *quiet* — a valid bond states nothing and raises nothing, and the 76 sites are untouched.
-
-**U11 · the phrase** — an author written mid-paragraph leaves the sentence count at one **[AE13]** · a two-word name is one word by the phrase's own validity · a plain `$Word` still refuses a space, so the widening is the phrase's and not the word's.
-
-**U12 · markdown** — `#`, `##`, `###` build a nested model **[AE14]** · a fence is pulled whole and a blank line inside it does not divide it · a link's target never reaches the word parse · every notation in [D9](#d9)'s list has a promise · *and the list of what the lexer surfaces beyond D9 is printed in the report rather than discovered later.*
-
-**U13 · parents** — a grandchild resolves a registration made on the book · **both drivers complete** — *the scenario that failed last sprint, and the only one that would catch the loop* · a book renders the same number of parts before and after lineage is threaded.
-
-**U14 · the demonstration** — two books, one class, one registration, different sentences, no props, no subclass **[AE15]**.
-
-**U18 · the level views**
-- *one count, four altitudes* — the same writing read as sections, paragraphs, sentences and words gives **one** word count, whichever level it is reached from **[AE18]**
-- *the address resolves* — an address shown in a view is followed and lands on the **same object** the view drew, asserted by identity rather than by text **[AE19]**
-- *no second parse* — grep: the level views call `parts()` and compute no division of their own; the hand-copied structure is gone
-- *driven* — the page is opened and the four altitudes are walked, because none of this is provable by a suite.
-
-**U15 · the demo** — the deleted line count is stated against 1,083 plus the structure U18 removes **[AE16]** · the facing-page comparison agrees exactly · `faces.tsx` is **untouched** — *the guard: if styling moved, the unit misread the sprint.*
-
-**U16 · the drivers** — both complete with checkpoint accounting, each watched going red first.
-
-**Throughout** — chemistry from **674**, lib from **203**, against a rebuilt chemistry `dist`, app typecheck baseline unchanged **by identity** **[AE17]**.
+*Compacted at compounding — The sprint's test scenarios stood here. **They are now the suite** — a scenario that survived is a promise, and a promise is read where it runs, not where it was planned.*
 
 ## Risks
 
-1. **U4 is a rendering change wearing a refactor's clothes**, and the half nobody read is whether chemistry draws an inline chemical differently. *Mitigation: the unit is bounded, it lands alone, and it is driven rather than judged by a suite.*
-2. **U2 touches the reference constraints**, which every composition names. *Mitigation: `ts-morph` for the mechanical half, and a stated bound — if it reaches past addressing into meaning, it stops.*
-3. **U13 re-attempts the change that took both drivers red last sprint.** *Mitigation: it depends on U2 and U8, so nothing is written when it lands; and its scenario is the drivers, not the suite, because the suite proved nothing last time.*
-4. **U12 has no natural stopping point.** *Mitigation: [D9](#d9) is a list, and what falls outside it is printed rather than silently skipped.*
-5. **U10 is the requirement most likely to grow**, because "validation that says why" invites a new exception type. *Mitigation: bounded to the existing raise, with the type owed.*
-6. **Two owed questions could be smuggled in as necessary** — carrying elements, and a phrase contributing several words. *Mitigation: [D7](#d7) and [D8](#d8) are decisions with reasons, not omissions.*
-7. **Eighteen units across three packages, on a sprint Doug asked not to take forever.** *Mitigation: the order below is the schedule, U2 first is what makes the rest cheap, and **the cut order is stated in advance: U12's long tail ([D9](#d9)), then U14, then U15's scope.** U18 is never the cut — it is the demonstration Doug asked for, and it is scheduled early so it cannot become the thing that runs out of time.*
-8. **The demo is rewritten once markdown moves**, and the demo is the criterion. *Mitigation: U15 depends on U12, U14 and U18 all being green, so it is written against a settled model rather than beside a moving one.*
-9. **U18 could quietly become a second parse.** A view that computes what a level is rather than asking is exactly the defect this sprint deletes, arriving in the place least likely to be checked. *Mitigation: the unit is bounded, and the check is a grep for division inside a view.*
+*Compacted at compounding — The pre-flight risk list stood here. **A risk that fired is in the record below**, with what it cost; the rest did not.*
 
 ## Order
 
-**U1** → **U2** → U3 → U4 → U5 → U6 → **U7** → **U18** → U8 → U9 → **U10** → U11 → U12 → **U13** → U14 → U15 → U16 → U17.
-
-**U18 sits at the midpoint on purpose.** The parse is proved visible — four altitudes, one count, an address that resolves — **before** markdown, parents or the demonstration are attempted. If the sprint runs long, what is already seen is the thing Doug asked to see.
-
-**Four checkpoints where the drivers run and the numbers are stated:** after U2, after U7, after U18, after U13. A red driver at any of them stops the next track rather than being carried.
+*Compacted at compounding — The build order stood here, and the sprint ran it.*
 
 ## Self-check
 
-- **Every requirement lands.** R1 → U4 · R2 → U5 · R3, R3a → U6 · R4 → U7 · R5 → U3 · R6 → U2 · R7 → U8 · R8 → U9 · R9 → U10 · R10 → U11 · R11 → U12 · R12 → U13, U14 · R13 → U15 · **R14 → U18**. Every acceptance example AE1–AE19 is named in a scenario.
-- **R14 arrived after the plan was written**, from Doug reading it — *"more alternative views like the one we have in Algebra."* It took U18 and a place in the order rather than being appended, because a demonstration bolted on at the end is [Sprint 48's exact failure](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md).
-- **And back: every unit names a mechanism and a visible end.** None is design owed, because the five owed questions were answered as **decisions not to build them** ([D3](#d3), [D7](#d7), [D8](#d8), [D11](#d11)) rather than left as units pretending to be buildable — which is the exact failure [filed against Sprint 48](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md).
-- **The thinnest unit is U17** and that is correct — records, depending on everything.
-- **The riskiest is U13**, because it is the change that went red before. It is scheduled after the two units that remove its cause, and its scenario is the one that caught it.
-- **The negative claims are greps and they are part of the report**: no `.index` outside `$Location` (R6), one walk with six callers (R5), `faces.tsx` untouched (U15), and the list of notations D9 excludes.
-- **The one thing no unit fully owns** is whether the demo genuinely reads better afterwards — a line count is evidence and not proof. U15 carries it, and it is Doug's to judge at the review, which is where it belongs.
-
----
-
----
+*Compacted at compounding — The plan's self-check stood here, and it passed before work started.*
 
 # The record — what was built, and what the building found
 
@@ -437,7 +374,7 @@ Each claim was checked against the source, and the counts are what make the requ
 - **Two changes each surfaced their own requirement.** Making `$Figure` inline **hid it from the walk**, because the walk still used `inline` as its standing test — which is precisely what R1 removes, so level alone now decides. And making `$Section` inline meant a document's sections arrive **grouped in its block**, so `$Document` reads them off the block by level: the same three-way rule, one grade up.
 - **Nothing below a document may declare itself non-inline, and the bond says so.** Two test classes still did; the throw caught both. The law is enforced where it is broken rather than remembered where it is written.
 - **A relative `-p` typechecks NOTHING and exits 0.** Running `tsc -p tsconfig.json` from `app/` reported clean while the gate reported four real errors — [the fifth appearance of the same defect](../solutions/14-the-green-that-exercised-nothing.md), and the gate caught it only because it uses an absolute path and prints its scope. **The gate was right and the shortcut was the lie.**
-- **A promise already said the number was the position.** [`ordinary.test.tsx`](../../package/app/src/markdown/ordinary.test.tsx) asserted `parts().map(p => p.index)` equals `parts().map((_, i) => i)`. We were storing a value the suite proved derivable.
+- **A promise already said the number was the position.** `ordinary.test.tsx` *(since deleted)* asserted `parts().map(p => p.index)` equals `parts().map((_, i) => i)`. We were storing a value the suite proved derivable.
 - **The contents was printing its number twice.** `view()` wraps rows in an `<ol>`, and `row()` then printed `{row.copy} {row.index}` — the ordered list's own numbering plus a hand-written one. Removing the stored number removed a duplicate nobody had meant to write.
 - **The demo was keeping app state in the model.** The manifold did `mark.index = this.ribbons.length` — a ribbon's slot among the other ribbons, stored in the writing's number because a number happened to be there. `$RibbonMark` now carries its own `$slot`.
 - **Addressing below a section moved from 1-based to 0-based**, and that is the derivation's own law finally holding: `$Section.first` was 0 while every other level was 1, and `$Composible$.canonical` has always been `parts()[0]`. The canonical now stands at position zero at every level. **It moves visible addresses in the manifold and the parallel text** — flagged rather than buried.

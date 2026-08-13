@@ -269,7 +269,7 @@ Reproduced with `$Chemical`, `$check` and `$Html<'block'>` and **no lib class in
 
 ## Test scenarios
 
-**U1** — the four framework cases: inline child with a prop passed inside a block (the failing one); no prop; standalone; block-level; declared-with-default. · Chemistry's own suite still 630/630. **U2** — a section with a block-level part renders every argument; `copy` spans the whole sequence; `elements` includes the authored part; a section of pure prose is unchanged. **U3** — prose · figure · prose gives three parts, figure at index 1 — AE1 · numbering re-counts around the insert · `parts()` twice answers the same content — AE6 · a level with no authored parts behaves exactly as today. **U4** — an `$Author` inline in a cover is not a part above its sentence — **AE2, and it is a regression on the shipped demo** · a `$RibbonMark` likewise. **U5** — the stated rule holds at every level; any moved test is named. **U6** — none; it produces a report. **U7** — a code listing with no caption binds; a figure with neither content nor caption is invalid **in its own words** — AE3 · a chapter's tagline derives from prose, never from a parenthetical caption — AE4. **U8** — three figures render, driven, no console error and no re-render warning — AE5. **U9** — the listing's text equals the file's. **U10** — the parts list on screen matches the written order. **Throughout** — chemistry from **630**, lib from **154**, both `tsc` **0**, against a **rebuilt** `dist` — AE7.
+*Compacted at compounding — The sprint's test scenarios stood here. **They are now the suite** — a scenario that survived is a promise, and a promise is read where it runs, not where it was planned.*
 
 ## Origin tracing — both directions
 
@@ -294,26 +294,15 @@ Reproduced with `$Chemical`, `$check` and `$Html<'block'>` and **no lib class in
 
 ## Order
 
-**U2 → U6 (the gate) → U3 → U4 → U5 → U7 → U1 → U8 → U9 → U10 → U12 → U11.**
-
-**U2 first because it is independent and it is the sprint's whole surprise** — the mechanism exists and we discard it, so proving that costs one file. **U6 before U3** because the review must not be written after the refactor it was meant to inform. **U1 before U8** because the figures cannot be seen until the loop is fixed, and after the model work because the model work does not depend on it.
+*Compacted at compounding — The build order stood here, and the sprint ran it.*
 
 ## Risks
 
-1. **U1 may not be in chemistry after all.** Doug's prior says our package. The four-case probe has no lib class in it, which is evidence and not proof — a framework-level mistake in how the lib *constructs* things could still be upstream. *Mitigation: U1 instruments before it edits, and reports honestly if the fault moves.*
-2. **U2 touches the base class every piece of writing inherits.** *Mitigation: it goes first, alone, with both suites run before anything else lands.*
-3. **U4 is a regression on the shipped demo** — the cover's author is exactly the case the kind test must not break. *Mitigation: it is a named scenario, not a hope.*
-4. **U6 can be skipped under pressure**, and it is the one thing here that is purely discipline. *Mitigation: it is in the order, before U3, and Doug's ruling on it is recorded in this chapter.*
-5. **U3 is the unit most likely to grow** — one generic parse over four levels with four differences each. *Mitigation: a split keeps U3 and takes the next unused number.*
-6. **The sprint spans two packages**, which is what made 47 a forever sprint. *Mitigation: U1 is bounded to one defect with a written reproduction, and the second half of this arc is [already cut out](#the-second-sprint--the-specialization).*
+*Compacted at compounding — The pre-flight risk list stood here. **A risk that fired is in the record below**, with what it cost; the rest did not.*
 
 ## Self-check
 
-- **U6 is the thinnest**, deliberately — it is a conversation with Doug, and its outcome cannot be planned.
-- **U9's source-reaching is a HOW** and is marked so; if it needs a build step, it is raised, not designed around.
-- **R4 has no unit and that is correct** — it is a constraint on U2 and U3, and it is in the tracing table as *held* so it cannot read as a drop.
-- **D3 and D2's one-implementation claim are proposals**, both cheap to overturn at U6.
-- **The five probes are deleted.** If a later reader wants them, Finding 1 and Finding 2 above carry their inputs and their outputs.
+*Compacted at compounding — The plan's self-check stood here, and it passed before work started.*
 
 ## The team
 
@@ -358,7 +347,7 @@ sections given as CHILDREN:   0 extra builds
 
 ### Referential sameness — raised, and ruled NOT a debt
 
-*Four shipped sites compare cards with `===` ([`$Canonical.valid()`](../../package/src/book/Canonical.tsx), [`$LibraryCard$.library`](../../package/src/library/LibraryCard.tsx), the shelf's self-exclusion, the demo's membership filter). Raised as a possible return of the equality Sprint 47 deleted.*
+*Four shipped sites compare cards with `===` ([`$Canonical.valid()`](../../package/src/book/Canonical.tsx), `$LibraryCard$.library` *(deleted; the demo declares its own card)*, the shelf's self-exclusion, the demo's membership filter). Raised as a possible return of the equality Sprint 47 deleted.*
 
 **Doug: *"Those are okay. That is not an equals or same method implementation. It is not that no one can check for equality. It's just not a necessary function."*** So the distinction is recorded rather than the debt: what died was **`equals`/`same()` as members the model required**, not a caller's plain comparison. No unit, no change.
 

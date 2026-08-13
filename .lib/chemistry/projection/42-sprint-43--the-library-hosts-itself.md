@@ -140,7 +140,7 @@ More elegant still, per Doug: *a conscious experience represents a change in per
 
 ### The criterion is formalization, not a checkmark
 
-SRT has library semantics, so **everything in the repo — $Chemistry included — should ultimately take form expressing an aspect of SRT.** If SRT is formal, that is a hard criterion, and it is harder than a type-check: not "did the script pass" but *is this what the spec says a thing of this kind is*. One day everything here is formalized against [`.spec`](../../../../library/.spec).
+SRT has library semantics, so **everything in the repo — $Chemistry included — should ultimately take form expressing an aspect of SRT.** If SRT is formal, that is a hard criterion, and it is harder than a type-check: not "did the script pass" but *is this what the spec says a thing of this kind is*. One day everything here is formalized against `.spec` *(since renamed `.public`)*.
 
 ### Live editing — the return path
 

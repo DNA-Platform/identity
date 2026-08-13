@@ -406,121 +406,15 @@ Seemann's objection has two halves and **neither survives contact with what our 
 
 ## Test scenarios
 
-**U2 · the forms** — each of the four answers the right kind, and `arg === $` is never satisfied by a class, a component, an instance or an element. **[R6]**
-
-**U3/U4 · identity and roots** — two components of one class are distinct keys **[AE7]**; two roots for one class each derive per mount rather than sharing one object. *This is the one that would fail silently, so it asserts mounts, not construction.*
-
-**U5/U7 · resolution**
-- *identity* — empty registry → `$(X) === X`. **[AE1]** *The compatibility law; it must be the first promise written.*
-- *scoped* — register in A, resolve in A → the replacement. **[AE5]**
-- *isolated* — register in A, resolve outside A → the original. **[AE5]** *This row is what proves the feature; everything else would pass against a global map.*
-- *derived* — `$($,X)`, register on X, resolve through the derivative → the replacement. **[AE2]**
-- *not upward* — register on the derivative, resolve through X → the original. **[AE3]**
-- *root* — `$($X)`, nothing above it, resolve → the argument. **[AE4]**
-- *projection* — register on a book, resolve from a grandchild → the replacement. **[AE6]**
-
-**U6 · priming** — `$(X)` resolves in a view, in a bond constructor, and in a handler; outside all three it answers the argument. **[AE12]**
-
-**U8/U9 · registration and its guards**
-- *happy* — `$(A,B)(C)` returns `C` and takes effect. **[AE5]**
-- *options* — the two-argument form differs observably from the one-argument form on the same pair. **[R4a]**
-- *failure, red first* — register during a render → **throws**, naming where configuration belongs. **[AE8]**
-- *failure, red first* — `$($X)` during a render → **throws**. **[AE9]**
-- *structural* — grep: no form exists that registers without a scope. **[R14, AE — the read rung]**
-
-**U21 · reach**
-- *projected, the default* — register on a book, resolve from a **sentence** four levels down → the replacement, with nothing named in between. **[R22]**
-- *narrowed* — the same registration with the option → the book's own asks answered, the sentence's **not**. **[R23]**
-- *the pair together* — both registrations present, each answering its own case. *This is the scenario that proves the axis exists rather than that one setting works.*
-
-**U22 · the asker filter and the order**
-- *asker* — beneath one scope, two registrations for the same requested component distinguished only by which class asks → each answers its own. **[R23a]**
-- *nearest wins* — a nested scope and an outer scope both registering → the nested one answers. **[R24]**
-- *more specific wins* — an asker-named and an unnamed registration in **one** scope → the named one answers. **[R24]**
-- *the graph, not a stack* — a grandchild rendered long after its grandparent's view returned still resolves. **[R24a]** *This one fails if anyone builds the lineage from a render stack.*
-
-**U32 · the class axis**
-- *inherits* — register for `$X`, render a `$DX extends $X` with nothing registered on it → the replacement. **[R33]**
-- *shadows* — register on both → the subclass's answers. **[R33]**
-- *declines* — the subclass registers the base back for itself → the inherited registration does not apply. **[R36]**
-- *forked* — a scope that is **both** derived and a subclass → answers from whichever parent `#topics` names first, and changing that order changes the answer. **[R34]**
-- *a second root* — `$($X)` twice → subclasses inherit from the class's template scope only. **[R37]**
-
-**U33 · precedence**
-- *self before lineage* — the asker's own scope and an ancestor both register → **the asker's answers**. **[R35, R35a]** *This is the promise that encodes Doug's ruling; if the ruling changes, this test changes with it and says so.*
-- *inner before outer* — two ancestors register → the nearer one answers.
-- *class last* — a lineage registration and a class-chain registration → **the lineage answers**, because a class-chain entry is a default rather than a composition.
-- *floor* — nothing anywhere → `B` itself. **[AE1]**
-- *structural* — grep: no hand-written fall-through loop for the static axes; `$find` does it. **[R34a]**
-
-**U23 · the writing chain** — a book whose **sentences** are a consumer's own class, with **no subclass of `$Section` or `$Paragraph`**. **[R19a]** · *invariant:* the parse finds the same parts, in the same order, with the same count — **the reading does not change, only what draws it.**
-
-**U24 · the reference chain** — one registration changing how every reference in a scope travels; the manifold's citation loop still closes. **[R19b]**
-
-**U28 · the sweep** — grep: **zero** component-to-component dependencies in `lib` not going through `$`, from the same measurement that found 33 across 22 files. **[D15 — the read rung]**
-
-**U25 · the Lab section**
-- *forms and reaches* — a case per form, per reach, per resolution-order law, each driveable and each shown failing where it should. **[R26]**
-- *the consumption form* — a local variable, everywhere, **carrying the component's own name**. **[R29, R29b]**
-- *nothing is held* — grep: no property in `lib` or the demo holds a component, and `Component<…>` appears in no class body. **[R29a, D18b]**
-- *the property route does nothing* — a field initializer calling the ask resolves **before any scope exists**, so overriding it does not substitute a resolved component. **[R29a, D18a]** *A promise that a pattern does not work is worth as much as one that it does.*
-- *the three acts, distinguished* — register (substitutes a component), override the bond constructor (changes which **chemicals** were handed in), override a property (polymorphism, for values that are not resolved) — shown together with only the first substituting a component. **[R30]**
-- *a subclass is a scope* — a subclass with its own bond constructor resolves in its own scope, and its parent is unaffected. **[R30]**
-
-**U29/U30 · the convention** — a configuration module reads imports → components → registrations → exports; a second module configuring the same framework component does not disturb the first. **[R31]**
-
-**U31 · the container does not leak** — grep: the registration form appears **only** in configuration modules, across `lib`, the demo and the Lab. **[R32]** *Empty output, shown, not claimed.*
-
-**U26 · the chemistry app** — the three drivers complete, run **before** the framework work and again after, so a pre-existing red is floor work rather than a late surprise. **[R28]**
-
-**U27 · the redesign** — demo classes are **deleted**, and `$ShelfContents` — which overrides `view()` wholesale and is *correct* to — **survives untouched**. **[R27]** *The second half is the guard: if it converted, the unit misread the feature.*
-
-**U10 · the inverse** — the six moved promises pass against `$(X,$)`, and the result is the same object `.$chemical` returns. **[AE10]**
-
-**U11 · the types** — `Component<Sub>` is accepted where `Component<Base>` is wanted; `Component<Unrelated>` is a **compile error**. *Written red first, because variance is where TypeScript surprises people.* **[AE13]**
-
-**U12 · teardown** — a released scope answers nothing and its parent no longer holds it.
-
-**U13/U14 · lib** — a consumer replaces the row class **without reimplementing `parts()`**; the contents still numbers its rows as before. **[R19]**
-
-**U15 · the dresses** — the three render as they do today, and `spec: DressSpec` appears in **zero** signatures, shown by the grep. **[AE14]**
-
-**U17 · the demonstration** — two books, one class, different contents, no props, no `$Book` subclass. **[AE15]**
-
-**U19 · the drivers** — both complete; each watched going red three ways first. **[AE16]**
-
-**Throughout** — chemistry from **635**, lib from **203**, against a rebuilt `dist`, app typecheck baseline unchanged **by identity**. **[AE17]**
+*Compacted at compounding — The sprint's test scenarios stood here. **They are now the suite** — a scenario that survived is a promise, and a promise is read where it runs, not where it was planned.*
 
 ## Risks
 
-1. **`$` is the most-used symbol in the system, and this changes what one of its branches means.** *Mitigation: R16 is the first promise written, and it asserts object identity rather than equality — if anything remounts, that test fails before the demo is touched.*
-2. **U4 touches `$lift`'s root-ness test, which every render path runs.** *Mitigation: bounded to root-ness; it stops and reports if it reaches further. This is the single most dangerous unit in the sprint.*
-3. **Lineage resolution could become a per-render cost.** *Mitigation: cached per mount, which is only sound because D6 forbids configuration after rendering starts — the two decisions hold each other up, and if D6 is ever relaxed the cache must go with it.*
-4. **The type ordering could shadow the eval overload**, which is the failure the existing comment warns about. *Mitigation: U11 carries a promise for `$(<X/>)` continuing to resolve to eval.*
-5. **U15 is a rendering change wearing a refactor's clothes** — 33 sites, and R20 says nothing regresses. *Mitigation: it lands alone, after U7 and U8 are green, with the keystroke check run before anything else moves.*
-6. **The demonstration could be built last and be thin** — [Sprint 48's failure exactly](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md). *Mitigation: U17 is a stop condition, and its two scopes already exist as private bindings in the demo.*
-7. **Two packages sharing one chemistry is the whole point and the hardest thing to test**, since the suite runs in one process. *Mitigation: AE7 simulates it with two private components of one class, which is the same structure without needing two installs.*
-8. **`$Chemistry`'s Projection is owed an entry** and this chapter is not its home. *Mitigation: U20, named rather than assumed.*
-9. **U23 touches the writing chain, which every book in the demo runs through.** A mistake there does not break a feature, it breaks reading. *Mitigation: the invariant is stated as a promise — same parts, same order, same count; **only what draws them changes** — and it runs before anything visual is judged.*
-10. **The sprint is now twenty-eight units and spans three packages.** *Mitigation: the order is floor → framework → coverage → lib → demo, and **the framework half is complete and green before `lib` is touched**. If it must be cut, U27 (the redesign) is the cut, because U17 (the demonstration) already proves the feature without it.*
-11. **"Serious coverage" has no natural stopping point.** *Mitigation: U25 enumerates it — one case per form, per reach, per order law — so completeness is a list rather than a feeling.*
-12. **The chemistry app may already be red**, as its sibling driver was. *Mitigation: U26 runs all three drivers **first**, so a pre-existing failure is floor work with a known cause rather than something this sprint appears to have caused.*
-13. **The reach option could grow into a configuration language.** *Mitigation: two knobs, reach and asker, and no third without Doug's word. Every other narrowing anyone wants is a new scope.*
+*Compacted at compounding — The pre-flight risk list stood here. **A risk that fired is in the record below**, with what it cost; the rest did not.*
 
 ## Self-check
 
-- **Every requirement lands somewhere.** R1–R6a → U2, U3, U4, U11; R7–R9 → U6, U9; R10–R15 → U5, U7, U12, U16; **R22–R24a → U21, U22**; **R29–R30 → U25**; **R31 → U29, U30**; **R32 → U31**; R16–R18 → U7, U10, and the suite; R19/R19a/R19b → **U13, U23, U24, U28**; R20–R21 → U15, U17; **R26 → U25; R27 → U27; R28 → U26.**
-- **And back:** every unit names a mechanism and a visible end. **U21 and U22 exist because Doug named the gap** — *"just for the class, or for the whole call stack all the way down"* — and it was underspecified in the first draft of this plan rather than absent from it, which is the more dangerous shape.
-- **U28 is a check rather than work**, and it is here because a wholesale conversion that is only mostly done is worse than a sampled one: consumers would trust a container that sometimes isn't consulted.
-- **The identifiers are not contiguous and that is correct.** U21–U28 were added after U1–U20 were numbered; nothing was renumbered, and the order in this document is the order of the work, not of the identifiers.
-- **No unit is design owed.** Each names what runs and when. The one open question — how a test establishes a scope without mounting — is **D9**, a decision with a stated seam rather than a unit pretending to be buildable.
-- **The negative claims are greps, and the greps are part of the report**: no registration form without a scope (R14), no `spec` in any signature (AE14), no lookup loop in the derived path (R12).
-- **The thinnest unit is U20** and that is correct — bookkeeping, depending on everything.
-- **The one thing no unit fully owns** is whether the three dresses stay recognisably themselves without their `spec`. U15 carries it, and it is risk 5 rather than a hidden assumption.
-
----
-
----
+*Compacted at compounding — The plan's self-check stood here, and it passed before work started.*
 
 # Where things stand
 

@@ -70,7 +70,7 @@ Cathy (the model — the telescope abstraction and `$Catalogue`), Arthur (the on
 
 ## Risks
 
-The plan's three stand (the fusion is a hypothesis; synopsis ownership; two bond constructors, one book), plus two new: **the telescope's grain** — whether the wrap is a class, a rule of the strip, or a role, must come out of the discussion and Doug's session, not be guessed; and **`$Name` vs the register** — the register dropped `$Name` (*the class is `$Title`*) before Sprint 46 built it as a reference kind; the discussion must reconcile the two or the vocabulary forks.
+*Compacted at compounding — The pre-flight risk list stood here. **A risk that fired is in the record below**, with what it cost; the rest did not.*
 
 ## Retro — the sprint closes (2026-08-03)
 
