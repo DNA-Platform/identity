@@ -354,3 +354,76 @@ The book driver went red at two manifold checkpoints. **One was the driver's own
 
 <!-- citations -->
 [conv]: ../../../../../dna-library/library/claude-dna/conversations/2026-07-18-the-semantics-of-books.md "The Semantics of Books — Doug, 2026-07-18; the primary source"
+
+# Where things stand
+
+*One state, written 2026-08-13 at the session's close. Everything above is the record; this is the present.*
+
+## → NEXT: `/ce-brainstorm`, and the subject is Doug's to set
+
+**Run `/ce-brainstorm`.** The sprint is closed, committed and pushed; nothing is half-built and no gate is red.
+
+**What this session expected the subject to be — and it is an expectation, not a brief.** Doug's ruling at the close was *"The build — as planned before tonight"*, meaning [Sprint D — The Compilation](00-planning.md#d--the-compilation): the `.public` build generates the library cards that are currently written by hand. *Said as an expectation deliberately: the last handoff named a subject, and Doug redirected it inside the session — the step follows from where work stopped, the subject does not.*
+
+## Said plainly, for whoever is not tracking identifiers
+
+**A book can now catalogue books.** A chapter *is* a reference to a book, so a book that holds other books' accounts of themselves is a catalogue without becoming a different kind of thing — and **subjecthood is a count, not a class**: catalogue nothing and you are an ordinary book, catalogue something and you *are* a subject.
+
+**A synopsis can stand in two places at once.** It is written once, in the book it is of, and the catalogue holds that same account rather than a copy — so an entry cannot drift from the book it names.
+
+**Every reference is now writing.** A reference to a chapter is a section, to a section a paragraph, to a sentence a word — each one grade below what it stands for, each drawing its referent *mentioned*: named where the referent has a name, in quotes where it has none.
+
+**And a figure is just a caption.** The framework ships no kinds of figure; a book declares its own. That cut is what exposed a live bug where every figure was being drawn as mathematics.
+
+## The state, once
+
+**Complete.** The sprint's model work, its demo restructuring, and its records. `$Row` deleted, `$Referent` made a class, the `$$` family made writing, the Shelf's prose rewritten true, the library compacted and every link resolving.
+
+**Not started, and named rather than omitted** — none of it blocks the next sprint:
+
+- **A list should be a paragraph whose items are its sentences.** Doug's design, attempted, broke six promises, reverted rather than left red. **The largest single piece of owed work.**
+- **Dynamic layering** — one `$Code` whose level moves between paragraph and phrase with an `inline` boolean. `$Formula` and `$Snippet` are two classes standing where Doug named one.
+- **The drivers gained no checkpoints of their own** for the Shelf's new entries, so those are driven but not asserted.
+- **The refusal is not drawn** as the demo's own law; reciprocity left the framework on Doug's ruling and was never rebuilt.
+- **Four cleanups:** loose module bindings; `$IndexCard` declaring no level; the free `$Composible$` rename; and the parse re-deriving what `marked`'s lexer already answered — that last one is the strongest Solutions candidate on the list.
+
+**Blockers: none.**
+
+## Verified — every gate, with its scope
+
+| gate | result |
+|---|---|
+| lib `tsc` | **0** |
+| lib suite | **239/239**, 23 files *(from 224)* |
+| app typecheck | **66 files, 1/1 baselined, 0 unexpected** |
+| `verify-book.mjs` | **51 checkpoints**, run twice |
+| `verify-demo.mjs` | **25 checkpoints**, run twice |
+| chemistry | 674/674 — **untouched this sprint** |
+| library links | **0 broken**, across `.claude` and every branch |
+
+**Pushed.** Project `1aae2cb` on `main`; identity branch `inexplicable-phenomena` at `05ba2ee`, local and origin identical, carrying `.claude` and both branch libraries.
+
+## Wrong turns already taken — do not repeat
+
+- **Dropping the bound on a reference's *target*** so a reference could point at anything: **95 errors**, from variance rather than semantics. The sentence it was reaching for is true and `$Catalogue$` now says it in one place instead of in a type parameter.
+- **Narrowing a `$` prop in a subclass** — `as const` or otherwise. Thirty errors naming members nobody touched. [Filed](../solutions/20-the-narrowed-prop-that-disowned-its-base.md); the rule is *declare a `$` prop at the base's type, never at the value's.*
+- **Making a list a paragraph** broke six promises and could not be diagnosed cleanly in the time available. Reverted to the commit rather than left red — **that reversion was correct**; do not "finish" it without designing it first.
+- **A blanket rename across the package** has bitten twice: `.content` → `.source` also matches inside `.contents`. Target the sites.
+
+## How to see it
+
+```bash
+cd library/.public/package && npx vite app
+```
+
+Open the port it prints. **The Shelf is the root** — four spines in a row, and the three catalogued books' own synopses standing as its chapters. Follow a spine into The Manifold to see a book read at four altitudes. `/page` is the other demo.
+
+## Read these, and each is load-bearing for the reason given
+
+*Shaped for a **brainstorm**, so these are sources the designing reads rather than code the last session touched. **A starting point, not a boundary** — if the conversation goes somewhere else, read for that instead.*
+
+1. **[Chapter zero's Sprint D](00-planning.md#d--the-compilation)** — what the build must generate, and the mapping it must follow.
+2. **[The demo's hand-built card](../../package/app/src/sections/book/library/the-team/librarycard.tsx)** — **the actual specification.** Doug's method is that writing them by hand tells you what the build must autogenerate, and this is that list in code.
+3. **[The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md)** — the settled account of what writing is, on one page. Corrected this sprint; read it rather than the sprint records that produced it.
+4. **[The sprint that planned what it had not designed](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md)** — the failure the build is most likely to repeat, because *"the compiler can read our source"* is a feasibility case standing where a mechanism is owed.
+5. **[Compounding](../../../../.claude/library/..librarianship/17-compounding.md)** — changed this sprint: compounding now **subtracts** as well as adds, and a closed sprint chapter gets compacted into an index.
