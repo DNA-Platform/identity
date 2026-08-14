@@ -39,11 +39,11 @@ Close a session by writing **where things stand** into the current sprint chapte
 
 **Every part of it says the thing in plain words first**, and carries the identifier afterwards for whoever is tracing. Identifiers are for the origin trace; **the state is for a human.**
 
-### 4. It names what to read, and the list is short
+<a id="4-it-names-what-to-read-and-the-list-is-short"></a>### 4. It names what to read, and the list is short
 
 **Orienting cost twenty-four files.** That is not thoroughness, it is the absence of a reading list — and it is paid at the start of every session until someone writes one.
 
-**The handoff names three to five things and claims they are sufficient.** Each with what is load-bearing in it. If five are not enough, the sprint chapter is not doing its job and *that* is the finding.
+**The handoff names three to five things, each with what is load-bearing in it.** *It does **not** claim they are sufficient — see [rule 9](#9-sufficient-is-a-claim-and-it-was-wrong), which is that correction overshooting into a promise its writer could not keep.*
 
 ## Four more, walked back out of one full session — added 2026-08-10
 
@@ -64,6 +64,22 @@ Mid-session, a push was stopped for reconciliation, the tool's advice was follow
 ### 8. A sprint with a demo hands over the way to see it
 
 Doug asked for the link mid-session, and the serve had to be rediscovered — the port, the route, the command. **When the sprint has something to look at, Where things stand says how:** the command that serves it, the route to open, and what the reader should see first. A demonstration that must be rediscovered is not handed off.
+
+## Two more, out of the handoff that mostly worked — added 2026-08-13
+
+*Cataloguing opened from [The Parse](../../library/library-tree/03-sprints.md)'s handoff and Doug's instruction at its close was to check how that opening had gone. **The machinery held** — the first line said `/ce-brainstorm`, that is what he ran, and his second message was already inside the framework's semantics, so orientation cost almost nothing. The two things that slipped are one mistake: **the handoff claimed what its writer could not know.***
+
+### 9. "Sufficient" is a claim, and it was wrong
+
+The reading list said *"Read these four, and they are sufficient."* Doug's opening instruction was **"read at least 30 documents in the library, library branches, recent sprint and plan and the primary source."** [Rule 4](#4-it-names-what-to-read-and-the-list-is-short) exists because orienting once cost twenty-four files with no list at all — and the correction overshot into a promise the writer had no way to keep, because **the reader's need depends on the conversation the reader is about to have**, which had not happened yet.
+
+**So: name three to five and say what each is load-bearing for — and stop there.** A short list is a starting point, not a boundary. *If the next session reads far past it, that is the list working, not failing; if it reads nothing else, the list was lucky.*
+
+### 10. Name the STEP, never the sprint's subject
+
+The handoff pointed the brainstorm at *the build*. The sprint became **cataloguing**, on Doug's redirect inside the session: *"Figuring out cataloguing books can be the subject of this sprint. And the next sprint can be about the build."*
+
+**Naming the step was right and naming the subject was not.** A handoff can know which command comes next, because that follows from where the work stopped. **It cannot know what the next sprint is about, because that is Doug's to set and he sets it in the room.** Write the subject as *what this session expected*, plainly marked as an expectation, and let the reading list carry it — never as the next session's brief.
 
 ## What we were missing
 
@@ -109,7 +125,7 @@ Within a session, [ce-work](30-ce-work.md) tracks unit-by-unit progress in the *
 
 **To close a session:**
 1. Read the sprint chapter and the plan chapter — state from evidence, not memory.
-2. Rewrite **Where things stand** with everything above, **opening with the next action as a command**.
+2. Rewrite **Where things stand** with everything above, **opening with the next action as a command** — the step, never the sprint's subject.
 3. **Push.** The branch library to the [object of record](../..environmentalism/06-on-sync.md), the code to the project repo. Report both commits.
 4. Say in one line what it captured.
 

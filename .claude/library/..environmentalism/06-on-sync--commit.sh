@@ -4,15 +4,19 @@
 # Usage: bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit message"
 #        DRY_RUN=true bash .../06-on-sync--commit.sh "msg"   # validate + print the plan, mutate nothing
 #
-# Three-way commit:
-#   1. Identity changes (.claude/) → identity repo, dna-platform branch (merged to main)
+# Two-way commit:
+#   1. Identity (.claude/) AND the branch libraries (library/*/.lib/) → identity repo,
+#      the branch named after this repo. THAT BRANCH IS THE OBJECT OF RECORD — it is the
+#      only place either of them is written, so there is nothing to reconcile and no
+#      shared branch to clobber. (Doug, 2026-08-12.)
 #   2. Project branch (library/*/.lib/ + downstream identity) → identity repo, <project-name> branch
 #   3. Project code changes → project repo
 #
-# The project branch is named after the project directory (basename of PROJECT_ROOT)
-# and the branch-library routing is derived from library/*/.lib — nothing is hardcoded
-# to a particular project. Step 2 ALWAYS runs (even with no .lib/), so the project
-# branch stays in sync with dna-platform and .claude/CLAUDE.md reach it via downstream merge.
+# The branch is named after the project directory (basename of PROJECT_ROOT) and the
+# branch-library routing is derived from library/*/.lib — nothing is hardcoded to a
+# particular project. There is NO shared dna-platform step and no merge to main: a
+# shared branch is what created the reconcile problem, and the repo-named branch
+# removes it by being the single object of record.
 #
 # Architecture: checkout the right branch FIRST, then sync, then commit.
 # Never sync files to the identity repo before selecting the target branch.
@@ -187,11 +191,11 @@ if [ "$DRY_RUN" = true ]; then
     echo "========================================"
     echo "DRY RUN — validation passed; mutating nothing"
     echo "========================================"
-    echo "Would sync .claude/ → identity (dna-platform), commit if changed, merge to main."
+    echo "Would sync .claude/ AND library/*/.lib → identity branch $PROJECT_NAME (the object of record), commit if changed."
     if git -C "$IDENTITY_REPO" show-ref --verify --quiet "refs/heads/$PROJECT_NAME"; then
-        echo "Identity branch $PROJECT_NAME: EXISTS → would downstream-merge dna-platform into it."
+        echo "Identity branch $PROJECT_NAME: EXISTS → would fast-forward from origin, then mirror onto it."
     else
-        echo "Identity branch $PROJECT_NAME: MISSING → would create it from dna-platform, then downstream-merge."
+        echo "Identity branch $PROJECT_NAME: MISSING → would create it."
     fi
     if [ "${#lib_dirs[@]}" -gt 0 ]; then
         for lib_dir in "${lib_dirs[@]}"; do
@@ -199,7 +203,7 @@ if [ "$DRY_RUN" = true ]; then
             echo "Would sync $lib_dir → $IDENTITY_REPO/.lib/$lib_name on $PROJECT_NAME."
         done
     else
-        echo "No branch libraries (library/*/.lib) — would still keep $PROJECT_NAME in sync with dna-platform."
+        echo "No branch libraries (library/*/.lib) — .claude/ still goes to $PROJECT_NAME."
     fi
     echo "Would push $PROJECT_NAME (with -u on first push)."
     [ "$has_project_changes" = true ] && echo "Would commit project code + regenerate root CLAUDE.md, then push the project repo."
@@ -208,122 +212,46 @@ if [ "$DRY_RUN" = true ]; then
     exit 0
 fi
 
-# --- Step 1: Identity changes → dna-platform (merged to main) ---
+# --- Step 1: Identity AND branch libraries → the repo-named branch ---
+# Runs for EVERY project, not gated on .lib/. This branch is the OBJECT OF RECORD for
+# .claude/ and for every library/*/.lib — nothing else writes to it, so the mirror is
+# always safe and no reconcile step exists.
 
 echo "========================================"
-echo "IDENTITY → dna-platform branch"
-echo "========================================"
-
-cd "$IDENTITY_REPO"
-# Ensure clean working tree, and that local dna-platform reflects the real org state
-git stash --quiet 2>/dev/null || true
-git fetch origin dna-platform --quiet 2>/dev/null || true
-git checkout dna-platform --quiet
-git merge --ff-only origin/dna-platform --quiet 2>/dev/null || true
-
-# --- RECONCILED guard: refuse to clobber another project's work --------------
-# /MIR makes the org branch match THIS copy, and it loses the org's work TWO ways —
-# both must be guarded:
-#   DELETE  — a path the org has that we lack (robocopy "*EXTRA"); /MIR purges it.
-#   REVERT  — a path the org UPDATED while this copy stayed behind (robocopy "Older":
-#             source older than dest); /MIR still copies it, silently regressing the
-#             newer file. A reverted chapter is as lost as a deleted one, and the
-#             delete-only guard never saw it (no *EXTRA) — that is the gap this closes.
-# With two projects sharing dna-platform, dry-run the mirror first and REFUSE on either.
-# Reconcile down first (06-on-sync--pull.sh) — a real git merge, the manual step the
-# mirror can't do; override only when the loss is genuinely intended.
-# NOTE: no /NC — /NC (no-class) suppresses the "*EXTRA"/"Older" markers these greps need,
-# which once silently broke the guard. The do_sync mirror below may keep /NC for quiet output.
-mirror_preview="$(MSYS_NO_PATHCONV=1 robocopy "$(winpath "$CLAUDE_DIR")" "$(winpath "$IDENTITY_REPO/.claude")" /MIR /L /XD node_modules run .git /NJH /NJS /NS /FP 2>&1 || true)"
-would_delete="$(printf '%s\n' "$mirror_preview" | grep -ciE '\*EXTRA' || true)"
-would_revert="$(printf '%s\n' "$mirror_preview" | grep -cE '^[[:space:]]+Older[[:space:]]' || true)"
-if { [ "${would_delete:-0}" -gt 0 ] || [ "${would_revert:-0}" -gt 0 ]; } && [ "${RECONCILED:-0}" != "1" ]; then
-  echo "REFUSING identity push: a /MIR would lose work on dna-platform —"
-  echo "  ${would_delete} path(s) DELETED (org has them, this copy lacks them),"
-  echo "  ${would_revert} path(s) REVERTED (org updated them, this copy is behind)."
-  echo "Both are another project's or session's work. Reconcile DOWN first (the manual merge step):"
-  echo "    bash \"$(dirname "${BASH_SOURCE[0]}")/06-on-sync--pull.sh\""
-  echo "then re-run. Override ONLY if the loss is genuinely intended: RECONCILED=1 $0 \"<msg>\""
-  exit 1
-fi
-
-# Sync .claude/ from project to identity repo
-echo "Syncing .claude/..."
-do_sync "$CLAUDE_DIR" "$IDENTITY_REPO/.claude" /MIR /XD node_modules run /NFL /NDL /NJH /NJS /NC /NS || exit 1
-cp "$CLAUDE_DIR/CLAUDE.md" "$IDENTITY_REPO/CLAUDE.md"
-# Brain runtime now lives OUTSIDE the project entirely ($TMPDIR/dna-brains/<project>/:
-# cursors, reports, registry), so it never enters .claude/ and never travels to identity.
-# Defensively hard-delete any legacy .claude/run/ from the dest so a previously-committed
-# run/ is staged for deletion (the removal propagates downstream on push).
-rm -rf "$IDENTITY_REPO/.claude/run"
-
-# Check if anything actually changed
-git add -A .claude/ CLAUDE.md
-if git diff --cached --quiet; then
-    echo "No identity changes (already in sync)"
-    has_identity_changes=false
-else
-    git commit -m "$COMMIT_MSG"
-    echo "Committed to dna-platform"
-    git push
-    echo "Pushed dna-platform"
-fi
-
-# Merge dna-platform → main
-git checkout main --quiet
-if [ "$has_identity_changes" = true ]; then
-    if git merge dna-platform --no-edit; then
-        echo "Merged dna-platform into main"
-        git push
-        echo "Pushed main"
-    else
-        echo "ERROR: Merge conflict merging dna-platform into main."
-        echo "  If a conflicting file is a chapter or .cover.md, this is a CHAPTER/COVER MERGE — Libby's:"
-        echo "  rewrite the cover into ONE meaningful ordering of the two histories, then rename files to match."
-        echo "  Read .claude/library/..environmentalism/06-on-sync.md (\"Merging a book by hand\") and bookkeeping/03-on-covers.md."
-        echo "  Resolve in $IDENTITY_REPO, then verify with BOTH validators (the link checker especially):"
-        echo "    npx tsx .claude/library/bookkeeping/11-on-specifications--validator.ts .claude/library"
-        echo "    npx tsx .claude/library/..environmentalism/05-on-validation--check-links.ts .claude/library"
-        exit 1
-    fi
-fi
-
-cd "$PROJECT_ROOT"
-echo ""
-
-# --- Step 2: Project branch maintenance + branch-library routing ---
-# Runs for EVERY project, not gated on .lib/. Keeps the $PROJECT_NAME branch in sync
-# with dna-platform (so .claude/CLAUDE.md reach it via downstream merge), then routes
-# any library/*/.lib content onto it. Creates the branch from dna-platform if missing.
-
-echo "========================================"
-echo "PROJECT BRANCH → $PROJECT_NAME"
+echo "IDENTITY + BRANCH LIBRARIES → $PROJECT_NAME"
 echo "========================================"
 
 cd "$IDENTITY_REPO"
 
-# Ensure the project branch exists (a project branch is always cut from dna-platform)
+# Ensure the branch exists. It is the object of record, so it is cut from main once and
+# never merged with a shared branch again.
+git fetch origin "$PROJECT_NAME" --quiet 2>/dev/null || true
 if git show-ref --verify --quiet "refs/heads/$PROJECT_NAME"; then
     git checkout "$PROJECT_NAME" --quiet
+elif git show-ref --verify --quiet "refs/remotes/origin/$PROJECT_NAME"; then
+    git checkout -b "$PROJECT_NAME" "origin/$PROJECT_NAME" --quiet
 else
-    echo "Creating $PROJECT_NAME from dna-platform"
-    git checkout -b "$PROJECT_NAME" dna-platform --quiet
+    echo "Creating $PROJECT_NAME"
+    git checkout -b "$PROJECT_NAME" --quiet
 fi
+git merge --ff-only "origin/$PROJECT_NAME" --quiet 2>/dev/null || true
 
-# Downstream merge: dna-platform → project branch (brings .claude/CLAUDE.md down)
-echo "Downstream merge: dna-platform → $PROJECT_NAME"
-if git merge dna-platform --no-edit; then
-    echo "Merged dna-platform into $PROJECT_NAME"
-else
-    echo "ERROR: Merge conflict during downstream merge into $PROJECT_NAME."
-    echo "  If a conflicting file is a chapter or .cover.md, this is a CHAPTER/COVER MERGE — Libby's:"
-    echo "  rewrite the cover into ONE meaningful ordering of the two histories, then rename files to match."
-    echo "  Read .claude/library/..environmentalism/06-on-sync.md (\"Merging a book by hand\") and bookkeeping/03-on-covers.md."
-    echo "  Resolve in $IDENTITY_REPO on branch $PROJECT_NAME, then verify with BOTH validators (link especially):"
-    echo "    npx tsx .claude/library/bookkeeping/11-on-specifications--validator.ts .claude/library"
-    echo "    npx tsx .claude/library/..environmentalism/05-on-validation--check-links.ts .claude/library"
-    exit 1
-fi
+# Sync .claude/ onto this branch. No /MIR guard and no reconcile: this branch is the
+# only writer's, so a mirror cannot lose another project's work.
+echo "Syncing .claude/..."
+do_sync "$CLAUDE_DIR" "$IDENTITY_REPO/.claude" /MIR /XD node_modules run /NFL /NDL /NJH /NJS /NC /NS || exit 1
+# The identity ROOT CLAUDE.md sits one level ABOVE .claude/, so every link in it
+# needs the `.claude/` prefix — exactly like the project-root projection this script
+# already generates correctly forty lines below. This was a bare `cp` of the
+# unprefixed file, and it silently broke all 47 links in the identity repo's own
+# root file on EVERY run. Four separate sessions found and re-fixed it by hand
+# before anyone looked at the line that keeps undoing them.
+#
+# The rewrite is the SAME one used for the project root; a tool that only ever runs
+# outward leaves its own house unmaintained, and this is that, in one line.
+sed 's|\](\(library/\)|\](.claude/\1|g; s|\](\(agents/\)|\](.claude/\1|g; s|\](\(rules/\)|\](.claude/\1|g; s|\](\(skills/\)|\](.claude/\1|g' \
+    "$CLAUDE_DIR/CLAUDE.md" > "$IDENTITY_REPO/CLAUDE.md"
+rm -rf "$IDENTITY_REPO/.claude/run"
 
 # Sync each branch library library/<area>/.lib → identity .lib/<area>
 for lib_dir in "${lib_dirs[@]}"; do
@@ -334,12 +262,14 @@ for lib_dir in "${lib_dirs[@]}"; do
 done
 
 # Stage any branch-library changes (the merge itself may have already advanced the branch)
-git add -A .lib/ 2>/dev/null || true
+git add -A .claude/ CLAUDE.md .lib/ 2>/dev/null || true
 if git diff --cached --quiet; then
-    echo "No new branch-library changes to commit"
+    echo "No identity or branch-library changes to commit"
+    has_identity_changes=false
 else
     git commit -m "$COMMIT_MSG"
-    echo "Committed branch library to $PROJECT_NAME"
+    echo "Committed identity + branch library to $PROJECT_NAME"
+    has_identity_changes=true
 fi
 
 # Push (set upstream on the first push of a freshly-created branch)
@@ -370,7 +300,7 @@ if [ "$has_identity_changes" = true ] || [ ! -f "$PROJECT_ROOT/CLAUDE.md" ]; the
     echo ""
 fi
 
-# --- Step 3: Project code → project repo ---
+# --- Step 2: Project code → project repo ---
 
 if [ "$has_project_changes" = true ]; then
     echo "========================================"

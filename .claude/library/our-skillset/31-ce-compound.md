@@ -29,8 +29,35 @@ Adapted from [`ce-compound`][ce-compound] at commit `6a2a0f9`. **What we changed
 | `CONCEPTS.md`, one file | the chapter that already defines the word | a second home for a definition drifts from the first |
 | knowledge track → same folder | **distributed** to the room whose subject it is | a practice already has a room; a defect does not |
 | the folder exists from setup | **the book is created on demand**, with its first defect | an empty book is worse than an absent one |
+| adding is the whole motion | **adding and COMPACTING**, in the same pass | a store that only grows stops being findable, which is the failure their own rule warns about |
 
 **Announce at start:** "Using compound to distribute what this cost us."
+
+## Compounding subtracts as well as adds
+
+**A library that only grows is not compounding, it is accumulating.** Their plugin has no compaction step because a `docs/` folder has no cover to keep true and no reading cost to protect. Ours does, and *"the knowledge store only compounds value when it's findable"* cuts both ways: an unread 18,000-word sprint chapter is exactly as unfindable as a missing one.
+
+**A sprint chapter is written at full working weight, and that is correct.** Requirements, units, cleanup, test scenarios, order, risks, a self-check — that is what runs a sprint. **At compounding it stops being a plan and becomes an index**, which is what [Compounding](../..librarianship/17-compounding.md) already says it is.
+
+**What is provably spent once a sprint has closed:**
+
+| section | why it is spent | what replaces it |
+|---|---|---|
+| test scenarios | they became the suite | a stub: *a scenario that survived is a promise, and a promise is read where it runs* |
+| order | the sprint ran it | a stub |
+| risks | one that fired is in the record, with what it cost; the rest did not | a stub |
+| the plan's self-check | it passed before work started | a stub |
+| units, requirements, cleanup | the record cites them **by identifier** | a **register** — one line each, keeping every anchor the record links to |
+
+**Stub, never silently delete.** A cut section leaves one line saying what stood there and why it is gone. Deleting without a trace is what makes a later reader think the sprint never planned.
+
+**Three rules that keep compaction honest:**
+
+1. **Measure before and after, and say both.** *"122,595 words to 105,982"* is a finding. "Compacted the library" is not.
+2. **Check every link before and after.** Collect the anchors the surviving text references, and prove each still resolves. A compaction that breaks a cross-reference has cost more than it saved. *When this pass ran it also surfaced three links that had never resolved at all — the check pays for itself even where nothing is cut.*
+3. **A cover is re-edited only if the cut made it false.** The requirement is that a synopsis stays **true**, not that it is rewritten. Grep the cover for what you removed; if it does not appear, the cover already survived.
+
+**Across chapters, not only within them.** A sprint chapter that restates what a settled account now holds should carry the finding and a link, not the account. **Settled accounts are the destination and sprint records are the trail** — when they say the same thing twice, the sprint record yields.
 
 ## Why the last step is the point
 
@@ -66,6 +93,8 @@ Adapted from [`ce-compound`][ce-compound] at commit `6a2a0f9`. **What we changed
    npx tsx .claude/library/bookkeeping/03-on-covers--toc.ts <cover.md> <NN-chapter.md> "synopsis" --force
    ```
 8. **Link it from the sprint chapter**, edited incrementally rather than at the end.
+9. **Compact the sprint chapter**, now that its lessons live in their rooms — plan to register, spent sections to stubs, cross-chapter restatement to a link. Measure before and after and report both.
+10. **Prove no link broke.** Collect every `](#anchor)` in the branch library and check each resolves; report the count. This is the gate on the compaction, and it is not optional — a cut that breaks a cross-reference costs more than it saved.
 
 ## When several libraries are touched
 
