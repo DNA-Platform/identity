@@ -814,7 +814,7 @@ restored → 48 checkpoints reached
 
 **And it covers both halves, because neither has been signed.** [The mechanism half](10-writing.md#where-things-stand) records: *"Skipped by ruling — 'I'm going to skip review because this is a two part sprint.' So nothing here is signed off."* **The arc has therefore never been shown to Doug for acceptance.** This round is the first and only chance to sign it.
 
-**If the round turns up nothing:** the arc closes, and the next sprint is Doug's to choose — [Types](00-planning.md#types--a-whole-sprint-ruled-2026-08-07) is the one that has been waiting behind it since 2026-08-10.
+**If the round turns up nothing:** the arc closes, and the next sprint is Doug's to choose — [Types](00-planning.md#types--a-whole-sprint-ruled-2026-08-07--and-it-now-waits-behind-writing-2026-08-10) is the one that has been waiting behind it since 2026-08-10.
 
 ## Said plainly, for whoever is not tracking identifiers
 

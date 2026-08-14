@@ -6,7 +6,7 @@
 
 *Opened 2026-08-10 as a brainstorm, the sprint after [The Subject](09-the-subject.md) closed. **Status: `implementation-ready`** — the [Plan](#plan) was set the same day, enriching this chapter in place, after five probes answered Doug's question about where the loop comes from.*
 
-*Originally: **`requirements-only`.** Doug set it aside from chapter zero's cut stones with one sentence — **"Before we do types, I want us to design `$Writing`"** — so [Types](00-planning.md#types--a-whole-sprint-ruled-2026-08-07) stands ruled and waits. Sprints are **named, not numbered**; the title is the implementer's and stands for correction.*
+*Originally: **`requirements-only`.** Doug set it aside from chapter zero's cut stones with one sentence — **"Before we do types, I want us to design `$Writing`"** — so [Types](00-planning.md#types--a-whole-sprint-ruled-2026-08-07--and-it-now-waits-behind-writing-2026-08-10) stands ruled and waits. Sprints are **named, not numbered**; the title is the implementer's and stands for correction.*
 
 *Cut in two by Doug's ruling at the interview's close: **this chapter is the mechanism.** The specialization — the markdown rewritten, `$Page` replaced, all four books given specialized parts and their own aesthetics — is [the sprint after](#the-second-sprint--the-specialization), recorded here so nothing silently drops.*
 

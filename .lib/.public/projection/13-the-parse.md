@@ -118,7 +118,7 @@ Each claim was checked against the source, and the counts are what make the requ
 
 - **R9. `valid()` states its reasons into the validation in flight.** Not a return value — it plugs into the accumulator `$check` already writes to, so **parameter mismatches and validity reasons are collected together and raised once**, and a reader can see whether they are related. What is raised is what the UI plugs into, and it is an exception rather than a bare `Error`. *Seen: one bond failing on both a parameter and a validity constraint reporting both in one message, drawn in place.*
 
-  **This is [chapter zero's open question](00-planning.md#validation-that-says-why--carried-out-of-sprint-48-doug-2026-08-06) answered** — *"collect the exception and display it with the validation errors"* — and it is the shape `$Type` will need when several types weigh in.
+  **This is [chapter zero's open question](00-planning.md#done--validation-says-why-built-in-the-parse-2026-08-12) answered** — *"collect the exception and display it with the validation errors"* — and it is the shape `$Type` will need when several types weigh in.
 
 ## Section C — what it makes possible
 
@@ -197,7 +197,7 @@ Each claim was checked against the source, and the counts are what make the requ
 
 ## What the planning research measured, and what it changed
 
-- **The `valid()` change is cheap, and [chapter zero's estimate is wrong](00-planning.md#validation-that-says-why--carried-out-of-sprint-48-doug-2026-08-06).** It records *"cost: 736 tests see the change."* Counted by call site: **36 `valid()` implementations in `lib/src`, 29 `.valid()` calls in the lib tests, 11 overrides in the demo — 76 sites.** 736 was the suite's size, not its exposure. Recorded because a bad estimate is what keeps a cheap change queued for two sprints.
+- **The `valid()` change is cheap, and [chapter zero's estimate is wrong](00-planning.md#done--validation-says-why-built-in-the-parse-2026-08-12).** It records *"cost: 736 tests see the change."* Counted by call site: **36 `valid()` implementations in `lib/src`, 29 `.valid()` calls in the lib tests, 11 overrides in the demo — 76 sites.** 736 was the suite's size, not its exposure. Recorded because a bad estimate is what keeps a cheap change queued for two sprints.
 - **Chemistry has exactly one `valid()` mention** — `assertValid`. The framework half of R9 is one function and one accumulator, not a sweep.
 - **`$Title` carries no level at all.** It extends `$Writing`, whose `level` is `undefined`, so the walk could not place it and R4 cannot land without moving it. This is [D5](#d5).
 - **The title is already `elements[0]`.** [`$Section.$Section`](../../package/src/writing/Section.tsx) reads `this.elements[0]` and lifts it into a separate `title` member. R4 is *stop lifting it out*, not *put it in*.

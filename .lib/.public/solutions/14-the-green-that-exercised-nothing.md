@@ -77,3 +77,25 @@ server restarted, same commit        →  0 FAIL
 **A false red costs what a false green does**, and it costs it faster: it sends you diagnosing code that is already correct. The tell is exact and worth memorising — **when a driver and the unit suite disagree about the same objects, suspect the process before the code.**
 
 **So the scope rule extends to what the gate is RUNNING AGAINST, not only what it looked at.** A suite states which build; a typecheck states which files; **a driver states which server** — and a server that has outlived a file deletion is serving a build nobody wrote. *Restart the server after deleting a module, before believing anything it says.*
+
+---
+
+## A fourth appearance, found before it cost anything — from [The Build](../projection/15-the-build.md)
+
+**The symptom, stated as it would be met:** *the typecheck reports zero errors and half of every book is missing from the build.*
+
+**A pattern does not match a file whose name begins with a dot.** The library convention being designed names a book's cover `.cover.tsx` and its account `.synopsis.tsx`. Under an ordinary `include`, **neither exists.**
+
+```
+include: ["src/**/*.ts"]                         →  src/chapter.ts               (1 of 3)
+  ..cover.ts, .synopsis.ts                       →  never seen, never reported
+
++ a module importing './..cover' and './.synopsis'
+include: ["src/**/*.ts"]                         →  all four files, 0 errors
+```
+
+**Both halves matter.** A glob passes over them silently — no warning, no count, the same true-number-silent-scope disease as everything above. **An explicit import finds them and compiles clean**, which is why the convention survives at all.
+
+**The fix is structural rather than procedural, and that is what makes it hold.** The generated module that composes a book imports its cover, its synopsis and every chapter by name. **So that module is the only door into the dotted files** — and a gate must enter through it, never by walking a pattern. *A typecheck configured over `src/**` would report a confident zero across a library it had read half of.*
+
+**Filed as the fourth appearance, and the first one nobody paid for.** *Three earlier entries were found by something already broken; this one was found by [testing the assumption before building on it](../projection/15-the-build.md). The cause is unchanged — **a number without its scope** — and the only thing that changed is when it was asked.*

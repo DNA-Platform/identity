@@ -42,13 +42,13 @@
 
 ## Rulings carried, verbatim — the most expensive thing to lose
 
-- **[R39](06-sprint-48--subjects-and-the-library.md#the-reference-checks-type-design-doug-2026-08-06):** "`$Subject` is a book reference that validates its referent wears the catalogue type." A subject cannot point at a book that is not a catalogue. The check lives in the reference, not in a class hierarchy.
+- **[R39](06-sprint-48--subjects-and-the-library.md#the-reference-checks-type-design-doug-2026-08-06--supersedes-r4):** "`$Subject` is a book reference that validates its referent wears the catalogue type." A subject cannot point at a book that is not a catalogue. The check lives in the reference, not in a class hierarchy.
 - **[R63](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place):** "The whole point of library cards is that enough metadata floats around to do in-place validation." No walk, no climb, no `seen` set.
 - **[R47](06-sprint-48--subjects-and-the-library.md#what-a-catalogue-specifies-and-how-validation-runs-doug-2026-08-06):** `$Canonical` — a book reference a subject declares. The canonical must actually **have that book in its subject**, and **there can be only one**.
 - **[R46](06-sprint-48--subjects-and-the-library.md#what-a-catalogue-specifies-and-how-validation-runs-doug-2026-08-06):** a catalogue may have unwritten chapters — it **reaches to see what books have it as their subject**, and those appear automatically.
 - **[R61](06-sprint-48--subjects-and-the-library.md#r61-a-library-is-the-universe--there-is-one-and-library-validation-is-that-they-all-agree):** a library is the universe; the point of subject validation is that **everything in the library catalogue shares one single book that is the library** — held for Sprint Four, but the subject is what it computes from.
 - **[The Author's D5](08-the-author.md#decisions):** only the author link validated that sprint; **"the subject's validation failure is the next sprint's whole visible end."**
-- **Validation that says why** ([carried out of 48](00-planning.md#validation-that-says-why--carried-out-of-sprint-48-doug-2026-08-06)): a validation failure states its reason. The Author sprint proved the shape — the more specific class states its own reason (`$Cover`, and the suite went fully green on it).
+- **Validation that says why** ([carried out of 48](00-planning.md#done--validation-says-why-built-in-the-parse-2026-08-12)): a validation failure states its reason. The Author sprint proved the shape — the more specific class states its own reason (`$Cover`, and the suite went fully green on it).
 
 ## The starting condition, verified 2026-08-07
 
@@ -87,7 +87,7 @@
 
 ## Requirements
 
-*Inferred from Doug's answers, 2026-08-07 — the identifiers are internal bookkeeping, never his interface; every requirement quotes the answer it came from. **The interview closed on the sprint cut and the types ruling; this section is the approved record.** Two proposals were not adopted and are marked so. The types rulings moved to [their own sprint](00-planning.md#types--a-whole-sprint-ruled-2026-08-07) by ruling.*
+*Inferred from Doug's answers, 2026-08-07 — the identifiers are internal bookkeeping, never his interface; every requirement quotes the answer it came from. **The interview closed on the sprint cut and the types ruling; this section is the approved record.** Two proposals were not adopted and are marked so. The types rulings moved to [their own sprint](00-planning.md#types--a-whole-sprint-ruled-2026-08-07--and-it-now-waits-behind-writing-2026-08-10) by ruling.*
 
 ### The book — every book, period
 
@@ -104,7 +104,7 @@
 
 - **R6. A subject is a reference on the book, carried through its cover, holding the subject book's card — using the same syntax the author uses, for now** *(Doug: "Use the same syntax author uses for now")*.
 - **R7. The name is the writer's chosen representational form.** No authority, no enforced heading, no uniqueness — the association is the **held card**. Many names, one referent.
-- **R8. A subject pointing at anything but a cataloguing book is invalid** ([R39](06-sprint-48--subjects-and-the-library.md#the-reference-checks-type-design-doug-2026-08-06) carried). **HELD — see the tracing note.**
+- **R8. A subject pointing at anything but a cataloguing book is invalid** ([R39](06-sprint-48--subjects-and-the-library.md#the-reference-checks-type-design-doug-2026-08-06--supersedes-r4) carried). **HELD — see the tracing note.**
 - **R9. A subject with a name and no card renders its name; `read()` throws** — the degrade law ([The Author's R14](08-the-author.md#the-author-and-the-loop)), generalized to subjects.
 
 ### The subject book
@@ -214,7 +214,7 @@
 | R10, R11, R19 | U9 |
 | R12 | U10 |
 | R13, R18 | U8 |
-| R14–R16 | moved to [the types sprint](00-planning.md#types--a-whole-sprint-ruled-2026-08-07) by ruling |
+| R14–R16 | moved to [the types sprint](00-planning.md#types--a-whole-sprint-ruled-2026-08-07--and-it-now-waits-behind-writing-2026-08-10) by ruling |
 | R17, R21 | not adopted |
 | R20 | U11 |
 | R22 | U6, U7 |
@@ -360,7 +360,7 @@ The blocked name (opened the catalogue-is-not-writing ground, recorded); the car
 
 *One state, written 2026-08-10 at the session's close. Everything above is the record; this is the present.*
 
-**→ NEXT: `/ce-brainstorm` — Doug chooses the next sprint's subject.** Chapter zero holds the cut stones: [Types](00-planning.md#types--a-whole-sprint-ruled-2026-08-07) (a whole sprint, code-in-chapters riding with it), The Library's remaining half (disagreement made visible), The Compilation. **One decision is Doug's before or beside that:** whether the queued tending — sweeping *refuse* and *mint* from the older records, and compacting sprint chapters into the topical books — runs as its own session or waits for the retro.
+**→ NEXT: `/ce-brainstorm` — Doug chooses the next sprint's subject.** Chapter zero holds the cut stones: [Types](00-planning.md#types--a-whole-sprint-ruled-2026-08-07--and-it-now-waits-behind-writing-2026-08-10) (a whole sprint, code-in-chapters riding with it), The Library's remaining half (disagreement made visible), The Compilation. **One decision is Doug's before or beside that:** whether the queued tending — sweeping *refuse* and *mint* from the older records, and compacting sprint chapters into the topical books — runs as its own session or waits for the retro.
 
 **The objective, and Doug's latest intent in his words:** the sprint built the subject; his close was *"go back to the start of this session and improve the handoff each time to make it more seamless"* — done in the handoff's own chapter, which now carries eight fixes.
 
@@ -372,6 +372,6 @@ The blocked name (opened the catalogue-is-not-writing ground, recorded); the car
 
 **Open, each with its owner:** the types sprint — Doug's, at sprint planning · `file()` stands as proxy for his `index(…)`, blocked by the writing's own `index`, and his thought that the catalogue may not be writing at all is recorded, not acted on · canonical reciprocity answers through `valid()`, and where that check runs (books loading their subjects, or build-time in `.public`) is open design · `$` as the container, recorded since The Author.
 
-**Read these, and they are sufficient:** (1) this chapter's Requirements — R26–R33 are the review's rulings in Doug's words; (2) the [Solutions cover](../solutions/.cover.md) — five chapters filed this sprint, indexed by symptom; (3) chapter zero's [Types section](00-planning.md#types--a-whole-sprint-ruled-2026-08-07); (4) the three self-viewing books — [the shelf](../../package/app/src/sections/book/library/the-shelf/book.tsx) with [its contents](../../package/app/src/sections/book/library/the-shelf/contents.tsx), [the team](../../package/app/src/sections/book/library/the-team/book.tsx), [the manifold](../../package/app/src/sections/the-manifold.tsx).
+**Read these, and they are sufficient:** (1) this chapter's Requirements — R26–R33 are the review's rulings in Doug's words; (2) the [Solutions cover](../solutions/.cover.md) — five chapters filed this sprint, indexed by symptom; (3) chapter zero's [Types section](00-planning.md#types--a-whole-sprint-ruled-2026-08-07--and-it-now-waits-behind-writing-2026-08-10); (4) the three self-viewing books — [the shelf](../../package/app/src/sections/book/library/the-shelf/book.tsx) with [its contents](../../package/app/src/sections/book/library/the-shelf/contents.tsx), [the team](../../package/app/src/sections/book/library/the-team/book.tsx), [the manifold](../../package/app/src/sections/the-manifold.tsx).
 
 **Wrong turns, the four that cost most:** speak Doug's words — *refuse*, *mint*, and invented vocabulary are not domain terms, and he reads neither our identifiers nor our conversations · a stopped push is a session boundary — secure the branch library before any reconcile · when three theories each fit some of the evidence, print the actual shape instead of forming a fourth · a `$Book` subclass lives in its book's name space — check every state name against the model's members.
