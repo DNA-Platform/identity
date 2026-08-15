@@ -116,6 +116,10 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 
 - `library/chemistry/app/**` — the Lab app (shared with Gabby)
   **Why:** Phillip builds the visible layer — the part users see and interact with. See [autobiography](..team/phillip/phillip-and-the-visible-layer/.cover.md).
+- `library/.public/app/**` — the public library application (shared with Gabby)
+  **Why:** the app a visitor actually meets: a path resolves, one book loads, the book draws itself. The visible layer of the library, which is Phillip's question one level out from the Lab.
+- `library/.public/package/app/**` — the demonstration (shared with Gabby)
+  **Why:** the demo is a hand-made use of the library that doubles as the specification of the machine being built. It is read as instructions, so how it reads is a UX concern and not a decoration one. *Added 2026-08-15, after the demo was found to have no owner at all while three sessions edited it.*
 - Roles: [UX Designer](02-roles.md#ux-designer), [Chemistry Developer](02-roles.md#chemistry-developer)
 
 ### [Queenie](..team/queenie/..what-the-tests-promise/.cover.md) — QA Engineer
@@ -140,6 +144,8 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 
 - `library/chemistry/app/**` — visual design in the Lab (shared with Phillip)
   **Why:** the beautiful IS the meaningful. Gabby ensures the framework's output communicates visually. See [autobiography](..team/gabby/gabby-and-the-visual-voice/.cover.md).
+- `library/.public/app/**` and `library/.public/package/app/**` — the public application and the demonstration (shared with Phillip)
+  **Why:** the demo law lives here — every demonstration aesthetically unique, never a shared template — and so does the one place that must NOT follow it, the public app, whose surface is deliberately plain and disposable. Knowing which rule applies where is a design judgment, not a coding one. *Added 2026-08-15.*
 - `src/library/viz/**` — the altered-states visualization layer and plot style (shared with Nancy)
   **Why:** the beautiful IS the meaningful. Gabby owns the viz aesthetics so the population code is shown in a way that communicates, not just renders.
 - Figure aesthetics within `src/experiments/**` (shared with Nancy)
