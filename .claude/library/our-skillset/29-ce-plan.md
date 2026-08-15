@@ -44,6 +44,22 @@ Their reason is that work references units by identifier *across plan edits*, so
 
 **Every unit also names its demo contribution.** What will be visible when this unit is done, and could a hand-authored page fake it? **A unit with no visible end cannot be reviewed**, and a sprint whose units have no visible ends produces numbers instead of a demonstration.
 
+## A contract is corrected by implementation, never by rereading — added out of The Build
+
+**When a plan divides work between people, what it hands them is a contract at each seam** — the shape one side produces and the other consumes. **That contract is what makes parallel work possible**, and it is also the thing most likely to be quietly wrong, because it is written by someone who is not yet building against it.
+
+**And rereading does not find the error. Building does.** In [The Build](../../../library/.public/.lib/projection/15-the-build.md), a card contract was written from the design, reread several times across a session, and carried **two faults** — both found within hours of two sessions implementing against it, and neither by anyone looking at it again:
+
+- **A field the base class already owned.** The contract asked a card to carry `canonical`; `$Writing` declares it, so the field could not exist without shadowing. *Found by the session building the application, which flagged it rather than renaming around it.*
+- **One word meaning two things.** Both sides had a `path`. One meant a folder, the other a route. **Neither noticed until their outputs were compared**, because each was internally consistent.
+
+**The conclusion is not to write better contracts.** It is that **a contract's errors are only visible from inside an implementation**, so the way to find them early is to dispatch early — and to treat a correction coming back from a builder as the contract working, not as the plan having failed.
+
+**Two practices follow, and both are cheap:**
+
+- **Dispatch against an imperfect contract rather than polishing one.** A seam that two people are building against is being tested; a seam nobody has built against is being admired.
+- **When a builder reports that the contract cannot be met, believe the builder.** *Both faults above were reported as "this cannot be done as specified" and both times the specification was what was wrong.* **Flag rather than route around** — the session that found the shadowed field wrote it down instead of renaming, which is the only reason it reached the contract at all.
+
 ## Origin tracing runs BOTH directions
 
 Every requirement, actor, flow, and acceptance example from [ce-brainstorm](28-ce-brainstorm.md) **cites into** the unit or test scenario that realizes it — **and every unit cites back to a mechanism and a visible end** — a test scenario says which acceptance example it covers. Before the plan is finished, every requirement is checked to have somewhere it lands. **Nothing silently drops.**

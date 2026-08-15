@@ -401,7 +401,7 @@ library/.public/                  where a thing becomes public
 | **S4** | where placed synopses land in a subject's book | T4 places · T3 draws | **settled below** |
 | **S5** | the read-versus-consulted predicate | T3 implements · T4's books rely on it | **settled below** |
 | **S6** | what the validation runtime *is* | T5 builds · T6 depends | **design owed** |
-| **S7** | the default book's anatomy | T3 builds · T1 documents | **open** — three demos' convergence is the evidence, not the spec |
+| **S7** | the default book's anatomy | F builds · the book documents | **closed for v1, 2026-08-14** — it is [`$Book`](../../package/src/book/Book.tsx) as it ships. *Three demos' convergence was evidence and was never a spec; rather than promote it, [Doug cut the question](#dougs-rulings--2026-08-14-verbatim): "assume the library book is book."* **Where a richer reader eventually lives is open, on the second-repository criterion.** |
 
 **And S1 moving three times in one day is itself the finding.** A team starting the corpus this morning would have authored content the compiler rejects tonight. ***No track that depends on a shared requirement may start while that requirement is still moving*** — which is why the corpus, the highest-leverage unstarted work, has correctly not been started.
 
@@ -438,6 +438,59 @@ library/.public/                  where a thing becomes public
 
 *The fixture now holds **19 files and not one markdown**. **The rule that earns: if the answer seems to need a file the convention does not have, the convention is being doubted rather than the file being needed.***
 
+### S8 — how one book names another, settled 2026-08-14 and PROVEN
+
+*Doug's construct, and it does two jobs with one thing: **"import the cover as desired and stick it in… the compiler reads Math as the text and uses the cover as the link. Name the import as desired."***
+
+**Authored — the alias is the display name, the import is the link:**
+
+```tsx
+import { Cover as Math } from '../.mathematics/.subject/.cover';
+<Subject><Math /></Subject>
+```
+
+**Emitted — a card, assigned as a prop:**
+
+```tsx
+import { card as math } from '../.mathematics/.subject/card';
+<Subject for={math}>Math</Subject>
+```
+
+**PROVEN, not assumed.** A ts-morph pass over a two-file fixture read `<Subject><Math/></Subject>` and reported **`display="Math" -> src/mathematics/.cover.tsx`** — the alias as text and the import as target, with two aliases on one cover giving two different names. *That is "a book gets to choose its subject name" holding literally.*
+
+**Why this and not the alternatives.** A *name alone* is ambiguous between two books sharing a title and breaks silently on a retitle. A *typed prop taking a cover* would need `$Author`, `$Subject` and `$Canonical` to accept one, which is a framework change. **And a cover that resolved itself at runtime was considered and refused by Doug on the load boundary** — *"that adds a big import to the page… it drags in the whole book"* — which is exactly what cards exist to prevent. **The card is assigned, and it is assigned as a prop**, which [`$Bookmark` already does today](../../package/tests/book/book.test.tsx) with no framework change at all.
+
+**And the reference is the identity.** [The cover's location is the book's location](#the-four-blockers-resolved-2026-08-14--and-the-plan-now-lives-in-the-book) — so importing a cover *is* naming a book, and the link and the identity are one fact rather than two that can disagree.
+
+**Two notations, and the braced one is preferred.** *Doug: "`<Subject>{Math}</Subject>` — that this is an alternate? Maybe better because the other one is more confusing."* **Both were proven in the same pass**, resolving alias and target identically:
+
+```
+<Subject>{Math}        display="Math"   ->   mathematics/.cover.tsx
+<Canonical><Math/>     display="Math"   ->   mathematics/.cover.tsx
+```
+
+**The braced form says *here is a reference*; the element form looks like it draws a whole cover inside a phrase.** They cost the build the same — one reads a `JsxExpression`, the other a tag name — so the choice is entirely about what a reader thinks is happening. *Recorded as alternates with the braced one preferred; either may be met and both must be read.*
+
+### S9 — where reference-kind validation lives: THE BUILD
+
+*Doug: **"Author and Subject are not identical in what books can be an author or a subject link. But where does that validation come from? Maybe from the build system."***
+
+**The classes are one body; the constraint is on what they may point at.**
+
+| reference | may point only at |
+|---|---|
+| **author** | a book that **authors itself** — the canonical autobiography |
+| **subject** | a book that **catalogues** — one that holds books |
+| **canonical** | a book **its own subject holds** — [the reciprocity](#s4--a-synopsis-has-no-characteristic-spot) |
+
+**And only the build can check any of it, for the reason the model already gave: [there is no walk](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place).** Deciding whether a book catalogues means knowing every book at once — precisely what the served page refuses to have and what the build has by definition.
+
+**So both of Doug's statements hold, at different levels.** ***One body, because behaviour is identical. Different constraints, because the build enforces them.*** *That is why [C22](#c22) is a real cleanup rather than a contradiction — a common type loses nothing, because nothing distinguishing ever lived in the class.*
+
+**<a id="c22"></a>C22 — three classes, one body, measured.** Normalised for their names, **`$Author` and `$Subject` are byte-identical**, and `$Canonical` is the same file **minus `valid()`** — so a canonical carrying neither text nor card is valid where an author in that state is not. *Doug: "we probably need a common type."* **Filed, not taken** — the package is untouched this sprint.
+
+**<a id="s9-open"></a>Open, and it belongs to whoever builds the catalogue:** whether the build **stamps its verdict on the card** — *this book catalogues, this book authors itself* — so a later runtime check needs no walk either, or whether the check is build-only and the card stays silent about kind.
+
 ### S1 — the folder convention, settled
 
 **Dots mark subjects, and the count is the depth of subjecthood.** *Doug: "I want to have a subject with only books having one dot, but if it becomes a subject of subjects, it might have two dots so they can have one."*
@@ -456,7 +509,7 @@ library/.public/                  where a thing becomes public
 
 | field | from | why |
 |---|---|---|
-| `path` | the folder chain | **the identity** — see S3 |
+| `path` | **the ROUTE**, not the folder chain — see the correction below | the identity |
 | `title`, `subtitle` | the cover's title, split at its colon | what a reader is shown |
 | `synopsis` | the synopsis chapter's tagline | what a catalogue entry says |
 | `chapters` | each chapter's title | the contents, without the book |
@@ -484,6 +537,72 @@ library/.public/                  where a thing becomes public
 **The test is the count that already defines subjecthood** — the parts that read **elsewhere**, which [`$Book.read()`](../../package/src/book/Book.tsx) answers directly. Nothing is declared, nothing is passed, and **the rule that makes a subject a subject is the rule that decides how it draws.**
 
 *One consequence worth stating: a book that gains its first catalogued sibling changes how it draws, with nothing edited. That is the count being load-bearing rather than decorative, and it is the behaviour we want.*
+
+### S2 CORRECTED, TWICE — both found by two sessions building against it
+
+*The card contract above was written from the design and **two of its lines were wrong**. Neither was found by rereading it; both were found by somebody implementing it, which is the argument for dispatching against a contract rather than perfecting one.*
+
+**1 — `canonical` cannot be a field on a card.** Found by **F while building the application**: *"`$Writing` already declares `canonical`, which every card inherits, so the card contract's field of that name cannot be added without shadowing it. Flagged rather than renamed."* **Verified — [`Writing.tsx:164`](../../package/src/writing/Writing.tsx) declares it.** *So the contract asked for something the base class already owns, and the field is dropped rather than renamed until Doug names it.*
+
+**2 — `path` and `route` are two different strings, and the contract called both `path`.** Found by **A and F meaning different things by one word**: A's folder path is `.physics/.subject`; F's card path is `/physics`. *Dots are an authoring mark with no business in a URL, and **a subject's own book IS the subject as far as a reader is concerned**, so it collapses onto its parent rather than appearing beneath it.*
+
+**Resolved by the walk computing both**, so nothing downstream derives a route twice and no two stages disagree about what a path is. **Driven: A's routes now match F's exactly — `/`, `/physics`, `/physics/the-standard-model`, `/philosophy/the-hard-problem` — with neither session having read the other's code.**
+
+*That is the seam working. **Two implementations, one contract, and the contract was what got corrected.***
+
+### S10 — A CARD IS A SECTION, and its canonical is the book's title
+
+*Doug, 2026-08-15: **"What is a card a composition of? Maybe a card is a section or a paragraph? But the card has a title of a book so that's its canonical link."*** **Both halves are right, and the first is forced rather than chosen.**
+
+**A title is paragraph grade** — [`$Title extends $Paragraph`](../../package/src/writing/Title.tsx). **Only a section composes paragraphs.** *So a card that carries a title cannot be a paragraph, because a paragraph composes sentences and a title will not fit inside one.* **A card is a section**, and the code decides it rather than taste.
+
+**And then the canonical needs no field, because a section already has one.** [`$Writing.canonical` is `parts()[0]`](../../package/src/writing/Writing.tsx), and [a section's part zero is its title](../../package/src/writing/Section.tsx). **So the card's canonical IS its title, and the title names the book** — which is exactly the link [F could not add](#s2-corrected-twice--both-found-by-two-sessions-building-against-it) without shadowing the base.
+
+***The collision was the design saying the field was redundant.*** *A card does not need a canonical field; it needs to be the kind of thing that already has one — and the shadowing F reported was the model refusing a duplicate rather than a name clash to route around.*
+
+**It is the same figure one grade down, which is this project's recurring evidence that a construct was carved right:**
+
+| | its parts | its canonical | and that canonical IS |
+|---|---|---|---|
+| **a book** | chapters | the **cover**, at chapter zero | [a reference to the book](../../package/src/book/Cover.tsx) |
+| **a section** | paragraphs | the **title**, at paragraph zero | the heading it stands under |
+| **a card** | its fields, as paragraphs | the **title**, at paragraph zero | **a reference to the book** |
+
+**<a id="c3-answered"></a>And this answers [C3](14-cataloguing.md#c3), filed at Cataloguing and open since.** *`$IndexCard` extends `$Writing` and **declares no level at all**, setting only `inline = false`.* **It had no level because nobody had asked what it composes.** Now that the question is answered, the card declares `section` — and its fields become paragraphs, which is what they always were.
+
+**Owed to whoever implements it, and small:** the card is a framework class, so this is a **package change** and the package is untouched this sprint. *Filed with its answer rather than as an open question.*
+
+### A RESOURCE WAS INVENTED AND REMOVED — and it exposed the question it was hiding
+
+*Doug, 2026-08-15: **"Why is [the walk] building `symmetry--figures` — that is not an agreed upon naming convention here… I don't like the double dash, and you didn't include the code as a resource (read what that means in the .claude library) so it's very very very wrong."***
+
+**Read, and the correction is complete.** [On Chapters](../../../../.claude/library/bookkeeping/02-on-chapters.md#resources) says a resource is **a NON-markdown file beside the markdown chapter that documents it** — *"the chapter documents what the resource does, the resource is the code, they are one thing in two languages."* And: ***"A resource without a chapter is an orphan."***
+
+**In a code library a chapter is already code, so the pattern has no second half to occupy.** *`symmetry--figures.tsx` was code beside code, documented by nothing — an orphan wearing a resource's name. I took the filename shape and left behind the only thing that made it a resource.* **Removed from the fixture, from the seam type, from the walk and from its promises.** *The suite still passes at 26 checks; the fixture is 18 files.*
+
+**And the question it was papering over is structural.** *Doug: **"We need to figure out where application code goes. It might be in the package. It might have to be since all workspaces have to depend on it."*** **He is right and it is forced, not preferred.**
+
+[`library/physics/package.json`](../../../physics/package.json) declares **exactly one dependency: `@dna-platform/lib`.** So a book in a subject workspace **cannot import from `.public/app`, from a sibling subject, or from anywhere else.** *Any component a book uses has only one place it can arrive from.* **The demo escapes this only because it lives inside the package's own app** — which is why its `$Equation` and `$Rule` work and prove nothing about content.
+
+**So the choice is narrow and it is owed:** the package ships every component a book may use · or a subject declares further dependencies and the compiler learns to carry them · or a book has no components of its own beyond what the framework gives it. ***Not decided here.*** **The fixture now stands on a framework figure and says so in its prose**, rather than faking a mechanism nobody agreed.
+
+### S11 — WHERE COMPONENT CODE LIVES: the package, and customization is invisible
+
+*Doug, 2026-08-15, answering the question the invented resource had been hiding.*
+
+**1 — Component development lives in the package.** ***"For now, assume that component development should live in the package."*** A subject workspace depends on `@dna-platform/lib` and nothing else, so this is where a component can arrive from — and it is a ruling rather than a workaround.
+
+**2 — What a book uses belongs to its SUBJECT, not to the book.** *"I think we would prefer the code used by a book to be a part of its subject, otherwise it should mostly be writing the view of its own components."* **A per-book component was the wrong grain.** *What varies between books of one subject is how that subject draws; what varies between subjects is the subject.*
+
+**3 — And customization is INVISIBLE, through `$`.** *"Most books can just use a paragraph, and the paragraph gets written somewhere at the subject level, and if dependencies get pulled in with `$`, there can be a lot of invisible customization."*
+
+***A book writes a plain paragraph. The subject decides what a paragraph is.*** **This is the machinery [The Representative](12-the-representative.md) built and nothing new is needed**: a registration on the subject's class resolves through the chain, and every book beneath draws differently **without being subclassed, told, or handed anything.** *A book stays ordinary writing, which is what makes it portable.*
+
+**4 — The application's code goes to the package too**, and it wants designing. *"The package, but we have to think about organizing it. We do want to create something of a component library, but seeing as how apps will want to be unique, we will want there to be something specific. Perhaps we can try to add as much as we can to the package, doing different types of themes and designs."* **That widens what `@dna-platform/lib` is** — from a model to a model plus a component library plus themes — *and it is the thing [F's organisation review](#owed--the-public-applications-organisation-gets-a-serious-review-once-it-works) will actually be deciding.*
+
+**5 — The resource pattern is DEFERRED, not dead.** *"We want to use the resource pattern to associate chapters with parts that perhaps have to be used in certain contexts. We can design much of that later."* **It has a real job waiting** — attaching a chapter to parts required in some context — *and the thing removed this sprint was my misuse of its name, not the idea.*
+
+**6 — AND THE OPERATIVE INSTRUCTION FOR NOW.** ***"We need to design all of that carefully. Be minimal at this stage with the compiler to get things working."*** *So none of 1 through 5 is built here. The walk stays as small as it is, and the component library is designed rather than started.*
 
 ### S3 — a card's identity is its path
 
@@ -580,6 +699,269 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 **What this is written against.** Every row can name a fixture because **the hand-made demo is exactly the shape the second half of the machine consumes** — books composed by a person, a catalogue typed out, links wired by hand. *What was built to find out whether the idea worked turns out to be the input four teams need.*
 
 **And the honest caution about F.** The public application is **a title and an animation**; every reader ever written for this library lives in a demonstration that is never deployed. **F is new work, not configuration** — and it is the only team whose output a person can actually look at, which is an argument for starting it early whatever the letters say.
+
+## F, brainstormed 2026-08-14 — and it was NOT ready to skip to work
+
+*A session was dispatched to F and asked whether the plan was tight enough to go straight to [`/ce-work`](../../../../.claude/library/our-skillset/30-ce-work.md). **The answer was no**, and the brainstorm that followed produced three things that were in no plan — the reader's state, subjects as pages, and **minimal in service of the compiler**, which cuts F down considerably from what the dispatch implied.*
+
+### The reading correction that came first
+
+**The demo is READ, not imported.** *Doug: "**You are meant to read the demo because the demo contains instructions.** Perhaps that needed to have been made clearer. **The demo should contain an account of the work that we are doing. Artful crossing of levels is an important part of this project.**"*
+
+**And the session had earned the correction by grepping the book instead of reading it**, after [the handoff](#what-each-session-should-read--a-starting-point-not-a-boundary) said in as many words that the design lives in the book rather than in this chapter. *Read properly, [The Process](../../package/app/src/sections/book/library/the-build/05-the-process.tsx) hands F its whole mechanism in one sentence and [The Dispatch](../../package/app/src/sections/book/library/the-build/06-the-dispatch.tsx) hands it the seam field by field.*
+
+**The import worry was therefore the wrong question, and the fact under it still stands.** [`package/app`](../../package/app/) has **no `package.json`** and is **not in the [root workspaces](../../../../package.json)** — it is the lib package's own demonstration, run by `npx vite app`. So F could never have linked to it. **It reproduces what the demo specifies; it does not depend on it.**
+
+***The consequence for this sprint: The Build gains its chapter on the showing.*** Every stage that needed exactness got one — [the description](../../package/app/src/sections/book/library/the-build/07-the-description.tsx) exists because A's seam did. **The showing is the only stage a person actually meets and it has none.**
+
+### Doug's rulings — 2026-08-14, verbatim
+
+- **THE READER'S STATE IS SERIALISED, AND COOKIES HOLD IT.** *"I think a chapter's address would be dynamic, though **I think we are likely going to want to serialize the user's whole state in the library so it's there for them when they return.** Perhaps routing can be dynamic if we have a way of lazy loading certain things in the library."* And, on where it lives: *"**The cookies of the page would likely hold it. This is github pages. That is probably the best we can do to give a nice experience.**"* ***This is new scope arriving at the one stage a person meets, and it was in no requirement, no unit and no seam.***
+
+- **EACH SUBJECT IS ITS OWN PAGE — and the condition he put on it is already met.** *"**I think each library subject should be its own page**, but again **only if we find a way to be able to not load all the books of a subject at once.**"* **Answered by the contract rather than by a promise:** [the cataloguing→showing seam](../../package/app/src/sections/book/library/the-build/06-the-dispatch.tsx) already says a catalogue carries title, synopsis, chapter titles and card references **and imports no book at all**. *So a subject page loads its own book module plus metadata, and never the books it catalogues. The condition is satisfied by [S2](#s2--what-a-card-carries-specified) as written.*
+
+- **V1 IS MINIMAL AND IT EXISTS TO SERVE THE COMPILER.** *"**We need to get something minimal and easy to change stood up.** Where do we want to store the top-level book for the app? **It probably needs to be in lib as a starting point for a library, but I am not sure. It needs to be considered.** But **we are writing a compiler. For now, we can just assume the library book is book** and choose something simple to put together to **get a v1 on the compiler**."*
+
+  **And "assume the library book is book" is not a shortcut — it is what the framework already ships.** [`$Book.view()`](../../package/src/book/Book.tsx) draws every non-parenthetical chapter in order, so **lib already holds a default reader**; what `.public/app` adds is the **shell** and a **surface**, neither of which is a book class. ***This closes [S7](#the-shared-requirements--where-work-cannot-be-split-until-something-is-written) for v1*** — the one row in that table that was still marked **open**, and the row F's whole deliverable sat on.
+
+  **Where a richer reader eventually lives is OPEN, and it gets the criterion this branch already uses.** The compiler was kept out of the package on exactly this reasoning — *[extract it when a second repository actually needs it](#where-the-code-lives--every-path-so-a-session-can-start-without-asking)*, a decision made against a real requirement rather than a guessed one. **Same rule, one grade up.**
+
+- **THE TEST LIBRARY IS THE LIBRARY, RESTRICTED BY A FLAG.** *"**Assume `.test-library` is the main library. We will delete it in the future.** And maybe right now **only use folders that start with test** — and then you can **put a flag or whatever in the code that runs the compiler only with those subset of folders.** In that way **the app can run completely but will be restricted to the right books**."*
+
+- **NO DEPLOY. THE TEASER STAYS.** *"**No deploy. Leave the teaser.** What if we **disable the github pages deploy for now**, so that the teaser stays?"* **Forced rather than preferred:** [`deploy-pages.yml`](../../../../.github/workflows/deploy-pages.yml) builds `library/.public/app` **on every push to `main`**, so F's first commit would replace the live teaser with a building site. *The push trigger comes off; turning it back on is [G](#the-dispatch--a-first-g-last-and-the-letters-run-in-execution-order)'s, with the deploy.*
+
+- **IDENTIFIERS ARE INTERNAL NOTES AND ARE NEVER PUT TO HIM.** *"**I don't know the numbers. You need to figure it out by talking to me. Those are your internal notes.**"* **So a requirement set is never presented for approval by identifier.** The interview happens in plain language and the identifiers are derived from it afterwards — they exist so [ce-plan](../../../../.claude/library/our-skillset/29-ce-plan.md) can cite without dropping anything, and for no other reason.
+
+- **A SUBJECT IS OPENED LIKE A BOOK, AND THE PLACE IS KEPT PER SUBJECT.** *"**For each subject, the view for the library would be like opening a book and the app should remember where they left off there.**"* ***This sharpens the cookie ruling rather than repeating it:*** the state is not one position in the library, it is **a place per subject**, held the way a reader keeps a finger in each of several books at once. *And it follows from the shape already agreed — a subject IS a book, so opening one is opening a book, and there is no second reading mechanism to design.*
+
+- **BOOKMARKS, AND THE READER BUILDING THEIR OWN VIEW OF THE LIBRARY.** *"**And maybe we can have bookmark like interactions to help the user configure references to build themselves their own view of the library.**"*
+
+  **The framework already answers this and it should be said before anyone designs a mechanism.** A bookmark **is a reference** — the domain word, not a new one — and [subjecthood is a count](14-cataloguing.md#r16): a thing that catalogues books **is** a subject. **So a reader's bookmarks are a subject of their own**, standing beside ours, built from the same members and drawn by the same rule that decides how any catalogue draws. *A reader configuring references is a reader authoring a catalogue, which is the construct arriving one more level out.*
+
+  **It is recorded and not scoped.** *Not v1, not sized, and no mechanism claimed* — the point of writing it here is that **the shape it wants already exists**, so whenever it is taken up it is a use of the model rather than an addition to it.
+
+### Two seams this found that belong to nobody
+
+**The tsconfig, and B cannot close it.** [`.public/app/tsconfig.json`](../../app/tsconfig.json) carries `include: ["src/**/*.ts", "src/**/*.tsx"]`, and **B emits into `.public/app/src/generated/`** where every cover is `.cover.tsx`. That glob will not see them — *[the dotfile finding](../solutions/14-the-green-that-exercised-nothing.md), compounded this sprint*. **The file is in F's territory and no session edits another's**, so **F closes it** and B builds against the result.
+
+**The Pages fallback was assigned to a letter that no longer exists.** [Publication](#publication--a-route-displays-a-book) sends it to *"T7"*, and **the eight-track programme was voided** by the dispatch the same day. Deep links 404 today — verified: `base: '/inexplicable-phenomena/'`, [one `index.html`](../../package/app/src/main.tsx), no `404.html`. **It is G's, with the deploy**, and it is named here so it stops being nobody's.
+
+## F — the plan · status `implementation-ready`
+
+*Written 2026-08-14, straight out of the brainstorm above. **[WHAT, not HOW](../../../../.claude/library/our-skillset/29-ce-plan.md)** — no signatures, no shell sequences. **Units continue the sprint's sequence at [U22](#u22)** and are [never renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law). Every unit names **what runs and when** and **what will be visible**; the two that cannot are marked and refused files and scenarios.*
+
+### What the planning found by RUNNING things — five facts, each measured rather than reasoned
+
+1. **`dist` was two days stale, and `.public/app` compiles against `dist`.** Built **12 Aug**; [`$Book`](../../package/src/book/Book.tsx), `$Bookmark`, `$Chapter`, `index.ts` and sixteen more are newer — the whole [`$$` family rewrite](14-cataloguing.md) landed after it. Since [`.public/app`](../../app/package.json) depends on `@dna-platform/lib`, which resolves to `dist/lib.js`, **F would have built against a model that predates the sprint before last.** *Rebuilt during planning: `dist/lib.js`, `dist/lib.cjs`, `dist/lib.d.ts` created, exit 0.* **F's first act is that build, and it is now known to succeed.**
+2. **`.public/app` does not declare `react-router-dom`.** lib names it a **`peerDependency`** for [`$Link`](../../package/src/reference/Link.tsx), and the app's dependencies are lib, chemistry, react, react-dom and styled-components. **It resolves today only because the root workspace hoists it.** *An accidental resolution is not a declared one, and this is the kind of thing that works locally and fails in a fresh install.*
+3. **The fixture already imports the published name.** Every one of its nineteen files says `@dna-platform/lib`, never a relative path into the package. **So carrying is close to a plain copy** — the only specifier that moves is a chapter's own `--resource` sibling, which keeps its relative form if the mirror keeps its shape. ***This makes [B](#b--the-mirror) smaller than its brief implies, and B should be told.***
+4. **`$Bookmark` ALREADY SHIPS.** [A sentence-grade reference](../../package/src/book/Bookmark.tsx) with `read()`, `valid()` and `then()`, exported from the package index. *So the bookmark idea has its member already — see [U34](#u34), which is why that unit is design owed rather than unimagined.*
+5. **The fixture's `gauge-theory` cover names NEITHER author NOR subject**, and [`$Book`'s bond constructor throws on each](../../package/src/book/Book.tsx). **So a hand-written assembly that does not supply them cannot construct at all.** *The fixture's hardest case is load-bearing from the first unit rather than the last, which is the fixture doing its job.*
+
+### The decisions
+
+**<a id="d11"></a>D11 — F HAND-WRITES `generated/` ITSELF, IN PLACE, exactly as the compiler would emit it.** Not a `fixture/` folder beside it. *Because then the swap is a **regeneration** rather than a deletion: B, C and E overwrite the same paths, and **[G](#g--the-joining--not-yet)'s job shrinks to running the thing and deleting nothing**. And every line F writes by hand is the specification those three build to — **the same measurement that produced the cards, one grade up**, which is [the method this branch keeps proving](#said-plainly-for-whoever-is-not-tracking-identifiers).* **Chosen over a throwaway fixture folder**, which would have made G's work a rewrite and thrown away the measurement.
+
+**<a id="d12"></a>D12 — The app declares NO book class.** The reader is [`$Book`](../../package/src/book/Book.tsx) as it ships. *Doug's ruling, and it is not a shortcut: `$Book.view()` already draws every non-parenthetical chapter in order.* **Chosen over promoting the three demo readers' converged anatomy**, which was always [evidence and never a specification](#what-each-session-should-read--a-starting-point-not-a-boundary).
+
+**<a id="d13"></a>D13 — The surface is ONE module and it is deliberately disposable.** Tokens and layout, no per-book aesthetics. *"Something minimal and easy to change."* **This is explicitly NOT [the demo law](#r13--the-book-gets-its-own-aesthetic-world)**, which governs demonstrations; this is the product, and v1 exists to put a target under the compiler. *Stated as a decision so that making it beautiful later is a visible act rather than a drift inside this sprint.*
+
+**<a id="d14"></a>D14 — Resolution is a CATALOGUE LOOKUP, and there is no route table.** The path is the subject chain; the shell strips the deploy base and asks the generated catalogue. **Nothing maps a URL to a component by hand.** *Chosen over a router configuration, which would be a second description of a hierarchy the paths already carry — and [two opinions are one more than a library can afford](../../package/app/src/sections/book/library/the-build/07-the-description.tsx).*
+
+**<a id="d15"></a>D15 — F closes the tsconfig seam AND installs the app's own gate.** `.public/app` has no typecheck script and no driver today. **Both are F's**, because B, C and E emit into F's folder and cannot edit F's config. *The gate enters through the generated module and prints its scope, [never a bare PASS](11-markdown.md) — the pattern [`package/app/typecheck.mjs`](../../package/app/typecheck.mjs) already runs.*
+
+**<a id="d16"></a>D16 — The teaser is PRESERVED, unmounted.** [`app.tsx`](../../app/src/app.tsx) stays on disk; `main.tsx` mounts the shell instead. *Restoring it is one line. Deleting a shipped design to make room for an unfinished one is the move that cannot be undone in a hurry, and [the deploy being off](#the-deploy-is-off-and-that-is-a-decision-rather-than-a-pause) is what makes keeping it cheap.*
+
+**<a id="d17"></a>D17 — F touches neither `library/` nor `package/`.** The corpus is read to be reproduced, never edited; the package is the standing instruction from the day the sprint opened. **F's whole surface is `.public/app/`.**
+
+### The units
+
+*`U22`–`U34`. [U20](#u20) and [U21](#u21) are the book's and are untouched.*
+
+#### <a id="u22"></a>U22 — The workspace stands, and the app boots on something that is not the teaser
+
+**Mechanism:** build `@dna-platform/lib` so `dist` is current; declare `react-router-dom` in the app; mount a shell module from `main.tsx` in place of `App`. **What runs, and when:** at `npx vite`, once.
+**Files:** [`.public/app/package.json`](../../app/package.json); [`.public/app/src/main.tsx`](../../app/src/main.tsx); a new `src/shell/`. **[`app.tsx`](../../app/src/app.tsx) is not deleted** ([D16](#d16)).
+**Depends on:** nothing. **Realizes:** the ground every unit below stands on.
+**Visible end:** the app serves at `localhost`, **0 console errors**, and what is on screen is not *coming soon*. *A hand-authored page could fake this one outright, which is why it is scaffolding and not a demonstration — it is listed because it is where the two measured blockers get discharged.*
+
+#### <a id="u23"></a>U23 — The dotted files are typechecked, and the gate says its scope
+
+**Mechanism:** `include` extended so `generated/`'s `.cover.tsx` and `.synopsis.tsx` are seen, **entered through the generated module rather than matched by a pattern**; a typecheck script for `.public/app` printing **files seen, baselined, unexpected**.
+**Files:** [`.public/app/tsconfig.json`](../../app/tsconfig.json); a new typecheck script beside it.
+**Depends on:** [U22](#u22). **Realizes:** [the seam that belonged to nobody](#two-seams-this-found-that-belong-to-nobody).
+**Visible end:** the gate prints a **file count that includes the dotted files**, and is **watched going red** — remove one cover's import from the book module and the count drops and the gate names it.
+***This is the sprint's own compounded lesson being spent rather than re-learned:*** [the green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md), fourth appearance. **B is blocked on this in practice**, because B's output is what it protects.
+
+#### <a id="u24"></a>U24 — The mirror, hand-written
+
+**Mechanism:** the fixture's nineteen files reproduced under `generated/library/` **at the same relative places**, imports untouched — they already name the published package ([finding 3](#what-the-planning-found-by-running-things--five-facts-each-measured-rather-than-reasoned)) — with only each `--resource` sibling's relative specifier moving with it. **What runs, and when:** nothing; this is source.
+**Files:** `generated/library/…`. **Depends on:** [U23](#u23). **Realizes:** the carrying seam's *output* side, as the fixture C and D consume.
+**Visible end:** the gate's file count **rises by nineteen**, the dotted ones among them, stated as a number.
+
+#### <a id="u25"></a>U25 — The assembly, hand-written — and the cover that names nobody
+
+**Mechanism:** one module per book folder composing **cover, table of contents, synopsis, chapters** in manifest order inside `<Book>`; one per subject for its own book. **`gauge-theory`'s copy gains an author and a subject; [the authored file is not touched](#the-four-blockers-resolved-2026-08-14--and-the-plan-now-lives-in-the-book).** **What runs, and when:** at module load — every book constructs, and [the bond constructor refuses six malformations](../../package/src/book/Book.tsx) as it goes.
+**Files:** `generated/library/**/book.tsx`. **Depends on:** [U24](#u24). **Realizes:** the assembling seam's output side, as the fixture D and E consume.
+**Visible end:** **every book in the corpus constructs**, and the count is stated. **A hand-authored page cannot fake it** — remove the supplied author from `gauge-theory`'s copy and **the model throws by name**, which is the same refusal the compiler will later have to satisfy.
+
+#### <a id="u26"></a>U26 — The catalogue, hand-written — and it imports no book
+
+**Mechanism:** `generated/cards.tsx`, keyed by path, carrying [the S2 fields](#s2--what-a-card-carries-specified), with `author`, `subject` and `canonical` as **cards** and `library` computed recursively. **It imports no book module at all.** **What runs, and when:** at module load, standing alone.
+**Files:** `generated/cards.tsx`. **Depends on:** [U25](#u25). **Realizes:** [R20](#r20--the-whole-library-is-never-loaded-at-once-and-that-is-what-the-card-was-for), and the cataloguing seam's output side as the fixture the shell consumes.
+**Visible end:** **the catalogue module's own import list contains no book**, asserted rather than asserted-about; every card's author, subject and canonical resolve **card to card with nothing opened**; and `library` agrees across every card.
+***Written after the assembly deliberately***, because [cards are read off constructed books and never parsed from source](../../package/app/src/sections/book/library/the-build/05-the-process.tsx) — the hand-written ones are read the same way, or they are not the specification E builds to.
+
+#### <a id="u27"></a>U27 — The shell resolves a path to one book
+
+**Mechanism:** strip the deploy base, look the path up in the catalogue, **dynamic-import that one book's module**, hand the card its book, draw. A path the catalogue does not hold gets a **named refusal**, not a blank page. **What runs, and when:** on navigation, once per path.
+**Files:** `src/shell/`. **Depends on:** [U26](#u26). **Realizes:** [F1 of the flows](#the-key-flows) and [D14](#d14).
+**Visible end:** **the network panel shows one book chunk per navigation and not a bundle** — which is [the assumption the plan marked ⚠ and never checked](#publication--a-route-displays-a-book), settled here by looking. And an unknown path names itself in the refusal.
+
+#### <a id="u28"></a>U28 — The book decides for itself whether it is read or consulted
+
+**Mechanism:** [the count that already defines subjecthood](#s5--the-read-versus-consulted-predicate) — `$Book.read()` answers the parts that point elsewhere. **No prop, no flag, nothing declared.** **What runs, and when:** at draw, per book.
+**Files:** `src/book/`. **Depends on:** [U27](#u27). **Realizes:** [S5](#s5--the-read-versus-consulted-predicate), and the three depths of [the app pictured](#what-a-visitor-sees-at-three-depths).
+**Visible end — AND THIS IS THE ONE A HAND-AUTHORED PAGE CANNOT FAKE:** **give a book a catalogued sibling and it stops drawing as a reader and starts drawing as a catalogue, with nothing edited.** *Add one synopsis that reads elsewhere; the same module, the same surface, a different face. The rule that makes a subject a subject is the rule that decides how it draws, and that is either true in the model or it is typed into a page.*
+
+#### <a id="u29"></a>U29 — The surface
+
+**Mechanism:** one module of tokens and layout ([D13](#d13)) — the front door, a catalogue, a reader. **What runs, and when:** styling only.
+**Files:** `src/shell/`'s styled module. **Depends on:** [U28](#u28).
+**Visible end:** the three depths legible on a screen, and **the whole look changeable from one file** — which is the requirement, not an aside.
+
+#### <a id="u30"></a>U30 — The driver, and it is watched going red
+
+**Mechanism:** a checkpoint walk over `.public/app` in the shape of [`verify-book.mjs`](../../package/app/verify-book.mjs): front door → a subject → a book → a chapter → back, with **checkpoint accounting** so a mid-walk stall says what it reached.
+**Files:** a new driver beside the app. **Depends on:** [U29](#u29). **Realizes:** the gate F has none of today.
+**Visible end:** a **checkpoint count and exit 0** — and **three watched failures before its green is trusted**: a book removed from the catalogue, a chapter dropped from an assembly, and the sibling test of [U28](#u28) reversed.
+*[The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) is filed against this branch four times. A number nobody watched fail is not evidence.*
+
+#### <a id="u31"></a>U31 — Chapter: The Showing
+
+**Mechanism:** a discussion settling what the chapter claims, then the chapter — written into [The Build](../../package/app/src/sections/book/library/the-build/) as the account of this work, **to the ruling and not ahead of it** ([R16](#r16--the-design-is-discussed-as-it-goes-not-written-ahead-of-its-ruling)).
+**Files:** a new chapter of The Build; its `book.tsx`; the shelf's entry if the chapter list is read off it. **Depends on:** [U28](#u28). **Realizes:** *"the demo should contain an account of the work that we are doing."*
+**Visible end:** the chapter standing in the book, **carrying a figure that runs its own rule** the way [the description's does](../../package/app/src/sections/book/library/the-build/07-the-description.tsx) — the load boundary drawn from the real catalogue rather than described.
+***[D10](#the-decisions) is checked hardest here.*** Every ruling above arrived from Doug and **none of them appears in the book as anyone's instruction** — each is written as the shape of the problem the work met.
+
+#### <a id="u32"></a>U32 — The records
+
+**Mechanism:** this chapter gains F's account and its state; [the cover](.cover.md) is updated in the same act with [the tool](../../../../.claude/library/bookkeeping/03-on-covers--toc.ts). **Depends on:** everything.
+**Visible end:** every gate stated **with its scope**, and the cover entry matching what happened.
+
+#### <a id="u33"></a>U33 — The reader's place, per subject — SPECIFIED, DEFERRED FROM v1 BY DECISION
+
+**The mechanism is known and is not owed:** a cookie holding **a place per subject** — *"for each subject, the view for the library would be like opening a book and the app should remember where they left off there"* — read on load, written on each move. **A finger in each of several books at once**, not one position in the library.
+**Deferred because** it is not what gets a target under the compiler, and [the deploy is off](#the-deploy-is-off-and-that-is-a-decision-rather-than-a-pause) so nobody is returning to anything yet. ***Deferred by decision and not by discovery*** — it gets no files and no scenarios in v1, and it is not design owed.
+
+#### <a id="u34"></a>U34 — Bookmarks, and the reader's own view of the library — DESIGN OWED
+
+**Refused files, scenarios and dependencies**, under [the law](../../../../.claude/library/our-skillset/29-ce-plan.md#a-unit-with-no-mechanism-is-not-a-unit--added-out-of-sprint-48s-failure). What is owed is *what runs, and when* — where a reader's references are held, what makes one, and how a view assembled from them is drawn.
+**What is NOT owed, and it is most of the shape:** **[`$Bookmark` already ships](../../package/src/book/Bookmark.tsx)** — a sentence-grade reference with `read()` and `valid()` — and **a thing that catalogues books IS a subject** ([subjecthood is a count](14-cataloguing.md#r16)). *So a reader's bookmarks would be a subject of their own, drawn by the same rule as every other, and taking this up is a **use** of the model rather than an addition to it.*
+**What would settle it:** a ruling on where a reader's own subject lives given that [the host serves files and nothing more](#r18--the-build-is-subjective-and-that-is-why-its-output-is-committed).
+
+### Test scenarios
+
+*Each names input, action and outcome. **A scenario that survives becomes a promise**, and a promise is read where it runs.*
+
+**The corpus stands** · *[U24](#u24), [U25](#u25)*
+- Every book in the mirror constructs. → *the count, stated*
+- **Failure path:** the supplied author removed from `gauge-theory`'s copy → **the bond constructor throws naming the cover**, not a blank render.
+- The authored file under `library/.test-library/` is **byte-identical** before and after. → *the mirror is generated code; the source is somebody's writing*
+
+**The catalogue is a catalogue** · *[U26](#u26)*
+- `generated/cards.tsx` **imports no book module.** → *asserted on the module, not on intent*
+- Every card's `author`, `subject` and `canonical` resolve **card to card**, with no book loaded.
+- `library` computed recursively **agrees across every card.**
+- A card whose book has not been loaded **hands back nothing and says so**; once the shell hands it one, it reads.
+
+**The shell resolves** · *[U27](#u27)*
+- A subject-chain path → the right card → **one** book module fetched. → *one chunk in the network panel*
+- A path the catalogue does not hold → **a named refusal**, not a blank page.
+- The deploy base is stripped before the lookup. → *the same path resolves under `/inexplicable-phenomena/` and under `/`*
+
+**The book decides — [the unfakeable one](#u28)** · *[U28](#u28)*
+- A book with nothing pointing elsewhere draws as a **reader**.
+- **The same book, given one catalogued sibling, draws as a catalogue.** Nothing edited, no prop passed.
+- A subject page loads its own book module **and no book it catalogues.**
+
+**The gates are honest** · *[U23](#u23), [U30](#u30)*
+- The typecheck's file count **includes the dotted files**; an import removed from a book module **drops the count and is named**.
+- The driver stalls by name when a book leaves the catalogue, when a chapter leaves an assembly, and when the sibling test is reversed. → *watched red before trusted green*
+
+**The boundary** · *all units*
+- `library/` is unchanged. `package/src` is unchanged. **The deploy workflow runs on `workflow_dispatch` only.**
+
+### Risks
+
+1. **THE COMMITTED MIRROR HAS NO VISIBLE SOURCE, and it is [R18](#r18--the-build-is-subjective-and-that-is-why-its-output-is-committed) arriving by accident.** `generated/` is committed; **`library/.test-library/` is gitignored — nineteen files invisible to git.** So the repository would hold output whose input nobody else can see, which is **the definition of a subjective build**, reached without anyone choosing it. ***Flagged for Doug rather than decided:*** either the fixture is committed, or the mirror is the only record of it and that is stated on purpose.
+2. **`dist` goes stale again and nothing says so.** It just did, by two days and a whole family rewrite. *Mitigated by [U22](#u22) making the build F's first act; **not** mitigated by anything that runs on its own, and that is worth someone's attention.*
+3. **The dotfile trap fires inside F's own gate.** The one place it has already cost this branch a day. *Mitigated by [U23](#u23) coming before the mirror rather than after it, and by the gate being watched going red.*
+4. **`react-router-dom` resolves by hoisting and would fail a fresh install.** *Mitigated by [U22](#u22) declaring it — a one-line fix, listed because it is invisible until it is fatal.*
+5. **Hand-writing `generated/` drifts from what the compiler would emit.** The whole value of [D11](#d11) is that it does not. *Mitigated by writing it to [the compiler's stated operations](#the-compiler-operation-by-operation) rather than to whatever is convenient, and by B, C and E overwriting the same paths so the drift shows up as a diff rather than as a surprise.*
+6. **The surface eats the sprint.** *Mitigated by [D13](#d13) making disposability the requirement, and by [U29](#u29) sitting after everything it would otherwise delay.*
+7. **[U31](#u31) written ahead of its discussion.** [R16](#r16--the-design-is-discussed-as-it-goes-not-written-ahead-of-its-ruling), and prose built on a guess is thrown away rather than edited. *Mitigated by U31 depending on [U28](#u28) — there is nothing honest to write about the showing until it shows something.*
+
+### Self-check
+
+**Every ruling from the brainstorm has a home.** The demo read not imported → [D11](#d11) and [U24](#u24)–[U26](#u26) · the reader's state → [U33](#u33) · subjects as pages → [U28](#u28) · minimal for the compiler → [D12](#d12), [D13](#d13) · the test library restricted → [U24](#u24) · no deploy → **done, and in the boundary scenario** · the tsconfig seam → [U23](#u23) · the Pages fallback → **[G](#g--the-joining--not-yet)**, named · the chapter on the showing → [U31](#u31) · bookmarks → [U34](#u34) · where the top-level book lives → **[open, with its criterion](#open-and-each-is-dougs--none-blocks-starting)**. **Eleven of eleven.**
+
+**Every unit names a mechanism and a visible end** — eleven of thirteen. **[U33](#u33) is deferred by decision** with its mechanism stated, and **[U34](#u34) is design owed** and refused files, scenarios and dependencies. *Neither is disguised as buildable work, which is the whole point of [the law](../../../../.claude/library/our-skillset/29-ce-plan.md#a-unit-with-no-mechanism-is-not-a-unit--added-out-of-sprint-48s-failure).*
+
+**Where the plan is thin, stated rather than hidden.** [U29](#u29) is the least specified unit and deliberately so — [D13](#d13) makes "one file, changeable" the requirement and a fuller design would contradict it. **And [U31](#u31) cannot be specified further** until [U28](#u28) has run, because a chapter about the showing written before anything shows is [this sprint's own version of the Sprint 48 failure](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md).
+
+**The one thing this plan does NOT defend:** *"the app runs completely but restricted to the right books"* is satisfied here **by F writing only the test library's mirror by hand** — there is no flag, because there is no compiler to flag. ***The restricting flag is A–E's and is recorded as theirs***, not silently satisfied by scope.
+
+## THE PHASES — the re-cut, 2026-08-15, and the mirror does not survive it
+
+***Doug: "I want you to imagine designing this a bit more like a compiler. Mirror… is that really a durable function? What if we end up moving things around? **We want to think in phases not in strategy.** … We need to dispatch this work into the future."***
+
+**He is right and the mirror is the weakest thing in the plan.** A mirror is an answer to *where does emitted code go* — "keep the shape of the source." **Move anything and the answer changes**, so a stage named after it evaporates. **A phase is named for the representation it produces**, and the mirror produces no representation; it produces a file layout.
+
+**Read that way, three of the seven stages are one phase.** [Carrying, assembling and cataloguing all EMIT](#the-compiler-operation-by-operation) — a module, a composed book, a catalogue. **They differ by artifact, not by phase.**
+
+### The four phases, and the runtime after them
+
+| phase | takes | makes |
+|---|---|---|
+| **READ** | the folder tree | **a description** — every entry with its role, order resolved, complaints carried. *[A has this.](#a--the-reading--this-session)* |
+| **RESOLVE** | the description | **a library** — names become references, and what a cover left unsaid is supplied. ***This phase has no owner today***, and it is where supplying a missing author actually belongs — not in a copy, not in an assembly. |
+| **EMIT** | the library | **a program** — modules, catalogue, entry. **Layout is a POLICY of this phase**, so moving things around costs a policy rather than a stage. |
+| **CHECK** | the program | **a verdict** — every book opened and asked. |
+
+**And then it runs.** *That is not a phase; it is [the application](#f--where-it-stands--the-library-is-on-screen-driven-and-seen).*
+
+***What this buys for dispatch, which is what it was asked for:*** **phases are sequential; artifacts inside a phase are parallel.** Four people can emit four different artifacts at once without the line pretending to be four lines — and **when a layout changes, no team's brief changes**, because layout stopped being anybody's stage.
+
+### CHECK is construction, and the runtime is PROVEN rather than proposed
+
+***Doug's ruling: "Validation needs to happen, in large part, based on the valid checks. We aren't rewriting that. After assembling the app, is there a way to invent a runtime that loads all the books which is part of the build so we can run valid. Think about it."***
+
+**Yes, and it exists — measured 2026-08-15, not argued.** [`valid.mts`](../../app/valid.mts) opens **every book in the emitted library** in bare Node and asks the model:
+
+> **`valid (no browser): 6/6 books stand, 214 parts constructed and asked.`**
+
+**And it was watched refusing.** With one synopsis removed from a book module: **`5/6 books stand, 204 parts` · `REFUSED /physics/the-standard-model`.**
+
+**Why it works, stated so nobody re-derives it.** **Constructing is not drawing** — the bond constructors run at import and refuse six malformations before `valid()` is ever called, and nothing on that path paints. *This is the 58-of-62 measurement arriving as a working thing rather than as a feasibility case.*
+
+**And it enters through the generated door.** The runtime imports **one module** — the catalogue's book map — and reaches every cover and synopsis through it. ***A pattern would find none of them***, which is why the door is the mechanism and not a convenience.
+
+**So CHECK is a phase, and it is the phase that runs the program.** It invents no rules; it opens the library somewhere the reader never goes and reports what the model refuses, with the file named.
+
+### What this changes, and what must follow
+
+- **[B](#b--the-mirror)'s brief is void as written.** There is no mirror stage. **B's work is an EMIT artifact** — carrying authored modules into the program — and *where* they land is a policy it reads rather than a rule it owns.
+- **A RESOLVE phase has no owner.** Supplying the author a cover never named, turning `<Subject>Physics</Subject>` into a card, deciding which book speaks for a subject — **all of it currently sits scattered across three briefs**, and it is one phase.
+- **[The Build must be updated](#u31)** — *"remember to update the demo if things change."* [The Process](../../package/app/src/sections/book/library/the-build/05-the-process.tsx) still names seven stages including carrying, and [The Dispatch](../../package/app/src/sections/book/library/the-build/06-the-dispatch.tsx) still lists a mirror seam. **Owed, and named rather than quietly left.**
+
+## What F found for other tracks — reported rather than fixed
+
+**1 — `$Book.then()` MAKES A BOOK UN-AWAITABLE, and every phase that loads one meets it.** `$Book` declares `then()` for reference paths, so `Promise<$Book>` is a thenable collision: **TypeScript refuses it (`TS1058`)** and at runtime a promise resolving to a book would call `then()` and never settle. *F hands back a holder instead. **This is the reference API and the language's own protocol colliding on one word**, the same shape as [the `at` collision](09-the-subject.md) already filed here — and it is the framework's to answer, not F's.*
+
+**2 — A RESOURCE IS REACHED BY ITS FOLDER, NEVER BY THE IMPORT GRAPH.** Entering through the generated module reaches every chapter, cover and synopsis — **but a chapter need not import the code beside it.** The corpus stopped importing `symmetry--figures.tsx` mid-run and the file went unreachable; **F's scope floor caught it, 33 files to 32.** *So EMIT must add resources **by computed path**, and this is [A's own rule](#a--the-reading--this-session) arriving from the other end.*
+
+**3 — THE CORPUS EXERCISES NO AUTHOR BOOK.** Every cover names `The Team`, and **there is no book called The Team in the fixture** — so the author resolves to no card, and **[R6](#r6--what-the-build-supplies-each-with-its-rule-and-its-override)'s structural author rule has nothing to run against.** *The name renders as writing, which is valid; but the default that was supposed to be the interesting case is untested. **The corpus needs a book that is its own author**, the way [The Team closed the loop](08-the-author.md) in the demo.*
 
 ## The programme — eight tracks, so separate sessions can run them
 
@@ -814,7 +1196,20 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 *One state, written 2026-08-13 at the plan's close. Everything above is the record; this is the present.*
 
-## → NEXT: SIX SESSIONS. One is already running; five can be opened.
+## → NEXT: `/ce-work` on this chapter, taking **B, C, D or E** — one team per session
+
+**Four sessions can be opened right now and none blocks another.** Each owns one module under `.public/build/`, each has its input fixture in hand, and each is briefed below. **A and F are done** — [the state is one section down](#the-state-once--2026-08-15-two-sessions-one-state).
+
+**If only one session is opened, make it B — the mirror**, because everything after it consumes what it produces and it is the only one of the four with no upstream at all.
+
+***Two things to do before writing code, in this order:***
+
+1. **Compact this chapter.** It is 29,000 words and compaction was deferred because two sessions were editing it at once. **It is now safe and it is the first job.**
+2. **Take the corpus seriously as shared ground.** `library/.test-library/` has **no owner rule** while every build module has one — and two sessions editing it in one hour is how the last defect was found. *Say who holds it before touching it.*
+
+**And one thing that is Doug's rather than work:** [what a card calls its canonical link](#open-and-each-is-dougs), since `$Writing` already owns that word.
+
+## The six sessions — one is running, five can be opened
 
 **Every session opens by reading this section and nothing else first.** Each block below is that session's whole brief: the command, what it owns, what it builds against, what "done" looks like, and what it may assume.
 
@@ -822,7 +1217,7 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 | now | what to open | why |
 |---|---|---|
-| **immediately** | **F** | it touches only `.public/app/` and needs nothing from anybody |
+| **immediately** | **F**, at [`/ce-plan`](../../../../.claude/library/our-skillset/29-ce-plan.md) | it touches only `.public/app/` and needs nothing from anybody — **but it was brainstormed 2026-08-14 and does not go straight to work**, because [three things arrived that were in no plan](#f-brainstormed-2026-08-14--and-it-was-not-ready-to-skip-to-work) |
 | **once A has laid the workspace** *(its first act, minutes)* | **B · C · D · E** | all four live in `.public/build/`, which does not exist yet |
 | **already running** | **A** | this session |
 | **not yet** | **G** | its work is replacing hand-made inputs with real ones, and none exist |
@@ -846,15 +1241,25 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 ***No session edits another session's module.*** If one needs to, a seam agreement is missing and belongs in [the shared requirements](#the-shared-requirements--where-work-cannot-be-split-until-something-is-written) before either continues.
 
+**AND THE RULE HAS A HOLE, FOUND BY FALLING IN IT — 2026-08-14.** The modules are owned; **this chapter and [its cover entry](.cover.md) are not.** A and F both wrote the cover the same afternoon and **F overwrote A's entry**, which the [TOC tool](../../../../.claude/library/bookkeeping/03-on-covers--toc.ts) survived only because it **prints the previous text as `was:` before writing** — so the entry was reconstructed from the tool's own output and merged rather than lost.
+
+***Two things follow and both are cheap.*** **The cover is written by the session that is closing, not by every session as it goes** — and when two are open, **the writer reads the `was:` line and merges rather than replacing.** *The tool already refuses a silent overwrite without `--force`; the refusal was correct and `--force` was the mistake.* **Inside the chapter itself there is no problem:** the sections are per-session and both survived intact, because a chapter is long and its edits are anchored where a one-line cover entry cannot be.
+
 ---
 
 ### A — the reading · **this session**
 
 **Run:** `/ce-work` on this chapter. **First act: create `.public/build/` with its `package.json` and `tsconfig.json`** — four other sessions are blocked until it exists, so it comes before any logic.
 
-**Owns:** `.public/build/package.json`, `tsconfig.json`, `read.ts`. **Builds against:** folder trees it writes itself, including deliberately broken ones, plus `library/.test-library/`.
+**Owns:** `.public/build/library.ts` *(the type — write it FIRST, it is what unblocks B–E)*, `package.json`, `tsconfig.json`, `walk.ts`.
+**Builds against:** folder trees it writes itself, including deliberately broken ones, plus `library/.test-library/`.
 **Done when:** pointed at the fixture it reports every folder with its kind, the folder that speaks for each, and each file's role — **and refuses a tree with no unique maximum, naming the folder.**
 **May assume:** [the folder convention](#s1--the-folder-convention-settled) and nothing else.
+
+***Two things A must know, both learned the hard way this sprint:***
+
+1. **ADD FILES BY COMPUTED PATH, NEVER BY GLOB.** A pattern does not match a dot-prefixed name — **and this bit three times**: `tsc`'s `include` saw one file of three, ts-morph's `addSourceFilesAtPaths` loaded **nothing**, and only `addSourceFileAtPath` found them. *The walker computes its own paths; nothing downstream may reach for a pattern.*
+2. **The seam is a TYPE, not a file.** There is no serialized intermediate — `library.ts` declares what a walk produces, and B through E import it and write functions against it. *That is the shortest thing that still lets five sessions work apart.*
 
 ### B — the mirror
 
@@ -884,13 +1289,114 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 **Done when:** a catalogue module is emitted that **imports no book at all**, keyed by path, carrying title, subtitle, synopsis, chapter titles, and card references for author, subject and canonical.
 **Settled:** [the card contract](#s2--what-a-card-carries-specified) field by field · [identity is the path](#s3--a-cards-identity-is-its-path) · **a card hands back no book until the shell hands it one.**
 
-### F — the application · **openable right now**
+### F — the application · **brainstormed 2026-08-14, and the brief below is the result**
 
-**Run:** `/ce-work` on this chapter, taking F. **Owns:** `.public/app/src/`.
-**Builds against:** the demo's [`card.tsx`](../../package/app/src/sections/book/library/the-team/card.tsx), which is a hand-made catalogue.
-**Done when:** a path resolves through a catalogue to a card, loads **one** book, and draws it — as a reader or a catalogue, **decided by asking the model, never by a prop**.
-***Know what you are walking into:*** **`.public/app/src/` holds two files and one is a coming-soon animation.** Every reader ever written lives in `package/app`, which is never deployed. **This is new work, not configuration** — and it is the only team whose output a person can look at.
+**Run:** `/ce-work` on this chapter, taking F — **and take [F's plan](#f--the-plan--status-implementation-ready), which is `implementation-ready` as of 2026-08-14 and carries units [U22](#u22)–[U34](#u34).** *It was first asked whether it could skip straight to work, and [the answer was no](#f-brainstormed-2026-08-14--and-it-was-not-ready-to-skip-to-work): the reader's state, subjects as pages and minimal-for-the-compiler were in no plan. They are now.* **Owns:** `.public/app/`, its [`tsconfig.json`](../../app/tsconfig.json), and its [`package.json`](../../app/package.json).
+
+***Two blockers were measured and discharged during planning, and F starts past them:*** **`dist` was two days stale** and has been rebuilt, and **`react-router-dom` is undeclared** and resolves only by root hoisting. *Both are [U22](#u22).*
+
+**Builds against the demo by READING it.** [`card.tsx`](../../package/app/src/sections/book/library/the-team/card.tsx) is the shape to reproduce, not a module to import — `package/app` is not a workspace package and never could be linked to. **The demo contains the instructions.**
+
+**What v1 is, and it is smaller than this section used to imply.**
+
+- **The shell** — take a path, strip the deploy base, find **one card** in the catalogue by path, dynamic-import **that one book's module**, draw it. Resolution is a catalogue lookup; nothing maps URLs to components by hand.
+- **The reader is [`$Book`](../../package/src/book/Book.tsx) as it ships.** *"We can just assume the library book is book."* **No new book class in v1** — `$Book.view()` already draws every non-parenthetical chapter, so what F adds is a surface, not a subclass.
+- **A minimal surface, easy to change.** Explicitly **not** [the demo law](#r13--the-book-gets-its-own-aesthetic-world), which governs demonstrations. This is the product, and v1 exists to put a target under the compiler.
+- **Reader-or-catalogue is [counted, never declared](#s5--the-read-versus-consulted-predicate)** — `$Book.read()` answers it.
+- **Each subject is its own page**, loading its own book module plus card metadata and **never the books it catalogues**.
+- **A hand-made catalogue in [the S2 shape](#s2--what-a-card-carries-specified)**, keyed by path, **importing no book** — written in `.public/app`, describing **the test library**, so what the compiler later emits replaces it file for file and **G's swap is exact rather than approximate**.
+- **The corpus is [`library/.test-library/`](#the-state-once--2026-08-15-two-sessions-one-state), treated as the main library**, reached under **a flag restricting the run to the test folders**. *"The app can run completely but will be restricted to the right books."*
+- **[`tsconfig.json`](../../app/tsconfig.json) is F's to fix**, because B emits dotted files into F's folder and cannot edit F's config. **Enter through the generated module; never walk a pattern.**
+
+**Designed and owed rather than built in v1:**
+
+- **The reader's place, in cookies — and it is a place PER SUBJECT.** *"For each subject, the view for the library would be like opening a book and the app should remember where they left off there."* **A finger in each of several books at once**, not one position in the library. *No second reading mechanism to design: a subject is a book, so opening one is opening a book.*
+- **A chapter's address, which is dynamic rather than a route.**
+- **Bookmarks — a reader configuring references into their own view of the library.** ***Recorded, not scoped.*** **The shape it wants already exists**: a bookmark is a reference, and a thing that catalogues books **is a subject** — so a reader's bookmarks are a subject of their own, drawn by the same rule as any other. *Whenever it is taken up it is a use of the model rather than an addition to it.*
+
+*All three are ruled; none of them is what gets a target under the compiler.*
+
+**Also F's, and it is the level-crossing:** **The Build gains its chapter on the showing.** *"The demo should contain an account of the work that we are doing."*
+
+***Know what you are walking into:*** **`.public/app/src/` holds two files and one is a coming-soon animation** — and it stays on the live site, because **[the Pages deploy is disabled](#the-deploy-is-off-and-that-is-a-decision-rather-than-a-pause) while this is built.** Work is seen locally. **This is new work, not configuration.**
 **It splits in two if you want:** the book that draws, and the shell that resolves. They share only the card contract and live in different folders.
+
+### F — WHERE IT STANDS · **the library is on screen, driven and seen**
+
+**[U22](#u22)–[U30](#u30) DONE, DRIVEN AND SEEN, 2026-08-15.** A path resolves through a catalogue to a card, **one** book's module loads, and the book draws itself — as a reader or as a catalogue, decided by counting. **19 checkpoints, 19 passed, 0 console errors, exit 0**, and it was **watched going red twice** before its green was trusted.
+
+**AND `generated/` IS GONE — the naming was wrong and Doug said so.** *"Does generated help? The whole `.public` workspace is in there. Technically you are generating the whole site right?… consider normal app design in naming here."* **Correct: it named a folder for how its contents arrived rather than for what they are**, and [R19](#r19--publication-the-output-mirrors-the-library-and-a-book-is-a-page) already says the output mirrors `library/`. So the folder is **`src/library/`**, and with [D12](#d12) declaring no book class there is no `book/` either. What is left is an ordinary small app: `main.tsx` · `app.tsx` · `library/` · `catalogue.tsx` · `theme.ts` · `teaser.tsx`. ***One word fewer, and the word that went was mine.***
+
+**THE UNFAKEABLE CLAIM, WATCHED IN THE NEGATIVE.** With the card assignment disabled, **the front door drew as a READER instead of a catalogue** — same module, same surface, the only change being whether anything points elsewhere. *And with one card removed the walk stalled naming it: `The catalogue holds no card for "/physics/gauge-theory"`.*
+
+#### Three defects found, and two of them were nobody's fault but everybody's problem
+
+**1 — THE PUBLISHED PACKAGE COULD NOT DRAW A BOOK, AND HAD NEVER BEEN ASKED TO.** [`tsconfig.build.json`](../../package/tsconfig.build.json) overrode `"jsx": "react"` — the **classic** runtime — so the rollup bundle emitted **22 bare `React.createElement` calls** while binding React only as `React$1`. Every reader crashed with `ReferenceError: React is not defined`.
+
+***It survived because nothing had ever run `dist`.*** [The demo's vite config](../../package/app/vite.config.ts) aliases `@` to the package **source**, and the teaser imported no lib at all — so the artifact GitHub Pages has been building on every push was **broken and unexercised**. *`react/jsx-runtime` was already listed as external in [the rollup config](../../package/rollup.config.js), so the automatic runtime was plainly the intent and the override defeated it.* **Fixed — one line — and flagged, because [D17](#d17) put `package/` outside F's boundary and a guardrail that turns out wrong is [raised, not silently overridden](../../../../.claude/library/teamspeak/03-discussion.md).** *`React.createElement` in the bundle: 22 → 1, and that one now has a binding.*
+
+***This is [the green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) at its largest scale yet — on the published artifact.***
+
+**2 — THE FIXTURE'S ORDINARY CHAPTERS WERE ALL INVALID.** [`$Chapter`'s bond constructor](../../package/src/book/Chapter.tsx) requires a summary — *"A chapter requires a summary — a parenthetical section"* — and **six of six ordinary chapters had none.** Only the synopses did. **The corpus was counted at nineteen files and reported done, and no book in it had ever been constructed**, so nobody knew.
+
+**Fixed AT THE SOURCE, and the reason is a line worth keeping:** a missing author link is **structure** and [the build may supply it in the copy](#the-four-blockers-resolved-2026-08-14--and-the-plan-now-lives-in-the-book) — **a summary is WRITING, and the build never writes prose.** *So this could not be papered over in the mirror; it had to be fixed where its author left it, and it was.*
+
+**3 — A BOOK CANNOT BE RETURNED FROM AN ASYNC FUNCTION.** `$Book` declares `then()` for reference paths, so `Promise<$Book>` is a thenable collision — TypeScript refuses it (`TS1058`) and at runtime a promise would call `then()` and never settle. **Every stage that loads a book asynchronously meets this.** *Worked around by handing back a holder rather than the book; recorded because it is the reference API and the language's own protocol colliding on one word, which is the same shape as [the `at` collision](09-the-subject.md) already filed here.*
+
+#### Two more findings, smaller and still worth having
+
+- **The card contract's `canonical` field cannot be added.** `$Writing` already declares `canonical`, which every card inherits, so [S2](#s2--what-a-card-carries-specified)'s field of that name **shadows it and does not compile.** *Left off the card and flagged rather than renamed — the name is Doug's.*
+- **The fixture exercises no author book**, so `<Author>The Team</Author>` resolves to no card and the **author-link default is not exercised by the corpus.** *The cover renders the name as writing, which is valid; but [R6](#r6--what-the-build-supplies-each-with-its-rule-and-its-override)'s structural author rule has nothing to run against.*
+
+#### Verified — every gate, with its scope
+
+| gate | result |
+|---|---|
+| `verify-library.mjs` *(new)* | **19 checkpoints, 19 passed, 0 failed, 0 console errors, exit 0** — watched red twice |
+| `.public/app` typecheck | **31 files, 0 errors** — *and the dotted files are among them, entered through the module* |
+| `.public/app` build | **6 `book-*.js` chunks, one per book** — *which settles the ⚠ nobody had checked* |
+| lib suite | **239/239**, 23 files |
+| demo app typecheck | **76 files, 1/1 baselined, 0 unexpected** |
+| lib rollup build | exit 0, **`React.createElement` 22 → 1** |
+| `verify-book` | **51 checkpoints reached**, PASS — *run because `tsconfig.build.json` changed beneath the demo, and the demo had to be shown unharmed* |
+| `verify-demo` | **25 checkpoints reached**, PASS |
+
+#### The second run — the bookmark, the addresses, the gate, and the chapter
+
+***Doug: "What is stopping you from building something."*** **Nothing was, and [U31](#u31) and [U33](#u33) both landed** — U33 having been deferred by decision and then asked for.
+
+- **A SUBJECT PAGE WAS DRAWING HALF OF ITSELF.** *Found by looking at the screenshot rather than at the test*: the page showed its cover and its entries and **not its own chapters**, so `What Physics Is` was invisible. **A subject is both things at once** — its own writing and the books it catalogues, through the same members — and the page now says so. *Driven: three of its own, two entries.*
+
+- **THE READER'S PLACE IS KEPT, AND IT IS THE MODEL'S OWN WORDS.** *Doug: "Not for each subject. For the top level subjects in the library. Subjects can catalogue other subjects as well. As for remembering where — definitely the book, the place on the page. **We should have a bookmark. We have to build an abstraction for saving state to browser storage.**"*
+
+  **Nothing was invented, because both halves already ship.** **[`$Bookmark`](../../package/src/book/Bookmark.tsx)** is a sentence-grade reference and **[`$Location`](../../package/src/reference/Location.tsx)** is the place — *"a location is the one thing that holds a number, because a number is what it IS."* **So a bookmark holds a location in a book**, one per **top-level subject**, and returning to a subject opens the book that was open at the place it was left. *Storage is an abstraction of its own so the drawer behind it is one line to change; it is `localStorage` rather than `document.cookie` — the same place and the same reader, without a size limit or a needless round-trip, and that swap is named rather than slipped in.*
+
+- **A CHAPTER HAS AN ADDRESS AND IT IS A FRAGMENT.** The route stays the book, because the book is what loads; the fragment **follows the reader down the page** rather than waiting to be clicked. *And one real rule came out of driving it: **a reader at the foot of the page is reading the last chapter**, however little there was to scroll — a short book can never bring its final chapter to the top of the screen.*
+
+- **THE APP HAS ITS OWN GATE, AND THE GATE HAS A FLOOR.** `npm test` in `.public/app` runs the typecheck then the driver. **The typecheck reports how many dot-prefixed files it reached**, because that number is the only evidence the compiler entered through the module rather than walking a pattern. ***And a floor was added after watching it fail to care:*** closing one door in the catalogue took it from 33 files to 28 **and it still said PASS**. It now says `SCOPE FELL BELOW ITS FLOOR` and exits 1. *My own first version of that count was also wrong — it matched `/.public/` in every path and reported all 33 as dotted, which is a gate lying in the direction that feels like success.*
+
+- **THE BUILD GAINS ITS CHAPTER ON THE SHOWING** — [`08-the-showing.tsx`](../../package/app/src/sections/book/library/the-build/08-the-showing.tsx), the seventh stage in the book that specifies the machine. **Its figure runs the rule rather than illustrating it**: six books in, three computed *consulted* and three *read*, each with what a visit costs, **and the answer matches what the running application does** because it is the same rule. *Driven: 6 rows, `data-consulted="3"`, 0 console errors. **Doug appears nowhere in it**, per [D10](#the-decisions).*
+
+#### What the second run found
+
+- **A RESOURCE IS REACHED BY ITS FOLDER, NEVER BY THE IMPORT GRAPH — and the floor caught it on its first real use.** The corpus stopped importing `symmetry--figures.tsx` mid-run, the count fell to 32/24, and the gate refused. ***That is the finding rather than the inconvenience:*** entering through the module reaches every chapter, cover and synopsis, **but a chapter need not import the code beside it**, so anything carrying a library must add resources **by computed path** or leave them behind. *This is [A's own rule](#a--the-reading--this-session) arriving from the other end, and [B](#b--the-mirror) needs it.*
+- **Two sessions edited the corpus in the same hour**, which is how the above was found. *The fixture has no owner rule the way the build modules do.*
+
+#### Verified — the second run
+
+| gate | result |
+|---|---|
+| `.public/app` typecheck | **32 files, 24 dotted, 0 baselined, 0 unexpected** — floor enforced, **watched refusing a closed door** |
+| `verify-library.mjs` | **29 checkpoints, 29 passed, 0 console errors** — *watched red on the bookmark and on the predicate* |
+| demo app typecheck | **77 files** from 76, 1/1 baselined, **0 unexpected** |
+| `verify-book` | **51 checkpoints reached** |
+| `verify-demo` | **25 checkpoints reached** |
+
+**Not done.** [U32](#u32) beyond this section · [U34](#u34) design owed · **and four things that are not F's**: [the `then()` collision](#three-defects-found-and-two-of-them-were-nobodys-fault-but-everybodys-problem), the corpus's missing author book, the `canonical` name, and [G's deploy](#the-deploy-is-off-and-that-is-a-decision-rather-than-a-pause).
+
+### The deploy is OFF, and that is a decision rather than a pause
+
+**The push trigger comes off [`deploy-pages.yml`](../../../../.github/workflows/deploy-pages.yml) and the teaser stays on the open web.** *Doug: "No deploy. Leave the teaser."* Without this, **F's first commit publishes a building site**, because the workflow builds `library/.public/app` on every push to `main`. **Turning it back on is [G](#g--the-joining--not-yet)'s, alongside the deep-link fallback** — which is also G's, and which had been assigned to a track that no longer exists.
 
 ### G — the joining · **not yet**
 
@@ -902,14 +1408,14 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 **Then, per session — one or two more, and what each is load-bearing for:**
 
-- **A** — [the fixture](#the-state-once) at `library/.test-library/`, which is the input, and **[the description contract](#the-last-contract-written--and-the-figure-that-carried-it-found-two-defects-in-it)**, which is the output *and which was wrong twice before it was right; both defects are named there and both are worth not repeating.*
+- **A** — [the fixture](#the-state-once--2026-08-15-two-sessions-one-state) at `library/.test-library/`, which is the input, and **[the description contract](#the-last-contract-written--and-the-figure-that-carried-it-found-two-defects-in-it)**, which is the output *and which was wrong twice before it was right; both defects are named there and both are worth not repeating.*
 - **B** — **[the green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md)**, whose fourth entry is the dotfile trap that will otherwise cost you a day, and [the compiler's operations](#the-compiler-operation-by-operation) for what carrying may and may not alter.
 - **C** — [`algebra/book.tsx`](../../package/app/src/sections/book/library/algebra/book.tsx), **twenty-two lines every one of which is derivable** — it is the specification, written by hand — and [`$Book`'s bond constructor](../../package/src/book/Book.tsx) for what it will refuse.
 - **D** — [`$Book`'s bond constructor](../../package/src/book/Book.tsx), because **you are implementing nothing it does not already say**, and [the green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) for why a gate must be watched failing.
 - **E** — [`card.tsx`](../../package/app/src/sections/book/library/the-team/card.tsx), the hand-made catalogue that **is** the thing you are generating, and [the card contract](#s2--what-a-card-carries-specified).
-- **F** — [`the-team/book.tsx`](../../package/app/src/sections/book/library/the-team/book.tsx) and [`the-shelf/contents.tsx`](../../package/app/src/sections/book/library/the-shelf/contents.tsx), the two most complete readers we have, and [the app pictured](#the-app-pictured--written-because-a-plan-nobody-can-visualise-cannot-be-split).
+- **F** — **[its own brief](#f--the-application--brainstormed-2026-08-14-and-the-brief-below-is-the-result) first**, which was rewritten after a brainstorm and is smaller than the rest of this chapter implies. Then [`the-team/book.tsx`](../../package/app/src/sections/book/library/the-team/book.tsx) and [`the-shelf/contents.tsx`](../../package/app/src/sections/book/library/the-shelf/contents.tsx), the two most complete readers we have, and [the app pictured](#the-app-pictured--written-because-a-plan-nobody-can-visualise-cannot-be-split).
 
-*Three readers converged independently on one anatomy — the surface, the running head, the folio, the imprint, the open chapter, the turn. **That is evidence for F, not a specification**; it was never agreed as one.*
+*Three readers converged independently on one anatomy — the surface, the running head, the folio, the imprint, the open chapter, the turn. **That is evidence for F, not a specification**; it was never agreed as one — and rather than promote it, **v1 takes [`$Book`](../../package/src/book/Book.tsx) as it ships** and leaves the anatomy to be earned later.*
 
 ## Said plainly, for whoever is not tracking identifiers
 
@@ -919,45 +1425,62 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 **And the book is the exemplar as well as the specification.** It is what IXP documentation will look like — diagrams drawn from the model, real source shown as itself, a design meant to be copied. **A demonstration that is also the plan for the machine that will produce demonstrations like it.**
 
-## The state, once
+## The state, once — 2026-08-15, two sessions, one state
 
-**Complete.** The brainstorm and the plan. Nineteen rulings recorded verbatim, the pipeline agreed, the folder convention agreed, the environment answered by inheritance, the deliverable relocated twice and settled as a book on the shelf. Four requirements amended in after approval and marked as amendments, one of them ([R18](#r18--the-build-is-subjective-and-that-is-why-its-output-is-committed)) reversing a brainstorm answer.
+**A AND F ARE BOTH DONE.** The compiler reads a library; the application draws one. *Neither read the other's code, and they met at the contract.*
 
-**[U1](#u1) — DONE, DRIVEN AND SEEN.** The fifth book stands. A cover, a synopsis, a table of contents, its own blueprint surface, a card in the catalogue, an author link reading to The Team, a subject link reading to The Shelf, and its synopsis standing as a chapter of The Shelf. **13 ad-hoc checks passed, 0 console errors**, both shipped drivers unchanged.
+**A — the reading.** `.public/build/` holds the seam type, the walk, the reference resolution and its gate. **Pointed at the corpus: 8 folders, 18 files, 4 references, 0 complaints. 26 checks, watched red three ways.** *The seam is a **type**, not a file on disk, so B through E import declarations and write functions against them.*
 
-**What U1 found, and it is a correction rather than a defect.** **The shelf catalogues the books and does not catalogue itself**, so a fifth book makes a *fourth* spine. [AE1](#acceptance-examples) said five and has been corrected. *It also exposed a loose assertion in the shipped driver — `spines.length >= 3` — which passed a fourth spine without noticing it. **[U14](#u14) tightens it**, and that is now the reason U14 exists rather than a formality.*
+**F — the application.** A path resolves through a catalogue to a card, one book loads, and the book draws itself — reader or catalogue, decided by counting. **29 checkpoints, 29 passed, 0 console errors**, watched red twice. *The deploy is OFF by ruling; the teaser stays on the open web.*
 
-**[U2](#u2), [U3](#u3), [U4](#u4) — DONE, DRIVEN AND SEEN.** The book has its own blueprint surface, sharing no styling with the other four. It declares two figure kinds of its own. And its first chapter stands, **reachable by turning**, stating the folder convention and drawing it.
+**And they agreed without coordinating.** A computes routes — `/`, `/physics`, `/physics/the-standard-model` — and F had written the same ones by hand. **The contract was what made that possible, and the contract is also what got corrected twice** ([the shadowed field, and one word meaning two things](#s2-corrected-twice--both-found-by-two-sessions-building-against-it)).
 
-**THE DIAGRAM RUNS THE RULE RATHER THAN ILLUSTRATING IT.** Every role on the tree — *a subject*, *the subject's own book*, *cover*, *synopsis*, *chapter*, *a book* — is **computed by the classifier, not typed into the figure**, and the chapter shows that classifier's real source beneath it, read at build. A wrong rule would draw a wrong tree, which is why this cannot be faked by prose. **11 checks, 0 failures, 0 console errors.**
+### What the two sessions found about each other, and it is the real finding
 
-**One real defect found by driving, and it was not the one the failing check claimed.** Six assertions went red reading `library/A SUBJECT`; **the labels were correct and the render was wrong** — the role carried a margin but no whitespace, so the diagram could not be copied or read as text. Fixed at the render. *The lesson is the one already filed here: a check that fails tells you something is wrong, never what.*
+**THE CORPUS HAS NO OWNER, AND THE BUILD MODULES DO.** *Two sessions edited `library/.test-library/` in the same hour.* **A removed a file mid-run and F's gate refused**, counting 32/24 where it had counted more. *The refusal was correct — that is the floor working — but nothing said the corpus was shared, while every module under `build/` says who owns it.*
 
-**[U5](#u5) — DONE, DRIVEN AND SEEN, and it settled the collision.** *The tree is final for canonical subjecthood; explicit markers carry every other subject a book belongs to.* The other direction is the subject's own: **its canonical book is the first book in its contents, unless it declares another** — the same convention-with-override shape as everything else here.
+**AND A COUNTED FILES WHERE IT SHOULD HAVE CONSTRUCTED BOOKS.** F found that **six of six ordinary chapters in the corpus were invalid** — [`$Chapter`'s bond requires a summary](../../package/src/book/Chapter.tsx) and only the synopses had one. ***The corpus was reported done at nineteen files and no book in it had ever been built.*** *A file count is not a corpus; a corpus is what constructs.* **Fixed at the source by F, because a summary is writing and [the build never writes prose](#the-four-blockers-resolved-2026-08-14--and-the-plan-now-lives-in-the-book).**
 
-**Reciprocity stopped being a rule to enforce and became a shape that is hard to break.** The book named canonical is held by the subject naming it, and being held is what makes that subject canonical for the book. **One check survives: a subject must hold what it names.**
+**Both are the same shape as [the green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md)** — a number that was true, with a silent scope. *Held for the next compound run, alongside the `.gitignore` rule that was swallowing the whole compiler.*
 
-**AND THE REFUSAL IS DRAWN.** The chapter carries the same figure three times — default, declared, and a subject naming a book it does not hold — and **the third computes its own refusal**. *That discharges [U13 of Cataloguing](14-cataloguing.md#not-done-and-named-rather-than-omitted), owed for a sprint: a guard nobody has watched fail is not a guard.* **8 checks, 0 failures, 0 console errors.**
+### Not done, and named rather than omitted
 
-**A second checker error, and it is the same one twice.** An assertion passed **for the wrong reason** — it matched a caption rather than a label — and another failed because `text-transform` changes what `innerText` returns. *Both were mine, not the code's; the render was correct each time, and the dump proved it before the assertion was rewritten. **The rule this earns: read the rendered text before writing the predicate.***
+- **B, C, D and E have not started.** Each has its input fixture and its own module; none blocks another.
+- **G waits**, and its work now includes **turning the deploy back on** and the deep-link fallback.
+- **Compaction is owed.** This chapter is **29,000 words** and the law says compact at compounding. ***It was deliberately not done: F was editing this same file this session***, and a whole-file rewrite under another session's in-flight edits risks losing their work. **First thing when only one session holds it.**
+- **The `.gitignore` lesson is held** for the next compound run — one lesson per run, and that chapter already took one today.
 
-**THE COMPACTING HAS BEGUN, and it is writing rather than deleting.** *Doug: "compact means use good writing, great organization, figures and other forms of rich content to express ideas, perhaps books with interactivity."* **The folder convention now lives in the book as a figure you use** — type an entry, toggle file or folder, and the same classifier the diagrams run answers under your hand. **7 checks, 0 console errors.**
+### Open, and each is Doug's
 
-**And it found something the sprint needed to know.** *A chapter can hold state and re-render through chemistry, with nothing lifted to the page* — so **interactivity is available at chapter grade** and does not need the framework changed. That is [T1](#the-programme--eight-tracks-so-separate-sessions-can-run-them)'s licence to teach rather than assert.
+- **What a card calls its canonical link.** `$Writing` owns the word, so the field cannot be added as specified. *Flagged by F rather than renamed around.*
+- **The corpus has no author book**, so `<Author>The Team</Author>` resolves to nothing and the structural author rule has nothing to run against.
+- **The application's organisation** — the review below, now that Doug has ruled component and application code into the package.
 
-**THE FIXTURE IS BUILT — [session 1](#the-dispatch--a-first-g-last-and-the-letters-run-in-execution-order) is done.** `library/.test-library/` holds **19 files, none of them visible to git**, authored exactly as real content would be. It exercises **the dot ranking at three grades**, **a resource file** (`symmetry--figures.tsx`), **a cover that names no author** so the compiler must supply one, and **both canonical cases** — physics declares one, philosophy falls back.
+## OWED — the public application's organisation gets a serious review once it works
 
-*This reverses [D5](#the-decisions), which said the fixture would be specified and not created. Doug's later instruction governs, and the reversal is recorded rather than smoothed.*
+*Doug, 2026-08-15, looking at what F built: **"I see someone building the library app, with various classes. They are lowercase and all in one folder. Might we want these in the package? It's important code. It should be organized well. Put a note somewhere that we have to review this seriously once we get something working."*** **Noted, not acted on** — F was asked for the shortest path to something visible, and got there.
 
-**Not started.** [U6](#u6) onward. **The boundary holds: no build script exists, and `library/` gains only an ignored folder.**
+**What the review has to look at, measured rather than felt:**
 
-**Blockers: none.**
+| | as built | why it wants a second look |
+|---|---|---|
+| `app.tsx` | **234 lines**, exporting `here`, `catalogued`, `Library` | three jobs in one file — the route resolver, the catalogue face, the reader |
+| `catalogue.tsx` | **121 lines**, exporting `$Card`, `catalogue`, `at`, `held`, `fetch` | a class, the data, two lookups and the loader, together |
+| naming | all lowercase, flat | ***it names a class in a content file*** — by [this sprint's own rule](#two-more-conventions-settled-2026-08-14) a file named for its class is PascalCase, and only *content* is named for its title |
+| shape | one folder | [the plan named two](#where-the-code-lives--every-path-so-a-session-can-start-without-asking) — `shell/` and `book/` |
+
+**The naming rule has a third case it does not cover, and this is it.** We split *framework* from *content* and never said what **application code** is. `$Card` is a class in a file named like a chapter. *Either the rule gains a case or the file gains a capital, and neither should be decided while the thing is still being built.*
+
+**And the real question underneath is whether any of it belongs in the package.** *A library's own card is correctly app-side — the framework ships `$IndexCard` and a library declares its own, exactly as it ships no figure kinds.* **But the shell is different**: turning a path into a card, fetching one book and drawing it is what **any** app serving this kind of library needs, and there is nothing repository-specific in it.
+
+***The standing precedent says wait.*** The compiler faced the same question and the answer was [`.public`, unpublished, extract when a second repository actually needs it](#where-the-code-lives--every-path-so-a-session-can-start-without-asking) — a decision made against a real requirement instead of a guessed one. **The same applies here, and the review is the moment to ask whether that requirement has arrived.**
 
 ## Open, and each is Doug's — none blocks starting
 
 - **Three proxy names** ([Names owed](#names-owed--none-taken)) — the sprint and the book share the name *The Build*, and *fixture* is unasked-for.
 - **[U15](#u15), the inheritance probe** — proposed as the sprint's one piece of code beside the book, and surfaced rather than slipped in because [D1](#the-decisions) is a hard boundary. **If cut, [U8](#u8) states its mechanism as cited-not-driven** and the citation goes to [U13](#u13).
 - **[D5](#the-decisions), the fixture specified rather than created** — this amends [AE8](#acceptance-examples) and reverses an earlier instruction in favour of a later one. Stated so the reversal is visible.
+- **Where the top-level book lives** — *raised by Doug and deliberately left: "It probably needs to be in lib as a starting point for a library, but I am not sure. **It needs to be considered.**"* **Not blocking, because v1 needs no new book class at all.** The criterion proposed is the one this branch already runs on: **it moves into lib when a second repository actually needs it.**
 
 ## Verified — every gate, with its scope, run fresh after [U1](#u1)
 
@@ -988,9 +1511,21 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 **Chapter zero's [Sprint 50 — The Public Build](00-planning.md#sprint-50--the-public-build) and [Sprint D — The Compilation](00-planning.md#d--the-compilation) are both smaller than what was agreed today.** D was one stage of six; 50 bundled the strict compiler with cross-repo consumability, documentation content and repo-creation, three of which are not this machine. **Chapter zero is stale on this and the plan should absorb it.**
 
-## Compounded
+## Compounded — 2026-08-15, the second lesson
 
-*Distributed 2026-08-14, one lesson, while the context was fresh.*
+**A contract is corrected by implementation, never by rereading** — distributed into [ce-plan's chapter](../../../../.claude/library/our-skillset/29-ce-plan.md), because it changes how a plan divides work rather than explaining why something broke. *Not a Solutions entry: nothing failed.*
+
+**The evidence is this sprint's own.** [The card contract](#s2-corrected-twice--both-found-by-two-sessions-building-against-it) was written from the design, reread across a whole session, and carried **two faults** — a field the base class already owned, and one word meaning a folder to one side and a route to the other. **Both were found within hours of two sessions building against it, and neither by anyone looking at it again.**
+
+**Two practices went with it.** *Dispatch against an imperfect contract rather than polish one — a seam two people are building against is being tested, while a seam nobody has built against is only being admired.* And *when a builder reports the contract cannot be met, **believe the builder***: both faults arrived as "this cannot be done as specified", and both times the specification was wrong. **F flagged the shadowed field rather than renaming around it, which is the only reason it reached the contract at all.**
+
+**Cover updated in the same act; the skill recompiled**, because a library edit that never reaches the compiled file is an edit nobody reads. *Validators: 0 anatomy errors, 0 broken compiled links, 0 broken library links, 0 warnings.*
+
+**Held for the next run, one lesson per run:** the `.gitignore` finding — a generic `build/` rule swallowing the entire compiler — which is [the green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) in a **fifth** costume, and that chapter already took one entry today.
+
+## Compounded — 2026-08-14, the first lesson
+
+*Distributed while the context was fresh.*
 
 **The dotfile finding went to [the green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) as its fourth appearance — EDITED, not created**, because that chapter already owns the mechanism: *the number was true and the scope was silent*. A glob does not match a dot-prefixed name, so a convention whose covers are `.cover.tsx` is **half invisible to an ordinary `include`** — measured at one file of three, with no warning and no count. An explicit import finds them and compiles clean, which is why **the generated book module is the only door**, and a gate must enter through it rather than walk a pattern.
 
