@@ -515,8 +515,9 @@ import { card as math } from '../.mathematics/.subject/card';
 | `chapters` | each chapter's title | the contents, without the book |
 | `author` | a **card**, never a name | follows without loading |
 | `subject` | a **card** — the parent folder | the way back |
-| `canonical` | a **card**, subjects only | which book speaks for it |
 | `library` | **computed**, recursively through `subject` | agreement, checked in place |
+
+*There is no `canonical` row and there never should have been. **A canonical link is a subject's way of naming the book that speaks for it, and a card catalogues nothing** — so the field was wrong before it was also shadowed. [Deleted, with its reason](#s10--a-card-is-a-section-and-the-books-title-is-its-canonical-part).*
 
 **And the shape stays open.** A subtype's derived information must be reachable without the card class knowing it in advance — [R53's own requirement](06-sprint-48--subjects-and-the-library.md#r53-the-card-is-a-compilation-defined-by-the-public-build-doug-2026-08-06), and the reason `$LibraryCard` is an intersection rather than a class.
 
@@ -550,9 +551,15 @@ import { card as math } from '../.mathematics/.subject/card';
 
 *That is the seam working. **Two implementations, one contract, and the contract was what got corrected.***
 
-### S10 — A CARD IS A SECTION, and its canonical is the book's title
+### S10 — A CARD IS A SECTION, and the book's title is its canonical PART
 
-*Doug, 2026-08-15: **"What is a card a composition of? Maybe a card is a section or a paragraph? But the card has a title of a book so that's its canonical link."*** **Both halves are right, and the first is forced rather than chosen.**
+*Doug, 2026-08-15, and the second half of it is a correction to how this was first written: **"Why does the card have a canonical link? It's not a catalogue. It is a reference for a book. The title of the book can be its canonical part… Think about an index card. Is that a paragraph? Maybe it's a section with a title that is the title of the book."***
+
+***A canonical LINK and a canonical PART are not the same thing, and conflating them is what produced the wrong field.*** **A canonical link is a subject's** — it is how a subject names the book that speaks for it, and it points at another book. **A canonical part is any composition's part zero.** *A card is a reference for one book and catalogues nothing, so **it never had any business holding a link** — and the shadowing F reported was the symptom rather than the cause.*
+
+**So the card contract's `canonical` field is not renamed, deferred or awaiting a word. It is DELETED, and for the better of two reasons:** not because `$Writing` owns the name, but because **a card is not a catalogue.**
+
+**Both halves are right, and the first is forced rather than chosen.**
 
 **A title is paragraph grade** — [`$Title extends $Paragraph`](../../package/src/writing/Title.tsx). **Only a section composes paragraphs.** *So a card that carries a title cannot be a paragraph, because a paragraph composes sentences and a title will not fit inside one.* **A card is a section**, and the code decides it rather than taste.
 
@@ -1207,8 +1214,6 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 1. **Compact this chapter.** It is 29,000 words and compaction was deferred because two sessions were editing it at once. **It is now safe and it is the first job.**
 2. **Take the corpus seriously as shared ground.** `library/.test-library/` has **no owner rule** while every build module has one — and two sessions editing it in one hour is how the last defect was found. *Say who holds it before touching it.*
 
-**And one thing that is Doug's rather than work:** [what a card calls its canonical link](#open-and-each-is-dougs), since `$Writing` already owns that word.
-
 ## The six sessions — one is running, five can be opened
 
 **Every session opens by reading this section and nothing else first.** Each block below is that session's whole brief: the command, what it owns, what it builds against, what "done" looks like, and what it may assume.
@@ -1452,7 +1457,6 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 ### Open, and each is Doug's
 
-- **What a card calls its canonical link.** `$Writing` owns the word, so the field cannot be added as specified. *Flagged by F rather than renamed around.*
 - **The corpus has no author book**, so `<Author>The Team</Author>` resolves to nothing and the structural author rule has nothing to run against.
 - **The application's organisation** — the review below, now that Doug has ruled component and application code into the package.
 
