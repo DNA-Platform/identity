@@ -37,5 +37,5 @@ async function main(): Promise<void> {
 }
 
 main()
-  .catch(e => console.error('[test] ERROR:', (e as Error).message))
-  .finally(() => { app.window.minimize(); console.log('[test] minimized.'); });
+  .catch(async e => console.error('[test] ERROR:', (e as Error).message))
+  .finally(async () => { await app.window.minimize(); console.log('[test] minimized.'); });

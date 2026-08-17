@@ -6,7 +6,7 @@
 
 [Book: [Visual Language](.cover.md)]
 
-This is the design for the DOI data-review figure set — the seven panels Nancy's [draft script](../../../../../../src/experiments/2026-06-23-exploration/exploration.py) generates in plain matplotlib. The job is not new figures. The lab (Reimer / Tolias / Sinz) already knows these forms on sight; the job is to make the *familiar* forms beautiful, self-explaining, and nearly text-free — so a panel teaches itself in one glance and an honest reader can't over-read it. The same discipline as the Lab: [beauty is communication, two colors carry the comparison, every mark is structural or active](01-the-lab-design-system.md). Here the comparison is **pre-DOI vs post-DOI**, and that binary is the spine of the whole language.
+This is the design for the DOI data-review figure set — the seven panels Nancy's [draft script](../../../../../../../altered-states/src/experiments/2026-06-23-exploration/exploration.py) generates in plain matplotlib. The job is not new figures. The lab (Reimer / Tolias / Sinz) already knows these forms on sight; the job is to make the *familiar* forms beautiful, self-explaining, and nearly text-free — so a panel teaches itself in one glance and an honest reader can't over-read it. The same discipline as the Lab: [beauty is communication, two colors carry the comparison, every mark is structural or active](01-the-lab-design-system.md). Here the comparison is **pre-DOI vs post-DOI**, and that binary is the spine of the whole language.
 
 ## 1. The shared visual language
 
@@ -56,7 +56,7 @@ The honesty principle, in the pixels: descriptive panels must *read* descriptive
 - **`style.py`** — `use_style()` rcParams, `PALETTE`, `LABELS`, `CMAP` (incl. the custom teal–white–coral diverging), size constants (`W1=6.5`, `W2=13`, heights), dpi=200.
 - **`helpers.py`** — small composable pieces: `despine(ax)`; `takeaway(fig, text)` (the italic bottom strip); `caveat(ax_or_fig, text)` (the consistent honesty ribbon); `median_line(ax, x, label, color)`; `identity_line(ax)`; `shaded_band(ax, lo, hi, label)`; `scale_bar(ax, …)`; `data_labels(ax, bars)` (mono value labels); `density_scatter(ax, x, y)` (hexbin/KDE without a hard seaborn dep); `sorted_order(R)` (rastermap with hierarchical fallback); `slim_colorbar(im, ax, label)`.
 
-**Stays in the experiment script (analysis-specific, not reusable):** the statistics and data prep — `split_half_reliability`, optional oracle, the matched-cell join via [`match_cells`](../../../../../../src/library/io/matching.py), per-panel layout and composition. The script calls `use_style()` and the helpers; the science stays with the experiment, the look lives in viz. Hard dependency surface stays minimal — matplotlib + numpy; **rastermap optional** (recommended, with fallback); no required seaborn.
+**Stays in the experiment script (analysis-specific, not reusable):** the statistics and data prep — `split_half_reliability`, optional oracle, the matched-cell join via [`match_cells`](../../../../../../../altered-states/src/library/io/matching.py), per-panel layout and composition. The script calls `use_style()` and the helpers; the science stays with the experiment, the look lives in viz. Hard dependency surface stays minimal — matplotlib + numpy; **rastermap optional** (recommended, with fallback); no required seaborn.
 
 <!-- citations -->
 [The Lab design system]: 01-the-lab-design-system.md

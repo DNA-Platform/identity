@@ -4,7 +4,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   // Step 1: Get to Chemistry project
@@ -74,7 +74,7 @@ async function main() {
       );
       console.log('  After Escape, dialog elements remaining:', stillOpen.length);
 
-      app.window.minimize();
+      await app.window.minimize();
       console.log('\nDone. Dialog found, modeled, and closed.');
       return;
     }
@@ -97,7 +97,7 @@ async function main() {
   `, 10000);
   console.log('\nDesktop windows:', desktopWindows);
 
-  app.window.minimize();
+  await app.window.minimize();
 }
 
 main().catch(console.error);

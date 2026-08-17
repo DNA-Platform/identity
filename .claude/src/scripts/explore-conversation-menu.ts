@@ -12,7 +12,7 @@ async function main() {
 
   if (screen !== 'conversation') {
     console.log('Not on a conversation. Open one first.');
-    app.window.minimize();
+    await app.window.minimize();
     return;
   }
 
@@ -79,7 +79,7 @@ async function main() {
     }
   }
 
-  app.window.minimize();
+  await app.window.minimize();
   console.log('\nDone.');
 }
 

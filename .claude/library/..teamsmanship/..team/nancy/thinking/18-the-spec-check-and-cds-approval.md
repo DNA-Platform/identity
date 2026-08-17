@@ -3,7 +3,7 @@
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
 - **date:** 2026-06-28
 - **topic:** Nancy > Neuroscience
-- **previous:** [The normalization miss, and the gain limitation](09-the-normalization-miss-and-the-gain-limitation.md)
+- **previous:** [The normalization miss, and the gain limitation](17-the-normalization-miss-and-the-gain-limitation.md)
 - **verdict:** sufficient (source-checked approval)
 - **status:** concluded
 

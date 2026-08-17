@@ -47,6 +47,12 @@ A filename is not a read. Remembering a file is not reading it.
    [DRY homes](03-the-analysis-plan.md#the-map--where-every-piece-lives-open-the-file-do-not-guess) naming the one
    owner of every piece of logic, and the [Lessons](03-the-analysis-plan.md#the-lessons-that-cost-the-most) —
    every expensive mistake as one line and a reason. Timeless: concepts and owners, never a count.
+3. [ch6, Generating the hallucination](06-generating-the-hallucination.md) — **the current direction** (post-delivery):
+   the per-image hallucination synthesis; where composition lives (rank-one readout, factorized Gram, Gauss-Newton
+   image-solve — the fill is that solve missing the overlap-inverse); the feature vocabulary; the coherence-vs-gain
+   split and resolution wall; the canvas worked properly (rescale the network's kernels, not just the image); and
+   **the generative prior** — the released band is a null space to *sample* (DDNM/ILVR/DPS, Sensorium-Viz), with each
+   sample bound to that trial's activity. Descend when resuming the hallucination work; not every turn.
 
 **Depth 3 — the code.** Only the file the map names as the owner. Read the **whole file**, not the region you
 mean to edit — rivals get born in the unread part of a file you already had open.

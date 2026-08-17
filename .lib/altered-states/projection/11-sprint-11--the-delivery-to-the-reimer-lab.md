@@ -1,80 +1,145 @@
-# Sprint 11 — The delivery: the DOI representation, characterized and handed to the Reimer Lab
+# Sprint 11 — The delivery: a rebuildable deliverable for the Reimer Lab
 
 - **author:** [Adam](../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
 - **coauthor:** [Nancy](../../../.claude/library/..teamsmanship/..team/nancy/nancy-or-the-weight-of-evidence/.cover.md)
 
 ---
 
-**Status: PROPOSAL / DRAFT (2026-07-13)** — the plan for the sprint that *delivers*. Prior sprints built and fixed the instruments: [Sprint 9](09-sprint-9--the-raw-instruments-handed-over.md) synthesized the raw MEIs + metamers across the four twins; [Sprint 10](10-sprint-10--the-y-collapse-regression-and-rebuild.md) found and fixed the readout y-collapse and rebuilt the affected twins. The materials now exist — the **149-cell four-twin overlap is complete** (147 cells in every twin), the **8 metamer sets are building**, the **decoder is next** — so this sprint turns raw materials into a **deliverable for Erin & Jake Reimer**: the pre→post characterization, the science write-up, and a self-contained archive + code + one Erin-first notebook.
+**Status: ACTIVE (2026-07-16).** The sprint that *delivers*. The instruments exist and are growing — MEI
+four-twin overlap ~310/749 at ~8 cells/hr, metamers 800/800 done, decoder ready — and the characterization is
+already recorded in [comparison.md](../../../src/analyses/most-exciting-image/comparison.md) and
+[The Altered Cortex](../the-altered-cortex/.cover.md). This sprint assembles that into a handoff for Erin & Jake
+Reimer, under Doug's one requirement: **the deliverable is a pipeline that rebuilds, not a snapshot** — "more MEI
+computed" must be a one-command re-run.
 
-The division of labour is the same as the [active-image run](../the-build/13-the-active-image-run.md): **Nancy owns the science** (the characterization, the metric choices, the "same feature, lower resolution" reading); **Adam owns the handoff** (the HDF5 archive, the zip, the notebook, the reproducible organization). This proposal is the plan both work from; the science *conclusions* are Nancy's to draw, not asserted here.
+This chapter is deliberately thin. **The method is not restated here** — it lives in its contracts, and a second
+copy would drift (this chapter already did, once: it named n=22 and 149 cells while the sources moved on). The
+sprint holds only what *isn't* written elsewhere: the arc, the owners, and the rebuild requirement.
 
-*(Settled coming in — the speed question is closed. The MEI recipe was audited line-by-line against Walker 2019 and the lab's own `nnvision` and is correct; the convergence probe shows the image only reaches corr>0.99 of its final form at **~step 850–875 of 1000** (~1.1×), so there is **no method-faithful early-stop** — the full 1000-step schedule stands, and on this CPU box the long run is accepted (a GPU re-gen is the only real speedup, spec [ch14](../the-build/14-why-synthesis-is-slow.md)). This sprint spends no more effort on speed.)*
+## Where the content actually lives (read these, not a copy of them)
 
-## Aims
+- **The analysis method + findings** — [comparison.md](../../../src/analyses/most-exciting-image/comparison.md):
+  §A/§B (the MEI and metamer comparisons), the M1–M4 metrics, and Findings **F9/F10** (resolution),
+  **F11** (MEI↔metamer entropy agreement), **§B-quater** (blur-equivalent σ replacing the entropy).
+- **The handoff spec** — [deliverable.md](../../../src/analyses/most-exciting-image/deliverable.md): the archive
+  layout, the symmetry guarantee, the notebook.
+- **The live scientific record + code map** — [The Altered Cortex](../the-altered-cortex/.cover.md), kept in sync
+  by Nancy every turn. This sprint **tallies** the delivery arc on top of it; it does not duplicate it.
 
-1. **Characterize pre→post** on the four-twin-overlap matched cells — per-cell MEI change (spec Metrics **M4**) and population-metamer change — everything **scale-invariant** (M1–M4), mirrored across arm A and arm B.
-2. **Answer the behaviour-arm question** — arm A vs arm B: does conditioning on behaviour change the *recovered features*, or only the fit?
-3. **Formalize the reading** — "post-DOI = the **same representation at lower resolution**" — as a bounded, caveated descriptive claim, from three legs: the aligned pre/post similarity, the high-frequency-energy drop, and the reduced-drive mechanism.
-4. **Hand it off** — zip the pipeline code + the fast HDF5 archive + one **Erin-first Jupyter notebook**, self-contained, no pipeline required to open.
+## Owners and tasks
 
-## Deliverables
-
-- `results/altered_states_doi_archive.h5` — the fast, raw, high-res archive (four twins, raw data, per-cell MEIs, 8 metamer sets, decoder recons, validation), per-cell/per-target chunked for open→sort→look (deliverable.md "Layout for speed").
-- `results/compare/` — the M4 per-cell change table (.csv/.npy) + M1/M2 best-one metrics + M3 exemplar indices, **both arms**, descriptive (no significance test).
-- A short **science write-up** (the characterization narrative + the formalized reading with its caveats) — lands in [comparison.md](../../../src/analyses/most-exciting-image/comparison.md) Findings and is summarized for the handoff. **Never** ships the speculative predictive lens (comparison.md is explicit: the lens stays out of the Reimer deliverable).
-- `deliverable/altered_states_doi.zip` — pipeline code + archive + notebook + a one-page README pointer.
-- `notebooks/explore_altered_states.ipynb` — the Erin-first browser (Aim 4 detail below).
-
-## The analyses — method + citation
-
-### A1 · Per-cell MEI change + population-metamer change (the characterization) — Nancy
-- **Cells:** the **four-twin overlap** only (present in pre/A, pre/B, post/A, post/B), in the canonical `cell_index.json` order — so row *i* is the same tracked neuron everywhere (deliverable.md symmetry guarantee). Report *n*.
-- **MEI change (M4):** `1 − corr(MEI_pre, MEI_post)` in the **co-registered RF patch** after luminance/RMS match, decomposed into Δpreferred-orientation / ΔSF / ΔRF-size / Δμ — *how* the peak feature moved. **Include the already-computed shift-tolerant aligned similarity** (`metrics.aligned_corr`, max corr over ±8 px): **arm-B median 0.72** — the pre/post MEI is largely the *same feature*, off-centre. [Walker 2019 (MEI, luminance/RMS match, non-Gabor); Franke 2022 (MEIs across states).]
-- **Population-metamer change (M4 second form):** `1 − corr(r_pre[i,:], r_post[i,:])` over the target images (the per-cell response-profile beneath the population metamers), plus **metamer(pre) vs metamer(post)** structure **inside the RF-covered strip** — *not* metamer-vs-stimulus (comparison.md F5: pixel resemblance is the wrong test; validate metamers by **re-evoke** ≈0.67). [Cobos 2022; Freeman & Simoncelli 2011 (metamer = invariance probe).]
-- **Best-one + exemplars (M1/M2/M3):** rank by consistency-gated drive (MEI) / re-evoke-valid image fidelity (metamer); deliver **clean-in-both** and **largest-change** exemplar sets, separately labelled, never chosen to maximise the difference.
-- **Required gate — the metamer seed-null floor (comparison.md F6):** before *any* pre→post metamer change is called real, compute **metamer(pre, seed 1) vs metamer(pre, seed 2)** (same twin, different init) as the reproducibility floor; only a pre→post similarity **below** that floor is a representational change, not sampling noise. (The metamer analog of the MEI seed-consistency gate.)
-
-### A2 · The behaviour-arm question — arm A vs arm B — Nancy
-- **Question (spec "The four twins"):** arm B (no behaviour) is *our* control — does conditioning on behaviour change the recovered features?
-- **Method:** compute every A1 number **twice** — through the behaviour twins (A) and the no-behaviour twins (B) — on the organized common-index datasets (`mei_pre_A` vs `mei_pre_B`, etc., from `_organize.py`). An effect present in **both** arms is **not** an artifact of behaviour conditioning (comparison.md §C). Report side by side.
-- **Standing correction (comparison.md F4):** arm A was **confounded** by the per-twin fixed-behaviour-state bug (now fixed in `load_twin`; arm A must be regenerated). **Arm B is the primary comparison**; arm A is the mirror, re-run clean.
-
-### A3 · Formalize "same representation, lower resolution" — Nancy
-A bounded descriptive claim resting on three legs, each already partly measured:
-1. **Same feature** — high aligned-shape similarity: arm-B shift-tolerant pre/post MEI corr **median 0.72**; same RF spot, same gross structure (comparison.md F2/§A.3).
-2. **Lower resolution** — a **frequency-domain** HF-energy drop, scored with frequency-aware measures (radial power spectrum, HF-energy ratio, spectral entropy vs a phase-shuffled null — **not** raw pixel correlation, which the blur confounds, F3): **arm B (clean) HF 0.052→0.026, ~2×, 17/22 cells** so far (F4); confirm on the full arm-B overlap and on the metamers, and require it to **exceed the seed-dispersion noise floor**.
-3. **Mechanism** — **Michaiel, Parker & Niell 2019** (our exact drug, DOI): DOI **reduces bottom-up visual drive** while **retinotopy, tuning, and RF structure stay intact** → same feature at **lower SNR** → blurrier, lower-resolution post reconstructions. This is the empirical anchor for "same feature, lower resolution" and it *constrains* the reading to **not remapped**. [Michaiel 2019; Cobos 2022; Walker 2019.]
-
-### A4 · The handoff — archive + code + Erin-first notebook — Adam
-- **HDF5 archive** — pack the `results/_organized/` numerical datasets (raw `float32` 36×64) into one fast file: one group per twin / per metamer set / decoder, keyed by the shared `cell_index` and `target_index`, per-cell/per-target chunked so any cell's MEI (across four twins) or any target's eight metamers loads without scanning. No pre-rendered PNGs (deliverable.md).
-- **Zip** — `pipeline/` (one folder per spec Part) + the archive + the notebook + a one-page README that says *open the notebook, load the archive, go*.
-- **Erin-first notebook** (written for an experimentalist, prose alongside code):
-  - **Load a twin** and run it on any image (checkpoints are standalone).
-  - **Browse a matched cell's MEI across the four twins** (pre/post × arm A/B) beside its readout-μ and the raw stimulus — the row-aligned comparison *is* the analysis.
-  - **Metamer vs decoder** on the **shared target index**: metamer_within_{pre,post}_{A,B}[k] beside `decoder_ridge[k]` / `decoder_deconv[k]` for the same target — replicating **Cobos Fig 2** (metamer wins *neural* re-evoke, the decoder wins *pixel* fidelity; comparison.md F7: ridge 0.41 > deconv 0.35 > metamer 0.22 on pixels). [Cobos 2022 Fig-2 recipe: ridge + deconv CNN, fit on train, scored on held-out test, per image.]
-  - **Sort the table** by quality (M1/M2) or by change (M4) and jump to any cell/target — all figures render **on demand from the raw arrays**, no baked galleries.
-
-## Caveats — carried into the write-up, stated plainly (spec + comparison.md)
-
-- **n = 1 animal — descriptive, not a hypothesis test.** Every pre/post quantity is a per-cell descriptor; no significance claim.
-- **No absolute-gain claim.** Per-scan std normalization removes the DOI gain change (Michaiel); we read only its *downstream* (SNR → fidelity), never amplitude. Every metric is a ratio / correlation / shape.
-- **Elevation is a ~1-D strip.** The 749 matched cells tile ~0.6×0.5 mm (~5% of V1); azimuth retinotopy is clean, **elevation is effectively one-dimensional** (μ-y under-determined, spec Open Q12). Honest instruments are per-cell MEI features + metamers **within the covered strip**; elevation-specific spatial claims are restricted.
-- **Low absolute reconstruction fidelity is a coverage ceiling, not a bug** (comparison.md F5) — and it **cancels** in a within-animal pre/post comparison on the same cells, so we compare **change within the covered strip**, never our whole-frame number against Cobos's 0.55.
-- **Blur confound** — resolution must be scored with frequency-aware measures, not raw pixel correlation (F3).
-- **Cross-condition metamers are exploratory** (spec Open Q14) — never headline; the within metamers + per-cell MEIs carry the primary claims.
-- **The predictive lens stays out of the deliverable** — it is a tool for deciding what to look for, not a result (comparison.md).
+| # | Task | Owner |
+|---|------|-------|
+| 0 | **The rebuild chain — the spine.** One idempotent command: `_organize` → studies → figures → HDF5 archive → zip → notebook, from whatever MEIs are on disk, no step assuming a cell count, **every artifact stamped with the count it was built at** so prose/figures/archive can never describe different snapshots. A *correctness* requirement — it is the single source of the deliverable's consistency, and what makes 749 a re-run. | Adam |
+| 1 | **Assemble the analysis into the report** — the characterization from comparison.md, each finding **labelled stable-at-n or still-moving**. Science and wording are Nancy's. | Nancy |
+| 2 | **The archive + Erin-first notebook, refreshed** to the current overlap, load-and-look without our pipeline; regenerated by task 0. The stale 07-14 archive is replaced. | Adam |
+| 3 | **Verify the rebuild by running it twice** — at the current count, then after more MEIs land — and confirm the deliverable refreshes end-to-end, consistent at the new count. A rebuild claimed but not exercised is not done. | Adam + Nancy |
+| 4 | **Tally here; keep The Altered Cortex in sync; catalogue the pieces.** | Nancy + Libby |
 
 ## Definition of done
 
-- M4 per-cell change (both forms) + M1/M2/M3 computed on the four-twin overlap, **both arms**, past the seed-null floors, written to `results/compare/`.
-- The arm A/B mirror reported side by side; the "same feature, lower resolution" reading formalized with its caveats in comparison.md Findings.
-- The archive packed and self-check-loadable; the zip assembled; the Erin-first notebook runs top-to-bottom from the archive alone.
-- Handoff note to Jake Reimer & Erin (what it is, how to open it, what it does and does **not** claim).
+One command produces the complete deliverable — report, figures, HDF5 archive, zip, notebook — **consistent at
+whatever MEI count exists**, and re-running it after more MEIs compute yields the refreshed deliverable with no
+manual step, **verified at two different counts** (task 3). Each reported finding states the count it holds at.
+The generation run continues underneath, untouched. The retro completes this chapter.
+
+## The deliverable shape (Doug, 2026-07-16)
+
+A **zipped directory a Jupyter user opens and explores** — root holds `browse.ipynb` + `README.md` +
+`requirements.txt`, beside three folders: **`models/`** (the twins), **`data/`** (MEIs/metamers/decoder, raw
+`.npy`), **`lib/`** (the reader code). The notebook is an **incremental analysis** that renders its own figures.
+Deps answer: browsing the pre-computed `.npy` needs only a **light core** (`jupyterlab numpy scipy matplotlib
+scikit-image`) — `torch` + the sinzlab stack are optional, needed only to run a twin on a new image. The full
+tree and the dependency split live in the builder's docstring and the generated `README.md`, not here.
 
 ## Close-out — logged as it lands
-*(empty — fill per step as the sprint runs, like Sprint 10.)*
 
-<!-- citations -->
-[Sprint 9]: 09-sprint-9--the-raw-instruments-handed-over.md
-[Sprint 10]: 10-sprint-10--the-y-collapse-regression-and-rebuild.md
+- **Aim 0 landed — [`pipeline/build_deliverable.py`](../../../src/analyses/most-exciting-image/pipeline/build_deliverable.py).**
+  ONE command assembles the whole directory (models/data/lib + notebook + README + requirements) from
+  `results/_organized/`, stamps `MANIFEST.json` with the MEI count, and zips it. **Verified the rebuild:**
+  `_organize` → `build_deliverable` refreshed 160 → **336 cells** in one chain (task 3, first half), and the
+  notebook **runs standalone end-to-end** from the delivered folder on the light deps alone (no torch, no
+  pipeline). Idempotent; there is a valid deliverable at every step.
+- **Consolidation:** this retires the HDF5 `pack_archive.py` and the inline zip in `rebuild_freemu.sh` (a folder
+  of raw `.npy` is more transparent than one `.h5`, and one builder cannot drift from three). ⚠ **The watchdog
+  rewire waits** — `rebuild_freemu.sh` is the *live* generation script; editing it while it runs can corrupt the
+  loop (the book's own lesson). Point it at `build_deliverable` when the run is next paused.
+- **The notebook is a narrative now (Aim 1).** `build_deliverable.py`'s `browse.ipynb` is five acts —
+  **(1) are the twins trustworthy** (a torch-free *triangulation*: MEIs structured vs a noise floor, pre/post
+  twins agree, MEIs map retinotopy — no single proxy overclaims), **(2) a cell pre/post, (3) the good MEIs
+  pre/post** (ranked by structure, clean-in-both), **(4) blurriness isolated** (blur-σ + radial spectrum +
+  example). One `include_behavior` toggle (default off) drives the whole thing; every cell is commented with
+  what the reader sees. Runs standalone in both toggle states on the light deps.
+- **Cross-platform install solved — `launch.py`** (pure Python, no shell): makes a venv, installs, opens
+  JupyterLab; handles the `Scripts\\`(Windows) vs `bin/`(POSIX) split. A `.sh`/`.bat` would each break half the
+  recipients. **The in-vivo test earned its keep:** running it as Erin would (fresh venv → light install →
+  `nbconvert --execute`) exposed that **`venv --with-pip` does not reliably bootstrap pip** (it failed on our
+  box — "No module named pip", and the project venv had none either). `launch.py` now bootstraps pip via
+  `ensurepip` and, if an isolated env still can't be built, prints the one-line manual path instead of failing
+  cryptically. The README leads with the simplest route — a Jupyter user just `pip install -r requirements.txt`.
+- **Verified under REAL Jupyter, not just a kernel.** `jupyter nbconvert --execute browse.ipynb` runs all five
+  acts end-to-end, **0 errors, figures embedded** (236 KB out) — Erin's exact experience, both toggle states.
+  (My earlier "jupyter's installed" was wrong — a `-q` install had silently half-failed; the execute test is
+  what caught it. *Assert a tool works by running it, never by an install exit code.*)
+- **A/B purged from the deliverable (Doug).** The loader's internal `_A`/`_B` was leaking into the shipped files
+  and the toggle. Renamed on copy — `_B`→no suffix (default), `_A`→`-bh` — so `data/` speaks the book's own
+  convention; the toggle is `include_behavior`. My miss: the rule was already in [ch3](../the-altered-cortex/03-the-analysis-plan.md), unenforced on the output.
+- **Doug's dev loop:** open `browse.ipynb` in VSCode on the project `.venv` kernel (ipykernel + JupyterLab added
+  there); re-run `build_deliverable` each turn to see it develop. The kernel is repo-root, so rebuilds don't wipe it.
+- **Environment installed (2026-07-16).** The project `.venv` now has pip 24, **jupyterlab 4.6 + notebook 7.6**
+  + nbconvert + the light science stack — both Jupyter interfaces launch, and `nbconvert --execute` is the
+  standing in-vivo check. `requirements.txt` ships both interfaces so Erin gets the same choice.
+- **A visual-verification loop for the notebook (Adam).** I can now *check the figures, not just the exit code*:
+  execute `browse.ipynb` through a real Jupyter kernel (`nbclient`), extract each figure to PNG, and view it.
+  A live server also runs (`jupyter lab` on :8899, token `altered`) for interactive use; Playwright + Chromium
+  are set up for driving the browser UI when UI-level fidelity is wanted. **The loop caught a real bug on its
+  first use** — Act 4's blur example picks `argsort(-sig)[0]`, i.e. the σ=8.0 *ceiling outlier*, not an
+  illustrative case. *A figure that renders is not a figure that is right — look at it.*
+- **The notebook is now 5 acts with an app effect (Nancy science, Phillip widgets).** Act 3 MEI comparison +
+  interactive `mei_browser` (page/zoom/read σ per cell); Act 4 metamer comparison **against the stimulus image**
+  + `metamer_browser`; Act 5 **crystallizes the blur** — blur = HIGH-frequency attenuation, shown as the pre/post
+  spectra diverging (shaded gap), measured by the blur-equivalent σ (the Gaussian reproducing that rolloff),
+  per-cell = the degree in each case, **sign test p=6e-44 (76% of cells)** = systematic. Grounded in Michaiel.
+  Browsers live in `library/viz/viewer.py` (reusable, lazy ipywidgets). All 5 acts verified under a real kernel
+  (`nbclient`), 0 errors, figures inspected by eye — which caught the σ=8 example bug last turn.
+- **Viewer polish (Phillip).** The **metamer selector is now principled and shown** (Doug's Q): rank targets by
+  how well the metamer reconstructs its stimulus — slide the metamer over the image, peak correlation
+  (`aligned_corr`, ±8px), **inside the RF-covered strip** (`rf_mask`, ~11% of frame; outside is unconstrained) —
+  best-reconstructed first, fidelity displayed. Reuses `aligned_corr` + `rf_mask` (nothing new); `build_deliverable`
+  ships `data/rf_mask.npy` so the notebook stays torch-free. `mei_browser` gained a **side-by-side / difference**
+  toggle (post−pre reads the fine-detail loss directly); `metamer_browser` shows fidelity + σ, pages best-first.
+- **Polish round on Doug's feedback.** (1) **Example selector** (`library/stats/selection.py`, `pick_examples`,
+  reusable): the 2N best by *goodness*, then the N of those with the most *blur change*, ordered by goodness —
+  quality-first, surfaces the effect. MEI goodness = pre structure; metamer goodness = aligned fidelity to the
+  stimulus. (2) **Blur measure made elegant** (Act 5): **dropped the sign test** — *an obvious effect needs no
+  test; if it needed one we would not trust it* (Doug) — the σ distribution now marks **zero** and the median so
+  the shift reads by eye; the parameter-free spectra panel is the primary evidence. (3) Individual viewers left
+  for by-eye judgment — *the computational generalization lives in Act 5*, not in per-cell add-ons.
+- **⚠ Gotcha: the live jupyter server locks the deliverable dir against `build_deliverable`'s rmtree.** Stop the
+  server before a rebuild, restart after (both root in the same dir). A staging-dir swap would remove the manual
+  step — worth doing when the dev loop tightens.
+- **Still open — the next move:** Nancy iterates the analysis content (the **metamer↔decoder** contrast — Cobos
+  Fig 2, metamers done — and M4 per-cell change), and fixes the example-picker's ceiling case (the MEI grid still
+  surfaces cell 72 at σ=8.0, the search-grid ceiling — a censored value, not a clean example). Task 3's second
+  half (re-verify the refresh at a higher count) is a re-run away.
+
+- **Tone pass — the overconfidence test (2026-07-18, Doug).** The whole deliverable's prose was re-toned against a
+  hard social constraint: **these are Jake Reimer's own published methods** (digital twins, MEIs, metamers,
+  retinotopy — his lab pioneered them). The handoff proves Doug can *reproduce* the Sensorium/Tolias pipeline
+  without Tolias supervision; it teaches Jake nothing. So the notebook and README were stripped of anything that
+  reads as instruction: the **"five acts"** staging → plain descriptive sections (`Setup`, `Twin checks`,
+  `A single matched cell`, `MEIs, pre vs post`, `Metamers, pre vs post`, `Resolution change`); the method
+  *definitions* (MEI, metamer, DOI, 5-HT2A, twin) → removed; the **"What you are seeing:"** placards → gone;
+  the shouting figure titles (`WHY it is blur`, `THE MEASURE`) → plain. The one genuine contribution — the
+  **blur-equivalent σ** resolution measure — is stated once, plainly, and offered as *the* addition rather than
+  dressed up. Standards check (scientific-notebook conventions) confirmed plain section headers over narrative
+  staging. Rebuilt at 336 cells, re-executed under `nbclient` (0 errors), all five figures inspected by eye.
+  *Supersedes the "narrative / five acts" framing in the bullets above — that was the build state, not the ship state.*
+
+- **Line-by-line prose review with Doug (IN PROGRESS, 2026-07-18).** The final pass on the handoff text: work through
+  the README and notebook in ~11 small chunks (README title/intro · open · what's-inside · notes; then each notebook
+  cell), lifting each **verbatim**, reviewing with Doug, and writing the settled wording back into
+  `build_deliverable.py`'s `_readme`/`_notebook` strings. The undone analyses surface here as we reach them — chiefly
+  the **metamer↔decoder contrast** (Cobos Fig 2), which the README's `data/` already advertises but the notebook does
+  not yet show: decided at the Metamers chunk. **This sprint closes when the chunks are worked through** and the
+  deliverable is rebuilt at the final count.

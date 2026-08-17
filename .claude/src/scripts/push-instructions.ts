@@ -14,7 +14,7 @@ async function main() {
   console.log(`Loaded instructions (${instructions.length} chars, ${instructions.split('\n').length} lines)`);
 
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   // Navigate to settings/general
@@ -41,7 +41,7 @@ async function main() {
   console.log('Pasted instructions');
 
   await new Promise(r => setTimeout(r, 2000));
-  app.window.minimize();
+  await app.window.minimize();
   console.log('Done — check the instructions in the account settings.');
 }
 

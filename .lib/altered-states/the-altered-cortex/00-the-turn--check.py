@@ -33,6 +33,15 @@ import subprocess
 from pathlib import Path
 from collections import defaultdict
 
+# Windows consoles default to cp1252, and this validator's own messages carry ✗/µ/— (the STUDIES and readout
+# checks). A validator that crashes while PRINTING its verdict is worse than none — it hid a real STUDIES
+# failure behind a UnicodeEncodeError until this was added. Make our output encoding-safe first.
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):
+        pass
+
 BOOK = Path(__file__).resolve().parent                 # library/.lib/the-altered-cortex/
 REPO = BOOK.parents[2]                                 # altered-states/
 ANA = REPO / "src" / "analyses" / "most-exciting-image"
@@ -258,11 +267,28 @@ def check_run() -> None:
     if len(watchdogs) > 1:
         err("RUN", f"{len(watchdogs)} watchdogs alive — competing worker pools will thrash the CPU. "
                    "Kill all but one.")
+    # DETACHED means the ANCESTRY reaches init — not that this pid's own ppid is 1. `nohup ... & disown` leaves
+    # a chain (detached shell -> the .sh -> python), so testing the leaf's ppid convicts a healthy run: it read
+    # "ppid=12, not 1" and told me to kill and relaunch a chain that was already anchored. Walk it instead.
+    ppid = {}
+    for line in ps.splitlines()[1:]:
+        c = line.split()
+        if len(c) > 2 and c[1].isdigit() and c[2].isdigit():
+            ppid[int(c[1])] = int(c[2])
+
+    def reaches_init(pid, hops=12):
+        while hops and pid in ppid:
+            pid = ppid[pid]
+            if pid <= 1:
+                return True
+            hops -= 1
+        return pid <= 1
+
     for line in watchdogs:
         cols = line.split()
-        if len(cols) > 2 and cols[2] != "1":
-            err("RUN", f"watchdog pid {cols[1]} has ppid {cols[2]}, not 1 — it is NOT detached and will die "
-                       f"with this session. Relaunch with: nohup ... & disown")
+        if len(cols) > 2 and cols[1].isdigit() and not reaches_init(int(cols[1])):
+            err("RUN", f"watchdog pid {cols[1]} is parented to a live shell, not init — it will die with this "
+                       f"session. Relaunch with: nohup bash rebuild_freemu.sh >/dev/null 2>&1 & disown")
     if not any(e.startswith("RUN") for e in ERRORS):
         ok(f"RUN: {len(watchdogs)} watchdog alive and detached (survives a session restart)")
 

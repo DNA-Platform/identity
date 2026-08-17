@@ -47,7 +47,7 @@ async function main(): Promise<void> {
   const controller = new ChatListController(claude.auto);
   await item.menu();                       // reopen the menu (proves reachable)
   await controller.clickRename();
-  await claude.gateway.waitFor(() => controller.isRenameFieldActive(), { timeoutMs: 3_000 });
+  await claude.gateway.waitFor(() => controller.isRenameFieldActive());
   dump('conversation-rename-field.txt', await claude.auto.uia.allNames());
   await claude.auto.keyboard.sendKeys('{ESCAPE}');
 }
@@ -56,6 +56,6 @@ main()
   .catch(e => console.error('[collect] FAILED:', (e as Error).message))
   .finally(async () => {
     try { await claude.dismissDialogs(); } catch {}
-    claude.window.minimize();
+    await claude.window.minimize();
     console.log('[collect] done, minimized.');
   });

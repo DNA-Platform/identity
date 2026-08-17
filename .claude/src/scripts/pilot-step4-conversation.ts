@@ -27,7 +27,7 @@ Claude Code Team: The conversation starts with Doug asking you to review the DNA
   console.log(`[claude] Total: ${(framing.length + transcript.length)} chars (${((framing.length + transcript.length) / 1024).toFixed(1)} KB)`);
 
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   const screen = await app.detectScreen();
   console.log(`[adam] Screen: ${screen}`);
 
@@ -35,7 +35,7 @@ Claude Code Team: The conversation starts with Doug asking you to review the DNA
   const response = await app.say(framing + '\n\n' + transcript, 300_000);
 
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-07-after-convo1.png');
-  app.window.screenshot(ssPath);
+  await app.window.screenshot(ssPath);
   console.log(`[adam] Screenshot: ${ssPath}`);
 
   console.log();
@@ -44,9 +44,9 @@ Claude Code Team: The conversation starts with Doug asking you to review the DNA
   console.log(`=== Length: ${response.length} chars ===`);
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[adam] Failed: ${e.message}`);
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-step4-error.png');
-  try { app.window.screenshot(ssPath); console.error(`[adam] Screenshot: ${ssPath}`); } catch {}
+  try { await app.window.screenshot(ssPath); console.error(`[adam] Screenshot: ${ssPath}`); } catch {}
   process.exit(1);
 });

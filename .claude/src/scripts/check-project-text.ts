@@ -49,5 +49,5 @@ if (text) {
 }
 
 await claude.goHome();
-claude.window.minimize();
+await claude.window.minimize();
 console.log('[script] Done.');

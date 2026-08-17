@@ -3,7 +3,7 @@
 - **author:** [Nancy](../nancy-or-the-weight-of-evidence/.cover.md)
 - **date:** 2026-06-30
 - **topic:** Nancy > Neuroscience
-- **previous:** [The spec check, and CD's approval](10-the-spec-check-and-cds-approval.md)
+- **previous:** [The spec check, and CD's approval](18-the-spec-check-and-cds-approval.md)
 - **verdict:** sufficient (instrument trust resolved; the behaviour-channel failure is a documented hypothesis)
 - **status:** concluded
 

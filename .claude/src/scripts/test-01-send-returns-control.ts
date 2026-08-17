@@ -38,11 +38,11 @@ async function main() {
       console.log(`[test-01] FAIL: send returned but state is wrong (url has chat: ${hasChat})`);
     }
   } finally {
-    app.window.minimize();
+    await app.window.minimize();
   }
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[test-01] FAIL: ${(e as Error).message}`);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

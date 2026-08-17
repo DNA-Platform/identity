@@ -13,77 +13,122 @@ gives it its own place. This is that place.)
 **Rewrite, never append.** A lesson stops being news the turn after it is learned: once it is durable it
 graduates to [the map's Lessons](03-the-analysis-plan.md#the-lessons-that-cost-the-most) as one line and a
 reason, and leaves here. The story it came from is in git. *This chapter reached 306 lines by appending — while
-saying it didn't.*
+saying it didn't; the science paragraphs that filled it have graduated to comparison.md and the map.*
 
 **No counts.** They have one home: `results/_progress.txt`. A count copied into prose is stale in minutes.
 
-## Read next turn — the volatile half of the reading list
+## Where we are (2026-07-18)
 
-[ch0](00-the-turn.md) holds the **structural** list (always the same). This holds what *this* state makes worth
-opening next, and it is re-tuned every turn. **Right now:**
+**The deliverable is built, and re-toned for Jake Reimer.** [`build_deliverable.py`](../../../src/analyses/most-exciting-image/pipeline/build_deliverable.py)
+assembles the browsable folder (`launch.py` + `README.md` + `browse.ipynb` + `MANIFEST.json` + `models/ data/ lib/`)
+and zips it, at whatever cell count is on disk. The notebook was rewritten from the "five acts" staging to **plain
+descriptive sections** — Setup · Twin checks · A single matched cell · MEIs pre vs post · Metamers pre vs post ·
+Resolution change — with the method *definitions* (MEI, metamer, DOI, twin) and the "what you are seeing" placards
+removed. **These are the Reimer Lab's own published methods**, so nothing may read as teaching them; the deliverable
+proves we reproduce the Sensorium/Tolias pipeline unsupervised. The one genuine addition, the **blur-equivalent σ**,
+is stated plainly and **shown by eye — zero + median, no significance test** (an obvious effect needs none). Full
+record: [Sprint 11](../projection/11-sprint-11--the-delivery-to-the-reimer-lab.md).
 
-1. `results/_progress.txt` — the phase and the counts. Then `python 00-the-turn--check.py`.
-2. [`_generate_full.py::_plan`](../../../src/analyses/most-exciting-image/pipeline/_generate_full.py) — **only if
-   the phase looks wrong.** Phase 1 (MEI→150) is running; it advances itself.
-3. When phase 1 ends → [`_organize.py`](../../../src/analyses/most-exciting-image/pipeline/_organize.py), then
-   [`_prepost_analysis.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_prepost_analysis.py) and
-   [`_blur_check.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_blur_check.py) — re-run all
-   three, then rewrite **F10/F9** in [comparison.md](../../../src/analyses/most-exciting-image/comparison.md).
-4. **Skip** the reference chapters ([ch1](01-the-dataset-and-the-design.md), [ch2](02-the-question-made-falsifiable.md),
-   [ch4](04-cataloguing-the-deck.md)) — nothing in flight touches the dataset or the hypotheses.
+**The generation run was found STALLED and RELAUNCHED (2026-07-19).** It died on 2026-07-18 ~20:05 at 662/749
+matched cells — `gen.log` went silent, `_progress.txt` froze, no live process — so the earlier "LIVE, leave it
+alone" was stale. Doug asked to finish it; [`rebuild_freemu.sh`](../../../src/analyses/most-exciting-image/pipeline/rebuild_freemu.sh)
+was relaunched detached (pid 610; it self-limited to ~4 workers on available memory). It is resumable and
+skip-if-exists, so it resumes from the 662 on disk. **Metamers are done (8×100).** Work unit = one cell across all
+four twins. Never launch a second pool; never edit the running `.sh`; don't run anything that writes `results/_full`
+or `_organized` until the workers exit. *(The watchdog's post-gen tail — `pack_archive` → HDF5 zip — is the
+retired path; when generation completes, stop it and run `_organize` + `build_deliverable` by hand, per Still open 1–2.)*
+
+**MEI validity filter — the canonical, lab-code one (in progress, 2026-07-19).** Which cells' MEIs to trust is
+decided by the LAB's reliability criterion (Walker 2019: oracle correlation via `neuralpredictors.oracle_corr_jackknife`,
+cached per matched cell by [`noise_ceiling`](../../../src/analyses/most-exciting-image/pipeline/data/noise_ceiling.py)),
+**not** an image-based redundancy / entropy / crispness rule — those were mine, invented, and are dropped. A whole
+turn was spent on a hand-rolled oracle and a redundancy filter before this landed; see the map's new lesson
+[On the lab's code](03-the-analysis-plan.md#the-lessons-that-cost-the-most). `noise_ceiling` was rewritten to call
+the lab function (hand-rolled `_oracle_ceiling` deleted; neuron-order now asserted, verified equal to matched-pair
+order). Still to do: ship the oracle per condition in the archive at build, gate every analysis on it, and report
+**% of cells with a valid MEI** in the notebook. `pipeline/panels.py` still carries the abandoned redundancy filter —
+replace it with the oracle gate.
+
+**Clean-shop audit — passes 1–3 (2026-07-18).** **Every module and study was read line-by-line** and
+reference-graphed; the deliverable README was validated against the code. Deleted across the passes (all
+zero-caller, git-preserved): `build_twins.py` (a dead rival gating on the retired circular μy-R² gate), the HDF5
+delivery cluster (`build_archive.py`, `archive/`, `make_notebook.py`, `notebooks/`), the callerless
+`energy_center` primitive, the unused Open-Q8 `mei_recipe.py`, the six cortex-era diagnostic studies,
+`_measure_convergence.py`, `resume_gen.sh`; and the folder chaff — the stale `_logs/` folder, 12 `_data/` orphans
+(logs + deleted-study JSONs), `_twins/gof_summary`, the stray `=`. Stale comments corrected to free-μ
+(`model/__init__.py`, `twins.py`, `_decoder.py`) and both contracts reconciled (`deliverable.md`; spec Part 2 +
+Q12; `mei_recipe` refs). **Folder compaction:** the four single-file packages were flattened to modules
+(`validation.py`, `figures.py`, `synthesis.py`, `metamer.py` — pipeline dropped from 10 folders to 6; imports
+re-verified live; book + spec links updated), and the notebook-testing garbage (`.ipynb_checkpoints`,
+`__pycache__`) was cleaned out of the deliverable. **What else remains is gated on the live run** — see Still open 2.
 
 ## Active code
 
 If this list doesn't match what you're about to do, you are about to write a rival. Every row names **what it
-owns**, **its contract**, and **what checks it** — code with neither is how all of this started.
+owns**, **its contract**, and **what checks it**.
 
 | code | state · what it owns | contract | checked by |
 |---|---|---|---|
-| [`_generate_full.py`](../../../src/analyses/most-exciting-image/pipeline/_generate_full.py) + [`rebuild_freemu.sh`](../../../src/analyses/most-exciting-image/pipeline/rebuild_freemu.sh) | **LIVE, detached — leave it alone.** Phased (`_plan`): MEI→`GEN_MEI_TARGET` → all metamers → MEI unbounded. Work unit = one cell × all four twins, so **uneven per-twin counts are a live run, not a bug**. 🔴 **`GEN_WORKERS` is memory-bound** (20 models/worker). ⚠ **no lock** — a second launch = competing pools. ⚠ never edit the `.sh` while it runs (bash reads by byte offset). | [deliverable.md Status](../../../src/analyses/most-exciting-image/deliverable.md) | [`--check.py`](00-the-turn--check.py) `RUN`; `dead tasks:` in `_progress.txt` |
-| [`validation/__init__.py`](../../../src/analyses/most-exciting-image/pipeline/validation/__init__.py) | the ONE home for retinotopy: `whitened_rf`, `retinotopy_map` (Garrett/VFS + permutation), `readout_vs_rf` (**the honest gate**). ⚠ `readout_retinotopy` = **circular, diagnostic only** | [spec Open Q7](../../../src/analyses/most-exciting-image/specification.md) | [`_check_all_twins.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_check_all_twins.py) → `retinotopy_749_*.png` |
-| [`metrics.py`](../../../src/analyses/most-exciting-image/pipeline/metrics.py) | `energy_pmf`/`energy_entropy` (**Doug's measure: square, ÷sum, entropy — no mean subtraction; change = the RATIO**), `hf_fraction`, `aligned_corr`. ⚠ `energy_center` is now **callerless** — deletable once checked; `energy_focus` is load-bearing. | [spec Metrics](../../../src/analyses/most-exciting-image/specification.md) | **nothing** — no test covers the primitives every finding rests on |
-| [`_prepost_analysis.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_prepost_analysis.py) | ✓ **runs.** Entropy ratio, HF cross-check, Gaussian fit (centre + σ), per-axis retinotopy, centre shift — **per condition, never pooled**. Writes `entropy_ratio{,-bh}.png`, `prepost_examples{,-bh}.png`; arrays → `_data/`. | [comparison.md §A + **F9/F10**](../../../src/analyses/most-exciting-image/comparison.md) | [`--check.py`](00-the-turn--check.py) `FIGURES` + `CONVENTIONS` |
-| [`_blur_check.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_blur_check.py) | ✓ **runs.** "Is post blurrier?" — HF-energy per MEI, per condition, off the raw files (works mid-run). | [comparison.md §A.4 + **F10**](../../../src/analyses/most-exciting-image/comparison.md) | prints only — its numbers reach the book via F10 |
-| [`_organize.py`](../../../src/analyses/most-exciting-image/pipeline/_organize.py) | ✓ **runs.** Raw → per-twin datasets on the four-twin overlap. Idempotent — **re-run as the count grows**. 0 metamer sets yet (a set needs all 100 targets). | [deliverable.md](../../../src/analyses/most-exciting-image/deliverable.md) | [`--check.py`](00-the-turn--check.py) `STATE` |
-| [`metamer/__init__.py`](../../../src/analyses/most-exciting-image/pipeline/metamer/__init__.py) | the vendored Cobos inversion. **Verify against `sinzlab/reconstruction`'s example code before the 800 finish.** Edit, never replace. | [spec Part 7 + Q5](../../../src/analyses/most-exciting-image/specification.md) | re-evoke correlation (spec Part 8) — **not yet run on free-μ** |
+| [`_generate_full.py`](../../../src/analyses/most-exciting-image/pipeline/_generate_full.py) + [`rebuild_freemu.sh`](../../../src/analyses/most-exciting-image/pipeline/rebuild_freemu.sh) | **LIVE, detached — leave it alone.** Phased: MEIs across all four twins (metamers done). Work unit = one cell × four twins → uneven per-twin counts are a live run, not a bug. 🔴 workers are **memory-bound** (20 models each). ⚠ **no lock** — a second launch = competing pools. ⚠ never edit the `.sh` while it runs. *(`rebuild_freemu.sh`'s post-gen tail — `pack_archive` → HDF5 zip — is the retired path; it will be replaced by `build_deliverable.py` once the run ends.)* | [deliverable.md](../../../src/analyses/most-exciting-image/deliverable.md) | [`--check.py`](00-the-turn--check.py) `RUN`; `dead tasks:` in `_progress.txt` |
+| [`build_deliverable.py`](../../../src/analyses/most-exciting-image/pipeline/build_deliverable.py) | **THE deliverable builder** — `_organized/` + `_checkpoints/` + `src/library` → the zipped browsable folder; plain-section notebook, `include_behavior` toggle, `-bh`/no-suffix naming, `MANIFEST.json` stamps the count. Rebuild after each `_organize`. | [deliverable.md](../../../src/analyses/most-exciting-image/deliverable.md) | executes clean under `nbclient`; figures inspected by eye |
+| [`_organize.py`](../../../src/analyses/most-exciting-image/pipeline/_organize.py) | ✓ raw per-object → per-twin/per-set datasets on the four-twin overlap. Idempotent — **re-run as the count grows.** | [deliverable.md](../../../src/analyses/most-exciting-image/deliverable.md) | [`--check.py`](00-the-turn--check.py) `STATE` |
+| [`validation.py`](../../../src/analyses/most-exciting-image/pipeline/validation.py) | the ONE home for retinotopy: `whitened_rf`, `retinotopy_map` (Garrett/VFS + permutation), `readout_vs_rf` (**the honest gate**). ⚠ `readout_retinotopy` = **circular, diagnostic only.** | [spec Open Q7](../../../src/analyses/most-exciting-image/specification.md) | [`_check_all_twins.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_check_all_twins.py) |
+| [`metrics.py`](../../../src/analyses/most-exciting-image/pipeline/metrics.py) | `energy_pmf`/`energy_entropy` (Doug's spread measure — square, ÷sum, **no mean subtraction**; change = the RATIO), `hf_fraction`, `aligned_corr`, `energy_focus` (robust MEI centre+extent, load-bearing). | [spec Metrics](../../../src/analyses/most-exciting-image/specification.md) | **nothing** — no test covers the primitives every finding rests on |
+| [`library/stats/resolution.py`](../../../src/library/stats/resolution.py) | **the resolution measure**: `blur_equivalent_sigma` (+ `cutoff_freq`, `radial_power`, `spectral_slope`, `spectral_entropy`). Recovers a known blur exactly. `selection.py::pick_examples` is the 2N-by-goodness exemplar rule. | [comparison.md §B-quater / F10](../../../src/analyses/most-exciting-image/comparison.md) | recovers σ=0…2 at err +0.00 |
+| [`_prepost_analysis.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_prepost_analysis.py) · [`_blur_check.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_blur_check.py) | ✓ run. Pre→post via the energy distribution (entropy ratio, Gaussian fit, per-axis retinotopy) and "is post blurrier?" (HF-energy), **per condition, never pooled.** | [comparison.md §A + F9/F10](../../../src/analyses/most-exciting-image/comparison.md) | [`--check.py`](00-the-turn--check.py) `FIGURES` + `CONVENTIONS` |
+| [`metamer.py`](../../../src/analyses/most-exciting-image/pipeline/metamer.py) | the vendored Cobos inversion. Edit, never replace. | [spec Part 7 + Q5](../../../src/analyses/most-exciting-image/specification.md) | re-evoke correlation (spec Part 8) |
 
 ## The studies — which import right now
 
-**✓ = runs · ✗ = stale `parents[]` — stale, not wrong, and not a licence to write a new one.** Measured
-2026-07-14: **11 of 15 are ✗**. What each is *for*, and the two-line fix, are [in the map](03-the-analysis-plan.md).
+**✓ = runs · ✗ = stale `parents[]` — stale, not wrong; the fix is two lines, [in the map](03-the-analysis-plan.md).**
+The 2026-07-18 clean-shop deleted the six cortex-era diagnostics (figures gone, findings void); of the 9 that
+remain, **3 of 9 are ✗** — the decoder / metamer-vs-decoder trio, which create and score the decoder resource
+(a keeper); repair their `parents[]` when the metamer findings are rewritten post-run.
 
-- ✓ `_check_all_twins.py` · ✓ `_retinotopy_grid.py` · ✓ `_prepost_analysis.py` · ✓ `_blur_check.py`
-- ✗ `_metamer_vs_decoder.py` · ✗ `_decoder.py` · ✗ `_decoder_figure.py` · ✗ `_mei_good_examples.py`
-- ✗ `_mei_quality_check.py` (also points at `results/_full_cold_collapsed/`, **deleted** — needs a decision, not a path fix) · ✗ `_make_examples.py`
-- ✗ `_metamer_similarity.py` · ✗ `_rf_coverage.py` · ✗ `_extract_targets.py` · ✗ `_retinotopy_check.py` · ✗ `_sweep_retinotopy.py`
+- ✓ `_check_all_twins.py` · ✓ `_retinotopy_grid.py` · ✓ `_prepost_analysis.py` · ✓ `_blur_check.py` · ✓ `_metamer_similarity.py` · ✓ `_extract_targets.py`
+- ✗ `_metamer_vs_decoder.py` · ✗ `_decoder.py` · ✗ `_decoder_figure.py`
 
 ## Still open — in dependency order
 
-**The MEI half of the pre→post comparison is recomputed on free-μ (F9/F10). The metamer half (F1/F3/F5/F6/F7) is
-cortex-era and void** — it needs the sets, which phase 2 will finish.
+1. **When the run ends (`_progress.txt` = 749):** re-run `_organize.py && build_deliverable.py` (restamps the
+   deliverable's count from 336 to final), then `_prepost_analysis.py && _blur_check.py` → rewrite F9/F10; rewrite
+   the metamer findings on the finished sets.
+2. **Post-run, gated on the live chain:** delete `pack_archive.py` + retire/rewire `rebuild_freemu.sh` to call
+   `build_deliverable.py`; and **repair the decoder trio** (`_decoder`, `_decoder_figure`, `_metamer_vs_decoder`)
+   — stale `sys.path`, `examples/`↔`_data/` path confusion, `pear`/`target_images` rivals. Deferred because they
+   can only be *verified* by running them, which needs the finished twins + full generation (editing untested is
+   the exact bug-class this book warns about).
+3. **`metrics.py` has no test** — three assertions (`energy_pmf` sums to 1; `energy_entropy` falls for a
+   concentrated image, rises for a diffuse one; `hf_fraction` is energy-invariant) are the floor under F10.
+4. **Notebook cell-by-cell meaning re-audit** — the README is validated against the code; the notebook markdown was
+   validated at the tone rewrite but not re-checked against each code cell this pass.
+5. **Pipeline-root naming (optional):** the runners `_generate_full`/`_organize` carry `_` prefixes while
+   `build_deliverable`/`run` don't — a cosmetic inconsistency. Renaming touches the `_generate_full` import in
+   `_extract_targets`, so it waits for post-run when it can be tested. The single-file-package flatten is done.
 
-1. **Re-run as MEI lands:** `python pipeline/_organize.py && python pipeline/studies/_prepost_analysis.py && python pipeline/studies/_blur_check.py` → rewrite F9/F10. All idempotent, minutes.
-2. **Split `prepost_summary.json`** — it holds **both conditions in one file** (keys `""`, `"-bh"`), and it sits in `examples/`. Split per condition and move to `_data/`. *(Doug asked twice; still owed.)*
-3. **Rewrite the metamer findings** once phase 2 completes the sets.
-4. **Fix the 11 stale studies** — mechanical; idiom in the map.
-5. **Merge `energy_center` into `energy_focus`** (toward the robust trim) + fix the `gaussian_focus` docstring.
-6. **Verify `metamer()`** against `sinzlab/reconstruction`'s example code; **verify the decoder** against Cobos Fig 2 → F7.
-7. **Lock `rebuild_freemu.sh`** so a second launch is a no-op — only while it is *not* running.
-8. **`metrics.py` has no test.** Three assertions would do: `energy_pmf` sums to 1; `energy_entropy` falls for a concentrated image and rises for a diffuse one; `hf_fraction` is energy-invariant. They are the floor under F10.
-9. **The FIGURES check over-reports.** Its regex only matches backticked `results/...` paths, so **bare filenames slip through**. Widen it; resolve bare names against `results/examples/`.
+## Audit trail — 2026-07-18
 
-## Audit trail — 2026-07-14
+**Read (passes 1–3):** the cover, ch0, the three contracts, ch5, the map, the deliverable README, and — line-by-line
+— **every module and study** in `pipeline/` (metrics, twins, model, run, validation, compare, quality_toolkit,
+figures, synthesis, metamer, data + noise_ceiling, gamma_search, _generate_full, _organize, launch, and all nine
+studies). Reference-graphed every `.py`/`.sh`; every deletion carries a zero-live-caller grep.
 
-**Read this turn:** the cover, ch0, ch5, [the map](03-the-analysis-plan.md), and `_generate_full.py`'s planner +
-dispatch. Earlier today, all three contracts and every `studies/_*.py` docstring + `parents[]` line.
+**Verdict:** the live/deliverable code is clean and free-μ-consistent. The only remaining stale code is the
+**decoder trio** (Cobos Fig 2 + the shipped decoder resource) — necessary, repair queued to post-run (Still open 2).
+`pack_archive.py`/`rebuild_freemu.sh` are the retired HDF5 chain, kept only because the run is live.
 
-**The book was compacted.** ch5 had reached **306 lines by appending** — twenty story-paragraphs — in the chapter
-whose own first rule is *rewrite, never append*. The durable half graduated to
-[the map's Lessons](03-the-analysis-plan.md#the-lessons-that-cost-the-most): one line and a reason each, because
-**a lesson stops being news the turn after it is learned** and the story survives in git. Two live contradictions
-went with it — this chapter called ΔH +0.233 the *wrong quantity* in one paragraph and asserted it as a *finding*
-in another, and its Retinotopy section duplicated the map's verbatim. The reading list is now split: ch0 holds
-the **structural** list, this chapter the **volatile** one, re-tuned each turn.
+**Deletions + reconciliations:** listed in the clean-shop paragraph above. `comparison.md`'s F1–F8 findings banner is
+honestly labeled cortex-era/void and left as-is (not chaff). The full "everything runs" rebuild is the post-run
+final test.
 
-**Phase 1 is running** (MEI → 150 matched) at 10 workers, detached, **dead tasks: 0**. It advances itself: each
-invocation runs one phase, exits, and the watchdog re-plans from disk — the files are the state.
+## Read next turn — the volatile half of the reading list
+
+[ch0](00-the-turn.md) holds the **structural** list. This is what *this* state makes worth opening next.
+**Right now (clean-shop, mid-generation):**
+
+1. `results/_progress.txt` — the count and `dead tasks:`. Then `python 00-the-turn--check.py`.
+2. **If the run has ended:** the post-run deletion batch + the contract reconciliations (Still-open 1–3 above).
+   The caller-evidence for each deletion is in the audit memo (scratchpad, temporary).
+3. **If it is still live:** the contract reconciliations (Still-open 3) are safe to do now — they are prose, not
+   the run. Do those; leave the HDF5 cluster and the watchdog alone.
+4. **Skip** the reference chapters ([ch1](01-the-dataset-and-the-design.md)/[ch2](02-the-question-made-falsifiable.md)/[ch4](04-cataloguing-the-deck.md)) — the science did not move.

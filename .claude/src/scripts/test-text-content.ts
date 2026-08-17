@@ -4,7 +4,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
   await new Promise(r => setTimeout(r, 2000));
 
   // Should be on Chemistry project
@@ -23,7 +23,7 @@ async function main() {
   const walkStill = names.filter(n => n.includes('walk'));
   console.log('walk.ts still present:', walkStill.length > 0);
 
-  app.window.minimize();
+  await app.window.minimize();
 }
 
 main().catch(console.error);

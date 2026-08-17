@@ -79,7 +79,7 @@ export class ChatListController {
         if (!url || url === urlBefore) return false;
         return url.includes('/chat/');
       },
-      { timeoutMs: 30_000, pollIntervalMs: 1_000 },
+      {},
     );
 
     if (!arrived) {
@@ -127,17 +127,46 @@ export class ChatListController {
 
   // --- Granular sensors (reads) ---
 
+  /** Is a conversation menu open? **Any MenuItem means yes.**
+   *
+   *  This used to ask for `MenuItem` named exactly `Rename`, `Delete`,
+   *  `Add to project` or `Projects`. Every one of those is now wrong: the app
+   *  appends the keyboard hint to the label, so the tree shows `"Rename R"`,
+   *  `"Delete D"`, `"Pin P"`, and `Add to project` has become `Change project` /
+   *  `Remove from project`. The menu was wide open and the sensor said no.
+   *
+   *  A menu is a menu. There is no reason to name its contents to notice it. */
   async isMenuVisible(): Promise<boolean> {
-    return await this.auto.uia.exists('MenuItem', 'Rename')
-      || await this.auto.uia.exists('MenuItem', 'Delete')
-      || await this.auto.uia.exists('MenuItem', 'Add to project')
-      || await this.auto.uia.exists('MenuItem', 'Projects');
+    const tree = await this.auto.uia.snapshot();
+    return tree.filter({ type: 'MenuItem' }).length > 0;
   }
 
+  /** What is IN the open menu, as the app labels it — with the trailing keyboard
+   *  hint trimmed for reading. Whatever is there is reported; nothing is filtered
+   *  against a list of items we expected, because a hand-kept list of expected
+   *  labels is what hid the rename in the first place. */
   async readMenuItems(): Promise<string[]> {
-    const names = await this.auto.uia.allNames();
-    const known = ['Pin', 'Rename', 'Add to project', 'Change project', 'Remove from project', 'Delete', 'Projects', 'Share chat'];
-    return known.filter(item => names.some(n => n.endsWith(`| ${item}`)));
+    const tree = await this.auto.uia.snapshot();
+    return tree.filter({ type: 'MenuItem' }).map(el => stripShortcut(el.name));
+  }
+
+  /** The MenuItem whose label STARTS with this word, and its exact tree name.
+   *
+   *  The stem is what survives: the app appended ` R` to Rename without telling
+   *  anyone. Match loosely to FIND it, then act on the verbatim label the tree gave
+   *  us — never on a name we reconstructed. */
+  private async findMenuItem(stem: string): Promise<string | null> {
+    const tree = await this.auto.uia.snapshot();
+    const found = tree.filter({ type: 'MenuItem' })
+      .find(el => el.name === stem || el.name.startsWith(`${stem} `));
+    return found?.name ?? null;
+  }
+
+  /** Look for the item, then invoke it once, by its exact label. */
+  private async clickMenuItem(stem: string): Promise<boolean> {
+    const label = await this.findMenuItem(stem);
+    if (!label) return false;
+    return this.auto.uia.invoke('MenuItem', label);
   }
 
   async isDialogVisible(): Promise<boolean> {
@@ -173,25 +202,34 @@ export class ChatListController {
 
   // Specific menu item actuators — the Controller knows the UIA names
   async clickRename(): Promise<boolean> {
-    return this.auto.uia.invoke('MenuItem', 'Rename');
+    return this.clickMenuItem('Rename');
   }
 
   async clickDelete(): Promise<boolean> {
-    return this.auto.uia.invoke('MenuItem', 'Delete');
+    return this.clickMenuItem('Delete');
   }
 
+  /** "Add to project" has been renamed twice — it is "Change project" on a
+   *  conversation already in one. Read the menu ONCE and take whichever is there,
+   *  rather than firing three invokes at the app hoping one lands. */
   async clickAddToProject(): Promise<boolean> {
-    return await this.auto.uia.invoke('MenuItem', 'Add to project')
-      || await this.auto.uia.invoke('MenuItem', 'Projects')
-      || await this.auto.uia.invoke('MenuItem', 'Change project');
+    // ONE tree read answers for all three names. Looping the stems would have been
+    // a fresh UIA query per candidate — which is the thing this codebase is not
+    // allowed to do, and no-loops.test.ts caught me doing it.
+    const stems = ['Add to project', 'Change project', 'Projects'];
+    const tree = await this.auto.uia.snapshot();
+    const found = tree.filter({ type: 'MenuItem' })
+      .find(el => stems.some(s => el.name === s || el.name.startsWith(`${s} `)));
+    if (!found) return false;
+    return this.auto.uia.invoke('MenuItem', found.name);
   }
 
   async clickPin(): Promise<boolean> {
-    return this.auto.uia.invoke('MenuItem', 'Pin');
+    return this.clickMenuItem('Pin');
   }
 
   async clickRemoveFromProject(): Promise<boolean> {
-    return this.auto.uia.invoke('MenuItem', 'Remove from project');
+    return this.clickMenuItem('Remove from project');
   }
 
   async clickProjectItem(name: string): Promise<boolean> {
@@ -243,4 +281,10 @@ export class ChatListController {
       || isActionPill(line)
       || isComposerPlaceholder(line);
   }
+}
+
+/** `"Rename R"` -> `"Rename"`. The app appends the keyboard hint to menu labels;
+ *  it is presentation, and it is why exact-name matching stopped working. */
+function stripShortcut(label: string): string {
+  return label.replace(/\s+[A-Z]$/, '').trim();
 }

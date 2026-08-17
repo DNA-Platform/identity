@@ -77,12 +77,12 @@ async function main() {
 
   } finally {
     try { await app.dismissDialogs(); } catch {}
-    app.window.minimize();
+    await app.window.minimize();
   }
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('FAILED:', (e as Error).message);
-  try { app.dismissDialogs().then(() => app.window.minimize()); } catch {}
-  try { app.window.minimize(); } catch {}
+  try { app.dismissDialogs().then(async () => await app.window.minimize()); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

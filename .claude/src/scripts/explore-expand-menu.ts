@@ -11,7 +11,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   const title = 'Migrating Claude Chat account history and relationships';
 
@@ -21,7 +21,7 @@ async function main() {
 
   if (expanded) {
     await new Promise(r => setTimeout(r, 1500));
-    app.window.screenshot(resolve(DEBUG, 'explore-07-expanded-menu.png'));
+    await app.window.screenshot(resolve(DEBUG, 'explore-07-expanded-menu.png'));
 
     // Find menu items
     const names = await app.auto.uia.allNames();

@@ -38,7 +38,7 @@ async function main() {
   } catch (e: any) {
     console.error('FAILED:', e.message);
   } finally {
-    app.window.minimize();
+    await app.window.minimize();
     console.log('Minimized.');
   }
 }

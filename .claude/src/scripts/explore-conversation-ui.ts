@@ -13,20 +13,20 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   const screen = await app.detectScreen();
   console.log(`[claude] Screen: ${screen}`);
 
   // Step 1: Screenshot the current state
-  app.window.screenshot(resolve(DEBUG, 'explore-01-initial.png'));
+  await app.window.screenshot(resolve(DEBUG, 'explore-01-initial.png'));
 
   // Step 2: Navigate to DNA Patternity if not there
   if (screen !== 'project' && screen !== 'conversation') {
     console.log('[claude] Navigating to DNA Patternity...');
     await app.openProject('DNA Patternity');
   }
-  app.window.screenshot(resolve(DEBUG, 'explore-02-project.png'));
+  await app.window.screenshot(resolve(DEBUG, 'explore-02-project.png'));
 
   // Step 3: Dump all UIA element names to understand the tree
   console.log('[claude] Reading all UIA element names...');
@@ -75,7 +75,7 @@ async function main() {
       await new Promise(r => setTimeout(r, 1000));
 
       // Screenshot the menu
-      app.window.screenshot(resolve(DEBUG, 'explore-03-context-menu.png'));
+      await app.window.screenshot(resolve(DEBUG, 'explore-03-context-menu.png'));
 
       // Dump elements again to see menu items
       const menuNames = await app.auto.uia.allNames();
@@ -125,8 +125,8 @@ async function main() {
   }
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error(`[claude] Failed: ${e.message}`);
-  app.window.screenshot(resolve(DEBUG, 'explore-error.png'));
+  await app.window.screenshot(resolve(DEBUG, 'explore-error.png'));
   process.exit(1);
 });

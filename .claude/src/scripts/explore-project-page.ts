@@ -45,11 +45,11 @@ async function main() {
     console.log('[3] URL:', url);
 
   } finally {
-    app.window.minimize();
+    await app.window.minimize();
   }
 }
 
-main().catch(e => {
+main().catch(async e => {
   console.error('FAILED:', (e as Error).message);
-  try { app.window.minimize(); } catch {}
+  try { await app.window.minimize(); } catch {}
 });

@@ -67,7 +67,7 @@ export class ConversationController {
     // Verify
     await this.auto.gateway.waitFor(
       async () => (await this.readTitle()) === newTitle,
-      { timeoutMs: 5_000, pollIntervalMs: 300 },
+      {},
     );
   }
 
@@ -186,7 +186,7 @@ export class ConversationController {
   /** Rapidly wait (gateway, 50ms tapering) for the response to START — scroll to
    *  bottom, then checkStreaming, each poll (lazy rendering). As soon as this
    *  returns true, the caller should MINIMIZE and read later. False on timeout. */
-  async waitForStreamingStart(timeoutMs = 30_000): Promise<boolean> {
+  async waitForStreamingStart(settleMs = 2_000): Promise<boolean> {
     // Capture how much text the Document holds right after send (user message +
     // chrome, NO response yet). Real streaming GROWS the Document past this
     // baseline — that is the honest signal, NOT the "Claude is thinking/
@@ -195,22 +195,28 @@ export class ConversationController {
     // marker; only the Document body differs (src/trees/conversation-streaming.txt).
     await this.scrollToBottom();
     const baseline = ((await this.auto.uia.readText()) ?? '').length;
-    return this.auto.gateway.waitFor(async () => {
+    return this.auto.gateway.check(async () => {
       await this.scrollToBottom();
       return (await this.checkStreaming(baseline)) || (await this.isResponseComplete());
-    }, { timeoutMs });
+    }, { settleMs });
   }
 
   /** Rapidly wait (gateway) for the response to be OVER — scroll, then no Stop
    *  button AND content present (the "and content" guard avoids the false done). */
-  async waitForComplete(timeoutMs = 300_000): Promise<boolean> {
-    return this.auto.gateway.waitFor(async () => {
+  /** IS the response over? Settle once, look once, answer honestly.
+   *
+   *  This used to poll for up to FIVE MINUTES, scrolling the user's window on every
+   *  iteration. A driver does not get to hold a screen for five minutes. "Not yet"
+   *  is a perfectly good answer: ask again when you have reason to think it changed,
+   *  and if it never finishes, read the tree and find out why. */
+  async isComplete(settleMs = 2_000): Promise<boolean> {
+    return this.auto.gateway.check(async () => {
       await this.scrollToBottom();
       return (await this.isResponseComplete()) && (await this.hasResponseContent());
-    }, { timeoutMs });
+    }, { settleMs });
   }
 
-  async waitForResponse(timeoutMs: number): Promise<void> {
+  async waitForResponse(settleMs = 5_000): Promise<void> {
     this.auto.navigator.requireScreen('conversation');
 
     // Phase 1: detect that Desktop started processing.
@@ -218,14 +224,14 @@ export class ConversationController {
     //   1. Streaming indicator ("Claude is responding" / "Claude is thinking")
     //   2. Thinking text appeared (extended thinking content)
     //   3. Response text appeared (non-empty assistant message)
-    const processing = await this.auto.gateway.waitFor(
+    const processing = await this.auto.gateway.check(
       async () => {
         // Check streaming indicators first (fast)
         if (await this.hasStreamingIndicator()) return true;
         // Then check for actual content — thinking text or response text
         return await this.hasResponseContent();
       },
-      { timeoutMs: Math.min(timeoutMs, 30_000), pollIntervalMs: 500 },
+      { settleMs },
     );
 
     if (!processing) {
@@ -233,11 +239,9 @@ export class ConversationController {
       throw new Error('Desktop did not start processing. No streaming indicator, no thinking text, no response detected within 30 seconds.');
     }
 
-    // Phase 2: wait for streaming to stop (status text disappears)
-    await this.auto.gateway.waitFor(
-      async () => !(await this.hasStreamingIndicator()),
-      { timeoutMs, pollIntervalMs: 1_000 },
-    );
+    // Phase 2 is GONE. It polled until the streaming indicator disappeared, which
+    // means it held the screen for as long as Claude felt like talking. Ask
+    // isComplete() when you want to know; do not block on it.
   }
 
   /** Real streamed TEXT is flowing: the Document has grown past `baselineLength`
@@ -357,7 +361,7 @@ export class ConversationController {
           if (!clicked) await this.auto.keyboard.sendKeys('^{END}');
         },
         async () => !(await this.auto.uia.existsByName('Scroll to bottom')),
-        { description: 'Scroll to bottom', timeoutMs: 5_000 },
+        { description: 'Scroll to bottom' },
       );
     }
   }
@@ -390,7 +394,7 @@ export class ConversationController {
         const text = await this.auto.uia.readText();
         return text?.includes(newText.slice(0, 30)) ?? false;
       },
-      { description: `Edit message ${index}`, timeoutMs: 10_000 },
+      { description: `Edit message ${index}` },
     );
   }
 

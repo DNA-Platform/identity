@@ -8,7 +8,7 @@ const app = new Claude();
 
 async function main() {
   await app.launch();
-  app.window.maximize();
+  await app.window.maximize();
 
   const streaming = await app.conversation.checkStreaming();
   console.log(`[adam] Streaming: ${streaming}`);
@@ -25,7 +25,7 @@ async function main() {
 
   // Screenshot
   const ssPath = resolve(__dirname, '..', 'debug', 'pilot-09-transcript-response.png');
-  app.window.screenshot(ssPath);
+  await app.window.screenshot(ssPath);
   console.log(`[adam] Screenshot: ${ssPath}`);
 
   // Read messages

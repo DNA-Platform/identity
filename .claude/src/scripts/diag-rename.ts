@@ -7,10 +7,10 @@ import { Claude } from '../claude.ts';
 const app = new Claude();
 
 async function main(): Promise<void> {
-  if (!app.window.find()) throw new Error('app not running');
-  app.window.maximize();
-  app.window.waitForUia();
-  app.window.requireForeground();
+  if (!await app.window.find()) throw new Error('app not running');
+  await app.window.maximize();
+  await app.window.waitForUia();
+  await app.window.requireForeground();
 
   const buttons = await app.auto.uia.findAllNames('Button');
   const renameBtn = buttons.find(n => n.endsWith(', rename chat'));
@@ -31,5 +31,5 @@ async function main(): Promise<void> {
 }
 
 main()
-  .catch(e => console.error('[diag] FAILED:', (e as Error).message))
-  .finally(() => { app.window.minimize(); console.log('[diag] minimized.'); });
+  .catch(async e => console.error('[diag] FAILED:', (e as Error).message))
+  .finally(async () => { await app.window.minimize(); console.log('[diag] minimized.'); });

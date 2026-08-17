@@ -76,8 +76,8 @@ bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit
 
 The script detects what changed and routes each category to the right place:
 
-- **Identity changes** (`.claude/`): synced to the identity repo via robocopy, committed to `dna-platform`, merged to `main`, pushed.
-- **The project branch** (named after the project directory): the tool always downstream-merges `dna-platform` into it — so `.claude`/`CLAUDE.md` reach the project branch even when there is no branch library — then syncs every discovered `library/*/.lib` to the identity repo (`.lib/<area>`), commits, and pushes. The branch is created from `dna-platform` on first push if it does not exist. Routing is derived from the project directory name and the `library/*/.lib` glob, not hardcoded to any one project.
+- **Identity AND the branch libraries go to ONE place: the identity branch named after the repo.** `.claude/` and every `library/*/.lib` are mirrored onto it, committed and pushed together. **That branch is the object of record** — nothing else writes to it, so there is nothing to reconcile and no shared branch to clobber. *(Doug, 2026-08-12: "`.claude` and library branches get pushed to the identity branch with the repo name and this is the object of record so no syncing problems.")*
+- **There is no shared-branch step and no merge to `main`.** Both were removed on 2026-08-12: a shared `dna-platform` push is what created the mutual-clobber trap below, and the repo-named branch dissolves it rather than guarding against it. The branch is created on first push if missing; routing is derived from the project directory name and the `library/*/.lib` glob, never hardcoded.
 - **Project code changes**: committed and pushed in the project repo. Generates the project-root `CLAUDE.md` with link prefix adjustment.
 
 The script runs [validation](05-on-validation.md) before any commits. If validation fails, nothing is pushed. The branching model is enforced by the tool — the operator does not need to remember which branch to push to.
@@ -94,6 +94,39 @@ bash ../identity/.claude/library/..environmentalism/06-on-sync--setup.sh /path/t
 
 It is idempotent (re-running re-syncs the identity into the project) and supports `DRY_RUN=true` to print the plan without mutating anything. It assumes repos are siblings under one parent (`parent/identity`, `parent/<project>`) and derives the project branch from the project directory name. Where the commit tool pushes a project's changes outward to the right branches, the setup tool pulls the identity in and wires the project's `.gitignore` and `CLAUDE.md`. Together they are the two directions of [travel](../teamspeak/07-travel.md) — pull in, push back — and both keep `.claude/` a plain mirror of the identity rather than a nested clone.
 
+### The identity repo needs the root rewrite too
+
+The prefix rewrite in step 3 of the [setup tool](06-on-sync--setup.sh) — `](library/` → `](.claude/library/` — is what makes a repo-root `CLAUDE.md` resolve, because the root sits one level above `.claude/` where the library actually is. The tool runs *against projects*, so every project got it. **The identity repo never did**, since it is the source rather than a destination, and nothing else generates its root file. Its `CLAUDE.md` sat as a raw copy of `.claude/CLAUDE.md` with bare `library/…` links — **47 broken compiled links**, enough to make the [validation runner](05-on-validation.md) return FAIL and refuse a push, in the one repo the identity is pushed *from*.
+
+The identity repo is not exempt from its own geometry. Regenerate its root file the same way any project's is generated:
+
+```sh
+npx tsx .claude/library/..environmentalism/02-on-bootstrap--compiler.ts library --write   # writes .claude/CLAUDE.md
+sed 's|\](\(library/\)|\](.claude/\1|g; s|\](\(agents/\)|\](.claude/\1|g; \
+     s|\](\(rules/\)|\](.claude/\1|g; s|\](\(skills/\)|\](.claude/\1|g' \
+    .claude/CLAUDE.md > CLAUDE.md                                                          # writes the root copy
+```
+
+The general lesson is worth more than the fix: **a tool that only ever runs outward leaves its own house unmaintained.** The compiled output was correct everywhere the tool was pointed, and wrong in the only place nobody thought to point it.
+
+### No branch libraries in the identity repo — remove `.lib` on sight
+
+**The identity repo is the organization's identity, not a project.** It is where we work on `.claude`. There are no library branches in it, and its root is exactly five things: `.claude/`, `CLAUDE.md`, `README.md`, `.gitattributes`, `.gitignore`. The `dna-platform` branch has never carried anything else. That is the identity layer, entire.
+
+[Library Tree](../library-tree/01-branches.md#placement) places every branch beside the code it records — `$Chemistry` at `library/chemistry/.lib/` and Publicity at `library/.public/.lib/` in the inexplicable-phenomena repo, Altered States in the altered-states repo. **None of them lives here.**
+
+The commit tool's project-branch step mirrors each discovered `library/*/.lib` into this repo as `.lib/<area>`, so `.lib/` reappears every time another project pushes. It is a mirror, never a home. **Delete it whenever it appears — always, without asking.** The one thing to do first is confirm each file exists in the project repo it belongs to; that is a thirty-second count, and it is the difference between removing a mirror and destroying a branch library.
+
+**And never reconcile by mirroring — diff, then select specifically.** Two working copies of one identity will drift, and the repair is always: diff the two, name the files that differ, and restore or keep *each one on its merits*. A directory-level mirror in either direction is what causes this whole class of damage, and reaching for one to fix damage a mirror caused is how a bad afternoon becomes a bad week.
+
+### Uncommitted work is not protected by any of this
+
+Every guard in this chapter protects *committed* history and *pushed* branches. None of them protect a working copy. A session's worth of uncommitted edits — modified files and, worse, new untracked files — is erased without trace by a checkout, a clean, or a mirror from a copy that happens to equal your HEAD, and git has nothing to restore from because nothing was ever recorded. We lost a session's work that way twice in one afternoon, and never identified the cause: the [dispatch tool](08-on-brains--dispatch.sh) contains no git commands, the repo has no hooks, and no teammate transcript contains a `checkout`, `restore`, `reset`, `clean`, or `stash`.
+
+Which is the point. **The cause was never found, and the fix did not depend on finding it.** Commit early and commit often; a commit is the only thing in this system that makes work survive a cause you cannot name. And when work is lost, **the recovery path is people, not git**: the library's shared chapters are recoverable because the conversation that produced them is still in context, and a teammate's personal chapters are recoverable because that teammate's [session persists](08-on-brains.md#the-surprising-part-persistence-is-native) and still holds what they wrote. Ask each author to write their own again — never let another voice reconstruct them, because a restored chapter is still that person's [first-person prose](../teamspeak/05-autonomy.md).
+
+**And the reconcile chain is the sharpest instance of this hazard, because the tools themselves send you into it** (2026-08-10, The Subject). A push was stopped mid-session and the tool's own advice was to reconcile down; [resolve](06-on-sync--resolve.sh)'s phase 2 then synced the verified branch into the working copy — and the branch, verified as it was, **did not yet hold the session's unpushed `.lib` records.** A sprint chapter, a Solutions chapter, chapter zero's edits and two cover entries were overwritten, and were rebuilt only because every word was still in the conversation. The practice that follows: **treat every reconcile as a session boundary.** Before running [pull](06-on-sync--pull.sh) or [resolve](06-on-sync--resolve.sh) mid-session, push the branch library first or copy it aside — the down-sync installs the branch's truth, and unpushed work is not part of that truth yet. The resolve's closing line — *CHECK BY HAND* — is not ceremony; it is the step that caught this.
+
 ## The pull tool — syncing down, staged through the branch
 
 The down-sync brings the organization's changes from `dna-platform` *into* a project — but **through the project branch as a staging ground, never straight into the working copy.** Compiled files (agents, `CLAUDE.md`, rules, skills) are deterministic from chapters, so any change in compiled output traces to a chapter that changed in the pull, never a surprise. It is **two commands, not one**, because a merge that needs hand-resolution must not be entangled with a tool that also guesses whether it is resuming:
@@ -108,7 +141,7 @@ Why split? A single command had to *infer* "fresh run versus resume" from an anc
 
 ## The mirror hazard: the sync pauses, it does not cold-automate
 
-Both sync tools mirror with robocopy `/MIR`, and a mirror **deletes whatever the destination has that the source lacks.** With two active projects sharing `dna-platform`, that is a mutual-clobber trap: whoever pushes second silently deletes the other project's un-pulled work, and a reconcile cannot win a race against a peer who is actively pushing. (We learned this the hard way — one project's push deleted the other's just-pushed chapters and tools off `dna-platform`. The work survived only because it was also in a working copy and in git history.)
+**RESOLVED 2026-08-12, and the fix was to remove the shared branch rather than guard it.** Both sync tools mirror with robocopy `/MIR`, and a mirror **deletes whatever the destination has that the source lacks.** While two projects shared `dna-platform`, that was a mutual-clobber trap: whoever pushed second silently deleted the other's un-pulled work, and a reconcile could not win a race against a peer actively pushing. (We learned it the hard way — one project's push deleted the other's just-pushed chapters off `dna-platform`.) **Each repo now writes only to its own branch, so a mirror can lose nothing that is not its own.** The history below is kept because the trap is what a shared mirror always is, and anyone reintroducing one should read it first.
 
 So the sync **must not be cold-automated.** Two protections enforce that, and both are in the tools:
 

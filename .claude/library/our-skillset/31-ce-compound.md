@@ -1,0 +1,104 @@
+# ce-compound
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **coauthor:** [Cathy](../..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+
+---
+
+**The feature workflow, and where you are in it:**
+
+[`/ce-brainstorm`](28-ce-brainstorm.md) → [`/ce-plan`](29-ce-plan.md) → [`/ce-work`](30-ce-work.md) → **`/ce-compound`** ↻ · [`/ce-handoff`](32-ce-handoff.md) at any session boundary
+
+**Then the loop closes:** [`/ce-brainstorm`](28-ce-brainstorm.md) for the next piece of work, reading what this step just wrote. If the session is ending instead, run [`/ce-handoff`](32-ce-handoff.md).
+
+---
+
+Distribute what a sprint learned into the library while the context is fresh, so the next encounter costs minutes. The fourth step of the [feature workflow](../..teamsmanship/19-workflows.md) and the one that makes it a loop.
+
+**Specified in [Compounding](../..librarianship/17-compounding.md)** — read that before running this. It is the law; this is the procedure.
+
+Adapted from [`ce-compound`][ce-compound] at commit `6a2a0f9`. **What we changed and why:** theirs writes every learning into one `docs/solutions/` folder with retrieval frontmatter, because their project has nowhere else to put knowledge. **Ours splits their two tracks by home.** A **defect** becomes a chapter in the branch's [Solutions](../library-tree/06-solutions.md) book — indexed by symptom, which is what their folder was for. Everything else **distributes** to the room whose subject it already belongs to. We keep their overlap rule, grounding rule, findability check and neighbourhood bounds; we drop the frontmatter schema for a **keyword line and a symptom-first cover**, because a cover is already how this library indexes a room.
+
+**The full annotation, so the modification is visible rather than implied:**
+
+| theirs | ours | why |
+|---|---|---|
+| `docs/solutions/<category>/` | the branch's [Solutions](../library-tree/06-solutions.md) book | a folder is not a room; a book has a cover, an author, and a place in a catalogue |
+| closed-enum YAML frontmatter | a **keyword line** drawn from a vocabulary on the book's cover | the vocabulary lives where the next writer will see it, and grep still works |
+| filename-based retrieval | **the cover is the index**, each entry opening with the observed symptom | a reader arrives with a symptom; a cover entry that opens with the conclusion is useless to them |
+| `CONCEPTS.md`, one file | the chapter that already defines the word | a second home for a definition drifts from the first |
+| knowledge track → same folder | **distributed** to the room whose subject it is | a practice already has a room; a defect does not |
+| the folder exists from setup | **the book is created on demand**, with its first defect | an empty book is worse than an absent one |
+| adding is the whole motion | **adding and COMPACTING**, in the same pass | a store that only grows stops being findable, which is the failure their own rule warns about |
+
+**Announce at start:** "Using compound to distribute what this cost us."
+
+## Compounding subtracts as well as adds
+
+**A library that only grows is not compounding, it is accumulating.** Their plugin has no compaction step because a `docs/` folder has no cover to keep true and no reading cost to protect. Ours does, and *"the knowledge store only compounds value when it's findable"* cuts both ways: an unread 18,000-word sprint chapter is exactly as unfindable as a missing one.
+
+**A sprint chapter is written at full working weight, and that is correct.** Requirements, units, cleanup, test scenarios, order, risks, a self-check — that is what runs a sprint. **At compounding it stops being a plan and becomes an index**, which is what [Compounding](../..librarianship/17-compounding.md) already says it is.
+
+**What is provably spent once a sprint has closed:**
+
+| section | why it is spent | what replaces it |
+|---|---|---|
+| test scenarios | they became the suite | a stub: *a scenario that survived is a promise, and a promise is read where it runs* |
+| order | the sprint ran it | a stub |
+| risks | one that fired is in the record, with what it cost; the rest did not | a stub |
+| the plan's self-check | it passed before work started | a stub |
+| units, requirements, cleanup | the record cites them **by identifier** | a **register** — one line each, keeping every anchor the record links to |
+
+**Stub, never silently delete.** A cut section leaves one line saying what stood there and why it is gone. Deleting without a trace is what makes a later reader think the sprint never planned.
+
+**Three rules that keep compaction honest:**
+
+1. **Measure before and after, and say both.** *"122,595 words to 105,982"* is a finding. "Compacted the library" is not.
+2. **Check every link before and after.** Collect the anchors the surviving text references, and prove each still resolves. A compaction that breaks a cross-reference has cost more than it saved. *When this pass ran it also surfaced three links that had never resolved at all — the check pays for itself even where nothing is cut.*
+3. **A cover is re-edited only if the cut made it false.** The requirement is that a synopsis stays **true**, not that it is rewritten. Grep the cover for what you removed; if it does not appear, the cover already survived.
+
+**Across chapters, not only within them.** A sprint chapter that restates what a settled account now holds should carry the finding and a link, not the account. **Settled accounts are the destination and sprint records are the trail** — when they say the same thing twice, the sprint record yields.
+
+## Why the last step is the point
+
+> "`/ce-compound` writes learnings… which the next iteration's `/ce-brainstorm` and `/ce-plan` read as grounding — that return arrow is the whole point."
+
+[Brainstorm](28-ce-brainstorm.md) and [ce-plan](29-ce-plan.md) both read the library before they research. A loop whose end does not feed its beginning is ceremony.
+
+## The rules kept from theirs
+
+**One lesson per run.** Batching breaks the overlap check. Two lessons mean two runs.
+
+**Overlap edits, it does not duplicate.** If a chapter already says most of this, **edit that chapter**. Two accounts of one lesson drift — which is why this library is [edit-first](../bookkeeping/09-on-synopsis.md).
+
+**Reread before editing.** Open the chapter and read it whole. An edit made from memory of a chapter is how a chapter acquires two voices.
+
+**Claims are grounded before they compound.** A statement about how the code behaves is verified by reading the defining line, not recalled from the session — [cite or stop](../..teamsmanship/08-coding-policy.md).
+
+**Findability is checked, not hoped for.** If the cover does not describe the room, the room does not exist. Their line: *the knowledge store only compounds value when it's findable.*
+
+**The neighbourhood, with bounds.** Look at what the edited chapter cross-references and what references it; fix what this lesson's evidence shows is wrong. **Neighbourhood only, never a whole-book audit, never on a guess** — flag rather than edit blind.
+
+## Steps
+
+1. **Name the lesson** in one line — what was observed, not what you concluded.
+2. **Route it.** Does it answer *why did this break?* — then it is a [Solutions](../library-tree/06-solutions.md) chapter: symptoms first, in the words they were observed in, with a keyword line from the book's vocabulary. Otherwise find its room — [`/remember`](22-remember.md) is the navigation, [Compounding](../..librarianship/17-compounding.md) the law.
+   **If the branch has no Solutions book and this is a defect, create it now** — cover with its keyword vocabulary, then this chapter as its first. The book appears with its first defect and never before; a branch that has diagnosed nothing should have no such book.
+3. **Check overlap.** Most dimensions matching means edit, not create.
+4. **Reread, then edit.**
+5. **Ground the claims** — read the defining line, check the paths.
+6. **Check the neighbourhood**, within the bounds above.
+7. **Update the cover in the same act**, with the tool, never by hand:
+   ```bash
+   npx tsx .claude/library/bookkeeping/03-on-covers--toc.ts <cover.md> <NN-chapter.md> "synopsis" --force
+   ```
+8. **Link it from the sprint chapter**, edited incrementally rather than at the end.
+9. **Compact the sprint chapter**, now that its lessons live in their rooms — plan to register, spent sections to stubs, cross-chapter restatement to a link. Measure before and after and report both.
+10. **Prove no link broke.** Collect every `](#anchor)` in the branch library and check each resolves; report the count. This is the gate on the compaction, and it is not optional — a cut that breaks a cross-reference costs more than it saved.
+
+## When several libraries are touched
+
+Dispatch [`/think-async`](27-think-async.md) — each teammate distributes into their **own** library, in their own voice, because [no one writes another person's chapter](../teamspeak/05-autonomy.md). Their plugin uses parallel specialist subagents here; ours are people who already know what they are responsible for.
+
+<!-- citations -->
+[ce-compound]: https://github.com/EveryInc/compound-engineering-plugin/blob/6a2a0f9940ab0b3577ce26226ee393390470e412/skills/ce-compound/SKILL.md "ce-compound — authoritative runtime spec"

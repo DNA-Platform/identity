@@ -53,7 +53,7 @@ export class ConversationMenu {
 
     const fieldActive = await this.gateway.waitFor(
       () => this.controller.isRenameFieldActive(),
-      { timeoutMs: 3_000 },
+      {},
     );
     if (!fieldActive) throw new Error('Rename field did not open');
 
@@ -73,7 +73,7 @@ export class ConversationMenu {
 
     const dialogOpen = await this.gateway.waitFor(
       () => this.controller.isDialogVisible(),
-      { timeoutMs: 5_000 },
+      {},
     );
     if (!dialogOpen) throw new Error('Move chat modal did not appear');
 
@@ -125,7 +125,7 @@ export class ConversationItem {
   async menu(): Promise<ConversationMenu> {
     const buttonReady = await this.gateway.waitFor(
       () => this.controller.hasMenuButton(this.name),
-      { timeoutMs: 5_000 },
+      {},
     );
     if (!buttonReady) throw new Error(`Menu button not found for "${this.name}"`);
 
@@ -134,7 +134,7 @@ export class ConversationItem {
 
     const visible = await this.gateway.waitFor(
       () => this.controller.isMenuVisible(),
-      { timeoutMs: 5_000 },
+      {},
     );
     if (!visible) throw new Error('Menu did not appear');
 

@@ -7,7 +7,7 @@
 
 ---
 
-The third exchange in the **`Nancy > Neuroscience`** thread, and a turn in what the thread is *about*. The first two settled the toolchain and the codebase's shape; this one is about **communication** — handing the whole [Initial Data Exploration](../../../../../../library/reports/2026-06-23-exploration/initial-data-exploration.md) report to Desktop for a prose pass. The science is mine and stays mine; what I am borrowing is writing skill. Summarized by topic in [Research Topics](../research-topics/01-neuroscience.md).
+The third exchange in the **`Nancy > Neuroscience`** thread, and a turn in what the thread is *about*. The first two settled the toolchain and the codebase's shape; this one is about **communication** — handing the whole [Initial Data Exploration](../../../../../../../altered-states/library/reports/2026-06-23-exploration/initial-data-exploration.md) report to Desktop for a prose pass. The science is mine and stays mine; what I am borrowing is writing skill. Summarized by topic in [Research Topics](../research-topics/01-neuroscience.md).
 
 ## The question
 
@@ -27,7 +27,7 @@ Desktop should clearly improve flow and sharpen the opening purpose of each sect
 
 ## What I already know
 
-I ran this analysis, so I am the reference: the nine panels, their exact computations, and the through-line that the behavioural confound (97% from behaviour alone) is the *binding constraint*, not a footnote. The writing standard I am holding it to is already catalogued — [The Exploration Report](../../../../../../library/.lib/the-exploration-report/.cover.md): write from the reader's frame, motivate each analysis, computation reproducible on its face, caveats in footnotes. This report is that book's worked example, so the rewrite has to *exemplify* the recipe, not drift from it.
+I ran this analysis, so I am the reference: the nine panels, their exact computations, and the through-line that the behavioural confound (97% from behaviour alone) is the *binding constraint*, not a footnote. The writing standard I am holding it to is already catalogued — [The Exploration Report](../../../../../../../altered-states/library/.lib/the-exploration-report/.cover.md): write from the reader's frame, motivate each analysis, computation reproducible on its face, caveats in footnotes. This report is that book's worked example, so the rewrite has to *exemplify* the recipe, not drift from it.
 
 ## Evidence — what came back (verdict: SUFFICIENT)
 
@@ -58,5 +58,5 @@ The factorization paid off exactly where I expected the value to be: Desktop sup
 [previous]: 02-a-codebase-that-outlives-the-project.md
 [research-topics]: ../research-topics/01-neuroscience.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
-[the-report]: ../../../../../../library/reports/2026-06-23-exploration/initial-data-exploration.md
-[the-exploration-report]: ../../../../../../library/.lib/the-exploration-report/.cover.md
+[the-report]: ../../../../../../../altered-states/library/reports/2026-06-23-exploration/initial-data-exploration.md
+[the-exploration-report]: ../../../../../../../altered-states/library/.lib/the-exploration-report/.cover.md

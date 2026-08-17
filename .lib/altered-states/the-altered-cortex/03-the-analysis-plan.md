@@ -27,10 +27,24 @@ copied. `library/stats/binning.py` and `gradient.py` exist because `binned()`/`g
 inside one study; `metrics.py`'s own header records the five scripts that each grew a private copy of the image
 primitives before it.
 
-**Where outputs go** — `results/examples/` is **figures only**; `results/_data/` holds **arrays**;
-`results/_organized/` holds the row-aligned per-twin datasets; `results/_full/` the raw per-object files.
-`_organize.py` stated the figures-only rule in a comment and `_prepost_analysis.py` wrote `.npy` into
-`examples/` anyway — **a comment in another file is not a check**, which is why this one is in the validator.
+**Where outputs go — the one rule: an underscore prefix means "internal machinery," no prefix means
+"human-facing."** Doug looks at the two un-prefixed directories and can ignore everything else:
+
+| directory | holds | who reads it |
+|---|---|---|
+| **`examples/`** | **figures only** (`.png`) — never a `.npy` | **Doug's window into the analysis** |
+| **`deliverable/`** | the packaged Reimer handoff (models/ data/ lib/ + notebook), built by `build_deliverable.py` | the recipient |
+| `_full/` | raw per-object MEIs/metamers, one file each | the live run writes here; `_organize` reads |
+| `_organized/` | the row-aligned per-twin/per-set datasets (the deliverable's source) | `_organize` writes; studies + builder read |
+| `_data/` | computed arrays (entropy, blur-σ, decoder recons, `whitened_rf`) | the studies |
+| `_twins/` | the twins' readout μ | six studies (`_metamer_similarity`, `_check_all_twins`, `_decoder`, `_rf_coverage`, …) |
+
+Root holds only the live run's three files: `_progress.txt` (the count — one home), `_rebuild_watchdog.log`,
+`preview.png`. **Logs never accumulate at the root and stale outputs never linger** — the `.h5`/`.zip` the old
+HDF5 path produced were superseded by `deliverable/` and deleted; the `_sweep`/`_convergence` diagnostics were
+deleted once their questions settled. `examples/` being figures-only is enforced by the CONVENTIONS check
+(`_organize.py` stated it in a comment and `_prepost_analysis.py` wrote `.npy` there anyway — a comment in
+another file is not a check).
 
 **What the conditions are called** — the rule, and it admits no third form:
 
@@ -73,17 +87,17 @@ the one that gets forgotten:
 | **the shared visual language** — `use_style()`, `PALETTE["pre"]`/`["post"]`. *"The hex values are the truth; keep them here and nowhere else."* A hardcoded hex in a study is a rival. | [`src/library/viz/style.py`](../../../src/library/viz/style.py) | every figure |
 | image primitives — `pearson`, `ncc_surface`/`aligned_corr` (peak NCC over ±8 px), `hf_fraction` (HF-energy ratio = blur, energy-invariant), `rf_mask`, `upsample`/`norm01`/`zscore` | [`pipeline/metrics.py`](../../../src/analyses/most-exciting-image/pipeline/metrics.py) | every study; the one home after the same primitives were copy-pasted across five scripts |
 | **the MEI energy distribution — Doug's measure, verbatim**: `energy_pmf` = **square the MEI, divide by the sum**; `energy_entropy` = the entropy of that. **The mean is NOT subtracted.** The specificity/resolution scalar — lower = concentrated/sharp, higher = diffuse; scale-free. ⚠ `subtract_mean=True` computes a *different* quantity and **was the default**, so the measure ran wrong for months; it is now off and stays off. | [`pipeline/metrics.py`](../../../src/analyses/most-exciting-image/pipeline/metrics.py) | [`_prepost_analysis.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_prepost_analysis.py) → comparison.md **F10** |
-| **the MEI centre** — ⚠ **two rivals, unmerged**: `energy_focus` (robust, k·σ-trimmed, **load-bearing — `validation.whitened_rf` builds the Q7 ground truth from it**) vs `energy_center` (naive: every pixel votes, so the pedestal drags the centroid to frame-centre). Merge **toward** `energy_focus`. `gaussian_focus`, named in `energy_center`'s docstring, **does not exist** | [`pipeline/metrics.py`](../../../src/analyses/most-exciting-image/pipeline/metrics.py) | `energy_focus` → [`validation.whitened_rf`](../../../src/analyses/most-exciting-image/pipeline/validation/__init__.py); `energy_center` → `_prepost_analysis` only |
+| **the MEI centre + extent** — `energy_focus` (robust, k·σ-trimmed weighted moments; **load-bearing — `validation.whitened_rf` builds the Q7 ground truth from it**). *(The naive `energy_center` rival — every pixel votes, dragging the centroid to frame-centre — was callerless and deleted in the 2026-07-18 clean-shop, along with the `gaussian_focus` name its docstring wrongly cited.)* | [`pipeline/metrics.py`](../../../src/analyses/most-exciting-image/pipeline/metrics.py) | `energy_focus` → [`validation.whitened_rf`](../../../src/analyses/most-exciting-image/pipeline/validation.py) |
 | **pre→post MEI change via the energy distribution** — the **RATIO H_post/H_pre** (Doug: *divide*, do not subtract; **not in bits** — the ratio is dimensionless, so the log base cancels; 1 = no change), the HF-energy cross-check on "blurrier", the **Gaussian fit** (centre + σ — did the feature *spread*, or just lose fine structure?), the per-axis MEI-centre retinotopy, and the centre shift — **computed separately per condition** (default and `-bh`), which is what exposes the `-bh` confound | [`studies/_prepost_analysis.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_prepost_analysis.py) | contract: comparison.md §A + **F10** |
-| **"is post blurrier?"** — HF-energy fraction per MEI, pre vs post, per arm, straight off the raw per-cell files (no `_organized/` needed) | [`studies/_blur_check.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_blur_check.py) | contract: comparison.md §A.4 + **F4**. ⚠ carries its **own** `hf_frac` copy — a rival of `metrics.hf_fraction`; import, don't copy |
-| **retinotopy** — `whitened_rf` (model-free RF, the non-circular ground truth), `retinotopy_map` (Garrett 2014 + visual field sign + permutation), `readout_vs_rf` (the honest gate). ⚠ `readout_retinotopy` is **CIRCULAR — diagnostic only, never a gate** | [`pipeline/validation/__init__.py`](../../../src/analyses/most-exciting-image/pipeline/validation/__init__.py) |
+| **"is post blurrier?"** — HF-energy fraction per MEI, pre vs post, per arm, straight off the raw per-cell files (no `_organized/` needed) | [`studies/_blur_check.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_blur_check.py) | contract: comparison.md §A.4 + **F4** (imports `metrics.hf_fraction` — the old local rival was consolidated) |
+| **retinotopy** — `whitened_rf` (model-free RF, the non-circular ground truth), `retinotopy_map` (Garrett 2014 + visual field sign + permutation), `readout_vs_rf` (the honest gate). ⚠ `readout_retinotopy` is **CIRCULAR — diagnostic only, never a gate** | [`pipeline/validation.py`](../../../src/analyses/most-exciting-image/pipeline/validation.py) |
 | twin config — `TWIN_CONFIG` (**free-μ**), `TWIN_INIT="cold"`, `ensemble` | [`pipeline/model/__init__.py`](../../../src/analyses/most-exciting-image/pipeline/model/__init__.py) |
 | the single twin loader | [`pipeline/twins.py`](../../../src/analyses/most-exciting-image/pipeline/twins.py) |
-| MEI recipe (Walker 2019 walker ops) | [`pipeline/synthesis/__init__.py`](../../../src/analyses/most-exciting-image/pipeline/synthesis/__init__.py) |
-| **metamer** — vendored `sinzlab/reconstruction` (`gauss_loss`, `ChangeNormConditional`) + `metamer()`. **EDIT THIS — never write a new generator** | [`pipeline/metamer/__init__.py`](../../../src/analyses/most-exciting-image/pipeline/metamer/__init__.py) |
+| MEI recipe (Walker 2019 walker ops) | [`pipeline/synthesis.py`](../../../src/analyses/most-exciting-image/pipeline/synthesis.py) |
+| **metamer** — vendored `sinzlab/reconstruction` (`gauss_loss`, `ChangeNormConditional`) + `metamer()`. **EDIT THIS — never write a new generator** | [`pipeline/metamer.py`](../../../src/analyses/most-exciting-image/pipeline/metamer.py) |
 | loaders, matched cells (`matched=True`, matched-pair row order) | [`pipeline/data/__init__.py`](../../../src/analyses/most-exciting-image/pipeline/data/__init__.py) |
 | generation orchestrator — **one cell × all four twins**, metamers interleaved | [`pipeline/_generate_full.py`](../../../src/analyses/most-exciting-image/pipeline/_generate_full.py) |
-| organize → archive → zip | [`_organize.py`](../../../src/analyses/most-exciting-image/pipeline/_organize.py), [`pack_archive.py`](../../../src/analyses/most-exciting-image/pipeline/pack_archive.py), [`rebuild_freemu.sh`](../../../src/analyses/most-exciting-image/pipeline/rebuild_freemu.sh) |
+| organize → deliverable | [`_organize.py`](../../../src/analyses/most-exciting-image/pipeline/_organize.py) (raw per-object → row-aligned per-twin/per-set datasets on the four-twin index) → [`build_deliverable.py`](../../../src/analyses/most-exciting-image/pipeline/build_deliverable.py) (datasets + checkpoints + `src/library` → the zipped Reimer handoff). *The old HDF5 path — `pack_archive.py`, the inline zip in `rebuild_freemu.sh` — is retired.* |
 
 **The studies that ALREADY EXIST — read one before you invent one** (`pipeline/studies/`). Each owns a question.
 **Which of them currently import** is volatile and lives in [ch5](05-the-working-state.md#the-studies--which-run-right-now);
@@ -96,11 +110,13 @@ what each one *is for* does not change:
 | `_prepost_analysis.py` | **pre→post via the energy distribution** (p = MEI²/ΣMEI²) — the entropy RATIO, the HF cross-check, the Gaussian fit (centre + σ), per-axis MEI-centre retinotopy — each condition separately |
 | `_metamer_vs_decoder.py` | **Cobos Fig 2** on our data — metamer vs the ridge/deconv decoders |
 | `_decoder.py` · `_decoder_figure.py` | the response→image decoder, and its figure |
-| `_mei_good_examples.py` · `_mei_quality_check.py` | ranking MEIs by quality; publication-level MEI checks |
-| `_make_examples.py` | the symmetric example gallery |
 | `_metamer_similarity.py` · `_blur_check.py` | metamer pre/post similarity; is "post is blurrier" real |
-| `_rf_coverage.py` · `_extract_targets.py` | RF localisation/coverage; saving the metamer target stimuli |
-| `_retinotopy_check.py` · `_sweep_retinotopy.py` | single-twin readout-μ check; the readout-config sweep |
+| `_extract_targets.py` | saving the metamer target stimuli |
+
+*(Six cortex-era diagnostics — `_rf_coverage`, `_retinotopy_check`, `_sweep_retinotopy`, `_mei_quality_check`,
+`_make_examples`, `_mei_good_examples` — were deleted in the 2026-07-18 clean-shop: their figures were gone and
+their findings void, and the methods survive in git. The retinotopy question they circled is owned by
+`validation/` + `_check_all_twins.py`; MEI ranking by `library/stats/selection.py::pick_examples`.)*
 
 **The path idiom** (timeless — the `pipeline/ → studies/` move broke exactly the files that moved, and a study
 that "doesn't work" is stale, not wrong): from `pipeline/studies/`, `sys.path` takes **`parents[1]`** (pipeline)
@@ -188,6 +204,20 @@ mouse V1 has a genuinely loose map.
 are not**. The earlier "thin horizontal strip further compressed by the shifter" story was largely the cortex
 readout's artifact, not the animal's anatomy.
 
+**The physical scale — why shallow is EXPECTED, and the coordinate frame (verified from the data, for Reimer).**
+The cortical positions are `cell_motor_coordinates` — **absolute microscope motor/stage coordinates in µm, not
+within-field pixels.** Proof, three ways: (1) x,y span **585 × 481 µm**, *larger than a single 500×305 µm field
+in both axes* — impossible for within-field coordinates, which cannot exceed one field; (2) x runs **−644…−59**,
+negative, so the origin is the stage, not a field corner; (3) z resolves **8 discrete planes, 50–85 µm, 5 µm
+apart** — exactly the acquisition's 8 Z-planes, which a per-field frame would flatten. So the 749 matched cells
+occupy a real **~585 × 481 × 35 µm** patch of V1. **At ~0.5 mm, a shallow-but-real map is the expected result,
+not a defect** — the azimuth gradient is ~29.7→36.8 stimulus-px across ~500 µm; altitude covers less. The
+retinotopy figure's y-axes are **stimulus-frame pixels** (azimuth 0–64, altitude 0–36 — the model input size),
+**not visual degrees**; converting a gradient to deg/µm needs the monitor geometry, which is not pinned here.
+Altitude also starts with ~1.8× less pixel range (36-px axis vs 64), so part of "3× shallower" is range, part is
+biology. [Answered to Jake Reimer 2026-07-14; he cites the retinotopy supplement of
+[Functional Connectomics (Tolias 2024)](../../papers/functional-connectomics-tolias-2024/.cover.md), which we hold.]
+
 ## The generation discipline (the other expensive lesson)
 
 **The unit of work is one cell across all four twins.** MEIs were first generated as (cell-chunk × twin) tasks
@@ -202,6 +232,30 @@ instant**, and progress is reported as **matched cells first, never a ×4 total*
 Durable, and they live here rather than in [ch5](05-the-working-state.md) because a lesson stops being news the
 turn after it is learned. Each is one line and a **reason** — reasons survive the instinct to skip; the stories
 they came from are in git. **Every one was produced by someone confident they were being helpful.**
+
+**On the lab's code — the most expensive duplication, and the one that compromises the science**
+- **A statistic the lab already ships is not ours to write. Reimplementing it compromises the analysis even
+  when it happens to be correct.** We hand-rolled the oracle (`_oracle_ceiling`) when
+  `neuralpredictors.oracle_corr_jackknife` exists. Proving ours matched cost a full loader-and-alignment
+  investigation — and that cost **is** the lesson: a reimplementation is a claim you must then verify against
+  the source, so you have paid twice and risked being silently wrong. This time it matched (corr 1.0000, and the
+  loader's neuron order was verified equal to the matched-pair order); that is luck, not licence. **We are not
+  qualified to implement domain statistics — import them.** `noise_ceiling` now calls the lab function with the
+  neuron-order assumption turned into a hard assertion. The audit: `validation.corr_to_average`/`feve` already
+  wrap the lab's `get_signal_correlations`/`get_fev` (correct); `cc_norm` is the flagged hand-rolled exception,
+  already marked do-not-trust. **Standing rule: if the lab wrote it, import it; if you cannot find it, ask before
+  you write it.**
+- **The boundary this rule does NOT cross — and getting it wrong is the opposite, worse mistake.** It governs the
+  STANDARD computations the field already ships: the oracle, MEI synthesis, metamer inversion, the twin, FEV,
+  per-neuron correlations, the loaders. It says nothing about the **pre/post characterization**, which is unique to
+  *this* experiment and for which the lab therefore has no code: Doug's energy-distribution measure
+  (`energy_entropy`, the specificity scalar) and its **H_post/H_pre** change ratio, and the resolution /
+  blur-equivalent-σ measure. Those are invented here by a theorist who publishes such techniques — they are the
+  science, and deleting one under this rule (or even calling it "non-standard") is the failure this line exists to
+  prevent. The rule is *don't rebuild the lab's wheel*, never *don't invent*. Doug invents; his measures are
+  first-class, treated like the lab's own. Only the coordinator's own throwaway ideas (the redundancy / crispness
+  MEI selectors) are the coordinator's to drop — it is not qualified to invent domain technique, and must never
+  confuse its own scratch ideas with Doug's inventions.
 
 **On measuring**
 - **Never validate a model against the thing it was fit from.** The μy-R² gate scored the readout's μ against
@@ -236,6 +290,14 @@ they came from are in git. **Every one was produced by someone confident they we
 - **A restructure is exactly when the reading list rots**, because whoever moved the content already knows where
   it went. Links resolving proves nothing; a list is honest only if it reaches every chapter.
 - **When the task feels familiar, the list feels redundant.** That feeling is precisely when it is not.
+
+**On staying in scope**
+- **A discovery is not an assignment.** Finding something broken mid-turn does not make fixing it this turn's
+  job. Say it; let Doug choose. On a *cleanup* turn the discovery "the book isn't committed" became: use the
+  commit tool → fix another author's book → reconcile the org identity → **nearly pull other projects' work**.
+  Five steps, none asked for, each justified by the last.
+- **The justification chain is the tell.** One unrequested step is a mistake; three is a turn spent on something
+  nobody wanted. If you cannot point at the sentence in the prompt that asked for it, stop and report instead.
 
 **On running it**
 - **Workers are memory-bound, not core-bound.** Each MEI worker holds four twins × 5 seeds = 20 models.

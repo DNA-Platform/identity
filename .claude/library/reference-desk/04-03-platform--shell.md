@@ -25,8 +25,30 @@ Commands are serialized through `this.queue` — a promise chain. Each `run()` c
 
 ## The synchronous variant
 
-`powershellSync()` spawns a fresh process for each call. Used only at startup before the persistent shell exists — specifically in [`Session.acquireForeground()`](../../src/session.ts) which needs Win32 P/Invoke calls before the app is fully initialized. Every other call should use the persistent shell.
+`powershellSync()` spawns a fresh process for each call. It exists for one-shot scripts that have no app and no shell — nothing in the driver should use it.
+
+This paragraph used to say it was "used only at startup before the persistent shell exists — specifically in `Session.acquireForeground()`." **Both halves were false.** There is no such method on [`Session`](../../src/session.ts), and [`Window`](../../src/window.ts) used `powershellSync` for every one of its eleven methods, for the entire life of the process. The chapter described the intention; the code did something else; and because the chapter read as authoritative, nobody checked. See [pitfalls § A chapter that describes the intention](07-pitfalls.md).
 
 ## Performance
 
-12ms per call with the persistent session vs 200ms spawning a process each time. Over a typical script that makes hundreds of UIA queries, this is the difference between 2 seconds and 40 seconds. The persistent session was introduced in [Sprint 57](../projected-research/21-sprint-57--creating-projects-and-pushing-instructions.md) after the upload sprints showed that per-call spawning made automation painfully slow.
+Measured on this machine, July 2026:
+
+| | cost |
+|---|---|
+| persistent shell, trivial round trip | **0–1ms** |
+| `powershellSync`, plain `Get-Process` | **~300ms** |
+| `powershellSync` + inline `Add-Type` C# | **~440ms** |
+
+Process startup dominates: the inline C# compile adds roughly 130ms on top of a 300ms floor that you pay for existing. That floor is why the persistent session was introduced in [Sprint 57](../projected-research/21-sprint-57--creating-projects-and-pushing-instructions.md), and it is why `Window` moving onto the shell took a do-nothing gateway action from **1675ms to 2ms**.
+
+Two rules follow, and they are the whole chapter:
+
+**Anything called more than once goes through the persistent shell.** The [gateway](02-02-the-architecture--gateway.md) calls `requireForeground()` before every action. At two spawns per check, the driver spent most of its life waiting for PowerShell to start.
+
+**Declare P/Invoke types once, guarded.** `Add-Type` with inline C# invokes the C# compiler, and in a fresh process it is *always* the first time. Inside the persistent session, a `PSTypeName` guard means it compiles once and never again:
+
+```powershell
+if (-not ([System.Management.Automation.PSTypeName]'DriverWin32').Type) {
+  Add-Type @' ... '@
+}
+```

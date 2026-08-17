@@ -22,6 +22,6 @@ try {
   console.log('Done.');
 } finally {
   // Return Doug's computer: minimize when done, THEN close the shell.
-  try { claude.window.minimize(); } catch {}
+  try { await claude.window.minimize(); } catch {}
   claude.auto.shell.close();
 }
