@@ -42,6 +42,6 @@ Ask what the requirement's own words mean before choosing how to measure them, a
 
 **Reading a law is not consulting it.** That is [already filed](03-the-link-i-built-three-times.md), in those words, about research. This is the same failure about *requirements*, and its cost is higher: the first wasted three corrections, this one nearly bought a rewrite of the parse.
 
-**And the tell is specific and worth memorising: a blocker that appears at the exact moment your own measurement fails.** A real blocker is discovered by the work refusing to proceed. This one was discovered by a probe I wrote, testing a criterion I chose, for a requirement that never asked for it — which is a closed loop with nobody outside it.
+**And the tell is specific and worth memorising: a blocker that appears at the exact moment your own measurement fails.** A real blocker is discovered by the work not proceed. This one was discovered by a probe I wrote, testing a criterion I chose, for a requirement that never asked for it — which is a closed loop with nobody outside it.
 
 **The check, before reporting anything as blocked:** *whose words is this criterion in?* If the answer is *mine*, it is not a blocker yet — it is a proposal, and it goes to the person whose requirement it is.

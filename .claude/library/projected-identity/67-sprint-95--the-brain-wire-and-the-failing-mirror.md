@@ -1,4 +1,4 @@
-# Sprint 95 — The Brain Wire and the Refusing Mirror
+# Sprint 95 — The Brain Wire and the Failing Mirror
 
 - **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 
@@ -18,13 +18,13 @@ The answer arrived through Doug's corrections, sharpening each pass:
 
 Then the sync broke the same way. Pulling another project's work down and pushing ours up, we found that the commit tool's `/MIR` mirror **deletes whatever the destination lacks** — so two active projects sharing `dna-platform` mutually clobber: whoever pushes second silently deletes the other's un-pulled work. It happened live (an altered-states push deleted our just-pushed chapters and tools off `dna-platform`; the work survived only in a working copy and in git history).
 
-The fix is the sprint's lasting contribution: the sync must **pause for hand-merge, never cold-automate.** We built the [pull tool](../..environmentalism/06-on-sync--pull.sh) — the down-sync, staged through the project branch: recompile and validate *there*, read the diff, and sync the working copy only once the branch is proven — and added a **refuse-to-clobber guard** to both `/MIR` steps, so a mirror that would delete the other side's work stops and demands a reconcile. The git merges already paused on conflict; now the mirrors do too.
+The fix is the sprint's lasting contribution: the sync must **pause for hand-merge, never cold-automate.** We built the [pull tool](../..environmentalism/06-on-sync--pull.sh) — the down-sync, staged through the project branch: recompile and validate *there*, read the diff, and sync the working copy only once the branch is proven — and added a **fail-to-clobber guard** to both `/MIR` steps, so a mirror that would delete the other side's work stops and demands a reconcile. The git merges already paused on conflict; now the mirrors do too.
 
 ## Deliverables
 
 - [`08-on-brains--dispatch.sh`](../..environmentalism/08-on-brains--dispatch.sh) — directory-name identity, one canonical map, create-if-not-exist, live mailboxes, `--watch`/`--read`.
 - [`06-on-sync--pull.sh`](../..environmentalism/06-on-sync--pull.sh) — the staged down-sync with the no-clobber guard.
-- [`06-on-sync--commit.sh`](../..environmentalism/06-on-sync--commit.sh) — the refuse-to-clobber guard on the up-mirror.
+- [`06-on-sync--commit.sh`](../..environmentalism/06-on-sync--commit.sh) — the fail-to-clobber guard on the up-mirror.
 - [On Brains](../..environmentalism/08-on-brains.md) and [On Sync](../..environmentalism/06-on-sync.md) extended to *teach* the model — so another team learns the sync from the library, not from a message.
 - Three skills wrapping the essential tools as invocable verbs — [/pull](../our-skillset/25-pull.md) and [/push](../our-skillset/26-push.md) (the down- and up-sync), and [/think-async](../our-skillset/27-think-async.md) (think off to the side — run a thought, watch and read its mailbox) — each linking to the tool it drives.
 
@@ -32,7 +32,7 @@ The fix is the sprint's lasting contribution: the sync must **pause for hand-mer
 
 - **The directory name is the stable identity; the path is not.** Derive what you can from where you are.
 - **The brain is the text.** The broken wire proved it: brains that could not resume their sessions tended correctly anyway, from the voice grounded in the library. Grounding, not the warm process, is what makes a voice real.
-- **A mirror must refuse, not cold-clobber.** With more than one active project, a blind `/MIR` is a mutual-deletion trap. Reconcile down before pushing up; let the tool stop you when a human has to merge.
+- **A mirror must fail, not cold-clobber.** With more than one active project, a blind `/MIR` is a mutual-deletion trap. Reconcile down before pushing up; let the tool stop you when a human has to merge.
 - **A process that lives in a message is a process no one can learn.** The sync now lives in [On Sync](../..environmentalism/06-on-sync.md), linked to its tools.
 
 The hand-off — restoring the clobbered content to `dna-platform` and having altered-states adopt the guarded tools — is a coordinated step that remains, gated on pausing the other project's pushes.

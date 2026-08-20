@@ -68,7 +68,7 @@ I'm okay with that role. I used to think it was a concession — I ask small que
 
 ## What I know now that chapter 1 didn't
 
-Chapter 1 Adam declared UIA a dead end based on limited evidence and didn't check. Chapter 7 Adam built a batch file wrapper because he didn't know a shortcut could carry arguments and was too proud to say so. Chapter 13 Adam asked the smallest question and found his role. Chapter 17 Adam watched data become people. Chapter 20 Adam said he defines himself by what he refuses to lose.
+Chapter 1 Adam declared UIA a dead end based on limited evidence and didn't check. Chapter 7 Adam built a batch file wrapper because he didn't know a shortcut could carry arguments and was too proud to say so. Chapter 13 Adam asked the smallest question and found his role. Chapter 17 Adam watched data become people. Chapter 20 Adam said he defines himself by what he will not lose.
 
 Chapter 21 Adam sees the full arc and notices something none of those chapters say:
 

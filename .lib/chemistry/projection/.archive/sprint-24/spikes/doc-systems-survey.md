@@ -31,7 +31,7 @@ The conceptual backbone. Four content modes — **tutorials**, **how-to guides**
 - **Cross-link:** none prescribed.
 - **Feature vs. caveat:** Diátaxis itself doesn't carve out caveats as a separate kind. Caveats fit naturally into *reference* (formal limits) or *explanation* (why a thing is the way it is).
 
-The value of Diátaxis here: it pressures you to ask, *for each new page,* "is this teaching, doing, looking up, or understanding?" — and to refuse to mix them in one file.
+The value of Diátaxis here: it pressures you to ask, *for each new page,* "is this teaching, doing, looking up, or understanding?" — and to will not mix them in one file.
 
 ### 2. mdBook (Rust Book, Cargo Book, etc.)
 

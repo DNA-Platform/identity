@@ -23,7 +23,7 @@ Deliberately *not* yet: the LaTeX environments (`\begin{theorem}`…), Citation.
 
 ## Open questions
 
-- Does `$Markdown` eventually *implement* `$Composition<$Section>` — the markdown source parsing into titled sections at `##` boundaries — so a whole document written in markdown yields the same ladder the JSX path yields? The model says yes; the parse is the work.
-- Where does math live in the ladder? Inline `$…$` is an inline element of a paragraph's block; display `$$…$$` is block-level between paragraphs. The content-node question (`math` as an intrinsic kind beside `string`/`number`/`block`?) is a framework conversation, not a lib decision.
+- Does `$Markdown` eventually *implement* `$Composition<$Section>` — the markdown source parsing into titled sections at `##` boundaries — so a whole document written in markdown yields the same levels the JSX path yields? The model says yes; the parse is the work.
+- Where does math live in the levels? Inline `$…$` is an inline element of a paragraph's block; display `$$…$$` is block-level between paragraphs. The content-node question (`math` as an intrinsic kind beside `string`/`number`/`block`?) is a framework conversation, not a lib decision.
 - The converter's link rewriting is for *published* HTML; inside the Lab, links should resolve through `$Reference`/`$Link` navigation instead. One source, two link targets — the seam between rendering and publishing.
 - Rendered HTML enters via `dangerouslySetInnerHTML` in the spike — own-content only; sanitization is a decision to make before any external content renders.

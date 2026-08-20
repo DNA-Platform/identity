@@ -5,7 +5,7 @@
 # complete, self-contained autonomy. Run this whenever the project branch holds a RESOLVED,
 # COMMITTED merge of dna-platform — whether pull handed off a clean merge, or you hand-
 # resolved a conflict and committed it. There is NO heuristic and no "am I a resume?" guess:
-# you run it because the merge is done. If the merge is NOT resolved, it refuses.
+# you run it because the merge is done. If the merge is NOT resolved, it fails.
 #
 #   3. Recompile platform files on the branch.
 #   4. Show the diff (every change should trace to a merged chapter).

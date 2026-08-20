@@ -1,10 +1,10 @@
 # Integration tests — against the live Claude Desktop
 
-These drive the real app. They are **not** part of `npm test` and will refuse to run
+These drive the real app. They are **not** part of `npm test` and will reject to run
 unless you ask for them explicitly:
 
 ```
-npm run test:integration        # refuses, and tells you why
+npm run test:integration        # rejects, and tells you why
 CLAUDE_DESKTOP_LIVE=1 npm run test:integration
 ```
 
@@ -52,7 +52,7 @@ The three things a fixture cannot:
 2. **The screen model matches the screen.** `describe()` says the page has a
    composer; the tree says there is an `Edit` element. When those disagree, the
    model has drifted from the app and every command built on it is suspect.
-3. **The precondition refuses correctly.** Ask for an element that is genuinely not
+3. **The precondition rejects correctly.** Ask for an element that is genuinely not
    on screen and confirm the action does not fire, fails immediately rather than
    after 30 seconds, and carries the tree.
 

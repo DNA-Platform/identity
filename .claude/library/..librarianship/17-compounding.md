@@ -46,7 +46,7 @@ npx tsx .claude/library/bookkeeping/03-on-covers--toc.ts <cover.md> <NN-chapter.
 npx tsx .claude/library/bookkeeping/03-on-covers--toc.ts <cover.md> --get <NN-chapter.md>                # read one entry
 ```
 
-It parses every entry, round-trips them, and refuses to write a cover it cannot reproduce — so a cover is updated **without reading the whole book**, and an existing synopsis is never lost by accident.
+It parses every entry, round-trips them, and will not write a cover it cannot reproduce — so a cover is updated **without reading the whole book**, and an existing synopsis is never lost by accident.
 
 ## Compounding subtracts, and a sprint chapter is where it subtracts most
 

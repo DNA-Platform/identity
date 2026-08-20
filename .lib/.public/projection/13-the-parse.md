@@ -100,7 +100,7 @@ Each claim was checked against the source, and the counts are what make the requ
 
 - **R3. A document has at least one section, and the first is its canonical.** The document's title is that section's title. *Seen: `$Document.$parts` as a section list gone, and the title reading off the first section.*
 
-- **R3a. A document must have a summary, and it is the first paragraph of the first section.** It may be parenthetical, so it need not be visible. *Seen: a document with no summary refused by name; a document whose summary is parenthetical valid and not drawn.*
+- **R3a. A document must have a summary, and it is the first paragraph of the first section.** It may be parenthetical, so it need not be visible. *Seen: a document with no summary rejected by name; a document whose summary is parenthetical valid and not drawn.*
 
 - **R4. The canonical is part zero, at every level — including a section's title.** Today the title is a separate member and `canonical` builds a fresh paragraph on every call. *Seen: `section.parts()[0]` **is** the title, and it is the same object twice.*
 
@@ -159,7 +159,7 @@ Each claim was checked against the source, and the counts are what make the requ
 
 - **AE1.** `gathered()` is deleted and every book renders unchanged.
 - **AE2.** A section written with a subsection inside it holds the subsection as a part **and** answers the flat paragraph list.
-- **AE3.** A document with no summary is refused, and the message names the missing summary.
+- **AE3.** A document with no summary fails validation, and the message names the missing summary.
 - **AE4.** `section.parts()[0] === section.parts()[0]` — the title is part zero and it is one object.
 - **AE5.** The parse walk is one function, called by every level, taking a block and the levels it accepts.
 - **AE6.** An element above the accepted level throws; one below contributes its copy; one at the level is used as itself.
@@ -254,7 +254,7 @@ Each claim was checked against the source, and the counts are what make the requ
 
 - **U5 — A section composes sections or paragraphs.** *Mechanism: the accepted levels for a section become section and paragraph; written parts may be sections, composed parts are always paragraphs; the flat list becomes a derived getter recursing through nested sections. Files: `writing/Section.tsx`, `writing/Composition.tsx`. Depends on: U3. Realizes: R2. **Visible end:** a section holding a subsection as a part **and** answering the flat paragraph list — both true of one object.*
 
-- **U6 — The document, and its summary.** *Mechanism: a document has at least one section, the first is its canonical and gives its title; the summary is the first paragraph of the first section and may be parenthetical; `$Document`'s search for a parenthetical section goes, and so does its own section list where the shape allows. Files: `document/Document.tsx`, `book/Chapter.tsx`, `book/Cover.tsx`. Depends on: U5. Realizes: R3, R3a. **Visible end:** a document with no summary refused by name, and one whose summary is parenthetical valid and not drawn.*
+- **U6 — The document, and its summary.** *Mechanism: a document has at least one section, the first is its canonical and gives its title; the summary is the first paragraph of the first section and may be parenthetical; `$Document`'s search for a parenthetical section goes, and so does its own section list where the shape allows. Files: `document/Document.tsx`, `book/Chapter.tsx`, `book/Cover.tsx`. Depends on: U5. Realizes: R3, R3a. **Visible end:** a document with no summary rejected by name, and one whose summary is parenthetical valid and not drawn.*
 
 - **U7 — The title is part zero.** *Mechanism: `$Section` stops lifting `elements[0]` into a separate member; `title` becomes `parts()[0]`; `$Title` becomes paragraph grade so the walk can place it; `canonical` stops building a fresh paragraph on every call. Files: `writing/Section.tsx`, `writing/Title.tsx`. Depends on: U5, U6. Realizes: R4. **Visible end:** `section.parts()[0] === section.parts()[0]`, and it is the title.*
 
@@ -354,6 +354,8 @@ Each claim was checked against the source, and the counts are what make the requ
 **U11 — `$Phrase`, and a name stops claiming to be a sentence.** Word grade, admitting what a name contains. `$Author`, `$Subject` and `$Canonical` moved. An author written mid-paragraph now leaves the sentence count at **one**.
 
 **U13 — the parse writes NOTHING, so it may carry a parent.** Not a number, not a role: **mentioning propagates by lineage** — a part is mentioned if what holds it is — so U13 and mention-propagation turned out to be one mechanism, exactly as this chapter predicted before it bit. **Both drivers green with lineage threaded**, which is [the law filed as solutions/16](../solutions/16-the-parse-that-woke-its-own-parents.md) **reversed**: region-scoped substitution was unavailable *because the parse wrote*, and it no longer does.
+
+> ***CORRECTED 2026-08-20, and the sentence above is the one that hid it.*** **The parse does not write nothing — it writes the parent**, at five sites, and `parent` is a chemical's own setter. *That write was harmless for a sprint and a half because nothing called `parts()` inside a render; the first drawing that did died of heap exhaustion.* **[The full diagnosis is filed where the law lives](../solutions/16-the-parse-that-woke-its-own-parents.md#it-came-back-and-the-discharge-had-missed-a-third-write--the-theme-2026-08-20)**, and the law now reads: *a parse may not be given a parent while it mutates what it makes — **and giving the parent is one of the mutations***.
 
 **U18 — the level views, and they are Doug's proof.** The manifold's model view reads the **model** at four altitudes — sections, paragraphs, sentences, words — instead of a hand-copied structure, and every address is the position a reference resolves. **Driven: "260 words as paragraphs, 260 as words."** One count at every altitude, because each is a reading of one model rather than a second parse of the same text.
 
@@ -458,7 +460,7 @@ It is [Sprint D — The Compilation](00-planning.md#d--the-compilation), already
 
 **The branch library IS pushed** — identity commit `4825df4` on `inexplicable-phenomena` carries this sprint's records, both new Solutions chapters and this handoff, verified by reading them back off the branch. **The project CODE is committed nowhere**: 52 changed files and 8 new ones sit in the working copy.
 
-**Why the tool refuses, diagnosed rather than guessed.** [`06-on-sync--commit.sh`](../../../../.claude/library/..environmentalism/06-on-sync--commit.sh) step 1 pushes `.claude/` to the shared `dna-platform` branch and refuses when a `/MIR` would lose work. Its final two flagged paths are the **project-root** `CLAUDE.md` and `.gitignore` — and `dna-platform:CLAUDE.md` is **byte-identical to `.claude/CLAUDE.md`**, because the identity root file is a copy of it while the project root file is the *projection* with `.claude/` prefixes. **The check compares two files the system is designed to keep different**, so the refusal is an artifact and `RECONCILED=1` would force past a check that is measuring the wrong pair.
+**Why the tool fails, diagnosed rather than guessed.** [`06-on-sync--commit.sh`](../../../../.claude/library/..environmentalism/06-on-sync--commit.sh) step 1 pushes `.claude/` to the shared `dna-platform` branch and fails when a `/MIR` would lose work. Its final two flagged paths are the **project-root** `CLAUDE.md` and `.gitignore` — and `dna-platform:CLAUDE.md` is **byte-identical to `.claude/CLAUDE.md`**, because the identity root file is a copy of it while the project root file is the *projection* with `.claude/` prefixes. **The check compares two files the system is designed to keep different**, so the failure is an artifact and `RECONCILED=1` would force past a check that is measuring the wrong pair.
 
 **Do not chase it the way this session first did.** Copying the org's root `CLAUDE.md` down to satisfy the comparison **broke 47 compiled links**, because the project root file must be regenerated, never copied:
 

@@ -9,7 +9,7 @@
 
 [`/ce-brainstorm`](28-ce-brainstorm.md) → **`/ce-plan`** → [`/ce-work`](30-ce-work.md) → [`/ce-compound`](31-ce-compound.md) ↻ · [`/ce-handoff`](32-ce-handoff.md) at any session boundary
 
-**When the chapter reads `implementation-ready`, run [`/ce-work`](30-ce-work.md).** It refuses a chapter still marked `requirements-only`.
+**When the chapter reads `implementation-ready`, run [`/ce-work`](30-ce-work.md).** It rejects a chapter still marked `requirements-only`.
 
 ---
 
@@ -38,7 +38,7 @@ Their reason is that work references units by identifier *across plan edits*, so
 
 ## A unit with no mechanism is not a unit — added out of Sprint 48's failure
 
-**Every unit names the mechanism it will build — *what runs, and when*.** A unit that cannot answer that is **design owed**, and it is marked so and **refused files, scenarios and dependencies**, so it cannot be mistaken for buildable work. Its identifier is kept; its body says what must be designed.
+**Every unit names the mechanism it will build — *what runs, and when*.** A unit that cannot answer that is **design owed**, and it is marked so and **denied files, scenarios and dependencies**, so it cannot be mistaken for buildable work. Its identifier is kept; its body says what must be designed.
 
 [Sprint 48](../../../library/.public/.lib/projection/06-sprint-48--subjects-and-the-library.md) shipped 4 of 64 requirements because `$Type` and its resolution were written as ordinary units — files, dependencies, scenarios — for a thing whose central mechanism had never been designed. **The unit looked exactly like the units around it.** Two things follow and both did: the implementer starts where the mechanism *is* clear, so an undesigned unit is deferred **by being unbuildable** rather than by anyone deciding; and **feasibility gets mistaken for design** — a deferred *build* is not a deferred *design*, and a feasibility case reads like progress while answering a different question.
 
@@ -59,6 +59,22 @@ Their reason is that work references units by identifier *across plan edits*, so
 
 - **Dispatch against an imperfect contract rather than polishing one.** A seam that two people are building against is being tested; a seam nobody has built against is being admired.
 - **When a builder reports that the contract cannot be met, believe the builder.** *Both faults above were reported as "this cannot be done as specified" and both times the specification was what was wrong.* **Flag rather than route around** — the session that found the shadowed field wrote it down instead of renaming, which is the only reason it reached the contract at all.
+
+## A dispatch is checked against the SIZE of the work — added out of The Build
+
+**Before a plan divides work between sessions, measure the work.** A division is a cost — briefs, seams, ownership rules, a joining step — and it is only worth paying when the work is larger than the coordination.
+
+**[The Build](../../../library/.public/.lib/projection/15-the-build.md) cut a compiler into seven lettered tracks with owned modules, written contracts and a joining session that could not start early.** Two of the seven ran. When somebody finally measured what remained — by diffing the authored corpus against the output a person had already written by hand — **the whole of the two middle stages came to about 242 generated lines, and the transform was two operations.** It was one session's work wearing a seven-team plan.
+
+**And the measurement was available the entire time.** The hand-written output *was* the specification; nobody had subtracted it from the source. *The plan was not wrong about what to build — it was wrong about how much there was, and nothing in the planning step asks.*
+
+**What follows, and it is one question:**
+
+- **Before dividing, ask what the output IS — in files, in lines, in operations.** Where a target already exists in some hand-made form, **diff it against its source**; that difference is the specification and its size.
+- **A division whose parts are smaller than their briefs is one session.** *The letters, the ownership rules and the joining step all survive as a way of talking about the phases; they stop being a way of allocating people.*
+- **The cost of over-dividing is not only coordination.** A session cut too small ends with a report and nothing to look at, which is the state [ce-review](33-ce-review.md) exists to fail.
+
+*This is the mirror of [the unit with no mechanism](#a-unit-with-no-mechanism-is-not-a-unit--added-out-of-sprint-48s-failure): there a plan claimed work it had not designed, here a plan claimed scale it had not measured. **Both are a plan asserting something about work it never looked at.***
 
 ## Origin tracing runs BOTH directions
 
@@ -83,7 +99,7 @@ This is our own reference system applied to a document: keyed references, checke
 
 ## The gate
 
-**[`/ce-work`](30-ce-work.md) refuses a sprint chapter still marked `requirements-only`.** That refusal is in the workflow deliberately: it is the mechanism that keeps the altitudes separate.
+**[`/ce-work`](30-ce-work.md) rejects a sprint chapter still marked `requirements-only`.** That failure is in the workflow deliberately: it is the mechanism that keeps the altitudes separate.
 
 <!-- citations -->
 [ce]: https://github.com/EveryInc/compound-engineering-plugin/tree/6a2a0f9940ab0b3577ce26226ee393390470e412 "Compound Engineering plugin, EveryInc — pinned at commit 6a2a0f9, v3.21.1"

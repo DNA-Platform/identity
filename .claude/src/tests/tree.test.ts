@@ -2,7 +2,7 @@
 ///: These assert what a caller is entitled to rely on, not how the code does it.
 ///: The load-bearing one is `empty is not the same as no match` — a precondition
 ///: that cannot tell "I could not see" from "it is not there" is a precondition
-///: that lies, and it would refuse real actions on a transient read failure.
+///: that lies, and it would reject real actions on a transient read failure.
 ///:
 ///: Run: npx tsx --test src/tests/
 ///:
@@ -61,7 +61,7 @@ test('EMPTY means "could not see"; it is not the same as "not there"', () => {
   assert.ok(!seeing.isEmpty, 'a readable app is never empty, even when nothing matches');
 
   // Both answer `has` with false — which is exactly why isEmpty must be consulted
-  // first. A precondition that refuses on a blind read would fail actions whose
+  // first. A precondition that rejects on a blind read would fail actions whose
   // target was there all along.
   assert.equal(blind.has({ name: 'Send' }), false);
   assert.equal(seeing.has({ name: 'Stop response' }), false);

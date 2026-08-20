@@ -22,7 +22,7 @@ Sprint 47 shipped the reference system without once reaching for categorical voc
 | associativity | proven in spec: both groupings of a three-leg path arrive at the same reading |
 | identity | `ref` — and at the literal floor, **a letter is its own reference** |
 
-That last row is the one I find hardest to dismiss as coincidence. The identity arrow had to exist for the structure to be a category, and it arrived on its own — the floor of the composition ladder is exactly the level where pointing and being pointed at collapse together.
+That last row is the one I find hardest to dismiss as coincidence. The identity arrow had to exist for the structure to be a category, and it arrived on its own — the floor of the composition levels is exactly the level where pointing and being pointed at collapse together.
 
 ## The retract, and what it means
 

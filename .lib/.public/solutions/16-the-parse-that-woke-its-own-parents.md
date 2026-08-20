@@ -3,7 +3,7 @@
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
 - **keywords:** model · render-loop · diffuse · parse · gate
-- **sprint:** [The Representative](../projection/12-the-representative.md)
+- **sprint:** [The Representative](../projection/12-the-representative.md) · [The Parse](../projection/13-the-parse.md) · [The Theme](../projection/18-the-theme.md)
 
 ---
 
@@ -91,3 +91,71 @@ A proposed conversion of the demo's three dresses into scopes was **the same cha
 - [The writing that looped its page](12-the-writing-that-looped-its-page.md) — the other render loop in this branch, and a **different** mechanism: prop rebinding on an inline child inside a block, host rendering 41 times and child zero. A reader arriving with "the page loops" should read both and check which shape they have.
 - [The chapter that wrote its sections twice](13-the-chapter-that-wrote-its-sections-twice.md) — building the model inside a view, which this loop passes through on every turn of the cycle.
 - [The green that exercised nothing](14-the-green-that-exercised-nothing.md) — the gate half of this.
+
+---
+
+# IT CAME BACK, AND THE DISCHARGE HAD MISSED A THIRD WRITE — [The Theme](../projection/18-the-theme.md), 2026-08-20
+
+***The law held. The condition was not gone — it was dormant.***
+
+## Symptoms, and the first one is that there were no failures
+
+- **Three test files did not fail. They DIED.** `Worker exited unexpectedly`, no assertion, no stack that named anything in this repository.
+- Run alone with output showing, the reason arrived: ***`FATAL ERROR: Reached heap limit Allocation failed — JavaScript heap out of memory`***, after two Mark-Compacts at **4,050 MB**.
+- **The suite reported `Test Files 25 passed (28)` and `Tests 274 passed (307)`** — a green count with three files simply absent from it.
+- The change that caused it was **one line**: a section began drawing its parts instead of its source block.
+
+## What did not work
+
+- **Reading the discharge.** [It says "with nothing written, the parse threads lineage"](#discharged--the-parse-2026-08-12), and that sentence is true about the two writes it counted. **It is not true of the parse.**
+- **Looking for an assertion.** There is none. ***A heap death is not a red test***, and the runner's summary presents it as three files that merely did not appear.
+
+## The mechanism — ADOPTION IS A WRITE, and it is the third one
+
+The discharge counted two: the number, and `$role = 'mention'`. **The parse still writes at five sites**, and it writes the parent itself:
+
+```tsx
+if (made.parent !== this) made.parent = this as never;
+```
+
+[`Paragraph.tsx:65`](../../package/src/writing/Paragraph.tsx) · [`Section.tsx:143`](../../package/src/writing/Section.tsx) · [`Sentence.tsx:69`](../../package/src/writing/Sentence.tsx) · [`Word.tsx:27`](../../package/src/writing/Word.tsx) · [`Document.tsx:112`](../../package/src/document/Document.tsx)
+
+**`parent` is a chemical's own setter, so assigning it is a write like any other**, and [`diffuse`](../../../chemistry/package/src/implementation/scope.ts) propagates a write upward through the composition tree. So the cycle from [the original mechanism](#the-mechanism) closes again, with one difference that makes it worse:
+
+```
+view() calls parts()  →  parts() builds NEW objects and adopts each one
+   →  the adoption diffuses up  →  the ancestor re-renders  →  view() calls parts() again
+   →  NEW objects again, adopted again  →  … and every turn ALLOCATES
+```
+
+***The original loop spun. This one spins and allocates***, which is why it exhausts the heap instead of tripping React's update-depth guard.
+
+## Why it lay dormant for a sprint and a half
+
+**Adoption was always a write. Nothing had ever called `parts()` inside a render.** The drawing rendered the source block; the parse ran in suites, in the compiler and in the validator — **all outside a paint, where a diffuse has nothing to re-run.**
+
+***So the discharge was not wrong, it was narrow:*** it removed the two writes that were firing and left one that could not fire yet. **A condition that is dormant reads exactly like a condition that is gone.**
+
+## The fix — and it is deliberately NOT the obvious one
+
+**The obvious fix is to stop adopting**, and it was rejected: adoption is what gives a part its lineage, and lineage is what `role` propagates through and what a scope reaches along. *Removing it would undo [the discharge above](#discharged--the-parse-2026-08-12).*
+
+***So the DRAWING holds what it read, and the parse is untouched.*** A reading is kept per instance, keyed on the writing it came from, in the draw path alone:
+
+- **`parts()` is exactly what it was** — anything asking it outside a render still gets a fresh reading, and the model keeps its semantics.
+- **The second call in a render returns the same objects**, whose `parent` already equals `this`, so **the guard short-circuits and no write happens.**
+- **Proven by the numbers that did not move:** `CHECK` reported **7/7 books · 158 paragraphs · 233 sentences · 1,293 words · 5,881 letters** before and after, and the suite went **307/307 → 313/313** with the new promises.
+
+## The law, sharpened by its own return
+
+**It was:** *a parse may not be given a parent while it mutates what it makes.*
+
+***It is:*** **a parse may not be given a parent while it mutates what it makes — AND GIVING THE PARENT IS ONE OF THE MUTATIONS.** *The two halves are not separable, which is what the first statement implied and the discharge read past.*
+
+**And the practical form, which is the one to carry:** ***a reading that is called during a render must be held.*** *Not for speed — for termination.* **The uncached parse was filed four times as a cost. It is not a cost. It is a wall**, and any future work that draws through the model meets it on the first render.
+
+## What the record got right, and what it could not
+
+**[The discharge's own lesson was that rereading the chapter caught a missed write](#discharged--the-parse-2026-08-12)** — the `$role` one. ***It happened again and rereading did not catch it this time***, because the third write does not look like a write: it reads as bookkeeping, in a line whose visible job is a guard.
+
+**So the tell is worth stating for the next reader:** ***in this framework, any assignment to a chemical's member is a write that diffuses — including the ones that look structural.*** *`part.parent = this` is not plumbing. It is a mutation with a reach.*

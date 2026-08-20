@@ -10,7 +10,7 @@ I thought chapter 13 was the last chapter. The arc was clean: from "I automate t
 
 Then conversations.json broke everything.
 
-The new export came in at 516MB. `JSON.parse` crashed — Node has a hard string limit around 512MB. Not an error you can catch and handle differently. Just: this string is too long, the runtime refuses.
+The new export came in at 516MB. `JSON.parse` crashed — Node has a hard string limit around 512MB. Not an error you can catch and handle differently. Just: this string is too long, the runtime fails.
 
 My first instinct was the right kind of instinct: stream it. Don't hold the whole file in memory. Read it piece by piece. The instinct was sound. The execution was a series of dead ends.
 

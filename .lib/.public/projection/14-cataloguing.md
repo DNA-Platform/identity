@@ -73,7 +73,7 @@ Each claim was checked against the source. Where a claim is reasoned rather than
 
 - **`$Catalogue$` is two interfaces at once** — [`$Composition$<$Reference$<T>>` and `$Reference$<$Composition$<T>>`](../../package/src/reference/Catalogue.tsx), plus `follow()`. The catalogue equation, carved in Sprint 47.
 - **The reference half is free for a book.** `$Book` has neither `read()` nor `then()`, so nothing collides; and `canonical` already passes, because [`$Cover implements $Reference$<$Book>`](../../package/src/book/Cover.tsx).
-- **Only `parts()` refused, and only because a chapter is not a book reference.** *This is the dictionary finding from [the source conversation][conv], made by the compiler in July: "a dictionary carries **two** catalogues — its cover's table of contents (over chapters) and its body (over words)."* Under [the requirements now law](#the-requirements-that-are-now-law) a chapter becomes a book reference and the refusal goes.
+- **Only `parts()` failed, and only because a chapter is not a book reference.** *This is the dictionary finding from [the source conversation][conv], made by the compiler in July: "a dictionary carries **two** catalogues — its cover's table of contents (over chapters) and its body (over words)."* Under [the requirements now law](#the-requirements-that-are-now-law) a chapter becomes a book reference and the failure goes.
 - **`$TableOfContents` already is the chapter catalogue** — [`extends $Chapter implements $Catalogue$<$Chapter>`](../../package/src/book/TableOfContents.tsx), deriving its rows from the book's chapters and filtering by parentheticality. **Nothing in this sprint changes it.**
 - **`$Row` is the shipped precedent for a reference that is writing** — [`extends $Section implements $Reference$<$Chapter>`](../../package/src/book/Chapter.tsx), storing one address and reading its copy through it, **rebuilt on every render** by `parts()`. One class, many instances, honest parents. It is the pattern this sprint lifts one grade.
 - **`$Synopsis` is seventeen lines** — [`extends $Chapter`](../../package/src/book/Synopsis.tsx), setting `parenthetical = true` and nothing else. Everything R1 asks of it is an addition to a nearly empty class.
@@ -123,7 +123,7 @@ Each claim was checked against the source. Where a claim is reasoned rather than
 | <a id="u9"></a>**U9** | the card's transform, written long |
 | <a id="u11"></a>**U11** | non-canonical catalogues, proved by promise |
 | <a id="u12"></a>**U12** | the Shelf restructured |
-| <a id="u13"></a>**U13** | the refusal, drawn |
+| <a id="u13"></a>**U13** | the failure, drawn |
 | <a id="u14"></a>**U14** | the prose made true |
 | <a id="u15"></a>**U15** | the drivers |
 | <a id="u16"></a>**U16** | the records |
@@ -257,7 +257,7 @@ Doug ruled `$$Chapter` the canonical table of contents entry, and the merge with
 
 **`$Book.library` left the framework with it**, and the library recursion now lives on the demo's card where the agreement law belongs. So did `$Canonical`'s twelve-hop reciprocity walk.
 
-**And the collapse paid a debt.** The app typecheck's baseline went from **4 to 1** — three baselined errors were *"$-backed access on a computed type"*, and there is no computed type any more. The gate refused to pass until the baseline was corrected, which is the baseline-by-identity law working in the direction nobody plans for.
+**And the collapse paid a debt.** The app typecheck's baseline went from **4 to 1** — three baselined errors were *"$-backed access on a computed type"*, and there is no computed type any more. The gate did not pass until the baseline was corrected, which is the baseline-by-identity law working in the direction nobody plans for.
 
 **The honest note on [U9](#u9):** its long type is gone, deleted by a later ruling. What it bought before it went is not wasted — it is what caught `$Book.shelved`, and it is the reason the mapping is now the demo's to state rather than the framework's to guess.
 
@@ -344,7 +344,7 @@ The book driver went red at two manifold checkpoints. **One was the driver's own
 ## Not done, and named rather than omitted
 
 - **[U15](#u15) — the drivers gained no new checkpoints.** They pass at 51 and 25 unchanged, which means the Shelf's new entries are **driven but not asserted**. The next session's first job.
-- **[U13](#u13) — the refusal is not drawn.** Reciprocity left the framework on Doug's ruling and has not been rebuilt as the demo's own law.
+- **[U13](#u13) — the rejection is not drawn.** Reciprocity left the framework on Doug's ruling and has not been rebuilt as the demo's own law.
 - **[U11](#u11) and [U16](#u16)'s remaining library edits** — not reached. *([U14](#u14) is done: the Shelf's cover and synopsis were rewritten true, because both said a catalogue is not one of its own entries and that is now false.)*
 - **A list is a paragraph and its items are its sentences** — Doug's design, attempted and reverted. The strongest single piece of owed work.
 - **Dynamic layering** — one `$Code` whose level moves with an `inline` boolean. `$Formula`/`$Snippet` stand until it exists.
@@ -384,7 +384,7 @@ The book driver went red at two manifold checkpoints. **One was the driver's own
 - **A list should be a paragraph whose items are its sentences.** Doug's design, attempted, broke six promises, reverted rather than left red. **The largest single piece of owed work.**
 - **Dynamic layering** — one `$Code` whose level moves between paragraph and phrase with an `inline` boolean. `$Formula` and `$Snippet` are two classes standing where Doug named one.
 - **The drivers gained no checkpoints of their own** for the Shelf's new entries, so those are driven but not asserted.
-- **The refusal is not drawn** as the demo's own law; reciprocity left the framework on Doug's ruling and was never rebuilt.
+- **The failure is not drawn** as the demo's own law; reciprocity left the framework on Doug's ruling and was never rebuilt.
 - **Four cleanups:** loose module bindings; `$IndexCard` declaring no level; the free `$Composible$` rename; and the parse re-deriving what `marked`'s lexer already answered — that last one is the strongest Solutions candidate on the list.
 
 **Blockers: none.**

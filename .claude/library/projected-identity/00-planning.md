@@ -8,7 +8,7 @@
 
 ## The goal
 
-The team reaches outside its own context window by **driving Claude Desktop like a human at the screen**. That capability is real — [Sprint 93](64-sprint-93--retro.md) ran `/think` end to end five times — but it is reached today by cold scripts, described by chapters that drifted from the code, and debugged by editing and re-running. The ladder ahead makes the driver **honest** (it checks the screen before it acts), **legible** (it can tell you what screen it is on and what you can do), and **resident** (a runtime you talk to, rather than a script you launch). The end state is a **Claude Nexus**: one process where the team's outward reach converges, addressed by command, answering with structured data — Desktop first, the teammates' persistent thinking and the library's own tools after.
+The team reaches outside its own context window by **driving Claude Desktop like a human at the screen**. That capability is real — [Sprint 93](64-sprint-93--retro.md) ran `/think` end to end five times — but it is reached today by cold scripts, described by chapters that drifted from the code, and debugged by editing and re-running. The work ahead makes the driver **honest** (it checks the screen before it acts), **legible** (it can tell you what screen it is on and what you can do), and **resident** (a runtime you talk to, rather than a script you launch). The end state is a **Claude Nexus**: one process where the team's outward reach converges, addressed by command, answering with structured data — Desktop first, the teammates' persistent thinking and the library's own tools after.
 
 ## Sprint 98 — The Precondition and the Visible Tree
 
@@ -50,11 +50,11 @@ The team reaches outside its own context window by **driving Claude Desktop like
 
 **Demo.** A long conversation imported completely, the count read matching the count the app states.
 
-**Ladder estimate: four sprints, one hard dependency** — 101 must follow 98's `turn.ts` migration. 99 depends on 98's M3 (snapshot and errors as serializable returned data). 100 follows 99 by design, not necessity.
+**Sequence estimate: four sprints, one hard dependency** — 101 must follow 98's `turn.ts` migration. 99 depends on 98's M3 (snapshot and errors as serializable returned data). 100 follows 99 by design, not necessity.
 
 ## Standing rules on every rung
 
-**"Done" is a claim with a truth-condition** ([Sprint 91](60-sprint-91--retro.md)) — certify what is checkable, and say plainly what is unproven. **Three truths, and the compiler guards one** ([Sprint 92](62-sprint-92--retro.md)): structural (model the screen's affordances, not our categories), perceptual (the verify must match the tree — ground every signal in a captured tree), temporal (the lifecycle must match the turn — the first ends). **Docs move with code, never after** — the `///:` annotation is the forcing function, and a promise to reconcile "next sprint" is a debt. **Commit early**: every guard in [On Sync](../..environmentalism/06-on-sync.md#uncommitted-work-is-not-protected-by-any-of-this) protects committed history and none protects a working copy. **Covers stay current through the [TOC tool](../bookkeeping/03-on-covers--toc.ts)** — it edits one entry without reading the book and refuses rather than mangles.
+**"Done" is a claim with a truth-condition** ([Sprint 91](60-sprint-91--retro.md)) — certify what is checkable, and say plainly what is unproven. **Three truths, and the compiler guards one** ([Sprint 92](62-sprint-92--retro.md)): structural (model the screen's affordances, not our categories), perceptual (the verify must match the tree — ground every signal in a captured tree), temporal (the lifecycle must match the turn — the first ends). **Docs move with code, never after** — the `///:` annotation is the forcing function, and a promise to reconcile "next sprint" is a debt. **Commit early**: every guard in [On Sync](../..environmentalism/06-on-sync.md#uncommitted-work-is-not-protected-by-any-of-this) protects committed history and none protects a working copy. **Covers stay current through the [TOC tool](../bookkeeping/03-on-covers--toc.ts)** — it edits one entry without reading the book and fails rather than mangles.
 
 ## Open design questions (explored, not settled)
 
@@ -64,4 +64,4 @@ The team reaches outside its own context window by **driving Claude Desktop like
 - Whether `.claude/cli/` travels with the identity the way `.claude/src/` does, or is a tool that stays put.
 - What the completeness proof for a conversation read is when "Message N of M" is absent.
 - Where imported conversations live, now that an imported conversation is plainly not the same object as a *thought*.
-- Whether the peer-push clobber is fixable in the commit tool's guard, or whether two active projects sharing one org branch needs a different protocol than refuse-and-reconcile.
+- Whether the peer-push clobber is fixable in the commit tool's guard, or whether two active projects sharing one org branch needs a different protocol than fail-and-reconcile.

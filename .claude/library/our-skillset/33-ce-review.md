@@ -64,7 +64,7 @@ The same discipline [brainstorm](28-ce-brainstorm.md) runs applies: **one thing 
 
 ## And it makes work stricter
 
-The demo is a **stop condition**, not a closing flourish: no unit reports done without one. That law already existed — the demo was already a requirement in Sprint 48's chapter and *seen* was already a rung — and it was broken anyway. This step is what makes it refusable.
+The demo is a **stop condition**, not a closing flourish: no unit reports done without one. That law already existed — the demo was already a requirement in Sprint 48's chapter and *seen* was already a rung — and it was broken anyway. This step is what makes it enforceable.
 
 ## Its own status
 

@@ -7,7 +7,7 @@
 // It does NOT splice a line in place. It PARSES every TOC entry into a model, and on a
 // change it REBUILDS the whole table of contents from that model. Before it writes, it
 // ROUND-TRIPS: every parsed entry must serialize back to its exact source line. If even
-// one does not, the tool does not faithfully understand this cover, so it REFUSES to
+// one does not, the tool does not faithfully understand this cover, so it WILL NOT
 // write (no corruption) and tells you which lines to standardize. Because it round-trips,
 // it knows the original — it reports what changed (was -> now), so a change can be undone,
 // and a cover it cannot reproduce is rejected up front rather than quietly mangled.
@@ -34,7 +34,7 @@ type Entry = { line: number; num: number; text: string; target: string; synopsis
 function fail(msg: string): never { console.error(`ERROR: ${msg}`); process.exit(1); }
 
 const argv = process.argv.slice(2);
-const force = argv.includes('--force');   // allow overwriting an existing entry; the default refuses, to prevent info loss
+const force = argv.includes('--force');   // allow overwriting an existing entry; the default fails, to prevent info loss
 const [coverArg, secondArg, synopsisArg] = argv.filter(a => a !== '--force');
 if (!coverArg || !secondArg) {
   fail('Usage:\n  03-on-covers--toc.ts <cover.md> <NN-chapter.md> "synopsis"\n  03-on-covers--toc.ts <cover.md> --get <NN-chapter.md>\n  03-on-covers--toc.ts <cover.md> --check');
@@ -111,10 +111,10 @@ const synopsis = (synopsisArg ?? '').trim();
 if (!synopsis) fail('a synopsis is required to insert or update an entry');
 
 // Know up front whether the tool can faithfully rebuild this cover. If any entry does not
-// round-trip, refuse — do not risk corrupting the file.
+// round-trip, fail — do not risk corrupting the file.
 const rt = roundTripFailures();
 if (rt.length) {
-  console.error(`ERROR: refusing to edit — ${rt.length} TOC entr${rt.length === 1 ? 'y does' : 'ies do'} not round-trip,`);
+  console.error(`ERROR: not edit — ${rt.length} TOC entr${rt.length === 1 ? 'y does' : 'ies do'} not round-trip,`);
   console.error(`so the tool cannot rebuild this cover faithfully. Standardize to "N. [text](target) — synopsis" first:`);
   for (const e of rt) { console.error(`  source:  ${lines[e.line]}`); console.error(`  rebuild: ${serialize(e)}`); }
   process.exit(1);
@@ -122,7 +122,7 @@ if (rt.length) {
 
 const existing = entries.find(e => base(e.target) === base(chapterFile));
 
-// An existing entry means this is an OVERWRITE. Refuse by default so a synopsis is never
+// An existing entry means this is an OVERWRITE. Fail by default so a synopsis is never
 // lost by accident — the model knows the current text, so it shows what would be lost and
 // requires --force to proceed.
 if (existing && !force) {

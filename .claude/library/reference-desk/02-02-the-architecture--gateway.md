@@ -40,7 +40,7 @@ await this.gateway.act(action, verify,
 
 Without it, `goHome()` walked the same screen three times in a few milliseconds.
 
-This is a **handoff, not a cache**. There is no staleness window, because a staleness window would eventually let an old tree authorise an action — precisely what the precheck exists to prevent. The caller is stating a fact it observed immediately before asking to act. And the handoff is not a bypass: a target absent from the handed-over tree is still refused, and the action still never fires.
+This is a **handoff, not a cache**. There is no staleness window, because a staleness window would eventually let an old tree authorise an action — precisely what the precheck exists to prevent. The caller is stating a fact it observed immediately before asking to act. And the handoff is not a bypass: a target absent from the handed-over tree is still failed, and the action still never fires.
 
 ## The three methods
 

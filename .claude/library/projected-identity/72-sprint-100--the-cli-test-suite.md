@@ -19,7 +19,7 @@ Three things make this suite unusual, and each dictates a layer:
 
 - **The app under test is a live GUI on one screen.** Real runs cannot be parallel, cannot be fast, and cannot be hermetic. They are also the only tests that can catch what actually breaks here.
 - **The reality boundary lies.** [Sprint 92](62-sprint-92--retro.md) taught it three ways: an empty composer reports its placeholder as its value; the Stop button appears on a mere acknowledgement; a *succeeded* dispatch lingered to its timeout. Only the first of the [three truths](62-sprint-92--retro.md) — structural, perceptual, temporal — is machine-checked by a type system. **The other two are what this suite exists for.**
-- **The nexus is a process.** Its lifecycle — starts, answers, refuses politely, exits without leaking a shell — is itself behaviour to assert.
+- **The nexus is a process.** Its lifecycle — starts, answers, fails politely, exits without leaking a shell — is itself behaviour to assert.
 
 ## The three layers
 
@@ -28,7 +28,7 @@ Three things make this suite unusual, and each dictates a layer:
 The nexus's command surface against a **fake driver**: a stand-in for `Claude` implementing the same interface with a scripted screen. These assert the things that are true regardless of what is on screen:
 
 - Unknown command → a clear error, not a crash.
-- Malformed arguments → refused with the usage, not a stack trace.
+- Malformed arguments → failed with the usage, not a stack trace.
 - `--json` output parses and matches the documented shape; the pretty form is not asserted character-for-character (that is churn), only that it names the screen and lists the commands.
 - **Every error response carries a tree field**, per [Sprint 99](71-sprint-99--the-claude-nexus.md).
 - Driver commands serialize; **inspection commands answer while a driver command is in flight.** This is the queue invariant, and it is assertable with a fake driver that blocks on demand — which is the only way to test it deterministically.
@@ -77,7 +77,7 @@ The [19 acceptance requirements](55-sprint-89--think-acceptance-tests.md) rewrit
 3. `describe()`'s no-drift property is tested by **adding a real method**, not by comparing against a frozen list.
 4. Each of `check()`'s three inconsistencies is provoked and caught, and each verdict names what disagreed.
 5. `recover()` is proven from a modal-open state.
-6. The acceptance flows are **reliably** green — Queenie's verdict, repetition required, green-once refused.
+6. The acceptance flows are **reliably** green — Queenie's verdict, repetition required, green-once failed.
 7. Every test minimizes and closes its shell; a leak-count check runs at the end of a suite run.
 8. A partial run reports what it skipped.
 

@@ -27,7 +27,7 @@ The object model protects the code from itself. If you can only call `.open()` o
 App
 ├── window: Window
 │     maximize(), minimize(), launch(), exit(), screenshot()
-│     isForeground() — everything refuses to work if this is false
+│     isForeground() — everything will not work if this is false
 │
 ├── sidebar: Sidebar (always visible on every screen)
 │     conversations: ConversationItem[]

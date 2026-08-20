@@ -125,7 +125,7 @@ test('a caller that already looked hands its tree over, and the gateway does not
     'walk the same screen again milliseconds later is pure duplication');
 });
 
-test('a handed-over tree still refuses a target that is not in it — the handoff is not a bypass', async () => {
+test('a handed-over tree still rejects a target that is not in it — the handoff is not a bypass', async () => {
   const { gateway } = build();
   let fired = false;
   const seen = TreeSnapshot.from(LINES);

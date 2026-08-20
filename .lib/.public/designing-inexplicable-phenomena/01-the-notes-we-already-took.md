@@ -20,4 +20,4 @@ This book extends notes the team already made. They are gathered here so design 
 
 ## What Sprint 44 added to the shelf
 
-The as-built composition model this book designs against: [the register](../the-semantics-of-books/08-the-symbolizing-dyad-and-the-register.md) and the [sprint record](../projection/01-sprint-44--composition.md) — `$Writing` floor, `$Composition` interface, the `$Referent` ladder through `$Section`, content as one live block, levels parsed never authored, readings fresh.
+The as-built composition model this book designs against: [the register](../the-semantics-of-books/08-the-symbolizing-dyad-and-the-register.md) and the [sprint record](../projection/01-sprint-44--composition.md) — `$Writing` floor, `$Composition` interface, the `$Referent` levels through `$Section`, content as one live block, levels parsed never authored, readings fresh.

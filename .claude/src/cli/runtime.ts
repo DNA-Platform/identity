@@ -59,7 +59,7 @@ export type Outcome =
        *  A local action should not make you re-read the building. */
       surface: readonly Command[];
     }
-  | { kind: 'refused'; message: string };
+  | { kind: 'invalid'; message: string };
 
 /** The value of a look, rendered for a person.
  *
@@ -129,17 +129,17 @@ export class Runtime {
   /** Resolve a command by the path a person typed. Ambiguity is reported, never
    *  guessed; an unknown name reports what IS here, because "not here" tells you
    *  which screen you are on. */
-  resolve(path: string): { command: Command } | { refusal: string } {
+  resolve(path: string): { command: Command } | { invalid: string } {
     const model = this.model();
     const command = findCommand(model, path);
     if (command) return { command };
     const matches = candidates(model, path);
-    if (matches.length > 1) return { refusal: renderAmbiguity(path, matches) };
-    return { refusal: renderUnknown(path, model) };
+    if (matches.length > 1) return { invalid: renderAmbiguity(path, matches) };
+    return { invalid: renderUnknown(path, model) };
   }
 
   /** Check the arguments against the signature the surface already parsed, so a
-   *  wrong call is refused with the real signature instead of a stack trace. */
+   *  wrong call is invalid, answered with the real signature instead of a stack trace. */
   checkArgs(command: Command, args: readonly string[]): string | null {
     const required = command.params.filter(p => !p.optional).length;
     if (args.length < required || args.length > command.params.length) {
@@ -161,11 +161,11 @@ export class Runtime {
    *  A **look** returns its value and does not disturb where we are. */
   async run(path: string, args: readonly string[] = []): Promise<Outcome> {
     const resolved = this.resolve(path);
-    if ('refusal' in resolved) return { kind: 'refused', message: resolved.refusal };
+    if ('invalid' in resolved) return { kind: 'invalid', message: resolved.invalid };
     const { command } = resolved;
 
     const argError = this.checkArgs(command, args);
-    if (argError) return { kind: 'refused', message: argError };
+    if (argError) return { kind: 'invalid', message: argError };
 
     const from = this.model().screen;
     // Sample the scope's SENSORS before acting, so the action can report what moved.
@@ -177,7 +177,7 @@ export class Runtime {
     const method = (target as Record<string, unknown>)[leafName(command.path)];
     if (typeof method !== 'function') {
       return {
-        kind: 'refused',
+        kind: 'invalid',
         message:
           `"${command.path}" is described by the code but is not callable on the live object.\n` +
           'The screen model and the running app disagree — run `tree` to see what the app shows.',

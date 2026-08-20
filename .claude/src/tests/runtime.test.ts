@@ -3,7 +3,7 @@
 ///: A fake screen with the same shape as a real one, driven through the real
 ///: Runtime. What is asserted is what an operator is entitled to rely on: taking an
 ///: exit lands you somewhere new, an action re-reads the screen, a bad argument is
-///: refused with the real signature, and the CLI never guesses between two commands.
+///: rejected with the real signature, and the CLI never guesses between two commands.
 ///:
 ///: The fake is kept deliberately dumb. A clever fake becomes a second implementation
 ///: with its own bugs ([Sprint 100 open question 1](../../library/projected-identity/72-sprint-100--the-cli-test-suite.md#open-questions--honest-ones)).
@@ -245,29 +245,29 @@ test('an action on a component reaches the component, not the page', async () =>
   assert.deepEqual(page.composer.typed, ['what is a sheaf?']);
 });
 
-// --- Refusals: the operator is told the truth, never guessed at ---
+// --- Failures: the operator is told the truth, never guessed at ---
 
-test('too few arguments is refused with the real signature', async () => {
+test('too few arguments is invalid, answered with the real signature', async () => {
   const { rt } = await runtimeOn(new ConversationPage());
   const out = await rt.run('rename', []);
-  assert.equal(out.kind, 'refused');
-  assert.match(out.kind === 'refused' ? out.message : '', /<name>/);
-  assert.match(out.kind === 'refused' ? out.message : '', /takes/);
+  assert.equal(out.kind, 'invalid');
+  assert.match(out.kind === 'invalid' ? out.message : '', /<name>/);
+  assert.match(out.kind === 'invalid' ? out.message : '', /takes/);
 });
 
-test('too many arguments is refused, and optional parameters are honoured', async () => {
+test('too many arguments is rejected, and optional parameters are honoured', async () => {
   const { rt } = await runtimeOn(new ConversationPage());
   assert.equal((await rt.run('attach', ['a.txt'])).kind, 'acted', 'optional arg may be omitted');
   assert.equal((await rt.run('attach', ['a.txt', 'label'])).kind, 'acted', 'or supplied');
   const tooMany = await rt.run('attach', ['a', 'b', 'c']);
-  assert.equal(tooMany.kind, 'refused');
+  assert.equal(tooMany.kind, 'invalid');
 });
 
 test('a command that is not on this screen reports what IS here', async () => {
   const { rt } = await runtimeOn(new ProjectsPage());
   const out = await rt.run('rename', ['x']);
-  assert.equal(out.kind, 'refused');
-  const msg = out.kind === 'refused' ? out.message : '';
+  assert.equal(out.kind, 'invalid');
+  const msg = out.kind === 'invalid' ? out.message : '';
   assert.match(msg, /no "rename" on the Projects screen/);
   assert.match(msg, /list/, 'it names the real surface');
   assert.match(msg, /tree/, 'and points at the tree when model and app disagree');
@@ -278,8 +278,8 @@ test('a command described by the code but missing on the object is a disagreemen
   const Hollow = named('ProjectsPage', class {});
   const { rt } = await runtimeOn(new Hollow());
   const out = await rt.run('list');
-  assert.equal(out.kind, 'refused');
-  assert.match(out.kind === 'refused' ? out.message : '', /disagree/);
+  assert.equal(out.kind, 'invalid');
+  assert.match(out.kind === 'invalid' ? out.message : '', /disagree/);
 });
 
 // --- Rendering a look's value ---

@@ -43,8 +43,8 @@ Every class the derivation has named, kept here so none is lost and so the map s
 | `$Text` | → `$Literal`; the leaf | to build | [02](02-composition.md) |
 | `$Writing` | the **interface floor** — `{ copy }`, the one commitment every writing makes; the base the composition role extends. | **built** | [02](02-composition.md) |
 | `$Composition<T>` | an **interface, not a class**: `$Composition<T extends $Writing>` = `parts` + `canonical`, extending `$Writing`. Being-a-composition is a *role*; lineage belongs to the classes that implement it. Built by **multiplication** (many of a level become the level above), flowing down to the floor. | **built (interface)** | [01](01-levels-of-closure.md), [02](02-composition.md), [09](09-composition-and-collection.md) |
-| `$Character` | → `$Referent`, implements `$Writing`; the floor of the ladder — one glyph of `copy`. | **built** | [02](02-composition.md) |
-| `$Word` · `$Sentence` · `$Paragraph` | → `$Referent`, each implementing `$Composition` of the level below (`$Word` of `$Character`, and so on) — the inline ladder: each **inline** by a zero-arg constructor, each parsing its own level out of `copy`, validation filtering at the parse. | **built** | [02](02-composition.md) |
+| `$Character` | → `$Referent`, implements `$Writing`; the floor of the levels — one glyph of `copy`. | **built** | [02](02-composition.md) |
+| `$Word` · `$Sentence` · `$Paragraph` | → `$Referent`, each implementing `$Composition` of the level below (`$Word` of `$Character`, and so on) — the inline levels: each **inline** by a zero-arg constructor, each parsing its own level out of `copy`, validation filtering at the parse. | **built** | [02](02-composition.md) |
 | `$Section` | → `$Referent`, implements `$Composition<$Paragraph>`; **block-level**; its required title is the first element of its block, its canonical the paragraph that holds only the title. | **built** | [02](02-composition.md), [06](06-the-canonical-echo-and-views.md) |
 | `$Chapter` | implements `$Composition`; a block-level composition of sections | stub | [04](04-the-book-and-subjectivity.md) |
 | `$Book` | implements `$Composition`; + title, subject, author; the subjectivity level | **stub built** | [04](04-the-book-and-subjectivity.md) |
@@ -77,14 +77,14 @@ A **notation** is the system of marks writing is authored in. It is not a [level
 |---|---|---|
 | **notation** | `divide`, `compose`, and which marks are mentioned | plain prose (the identity), markdown, LaTeX |
 
-**One row, not a class per notation per level.** Notation is to the level ladder what a lens is to a chemical: one concept spent across all of them. *Built and proven in [Markdown](../projection/11-markdown.md) — three classes, each declaring only its two differences, and everything ordinary a person writes falling out as a fork rather than a kind.*
+**One row, not a class per notation per level.** Notation is to the levels what a lens is to a chemical: one concept spent across all of them. *Built and proven in [Markdown](../projection/11-markdown.md) — three classes, each declaring only its two differences, and everything ordinary a person writes falling out as a fork rather than a kind.*
 
 **Dropped, by decision:**
 
 - **`$Symbol`** — Symbol and Literal are the *essence* of a catalogue (the pointing thing and the thing pointed at), but the pointing class we build is `$Reference`; there is no separate `$Symbol`. (Doug: "I don't think we need symbol.")
 - **`$Name`** — a book's name is its *title*; "name" is not a word of the writing domain, so the class is `$Title`, and `$Reference` composes no `$Name`.
 - **`$Container`** — fails the vocabulary test outright (it functions unchanged in any domain), and its supposed role over composition/collection was never stated. `$Composition` (contain) and `$Catalogue` (reference) stand on their own.
-- **`$Document`** — removed as unneeded in Sprint 44 (the ladder topped out at `$Section`), and **reinstated by Doug at Sprint 47's close (2026-08-03)** with better cause: this document *earns* existence — a concrete class above the section carrying the reference apparatus (sections, summary, title, and the footer/bibliography with their legends), of which a chapter is the book's kind. The Sprint-44 version was a bare ladder rung; this one is the general unit an article will also be. Rows below.
+- **`$Document`** — removed as unneeded in Sprint 44 (the levels topped out at `$Section`), and **reinstated by Doug at Sprint 47's close (2026-08-03)** with better cause: this document *earns* existence — a concrete class above the section carrying the reference apparatus (sections, summary, title, and the footer/bibliography with their legends), of which a chapter is the book's kind. The Sprint-44 version was a bare level; this one is the general unit an article will also be. Rows below.
 
 The two generative operations behind the whole table are **validation** (specialize a type with a constraint — `extends` + `$check`) and **multiplication** (compose many into the level above — `$Composition<T>`, flowing down). See [Inheritance and Composition](03-inheritance-and-composition.md).
 

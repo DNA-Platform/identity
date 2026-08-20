@@ -3,7 +3,7 @@
 - **author:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **keywords:** verification · driver · false-green · demo · silent-default
-- **sprint:** [The Parse](../projection/13-the-parse.md)
+- **sprint:** [The Parse](../projection/13-the-parse.md) · [Custom Elements](../projection/17-custom-elements.md)
 
 ---
 
@@ -65,6 +65,47 @@ Driven: *260 words through **4 sections, 11 paragraphs, 17 sentences, 260 words*
 **And the smallest useful version of the rule:** a corroboration test must name **two walks**. If you cannot say what the second walk was, there was one.
 
 *Doug caught this by reading the screen and asking what the number meant. That is the review's job, and it is why the [demo is a stop condition rather than a closing flourish](../../../../.claude/library/our-skillset/33-ce-review.md) — a number nobody has interrogated is a number nobody has checked.*
+
+---
+
+# TWO WALKS WERE NOT ENOUGH — a second appearance, from [Custom Elements](../projection/17-custom-elements.md), 2026-08-18
+
+***This chapter's own rule was satisfied and the green was still not evidence.***
+
+## Symptoms
+
+- A promise in the demo compared a **hand-written** parallel text against the **same text found in the notation** — two sides built by genuinely different paths, each the oracle for the other, exactly the shape [the lesson above](#the-lesson) asks for.
+- **Green on every run**, for as long as it had existed.
+- **It went RED when a defect was fixed.** Nothing about the promise changed; a custom element stopped dissolving, and the assertion broke.
+
+## The mechanism — two one-word errors with opposite signs
+
+**The two sides are deliberately unequal in one place.** Their titles *label* them — *Written by hand* against *Found in the notation* — so the found side carries **one word more** by design.
+
+**And the written side was one word short**, for an unrelated reason: its `<Link>` was being dissolved into two plain words instead of standing as one part.
+
+```
+found      title +1 word   (by design)
+written    link  +1 word   (by defect)
+                  ─────
+whole-text comparison       equal
+```
+
+**So the assertion was comparing two quantities that could never honestly be equal, and a defect was supplying the compensating error.** Fixing the dissolution removed the compensation, and the promise reported a difference that had been there since the day it was written.
+
+## The fix
+
+**Compare the bodies, not the whole.** `parts().slice(1)` drops the titles, because the titles are the one region the two sides are *supposed* to differ in — and the oracle stays each side for the other, so nothing is hand-written and neither side can go stale.
+
+*The reason is written into [the promise itself](../../package/app/src/markdown/parallel.test.tsx), so nobody widens the comparison back.*
+
+## The lesson, and it sharpens the one above rather than repeating it
+
+**Two walks is necessary and it is not sufficient.** *A corroboration test must name two walks* was the rule, and this promise named two. What it did not do is check that the two walks were comparing a region where **equality was actually claimed**.
+
+**A comparison that spans a region the two sides are designed to differ in carries a built-in error term** — a permanent, known offset the assertion never subtracts. Such a promise cannot be green honestly. It is green only while something *else* is wrong by the same amount, which means **its green is a report about a second defect** and nobody can tell by looking.
+
+***And the tell is worth more than the rule: a promise that goes RED when you FIX something was measuring the defect.*** That is not a regression to investigate in the code — it is the promise identifying itself. **The first question is not what broke; it is what the assertion had been true about.**
 
 ## See also
 

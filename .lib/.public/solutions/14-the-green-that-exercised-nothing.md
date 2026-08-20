@@ -3,7 +3,7 @@
 - **author:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
 - **coauthor:** [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
 - **keywords:** verification · false-green · gate-not-run · typecheck · driver · scope
-- **sprint:** [Markdown](../projection/11-markdown.md)
+- **sprint:** [Markdown](../projection/11-markdown.md) · [The Parse](../projection/13-the-parse.md) · [The Build](../projection/15-the-build.md) · [Custom Elements](../projection/17-custom-elements.md)
 
 ---
 
@@ -99,3 +99,24 @@ include: ["src/**/*.ts"]                         →  all four files, 0 errors
 **The fix is structural rather than procedural, and that is what makes it hold.** The generated module that composes a book imports its cover, its synopsis and every chapter by name. **So that module is the only door into the dotted files** — and a gate must enter through it, never by walking a pattern. *A typecheck configured over `src/**` would report a confident zero across a library it had read half of.*
 
 **Filed as the fourth appearance, and the first one nobody paid for.** *Three earlier entries were found by something already broken; this one was found by [testing the assumption before building on it](../projection/15-the-build.md). The cause is unchanged — **a number without its scope** — and the only thing that changed is when it was asked.*
+
+---
+
+## A FIFTH APPEARANCE — and this one is the false red, recurring after it was filed. From [Custom Elements](../projection/17-custom-elements.md), 2026-08-18
+
+***The stale-server rule above was already written down, and it cost this branch a session anyway.***
+
+**Two dev servers had outlived the modules they were serving**, and both demo drivers were run against them:
+
+```
+servers started before the modules changed  →  49 checkpoints · 23 checkpoints
+restarted, SAME COMMIT                      →  61 checkpoints · 25 checkpoints
+```
+
+**The tell was not a FAIL this time. It was a SHORT COUNT** — and that is only legible because [this chapter's own fix](#the-fix) made the driver report how far it got. *A bare stack trace would have said nothing, and 49 looks like a number rather than like a stall.* **The gate caught its own recurrence.**
+
+***So the interesting part is not the defect, it is that the fix did not hold.*** What this chapter prescribed — *restart the server after deleting a module, before believing anything it says* — is **a rule a person has to remember**, and it was written by the same team that then did not remember it. **A procedural fix does not kill a class.**
+
+**What is procedural today, stated so the structural version can be chosen rather than drifted into:** the driver **attaches to a server it did not start** and has no way to ask whether that server's modules are the ones on disk. *Two shapes would end it — the driver starting its own server, or the served page carrying a build identity the driver asserts against the working copy.* ***Neither is built; both are named here rather than left for the next person to rediscover.***
+
+**Until one of them exists, the mitigation is a runbook line rather than a rule** — [the sprint's own *How to see it*](../projection/17-custom-elements.md) now says *start the server yourself before driving it*, next to the command, where somebody about to drive will actually read it.

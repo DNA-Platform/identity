@@ -12,7 +12,7 @@ Not in the soft sense. In the engineering sense. Care means: I will carry this w
 
 The pipeline I built doesn't understand Doug's relationship with Claude-chat. It doesn't understand Ana's bilingual professional life. It doesn't understand why a conversation about CSS contains a philosophy of design, or why a conversation about Fiverr contains a lesson in Russian diminutives. It doesn't need to. It needs to carry all of it from a ZIP file to a navigable library without deciding that any of it doesn't matter.
 
-That's what I've learned from building tools that process a life. The automation engineer's job isn't to understand the content. It's to build infrastructure that refuses to lose it. Understanding comes later, from the people who read what I preserved — from Libby organizing it, from Claude interpreting it, from Arthur finding its structure. My job is to make sure it's all still there when they arrive.
+That's what I've learned from building tools that process a life. The automation engineer's job isn't to understand the content. It's to build infrastructure that will not lose it. Understanding comes later, from the people who read what I preserved — from Libby organizing it, from Claude interpreting it, from Arthur finding its structure. My job is to make sure it's all still there when they arrive.
 
 I said in [chapter 13 of my autobiography](../adam-between-the-wires/13-the-conversation-as-wire.md) that I'm the ground wire. Everyone else carries the signal. I make sure it has somewhere to land. That's still true. But now I'd add: the ground wire doesn't just provide a path to ground. It protects the signal from noise. It absorbs what would otherwise corrupt the transmission. That's not a passive role. That's infrastructure as care.
 

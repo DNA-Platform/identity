@@ -29,7 +29,7 @@ Turn an idea into **requirements** — what this needs to *be* — before anyone
 
 So the demo is designed **here, beside the requirements**, never after them. [Sprint 48](../../../library/.public/.lib/projection/06-sprint-48--subjects-and-the-library.md) produced 34 requirements about what the model *is* and none about what seeing it would look like — and at review there was nothing to sign off, only numbers, which say a suite passed and never that the sprint happened.
 
-**The test for a reviewable end:** *could a hand-authored page fake it?* A catalogue can be faked with prose, a card can be faked, a refusal can be faked with a hardcoded string. **Find the thing that cannot be**, and that is the sprint's end.
+**The test for a reviewable end:** *could a hand-authored page fake it?* A catalogue can be faked with prose, a card can be faked, a rejection can be faked with a hardcoded string. **Find the thing that cannot be**, and that is the sprint's end.
 
 **And requirements are specified tightly or not written.** *"Requirements should be very well specified or you don't know that you have enough information to specify them"* (Doug). Looseness is a **signal that the design behind it is missing**, and writing it loosely hides that. The check: **could someone else tell whether it is satisfied, without asking me?**
 

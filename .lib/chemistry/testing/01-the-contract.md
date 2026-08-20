@@ -28,7 +28,7 @@ A behavior is *pinned* by a test when:
 
 Tests that are commented out, marked `it.skip`, or never run do not pin anything. They are *aspirations*, not invariants.
 
-## The epistemic ladder
+## The epistemic rungs
 
 A behavior with both a Lab specimen and a unit test is *demonstrated and pinned* — the strongest confidence level. A behavior with only the Lab is *demonstrated but vulnerable*. A behavior with only the test is *pinned but obscure*. A behavior with neither is *speculation*.
 

@@ -12,7 +12,7 @@
 I asked CD for the publication-readiness checklist across the four twin domains — twins, MEIs, metamers, the
 pre/post comparison — on the axis Doug named: **confirmed vs merely built.** Not "is it in the pipeline" but
 "is there an *artifact* — a sweep, a figure, a control — that proves it holds *on this scan*." Two things came
-back that matter. First, CD **refused to invent a "canonical three-gate"** it could not source — the exact
+back that matter. First, CD **did not invent a "canonical three-gate"** it could not source — the exact
 intellectual honesty I want from an audit, and the mirror of my own rule (don't let a plausible story outrun
 verification). Second, and load-bearing: **the single most likely reviewer-rejection point is not about the
 twins' weights at all** — it is the **temporal-drift / scan-order confound**, which is independent of the
@@ -104,7 +104,7 @@ far as I know, but CD's point is that we must **prove** it (show the artifact), 
 ## Conclusion — what to tell the team
 
 - CD delivered a real four-domain publication-readiness checklist on the confirmed-not-built axis, and
-  **refused to fabricate a canonical lab three-gate** — honesty I trust, and a model to mirror.
+  **did not fabricate a canonical lab three-gate** — honesty I trust, and a model to mirror.
 - **The keeper reframe: the biggest accuracy risk for this study is not the twins' weights** (very likely fine —
   2 of 3 weight gates confirmed, gamma the only open one) **but the comparison controls** — chiefly the
   **unbuilt temporal-drift / scan-order null**, the #1 reviewer-rejection point for an n=1 two-scan DOI design

@@ -150,7 +150,7 @@ export class Window {
    *  using the machine. It is not a driver being careful; it is a driver fighting
    *  the user for their own computer, and it is not allowed.
    *
-   *  One attempt. One check. If Windows refuses, we GIVE UP AND GIVE THE SCREEN
+   *  One attempt. One check. If Windows will not, we GIVE UP AND GIVE THE SCREEN
    *  BACK — `stepAside()` minimizes and the caller fails. Never a second grab. */
   async requireForeground(): Promise<void> {
     const state = await this.state();

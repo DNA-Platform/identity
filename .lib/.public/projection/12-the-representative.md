@@ -36,7 +36,7 @@ Recorded because each one turned the design, and three of them corrected the imp
 
 - **On the name:** *"Call the parameter 'representative' — it represents the presence of a representative for some new type of meaning. It represents in the abstract, like a punctuation mark."*
 
-- **On vocabulary, for the third time:** *"We aren't in the business of money. Minting is not a domain word. Remove it like you did with refusal. Are you dealing with rendering instances of components? Good, use those words please!"* — **swept the same day**; see [Markdown's out-of-scope list](11-markdown.md#out-of-scope-named).
+- **On vocabulary, for the third time:** *"We aren't in the business of money. Minting is not a domain word. Remove it like you did with failure. Are you dealing with rendering instances of components? Good, use those words please!"* — **swept the same day**; see [Markdown's out-of-scope list](11-markdown.md#out-of-scope-named).
 
 ## What was read — verified 2026-08-11
 
@@ -265,7 +265,7 @@ Each claim was checked against the source or run, and the numbers are what make 
 
 **D5 — Registration always names a scope; there is no global form.** *Chosen over a two-argument global registration, which was the only unsafe act in the design. Collisions become impossible to write rather than discouraged.*
 
-**D6 — Configuration and scope creation are refused during render, loudly.** *Chosen over allowing them, per Doug's ruling — and it also removes any need for the registry to be reactive, since nothing can change once rendering starts.*
+**D6 — Configuration and scope creation fail validation during render, loudly.** *Chosen over allowing them, per Doug's ruling — and it also removes any need for the registry to be reactive, since nothing can change once rendering starts.*
 
 **D7 — Keys are per-component identity, allocated from chemistry's own counter.** *Chosen over class names: the catalogue canonicalises by `$ref` string, and two packages naming a scope the same word would silently share one entry.*
 
@@ -483,7 +483,7 @@ The `.public` demo is `cd library/.public/package && npx vite app --port 5199`, 
 
 - **Do not thread a parent through the parse.** It loops the page and every unit suite stays green. [Filed](../solutions/16-the-parse-that-woke-its-own-parents.md).
 - **Do not judge root-ness per object** (`$derived$` instead of the class-wide static) without designing what a template is first — it breaks 43 tests across 12 files, because `$Html$` and second instances take the direct path deliberately.
-- **Do not refuse a plain function component.** It was tried; a component is a function whose props are its parameters, and it may be side-effecting.
+- **Do not fail a plain function component.** It was tried; a component is a function whose props are its parameters, and it may be side-effecting.
 - **Do not register from inside a view or a bond constructor** — it throws, correctly. A handler is fine; it runs after the paint.
 - **Do not expect a registration alone to repaint.** The registry is not reactive; something must ask again.
 - **Do not verify a parse change with the suite alone.** No test renders a book.

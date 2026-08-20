@@ -38,7 +38,7 @@
 
 - **Where, and the standing direction:** *"Both, but spruce up all the books in the library. It doesn't need to be in one place. Don't forget to add ways to view key pieces of code. Also, I don't think you should be reusing `$Page`. Consider replacing it entirely. Our books don't really have pages. Think harder. And don't reuse across books in the demo. Make it easy to customize. Also remember that each demo should have a unique aesthetics — different colors, different organizations, different functions. **Always move the whole demo app in the direction of specialization of the parts.**"*
 
-- **Vocabulary, corrected mid-interview and owed a sweep:** *"Minting is a word we need to remove from our vocabulary. I have asked this many many times."* The word is struck from this chapter and from the room. It joins *refuse* and *mint* in [the queued historical sweep](09-the-subject.md#collected-at-the-review--2026-08-10-from-dougs-answers). **Three bans, all re-issued after being written down — the sweep is not optional tidying.**
+- **Vocabulary, corrected mid-interview and owed a sweep:** *"Minting is a word we need to remove from our vocabulary. I have asked this many many times."* The word is struck from this chapter and from the room. It joins *fail* and *mint* in [the queued historical sweep](09-the-subject.md#collected-at-the-review--2026-08-10-from-dougs-answers). **Three bans, all re-issued after being written down — the sweep is not optional tidying.**
 
 ## The starting condition, verified 2026-08-10 by reading the source
 
@@ -468,7 +468,7 @@ And earlier in the same interview: *"we want to rewrite the markdown implementat
 
 **Skipped by ruling** — the review. *"I'm going to skip review because this is a two part sprint."* **So nothing here is signed off**, and the demonstrations are reviewed together with the second half. Do not read the green numbers below as acceptance.
 
-**Queued, older than this sprint** — the historical vocabulary sweep (*refuse*, *mint*, *minting*) across chapters 01–08, Sprint 48's record, the older Solutions entries and the skills.
+**Queued, older than this sprint** — the historical vocabulary sweep (*fail*, *mint*, *minting*) across chapters 01–08, Sprint 48's record, the older Solutions entries and the skills.
 
 ### Blockers
 

@@ -171,7 +171,7 @@ On screen it stays what it already is: a shelf of spines, and the same library m
 
 ### B — The Subject
 **Checkable in code:** `$Subject` is a book reference that **validates in place** against a card, with no traversal ([R63](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place)); it is invalid pointing at a book that is not a catalogue; `$Canonical` is declared, reciprocal, and unique ([R47](06-sprint-48--subjects-and-the-library.md)).
-**Demo:** repoint a subject at a book that is not a catalogue and **watch the validation failure appear on the page.** A guard is not real until it has been seen failing a bad book.
+**Demo:** repoint a subject at a book that is not a catalogue and **watch the validation failure appear on the page.** A guard is not real until it has been seen rejecting a bad book.
 
 ### C — The Library
 **Checkable in code:** `$Library` is a **computed property of the subject**; every book's computed library is **the same book** ([R61](06-sprint-48--subjects-and-the-library.md#r61-a-library-is-the-universe--there-is-one-and-library-validation-is-that-they-all-agree)); a book that disagrees is not valid; `$Author` validates a self-authoring card ([R58](06-sprint-48--subjects-and-the-library.md), [R59](06-sprint-48--subjects-and-the-library.md#r59-having-a-library-card-is-a-structural-fact-not-a-possession)).

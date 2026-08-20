@@ -35,7 +35,7 @@ export interface GatewayOptions {
   description?: string;
   screenshotOnFailure?: string;
   /** The element this action is about to touch — the actuator's assumption, made
-   *  explicit. `act` reads the tree BEFORE firing and refuses if the element is not
+   *  explicit. `act` reads the tree BEFORE firing and rejects the call if the element is not
    *  there, so a "not found" fails immediately and legibly instead of firing into
    *  nothing. */
   target?: TreeQuery;
@@ -45,7 +45,7 @@ export interface GatewayOptions {
    *
    *  A handoff, not a cache: the caller is stating a fact it observed immediately
    *  before asking to act. It is not a bypass — a target absent from the handed-over
-   *  tree is still refused. */
+   *  tree is still rejected. */
   snapshot?: TreeSnapshot;
 }
 
@@ -93,7 +93,7 @@ export class Gateway {
     if (options.target) {
       const snapshot = options.snapshot ?? await this.tree();
       // An EMPTY tree means we could not see, not that the target is absent. Do not
-      // refuse on blindness — fall through and let the look be the judge.
+      // do not judge on blindness — fall through and let the look be the judge.
       if (!snapshot.isEmpty && !snapshot.has(options.target)) {
         this.diagnostics.record(desc, false, Date.now() - startTime, 'precondition failed');
         await this.standDown(desc);

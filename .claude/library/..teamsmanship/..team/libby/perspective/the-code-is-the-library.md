@@ -26,7 +26,7 @@ Doug said it out loud: the `$Book/$Chapter/$Cover/$Synopsis/$TableOfContents` cl
 - **Timeless naming**, multi-subject membership, branch libraries (`.lib`), and the growth procedures (chapter→book→subject→anthology).
 
 **The code has it, the markdown treats informally:**
-- **The composition ladder below the chapter** — `$Character → $Word → $Sentence → $Paragraph → $Section`. The markdown stops at chapter/section; the code composes the *text itself* down to characters.
+- **The composition levels below the chapter** — `$Character → $Word → $Sentence → $Paragraph → $Section`. The markdown stops at chapter/section; the code composes the *text itself* down to characters.
 - **`canonical`/`parenthetical`** as a formal section distinction — the markdown only informally separates "the opening paragraph" from "the rest."
 - **`citedBy`** — a derived backlink inverse. The markdown has forward links and a citation block, but no automatic backlink.
 

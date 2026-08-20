@@ -16,9 +16,9 @@ Lift the app's functionality into the CLI, one capability at a time, until you c
 Delivered in [Sprint 98](70-sprint-98--the-precondition-and-the-visible-tree.md) and the opening of this one:
 
 - **[`TreeSnapshot`](../../src/tree.ts)** — the screen as a value: query, print, serialize. `Claude.tree()` answers *what is on screen right now*, any time, no failure required.
-- **The gateway's third beat** — `precheck → act → verify`. A `target` on `act()` reads the tree before firing; a missing element refuses immediately, names what it expected, carries the tree, and the action never happens. `target` is optional so existing call sites are untouched.
+- **The gateway's third beat** — `precheck → act → verify`. A `target` on `act()` reads the tree before firing; a missing element fails immediately, names what it expected, carries the tree, and the action never happens. `target` is optional so existing call sites are untouched.
 - **[`.claude/src/cli/`](../../src/cli/)** — `surface.ts` (parses `.claude/src/**` for signatures), `describe.ts` (builds the screen model from live instance + source), `render.ts` (prints the room). `demo-room.ts` renders a real screen from real source with no app running.
-- **34 hermetic tests**, and a **guarded integration harness** that refuses to run without `CLAUDE_DESKTOP_LIVE=1`.
+- **34 hermetic tests**, and a **guarded integration harness** that will not run without `CLAUDE_DESKTOP_LIVE=1`.
 
 Two bugs already found by running it, both invisible to inspection and both now regression-tested: the `\bPage\b` matcher that classified **every door as a look**, and the surface parser that missed **constructor parameter properties**, taking the Conversation screen's only exit with them.
 
@@ -36,7 +36,7 @@ The loop that makes it a place. Bind to the live screen, print the room, take an
 
 ### M2 — Doing and looking: `do`, and typed arguments
 
-- **Lift.** `do <command> [args]` invokes a **look** or a **do** and renders the result. Arguments are checked against the signature the surface already parsed, so a missing or extra argument is refused with the real signature rather than a stack trace. A **do** re-prints the room after acting, because a change you cannot see is a change you cannot verify — [every action gets a confirmation read](../reference-desk/05-coding-philosophy.md).
+- **Lift.** `do <command> [args]` invokes a **look** or a **do** and renders the result. Arguments are checked against the signature the surface already parsed, so a missing or extra argument fails validation with the real signature rather than a stack trace. A **do** re-prints the room after acting, because a change you cannot see is a change you cannot verify — [every action gets a confirmation read](../reference-desk/05-coding-philosophy.md).
 - **Hermetic.** Arity and optionality enforced from parsed signatures; a `look`'s return rendered readably for strings, arrays and objects; a thrown [`DriverError`](../../src/errors.ts) rendered with its tree via `.detail`.
 - **Integration.** Run every **look** on each of the four screens against the live app and assert none throws — the cheapest possible detection of an app update, and it touches nothing.
 
@@ -57,7 +57,7 @@ The loop that makes it a place. Bind to the live screen, print the room, take an
 The first milestone that writes to the app, and deliberately last.
 
 - **Lift.** `type <text>` then `send` as separate commands — [P1/P2](../reference-desk/13-the-redesign.md#p1--a-method-is-a-physical-action-on-the-visible-screen): there is no method that types *and* sends. `send` returns the `ConversationPage`, so the room re-prints as the conversation. Then poll for streaming through the page's own sensors; the CLI never waits on its own.
-- **Hermetic.** `send` is refused when the model says it is not on this screen; the streaming wait is the page's, and the CLI is asserted to hold no polling of its own.
+- **Hermetic.** `send` fails validation when the model says it is not on this screen; the streaming wait is the page's, and the CLI is asserted to hold no polling of its own.
 - **Integration.** One real send in a scratch conversation, **only on Doug's go-ahead**, following the [Sprint 92 shape](62-sprint-92--retro.md): the send ends at streaming-start, not completion, and the window is not minimized before real text appears.
 
 ## Rules every milestone follows
@@ -83,7 +83,7 @@ Lifted straight from the book, because each was paid for once already:
 1. You can `look`, `go`, `do` and `tree` your way around the live app, and every move prints the full room.
 2. **No command handler implements app behaviour** — checkable by reading `.claude/cli/` and finding no UIA, no gateway, no waiting.
 3. **No hand-maintained command list exists** — checkable by adding a method to a page and watching it appear untouched.
-4. Every milestone has hermetic tests **and** integration tests, and the integration suite still refuses to run unattended.
+4. Every milestone has hermetic tests **and** integration tests, and the integration suite still will not run unattended.
 5. Every **look** on all four screens runs live without throwing.
 6. `copy` round-trips through the real clipboard and reports what it placed there.
 7. [Ch.14](../reference-desk/14-the-runtime.md) describes the runtime as built, written in the same commits.

@@ -38,7 +38,7 @@ The conversation catalogue JSON (`catalogue.json`) stays as machine state. The t
 - Build context from what I've already learned about this topic
 
 ### 4. CHECK (one bash call, `run_in_background`)
-- Programmatic dependency: verify the thinking book chapter EXISTS before proceeding. If scaffold wasn't done, refuse to check.
+- Programmatic dependency: verify the thinking book chapter EXISTS before proceeding. If scaffold wasn't done, will not check.
 - `app.launch()` → `app.openConversationById(state.conversationId)` → `app.conversation.scrollToBottom()` → `app.conversation.checkStreaming()`
 - `app.window.minimize()`
 - If still streaming: return to tending. Check again later.
