@@ -4,13 +4,28 @@
 # Usage: bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit message"
 #        DRY_RUN=true bash .../06-on-sync--commit.sh "msg"   # validate + print the plan, mutate nothing
 #
-# Two-way commit:
+# THE STANDARD SYNC, and it is the only one this tool does. TWO STEPS:
 #   1. Identity (.claude/) AND the branch libraries (library/*/.lib/) → identity repo,
 #      the branch named after this repo. THAT BRANCH IS THE OBJECT OF RECORD — it is the
-#      only place either of them is written, so there is nothing to reconcile and no
+#      only place either of them is written, so THERE IS NOTHING TO RECONCILE and no
 #      shared branch to clobber. (Doug, 2026-08-12.)
-#   2. Project branch (library/*/.lib/ + downstream identity) → identity repo, <project-name> branch
-#   3. Project code changes → project repo
+#   2. Project code changes → project repo.
+#
+# That is the whole of a normal sync. It needs nothing complex BECAUSE the destination
+# is the object of record: one writer, one branch, no merge. (Doug, 2026-08-21:
+# "sync to identity but the branch with this repo name — which this is the object of
+# record of and thus needs nothing complex... and what is there not be a complete sync
+# that would happen very rarely.")
+#
+# A COMPLETE SYNC IS A DIFFERENT ACT AND IT IS RARE. Propagating main or the
+# organization branch downstream, or reconciling two working copies of one identity,
+# is not what this tool does and is not what a session's close needs. It is specified
+# in 06-on-sync.md under "The rare act", it is done deliberately rather than on a
+# schedule, and it is a session boundary in its own right.
+#
+# A LISTING THAT NAMED A THIRD STEP stood here until 2026-08-21 — "project branch →
+# identity repo, <project-name> branch" — which was the same act as step 1 wearing the
+# old three-tier model's clothes. The code never did it twice; only the comment did.
 #
 # The branch is named after the project directory (basename of PROJECT_ROOT) and the
 # branch-library routing is derived from library/*/.lib — nothing is hardcoded to a

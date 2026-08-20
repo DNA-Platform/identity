@@ -8,6 +8,21 @@
 
 The library travels between projects. It lives in its own repository at `github.com/DNA-Platform/identity` — containing `.claude/` and `CLAUDE.md`. It is private. It is project-neutral. It carries the team's identity, knowledge, and specifications into whatever codebase needs them.
 
+## <a id="the-standard-sync"></a>The standard sync, and it is almost always the only one
+
+**A session closes by pushing to the identity branch named after the repository, and to the project repository. That is the whole of it.**
+
+***It needs nothing complex, and the reason is structural rather than a simplification:*** **that branch is [the object of record](#the-commit-tool).** Nothing else writes to it, so there is no reconciliation, no merge, and no shared branch to clobber. *One writer, one branch.*
+
+> *Doug, 2026-08-21: **"sync to identity but the branch with this repo name — which this is the object of record of and thus needs nothing complex… and what is there not be a complete sync that would happen very rarely."***
+
+**Two steps, and [the commit tool](06-on-sync--commit.sh) does both:**
+
+1. **`.claude/` and every `library/*/.lib`** to the identity branch named for the repository.
+2. **The project's own code** to the project repository.
+
+***Everything below about tiers and downstream merges describes [the rare act](#the-rare-act), not this one.*** **A session that says "sync" means the two steps above.**
+
 ## The branching model
 
 The identity repo uses a three-tier branching model. Each tier holds a different kind of content, and the tiers relate by inheritance:
@@ -20,7 +35,19 @@ The identity repo uses a three-tier branching model. Each tier holds a different
 
 The git branch hierarchy mirrors the [library branch hierarchy](../library-tree/01-branches.md): `main` is the main library, the organization branch adds the team's collection, project branches add project-specific collections. The same structure expressed in git and in the library's own terms.
 
-## Downstream merges
+## <a id="the-rare-act"></a>The rare act — a complete sync
+
+***Everything in this section is deliberate, occasional work rather than what closing a session does.*** **It is a session boundary in its own right**, and [treating it as an errand is what once overwrote a session's unpushed records](#uncommitted-work-is-not-protected-by-any-of-this).
+
+**Three things are complete syncs, and none of them belongs in a normal push:**
+
+- **Propagating `main` or the organization branch downstream** into the branches that inherit from them, which is what the rest of this section specifies.
+- **Reconciling two working copies of one identity** — [diffed and selected file by file, never mirrored](#no-branch-libraries-in-the-identity-repo--remove-lib-on-sight).
+- **Bringing the team into a new project**, which is [the setup tool](#the-setup-tool) and happens once per repository.
+
+***Do one of these because something specific requires it***, and push the branch library first — *a complete sync moves files under a working copy, and uncommitted work is not protected by any of it.*
+
+### Downstream merges
 
 Changes propagate strictly downstream: `main` to organization to project branches. Never upstream. This is a system requirement, not a convention.
 
@@ -74,7 +101,7 @@ The identity repo uses Git and GitHub, but the sync pattern doesn't depend on th
 bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit message"
 ```
 
-The script detects what changed and routes each category to the right place:
+The script detects what changed and routes each category to the right place — **and what it does is [the standard sync](#the-standard-sync), never a complete one:**
 
 - **Identity AND the branch libraries go to ONE place: the identity branch named after the repo.** `.claude/` and every `library/*/.lib` are mirrored onto it, committed and pushed together. **That branch is the object of record** — nothing else writes to it, so there is nothing to reconcile and no shared branch to clobber. *(Doug, 2026-08-12: "`.claude` and library branches get pushed to the identity branch with the repo name and this is the object of record so no syncing problems.")*
 - **There is no shared-branch step and no merge to `main`.** Both were removed on 2026-08-12: a shared `dna-platform` push is what created the mutual-clobber trap below, and the repo-named branch dissolves it rather than guarding against it. The branch is created on first push if missing; routing is derived from the project directory name and the `library/*/.lib` glob, never hardcoded.
