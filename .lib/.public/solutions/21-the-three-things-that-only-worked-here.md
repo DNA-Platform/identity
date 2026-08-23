@@ -42,7 +42,7 @@ The order manifest is looked up **relative to that string**. Anywhere else the l
 
 ## The fix — the artifact names what it needs, or fails
 
-**A path is derived, never written.** The workspace is found by climbing for the manifest, and **a failure to find it is stated**:
+**A path is derived, never written.** The workspace is found by computing for the manifest, and **a failure to find it is stated**:
 
 ```ts
 if (up === at) {

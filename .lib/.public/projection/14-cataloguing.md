@@ -129,7 +129,7 @@ Each claim was checked against the source. Where a claim is reasoned rather than
 | <a id="u16"></a>**U16** | the records |
 | <a id="c1"></a>**C1** | loose module bindings — a file should be a set of objects related by name, and four files are not |
 | <a id="c3"></a>**C3** | `$IndexCard` declares no level and sets `inline = false` |
-| <a id="c4"></a>**C4** | two members climb to find a book, and [U3](#u3) dissolves both |
+| <a id="c4"></a>**C4** | two members compute to find a book, and [U3](#u3) dissolves both |
 | <a id="c6"></a>**C6** | `$Composible$` → `$Composible` is free |
 | <a id="c12"></a>**C12** | the parse re-derives what `marked`'s lexer already answered |
 
@@ -191,7 +191,7 @@ Seven classes stopped **assigning** `parenthetical` in a constructor and now **d
 
 ## U3, U4, U5, U6 — the model
 
-- **U3.** `$Chapter implements $Reference$<$Book>`, carrying `$in`, written once by the book's bond. **The `this.parent as $Book` cast is gone and so is [`$TableOfContents`'s eight-hop climb](../../package/src/book/TableOfContents.tsx)** — [C4](#c4) closed. A loose chapter now answers **undefined** instead of an evaluation wrapper wearing the type.
+- **U3.** `$Chapter implements $Reference$<$Book>`, carrying `$in`, written once by the book's bond. **The `this.parent as $Book` cast is gone and so is [`$TableOfContents`'s eight-hop compute](../../package/src/book/TableOfContents.tsx)** — [C4](#c4) closed. A loose chapter now answers **undefined** instead of an evaluation wrapper wearing the type.
 - **U4.** `$Synopsis` carries `$for` and reads through it — the `$Author`/`$Subject`/`$Canonical` pattern one grade up.
 - **U5.** A book's own synopsis is the **reflexive** one, and the bond says so: *"a book requires a synopsis OF ITSELF."*
 - **U6.** **`$Book implements $Composition$<$Chapter>, $Catalogue$<$Book>` — `tsc` 0, no widening, no union, `$TableOfContents` untouched.** `follow()` answers the parts that point elsewhere. Doug's sentence, compiling.

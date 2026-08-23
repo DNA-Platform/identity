@@ -55,6 +55,32 @@ The same discipline [brainstorm](../../library/our-skillset/28-ce-brainstorm.md)
 2. **The epiphenomenal decisions.** Every judgement made in flight that no one ruled — the calls the implementer made with the code open. These are invisible by default and they are where the work most often quietly diverges. Surfacing them makes the *decision procedure* auditable, not just the result.
 3. **The demo, filtered first.** Run our own *extremely well-designed* filter **before** Doug sees it, and say honestly where it might fail. An internal gate ahead of the external one.
 4. **Questions cheap to answer.** Short, concrete, one decision each. **If reviewing costs an hour of reading, it will not happen and the step dies.**
+5. ***And nothing the library already answers.*** **A question whose answer is written down is not a question — it is a failure to read**, and it costs twice: once in Doug's time, and again because an answer arrived at by asking has no citation while one found in a chapter does. [See below.](#a-question-the-library-answers-is-not-a-question)
+
+## <a id="a-question-the-library-answers-is-not-a-question"></a>A question the library answers is not a question
+
+*Added 2026-08-23, out of [The Audit](../../../library/.public/.lib/projection/20-the-audit.md), where **four questions were put to Doug whose answers were already in the branch library** — and one of them produced an entry that had to be withdrawn the next day.*
+
+| the question asked | where the answer already stood |
+|---|---|
+| *what should `$Theme.mark` be called?* | ***[the binding sprint](../../../library/.public/.lib/projection/19-the-binding.md), in Doug's own words two days earlier:*** *"white ground, near-black ink, a grey rule, a grey faint, and **one accent for what can be followed**."* **He replied: *"I already answered this in the past. Search recent transcripts or other places things might be written down."*** |
+| *is `$Book.ref` returning the cover wrong?* | ***[chapter zero](../../../library/.public/.lib/projection/00-planning.md):*** *"Its cover is a reference to it — `$Cover implements $Reference$<$Book>` — so **the face of a book is the way you point at it**."* ***An entry was written claiming it was a fault, reported in the room, and withdrawn.*** |
+| *does `$$Book` exist, and what fills it?* | **chapter zero again:** *"`$$` is a placeholder for a name the world never gave… at book level the world named several."* |
+| *should `selectMany` be renamed? is the card's reflection a fault?* | ***[the member audit](../../../library/.public/.lib/projection/04-the-member-audit.md) ruled the first lawful*** — *"the composition is list-like… C# semantics"* — **and chapter zero requires the second**: *"that mapping cannot be a closed shape… a card class that had to know every property in advance is not a catalogue."* |
+
+***The pattern is one thing, not four.*** **Every one was a question about a DECISION**, and a decision that was taken was written down — *that is what this library is for.* **So a question about a decision is first a question about whether the decision was recorded.**
+
+### What it costs, and it is not only time
+
+- ***An answer arrived at by asking carries no citation.*** **An answer found in a chapter carries the chapter**, so the next reader inherits the reasoning rather than the conclusion.
+- ***A wrong premise survives the asking.*** *The `$Book.ref` question did not merely waste a turn — it asserted a fault, and the assertion reached a sprint chapter and the room before the library corrected it.*
+- ***And the person is the most expensive index in the system.*** **Asking them to recall what a `grep` would find is the same fault as [reading a green number without reading what it exercised](../../../library/.public/.lib/solutions/05-the-suite-that-passed-against-a-stale-build.md)** — using the cheapest available signal instead of the one that settles it.
+
+### The practice, and it costs one command
+
+***Before a question goes into a round, grep the branch library for its subject.*** **Not the chapter you think holds it — the whole branch**, because [the answer to `mark` was in a sprint record and the answer to `ref` was in the planning scratchpad](../../../library/.public/.lib/projection/.cover.md), and neither is where a naming question would be looked for.
+
+*And when the search returns nothing, **say so in the question**. "I searched Projection, Solutions and the derivation and found nothing on this" is what makes a question worth a person's attention — and it is [the same discipline a negative result already owes](../../../library/.public/.lib/solutions/24-the-orphan-that-was-not-an-orphan.md): a search that finds nothing is a claim about the search until it is a claim about the library.*
 
 ## The verification it will not accept
 
@@ -70,7 +96,7 @@ The same discipline [brainstorm](../../library/our-skillset/28-ce-brainstorm.md)
 
 ## And it makes work stricter
 
-The demo is a **stop condition**, not a closing flourish: no unit reports done without one. That law already existed — the demo was already a requirement in Sprint 48's chapter and *seen* was already a rung — and it was broken anyway. This step is what makes it enforceable.
+The demo is a **stop condition**, not a closing flourish: no unit reports done without one. That rule already existed — the demo was already a requirement in Sprint 48's chapter and *seen* was already a rung — and it was broken anyway. This step is what makes it enforceable.
 
 ## Its own status
 

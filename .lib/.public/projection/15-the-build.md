@@ -162,7 +162,7 @@ Two of these have known answers worth stating: the author link defaults to **the
 
 ### R7 — The environment, and where it is written
 
-**A subject's book class extends its parent subject's book class**, and registrations resolve through the class chain — which is inheritance, not containment, so nothing climbs and nothing needs mounting. The chapter must say **where the default UI lives**, **how a subject customizes look and feel**, and **what a chapter may ask for**.
+**A subject's book class extends its parent subject's book class**, and registrations resolve through the class chain — which is inheritance, not containment, so nothing computes and nothing needs mounting. The chapter must say **where the default UI lives**, **how a subject customizes look and feel**, and **what a chapter may ask for**.
 
 *An author writes a chemical and may do everything a chemical can do. The book supplies the environment; the environment is not a restriction on the author.*
 
@@ -1218,7 +1218,7 @@ EMIT      18 carried · 6 generated · 1 removed
 | **`resolve.ts`** *(new)* | a description becomes a library — names become paths, silence is filled, entries are placed and ordered |
 | **`emit.ts`** *(new)* | 18 files carried, covers rewritten by ts-morph node positions spliced back to front, 6 book modules composed, and **anything the run did not write is removed** |
 | **`index.ts`** *(new)* | the one command, one line per phase |
-| **`where.ts`** *(new)* | the workspace found by climbing — [R31](#r31--the-compiler-runs-anywhere-and-a-missing-manifest-is-a-failure) |
+| **`where.ts`** *(new)* | the workspace found by computing — [R31](#r31--the-compiler-runs-anywhere-and-a-missing-manifest-is-a-failure) |
 | **`verify-build.ts`** *(new)* | 24 checks over resolving and emitting, **watched red three ways** |
 | `library.ts` | the seam gains `declares`, `speaks`, and the resolved shape |
 | `refer.ts` | reads **every** content file for what it exports, and reads a reference written as a **NAME** as well as one written as an import |

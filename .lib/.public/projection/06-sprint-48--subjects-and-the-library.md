@@ -258,7 +258,7 @@ Three things follow, and each is load-bearing.
 
 *Doug, 2026-08-06, correcting a traversal I kept re-introducing:* **"Everything is a book. Everything could be on a shelf. What do you think is walking? We are talking about the validation of a `$Subject`. We know that all books belong to a `$Library`, and that that is a computed property from the subject that has to have certain properties."**
 
-**This supersedes the `libraryOf(book)` pseudocode in [R49](#the-mechanism-sketched--r49).** There is no climb, no `seen` set, no terminus reached by stepping. A book's library is **computed from its subject**, and the subject is validated **where it stands**.
+**This supersedes the `libraryOf(book)` pseudocode in [R49](#the-mechanism-sketched--r49).** There is no compute, no `seen` set, no terminus reached by stepping. A book's library is **computed from its subject**, and the subject is validated **where it stands**.
 
 **Why it can be in place: the cards.** *"The whole point of library cards is that enough metadata floats around to do in-place validation."*
 
@@ -383,7 +383,7 @@ libraryOf(book):
 ## Key flows
 
 - **F1 — A book declares itself.** An author writes a cover; the cover carries the book's title, its subject reference, its author reference, and its types as parenthetical writing. The book reads them at its bond and `valid()` judges.
-- **F2 — A type resolves.** A written type name on a cover reaches its type by climbing the subjects the book declares, recursively, up to the library. Every type found must hold.
+- **F2 — A type resolves.** A written type name on a cover reaches its type by computing the subjects the book declares, recursively, up to the library. Every type found must hold.
 - **F3 — The loop closes.** The library's subject reference points at its own cover. Following it arrives back where it started; validation confirms the library catalogues itself and its canonical authors itself.
 - **F4 — A validation failure is read.** A book fails a type; the bond reports it invalid; the exception carries which type failed and why; the page renders it.
 - **F5 — A subject specifies.** A subject's reference manual states what books in that subject must be. A book declaring membership is judged by it.
@@ -451,7 +451,7 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 
 - **U6 — `$Type`.** A type is writing, declared on the cover as parenthetical writing, read by the book when it binds, and it **references a part of a book** — the part from which its name comes. *Files: new under `src/`, plus `src/writing/Writing.tsx`, `src/book/Cover.tsx`, `src/book/Book.tsx`, `src/index.ts`. Depends on: U3. Realizes: R13, R16.*
 - **U7 — Type composition.** A type may derive from several types; every applicable type must hold; changing what a type demands is done by subclassing the type. *Files: the `$Type` unit's files. Depends on: U6. Realizes: R14, R15.*
-- **U8 — Resolution and scope.** A type name reaches its type through the part it references; the search is scoped to the subjects a book declares, climbing recursively to the library, and a catalogue's specification contributes constraints to the books it catalogues. *Files: `src/book/Subject.tsx`, `src/book/Book.tsx`, the `$Type` unit's files. Depends on: U6, U9, U12. Realizes: R6, R17, R18, R20.*
+- **U8 — Resolution and scope.** A type name reaches its type through the part it references; the search is scoped to the subjects a book declares, computing recursively to the library, and a catalogue's specification contributes constraints to the books it catalogues. *Files: `src/book/Subject.tsx`, `src/book/Book.tsx`, the `$Type` unit's files. Depends on: U6, U9, U12. Realizes: R6, R17, R18, R20.*
 
 ### The referential family — `library/.public/package`
 

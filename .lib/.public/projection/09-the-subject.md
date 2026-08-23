@@ -43,7 +43,7 @@
 ## Rulings carried, verbatim — the most expensive thing to lose
 
 - **[R39](06-sprint-48--subjects-and-the-library.md#the-reference-checks-type-design-doug-2026-08-06--supersedes-r4):** "`$Subject` is a book reference that validates its referent wears the catalogue type." A subject cannot point at a book that is not a catalogue. The check lives in the reference, not in a class hierarchy.
-- **[R63](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place):** "The whole point of library cards is that enough metadata floats around to do in-place validation." No walk, no climb, no `seen` set.
+- **[R63](06-sprint-48--subjects-and-the-library.md#r63-there-is-no-walk--library-is-computed-and-validation-happens-in-place):** "The whole point of library cards is that enough metadata floats around to do in-place validation." No walk, no compute, no `seen` set.
 - **[R47](06-sprint-48--subjects-and-the-library.md#what-a-catalogue-specifies-and-how-validation-runs-doug-2026-08-06):** `$Canonical` — a book reference a subject declares. The canonical must actually **have that book in its subject**, and **there can be only one**.
 - **[R46](06-sprint-48--subjects-and-the-library.md#what-a-catalogue-specifies-and-how-validation-runs-doug-2026-08-06):** a catalogue may have unwritten chapters — it **reaches to see what books have it as their subject**, and those appear automatically.
 - **[R61](06-sprint-48--subjects-and-the-library.md#r61-a-library-is-the-universe--there-is-one-and-library-validation-is-that-they-all-agree):** a library is the universe; the point of subject validation is that **everything in the library catalogue shares one single book that is the library** — held for Sprint Four, but the subject is what it computes from.
@@ -321,7 +321,7 @@ The blocked name (opened the catalogue-is-not-writing ground, recorded); the car
 
 1. **The route twin** — module wiring set in a constructor spoke to the discarded dev-mode twin; registering in the view speaks to the rendered one.
 2. **Prop-binding over external state** — passing a `travel` prop through the membrane to an already-bound singleton **emptied its externally-set `$cards`**; props re-run binding over state the bond did not own. Framework-level observation, review-worthy.
-3. **Render re-parenting breaks one-hop `book`** — rendering the contents as an element re-parents it to whatever rendered it, so `book = parent` stopped being the book (`this.book.at is not a function`). The canonical's guarded climb, applied as the contents' own `book` getter, fixes it — and this is the likely shape of **Doug's reported Team error** (plus HMR-stale singletons on the long-lived server, which made it unreproducible on fresh serves).
+3. **Render re-parenting breaks one-hop `book`** — rendering the contents as an element re-parents it to whatever rendered it, so `book = parent` stopped being the book (`this.book.at is not a function`). The canonical's guarded compute, applied as the contents' own `book` getter, fixes it — and this is the likely shape of **Doug's reported Team error** (plus HMR-stale singletons on the long-lived server, which made it unreproducible on fresh serves).
 
 **Verified:** lib **154/154**, lib `tsc` **0**, app `tsc` **0**, full drive with **zero page errors** — spines/marks, the flip, the drawer, the team masthead and numeral contents, both returns, byline, algebra's route. Seen in screenshots (scratchpad).
 
@@ -351,7 +351,7 @@ The blocked name (opened the catalogue-is-not-writing ground, recorded); the car
 
 - [The contents that failed before adoption](../solutions/07-the-contents-that-failed-before-adoption.md) — filed during the work session.
 - [The field that buried a method](../solutions/08-the-field-that-buried-a-method.md) — a `$Book` subclass's state field shadowed `$Book.at()`; a subclass lives in its book's name space.
-- [The parent that changed on screen](../solutions/09-the-parent-that-changed-on-screen.md) — one hop of `parent` is a bind-time fact; derived members climb, and the climb now ships in the model.
+- [The parent that changed on screen](../solutions/09-the-parent-that-changed-on-screen.md) — one hop of `parent` is a bind-time fact; derived members compute, and the computation now ships in the model.
 - [The prop that emptied the shelf](../solutions/10-the-prop-that-emptied-the-shelf.md) — props belong to construction; a singleton that accumulates state renders bare. The in-framework path is flagged, not asserted.
 - [The constructor that captured the wrong instance](../solutions/11-the-constructor-that-captured-the-wrong-instance.md) — a constructor knows it ran, not that it was kept; register in `view()`.
 - **Distributed to [On Sync](../../../../.claude/library/..environmentalism/06-on-sync.md#uncommitted-work-is-not-protected-by-any-of-this)** (Claude's chapter, edited not duplicated): treat every reconcile as a session boundary — push or copy the branch library aside before pull/resolve. The environmentalism cover's stale On Sync paragraph was brought to the built truth in the same act.

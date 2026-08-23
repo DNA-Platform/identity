@@ -138,7 +138,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
   **What it holds: references, not the parts.** The parts live in the section, which is their only home. The figure carries `section.at(i)` — reading one forward lands on the very part the prose renders, and that shared identity is what makes the figure a **corroborating sibling** under [the second law of views](../designing-inexplicable-phenomena/04-ways-of-reading.md#two-laws-for-every-view): acting on one lighting the other is a *check*, not a claim.
 
-  **What acting changes: one `$Highlight`, held by the section.** No second highlighting is invented. **The section is the common renderer of both surfaces** and hands the highlight *down* to its prose and to its figure — the prose never learns from the figure, and nothing climbs `parent` at render, which [would tell the truth at binding and lie on screen](../solutions/09-the-parent-that-changed-on-screen.md). It is the shape `contents.tsx` already uses, setting `this.shelf.$reading` on an explicitly-held reference.
+  **What acting changes: one `$Highlight`, held by the section.** No second highlighting is invented. **The section is the common renderer of both surfaces** and hands the highlight *down* to its prose and to its figure — the prose never learns from the figure, and nothing computes `parent` at render, which [would tell the truth at binding and lie on screen](../solutions/09-the-parent-that-changed-on-screen.md). It is the shape `contents.tsx` already uses, setting `this.shelf.$reading` on an explicitly-held reference.
 
   **And it retires a hack.** The manifold's DOM `light(id)` + `.lit` + `setTimeout` **is** the second highlighting this replaces.
 
@@ -423,7 +423,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 - **U12 — The twin: one text, two notations.** *Mechanism: the same text mounted twice — once as a regular hand-written section carrying **written** inserts, once as a markdown section carrying the **found** equivalents — with both parts lists beside them. Files: `app/src/sections/`. Depends on: U6, U7, U9, U10. Realizes: R8, and AE5 and AE9 visibly. **Visible end: two parts lists that agree except where a pairing occurred** — the sprint's thesis in one screen, and the thing a hand-authored page cannot fake.*
 
-- **U13 — The figure that responds.** *Mechanism: the figure holds `section.at(i)` references; clicking one sets the section's held `$Bookmark`; the section — the common renderer of both surfaces — hands it down, so nothing climbs `parent` at render. Files: the mini framework and `app/src/sections/`. Depends on: U6, U12. Realizes: R9, AE18. **Visible end:** clicking a part lights it in the prose, with nothing announcing the figure was clickable — and **the manifold's DOM `light(id)`/`.lit`/`setTimeout` deleted**, which is the second highlighting this replaces.*
+- **U13 — The figure that responds.** *Mechanism: the figure holds `section.at(i)` references; clicking one sets the section's held `$Bookmark`; the section — the common renderer of both surfaces — hands it down, so nothing computes `parent` at render. Files: the mini framework and `app/src/sections/`. Depends on: U6, U12. Realizes: R9, AE18. **Visible end:** clicking a part lights it in the prose, with nothing announcing the figure was clickable — and **the manifold's DOM `light(id)`/`.lit`/`setTimeout` deleted**, which is the second highlighting this replaces.*
   **This unit breaks eleven driver checks** that assert `classList.contains('lit')`. That is U15's, and it is named here so it is not a surprise.
 
 - **U14 — The code drawer, in the page's own dress.** *Mechanism: the shipped pattern — `?raw` import of the real file, a name-to-source registry, prism with per-line numbers, a tabbed drawer — **repeated** for this demo rather than reused from the manifold, per the isolation law. The registry grows to the mini framework's own classes. Files: `app/src/sections/`. Depends on: U6, U10. Realizes: R11, and Doug's *"ways to view key pieces of code."***
@@ -678,7 +678,7 @@ the plate is a part of the section, at its written position      PASS
 **Two defects on the way, both the same shape as ones already filed here.**
 
 1. **`Reading` rebuilt the model every render**, so the section a reader acted on was never the section that drew. **Two populations of one object** — [filed twice already](../solutions/13-the-chapter-that-wrote-its-sections-twice.md) — arriving a level up. Fixed by keying the sections to the source.
-2. **State on the section did not re-render**, because the drawing component is a plain function and its reads are not tracked. **The chemical whose view runs is the sheet**, so what is attended lives there and is handed **down** to both surfaces. Neither climbs.
+2. **State on the section did not re-render**, because the drawing component is a plain function and its reads are not tracked. **The chemical whose view runs is the sheet**, so what is attended lives there and is handed **down** to both surfaces. Neither computes.
 
 **U14.** The page's drawer is Gabby's, in the idiom the page already wears, showing the **mini framework's real source** by `?raw`. The inline copy in `the-page.tsx` is gone.
 

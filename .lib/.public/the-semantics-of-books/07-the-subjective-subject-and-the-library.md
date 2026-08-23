@@ -4,7 +4,7 @@
 
 ---
 
-[The book](04-the-book-and-subjectivity.md) is the level of subjectivity, where subject and author become expressible. This chapter climbs to the top of that level: the special subjects — biography, autobiography — and the library itself, which turns out to be the one book that files itself. Everything here is said **only in books**; there is no author standing outside them.
+[The book](04-the-book-and-subjectivity.md) is the level of subjectivity, where subject and author become expressible. This chapter computes to the top of that level: the special subjects — biography, autobiography — and the library itself, which turns out to be the one book that files itself. Everything here is said **only in books**; there is no author standing outside them.
 
 ## The subjective subject
 

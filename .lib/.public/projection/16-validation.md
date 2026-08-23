@@ -79,7 +79,7 @@
 
 - **F9 — Validating.** The compiler emits, opens every book in a runtime it owns, **hands every card its book**, and asks validity at every level. One line per phase, and the fourth line is the verdict.
 - **F10 — An invalid link.** A cover names an author that does not author itself. Validation says the book is **invalid**, naming the file, the link, and what would make it valid.
-- **F11 — Belonging.** A book is asked which library it is in, and the answer climbs subject by subject to the one that is its own subject.
+- **F11 — Belonging.** A book is asked which library it is in, and the answer computes subject by subject to the one that is its own subject.
 
 ## The requirements
 
@@ -121,7 +121,7 @@
 
 *Doug: **"The subject should also have a library reference that is itself if self-validating otherwise its parent's library."***
 
-**A book whose subject reads home IS the library.** Every other book's library is **its subject's library**, which makes the answer a climb rather than a stored fact.
+**A book whose subject reads home IS the library.** Every other book's library is **its subject's library**, which makes the answer a computation rather than a stored fact.
 
 ***And the rule already exists one grade below where it belongs.*** The generated [`cards.tsx`](../../app/src/library/cards.tsx) declares it today:
 
@@ -246,7 +246,7 @@ get library(): $Card | undefined {
 
 **1 — A LINK CANNOT REACH THE BOOK IT STANDS ON.** `$in` is declared on [`$Chapter`](../../package/src/book/Chapter.tsx) alone; writing below chapter grade has no upward link at all. **Two of the three rules are answerable from the link by itself** — *does the book I point at author itself; does it catalogue* — **and the canonical rule is not**, because *a book its own subject holds* is a claim about the owner as much as the target.
 
-**2 — `$Card.library` HAS NO CONSUMERS.** Measured across the application: [`app.tsx`](../../app/src/app.tsx) builds its trail by climbing `card.subject`, and [`bookmark.tsx`](../../app/src/bookmark.tsx) does the same. **Nothing reads `library`.** ***This amends [R39](#r39--a-subject-carries-a-library-reference), which said the card would inherit the rule: the card does not need it, so the generated rule is DELETED rather than inherited.*** *Raised rather than built around, because [a guardrail that turns out wrong is raised](../../../../.claude/library/teamspeak/03-discussion.md).*
+**2 — `$Card.library` HAS NO CONSUMERS.** Measured across the application: [`app.tsx`](../../app/src/app.tsx) builds its trail by computing `card.subject`, and [`bookmark.tsx`](../../app/src/bookmark.tsx) does the same. **Nothing reads `library`.** ***This amends [R39](#r39--a-subject-carries-a-library-reference), which said the card would inherit the rule: the card does not need it, so the generated rule is DELETED rather than inherited.*** *Raised rather than built around, because [a guardrail that turns out wrong is raised](../../../../.claude/library/teamspeak/03-discussion.md).*
 
 **3 — `$Book` ALREADY WALKS EVERY LEVEL.** It declares `sentences`, `words` and `letters` as getters flattening down from paragraphs. **[R40](#r40--validity-is-asked-at-every-level) is four more counts, not new machinery** — which is why it is folded into the phase's unit rather than being one of its own.
 
@@ -256,7 +256,7 @@ get library(): $Card | undefined {
 
 **D19 — A kind rule applies WHEN THERE IS A CARD.** A link carrying only text names somebody without pointing at them, and [that is already valid](../../package/src/book/Author.tsx) — this sprint does not change it. **What the rules judge is where a card points.** *Otherwise the first thing validation would do is declare most of the corpus invalid for a reason nobody asked about.*
 
-**D20 — `library` lands on `$Book`.** *Chosen over `$IndexCard`, which has no subject of its own and whose own comment says which fields a library's cards carry is that library's business. A book has a subject; the climb belongs where the subject is.*
+**D20 — `library` lands on `$Book`.** *Chosen over `$IndexCard`, which has no subject of its own and whose own comment says which fields a library's cards carry is that library's business. A book has a subject; the computation belongs where the subject is.*
 
 **D21 — The runtime is a new module in the compiler and the application's copy is deleted.** *Not moved and left dual-homed: [two homes drift](15-the-build.md#r12--one-home-and-one-pointer), and the whole point of R42 is that the compiler owns the phase.*
 
@@ -415,7 +415,7 @@ exit 1
 |---|---|
 | **U35** | `$Canonical.valid()` — the rule its two siblings already carried |
 | **U36** | the three link-kind rules, on `$Book.valid()`, asked only where a card points |
-| **U37** | `$Book.library` — the climb — and the duplicate deleted from generated code |
+| **U37** | `$Book.library` — the computation — and the duplicate deleted from generated code |
 | **U38** | `build/validate.ts`, the fourth phase, **in its own process** |
 | **U40** | the word swept from the compiler — **0 occurrences**, counted |
 
@@ -438,7 +438,7 @@ exit 1
 ## What the measurements said that the plan did not
 
 - **A link cannot reach the book it stands on.** `$in` is on `$Chapter` alone, so all three rules went onto `$Book.valid()` as local conditions — **no new named member on the framework**, which also keeps clear of the naming law.
-- **`$Card.library` had no consumers.** [`app.tsx`](../../app/src/app.tsx) and [`bookmark.tsx`](../../app/src/bookmark.tsx) climb `card.subject`. **Deleted rather than inherited**, amending R39.
+- **`$Card.library` had no consumers.** [`app.tsx`](../../app/src/app.tsx) and [`bookmark.tsx`](../../app/src/bookmark.tsx) compute `card.subject`. **Deleted rather than inherited**, amending R39.
 - **The framework source never contained the word.** R41 said it stood in the framework's error strings; that was about how they *read*. **Only the compiler had it — 16 occurrences, now 0.**
 - **The demo exercises ALL THREE rules live on five books and passes.** *An earlier reading of this said only the subject rule ran; it was measured with the demo's catalogue imported and its books not, which is a probe reporting on itself.* **The Team authors itself, every subject reaches The Shelf, and the shelf's canonical belongs to it.**
 
@@ -569,7 +569,7 @@ $Html$    ← " and more prose."      RAW PROSE, WRAPPED IN A CHEMICAL
 
 ## → NEXT: U39, U41, U42 — the corpus, the suite, the demo's account
 
-**The machine is closed.** The compiler reads, resolves, emits and checks in one command, and says a book is invalid **with its file** when it does not stand. The link rules and the library climb are **framework members with promises**, and the compiler holds no copy of any of them.
+**The machine is closed.** The compiler reads, resolves, emits and checks in one command, and says a book is invalid **with its file** when it does not stand. The link rules and the library compute are **framework members with promises**, and the compiler holds no copy of any of them.
 
 **And the application runs from compiled output** — locally at `5299`, and as a built Pages artifact whose deep links were proven against a Pages-style server. *Deploy stays off by ruling; the teaser stands.*
 
