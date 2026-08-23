@@ -17,8 +17,10 @@
 |---|---|---|
 | ***`lib`*** — [`package/src`](../../package/src/) | **THE SUBJECT** | *the framework built on the formalism; Doug's letter is about this* |
 | **the compiler** — [`build/`](../../build/) | in scope | *named in the letter: "take notes on the lib code and the .public compiler code especially"* |
-| **the demonstration** — [`package/app/`](../../package/app/) | in scope | *"Now look at the demo. Does the demo work anymore?"* |
-| **the application** — [`app/`](../../app/) | in scope | *the framework's first consumer, and every later one is written in `lib` too* |
+| **the demonstration** — [`package/app/`](../../package/app/) | ***READ, then NARROWED OUT*** | *"Now look at the demo. Does the demo work anymore?"* — **and on 2026-08-23, *"remove ones that aren't about the framework and compiler."*** |
+| **the application** — [`app/`](../../app/) | ***READ, then NARROWED OUT*** | *the framework's first consumer* — **narrowed out in the same breath** |
+
+> ***THE SCOPE NARROWED ONCE, on 2026-08-23, and this row records it rather than hiding it.*** **Both programs were read and audited; nine of their entries stand with an OUT OF SCOPE marker and their identifiers kept** — `O2` `O3` `O4` `O5` `O9` `O12` `I18` `I19` `I20`. *They travel to whichever sprint takes those programs, and [the ledger says so in one place](06-the-cleaning.md#the-rest).* **A finding does not stop being true when the scope moves; it stops being this sprint's work.**
 
 ### What is NOT
 

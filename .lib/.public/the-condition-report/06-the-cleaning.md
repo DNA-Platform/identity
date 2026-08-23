@@ -144,80 +144,15 @@ grep -ho "^> \*\{2,3\}[A-Z ]*\*\{2,3\}" 0[2-5]*.md | sed 's/^> //;s/\*//g' | sor
 [O7](02-organization.md#o7) — **dissolves in the dev-library move.**
 **Ten entries [out of scope](01-how-to-read-this.md#the-scope)** — the application, the demonstration, the Lab.
 
-## <a id="dispositions"></a>The dispositions — every entry decided, and the count is measured rather than kept
+## <a id="every-entry"></a>EVERY ENTRY, AND WHERE IT WENT — the coverage ledger
 
-***Every entry carries its disposition inside the entry itself***, so the verdict lives beside the thing it judges. **The five words are a conservator's own** — what is marked against each item before treatment is planned. *Proxies, like the book's name.*
+***This is the index beneath [the problems](#actionable), not a second list of them.*** *A problem says what to fix; this says **where each of the ninety-three entries ended up**, so nothing can quietly fall out of the audit.* **[What is held rather than fixed is below.](#the-rest)**
 
-| | means |
-|---|---|
-| **TREAT** | **fixed in this cleaning**, at the numbered step |
-| **MONITOR** | ***real, and deliberately not now*** — each says what it waits for |
-| **LEAVE** | ***judged not a fault***, with the reason — most often that the derivation's own vocabulary outranks the objection |
-| ***REFER*** | **a ruling, and it is Doug's** |
-| ***DESIGN OWED*** | **no mechanism yet** — [no files, no scenarios](#owed) |
-| ***SPLIT*** | **two halves of different sizes**, taken separately |
+*Doug, 2026-08-23: **"91 entries in the audit is a lot… remove ones that aren't about the framework and compiler… Try to pare this down to the actionable things so we can address them next sprint."*** **Pared. The scope is `lib` and the compiler, and the entries about the application, the demonstration and the Lab carry an OUT OF SCOPE marker with their identifiers kept** — ***nine of them, and the count is read off the entries rather than kept beside them:*** `O2` · `O3` · `O4` · `O5` · `O9` · `O12` · `I18` · `I19` · `I20`.
 
-***THE COUNT IS NOT WRITTEN HERE, and that is deliberate.*** **A tally kept by hand beside a register it describes is [two statements of one fact, which is the fault this book files three times](../the-condition-report/05-implementation.md#i6).** *It drifted twice in one session before this paragraph replaced it.*
+### A · IN THE SPRINT — [`Semantics, Then Drawing`](../projection/21-semantics-then-drawing.md)
 
-**To count, read the entries:**
-
-```bash
-grep -ho "^> \*\{2,3\}[A-Z ]*\*\{2,3\}" 0[2-5]*.md | sed 's/^> //;s/\*//g' | sort | uniq -c | sort -rn
-```
-
-*At the time of writing that answers roughly **fifty to treat**, with single figures in each of the other five — and the exact numbers are whatever the command says today.*
-
-### The LEAVEs are the ones worth checking, because a decline is the easiest verdict to get wrong
-
-| | why it is not a fault |
-|---|---|
-| [N5](03-names.md#n5) `set` | Doug's own drawing verb; **striking [`set0`](03-names.md#n8) dissolves the collision** |
-| [N16](03-names.md#n16) `$role` | ***[the settled account uses the word](../the-semantics-of-books/15-the-levels-of-writing.md#used-and-mentioned)*** |
-| [S14](04-semantics.md#s14) the contents excluding the cover | **the theory says MAY, not must** — and a reader does not want a cover listed in its own contents |
-| [I10](05-implementation.md#i10) two numbering rules | ***both correct — LaTeX does exactly this.*** The missing half was that nothing said so, and now something does |
-| [O9](02-organization.md#o9) the `$Chemistry` Lab | [out of scope](01-how-to-read-this.md#the-scope) |
-
-### And the entries that were STRUCK, because a register padded with observations is a register nobody finishes
-
-*Identifiers are never reused, so the gaps stay and each stub says why.*
-
-| | struck because |
-|---|---|
-| [O10](02-organization.md#o10) · [O11](02-organization.md#o11) | ***they audited `.claude/`, which is not this project*** — the mistake that produced [The Scope](01-how-to-read-this.md#the-scope) |
-| [C3](07-the-three-codebases.md#the-two-that-were-struck) | *Doug: "I don't see a problem."* **A convention worth writing down is not a fault** |
-| [C4](07-the-three-codebases.md#the-two-that-were-struck) | **a fact about how to LOOK, not about the code** — [moved to the instruments](01-how-to-read-this.md#the-instruments) |
-
-***The discipline that follows is worth more than the four entries:*** **an entry earns its place by naming something that should be DIFFERENT IN THE CODE.** *A true observation about the code is a chapter somewhere else.*
-
-### And the four names struck on my judgement alone
-
-[`$Composible$`](03-names.md#n7) · [`set0`](03-names.md#n8) · [`ref`](03-names.md#n17) · [`$i`](03-names.md#n18) — ***flagged, not assumed.***
-
-## <a id="the-words-owed"></a>The words owed — nine, and none is mine to take
-
-*[Naming is Doug's.](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md) **Each row is a rename I intend to make and a word I do not have.** Where a proxy exists it is named and stands for correction; where none does, that is said rather than filled.*
-
-| what needs a word | my proxy | where it came from |
-|---|---|---|
-| **what a class asks the theme for its type** | ***`setting`*** | *a setting is how type is set* — **and [the theme sprint already raised it](../projection/18-the-theme.md#names-owed-plan)** |
-| **the collapsed word-grade reference to a book** — [S2](04-semantics.md#s2) | ***`$Name`*** | ***incumbent twice*** — [the derivation's own word](../the-semantics-of-books/05-the-evolutionary-root-symbol-and-literal.md) for *a symbol carrying one target*, **and a class this branch already had** |
-| **this book** | ***The Condition Report*** | the conservator's term; **Doug's incumbent word is *wart*** |
-| **what a compiled file IS** — cover · synopsis · chapter — [N4](03-names.md#n4) | ***none*** | *`Kind` is taken by `subject \| book`, so there are two kinds at two levels and one word* |
-| **a card's fields** — [N10](03-names.md#n10) | ***none*** | *`properties` is not a book word and `entries` is taken by `$Book`* |
-| **the mark in prose that cites a note** — [N15](03-names.md#n15) | ***none*** | *`$Denote` is a logic word* |
-| **the library after resolving** — [N24](03-names.md#n24) | ***none*** | *a tense standing for a noun* |
-| **where an answer came from** — [N26](03-names.md#n26) | ***none*** | *`Source` collides with a source FILE and with source CODE in the same folder* |
-| **a book plus its card fields** — [N25](03-names.md#n25) | ***`Cards`*** | ***the file's own comment already calls them that*** |
-
-*Two proxies already standing from earlier sprints are unchanged and still owed:* **`entries`** *on `$Book`, and* **how parts lay out** *· **whether unread matter is read** on `$Theme`.*
-
-## <a id="actionable"></a>WHAT IS ACTIONABLE — the list next sprint works from
-
-*Doug, 2026-08-23: **"91 entries in the audit is a lot… remove ones that aren't about the framework and compiler… Try to pare this down to the actionable things so we can address them next sprint."*** **Pared. The scope is `lib` and the compiler; ten entries about the application, the demonstration and the Lab are **marked out of scope** with their identifiers kept.**
-
-### A · DO IT — no ruling needed, no word owed
-
-*Every one is either mechanical or already ruled. **This is the sprint.***
+*Every one is either mechanical or already ruled, and each appears there as a numbered requirement.*
 
 | | |
 |---|---|
@@ -270,6 +205,25 @@ grep -ho "^> \*\{2,3\}[A-Z ]*\*\{2,3\}" 0[2-5]*.md | sed 's/^> //;s/\*//g' | sor
 ### And what is still unaudited
 
 ***The compiler's CODE.*** *This report judged its folder and found one bug. **Eighteen modules and 1,930 lines have not been read as code the way `lib` was** — no member pass, no interface pass, no naming pass.*
+
+## <a id="the-rest"></a>THE REST OF THE AUDIT — what is NOT being cleaned, and who holds each piece
+
+***Doug, 2026-08-23: "handoff the rest of the audit too because we have to keep track."*** **Everything the sprint does not take is here, with the reason and the holder.** *An entry that is not being fixed is not an entry that stopped mattering — it is an entry with a different owner or a different date, and the identifier is what carries it there.*
+
+| what | which | why it is not in the sprint | who holds it |
+|---|---|---|---|
+| ***the application and the demonstration*** | **`O2` `O3` `O4` `O5` `O12` `I18` `I19` `I20`** — eight | ***scoped out by Doug***: *"remove ones that aren't about the framework and compiler."* **Every finding stands** | **whichever sprint takes those programs.** *Doug's own route: the demonstration becomes a dev library and the app's infrastructure lifts into the package* |
+| ***the `$Chemistry` Lab*** | **`O9`** — one | *`$Chemistry`'s demonstration, not `lib`'s* | **the `$Chemistry` branch** |
+| ***`$Chemistry`'s reflection road*** | **`C5`**, and **`C6`** struck under it | ***RULED: ignore.*** *Unexported, unintegrated, unreachable from outside the package — [measured, not assumed](07-the-three-codebases.md#c5)* | **Doug.** *It is his reflection system, a third wired* |
+| ***the `$Chemistry` rename*** | **`C7`** — `Chemistry` becomes `$Chemistry` | ***taken, and it is not `lib`.*** **His condition is the whole of it: `$Chemistry`'s `dist` is rebuilt, then `lib`'s against it**, or [the repository runs two copies that disagree](02-organization.md#o7) | ***its own act, with the rebuild chain*** — [tracked as a requirement](../projection/21-semantics-then-drawing.md#r130) so it is not lost |
+| ***design owed*** | **`S1`/`I11` · `S10`/`S4` · themes narrowing** — [three](#owed), and [four things we cannot yet implement](#what-we-cannot-do) | ***no mechanism.*** [A unit with no mechanism is not a unit](../../../../.claude/library/our-skillset/29-ce-plan.md#a-unit-with-no-mechanism-is-not-a-unit--added-out-of-sprint-48s-failure) | **a session of thinking, not a task** |
+| ***the words owed*** | **fourteen names** — [the register](#the-words-owed) | ***the rename is decided; the WORD is not, and naming is Doug's*** | **one conversation, not fourteen** — [and it gates a requirement](../projection/21-semantics-then-drawing.md#r128) |
+| **not faults** | `N5` `N16` `N28` `S14` `I9` `I10` `I13` — **LEAVE**, each with its reason | *most often the derivation's own vocabulary outranks the objection* | **closed** |
+| **owed prose, not code** | `N9` `I12` — **MONITOR** | *the harvest stays and owes a chapter* | **the branch library** |
+| ***the compiler's code*** | **1,930 lines, 18 modules** | ***never read as code the way `lib` was*** — no member pass, no interface pass, no naming pass | **[in the sprint](../projection/21-semantics-then-drawing.md#r124), and it is reading before it is building** |
+| ***a struck word in the team library*** | **93 remaining uses of *law*** | *this branch is clear; the identity repository is not* | **a tending pass in `.claude/`, which is [a different repository](01-how-to-read-this.md#the-scope)** |
+
+***And one measurement is owed rather than fixed:*** **[C1](07-the-three-codebases.md#c1) — the demonstrations are 1.9x everything they demonstrate, and the same 2.7x ratio appears twice.** *The cleaning does not shrink them; it makes the framework's drawing reachable, which is what would.* **Re-measure the ratio after, because if it does not move, the drawing did not actually become reachable.**
 
 ## <a id="what-new-means"></a>What "the new stuff" means, and it is a date
 

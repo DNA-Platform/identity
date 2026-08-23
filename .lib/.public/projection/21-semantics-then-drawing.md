@@ -91,6 +91,30 @@
 | <a id="r126"></a>**R126** | **Nothing tracks how an answer was arrived at merely in order to print it** — five of `Source`'s six uses are printing; making emitting idempotent deletes it | [P21](../the-condition-report/06-the-cleaning.md#actionable) |
 | <a id="r127"></a>**R127** | **There is one seam type per stage, and a type called `Named` is called what its own file calls it** — a card. Doug asked for alternate designs here rather than a rename | [P22](../the-condition-report/06-the-cleaning.md#actionable) |
 
+## 5 · Three the problems list did not carry, found by reading every entry against it
+
+***The [coverage ledger](../the-condition-report/06-the-cleaning.md#every-entry) was built by walking all ninety-three entries against the twenty-three problems.*** **Three actionable things had no problem to sit in**, which is the reason a ledger exists at all.
+
+| | in plain words | the problem |
+|---|---|---|
+| <a id="r128"></a>**R128** | ***The struck and stalled names are taken*** — seventeen entries are marked for this step and only nine appear among the problems. **`$first`, `$in`, `url`, `contentish`, `properties`, `written`/`printed`, the theme's three structural stand-ins and the two dead ones are the rest.** ***GATED: fourteen of them are [waiting on a word that is Doug's to give](../the-condition-report/06-the-cleaning.md#the-words-owed), and that is one conversation rather than fourteen*** | [the ledger, B](../the-condition-report/06-the-cleaning.md#every-entry) |
+| <a id="r129"></a>**R129** | **Each of the three programs states what its own unit of code is, and why** — a class in `lib`, a concern in `$Chemistry`, a phase in the compiler. *All three are defensible; **what is not defensible is that nothing says so.*** **One page, not a refactor** | [C2](../the-condition-report/07-the-three-codebases.md#c2) |
+| <a id="r130"></a>**R130** | ***`Chemistry` becomes `$Chemistry`*** — the one class in that package wearing no `$`, and `$` itself is an instance of it. **NOT a one-character act:** `$Chemistry`'s `dist` is rebuilt, then `lib`'s against it, or the repository runs two copies that disagree. ***This is outside `lib` and is its own act*** | [C7](../the-condition-report/07-the-three-codebases.md#c7) |
+
+## Who takes what — proposed, because territory does not reach these paths
+
+***[Territory](../../../../.claude/library/..teamsmanship/05-territory.md) assigns the application and the demonstration and stops there.*** **Neither `package/src` — the framework — nor `build/` — the compiler — has a named owner**, so Arthur holds them as the `**` fallback. *That is a gap in the territory record and not a gap in the work; it is flagged here rather than fixed, because the record lives in another repository.*
+
+| group | proposed | why |
+|---|---|---|
+| **hygiene** · R105–R107 | **Arthur** | *structure and dead weight; nothing here is anyone's perspective* |
+| ***semantics*** · R108–R114 | ***Cathy***, with **Libby** on the book words | *the framework's own semantics, and the words are library words* |
+| **drawing** · R115–R118 | **Phillip**, with **Gabby** | *the visible layer, and the look-as-component shape is a design decision as much as a code one* |
+| **names** · R119–R123, R128 | **Libby**, ruled by **Doug** | ***the words are his***, and a librarian holds the register until he gives them |
+| **the compiler** · R124–R127 | **Arthur**, with **Adam** | *`build/` is infrastructure, and the reading comes first* |
+| **the rebuild chain** · R130 | ***Adam*** | *a dependency rebuild across two packages is exactly his question* |
+| ***every requirement's promise*** | ***Queenie*** | **[a test is a promise](../../../../.claude/library/..teamsmanship/..team/queenie/test-architecture/.cover.md)**, and this sprint is mostly subtraction, which is where a promise is worth most |
+
 # The order, and it is ruled rather than chosen
 
 ***Hygiene → semantics → drawing → names → the compiler.***
@@ -101,15 +125,21 @@
 
 - ***[R115](#r115) precedes every other drawing requirement***, because deleting the global augmentation turns every remaining miss into a compile error instead of a page that renders wrong.
 - ***[R124](#r124) precedes [R125](#r125) and [R126](#r126)***, because a reorganization planned before the reading is a guess about what the modules are.
+- ***The names come AFTER the drawing***, which is [the audit's own reason](../the-condition-report/06-the-cleaning.md#the-order): **a rename during a sweep hides the sweep.**
+- ***The theme gains its member for type before any style object empties into it*** — a style object cannot move into a member that does not exist.
+
+**The audit wrote an eleven-step order before Doug ruled the groups.** *[It stands as the within-group detail](../the-condition-report/06-the-cleaning.md#the-order) — the forced positions above are read off it — and **the group order here supersedes it**, because it was written first.*
 
 # <a id="what-is-not-in-this-sprint"></a>What is NOT in this sprint
 
 | | |
 |---|---|
 | ***design owed*** | **how a consumer adds a notation** · **one `$Code` whose level moves** · **lowering** · **a composition that is also a reference**. *Four things with no mechanism yet, [named in the report](../the-condition-report/06-the-cleaning.md#actionable) and [denied units by the planning rule](../../../../.claude/library/our-skillset/29-ce-plan.md).* |
-| ***out of scope*** | **the application, the demonstration and the Lab** — ten entries, [scoped out by Doug](../the-condition-report/01-how-to-read-this.md#the-scope) and keeping their identifiers |
+| ***out of scope*** | **the application, the demonstration and the Lab** — ***nine entries, counted off the markers rather than kept beside them***: `O2` `O3` `O4` `O5` `O9` `O12` `I18` `I19` `I20`. [Scoped out by Doug](../the-condition-report/01-how-to-read-this.md#the-scope), identifiers kept, [and held here](../the-condition-report/06-the-cleaning.md#the-rest) |
 | ***`$Chemistry`*** | **not audited and not touched.** *A change there requires rebuilding its dist and every dependent library against it — Doug's own condition.* |
-| ***the team library's 93 remaining uses of a struck word*** | **owed, and not this sprint's work** |
+| ***the team library's 93 remaining uses of a struck word*** | **owed, and not this sprint's work** — *a tending pass in another repository* |
+
+***And the whole of it is held in one place: [THE REST OF THE AUDIT](../the-condition-report/06-the-cleaning.md#the-rest)***, which names every piece the sprint does not take, why, and who holds it. **That section exists because Doug asked for it by name:** *"handoff the rest of the audit too because we have to keep track."*
 
 # What to read first
 
@@ -141,21 +171,35 @@
 
 ## What is done
 
-***Nothing in this sprint.*** *[The Audit](20-the-audit.md) is closed and compounded — 91 entries written, 10 scoped out, 20 ruled or closed, and the 23 that remain are the requirements above.*
+***Nothing in this sprint.*** *[The Audit](20-the-audit.md) is closed and compounded — **ninety-three entries**, nine scoped out, the rest ruled, left, owed or taken — and what remains is the twenty-six requirements above.*
 
 ## What is not started
 
-***All 23.*** *R105–R127, none planned, none built.*
+***All twenty-six.*** *R105–R130, none planned, none built.*
 
-## Blockers
+## The one thing waiting on Doug, and it does not block the plan
 
-***None.*** *Every requirement here carries a ruling. The four things that had no mechanism were separated out as [design owed](#what-is-not-in-this-sprint) precisely so nothing in this chapter is waiting on a decision.*
+***[R128](#r128) is gated on fourteen words.*** **The renames are decided; the WORDS are not, and [naming is his](../the-condition-report/06-the-cleaning.md#the-words-owed).** *It is one conversation rather than fourteen questions, and it can happen at any point before the names group runs — **which is last but one**, so the plan proceeds without it.*
 
-## Verified fresh at the audit's close, and this is the baseline the sprint moves
+## The size, already measured
+
+***Roughly 600–700 changed lines across about 30 files, and almost every step is a SUBTRACTION*** — [measured before anything was divided](../the-condition-report/06-the-cleaning.md#the-size). **1,100 lines of drawing surface · 33 style objects in 19 files · 25 casts the transient prop deletes · 230 hand-forwarded lines · a 156-line triple becoming ~75 · 350 dead lines.**
+
+***This is one to two sessions and it is NOT a divided plan*** — *the same measurement that [turned The Build's seven tracks back into one session](15-the-build.md).* **The ownership table above is who holds a group's perspective, not seven parallel sessions.**
+
+## How to know it worked, and it is not a count
+
+***Every gate this branch runs is a count, and [every entry in the report was true while all of them were green](../the-condition-report/01-how-to-read-this.md#why-no-gate).* [Four things a count cannot fake](../the-condition-report/06-the-cleaning.md#the-test)** — chief among them **one `$Title` drawn three ways on one page**, by prop, by subclass and by registration, *with a fourth left untouched and still the default.* **That is the demo, and it is what makes the drawing group reviewable.**
+
+## Verified fresh at the audit's close — the baseline this sprint moves
 
 *framework suite **336/336** in 30 files · `tsc` **0** · `tsc --noUnusedLocals` **28 dead imports** · demonstration `typecheck` **FAIL, 6 unexpected** · `style={{` **33** · forwarding **48 calls / 230 lines** · statics and module-level in `lib` **16** · comment lines in `package/src` **1**.*
 
-***Several of these ARE the requirements' measures*** — 28 dead imports is [R106](#r106), 33 style objects is [R116](#r116), 16 statics is [R114](#r114) — *so the sprint has numeric ends for at least three of its twenty-three, and the plan should look for more.*
+***Several of these ARE the requirements' measures*** — 28 dead imports is [R106](#r106), 33 style objects is [R116](#r116), 16 statics is [R114](#r114) — *so at least three of the twenty-six already have a numeric end, and the plan should look for more.*
+
+## Where the rest of the audit is held
+
+***[THE REST OF THE AUDIT](../the-condition-report/06-the-cleaning.md#the-rest)*** — nine entries scoped out to the application and the demonstration, `$Chemistry`'s reflection road ruled ignore, three designs owed, fourteen words owed, the leaves and the monitors, and a struck word still standing 93 times in another repository. **Every piece names why it is not here and who holds it.**
 
 ## Wrong turns already taken, so they are not taken again
 
@@ -165,3 +209,4 @@
 | ***A fault asserted against a design that was already written down*** | an entry claimed a book's `ref` returning its cover was wrong; chapter zero says a cover IS how you point at a book, and Doug's answer was that **references are not unique**. Withdrawn |
 | ***Four questions put to Doug that the library already answered*** | [compounded into ce-review](../../../../.claude/library/our-skillset/33-ce-review.md#a-question-the-library-answers-is-not-a-question). **Grep the whole branch library before asking, and say in the question that you did** |
 | ***Padding the register with things that were not faults*** | two entries were written up and struck on Doug's *"I don't see a problem"*. **An entry that cannot name what breaks is not an entry** |
+| ***A span replacement that duplicated a chapter instead of replacing part of it*** | [The Cleaning](../the-condition-report/06-the-cleaning.md) carried **two copies of its own register** for a day, from an edit whose end offset came before its start. **Both were byte-identical and neither was wrong, which is why nothing caught it.** *Repaired at this handoff by measuring the duplicate before cutting it* |
