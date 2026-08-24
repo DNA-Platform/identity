@@ -204,7 +204,9 @@ grep -ho "^> \*\{2,3\}[A-Z ]*\*\{2,3\}" 0[2-5]*.md | sed 's/^> //;s/\*//g' | sor
 
 ### And what is still unaudited
 
-***The compiler's CODE.*** *This report judged its folder and found one bug. **Eighteen modules and 1,930 lines have not been read as code the way `lib` was** — no member pass, no interface pass, no naming pass.*
+***THE COMPILER'S CODE — READ 2026-08-24, and the reading is [The Compiler](08-the-compiler.md).*** *This report had judged its folder and found one bug; the member, interface and naming passes have now run over all of it.* **Eight entries, and the headline is that NOT ONE IS A WRONG MECHANISM** — *every one is a thing said twice.* **[S22](08-the-compiler.md#s22) was live and is closed.**
+
+> ***AND ONE PASS IS NOT THE HEAVY AUDIT DOUG IS ASKING FOR.*** *Doug, 2026-08-24: **"I want us to heavily audit the compiler if the framework is where we want it to be."*** **What ran was the three instruments `lib` got, over 2,000 lines, in one sitting.** *What has NOT been asked of the compiler is everything the framework was asked in [the letter](../projection/20-the-audit.md#the-letter-and-what-it-asked-for): what its principles ARE, what it cannot express, whether its seam is complete, and whether its words fit.* **[The next audit's scope is in the handoff.](../projection/21-semantics-then-drawing.md#the-compiler-audit)**
 
 ## <a id="the-rest"></a>THE REST OF THE AUDIT — what is NOT being cleaned, and who holds each piece
 
