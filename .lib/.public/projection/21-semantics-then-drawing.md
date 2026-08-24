@@ -1351,6 +1351,23 @@ read(parts)  =  { c.read() | c in chapters }
 
 ***[S22](../the-condition-report/08-the-compiler.md#s22) is DONE.*** **[S21](../the-condition-report/08-the-compiler.md#s21) and [N34](../the-condition-report/08-the-compiler.md#n34) are the two worth doing next** — *both are the type system being asked to check something it can already check.* **[I23](../the-condition-report/08-the-compiler.md#i23) · [I24](../the-condition-report/08-the-compiler.md#i24) · [I27](../the-condition-report/08-the-compiler.md#i27) are mechanical, one commit each.** *[I25](../the-condition-report/08-the-compiler.md#i25) and [I26](../the-condition-report/08-the-compiler.md#i26) are filed.* ***[O14](../the-condition-report/08-the-compiler.md#o14) is Doug's*** — **`CHECK` is a phase of the compile filed as a command**, and moving it changes what the folder names mean.
 
+## <a id="the-demonstration-audit"></a>THE DEMONSTRATION AUDIT — ***what to brainstorm, and the one number that governs it***
+
+***Doug, 2026-08-24:*** **"Initial load for the demo is very very very slow."** · **"the demo needs to be zippy."** · **"We don't want to load the whole library at once and we do care about performance in general to a degree."**
+
+***`/books` IS THE DEFAULT ROUTE.*** **[`catalogue.ts`](../../package/app/src/data/catalogue.ts) — `defaultSectionId = 'books'`** — *so the shelf is what `/` serves, what an unknown route falls back to, and what every visitor meets first.* **It is the slowest page in the demonstration at 8.3 seconds to visible, and it is the only one nobody can avoid.**
+
+**A first measured pass is [The Demonstration](../the-condition-report/09-the-demonstration.md), four entries.** *What is NOT decided is everything below.*
+
+| | the question | why it might matter |
+|---|---|---|
+| ***A*** | ***Should the demonstration have a BUILD STEP?*** | **[I29](../the-condition-report/09-the-demonstration.md#i29) is the whole of the load cost, and the compiler already solves it** — *it reads cards off living books at build time and emits literals.* ***The demonstration is a library too***, and the question is whether it should be compiled by the thing that compiles libraries rather than hand-wired |
+| ***B*** | **If not, do the cards carry their own text?** | *That is what [`The Team`'s card already does](../../package/app/src/sections/book/library/the-team/card.tsx) and what the other four do not.* **Cheap, and it drifts** — which is [S23](../the-condition-report/09-the-demonstration.md#s23) waiting to happen again |
+| ***C*** | ***What should a page COST?*** | **There is no number to fail against.** *A gate that counted modules per route would have caught [I28](../the-condition-report/09-the-demonstration.md#i28) the day it arrived — 169 on a page of four headings — and [every gate this branch runs is a count that cannot see this one](../the-condition-report/01-how-to-read-this.md#why-no-gate)* |
+| ***D*** | **Which controls are legal in which state?** | ***[O15](../the-condition-report/09-the-demonstration.md#o15) — Doug's: "I am not sure all of them should be available to click in all states. You have a state machine. Be careful."*** *Eight controls of three kinds, nothing disabled, nothing marked, and no statement to check against* |
+| ***E*** | ***Should the demonstration READ the framework rather than quote it?*** | **[S23](../the-condition-report/09-the-demonstration.md#s23): the classes drawer prints `class $Word extends $Writing` and "a word is the floor", and both went false this sprint.** *The source is on disk. A drawer that read it could not drift* |
+| ***F*** | **Does the demonstration fight the framework?** | ***This was [ask 5 of the letter](20-the-audit.md#the-letter-and-what-it-asked-for) and it was answered "it did not typecheck" and then scoped out.*** *The four entries above all answer it the same way — **the demonstration re-derives at load time what the compiler derives at build time** — and nobody has asked it as a design question* |
+
 ## THE REST OF THE AUDIT — ***what needs a brainstorm before anyone can say whether it is relevant***
 
 ***Doug, 2026-08-23: "handoff the rest of the audit too because we have to keep track."*** **Kept. Nothing below is scheduled, and each row says what is unknown about it rather than what to do.**
@@ -1411,7 +1428,7 @@ read(parts)  =  { c.read() | c in chapters }
 
 ***The standard every entry is judged against is his, and it is the only one:*** **"code that exemplifies a formalism has to be flawless in a way that most code does not — every place the code says something the theory does not is a place a reader learns the theory wrong."**
 
-## What to read — ***four, shaped for a brainstorm rather than for work***
+## What to read — ***five, shaped for a brainstorm rather than for work***
 
 *[Not a boundary](../../../../.claude/library/our-skillset/32-ce-handoff.md#9-sufficient-is-a-claim-and-it-was-wrong) — a starting point. **A brainstorm reads sources, not code.***
 
@@ -1421,6 +1438,7 @@ read(parts)  =  { c.read() | c in chapters }
 | **[The letter](20-the-audit.md#the-letter-and-what-it-asked-for)** | ***Doug's six asks and the frame that governs them.*** **The compiler has been asked one of the six** |
 | **[The cleaning](../the-condition-report/06-the-cleaning.md#actionable)** | ***the problems list, and the coverage ledger beneath it.*** **Where each of the hundred-and-one entries went, and what is held rather than fixed** |
 | **[`build/library.ts`](../../build/library.ts)** | ***the compiler's entire shared vocabulary, with prose on every field.*** **A stage cannot see what the seam does not carry, so [question C](#the-compiler-audit) is answered here or nowhere** |
+| **[The Demonstration](../the-condition-report/09-the-demonstration.md)** | ***the demonstration's first measured pass, and the load cost with numbers on both sides.*** **[I29](../the-condition-report/09-the-demonstration.md#i29) is the 8.3 seconds** — *read it beside [`the-team/card.tsx`](../../package/app/src/sections/book/library/the-team/card.tsx), which is where a card reaches for its book* |
 
 ## Wrong turns already taken — ***do not retry these***
 
@@ -1436,6 +1454,6 @@ read(parts)  =  { c.read() | c in chapters }
 
 | | |
 |---|---|
-| **the demonstration** | `npm run dev` in [`library/.public/package`](../../package/) → ***http://localhost:5199/*** — **the shelf and four books.** *`/page` the lenses and the live model · `/books` the shelf · `/title` [one `$Title` drawn four ways](#u138), which is the sprint's stop condition and the thing to look at first* |
+| **the demonstration** | `npm run dev` in [`library/.public/package`](../../package/) → ***http://localhost:5199/*** — **the shelf and four books.** *`/title` is [one `$Title` drawn four ways](#u138), the sprint's stop condition and the thing to look at first, and it is now the fastest page at 885 ms.* **`/books` is the DEFAULT — it is what `/` serves and where an unknown route lands — and it takes 8.3 seconds**, *which is [I29](../the-condition-report/09-the-demonstration.md#i29)* |
 | **the public library** | `npm run dev` in [`library/.public/app`](../../app/) → ***http://localhost:5299/*** — **the compiled test library**, *the front door catalogues three books and [the shelf is back](#the-shelf)* |
 | **driving them** | `npm run verify` in the package — ***92 checkpoints*** · `npm test` in the app — ***39 checkpoints.*** **[Start the server yourself first](../solutions/14-the-green-that-exercised-nothing.md)**, and *a short count is a stall rather than a number* |
