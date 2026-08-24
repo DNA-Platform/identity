@@ -1281,9 +1281,21 @@ read(parts)  =  { c.read() | c in chapters }
 
 ## → THE NEXT ACTION
 
-> ### `/ce-brainstorm` — ***the heavy audit of the compiler***
+> ### `/ce-brainstorm` — ***the heavy audit of the COMPILER and the DEMONSTRATION***
 
-***Doug set it in the room, 2026-08-24: "I think we'll plan based on the rest of the audit and beyond. I want us to heavily audit the compiler if the framework is where we want it to be."***
+***Doug set it in the room, 2026-08-24, in two instructions:***
+
+> **"I want us to heavily audit the compiler if the framework is where we want it to be."**
+>
+> **"We need to audit the demo and compiler and the demo needs to be zippy."** · ***"Initial load for the demo is very very very slow."***
+
+***THE DEMONSTRATION IS SCOPED BACK IN.*** *It was [scoped out on 2026-08-23](../the-condition-report/01-how-to-read-this.md#the-scope) — "remove ones that aren't about the framework and compiler" — and the nine entries parked then all still stand.* **A first measured pass is filed as [The Demonstration](../the-condition-report/09-the-demonstration.md), four entries, and one sentence governs them:**
+
+> ***THE DEMONSTRATION DOES AT RUNTIME WHAT THE COMPILER EXISTS TO DO AT BUILD TIME.***
+
+**The load is the thing Doug is feeling, and it is [I29](../the-condition-report/09-the-demonstration.md#i29):** *the shelf is the landing page and it cannot draw one spine without the whole library in memory, because every card is built by reading it off its LIVING book.* ***8.3 seconds to visible, measured.*** **The compiler's own generated catalogue refuses exactly this — *"NOTHING HERE IMPORTS A BOOK"* — by deriving at build time and emitting literals; the demonstration has no build step and pays at every visit.**
+
+***What was fixed this session, measured both sides:*** **sections now load on demand** — *`/title` **8,369 ms → 885 ms** (169 → 51 requests), `/page` **8,937 ms → 3,091 ms**.* **`/books` is untouched at 8.3 s and it is the landing page**, *because its fix is [I29](../the-condition-report/09-the-demonstration.md#i29) and that is a design change rather than a wiring one.* ***Both browser walks are green — 92 checkpoints — against the lazier app.***
 
 **Brainstorm rather than plan, and the reason is [the audit's own worst finding](20-the-audit.md#part-iv): four things in this branch were planned before they were designed.** *The compiler has had ONE reading pass. What a heavy audit of it should ASK has not been decided, and deciding that is the brainstorm.*
 
