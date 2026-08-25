@@ -193,7 +193,7 @@ if (sections.length) this.$view = $Document.prototype.view;
 >
 > ***So a reflective card is the design, not a compromise.*** *What the entry got right is smaller and stays: the heuristic — stop at a prototype owning `properties` or carrying any `$`-prefixed accessor — is a guess about how the class was written, and [`$$Book` reflecting `$Book`'s interface](04-semantics.md#s20) is a better rule than reflecting its prototype chain.*
 
-[`$IndexCard.properties()`](../../package/src/library/IndexCard.tsx) walks the prototype chain, collects getters that do **not** begin with `$`, and stops when a prototype owns `properties` or carries any `$`-prefixed accessor.
+[`$IndexCard.properties()`](../../package/src/reference/IndexCard.tsx) walks the prototype chain, collects getters that do **not** begin with `$`, and stops when a prototype owns `properties` or carries any `$`-prefixed accessor.
 
 ***A card's contents are inferred from an accidental property of the source.*** **Add a computed getter to a card subclass and it silently joins the card's copy.** *This is the least mathematically precise mechanism in the package, and it is on the class that carries a book's identity into the catalogue.*
 
@@ -206,7 +206,7 @@ find(query: string): $IndexCard<T> {
     const at = query.indexOf(':');
     const key = at < 0 ? query.trim() : query.slice(0, at).trim();
 ```
-— [`CardCatalogue.tsx`](../../package/src/library/CardCatalogue.tsx).
+— [`CardCatalogue.tsx`](../../package/src/reference/CardCatalogue.tsx).
 
 ***A colon-separated string split at call time, throwing when it misses*** — **while `file(key, keyword, card)` directly above it takes the two halves as parameters.** *The class knows the shape and asks a caller to spell it.*
 
@@ -240,7 +240,7 @@ find(query: string): $IndexCard<T> {
 >
 > *Doug: **"Lowering would be code insertion. The compiler moves files. It should EDIT them. It can CREATE them. It is static analysis. Use the TypeScript compiler tools."***
 >
-> ***That is not a new capability — it is [`emit.ts`](../../build/emit.ts) doing more of what it already does.*** **The compiler already opens every cover with ts-morph, computes edits from node positions and splices them back to front**, which is how a reference gains its card:
+> ***That is not a new capability — it is [`emit.ts`](../../build/stages/emit.ts) doing more of what it already does.*** **The compiler already opens every cover with ts-morph, computes edits from node positions and splices them back to front**, which is how a reference gains its card:
 >
 > ```ts
 > edits.push({ at: open.getEnd() - 1, to: open.getEnd() - 1, text: ` for={${card}}` });
@@ -250,7 +250,7 @@ find(query: string): $IndexCard<T> {
 
 *He asked for an audit rather than a decision: **"Just imagine that the library is lifted, moved, and then each file is edited, additional files are perhaps added if we need a table of contents that isn't there — though I am not sure we need to add anything, just INSTANTIATE one — and then the files that contain the generated code for books are added too. That's how it should work, so audit whether or not that is happening."***
 
-**Measured against [`emit.ts`](../../build/emit.ts), four for four:**
+**Measured against [`emit.ts`](../../build/stages/emit.ts), four for four:**
 
 | he described | it does | where |
 |---|---|---|
@@ -259,7 +259,7 @@ find(query: string): $IndexCard<T> {
 | ***a contents INSTANTIATED, not added*** | ***exactly that*** — the generated module writes `<TableOfContents />` and no file is created for it | `assemble()` |
 | **the generated book files added** | one `book.tsx` per book, plus `cards.tsx` and `books.tsx` | `put(join(into, book.path, 'book.tsx'), assemble(…))` |
 
-***So nothing needs deciding and my question presupposed something that was never ruled.*** **The phrase "the file its author left" is [the compiler's own comment](../../build/emit.ts) dramatising an incidental fact — that the corpus directory is not written to — as though it were a principle somebody agreed.** *Doug: **"No clue what an author's file is. I never consented to such a thing."*** **The comment goes with [O8's harvest](02-organization.md#o8).**
+***So nothing needs deciding and my question presupposed something that was never ruled.*** **The phrase "the file its author left" is [the compiler's own comment](../../build/stages/emit.ts) dramatising an incidental fact — that the corpus directory is not written to — as though it were a principle somebody agreed.** *Doug: **"No clue what an author's file is. I never consented to such a thing."*** **The comment goes with [O8's harvest](02-organization.md#o8).**
 
 ***What lowering adds is therefore MORE EDITING IN THE MOVED COPY***, by the mechanism already in the file — **not a new target, not a new tool, and not a reversal of anything.**
 
@@ -341,10 +341,10 @@ find(query: string): $IndexCard<T> {
 ```ts
 const own = live.chapters.slice(2, 3 + book.chapters.length);
 ```
-— [`catalogue.ts:39`](../../build/catalogue.ts).
+— [`catalogue.ts:39`](../../build/stages/catalogue.ts).
 
 ***The defect this produces is [a bug and is filed as one](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md)*** — every card in the corpus lists a chapter its own book's contents excludes.
 
-**What belongs in THIS book is the mechanism rather than the miscount.** *The compiler's own comment states the assumption out loud* — *"the compiler wrote this composition, so it knows its shape"* — **and knowing the shape is precisely what [the compiler's best principle says not to rely on](../../build/resolve.ts):** *what a subject holds is not a list the subject keeps; it falls out of where its books sit, **which is why nothing has to be maintained in two places***.
+**What belongs in THIS book is the mechanism rather than the miscount.** *The compiler's own comment states the assumption out loud* — *"the compiler wrote this composition, so it knows its shape"* — **and knowing the shape is precisely what [the compiler's best principle says not to rely on](../../build/stages/resolve.ts):** *what a subject holds is not a list the subject keeps; it falls out of where its books sit, **which is why nothing has to be maintained in two places***.
 
 ***A book can be asked what its chapters are. It was counted instead, and the two answers drifted immediately.***

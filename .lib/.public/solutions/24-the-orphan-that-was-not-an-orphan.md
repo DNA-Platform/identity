@@ -42,7 +42,7 @@ const re = new RegExp(`['"\`][^'"\`]*?(?:^|/)${esc(stem)}(?:\\.tsx?)?['"\`]`, 'm
 
 ***Run properly across all four programs, the answer is three files and 350 lines*** — [`Literature.tsx`](../../package/src/library/Literature.tsx) at 0, [`teaser.tsx`](../../app/src/teaser.tsx) at 198, [`case-shell.tsx`](../../package/app/src/apparatus/case-shell.tsx) at 152 — **and `the-manifold.tsx` is not among them.**
 
-*The false positives the first correct run still produced are worth keeping: `verify-build.ts`, `verify-walk.ts`, `see.ts` and `check.ts` are **scripts run by npm rather than modules**, which [the compiler's own comment states](../../build/check.ts). **A sweep needs an entry-point list, and the folder had already written one in prose.***
+*The false positives the first correct run still produced are worth keeping: `verify-build.ts`, `verify-walk.ts`, `see.ts` and `check.ts` are **scripts run by npm rather than modules**, which [the compiler's own comment states](../../build/verify.ts). **A sweep needs an entry-point list, and the folder had already written one in prose.***
 
 ## The lesson — a negative result is a claim about the instrument
 

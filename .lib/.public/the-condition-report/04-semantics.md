@@ -91,7 +91,7 @@ physicsTheStandardModel.$subject = physics;
 
 *That is [the auto-categorical summit](../the-semantics-of-books/07-the-subjective-subject-and-the-library.md) — the one self-cataloguing member a well-ordered library is forced to have — **already true in the emitted file**, so the computation terminates by construction rather than by a guard.*
 
-***And it belongs on [`$IndexCard`](../../package/src/library/IndexCard.tsx) — the framework class — not on the generated `$Card`.*** **That answers the objection that moved it off the card in the first place**, which the generated file still states in its own comment:
+***And it belongs on [`$IndexCard`](../../package/src/reference/IndexCard.tsx) — the framework class — not on the generated `$Card`.*** **That answers the objection that moved it off the card in the first place**, which the generated file still states in its own comment:
 
 > *"**AND NO LIBRARY COMPUTATION.** It used to live here, and a rule about books that lives in generated code is a rule with two homes that can disagree. It is `$Book.library` now."*
 
@@ -127,7 +127,7 @@ const pointed = (reference?: { card?: $IndexCard<$Book> }): $Book | undefined =>
 
 ***So the card was trimmed to "a book present without the book", and the two rules Doug wants are precisely the questions a CATALOGUE answers.*** **A card catalogue that cannot say what a subject holds, or which book speaks for it, is not a catalogue — it is a shelf of title pages.**
 
-*And the model already knows both facts.* [`resolve.ts`](../../build/resolve.ts) computes `canonical` and `entries` for every book, **and the emitter writes neither onto the cards.**
+*And the model already knows both facts.* [`resolve.ts`](../../build/stages/resolve.ts) computes `canonical` and `entries` for every book, **and the emitter writes neither onto the cards.**
 
 ### What the rules become once the card carries them
 
@@ -141,7 +141,7 @@ const pointed = (reference?: { card?: $IndexCard<$Book> }): $Book | undefined =>
 
 ### When it runs
 
-*Doug: **"perhaps that validation will only be run when the library checks itself as part of the build."*** **[`validate.ts`](../../build/validate.ts) is already that phase** — it holds every book at once, it already imports the cards, and it already says *"it invents no rules."*
+*Doug: **"perhaps that validation will only be run when the library checks itself as part of the build."*** **[`validate.ts`](../../build/stages/validate.ts) is already that phase** — it holds every book at once, it already imports the cards, and it already says *"it invents no rules."*
 
 ***And it must remain a caller rather than a home*** — [The Live Library](../designing-inexplicable-phenomena/05-the-live-library.md), out of Doug's own aside in the same message: **a rule that lives in the compiler is a rule the browser cannot ask**, and a library people write into needs the same rule at the moment writing arrives.
 
@@ -306,7 +306,7 @@ valid(): boolean {
 
 **A card inherits `text`, `copy`, `parts()`, `canonical`, `at`, `where`, `select`, `selectMany`, `single`, `role`, `parenthetical`, `theme`, `view`, `uniform`, `gathered`, `set` — *sixteen members of writing semantics*. Grepped: it uses none of them.** It overrides `copy`, `view` and `valid` to mean something else, and inherits the rest as dead surface.
 
-***A card is not writing.*** **It is what stands in a catalogue where a book is not** — *"a book present without the book,"* [in the compiler's own words](../../build/catalogue.ts). **It extends `$Writing` for one line in a constructor:** `this.inline = false`.
+***A card is not writing.*** **It is what stands in a catalogue where a book is not** — *"a book present without the book,"* [in the compiler's own words](../../build/stages/catalogue.ts). **It extends `$Writing` for one line in a constructor:** `this.inline = false`.
 
 ## <a id="s6"></a>S6 — `$Bookmark extends $Sentence`, and would parse itself into words
 
@@ -356,7 +356,7 @@ valid(): boolean {
 >
 > | replaces `valid()` outright | and | |
 > |---|---|---|
-> | [`$IndexCard`](../../package/src/library/IndexCard.tsx) | uses **zero** of `$Writing`'s sixteen members | [S5](#s5) |
+> | [`$IndexCard`](../../package/src/reference/IndexCard.tsx) | uses **zero** of `$Writing`'s sixteen members | [S5](#s5) |
 > | [`$Bookmark`](../../package/src/book/Bookmark.tsx) | uses **zero** of `$Sentence`'s | [S6](#s6) |
 >
 > ***Two instruments, arrived at independently, naming the same two classes.*** **That is the strongest evidence in this report that S5 and S6 are real.**
@@ -380,7 +380,7 @@ valid(): boolean {
 
 | | |
 |---|---|
-| [`$CardCatalogue`](../../package/src/library/CardCatalogue.tsx) | a **plain class implementing nothing** — ***and [chapter zero specified it otherwise](../projection/00-planning.md):*** *"The cards live in a card catalogue: `$CardCatalogue`, **satisfying `$Catalogue$<$Book>`** — a composition of references to books that is itself a reference to those books. That interface was built in Sprint 47 for the table of contents and it turns out to describe the catalogue at book level **without modification**, which is the strongest evidence we have that the catalogue equation was carved correctly."* **It was designed against an interface it does not implement** — [the same fault as the card](#s20), one level up. |
+| [`$CardCatalogue`](../../package/src/reference/CardCatalogue.tsx) | a **plain class implementing nothing** — ***and [chapter zero specified it otherwise](../projection/00-planning.md):*** *"The cards live in a card catalogue: `$CardCatalogue`, **satisfying `$Catalogue$<$Book>`** — a composition of references to books that is itself a reference to those books. That interface was built in Sprint 47 for the table of contents and it turns out to describe the catalogue at book level **without modification**, which is the strongest evidence we have that the catalogue equation was carved correctly."* **It was designed against an interface it does not implement** — [the same fault as the card](#s20), one level up. |
 | [`$Theme`](../../package/src/writing/Theme.tsx) | extends `$Chemical`, not `$Referent`. *Arguably right — a theme is not a thing a book refers to — and **it has a `view()` that returns `null`**, so it is half in.* |
 | `$Composible$` | a bag of statics — [S1](#s1) |
 
@@ -449,7 +449,7 @@ $$Book  ::  $Reference$<$Book>  ,  $Catalogue$<$Book>
 
 ### And that is what [S17](#s17)'s two gaps actually were
 
-***[`$IndexCard`](../../package/src/library/IndexCard.tsx) implements `$Reference$<T>` and nothing else.*** **The members the annotation rules needed — `canonical`, `entries`, `parts()` — are not arbitrary omissions. They are `$Catalogue$`, unimplemented.**
+***[`$IndexCard`](../../package/src/reference/IndexCard.tsx) implements `$Reference$<T>` and nothing else.*** **The members the annotation rules needed — `canonical`, `entries`, `parts()` — are not arbitrary omissions. They are `$Catalogue$`, unimplemented.**
 
 **So the earlier framing was wrong twice over.** *It read the generated comment — "a card catalogues nothing" — as a design decision to argue with, when the plain fact is that **the card was written against one interface and its book satisfies two**.* ***Implement the second and the gaps close by construction, with no member invented.***
 

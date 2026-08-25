@@ -82,9 +82,9 @@
 
 **<a id="p14"></a>P14 — THE SEAM IS A TYPE, NOT A FILE.** Every compiler stage reads [`library.ts`](../../build/library.ts) and never the filesystem, *"which is what lets them be built by different people at the same time."* **There is no serialized intermediate.** ***The single cleanest piece of architecture in the repository.***
 
-**<a id="p15"></a>P15 — A NAME BECOMES A REFERENCE, AND A SILENCE IS FILLED WHERE IT IS KNOWN.** *"A word cannot be followed"* — [`resolve.ts:3-13`](../../build/resolve.ts). **Nothing is written back to the author's file**; the answer lands in the model, and only the generated copy carries it. *This is the compiler obeying [P11](#p11) at build time.*
+**<a id="p15"></a>P15 — A NAME BECOMES A REFERENCE, AND A SILENCE IS FILLED WHERE IT IS KNOWN.** *"A word cannot be followed"* — [`resolve.ts:3-13`](../../build/stages/resolve.ts). **Nothing is written back to the author's file**; the answer lands in the model, and only the generated copy carries it. *This is the compiler obeying [P11](#p11) at build time.*
 
-**<a id="p16"></a>P16 — POSITION ANSWERS FIRST; A DECLARATION ONLY CONFIRMS IT.** What a book belongs to falls out of **where it sits**, and a `.book` declaration overrides. **What a subject holds is not a list the subject keeps** — [`resolve.ts:81-83`](../../build/resolve.ts) — *"which is why nothing has to be maintained in two places."*
+**<a id="p16"></a>P16 — POSITION ANSWERS FIRST; A DECLARATION ONLY CONFIRMS IT.** What a book belongs to falls out of **where it sits**, and a `.book` declaration overrides. **What a subject holds is not a list the subject keeps** — [`resolve.ts:81-83`](../../build/stages/resolve.ts) — *"which is why nothing has to be maintained in two places."*
 
 **<a id="p17"></a>P17 — ONE DECLARATION PER FILE, AND THE PAIR IS THE CONVENTION.** Every file in `package/src` carries **one class plus its `export const Name = $($Name)`**. *Checked: 51 classes, no violations* — [finding 11, still holding](04-the-member-audit.md).
 
@@ -188,7 +188,7 @@
 
 ### <a id="w30"></a>W30 — a book's card and a book's contents disagree about its chapters
 
-***Measured on the standing corpus:*** the card says `["Synopsis", "Symmetry"]`, the contents says `["Symmetry"]`, **on all seven books.** *A book's own synopsis is parenthetical and the contents filters it out; [`catalogue.ts`](../../build/catalogue.ts) counts by position instead — `live.chapters.slice(2, 3 + book.chapters.length)` takes two where it wants one.*
+***Measured on the standing corpus:*** the card says `["Synopsis", "Symmetry"]`, the contents says `["Symmetry"]`, **on all seven books.** *A book's own synopsis is parenthetical and the contents filters it out; [`catalogue.ts`](../../build/stages/catalogue.ts) counts by position instead — `live.chapters.slice(2, 3 + book.chapters.length)` takes two where it wants one.*
 
 ***Doug ruled it a BUG rather than a wart*** — *"it's a bug. And a good one. But it's not a wart in the framework"* — **and it is [filed as one](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md).** *The mechanism, which belongs to the design, is [I21 in the report](../the-condition-report/05-implementation.md#i21).*
 

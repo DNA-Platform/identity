@@ -228,13 +228,13 @@
 
 ### <a id="u112"></a>U112 — The card asks the book for its chapters · [R105](#r105)
 
-**Mechanism.** [`catalogue.ts:39`](../../build/catalogue.ts) slices a live book's chapters by position — `live.chapters.slice(2, 3 + book.chapters.length)` — **where the book answers the question directly.**
+**Mechanism.** [`catalogue.ts:39`](../../build/stages/catalogue.ts) slices a live book's chapters by position — `live.chapters.slice(2, 3 + book.chapters.length)` — **where the book answers the question directly.**
 
-***The compiler's own comment states the assumption out loud*** — *"the compiler wrote this composition, so it knows its shape"* — **and [its own best principle says not to rely on that](../../build/resolve.ts):** *what a subject holds falls out of where its books sit,* ***which is why nothing has to be maintained in two places.***
+***The compiler's own comment states the assumption out loud*** — *"the compiler wrote this composition, so it knows its shape"* — **and [its own best principle says not to rely on that](../../build/stages/resolve.ts):** *what a subject holds falls out of where its books sit,* ***which is why nothing has to be maintained in two places.***
 
 ***A book can be asked what its chapters are. It was counted instead, and the two answers drifted immediately.*** **The model already excludes the cover, the contents and the catalogued synopses**, so the reading the card wants is the book's own — *and where they disagree today, [the model is right and the count is wrong](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md).*
 
-**Files.** [`build/catalogue.ts`](../../build/catalogue.ts). **Depends on** nothing. ***It sits in hygiene rather than in the compiler group because it is a one-line correction of a shipping fault***, not part of the compiler's unread pass.
+**Files.** [`build/catalogue.ts`](../../build/stages/catalogue.ts). **Depends on** nothing. ***It sits in hygiene rather than in the compiler group because it is a one-line correction of a shipping fault***, not part of the compiler's unread pass.
 
 **Numeric end:** ***cards whose chapter list disagrees with their own book's contents → 7 → 0.***
 
@@ -258,7 +258,7 @@ $Link         inherits $Phrase's     once U114 re-parents it
 
 **Every child calls `super.valid()`. Every narrowing is one named method. Nothing is silently repealed.** *The fault was never the hierarchy and never the silence — it is that `valid()` is a monolith, so a subclass with one part to narrow replaces the whole method.*
 
-***And the ruling carries its own diagnostic, which this unit runs:*** *"if a child doesn't call the parent `valid`, it suggests that perhaps IT IS NOT A SUBCLASS."* **Run against the package today it names [`$IndexCard`](../../package/src/library/IndexCard.tsx) and [`$Bookmark`](../../package/src/book/Bookmark.tsx)** — ***which is [U114](#u114) reached by a second instrument, and the strongest evidence in the report that those two re-parents are real.***
+***And the ruling carries its own diagnostic, which this unit runs:*** *"if a child doesn't call the parent `valid`, it suggests that perhaps IT IS NOT A SUBCLASS."* **Run against the package today it names [`$IndexCard`](../../package/src/reference/IndexCard.tsx) and [`$Bookmark`](../../package/src/book/Bookmark.tsx)** — ***which is [U114](#u114) reached by a second instrument, and the strongest evidence in the report that those two re-parents are real.***
 
 **Files.** [`Word.tsx`](../../package/src/writing/Word.tsx) · [`Phrase.tsx`](../../package/src/writing/Phrase.tsx) · [`Punctuation.tsx`](../../package/src/writing/Punctuation.tsx) · [`Writing.tsx`](../../package/src/writing/Writing.tsx) · [`Legend.tsx`](../../package/src/document/Legend.tsx), **and every `valid()` the diagnostic names.** *36 implementations exist in `src`; the unit reads all of them and changes the ones that repeal.*
 
@@ -274,7 +274,7 @@ $Link         inherits $Phrase's     once U114 re-parents it
 |---|---|---|---|
 | [`$Code`](../../package/src/writing/Code.tsx) | `extends $Figure` | ***`extends $Paragraph`*** | ***Doug: "Code is not a Figure… CODE IS WRITING."*** [S3](../the-condition-report/04-semantics.md#s3). **`$caption` leaves with the inheritance**, taking `caption={asFence[1].trim() \|\| 'code'}` — *a fence captioned with the literal word `code`* — out of [`Section.compose()`](../../package/src/writing/Section.tsx) |
 | [`$Link`](../../package/src/reference/Link.tsx) | `extends $Word` | ***`extends $Phrase`*** | ***Doug: "Links too should be phrasal."*** [S18](../the-condition-report/04-semantics.md#s18) — **every multi-word link is currently a `$Word` carrying whitespace, passing only because the subclass repeals its parent.** *A `$Phrase` is still a `$Word`, so links stay enumerable among a sentence's words* |
-| [`$IndexCard`](../../package/src/library/IndexCard.tsx) | `extends $Writing` | ***off writing*** | **sixteen inherited members, zero used** — [S5](../the-condition-report/04-semantics.md#s5). *It extends `$Writing` for one constructor line: `this.inline = false`* |
+| [`$IndexCard`](../../package/src/reference/IndexCard.tsx) | `extends $Writing` | ***off writing*** | **sixteen inherited members, zero used** — [S5](../the-condition-report/04-semantics.md#s5). *It extends `$Writing` for one constructor line: `this.inline = false`* |
 | [`$Bookmark`](../../package/src/book/Bookmark.tsx) | `extends $Sentence` | ***off writing*** | **it inherits the sentence parse and uses none of it** — [S6](../the-condition-report/04-semantics.md#s6). *Right folder by [the stated rule](04-the-member-audit.md), wrong parent* |
 
 ***The two that leave writing need a destination, and it is [`$Referent`](../../package/src/reference/Referent.tsx)*** — **the base of the hierarchy, declaring `valid()`, which both already override outright.** *That is a move rather than a design: `$Referent` is a class, both already implement `$Reference$<T>` on their own, and neither reads a writing member.*
@@ -301,7 +301,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 ***And the discipline that governs how it pays is [S20](../the-condition-report/04-semantics.md#s20)'s:*** **`$of` is not in any interface.** *[`$Reference$`](../../package/src/reference/Reference.tsx) requires `copy`, `parenthetical`, `read()` and `then()`; the field that answers `read()` is the class's own business.* ***Ask what a class OWES, then ask how it pays.***
 
-**Files.** [`Book.tsx`](../../package/src/book/Book.tsx) — ***`$$Book` lives beside `$Book`, [as ruled](../the-condition-report/04-semantics.md#s19)*** — · [`IndexCard.tsx`](../../package/src/library/IndexCard.tsx) · [`CardCatalogue.tsx`](../../package/src/library/CardCatalogue.tsx), which **satisfies `$Catalogue$<$Book>` in the same act** *([S9](../the-condition-report/04-semantics.md#s9), and [chapter zero specified it that way eleven weeks ago](00-planning.md))* · `index.ts` · the generated `$Card` in [`build/catalogue.ts`](../../build/catalogue.ts).
+**Files.** [`Book.tsx`](../../package/src/book/Book.tsx) — ***`$$Book` lives beside `$Book`, [as ruled](../the-condition-report/04-semantics.md#s19)*** — · [`IndexCard.tsx`](../../package/src/reference/IndexCard.tsx) · [`CardCatalogue.tsx`](../../package/src/reference/CardCatalogue.tsx), which **satisfies `$Catalogue$<$Book>` in the same act** *([S9](../the-condition-report/04-semantics.md#s9), and [chapter zero specified it that way eleven weeks ago](00-planning.md))* · `index.ts` · the generated `$Card` in [`build/catalogue.ts`](../../build/stages/catalogue.ts).
 
 **Depends on** [U113](#u113). ***FORCED BEFORE [U117](#u117) by [D64](#d64).***
 
@@ -322,7 +322,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 ***A letter has no annotations, and the reason is structural rather than a rule:*** **an annotation is phrasal, and a letter cannot contain a phrase.**
 
-***And the recursion opens nothing***, which is the point: **a card's subject is another card**, and [the generated catalogue already writes the fixed point](../../build/catalogue.ts) — `library.$subject = library`. *That is [the auto-categorical summit](../the-semantics-of-books/07-the-subjective-subject-and-the-library.md) already true in the emitted file, so the computation terminates by construction rather than by a guard.*
+***And the recursion opens nothing***, which is the point: **a card's subject is another card**, and [the generated catalogue already writes the fixed point](../../build/stages/catalogue.ts) — `library.$subject = library`. *That is [the auto-categorical summit](../the-semantics-of-books/07-the-subjective-subject-and-the-library.md) already true in the emitted file, so the computation terminates by construction rather than by a guard.*
 
 ***One thing this unit REMOVES, and it is worth naming.*** **[`$Book.library`](../../package/src/book/Book.tsx)'s current climb calls `pointed()`, which calls `card.read()` — and `read()` LOADS THE BOOK.** *Validating through books opens every book on the path; [a card compute opens none](../the-condition-report/04-semantics.md#s17), which is what makes the rule affordable at 95 books and at 95,000.*
 
@@ -350,7 +350,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 **Files.** ***a new `Annotation.tsx`*** · `Author.tsx` · `Subject.tsx` · `Canonical.tsx` · `index.ts`. **Depends on** [U113](#u113), [U115](#u115), [U116](#u116).
 
-***Where the rules RUN, and it must remain a caller rather than a home.*** **[`validate.ts`](../../build/validate.ts) is already the phase that holds every book at once and already says *"it invents no rules."*** *But [a rule that lives in the compiler is a rule the browser cannot ask](../designing-inexplicable-phenomena/05-the-live-library.md), and a library people write into needs the same rule at the moment writing arrives.*
+***Where the rules RUN, and it must remain a caller rather than a home.*** **[`validate.ts`](../../build/stages/validate.ts) is already the phase that holds every book at once and already says *"it invents no rules."*** *But [a rule that lives in the compiler is a rule the browser cannot ask](../designing-inexplicable-phenomena/05-the-live-library.md), and a library people write into needs the same rule at the moment writing arrives.*
 
 **Numeric end:** ***156 lines → about 75***, and **three `valid()` bodies that differ.** *The three files stop matching under name substitution, which is the fault stated as a measurement.*
 
@@ -589,13 +589,13 @@ declare module 'styled-components' {
 
 **Mechanism.** ***Doug: "`<Author>The Team</Author>` is what we want author to be. I think you understand the problem. **I want you to clean it up.**"***
 
-**Today [`emit.ts`](../../build/emit.ts) inserts `for={theTeam}` into an element a person authored** — `edits.push({ at: open.getEnd() - 1, …, text: ' for={' + card + '}' })` — ***precisely because the annotation cannot find its own card.***
+**Today [`emit.ts`](../../build/stages/emit.ts) inserts `for={theTeam}` into an element a person authored** — `edits.push({ at: open.getEnd() - 1, …, text: ' for={' + card + '}' })` — ***precisely because the annotation cannot find its own card.***
 
-***The route that removes the prop needs no new mechanism:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md).* **[`$CardCatalogue.file(key, keyword, card)` and `find(query)`](../../package/src/library/CardCatalogue.tsx) already exist for exactly a lookup by name.**
+***The route that removes the prop needs no new mechanism:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md).* **[`$CardCatalogue.file(key, keyword, card)` and `find(query)`](../../package/src/reference/CardCatalogue.tsx) already exist for exactly a lookup by name.**
 
 ***And they are the same two members [I14](../the-condition-report/05-implementation.md#i14) calls a string micro-language, so the two entries are ONE piece of work.*** **`find(query)` splits a colon-separated string at call time and throws when it misses, while `file(key, keyword, card)` directly above it takes the two halves as parameters.** *The class knows the shape and asks a caller to spell it.*
 
-**Files.** `CardCatalogue.tsx` · `Annotation.tsx` and the three annotations · [`build/emit.ts`](../../build/emit.ts), ***where the injection stops.*** **Depends on** [U115](#u115), [U116](#u116), [U117](#u117), [U126](#u126).
+**Files.** `CardCatalogue.tsx` · `Annotation.tsx` and the three annotations · [`build/emit.ts`](../../build/stages/emit.ts), ***where the injection stops.*** **Depends on** [U115](#u115), [U116](#u116), [U117](#u117), [U126](#u126).
 
 > ***This is the sprint's second seam***, and the same rule applies: **if the emitter cannot stop injecting as specified, believe the emitter.**
 
@@ -685,7 +685,7 @@ declare module 'styled-components' {
 
 ### <a id="u133"></a>U133 — `stages/` and `commands/` · [R125](#r125)
 
-**Mechanism.** ***Thirteen modules of five kinds in one directory, where both siblings put one entry file at the root and everything else in folders.*** **And [`check.ts`](../../build/check.ts) already states the taxonomy in prose, in its own header:** *"the folder's own convention — `see.ts` reports, the `verify-*` scripts gate, `index.ts` compiles, and none of them is also a module."* ***The compiler wrote down the distinction between a command and a module and then filed them together.***
+**Mechanism.** ***Thirteen modules of five kinds in one directory, where both siblings put one entry file at the root and everything else in folders.*** **And [`check.ts`](../../build/verify.ts) already states the taxonomy in prose, in its own header:** *"the folder's own convention — `see.ts` reports, the `verify-*` scripts gate, `index.ts` compiles, and none of them is also a module."* ***The compiler wrote down the distinction between a command and a module and then filed them together.***
 
 ```
 build/
@@ -705,7 +705,7 @@ build/
 
 ### <a id="u134"></a>U134 — `Source` is deleted and emitting becomes idempotent · [R126](#r126)
 
-**Mechanism.** ***Traced to every use, and there is one.*** **`declared | supplied | unresolved` is read in six places and FIVE OF THEM ARE PRINTING or counting** — [`index.ts:30-32`](../../build/index.ts)'s `from(kind)` tally. ***The single functional use is [`emit.ts:104`](../../build/emit.ts):*** *if a link was **supplied**, write it into the emitted cover, because the author did not.*
+**Mechanism.** ***Traced to every use, and there is one.*** **`declared | supplied | unresolved` is read in six places and FIVE OF THEM ARE PRINTING or counting** — [`index.ts:30-32`](../../build/index.ts)'s `from(kind)` tally. ***The single functional use is [`emit.ts:104`](../../build/stages/emit.ts):*** *if a link was **supplied**, write it into the emitted cover, because the author did not.*
 
 > ***So make emitting IDEMPOTENT — write the annotation where it is absent, leave it where it is present — and nothing needs to know how the answer was arrived at.*** **`Source` is deleted**, and `unresolved` — *a reference that points at nothing* — **becomes a [`Complaint`](../../build/library.ts), which the compiler already has and which already travels.**
 
@@ -722,7 +722,7 @@ build/
 | | the alternate |
 |---|---|
 | ***`Resolved`*** | ***ONE seam that each stage enriches.*** [`Library`](../../build/library.ts) is the seam every stage reads; `Resolved` is a second, narrower one that drops `entries` and adds `books`. **So `walk` fills the entries, `refer` fills the references, `resolve` fills the books — a stage takes a `Library` and returns a `Library`, and the tense disappears because there is no second state to name** |
-| ***`Named`*** | ***it is a card, and [the file says so](../../build/catalogue.ts)*** — its own header calls them cards throughout, and the type is a book plus the fields a card carries. **With [`$$Book` replacing `$IndexCard`](#u115), the compiler's type is the data for a `$$Book`** — *so it is named for what it makes* |
+| ***`Named`*** | ***it is a card, and [the file says so](../../build/stages/catalogue.ts)*** — its own header calls them cards throughout, and the type is a book plus the fields a card carries. **With [`$$Book` replacing `$IndexCard`](#u115), the compiler's type is the data for a `$$Book`** — *so it is named for what it makes* |
 
 **Files.** `library.ts` · `walk.ts` · `refer.ts` · `resolve.ts` · `emit.ts` · `catalogue.ts` · `validate.ts` · `index.ts` · `check.ts`. **Depends on** [U115](#u115), [U132](#u132), [U134](#u134).
 
@@ -1041,7 +1041,7 @@ Prose.'}`.** *The leading blank line exists only to make [`$Section.parts()`](..
 | ***`$Theme.setting` was a MONOLITH and is gone*** | **It returned all four values at once, so a theme wanting different tracking replaced weight, size and leading with it.** ***That is the fault [U113](#u113) removed from `valid()` three units earlier, rebuilt in the same sprint.*** *Doug: "There's no ability to evolve."* **Now `weight(at)` · `tracking(at)` · `leading(at)` over `$weight` · `$tracking` · `$leading`, each overridable alone — the shape `step(at)` already had over `$size` and `$ratio`.** *And every call site had been asking for ONE field of the four, so the object bought nothing* |
 | ***[S13](../the-condition-report/04-semantics.md#s13) IS WITHDRAWN — the entry was wrong and the promises said so*** | **It called `letters` "one name, two quantities" and named the SENTENCE as the deviation.** *The sentence was the correct reading:* **it split `copy` into graphemes, which tiles LOSSLESSLY — and the other five levels flatMapped over `words`, which filters `role === 'use'` and so DROPPED EVERY SPACE.** ***Doug, at the plan: "isn't a space parsed as a mention 'space'? Wouldn't that be at the word level?" — it is, a `$Punctuation` at word grade, present in `parts()` and absent from `words`.*** **So every level now tiles through `parts()`, and the promise that already said this — *"letters tile losslessly, words are a lossy parse, the space is a letter no word claims"* — is what caught the mistake.** ***`CHECK` letters 10,692 → 17,240, words unchanged at 2,359*** |
 | ***a `try`/`catch` [I15](../the-condition-report/05-implementation.md#i15) called load-bearing WAS, for a reason the entry did not give*** | **The contents' catch was swallowing `$Document.declaration()` calling `view()` at bond time** — *a contents' view asks its book for chapters, and it has no book yet.* **The summary the entry named was never the reason.** ***The fix is not a catch: a contents DECLARES NO SECTIONS of its own, so it is not harvested for any*** |
-| ***A GATE WAS PINNING THE DEFECT*** | **[`verify-build.ts`](../../build/commands/verify-build.ts) asserted a card carried `["Synopsis", "What Physics Is"]`** — *"Synopsis" being exactly the chapter a book's own contents excludes, which is [the filed bug](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md).* **The promise's TITLE was right and its expectation was the bug written down**, so [U112](#u112) turned the gate red rather than green |
+| ***A GATE WAS PINNING THE DEFECT*** | **[`verify-build.ts`](../../build/tests/building.ts) asserted a card carried `["Synopsis", "What Physics Is"]`** — *"Synopsis" being exactly the chapter a book's own contents excludes, which is [the filed bug](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md).* **The promise's TITLE was right and its expectation was the bug written down**, so [U112](#u112) turned the gate red rather than green |
 | ***`unresolved` is NOT a fault, and turning it into a Complaint broke four books*** | *Doug's ruling was "`unresolved` becomes a `Complaint`" — and applied literally it failed the build.* **A cover may name its author as a NAME rather than as an import — `<Author>The Team</Author>` — and the corpus does exactly that.** ***So a link with no book is an empty book with a display, and nothing complains.*** *The ruling was right that `Source` goes; it was the reading of `unresolved` that was wrong, and the corpus said so in one run* |
 | ***the notation is not formatting, and the two are one character apart*** | **`$Section.compose()` splits on `
 ` to strip a `> ` marker, and [`parallel.tsx`](../../package/app/src/markdown/parallel.tsx)'s found side writes markdown on purpose.** *Those newlines are read, not written* — **the rule is that the framework never PRODUCES one**, and the converter that could not tell the difference broke the parallel text until it was repaired by hand |

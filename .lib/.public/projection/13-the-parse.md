@@ -62,7 +62,7 @@ Recorded because each one turned the design, and four of them corrected the impl
 
 Each claim was checked against the source, and the counts are what make the requirements below sized rather than guessed.
 
-- **`inline` is set false at exactly four sites** — [`$Section`](../../package/src/writing/Section.tsx), [`$Document`](../../package/src/document/Document.tsx), [`$Figure`](../../package/src/writing/Figure.tsx), [`$IndexCard`](../../package/src/library/IndexCard.tsx). Everything else takes `$Writing`'s `true`.
+- **`inline` is set false at exactly four sites** — [`$Section`](../../package/src/writing/Section.tsx), [`$Document`](../../package/src/document/Document.tsx), [`$Figure`](../../package/src/writing/Figure.tsx), [`$IndexCard`](../../package/src/reference/IndexCard.tsx). Everything else takes `$Writing`'s `true`.
 - **The block already holds everything.** [`gathered()`](../../package/src/utilities/html.ts) flattens the bond's whole sequence — blocks and standalone arguments alike — into one ordered element list, so `inline` never controlled representation. Its only real consumer is the parse's recognition test.
 - **`index` appears at 20 sites in the model, and no author declares one** — zero occurrences of `index=` across the demo's book files.
 - **The writes split by where they happen.** [`$Book`](../../package/src/book/Book.tsx), [`$Document`](../../package/src/document/Document.tsx) and `$CardCatalogue` write it **inside a bond constructor** — once, never again. [`$Writing.parts()`](../../package/src/writing/Writing.tsx) writes it **on every call**, to objects it just built. Only the second kind loops.

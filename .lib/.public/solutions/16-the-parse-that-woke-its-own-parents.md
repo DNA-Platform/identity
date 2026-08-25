@@ -2,8 +2,8 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **keywords:** model · render-loop · diffuse · parse · gate
-- **sprint:** [The Representative](../projection/12-the-representative.md) · [The Parse](../projection/13-the-parse.md) · [The Theme](../projection/18-the-theme.md)
+- **keywords:** model · render-loop · diffuse · parse · getter · gate
+- **sprint:** [The Representative](../projection/12-the-representative.md) · [The Parse](../projection/13-the-parse.md) · [The Theme](../projection/18-the-theme.md) · [Working Well By Default](../projection/22-working-well-by-default.md)
 
 ---
 
@@ -159,3 +159,57 @@ view() calls parts()  →  parts() builds NEW objects and adopts each one
 **[The discharge's own lesson was that rereading the chapter caught a missed write](#discharged--the-parse-2026-08-12)** — the `$role` one. ***It happened again and rereading did not catch it this time***, because the third write does not look like a write: it reads as bookkeeping, in a line whose visible job is a guard.
 
 **So the tell is worth stating for the next reader:** ***in this framework, any assignment to a chemical's member is a write that diffuses — including the ones that look structural.*** *`part.parent = this` is not plumbing. It is a mutation with a reach.*
+
+---
+
+# <a id="a-getter-is-a-reading-too"></a>THE THIRD APPEARANCE — A GETTER IS A READING TOO · [Working Well By Default](../projection/22-working-well-by-default.md), 2026-08-25
+
+***The law held again, and again the condition had been dormant rather than absent.*** **It cost one driver run to find and one line to stop.**
+
+## Symptoms
+
+- **`verify-library` died at `Maximum update depth exceeded`** — the same words as [the original](#symptoms), caught by React Router's boundary during render.
+- **Nothing else was red.** `lib` **352/352**, `tsc` 0 in every package, both application typechecks clean, `CHECK 7/7` with its counts unchanged.
+- It arrived on a change that touched **neither the parse nor a view** — the framework's card became a chapter, and the application began reading `card.title`.
+
+## What did not work — and the first suspect was innocent
+
+**The card was the obvious cause and it was wrong.** *Probed directly:*
+
+```
+PARTS 2   TITLE X   SUMMARY SummaryAn account.   STABLE true true
+```
+
+***It declares its writing once, and `parts()` returns the identical objects on a second call.*** **[The held reading from the fix above](#the-fix--and-it-is-deliberately-not-the-obvious-one) was doing its job.** *So the loop was somewhere the previous two appearances had not looked.*
+
+## The mechanism — A GETTER THAT BUILDS A CHEMICAL
+
+**[`$Document.title`](../../package/src/document/Document.tsx) constructs a NEW `$Title` every time it is read:**
+
+```tsx
+get title(): $Title | undefined {
+    const t = this.canonical?.heading ?? '';
+    if (!t) return undefined;
+    const Title = $(titles.Title);
+    const title: $Title = $(<Title>{t}</Title>);   // ← a fresh chemical, every read
+    return title;
+}
+```
+
+**The application's breadcrumb had just started reading it inside `view()`.** *So every render built a chemical, and [a construction inside a render is the same wall this chapter has met twice](#the-mechanism--adoption-is-a-write-and-it-is-the-third-one)* — **new objects, allocated and adopted, on a path that re-runs because of them.**
+
+***Why it lay dormant is the same sentence a third time:*** **`$Document.title` was always like this. Nothing had ever read it inside a view.** *The framework's own `head()` reads `this.title?.copy` in a view and does not loop — because a `$Book`'s title comes from its cover, built once, while the application was reading a CARD's title on a chemical it re-reads every paint.*
+
+## The fix, and the root left standing
+
+**The breadcrumb reads [`canonical?.heading`](../../package/src/writing/Section.tsx) — a string, constructing nothing.** *One line, and `verify-library` went **39/39, 0 console errors**.*
+
+> ***THE ROOT IS NOT FIXED AND IS NAMED RATHER THAN OMITTED.*** **`$Document.title` still builds on every read, and [`$Figure.caption`](../../package/src/writing/Figure.tsx) does the same thing** — *found by the same grep, latent for the same reason.* **Two getters that no view may touch, and nothing says so at either one.**
+
+## The law, in the form this appearance adds
+
+**It was:** *a reading that is called during a render must be held.*
+
+***And what this adds is which things are readings:*** **a getter that builds a chemical IS a reading**, *however small it looks and however much it reads like an accessor.* **`parts()` announced itself as a reading. `title` does not** — and that is exactly why it survived three sprints and two appearances of this chapter.
+
+***The tell, stated so the next reader can grep for it:*** **any getter whose body contains `$(<…/>)` is a reading, not an accessor.** *It may be called from a suite, a compiler or a validator freely; it may not be called from a view.*

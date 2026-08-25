@@ -45,7 +45,7 @@
 *Chosen rather than habitual, and every claim in this chapter was checked against the source in this session rather than recalled.*
 
 - **[The Build](15-the-build.md), end to end** — 1,829 lines. It is the design, the record of four sessions, and the only place the phase table and the shared contracts are written down. *Read whole because the requirements below continue its numbering and contradict none of it.*
-- **The compiler, every module** — [`index.ts`](../../build/index.ts), [`library.ts`](../../build/library.ts), [`walk.ts`](../../build/walk.ts), [`refer.ts`](../../build/refer.ts), [`resolve.ts`](../../build/resolve.ts), [`emit.ts`](../../build/emit.ts), [`catalogue.ts`](../../build/catalogue.ts), [`where.ts`](../../build/where.ts), [`verify-build.ts`](../../build/verify-build.ts). *The sprint adds a phase to this program; a requirement written without reading it would be a guess about what the phase can reach.*
+- **The compiler, every module** — [`index.ts`](../../build/index.ts), [`library.ts`](../../build/library.ts), [`walk.ts`](../../build/stages/walk.ts), [`refer.ts`](../../build/stages/refer.ts), [`resolve.ts`](../../build/stages/resolve.ts), [`emit.ts`](../../build/stages/emit.ts), [`catalogue.ts`](../../build/stages/catalogue.ts), [`where.ts`](../../build/utilities/where.ts), [`verify-build.ts`](../../build/tests/building.ts). *The sprint adds a phase to this program; a requirement written without reading it would be a guess about what the phase can reach.*
 - **`valid.mts`** — the runtime that is about to move. *It is the thing being relocated, and reading it is what showed the level walk stops at paragraph.*
 - **[`app.tsx`](../../app/src/app.tsx) and [`catalogue.tsx`](../../app/src/catalogue.tsx)** — where a card is handed its book by `fetch()`. *Load-bearing: this is the only place in the tree that wires a card, and checking has to do the same thing for every book at once.*
 - **The framework's link classes** — [`Author.tsx`](../../package/src/book/Author.tsx), [`Canonical.tsx`](../../package/src/book/Canonical.tsx), [`Book.tsx`](../../package/src/book/Book.tsx), [`Synopsis.tsx`](../../package/src/book/Synopsis.tsx). *This is where the new rules land, and reading them found a defect the sprint now owes a fix for.*
@@ -153,11 +153,11 @@ get library(): $Card | undefined {
 
 ### R42 — The books runtime is part of the compiler
 
-*Doug: **"We need a runtime for the books as part of the compiler."*** **`valid.mts` leaves the application** and becomes the **fourth phase of the one command** — it is [`validate.ts`](../../build/validate.ts) now, with [`check.ts`](../../build/check.ts) as its command.
+*Doug: **"We need a runtime for the books as part of the compiler."*** **`valid.mts` leaves the application** and becomes the **fourth phase of the one command** — it is [`validate.ts`](../../build/stages/validate.ts) now, with [`check.ts`](../../build/verify.ts) as its command.
 
 **It wires every card to its book first, and that is forced rather than chosen.** [`$Author.read()`](../../package/src/book/Author.tsx) throws when its card never pointed, and the compiler's emitted covers carry cards that **nothing has filled** — [`fetch()`](../../app/src/catalogue.tsx) does that in the application, one book at a time, at load. **So a link cannot be followed at build time until checking loads every book and fills every card**, which is exactly the thing the build is allowed to do and the page is not.
 
-*The mechanism is already half-built and this is worth stating so nobody designs a second one: **[`catalogue.ts`](../../build/catalogue.ts) already imports every emitted book** to read its cards off a constructed one. Checking is that same act asking a different question.*
+*The mechanism is already half-built and this is worth stating so nobody designs a second one: **[`catalogue.ts`](../../build/stages/catalogue.ts) already imports every emitted book** to read its cards off a constructed one. Checking is that same act asking a different question.*
 
 **Seen:** one command printing **four** phases; the application's `package.json` declaring **no validation script**; and a run over the corpus reporting validity with its scope.
 
@@ -165,7 +165,7 @@ get library(): $Card | undefined {
 
 *Doug: **"we should be unit testing the compiler. Queenie should be involved in that."***
 
-**Measured: the compiler has no suite.** It has **64 assertions across two hand-rolled scripts** — [`verify-walk.ts`](../../build/verify-walk.ts) at 28 and [`verify-build.ts`](../../build/verify-build.ts) at 36 — which are driver-shaped: a counter, a list of `check(says, held)` calls, and a printed total. *Chemistry runs **674** and lib **239**, both as suites of promises.*
+**Measured: the compiler has no suite.** It has **64 assertions across two hand-rolled scripts** — [`verify-walk.ts`](../../build/tests/walking.ts) at 28 and [`verify-build.ts`](../../build/tests/building.ts) at 36 — which are driver-shaped: a counter, a list of `check(says, held)` calls, and a printed total. *Chemistry runs **674** and lib **239**, both as suites of promises.*
 
 **Seen:** a suite with a number, each of the compiler's rules stated as a promise; and **the two scripts either become it or stand beside it as drivers — stated either way**, never left ambiguous. *An artifact whose role nobody wrote down is the shape of half the defects on this branch.*
 
@@ -174,7 +174,7 @@ get library(): $Card | undefined {
 **Two gaps, and both are gaps in coverage rather than in size.**
 
 1. **No book in the corpus authors itself**, so `<Author>The Team</Author>` resolves to nothing and **the author rule has nothing to run against even positively.** *[Named at The Build's close](15-the-build.md#open--and-none-of-it-blocks-a-session-starting) and still standing.* **The corpus gains a book that authors itself.**
-2. **Invalid content cannot live in the corpus**, because the ordinary run must come out valid. **So invalid cases are constructed by the test** — the way [`verify-build.ts`](../../build/verify-build.ts) already clones a description and mutates it to drive the one complaint it can.
+2. **Invalid content cannot live in the corpus**, because the ordinary run must come out valid. **So invalid cases are constructed by the test** — the way [`verify-build.ts`](../../build/tests/building.ts) already clones a description and mutates it to drive the one complaint it can.
 
 ***Nothing here is committed.*** `library/.test-library/` is gitignored, so adding to it adds nothing to the repository — which is [consistent with the ruling](#out-of-scope-named-so-it-is-not-drifted-into) that we do not want to commit the test code.
 
@@ -291,7 +291,7 @@ get library(): $Card | undefined {
 ### <a id="u37"></a>U37 — `library`, on the book, and the generated rule deleted
 
 **Mechanism:** a book is its own library when its subject reads home; otherwise its library is its subject's library. The compiler stops emitting the duplicate. **Realizes [R39](#r39--a-subject-carries-a-library-reference), as amended above.**
-**Files:** [`package/src/book/Book.tsx`](../../package/src/book/Book.tsx) · [`build/catalogue.ts`](../../build/catalogue.ts) · the regenerated `cards.tsx` · a promise.
+**Files:** [`package/src/book/Book.tsx`](../../package/src/book/Book.tsx) · [`build/catalogue.ts`](../../build/stages/catalogue.ts) · the regenerated `cards.tsx` · a promise.
 **Depends on:** nothing in code; the deletion half wants [U38](#u38)'s run to prove it regenerates.
 **Visible end:** [AE24](#acceptance-examples) — the library's own book answers itself, a book two folders down answers the library, and the generated module contains no library rule.
 
@@ -318,7 +318,7 @@ get library(): $Card | undefined {
 ### <a id="u40"></a>U40 — The word goes
 
 **Mechanism:** every occurrence of *fail* in any form, across the compiler's output, the framework's error strings and the application, replaced with the validation vocabulary — and the result stated as a count of zero. **Realizes [R41](#r41--the-semantics-are-validation-and-a-book-is-invalid).**
-**Files:** [`build/index.ts`](../../build/index.ts) · [`build/resolve.ts`](../../build/resolve.ts) · [`build/verify-build.ts`](../../build/verify-build.ts) · [`package/src/book/`](../../package/src/book/) · [`app/src/app.tsx`](../../app/src/app.tsx).
+**Files:** [`build/index.ts`](../../build/index.ts) · [`build/resolve.ts`](../../build/stages/resolve.ts) · [`build/verify-build.ts`](../../build/tests/building.ts) · [`package/src/book/`](../../package/src/book/) · [`app/src/app.tsx`](../../app/src/app.tsx).
 **Depends on:** everything, which is why it runs late.
 **Visible end:** [AE27](#acceptance-examples) — the count, stated.
 
@@ -491,7 +491,7 @@ CHECK     7/7 books stand · 34 chapters · 67 sections · 143 paragraphs ·
           218 sentences · 1278 words · 5727 letters
 ```
 
-**A DEFECT THE NEW CONTENT EXPOSED IMMEDIATELY.** The supplied author emitted as **`<Author for={theTeam}>TheTeam</Author>`** — an unsplit identifier — because [`spaced()`](../../build/emit.ts) was applied to authored aliases and not to supplied ones. *It could not have been seen before: the library's author had always been a bare name, so the supplied display was already prose.* **Fixed; it reads `The Team`.**
+**A DEFECT THE NEW CONTENT EXPOSED IMMEDIATELY.** The supplied author emitted as **`<Author for={theTeam}>TheTeam</Author>`** — an unsplit identifier — because [`spaced()`](../../build/stages/emit.ts) was applied to authored aliases and not to supplied ones. *It could not have been seen before: the library's author had always been a bare name, so the supplied display was already prose.* **Fixed; it reads `The Team`.**
 
 **FIVE ASSERTIONS MOVED AND EACH CARRIES ITS REASON**, per [D25](#the-decisions): three in `verify-build` (files carried 18→21, modules 6→7, the library's entries gaining a third), one rewritten to assert **where the author link points** rather than its display, and one in `verify-library` (the front door catalogues 3). **A sixth was added**: *that author is a book that authors ITSELF*.
 

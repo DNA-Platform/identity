@@ -85,13 +85,13 @@ const forward = (p: string): string => p.split(sep).join('/');
 
 ## <a id="o14"></a>O14 — `CHECK` is a phase of the compile that lives in `commands/`
 
-***[The reorganization](../projection/21-semantics-then-drawing.md#u133) put four kinds of file in four places and got three of them right.*** **[`check.ts`](../../build/commands/check.ts) is filed as a command**, *alongside `see` which reports and the two `verify-*` scripts which gate* — **and it is not one.** *It is the fourth phase of the compile*, **spawned by [`index.ts`](../../build/index.ts) on every run, with the compile failing when it fails.**
+***[The reorganization](../projection/21-semantics-then-drawing.md#u133) put four kinds of file in four places and got three of them right.*** **[`check.ts`](../../build/verify.ts) is filed as a command**, *alongside `see` which reports and the two `verify-*` scripts which gate* — **and it is not one.** *It is the fourth phase of the compile*, **spawned by [`index.ts`](../../build/index.ts) on every run, with the compile failing when it fails.**
 
 ***It sits in `commands/` for a real reason, and the reason is not what the folder means.*** **It runs in its own process because [emitting imports every book and then rewrites those same files](../../build/stages/validate.ts), so a validator in the emitting process would judge a copy that is no longer on disk** — *the program is checked by something that did not write it.* **That is a fact about PROCESS, and the folder is a claim about ROLE**, *and this is the one place the two were confused.*
 
-***[`stages/validate.ts`](../../build/stages/validate.ts) is already the stage.*** **[`commands/check.ts`](../../build/commands/check.ts) is thirty-three lines that give it a process** — *which makes it neither a command nor a stage, but an entry point for one.*
+***[`stages/validate.ts`](../../build/stages/validate.ts) is already the stage.*** **[`commands/check.ts`](../../build/verify.ts) is thirty-three lines that give it a process** — *which makes it neither a command nor a stage, but an entry point for one.*
 
-**Should be different:** ***named for what it is — the stage's entry point — or filed beside the stage it runs.*** *[The taxonomy is the compiler's own](../../build/commands/check.ts), written in that file's own header, and this is the one file that header does not describe.*
+**Should be different:** ***named for what it is — the stage's entry point — or filed beside the stage it runs.*** *[The taxonomy is the compiler's own](../../build/verify.ts), written in that file's own header, and this is the one file that header does not describe.*
 
 ## <a id="s22"></a>S22 — RESOLVED · The emitter wrote the one construct the framework had purged
 
@@ -105,14 +105,43 @@ const forward = (p: string): string => p.split(sep).join('/');
 
 ***The answer was Doug's own***: **an annotation is a phrase, a phrase stands in a paragraph, so ask for a paragraph.** *Both sides now wrap the annotation in one,* **and `CHECK` moved 165 → 172 paragraphs and 305 → 312 sentences** — ***the seven authored annotations that had been silently merging.***
 
-## <a id="dispositions"></a>Dispositions
+## <a id="dispositions"></a>Dispositions — ***every entry here is CLOSED, [Working Well By Default](../projection/22-working-well-by-default.md), 2026-08-25***
 
 | entry | ruling |
 |---|---|
-| **[S22](#s22)** | ***DONE.*** *A live violation of a ruling given in the same sprint* |
-| **[S21](#s21)**, **[N34](#n34)** | ***the two worth doing next***, and in that order — **both are the type system being asked to check something it can already check** |
-| **[I23](#i23)**, **[I24](#i24)**, **[I27](#i27)** | ***mechanical, and each is one commit*** |
-| **[I25](#i25)**, **[I26](#i26)** | ***filed.*** *Real duplication with a real cost, and neither has bitten* |
-| **[O14](#o14)** | ***Doug's.*** **The mechanism is right and only the filing is in question**, *and [the compiler wrote its own taxonomy down](../../build/commands/check.ts) — changing it changes what the folder names mean* |
+| **[S22](#s22)** | ***DONE*** — *a live violation of a ruling given in the same sprint* |
+| **[S21](#s21)** | ***DONE.*** **The compiler's contact with the framework is `$Book`** — *demonstrated by misspelling a member and watching `tsc` say `Property 'contentss' does not exist on type '$Book'. Did you mean 'contents'?`* |
+| **[N34](#n34)** | ***DONE.*** *One list, `annotates`, with the type derived FROM it and both capitalised `Set`s deleted* |
+| **[I23](#i23)** | ***DONE*** — one exported `forward` in `utilities/`, imported three times |
+| **[I24](#i24)** | ***DONE*** — `pathToFileURL` from `node:url`, called in one place |
+| **[I25](#i25)** | ***DONE*** — one walk of the output, two callers |
+| **[I26](#i26)** | ***DONE*** — one function over the two link names, which is [N34](#n34)'s union arriving with something to do |
+| **[I27](#i27)** | ***DONE*** — the array declares the levels and the type derives from it |
+| **[O14](#o14)** | ***DONE, and further than proposed.*** **`commands/` is DISSOLVED** — *the root holds the entry points beside the driver, `stages/` the passes, `tests/` the compiler's own gates. `check.ts` is `verify.ts` and it is [the verifier](../projection/22-working-well-by-default.md#d83), which is the JVM's and the CLR's own arrangement and the exact reason it was already a spawn* |
 
-***No entry here is a wrong mechanism, and that is the reading's headline.*** **The compiler does what it says**; *what it does not do is say anything once.*
+## <a id="what-the-second-reading-found"></a>What a SECOND reading found — three faults the first pass could not
+
+***[The first pass was a code reading and not an audit](../projection/21-semantics-then-drawing.md#the-compiler-audit).*** **Asked [the other four questions of the letter](../projection/22-working-well-by-default.md#group-1), the compiler gave up three more — and the one that paid was the question nobody had ever put to it: *what happens when the corpus is wrong?***
+
+### <a id="o16"></a>O16 — RESOLVED · `commands/` was outside the compiler's own typecheck
+
+**`tsconfig.json` included `["*.ts", "tests/*.ts"]`.** *`stages/` and `utilities/` were reached only because `index.ts` imports them; **nothing imported the four commands**, and `check.ts` was spawned by a path string.* ***`npm run test` began with `tsc --noEmit` and had been reporting zero over four unchecked modules.*** **Closed: the typecheck names all 18 files, and it was [watched going red first](../projection/22-working-well-by-default.md#u150).**
+
+### <a id="i30"></a>I30 — RESOLVED · The only human-facing report contradicted itself on one screen
+
+***`see.ts` read `Link.from`, a field deliberately deleted from the seam*** — *whose own comment says "HOW it was arrived at is deliberately not here."* **It printed `declared` on every row above a summary reading `0 declaring · 0 supplied · 0 standing for nobody`.** *It compiled only because of [O16](#o16).*
+
+**Closed: it is [`dump`](../../build/dump.ts) now** — *the compiler's word for putting its intermediate representation on a screen* — **and it prints what the seam can actually answer: `17 links · 13 pointing · 4 standing for a name`.**
+
+### <a id="i31"></a>I31 — RESOLVED · A wrong corpus produced a stack trace, not a diagnostic
+
+***Found by breaking a corpus five ways, which had never been done.*** **The design is stated in the seam's own words** — *"diagnostics TRAVEL rather than stop the walk: one pass tells an author everything that is wrong"* — **and three faults bypassed it entirely:**
+
+| the fault | before | now |
+|---|---|---|
+| **a book with no synopsis** | ***raw `TypeError` at `emit.ts:224`, no diagnostic, no book named*** | *a named diagnostic, exit 1* |
+| **a file that will not parse** | reported as *"exports nothing a book can compose"* — **the wrong cause** | *"…would not parse", naming the file* |
+| **a chapter exporting anything at all** | ***0 diagnostics***; `export const nothing = 1` emitted as `<nothing />` | *refused before the emitter* |
+
+***The root of the first was two non-null assertions in [`resolve.ts`](../../build/stages/resolve.ts) with only one guard behind them*** — **the walk complained about a missing cover and never about a missing synopsis.** *A book that cannot be built is now ABSENT from the model rather than present and broken.*
+

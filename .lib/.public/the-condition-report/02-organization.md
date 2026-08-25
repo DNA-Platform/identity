@@ -151,7 +151,7 @@ the compiler ─ build/         NO FOLDERS AT ALL
 
 ### And it already knows
 
-**[`check.ts`](../../build/check.ts) states the taxonomy in prose, in its own header:**
+**[`check.ts`](../../build/verify.ts) states the taxonomy in prose, in its own header:**
 
 > *"the folder's own convention — **`see.ts` reports, the `verify-*` scripts gate, `index.ts` compiles, and none of them is also a module**."*
 

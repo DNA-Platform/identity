@@ -575,7 +575,7 @@ VIA $(Book)    class: $Book   instanceof $Mine: false      the resolve form had 
 
 | | what it costs |
 |---|---|
-| **the compiler emits a resolvable book** — the module asks for its book class instead of naming it, and constructs inside a scope | ***one line in [`emit.ts`](../../build/emit.ts)*** plus somewhere for the scope to come from |
+| **the compiler emits a resolvable book** — the module asks for its book class instead of naming it, and constructs inside a scope | ***one line in [`emit.ts`](../../build/stages/emit.ts)*** plus somewhere for the scope to come from |
 | **the app draws the tree around the book** — which is what the application already does with its breadcrumb and entries | no framework change, and the tree is then the app's rather than the library's |
 
 ***And the honest reading of that second row is the finding underneath the finding:*** **the library's own shape — its entries, its chrome — lives in the application, not in the model.** A theme reaches their colours ([U55](#u55) put both sides on one object) and **not their arrangement.** *The route to closing it is that a synopsis carrying a card draws itself as an entry; then a theme reaches the whole library by the path it already reaches a book. **Named, not taken.***
@@ -671,7 +671,7 @@ cd library/.public/package && npx vite app             # the demonstration
 ## What is owed, largest first
 
 1. **THE APPLICATION NEVER RENDERS THE BOOK** — [F4](#f4). It draws the chapters itself, so `$Book.view()` never runs there and ***a paginating theme would not paginate the public app.*** **The biggest thing this sprint found and did not fix**, because the app's loop carries the identifiers its bookmark reads and 29 checkpoints assert on them.
-2. **A compiled book cannot be a subclass** — [F3](#f3) and [route C](#routes). **One line in [`emit.ts`](../../build/emit.ts)**, plus a scope to construct inside.
+2. **A compiled book cannot be a subclass** — [F3](#f3) and [route C](#routes). **One line in [`emit.ts`](../../build/stages/emit.ts)**, plus a scope to construct inside.
 3. **Four findings still undistributed** — [F1](#f1), [F3](#f3), [F4](#f4), [F5](#f5). *One `/ce-compound` run each; F3 and F4 are one chapter from two sides.*
 4. **The compiler audit** — architecture, organization and naming at parity with $Chemistry and lib. **Doug's, ruled and deferred behind seeing something legible.** *He has now seen it.*
 5. **Two proxy names** — [how parts lay out, and whether unread matter is read](#names-owed-plan). And `page` is declared twice.
@@ -784,7 +784,7 @@ the page it renders:                  91 nodes
 ## Owed, and named rather than omitted
 
 - **[F4](#f4)** — the application renders chapters rather than the book. ***The largest thing this sprint found and did not fix.***
-- **[Route C](#routes)** — a compiled book cannot be a subclass. **One line in [`emit.ts`](../../build/emit.ts)**, plus a scope to construct inside.
+- **[Route C](#routes)** — a compiled book cannot be a subclass. **One line in [`emit.ts`](../../build/stages/emit.ts)**, plus a scope to construct inside.
 - **The consumer's cast** — `this.theme` is typed `$Theme`, so a theme's own new members need one.
 - **Two proxy names** — [how parts lay out, and whether unread matter is read](#names-owed-plan).
 - **`page` is declared twice** — on `$Writing` and on `$Book`, which share no ancestor that draws.

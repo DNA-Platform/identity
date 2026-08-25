@@ -54,7 +54,7 @@
 
 - [`Subject.tsx`](../../package/src/book/Subject.tsx) and [`Literature.tsx`](../../package/src/library/Literature.tsx) were **zero bytes** — the files existed and nothing was in them.
 - The word *subject* appeared **nowhere in the package source** (`grep -i subject src/` — no matches). No cover carried one, no card carried one, no book read one.
-- What The Author left standing: the card family ([`IndexCard`](../../package/src/library/IndexCard.tsx), `LibraryCard` *(deleted; the demo declares its own card)*, `LibraryCatalogue` *(deleted)*), the [author resolving through a card](../../package/src/book/Author.tsx), [four hand-built cards](../../package/app/src/sections/book/library/the-team/card.tsx), and the loop closed in the model.
+- What The Author left standing: the card family ([`IndexCard`](../../package/src/reference/IndexCard.tsx), `LibraryCard` *(deleted; the demo declares its own card)*, `LibraryCatalogue` *(deleted)*), the [author resolving through a card](../../package/src/book/Author.tsx), [four hand-built cards](../../package/app/src/sections/book/library/the-team/card.tsx), and the loop closed in the model.
 - **[The Author's R13](08-the-author.md#the-author-and-the-loop) was never built:** a book whose author link points at a book that does not author itself is not caught — no author validation existed at all.
 
 ## Rulings from the interview, 2026-08-07

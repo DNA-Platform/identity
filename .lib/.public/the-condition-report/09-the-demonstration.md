@@ -82,13 +82,24 @@ class $Word extends $Writing {
 
 ***Nothing is disabled and nothing is marked.*** **The bar presents eight controls as one kind of thing where there are at least three** — *a lens that swaps a rendering, a toggle that opens a pane, and a link that leaves the page* — **and [a count cannot see that](01-how-to-read-this.md#why-no-gate).**
 
-## <a id="dispositions"></a>Dispositions
+## <a id="dispositions"></a>Dispositions — ***updated [Working Well By Default](../projection/22-working-well-by-default.md), 2026-08-25***
 
 | entry | ruling |
 |---|---|
-| **[I28](#i28)** | ***PARTLY DONE.*** *Sections load on demand; `/title` and `/page` are 9× and 3× faster. **`/books` is untouched and it is the landing page*** |
-| **[I29](#i29)** | ***THE NEXT PIECE OF WORK, and it is the one Doug is feeling.*** **"the demo needs to be zippy"** — *and it cannot be until a card stops reaching for its book* |
-| **[S23](#s23)** | ***A correctness fault in what the demonstration TEACHES***, and it should be found by a gate rather than by eye. *The framework's own source is on disk; a drawer could read it* |
-| **[O15](#o15)** | ***Doug's.*** **Which pairs are legal is a design statement nobody has made**, *and it has to exist before a gate can check it* |
+| **[I28](#i28)** | ***DONE.*** *Sections load on demand and the landing page no longer waits on the library* |
+| **[I29](#i29)** | ***DONE, and the mechanism was not what this chapter said.*** **Profiled: last byte at 351 ms, first paint at 2,412 — 2,061 ms with NOTHING LEFT TO FETCH.** *It was never loading; it was CONSTRUCTION, which is why neither bundling nor lazy loading could have fixed it.* **The cards carry their own text with [a promise asserting it against the living books](../../package/app/src/sections/book/library/the-team/card.tsx), and only then could the imports go dynamic** — *the reverted attempt did those in the other order.* ***3,520 ms → 1,638; construction 2,061 → 1,028; the shelf's chunk 284 kB → 74; five spines still standing*** |
+| **[S23](#s23)** | ***STILL OPEN.*** *The classes drawer still transcribes source rather than reading it* |
+| **[O15](#o15)** | ***STILL OPEN.*** *Which control pairs are legal is a design statement nobody has made* |
 
-***And the pattern across all four is worth stating once more:*** **the demonstration re-derives at load time what the compiler derives at build time, and transcribes by hand what it could read.** *Both are the same mistake — [handling the item the card stands in for](../../build/stages/catalogue.ts).*
+## <a id="what-building-it-found"></a>Two more, found by building the fix
+
+### <a id="i34"></a>I34 — RESOLVED · The demonstration could not be built at all
+
+***Built and served, `/books` threw `Cannot read properties of undefined (reading 'chapters')` and rendered 21 nodes.*** **Built UNMINIFIED and served, it was 73 nodes, 1,179 characters, 0 errors — identical to the dev server.** *The mechanism is the one [already fixed in the sibling application a sprint earlier](../../app/vite.config.ts): a bond constructor is found by the class's NAME, and a minifier renames it.*
+
+**Nothing ships the demonstration, so nobody had ever found out.** ***Closed with the one line the sibling config already carried, plus a build script so it can be run at all.***
+
+### <a id="o18"></a>O18 — RESOLVED · The drivers and the server met only by hand
+
+***Neither vite config set a port.*** *Vite served **5173**; `verify-demo` and `verify-book` defaulted to **5199**, `verify-library` to **5299**, and every document in the library said 5199.* **The only thing bridging them was somebody remembering a flag, and [a driver that cannot connect stalls rather than saying so](../solutions/26-the-red-that-exercised-nothing.md).** ***Closed: the ports are declared, and `npm run dev` then `npm run verify` works with none.***
+

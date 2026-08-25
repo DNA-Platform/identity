@@ -46,7 +46,7 @@
 > | | how it is set | prop? |
 > |---|---|---|
 > | `$Denote` · `$Footnote` · `$Citation` · `$Cite` | ***a human writes `<Footnote for="arrow">`*** | **yes** — and it is a **key**, a string |
-> | `$Author` · `$Subject` · `$Canonical` · `$Synopsis` | ***a human writes `<Canonical for={physicsTheStandardModel}>`, and [the compiler inserts it](../../build/emit.ts) too*** | **yes** — and it is a **card** |
+> | `$Author` · `$Subject` · `$Canonical` · `$Synopsis` | ***a human writes `<Canonical for={physicsTheStandardModel}>`, and [the compiler inserts it](../../build/stages/emit.ts) too*** | **yes** — and it is a **card** |
 > | [`$Bookmark`](../../package/src/book/Bookmark.tsx) | ***`left.$for = where`, in code, never JSX*** | ***NO*** — nothing authors a bookmark |
 >
 > ***So one of the three does not need to be a prop at all***, and the two that do hold different kinds — **which is the whole of the collision.** *`$Highlight`'s `$first`/`$last` are a fourth thing again: character offsets, typed `number \| string` because JSX delivers strings.*
@@ -60,9 +60,9 @@
 > | `$Highlight` | **`$from` / `$to`** | yes |
 > | ***`$Author` · `$Subject` · `$Canonical` · `$Synopsis`*** | ***the card*** | ***— and this is the open piece*** |
 >
-> ***The annotations are the exception and Doug named why:*** **`<Author>The Team</Author>` is what an author IS — the name is the content, and a prop carrying a card is the compiler reaching into an authored element.** *Today [`emit.ts`](../../build/emit.ts) inserts `for={theTeam}` precisely because the annotation cannot find its own card.*
+> ***The annotations are the exception and Doug named why:*** **`<Author>The Team</Author>` is what an author IS — the name is the content, and a prop carrying a card is the compiler reaching into an authored element.** *Today [`emit.ts`](../../build/stages/emit.ts) inserts `for={theTeam}` precisely because the annotation cannot find its own card.*
 >
-> ***The route that removes the prop:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md) and needs no new mechanism.* **[`$CardCatalogue.file(key, keyword, card)` and `find(query)`](../../package/src/library/CardCatalogue.tsx) already exist for exactly a lookup by name**, and they are the two members [I14](05-implementation.md#i14) calls a string micro-language — ***so the two entries are one piece of work.***
+> ***The route that removes the prop:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md) and needs no new mechanism.* **[`$CardCatalogue.file(key, keyword, card)` and `find(query)`](../../package/src/reference/CardCatalogue.tsx) already exist for exactly a lookup by name**, and they are the two members [I14](05-implementation.md#i14) calls a string micro-language — ***so the two entries are one piece of work.***
 >
 > **Doug's words: *"I think you understand the problem. I want you to clean it up."* — taken as the brief, and [carried into the sprint as a problem](06-the-cleaning.md#actionable) rather than a rename.**
 
@@ -105,7 +105,7 @@
 
 > **TREAT** · *step 9* — a local function in `refer.ts`. One line.
 
-[`$TableOfContents.open`](../../package/src/book/TableOfContents.tsx) is **the chapter a contents has open**. [`refer.ts`'s `open()`](../../build/refer.ts) **constructs a ts-morph project**. *Different programs, and the same repository.*
+[`$TableOfContents.open`](../../package/src/book/TableOfContents.tsx) is **the chapter a contents has open**. [`refer.ts`'s `open()`](../../build/stages/refer.ts) **constructs a ts-morph project**. *Different programs, and the same repository.*
 
 ---
 
@@ -120,11 +120,11 @@
 | <a id="n7"></a>**N7** | `$Composible$` | [`writing/Composition.tsx`](../../package/src/writing/Composition.tsx) | not a book word, ***and not a spelling*** — the word is *composable* | **TREAT** · step 9 · *rename regardless of [S1](04-semantics.md#s1); it should not carry a misspelling while it waits to dissolve* |
 | <a id="n8"></a>**N8** | `set0` | [`$Paragraph`](../../package/src/writing/Paragraph.tsx) | means *is display mathematics*, and **is not a word** | **TREAT** · step 9 · *the only name a reader cannot guess — and striking it [dissolves N5](#n5)* |
 | <a id="n9"></a>**N9** | `declaration` | [`$Document`](../../package/src/document/Document.tsx) | not a book word, *and [the mechanism under it is worse](05-implementation.md#i12)* | **MONITOR** · *with [I12](05-implementation.md#i12) — renaming a member whose mechanism is under review is churn* |
-| <a id="n10"></a>**N10** | `properties` | [`$IndexCard`](../../package/src/library/IndexCard.tsx) | a card's fields are not *properties* | **TREAT** · step 9 · ***word [owed](06-the-cleaning.md#the-words-owed)*** — `entries` is taken by `$Book` |
+| <a id="n10"></a>**N10** | `properties` | [`$IndexCard`](../../package/src/reference/IndexCard.tsx) | a card's fields are not *properties* | **TREAT** · step 9 · ***word [owed](06-the-cleaning.md#the-words-owed)*** — `entries` is taken by `$Book` |
 | <a id="n11"></a>**N11** | `$in` | [`$Chapter`](../../package/src/book/Chapter.tsx) | **a preposition as a field name** | **TREAT** · step 9 · *one field, one file* |
 | <a id="n12"></a>**N12** | `url` | [`$Link`](../../package/src/reference/Link.tsx) | a reference's **target**; `url` is the web's word | **TREAT** · step 9 |
 | <a id="n13"></a>**N13** | `row` · `Row` | [`$TableOfContents`](../../package/src/book/TableOfContents.tsx) | a table's word | **TREAT** · step 4 · ***not a rename, a deletion*** — [B1 already ruled it](../projection/19-the-binding.md#the-board): a reference draws its own row |
-| <a id="n14"></a>**N14** | `contentish` | [`walk.ts`](../../build/walk.ts) | *-ish* is not precision | **TREAT** · step 9 · *free* |
+| <a id="n14"></a>**N14** | `contentish` | [`walk.ts`](../../build/stages/walk.ts) | *-ish* is not precision | **TREAT** · step 9 · *free* |
 | <a id="n15"></a>**N15** | `$Denote` | [`document/`](../../package/src/document/Denote.tsx) | a logic word for **a reference mark** | ***REFER*** · [the words owed](06-the-cleaning.md#the-words-owed) · *raised, not taken* |
 | <a id="n16"></a>**N16** | `$role` = `use` \| `mention` | [`$Writing`](../../package/src/writing/Writing.tsx) | a stage word for a semantic fact | **LEAVE** · ***[the settled account uses the word](../the-semantics-of-books/15-the-levels-of-writing.md#used-and-mentioned)*** — the derivation's own vocabulary outranks the objection |
 
@@ -162,7 +162,7 @@
 | | name | where | what it is | disposition |
 |---|---|---|---|---|
 | <a id="n24"></a>**N24** | `Resolved` | [`library.ts`](../../build/library.ts) | the library after resolving | ***ALTERNATE DESIGN, not a rename*** — see below |
-| <a id="n25"></a>**N25** | `Named` | [`catalogue.ts`](../../build/catalogue.ts) | ***its own comment calls these "cards"*** | **TREAT** · step 9 · *the answer is half-written in its own comment* |
+| <a id="n25"></a>**N25** | `Named` | [`catalogue.ts`](../../build/stages/catalogue.ts) | ***its own comment calls these "cards"*** | **TREAT** · step 9 · *the answer is half-written in its own comment* |
 | <a id="n26"></a>**N26** | `Source` | [`library.ts`](../../build/library.ts) | where an answer came from | ***DELETE IT*** — see below |
 | <a id="n27"></a>**N27** | `Laid` · `Composed` · `Lay` | [`$Theme`](../../package/src/writing/Theme.tsx) | ***structural stand-ins invented to dodge a circular import***, and the theme's whole public type surface | **TREAT** · ***step 3*** · *taken with the theme, because step 3 opens `$Theme` anyway* |
 
@@ -178,7 +178,7 @@
 
 | | name | why | disposition |
 |---|---|---|---|
-| <a id="n31"></a>**N31** | `emit`, in [`build/emit.ts`](../../build/emit.ts) | *Doug: **"emit is not a book word or a react word."*** **Replaced across the framework and left standing in the compiler** — file, function, and the `Emitted` type | **TREAT** · step 9 · ***a vocabulary ruling that stopped at a folder boundary is not a ruling*** |
+| <a id="n31"></a>**N31** | `emit`, in [`build/emit.ts`](../../build/stages/emit.ts) | *Doug: **"emit is not a book word or a react word."*** **Replaced across the framework and left standing in the compiler** — file, function, and the `Emitted` type | **TREAT** · step 9 · ***a vocabulary ruling that stopped at a folder boundary is not a ruling*** |
 | <a id="n32"></a>**N32** | `tableOfContents` beside `contents`, on [`$Book`](../../package/src/book/Book.tsx) | **a rename that stalled halfway** — both public, both used, and [G1 says the class name is wrong too](../projection/19-the-binding.md#the-board) | **TREAT** · ***step 7*** · *taken with [I9](05-implementation.md#i9), the same fault one member apart* |
 
 ## The framework speaks English out loud, twice
@@ -212,11 +212,11 @@
 
 *Doug, 2026-08-23: **"I don't understand `Named` or `Resolved`. If it's something on reference, just make it IDEMPOTENT. No need to know if it resolved I guess. Please just LOOK FOR ALTERNATE DESIGNS. I don't like either of those. We are auditing the compiler too."***
 
-**`Source` — traced to every use, and there is one.** *`declared | supplied | unresolved` is read in six places and **five of them are printing or counting**. The single functional use is [`emit.ts:104`](../../build/emit.ts): if a link was **supplied**, write it into the emitted cover, because the author did not.*
+**`Source` — traced to every use, and there is one.** *`declared | supplied | unresolved` is read in six places and **five of them are printing or counting**. The single functional use is [`emit.ts:104`](../../build/stages/emit.ts): if a link was **supplied**, write it into the emitted cover, because the author did not.*
 
 > ***So make emitting IDEMPOTENT — write the annotation where it is absent, leave it where it is present — and nothing needs to know how the answer was arrived at.*** **`Source` is deleted**, and `unresolved` — a reference that points at nothing — becomes **a [`Complaint`](../../build/library.ts), which the compiler already has and already travels.**
 
-**`Named` — it is a card, and the file says so.** *[`catalogue.ts`](../../build/catalogue.ts)'s own header calls them cards throughout; the type is a book plus the fields a card carries.* ***With [`$$Book` replacing `$IndexCard`](04-semantics.md#s20), the compiler's type is the data for a `$$Book` — so it is named for what it makes.***
+**`Named` — it is a card, and the file says so.** *[`catalogue.ts`](../../build/stages/catalogue.ts)'s own header calls them cards throughout; the type is a book plus the fields a card carries.* ***With [`$$Book` replacing `$IndexCard`](04-semantics.md#s20), the compiler's type is the data for a `$$Book` — so it is named for what it makes.***
 
 **`Resolved` — one seam instead of two.** *[`Library`](../../build/library.ts) is the seam every stage reads; `Resolved` is a second, narrower one that drops `entries` and adds `books`.* ***The alternate is that there is ONE seam and each stage enriches it*** — `walk` fills the entries, `refer` fills the references, `resolve` fills the books — **so a stage takes a `Library` and returns a `Library`, and the tense disappears because there is no second state to name.**
 
