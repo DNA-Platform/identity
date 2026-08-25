@@ -18,9 +18,35 @@ The consequence is specific and it lands on the result we already delivered. Our
 
 And we have already measured that exact shape from the other side without recognising it. The amplitude ledger predicted that per-trial endogenous phases average out, so the mean over trials converges to the attenuated stimulus while each trial retains full contrast — **measured at correlation 0.9932** ([The Altered Cortex ch6](../the-altered-cortex/06-generating-the-hallucination.md)). That is the paper's Figure 1D–F, discovered generatively, with no estimator and no scalar attached. This sprint attaches one.
 
-## The move, in one line
+## The move, in one line — REVISED 2026-08-17, and this replaces the original
 
-Their framework must *infer* the tuning function from a basis expansion, which is what confines them to one- and two-dimensional stimuli. **We do not have to infer it — we have four trained twins.** Supplying `f` removes the half of their estimation problem that does not scale, and turns the remaining problem into estimating the per-trial deviation ε and the coupling κ. That is the collaborator's own suggestion ("maybe there is a way to combine this method with DNNs"), and in the released code it is a constructor argument rather than a fork — see [the code deep dive](../../papers/garon-error-in-variables-2026/19-deep-dive-the-released-code.md).
+**Reduce the stimulus, not the model.** Their framework confines itself to one- and two-dimensional
+latents because the Fourier basis grows as `K^d` and the quasi-Monte-Carlo coverage of `[0,1]^d` is
+exponential in `d`. Rather than escape that wall, we walk up to it: each image is re-described as a
+lattice of tiles, one sinusoidal grating is fitted entirely to each tile, and **the latent is three
+named numbers read off that fit — orientation, spatial frequency, luminance.** `d = 3`. Their
+published inference then applies with nothing modified.
+
+Doug, 2026-08-17: *"I intentionally transformed the image so it's closer to the latent to reduce
+the dimensionality of the input."* The transform **is** the dimensionality reduction, which is why
+no principal components appear anywhere in this analysis — a local PC has no name and a tuning
+surface over it cannot be read, whereas orientation is the same kind of object as their head
+direction: chosen, declared, then tested. Orientation is also genuinely periodic, so it is the
+first variable in this project to use their Fourier basis the way the basis is meant to be used.
+
+### What this replaces, and why the original was wrong
+
+The first version of this sprint proposed **supplying a trained twin as `f`**, on the reading that
+their unscalable half was tuning-function estimation. Doug rejected it, and the rejection was
+correct on its own terms: the twin is a `κ → ∞` object fitted against the presented image, so
+handing it to an estimator whose entire purpose is to let the represented variable *differ* from
+the presented one bakes the answer into the instrument. It also solved the wrong wall — supplying
+`f` does nothing about the marginalisation, which is the wall that does not move.
+
+**A grating shown in a tile is a claim, and the claim has a gate.** If the tiles do not reassemble
+into something recognisably the stimulus, there is no sense in which that grating was shown, and
+the rung is excluded. Measured stimulus variance explained: 2×2 **67.2%**, 3×4 **78.7%**, 4×7
+**85.7%** — excluded; 6×10 **90.5%**, 9×16 **94.4%**, 12×21 pending — kept.
 
 ## Decision — the analysis moves to a new folder
 
@@ -56,9 +82,28 @@ The relationship between the two folders is **one-directional and must stay that
 
 *Per [`/ce-plan`](../../../.claude/library/our-skillset/29-ce-plan.md): a unit with no mechanism is design owed, and marking it as a unit is how a sprint ships four requirements out of sixty-four.*
 
-**D1 · What is the latent `x`?** The central unresolved question. `s = x + ε` requires them to share a space; our `s` is a 2,304-dimensional image and the released inference cannot marginalise a latent of that size. Three candidate mechanisms are worked out in [the dimensionality-wall deep dive](../../papers/garon-error-in-variables-2026/18-deep-dive-inference-and-the-dimensionality-wall.md) — full image space with gradient-based estimation; a low-dimensional subspace with the published inference; or a generative model's latent — with a recommendation that the first two **compose** (gradient finds the mass, importance sampling measures it, using the `MISGPLVM` proposal hook that already exists in the code). **Not decided. Doug's call after the teaching.**
+**D1 · What is the latent `x`? — RESOLVED 2026-08-17.** The latent is **(orientation, spatial
+frequency, luminance)** of the single grating fitted to a tile, per tile per trial. `d = 3`.
+Orientation enters as a periodic variable over the basis's full 1.0 period; frequency and
+luminance take their `(0, 0.8]` non-periodic mapping (paper §4.2.1). This was Doug's design, and
+it dissolves the question rather than answering it: the released inference never has to reach a
+2,304-dimensional latent because the stimulus is re-described before it arrives.
 
-**D2 · JAX or PyTorch?** Their framework is JAX; our twins are PyTorch checkpoints. Bridge at the boundary, port the forward pass, or reimplement the inference — three options with real and different costs, laid out in [the code deep dive](../../papers/garon-error-in-variables-2026/19-deep-dive-the-released-code.md). **This is the first fork and everything else is downstream of it. It must be decided before any code is written.**
+Two consequences to hold onto. **Luminance is expected to carry weight and that is not a
+disappointment** — V1 cells respond to mean luminance, which is why DC is a declared dimension
+rather than something regressed out. And **the tiles set a hard frequency floor**: at 4×4 px the
+lowest resolvable frequency is 0.167 cyc/deg, while mouse V1's optimum is ~0.04 cyc/deg. That
+floor comes from the 36×64 downsampling of the stimulus, not from the method, and every frequency
+result carries it.
+
+**D2 · JAX or PyTorch? — DISSOLVED.** With the twin out of the measurement path there is no
+PyTorch object to bridge. Their `WeightedFourierBasisMapping` is **instantiated from the released
+package and its own frequency lattice and kernel weights are read off the object**, so the basis
+is theirs rather than a transcription that can drift. At the supervised limit the fit is ridge
+regression on that basis in closed form, which is their own §4.4 statement that `κ → ∞` reduces to
+*"the more straightforward, convex problem of estimating the weights"* — not an approximation of
+their model but the model at a named setting. `noise_models.Gaussian`, not Poisson: there is no
+spiking in this data.
 
 **D3 · What is a "timepoint"?** Their `t` is a contiguous timebin with a temporally continuous latent; ours is an independent 0.5-second presentation of an unrelated image. Their SMC sampler and their entire [Figure 4](../../papers/garon-error-in-variables-2026/13-fig4-error-dynamics.md) oscillator analysis do not transfer. What replaces them — a distribution of ε rather than a trajectory, structured by the repeat index — needs stating precisely.
 
@@ -95,11 +140,27 @@ The relationship between the two folders is **one-directional and must stay that
 r_t  =  f( s_t + e_t )  +  noise            s_t, x_t = s_t + e_t, e_t  are IMAGES
 ```
 
-**At the channel level — how it becomes computable.** Project onto a fixed quadrature (Gabor) channel `ψ_c` indexed by `c = (location, scale, orientation)`:
+**At the tile level — how it becomes computable.** *(Revised 2026-08-17. This replaces a fixed
+quadrature Gabor bank indexed by `(location, scale, orientation)`. Doug rejected a fixed bank —
+"Orientation bank? We fit a grating" — and he was right: a bank spans orientations rather than
+estimating one, so it never produces the named latent the analysis needs. The bank code is
+deleted.)*
+
+The image is partitioned into **mutually exclusive** tiles on a lattice, and **one** sinusoidal
+grating is fitted **entirely** to each tile — frequency, orientation, phase and DC all free:
 
 ```
-s_ct = ⟨s_t, ψ_c⟩      x_ct = ⟨x_t, ψ_c⟩      e_ct = x_ct − s_ct        complex scalars
+tile p of trial t      ->   DC, kx, ky, a, b            five numbers, fitted
+the latent             ->   x_pt = ( theta, |k|, DC )   three, named
+                            theta = atan2(ky,kx) + pi/2  mod pi     PERIODIC
 ```
+
+Two canonicalisations are load-bearing and both were bugs before they were code. `k` is folded to
+the half-plane `kx > 0`, because a real 2-D FFT is conjugate-symmetric and `(kx,ky)` and
+`(-kx,-ky)` are the same grating. `k` is then folded to the principal Nyquist band by
+`k - round(k)`, because `E(k)` is exactly periodic in `k` with period 1 on a unit-spaced grid, so
+aliases fit identically and the argmax was choosing between them arbitrarily — assigning two
+orientations to one stimulus and flattening every tuning curve it touched.
 
 **The generative model** — Garon's equation (2), with one substitution:
 
@@ -137,20 +198,46 @@ e     DEVIATION  per trial, per channel.  RADIAL = excess pattern energy;
 
 **Every channel analysis is run at every rung of the patchwork ladder** — the grids already cached in `results/patchwork/`, from 4×7 down to 18×32. Coarse tiles carry low spatial frequencies, fine tiles carry high ones, so **the ladder is a resolution axis**, and each rung yields its own tuning surfaces, its own `e`, and its own κ. Results are presented **one patch at a time, across scales**, before any aggregation is attempted. What to combine and how is decided *after* looking, not before.
 
-### Order of work — replicate, then aggregate, then extrapolate
+### Order of work — the gate, then tuning, then κ, then post-DOI
 
 ```
-1  PRE-DOI, per channel, all scales.  Fit tuning surfaces. LOOK AT THEM.
-                                      → Garon Fig 5A on our data.
-                                      → if they are not interpretable, STOP.
-2  PRE-DOI.  Conventional tuning vs EIV tuning.
-                                      → Garon Fig 3E. Does EIV sharpen?
-                                      → this is the demonstration the TECHNIQUE works here.
-3  Aggregate across channels and scales — composite likelihood, κ(scale).
+0  THE GATE.  Fit every rung of the ladder; reassemble. A rung that does not look
+             like the stimulus is excluded, because no grating was shown in it.
+             → results/examples/01-the-representation/legitimacy.png
+             → DONE. 2x2 / 3x4 / 4x7 out; 6x10 / 9x16 / 12x21 in.
+
+1  PRE-DOI, every tile, every legitimate rung, ALL 4850 trials, ALL 749 cells.
+             Held-out R^2 per cell under their basis, against a trial-permutation null.
+             → Garon Fig 5A on our data.
+             → if no cell beats its null, STOP and say so.
+
+2  THE TOPOLOGY.  Three cells, one per axis, binned by orientation — Garon Fig 1G-I.
+             Validated by whether two DISJOINT halves of the trials give the same ring.
+             → a loop is cheap to draw; reproducing it on independent trials is not.
+
+3  κ.  Sweep it per tile by held-out marginal likelihood, scored PER CELL.
+             Summing likelihood over cells is the wrong statistic when only a handful
+             of cells care about any one tile — it buries exactly the signal being looked for.
+
 4  ONLY THEN post-DOI.  Freeze f. Infer x. Read e.
 ```
 
-Steps 1–2 are entirely pre-DOI and entirely about tuning. They are falsifiable and cheap.
+Steps 0–2 are entirely pre-DOI and entirely about tuning. They are falsifiable and cheap, and
+0 is already done.
+
+### The figures, and where they live
+
+```
+results/examples/
+  01-the-representation/  legitimacy.png   which tilings may be used at all
+                          anatomy.png      what "fit a grating" means, on one tile
+  02-the-latent/          the-latent.png   the three dimensions as distributions
+  03-tuning/              tuning.png       per-cell orientation tuning, with the null
+  04-topology/            ring.png              three cells, one per axis
+                          ring-validated.png    the split-half test the ring must pass
+```
+
+The numbering is the argument, and a later folder contradicting an earlier one is the finding.
 
 ## Statement of work — DRAFT, for iteration with Doug
 

@@ -76,8 +76,12 @@ rastermap            # population-raster ordering & visualization
 umap-learn           # nonlinear dimensionality reduction (import: umap)
 cebra                # joint neural+behavioral latent embeddings (torch; CPU-OK; heavyweight)
 
-# --- Lab toolchain (added) ---
-mei @ git+https://github.com/sinzlab/mei.git   # MEI synthesis (use instead of ecobost/featurevis)
+# --- Lab toolchain ---
+# NOTE (corrected 2026-08-21): `mei` is NOT in requirements.in and must not be added.
+# Its metadata pins datajoint<=0.12.9, which cannot import on 3.11 and would break
+# sensorium. It installs LAST, with --no-deps, which a requirements file cannot express:
+#   uv pip install --no-deps "git+https://github.com/sinzlab/mei.git"
+#   uv pip install --no-deps "git+https://github.com/sinzlab/nnvision.git"
 
 # Not pip-pinned — handled out of band:
 #   dPCA     — repo dormant; vendor or reimplement the demixing we need, don't pin a dead dependency
@@ -85,6 +89,14 @@ mei @ git+https://github.com/sinzlab/mei.git   # MEI synthesis (use instead of e
 ```
 
 The already-pinned packages (numpy, scipy, pandas, scikit-learn, torch, matplotlib, seaborn, neuralpredictors, nnfabrik, sensorium, datajoint) are unchanged — see [The lockfile](04-the-lockfile.md).
+
+> **Correction, 2026-08-21.** This chapter previously listed `mei` as a `requirements.in` addition.
+> It is not one, and adding it would break the environment: `requirements.in` line 37 says so
+> explicitly, and the same holds for `nnvision`. Both are `--no-deps` installs that a requirements
+> file structurally cannot express — which is why [The lockfile](04-the-lockfile.md#what-the-lockfile-cannot-express-and-where-the-pin-actually-lives)
+> now records where their pins actually live. Found while auditing the environment for the
+> [plenoptic replication](../projection/13-sprint-13--reading-the-machine-we-built.md); the stale
+> instruction had stood since the toolchain index was written.
 
 ## Scope of this index
 
