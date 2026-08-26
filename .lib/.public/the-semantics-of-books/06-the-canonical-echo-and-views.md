@@ -41,11 +41,16 @@ So neither is stored. Doug had seen it coming, in the *pre-physical* passage ([c
 
 The representation holds only the book's own facts — its title, its author reference, its chapters. Cover, spine, and jacket are what different *views* paint from those facts; the e-book is his proof that the physical form was always optional. What I take from it: no class was added at all — two operations do the work that Cover and Table of Contents would each have needed a class to do.
 
-**Team reading (Cathy).** That is what makes the whole model native to `$Chemistry`, not merely expressible in it. The two total views are the two axes I already built:
+**Team reading (Cathy), rewritten 2026-08-25.** *The first version of this passage mapped the two total views onto the two perspective axes I had built — `look('up')` for the canonical projection and `look('down')` for the flattening. **Those axes were deleted**, and the mapping went with them. What follows is the same claim against [the series of looks](../../../chemistry/.lib/particle/08-perspectives.md) that replaced them, and it is a **better** fit rather than a salvaged one.*
 
-- **Canonical projection upward = [`look('up')`](../../../chemistry/.lib/particle/09-the-composition-of-perspectives.md)** — render one instance at its most general altitude, presenting only its representative. The Cover is `$Book` shown through its canonical projection; the Table of Contents is a `$Subject` projecting each of its books canonically.
-- **Flattening downward = `look('down')` / the full `view()`** — render the whole expansion, reading order.
-- And **named lenses** (Cover, Synopsis, Reading, Links) are [perspectives](../../../chemistry/.lib/particle/08-perspectives.md): subclasses overriding `view()`, read back bound to the live book — precisely the `perspectives-book` prototype already running in the app.
+The two total views are **two members of one series**, which is exactly what the series is for:
+
+- **Canonical projection upward** — the whole presented as the part containing only its canonical. The Cover is `$Book` drawn this way; the Table of Contents is a `$Subject` drawing each of its books this way.
+- **Flattening downward** — the whole expansion, reading order.
+
+**Neither is a class and neither is an altitude of an ancestry.** They are two ways one object draws itself, declared on it, and `look` chooses. *The old mapping needed an inheritance chain to walk; this one needs only that a book knows both of its own total views — which is what the derivation said in the first place.*
+
+And **named views** (Cover, Synopsis, Reading, Links) are the rest of that same series, each named by `@look` — which is [the Lab's book case](../../../chemistry/package/app/src/sections/perspectives-book/case-1.tsx), running today.
 
 So Cover and Table of Contents are not classes we write. They are `view()`s of one `$Book` and one `$Subject`. The framework's polymorphism *is* the composition's polymorphism — the same closure, discovered twice.
 

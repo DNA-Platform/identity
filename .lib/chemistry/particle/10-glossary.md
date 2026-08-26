@@ -8,19 +8,19 @@ Terms defined in this book, alphabetical.
 
 **$apply$** — A symbol-keyed method on `$Particle` that receives React props and maps them onto the instance, storing `children` into `$children$` and prefixing each remaining prop key with `$` before setting it.
 
-**$activeView$** — A symbol-keyed slot holding the view function the instance currently renders through (the vertical-perspective axis). Unset means "render through the instance's own-class `view`." Read and written through the internal `$view` accessor; consulted by `$renderView$`.
+**$look** — The reactive field naming which of a chemical's looks draws it — a position, or a name `@look` gave one. It reaches the instance as the JSX attribute `look`, and it is an ordinary reactive field, so writing it in a handler repaints the instance and, through `finalize`'s walk up the composition tree, every ancestor with it.
 
 **$cid$** — The chemical identity symbol, storing a unique auto-incrementing integer on each `$Particle` instance, used as the primary identity discriminator across the framework.
 
-**$isPerspective$** — An untyped static marker stamped on a subclass by `reveal`, recording that this class has already filed its lens (so `reveal` is idempotent — once per subclass) and marking it as a perspectival lens rather than a perspective base.
+**$views$** — The symbol under which every instance holds its **view dictionary**: each look it can draw, keyed both by position and by any name `@look` gave it. Built once per instance from its own prototype chain and held in a module `WeakMap`.
 
 **$isTemplate$** — A computed getter returning `true` when the particle is the static template singleton for its class, checked via `this == this[$type$][$$template$$]`.
 
-**$isViewBase$** — An own-property marker stamped on `$Particle.prototype` and `$Chemical.prototype`. It marks the framework view methods (which render `toString()` / children) as structural fallbacks, not semantic perspectives, so the vertical `look` walk skips them and bottoms out at the highest user-defined view.
+**looks** — The regular expression that decides whether a member name is part of the series (`view`, `$view`, `$$view`, and onward). Shared by the particle, which builds the dictionary from it, and the molecule, which uses it to make sure no look is ever bonded over.
 
-**$Particle** — The base class for all framework objects, providing identity fields, lifecycle phases, a view function, the perspective machinery (both axes), and the `use()` method that makes any particle renderable in React.
+**$Particle** — The base class for all framework objects, providing identity fields, lifecycle phases, the series of views and the `$look` that chooses between them, and the `use()` method that makes any particle renderable in React.
 
-**$perspectives$** — A static slot on a perspective base class holding the array of filed `Perspective` lenses (the horizontal axis). `reveal` pushes onto it; `get perspectives` reads, clones, and binds it per instance.
+**a look** — One member of a chemical's series of views: `view` is 0, `$view` is 1, `$$view` is 2, each further `$` the next. A subclass extends the series by declaring the next member and replaces a look by overriding its name.
 
 **$renderView$** — A symbol-keyed internal render entry. `$lift` calls it instead of `view()` so the active vertical lens (`$activeView$`) is consulted without putting logic inside the user-overridable `view()`. Defaults to the instance's own-class `view`.
 
@@ -34,20 +34,20 @@ Terms defined in this book, alphabetical.
 
 **isParticle** — The marker that identifies an object as participating in the particle system, stamped during construction or particularization.
 
-**look()** — The public verb of the vertical perspective axis. `look('up'|'down')` walks the instance's own ancestry, moving a scope-tracked cursor toward the base view or the actual class and setting `$view`; both clamps are silent no-ops. `look('up?'|'down?')` does not move — it returns whether that move is possible, and reading it in a render subscribes the consumer to the cursor.
+**@look(name)** — The attribute that names a look, so `look="github"` reaches the same drawing `look={1}` does. Registered by prototype in `bond.ts` beside `@inert` and `@reactive`, and read back up the chain the same way, so a subclass's name is found from the subclass and not from its base. In an application it needs `@babel/plugin-proposal-decorators`, because Babel does not read `experimentalDecorators`.
 
 **particular** — The constructor pattern where `$Particle` receives a non-Particle object, sets itself as the object's prototype via `Object.setPrototypeOf`, and returns the original object with particle behavior through delegation.
 
 **Perspective** — A lens class carrying a `view` popped off a subclass and an `instance` it is bound to. `render()` runs the view against the bound instance — "this object, seen this way." The unit of the horizontal axis.
 
-**perspectives** — A getter on `$Particle` returning the instance's bound `Perspective` lenses (the horizontal axis): it clones each lens filed on the perspective base, stores `this` on the clone, and caches per instance so a menu sees stable lens identity.
+**look (the attribute)** — The JSX attribute, typed `number | string`, that chooses which look draws. It is named in `$Attributes` and intersected into `$Properties<T>`, because the computed props type otherwise excludes everything declared on `$Chemical`.
 
 **prototypal view** — A lightweight prototype-linked copy created via `Object.create()` that inherits all state from the original through the chain, used by `use()`, `$as()`, and `$of()` to share state without duplication.
 
-**reveal()** — A `protected` method called from a subclass's (template) constructor. It pops the subclass's `view` onto a `Perspective`, marks the subclass `$isPerspective$` (idempotent), and files the lens on the perspective base's `$perspectives$`. The horizontal axis's augmentation-from-outside.
+**the dictionary** — The `Map` held under `$views$`. Both a position key and a name key reach the **same function**, which is what makes `look={1}` and `look="github"` produce identical output. A gap in the series is refused when it is built.
 
 **use()** — A method on `$Particle` that wraps a view function into a callable React component carrying `$view` and `$this`, creating a prototype-derived copy with a fresh cid for each call.
 
 **view()** — The primary render method on `$Particle`, returning `ReactNode` output; defaults to `this.toString()` and is overridden by subclasses to produce their own rendering.
 
-**viewLevel** — A getter returning the constructor name of the class whose `view` the instance currently renders through (the current altitude on the vertical axis). For a breadcrumb / clamp UI.
+**out of bounds** — A miss in the dictionary. One lookup on the render path, raised with a sentence naming what was asked and what exists — the form `$Location.read()` already used for the same kind of mistake.

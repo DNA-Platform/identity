@@ -12,7 +12,7 @@ A `$Chemical` subclass can change appearance simply by overriding a property who
 
 - **The subclass overrides a property, not a prop.** The parent's `view()` names the property; the prototype chain decides what it finds. Nothing is passed down, so the parent never learns that anything varied.
 - **It works because instances are prototypal.** A rendered instance is `Object.create(template)`, so a subclass's own value shadows the base's for that instance alone and the base's state is never polluted.
-- **It is one of three axes, and they do not compete.** This is *substitution* — a different class in the same slot. [Perspectives](../particle/08-perspectives.md) are the **horizontal** axis, sibling lenses on one object revealed by subclasses that override `view`. `look('up' | 'down')` is the **vertical** axis, one instance rendered through an ancestor's `view`. All three live on `$Particle`.
+- **It is one of two axes, and they do not compete.** This is *substitution* — a different class in the same slot. [Looks](../particle/08-perspectives.md) are the other: one object drawn through any member of its own series of views, chosen by the `look` attribute. Both live on `$Particle`.
 
 ## Cases
 

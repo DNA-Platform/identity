@@ -28,3 +28,5 @@ Register in `view()` instead: its first line is `route = this`. Only an instance
 ## The lesson
 
 **A constructor knows it ran; it cannot know it was kept.** Anything that hands `this` outward — registries, wiring slots, callbacks — belongs in a path only the surviving instance runs, and `view()` is the one place a chemical is guaranteed to be the one being looked at.
+
+***And it has a sibling one fact along.*** **[A key that filed itself under its descendant](27-the-key-that-filed-itself-under-its-descendant.md)** is the same shape with a different unknown: *an inherited method knows it ran; it cannot know **who declared it**.* **Both are a constructor answering a question about itself that `this` cannot answer.**

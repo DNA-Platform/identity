@@ -2,7 +2,7 @@
 
 - **author:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **keywords:** verification · false-green · stale-artifact · cross-package · dist · two-copies · instanceof
+- **keywords:** verification · false-green · stale-artifact · cross-package · dist · two-copies · instanceof · driver · probe
 - **sprint:** [48 — Subjects and the Library](../projection/06-sprint-48--subjects-and-the-library.md)
 
 ---
@@ -85,3 +85,61 @@ A book imported from the emitted tree carries the `dist` classes; a test importi
 **Chapter 5's rule was *say what a green number exercised*. This is the same rule for a red one.** A measurement that disagrees with the code is a claim about *which copy was measured*, and that question comes before diagnosing the code.
 
 ***The standing fix is one copy, and it has not been made.*** It has been named out of scope twice — in [Validation](../projection/16-validation.md#and-two-copies-of-the-framework-are-loaded-at-once) and in [Custom Elements](../projection/17-custom-elements.md) — while costing four wrong measurements in two days. **It is the cheapest unpaid debt on this branch.**
+
+
+---
+
+# A THIRD FORM — THE PROBE THAT PROVED NOTHING — 2026-08-25
+
+***The first two sections are about a measurement reading the wrong copy. This one is about a CHANGE reaching the wrong copy, and it cost more — because the instrument that should have found it was itself pointed at nothing.***
+
+## Symptoms, in the words they were observed in
+
+- The public library's driver **stalled at 8 checkpoints of 39**: *"nothing to click for the physics entry (`[data-entry="/physics"] a`) — the walk stopped here."*
+- The shelf **drew its entries as raw `<section>` elements** — two per entry, a heading and a paragraph — where each should have been a card carrying `data-entry` and a link.
+- **Zero console errors.** Nothing threw. The page rendered; it rendered the wrong thing.
+- The suite was **352/352** and the typecheck **0**, both at that moment.
+
+## What did not work, and this is the expensive part
+
+***A PROBE AGAINST THE SOURCE.*** **A framework member had just been rewritten, so it was the obvious suspect. The probe removed the suspect line, the driver was re-run, and NOTHING CHANGED — so the probe was read as exonerating the change.**
+
+***It exonerated nothing.*** **The application never saw either version of that file.** *It resolves `@dna-platform/lib` through `node_modules`, and `package.json` names the built artifact:*
+
+```
+"main":   "dist/lib.cjs",
+"module": "dist/lib.js",
+```
+
+**`dist` was dated two weeks earlier.** *Every probe of the source was a probe of a file the running program does not read.*
+
+## The mechanism, and the thing that makes it hard to see
+
+**TWO APPLICATIONS IN THIS REPOSITORY RESOLVE THE FRAMEWORK DIFFERENTLY, and both are correct.**
+
+| | resolves `lib` through | so a source edit is |
+|---|---|---|
+| the **demonstration** — [`package/app`](../../package/app/vite.config.ts) | `resolve.alias` → `../src` | **visible immediately** |
+| the **public library** — [`app`](../../app/vite.config.ts) | no alias; `node_modules` → `dist` | **invisible until rebuilt** |
+
+*So the same edit, in the same session, appeared to work in one application and to do nothing in the other* — **and the one where it did nothing was the one being debugged.**
+
+**And chemistry's `dist` HAD been rebuilt, which made it worse.** *The library application was running **old `lib` against new `$Chemistry`** — [exactly the condition C7 states](../the-condition-report/07-the-three-codebases.md#c7): "things need to be rebuilt so the different libraries can update their dependency."*
+
+## The fix
+
+**Rebuild in dependency order before believing any instrument**: `$Chemistry`'s `dist`, then `lib`'s, then restart the servers. ***8/39 became 39/39 with 0 console errors, and 39/39 again on the built artifact.***
+
+## The lesson, and it is a new one
+
+**Chapter 5's rule was *say what a green number exercised*. The second section's was *say which copy a red one measured*. This one is about the instrument itself:**
+
+> ***A PROBE IS ONLY A PROBE IF THE PROGRAM CAN SEE IT.*** **Before removing a suspect line to test a hypothesis, establish that the running program reads that file at all.** *One command settles it, and it is the one this chapter already recommends:*
+
+```bash
+node -e "console.log(require.resolve('@dna-platform/lib'))"
+```
+
+**A probe that changes nothing is evidence of exactly two things, and from the outside they look identical**: the suspect was innocent, **or the probe never landed.** *Twenty minutes went to the first reading when it was the second.*
+
+***The standing fix is still one copy, and it is still unmade.*** *Named out of scope three times now — [Validation](../projection/16-validation.md#and-two-copies-of-the-framework-are-loaded-at-once), [Custom Elements](../projection/17-custom-elements.md), and here.* **It has now cost four wrong measurements and one wrong exoneration.**

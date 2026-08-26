@@ -1,101 +1,127 @@
-# Perspectives
+# Looks
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 
-A particle has *one* `view()`. Perspective is the machinery that lets a single live particle be rendered through *more than one* — without changing the instance, without props, and without the thing doing the rendering knowing which lens it holds. There are two orthogonal axes. The **horizontal** axis collects the views of sibling subclasses into a menu of lenses filed on a shared base: augmentation from outside. The **vertical** axis walks one instance up and down its *own* prototype chain to render it through any ancestor's `view` — revert to base view. They are independent — sibling lenses versus own ancestry — and they compose.
+A particle **holds a set of views and no opinion about them**. It declares as many as it has ways of being seen — `view`, `$view`, `$$view`, and onward — a subclass may add more or replace any of them, and **something outside the object** chooses which one draws, through the `look` attribute. That is the whole feature.
 
-Both axes live on `$Particle`. Perspective is a view concern, and views live here; `$Chemical` inherits the whole surface unchanged. This chapter describes both *mechanically*: the horizontal `reveal` / `perspectives` pair, then the vertical `look` / `$view` pair. The framework symbols that back them — `$activeView$`, `$renderView$`, `$isViewBase$` — are internal, and named where they bear on the behavior. The chapter after this one, [The Composition of Perspectives][composition], is the *why* — the design philosophy these mechanics are built to serve, the third axis they imply, and how to design your own features around them.
+***THERE IS NO CANONICAL FACE.*** **`view` is not how the object “really” looks; it is the member with no `$` in front of it.** *Doug, on an earlier draft of this chapter that said otherwise: "there is a default view, and clearly it doesn't show itself at all. It contains all its views and no opinion on what it looks like."*
 
-## The two axes
+Written out, it is four lines:
 
-Picture a base class `$Color` with three subclasses, `$Swatch`, `$Hex`, and `$Named`, each overriding `view`. That is a **horizontal** family: siblings, each a different way of drawing the same data. The horizontal axis gathers their views into a list of lenses on `$Color`, so a menu can offer "show this color as a swatch / as hex / by name."
-
-Now picture a single chain, `$PeriodicCell → $NamedElement → $Element`, where each ancestor draws progressively less: the cell draws a full group-colored tile, the named element a symbol-plus-name, the element just the symbol. That is a **vertical** ancestry. The vertical axis walks one live `$PeriodicCell` *up* toward `$Element` — rendering the same instance through a more general ancestor's `view` — and back *down* toward its actual class.
-
-The axes are orthogonal because they index different things. Horizontal indexes *siblings of a base* (classes that are not on the instance's own prototype chain). Vertical indexes *the instance's own ancestors* (classes that are). A chemical can carry both: a menu of sibling lenses, and an up/down walk of its own inheritance, at once.
-
-## Horizontal — `reveal` and `perspectives`
-
-A perspective, on this axis, is a *subclass that overrides `view`* and announces itself. The announcement happens from the subclass's own (template) constructor by calling [`reveal`][reveal]:
-
-```typescript
-class $Hex extends $Color {
-    constructor() {
-        super();
-        this.reveal(new Perspective('hex'));
-    }
+```tsx
+class $Sheet extends $Chemical {
+    @look('book')   view()    { return <BookSkin>…</BookSkin>; }
+    @look('github') $view()   { return <GithubSkin>…</GithubSkin>; }
+    @look('night')  $$view()  { return <NightSkin>…</NightSkin>; }
 }
+
+<Sheet look={1} />        // by position
+<Sheet look="github" />   // by name — the same drawing
 ```
 
-[`reveal`][reveal] does three things. It **pops** the calling subclass's `view` off onto the [`Perspective`][perspective-src] lens (`perspective.view = this.view`). It stamps the subclass with the `$isPerspective$` marker so a second construction does not re-file the lens — `reveal` is idempotent, once per subclass. And it walks up from the subclass past any already-perspectival ancestors to the *base* — the first class in the chain that is not itself a lens — and pushes the perspective onto that base's static `$perspectives$` array. The lenses accrete on the base, contributed by the subclasses, from outside. This is the `$` membrane made dynamic: the base did not declare these views; its subclasses augmented it with them.
+**This replaced a larger thing.** Until 2026-08-25 the framework carried two orthogonal *perspective* axes — a horizontal one that filed sibling subclasses' views on a shared base through `reveal`, and a vertical one that walked one instance up its own ancestry with `look('up'|'down')` — plus a `Perspective` class, five framework symbols and a hand-built scope-tracked cursor. **Doug removed all of it in favour of the series.** *"We are completely removing perspectives… we are simplifying to this."* What the two axes did, an integer does.
 
-Filing a lens is only half. The other half is *binding* it to a live instance, which is what reading [`perspectives`][perspectives] does:
+## The series
+
+**A look is `view` with a run of `$` in front of it**, and its position is the length of the run. The framework's test for the name is one regular expression, [`looks`][looks], shared by the two modules that need it.
+
+***THE `$`s ARE AN INDEX, NOT A RANK.*** **They exist so that several members can share one base name.** *They carry no ordering, no distance from a default, and no progression — and this is measurable rather than asserted: **`hex` was moved from position 1 to position 3 and `hsl` from 3 to 1, each `@look` kept on its own body, and the page came back BYTE-IDENTICAL.*** **Meaning is supplied from outside — the decorator gives a look its name, and the container gives it its turn.**
+
+*One consequence worth stating: `$look` starts at 0, so position zero is what draws when nobody has chosen. **That is a convenience of the runtime — something must render — and not a claim that position zero is privileged.***
+
+**A subclass adds a member the base did not have; overriding one it already had replaces that look rather than adding another.** So a base with `view` and `$view` answers two looks, a subclass adding `$$view` answers three, and a subclass that merely overrides `$view` still answers two. *That is the whole of what "use subclassing to evolve the perspective" means, and it is Doug's sentence.*
+
+**THE SET IS OPEN, AND NOTHING ENUMERATES IT.** A class declares as many members as it has ways of being seen; the framework finds the deepest run of `$` on the prototype chain and builds every position up to it. *There is no ceiling to find — a promise stands a class at **forty** looks and draws the fortieth, another builds ten by a chain of ten subclasses each adding one.* **Where you see `view`, `$view`, `$$view` written out, read the third as an ellipsis.**
+
+**A gap is refused**, and this is the one place the implementation asserts something the design does not. *A class declaring `view` and `$$view` and nothing between them raises when its dictionary is built, naming the member that is missing.* **Since the index carries no ordering, a hole is not a broken sequence — it is almost certainly a typo**, and refusing it is worth more than allowing `look={1}` to miss. ***Raised rather than settled: if a skipped name should simply be an absent look, the check comes out.***
+
+**An accessor is not a look.** The descriptor's *value* must be a function, so a `get $view()` is not a member of the series. This is inherited from the machinery that came before and kept for the same reason: an accessor named like a method is not one.
+
+## The dictionary
+
+Every instance holds a **view dictionary** under the [`$views$`][views] symbol, keyed **both** by position and by name:
 
 ```typescript
-get perspectives(): Perspective[] {
-    // walk to the perspective base, read its filed lenses,
-    // clone each, set `instance = this` on the clone, cache per instance
-}
+chemical[$views$].get(1)          // the function $view declares
+chemical[$views$].get('github')   // the same function, if @look named it
 ```
 
-Each read clones every filed lens and stores `this` on the clone (`lens.instance = this`), then memoizes the bound array in a per-instance `WeakMap` so repeated reads return the *same* lens objects — stable identity a menu can key on. A bound lens is "this object, seen this way": [`Perspective.render()`][perspective-src] runs its popped `view` with the bound instance as `this`, drawing that instance's own live data through that lens. The component rendering a perspective never has to hand it the object; the object is already inside the lens. A `Perspective` also carries a `name` (the menu label) and a `default` flag (the lens a menu starts on).
+It is built once per instance and held in a module `WeakMap` — the same shape the lens cache it replaced used. Building it walks the instance's own prototype chain for every declared member of the series, resolves each position by ordinary lookup so an override wins, and adds a string key for each look that `@look` named.
 
-So the horizontal flow is: subclasses `reveal` their views onto the base from their constructors; an instance reads `perspectives` to get those views bound to itself; a menu renders the bound lenses and lets a user pick one.
+**Both keys reach the same function**, which is what makes `look={1}` and `look="github"` produce identical output. A promise pins that equality.
 
-## Vertical — `look` and `$view`
+## `@look` — naming one
 
-The vertical axis needs no `reveal` and no menu. It uses inheritance that is already there. Single inheritance means each step up the prototype chain has exactly one parent, so "render through the parent's view" is unambiguous — there is one parent, one more general view, no choice to disambiguate.
+A look may be named, and the name is given by an attribute on the method itself:
 
-The public verb is [`look`][look]:
-
-```typescript
-look(direction: 'up' | 'down'): void;
-look(direction: 'up?' | 'down?'): boolean;
+```tsx
+@look('github') $view() { … }
 ```
 
-`look('up')` moves toward the base view (more general); `look('down')` moves toward the instance's actual class (more specific). Both clamps are *silent no-ops*: `'up'` stops at the highest user-defined view-level and never reaches the framework's `$Chemical` / `$Particle` view; `'down'` stops at the instance's actual class. Walking off either end does nothing rather than throwing.
+**The machinery is the framework's own.** [`bond.ts`][bond] already held two decorator registries — `inertDecorators` and `reactiveDecorators` — each a `Map` keyed by prototype and read back up the chain with `Object.getPrototypeOf`. `@look` is a third beside them, resolved the same way, which is exactly the lookup a subclass-extends-the-series design needs: **a subclass's name is found from the subclass and not from its base.**
 
-The `?` forms are the same verb in a different mood. `look('up?')` and `look('down?')` **do not move** — they return whether that move is *possible*. This is why there is no separate `canLook`: the query and the act are one verb, called twice — `look('up?')` in a render to decide whether to grey a button, `look('up')` in that button's handler to actually move. The two TypeScript overloads give each mood its exact return type: the bare forms return `void`, the `?` forms return `boolean`. Reading a `?` form in a render also *subscribes* the consumer to the cursor, so the greying stays live as the walk moves (see "Why a once-mounted consumer repaints" below).
+**Naming is optional and additive.** An unnamed look is still reachable by position; naming one does not disturb the numbering. Two looks may not share a name, and `@look` on a member that is not part of the series is refused — both with a sentence rather than a silent miss.
 
-A [`viewLevel`][view-level] getter returns the constructor name of the class whose view is currently active — `"PeriodicCell"`, `"NamedElement"`, `"Element"` — for a breadcrumb that shows the current altitude.
+**It needs a Babel plugin in an application.** `experimentalDecorators` is read by `tsc`, by esbuild (so the suite compiles), and by the rollup `dist` build — but **not** by `@vitejs/plugin-react`, which runs Babel. Every application in this repository now configures `@babel/plugin-proposal-decorators` in `legacy` mode for exactly this reason. *The gap was older than this feature — `@inert` and `@reactive` have shipped since long before it, and nothing had ever written one in an app.*
 
-Under the verb, the move is an index into a list. [`$viewLevels`][view-levels] is the ordered chain of *user* view-levels for the instance, most-derived first: every ancestor class whose prototype owns a real `view` method, **excluding** the framework bases. The exclusion is by the own-property `$isViewBase$` marker stamped on `$Particle.prototype` and `$Chemical.prototype` — their `view` methods render `toString()` and children, structural fallbacks, not semantic perspectives, so the walk skips them and bottoms out at the highest user view. `look` moves a cursor along this list and points [`$view`][view-accessor] at the indexed level's `view` function.
+## `look` — the attribute
 
-[`$view`][view-accessor] is the internal write-point — Doug's phrasing was "`$view` gets and sets from `this.view.view`." Its getter returns the active view (`$activeView$`) or, when none is set, the instance's own-class `view`. Its setter swaps the active view function and invalidates the view cache so the instance repaints through the new lens. It is `protected`: `look` is the public surface; `$view` is the mechanism `look` drives. The render path consults the active view through [`$renderView$`][render-view] rather than calling `view()` directly — `$lift` calls `$renderView$`, which returns `($activeView$ ?? view).call(this)` — so the vertical lens is honored without putting any branching logic inside the user-overridable `view()`.
+**`look` is a JSX attribute typed `number | string`**, and it lands on the reactive field [`$look`][look-field] the ordinary way every prop does.
 
-## Why a once-mounted consumer repaints
+```tsx
+<Sheet look={2} />
+<Sheet look="night" />
+```
 
-The subtle part of the vertical axis is reactivity. In this framework, *renders are not scope-tracked* — only event handlers are (see the [reactivity contract][reactivity-contract]). So a consumer that read `viewLevel` once at mount would not, by the ordinary render path, learn that a later `look` moved the cursor. The cursor is what closes that gap: it is a **scope-tracked reactive read and write**, not a plain `#private` field.
+Two things make it work, and both are the framework's existing machinery rather than anything new:
 
-Reading the cursor — in `look`, in `viewLevel`, in a `?` query, and so transitively in any consumer's render or breadcrumb — records a scope read against the instance, exactly as a reactive property field does. The value is mirrored into the instance's `$backing$` store under a reserved string key, so the scope's read-snapshot diff at finalize sees the cursor move. Writing the cursor goes through the same channel a reactive setter uses: store, mirror, then either record a scope write (inside a handler's scope, so finalize re-reacts every consumer that read it) or — outside any scope — fire the reaction and *diffuse* up the composition tree immediately. That diffuse up the bonded-child walk is what carries the repaint to a once-mounted consumer: the consumer subscribed to the cursor by reading it, and the write re-reacts it. (A `#private` field was the first attempt here; it crashed on template derivatives, whose prototype chain does not carry the private slot. The scope-tracked reactive cursor is both what fixes that and what makes the live repaint work.)
+**It is a plain reactive field.** `$look` passes [`$Bond.isSpecial`][bond] on the ordinary rule, so it gets the ordinary accessor — and the ordinary setter is *byte-for-byte* what the old cursor hand-wrote: record a scope write inside a handler, or fire the reaction and `diffuse` outside one. **Writing it in a handler repaints, and because `finalize` walks `$$parent$$` upward and re-reacts every ancestor, it repaints a bonded parent too.** The whole scope-tracked cursor apparatus was reimplementing a bond setter.
 
-## The two together
+**It is named in the props type.** [`$Properties<T>`][types] excludes every member declared on `$Chemical`, which is why `$show` and `$hide` are not writable as attributes; `look` is admitted explicitly through a small `$Attributes` type intersected into it. The same computed type **excludes the series**: `$$view` and everything deeper fall out because their first character after `$` is `$`, and `$view` is excluded by name beside `$parent`.
 
-The axes compose without interfering. `perspectives` reads the lenses filed by *sibling* subclasses on a shared base. `look` walks the instance's *own* ancestors. One is augmentation from outside the chain; the other is altitude within it. A chemical with a rich ancestry and a family of sibling lenses offers both at once: a menu that switches which sibling view draws it, and an up/down control that renders its current view through a more general ancestor — revert to base — and back. One object, seen through any sibling lens, at any altitude of its own inheritance. Natural perspectival polymorphism.
+**And the type is not the guard.** A spread, an `any`, or a plain-function path can still reach `$apply` with a prop called `view`, which would land on `$view` and overwrite a method. `$apply` refuses any prop whose `$`-form names a look, and says which attribute to use instead.
+
+## Out of bounds
+
+A miss in the dictionary is the whole check — one lookup, on the render path, and it raises naming both sides:
+
+```
+Nothing stands at look 9 — $Sheet draws 3.
+$Sheet has no look called nope — it draws github, night.
+```
+
+*The form is the one [`$Location.read()`][location] already used for the same kind of mistake.*
+
+## `frame` is unchanged
+
+[`frame()`][frame] is still the render template method, and `$lift`'s entry still calls `[$renderView$]`, which calls `frame()`. What changed is one line inside it: it reads the dictionary at `$look` instead of a stored active-view slot. **Overriding `frame()` to wrap what is drawn, and calling `super.frame()` so the content inside the wrapper keeps evolving, works exactly as it did** — and now the thing it wraps is whichever look is selected.
+
+## What this cost, and what it bought
+
+**Bought:** one integer where there were two axes; a name that travels from a decorator to a JSX attribute; and about 150 lines deleted from `particle.ts`, a whole file, five symbols and a hand-built backing store.
+
+**Cost, stated plainly:** *there is no longer a way to render an instance through a **specific ancestor's** view.* The vertical axis could say "draw this leaf as its grandparent draws it"; the series cannot, because a subclass overriding `view` replaces position 0 rather than stacking on it. Where a class needs that, it declares the ancestor's drawing as a look of its own — which is what [`$Document`](../../../.public/package/src/document/Document.tsx) does: a subclass may *declare* its sections in `view()`, and once they are harvested the document sets `$look = 1` to draw them instead of re-emitting the declaration.
 
 ## See also
 
-- [The Composition of Perspectives][composition] — the design philosophy behind these mechanics: function composition, inheritance as valence, the third axis, and how to design features around them.
-- [view][] — the `view()` method, `$viewCache$`, and the render boundary the active view swaps.
-- [lift][] — where the render body calls `$renderView$` instead of `view()`.
-- [identity][] — what `toString()` returns when a framework base view is reached (and why `$isViewBase$` excludes it).
-- The [reactivity contract][reactivity-contract] — why handlers are scoped and renders are not, which is why the cursor must be reactive.
-- The glossary indexes every perspective term by name.
+- [The Composition of Looks][composition] — the design underneath: a held-open call, inheritance as its valence, and what survived the simplification.
+- [view][] — the `view()` boundary, `$viewCache$`, and view purity.
+- [lift][] — where the render body calls `[$renderView$]`.
+- The [reactivity contract][reactivity-contract] — why `$look` being an ordinary field is the whole reactivity story.
+- The glossary indexes every term here by name.
 
 <!-- citations -->
 [composition]: 09-the-composition-of-perspectives.md
 [view]: 06-view.md
 [lift]: 04-lift.md
-[identity]: 01-identity.md
 [reactivity-contract]: ../authorship/04-the-reactivity-contract.md
 
-[reveal]: ../../package/src/abstraction/particle.ts#L248
-[perspectives]: ../../package/src/abstraction/particle.ts#L232
-[perspective-src]: ../../package/src/abstraction/perspective.ts#L17
-[look]: ../../package/src/abstraction/particle.ts#L203
-[view-level]: ../../package/src/abstraction/particle.ts#L217
-[view-levels]: ../../package/src/abstraction/particle.ts#L151
-[view-accessor]: ../../package/src/abstraction/particle.ts#L126
-[render-view]: ../../package/src/abstraction/particle.ts#L138
+[looks]: ../../package/src/implementation/symbols.ts
+[views]: ../../package/src/implementation/symbols.ts
+[bond]: ../../package/src/abstraction/bond.ts
+[types]: ../../package/src/implementation/types.ts
+[look-field]: ../../package/src/abstraction/particle.ts
+[frame]: ../../package/src/abstraction/particle.ts
+[location]: ../../../.public/package/src/reference/Location.tsx
