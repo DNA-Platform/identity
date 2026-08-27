@@ -341,17 +341,21 @@ export interface $Composition$<T extends $Writing> {
 
 *Candidates, neither taken: the exotic kind carries its own type, or it is simply a subclass and carriage is given up.* ***Doug's ruling owed.***
 
-## <a id="s3"></a>S3 — the canonical kind has no name
+## <a id="s3"></a>S3 — WITHDRAWN; it was never a blocker
 
-**A level asks two questions and only one is built.** *`$Letter.specify()` states the **canonical letter's** rule as the **level's**, which is what the hex letter proves.* **The member name is Doug's.**
+*This asked for a canonical-kind member and a name.* ***Both were invented here and reported back as Doug's to rule.*** **See [C18](#c18).** *What remains true and small: `$Letter.specify()` demands one grapheme, which a hex letter is not — a fact about `$Letter`'s own rule, not a missing mechanism.*
 
-## <a id="s4"></a>S4 — two v1 promises red under the eager `$check`
+## <a id="s4"></a>S4 — CLOSED: the eager `$check` found a real v1 fault
+
+***`.archive/book/Annotation.tsx` read `return super.valid() || this.$for !== undefined;`*** — so `super.valid()` reached the phrase check, **stated "a phrase is a name… but not be empty", and the `||` returned true anyway.** *v1 was stating a reason and ignoring it; the reason was discarded at the next reset and nobody heard it.* **Fixed by asking the cheap question first**, so the complaint is never made. *And an author naming a book that does not author itself now **refuses** rather than answering false, which is what the eager rule means.* ***v1: 352/352.***
+
+### the original entry
 
 [`validity.test.tsx`](../../package/tests/book/validity.test.tsx)'s *"outside one they do not judge"* and *"the three no longer answer alike"*. **They assert a verdict the throw stops reaching**, so rewriting them changes what v1 promises rather than how a test says it.
 
-## <a id="s5"></a>S5 — smaller, and named rather than lost
+## <a id="s5"></a>S5 — WITHDRAWN as far away
 
-`$Referent$` has one implementer · `held` and `annotations` are proxy names · `src/tests/` is a placement nobody ruled · an unbindable part is **skipped rather than refused** · chemistry has **no promise** for the value-equality fix · the Lab carries **18 pre-existing typecheck errors** in files this session never opened.
+*This entry gathered `$Referent$`'s single implementer, chemistry's missing value-equality promise, the Lab's pre-existing typecheck errors and two proxy names, and reported them as live.* **Doug: *"not sure what this is but I think it's far away. You went WAY too far in the past."*** ***They are real and they are not this sprint's; they leave the stack rather than sit on it pretending to be work.***
 
 
 ---
@@ -395,7 +399,9 @@ export interface $Composition$<T extends $Writing> {
 
 <a id="c9"></a>**C9 — but a paragraph takes a block.** *"you woudln't have paragraph even take writing. **It would take a block right? We expect inline writing if we get any.**"*
 
-<a id="c19"></a>**C19 — and one that reframes the bottom.** *"**Let's reserve word having letters and sentence having words for the closure of cataloguing rather than the closure of composition.**"* ***Said in a message that was interrupted and re-sent without it. Recorded rather than acted on: it stands in tension with C2, and the tension is Doug's to resolve.***
+<a id="c19"></a>**C19 — and one that reframes the bottom. THIS IS NEXT.** *"**Let's reserve word having letters and sentence having words for the closure of cataloguing rather than the closure of composition.**"*
+
+***Doug, 2026-08-27: "we do this next, so note that."*** **So the next sprint's subject is already chosen**: a word's letters and a sentence's words stop being composition and become cataloguing.
 
 ## What belongs to `$Writing`
 
@@ -429,7 +435,9 @@ export interface $Composition$<T extends $Writing> {
 
 ## Kinds and the canonical
 
-<a id="c18"></a>**C18 — the level is named by its canonical, and non-canonical kinds live at it.** *"**I name the level by the canonical** right? **Space and smiley are a non-canonical types of letters. Repetitive spaces are non-canonical types of words that will be left associated.**"*
+<a id="c18"></a>**C18 — the level is NAMED by its canonical.** *"**I name the level by the canonical** right? **Space and smiley are a non-canonical types of letters. Repetitive spaces are non-canonical types of words that will be left associated.**"*
+
+***CORRECTED 2026-08-27.*** *This register previously read C18 as requiring a second member — a canonical-kind predicate with a name owed — and reported that back to Doug as HIS blocker.* **It is not. He said why a level is CALLED what it is called.** *Doug: "I don't even know what this is, but **canonicals don't all have a kind name. That's not how this works.**"* ***The invented requirement is withdrawn; what stands is the naming observation and the fact that non-canonical kinds live at a level.***
 
 <a id="c33"></a>**C33 — type-based subclassing is wanted.** *"**I want type-based subclassing for this framework.**"*
 
