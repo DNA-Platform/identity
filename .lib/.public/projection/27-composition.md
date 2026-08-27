@@ -11,7 +11,7 @@
 
 **Identifiers.** Requirements **R235–**, actors **A10–**, acceptance examples **AE1–**, risks **K25–**, decisions **D100–**, units **U191–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law); a deletion leaves a gap.*
 
-**Where the code lands.** [`library/.public/package/src2`](../../package/src2/) — *the next version of the framework* — plus a gate, because `src2` has none.
+**Where the code lands.** [`library/.public/package/src`](../../package/src/) — *the next version of the framework, which took the `src` seat during this sprint* — with v1 standing at [`archive/`](../../package/archive/) and still shipping. **`src2` no longer exists.**
 
 ---
 
@@ -261,3 +261,60 @@ export interface $Composition$<T extends $Writing> {
 **The reading** — `divide`, association (*"repetitive spaces … will be left associated"*), and the parse tree that can be **reassigned**: divide once into parts, type them in a second pass, so re-typing never re-splits. ***Which is what makes markdown-as-a-type possible*** — *Doug: "then we can work in markdown parsing in a type and get the next level."*
 
 **The catalogue** — location as a catalogue of addresses, an address at a location, and every piece of writing read as a catalogue. [U199](#u199), design owed.
+
+---
+
+# <a id="where-things-stand"></a>WHERE THINGS STAND
+
+*[The session boundary](../../../../.claude/library/our-skillset/32-ce-handoff.md). **The next session opens by reading this and acts on nothing until it has** — and the working copy is the truth, not this page.*
+
+## The state, in numbers from the run that claims them
+
+> **lib `npm run test` — 35 files, 376 tests, exit 0.** *v1's **352** untouched and v2's **24** beside them.*
+> **`tsc` 0 on v1 · `tsc` 0 on v2 · app typecheck 80 files, 0 unexpected · `rollup` 0.**
+> **$Chemistry 728/728 across 61 files, `tsc` 0** *(run before the move; untouched since).*
+
+**Committed and pushed:** `2c70bf4` (The Provider's work) and `3c15b87` (the move). *Both repos clean at each.*
+
+## What is DONE
+
+| | |
+|---|---|
+| **[U200](#u200), [U201](#u201)** | ***v1 is `archive/`, v2 is `src/`, and `src2` appears nowhere.*** **The published surface did not move** — `lib.d.ts` rebuilt **byte-identical**, and the bundle contains no path strings at all. *Five configs re-pointed; **zero source files edited**, exactly as [R253](#r253) measured.* |
+| **[U202](#u202), [U191](#u191)** | **One `vitest.config.ts` with TWO PROJECTS** — `archive` and `src`, each with its own alias and **its own stated include**, because they cannot share `@`. `npm run test` typechecks both versions and runs both suites. |
+| **[U192](#u192)** | ***The Smiley example lives in the package.*** *Out of the temp directory, into `src/tests/`.* **Its divergence promise still stands red-by-design**: the page reads 😀 and the model reads 🙂. |
+| **[U193](#u193)** | **`$Writing` cleaned** — `text` is optional, the `annotation` marker is **struck**, and `parenthetical` does its work. |
+| **[U194](#u194)** | **`$Composition$` is six members**, `T extends $Writing`, `canonical()` a function. |
+| **[U195](#u195)** | **`$Type<T>`**, the five monadic members written once, and `view()` **moved up from `$Letter`** — every level draws its bound writing, so six duplications were deleted before they were written. |
+| **[U196](#u196)** | ***The ladder stands.*** A file written by hand reads down to its letters, and **`parts()` answers BOUND TYPES**, so the walk is `parts()` all the way — no second `$$` at any rung. |
+| **[U198](#u198)** | ***The mixed word works.*** `['h', '🙂', 'i']`, in order, the exotic letter among the plain ones. |
+
+## What was FOUND, and none of it was looked for
+
+| | |
+|---|---|
+| ***a stale `dist`*** | **`lib.js` and `lib.cjs` were behind their source while `lib.d.ts` was current** — proven by rebuilding twice and getting byte-identical output the second time, so the build is deterministic and the difference was staleness. **The application and the compiler resolve `lib` to `dist`**, so both were running behind. *[Solutions 5](../solutions/05-the-suite-that-passed-against-a-stale-build.md), found by the move rather than caused by it.* |
+| ***four tests read v1 source BY LITERAL PATH*** | `readFileSync(join(__dirname, '../../src/…'))` in two files. **The first measurement missed them because it grepped for IMPORT SPECIFIERS** — [Solutions 24](../solutions/24-the-orphan-that-was-not-an-orphan.md) exactly: a search written from a guess about the shape of what it seeks. *Swept from the files the second time.* |
+| ***a pipe eats the exit code*** | `npm run test \| tail` reported **exit 0 over a red suite**, and the harness reported success. **The gate said 337/338 and the status said 0.** *[Solutions 14](../solutions/14-the-green-that-exercised-nothing.md) in a costume nobody had filed: the scope was fine and the STATUS was the lie.* |
+| ***v2 had never been typechecked*** | The moment `src/tsconfig.json` entered `npm run test`, the letter probe raised a **real** type error it had carried since it was written. *[The Provider named the gap](26-the-provider.md#owed); this is what was behind it.* |
+| ***the project include restricted the suite by two files*** | **v1's demo app carries four test files under `app/src/`** that the default include collected and a `tests/**` include did not. **34 files where there had been 32, and a green exit.** *Caught by comparing the count to the run before it, which is the only thing that would have.* |
+| ***`$check` does not throw*** | `single` had to throw explicitly, because **`$check(boolean, reason)` RECORDS and returns**. *Doug's own [ruled-and-not-built](26-the-provider.md#owed) item, met in practice on the first member that needed it.* |
+| ***chemistry has no promise for the value-equality fix*** | `equivalent` on the write path is **untested**, and the probe that would prove it is sitting unfiled in a temp directory. |
+
+## <a id="owed"></a>What is NOT done
+
+| | |
+|---|---|
+| ***[R246](#r246)–[R248](#r248), the two questions*** | **NOT BUILT.** *The level condition is `specify()`; the canonical-kind condition needs a second member and **the name is Doug's**.* **So today the Smiley passes as a letter and nothing asks whether it is the canonical kind.** |
+| **[R244](#r244)'s top-level validity** | `$Document` and `$File` do not yet refuse loose prose. |
+| **[U199](#u199)** | The catalogue. ***Design owed***, no files. |
+| ***the `$$` throw path is never exercised in composition*** | `composed()` filters with `$Type.is` before calling `$$`, so a part that cannot be bound is **skipped in silence** rather than refused. *Named rather than omitted.* |
+
+## The wrong turns already taken — do not repeat these
+
+| | what happened |
+|---|---|
+| ***grepping for one shape and reporting a measurement*** | The first sweep for what named `src` searched **import specifiers** and reported five configs. **Four tests read the path with `readFileSync` and took the suite red.** |
+| ***piping a gate to `tail`*** | The exit code becomes the pipe's. **A red suite reported exit 0**, twice, before it was noticed. |
+| ***assuming `parts()` answers writings*** | The ladder test called `$$` at every rung and threw *"carries no type at all"* — **because `parts()` already answers bound types.** *The design was right and the test was wrong.* |
+| ***nearly striking `$Type.is`*** | Measured dead at 0 call sites and slated for deletion. ***It is the predicate the walk needs***, and deleting it would have removed the member the very next unit required. **A member with no callers is not the same as a member with no job.** |
