@@ -318,3 +318,221 @@ export interface $Composition$<T extends $Writing> {
 | ***piping a gate to `tail`*** | The exit code becomes the pipe's. **A red suite reported exit 0**, twice, before it was noticed. |
 | ***assuming `parts()` answers writings*** | The ladder test called `$$` at every rung and threw *"carries no type at all"* — **because `parts()` already answers bound types.** *The design was right and the test was wrong.* |
 | ***nearly striking `$Type.is`*** | Measured dead at 0 call sites and slated for deletion. ***It is the predicate the walk needs***, and deleting it would have removed the member the very next unit required. **A member with no callers is not the same as a member with no job.** |
+
+---
+
+# <a id="the-stack"></a>THE STACK — things to address
+
+*Raised and not yet resolved. Newest first. **A thing leaves this stack by being fixed or by being ruled**, never by being forgotten.*
+
+## <a id="s1"></a>S1 — a cast asserting what a check verifies
+
+> ***Doug, 2026-08-27:*** *"`const block = $check(writing[0] as $Html<'block'>, 'block');` — **Check is wrong!! You have to cast to do a type check?!?! You don't know the type yet. That is why you are checking it.** And why are you type checking the first of an array? That doesn't make sense. **Type check all or don't.** Not a good look."*
+
+**Two faults in one statement.** *The cast tells the compiler it is a block **before** the runtime check runs, so the check cannot fail at the type level and the cast lies at the value level. And `writing[0]` of a rest array checks one element of a variadic and ignores the rest.*
+
+***Fixed where it stood*** — the bond declares `(block: $Html<'block'>)` and checks that parameter, with no cast and no index. **The stack keeps it because the same shape is in `.archive`**: [`$Writing.$Writing`](../../package/.archive/writing/Writing.tsx) does `$check((block(first) ? first : undefined) as $Html<'block'>, 'block')` — the identical cast, in the version that ships.
+
+***And the standing instruction it came with:*** *"I need you to detect when code you write is too awful and bubble it up so we fix."* **A green gate does not catch a lying cast, and Doug should not be the detector.**
+
+## <a id="s2"></a>S2 — what hosts a carried type
+
+**`$$` reads two ways — already-is, and carries-one.** *The ladder runs entirely on the first.* **The second has lost its host**: `$Writing` has no bond, so a plain writing can no longer carry `<Type>Letter</Type>`, and 12 promises in `letter.test` and `smiley.test` fail for that one reason.
+
+*Candidates, neither taken: the exotic kind carries its own type, or it is simply a subclass and carriage is given up.* ***Doug's ruling owed.***
+
+## <a id="s3"></a>S3 — the canonical kind has no name
+
+**A level asks two questions and only one is built.** *`$Letter.specify()` states the **canonical letter's** rule as the **level's**, which is what the hex letter proves.* **The member name is Doug's.**
+
+## <a id="s4"></a>S4 — two v1 promises red under the eager `$check`
+
+[`validity.test.tsx`](../../package/tests/book/validity.test.tsx)'s *"outside one they do not judge"* and *"the three no longer answer alike"*. **They assert a verdict the throw stops reaching**, so rewriting them changes what v1 promises rather than how a test says it.
+
+## <a id="s5"></a>S5 — smaller, and named rather than lost
+
+`$Referent$` has one implementer · `held` and `annotations` are proxy names · `src/tests/` is a placement nobody ruled · an unbindable part is **skipped rather than refused** · chemistry has **no promise** for the value-equality fix · the Lab carries **18 pre-existing typecheck errors** in files this session never opened.
+
+
+---
+
+# <a id="the-constraints"></a>THE CONSTRAINTS — mined from what Doug said
+
+*Written down because they were being carried in conversation and lost. **Every one is his sentence, quoted**, with the reading beside it. A constraint leaves this register by being satisfied or withdrawn, never by being forgotten.*
+
+## What a level IS
+
+<a id="c0"></a>**C0 — THE LEVELS ARE TYPES, and that is what they are for.** *"Really, **Letter - File are types**. They have a default view, but **they exist to be overridden** through:*
+
+```tsx
+<Writing>
+   Whatever
+   <Type>Word</Type>
+</Writing>
+```
+
+*And then **that piece of writing behaves as a word**."*
+
+***This is the load-bearing one. Every other constraint about the levels is read against it.***
+
+<a id="c1"></a>**C1 — the ladder, and why it is that ladder.** *"File is comp of documents is comp of sections is comp of paragraphs is comp of sentences is comp of words is comp of letters — **I think this is most intuitive to people**."*
+
+<a id="c2"></a>**C2 — all seven implement composition, elegantly.** *"Remember that, **in very elegant form, these need to implement composition**."* + *"**You don't have the 7 implementing composition yet at all!**"*
+
+<a id="c3"></a>**C3 — a type is not a composition.** *"**Type is not a composition**."*
+
+<a id="c4"></a>**C4 — a type is not monadic.** *"**Type is not monadic**."*
+
+<a id="c5"></a>**C5 — a document does not get composition FROM a type.** *"**You are having document get composition from type???!?!?!?!?!**"*
+
+***C3, C4 and C5 are one fault seen three ways, and read against C0 they do NOT say the levels have the wrong parent. They say `$Type` was carrying the composition surface, so a level inherited what it should have declared.***
+
+<a id="c6"></a>**C6 — the inline split.** *"**Have letter - sentence be inline. Have paragraph - file not be inline**."*
+
+<a id="c7"></a>**C7 — structured content now, inference later.** *"if paragraph, section, document and file all have **structured content**, only sentence, word and letter need to be **auto-inferred**, and markdown versions later will likely override them. **But not for now.** In this way, **not every thing is the same type of writing**."*
+
+<a id="c8"></a>**C8 — a bond takes the level below.** *"In their bond constructor, **they take an array of sections**. And let's even have **paragraphs actually delineated**."*
+
+<a id="c9"></a>**C9 — but a paragraph takes a block.** *"you woudln't have paragraph even take writing. **It would take a block right? We expect inline writing if we get any.**"*
+
+<a id="c19"></a>**C19 — and one that reframes the bottom.** *"**Let's reserve word having letters and sentence having words for the closure of cataloguing rather than the closure of composition.**"* ***Said in a message that was interrupted and re-sent without it. Recorded rather than acted on: it stands in tension with C2, and the tension is Doug's to resolve.***
+
+## What belongs to `$Writing`
+
+<a id="c10"></a>**C10 — copy stays.** *"I do believe in copy for writing, so **let's keep it on the class. All writing should be able to supply copy**."*
+
+<a id="c11"></a>**C11 — specification and specify stay.** *"**Specification adn specify need to be there**."*
+
+<a id="c12"></a>**C12 — inline is assumed, not decided.** *"**Inline is not decided here but inline can be assumed and then overwritten**."*
+
+<a id="c32"></a>**C32 — writing has no view.** *"**Writing doesn't even have a view. It just renders it's children**, which is fine for now I suppose."*
+
+<a id="c26"></a>**C26 — and nothing else goes there without cause.** *"**You have this desire to handle everything at the writing level and I don't like it**... I think **you do premature generalization**."* + *"Don't invent things like this. **Break the others and we have to resolve it.**"*
+
+<a id="c27"></a>**C27 — generalization is FOUND, not anticipated.** *"let's **review each of the 7 and if we truly see generalization, we will move to writing**."*
+
+## The interface
+
+<a id="c13"></a>**C13 — the operator set is ONE unit.** *"**selectMany-single are the C# monad structure.** I put them here because I prefer selecting parts. **They are a unit.** Weird that you don't see that to me."*
+
+<a id="c14"></a>**C14 — the cut, member by member, performed by Doug.** *`valid()` removed because it comes from referent; `canonical` made a function; `parts()` kept; `where`/`select`/`selectMany`/`single` kept because they reflect monadic structure; `at()` removed as not minimal; `copy` and `parenthetical` removed because they belong to writing; and* "**make this something that has to extend writing**".
+
+## `$$`
+
+<a id="c15"></a>**C15 — it recognises what already is one.** *"We'll need it to be able to **detect that an instance of letter is already one, so we don't have to create a new one**."*
+
+<a id="c16"></a>**C16 — it fails through check.** *"**We need it to work with check too**, I think. **It should throw check errors.**"*
+
+<a id="c17"></a>**C17 — ANNOTATIONS CAN BE ANY TYPE OF WRITING, and that has to be handled.** *"And for annotations, **maybe we need annotations to be able to be any type?**... **We may need special logic to allow annotations to be any form of writing.** And then we can handle them in the parser. Or maybe anything parenthetical gets filtered out..."* + ***said again:*** *"**I told you we need to consider the idea that annotations can be any type of writing and we need to handle that. I said this.**"*
+
+***Said twice and not built. It is why `specification` cannot simply BE the annotations: annotations are writing of any kind, and the specification is the types among them.***
+
+## Kinds and the canonical
+
+<a id="c18"></a>**C18 — the level is named by its canonical, and non-canonical kinds live at it.** *"**I name the level by the canonical** right? **Space and smiley are a non-canonical types of letters. Repetitive spaces are non-canonical types of words that will be left associated.**"*
+
+<a id="c33"></a>**C33 — type-based subclassing is wanted.** *"**I want type-based subclassing for this framework.**"*
+
+<a id="c34"></a>**C34 — the Smiley must work.** *"**Find the Smiley example. That thing needs to work.**"*
+
+## Deferred, with their reasons
+
+<a id="c20"></a>**C20 — composition affords cataloguing.** *"catalogue has no commitment to being a fixed bit of writing, **can we create catalogues out of every piece of writing?**"* + *"**I think so. Composition directly lends itself to cataloguing.**"*
+
+<a id="c21"></a>**C21 — location semantics.** *"there are **addresses**, but **an address is at a location**. **A location is like a catalogue of addresses.**"*
+
+<a id="c22"></a>**C22 — a reassignable parse tree.** *"Let's maybe invent some sort of **parse tree abstraction that can be reassigned**. Parsing is important and should be worked into this abstraction."*
+
+<a id="c23"></a>**C23 — markdown leaves the framework.** *"we just **move the markedown version into the demo**... **Do a simply markdown implementation there.**"*
+
+## How the work is done
+
+<a id="c24"></a>**C24 — minimal means minimal to the THEORY.** *"When I say minimal I mean **minimal to the theoretical specification**."* + *"**Question literally every property to find the bare minimum set.**"*
+
+<a id="c25"></a>**C25 — no invented words.** *"**I don't want you to invent words. I want the semantics to be clean.**"*
+
+<a id="c28"></a>**C28 — the member order.** *"**Fields then properties then bond constructor, then constructor then methods then overrides then protected and priveate methods.**"*
+
+<a id="c29"></a>**C29 — no comments, and the code is catalogued instead.** *"**No code comments!**... **If it needs to exist, move it to the library branch. You should be cataloguing this code.**"*
+
+<a id="c30"></a>**C30 — type things correctly.** *"**Check is wrong!! You have to cast to do a type check?!?!** You don't know the type yet. That is why you are checking it... **Type check all or don't.**"*
+
+<a id="c31"></a>**C31 — raise your own bad code.** *"**I need you to detect when code you write is too awful and bubble it up so we fix.**"*
+
+---
+
+## <a id="unsatisfied"></a>What the working copy does NOT satisfy
+
+| | |
+|---|---|
+| **C3 / C4 / C5** | ***`$Type` carries `parts()`, `canonical()` and the operator set, and declares `$Composition$`.*** So a document inherits composition instead of declaring it. **One fault, three constraints.** |
+| **C17** | ***Annotations are typed `$Type[]` where they must be any writing.*** Said twice, not built. |
+| **C18** | **No canonical-kind question exists**, so a space and a smiley cannot be non-canonical letters. |
+| **C19** | **Recorded, unresolved**, in tension with C2. |
+| **C34** | **The Smiley does not run** - twelve promises red since `$Writing` lost the bond that hosted a carried type. |
+
+
+---
+
+# <a id="the-turn"></a>THE TURN — what the hierarchy became, and why
+
+*Written after the correction, because the correction is the finding.*
+
+## The fault, and how it survived a green suite
+
+***`$Document extended `$Type` and `$Type` carried composition.*** *So a document was parenthetical, was an annotation, was a formula, had an `instance` it stood in for — and **inherited** composition rather than declaring it.*
+
+**The evidence arrived on the first probe and was misread.** *A count of `held: 0, annotations: 2` is a hierarchy saying every level is parenthetical; it was treated as a filter that needed a better predicate, and a partition was written around it.* ***A promise that a document is not parenthetical would have failed on day one.***
+
+## What Doug's correction actually said
+
+> *"**Type is not a composition**."* · *"**Type is not monadic**."* · *"**You are having document get composition from type???!?!?!?!?!**"*
+
+***Read against [C0](#c0) these do NOT say the levels have the wrong parent.*** **The levels ARE types** — *"Really, Letter - File are types. They have a default view, but **they exist to be overridden**."* **What was wrong is that `$Type` carried the composition surface.**
+
+## The hierarchy now
+
+```
+$Writing<P>          parts · canonical · where · select · selectMany · single · copy · specification · written · text
+  $Annotation<P>     parenthetical
+    $Type<T>         instance · bind · source · formula · view          NO composition, NO operator set
+      $Letter … $File    each DECLARES implements $Composition$<Below>
+        $Chapter (a $Document) · $Book (a $File)
+```
+
+***`$Writing` is the Level One primitive, which is where the derivation puts composition*** — *"a composition is composed out of other compositions."* **`$Type` inherits the surface without claiming it; a level claims it.**
+
+## What `$Writing` holds, and why the block stopped being dangerous
+
+**One bond normalises both shapes chemistry hands over** — a block when what you compose is inline, a list when it is not — into `written`. *A leaf declares no bond and therefore never gets one, so nothing lies about the smiley.*
+
+***And `specification` is what is written inside.*** **That is [C17](#c17) built** — *annotations can be any type of writing* — and it is what **killed the module cycle** the original `NAMING IS OWED` comment was about: `$Writing` no longer names `$Type` at all.
+
+## What is proven, in promises
+
+| | |
+|---|---|
+| ***`<Writing><Document/><Type>File</Type></Writing>` behaves as a File*** | carries the type, answers `$$`, and **composes the documents written inside it** |
+| ***a written `<File>` and a writing that behaves as one answer alike*** | the same count from both |
+| **the same shape at word grade** | `<Letter>h</Letter><Letter>i</Letter><Type>Word</Type>` reads `['h','i']` |
+| ***a chapter IS a document · a book IS a file*** | `instanceof`, and `$$(chapter, $Document)` returns the chapter itself |
+| ***A PIECE OF WRITING BEHAVES AS A BOOK*** | `<Chapter/><Chapter/><Type>Book</Type>` composes two chapters |
+| **the ladder** | file → document → section → paragraph → sentence → word → letters |
+| **inline** | letter–sentence true, paragraph–file false |
+
+***And the formula resolves ONLY WHEN DRAWN*** — *measured again here: built with `$()` the pattern carries a bare `$Type` and nothing behaves as anything.* **Every promise above renders.**
+
+## Faults found in this session's own code, by reading rather than by a gate
+
+| | |
+|---|---|
+| ***a cast asserting what a check verifies*** | `$check(writing[0] as $Html<'block'>, 'block')`. **Doug caught it.** Fixed by declaring the parameter. [S1](#s1). |
+| ***a bond that APPENDED instead of assigning*** | `written.push(...)` accumulated on re-bond and counted four documents where two were written. |
+| ***a static that captured the wrong instance*** | a test harness keeping `held[0]` across renders returned the **previous test's** writing. [Solutions 11](../solutions/11-the-constructor-that-captured-the-wrong-instance.md). |
+| ***a pattern replacement that silently did not match*** | `$Type` kept the whole composition surface and reported success. **Caught only by printing the file afterwards.** |
+
+## Owed, and stated rather than omitted
+
+***R221's typed narrowing is not built.*** *A book's `parts()` and `canonical()` narrow covariantly to `$Chapter`, but `where`/`select`/`selectMany`/`single` still take `$Document` — because every cast-free route to a parameterised `$File` needs the composed class as a member.* **A book is honestly a composition of documents whose documents are chapters; the typed form is owed.**
+
+***`parts()` recomputes and `$$` binds*** — a write during a read, which is [Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md)'s shape. **It has not fired because nothing draws parts yet.**
