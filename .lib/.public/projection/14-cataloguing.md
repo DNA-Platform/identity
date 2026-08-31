@@ -1,6 +1,7 @@
 # Cataloguing
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -64,7 +65,7 @@ Recorded because each one turned the design, and four of them corrected the impl
 
 1. **`Carried<V>` was defended as proving the mapping.** It proves nothing the hand-written class does not already satisfy, and its catch-all arm cannot tell *compresses to a string* from *no rule for this*.
 2. **The card was inflated into a delivery mechanism** — first holding the synopsis's declaration, then its component. Doug's correction: the card helps with **book references**; the **build** places the synopsis.
-3. **`$Book implements $Catalogue$<$Book>` was reported as impossible.** It is impossible *given today's `$Chapter`*; under [the requirements that are now law](#the-requirements-that-are-now-law) it is not. The implementer read a constraint as a law.
+3. **`$Book implements $Catalogue$<$Book>` was reported as impossible.** It is impossible *given today's `$Chapter`*; under [the requirements that are now specification](#the-requirements-that-are-now-specification) it is not. The implementer read a constraint as a specification.
 4. **A menu was put to Doug with all three options wrong** — one object, two objects, or both — when the answer was one class with two instances. *A question whose options are all wrong is worse than no question* ([filed before](08-the-author.md#wrong-turns-already-taken--do-not-repeat-these)).
 
 ## What was read — verified 2026-08-12
@@ -73,7 +74,7 @@ Each claim was checked against the source. Where a claim is reasoned rather than
 
 - **`$Catalogue$` is two interfaces at once** — [`$Composition$<$Reference$<T>>` and `$Reference$<$Composition$<T>>`](../../package/src/reference/Catalogue.tsx), plus `follow()`. The catalogue equation, carved in Sprint 47.
 - **The reference half is free for a book.** `$Book` has neither `read()` nor `then()`, so nothing collides; and `canonical` already passes, because [`$Cover implements $Reference$<$Book>`](../../package/src/book/Cover.tsx).
-- **Only `parts()` failed, and only because a chapter is not a book reference.** *This is the dictionary finding from [the source conversation][conv], made by the compiler in July: "a dictionary carries **two** catalogues — its cover's table of contents (over chapters) and its body (over words)."* Under [the requirements now law](#the-requirements-that-are-now-law) a chapter becomes a book reference and the failure goes.
+- **Only `parts()` failed, and only because a chapter is not a book reference.** *This is the dictionary finding from [the source conversation][conv], made by the compiler in July: "a dictionary carries **two** catalogues — its cover's table of contents (over chapters) and its body (over words)."* Under [the requirements now specification](#the-requirements-that-are-now-specification) a chapter becomes a book reference and the failure goes.
 - **`$TableOfContents` already is the chapter catalogue** — [`extends $Chapter implements $Catalogue$<$Chapter>`](../../package/src/book/TableOfContents.tsx), deriving its rows from the book's chapters and filtering by parentheticality. **Nothing in this sprint changes it.**
 - **`$Row` is the shipped precedent for a reference that is writing** — [`extends $Section implements $Reference$<$Chapter>`](../../package/src/book/Chapter.tsx), storing one address and reading its copy through it, **rebuilt on every render** by `parts()`. One class, many instances, honest parents. It is the pattern this sprint lifts one grade.
 - **`$Synopsis` is seventeen lines** — [`extends $Chapter`](../../package/src/book/Synopsis.tsx), setting `parenthetical = true` and nothing else. Everything R1 asks of it is an addition to a nearly empty class.
@@ -94,7 +95,7 @@ Each claim was checked against the source. Where a claim is reasoned rather than
 
 **Four actors.** The **author** of a book, who writes a synopsis of it and expects that to be the one anything else uses to stand for it. The **librarian**, building a catalogue — a book holding accounts of other books without copying them by hand. The **reader at the catalogue**, meeting a book they have not read and needing enough of it to decide. And the **reader of a failure**, meeting a catalogue that claims a book it does not hold, who needs to be told which.
 
-## The requirements that are now law
+## The requirements that are now specification
 
 <a id="r5"></a>Every chapter is a `$Reference$<$Book>` reading to the book it stands in, and **a synopsis points at a different one** — so a book's own synopsis is canonical **by the loop closing, never by a field declaring it**. A subject is a book whose chapters include synopses of others, and its table of contents lists them with no change. **<a id="r16"></a>Subjecthood is therefore a COUNT and not a class** — catalogue zero and you are an ordinary book, catalogue some and you *are* a subject — and the subject reference does not test for a cataloguing book, it **makes** one. **A book is a catalogue of books; its table of contents is the catalogue of its chapters** — Doug's resolution of the collision, and it compiles through the same members with no widening and no union. `$Catalogue$` is implemented by **writing only**. Canonicality is contextual, so other catalogues can be invented. <a id="r9"></a>The card is what a book reference resolves through and nothing more, and its transform is **written long, on the card itself, with no catch-all arm** — a property with no rule is a *missing line*, not a silent `string`.
 
@@ -135,7 +136,7 @@ Each claim was checked against the source. Where a claim is reasoned rather than
 
 ## Open at plan time, and how each closed
 
-Four questions were named rather than assumed, under [the law filed against Sprint 48](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md) — none of them got files or scenarios until it could answer *what runs, and when*.
+Four questions were named rather than assumed, under [the specification filed against Sprint 48](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md) — none of them got files or scenarios until it could answer *what runs, and when*.
 
 - **What the chapter's reference form is called, and whether it is a chemical.** **Answered:** `$$Chapter` is Doug's name, and it *is* a chemical — a `$Section`, which is what let `$Row` be deleted rather than merged.
 - **What a catalogue reads, given that every chapter is a book reference.** **Answered within the hour it was raised:** a catalogue reads the parts that point **elsewhere**, and the count of those is what makes a subject.
@@ -160,7 +161,7 @@ Four questions were named rather than assumed, under [the law filed against Spri
 | `verify-demo.mjs` | **exit 0, 25 checkpoints** |
 | chemistry Lab `verify-all.mjs` | **exit 0, 19 ✓, 0 ✗** |
 
-**Chemistry's `dist` was rebuilt before the lib suite ran** — the stale-build law, filed three times on this branch. Every failure after this point is this sprint's.
+**Chemistry's `dist` was rebuilt before the lib suite ran** — the stale-build specification, filed three times on this branch. Every failure after this point is this sprint's.
 
 ## U2 — the probe said YES, and then found a live defect nobody had predicted
 
@@ -181,7 +182,7 @@ Four questions were named rather than assumed, under [the law filed against Spri
 
 Seven classes stopped **assigning** `parenthetical` in a constructor and now **declare** it: `$Synopsis`, `$Author`, `$Subject`, `$Canonical`, `$Fenced`, `$Legend`, `$Denote`. `$Synopsis`'s default flipped to shown.
 
-**Ten promises encoded the old default and each was moved with its reason.** The one that read *"the cover, the synopsis and itself are apparatus"* was **wrong as a law** — under Doug's ruling it is a **choice a book makes** — so it split into two: *a synopsis is listed by default*, and *a book that marks its own parenthetical keeps it out of the contents*. **Both halves are asserted, because a default nobody can override is not a default.**
+**Ten promises encoded the old default and each was moved with its reason.** The one that read *"the cover, the synopsis and itself are apparatus"* was **wrong as a specification** — under Doug's ruling it is a **choice a book makes** — so it split into two: *a synopsis is listed by default*, and *a book that marks its own parenthetical keeps it out of the contents*. **Both halves are asserted, because a default nobody can override is not a default.**
 
 ## U9 — the long type, and the check caught two members nobody asked it to
 
@@ -255,9 +256,9 @@ Doug ruled `$$Chapter` the canonical table of contents entry, and the merge with
 
 **`LibraryCard.tsx` and `LibraryCatalogue.tsx` are deleted.** The long computed type, its completeness check, `Composed`, `Reflexive`, `Carded`, `Considered`, `Unaccounted`, `Accounted` and the class — all of it. The framework ships `$IndexCard<$Book>`, which enumerates whatever fields it is given, and **the demo declares its own card** in [`librarycard.tsx`](../../package/app/src/sections/book/library/the-team/librarycard.tsx) with the fields this library's cards carry. *When the build lands, that class is what it generates.*
 
-**`$Book.library` left the framework with it**, and the library recursion now lives on the demo's card where the agreement law belongs. So did `$Canonical`'s twelve-hop reciprocity walk.
+**`$Book.library` left the framework with it**, and the library recursion now lives on the demo's card where the agreement specification belongs. So did `$Canonical`'s twelve-hop reciprocity walk.
 
-**And the collapse paid a debt.** The app typecheck's baseline went from **4 to 1** — three baselined errors were *"$-backed access on a computed type"*, and there is no computed type any more. The gate did not pass until the baseline was corrected, which is the baseline-by-identity law working in the direction nobody plans for.
+**And the collapse paid a debt.** The app typecheck's baseline went from **4 to 1** — three baselined errors were *"$-backed access on a computed type"*, and there is no computed type any more. The gate did not pass until the baseline was corrected, which is the baseline-by-identity specification working in the direction nobody plans for.
 
 **The honest note on [U9](#u9):** its long type is gone, deleted by a later ruling. What it bought before it went is not wasted — it is what caught `$Book.shelved`, and it is the reason the mapping is now the demo's to state rather than the framework's to guess.
 
@@ -344,7 +345,7 @@ The book driver went red at two manifold checkpoints. **One was the driver's own
 ## Not done, and named rather than omitted
 
 - **[U15](#u15) — the drivers gained no new checkpoints.** They pass at 51 and 25 unchanged, which means the Shelf's new entries are **driven but not asserted**. The next session's first job.
-- **[U13](#u13) — the rejection is not drawn.** Reciprocity left the framework on Doug's ruling and has not been rebuilt as the demo's own law.
+- **[U13](#u13) — the rejection is not drawn.** Reciprocity left the framework on Doug's ruling and has not been rebuilt as the demo's own specification.
 - **[U11](#u11) and [U16](#u16)'s remaining library edits** — not reached. *([U14](#u14) is done: the Shelf's cover and synopsis were rewritten true, because both said a catalogue is not one of its own entries and that is now false.)*
 - **A list is a paragraph and its items are its sentences** — Doug's design, attempted and reverted. The strongest single piece of owed work.
 - **Dynamic layering** — one `$Code` whose level moves with an `inline` boolean. `$Formula`/`$Snippet` stand until it exists.
@@ -384,7 +385,7 @@ The book driver went red at two manifold checkpoints. **One was the driver's own
 - **A list should be a paragraph whose items are its sentences.** Doug's design, attempted, broke six promises, reverted rather than left red. **The largest single piece of owed work.**
 - **Dynamic layering** — one `$Code` whose level moves between paragraph and phrase with an `inline` boolean. `$Formula` and `$Snippet` are two classes standing where Doug named one.
 - **The drivers gained no checkpoints of their own** for the Shelf's new entries, so those are driven but not asserted.
-- **The failure is not drawn** as the demo's own law; reciprocity left the framework on Doug's ruling and was never rebuilt.
+- **The failure is not drawn** as the demo's own specification; reciprocity left the framework on Doug's ruling and was never rebuilt.
 - **Four cleanups:** loose module bindings; `$IndexCard` declaring no level; the free `$Composible$` rename; and the parse re-deriving what `marked`'s lexer already answered — that last one is the strongest Solutions candidate on the list.
 
 **Blockers: none.**

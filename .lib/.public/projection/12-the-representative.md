@@ -1,6 +1,7 @@
 # The Representative
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -193,7 +194,7 @@ Each claim was checked against the source or run, and the numbers are what make 
 
 - **R31. An app configures in a configuration module, and the convention is named.** A module **imports the classes it works with, creates the components it needs** — `$($X)` for a root it owns, `$($,X)` to derive from someone else's — **sets its registrations, and exports the configured components.** Downstream code imports those and renders through them. *Seen: a module that reads top to bottom as imports, components, registrations, exports — and an app whose character comes from which modules it composes.*
 
-- **R32. Registration appears only in configuration modules, and that is greppable.** Everywhere else writes `$(X)` to ask. This is [the composition root's own law](https://blog.ploeh.dk/2019/06/17/composition-root-location/) — *the container must never leak outside it* — in the only form we can enforce: a grep with an empty result outside the configuration modules. *Seen: that grep, in the report.*
+- **R32. Registration appears only in configuration modules, and that is greppable.** Everywhere else writes `$(X)` to ask. This is [the composition root's own specification](https://blog.ploeh.dk/2019/06/17/composition-root-location/) — *the container must never leak outside it* — in the only form we can enforce: a grep with an empty result outside the configuration modules. *Seen: that grep, in the report.*
 
 ## Compatibility
 
@@ -211,7 +212,7 @@ Each claim was checked against the source or run, and the numbers are what make 
 
 - **R19b. The reference chain goes with it.** `$Path` is created by `then()` on every reference kind. *Seen: one registration changing how every reference in a scope travels.*
 
-- **R26. The chemistry Lab carries serious coverage, as cases.** *Doug: "I'm going to want really serious coverage in the app of these functionalities and registration."* The Lab's 94 cases are keyed to the book's own sections — `III-3-binding-constructor.tsx` is Composition chapter 3 — so these land as **`III-11`**, one per form and one per reach. *Seen: a case per form, a case per reach, and a case for each resolution-order law, all driveable.*
+- **R26. The chemistry Lab carries serious coverage, as cases.** *Doug: "I'm going to want really serious coverage in the app of these functionalities and registration."* The Lab's 94 cases are keyed to the book's own sections — `III-3-binding-constructor.tsx` is Composition chapter 3 — so these land as **`III-11`**, one per form and one per reach. *Seen: a case per form, a case per reach, and a case for each resolution-order specification, all driveable.*
 
 - **R27. The demo is redesigned around this, not merely ported.** *Doug: "rewritten and even redesigned / refactored when possible to use this to show off why it deserves to be native."* *Seen: a demo whose per-book character comes from registration rather than from subclassing, and a diff in which classes are deleted rather than added.*
 
@@ -279,7 +280,7 @@ Each claim was checked against the source or run, and the numbers are what make 
 
 **D12 — Narrowing is an option carrying both knobs — reach and asker.** *Chosen over two separate registration forms, which would double the surface for a case that is rare by construction, and over a single knob, which cannot express "beneath this book, when a paragraph asks."*
 
-**D13 — Resolution order is a stated law: nearest scope wins, and within a scope the more specific registration wins.** *Chosen over first-registered-wins, which makes load order decide behaviour — the exact failure mode we removed by abolishing global registration.*
+**D13 — Resolution order is a stated specification: nearest scope wins, and within a scope the more specific registration wins.** *Chosen over first-registered-wins, which makes load order decide behaviour — the exact failure mode we removed by abolishing global registration.*
 
 **D14 — The lineage is the composition graph, and this is a fact rather than a preference.** React renders children after the parent's view returns, so a render stack does not survive to be read. `$parent$` is assigned at bind time and carries the relationship. *Named as a decision because "the whole call stack all the way down" is the natural way to say it and the wrong way to build it.*
 
@@ -341,7 +342,7 @@ Seemann's objection has two halves and **neither survives contact with what our 
 - **U21 — Reach.** *Mechanism: the lineage walk either stops at the asking instance's own scope or continues upward; a registration carries which, and the projected form is the default. Files: with U7, U8. Depends on: U7, U8. Realizes: R22, R23. **Visible end:** a registration answered four levels down, and the same registration narrowed so it is not.*
 
 - **U22 — The asker filter, and the order.** *Mechanism: a registration may name which class's asks it answers; where several match, the nearest scope wins and the more specific registration wins within a scope. Files: with U21. Depends on: U21. Realizes: R23a, R24. **Visible end:** two registrations in one scope distinguished only by who asks, and a nested scope overriding an outer one.*
-  **This is the unit that decides whether the feature is understandable.** Resolution order that emerges from implementation rather than from a stated law is how a container becomes folklore.
+  **This is the unit that decides whether the feature is understandable.** Resolution order that emerges from implementation rather than from a stated specification is how a container becomes folklore.
 
 - **U32 — The class axis.** *Mechanism: a class template's scope is created with its superclass template's scope among its `#topics`, so a subclass inherits by the catalogue's own recursive `$find` and shadows by being asked first. Where a scope is **both** derived and a subclass, `$including` carries both parents in the order R35 states. Files: with U5. Depends on: U5. Realizes: R33, R34, R34a, R37. **Visible end:** a registration made for a base class answered when a subclass renders, and a subclass declining it in one line.*
   **This unit exists because Doug caught its absence.** The first draft of this plan specified component derivation and silently assumed class inheritance came with it.
@@ -383,10 +384,10 @@ Seemann's objection has two halves and **neither survives contact with what our 
 
 ### Coverage — `library/chemistry/package/app`
 
-- **U25 — The Lab gains a section, not a case.** *Mechanism: the Lab's 94 cases sit in sections keyed to the book — `adapted/`, `blocks/`, `cloning/` — so this gets **its own section**, numbered `III-11`. It covers **each form** (`$($X)`, `$($,X)`, `$(X)`, `$(X,$)`, `$(A,B)(C)`), **each reach** (projected, narrowed, asker-named), **each resolution-order law**, **the consumption form** and the one case where storing at bind is observably different, and **the two routes to specialization side by side** — register, or override the bond constructor — **with a case showing that the property route does nothing for a resolved component**, since a field initializer runs before any scope exists. Files: a new section under `app/src/sections/`, and the Lab's registry. Depends on: U22. Realizes: R26, R29, R30. **Visible end:** a page where every form and every reach is shown working, and every failure mode shown failing.*
+- **U25 — The Lab gains a section, not a case.** *Mechanism: the Lab's 94 cases sit in sections keyed to the book — `adapted/`, `blocks/`, `cloning/` — so this gets **its own section**, numbered `III-11`. It covers **each form** (`$($X)`, `$($,X)`, `$(X)`, `$(X,$)`, `$(A,B)(C)`), **each reach** (projected, narrowed, asker-named), **each resolution-order specification**, **the consumption form** and the one case where storing at bind is observably different, and **the two routes to specialization side by side** — register, or override the bond constructor — **with a case showing that the property route does nothing for a resolved component**, since a field initializer runs before any scope exists. Files: a new section under `app/src/sections/`, and the Lab's registry. Depends on: U22. Realizes: R26, R29, R30. **Visible end:** a page where every form and every reach is shown working, and every failure mode shown failing.*
   **Doug's charge in his words:** *"really serious coverage in the app of these functionalities and registration."* A case is visible where a unit test is not, which is why these are cases rather than more promises.
 
-- **U29 — The convention is written down before it is followed.** *Mechanism: the configuration module — imports, components, registrations, exports, in that order — and the law that registration appears only there, added to [the specification chapter](../../../chemistry/.lib/composition/11-the-representative.md) with a worked example. Files: that chapter, and [Structural Patterns](../../../chemistry/.lib/authorship/02-structural-patterns.md) for the R6a spacing row. Depends on: U8. Realizes: R31. **Visible end:** a convention a reader can follow without asking, and a Lab case that follows it.*
+- **U29 — The convention is written down before it is followed.** *Mechanism: the configuration module — imports, components, registrations, exports, in that order — and the specification that registration appears only there, added to [the specification chapter](../../../chemistry/.lib/composition/11-the-representative.md) with a worked example. Files: that chapter, and [Structural Patterns](../../../chemistry/.lib/authorship/02-structural-patterns.md) for the R6a spacing row. Depends on: U8. Realizes: R31. **Visible end:** a convention a reader can follow without asking, and a Lab case that follows it.*
   **The doc-first rule is the framework's own** — *"stop coding, write the doc, get review on the doc, then write the code"* — and a configuration convention discovered by writing configuration is how every app ends up configured differently.
 
 - **U30 — The demo configures itself the way the convention says.** *Mechanism: the demo's per-book and per-dress registrations move into configuration modules that export configured components; nothing outside them registers. Files: `app/src/sections/book/library/**`, the page's dresses. Depends on: U29, U15, U16. Realizes: R31. **Visible end:** each book's configuration readable in one file, top to bottom.*
@@ -444,13 +445,13 @@ The reason both reversals hold is the same one: [the failure filed against Sprin
 
 **Two latent bugs found and fixed on the way**, neither of them this sprint's subject: `$lift` asserted a registry lookup non-null and crashed nondeterministically when it missed — reproduced red-first and repaired; and `$(a plain function)` used to answer a *different* function that only exploded when something rendered it.
 
-**Not built.** `$($X)` still answers one component per class — a fresh root each call broke 43 tests and buys a case Doug said does not arise, so the requirement was amended rather than the code forced. The dresses are not scopes. The `.public` demonstration named in the plan does not exist. Region-scoped substitution through the parse is **unavailable by law**, not by omission.
+**Not built.** `$($X)` still answers one component per class — a fresh root each call broke 43 tests and buys a case Doug said does not arise, so the requirement was amended rather than the code forced. The dresses are not scopes. The `.public` demonstration named in the plan does not exist. Region-scoped substitution through the parse is **unavailable by specification**, not by omission.
 
 ## Blockers
 
 **None.** Two decisions are open and both are Doug's, named above.
 
-**Two cleanups, one done and one queued.** The `type` keyword left `lib`'s imports — **116 across 35 files**, no new cycles — and one exception is now law: a *re-export* genuinely needs `export type`, and its names must be checked one by one, because a value made type-only breaks consumers where no gate can see it. What remains is the model's root, and it is [one job wearing three symptoms](00-planning.md#queued--what-a-reference-form-is-and-whether-it-belongs-to-the-chemical-hierarchy-doug-2026-08-12): `$Referent` as a class, the `$$` reference forms, and the `$X$` names. **`ts-morph` 28.0.0 is installed** for the mechanical half of it.
+**Two cleanups, one done and one queued.** The `type` keyword left `lib`'s imports — **116 across 35 files**, no new cycles — and one exception is now specification: a *re-export* genuinely needs `export type`, and its names must be checked one by one, because a value made type-only breaks consumers where no gate can see it. What remains is the model's root, and it is [one job wearing three symptoms](00-planning.md#queued--what-a-reference-form-is-and-whether-it-belongs-to-the-chemical-hierarchy-doug-2026-08-12): `$Referent` as a class, the `$$` reference forms, and the `$X$` names. **`ts-morph` 28.0.0 is installed** for the mechanical half of it.
 
 ## Verified — every gate this branch has, including the ones not run
 
@@ -493,5 +494,5 @@ The `.public` demo is `cd library/.public/package && npx vite app --port 5199`, 
 1. **[Types — another sprint, by ruling](09-the-subject.md#types--another-sprint-by-ruling)** — the rulings already made and still binding: code writeable in a chapter through `toString`, so the same object is the running constraint and the printed chapter; `$Type` a reference like an import, proceeding up the subject chain; code weighing in at validation; the library self-specifying.
 2. **[Chapter zero's Types section](00-planning.md)** — why it waits, and what it must answer before it gets files: *what runs, and when*.
 3. **[The Representative](../../../chemistry/.lib/composition/11-the-representative.md)** — the `$` surface as shipped. **Load-bearing for the next sprint rather than merely recent:** `$Type` was described as *a reference proceeding up the subject chain*, and this sprint built a resolution that walks a chain and answers per scope. Whether those are the same mechanism is the first question worth asking.
-4. **[The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md)** — validation reads the parse, and this is the law about what a reading may do while something is looking at it.
+4. **[The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md)** — validation reads the parse, and this is the specification about what a reading may do while something is looking at it.
 5. **[The sprint that planned what it had not designed](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md)** — the failure this next sprint is most likely to repeat, because `$Type` is precisely the unit that caused it.

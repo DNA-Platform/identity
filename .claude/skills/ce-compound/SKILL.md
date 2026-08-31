@@ -21,7 +21,7 @@ description: STEP 4 OF 4, then /ce-brainstorm again to close the loop, or /ce-ha
 
 Distribute what a sprint learned into the library while the context is fresh, so the next encounter costs minutes. The fourth step of the [feature workflow](../../library/..teamsmanship/19-workflows.md) and the one that makes it a loop.
 
-**Specified in [Compounding](../../library/..librarianship/17-compounding.md)** — read that before running this. It is the law; this is the procedure.
+**Specified in [Compounding](../../library/..librarianship/17-compounding.md)** — read that before running this. It is the specification; this is the procedure.
 
 Adapted from [`ce-compound`][ce-compound] at commit `6a2a0f9`. **What we changed and why:** theirs writes every learning into one `docs/solutions/` folder with retrieval frontmatter, because their project has nowhere else to put knowledge. **Ours splits their two tracks by home.** A **defect** becomes a chapter in the branch's [Solutions](../../library/library-tree/06-solutions.md) book — indexed by symptom, which is what their folder was for. Everything else **distributes** to the room whose subject it already belongs to. We keep their overlap rule, grounding rule, findability check and neighbourhood bounds; we drop the frontmatter schema for a **keyword line and a symptom-first cover**, because a cover is already how this library indexes a room.
 
@@ -88,7 +88,7 @@ Adapted from [`ce-compound`][ce-compound] at commit `6a2a0f9`. **What we changed
 ## Steps
 
 1. **Name the lesson** in one line — what was observed, not what you concluded.
-2. **Route it.** Does it answer *why did this break?* — then it is a [Solutions](../../library/library-tree/06-solutions.md) chapter: symptoms first, in the words they were observed in, with a keyword line from the book's vocabulary. Otherwise find its room — [`/remember`](../../library/our-skillset/22-remember.md) is the navigation, [Compounding](../../library/..librarianship/17-compounding.md) the law.
+2. **Route it.** Does it answer *why did this break?* — then it is a [Solutions](../../library/library-tree/06-solutions.md) chapter: symptoms first, in the words they were observed in, with a keyword line from the book's vocabulary. Otherwise find its room — [`/remember`](../../library/our-skillset/22-remember.md) is the navigation, [Compounding](../../library/..librarianship/17-compounding.md) the specification.
    **If the branch has no Solutions book and this is a defect, create it now** — cover with its keyword vocabulary, then this chapter as its first. The book appears with its first defect and never before; a branch that has diagnosed nothing should have no such book.
 3. **Check overlap.** Most dimensions matching means edit, not create.
 4. **Reread, then edit.**

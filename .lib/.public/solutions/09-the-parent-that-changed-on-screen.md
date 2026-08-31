@@ -17,7 +17,7 @@
 
 ## The mechanism
 
-A chapter's `book` is one hop: `this.parent as $Book`. But the standing law from Sprint 47 is that **an element's parent is the chemical that interprets it** — and on screen, the thing interpreting a rendered element is *whatever rendered it*. Render the contents inside a page-switching chemical, and its parent becomes the page switcher. One hop up is no longer the book; it is the screen's arrangement of the moment.
+A chapter's `book` is one hop: `this.parent as $Book`. But the standing specification from Sprint 47 is that **an element's parent is the chemical that interprets it** — and on screen, the thing interpreting a rendered element is *whatever rendered it*. Render the contents inside a page-switching chemical, and its parent becomes the page switcher. One hop up is no longer the book; it is the screen's arrangement of the moment.
 
 So any member that reaches through `parent` tells the truth at binding and can lie at render.
 

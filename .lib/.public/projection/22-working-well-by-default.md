@@ -2,6 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md), [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -9,7 +10,7 @@
 
 *The title is **Doug's own sentence**, said when he set the sprint: **"We need to audit and clean the compiler code, get something working well by default, and then go from there."** Standing for correction like every proxy on this branch.*
 
-**Identifiers.** Requirements **R140–**, units **U150–**, decisions **D80–**, risks **K9–**. New Condition Report entries are **O16–**, **N35–**, **S24–**, **I30–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law); a deletion leaves a gap.*
+**Identifiers.** Requirements **R140–**, units **U150–**, decisions **D80–**, risks **K9–**. New Condition Report entries are **O16–**, **N35–**, **S24–**, **I30–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification); a deletion leaves a gap.*
 
 ## The workflow
 
@@ -281,7 +282,7 @@
 
 # <a id="the-measurement"></a>THE MEASUREMENT — taken before the work was divided
 
-***[The Build's law](../../../../.claude/library/our-skillset/29-ce-plan.md#a-dispatch-is-checked-against-the-size-of-the-work): a plan that has not measured the work is asserting something about work it never looked at.*** **Sixteen requirements reads large. Measured, it is about eight files.**
+***[The Build's specification](../../../../.claude/library/our-skillset/29-ce-plan.md#a-dispatch-is-checked-against-the-size-of-the-work): a plan that has not measured the work is asserting something about work it never looked at.*** **Sixteen requirements reads large. Measured, it is about eight files.**
 
 | | measured | what it means |
 |---|---|---|
@@ -339,7 +340,7 @@
 
 # The units
 
-***Sixteen units. Every one names its mechanism and what will be VISIBLE when it is done.*** **Identifiers begin at U150; [none is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law).**
+***Sixteen units. Every one names its mechanism and what will be VISIBLE when it is done.*** **Identifiers begin at U150; [none is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification).**
 
 ## Phase 1 — the gate
 
@@ -738,7 +739,7 @@
 
 ## The ladder answers it, and `$$Book` is the only rung that left
 
-***Every reference form in this framework is ONE GRADE BELOW what it stands for.*** **That is [the law the `$$` family closed on](14-cataloguing.md), and it holds without exception until the top:**
+***Every reference form in this framework is ONE GRADE BELOW what it stands for.*** **That is [the specification the `$$` family closed on](14-cataloguing.md), and it holds without exception until the top:**
 
 | reference form | ***IS a*** | stands for a |
 |---|---|---|
@@ -801,7 +802,7 @@
 
 **The application reads `canonical?.heading` now, a string that constructs nothing.** ***The root remains: [`$Document.title`](../../package/src/document/Document.tsx) and [`$Figure.caption`](../../package/src/writing/Figure.tsx) both build on every read, with nothing saying so at either.***
 
-> ***COMPOUNDED into [The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md#a-getter-is-a-reading-too), as its THIRD appearance*** — **not a new chapter, because that chapter's law already covers it**: *a reading called during a render must be held.* **What this appearance adds is which things are readings** — *`parts()` announced itself as one; `title` does not, which is why it survived three sprints and two appearances.*
+> ***COMPOUNDED into [The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md#a-getter-is-a-reading-too), as its THIRD appearance*** — **not a new chapter, because that chapter's specification already covers it**: *a reading called during a render must be held.* **What this appearance adds is which things are readings** — *`parts()` announced itself as one; `title` does not, which is why it survived three sprints and two appearances.*
 
 ## <a id="async-answered"></a>AND `read()` AS A PROMISE — measured, and the answer is no
 

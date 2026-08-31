@@ -29,6 +29,27 @@ Two classes fall out of it that the earlier chapters had not named on their own:
 
 Recorded as a **conjecture to track**, in Doug's own hedge — *"seems like it will be," "in a similar fashion."* It is a candidate unification, not yet a settled inheritance. What it predicts and must be checked against: that `$Subject : $Literature` and `$Catalogue : $Library` each carry the *same shape* as `$Symbol : $Literal`, so that if the shape is real, the three are one generic relation instantiated three times rather than three separate facts.
 
+## <a id="register-status"></a>⚠ The register's own condition — read before trusting a **Built**
+
+***The `status` column is the stalest thing in this book, and the register's own rule is what convicts it:*** *"This table is edited, not appended — when a decision changes the model, the row changes."* **Two decisions changed the model and no row moved.**
+
+***First, Sprint 47's own retro reversed the `$Reference` row's central claim*** — [the record](../projection/05-sprint-47--the-catalogue.md), 2026-08-03, ruled **"no addresses in the model — a string address serializes a reference and the abstraction wasn't made to serialize; `$for` is now a held `$Reference` passed as an object; the `path()` utility and the book-compute died with the string."** *The row still reads "an indirect **string** target, never the object", which is the deleted design stated as built.* **`lookup()` went the same way — the built member was `read()`.**
+
+***Second, and larger: the whole model was rebuilt as v2.*** **Every row marked *built* below was built in what is now [`package/.archive/`](../../package/.archive/).** *Measured 2026-08-29 by grep across both trees:*
+
+| the register says | v1 `.archive/` | v2 `src/` |
+|---|---|---|
+| **`$Reference`, `$Catalogue`, `$Location`, `$Path`, `$IndexCard`, `$CardCatalogue`, `$Link`, `$Highlight`** | ***9 files, 323 lines*** | ***0*** — one empty `$Referent$` interface |
+| **`$Footer` · `$Footnote` · `$Denote` · `$Bibliography` · `$Citation` · `$Cite` · `$Legend` · `$Key`** | ***built*** | ***0 of the eight*** |
+| **`$Writing` as an interface floor of `{ copy }`** | interface | ***a concrete class*** — [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx) |
+| **`$Character`** | built | ***renamed `$Letter`*** |
+| **the inline levels "each parsing its own level out of `copy`"** | true | ***false*** — one block per bond, one shared [parser](../../package/src/utilities/Parser.tsx) |
+| **`$Composition<T>` = `parts` + `canonical`** | true | ***[`$Composition$`](../../package/src/writing/Composition.tsx), six members***, and `canonical` is not one of them |
+
+***So the register is a faithful account of a framework that has been archived, and nothing in it may be read as the state of the code.*** **It is left standing rather than gutted** — *it is still the only complete list of what the derivation has named, and the names are what the next design has to answer to.* ***What is corrected in place is the one row a reference design would lean on hardest, and it is marked.***
+
+***The rebuild is not a rewrite this chapter can perform.*** *Most of these classes have no v2 counterpart yet because [nobody has designed one](16-the-reference-and-its-locator.md) — the register cannot record decisions that have not been made.* **When references are designed, this table is where the result lands.**
+
 ## The register of classes
 
 Every class the derivation has named, kept here so none is lost and so the map stays honest as decisions change. Each is (or will be) a real class — or, for the composition role, an **interface** — in [`@dna-platform/lib`](../../package/). `→` is *specializes*; the source chapter is where it is derived; **Built** marks the ones that exist in code today. This table is edited, not appended — when a decision changes the model, the row changes. The composition rows reflect the [Sprint 44](../projection/01-sprint-44--composition.md) as-built model: content enters once, as one live block through the bond constructor, and the levels beneath are *parsed, never authored* — the creator of a paragraph does not specify its sentences.
@@ -36,7 +57,8 @@ Every class the derivation has named, kept here so none is lost and so the map s
 | class | relation | status | chapter |
 |---|---|---|---|
 | `$Chemical` | framework root — renders in React (from [$Chemistry](../../../chemistry/.lib/..representivity/.cover.md), not ours). Its `$Particle` base now carries **`frame()`** — the render template method the framework calls; `view()` is the content, `frame()` wraps it. | built (framework) | [06](06-the-canonical-echo-and-views.md) |
-| `$Reference<T>` | → `$Chemical`; the act of pointing — a hyperlink. Holds `$for` (an *indirect* string target, never the object), `lookup(): T` (the dereference — a *navigation*), and overrides `frame()` to wrap its surface in a clickable link. `T` is what the lookup yields. | **built** | [03](03-inheritance-and-composition.md) |
+| `$Reference<T>` | ***THE ROW BELOW IS TWICE SUPERSEDED — see [the status note](#register-status).*** **What is in v2 today is one empty interface**, [`$Referent$`](../../package/src/reference/Referent.tsx): `interface $Referent$ extends $Chemical { }`. *It constrains nothing, and `$Writing` implements it for no effect.* | ***nothing built*** | this chapter, [16](16-the-reference-and-its-locator.md) |
+| *~~`$Reference<T>`~~* | *~~→ `$Chemical`; the act of pointing — a hyperlink. Holds `$for` (an indirect **string** target, never the object), `lookup(): T` (the dereference — a navigation), and overrides `frame()` to wrap its surface in a clickable link.~~* | *~~built~~* | [03](03-inheritance-and-composition.md) |
 | `$Title` | → `$Reference`; a *canonical* reference — it points at its work and is the first/representative. Where "points at" and "is the first text" meet. | to build | [02](02-composition.md), [03](03-inheritance-and-composition.md) |
 | `$Author` | `$Reference<$Autobiography>` — a reference typed to point at an autobiography; the target constraint is the generic, checked by the compiler. | to build | [03](03-inheritance-and-composition.md), [04](04-the-book-and-subjectivity.md) |
 | `$Literal` | → `$Chemical`; object-only content — the thing pointed *at*. With `$Reference`, the pointing/pointed-at pair that is the essence of a catalogue (the Dewey decimal and the book it names). | to build | [05](05-the-evolutionary-root-symbol-and-literal.md) |

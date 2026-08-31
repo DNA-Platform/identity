@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-meaningful-surface/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -9,7 +10,7 @@
 
 ***The title is taken from Doug's own sentence and stands for correction:*** ***"We are doing the semantics of specification. Following a spec."***
 
-**Identifiers.** Requirements **R206–**, actors **A7–**, flows **F1–**, acceptance examples **AE1–**, risks **K20–**, decisions **D99–**, units **U187–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law); a deletion leaves a gap.*
+**Identifiers.** Requirements **R206–**, actors **A7–**, flows **F1–**, acceptance examples **AE1–**, risks **K20–**, decisions **D99–**, units **U187–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification); a deletion leaves a gap.*
 
 **Where the code lands.** ***`$Book` and `$Chapter`, and the sprint is scoped to them*** — *Doug: **"`$Book` has become a bloated mess. Let's focus on `$Book` and `$Chapter` this sprint as we add types. `$File` and `$Type` are essential en route."*** **So `$File` and `$Type` are the route rather than the destination**, and the destination is two classes that carry less. The code is [`library/.public/package`](../../package/), with the corpus it compiles and a demonstration in the application; whether anything lands in `$Chemistry` is [open](#open).
 
@@ -39,13 +40,13 @@
 
 # <a id="the-vocabulary"></a>The vocabulary, ruled first because it governs every sentence after it
 
-> ***Doug, 2026-08-25:*** *"It doesn't own law at all. **It holds a specification.** I want you to overrite any trace of law and replace it with specification. **That is our domain term. To specify.** In fact, I want to rename `valid` to `specify`. Add that to the sprint work. It's a rename but you'll probably need to do find and replace on comments."*
+> ***Doug, 2026-08-25:*** *"It doesn't own specification at all. **It holds a specification.** I want you to overrite any trace of specification and replace it with specification. **That is our domain term. To specify.** In fact, I want to rename `valid` to `specify`. Add that to the sprint work. It's a rename but you'll probably need to do find and replace on comments."*
 >
-> *"**Yes all of them. I NEVER wanted law and have had you replace it before and it grows like a virus. CUT IT. Specification. Validation. Specify. Validate. We are doing the semantics of specification. Following a spec.**"*
+> *"**Yes all of them. I NEVER wanted specification and have had you replace it before and it grows like a virus. CUT IT. Specification. Validation. Specify. Validate. We are doing the semantics of specification. Following a spec.**"*
 
 **Four words, and the distinctions between them are exact:** a type **specifies**; a thing **satisfies** a specification; checking one against the other is **validation**.
 
-<a id="r206"></a>**R206** — ***the domain word is `specification`, and "law" is struck from the corpus.*** **329 occurrences in this branch library, 4 in chemistry's, 7 in code** — *measured this session.* **The only survivors are the demonstration corpus's own physics prose** — *"conservation laws" in [`symmetry.tsx`](../../app/src/library/.physics/the-standard-model/symmetry.tsx), which is a book's content rather than our vocabulary.*
+<a id="r206"></a>**R206** — ***the domain word is `specification`, and "specification" is struck from the corpus.*** **329 occurrences in this branch library, 4 in chemistry's, 7 in code** — *measured this session.* **The only survivors are the demonstration corpus's own physics prose** — *"conservation specifications" in [`symmetry.tsx`](../../app/src/library/.physics/the-standard-model/symmetry.tsx), which is a book's content rather than our vocabulary.*
 
 <a id="r207"></a>**R207** — ***`valid()` is renamed `specify()`.*** **86 call sites across 39 files in `lib`, 3 in `$Chemistry`** — *measured.* **The replacement reaches the comments as well as the code**, which is Doug's own note on the shape of this work.
 
@@ -67,7 +68,7 @@
 >
 > *"It acts like a word. **We shouldn't have to change the default machinery. It should inherit the catalogue.**"*
 
-<a id="r211"></a>**R211** — ***a thing HAS a type.*** **It does not own one, contain one, or host one.** *`host` is struck on sight, as `law` is.*
+<a id="r211"></a>**R211** — ***a thing HAS a type.*** **It does not own one, contain one, or host one.** *`host` is struck on sight, as `specification` is.*
 
 <a id="r212"></a>**R212** — ***the type SPECIFIES; the thing SATISFIES.*** **That direction is the ruling**, and it is written down because I had it the other way round once already in this session.
 
@@ -255,7 +256,7 @@
 | **and `lib` already exports a `$Formula`** | [`writing/Formula.tsx`](../../package/src/writing/Formula.tsx) — *a KaTeX inline phrase* — **from the same `index.ts` chemistry's `$Formula` would enter** | read |
 | **the reference forms, and their grade rule** | `$$Word` `$$Sentence` `$$Paragraph` `$$Section` `$$Chapter` `$$Synopsis` `$$Book` — **each one grade below what it stands for, and there is no `$$Phrase`** | grep |
 | **the rename surface** | `valid(` **86** across **39 files** in `lib`, `$valid(` **19**; `$Chemistry` **3** and **1**; `build/` **29** | grep |
-| **the struck words** | *law* **329** here · **4** in chemistry's library · **7** in code · **2** legitimate in the physics corpus. *refusal* **8** in code · **54** in the libraries. *mint* **33** | grep |
+| **the struck words** | *specification* **329** here · **4** in chemistry's library · **7** in code · **2** legitimate in the physics corpus. *refusal* **8** in code · **54** in the libraries. *mint* **33** | grep |
 | **what a book states about itself today** | [`$Book.structure()`](../../package/src/book/Book.tsx) — **seven statements, hardcoded in the class**, read twice: once by the bond and once by `valid()` | read |
 | ***the levels are siblings, not a chain*** | `$Word` `$Sentence` `$Paragraph` `$Section` each extend **`$Writing<P>` directly**; `$Document extends $Writing<$Section>`; `$Letter extends $Writing<$Letter>`. **Only the refinements stack** | read |
 | ***there is no `level` getter*** | **one comment in `Writing.tsx` contains the word** — nothing declares it, nothing reads it | grep |
@@ -285,7 +286,7 @@
 | ***whether the representative is made to reach a book's chapters*** | **The measured defect above.** *Without it a subject cannot re-dress its chapters at all; with it, appearance and specification are two wired axes.* |
 | ***where a `<Type>` is WRITTEN*** | **A generated book is built at module scope, outside any drawing** — *so a type written among a book's chapters is not swapped, while one written on a cover is.* ***This decides the shape of what the compiler emits.*** |
 | ***Cover, Table of Contents and Synopsis as types*** | **Doug's opening framing, and not yet ruled.** *They are `$Chapter` subclasses carrying real behaviour — `$TableOfContents` overrides `parts()` and holds `$open`; `$Synopsis` decides `standsFor` off a card — and that is behaviour rather than specification.* |
-| ***the demonstration*** | **[Not designed](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-law), and the sprint does not close without it.** |
+| ***the demonstration*** | **[Not designed](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-specification), and the sprint does not close without it.** |
 
 # <a id="risks"></a>Risks
 
@@ -366,9 +367,9 @@
 
 ## The rulings, verbatim
 
-> *"It doesn't own law at all. **It holds a specification.**… I want to rename `valid` to `specify`."*
+> *"It doesn't own specification at all. **It holds a specification.**… I want to rename `valid` to `specify`."*
 >
-> *"**Yes all of them. I NEVER wanted law and have had you replace it before and it grows like a virus. CUT IT. Specification. Validation. Specify. Validate.**"*
+> *"**Yes all of them. I NEVER wanted specification and have had you replace it before and it grows like a virus. CUT IT. Specification. Validation. Specify. Validate.**"*
 >
 > *"**It doesn't have a host. Stop inventing terminology. Something HAS a type.**… **And it provides a specification for its type. That is the key insight.**"*
 >
@@ -402,7 +403,7 @@
 | | |
 |---|---|
 | ***`valid` → `specify`*** | **[R207](#r207). 86 call sites across 39 files in `lib`, 3 in `$Chemistry`.** *Ruled and not carried out — the sprint was redirected before it.* |
-| ***the "law" sweep*** | **[R206](#r206). 329 occurrences here, 4 in chemistry's library, 7 in code.** *Same reason. Both are still owed and neither should quietly drop.* |
+| ***the "specification" sweep*** | **[R206](#r206). 329 occurrences here, 4 in chemistry's library, 7 in code.** *Same reason. Both are still owed and neither should quietly drop.* |
 | **nothing in `src2` is writing** | `$Writing$` is an interface with no class, so `$TypeOfLetter` has no instance to specify against and **every `specify()` in `src2` is empty on purpose.** |
 | ***the collector*** | `specify()` returns `void`, so something must gather the statements. **Doug rejected `$valid` as its home** — it recorded into `$paramValidation`, the same bucket as bond-constructor errors. ***It is `src2`'s to define, and `is()` is what will read it.*** |
 | **`specification` has no producer** | `$Front` and `$Back` initialise it to `[]`. The back is where types live; wiring it needs a writing class. |

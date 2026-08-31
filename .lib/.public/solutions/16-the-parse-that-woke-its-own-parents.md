@@ -53,7 +53,7 @@ parts() composes a part  →  writes part.index
 
 Before the threading, a composed part was its own parent, so the write had nowhere to go. **The parenting did not cause the write; it connected the write to something that would answer it.**
 
-## The law
+## The specification
 
 **A parse may not be given a parent while it mutates what it makes.** The two are incompatible as written, and neither is wrong on its own — the writes give parts their index, and the parent is what a scope needs in order to reach.
 
@@ -61,7 +61,7 @@ The consequence is a real limit rather than a bug to fix quietly: **region-scope
 
 ## DISCHARGED — [The Parse](../projection/13-the-parse.md), 2026-08-12
 
-**The law above still holds. Its condition no longer does, so the limit is gone.**
+**The specification above still holds. Its condition no longer does, so the limit is gone.**
 
 The design session happened, and Doug's answer was to remove the writing rather than to work around it. `parts()` wrote **twice** — a number onto every part, and `$role = 'mention'` where mentioning propagates — and both are gone:
 
@@ -96,7 +96,7 @@ A proposed conversion of the demo's three dresses into scopes was **the same cha
 
 # IT CAME BACK, AND THE DISCHARGE HAD MISSED A THIRD WRITE — [The Theme](../projection/18-the-theme.md), 2026-08-20
 
-***The law held. The condition was not gone — it was dormant.***
+***The specification held. The condition was not gone — it was dormant.***
 
 ## Symptoms, and the first one is that there were no failures
 
@@ -146,7 +146,7 @@ view() calls parts()  →  parts() builds NEW objects and adopts each one
 - **The second call in a render returns the same objects**, whose `parent` already equals `this`, so **the guard short-circuits and no write happens.**
 - **Proven by the numbers that did not move:** `CHECK` reported **7/7 books · 158 paragraphs · 233 sentences · 1,293 words · 5,881 letters** before and after, and the suite went **307/307 → 313/313** with the new promises.
 
-## The law, sharpened by its own return
+## The specification, sharpened by its own return
 
 **It was:** *a parse may not be given a parent while it mutates what it makes.*
 
@@ -164,7 +164,7 @@ view() calls parts()  →  parts() builds NEW objects and adopts each one
 
 # <a id="a-getter-is-a-reading-too"></a>THE THIRD APPEARANCE — A GETTER IS A READING TOO · [Working Well By Default](../projection/22-working-well-by-default.md), 2026-08-25
 
-***The law held again, and again the condition had been dormant rather than absent.*** **It cost one driver run to find and one line to stop.**
+***The specification held again, and again the condition had been dormant rather than absent.*** **It cost one driver run to find and one line to stop.**
 
 ## Symptoms
 
@@ -206,7 +206,7 @@ get title(): $Title | undefined {
 
 > ***THE ROOT IS NOT FIXED AND IS NAMED RATHER THAN OMITTED.*** **`$Document.title` still builds on every read, and [`$Figure.caption`](../../package/src/writing/Figure.tsx) does the same thing** — *found by the same grep, latent for the same reason.* **Two getters that no view may touch, and nothing says so at either one.**
 
-## The law, in the form this appearance adds
+## The specification, in the form this appearance adds
 
 **It was:** *a reading that is called during a render must be held.*
 

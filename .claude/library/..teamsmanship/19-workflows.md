@@ -5,7 +5,7 @@
 
 ---
 
-A **workflow** is a named, ordered sequence of steps with a gate at each boundary and an artifact at each step. Until now we had none: we had skills, laws, and a library, and work happened in whatever order the conversation took. This chapter is where workflows are recorded, so that a sprint can **declare which one it ran** and a retro can ask whether it held.
+A **workflow** is a named, ordered sequence of steps with a gate at each boundary and an artifact at each step. Until now we had none: we had skills, specifications, and a library, and work happened in whatever order the conversation took. This chapter is where workflows are recorded, so that a sprint can **declare which one it ran** and a retro can ask whether it held.
 
 Three layers, and they are separate on purpose:
 
@@ -28,7 +28,7 @@ Three layers, and they are separate on purpose:
 
 **The return arrow is the point.** Steps 1 and 2 read the casebook before researching anything. A loop whose end does not feed its beginning is ceremony.
 
-**One artifact, changing state in place.** Brainstorm writes the chapter; plan enriches *that* chapter rather than writing a second. Our [edit-first](../bookkeeping/09-on-synopsis.md) law and theirs, independently arrived at.
+**One artifact, changing state in place.** Brainstorm writes the chapter; plan enriches *that* chapter rather than writing a second. Our [edit-first](../bookkeeping/09-on-synopsis.md) specification and theirs, independently arrived at.
 
 ## The design workflow
 

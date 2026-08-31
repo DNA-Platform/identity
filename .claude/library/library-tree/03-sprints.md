@@ -33,7 +33,7 @@ The last sprint chapter is the current state. A reader who opens the last chapte
 
 Four kinds of chapter, and nothing else. A Projection book is a book, so everything in it is a numbered chapter with an author and a cover entry.
 
-| kind | filename | law |
+| kind | filename | specification |
 |---|---|---|
 | **the scratchpad** | `00-planning.md` | one per book, chapter zero, overwritten as sprints absorb it |
 | **a sprint** | `NN-sprint-XX--title.md` | **one chapter per sprint** — opened when the sprint begins, edited incrementally throughout, completed at its retro |
@@ -57,7 +57,7 @@ A sprint begins by **choosing what to read** — and the choosing is part of the
 
 Every Projection book may carry **`00-planning.md`** — the planning scratchpad, a true **chapter zero**: a numbered chapter like every part of a book (chapters have numbers; a file that dodges numbering isn't part of the book and loses alphabetical ordering). It sits first in the TOC, before every sprint, and holds the team's *temporary* planning notes — the sprint plan ahead, open design questions, notes-to-selves. Sprint chapters number from `01`.
 
-Its TOC synopsis is **specification-shaped** and therefore survives every overwrite: it describes what the chapter *always is* — the planning scratchpad, the current plan — never what it currently says. Its law is the inverse of every other chapter: **notes are overwritten when addressed.** A sprint chapter records what happened, forever; the scratchpad records what is *intended*, only until it is. When a note becomes a sprint, the sprint chapter absorbs it and the note is deleted or rewritten. A plan note that outlives its intention is the scratchpad's form of rot — at each retro, sweep it.
+Its TOC synopsis is **specification-shaped** and therefore survives every overwrite: it describes what the chapter *always is* — the planning scratchpad, the current plan — never what it currently says. Its specification is the inverse of every other chapter: **notes are overwritten when addressed.** A sprint chapter records what happened, forever; the scratchpad records what is *intended*, only until it is. When a note becomes a sprint, the sprint chapter absorbs it and the note is deleted or rewritten. A plan note that outlives its intention is the scratchpad's form of rot — at each retro, sweep it.
 
 Every sprint task must have an explicit owner assigned. The owner is determined by subject: Knowledge tasks go to the librarian, Collaboration tasks go to the architect, Environment tasks go to the environmentalist. See [Roles](../..teamsmanship/02-roles.md) for the full role definitions. When a task spans subjects, the owner is the teammate whose subject is primary. Unowned tasks are a planning failure — they get done by whoever notices them, which means they get done without the right perspective.
 

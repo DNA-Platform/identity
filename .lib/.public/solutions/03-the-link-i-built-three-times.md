@@ -19,7 +19,7 @@
 - **Round two — the name plus an affordance beside it.** I made the titles clickable but kept an `entry N` label and a caption. Doug: *"You think Wikipedia should not use the name of a person as a link, but needs to add some text that says 'read about the author' somewhere else?"*
 - **Round three — the name, dressed as a link.** Dotted underlines on the title and each entry. Doug: *"you are ruining 'The Shelf'… by underlining the title, you are saying it is something other than a title."*
 
-Each round satisfied the letter of the last correction and broke the same law again, because I was **iterating on guesses instead of reading the prior art I had been pointed at.**
+Each round satisfied the letter of the last correction and broke the same specification again, because I was **iterating on guesses instead of reading the prior art I had been pointed at.**
 
 ## The mechanism
 

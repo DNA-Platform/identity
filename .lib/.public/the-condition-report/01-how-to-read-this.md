@@ -56,11 +56,11 @@
 
 ## <a id="vocabulary"></a>The vocabulary this book may not use
 
-***Struck 2026-08-22.*** *Doug: **"There is no such thing as a law. Remove law from ALL documentation and from all code and from all account memories… Do you mean validation? Are you referring to valid books? We care about their SPECIFICATION. VALIDATION MEANS THE ENFORCEMENT OF A SPECIFICATION."***
+***Struck 2026-08-22.*** *Doug: **"There is no such thing as a specification. Remove specification from ALL documentation and from all code and from all account memories… Do you mean validation? Are you referring to valid books? We care about their SPECIFICATION. VALIDATION MEANS THE ENFORCEMENT OF A SPECIFICATION."***
 
 | struck | what was meant, and what to say instead |
 |---|---|
-| ***law*** | **a specification** — what a thing must be · **validation** — the enforcement of it · **a rule** — where neither fits |
+| ***specification*** | **a specification** — what a thing must be · **validation** — the enforcement of it · **a rule** — where neither fits |
 
 **Zero uses remain in this book or in the account memories.** *341 remain across [Projection](../projection/.cover.md) and 93 in the team library, and those are a sweep BY SENSE rather than a substitution — some are a demo book's chapter title and some are prose about physics.*
 

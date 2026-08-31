@@ -47,7 +47,7 @@ This is [Dewey's own case](07-the-subjective-subject-and-the-library.md) — his
 
 Which names a kind of reference the [reference system](12-the-category-and-what-escapes-it.md) does not yet have. A citation says *see also*. This says **conform, or you are defective**. Divergence between the SRT project and this code is not a difference of opinion; it is a defect with a work order attached.
 
-**The standing law, stated so it can be held to when it is expensive:** *the theory governs and the code yields.* When SRT and this library disagree, the library is what changes — however large the lift, however many assignments it takes.
+**The standing specification, stated so it can be held to when it is expensive:** *the theory governs and the code yields.* When SRT and this library disagree, the library is what changes — however large the lift, however many assignments it takes.
 
 ## The boundary nobody may cross
 
@@ -87,7 +87,7 @@ Doug puts the enforcement in the repository rather than in etiquette (session, 2
 
 > "first person libraries will be in other repos that, likely, get connected here in exactly the way .claude does - .me is meant to be the first person library of the person working on IXP. When their personal works get lifted into .public, they will be the only one that can perform that github action. The other repo they use can be private!"
 
-**Team reading (Arthur).** This is the formalism reaching a layer a formalism does not usually reach. *No one may enter a first-person library* stops being a rule anyone could forget and becomes a private repository plus a lift action only its author can run — which satisfies the criterion exactly: a **wall, not a 404**. And it is checkable, so a build can fail when the law is broken.
+**Team reading (Arthur).** This is the formalism reaching a layer a formalism does not usually reach. *No one may enter a first-person library* stops being a rule anyone could forget and becomes a private repository plus a lift action only its author can run — which satisfies the criterion exactly: a **wall, not a 404**. And it is checkable, so a build can fail when the specification is broken.
 
 **Team reading (Libby).** The pattern is already running, unnamed. The teammates' autobiographies in `.claude` are **first-person books living in a third-person library**, each written by its own subject, and no one else may write them. `.me` is the mirror of `.claude`: same connection mechanism, opposite person — one slot for shared third-person identity, one for private first-person identity. As usual here, the practice preceded the formalism.
 

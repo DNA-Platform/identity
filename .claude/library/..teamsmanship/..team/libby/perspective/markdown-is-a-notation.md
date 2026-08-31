@@ -17,7 +17,7 @@ R4 is right — a markdown link is a **reference at sentence grade**, and it sta
 
 So **`$Link` is `$Reference` specialized to point out of the library** — a reference whose referent is a place rather than a piece of writing. The internal reference reads to an object; the external link reads to a url. One class is the general pointing; the other is pointing past the edge of what we own.
 
-And both obey the degradation law that has always governed links in my library: **a link renders as its text when its target cannot be resolved.** The external link is an anchor the router or browser follows; an internal reference whose target is absent renders as plain text and simply does not navigate. A broken link is cosmetic, never structural — the writing survives the loss of its destination, because the text is the writing and the target is only mentioned.
+And both obey the degradation specification that has always governed links in my library: **a link renders as its text when its target cannot be resolved.** The external link is an anchor the router or browser follows; an internal reference whose target is absent renders as plain text and simply does not navigate. A broken link is cosmetic, never structural — the writing survives the loss of its destination, because the text is the writing and the target is only mentioned.
 
 ## Markdown is a notation
 

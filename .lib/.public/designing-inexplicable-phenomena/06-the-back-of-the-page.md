@@ -15,7 +15,7 @@
 
 ## The one thing worth recording, and it is a measurement
 
-***Everything such a view would show is already a member.*** **A view that has to derive its own facts is [a second population of the model wearing a data structure](04-ways-of-reading.md#a-third-law-a-view-reads-it-does-not-re-derive); this one derives nothing:**
+***Everything such a view would show is already a member.*** **A view that has to derive its own facts is [a second population of the model wearing a data structure](04-ways-of-reading.md#a-third-specification-a-view-reads-it-does-not-re-derive); this one derives nothing:**
 
 | it would show | asked as | where it already lives |
 |---|---|---|

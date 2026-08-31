@@ -145,7 +145,7 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 - `library/chemistry/app/**` — visual design in the Lab (shared with Phillip)
   **Why:** the beautiful IS the meaningful. Gabby ensures the framework's output communicates visually. See [autobiography](..team/gabby/gabby-and-the-visual-voice/.cover.md).
 - `library/.public/app/**` and `library/.public/package/app/**` — the public application and the demonstration (shared with Phillip)
-  **Why:** the demo law lives here — every demonstration aesthetically unique, never a shared template — and so does the one place that must NOT follow it, the public app, whose surface is deliberately plain and disposable. Knowing which rule applies where is a design judgment, not a coding one. *Added 2026-08-15.*
+  **Why:** the demo specification lives here — every demonstration aesthetically unique, never a shared template — and so does the one place that must NOT follow it, the public app, whose surface is deliberately plain and disposable. Knowing which rule applies where is a design judgment, not a coding one. *Added 2026-08-15.*
 - `src/library/viz/**` — the altered-states visualization layer and plot style (shared with Nancy)
   **Why:** the beautiful IS the meaningful. Gabby owns the viz aesthetics so the population code is shown in a way that communicates, not just renders.
 - Figure aesthetics within `src/experiments/**` (shared with Nancy)

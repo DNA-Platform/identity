@@ -1,6 +1,7 @@
 # The Build
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -190,11 +191,11 @@ Every open question named, never smoothed. **Already known to belong here:** whe
 
 The specification lives **on the shelf only**. The branch library gains **one compact chapter** — in [Designing Inexplicable Phenomena](../designing-inexplicable-phenomena/.cover.md), whose cover already describes exactly this kind of content — that says what The Build is and links to it, and **does not copy it**. [Chapter zero](00-planning.md) is updated to point there too.
 
-*Two homes drift. That is the compounding law, and it is why no new book is created in `.lib/`.*
+*Two homes drift. That is the compounding specification, and it is why no new book is created in `.lib/`.*
 
 ### R13 — The book gets its own aesthetic world
 
-Four exist — the algebra's, the manifold's, the shelf's, and The Team's full-light apparatus. **A fifth that reuses one of them breaks [the demo law](00-planning.md#the-demos-deserve-a-subject-catalogue-doug-2026-07-31--future-sprint-material)**: every demo must be aesthetically unique and carry a meaningful use case. Doug's instruction was *"you have to design it."*
+Four exist — the algebra's, the manifold's, the shelf's, and The Team's full-light apparatus. **A fifth that reuses one of them breaks [the demo specification](00-planning.md#the-demos-deserve-a-subject-catalogue-doug-2026-07-31--future-sprint-material)**: every demo must be aesthetically unique and carry a meaningful use case. Doug's instruction was *"you have to design it."*
 
 ### R14 — Keeping it up to date is part of the plan
 
@@ -755,7 +756,7 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 ## F — the plan · status `implementation-ready`
 
-*Written 2026-08-14, straight out of the brainstorm above. **[WHAT, not HOW](../../../../.claude/library/our-skillset/29-ce-plan.md)** — no signatures, no shell sequences. **Units continue the sprint's sequence at [U22](#u22)** and are [never renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law). Every unit names **what runs and when** and **what will be visible**; the two that cannot are marked and denied files and scenarios.*
+*Written 2026-08-14, straight out of the brainstorm above. **[WHAT, not HOW](../../../../.claude/library/our-skillset/29-ce-plan.md)** — no signatures, no shell sequences. **Units continue the sprint's sequence at [U22](#u22)** and are [never renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification). Every unit names **what runs and when** and **what will be visible**; the two that cannot are marked and denied files and scenarios.*
 
 ### What the planning found by RUNNING things — five facts, each measured rather than reasoned
 
@@ -771,7 +772,7 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 **<a id="d12"></a>D12 — The app declares NO book class.** The reader is [`$Book`](../../package/src/book/Book.tsx) as it ships. *Doug's ruling, and it is not a shortcut: `$Book.view()` already draws every non-parenthetical chapter in order.* **Chosen over promoting the three demo readers' converged anatomy**, which was always [evidence and never a specification](#what-each-session-should-read--a-starting-point-not-a-boundary).
 
-**<a id="d13"></a>D13 — The surface is ONE module and it is deliberately disposable.** Tokens and layout, no per-book aesthetics. *"Something minimal and easy to change."* **This is explicitly NOT [the demo law](#r13--the-book-gets-its-own-aesthetic-world)**, which governs demonstrations; this is the product, and v1 exists to put a target under the compiler. *Stated as a decision so that making it beautiful later is a visible act rather than a drift inside this sprint.*
+**<a id="d13"></a>D13 — The surface is ONE module and it is deliberately disposable.** Tokens and layout, no per-book aesthetics. *"Something minimal and easy to change."* **This is explicitly NOT [the demo specification](#r13--the-book-gets-its-own-aesthetic-world)**, which governs demonstrations; this is the product, and v1 exists to put a target under the compiler. *Stated as a decision so that making it beautiful later is a visible act rather than a drift inside this sprint.*
 
 **<a id="d14"></a>D14 — Resolution is a CATALOGUE LOOKUP, and there is no route table.** The path is the subject chain; the shell strips the deploy base and asks the generated catalogue. **Nothing maps a URL to a component by hand.** *Chosen over a router configuration, which would be a second description of a hierarchy the paths already carry — and [two opinions are one more than a library can afford](../../package/app/src/sections/book/library/the-build/07-the-description.tsx).*
 
@@ -860,7 +861,7 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 ***And the driver taught its own lesson in the process:*** matching a chapter by its TITLE lands one chapter early, **because the turn buttons carry the neighbouring chapters' titles.** Every check after it then reads the wrong page and fails for the wrong reason. *Matched on body text instead, and the reason is written where the helper is.*
 
-**TERRITORY HAD NO ENTRY FOR EITHER APP.** [The map](../../../../.claude/library/..teamsmanship/05-territory.md) gave Phillip and Gabby the Lab and said nothing about the demo or the public app — **so the book three sessions were editing belonged to nobody but the fallback owner.** Both are now named, with the distinction that matters written down: **the demo follows the demo law and the public app deliberately does not.**
+**TERRITORY HAD NO ENTRY FOR EITHER APP.** [The map](../../../../.claude/library/..teamsmanship/05-territory.md) gave Phillip and Gabby the Lab and said nothing about the demo or the public app — **so the book three sessions were editing belonged to nobody but the fallback owner.** Both are now named, with the distinction that matters written down: **the demo follows the demo specification and the public app deliberately does not.**
 
 ## What F found for other tracks — reported rather than fixed
 
@@ -879,7 +880,7 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 *The full unit bodies stood here — mechanism, files, dependencies, visible end, realizes. **They are spent: the sprint ran them, and what each produced is in the account sections rather than in its plan.*** Kept one line each, because the record cites them by identifier and those links must not break.
 
 - **<a id="u1"></a>U1 — The fifth book, wired empty** — a book folder carrying only a cover and a synopsis, composed in <Book> the way the other four are; then a card in libraryCatalogue, an author…
-- **<a id="u2"></a>U2 — The book's aesthetic world** — a styled module of its own, in the idiom of the other four but sharing none of their surfaces — the demo law is range, never a shared template
+- **<a id="u2"></a>U2 — The book's aesthetic world** — a styled module of its own, in the idiom of the other four but sharing none of their surfaces — the demo specification is range, never a shared template
 - **<a id="u3"></a>U3 — The figure kinds this book needs** — figure subclasses declared by the book, each overriding drawn() and nothing else — at minimum a diagram that draws from the model (the shape…
 - **<a id="u4"></a>U4 — Chapter: a folder is a book — DISCUSSION DONE 2026-08-13, and this is what it settled** — the settled convention above, written as the chapter
 - **<a id="u5"></a>U5 — Chapter: the canonical hierarchy, and the collision settled** — a discussion settling which side of the reciprocal pair is inferred from position and which is declared, then the chapter
@@ -916,7 +917,7 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 *Opened 2026-08-15 as a brainstorm. **Status: `requirements-only`.** The sprint's third session, and the first run under the rule that there is only ever one.*
 
-*Requirements continue at **R21**, units at **U35**, acceptance examples at **AE9** — [never renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law).*
+*Requirements continue at **R21**, units at **U35**, acceptance examples at **AE9** — [never renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification).*
 
 ## Why this stage and not another
 
@@ -1132,7 +1133,7 @@ A book module gains its contents from the machine. **Seen:** `<TableOfContents /
 - **The fixture became the library, and the repository kept the output.** `library/.test-library/` is gitignored; its copy under `app/src/library/` is committed. Two `.gitignore` rules meeting, not a decision.
 - **`.claude` and `.me/*` are npm workspaces** in a repository where both are gitignored.
 - **`refer.ts` reads references from covers only**, by construction — a reference authored anywhere else is invisible. *Probably correct and nowhere written down.*
-- **The demo is the only finished aesthetic object here, and it is the one artifact never deployed** — [the demo law](#r13--the-book-gets-its-own-aesthetic-world) and [D13](#d13) are both right and together they mean the beautiful thing is unpublished.
+- **The demo is the only finished aesthetic object here, and it is the one artifact never deployed** — [the demo specification](#r13--the-book-gets-its-own-aesthetic-world) and [D13](#d13) are both right and together they mean the beautiful thing is unpublished.
 
 ## Doug's rulings — 2026-08-17, verbatim
 
@@ -1542,7 +1543,7 @@ EMIT      18 carried · 6 generated · 1 removed
 
 - **The shell** — take a path, strip the deploy base, find **one card** in the catalogue by path, dynamic-import **that one book's module**, draw it. Resolution is a catalogue lookup; nothing maps URLs to components by hand.
 - **The reader is [`$Book`](../../package/src/book/Book.tsx) as it ships.** *"We can just assume the library book is book."* **No new book class in v1** — `$Book.view()` already draws every non-parenthetical chapter, so what F adds is a surface, not a subclass.
-- **A minimal surface, easy to change.** Explicitly **not** [the demo law](#r13--the-book-gets-its-own-aesthetic-world), which governs demonstrations. This is the product, and v1 exists to put a target under the compiler.
+- **A minimal surface, easy to change.** Explicitly **not** [the demo specification](#r13--the-book-gets-its-own-aesthetic-world), which governs demonstrations. This is the product, and v1 exists to put a target under the compiler.
 - **Reader-or-catalogue is [counted, never declared](#s5--the-read-versus-consulted-predicate)** — `$Book.read()` answers it.
 - **Each subject is its own page**, loading its own book module plus card metadata and **never the books it catalogues**.
 - **A hand-made catalogue in [the S2 shape](#s2--what-a-card-carries-specified)**, keyed by path, **importing no book** — written in `.public/app`, describing **the test library**, so what the compiler later emits replaces it file for file and **G's swap is exact rather than approximate**.
@@ -1688,7 +1689,7 @@ EMIT      18 carried · 6 generated · 1 removed
 
 - **B, C, D and E have not started.** Each has its input fixture and its own module; none blocks another.
 - **G waits**, and its work now includes **turning the deploy back on** and the deep-link fallback.
-- **Compaction is owed.** This chapter is **29,000 words** and the law says compact at compounding. ***It was deliberately not done: F was editing this same file this session***, and a whole-file rewrite under another session's in-flight edits risks losing their work. **First thing when only one session holds it.**
+- **Compaction is owed.** This chapter is **29,000 words** and the specification says compact at compounding. ***It was deliberately not done: F was editing this same file this session***, and a whole-file rewrite under another session's in-flight edits risks losing their work. **First thing when only one session holds it.**
 - **The `.gitignore` lesson is held** for the next compound run — one lesson per run, and that chapter already took one today.
 
 ### Open — and none of it blocks a session starting

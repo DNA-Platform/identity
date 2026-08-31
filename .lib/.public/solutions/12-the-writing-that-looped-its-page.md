@@ -12,7 +12,7 @@
 - **A page written with a specialized inline element threw *"Too many re-renders. React limits the number of renders to prevent an infinite loop."*** — during render, not in an effect.
 - **The specialized element never appeared.** Counted: the host rendered 41 times and **the child rendered zero.**
 - It happened **only** when the element stood inside another chemical's writing. The same class rendered on its own was fine.
-- It had been carried for two sprints as *"a subclass that declares its own props and overrides a method its `view()` calls will not render"* — **and that law is false.** That exact shape renders perfectly on its own.
+- It had been carried for two sprints as *"a subclass that declares its own props and overrides a method its `view()` calls will not render"* — **and that specification is false.** That exact shape renders perfectly on its own.
 
 ## What did not work
 
@@ -60,7 +60,7 @@ Raise the rendering flag for exactly the length of the prop assignment, in the b
 
 ## The lesson
 
-**A filed law is a claim, and claims decay.** The recorded rule named the wrong cause — props and overriding — and named it confidently enough that nobody re-tested it for two sprints, which is exactly how a wrong law survives: it is *close enough* to the symptom to keep predicting it.
+**A filed specification is a claim, and claims decay.** The recorded rule named the wrong cause — props and overriding — and named it confidently enough that nobody re-tested it for two sprints, which is exactly how a wrong specification survives: it is *close enough* to the symptom to keep predicting it.
 
 The habit that caught it: **isolate one variable at a time and write the table down.** Five cases, five minutes, and the true rule fell out — *inline, passed a prop, inside a block* — which no amount of reasoning about the reconciler had produced. And when the theory that reading suggested turned out to be true-but-irrelevant, that was a signal to keep instrumenting rather than to start fixing.
 

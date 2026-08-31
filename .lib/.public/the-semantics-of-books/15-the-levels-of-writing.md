@@ -7,6 +7,29 @@
 
 *The derivation stops at [Level One has one primitive](02-composition.md). This chapter is what that primitive turned out to be once it was built — the settled account, written to be read instead of a sprint. Built in [Writing](../projection/10-writing.md), reshaped in [The Parse](../projection/13-the-parse.md); the records of how it was found are there.*
 
+---
+
+> ## ⚠ <a id="which-model"></a>WHICH MODEL THIS ACCOUNT DESCRIBES — read this before the chapter
+>
+> ***This is the settled account of v1, which now stands at [`package/.archive/`](../../package/.archive/).*** **The model was rebuilt as v2 in [`package/src/`](../../package/src/) across [Composition](../projection/27-composition.md), [The Block](../projection/28-the-block.md) and [The Bind](../projection/29-the-bind.md), and this chapter was not rewritten with it.** *It is still worth reading — the reasoning is Doug's and most of it survived — but it may not be read as a description of the code.*
+>
+> ***Measured 2026-08-29 by grep across both trees, not remembered:***
+>
+> | this chapter says | v1 | v2 | |
+> |---|---|---|---|
+> | **six levels, and a book is not writing** | six | ***seven*** — `$File` joined, and **[`$Book extends $File`](../../package/src/book/Book.tsx)**, so a book **is** writing now | *the load-bearing one* |
+> | **`role`, and use vs. mention** | 9 files | ***0 files*** | *the whole idea is absent* |
+> | **a figure is a caption** | 3 files | ***0 files*** | `$Figure`, `$Caption` both gone |
+> | **`valid()` / `$valid(condition, reason)`** | 37 files | ***0 files*** | *replaced by `specify()` and a [`$Specification`](../../package/src/utilities/Specification.ts) of `$`-prefixed rules* |
+> | **nothing carries a number** | true | ***false*** — [`$Writing.index`](../../package/src/writing/Writing.tsx), assigned by the parse | *and [the numbering rule is unpicked](../projection/29-the-bind.md#handoff-index)* |
+> | **a section composes sections OR paragraphs** | true | ***false*** — `$Section` composes paragraphs; `$Document` composes sections | |
+>
+> ***Two claims in this chapter were never true of EITHER tree, and [K40](../projection/29-the-bind.md#k40) is where that was caught.*** **There has never been a `level` getter anywhere** — *grep, both trees, zero* — **so *"LEVEL ALONE DECIDES"* has always been an intention.** *And "too high → it throws" is not what happens: [U219](../projection/29-the-bind.md#u219) ruled everything not-at-my-level to be **below**, and [R345](../projection/29-the-bind.md#r345) then found the refusal happening one grade earlier still, at the section's own specification.*
+>
+> ***One thing this chapter asked for and did not have, it now has.*** **[*"One walk, written once, and it is a tool"*](#the-parse) is true for the first time** — *[`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx), with all seven levels calling `parser.parse`.* **It divides by `accept`, which each level supplies, rather than by level.**
+>
+> ***This block is a marker, not a rewrite.*** *A settled account is rewritten when the thing it accounts for settles, and v2 is mid-sprint. **[The Bind](../projection/29-the-bind.md) is the current state of the model**; read it for the code and this chapter for the reasoning.*
+
 ## Six levels, and a document is one of them
 
 Doug's list: **letter, word, sentence, paragraph, section, document.** Those are the *types of writing*. **Chapter, book, subject and library are things done with a document** — they are not further levels, which is why `$Book` composes chapters and is not itself writing.
@@ -32,7 +55,7 @@ Doug's list: **letter, word, sentence, paragraph, section, document.** Those are
 
 A section's title **is its part zero**: not a member lifted out of the block, not a paragraph rebuilt from its text on every ask, but the written object standing where it was written. `$Title` is **paragraph grade**, because that is the level it stands at.
 
-That makes the shape one law seen at two scales: a book is a **cover at chapter zero** plus a parenthetical synopsis; a section is a **title at paragraph zero** plus a summary that may be parenthetical. Where a construct is carved right, the same figure turns up one grade down.
+That makes the shape one specification seen at two scales: a book is a **cover at chapter zero** plus a parenthetical synopsis; a section is a **title at paragraph zero** plus a summary that may be parenthetical. Where a construct is carved right, the same figure turns up one grade down.
 
 ## Writing arrives as one block
 

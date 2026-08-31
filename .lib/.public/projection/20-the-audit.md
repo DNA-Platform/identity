@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -50,7 +51,7 @@
 
 # PART I — THE PRINCIPLES, read off the code
 
-*Doug's first assignment. Each principle is stated as a law, then grounded in the line that obeys it. **A principle with no citation was not included.***
+*Doug's first assignment. Each principle is stated as a specification, then grounded in the line that obeys it. **A principle with no citation was not included.***
 
 ## The principles that hold everywhere
 
@@ -60,7 +61,7 @@
 
 **<a id="p3"></a>P3 — `$` IS A COERCION, AND RESOLUTION IS DEPENDENCY INJECTION THROUGH SCOPE.** Four forms, [documented as an algebra](../../../chemistry/.lib/composition/11-the-representative.md): `$($Class)` makes a root component, `$($,Component)` derives a scope, `$(Component)` **resolves what stands here**, `$(A,B)(C)` registers *for A, a B is a C*. **Resolution walks the composition graph upward from the asking instance; the first registration answers.** With nothing registered, `$(X)` returns X — ***so the default is never in a container; it is the argument.***
 
-**<a id="p4"></a>P4 — A DEPENDENCY IS ASKED FOR AT RENDER, NEVER STORED.** *"A field initializer runs once, on the template, before any scope exists"* ([M5](18-the-theme.md#m5)). So `theme` is a getter that resolves, [`Writing.tsx:89-91`](../../package/src/writing/Writing.tsx), and **never a member holding a value.** *This is the law that makes a theme swappable at all.*
+**<a id="p4"></a>P4 — A DEPENDENCY IS ASKED FOR AT RENDER, NEVER STORED.** *"A field initializer runs once, on the template, before any scope exists"* ([M5](18-the-theme.md#m5)). So `theme` is a getter that resolves, [`Writing.tsx:89-91`](../../package/src/writing/Writing.tsx), and **never a member holding a value.** *This is the specification that makes a theme swappable at all.*
 
 **<a id="p5"></a>P5 — THE DEFAULT IS THE ARGUMENT, NOT SOMETHING STORED.** *A framework that configured itself could not be re-dressed from outside* — [`dressing.tsx:8-10`](../../app/src/dressing.tsx) says it in the one file that registers anything. **Remove the registration and the page returns exactly to the default**, which is [what the theme sprint made its unfakeable proof](18-the-theme.md#what-a-hand-authored-page-could-fake-and-what-it-could-not).
 
@@ -72,7 +73,7 @@
 
 **<a id="p9"></a>P9 — `frame()` WRAPS, `view()` EVOLVES.** Chemistry's own documented seam, [`particle.ts:116-127`](../../../chemistry/package/src/abstraction/particle.ts): the framework calls `frame()`, which renders the *active* view. **A wrap written into `frame()` cannot break a harvest that calls `view()`** — which is exactly why [`$Link`](../../package/src/reference/Link.tsx) is a link without disturbing [`$Document.declaration()`](../../package/src/document/Document.tsx).
 
-**<a id="p10"></a>P10 — A READING IS POST-HOC AND PURE; IT WRITES NOTHING.** *"The parse writes nothing. Not a number, not a role."* Numbers belong to **references** — that is what a `$Location` **is** — never to parts. `parts()` returns a **fresh reading, never held, always compared by value** ([finding 4, closed as law](04-the-member-audit.md)).
+**<a id="p10"></a>P10 — A READING IS POST-HOC AND PURE; IT WRITES NOTHING.** *"The parse writes nothing. Not a number, not a role."* Numbers belong to **references** — that is what a `$Location` **is** — never to parts. `parts()` returns a **fresh reading, never held, always compared by value** ([finding 4, closed as specification](04-the-member-audit.md)).
 
 **<a id="p11"></a>P11 — EVERYTHING IS SAID IN BOOKS. THE VOCABULARY IS CLOSED.** *"We don't talk about human beings, putting sets and other sets in set theory"* (Doug). **Authorship is computed off catalogue structure, never imported** — which is why `$Book.library` walks subject cards to a fixed point, [`Book.tsx:122-133`](../../package/src/book/Book.tsx), instead of asking anything outside. ***This is the principle every naming wart violates.***
 
@@ -161,7 +162,7 @@
 | <a id="w26"></a>**W26** | `$Subtitle` exists, is constructed, and never reaches the page |
 | <a id="w27"></a>**W27** | The table of contents bypasses its own title class |
 | <a id="w28"></a>**W28** | `parenthetical` is a reactive pair on writing and a plain field elsewhere |
-| <a id="w29"></a>**W29** | Two numbering laws for one concept |
+| <a id="w29"></a>**W29** | Two numbering specifications for one concept |
 | <a id="w30"></a>**W30** | A BOOK'S CARD AND A BOOK'S CONTENTS DISAGREE ABOUT ITS CHAPTERS, and the card is wrong |
 | <a id="w31"></a>**W31** | `$for` means four different things on five classes |
 | <a id="w32"></a>**W32** | `mark` names the notation on a paragraph and the accent colour on a theme |
@@ -179,7 +180,7 @@
 | <a id="w44"></a>**W44** | `$IndexCard extends $Writing` and uses NOT ONE writing member |
 | <a id="w45"></a>**W45** | `$Bookmark extends $Sentence`, and a bookmark that parses itself into words |
 | <a id="w46"></a>**W46** | `$Code extends $Figure` contradicts the settled account, in the same library |
-| <a id="w47"></a>**W47** | `copy` obeys three different laws about parenthetical matter, at three levels |
+| <a id="w47"></a>**W47** | `copy` obeys three different specifications about parenthetical matter, at three levels |
 | <a id="w48"></a>**W48** | `title` is answered three ways, and one of them reimplements half of `canonical` inline |
 | <a id="w49"></a>**W49** | `$Book.canonical` and `$Book.ref` are one member under two names |
 | <a id="w50"></a>**W50** | Two answers to "what document am I in", one safe and one not |
@@ -316,11 +317,11 @@
 
 | struck | say instead |
 |---|---|
-| ***law*** | **a specification** · **validation**, its enforcement · **a rule** |
+| ***specification*** | **a specification** · **validation**, its enforcement · **a rule** |
 | ***climb*** | **a computed property** — *jargon invented for the team and not in the semantics of books* |
 | ***mark***, on `$Theme` | ***`$accent`*** — Doug's own word |
 
-*341 uses of **law** and 55 of **climb** were purged by sense across this branch library; zero remain. **93 uses of *law* remain in the team library** and are the one piece of that work still owed.*
+*341 uses of **specification** and 55 of **climb** were purged by sense across this branch library; zero remain. **93 uses of *specification* remain in the team library** and are the one piece of that work still owed.*
 
 ## Verified fresh at the close
 

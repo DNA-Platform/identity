@@ -1,6 +1,7 @@
 # Writing
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -22,11 +23,11 @@
 >
 > And then, as the demo for this, we want to rewrite the markdown implementation, itemizing it at various levels to give a targeted code block or other features that prove we can customize. Make `$Figure`, in the framework, the beginning of something at the paragraph level — though we will need to be thoughtful about a figure's copy and how to represent it."
 
-**This is [R24](08-the-author.md#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07) and [R27](08-the-author.md#r27-specializing-how-book-content-looks-is-the-point-of-the-framework-doug-2026-08-07) arriving as a sprint** — *"there is no point to this framework if we can't specialize how book content looks"* — with the mechanism now named by Doug rather than sketched by the implementer.
+**This is [R24](08-the-author.md#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-specification-doug-2026-08-07) and [R27](08-the-author.md#r27-specializing-how-book-content-looks-is-the-point-of-the-framework-doug-2026-08-07) arriving as a sprint** — *"there is no point to this framework if we can't specialize how book content looks"* — with the mechanism now named by Doug rather than sketched by the implementer.
 
 ## Rulings from the interview, verbatim
 
-- **Mixing, and what makes it hard:** *"It has to be a mix. But then we also need the part to be in the parse right? We need to infer around the inserted form. That's the tricky part. That's the part that makes this hard and it's the part where we need elegant code to solve the problem. We also need to know that only the right kind of part is read. A lot of the parsing is post-hoc. We don't technically do it readily, but we still need to implement it correctly, so I want all of the `$Writing` components to be looked at with a careful eye for elegance, and to see if the code pushes us to consider alternate designs."* **This closes [R24b](08-the-author.md#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07)**, open since 2026-08-07 and explicitly reserved from the implementer.
+- **Mixing, and what makes it hard:** *"It has to be a mix. But then we also need the part to be in the parse right? We need to infer around the inserted form. That's the tricky part. That's the part that makes this hard and it's the part where we need elegant code to solve the problem. We also need to know that only the right kind of part is read. A lot of the parsing is post-hoc. We don't technically do it readily, but we still need to implement it correctly, so I want all of the `$Writing` components to be looked at with a careful eye for elegance, and to see if the code pushes us to consider alternate designs."* **This closes [R24b](08-the-author.md#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-specification-doug-2026-08-07)**, open since 2026-08-07 and explicitly reserved from the implementer.
 
 - **The figure, answered by looking rather than by choosing:** *"What is the code in the figure? What is being interpreted as the figure? Do we want a parenthetical (or not) caption for the figure? It can be different for different types of figures. See what jumps out naturally."* A menu of three shapes was put to him and **declined** — the answer was to read the figures that had already been written.
 
@@ -103,12 +104,12 @@
 ## The loop
 
 - **R14. The loop is diagnosed by a probe that prints the actual comparison that fails** — not by a fifth theory. *Seen: one run's printed output naming the prop, the element or the value that `equivalent()` is invalid.*
-- **R15. The mechanism is filed in [Solutions](../solutions/.cover.md), indexed by the symptom as observed, and the earlier reading is corrected in place** — *"a `$Figure` subclass that declares its own props will not render"* is the wrong law and it is currently written down in two chapters.
+- **R15. The mechanism is filed in [Solutions](../solutions/.cover.md), indexed by the symptom as observed, and the earlier reading is corrected in place** — *"a `$Figure` subclass that declares its own props will not render"* is the wrong specification and it is currently written down in two chapters.
 - **R16. A figure that draws data renders without looping.** *Seen: the loop figure, the card figure and the code listing all standing in a chapter, driven, with no page errors and no re-render warning.*
 
 ## What is seen — this sprint's visible end
 
-*The demo is designed here, beside the requirements, per [the law written out of Sprint 48](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md). This sprint proves the mechanism on **one book**; [the next](#the-second-sprint--the-specialization) spreads it.*
+*The demo is designed here, beside the requirements, per [the specification written out of Sprint 48](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md). This sprint proves the mechanism on **one book**; [the next](#the-second-sprint--the-specialization) spreads it.*
 
 - **R17. Figures stand in a chapter and are answered by the model.** *Doug: "I want to see figures."* The three written for The Team — the loop drawn from the model, a card printing its own fields, a code listing — finally ship. *Seen: three figures on the page **and** the chapter's own parts list showing them at their written positions.*
 - **R18. A code part shows real source.** *Doug: "Don't forget to add ways to view key pieces of code."* *Seen: a code figure whose content is a genuine file's source rather than a pasted string.*
@@ -136,7 +137,7 @@
 - **AE4.** A chapter's tagline derives from its prose and never from a parenthetical caption.
 - **AE5.** The three figures render, driven, with no console error and no re-render warning.
 - **AE6.** `parts()` called twice answers the same content.
-- **AE7.** Both suites green — chemistry from 630, lib from 154 — against a **rebuilt** chemistry `dist`, per [the filed law](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
+- **AE7.** Both suites green — chemistry from 630, lib from 154 — against a **rebuilt** chemistry `dist`, per [the filed specification](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
 
 ## The second sprint — the specialization
 
@@ -197,7 +198,7 @@ types: block,   —,        block
 
 ### Finding 2 — the loop is `$Chemistry`'s, and it is four lines
 
-*Doug asked directly where it comes from. The earlier filed law — "a subclass that declares its own props and overrides a method its `view()` calls will not render" — is **false**: that exact shape renders fine standalone. The real rule:*
+*Doug asked directly where it comes from. The earlier filed specification — "a subclass that declares its own props and overrides a method its `view()` calls will not render" — is **false**: that exact shape renders fine standalone. The real rule:*
 
 **An inline chemical that is PASSED a prop, standing inside a block, makes its HOST re-render forever — and never renders itself.**
 
@@ -400,14 +401,14 @@ sections given as CHILDREN:   0 extra builds
 
 **Two defects the collapse surfaced, both ours, both fixed:**
 
-1. **`$Document.$Document` did not call up.** Inheriting `$Writing`'s bond without reaching it breaks [Sprint 48's chain law](06-sprint-48--subjects-and-the-library.md#the-framework--chemistry-changes-this-sprint). **70 failures.**
+1. **`$Document.$Document` did not call up.** Inheriting `$Writing`'s bond without reaching it breaks [Sprint 48's chain specification](06-sprint-48--subjects-and-the-library.md#the-framework--chemistry-changes-this-sprint). **70 failures.**
 2. **A document is block-level, and inherited `inline = true`.** Chapters became inline, so chemistry grouped all four of a book's chapters into **one block** instead of handing them over separately — and `$Book.chapters[0]` was an `$Html$`. **From 70 failures to 9 with one line.**
 
 **Verified, fresh runs:** lib **160/160** (15 files, up from 154) · lib `tsc` **0** · app `tsc` **0** · **driven, zero page errors** — the shelf's spines and its written face, The Team opening with its sections wrapped and reading, the manifold, the algebra, the lab.
 
 ### U1 — the loop, and what it actually was
 
-**The filed law was false.** *"A subclass that declares its own props and overrides a method its `view()` calls will not render"* — that exact shape renders fine standing alone. The true rule, from five one-variable cases: **inline, passed a prop, inside a block.** Host renders 41 times, child renders zero.
+**The filed specification was false.** *"A subclass that declares its own props and overrides a method its `view()` calls will not render"* — that exact shape renders fine standing alone. The true rule, from five one-variable cases: **inline, passed a prop, inside a block.** Host renders 41 times, child renders zero.
 
 **The cause: props are construction, and were being recorded as mutation.** A chemical written inside another chemical's writing is **built during that chemical's render** and handed its props in [`$Bond.bond`](../../../chemistry/package/src/abstraction/chemical.ts); the `lastProps` guard is empty for a fresh child, so every prop is a change, the reactive setter records it into the running scope, the scope finalizes dirty, and the host renders again — forever.
 
@@ -476,7 +477,7 @@ And earlier in the same interview: *"we want to rewrite the markdown implementat
 
 ### Verified — fresh runs at the close, all three packages
 
-Chemistry **635/635** (59 files, from 630) · lib **164/164** (15 files, from 154) · chemistry `tsc` **0** · lib `tsc` **0** · app `tsc` **0** · the full click-through with **zero page errors**. Chemistry's `dist` was rebuilt after the framework fix and **before** the lib suite ran, per [the filed law](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
+Chemistry **635/635** (59 files, from 630) · lib **164/164** (15 files, from 154) · chemistry `tsc` **0** · lib `tsc` **0** · app `tsc` **0** · the full click-through with **zero page errors**. Chemistry's `dist` was rebuilt after the framework fix and **before** the lib suite ran, per [the filed specification](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
 
 ### How to see it
 
@@ -505,7 +506,7 @@ counted: 11 parts · 490 words used · 491 mentioned
 
 1. **[The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md)** — the settled account of what writing now is, on one page. **Read this before the code.** It exists so this chapter does not have to be read.
 2. **[The remaining half](#the-second-sprint--the-specialization)**, in this chapter — Doug's rulings for the work ahead, verbatim.
-3. **[Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md)** — the view catalogue and the two laws every view answers to. Load-bearing for *"each demo a unique aesthetic"*: patterns are compositions of three shipped moves, and a new lens must name the sibling that corroborates it.
+3. **[Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md)** — the view catalogue and the two specifications every view answers to. Load-bearing for *"each demo a unique aesthetic"*: patterns are compositions of three shipped moves, and a new lens must name the sibling that corroborates it.
 4. **[Markdown with LaTeX](../designing-inexplicable-phenomena/02-markdown-with-latex.md)** — what `$Markdown`, `$Latex` and `$Page` are today. This is the thing being rewritten, and its open questions are already written down.
 5. **[Solutions 12](../solutions/12-the-writing-that-looped-its-page.md) and [13](../solutions/13-the-chapter-that-wrote-its-sections-twice.md)** — the two defects this sprint diagnosed. Read 13 before writing any chapter that draws itself.
 

@@ -23,7 +23,7 @@
 Two layers had to be fixed, and they are the shipped `$Cover` pattern plus its validity half:
 
 1. **The bond catches the ancestor's demand** when the demand cannot apply yet — a contents' summary lawfully arrives on adoption, so its absence at bind is not a failure.
-2. **`valid()` states the class's own law** — unadopted and empty is lawful; adopted runs the accrued law — otherwise the framework’s generic `assertValid` throws in the ancestor’s voice.
+2. **`valid()` states the class's own specification** — unadopted and empty is lawful; adopted runs the accrued specification — otherwise the framework’s generic `assertValid` throws in the ancestor’s voice.
 
 And the getters stop reaching through a parent they may not have: `summary` and `cover` answer `undefined` before adoption instead of throwing.
 
@@ -33,6 +33,6 @@ And the getters stop reaching through a parent they may not have: `summary` and 
 
 ## The lesson
 
-**A part whose law is satisfied by its whole must not enforce that law before the whole adopts it.** Any derived-from-parent member that participates in bind-time validation is this bug waiting; the `$Cover` pattern (catch, keep your own reason, state your own `valid()`) is the shipped answer.
+**A part whose specification is satisfied by its whole must not enforce that specification before the whole adopts it.** Any derived-from-parent member that participates in bind-time validation is this bug waiting; the `$Cover` pattern (catch, keep your own reason, state your own `valid()`) is the shipped answer.
 
 **And the probe rule held again:** when three theories each fit some of the evidence, stop theorizing and print the actual shape — one run answered what three readings could not. Filed before as [the class that was not the class](06-the-class-that-was-not-the-class.md); this is the render-side instance.

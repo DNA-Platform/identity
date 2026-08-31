@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -184,7 +185,7 @@ override view(): ReactNode {
 | ***`$check` eager throw*** | **RULED and not built.** *`reset()` sets `chemical = null`, so "is a bond in flight" is one comparison* — but it changes the compiler's [`validate.ts`](../../build/stages/validate.ts), which asks `valid()` outside a bond and expects a boolean. **Chemistry change; rebuild chain.** |
 | ***two names*** | **`annotation`** — the marker `$Writing` uses to find its types, because `instanceof $Type` closes a module cycle (*measured: `Class extends value undefined`*). And **`$Composed`** — the probe's proxy for the class that carries a block, if one is wanted. ***Both are proxies awaiting Doug.*** |
 | ***the maker*** | A type answers **what it composes** and **how it divides**, so `parts()` is written once on `$Type` and no class name appears in the walk. **[S10](../the-condition-report/04-semantics.md#s10) becomes designable through this.** *Not started.* |
-| ***`valid` → `specify`, and the "law" sweep*** | **[R207](25-the-specification.md#r207) and [R206](25-the-specification.md#r206), owed since The Specification and still owed.** *86 call sites across 39 files; 329 occurrences.* |
+| ***`valid` → `specify`, and the "specification" sweep*** | **[R207](25-the-specification.md#r207) and [R206](25-the-specification.md#r206), owed since The Specification and still owed.** *86 call sites across 39 files; 329 occurrences.* |
 | **`src2` has no gate** | Its own `tsconfig`, no runner, outside `npm run test`. |
 | **no export pattern** | Nothing in `src2` writes `export const X = $($X)`, so no specimen is filed at module load and no key exists until something constructs the class. |
 

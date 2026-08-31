@@ -223,7 +223,7 @@ grep -ho "^> \*\{2,3\}[A-Z ]*\*\{2,3\}" 0[2-5]*.md | sed 's/^> //;s/\*//g' | sor
 | **not faults** | `N5` `N16` `N28` `S14` `I9` `I10` `I13` — **LEAVE**, each with its reason | *most often the derivation's own vocabulary outranks the objection* | **closed** |
 | **owed prose, not code** | `N9` `I12` — **MONITOR** | *the harvest stays and owes a chapter* | **the branch library** |
 | ***the compiler's code*** | **1,930 lines, 18 modules** | ***never read as code the way `lib` was*** — no member pass, no interface pass, no naming pass | **[in the sprint](../projection/21-semantics-then-drawing.md#r124), and it is reading before it is building** |
-| ***a struck word in the team library*** | **93 remaining uses of *law*** | *this branch is clear; the identity repository is not* | **a tending pass in `.claude/`, which is [a different repository](01-how-to-read-this.md#the-scope)** |
+| ***a struck word in the team library*** | **93 remaining uses of *specification*** | *this branch is clear; the identity repository is not* | **a tending pass in `.claude/`, which is [a different repository](01-how-to-read-this.md#the-scope)** |
 
 ***And one measurement is owed rather than fixed:*** **[C1](07-the-three-codebases.md#c1) — the demonstrations are 1.9x everything they demonstrate, and the same 2.7x ratio appears twice.** *The cleaning does not shrink them; it makes the framework's drawing reachable, which is what would.* **Re-measure the ratio after, because if it does not move, the drawing did not actually become reachable.**
 

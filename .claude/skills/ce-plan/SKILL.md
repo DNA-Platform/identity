@@ -23,7 +23,7 @@ Turn approved requirements into **guardrails** — the decisions, units, files, 
 
 **Announce at start:** "Using plan to set the guardrails."
 
-## WHAT, not HOW — the law of this step
+## WHAT, not HOW — the specification of this step
 
 > "Plans capture the WHAT; the implementing agent figures out the HOW."
 
@@ -33,14 +33,14 @@ A plan holds **decisions with rationale, scope boundaries, units of work, files 
 
 This is the opposite of the other framework we read, whose plans carry literal code for an implementer assumed to have poor judgment. **Ours are teammates with [territory](../../library/..teamsmanship/05-territory.md).** Guardrails, not choreography.
 
-## The unit identifier law
+## The unit identifier specification
 
 Each unit of work is `U1`, `U2`, and so on, and **is never renumbered.**
 
 - A split keeps the original identifier on the original concept; the new unit takes the next unused number.
 - A deletion leaves a gap. Gaps are never backfilled.
 
-Their reason is that work references units by identifier *across plan edits*, so renumbering silently breaks every reference. Ours is [the same law we already hold](../../library/bookkeeping/07-on-subjects.md): authored indexes survive the binding, and resolution asks the index, never the position.
+Their reason is that work references units by identifier *across plan edits*, so renumbering silently breaks every reference. Ours is [the same specification we already hold](../../library/bookkeeping/07-on-subjects.md): authored indexes survive the binding, and resolution asks the index, never the position.
 
 ## A unit with no mechanism is not a unit — added out of Sprint 48's failure
 

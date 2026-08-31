@@ -49,12 +49,12 @@ Doug's second seed: a book has a literal view and a metadata-like view (terms no
 
 Terms deliberately unsettled, per Doug — but candidates should come from this register, because the register already carries the meanings.
 
-## Two laws for every view
+## Two specifications for every view
 
 - **Identity through change** (Gabby): the object must stay recognizable across every view — the canonical is the visual anchor: the same cover identifies the book on the shelf, heads the reading view, titles the index entry, labels the graph node. The reader never asks "am I still looking at the same thing?" And identity must survive *movement*, not only the still frame: when a reference carries the reader between views, the way back stays visible — the return mark is identity-through-change in motion, so following a pointing never strands the reader who took it. The catalogue sprint proved this at the smallest scale — a citation lights its note and the note lights back, a round trip walkable in both directions.
 - **Views multiply claims** (Queenie): every new lens is a new place for a displayed contract nobody can check. A view earns trust when it surfaces something the reader can verify against another view of the same object — switching lenses is itself a check. When a view is added, name its corroborating sibling. The apparatus stratum is checkable by construction: statistics, histories, and attributions are derived readings.
 
-## A third law: a view READS, it does not re-derive
+## A third specification: a view READS, it does not re-derive
 
 Added out of [The Parse](../projection/13-the-parse.md), where the same mistake surfaced three times in one surface and each time looked like something else.
 
@@ -66,7 +66,7 @@ It is not harmless, and here is how it failed:
 - **It invented addresses.** `#{r.index}.{si + 1}` built an anchor by arithmetic over array positions, while a reference resolved by walking the model. The two agreed by coincidence until the model's numbering changed, and then a link followed to nothing.
 - **It borrowed the model's members for its own state.** A ribbon's slot among the other ribbons was stored as `mark.index` — the writing's number — because a number happened to be there.
 
-**So the law is: a view asks the model, and draws the answer.** Concretely, three things follow, and all three are greppable:
+**So the specification is: a view asks the model, and draws the answer.** Concretely, three things follow, and all three are greppable:
 
 - **Ask, do not test the output.** `p.mark === '>'`, never `p.copy.startsWith('> ')`. A view that re-derives what the model already carries will disagree with it the first time the model learns something.
 - **An address is a position, not a formula.** The anchor a view renders should be the same string a reference resolves — then following one lands on the very part that was drawn, and the two cannot drift because there is one numbering.

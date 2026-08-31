@@ -1,6 +1,7 @@
 # The Author
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -89,11 +90,11 @@
 - **R22. Following an author name arrives at *The Team*; following *its* author arrives back where you started.**
 - **R23. The shelf's catalogue entries read title and synopsis off the cards** rather than from hand-authored prose — [R37](06-sprint-48--subjects-and-the-library.md#subject-author-and-the-summit), and a violation the demo carries today. *Proposed at the brainstorm and not explicitly ruled; adopted because the sprint went to plan without a no. **Flag it at review if it was not wanted.***
 
-### R24. Every part is authorable — and it supersedes the parse-only law *(Doug, 2026-08-07)*
+### R24. Every part is authorable — and it supersedes the parse-only specification *(Doug, 2026-08-07)*
 
 > **"Every part should be authorable. You should be able to author a sentence one word at a time if you want. Maybe if one word is found, the whole sentence needs to have them? We obviously care more about this at the paragraph and section level. But we need to be able to insert things into sections."**
 
-**This changes the composition model.** The standing law is that a composition's creator writes **prose** and the levels beneath are **found by the parse, never authored** — *"the creator of a paragraph does not specify sentences."* Doug is not repealing the parse; he is saying **authored parts must be able to stand beside found ones**, and the level that matters most is a section accepting something written into it.
+**This changes the composition model.** The standing specification is that a composition's creator writes **prose** and the levels beneath are **found by the parse, never authored** — *"the creator of a paragraph does not specify sentences."* Doug is not repealing the parse; he is saying **authored parts must be able to stand beside found ones**, and the level that matters most is a section accepting something written into it.
 
 **How it surfaced, which is the useful part.** The demo needed a **figure** — a drawn plate inside a chapter. It can be written into a section's text and it renders exactly where it stands, but `$Section.parts()` parses paragraphs out of the section's *copy*, so **the figure is invisible to the model**: it appears on the page and is not one of the section's parts. *A thing that renders and does not exist is the failure mode this whole framework was built to make impossible.*
 
@@ -119,7 +120,7 @@
 
 > **"We are definitely going to have to itemize the markdown implementation… When a block has a paragraph, maybe it just parses around it and that paragraph has to be one of them. Maybe we decide that it has to render at the paragraph level in its view. What if we want special types of sentences or words? We need to find a way to support this. There is no point to this framework if we can't specialize how book content looks."**
 
-**This is the strongest statement of [R24](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07) and it raises it from a gap to the framework's reason for existing.** Three things in it, each separable:
+**This is the strongest statement of [R24](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-specification-doug-2026-08-07) and it raises it from a gap to the framework's reason for existing.** Three things in it, each separable:
 
 - **R27a. Itemize the markdown implementation.** Today a chapter is one prose blob per section, parsed. It must resolve into items.
 - **R27b. A block containing an authored paragraph parses AROUND it**, and that paragraph is one of the block's parts — Doug's own sketch. The alternative he names: **the part must render at its own level in its view.**
@@ -138,7 +139,7 @@
 3. **Forcing it valid** renders and then **loops** — *too many re-renders*.
 4. **A `$Sentence` subclass declaring props** loops **as well** — and it still loops with the array prop replaced by a scalar, with the derived getter removed, and with sentence-creation suppressed. **A bare `$Figure` with no subclass does not loop.**
 
-**So the residue is precise and it is a framework question, not a demo one: a `$Figure` subclass that declares its own props and overrides a method its `view()` calls will not render.** That is the thing [U14](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07) and R27 have to make possible, and until they do, **a figure can carry a caption but cannot carry data.** Nobody should re-attempt route 1, 2 or 3.
+**So the residue is precise and it is a framework question, not a demo one: a `$Figure` subclass that declares its own props and overrides a method its `view()` calls will not render.** That is the thing [U14](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-specification-doug-2026-08-07) and R27 have to make possible, and until they do, **a figure can carry a caption but cannot carry data.** Nobody should re-attempt route 1, 2 or 3.
 
 ### R26a. The earlier reading of R26, superseded
 
@@ -148,7 +149,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 2. **An inline `$Paragraph`** is invalid at binding — `$Paragraph.valid()` demands letters and a figure has none — so the whole chapter is invalid with *"the binding rejects ''"*.
 3. **An inline `$Paragraph` declared valid** renders and then **loops** — *too many re-renders* — and it still loops with sentence-creation suppressed and with array props hoisted out of render.
 
-**This is [R24](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07) biting exactly where it was predicted to.** A figure is a part that must be **authored**, and every route available today smuggles it in as inline writing instead. *The demo ships without figures rather than with a page that renders an error*, and the classes stay in the tree as the specification for what U14 has to make possible.
+**This is [R24](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-specification-doug-2026-08-07) biting exactly where it was predicted to.** A figure is a part that must be **authored**, and every route available today smuggles it in as inline writing instead. *The demo ships without figures rather than with a page that renders an error*, and the classes stay in the tree as the specification for what U14 has to make possible.
 
 ## Key flows
 
@@ -332,7 +333,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 ### Read these four things, and nothing else
 
-1. **This section**, then the [Requirements](#requirements) and [Plan](#plan) above it — [decisions](#decisions) `D1`–`D9`, [units](#units), [what was collected in review](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-law-doug-2026-08-07).
+1. **This section**, then the [Requirements](#requirements) and [Plan](#plan) above it — [decisions](#decisions) `D1`–`D9`, [units](#units), [what was collected in review](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-specification-doug-2026-08-07).
 2. [**Chapter zero, the twenty paragraphs**](00-planning.md#how-this-codebase-will-work-and-what-would-show-it) — the only place the whole design is said at once; then [the demo as Doug specified it](00-planning.md#the-demo-specified-at-last-doug-2026-08-06) and [the five sprints](00-planning.md#the-five-sprints--each-with-three-things-doug-can-check-planned-2026-08-06).
 3. [**Solutions**](../solutions/.cover.md) — six chapters, indexed by symptom. **[Chapter six](../solutions/06-the-class-that-was-not-the-class.md) before touching reflection or anything that renders**; [chapter five](../solutions/05-the-suite-that-passed-against-a-stale-build.md) before trusting a suite number.
 4. **The code this sprint made:** [`IndexCard`](../../package/src/reference/IndexCard.tsx) · [`CardCatalogue`](../../package/src/reference/CardCatalogue.tsx) · `LibraryCard` *(deleted; the demo declares its own card)* (the computed type **and** the class implementing it) · `LibraryCatalogue` *(deleted)* · [`Author`](../../package/src/book/Author.tsx) · [the four hand-built cards](../../package/app/src/sections/book/library/the-team/card.tsx) · the book's reader *(since restructured into `sections/book/library/the-team/`)* · [`figures.tsx`](../../package/app/src/sections/book/library/the-team/figures.tsx) beside [`marks.tsx`](../../package/app/src/sections/book/library/the-manifold/marks.tsx), which is self-rendering writing that works.
@@ -361,7 +362,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 ### Members invented without consulting Doug — ALL PROXIES, for the review
 
-*Doug, 2026-08-07: **"bring up all members that you invented in the framework without consulting me. They should be considered proxies."** Every name below is the implementer's, held only until it is ruled on. **None of them is adopted.** Recorded here rather than in conversation because a proxy that is never surfaced becomes a name by default, which is [the naming law failing quietly](00-planning.md#the-standing-sprint-discipline-added-2026-08-03-out-of-47s-cost).*
+*Doug, 2026-08-07: **"bring up all members that you invented in the framework without consulting me. They should be considered proxies."** Every name below is the implementer's, held only until it is ruled on. **None of them is adopted.** Recorded here rather than in conversation because a proxy that is never surfaced becomes a name by default, which is [the naming specification failing quietly](00-planning.md#the-standing-sprint-discipline-added-2026-08-03-out-of-47s-cost).*
 
 | member | on | what it does |
 |---|---|---|

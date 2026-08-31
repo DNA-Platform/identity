@@ -14,7 +14,7 @@ Until now this book has used one word, [composition](02-composition.md), for how
 
 - **Collection — cataloguing by reference.** The members are *pointed at* — via [`$Reference`](03-inheritance-and-composition.md) — not contained. A collection of books is a **subject**; a collection of subjects is a **library**. The members keep their own identity and place; the collection only references them. The native word for this side — where references are organized — is **catalogue**; Doug's term in the moment was "collection," and the [register](08-the-symbolizing-dyad-and-the-register.md) carries it as `$Catalogue`.
 
-This is the [overflow law](07-the-subjective-subject-and-the-library.md) stated as a fork: *when the payload outgrows the entry, containment turns into reference.* A chapter is composed into its book (contained); a book is collected into its subject (referenced). Cross the threshold and composition becomes collection.
+This is the [overflow specification](07-the-subjective-subject-and-the-library.md) stated as a fork: *when the payload outgrows the entry, containment turns into reference.* A chapter is composed into its book (contained); a book is collected into its subject (referenced). Cross the threshold and composition becomes collection.
 
 So the container types split cleanly:
 
@@ -34,7 +34,7 @@ and, pressing it home:
 
 > "look at the word monad. A singular representation right? We can map everything into it. That's exactly what I'm talking about with the form of closure. Of course I'm talking about monads"
 
-As I read the point: a monad is what you have when everything maps into one kind of thing and nothing ever escapes that kind — closure, given a precise form. Its two laws match composition's two moves:
+As I read the point: a monad is what you have when everything maps into one kind of thing and nothing ever escapes that kind — closure, given a precise form. Its two specifications match composition's two moves:
 
 - **Unit** — anything at all can be turned into a composition, starting from nothing but a [title](02-composition.md): the title-only book is where construction begins.
 - **Join** — nesting collapses back into the level; a composition of compositions [flattens](06-the-canonical-echo-and-views.md) into a composition, and iterating never takes you out.

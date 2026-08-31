@@ -1,6 +1,7 @@
 # Validation
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -52,7 +53,7 @@
 - **The corpus and its emitted twin** — `library/.test-library/` against [`app/src/library/`](../../app/src/library/), cover by cover. *What an author writes versus what a compiler makes, which is the only honest picture of what the machine does.*
 - **[The Process](../../package/app/src/sections/book/library/the-build/05-the-process.tsx)** — the demo's own account of the phases, and the chapter this sprint has to edit. *Its owed row currently names the resolving gap; checking's account is what this sprint adds beside it.*
 - **[The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) and [the three things that only worked here](../solutions/21-the-three-things-that-only-worked-here.md)** — five and three appearances between them, both about a number whose scope was silent. *A sprint whose entire product is a gate has to read the branch's two chapters about gates that lied.*
-- **[Chapter zero](00-planning.md)'s Sprint 50** — the roadmap's own version of this work, whose recorded risk is exactly this sprint's: *"a compiler that fails often gets bypassed… failure messages must name the fix, or the law breeds the disease it prevents."*
+- **[Chapter zero](00-planning.md)'s Sprint 50** — the roadmap's own version of this work, whose recorded risk is exactly this sprint's: *"a compiler that fails often gets bypassed… failure messages must name the fix, or the specification breeds the disease it prevents."*
 
 **Baseline, so every later number is a delta.** *Measured in this session:* `build` `tsc` **0** · `verify-walk` **28 checks, 0 failed** · `verify-build` **36 checks, 0 failed**. *Cited from [The Build's close](15-the-build.md#verified--every-gate-fresh) and not re-run here:* app typecheck **34 files, 24 dot-prefixed** · `valid.mts` **6/6 books, 214 parts** · `verify-library` **29/29** · demo `verify-book` **61** · `verify-demo` **25** · demo typecheck **78 files** · chemistry **674/674** · lib **239/239**.
 
@@ -182,7 +183,7 @@ get library(): $Card | undefined {
 
 ### R45 — Every rule is watched saying invalid before its valid is trusted
 
-**Standing law on this branch, and it is not ceremony.** [The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) has **five appearances** filed against it and [the three things that only worked here](../solutions/21-the-three-things-that-only-worked-here.md) three more. *A gate whose red has never been seen is a claim about a gate.*
+**Standing specification on this branch, and it is not ceremony.** [The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) has **five appearances** filed against it and [the three things that only worked here](../solutions/21-the-three-things-that-only-worked-here.md) three more. *A gate whose red has never been seen is a claim about a gate.*
 
 **Seen:** each new rule watched going invalid, **with a number**, and the number reported beside the green one.
 
@@ -240,7 +241,7 @@ get library(): $Card | undefined {
 
 ## The size of the work, measured before it was divided
 
-***It is not divided.*** **One session, about fifteen files** — five in the package, four in the compiler, two in the application, the corpus, and the demo. *[The Build cut a compiler into seven lettered tracks and the middle of it came to 242 lines](15-the-build.md#the-size-of-the-machine-measured--and-its-the-reviews-most-useful-finding); the law that came out of it is that a division whose parts are smaller than their briefs is one session, and this is smaller than that was.*
+***It is not divided.*** **One session, about fifteen files** — five in the package, four in the compiler, two in the application, the corpus, and the demo. *[The Build cut a compiler into seven lettered tracks and the middle of it came to 242 lines](15-the-build.md#the-size-of-the-machine-measured--and-its-the-reviews-most-useful-finding); the specification that came out of it is that a division whose parts are smaller than their briefs is one session, and this is smaller than that was.*
 
 ## What was measured with the code open, and one of it amends a requirement
 
@@ -437,7 +438,7 @@ exit 1
 
 ## What the measurements said that the plan did not
 
-- **A link cannot reach the book it stands on.** `$in` is on `$Chapter` alone, so all three rules went onto `$Book.valid()` as local conditions — **no new named member on the framework**, which also keeps clear of the naming law.
+- **A link cannot reach the book it stands on.** `$in` is on `$Chapter` alone, so all three rules went onto `$Book.valid()` as local conditions — **no new named member on the framework**, which also keeps clear of the naming specification.
 - **`$Card.library` had no consumers.** [`app.tsx`](../../app/src/app.tsx) and [`bookmark.tsx`](../../app/src/bookmark.tsx) compute `card.subject`. **Deleted rather than inherited**, amending R39.
 - **The framework source never contained the word.** R41 said it stood in the framework's error strings; that was about how they *read*. **Only the compiler had it — 16 occurrences, now 0.**
 - **The demo exercises ALL THREE rules live on five books and passes.** *An earlier reading of this said only the subject rule ran; it was measured with the demo's catalogue imported and its books not, which is a probe reporting on itself.* **The Team authors itself, every subject reaches The Shelf, and the shelf's canonical belongs to it.**

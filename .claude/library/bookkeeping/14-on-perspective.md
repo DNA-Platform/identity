@@ -28,7 +28,7 @@ The test is one question: **does the author link resolve inside?**
 
 Note the middle row, because it is the thing to understand: **a first-person book can live in a third-person library.** A teammate's autobiography is written from inside their perspective while being shelved in a library that is not theirs. That is not a violation — it is exactly the arrangement this chapter exists to describe, and we have been running it since the team had autobiographies at all.
 
-## The law: no one enters a first-person library
+## The specification: no one enters a first-person library
 
 A first-person library is closed to everyone but its librarian. This is **structural, not a permission setting** — there is no reading level that grants entry, because entry is not a thing the form supports.
 
@@ -46,7 +46,7 @@ It is the one place in the library where a mark is *drawn* rather than derived, 
 
 Conventions:
 
-- **Self-authored or absent.** An About the Author written by anyone else is a biography note, not this. Same law as [autobiographies](13-on-authorship.md).
+- **Self-authored or absent.** An About the Author written by anyone else is a biography note, not this. Same specification as [autobiographies](13-on-authorship.md).
 - **It names, it does not address.** Naming a private library is legitimate; producing a followable path into one is not.
 - **Optional, always.** Its absence says nothing about the author.
 
@@ -57,7 +57,7 @@ Conventions:
 Two rules stand from the day it is built:
 
 - The `.me` repository **may be private**, and its closure is enforced by the repository boundary rather than by convention.
-- Only its author may run the action that lifts their personal work into a public library. If anyone else can, the law is broken and a build should say so.
+- Only its author may run the action that lifts their personal work into a public library. If anyone else can, the specification is broken and a build should say so.
 
 Until that exists, this chapter describes a shape rather than a running arrangement — and says so, because [a chapter that describes the intention rather than the practice](../reference-desk/07-pitfalls.md) is worse than no chapter.
 

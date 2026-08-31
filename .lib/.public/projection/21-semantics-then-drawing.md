@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -9,7 +10,7 @@
 
 *The title is **Doug's own sentence**, said when he was asked which half to do first: **"Semantics first, then drawing."** Standing for correction like every proxy on this branch.*
 
-**Identifiers continue from [The Audit](20-the-audit.md).** Requirements run **R105–R133**, units **U109–U142**, decisions **D62–D75**, risks **K1–K8**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law); a deletion leaves a gap.*
+**Identifiers continue from [The Audit](20-the-audit.md).** Requirements run **R105–R133**, units **U109–U142**, decisions **D62–D75**, risks **K1–K8**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification); a deletion leaves a gap.*
 
 ## The workflow
 
@@ -917,7 +918,7 @@ Prose.'}`.** *The leading blank line exists only to make [`$Section.parts()`](..
 | [R131](#r131) | [U139](#u139) | | [R132](#r132) | [U140](#u140) · [U142](#u142) |
 | [R133](#r133) | [U141](#u141) | | | |
 
-***Twenty-nine requirements, thirty-four units, and no requirement without a home.*** **[R131](#r131)–[R133](#r133) and [U139](#u139)–[U142](#u142) were added at the plan, from Doug's own rulings in the room** — *[and none of them is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law).*
+***Twenty-nine requirements, thirty-four units, and no requirement without a home.*** **[R131](#r131)–[R133](#r133) and [U139](#u139)–[U142](#u142) were added at the plan, from Doug's own rulings in the room** — *[and none of them is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification).*
 
 ## Every unit cites back
 

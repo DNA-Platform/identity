@@ -8,7 +8,7 @@ Working notes. The goal, in Doug's words: **a section that can be written in mar
 
 ## The model
 
-A `$Markdown` is a referent whose prose is markdown-with-LaTeX **source**, arriving as one block at the bond constructor like every composition: `copy` is the source, and the `view` renders the converter's output — marked for structure, KaTeX for `$…$` and `$$…$$`. Its **title is the source's first heading — parsed, not authored**, which is the composition law holding: the levels beneath a markdown section (headings, paragraphs, math, code) are found in the copy by the markdown grammar, exactly as sentences are found in a paragraph's prose. Markdown is a *parser choice at the section level*, not a new kind of thing.
+A `$Markdown` is a referent whose prose is markdown-with-LaTeX **source**, arriving as one block at the bond constructor like every composition: `copy` is the source, and the `view` renders the converter's output — marked for structure, KaTeX for `$…$` and `$$…$$`. Its **title is the source's first heading — parsed, not authored**, which is the composition specification holding: the levels beneath a markdown section (headings, paragraphs, math, code) are found in the copy by the markdown grammar, exactly as sentences are found in a paragraph's prose. Markdown is a *parser choice at the section level*, not a new kind of thing.
 
 ## As built — the demo (2026-07-30, all demo code in the app; reusable extraction deferred)
 

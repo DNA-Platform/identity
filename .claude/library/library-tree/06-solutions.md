@@ -15,7 +15,7 @@ The split follows [Compound Engineering][ce]'s two tracks, which turn out to be 
 
 **A solution chapter is a defect.** Something broke, was diagnosed, and was fixed. It has no other room in the library — a protocol book will not hold "the build failed this way," and it should not.
 
-**Everything else [distributes](../..librarianship/17-compounding.md).** A practice, a convention, a law, what a word means, what a teammate learned about themselves — those already have rooms, and a second copy in Solutions would be the drift we are avoiding.
+**Everything else [distributes](../..librarianship/17-compounding.md).** A practice, a convention, a specification, what a word means, what a teammate learned about themselves — those already have rooms, and a second copy in Solutions would be the drift we are avoiding.
 
 The test: *does this chapter answer "why did this break?"* If yes, it is a solution. If it answers "how should we work?", it is a distribution.
 

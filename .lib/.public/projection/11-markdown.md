@@ -1,6 +1,7 @@
 # Markdown
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -59,7 +60,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 **Markdown's syntax is *mentioned* and its content is *used*.**
 
-`**`, `` ` ``, `[`, `](`, `)` are marks that stand for themselves. The words between them are the writing. So a markdown sentence parses to `**` · `bold` · `**`, and `words` passes over the markers **exactly as it passes over commas** — because [that law already shipped](../the-semantics-of-books/15-the-levels-of-writing.md#used-and-mentioned) in the mechanism half.
+`**`, `` ` ``, `[`, `](`, `)` are marks that stand for themselves. The words between them are the writing. So a markdown sentence parses to `**` · `bold` · `**`, and `words` passes over the markers **exactly as it passes over commas** — because [that specification already shipped](../the-semantics-of-books/15-the-levels-of-writing.md#used-and-mentioned) in the mechanism half.
 
 **Which means markdown renders out of the model rather than being applied to it.** Bold is not CSS on a `<b>`; it is a word that knows the syntax standing around it. That is specialization at word grade, and it costs one `compose()` fork.
 
@@ -81,13 +82,13 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 - **R1a. Markdown is a NOTATION — a third axis, orthogonal to the levels.** *Libby's ruling, and the answer to Doug's "are you sure markdown is the only level you want to use markdown?"* It is not a level (levels compose downward; markdown appears at every level) and not a role (`role` is a property markdown *deploys*, not one it is). **A notation supplies exactly `divide`, `compose`, and which marks are mentioned — nothing else.** Plain prose is the identity notation; markdown and LaTeX are two instances. *Notation is to the levels what a lens is to a chemical: one concept spent across all of them.* **The register owes it ONE ROW — the axis** — not a class per notation per level. *Seen: a markdown section differing from a regular section only in its two overrides, and the register carrying one new row rather than six.*
 
-- **R2. Markdown syntax is mentioned; markdown content is used — and where that law strains, the strain is the finding.** `**`, `` ` ``, `[`, `](`, `)` parse as mentioned parts at word grade, and `words` passes over them as it passes over a comma. **But a link's URL and a fence's info string are neither used nor mentioned.** A mention *stands for itself* — a comma means the comma. A URL stands for a destination; `python` after a fence selects a kind. **That is a pointer, a third role, and a two-valued law cannot hold it.**
+- **R2. Markdown syntax is mentioned; markdown content is used — and where that specification strains, the strain is the finding.** `**`, `` ` ``, `[`, `](`, `)` parse as mentioned parts at word grade, and `words` passes over them as it passes over a comma. **But a link's URL and a fence's info string are neither used nor mentioned.** A mention *stands for itself* — a comma means the comma. A URL stands for a destination; `python` after a fence selects a kind. **That is a pointer, a third role, and a two-valued specification cannot hold it.**
 
-  **`role` does NOT gain a third value.** *DECIDED, Cathy's, and it is the stronger reading:* the resolution is that neither was ever word-grade writing. The link is a sentence-grade reference ([R4](#the-mini-framework--markdown-itemized)); the fence is a paragraph-grade kind ([R3](#the-mini-framework--markdown-itemized)). **The strain is the law correctly declining to call a pointer *writing*** — the word *mention* had been doing two jobs, standing-for-itself and being-syntax-that-points, and only the first is mention. *Seen: `role` unchanged at `use | mention`; a markdown sentence's `words` counting `text` and not `https`, `x` or `com`; and no part of the model calling a URL a word.*
+  **`role` does NOT gain a third value.** *DECIDED, Cathy's, and it is the stronger reading:* the resolution is that neither was ever word-grade writing. The link is a sentence-grade reference ([R4](#the-mini-framework--markdown-itemized)); the fence is a paragraph-grade kind ([R3](#the-mini-framework--markdown-itemized)). **The strain is the specification correctly declining to call a pointer *writing*** — the word *mention* had been doing two jobs, standing-for-itself and being-syntax-that-points, and only the first is mention. *Seen: `role` unchanged at `use | mention`; a markdown sentence's `words` counting `text` and not `https`, `x` or `com`; and no part of the model calling a URL a word.*
 
 - **R3. A fenced code block is a written part at paragraph grade, and the fence's info string selects its kind.** *Doug's original charge: "itemizing it at various levels to give a targeted code block or other features that prove we can customize" — **the info string is markdown's own customization point**, which is why the specialization hook is not invented.* *Seen: a section holding a fence answers it from `parts()` at the index it was written, with the prose still counting around it, and two different info strings giving two different figure kinds.*
 
-- **R4. A markdown link is a reference at sentence grade, inline — and it splits by where it points.** *Doug: "maybe you can make references out of markdown."* *Libby's ruling:* an **internal** target — something the library holds — makes it a true `$Reference<T>` whose `read()` dereferences to the **object**; that is a citation, the same act as `$Author` and `$Cite`. An **external** target has no object to read, so it reads to a **place**: `$Link` is `$Reference` specialized to point *out of* the library. **And either way, an unresolvable target renders as its text** — a broken link is cosmetic, never structural. *Seen: it stays inside the sentence that holds it and is **never** a part of the paragraph above — the same law that protects the cover's author, and a regression on the shipped demo if it breaks; an internal link reading to the object; an external one travelling to a place; a broken one still reading as prose.*
+- **R4. A markdown link is a reference at sentence grade, inline — and it splits by where it points.** *Doug: "maybe you can make references out of markdown."* *Libby's ruling:* an **internal** target — something the library holds — makes it a true `$Reference<T>` whose `read()` dereferences to the **object**; that is a citation, the same act as `$Author` and `$Cite`. An **external** target has no object to read, so it reads to a **place**: `$Link` is `$Reference` specialized to point *out of* the library. **And either way, an unresolvable target renders as its text** — a broken link is cosmetic, never structural. *Seen: it stays inside the sentence that holds it and is **never** a part of the paragraph above — the same specification that protects the cover's author, and a regression on the shipped demo if it breaks; an internal link reading to the object; an external one travelling to a place; a broken one still reading as prose.*
 
 - **R5. It is a mini framework, reusable across the demo, and it lives in the demo.** *Doug: "a markdown mini framework that's reusable for the demo… we can consider it for the main framework if it works."* So it is **not** in `src/`, and promotion is explicitly a later decision, not a stretch goal of this sprint. *Seen: the whole of it under the app, imported by more than one surface, with `src/` unchanged by it.*
 
@@ -106,7 +107,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
   **Neither, for the inline case — and it is not a fallback, it is the same answer regular text already gives.** In a regular section today, `*` falls into `$Sentence.divide`'s non-letter run and `compose()` makes it a mentioned `$Punctuation`. **Pairing is a fact about two marks, not a property of one**, so a single `*` cannot be *wrong*: being a delimiter was never its own property. Markdown therefore adds **pairing**, not a kind — where a pair is found the enclosed run is used writing with mentioned marks either side; where none is found the mark is a run with no letters, which `compose()` already knows how to place.
 
-  **And the notation agrees without bending.** CommonMark's own rule for unmatched emphasis is *treat it as literal text*, which in our vocabulary reads *it stays a mention that stands for itself*. Two systems reaching the same answer independently is evidence the use/mention law was carved right.
+  **And the notation agrees without bending.** CommonMark's own rule for unmatched emphasis is *treat it as literal text*, which in our vocabulary reads *it stays a mention that stands for itself*. Two systems reaching the same answer independently is evidence the use/mention specification was carved right.
 
   **Where validation IS the right answer: block grade.** An unterminated fence is not an asterisk problem — it is a written part with nothing to draw, and `$Figure.valid()` already answers that in the kind's own words. The line maps onto a real structural difference: **inline marks arrive inside a block's elements**, where an unpaired mark is just a mark; **block-level parts arrive as their own bond argument**, where an unterminated one has no content at all.
 
@@ -136,17 +137,17 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 - **R9. One figure kind shows a non-text interaction: it holds REFERENCES to the section's parts, and acting on one lights that part in the prose standing around it.** *Doug: "with a `$Figure` to show non-text interactions."* **DECIDED, Gabby's**, and built from shipped prior art rather than a new mechanism.
 
-  **What it holds: references, not the parts.** The parts live in the section, which is their only home. The figure carries `section.at(i)` — reading one forward lands on the very part the prose renders, and that shared identity is what makes the figure a **corroborating sibling** under [the second law of views](../designing-inexplicable-phenomena/04-ways-of-reading.md#two-laws-for-every-view): acting on one lighting the other is a *check*, not a claim.
+  **What it holds: references, not the parts.** The parts live in the section, which is their only home. The figure carries `section.at(i)` — reading one forward lands on the very part the prose renders, and that shared identity is what makes the figure a **corroborating sibling** under [the second specification of views](../designing-inexplicable-phenomena/04-ways-of-reading.md#two-specifications-for-every-view): acting on one lighting the other is a *check*, not a claim.
 
   **What acting changes: one `$Highlight`, held by the section.** No second highlighting is invented. **The section is the common renderer of both surfaces** and hands the highlight *down* to its prose and to its figure — the prose never learns from the figure, and nothing computes `parent` at render, which [would tell the truth at binding and lie on screen](../solutions/09-the-parent-that-changed-on-screen.md). It is the shape `contents.tsx` already uses, setting `this.shelf.$reading` on an explicitly-held reference.
 
   **And it retires a hack.** The manifold's DOM `light(id)` + `.lit` + `setTimeout` **is** the second highlighting this replaces.
 
-  **It must not announce itself** — no button chrome, no pointer underline. The response *is* the discovery, per [the law that cost three corrections](../solutions/03-the-link-i-built-three-times.md).
+  **It must not announce itself** — no button chrome, no pointer underline. The response *is* the discovery, per [the specification that cost three corrections](../solutions/03-the-link-i-built-three-times.md).
 
   **Answered, Cathy's — and the answer is two shipped classes rather than one.** Gabby was right to raise it. `$Highlight` is a **letter span in its parent's copy**, and the promise says so in its own title — *"a highlight is the reference a highlighter leaves — first and last letter of its parent"*, with `p.copy.slice(4, 9) === 'frame'` ([book.test.tsx:416](../../package/tests/book/book.test.tsx)). **So a highlight cannot name a figure**, because a figure contributes no letters to the copy. That is the domain being honest: you cannot run a highlighter over a plate.
 
-  **The part being attended to is held as a [`$Bookmark`](../../package/src/book/Bookmark.tsx)** — a `$Sentence` implementing `$Reference$<T>`, which is exactly *a held reference to a place*, shipped since Sprint 47 with its grain-rounding law. **A highlight is what a bookmark renders as when its target is prose**; a written part lights as itself, because there is no ink to mark. Two facts, two shipped classes, nothing invented.
+  **The part being attended to is held as a [`$Bookmark`](../../package/src/book/Bookmark.tsx)** — a `$Sentence` implementing `$Reference$<T>`, which is exactly *a held reference to a place*, shipped since Sprint 47 with its grain-rounding specification. **A highlight is what a bookmark renders as when its target is prose**; a written part lights as itself, because there is no ink to mark. Two facts, two shipped classes, nothing invented.
 
   *Seen: the figure responds to the reader, its content is not counted among the words, and the prose numbers around it unchanged. It makes the first half's static parts list live.*
 
@@ -156,7 +157,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
   **What a green exercises today, exactly.** `npm run test` is `tsc --noEmit` then `vitest run`. The `tsc` uses the *package* tsconfig, whose `include` is `src` + `tests` only — **the app is invisible to it.** `vitest.config.ts` sets no `test.include`, so the default glob runs every `.test.tsx` under the package, **including any under `app/`**. Put those together and a test placed in the app **runs, is counted in the green, and is typechecked by neither project.**
 
-  **This is [the stale-build law](../solutions/05-the-suite-that-passed-against-a-stale-build.md) wearing new clothes.** There the green checked *different code*; here it checks a *weaker specification* — "runs without throwing" standing in for "typechecks and runs." Same disease: the code the number counts is not the code the checks covered.
+  **This is [the stale-build specification](../solutions/05-the-suite-that-passed-against-a-stale-build.md) wearing new clothes.** There the green checked *different code*; here it checks a *weaker specification* — "runs without throwing" standing in for "typechecks and runs." Same disease: the code the number counts is not the code the checks covered.
 
   **The decision.** Tests co-locate under `app/src/**` as `.test.tsx` — the app tsconfig's existing `src/**/*.tsx` glob already takes them, so no glob changes. **And the gate gains the app project:** `tsc --noEmit && tsc -p app/tsconfig.json --noEmit && vitest run`. Every test in the green is then typechecked by exactly one project and run by the runner, with no hole in the intersection.
 
@@ -178,11 +179,11 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
   **And a third gate is stale:** `app/verify-book.mjs` fails at its own step three, looking for `[data-book="algebra"]` when spines are labelled by card name (`The Algebra of Perspective`). A driver that cannot reach the shelf cannot have proven anything past it. *Seen: the driver completing.*
 
-  **The lesson is filed, not absorbed.** A green whose scope was never stated is not evidence — this is [the suite that passed against a stale build](../solutions/05-the-suite-that-passed-against-a-stale-build.md) a second time, and **a symptom filed twice means the cause was never found**, which is [our own law](../solutions/13-the-chapter-that-wrote-its-sections-twice.md).
+  **The lesson is filed, not absorbed.** A green whose scope was never stated is not evidence — this is [the suite that passed against a stale build](../solutions/05-the-suite-that-passed-against-a-stale-build.md) a second time, and **a symptom filed twice means the cause was never found**, which is [our own specification](../solutions/13-the-chapter-that-wrote-its-sections-twice.md).
 
 ## What is seen — this sprint's visible end
 
-*Designed here, beside the requirements, per [the law written out of Sprint 48](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md).*
+*Designed here, beside the requirements, per [the specification written out of Sprint 48](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md).*
 
 **The claim that cannot be faked.** A hand-authored page can fake a rendered code block, a bold word, and a link. **It cannot fake a plain hand-written section whose parts list holds a code block at paragraph grade and a reference nested inside a sentence — and cannot fake clicking a part in a figure and watching the prose it came from light up.** A rendered figure is easy; a figure that is a second reading of the same object, agreeing with the first, is not.
 
@@ -210,7 +211,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 - **AE1.** A markdown sentence's `parts()` holds `**` as a mentioned part; its `words` does not.
 - **AE2.** A section holding a fence answers it from `parts()` at its written index, with the prose numbered around it.
 - **AE3.** Two different fence info strings give two different figure kinds in the same section.
-- **AE4.** A markdown link is a part of the sentence holding it and never of the paragraph above. *(Regression: the shipped cover's author depends on this law.)*
+- **AE4.** A markdown link is a part of the sentence holding it and never of the paragraph above. *(Regression: the shipped cover's author depends on this specification.)*
 - **AE5.** A **regular** hand-written section answers a paragraph-grade insert and a sentence-grade insert at their written positions.
 - **AE6.** Clicking a part in the figure highlights that part in the prose; the figure's content is not counted among the section's words.
 - **AE7.** `/page` renders all four lenses with no console error, and the Living Page's word count still moves on a keystroke.
@@ -246,7 +247,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 ## Names owed, none taken
 
-*Per the standing law: nothing framework-level is self-named, and every work report carries this section.*
+*Per the standing specification: nothing framework-level is self-named, and every work report carries this section.*
 
 | the thing | where its population is reported | status |
 |---|---|---|
@@ -341,7 +342,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 ### The code drawer — the sharper version of the move
 
-**Code is displayed exactly as the manifold and the page already display it**, and the pattern is identical in both: **a `?raw` import of the real file**, a name-to-source registry, prism `Highlight` with per-line numbers, a tabbed drawer. The manifold dresses it warm on cream with `themes.github` and reaches it by a dog-ear; the page dresses it dark with `themes.nightOwl`. **The machinery is shared; the dress is the demo's own** — which is the isolation law, and why this is a repeat of the pattern rather than a reuse of the components.
+**Code is displayed exactly as the manifold and the page already display it**, and the pattern is identical in both: **a `?raw` import of the real file**, a name-to-source registry, prism `Highlight` with per-line numbers, a tabbed drawer. The manifold dresses it warm on cream with `themes.github` and reaches it by a dog-ear; the page dresses it dark with `themes.nightOwl`. **The machinery is shared; the dress is the demo's own** — which is the isolation specification, and why this is a repeat of the pattern rather than a reuse of the components.
 
 **And it goes one turn tighter than the appendix did.** The drawer's first tab is the mini framework's own `divide()` — **shown by the code-block kind that `divide()` produces.** The listing cannot drift from the file because it *is* the file, read at build.
 
@@ -415,7 +416,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 - **U10 — The port, in one act.** *Mechanism: `sheet.tsx` mounts the mini framework instead of `<Markdown>`; the anatomy lens reads `parts()` instead of calling `parse()` a second time; `parse()` and the `Entry[]` union are **deleted**, nothing depending on them. Files: `page/markdown.tsx`, `page/sheet.tsx`. Depends on: U4–U9. Realizes: R6. **Visible end:** title, paragraphs, words and formulas read off the model, and the second parse gone — [the defect filed one level down](../solutions/13-the-chapter-that-wrote-its-sections-twice.md), closed one level up.*
 
-- **U11 — The three dresses, rewritten against parts.** *Mechanism, Gabby's: every `.markdown <tag>` selector dies; each specialized part draws its own face, and **the dress is a document-level choice handed DOWN to the parts** — never reached up to, the same law as U13. The three become **behaviours rather than selectors**: **Book** is letterpress (centred serif heading, justified body, a break drawing its own rule); **Github** is a README (headings drawing their own hairline rule as part of themselves, system sans, a fence wearing its filename tab); **Night** is Book's tonal transposition — **the same faces, a different palette.** Files: `page/page.tsx`, `page/sheet.tsx`. Depends on: U10. Realizes: R13, R7. **Visible end:** three dresses still recognisably themselves with no `.markdown <tag>` selector left, and the Living Page's counts still moving on a keystroke.*
+- **U11 — The three dresses, rewritten against parts.** *Mechanism, Gabby's: every `.markdown <tag>` selector dies; each specialized part draws its own face, and **the dress is a document-level choice handed DOWN to the parts** — never reached up to, the same specification as U13. The three become **behaviours rather than selectors**: **Book** is letterpress (centred serif heading, justified body, a break drawing its own rule); **Github** is a README (headings drawing their own hairline rule as part of themselves, system sans, a fence wearing its filename tab); **Night** is Book's tonal transposition — **the same faces, a different palette.** Files: `page/page.tsx`, `page/sheet.tsx`. Depends on: U10. Realizes: R13, R7. **Visible end:** three dresses still recognisably themselves with no `.markdown <tag>` selector left, and the Living Page's counts still moving on a keystroke.*
   **The exemplar, and the tell the design is right:** the drop cap is `p:first-of-type::first-letter` today — CSS reaching for *"the first paragraph"*. It becomes **a part that knows it is the opening.** And Book and Night sharing faces while differing only in palette is what proves the part is the invariant and the dress is palette-plus-face.
   *Whether the dress reaches the parts through the theme or through a perspective is a HOW, and it is Cathy's with the code open.*
 
@@ -426,7 +427,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 - **U13 — The figure that responds.** *Mechanism: the figure holds `section.at(i)` references; clicking one sets the section's held `$Bookmark`; the section — the common renderer of both surfaces — hands it down, so nothing computes `parent` at render. Files: the mini framework and `app/src/sections/`. Depends on: U6, U12. Realizes: R9, AE18. **Visible end:** clicking a part lights it in the prose, with nothing announcing the figure was clickable — and **the manifold's DOM `light(id)`/`.lit`/`setTimeout` deleted**, which is the second highlighting this replaces.*
   **This unit breaks eleven driver checks** that assert `classList.contains('lit')`. That is U15's, and it is named here so it is not a surprise.
 
-- **U14 — The code drawer, in the page's own dress.** *Mechanism: the shipped pattern — `?raw` import of the real file, a name-to-source registry, prism with per-line numbers, a tabbed drawer — **repeated** for this demo rather than reused from the manifold, per the isolation law. The registry grows to the mini framework's own classes. Files: `app/src/sections/`. Depends on: U6, U10. Realizes: R11, and Doug's *"ways to view key pieces of code."***
+- **U14 — The code drawer, in the page's own dress.** *Mechanism: the shipped pattern — `?raw` import of the real file, a name-to-source registry, prism with per-line numbers, a tabbed drawer — **repeated** for this demo rather than reused from the manifold, per the isolation specification. The registry grows to the mini framework's own classes. Files: `app/src/sections/`. Depends on: U6, U10. Realizes: R11, and Doug's *"ways to view key pieces of code."***
 
   **The sharp move, Gabby's:** the demo sheet carries a fenced ` ```tsx ` block that renders through the fence kind, **and the drawer below shows that kind's own source.** The thing that draws code, drawn as code by itself — a corroborating pair for code, the same shape as R9.
 
@@ -571,7 +572,7 @@ app tsc (app/tsconfig.json): 59 files typechecked —
 
 ### Verified at the close of the floor — fresh runs
 
-Chemistry **635/635**, `tsc` **0**, **`dist` rebuilt** before the lib suite per [the filed law](../solutions/05-the-suite-that-passed-against-a-stale-build.md) · lib **164/164**, `tsc` **0** · app gate **PASS**, 4 baselined, 0 unexpected · **driver 48 checkpoints, zero failures, exit 0.**
+Chemistry **635/635**, `tsc` **0**, **`dist` rebuilt** before the lib suite per [the filed specification](../solutions/05-the-suite-that-passed-against-a-stale-build.md) · lib **164/164**, `tsc` **0** · app gate **PASS**, 4 baselined, 0 unexpected · **driver 48 checkpoints, zero failures, exit 0.**
 
 **That last number is the one that matters: it is the first honest green this walk has had in five sprints.**
 
@@ -622,7 +623,7 @@ the plate is a part of the section, at its written position      PASS
 
 **So R8 holds at both levels and there is nothing to fix.** A figure written between paragraphs and a link written inside a sentence both **draw where they stand**, because the block carries them — which is the mechanism half working exactly as it was specified to. The link is absent from `parts()`, and that is not a defect: **the parse is a reading for views that want structure, not the thing that puts writing on a page.**
 
-**The lesson, and it is the expensive kind.** *A requirement was invented — "the model must see it" — and then measured, and the measurement failed, and the failure was reported as a blocker on the sprint.* The law that dissolved it was in the previous chapter, in Doug's own words, and had been read this session. **Reading a law is not consulting it** — which is [already filed](../solutions/03-the-link-i-built-three-times.md), in exactly these terms, and is now filed twice.
+**The lesson, and it is the expensive kind.** *A requirement was invented — "the model must see it" — and then measured, and the measurement failed, and the failure was reported as a blocker on the sprint.* The specification that dissolved it was in the previous chapter, in Doug's own words, and had been read this session. **Reading a specification is not consulting it** — which is [already filed](../solutions/03-the-link-i-built-three-times.md), in exactly these terms, and is now filed twice.
 
 ## The mini framework — U4/U5, U6, U19. BUILT AND GREEN.
 
@@ -638,7 +639,7 @@ the plate is a part of the section, at its written position      PASS
 
 ### Two findings the code made, neither of them a slip
 
-**1. Inline code is CONTENT THAT IS NOT WRITING — and the model said so before we did.** A code span composed to a `$Word` and the suite went red: `$Word.valid()` demands letters, and `parts()` has parentheses. **That is not a bug to route around; it is the law being right.** A code span is source, a formula is TeX, and neither is prose — so both are **the figure pattern one level down**, present as parts and absent from the words. *This is the second time this sprint the word-grade figure has been reached for, and it is still unnamed.*
+**1. Inline code is CONTENT THAT IS NOT WRITING — and the model said so before we did.** A code span composed to a `$Word` and the suite went red: `$Word.valid()` demands letters, and `parts()` has parentheses. **That is not a bug to route around; it is the specification being right.** A code span is source, a formula is TeX, and neither is prose — so both are **the figure pattern one level down**, present as parts and absent from the words. *This is the second time this sprint the word-grade figure has been reached for, and it is still unnamed.*
 
 **2. AE9 as written is not achievable, and the honest form is stronger.** `2 * 3` does **not** produce identical *parts* in both notations — **markdown's divide is finer**, isolating the asterisk as a candidate mark where plain prose keeps `' * '` as one run. Eleven parts against nine.
 
@@ -721,7 +722,7 @@ the plate is a part of the section, at its written position      PASS
 
 ## A word I invented, and the one the domain already had
 
-**Doug: *"I have no clue what a twin is. That is not terminology. You invented that. The semantics of books does not have the semantics of families."*** Correct on both counts, and it is [the naming law](#names-owed-none-taken) being broken rather than a stylistic slip.
+**Doug: *"I have no clue what a twin is. That is not terminology. You invented that. The semantics of books does not have the semantics of families."*** Correct on both counts, and it is [the naming specification](#names-owed-none-taken) being broken rather than a stylistic slip.
 
 **What the thing is:** two settings of **one** text, side by side, so the readings can be compared. **Scholarship has had that book for centuries — a parallel text, a facing-page edition.** The word is the domain's, not mine; it is in the code as a **proxy** and flagged here.
 
@@ -768,7 +769,7 @@ restored → 48 checkpoints reached
 
 **Two defects, filed in [Solutions](../solutions/.cover.md):** [the green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) — two gates that passed by not running and by not reaching, hiding a live crash for five sprints — and [the requirement I invented, and then failed](../solutions/15-the-requirement-i-invented-and-then-failed.md), where a made-up criterion nearly bought a rewrite of the parse.
 
-**One law corrected where it lives.** [The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md) said *"a mention is not parsed."* **It was a settled account carrying a law the code no longer holds**, which is the most expensive kind of stale — a reader would have believed it. It now says *mentioning propagates*, cites the defining line, and keeps the old rule visible with the reason it was wrong.
+**One specification corrected where it lives.** [The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md) said *"a mention is not parsed."* **It was a settled account carrying a specification the code no longer holds**, which is the most expensive kind of stale — a reader would have believed it. It now says *mentioning propagates*, cites the defining line, and keeps the old rule visible with the reason it was wrong.
 
 **One row added to the register.** [Notation as a third axis](../the-semantics-of-books/08-the-symbolizing-dyad-and-the-register.md#notation--a-third-axis-and-it-is-one-row-rather-than-a-family) — one row, not a class per notation per level.
 
@@ -782,7 +783,7 @@ restored → 48 checkpoints reached
 |---|---|---|
 | **Cathy** | the `divide()`/`compose()` overrides, and whether use/mention carries markdown at word grade | **Three, not four** — and the strain is a finding: a URL and an info string are **pointers**, so `role` gains no third value because neither was ever word-grade. She also settled R9's grain against the shipped promise. |
 | **Libby** | what a markdown link is as writing; whether markdown is a level, a notation, or a role | **A notation** — one axis, one register row. And the link splits by where it points: internal is a citation, external is a `$Link`, broken renders as its text. |
-| **Gabby** | what the figure holds, what acting changes, and how it avoids a second highlighting | **References, not parts**; the section owns the state and hands it down; and the manifold's DOM `light()` hack **is** the second highlighting to retire. She raised the grain question rather than guessing it — which is what surfaced the letter-span law. |
+| **Gabby** | what the figure holds, what acting changes, and how it avoids a second highlighting | **References, not parts**; the section owns the state and hands it down; and the manifold's DOM `light()` hack **is** the second highlighting to retire. She raised the grain question rather than guessing it — which is what surfaced the letter-span specification. |
 | **Queenie** | where the app's promises live, and what a green would exercise | The gate gains the app project — **and resolving it uncovered [R15](#math-and-the-gate)**: the app typecheck had been green on zero files, hiding a live crash. |
 | **Arthur** | the port's blast radius, and what `$Page` is left holding | Three surfaces survive untouched, `sheet.tsx` is the epicentre, and **the markup contract is a decision nobody had made** ([R13](#the-port)). `page.tsx` is four families under one name. |
 
@@ -822,7 +823,7 @@ restored → 48 checkpoints reached
 
 **A fenced block is a part of its section, and the word after the fence chooses what draws it.** Three different rendering libraries answer to that one word today. One of them isn't a drawing at all — it's the section's own reading, and clicking a line in it lights the prose it names.
 
-**Nothing was added to the public package** except one law Doug asked for. Everything else lives in the demo.
+**Nothing was added to the public package** except one specification Doug asked for. Everything else lives in the demo.
 
 ## The state, once
 
@@ -867,6 +868,6 @@ Run `npm run dev` in `library/.public/package` and open **`/page`** at the port 
 
 1. **[The demonstration, designed first](#the-demonstration-designed-first)**, in this chapter — the eight-step walk and, more importantly, **[the three rungs](#the-three-rungs--and-the-four-things-no-click-can-prove)**: four claims have no click, because the screen confirms presence and never absence.
 2. **[The review's round](#the-reviews-round-and-the-six-gaps-it-found--all-closed)** — the six gaps, what closed each, and the number before and after.
-3. **[The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md)** — the settled account, now carrying the corrected mention law.
+3. **[The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md)** — the settled account, now carrying the corrected mention specification.
 4. **[Solutions 14](../solutions/14-the-green-that-exercised-nothing.md) and [15](../solutions/15-the-requirement-i-invented-and-then-failed.md)** — the two defects this sprint filed, and the reason its numbers can be believed.
 5. **[The mechanism half's own state](10-writing.md#where-things-stand)** — because this round signs that half too, and it has never been shown.

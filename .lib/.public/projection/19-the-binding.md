@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md), [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -42,9 +43,9 @@
 | [`app.tsx`](../../app/src/app.tsx) · [`bookmark.tsx`](../../app/src/bookmark.tsx) · [`catalogue.tsx`](../../app/src/catalogue.tsx) · [`storage.ts`](../../app/src/storage.ts) · [`main.tsx`](../../app/src/main.tsx) · [`verify-library.mjs`](../../app/verify-library.mjs) · [`vite.config.ts`](../../app/vite.config.ts) | the surface being changed, and the 29 checkpoints that guard it |
 | [`emit.ts`](../../build/stages/emit.ts) · the generated [`cards.tsx`](../../app/src/library/cards.tsx), [`books.tsx`](../../app/src/library/books.tsx) and a book module | what a compiled book actually looks like, since the design turns on it |
 | the corpus — [a cover](../../../.test-library/.physics/the-standard-model/.cover.tsx) and [a chapter](../../../.test-library/.physics/the-standard-model/symmetry.tsx) | what an author writes, as against what is generated |
-| [The Representative](../../../chemistry/.lib/composition/11-the-representative.md) | the algebra the theme rides on, and the law that F3 is an instance of |
+| [The Representative](../../../chemistry/.lib/composition/11-the-representative.md) | the algebra the theme rides on, and the specification that F3 is an instance of |
 | [`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts), the `frame()` seam | chemistry's own documented wrap point, and the reason a wrap does not disturb `declaration()` |
-| [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md) | the third law — *a view reads, it does not re-derive* — which [R70](#r70) discharges |
+| [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md) | the third specification — *a view reads, it does not re-derive* — which [R70](#r70) discharges |
 | [The Semantics of Books](../the-semantics-of-books/.cover.md) · [Publicity](../..publicity/.cover.md) | what a book, a subject and a catalogue are before any of this is code |
 | [Solutions 21](../solutions/21-the-three-things-that-only-worked-here.md) and [22](../solutions/22-the-sentences-that-said-the-opposite.md) | the two newest defects, both about a true number with a silent scope |
 | [ce-review](../../../../.claude/library/our-skillset/33-ce-review.md) · [Workflows](../../../../.claude/library/..teamsmanship/19-workflows.md) · [Sprints](../../../../.claude/library/library-tree/03-sprints.md) | the discipline this sprint declares, and the gate it still owes |
@@ -204,7 +205,7 @@
 
 ## <a id="acceptance-examples"></a>Acceptance examples
 
-*The demo is designed here, beside the requirements, [never after them](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-law--added-out-of-sprint-48s-failure).*
+*The demo is designed here, beside the requirements, [never after them](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-specification--added-out-of-sprint-48s-failure).*
 
 | | |
 |---|---|
@@ -259,7 +260,7 @@
 
 **<a id="d46"></a>D46 — The bound is not in the base framework, and the route to it is a cover subclass.** *Doug: "simple to start with room for complexity that isn't in the base framework."* **This is [the twenty's standing rule](18-the-theme.md#the-standing-rule) applied again: see the route, ship nothing for it.**
 
-**<a id="d47"></a>D47 — The address moves into the model.** [`slug()`](../../app/src/bookmark.tsx) computes a chapter's anchor from its title in the application, which is **a view inventing an address** — [the third law of Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md#a-third-law-a-view-reads-it-does-not-re-derive), filed against this branch. *Moving it is not scope creep; it is that defect's own fix.*
+**<a id="d47"></a>D47 — The address moves into the model.** [`slug()`](../../app/src/bookmark.tsx) computes a chapter's anchor from its title in the application, which is **a view inventing an address** — [the third specification of Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md#a-third-specification-a-view-reads-it-does-not-re-derive), filed against this branch. *Moving it is not scope creep; it is that defect's own fix.*
 
 **<a id="d48"></a>D48 — A requirement about our application is an observable, never the thing that must be true.** *Out of [M7](#m7) and Doug's question.* **[R65](#r65) is about a book; [R67](#r67) and [R72](#r72) are what proves it.**
 
@@ -271,7 +272,7 @@
 
 ## The size of the work, measured before it was divided
 
-***It is not divided. One session.*** *[The law is this step's](../../../../.claude/library/our-skillset/29-ce-plan.md#a-dispatch-is-checked-against-the-size-of-the-work--added-out-of-the-build): before dividing, ask what the output IS — in files, in lines, in operations — and **a division whose parts are smaller than their briefs is one session**.*
+***It is not divided. One session.*** *[The specification is this step's](../../../../.claude/library/our-skillset/29-ce-plan.md#a-dispatch-is-checked-against-the-size-of-the-work--added-out-of-the-build): before dividing, ask what the output IS — in files, in lines, in operations — and **a division whose parts are smaller than their briefs is one session**.*
 
 **Counted against the surfaces that exist:**
 
@@ -651,9 +652,9 @@ verify-book:  3 checkpoints reached — THE WALK DID NOT FINISH
 
 `$Title` asks whether it heads a cover by walking up the chain. **Written without a bound, it never returned** — `Worker exited unexpectedly`, twenty promises reported as **zero run** rather than as failures. ***The identical guard already stood in [`$Denote.document`](../../package/src/document/Denote.tsx)*** — `parent === scope ? undefined : parent` — written for exactly this and not looked at. **A walk up a composition graph is bounded or it is a hang.**
 
-### <a id="f12"></a>F12 — A STRING RUN IS DIVIDED ALONE, and it is an authoring law nobody had written down
+### <a id="f12"></a>F12 — A STRING RUN IS DIVIDED ALONE, and it is an authoring specification nobody had written down
 
-**A four-item list authored as four adjacent JSX strings came out as one mangled line.** Not a parse defect — [the Custom Elements law](17-custom-elements.md) working exactly as written: *a string divides by MY rule applied to **that run alone***. Four literals are four runs, and a list spanning them is four one-item lists.
+**A four-item list authored as four adjacent JSX strings came out as one mangled line.** Not a parse defect — [the Custom Elements specification](17-custom-elements.md) working exactly as written: *a string divides by MY rule applied to **that run alone***. Four literals are four runs, and a list spanning them is four one-item lists.
 
 ***So notation must not be split across string literals***, and this is the first time anybody wrote a list long enough to find out. **One string per block.**
 

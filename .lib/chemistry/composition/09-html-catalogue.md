@@ -31,6 +31,18 @@ class $Notification extends $Chemical {
 
 ## Extending
 
-The tag set is `$HtmlTag` — `keyof JSX.IntrinsicElements` **plus `$Content`**, the framework's own three content-node kinds. Widen the union and every `$Html<'…'>` follows for free; the enum is the only seam.
+The tag set is `$HtmlTag` — `keyof JSX.IntrinsicElements` **plus `$Content`**, the framework's own content-node kinds. Widen the union and every `$Html<'…'>` follows for free; the enum is the only seam — and an entry may point at a **class**, which is what retires a computed type without moving a call site.
 
-**`'string' | 'number' | 'block'` are not a proposal — they shipped**, declared in `$Content` at [types.ts](../../package/src/implementation/types.ts) so the enum travels to consumers (a `declare module 'react'` augmentation does not survive a consumer's build, which is why `$Html<'block'>` used to fail off-package). They differ from real tags in `view()`: a real tag wraps its content in the element, while the three content kinds **are** their content and render it directly — a text run, a number, or a grouped run of inline nodes.
+***There is now ONE content kind, and it is a class.*** `'string'` and `'number'` were deleted when a block began carrying raw text as itself — wrapping it is what made prose and a written element indistinguishable downstream. What remains is `'block'`, declared in `$Content` at [types.ts](../../package/src/implementation/types.ts) so the enum travels to consumers (a `declare module 'react'` augmentation does not survive a consumer's build, which is why `$Html<'block'>` used to fail off-package).
+
+## `$Block` — the tag that points at a class
+
+***`$Html<'block'>` COMPUTES to [`$Block`](../../package/src/abstraction/chemical.ts).*** The enum entry resolves to the class rather than to a computed shape, which retired the computed form **without a single call site moving** — every existing `$Html<'block'>` downstream became a `$Block` and gained its whole surface for free, proven by both consumer typechecks staying at zero.
+
+**A block is what a bond constructor is handed for prose, and the only thing it is handed:** a maximal run of inline writing gathered into one argument, holding what was written *as it was written* — a raw string, a raw number, a chemical whole.
+
+**It is a subclass, and the check knows it both ways.** `$check` passes it as `$Block`, as the base `$Html$`, and as the tag `'block'` — and still **refuses** an html that is not a block, naming `$Block`. `$check(undefined, …)` materialises an empty one either way, so a bond needs no null guard.
+
+***And every reading of a block is a block.*** `where`, `select` and `selectMany` each answer a new one, so a caller composes readings instead of falling out into an array on the first one and hand-building a block to get back in; `single` answers the piece, because a block of one and the one are different things. It iterates `(string | number | $Chemical)` directly, which is why nothing needs a `select` to get at what was written.
+
+**A real tag wraps its content in the element; a block IS its content and draws it.** That is a `view()` override on the class now rather than a branch inside `$Html$`.

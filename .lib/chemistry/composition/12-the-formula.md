@@ -4,7 +4,7 @@
 
 ---
 
-*Shipped in [The Formula](../../../.public/.lib/projection/24-the-formula.md). Every law below is a promise in [`formula.test.tsx`](../../package/tests/abstraction/formula.test.tsx), and every one of them was watched going red before it was believed.*
+*Shipped in [The Formula](../../../.public/.lib/projection/24-the-formula.md). Every specification below is a promise in [`formula.test.tsx`](../../package/tests/abstraction/formula.test.tsx), and every one of them was watched going red before it was believed.*
 
 ## What a formula is
 
@@ -155,6 +155,7 @@ $(Room, Fancy)(Dressed);     // <Plain>Fancy</Plain> now draws a $Dressed
 
 ## See also
 
+- [The facade](13-the-facade.md) — the other substitution: not an element's type by a name in the walk, but an instance wrapped by a declaration as it draws.
 - [The representative](11-the-representative.md) — what a resolution is asked for through.
 - [Looks](../particle/08-perspectives.md) — the same move, one level up.
 - [`$lift`](../particle/04-lift.md) — the derivation a specimen is copied by.

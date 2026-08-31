@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -173,7 +174,7 @@ ON THE BOOK  titles: 5   of them substituted: 1
 - **The application's own look.** It keeps its stylesheet; this is the framework's default beneath it.
 - **The demo's aesthetics.** [R13](15-the-build.md#r13--the-book-gets-its-own-aesthetic-world) governs demonstrations and is untouched.
 - **The parse.** Not redesigned, not re-tuned, and its counts must not move — [R64](#r64).
-- **A section that composes letters directly.** *Raised in the same conversation and real:* the levels are a **default of prose** while the framework's own accessors treat them as a **law** — `sections → paragraphs → sentences → words → letters` is a hand-written chain of `flatMap`s. **A genuine inconsistency, recorded and not taken.**
+- **A section that composes letters directly.** *Raised in the same conversation and real:* the levels are a **default of prose** while the framework's own accessors treat them as a **specification** — `sections → paragraphs → sentences → words → letters` is a hand-written chain of `flatMap`s. **A genuine inconsistency, recorded and not taken.**
 - **One copy of the framework.** Still two, still costing, still [the cheapest unpaid debt](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
 - **The parse in the draw path with no cache.** ***This sprint makes drawing do more work, so the absent cache gets closer rather than further away.*** Named here for the third time.
 - **The compiler audit** — architecture, organization and naming at parity with $Chemistry and lib. **Doug's, ruled this session, and deferred behind seeing something legible.**
@@ -193,7 +194,7 @@ ON THE BOOK  titles: 5   of them substituted: 1
 
 ## The size of the work, measured before it was divided
 
-***It is not divided.*** **One session.** *[The law is the plan step's](../../../../.claude/library/our-skillset/29-ce-plan.md#a-dispatch-is-checked-against-the-size-of-the-work--added-out-of-the-build): a division whose parts are smaller than their briefs is one session — and this measurement says so twice over.*
+***It is not divided.*** **One session.** *[The specification is the plan step's](../../../../.claude/library/our-skillset/29-ce-plan.md#a-dispatch-is-checked-against-the-size-of-the-work--added-out-of-the-build): a division whose parts are smaller than their briefs is one session — and this measurement says so twice over.*
 
 **THE FRAMEWORK'S ENTIRE DRAWING IS 108 LINES ACROSS 17 `view()` METHODS.** *Counted, not estimated — every `view()` in `writing/`, `book/`, `document/`, `library/` and `reference/`, measured from its declaration to its close.*
 
@@ -229,7 +230,7 @@ ON THE BOOK  titles: 5   of them substituted: 1
 | **the seven losing markup** | `Book` · `TableOfContents` · `Figure` · `Code` · `Legend` · `Denote` · `Document` | a subtraction, not a rewrite |
 | **the demonstration** | the demo | [U56](#u56) |
 
-***Nothing here is larger than its own brief***, which is the test the law states.
+***Nothing here is larger than its own brief***, which is the test the specification states.
 
 ## What was measured with the code open, and one of it amends a requirement
 
@@ -569,7 +570,7 @@ REGISTERED     class: $Book   instanceof $Mine: false      $(Book, Book)(Mine) h
 VIA $(Book)    class: $Book   instanceof $Mine: false      the resolve form had none either
 ```
 
-**Why, and it is two documented laws meeting rather than a defect:** an emitted book module composes itself as `<Book>` **at module scope**, so [React's own path is taken and nothing is resolved](../../../chemistry/.lib/composition/11-the-representative.md), *and* there is no asking instance at import time for a resolution to walk up from. ***A registration reaches a construction only when the construction happens inside a scope*** — which is exactly why it DOES reach the parse ([M3](#m3), [M4](#m4)), and does not reach this.
+**Why, and it is two documented specifications meeting rather than a defect:** an emitted book module composes itself as `<Book>` **at module scope**, so [React's own path is taken and nothing is resolved](../../../chemistry/.lib/composition/11-the-representative.md), *and* there is no asking instance at import time for a resolution to walk up from. ***A registration reaches a construction only when the construction happens inside a scope*** — which is exactly why it DOES reach the parse ([M3](#m3), [M4](#m4)), and does not reach this.
 
 **So what would someone actually have to do?** One of two things, both small and neither in this sprint:
 
@@ -614,7 +615,7 @@ cd library/.public/app && npx vite --port 5299
 **The rules that follow, and each is a step rather than a sentiment:**
 
 1. ***Serve first, then work.*** The application is running and its link is in the room **before the first edit**, not produced at the end as evidence.
-2. ***Show a delta after every unit, not a report.*** A screenshot or "open this route" — **never** a paragraph describing what a driver saw. *[The review step already rejects "a demo described rather than shown"](../../../../.claude/library/our-skillset/33-ce-review.md); this is that law applied during the work instead of after it.*
+2. ***Show a delta after every unit, not a report.*** A screenshot or "open this route" — **never** a paragraph describing what a driver saw. *[The review step already rejects "a demo described rather than shown"](../../../../.claude/library/our-skillset/33-ce-review.md); this is that specification applied during the work instead of after it.*
 3. ***Ask what he sees; do not tell him what it does.*** A green driver and a legible page are different claims, and this sprint proved it: **29/29 checkpoints passed on a page nobody could read.**
 4. ***Cut the increments smaller than feels necessary.*** If a change cannot be shown in one screen, it is two changes.
 5. ***When something is a look rather than a mechanism, ask.*** The base theme's every value — a colour, an element, a step of the scale — is an aesthetic decision, and [an aesthetic is Doug's](15-the-build.md#r13--the-book-gets-its-own-aesthetic-world). *Choosing one quietly is how a framework acquires a taste nobody agreed to.*
@@ -687,7 +688,7 @@ cd library/.public/package && npx vite app             # the demonstration
 - **Building a sprint and showing it at the end.** [The whole of the section above.](#in-the-open)
 - **Putting the answer in the theme.** ***Four designs died this way*** — a vocabulary of roles, a property per class, colours as the essence, and a theme that selected and arranged. **The last is Strategy's oldest trap: a strategy that returns the finished rendering has become the implementation.**
 - **Generalising `parenthetical` to every level.** It means *not shown* at section grade and *not counted as prose* at word grade; the guard belongs where the model already had it — [F1](#f1).
-- **Assuming a discharged law stays discharged.** [It came back](../solutions/16-the-parse-that-woke-its-own-parents.md#it-came-back-and-the-discharge-had-missed-a-third-write--the-theme-2026-08-20), because the discharge counted two writes and there are three. ***Adoption is a write.***
+- **Assuming a discharged specification stays discharged.** [It came back](../solutions/16-the-parse-that-woke-its-own-parents.md#it-came-back-and-the-discharge-had-missed-a-third-write--the-theme-2026-08-20), because the discharge counted two writes and there are three. ***Adoption is a write.***
 - **Drawing through `parts()` without holding the reading.** Three test files died of **heap exhaustion**, not a failing assertion.
 - **Trusting a driver against a server you did not just start.**
 - **Reading a green suite count without reading the file count.** `Test Files 25 passed (28)` is three files that *died*.
@@ -734,7 +735,7 @@ cd library/.public/package && npx vite app             # the demonstration
 FATAL ERROR: Reached heap limit Allocation failed — JavaScript heap out of memory
 ```
 
-**`parts()` builds fresh objects on every call AND adopts each one** — a write to a chemical that has a parent, which diffuses up and re-runs the render that asked. ***That is [the parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md), whose law reads: a parse may not be given a parent while it mutates what it makes.*** **[The full diagnosis is filed there](../solutions/16-the-parse-that-woke-its-own-parents.md#it-came-back-and-the-discharge-had-missed-a-third-write--the-theme-2026-08-20)** — this chapter keeps the finding and that one keeps the mechanism. It was discharged when nothing wrote; **adopting is a write, and it was harmless only while nothing drew through it.**
+**`parts()` builds fresh objects on every call AND adopts each one** — a write to a chemical that has a parent, which diffuses up and re-runs the render that asked. ***That is [the parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md), whose specification reads: a parse may not be given a parent while it mutates what it makes.*** **[The full diagnosis is filed there](../solutions/16-the-parse-that-woke-its-own-parents.md#it-came-back-and-the-discharge-had-missed-a-third-write--the-theme-2026-08-20)** — this chapter keeps the finding and that one keeps the mechanism. It was discharged when nothing wrote; **adopting is a write, and it was harmless only while nothing drew through it.**
 
 ***The fix holds the reading in the DRAW PATH ALONE***, keyed on the writing it was read from. **`parts()` is untouched** and anything asking it outside a render still gets a fresh reading — so the model kept its semantics and the counts did not move.
 
@@ -742,7 +743,7 @@ FATAL ERROR: Reached heap limit Allocation failed — JavaScript heap out of mem
 
 **Measured three ways** while walking [route C](#routes): a `$Book` subclass registered on the `Book` scope substitutes **nothing** for a compiled book, and the resolve form does not either.
 
-***This is not a defect, it is two documented laws meeting:*** an emitted module composes itself as `<Book>` **at module scope**, so React's own path is taken and nothing resolves, *and* there is no asking instance at import time to resolve upward from.
+***This is not a defect, it is two documented specifications meeting:*** an emitted module composes itself as `<Book>` **at module scope**, so React's own path is taken and nothing resolves, *and* there is no asking instance at import time to resolve upward from.
 
 **So Axis 2 is narrower than the plan claimed** — it reaches what the framework asks for (the parse: [M3](#m3), [M4](#m4)) and not what a consumer writes literally. ***The theme is unaffected, because a theme is resolved at RENDER time*** — which is why it reaches every compiled book on screen.
 
@@ -779,7 +780,7 @@ the page it renders:                  91 nodes
 
 ## → NEXT: [`/ce-compound`](../../../../.claude/library/our-skillset/31-ce-compound.md)
 
-**Five findings, and at least two are Solutions chapters rather than notes** — [F2](#f2) is a filed law returning under a condition its discharge did not cover, and [F3](#f3)/[F4](#f4) are one thing seen from two sides.
+**Five findings, and at least two are Solutions chapters rather than notes** — [F2](#f2) is a filed specification returning under a condition its discharge did not cover, and [F3](#f3)/[F4](#f4) are one thing seen from two sides.
 
 ## Owed, and named rather than omitted
 

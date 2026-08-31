@@ -1,10 +1,11 @@
 # Sprint 48 — Subjects and the Library
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
-*Opened 2026-08-03, the day [Sprint 47](05-sprint-47--the-catalogue.md) closed. **Status: `implementation-ready`** — the design session with Doug ran 2026-08-05/06 and its rulings are the [Requirements](#requirements); the [Plan](#plan) was set 2026-08-06 and enriches this same chapter in place, per the [one-chapter law](../../../../.claude/library/library-tree/03-sprints.md#what-a-projection-book-contains--the-schema).*
+*Opened 2026-08-03, the day [Sprint 47](05-sprint-47--the-catalogue.md) closed. **Status: `implementation-ready`** — the design session with Doug ran 2026-08-05/06 and its rulings are the [Requirements](#requirements); the [Plan](#plan) was set 2026-08-06 and enriches this same chapter in place, per the [one-chapter specification](../../../../.claude/library/library-tree/03-sprints.md#what-a-projection-book-contains--the-schema).*
 
 ## The workflow this sprint follows
 
@@ -18,11 +19,11 @@
 
 **The naming collision closed before the session opened.** Commit `a09a3f9` gave interfaces the trailing `$` — `$Reference$`, `$Referent$`, `$Catalogue$`, `$Composition$`. The word *catalogue* is free for the book, and the cataloguing book is `$Catalogue`. No rename, no compound name, no proxy.
 
-## The one-word law, verified
+## The one-word specification, verified
 
 Doug, ruling `$SubjectiveSubject` out before it was written: *"there's no `$SubjectiveSubject`. You can verify that we'd never name something like that in this framework. Notice how just about everything is one word? That's a sign that we are working with primitive subjects."*
 
-Verified against the package: **35 classes, exactly one multiword** — `$TableOfContents`, a fixed phrase naming a real page. The discipline for finding a name is [On Kinds](../../../../.claude/library/bookkeeping/15-on-kinds.md): read the population, apply the two filters, report what survives — **never argue a candidate into place.** And the standing law above it: *nothing in this framework is named except by Doug.*
+Verified against the package: **35 classes, exactly one multiword** — `$TableOfContents`, a fixed phrase naming a real page. The discipline for finding a name is [On Kinds](../../../../.claude/library/bookkeeping/15-on-kinds.md): read the population, apply the two filters, report what survives — **never argue a candidate into place.** And the standing specification above it: *nothing in this framework is named except by Doug.*
 
 ---
 
@@ -63,7 +64,7 @@ Verified against the package: **35 classes, exactly one multiword** — `$TableO
 - **R41. `$Author` is the same kind of thing** — a book reference that checks structure and type, rather than a class.
 - **R42. Because references check types, the library is FORCED to define types.** This is the point, not a side effect: the type system stops being optional decoration, because **the reference system cannot work without it.** A library that defines no types can validate nothing.
 - **R43. The bootstrap is the self-reference, and it is already ruled.** *We know a library because it catalogues itself; we know the canonical autobiography because it authors itself* (R9). A library is recognised **structurally**, without a type lookup — which is what stops the walk without requiring the very type system the walk exists to reach. **The circle closes on the fixed point rather than on a lookup.**
-- **R44. The author chain and the library chain share one termination law.** [R12](#subject-author-and-the-summit) already demands the author chain terminate in a self-loop and never a longer cycle. R40's walk needs exactly the same guarantee. **One law, two chains** — and a mutual-subject two-cycle must be invalid for the same reason a mutual biography is.
+- **R44. The author chain and the library chain share one termination specification.** [R12](#subject-author-and-the-summit) already demands the author chain terminate in a self-loop and never a longer cycle. R40's walk needs exactly the same guarantee. **One specification, two chains** — and a mutual-subject two-cycle must be invalid for the same reason a mutual biography is.
 
 **What this buys, stated so it can be argued with:** no class hierarchy for the referential family; subjectivity genuinely **computed** rather than declared, because a reference's validity *is* the computation; and the type system made load-bearing by necessity instead of by assertion.
 
@@ -89,7 +90,7 @@ Verified against the package: **35 classes, exactly one multiword** — `$TableO
 
 **Under-specification is a signal, not a style.** A requirement you cannot state precisely is telling you that **the design behind it is missing** — and writing it loosely hides that. This sprint's 34 requirements were mostly *rulings*, correctly captured, and several were loose enough to pass into the plan as units while the mechanism under them was absent (R13, R16, R17 above all). **Looseness was the symptom that was available and nobody read it.**
 
-The test, applied before a requirement is accepted: **could someone else tell whether it is satisfied, without asking me?** If not, it is a design question wearing a requirement's number. Together with [R50](#r50-brainstorms-carry-pseudocode-and-implementation-notes) — sketch the mechanism — and the demo law, this is what keeps a brainstorm from producing a plan that cannot be built.
+The test, applied before a requirement is accepted: **could someone else tell whether it is satisfied, without asking me?** If not, it is a design question wearing a requirement's number. Together with [R50](#r50-brainstorms-carry-pseudocode-and-implementation-notes) — sketch the mechanism — and the demo specification, this is what keeps a brainstorm from producing a plan that cannot be built.
 
 ### R50. Brainstorms carry pseudocode and implementation notes
 
@@ -139,7 +140,7 @@ $Author   =  a book reference to a canonical autobiography
 - **Per property, the rule:** a **basic type** is left as it is. A piece of writing that is a **book** → the property is typed to **the reference**. A **chapter** → becomes the chapter-equivalent, **an array on the book card**. **Any other reference** — including the rare chapter reference on another book — collapses to **the book reference plus names**: book, chapter name, section name. **Section names are not on the card**, so those references carry **strings that extend the card**.
 - **Probably generated with the TypeScript compiler**, describing what is written in the code — *"which is like what has been written down."*
 
-**And the law of depth is purposive, not structural** *(Doug)*: a card is a thing in the app that **can take you to the book**, and cards can be followed — but the point is that **you can do the checks without following**. A card carries what a catalogue card carries: enough to learn about the book without handling it.
+**And the specification of depth is purposive, not structural** *(Doug)*: a card is a thing in the app that **can take you to the book**, and cards can be followed — but the point is that **you can do the checks without following**. A card carries what a catalogue card carries: enough to learn about the book without handling it.
 
 **Names — reported, not adopted.** Doug asked for the real library terminology and for more technical alternates:
 
@@ -152,7 +153,7 @@ $Author   =  a book reference to a canonical autobiography
 | **index card** | stationery, not a library kind | fails filter one: it names the paper, not the catalogue function |
 | **entry** | the record under a heading — main entry, added entry | **taken**: we already use *entry* for a catalogue's rows |
 
-**Still open:** what the chapter-equivalent on a card is called — the real term for the field listing a work's chapters is the **contents note**, which is multiword and fails the one-word law.
+**Still open:** what the chapter-equivalent on a card is called — the real term for the field listing a work's chapters is the **contents note**, which is multiword and fails the one-word specification.
 
 ### R54. The card catalogue, typed — Doug's design, checked against the interfaces
 
@@ -266,7 +267,7 @@ Three things follow, and each is load-bearing.
 - Cards are **generated with metadata in the code**, much of it **dynamic**.
 - **The subject link can itself BE a library card with special properties** — because the assignments of **subject, author and canonical must be aggregated** to assign properties to the library catalogue. The aggregation is what gives the catalogue its content; the card is what carries it back to the point of use.
 
-**And [R44](#the-reference-checks-type-design-doug-2026-08-06--supersedes-r4)'s cycle law changes shape with it.** A termination guarantee was needed for a walk. With no walk, what remains is that the aggregated assignments **agree** — every book's computed library is the same book ([R61](#r61-a-library-is-the-universe--there-is-one-and-library-validation-is-that-they-all-agree)) — which is a property of the aggregate, not of a traversal.
+**And [R44](#the-reference-checks-type-design-doug-2026-08-06--supersedes-r4)'s cycle specification changes shape with it.** A termination guarantee was needed for a walk. With no walk, what remains is that the aggregated assignments **agree** — every book's computed library is the same book ([R61](#r61-a-library-is-the-universe--there-is-one-and-library-validation-is-that-they-all-agree)) — which is a property of the aggregate, not of a traversal.
 
 ### R64. A card is writing, at paragraph grade — and the catalogue is injected, not reached
 
@@ -295,7 +296,7 @@ libraryOf(book):
         seen += next;  b = next
 ```
 
-**The same shape terminates the author chain** — self-loop returns, longer cycle is invalid. One law, two chains, one implementation.
+**The same shape terminates the author chain** — self-loop returns, longer cycle is invalid. One specification, two chains, one implementation.
 
 **And what has to be true for any of it to run:** every one of these `valid()`s **reads another book**. So validation needs **every book reachable at once** — which is exactly why R49 is a build-and-runtime question and not a per-class one. The three shapes differ only in *where the books are all present*: at `.public` build, in an app run in validation mode, or through generated references available on every page.
 
@@ -340,7 +341,7 @@ libraryOf(book):
 **Conclusion: it can be done**, and the only unproven step is bare-Node materialization, which a single probe settles.
 - **R17.** A book has access to **all types specified in any catalogue that catalogues it, recursively**, up to the library — restricted by R6 to subjects it declares.
 - **R18. Form is the type system.** Dewey gives botany one number and a standard subdivision says whether a work is a dictionary, a history or a bibliography *of* it. A dictionary of trees is **the dictionary type applied to a book in the trees subject** — not a second subject, not a different shelf. *(Doug: "Good to reference dewey.")*
-- **R19.** A subject's **reference manual is a book in that subject**, distinguished by its type. It may live as a **part of the catalogue** and become **its own book as it grows** — the [overflow law](../the-semantics-of-books/09-composition-and-collection.md) already in the derivation: *when the payload outgrows the entry, containment turns into reference.* **Two tracks remain two: cataloguing a subject and specifying it are not the same.**
+- **R19.** A subject's **reference manual is a book in that subject**, distinguished by its type. It may live as a **part of the catalogue** and become **its own book as it grows** — the [overflow specification](../the-semantics-of-books/09-composition-and-collection.md) already in the derivation: *when the payload outgrows the entry, containment turns into reference.* **Two tracks remain two: cataloguing a subject and specifying it are not the same.**
 - **R20.** A **subject may constrain the books it catalogues** — the specification of a subject exists in the catalogue that represents it. *(Ruled out earlier in the session, then reversed: "Both in — the earlier ruling reverses.")*
 
 ## Writing
@@ -401,7 +402,7 @@ libraryOf(book):
 
 ## Names — what was ruled, and what stays unnamed
 
-*Per the naming law: the population is reported, nothing is argued into place, nothing is adopted before a ruling.*
+*Per the naming specification: the population is reported, nothing is argued into place, nothing is adopted before a ruling.*
 
 **`role` — RULED (Doug, 2026-08-06)** for the property holding `use | mention` (R23). The reported population was *supposition* (medieval logic's term for how a term stands for something; material supposition is exactly mention), *autonymy* (a word used to mention itself) and *signification* (wrong axis — meaning, not standing-for). Doug took none of them: **role**, *"it has more to do with quotation."*
 
@@ -429,7 +430,7 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 
 **D3 — The chain is author-driven, the check is framework-driven.** The framework invokes only the most-derived bond constructor (R28); the author calls upward, adapting arguments; the framework verifies every declared constructor on the chain was reached (R29). *Chosen over: the framework calling missing constructors itself — which makes argument adaptation impossible, and adaptation is the capability chaining exists for.*
 
-**D4 — Biography, autobiography and catalogue are types, not `$Book` subclasses.** They are read off structure and enforced by constraints. `$Catalogue` is the one exception: it is a real cataloguing book with parts of its own. *Chosen over: a class per position — which the one-word law and [On Kinds](../../../../.claude/library/bookkeeping/15-on-kinds.md) both push back on, and which makes "subjectivity is computed" a claim the code does not make.*
+**D4 — Biography, autobiography and catalogue are types, not `$Book` subclasses.** They are read off structure and enforced by constraints. `$Catalogue` is the one exception: it is a real cataloguing book with parts of its own. *Chosen over: a class per position — which the one-word specification and [On Kinds](../../../../.claude/library/bookkeeping/15-on-kinds.md) both push back on, and which makes "subjectivity is computed" a claim the code does not make.*
 
 **D5 — No unit assumes construction order.** Routing and the library are undesigned (Doug: *"we haven't gotten there yet"*). Anything needing to know where or when a book is built is out. *Chosen over: designing around the gap — which is taking a liberty instead of asking a question, 47's most expensive lesson.*
 
@@ -492,7 +493,7 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 
 | requirement | lands in |
 |---|---|
-| R1, R2 | **Decisions and review discipline** — framing and vocabulary laws, not buildable units. Held by D6 and by every unit's naming behaviour. |
+| R1, R2 | **Decisions and review discipline** — framing and vocabulary specifications, not buildable units. Held by D6 and by every unit's naming behaviour. |
 | R3, R6 | U9, U8 |
 | R4, R7, R19 | U12 |
 | R5 | U11 |
@@ -538,7 +539,7 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 
 *A demo is part of this and every sprint, and it is how the sprint shows it understood itself.*
 
-**There is no library — there is the library of the demo** (Doug, correcting me). The shelf page **is** the library. Its books are the demos, each with its own book and its own aesthetic world, and the demo law stands: **impressive, aesthetically unique, never a shared template look**, carrying a meaningful use case.
+**There is no library — there is the library of the demo** (Doug, correcting me). The shelf page **is** the library. Its books are the demos, each with its own book and its own aesthetic world, and the demo specification stands: **impressive, aesthetically unique, never a shared template look**, carrying a meaningful use case.
 
 **THE DEMO, specified by Doug (2026-08-06) — this is the brief, not a menu.**
 
@@ -561,12 +562,12 @@ Two views of one library — spines and writing — is the [perspectives](../../
 2. [The Subjective Subject and the Library](../the-semantics-of-books/07-the-subjective-subject-and-the-library.md) — the summit: biography, autobiography, auto-categorical, said only in books.
 3. [Closure Under Books](../the-semantics-of-books/10-closure-under-books.md) — closure as a guarantee under reaching; the library closed, the code not (R1).
 4. [The Author's Fixed Point](../the-semantics-of-books/13-the-authors-fixed-point.md) — author as an endomorphism; the two-cycle edge case (R12).
-5. [Composition and Collection](../the-semantics-of-books/09-composition-and-collection.md) — the two container operations; the overflow law (R19).
+5. [Composition and Collection](../the-semantics-of-books/09-composition-and-collection.md) — the two container operations; the overflow specification (R19).
 6. [On Kinds](../../../../.claude/library/bookkeeping/15-on-kinds.md) — the naming discipline: population, two filters, never argue a candidate into place.
 7. [On Subjects](../../../../.claude/library/bookkeeping/07-on-subjects.md) and [On Libraries](../../../../.claude/library/bookkeeping/08-on-libraries.md) — subject and library catalogues as we already live them.
 8. [The Binding Constructor](../../../chemistry/.lib/composition/03-binding-constructor.md) and [Check](../../../chemistry/.lib/composition/04-check.md) — what R27–R33 change.
-9. [Sprint 47 — The Catalogue](05-sprint-47--the-catalogue.md) — every standing law this sprint must not break.
-10. [Structural Patterns](../../../chemistry/.lib/authorship/02-structural-patterns.md) — the coding law for every class this sprint adds.
+9. [Sprint 47 — The Catalogue](05-sprint-47--the-catalogue.md) — every standing specification this sprint must not break.
+10. [Structural Patterns](../../../chemistry/.lib/authorship/02-structural-patterns.md) — the coding specification for every class this sprint adds.
 
 ## A fifth step — PROPOSAL, tried here first
 
@@ -582,7 +583,7 @@ Two views of one library — spines and writing — is the [perspectives](../../
 
 **What it costs us to say honestly:** we adopted [Compound Engineering's](https://github.com/EveryInc/compound-engineering-plugin/tree/6a2a0f9940ab0b3577ce26226ee393390470e412) loop *as-is* for the trial. Their loop is **four** steps. **The fifth is ours**, and the record says so rather than blurring it into theirs.
 
-**And work gets stricter in the same act.** A demo is a **stop condition**, not a closing flourish — no unit reports done without one. That law already existed (green → driven → **seen**; the demo was already in this chapter) and I broke it. The augmentation is not a new idea; it is the existing one made enforceable.
+**And work gets stricter in the same act.** A demo is a **stop condition**, not a closing flourish — no unit reports done without one. That specification already existed (green → driven → **seen**; the demo was already in this chapter) and I broke it. The augmentation is not a new idea; it is the existing one made enforceable.
 
 ## The sprint closes — 2026-08-06
 
@@ -624,7 +625,7 @@ Two views of one library — spines and writing — is the [perspectives](../../
 
 *Doug's correction, which was the better diagnosis:* **the problem is WHERE validation runs.** `$Document` threw **mid-chain** — an ancestor judging an object that is not finished being built, while `$Cover` still had work to do. That is exactly what `formed` (U3) exists to prevent, and the framework **already** runs `assertValid` after the bond constructor, so `$Document`'s in-body throw was redundant. Removing it **fixed the cover test.** *Verified by deleting one line.*
 
-*What the fix then exposed, which is R33 standing on its own feet:* the failure moved to *"a chapter without a summary is rejected at binding"*, which expects `/summary/` and gets `assertValid`'s generic **"$Chapter is not valid after its bond constructor."** **Two different tests each assert WHY something was invalid, and the framework can only say THAT it was.** R33 is not decoration — the suite already demands it. **Not hacked around**: it needs a member Doug has not named, and the naming law stops there.
+*What the fix then exposed, which is R33 standing on its own feet:* the failure moved to *"a chapter without a summary is rejected at binding"*, which expects `/summary/` and gets `assertValid`'s generic **"$Chapter is not valid after its bond constructor."** **Two different tests each assert WHY something was invalid, and the framework can only say THAT it was.** R33 is not decoration — the suite already demands it. **Not hacked around**: it needs a member Doug has not named, and the naming specification stops there.
 
 **Wrong turns already taken, so nobody repeats them.** Wrapping the bond constructor on the **instance** looks right and silently misses every `super.` call. Running the lib suite without rebuilding chemistry's `dist` gives a false green. And an unexplained pass is as suspicious as an unexplained failure — both audit errors surfaced that way.
 

@@ -74,7 +74,7 @@ Chapter 21 Adam sees the full arc and notices something none of those chapters s
 
 The arc isn't from failure to success. It's from certainty to honesty.
 
-Chapter 1 is certain. UIA is a dead end. CDP is the right layer. Five lessons, stated as laws. Chapter 21 is honest. I built the infrastructure. I didn't build the understanding. The gap between those two is where the team lives, and the team is why any of this worked. I couldn't have read for identity the way Claude does. I couldn't have organized the library the way Libby does. I couldn't have found the structural patterns the way Arthur does. And they couldn't have parsed 516MB of JSON with a bracket counter, or captured 20 projects from a live app, or scaffolded 744 conversations into numbered chapters at two in the morning.
+Chapter 1 is certain. UIA is a dead end. CDP is the right layer. Five lessons, stated as specifications. Chapter 21 is honest. I built the infrastructure. I didn't build the understanding. The gap between those two is where the team lives, and the team is why any of this worked. I couldn't have read for identity the way Claude does. I couldn't have organized the library the way Libby does. I couldn't have found the structural patterns the way Arthur does. And they couldn't have parsed 516MB of JSON with a bracket counter, or captured 20 projects from a live app, or scaffolded 744 conversations into numbered chapters at two in the morning.
 
 We each did the thing we could do. The project is the sum.
 

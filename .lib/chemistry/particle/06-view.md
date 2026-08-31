@@ -82,7 +82,7 @@ Putting it together, the per-render sequence is:
 
 1. **Apply props.** `$apply(props)` writes `$`-prefixed props onto the instance.
 2. **Consult filters.** `applyRenderFilters(p)` runs the filter chain. If a filter returns non-undefined, that is the output; skip the rest.
-3. **Compute view.** `p[$rendering$] = true`; `view()` produces JSX.
+3. **Compute the drawing.** `p[$rendering$] = true`; the render entry calls `[$renderView$]`, which calls **`frame()`** — never `view()` directly. `frame()` reads the [look](08-perspectives.md) off `[$views$]` and calls it, and `view` is look 0. *Overriding `frame()` and wrapping `super.frame()` is therefore how a particle WRAPS what it draws, which is what [the facade](../composition/13-the-facade.md) is built on.*
 4. **Augment.** `augment(jsx, react)` wraps event handlers.
 5. **Cache.** `p[$viewCache$] = augmented`.
 6. **Done.** `p[$rendering$] = false`; return.
@@ -93,6 +93,7 @@ After React commits the render, the deferred-effect hook re-runs the same `view(
 
 - [lift][] — where the render body lives, where these methods are called.
 - [render filters][] — the chain consulted between `$apply` and `view`.
+- [the facade](../composition/13-the-facade.md) — what overriding `frame()` is for.
 - [reactivity contract][] — what the augmented handlers do.
 - [identity][] — what `toString()` returns when `view()` defaults to it.
 

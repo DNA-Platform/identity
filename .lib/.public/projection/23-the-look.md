@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -11,7 +12,7 @@
 
 *The title is a proxy and stands for correction. It is taken from the surface Doug named: **`<Chemical look={2}/>`**, and `@look('github')` beside it.*
 
-**Identifiers.** Requirements **R156–**, units **U168–**, decisions **D87–**, risks **K10–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law); a deletion leaves a gap.*
+**Identifiers.** Requirements **R156–**, units **U168–**, decisions **D87–**, risks **K10–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification); a deletion leaves a gap.*
 
 **Where the code lands.** The framework work is in [`library/chemistry/package`](../../../chemistry/package/), so [$Chemistry's own Projection](../../../chemistry/.lib/projection/.cover.md) is owed an entry at the retro — the same arrangement [The Representative](12-the-representative.md) used. **The specification lives where perspectives are documented** — [the Particle book](../../../chemistry/.lib/particle/.cover.md), chapters 8 and 9, which this sprint rewrites.
 

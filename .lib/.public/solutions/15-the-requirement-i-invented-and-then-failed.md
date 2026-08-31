@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
-- **keywords:** requirements · invented-scope · wrong-measurement · law-not-consulted · false-blocker
+- **keywords:** requirements · invented-scope · wrong-measurement · specification-not-consulted · false-blocker
 - **sprint:** [Markdown](../projection/11-markdown.md)
 
 ---
@@ -15,7 +15,7 @@
 
 ## What did not work
 
-- **Reading the law.** [The rule](../projection/10-writing.md#the-parse) — *"the parse is post-hoc and pure… the standard view renders the block, which is why a written part already renders today and why part identity is not a rendering concern"* — was read **this session**, out of the previous chapter, in his words.
+- **Reading the specification.** [The rule](../projection/10-writing.md#the-parse) — *"the parse is post-hoc and pure… the standard view renders the block, which is why a written part already renders today and why part identity is not a rendering concern"* — was read **this session**, out of the previous chapter, in his words.
 - **The probe itself, which was correct.** It asked whether the link was a **part** and answered truthfully: it was not. The measurement was sound. The thing measured was the wrong thing.
 
 ## The mechanism
@@ -40,7 +40,7 @@ Ask what the requirement's own words mean before choosing how to measure them, a
 
 ## The lesson
 
-**Reading a law is not consulting it.** That is [already filed](03-the-link-i-built-three-times.md), in those words, about research. This is the same failure about *requirements*, and its cost is higher: the first wasted three corrections, this one nearly bought a rewrite of the parse.
+**Reading a specification is not consulting it.** That is [already filed](03-the-link-i-built-three-times.md), in those words, about research. This is the same failure about *requirements*, and its cost is higher: the first wasted three corrections, this one nearly bought a rewrite of the parse.
 
 **And the tell is specific and worth memorising: a blocker that appears at the exact moment your own measurement fails.** A real blocker is discovered by the work not proceed. This one was discovered by a probe I wrote, testing a criterion I chose, for a requirement that never asked for it — which is a closed loop with nobody outside it.
 

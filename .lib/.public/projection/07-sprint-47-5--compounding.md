@@ -2,6 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -17,7 +18,7 @@
 
 ## The premise, stated honestly
 
-**We have no workflow.** We have skills, laws, and a library. What we do not have is a **named, ordered sequence with gates that a sprint declares it is following.** Work happens in whatever order the conversation takes and the laws get applied when someone remembers them. Sprint 47 ran as long as it did partly because nothing said what came next.
+**We have no workflow.** We have skills, specifications, and a library. What we do not have is a **named, ordered sequence with gates that a sprint declares it is following.** Work happens in whatever order the conversation takes and the specifications get applied when someone remembers them. Sprint 47 ran as long as it did partly because nothing said what came next.
 
 This sprint therefore **adopts a workflow where there was none**, as-is, and builds the structure to record, reference, and perform it.
 
@@ -59,7 +60,7 @@ Their sentence for the arrow: *"`/ce-compound` writes learnings into `docs/solut
 
 ### One artifact, changing state in place
 
-The most transferable mechanic, and it is already our law under another name.
+The most transferable mechanic, and it is already our specification under another name.
 
 `ce-brainstorm` writes a **unified plan** marked `artifact_readiness: requirements-only`. `ce-plan` does **not** write a second document — it **enriches the same file in place** to `implementation-ready`. One artifact carries the work from question to guardrails.
 
@@ -77,7 +78,7 @@ Their words: *"Plans capture the WHAT; the implementing agent figures out the HO
 
 - **U-IDs.** Each unit of work is `U1`, `U2`… and **never renumbered.** Splits keep the original ID on the original concept; new units take the next unused number; deletions leave gaps and gaps are never backfilled. Their stated reason: work references units by U-ID *across plan edits*, so renumbering silently breaks every reference.
 
-  That is [our index law](04-the-member-audit.md), discovered independently: *authored indexes survive the binding; resolution asks the index, never the position.*
+  That is [our index specification](04-the-member-audit.md), discovered independently: *authored indexes survive the binding; resolution asks the index, never the position.*
 
 - **Origin tracing.** Requirements (`R`), actors (`A`), flows (`F`), acceptance examples (`AE`) from the brainstorm **cite into** the units and test scenarios that realize them — `Covers AE3. <scenario>` — and every section is verified before finalization so *nothing silently drops*.
 
@@ -91,7 +92,7 @@ Not "write down what you learned." Six specific mechanisms:
 2. **One learning per run.** Batching breaks their grounding and cross-referencing.
 3. **Retrieval frontmatter, not prose.** `module`, `date`, `problem_type`, `component`, `severity`, plus `symptoms` (1–5 observable), `root_cause` and `resolution_type` from **closed enumerations**. Findability is a schema, not a hope.
 4. **Overlap detection across five dimensions** — problem statement, root cause, solution approach, referenced files, prevention rules. High overlap (4–5) → **update the existing doc**, do not create a second. *"Two docs describing the same problem inevitably drift."*
-5. **The discoverability check, every run.** Does the project's instruction file lead a future agent to the knowledge store? If not, propose the smallest addition. Their line: *"the knowledge store only compounds value when it's findable."* That is our [synopsis law](../../../../.claude/library/bookkeeping/09-on-synopsis.md) — and [the cover/chapter gap](../../../../.claude/library/bookkeeping/03-on-covers.md) is the failure it prevents.
+5. **The discoverability check, every run.** Does the project's instruction file lead a future agent to the knowledge store? If not, propose the smallest addition. Their line: *"the knowledge store only compounds value when it's findable."* That is our [synopsis specification](../../../../.claude/library/bookkeeping/09-on-synopsis.md) — and [the cover/chapter gap](../../../../.claude/library/bookkeeping/03-on-covers.md) is the failure it prevents.
 6. **Grounding validation.** A script checks cited paths, commit SHAs, links, and leftover drafting scaffold; then a read-only validator **verifies code-behaviour claims by quoting the defining source line.** That is *cite-or-stop*, mechanized.
 
 ## How sessions work — the part we lack entirely
@@ -112,14 +113,14 @@ The finding that shapes it: **their artifacts are our books, and their identifie
 
 | their mechanism | our expression |
 |---|---|
-| unified plan, state changing in place | a chapter, edit-first — already law |
-| U-IDs, never renumbered | the index law — already law |
+| unified plan, state changing in place | a chapter, edit-first — already specification |
+| U-IDs, never renumbered | the index specification — already specification |
 | origin tracing (R/A/F/AE → U) | keyed references, the legend — already built |
 | `docs/solutions/` + frontmatter | **a book indexed by the problem** — missing |
 | `CONCEPTS.md` | **a vocabulary book per branch** — missing |
-| discoverability check | the cover and synopsis laws — already law, never enforced per-learning |
-| grounding validation | cite-or-stop — law, never mechanized |
-| overlap → update, not duplicate | [tending](../../../../.claude/library/teamspeak/06-tending.md) — already law |
+| discoverability check | the cover and synopsis specifications — already specification, never enforced per-learning |
+| grounding validation | cite-or-stop — specification, never mechanized |
+| overlap → update, not duplicate | [tending](../../../../.claude/library/teamspeak/06-tending.md) — already specification |
 | the handoff | **missing entirely** |
 
 **Six steps, in order.**
@@ -132,7 +133,7 @@ The finding that shapes it: **their artifacts are our books, and their identifie
 
 **4. The book of solved problems.** Indexed by the problem, which is the axis our library lacks — today a lesson is filed by *who learned it*. Cover carries symptoms, not conclusions; each chapter is one problem with the two-track shape; retrieval fields adapted from their schema to our domain. Identity-level for process learnings, branch-level for code. *Name proposed below.*
 
-**5. The vocabulary book, per branch.** Every word the branch has ruled on, what it means, and what it is not. Seeded from [the class register](../the-semantics-of-books/08-the-symbolizing-dyad-and-the-register.md), [On Kinds](../../../../.claude/library/bookkeeping/15-on-kinds.md), and 47's rulings. Under [the naming law](../../../../.claude/library/bookkeeping/15-on-kinds.md) this is worth more to us than to them. *Name proposed below.*
+**5. The vocabulary book, per branch.** Every word the branch has ruled on, what it means, and what it is not. Seeded from [the class register](../the-semantics-of-books/08-the-symbolizing-dyad-and-the-register.md), [On Kinds](../../../../.claude/library/bookkeeping/15-on-kinds.md), and 47's rulings. Under [the naming specification](../../../../.claude/library/bookkeeping/15-on-kinds.md) this is worth more to us than to them. *Name proposed below.*
 
 **6. The session boundary.** Their handoff in our terms: temporary, pointer-first, naming what is load-bearing at each reference, carrying abandoned wrong turns, **not** duplicating a chapter, and untrusted on resume. Where it lives is Libby's to place — it is explicitly *not* permanent library content, which makes it the first artifact we hold outside the library on purpose.
 
@@ -140,7 +141,7 @@ The finding that shapes it: **their artifacts are our books, and their identifie
 
 Worked through [On Kinds](../../../../.claude/library/bookkeeping/15-on-kinds.md) and its two filters; losers recorded.
 
-- **`casebook`** — the body of solved problems. A real kind of book (law, medicine), one word, *a collection of cases gathered for study and reference*. Lost: *digest* (implies condensation), *register* (names the keeping, not the cases), *handbook* (instructions, not accounts).
+- **`casebook`** — the body of solved problems. A real kind of book (specification, medicine), one word, *a collection of cases gathered for study and reference*. Lost: *digest* (implies condensation), *register* (names the keeping, not the cases), *handbook* (instructions, not accounts).
 - **`lexicon`** — the vocabulary book. A real kind of book, one word, *the words of a field, defined*. Lost: *glossary* (apparatus — a part of a book, fails filter one), *dictionary* (wrong scope), *thesaurus* (groups by meaning).
 - **The workflow chapters need no new name** — *workflow* is Doug's word and they are chapters of Teamsmanship.
 - **The handoff** — their word, kept until we have used one and know what ours is.
@@ -165,7 +166,7 @@ Worked through [On Kinds](../../../../.claude/library/bookkeeping/15-on-kinds.md
 
 Everything below is compiled and validating. Skills compile from library chapters, so each chapter is the source and `.claude/skills/<name>/SKILL.md` is its output.
 
-**The specification** — [Librarianship 17: Compounding](../../../../.claude/library/..librarianship/17-compounding.md). The law: compounding **distributes** rather than building a parallel library, except for defects, which have no other room.
+**The specification** — [Librarianship 17: Compounding](../../../../.claude/library/..librarianship/17-compounding.md). The specification: compounding **distributes** rather than building a parallel library, except for defects, which have no other room.
 
 **The workflows record** — [Teamsmanship 19: Workflows](../../../../.claude/library/..teamsmanship/19-workflows.md). Four recorded — feature (the adopted one), design, debug, tending — each with steps, gates, and artifacts. Declaring one is **optional**; a sprint that declares none is not doing anything wrong.
 

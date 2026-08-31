@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [Nancy](../../../../.claude/library/..teamsmanship/..team/nancy/nancy-and-the-weight-of-evidence/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -9,7 +10,7 @@
 
 ***The title is a proxy and stands for correction.*** *It is taken from Doug's own word — `$Formula` — and from the sentence that says what the word means: **"a formula is what stands for something else. We replace a formula for what it symbolizes."***
 
-**Identifiers.** Requirements **R170–**, actors **A4–**, flows **F1–**, acceptance examples **AE1–**, risks **K15–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law); a deletion leaves a gap.*
+**Identifiers.** Requirements **R170–**, actors **A4–**, flows **F1–**, acceptance examples **AE1–**, risks **K15–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification); a deletion leaves a gap.*
 
 **Where the code lands.** ***`$Chemistry` only, and a demonstration in its Lab*** — *Doug: **"Just the mechanism. The work in $Chemistry, and a demo."*** The framework work is [`library/chemistry/package`](../../../chemistry/package/) and the demonstration is a new case section in [its Lab](../../../chemistry/package/app/src/sections/). **The chapter sits here rather than in [chemistry's own Projection](../../../chemistry/.lib/projection/) for the same reason [The Look](23-the-look.md) did** — the sprint sequence runs in this book — *and chemistry's Projection is owed an entry at the retro.*
 
@@ -32,7 +33,7 @@
 | [The Condition Report](../the-condition-report/.cover.md) — [S1](../the-condition-report/04-semantics.md#s1) · [S17](../the-condition-report/04-semantics.md#s17) · [I11](../the-condition-report/05-implementation.md#i11) · [I22](../the-condition-report/05-implementation.md#i22) · [The Cleaning](../the-condition-report/06-the-cleaning.md#actionable) | ***the register of what is already owed***, and where `$Type` was ruled and then explicitly deferred |
 | [`Type.tsx`](../../package/src/book/Type.tsx) · [`Annotation.tsx`](../../package/src/book/Annotation.tsx) · [`Author.tsx`](../../package/src/book/Author.tsx) · [`Book.tsx`](../../package/src/book/Book.tsx) | **the consumer this was designed for**, and the state it is actually in |
 | [The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md) · [Inheritance and Composition](../the-semantics-of-books/03-inheritance-and-composition.md) · [The Category](../the-semantics-of-books/12-the-category-and-what-escapes-it.md) | **what a type means in the theory**, and the dynamic-layering question this partly answers |
-| [The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md) | ***the law that governs any work on the render path*** — it has recurred three times |
+| [The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md) | ***the specification that governs any work on the render path*** — it has recurred three times |
 | [Graph databases and recursive hierarchies](../../../../../dna-library/library/claude-dna/conversations/2026-06-17-graph-databases-and-recursive-hierarchies.md) | **the primary source on ancestor resolution and its two hazards** — conflict policy, and termination under self-reference |
 
 ---
@@ -173,7 +174,7 @@ $Type  >  $Book  >  $Dictionary
 
 ## <a id="what-would-be-seen"></a>What would be seen — the Lab, with a small type system of chemistry's own
 
-*[A requirement that cannot be seen satisfied is not a requirement](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-law). Doug: **"If you want to make a little type system for the chemistry demo, to get practice, that would be great."***
+*[A requirement that cannot be seen satisfied is not a requirement](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-specification). Doug: **"If you want to make a little type system for the chemistry demo, to get practice, that would be great."***
 
 <a id="r184"></a>**R184** — **one tag, written several times with different content, standing as different classes**, with the model's own `instanceof` answers shown beside them.
 
@@ -276,7 +277,7 @@ $Type  >  $Book  >  $Dictionary
 |---|---|
 | ***`$Type`, `$Biography`, `$Autobiography` in `lib`*** | ***Doug, this session: "Just the mechanism. The work in `$Chemistry`, and a demo."*** *The consumer is a later sprint, and it is the one [S17](../the-condition-report/04-semantics.md#s17-type) has been waiting for since 2026-08-23.* **The same names appear in [R205](#r205) as chemistry TEST SPECIMENS, which is a different thing and deliberately so.** |
 | ***`valid(writing?: $Writing)`*** | **Doug's own sketch** — *"someone can use the type to validate the piece of writing"* — **and it needs `$Writing`, which is `lib` rather than chemistry.** ***Recorded rather than dropped, because an unwritten deferral is one somebody re-invents.*** |
-| ***the author law's type half*** | [`$Author.valid()`](../../package/src/book/Author.tsx) checks the loop and never the type, **and the card carries no type to check.** *Both are the consumer sprint's, not this one's.* |
+| ***the author specification's type half*** | [`$Author.valid()`](../../package/src/book/Author.tsx) checks the loop and never the type, **and the card carries no type to check.** *Both are the consumer sprint's, not this one's.* |
 | **the 27 hand-written prototype walks** | *A formula catalogue could carry several of them — three decorator registries and `$views$` among them — **and consolidating them is not what was asked.*** **Named so a later sprint can find it.** |
 | **the dormant `$Rep` reflection layer** | **1,063 lines with no caller outside its own test.** *This sprint does not build on it and does not delete it.* |
 
@@ -286,7 +287,7 @@ $Type  >  $Book  >  $Dictionary
 
 <a id="k16"></a>**K16 — a formula resolving to a formula.** *A fixpoint with no stated rule loops.* **[R200](#r200) exists because of this**, and the primary source names it as one of the two unavoidable hazards of self-describing structure.
 
-<a id="k17"></a>**K17 — augment runs on every render.** ***A resolution that allocates, parses or constructs per pass turns a cheap walk into a hot one*** — and [the law that has recurred three times](../solutions/16-the-parse-that-woke-its-own-parents.md) is that **a reading called during a render must be HELD, not for speed but for termination.** *A parsing formula ([R197](#r197)) is exactly the shape that has caused it before.*
+<a id="k17"></a>**K17 — augment runs on every render.** ***A resolution that allocates, parses or constructs per pass turns a cheap walk into a hot one*** — and [the specification that has recurred three times](../solutions/16-the-parse-that-woke-its-own-parents.md) is that **a reading called during a render must be HELD, not for speed but for termination.** *A parsing formula ([R197](#r197)) is exactly the shape that has caused it before.*
 
 <a id="k18"></a>**K18 — forcing ancestor exemplars into existence.** *[R175](#r175) constructs objects nobody asked for, once per ancestor class.* **It buys determinism and costs a constructor; a class with a side-effecting constructor would be surprised.** ***Raised in the room and left in: the alternative is a rule whose outcome depends on load order.***
 
@@ -447,7 +448,7 @@ $Type  >  $Book  >  $Dictionary
 
 **Doug's own sentence is the fix:** *"we can use the component to make instances as needed."* **A specimen is a thing to COPY**, so `cache` now stamps `$isTemplate$` on what it files and every site gets its own derivative, inheriting the specimen's state through the prototype and writing to nobody else's.
 
-> ***This is exactly what [the validatable law](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-law) is for.*** **31 green promises did not see it and one screenshot did**, because the suite asserted that two specimens differ and never that one site cannot disturb another. *The promise exists now, and it goes red without the stamp.*
+> ***This is exactly what [the validatable specification](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-specification) is for.*** **31 green promises did not see it and one screenshot did**, because the suite asserted that two specimens differ and never that one site cannot disturb another. *The promise exists now, and it goes red without the stamp.*
 
 ### <a id="r199-corrected"></a>R199 DID NOT HOLD AS FIRST BUILT — and it was made true rather than amended
 
@@ -536,11 +537,11 @@ $Type  >  $Book  >  $Dictionary
 | **configuration** | ***in each class's own constructor.*** Nothing reaches in from outside |
 | ***no default*** | **the branch declares none, so an unclaimed word is an error rather than a shrug** — which is what a type system should do |
 
-***What is on the page, and it is the claim Doug made:*** **THE SAME THREE PARTS, CLAIMED TWICE.** *Cover · Entry · Entry passes as a `Dictionary` and fails as a `Biography`, naming **part 2** and **part 3** by position.* **Nothing about the parts changed — only the word — and with it the law they are held to.** *Beside it, an autobiography whose subject did not write it fails on exactly that clause and no other.*
+***What is on the page, and it is the claim Doug made:*** **THE SAME THREE PARTS, CLAIMED TWICE.** *Cover · Entry · Entry passes as a `Dictionary` and fails as a `Biography`, naming **part 2** and **part 3** by position.* **Nothing about the parts changed — only the word — and with it the specification they are held to.** *Beside it, an autobiography whose subject did not write it fails on exactly that clause and no other.*
 
 **And the refusals now name the taxonomy out loud:** `$Biography stands for nothing called "Dictionary" — it stands for Book, Biography, Autobiography, Auto-biography.` beside `$Type stands for nothing called "Novel" — it stands for Cover, Chapter, Entry, Book, Biography, Autobiography, Auto-biography, Dictionary.` ***The climb is legible in the two lists.***
 
-**The third case became stronger too:** the scope no longer re-dresses a drawing, it **stands a STRICTER CLASS behind the same word** — *"this library asks for three chapters"* — so the same `<Type>Autobiography</Type>` passes on the left and fails on the right, and the work never learns it was judged by a different law.
+**The third case became stronger too:** the scope no longer re-dresses a drawing, it **stands a STRICTER CLASS behind the same word** — *"this library asks for three chapters"* — so the same `<Type>Autobiography</Type>` passes on the left and fails on the right, and the work never learns it was judged by a different specification.
 
 ### <a id="one-word-six-worlds"></a>AND IT STILL WASN'T A DEMONSTRATION — *"a bunch of identical cards with some green and red"*
 
@@ -618,7 +619,7 @@ $Type  >  $Book  >  $Dictionary
 
 1. ***`$Type` in `lib`*** — the consumer this was built for, waiting since [S17](../the-condition-report/04-semantics.md#s17-type) on 2026-08-23. **`$Type extends $Annotation` already, so it cannot also extend `$Formula`** — [the single-inheritance wall](#raised-not-fixed) is the first thing that sprint meets.
 2. ***`valid(writing?: $Writing)`*** — Doug's sketch, scoped out of this sprint, recorded [here](#not-in-scope).
-3. ***the author law's type half*** — `$Author.valid()` checks the loop and never the type, and the card carries no type to check.
+3. ***the author specification's type half*** — `$Author.valid()` checks the loop and never the type, and the card carries no type to check.
 4. ***`instance.Component` is documented in [Identity](../../../chemistry/.lib/particle/01-identity.md) and does not exist*** — someone else's chapter, and it means a **non-template specimen has no public component name**, so only a class-level specimen can be re-dressed through `$`.
 5. **The 27 hand-written prototype walks** a formula catalogue could carry — named, not taken.
 

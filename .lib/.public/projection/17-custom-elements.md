@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -539,7 +540,7 @@ an element  →  is it one of my parts?
 
 **Three distributed at this session boundary**, after the two the sprint closed with:
 
-1. ***[The sentences that said the opposite](../solutions/22-the-sentences-that-said-the-opposite.md)*** — **a new chapter.** The vocabulary sweep read as complete and inverted 36 sentences, because `X refuses Y` and `X fails Y` put the subject on opposite sides. **Its law also went into [On Authorship](../../../../.claude/library/bookkeeping/13-on-authorship.md), at the librarian's rename mandate** — which had claimed a vocabulary rename never changes what a chapter says, and this one did. *The keyword vocabulary gained `mechanical-edit`.*
+1. ***[The sentences that said the opposite](../solutions/22-the-sentences-that-said-the-opposite.md)*** — **a new chapter.** The vocabulary sweep read as complete and inverted 36 sentences, because `X refuses Y` and `X fails Y` put the subject on opposite sides. **Its specification also went into [On Authorship](../../../../.claude/library/bookkeeping/13-on-authorship.md), at the librarian's rename mandate** — which had claimed a vocabulary rename never changes what a chapter says, and this one did. *The keyword vocabulary gained `mechanical-edit`.*
 2. ***[The checkpoint that compared a number to itself](../solutions/18-the-checkpoint-that-compared-a-number-to-itself.md)*** — **edited, a second appearance.** That chapter's own rule was *name two walks*; this promise named two and was still green by coincidence, because a deliberate one-word difference and an accidental one cancelled. ***The tell added: a promise that goes RED when you FIX something was measuring the defect.***
 3. ***[The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md)*** — **edited, a fifth appearance.** The stale-server rule recurred *after being filed*, and the interesting part is that **its own fix did not hold** — a rule a person must remember is not a fix. **The structural options are named there, and neither is built.**
 

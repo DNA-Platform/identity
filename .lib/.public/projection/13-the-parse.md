@@ -1,6 +1,7 @@
 # The Parse
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -114,7 +115,7 @@ Each claim was checked against the source, and the counts are what make the requ
 
 - **R7. The parse does not judge what it composes.** `divide` returns no empty pieces, so everything composed is intended writing; the `valid()` filter and its console warning go, and an invalid part is a **validation failure** handled by the system that handles validation failures. *Seen: a book with one malformed piece drawing the framework's own exception where that part stands, the rest of the page intact, and the parts count equal to the writing.*
 
-- **R8. The word laws admit what people write.** `33A3a-112and-skjdfh` is one word. *Seen: that exact string surviving as one word in the parts.*
+- **R8. The word specifications admit what people write.** `33A3a-112and-skjdfh` is one word. *Seen: that exact string surviving as one word in the parts.*
 
 - **R9. `valid()` states its reasons into the validation in flight.** Not a return value — it plugs into the accumulator `$check` already writes to, so **parameter mismatches and validity reasons are collected together and raised once**, and a reader can see whether they are related. What is raised is what the UI plugs into, and it is an exception rather than a bare `Error`. *Seen: one bond failing on both a parameter and a validity constraint reporting both in one message, drawn in place.*
 
@@ -181,7 +182,7 @@ Each claim was checked against the source, and the counts are what make the requ
 
 ## Open, and named rather than assumed
 
-*Each of these is design owed. Under [the law filed against Sprint 48](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md), none of them gets files or scenarios in the plan until it can answer **what runs, and when**.*
+*Each of these is design owed. Under [the specification filed against Sprint 48](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md), none of them gets files or scenarios in the plan until it can answer **what runs, and when**.*
 
 - **Whether `compose` receives elements rather than text.** A word-grade part written inside a section is *too low*, so its copy joins the text run and the object does not survive into the sentence that would hold it. Carrying elements down would keep it. R10 fixes the sentence count without this; whether a written part should reach its own level is unanswered.
 - **What a phrase does with several words.** Doug's fallback is explicit — *"if not we treat it as one"* — so the cheap form is buildable and the rich form is not yet designed.
@@ -262,7 +263,7 @@ Each claim was checked against the source, and the counts are what make the requ
 
 - **U8 — The parse stops judging what it composes.** *Mechanism: `divide` returns no empty pieces at any level; the `valid()` filter and its console warning are deleted; an invalid part stays in the parts carrying its failure. Files: `writing/Writing.tsx` and each level's `divide`. Depends on: U3. Realizes: R7. **Visible end:** a book with one malformed piece drawing the exception where that part stands, the rest of the page intact, and the parts count equal to the writing.*
 
-- **U9 — The word laws admit what people write.** *Mechanism: `$Word.valid()` and `$Sentence.divide` are widened to the characters a word actually contains; each states what it means in its own words. Files: `writing/Word.tsx`, `writing/Sentence.tsx`. Depends on: U8. Realizes: R8. **Visible end:** `33A3a-112and-skjdfh` surviving the parse as one word.*
+- **U9 — The word specifications admit what people write.** *Mechanism: `$Word.valid()` and `$Sentence.divide` are widened to the characters a word actually contains; each states what it means in its own words. Files: `writing/Word.tsx`, `writing/Sentence.tsx`. Depends on: U8. Realizes: R8. **Visible end:** `33A3a-112and-skjdfh` surviving the parse as one word.*
 
 ### Validation
 
@@ -278,7 +279,7 @@ Each claim was checked against the source, and the counts are what make the requ
   **Bounded, and this is the one that could run away:** a composite is pulled whole before any mark inside it is read, so mathematics keeps its underscores. If the notation starts reaching past [D9](#d9)'s list, it stops and reports.
 
 - **U13 — A composed part carries a parent.** *Mechanism: the walk threads lineage into what it composes, which is safe once U2 has landed and nothing is written. Files: `writing/Writing.tsx`. Depends on: U2, U3, U8. Realizes: R12. **Visible end:** a grandchild of a book resolving a registration made on the book — and **both drivers still completing**, which is the test that failed last sprint.*
-  **This is the unit that reverses a filed law.** [The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md) says region-scoped substitution is unavailable; when this lands, that chapter is amended rather than left standing.
+  **This is the unit that reverses a filed specification.** [The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md) says region-scoped substitution is unavailable; when this lands, that chapter is amended rather than left standing.
 
 - **U14 — The demonstration.** *Mechanism: one registration on one book's component scope replaces the class its sentences are drawn with; the book beside it is untouched; the framework line that produced both is shown by the existing `?raw` drawer. Files: `app/src/sections/`. Depends on: U13. Realizes: R12's visible half, and AE15. **Visible end: two books, one `$Book` class, one registration, every sentence in one of them redrawn and none in the other — with no subclass of `$Section` or `$Paragraph` in the diff.** This is the thing a hand-authored page cannot fake.*
 
@@ -329,7 +330,7 @@ Each claim was checked against the source, and the counts are what make the requ
 
 **U3 — the walk, as a tool.** [`parse(elements, accepts, divide, compose)`](../../package/src/writing/Writing.tsx) — one function, called by every level, with Doug's three-way rule: **too high throws**, too low contributes its copy to the prose, at an accepted level the element **is** the part. `parts()` is now four lines that call it, and a level says what it accepts through `accepts`. Seven promises in [`parse.test.tsx`](../../package/tests/writing/parse.test.tsx), **two of them watched red first**.
 
-**U4 — everything below document is inline.** `$Section` and `$Figure` no longer declare themselves non-inline, and **`gathered()` is deleted** — chemistry's own grouping does its work. `$Writing`'s bond now **throws** if a sequence reaches it, which is how the law states itself rather than being remembered.
+**U4 — everything below document is inline.** `$Section` and `$Figure` no longer declare themselves non-inline, and **`gathered()` is deleted** — chemistry's own grouping does its work. `$Writing`'s bond now **throws** if a sequence reaches it, which is how the specification states itself rather than being remembered.
 
 **U5 — a section composes sections or paragraphs.** `accepts` becomes `['section','paragraph']`; nesting is **structural**, and `paragraphs` reaches through it exactly as `$Book.paragraphs` always has. Written parts may be sections; composed parts are always paragraphs, because prose only divides into paragraphs.
 
@@ -347,15 +348,15 @@ Each claim was checked against the source, and the counts are what make the requ
 
 **U8 — the parse does not judge.** The `valid()` filter and its console warning are gone: an empty piece is not a piece, and a part that will not validate stays in the parts carrying its failure.
 
-**U9 — the word laws admit what people write.** `33A3a-112and-skjdfh` is one word; a hyphen joins rather than divides.
+**U9 — the word specifications admit what people write.** `33A3a-112and-skjdfh` is one word; a hyphen joins rather than divides.
 
 **U10 — validation states its reasons.** `$valid(condition, reason)` in chemistry, built beside `$check` and working the same way — it **returns its condition** and records the reason, so `valid()` keeps its boolean and none of the 76 call sites moved. `assertValid` stops throwing and states; `evaluate()` raises **once** with parameter mismatches and validity reasons together. Three classes say their own sentence. **5 promises**, including the one that breaks the moment someone puts an `&&` in front of a `$valid` call.
 
 **U11 — `$Phrase`, and a name stops claiming to be a sentence.** Word grade, admitting what a name contains. `$Author`, `$Subject` and `$Canonical` moved. An author written mid-paragraph now leaves the sentence count at **one**.
 
-**U13 — the parse writes NOTHING, so it may carry a parent.** Not a number, not a role: **mentioning propagates by lineage** — a part is mentioned if what holds it is — so U13 and mention-propagation turned out to be one mechanism, exactly as this chapter predicted before it bit. **Both drivers green with lineage threaded**, which is [the law filed as solutions/16](../solutions/16-the-parse-that-woke-its-own-parents.md) **reversed**: region-scoped substitution was unavailable *because the parse wrote*, and it no longer does.
+**U13 — the parse writes NOTHING, so it may carry a parent.** Not a number, not a role: **mentioning propagates by lineage** — a part is mentioned if what holds it is — so U13 and mention-propagation turned out to be one mechanism, exactly as this chapter predicted before it bit. **Both drivers green with lineage threaded**, which is [the specification filed as solutions/16](../solutions/16-the-parse-that-woke-its-own-parents.md) **reversed**: region-scoped substitution was unavailable *because the parse wrote*, and it no longer does.
 
-> ***CORRECTED 2026-08-20, and the sentence above is the one that hid it.*** **The parse does not write nothing — it writes the parent**, at five sites, and `parent` is a chemical's own setter. *That write was harmless for a sprint and a half because nothing called `parts()` inside a render; the first drawing that did died of heap exhaustion.* **[The full diagnosis is filed where the law lives](../solutions/16-the-parse-that-woke-its-own-parents.md#it-came-back-and-the-discharge-had-missed-a-third-write--the-theme-2026-08-20)**, and the law now reads: *a parse may not be given a parent while it mutates what it makes — **and giving the parent is one of the mutations***.
+> ***CORRECTED 2026-08-20, and the sentence above is the one that hid it.*** **The parse does not write nothing — it writes the parent**, at five sites, and `parent` is a chemical's own setter. *That write was harmless for a sprint and a half because nothing called `parts()` inside a render; the first drawing that did died of heap exhaustion.* **[The full diagnosis is filed where the specification lives](../solutions/16-the-parse-that-woke-its-own-parents.md#it-came-back-and-the-discharge-had-missed-a-third-write--the-theme-2026-08-20)**, and the specification now reads: *a parse may not be given a parent while it mutates what it makes — **and giving the parent is one of the mutations***.
 
 **U18 — the level views, and they are Doug's proof.** The manifold's model view reads the **model** at four altitudes — sections, paragraphs, sentences, words — instead of a hand-copied structure, and every address is the position a reference resolves. **Driven: "260 words as paragraphs, 260 as words."** One count at every altitude, because each is a reading of one model rather than a second parse of the same text.
 
@@ -374,13 +375,13 @@ Each claim was checked against the source, and the counts are what make the requ
 ## What the building found
 
 - **Two changes each surfaced their own requirement.** Making `$Figure` inline **hid it from the walk**, because the walk still used `inline` as its standing test — which is precisely what R1 removes, so level alone now decides. And making `$Section` inline meant a document's sections arrive **grouped in its block**, so `$Document` reads them off the block by level: the same three-way rule, one grade up.
-- **Nothing below a document may declare itself non-inline, and the bond says so.** Two test classes still did; the throw caught both. The law is enforced where it is broken rather than remembered where it is written.
+- **Nothing below a document may declare itself non-inline, and the bond says so.** Two test classes still did; the throw caught both. The specification is enforced where it is broken rather than remembered where it is written.
 - **A relative `-p` typechecks NOTHING and exits 0.** Running `tsc -p tsconfig.json` from `app/` reported clean while the gate reported four real errors — [the fifth appearance of the same defect](../solutions/14-the-green-that-exercised-nothing.md), and the gate caught it only because it uses an absolute path and prints its scope. **The gate was right and the shortcut was the lie.**
 - **A promise already said the number was the position.** `ordinary.test.tsx` *(since deleted)* asserted `parts().map(p => p.index)` equals `parts().map((_, i) => i)`. We were storing a value the suite proved derivable.
 - **The contents was printing its number twice.** `view()` wraps rows in an `<ol>`, and `row()` then printed `{row.copy} {row.index}` — the ordered list's own numbering plus a hand-written one. Removing the stored number removed a duplicate nobody had meant to write.
 - **The demo was keeping app state in the model.** The manifold did `mark.index = this.ribbons.length` — a ribbon's slot among the other ribbons, stored in the writing's number because a number happened to be there. `$RibbonMark` now carries its own `$slot`.
-- **Addressing below a section moved from 1-based to 0-based**, and that is the derivation's own law finally holding: `$Section.first` was 0 while every other level was 1, and `$Composible$.canonical` has always been `parts()[0]`. The canonical now stands at position zero at every level. **It moves visible addresses in the manifold and the parallel text** — flagged rather than buried.
-- **`at(n).read()` is identity-equal to `parts()[n]` only for HELD parts** — a book's chapters and a document's sections. Below that a reading builds fresh objects each call, so a location stands for the same *writing* and not the same object. That was already the suite's law under another name; the position promises now say it explicitly.
+- **Addressing below a section moved from 1-based to 0-based**, and that is the derivation's own specification finally holding: `$Section.first` was 0 while every other level was 1, and `$Composible$.canonical` has always been `parts()[0]`. The canonical now stands at position zero at every level. **It moves visible addresses in the manifold and the parallel text** — flagged rather than buried.
+- **`at(n).read()` is identity-equal to `parts()[n]` only for HELD parts** — a book's chapters and a document's sections. Below that a reading builds fresh objects each call, so a location stands for the same *writing* and not the same object. That was already the suite's specification under another name; the position promises now say it explicitly.
 
 ## Correction to the plan, made before it bit
 
@@ -400,7 +401,7 @@ Each claim was checked against the source, and the counts are what make the requ
 | chemistry Lab `verify-all.mjs` | exit 0 | **exit 0** |
 | the word *markdown* in `src/` | — | **ZERO** |
 
-**Chemistry was rebuilt before lib ran against it**, every time chemistry changed — the stale-build law, which this branch has filed three times.
+**Chemistry was rebuilt before lib ran against it**, every time chemistry changed — the stale-build specification, which this branch has filed three times.
 
 ## What this compounded — every room it edited
 
@@ -409,12 +410,12 @@ Each claim was checked against the source, and the counts are what make the requ
 | room | what went there | why there |
 |---|---|---|
 | [The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md) | **rewritten as settled** — three declarations instead of four, the union at section grade, the canonical at zero, one block, level-alone, the parse writing nothing, the notation as the levels' own, `$Phrase`, `$valid` | it is the account a session starts from instead of a sprint record, and a third of it had become false |
-| [The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md) | **DISCHARGED** — the law holds, its condition was removed | a filed law whose limit is gone is more dangerous than no law |
+| [The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md) | **DISCHARGED** — the specification holds, its condition was removed | a filed specification whose limit is gone is more dangerous than no specification |
 | [The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) | **edited, not duplicated** — the relative `-p`, and the same disease inverted as a **false red** | overlap: both are a number true of a scope nobody stated |
 | [The regex that remembered where it stopped](../solutions/17-the-regex-that-remembered-where-it-stopped.md) | **new** — `lastIndex` surviving a call, and the tell | a genuinely new mechanism class; nothing filed carried it |
 | [The checkpoint that compared a number to itself](../solutions/18-the-checkpoint-that-compared-a-number-to-itself.md) | **new** — a green that could not go red, caught by Doug reading the screen | watching a gate go red would not have caught it, which is why it is its own chapter |
-| [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md) | **a third law** — a view READS, it does not re-derive | not a defect: a practice, and that book already holds the laws for views |
-| [Chapter zero](00-planning.md) | **compacted** — validation-says-why marked done with the 736 estimate corrected to 76; *how writing refers to writing* closed; the type-keyword note compressed | its own law is that notes are overwritten when addressed |
+| [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md) | **a third specification** — a view READS, it does not re-derive | not a defect: a practice, and that book already holds the specifications for views |
+| [Chapter zero](00-planning.md) | **compacted** — validation-says-why marked done with the 736 estimate corrected to 76; *how writing refers to writing* closed; the type-keyword note compressed | its own specification is that notes are overwritten when addressed |
 
 **Not filed, deliberately:** the manifold's string-sniffing, the hand-built addresses and the borrowed model member are **one lesson**, and it is a practice rather than a defect — so it went to Ways of Reading whole instead of becoming three Solutions chapters that would drift apart.
 

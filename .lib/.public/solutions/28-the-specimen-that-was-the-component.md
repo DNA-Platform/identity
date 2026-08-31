@@ -49,6 +49,6 @@ Object.defineProperty(this, $isTemplate$, { value: true, configurable: true });
 
 ***The demonstration found this and the suite did not.*** The suite could only see it by asserting a *negative interaction between two sites*, which is not a thing a unit test naturally reaches for — and the screen showed it in one glance, because two tiles that should have differed were the same colour.
 
-**[The validatable law](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-law) is usually argued as a reviewability rule.** *It is also a detection mechanism*, and this is the case that proves it: **a demonstration is a test with a very wide assertion**, and the assertion it makes — *everything on this page is what it should be* — is one no suite writes down.
+**[The validatable specification](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-specification) is usually argued as a reviewability rule.** *It is also a detection mechanism*, and this is the case that proves it: **a demonstration is a test with a very wide assertion**, and the assertion it makes — *everything on this page is what it should be* — is one no suite writes down.
 
 *The promise exists now — `A PROP AT ONE SITE NEVER REACHES ANOTHER` in [`formula.test.tsx`](../../../chemistry/package/tests/abstraction/formula.test.tsx) — and it goes red without the stamp. It was written **after** the screen found it, which is the honest order and worth recording as such.*

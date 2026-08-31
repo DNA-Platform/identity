@@ -18,7 +18,7 @@ So: **compounding distributes.** A lesson goes where its subject already lives.
 |---|---|
 | **a defect** — something broke, was diagnosed, was fixed | the branch's [Solutions](../library-tree/06-solutions.md) book, one chapter per problem, indexed by symptom |
 | how this branch's code behaves, as a practice rather than a break | the branch library, beside the code it concerns |
-| a protocol, a law, a convention for the team | the main library — [Teamsmanship](../..teamsmanship/.cover.md), [Bookkeeping](../bookkeeping/.cover.md), [Teamspeak](../teamspeak/.cover.md) |
+| a protocol, a specification, a convention for the team | the main library — [Teamsmanship](../..teamsmanship/.cover.md), [Bookkeeping](../bookkeeping/.cover.md), [Teamspeak](../teamspeak/.cover.md) |
 | what a word means here, or what it is not | the chapter that already defines that word |
 | what a teammate learned *about themselves* | that teammate's own library, in first person, by them alone |
 

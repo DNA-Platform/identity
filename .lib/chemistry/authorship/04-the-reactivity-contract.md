@@ -165,8 +165,11 @@ This is the last-resort API. Most code never needs it.
 - `useContext()` — reach into `this.$parent` or hold a reference.
 - `React.memo(Component)` — not applicable; chemicals manage their own rendering.
 - `useSyncExternalStore()` — put the external store on a chemical.
+- **`this.items = [...this.items, one]`** — ***the immutability idiom, and it is the one that survives longest because it does not look like a hook.*** In React you replace a collection because nothing watches it; here [in-place mutation is detected](../reactivity/04-collection-mutation.md) — `snapshot()` in [`scope.ts`](../../package/src/implementation/scope.ts) deep-clones a collection on read and `finalize()` diffs it, so **`Array.push`, `Map.set` and `Set.add` are all seen with the reference unchanged.** Replacing the array allocates a second one and changes its identity, which is a **larger** signal than the push it was avoiding. ***Write `this.items.push(one)`.***
 
 Every React primitive has a natural OO replacement.
+
+***And the ones that hurt most are not primitives at all.*** *A hook has a name you can search for; an idiom is just how you learned to write. The spread-to-replace above went into nine files of `@dna-platform/lib` without anybody writing the word React once.*
 
 ---
 

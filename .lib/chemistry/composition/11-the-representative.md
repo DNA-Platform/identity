@@ -4,7 +4,7 @@
 
 ---
 
-*Shipped in [The Representative](../../../.public/.lib/projection/12-the-representative.md). Every law below is a promise in [`representative.test.tsx`](../../package/tests/abstraction/representative.test.tsx), which is the surface's specification and reads in the order of the forms.*
+*Shipped in [The Representative](../../../.public/.lib/projection/12-the-representative.md). Every specification below is a promise in [`representative.test.tsx`](../../package/tests/abstraction/representative.test.tsx), which is the surface's specification and reads in the order of the forms.*
 
 ## What `$` is
 
@@ -154,7 +154,7 @@ $(Book,parts.TableOfContents)(MyContents);   // and this is what my book uses
 
 Downstream code imports `Book` and renders it. **Everything beneath it resolves the way this module said**, and nothing beneath it mentions a registration.
 
-**Registration appears only in configuration modules.** Everywhere else writes `$(X)` to ask. That is the [composition root's](https://blog.ploeh.dk/2019/06/17/composition-root-location/) own law — the container never leaks past the place that composes — and here it is a grep with an empty result.
+**Registration appears only in configuration modules.** Everywhere else writes `$(X)` to ask. That is the [composition root's](https://blog.ploeh.dk/2019/06/17/composition-root-location/) own specification — the container never leaks past the place that composes — and here it is a grep with an empty result.
 
 **Configure before anything renders.** The framework establishes a scope before it calls a bond constructor and before it calls a view; a registration arriving inside either is an error, because a configuration that changes mid-render would mean a component resolving two ways in one paint.
 

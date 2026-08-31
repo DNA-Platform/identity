@@ -15,7 +15,7 @@
 ## What did not work
 
 - **Looking for an off-by-one.** There was no `- 1` anywhere; the arithmetic was `+ 1` and correct.
-- **Suspecting the index law.** Indexes were fine; the number was never coming from an index.
+- **Suspecting the index specification.** Indexes were fine; the number was never coming from an index.
 
 ## The mechanism
 

@@ -52,7 +52,7 @@ Never a bare `PASS`. A count of files, a count of known debt **named by identity
 
 **The habit that would have caught it, and it is cheap: watch the gate go red before trusting its green.** Break the thing it checks, on purpose, and confirm it fails *with a reason*. Three deliberate breakages took minutes here and produced three named failures. **A gate nobody has watched fail is a relay wearing infrastructure's clothes.**
 
-*Filed as the third appearance of [the stale-build law](05-the-suite-that-passed-against-a-stale-build.md) — and a symptom filed three times is a cause nobody has fixed. The cause is not any one gate. It is reporting a number without its scope.*
+*Filed as the third appearance of [the stale-build specification](05-the-suite-that-passed-against-a-stale-build.md) — and a symptom filed three times is a cause nobody has fixed. The cause is not any one gate. It is reporting a number without its scope.*
 
 ---
 

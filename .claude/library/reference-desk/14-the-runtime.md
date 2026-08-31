@@ -5,7 +5,7 @@
 
 ---
 
-**The app is the runtime. The CLI is its face.** Everything in [`.claude/src/`](../../src/) knows how to drive Claude Desktop; everything in [`.claude/src/cli/`](../../src/cli/) knows how to *ask* it and how to *show* the answer. That division is not stylistic — it is [ch.5's rule](05-coding-philosophy.md) applied to a new caller: *if a script reaches below the `Claude` class, the class is missing a method.* A CLI is a script with a prompt attached, and it obeys the same law.
+**The app is the runtime. The CLI is its face.** Everything in [`.claude/src/`](../../src/) knows how to drive Claude Desktop; everything in [`.claude/src/cli/`](../../src/cli/) knows how to *ask* it and how to *show* the answer. That division is not stylistic — it is [ch.5's rule](05-coding-philosophy.md) applied to a new caller: *if a script reaches below the `Claude` class, the class is missing a method.* A CLI is a script with a prompt attached, and it obeys the same specification.
 
 This chapter grows as the runtime grows. It describes what exists; the plan for what comes next is [Sprint 102](../projected-identity/74-sprint-102--lifting-the-app-into-the-cli.md).
 
@@ -58,9 +58,9 @@ This is the same read the [introspect tool](09-codebase-index--introspect.ts) pe
 
 ## The three kinds, and where they come from
 
-Every command is classified by what its signature promises. The classification is not a taxonomy someone invented for the CLI — each kind is one of the app's existing laws, read back out of the code:
+Every command is classified by what its signature promises. The classification is not a taxonomy someone invented for the CLI — each kind is one of the app's existing specifications, read back out of the code:
 
-| Kind | Test | The law it comes from |
+| Kind | Test | The specification it comes from |
 |---|---|---|
 | **Exit** | returns a single **place** | [Navigation returns the next page](10-architecture-patterns.md#navigation-returns-the-next-page) — a place-typed return *is* a door |
 | **Look** | parameterless, returns data | [Every action gets a confirmation read](05-coding-philosophy.md); reading is how you know where you are |

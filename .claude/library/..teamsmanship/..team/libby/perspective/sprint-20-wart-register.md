@@ -8,7 +8,7 @@ Doug's charge for Sprint 20: surface names in `library/.public/package/src` (lib
 
 ## The rule I read every row against
 
-The semantics of the classes and members must be the semantics of **libraries, books, and writing**. A name fails when it borrows from another domain — programming (`emit`, `walk`, `where`, `xOf`), the courtroom (`verdict`), geography (`location`, `path`, `route`), shipping (`manifest`), or my own coinages (`seam`, `law`) — and a name is *suspect* when it collides with another name meaning something else.
+The semantics of the classes and members must be the semantics of **libraries, books, and writing**. A name fails when it borrows from another domain — programming (`emit`, `walk`, `where`, `xOf`), the courtroom (`verdict`), geography (`location`, `path`, `route`), shipping (`manifest`), or my own coinages (`seam`, `specification`) — and a name is *suspect* when it collides with another name meaning something else.
 
 ## lib — `package/src`
 
@@ -48,7 +48,7 @@ The semantics of the classes and members must be the semantics of **libraries, b
 ## the documentation jargon — my own, and the two it hides
 
 - **"seam"** (~111 places, mine). In the compiler it names the shared TYPE later stages read instead of the filesystem — a boundary where stages meet without touching. It is not a word of books. The code itself already says the honest word: the walk produces **"a description of a library."** So *the seam* is **the description** (or, where it means where-parts-meet, a book's **spine** — where the gathered pages are bound). Replace it; Doug did not invent it, and it may be hiding the fact that we never named the thing plainly.
-- **"law"** (~85 files, mine). It does **two jobs**, and that is the wart: sometimes it means *what the model REQUIRES* (forced, not chosen — an `$Book` **must** have a cover at zero), and sometimes *what we AGREED* (a decision we could revisit — the shortest title takes the canonical). Those are different words. Forced → a **necessity** (or "the model requires"); agreed → a **convention** (or "our decision"). A library has conventions; a type system has necessities; neither has laws.
+- **"specification"** (~85 files, mine). It does **two jobs**, and that is the wart: sometimes it means *what the model REQUIRES* (forced, not chosen — an `$Book` **must** have a cover at zero), and sometimes *what we AGREED* (a decision we could revisit — the shortest title takes the canonical). Those are different words. Forced → a **necessity** (or "the model requires"); agreed → a **convention** (or "our decision"). A library has conventions; a type system has necessities; neither has specifications.
 
 ## The authorship ruling for this sprint
 

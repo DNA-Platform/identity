@@ -10,11 +10,23 @@ The `$` is a linguistic system, not a naming prefix. Read `$` as "representation
 
 The code is dense by design. "If the code can't be compressed, it must not be simple enough."
 
-- **No blank lines inside methods.** A method is one thought. If it needs blank lines, it is doing too many things.
+- **A method is one thought — and a thought may be written in more than one paragraph.** No blank lines inside a method that does one job in one step; if it needs them to separate unrelated jobs, it is doing too many things. But a method with distinct *phases* may separate them with a blank line, exactly as prose separates paragraphs (Doug, 2026-08-30: *"doing something like paragraphs in code if methods have different phases"*). The test: phases are phases if naming them would produce names, and separate methods if extracting them would. Amended from a flat prohibition — see [The Closeness Rule](../../../.public/.lib/designing-inexplicable-phenomena/12-the-closeness-rule.md#paragraphs).
 - **No blank lines between related declarations.** Symbol declarations and property declarations stack vertically without gaps. Methods do not stack — every method is multi-line, with an empty line between methods (Doug, 2026-07-28).
 - **Blank lines between *conceptual* sections only.** Between the interface block and the class. Between the class and the exports. Between test suites. These mark architectural boundaries, not "readability."
 - **No explanatory comments.** The code is the explanation. If the code needs a comment, the code should be rewritten until it doesn't. The only comments in the codebase are structural markers (e.g., `{// $SubjectiveRep` on an import line to label a group of symbol imports).
 - **No utility functions.** If something is done once, write it inline. If something is done twice, consider whether the duplication is actually clearer than the abstraction. Three similar lines are better than a premature helper.
+
+## We think in OO — things attach to classes
+
+Doug, 2026-08-30: *"We are writing OO style, so imagine that you don't use constants to store data because that's bad for polymorphism, and you don't even use static methods much in chemistry because you have a template so members can be static and thus polymorphic. We think in OO. Things attach to classes."*
+
+**Everything that could be a module constant, a static, or a free function is a member on a class instead — because a member can be overridden and none of the others can.** A module `const` holding data is data no subclass can replace; a static is a member outside the inheritance chain. Both trade polymorphism for nothing.
+
+**And the template is why the trade is never necessary.** The first instance of each `$Particle` subclass becomes its static template, and every rendered instance is a prototypal view of it — so an instance field is allocated once per class and inherited by every instance, which is what a static was for, while remaining overridable, which is what a static is not. `protected patterns = { ... }` on a class is the right shape; the same regular expressions in a module `const` above it is not.
+
+*This does not repeal [Structural Patterns' rule](02-structural-patterns.md) that statics are utilities and never members — it says why the utility case is nearly empty.*
+
+**A Component is packaging for a class's constructor.** `export const Book = $($Book)` does not create a second kind of thing; it is the class, wrapped so JSX can call it. A Component can be exported standalone precisely because it carries no meaning the class does not already have.
 
 ## Type names: `$Name`
 

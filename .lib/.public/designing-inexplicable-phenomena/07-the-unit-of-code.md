@@ -11,7 +11,7 @@
 
 | | the unit | average file | classes |
 |---|---|---|---|
-| **[`lib`](../../package/src/)** | ***a class*** | **58 lines** | ***51 files, 51 classes*** — one each |
+| **[`lib`](../../package/src/)** | ***a WORD*** | **58 lines** | *v1: **51 files, 51 classes**, one each · v2: **three classes to a word*** |
 | **[`$Chemistry`](../../../chemistry/package/src/)** | ***a concern*** | **215 lines** | **10 classes in one 1,400-line file** |
 | **[the compiler](../../build/)** | ***a phase*** | **107 lines** | ***17 files, 1 class*** |
 
@@ -23,13 +23,27 @@
 
 **Everything below is that sentence applied three times.** *A program's file boundaries should fall where its promises fall,* **because a promise that spans two files is a promise neither file can keep** — *and the way that failure arrives is always the same: a cycle, a stale copy, or a rule with two homes that disagree.*
 
-## <a id="lib"></a>`lib` — the unit is a class, because an invariant is stated over a WORD
+## <a id="lib"></a>`lib` — the unit is a WORD, because that is what an invariant is stated over
 
 **`lib` is a formalism made executable.** *Every word of book semantics is a class* — **a title, a chapter, a synopsis, a canonical, a letter** — *and every invariant it states is stated about one of those words:*
 
 > *a title has words · a chapter is a reference to a book · a letter is one grapheme · an author names a book that authors itself*
 
 ***So the file is the word.*** **51 files, 51 classes, and a reader looking for what a synopsis promises opens `Synopsis.tsx` and finds all of it.** *The convention has a test attached: **if a file cannot be named with a word from the vocabulary, it does not belong in `lib`.***
+
+### <a id="a-word-is-not-a-class"></a>A word is not a class — ***ruled 2026-08-30***
+
+***In v1 the word and the class coincided, and this chapter's first draft named the class because the two were never apart.*** **They came apart in v2.** *A word now takes THREE classes — the data, the law, and the meaning* — and [`Letter.tsx`](../../package/src/writing/Letter.tsx) is all three:
+
+| | | |
+|---|---|---|
+| **`$Letter`** | ***the data*** | *what one letter holds* |
+| **`$LetterSpecification`** | ***the law*** | *what makes a letter a letter, as labelled rules* |
+| **`$TypeOfLetter`** | ***the meaning*** | *the type, filed under the name `Letter`* |
+
+***Doug ruled the file stays whole:*** **the file is the WORD, and the three faces of a word belong together.** *He did it again the same day by hand, folding `TypedSpecification.ts` into [`Type.tsx`](../../package/src/writing/Writing.tsx) so that the word `type` also holds its own three.*
+
+**And the rule at the top of this chapter is why, unchanged:** ***the unit is whatever the program states its invariants over.*** *`lib`'s invariants are stated about a letter, a word, a sentence — not about a specification and not about a type.* **Splitting the three would put a word's own invariant across an import boundary, which is exactly the failure this chapter records happening three times.** *The 51-classes measurement was a v1 count of a v1 coincidence; the WORD is what it was always measuring.*
 
 ***And the boundary bites exactly where the rule predicts.*** **Three import cycles were hit in one sprint** — [`Title` → `Cover`](../../package/src/writing/Title.tsx), `Section` → `Document`, `Annotation` → `Book` — *and every one of them was a class reaching for another class to ask a question about ITSELF.* **Each was resolved by asking a nearer neighbour or comparing structurally rather than by naming the far class**, *and each is [recorded in the file rather than routed around](../the-condition-report/02-organization.md#o8), because a cycle is the design saying the invariant was put in the wrong place.*
 

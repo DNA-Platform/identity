@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -9,7 +10,7 @@
 
 ***The title is Doug's own word and stands for correction:*** ***"Why don't we deal with composition first."***
 
-**Identifiers.** Requirements **R235–**, actors **A10–**, acceptance examples **AE1–**, risks **K25–**, decisions **D100–**, units **U191–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law); a deletion leaves a gap.*
+**Identifiers.** Requirements **R235–**, actors **A10–**, acceptance examples **AE1–**, risks **K25–**, decisions **D100–**, units **U191–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification); a deletion leaves a gap.*
 
 **Where the code lands.** [`library/.public/package/src`](../../package/src/) — *the next version of the framework, which took the `src` seat during this sprint* — with v1 standing at [`archive/`](../../package/archive/) and still shipping. **`src2` no longer exists.**
 
@@ -78,7 +79,7 @@ export interface $Composition$<T extends $Writing> {
 
 <a id="r237"></a>**R237** — ***`canonical()` is a function because it is a reading, not a stored thing.*** **It pairs with `parts()`: neither is held, and [a getter that builds is the defect filed in Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md).** *And the pair is the one [the source conversation identified](../the-semantics-of-books/09-composition-and-collection.md) — `selectMany` is the monad's join, `canonical()` is the comonad's extract, on one structure.*
 
-<a id="r238"></a>**R238** — ***five of the six are written once, on `$Type`, over `parts()`.*** *Doug: "this is fine. Do it."* **`parts()[0]`, `.filter`, `.map`, `.flatMap`, and filter-plus-count are the monad's own laws — identical at every level by definition — so writing them seven times would be writing one law seven times.**
+<a id="r238"></a>**R238** — ***five of the six are written once, on `$Type`, over `parts()`.*** *Doug: "this is fine. Do it."* **`parts()[0]`, `.filter`, `.map`, `.flatMap`, and filter-plus-count are the monad's own specifications — identical at every level by definition — so writing them seven times would be writing one specification seven times.**
 
 <a id="r239"></a>**R239** — ***each level supplies `parts()` and nothing else.*** **That is the design arriving at a shared implementation rather than assuming one**, and it keeps the levels genuinely designed, because `parts()` is where they will actually differ once the parse exists.
 
@@ -167,7 +168,7 @@ export interface $Composition$<T extends $Writing> {
 
 <a id="d100"></a>**D100 — composition before the parse.** *Chosen over building the ladder and its divide rules together.* **A level's being is separable from how one is found**, and separating them means the whole ladder can be driven by hand — which is how the existing probes already work.
 
-<a id="d101"></a>**D101 — the five monadic members on `$Type`, not on each level.** *Chosen over seven implementations.* **They are one law, and `parts()` is the only place the levels differ.** *Doug ruled it.*
+<a id="d101"></a>**D101 — the five monadic members on `$Type`, not on each level.** *Chosen over seven implementations.* **They are one specification, and `parts()` is the only place the levels differ.** *Doug ruled it.*
 
 <a id="d102"></a>**D102 — `$Type` gains a type parameter rather than the levels narrowing a return.** *Chosen over `$Composition$<$Writing>` with covariant overrides.* **`lib` already carries this shape and it was measured this session**; narrowing returns would leave `where`/`select` taking the wrong predicate type.
 
@@ -197,7 +198,7 @@ export interface $Composition$<T extends $Writing> {
 
 <a id="u198"></a>**U198 — the mixed word.** The demonstration. **Files:** the probe folder. **Demo contribution:** [AE5](#ae5). **Depends on:** U197.
 
-<a id="u199"></a>**U199 — the catalogue.** ***DESIGN OWED.*** [R251](#r251) states what it is; **location and address have no mechanism yet** — *what runs, and when* is unanswered. **No files, no scenarios, no dependencies**, [per the law](../../../../.claude/library/our-skillset/29-ce-plan.md#a-unit-with-no-mechanism-is-not-a-unit--added-out-of-sprint-48s-failure).
+<a id="u199"></a>**U199 — the catalogue.** ***DESIGN OWED.*** [R251](#r251) states what it is; **location and address have no mechanism yet** — *what runs, and when* is unanswered. **No files, no scenarios, no dependencies**, [per the specification](../../../../.claude/library/our-skillset/29-ce-plan.md#a-unit-with-no-mechanism-is-not-a-unit--added-out-of-sprint-48s-failure).
 
 <a id="u200"></a>**U200 — v1 moves to the archive, alias and all.** [R253](#r253), [R255](#r255), [R256](#r256). **Files:** the folder itself, plus `tsconfig.json`, `tsconfig.build.json`, `vitest.config.ts`, `rollup.config`, `app/tsconfig.json`, `app/vite.config.ts`. **Demo contribution:** ***every v1 gate green at the new location, before anything else is touched*** — the suite, `tsc`, and `rollup` emitting a `dist` identical to the one before the move. **Depends on:** nothing.
 
@@ -207,13 +208,13 @@ export interface $Composition$<T extends $Writing> {
 
 ## <a id="order"></a>The order, which is not the numbering
 
-***U200 → U201 → U191 → U192 → U193 → U194 → U195 → U196 → U197 → U198.*** **The move runs first**, so the gate is built once at the seat it will keep rather than twice. *[Identifiers are never renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-law), so the order is stated rather than encoded.*
+***U200 → U201 → U191 → U192 → U193 → U194 → U195 → U196 → U197 → U198.*** **The move runs first**, so the gate is built once at the seat it will keep rather than twice. *[Identifiers are never renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification), so the order is stated rather than encoded.*
 
 ---
 
 # <a id="what-is-seen"></a>What is seen
 
-*[A requirement that cannot be seen satisfied is not a requirement.](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-law)*
+*[A requirement that cannot be seen satisfied is not a requirement.](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-specification)*
 
 <a id="ae1"></a>**AE1** — a `$File` written by hand, holding a `$Document`, holding a `$Section`, holding a `$Paragraph`, holding a `$Sentence`, holding a `$Word`, holding letters. **`parts()` answers at every rung**, and `canonical()` answers the first. *Covers [R244](#r244), [R239](#r239).*
 
@@ -437,7 +438,13 @@ export interface $Composition$<T extends $Writing> {
 
 <a id="c18"></a>**C18 — the level is NAMED by its canonical.** *"**I name the level by the canonical** right? **Space and smiley are a non-canonical types of letters. Repetitive spaces are non-canonical types of words that will be left associated.**"*
 
-***CORRECTED 2026-08-27.*** *This register previously read C18 as requiring a second member — a canonical-kind predicate with a name owed — and reported that back to Doug as HIS blocker.* **It is not. He said why a level is CALLED what it is called.** *Doug: "I don't even know what this is, but **canonicals don't all have a kind name. That's not how this works.**"* ***The invented requirement is withdrawn; what stands is the naming observation and the fact that non-canonical kinds live at a level.***
+***WITHDRAWN 2026-08-27, in two steps, and both are worth keeping.***
+
+**First**, this register read the sentence as requiring a second member — a canonical-kind predicate with a name owed — and reported that back as Doug's blocker. *He: "I don't even know what this is, but **canonicals don't all have a kind name. That's not how this works.**"* **The invented requirement is struck.**
+
+**Then the sentence itself was withdrawn.** *He: "**A level is not named by its canonical.** Maybe I said that ages ago? Maybe I said that about a particular level like the document level — **because titles are at the sentence level, so they have to bubble up through canonicals**. But not in general."*
+
+***So C18 carries no requirement at all.*** **What survives is the observation it was wrapped around** — *space and smiley are non-canonical kinds of letter; repetitive spaces are a non-canonical kind of word, left associated* — **and a live thread worth keeping: a title is at SENTENCE level and bubbles up through canonicals**, which is a claim about the document level rather than about levels in general.
 
 <a id="c33"></a>**C33 — type-based subclassing is wanted.** *"**I want type-based subclassing for this framework.**"*
 
