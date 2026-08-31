@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **status:** `requirements-only` — ***brainstorm in progress, 2026-08-31. No code is written until these are approved.***
+- **status:** `implementation-ready` — ***requirements approved 2026-08-31; [the guardrails](#the-plan) are set and [`/ce-work`](../../../../.claude/skills/ce-work/SKILL.md) may run.***
 - **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force.*
 
 ---
@@ -147,6 +147,91 @@
 
 ---
 
+# <a id="gate-rulings"></a>What Doug ruled at the plan gate — 2026-08-31
+
+*Four questions were put and four were answered. Quoted, because two of them reversed what the requirements assumed.*
+
+## <a id="the-tests-are-wrong"></a>The rule stands and the TESTS are wrong
+
+> ***"Are you talking about tests? I don't manage them. If those are in lib, they are wrong."***
+
+***[O3](#open-rules) is closed and it went the other way from the recommendation.*** **`$typedOnce` is right — one type per piece of writing** — *and the three red tests that promise `Document` + `Chapter` on one chain is legal are the thing that is wrong.* **They are rewritten to the promise the rule actually makes.**
+
+***And the general form is worth keeping:*** **a test is not evidence about what the model should do.** *It is [a promise somebody wrote](../../../../.claude/library/..teamsmanship/..team/queenie/test-architecture/.cover.md), and a promise made against a rule nobody ruled is a promise made up.* ***Three tests going red is a claim needing a ruling, never a ruling in itself.***
+
+## <a id="drawing-is-linking"></a>Drawing a reference is drawing the LINK
+
+> ***"Won't references be leaving pages sometimes? Drawing a reference is drawing the link to it."***
+
+***[O6](33-the-handle.md#open-async) dissolves rather than resolving.*** **The async `read()` was thought to collide with a synchronous `view()`** — *nothing can await inside a draw* — **and the collision only exists if a view draws the TARGET.** *It does not.* ***A reference draws its own copy inside an anchor; following it LEAVES THE PAGE.***
+
+**So `read()` is for going somewhere, not for rendering**, *and nothing in either sprint needs a resolved value held for a view.* ***The partially-loaded-book problem is not this sprint's and may not be anybody's.***
+
+## <a id="the-anchor-ruled"></a>The reference draws the anchor, and responds to on-click
+
+> ***"It draws the anchor and responds to on-click."***
+
+***Read as the REFERENCE***, *since it answers a question about the reference and sits beside "drawing a reference is drawing the link to it."* **So [`$Writing.view()`](../../package/src/writing/Writing.tsx)'s conditional is deleted and the anchor moves onto `$Reference`** — *which fixes both view faults in one move, because a path is never inside an anchor that only a reference draws.*
+
+***And "responds to on-click" is new, not a restatement.*** **The anchor is not only an `href`** — *it handles the click*, **which is the first thing [`$active`](#r27) has ever had to hang on**: *[R13](30-the-reference.md#r13) says reading a piece of writing activates its reference, and a click is the reading.*
+
+## <a id="complete-ruled"></a>The closure descends one level
+
+***`complete` concatenates THE PARTS OF THE TARGETS, one level down*** — *a catalogue of books answers one composition holding every chapter of every book.* **[Recorded in sprint three](33-the-handle.md#r37), where it is built.**
+
+---
+
+# <a id="the-plan"></a>THE PLAN — guardrails, not choreography
+
+## <a id="decisions"></a>The decisions
+
+<a id="d7"></a>**D7 — the code lives on the TYPE, not on the class.** *[The type holds the meaning](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md); a code is meaning about a level.* **Chosen over a `static` on the class**, *because [Doug's OO ruling](../../../chemistry/.lib/authorship/01-the-grammar.md) is that a constant storing data is bad for polymorphism and a template member is both allocated once and overridable.*
+
+<a id="d8"></a>**D8 — `ref` is computed and never stored.** *His sentence: "composition, if giving an indexed list, should always afford us this."* **Chosen over assigning a route during the parse**, *which would be a fourth write in a place [that has drawn blood three times](../solutions/16-the-parse-that-woke-its-own-parents.md).*
+
+<a id="d9"></a>**D9 — the anchor moves to `$Reference` and `$Writing.view()` loses its conditional.** *Chosen over filtering parenthetical elements inside `view()`* — **one deletion fixes both faults, where the filter fixes one and leaves the container linking.**
+
+<a id="d10"></a>**D10 — the three failing tests are rewritten, not deleted.** *Their titles state a promise the model does not make; the promise is corrected and the coverage is kept.* ***The `expect` count may not fall.***
+
+<a id="d11"></a>**D11 — the slug is a member of the reference.** ***The author's, not Doug's***, and [flagged as an assumption](#open-slug) rather than folded into his words.
+
+## <a id="units"></a>The units
+
+*Numbered on from [sprint one's U26](30-the-reference.md#stands-register).*
+
+| | unit | mechanism — *what runs, and when* | files | demo contribution |
+|---|---|---|---|---|
+| **U27** | ***the level codes*** | *a `code` on each `$TypeOfX`, read at route-building time* | the seven levels · `Book` · `Chapter` · `Title` · `Phrase` · `Path` · `Reference` | **the route reads as rooms rather than as a hash** |
+| **U28** | ***`ref` — the route*** | *walks the composition and joins a step per level, stopping at the target's grade* | `Writing.tsx` · `Composition.tsx` | ***AE7 — paste the URL, land on the paragraph*** |
+| **U29** | ***the five-word slug*** | *taken from the target's copy at build time, compared at resolve time* | `Reference.tsx` | **AE8 — a stale route says the thing is not what was meant** |
+| **U30** | ***the anchor moves*** | *`view()` on `$Reference`, with `onClick`; the conditional deleted from `$Writing`* | `Reference.tsx` · `Writing.tsx` | **AE9 — a sentence holding a reference links only the reference** |
+| **U31** | ***the three tests rewritten*** | *the promise restated as `$typedOnce` actually rules* | `narrowing.test.tsx` · `annotation.test.tsx` | **the red goes to three, and the three that remain are reactivity** |
+
+> ***U28 carries the one mechanism question the plan does not decide, and it is named rather than hidden.*** **`lib` has no public parent accessor and [uses parent access zero times](30-the-reference.md#d1).** *A route can be built by walking UP — which needs one — or handed DOWN by the composition that holds the part, which needs none and is what "catalogues will hand them out" points at.* ***The implementer decides with the code open; introducing a public parent accessor is a change to raise, not to make.***
+
+## <a id="scenarios"></a>Test scenarios
+
+- **U27** · every level answers a code · **no two codes collide** *(a promise, not an inspection)* · a code survives a subclass that does not override it
+- **U28** · a paragraph four deep answers four steps · a section's route is a **prefix** of its paragraph's · nothing assigns `ref` · a part moved under a different parent answers a different route untold
+- **U29** · a slug is five words · a route into rewritten writing **resolves and then reports a mismatch** · a reference with no slug is refused, naming what is missing
+- **U30** · a reference draws `<a>` · **its text is the identification alone, with no path inside it** · a sentence holding a reference draws exactly one anchor · a click is answered · ordinary prose draws no anchor
+- **U31** · `Document` + `Chapter` on one chain is **refused**, and the message says why · the `expect` count before and after is **stated**
+
+## <a id="risks"></a>Risks
+
+| | risk | what mitigates it |
+|---|---|---|
+| **1** | ***a route getter that builds a chemical*** | **[Solutions 16, three appearances](../solutions/16-the-parse-that-woke-its-own-parents.md#a-getter-is-a-reading-too): any getter containing `$(<…/>)` is a reading and may not be called from a view.** *`ref` must answer data, not a built `$Reference`* |
+| **2** | ***a rule that reads a member of its own class*** | **[Solutions 35](../solutions/35-the-rules-that-only-held-for-a-class.md): a type's rule is written against WRITING.** *The slug rule must ask the block, not `$Reference.slug`* |
+| **3** | ***the route separators in a pasteable URL*** | ***[O5](#open-separator) is unanswered.*** *`>` percent-encodes; `$Path` validates with `URL.canParse`. **Raise before choosing**, do not pick a separator quietly* |
+| **4** | ***rewriting rather than formatting*** | **[The refusal in sprint 31](31-organization.md#done) — proving a change safe is not the same as its being asked for.** *U31 rewrites three tests and nothing else* |
+
+## <a id="the-review-list"></a>The work phase ends with a list of files to review
+
+***Doug, 2026-08-31: "At the end of the work phase you show me which files to review."*** **This is a stop condition, not a closing courtesy** — *[the same standing as the demo](../../../../.claude/skills/ce-review/SKILL.md#and-it-makes-work-stricter).* **No unit reports done until its files are named**, *and the list is what [`/ce-review`](../../../../.claude/skills/ce-review/SKILL.md) opens on.*
+
+---
+
 # <a id="checklist"></a>The checklist
 
 ***Doug, 2026-08-31: "I want to see todo checklists, even if they are brainstorm and planning checklists."*** **It lives here rather than in a session todo list, because [conversation memory does not survive compaction](../../../../.claude/skills/ce-work/SKILL.md) and this chapter does.** *Ticked as the work moves, never written at the end.*
@@ -160,22 +245,33 @@
 - [x] Capture Doug's rulings verbatim — [the route](#the-route), [the slug](#the-slug), [`means`](#means)
 - [x] Record what was raised and withdrawn — [the range](#the-range)
 - [x] Write the requirements — **R19–R28**
-- [ ] **O1** — does the container draw as a link, or only the reference?
-- [ ] **O2** — is `Nu` a slip for `Wo`?
-- [ ] **O3** — `$typedOnce` or `$oneKind`: which rule is wrong?
-- [ ] **O4** — where does the five-word slug live?
+- [x] **O1** — ruled: *"it draws the anchor and responds to on-click"* → the reference draws it
+- [ ] **O2** — is `Nu` a slip for `Wo`? ***assumed `Wo` and built on it***
+- [x] **O3** — ruled: the rule stands, *"if those are in lib, they are wrong"* → the tests were
+- [ ] **O4** — where does the five-word slug live? ***assumed a member; the route tail is the alternative***
 - [ ] **O5** — `>` and `:` in a pasteable URL
-- [ ] Design the demo beside the requirements — *[the test is whether a hand-authored page could fake it](../../../../.claude/skills/ce-brainstorm/SKILL.md)*
-- [ ] **Requirements approved by Doug** — ***the gate; no code before it***
+- [x] **O6** — dissolved: *"drawing a reference is drawing the link to it"*, so no view ever awaits
+- [x] Requirements approved
 
-## Plan *(not started — gated on the above)*
+## Plan
 
-- [ ] Name the decisions, each with what it was chosen over
-- [ ] Measure the size before dividing anything
-- [ ] Break into units with mechanisms — *a unit that cannot say what runs and when is design owed*
-- [ ] Test scenarios per unit
-- [ ] Origin trace both directions — every requirement lands somewhere, every unit cites back
-- [ ] Mark the chapter `implementation-ready`
+- [x] Name the decisions — **D7–D11**
+- [x] Break into units with mechanisms — **U27–U31**
+- [x] Test scenarios per unit
+- [x] Risks stated, with what mitigates each
+- [x] Mark the chapter `implementation-ready`
+
+## Work
+
+- [x] **U31** — the three wrong tests rewritten · *`expect` count held at 4 and 2*
+- [x] **U27** — the level codes · *seven declare, the rest inherit*
+- [x] **U28** — `ref`, the route · *`parent` measured before the mechanism was chosen*
+- [x] **U29** — the slug · ***half: computes, does not yet compare — comparison is across the seam***
+- [x] **U30** — the anchor moves, and both view faults close
+- [x] Gates green — ***tsc 0 · 341 tests · 341 passing · ZERO failing***
+- [x] **The smiley diagnosis** — *reactivity was never broken; the fixture was*
+- [x] **The files to review, named** — *[the stop condition](#review)*
+- [ ] **`/ce-review`** — Doug's pass over the list
 
 ---
 
@@ -183,11 +279,68 @@
 
 ## The next action, as a command
 
-***Continue `/ce-brainstorm`.*** **This chapter is `requirements-only` and [the gate is human](../../../../.claude/skills/ce-brainstorm/SKILL.md#the-gate)** — *no code, no scaffold, until Doug approves the requirements above.* **Five questions are open and O1, O2 and O3 are each one sentence to answer.**
+***`/ce-review` on the files listed below.*** **Five units are built and verified; [U29 landed half](#ledger) and says so.**
+
+## <a id="ledger"></a>The units, as a register
+
+| | | |
+|---|---|---|
+| **U27** | the level codes | ✅ *seven types carry one; `Book`, `Chapter`, `Title`, `Phrase`, `Path` and `Reference` **inherit** theirs, because a code names a level and not a class* |
+| **U28** | `ref` — the route | ✅ *a property on `$Writing`, walking `parent` upward and joining `code:index`. **Answers a string, never a built `$Reference`** — [Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md) forbids the second, and handing out references is [sprint three's side of the seam](33-the-handle.md)* |
+| **U29** | the five-word slug | ⚠️ ***HALF.*** *`slug` computes — five words, lowercased, joined. **Comparing it against a resolved target needs `read()`, which is sprint three's**, so the mismatch scenario was not built rather than built across the seam* |
+| **U30** | the anchor moves | ✅ *`$Writing.view()`'s conditional deleted; `$Reference.view()` draws `<a>` over its non-parenthetical content with an `onClick` that sets `$active`. **Both view faults fixed by one move*** |
+| **U31** | the three wrong tests | ✅ *rewritten to the promise `$typedOnce` actually makes. **The `expect` count did not fall** — narrowing kept 4, annotation kept 2* |
+
+## <a id="smiley"></a>THE SUITE IS GREEN, and the three "reactivity failures" were a fixture
+
+***Doug, at the close: "Concerned about smiley reactivity failures. If we don't support reactivity something very very bad is broken."*** **He was right to stop the sprint on it, and the answer is that nothing is broken.**
+
+***The decisive measurement, because three probes before it only narrowed:*** **the same `$Smiley` rendered straight at the React root advances on click; rendered INSIDE another `$Writing`'s block it does not** — *and it fails identically with and without the `<Type>Letter</Type>` annotation, so neither binding nor the type was the cause.*
+
+**What was happening:** *the wrapper re-renders on every write, and each render hands out a fresh [`$lift`](../../../chemistry/package/src/abstraction/particle.ts) derivative — `Object.create(template)`, a new cid, and `$at` back to the template's `0`.* ***Measured: the click mutated `$Smiley[34]` and the next paint drew `$Smiley[39]`, with the constructor having run exactly ONCE.*** **So the write landed, the view re-ran, and it re-ran on a different object.**
+
+***Doug's correction is what fixed it, and it is a rule about fixtures rather than about the framework:*** **a chemical provides its own type from `$` in its own bond constructor — `this.type = $(<TypeOfLetter />)` — rather than having one written into its markup**, *which is what every level class already does and what [`$Title`](../../package/src/writing/Title.tsx) is the pattern for.* **Drawn directly, it keeps its identity and scrolls.**
+
+***And the last two failures were a different thing wearing the same red:*** **a leaf with no children has no block**, *so `$hasBlock` and `$hasWriting` both refused it when `$$(writing, $Letter)` built the reading.* **Giving the fixture a block closed them.**
+
+> ***The general form, and it is worth compounding:*** **a test that renders a stateful chemical inside another chemical's block is testing the framework's derivative machinery, not the promise in its title.** *Three tests carried a fixture fault as a reactivity fault for long enough that [every number this branch reported](30-the-reference.md#stands-verified) said "six failures, three of them reactivity" — **and none of them was.***
+
+## <a id="found"></a>What was found by building rather than by reading
+
+***`parent` IS populated on parsed parts, and the plan had it as an open mechanism question.*** **Measured with a probe before choosing: `paragraph.parent` is `$Section`, `section.parent` is `$Document`** — *chemistry threads it during the bond, so the upward walk needed no new accessor and [the change the plan said to raise](#units) never had to be made.* ***The probe was deleted; the finding is here.***
 
 ## Verified, with the numbers
 
-**Run at the brainstorm, not remembered:** ***20 files · 328 tests · 322 passing · 6 failing.*** *The six are the same six that predate sprint one — **three smiley reactivity**, and **three that are [O3](#open-rules)**.*
+**Run at the close, not remembered:** ***`tsc --noEmit` 0 · `tsc --noEmit -p src/tsconfig.json` 0 · 21 files · 341 tests · 341 passing · 0 failing.***
+
+***The delta, because a number without one is not evidence:*** **328 → 341 tests, 6 → ZERO failures.** *Three were [the wrong promises](#the-tests-are-wrong) and three were [a fixture fault carried as a reactivity fault](#smiley).* ***The suite is green for the first time in this branch's recent record.***
+
+***Scope:*** **`@dna-platform/chemistry` resolves by symlink into uncommitted framework code**, *so a clone at `HEAD` would not reproduce these.*
+
+## <a id="review"></a>The files to review
+
+***Doug asked for this list as the end of the work phase, and [it is a stop condition](#the-review-list).***
+
+| file | what changed |
+|---|---|
+| **[`src/writing/Writing.tsx`](../../package/src/writing/Writing.tsx)** | ***three things, and the first is the one to look at hardest*** — `view()` lost its conditional; `ref` and `slug` added as properties; `code` added as a field on `$Type` |
+| **[`src/reference/Reference.tsx`](../../package/src/reference/Reference.tsx)** | ***`view()` added*** — the anchor, its filter, and the `onClick` |
+| **the seven levels** — [`File`](../../package/src/writing/File.tsx) · [`Document`](../../package/src/writing/Document.tsx) · [`Section`](../../package/src/writing/Section.tsx) · [`Paragraph`](../../package/src/writing/Paragraph.tsx) · [`Sentence`](../../package/src/writing/Sentence.tsx) · [`Word`](../../package/src/writing/Word.tsx) · [`Letter`](../../package/src/writing/Letter.tsx) | *one line each — `override code`* |
+| **[`src/tests/route.test.tsx`](../../package/src/tests/route.test.tsx)** | ***NEW — 13 promises*** across the codes, the route, the slug and the anchor |
+| **[`src/tests/narrowing.test.tsx`](../../package/src/tests/narrowing.test.tsx)** · **[`src/tests/annotation.test.tsx`](../../package/src/tests/annotation.test.tsx)** | ***the wrong promises, restated*** |
+
+## <a id="epiphenomenal"></a>Decisions made in flight that nobody ruled
+
+*Surfaced so the decision procedure is auditable rather than only the result.*
+
+| | the decision | why |
+|---|---|---|
+| **1** | ***the codes are `F · D · S · Pa · Se · Wo · Le`*** | **his own letters, with `Nu` read as a slip for `Wo`** — *[O2](#open-nu), still unanswered* |
+| **2** | ***only the seven LEVELS declare a code; everything else inherits*** | *a chapter is a document by level, so `$TypeOfChapter` keeping `D` is the inheritance doing the work instead of a roster* |
+| **3** | ***`ref` answers a STRING, not a `$Reference`*** | *a getter that builds a chemical [may not be called from a view](../solutions/16-the-parse-that-woke-its-own-parents.md#a-getter-is-a-reading-too), and the seam gives handing-out to sprint three* |
+| **4** | ***`slug` is five words of `copy`, lowercased, joined by hyphens*** | **the form was never specified** — *only "a 5-word slug"* |
+| **5** | ***`$Reference.view()` filters its own block rather than `$Path.view()` returning null*** | *[R25](#r25) says a path draws bare when it stands alone, and the second answer would take that away* |
+| **6** | ***`onClick` sets `$active` and nothing else*** | *[R13](30-the-reference.md#r13) says reading activates; **where an active reference is KEPT is [R27](#r27), still design owed*** |
 
 ***Scope, because a number without it is not evidence:*** **`@dna-platform/chemistry` resolves by symlink into uncommitted framework code**, *so a clone at `HEAD` would not reproduce these.*
 
