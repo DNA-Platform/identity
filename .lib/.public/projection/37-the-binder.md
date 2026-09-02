@@ -411,166 +411,64 @@ The router beyond `read()` following its path. The parse above word — *a sente
 
 **`$Reference` is an annotation today**, so it is invisible to the parse. Making a raw reference read as a word changes what every existing composition counts. *The 490 green tests are the instrument that will say so.*
 
-# <a id="where-things-stand"></a>WHERE THINGS STAND — 2026-09-02
+# <a id="router-review"></a>THE ROUTER REVIEW — his order, run 2026-09-03
 
-***Written for a session that remembers none of this. Read this section, then [the reference and the router](#the-reference), then [the units](#units). Nothing else is needed to start.***
+***"We deeply need to review router."*** *Walked against the code and the promises, not from memory.*
 
-## What this sprint is
+**What stands, each line verified by a green promise:** `<Ref>` in three authored forms — markdown `[text](url)` through `marked`'s lexer, the `path=` prop, the held `<Path>` — with **the form deciding the side**: a target is a scheme-bearing url, a leading `/` or `#`, or address grammar (`Bk:0/Cr:1`), measured against the `https://library` origin; a bare word is refused. Internal draws react-router's `Link` through the `Routed` dress (a hook cannot live in `view()` — it runs outside a component body — so the decision lives in a function component beside the class, the Prose pattern); external draws the plain `#3366cc` Anchor; **routerless environments degrade to anchors without a throw**. Navigation is REAL: under MemoryRouter, clicking an internal ref swaps pages with no load, old page gone. Any writing CARRYING a reference wears its target — the means-anchor — in either position. **Reading has one home**: `$Path.read(from)` — address-shaped or hash fragments walk `from.book().catalogue().follow()` and land on the instance (R72 proven); a route-only path says plainly that routes are the application's to follow. A ref is a phrase: its words join the sentence that holds it.
 
-**The binder — the compiler rebuilt — and its MAIN PART is [the reference, the link and the router](#the-reference).** His ruling: *"Let us make this the main part of the sprint. Everything I just said, and integrating the router so that internal references work."* The demo being built is **our version of Wikipedia**, and [Wikimedia is modelled as the library](#wikipedia) with its front page the cover and search a view on the index.
+**What the router still owes, none of it silent:**
+- **The route half of R95** — `/physics/gauge-theory#Cr:1` — needs the corpus map the binder emits (U65 wiring): a provider seat so `read()` can cross book boundaries in-app. Today in-book fragments resolve; cross-book routes navigate visually but do not `read()`.
+- **The typed forms of R96** — `<Ref to={GaugeTheory}>` and `<Ref>{GaugeTheory}</Ref>` — wait on emitted modules to point at; the untyped forms are built, the typed two are NOT YET.
+- **No scroll-to-fragment** in the app shell yet; the hash rides the URL correctly.
+- `link` parsing runs per ask, uncached — micro-cost, noted not fixed.
+- **His open door stays open**: "maybe we need more from router that we can do too" — loaders, nested routes, and scroll restoration are unexplored deliberately.
 
-## The rulings settled 2026-09-02, in his words — these are the sprint
+# <a id="where-things-stand"></a>WHERE THINGS STAND — closed 2026-09-03, for the morning's review
 
-| | |
-|---|---|
-| **nesting, defined** | ***"Nesting means the nested contributes its parts to the parts."*** With his example: a sentence holding `a b c d e` inside one holding `f g` — **the outer is `a b c d e f g` and the inner is still `a b c d e`.** Measured true. |
-| **compositional polymorphism** | *"You can probably have `<Type>` be a variable, and have cell be one down from it… **It could even be a sentence and word table honestly.**"* And *"List can work this way too. It can have a default and it can allow type override. **This is the whole beauty of the new version**… much much more elegant than the last version."* |
-| **the levels are closed** | *"the hard coded Letter - File, Chapter, Book probably should somehow prevent that. **They must be type free and declare their own.**"* **Measured: they already do** — `<Sentence><Type>Word</Type>` stays `$TypeOfSentence`. |
-| **all writing polymorphic** | *"that can go in writing right? So that all writing is polymorphic."* **Measured: already true** — bare writing carrying `<Type>Word</Type>` comes back `$TypeOfWord`. |
-| **the table** | *"I would think **each cell is a paragraph** and the person is free to format them in whatever way."* Enumerated: `<Table><Cell>…</Cell></Table>`, *"a lot like a list, but the person can view that however."* And **the level was confirmed as already designed** — a table composing cells IS a section composing paragraphs. |
-| **the dress is Wikipedia's** | *"We are doing default styling like wikipedia."* Their markup is a real `<table class="wikitable">`, and [our `Wikitable`](../../package/src/encyclopedia/Wikitable.tsx) already carries MediaWiki's own values. |
-| **NO LINK CLASS** | *"Theirs should be encapsulated in our Ref which should do both. **Why not drop link entirely**… This: `/physics/gauge-theory` **Or a full url** can be in Ref and it should know how to handle each. **Make that the implementation and then we don't need link.**"* |
-| **strong typing** | *"I would like strong typing. Do we get it if we use the ref as a prop or is there syntax for getting strong typing the way we have it too with interpolation?"* **Both** — see [R96](#r96); chemistry computes props from `$`-prefixed members, and an interpolated alias is a real import. |
-| **the boundary** | ***"Be careful, we are going to make wikipedia but a lot might be in the demo not the lib. Always check with me before creating framework classes."*** |
-| **naming** | *"I come up with the cute names. You come up with normalish ones… **One preferred when there is one**… Green tea is a whole different type of tea. Tea is better. Small deer is not better than deer… **We usually only have one of a thing. So name the thing.**"* |
+***The sprint that set out to rebuild the compiler ended as the sprint that rebuilt the model's ontology and then bound Wikipedia with it.*** The reference and the router — his named main part — are done and driven; the flat hierarchy he ruled mid-sprint is fully in; the binder exists from zero and binds; the Wikimedia corpus stands and is SEEN in a real browser. Read this section, then [the router review](#router-review), then the two decision records ([38](38-the-extension-check.md), [39](39-the-shallow-battery.md)). The wrong turns are indexed at the bottom so nobody retakes them.
 
-## The rulings added later on 2026-09-02, in his words
+## Done, each with its number
 
-| | |
-|---|---|
-| **the compiler is zero lines** | *"The compiler as it stands is zero lines. We rewrite the framework. Everything is in archive. There is nothing that remains but a reference painting. We are rebuilding… wikipedia will show us what we need to compile."* The old `build/` is consulted, never extended. |
-| **the want-list** | *"I want to see recursive compositions, I want to see router integration and Ref, I want to see recursive effect the elements I asked it to, and I want to see coding conventions rigorously adhered to."* |
-| **no Wiki in the encyclopedia** | *"I renamed Wikitable to table with collides but deal with that on imports. I don't want Wiki in the encyclopedia folder."* His rename on disk; the import sites carry the collision. |
-| **comments** | *"If you see a comment in the code, immediately remove it."* Applied to every file touched from here on. |
+- **U53/U54** compositional polymorphism + the cell · **U56/U57** list and phrase · **U58** path powers · **U60 `<Ref>`** three forms, form decides the side · **U61** read through `catalogue().follow` · **U62** router proven under MemoryRouter · **U63** address codes with the roundtrip (`Tb:` followed back to the instance) · **U66** v2 built and exported.
+- **The styling frame**: genome → `pd-` classes projected off the TYPE CHAIN (a table wears `pd-section pd-table`), pure traits with zero framework classes (`.pd-glowing` selects in a real DOM), the type picking div/span, and — his order — **the dresses carry the classes**: `<p class="pd-paragraph">` on Prose itself, the kind DECLARING its dress.
+- **THE FLAT HIERARCHY — his ruling executed whole**: twelve kinds off their levels onto machinery bases (Phrase, Ref, Title, List, Table, Cover, Synopsis, TableOfContents, References, Chapter, Index, Book); standing read from the CANONICAL-FORM LATTICE (each type class's own declaration, walked up the prototype chain, `kin` recursion for assembled types — no registry, no claiming rule); conferral makes the asked shape; `former` reads the type's shell with own-reduce-first asked of the CLASS; ontology promises moved honestly from `instanceof`-parentage to flat-base + standing.
+- **The shallow battery** ([the record](39-the-shallow-battery.md)): his induction verified and implemented, `$terminates` resurrected from dead code, one shared segmenter, `surface`, the copy memo — kept for correctness; the honest flat measurement names THE MEMBRANE (two chemicals bonded per node, ~1ms) as the next frontier.
+- **THE CRASH, diagnosed to conviction** ([Solutions 45](../solutions/45-the-view-that-constructed-its-parts.md)): exit-zero silent drops → worker native death → any-company bisect → differential conviction of render-path construction; three consecutive clean fulls sealed it; the drawing was tried again behind the shallow battery and **the worker died again on a quiet machine — record 39's own verdict confirmed: the weight is CONSTRUCTION, and the battery only cut walks** — so the drawing is re-reverted (now reading `surface`, one level) and **U55 joins the blocked list on the membrane**, with the dress, the classes, and the header cell all in place for the day it returns.
+- **U64 — THE BINDER, from zero**: `binding/` — config·walk·read·resolve·emit·catalogue·specify·dump·bind, each a door that runs alone; the seam as a type; libconfig with defaults; idempotent emits, byte-for-byte carries, sweep; static cards; **CHECK is `specify()` under vitest — R78 done**; the red path proven with the rule's own words at exit 1; R75's grep clean. Strict tsc 0, zero comments.
+- **U65 — WIKIPEDIA AS A LIBRARY, SEEN**: the corpus (`..wikimedia` + gauge-theory + chemistry + consciousness, 17 exports, every one `specify()`-clean) **bound into the demo app — BIND 4 books · SPECIFY 4/4 stand** — and the browser walked it: the shelf lists the books by card, an internal ref navigates by router without a page load, a cross-book ref reaches Chemistry, the external ref stands as a plain Wikipedia anchor, **no anchor inside an anchor** — that last one a live defect found BY the driver (the means-anchor now wraps only silent references; a reference that prints speaks for itself).
+- **The comment sweep**: 957 lines out of chemistry, tsc 0, 831/831 after; lib src clean; spec commentary restored to the top of every example per his amendment.
+- **Compounded**: [Solutions 45](../solutions/45-the-view-that-constructed-its-parts.md). **Reviewed**: [the router](#router-review), as ordered.
 
-## The styling language — ruled 2026-09-02, his words carried
+## Blocked, each on what
 
-***"Types of annotations are the genome of the chemical… we can put a LOT of traits dynamically inside and they can compose beautifully. We will be growing this."*** And: *"we are projecting the type hierarchy and traits in the classes automatically."*
+- **The `$$X` dissolution** (nine reference classes → target-kind-on-type + one generic certifying read) — staged LAST by [the extension check](38-the-extension-check.md); blocked on the `prints` re-keying design. Next session's first framework unit.
+- **The membrane frontier** — ~1ms/node × two chemicals is chemistry-core; first candidate: shared type templates per class. Blocked on his yes to chemistry surgery.
+- **R96's two strongly-typed Ref forms** (`to={GaugeTheory}` / `{GaugeTheory}`) — blocked on consuming the binder's emitted modules as imports; the untyped forms are live.
+- **R95's cross-book `read()`** — navigation works; reading across books wants the corpus map as a provider seat.
+- **The binder's three self-reported findings**: walk descends into a previous bind's output (guard belongs in walk/config); the typed-export regex gap; `binding/` wants module-type infrastructure.
+- **The middle-area audit reading** — lost to a dropped connection; resumable from the workflow cache.
+- **R80** (how much cover rewriting survives) — moot in v2's binder so far: no covers are rewritten; stands OPEN as his question.
 
-| | ruled |
-|---|---|
-| **the framework's name** | ***".public"*** — *"BTW, if we had a framework name, I would call this .public"* |
-| **the class prefix** | **`pd-`** — *"public dollarsign… I like pd as a prefix"* — after `.$paragraph$` was refused as *"like a windows route"* |
-| **the projection** | the type CHAIN registers its names through the constructor chain, so a table's frame wears `pd-section pd-table` — **style at any grade of generality** |
-| **pure traits** | *"Yes pure traits make sense"* — `<Trait>Glowing</Trait>` needs NO class: the written word is the label. The canonical class stays free for the day a trait needs laws — *"and we are not making glowing"*, it is an example only |
-| **labels** | **derived, never stored** — a getter reading the genome out; `specifically` writes nothing (Solutions 44 is why) |
-| **the container** | the TYPE says block or inline; the frame wraps in `div` or `span` carrying the labels — *"we can use the frame function (what it is there for)"* |
-| **spec comments** | ***amended:*** the `.spec` files live in the test folder and may comment freely — **at the top of each example, never inside the JSX** — *"We want to show the beauty of the examples"* |
+## <a id="questions"></a>THE QUESTIONS, batched as ordered — every one his
 
-## <a id="the-chain"></a>What the framework IS, in his words — read this before judging any part of it
+1. **Names to strike or keep** (all proxies in live code): `flows` · `seated` · `kin` · `carried` · `former`/`seat` · `surface` · `Dress` · `Routed` · `$TableTrait`/`$ListTrait` · chemistry's `names`/`strict` · codes `Ls`/`Tb` · binder's `alone`/`written`/`declaration`/`said` · the demo's `Reading`/`Home` · the default bind target `..public`.
+2. **The encyclopedia surface**: `Table`/`Cell` dresses fell off the package export in the collision — restore under what names?
+3. **The reads-as ruling**: `$$(chapter-typed writing, $Document)` now yields a *Document* reading — the level asked for, as the promise's own title says. Ratify or reverse.
+4. **Path's word-hood**: deferred on the import cycle; `kin` could declare it (`TypeOfPath.kin` = a word type instance) with no parentage at all. Want it?
+5. **Chapter's dress**: single-dress dropped the Output-inside-Article nesting. Visual call.
+6. **`$$X` dissolution and the membrane** — two gated surgeries queued; order them.
+7. **U55's columns** — how many columns a table lays remains the one undecided look-side fact.
+8. **The binder's packaging** (R79: "ships with the package") — `binding/` stands beside the package tonight; folding it in is a build-infrastructure decision.
 
-***"TS lives with JS like TSX and JSX live with them, and React lives with them and Chemistry (look at the name) lives with React. Could TypeScript possibly be less expressive (for static analysis) than JS? No, not if you can write JavaScript inside. Can Chemistry be less expressive? Not if it is written within React. I designed it with that in mind. It is designed like a web framework that extends React like TSX extends TS."***
+## Verified, at the close
 
-**`JS → TS → JSX → TSX → React → $Chemistry`. A conservative extension, by design and not by accident.** Each link cannot be less expressive than what it contains, because what it contains is writable inside it — and **the name states it**: React is a *reaction*; chemistry is the discipline reactions belong to. It is not an alternative to React, it is the containing frame.
+**lib 570/570 · tsc 0 · clean 0 · chemistry 831/831, tsc 0 · binder: strict tsc 0, bind exit 0 on both fixtures and the Wikimedia corpus, SPECIFY 4/4 · the demo driver 8/8 PASS in a real browser.** The final roll figure stands beside this commit in the room's record.
 
-**Two consequences a session should not have to re-derive.** *Expressiveness is settled by the interop rather than by feature comparison* — a plain FC drops into a chemistry tree, a chemistry component IS a `React.FC` and drops into a React tree, no adapter either way. And **the escape hatch is the base language**: dropping to a plain FC is still inside the framework, which is why an unoptimised path is never a trap. In most frameworks, escaping means leaving the application.
+## Wrong turns, indexed
 
-*Owed: this belongs as a chapter in [Designing Inexplicable Phenomena](../designing-inexplicable-phenomena/.cover.md) beside [Shells Over Types](../designing-inexplicable-phenomena/14-shells-over-types.md), not only in a sprint record.*
+[R68 twice](#requirements) · the typed registry's clobber · chemistry's `inline` overridden while load-bearing · `getPrototypeOf` on derivatives · `String.replace` eating `$$` · the heredoc's backslashes, repeatedly · blaming the harness for the weight ([Solutions 45](../solutions/45-the-view-that-constructed-its-parts.md)) · the stale dist, again ([Solutions 5](../solutions/05-the-suite-that-passed-against-a-stale-build.md)'s class).
 
-## Wrong turns already taken — do not retake them
+## Tomorrow opens on
 
-- **[R68 was written twice and withdrawn.](#r68)** Nesting was reported broken — *the table destroyed, the boundary gone* — **and it was not.** The claim was read off `parts()` alone while the table sat in the block still painting as a `<table>`. **Ask a second question before calling something destroyed.**
-- **The `on` arrow is NOT LINQ expression trees.** That comparison was made and rejected: LINQ *reads* an expression to build a query; `on` *writes* — it fills a member with a constructed instance and reconciles against what is already there.
-- **A stale `AUDIT: brittle` comment in [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) was re-found and served back as a discovery.** Four of its five failure modes cannot occur; the parser distinguishes only *how many parameters and which is spread*, and every bond constructor in both packages is `$X(block: $Block)` except `$Eval(...parts)`. **It is the only such comment in either source tree.**
-- **`git log` shows who COMMITTED, not who wrote.** Doug commits; the code is AI-written. Authorship cannot be read from a commit here.
-
-## Wrong turns, continued
-
-- **The stale dist bit again, and the error's own roster caught it.** The `[cache]` guard was edited in chemistry's `src` and lib judged the change through `dist/chemistry.cjs` — *"$Trait stands for TraitFriend, Card"* named exactly who had registered, which said the rail worked and the build was old. Rebuild the dist before reading a red as a design fault — [Solutions 5's class](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
-
-## Done and verified
-
-**[U53](#units)/[U54](#units) — DONE AND VERIFIED, 2026-09-02.** *Gated: "The first is good.", executed under "get moving too."*
-
-- **The trait rail was blocked in chemistry and is open.** `[cache]` refused any name an ancestor catalogue held, so a trait named `Table` could never register while `$TypeOfTable` held `'Table'` in `catalogueOf($Type)`. The refusal became a per-catalogue skip — each catalogue keeps its first claimant — in [chemical.ts](../../../chemistry/package/src/abstraction/chemical.ts). **chemistry 831/831 · tsc 0**, dist rebuilt.
-- **The level comes from the written type where one declares a level, else from the class.** [`$Composition.parts()`](../../package/src/writing/Composition.tsx) reads the bound host's type when it declares `writtenAs`; `reduce` follows the same choice — the host's when it embodies the level, the made class's when it does, a made shape only when neither — so a paragraph-typed table chunks prose the way a paragraph does. Every pre-existing path resolves to the old behaviour, which is why the 490 stayed green.
-- **A class's own type is assigned only when none was carried** — `this._type = this.carried ?? $(<TypeOfTable />)`, the one operator, on `$Table` alone; the levels stay closed as ruled. The carried computation is a protected getter on [`$Writing`](../../package/src/writing/Writing.tsx).
-- **The cell is a level-free seat.** [`Cell.tsx`](../../package/src/writing/Cell.tsx) — `$TypeOfCell` declares itself seated; a composition confers its `writtenAs` over any seated writing: reach up, one down, computed.
-- **`$TableTrait` is registered under `Table`**, so `<Trait>Table</Trait>` resolves painted and `<Type>Table</Type>` still finds the type — measured not to cross. Its specification checks its host is a composition, not which one.
-- **The rename absorbed**: `encyclopedia/Table.tsx` is the dress, imported as `dress.Table`/`dress.Cell`; the encyclopedia table module left the package surface because one surface cannot star-export two `Table`s — **his to restore under other names if wanted**.
-
-**Verified fresh, all of it: lib 509/509 (was 490 — 7 table promises, 4 new specs × 3 passes) · lib tsc = exactly the one pre-existing `$Index.references` error, delta 0 · chemistry 831/831 · chemistry tsc 0 · spec roll 67 → 71.** Measured observations: a table of cells composes each cell as a paragraph, copies `['first cell','second cell']`; `<Table><TypeOfParagraph /></Table>` composes sentences; a sentence wearing the table trait composes its words `['hi','yo']` and the sentence itself is unharmed; `$$(table)($Table)` survives retyping.
-
-**[U56](#units)/[U57](#units) AND THE MEASUREMENT SWEEP — DONE AND VERIFIED, 2026-09-02.** *His acceptance questions, verbatim: "If we now support paragraphs in paragraphs and polymorphism on writing, show me. Do we have a phrase as a sentence that can be in a sentence? Do we have a list that can be in a list? Do we have tests and specs to prove it?" And the standing rule that came with them: **"We aren't saving lines. We are giving examples."***
-
-- **Nine probes ran against the real build first**, one per question, each a throwaway vitest file swept after. Nesting held everywhere it was asked: paragraph-in-paragraph contributed its sentences, list-in-list its lines, sentence-in-sentence his own a–g shape, word-in-word its letters, section-in-section its titles among the parts, table-in-table its cells, and bare writing typed `<TypeOfSentence />` inside a sentence contributed `[pre, in, ner, post]`. Two gaps measured and then closed: the old phrase stood in a sentence as one word-part, and a list's carried type was clobbered.
-- **U57 — the phrase is a sentence now.** `$Phrase extends $Sentence`, non-canonical, the one-line law kept; in a sentence it contributes its words and is not itself a part — R85 observed: `['see','gauge','theory','today']`, no `$Phrase` among the parts. **A prose phrase composes no words** — the parse above word stays out of scope by this chapter's own ruling, his open door; canonical examples write their words explicitly. `SentenceSpecification` is exported so the phrase's law derives from it.
-- **U56 — the list, the same one operator.** `this._type = this.carried ?? $(<TypeOfList />)`, plus `$ListTrait` cached under `List`. A list typed `<TypeOfSection />` composes paragraphs, its title among them.
-- **The specs are examples now, and comment-free.** Every touched `.spec` gained its nesting chapter: `Sentence.NestedSpec` (his a–g example), `Paragraph.NestedSpec`, `Word.NestedSpec`, `Section.NestedSpec`, `List.NestedSpec`, `List.TypedSpec`, and `Phrase.SentenceSpec` replacing the letters spec whose meaning the move retired. Spec roll **71 → 77**.
-- **The promises:** [`nesting.test.tsx`](../../package/src/tests/nesting.test.tsx) pins all nine measurements — the inner sentence still answers `[a,b,c,d,e]` while the outer answers `[a..g]` — and the phrase describe in `reference.test.tsx` is rewritten at sentence grade, with prose-composes-nothing pinned as a promise so the day it changes is visible.
-
-**Verified fresh: lib 538/538 (509 → 538) · tsc delta zero on the one pre-existing error · `npm run clean` 0 · probes swept, nothing left behind.**
-
-**THE STYLING FRAME AND THE REF — U58 · U60 · U61 · U62 — DONE AND VERIFIED, 2026-09-02.** *His ce-work order verbatim: "Get it done, batch blockers and ask at the end after you have done all you can do. Integrate router, Make Reference work with the router and outside urls preferable by detecting form and not prop… But get a full-featured router."*
-
-- **The styling frame is standardized.** Every framed writing wears its genome: `get labels()` derives `pd-`-prefixed names from the type CHAIN (a table wears `pd-section pd-table`) plus worn traits; the frame wraps in `div` or `span` by the type's container hint; `<Trait>Glowing</Trait>` paints with NO class anywhere and `.pd-glowing` selects it in a real DOM. Chemistry carries two new members — the name roster accumulated through the constructor chain, and a strictness the trait relaxes so a bare name misses softly.
-- **The wrong member almost shipped and the suite caught it:** the container hint was first written onto chemistry's `inline`, which is a LIVE member of block assembly (chemical.ts:395) — typed writings silently lost their types. It became its own member on `$Type`. **The lesson: before overriding an inherited member for a new purpose, grep the substrate for who already reads it.**
-- **U58, decided different and said so:** the path stays parenthetical — making it print would re-teach every `landsOnIt` rule what "held" means. The empty-copy defect closed instead by the reference's own law standing down when a path is carried ($ReferenceCard's precedent), and `<Reference>url</Reference>` bare-url form stands via form-detection: a target LOOKS like one (`scheme://`, leading `/` or `#`, or address grammar) — a bare word is still refused, keeping the old promise. **The word-parentage of $Path is deferred**: `$Path extends $Word` closes the import cycle Word → Reference → Path → Word at class-definition time.
-- **U60 — `<Ref>` in three forms, none told which side it is on:** `[text](url)` markdown (the snappy one, via `marked`), `path=` prop, held `<Path>`. Internal draws react-router's Link THROUGH a dress component that holds the hook — `view()` runs outside a component body, so hooks are barred there and the decision lives in a tiny FC beside the class, the Prose pattern. Without a router it degrades to a plain anchor. A ref is a phrase: it contributes the words of its text to the sentence holding it, and its own reduce composes them from the markdown text (sanctioned by D34's assembling).
-- **U61 — reading has ONE home: a path knows where it leads.** `$Path.read(from)` follows the fragment through `from.book().catalogue().follow()`; `$Reference.read()` and `$Ref.read()` both ask it. A route-only internal path ("/physics/x") says plainly that the application's router follows routes — the corpus map is U65's.
-- **U62 — proven under a real MemoryRouter:** clicking an internal ref NAVIGATES without a page load, the old page gone and the new one on screen; an external url in the same app stays a plain anchor. The sentence's stop-law stands down for refs — a url's dots are not prose.
-
-**Verified fresh, everything at once: lib 569/569 (490 at session start) · spec roll 67 → 82 (Ref's three forms + the ref-in-sentence + the pure trait among them) · lib tsc delta ZERO on the one pre-existing error · `npm run clean` 0 · chemistry 831/831 · chemistry tsc 0 · dist rebuilt.** Spec comments RESTORED at the top of every example per his amendment — the JSX stays unbroken.
-
-**[U66](#u66) — DONE AND VERIFIED, 2026-09-02.** *Gated by him: "Okay let's get it done."*
-
-- **[`src/index.ts`](../../package/src/index.ts) written** — the modules named, not their exports, so adding a kind is one line and never a list to keep.
-- **[`rollup.config.js`](../../package/rollup.config.js) points at it**, with a nine-line `@/` resolver written inline rather than taken as a dependency — tsc reads that alias from tsconfig and rollup does not, so the one rule lives beside the build.
-- **`react-router-dom` added to the externals**, before it could bite: it was absent, so the first `Ref` importing the router would have bundled **a second copy of it into lib's dist** — a second router is a second context, and a reference would travel through the one nobody is rendering. *The config's own comment already said why chemistry is external; the router simply had not been added.*
-- **[`tsconfig.build.json`](../../package/tsconfig.build.json) rerooted** from `.archive` to `src`.
-
-***Verified by asking the artifact, not the config:*** `dist/lib.d.ts` now names **`$References` 6 · `$Catalogue` 7 · `$Index` 4 · `$$Book` 3**, and v1's `Theme` · `Location` · `Bibliography` are **0**. **lib 490/490 still green.** *Two warnings, both pre-existing and neither blocking: the `$Index` variance, and a `Composition ↔ Catalogue` circular import.*
-
-***AND IT PROVED THE FINDING WITH A COMPILER RATHER THAN A GREP.*** With v2 in the dist, the binder does not typecheck — **six errors, and every one is the v1 book API it was written against:**
-
-```
-stages/catalogue.ts(43)  Property 'contents' does not exist on type '$Book'
-stages/catalogue.ts(47)  Property 'title'    does not exist on type '$Book'
-stages/catalogue.ts(48)  Property 'subtitle' does not exist on type '$Book'
-stages/catalogue.ts(49)  Property 'summary'  does not exist on type '$Synopsis'
-stages/catalogue.ts(50)  Parameter 'c' implicitly has an 'any' type
-stages/validate.ts(75)   $Composition<$Section> is not assignable to unknown[]
-```
-
-**The breakage is exactly where the plan already said the work was.** `walk`, `refer`, `resolve` and `emit` compile untouched — they are static analysis and file writing. **Only the two stages that ASK A BOOK anything are broken**, and [R78](#r78) already retires `validate.ts` in favour of `specify()` while [R74](#r74)'s `catalogue` was already due to stop generating a `$Card` class and use `$$Book`. *Nothing here is a surprise cost; it is the same two rewrites, now with their error list.*
-
-***One consequence to state rather than discover:*** **the old public app is broken too** — it reads `book.chapters.filter(…)`, and v2's `chapters` is a `$Composition$` rather than an array. *That app is [already slated to be replaced by `.demo`](#r84), so it is recorded and not repaired.*
-
-**What was already done, at his order:**
-
-- **The demo app is archived.** `library/.public/package/app` to [`library/.public/.archive/app`](../../.archive/app), a git rename with history kept. **`library/.public/.demo/` created** and empty — git will not track it until it holds something.
-- **Four app-only scripts removed from the package** — `dev`, `typecheck:app`, `verify`, `build:demo` — because the app they drove no longer lives there. No CI referenced any of them; nothing else in the package points at `app/`.
-
-**Verification, in numbers, taken after the move:**
-
-- **lib: 490/490 vitest green. tsc RED — one error, and it is PRE-EXISTING.** [`Document.tsx:24`](../../package/src/writing/Document.tsx) declares `get references(): $References` and gets there by casting `as $References`; [`Index.tsx:20`](../../package/src/book/Index.tsx) declares the same member honestly as `$References | undefined`, and the honest one cannot override the lie. *`git status` shows no modification under `src` — the move touched a folder and four scripts, neither of which can produce a property-variance error. **Sprint 36's "lib tsc 0" is stale**, taken before the getter landed. NOT FIXED: that is `src`, and it needs his yes.*
-- **the compiler: fully green** — tsc 0 · 43 vitest · 29 walk checks · 37 resolve+emit checks · `CHECK 7/7 books stand · 34 chapters · 60 sections · 172 paragraphs · 312 sentences · 2359 words · 17240 letters`. ***AND THAT NUMBER'S SCOPE IS v1***, not the model — see [the finding](#v2-is-not-built). It is a baseline for the binder's own machinery and for nothing else.
-
-## What is next, in order
-
-1. ~~U53/U54 — compositional polymorphism and the cell~~ — **DONE AND VERIFIED, [see above](#where-things-stand): lib 509/509.**
-2. ~~U60 — `<Ref>`~~ — **DONE AND VERIFIED above.**
-3. ~~U58 — the path~~ — **DONE with one deferral above** (word-parentage waits on the import-graph ruling).
-4. **[U55](#units)/[U63](#units) — the table draws its cells; list and table get their own address codes.** ⛔
-5. ~~U62 — the router~~ — **DONE in lib and proven under MemoryRouter**; the app-side route surface (routes from books, the corpus map) is U65's, where the open door *"maybe we need more from router"* stays open.
-6. **Then the binder's two broken stages**, which are the two rewrites the plan already named.
-
-## Open, and each one is his
-
-- **[R80](#r80)** — how much cover rewriting survives, now that a React environment removes the constraint that forced it.
-- **The HTML book** — a catalogue book nearly exists; a book of pages is a separate design.
-- **The prose parse above word** — `<Ref>[text](target)</Ref>` needs `text` to become words, and a sentence written as prose composes none today. In scope or not.
-- **`Cell` the dress versus `Cell` the kind** — he ruled *"styling is not semantic,"* which dissolves the conflict; whether the styled `<td>` keeps the export name is unsaid.
-- **[Every ⛔ unit](#units)** — the framework gate, one at a time, in his own words.
-
-*Closed since they were raised: **the infobox is demo-side**, settled by [the boundary](#the-boundary). **The two `Link`s are gone** — [R87](#r87) drops the class entirely, so there is nothing left to collide with react-router's.*
-
-## What is uncommitted
-
-**Code, in the working tree:** the app rename (86 files, `package/app` → `.archive/app`), `package.json` (four app scripts removed), `rollup.config.js` (input to `src/index.ts`, the `@/` resolver, react-router externalised), `tsconfig.build.json` (rerooted), and **`src/index.ts` untracked**.
-
-**Library, not visible to `git status` here:** this chapter, its cover entry, and [Teamspeak's Discussion chapter](../../../../.claude/library/teamspeak/03-discussion.md) — the project repo ignores `.claude/` and `**/.lib/` on purpose, so all three travel by the [commit tool](../../../../.claude/library/..environmentalism/06-on-sync--commit.sh) to their own branches. *The Discussion edit is IDENTITY, not branch — it goes to the org branch.*
-
-**Uncommitted since U53/U54 landed:** chemistry's `chemical.ts` (one guard line removed) and its rebuilt `dist/`; lib's `Writing.tsx`, `Composition.tsx`, `Table.tsx`, `Cell.tsx` (new), `index.ts`, the Table and Cell specs, `spec.test.tsx`, `table.test.tsx` (new); his own rename `encyclopedia/Table.tsx`.
-
-**Blockers: none.**
+**His review.** The sprint is closed; the blocked list above is the queue; nothing in the working tree is unaccounted for. The next sprint chapter begins at his word — the extension check's staging and the questions batch are the agenda.
