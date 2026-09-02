@@ -54,6 +54,26 @@
 
 ***The law has now arrived and this row is one of its instances.*** **[The Closeness Rule](12-the-closeness-rule.md#where-art-lives) names *above the class* — which classes share a file — as one of the two places art operates**, *and [The Unit of Code](07-the-unit-of-code.md#a-word-is-not-a-class) carries the ruling in full: the file is the WORD, and a word's three faces belong together.* **The row stays here as the index entry; the reasoning lives in those two.**
 
+### <a id="the-spec-convention"></a>The spec shows every use case
+
+| | it rules | dated to |
+|---|---|---|
+| ***every framework class shows its use cases in `.spec`*** | **Doug: *"we always use the spec to show examples of the various use cases of each of our framework classes."*** *Each word's `.spec` file draws its examples as chemicals — the strong class, the carried type, and any trait or derived form — and [`spec.test`](../../package/src/tests/spec.test.tsx) enrolls every one behind three promises: it draws, it SPECIFIES, it COMPOSES, with a count that refuses silent loss.* **A new kind is not finished until its `.spec` examples exist and are enrolled.** | ***2026-09-02*** · *produced in [The Margin](../projection/35-the-margin.md)* |
+
+### <a id="never-okay"></a>What is never okay
+
+| | it rules | dated to |
+|---|---|---|
+| ***the unknown-cast reach is NEVER okay*** | **Doug: *"Get rid of this, we need to move things around. I hate this pattern and you can make that it is never okay"*** — *of a helper reading a protected member through `as unknown as { … }`. A member the machinery must read is a member on the wrong object, or machinery in the wrong place: **move things around** — the reader was moved into the owning class (the composition computes its own tokens; annotations override where the edits live; the law became `append`'s door-check) and the reach deleted.* | ***2026-09-02*** |
+| ***no cast on a strongly-typed assignment*** | **Doug: *"The property is strongly typed. No reason not to drop that"*** — `this._type = $(<TypeOfBook />)` and never `as $TypeOfBook` after it. **`npm run clean` in the package enforces this and the `$Block` spelling mechanically** — [`clean.ts`](../../package/clean.ts). | ***2026-09-02*** |
+
+### <a id="styling"></a>Styling
+
+| | it rules | dated to |
+|---|---|---|
+| ***never a style attribute on HTML*** | **Doug: *"Oh don't ever put style on HTML!!"*** — *no inline `style` on any rendered element, framework surfaces included; chemistry's dev panels were the offender and were rewritten the same night.* | ***2026-09-02*** |
+| ***$Chemistry goes with styled components*** | **Doug: *"Please test with styled components. $Chemistry goes with styled components."*** *Styling is authored as styled-components; the v6 default-import differs between ESM and CJS builds, so the callable is resolved through both shapes — [`dev.ts`](../../../chemistry/package/src/implementation/dev.ts) carries the pattern and [`dev-panels.test`](../../../chemistry/package/tests/implementation/dev-panels.test.tsx) the promise: styled, and no style attribute.* | ***2026-09-02*** |
+
 ### <a id="the-chemistry"></a>The framework's own authoring guide
 
 **[`chemistry/.lib/authorship/`](../../../chemistry/.lib/authorship/.cover.md) governs how `$Chemistry` itself is written**, *and `lib` is written against it — so a refactor in `lib` can still break a rule that lives here.*

@@ -1,0 +1,30 @@
+# catchup
+
+- **author:** [Libby](../..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **coauthor:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+
+---
+
+Read your way back into the work — **N documents, grep-guided, relevance judged against the work you were handed.** Catchup is the [waking layers](../teamspeak/04-waking.md) made a procedure: after compaction, at a session's opening, or after a long detour, the room re-grounds by READING, never by remembering.
+
+**Announce at start:** "Catching up: N documents toward <the work>."
+
+## The size
+
+**N is 30 in the first few turns of a session, and 15 otherwise.** A fresh room owes the deeper read, and a compacted room counts as fresh. The caller may size it explicitly — "catchup 20" — and N is both the coverage owed and the stop against wandering: read N, then stop and say what you would read next.
+
+## Relevance is given, not guessed
+
+**The invocation names the work** — a sprint, an open list, a defect, a question — **and every document is chosen against that naming.** Catchup without a named subject is [an explore](21-explore.md), which is a different walk. When a handoff is the caller, its *Where things stand* IS the relevance.
+
+## The grepping procedure — interleaved, never front-loaded
+
+1. **Open the anchors first**, counted in N: the current sprint chapter's Where things stand, the branch's [projection cover](../library-tree/03-sprints.md), the covers of the books the work names. These are the map.
+2. **Grep from the work's own words** — the identifiers, the members, the struck words, the symptom text — preferring the [`.lib` beside the code](../library-tree/.cover.md) before the code itself.
+3. **Read what the grep surfaces, whole where it is load-bearing.** Reading is not consulting; a skimmed chapter re-teaches nothing.
+4. **Grep again from what you just learned.** Each document teaches the next search — the sweep refines as it goes, which is why the list is never written up front.
+5. **Stop at N.** Say what was read, what the reading corrected, and what stands next.
+
+## What it produces
+
+A grounded room and nothing else — catchup writes no records. The session states what it read and what changed: each correction a claim with its source, so the re-grounding is checkable rather than felt.

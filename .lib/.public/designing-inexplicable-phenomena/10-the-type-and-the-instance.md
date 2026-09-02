@@ -140,6 +140,20 @@
 
 **`@specify('a letter is one grapheme')`** — *the annotation lives beside the specification and puts the reason in the library's own words.* ***Running a specification returns the labels of the rules that ran***, so a run reads like a test report rather than a list of member names.
 
+## <a id="the-trait"></a>The trait — a meaning worn beside the type
+
+***`$Attribute` was renamed `$Trait` on 2026-09-02, and the rename came with a system.*** A writing carries ONE type and **any number of traits**, and `$$` stands a writing by its worn traits as well as its carried type — so `<Trait>Card</Trait>` on a reference makes it answer as a `$ReferenceCard` without deriving from one. *The trait's own specification says what wearing it demands* — a card is worn by a reference — *and [`$Card`](../../package/src/reference/ReferenceCard.tsx) is the first: `canonicalForm` pointing at the class the trait grants, exactly as a type does.*
+
+## <a id="specifically-two-verbs"></a>specifically has TWO VERBS — enforce, and augment to enforce
+
+*Doug, giving the second verb before there was code for it: **"I want specifically to be able to do things. It modify. To enforce. But also to augment to enforce."*** **The first built use: [`$TypeOfDocument.specifically`](../../package/src/writing/Document.tsx) CREATES the references section on any writing being a document, then checks** — one seat serving the bond path, the carried type, and the `$$` bind, where a bond-time create had broken twenty-nine carried-type fixtures at once. ***And specifically now runs at CONSTRUCTION:*** the type setter dispatches — guarded to the type's own canonical form, because [the super-chain assigns intermediate types](../solutions/41-the-phrase-that-was-refused-as-a-word.md).
+
+## <a id="the-ladder"></a>The consumer's ladder, in Doug's words
+
+> ***"Most times people subclass the strong version, and sometimes their subclass uses the type to avoid that, and maybe very occasionally they need to make a new specification if they want to do it right because they could just extend specifically, and then really rarely they need to decorate the specification to really have control over what changes. It is very flexible but I don't think consumers will use it all."***
+
+**Four rungs, outside in: subclass · carry the type · extend a specification · decorate one.** *The four routes above are the same ladder seen from the author's side; his sentence is how it reads from the consumer's.*
+
 ---
 
-*Written 2026-08-29, out of [The Bind](../projection/29-the-bind.md), after the same fundamentals were rebuilt four times in a session.*
+*Written 2026-08-29, out of [The Bind](../projection/29-the-bind.md), after the same fundamentals were rebuilt four times in a session. The trait, the second verb, and the ladder joined 2026-09-02, out of [The Margin](../projection/35-the-margin.md).*

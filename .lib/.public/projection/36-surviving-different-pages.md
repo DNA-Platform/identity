@@ -1,0 +1,114 @@
+# Surviving Different Pages
+
+- **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **status:** `implementation-ready` — ***gated by Doug 2026-09-02 ("Okay let's go") with two amendments folded in: editing REMOVED, links-persist-on-active in its place; the chapter name is a PROXY from his sentence "next sprint is about designing things that survive different pages."***
+- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+
+---
+
+# <a id="rulings"></a>What Doug gave at the planning, verbatim
+
+| | |
+|---|---|
+| **path following** | *"A path has a url. Why doesn't path following work. We don't have react router working? Can't we process a url yet? Hmm **add to next sprint**."* — the honest state: `read()` still throws *'following its path is not yet designed'*; a path is relative and needs its root, which the document walk now supplies; no router processes a url anywhere. |
+| **the sprint's sentence** | *"**Next sprint is about designing things that survive different pages.**"* And on the references: *"We have the references serializing? **I don't think so.**"* — confirmed: `serialized` computes reactively and NOTHING stores it. |
+| **the atom** | *"I have a little baby I was working on that was supposed to **persist itself and function as a singleton**. See how it does? **Let's make it persistent.**"* Then: *"We need to build atom. Right now it is just an **inheritable singleton which is a good start for keyless persistence**"* and the law: ***"Using an atom means it should just appear."*** |
+
+# <a id="the-atom-measured"></a>The atom, measured tonight
+
+**Identity holds; state does not.** The constructor's return-override answers the class's one template — but ***a base-constructor return-override makes the template BE `this` in derived constructors, so derived field initializers re-run ON THE TEMPLATE at every `new`***: construct, set `count = 7`, construct again — the singleton answers with `count` reset. The bounded build done at the close of 35: `[$formation$]` (the atom's serializable own state), recall at forming (a microtask later, past the initializers), and `remember()` writing `localStorage` under the class's own name — *keyless: the class is the key* (the runtime-name trap — `renamed-binding` — noted for the design). **Auto-remember has no seat yet:** chemistry's reactions fire re-renders for readers, and a write with no readers fires nothing, so *it should just appear* needs a bond-level write hook — the sprint's central chemistry design.
+
+# <a id="rulings-2"></a>The brainstorm's rulings, verbatim
+
+| | |
+|---|---|
+| **the generalization** | *"For atom, we want to turn it into **a class that knows how to cache itself on change**, and ideally, we can make **persistent references** like this. It might make life easier. So let's think how to **generalize**."* |
+| **the hook seat** | *"Not sure, **we have to research it. It can be the molecule.** Let's see what makes sense architecturally."* — a research unit: chemistry's write path studied, the seat chosen architecturally. |
+| **the surface** | *"Probably want it to be a **property flag like formula or facade**."* — a declared chemical property; `$Atom` sets it for singletons, anything may set it. |
+| **the key, and the hydration cache** | *"Can we use its **chemical id**? And **the system knows to make a chemical with that id**? We need to **load these things immediately so they have the ability to be the first referents**. This needs to plug into **the cache that will one day be the hydration cache** for what happens server side but we don't have a server right now."* — durable identity is the design (session cids are not stable across reloads — the research names what is); the cache is a seam shaped for a server that does not exist yet. |
+| **the router** | *"**The router** and perhaps we can **configure it for everything. Let's explore what it does.** Maybe we can do more with it than I am aware."* — react-router adopted, with a research unit on its full surface (routes, loaders, scroll restoration) before the fragment convention is wired into it. |
+
+# <a id="low-hanging"></a>The low-hanging fruit before the plan — his hands in the code, reconciled
+
+| | |
+|---|---|
+| **$Block everywhere** | *"I changed all the html blocks to **$Block** in lib as is standard. Make sure everything in lib and compiler and demo uses $Block."* — his sweep completed; lib green, no live `$Html<'block'>` outside the archive; lib's own dist rebuilt so the demo sees it. |
+| **the cast dropped** | *"**The property is strongly typed. No reason not to drop that.** Fix all instances"* — every `as $TypeOfX` after `$(<TypeOfX />)` gone, and the assignment now writes the **`_type`** backing directly, his pattern. ***"Add codebase clean that does that"*** — [`clean.ts`](../../package/clean.ts), `npm run clean`: enforces `$Block`, drops the casts, tends the chemistry import. |
+| **document → book** | *"I changed document to book. Let's figure that out."* — figured: his `book()` kept its shape, with two reconciliations. The `instanceof $Book` in the base imported the descendant — the forbidden S30 edge — so **book-hood is decided by override**: `$Book.book()` answers itself, the base walks bound-through-inside then parent, self at top. Every `.document` caller renamed. |
+| **the setter's death, and the better seat** | his `_type` rework removed the type setter and with it birth-dispatch — ***and chemistry had a better seat waiting: `assertValid` asks the instance `valid()` after every bond, templates excluded.*** `$Writing.valid()` dispatches `specifically` post-chain — final type, fields settled, **no intermediate-type guard needed** (Solutions 41's guard was a setter-era artifact), and carried types now act at birth too, which the guard had excluded. The exactly-once promise recounted as a delta. |
+| **the reach is dead, and never okay** | *"Get rid of this, we need to move things around. **I hate this pattern and you can make that it is never okay.**"* — the unknown-cast reach deleted and [ruled never-okay in The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md#never-okay). The moves: the composition computes its own tokens and hands them to the parser; the annotations override lives where the edits live; **`$editedInKind` became `append`'s door-check** — the wrong kind refused at the door, in the law's own words, types weighing in through `writtenAs`. |
+
+**Gates after the round: lib tsc 0 · 480/480** (his crossing and smiley tests riding green among them) · chemistry 819/819.
+
+# <a id="requirements"></a>Requirements — DRAFT, awaiting the gate
+
+*Numbered on from [35's R62](35-the-margin.md#requirements).*
+
+<a id="r63"></a>**R63 · Doug.** ***Path following works, through the router:*** react-router is adopted and explored — a research unit reports what it offers before the wiring — and a reference's `read()` follows its path, relative to its document's catalogue, to the very writing; the page's fragment follows on arrival. **Observable: a reference with path and no held referent resolves; a page opened with `#Cr:1/Sn:0` lands there.**
+
+<a id="r64"></a>**R64 · Doug.** ***The references actually persist through the hydration cache:*** the document's references section stores its serialized form on change and a fresh page recalls it. **Observable: use a reference, simulate a reload, the section stands refilled and its references follow.**
+
+<a id="r65"></a>**R65 · Doug.** ***Self-caching is a chemical capability declared as a property flag*** — like `formula`, like `facade` — **whose change-hook seat is chosen by research** (the molecule is the candidate): a flagged chemical's writes schedule its own remember, debounced. `$Atom` wears the flag for singletons; the field-initializer clobber (measured: derived initializers re-run on the template under the return-override) is resolved by design. **Observable: set state on an atom, reload, touch the class anywhere — the state is simply there, no remember() called by hand.**
+
+<a id="r66"></a>**R66 · derived.** ***What survives is writing:*** the persisted forms are printed fragments and formations — addresses and serializable state — never live chemicals; rehydration is following and forming, per [the persistence thought](35-the-margin.md#persistence-thought).
+
+<a id="r67"></a>**R67 · Doug.** ***The hydration cache:*** persisted chemicals carry a **durable identity** (session cids are not stable across reloads — the research names what is), the cache **loads them immediately at boot so they can be the first referents**, and its seam is shaped for the server-side hydration that does not exist yet — storage-backed today, fed differently one day, consumers indifferent. **Observable: a persisted reference is resolvable before anything else on the page has asked for it.**
+
+# <a id="next-sprint"></a>The forward ruling, verbatim
+
+*"**Next sprint, it will be working on the compiler again from scratch. I want to see the default wikipedia view and I want you to keep up with that.**"* — sprint 37 named: the compiler rebuilt from scratch, the encyclopedia default rendered and kept current through it.
+
+# <a id="groomed"></a>The groomed list — his "what else?", answered
+
+**In:** R63–R66 above · **`$Index` and the Citations section** (*"a table of references in the document at the back … Citations might be to document what Index will be to book"* — queued by him at 35's close) · the **focus member made live** (the reading line, app-side, designed at [35](35-the-margin.md#the-folds-position)). **Waiting on him:** the Visitor's Guide design session · the fourth property's name · table cells · the rooms-and-upward-url meditation (held since sprint four at *"requires serious thought"*). **Standing:** six sprints uncommitted — the boundary is one word away.
+
+# <a id="rulings-3"></a>The plan's rulings, verbatim
+
+| | |
+|---|---|
+| **editing removed** | *"**I think I want to remove editing. It felt rushed. I just want to make links that persist on active.**"* — executed at the plan: `append`, the `edited` collection, the door-check, the overrides, `use()`, and their six promises all withdrawn; the parser's tokens came home; **tsc 0 · 474/474** after the removal. *What stays because it was never editing: the References section, its `$print`, its ends-with law, the augment, the newline trick, the encyclopedia.* |
+| **the atomic flag** | *"Perhaps we need a **property called atomic which can be true or false**; when the property is set to false, **something inside needs to know the thing was persistent and needs to clear it from the browser** and then it can go back to treating as a regular non-atomic thing. And **we can make atom atomic**."* |
+| **the id, and the overwrite** | *"**Hopefully chemical id is enough to be persistent** but we will need to **edit and test fundamental $Chemistry machinery** because wherever we persist, it probably needs to be **referenced in chemical assignment**. If the chemical exists, **it will get overwritten with the information**, so we need to make sure **loading happens very eagerly**."* |
+
+# <a id="decisions"></a>Decisions
+
+<a id="d26"></a>**D26** — persistence enters chemistry as **`atomic`**, a property flag in the family of `formula` and `facade`: true enrolls, and the FALSE TRANSITION is an act — the machinery that sees it clears the browser record and de-enrolls, so a demoted chemical is ordinary again. *Chosen over a decorator and over a lib-level trait (both offered at brainstorm) by his ruling.* <a id="d27"></a>**D27** — the store is consulted **in chemical assignment**: when a chemical whose id the store knows comes into being, the stored information **overwrites it** — which is what makes *"using an atom means it should just appear"* true without anyone calling recall. Loading is **eager**: the store is read before any chemical that could be a first referent forms. <a id="d28"></a>**D28** — a link persists **on active**: the reference's existing `$active` flip is the persistence trigger; no editing, no filing method. <a id="d29"></a>**D29** — the router is adopted, not imitated: react-router explored first, our fragment grammar riding inside whatever it offers.
+
+# <a id="units"></a>Units
+
+**U47 — the editing removal.** ***Done at the plan*** (this chapter's rulings table carries the diff's shape); its visible end is negative space: the suite at 474 with nothing red.
+
+**U48 — the `atomic` flag.** *Mechanism:* a flag read by the persistence machinery; the true-state enrolls the chemical's formation under its id; **the setter-observed false transition** clears the record and de-enrolls. `$Atom` declares it true. *Files:* chemistry `chemical.ts` (or the flag beside `formula`'s seat), `atom.ts`, `symbols.ts`; chemistry tests. *Scenarios:* atomic chemical's change reaches the store; set `atomic = false` → the browser record is GONE and later changes stay unstored; a never-atomic chemical never touches storage. *Demo contribution:* devtools-visible storage appearing and vanishing with the flag — unfakeable by a hand page.
+
+**U49 — DESIGN OWED: the hydration in chemical assignment.** *What must be designed before this is buildable:* **whether the session cid is stable enough to be the key** (his hope; the research measures cid assignment across reloads of an identical page — deterministic construction order would make it so, and the `renamed-binding`/`orphan-root` families say what breaks it), and **where in assignment the overwrite runs** (bind? derive? the constructor?) so a persisted chemical is overwritten the moment it exists, **before first read**. The eager-load boot seat is part of this design: read-the-store-first, so persisted things can be the first referents (R67). *No files, no scenarios, until the design session answers "what runs, and when."*
+
+**U50 — the change hook.** *Mechanism (research completes it):* the seat that observes an atomic chemical's writes — the molecule is the brainstorm's candidate — debounced into remember. Depends on U48; feeds U49's overwrite the same formation shape. *Scenarios:* write → store updated once per burst; the field-initializer clobber (measured in [the atom section](#the-atom-measured)) resolved — a formed atom's recalled state survives later constructions. *Demo:* change an atom, reload, it simply stands — nothing called by hand.
+
+**U51 — links persist on active.** *Mechanism:* the anchor's `$active` flip (already in `$Reference.view`) marks the reference persistent — its printed fragment under its id through the same store — and eager load re-forms it active on the next page. *Files:* lib `Reference.tsx`, `References.tsx` (the visible seat: the section shows the persisted links), tests. *Scenarios:* click → stored; reload-simulation → the section stands refilled; the fold's `location` rides the same record. *Demo contribution — the sprint's unfakeable end:* **click a link, reload the page, the References section remembers it.**
+
+**U52 — the router.** *Mechanism:* research reports react-router's surface (routes, loaders, scroll restoration, hash handling); then the fragment convention wired: on arrival, the fragment follows through the book's catalogue and scrolls; `read()` follows its path relative to `book()`'s catalogue. *Files:* app-side routing seat, lib `Reference.tsx` (`read()` follow), tests for the follow half. *Scenarios:* `read()` with path and no held resolves through the document; unknown fragment refuses in follow's words; arrival at `#Cr:1/Sn:0` lands. *Demo:* a shared url opens on the very writing.
+
+# <a id="tracing"></a>Origin tracing
+
+**R63 → U52** · **R64 → U51** (reworded by the removal: persistence is on-active, not through edits) · **R65 → U48 + U50** · **R66 → U49/U51** (fragments and formations are what the store holds) · **R67 → U49**. Every unit names its mechanism or is marked design owed; every unit names a visible end.
+
+# <a id="risks"></a>Risks
+
+***The cid is not stable*** — the whole keying hope; mitigated by measuring FIRST (U49's design session opens with it) and by the fallback his brainstorm named: a declared identity. ***The overwrite races the initializers*** — the measured clobber, now load-bearing; U49's design must place the overwrite after fields settle or make initializers write through the membrane. ***Eager load races template seeding*** — the store must be readable before `seed()` constructs anything atomic. ***The router brings its own opinions*** — mitigated by the research-before-wiring order, D29.
+
+# <a id="checklist"></a>The checklist
+
+- [x] **Requirements gated by Doug** ("Okay let's go"), amendments folded
+- [x] **U47** editing removed — tsc 0 · 474/474
+- [x] **U49 designed AND built** — `$aid` on `$Chemical` (his atomic id; atoms keyless via the class, references self-aiding from their url at bond); the hydration cache eager (`load()` at module init, one map, localStorage-backed, server-shaped); the overwrite seated POST-BOND under the `$formed$` mark, once per instance; **two laws found by measurement: RECALL COMPLETES BEFORE THE FIRST REMEMBER** (enrollment's own flush had saved the initializer-stomp over the record — atoms now enroll silently and speak after recalling) **and THE FORMATION IS THE BACKING'S CENSUS** (a bound child's state lives behind the membrane — own keys lie; the backing store plus the template's bonds tell the truth)
+- [x] **U48** the `atomic` flag — accessor on `$Chemical`, false transition clears the browser record and demotes; promised
+- [x] **U50** the change hook — the alert rides the one activated setter every reactive write commits through, beside `diffuse` (the update alert Doug hoped existed, half did); microtask-debounced flush
+- [x] **U51** links persist on active — `activate()` on the reference ($active + atomic); THE UNFAKEABLE END GREEN: an activated link is remembered and its reprint appears active; atomic withdrawn forgets it (chemistry 820/820 · lib tsc 0 · 476/476)
+- [x] **ATOMIC HARDENED at his order** ("focus on atomic… efficient and performant and it has to not break the other features… It has to be toggleable") — the hot path reads the raw backing field, no accessor dispatch, nothing allocated on the no-branch; **measured: ~4.4M reactive writes/sec non-atomic with the alert in place, full persistence at 1.22× (bench/hydration.bench.ts)**; TOGGLE promised (off clears, on re-enrolls with an immediate snapshot, writes persist again); a never-atomic chemical never touches storage; **the recall does not echo** (a reprint writes nothing back); **the true click persists** — the anchor is the trigger, through React's own event path. Two findings: `activate()` must name its own aid (the click lands on the DRAWING, whose bond never ran — the act that persists also names), and **a sentence wrapping an in-prose reference draws an anchor inside an anchor** — invalid HTML, filed open for Doug. (chemistry 822/822 · lib tsc 0 · 478/478)
+- [x] **THE $CHEMISTRY DEMO** at his order — the Lab's hydration room: **the undying atom** beside its mortal twin, same controls (energize, calm, transmute — charge, hue, and element all state), the atomic toggle on the jar ("let it die" / "make it atomic"); refresh and the atom stands, the twin resets. Registered in the catalogue as 'The hydration cache', app builds clean. **The demo path promised headlessly: a DRAWN atom's clicks persist** — the derivative inherits `_atomic` and the aid through the prototype, measured, not hoped. Coverage audit honest: added corrupted-storage-loads-empty and only-primitives-form; **chemistry 825/825 · lib 478/478**. *Known gaps, filed not hidden: aid collisions between different classes share a record (last writer wins — the same-instance-per-aid rung undesigned); storage quota failure is caught but untested; the Lab's react-router is already in the app — U52's research starts there.*
+- [x] **NESTING, up to section** — his design: *"You can add an X to an X and the composition just collects its parts and returns as part of its composition with an indent … up to section."* — read literally as the mechanism: the accept flattens a same-kind child's PARTS into the outer's (perfectly typed — a paragraph-in-a-paragraph contributes sentences), scoped by a `nests` flag on the type (true Word–Section, false Document–Book), the indent display-side (`Prose` nests by CSS). The section's law learned to allow its own kind. Four promises (485/485).
+- [x] **THE INDEX, re-ruled and built** — *"References is citations. The Index is a type of References with a strong type."* — the chapter-kind `$Index` superseded with intention: `$Index extends $References` in the reference folder, standard type pattern, its own aid ('Index', set before super so the base's default cannot claim it first), persisting the same way. The book anatomy test slimmed accordingly.
+- [ ] **U52** the router researched, then wired
+- [ ] `$Index` and Citations (riding when the above stand)
+- [ ] The References section DISPLAYING the remembered links (the store enumerates; the section reads it) — the visible-seat tail of U51
