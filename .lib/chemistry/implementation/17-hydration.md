@@ -32,4 +32,4 @@ On flush, every live chemical sharing the pid is overwritten from the record and
 
 ## The door
 
-`$('{pid}')` answers the live chemical enrolled under that pid — `hydration.recollect`, dead refs pruned — checked before the HTML tag catalogue; an implausible tag answers `undefined` rather than an invented component. Name pids like names, not like tags.
+`$(pid)` answers the live chemical enrolled under that pid — `hydration.recollect`, dead refs pruned — checked before the HTML tag catalogue; an implausible tag answers `undefined` rather than an invented component. Name pids like names, not like tags.
