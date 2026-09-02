@@ -170,13 +170,27 @@ Given this session, and each one changed what was built:
 ### How to see what this sprint made
 
 ```bash
-cd src/analyses/perceptual-twin/examples/analysis/computation/most-plausible-perception
+ls src/analyses/perceptual-twin/examples/analysis/computation/most-plausible-perception
 ```
 
-Six figures. **Read 03 first** — the percept's spectrum, where the band of interest is defined by its
-own trend crossing zero. Then **06**, the cortical pair spectrum on the same axis, which is where the
-two disagree in sign. **04** is the cortical sheet, band-limited; its fourth panel is a white-noise
-control and it is 80% as blobby as the data, which is the honest limit of that picture.
+**Fourteen figures.** Read them in this order:
+
+- **03** (`-linear`, and `-log` is the same numbers on a log axis) — the percept's spectrum, 13 row
+  periodograms per trial. **This is where the band of interest comes from**: the pre twin's 4-point
+  trend crosses zero going up at 0.141 and back down at 0.324 cycles per pixel. **03b** is the same
+  spectra with the second moment instead of the first.
+- **06** — the cortical pair spectrum on that same axis, measured in microns of cortical surface with
+  the retinotopy used only to relabel the axis. **This is where the two disagree in sign.**
+- **04** — the cortical sheet, band-limited so no single neuron can be drawn. Its fourth panel is a
+  white-noise control and it is 80% as blobby as the data, which is the honest limit of that picture.
+- **05, 05b, 05c** — three grid-based routes to the same statistic, differing only in how the field
+  reaches its Fourier modes: nufft on the measured receptive-field centres, the original thin-plate
+  spline on cortex, and the band-limited reconstruction figure 04 draws. **They were deleted once and
+  restored** — they had been cut because they failed their own controls, which is selecting a
+  technique by its answer and is the one rule Doug ruled out. Each carries its control on its own
+  axes.
+- **01** (four panels: each twin on its own condition, and each twin on the other's) and **02** —
+  the percept pictures and the energy/correlation summary they rest on.
 
 ### Pointers — what is load-bearing in each
 
