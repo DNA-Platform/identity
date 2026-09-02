@@ -7,6 +7,18 @@
 
 ---
 
+# <a id="where-things-stand"></a>WHERE THINGS STAND — session boundary, 2026-09-02
+
+*Ran with Doug at the keyboard throughout; the working copy is the truth, not this page. **The next session opens by reading this and [NEXT SPRINT](#next-sprint-2), and acts on nothing until it has.***
+
+**Everything is green, committed, and pushed** — this sprint's persistence arc is CLOSED. Verification, from the runs that claim it: **chemistry 831/831 · package tsc 0 · lib 490/490 · lib tsc 0 · demo driver 7/7 ALL SEEN** (the Reading Room and the Study at `/persistence`, real browser, real refreshes, visible text). App typecheck: 18 pre-existing errors in three named styled files, none ours. Final commits `d60e928` and after (recollection, face→facade's one comment, this handoff); both repos clean, identity synced.
+
+**What this session shipped**, at a glance — the checklist below carries the detail: the demo rebuilt to the looks idiom and SEEN; the bare flag promised without the base class; `$(pid)`; the References/Index restructure to his design (the type grants the power, one key `'$references$'`, the Index a chapter that decorates); three findings probed to mechanism and compounded (Solutions 42–44); Shells Over Types written down to be obeyed; the hydration chapter in chemistry's own `.lib` (implementation/17); the names settled — `recollection`, `$references$`, `$Index` kept, `facade` confirmed done.
+
+**Blockers: none.** Open and small, waiting on Doug only when he cares: the two-extra-passes call on the assignment; the Lab's `Ps` symbol and scene-name proxies; sprint 45's bonded-child parent fault, filed, not urgent. **The wrong turns are Solutions 42–44** — read them before touching reassembly, shared records, or `specifically`.
+
+---
+
 # <a id="rulings"></a>What Doug gave at the planning, verbatim
 
 | | |
