@@ -100,7 +100,7 @@ the one that gets forgotten:
 | organize → deliverable | [`_organize.py`](../../../src/analyses/most-exciting-image/pipeline/_organize.py) (raw per-object → row-aligned per-twin/per-set datasets on the four-twin index) → [`build_deliverable.py`](../../../src/analyses/most-exciting-image/pipeline/build_deliverable.py) (datasets + checkpoints + `src/library` → the zipped Reimer handoff). *The old HDF5 path — `pack_archive.py`, the inline zip in `rebuild_freemu.sh` — is retired.* |
 
 **The studies that ALREADY EXIST — read one before you invent one** (`pipeline/studies/`). Each owns a question.
-**Which of them currently import** is volatile and lives in [ch5](05-the-working-state.md#the-studies--which-run-right-now);
+**Which of them currently import** is volatile and lives in [ch5](05-the-working-state.md#the-studies--which-import-right-now);
 what each one *is for* does not change:
 
 | study | owns |

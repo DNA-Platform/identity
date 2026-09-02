@@ -53,6 +53,13 @@ A filename is not a read. Remembering a file is not reading it.
    split and resolution wall; the canvas worked properly (rescale the network's kernels, not just the image); and
    **the generative prior** — the released band is a null space to *sample* (DDNM/ILVR/DPS, Sensorium-Viz), with each
    sample bound to that trial's activity. Descend when resuming the hallucination work; not every turn.
+4. [ch7, The criteria for hallucination](07-the-criteria-for-hallucination.md) — **what would count as
+   evidence**, sharper than H5/H6: three clauses (asymmetry between the cross-model directions, unexplained
+   variance, and white-across-trials-but-structured-within-one), each killing an alternative the others cannot.
+   Holds the null clause 3 names for itself — a random rotation in TRIAL space preserves the covariance exactly
+   while Gaussianising single trials, so any excess is higher-order. That null is what convicted the
+   cortical-clustering result as second-order. Also the precedent search behind each clause. Descend before
+   claiming any hallucination result; not every turn.
 
 **Depth 3 — the code.** Only the file the map names as the owner. Read the **whole file**, not the region you
 mean to edit — rivals get born in the unread part of a file you already had open.
@@ -78,7 +85,7 @@ there doing the job. So:
    one half-owns it, edit it. A new file has never once been the right answer on this project.
 5. **A study that "doesn't work" is stale, not wrong** — most `studies/_*.py` carry stale `parents[]` from the
    `pipeline/ → studies/` move. That is not a licence to write a new one. Which ones are stale is in
-   [ch5](05-the-working-state.md#the-studies--which-run-right-now); the fix and what each study is *for* are in
+   [ch5](05-the-working-state.md#the-studies--which-import-right-now); the fix and what each study is *for* are in
    [the map](03-the-analysis-plan.md).
 6. **Test claims about your own tools; never assert them.** You have web access — `curl` works. A whole session
    was spent insisting otherwise, without testing.
@@ -109,6 +116,7 @@ with a link**, dated state into [ch5](05-the-working-state.md). When a new way o
 | [the cover](.cover.md) | what the book is; the TOC by kind | **short, and points**. No state, no lists. |
 | **this chapter** | the reading list + the turn contract | the graph, and the reasons. Short on purpose. |
 | [the map](03-the-analysis-plan.md) | the DRY homes; what each study is for | concepts and owners. **Never a count, never a date.** |
+| [ch7](07-the-criteria-for-hallucination.md) | what would count as evidence, and its nulls | the definition and its precedent. Changes when the definition does. |
 | [ch5](05-the-working-state.md) | active code, ✓/✗ studies, still-open, the **audit trail** | the ONLY volatile layer. Rewritten every turn. |
 | [`--check.py`](00-the-turn--check.py) | the executable form of this chapter | errors only, no warnings |
 

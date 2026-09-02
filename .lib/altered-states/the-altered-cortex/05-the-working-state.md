@@ -81,12 +81,132 @@ owns**, **its contract**, and **what checks it**.
 ## The studies — which import right now
 
 **✓ = runs · ✗ = stale `parents[]` — stale, not wrong; the fix is two lines, [in the map](03-the-analysis-plan.md).**
-The 2026-07-18 clean-shop deleted the six cortex-era diagnostics (figures gone, findings void); of the 9 that
-remain, **3 of 9 are ✗** — the decoder / metamer-vs-decoder trio, which create and score the decoder resource
-(a keeper); repair their `parents[]` when the metamer findings are rewritten post-run.
+The 2026-07-18 clean-shop deleted the six cortex-era diagnostics (figures gone, findings void); three
+metamer studies were added since. Of the 12 that remain, **3 of 12 are ✗** — the decoder /
+metamer-vs-decoder trio, which create and score the decoder resource (a keeper); repair their
+`parents[]` when the metamer findings are rewritten post-run.
 
 - ✓ `_check_all_twins.py` · ✓ `_retinotopy_grid.py` · ✓ `_prepost_analysis.py` · ✓ `_blur_check.py` · ✓ `_metamer_similarity.py` · ✓ `_extract_targets.py`
+- ✓ `_metamer_convergence.py` · ✓ `_metamer_fixed.py` · ✓ `_seeded_metamers.py` — the finding-F2 trio (unseeded, oscillating synthesis, and its fix)
 - ✗ `_metamer_vs_decoder.py` · ✗ `_decoder.py` · ✗ `_decoder_figure.py`
+
+## The validator's four remaining errors — read before acting on one of them (2026-08-29)
+
+`00-the-turn--check.py` reported eight; four were ch5's own staleness about the studies and are
+fixed. The four that remain are real, pre-existing, and **one of them must not be obeyed literally**:
+
+**`RUN: no generation watchdog alive` — do NOT relaunch it right now.** The check exists because the
+book describes a live 12-worker generation run. That run is finished. The machine is currently
+training the optical-behaviour twins (~1.4 GB resident, 15-20 h), and `rebuild_freemu.sh` has **no
+lock** — relaunching it would start a competing 12-worker pool on top of that and both would thrash,
+which is the exact failure this book already records twice. The honest fix is to retire the live-run
+language in [`deliverable.md`](../../../src/analyses/most-exciting-image/deliverable.md) Status and
+let the check follow it; that is prose surgery in a contract while its project is mid-experiment, so
+it is left for whoever owns that run to do as it lands.
+
+**Three `FIGURES` errors — ten cited figures do not exist.** `retinotopy_749_modelfree.png` and
+`retinotopy_749_pre.png` (cited by [the map](03-the-analysis-plan.md) and `deliverable.md`), and
+seven `blur_sigma` / `metamer_blur_sigma` figures cited by `comparison.md`. These are findings whose
+evidence is gone — the check's own phrasing, and it is right. They are regenerable from the studies
+that made them, and until they are regenerated the claims resting on them are citing nothing.
+
+Neither group was caused by tonight's work, and neither is safe to paper over: a check that is
+routinely red teaches the next reader to ignore it, which is how the eight became eight.
+
+## `rf_mask(readout.mu)` is the wrong instrument for coverage (2026-08-30)
+
+**Three measurements agree that these 749 cells look at rows ~20-31 of the frame, and both mu-derived
+masks are about six rows too high.**
+
+| instrument | needs a twin? | answer |
+|---|---|---|
+| stimulus-triggered RF, 4,850 training trials | no | peak **row 26, col 37** |
+| input gradients through the twin | yes | peak **row 26, col 37** |
+| occlusion sweep, best 12-row band | yes, no gradients | rows **20-31**, r 0.845 |
+| `rf_mask(readout.mu)`, perceptual twin | — | rows 16-27 |
+| delivered `rf_mask.npy` | — | rows 13-23 |
+
+The twin reads where the data says. **mu is not where the network functionally looks**, so a mask built
+from mu is misplaced even when the twin is fine. This is the "collapsed elevation range" the circular
+readout gate hid, resurfacing as a coverage error. Every coverage figure drawn from mu on this branch
+is drawn too high.
+
+Scoring in the measured patch instead of the mu patch moved every reconstruction number: decode r
+**0.524 -> 0.612**, per-band identification real out to **17.1** rather than 6.8 cycles per image
+height. **The "walled at a 6 px blur" verdict below was computed over partly wrong pixels and is
+withdrawn.**
+
+## WITHDRAWN — everything the ridge decoder produced on 2026-08-30
+
+Three sections stood here: an H5 result (the unexplained component is low-dimensional and image-like),
+a percept section with a pre/post 2x2 and its parity controls, and a "reading the image back out of
+activity" section concluding the reconstruction was walled at a 6-pixel blur.
+
+**All of it came from a `sklearn` ridge regression, not from the twin.** The defect and its mechanism
+are [Solutions ch1 — The decoder that replaced the twin](../solutions/01-the-decoder-that-replaced-the-twin.md).
+The code and every figure were deleted. The numbers are not repeated here, because a withdrawn number
+left in a working-state chapter is exactly the [stale artefact](../solutions/.cover.md) this book
+exists to prevent — the Solutions chapter holds what is worth remembering about them.
+
+**What was in those sections and survives, because it used no decoder,** is the coverage result immediately
+above and these two raw-response measurements:
+
+- per-cell split-half reliability **pre 0.565 -> post 0.497**;
+- cross-condition per-cell tuning correlation **0.4006** raw, **0.8246** after correcting for both
+  conditions' reliability, over the 652 cells reliable enough to correct.
+
+## Comparable twins — the measure, and what it says about behaviour (2026-08-29)
+
+**The question changed shape.** "Is the post twin as good as the pre twin" is answerable and not the
+one that matters; a twin can predict well and represent something else. The question everything
+cross-condition rests on is whether **a condition's two twins represent the same code**.
+
+**The measure, and the thing that makes it a measure:** every similarity is calibrated against a
+**same-representation reference** — two *training* seeds of the same twin, which represent the same
+thing by construction. Whatever a metric reads across those is what "the same" looks like in its
+units. Owner: [`comparability.py`](../../../src/analyses/perceptual-twin/analysis/.resources/perception/comparability.py)
+in the perceptual-twin project; loader-free, so it runs beside a training job.
+
+Measured on the 100 shared target images, five seeds per twin. The ratio is pre-vs-post over the
+same-representation reference — 1.0 would be "as alike as two seeds of one twin":
+
+| | no-behaviour | full-behaviour |
+|---|---|---|
+| stimulus drive, post / pre | 0.79 | **0.30** |
+| tuning agreement | 0.60 | 0.41 |
+| representational geometry (RSA) | 0.75 | 0.50 |
+| population axes | 0.67 | 0.44 |
+| shared variance | 0.36 | 0.17 |
+| **MEI agreement** (the delivered benchmark) | **0.633** | **0.584** |
+| blur factor, px² (frequency domain) | +0.26 | **+3.14** |
+| cutoff frequency, pre → post | 0.273 → 0.219 | 0.210 → **0.083** |
+| energy-entropy ratio (spatial domain) | 1.0115 | 1.1001 |
+
+**Three things follow.**
+
+**Neither arm's twins are interchangeable.** Every metric falls outside its seed reference in both
+arms — pre and post do not represent the same code even without behaviour. That is expected of a
+drug and it had never been given a number.
+
+**Behaviour makes it much worse, and the gate says why.** Post's stimulus drive collapses to 0.30 of
+pre with behaviour against 0.79 without — [F3](../../../src/analyses/most-exciting-image-replication/analysis/.resources/twin/findings.md)
+confirmed on real stimuli rather than 20 random images. A twin that barely responds to the image is
+not representing a perception, so every similarity computed on it is measuring a baseline.
+
+**The delivered benchmark is the least sensitive instrument for this question.** MEI agreement
+separates the arms by 8% (0.633 against 0.584) where the representational measures separate them by
+30-40% and drive by a factor of 2.6. It answers "is the preferred image the same", which is a
+weaker question than "is the code the same" — worth knowing before it is used to decide anything.
+
+**And `energy_entropy` badly understates the arm-A resolution loss**, exactly as
+[`resolution.py`](../../../src/library/stats/resolution.py)'s header warns. Its ratio makes arm A
+look 9× worse than arm B; the frequency-domain blur factor makes it **12×** worse, and the cutoff
+frequency falls 61% against 20%. The spatial measure is Doug's and is first-class for spread; for
+*detail* the frequency one is the one to believe, and the two should be reported together so the
+disagreement stays visible.
+
+**Not yet measured:** the pupil-only and filtered-pupil arms, whose twins are still training. The
+battery takes them unchanged — one row in `comparability.ARMS`.
 
 ## Still open — in dependency order
 
