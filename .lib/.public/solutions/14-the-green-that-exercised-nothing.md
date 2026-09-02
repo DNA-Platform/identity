@@ -148,3 +148,13 @@ the navigation corrected, same commit    →  61 checkpoints · 31 checkpoints
 ***And one thing this chapter did not say, which cost the most hours:*** **a short count POINTS.** *Every stall was at a step that leaves a book and returns to the shelf — a true pattern, and it indicted the framework work the sprint had just finished.* **A stall's location is where the instrument gave way, not where the code is wrong**, and those coincide only when the instrument is sound.
 
 > ***The driver's own report is the thing to harden next.*** **`STALLED at checkpoint 50: Waiting for selector [data-book] failed` is a sentence about the app**, and it was a sentence about puppeteer. *A stall should say what it was standing on when it stopped — the URL, whether a navigation was in flight, and whether the context survived — because [this chapter's whole method is making a gate say what it exercised](#the-fix).*
+
+---
+
+## A SEVENTH APPEARANCE — a file shipped COMMITTED-DEAD. From the persistence sprint, 2026-09-02
+
+**The symptom:** the chemistry Lab's `callout.tsx` sat at commit `a37de5e` with an import statement inside another import — syntactically incapable of parsing — and nothing anywhere was red.
+
+**Why every gate missed it, each for a scope reason this chapter already names:** no driven route loads the module, so the drivers never requested it; the dev server transforms modules on demand, so vite never touched it either; and the project-form app typecheck — the fix from the first appearance — **was not in any loop between the edit and the commit.** The first `tsc -p <absolute>/tsconfig.json` run after `a37de5e` named it instantly (`TS1005` at line 4), one session later, by accident of running the gate for an unrelated number.
+
+**What this appearance adds:** the disease covers COMMITS, not only claims. A green report without scope and a commit without a gate run are the same object — *nothing said what the boundary exercised.* The mend was one line; the cost was that a dead module rode a boundary labeled green. **A commit's gates are part of the commit's claim**, and the boundary tool is the seat that could state it structurally — the same argument as the driver starting its own server, one ring further out.
