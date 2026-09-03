@@ -326,6 +326,16 @@ grep -ho "^> \*\{2,3\}[A-Z ]*\*\{2,3\}" 0[2-5]*.md | sed 's/^> //;s/\*//g' | sor
 
 ***Roughly 600–700 changed lines across about 30 files, and almost every step is a SUBTRACTION.*** **This is one to two sessions and it is not a divided plan** — *the same measurement that turned [The Build](../projection/15-the-build.md)'s seven tracks back into one session.*
 
+### <a id="declarations"></a>3 · Declarations — RULED 2026-09-03, the newest problem on the list
+
+***Doug: "In chemistry, we want: `inline = true;` / `override inline = true;` / `parenthetical = true;` / `persists = true;` … see if we can refactor $Chemistry so we can achieve this, and update the lib code to look like this."***
+
+**The problem: a declaration should look like a declaration.** Today three things prevent it:
+
+- [ ] **`persist` is a getter/setter pair over a `_persist` backing field** (with `hydration.clear` living in the setter) — it should be declarable as the bare field **`persists = true`**, the side effect moved to whatever seat actually needs it.
+- [ ] **Live members make bare overrides a trap** — `override inline = false` on a type class broke block assembly because chemistry reads `child.inline` structurally, which is how `flows` was born as a dodge. The refactor makes such members safely overridable per class, and `flows` then dissolves back into `inline`.
+- [ ] **Update lib to read exactly as ruled** — every kind declaring `inline`/`parenthetical`/`persists` as one-line fields, the $References `_persist`-era residue included.
+
 ## <a id="the-test"></a>How to know the cleaning worked
 
 ***Not a count.*** **Every gate this branch runs is a count, and [every entry in this report was true while all of them were green](01-how-to-read-this.md#why-no-gate).**
