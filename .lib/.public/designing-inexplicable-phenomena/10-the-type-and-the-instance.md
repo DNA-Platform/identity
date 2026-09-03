@@ -148,6 +148,23 @@
 
 *Doug, giving the second verb before there was code for it: **"I want specifically to be able to do things. It modify. To enforce. But also to augment to enforce."*** **The first built use: [`$TypeOfDocument.specifically`](../../package/src/writing/Document.tsx) CREATES the references section on any writing being a document, then checks** — one seat serving the bond path, the carried type, and the `$$` bind, where a bond-time create had broken twenty-nine carried-type fixtures at once. ***And specifically now runs at CONSTRUCTION:*** the type setter dispatches — guarded to the type's own canonical form, because [the super-chain assigns intermediate types](../solutions/41-the-phrase-that-was-refused-as-a-word.md).
 
+## <a id="the-fetch"></a>The `$`-fetch corollary — RULED 2026-09-03, and it is the DI seat
+
+***Doug: "anytime a type is used, it should be fetched using $ … Very important for the DI route to work." And the convention's shape, his: "You need a code convention. Don't assign properties. Assign constants close to use."***
+
+**Wherever the framework uses a component of itself — a type defaulted in a bond, a part made in a maker closure, a printed reference minted, a dress worn at a frame — the identifier is fetched through `$` into a Capitalized local AT THE SEAT, and the thing is built from that local.** Only the component-form ask consults the scope (`askedFor` walks the asker's registry, then lineage, then class templates); the eval form `$(<X/>)` and the class form `$($X)` bind the literal, which is why a direct construction is a closed seat.
+
+```
+const Asked = $(TypeOfSentence);
+this.type ??= $(<Asked />);
+```
+
+*The local's one spelling is a PROXY (`Asked`, the mechanism's own word) standing for Doug's.* **Never hoisted to module scope** (no asker stands there), **never memoized** (a wider cache freezes the first scope's answer), **never stored on a member** — his sentence directly.
+
+***THE TIMING LAW, in the same breath:*** **registration is configuration BEFORE the first parse.** Parsed populations freeze (`parser.parsed` keeps the first answer per writing) while dress fetches resolve live per render — so a registration landing after first parse yields swapped dresses over stock types, the one live two-populations form. The framework enforces its half: registering mid-draw is refused by chemistry.
+
+**The named exemptions, so a refactor does not "complete" them:** *specifications stay plain classes* (`new XSpecification()` — the `$` convention is safe only while it is not competing with chemistry's own), and *reflection stays class-fetched* — it answers build facts into globally memoized caches, and a scope-resolved answer frozen there would bake the first asker's book into every book.
+
 ## <a id="the-ladder"></a>The consumer's ladder, in Doug's words
 
 > ***"Most times people subclass the strong version, and sometimes their subclass uses the type to avoid that, and maybe very occasionally they need to make a new specification if they want to do it right because they could just extend specifically, and then really rarely they need to decorate the specification to really have control over what changes. It is very flexible but I don't think consumers will use it all."***

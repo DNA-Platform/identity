@@ -21,8 +21,7 @@
 | word | dresses | the Wikipedia thing |
 |---|---|---|
 | `Body` | the book | the mw-body reading column — sans 14px `#202122`, 60em |
-| `Article` | the chapter | *"a chapter is like an article"* |
-| `Output` | the document | mw-parser-output, the text region |
+| `Article` + `Output` | the chapter | *"a chapter is like an article"*; Output is mw-parser-output, the text region — worn together since the chapter absorbed the document (Sprint 38 R100) |
 | `Heading` | the title | the serif in-content heading, ruled `#a2a9b1` |
 | `Prose` | the paragraph | body copy margins |
 | `Bullets` | the list | the article's `ul` |

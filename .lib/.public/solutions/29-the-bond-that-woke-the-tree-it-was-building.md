@@ -99,6 +99,14 @@ finally { c[$rendering$] = bonding; }
 
 **The general shape, which outlives this fix:** *a system that fans a write out to whoever might have read it has to be able to tell **setting up** from **changing**, and the moment it cannot, anything that builds a thing which builds a thing will spin.* **The framework had the distinction — `$rendering$` — and had drawn the line one call too early.**
 
+## Second appearance, 2026-09-03 — through the door this chapter left open on purpose
+
+**The granularity paragraph above says it plainly: a bond writing to a DIFFERENT chemical still reacts.** The rebuild's recursion mechanism wrote `one.indent = this.indent + 1` onto same-family CHILD chemicals in `$Writing`'s bond — construction-shaped in intent, cross-chemical in fact. Rendered populations rebuild fresh derivatives per paint, so the write was always news: **522 bonds, 0 views, then React's limit** — the identical spiral, one object over. A bare reference nested in a reference reproduced it; the trait first blamed was innocent.
+
+**The cure was not a flag but a deletion:** the write came out, and the fact moved to where construction facts live — a class-field declaration (`indent = 1` on the transparent kinds), with the read-through gate consulting the TEMPLATE's declaration instead of an instance a bond must write. *A cross-chemical fact that is constant for the kind is a declaration, not a write* — Solutions 44's law arriving at the bond seat.
+
+**And the instrument lesson, earned twice in one day:** an earlier differential had "acquitted" this very write — because the crash it probed was a different defect (the table view, [Solutions 45](45-the-view-that-constructed-its-parts.md)) sharing the symptom. **A differential acquits only the crime it probes.** When two defects share a symptom, the acquittal of one suspect must be re-run after the other is cured.
+
 ## See also
 
 - [The parse that woke its own parents](16-the-parse-that-woke-its-own-parents.md) — **the same fan-out, from the other side.** *That one is a write during a **reading**; this one is a write during a **construction**, and the two are cured differently: that one by removing the writes, this one by naming the moment.* **A reader arriving with "the page loops" should read both and ask whether their write is in a view or in a bond.**

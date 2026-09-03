@@ -30,6 +30,10 @@
 
 Before adding a canonical subclass, ask what it does that its type could not confer. If the answer is nothing — it is a shell, and it should be *visibly* a shell: a base class, a carried type, and whatever thin dress the kind wears. If the answer is machinery, the machinery probably belongs on the type.
 
+## <a id="the-view-law"></a>The view law a shell's drawing obeys — written in Solutions 45's own second-appearance wording
+
+**A view is a READ whose SHAPE cannot construct:** it reads the block's elements, it lifts existing chemicals with `$(instance)`, and it never calls `parts()`, never evals `$(<element/>)`, never writes. The rule is structural on purpose — [Solutions 45](../solutions/45-the-view-that-constructed-its-parts.md) records the same defect shipped twice at the same seat, the second time rebuilt fresh from a ruling: *"a law that must be remembered at each rebuild is not yet a law; a view written as a pure read is."* Derivable structure enters the MODEL at `specifically()` under [Law 44](../solutions/44-the-enforcement-that-detonated-per-render.md)'s conditions — creation once, guarded, never mutation — and the view then reads what the model holds. The lawful decoration form is a `$`-fetched COMPONENT rendered over existing model, never a chemical made in the draw.
+
 <!-- citations -->
 [references]: ../../package/src/reference/References.tsx
 [index]: ../../package/src/book/Index.tsx

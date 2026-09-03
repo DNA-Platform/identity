@@ -54,6 +54,14 @@
 
 ***The law has now arrived and this row is one of its instances.*** **[The Closeness Rule](12-the-closeness-rule.md#where-art-lives) names *above the class* — which classes share a file — as one of the two places art operates**, *and [The Unit of Code](07-the-unit-of-code.md#a-word-is-not-a-class) carries the ruling in full: the file is the WORD, and a word's three faces belong together.* **The row stays here as the index entry; the reasoning lives in those two.**
 
+### <a id="the-fetch-rule"></a>The `$`-fetch corollary and the timing law
+
+| | it rules | dated to |
+|---|---|---|
+| ***a framework component is fetched through `$` at the seat*** | **Doug: *"anytime a type is used, it should be fetched using $ … Don't assign properties. Assign constants close to use."*** *A Capitalized statement-local, never hoisted, never memoized, never a member; the exemptions (specifications, reflection) and the TIMING LAW — registration is configuration BEFORE the first parse — live with the rule in [ch10](10-the-type-and-the-instance.md#the-fetch).* | ***2026-09-03*** |
+| ***how a kind is spelled*** | **[The Spelling of a Kind](15-the-spelling-of-a-kind.md)** — the nine spellings, what a kind never spells, and the type-only short form; promoted from the binder sprint's record. | ***2026-09-03*** |
+| ***a view is a read whose shape cannot construct*** | **[ch14's view law](14-shells-over-types.md#the-view-law)**, in Solutions 45's second-appearance wording; derivable structure enters the model at `specifically()` under Law 44. | ***2026-09-03*** |
+
 ### <a id="the-spec-convention"></a>The spec shows every use case
 
 | | it rules | dated to |
@@ -123,6 +131,6 @@
 
 - ***Naming.*** **[The rule that names are Doug's](../../../../.claude/library/..teamsmanship/05-territory.md) is a team protocol, not a code style**, *and there is no chapter saying how a name in `lib` is chosen or retired.* **[Sprint 29 carries a `Names owed` section](../projection/29-the-bind.md#handoff-names) that has already outlived one of its own entries.**
 - ***Testing.*** *[The unit-of-code rule reaches the suite](../projection/28-the-block.md) — per-level test files, because an invariant is stated over a level — **but that is recorded inside a sprint rather than as a rule.***
-- ***Comments — CLOSED 2026-08-30, and the WHY completed 2026-09-03.*** **Doug: "We don't comment code so that blobs like this stand out as complex."** *The ban is not only staleness-hygiene — it is the COMPLEXITY DETECTOR: a comment dresses density up as documented, while bare code confesses on sight. A blob that needs explaining needs simplifying, and the rule is what makes that visible.*
+- ***Comments — CLOSED 2026-08-30, and the WHY completed 2026-09-03.*** **Doug: "We don't comment code so that blobs like this stand out as complex."** *The ban is not only staleness-hygiene — it is the COMPLEXITY DETECTOR: a comment dresses density up as documented, while bare code confesses on sight. A blob that needs explaining needs simplifying, and the rule is what makes that visible.* ***The one written exemption:*** **`.spec` files are commented examples by convention** — they exist to be read as prose beside their drawings; `src` proper stays bare.
 - ***The old row:*** **The instruction is now stated twice in the branch and both times in Doug's own words:** *[O8](../the-condition-report/02-organization.md#o8) rules it and links the file; [The Order of a Class](08-the-order-of-a-class.md) carries the restatement — "no code comments; that data is moved to the library branch and the library branch references the code files" — and [The Closeness Rule](12-the-closeness-rule.md#what-it-forbids) lists it among what the law forbids.* ***The direction of the link is the part that matters and is easy to get backwards: the BOOK links to the FILE, never the reverse.***
 - ***The word `canonical`.*** **It carries two meanings in one codebase** — *v2's boolean "is this an ordinary member of its kind", and [the derivation's representative that stands for the whole](../the-semantics-of-books/06-the-canonical-echo-and-views.md)* — **and [the second exists under no name](../projection/00-planning.md#canonical-collision).** ***That is a ruling Doug owes, and it must not be settled by a refactor.***
