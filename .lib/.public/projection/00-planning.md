@@ -11,7 +11,9 @@
 
 *Every wave cites its sources; nothing here is approved by being listed — the decision surface is Wave 0, and src moves only on Doug's yes.*
 
-**NEXT SPRINT'S FOCUS, ruled 2026-09-04: STYLED CHEMICALS FIRST.** The road below STANDS, but the next sprint opens on the chemistry addition specified in [Sprint 39's rigorous notes](41-sprint-39--the-road.md#styled-chemicals-notes) — seated at $Particle so styled particles and styled chemicals are both real, first ruling the compiler's home. Doug's standing warning governs the road's styling items (1, 5, 29 especially): *"we are going to redo a lot of this."*
+**DONE 2026-09-04: STYLED CHEMICALS — [Sprint 40](42-sprint-40--styled-chemicals.md) is built, seen and documented.** The road below resumes. **Item 29 (dresses and DI) is CLOSED — dissolved rather than ruled**: a styled chemical is a class, so `$` reaches it and neither of that item's two roads was needed. **The encyclopedia is styled chemicals, `Styled.ts` is deleted, and no file in lib `src` sets a `style` attribute** — which also closes the styling half of items 1 and 5. *Doug's standing warning held: much of the old arrangement was redone.*
+
+**NEXT, ruled 2026-09-04 by Doug: WAVE 4, THE BOOK APPARATUS** — *"the next big thing is chapter types and subject and author. We need covers, synopses, work on the index, and most important, the table of contents. We will want figures and illustrations — at least for the cover."* **It is already brainstormed**: the 42-requirement R-A draft and questions Q1–Q14 stand in [Sprint 39 § the apparatus](41-sprint-39--the-road.md#apparatus), and **his sentence answers Q13 in part — illustrations are wanted for the cover, and figures are wanted.**
 
 ## Wave 0 — THE DECISION SURFACE (all Doug's, batched by what each gates)
 
@@ -82,6 +84,12 @@
 - Folds in: **the summary and the excerpt** (his 2026-08-30 spec, three-rung fallback, `summarizationLength` on the document class, five flagged questions — zero occurrences in v2 src; placement at the Synopsis seat his to confirm) and the reference-arc remainders (the index decorations, the bootstrap books, the visitor's guide) as brainstorm inputs. — 00-planning (prior), §§ summary-and-excerpt, the-reference-plan.
 
 ## Wave 5 — THE BINDER RETURNS, THEN THE DEMO
+
+**RULED 2026-09-04, the order and the register:** *"After book stuff, then we do the compiler. Folder conventions, what needs to be assembled. We are going to draw inspiration from v1 while aggressively reorganizing. **This can be much more technical code since it isn't public or part of a polymorphic framework** — though do use polymorphism just because we TypeScript developers are not allergic to it."*
+
+***So the compiler is written to a different standard than `lib`***: v1 is a source of ideas rather than a shape to preserve, the reorganization is expected to be aggressive, and **the register is ordinary technical code** — the library's own vocabulary governs `lib`, not the binder. **Polymorphism stays**, as design rather than as ceremony.
+
+**THE PACKAGE SURFACE SPLIT, 2026-09-04** — Doug: *"Can't the encyclopedia things just be in encyclopedia as a little sub-directory of the package… utilities might too."* **Done, on chemistry's own `/symbolic` precedent:** `@dna-platform/lib` keeps the library's vocabulary, and `@dna-platform/lib/encyclopedia` and `@dna-platform/lib/utilities` are their own surfaces. ***This resolves the `Table` collision*** — a `Table` at the root is the writing, a `Table` in the encyclopedia is the dress, and neither has to be renamed.
 
 - **F7** — the binder's nine doors against the new framework: [U66](37-the-binder.md#u66) (v2 entry point + build — `require.resolve` must reach src's writing), R80 (ruling 27), the CHECK's `specify()` teeth, plus the apparatus's subject-typing emission. — [Binder § inventory A4](37-the-binder.md#where-things-stand).
 - **F8 — THE WIKIPEDIA DEMO, the destination:** corpus re-bound, app walked in a REAL browser (the 8/8 precedent), scroll-to-fragment, the two-Cells collision named for his word, R96's typed forms live against emitted modules. NO FEATURE SHIPS UNSEEN. — [Binder § inventory A5](37-the-binder.md#where-things-stand), [§ router review](37-the-binder.md#router-review).

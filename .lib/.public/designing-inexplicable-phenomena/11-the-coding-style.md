@@ -68,6 +68,12 @@
 |---|---|---|
 | ***every framework class shows its use cases in `.spec`*** | **Doug: *"we always use the spec to show examples of the various use cases of each of our framework classes."*** *Each word's `.spec` file draws its examples as chemicals — the strong class, the carried type, and any trait or derived form — and [`spec.test`](../../package/src/tests/spec.test.tsx) enrolls every one behind three promises: it draws, it SPECIFIES, it COMPOSES, with a count that refuses silent loss.* **A new kind is not finished until its `.spec` examples exist and are enrolled.** | ***2026-09-02*** · *produced in [The Margin](../projection/35-the-margin.md)* |
 
+### <a id="no-jargon"></a>NO INVENTED LANGUAGE — the standing law, restated 2026-09-04
+
+| | it rules | dated to |
+|---|---|---|
+| ***speak $Chemistry and React, never a word you coined*** | **Doug, twice now.** *2026-09-04, on a four-question batch: "You did too much independent work and now you have your own language for a codebase that none of those words apply to… USE LANGUAGE from programming. Why can't you talk to me in $Chemistry and React."* **And again the same day, on one word: *"retyping is not a chemistry word okay? NO JARGON! Write this down. You invent language. Chemicals render."*** *The coined word was "re-typing", for the walk substituting an element's `type` — and **the file already had the word**: [`substitute()`](../../../chemistry/package/src/implementation/augment.ts) is what that seat is called, `stands` is what it answers. **The test is not whether a coinage is clear; it is whether the codebase already says it.** Before naming a mechanism, grep for it — a mechanism with a name in the source has its name, and a second one is drift. **Chemicals RENDER**; classes, members, props, elements, views, bond constructors and the walk are the vocabulary. | ***2026-09-04, second offence*** |
+
 ### <a id="never-okay"></a>What is never okay
 
 | | it rules | dated to |

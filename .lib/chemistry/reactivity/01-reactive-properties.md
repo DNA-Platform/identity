@@ -52,9 +52,26 @@ finally { c[$rendering$] = bonding; }
 
 **The rule to carry:** ***a bond constructor is the one place in this framework where a write is construction rather than mutation.***
 
+## <a id="a-function-is-behaviour"></a>A FUNCTION-VALUED MEMBER IS BEHAVIOUR — and three ways to say you meant a value
+
+***The membrane treats a member holding a function as a method***, because that is what one almost always is. [`$Bond.isMethod`](../package/src/abstraction/bond.ts) routes on the descriptor's value — `typeof value === 'function' && !value.$chemical` — and `$Bond.create` makes a **`$Reagent`**, whose `form()` installs a getter answering a **bound wrapper cached per instance**, with no setter.
+
+**A function held as a VALUE is the exception** — a factory, a class, a handler given from outside — **and the framework cannot know which you meant, so you say so.** *Three ways, each already in the framework:*
+
+| what you hold | how you say it |
+|---|---|
+| **a class, compared** — `instanceof`, `===`, a registry key | **a getter.** A wrapper is correct to call and useless to compare; this is [the identity case](../../.public/.lib/solutions/38-the-sections-that-collapsed-into-one-paragraph.md) |
+| **a factory the framework itself reads** — `selector = styled.a` | **name it in [`molecule.ts`](../package/src/abstraction/molecule.ts)'s `framework` set**, whose comment states this in advance: *"Members the framework owns, which are never state… a function-valued member would otherwise be bonded as a REAGENT"* |
+| **a handler given as a prop** — `onClick` | ***declare it initialized*** — `$onClick: (() => void) | undefined = undefined` — so it is an own property when the molecule forms, bonds as a plain field, and keeps its setter |
+
+***Left unsaid, each fails in its own quiet way.*** A compared class meets an impostor. **A factory answers a different wrapper per class, so a subclass silently stops extending its parent.** And a prop works **exactly once** — the second render's assignment meets the getter and throws *"Cannot set property $onClick … which has only a getter."*
+
+**Written 2026-09-04 out of styled chemicals**, whose `selector` is a factory and whose `$Anchor` is the first chemical in the repository to be handed a function as a prop.
+
 ## Rules
 
 - **A plain field is reactive.** `$` is not the switch; `_` and `constructor` are the exclusions.
+- **A function-valued member is a REAGENT** unless you say otherwise — see [above](#a-function-is-behaviour).
 - **A `$` name must pass `isSpecial`** to be settable from JSX — `length >= 2`, second character lowercase, not `$` and not `_`.
 - **A write is compared by value**, and an equal value is not news.
 - **A write inside the writer's own bond constructor is not news**, whatever its value.
