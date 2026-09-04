@@ -11,21 +11,23 @@
 
 *Every wave cites its sources; nothing here is approved by being listed — the decision surface is Wave 0, and src moves only on Doug's yes.*
 
+**NEXT SPRINT'S FOCUS, ruled 2026-09-04: STYLED CHEMICALS FIRST.** The road below STANDS, but the next sprint opens on the chemistry addition specified in [Sprint 39's rigorous notes](41-sprint-39--the-road.md#styled-chemicals-notes) — seated at $Particle so styled particles and styled chemicals are both real, first ruling the compiler's home. Doug's standing warning governs the road's styling items (1, 5, 29 especially): *"we are going to redo a lot of this."*
+
 ## Wave 0 — THE DECISION SURFACE (all Doug's, batched by what each gates)
 
 **Gates the mechanical sweep (Wave 2):**
-1. **The frame ruling** — relocate dresses `frame → view` so labels CONTAIN dresses (`pd-title > h2` styleable, "override view for your look, never touch frame" the whole rule)? The benches split 2–1 for; ch13's ruled words ("structure in view, dress in frame") sit on the other side — his to settle. — audit asks; [ch13](../designing-inexplicable-phenomena/13-the-default-dress.md).
-2. **The one-oracle ruling** — `stands` where only standing is read, `instanceof` where members are, ruled ONCE across the roster getters and the ends-with rules; carries the eyes-open widening (a Section wearing `TypeOfReferences` gains its allowances). — audit asks.
+1. **The frame ruling — PARTLY RULED 2026-09-04**: the base frame() is an inline div carrying the pd- classNames (his words: "an inline div and the classes"), and Paragraph's Prose wrapper is gone. Still open: Title and List override frame() to return view() directly, so their pd-title/pd-list classNames never reach the DOM. — [Sprint 39 § rulings](41-sprint-39--the-road.md#rulings-0904); [ch13](../designing-inexplicable-phenomena/13-the-default-dress.md).
+2. **instanceof vs the carried type — DIRECTION GIVEN 2026-09-04** ("Always use types and dynamic typing and specifically so that we have the flexibility"): the spec rules now ask by type class — `reflection.is(one, $TypeOfSentence)`, real instanceof on `one.type`. Still instanceof-on-the-class: the getters that call members (`$Chapter.references` → `references.append`), `$Book.synopsis`/`tableOfContents`, `$endsWithReferences`/`$endsWithIndex`. Open: should those read the type too, accepting that what they find may lack the class's members? — audit asks.
 3. **MEMBER DELETION: `inline`** — after the frame core lands the flag feeds nothing; two test dependencies named. Yes or no? — audit asks.
 4. **`valid()`'s promise** — it answers `true` unconditionally now (panels gone); change, keep, or re-speak the exported contract? — audit asks; [Sprint 38 § build](40-sprint-38--the-rebuild.md#build).
 5. **Title/List label recovery** — option 1 zero-member (labels ride each kind's dress element), option 2 reinterprets `inline` as the element seat. — audit asks; the two pd- holes.
 
 **Gates the conditional units (Wave 3):**
-6. **The List model ruling** — specify-time materialization puts Sentences INTO the block beside the raw copy: what the block then holds, what `copy` answers after. U15 waits. — audit asks.
+6. **The List model — RESHAPED 2026-09-04** by render-the-parse ("Writing is parsed, and then it prints its parts," stopped at sentence): List's view rides the same design once it lands; the specify-time materialization question ("maybe List does that because it is special") rides with it. Blocked on the weight finding. — [Sprint 39 § the weight finding](41-sprint-39--the-road.md#the-weight-finding).
 7. **NEW MEMBER: `$TypeOfList.specifically`** — U15's only lawful seat. — audit asks.
 8. **References re-seat `$Section → $Composition`** — net minus one override; counter-weight stated. Yes, no, or stay. — audit asks.
 9. **The Index/References duplication** — direction A (visible chapter-end change, browser-gated), direction B (needs a member), or stays hand-synced. — audit asks.
-10. **The missing-maker seam** — loud refusal in `reduce()` OR a 'Chapter' maker line; both zero-member; silent prose loss stands until picked. — audit asks/risks.
+10. **RESOLVED 2026-09-04** — "Loose text in books is always wrong. It takes chapters." $writtenAsChapters now refuses non-whitespace strings in a book's block; no Chapter parse function is registered; reduce() keeps returning [] pre-specify. — [Sprint 39 § rulings](41-sprint-39--the-road.md#rulings-0904).
 11. **The bench conflict on `parts()`-in-view** — the laws bench holds the text-split/block-scan views as Solutions 45's standing cures; the persona bench wants model-backed views. His call closes it. — audit risks.
 
 **Gates the scoped-DI story (Waves 2–3's registered half):**
@@ -36,7 +38,7 @@
 16. **Who calls `specify()` in production, and how deep?** — same.
 
 **Gates the Ref remainder (Wave 3):**
-17. **The means-anchor shape — A or B** (mint a `$Path` from a url-copy, or `url` joins the interface; decides whether `$carriesPath` relaxes). The suite's ONE skip. — [Sprint 38 § one pass](40-sprint-38--the-rebuild.md#one-pass); [`ref.test.tsx:92`](../../package/src/tests/ref.test.tsx).
+17. **RESOLVED 2026-09-04, road A** — Doug: "Fix that skipped test please." `$TypeOfReference.specifically` mints the `$Path` from a url-shaped copy (only scheme://, /, or # starts — one-word copies stay pathless so bookmarks and refusals hold); the test draws the writing after acceptance. The suite carries ZERO skips. — [Sprint 39 handoff](41-sprint-39--the-road.md#where-things-stand).
 18. **`$Path.read(from)`** as the one-home seat (two inline bodies say the same three lines twice today). — same.
 19. **The `references` seat at the book root** (`focus()` mis-seats; member or seat-move). — same.
 20. **The R95 corpus registry export** (route→book map from the binder's `books.ts`). — same; [Binder § R95](37-the-binder.md#r95).
@@ -45,12 +47,12 @@
 
 **Process and standing:**
 23. **THE PUSH** — everything since `20cb87f` is green and UNCOMMITTED; his call, with the commit tool. — [Sprint 38 § WHERE THINGS STAND](40-sprint-38--the-rebuild.md#where-things-stand).
-24. **NAMES, batched** — the dialogue's five, the proxies (`makes`/`chain`/`declared`/`levels`), the fetch-local spelling, ch15's title, sprint 38's own title, every plan placeholder. — [Sprint 38 § Names](40-sprint-38--the-rebuild.md#names).
+24. **NAMES, batched** — the dialogue's five, the proxies (`makes`/`declared`/`levels`), the fetch-local spelling, ch15's title, sprint 38's own title, every plan placeholder; PLUS 2026-09-04's applied-but-vetoable: `reflection.is` (his floated `standsFor` the alternative), `reflection.classNames`, `reflection.names`, the `Title.KindSpec` spec name (follows the existing KindSpec convention), the test-local `$Gathering`. — [Sprint 38 § Names](40-sprint-38--the-rebuild.md#names); [Sprint 39 § rulings](41-sprint-39--the-road.md#rulings-0904).
 25. **Scope batch** — Catalogue framework-or-machinery; Referent exemption; encyclopedia dresses in/out of the spec convention (defaulting OUT). — audit asks.
 26. **Small fences** — `$References` birth facts in its bond; the `declared()` first-touch side effect; the persist equivalence guard; ch10's consumer-contract wording; the clean.ts `new-$TypeOf` guard. *(The ch12 Parser.tokens citation is RESOLVED 2026-09-03 — Sprint 31's "minimise, not undo" is the standing approval; ch12 edited.)* — audit asks; [Sprint 38 § one pass](40-sprint-38--the-rebuild.md#one-pass).
 27. **R80 at F7's return** — emitted cover rewritten or byte-identical. — [Binder § R80](37-the-binder.md#r80).
 28. **The apparatus questions — LANDED: Q1–Q14**, with the 42-requirement R-A draft, both held in [Sprint 39 § the apparatus](41-sprint-39--the-road.md#apparatus). Sharpest: the reading flow (which furnishings are parenthetical), declared-vs-counted subjecthood, the route seat, the union re-keying, and the fourteen names.
-29. **Are dresses DI-able?** — styled-components are forwardRef exotic objects and chemistry's `$` answers them null (`chemical.ts:1743`); the dress half of U11a broke 78 tests and was reverted to literal JSX. Yes means teaching chemistry's `wrapped()` exotic objects (his direct instruction only); no writes the clean law *types are fetched, dresses are worn*. — [Sprint 39 § the styled finding](41-sprint-39--the-road.md#the-styled-finding).
+29. **Dresses and DI — the road, not the possibility (ANSWERED in part 2026-09-04).** Proven: DI keys on the component object, not the class — two wrapped dresses register independently in one scope, and a raw styled component even serves as a registered override. Open is WHICH ROAD makes the encyclopedia DI-able: (a) lib-side — Styled.ts exports a wrapper (`$((props) => createElement(dress, props))`) and each dress file wraps at export, no chemistry change, probed green; or (b) chemistry integration — three one-line recognition gates (chemical.ts:1342, 1485, 1690) so `$(styled.h2\`...\`)` works directly. Either road also becomes the one home for the styled-components CJS/ESM interop shim Doug flagged in Styled.ts. — [Sprint 39 § the DI answer](41-sprint-39--the-road.md#rulings-0904b).
 
 ## Wave 1 — THE DOCS — **DONE 2026-09-03** (six chapters touched, ch15 born, the `$Title` spec shipped, ruling 26's ch12 half resolved)
 
@@ -86,8 +88,9 @@
 
 ## Standing beside the road
 
+- **The bookmark redesign — NEEDS DESIGN before it builds (Doug, 2026-09-04).** His seed, verbatim: *"I think a bookmark might be something that wraps certain text? Can't it just be a sort of pass through that inherits the place that it is? People would click somewhere. Or maybe not. Ponder what it would be like to use one of these."* The generalized shape: **a reference whose address is its POSITION, not its cargo** — a live mark derives its place (the parent walk in [`$Bookmark.chapter`](../package/src/book/Bookmark.tsx) already does this at chapter grain), and only a remembered mark snapshots a path (hydration must snapshot regardless, so today's path-carrying form is the hydrated half of one lifecycle, not a rival design). Open questions: the grain (chapter today; word/sentence if it wraps text), pass-through parsing (a wrapper cannot be parenthetical or its words leave the parse — Phrase's transparency is the existing rail), the click gesture (select text, or a margin affordance — demo UX), the panel (the bookmarks list wants the References/recollection store shape), and whether the three reader's marks unify as one transparent-wrapper family — point, range, page: Bookmark, Highlight's endpoint pair, PageFold's `location`. Touches R-A42's "derived kind on the Bookmark/PageFold shape." — [BookmarkReferenceSpec](../package/src/tests/.spec/book/Bookmark.tsx).
 - **F9 — declarations look like declarations** — waits on the chemistry refactor HE directs; the persist-guard defect sits at the same seat. — [The Cleaning § Declarations](../the-condition-report/06-the-cleaning.md#declarations).
-- **The test-review sprint** — his 2026-08-30 charter; re-measures first (now 25 files / 541). — 00-planning (prior), § test-sprint.
+- **The test-review sprint** — his 2026-08-30 charter; re-measures first (now 25 files / 543, zero skips). — 00-planning (prior), § test-sprint.
 - **Sprint 38's chapter compacts at its close** per [the compounding convention](../../../../.claude/library/..librarianship/17-compounding.md); this scratchpad sweeps as waves land.
 
 # <a id="register"></a>THE REGISTER BENEATH THE ROAD — the librarian's gather, 2026-09-03

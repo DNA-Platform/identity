@@ -161,7 +161,9 @@ this.type ??= $(<Asked />);
 
 *The local's one spelling is a PROXY (`Asked`, the mechanism's own word) standing for Doug's.* **Never hoisted to module scope** (no asker stands there), **never memoized** (a wider cache freezes the first scope's answer), **never stored on a member** — his sentence directly.
 
-***THE TIMING LAW, in the same breath:*** **registration is configuration BEFORE the first parse.** Parsed populations freeze (`parser.parsed` keeps the first answer per writing) while dress fetches resolve live per render — so a registration landing after first parse yields swapped dresses over stock types, the one live two-populations form. The framework enforces its half: registering mid-draw is refused by chemistry.
+***THE TIMING LAW, in the same breath:*** **registration is configuration BEFORE the first parse.** Parsed populations freeze (`parser.parsed` keeps the first answer per writing) while component fetches resolve live per render — so a registration landing after first parse yields swapped dresses over stock types, the one live two-populations form. The framework enforces its half: registering mid-draw is refused by chemistry.
+
+**The registry keys on the COMPONENT OBJECT, not the class** — each component carries its own `$reference$` key (chemical.ts:1496, read at 1557) — so two components registered in one scope resolve independently, and "they all share a wrapper class" is never an obstacle; probed 2026-09-04, two overrides in one scope, each answering its own.
 
 **The named exemptions, so a refactor does not "complete" them:** *specifications stay plain classes* (`new XSpecification()` — the `$` convention is safe only while it is not competing with chemistry's own), and *reflection stays class-fetched* — it answers build facts into globally memoized caches, and a scope-resolved answer frozen there would bake the first asker's book into every book.
 
@@ -171,6 +173,10 @@ this.type ??= $(<Asked />);
 
 **Four rungs, outside in: subclass · carry the type · extend a specification · decorate one.** *The four routes above are the same ladder seen from the author's side; his sentence is how it reads from the consumer's.*
 
+## <a id="the-reactive-law"></a>The reactive-property law — read from the source, 2026-09-04
+
+**Which properties of a chemical are live is decided by NAME, at [`bond.ts:51-66`](../../../chemistry/package/src/abstraction/bond.ts):** a bare name (`background`) is **reactive by default**; a `_`-prefixed name is **inert**; a `$`-prefixed name is reactive only when it is *special* — `$` plus a lowercase identifier character (`$pid`, `$focused`, `$background`), while `$$` and `$_` are not. Per-property overrides exist as class registries: `@inert()` and `@reactive()` decorators file names by prototype. Two consequences worth keeping: *every undecorated field you add to a chemical is paying reactivity whether or not anything watches it*, and *`$x` is already the framework's spelling for a deliberately live property* — which is why the styled-chemicals convention (non-`$` CSS names baked inert, `$` CSS names live, promotion by respelling) lands on this law rather than inventing one; its design stands in [Sprint 39's notes](../projection/41-sprint-39--the-road.md#styled-chemicals-notes).
+
 ---
 
-*Written 2026-08-29, out of [The Bind](../projection/29-the-bind.md), after the same fundamentals were rebuilt four times in a session. The trait, the second verb, and the ladder joined 2026-09-02, out of [The Margin](../projection/35-the-margin.md).*
+*Written 2026-08-29, out of [The Bind](../projection/29-the-bind.md), after the same fundamentals were rebuilt four times in a session. The trait, the second verb, and the ladder joined 2026-09-02, out of [The Margin](../projection/35-the-margin.md). The reactive-property law joined 2026-09-04, read from bond.ts during the styled-chemicals design.*
