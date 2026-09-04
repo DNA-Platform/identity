@@ -1,7 +1,7 @@
 # Sprint 40 — Styled Chemicals
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-in-living-color/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
+- **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
 - **status:** `implementation-ready` — planned 2026-09-04 out of [Sprint 39's rigorous notes](41-sprint-39--the-road.md#styled-chemicals-notes), which are the approved requirements. ***The title is a PROXY; sprint names are Doug's.***
 - **workflow:** [feature](../../../../.claude/library/..teamsmanship/19-workflows.md) — brainstorm DONE (Sprint 39, with Doug), plan HERE, work next.
 - **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
@@ -363,8 +363,20 @@
 
 **Compounded into [chemistry's reactivity book](../../../chemistry/.lib/reactivity/01-reactive-properties.md)**, not Solutions: *a function held as a VALUE is the exception, the framework cannot know which you meant, and it gives you three ways to say so.*
 - ***`$(plainFunction)` already wraps*** what Doug asked for in September — [chemical.ts:1690](../../../chemistry/package/src/abstraction/chemical.ts). *Another thing the framework already had.*
-- ***The stale `dist` masked a live type error.*** lib resolves chemistry through its build; rebuilding it for `styled` surfaced `reference/Catalogue.tsx:19`, where a `ComponentType | Component<$Reference>` union matches no `$` overload and falls to the string one. **The file is byte-identical to HEAD and this sprint adds no overloads** — but `dist/` is gitignored, so it cannot be proven by diff.
+- ***A type error blamed on the framework was a MISUSE of `$`, and the wrong diagnosis stood for a day.*** Two sites read `$((code ? prints.get(code) : undefined) ?? reference)` and were reported as a gap in `$`'s overload set, surfaced by a stale build. **Both claims were wrong.** *Doug: "are those even components? Is this doing what you think? NO variables."* `prints.get(code)` is a **registry lookup** — already somebody's resolution — so `$` was re-asking an answered question, and the union that broke the compiler was the shape of that mistake. **Moving `$` onto the literal — `const Reference = $(reference)`, with the lookup falling back to it — dissolved the union and cleared the last `tsc` error in the package.** Compounded into [ch16 § never a variable](../designing-inexplicable-phenomena/16-the-shape-of-tsx.md#never-a-variable).
 - ***Rewriting a demo file wholesale breaks Vite's HMR*** until the server restarts, reporting *"does not provide an export named 'default'"* — a working feature that looks broken.
+
+## <a id="closed"></a>What closed the sprint, 2026-09-04 evening
+
+**The encyclopedia became styled chemicals on a shared `$Style`; `$Theme` became an ANNOTATION** — which had looked blocked by a `Writing → Anchor → Style → Writing` cycle until Doug's one line dissolved it: ***"styled chemicals need to live in the file that uses them."*** `$Theme`, `$Style` and `$Anchor` moved into `Writing.tsx`, the eight remaining dresses take `$Style` from there, and the cycle is gone. *One thing tried and rejected on evidence: making `$Style` an annotation too, which turns every dress into a piece of WRITING — `$Anchor` then inherits `$Writing.view()` and draws nothing.*
+
+**The package is `@dna-platform/public`** — `.public` is illegal, since an npm name may not begin with a dot — with `/encyclopedia` and `/utilities` as their own surfaces.
+
+**Every component local now carries its component's name**, `Wikitable` and `Styled.ts` are gone, no file in `src` sets a `style` attribute, and **`tsc` is 0**.
+
+**THE CONVENTIONS THIS PRODUCED**, which is the durable half: [The Shape of TSX](../designing-inexplicable-phenomena/16-the-shape-of-tsx.md) — layout, variable naming, `$` usage and collisions — and [ch11's no-invented-language row](../designing-inexplicable-phenomena/11-the-coding-style.md#no-jargon), restated after a second offence.
+
+**Not done, and named rather than omitted:** the `one` rename inside **test** files — 135 cosmetic sites — attempted twice and reverted both times, the second time after block-scoping bled across `it(…)` blocks and reddened 36 promises. It wants doing by hand.
 
 ## <a id="owed"></a>Owed
 

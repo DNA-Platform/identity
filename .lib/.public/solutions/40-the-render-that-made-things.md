@@ -1,7 +1,7 @@
 # The render that made things
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **coauthor:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-in-living-color/.cover.md)
+- **coauthor:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md)
 - **keywords:** framework · render-make
 - **sprint:** [The Margin](../projection/35-the-margin.md)
 

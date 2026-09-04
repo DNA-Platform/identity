@@ -562,7 +562,7 @@ import { card as math } from '../.mathematics/.subject/card';
 
 **Both halves are right, and the first is forced rather than chosen.**
 
-**A title is paragraph grade** — [`$Title extends $Paragraph`](../../package/src/writing/Title.tsx). **Only a section composes paragraphs.** *So a card that carries a title cannot be a paragraph, because a paragraph composes sentences and a title will not fit inside one.* **A card is a section**, and the code decides it rather than taste.
+**A title is paragraph grade** — [`$Title extends $Paragraph`](../../package/src/writing/Heading.tsx). **Only a section composes paragraphs.** *So a card that carries a title cannot be a paragraph, because a paragraph composes sentences and a title will not fit inside one.* **A card is a section**, and the code decides it rather than taste.
 
 **And then the canonical needs no field, because a section already has one.** [`$Writing.canonical` is `parts()[0]`](../../package/src/writing/Writing.tsx), and [a section's part zero is its title](../../package/src/writing/Section.tsx). **So the card's canonical IS its title, and the title names the book** — which is exactly the link [F could not add](#s2-corrected-twice--both-found-by-two-sessions-building-against-it) without shadowing the base.
 

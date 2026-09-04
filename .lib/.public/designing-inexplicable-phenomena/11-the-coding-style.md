@@ -60,6 +60,7 @@
 |---|---|---|
 | ***a framework component is fetched through `$` at the seat*** | **Doug: *"anytime a type is used, it should be fetched using $ … Don't assign properties. Assign constants close to use."*** *A Capitalized statement-local, never hoisted, never memoized, never a member; the exemptions (specifications, reflection) and the TIMING LAW — registration is configuration BEFORE the first parse — live with the rule in [ch10](10-the-type-and-the-instance.md#the-fetch).* | ***2026-09-03*** |
 | ***how a kind is spelled*** | **[The Spelling of a Kind](15-the-spelling-of-a-kind.md)** — the nine spellings, what a kind never spells, and the type-only short form; promoted from the binder sprint's record. | ***2026-09-03*** |
+| ***how TSX is laid out, and how a fetched component is named*** | **[The Shape of TSX](16-the-shape-of-tsx.md)** — elements are what members are in a class, so structure is indented and visible; a component local carries the component's name; `$` is the injection point and belongs only where a class names a component literally. | ***2026-09-04*** |
 | ***a view is a read whose shape cannot construct*** | **[ch14's view law](14-shells-over-types.md#the-view-law)**, in Solutions 45's second-appearance wording; derivable structure enters the model at `specifically()` under Law 44. | ***2026-09-03*** |
 
 ### <a id="the-spec-convention"></a>The spec shows every use case
