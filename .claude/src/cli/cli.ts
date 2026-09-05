@@ -147,7 +147,7 @@ async function main(): Promise<number> {
         const outcome = await runtime.run(path, args);
 
         switch (outcome.kind) {
-          case 'refused':
+          case 'invalid':
             console.error(outcome.message);
             return 2;
 

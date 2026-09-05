@@ -59,7 +59,7 @@ The handoff this session opened from listed four things to read — all of them 
 
 ### 7. A stopped push is a session boundary, not an errand
 
-Mid-session, a push was stopped for reconciliation, the tool's advice was followed on the spot — and the reconcile's down-sync **overwrote the session's unpushed records**, which survived only because the conversation still held every word. The law now lives in [On Sync](../..environmentalism/06-on-sync.md#uncommitted-work-is-not-protected-by-any-of-this): **treat every reconcile as a session boundary — push the branch library or copy it aside before running pull or resolve.** For the handoff, the rule is simpler still: if step 3's push is refused, **securing the branch library comes before obeying any tool's next suggestion.**
+Mid-session, a push was stopped for reconciliation, the tool's advice was followed on the spot — and the reconcile's down-sync **overwrote the session's unpushed records**, which survived only because the conversation still held every word. The specification now lives in [On Sync](../..environmentalism/06-on-sync.md#uncommitted-work-is-not-protected-by-any-of-this): **treat every reconcile as a session boundary — push the branch library or copy it aside before running pull or resolve.** For the handoff, the rule is simpler still: if step 3's push fails validation, **securing the branch library comes before obeying any tool's next suggestion.**
 
 ### 8. A sprint with a demo hands over the way to see it
 

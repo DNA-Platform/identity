@@ -20,22 +20,32 @@ bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint NN: what c
 
 It validates first, then routes each kind of change to the right place:
 
-- **Identity** (`.claude/`) → the `dna-platform` branch, merged to `main`.
-- **Branch library** (`library/*/.lib/`) → the project branch (named after the project directory), after a downstream merge of `dna-platform`.
+- **Identity (`.claude/` and `CLAUDE.md`) → the SHARED branch `dna-platform`.** *It is project-neutral, several projects write to it, and **it is the branch Doug works on** — so the clobber guard below runs before the mirror.*
+- **Branch libraries (`library/*/.lib/`) → the branch named after this repo**, where this project is the only writer, so nothing needs reconciling.
 - **Project code** → the project repo, with the project-root `CLAUDE.md` regenerated with the right link prefixes.
+
+*(Ruled 2026-09-05. It had been one repo-named branch for everything since 2026-08-12; Doug restored the shared branch for identity — **"that is the branch I will be working on"** — and the guard came back with it.)*
 
 If validation fails, nothing is pushed. The operator never chooses branches — the tool enforces the [branching model](../..environmentalism/06-on-sync.md).
 
-## It refuses to clobber
+## It does not work in the identity folder
 
-The `/MIR` to the org branch would DELETE anything the org has that this copy lacks — another project's un-pulled work. So the tool dry-runs the mirror first and **refuses** if it would delete real content: [/pull](25-pull.md) down to reconcile first, then push. Override only with `RECONCILED=1`, and only when the absence is genuinely intended. With two active projects sharing `dna-platform`, this guard is what keeps one team from silently deleting the other's work.
+**The push works in a [worktree of its own](../..environmentalism/06-on-sync.md#the-sync-works-in-its-own-worktree)** — `../.identity-sync/<project>`, beside the identity repo and inside neither it nor this one.
+
+***So somebody's uncommitted work in the identity folder can neither block this push nor be moved by it.*** *Until 2026-09-05 the tool borrowed that folder — checked the branch out in it, mirrored, pushed, then guessed its way back to `main` — and a session's whole record once sat finished and unfilable behind four files someone had left modified there.* **Doug: *"You can pull to a folder, sync, and push? I had no clue you actually worked in the main folder. That is bad."***
+
+**The one case it refuses:** if the project's branch is *already checked out* in the shared identity folder, the tool stops and says so rather than fighting for it. **Switch that folder to another branch and run again** — a worktree and a checkout cannot hold one branch, and forcing it is how a working copy gets stranded.
+
+## It will not clobber
+
+The `/MIR` to the org branch would DELETE anything the org has that this copy lacks — another project's un-pulled work. So the tool dry-runs the mirror first and **stops** if it would delete real content: [/pull](25-pull.md) down to reconcile first, then push. Override only with `RECONCILED=1`, and only when the absence is genuinely intended. With two active projects sharing `dna-platform`, this guard is what keeps one team from silently deleting the other's work.
 
 ## Pull before you push — the rule the guard does not enforce
 
 The clobber guard catches **deletions** — paths the org has that this copy lacks. It does **not** catch a **stale overwrite**: a file you both have, that the platform updated while your working copy stayed behind. The mirror copies by timestamp and is direction-blind, so a push from a behind working copy silently **reverts** those newer files on `dna-platform` — and because nothing was deleted, no `*EXTRA` appears and the guard never fires. A reverted skill or someone else's newer chapter is just as lost as a deleted one; the guard simply cannot see it.
 
-So the discipline is unconditional, and it is the correct way to use git here: **[/pull](25-pull.md) to reconcile before you /push**, any time the platform may have advanced — and with two projects sharing `dna-platform`, assume it always has. Pull reconciles by a real **git merge** of `dna-platform` (content-aware and [additive](../bookkeeping/10-on-evolution.md) — it keeps the newer file *and* your additions), which is exactly the judgment the timestamp mirror cannot make. The order is the whole rule: **reconcile down, then push up. Never push from a working copy you have not just reconciled.** When the push only carries genuine additions on top of a current copy, the mirror has nothing to revert and the guard has nothing to refuse.
+So the discipline is unconditional, and it is the correct way to use git here: **[/pull](25-pull.md) to reconcile before you /push**, any time the platform may have advanced — and with two projects sharing `dna-platform`, assume it always has. Pull reconciles by a real **git merge** of `dna-platform` (content-aware and [additive](../bookkeeping/10-on-evolution.md) — it keeps the newer file *and* your additions), which is exactly the judgment the timestamp mirror cannot make. The order is the whole rule: **reconcile down, then push up. Never push from a working copy you have not just reconciled.** When the push only carries genuine additions on top of a current copy, the mirror has nothing to revert and the guard has nothing to fail.
 
 ## Line endings are normalized — so the guard stays honest
 
-The revert half of the guard reads robocopy's `Older` marker, which compares **timestamp and size, not content** — so if the identity working tree ever drifts to CRLF while your copy is LF, content-identical files read as "older" and the guard would **false-refuse** on pure line-ending noise. That drift had a single cause: the identity repo ran `core.autocrlf=true` with no `.gitattributes`, so git stored LF but smudged LF→CRLF on every checkout, and the two working copies disagreed on endings they both meant identically. The resolution was structural, not a workaround: a committed **`.gitattributes` (`* text=auto eol=lf`)** makes LF canonical on every checkout in every clone, so both sides agree and the guard's revert signal means what it says. With endings normalized, a revert flag is now a *real* revert — so if the guard ever refuses on reverts, **do not reach for `RECONCILED=1`**; [/pull](25-pull.md) and reconcile, because something genuinely newer is on the org branch.
+The revert half of the guard reads robocopy's `Older` marker, which compares **timestamp and size, not content** — so if the identity working tree ever drifts to CRLF while your copy is LF, content-identical files read as "older" and the guard would **false-fail** on pure line-ending noise. That drift had a single cause: the identity repo ran `core.autocrlf=true` with no `.gitattributes`, so git stored LF but smudged LF→CRLF on every checkout, and the two working copies disagreed on endings they both meant identically. The resolution was structural, not a workaround: a committed **`.gitattributes` (`* text=auto eol=lf`)** makes LF canonical on every checkout in every clone, so both sides agree and the guard's revert signal means what it says. With endings normalized, a revert flag is now a *real* revert — so if the guard ever fails on reverts, **do not reach for `RECONCILED=1`**; [/pull](25-pull.md) and reconcile, because something genuinely newer is on the org branch.

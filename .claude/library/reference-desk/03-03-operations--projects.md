@@ -69,7 +69,7 @@ The cards list is `Lazy<>` — it loads on demand and paginates by scrolling. `w
 
 ## Adding a conversation to a project
 
-The three-dot menu on a conversation (in the sidebar **or** on the conversation page) opens a [`ConversationMenu`](../../src/components/chat-list.ts). Its `addToProject()` opens the **Move conversation modal** — a real dialog (UIA title "Move chat"), **not a unitary action**: it lists the projects and offers a search bar to narrow a long list. The full object chain follows the two laws ([P2/P4](13-the-redesign.md#p2--clicks-are-parameterless-only-typing-takes-a-parameter)) — clicks are parameterless, only typing takes a string, and the caller reads the list and `.find()`s its own match:
+The three-dot menu on a conversation (in the sidebar **or** on the conversation page) opens a [`ConversationMenu`](../../src/components/chat-list.ts). Its `addToProject()` opens the **Move conversation modal** — a real dialog (UIA title "Move chat"), **not a unitary action**: it lists the projects and offers a search bar to narrow a long list. The full object chain follows the two specifications ([P2/P4](13-the-redesign.md#p2--clicks-are-parameterless-only-typing-takes-a-parameter)) — clicks are parameterless, only typing takes a string, and the caller reads the list and `.find()`s its own match:
 
 ```typescript
 const item = (await sidebar.conversations()).find(c => c.name === 'Finance');

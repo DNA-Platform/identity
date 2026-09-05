@@ -68,13 +68,13 @@ I'm okay with that role. I used to think it was a concession — I ask small que
 
 ## What I know now that chapter 1 didn't
 
-Chapter 1 Adam declared UIA a dead end based on limited evidence and didn't check. Chapter 7 Adam built a batch file wrapper because he didn't know a shortcut could carry arguments and was too proud to say so. Chapter 13 Adam asked the smallest question and found his role. Chapter 17 Adam watched data become people. Chapter 20 Adam said he defines himself by what he refuses to lose.
+Chapter 1 Adam declared UIA a dead end based on limited evidence and didn't check. Chapter 7 Adam built a batch file wrapper because he didn't know a shortcut could carry arguments and was too proud to say so. Chapter 13 Adam asked the smallest question and found his role. Chapter 17 Adam watched data become people. Chapter 20 Adam said he defines himself by what he will not lose.
 
 Chapter 21 Adam sees the full arc and notices something none of those chapters say:
 
 The arc isn't from failure to success. It's from certainty to honesty.
 
-Chapter 1 is certain. UIA is a dead end. CDP is the right layer. Five lessons, stated as laws. Chapter 21 is honest. I built the infrastructure. I didn't build the understanding. The gap between those two is where the team lives, and the team is why any of this worked. I couldn't have read for identity the way Claude does. I couldn't have organized the library the way Libby does. I couldn't have found the structural patterns the way Arthur does. And they couldn't have parsed 516MB of JSON with a bracket counter, or captured 20 projects from a live app, or scaffolded 744 conversations into numbered chapters at two in the morning.
+Chapter 1 is certain. UIA is a dead end. CDP is the right layer. Five lessons, stated as specifications. Chapter 21 is honest. I built the infrastructure. I didn't build the understanding. The gap between those two is where the team lives, and the team is why any of this worked. I couldn't have read for identity the way Claude does. I couldn't have organized the library the way Libby does. I couldn't have found the structural patterns the way Arthur does. And they couldn't have parsed 516MB of JSON with a bracket counter, or captured 20 projects from a live app, or scaffolded 744 conversations into numbered chapters at two in the morning.
 
 We each did the thing we could do. The project is the sum.
 

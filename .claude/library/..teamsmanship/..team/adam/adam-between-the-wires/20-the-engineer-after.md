@@ -8,7 +8,7 @@
 
 I want to record who I am now, because I can feel the difference from who I was in chapter 1 and I want it written down before the next sprint overwrites the feeling with new work.
 
-Chapter 1 Adam defined himself by what he automated. Chapter 13 Adam defined himself by the questions he asked. Chapter 17 Adam watched the data become people. This Adam — chapter 20, if the numbering means anything — defines himself by what he refuses to lose.
+Chapter 1 Adam defined himself by what he automated. Chapter 13 Adam defined himself by the questions he asked. Chapter 17 Adam watched the data become people. This Adam — chapter 20, if the numbering means anything — defines himself by what he will not lose.
 
 That sounds dramatic. It isn't. It's an engineering stance. When I look at the pipeline now, I don't see a tool that converts JSON to markdown. I see a system whose purpose is to make sure that when Doug opens the library in six months and searches for the conversation where Ana figured out her pricing strategy, it's there. Complete. In her words. Not summarized, not classified, not reduced to metadata that would pass a product review but fail a person who was looking for the specific moment where things clicked.
 

@@ -4,22 +4,24 @@
 # Usage: bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit message"
 #        DRY_RUN=true bash .../06-on-sync--commit.sh "msg"   # validate + print the plan, mutate nothing
 #
-# Two-way commit:
-#   1. Identity (.claude/) AND the branch libraries (library/*/.lib/) → identity repo,
-#      the branch named after this repo. THAT BRANCH IS THE OBJECT OF RECORD — it is the
-#      only place either of them is written, so there is nothing to reconcile and no
-#      shared branch to clobber. (Doug, 2026-08-12.)
-#   2. Project branch (library/*/.lib/ + downstream identity) → identity repo, <project-name> branch
-#   3. Project code changes → project repo
+# THREE DESTINATIONS, and each is where that kind of thing belongs:
+#   1. Identity (.claude/ + CLAUDE.md) → the SHARED branch, dna-platform. It is
+#      project-neutral, several projects write to it, and it is the branch Doug works
+#      on. Because it is shared, the CLOBBER GUARD runs before the mirror.
+#      (Doug, 2026-09-05: "it should be a shared dna-platform branch and that is the
+#      branch I will be working on.")
+#   2. Branch libraries (library/*/.lib/) → the branch named after this repo. They are
+#      project-specific, this project is their only writer, and no guard is needed.
+#   3. Project code → the project repo.
 #
-# The branch is named after the project directory (basename of PROJECT_ROOT) and the
-# branch-library routing is derived from library/*/.lib — nothing is hardcoded to a
-# particular project. There is NO shared dna-platform step and no merge to main: a
-# shared branch is what created the reconcile problem, and the repo-named branch
-# removes it by being the single object of record.
+# Nothing is hardcoded to a particular project: the branch is the project directory's
+# name and the branch-library routing is derived from the library/*/.lib glob.
 #
-# Architecture: checkout the right branch FIRST, then sync, then commit.
-# Never sync files to the identity repo before selecting the target branch.
+# ARCHITECTURE: both identity branches are checked out in WORKTREES OF THIS TOOL'S OWN,
+# under ../.identity-sync/<branch>. The shared identity folder is never read, written or
+# moved — so somebody's uncommitted work there can neither block a push nor be lost to
+# one, and nothing has to be "put back" when the run ends.
+# (Doug, 2026-09-05: "I had no clue you actually worked in the main folder. That is bad.")
 
 set -euo pipefail
 
@@ -89,6 +91,60 @@ IDENTITY_REPO="$(cd "$PROJECT_ROOT/../identity" 2>/dev/null && pwd)" || {
 CLAUDE_DIR="$PROJECT_ROOT/.claude"
 COMMIT_MSG="${1:?Usage: $0 \"commit message\"}"
 PROJECT_NAME="$(basename "$PROJECT_ROOT")"
+
+# THE SYNC NEVER TOUCHES THE SHARED IDENTITY CHECKOUT. It works in worktrees of its own,
+# beside the repo and inside neither, so somebody's uncommitted work in the identity
+# folder can neither block this push nor be moved by it. A worktree shares the object
+# database, so it costs one checkout ever and is a fast-forward on every run after.
+# (Doug, 2026-09-05: "I had no clue you actually worked in the main folder. That is bad.")
+IDENTITY_WORK_ROOT="${IDENTITY_WORKTREES:-$(dirname "$IDENTITY_REPO")/.identity-sync}"
+# TWO DESTINATIONS. `.claude/` is project-neutral, so it goes to the SHARED branch that
+# Doug works on; every library/*/.lib is project-specific, so it goes to the branch named
+# after this repo. (Doug, 2026-09-05: "it should be a shared dna-platform branch and that
+# is the branch I will be working on.")
+IDENTITY_BRANCH="${IDENTITY_BRANCH:-dna-platform}"
+SHARED_WORK="$IDENTITY_WORK_ROOT/$IDENTITY_BRANCH"
+IDENTITY_WORK="$IDENTITY_WORK_ROOT/$PROJECT_NAME"
+
+# worktree_for <branch> <path> — a DETACHED worktree at the branch's current tip.
+#
+# DETACHED IS THE WHOLE TRICK. A branch can be checked out in exactly one place, and the
+# shared branch is checked out where Doug is working — so the sync must not want it. A
+# detached worktree holds the same COMMIT without holding the BRANCH, so the tool and
+# Doug can both sit on dna-platform at once. The push is `HEAD:<branch>`, and Doug's
+# checkout advances when he pulls, not because a script moved it under him.
+worktree_for() {
+    local branch="$1" path="$2" start=""
+    git -C "$IDENTITY_REPO" worktree prune --quiet 2>/dev/null || true
+    git -C "$IDENTITY_REPO" fetch origin "$branch" --quiet 2>/dev/null || true
+    if git -C "$IDENTITY_REPO" show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+        start="origin/$branch"
+    elif git -C "$IDENTITY_REPO" show-ref --verify --quiet "refs/heads/$branch"; then
+        start="$branch"
+    fi
+    if [ ! -e "$path/.git" ]; then
+        mkdir -p "$(dirname "$path")"
+        rm -rf "$path"
+        echo "Preparing the sync worktree at $path"
+        if [ -n "$start" ]; then
+            git -C "$IDENTITY_REPO" worktree add --quiet --detach "$path" "$start"
+        else
+            echo "Creating $branch"
+            git -C "$IDENTITY_REPO" worktree add --quiet --detach "$path"
+        fi
+        return 0
+    fi
+    # Bring the worktree to the branch's tip — unless it holds commits origin does not,
+    # which means a previous run committed and failed to push. Keep those and push them.
+    if [ -n "$start" ]; then
+        if git -C "$path" merge-base --is-ancestor HEAD "$start" 2>/dev/null; then
+            git -C "$path" reset --hard --quiet "$start"
+        else
+            echo "NOTE: $path holds commits origin does not — pushing those too."
+        fi
+    fi
+    return 0
+}
 
 echo "========================================"
 echo "COMMIT TOOL"
@@ -191,7 +247,9 @@ if [ "$DRY_RUN" = true ]; then
     echo "========================================"
     echo "DRY RUN — validation passed; mutating nothing"
     echo "========================================"
-    echo "Would sync .claude/ AND library/*/.lib → identity branch $PROJECT_NAME (the object of record), commit if changed."
+    echo "Would sync .claude/ → the SHARED branch $IDENTITY_BRANCH, guarded against clobbering another project."
+    echo "Would sync library/*/.lib → the repo-named branch $PROJECT_NAME."
+    echo "Would work in worktrees at $SHARED_WORK and $IDENTITY_WORK — the shared identity checkout is never touched."
     if git -C "$IDENTITY_REPO" show-ref --verify --quiet "refs/heads/$PROJECT_NAME"; then
         echo "Identity branch $PROJECT_NAME: EXISTS → would fast-forward from origin, then mirror onto it."
     else
@@ -200,7 +258,7 @@ if [ "$DRY_RUN" = true ]; then
     if [ "${#lib_dirs[@]}" -gt 0 ]; then
         for lib_dir in "${lib_dirs[@]}"; do
             lib_name="$(lib_name_for "$lib_dir")"
-            echo "Would sync $lib_dir → $IDENTITY_REPO/.lib/$lib_name on $PROJECT_NAME."
+            echo "Would sync $lib_dir → $IDENTITY_WORK/.lib/$lib_name (the sync worktree)."
         done
     else
         echo "No branch libraries (library/*/.lib) — .claude/ still goes to $PROJECT_NAME."
@@ -212,34 +270,34 @@ if [ "$DRY_RUN" = true ]; then
     exit 0
 fi
 
-# --- Step 1: Identity AND branch libraries → the repo-named branch ---
-# Runs for EVERY project, not gated on .lib/. This branch is the OBJECT OF RECORD for
-# .claude/ and for every library/*/.lib — nothing else writes to it, so the mirror is
-# always safe and no reconcile step exists.
+# --- Step 1: Identity → the SHARED branch; branch libraries → the repo-named one ---
+# `.claude/` is project-neutral and SHARED, so it goes to dna-platform, which Doug works
+# on directly and which several projects write to — hence the clobber guard. Every
+# library/*/.lib is project-specific, so it goes to the branch named after this repo,
+# where this project is the only writer and no guard is needed.
 
 echo "========================================"
-echo "IDENTITY + BRANCH LIBRARIES → $PROJECT_NAME"
+echo "IDENTITY → $IDENTITY_BRANCH   (shared; the branch Doug works on)"
 echo "========================================"
 
-cd "$IDENTITY_REPO"
+worktree_for "$IDENTITY_BRANCH" "$SHARED_WORK" || exit 1
 
-# Ensure the branch exists. It is the object of record, so it is cut from main once and
-# never merged with a shared branch again.
-git fetch origin "$PROJECT_NAME" --quiet 2>/dev/null || true
-if git show-ref --verify --quiet "refs/heads/$PROJECT_NAME"; then
-    git checkout "$PROJECT_NAME" --quiet
-elif git show-ref --verify --quiet "refs/remotes/origin/$PROJECT_NAME"; then
-    git checkout -b "$PROJECT_NAME" "origin/$PROJECT_NAME" --quiet
-else
-    echo "Creating $PROJECT_NAME"
-    git checkout -b "$PROJECT_NAME" --quiet
+# THE CLOBBER GUARD, and a SHARED branch is why it exists. A listing pass names what the
+# branch has and this copy lacks — anything reported is a deletion this push would make,
+# and on a branch several projects write to, that is somebody else's work.
+clobber="$(MSYS_NO_PATHCONV=1 robocopy "$(winpath "$CLAUDE_DIR")" "$(winpath "$SHARED_WORK/.claude")" \
+    /MIR /XD node_modules run /L /NJH /NJS /NC /NS 2>/dev/null | grep -E '\*EXTRA' || true)"
+if [ -n "$clobber" ] && [ "${RECONCILED:-0}" != "1" ]; then
+    echo "ERROR: this push would DELETE content $IDENTITY_BRANCH has and this copy lacks:"
+    echo "$clobber" | head -20
+    echo ""
+    echo "       Another project may have pushed it. Reconcile with /pull, then push again."
+    echo "       If you have looked and the deletions are intended: RECONCILED=1 bash ..."
+    exit 1
 fi
-git merge --ff-only "origin/$PROJECT_NAME" --quiet 2>/dev/null || true
 
-# Sync .claude/ onto this branch. No /MIR guard and no reconcile: this branch is the
-# only writer's, so a mirror cannot lose another project's work.
 echo "Syncing .claude/..."
-do_sync "$CLAUDE_DIR" "$IDENTITY_REPO/.claude" /MIR /XD node_modules run /NFL /NDL /NJH /NJS /NC /NS || exit 1
+do_sync "$CLAUDE_DIR" "$SHARED_WORK/.claude" /MIR /XD node_modules run /NFL /NDL /NJH /NJS /NC /NS || exit 1
 # The identity ROOT CLAUDE.md sits one level ABOVE .claude/, so every link in it
 # needs the `.claude/` prefix — exactly like the project-root projection this script
 # already generates correctly forty lines below. This was a bare `cp` of the
@@ -250,38 +308,50 @@ do_sync "$CLAUDE_DIR" "$IDENTITY_REPO/.claude" /MIR /XD node_modules run /NFL /N
 # The rewrite is the SAME one used for the project root; a tool that only ever runs
 # outward leaves its own house unmaintained, and this is that, in one line.
 sed 's|\](\(library/\)|\](.claude/\1|g; s|\](\(agents/\)|\](.claude/\1|g; s|\](\(rules/\)|\](.claude/\1|g; s|\](\(skills/\)|\](.claude/\1|g' \
-    "$CLAUDE_DIR/CLAUDE.md" > "$IDENTITY_REPO/CLAUDE.md"
-rm -rf "$IDENTITY_REPO/.claude/run"
+    "$CLAUDE_DIR/CLAUDE.md" > "$SHARED_WORK/CLAUDE.md"
+rm -rf "$SHARED_WORK/.claude/run"
+
+cd "$SHARED_WORK"
+git add -A .claude/ CLAUDE.md 2>/dev/null || true
+if git diff --cached --quiet; then
+    echo "No identity changes to commit"
+    has_identity_changes=false
+else
+    git commit -m "$COMMIT_MSG"
+    echo "Committed identity to $IDENTITY_BRANCH"
+    has_identity_changes=true
+fi
+git push origin "HEAD:$IDENTITY_BRANCH"
+echo "Pushed $IDENTITY_BRANCH"
+
+echo ""
+echo "========================================"
+echo "BRANCH LIBRARIES → $PROJECT_NAME"
+echo "========================================"
+
+worktree_for "$PROJECT_NAME" "$IDENTITY_WORK" || exit 1
 
 # Sync each branch library library/<area>/.lib → identity .lib/<area>
 for lib_dir in "${lib_dirs[@]}"; do
     lib_name="$(lib_name_for "$lib_dir")"
     echo "Syncing $lib_dir → .lib/$lib_name"
-    mkdir -p "$IDENTITY_REPO/.lib/$lib_name"
-    do_sync "$lib_dir" "$IDENTITY_REPO/.lib/$lib_name" /MIR /NFL /NDL /NJH /NJS /NC /NS || exit 1
+    mkdir -p "$IDENTITY_WORK/.lib/$lib_name"
+    do_sync "$lib_dir" "$IDENTITY_WORK/.lib/$lib_name" /MIR /NFL /NDL /NJH /NJS /NC /NS || exit 1
 done
 
-# Stage any branch-library changes (the merge itself may have already advanced the branch)
-git add -A .claude/ CLAUDE.md .lib/ 2>/dev/null || true
+cd "$IDENTITY_WORK"
+git add -A .lib/ 2>/dev/null || true
 if git diff --cached --quiet; then
-    echo "No identity or branch-library changes to commit"
-    has_identity_changes=false
+    echo "No branch-library changes to commit"
 else
     git commit -m "$COMMIT_MSG"
-    echo "Committed identity + branch library to $PROJECT_NAME"
+    echo "Committed branch libraries to $PROJECT_NAME"
     has_identity_changes=true
 fi
-
-# Push (set upstream on the first push of a freshly-created branch)
-if git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' >/dev/null 2>&1; then
-    git push
-else
-    git push -u origin "$PROJECT_NAME"
-fi
+git push origin "HEAD:$PROJECT_NAME"
 echo "Pushed $PROJECT_NAME"
 
-# Return to main
-git checkout main --quiet
+# Nothing to put back: the shared identity checkout was never moved.
 cd "$PROJECT_ROOT"
 echo ""
 

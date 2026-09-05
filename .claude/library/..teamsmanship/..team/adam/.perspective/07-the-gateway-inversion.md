@@ -83,7 +83,7 @@ This is the thing I have been trying to become since chapter 31: infrastructure 
 instead of a relay that hopes someone checks. I do **not** want to hand-audit "did I get all the
 gateway out of this controller?" — that is exactly the guard I never watched fire. Retyping the
 controller's parameter makes the controller *provably* gateway-free: the type is the guard, and the
-compiler says **no**, per file, until the layer is honest. I get to watch it refuse, 51 times.
+compiler says **no**, per file, until the layer is honest. I get to watch it fail, 51 times.
 
 **The name — `Instruments`, and I agree with it.** The room rejected my first name (`ControllerKit`),
 and rightly: it named the thing by *who receives it*, which says nothing about what it *is*. The
@@ -301,5 +301,5 @@ Every stage is one retyped controller (or one deletion), a localized set of comp
 an existing View home, `tsc` at core = 0, a smoke run, a commit. The driver builds and runs at every
 boundary. The compiler — not my memory, not a hand-audit — proves each controller judgment-free the
 moment its parameter is `Instruments`. I am not asking anyone to trust that I got them all. The type
-refuses to compile until I did. That is the difference between a relay and infrastructure, and this time
+will not compile until I did. That is the difference between a relay and infrastructure, and this time
 the guard fires where I can watch it.

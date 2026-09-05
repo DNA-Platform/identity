@@ -370,7 +370,7 @@ test('4.5 the model picker reads the current model and thinking mode', { skip: !
 // 5. DISCIPLINE — the gateway's promises, against the real app.
 // ===========================================================================
 
-test('5.1 a missing target refuses immediately, carries the tree, and never fires', { skip: !LIVE }, async () => {
+test('5.1 a missing target is invalid immediately, carries the tree, and never fires', { skip: !LIVE }, async () => {
   let fired = false;
   const started = Date.now();
   let raised: unknown;
@@ -385,14 +385,14 @@ test('5.1 a missing target refuses immediately, carries the tree, and never fire
   } catch (e) { raised = e; }
   const elapsed = Date.now() - started;
 
-  assert.ok(raised, 'a missing target must refuse');
+  assert.ok(raised, 'a missing target must be invalid');
   assert.equal(fired, false, 'THE ACTION MUST NOT HAVE FIRED — that is the whole point');
   const err = raised as { name: string; message: string; tree?: TreeSnapshot };
   assert.equal(err.name, 'PreconditionError');
   assert.match(err.message, /did not fire/);
-  assert.ok(err.tree && !err.tree.isEmpty, 'the refusal carries the tree that disagreed');
+  assert.ok(err.tree && !err.tree.isEmpty, 'the answer carries the tree that disagreed');
   assert.ok(elapsed < 20_000, `must fail fast, not time out — took ${elapsed}ms`);
-  say(`refused in ${elapsed}ms, tree attached (${err.tree!.size} elements)`);
+  say(`invalid in ${elapsed}ms, tree attached (${err.tree!.size} elements)`);
 });
 
 test('5.2 a present target passes the precheck and the action fires exactly once', { skip: !LIVE }, async () => {
@@ -417,14 +417,14 @@ test('5.3 a handed-over tree is used, and is still not a bypass', { skip: !LIVE 
   const withHandoff = Date.now() - t0;
   assert.equal(fired, 1);
 
-  // Absent from the handed-over tree → still refused, still never fires.
+  // Absent from the handed-over tree → still rejected, still never fires.
   let fired2 = false;
   await assert.rejects(
     () => app!.gateway.act(async () => { fired2 = true; }, async () => true,
       { description: 'handoff', target: { name: `nope-${process.pid}` }, snapshot: seen }),
     (e: Error) => e.name === 'PreconditionError');
   assert.equal(fired2, false);
-  say(`handoff act: ${withHandoff}ms, and a bad target through it is still refused`);
+  say(`handoff act: ${withHandoff}ms, and a bad target through it is still rejected`);
 });
 
 test('5.4 the tree history accumulates and is bounded', { skip: !LIVE }, async () => {
@@ -453,29 +453,29 @@ test('5.5 the driver never calls an action it was not asked to', { skip: !LIVE }
 });
 
 // ===========================================================================
-// 6. REFUSAL — bad input is answered honestly, not crashed on.
+// 6. INVALID INPUT — bad input is answered honestly, not crashed on.
 // ===========================================================================
 
 test('6.1 an unknown command reports what IS here', { skip: !LIVE }, async () => {
   const out = await runtime!.run('definitelyNotACommand');
-  assert.equal(out.kind, 'refused');
-  assert.match(out.kind === 'refused' ? out.message : '', /no "definitelyNotACommand"/);
-  assert.match(out.kind === 'refused' ? out.message : '', /What is here/);
+  assert.equal(out.kind, 'invalid');
+  assert.match(out.kind === 'invalid' ? out.message : '', /no "definitelyNotACommand"/);
+  assert.match(out.kind === 'invalid' ? out.message : '', /What is here/);
   say('unknown command answered with the real surface');
 });
 
-test('6.2 wrong argument count is refused with the real signature', { skip: !LIVE }, async () => {
+test('6.2 wrong argument count is invalid, answered with the real signature', { skip: !LIVE }, async () => {
   const out = await runtime!.run('composer.type', []);
-  assert.equal(out.kind, 'refused');
-  assert.match(out.kind === 'refused' ? out.message : '', /takes/);
-  say(`refused: ${out.kind === 'refused' ? out.message : ''}`);
+  assert.equal(out.kind, 'invalid');
+  assert.match(out.kind === 'invalid' ? out.message : '', /takes/);
+  say(`invalid: ${out.kind === 'invalid' ? out.message : ''}`);
 });
 
-test('6.3 a refusal never touched the app', { skip: !LIVE }, async () => {
+test('6.3 a failure never touched the app', { skip: !LIVE }, async () => {
   const before = await app!.currentUrl();
   await runtime!.run('nope');
   await runtime!.run('composer.type', []);
-  assert.equal(await app!.currentUrl(), before, 'a refused command moves nothing');
+  assert.equal(await app!.currentUrl(), before, 'a rejected command moves nothing');
   say(`still on ${before}`);
 });
 

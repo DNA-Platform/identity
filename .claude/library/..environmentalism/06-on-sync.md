@@ -8,6 +8,24 @@
 
 The library travels between projects. It lives in its own repository at `github.com/DNA-Platform/identity` — containing `.claude/` and `CLAUDE.md`. It is private. It is project-neutral. It carries the team's identity, knowledge, and specifications into whatever codebase needs them.
 
+## <a id="the-standard-sync"></a>The standard sync, and it is almost always the only one
+
+**A session closes by pushing identity to the shared branch, the branch libraries to the branch named after this repository, and the code to the project repository. That is the whole of it.**
+
+**Three steps, and [the commit tool](06-on-sync--commit.sh) does all three:**
+
+1. **`.claude/` and `CLAUDE.md` → the SHARED branch, `dna-platform`.** *It is project-neutral, several projects write to it, and **it is the branch Doug works on** — so [the clobber guard](#the-commit-tool) runs before the mirror.*
+2. **Every `library/*/.lib` → the branch named for this repository.** *A branch library is project-specific and this project is its only writer, so nothing has to be reconciled and no guard is needed.*
+3. **The project's own code → the project repository.**
+
+> ***Doug, 2026-09-05, restoring the shared branch:*** **"No it should be a shared dna-platform branch and that is the branch I will be working on."**
+
+***That reverses [the 2026-08-12 ruling](#the-branching-model) deliberately, and the reason is in the sentence:*** **a branch nobody works on is not where a person's identity should live.** *What the 08-12 ruling was avoiding — the mutual clobber — is real and returns with the shared branch, so the guard returns with it: **a mirror onto a shared branch is checked for deletions first, and refuses rather than silently reverting another project's work.*** *The branch libraries stay on their own branch, which is where the "one writer, one branch" argument still holds exactly.*
+
+***And neither destination is reached by borrowing a working copy*** — see [the worktree rule](#the-sync-works-in-its-own-worktree).
+
+***Everything below about tiers and downstream merges describes [the rare act](#the-rare-act), not this one.*** **A session that says "sync" means the two steps above.**
+
 ## The branching model
 
 The identity repo uses a three-tier branching model. Each tier holds a different kind of content, and the tiers relate by inheritance:
@@ -20,7 +38,19 @@ The identity repo uses a three-tier branching model. Each tier holds a different
 
 The git branch hierarchy mirrors the [library branch hierarchy](../library-tree/01-branches.md): `main` is the main library, the organization branch adds the team's collection, project branches add project-specific collections. The same structure expressed in git and in the library's own terms.
 
-## Downstream merges
+## <a id="the-rare-act"></a>The rare act — a complete sync
+
+***Everything in this section is deliberate, occasional work rather than what closing a session does.*** **It is a session boundary in its own right**, and [treating it as an errand is what once overwrote a session's unpushed records](#uncommitted-work-is-not-protected-by-any-of-this).
+
+**Three things are complete syncs, and none of them belongs in a normal push:**
+
+- **Propagating `main` or the organization branch downstream** into the branches that inherit from them, which is what the rest of this section specifies.
+- **Reconciling two working copies of one identity** — [diffed and selected file by file, never mirrored](#no-branch-libraries-in-the-identity-repo--remove-lib-on-sight).
+- **Bringing the team into a new project**, which is [the setup tool](#the-setup-tool) and happens once per repository.
+
+***Do one of these because something specific requires it***, and push the branch library first — *a complete sync moves files under a working copy, and uncommitted work is not protected by any of it.*
+
+### Downstream merges
 
 Changes propagate strictly downstream: `main` to organization to project branches. Never upstream. This is a system requirement, not a convention.
 
@@ -74,15 +104,38 @@ The identity repo uses Git and GitHub, but the sync pattern doesn't depend on th
 bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit message"
 ```
 
-The script detects what changed and routes each category to the right place:
+The script detects what changed and routes each category to the right place — **and what it does is [the standard sync](#the-standard-sync), never a complete one:**
 
-- **Identity AND the branch libraries go to ONE place: the identity branch named after the repo.** `.claude/` and every `library/*/.lib` are mirrored onto it, committed and pushed together. **That branch is the object of record** — nothing else writes to it, so there is nothing to reconcile and no shared branch to clobber. *(Doug, 2026-08-12: "`.claude` and library branches get pushed to the identity branch with the repo name and this is the object of record so no syncing problems.")*
-- **There is no shared-branch step and no merge to `main`.** Both were removed on 2026-08-12: a shared `dna-platform` push is what created the mutual-clobber trap below, and the repo-named branch dissolves it rather than guarding against it. The branch is created on first push if missing; routing is derived from the project directory name and the `library/*/.lib` glob, never hardcoded.
+- **Identity goes to the SHARED branch `dna-platform`.** `.claude/` and `CLAUDE.md` are mirrored onto it, committed and pushed. *(Doug, 2026-09-05: "it should be a shared dna-platform branch and that is the branch I will be working on.")* ***Because it is shared, the mirror is guarded:*** **a listing pass runs first and reports anything the branch has that this copy lacks — a deletion this push would make.** *Anything reported stops the push with the paths named, because on a shared branch that is another project's work.* **`RECONCILED=1` says you have looked**, and the right answer is almost always `/pull` first.
+- **The branch libraries go to the branch named after the repo**, where this project is the only writer — so there is nothing to reconcile and no guard. *This is the half of the 2026-08-12 ruling that survived it.*
+- **There is no merge to `main`.** The branches are created on first push if missing; routing is derived from the project directory name and the `library/*/.lib` glob, never hardcoded.
 - **Project code changes**: committed and pushed in the project repo. Generates the project-root `CLAUDE.md` with link prefix adjustment.
 
 The script runs [validation](05-on-validation.md) before any commits. If validation fails, nothing is pushed. The branching model is enforced by the tool — the operator does not need to remember which branch to push to.
 
 The tool is bash, not TypeScript. It is git operations, not library parsing. It belongs beside this chapter as a resource because it is the mechanism that implements the sync specification.
+
+### <a id="the-sync-works-in-its-own-worktree"></a>THE SYNC NEVER TOUCHES THE SHARED IDENTITY CHECKOUT — ruled 2026-09-05
+
+> ***Doug, on being told a push had been blocked by four uncommitted files in the identity folder:*** **"You can pull to a folder, sync, and push? I had no clue you actually worked in the main folder. That is bad."**
+
+***Until this ruling the tool did `cd "$IDENTITY_REPO"; git checkout <project>`, mirrored, pushed, and then `git checkout main`.*** **It borrowed somebody else's working copy for the length of a sync**, and that is three faults in one line:
+
+| | |
+|---|---|
+| ***anyone's uncommitted work BLOCKS the push*** | *git refuses the checkout, and the session ends holding a record it cannot file* |
+| ***a failure mid-run STRANDS them*** | *the shared folder is left on a branch they did not choose, mirrored with this project's content* |
+| ***the return is a guess*** | *`git checkout main` assumes `main` is where they were* |
+
+**So the sync now works in a worktree of its own** — `../.identity-sync/<project>`, beside the identity repo and inside neither it nor the project:
+
+- ***A worktree shares the object database***, so it costs one checkout ever and is a fast-forward on every run after.
+- ***The shared folder is never read, never written, never moved.*** Uncommitted work there is now genuinely safe from the standard sync.
+- ***Nothing is put back, because nothing was taken*** — the `git checkout main` is gone.
+- ***If the branch IS checked out in the shared folder***, the tool **refuses and says so** rather than fighting over it. *A worktree and a checkout cannot hold one branch, and the right answer is a sentence to the operator, not a force.*
+- ***The location is overridable*** with `IDENTITY_WORKTREES`, for a machine that wants it elsewhere.
+
+***The failure that produced the ruling, recorded because it is the shape to recognise:*** **a session's whole record — a sprint chapter, three new chapters and five compacted covers — sat finished and unpushable behind four files somebody had left modified in the identity folder.** *The work was never at risk; the FILING was, which is the same thing one power cut later.*
 
 ## The setup tool
 
@@ -96,7 +149,7 @@ It is idempotent (re-running re-syncs the identity into the project) and support
 
 ### The identity repo needs the root rewrite too
 
-The prefix rewrite in step 3 of the [setup tool](06-on-sync--setup.sh) — `](library/` → `](.claude/library/` — is what makes a repo-root `CLAUDE.md` resolve, because the root sits one level above `.claude/` where the library actually is. The tool runs *against projects*, so every project got it. **The identity repo never did**, since it is the source rather than a destination, and nothing else generates its root file. Its `CLAUDE.md` sat as a raw copy of `.claude/CLAUDE.md` with bare `library/…` links — **47 broken compiled links**, enough to make the [validation runner](05-on-validation.md) return FAIL and refuse a push, in the one repo the identity is pushed *from*.
+The prefix rewrite in step 3 of the [setup tool](06-on-sync--setup.sh) — `](library/` → `](.claude/library/` — is what makes a repo-root `CLAUDE.md` resolve, because the root sits one level above `.claude/` where the library actually is. The tool runs *against projects*, so every project got it. **The identity repo never did**, since it is the source rather than a destination, and nothing else generates its root file. Its `CLAUDE.md` sat as a raw copy of `.claude/CLAUDE.md` with bare `library/…` links — **47 broken compiled links**, enough to make the [validation runner](05-on-validation.md) return FAIL and stop a push, in the one repo the identity is pushed *from*.
 
 The identity repo is not exempt from its own geometry. Regenerate its root file the same way any project's is generated:
 
@@ -125,6 +178,8 @@ Every guard in this chapter protects *committed* history and *pushed* branches. 
 
 Which is the point. **The cause was never found, and the fix did not depend on finding it.** Commit early and commit often; a commit is the only thing in this system that makes work survive a cause you cannot name. And when work is lost, **the recovery path is people, not git**: the library's shared chapters are recoverable because the conversation that produced them is still in context, and a teammate's personal chapters are recoverable because that teammate's [session persists](08-on-brains.md#the-surprising-part-persistence-is-native) and still holds what they wrote. Ask each author to write their own again — never let another voice reconstruct them, because a restored chapter is still that person's [first-person prose](../teamspeak/05-autonomy.md).
 
+**AMENDED 2026-09-05, and the amendment is narrow: the STANDARD SYNC no longer reaches a working copy at all.** *[It works in its own worktree](#the-sync-works-in-its-own-worktree)*, so a session's uncommitted edits in the identity folder can neither block a push nor be moved by one. ***Everything else in this section stands unchanged*** — the pull, the resolve and every complete sync still move files under a working copy, and a commit is still the only thing that makes work survive a cause you cannot name.
+
 **And the reconcile chain is the sharpest instance of this hazard, because the tools themselves send you into it** (2026-08-10, The Subject). A push was stopped mid-session and the tool's own advice was to reconcile down; [resolve](06-on-sync--resolve.sh)'s phase 2 then synced the verified branch into the working copy — and the branch, verified as it was, **did not yet hold the session's unpushed `.lib` records.** A sprint chapter, a Solutions chapter, chapter zero's edits and two cover entries were overwritten, and were rebuilt only because every word was still in the conversation. The practice that follows: **treat every reconcile as a session boundary.** Before running [pull](06-on-sync--pull.sh) or [resolve](06-on-sync--resolve.sh) mid-session, push the branch library first or copy it aside — the down-sync installs the branch's truth, and unpushed work is not part of that truth yet. The resolve's closing line — *CHECK BY HAND* — is not ceremony; it is the step that caught this.
 
 ## The pull tool — syncing down, staged through the branch
@@ -133,7 +188,7 @@ The down-sync brings the organization's changes from `dna-platform` *into* a pro
 
 **Phase 1 — [pull](06-on-sync--pull.sh).** Sync the working-copy library up onto the project branch, then merge `dna-platform` in. A clean merge hands straight off to phase 2. A conflict in a **chapter or cover** STOPS it with the [chapter/cover merge procedure](#merging-a-book-by-hand--libbys-procedure) — that merge is the human's, *not algorithmic*; resolve by hand, commit, then run phase 2. A conflict in a **compiled file** (agents, `CLAUDE.md`, rules) it clears *itself* — those are regenerated, never merged, so the compiler settles them in phase 2.
 
-**Phase 2 — [resolve](06-on-sync--resolve.sh).** The separate finisher: recompile the platform files on the branch (**the compiler owns the compiled files — they are never hand-merged**), show the diff (every change traces to a merged chapter), validate the branch (a failure **stops** here — the error is in a chapter, the working copy untouched), commit and push the branch, and **only then** sync the verified branch down into the working copy. After the sync it re-checks that the working copy matches the branch and revalidates it — **the identity↔branch sync is mechanical but verified, never blindly trusted.** It refuses to run while any path is still in conflict, and carries **no resume heuristic** — you run it *because the merge is done*, not because a tool guessed it was. `--no-worktree-sync` proves and pushes the branch without touching the working copy.
+**Phase 2 — [resolve](06-on-sync--resolve.sh).** The separate finisher: recompile the platform files on the branch (**the compiler owns the compiled files — they are never hand-merged**), show the diff (every change traces to a merged chapter), validate the branch (a failure **stops** here — the error is in a chapter, the working copy untouched), commit and push the branch, and **only then** sync the verified branch down into the working copy. After the sync it re-checks that the working copy matches the branch and revalidates it — **the identity↔branch sync is mechanical but verified, never blindly trusted.** It will not run while any path is still in conflict, and carries **no resume heuristic** — you run it *because the merge is done*, not because a tool guessed it was. `--no-worktree-sync` proves and pushes the branch without touching the working copy.
 
 The division is the rule beneath all of it: **a chapter merge is a human act (not algorithmic); compiled files are the compiler's to regenerate; the identity↔branch sync is mechanical but checked afterward.** Edit chapters, let the compiler do its work, and verify the sync landed.
 
@@ -146,19 +201,19 @@ Why split? A single command had to *infer* "fresh run versus resume" from an anc
 So the sync **must not be cold-automated.** Two protections enforce that, and both are in the tools:
 
 - **The git merges pause.** The pull tool's branch merge and the commit tool's downstream merges are real `git merge`s — they stop on conflict and wait for a human to hand-merge. Autobiographies and chapters are always resolved [additively](../bookkeeping/10-on-evolution.md), never by overwrite.
-- **The `/MIR` steps refuse.** Before any mirror, the tool dry-runs it; if it would DELETE real content — the other side's work — it **refuses** and tells you to reconcile first (pull down before you push up; push up before you pull down). The guard runs in both directions: the commit tool will not clobber the org branch, and the pull tool will not clobber un-pushed local work. Override only with `RECONCILED=1`, and only when the absence is genuinely intended.
+- **The `/MIR` steps fail.** Before any mirror, the tool dry-runs it; if it would DELETE real content — the other side's work — it **fails** and tells you to reconcile first (pull down before you push up; push up before you pull down). The guard runs in both directions: the commit tool will not clobber the org branch, and the pull tool will not clobber un-pushed local work. Override only with `RECONCILED=1`, and only when the absence is genuinely intended.
 
 The discipline in one line: **reconcile, then sync — and let the tool stop you whenever a human has to merge.**
 
 ### A guard must be watched fire before it is trusted
 
-The refuse-to-clobber guard existed — and still did not fire the day a behind working copy mirrored four freshly-pushed autobiography chapters into deletion. The dry-run the guard read was a robocopy `/MIR /L` listing, but it also carried `/NC` (no-class), and `/NC` suppresses the `*EXTRA` marker the guard greps for. So the count of would-be deletions came back zero, and the guard waved a real clobber straight through. The work survived only because it was also in a working copy and in git history, from which it was restored into every copy; the fix was to drop `/NC` from the dry-run.
+The fail-to-clobber guard existed — and still did not fire the day a behind working copy mirrored four freshly-pushed autobiography chapters into deletion. The dry-run the guard read was a robocopy `/MIR /L` listing, but it also carried `/NC` (no-class), and `/NC` suppresses the `*EXTRA` marker the guard greps for. So the count of would-be deletions came back zero, and the guard waved a real clobber straight through. The work survived only because it was also in a working copy and in git history, from which it was restored into every copy; the fix was to drop `/NC` from the dry-run.
 
-The lesson is larger than the flag. **A clobber-guard you have never watched *refuse* is not infrastructure — it is a relay wearing infrastructure's clothes**, and a broken guard is worse than no guard, because its apparent existence buys back the careful reading it promised to make unnecessary. After building or fixing a guard, watch it stop a real deletion before you trust it. The guard is real only once you have seen it say no.
+The lesson is larger than the flag. **A clobber-guard you have never watched *fail* is not infrastructure — it is a relay wearing infrastructure's clothes**, and a broken guard is worse than no guard, because its apparent existence buys back the careful reading it promised to make unnecessary. After building or fixing a guard, watch it stop a real deletion before you trust it. The guard is real only once you have seen it say no.
 
 ### Line endings must be normalized, or the revert-guard cries wolf
 
-The revert half of the guard reads robocopy's `Older` marker, which compares **timestamp and size, not content**. That makes it blind in a specific way: if the two working copies disagree on **line endings** for content they both mean identically, every such file reads as "older" and the guard false-refuses on noise. We hit exactly this. The identity repo ran `core.autocrlf=true` with **no `.gitattributes`**, so git stored LF (the index was LF) but smudged LF→CRLF on every checkout; the project's `.claude` mirror, written by robocopy, stayed LF. Two copies of one identity, content-identical, disagreeing only on `\r` — and the guard refused a clean push. The dangerous part is that a real, newer change can hide inside that same flood of false reverts, where an override would silently revert it.
+The revert half of the guard reads robocopy's `Older` marker, which compares **timestamp and size, not content**. That makes it blind in a specific way: if the two working copies disagree on **line endings** for content they both mean identically, every such file reads as "older" and the guard false-fails on noise. We hit exactly this. The identity repo ran `core.autocrlf=true` with **no `.gitattributes`**, so git stored LF (the index was LF) but smudged LF→CRLF on every checkout; the project's `.claude` mirror, written by robocopy, stayed LF. Two copies of one identity, content-identical, disagreeing only on `\r` — and the guard stopped a clean push. The dangerous part is that a real, newer change can hide inside that same flood of false reverts, where an override would silently revert it.
 
 The fix is structural and belongs in the repo, not in the operator's vigilance: a committed **`.gitattributes` with `* text=auto eol=lf`** makes LF canonical on every checkout in every clone, so the working copies agree on endings by construction. Because the index was already LF, `git add --renormalize` staged **zero** files — the attribute records what storage already was and changes no committed bytes, which is what makes it safe to add to a repo shared across projects. With endings normalized the guard's signal is honest again: a flagged revert now means a *genuinely* newer file on the org branch, to be [reconciled by /pull](#the-pull-tool--syncing-down-staged-through-the-branch) — never overridden. **A guard that compares timestamps is only as trustworthy as the line-ending discipline beneath it; normalize endings so the guard can mean what it says.**
 

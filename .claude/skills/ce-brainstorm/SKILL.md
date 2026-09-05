@@ -23,13 +23,13 @@ Turn an idea into **requirements** — what this needs to *be* — before anyone
 
 **Announce at start:** "Using brainstorm to work out what this needs to be."
 
-## The validatable law — added out of Sprint 48's failure
+## The validatable specification — added out of Sprint 48's failure
 
 **A requirement that cannot be seen satisfied is not a requirement.** Every requirement names **what would be observed** if it held — on a screen, or in a test that reads as a promise. A brainstorm is not finished when the model is agreed; it is finished when **what success looks like is agreed**.
 
 So the demo is designed **here, beside the requirements**, never after them. [Sprint 48](../../../library/.public/.lib/projection/06-sprint-48--subjects-and-the-library.md) produced 34 requirements about what the model *is* and none about what seeing it would look like — and at review there was nothing to sign off, only numbers, which say a suite passed and never that the sprint happened.
 
-**The test for a reviewable end:** *could a hand-authored page fake it?* A catalogue can be faked with prose, a card can be faked, a refusal can be faked with a hardcoded string. **Find the thing that cannot be**, and that is the sprint's end.
+**The test for a reviewable end:** *could a hand-authored page fake it?* A catalogue can be faked with prose, a card can be faked, a rejection can be faked with a hardcoded string. **Find the thing that cannot be**, and that is the sprint's end.
 
 **And requirements are specified tightly or not written.** *"Requirements should be very well specified or you don't know that you have enough information to specify them"* (Doug). Looseness is a **signal that the design behind it is missing**, and writing it loosely hides that. The check: **could someone else tell whether it is satisfied, without asking me?**
 
@@ -61,7 +61,7 @@ The research at this step is **deliberately shallow**. Deciding architecture on 
 
 A **Requirements section in the sprint chapter** of the branch's [Projection](../../library/library-tree/03-sprints.md) book, carrying the requirements, the actors, the key flows, and acceptance examples — each with a stable identifier (`R1`, `A1`, `F1`, `AE1`) so [ce-plan](../../library/our-skillset/29-ce-plan.md) can cite them and nothing silently drops.
 
-The chapter is marked `requirements-only`. **[Plan](../../library/our-skillset/29-ce-plan.md) enriches this same chapter in place** — never a second document. That is the library's [edit-first](../../library/bookkeeping/09-on-synopsis.md) law, and it is theirs too.
+The chapter is marked `requirements-only`. **[Plan](../../library/our-skillset/29-ce-plan.md) enriches this same chapter in place** — never a second document. That is the library's [edit-first](../../library/bookkeeping/09-on-synopsis.md) specification, and it is theirs too.
 
 ## When to skip it
 

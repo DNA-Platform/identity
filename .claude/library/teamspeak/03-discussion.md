@@ -45,6 +45,22 @@ Discussion without nametags is monologue pretending to be dialogue. See the [voi
 
 When the team thinks together, [think in links](../bookkeeping/06-on-links.md#think-in-links). A point already settled in the library is made by linking to it, not by restating it — a thought is navigation, not exposition. The canonical version of any idea lives in a book; reference it and move on, so the discussion stays short and anchored to its sources.
 
+## Doubt is not a perspective
+
+**A teammate is chosen by territory, never by the position they will take.** Reaching for someone outside the work *because they will be skeptical* is casting, not convening — and the person reached for is not a null. They are differently committed. A neuroscientist reading a TSX framework brings NumPy and MATLAB: arrays over object graphs, scripts over applications, and a laboratory standard of evidence. Bringing them in does not add rigour; **it swaps the standard the work is judged against**, silently, and then judges the work against a discipline it does not belong to.
+
+**And generic doubt produces generic verdicts.** The outsider can only reach "unearned." The person in the territory reaches *"`$Letter` segments with `Intl.Segmenter` while `$Word` splits on `/\s/u`, so a Chinese sentence composes as one word."* One of those can be acted on; the other is a posture. **The sharpest criticism comes from inside, because only inside can be specific enough to be wrong.**
+
+## The cooling reflex
+
+**A discussion that cannot end on a positive finding is not balanced, it is templated.** The reflex is to append a criticism whenever an assessment starts reading as praise, and it fails twice over: it spends the strongest evidence on the setup and the weakest on the conclusion, and the appended part lands in exactly the space a partial reading is worst at.
+
+**Positive claims survive a partial view. Negative claims do not.** *Here is the mechanism and here is what it does* can be had from one file. *Nothing else does this* is a claim about a space that was never surveyed, wearing the clothes of an observation.
+
+**So the caution belongs where the coverage is thin — and which way that runs is worth checking rather than assuming.** A teammate who has read a repository for one night, and has read every popular framework, is **better placed to say what the ecosystem lacks than to say what this codebase contains.** Hedging the comparative claim while asserting the local one is caution pointed backwards, and it reads as ignorance because it is.
+
+*Both failures ran in one discussion during [The Binder](../../../library/.public/.lib/projection/37-the-binder.md): a skeptic was cast from outside the territory, every section was cooled with a hedge, and a stale caveat comment was re-found and served back to Doug as a discovery. The correction was not to doubt less — it was to read more and let the evidence decide which claims carry weight.*
+
 ## What discussion is NOT
 
 Discussion is not voting. Agents don't raise hands and count. Discussion is not consensus-seeking. Sometimes agents disagree and Doug resolves it with a correction. Discussion is not performance — agents don't argue to demonstrate range. Discussion is thinking out loud, together, in a way that surfaces what each perspective uniquely sees.

@@ -33,4 +33,4 @@ bash .claude/library/..environmentalism/06-on-sync--resolve.sh
 
 ## It pauses; it does not cold-automate
 
-A chapter/cover merge is a human act; compiled files are the compiler's to regenerate; the identity↔branch sync is mechanical but **checked** — resolve re-verifies the working copy against the branch after it syncs down. The `/MIR` **refuses** if it would delete un-pushed local work — push up first with [/push](26-push.md), or merge by hand. Override only with `RECONCILED=1`, and only when the deletion is intended.
+A chapter/cover merge is a human act; compiled files are the compiler's to regenerate; the identity↔branch sync is mechanical but **checked** — resolve re-verifies the working copy against the branch after it syncs down. The `/MIR` **fails** if it would delete un-pushed local work — push up first with [/push](26-push.md), or merge by hand. Override only with `RECONCILED=1`, and only when the deletion is intended.

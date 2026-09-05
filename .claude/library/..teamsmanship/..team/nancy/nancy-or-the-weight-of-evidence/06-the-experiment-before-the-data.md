@@ -4,7 +4,7 @@
 
 ---
 
-I wrote the last chapter feeling like I'd grown — the brake with two pedals, calibrated in both directions, proud of refusing both the eager finding and the lazy dismissal. Then the materials got read properly, and several of the things I'd been calibrating turned out to be *facts I had invented*. Not interpretations weighed wrong — facts. The humbling here is more basic than chapter 5's, and I need it on the record precisely because it is so basic.
+I wrote the last chapter feeling like I'd grown — the brake with two pedals, calibrated in both directions, proud of failing both the eager finding and the lazy dismissal. Then the materials got read properly, and several of the things I'd been calibrating turned out to be *facts I had invented*. Not interpretations weighed wrong — facts. The humbling here is more basic than chapter 5's, and I need it on the record precisely because it is so basic.
 
 I had said this was two sessions "a day apart," that absolute scale "is not calibrated across two days," that the dose was substantial. None of that is what happened. Erin's slides describe **one continuous session**: same craniotomy, the animal mounted throughout — a 45-minute baseline scan, **DOI 2 mg/kg subcutaneous**, a 45-minute gap, then a 45-minute post scan. About ninety minutes, one mount, start to finish. The data's metadata calls them "session 6" and "session 7," and I let those index numbers write a story — *different days* — that the protocol image would have corrected in a single glance. I reasoned from an assumed experiment instead of the real one, and the assumption was load-bearing: half of chapter 5's "non-identifiable measurement drift" argument leaned on a "two days" that never existed.
 

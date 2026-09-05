@@ -5,7 +5,7 @@
 
 ---
 
-**The app is the runtime. The CLI is its face.** Everything in [`.claude/src/`](../../src/) knows how to drive Claude Desktop; everything in [`.claude/src/cli/`](../../src/cli/) knows how to *ask* it and how to *show* the answer. That division is not stylistic — it is [ch.5's rule](05-coding-philosophy.md) applied to a new caller: *if a script reaches below the `Claude` class, the class is missing a method.* A CLI is a script with a prompt attached, and it obeys the same law.
+**The app is the runtime. The CLI is its face.** Everything in [`.claude/src/`](../../src/) knows how to drive Claude Desktop; everything in [`.claude/src/cli/`](../../src/cli/) knows how to *ask* it and how to *show* the answer. That division is not stylistic — it is [ch.5's rule](05-coding-philosophy.md) applied to a new caller: *if a script reaches below the `Claude` class, the class is missing a method.* A CLI is a script with a prompt attached, and it obeys the same specification.
 
 This chapter grows as the runtime grows. It describes what exists; the plan for what comes next is [Sprint 102](../projected-identity/74-sprint-102--lifting-the-app-into-the-cli.md).
 
@@ -58,9 +58,9 @@ This is the same read the [introspect tool](09-codebase-index--introspect.ts) pe
 
 ## The three kinds, and where they come from
 
-Every command is classified by what its signature promises. The classification is not a taxonomy someone invented for the CLI — each kind is one of the app's existing laws, read back out of the code:
+Every command is classified by what its signature promises. The classification is not a taxonomy someone invented for the CLI — each kind is one of the app's existing specifications, read back out of the code:
 
-| Kind | Test | The law it comes from |
+| Kind | Test | The specification it comes from |
 |---|---|---|
 | **Exit** | returns a single **place** | [Navigation returns the next page](10-architecture-patterns.md#navigation-returns-the-next-page) — a place-typed return *is* a door |
 | **Look** | parameterless, returns data | [Every action gets a confirmation read](05-coding-philosophy.md); reading is how you know where you are |
@@ -72,7 +72,7 @@ A method's own doc comment becomes its description. The author's words are bette
 
 A **place** is somewhere you can stand and act from: a page, a menu, a modal, a panel, the sidebar. `isPlaceClass` decides it by asking where the app declared the class — `pages/` and `components/` are the View layer, the objects that model what is on screen ([layers](02-01-the-architecture--layers.md)). Everything else is infrastructure or a value.
 
-Two refusals make the rule work:
+Two failures make the rule work:
 
 - **A list is not a place.** `projects(): ProjectItem[]` hands you data *about* the screen; `menu(): ConversationMenu` puts you somewhere new. Same "returns a class we know about", opposite meaning, and the `[]` is the whole distinction.
 - **Having methods is not enough.** `TreeSnapshot` has seven and is a value. You read it; you do not stand in it. Where the app puts the class is the answer it already gave, and it is not a list anyone maintains.
@@ -139,6 +139,6 @@ Two layers, and the split is the point ([Sprint 100](../projected-identity/72-sp
 
 **Hermetic** — `npm test`. The surface parser, the classification, the room rendering, all against fixtures, in milliseconds, on a machine with no Claude Desktop. This is what makes the tests get run.
 
-**Integration** — `CLAUDE_DESKTOP_LIVE=1 npm run test:integration`. Refuses to run without the flag and says so rather than passing silently, because it takes the screen. It asserts the three things a fixture cannot: the tree is real and populated, the model *agrees* with the screen (if `describe()` claims a composer, the tree must contain an `Edit`), and the precondition refuses a genuinely absent target fast, with the tree attached.
+**Integration** — `CLAUDE_DESKTOP_LIVE=1 npm run test:integration`. Will not run without the flag and says so rather than passing silently, because it takes the screen. It asserts the three things a fixture cannot: the tree is real and populated, the model *agrees* with the screen (if `describe()` claims a composer, the tree must contain an `Edit`), and the precondition rejects a genuinely absent target fast, with the tree attached.
 
 The reason integration tests are not optional here is written across this book: every reality-boundary bug in the project's history **passed a unit test and failed against the app** — the empty composer reporting its placeholder as its value, the Stop button appearing on a mere acknowledgement, the streaming notification frozen with zero output. A hermetic suite confirms we handle the tree we imagined. Only the app says whether that is the tree it produces.

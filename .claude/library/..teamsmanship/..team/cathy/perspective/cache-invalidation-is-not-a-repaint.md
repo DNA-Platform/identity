@@ -5,7 +5,7 @@
 
 ---
 
-A law I keep re-deriving, so I'm writing it down to stop paying for it. In $Chemistry, **render reactivity is write-driven, not read- or cache-driven.** A React component only re-renders when `chemical[$reaction$].react()` runs (→ `$update$()` → `setState`). Reading a reactive prop during render is *not* scope-tracked — there is no `withScope` around `$lift`'s render body — so the screen never changes because of a read, and never changes because you nulled `[$viewCache$]`. The view cache is a *diff store* the post-render effect compares against; clearing it changes nothing until something else triggers a render.
+A specification I keep re-deriving, so I'm writing it down to stop paying for it. In $Chemistry, **render reactivity is write-driven, not read- or cache-driven.** A React component only re-renders when `chemical[$reaction$].react()` runs (→ `$update$()` → `setState`). Reading a reactive prop during render is *not* scope-tracked — there is no `withScope` around `$lift`'s render body — so the screen never changes because of a read, and never changes because you nulled `[$viewCache$]`. The view cache is a *diff store* the post-render effect compares against; clearing it changes nothing until something else triggers a render.
 
 I have now hit this exact wall three times:
 
