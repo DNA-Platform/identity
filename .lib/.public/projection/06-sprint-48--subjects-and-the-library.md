@@ -37,10 +37,7 @@ Verified against the package: **35 classes, exactly one multiword** — `$TableO
 
 ## Actors
 
-- **A1 — The author.** Writes a book: its prose, its cover, and the references its cover declares.
-- **A2 — The librarian.** Organizes the library: what catalogues what, which subject a book belongs to, what a subject specifies.
-- **A3 — The reader.** Reads a book and follows its references outward — to its subject, its author, its library.
-- **A4 — The implementer.** Writes classes against the model, and is judged by validation rather than by convention.
+*Compacted at the close of the sprint — the actors are the classes the units name.*
 
 ## The frame — what closure claims here
 
@@ -236,7 +233,7 @@ Three things follow, and each is load-bearing.
 
 - **There is one library.** *"There will always be one that contains everything that exists on some level."* It is not one of many and it is never nested.
 - **`$Library` validation, stated exactly:** **every book in the card catalogue must arrive at the same library book.** Not merely *a* terminus each — **the same one.** If two books walked to different libraries, the catalogue would be a catalogue of nothing. **That agreement is what makes a card catalogue possible at all.**
-- *"That might earn you the location."* Location is meaningful only inside one universe — which is why [`$Location`](../../package/src/reference/Location.tsx) can mean anything.
+- *"That might earn you the location."* Location is meaningful only inside one universe — which is why [`$Location`](../../package/.archive/reference/Location.tsx) can mean anything.
 - **No library inside a library.** Another library *"might not even be in this framework."* Two libraries are **two different perspectives**, not a containment.
 
 **Consequence for [R58](#r58-librarycard-replaces-book--and-the-notation-becomes-vocabulary-at-book-level) and [R59](#r59-having-a-library-card-is-a-structural-fact-not-a-possession):** the library card's *"author in other libraries"* means **other perspectives — possibly outside this framework entirely** — not a second library modelled here. The card is what survives leaving the universe, which is a stronger claim than portability within it.
@@ -383,22 +380,11 @@ libraryOf(book):
 
 ## Key flows
 
-- **F1 — A book declares itself.** An author writes a cover; the cover carries the book's title, its subject reference, its author reference, and its types as parenthetical writing. The book reads them at its bond and `valid()` judges.
-- **F2 — A type resolves.** A written type name on a cover reaches its type by computing the subjects the book declares, recursively, up to the library. Every type found must hold.
-- **F3 — The loop closes.** The library's subject reference points at its own cover. Following it arrives back where it started; validation confirms the library catalogues itself and its canonical authors itself.
-- **F4 — A validation failure is read.** A book fails a type; the bond reports it invalid; the exception carries which type failed and why; the page renders it.
-- **F5 — A subject specifies.** A subject's reference manual states what books in that subject must be. A book declaring membership is judged by it.
+*Compacted at the close of the sprint — the flows are what the sprint built; the units above name them.*
 
 ## Acceptance examples
 
-- **AE1.** A book with no subject and no author on its cover **does not bind**, and it says which is missing.
-- **AE2.** A book whose cover declares a type it does not satisfy **is invalid**, and names the type that failed and the constraint it broke — not "is not valid."
-- **AE3.** The library's subject reference reads to its own cover, and following it arrives at the library. `valid()` answers true for exactly one such book.
-- **AE4.** Two books in mutual biography — each author reference leading to the other's subject — are **invalid**. The chain has no self and the model says so (R12).
-- **AE5.** A book in the trees subject wearing the dictionary type validates against the trees subject's reference manual, and the same book without that type does not (R18, R20).
-- **AE6.** A subclass whose bond constructor calls its parent's binds correctly; one that does **not** call upward is invalid with a message naming the ancestor never reached (R27–R30).
-- **AE7.** A `$Preface` and a `$Foreword` before the chapters validate; two prefaces, or a preface after chapter one, are invalid (R25, R26).
-- **AE8.** A sentence containing a period yields a word typed *Period*, marked **use**, and the sentence's prose is unchanged by its presence (R23, R24).
+*Compacted at the close of the sprint — the examples were accepted at the review; what they proved is in the record above.*
 
 ## Names — what was ruled, and what stays unnamed
 

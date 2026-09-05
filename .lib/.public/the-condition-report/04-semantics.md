@@ -57,7 +57,7 @@ $Composition<T>  multiplication; flows down
 
 > **TREAT** · *step 5* — ***RULED 2026-08-22: the base is `$Annotation` and each of the three gets its own `valid()`.*** **The design, and the two rules the card cannot answer yet, are [S17](#s17).**
 
-**[`$Author`](../../package/src/book/Author.tsx), [`$Subject`](../../package/src/book/Subject.tsx) and [`$Canonical`](../../package/src/book/Canonical.tsx) produce the same md5 under name substitution.** *Every member — `$for`, `$parenthetical`, `name`, `card`, `read()`, `then()`, `set()`, `named()`, `valid()`. **The only differences are the class name and one word inside an error string.***
+**[`$Author`](../../package/src/book/Author.tsx), [`$Subject`](../../package/src/book/Subject.tsx) and [`$Canonical`](../../package/.archive/book/Canonical.tsx) produce the same md5 under name substitution.** *Every member — `$for`, `$parenthetical`, `name`, `card`, `read()`, `then()`, `set()`, `named()`, `valid()`. **The only differences are the class name and one word inside an error string.***
 
 ***And it is datable to one commit.*** **`b91944e`, 2026-08-10:** `$Subject` was a zero-byte stub from July; that commit fills it with **36 lines** and creates `$Canonical` with **46**, both from `$Author`. **Not three classes designed alike — one class copied twice in a sitting.**
 
@@ -235,7 +235,7 @@ $Author.valid()   the book it names is of type Autobiography
 
 > *"As for an attribute, this is the kind of thing where we might want to **reveal metadata**, and the attributes will do that. So how about that process?"*
 
-***My reading, and it is a reading:*** **an annotation is metadata about a book** — who wrote it, what it is about, which book speaks for its subject — **and it draws nothing today** (`set()` returns `null`). *So the question is how an annotation SURFACES the fact it carries: as an attribute on the element its container draws, the way [`$Link` already puts `data-link` on its anchor](../../package/src/reference/Link.tsx) and [`$Book.place` puts `data-chapter` on a leaf](../../package/src/book/Book.tsx).*
+***My reading, and it is a reading:*** **an annotation is metadata about a book** — who wrote it, what it is about, which book speaks for its subject — **and it draws nothing today** (`set()` returns `null`). *So the question is how an annotation SURFACES the fact it carries: as an attribute on the element its container draws, the way [`$Link` already puts `data-link` on its anchor](../../package/.archive/reference/Link.tsx) and [`$Book.place` puts `data-chapter` on a leaf](../../package/src/book/Book.tsx).*
 
 ***If that is the reading, it is a real and separate mechanism*** — **a writing that is not read but is still declared** — and it is the same family as [S16's mentioned syntax](#s16): *present in the writing, absent from the reading, and still able to reach the page.* ***Flagged as not confirmed.***
 
@@ -250,7 +250,7 @@ const whole = $valid(!/\s/.test(this.copy), 'a word is one unbroken stretch, and
 const said  = $valid(/[\p{L}\p{N}]/u.test(this.copy), 'a word has at least one letter or number, and this one has none');
 ```
 
-**[`$Link extends $Word`](../../package/src/reference/Link.tsx), and its `valid()` never calls `super`:**
+**[`$Link extends $Word`](../../package/.archive/reference/Link.tsx), and its `valid()` never calls `super`:**
 
 ```tsx
 valid(): boolean {
@@ -286,7 +286,7 @@ valid(): boolean {
 >
 > *"Content that is not writing is a **separate idea, and it has its own class**… **The earlier reading of a figure as 'content that is not writing' was wrong**: it swept a picture, a thematic rule and a code listing together, **and a listing is source rather than a picture**."*
 
-***[`$Code extends $Figure`](../../package/src/writing/Code.tsx) is a kind beneath `$Figure`, shipped by the framework, and it is the earlier reading that chapter calls wrong.*** **The correction was written down; the class was not changed.**
+***[`$Code extends $Figure`](../../package/.archive/writing/Code.tsx) is a kind beneath `$Figure`, shipped by the framework, and it is the earlier reading that chapter calls wrong.*** **The correction was written down; the class was not changed.**
 
 **And the same file shows the cost:** `$Code` inherits `$caption` from `$Figure`, so [the parse hands it `caption={asFence[1].trim() || 'code'}`](../../package/src/writing/Section.tsx) — ***a code fence with no language is captioned with the literal word `code`.***
 
@@ -364,11 +364,11 @@ valid(): boolean {
 **[`$Word.valid()`](../../package/src/writing/Word.tsx) — *a word is one unbroken stretch*, and *a word has a letter or number*.**
 
 - [`$Phrase`](../../package/src/writing/Phrase.tsx) overrides `valid()` **to permit spaces**.
-- [`$Punctuation`](../../package/src/writing/Punctuation.tsx) overrides `valid()` **to permit no letters**.
+- [`$Punctuation`](../../package/.archive/writing/Punctuation.tsx) overrides `valid()` **to permit no letters**.
 
 ***So the base specifies two things and each child overrides a different one.*** **The honest reading is that both belong to a subclass — a *plain* word — and the base holds only what all three share.**
 
-*[`$Legend.valid()` is the same act at paragraph grade](../../package/src/document/Legend.tsx): it returns `true`, which is **`$Referent.valid()`'s body — the base of the whole hierarchy — copied onto a leaf.** It is probably right, and it says so by **erasing** a specification rather than stating a different one, which is exactly what [`$valid(condition, reason)`](../../package/src/writing/Writing.tsx) exists to prevent.*
+*[`$Legend.valid()` is the same act at paragraph grade](../../package/.archive/document/Legend.tsx): it returns `true`, which is **`$Referent.valid()`'s body — the base of the whole hierarchy — copied onto a leaf.** It is probably right, and it says so by **erasing** a specification rather than stating a different one, which is exactly what [`$valid(condition, reason)`](../../package/src/writing/Writing.tsx) exists to prevent.*
 
 ## <a id="s9"></a>S9 — Not everything is a referent
 
@@ -380,7 +380,7 @@ valid(): boolean {
 
 | | |
 |---|---|
-| [`$CardCatalogue`](../../package/src/reference/CardCatalogue.tsx) | a **plain class implementing nothing** — ***and [chapter zero specified it otherwise](../projection/00-planning.md):*** *"The cards live in a card catalogue: `$CardCatalogue`, **satisfying `$Catalogue$<$Book>`** — a composition of references to books that is itself a reference to those books. That interface was built in Sprint 47 for the table of contents and it turns out to describe the catalogue at book level **without modification**, which is the strongest evidence we have that the catalogue equation was carved correctly."* **It was designed against an interface it does not implement** — [the same fault as the card](#s20), one level up. |
+| [`$CardCatalogue`](../../package/.archive/reference/CardCatalogue.tsx) | a **plain class implementing nothing** — ***and [chapter zero specified it otherwise](../projection/00-planning.md):*** *"The cards live in a card catalogue: `$CardCatalogue`, **satisfying `$Catalogue$<$Book>`** — a composition of references to books that is itself a reference to those books. That interface was built in Sprint 47 for the table of contents and it turns out to describe the catalogue at book level **without modification**, which is the strongest evidence we have that the catalogue equation was carved correctly."* **It was designed against an interface it does not implement** — [the same fault as the card](#s20), one level up. |
 | [`$Theme`](../../package/src/writing/Theme.tsx) | extends `$Chemical`, not `$Referent`. *Arguably right — a theme is not a thing a book refers to — and **it has a `view()` that returns `null`**, so it is half in.* |
 | `$Composible$` | a bag of statics — [S1](#s1) |
 
@@ -518,9 +518,9 @@ $$Book  ::  $Reference$<$Book>  ,  $Catalogue$<$Book>
 |---|---|---|
 | [`$Paragraph.mark`](../../package/src/writing/Paragraph.tsx) | the notation that built it | ***gone*** — the notation is a mentioned part |
 | [`$Theme.mark`](../../package/src/writing/Theme.tsx) | the accent colour of what can be followed | ***word [owed](06-the-cleaning.md#the-words-owed)*** — my proxy is **`rubric`**, the colour a manuscript uses for what must be noticed |
-| [`$Denote.view`](../../package/src/document/Denote.tsx) | a local style object | a held component, by [I2](05-implementation.md#i2) |
+| [`$Denote.view`](../../package/.archive/document/Denote.tsx) | a local style object | a held component, by [I2](05-implementation.md#i2) |
 | [`$Book.turning`](../../package/src/book/Book.tsx) | a parameter holding *"previous"* / *"next"* | ***gone*** — it is a word, and it should say so |
-| [`$Highlight`](../../package/src/reference/Highlight.tsx) | the HTML `<mark>` element | **stays** — that is the platform's word, not ours |
+| [`$Highlight`](../../package/.archive/reference/Highlight.tsx) | the HTML `<mark>` element | **stays** — that is the platform's word, not ours |
 
 ***This supersedes [N1](03-names.md#n1), which proposed renaming one side of a collision.*** **Both sides move, and one of them dissolves.**
 

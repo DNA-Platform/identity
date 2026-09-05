@@ -50,10 +50,7 @@
 
 ## Actors
 
-- **A1 — The author.** Writes a book: its prose, its cover, and the references its cover declares.
-- **A2 — The librarian.** Organizes the library: which cards are in the catalogue, and what each stands for.
-- **A3 — The reader.** Reads a book and follows its references outward — to its author, and home.
-- **A4 — The implementer.** Writes classes against the model and is judged by validation rather than by convention.
+*Compacted at the close of the sprint — the actors are the classes the units name.*
 
 ## The card family
 
@@ -153,23 +150,11 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 ## Key flows
 
-- **F1 — A book declares its author.** An author writes a cover; the cover carries a name that is a reference. The book reads it through the cover as a property.
-- **F2 — A card is written.** A library card is initialized from the code with the book's static information, and takes its place in the library catalogue.
-- **F3 — The loop closes.** An author link asks the catalogue for its card at runtime and reads through it to a book. *The Team*'s link arrives at *The Team*.
-- **F4 — A card is read as writing.** A card stands inside a chapter of The Shelf and renders as a card.
+*Compacted at the close of the sprint — the flows are what the sprint built; the units above name them.*
 
 ## Acceptance examples
 
-- **AE1.** A library card reads to its book.
-- **AE2.** The library catalogue answers a card for each of the four books and satisfies `$Catalogue$` **without the interface changing**.
-- **AE3.** A book's card carries the **same property names** as the book, with `author` typed as a card rather than as an `$Author`.
-- **AE4.** Following any book's author name arrives at *The Team*.
-- **AE5.** *The Team*'s author link reads to *The Team*.
-- **AE6.** An author link pointing at a book that does **not** author itself is **invalid** (R13).
-- **AE7.** An author with a name and no card renders the name; with neither, it is invalid (R14).
-- **AE8.** The author link resolves **with the direct import of *The Team* removed** (R8) — the negative proof.
-- **AE9.** A card renders **as a card** inside a chapter of The Shelf (R7, R21).
-- **AE10.** The shelf's entries show title and synopsis **read off cards** (R23).
+*Compacted at the close of the sprint — the examples were accepted at the review; what they proved is in the record above.*
 
 ## Out of scope, named
 
@@ -329,14 +314,14 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 ### The scope that must not slip
 
-**`The Team` is the author of the DEMO's library, not of this repository.** *Doug: "the team only applies to the library defined in the demo."* [Chapter zero is explicit](00-planning.md#the-demo-specified-at-last-doug-2026-08-06): *"the demo's library is the demo's own"* — **four books**, being [the algebra book](../../package/app/src/sections/book/library/algebra/book.tsx), [the manifold](../../package/app/src/sections/book/library/the-manifold/book.tsx), [the shelf](../../package/app/src/sections/book/library/the-shelf/book.tsx) and [*The Team*](../../package/app/src/sections/book/library/the-team/book.tsx). It says nothing about the team's own library, and [we do not appear in it](#the-book--the-team) — *"you don't exist in the demo library."*
+**`The Team` is the author of the DEMO's library, not of this repository.** *Doug: "the team only applies to the library defined in the demo."* [Chapter zero is explicit](00-planning.md#the-demo-specified-at-last-doug-2026-08-06): *"the demo's library is the demo's own"* — **four books**, being [the algebra book](../../.archive/app/src/sections/book/library/algebra/book.tsx), [the manifold](../../.archive/app/src/sections/book/library/the-manifold/book.tsx), [the shelf](../../.archive/app/src/sections/book/library/the-shelf/book.tsx) and [*The Team*](../../.archive/app/src/sections/book/library/the-team/book.tsx). It says nothing about the team's own library, and [we do not appear in it](#the-book--the-team) — *"you don't exist in the demo library."*
 
 ### Read these four things, and nothing else
 
 1. **This section**, then the [Requirements](#requirements) and [Plan](#plan) above it — [decisions](#decisions) `D1`–`D9`, [units](#units), [what was collected in review](#r24-every-part-is-authorable--and-it-supersedes-the-parse-only-specification-doug-2026-08-07).
 2. [**Chapter zero, the twenty paragraphs**](00-planning.md#how-this-codebase-will-work-and-what-would-show-it) — the only place the whole design is said at once; then [the demo as Doug specified it](00-planning.md#the-demo-specified-at-last-doug-2026-08-06) and [the five sprints](00-planning.md#the-five-sprints--each-with-three-things-doug-can-check-planned-2026-08-06).
 3. [**Solutions**](../solutions/.cover.md) — six chapters, indexed by symptom. **[Chapter six](../solutions/06-the-class-that-was-not-the-class.md) before touching reflection or anything that renders**; [chapter five](../solutions/05-the-suite-that-passed-against-a-stale-build.md) before trusting a suite number.
-4. **The code this sprint made:** [`IndexCard`](../../package/src/reference/IndexCard.tsx) · [`CardCatalogue`](../../package/src/reference/CardCatalogue.tsx) · `LibraryCard` *(deleted; the demo declares its own card)* (the computed type **and** the class implementing it) · `LibraryCatalogue` *(deleted)* · [`Author`](../../package/src/book/Author.tsx) · [the four hand-built cards](../../package/app/src/sections/book/library/the-team/card.tsx) · the book's reader *(since restructured into `sections/book/library/the-team/`)* · [`figures.tsx`](../../package/app/src/sections/book/library/the-team/figures.tsx) beside [`marks.tsx`](../../package/app/src/sections/book/library/the-manifold/marks.tsx), which is self-rendering writing that works.
+4. **The code this sprint made:** [`IndexCard`](../../package/src/reference/IndexCard.tsx) · [`CardCatalogue`](../../package/.archive/reference/CardCatalogue.tsx) · `LibraryCard` *(deleted; the demo declares its own card)* (the computed type **and** the class implementing it) · `LibraryCatalogue` *(deleted)* · [`Author`](../../package/src/book/Author.tsx) · [the four hand-built cards](../../.archive/app/src/sections/book/library/the-team/card.tsx) · the book's reader *(since restructured into `sections/book/library/the-team/`)* · [`figures.tsx`](../../.archive/app/src/sections/book/library/the-team/figures.tsx) beside [`marks.tsx`](../../.archive/app/src/sections/book/library/the-manifold/marks.tsx), which is self-rendering writing that works.
 
 *Orienting for this sprint cost twenty-four files. If four is not enough, that is a finding about this chapter, not a reason to read twenty more.*
 
@@ -346,7 +331,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 **It works without any book importing another.** [An author holds a card](../../package/src/book/Author.tsx), and a card is not a book, so the link resolves with nothing loaded. That was [the sprint's hard claim](#the-card-family) and it holds by construction rather than by discipline.
 
-**And the fourth book exists and can be read** — [eight chapters](../../package/app/src/sections/book/library/the-team/) on how the other three were made, including [the passage where it decides to write itself](../../package/app/src/sections/book/library/the-team/06-the-decision.tsx), and two appendices carrying the framework's own code as chapters.
+**And the fourth book exists and can be read** — [eight chapters](../../.archive/app/src/sections/book/library/the-team) on how the other three were made, including [the passage where it decides to write itself](../../.archive/app/src/sections/book/library/the-team/06-the-decision.tsx), and two appendices carrying the framework's own code as chapters.
 
 *Written 2026-08-07 at the session's close.*
 
@@ -435,6 +420,6 @@ Library to identity `inexplicable-phenomena` at `cfe7fb0` — **the branch was t
 
 - [Chapter zero](00-planning.md) — **the twenty paragraphs**, the only place the whole design is said at once.
 - [Sprint 48](06-sprint-48--subjects-and-the-library.md) — **R38–R64 with the reasoning behind each**. Closed; do not reopen. Note **R54 is superseded** here: the catalogue is a class, not a variable.
-- [`marks.tsx`](../../package/app/src/sections/book/library/the-manifold/marks.tsx) — the prior art for a reference that renders itself. **Open it before U5.**
+- [`marks.tsx`](../../.archive/app/src/sections/book/library/the-manifold/marks.tsx) — the prior art for a reference that renders itself. **Open it before U5.**
 - [`Bookmark.tsx`](../../package/src/book/Bookmark.tsx) — the reference-kind template `$Author` was built on, and the one `$IndexCard` should follow.
 - [Solutions](../solutions/.cover.md) — five chapters, indexed by symptom.

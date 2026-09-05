@@ -41,13 +41,13 @@
 | **`vitest run` (package)** | ***18 of 50 files failed to LOAD*** · 352 tests ran | ***50 files · 552 tests, all passing*** |
 | **the compiler — `tsc` · `vitest`** | *not measured* | ***0 errors · 4 files · 43 tests passing*** |
 
-***The 552 is two projects and saying so matters:*** **32 archive files / 352 tests, plus 18 src files / 200 tests.** *[The vitest config says why they cannot share one](../../package/vitest.config.js) — two versions, two `@` aliases, and a suite that does not state which source it ran against is a number without its scope.*
+***The 552 is two projects and saying so matters:*** **32 archive files / 352 tests, plus 18 src files / 200 tests.** ***The vitest config says why they cannot share one** — two versions, two `@` aliases, and a suite that does not state which source it ran against is a number without its scope.*
 
 > ***The starting number was worse than `tsc` reported and the lesson generalises.*** **21 errors understated it: eighteen test files did not LOAD at all**, because the missing module broke imports at runtime as well as at typecheck. ***Any future report of that shape should say which files loaded, not only how many errors compiled.***
 
 ## <a id="done"></a>What was done
 
-**Unit 1 — the gate.** *Doug folded `$TypedSpecification` into [`Type.tsx`](../../package/src/writing/Writing.tsx) by hand — [ruling 1](#the-rulings) applied to the word `type`* — **and nine files still imported the deleted module.** *Repointed to `@/notation/Type`: the seven levels, [`tests/specification.test.tsx`](../../package/src/tests/specification.test.tsx), and [`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/src/tests/.spec/writing/Paragraph.tsx).* **Nothing else could be measured until this was closed.**
+**Unit 1 — the gate.** *Doug folded `$TypedSpecification` into [`Type.tsx`](../../package/src/writing/Writing.tsx) by hand — [ruling 1](#the-rulings) applied to the word `type`* — **and nine files still imported the deleted module.** *Repointed to `@/notation/Type`: the seven levels, **`tests/specification.test.tsx`**, and [`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/.archive/writing/Paragraph.tsx).* **Nothing else could be measured until this was closed.**
 
 **Unit 2 — the order**, applied per class across `src`. *The visible moves: `$Writing`'s protected fields joined the field block and its protected getter joined the property block; `$Letter`'s `patterns` moved above its properties; `$Word`'s two fields moved above `canonical`; every `$TypeOfX` gained a blank line between `resolve` and `canonicalForm`, because those are two groups and not one; and [`rules()`](../../package/src/utilities/Specification.ts) moved above `check()` because it is a property by the test.*
 
@@ -71,7 +71,7 @@
 |---|---|
 | ***the 5× unnamed `$elements` filter*** | **Doug ruled its design this morning** — *a public reading on writing, with the constraint as its own labelled specification rule so a user can change it* — **and then said "we'll do that kind of cleanup later."** *It is a MEANING change wearing a layout change's clothes, and it sits where [the reference sprint](30-the-reference.md) works.* |
 | ***215 comment lines in the archive*** | **[O8](../the-condition-report/02-organization.md#o8) says commentary moves to the branch library and the book links back.** *That is a HARVEST, not a strip — and [What Carries Over](../designing-inexplicable-phenomena/09-what-carries-over.md) is explicit that you read before you delete.* ***A ruling, flagged, not taken.*** |
-| ***comments in [`.spec/`](../../package/src/tests/.spec/)*** | *Those 29 files exist TO BE READ, and each opens with one line saying what its example demonstrates.* **Stripping them would move 29 sentences into the library and make the examples harder to read.** ***Also flagged.*** |
+| ***comments in **`.spec/`***** | *Those 29 files exist TO BE READ, and each opens with one line saying what its example demonstrates.* **Stripping them would move 29 sentences into the library and make the examples harder to read.** ***Also flagged.*** |
 | ***the archive's member order*** | **46 classes in code that still ships and is scheduled to stop.** *The mechanical pass is done; the reorder is risk against value and is Doug's call.* |
 | ***the compiler's 402 comments*** | ***O8 never ruled the compiler.*** *Doug named `$Chemistry`, `lib` and "the apps"; [`library.ts`](../../build/library.ts) is the seam and is documented heavily **on purpose**.* |
 
@@ -136,7 +136,7 @@
 | **1** | ***[`Parser.tokens`](../../package/src/utilities/Parser.tsx)*** — the loop became filter · map · filter | ***the failed one, and the clearest case*** |
 | **2** | ***`Parser.parse`*** — `forEach((part, at) => { part.index = at; })` lost its braces | **ARGUABLE and listed because it is** — *the arrow went from a statement body to an expression body, so it now returns the assigned value and `forEach` discards it. No behaviour change, but it is not respacing, and it sits one line from the change that failed* |
 | **3** | ***the nine import repoints*** — `$TypedSpecification` now names a different module, one line deleted from each file | **structural: a symbol names a different module.** *Stated as fact and not as defence — it was required to fix a build [Doug's own in-flight fold had left broken](#done), 21 errors and 18 files not loading, and he had already given the fold as his intent* |
-| **4** | ***[`Document.tsx`](../../package/src/writing/Document.tsx)*** — the dead `createElement` import deleted | **ARGUABLE** — *a line removed rather than moved* |
+| **4** | ***[`Document.tsx`](../../package/.archive/document/Document.tsx)*** — the dead `createElement` import deleted | **ARGUABLE** — *a line removed rather than moved* |
 
 ***And three that are layout by the definition but that nobody asked for***, listed at the same weight rather than tucked away: **two blank lines added inside [`$Specification.rules()`](../../package/src/utilities/Specification.ts)**, applying the paragraphs rule to a method Doug never looked at; **import ORDER rearranged in [`Book.tsx`](../../package/src/book/Book.tsx) and [`Chapter.tsx`](../../package/src/book/Chapter.tsx)**, which is the author's own notion of consistency and no rule of his; and **`$Writing.build()` going from `{ }` to a two-line empty body.**
 
@@ -161,7 +161,7 @@
 | | count | verdict |
 |---|---|---|
 | ***truly dynamic — the ALLOWED exception*** | **~6** | ***keep*** — `{ left: this.x, top: this.y }` from a drag · `{ color: colors[this.$priority] }` · and three in chemistry tests where **the inline style IS the thing under test**, proving reactivity reaches the DOM |
-| ***styling decisions in [`the-manifold.tsx`](../../package/app/src/sections/the-manifold.tsx)*** | **15** | ***fix*** — *and it is one file, already recorded as known-bad by [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md)* |
+| ***styling decisions in [`the-manifold.tsx`](../../.archive/app/src/sections/the-manifold.tsx)*** | **15** | ***fix*** — *and it is one file, already recorded as known-bad by [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md)* |
 | ***styling decisions elsewhere*** | **~10** | ***fix*** — *spread across the two demonstrations, one or two to a file* |
 
 ***Two of the manifold's carry HARD-CODED HEX*** — `#b3a37f` and `#eef3ea` — **which is the precise drift the rule names**: *"theme values inaccessible, drift inevitable."* ***Those two are the worst of the thirty-one and the cheapest to argue about.***

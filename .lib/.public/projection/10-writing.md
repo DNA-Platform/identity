@@ -49,8 +49,8 @@
 - **The parse reads the flattened string instead.** **Read** — [`$Section.parts()`](../../package/src/writing/Section.tsx) splits `this.copy` on `\n{2,}`; [`$Paragraph.parts()`](../../package/src/writing/Paragraph.tsx) runs a regex over `this.copy`; [`$Sentence.parts()`](../../package/src/writing/Sentence.tsx) and [`$Word.parts()`](../../package/src/writing/Word.tsx) do the same. **Nothing consults `elements`.** *That is the whole answer to "why can't we put other types of content in there" — nothing forbids it; the parse does not look.*
 - **Four classes are one class, four times.** **Read** — `$Section`, `$Paragraph`, `$Sentence` and `$Word` each declare `canonical`, `ref`, `at`, `where`, `select`, `single`, `parts`, `valid`, and six of the eight are one-line delegations to `$Composible$`. Each carries a `$$X` shadow repeating nine more. **What actually differs is four things:** the part kind, the split, the numbering base, and validity.
 - **The numbering base is inconsistent.** **Read** — `$Section` numbers its paragraphs from **0**; `$Paragraph`, `$Sentence` and `$Word` number from **1**. The [member audit](04-the-member-audit.md) ruled *counting starts at 1 with a special first at 0*, so this may be correct and deliberate; it is nowhere stated, and a single generic implementation must decide it.
-- **`$Figure` today is a `$Sentence` whose copy is its caption**, drawing a rule ([figures.tsx](../../package/app/src/sections/book/library/the-team/figures.tsx)). The three figures that were **written and never shipped** — the loop, the card, the code listing — are in the record at `0341d6f` and are `$Paragraph` subclasses.
-- **`$Page` is a styled skin over a markdown section** ([page/](../../package/app/src/sections/page/)), and it is the demo's last surface that is not a book viewing itself.
+- **`$Figure` today is a `$Sentence` whose copy is its caption**, drawing a rule ([figures.tsx](../../.archive/app/src/sections/book/library/the-team/figures.tsx)). The three figures that were **written and never shipped** — the loop, the card, the code listing — are in the record at `0341d6f` and are `$Paragraph` subclasses.
+- **`$Page` is a styled skin over a markdown section** ([page/](../../.archive/app/src/sections/page)), and it is the demo's last surface that is not a book viewing itself.
 
 ### The loop — where it comes from, answered
 
@@ -125,19 +125,11 @@
 
 ## Key flows
 
-- **F1 — An author writes a part into prose.** A `<Figure/>` is written mid-section. The block holds it in position; the runs either side parse; the section answers all of them as its parts.
-- **F2 — A reader meets it.** The block renders, so the figure draws itself where it stands, with nothing announcing that it is special.
-- **F3 — The model is asked.** `section.parts()` answers prose paragraphs and the figure together, in order, numbered; `words` does not swallow the figure's content.
+*Compacted at the close of the sprint — the flows are what the sprint built; the units above name them.*
 
 ## Acceptance examples
 
-- **AE1.** A section written *prose · `<Figure/>` · prose* answers three parts, the figure at index 1.
-- **AE2.** An `$Author` written inline in a cover's prose is not a part at any level above the sentence that holds it. *(Regression: the shipped demo depends on this.)*
-- **AE3.** A code figure with no caption binds and is valid; one with neither content nor caption is invalid in its own words.
-- **AE4.** A chapter's tagline derives from its prose and never from a parenthetical caption.
-- **AE5.** The three figures render, driven, with no console error and no re-render warning.
-- **AE6.** `parts()` called twice answers the same content.
-- **AE7.** Both suites green — chemistry from 630, lib from 154 — against a **rebuilt** chemistry `dist`, per [the filed specification](../solutions/05-the-suite-that-passed-against-a-stale-build.md).
+*Compacted at the close of the sprint — the examples were accepted at the review; what they proved is in the record above.*
 
 ## The second sprint — the specialization
 
@@ -348,7 +340,7 @@ sections given as CHILDREN:   0 extra builds
 
 ### Referential sameness — raised, and ruled NOT a debt
 
-*Four shipped sites compare cards with `===` ([`$Canonical.valid()`](../../package/src/book/Canonical.tsx), `$LibraryCard$.library` *(deleted; the demo declares its own card)*, the shelf's self-exclusion, the demo's membership filter). Raised as a possible return of the equality Sprint 47 deleted.*
+*Four shipped sites compare cards with `===` ([`$Canonical.valid()`](../../package/.archive/book/Canonical.tsx), `$LibraryCard$.library` *(deleted; the demo declares its own card)*, the shelf's self-exclusion, the demo's membership filter). Raised as a possible return of the equality Sprint 47 deleted.*
 
 **Doug: *"Those are okay. That is not an equals or same method implementation. It is not that no one can check for equality. It's just not a necessary function."*** So the distinction is recorded rather than the debt: what died was **`equals`/`same()` as members the model required**, not a caller's plain comparison. No unit, no change.
 
@@ -438,7 +430,7 @@ counted: 11 parts · 490 words used · 491 mentioned
 1. **The sequence is normalized into the block, not stored beside it.** The plan's [D2](#decisions) said `parts()` would walk the argument sequence. In code it was better to flatten once at the bond, so there is **one** place the parse reads at every grade. *Signal: the design got simpler under contact — a good sign. It also means D2's "two arrival paths" are a fact about the framework, not about the model.*
 2. **`declaration()` sets `$view` rather than adding a flag.** Nobody ruled it; it uses a seam that already existed for exactly this. *Signal: **the framework had anticipated this and the implementer had not used it.** A shipped seam going unused for the problem it was built for is evidence the original design was right and the code drifted.*
 3. **The self-check was deleted with nothing put in its place**, and nothing broke. *Signal: it was guarding a case that resolves itself — ceremony, not logic.*
-4. **The `.section` wrapper now appears** around the sections of view-writing chapters, where before it did not. **Two stylesheets already carried `.section` rules** — [catalogue.styled.ts](../../package/app/src/sections/book/catalogue.styled.ts) and [the-team.styled.ts](../../package/app/src/sections/the-team.styled.ts). *Signal, and it is the strongest one here: **the styling was written against the intended design, and the implementation had drifted away from it.** Somebody styled a wrapper that never arrived and nobody noticed.* **Driven and seen: The Team opens with `.section` = 2 and reads correctly; zero page errors across the whole click-through.**
+4. **The `.section` wrapper now appears** around the sections of view-writing chapters, where before it did not. **Two stylesheets already carried `.section` rules** — [catalogue.styled.ts](../../.archive/app/src/sections/book/catalogue.styled.ts) and [the-team.styled.ts](../../.archive/app/src/sections/the-team.styled.ts). *Signal, and it is the strongest one here: **the styling was written against the intended design, and the implementation had drifted away from it.** Somebody styled a wrapper that never arrived and nobody noticed.* **Driven and seen: The Team opens with `.section` = 2 and reads correctly; zero page errors across the whole click-through.**
 5. **`$Writing` was made GENERIC over what it composes** rather than typed loosely. The interfaces forced it — `$Composition$<$Section>` will not accept a surface typed to bare writing. *Signal: the interface layer was already carrying the constraint the class layer lacked, which is why the duplication was survivable for so long. The types knew; the classes did not.*
 6. **The two defects the collapse surfaced were both about `$Document` not being writing** — an unreached bond constructor and an inherited `inline`. Neither is about the parse. *Signal: **the cost of a level living outside its own base is paid in ways nobody connects back to the cause.** Seventy failures from one missing `super` call and one boolean.*
 7. **`divide()` and `compose()` are PROXIES** — the two halves of a parse, named by the implementer. Doug's `level` and `role` are his. *Signal: the fact that exactly two hooks were needed, and no more, is evidence the four-differences reading was right.*

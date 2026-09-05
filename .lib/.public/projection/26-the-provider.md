@@ -8,7 +8,7 @@
 
 *Opened and closed 2026-08-26, Doug at the keyboard the whole way. **Status: `closed`.** It is a **prototype sprint** — it ran no brainstorm and wrote no requirements, because the thing being designed was the design. The title is the implementer's and stands for correction; **"provider" is Doug's own word** for what a bound type reads from.*
 
-**Where the code lands.** [`library/.public/package/src2`](../../package/src2/) — *the next version of the framework, opened by Doug at the close of [The Specification](25-the-specification.md)* — and, at the end, **two defects fixed in [`$Chemistry`](../../../chemistry/package/src/)** with the rebuild chain run first.
+**Where the code lands.** **`library/.public/package/src2`** — *the next version of the framework, opened by Doug at the close of [The Specification](25-the-specification.md)* — and, at the end, **two defects fixed in [`$Chemistry`](../../../chemistry/package/src/)** with the rebuild chain run first.
 
 ## What this sprint is
 
@@ -201,4 +201,4 @@ override view(): ReactNode {
 
 ## Where to start reading
 
-***This chapter last.*** **Start at [Solutions 29](../solutions/29-the-bond-that-woke-the-tree-it-was-building.md)** — it is the only thing here that changed the framework everything else stands on. **Then [Reactive Properties](../../../chemistry/.lib/reactivity/01-reactive-properties.md)**, which now states both fixes and corrects what it used to claim. *Then the working copy of [`src2`](../../package/src2/), which is 13 small files and reads in ten minutes.*
+***This chapter last.*** **Start at [Solutions 29](../solutions/29-the-bond-that-woke-the-tree-it-was-building.md)** — it is the only thing here that changed the framework everything else stands on. **Then [Reactive Properties](../../../chemistry/.lib/reactivity/01-reactive-properties.md)**, which now states both fixes and corrects what it used to claim. *Then the working copy of **`src2`**, which is 13 small files and reads in ten minutes.*

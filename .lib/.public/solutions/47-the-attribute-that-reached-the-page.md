@@ -1,7 +1,7 @@
 # The attribute that reached the page
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **coauthor:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visible-idea/.cover.md)
+- **coauthor:** **Gabby**
 
 ---
 

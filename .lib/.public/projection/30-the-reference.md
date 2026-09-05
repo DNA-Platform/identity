@@ -25,7 +25,7 @@
 
 ***The same edit had the suite red, and it is green again.*** *The cleanup session found it ([15 `tsc` errors, 547 pass / 5 fail](00-planning.md#canonical-collision)); the cause was one collapsed getter, and Doug's instruction was **"fix the red, don't revert my index = 0, put it where I put it."*** **Done in two lines — the sigil dropped so the one-line property satisfies `$Composition$`, and the parse's one write matched to it.** ***Measured after: `tsc` 0 errors · 50 files · 552/552 passing.***
 
-***What this sprint does NOT need, contrary to the first reading:*** **markdown.** *An authored chapter proves the round trip and [`.spec/` already holds 29 of them](../../package/src/tests/.spec/); markdown is what makes the corpus the test set, and it belongs with sprint three or later.*
+***What this sprint does NOT need, contrary to the first reading:*** **markdown.** *An authored chapter proves the round trip and **`.spec/` already holds 29 of them**; markdown is what makes the corpus the test set, and it belongs with sprint three or later.*
 
 ---
 
@@ -109,7 +109,7 @@ filed(): [string, string][] {          // PLURAL by type
 
 ***Doug asked whether the parser was the problem:*** *"If you have the parser only parse one level, why would it be hard to validate the composition… Maybe the problem is the parser and we don't need semantics… Parts doesn't have to trigger parts all the way down."*
 
-**[`scaling.test.tsx`](../../package/src/tests/scaling.test.tsx) was written to ask exactly that, and it is [a performance test kept apart from the ones that say what writing IS](00-planning.md#test-sprint) — his own instruction.** *Four checks, all passing in 65 ms of test time:* **a section of forty-one parts answers without descending; asking twice costs nothing because the parse is kept; a document of sixteen sections is not more than linear in its sections; and descending one level at a time stays cheap at each step.**
+****`scaling.test.tsx`** was written to ask exactly that, and it is [a performance test kept apart from the ones that say what writing IS](00-planning.md#test-sprint) — his own instruction.** *Four checks, all passing in 65 ms of test time:* **a section of forty-one parts answers without descending; asking twice costs nothing because the parse is kept; a document of sixteen sections is not more than linear in its sections; and descending one level at a time stays cheap at each step.**
 
 ***So the parse was ALREADY one level and `parts()` never cascaded.*** **The parser was not the problem** — *the throw was* — **and the memo makes the repeat free.** ***Which settles his own follow-on: Semantics is not needed for performance.*** *It is still wanted, for the specification flow, and that is what remains.*
 
@@ -218,7 +218,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 ## <a id="q-rules"></a>6 · Are the three new rules meant to be there?
 
-**Seven of the thirteen remaining failures are in [`specification.test.tsx`](../../package/src/tests/specification.test.tsx), and they are all the same shape:** *the test expects four rules and finds seven.*
+**Seven of the thirteen remaining failures are in **`specification.test.tsx`**, and they are all the same shape:** *the test expects four rules and finds seven.*
 
 **The three added today are `$characters` ("a piece of writing has characters"), `$written` ("has something written in it") and `$once` ("is typed once"), all in [`Type.tsx`](../../package/src/writing/Writing.tsx).**
 
@@ -226,7 +226,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 ## <a id="q-fixture"></a>7 · Should the test fixture's sections have titles?
 
-**A new rule says *"a section opens with its title."*** *But `chain.Section` in [`written.tsx`](../../package/src/tests/written.tsx) — the shared helper almost every test builds from — makes a section with **no title**, so the fixture is invalid under the new rule.*
+**A new rule says *"a section opens with its title."*** *But `chain.Section` in **`written.tsx`** — the shared helper almost every test builds from — makes a section with **no title**, so the fixture is invalid under the new rule.*
 
 ***Found by the top-level check you asked for, on its first run.***
 
@@ -300,7 +300,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 **Measured before it is called small:** *`notation/TypedSpecification.ts` was **23 lines**, [`notation/Type.tsx`](../../package/src/writing/Writing.tsx) was **26**, and **nine files imported the first*** — *seven levels plus the tests plus `Type.tsx` itself, which imports it only to hand one back.* ***One file of about fifty lines replaces two, and one import target moves.***
 
-***IN FLIGHT AS OF 2026-08-30: Doug has done the file half by hand and the imports are outstanding.*** **`TypedSpecification.ts` is gone and `tsc` stands at 21 errors** — *nine files still reaching for it: the seven levels, [`tests/specification.test.tsx`](../../package/src/tests/specification.test.tsx), and [one `.spec` example](../../package/src/tests/.spec/).* **Not a regression and not ours to chase**; *recorded here with the count so whoever finishes it knows the `.spec` example is in scope.*
+***IN FLIGHT AS OF 2026-08-30: Doug has done the file half by hand and the imports are outstanding.*** **`TypedSpecification.ts` is gone and `tsc` stands at 21 errors** — *nine files still reaching for it: the seven levels, **`tests/specification.test.tsx`**, and **one `.spec` example**.* **Not a regression and not ours to chase**; *recorded here with the count so whoever finishes it knows the `.spec` example is in scope.*
 
 ## <a id="units"></a>The units
 
@@ -349,7 +349,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 <a id="u6"></a>### U6 — `$Reference`, stubbed
 
 **Mechanism:** *a kind of [`$Annotation`](../../package/src/writing/Writing.tsx) carrying a path, with its own type whose specification requires one* — **[R2](#r2), and the same shape as [the annotation check that already runs](29-the-bind.md).**
-**Files:** ***one file for the WORD `reference`***, holding its three faces — *the data, the law, and the meaning* — **which is [the unit rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md#a-word-is-not-a-class) and not three files.** *Plus [`reference/Referent.tsx`](../../package/src/reference/Referent.tsx), the empty interface [listed for deletion](29-the-bind.md#r340): this sprint is when that lands or it is kept deliberately.*
+**Files:** ***one file for the WORD `reference`***, holding its three faces — *the data, the law, and the meaning* — **which is [the unit rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md#a-word-is-not-a-class) and not three files.** *Plus [`reference/Referent.tsx`](../../package/.archive/reference/Referent.tsx), the empty interface [listed for deletion](29-the-bind.md#r340): this sprint is when that lands or it is kept deliberately.*
 **And it must pass the vocabulary test:** *"if a file cannot be named with a word from the vocabulary, it does not belong in `lib`"* — **`reference` passes; `path` needs Doug's word**, *since it is his (["a `$Path` path"](#the-brief)) but is not yet a word of the book domain the way title and chapter are.*
 **Depends on:** [U3](#u3).
 **Realizes:** [R1](#r1), [R2](#r2).
@@ -379,7 +379,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 | **U1** | *ask each of the nine kinds for its code* | ***nine codes, no two colliding*** |
 | **U1** | *ask a derived kind — a title, which is a paragraph* | ***the paragraph's code***, by inheritance and not a new one |
 | **U2** | *a paragraph parsed at position 3* | *a segment naming paragraph and 3* |
-| **U2** | *a composition that was never composed* | ***index 0***, matching [the promise already green](../../package/src/tests/index.test.tsx) |
+| **U2** | *a composition that was never composed* | ***index 0***, matching **the promise already green** |
 | **U3** | *a deep paragraph inside a chapter* | *one address, joined, reading root to leaf* |
 | **U3** | *the path renders* | ***bare text, no anchor*** — [R3](#r3) |
 | **U4** | ***the round trip*** | *following a writing's own address returns that same object* |
@@ -425,7 +425,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 | [`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx) | ***line 45 assigns the index***, and [U2](#u2)/[U4](#u4) build on it | **it is [the cleanup's own worked example](../designing-inexplicable-phenomena/12-the-closeness-rule.md#brevity) for rewriting a housekeeping loop** — *and that is the one layout rule that can change behaviour, since a loop with two early exits is not always a filter* |
 | [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx) | *[U2](#u2) and [U5](#u5) add members here* | ***already reordered once today***, and the member order it is being reordered under [changed the same day](../designing-inexplicable-phenomena/08-the-order-of-a-class.md#what-moved) |
 | [`writing/Composition.tsx`](../../package/src/writing/Composition.tsx) | *[U1](#u1) must keep this interface satisfied* | *[the last member added to it put the suite at 15 errors](00-planning.md#canonical-collision)* |
-| [`reference/Referent.tsx`](../../package/src/reference/Referent.tsx) | *[U6](#u6) decides its fate* | *it is [listed for deletion](29-the-bind.md#r340) and nothing depends on it* |
+| [`reference/Referent.tsx`](../../package/.archive/reference/Referent.tsx) | *[U6](#u6) decides its fate* | *it is [listed for deletion](29-the-bind.md#r340) and nothing depends on it* |
 | [`notation/Type.tsx`](../../package/src/writing/Writing.tsx) | *[U6](#u6) puts a type beside its word* | ***already changed*** — [D6](#d6)'s fold has landed, and nine files repointed with it |
 
 ***One thing that is NOT a re-verification but a gate:*** **this chapter is [UNRATIFIED](#unratified) and [sprint one has never been brainstormed](00-planning.md#v1).** *Resuming means running that brainstorm with Doug — **not** picking [the units](#units) up where they stop.*
@@ -480,7 +480,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 | [`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx) | ***`tokens()` rewritten*** from a fourteen-line loop to filter · map · filter. **The index assignment survives verbatim and only lost its braces** — *`parsed.forEach((part, at) => part.index = at)`, now line 35.* | ***[U2](#u2) and [U4](#u4) stand.*** *The line number in this chapter moved; the statement did not.* |
 | [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx) | *layout only — fields joined the field block, the protected getter joined the property block.* ***No member added, removed or renamed.*** | ***[U2](#u2) and [U5](#u5) stand***, *and the two members they add now have a group to go in.* |
 | [`writing/Composition.tsx`](../../package/src/writing/Composition.tsx) | ***byte-intact*** but for end-of-file. *Verified: `get index(): number` is still the first member.* | ***[U1](#u1)'s contract is unchanged.*** |
-| [`reference/Referent.tsx`](../../package/src/reference/Referent.tsx) | ***unchanged.*** *Still `export interface $Referent$ extends $Chemical { }` — empty.* | ***[U6](#u6) finds the seat exactly as it was.*** |
+| [`reference/Referent.tsx`](../../package/.archive/reference/Referent.tsx) | ***unchanged.*** *Still `export interface $Referent$ extends $Chemical { }` — empty.* | ***[U6](#u6) finds the seat exactly as it was.*** |
 | [`notation/Type.tsx`](../../package/src/writing/Writing.tsx) | *one blank line between the field and the property group, and **[D6](#d6)'s fold completed*** — nine importers repointed. | ***[U8](#u8) is DONE.*** |
 
 ***And the one hazard this chapter raised was answered rather than waved off.*** **The loop rewrite is the only layout rule that can change behaviour, and green cannot prove it did not.** *The cleanup session stated the three properties that make a loop a filter — **no state carried across iterations but the accumulator, nothing mutated that it reads, no `break` and no early `return`** — verified them against the old loop, and wrote them into [Organization](31-organization.md) as the test to apply BEFORE reaching for the rule.* ***A loop failing any of the three is not a candidate whatever its shape.***
@@ -577,7 +577,7 @@ export type Reference = {
 
 ### 3. The app already routes, and already draws a link
 
-**[`app/src/main.tsx`](../../package/app/src/main.tsx) runs `createBrowserRouter`. [`markdown/reading.tsx:129`](../../package/app/src/markdown/reading.tsx) already draws a `$Link` as an anchor and detects external targets by protocol.** *And [`the-books.tsx`](../../package/app/src/sections/the-books.tsx) states the division Doug is asking for, in a comment, working:*
+**[`app/src/main.tsx`](../../.archive/app/src/main.tsx) runs `createBrowserRouter`. [`markdown/reading.tsx:129`](../../.archive/app/src/markdown/reading.tsx) already draws a `$Link` as an anchor and detects external targets by protocol.** *And [`the-books.tsx`](../../.archive/app/src/sections/the-books.tsx) states the division Doug is asking for, in a comment, working:*
 
 > *"travelling between them is following a card — **the router does the travelling, the model does the pointing**."*
 
@@ -632,7 +632,7 @@ export type Reference = {
 
 ***Doug's own standing rule fails that shape:*** **[N2](../the-condition-report/03-names.md#n2), recorded at [R119](21-semantics-then-drawing.md#r119) and open as [P15](../the-condition-report/06-the-cleaning.md#actionable):** *"Don't make anything a prop unless it needs to be."* ***So the register question ([R9](#r9)) sits on top of an unasked one: the locator is currently typed as authored-from-outside, while everything about how it is filled says found-from-within.***
 
-<a id="r12"></a>**R12 · derived, and it is a warning.** ***A numeric path is a snapshot of one parse and rots silently.*** **[`index.test.tsx`](../../package/src/tests/index.test.tsx) promises *"the numbering is FRESH each parse, never stale"*** — *so insert a paragraph and every numeric reference below it points somewhere else, with nothing raised.* ***This library already learned this lesson in prose and wrote it down:*** [the derivation book's cover](../the-semantics-of-books/.cover.md) records that citations *"cannot be a line number… the durable anchor is the verbatim quote."* **So the string register is the durable one and the numeric register is the fallback**, *not two equal options.*
+<a id="r12"></a>**R12 · derived, and it is a warning.** ***A numeric path is a snapshot of one parse and rots silently.*** ****`index.test.tsx`** promises *"the numbering is FRESH each parse, never stale"*** — *so insert a paragraph and every numeric reference below it points somewhere else, with nothing raised.* ***This library already learned this lesson in prose and wrote it down:*** [the derivation book's cover](../the-semantics-of-books/.cover.md) records that citations *"cannot be a line number… the durable anchor is the verbatim quote."* **So the string register is the durable one and the numeric register is the fallback**, *not two equal options.*
 
 ## <a id="s4"></a>Section 4 — Active references  <sup>***→ sprint four***</sup>
 

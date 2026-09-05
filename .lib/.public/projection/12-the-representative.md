@@ -64,9 +64,7 @@ Each claim was checked against the source or run, and the numbers are what make 
 
 ## Actors
 
-- **A1 — The framework author.** Writes a chemical whose view consumes another component, and wants it substitutable without adding a prop.
-- **A2 — The consumer.** Uses `lib` without owning it, and wants framework internals to render their part instead — without threading anything through the call chain.
-- **A3 — The reader of the demo.** Sees two books built from one class rendering differently, and the single line of source that produced both.
+*Compacted at the close of the sprint — the actors are the classes the units name.*
 
 ## The algebra
 
@@ -224,35 +222,11 @@ Each claim was checked against the source or run, and the numbers are what make 
 
 ## Key flows
 
-- **F1 — A framework author writes a consumer.** Names the component they need, asks `$` for it, renders the answer. Nothing about scope appears in their code.
-- **F2 — A consumer overrides.** Derives their own component from the framework's, registers what should stand in, renders through theirs. Nothing is passed down.
-- **F3 — Two consumers coexist.** Each derives privately; neither sees the other's registrations; the framework is unaware of both.
+*Compacted at the close of the sprint — the flows are what the sprint built; the units above name them.*
 
 ## Acceptance examples
 
-- **AE1.** With an empty registry, `$(X)` returns the identical object — `$(X) === X`.
-- **AE2.** `$($,X)` returns a component that is not `X`, and resolves what `X`'s scope holds.
-- **AE3.** A registration on a derived scope is invisible from the scope it derived from.
-- **AE4.** `$($X)` returns a root: a registration on the class-created component is not answered by anything above it, because there is nothing above it.
-- **AE5.** `$(A,B)(C)` then resolving `B` inside `A` gives `C`; resolving `B` outside `A` gives `B`.
-- **AE6.** A registration on a book is answered from a grandchild of that book.
-- **AE7.** Two private components of the same class hold different registrations, and neither leaks.
-- **AE8.** Registration during a render throws, naming where configuration belongs.
-- **AE9.** `$($X)` or `$($,X)` during a render throws.
-- **AE10.** `$(X,$)` returns the same object as `X.$chemical`, and the six moved promises pass.
-- **AE11.** `$('div',CoolDiv)` still overrides the tag globally; the html-catalogue tests are untouched.
-- **AE12.** `$(X)` resolves correctly in a view, in a bond constructor, and in an event handler.
-- **AE13.** A `Component<Sub>` is accepted where `Component<Base>` is wanted and a `Component<Unrelated>` is a **compile error** — proved by a type test, red first.
-- **AE14.** The three dresses render as they do today with **no `spec` parameter in any signature**, checked by grep shown in the report.
-- **AE15.** Two books of one class, side by side, drawing different contents, with no props and no `$Book` subclass.
-- **AE16.** `app/verify-demo.mjs` completes, with checkpoint accounting.
-- **AE17.** Every existing suite green against a rebuilt chemistry `dist` — chemistry from **635**, lib from **203** — with the app typecheck's baseline unchanged by identity.
-
----
-
-# Plan
-
-*Set 2026-08-11. **WHAT, not HOW.** Unit identifiers are never renumbered.*
+*Compacted at the close of the sprint — the examples were accepted at the review; what they proved is in the record above.*
 
 ## Decisions
 

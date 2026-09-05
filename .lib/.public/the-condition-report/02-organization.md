@@ -15,9 +15,9 @@
 
 | file | lines | born | last touched |
 |---|---|---|---|
-| [`package/src/library/Literature.tsx`](../../package/src/library/Literature.tsx) | **0** | 2026-07-27 | 2026-07-27 |
-| [`app/src/teaser.tsx`](../../app/src/teaser.tsx) | **198** | 2026-08-15 | 2026-08-15 |
-| [`package/app/src/apparatus/case-shell.tsx`](../../package/app/src/apparatus/case-shell.tsx) | **152** | 2026-07-30 | 2026-07-30 |
+| **`package/src/library/Literature.tsx`** | **0** | 2026-07-27 | 2026-07-27 |
+| **`app/src/teaser.tsx`** | **198** | 2026-08-15 | 2026-08-15 |
+| [`package/app/src/apparatus/case-shell.tsx`](../../../chemistry/package/app/src/apparatus/case-shell.tsx) | **152** | 2026-07-30 | 2026-07-30 |
 
 **`Literature.tsx` is a zero-byte marker** — [the member audit called it a stub in July](../projection/04-the-member-audit.md) and it has been one since. ***`$Literature` is a name the derivation uses*** — [the symbolizing dyad names `$Subject : $Literature` as one of the three scales](../the-semantics-of-books/08-the-symbolizing-dyad-and-the-register.md) — **so the file is a promise the package has not kept, and an empty file keeps no promise.**
 

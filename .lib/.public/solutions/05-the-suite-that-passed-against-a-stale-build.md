@@ -119,7 +119,7 @@ A book imported from the emitted tree carries the `dist` classes; a test importi
 
 | | resolves `lib` through | so a source edit is |
 |---|---|---|
-| the **demonstration** — [`package/app`](../../package/app/vite.config.ts) | `resolve.alias` → `../src` | **visible immediately** |
+| the **demonstration** — [`package/app`](../../../chemistry/package/app/vite.config.ts) | `resolve.alias` → `../src` | **visible immediately** |
 | the **public library** — [`app`](../../app/vite.config.ts) | no alias; `node_modules` → `dist` | **invisible until rebuilt** |
 
 *So the same edit, in the same session, appeared to work in one application and to do nothing in the other* — **and the one where it did nothing was the one being debugged.**

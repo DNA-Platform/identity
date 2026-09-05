@@ -42,7 +42,7 @@
 ```tsx
 background: theme.ground === '#ffffff' ? '#f6f7f9' : theme.rule,
 ```
-— [`Code.tsx:25`](../../package/src/writing/Code.tsx).
+— [`Code.tsx:25`](../../package/.archive/writing/Code.tsx).
 
 ***This breaks [D40](../projection/18-the-theme.md#d40) exactly***, which says *a theme's values are OPAQUE to the framework* and exists **so a consumer may answer `var(--ink)` and get the cascade.** *A theme that answers a custom property makes this branch take the wrong side, silently, and there is a second hardcoded hex on the other side of it.*
 
@@ -57,9 +57,9 @@ get opening(): boolean {
     for (let step = 0; at && step < 8; step++) {
         if ((at as { isCover?: boolean }).isCover) return true;
 ```
-— [`Title.tsx:16-27`](../../package/src/writing/Title.tsx).
+— [`Title.tsx:16-27`](../../package/.archive/writing/Title.tsx).
 
-**Two assumed hops, a magic bound of eight, and a duck-typed flag** — *for a question `instanceof $Cover` answers.* ***[F11 records what the unbounded version of this cost](../projection/19-the-binding.md#f11):*** twenty promises reported as *zero run* rather than as failures, `Worker exited unexpectedly`, **and the identical guard already standing two files away in [`$Denote.document`](../../package/src/document/Denote.tsx).**
+**Two assumed hops, a magic bound of eight, and a duck-typed flag** — *for a question `instanceof $Cover` answers.* ***[F11 records what the unbounded version of this cost](../projection/19-the-binding.md#f11):*** twenty promises reported as *zero run* rather than as failures, `Worker exited unexpectedly`, **and the identical guard already standing two files away in [`$Denote.document`](../../package/.archive/document/Denote.tsx).**
 
 ## <a id="i5"></a>I5 — The framework declares a global module augmentation about somebody else's types
 
@@ -70,7 +70,7 @@ declare module 'styled-components' {
     export interface DefaultTheme extends $Theme {}
 }
 ```
-— [`dressing.ts`](../../package/src/writing/dressing.ts), born 2026-08-21.
+— **`dressing.ts`**, born 2026-08-21.
 
 ***Shipped inside the package, so every consumer of `lib` who uses styled-components with their own theme now has a type error.*** **The demonstration is that consumer** — its 30-key design-token object is rejected by its own `ThemeProvider`, which is two of the six errors currently failing its typecheck.
 
@@ -139,7 +139,7 @@ get ref(): $Cover { return this.cover; }
 
 > **LEAVE** · *recorded* — ***both numbering rules are correct — LaTeX does exactly this.*** The missing half was that nothing said so, **and this entry is now where it is said.**
 
-[`$Footnote.number`](../../package/src/document/Footnote.tsx) is **occurrence order**. [`$Citation.number`](../../package/src/document/Citation.tsx) **sorts keys alphabetically**. ***Both correct — LaTeX does exactly this — and neither says so anywhere a reader would find it.*** **It reads as a bug until you know it is a rule.**
+[`$Footnote.number`](../../package/.archive/document/Footnote.tsx) is **occurrence order**. [`$Citation.number`](../../package/.archive/document/Citation.tsx) **sorts keys alphabetically**. ***Both correct — LaTeX does exactly this — and neither says so anywhere a reader would find it.*** **It reads as a bug until you know it is a rule.**
 
 ## <a id="i11"></a>I11 — 230 lines of hand-forwarding, in two spellings
 
@@ -174,14 +174,14 @@ get ref(): $Cover { return this.cover; }
 >
 > ### <a id="i12-zero"></a>The measurement that was wrong, and it is the third of its kind
 >
-> ***This report claimed `lib` "ships no perspectives" — zero occurrences of `perspective`, `reveal`, `look(`.*** **It uses both seams:** [`$Document.$view`](../../package/src/document/Document.tsx) is the vertical axis and [`$Link.frame()`](../../package/src/reference/Link.tsx) is the wrap seam. **The grep could not have matched either.**
+> ***This report claimed `lib` "ships no perspectives" — zero occurrences of `perspective`, `reveal`, `look(`.*** **It uses both seams:** [`$Document.$view`](../../package/.archive/document/Document.tsx) is the vertical axis and [`$Link.frame()`](../../package/.archive/reference/Link.tsx) is the wrap seam. **The grep could not have matched either.**
 >
 > ***Three times now this audit has reported a zero from a pattern that could not find the thing*** — [the orphan](../solutions/24-the-orphan-that-was-not-an-orphan.md), [`$Chemistry`'s exports](07-the-three-codebases.md#c5), and this. **The rule is already filed and was not applied: a negative result is a claim about the instrument until it is a claim about the code.**
 
 ```tsx
 if (sections.length) this.$view = $Document.prototype.view;
 ```
-— [`Document.tsx:89`](../../package/src/document/Document.tsx).
+— [`Document.tsx:89`](../../package/.archive/document/Document.tsx).
 
 **A subclass's `view()` is called at construction to harvest its sections, and then the instance's active view is swapped to the base's.** ***So `view()` means two different things depending on when it is called***, and an author who writes a chapter as JSX has written a method that runs exactly once and is then replaced.
 
@@ -206,7 +206,7 @@ find(query: string): $IndexCard<T> {
     const at = query.indexOf(':');
     const key = at < 0 ? query.trim() : query.slice(0, at).trim();
 ```
-— [`CardCatalogue.tsx`](../../package/src/reference/CardCatalogue.tsx).
+— [`CardCatalogue.tsx`](../../package/.archive/reference/CardCatalogue.tsx).
 
 ***A colon-separated string split at call time, throwing when it misses*** — **while `file(key, keyword, card)` directly above it takes the two halves as parameters.** *The class knows the shape and asks a caller to spell it.*
 
@@ -214,7 +214,7 @@ find(query: string): $IndexCard<T> {
 
 > ***SPLIT*** · *step 7 and MONITOR* — ***the two that make an invariant conditional are TREATED*** — `$Cover` and `$TableOfContents` state their own specification instead of swallowing their parent's. ***The other seven are MONITORED***, and [F6](../projection/19-the-binding.md#f6) is the standing warning.
 
-[`Book.tsx` ×3](../../package/src/book/Book.tsx) · [`Cover.tsx`](../../package/src/book/Cover.tsx) · [`TableOfContents.tsx`](../../package/src/book/TableOfContents.tsx) · [`Denote.tsx` ×2](../../package/src/document/Denote.tsx) · [`Cite.tsx`](../../package/src/document/Cite.tsx) · [`Formula.tsx`](../../package/src/writing/Formula.tsx)
+[`Book.tsx` ×3](../../package/src/book/Book.tsx) · [`Cover.tsx`](../../package/src/book/Cover.tsx) · [`TableOfContents.tsx`](../../package/src/book/TableOfContents.tsx) · [`Denote.tsx` ×2](../../package/.archive/document/Denote.tsx) · [`Cite.tsx`](../../package/.archive/document/Cite.tsx) · [`Formula.tsx`](../../package/.archive/writing/Formula.tsx)
 
 ***`$Cover` and `$TableOfContents` both catch their own parent's constructor and rethrow only sometimes***, to make *"a chapter requires a summary"* apply to them conditionally. **An invariant with a `catch` around it is not an invariant.**
 
@@ -265,11 +265,11 @@ find(query: string): $IndexCard<T> {
 
 ***[Finding 12 of the member audit, held for "the framework sprint" and still open](../projection/04-the-member-audit.md).***
 
-[`$Section.subtitle`](../../package/src/writing/Section.tsx) · `$Section.tagline` · [`$Document.title`](../../package/src/document/Document.tsx) · [`$TableOfContents.title`](../../package/src/book/TableOfContents.tsx) · [`$Figure.caption`](../../package/src/writing/Figure.tsx) · **every `ref` getter** — *all construct chemicals inside a getter, on every read.*
+[`$Section.subtitle`](../../package/src/writing/Section.tsx) · `$Section.tagline` · [`$Document.title`](../../package/.archive/document/Document.tsx) · [`$TableOfContents.title`](../../package/src/book/TableOfContents.tsx) · [`$Figure.caption`](../../package/.archive/writing/Figure.tsx) · **every `ref` getter** — *all construct chemicals inside a getter, on every read.*
 
 **The boundary was never stated:** ***what may a reading evaluate?*** *And the cost is now visible* — [F2's heap exhaustion](../projection/18-the-theme.md#risks), and [a module-level `WeakMap` in `Writing.tsx`](../../package/src/writing/Writing.tsx) **keyed on object identity and invalidated by comparing `of.text`** — ***a hand-rolled memo standing outside the framework's own reactivity, in the framework.***
 
-*[`$Footer.legend`](../../package/src/document/Footer.tsx) is the sharper version: it **lazily writes a `$`-prefixed reactive member from inside a getter**, which is the exact shape of [the parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md).*
+*[`$Footer.legend`](../../package/.archive/document/Footer.tsx) is the sharper version: it **lazily writes a `$`-prefixed reactive member from inside a getter**, which is the exact shape of [the parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md).*
 
 ## <a id="i17"></a>I17 — Dead parameters on three signatures
 

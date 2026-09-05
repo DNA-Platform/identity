@@ -16,7 +16,7 @@ This book extends notes the team already made. They are gathered here so design 
 
 - **[`formatting.md`](../../../../.archive/.documentation/formatting.md)** — the *Academic Markdown to HTML Converter* specification, read end to end 2026-07-29. It defines: KaTeX inline (`$…$`) and display (`$$…$$`) math; LaTeX environments (`theorem`, `proof`, `lemma`, `definition`, `example`, `remark`, `note`, `corollary`); Citation.js footnote citations (plain text or BibTeX) with a generated bibliography; definition lists; highlight.js code blocks; and web-compatible link rewriting — `.md`→`.html`, anchors encoded, everything relative for portability.
 - **The stack**: `marked@^16` + `katex@^0.16` + `highlight.js@^11` (from `.archive/package.json`). This choice is prior art, not a new decision — extending it is the default.
-- **[`code/`](../../../../.archive/code)** — twelve prototypal $Chemistry library classes written once already (`Book`, `Collection`, `Writing`, `Section`, `Reference`, `Article`, `Encyclopedia`, `Figure`, `Interactive`, `Technical`, `Organization`, plus `chemistry.ts`), and a rendered encyclopedia under `code/content/`. Sprint 43's verdict: a predecessor, not a warning — the framework beneath it was rebuilt, and the library came along into the archive.
+- ****`code/`**** — twelve prototypal $Chemistry library classes written once already (`Book`, `Collection`, `Writing`, `Section`, `Reference`, `Article`, `Encyclopedia`, `Figure`, `Interactive`, `Technical`, `Organization`, plus `chemistry.ts`), and a rendered encyclopedia under `code/content/`. Sprint 43's verdict: a predecessor, not a warning — the framework beneath it was rebuilt, and the library came along into the archive.
 
 ## What Sprint 44 added to the shelf
 

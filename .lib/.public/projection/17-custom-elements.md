@@ -87,15 +87,11 @@ compose(prose: string): $Sentence {
 
 ## The actors
 
-- **A16 — An author writing a custom element.** Writes `<SpecialWord>` in a paragraph and expects it to *be* one of the words — not a picture of one, and not a string.
-- **A17 — Someone extending the framework.** Declares a special kind of section, paragraph or word and expects it to stand as one of them, because that is what an OO framework is for.
-- **A18 — Every accessor that digs today.** `$Cover.author`, `$Cover.subject`, `$Footer.footnotes`, and the book's canonical count. Each wants to ask the model instead.
+*Compacted at the close of the sprint — the actors are the classes the units name.*
 
 ## The key flows
 
-- **F12 — Insertion.** A custom element written among prose lands in the model **at its own level**, whatever level it was written into.
-- **F13 — Replacement.** A registered override still replaces a default on the way down. *Unchanged, and it must stay unchanged.*
-- **F14 — Reaching it.** A named accessor finds what it wants without a general-purpose collection.
+*Compacted at the close of the sprint — the flows are what the sprint built; the units above name them.*
 
 ## The requirements
 
@@ -192,14 +188,7 @@ a chemical  →  is it one of MY parts?   ($Section asks: instanceof $Paragraph)
 
 ## Acceptance examples
 
-- **AE28.** A `<Section>`'s runtime contents are **two chemicals and two raw strings**, not four chemicals.
-- **AE29.** Doug's paragraph → **1 paragraph, 1 sentence, and `$SpecialWord` among that sentence's words.**
-- **AE30.** `<Author>` written on a cover appears among the cover's **words**, and `$Cover.author` finds it without digging.
-- **AE31.** `<Title>` and `<Section>` still survive exactly as they do today — **1 of 1, and 1 of 2 paragraphs** — so the fix adds and takes nothing away.
-- **AE32.** A chemical no level accepts is **named at the floor** rather than dissolved on the way down.
-- **AE33.** A registered override still replaces a default: composing goes through `$(…)` and a replaced `Sentence` is what a paragraph composes.
-- **AE34.** `elements` appears **zero** times on the writing surface.
-- **AE35.** chemistry **674+**, lib **257+**, both demo drivers and the app driver green, with the compiler's own suite and gates unmoved.
+*Compacted at the close of the sprint — the examples were accepted at the review; what they proved is in the record above.*
 
 ## What a hand-authored page could fake, and what it could not
 

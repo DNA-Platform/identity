@@ -50,7 +50,7 @@ get borderBottom() { return `1px solid ${this.theme.rule}`; }
 
 ## <a id="frame-and-view"></a>STRUCTURE IN VIEW, DRESS IN FRAME
 
-***The seat was already in chemistry:*** **`frame()`, the render template method — "override frame() to WRAP what is drawn, and wrap `super.frame()` so the content inside the wrapper still evolves with the view."** So a level's `view()` says what the writing IS and its `frame()` says how it is worn: [`$Chapter`](../../package/src/book/Chapter.tsx) frames an `Article` around `super.frame()`, [`$Book`](../../package/src/book/Book.tsx) the reading column, [`$Document`](../../package/src/writing/Document.tsx) the text region, [`$Paragraph`](../../package/src/writing/Paragraph.tsx) the prose block.
+***The seat was already in chemistry:*** **`frame()`, the render template method — "override frame() to WRAP what is drawn, and wrap `super.frame()` so the content inside the wrapper still evolves with the view."** So a level's `view()` says what the writing IS and its `frame()` says how it is worn: [`$Chapter`](../../package/src/book/Chapter.tsx) frames an `Article` around `super.frame()`, [`$Book`](../../package/src/book/Book.tsx) the reading column, [`$Document`](../../package/.archive/document/Document.tsx) the text region, [`$Paragraph`](../../package/src/writing/Paragraph.tsx) the prose block.
 
 ***That is what makes the default worn and never committed to.*** **A subclass inherits the garment through the chain** (a `$Cover` is an article for free), **replaces it by overriding `frame()`, or sheds it by not calling super** — which [`$Heading` and `$List`](../../package/src/writing/Heading.tsx) do to escape the paragraph's prose wrap, because an `h2` inside a `p` is the frame chain telling the truth about a garment clash.
 

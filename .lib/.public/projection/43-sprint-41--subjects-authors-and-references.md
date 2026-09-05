@@ -61,9 +61,9 @@ On the framework change:
 
 A class whose `formula` member is truthy gets a catalogue of its own, built lazily by `catalogueOf` ([chemical.ts:946](../../../chemistry/package/src/abstraction/chemical.ts)). The protected `[cache](key)` member ([chemical.ts:1004](../../../chemistry/package/src/abstraction/chemical.ts)) files an instance under that key in every formula class up its prototype chain, appends the key to a list of known names, and marks the instance as a template. `[$formula$]` ([chemical.ts:1020](../../../chemistry/package/src/abstraction/chemical.ts)) reads the element's text children as the key, looks it up, and returns the found instance's component. `read`
 
-**This is how `<Type>Chapter</Type>` finds `$TypeOfChapter` today, and the pattern is written out in six lines in a test** ([specification.test.tsx:126-140](../../package/src/tests/specification.test.tsx)): a subclass of `$Type` sets `resolve = false`, calls `this[cache]('Counted')` in its constructor, is passed to `$()`, and then `<Type>Counted</Type>` resolves to it. `read`
+**This is how `<Type>Chapter</Type>` finds `$TypeOfChapter` today, and the pattern is written out in six lines in a test** (**specification.test.tsx:126-140**): a subclass of `$Type` sets `resolve = false`, calls `this[cache]('Counted')` in its constructor, is passed to `$()`, and then `<Type>Counted</Type>` resolves to it. `read`
 
-**`resolve` is the switch that decides which end of the pair a class is.** `$Type` inherits `resolve = true` from `$Chemical` and is therefore the class that resolves; every `$TypeOf*` sets `resolve = false` so what comes back does not resolve again. `$Trait` sets `resolve = false` on itself ([Writing.tsx:124](../../package/src/writing/Writing.tsx)), which is why `<Trait>Glowing</Trait>` stays literal and only produces a `pd-glowing` class name — pinned in the DOM at [labels.test.tsx:24-27](../../package/src/tests/labels.test.tsx). `read`
+**`resolve` is the switch that decides which end of the pair a class is.** `$Type` inherits `resolve = true` from `$Chemical` and is therefore the class that resolves; every `$TypeOf*` sets `resolve = false` so what comes back does not resolve again. `$Trait` sets `resolve = false` on itself ([Writing.tsx:124](../../package/src/writing/Writing.tsx)), which is why `<Trait>Glowing</Trait>` stays literal and only produces a `pd-glowing` class name — pinned in the DOM at **labels.test.tsx:24-27**. `read`
 
 ## A formula only resolves inside a view, and that rules out one design
 
@@ -86,9 +86,9 @@ Every book file in the test corpus is `$(<Chapter>…)` at module scope ([02-sym
 
 ## The shared references section already exists
 
-`$References` sets `$pid = '$references$'` and `persist = true` in its bond constructor ([References.tsx:22-23](../../package/src/reference/References.tsx)). Hydration is keyed by pid, and `propagate` pushes every committed write to every other chemical enrolled under the same pid ([hydration.ts:27-37](../../../chemistry/package/src/implementation/hydration.ts)). **So every book's references section is already one shared object with many instances.** `read`
+`$References` sets `$pid = '$references$'` and `persist = true` in its bond constructor (**References.tsx:22-23**). Hydration is keyed by pid, and `propagate` pushes every committed write to every other chemical enrolled under the same pid ([hydration.ts:27-37](../../../chemistry/package/src/implementation/hydration.ts)). **So every book's references section is already one shared object with many instances.** `read`
 
-`reassemble()` ([References.tsx:41-62](../../package/src/reference/References.tsx)) turns each stored path string back into a reference object by reading its two-letter code and looking the class up in `prints` — so `Bk:algebra` already becomes a `$$Book` with no new machinery. `read`
+`reassemble()` (**References.tsx:41-62**) turns each stored path string back into a reference object by reading its two-letter code and looking the class up in `prints` — so `Bk:algebra` already becomes a `$$Book` with no new machinery. `read`
 
 `$TypeOfBook.specifically` already appends a parenthetical `$Index` holding a `$References` to every book ([Book.tsx:52-59](../../package/src/book/Book.tsx)), and `$TypeOfChapter.specifically` does the same with a `$References` at chapter grade ([Chapter.tsx:51-57](../../package/src/book/Chapter.tsx)). `read`
 
@@ -198,7 +198,7 @@ Two silent consequences. A subject named `Cover` would never register at all, be
 > **Observed:** after bind, the generated references module lists every book in the corpus with its route. Rename a book's folder and rebind: the route changes there and `git diff` touches no hand-written file.
 
 **R13 — the references section stays one object across books.** Two books open in one process share it, because they share the `'$references$'` pid.
-> **Observed:** with two books mounted, appending a reference through one book's references section makes it appear in the other's — which is [today's behaviour](../../package/src/reference/References.tsx), asserted rather than built.
+> **Observed:** with two books mounted, appending a reference through one book's references section makes it appear in the other's — which is **today's behaviour**, asserted rather than built.
 
 **R14 — the references section gives a book itself and everything below it.** Doug's rule, verbatim: *"The book sees its spine up and itself and everything below it"* — then refined: *"We can probably just provide access down in the references and there will be a different way to access the spine."* So **the references section is the downward reach**, and the spine upward is reached some other way.
 > **Observed:** a book at `/math/abstract-algebra` sees itself and any books beneath it and does not see Consciousness. A book at `/math` sees itself and everything under it. Both read the same shared section, and `grep` finds no second copy of the data.
@@ -213,7 +213,7 @@ The compiler builds the card, because it is the only thing that has the whole tr
 **R14c — the spine terminates, and a cycle stops the build.** The root book declares no subject, which is what ends the chain. Two books each naming the other as their subject would not terminate.
 > **Observed:** binding a corpus where Math's cover declares Abstract Algebra and Abstract Algebra's declares Math fails with a message naming both routes. **CORRESPONDS TO R-A29's reciprocity failure**, delivered here rather than deferred.
 
-**R14a — a parenthetical index is made out of what a book sees, and an author can print it.** *Doug: "we will create a parenthetical index out of it and give the author a way to print it if needed."* Parenthetical is the default, so it is absent from the reading until asked for. `$print` already flips it ([Writing.tsx:21-22](../../package/src/writing/Writing.tsx)) and `$References.view()` already draws nothing while parenthetical ([References.tsx:66](../../package/src/reference/References.tsx)) — the same mechanism, one grade up.
+**R14a — a parenthetical index is made out of what a book sees, and an author can print it.** *Doug: "we will create a parenthetical index out of it and give the author a way to print it if needed."* Parenthetical is the default, so it is absent from the reading until asked for. `$print` already flips it ([Writing.tsx:21-22](../../package/src/writing/Writing.tsx)) and `$References.view()` already draws nothing while parenthetical (**References.tsx:66**) — the same mechanism, one grade up.
 > **Observed:** the index draws nothing by default and the book's `copy` does not contain it. An author asks for it and it draws, listing exactly what R14 says that book sees.
 
 **R15 — resolving a mention opens no other book.** The list is data; the book it points at is fetched only when the reader clicks.
@@ -365,7 +365,7 @@ function branch(cls: any): any[] {
 
 # <a id="ruled"></a>Ruled during the brainstorm
 
-**`$Trait` stays as it is — RULED, no.** *Doug: "Trait as type is fine. They are types of types and you can do `<Type>Whatever</Type>` `<Type>Glowing</Type>`."* Trait names sharing `$Type`'s catalogue is correct, because a trait **is** a type of type. Only `$Subject` and `$Author` declare `'new'`. *His condition checked: `Glowing` appears in exactly two files, [labels.test.tsx:24](../../package/src/tests/labels.test.tsx) and `tests/.spec/writing/Trait.tsx` — both tests, nothing in the framework.*
+**`$Trait` stays as it is — RULED, no.** *Doug: "Trait as type is fine. They are types of types and you can do `<Type>Whatever</Type>` `<Type>Glowing</Type>`."* Trait names sharing `$Type`'s catalogue is correct, because a trait **is** a type of type. Only `$Subject` and `$Author` declare `'new'`. *His condition checked: `Glowing` appears in exactly two files, **labels.test.tsx:24** and `tests/.spec/writing/Trait.tsx` — both tests, nothing in the framework.*
 
 **Where this is seen — RULED, imagine it.** *Doug: "We have to just imagine for now. To do Wikipedia, we need to work on the compiler, and we don't even have folder conventions. After this and after chapter types we will definitely start on it. The binder will help."* So the demonstration runs against the books that already bind, and **Wikipedia comes after this sprint and after chapter types.** The folder conventions it needs do not exist yet, and inventing them here would be inventing them twice.
 

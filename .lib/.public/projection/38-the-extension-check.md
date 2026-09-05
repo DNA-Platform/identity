@@ -26,7 +26,7 @@ Four readers swept every `extends` edge and every `instanceof` in `src` — writ
 
 ## The one mechanism
 
-[`$Lib.$$`'s `stands()`](../../package/src/utilities/Lib.tsx) judges kinship by **canonicalForm CLASS parentage** — `canonicalForm.prototype instanceof asked`. Flatten the kinds and every subsumption ask goes false: *a section rejects its own title, a document rejects its tables, a book rejects its cover.*
+**`$Lib.$$`'s `stands()`** judges kinship by **canonicalForm CLASS parentage** — `canonicalForm.prototype instanceof asked`. Flatten the kinds and every subsumption ask goes false: *a section rejects its own title, a document rejects its tables, a book rejects its cover.*
 
 The fix, measured as one mechanism and not eleven:
 

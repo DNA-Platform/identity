@@ -27,7 +27,7 @@
 
 ### One · `networkidle` is not reachable on a cold dev server
 
-[`verify-demo.mjs`](../../package/app/verify-demo.mjs) and [`verify-book.mjs`](../../package/app/verify-book.mjs) navigated with `waitUntil: 'networkidle0'` and `'networkidle2'`. **A cold vite compiles 170 modules on the first hit** — measured, not assumed — *and network idle is not reached inside a twenty-second timeout.*
+[`verify-demo.mjs`](../../.archive/app/verify-demo.mjs) and [`verify-book.mjs`](../../.archive/app/verify-book.mjs) navigated with `waitUntil: 'networkidle0'` and `'networkidle2'`. **A cold vite compiles 170 modules on the first hit** — measured, not assumed — *and network idle is not reached inside a twenty-second timeout.*
 
 ***So the FIRST checkpoint of a driver fails against a working app***, and the failure is a navigation timeout, which reads like the app hanging.
 
@@ -37,8 +37,8 @@
 
 | the step | what makes it a full load |
 |---|---|
-| **opening the algebra book** | [`the-books.tsx`](../../package/app/src/sections/the-books.tsx) — `if (book === algebra) { window.location.href = '/page'; return; }` |
-| **following a subject link back to the shelf** | [`the-manifold.tsx`](../../package/app/src/sections/the-manifold.tsx) — `<DayChip as="a" href="/books" data-subject …>`, **a real anchor with no `preventDefault`** |
+| **opening the algebra book** | [`the-books.tsx`](../../.archive/app/src/sections/the-books.tsx) — `if (book === algebra) { window.location.href = '/page'; return; }` |
+| **following a subject link back to the shelf** | [`the-manifold.tsx`](../../.archive/app/src/sections/the-manifold.tsx) — `<DayChip as="a" href="/books" data-subject …>`, **a real anchor with no `preventDefault`** |
 
 ***A wait installed just before one of those dies with the context it was installed in***, and puppeteer reports it as the selector never arriving. **The wait fails on precisely the steps it exists for**, and it reports the app's landmark as missing rather than its own footing as gone. *That is why the stall moved between runs: it is a race with the load, not a property of the page.*
 

@@ -97,7 +97,7 @@ whole-text comparison       equal
 
 **Compare the bodies, not the whole.** `parts().slice(1)` drops the titles, because the titles are the one region the two sides are *supposed* to differ in — and the oracle stays each side for the other, so nothing is hand-written and neither side can go stale.
 
-*The reason is written into [the promise itself](../../package/app/src/markdown/parallel.test.tsx), so nobody widens the comparison back.*
+*The reason is written into [the promise itself](../../.archive/app/src/markdown/parallel.test.tsx), so nobody widens the comparison back.*
 
 ## The lesson, and it sharpens the one above rather than repeating it
 

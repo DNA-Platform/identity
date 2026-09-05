@@ -49,9 +49,9 @@
 - **The compiler, every module** — [`index.ts`](../../build/index.ts), [`library.ts`](../../build/library.ts), [`walk.ts`](../../build/stages/walk.ts), [`refer.ts`](../../build/stages/refer.ts), [`resolve.ts`](../../build/stages/resolve.ts), [`emit.ts`](../../build/stages/emit.ts), [`catalogue.ts`](../../build/stages/catalogue.ts), [`where.ts`](../../build/utilities/where.ts), [`verify-build.ts`](../../build/tests/building.ts). *The sprint adds a phase to this program; a requirement written without reading it would be a guess about what the phase can reach.*
 - **`valid.mts`** — the runtime that is about to move. *It is the thing being relocated, and reading it is what showed the level walk stops at paragraph.*
 - **[`app.tsx`](../../app/src/app.tsx) and [`catalogue.tsx`](../../app/src/catalogue.tsx)** — where a card is handed its book by `fetch()`. *Load-bearing: this is the only place in the tree that wires a card, and checking has to do the same thing for every book at once.*
-- **The framework's link classes** — [`Author.tsx`](../../package/src/book/Author.tsx), [`Canonical.tsx`](../../package/src/book/Canonical.tsx), [`Book.tsx`](../../package/src/book/Book.tsx), [`Synopsis.tsx`](../../package/src/book/Synopsis.tsx). *This is where the new rules land, and reading them found a defect the sprint now owes a fix for.*
+- **The framework's link classes** — [`Author.tsx`](../../package/src/book/Author.tsx), [`Canonical.tsx`](../../package/.archive/book/Canonical.tsx), [`Book.tsx`](../../package/src/book/Book.tsx), [`Synopsis.tsx`](../../package/src/book/Synopsis.tsx). *This is where the new rules land, and reading them found a defect the sprint now owes a fix for.*
 - **The corpus and its emitted twin** — `library/.test-library/` against [`app/src/library/`](../../app/src/library/), cover by cover. *What an author writes versus what a compiler makes, which is the only honest picture of what the machine does.*
-- **[The Process](../../package/app/src/sections/book/library/the-build/05-the-process.tsx)** — the demo's own account of the phases, and the chapter this sprint has to edit. *Its owed row currently names the resolving gap; checking's account is what this sprint adds beside it.*
+- **[The Process](../../.archive/app/src/sections/book/library/the-build/05-the-process.tsx)** — the demo's own account of the phases, and the chapter this sprint has to edit. *Its owed row currently names the resolving gap; checking's account is what this sprint adds beside it.*
 - **[The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) and [the three things that only worked here](../solutions/21-the-three-things-that-only-worked-here.md)** — five and three appearances between them, both about a number whose scope was silent. *A sprint whose entire product is a gate has to read the branch's two chapters about gates that lied.*
 - **[Chapter zero](00-planning.md)'s Sprint 50** — the roadmap's own version of this work, whose recorded risk is exactly this sprint's: *"a compiler that fails often gets bypassed… failure messages must name the fix, or the specification breeds the disease it prevents."*
 
@@ -71,16 +71,11 @@
 
 ## The actors
 
-- **A12 — The author of a book.** Writes a cover naming an author and a subject, and needs to be told when what they named is **not that kind of thing** — in words that say which file, which link, and what would make it valid.
-- **A13 — The implementer of the compiler.** Runs one command and needs it to answer whether the program it just wrote **stands**, at every level, without opening a browser or a page.
-- **A14 — Queenie, holding the compiler's suite.** Needs each of the compiler's rules stated as a promise she can watch go red, rather than as an assertion inside a script that only ever ran green.
-- **A15 — The reader of the demo.** Learns what validity means in this system from a chapter whose figure **computes** it, and can tell a rule changed because the page changed.
+*Compacted at the close of the sprint — the actors are the classes the units name.*
 
 ## The key flows
 
-- **F9 — Validating.** The compiler emits, opens every book in a runtime it owns, **hands every card its book**, and asks validity at every level. One line per phase, and the fourth line is the verdict.
-- **F10 — An invalid link.** A cover names an author that does not author itself. Validation says the book is **invalid**, naming the file, the link, and what would make it valid.
-- **F11 — Belonging.** A book is asked which library it is in, and the answer computes subject by subject to the one that is its own subject.
+*Compacted at the close of the sprint — the flows are what the sprint built; the units above name them.*
 
 ## The requirements
 
@@ -102,7 +97,7 @@
 
 ### R38 — `$Canonical` gains the `valid()` it never had
 
-**Measured, not suspected — and the measurement CORRECTED THE RECORD.** [`$Author`](../../package/src/book/Author.tsx) and `$Subject` each answer `super.valid() || this.$for !== undefined` — text **or** a card. **[`$Canonical`](../../package/src/book/Canonical.tsx) declares no `valid()` at all**, so it inherits `$Phrase`'s, which requires non-empty copy.
+**Measured, not suspected — and the measurement CORRECTED THE RECORD.** [`$Author`](../../package/src/book/Author.tsx) and `$Subject` each answer `super.valid() || this.$for !== undefined` — text **or** a card. **[`$Canonical`](../../package/.archive/book/Canonical.tsx) declares no `valid()` at all**, so it inherits `$Phrase`'s, which requires non-empty copy.
 
 ***The defect points the OTHER WAY from how it was filed.*** [C22](15-the-build.md#c22) recorded that *a canonical carrying neither text nor card is valid where an author in that state is not*, and this requirement inherited that sentence. **Driven, all nine cases:**
 
@@ -191,22 +186,15 @@ get library(): $Card | undefined {
 
 *Doug: **"The demo should track the project… the demo plays a documentation capacity."***
 
-**[The Build](../../package/app/src/sections/book/library/the-build/) gains its chapter on the validating**, and **its figure runs the rules over real books rather than illustrating them** — the pattern [the showing chapter](../../package/app/src/sections/book/library/the-build/08-the-showing.tsx) already uses, where the figure computes consulted-versus-read from live books and **the page changes when the rule does.**
+**[The Build](../../.archive/app/src/sections/book/library/the-build) gains its chapter on the validating**, and **its figure runs the rules over real books rather than illustrating them** — the pattern [the showing chapter](../../.archive/app/src/sections/book/library/the-build/08-the-showing.tsx) already uses, where the figure computes consulted-versus-read from live books and **the page changes when the rule does.**
 
-**And [The Process](../../package/app/src/sections/book/library/the-build/05-the-process.tsx)'s phase table gains checking's account.** Its `owed` column currently carries the resolving gap; that row stays true and checking's row gains what it makes.
+**And [The Process](../../.archive/app/src/sections/book/library/the-build/05-the-process.tsx)'s phase table gains checking's account.** Its `owed` column currently carries the resolving gap; that row stays true and checking's row gains what it makes.
 
 *This is [R26](15-the-build.md#r26--the-demo-moves-with-the-design-in-the-same-act) as a standing commitment rather than a one-time debt: a rule that changed and a figure that did not is a page that lies.*
 
 ## Acceptance examples
 
-- **AE20.** `npm run compile` prints **four** phase lines, the fourth stating books standing and parts asked **per level**.
-- **AE21.** A cover naming an author that does not author itself → the run says the book is **invalid**, naming the file and the link. **Watched.**
-- **AE22.** The parts count **below paragraph is not zero** — sentences, words and letters asked, each stated as its own number.
-- **AE23.** A canonical carrying **a card and no text is valid**, and one carrying **neither is invalid** — the whole nine-case matrix standing as a promise. *Corrected from what this chapter first said, by [driving it](#r38--canonical-gains-the-valid-it-never-had) rather than by trusting the record it came from.*
-- **AE24.** The library's own book answers **itself** for its library; the standard model answers the library; and `cards.tsx` contains **no library rule** of its own.
-- **AE25.** The compiler's suite runs with a number, and each of the three link rules has a promise **in the lib suite**.
-- **AE26.** The Build's chapter on the validating stands in the demo, its figure computing validity from live books, and both demo drivers still pass with their counts stated.
-- **AE27.** The word *fail* — in any form — appears **zero** times in the compiler's output and in the framework's validity messages, stated as a count.
+*Compacted at the close of the sprint — the examples were accepted at the review; what they proved is in the record above.*
 
 ## What a hand-authored page could fake, and what it could not
 
@@ -230,7 +218,7 @@ get library(): $Card | undefined {
 
 - **Validation**, as the sprint's name — **Doug's own word**, from the sentence that ruled the semantics.
 - **Whether the phase stays *checking* or becomes *validating*.** He named the phases himself — *reading, resolving, emitting, checking, showing* — and then ruled that the semantics of what it finds are validation. **Flagged rather than renamed.**
-- **What the phase makes.** [The phase table](../../package/app/src/sections/book/library/the-build/05-the-process.tsx) says *a verdict*; under this ruling *validity* may be the truer word.
+- **What the phase makes.** [The phase table](../../.archive/app/src/sections/book/library/the-build/05-the-process.tsx) says *a verdict*; under this ruling *validity* may be the truer word.
 - **The three proxies still standing from The Build** are unchanged: *The Build* twice, and *fixture*.
 
 ---
@@ -274,7 +262,7 @@ get library(): $Card | undefined {
 ### <a id="u35"></a>U35 — `$Canonical` gains its `valid()`
 
 **Mechanism:** the same local rule its two siblings already carry — text or a card — added where it is absent. **Realizes [R38](#r38--canonical-gains-the-valid-it-never-had).**
-**Files:** [`package/src/book/Canonical.tsx`](../../package/src/book/Canonical.tsx) · a promise beside the existing book promises.
+**Files:** [`package/src/book/Canonical.tsx`](../../package/.archive/book/Canonical.tsx) · a promise beside the existing book promises.
 **Depends on:** nothing.
 **Visible end:** [AE23](#acceptance-examples) — a canonical carrying neither text nor card is invalid. ***It fails before this unit and passes after***, which is the cheapest kind of visible end there is.
 
@@ -337,7 +325,7 @@ get library(): $Card | undefined {
 ### <a id="u42"></a>U42 — The demo tracks the project
 
 **Mechanism:** The Build gains a chapter on the validating whose figure **opens real books and asks them**, printing what they answer — so a rule that changed and a figure that did not is a visible contradiction. The Process chapter's phase table gains checking's account. **Realizes [R46](#r46--the-demo-tracks-the-project).**
-**Files:** [`the-build/`](../../package/app/src/sections/book/library/the-build/) — a new chapter, its figure, `book.tsx`, and [`05-the-process.tsx`](../../package/app/src/sections/book/library/the-build/05-the-process.tsx).
+**Files:** [`the-build/`](../../.archive/app/src/sections/book/library/the-build) — a new chapter, its figure, `book.tsx`, and [`05-the-process.tsx`](../../.archive/app/src/sections/book/library/the-build/05-the-process.tsx).
 **Depends on:** [U38](#u38), because the figure asks what the phase asks.
 **Visible end:** [AE26](#acceptance-examples) — the chapter on screen, its figure computing validity from live books, both demo drivers green with their counts stated.
 
@@ -345,11 +333,7 @@ get library(): $Card | undefined {
 
 ## Risks
 
-1. **THE DEMO'S FIVE HAND-WIRED BOOKS MEET THE NEW RULES FIRST, and nothing has ever asked them.** `$Book.valid()` gaining relational rules is a change under [`verify-book`](../../package/app/) and [`verify-demo`](../../package/app/) and the lib suite's 239. ***If a demo book violates a rule, that is a finding and not a licence to loosen the rule*** — the demo is hand-made and may simply be wrong. **Mitigation: run all three gates immediately after U36, before anything else is built on it.**
-2. **A card that never pointed throws inside `read()`.** Validity that calls it unguarded turns an invalid book into a crash. **Mitigation: D19 and U36's last scenario, both of which say validity answers rather than throws.**
-3. **Adding a corpus book can move the canonical and the entry order.** `..the-library`'s canonical is currently supplied by shortest title. **Mitigation: [D25](#the-decisions) — a moved assertion carries its reason.**
-4. **The application loses a rung when `valid.mts` goes.** Its `npm test` runs typecheck, validation and driver; the middle one moves out. **Mitigation: the compiler's own gate gains it, and both numbers are stated in the same table so the rung is visibly relocated rather than dropped.**
-5. **`$Book.valid()` is called during construction paths in the app.** *Not measured yet.* **Mitigation: the first thing U36 does is find every caller.**
+*Compacted at the close of the sprint — the risk that fired is in the record with what it cost; the rest did not.*
 
 ## Self-check — every requirement has a home
 

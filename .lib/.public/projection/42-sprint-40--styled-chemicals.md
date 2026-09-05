@@ -350,7 +350,7 @@
 - **A bond-constructor assignment is STATIC.** Driven in the browser: with the theme assigned in a bond constructor the border stayed stale while the background moved; with getters everything follows. **The synthesis memoises, so the bond constructor does not re-run when only a prop changed.**
 - **The theme works by the PARENT EDGE.** There is no read-tracking over a render anywhere in this framework; `withScope` never opens on the render path. A theme built with `$(<Asked />)` in a bond constructor is parented to its reader, which is the only path `diffuse` walks.
 
-**THE ENCYCLOPEDIA IS REWRITTEN**: ten dresses as styled chemicals, all thirteen consumer seats fetching through `$`, the palette as [`$Theme`](../../package/src/book/Theme.tsx) in the book folder, **`utilities/Styled.ts` DELETED**, and **zero `style` attributes in lib `src`**.
+**THE ENCYCLOPEDIA IS REWRITTEN**: ten dresses as styled chemicals, all thirteen consumer seats fetching through `$`, the palette as **`$Theme`** in the book folder, **`utilities/Styled.ts` DELETED**, and **zero `style` attributes in lib `src`**.
 
 **DOCUMENTED IN BOTH BRANCHES**, per Doug — *"we need to not lose the idea that this is how we do it"*: [particle/11 Styled Particles](../../../chemistry/.lib/particle/11-styled-particles.md) for the mechanism, [ch13 The Default Dress](../designing-inexplicable-phenomena/13-the-default-dress.md) for how this library uses it.
 

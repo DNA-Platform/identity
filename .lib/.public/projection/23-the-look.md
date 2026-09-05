@@ -27,13 +27,13 @@
 | | what it was load-bearing for |
 |---|---|
 | [Perspectives](../../../chemistry/.lib/particle/08-perspectives.md) · [The Composition of Perspectives](../../../chemistry/.lib/particle/09-the-composition-of-perspectives.md) | the two axes as shipped, and the design underneath them — **what is being deleted, said by the person who built it** |
-| [`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts) · [`perspective.ts`](../../../chemistry/package/src/abstraction/perspective.ts) | the mechanism against the account — `frame()` had already arrived and the chapter did not know |
+| [`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts) · **`perspective.ts`** | the mechanism against the account — `frame()` had already arrived and the chapter did not know |
 | [The Representative](../../../chemistry/.lib/composition/11-the-representative.md) · [its sprint](12-the-representative.md) | the `$` surface, because the second half of Doug's ask is a later sprint against it |
 | [`types.ts`](../../../chemistry/package/src/implementation/types.ts) · [`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts) | **the attribute system Doug asked me to plug into** — the computed props type and the decorator registries |
 | [The Reactivity Contract](../../../chemistry/.lib/authorship/04-the-reactivity-contract.md) · [View](../../../chemistry/.lib/particle/06-view.md) | why the cursor had to be scope-tracked, and why it no longer does |
 | [The Condition Report](../the-condition-report/.cover.md) — [How to Read This](../the-condition-report/01-how-to-read-this.md), [The Three Codebases](../the-condition-report/07-the-three-codebases.md), [The Compiler](../the-condition-report/08-the-compiler.md), [The Demonstration](../the-condition-report/09-the-demonstration.md) | the standard a fault is judged against, and **C7's rebuild-chain condition**, which governs any `$Chemistry` change |
 | [The Canonical Echo](../the-semantics-of-books/06-the-canonical-echo-and-views.md) | a claim in the **theory** book that dies with the mechanism, and would otherwise be missed |
-| [`Book.tsx`](../../package/src/book/Book.tsx) · [`sheet.tsx`](../../package/app/src/sections/page/sheet.tsx) · [`the-page.tsx`](../../package/app/src/sections/the-page.tsx) | the framework's whole drawing, and the five live lenses that have to survive the change unchanged on screen |
+| [`Book.tsx`](../../package/src/book/Book.tsx) · [`sheet.tsx`](../../.archive/app/src/sections/page/sheet.tsx) · [`the-page.tsx`](../../.archive/app/src/sections/the-page.tsx) | the framework's whole drawing, and the five live lenses that have to survive the change unchanged on screen |
 
 ---
 
@@ -71,7 +71,7 @@
 | **the promises that move** | `look.test.tsx` **10** · `perspectives.test.tsx` **8** · `particle-perspectives.test.tsx` **6** = **24**; `frame.test.tsx` **11 survive** | counted per file |
 | **`Perspective` is a PUBLIC export** | [`index.ts:17`](../../../chemistry/package/src/index.ts) — exactly **one** consumer imports it, `sheet.tsx` | grep for the import |
 | **one symbol is already dead** | `$perspective$` (singular) — declared at [`symbols.ts:51`](../../../chemistry/package/src/implementation/symbols.ts), **0 uses in `src`** | grep, `src` only |
-| **`$i` was taken, and by the busiest reference class** | [`$Location.$i`](../../package/src/reference/Location.tsx) — **6 sites**, plus `<Location i={…}/>` from [`Book.tsx:186`](../../package/src/book/Book.tsx), [`CardCatalogue.tsx:41`](../../package/src/reference/CardCatalogue.tsx), [`Writing.tsx:101`](../../package/src/writing/Writing.tsx) | grep — **this is why the prop is `look`** |
+| **`$i` was taken, and by the busiest reference class** | [`$Location.$i`](../../package/.archive/reference/Location.tsx) — **6 sites**, plus `<Location i={…}/>` from [`Book.tsx:186`](../../package/src/book/Book.tsx), [`CardCatalogue.tsx:41`](../../package/.archive/reference/CardCatalogue.tsx), [`Writing.tsx:101`](../../package/src/writing/Writing.tsx) | grep — **this is why the prop is `look`** |
 | **`$look` is free** | **0 occurrences** anywhere in the repository | grep across both packages and both apps |
 | **`$$view` is ALREADY excluded from props** | [`$Properties<T>`](../../../chemistry/package/src/implementation/types.ts) maps `` K extends `$${infer First}${infer Rest}` `` and returns `never` when `First extends '$'` | read |
 | **framework `$`-fields are excluded too — including ones meant to be props** | `$show`/`$hide` are `keyof $Chemical`, so `<X show={false}/>` does not typecheck; **every Lab site writes `this.x.$show = …` instead** | read + grep, 6 sites |
@@ -99,7 +99,7 @@
 | <a id="r161"></a>**R161** | `@look('name')` names one, on the framework's own attribute machinery | ***done*** — [U170](#u170) |
 | <a id="r162"></a>**R162** | `look` is a JSX attribute typed `number \| string`, carried by the computed type | ***done*** — [U171](#u171) |
 | <a id="r163"></a>**R163** | a prop cannot overwrite a view at runtime either | ***done*** — [U171](#u171) |
-| <a id="r164"></a>**R164** | an out-of-bounds look fails, naming both sides | ***done*** — [U172](#u172). ***Throwing was chosen as [`$Location.read()`](../../package/src/reference/Location.tsx)'s house form; the ruling behind it predates the rename from `$i` to `look`, so it is the cheapest thing here to reverse*** |
+| <a id="r164"></a>**R164** | an out-of-bounds look fails, naming both sides | ***done*** — [U172](#u172). ***Throwing was chosen as [`$Location.read()`](../../package/.archive/reference/Location.tsx)'s house form; the ruling behind it predates the rename from `$i` to `look`, so it is the cheapest thing here to reverse*** |
 | <a id="r165"></a>**R165** | switching a look repaints, through the ordinary reactive field and nothing else | ***done*** — [U172](#u172) |
 | <a id="r166"></a>**R166** | `frame()` keeps its shape and reads the selected look | ***done*** — [U172](#u172) |
 | <a id="r167"></a>**R167** | the demonstration's five lenses survive invisibly | ***done*** — [U175](#u175) |
@@ -116,7 +116,7 @@
 
 ### <a id="d87"></a>D87 — The prop is `look`, and that is what saves `lib` from moving at all
 
-**`$i` collided with [`$Location.$i`](../../package/src/reference/Location.tsx) — 6 sites plus 3 call sites in `lib`.** Doug first ruled that `$Location` would adapt and proposed `$index`; **the rename to `look` in the next breath made the collision disappear.** `$look` is measured free at **0 occurrences**.
+**`$i` collided with [`$Location.$i`](../../package/.archive/reference/Location.tsx) — 6 sites plus 3 call sites in `lib`.** Doug first ruled that `$Location` would adapt and proposed `$index`; **the rename to `look` in the next breath made the collision disappear.** `$look` is measured free at **0 occurrences**.
 
 ***So `lib` is untouched by this sprint*** — which also removes a `dist` rebuild from the chain. **Recorded because the first ruling is in the transcript and a later reader would otherwise implement it.**
 
@@ -267,7 +267,7 @@ Its drawings survive as three looks. **What it demonstrated — one live instanc
 
 ### <a id="the-one-site-tsc-found"></a>THE ONE SITE THE SWEEP MISSED — and `tsc` named it, which is what [D92](#d92) was for
 
-***`lib` itself used the deleted `$view`.*** **[`Document.tsx`](../../package/src/document/Document.tsx)** — `declaration()` harvests a subclass's sections out of its own `view()` (code written in a chapter), then had to **stop re-emitting that declaration** and draw them instead: `this.$view = $Document.prototype.view`. *That is the vertical axis, used by the framework's own consumer.*
+***`lib` itself used the deleted `$view`.*** **[`Document.tsx`](../../package/.archive/document/Document.tsx)** — `declaration()` harvests a subclass's sections out of its own `view()` (code written in a chapter), then had to **stop re-emitting that declaration** and draw them instead: `this.$view = $Document.prototype.view`. *That is the vertical axis, used by the framework's own consumer.*
 
 **The grep that built [the ledger](#the-removal-ledger) searched for `Perspective`, `reveal`, `look(`, `viewLevel` and `perspectives`. It never searched for `$view`.**
 
@@ -456,7 +456,7 @@ const Color = $(this.color);       // the receiver, held once
 | ***REACHING INTO `$views$` FROM DEMO CODE*** | *a framework symbol has no business in a consumer.* **Assign the `look` prop; the container owns the selection** — [the boundary I got wrong](#the-boundary-i-got-wrong) |
 | ***Reading the `$` prefixes as an ORDER*** | *they are an index so several members can share one base name.* **Permuting two drawings gives a byte-identical page** — [measured](#no-order) |
 | ***Probing SOURCE to test a consumer that reads a `dist`*** | *the probe never lands, and a probe that changes nothing looks exactly like an innocent suspect* — [filed](../solutions/05-the-suite-that-passed-against-a-stale-build.md) |
-| ***`$i` as the selector*** | *it is [`$Location`](../../package/src/reference/Location.tsx)'s, at 6 sites and 3 call sites — [D87](#d87)* |
+| ***`$i` as the selector*** | *it is [`$Location`](../../package/.archive/reference/Location.tsx)'s, at 6 sites and 3 call sites — [D87](#d87)* |
 | ***A `#private` field for the view cursor*** | *it crashed on template derivatives, whose prototype chain does not carry the slot. **`$look` is an ordinary reactive field and must stay one*** |
 | ***Deleting a drawing before somebody has seen the page without it*** | [last sprint's own correction](22-working-well-by-default.md#the-shelf-i-should-not-have-deleted) |
 | ***Building `lib` against a stale `$Chemistry` `dist`*** | [filed](../solutions/05-the-suite-that-passed-against-a-stale-build.md) — *U177 exists because of it* |

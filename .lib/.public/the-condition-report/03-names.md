@@ -62,7 +62,7 @@
 >
 > ***The annotations are the exception and Doug named why:*** **`<Author>The Team</Author>` is what an author IS — the name is the content, and a prop carrying a card is the compiler reaching into an authored element.** *Today [`emit.ts`](../../build/stages/emit.ts) inserts `for={theTeam}` precisely because the annotation cannot find its own card.*
 >
-> ***The route that removes the prop:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md) and needs no new mechanism.* **[`$CardCatalogue.file(key, keyword, card)` and `find(query)`](../../package/src/reference/CardCatalogue.tsx) already exist for exactly a lookup by name**, and they are the two members [I14](05-implementation.md#i14) calls a string micro-language — ***so the two entries are one piece of work.***
+> ***The route that removes the prop:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md) and needs no new mechanism.* **[`$CardCatalogue.file(key, keyword, card)` and `find(query)`](../../package/.archive/reference/CardCatalogue.tsx) already exist for exactly a lookup by name**, and they are the two members [I14](05-implementation.md#i14) calls a string micro-language — ***so the two entries are one piece of work.***
 >
 > **Doug's words: *"I think you understand the problem. I want you to clean it up."* — taken as the brief, and [carried into the sprint as a problem](06-the-cleaning.md#actionable) rather than a rename.**
 
@@ -71,7 +71,7 @@
 | holds | on |
 |---|---|
 | an `$IndexCard<$Book>` | `$Author` · `$Subject` · `$Canonical` · `$Synopsis` |
-| a **`string`** — a legend key | [`$Denote`](../../package/src/document/Denote.tsx) · `$Footnote` |
+| a **`string`** — a legend key | [`$Denote`](../../package/.archive/document/Denote.tsx) · `$Footnote` |
 | a **`$Reference$<T>`** | [`$Bookmark`](../../package/src/book/Bookmark.tsx) |
 
 ***`$for` is the framework's most-used prop and its least-specified one.*** **A consumer writing `<Denote for="euler"/>` beside `<Author for={card}/>` has nothing telling them these are unrelated.**
@@ -80,7 +80,7 @@
 
 > **TREAT** · *step 9* — `$Highlight`'s pair is the one to change — a path's `$first` is a step, which is what the word means.
 
-[`$Path.$first`](../../package/src/reference/Path.tsx) is a `$Reference$<M>` — the first **step** of a path. [`$Highlight.$first`](../../package/src/reference/Highlight.tsx) is `number | string` — a character **offset**. ***Both classes live in `reference/`.***
+[`$Path.$first`](../../package/src/reference/Path.tsx) is a `$Reference$<M>` — the first **step** of a path. [`$Highlight.$first`](../../package/.archive/reference/Highlight.tsx) is `number | string` — a character **offset**. ***Both classes live in `reference/`.***
 
 *And `$Highlight`'s pair is typed `number | string` because props arrive from JSX as strings — **the only place in the package that admits that in a type**, and it admits it without a word.*
 
@@ -119,13 +119,13 @@
 |---|---|---|---|---|
 | <a id="n7"></a>**N7** | `$Composible$` | [`writing/Composition.tsx`](../../package/src/writing/Composition.tsx) | not a book word, ***and not a spelling*** — the word is *composable* | **TREAT** · step 9 · *rename regardless of [S1](04-semantics.md#s1); it should not carry a misspelling while it waits to dissolve* |
 | <a id="n8"></a>**N8** | `set0` | [`$Paragraph`](../../package/src/writing/Paragraph.tsx) | means *is display mathematics*, and **is not a word** | **TREAT** · step 9 · *the only name a reader cannot guess — and striking it [dissolves N5](#n5)* |
-| <a id="n9"></a>**N9** | `declaration` | [`$Document`](../../package/src/document/Document.tsx) | not a book word, *and [the mechanism under it is worse](05-implementation.md#i12)* | **MONITOR** · *with [I12](05-implementation.md#i12) — renaming a member whose mechanism is under review is churn* |
+| <a id="n9"></a>**N9** | `declaration` | [`$Document`](../../package/.archive/document/Document.tsx) | not a book word, *and [the mechanism under it is worse](05-implementation.md#i12)* | **MONITOR** · *with [I12](05-implementation.md#i12) — renaming a member whose mechanism is under review is churn* |
 | <a id="n10"></a>**N10** | `properties` | [`$IndexCard`](../../package/src/reference/IndexCard.tsx) | a card's fields are not *properties* | **TREAT** · step 9 · ***word [owed](06-the-cleaning.md#the-words-owed)*** — `entries` is taken by `$Book` |
 | <a id="n11"></a>**N11** | `$in` | [`$Chapter`](../../package/src/book/Chapter.tsx) | **a preposition as a field name** | **TREAT** · step 9 · *one field, one file* |
-| <a id="n12"></a>**N12** | `url` | [`$Link`](../../package/src/reference/Link.tsx) | a reference's **target**; `url` is the web's word | **TREAT** · step 9 |
+| <a id="n12"></a>**N12** | `url` | [`$Link`](../../package/.archive/reference/Link.tsx) | a reference's **target**; `url` is the web's word | **TREAT** · step 9 |
 | <a id="n13"></a>**N13** | `row` · `Row` | [`$TableOfContents`](../../package/src/book/TableOfContents.tsx) | a table's word | **TREAT** · step 4 · ***not a rename, a deletion*** — [B1 already ruled it](../projection/19-the-binding.md#the-board): a reference draws its own row |
 | <a id="n14"></a>**N14** | `contentish` | [`walk.ts`](../../build/stages/walk.ts) | *-ish* is not precision | **TREAT** · step 9 · *free* |
-| <a id="n15"></a>**N15** | `$Denote` | [`document/`](../../package/src/document/Denote.tsx) | a logic word for **a reference mark** | ***REFER*** · [the words owed](06-the-cleaning.md#the-words-owed) · *raised, not taken* |
+| <a id="n15"></a>**N15** | `$Denote` | [`document/`](../../package/.archive/document/Denote.tsx) | a logic word for **a reference mark** | ***REFER*** · [the words owed](06-the-cleaning.md#the-words-owed) · *raised, not taken* |
 | <a id="n16"></a>**N16** | `$role` = `use` \| `mention` | [`$Writing`](../../package/src/writing/Writing.tsx) | a stage word for a semantic fact | **LEAVE** · ***[the settled account uses the word](../the-semantics-of-books/15-the-levels-of-writing.md#used-and-mentioned)*** — the derivation's own vocabulary outranks the objection |
 
 ## An abbreviation among full words
@@ -133,7 +133,7 @@
 | | name | why | disposition |
 |---|---|---|---|
 | <a id="n17"></a>**N17** | `ref`, on **nine classes** | [the member audit ruled the folder `ref/` → `reference/` — *"no abbreviations among full words"*](../projection/04-the-member-audit.md). **The folder moved and the member did not.** | **TREAT** · step 9 |
-| <a id="n18"></a>**N18** | `$i` on [`$Location`](../../package/src/reference/Location.tsx) | **the only single letter in 2,911 lines**, on the one thing in the model whose whole meaning is a number | **TREAT** · step 9 |
+| <a id="n18"></a>**N18** | `$i` on [`$Location`](../../package/.archive/reference/Location.tsx) | **the only single letter in 2,911 lines**, on the one thing in the model whose whole meaning is a number | **TREAT** · step 9 |
 
 ## A predicate named for something other than what it tests
 

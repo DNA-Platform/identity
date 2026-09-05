@@ -130,16 +130,11 @@ ON THE BOOK  titles: 5   of them substituted: 1
 
 ## The actors
 
-- **A22 — A reader of the library.** Opens a page and can tell a title from a paragraph from an author from a catalogue entry — **without anyone having styled the application**.
-- **A23 — Someone restyling a book.** Changes how every title in their book looks, from **one place**, without touching the framework and without reimplementing a `view()`.
-- **A24 — Someone writing a new kind of content.** Declares a subclass; it draws sensibly with no work at all, and is dressed by the same theme as everything else.
-- **A25 — Us, authoring the framework.** Must ship a default that carries **no aesthetic opinion a consumer has to fight**, because the application and every demo have their own.
+*Compacted at the close of the sprint — the actors are the classes the units name.*
 
 ## The key flows
 
-- **F15 — Drawing.** A book draws. Each level draws its **parts** where its parts can differ in kind and its **text** where they cannot. Every drawn thing asks the theme how to dress itself.
-- **F16 — Restyling.** One registration on a book's scope answers with a different theme. **Every part beneath it — written and found alike — is dressed by it.** No `view()` is reimplemented and no class is subclassed.
-- **F17 — Overriding one thing.** Someone changes only the way a title draws. They override **one method**, not a view, and everything else about a title is unchanged.
+*Compacted at the close of the sprint — the flows are what the sprint built; the units above name them.*
 
 ## The requirements — a register
 
@@ -214,8 +209,8 @@ ON THE BOOK  titles: 5   of them substituted: 1
 | | lines of drawing |
 |---|---|
 | **the framework, all of it** | **108** |
-| [`the-team`](../../package/app/src/sections/book/library/the-team/book.tsx), **one book** | **166**, plus **337** styled |
-| [`the-manifold`](../../package/app/src/sections/the-manifold.tsx), **one book** | **705** |
+| [`the-team`](../../.archive/app/src/sections/book/library/the-team/book.tsx), **one book** | **166**, plus **337** styled |
+| [`the-manifold`](../../.archive/app/src/sections/the-manifold.tsx), **one book** | **705** |
 
 ***Two demo books spend 1,208 lines drawing. The framework they stand on spends 108 — and not one of those 1,208 is reachable by anything else.*** **That is [the brittleness](#where-the-brittleness-actually-is) as a number rather than a worry**, and it is also why this sprint is small: **the surface being changed is 108 lines, not 1,648.**
 
@@ -236,7 +231,7 @@ ON THE BOOK  titles: 5   of them substituted: 1
 
 **1 — THE FRAMEWORK ALREADY HAS A VOCABULARY, and it is ad hoc.** Eight `className` strings across seven files: `chapter`, `section`, `figure`, `legend`, `mark`, `table-of-contents`, `contents-title`. ***So naming what a thing is on the page is the incumbent practice rather than a proposal*** — what is missing is that it is unsystematic, partial, and unreachable from outside.
 
-**2 — THE DEMO'S BOOKS RESTYLE BY SUBCLASSING THE BOOK ENTIRELY.** [`$TheTeam extends $Book`](../../package/app/src/sections/book/library/the-team/book.tsx) overrides drawing wholesale and imports fourteen styled-components of its own — `Manuscript`, `Masthead`, `Spread`, `Margin`, `Folio`, `Turn`, `Leaf`. **That route must keep working untouched**, and it is the reason the default has to sit *beneath* the demo rather than beside it.
+**2 — THE DEMO'S BOOKS RESTYLE BY SUBCLASSING THE BOOK ENTIRELY.** [`$TheTeam extends $Book`](../../.archive/app/src/sections/book/library/the-team/book.tsx) overrides drawing wholesale and imports fourteen styled-components of its own — `Manuscript`, `Masthead`, `Spread`, `Margin`, `Folio`, `Turn`, `Leaf`. **That route must keep working untouched**, and it is the reason the default has to sit *beneath* the demo rather than beside it.
 
 **3 — `$Section.view()` ANSWERS `null` FOR A PARENTHETICAL SECTION.** A summary is written and deliberately not drawn. ***Any change to how a section draws has to keep that***, and it is the kind of thing a rewrite loses silently.
 
@@ -254,7 +249,7 @@ ON THE BOOK  titles: 5   of them substituted: 1
 
 *Doug, 2026-08-20: **"Come up with 20 different ways one might want to extend the interface of a book. Look at the code and ask yourself how that might be done with the system you are creating. Look for the most fundamental ways… I am worried that you are making a fundamentally brittle system."*** **He was right to worry, and this section is the check.**
 
-***The first design was a stylesheet in an object*** — colours and families — **and it would not have helped the one unusual book this repository already has.** [`$TheTeam`](../../package/app/src/sections/book/library/the-team/book.tsx) hand-writes **pagination, a masthead, a contents margin, a card slip and a facing-page spread** across roughly 150 lines of `view()`, and **not one line of it is reachable by any other book.** *A colour theme would have changed nothing about that page.*
+***The first design was a stylesheet in an object*** — colours and families — **and it would not have helped the one unusual book this repository already has.** [`$TheTeam`](../../.archive/app/src/sections/book/library/the-team/book.tsx) hand-writes **pagination, a masthead, a contents margin, a card slip and a facing-page spread** across roughly 150 lines of `view()`, and **not one line of it is reachable by any other book.** *A colour theme would have changed nothing about that page.*
 
 **So the twenty are written against the code, and each names what it would actually take.**
 
@@ -275,7 +270,7 @@ ON THE BOOK  titles: 5   of them substituted: 1
 | 13 | **a reader's annotations** layered over the writing | something accompanies a *word or a sentence*, not a chapter | **apparatus**, at any grade |
 | 14 | **a two-column academic paper** | arrangement, plus a frame that knows about a printed page | **arrangement** · **frame** |
 | 15 | **a timeline** — chapters placed by date | arrangement that **reads a value off each part** rather than ordering them by position | **arrangement** |
-| 16 | **an atlas** — chapters as nodes, references as edges | ***already built*** — [`$TheManifold extends $Book`](../../package/app/src/sections/the-manifold.tsx), wholesale | *(exists)* |
+| 16 | **an atlas** — chapters as nodes, references as edges | ***already built*** — [`$TheManifold extends $Book`](../../.archive/app/src/sections/the-manifold.tsx), wholesale | *(exists)* |
 | 17 | **two books compared side by side** | two scopes, arranged across | **arrangement** · registration |
 | 18 | **a reading ribbon** — where you left off, always visible | something accompanies the whole, and reads state | **apparatus** · **frame** |
 | 19 | **dark, or printed** | the same structure, different values | **values** |
@@ -317,7 +312,7 @@ draw:   my parts  →  SELECT which are present  →  ARRANGE them  →  each dr
 - **Fourteen** are a theme subclass — selection, arrangement, apparatus, values.
 - **Eight** are a class registered on a scope, which is [already built and measured](#m3).
 - **Two already exist**, and both took the wholesale route.
-- ***And the wholesale route survives untouched***: [`$TheManifold`](../../package/app/src/sections/the-manifold.tsx) and [`$TheTeam`](../../package/app/src/sections/book/library/the-team/book.tsx) override `view()` entirely and must keep working. **The theme is the shortcut for what is cross-cutting; the escape hatch is not removed.**
+- ***And the wholesale route survives untouched***: [`$TheManifold`](../../.archive/app/src/sections/the-manifold.tsx) and [`$TheTeam`](../../.archive/app/src/sections/book/library/the-team/book.tsx) override `view()` entirely and must keep working. **The theme is the shortcut for what is cross-cutting; the escape hatch is not removed.**
 
 ***What this design deliberately does NOT do is support any of the twenty.*** *Doug: "You don't need to support these. You shouldn't. But you need to see a route to implementing them."* **The route is the deliverable; the base theme is the smallest thing that makes the route real.**
 
@@ -365,7 +360,7 @@ draw:   my parts  →  SELECT which are present  →  ARRANGE them  →  each dr
 
 ***Axes 1, 2 and 3 are already sound, and this was worth checking rather than assuming.*** A subclass may change what a class composes, what it draws and where it stands, and a registration puts it in a scope — **all measured this session**.
 
-***The brittleness is that Axis 3 is unreachable in practice.*** **A view has nothing structured to extend**: [`$Section.view()` returns its source block](#m2), so somebody overriding it does not adjust a drawing — **they write one from nothing.** ***And there is proof rather than argument:*** [`$TheTeam`](../../package/app/src/sections/book/library/the-team/book.tsx) spends **about 150 lines** hand-writing pagination, a masthead, a contents margin, a card slip and a spread, and **shares none of it with any other book**, because there was nothing to share it through.
+***The brittleness is that Axis 3 is unreachable in practice.*** **A view has nothing structured to extend**: [`$Section.view()` returns its source block](#m2), so somebody overriding it does not adjust a drawing — **they write one from nothing.** ***And there is proof rather than argument:*** [`$TheTeam`](../../.archive/app/src/sections/book/library/the-team/book.tsx) spends **about 150 lines** hand-writing pagination, a masthead, a contents margin, a card slip and a spread, and **shares none of it with any other book**, because there was nothing to share it through.
 
 **So the sprint is smaller and better aimed than it was an hour ago:**
 
@@ -376,7 +371,7 @@ draw:   my parts  →  SELECT which are present  →  ARRANGE them  →  each dr
 
 ## <a id="the-matter-is-already-in-the-model"></a>And the apparatus was already solved — by the model, two sprints ago
 
-***The previous draft had the theme injecting components for notes, discussion and annotations.*** **It does not need to.** [`$Legend`](../../package/src/document/Legend.tsx) is a `$Paragraph` subclass carrying `$parenthetical = true` whose `view()` answers `null` while it is; [`$Footer`](../../package/src/document/Footer.tsx) is a `$Section` holding footnotes; a summary is a parenthetical section.
+***The previous draft had the theme injecting components for notes, discussion and annotations.*** **It does not need to.** [`$Legend`](../../package/.archive/document/Legend.tsx) is a `$Paragraph` subclass carrying `$parenthetical = true` whose `view()` answers `null` while it is; [`$Footer`](../../package/.archive/document/Footer.tsx) is a `$Section` holding footnotes; a summary is a parenthetical section.
 
 ***So accompanying matter is ALREADY a part of the composition, marked as not-read*** — and the only shared decision left is **whether unread matter is read**, which is one value.
 
@@ -454,7 +449,7 @@ draw:   my parts  →  SELECT which are present  →  ARRANGE them  →  each dr
 |---|---|
 | [`.public/app/theme.ts`](../../app/src/theme.ts) | `ink · faint · rule · ground · mark`, and a serif |
 | the demo's apparatus | `ink · faded · rust · serif · mono` |
-| [`the-team.styled.ts`](../../package/app/src/sections/the-team.styled.ts) | the same five, plus an ad-hoc size scale — `10px · 11.5px · 13.5px · 14px · 15px` |
+| [`the-team.styled.ts`](../../.archive/app/src/sections/the-team.styled.ts) | the same five, plus an ad-hoc size scale — `10px · 11.5px · 13.5px · 14px · 15px` |
 
 **A few colours, two or three families, a small size scale.** *The ad-hoc scale in the last row is [D41](#d41)'s argument stated by the thing that needed it.*
 

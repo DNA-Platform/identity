@@ -69,7 +69,7 @@
 
 ## And the premise that was wrong
 
-***`<Writing>…<Type>Word</Type></Writing>` ALREADY WORKS.*** **All six promises in [`behaves.test`](../../package/src/tests/behaves.test.tsx) are green** — it carries the type resolved from the name, it *is* a file in the sense of the reading, it composes the documents written inside it, a written `<File>` and a writing that behaves as one answer alike, the same shape holds at word grade, and it reaches down a real ladder.
+***`<Writing>…<Type>Word</Type></Writing>` ALREADY WORKS.*** **All six promises in **`behaves.test`** are green** — it carries the type resolved from the name, it *is* a file in the sense of the reading, it composes the documents written inside it, a written `<File>` and a writing that behaves as one answer alike, the same shape holds at word grade, and it reaches down a real ladder.
 
 ***The annotation is a formula.*** **It resolves in the render walk, by name, and the bond constructor runs after that resolution and before the view** — measured at [`particle.ts:439`](../../../chemistry/package/src/abstraction/particle.ts), which calls the bond, and line 443, which renders. *So the carried type is already sitting in the specification when the writing is bonded.* **Doug's reading that this had failed was made against the opposite ordering**, and it is what the face route was proposed to rescue; ***nothing needed rescuing.***
 

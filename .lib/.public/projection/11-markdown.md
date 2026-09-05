@@ -35,25 +35,25 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 | demo | its vocabulary | what it models |
 |---|---|---|
-| **The Manifold** | `Page`, `Spread`, `LeftPage`, `RightPage`, `Folio`, `DogEar`, `Ribbon`, `PageTurn`, `RunningHead`, `TocPage` ([manifold.styled.ts](../../package/app/src/sections/book/manifold.styled.ts)) | **a page** — a physical codex, open |
-| **The Team** | `Manuscript`, `Spread`, `Body`, `Margin`, `Folio`, `Leaf`, `Plate`, `Slip`, `Listing` ([the-team.styled.ts](../../package/app/src/sections/the-team.styled.ts)) | a **manuscript** — body and margin, the scholarly apparatus |
-| **The Shelf** | `Room`, `Board`, `Spine`, `Drawer`, `DrawerCard`, `Face`/`Reverse`, `Colophon` ([shelf.styled.ts](../../package/app/src/sections/book/shelf.styled.ts), [catalogue.styled.ts](../../package/app/src/sections/book/catalogue.styled.ts)) | **a room and a card catalogue**. `Face`/`Reverse` is a *card's* two sides; no folio anywhere |
-| **`/page`** | `Backdrop`, `BookSkin`, `GithubSkin`, `NightSkin`, `AnatomySkin`, `Kicker`, `ReadingsBar` ([page.tsx](../../package/app/src/sections/page/page.tsx)) | **no page at all** — one document in four dresses |
+| **The Manifold** | `Page`, `Spread`, `LeftPage`, `RightPage`, `Folio`, `DogEar`, `Ribbon`, `PageTurn`, `RunningHead`, `TocPage` ([manifold.styled.ts](../../.archive/app/src/sections/book/manifold.styled.ts)) | **a page** — a physical codex, open |
+| **The Team** | `Manuscript`, `Spread`, `Body`, `Margin`, `Folio`, `Leaf`, `Plate`, `Slip`, `Listing` ([the-team.styled.ts](../../.archive/app/src/sections/the-team.styled.ts)) | a **manuscript** — body and margin, the scholarly apparatus |
+| **The Shelf** | `Room`, `Board`, `Spine`, `Drawer`, `DrawerCard`, `Face`/`Reverse`, `Colophon` ([shelf.styled.ts](../../.archive/app/src/sections/book/shelf.styled.ts), [catalogue.styled.ts](../../.archive/app/src/sections/book/catalogue.styled.ts)) | **a room and a card catalogue**. `Face`/`Reverse` is a *card's* two sides; no folio anywhere |
+| **`/page`** | `Backdrop`, `BookSkin`, `GithubSkin`, `NightSkin`, `AnatomySkin`, `Kicker`, `ReadingsBar` ([page.tsx](../../.archive/app/src/sections/page/page.tsx)) | **no page at all** — one document in four dresses |
 
 **So Doug's suspicion holds, and the irony is exact: the demo named `$Page` is the one that does not model a page, and the Manifold — which never claimed to — models one hardest.**
 
-**What `/page`'s `$Page` actually is: a lens.** The word *skin* is the tell, and [the code already knows](../../package/app/src/sections/page/sheet.tsx) — the four are revealed as `new Perspective('book')`, `'github'`, `'night'`, `'anatomy'`. That is move one of the three in [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md#the-three-moves): *one live object rendered a way*. **The machinery is right and the name is a category error.** And one of the four is not even a dress — `anatomy` is a *reading rendered*, move two, a report **about** the document rather than a presentation of it.
+**What `/page`'s `$Page` actually is: a lens.** The word *skin* is the tell, and [the code already knows](../../.archive/app/src/sections/page/sheet.tsx) — the four are revealed as `new Perspective('book')`, `'github'`, `'night'`, `'anatomy'`. That is move one of the three in [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md#the-three-moves): *one live object rendered a way*. **The machinery is right and the name is a category error.** And one of the four is not even a dress — `anatomy` is a *reading rendered*, move two, a report **about** the document rather than a presentation of it.
 
-**On isolation, which was the third question.** Those 560 lines are `.markdown h1`, `.markdown p`, `.markdown code` — CSS reaching into generic markup the model emitted; the four skins differ *only* in that CSS, which is why nothing about them is specialized. **The Team already shows what isolation means here:** its own `$Heading extends $Title` drawing itself, its own `$Plated`, `$Circuit`, `$Slipped`, `$Listed` ([figures.tsx](../../package/app/src/sections/book/library/the-team/figures.tsx)). Repeated implementations, per book. **The framework shares the *kind*; the demo repeats the *implementation*.** Doug: *"You can repeat implementations for the demo."*
+**On isolation, which was the third question.** Those 560 lines are `.markdown h1`, `.markdown p`, `.markdown code` — CSS reaching into generic markup the model emitted; the four skins differ *only* in that CSS, which is why nothing about them is specialized. **The Team already shows what isolation means here:** its own `$Heading extends $Title` drawing itself, its own `$Plated`, `$Circuit`, `$Slipped`, `$Listed` ([figures.tsx](../../.archive/app/src/sections/book/library/the-team/figures.tsx)). Repeated implementations, per book. **The framework shares the *kind*; the demo repeats the *implementation*.** Doug: *"You can repeat implementations for the demo."*
 
 ## The starting condition — verified 2026-08-10 by reading the source
 
 - **`$Markdown` is not writing.** **Read** — it extends `$Chemical` and runs its own parse into a hand-rolled `Entry[]` union of `heading | paragraph | math | rule`, builds `$Paragraph`s through `$()`, and re-implements `words`, `formulas` and `title` by hand (`markdown.tsx:8-93` *(since replaced by `app/src/markdown/`)*).
-- **And the same parse runs a second time, inline.** **Read** — the anatomy lens calls `parse(this.$source)` again and re-derives paragraphs, words and formula counts in its own `view()` ([sheet.tsx:78-85](../../package/app/src/sections/page/sheet.tsx)). **Two populations of one reading** — which is [the chapter that wrote its sections twice](../solutions/13-the-chapter-that-wrote-its-sections-twice.md) wearing a different coat, one level up, and it is still standing.
+- **And the same parse runs a second time, inline.** **Read** — the anatomy lens calls `parse(this.$source)` again and re-derives paragraphs, words and formula counts in its own `view()` ([sheet.tsx:78-85](../../.archive/app/src/sections/page/sheet.tsx)). **Two populations of one reading** — which is [the chapter that wrote its sections twice](../solutions/13-the-chapter-that-wrote-its-sections-twice.md) wearing a different coat, one level up, and it is still standing.
 - **The itemization is a four-line override per level, and one level already does the hard part.** **Read** — `$Section.divide` splits on `/\n{2,}/` ([Section.tsx:52](../../package/src/writing/Section.tsx)), which **is markdown's paragraph rule**; `$Sentence.compose` already **forks on kind**, making a `$Word` where there are letters and a mentioned `$Punctuation` where there are not ([Sentence.tsx:41-43](../../package/src/writing/Sentence.tsx)). That fork is where a markdown link becomes a reference. One more branch, not a new mechanism.
-- **`$Latex` is a `$Chemical`, not writing.** **Read** — [latex.tsx:6](../../package/app/src/sections/page/latex.tsx). A formula is therefore outside the model entirely: it cannot be a part, cannot be numbered, and cannot be counted except by the hand-written `formulas` getter that reaches into `$elements` looking for instances.
-- **The prior art for a part that responds is shipped.** **Read** — `$RibbonMark` and `$Return` are `$Sentence` subclasses that draw themselves as marks ([marks.tsx](../../package/app/src/sections/book/library/the-manifold/marks.tsx)); `$Highlight` is a `$Sentence` carrying `$first`/`$last`, a span of writing named by position ([Highlight.tsx](../../package/src/reference/Highlight.tsx)). R9 is built from these, not invented — per [the link built three times](../solutions/03-the-link-i-built-three-times.md).
-- **The app has no test surface.** **Read** — `tsconfig.json` includes only `src/**` and `tests/**`; the app compiles under its own [app/tsconfig.json](../../package/app/tsconfig.json), whose `include` is `src/**` relative to the app and carries no test glob. `vitest.config.ts` aliases `@` to the package `src` only. So a test placed in the app **would run under the package's vitest and would not be typechecked by either project.** Named here rather than discovered at work.
+- **`$Latex` is a `$Chemical`, not writing.** **Read** — [latex.tsx:6](../../.archive/app/src/sections/page/latex.tsx). A formula is therefore outside the model entirely: it cannot be a part, cannot be numbered, and cannot be counted except by the hand-written `formulas` getter that reaches into `$elements` looking for instances.
+- **The prior art for a part that responds is shipped.** **Read** — `$RibbonMark` and `$Return` are `$Sentence` subclasses that draw themselves as marks ([marks.tsx](../../.archive/app/src/sections/book/library/the-manifold/marks.tsx)); `$Highlight` is a `$Sentence` carrying `$first`/`$last`, a span of writing named by position ([Highlight.tsx](../../package/.archive/reference/Highlight.tsx)). R9 is built from these, not invented — per [the link built three times](../solutions/03-the-link-i-built-three-times.md).
+- **The app has no test surface.** **Read** — `tsconfig.json` includes only `src/**` and `tests/**`; the app compiles under its own [app/tsconfig.json](../../.archive/app/tsconfig.json), whose `include` is `src/**` relative to the app and carries no test glob. `vitest.config.ts` aliases `@` to the package `src` only. So a test placed in the app **would run under the package's vitest and would not be typechecked by either project.** Named here rather than discovered at work.
 - **`marked` and `katex` are dependencies of the package, not the app.** **Read** — [package.json](../../package/package.json) `dependencies`. A fact, not a decision: the machinery a markdown framework needs is already a lib dependency, which is why promotion later is cheap.
 
 ### The finding this half turns on
@@ -72,9 +72,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 ## Actors
 
-- **A1 — The author writing in markdown.** Writes a source that is prose plus fenced and inline notation.
-- **A2 — The reader.** Meets the specialized parts standing where they were written, and acts on the one that responds.
-- **A3 — The implementer.** Asks a *regular* section what it holds, and is answered with the written parts at their written positions.
+*Compacted at the close of the sprint — the actors are the classes the units name.*
 
 ## The mini framework — markdown, itemized
 
@@ -153,17 +151,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 ## Tests
 
-- **R10. The mini framework is tested, and the test seam is RESOLVED — not discovered.** *Doug: "test it."* **DECIDED, Queenie's.**
-
-  **What a green exercises today, exactly.** `npm run test` is `tsc --noEmit` then `vitest run`. The `tsc` uses the *package* tsconfig, whose `include` is `src` + `tests` only — **the app is invisible to it.** `vitest.config.ts` sets no `test.include`, so the default glob runs every `.test.tsx` under the package, **including any under `app/`**. Put those together and a test placed in the app **runs, is counted in the green, and is typechecked by neither project.**
-
-  **This is [the stale-build specification](../solutions/05-the-suite-that-passed-against-a-stale-build.md) wearing new clothes.** There the green checked *different code*; here it checks a *weaker specification* — "runs without throwing" standing in for "typechecks and runs." Same disease: the code the number counts is not the code the checks covered.
-
-  **The decision.** Tests co-locate under `app/src/**` as `.test.tsx` — the app tsconfig's existing `src/**/*.tsx` glob already takes them, so no glob changes. **And the gate gains the app project:** `tsc --noEmit && tsc -p app/tsconfig.json --noEmit && vitest run`. Every test in the green is then typechecked by exactly one project and run by the runner, with no hole in the intersection.
-
-  **Said before work rather than during:** the app has never been typechecked in the gate, so turning it on will surface whatever type debt was always there. **That first red is the truth about a rung that never ran** — measure the delta and fix-or-baseline it; it is not damage this change introduced.
-
-  *Seen: a stated count of new promises, where they live, and **whether they are typechecked** — a number reported with its scope attached, because a gate is only as strong as the smallest coverage in its pipeline.*
+*Compacted at the close of the sprint — the scenarios became the suite, and a promise is read where it runs.*
 
 ## Math, and the gate
 
@@ -175,7 +163,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
   **`cd app && tsc --noEmit` exits 0 having typechecked ZERO files.** `tsc -p app/tsconfig.json --noEmit` typechecks **46** and reports **5 errors**. Every recorded *"app `tsc` 0"* came from the first. **Four are typing debt** — `$LibraryCard` against `$IndexCard<$Referent$>`, and three `$`-backed accesses on a computed type.
 
-  **The fifth is a live crash, driven and confirmed 2026-08-11.** [the-manifold.tsx:603](../../package/app/src/sections/the-manifold.tsx) passes bare `held` where the binding is `this.held`. Opening the manifold's cover takes the page down: **`Unexpected Application Error! ReferenceError: held is not defined`**, four console errors, React Router's boundary catching it. It has shipped since `13829ab` — **through every sprint that recorded *"driven, zero page errors… the manifold."*** *Seen: the manifold opening and reading with no page error, and the app's error count stated before and after.*
+  **The fifth is a live crash, driven and confirmed 2026-08-11.** [the-manifold.tsx:603](../../.archive/app/src/sections/the-manifold.tsx) passes bare `held` where the binding is `this.held`. Opening the manifold's cover takes the page down: **`Unexpected Application Error! ReferenceError: held is not defined`**, four console errors, React Router's boundary catching it. It has shipped since `13829ab` — **through every sprint that recorded *"driven, zero page errors… the manifold."*** *Seen: the manifold opening and reading with no page error, and the app's error count stated before and after.*
 
   **And a third gate is stale:** `app/verify-book.mjs` fails at its own step three, looking for `[data-book="algebra"]` when spines are labelled by card name (`The Algebra of Perspective`). A driver that cannot reach the shelf cannot have proven anything past it. *Seen: the driver completing.*
 
@@ -202,30 +190,11 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 ## Key flows
 
-- **F1 — An author writes markdown.** The source divides at `##` into sections, at blank lines into paragraphs, at stops into sentences; fences arrive as written parts at paragraph grade; links and emphasis arrive inside the sentences that hold them.
-- **F2 — A reader meets it.** Everything draws where it stands. Nothing announces that it is special. One figure responds when acted on.
-- **F3 — The model is asked.** `section.parts()` answers prose and written parts together, in order, numbered — and the anatomy lens is that answer rendered, not a second parse of the same source.
+*Compacted at the close of the sprint — the flows are what the sprint built; the units above name them.*
 
 ## Acceptance examples
 
-- **AE1.** A markdown sentence's `parts()` holds `**` as a mentioned part; its `words` does not.
-- **AE2.** A section holding a fence answers it from `parts()` at its written index, with the prose numbered around it.
-- **AE3.** Two different fence info strings give two different figure kinds in the same section.
-- **AE4.** A markdown link is a part of the sentence holding it and never of the paragraph above. *(Regression: the shipped cover's author depends on this specification.)*
-- **AE5.** A **regular** hand-written section answers a paragraph-grade insert and a sentence-grade insert at their written positions.
-- **AE6.** Clicking a part in the figure highlights that part in the prose; the figure's content is not counted among the section's words.
-- **AE7.** `/page` renders all four lenses with no console error, and the Living Page's word count still moves on a keystroke.
-- **AE8.** Both suites green against a **rebuilt** chemistry `dist` — chemistry from **635**, lib from **164** — plus the new promises, counted and stated, and their typecheck status stated with them.
-- **AE9.** **`2 * 3` parses identically in a regular section and a markdown section** — same parts, same words, same count. The unpaired mark is punctuation in both.
-- **AE10.** A markdown sentence's `words` counts `text` from `[text](https://x.com)` and does **not** count `https`, `x` or `com`. The URL is a target, never a word.
-- **AE11.** An unterminated fence is invalid **in its own words** and does not swallow the rest of the section.
-- **AE12.** No `.markdown <tag>` selector remains in the three dresses, and each dress differs by what its parts draw rather than by what its stylesheet overrides.
-- **AE13.** `role` is still exactly `use | mention`. No third value was added.
-- **AE14.** The gate runs `tsc -p app/tsconfig.json --noEmit` over **46** app files, and the app's pre-existing type debt is reported as a delta rather than as damage.
-- **AE15.** **The manifold opens and reads with no page error.** *(A live crash on `main` today — this is a regression check on a page that is currently down.)*
-- **AE16.** `formulas` is read off `parts()`, and no getter anywhere scans `$elements` for instances of a class.
-- **AE17.** `app/verify-book.mjs` completes instead of failing at the shelf.
-- **AE18.** R9's figure sets a **bookmark**, and a highlight appears only where the attended part is prose. No second highlighting exists; the manifold's DOM `light(id)`/`.lit`/`setTimeout` is gone.
+*Compacted at the close of the sprint — the examples were accepted at the review; what they proved is in the record above.*
 
 ## Owed before the plan — CLOSED 2026-08-11
 
@@ -377,7 +346,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 - **U23 — The driver's ENTRY, repaired — and it goes before everything.** *Mechanism: three stale landmarks make the walk unable to start — `.shelf-card` expects **2** where there are now **3** books, and both `[data-book="algebra"]` and `[data-book="manifold"]` predate spines being labelled by card name. Files: `app/verify-book.mjs`. Depends on: nothing. Realizes: AE17 (part). **Visible end:** the walk reaching the manifold at all.*
   **Queenie's dependency, and it reorders the sprint: AE15 cannot be verified until this is done.** The driver dies at the shelf **before it ever reaches the manifold** — so every past *"driven, zero page errors — the manifold"* was a green whose scope stopped short of the thing it claimed. **Fix the entry first, or U1's green is unexercised.**
 
-- **U1 — The manifold's crash, RED FIRST.** *Mechanism: [the-manifold.tsx:603](../../package/app/src/sections/the-manifold.tsx) passes bare `held` where the binding is `this.held`; every other line in the method already says `this.held`. **The check is written before the fix and must reproduce the crash against `main`** — otherwise the green proves nothing. Files: that one. Depends on: U23. Realizes: R15, AE15. **Visible end:** the check red on `main`, then green — the manifold opening at its cover and reading with no page error, on a page that is **down right now**.*
+- **U1 — The manifold's crash, RED FIRST.** *Mechanism: [the-manifold.tsx:603](../../.archive/app/src/sections/the-manifold.tsx) passes bare `held` where the binding is `this.held`; every other line in the method already says `this.held`. **The check is written before the fix and must reproduce the crash against `main`** — otherwise the green proves nothing. Files: that one. Depends on: U23. Realizes: R15, AE15. **Visible end:** the check red on `main`, then green — the manifold opening at its cover and reading with no page error, on a page that is **down right now**.*
   **It is caught at both rungs**, which is the whole R15 story: `tsc` sees an undefined name and driving sees the error boundary. It shipped for five sprints because **the type gate ran on zero files and the driver never reached the page.**
 
 - **U2 — The gate gains the app project.** *Mechanism: `test` becomes `tsc --noEmit && tsc -p app/tsconfig.json --noEmit && vitest run`, per Queenie's ruling. Files: `package.json`. Depends on: nothing. Realizes: R10, R15. **Visible end:** the gate typechecking **46** app files where it typechecked none, with the error count stated.*
@@ -400,14 +369,14 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 - **U6 — The fence, at paragraph grade, keyed by its info string.** *Mechanism: the markdown section's `divide()` pulls a fence out whole — blank lines inside it do not split it — and `compose()` sends it to the kind its info string names. Files: with U4. Depends on: U4. Realizes: R3, R11. **Visible end:** two different info strings giving two different kinds in one section, each standing at the index it was written at, prose counting around both.*
 
-- **U7 — The markdown link, at sentence grade.** *Mechanism: a link composes to a reference inside the sentence that holds it. **The classes ship**: [`$Link`](../../package/src/reference/Link.tsx) is a `$Sentence` with `$url` whose `frame()` wraps its surface, and `url` already defaults to `copy` — so an external link is `copy` = the text, `$url` = the target, and nothing new is built; an internal one holds a reference the way [`$Bookmark`](../../package/src/book/Bookmark.tsx) does. Files: with U4. Depends on: U5. Realizes: R4, R11. **Visible end:** the link a part of its **sentence** and never of the paragraph above — AE4, a regression on the shipped cover — and `words` counting `text` while counting neither `https` nor `x` nor `com`.*
+- **U7 — The markdown link, at sentence grade.** *Mechanism: a link composes to a reference inside the sentence that holds it. **The classes ship**: [`$Link`](../../package/.archive/reference/Link.tsx) is a `$Sentence` with `$url` whose `frame()` wraps its surface, and `url` already defaults to `copy` — so an external link is `copy` = the text, `$url` = the target, and nothing new is built; an internal one holds a reference the way [`$Bookmark`](../../package/src/book/Bookmark.tsx) does. Files: with U4. Depends on: U5. Realizes: R4, R11. **Visible end:** the link a part of its **sentence** and never of the paragraph above — AE4, a regression on the shipped cover — and `words` counting `text` while counting neither `https` nor `x` nor `com`.*
 
 - **U8 — Inline math, at word grade.** *Mechanism: `$…$` inside a sentence becomes the figure pattern one level down — a part whose content is not writing. Files: with U4. Depends on: U4, U5. Realizes: R14, R11. **Visible end:** an inline formula standing as a part of its sentence, its TeX not counted among the words.*
   **A NAME IS OWED HERE** — the figure pattern at word grade. The unit **reports the population and does not name it** (D9).
 
 - **U19 — Display math, at paragraph grade.** *Mechanism: `$$…$$` between paragraphs becomes a figure, like a fence. Files: with U6. Depends on: U6. Realizes: R14, R11. **Visible end:** a display formula standing at its own index with the prose numbered around it.*
 
-- **U20 — `$Latex` stops standing beside the model — GUARDED.** *Mechanism: its base changes from `$Chemical` to writing, and every `instanceof $Latex` and `$elements.filter(… instanceof $Latex)` in the demo is swept with it; `formulas` becomes a reading off `parts()`. Files: [`page/latex.tsx`](../../package/app/src/sections/page/latex.tsx), `page/markdown.tsx`, `page/sheet.tsx`. Depends on: U8, U19. Realizes: R14. **Visible end:** no getter anywhere scanning `$elements` for instances of a class — AE16.*
+- **U20 — `$Latex` stops standing beside the model — GUARDED.** *Mechanism: its base changes from `$Chemical` to writing, and every `instanceof $Latex` and `$elements.filter(… instanceof $Latex)` in the demo is swept with it; `formulas` becomes a reading off `parts()`. Files: [`page/latex.tsx`](../../.archive/app/src/sections/page/latex.tsx), `page/markdown.tsx`, `page/sheet.tsx`. Depends on: U8, U19. Realizes: R14. **Visible end:** no getter anywhere scanning `$elements` for instances of a class — AE16.*
   **DO NOT DELETE `$Latex.inline`.** It looks like dead weight and it is **chemistry's inline-grouping marker** — deleting it is [a defect we have already filed](../solutions/01-the-formulas-that-rendered-empty.md), where removing it made two formulas block-level same-type siblings and tripped the keys warning. *Cathy caught the same trap independently while sizing this, which is the second time this member has tried to look removable.*
 
 - **U9 — The unpaired mark.** *Mechanism: where `divide()` finds no partner for a mark, the mark falls through as a run with no letters and `compose()` places it as punctuation — the path that already exists. An unterminated **block** is a different question and is answered by the kind's own `valid()`. Files: with U5, U6. Depends on: U5, U6. Realizes: R12. **Visible end:** `2 * 3` giving the same parts, words and count in a regular section and a markdown one — AE9 — and an unterminated fence invalid in its own words rather than swallowing the rest of the section.*

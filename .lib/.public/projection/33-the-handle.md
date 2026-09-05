@@ -196,7 +196,7 @@
 
 ## <a id="scenarios-33"></a><a id="risks-33"></a>Scenarios and risks — how they resolved
 
-***The scenarios became [the probe suite](../../package/src/tests/composition-experiment.test.tsx) — twenty-one promises — and the demo AEs landed there too:*** *AE10 as concatenate-joins, AE11 as handles-nobody-wrote, AE12 as the resolves-identity and address/follow round trips, AE13 as the failures naming position and count, AE14 as the stack counts at every grade.* **[The surface flag stands](15-the-build.md): the spec harness is the only surface running v2; a driven page awaits the surface decision, Doug's, riding U40/R46.**
+***The scenarios became **the probe suite** — twenty-one promises — and the demo AEs landed there too:*** *AE10 as concatenate-joins, AE11 as handles-nobody-wrote, AE12 as the resolves-identity and address/follow round trips, AE13 as the failures naming position and count, AE14 as the stack counts at every grade.* **[The surface flag stands](15-the-build.md): the spec harness is the only surface running v2; a driven page awaits the surface decision, Doug's, riding U40/R46.**
 
 **Of the five risks: 1 dissolved with the seats; 2 never arose (the catalogue's block is its written references); 3 shrank to Book's double-narrow and two internal casts; 4 was accepted by [R23](32-the-route.md#r23) and then SHARPENED into the found fault — the one-field index — fixed and promised; 5 was paid correctly: one class, one ceremony line.**
 

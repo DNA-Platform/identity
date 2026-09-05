@@ -63,12 +63,12 @@ Recorded because each one turned the design, and four of them corrected the impl
 
 Each claim was checked against the source, and the counts are what make the requirements below sized rather than guessed.
 
-- **`inline` is set false at exactly four sites** — [`$Section`](../../package/src/writing/Section.tsx), [`$Document`](../../package/src/document/Document.tsx), [`$Figure`](../../package/src/writing/Figure.tsx), [`$IndexCard`](../../package/src/reference/IndexCard.tsx). Everything else takes `$Writing`'s `true`.
+- **`inline` is set false at exactly four sites** — [`$Section`](../../package/src/writing/Section.tsx), [`$Document`](../../package/.archive/document/Document.tsx), [`$Figure`](../../package/.archive/writing/Figure.tsx), [`$IndexCard`](../../package/src/reference/IndexCard.tsx). Everything else takes `$Writing`'s `true`.
 - **The block already holds everything.** [`gathered()`](../../package/src/utilities/html.ts) flattens the bond's whole sequence — blocks and standalone arguments alike — into one ordered element list, so `inline` never controlled representation. Its only real consumer is the parse's recognition test.
 - **`index` appears at 20 sites in the model, and no author declares one** — zero occurrences of `index=` across the demo's book files.
-- **The writes split by where they happen.** [`$Book`](../../package/src/book/Book.tsx), [`$Document`](../../package/src/document/Document.tsx) and `$CardCatalogue` write it **inside a bond constructor** — once, never again. [`$Writing.parts()`](../../package/src/writing/Writing.tsx) writes it **on every call**, to objects it just built. Only the second kind loops.
+- **The writes split by where they happen.** [`$Book`](../../package/src/book/Book.tsx), [`$Document`](../../package/.archive/document/Document.tsx) and `$CardCatalogue` write it **inside a bond constructor** — once, never again. [`$Writing.parts()`](../../package/src/writing/Writing.tsx) writes it **on every call**, to objects it just built. Only the second kind loops.
 - **The loop's real cause was measured, and it was not parenting.** [`bond.ts:173`](../../../chemistry/package/src/abstraction/bond.ts) — `if (store[property] === value) return;` — so a write of an unchanged value is not news. A written part keeps its number across calls and wakes nobody; a freshly built part has `$index` undefined, so its number is *always* news. **Written parts were safe all along.**
-- **`$Location` is the only thing standing on the number** — [`read()`](../../package/src/reference/Location.tsx) finds the part whose `index` matches. Position answers the same question with nothing stored. `$Composition$` and `$Catalogue$` both name `index` in their generic constraint.
+- **`$Location` is the only thing standing on the number** — [`read()`](../../package/.archive/reference/Location.tsx) finds the part whose `index` matches. Position answers the same question with nothing stored. `$Composition$` and `$Catalogue$` both name `index` in their generic constraint.
 - **`$Section.canonical` builds a fresh paragraph on every call** from its `title` block, so *the canonical is the special first at every level* is written in the derivation and not implemented.
 - **`$Document` already derives what R3 asks for** — canonical is the first non-parenthetical section, summary the parenthetical one, title the canonical's heading. R3 is a deletion, not an addition.
 - **The parse drops what it cannot compose, with a console warning** — [`Writing.tsx:88-94`](../../package/src/writing/Writing.tsx). Its own comment says the filter answers two questions and only one is the parse's business.
@@ -88,10 +88,7 @@ Each claim was checked against the source, and the counts are what make the requ
 
 ## Actors
 
-- **A1 — The author of a book.** Writes prose, and expects the model to hold what they wrote — every part of it, in order, with nothing quietly missing.
-- **A2 — The author of a notation.** Says how prose divides and what each piece composes into, and gets a working level system without writing one.
-- **A3 — The consumer.** Wants one book's sentences drawn their way without subclassing every level between the book and the sentence.
-- **A4 — The reader of a failure.** Meets a piece of writing the model rejects and needs to know **which constraint** failed and **where it stands**.
+*Compacted at the close of the sprint — the actors are the classes the units name.*
 
 ## Section A — the shape of writing
 
@@ -147,38 +144,15 @@ Each claim was checked against the source, and the counts are what make the requ
   - **R15b — the parse reaches every level, and the counts cannot disagree.** *Seen: document → section → paragraph → sentence → word → letter, and one word count whichever altitude it is reached from.*
   - **R15c — markdown is integrated well, judged on its own terms.** A stand-in is allowed to be a stand-in; it is not allowed to be partial. *Seen: [U12](#units)'s notation answering only `divide` and `compose` and getting the whole level system, with nothing in `lib` naming markdown.*
 
-  **And the addresses become real.** Today `#3.1` and `¶ 1.2` are [string interpolation over array positions](../../package/app/src/sections/the-manifold.tsx); under R6 they are locations that **read back to the very part they name**. *Seen: one page, one piece of writing, four altitudes; the word count the same whichever level you arrive from; and following an address landing on that exact part — which a hand-authored page cannot fake, because a typed count can be typed and a resolving address cannot.*
+  **And the addresses become real.** Today `#3.1` and `¶ 1.2` are [string interpolation over array positions](../../.archive/app/src/sections/the-manifold.tsx); under R6 they are locations that **read back to the very part they name**. *Seen: one page, one piece of writing, four altitudes; the word count the same whichever level you arrive from; and following an address landing on that exact part — which a hand-authored page cannot fake, because a typed count can be typed and a resolving address cannot.*
 
 ## Key flows
 
-- **F1 — An author writes a chapter.** Prose, headings, a figure, a name. Everything they wrote is in the parts, in order, and nothing is dropped.
-- **F2 — A notation is declared.** Two answers — how prose divides, what each piece composes into — and the level system works beneath it without being rewritten.
-- **F3 — A consumer re-dresses one book's prose.** One registration on their book; every sentence beneath it draws their class; no other book is affected and no level is subclassed.
-- **F4 — A reader meets a rejection.** The failure draws where the writing stands, names which constraint failed, and carries every other failure of the same bond beside it.
+*Compacted at the close of the sprint — the flows are what the sprint built; the units above name them.*
 
 ## Acceptance examples
 
-- **AE1.** `gathered()` is deleted and every book renders unchanged.
-- **AE2.** A section written with a subsection inside it holds the subsection as a part **and** answers the flat paragraph list.
-- **AE3.** A document with no summary fails validation, and the message names the missing summary.
-- **AE4.** `section.parts()[0] === section.parts()[0]` — the title is part zero and it is one object.
-- **AE5.** The parse walk is one function, called by every level, taking a block and the levels it accepts.
-- **AE6.** An element above the accepted level throws; one below contributes its copy; one at the level is used as itself.
-- **AE7.** Grepping `.index` across `src/` returns only `$Location`'s own, and every suite is green.
-- **AE8.** `at(7).read()` answers the part at position 7 with no search.
-- **AE9.** A book with one malformed piece draws the exception in place, the rest of the page intact, and its parts count equals its writing.
-- **AE10.** `33A3a-112and-skjdfh` survives the parse as one word.
-- **AE11.** A bond failing a parameter check **and** a validity constraint reports both in one message.
-- **AE12.** A `valid()` written on a subclass accrues with its superclass's reasons rather than replacing them.
-- **AE13.** An author written mid-paragraph leaves the sentence count at one.
-- **AE14.** A markdown source with `#`, `##` and `###` builds a nested model, and `cut()` in the demo is deleted.
-- **AE15.** `$(TheManifold, parts.Sentence)(MySentence)` redraws every sentence in that book; the shelf beside it is unchanged; no subclass of `$Section` or `$Paragraph` exists in the diff.
-- **AE16.** `app/src/markdown/` is smaller by most of its 1,083 lines, and the demo drives clean.
-- **AE18.** One piece of writing is read at four altitudes — sections, paragraphs, sentences, words — and the word count is identical whichever altitude it is reached from.
-- **AE19.** An address shown in a level view is followed, and it lands on the very part it names — not a part with the same text, the same object.
-- **AE17.** Every suite green against a rebuilt chemistry `dist` — chemistry from **674**, lib from **203** — with the app typecheck's baseline unchanged by identity, and both drivers completing with checkpoint accounting.
-
----
+*Compacted at the close of the sprint — the examples were accepted at the review; what they proved is in the record above.*
 
 ## Open, and named rather than assumed
 
@@ -286,7 +260,7 @@ Each claim was checked against the source, and the counts are what make the requ
 ### The demo
 
 - **U18 — The level views, and they are the proof.** *Mechanism: the manifold's* the model, unadorned *stops being one view and becomes a family — the same writing read at section, paragraph, sentence and word grade, each asking `parts()` at that level instead of reading a hand-built structure; and the addresses stop being interpolated strings and become locations that resolve. Files: `app/src/sections/the-manifold.tsx` and its styled module, plus wherever a shared level view lands. Depends on: U2, U7 — **and deliberately not on U13 or U12**, so the parse is proved visible at the sprint's midpoint rather than at its end. Realizes: R14, AE18, AE19. **Visible end: one page, one piece of writing, four altitudes, ONE word count — and an address followed, landing on the very part it names.***
-  **Bounded, and this is the guard that matters:** the views **read** the model and add no parse of their own. Today [`row()`](../../package/app/src/sections/the-manifold.tsx) flattens a chapter into ~55 lines of hand-copied strings — headings, subtitles, paragraph text — which is a second population of the model wearing a data structure. If a view starts computing what a level *is* rather than asking for it, it has become the second parse this sprint exists to delete.
+  **Bounded, and this is the guard that matters:** the views **read** the model and add no parse of their own. Today [`row()`](../../.archive/app/src/sections/the-manifold.tsx) flattens a chapter into ~55 lines of hand-copied strings — headings, subtitles, paragraph text — which is a second population of the model wearing a data structure. If a view starts computing what a level *is* rather than asking for it, it has become the second parse this sprint exists to delete.
   **And the `.slice(1)` calls scattered through it stop compensating.** They skip a first part the model does not currently name; after U7 the title *is* part zero, so they either read honestly or disappear.
 
 - **U15 — The demo rewritten, and code deleted.** *Mechanism: the demo stops carrying a notation — its three classes are gone into `lib` — and what remains is drawing and demonstration; the faces stay, because styling is correctly demo-side. Files: `app/src/markdown/**`, `app/src/sections/page/**`, `app/src/sections/the-manifold.tsx`. Depends on: U12, U14, U18. Realizes: R13. **Visible end: a diff in which demo code is DELETED**, stated as a line count against the 1,083 in `app/src/markdown` plus the hand-copied structure U18 removes, and the facing-page comparison still agreeing exactly.*
@@ -516,6 +490,6 @@ cd library/.public/package && npx vite app --port 5199
 *A handoff into a **brainstorm** names the sources the designing reads, not the code the last session touched.*
 
 1. **[Chapter zero's Sprint D and R53](00-planning.md#d--the-compilation)** — what the build must generate, and the mapping it must follow: property names identical, framework properties from `$Referent` up, a book-valued property typed to its reference, chapters as an array, any other reference collapsed to a book reference plus names.
-2. **[The hand-built cards](../../package/app/src/sections/book/library/the-team/card.tsx)** — **load-bearing, and the actual specification.** Doug's method was that building them by hand tells you what the build must autogenerate; that list has never been extracted. Read it as a requirements document.
+2. **[The hand-built cards](../../.archive/app/src/sections/book/library/the-team/card.tsx)** — **load-bearing, and the actual specification.** Doug's method was that building them by hand tells you what the build must autogenerate; that list has never been extracted. Read it as a requirements document.
 3. **[Sprint 48's R53](06-sprint-48--subjects-and-the-library.md#r53-the-card-is-a-compilation-defined-by-the-public-build-doug-2026-08-06)** — the card as a compilation, and why it cannot be a closed shape.
 4. **[The sprint that planned what it had not designed](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md)** — the failure the build is most likely to repeat, because "the TypeScript compiler can read our source" is a feasibility case and not a mechanism.

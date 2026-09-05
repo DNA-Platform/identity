@@ -118,7 +118,7 @@ The discharge counted two: the number, and `$role = 'mention'`. **The parse stil
 if (made.parent !== this) made.parent = this as never;
 ```
 
-[`Paragraph.tsx:65`](../../package/src/writing/Paragraph.tsx) · [`Section.tsx:143`](../../package/src/writing/Section.tsx) · [`Sentence.tsx:69`](../../package/src/writing/Sentence.tsx) · [`Word.tsx:27`](../../package/src/writing/Word.tsx) · [`Document.tsx:112`](../../package/src/document/Document.tsx)
+[`Paragraph.tsx:65`](../../package/src/writing/Paragraph.tsx) · [`Section.tsx:143`](../../package/src/writing/Section.tsx) · [`Sentence.tsx:69`](../../package/src/writing/Sentence.tsx) · [`Word.tsx:27`](../../package/src/writing/Word.tsx) · [`Document.tsx:112`](../../package/.archive/document/Document.tsx)
 
 **`parent` is a chemical's own setter, so assigning it is a write like any other**, and [`diffuse`](../../../chemistry/package/src/implementation/scope.ts) propagates a write upward through the composition tree. So the cycle from [the original mechanism](#the-mechanism) closes again, with one difference that makes it worse:
 
@@ -184,7 +184,7 @@ PARTS 2   TITLE X   SUMMARY SummaryAn account.   STABLE true true
 
 ## The mechanism — A GETTER THAT BUILDS A CHEMICAL
 
-**[`$Document.title`](../../package/src/document/Document.tsx) constructs a NEW `$Title` every time it is read:**
+**[`$Document.title`](../../package/.archive/document/Document.tsx) constructs a NEW `$Title` every time it is read:**
 
 ```tsx
 get title(): $Title | undefined {
@@ -204,7 +204,7 @@ get title(): $Title | undefined {
 
 **The breadcrumb reads [`canonical?.heading`](../../package/src/writing/Section.tsx) — a string, constructing nothing.** *One line, and `verify-library` went **39/39, 0 console errors**.*
 
-> ***THE ROOT IS NOT FIXED AND IS NAMED RATHER THAN OMITTED.*** **`$Document.title` still builds on every read, and [`$Figure.caption`](../../package/src/writing/Figure.tsx) does the same thing** — *found by the same grep, latent for the same reason.* **Two getters that no view may touch, and nothing says so at either one.**
+> ***THE ROOT IS NOT FIXED AND IS NAMED RATHER THAN OMITTED.*** **`$Document.title` still builds on every read, and [`$Figure.caption`](../../package/.archive/writing/Figure.tsx) does the same thing** — *found by the same grep, latent for the same reason.* **Two getters that no view may touch, and nothing says so at either one.**
 
 ## The specification, in the form this appearance adds
 

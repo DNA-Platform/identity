@@ -57,7 +57,7 @@
 
 ***`specify()` came out of nine bond constructors and two test-local ones.*** **One file went from 44.87 seconds to 865 milliseconds.** *Doug's ruling is the general form:* **"specify should be called on build to check and never needs to be called in the runtime of the app."**
 
-***`bind()` still specifies***, *and that is deliberate rather than an oversight:* **[`$$(of, kind)`](../../package/src/utilities/Lib.tsx) — reading a writing AS a kind — creates a chemical and calls `bind`, which is the moment a claim is being made about what something is.** *Two tests state it: **"fails writing that cannot be what it is being bound as."***
+***`bind()` still specifies***, *and that is deliberate rather than an oversight:* ****`$$(of, kind)`** — reading a writing AS a kind — creates a chemical and calls `bind`, which is the moment a claim is being made about what something is.** *Two tests state it: **"fails writing that cannot be what it is being bound as."***
 
 **And the same fault had a second instance, found while fixing the first.** *The block condition was written twice — as the `hasBlock` rule and as `$check(block, 'block')` inline in nine bond constructors — and **the inline one threw where the rule reports**.* ***It killed a legitimate case:*** *a leaf with no children of its own, whose copy comes from elsewhere, died on a check its own class default was meant to satisfy.*
 

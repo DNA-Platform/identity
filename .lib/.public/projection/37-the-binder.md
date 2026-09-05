@@ -102,9 +102,9 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 | `prints.set(code, $$X)` | **code to reference class**, so a path step can print itself |
 | `this[cache]('X')` | **name to type**, which is what makes `<Type>X</Type>` resolve — *and it resolves only once PAINTED* |
 
-**Two mechanisms carry the flexibility, and neither is a special case.** [`$$(writing)(Kind)`](../../package/src/utilities/Lib.tsx) asks whether writing STANDS as a kind — by instance, by carried type, or by a worn trait — and `$$(writing, Kind)` binds it so the writing is *read as* that kind without being one. And [`$Trait`](../../package/src/writing/Writing.tsx) is a type you may wear many of: [`$Card`](../../package/src/reference/ReferenceCard.tsx) is a trait whose `canonicalForm` is `$ReferenceCard`, so a reference wearing it is readable as a card while keeping the one type it has.
+**Two mechanisms carry the flexibility, and neither is a special case.** **`$$(writing)(Kind)`** asks whether writing STANDS as a kind — by instance, by carried type, or by a worn trait — and `$$(writing, Kind)` binds it so the writing is *read as* that kind without being one. And [`$Trait`](../../package/src/writing/Writing.tsx) is a type you may wear many of: [`$Card`](../../package/src/reference/ReferenceCard.tsx) is a trait whose `canonicalForm` is `$ReferenceCard`, so a reference wearing it is readable as a card while keeping the one type it has.
 
-**A rule returning `false` is the whole flexibility story.** [`ReferencesSpecification`](../../package/src/reference/References.tsx) switches off four inherited rules — a references section needs no title, says nothing of its own, may stand empty, and holds nothing but references — and that is the entire mechanism by which a kind departs from its parent.
+**A rule returning `false` is the whole flexibility story.** **`ReferencesSpecification`** switches off four inherited rules — a references section needs no title, says nothing of its own, may stand empty, and holds nothing but references — and that is the entire mechanism by which a kind departs from its parent.
 
 # <a id="the-reference"></a>The reference, the link, and the router — the sprint's main part
 
@@ -112,7 +112,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 ## What he said, generalized
 
-**All writing is a reference.** It has meaning — `$Writing` already implements [`$Referent$`](../../package/src/reference/Referent.tsx) and already answers `means`. **So reference-hood is universal and a Link is the SPECIAL case, not the general one:** a link is a path that points *outside*, and being external is what makes reading it different. That is his phrase — *"that's what would make it a special referent"* — and it is the whole distinction.
+**All writing is a reference.** It has meaning — `$Writing` already implements [`$Referent$`](../../package/.archive/reference/Referent.tsx) and already answers `means`. **So reference-hood is universal and a Link is the SPECIAL case, not the general one:** a link is a path that points *outside*, and being external is what makes reading it different. That is his phrase — *"that's what would make it a special referent"* — and it is the whole distinction.
 
 ## The old version already had this shape
 
@@ -220,7 +220,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 ***The level needed no change to get here.*** *He questioned it and then answered it himself — "I think it would be a nested section and section contributing paragraphs **as designed already**" — and measurement agreed: `$TypeOfTable extends $TypeOfSection`, whose `writtenAs` is `$Paragraph`, so a table composing cells IS a section composing paragraphs. An earlier draft of this entry called those parts ROWS and asked for the view to split them into columns. **Called cells, the same structure is right and nothing moves.***
 
-<a id="r92"></a>**R92** — **the default dress is Wikipedia's, and Wikipedia uses a real table.** *Checked in our own source:* [`Wikitable`](../../package/src/encyclopedia/Wikitable.tsx) already carries MediaWiki's values — `#f8f9fa` ground, `#a2a9b1` borders, `border-collapse: collapse`, `margin: 1em 0`, cells at `0.2em 0.4em`. **So `<table>` stays**, and a CSS-grid arrangement offered before he asked the question is withdrawn: their markup is a `<table class="wikitable">`, and the point is to look like them.
+<a id="r92"></a>**R92** — **the default dress is Wikipedia's, and Wikipedia uses a real table.** *Checked in our own source:* **`Wikitable`** already carries MediaWiki's values — `#f8f9fa` ground, `#a2a9b1` borders, `border-collapse: collapse`, `margin: 1em 0`, cells at `0.2em 0.4em`. **So `<table>` stays**, and a CSS-grid arrangement offered before he asked the question is withdrawn: their markup is a `<table class="wikitable">`, and the point is to look like them.
 
 ***What is missing is the header cell.*** *Wikipedia's tables almost always open with a `<th>` row — `#eaecf0`, centred — and we have no `th` anywhere, only `Cell` as a `<td>`. An infobox is the same markup under a different class.* **The view must also stop re-reading its own text:** [`$Table.view()`](../../package/src/writing/Table.tsx) splits `html.text(this.block)` rather than asking `parts()`, which is [the cards' fault shape](#the-toolset) — one thing read twice by two readers that can disagree.
 
@@ -243,7 +243,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 **Two gaps in the folder, both small and both needed for a real article.** There is **no header cell** — no `th`, no `#eaecf0`, no centring — and Wikipedia's tables nearly always open with one; an infobox is the same markup under another class. And **nothing says how many columns**: a flat run of cells needs that number, and by his own ruling it belongs to the look and not to the writing. *That is the one genuinely undecided piece of this requirement.*
 
-***A COLLISION, and it is inside the file this touches:*** **`Cell` already exists** — a styled `<td>` exported from [`Wikitable.tsx`](../../package/src/encyclopedia/Wikitable.tsx) — while his `<Cell>` is a kind of writing. Two things named Cell, one a dress and one a kind. *The folder names its dresses by role (`Prose`, `Bullets`, `Cited`, `Heading`), so the dress is the one that can move; the writing kind is his word. Flagged rather than renamed.*
+***A COLLISION, and it is inside the file this touches:*** **`Cell` already exists** — a styled `<td>` exported from **`Wikitable.tsx`** — while his `<Cell>` is a kind of writing. Two things named Cell, one a dress and one a kind. *The folder names its dresses by role (`Prose`, `Bullets`, `Cited`, `Heading`), so the dress is the one that can move; the writing kind is his word. Flagged rather than renamed.*
 
 **And one wrinkle worth raising before it is met in an infobox:** with cells as paragraphs, **a blank line separates cells**, so a cell cannot itself hold two paragraphs without becoming a nested section that contributes them. Wikipedia infobox cells sometimes do.
 
@@ -270,9 +270,9 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 ***THE ONE CHANGE, and the measurement names it exactly.*** `<Table><Type>Paragraph</Type>…</Table>` measured `$TypeOfTable` **because the class assigns `_type` AFTER `super`, so it clobbers what was carried.** *Assign it only when nothing was carried and the override falls out with nothing else touched:* the class's type becomes its DEFAULT rather than its law, `$$(one)($List)` still answers true because that check asks the class before the type, and `view()` is the class's either way — so the drawing survives the retyping. **A default that a written type may override is what he asked for, and it is one operator.**
 
-*This is also why the trait and the class are not rivals: the CLASS is how an author writes a list, and a TRAIT is how an existing composition is drawn as one without being retyped. Both reach the same reading through [`$$`](../../package/src/utilities/Lib.tsx).*
+*This is also why the trait and the class are not rivals: the CLASS is how an author writes a list, and a TRAIT is how an existing composition is drawn as one without being retyped. Both reach the same reading through **`$$`**.*
 
-**Indenting is already half-built.** [`Prose`](../../package/src/encyclopedia/Prose.tsx) carries `& & { margin-left: 1.6em }`, so a nested paragraph indents — the display side of nesting, from sprint 36. *A nested list wants the same, and it is a stylesheet rather than a mechanism.*
+**Indenting is already half-built.** **`Prose`** carries `& & { margin-left: 1.6em }`, so a nested paragraph indents — the display side of nesting, from sprint 36. *A nested list wants the same, and it is a stylesheet rather than a mechanism.*
 
 ## The binder
 

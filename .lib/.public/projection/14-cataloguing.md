@@ -248,13 +248,13 @@ Doug ruled `$$Chapter` the canonical table of contents entry, and the merge with
 
 **The three catalogued books' synopses stand in The Shelf as its own chapters** — `<AlgebraSynopsis />`, `<ManifoldSynopsis />`, `<TeamSynopsis />`, the very components those books render. **One class, two instances, an honest parent each.** `card.tsx` hands each its card after the cards exist, the same act as the author and subject links one grade down.
 
-**And [`shelved.map(...)`](../../package/app/src/sections/book/library/the-shelf/contents.tsx) is deleted** — the hand-drawn second list beside the real rows. The entries are chapters now, so the contents lists them with no special case, and each reads its **title, note and byline through the card**, because a synopsis is titled *Synopsis* inside its own book and that is wrong in a catalogue.
+**And [`shelved.map(...)`](../../.archive/app/src/sections/book/library/the-shelf/contents.tsx) is deleted** — the hand-drawn second list beside the real rows. The entries are chapters now, so the contents lists them with no special case, and each reads its **title, note and byline through the card**, because a synopsis is titled *Synopsis* inside its own book and that is wrong in a catalogue.
 
 ## THE CARD COLLAPSED — Doug's last cut, and it deleted the most
 
 ***"Do we even need `$LibraryCard` beyond just an `$IndexCard<$Book>`? Just make a version of that. No need for anything fancy… it is not real in this framework."***
 
-**`LibraryCard.tsx` and `LibraryCatalogue.tsx` are deleted.** The long computed type, its completeness check, `Composed`, `Reflexive`, `Carded`, `Considered`, `Unaccounted`, `Accounted` and the class — all of it. The framework ships `$IndexCard<$Book>`, which enumerates whatever fields it is given, and **the demo declares its own card** in [`librarycard.tsx`](../../package/app/src/sections/book/library/the-team/librarycard.tsx) with the fields this library's cards carry. *When the build lands, that class is what it generates.*
+**`LibraryCard.tsx` and `LibraryCatalogue.tsx` are deleted.** The long computed type, its completeness check, `Composed`, `Reflexive`, `Carded`, `Considered`, `Unaccounted`, `Accounted` and the class — all of it. The framework ships `$IndexCard<$Book>`, which enumerates whatever fields it is given, and **the demo declares its own card** in [`librarycard.tsx`](../../.archive/app/src/sections/book/library/the-team/librarycard.tsx) with the fields this library's cards carry. *When the build lands, that class is what it generates.*
 
 **`$Book.library` left the framework with it**, and the library recursion now lives on the demo's card where the agreement specification belongs. So did `$Canonical`'s twelve-hop reciprocity walk.
 
@@ -274,7 +274,7 @@ Doug ruled `$$Chapter` the canonical table of contents entry, and the merge with
 
 **`$Figure` IS the thing added, and Doug said what it is:** *"maybe the default figure is just a caption and to subclass it is to add something that's pure view."* So `$Figure extends $Paragraph`, carrying a necessary `$Caption` — **that alone satisfies its role as a paragraph** — and `drawn()` returns `null`. A subclass overrides `drawn()` and nothing else. There is no wrapper above it and no kind beneath it in the framework.
 
-**Which is why the demo now declares its own figure kinds** — `$Equation` and `$Rule` in [`markdown/section.tsx`](../../package/app/src/sections/book/../../markdown/section.tsx) — and the framework ships none. *This caught a live defect: with every figure drawn by the demo's katex, a thematic rule was being typeset as mathematics. Both drivers were green only because no driven page contained a `---` — filed as [the rule that was typeset as mathematics](../solutions/19-the-rule-that-was-typeset-as-mathematics.md).*
+**Which is why the demo now declares its own figure kinds** — `$Equation` and `$Rule` in [`markdown/section.tsx`](../../.archive/app/src/markdown/section.tsx) — and the framework ships none. *This caught a live defect: with every figure drawn by the demo's katex, a thematic rule was being typeset as mathematics. Both drivers were green only because no driven page contained a `---` — filed as [the rule that was typeset as mathematics](../solutions/19-the-rule-that-was-typeset-as-mathematics.md).*
 
 **`$Item` was struck on its own ruling:** *"Item is not a form of paragraph… it needs to either be more specific than the writing folder, or something else, but an `$Item` is not an essential element in the writing ontology."* And Doug's replacement is the elegant one, **designed and not yet built**: *"I would put list at the paragraph level and let items be the sentences within it."* Attempted, it broke six promises, and was **reverted to the commit rather than left red** — carried forward as owed work.
 
@@ -424,7 +424,7 @@ Open the port it prints. **The Shelf is the root** — four spines in a row, and
 *Shaped for a **brainstorm**, so these are sources the designing reads rather than code the last session touched. **A starting point, not a boundary** — if the conversation goes somewhere else, read for that instead.*
 
 1. **[Chapter zero's Sprint D](00-planning.md#d--the-compilation)** — what the build must generate, and the mapping it must follow.
-2. **[The demo's hand-built card](../../package/app/src/sections/book/library/the-team/librarycard.tsx)** — **the actual specification.** Doug's method is that writing them by hand tells you what the build must autogenerate, and this is that list in code.
+2. **[The demo's hand-built card](../../.archive/app/src/sections/book/library/the-team/librarycard.tsx)** — **the actual specification.** Doug's method is that writing them by hand tells you what the build must autogenerate, and this is that list in code.
 3. **[The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md)** — the settled account of what writing is, on one page. Corrected this sprint; read it rather than the sprint records that produced it.
 4. **[The sprint that planned what it had not designed](../solutions/04-the-sprint-that-planned-what-it-had-not-designed.md)** — the failure the build is most likely to repeat, because *"the compiler can read our source"* is a feasibility case standing where a mechanism is owed.
 5. **[Compounding](../../../../.claude/library/..librarianship/17-compounding.md)** — changed this sprint: compounding now **subtracts** as well as adds, and a closed sprint chapter gets compacted into an index.

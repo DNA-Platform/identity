@@ -38,8 +38,8 @@
 | [Projection's cover](.cover.md), all nineteen entries | the arc — what each sprint left owed |
 | [Chapter zero](00-planning.md) | the standing backlog and the sprint discipline |
 | [`Theme.tsx`](../../package/src/writing/Theme.tsx) · [`dressing.tsx`](../../app/src/dressing.tsx) · [`theme.ts`](../../app/src/theme.ts) | the whole configurable surface, under sixty lines each |
-| [`Writing.tsx`](../../package/src/writing/Writing.tsx) · [`Book.tsx`](../../package/src/book/Book.tsx) · [`Document.tsx`](../../package/src/document/Document.tsx) | the three things that lay parts, and the drawing template they share |
-| [`Section`](../../package/src/writing/Section.tsx) · [`Paragraph`](../../package/src/writing/Paragraph.tsx) · [`Title`](../../package/src/writing/Title.tsx) · [`Cover`](../../package/src/book/Cover.tsx) · [`Synopsis`](../../package/src/book/Synopsis.tsx) · [`Author`](../../package/src/book/Author.tsx) · [`Subject`](../../package/src/book/Subject.tsx) · [`Canonical`](../../package/src/book/Canonical.tsx) · [`Chapter`](../../package/src/book/Chapter.tsx) · [`TableOfContents`](../../package/src/book/TableOfContents.tsx) · [`Phrase`](../../package/src/writing/Phrase.tsx) · [`IndexCard`](../../package/src/reference/IndexCard.tsx) · [`Link`](../../package/src/reference/Link.tsx) | every class that draws, and the one that follows |
+| [`Writing.tsx`](../../package/src/writing/Writing.tsx) · [`Book.tsx`](../../package/src/book/Book.tsx) · [`Document.tsx`](../../package/.archive/document/Document.tsx) | the three things that lay parts, and the drawing template they share |
+| [`Section`](../../package/src/writing/Section.tsx) · [`Paragraph`](../../package/src/writing/Paragraph.tsx) · [`Title`](../../package/.archive/writing/Title.tsx) · [`Cover`](../../package/src/book/Cover.tsx) · [`Synopsis`](../../package/src/book/Synopsis.tsx) · [`Author`](../../package/src/book/Author.tsx) · [`Subject`](../../package/src/book/Subject.tsx) · [`Canonical`](../../package/.archive/book/Canonical.tsx) · [`Chapter`](../../package/src/book/Chapter.tsx) · [`TableOfContents`](../../package/src/book/TableOfContents.tsx) · [`Phrase`](../../package/src/writing/Phrase.tsx) · [`IndexCard`](../../package/src/reference/IndexCard.tsx) · [`Link`](../../package/.archive/reference/Link.tsx) | every class that draws, and the one that follows |
 | [`app.tsx`](../../app/src/app.tsx) · [`bookmark.tsx`](../../app/src/bookmark.tsx) · [`catalogue.tsx`](../../app/src/catalogue.tsx) · [`storage.ts`](../../app/src/storage.ts) · [`main.tsx`](../../app/src/main.tsx) · [`verify-library.mjs`](../../app/verify-library.mjs) · [`vite.config.ts`](../../app/vite.config.ts) | the surface being changed, and the 29 checkpoints that guard it |
 | [`emit.ts`](../../build/stages/emit.ts) · the generated [`cards.tsx`](../../app/src/library/cards.tsx), [`books.tsx`](../../app/src/library/books.tsx) and a book module | what a compiled book actually looks like, since the design turns on it |
 | the corpus — [a cover](../../../.test-library/.physics/the-standard-model/.cover.tsx) and [a chapter](../../../.test-library/.physics/the-standard-model/symmetry.tsx) | what an author writes, as against what is generated |
@@ -61,7 +61,7 @@
 | | what it is | lines | who ships it |
 |---|---|---|---|
 | **the framework** | [`package/`](../../package/) — `@dna-platform/lib` | **2,634** | published to npm; a consumer's dependency |
-| **the demonstration** | [`package/app/`](../../package/app/) — the shelf, the manifold, the page | **8,139** | not published; it shows the framework off |
+| **the demonstration** | [`package/app/`](../../../chemistry/package/app) — the shelf, the manifold, the page | **8,139** | not published; it shows the framework off |
 | **the application** | [`app/`](../../app/) — the public library site | **651 authored**, 675 generated | deployed to Pages at `/inexplicable-phenomena/` |
 | the compiler | [`build/`](../../build/) | **1,508** | node-side; it renders nothing |
 
@@ -84,11 +84,11 @@
 
 ## <a id="m9"></a>M9 — The framework already ships one followable reference, and the application cannot run it
 
-[`$Link`](../../package/src/reference/Link.tsx) — a word that points — overrides `frame()` and wraps itself in a **react-router** `<Link to>`. ***`frame()` is chemistry's own documented seam***, and [`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts) says so in its own words: *"Override `frame()` to WRAP the rendered content — e.g. put it in a clickable link — while the content it wraps still EVOLVES through `view()`."*
+[`$Link`](../../package/.archive/reference/Link.tsx) — a word that points — overrides `frame()` and wraps itself in a **react-router** `<Link to>`. ***`frame()` is chemistry's own documented seam***, and [`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts) says so in its own words: *"Override `frame()` to WRAP the rendered content — e.g. put it in a clickable link — while the content it wraps still EVOLVES through `view()`."*
 
 **And it would throw in the public application today.** The app drives `history.pushState` and `popstate` by hand and mounts no Router; `react-router-dom` sits in its dependencies, **installed and unused**. *So the framework's only followable reference is unreachable in the one program that most needs to follow things.*
 
-***That `frame()` wraps without touching `view()` is load-bearing beyond the link***, because [`$Document.declaration()`](../../package/src/document/Document.tsx) harvests a document's sections by calling `view()`. **A wrap written into `view()` would break the harvest; a wrap written into `frame()` cannot.**
+***That `frame()` wraps without touching `view()` is load-bearing beyond the link***, because [`$Document.declaration()`](../../package/.archive/document/Document.tsx) harvests a document's sections by calling `view()`. **A wrap written into `view()` would break the harvest; a wrap written into `frame()` cannot.**
 
 ## <a id="m10"></a>M10 — A route can be answered without loading a book
 
@@ -104,7 +104,7 @@
 
 - **THE BOUNDARY.** The reading surface, **both paths** — an ordinary book and a subject alike. The application keeps routing, fetching, the trail, the failure and the listeners.
 
-- **FOLLOWING IS ONE MECHANISM.** The application adopts the router that [`$Link`](../../package/src/reference/Link.tsx) already assumes.
+- **FOLLOWING IS ONE MECHANISM.** The application adopts the router that [`$Link`](../../package/.archive/reference/Link.tsx) already assumes.
 
 - **THE BOUND IS NOT THE FRAMEWORK'S.** *"This sounds like something we want simple to start with room for complexity that isn't in the base framework… **We just need a way to imagine supporting that feature in the future.**"*
 
@@ -160,15 +160,11 @@
 
 ## The actors
 
-- **A26 — A reader of the library.** Arrives at a route, reads a book, moves through it, and comes back to where they left off — **without the application knowing anything about how that book wanted to be read**.
-- **A27 — Someone giving a book its own form.** Wants a book that reads as a spread, a deck, or one chapter at a time. **Writes one subclass in their own cover.** Does not subclass `$Book`, does not touch the compiler, does not reimplement a reading.
-- **A28 — Someone building a different application on the framework.** Mounts a book and gets **a whole book** — surrounded, placed, navigable — rather than a bag of chapters they must arrange themselves.
+*Compacted at the close of the sprint — the actors are the classes the units name.*
 
 ## The key flows
 
-- **F18 — Reading.** A route resolves to a book. The book renders itself. The reader moves through it, and where they are persists.
-- **F19 — Consulting.** A book that catalogues draws its entries; following one is a navigation to another route, by **the same mechanism a `$Link` follows**.
-- **F20 — Giving a book its form.** One subclass, in the authored cover, changes what surrounds the reading and where the chapters stand. **Every part beneath it moves, written and found alike.**
+*Compacted at the close of the sprint — the flows are what the sprint built; the units above name them.*
 
 ## <a id="the-requirements"></a>The requirements
 
@@ -256,7 +252,7 @@
 
 **<a id="d44"></a>D44 — `.book` is not built, and both halves of the ruling are kept.** *Doug proposed it — "the book can be overridden with `.book` which would always come before cover, I think that's elegant and solves it" — and retracted it an exchange later: "I don't think we need cover as environment with `.book`."* **Recorded rather than smoothed over, because the first half is a real design that a later sprint may want.**
 
-**<a id="d45"></a>D45 — Following is react-router, matching [`$Link`](../../package/src/reference/Link.tsx).** *Chosen over a plain anchor the application intercepts, and over a render-time resolved follow.* **The framework already committed to it and the application already carries the dependency unused** — so this makes one mechanism where there were one-and-a-half.
+**<a id="d45"></a>D45 — Following is react-router, matching [`$Link`](../../package/.archive/reference/Link.tsx).** *Chosen over a plain anchor the application intercepts, and over a render-time resolved follow.* **The framework already committed to it and the application already carries the dependency unused** — so this makes one mechanism where there were one-and-a-half.
 
 **<a id="d46"></a>D46 — The bound is not in the base framework, and the route to it is a cover subclass.** *Doug: "simple to start with room for complexity that isn't in the base framework."* **This is [the twenty's standing rule](18-the-theme.md#the-standing-rule) applied again: see the route, ship nothing for it.**
 
@@ -288,9 +284,9 @@
 
 **1 — `page` IS NOT REACTIVE, so turning one would silently do nothing.** [`$Writing`](../../package/src/writing/Writing.tsx) declares `page = 0` with no `$`, and [the reactivity contract](../../../chemistry/.lib/authorship/04-the-reactivity-contract.md) is explicit: *"Fields prefixed with `$` are reactive. Other fields (no prefix, or underscore prefix `_`) are not."* ***A write to it repaints nothing.*** **So [R69](#r69) is not a tidy-up — it is the difference between a binding that can turn a page and one that cannot.** *Found by reading, not by driving, and it would have been found by driving much later.*
 
-**2 — THE ROUTER BOUNDARY HAS EXACT PRIOR ART HERE, and it is documented as unsafe on purpose.** [`lab.tsx`](../../package/app/src/apparatus/lab.tsx) is *"the root of the app. A function component at the react-router boundary… Everything below it is $Chemistry chemicals. **This is the 'unsafe' boundary — a plain React function that bridges the ecosystem package into the chemical tree.**"* ***The shape is copied rather than invented***, and it answers the one question a chemical cannot: hooks do not belong inside `view()`.
+**2 — THE ROUTER BOUNDARY HAS EXACT PRIOR ART HERE, and it is documented as unsafe on purpose.** [`lab.tsx`](../../.archive/app/src/apparatus/lab.tsx) is *"the root of the app. A function component at the react-router boundary… Everything below it is $Chemistry chemicals. **This is the 'unsafe' boundary — a plain React function that bridges the ecosystem package into the chemical tree.**"* ***The shape is copied rather than invented***, and it answers the one question a chemical cannot: hooks do not belong inside `view()`.
 
-**3 — A CARD DOES NOT KNOW ITS OWN SUBJECT, so the computation is the library's and not the framework's.** [`$IndexCard`](../../package/src/reference/IndexCard.tsx) carries a `name` and a pointer, and [`$CardCatalogue`](../../package/src/reference/CardCatalogue.tsx) files cards by name — **neither holds a subject link.** The generated [`$Card`](../../app/src/library/cards.tsx) does, and says why: *"which fields a library's cards carry is that library's business."* ***So [R73](#r73) is answered by cards the compiler emits — which are model objects — and it needs no framework change***, which narrows the unit rather than the requirement. *A framework-level subject on a card is [design owed](#names-owed) and is not built.*
+**3 — A CARD DOES NOT KNOW ITS OWN SUBJECT, so the computation is the library's and not the framework's.** [`$IndexCard`](../../package/src/reference/IndexCard.tsx) carries a `name` and a pointer, and [`$CardCatalogue`](../../package/.archive/reference/CardCatalogue.tsx) files cards by name — **neither holds a subject link.** The generated [`$Card`](../../app/src/library/cards.tsx) does, and says why: *"which fields a library's cards carry is that library's business."* ***So [R73](#r73) is answered by cards the compiler emits — which are model objects — and it needs no framework change***, which narrows the unit rather than the requirement. *A framework-level subject on a card is [design owed](#names-owed) and is not built.*
 
 **4 — `accounts()` ALREADY SURVIVES AN UNPOINTED CARD**, catching the throw and answering false. **[U62](#u62) depends on that**, because on a subject page every entry's card is unpointed by construction — the books are not loaded.
 
@@ -340,7 +336,7 @@
 
 ### <a id="u63"></a>U63 — Following is one mechanism
 
-**Mechanism.** The application mounts a router at its boundary in **the shape the demonstration already uses** — a plain function component reading the location, everything beneath it chemical. An entry and a trail step both follow through the router's own link, **which is what [`$Link`](../../package/src/reference/Link.tsx) already emits**. *The hand-rolled `pushState`/`popstate` pair goes; the hash the address-following writes goes through the router rather than beside it, or the two desynchronise.*
+**Mechanism.** The application mounts a router at its boundary in **the shape the demonstration already uses** — a plain function component reading the location, everything beneath it chemical. An entry and a trail step both follow through the router's own link, **which is what [`$Link`](../../package/.archive/reference/Link.tsx) already emits**. *The hand-rolled `pushState`/`popstate` pair goes; the hash the address-following writes goes through the router rather than beside it, or the two desynchronise.*
 
 **Files.** [`main.tsx`](../../app/src/main.tsx) · [`app.tsx`](../../app/src/app.tsx) · [`Synopsis.tsx`](../../package/src/book/Synopsis.tsx). **Depends on [U62](#u62).**
 
@@ -564,7 +560,7 @@ verify-book:  3 checkpoints reached — THE WALK DID NOT FINISH
 
 **At page zero the cover stands in the chapter's place** — the title page: title, subtitle, byline, and the synopsis as its lead. ***So the cover is a chapter like any other and needs no special case***, which is what [the composition already says](#the-first-brushstroke-in-dougs-own-frame).
 
-**Minimal** — three regions and nothing else. **Organized** — the running head says where you are, the contents says where you can go, the chapter is what you read. **Extensible** — a binding overrides `bound`, `stands` or `set` and gets a spread, a deck, a scroll. **Extended in the demo** — [`$TheTeam`](../../package/app/src/sections/book/library/the-team/book.tsx) and [`$TheManifold`](../../package/app/src/sections/the-manifold.tsx) keep their wholesale override, and Algebra's page is the aesthetic this default reaches toward.
+**Minimal** — three regions and nothing else. **Organized** — the running head says where you are, the contents says where you can go, the chapter is what you read. **Extensible** — a binding overrides `bound`, `stands` or `set` and gets a spread, a deck, a scroll. **Extended in the demo** — [`$TheTeam`](../../.archive/app/src/sections/book/library/the-team/book.tsx) and [`$TheManifold`](../../.archive/app/src/sections/the-manifold.tsx) keep their wholesale override, and Algebra's page is the aesthetic this default reaches toward.
 
 ---
 
@@ -650,7 +646,7 @@ verify-book:  3 checkpoints reached — THE WALK DID NOT FINISH
 
 ### <a id="f11"></a>F11 — An unbounded parent walk killed the workers, and the guard was two files away
 
-`$Title` asks whether it heads a cover by walking up the chain. **Written without a bound, it never returned** — `Worker exited unexpectedly`, twenty promises reported as **zero run** rather than as failures. ***The identical guard already stood in [`$Denote.document`](../../package/src/document/Denote.tsx)*** — `parent === scope ? undefined : parent` — written for exactly this and not looked at. **A walk up a composition graph is bounded or it is a hang.**
+`$Title` asks whether it heads a cover by walking up the chain. **Written without a bound, it never returned** — `Worker exited unexpectedly`, twenty promises reported as **zero run** rather than as failures. ***The identical guard already stood in [`$Denote.document`](../../package/.archive/document/Denote.tsx)*** — `parent === scope ? undefined : parent` — written for exactly this and not looked at. **A walk up a composition graph is bounded or it is a hang.**
 
 ### <a id="f12"></a>F12 — A STRING RUN IS DIVIDED ALONE, and it is an authoring specification nobody had written down
 

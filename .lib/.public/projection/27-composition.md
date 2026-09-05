@@ -12,7 +12,7 @@
 
 **Identifiers.** Requirements **R235–**, actors **A10–**, acceptance examples **AE1–**, risks **K25–**, decisions **D100–**, units **U191–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification); a deletion leaves a gap.*
 
-**Where the code lands.** [`library/.public/package/src`](../../package/src/) — *the next version of the framework, which took the `src` seat during this sprint* — with v1 standing at [`archive/`](../../package/archive/) and still shipping. **`src2` no longer exists.**
+**Where the code lands.** [`library/.public/package/src`](../../package/src/) — *the next version of the framework, which took the `src` seat during this sprint* — with v1 standing at **`archive/`** and still shipping. **`src2` no longer exists.**
 
 ---
 
@@ -101,7 +101,7 @@ export interface $Composition$<T extends $Writing> {
 | `get annotation()` | **strike** | See [R242](#r242). |
 | `specify()` | **strike from `$Writing`** | See [R243](#r243). |
 
-<a id="r242"></a>**R242** — ***the `annotation` marker is struck, and `parenthetical` does its work.*** **Doug's own comment on that member reads `NAMING IS OWED`** — it exists solely to stand in for an `instanceof $Type` that a module cycle forbids. *`parenthetical` already means **present in the writing, absent from the reading**, which is what an annotation IS; [`Html.ts:12`](../../package/src2/utilities/Html.ts) already reads it; and filtering on it names no class.* ***So the owed name is discharged by deletion rather than by a word*** — **flagged as a change made on a reading, and reversible in one line if the reading is wrong.**
+<a id="r242"></a>**R242** — ***the `annotation` marker is struck, and `parenthetical` does its work.*** **Doug's own comment on that member reads `NAMING IS OWED`** — it exists solely to stand in for an `instanceof $Type` that a module cycle forbids. *`parenthetical` already means **present in the writing, absent from the reading**, which is what an annotation IS; [`Html.ts:12`](../../package/src/utilities/Html.ts) already reads it; and filtering on it names no class.* ***So the owed name is discharged by deletion rather than by a word*** — **flagged as a change made on a reading, and reversible in one line if the reading is wrong.**
 
 <a id="r243"></a>**R243** — ***`specify()` leaves `$Writing`.*** **Its statement — *"a piece of writing has a type, and this one has none"* — becomes false the moment the parse exists**, because a letter found inside a word carries no `<Type>Letter</Type>`; the finder knows the level. *It is declared where it has content, on `$Type` and its levels.*
 

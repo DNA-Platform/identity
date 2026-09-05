@@ -187,9 +187,9 @@
 
 | file | lines | importers |
 |---|---|---|
-| [`package/src/library/Literature.tsx`](../../package/src/library/Literature.tsx) | **0** | none |
-| [`app/src/teaser.tsx`](../../app/src/teaser.tsx) | **198** | none |
-| [`package/app/src/apparatus/case-shell.tsx`](../../package/app/src/apparatus/case-shell.tsx) | **152** | none |
+| **`package/src/library/Literature.tsx`** | **0** | none |
+| **`app/src/teaser.tsx`** | **198** | none |
+| [`package/app/src/apparatus/case-shell.tsx`](../../../chemistry/package/app/src/apparatus/case-shell.tsx) | **152** | none |
 
 ***And one thing is stated rather than left implied: only the zero-byte file is in `lib`.*** **The 350 lines land in the application and the demonstration, so this requirement shrinks `package/src` by nothing at all** — *it removes three files whose location is a false claim about who needs them.* **`$Literature` stays [a name the derivation uses](../the-semantics-of-books/08-the-symbolizing-dyad-and-the-register.md) and [owed a real class](../the-condition-report/04-semantics.md#s9)**, because an empty file keeps no promise.
 
@@ -205,7 +205,7 @@
 |---|---|
 | [`Section.tsx`](../../package/src/writing/Section.tsx) | **5**, ***one of which is the file importing itself*** — `import * as sections from './Section'`, never used |
 | [`Word.tsx`](../../package/src/writing/Word.tsx) | 4 |
-| [`Letter.tsx`](../../package/src/writing/Letter.tsx) · [`Footer.tsx`](../../package/src/document/Footer.tsx) | 3 each |
+| [`Letter.tsx`](../../package/src/writing/Letter.tsx) · [`Footer.tsx`](../../package/.archive/document/Footer.tsx) | 3 each |
 
 *A dead import is small on its own and is evidence in bulk:* **it says the file was edited by adding rather than by reading.**
 
@@ -225,7 +225,7 @@
 
 > ***The third is a judgement and is flagged rather than assumed.*** **`lay(of, uniform)`'s `of` is an extension point** — a subclass may lay out differently *for a particular composition* — **so removing it narrows what a consumer can override.** *The unit removes the two that are dead and states the third as a question, because **a parameter a subclass could use is not the same as a parameter nothing passes**.*
 
-**Files.** `Writing.tsx` · `Book.tsx` · `Theme.tsx`, and `shown`'s call sites in `Writing.tsx` and [`Document.tsx`](../../package/src/document/Document.tsx). **Depends on** nothing.
+**Files.** `Writing.tsx` · `Book.tsx` · `Theme.tsx`, and `shown`'s call sites in `Writing.tsx` and [`Document.tsx`](../../package/.archive/document/Document.tsx). **Depends on** nothing.
 
 ### <a id="u112"></a>U112 — The card asks the book for its chapters · [R105](#r105)
 
@@ -261,11 +261,11 @@ $Link         inherits $Phrase's     once U114 re-parents it
 
 ***And the ruling carries its own diagnostic, which this unit runs:*** *"if a child doesn't call the parent `valid`, it suggests that perhaps IT IS NOT A SUBCLASS."* **Run against the package today it names [`$IndexCard`](../../package/src/reference/IndexCard.tsx) and [`$Bookmark`](../../package/src/book/Bookmark.tsx)** — ***which is [U114](#u114) reached by a second instrument, and the strongest evidence in the report that those two re-parents are real.***
 
-**Files.** [`Word.tsx`](../../package/src/writing/Word.tsx) · [`Phrase.tsx`](../../package/src/writing/Phrase.tsx) · [`Punctuation.tsx`](../../package/src/writing/Punctuation.tsx) · [`Writing.tsx`](../../package/src/writing/Writing.tsx) · [`Legend.tsx`](../../package/src/document/Legend.tsx), **and every `valid()` the diagnostic names.** *36 implementations exist in `src`; the unit reads all of them and changes the ones that repeal.*
+**Files.** [`Word.tsx`](../../package/src/writing/Word.tsx) · [`Phrase.tsx`](../../package/src/writing/Phrase.tsx) · [`Punctuation.tsx`](../../package/.archive/writing/Punctuation.tsx) · [`Writing.tsx`](../../package/src/writing/Writing.tsx) · [`Legend.tsx`](../../package/.archive/document/Legend.tsx), **and every `valid()` the diagnostic names.** *36 implementations exist in `src`; the unit reads all of them and changes the ones that repeal.*
 
 **Depends on** nothing. ***FORCED FIRST in its group by [D63](#d63).***
 
-**Numeric end:** ***reported as a LIST, not a count*** — **every `valid()` that still does not call `super` is named, with the reason.** *[`$Referent.valid()` is the floor](../../package/src/reference/Referent.tsx), so zero is not the right answer and pretending it is would hide the two classes the diagnostic exists to find.*
+**Numeric end:** ***reported as a LIST, not a count*** — **every `valid()` that still does not call `super` is named, with the reason.** *[`$Referent.valid()` is the floor](../../package/.archive/reference/Referent.tsx), so zero is not the right answer and pretending it is would hide the two classes the diagnostic exists to find.*
 
 ### <a id="u114"></a>U114 — Four re-parents · [R111](#r111)
 
@@ -273,12 +273,12 @@ $Link         inherits $Phrase's     once U114 re-parents it
 
 | | today | becomes | why |
 |---|---|---|---|
-| [`$Code`](../../package/src/writing/Code.tsx) | `extends $Figure` | ***`extends $Paragraph`*** | ***Doug: "Code is not a Figure… CODE IS WRITING."*** [S3](../the-condition-report/04-semantics.md#s3). **`$caption` leaves with the inheritance**, taking `caption={asFence[1].trim() \|\| 'code'}` — *a fence captioned with the literal word `code`* — out of [`Section.compose()`](../../package/src/writing/Section.tsx) |
-| [`$Link`](../../package/src/reference/Link.tsx) | `extends $Word` | ***`extends $Phrase`*** | ***Doug: "Links too should be phrasal."*** [S18](../the-condition-report/04-semantics.md#s18) — **every multi-word link is currently a `$Word` carrying whitespace, passing only because the subclass repeals its parent.** *A `$Phrase` is still a `$Word`, so links stay enumerable among a sentence's words* |
+| [`$Code`](../../package/.archive/writing/Code.tsx) | `extends $Figure` | ***`extends $Paragraph`*** | ***Doug: "Code is not a Figure… CODE IS WRITING."*** [S3](../the-condition-report/04-semantics.md#s3). **`$caption` leaves with the inheritance**, taking `caption={asFence[1].trim() \|\| 'code'}` — *a fence captioned with the literal word `code`* — out of [`Section.compose()`](../../package/src/writing/Section.tsx) |
+| [`$Link`](../../package/.archive/reference/Link.tsx) | `extends $Word` | ***`extends $Phrase`*** | ***Doug: "Links too should be phrasal."*** [S18](../the-condition-report/04-semantics.md#s18) — **every multi-word link is currently a `$Word` carrying whitespace, passing only because the subclass repeals its parent.** *A `$Phrase` is still a `$Word`, so links stay enumerable among a sentence's words* |
 | [`$IndexCard`](../../package/src/reference/IndexCard.tsx) | `extends $Writing` | ***off writing*** | **sixteen inherited members, zero used** — [S5](../the-condition-report/04-semantics.md#s5). *It extends `$Writing` for one constructor line: `this.inline = false`* |
 | [`$Bookmark`](../../package/src/book/Bookmark.tsx) | `extends $Sentence` | ***off writing*** | **it inherits the sentence parse and uses none of it** — [S6](../the-condition-report/04-semantics.md#s6). *Right folder by [the stated rule](04-the-member-audit.md), wrong parent* |
 
-***The two that leave writing need a destination, and it is [`$Referent`](../../package/src/reference/Referent.tsx)*** — **the base of the hierarchy, declaring `valid()`, which both already override outright.** *That is a move rather than a design: `$Referent` is a class, both already implement `$Reference$<T>` on their own, and neither reads a writing member.*
+***The two that leave writing need a destination, and it is [`$Referent`](../../package/.archive/reference/Referent.tsx)*** — **the base of the hierarchy, declaring `valid()`, which both already override outright.** *That is a move rather than a design: `$Referent` is a class, both already implement `$Reference$<T>` on their own, and neither reads a writing member.*
 
 **Files.** `Code.tsx` · `Figure.tsx` · `Link.tsx` · `IndexCard.tsx` · `Bookmark.tsx` · `Section.tsx` *(the fence caption)* · `index.ts`. **Depends on** [U113](#u113) — *`$Link` inherits `$Phrase`'s narrowing, which does not exist until the template does.*
 
@@ -302,7 +302,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 ***And the discipline that governs how it pays is [S20](../the-condition-report/04-semantics.md#s20)'s:*** **`$of` is not in any interface.** *[`$Reference$`](../../package/src/reference/Reference.tsx) requires `copy`, `parenthetical`, `read()` and `then()`; the field that answers `read()` is the class's own business.* ***Ask what a class OWES, then ask how it pays.***
 
-**Files.** [`Book.tsx`](../../package/src/book/Book.tsx) — ***`$$Book` lives beside `$Book`, [as ruled](../the-condition-report/04-semantics.md#s19)*** — · [`IndexCard.tsx`](../../package/src/reference/IndexCard.tsx) · [`CardCatalogue.tsx`](../../package/src/reference/CardCatalogue.tsx), which **satisfies `$Catalogue$<$Book>` in the same act** *([S9](../the-condition-report/04-semantics.md#s9), and [chapter zero specified it that way eleven weeks ago](00-planning.md))* · `index.ts` · the generated `$Card` in [`build/catalogue.ts`](../../build/stages/catalogue.ts).
+**Files.** [`Book.tsx`](../../package/src/book/Book.tsx) — ***`$$Book` lives beside `$Book`, [as ruled](../the-condition-report/04-semantics.md#s19)*** — · [`IndexCard.tsx`](../../package/src/reference/IndexCard.tsx) · [`CardCatalogue.tsx`](../../package/.archive/reference/CardCatalogue.tsx), which **satisfies `$Catalogue$<$Book>` in the same act** *([S9](../the-condition-report/04-semantics.md#s9), and [chapter zero specified it that way eleven weeks ago](00-planning.md))* · `index.ts` · the generated `$Card` in [`build/catalogue.ts`](../../build/stages/catalogue.ts).
 
 **Depends on** [U113](#u113). ***FORCED BEFORE [U117](#u117) by [D64](#d64).***
 
@@ -337,7 +337,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 **Mechanism.** ***Doug's, ruled 2026-08-22:*** *"You can make a base class called an **`$Annotation`** and have all three come from that. An annotation would probably be at the `$Phrase` level… **Figure out how to implement that based on the library card they have access to.**"*
 
-**Measured: [`$Author`](../../package/src/book/Author.tsx), [`$Subject`](../../package/src/book/Subject.tsx) and [`$Canonical`](../../package/src/book/Canonical.tsx) are byte-identical under name substitution** — *every member, and the only differences are the class name and one word inside an error string.* **[Datable to one commit](../the-condition-report/01-how-to-read-this.md#the-rushes): `b91944e`, 2026-08-10.** ***Not three classes designed alike — one class copied twice in a sitting.***
+**Measured: [`$Author`](../../package/src/book/Author.tsx), [`$Subject`](../../package/src/book/Subject.tsx) and [`$Canonical`](../../package/.archive/book/Canonical.tsx) are byte-identical under name substitution** — *every member, and the only differences are the class name and one word inside an error string.* **[Datable to one commit](../the-condition-report/01-how-to-read-this.md#the-rushes): `b91944e`, 2026-08-10.** ***Not three classes designed alike — one class copied twice in a sitting.***
 
 **The three rules, and each is one compute and one comparison that opens no book:**
 
@@ -365,9 +365,9 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 |---|---|---|
 | [I6](../the-condition-report/05-implementation.md#i6) | ***the book's invariants*** — six errors thrown from the bond constructor at `Book.tsx:203-213`, the same six stated as `$valid` calls at `304-320` | **one statement, two readers.** ***The drift is already visible*** — the constructor says *"one whose reference comes home"*, `valid()` says *"and this one accounts only for other books"* |
 | [I7](../the-condition-report/05-implementation.md#i7) | ***`title`*** — three answers, one reimplementing half of `canonical` inline | **[`$TableOfContents`](../../package/src/book/TableOfContents.tsx) delegates to `canonical`** instead of copying one of its three clauses and dropping the other two |
-| [I8](../the-condition-report/05-implementation.md#i8) | ***"what document am I in"*** — a bounded careful walk that throws with a reason, and a bare cast | **[`$Section`](../../package/src/writing/Section.tsx) adopts [`$Denote`](../../package/src/document/Denote.tsx)'s walk**, which was written for exactly this and has been sitting two files away |
+| [I8](../the-condition-report/05-implementation.md#i8) | ***"what document am I in"*** — a bounded careful walk that throws with a reason, and a bare cast | **[`$Section`](../../package/src/writing/Section.tsx) adopts [`$Denote`](../../package/.archive/document/Denote.tsx)'s walk**, which was written for exactly this and has been sitting two files away |
 | [I9](../the-condition-report/05-implementation.md#i9) · [N32](../the-condition-report/03-names.md#n32) | ***`canonical`/`ref`, and `contents`/`tableOfContents`*** — one member under two names, twice | **one member each** — ***and it says that a book's reference IS its canonical***, a theorem rather than a coincidence it satisfies twice |
-| [S7](../the-condition-report/04-semantics.md#s7) | ***`copy` and parenthetical matter*** — the two ends skip it, the middle includes it, and nothing says why | **[`$Document`](../../package/src/document/Document.tsx) joins the specification [the settled account states once](../the-semantics-of-books/15-the-levels-of-writing.md)** |
+| [S7](../the-condition-report/04-semantics.md#s7) | ***`copy` and parenthetical matter*** — the two ends skip it, the middle includes it, and nothing says why | **[`$Document`](../../package/.archive/document/Document.tsx) joins the specification [the settled account states once](../the-semantics-of-books/15-the-levels-of-writing.md)** |
 | [S13](../the-condition-report/04-semantics.md#s13) | ***`letters`*** — a sentence splits `copy` into graphemes; every other level flatMaps its words | **`$Sentence.letters` joins the chain the other four use** |
 | [I15](../the-condition-report/05-implementation.md#i15) · part | ***two `try`/`catch` blocks make an invariant conditional*** | **`$Cover` and `$TableOfContents` state their own specification** instead of catching their parent's and rethrowing sometimes. ***An invariant with a `catch` around it is not an invariant.*** **The other seven catches are MONITORED and not touched** |
 
@@ -457,7 +457,7 @@ follow(): $Composition$<T>;
 
 ### <a id="u121"></a>U121 — The theme becomes a transient prop · [R115](#r115)
 
-**Mechanism.** ***FORCED FIRST IN ITS GROUP.*** **[`dressing.ts`](../../package/src/writing/dressing.ts) declares a global module augmentation about somebody else's types:**
+**Mechanism.** ***FORCED FIRST IN ITS GROUP.*** ****`dressing.ts`** declares a global module augmentation about somebody else's types:**
 
 ```ts
 declare module 'styled-components' {
@@ -513,7 +513,7 @@ declare module 'styled-components' {
 
 - ***The five classes that skip the drawing template join it*** — `$Figure` · `$Legend` · `$Denote` · `$Document` · `$TableOfContents` override `view()` outright and never reach `gathered()`/`set()`. *`$Document` re-implements `gathered` inline, twelve lines below the one it inherits.* **[`$Book`'s override is D49 and correct](19-the-binding.md#d49)** — *a book is in charge of its own reading environment* — **and stays.**
 - ***`named()` dissolves into `set()`*** — [a second, undeclared drawing entry point](../the-condition-report/05-implementation.md#i1) on the three annotations, called only from `$Cover.byline` while their own `set()` returns `null`. ***So a subclass overriding `set()` on an author changes nothing on screen today.***
-- ***The hex branch goes*** — `background: theme.ground === '#ffffff' ? '#f6f7f9' : theme.rule` at [`Code.tsx:25`](../../package/src/writing/Code.tsx). **This breaks [D40](18-the-theme.md#d40) exactly**: *a theme's values are OPAQUE to the framework*, and **a theme answering `var(--ink)` takes the wrong side of that ternary silently.**
+- ***The hex branch goes*** — `background: theme.ground === '#ffffff' ? '#f6f7f9' : theme.rule` at [`Code.tsx:25`](../../package/.archive/writing/Code.tsx). **This breaks [D40](18-the-theme.md#d40) exactly**: *a theme's values are OPAQUE to the framework*, and **a theme answering `var(--ink)` takes the wrong side of that ternary silently.**
 - ***[`Row`](../../package/src/book/TableOfContents.tsx) is a DELETION, not a rename*** — [N13](../the-condition-report/03-names.md#n13): **[B1 already ruled it](19-the-binding.md#the-board), a reference draws its own row.**
 
 **Files.** ***19 files carrying 33 style objects, counted this session:*** `Author` **2** · `Canonical` **2** · `Subject` **2** · `Synopsis` **5** · `Document` **1** · `Footer` **2** · `Footnote` **1** · `Legend` **3** · `Highlight` **1** · `Link` **1** · `Code` **1** · `Emphasis` **2** · `Figure` **2** · `Formula` **1** · `Section` **1** · `Snippet` **1** · `Subtitle` **1** · `Tagline` **1** · `Title` **3**.
@@ -530,8 +530,8 @@ declare module 'styled-components' {
 
 | | today | verified this session | becomes |
 |---|---|---|---|
-| ***`$Cover.isCover`*** | a `readonly` boolean | ***exactly two sites*** — the declaration, and [`Title.opening`'s eight-step walk](../../package/src/writing/Title.tsx) | **`instanceof $Cover`**, ***which deletes the walk with it*** |
-| ***`$Formula.$display`*** | a prop | ***DEAD*** — **nothing in `lib`, the demonstration, the application or the corpus sets it.** *The only other `$display` is [the demonstration's own `latex.tsx`](../../package/app/src/sections/page/latex.tsx), a different class* | **deleted**, *and both display branches of `set()` go with it because they are unreachable* |
+| ***`$Cover.isCover`*** | a `readonly` boolean | ***exactly two sites*** — the declaration, and [`Title.opening`'s eight-step walk](../../package/.archive/writing/Title.tsx) | **`instanceof $Cover`**, ***which deletes the walk with it*** |
+| ***`$Formula.$display`*** | a prop | ***DEAD*** — **nothing in `lib`, the demonstration, the application or the corpus sets it.** *The only other `$display` is [the demonstration's own `latex.tsx`](../../.archive/app/src/sections/page/latex.tsx), a different class* | **deleted**, *and both display branches of `set()` go with it because they are unreachable* |
 | ***`$Emphasis.$strong`*** | a boolean prop | ***composed at [`Sentence.tsx:69`](../../package/src/writing/Sentence.tsx) — `strong={open.length > 1}` — and the `**` that decided it is consumed by `stressed()` and discarded*** | ***STAYS*** — *[D71](#d71)* |
 
 > ***The eight-step walk is worth its own sentence, because [F11 records what its unbounded version cost](19-the-binding.md#f11):*** **twenty promises reported as *zero run* rather than as failures, and `Worker exited unexpectedly`.** *Two assumed hops, a magic bound of eight, and a duck-typed flag — for a question `instanceof $Cover` answers.*
@@ -575,7 +575,7 @@ declare module 'styled-components' {
 |---|---|---|---|
 | `$Denote` · `$Footnote` · `$Citation` · `$Cite` | ***`$key`*** | **yes** | *a person writes `<Footnote for="arrow">` today, and it is a **key**, a string* |
 | [`$Bookmark`](../../package/src/book/Bookmark.tsx) | ***`place`*** | ***NO*** | ***nothing authors a bookmark*** — `left.$for = where`, in code, never JSX |
-| [`$Highlight`](../../package/src/reference/Highlight.tsx) | ***`$from` / `$to`*** | yes | *and it takes [`$first`](../the-condition-report/03-names.md#n3) with it — **a path's `$first` is a step**, which is what the word means. Both are typed `number \| string` because props arrive from JSX as strings, **the only place in the package that admits that in a type*** |
+| [`$Highlight`](../../package/.archive/reference/Highlight.tsx) | ***`$from` / `$to`*** | yes | *and it takes [`$first`](../the-condition-report/03-names.md#n3) with it — **a path's `$first` is a step**, which is what the word means. Both are typed `number \| string` because props arrive from JSX as strings, **the only place in the package that admits that in a type*** |
 | ***the annotations*** | ***the card*** | ***— and that is [U127](#u127)*** | |
 
 ***And the discipline underneath is [S20](../the-condition-report/04-semantics.md#s20)'s: the collision is not in the interface.*** **[`$Reference$`](../../package/src/reference/Reference.tsx) asks for `read()` and `then()` and for NO FIELD AT ALL — every one of these already satisfies it.** *The fault is that three classes named their backing field the same, and the payments differ.*
@@ -592,7 +592,7 @@ declare module 'styled-components' {
 
 **Today [`emit.ts`](../../build/stages/emit.ts) inserts `for={theTeam}` into an element a person authored** — `edits.push({ at: open.getEnd() - 1, …, text: ' for={' + card + '}' })` — ***precisely because the annotation cannot find its own card.***
 
-***The route that removes the prop needs no new mechanism:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md).* **[`$CardCatalogue.file(key, keyword, card)` and `find(query)`](../../package/src/reference/CardCatalogue.tsx) already exist for exactly a lookup by name.**
+***The route that removes the prop needs no new mechanism:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md).* **[`$CardCatalogue.file(key, keyword, card)` and `find(query)`](../../package/.archive/reference/CardCatalogue.tsx) already exist for exactly a lookup by name.**
 
 ***And they are the same two members [I14](../the-condition-report/05-implementation.md#i14) calls a string micro-language, so the two entries are ONE piece of work.*** **`find(query)` splits a colon-separated string at call time and throws when it misses, while `file(key, keyword, card)` directly above it takes the two halves as parameters.** *The class knows the shape and asks a caller to spell it.*
 
@@ -772,13 +772,13 @@ build/
 
 ***The fourth is the load-bearing one.*** **It proves nobody edited the default to make the demo work**, and *the other three prove the same class answered differently for three different reasons.* **A hand-authored page cannot fake that.**
 
-**Files.** **a new section in [the demonstration](../../package/app/src/sections/)**, registered the way [`the-page.tsx`](../../package/app/src/sections/the-page.tsx) and its siblings are. **Depends on** [U123](#u123).
+**Files.** **a new section in [the demonstration](../../.archive/app/src/sections)**, registered the way [`the-page.tsx`](../../.archive/app/src/sections/the-page.tsx) and its siblings are. **Depends on** [U123](#u123).
 
 ***The demonstration's aesthetics are governed by [R13](15-the-build.md) and are not this unit's to invent.***
 
 **Numeric end.** ***None, deliberately.*** **This is the unit that exists because every gate this branch runs is a count, and [every entry in the report was true while all of them were green](../the-condition-report/01-how-to-read-this.md#why-no-gate).**
 
-***DONE — [`the-title.tsx`](../../package/app/src/sections/the-title.tsx), with [eight promises](../../package/app/src/sections/the-title.test.tsx) beside it.*** **Four `h2`s, four distinct generated classes, three reasons, and the fourth still the default.**
+***DONE — [`the-title.tsx`](../../.archive/app/src/sections/the-title.tsx), with [eight promises](../../.archive/app/src/sections/the-title.test.tsx) beside it.*** **Four `h2`s, four distinct generated classes, three reasons, and the fourth still the default.**
 
 #### <a id="what-the-demo-found"></a>What building it found — ***five things every count was green through***
 
@@ -794,7 +794,7 @@ build/
 
 ***Three of the five are silent and one hangs.*** **That is [the two arms](#the-two-arms) measured from the outside**: *the framework complains precisely where it has been taught to and says nothing everywhere else,* **and a page is the only instrument that finds the difference.**
 
-***One name yielded.*** [`$TheManifold.head()`](../../package/app/src/sections/the-manifold.tsx) — *the demo's scroll-to-top — collided with `$Book.head(theme)`, which draws a book's head.* **The framework member wins and the demonstration yields**, renamed `turned()` from *the file's own comment*: **"a turned page opens at its head."** ***Proxy, flagged for Doug.***
+***One name yielded.*** [`$TheManifold.head()`](../../.archive/app/src/sections/the-manifold.tsx) — *the demo's scroll-to-top — collided with `$Book.head(theme)`, which draws a book's head.* **The framework member wins and the demonstration yields**, renamed `turned()` from *the file's own comment*: **"a turned page opens at its head."** ***Proxy, flagged for Doug.***
 
 ***And the app's type debt went to zero.*** `0/0 baselined type-debt errors [$LibraryCard·$IndexCard<$Referent>]` — **the baseline this sprint inherited is empty**, closed by [U129](#u129)'s merge of the card into the book.
 
@@ -828,7 +828,7 @@ build/
 | goes | and its readers stop asking |
 |---|---|
 | **`$Theme.$reads`** and `get reads()` | — |
-| **`$Theme.draws(part)`** | [`$Book.reading`](../../package/src/book/Book.tsx) · [`$Section.view()`](../../package/src/writing/Section.tsx) · [`$Document.view()`](../../package/src/document/Document.tsx) |
+| **`$Theme.draws(part)`** | [`$Book.reading`](../../package/src/book/Book.tsx) · [`$Section.view()`](../../package/src/writing/Section.tsx) · [`$Document.view()`](../../package/.archive/document/Document.tsx) |
 
 ***A parenthetical thing hides itself.*** **`$parenthetical === false` means visible** — *Doug's own correction at the plan* — **so the polarity is already right and nothing is inverted.**
 
@@ -874,9 +874,9 @@ build/
 Prose.'}`.** *The leading blank line exists only to make [`$Section.parts()`](../../package/src/writing/Section.tsx) close the previous paragraph — **which being a separate JSX child already does***, since a `$Paragraph` element child closes and stands alone |
 | ***the demonstration*** | **22 files, the same shape** |
 
-***And the notations are the constraint, stated so nobody sweeps them by accident.*** **A block beginning `#`, `>`, `-`, `$$` or a fence is not prose** — wrapping it in `<Paragraph>` would leave the notation on the page as literal text. *Each maps to the element the parse would have built:* `<Title>` · `<Paragraph mark=">">` · `<Paragraph mark="-">` · `<Paragraph mark="$$">` · `<Code language source />`. **All of them are already authorable, which is what [the parallel text](../../package/app/src/markdown/parallel.tsx) demonstrates.**
+***And the notations are the constraint, stated so nobody sweeps them by accident.*** **A block beginning `#`, `>`, `-`, `$$` or a fence is not prose** — wrapping it in `<Paragraph>` would leave the notation on the page as literal text. *Each maps to the element the parse would have built:* `<Title>` · `<Paragraph mark=">">` · `<Paragraph mark="-">` · `<Paragraph mark="$$">` · `<Code language source />`. **All of them are already authorable, which is what [the parallel text](../../.archive/app/src/markdown/parallel.tsx) demonstrates.**
 
-**Files.** `Book.tsx` · `Document.tsx` · `IndexCard.tsx` *(done)* · **14 files in [`library/.test-library`](../../../.test-library/)** · **22 in [the demonstration](../../package/app/src/sections/)**.
+**Files.** `Book.tsx` · `Document.tsx` · `IndexCard.tsx` *(done)* · **14 files in [`library/.test-library`](../../../.test-library/)** · **22 in [the demonstration](../../.archive/app/src/sections)**.
 
 **Numeric end:** ***`
 
@@ -1045,7 +1045,7 @@ Prose.'}`.** *The leading blank line exists only to make [`$Section.parts()`](..
 | ***A GATE WAS PINNING THE DEFECT*** | **[`verify-build.ts`](../../build/tests/building.ts) asserted a card carried `["Synopsis", "What Physics Is"]`** — *"Synopsis" being exactly the chapter a book's own contents excludes, which is [the filed bug](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md).* **The promise's TITLE was right and its expectation was the bug written down**, so [U112](#u112) turned the gate red rather than green |
 | ***`unresolved` is NOT a fault, and turning it into a Complaint broke four books*** | *Doug's ruling was "`unresolved` becomes a `Complaint`" — and applied literally it failed the build.* **A cover may name its author as a NAME rather than as an import — `<Author>The Team</Author>` — and the corpus does exactly that.** ***So a link with no book is an empty book with a display, and nothing complains.*** *The ruling was right that `Source` goes; it was the reading of `unresolved` that was wrong, and the corpus said so in one run* |
 | ***the notation is not formatting, and the two are one character apart*** | **`$Section.compose()` splits on `
-` to strip a `> ` marker, and [`parallel.tsx`](../../package/app/src/markdown/parallel.tsx)'s found side writes markdown on purpose.** *Those newlines are read, not written* — **the rule is that the framework never PRODUCES one**, and the converter that could not tell the difference broke the parallel text until it was repaired by hand |
+` to strip a `> ` marker, and [`parallel.tsx`](../../.archive/app/src/markdown/parallel.tsx)'s found side writes markdown on purpose.** *Those newlines are read, not written* — **the rule is that the framework never PRODUCES one**, and the converter that could not tell the difference broke the parallel text until it was repaired by hand |
 
 
 ## <a id="the-floor-closes"></a>THE FLOOR CLOSES ON ITSELF — Doug's, at the plan, and it is the sprint's deepest change
@@ -1174,7 +1174,7 @@ read(parts)  =  { c.read() | c in chapters }
 
 ### <a id="the-trailing-dollar"></a>`$X$` — ***gone from `lib` entirely***
 
-**`lib` is at ZERO.** *The whole framework contains one trailing-`$` identifier — `$apply$` — and it is [inside a comment](../../package/src/document/Denote.tsx) citing `$Chemistry`, not code.* **[U139](#u139) finished the job it was given.**
+**`lib` is at ZERO.** *The whole framework contains one trailing-`$` identifier — `$apply$` — and it is [inside a comment](../../package/.archive/document/Denote.tsx) citing `$Chemistry`, not code.* **[U139](#u139) finished the job it was given.**
 
 > ***`$CHEMISTRY` THE PACKAGE IS OUT OF SCOPE AND IS NOT TO BE CHANGED OR PROPOSED AGAINST.*** **Doug, twice and then a third time: *"DONT CHANGE CHEMISTRY FRAMEWORK!!! Stop recommending changes from chemistry the actual package."*** *Anything this sprint noticed there is struck rather than filed, because [a filed entry is a proposal that comes back](../the-condition-report/06-the-cleaning.md#dispositions).* **The package is read to understand what `lib` is built on and for no other reason.**
 
@@ -1241,7 +1241,7 @@ read(parts)  =  { c.read() | c in chapters }
 
 | | |
 |---|---|
-| ***the symptom*** | **[`verify-demo.mjs`](../../package/app/verify-demo.mjs) stalled at checkpoint 1** and **[`verify-book.mjs`](../../package/app/verify-book.mjs) stalled at 5, then at 50** — *different places on different runs, always at a step that LEAVES A BOOK AND COMES BACK TO THE SHELF* |
+| ***the symptom*** | **[`verify-demo.mjs`](../../.archive/app/verify-demo.mjs) stalled at checkpoint 1** and **[`verify-book.mjs`](../../.archive/app/verify-book.mjs) stalled at 5, then at 50** — *different places on different runs, always at a step that LEAVES A BOOK AND COMES BACK TO THE SHELF* |
 | ***the first cause*** | ***`networkidle0` / `networkidle2`.*** **A cold vite compiles 170 modules on the first hit and network idle is never reached inside the timeout** — *so a driver's first checkpoint fails on a working app* |
 | ***the second cause*** | ***`waitForSelector` is bound to an execution context that a full page load DESTROYS.*** **Opening the algebra book sets `window.location.href = '/page'`, and following a subject link is an `<a href>`** — *both are full navigations, and the wait dies on precisely the steps it exists for, reporting a missing selector rather than a swapped context* |
 | ***the evidence it was ours already*** | **[the chemistry harness](../../../chemistry/package/app/verify-all.mjs) has never had this problem**, *because it navigates on `domcontentloaded` and then settles.* ***The team's own working pattern, in the repository, unread*** |
@@ -1266,7 +1266,7 @@ read(parts)  =  { c.read() | c in chapters }
 
 **Against the committed output it scored 2 of 9 checkpoints with two console errors** — *`$IndexCard` no longer exported, which is [U129](#u129)'s merge of the card into the book.* **Against the recompiled output it scored 6 of 9 with none**, *and then stalled: nothing to click for the physics entry.* ***A subject was drawing none of the books it catalogues.***
 
-**The cause is this sprint's own derivation, and it is worth stating as theory rather than as a fix.** *[A book is a composition of chapters and a chapter is a reference to a book, therefore a book is a catalogue of books](#cataloguing-is-derived)* — **so a subject's entries ARE chapters.** *And [a book is read a chapter at a time](../../package/app/verify-library.mjs), which is the promise the whole reading surface turns on.* ***Put those two together and a subject can show at most ONE of the books it catalogues.***
+**The cause is this sprint's own derivation, and it is worth stating as theory rather than as a fix.** *[A book is a composition of chapters and a chapter is a reference to a book, therefore a book is a catalogue of books](#cataloguing-is-derived)* — **so a subject's entries ARE chapters.** *And [a book is read a chapter at a time](../../app/verify-library.mjs), which is the promise the whole reading surface turns on.* ***Put those two together and a subject can show at most ONE of the books it catalogues.***
 
 > ***A CATALOGUE IS CONSULTED, NOT READ.*** **That is the distinction the two promises were missing between them.** *A book is read a chapter at a time because reading is sequential and a reader holds a place. A catalogue has all of its cards out at once, because the whole point of consulting one is that you do not handle the items* — **which is the same reason [the generated catalogue imports no book at all](../../build/stages/catalogue.ts).**
 
@@ -1356,14 +1356,14 @@ read(parts)  =  { c.read() | c in chapters }
 
 ***Doug, 2026-08-24:*** **"Initial load for the demo is very very very slow."** · **"the demo needs to be zippy."** · **"We don't want to load the whole library at once and we do care about performance in general to a degree."**
 
-***`/books` IS THE DEFAULT ROUTE.*** **[`catalogue.ts`](../../package/app/src/data/catalogue.ts) — `defaultSectionId = 'books'`** — *so the shelf is what `/` serves, what an unknown route falls back to, and what every visitor meets first.* **It is the slowest page in the demonstration at 8.3 seconds to visible, and it is the only one nobody can avoid.**
+***`/books` IS THE DEFAULT ROUTE.*** **[`catalogue.ts`](../../.archive/app/src/data/catalogue.ts) — `defaultSectionId = 'books'`** — *so the shelf is what `/` serves, what an unknown route falls back to, and what every visitor meets first.* **It is the slowest page in the demonstration at 8.3 seconds to visible, and it is the only one nobody can avoid.**
 
 **A first measured pass is [The Demonstration](../the-condition-report/09-the-demonstration.md), four entries.** *What is NOT decided is everything below.*
 
 | | the question | why it might matter |
 |---|---|---|
 | ***A*** | ***Should the demonstration have a BUILD STEP?*** | **[I29](../the-condition-report/09-the-demonstration.md#i29) is the whole of the load cost, and the compiler already solves it** — *it reads cards off living books at build time and emits literals.* ***The demonstration is a library too***, and the question is whether it should be compiled by the thing that compiles libraries rather than hand-wired |
-| ***B*** | **If not, do the cards carry their own text?** | *That is what [`The Team`'s card already does](../../package/app/src/sections/book/library/the-team/card.tsx) and what the other four do not.* **Cheap, and it drifts** — which is [S23](../the-condition-report/09-the-demonstration.md#s23) waiting to happen again |
+| ***B*** | **If not, do the cards carry their own text?** | *That is what [`The Team`'s card already does](../../.archive/app/src/sections/book/library/the-team/card.tsx) and what the other four do not.* **Cheap, and it drifts** — which is [S23](../the-condition-report/09-the-demonstration.md#s23) waiting to happen again |
 | ***C*** | ***What should a page COST?*** | **There is no number to fail against.** *A gate that counted modules per route would have caught [I28](../the-condition-report/09-the-demonstration.md#i28) the day it arrived — 169 on a page of four headings — and [every gate this branch runs is a count that cannot see this one](../the-condition-report/01-how-to-read-this.md#why-no-gate)* |
 | ***D*** | **Which controls are legal in which state?** | ***[O15](../the-condition-report/09-the-demonstration.md#o15) — Doug's: "I am not sure all of them should be available to click in all states. You have a state machine. Be careful."*** *Eight controls of three kinds, nothing disabled, nothing marked, and no statement to check against* |
 | ***E*** | ***Should the demonstration READ the framework rather than quote it?*** | **[S23](../the-condition-report/09-the-demonstration.md#s23): the classes drawer prints `class $Word extends $Writing` and "a word is the floor", and both went false this sprint.** *The source is on disk. A drawer that read it could not drift* |
@@ -1439,7 +1439,7 @@ read(parts)  =  { c.read() | c in chapters }
 | **[The letter](20-the-audit.md#the-letter-and-what-it-asked-for)** | ***Doug's six asks and the frame that governs them.*** **The compiler has been asked one of the six** |
 | **[The cleaning](../the-condition-report/06-the-cleaning.md#actionable)** | ***the problems list, and the coverage ledger beneath it.*** **Where each of the hundred-and-one entries went, and what is held rather than fixed** |
 | **[`build/library.ts`](../../build/library.ts)** | ***the compiler's entire shared vocabulary, with prose on every field.*** **A stage cannot see what the seam does not carry, so [question C](#the-compiler-audit) is answered here or nowhere** |
-| **[The Demonstration](../the-condition-report/09-the-demonstration.md)** | ***the demonstration's first measured pass, and the load cost with numbers on both sides.*** **[I29](../the-condition-report/09-the-demonstration.md#i29) is the 8.3 seconds** — *read it beside [`the-team/card.tsx`](../../package/app/src/sections/book/library/the-team/card.tsx), which is where a card reaches for its book* |
+| **[The Demonstration](../the-condition-report/09-the-demonstration.md)** | ***the demonstration's first measured pass, and the load cost with numbers on both sides.*** **[I29](../the-condition-report/09-the-demonstration.md#i29) is the 8.3 seconds** — *read it beside [`the-team/card.tsx`](../../.archive/app/src/sections/book/library/the-team/card.tsx), which is where a card reaches for its book* |
 
 ## Wrong turns already taken — ***do not retry these***
 

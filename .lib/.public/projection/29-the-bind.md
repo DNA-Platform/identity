@@ -144,7 +144,7 @@
 | | |
 |---|---|
 | ***the check is vacuous at five of seven levels*** | **Only `$TypeOfLetter` and `$TypeOfWord` override `specifically`.** *The other five inherit [`$Type.specifically`](../../package/src/writing/Writing.tsx), which asserts `specification.length > 0` — and the level's own bond has just pushed its own type, so the assertion cannot fail.* **Sentence, paragraph, section, document and file accept anything.** |
-| ***`bind()` no longer validates*** | **`$Writing.bind(writing)` sets `inside` and calls `build()`. It does not call `specify()`.** *[Commit `69b79b8`](../../package/src/utilities/Lib.tsx) built exactly that — `bind` set the instance and specified — and the current shape lost it.* **This is [R277](#r277), and it is Doug's *"make sure we handle that"* named.** |
+| ***`bind()` no longer validates*** | **`$Writing.bind(writing)` sets `inside` and calls `build()`. It does not call `specify()`.** ***Commit `69b79b8`** built exactly that — `bind` set the instance and specified — and the current shape lost it.* **This is [R277](#r277), and it is Doug's *"make sure we handle that"* named.** |
 | ***a wrongly-levelled child is dropped from the structure and kept in the prose*** | **`parts()` filters; [`html.text`](../../package/src/utilities/Html.ts) does not.** *So a word written inside a section is absent from `parts()` and present in `copy`, and nothing says a word.* |
 | ***only `$Word` divides prose*** | **Every other level ignores strings entirely.** *`$Section.parts()` on `<Section>Some prose here.</Section>` finds nothing, because no element of the block is a `$Writing`.* |
 | ***`interpret()` was planned and never landed*** | **`grep` for it in `src` returns nothing.** *So [R264](28-the-block.md#r264)'s separation of the write from the read does not exist, and `parts()` still constructs during a render walk — [Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md)'s shape.* |
@@ -215,7 +215,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 **Measured: [`$Writing.bind()`](../../package/src/writing/Writing.tsx) sets `inside` and calls `build()`, and never `specify()`.** *[Commit `69b79b8`](../../package/src/writing/Writing.tsx) — "bind now validates" — put `this.specify()` inside `$Type.bind`, and the current shape dropped it.* ***So `$$(writing, $Letter)` binds without asking whether that writing can be a letter.***
 
-<a id="r278"></a>**R278** — ***a rebind re-reads.*** **[`bind`](../../package/src/writing/Writing.tsx) already calls `build()`**, and [R290](#r290) keeps it, *so a letter bound to different writing answers with that writing's kind and case.* **[`letter.test`](../../package/src/tests/letter.test.tsx) already promises the copy moves; this extends the promise to everything the level read.**
+<a id="r278"></a>**R278** — ***a rebind re-reads.*** **[`bind`](../../package/src/writing/Writing.tsx) already calls `build()`**, and [R290](#r290) keeps it, *so a letter bound to different writing answers with that writing's kind and case.* ****`letter.test`** already promises the copy moves; this extends the promise to everything the level read.**
 
 <a id="r289"></a>**R289** — ***the type validates the conditions under which the level's computations succeed, and never performs them.*** *Doug, correcting this chapter's first wording: "**the type should use check and validate the conditions for the computations to succeed, not perform them**." + "**as long as ... [the level] can provably compute what it needs from the instance, the type has done its job**."*
 
@@ -320,7 +320,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 ***So `123` is a canonical word made entirely of non-canonical letters.*** **Doug's change is what makes the two agree**, and it is the level below being brought up to what the level above already assumed.
 
-***It flips one green promise*** — **[`letter.test`](../../package/src/tests/letter.test.tsx): `expect(one('7').canonical).toBe(false)`** — *and the reversal is stated here rather than discovered at the gate.*
+***It flips one green promise*** — ****`letter.test`**: `expect(one('7').canonical).toBe(false)`** — *and the reversal is stated here rather than discovered at the gate.*
 
 ***And it answers one of the two open names by finding an incumbent rather than coining one.*** **The class that groups alphabetical with numeric is already called `said` in [`Word.tsx`](../../package/src/writing/Word.tsx)** — *a local const, standing in the code, not mine.* **Still Doug's to confirm or replace.**
 
@@ -521,7 +521,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="r327"></a>**R327** — ***and the selection is DYNAMIC, not `instanceof`.*** *Doug: "**It shouldn't be using instanceof. It needs to do dynamic typing and binding.**"*
 
-**[`$$`](../../package/src/utilities/Lib.tsx) does both today** — *`of instanceof asked`, and `one.finds.prototype instanceof asked`* — **so it reads the JavaScript prototype chain to answer a question about the library's own hierarchy.** ***Those are two different hierarchies that happen to coincide, and coinciding is not the same as being the same thing.***
+****`$$`** does both today** — *`of instanceof asked`, and `one.finds.prototype instanceof asked`* — **so it reads the JavaScript prototype chain to answer a question about the library's own hierarchy.** ***Those are two different hierarchies that happen to coincide, and coinciding is not the same as being the same thing.***
 
 <a id="r328"></a>**R328** — ***the compiler is ONE thing, written once.*** *Doug: "**That logic should be in the parser.**"* **Today the selection is inline in each level's `parts()`** — *seven copies of `filter($$(one)(X)).map($$(one, X))`* — **which is one specification written seven times.**
 
@@ -549,7 +549,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="r333"></a>**R333** — ***the one binding direction that exists is INSTANCE HOLDS TYPE, and it already does.*** *Doug: "**If we were binding in any direction it would be instance holds type and we DO do that.**"* **[`$Writing.specification`](../../package/src/writing/Writing.tsx) is that member.** ***The reverse — a type holding or naming its writing — is the thing that keeps being written back in.***
 
-<a id="r334"></a>**R334** — ***`finds` is owed for removal.*** **It returns `new () => $Writing` and is therefore [R332](#r332) broken twice over.** *It is not in `HEAD`; it entered the working copy in a session before this one, and Doug's sentence — "you KEEP putting back in things I delete" — is about exactly it.* ***No change made: the removal breaks seven imports and [`$$`](../../package/src/utilities/Lib.tsx) rests on it, so it waits for Doug.***
+<a id="r334"></a>**R334** — ***`finds` is owed for removal.*** **It returns `new () => $Writing` and is therefore [R332](#r332) broken twice over.** *It is not in `HEAD`; it entered the working copy in a session before this one, and Doug's sentence — "you KEEP putting back in things I delete" — is about exactly it.* ***No change made: the removal breaks seven imports and **`$$`** rests on it, so it waits for Doug.***
 
 <a id="r335"></a>**R335** — ***how a type is reached, and it needs neither.*** *Doug: "**The type of whatever has the type in its specification, and that type should be polymorphically related to the type being bound... You pass back that the type of paragraph is a stanza in its specification. And that is what makes the type the thing whose specifically is called on the instance of writing.**"*
 
@@ -1022,7 +1022,7 @@ ASKED $Letter | carried [ [ '$TypeOfLetter', 'bound', false, 'object' ] ]
 
 | | |
 |---|---|
-| [`Document.tsx:31`](../../package/src/writing/Document.tsx) | `$(<Section>{loose}</Section>)` — **written this session**, for the auto-wrap |
+| [`Document.tsx:31`](../../package/.archive/document/Document.tsx) | `$(<Section>{loose}</Section>)` — **written this session**, for the auto-wrap |
 | [`Section.tsx:25`](../../package/src/writing/Section.tsx) | `$(<Paragraph>{text}</Paragraph>)` — **written this session**, for text-as-one-paragraph |
 | [`Word.tsx:29`](../../package/src/writing/Word.tsx) | `$(<Letter>{segment}</Letter>)` — ***predates this session*** |
 
@@ -1120,7 +1120,7 @@ return parser.parse(from,
 
 ***Placing it is [R315](#r315)–[R316](#r316)'s token work and it is not built.*** **The two rulings are in tension and the tension is real:** *"we throw an error if anything in the block is not a paragraph" fails a stray word; "the parser knows that that word is in a sentence" places one.* **Today the failure wins at section grade and the placing has nowhere to happen.**
 
-<a id="r346"></a>**R346 — the type is chosen by level first, then in descending order.** *Doug's rule, built.* **[`$$`](../../package/src/utilities/Lib.tsx) filtered to the first match in WRITTEN order until now;** *it now filters to every carried type standing at the asked level and takes the **most derived**.*
+<a id="r346"></a>**R346 — the type is chosen by level first, then in descending order.** *Doug's rule, built.* ****`$$`** filtered to the first match in WRITTEN order until now;** *it now filters to every carried type standing at the asked level and takes the **most derived**.*
 
 | | |
 |---|---|
@@ -1147,7 +1147,7 @@ return parser.parse(from,
 | ***`<Type>Book</Type>` + `<Type>Chapter</Type>`*** | ***FAILED*** — **Doug's own example** |
 | ***`<Type>Word</Type>` + `<Type>Letter</Type>`*** | ***FAILED*** |
 
-<a id="r349"></a>**R349 — and this OVERRIDES [R273](28-the-block.md#r273)'s chimerical level.** *A promise in [`annotation.test`](../../package/src/tests/annotation.test.tsx) asserted that writing told it is both a Word and a Letter **answers to both names**.* ***That promise is gone***, replaced by one that fails it. **Annotations may still be many; LEVELS may not** — *which is [C17](27-composition.md#c17) narrowed by its own author.*
+<a id="r349"></a>**R349 — and this OVERRIDES [R273](28-the-block.md#r273)'s chimerical level.** *A promise in **`annotation.test`** asserted that writing told it is both a Word and a Letter **answers to both names**.* ***That promise is gone***, replaced by one that fails it. **Annotations may still be many; LEVELS may not** — *which is [C17](27-composition.md#c17) narrowed by its own author.*
 
 **479 tests, `tsc` 0.**
 
@@ -1166,7 +1166,7 @@ return parser.parse(from,
 | `refining(one)` | ***MINE*** — *reaches a type's own comparison without naming `$Type`* | **stays, name owed** |
 | ~~`form`~~ · ~~`levels`~~ · ~~`stands`~~ · ~~`deepest`~~ | *mine, and they duplicated reasoning `$Lib` already had* | ***REMOVED*** |
 
-<a id="r351"></a>**R351 — the comparison moved to `$Type`, where the knowing belongs.** **`refines(other)`** — ***mine, name owed*** — *answers whether one type stands below another.* **[`$Lib`](../../package/src/utilities/Lib.tsx) already sorted carried types by prototype depth**, *and `$Writing` cannot call it: `Writing → Lib → Type → Annotation → Writing` is [D108](27-composition.md#d108)'s cycle.* ***So the reasoning goes on the type and `$Writing` reaches it structurally, exactly as `parenthetical` does.***
+<a id="r351"></a>**R351 — the comparison moved to `$Type`, where the knowing belongs.** **`refines(other)`** — ***mine, name owed*** — *answers whether one type stands below another.* ****`$Lib`** already sorted carried types by prototype depth**, *and `$Writing` cannot call it: `Writing → Lib → Type → Annotation → Writing` is [D108](27-composition.md#d108)'s cycle.* ***So the reasoning goes on the type and `$Writing` reaches it structurally, exactly as `parenthetical` does.***
 
 <a id="r352"></a>**R352 — and one thing found by the grep is RAISED rather than acted on.** *[Sprint 25](25-the-specification.md) records Doug saying **"I NEVER wanted specification and have had you replace it before and it grows like a virus. CUT IT. Specification. Validation. Specify. Validate."*** — **while [R206](25-the-specification.md#r206) in the same chapter reads *"the domain word is `specification`"* and [R207](25-the-specification.md#r207) renames `valid()` TO `specify()`.**
 
@@ -1214,7 +1214,7 @@ return parser.parse(from,
 | **decorate** | `$QuotedSpecification` **holds** a paragraph's as `parent` | *no inheritance between them* |
 | **disable** | a rule **returns `false`** | *its neighbours are untouched* |
 
-**Both kinds live in [`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/src/tests/.spec/writing/Paragraph.tsx)**, *typechecked and drawn.*
+**Both kinds live in [`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/.archive/writing/Paragraph.tsx)**, *typechecked and drawn.*
 
 ## <a id="itemized"></a>The rules, itemized
 
@@ -1275,7 +1275,7 @@ return parser.parse(from,
 
 ***DONE, and the write does NOT loop — measured.*** **The parse assigns `$index` to each part as a final pass and the suite stayed green, including the 29 specs that paint.** *[Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md)'s wall does not fire here, and that is a measurement rather than an argument.*
 
-***What remains OWED is the numbering rule.*** **The parse numbers from ZERO, in written order** — *promised in [`tests/index.test.tsx`](../../package/src/tests/index.test.tsx)* — **and [the member audit](04-the-member-audit.md) says the opposite**: *"counting starts at 1; a special first, one that stands for the whole, sits at 0."* ***Both are Doug's and nobody has picked.***
+***What remains OWED is the numbering rule.*** **The parse numbers from ZERO, in written order** — *promised in **`tests/index.test.tsx`*** — **and [the member audit](04-the-member-audit.md) says the opposite**: *"counting starts at 1; a special first, one that stands for the whole, sits at 0."* ***Both are Doug's and nobody has picked.***
 
 ***And it is still not `parent.parts().indexOf(this)`.*** **There is no parent link anywhere in the model, on purpose:** *[Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md), three appearances, ending in a heap death — **"a parse may not be given a parent while it mutates what it makes, AND GIVING THE PARENT IS ONE OF THE MUTATIONS."*** **Grepped this session: `.parent =`, `.index =`, `.role =` appear nowhere in `writing/`, `book/` or the parser.**
 
@@ -1330,7 +1330,7 @@ return parser.parse(from,
 
 **`specifying`** *(on [`$Writing`](../../package/src/writing/Writing.tsx) — how a class joins a type, and the mechanism the whole feature rests on)* · **and whether `specification` survives at all** — *[R352](#r352) records two rulings in [Sprint 25](25-the-specification.md) pointing opposite ways, and nothing was renamed on a reading of a contradiction.*
 
-***`refines` was listed here and is struck: it no longer exists.*** **Grepped across `src`: zero occurrences.** *It went out when the specification landed — the comparison [R351](#r351) put on `$Type` was dissolved by `canonicalForm` plus the prototype walk in [`$Lib`](../../package/src/utilities/Lib.tsx), which needs no such member.* ***A name is only owed while the member is real***, and this list had outlived one of its entries.
+***`refines` was listed here and is struck: it no longer exists.*** **Grepped across `src`: zero occurrences.** *It went out when the specification landed — the comparison [R351](#r351) put on `$Type` was dissolved by `canonicalForm` plus the prototype walk in **`$Lib`**, which needs no such member.* ***A name is only owed while the member is real***, and this list had outlived one of its entries.
 
 ## <a id="handoff-opening"></a>How to open
 
@@ -1346,4 +1346,4 @@ return parser.parse(from,
 
 ***Scope, attached, because [a number without it is not evidence](../solutions/14-the-green-that-exercised-nothing.md):*** **`@dna-platform/chemistry` resolves by symlink into the working copy**, *which stands 867 lines ahead of `HEAD`* — **so that green is against uncommitted framework code**, and a clone at `HEAD` would not reproduce it.
 
-***THE WHOLE SPRINT IS UNCOMMITTED.*** **23 modified and 46 untracked files under [`package/`](../../package/)** — *[`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx), both specification classes, the entire 29-example [`.spec/`](../../package/src/tests/.spec/) folder and fourteen test files* — **plus 20 modified and 12 untracked in [chemistry](../../../chemistry/package/).** *Everything this handoff describes exists on disk and nowhere else.* ***That is the first thing to settle, and it is Doug's call.***
+***THE WHOLE SPRINT IS UNCOMMITTED.*** **23 modified and 46 untracked files under [`package/`](../../package/)** — *[`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx), both specification classes, the entire 29-example **`.spec/`** folder and fourteen test files* — **plus 20 modified and 12 untracked in [chemistry](../../../chemistry/package/).** *Everything this handoff describes exists on disk and nowhere else.* ***That is the first thing to settle, and it is Doug's call.***

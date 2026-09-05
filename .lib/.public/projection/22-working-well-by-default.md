@@ -168,7 +168,7 @@
 
 ***Doug named the reference:*** **"use manifold in the demo as a good example for the network — what clicking where should do approximately"** · **"you have a cover which presents some organized information, provides a way of navigating when you click anywhere, and then you can move around in the way manifold guides you to do"** · **"The base doesn't have to be as fancy but we want it to be like that and extensible."**
 
-**[The Manifold's network, read off its code](../../package/app/src/sections/the-manifold.tsx), and what the framework has of it today:**
+**[The Manifold's network, read off its code](../../.archive/app/src/sections/the-manifold.tsx), and what the framework has of it today:**
 
 | the Manifold does | `$Book` today |
 |---|---|
@@ -197,9 +197,9 @@
 
 ### <a id="r152"></a>R152 — The demonstration's landing page paints without constructing a book
 
-**<a id="i35"></a>I35 — the profile, and it settles the question:** *last byte at **351 ms**, first paint at **2,412 ms**.* ***2,061 ms — 85% of the wall clock — with nothing left to fetch.*** **It is not loading. It is five book models being constructed at module scope while [`card.tsx`](../../package/app/src/sections/book/library/the-team/card.tsx) reads them at module scope too.**
+**<a id="i35"></a>I35 — the profile, and it settles the question:** *last byte at **351 ms**, first paint at **2,412 ms**.* ***2,061 ms — 85% of the wall clock — with nothing left to fetch.*** **It is not loading. It is five book models being constructed at module scope while [`card.tsx`](../../.archive/app/src/sections/book/library/the-team/card.tsx) reads them at module scope too.**
 
-**The fix chain is forced and its order is the whole of it:** *cards carry literals → `card.tsx` stops importing the books → [`the-books.tsx`](../../package/app/src/sections/the-books.tsx) imports them dynamically.* **[The attempt that was tried and reverted](../the-condition-report/09-the-demonstration.md#i29) did step three without step one**, *which is why "requests fell 156 → 84 and every spine vanished."*
+**The fix chain is forced and its order is the whole of it:** *cards carry literals → `card.tsx` stops importing the books → [`the-books.tsx`](../../.archive/app/src/sections/the-books.tsx) imports them dynamically.* **[The attempt that was tried and reverted](../the-condition-report/09-the-demonstration.md#i29) did step three without step one**, *which is why "requests fell 156 → 84 and every spine vanished."*
 
 > ***OBSERVED:*** ***first paint under a stated budget with zero books constructed***, measured the same way it was measured here, **and every spine still on the shelf.** *This is a stopgap and is written down as one — it drifts, which is [S23](../the-condition-report/09-the-demonstration.md#s23) waiting to happen again, and it ends when the demonstration becomes a compiled library.*
 
@@ -440,13 +440,13 @@
 
 ### <a id="u163"></a>U163 · `R152` · **The cards carry their own text**
 
-**Mechanism:** *[D85](#d85) — a script reads the four books once and prints their card declarations; the output is pasted into [`card.tsx`](../../package/app/src/sections/book/library/the-team/card.tsx); the script is kept.* **4 taglines, 26 chapter titles.** *`line(book)` and `titles(book)` go, and `of` becomes a loader — which is what `The Team`'s card in that same file already does.* **Files:** `package/app/src/sections/book/library/the-team/card.tsx`, one new script. **Depends on:** nothing.
+**Mechanism:** *[D85](#d85) — a script reads the four books once and prints their card declarations; the output is pasted into [`card.tsx`](../../.archive/app/src/sections/book/library/the-team/card.tsx); the script is kept.* **4 taglines, 26 chapter titles.** *`line(book)` and `titles(book)` go, and `of` becomes a loader — which is what `The Team`'s card in that same file already does.* **Files:** `package/app/src/sections/book/library/the-team/card.tsx`, one new script. **Depends on:** nothing.
 
 > ***VISIBLE:*** ***five spines on the shelf with zero book modules requested***, **and the profile taken the same way it was taken here** — *first paint against a last-byte of 351 ms, rather than 2,412 ms against it.*
 
 ### <a id="u164"></a>U164 · `R152` · **The books arrive dynamically**
 
-**Mechanism:** *[`the-books.tsx`](../../package/app/src/sections/the-books.tsx)'s four static imports become dynamic, **which [U163](#u163) is what makes possible**.* **[The attempt recorded in that file did this step without the previous one](../the-condition-report/09-the-demonstration.md#i29)** — *requests fell 156 → 84 and every spine vanished.* **Files:** `package/app/src/sections/the-books.tsx`. **Depends on:** [U163](#u163) — ***and the order is [K10](#the-risks), which has already fired once.***
+**Mechanism:** *[`the-books.tsx`](../../.archive/app/src/sections/the-books.tsx)'s four static imports become dynamic, **which [U163](#u163) is what makes possible**.* **[The attempt recorded in that file did this step without the previous one](../the-condition-report/09-the-demonstration.md#i29)** — *requests fell 156 → 84 and every spine vanished.* **Files:** `package/app/src/sections/the-books.tsx`. **Depends on:** [U163](#u163) — ***and the order is [K10](#the-risks), which has already fired once.***
 
 > ***VISIBLE:*** **request count on `/books` measured before and after, and the spines still standing** — *the exact pairing the reverted attempt failed.*
 
@@ -791,16 +791,16 @@
 | **`$IndexCard extends $Chapter`** | *one grade below the book it stands for, which is what every reference form already was* |
 | **a card WRITES ITSELF** | *given no writing it declares a **title section** and a **summary** — a chapter's minimum and a card's whole surface. Probed: `parts()` = 2, stable across calls* |
 | ***the catalogue half is gone from `$$Book`*** | **it was overriding `canonical` to mean "the first entry" while `$Document.canonical` means "the first section"** — *a composition of cards and a composition of sections at once, which is the overload Doug named* |
-| ***the reflection is gone from the framework*** | `properties()` · `written()` · `printed()` — **a card that IS writing prints itself as writing.** *[The demonstration's own card declares them now](../../package/app/src/sections/book/library/the-team/librarycard.tsx), which keeps the signed "four cards printing their own fields" demonstration and puts it where a library's extras belong* |
+| ***the reflection is gone from the framework*** | `properties()` · `written()` · `printed()` — **a card that IS writing prints itself as writing.** *[The demonstration's own card declares them now](../../.archive/app/src/sections/book/library/the-team/librarycard.tsx), which keeps the signed "four cards printing their own fields" demonstration and puts it where a library's extras belong* |
 | **`title` and `subtitle` stopped being strings** | *they are the card's WRITING; `name` remains its identity, and the two were being conflated* |
 
 ***277 type errors → 0, in five measured steps.*** **And `tsc` earned its keep**: it caught every place a `$Title` object would have been rendered as text, which is [U156](#u156)'s whole argument arriving somewhere nobody planned it.
 
 ## <a id="the-loop-it-found"></a>What building it found — a live loop, and its root
 
-***`verify-library` went to `Maximum update depth exceeded`.*** **The card was innocent** — *probed: it declares its writing once and `parts()` is stable.* **The root is that [`$Document.title` CONSTRUCTS a fresh `$Title` chemical on every read](../../package/src/document/Document.tsx)**, *and the application had just started reading `card.title` inside its view.* ***A view that constructs a chemical never returns — [which is already filed](21-semantics-then-drawing.md#what-the-demo-found) — and here it looped.***
+***`verify-library` went to `Maximum update depth exceeded`.*** **The card was innocent** — *probed: it declares its writing once and `parts()` is stable.* **The root is that [`$Document.title` CONSTRUCTS a fresh `$Title` chemical on every read](../../package/.archive/document/Document.tsx)**, *and the application had just started reading `card.title` inside its view.* ***A view that constructs a chemical never returns — [which is already filed](21-semantics-then-drawing.md#what-the-demo-found) — and here it looped.***
 
-**The application reads `canonical?.heading` now, a string that constructs nothing.** ***The root remains: [`$Document.title`](../../package/src/document/Document.tsx) and [`$Figure.caption`](../../package/src/writing/Figure.tsx) both build on every read, with nothing saying so at either.***
+**The application reads `canonical?.heading` now, a string that constructs nothing.** ***The root remains: [`$Document.title`](../../package/.archive/document/Document.tsx) and [`$Figure.caption`](../../package/.archive/writing/Figure.tsx) both build on every read, with nothing saying so at either.***
 
 > ***COMPOUNDED into [The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md#a-getter-is-a-reading-too), as its THIRD appearance*** — **not a new chapter, because that chapter's specification already covers it**: *a reading called during a render must be held.* **What this appearance adds is which things are readings** — *`parts()` announced itself as one; `title` does not, which is why it survived three sprints and two appearances.*
 
@@ -818,7 +818,7 @@
 
 ***It barely moved, and that is the finding.*** **The cascade was never about views** — *it is `$Composition<$Reference<T>>` structural typing, amplified by chemistry's contravariance, which is [the variance wrong turn already recorded](21-semantics-then-drawing.md#wrong-turns-already-taken).*
 
-> ***AND IT IS NO LONGER NEEDED.*** **A card carries its own writing, so no view reads one to draw it.** *The only thing that reads a card is NAVIGATION — and navigation already awaits, in [the demonstration's `follow`](../../package/app/src/sections/book/library/the-team/card.tsx) and [the application's `fetch`](../../app/src/catalogue.tsx).* **Making the interface async costs 602 errors and buys what the card already bought.**
+> ***AND IT IS NO LONGER NEEDED.*** **A card carries its own writing, so no view reads one to draw it.** *The only thing that reads a card is NAVIGATION — and navigation already awaits, in [the demonstration's `follow`](../../.archive/app/src/sections/book/library/the-team/card.tsx) and [the application's `fetch`](../../app/src/catalogue.tsx).* **Making the interface async costs 602 errors and buys what the card already bought.**
 
 # Where things stand
 
@@ -902,7 +902,7 @@
 |---|---|
 | **[What an index card is](#what-a-card-is)** | ***the reference ladder, and why a card is a chapter.*** *The UI question and the model question turn out to be one question* |
 | **[`$Book.view()`](../../package/src/book/Book.tsx)** | **the framework's ENTIRE drawing, in four members** — *a running head, one standing chapter, the shelf, the turns. Everything a UI sprint would change is in that one method* |
-| **[The Manifold](../../package/app/src/sections/the-manifold.tsx)** | ***Doug named it as the reference for navigation*** — a closed cover you click anywhere, a running head that steps up a level, turns with a folio, lenses, ribbons, and addresses that resolve through the model |
+| **[The Manifold](../../.archive/app/src/sections/the-manifold.tsx)** | ***Doug named it as the reference for navigation*** — a closed cover you click anywhere, a running head that steps up a level, turns with a folio, lenses, ribbons, and addresses that resolve through the model |
 | **[The Theme](18-the-theme.md)** | **DEVELOP IN THE OPEN** — *six rules from the last sprint that drew, and [this session broke the first of them](#the-shelf-i-should-not-have-deleted)* |
 
 ## How to see it

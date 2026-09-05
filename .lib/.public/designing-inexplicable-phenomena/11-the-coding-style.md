@@ -70,7 +70,7 @@
 
 | | it rules | dated to |
 |---|---|---|
-| ***every framework class shows its use cases in `.spec`*** | **Doug: *"we always use the spec to show examples of the various use cases of each of our framework classes."*** *Each word's `.spec` file draws its examples as chemicals — the strong class, the carried type, and any trait or derived form — and [`spec.test`](../../package/src/tests/spec.test.tsx) enrolls every one behind three promises: it draws, it SPECIFIES, it COMPOSES, with a count that fails silent loss.* **A new kind is not finished until its `.spec` examples exist and are enrolled.** | ***2026-09-02*** · *produced in [The Margin](../projection/35-the-margin.md)* |
+| ***every framework class shows its use cases in `.spec`*** | **Doug: *"we always use the spec to show examples of the various use cases of each of our framework classes."*** *Each word's `.spec` file draws its examples as chemicals — the strong class, the carried type, and any trait or derived form — and **`spec.test`** enrolls every one behind three promises: it draws, it SPECIFIES, it COMPOSES, with a count that fails silent loss.* **A new kind is not finished until its `.spec` examples exist and are enrolled.** | ***2026-09-02*** · *produced in [The Margin](../projection/35-the-margin.md)* |
 
 ### <a id="supervision"></a>WE DO NOT INNOVATE — the standing rule, given 2026-09-05
 

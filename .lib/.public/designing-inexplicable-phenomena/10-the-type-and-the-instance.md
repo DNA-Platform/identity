@@ -70,7 +70,7 @@
 
 > *"TypeOfBook holds the meaning of book, so you don't have to derive from Book to have it."*
 
-***And that is not a claim — it is promised and drawn.*** **[`book.test`](../../package/src/tests/book.test.tsx): writing that never derived from `$Book` composes two chapters and answers as a book because it carries `<Type>Book</Type>`.** *The same shape stands as an example in [`.spec/book/WritingSpec.tsx`](../../package/src/tests/.spec/book/Book.tsx).*
+***And that is not a claim — it is promised and drawn.*** **[`book.test`](../../package/src/tests/book.test.tsx): writing that never derived from `$Book` composes two chapters and answers as a book because it carries `<Type>Book</Type>`.** *The same shape stands as an example in [`.spec/book/WritingSpec.tsx`](../../package/.archive/book/Book.tsx).*
 
 ***Where this sits among known patterns*** — **recalled rather than looked up, and flagged as such until verified:** *the closest named form is **Type Object** (Johnson & Woolf, PLoP 1997), which splits a class in two so new types can be made without subclassing; its neighbours are **Entity–Component–System**, the intrinsic/extrinsic split of **Flyweight**, and **traits or roles** in Scala, Rust and Raku.*
 
@@ -78,7 +78,7 @@
 
 *Doug: **"$TypeOfBook can be related to $Book1 and $Book2 and $Book3 right? They don't have to be 1-to-1 exactly although one needs to be canonical. You can create many book classes with NO relationship to each other except through writing."** + **"they are all interchangeable. I can make 12 types of chapters and as long as all are types of chapters I can pass them to book right?"** + **"But that's why the TYPE has to hold the specification."***
 
-***All of it is true, and [`tests/many.test.tsx`](../../package/src/tests/many.test.tsx) is where it is proven rather than asserted.*** **Seven promises, green:**
+***All of it is true, and **`tests/many.test.tsx`** is where it is proven rather than asserted.*** **Seven promises, green:**
 
 | | promise | |
 |---|---|---|
@@ -96,7 +96,7 @@
 
 ## <a id="how-to-use-it"></a>How someone USES this — verified against the examples
 
-***Four ways to give a piece of writing a meaning, weakest coupling first.*** **Every one of them is typechecked and drawn in [`.spec/`](../../package/src/tests/.spec/).**
+***Four ways to give a piece of writing a meaning, weakest coupling first.*** **Every one of them is typechecked and drawn in **`.spec/`**.**
 
 | | what an author writes | what it costs |
 |---|---|---|
@@ -105,7 +105,7 @@
 | **3** | ***a new kind, type only*** — `$TypeOfTitle extends $TypeOfParagraph`, `[cache]('Title')`, a specification | ***one declaration and no class*** — *the kind is then written `<Type>Title</Type>`* |
 | **4** | ***a new kind with its own data*** — a class **and** a type | *two declarations, and only needed when the kind holds something a paragraph does not* |
 
-***Route 3 is the one the split buys*** — **a kind that is only a meaning.** *[`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/src/tests/.spec/writing/Paragraph.tsx) declares two of them, `Title` by deriving a specification and `Quotation` by decorating one, and neither has a class of its own.*
+***Route 3 is the one the split buys*** — **a kind that is only a meaning.** *[`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/.archive/writing/Paragraph.tsx) declares two of them, `Title` by deriving a specification and `Quotation` by decorating one, and neither has a class of its own.*
 
 ## <a id="corollaries"></a>The corollaries, measured rather than argued
 
@@ -125,7 +125,7 @@
 
 ## <a id="three-routes"></a>Three ways to change what a type means
 
-*All three are exercised in [`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/src/tests/.spec/writing/Paragraph.tsx), typechecked and drawn.*
+*All three are exercised in [`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/.archive/writing/Paragraph.tsx), typechecked and drawn.*
 
 | | | |
 |---|---|---|
@@ -147,7 +147,7 @@
 
 ## <a id="specifically-two-verbs"></a>specifically has TWO VERBS — enforce, and augment to enforce
 
-*Doug, giving the second verb before there was code for it: **"I want specifically to be able to do things. It modify. To enforce. But also to augment to enforce."*** **The first built use: [`$TypeOfDocument.specifically`](../../package/src/writing/Document.tsx) CREATES the references section on any writing being a document, then checks** — one seat serving the bond path, the carried type, and the `$$` bind, where a bond-time create had broken twenty-nine carried-type fixtures at once. ***And specifically now runs at CONSTRUCTION:*** the type setter dispatches — guarded to the type's own canonical form, because [the super-chain assigns intermediate types](../solutions/41-the-phrase-that-was-refused-as-a-word.md).
+*Doug, giving the second verb before there was code for it: **"I want specifically to be able to do things. It modify. To enforce. But also to augment to enforce."*** **The first built use: [`$TypeOfDocument.specifically`](../../package/.archive/document/Document.tsx) CREATES the references section on any writing being a document, then checks** — one seat serving the bond path, the carried type, and the `$$` bind, where a bond-time create had broken twenty-nine carried-type fixtures at once. ***And specifically now runs at CONSTRUCTION:*** the type setter dispatches — guarded to the type's own canonical form, because [the super-chain assigns intermediate types](../solutions/41-the-phrase-that-was-refused-as-a-word.md).
 
 ## <a id="the-fetch"></a>The `$`-fetch corollary — RULED 2026-09-03, and it is the DI seat
 
