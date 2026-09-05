@@ -13,7 +13,7 @@
 
 **The plan's own line for sprint two:**
 
-> ***2 · The reference*** — **a reference as an annotation with `$TypeOfReference`; the specification that refuses one without a path; the anchor as a default view.** *You would see: prose with live links in it, and a bad reference refused with a reason.*
+> ***2 · The reference*** — **a reference as an annotation with `$TypeOfReference`; the specification that fails one without a path; the anchor as a default view.** *You would see: prose with live links in it, and a bad reference failed with a reason.*
 
 ***All three of those landed inside [sprint one](30-the-reference.md), which is why Doug's word at this brainstorm was "we mostly finished the second."*** **So this chapter is sprint two's REMAINDER**, *and it carries [R1–R3](30-the-reference.md#s1) as already satisfied, plus what sprint one's close listed as outstanding.*
 
@@ -38,7 +38,7 @@
 ***Beyond the style documents, four things this sprint reads and one it must not re-derive:***
 
 1. **[Chapter zero's reference plan](00-planning.md#the-reference-plan)** — *the five sprints, and [the sprint-two agenda](00-planning.md#v2) this brainstorm is answering.*
-2. **[The Reference](30-the-reference.md#where-things-stand)** — *sprint one's close: what it built, what it refused, and the wrong turns not to retry.*
+2. **[The Reference](30-the-reference.md#where-things-stand)** — *sprint one's close: what it built, what it failed, and the wrong turns not to retry.*
 3. **[The Reference, and What It Points With](../the-semantics-of-books/16-the-reference-and-its-locator.md#inscription)** — *outgoing is authored, incoming is compiled. That sentence decides the `means` fork.*
 4. **[The rules that only held for a class](../solutions/35-the-rules-that-only-held-for-a-class.md)** — ***a type's rule is written against WRITING, never against its canonical form's members.*** *The next reference rule walks into this trap.*
 5. **[Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md)** — ***any getter whose body contains `$(<…/>)` is a reading, not an accessor***, and it may not be called from a view. **`ref` computes a route; if it builds a chemical it meets this wall on the first render.**
@@ -79,7 +79,7 @@
 
 > ***"Writing isn't inserted. This is a library not a writing app. Yes, we break indexes when we write more. But those should be the canonical indexes. We can always add a way to insert a highlight not as a pointer like that, but as a wrapper around some of the text. But how does it persist? The quote that detects rot isn't useful. Just publish a version and assume all links break perhaps? I don't mind the reference having a 5-word slug at the end, and we use that to decide if the thing is real. Let's do that."***
 
-***This refuses the premise the question was built on, and the refusal is the design.*** **[R12](30-the-reference.md#r12) treated numeric decay as a fault to engineer against** — *the string register durable, the numeric one a fallback.* **Doug's answer is that a published library is not an editor**, *so the indexes are simply the canonical ones and breaking on rewrite is accepted rather than defended against.*
+***This fails the premise the question was built on, and the failure is the design.*** **[R12](30-the-reference.md#r12) treated numeric decay as a fault to engineer against** — *the string register durable, the numeric one a fallback.* **Doug's answer is that a published library is not an editor**, *so the indexes are simply the canonical ones and breaking on rewrite is accepted rather than defended against.*
 
 ***What replaces the defence is smaller and does a different job:*** **a five-word slug at the tail of the reference, which decides whether what the route landed on is the thing meant.** *Not a repair and not a durable address — **a validity check**.*
 
@@ -139,7 +139,7 @@
 
 <a id="open-nu"></a>**O2 · Is `Nu` a slip for `Wo`?** *[See above](#nu).*
 
-<a id="open-rules"></a>**O3 · `$typedOnce` contradicts `$oneKind`, and it is three of the six red tests.** ***Doug's open question 6, unanswered since 2026-08-30.*** *Two tests promise in their titles that `Document` + `Chapter` on one chain is legal and answers the most derived; `$typedOnce` refuses any second type.* **One of the two rules is wrong and it is not ours to pick.**
+<a id="open-rules"></a>**O3 · `$typedOnce` contradicts `$oneKind`, and it is three of the six red tests.** ***Doug's open question 6, unanswered since 2026-08-30.*** *Two tests promise in their titles that `Document` + `Chapter` on one chain is legal and answers the most derived; `$typedOnce` fails any second type.* **One of the two rules is wrong and it is not ours to pick.**
 
 <a id="open-slug"></a>**O4 · Where does the five-word slug live — on the reference, or at the tail of the route string?** *"The reference having a 5-word slug at the end" reads either way, and they serialize differently.*
 
@@ -235,9 +235,9 @@
 
 - **U27** · every level answers a code · **no two codes collide** *(a promise, not an inspection)* · a code survives a subclass that does not override it
 - **U28** · a paragraph four deep answers four steps · a section's route is a **prefix** of its paragraph's · nothing assigns `ref` · a part moved under a different parent answers a different route untold
-- **U29** · a slug is five words · a route into rewritten writing **resolves and then reports a mismatch** · a reference with no slug is refused, naming what is missing
+- **U29** · a slug is five words · a route into rewritten writing **resolves and then reports a mismatch** · a reference with no slug fails, naming what is missing
 - **U30** · a reference draws `<a>` · **its text is the identification alone, with no path inside it** · a sentence holding a reference draws exactly one anchor · a click is answered · ordinary prose draws no anchor
-- **U31** · `Document` + `Chapter` on one chain is **refused**, and the message says why · the `expect` count before and after is **stated**
+- **U31** · `Document` + `Chapter` on one chain is **failed**, and the message says why · the `expect` count before and after is **stated**
 
 ## <a id="risks"></a>Risks
 
@@ -246,7 +246,7 @@
 | **1** | ***a route getter that builds a chemical*** | **[Solutions 16, three appearances](../solutions/16-the-parse-that-woke-its-own-parents.md#a-getter-is-a-reading-too): any getter containing `$(<…/>)` is a reading and may not be called from a view.** *`ref` must answer data, not a built `$Reference`* |
 | **2** | ***a rule that reads a member of its own class*** | **[Solutions 35](../solutions/35-the-rules-that-only-held-for-a-class.md): a type's rule is written against WRITING.** *The slug rule must ask the block, not `$Reference.slug`* |
 | **3** | ***the route separators in a pasteable URL*** | ***[O5](#open-separator) is unanswered.*** *`>` percent-encodes; `$Path` validates with `URL.canParse`. **Raise before choosing**, do not pick a separator quietly* |
-| **4** | ***rewriting rather than formatting*** | **[The refusal in sprint 31](31-organization.md#done) — proving a change safe is not the same as its being asked for.** *U31 rewrites three tests and nothing else* |
+| **4** | ***rewriting rather than formatting*** | **[The failure in sprint 31](31-organization.md#done) — proving a change safe is not the same as its being asked for.** *U31 rewrites three tests and nothing else* |
 
 ## <a id="the-review-list"></a>The work phase ends with a list of files to review
 

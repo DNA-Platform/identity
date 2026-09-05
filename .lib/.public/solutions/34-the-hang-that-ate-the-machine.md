@@ -57,7 +57,7 @@
 
 ***`specify()` came out of nine bond constructors and two test-local ones.*** **One file went from 44.87 seconds to 865 milliseconds.** *Doug's ruling is the general form:* **"specify should be called on build to check and never needs to be called in the runtime of the app."**
 
-***`bind()` still specifies***, *and that is deliberate rather than an oversight:* **[`$$(of, kind)`](../../package/src/utilities/Lib.tsx) — reading a writing AS a kind — creates a chemical and calls `bind`, which is the moment a claim is being made about what something is.** *Two tests state it: **"refuses writing that cannot be what it is being bound as."***
+***`bind()` still specifies***, *and that is deliberate rather than an oversight:* **[`$$(of, kind)`](../../package/src/utilities/Lib.tsx) — reading a writing AS a kind — creates a chemical and calls `bind`, which is the moment a claim is being made about what something is.** *Two tests state it: **"fails writing that cannot be what it is being bound as."***
 
 **And the same fault had a second instance, found while fixing the first.** *The block condition was written twice — as the `hasBlock` rule and as `$check(block, 'block')` inline in nine bond constructors — and **the inline one threw where the rule reports**.* ***It killed a legitimate case:*** *a leaf with no children of its own, whose copy comes from elsewhere, died on a check its own class default was meant to satisfy.*
 
@@ -65,6 +65,6 @@
 
 ## The rule
 
-***A BOND CONSTRUCTOR MAY NOT THROW.*** **It runs during render, and a throw during render is retried, so a bond that refuses does not fail — it spins.** *Whatever a bond wants to insist on belongs in the specification, which collects failures and raises once, where a caller asked.*
+***A BOND CONSTRUCTOR MAY NOT THROW.*** **It runs during render, and a throw during render is retried, so a bond that fails does not fail — it spins.** *Whatever a bond wants to insist on belongs in the specification, which collects failures and raises once, where a caller asked.*
 
 ***And its corollary, which is what made this expensive rather than merely wrong:*** **an instrument that runs on the machine it is measuring can destroy its own footing.** *A test suite that leaks processes will, given an evening, make every subsequent measurement of itself a lie — and the lie will have a shape you can explain.* **Check the machine before believing the number.**

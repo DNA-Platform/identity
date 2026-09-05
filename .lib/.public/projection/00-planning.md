@@ -7,6 +7,68 @@
 
 *The planning scratchpad per [the convention](../../../../.claude/library/library-tree/03-sprints.md#the-planning-scratchpad--chapter-zero): overwritten as intentions are addressed — it holds what is INTENDED. Overwritten whole 2026-09-03 twice at Doug's order: first gathered by the librarian (every open item, cited), then organized into THE ROAD — all of it, in order, before the Wikipedia demo. His words: "It matters less how many sprints it is. We just need to write it down. It is the work we must do first before creating our wikipedia demo." Prior plans are superseded; their anchors survive [at the tail](#swept) so closed chapters' links resolve.*
 
+# <a id="working-copy-warning"></a>READ FIRST — THE SESSION THAT LOOKED DISCONNECTED WAS NOT, AND HERE IS THE EVIDENCE
+
+***Doug, 2026-09-04, from his phone:*** *"The wiki is the thing we're making in the future, but the wiki folder is empty right now. You might not even see it because you're not on my computer at the moment… I think we interrupted a session."*
+
+***That premise was checked and it does not hold. The session was running on his computer the whole time, on his newest commit.*** `probe`
+
+| what was checked | what was found |
+|---|---|
+| the machine | `DESKTOP-4QPA73P`, user `dougl`, Windows 11 build 26200 |
+| the working copy | `C:/Source/dna-platform/inexplicable-phenomena` — **the only checkout, and the only worktree** |
+| the commit | `main` at `9f08552`, *Sprint 41: subjects, authors and the catalogue card* — **authored by Doug at 18:33 that same day**, and newer than the `4d96ca2` this session opened on |
+| `.wiki` | **50 files on disk, and the same 50 tracked in `HEAD`'s tree** — it is not empty, and its contents are inside Doug's own latest commit |
+
+***So the filesystem was never the problem.*** What was missing was **the other conversation**. A session opened from the phone is a different session on the same machine: it shares every file and inherits no transcript. Files are common; context is not. **That is the whole of the disconnect, and it is worth remembering because it looks exactly like a stale checkout from the inside.**
+
+**Two corrections from the same exchange that DO stand:**
+
+1. ***The version-one demo application is `.archive`***, and it is an archive rather than the thing being built.
+2. ***"Corpus" is not a word of ours.*** Doug: *"It's a word you invented. It's not in the base."* The binder's own vocabulary is `Library`, `Book`, `File`, `Entry`, and `Role: cover | synopsis | chapter`. **Say library, not corpus.**
+
+***And one question that is still open and is Doug's:*** he expected `.wiki` to be empty and it is not. Whether those 50 files are wanted, stale, or were committed by a session he did not watch is his to say — **but they are his own commit, not a phantom.**
+
+# <a id="the-toc-design"></a>THE TABLE OF CONTENTS — Doug's design, recorded before it was built
+
+***His words, verbatim and whole, 2026-09-04. Nothing here is built; the session was stopped at [the warning above](#working-copy-warning) before implementation began.***
+
+> "I also want to start designing the table of contents. I'm starting to think that maybe you want CatalogueCard and all of it descendants to have two $ in front because it's a reference. I also think that maybe $$Book and $$Chapter should be designed in this context. All three of those should wrap a book reference, and I think a book reference that have a collection of chapter references on it. Then we have something to make equal.
+>
+> So what if you moved the machinery in those three to $$Book which needs no exported member. That reference already works right? So if you just put a book property on catalogue card, you could detect an author by saying that the book on a catalog card is equal to the book on the author, and every title card you can specify that its book is equal to the book of its title, and you can set a library boolean if the book is equal to the book of its subject, and that will help with validation and what not and then those cards themselves can be references by decorating their book, but then also displaying using that as the reference. Can you validate that this is a strategy and can you catch up on the code to find the absolute simplest way to implement this and just do that."
+
+## The shape underneath it, said back for correction
+
+**A catalogue card IS a reference to the book that names what it says**, and the three cards differ only in *which* book they point at. So identity questions become **equalities between books**, and no card needs machinery of its own.
+
+| the equality | what it decides |
+|---|---|
+| the title card's book **is this book** | a **rule** — a title names its own book, and it is checkable without opening anything |
+| the author card's book **is this book** | a **detection** — the book is its author's own book, so it is an **autobiography** |
+| the subject card's book **is this book** | a **detection** — the book is its own subject, so it is a **library**, which is exactly how a catalogue self-catalogues |
+
+## What the reading found, and it is mostly already there
+
+***`$ReferenceCard` is already the design.*** It extends `$Reference`, holds a list of references with **the first canonical**, falls its `path` through to that first reference, and delegates `read()` to it. **A card that decorates a book reference and displays as a link to it is what that class already does** — which is Doug's *"those cards themselves can be references by decorating their book, but then also displaying using that as the reference."*
+
+***So the simplest implementation is one word.*** `$IndexCard extends $ReferenceCard` rather than extending `$Annotation` — and because `$Reference` is itself an `$Annotation`, **the cards stay annotations and stay out of `types`**, which is the whole of Sprint 42's fix. Nothing is lost and the machinery arrives free.
+
+***The chapter references already exist.*** `$Catalogue.parts()` mints one reference per part through the `prints` registry, and a book's parts are chapters — so `book.catalogue().parts()` **is** the collection of `$$Chapter` references. What is missing is only that a `$$Book` **reference** does not yet answer them; today only the `$Book` itself can.
+
+***One place the design does not hold as spoken, and it needs his word.*** *"Every title card you can specify that its book is equal to the book of its title"* is trivially true if `card.title` stays the self-link Sprint 41 set (`$Title.title = this`), because then the two sides are the same object. **It becomes a real rule under one of two readings, and they are different features:**
+
+- **local** — the title card's book is the book the card is *written in*, checkable with the parent walk and opening nothing; or
+- **reciprocal** — the book the title names has *this card* as its title, which reads another book and therefore belongs at the CHECK, per the standing rule that specifying one book opens zero others.
+
+***And a caution that is Doug's own rule, not an objection.*** `card.book` can only answer when the card actually holds a reference. Today `<Title>Chemistry</Title>` holds nothing but text, so **every one of these equalities waits on the compiler emitting the book reference inside each card** — which is the same dependency the title's resolution already has.
+
+## Open, and each is his
+
+- **The `$$` rename** — `$$CatalogueCard`, `$$Title`, `$$Author`, `$$Subject`. He said *"maybe"*; it is his name and it changes the package surface, so it was not done.
+- **Which reading of the title equality** — local or reciprocal, above.
+- **Where the two booleans sit** — on the cover, on the card, or read rather than stored.
+- **Whether `$$Chapter` wraps a book reference too**, given its address already carries the book step.
+
 # <a id="the-road"></a>THE ROAD TO THE WIKIPEDIA DEMO
 
 *Every wave cites its sources; nothing here is approved by being listed — the decision surface is Wave 0, and src moves only on Doug's yes.*
@@ -15,7 +77,7 @@
 
 **DONE 2026-09-04: SUBJECTS, AUTHORS AND REFERENCES — [Sprint 41](43-sprint-41--subjects-authors-and-references.md) is built and handed off.** The catalogue stands as he drew it — `$IndexCard` → `$CatalogueCard` → Title, Subject, Author, each a type and a type of reference. `$Trait` is deleted and a piece of writing carries as many types as it likes. Heading is split from Title. `$Chemistry` gained `formula: boolean | 'new'` and a `resolved` symbol, on his direct instruction. **U8 and U9 were cut by him** — the compiler emits the cards, and the shared references section is not needed because the catalogue is made in the types.
 
-**NEXT, ruled 2026-09-04 at the close: STYLED CHEMICALS.** Doug's words — *"we will focus on styled chemicals next sprint."* **THE ROAD BELOW STILL STANDS and is not superseded by that**; it is the order of the work before the Wikipedia demo, and the book chapters — cover, synopsis, table of contents — remain what he named earlier the same day as the big next thing. *Both are recorded so neither is lost: styled chemicals is the next sprint, the road is the queue behind it.*
+**IN FLIGHT, ruled 2026-09-05: THE CARD CLEANUP AND THE BLOCK-ASKING PAIR — brainstormed and planned as [Sprint 44](46-sprint-44--the-card-cleanup.md), `implementation-ready`, 13 units.** His ask, and it is the sprint: *"I want type of annotation, and loosely coupled annotations. That is the big one. I want a type of index card, which wholes a title that refers somehow, and a type of card catalogue that prints an index card compositionally but specifically has a book reference if that is any different, and then I want the subject, author and title as types of sections and annotations, each its own different formula chain."* **Plus `find`/`findOne`, the make marker used everywhere it fits, and the bond reorder at all seven levels** — all designed in [ch10](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-block-asking-pair) and none of it built. ***$Synopsis is looked at AFTER, and only after*** — Doug: *"There's nothing special about it other than it's a special type of chapter. But we can see if it's flexible and if we can design table of contents and index with the same flexibility."* **THE ROAD BELOW STILL STANDS**; it is the order of the work before the Wikipedia demo. *Styled chemicals shipped as [Sprint 40](42-sprint-40--styled-chemicals.md); the cover as [Sprint 42](44-sprint-42--the-cover.md); type-hood as [Sprint 43](45-sprint-43--the-type-of-a-type.md), which carries the live Where things stand.*
 
 **Landed with Sprint 41 rather than deferred: [the descent](43-sprint-41--subjects-authors-and-references.md#where-things-stand).** `specify()` now reads its parts, so a book's whole interior is checked instead of its root alone. It uncovered one thing that stays open — **a paragraph is not divided into sentences** — and that is a ruling, not a repair: [Solutions 46](../solutions/46-the-check-that-checked-one-node.md).
 
@@ -35,7 +97,7 @@
 7. **NEW MEMBER: `$TypeOfList.specifically`** — U15's only lawful seat. — audit asks.
 8. **References re-seat `$Section → $Composition`** — net minus one override; counter-weight stated. Yes, no, or stay. — audit asks.
 9. **The Index/References duplication** — direction A (visible chapter-end change, browser-gated), direction B (needs a member), or stays hand-synced. — audit asks.
-10. **RESOLVED 2026-09-04** — "Loose text in books is always wrong. It takes chapters." $writtenAsChapters now refuses non-whitespace strings in a book's block; no Chapter parse function is registered; reduce() keeps returning [] pre-specify. — [Sprint 39 § rulings](41-sprint-39--the-road.md#rulings-0904).
+10. **RESOLVED 2026-09-04** — "Loose text in books is always wrong. It takes chapters." $writtenAsChapters now fails non-whitespace strings in a book's block; no Chapter parse function is registered; reduce() keeps returning [] pre-specify. — [Sprint 39 § rulings](41-sprint-39--the-road.md#rulings-0904).
 11. **The bench conflict on `parts()`-in-view** — the laws bench holds the text-split/block-scan views as Solutions 45's standing cures; the persona bench wants model-backed views. His call closes it. — audit risks.
 
 **Gates the scoped-DI story (Waves 2–3's registered half):**
@@ -46,12 +108,12 @@
 16. **Who calls `specify()` in production, and how deep?** — same.
 
 **Gates the Ref remainder (Wave 3):**
-17. **RESOLVED 2026-09-04, road A** — Doug: "Fix that skipped test please." `$TypeOfReference.specifically` mints the `$Path` from a url-shaped copy (only scheme://, /, or # starts — one-word copies stay pathless so bookmarks and refusals hold); the test draws the writing after acceptance. The suite carries ZERO skips. — [Sprint 39 handoff](41-sprint-39--the-road.md#where-things-stand).
+17. **RESOLVED 2026-09-04, road A** — Doug: "Fix that skipped test please." `$TypeOfReference.specifically` mints the `$Path` from a url-shaped copy (only scheme://, /, or # starts — one-word copies stay pathless so bookmarks and failures hold); the test draws the writing after acceptance. The suite carries ZERO skips. — [Sprint 39 handoff](41-sprint-39--the-road.md#where-things-stand).
 18. **`$Path.read(from)`** as the one-home seat (two inline bodies say the same three lines twice today). — same.
 19. **The `references` seat at the book root** (`focus()` mis-seats; member or seat-move). — same.
 20. **The R95 corpus registry export** (route→book map from the binder's `books.ts`). — same; [Binder § R95](37-the-binder.md#r95).
 21. **Whether books may nest** — gates `book()`-adjacent walks. — same.
-22. **The gate/law disagreement** — read-through reads nested Chapters/Books through; their specs refuse them; align. — same.
+22. **The gate/law disagreement** — read-through reads nested Chapters/Books through; their specs fail them; align. — same.
 
 **Process and standing:**
 23. **THE PUSH** — everything since `20cb87f` is green and UNCOMMITTED; his call, with the commit tool. — [Sprint 38 § WHERE THINGS STAND](40-sprint-38--the-rebuild.md#where-things-stand).
@@ -73,7 +135,7 @@
 
 ## Wave 2 — THE MECHANICAL SWEEP (zero new members; per-unit gates; suite + browser where paint-visible)
 
-- **U11a–d** — **LANDED 2026-09-03 at every CHEMICAL seat** (type defaults across all 23 classes, specifically creations, catalogue/concatenate, both mints through ComponentType `prints`, the five maker closures); **the dress half REFUSED — Wave-0 item 29**, dresses stand literal. — audit units.
+- **U11a–d** — **LANDED 2026-09-03 at every CHEMICAL seat** (type defaults across all 23 classes, specifically creations, catalogue/concatenate, both mints through ComponentType `prints`, the five maker closures); **the dress half FAILED — Wave-0 item 29**, dresses stand literal. — audit units.
 - **U12** — **DONE 2026-09-03**: the `inline?span:div` conditional is dead; base frames unconditionally as span; block kinds override. (Follow-ons ride rulings 3 and 5.) — audit units; the R136 shape.
 - **U13** — **DONE 2026-09-03**: numbering by the data condition (`type !== undefined`), tested by an untyped gatherer observed NOT numbering (`[0, 0]`). — audit units.
 - **U14** — one disable oracle (rides ruling 2). — audit units.

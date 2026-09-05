@@ -125,8 +125,8 @@
 
 | | claim | verdict |
 |---|---|---|
-| **1** | a subclass may re-aim a level at an unrelated rung | ***refused*** — `$Section implements $Composition$<$Word>` raises five `TS2416`s |
-| **2** | `$Section` and `$Document` are interchangeable | ***refused*** — *"Property `$Document` is missing in type `$Section`"* |
+| **1** | a subclass may re-aim a level at an unrelated rung | ***failed*** — `$Section implements $Composition$<$Word>` raises five `TS2416`s |
+| **2** | `$Section` and `$Document` are interchangeable | ***failed*** — *"Property `$Document` is missing in type `$Section`"* |
 | **3** | `$Book` may stand where a `$File` is asked for | **allowed, and sound** — `$Chapter` is a `$Document`, so the narrowing never lies |
 | **4** | a **new** class off `$Writing` may claim to compose anything | ***allowed*** — `$WrongRung implements $Composition$<$Letter>` compiles clean |
 | **5** | the nine `$TypeOfX` classes are distinguishable | ***no*** — `$TypeOfWord`→`$TypeOfSection`, `$TypeOfSentence`→`$TypeOfParagraph`, `$TypeOfDocument`→`$TypeOfFile`, `$TypeOfBook`→`$TypeOfChapter` all assign clean |
@@ -249,7 +249,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 **Two claims in that, and they are different:** ***a word carries a kind*** — punctuation, whitespace, and the canonical one — **and *the division makes runs*, so `!!!` is one word rather than three.**
 
-<a id="r297"></a>**R297** — ***and the word's CURRENT precondition forbids the kind Doug just asked for.*** **[`$TypeOfWord`](../../package/src/writing/Word.tsx) says *"a word is one unbroken stretch, and this one carries whitespace"*, which refuses a whitespace word outright.**
+<a id="r297"></a>**R297** — ***and the word's CURRENT precondition forbids the kind Doug just asked for.*** **[`$TypeOfWord`](../../package/src/writing/Word.tsx) says *"a word is one unbroken stretch, and this one carries whitespace"*, which fails a whitespace word outright.**
 
 ***Restated so it admits its own residue:*** **a word is one run of letters of a single class.** *`hello` is a run of said letters, `!!!` a run of punctuation, `   ` a run of whitespace — one rule, three kinds, and the canonical is the first.* ***The class that groups alphabetical with numeric needs Doug's word; a proxy stands in the code — [OPEN](#open).***
 
@@ -672,7 +672,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 **Mechanism:** *`$TypeOfLetter.specifically` is already exactly this and changes nothing* — **one `$check`, one grapheme, no reading and no return.** *What this unit does is make that the stated shape and prove the claim it rests on:* **that the check is what makes `kind` and `case` total.** *[R290](#r290) — whether the level holds or recomputes — is left open and this unit does not touch it.*
 **Files:** `writing/Letter.tsx`, `writing/Writing.tsx`.
 **Depends on:** nothing.
-**Visible end:** ***a letter and a non-letter side by side*** — one answering with its kind and case, the other refused in one sentence.
+**Visible end:** ***a letter and a non-letter side by side*** — one answering with its kind and case, the other failed in one sentence.
 
 | | scenario | outcome |
 |---|---|---|
@@ -686,7 +686,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 ## <a id="u212"></a>U212 — the bind validates
 
 **Requirements:** [R277](#r277), [R278](#r278).
-**Mechanism:** *`$Writing.bind(writing)` sets `inside`, calls `specify()`, then `build()` — in that order, so nothing is assigned from a reading that was refused.* **This reinstates what [`69b79b8`](../../package/src/writing/Writing.tsx) built and the current shape lost.**
+**Mechanism:** *`$Writing.bind(writing)` sets `inside`, calls `specify()`, then `build()` — in that order, so nothing is assigned from a reading that failed.* **This reinstates what [`69b79b8`](../../package/src/writing/Writing.tsx) built and the current shape lost.**
 **Files:** `writing/Writing.tsx`, `utilities/Lib.tsx`.
 **Depends on:** U211.
 **Visible end:** ***`$$(writing, $Letter)` on writing that is not a letter says so*** — where today it hands back a letter.
@@ -696,7 +696,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 | **S5** | `$$(drawn('U+0041', <Type>Letter</Type>).writing, $Letter)` | ***raises, naming the reason*** — [R277](#r277) |
 | **S6** | `$$` on writing that IS one grapheme | binds, and `kind`/`case` are that writing's |
 | **S7** | a bound letter rebound to different writing | ***copy, kind and case all move*** — [R278](#r278) |
-| **S8** | ***the order inside `bind`*** | **a refused bind leaves no assigned state** — *`kind` is not written before `specify()` raises* |
+| **S8** | ***the order inside `bind`*** | **a failed bind leaves no assigned state** — *`kind` is not written before `specify()` raises* |
 | **S9** | ***what `$$` does today, pinned before it is changed*** | **the current behaviour is written down as a scenario first**, because [it was read rather than run](#read) and the plan may be wrong about it — [K36](#k36) |
 
 ## <a id="u213"></a>U213 — the five silent levels say what they are
@@ -705,13 +705,13 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 **Mechanism:** *each of `$TypeOfSentence`, `$TypeOfParagraph`, `$TypeOfSection`, `$TypeOfDocument`, `$TypeOfFile` overrides `specifically`, exactly as `$TypeOfLetter` and `$TypeOfWord` already do.*
 **Files:** the five level files under `writing/`.
 **Depends on:** U211.
-**Visible end:** *a piece of writing told it is a section, and refused in the section's own words.*
+**Visible end:** *a piece of writing told it is a section, and failed in the section's own words.*
 
 | | scenario | outcome |
 |---|---|---|
 | **S10** | each of the five, given writing that satisfies it | passes, and hands back its description |
 | **S11** | each of the five, given writing that does not | ***raises with a sentence naming the level and the reason*** — never a bare `false` |
-| **S12** | ***the sentences are not vacuous*** | **for each of the seven there exists writing the type refuses** — *the promise that would have caught today's state* |
+| **S12** | ***the sentences are not vacuous*** | **for each of the seven there exists writing the type fails** — *the promise that would have caught today's state* |
 
 ## <a id="u214"></a>U214 — `$Title`, and a section's specification
 
@@ -725,8 +725,8 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 |---|---|---|
 | **S13** | a section whose part zero is a written `<Title>` | valid · `parts()[0]` **is** the title, counted among the paragraphs — *not lifted out* |
 | **S14** | a section whose part zero is a paragraph carrying `<Type>Title</Type>` | ***identical answer, by the same route*** — [R281](#r281) |
-| **S15** | a section with paragraphs and no title | ***refused, in the section's words*** |
-| **S16** | a title with no words | ***refused*** — *"a title has words, and this one is empty"* is v1's own sentence |
+| **S15** | a section with paragraphs and no title | ***failed, in the section's words*** |
+| **S16** | a title with no words | ***failed*** — *"a title has words, and this one is empty"* is v1's own sentence |
 | **S17** | ***a `$Title` asked what it is*** | **a paragraph** — `$$(title)($Paragraph)` is true, and `$Section.parts()` finds it without being told titles exist |
 
 ## <a id="u215"></a>U215 — `$Cover`, and a book's specification
@@ -740,7 +740,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 | | scenario | outcome |
 |---|---|---|
 | **S18** | a book whose chapter zero is a cover | valid · the cover is `parts()[0]` and is counted |
-| **S19** | a book with chapters and no cover | ***refused, in the book's words*** |
+| **S19** | a book with chapters and no cover | ***failed, in the book's words*** |
 | **S20** | ***a cover whose part zero is a title*** | **the figure one grade down**, and the cover carries the parentheticals beside it — *"and other things"* |
 
 ## <a id="u216"></a>U216 — the stand-in
@@ -755,7 +755,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 |---|---|---|
 | **S21** | **prose with digits, spaces and stops around a hole** | ***divides exactly as the same prose without the hole*** — **the case that fails in v1** |
 | **S22** | in equals out | **every stand-in sealed is restored; a shortfall raises naming both numbers** — [D118](#d118) |
-| **S23** | ***prose containing the stand-in character itself*** | ***refused or escaped, never silently mistaken for a hole*** — [K39](#k39) |
+| **S23** | ***prose containing the stand-in character itself*** | ***failed or escaped, never silently mistaken for a hole*** — [K39](#k39) |
 | **S39** | ***a phrase written among prose*** | **one word, not several** — *its copy carries spaces and the division never sees them* — [R315](#r315) |
 | **S40** | ***an AT-LEVEL object sealed*** | **it divides as exactly one part** — [R316](#r316) |
 | **S24** | the same prose sealed and divided twice | ***identical both times*** — *no `/g` regex outlives a call* |
@@ -803,16 +803,16 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 | | scenario | outcome |
 |---|---|---|
 | **S25** | `!!!`, `???`, `::` | ***one word each, kind `punctuation`, non-canonical*** — [R296](#r296) |
-| **S26** | a run of spaces | **one word, kind `whitespace`, non-canonical** — *and it PASSES its type*, where today it is refused — [R297](#r297) |
+| **S26** | a run of spaces | **one word, kind `whitespace`, non-canonical** — *and it PASSES its type*, where today it fails — [R297](#r297) |
 | **S27** | `hello`, `h3llo`, `7` | canonical, one run each |
-| **S28** | ***every level*** | **there exists writing its type ACCEPTS and its canonical REFUSES** — *the residue is non-empty at every rung, which is what [R294](#r294) requires and what makes minting possible* |
+| **S28** | ***every level*** | **there exists writing its type ACCEPTS and its canonical FAILS** — *the residue is non-empty at every rung, which is what [R294](#r294) requires and what makes minting possible* |
 | **S29** | `The cat sat.` versus `the cat sat` | ***canonical, then not*** — [R298](#r298), read from the parts and never from a raw string |
 | **S30** | a heading-shaped paragraph | ***non-canonical as a paragraph, canonical as a title*** — [R299](#r299) |
 | **S44** | writing carrying **Stanza** and **Title**, read by a section | ***the part is a `$Paragraph`*** · **it still carries both types** · `$$(part, $Title)` answers — [R330](#r330), [R331](#r331) |
 | **S43** | writing carrying **Letter** and **Word**, read by a word and by a sentence | ***the word binds the Letter, the sentence binds the Word*** — same writing, two readings — [R326](#r326) |
 | **S41** | ***a paragraph carrying `<Type>Stanza</Type>`*** | ***non-canonical as a paragraph, canonical as a stanza*** — **and no `$Stanza` class is written** — [R321](#r321), [R322](#r322), [R323](#r323) |
 | **S42** | a stanza written as ordinary lines | **it parses as a paragraph** — *no newline rule anywhere in the walk* — [R324](#r324) |
-| **S31** | ***a kind claiming canonical ground*** | **a punctuation kind offered `"hello"` is refused** — [R295](#r295) |
+| **S31** | ***a kind claiming canonical ground*** | **a punctuation kind offered `"hello"` fails** — [R295](#r295) |
 | **S35** | a section that is only a title, and one with a canonical paragraph under it | ***non-canonical, then canonical*** — [R307](#r307), and the first is what a cover is made from |
 | **S36** | `<Letter>7</Letter>` | ***canonical*** — **this REPLACES a green promise that asserts the opposite** — [R308](#r308) |
 | **S37** | a section with a title and three paragraphs, enumerated | ***the enumeration is three and `parts()` is four*** — the title present in one and absent from the other — [R309](#r309) |
@@ -899,7 +899,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 | actor | served by |
 |---|---|
-| [A16](#a16) the library author | U213, U214, U215 — *refused in the level's own words* |
+| [A16](#a16) the library author | U213, U214, U215 — *failed in the level's own words* |
 | [A17](#a17) the framework author | U211 — *the knowing written once, on the type* |
 | [A18](#a18) the author of live prose | U217 — **AE16** |
 
@@ -909,9 +909,9 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 # <a id="what-is-seen"></a>What is seen
 
-<a id="ae12"></a>**AE12** — ***a letter and a non-letter side by side*** — one answering with its kind and case, the other refused in one sentence, and the type having read nothing to do it. *Covers [R276](#r276), [R289](#r289), [R290](#r290), [R291](#r291), [R292](#r292).*
+<a id="ae12"></a>**AE12** — ***a letter and a non-letter side by side*** — one answering with its kind and case, the other failed in one sentence, and the type having read nothing to do it. *Covers [R276](#r276), [R289](#r289), [R290](#r290), [R291](#r291), [R292](#r292).*
 
-<a id="ae13"></a>**AE13** — writing that cannot be a letter, **refused at the bind**, where today it is bound and drawn. *Covers [R277](#r277), [R278](#r278).*
+<a id="ae13"></a>**AE13** — writing that cannot be a letter, **failed at the bind**, where today it is bound and drawn. *Covers [R277](#r277), [R278](#r278).*
 
 <a id="ae14"></a>**AE14** — ***a section with its title standing first, and a titleless one saying why it is not a section*** — and the title reached both ways, written and typed. *Covers [R279](#r279), [R280](#r280), [R281](#r281).*
 
@@ -939,7 +939,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 ***HALF DISCHARGED, and the half that closed did so inside this sprint.*** **The single shared walk now exists** — *[`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx), and all seven levels call `parser.parse`; the seven copies of `filter($$(one)(X)).map($$(one, X))` are gone.* **So ch. 15's *"one walk, written once, and it is a tool"* is a report rather than an intention, for the first time.**
 
-***The other half stands: there is still no `level` getter, and the walk does not decide by level.*** *It decides by `accept`, which each level supplies* — **so ch. 15's *"LEVEL ALONE DECIDES"* remains an intention**, and so does its *"too high — it throws, naming both levels"*, which [U219](#u219) ruled away and [R345](#r345) then found refused one grade earlier, at the section's own specification. ***[The correction is owed to ch. 15](../the-semantics-of-books/15-the-levels-of-writing.md) and is filed there.***
+***The other half stands: there is still no `level` getter, and the walk does not decide by level.*** *It decides by `accept`, which each level supplies* — **so ch. 15's *"LEVEL ALONE DECIDES"* remains an intention**, and so does its *"too high — it throws, naming both levels"*, which [U219](#u219) ruled away and [R345](#r345) then found failed one grade earlier, at the section's own specification. ***[The correction is owed to ch. 15](../the-semantics-of-books/15-the-levels-of-writing.md) and is filed there.***
 
 <a id="k41"></a>**K41 — two copies of the framework loaded at once.** *[K35](28-the-block.md#k35), unchanged and still true.* **No import may cross between `src` and `.archive`.**
 
@@ -1116,9 +1116,9 @@ return parser.parse(from,
 
 <a id="r344"></a>**R344 — the parser NEVER binds, and nothing was changed.** *Doug: "I have no opinion so don't change anything."* **Binding lives in each level's `accept`** — `$$(token, $Paragraph)` — *so the parser decides **where** a token goes and the level decides **what it becomes**.* **Recorded rather than altered.**
 
-<a id="r345"></a>**R345 — stray writing is REFUSED, not placed. This is the honest no.** *A word written inside a section would be carried into `held` and become a child of the auto-wrapped paragraph* — **but [`$TypeOfSection.specifically`](../../package/src/writing/Section.tsx) requires every non-parenthetical writing in the block to be a paragraph, so it raises before `parts()` is ever asked.**
+<a id="r345"></a>**R345 — stray writing is FAILED, not placed. This is the honest no.** *A word written inside a section would be carried into `held` and become a child of the auto-wrapped paragraph* — **but [`$TypeOfSection.specifically`](../../package/src/writing/Section.tsx) requires every non-parenthetical writing in the block to be a paragraph, so it raises before `parts()` is ever asked.**
 
-***Placing it is [R315](#r315)–[R316](#r316)'s token work and it is not built.*** **The two rulings are in tension and the tension is real:** *"we throw an error if anything in the block is not a paragraph" refuses a stray word; "the parser knows that that word is in a sentence" places one.* **Today the refusal wins at section grade and the placing has nowhere to happen.**
+***Placing it is [R315](#r315)–[R316](#r316)'s token work and it is not built.*** **The two rulings are in tension and the tension is real:** *"we throw an error if anything in the block is not a paragraph" fails a stray word; "the parser knows that that word is in a sentence" places one.* **Today the failure wins at section grade and the placing has nowhere to happen.**
 
 <a id="r346"></a>**R346 — the type is chosen by level first, then in descending order.** *Doug's rule, built.* **[`$$`](../../package/src/utilities/Lib.tsx) filtered to the first match in WRITTEN order until now;** *it now filters to every carried type standing at the asked level and takes the **most derived**.*
 
@@ -1144,10 +1144,10 @@ return parser.parse(from,
 | `<Type>Book</Type>` alone | ***valid*** · `type` is the Book type |
 | a written `<Book>`, carrying **File and Book** | ***valid*** — one lineage |
 | `<Type>Document</Type>` + `<Type>Chapter</Type>` | ***valid*** — Chapter refines Document · `type` is the Chapter type |
-| ***`<Type>Book</Type>` + `<Type>Chapter</Type>`*** | ***REFUSED*** — **Doug's own example** |
-| ***`<Type>Word</Type>` + `<Type>Letter</Type>`*** | ***REFUSED*** |
+| ***`<Type>Book</Type>` + `<Type>Chapter</Type>`*** | ***FAILED*** — **Doug's own example** |
+| ***`<Type>Word</Type>` + `<Type>Letter</Type>`*** | ***FAILED*** |
 
-<a id="r349"></a>**R349 — and this OVERRIDES [R273](28-the-block.md#r273)'s chimerical level.** *A promise in [`annotation.test`](../../package/src/tests/annotation.test.tsx) asserted that writing told it is both a Word and a Letter **answers to both names**.* ***That promise is gone***, replaced by one that refuses it. **Annotations may still be many; LEVELS may not** — *which is [C17](27-composition.md#c17) narrowed by its own author.*
+<a id="r349"></a>**R349 — and this OVERRIDES [R273](28-the-block.md#r273)'s chimerical level.** *A promise in [`annotation.test`](../../package/src/tests/annotation.test.tsx) asserted that writing told it is both a Word and a Letter **answers to both names**.* ***That promise is gone***, replaced by one that fails it. **Annotations may still be many; LEVELS may not** — *which is [C17](27-composition.md#c17) narrowed by its own author.*
 
 **479 tests, `tsc` 0.**
 
@@ -1187,8 +1187,8 @@ return parser.parse(from,
 | declaration | `Spec<$Letter>` → `Spec<$Writing>` |
 |---|---|
 | ***`$one(w: T): void {}` — a METHOD*** | ***assignable*** |
-| `$one: (w: T) => void` — a property | **refused** |
-| `class Spec<in T>` — a variance annotation | **refused** |
+| `$one: (w: T) => void` — a property | **failed** |
+| `class Spec<in T>` — a variance annotation | **failed** |
 | ***`override getSpecification(): Spec<$Letter>`*** | ***assignable*** |
 
 ***So the convention has TWO halves and only one of them is the `$`.*** **It is a `$`-prefixed METHOD.** *Write the same rule as a field holding an arrow and the hierarchy stops being assignable* — **which is [Solutions 20](../solutions/20-the-narrowed-prop-that-disowned-its-base.md) from the other side**, *where a narrowed `$` **property** produced thirty errors in five untouched classes.*
@@ -1242,7 +1242,7 @@ return parser.parse(from,
 
 ***Writing told what it is never checks itself at construction*** — **`$Writing`'s bond lifts the type and does not call `specify()`** — *so the check belongs where something binds to it.* **`bind` runs the bound instance's own type against the incoming writing, and nothing else.**
 
-*Promised three ways: writing that cannot be a letter is refused, one that can is bound, and **a rebind is checked too** — a bound letter handed two graphemes raises and keeps its old copy.*
+*Promised three ways: writing that cannot be a letter fails, one that can is bound, and **a rebind is checked too** — a bound letter handed two graphemes raises and keeps its old copy.*
 
 ## <a id="specification-state"></a>The state, with its scope
 

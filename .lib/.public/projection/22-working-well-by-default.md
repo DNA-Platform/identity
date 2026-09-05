@@ -83,7 +83,7 @@
 
 **Two things are required and they are different.** *The first is that the seam's consumers are all inside the typecheck ([O16](#o16)). The second is that the seam can say **not yet computed*** — today `File.declares` is `''` before `refer` fills it, `Entry.references` is `[]`, `Library.books` is `[]`, **and none of those is distinguishable from a genuine empty**, so a stage run out of order returns a plausible wrong answer rather than an error.
 
-> ***OBSERVED:*** **`tsc --listFiles` in `build/` names every module in the package**, and a stage asked for something the pipeline has not filled yet **says so** rather than answering empty. *A promise runs `resolve` on an unreferred library and asserts a refusal.*
+> ***OBSERVED:*** **`tsc --listFiles` in `build/` names every module in the package**, and a stage asked for something the pipeline has not filled yet **says so** rather than answering empty. *A promise runs `resolve` on an unreferred library and asserts a failure.*
 
 ### <a id="r142"></a>R142 — A wrong corpus produces a diagnostic, never a stack trace
 
@@ -247,7 +247,7 @@
 |---|---|
 | **AE1** | *A corpus whose book has no synopsis compiles to `INVALID <path> — a book with no synopsis` and exits non-zero. **No stack trace.*** |
 | **AE2** | *A corpus with a malformed chapter says the file would not parse, and names the file.* |
-| **AE3** | *`export const nothing = 1` in a chapter is refused before it reaches the emitter.* |
+| **AE3** | *`export const nothing = 1` in a chapter fails before it reaches the emitter.* |
 | **AE4** | *`/physics` is walked chapter by chapter and `data-entries` is absent from every one.* |
 | **AE5** | *For every chapter of every book, `turning`'s forward label equals the heading of the page it reaches.* |
 | **AE6** | *`/physics/the-standard-model` → click the cover → the 6,578-character chapter is on screen.* |
@@ -308,7 +308,7 @@
 
 ### <a id="d82"></a>D82 — "Not yet computed" is said per FIELD, never per phase — the seam keeps having no tense
 
-***This one is friction, and the friction is the design speaking.*** **[The seam's own comment refuses what [R141](#r141) asks for](../../build/library.ts):** *"THE ONE SEAM, and every stage both takes it and returns it. There is no second, narrower seam and therefore no tense to name."*
+***This one is friction, and the friction is the design speaking.*** **[The seam's own comment fails what [R141](#r141) asks for](../../build/library.ts):** *"THE ONE SEAM, and every stage both takes it and returns it. There is no second, narrower seam and therefore no tense to name."*
 
 **So the mechanism does not add a tense.** *It makes the FIELDS honest:* **`File.declares` becomes optional, so `undefined` is *not read yet* and `''` is *read, and exports nothing*** — *two states that are one state today.* **Same for `Entry.references` and `Library.books`.**
 
@@ -336,7 +336,7 @@
 
 ### <a id="d86"></a>D86 — `R154` is scheduled AFTER the default view, and its size is deliberately unknown
 
-***The one place this plan refuses to estimate.*** **[R154](#r154) repairs whatever [Group 3](#group-3) breaks in the demonstration, and what that is cannot be known before Group 3 runs.** *Doug authorised the breakage — "Don't be afraid to break the demo to get the default working, but then we have to fix the demo" — so the unit exists, is owned, and is sized when it can be.* **Naming it now with a guessed size would be [the fault this branch files most](21-semantics-then-drawing.md).**
+***The one place this plan fails to estimate.*** **[R154](#r154) repairs whatever [Group 3](#group-3) breaks in the demonstration, and what that is cannot be known before Group 3 runs.** *Doug authorised the breakage — "Don't be afraid to break the demo to get the default working, but then we have to fix the demo" — so the unit exists, is owned, and is sized when it can be.* **Naming it now with a guessed size would be [the fault this branch files most](21-semantics-then-drawing.md).**
 
 # The units
 
@@ -476,10 +476,10 @@
 | **T2** | [U153](#u153) | *`dump` on the corpus: every row's mark and the summary's counts agree* | — |
 | **T3** | [U155](#u155) | *a corpus whose book has no synopsis → named diagnostic, non-zero exit, **no stack trace*** | **AE1** |
 | **T4** | [U155](#u155) | *a corpus with a malformed chapter → the diagnostic says the file would not parse, and names it* | **AE2** |
-| **T5** | [U155](#u155) | *`export const nothing = 1` → refused before the emitter* | **AE3** |
+| **T5** | [U155](#u155) | *`export const nothing = 1` → failed before the emitter* | **AE3** |
 | **T6** | [U156](#u156) | *a fixture renaming `contents` on a `$Book` → a type error* | — |
 | **T7** | [U151](#u151) | *a fourth reference kind added in one place fails to compile in the others* | — |
-| **T8** | [U151](#u151) | *`resolve` on an unreferred library refuses rather than answering empty* | — |
+| **T8** | [U151](#u151) | *`resolve` on an unreferred library fails rather than answering empty* | — |
 | **T9** | [U159](#u159) | *every chapter of `/physics` walked; `data-entries` absent from all of them* | **AE4** |
 | **T10** | [U160](#u160) | *every chapter of every book: forward label = heading of the page reached* | **AE5** |
 | **T11** | [U161](#u161) | *`/physics/the-standard-model` → one click on the cover → the chapter is on screen* | **AE6** |
@@ -524,7 +524,7 @@
 
 | | |
 |---|---|
-| ***The thinnest section is [U167](#u167)*** | **and that is deliberate — [D86](#d86).** *It is the one place the plan refuses to guess, because its input is Phase 4's output* |
+| ***The thinnest section is [U167](#u167)*** | **and that is deliberate — [D86](#d86).** *It is the one place the plan fails to guess, because its input is Phase 4's output* |
 | ***The riskiest is [U151](#u151)*** | **one edit that breaks every stage at once.** *[K11](#the-risks) says a blanket rename has bitten twice; the mitigation is that [U150](#u150) stands first, so the breakage is a typecheck rather than a runtime* |
 | ***The one that must not be reordered is [U163](#u163) → [U164](#u164)*** | **[K10](#the-risks) has already fired once, visibly** — *every spine vanished* |
 | ***The one that proves the sprint*** | **[U155](#u155).** *A stack trace is visibly not a diagnostic, and all three faults were reproduced during the brainstorm, so the red is known real before a line is written* |

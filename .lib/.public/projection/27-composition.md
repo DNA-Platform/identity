@@ -222,7 +222,7 @@ export interface $Composition$<T extends $Writing> {
 
 <a id="ae3"></a>**AE3** — `$Cats extends $Smiley` replaces the faces and nothing else, on the page. *Covers [R249](#r249).*
 
-<a id="ae4"></a>**AE4** — `$HexLetter extends $Letter` narrows the specification; a writing carrying the narrower type answers **both** names, and one carrying only `$Letter` **refuses** `$HexLetter` and says so. *Covers [R246](#r246).*
+<a id="ae4"></a>**AE4** — `$HexLetter extends $Letter` narrows the specification; a writing carrying the narrower type answers **both** names, and one carrying only `$Letter` **fails** `$HexLetter` and says so. *Covers [R246](#r246).*
 
 <a id="ae5"></a>**AE5** — ***the one a hand-authored page cannot fake.*** **A word whose letters are a MIX** — plain graphemes and the Smiley — where `parts()` returns them all **in order**, the Smiley among them **as a letter**, each a bound proxy for its own writing, and **the walk names no class to do it.** *Covers [R249](#r249), [R245](#r245), [R244](#r244).*
 
@@ -307,9 +307,9 @@ export interface $Composition$<T extends $Writing> {
 | | |
 |---|---|
 | ***[R246](#r246)–[R248](#r248), the two questions*** | **NOT BUILT.** *The level condition is `specify()`; the canonical-kind condition needs a second member and **the name is Doug's**.* **So today the Smiley passes as a letter and nothing asks whether it is the canonical kind.** |
-| **[R244](#r244)'s top-level validity** | `$Document` and `$File` do not yet refuse loose prose. |
+| **[R244](#r244)'s top-level validity** | `$Document` and `$File` do not yet fail loose prose. |
 | **[U199](#u199)** | The catalogue. ***Design owed***, no files. |
-| ***the `$$` throw path is never exercised in composition*** | `composed()` filters with `$Type.is` before calling `$$`, so a part that cannot be bound is **skipped in silence** rather than refused. *Named rather than omitted.* |
+| ***the `$$` throw path is never exercised in composition*** | `composed()` filters with `$Type.is` before calling `$$`, so a part that cannot be bound is **skipped in silence** rather than failed. *Named rather than omitted.* |
 
 ## The wrong turns already taken — do not repeat these
 
@@ -348,7 +348,7 @@ export interface $Composition$<T extends $Writing> {
 
 ## <a id="s4"></a>S4 — CLOSED: the eager `$check` found a real v1 fault
 
-***`.archive/book/Annotation.tsx` read `return super.valid() || this.$for !== undefined;`*** — so `super.valid()` reached the phrase check, **stated "a phrase is a name… but not be empty", and the `||` returned true anyway.** *v1 was stating a reason and ignoring it; the reason was discarded at the next reset and nobody heard it.* **Fixed by asking the cheap question first**, so the complaint is never made. *And an author naming a book that does not author itself now **refuses** rather than answering false, which is what the eager rule means.* ***v1: 352/352.***
+***`.archive/book/Annotation.tsx` read `return super.valid() || this.$for !== undefined;`*** — so `super.valid()` reached the phrase check, **stated "a phrase is a name… but not be empty", and the `||` returned true anyway.** *v1 was stating a reason and ignoring it; the reason was discarded at the next reset and nobody heard it.* **Fixed by asking the cheap question first**, so the complaint is never made. *And an author naming a book that does not author itself now **fails** rather than answering false, which is what the eager rule means.* ***v1: 352/352.***
 
 ### the original entry
 

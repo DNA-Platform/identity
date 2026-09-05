@@ -40,7 +40,7 @@ $(<LibraryCard name="The Algebra of Perspective" … synopsis={line(algebra)} ch
 
 *`line(book)` reads the book's synopsis tagline; `titles(book)` reads its chapters.* ***So a card cannot exist until its book does***, **and the shelf — the landing page — waits on 158 modules before it draws one spine.** *Measured: **8.3 seconds to visible.***
 
-***The compiler's generated catalogue refuses exactly this, in its own words:***
+***The compiler's generated catalogue fails exactly this, in its own words:***
 
 > **"NOTHING HERE IMPORTS A BOOK. A card is a book present without the book, and a module that reached for one would be handling the item it stands in for."**
 

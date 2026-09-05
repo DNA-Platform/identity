@@ -53,9 +53,9 @@
 
 **Unit 3 — compactness.** *The `single` guard collapsed to one line in **eight** classes; `$Writing.found`'s skip and `$Lib.$$`'s type guard likewise; [`$Letter.build`](../../package/src/writing/Letter.tsx) gained its one paragraph break, between deciding a kind and deciding a case.*
 
-**Unit 4 — [`Parser.tokens`](../../package/src/utilities/Parser.tsx), and it is the one change Doug REFUSED.** *Fourteen lines of loop with two `continue`s became a three-step filter · map · filter.*
+**Unit 4 — [`Parser.tokens`](../../package/src/utilities/Parser.tsx), and it is the one change Doug FAILED.** *Fourteen lines of loop with two `continue`s became a three-step filter · map · filter.*
 
-> ***REFUSED 2026-08-30, and the chapter records it rather than claiming the unit as clean work.*** **Doug: "Okay well really really minimize rewriting. I don't think I even approved of that. This was about formatting…"**
+> ***FAILED 2026-08-30, and the chapter records it rather than claiming the unit as clean work.*** **Doug: "Okay well really really minimize rewriting. I don't think I even approved of that. This was about formatting…"**
 >
 > ***He is right about the kind of thing it is.*** **His rule says a housekeeping `for` goes ON ONE LINE — *"as a filter call might have been"*** — *and the comparison to a filter says how SMALL the loop should be, not what it should become.* **A fourteen-line loop restructured into three chained calls is not a compaction; it is the method expressing its algorithm a different way.** ***His framing of the whole pass was "don't break anything just organize" and "this is organization."***
 >
@@ -129,12 +129,12 @@
 
 # <a id="structural"></a>Which changes were STRUCTURAL rather than layout
 
-***Asked for after [Unit 4 was refused](#done), and answered without softening, because a list that is too long is recoverable and one that is too short is not.*** **The line: layout is the same code moved or respaced; structural is the code saying the same thing a different way.**
+***Asked for after [Unit 4 failed](#done), and answered without softening, because a list that is too long is recoverable and one that is too short is not.*** **The line: layout is the same code moved or respaced; structural is the code saying the same thing a different way.**
 
 | | the change | |
 |---|---|---|
-| **1** | ***[`Parser.tokens`](../../package/src/utilities/Parser.tsx)*** — the loop became filter · map · filter | ***the refused one, and the clearest case*** |
-| **2** | ***`Parser.parse`*** — `forEach((part, at) => { part.index = at; })` lost its braces | **ARGUABLE and listed because it is** — *the arrow went from a statement body to an expression body, so it now returns the assigned value and `forEach` discards it. No behaviour change, but it is not respacing, and it sits one line from the change that was refused* |
+| **1** | ***[`Parser.tokens`](../../package/src/utilities/Parser.tsx)*** — the loop became filter · map · filter | ***the failed one, and the clearest case*** |
+| **2** | ***`Parser.parse`*** — `forEach((part, at) => { part.index = at; })` lost its braces | **ARGUABLE and listed because it is** — *the arrow went from a statement body to an expression body, so it now returns the assigned value and `forEach` discards it. No behaviour change, but it is not respacing, and it sits one line from the change that failed* |
 | **3** | ***the nine import repoints*** — `$TypedSpecification` now names a different module, one line deleted from each file | **structural: a symbol names a different module.** *Stated as fact and not as defence — it was required to fix a build [Doug's own in-flight fold had left broken](#done), 21 errors and 18 files not loading, and he had already given the fold as his intent* |
 | **4** | ***[`Document.tsx`](../../package/src/writing/Document.tsx)*** — the dead `createElement` import deleted | **ARGUABLE** — *a line removed rather than moved* |
 

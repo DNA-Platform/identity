@@ -57,7 +57,43 @@ for (const one of this.specification)
     (one as { specifically?: (writing: $Writing) => void }).specifically?.(this);
 ```
 
-*A type-only `import type` is also erased and would not close the cycle; what may never appear is the class as a **value** — `extends`, `instanceof`, `new`.*
+*A type-only `import type` is also erased and would not close the cycle.*
+
+### <a id="what-actually-kills"></a>ONLY AN EVALUATION-TIME USE KILLS — corrected 2026-09-05, by measurement
+
+***An earlier draft of this chapter said the class may never appear as a value at all — "`extends`, `instanceof`, `new`". That is too strong, and the v2.2 port depends on the difference.***
+
+| where the class is named | when it runs | under a cycle |
+|---|---|---|
+| ***`class X extends Base`*** | ***module evaluation*** | ***FATAL*** — the class body runs as the module is read |
+| a field initializer, a decorator argument | *module evaluation* | ***fatal*** |
+| **`instanceof`, `new`, a fetch — inside a METHOD BODY** | *whenever it is called, long after load* | **safe** |
+
+***This is what lets `reflection` sit in a cycle with `writing/Writing.tsx` and work.*** **`reflection.writing(part)` is `part instanceof $Writing` and it names a class that names it back** — *and it has never thrown, because nothing calls it during module evaluation.* **The rule is not "never name the class"; it is *never name it where the module body will read it*.**
+
+### <a id="the-detector"></a>THE DETECTOR — one promise per module, and it earns its keep
+
+***The failure only appears when the wrong module loads FIRST, so a suite whose entry happens to import the base first is green and lying.*** **[`tests/loading.test.tsx`](../../package/src/tests/loading.test.tsx) imports each module alone into a fresh graph:**
+
+```tsx
+it('writing/Writing', async () => {
+    await expect(import('@/writing/Writing')).resolves.toBeDefined();
+});
+```
+
+**Thirty-seven promises, one per module.** *It cost nothing and it has already paid twice.*
+
+### <a id="second-instance"></a>THE SECOND INSTANCE — 2026-09-05, and the fix was a DESIGN
+
+***`$Writing.view()` was given an anchor to wear when the writing means something.*** **The anchor is a format, a format reads a theme, and `$Theme extends $Annotation` — so `writing/Writing.tsx` pulled a chain that came back to itself, and every one of the thirty-seven promises went red at once with the same line.**
+
+```
+writing/Writing → encyclopedia/AnchorFormat → writing/Format → writing/Theme → writing/Writing
+```
+
+***The patch would have been a lazy import, and Doug had already ruled that out:*** **"I don't want any weird module loadings or weird solutions to get things in different files. We deal with problems by looking at the design! Not patching."**
+
+**The design answer was one sentence: *a theme is not writing.*** *It is the palette a format reads, exactly as a format is not writing — so `$Theme` became a `$Chemical`, the chain broke at its own root, and nothing was deferred.* ***The cycle is a question about what a thing IS, and it keeps being answerable that way.***
 
 ## What to watch for
 

@@ -787,7 +787,7 @@ build/
 | | what the page found | *how it announced itself* |
 |---|---|---|
 | ***one*** | ***A held look is handed in WITHOUT the `$`.*** `heading={Stamped}` takes; ***`$heading={Stamped}` does nothing at all*** | **Silently.** The page drew four identical headings and no gate objected — *[R116](#r116)'s first level was unreachable by the spelling the property itself suggests* |
-| ***two*** | ***A `view()` that CONSTRUCTS a chemical never returns.*** Each pass builds new chemicals, each is state the drawing depends on, and the drawing asks to be drawn again | **Not at all.** *The framework refuses configuration during a render BY NAME and refuses an invalid bond constructor BY NAME — this one hangs*, and the worker died at 163 seconds with no message |
+| ***two*** | ***A `view()` that CONSTRUCTS a chemical never returns.*** Each pass builds new chemicals, each is state the drawing depends on, and the drawing asks to be drawn again | **Not at all.** *The framework fails configuration during a render BY NAME and fails an invalid bond constructor BY NAME — this one hangs*, and the worker died at 163 seconds with no message |
 | ***three*** | ***A scope answers ASKS, and only `compose()` asks for a `$Title`.*** A `<Title>` element is already built and asks nobody | **Silently** — the third level fell through to the default. ***The caption already said it***: *found by the parse, drawn by the scope* |
 | ***four*** | ***`$Title` reaches for `$opening` only inside a cover.*** Standing alone it draws `$heading` | **Silently.** *The first draft varied a look the class never reaches for and drew four identical titles* |
 | ***five*** | ***A demonstration page is not a piece of writing.*** It began as a `$Section` and a section is writing, and writing has copy | ***BY NAME*** — *"$TheTitle is not valid after its bond constructor"* |
@@ -1294,7 +1294,7 @@ read(parts)  =  { c.read() | c in chapters }
 
 > ***THE DEMONSTRATION DOES AT RUNTIME WHAT THE COMPILER EXISTS TO DO AT BUILD TIME.***
 
-**The load is the thing Doug is feeling, and it is [I29](../the-condition-report/09-the-demonstration.md#i29):** *the shelf is the landing page and it cannot draw one spine without the whole library in memory, because every card is built by reading it off its LIVING book.* ***8.3 seconds to visible, measured.*** **The compiler's own generated catalogue refuses exactly this — *"NOTHING HERE IMPORTS A BOOK"* — by deriving at build time and emitting literals; the demonstration has no build step and pays at every visit.**
+**The load is the thing Doug is feeling, and it is [I29](../the-condition-report/09-the-demonstration.md#i29):** *the shelf is the landing page and it cannot draw one spine without the whole library in memory, because every card is built by reading it off its LIVING book.* ***8.3 seconds to visible, measured.*** **The compiler's own generated catalogue fails exactly this — *"NOTHING HERE IMPORTS A BOOK"* — by deriving at build time and emitting literals; the demonstration has no build step and pays at every visit.**
 
 ***What was fixed this session, measured both sides:*** **sections now load on demand** — *`/title` **8,369 ms → 885 ms** (169 → 51 requests), `/page` **8,937 ms → 3,091 ms**.* **`/books` is untouched at 8.3 s and it is the landing page**, *because its fix is [I29](../the-condition-report/09-the-demonstration.md#i29) and that is a design change rather than a wiring one.* ***Both browser walks are green — 92 checkpoints — against the lazier app.***
 
@@ -1447,7 +1447,7 @@ read(parts)  =  { c.read() | c in chapters }
 |---|---|
 | ***Writing a new browser driver*** | **Three exist and two are green.** *[The red that exercised nothing](../solutions/26-the-red-that-exercised-nothing.md) — the drivers stall on `networkidle` and on a wait bound to a context a page load destroys, and [the working pattern was already in the chemistry harness](../../../chemistry/package/app/verify-all.mjs)* |
 | ***Reading a stall as a claim about the app*** | ***A red is a claim about the instrument until it is a claim about the code.*** **Two tells: the failure MOVES between identical runs, and a manual pass contradicts the automated one** |
-| ***Constructing a chemical inside `view()`*** | **It never returns, with no refusal at all** — *where two neighbouring mistakes are refused by name.* [Five faults the demo found](#what-the-demo-found) |
+| ***Constructing a chemical inside `view()`*** | **It never returns, with no failure at all** — *where two neighbouring mistakes fail by name.* [Five faults the demo found](#what-the-demo-found) |
 | ***Renaming `Chemistry` to `$Chemistry`*** | **The name is held by the interface it is cast into.** *It is `$Chemistry$`, done, and [the trailing `$` is the collision mark](#the-trailing-dollar)* |
 | ***Proposing anything in `$Chemistry` the package*** | ***Ruled out three times in one session.*** *See the box above* |
 

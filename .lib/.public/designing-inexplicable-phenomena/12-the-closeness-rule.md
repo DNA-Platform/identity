@@ -62,6 +62,34 @@
 
 ***Three flat, one tall, no gaps.*** **The block says *these four are one idea*; `single`'s height says *this one does something the others do not*.** *Both facts are true and both are drawn.*
 
+### <a id="guards-stack"></a>Guards stack at the top, and nothing separates them from what follows
+
+> ***Doug, 2026-09-05, on a `frame()` with a blank line before its markup:*** *"The purpose of the flat is to stack. And one main reason we stack is to move if breaks to the top so we can show the main thing. No break between markup and code above it. No need."*
+
+***A method's guards go to the top and stack with no gaps*** — that is what stacking is FOR here: **it clears the way so the main thing is what the reader lands on.** *And there is no blank line between the stack and the markup beneath it, because the markup is not a second phase — it is the thing the stack was clearing the way to.*
+
+```tsx
+override frame(): ReactNode {
+    const named = reflection2.classNames(this);
+    return <div className={named.join(' ')}>{super.frame()}</div>;
+}
+```
+
+***A blank line there says "the thought turns", and it does not turn*** — [paragraphs](#paragraphs) are for a method with real stages, and a guard plus its return is one stage.
+
+### <a id="one-container"></a>THE SAME CONTAINER EVERYWHERE — a drawing may not vary its own depth
+
+> ***Doug, same reading, on the line the blank line was hiding:*** *"But it's also wrong. We need the same container everywhere. You are writing markup that is at different levels."*
+
+***The `frame()` above had a guard that returned `super.frame()` bare when there were no names, and the wrapped `<div>` otherwise.*** **So the same writing sat one element deeper or shallower depending on a fact about its types**, and everything downstream — a selector, a walk, a layout — met two shapes where it was promised one.
+
+| ruled out | why |
+|---|---|
+| ***a drawing that conditionally wraps*** | **the container is the class's promise about its own depth**, and a promise that holds only sometimes is not one |
+| ***a guard that returns markup*** | *a guard clears the way to ONE return; a second `return` of a different shape is a branch wearing a guard's clothes* |
+
+***It is [the override law](../../../../.claude/library/..teamsmanship/..team/) in the drawing:*** **the base declares the container and a kind OVERRIDES it** — it never asks a question and answers with two depths.
+
 ### <a id="brevity"></a>3 · Brevity through line count — ***compactness***
 
 > ***"Look at the code for compactness. In general one line ifs and fors should be without brackets. If they are more like asserts at the top, the whole if can be one line. If the code itself does some cleanup thing (loops through and removes something technical) the for can be one line as a filter call might have been."***
@@ -93,7 +121,7 @@
 
 ### <a id="is-it-a-filter"></a>And when a loop IS filter-shaped — ***the test, which is now a warning label***
 
-***[`Parser.tokens`](../../package/src/utilities/Parser.tsx) was the worked example and it is now the cautionary one.*** **Fourteen lines of loop with two `continue`s, doing what a filter and a map would have done** — *Doug's own words almost exactly: "loops through and removes something technical."* **It was rewritten into three chained calls, and [the rewrite was refused](#brevity).** *Verified 2026-09-03: the chain STANDS in the file, and that is not the chapter contradicting itself — [Sprint 31's record](../projection/31-organization.md) says nothing was reverted because Doug said "minimise rewriting," not "undo"; the refusal was of the KIND of act, the code was kept by his word. The example is historical; the law is unchanged.*
+***[`Parser.tokens`](../../package/src/utilities/Parser.tsx) was the worked example and it is now the cautionary one.*** **Fourteen lines of loop with two `continue`s, doing what a filter and a map would have done** — *Doug's own words almost exactly: "loops through and removes something technical."* **It was rewritten into three chained calls, and [the rewrite failed](#brevity).** *Verified 2026-09-03: the chain STANDS in the file, and that is not the chapter contradicting itself — [Sprint 31's record](../projection/31-organization.md) says nothing was reverted because Doug said "minimise rewriting," not "undo"; the failure was of the KIND of act, the code was kept by his word. The example is historical; the law is unchanged.*
 
 ***The analysis still stands and is worth keeping, because a suite written against an OUTCOME cannot catch a MECHANISM change.*** **A loop is genuinely filter-shaped only if all three hold:**
 

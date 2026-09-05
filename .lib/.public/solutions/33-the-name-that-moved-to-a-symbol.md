@@ -41,7 +41,7 @@ error TS2305: Module '"@dna-platform/chemistry"' has no exported member 'childre
 get [children](): ReactNode { return this[$children$]; }     // and `children` IS `$children$`
 ```
 
-***So the getter and its backing slot were the same property.*** **The framework assigns that slot during synthesis** — [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts): `(chemical as any)[$children$] = props.children;` — **and an accessor with no setter refuses assignment.** *The old getter worked only because it was keyed by the STRING `children` while the slot was keyed by the SYMBOL: two names, no collision. Making them one name made them one property.*
+***So the getter and its backing slot were the same property.*** **The framework assigns that slot during synthesis** — [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts): `(chemical as any)[$children$] = props.children;` — **and an accessor with no setter fails assignment.** *The old getter worked only because it was keyed by the STRING `children` while the slot was keyed by the SYMBOL: two names, no collision. Making them one name made them one property.*
 
 **The fix is a declaration, not an accessor:** `declare [children]: ReactNode;`
 

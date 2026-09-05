@@ -155,7 +155,7 @@
 
 <a id="r44"></a>**R44 · Doug.** ***`comprehend` is the catalogue's closure: it follows every reference — the select — and answers a composition of T.*** ***NOT `read`*** — *vetoed with its reason: a catalogue that is a reference must stay possible.* ***Supersedes [R37](#r37)'s `complete`, name and all, by his own naming.*** **Observable: a catalogue of sections comprehended answers one composition whose count equals the sum the parse gives independently.**
 
-<a id="r45"></a>**R45 · the architecture he ordered.** ***The word `composition` becomes writing: a `$Composition` class, initialized with a type and parts*** — *his sentence taken as the constructor* — ***and each level's type declares what composes its instances*** (letter→word … chapter→book), **partial at the top: nothing composes a book until [sprint five's `$TypeOfLibrary`](00-planning.md#plan-sprints), and comprehending a catalogue of books refuses, naming the gap.** *The up-map member's name is **owed to Doug** — [one sentence before it is built](#u33).* **Observable: composing two paragraphs answers a paragraph-graded composition; asking a book's type what composes it refuses with a reason.**
+<a id="r45"></a>**R45 · the architecture he ordered.** ***The word `composition` becomes writing: a `$Composition` class, initialized with a type and parts*** — *his sentence taken as the constructor* — ***and each level's type declares what composes its instances*** (letter→word … chapter→book), **partial at the top: nothing composes a book until [sprint five's `$TypeOfLibrary`](00-planning.md#plan-sprints), and comprehending a catalogue of books fails, naming the gap.** *The up-map member's name is **owed to Doug** — [one sentence before it is built](#u33).* **Observable: composing two paragraphs answers a paragraph-graded composition; asking a book's type what composes it fails with a reason.**
 
 <a id="r46"></a>**R46 · Doug, exploratory — design owed.** ***"We can render the tag with the anchor as references become active. We shall see."*** *The target draws its anchor id as its reference activates.* **Denied files until the surface is chosen — [nothing running has ever seen v2](15-the-build.md), and the surface decision is his.**
 
@@ -190,13 +190,13 @@
 | <a id="u36"></a>**U36** | `catalogue()` afforded | **BUILT** — one lazy line on the base, at call time, nothing eager |
 | <a id="u37"></a>**U37** | the handle | **BUILT as the printed reference** — points by holding; the `protected identifier` rides with [the rooms](#open) |
 | <a id="u38"></a>**U38** | `comprehend` | **BUILT** — concat of the held referents, sync, the stacks never await |
-| <a id="u39"></a>**U39** | `read()` the async face | **BUILT** — path-first: refuses toward the undesigned following, resolves the held, rejects naming why |
+| <a id="u39"></a>**U39** | `read()` the async face | **BUILT** — path-first: fails toward the undesigned following, resolves the held, rejects naming why |
 | **U40** | the anchor on activation | **DESIGN OWED still** — [R46](#r46), the surface unchosen |
 | — | *unplanned, landed* | **`address`/`follow`** *(proxies, his to strike)* · **the numbering fix** *(only Letter–File number)* · **the `$points` rule** · **the spec examples, 42→44** |
 
 ## <a id="scenarios-33"></a><a id="risks-33"></a>Scenarios and risks — how they resolved
 
-***The scenarios became [the probe suite](../../package/src/tests/composition-experiment.test.tsx) — twenty-one promises — and the demo AEs landed there too:*** *AE10 as concatenate-joins, AE11 as handles-nobody-wrote, AE12 as the resolves-identity and address/follow round trips, AE13 as the refusals naming position and count, AE14 as the stack counts at every grade.* **[The surface flag stands](15-the-build.md): the spec harness is the only surface running v2; a driven page awaits the surface decision, Doug's, riding U40/R46.**
+***The scenarios became [the probe suite](../../package/src/tests/composition-experiment.test.tsx) — twenty-one promises — and the demo AEs landed there too:*** *AE10 as concatenate-joins, AE11 as handles-nobody-wrote, AE12 as the resolves-identity and address/follow round trips, AE13 as the failures naming position and count, AE14 as the stack counts at every grade.* **[The surface flag stands](15-the-build.md): the spec harness is the only surface running v2; a driven page awaits the surface decision, Doug's, riding U40/R46.**
 
 **Of the five risks: 1 dissolved with the seats; 2 never arose (the catalogue's block is its written references); 3 shrank to Book's double-narrow and two internal casts; 4 was accepted by [R23](32-the-route.md#r23) and then SHARPENED into the found fault — the one-field index — fixed and promised; 5 was paid correctly: one class, one ceremony line.**
 
@@ -295,7 +295,7 @@
 
 - ***A module-level maker slot*** (`cataloguing.make`) — **Doug caught it: "getting a little creative… there doesn't need to be one catalogue at the top."** *The honest fix was seats, not machinery: free the reference family to `$Writing` and every import points downward.*
 - ***A probe that cannot fail proves nothing.*** *The first clobber probe checked the first sentence, whose local indices coincide with the global prefix — vacuously green. Probe where the numbers diverge.*
-- ***Restating an inherited pattern by eye.*** *The path's broken-pattern was the WORD's whitespace, not the phrase's newline; the refusal test caught the slip.*
+- ***Restating an inherited pattern by eye.*** *The path's broken-pattern was the WORD's whitespace, not the phrase's newline; the failure test caught the slip.*
 
 ## Names
 

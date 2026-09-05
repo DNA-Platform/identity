@@ -7,7 +7,7 @@
 
 *Opened 2026-08-17 as a brainstorm, planned the same day. **Status: `implementation-ready`.** The requirements were approved in two sections, and the plan enriched this same chapter in place rather than starting a second document.*
 
-*The sprint is **named, not numbered**, and the name is **Doug's own word**: "I reject refusal. **Validation. Invalid.** That's the semantics." Standing for correction like every other proxy on this branch.*
+*The sprint is **named, not numbered**, and the name is **Doug's own word**: "I reject failure. **Validation. Invalid.** That's the semantics." Standing for correction like every other proxy on this branch.*
 
 **Identifiers continue from [The Build](15-the-build.md).** Requirements begin at **R37** and acceptance examples at **AE20**, because this sprint cites [R21](15-the-build.md#r21--a-reference-is-authored-as-a-cover-and-emitted-as-a-card), [R25](15-the-build.md#r25--the-rules-are-enforced-in-the-code-not-remembered-by-the-compiler) and [R34](15-the-build.md#r34--an-entry-is-placed-by-a-declaration-not-only-by-position) by number throughout, and two `R1`s on one branch is a collision a later reader pays for.
 
@@ -33,7 +33,7 @@
 
 - **WHERE THE RULES LIVE — THE PACKAGE OPENS.** *"**In the framework, in the valid functions.** The subject should also have **a library reference that is itself if self-validating otherwise its parent's library.** **Yes we need it in the framework and tested.**"* ***This is [R25](15-the-build.md#r25--the-rules-are-enforced-in-the-code-not-remembered-by-the-compiler) arriving with a scope*** — not every rule, but every rule about *what a link points at* — and it carries a **new framework member** with it.
 
-- **THE SEMANTICS, CORRECTED.** *"**I reject refusal. Validation. Invalid. That's the semantics.**"* ***A vocabulary ruling and not a preference***, in the same family as the words this team has had taken away from it before. **A book is invalid; validation says so, and the word he struck is quoted here and nowhere else.** *He later widened it to the whole repository — **"remove the word ... from all documents in this repo. Valid / validation / failed validation. We don't use it. There is no one refusing."** — and that sweep is [done](#the-sweep-2026-08-17).*
+- **THE SEMANTICS, CORRECTED.** *"**I reject failure. Validation. Invalid. That's the semantics.**"* ***A vocabulary ruling and not a preference***, in the same family as the words this team has had taken away from it before. **A book is invalid; validation says so, and the word he struck is quoted here and nowhere else.** *He later widened it to the whole repository — **"remove the word ... from all documents in this repo. Valid / validation / failed validation. We don't use it. There is no one failing."** — and that sweep is [done](#the-sweep-2026-08-17).*
 
 - **THE RUNTIME IS THE COMPILER'S.** *"**We need a runtime for the books as part of the compiler.**"* ***This settles the question [The Build left open for whoever opened this stage](15-the-build.md#e--checking--and-it-may-already-be-built):*** the runtime does not stay beside the program it opens. It moves into `build/`.
 
@@ -146,7 +146,7 @@ get library(): $Card | undefined {
 
 ### R41 — The semantics are validation, and a book is INVALID
 
-*Doug: **"I reject refusal. Validation. Invalid. That's the semantics."*** **Validation says a book is invalid**, naming the file and what would make it valid. **The word he struck appears in this chapter only inside his own sentence.**
+*Doug: **"I reject failure. Validation. Invalid. That's the semantics."*** **Validation says a book is invalid**, naming the file and what would make it valid. **The word he struck appears in this chapter only inside his own sentence.**
 
 **And the correction goes everywhere, ruled rather than assumed.** The word is printed today by [the resolving stage](../../build/index.ts) (`INVALID <path> — <says>`), by `valid.mts`, and stands inside the framework's own error strings — *"A book requires exactly one cover"* and its siblings read as failures. **All of it is this sprint's.**
 
@@ -463,7 +463,7 @@ exit 1
 
 ## <a id="the-sweep-2026-08-17"></a>THE SWEEP — the word is gone from the repository
 
-*Doug widened the ruling: **"remove the word ... from all documents in this repo. Valid / validation / failed validation. We don't use it. There is no one refusing."***
+*Doug widened the ruling: **"remove the word ... from all documents in this repo. Valid / validation / failed validation. We don't use it. There is no one failing."***
 
 | | count |
 |---|---|
@@ -472,7 +472,7 @@ exit 1
 
 **Swept:** the branch's code and tests · the demo's chapters and drivers · the whole branch library · **the identity library, including four teammates' autobiographies** · every compiled skill · `library/chemistry` · **the CLI**, where it was a discriminated union tag threaded through the runtime, the gateway and three test files.
 
-***AND A MECHANICAL SWEEP INVERTED MEANING, WHICH IS THE FINDING.*** `X refuses Y` became **`X fails Y`** — swapping who acts on whom. *"`/ce-work` refuses a requirements-only chapter"* became *"`/ce-work` **fails** a requirements-only chapter"*, which says the skill failed. **36 inversions, corrected by hand to `rejects`** — which is not an invention: [Doug ruled the same word in Sprint 46](03-sprint-46--the-book.md), *"what fails is **rejected**"*, and it had drifted back.
+***AND A MECHANICAL SWEEP INVERTED MEANING, WHICH IS THE FINDING.*** `X fails Y` became **`X fails Y`** — swapping who acts on whom. *"`/ce-work` fails a requirements-only chapter"* became *"`/ce-work` **fails** a requirements-only chapter"*, which says the skill failed. **36 inversions, corrected by hand to `rejects`** — which is not an invention: [Doug ruled the same word in Sprint 46](03-sprint-46--the-book.md), *"what fails is **rejected**"*, and it had drifted back.
 
 **And the sweep destroyed the ruling itself** — *"I reject failure"* — until it was restored. ***The rule's own statement is the one place the struck word must survive***, because a ban with no record of what was banned is unreadable a month later.
 

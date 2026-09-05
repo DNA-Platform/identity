@@ -38,7 +38,6 @@
 | `block` · `copy` · `inside` | ***instance*** | *they differ per writing* |
 | the specification's rules · `patterns` · the segmenter | ***type*** | **identical for every letter there will ever be** |
 | `kind` · `case` · `canonical` | ***split*** | *the value is the instance's; **the procedure that produces it is the type's*** |
-| `canonicalForm` | ***type*** | *the type naming the shape of its data* |
 | ***the carried list of types*** | ***MISPLACED*** | **meaning sitting on the instance** — *which is why it needed a member to maintain it* |
 
 ***A member that maintains meaning on an instance is the tell.*** **If a class needs a method whose only job is to keep a meaning-holding field tidy, the field is on the wrong object.**
@@ -59,7 +58,7 @@
 | **`$Book`** | ***the class*** | *the shape of the data* |
 | **`$Book` instances** | ***many*** | *one per piece of writing it is bound to* |
 
-**[`canonicalForm`](../../package/src/book/Book.tsx) is the type saying which class it makes**, and [`$$`](../../package/src/utilities/Lib.tsx) is what makes one: *find the type, construct its `canonicalForm`, bind the writing to it.*
+***CORRECTED 2026-09-04.*** *An earlier draft said the type names its class through `canonicalForm` and `$$` builds one.* **Both are gone** — `canonicalForm` is [among the four members Doug deleted](15-the-spelling-of-a-kind.md), and `Lib.tsx` with its `$$` bind no longer exists. **What a type names today is its REFERENCE kind** (`override get reference()`, the level's own `$$X`), and **what makes one is [`$check(Kind, '!')`](#making-one)**. *The split itself is unchanged; only the two members that expressed it were replaced.*
 
 ## <a id="the-problem"></a>The problem this solves — ***base-class scarcity***
 
@@ -86,7 +85,7 @@
 | **1** | `$Bound` and `$Paperback` descend from **neither `$Book`, nor `$File`, nor each other** | *both extend `$Writing` directly* |
 | **2** | ***both answer as books***, because both carry the type | `$$(one)($Book)` is true for each |
 | **3** | ***the canonical form is what the reading builds*** when it must make one | `$$(bound, $Book)` yields a real `$Book` composing its chapters |
-| **4** | ***the contract is enforced on all of them alike*** | *a paragraph where a document belongs is refused in both, in File's words* |
+| **4** | ***the contract is enforced on all of them alike*** | *a paragraph where a document belongs fails in both, in File's words* |
 | **5** | ***and the TYPE holds it because the classes share no base*** | **`Object.getPrototypeOf($Preface) === $Writing`** |
 | **6** | ***a book composes unrelated chapter classes alongside its own***, in written order | `$Chapter`, `$Preface`, `$Appendix` → three parts |
 | **7** | *and none of them descends from `$Chapter`* | |
@@ -140,9 +139,11 @@
 
 **`@specify('a letter is one grapheme')`** — *the annotation lives beside the specification and puts the reason in the library's own words.* ***Running a specification returns the labels of the rules that ran***, so a run reads like a test report rather than a list of member names.
 
-## <a id="the-trait"></a>The trait — a meaning worn beside the type
+## <a id="the-trait"></a>The trait — ***deleted, and what replaced it***
 
-***`$Attribute` was renamed `$Trait` on 2026-09-02, and the rename came with a system.*** A writing carries ONE type and **any number of traits**, and `$$` stands a writing by its worn traits as well as its carried type — so `<Trait>Card</Trait>` on a reference makes it answer as a `$ReferenceCard` without deriving from one. *The trait's own specification says what wearing it demands* — a card is worn by a reference — *and [`$Card`](../../package/src/reference/ReferenceCard.tsx) is the first: `canonicalForm` pointing at the class the trait grants, exactly as a type does.*
+***`$Attribute` became `$Trait` on 2026-09-02 and `$Trait` was deleted on 2026-09-04***, in the sprint whose own record says why: **for many-types-per-writing.** *A trait existed so a writing could wear a meaning beside its type; once a writing may simply carry as many types as it likes, the second mechanism had nothing left to do.*
+
+**So there is one mechanism and it is the type.** `<Type>Card</Type>` written into a reference makes it answer as a card, `reflection.is` finds it among the carried types, and no class is worn. ***The anchor is kept because closed chapters link to it; the mechanism it named is not in the code.***
 
 ## <a id="specifically-two-verbs"></a>specifically has TWO VERBS — enforce, and augment to enforce
 
@@ -161,7 +162,107 @@ this.type ??= $(<Asked />);
 
 *The local's one spelling is a PROXY (`Asked`, the mechanism's own word) standing for Doug's.* **Never hoisted to module scope** (no asker stands there), **never memoized** (a wider cache freezes the first scope's answer), **never stored on a member** — his sentence directly.
 
-***THE TIMING LAW, in the same breath:*** **registration is configuration BEFORE the first parse.** Parsed populations freeze (`parser.parsed` keeps the first answer per writing) while component fetches resolve live per render — so a registration landing after first parse yields swapped dresses over stock types, the one live two-populations form. The framework enforces its half: registering mid-draw is refused by chemistry.
+### <a id="making-one"></a>MAKING ONE IS ASKING FOR ONE THAT IS NOT THERE — `'!'`, ruled and built 2026-09-04
+
+***Doug: "What if a way to do check that news up an instance run through `$` if you do a check with '!' as the third argument… Inside check, it would use `$`, so it would be very safe from a DI perspective."***
+
+**`$check(Kind, '!')` makes one through `$`.** The fetch and the evaluation happen in one call, so the two statements that had to stay together become one that cannot come apart:
+
+```tsx
+// the two-statement form, which had to be remembered at every seat
+const TypeOfSentence = $(typeOfSentence);
+this.type ??= $(<TypeOfSentence />);
+
+// the same thing, and the rule is now impossible to break
+this.type ??= $check(typeOfSentence, '!');
+```
+
+***It generalizes what `'block'` already did.*** `$ParamValidation.check` has always materialized an empty `$Block` when the argument is missing and a block is asked for; `'!'` is that behaviour for any kind, built through `$` so the scope answers with whatever it has registered.
+
+**The three-argument form is FIND OR MAKE**, and it is the one Doug named as the definite case: *"checking the elements of a block or the annotations in there for something, and if it's not found, creating one, that is definitely a situation to use it."*
+
+```tsx
+// what is written wins; otherwise one is made
+this.theme = $check(this.findOne($TypeOfTheme), $Theme, '!');
+```
+
+***THE BOUNDARY, and it is clean:*** **`$check(Kind, '!')` makes an EMPTY one; `$(<Kind>…</Kind>)` writes into one.** Anything created with children keeps the eval form — the catalogue's parts, the parser's makers, a path minted from copy — because `$check` takes no children.
+
+```tsx
+const Catalogue = $(catalogue);
+return $<$Catalogue>(<Catalogue />, ...this.parts());
+```
+
+### <a id="the-assignment-workflow"></a>THE ASSIGNMENT WORKFLOW — Doug's, verbatim
+
+> *"Have the specifically verify, always have types be overridden if someone inputs the right thing, always use a `$` for DI, and then assign.*
+>
+> *In bond constructor: check if a type of that is right and if there is one, use that by assigning it to the right property. If there is none, get the component you want to use from `$` using DI. Create one and assign (don't need to type because property assignment works with any). Then run specifically, which should validate the thing is assigned if necessary."*
+
+**So the bond ASSIGNS and the specification VERIFIES**, and an author's own writing always wins over the default. *This settles where a conferred member is written: at construction, once — not in `specifically`, which [runs many times on writing that never keeps its last edit](../solutions/44-the-enforcement-that-detonated-per-render.md).*
+
+## <a id="the-block-asking-pair"></a>ASKING WHAT A BLOCK HOLDS — `find` and `findOne`
+
+***Measured before they were written: 45 hand-written block scans across 15 files*** — `(x.block?.$elements ?? []).filter(…)` — of which **nine** look for a `$Path`, **nine** for a `$Reference`, and **twenty** filter the writing that is not parenthetical. **The same sentence, written out forty-five times, each free to drift.**
+
+```tsx
+find<T extends $Writing>(asked: (new () => $Type) | string): T[] {
+    return (this.block?.$elements ?? [])
+        .filter((part): part is T => part instanceof $Writing && reflection.is(part, asked));
+}
+
+findOne<T extends $Writing>(asked: (new () => $Type) | string): T | undefined {
+    const found = this.find<T>(asked);
+    if (found.length > 1) throw new Error(`writing holds one of a kind here, and this one holds ${found.length}.`);
+    return found[0];
+}
+```
+
+**They ask the BLOCK, and `where`/`select`/`single` ask the PARTS.** *That is the whole difference and it decides which to reach for: the block is what was written, available in the bond constructor before anything is parsed; the parts are what the reading found.* **A carried type is found in the block, which is why the bond can consult one.**
+
+***They ask by TYPE, never by class***, so everything the framework already promises about [one type and many implementations](#verified) holds at every one of those forty-five seats.
+
+### The uses, written out
+
+```tsx
+// $Reference.path — nine copies of one scan become one ask
+get path(): $Path | undefined { return this.findOne<$Path>($TypeOfPath); }
+
+// $Section.name — the heading a section opens with
+get name(): $Writing | undefined { return this.findOne($TypeOfHeading); }
+
+// $Writing's two rosters, each one ask
+get types(): $Type[] { return this.find<$Type>($TypeOfType); }
+get annotations(): $Annotation[] { return this.find<$Annotation>($TypeOfAnnotation); }
+
+// $Cover — the three cards, assigned in the bond, per the workflow above
+$Cover(block: $Block) {
+    super.$Composition(block);
+    this.type ??= $check(typeOfCover, '!');
+    this.title = $check(this.findOne<$Title>($TypeOfTitle), $Title, '!');
+    this.author = $check(this.findOne<$Author>($TypeOfAuthor), $Author, '!');
+    this.subject = $check(this.findOne<$Subject>($TypeOfSubject), $Subject, '!');
+}
+```
+
+### <a id="the-bond-composes"></a>THE BOND COMPOSES — super first, the default after
+
+***Doug: "Even paragraph can look for a type of paragraph annotation, and if it finds one that is its type, otherwise it creates a type of paragraph. In fact, all 7 core types can do that. That makes every type composible. Very very flexible."***
+
+**The reorder is the whole trick.** The bond calls its parent FIRST — which sets the block and lets the carried types answer — and only then defaults:
+
+```tsx
+$Paragraph(block: $Block) {
+    super.$Composition(block);                    // block set; a carried type has already won
+    this.type ??= $check(typeOfParagraph, '!');   // a default only where nothing was carried
+}
+```
+
+*Written the old way round, the class planted its default first and something downstream had to out-rank it.* **Written this way nothing adjudicates: a carried type simply IS the type, and the default is what happens when a page said nothing.** The same three lines stand at all seven levels and at every kind.
+
+***A REGISTER, and it is where the flexibility comes from:*** a page that carries `<Type>Title</Type>` inside a `$Paragraph` gets a title with no subclass anywhere — [route 3 of the ladder](#the-ladder), now reachable at every level rather than at the ones that happened to allow it.
+
+***THE TIMING LAW, in the same breath:*** **registration is configuration BEFORE the first parse.** Parsed populations freeze (`parser.parsed` keeps the first answer per writing) while component fetches resolve live per render — so a registration landing after first parse yields swapped dresses over stock types, the one live two-populations form. The framework enforces its half: registering mid-draw fails by chemistry.
 
 **The registry keys on the COMPONENT OBJECT, not the class** — each component carries its own `$reference$` key (chemical.ts:1496, read at 1557) — so two components registered in one scope resolve independently, and "they all share a wrapper class" is never an obstacle; probed 2026-09-04, two overrides in one scope, each answering its own.
 

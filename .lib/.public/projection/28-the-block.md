@@ -235,9 +235,9 @@ $Section    1 argument, block
 | | scenario | outcome |
 |---|---|---|
 | **S1** | writing written with prose **and** one annotation | `block` holds the block · `specification` holds the annotation · **the annotation is still in `block.$elements`** — [AE9](#ae9) |
-| **S2** | writing with **no** annotation | `specification` is empty, and `specify()` refuses with *"a piece of writing has a type, and this one has none"* |
+| **S2** | writing with **no** annotation | `specification` is empty, and `specify()` fails with *"a piece of writing has a type, and this one has none"* |
 | **S3** | writing that is **only** an annotation | `copy` is `''`, `specification` has one — *the parenthetical case that satisfies `specify()` by being one* |
-| **S4** | **two arguments reach the bond** | ***refused, naming the count*** — never silently keeping the first. [K33](#k33) |
+| **S4** | **two arguments reach the bond** | ***failed, naming the count*** — never silently keeping the first. [K33](#k33) |
 | **S5** | `$Annotation` constructed | `parenthetical` is `true` — [R261](#r261), because [R260](#r260) rests on it |
 | **S6** | ***the suite is collected at all*** | **`$Writing` names nothing from `notation/`.** *The cycle's signature is **zero collected tests** with `Class extends value undefined`, so this scenario is a count of collected files, not a passing assertion* — [D108](#d108) |
 
@@ -308,7 +308,7 @@ $Section    1 argument, block
 | | scenario | outcome |
 |---|---|---|
 | **S19** | one piece of writing, **drawn twice** — default and the second look | prose in the first, **its parts in the second**, and *nothing in the page names a level to get them* — [AE8](#ae8) |
-| **S20** | the second look on writing carrying **no type** | ***it refuses***, because the view calls `specify()` first |
+| **S20** | the second look on writing carrying **no type** | ***it fails***, because the view calls `specify()` first |
 | **S21** | the second look on a level whose parts are levels | ***it terminates*** — no loop, no re-render storm. *[K34](#k34) is what this scenario exists to catch* |
 
 ## <a id="u209"></a>U209 — the suite, one file per level
@@ -321,7 +321,7 @@ $Section    1 argument, block
 
 | | scenario | outcome |
 |---|---|---|
-| **S22** | each of the seven files | *composes the level below · in written order · answers the five without declaring them · is inline · refuses what it must* |
+| **S22** | each of the seven files | *composes the level below · in written order · answers the five without declaring them · is inline · fails what it must* |
 | **S23** | the whole gate | ***a number WITH its scope*** — v1's and v2's stated separately, [never a bare PASS](../solutions/14-the-green-that-exercised-nothing.md) |
 
 ## <a id="u210"></a>U210 — each level carries its own type, and an annotation carries all of them
@@ -489,7 +489,7 @@ $Section    1 argument, block
 |---|---|
 | ***the parsers above word*** | **`$Sentence` and `$Paragraph` divide nothing**, pinned by a promise. ***The prepared answer is `Intl.Segmenter` word and sentence granularity***, with **two named divergences**: a hyphenated word splits at the hyphen where Doug said dashes are allowed, and an abbreviation ends a sentence. |
 | ***the kinds enforcement made visible*** | **something for spaces, something for phrases** — each a `$TypeOfX` that relaxes the word rule, one class and one sentence apiece. |
-| ***`$$` constructs empty, then binds*** | **`build()` repairs the classification; it does not repair the record.** *A correctly bound letter carries the refusal it earned in the instant before it was bound.* **Nothing reads it today; it would show if a bound part were ever drawn.** |
+| ***`$$` constructs empty, then binds*** | **`build()` repairs the classification; it does not repair the record.** *A correctly bound letter carries the failure it earned in the instant before it was bound.* **Nothing reads it today; it would show if a bound part were ever drawn.** |
 | ***`$$` never asks `specify()`*** | *A writing carrying a Letter type over three graphemes is bound and becomes a part, unchecked.* **The parser walks that path.** |
 | ***writing at the wrong level is dropped in silence*** | *The reading asks, gets false, pushes nothing and says nothing.* **v1's parse THREW, naming both levels.** |
 | ***the twelve derivations, the reference arm, the book layer*** | **[What Carries Over](../designing-inexplicable-phenomena/09-what-carries-over.md)** carries the whole map and the order the dependencies force. |
@@ -506,4 +506,4 @@ $Section    1 argument, block
 
 ## For the next session
 
-***Open here, then read the working copy.*** **The gate is green and nothing is half-built.** *The next unit is the sentence and paragraph parsers; the ruling owed before they start is whether writing at the wrong level is **refused** or **dropped**.*
+***Open here, then read the working copy.*** **The gate is green and nothing is half-built.** *The next unit is the sentence and paragraph parsers; the ruling owed before they start is whether writing at the wrong level is **failed** or **dropped**.*

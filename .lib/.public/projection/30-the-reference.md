@@ -125,7 +125,7 @@ filed(): [string, string][] {          // PLURAL by type
 $check(said.length === 0, said.join(' · '));
 ```
 
-***The messages exist and are discarded.*** **Doug's design is that they should be reported instead** — *"specification versus demonstration, and the mode could be dynamically switched"* — **so that an invalid page draws its faults rather than refusing to render.**
+***The messages exist and are discarded.*** **Doug's design is that they should be reported instead** — *"specification versus demonstration, and the mode could be dynamically switched"* — **so that an invalid page draws its faults rather than failing to render.**
 
 ***THE THROW SITE IS TWO LINES FOR THE WHOLE FRAMEWORK:*** *[`Specification.ts:45`](../../package/src/utilities/Specification.ts) for the aggregate, and [`Writing.specify()`](../../package/src/writing/Writing.tsx) for "a piece of writing has a type."* **Whatever the mode turns out to be, it is read in those two places and nowhere else.**
 
@@ -353,7 +353,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 **And it must pass the vocabulary test:** *"if a file cannot be named with a word from the vocabulary, it does not belong in `lib`"* — **`reference` passes; `path` needs Doug's word**, *since it is his (["a `$Path` path"](#the-brief)) but is not yet a word of the book domain the way title and chapter are.*
 **Depends on:** [U3](#u3).
 **Realizes:** [R1](#r1), [R2](#r2).
-**Demo contribution:** ***a reference written with no path is refused and says what is missing*** — which is [AE4](#ae4).
+**Demo contribution:** ***a reference written with no path fails and says what is missing*** — which is [AE4](#ae4).
 
 <a id="u8"></a>### U8 — the specification moves into the type file
 
@@ -630,7 +630,7 @@ export type Reference = {
 
 ***AND THERE IS A PRIOR QUESTION UNDERNEATH IT, raised by the cleanup session and verified here: is the locator a PROP AT ALL?*** **[`$Writing`](../../package/src/writing/Writing.tsx) declares `$index = 0`, and in `lib` the `$` marks [EXTRINSIC CONTEXT rather than reactivity](21-semantics-then-drawing.md#d75)** — *a plain property is already reactive by default, which [D75 checked rather than assumed](21-semantics-then-drawing.md#d75).* **So `$index` is declaring the number to be something a caller passes in** — *and nobody passes it; [the parse assigns it](../../package/src/utilities/Parser.tsx).*
 
-***Doug's own standing rule refuses that shape:*** **[N2](../the-condition-report/03-names.md#n2), recorded at [R119](21-semantics-then-drawing.md#r119) and open as [P15](../the-condition-report/06-the-cleaning.md#actionable):** *"Don't make anything a prop unless it needs to be."* ***So the register question ([R9](#r9)) sits on top of an unasked one: the locator is currently typed as authored-from-outside, while everything about how it is filled says found-from-within.***
+***Doug's own standing rule fails that shape:*** **[N2](../the-condition-report/03-names.md#n2), recorded at [R119](21-semantics-then-drawing.md#r119) and open as [P15](../the-condition-report/06-the-cleaning.md#actionable):** *"Don't make anything a prop unless it needs to be."* ***So the register question ([R9](#r9)) sits on top of an unasked one: the locator is currently typed as authored-from-outside, while everything about how it is filled says found-from-within.***
 
 <a id="r12"></a>**R12 · derived, and it is a warning.** ***A numeric path is a snapshot of one parse and rots silently.*** **[`index.test.tsx`](../../package/src/tests/index.test.tsx) promises *"the numbering is FRESH each parse, never stale"*** — *so insert a paragraph and every numeric reference below it points somewhere else, with nothing raised.* ***This library already learned this lesson in prose and wrote it down:*** [the derivation book's cover](../the-semantics-of-books/.cover.md) records that citations *"cannot be a line number… the durable anchor is the verbatim quote."* **So the string register is the durable one and the numeric register is the fallback**, *not two equal options.*
 
@@ -664,7 +664,7 @@ export type Reference = {
 
 <a id="ae3"></a>**AE3 — the two registers, proven by BREAKING one.** ***Insert a paragraph above the target and reload both forms.*** **The string form still lands. The numeric form lands somewhere else.** ***This proves the mechanism rather than the output***, *and it is the acceptance example that makes [R12](#r12) a finding instead of an opinion.*
 
-<a id="ae4"></a>**AE4 — the specification refuses.** *Write a reference with no `$Path`.* **`specify()` fails and names what is missing** — *the [eager check](29-the-bind.md) catching a bad reference the way it caught a bad annotation.*
+<a id="ae4"></a>**AE4 — the specification fails.** *Write a reference with no `$Path`.* **`specify()` fails and names what is missing** — *the [eager check](29-the-bind.md) catching a bad reference the way it caught a bad annotation.*
 
 <a id="ae5"></a>**AE5 — the trail survives a reload.** *Follow three references, reload the page anonymously, and the trail is still there* — **and it is READ as a book**, *not printed as a debug array.*
 
@@ -756,7 +756,7 @@ export type Reference = {
 
 ***Doug's question:*** *"This is why `*` is used in C++ — in a referential system, wouldn't the referent of a piece of writing be conveyed by a reference that refers to it?"*
 
-**The author's reading, offered as a reading:** *in C++ the mark sits on the **follow** — `p` is the pointer, `*p` is the thing, and unmarked means don't follow.* ***In writing the default is inverted.*** **Unmarked writing is already dereferenced** — *you read `cat` and you get the animal.* **What needs a mark is the REFUSAL to follow: quote it, and `"cat"` gets you the word.**
+**The author's reading, offered as a reading:** *in C++ the mark sits on the **follow** — `p` is the pointer, `*p` is the thing, and unmarked means don't follow.* ***In writing the default is inverted.*** **Unmarked writing is already dereferenced** — *you read `cat` and you get the animal.* **What needs a mark is the FAILURE to follow: quote it, and `"cat"` gets you the word.**
 
 ***So this library's `*` is quotation, and it points the opposite way from C++'s.*** **That is [use and mention](../the-semantics-of-books/15-the-levels-of-writing.md), which the settled account already had** — *"used writing means what it says; mentioned writing stands for itself"* — **and which v2 does not have at all.**
 
@@ -793,7 +793,7 @@ export type Reference = {
 
 ### Sprint two — what a reference shows, and `$active`
 
-**The plan's sprint two was *"a reference as an annotation with `$TypeOfReference`; the specification that refuses one without a path; the anchor as a default view."*** ***All three landed in sprint one***, *so what remains of it is the two view faults and one fork:* **the path drawing as text inside its own link, and whether the anchor belongs to the reference or to the writing that means it.**
+**The plan's sprint two was *"a reference as an annotation with `$TypeOfReference`; the specification that fails one without a path; the anchor as a default view."*** ***All three landed in sprint one***, *so what remains of it is the two view faults and one fork:* **the path drawing as text inside its own link, and whether the anchor belongs to the reference or to the writing that means it.**
 
 **Then persistence — Doug: *"we will probably have to handle reference persistence."*** ***That is `$active`, which the five-sprint plan put in sprint FOUR*** — *the reader's trail, all three of his `perhaps`, and the one item both axes agreed to prototype rather than specify.* **`$Reference.$active` is stubbed and unpersisted; the `$` is already right, because activeness comes from the session rather than from the writing.**
 
@@ -854,7 +854,7 @@ export type Reference = {
 |---|---|
 | ***the path draws as text inside the link*** — `<a href="/books/algebra">Algebra**/books/algebra**</a>` | **nothing, but it needs a ruling on WHERE.** *`copy` skips parenthetical writing and `tokens()` skips it; `view()` does not, so view is the odd one out. Either the view filters parenthetical elements, or `$Path.view()` returns null the way `$Type`'s does — and Doug asked for "path viewing its url", which the second answer takes away.* |
 | ***`means` makes the CONTAINER the link*** — `<a href="…">**Read** Algebra…</a>` | ***Doug's ruling.*** *`means` finds a reference among a writing's own elements, so a sentence holding one wraps the whole sentence. His sentence was "the meaning of the writing is a part of the writing as a link", which reads the other way: the **reference** is the part that draws as a link.* |
-| ***`$typedOnce` contradicts `$oneKind`*** — three of the six failures | ***Doug's open question 6, unanswered since 2026-08-30.*** *Two tests promise in their titles that `Document` + `Chapter` on one chain is legal and answers the most derived; `$typedOnce` refuses any second type. One of the two rules is wrong and it is not ours to pick.* |
+| ***`$typedOnce` contradicts `$oneKind`*** — three of the six failures | ***Doug's open question 6, unanswered since 2026-08-30.*** *Two tests promise in their titles that `Document` + `Chapter` on one chain is legal and answers the most derived; `$typedOnce` fails any second type. One of the two rules is wrong and it is not ours to pick.* |
 | **the handle as a `$Reference`** | ***cataloguing.*** *His own routing: the parser makes it, catalogues hand it out.* |
 | **an attribute's own identifier space** | *whether `$Attribute` keeps `extends $Type`, which shares the catalogue* |
 
@@ -868,7 +868,7 @@ export type Reference = {
 
 ## <a id="stands-wrong"></a>Wrong turns already tried — do not retry these
 
-***Inventing a member to discriminate a type from an attribute.*** **`names = true` was written, Doug refused it, and deleting it moved the suite by zero tests.** *The incumbent answer is structural — a type has a `canonicalForm` and an attribute does not — and once the classes shared a file, `instanceof` served directly.*
+***Inventing a member to discriminate a type from an attribute.*** **`names = true` was written, Doug failed it, and deleting it moved the suite by zero tests.** *The incumbent answer is structural — a type has a `canonicalForm` and an attribute does not — and once the classes shared a file, `instanceof` served directly.*
 
 ***Testing `'x' in someChemical`.*** ***Chemistry's proxy answers `in` for prop names across the hierarchy***, *so once `$Reference` loaded, every `$Word` claimed a `path` and every sentence "meant" its first word.* **Test the VALUE, never the key.**
 

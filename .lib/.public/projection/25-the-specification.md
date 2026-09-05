@@ -54,7 +54,7 @@
 
 <a id="r209"></a>**R209** — **the compiler's [`validate.ts`](../../build/stages/validate.ts) stage keeps its name** — *29 mentions in `build/`* — **because it is a phase of validation, and the compiler [may have compiler words](../the-condition-report/06-the-cleaning.md#actionable).**
 
-<a id="r210"></a>**R210** — ***the same sweep takes the other struck words, because a vocabulary pass that leaves two of them behind is one nobody trusts.*** **"Refusal" — 8 in code, 54 in the branch libraries** — *including a styled component named `Refusal` in [last sprint's own demonstration](../../../chemistry/package/app/src/sections/formula/case-2.tsx), written after the ban.* **"Mint" — 33 occurrences after three separate bans**, *8 of them in test files and one in [sprint 22's chapter](22-working-well-by-default.md).*
+<a id="r210"></a>**R210** — ***the same sweep takes the other struck words, because a vocabulary pass that leaves two of them behind is one nobody trusts.*** **"Failure" — 8 in code, 54 in the branch libraries** — *including a styled component named `Failure` in [last sprint's own demonstration](../../../chemistry/package/app/src/sections/formula/case-2.tsx), written after the ban.* **"Mint" — 33 occurrences after three separate bans**, *8 of them in test files and one in [sprint 22's chapter](22-working-well-by-default.md).*
 
 ---
 
@@ -256,7 +256,7 @@
 | **and `lib` already exports a `$Formula`** | [`writing/Formula.tsx`](../../package/src/writing/Formula.tsx) — *a KaTeX inline phrase* — **from the same `index.ts` chemistry's `$Formula` would enter** | read |
 | **the reference forms, and their grade rule** | `$$Word` `$$Sentence` `$$Paragraph` `$$Section` `$$Chapter` `$$Synopsis` `$$Book` — **each one grade below what it stands for, and there is no `$$Phrase`** | grep |
 | **the rename surface** | `valid(` **86** across **39 files** in `lib`, `$valid(` **19**; `$Chemistry` **3** and **1**; `build/` **29** | grep |
-| **the struck words** | *specification* **329** here · **4** in chemistry's library · **7** in code · **2** legitimate in the physics corpus. *refusal* **8** in code · **54** in the libraries. *mint* **33** | grep |
+| **the struck words** | *specification* **329** here · **4** in chemistry's library · **7** in code · **2** legitimate in the physics corpus. *failure* **8** in code · **54** in the libraries. *mint* **33** | grep |
 | **what a book states about itself today** | [`$Book.structure()`](../../package/src/book/Book.tsx) — **seven statements, hardcoded in the class**, read twice: once by the bond and once by `valid()` | read |
 | ***the levels are siblings, not a chain*** | `$Word` `$Sentence` `$Paragraph` `$Section` each extend **`$Writing<P>` directly**; `$Document extends $Writing<$Section>`; `$Letter extends $Writing<$Letter>`. **Only the refinements stack** | read |
 | ***there is no `level` getter*** | **one comment in `Writing.tsx` contains the word** — nothing declares it, nothing reads it | grep |

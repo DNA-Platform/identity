@@ -10,7 +10,7 @@
 
 - **`<Autobiography>Biography</Autobiography>` resolved** — and answered with an autobiography.
 - `$Biography.standsFor('Book')` returned **the biography**, for a key `$Biography` never declared.
-- **A class's catalogue held names belonging to its ancestors**, so the refusal message listed them too: *"it stands for Book, Biography, Autobiography, Auto-biography"* where only the last three were its own.
+- **A class's catalogue held names belonging to its ancestors**, so the failure message listed them too: *"it stands for Book, Biography, Autobiography, Auto-biography"* where only the last three were its own.
 - ***Nothing threw. The suite was green — 31 promises, four of them watched going red — and none of them looked here.***
 
 ## What did not work, and why it looked like it had

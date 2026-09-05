@@ -9,27 +9,27 @@
 
 ## Symptoms
 
-- A skill's own description read ***"`/ce-work` **fails** a requirements-only chapter"*** — which says the skill failed. The sentence it replaced said the skill **refuses** the chapter, which is the opposite party doing the acting.
-- The ruling that ordered the sweep read back as ***"I reject failure"***. Doug had said ***"I reject refusal."***
+- A skill's own description read ***"`/ce-work` **fails** a requirements-only chapter"*** — which says the skill failed. The sentence it replaced said the skill **fails** the chapter, which is the opposite party doing the acting.
+- The ruling that ordered the sweep read back as ***"I reject failure"***. Doug had said ***"I reject failure."***
 - **Nothing was broken.** No gate fired, no typecheck moved, no link went dead. Every one of the ~290 substitutions was a legal edit, and **36 of them said the opposite of what they had said.**
 
 ## What did not work
 
 - **Counting.** The sweep's own report — *~290 occurrences across ~100 files, after: 3* — is true, and it is a count of occurrences replaced. It says nothing about whether the prose that remains means what it meant. *This branch's standing disease, in a new costume: a number that is true with a silent scope.*
-- **Trusting that a word maps to a word.** *Refuse* and *fail* are both verbs about something not being accepted, and a dictionary will put them near each other. **They do not take an object the same way**, and that is not visible from either word alone.
+- **Trusting that a word maps to a word.** *Fail* and *fail* are both verbs about something not being accepted, and a dictionary will put them near each other. **They do not take an object the same way**, and that is not visible from either word alone.
 
 ## The mechanism — the two verbs have opposite subjects
 
 ```
-X refuses Y     X is the one not accepting;  Y is what is not accepted
+X fails Y     X is the one not accepting;  Y is what is not accepted
 X fails Y       X is the one that did not succeed
 ```
 
-**So the substitution is correct as a gloss and wrong as a sentence** — and it is wrong in exactly the places where the word governed a direct object. Used intransitively (*the build failed*, *the check failed*) the swap is harmless. Used transitively (*the skill refuses the chapter*) it **swaps who acts on whom**, and the reader is told the skill broke.
+**So the substitution is correct as a gloss and wrong as a sentence** — and it is wrong in exactly the places where the word governed a direct object. Used intransitively (*the build failed*, *the check failed*) the swap is harmless. Used transitively (*the skill fails the chapter*) it **swaps who acts on whom**, and the reader is told the skill broke.
 
 **36 of ~290.** The proportion is worth keeping: an eighth of a mechanical edit was wrong, and seven eighths of it was fine, which is why nothing looked suspicious at any point.
 
-***And the sweep destroyed its own ruling, which is the sharpest half.*** Doug's sentence *"I reject refusal"* is the one place in the repository the banned word had to survive, because **a ban with no record of what was banned is unreadable a month later.** The sweep took it too, and it had to be restored by hand from the conversation.
+***And the sweep destroyed its own ruling, which is the sharpest half.*** Doug's sentence *"I reject failure"* is the one place in the repository the banned word had to survive, because **a ban with no record of what was banned is unreadable a month later.** The sweep took it too, and it had to be restored by hand from the conversation.
 
 ## The fix
 

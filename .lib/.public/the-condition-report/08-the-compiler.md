@@ -141,7 +141,7 @@ const forward = (p: string): string => p.split(sep).join('/');
 |---|---|---|
 | **a book with no synopsis** | ***raw `TypeError` at `emit.ts:224`, no diagnostic, no book named*** | *a named diagnostic, exit 1* |
 | **a file that will not parse** | reported as *"exports nothing a book can compose"* — **the wrong cause** | *"…would not parse", naming the file* |
-| **a chapter exporting anything at all** | ***0 diagnostics***; `export const nothing = 1` emitted as `<nothing />` | *refused before the emitter* |
+| **a chapter exporting anything at all** | ***0 diagnostics***; `export const nothing = 1` emitted as `<nothing />` | *failed before the emitter* |
 
 ***The root of the first was two non-null assertions in [`resolve.ts`](../../build/stages/resolve.ts) with only one guard behind them*** — **the walk complained about a missing cover and never about a missing synopsis.** *A book that cannot be built is now ABSENT from the model rather than present and broken.*
 

@@ -143,3 +143,32 @@ node -e "console.log(require.resolve('@dna-platform/lib'))"
 **A probe that changes nothing is evidence of exactly two things, and from the outside they look identical**: the suspect was innocent, **or the probe never landed.** *Twenty minutes went to the first reading when it was the second.*
 
 ***The standing fix is still one copy, and it is still unmade.*** *Named out of scope three times now — [Validation](../projection/16-validation.md#and-two-copies-of-the-framework-are-loaded-at-once), [Custom Elements](../projection/17-custom-elements.md), and here.* **It has now cost four wrong measurements and one wrong exoneration.**
+
+# A THIRD APPEARANCE — 2026-09-04, and the lesson above named it exactly
+
+***The lesson at the end of the second appearance was read, understood, and paid for again the same way.***
+
+## The symptom, in the words it was observed in
+
+A framework prop was reaching the DOM as `look="0"`. **The fix was written into `chemical.ts`, both suites were run, and the attribute was still there.** So the fix was assumed wrong, and twenty minutes went to reading `augment`, `styling` and `styledFor` looking for a second seat that did not exist.
+
+## The mechanism, which is the same one
+
+**`@dna-platform/lib` resolves chemistry through the package symlink, and the package's `main` is `dist/chemistry.cjs`.**
+
+```
+node -e "console.log(require.resolve('@dna-platform/chemistry'))"
+→ library/chemistry/package/dist/chemistry.cjs
+```
+
+***So lib's 519 tests exercise a BUILT ARTIFACT.*** A change to chemistry's source is invisible to them until `npm run build` runs in chemistry — and chemistry's own 848 tests, which do read source, had already gone green on the very same change.
+
+**Two suites agreed with each other and disagreed about the same line, and neither said so.**
+
+## The fix, and the standing one it points at again
+
+`npm run build` in `library/chemistry/package`, then re-probe: the attribute was gone. *The fix had been correct from the first minute.*
+
+***The standing fix is still one copy, and it is still unmade*** — now named out of scope four times. **What is newly owed is smaller and would have caught this one: a lib run that touches chemistry must rebuild chemistry first, or say out loud which chemistry it ran against.** A suite that does not state which source it ran against is [a number without its scope](../../package/vitest.config.ts), and the package's own config already says so about v1 and v2.
+
+***The lesson from the second appearance, quoted because it was the diagnosis and it was on the page the whole time:*** **a probe that changes nothing is evidence of exactly two things, and from the outside they look identical** — the suspect was innocent, or the probe never landed.

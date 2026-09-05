@@ -53,7 +53,7 @@
 
 <a id="r50"></a>**R50 · Doug.** ***The printed address:*** `Bk:0/Cr:1/Sn:2/Ph:0/Se:1/Wd:2/Lr:3-9` — **the book's own step first, the span in the terminal step, the upper bound UNBOUNDED and clamped at read.** *Legal on both faces: RFC 3986 fragment and HTML5 id.* **Observable: paste the fragment, land on the thing; a million-letter upper bound is not an error.**
 
-<a id="r51"></a>**R51 · derived.** ***`follow` is self-checking: a step landing on the wrong kind throws naming both codes*** — *sprint one's mismatch law given teeth by the type in the step* — **and a spanned terminal answers the bare composition of exactly that slice.** **Observable: a stale address that lands on a section while wearing `Ph` refuses; `Lr:3-9` answers seven letters.**
+<a id="r51"></a>**R51 · derived.** ***`follow` is self-checking: a step landing on the wrong kind throws naming both codes*** — *sprint one's mismatch law given teeth by the type in the step* — **and a spanned terminal answers the bare composition of exactly that slice.** **Observable: a stale address that lands on a section while wearing `Ph` fails; `Lr:3-9` answers seven letters.**
 
 <a id="r52"></a>**R52 · design owed, named.** ***Persistence*** — *where bookmarks and highlights LIVE is [the three `perhaps`](30-the-reference.md#the-three) territory (the reader's book, browser-held, anonymous readers), the one item both axes agreed to PROTOTYPE; and [R27 from sprint two](32-the-route.md#r27) lands here.* **Denied files until its shape is chosen.**
 
@@ -63,7 +63,7 @@
 
 - <a id="ae15"></a>**AE15 — the bookmark round trip.** *Print a chapter's typed address from its book, follow it back, land on the very chapter — identity.*
 - <a id="ae16"></a>**AE16 — the highlight's stretch.** *`…/Wd:2/Lr:3-9` answers a composition of exactly those letters, copies proving the span; an unbounded upper clamps instead of throwing.*
-- <a id="ae17"></a>**AE17 — the wrong-kind refusal.** *A step wearing `Ph` that lands on a section throws naming BOTH codes — the address caught its own rot without a slug.*
+- <a id="ae17"></a>**AE17 — the wrong-kind failure.** *A step wearing `Ph` that lands on a section throws naming BOTH codes — the address caught its own rot without a slug.*
 - <a id="ae18"></a>**AE18 — typed and returned.** *A deep letter's address prints with every step typed, and the fragment pasted through `follow` returns the letter.*
 
 > *The standing surface flag: these land in the spec harness; a driven page still awaits the surface decision.*

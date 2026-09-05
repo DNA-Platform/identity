@@ -60,6 +60,9 @@
 |---|---|---|
 | ***a framework component is fetched through `$` at the seat*** | **Doug: *"anytime a type is used, it should be fetched using $ … Don't assign properties. Assign constants close to use."*** *A Capitalized statement-local, never hoisted, never memoized, never a member; the exemptions (specifications, reflection) and the TIMING LAW — registration is configuration BEFORE the first parse — live with the rule in [ch10](10-the-type-and-the-instance.md#the-fetch).* | ***2026-09-03*** |
 | ***how a kind is spelled*** | **[The Spelling of a Kind](15-the-spelling-of-a-kind.md)** — the nine spellings, what a kind never spells, and the type-only short form; promoted from the binder sprint's record. | ***2026-09-03*** |
+| ***making one is asking for one that is not there*** | **[ch10 § making one](10-the-type-and-the-instance.md#making-one)** — `$check(Kind, '!')` fetches through `$` and evaluates in ONE call, so the two statements that had to stay together cannot come apart; `$check(found, Kind, '!')` is FIND OR MAKE. **The boundary: `'!'` makes an EMPTY one, `$(<Kind>…</Kind>)` writes into one.** | ***2026-09-04*** |
+| ***the bond assigns, the specification verifies*** | **[ch10 § the assignment workflow](10-the-type-and-the-instance.md#the-assignment-workflow)** — Doug's four steps, verbatim: look for one that is right and assign it; else fetch through `$`, make one and assign; then let `specifically` check it is there. *An author's own writing always wins over the default.* | ***2026-09-04*** |
+| ***asking what a block holds*** | **[ch10 § find and findOne](10-the-type-and-the-instance.md#the-block-asking-pair)** — one asking in place of **45 hand-written block scans across 15 files**. `find`/`findOne` ask the BLOCK by TYPE; `where`/`select`/`single` ask the PARTS. | ***2026-09-04*** |
 | ***how TSX is laid out, and how a fetched component is named*** | **[The Shape of TSX](16-the-shape-of-tsx.md)** — elements are what members are in a class, so structure is indented and visible; a component local carries the component's name; `$` is the injection point and belongs only where a class names a component literally. | ***2026-09-04*** |
 | ***a view is a read whose shape cannot construct*** | **[ch14's view law](14-shells-over-types.md#the-view-law)**, in Solutions 45's second-appearance wording; derivable structure enters the model at `specifically()` under Law 44. | ***2026-09-03*** |
 
@@ -67,7 +70,46 @@
 
 | | it rules | dated to |
 |---|---|---|
-| ***every framework class shows its use cases in `.spec`*** | **Doug: *"we always use the spec to show examples of the various use cases of each of our framework classes."*** *Each word's `.spec` file draws its examples as chemicals — the strong class, the carried type, and any trait or derived form — and [`spec.test`](../../package/src/tests/spec.test.tsx) enrolls every one behind three promises: it draws, it SPECIFIES, it COMPOSES, with a count that refuses silent loss.* **A new kind is not finished until its `.spec` examples exist and are enrolled.** | ***2026-09-02*** · *produced in [The Margin](../projection/35-the-margin.md)* |
+| ***every framework class shows its use cases in `.spec`*** | **Doug: *"we always use the spec to show examples of the various use cases of each of our framework classes."*** *Each word's `.spec` file draws its examples as chemicals — the strong class, the carried type, and any trait or derived form — and [`spec.test`](../../package/src/tests/spec.test.tsx) enrolls every one behind three promises: it draws, it SPECIFIES, it COMPOSES, with a count that fails silent loss.* **A new kind is not finished until its `.spec` examples exist and are enrolled.** | ***2026-09-02*** · *produced in [The Margin](../projection/35-the-margin.md)* |
+
+### <a id="supervision"></a>WE DO NOT INNOVATE — the standing rule, given 2026-09-05
+
+> ***Doug, after a session in which the team invented four members, changed one of his methods, and reported its own defects as flaws in his design:*** **"Note that Doug thinks you are not good programmers and you need serious supervision and to stop thinking you can innovate even member names in the five essential folders without asking. You can't innovate base classes. You have to follow templates for the classes. You can't decide when to add dynamic loading. You can't decide to do anything like this. You very simply exist to speed up the process of me writing code manually."**
+
+| forbidden without asking | what happened on 2026-09-05 |
+|---|---|
+| ***inventing a member*** | `declared()`, `fold()`, `classNames()` on `$Writing` — three, in one session, each struck |
+| ***inventing a member NAME*** | `fold` was defended as his word because he said *"types to fold in"*; **a phrase in conversation is not a name he gave** |
+| ***changing a base class*** | `$Writing.searchFor` was rewritten to ask two questions where he wrote one, and the cast that required was then reported as a wart |
+| ***departing from the template*** | the class shape is interface · class · type · specification, and it is not ours to vary |
+| ***deciding how modules load*** | an `import type` was used to route around a coupling the team had itself created |
+| ***concluding the design is wrong*** | eight defects were listed against his design; **seven were the team's own unfinished code and the eighth was his line, misjudged** |
+
+***The rule beneath all six, and it is the one to check yourself against:*** **the design is Doug's and the implementation is ours, so a fault found in the implementation is ours until proved otherwise.** *[T0](17-the-interface-type-system.md#definition-first) is the same law one level down: the definition outranks the measurement, and his design outranks our code.*
+
+***What to do instead of innovating:*** **ask.** *"If something is not IMMEDIATELY obvious, try to find a reason before saying you can't"* — and where no reason is found, **ask what he had in mind rather than concluding he designed it wrong.**
+
+### <a id="the-anchors"></a>THE TWO ANCHORS — read these before writing a word of it
+
+***Doug, 2026-09-05, third offence, and this time he gave the reason rather than the rule:*** *"Do you even know why every piece of writing is in a book? Because this is public, the public library. And it's closed under books. Write this down somewhere prominent. Those are the anchors."*
+
+| the anchor | what it grounds |
+|---|---|
+| **THIS IS THE PUBLIC LIBRARY** | Not a metaphor and not a theme. `@dna-platform/lib` is the public library, so **every word in it is a word a library actually uses.** |
+| **IT IS CLOSED UNDER BOOKS** | Reach for anything and what you get is a book — [Closure Under Books](../the-semantics-of-books/10-closure-under-books.md). ***That is why every piece of writing is in a book***, and it is why `book()` and `type()` terminate the same way: at the thing with nowhere left to belong but itself. |
+
+***The test, in his words: does a library closed under books mint dollars, or even have rooms? No.*** **What the infrastructure may be thought to do is PRINT books, WRITE books, and hold the PARTS of the composition hierarchy** — *and he adds the caution in the same breath: anthropomorphizing too much makes it hard to find the librarian.*
+
+**The words struck 2026-09-05, with what the library says instead:**
+
+| struck | where it came from | say instead |
+|---|---|---|
+| **mint**, minted, mints | coining money | **make** — `$check(kind, '!')` says it in the source: making one is asking for one that is not there |
+| **ladder**, rung | home repair | the **four ways** a consumer changes what a type means — subclass it, carry it, extend its specification, decorate one |
+| **rail** | railways | the **rule**, or the **specification** that carries it |
+| **seat** | furniture | **place** — and where one word is not needed, name the thing: the **class**, the **member**, the **bond constructor**, the **line** |
+
+***The failure this records is not a vocabulary slip, it is a method one.*** **Doug: *"You see my cute names, see no grounding, check not at all the meaning of the code, and produce meaningless jargon. The reason why this is a mess is you not ever checking semantics."*** *A name is checked against the library it belongs to before it is used, and a design is checked for what it MEANS before it is checked for whether it compiles.*
 
 ### <a id="no-jargon"></a>NO INVENTED LANGUAGE — the standing law, restated 2026-09-04
 

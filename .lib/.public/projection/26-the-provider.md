@@ -77,7 +77,7 @@ found.bind(of);
 found.specify();
 ```
 
-***An earlier version manufactured a narrower type when the writing carried a wider one*** — so a writing carrying a bare `<Type>` would coerce to **anything**. **Deleted on Doug's ruling**, and the hex-letter case got *better* for it: a writing carrying a `$HexLetter` answers to **both** names because a hex letter **is-a** letter, and one carrying only `$Letter` refuses `$HexLetter` and says so.
+***An earlier version manufactured a narrower type when the writing carried a wider one*** — so a writing carrying a bare `<Type>` would coerce to **anything**. **Deleted on Doug's ruling**, and the hex-letter case got *better* for it: a writing carrying a `$HexLetter` answers to **both** names because a hex letter **is-a** letter, and one carrying only `$Letter` fails `$HexLetter` and says so.
 
 **A bound type DRAWS THE WRITING IT STANDS FOR**, through the framework's own instance form:
 

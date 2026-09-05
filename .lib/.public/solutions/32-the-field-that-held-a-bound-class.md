@@ -10,7 +10,7 @@
 
 ## What was observed
 
-***Twenty-one promises failed with a message that named the right type and refused it:***
+***Twenty-one promises failed with a message that named the right type and failed it:***
 
 ```
 This writing is not a $Letter — it carries $TypeOfLetter.

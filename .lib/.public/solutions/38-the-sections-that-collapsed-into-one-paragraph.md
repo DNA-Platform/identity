@@ -14,7 +14,7 @@
 
 ## The mechanism — A REACTIVE FIELD ANSWERS A CLASS WRAPPED
 
-***A plain public field on a chemical is a reactive member, and the membrane answers FUNCTIONS off reactive members wrapped*** — *the same machinery that hands a derivative its methods pre-bound.* **A class is a function.** So `this.type.writtenAs` answered a bound impostor of `$Paragraph`: correct to call, useless to `instanceof` — and `$$(token)(impostor)` refused every genuine paragraph, silently, because refusal is a legal answer for the accept.
+***A plain public field on a chemical is a reactive member, and the membrane answers FUNCTIONS off reactive members wrapped*** — *the same machinery that hands a derivative its methods pre-bound.* **A class is a function.** So `this.type.writtenAs` answered a bound impostor of `$Paragraph`: correct to call, useless to `instanceof` — and `$$(token)(impostor)` failed every genuine paragraph, silently, because failure is a legal answer for the accept.
 
 ## The fix — CLASS-VALUED MEMBERS ON CHEMICALS ARE GETTERS
 

@@ -39,7 +39,7 @@ class $Own  extends $Writing { $Own(b) { super.$Writing(b); } }   // block set, 
 
 ## And declining is not available either
 
-***The obvious escape is an empty bond, and [Sprint 48's chain enforcement](../projection/06-sprint-48--subjects-and-the-library.md) refuses it:***
+***The obvious escape is an empty bond, and [Sprint 48's chain enforcement](../projection/06-sprint-48--subjects-and-the-library.md) fails it:***
 
 ```
 $Chemistry: Bond Constructor Failed

@@ -417,7 +417,7 @@ function branch(cls: any): any[] {
 
 **COMPLETE — the language.** Everything under BUILT above, green in both packages. **NOT DONE — the program.** Nothing registers a card, and that is correct: the compiler emits them and U8 was cut. *Doug: "We don't have a runtime. When building C#, no, there are no classes yet."*
 
-**The language was checked by hand-writing one card the way the compiler would emit it** — nine lines. `<Subject>Math</Subject>` becomes it, `<Subject>Mathmatics</Subject>` is refused **by name**, and the book carrying it is a Math book.
+**The language was checked by hand-writing one card the way the compiler would emit it** — nine lines. `<Subject>Math</Subject>` becomes it, `<Subject>Mathmatics</Subject>` fails **by name**, and the book carrying it is a Math book.
 
 ## Owed, and the first is a sprint
 

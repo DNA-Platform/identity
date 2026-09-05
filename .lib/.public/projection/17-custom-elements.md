@@ -326,7 +326,7 @@ a chemical  →  is it one of MY parts?   ($Section asks: instanceof $Paragraph)
 
 *Doug: "We need to have the `$` second argument if possible. Maybe passing arguments will help us with the hard part of this sprint… `$(<X prop='whatever'/>, ...args)` better work too."*
 
-***This is the hard part dissolved rather than worked around.*** A composition must be given the literal contents of its span, and React refuses a chemical as a child — `Children.toArray` throws on any object that is not an element. Lifting one back through an element **re-runs its bond constructor with nothing and empties it**: the class survives and the writing does not.
+***This is the hard part dissolved rather than worked around.*** A composition must be given the literal contents of its span, and React fails a chemical as a child — `Children.toArray` throws on any object that is not an element. Lifting one back through an element **re-runs its bond constructor with nothing and empties it**: the class survives and the writing does not.
 
 **So the arguments never become children.** They travel as a symbol mark on the element's props, and the bond takes them in place of children.
 
@@ -451,7 +451,7 @@ an element  →  is it one of my parts?
 - **PLUGGABLE.** A completely new subclass at **every grade** — word, sentence, paragraph, section — is a part of the model when it is written. **A new kind may hold another new kind, to any depth.** And it is *the object that was written*, not one built from its text.
 - ***The framework names none of them.*** Nothing is registered, declared or told to it. Each stands because it **is** a word, a sentence, a paragraph, a section — which is the whole of why this is extensible rather than configurable.
 - **REJECTING.** A word carrying whitespace does not stand and says so; a letter is one grapheme. ***And nothing is silently dropped*** — an invalid part is still a part, so the writing stays recoverable and the failure is **visible rather than absent**.
-- **PERMISSIVE.** Prose alone parses exactly as it always did. **A chemical the framework has never heard of, and which is not writing at all, is carried rather than turned away** — a parse that refuses what it does not recognise cannot be extended.
+- **PERMISSIVE.** Prose alone parses exactly as it always did. **A chemical the framework has never heard of, and which is not writing at all, is carried rather than turned away** — a parse that fails what it does not recognise cannot be extended.
 
 ## Two things measured and left undone
 
@@ -522,7 +522,7 @@ an element  →  is it one of my parts?
 - ***"In an OO framework being able to create custom elements is important… We invented a way for `$` to be a container. You better be using `$(Sentence)` and `$(Paragraph)` when working with all of these things because one should be able to replace the defaults."*** **Discharged by this sprint**, and kept here because it governs anything built on the parse.
 - ***"The end result from this sprint should be a highly pluggable system that can integrate completely new subclasses of content into the system. It also needs to reject when things don't parse correctly, but it should also parse in a fairly permissive way given the right things."*** **Thirteen promises, green.**
 - ***"Everything is going to be moved around, audited, redesigned. This is a big project. We need to get something stood up. But it is so so so far away from what I need it to be."*** ***This is the standing constraint on the whole branch.*** **Nothing here is settled and none of it should be defended** — what survives a redesign is the measurements and the defects, never an arrangement of files or a name.
-- ***"I reject refusal. Validation. Invalid. That's the semantics."*** A vocabulary ruling, and vocabulary rulings on this team are load-bearing.
+- ***"I reject failure. Validation. Invalid. That's the semantics."*** A vocabulary ruling, and vocabulary rulings on this team are load-bearing.
 - ***"We should be unit testing the compiler. Queenie should be involved in that."*** **Done — 43 promises in 4 files**, with the two check scripts standing beside them as drivers.
 - ***"One session at a time."*** *Two ran in parallel once, and it cost a silently overwritten cover entry.*
 
@@ -540,7 +540,7 @@ an element  →  is it one of my parts?
 
 **Three distributed at this session boundary**, after the two the sprint closed with:
 
-1. ***[The sentences that said the opposite](../solutions/22-the-sentences-that-said-the-opposite.md)*** — **a new chapter.** The vocabulary sweep read as complete and inverted 36 sentences, because `X refuses Y` and `X fails Y` put the subject on opposite sides. **Its specification also went into [On Authorship](../../../../.claude/library/bookkeeping/13-on-authorship.md), at the librarian's rename mandate** — which had claimed a vocabulary rename never changes what a chapter says, and this one did. *The keyword vocabulary gained `mechanical-edit`.*
+1. ***[The sentences that said the opposite](../solutions/22-the-sentences-that-said-the-opposite.md)*** — **a new chapter.** The vocabulary sweep read as complete and inverted 36 sentences, because `X fails Y` and `X fails Y` put the subject on opposite sides. **Its specification also went into [On Authorship](../../../../.claude/library/bookkeeping/13-on-authorship.md), at the librarian's rename mandate** — which had claimed a vocabulary rename never changes what a chapter says, and this one did. *The keyword vocabulary gained `mechanical-edit`.*
 2. ***[The checkpoint that compared a number to itself](../solutions/18-the-checkpoint-that-compared-a-number-to-itself.md)*** — **edited, a second appearance.** That chapter's own rule was *name two walks*; this promise named two and was still green by coincidence, because a deliberate one-word difference and an accidental one cancelled. ***The tell added: a promise that goes RED when you FIX something was measuring the defect.***
 3. ***[The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md)*** — **edited, a fifth appearance.** The stale-server rule recurred *after being filed*, and the interesting part is that **its own fix did not hold** — a rule a person must remember is not a fix. **The structural options are named there, and neither is built.**
 

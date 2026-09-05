@@ -180,7 +180,7 @@ $Type  >  $Book  >  $Dictionary
 
 <a id="r185"></a>**R185** — `<Element hue={200}>Neon</Element>` comes back a different class ***still carrying the prop and still carrying the text***.
 
-<a id="r186"></a>**R186** — a cross-branch ask — `<NobleGas>Iron</NobleGas>` — **refused on screen, naming both sides**.
+<a id="r186"></a>**R186** — a cross-branch ask — `<NobleGas>Iron</NobleGas>` — **failed on screen, naming both sides**.
 
 <a id="r187"></a>**R187** — ***two specimens of ONE class under two keys, each holding its own state, both drawn at once.***
 
@@ -188,7 +188,7 @@ $Type  >  $Book  >  $Dictionary
 
 <a id="r195"></a>**R195** — this chapter carries the **utility and the philosophy** — *Doug asked for it twice, and a discussion that lives only in a transcript is gone by Thursday.*
 
-***R187 is the one a hand-authored page cannot fake.*** *A resolution can be faked with a switch. A refusal can be faked with a hardcoded string. **One class standing twice, under two names, each holding different state, is the claim that the catalogue holds SPECIMENS rather than CLASSES** — and it is either true in the model or it is not.*
+***R187 is the one a hand-authored page cannot fake.*** *A resolution can be faked with a switch. A failure can be faked with a hardcoded string. **One class standing twice, under two names, each holding different state, is the claim that the catalogue holds SPECIMENS rather than CLASSES** — and it is either true in the model or it is not.*
 
 ---
 
@@ -208,7 +208,7 @@ $Type  >  $Book  >  $Dictionary
 
 <a id="ae2"></a>**AE2** — `<NobleGas>Neon</NobleGas>` gives **the same class** as AE1, because a key climbs and a tag at any depth resolves to what is filed beneath it. *(R173, R192)*
 
-<a id="ae3"></a>**AE3** — `<NobleGas>Iron</NobleGas>` is **refused**, naming what was asked and what the branch holds. *(R177, R182, R186)*
+<a id="ae3"></a>**AE3** — `<NobleGas>Iron</NobleGas>` is **failed**, naming what was asked and what the branch holds. *(R177, R182, R186)*
 
 <a id="ae4"></a>**AE4** — `<Element hue={200}>Neon</Element>` stands as `$Neon`, **still carrying `hue`** and **still carrying the text `Neon`**. *(R179, R185)*
 
@@ -361,7 +361,7 @@ $Type  >  $Book  >  $Dictionary
 6. **First write wins** — a second `cache` of a taken key does not displace the first.
 7. **Order does not matter** — constructing the deepest class first gives the same table as constructing the root first.
 
-**U180 — default and refusal**
+**U180 — default and failure**
 
 8. A branch with a default answers an unknown key with the default.
 9. A branch with no default **raises**, and the message names what was asked and what the branch holds.
@@ -472,7 +472,7 @@ $Type  >  $Book  >  $Dictionary
 | **[R187](#r187)** | Neon and Argon are **the same class**, drawn together, each carrying its own symbol, name and hue |
 | **[R204](#r204)** | `<ChemicalFormula>Neon2-Iron-Copper3</ChemicalFormula>` — content read, split, **each part resolved through the same mechanism inside the formula's own view**, drawn with its count |
 
-***One honest note about the console:*** **the refusal logs a React error-boundary message, because it IS a throw.** *So the claim is "no unexpected console errors," never "zero" — the one that is there is the demonstration working.*
+***One honest note about the console:*** **the failure logs a React error-boundary message, because it IS a throw.** *So the claim is "no unexpected console errors," never "zero" — the one that is there is the demonstration working.*
 
 ### <a id="u186-done"></a>U186 — the rebuild chain, and what it turned out to mean here
 
@@ -532,14 +532,14 @@ $Type  >  $Book  >  $Dictionary
 |---|---|
 | **the composition** | a `$Work` composed of `$Part`s, **and every part carries a written type of its own** — so a work's type checks its parts' types, and every one of those words came through the same catalogue |
 | **the classes** | `$Book` demands a Cover first and Chapters after · `$Biography` adds *somebody it is about* · `$Autobiography` adds *that its subject wrote it* · **each calling `super`, so the demand sentence and the fault list are BUILT BY THE CHAIN** |
-| ***the sibling*** | ***`$Dictionary` does NOT call super*** — a Book requires Chapters and a Dictionary forbids them — **and that refusal to call up is the evidence it is a sibling rather than a refinement** |
+| ***the sibling*** | ***`$Dictionary` does NOT call super*** — a Book requires Chapters and a Dictionary forbids them — **and that failure to call up is the evidence it is a sibling rather than a refinement** |
 | **the labels** | `$Cover` · `$Chapter` · `$Entry` — *the one place a type overrides `view()`, because a label names a kind and judges nothing* |
 | **configuration** | ***in each class's own constructor.*** Nothing reaches in from outside |
 | ***no default*** | **the branch declares none, so an unclaimed word is an error rather than a shrug** — which is what a type system should do |
 
 ***What is on the page, and it is the claim Doug made:*** **THE SAME THREE PARTS, CLAIMED TWICE.** *Cover · Entry · Entry passes as a `Dictionary` and fails as a `Biography`, naming **part 2** and **part 3** by position.* **Nothing about the parts changed — only the word — and with it the specification they are held to.** *Beside it, an autobiography whose subject did not write it fails on exactly that clause and no other.*
 
-**And the refusals now name the taxonomy out loud:** `$Biography stands for nothing called "Dictionary" — it stands for Book, Biography, Autobiography, Auto-biography.` beside `$Type stands for nothing called "Novel" — it stands for Cover, Chapter, Entry, Book, Biography, Autobiography, Auto-biography, Dictionary.` ***The climb is legible in the two lists.***
+**And the failures now name the taxonomy out loud:** `$Biography stands for nothing called "Dictionary" — it stands for Book, Biography, Autobiography, Auto-biography.` beside `$Type stands for nothing called "Novel" — it stands for Cover, Chapter, Entry, Book, Biography, Autobiography, Auto-biography, Dictionary.` ***The climb is legible in the two lists.***
 
 **The third case became stronger too:** the scope no longer re-dresses a drawing, it **stands a STRICTER CLASS behind the same word** — *"this library asks for three chapters"* — so the same `<Type>Autobiography</Type>` passes on the left and fails on the right, and the work never learns it was judged by a different specification.
 

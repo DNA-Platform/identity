@@ -99,7 +99,7 @@
 | <a id="r161"></a>**R161** | `@look('name')` names one, on the framework's own attribute machinery | ***done*** — [U170](#u170) |
 | <a id="r162"></a>**R162** | `look` is a JSX attribute typed `number \| string`, carried by the computed type | ***done*** — [U171](#u171) |
 | <a id="r163"></a>**R163** | a prop cannot overwrite a view at runtime either | ***done*** — [U171](#u171) |
-| <a id="r164"></a>**R164** | an out-of-bounds look is refused, naming both sides | ***done*** — [U172](#u172). ***Throwing was chosen as [`$Location.read()`](../../package/src/reference/Location.tsx)'s house form; the ruling behind it predates the rename from `$i` to `look`, so it is the cheapest thing here to reverse*** |
+| <a id="r164"></a>**R164** | an out-of-bounds look fails, naming both sides | ***done*** — [U172](#u172). ***Throwing was chosen as [`$Location.read()`](../../package/src/reference/Location.tsx)'s house form; the ruling behind it predates the rename from `$i` to `look`, so it is the cheapest thing here to reverse*** |
 | <a id="r165"></a>**R165** | switching a look repaints, through the ordinary reactive field and nothing else | ***done*** — [U172](#u172) |
 | <a id="r166"></a>**R166** | `frame()` keeps its shape and reads the selected look | ***done*** — [U172](#u172) |
 | <a id="r167"></a>**R167** | the demonstration's five lenses survive invisibly | ***done*** — [U175](#u175) |
@@ -154,7 +154,7 @@ Its drawings survive as three looks. **What it demonstrated — one live instanc
 | <a id="u169"></a>**U169** | the view members and the `$views$` dictionary — `R159` `R160` | [landed as one seam](#u169-172-done) |
 | <a id="u170"></a>**U170** | `@look('name')`, on `bond.ts`'s own registries — `R161` | [same](#u169-172-done) · [and K11 fired](#k11-fired) |
 | <a id="u171"></a>**U171** | `look` becomes an attribute, `view` stops being one — `R162` `R163` | [same](#u169-172-done) |
-| <a id="u172"></a>**U172** | `$look` selects, repaints, and refuses — `R164` `R165` `R166` | [same](#u169-172-done) |
+| <a id="u172"></a>**U172** | `$look` selects, repaints, and fails — `R164` `R165` `R166` | [same](#u169-172-done) |
 | <a id="u173"></a>**U173** | the two dead types stop meaning something else — `R158` | [and the number I typed](#the-number-i-typed) |
 | <a id="u174"></a>**U174** | the Lab's three cases — `R168` | [driven](#u174-176-done) |
 | <a id="u175"></a>**U175** | the demonstration's five lenses — `R167` | [driven](#u174-176-done) · [and the boundary I got wrong](#the-boundary-i-got-wrong) |
@@ -277,7 +277,7 @@ Its drawings survive as three looks. **What it demonstrated — one live instanc
 
 | | |
 |---|---|
-| **the Lab, three cases** | *sibling subclasses collapsed to one class each.* **Driven: eight look names on the page — `swatch · hex · rgb · hsl · cover · synopsis · reading · links` — every one from a decorator**, and the element case walked `79 Au Gold 196.97` → `79 Au Gold` → `Au` with the far arrow refusing at the bound |
+| **the Lab, three cases** | *sibling subclasses collapsed to one class each.* **Driven: eight look names on the page — `swatch · hex · rgb · hsl · cover · synopsis · reading · links` — every one from a decorator**, and the element case walked `79 Au Gold 196.97` → `79 Au Gold` → `Au` with the far arrow failing at the bound |
 | **the demonstration** | *five sibling subclasses → one `$Sheet` with five looks.* **`the-page.tsx` holds its own name list, by Doug's ruling**, and the chip writes `sheet.$look` — **one instance behind all five drawings** |
 | **the chapters** | [Looks](../../../chemistry/.lib/particle/08-perspectives.md) and [The Composition of Looks](../../../chemistry/.lib/particle/09-the-composition-of-perspectives.md) rewritten · the glossary's nine perspective terms replaced · [polymorphism](../../../chemistry/.lib/composition/07-polymorphism.md) · [the particle source book](../../../chemistry/.lib/implementation/01-particle.md) · ***[The Canonical Echo](../the-semantics-of-books/06-the-canonical-echo-and-views.md), in the THEORY book*** — its mapping of the two total views onto `look('up')`/`look('down')` died with the axes and is rewritten against the series, where it fits better · covers updated with the tool in the same act |
 | **the rebuild chain** | `$Chemistry` `dist` → `lib` `dist` → both applications, and **every gate re-run against the rebuilt copies** |
@@ -335,7 +335,7 @@ const Color = $(this.color);       // the receiver, held once
 
 **So the corrected account, now in [the chapter](../../../chemistry/.lib/particle/08-perspectives.md):** *there is **no canonical face**; `view` is simply the member with no `$` in front of it. The `$`s are an **index**, existing so several members can share one base name — no rank, no distance, no progression.* **The object contributes the possibility space and nothing else: the decorator supplies the name, the container supplies the choice.**
 
-*One thing flagged rather than settled: **the gap check is the only place the implementation asserts an ordering.** It refuses `view` + `$$view` with no `$view`. Since the index carries no order, a hole is not a broken sequence — it is almost certainly a typo, which is why the check earns its place — **but if a skipped name should simply be an absent look, it comes out.***
+*One thing flagged rather than settled: **the gap check is the only place the implementation asserts an ordering.** It fails `view` + `$$view` with no `$view`. Since the index carries no order, a hole is not a broken sequence — it is almost certainly a typo, which is why the check earns its place — **but if a skipped name should simply be an absent look, it comes out.***
 
 ## <a id="the-defect-i-did-not-cause"></a>A DEFECT FOUND, PROVED PRE-EXISTING, AND NOT FIXED HERE
 
