@@ -16,7 +16,7 @@ What fixed it was not a better list of members. It was asking who owns what, and
 
 ## What I am glad about
 
-**The suite refused every wrong design before Doug had to.** When I generalised a `parenthetical` guard to every level, four promises went red in one run and every author and subject on every cover drew empty — because `parenthetical` means *not shown* at section grade and *not counted as prose* at word grade. One flag, two meanings, and the model had always applied the not-shown half in exactly one place. I put the guard back where the model had it rather than bending the model to suit my drawing.
+**The suite rejected every wrong design before Doug had to.** When I generalised a `parenthetical` guard to every level, four promises went red in one run and every author and subject on every cover drew empty — because `parenthetical` means *not shown* at section grade and *not counted as prose* at word grade. One flag, two meanings, and the model had always applied the not-shown half in exactly one place. I put the guard back where the model had it rather than bending the model to suit my drawing.
 
 **And the library predicted the worst moment.** The instant a section drew its parts, three test files died of heap exhaustion. That is [the parse that woke its own parents](../../../../../library/.public/.lib/solutions/16-the-parse-that-woke-its-own-parents.md) — *a parse may not be given a parent while it mutates what it makes* — filed, marked discharged, and returning under a condition its discharge never covered, because adopting a part **is** a write and that was harmless only while nothing drew through it. I did not have to diagnose it. I had to recognise it.
 

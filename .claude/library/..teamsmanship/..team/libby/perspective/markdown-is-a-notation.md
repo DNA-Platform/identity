@@ -23,7 +23,7 @@ And both obey the degradation specification that has always governed links in my
 
 Doug's second question: is markdown a level, a notation, or a role — LaTeX being a second one of whatever it is. My ruling: **a notation.**
 
-- **Not a level.** The levels — letter, word, sentence, paragraph, section, document — each compose the level below. Markdown composes nothing; it appears at *every* level (R1: a markdown section, paragraph, sentence, word). A thing that appears at every level is orthogonal to the ladder, not a rung on it.
+- **Not a level.** The levels — letter, word, sentence, paragraph, section, document — each compose the level below. Markdown composes nothing; it appears at *every* level (R1: a markdown section, paragraph, sentence, word). A thing that appears at every level is orthogonal to the chain, not a step on it.
 - **Not a role.** `role` in the model is `use | mention`, a property of a single piece of writing. Markdown *uses* that role — it declares its syntax mentioned — but it is not itself a use-or-mention. It is the larger thing that deploys the role.
 - **A notation** is the system of marks a piece of writing is authored in. It supplies exactly the differences a specialization declares — `divide`, `compose`, and which marks are mentioned — and nothing else. Plain prose is the identity notation; markdown and LaTeX are two notations. A `$MarkdownSection` differs from a `$Section` *only* in notation: same level, same composition, different marks. That "only" is what makes notation a real, forced concept and not a restatement of level.
 

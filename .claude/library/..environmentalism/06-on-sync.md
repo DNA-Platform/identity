@@ -20,7 +20,7 @@ The library travels between projects. It lives in its own repository at `github.
 
 > ***Doug, 2026-09-05, restoring the shared branch:*** **"No it should be a shared dna-platform branch and that is the branch I will be working on."**
 
-***That reverses [the 2026-08-12 ruling](#the-branching-model) deliberately, and the reason is in the sentence:*** **a branch nobody works on is not where a person's identity should live.** *What the 08-12 ruling was avoiding — the mutual clobber — is real and returns with the shared branch, so the guard returns with it: **a mirror onto a shared branch is checked for deletions first, and refuses rather than silently reverting another project's work.*** *The branch libraries stay on their own branch, which is where the "one writer, one branch" argument still holds exactly.*
+***That reverses [the 2026-08-12 ruling](#the-branching-model) deliberately, and the reason is in the sentence:*** **a branch nobody works on is not where a person's identity should live.** *What the 08-12 ruling was avoiding — the mutual clobber — is real and returns with the shared branch, so the guard returns with it: **a mirror onto a shared branch is checked for deletions first, and rejects rather than silently reverting another project's work.*** *The branch libraries stay on their own branch, which is where the "one writer, one branch" argument still holds exactly.*
 
 ***And neither destination is reached by borrowing a working copy*** — see [the worktree rule](#the-sync-works-in-its-own-worktree).
 
@@ -123,7 +123,7 @@ The tool is bash, not TypeScript. It is git operations, not library parsing. It 
 
 | | |
 |---|---|
-| ***anyone's uncommitted work BLOCKS the push*** | *git refuses the checkout, and the session ends holding a record it cannot file* |
+| ***anyone's uncommitted work BLOCKS the push*** | *git rejects the checkout, and the session ends holding a record it cannot file* |
 | ***a failure mid-run STRANDS them*** | *the shared folder is left on a branch they did not choose, mirrored with this project's content* |
 | ***the return is a guess*** | *`git checkout main` assumes `main` is where they were* |
 
@@ -132,7 +132,7 @@ The tool is bash, not TypeScript. It is git operations, not library parsing. It 
 - ***A worktree shares the object database***, so it costs one checkout ever and is a fast-forward on every run after.
 - ***The shared folder is never read, never written, never moved.*** Uncommitted work there is now genuinely safe from the standard sync.
 - ***Nothing is put back, because nothing was taken*** — the `git checkout main` is gone.
-- ***If the branch IS checked out in the shared folder***, the tool **refuses and says so** rather than fighting over it. *A worktree and a checkout cannot hold one branch, and the right answer is a sentence to the operator, not a force.*
+- ***If the branch IS checked out in the shared folder***, the tool **rejects and says so** rather than fighting over it. *A worktree and a checkout cannot hold one branch, and the right answer is a sentence to the operator, not a force.*
 - ***The location is overridable*** with `IDENTITY_WORKTREES`, for a machine that wants it elsewhere.
 
 ***The failure that produced the ruling, recorded because it is the shape to recognise:*** **a session's whole record — a sprint chapter, three new chapters and five compacted covers — sat finished and unpushable behind four files somebody had left modified in the identity folder.** *The work was never at risk; the FILING was, which is the same thing one power cut later.*

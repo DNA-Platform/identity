@@ -34,7 +34,7 @@ If validation fails, nothing is pushed. The operator never chooses branches — 
 
 ***So somebody's uncommitted work in the identity folder can neither block this push nor be moved by it.*** *Until 2026-09-05 the tool borrowed that folder — checked the branch out in it, mirrored, pushed, then guessed its way back to `main` — and a session's whole record once sat finished and unfilable behind four files someone had left modified there.* **Doug: *"You can pull to a folder, sync, and push? I had no clue you actually worked in the main folder. That is bad."***
 
-**The one case it refuses:** if the project's branch is *already checked out* in the shared identity folder, the tool stops and says so rather than fighting for it. **Switch that folder to another branch and run again** — a worktree and a checkout cannot hold one branch, and forcing it is how a working copy gets stranded.
+**The one case it rejects:** if the project's branch is *already checked out* in the shared identity folder, the tool stops and says so rather than fighting for it. **Switch that folder to another branch and run again** — a worktree and a checkout cannot hold one branch, and forcing it is how a working copy gets stranded.
 
 ## It will not clobber
 

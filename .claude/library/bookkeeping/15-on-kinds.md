@@ -15,7 +15,7 @@ A candidate name must pass both, and they are Doug's (2026-08-04):
 
 > "the choices are strictly from the population of things that... are valid names for books because we don't even have the problem in the first place if I can reach for terminology outside of them, and then restricted again to the things that people wouldn't expect to have a different meaning in this semantic context"
 
-**Filter one — is it a kind of book?** Not a *part* of a book (apparatus), not a *shape* of a book (format), not *furniture* a library owns. If a reader would not answer "a book" when asked what it is, it fails.
+**Filter one — is it a kind of book?** Not a *part* of a book (apparatus), not a *shape* of a book (format), not *apparatus* a library owns. If a reader would not answer "a book" when asked what it is, it fails.
 
 **Filter two — is the word free here?** If a reader arriving at this system would expect the word to mean something else — because it already names something in the register, or because it carries a strong meaning from another field — it fails.
 
@@ -170,7 +170,7 @@ That is not a gap in the vocabulary. It is the vocabulary reporting that the two
 When a class needs a name:
 
 1. **Read the population first.** Do not generate a candidate and then defend it.
-2. **Apply filter one.** Kind, not part, not format, not furniture.
+2. **Apply filter one.** Kind, not part, not format, not apparatus.
 3. **Apply filter two.** Would a reader expect this word to mean something else here?
 4. **Report what survives, and what nothing survives.** An empty result is a finding — usually that the thing is not a separate kind, or that the structure is wrong.
 5. **Never argue a candidate into place.** A name that needs a structural argument invented for it is the argument being invented, not the name being found.

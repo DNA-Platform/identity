@@ -4,7 +4,7 @@
 
 ---
 
-*The planning scratchpad per [the convention](../library-tree/03-sprints.md#the-planning-scratchpad--chapter-zero): overwritten as sprints absorb it — when a note becomes real work, it leaves this chapter for the sprint's own. Revision 2026-07-29, opening the driver-and-runtime ladder.*
+*The planning scratchpad per [the convention](../library-tree/03-sprints.md#the-planning-scratchpad--chapter-zero): overwritten as sprints absorb it — when a note becomes real work, it leaves this chapter for the sprint's own. Revision 2026-07-29, opening the driver-and-runtime chain.*
 
 ## The goal
 
@@ -52,7 +52,7 @@ The team reaches outside its own context window by **driving Claude Desktop like
 
 **Sequence estimate: four sprints, one hard dependency** — 101 must follow 98's `turn.ts` migration. 99 depends on 98's M3 (snapshot and errors as serializable returned data). 100 follows 99 by design, not necessity.
 
-## Standing rules on every rung
+## Standing rules on every step
 
 **"Done" is a claim with a truth-condition** ([Sprint 91](60-sprint-91--retro.md)) — certify what is checkable, and say plainly what is unproven. **Three truths, and the compiler guards one** ([Sprint 92](62-sprint-92--retro.md)): structural (model the screen's affordances, not our categories), perceptual (the verify must match the tree — ground every signal in a captured tree), temporal (the lifecycle must match the turn — the first ends). **Docs move with code, never after** — the `///:` annotation is the forcing function, and a promise to reconcile "next sprint" is a debt. **Commit early**: every guard in [On Sync](../..environmentalism/06-on-sync.md#uncommitted-work-is-not-protected-by-any-of-this) protects committed history and none protects a working copy. **Covers stay current through the [TOC tool](../bookkeeping/03-on-covers--toc.ts)** — it edits one entry without reading the book and fails rather than mangles.
 

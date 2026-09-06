@@ -36,7 +36,7 @@ Take units in dependency order. For each one:
 1. **Read the unit** — its files, its test scenarios, what it depends on.
 2. **Write the specification first** where the unit bears behaviour — a [test is a promise](../..teamsmanship/..team/queenie/test-architecture/.cover.md), and the scenarios were enumerated so nobody has to invent them.
 3. **Implement** the smallest thing that satisfies the guardrails.
-4. **Verify with evidence.** Run the command. Read the output. [Green, driven, seen](../..teamsmanship/..team/queenie/test-architecture/04-the-three-rungs.md) — and no completion claim without a fresh run in the same message.
+4. **Verify with evidence.** Run the command. Read the output. [Green, driven, seen](../..teamsmanship/..team/queenie/test-architecture/04-the-three-steps.md) — and no completion claim without a fresh run in the same message.
 5. **Edit the sprint chapter** — mark the unit done in [Where things stand](32-ce-handoff.md), and update the cover with [the tool](../bookkeeping/03-on-covers--toc.ts). Not only a todo list: conversation memory does not survive compaction.
 
 ## Fresh context per unit

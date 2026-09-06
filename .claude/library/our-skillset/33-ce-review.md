@@ -79,7 +79,7 @@ The same discipline [brainstorm](28-ce-brainstorm.md) runs applies: **one thing 
 ## The verification it will not accept
 
 - **A green number without the red one beside it.** Both suites, both counts.
-- **"It renders" from a test container.** [Green → driven → *seen*](../..teamsmanship/..team/queenie/test-architecture/04-the-three-rungs.md) — and *read* is the deepest rung.
+- **"It renders" from a test container.** [Green → driven → *seen*](../..teamsmanship/..team/queenie/test-architecture/04-the-three-steps.md) — and *read* is the deepest step.
 - **A demo described rather than shown.**
 
 ## What it produces
@@ -90,7 +90,7 @@ The same discipline [brainstorm](28-ce-brainstorm.md) runs applies: **one thing 
 
 ## And it makes work stricter
 
-The demo is a **stop condition**, not a closing flourish: no unit reports done without one. That rule already existed — the demo was already a requirement in Sprint 48's chapter and *seen* was already a rung — and it was broken anyway. This step is what makes it enforceable.
+The demo is a **stop condition**, not a closing flourish: no unit reports done without one. That rule already existed — the demo was already a requirement in Sprint 48's chapter and *seen* was already a step — and it was broken anyway. This step is what makes it enforceable.
 
 ## Its own status
 

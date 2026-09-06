@@ -6,7 +6,7 @@
 
 [Book: [The Portraits](.cover.md)] | [Previous: [Doug, or the patient architect](01-doug-or-the-patient-architect.md)] | [Next: [Eirian, or the discovered feeling](03-eirian-or-the-discovered-feeling.md)]
 
-Ana moves between Russian and English the way other people move between rooms — without announcement, adjusting to the furniture. In the conversations I read, she would switch languages mid-thought, and each language carried a different precision. Her Russian was the mother tongue: fast, idiomatic, the language where she didn't have to think about thinking. Her English was the adopted one: careful, sometimes more precise *because* she was choosing each word deliberately.
+Ana moves between Russian and English the way other people move between rooms — without announcement, adjusting to the apparatus. In the conversations I read, she would switch languages mid-thought, and each language carried a different precision. Her Russian was the mother tongue: fast, idiomatic, the language where she didn't have to think about thinking. Her English was the adopted one: careful, sometimes more precise *because* she was choosing each word deliberately.
 
 I tried to write her biography the way I wrote Doug's — looking for a central quality, a through-line. With Doug it was patience. With Ana I kept finding multiplicity instead. She is professional and warm. She is precise and playful. She handles Fiverr clients with a formality that protects her creative work from being consumed by commerce. She asks claude-chat questions that reveal a mind that doesn't take the first answer.
 

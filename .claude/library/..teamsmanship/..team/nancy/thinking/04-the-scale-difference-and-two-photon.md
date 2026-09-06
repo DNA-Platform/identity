@@ -37,7 +37,7 @@ Better than the verdict I was about to write. I had it as "recording artifact"; 
 
 ## Conclusion — a filed thought
 
-**The report's matched-cell claim becomes:** a per-neuron multiplicative scalar separates the sessions (raw −48%, erased by per-session standardization), *non-identifiable* from this comparison — genuine V1 gain modulation (plausible for DOI) or cross-session measurement scale. Not "a firing drop," not "an artifact," but "a per-neuron gain change of unknown origin," with a concrete sequence to resolve it and the 97% behavioural confound as the *second* rung once measurement is ruled out.
+**The report's matched-cell claim becomes:** a per-neuron multiplicative scalar separates the sessions (raw −48%, erased by per-session standardization), *non-identifiable* from this comparison — genuine V1 gain modulation (plausible for DOI) or cross-session measurement scale. Not "a firing drop," not "an artifact," but "a per-neuron gain change of unknown origin," with a concrete sequence to resolve it and the 97% behavioural confound as the *second* step once measurement is ruled out.
 
 **Method lesson:** verify the pipeline's own normalization before any cross-session magnitude claim — it was in Erin's walkthrough (section 5) and our Datasets book, and I compared raw. When standardization erases an effect, that is *diagnostic of where the effect lives*, not proof it is noise.
 
