@@ -200,6 +200,48 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 
 ---
 
+
+## <a id="warts"></a>THE WARTS — every questionable thing this sprint wrote, named by the session that wrote it
+
+***Doug: "Keep track of the warts."*** *Each says what it is, whether it is fixed, and what would close it. **Two were fixed in the same act as being named.***
+
+| | the wart | state |
+|---|---|---|
+| **W1** | ***I wrote a ceremonial bond constructor*** — `$Format(block) { }`, empty. **[The Binding Constructor](../../../chemistry/.lib/composition/03-binding-constructor.md) forbids exactly this**: *"an empty `$X() {}` makes the synthesis parse parameters and build chemicals for inputs nobody binds: a performance hazard."* **I had read that chapter this session.** | ***FIXED*** — deleted in the same act as being named |
+| **W7** | ***`theme()` read the block by hand*** — `(this._block.$elements ?? []).find(part => part instanceof $Theme)` — where `searchForOne($TypeOfTheme)` is the ask, now that a theme carries a type | ***FIXED*** — asks by type |
+| **W2** | ***`$Format.theme` reaches through a duck-type and then CASTS what the check just verified*** — `'theme' in at && typeof at.theme === 'function'`, then `(at.theme as () => $Theme)()`. **This is the canonical fault by my own record**, and Doug's rule is *"the unknown-cast reach is NEVER okay — a member the machinery must read is a member on the wrong object, or machinery in the wrong place."* *It exists solely to keep `Format.tsx` from importing `$Writing` as a value, which would re-form the cycle.* | ***STANDING.*** **Closed by moving `$Format` into `Writing.tsx`, which is [what ch13 rules and nobody has done](#w-ch13)** |
+| **W3** | ***`$IndexCard.heading()` and `$CatalogueCard.heading()` survive only to satisfy an inherited obligation.*** *`$Section$` promises `heading()`; a card waives `$opensWithHeading` and never uses one.* **Nothing calls either** | ***STANDING*** — they go when a card becomes a reference ([D-F](#d-f)), which is unbuilt |
+| **W4** | ***`reference/IndexCard.tsx` now imports `book/Title.tsx`*** — a direction that did not exist before, `reference` reaching into `book`. *It loads standalone and there is no cycle, but it asks whether `$Title` is a book word or a reference word* | ***STANDING*** — a design question, not a defect |
+| **W5** | ***R3 IS NOT MET, and the mechanism it names is WRONG WHERE IT RUNS.*** [`ReferenceSpecification.$landsOnIt`](../../package/src/reference/Reference.tsx) asks `reflection.code(writing.type())` — **the COMPOSITION type** — where a mention's target kind lives in its REFERENCE type. *For `$$Chapter` it demands `Ph:` where the target is a chapter at `Cr:`.* **And it does not strip a leading `#`, so `#Bk:0` fails it too.** ***`$$Paragraph` has carried this since it was written and nothing caught it, because no mention has ever been specified*** | ***STANDING, and it is the sprint's largest unmet requirement*** |
+| **W6** | ***`theme()` walks the parent chain per read***, and every Format getter reads `this.theme` per render. *Books are shallow so the walk is short, but **the cost was never measured*** | ***STANDING*** — measure before defending it |
+| **W8** | ***`$Format.theme` now THROWS where it used to fall back.*** *A Format drawn outside any writing has no theme and says so. Every suite and both demo pages pass, so nothing does that today* — **but it is a behaviour change on a path no promise covers** | ***STANDING*** — deliberate, per *types express expectations*, and recorded rather than assumed safe |
+| **W9** | ***I added three empty specifications*** — `$BookSpecification`, `$ChapterSpecification`, `$SectionSpecification`. *They inherit real rules from `ReferenceSpecification` rather than holding none, which is not the same fault as [the eleven this sprint counted](#measured)* — **but a sprint that set out to fill empty specifications ended by writing three** | ***STANDING*** — they fill when [W5](#warts) is fixed and a mention has a rule of its own |
+
+### <a id="w-ch13"></a>And one that belongs to a chapter rather than to code
+
+***[The Default Dress](../designing-inexplicable-phenomena/13-the-default-dress.md) says `$Theme`, `$Style` and `$Anchor` live in `Writing.tsx` — "Doug's rule, and it is what dissolved a module cycle".*** **Two of the three had drifted out**, and putting `$Theme` back is what this sprint did. **`$Format` and `$AnchorFormat` are still out**, which is the whole reason [W2](#warts) exists.
+
+> ***So the chapter is not stale — it is UNOBEYED, and the cost of not obeying it is one cast.*** *Session inexplicable-phenomena-7e read ch13 as stale against v2.2; the honest form is that it states a shape the current file layout does not carry, and either the layout moves or the chapter says so.* **A ruling for Doug, not an edit to make quietly.**
+
+---
+
+## <a id="verdict"></a>DID THE PLAN HOLD? — phase by phase, and the answer differs per phase
+
+***Doug asked whether the work implemented the plan or whether the plan failed and the code is not up to spec because the design was wrong. It is three different answers.***
+
+| | |
+|---|---|
+| ***[P1](#p1) — the vocabulary*** | ***THE PLAN HELD EXACTLY.*** *A rename with no surprises; 18 sites, 0 missed, every leftover correctly prose* |
+| ***[P2](#p2) — meaning propagates outward*** | ***THE PLAN HELD, AND PREDICTED ITS OWN NUMBERS.*** *It said `Anchor href` would fall from 8 to 3 and it fell to 3; it said the cards would lose their drawings and they lost 89 lines. **Doug's "the meaning of the title is the meaning of the card" was implementable as one override each*** |
+| ***[P3](#p3) — the three mentions*** | ***THE PLAN WAS WRONG IN ONE DETAIL AND THE CODE CORRECTED IT.*** *The plan had `$$X$ extends $X$`; the compiler showed that a mention of a book would inherit `cover`, `synopsis`, `table` and `index` — **which a mention does not have.*** **The existing `$$Paragraph$ extends $Phrase$` already carried the right rule: a mention's interface is its LEVEL's.** *This is [the plan specification's own claim](../../../../.claude/library/our-skillset/29-ce-plan.md) — a contract is corrected by implementation, never by rereading — happening to this plan* |
+| ***[P7](#p7) — the theme*** | ***THE DESIGN WAS RIGHT AND MY SHORTCUT WAS WRONG, AND IT COST A ROUND TRIP.*** *ch13 said the theme is an annotation. I judged that too risky, hit a module cycle when I tried it, and reached for `inline = true` on a `$Chemical` instead — **treating the symptom.** Doug's ruling — "inherit from writing or descendant and it's not a problem" — sent me back, and it worked with **one class moving and a type-only import**, not the three-class reorganization I had priced it at.* **The caution was the error, not the design** |
+| ***R3 — a mention carries a library address*** | ***NOT MET.*** [W5](#warts). *The rule the requirement names is never exercised and is wrong where it runs. **This is the requirement to carry forward, and it is not a plan failure — it is a defect the plan assumed away*** |
+| ***[P4](#p4)–[P6](#p6) — the url, the resolver, the binder*** | ***NOT ATTEMPTED, and deliberately.*** *[P4](#p4)'s one slug would today deduplicate two lines with no url step to make it an invariant — **which is the premature helper [The Grammar](../../../chemistry/.lib/authorship/01-the-grammar.md) warns about**. [P5](#p5)'s resolver has no consumer until [P6](#p6), and P6 is a compiler that does not exist. **Building any of the three alone is more than necessary*** |
+
+***THE ONE SENTENCE:*** **the design held everywhere it was tested, was corrected once by the compiler in a way that made it truer, and the only real failure was mine — pricing a documented ruling as too expensive and reaching for a symptom fix instead.**
+
+---
+
 # <a id="the-design"></a>THE DESIGN
 
 ***Doug, 2026-09-06: "This is the /ce-work — the work is the design this sprint, clearly."*** *So what follows is the deliverable, not a preamble to one. Every claim carries its state: **measured**, **read**, or **proposed**.*
@@ -973,6 +1015,11 @@ $TypeOfReference
 
 | ***[P2](#p2) — meaning propagates outward*** | **DONE.** *`$IndexCard.meaning()` and `$CatalogueCard.meaning()` answer their title's; `lines()`, `name()`, **five `view()`** and **four `reference()`** deleted; `TitleSpecification`'s rule reworded to **a title means what it titles**, which is what it now rules.* **`Anchor href` 8 → 3** · **net −89 lines across the five files** · *one rule added — an index card carries a title that means something — **written structurally rather than with `instanceof`**, because [a rule that consults its own class fails the writing that merely CARRIES the type](../solutions/.cover.md)* |
 | ***the commit gate*** | **Validation refused first, on two half-finished struck-word sweeps belonging to NEITHER session** — *a cover and its chapter disagreeing about a filename, in [Queenie's test architecture](../../../../.claude/library/..teamsmanship/..team/queenie/test-architecture/.cover.md) and in [Solutions 41](../solutions/41-the-phrase-that-failed-as-a-word.md).* **Both chapter titles had already been swept; only the filenames were left.** *Renamed to follow the titles, the two links updated, the skills recompiled.* **All three libraries now PASS** |
+
+| ***[P3](#p3) — the three mentions*** | **DONE.** *`$$Book`, `$$Chapter`, `$$Section`, each with `$TypeOf$X extends $TypeOfReference`, a specification, and a **lowercase** component export — `book`, `chapter`, `section`.* **Three promises, green first run:** a mentioned chapter draws `#Body_sections` from the base, **stands at Paragraph and is NOT a Chapter**, and has a meaning. *`Section.tsx`'s file-local alias moved from `section` to `written`, because the lowercase spelling is the mention's export now — **and that collision will recur at Letter, Word, Sentence and Paragraph if all seven levels export lowercase*** |
+| ***[P7](#p7) — the theme*** | **DONE, on Doug's ruling** *"inherit from writing or descendant and it's not a problem".* **`$Theme` is now an `$Annotation` living in `Writing.tsx`; `Theme.tsx` is deleted.** *`theme()` is a property on `$Writing` — the theme written in, else what holds it, else one made through `$`. `$Format.theme` walks to the nearest writing. **The module cycle is dissolved by `Format.tsx` taking `$Theme` as a TYPE-ONLY import**, which is erased at runtime — one class moving, not three.* **Three promises: registered, written-in, and inherited by a chapter** |
+| ***SEEN, after the theme move*** | ***per-book theming, drawn.*** **`/` at `font-size: 14px` with the portal theme applied; `/article` at `16px` without it** — *two books on one framework at different sizes.* **34 and 7 anchors, empty-href 0, unresolved 0, no overflow, at 390/820/1280**; one favicon 404 |
+| ***the library repairs*** | **[Chapter 49](49-the-wikipedia-demo.md) held the whole chapter TWICE** — *577 lines for a 310-line chapter, spliced back with nothing discarded, the cut sentence rejoined.* **[The Assignment](../../../chemistry/.lib/composition/14-the-assignment.md) opened a paragraph mid-sentence** — *its lost clause reconstructed and MARKED as a reconstruction rather than passed off as the original.* *Both found independently by session inexplicable-phenomena-7e; the first I had found at this session's opening and let go* |
 
 **GATES, measured after** — *`tsc -p src/tsconfig.json` **0** · `tsc -p .wiki/tsconfig.json` **0** · vitest **88 across 5 files**, the baseline unchanged · `clean.ts` **0 files cleaned**, so the change survives the mechanical conventions.*
 
