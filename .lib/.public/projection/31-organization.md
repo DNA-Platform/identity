@@ -92,7 +92,7 @@
 
 ---
 
-# <a id="the-evening"></a>The second half — Doug took the ladder apart himself
+# <a id="the-evening"></a>The second half — Doug took the chain apart himself
 
 ***The organization pass finished and the sprint did not.*** **Doug worked directly in [`$Writing`](../../package/src/writing/Writing.tsx) for the rest of the session**, *and the result is a different base class than the one the pass had tidied.* **What follows is the register, not the narrative.**
 

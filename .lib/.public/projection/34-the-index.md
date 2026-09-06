@@ -19,7 +19,7 @@
 |---|---|
 | **what the index IS** | *"**Index is a number that is related to the composition.** In books it will be the index in the table of contents of synopses of books. **The first will be the canonical of the subject.** First of type in type section will be canonical of type. We have to figure all of that out."* — ***position encodes canonicality; first is canonical.*** *The deleted `canonical(): T` representative returns as a READING of position — [chapter zero predicted the seat](00-planning.md#plan-blockers): "the canonical returns as a question in sprint four."* |
 | **the deferral** | *"This is book stuff. We aren't there yet. But you can use parts. **We don't have a type of chapter called a synopsis yet, and so we don't know book index. Just give every book an index of 0 for now, as I initialized it. It should be a number. And do the rest according to parts.**"* — *book-index waits on the synopsis chapter-type; every book keeps its initialized 0; the position-canonicality semantics live at PARTS for now.* |
-| **the closure note** | *"**The library is closed under books, but cataloguing doesn't stop. Nothing catalogues books right now**, right? So we will have to figure out how to represent that. **We will get there.**"* — ***VERIFIED in code: no `$Composition<$Book>` exists; the cataloguing surface stops one rung short of [the closure](../the-semantics-of-books/10-closure-under-books.md).*** |
+| **the closure note** | *"**The library is closed under books, but cataloguing doesn't stop. Nothing catalogues books right now**, right? So we will have to figure out how to represent that. **We will get there.**"* — ***VERIFIED in code: no `$Composition<$Book>` exists; the cataloguing surface stops one step short of [the closure](../the-semantics-of-books/10-closure-under-books.md).*** |
 | ***the sprint's true center*** | *"It's not deferred but it is index zero for now. **It is at the top of the pyramid. Uncatalogued.** What we are really designing is **something like the bookmark and highlight system. Within book references. A bookmark goes from current book down to page. A highlight goes from current book down to range of letters.** We can make others too but **I want those two to be our current two**."* — ***within-book = all glide, no jumps: the system sits inside the rooms-hold by construction, and [`address`/`follow`](33-the-handle.md#checklist) are its down-walk.*** *The range returns from [its raise-and-withdrawal](32-the-route.md#the-range) on schedule — "that's for a bookmark" was exact. **One flag per [the discipline](00-planning.md#naming-discipline): "down to page" against [sprint 19's no-page ruling](.cover.md) — read as the reading position at document grade, his to correct.*** |
 
 ## <a id="typed-steps"></a>The typed steps — his proposal, measured and standing
@@ -39,7 +39,7 @@
 
 ## <a id="bookmark-ruled"></a>The bookmark's landing, and an idea filed
 
-***Doug: "Down to chapter. My bad"*** — **the bookmark stops at chapter grade, `Bk:0/Cr:1`, and the word page is withdrawn by its own author; [sprint 19's ruling](19-the-binding.md) stands untouched.** *And two ideas floated in the same conversation, filed at [the certainty ladder's](30-the-reference.md#certainty) low rung rather than as requirements, both his and both self-closed "not for now":* **"maybe we could take screensize, take an index on it based on where the person is and index that! That would be cool"** *— a viewport-relative deeper index —* **and "maybe bookmark just goes to chapter and then has an interaction that takes them to section or paragraph… Depends on where we allow them to mark it! Not for now."** *Both await the kinds' own sprint in book territory.*
+***Doug: "Down to chapter. My bad"*** — **the bookmark stops at chapter grade, `Bk:0/Cr:1`, and the word page is withdrawn by its own author; [sprint 19's ruling](19-the-binding.md) stands untouched.** *And two ideas floated in the same conversation, filed at [the certainty chain's](30-the-reference.md#certainty) low step rather than as requirements, both his and both self-closed "not for now":* **"maybe we could take screensize, take an index on it based on where the person is and index that! That would be cool"** *— a viewport-relative deeper index —* **and "maybe bookmark just goes to chapter and then has an interaction that takes them to section or paragraph… Depends on where we allow them to mark it! Not for now."** *Both await the kinds' own sprint in book territory.*
 
 # <a id="requirements"></a>Requirements
 
@@ -72,7 +72,7 @@
 
 - [x] Sprint three closed and compounded in the same session; the room's context carried whole
 - [x] Doug's index redefinition captured verbatim — position encodes canonicality
-- [x] The deferrals recorded: book-index behind the synopsis type; the closure's top rung named unbuilt
+- [x] The deferrals recorded: book-index behind the synopsis type; the closure's top step named unbuilt
 - [x] Doug's word on what four builds: **the bookmark and highlight system — the two current kinds of within-book reference**
 - [x] The bookmark's landing ruled — chapter grade, the page word withdrawn; the screensize idea filed as floated
 - [x] The range ruled — span in the terminal step, unbounded upper, clamp at read

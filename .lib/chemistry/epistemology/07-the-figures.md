@@ -45,7 +45,7 @@
 
 ### pulse — a teal band
 
-**`field` stacks nine filled curves back to front**, each offset and each opaque, so the front ones occlude the ones behind — a ridge plot, which shows nine signals *and* their relation at once. **`reading` treats the same nine as separate measurements standing apart.** *This is the oldest disagreement in data drawing — a curve sampled, or nine facts? — and the class refuses to settle it, which is what two looks are for.*
+**`field` stacks nine filled curves back to front**, each offset and each opaque, so the front ones occlude the ones behind — a ridge plot, which shows nine signals *and* their relation at once. **`reading` treats the same nine as separate measurements standing apart.** *This is the oldest disagreement in data drawing — a curve sampled, or nine facts? — and the class rejects to settle it, which is what two looks are for.*
 
 **A single filled trace stood here first and was simply dull beside its neighbours.** *Equal interest across the six is a requirement rather than a nicety: a row is only as strong as the tile a reader's eye skips.* The ramp is sequential within the band, light at the back and deep at the front, which is what makes nine overlapping curves readable as a stack rather than a smear.
 
@@ -73,4 +73,4 @@
 
 **The fourth thing is the asymmetry the case leaves deliberately unshown.** Nothing on the screen says which class arrived; the tag says `<Fig>`, and the drawing is whatever the catalogue answered. **That absence is the factory pattern's whole content** — the caller names a kind and never learns the concrete class — and it is more convincing as an absence than it would be as a label. The reader can look for the seam and not find one.
 
-**And the fifth is what the case cannot show, which is worth stating so nobody claims it does.** The screen cannot show that a name climbed to its ancestors, that a sibling's name was refused, or that a scope re-dressed a resolution — those are the three cases that follow it in the section, and they are drab on purpose because what they demonstrate is a *rule*, not a *world*. **This case earns the reader's attention; the three after it spend it.** A section needs both, and the mistake we made three times was trying to make one case do both jobs at once.
+**And the fifth is what the case cannot show, which is worth stating so nobody claims it does.** The screen cannot show that a name climbed to its ancestors, that a sibling's name was rejected, or that a scope re-dressed a resolution — those are the three cases that follow it in the section, and they are drab on purpose because what they demonstrate is a *rule*, not a *world*. **This case earns the reader's attention; the three after it spend it.** A section needs both, and the mistake we made three times was trying to make one case do both jobs at once.

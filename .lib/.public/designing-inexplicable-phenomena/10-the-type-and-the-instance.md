@@ -147,13 +147,13 @@
 
 ## <a id="specifically-two-verbs"></a>specifically has TWO VERBS — enforce, and augment to enforce
 
-*Doug, giving the second verb before there was code for it: **"I want specifically to be able to do things. It modify. To enforce. But also to augment to enforce."*** **The first built use: [`$TypeOfDocument.specifically`](../../package/.archive/document/Document.tsx) CREATES the references section on any writing being a document, then checks** — one seat serving the bond path, the carried type, and the `$$` bind, where a bond-time create had broken twenty-nine carried-type fixtures at once. ***And specifically now runs at CONSTRUCTION:*** the type setter dispatches — guarded to the type's own canonical form, because [the super-chain assigns intermediate types](../solutions/41-the-phrase-that-was-refused-as-a-word.md).
+*Doug, giving the second verb before there was code for it: **"I want specifically to be able to do things. It modify. To enforce. But also to augment to enforce."*** **The first built use: [`$TypeOfDocument.specifically`](../../package/.archive/document/Document.tsx) CREATES the references section on any writing being a document, then checks** — one seat serving the bond path, the carried type, and the `$$` bind, where a bond-time create had broken twenty-nine carried-type fixtures at once. ***And specifically now runs at CONSTRUCTION:*** the type setter dispatches — guarded to the type's own canonical form, because [the super-chain assigns intermediate types](../solutions/41-the-phrase-that-failed-as-a-word.md).
 
 ## <a id="the-fetch"></a>The `$`-fetch corollary — RULED 2026-09-03, and it is the DI seat
 
 ***Doug: "anytime a type is used, it should be fetched using $ … Very important for the DI route to work." And the convention's shape, his: "You need a code convention. Don't assign properties. Assign constants close to use."***
 
-**Wherever the framework uses a component of itself — a type defaulted in a bond, a part made in a maker closure, a printed reference minted, a dress worn at a frame — the identifier is fetched through `$` into a Capitalized local AT THE SEAT, and the thing is built from that local.** Only the component-form ask consults the scope (`askedFor` walks the asker's registry, then lineage, then class templates); the eval form `$(<X/>)` and the class form `$($X)` bind the literal, which is why a direct construction is a closed seat.
+**Wherever the framework uses a component of itself — a type defaulted in a bond, a part made in a maker closure, a printed reference made, a dress worn at a frame — the identifier is fetched through `$` into a Capitalized local AT THE SEAT, and the thing is built from that local.** Only the component-form ask consults the scope (`askedFor` walks the asker's registry, then lineage, then class templates); the eval form `$(<X/>)` and the class form `$($X)` bind the literal, which is why a direct construction is a closed seat.
 
 ```
 const Asked = $(TypeOfSentence);
@@ -186,7 +186,7 @@ this.type ??= $check(typeOfSentence, '!');
 this.theme = $check(this.findOne($TypeOfTheme), $Theme, '!');
 ```
 
-***THE BOUNDARY, and it is clean:*** **`$check(Kind, '!')` makes an EMPTY one; `$(<Kind>…</Kind>)` writes into one.** Anything created with children keeps the eval form — the catalogue's parts, the parser's makers, a path minted from copy — because `$check` takes no children.
+***THE BOUNDARY, and it is clean:*** **`$check(Kind, '!')` makes an EMPTY one; `$(<Kind>…</Kind>)` writes into one.** Anything created with children keeps the eval form — the catalogue's parts, the parser's makers, a path made from copy — because `$check` takes no children.
 
 ```tsx
 const Catalogue = $(catalogue);
@@ -260,7 +260,7 @@ $Paragraph(block: $Block) {
 
 *Written the old way round, the class planted its default first and something downstream had to out-rank it.* **Written this way nothing adjudicates: a carried type simply IS the type, and the default is what happens when a page said nothing.** The same three lines stand at all seven levels and at every kind.
 
-***A REGISTER, and it is where the flexibility comes from:*** a page that carries `<Type>Title</Type>` inside a `$Paragraph` gets a title with no subclass anywhere — [route 3 of the ladder](#the-ladder), now reachable at every level rather than at the ones that happened to allow it.
+***A REGISTER, and it is where the flexibility comes from:*** a page that carries `<Type>Title</Type>` inside a `$Paragraph` gets a title with no subclass anywhere — [route 3 of the chain](#the-chain), now reachable at every level rather than at the ones that happened to allow it.
 
 ***THE TIMING LAW, in the same breath:*** **registration is configuration BEFORE the first parse.** Parsed populations freeze (`parser.parsed` keeps the first answer per writing) while component fetches resolve live per render — so a registration landing after first parse yields swapped dresses over stock types, the one live two-populations form. The framework enforces its half: registering mid-draw fails by chemistry.
 
@@ -268,11 +268,11 @@ $Paragraph(block: $Block) {
 
 **The named exemptions, so a refactor does not "complete" them:** *specifications stay plain classes* (`new XSpecification()` — the `$` convention is safe only while it is not competing with chemistry's own), and *reflection stays class-fetched* — it answers build facts into globally memoized caches, and a scope-resolved answer frozen there would bake the first asker's book into every book.
 
-## <a id="the-ladder"></a>The consumer's ladder, in Doug's words
+## <a id="the-chain"></a>The consumer's chain, in Doug's words
 
 > ***"Most times people subclass the strong version, and sometimes their subclass uses the type to avoid that, and maybe very occasionally they need to make a new specification if they want to do it right because they could just extend specifically, and then really rarely they need to decorate the specification to really have control over what changes. It is very flexible but I don't think consumers will use it all."***
 
-**Four rungs, outside in: subclass · carry the type · extend a specification · decorate one.** *The four routes above are the same ladder seen from the author's side; his sentence is how it reads from the consumer's.*
+**Four steps, outside in: subclass · carry the type · extend a specification · decorate one.** *The four routes above are the same chain seen from the author's side; his sentence is how it reads from the consumer's.*
 
 ## <a id="the-reactive-law"></a>The reactive-property law — read from the source, 2026-09-04
 
@@ -280,4 +280,4 @@ $Paragraph(block: $Block) {
 
 ---
 
-*Written 2026-08-29, out of [The Bind](../projection/29-the-bind.md), after the same fundamentals were rebuilt four times in a session. The trait, the second verb, and the ladder joined 2026-09-02, out of [The Margin](../projection/35-the-margin.md). The reactive-property law joined 2026-09-04, read from bond.ts during the styled-chemicals design.*
+*Written 2026-08-29, out of [The Bind](../projection/29-the-bind.md), after the same fundamentals were rebuilt four times in a session. The trait, the second verb, and the chain joined 2026-09-02, out of [The Margin](../projection/35-the-margin.md). The reactive-property law joined 2026-09-04, read from bond.ts during the styled-chemicals design.*

@@ -32,7 +32,7 @@
 
 **A bond constructor is handed one block for prose, and it is now a class with a surface.** `$Block extends $Html$<'block'>`, iterates `(string | number | $Chemical)` directly, and `where` · `select` · `selectMany` each answer **a new block**, so a reading of a block can be read again; `single` answers the piece.
 
-***`$Html<'block'>` computes to `$Block`***, which retired the computed form **without one call site moving** — every use in `lib` became a `$Block` and gained the surface for free. `$check` takes the class, the base, or the tag `'block'`, and still refuses an html that is not one.
+***`$Html<'block'>` computes to `$Block`***, which retired the computed form **without one call site moving** — every use in `lib` became a `$Block` and gained the surface for free. `$check` takes the class, the base, or the tag `'block'`, and still rejects an html that is not one.
 
 ## The assignment — `on={() => this.member}`
 
@@ -43,7 +43,7 @@
 - **The member's declared type decides.** A list collects in drawn order; a single is assigned.
 - **It threads the lineage**, which is the only way a part a class draws for itself acquires a parent.
 
-***And it refuses rather than doing nothing quietly*** — a tag, a path through nothing, two parts claiming one single member, an arrow naming no member, and a view whose shape depends on what was assigned into it.
+***And it rejects rather than doing nothing quietly*** — a tag, a path through nothing, two parts claiming one single member, an arrow naming no member, and a view whose shape depends on what was assigned into it.
 
 ---
 

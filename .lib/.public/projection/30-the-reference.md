@@ -672,7 +672,7 @@ export type Reference = {
 
 ---
 
-# <a id="certainty"></a>The certainty ladder — graded by DOUG's words, not by the author's risk
+# <a id="certainty"></a>The certainty chain — graded by DOUG's words, not by the author's risk
 
 ***A first version of this section graded the brief by the author's estimate of technical difficulty.*** **That was the wrong axis.** *Doug asked for the grading to follow **his own** stated uncertainty, so this reads his hedges back off the brief verbatim and sorts by them.* ***The [feasibility register](#feasibility) keeps the technical axis, separately, because they are different questions and [the interesting items are where the two disagree](#the-disagreements).***
 
@@ -698,7 +698,7 @@ export type Reference = {
 
 **The author's answers, offered as answers and not as decisions, are [below](#answers).**
 
-## <a id="the-ladder"></a>The ladder
+## <a id="the-chain"></a>The chain
 
 *Every clause in the brief, with the hedge that carries it.*
 

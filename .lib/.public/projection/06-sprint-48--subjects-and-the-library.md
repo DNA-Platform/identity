@@ -42,7 +42,7 @@ Verified against the package: **35 classes, exactly one multiword** — `$TableO
 ## The frame — what closure claims here
 
 - **R1.** The **library is closed under books**; the **code is not**. Not everything one can refer to is a book. Machinery is machinery — one may write a book *about* it, and the formalism does not require that book to exist. *(Doug, correcting an over-application of [Closure Under Books](../the-semantics-of-books/10-closure-under-books.md).)*
-- **R2.** The vocabulary of the code is the vocabulary of its domain. `@dna-platform/lib` speaks **library semantics** — book, cover, chapter, subject, catalogue, shelf, spine, slot. `$Chemistry` speaks **chemistry** — bond, binder, catalyst. Hardware and building words belong to neither, in a class name, a member name, a comment or a sentence spoken about the work. **The word *ladder* is banned** (Doug, 2026-08-06); where it described the composition of writing, the derivation's own word is [**levels**](../the-semantics-of-books/01-levels-of-closure.md).
+- **R2.** The vocabulary of the code is the vocabulary of its domain. `@dna-platform/lib` speaks **library semantics** — book, cover, chapter, subject, catalogue, shelf, spine, slot. `$Chemistry` speaks **chemistry** — bond, binder, catalyst. Hardware and building words belong to neither, in a class name, a member name, a comment or a sentence spoken about the work. **The word *chain* is banned** (Doug, 2026-08-06); where it described the composition of writing, the derivation's own word is [**levels**](../the-semantics-of-books/01-levels-of-closure.md).
 
 ## Subject, author, and the summit
 
@@ -533,7 +533,7 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 2. **The library catalogue is NOT on the shelf** — *"in the way that the table of contents isn't an option in the table of contents."* **The precedent is already in code**: [`$TableOfContents.parts()`](../../package/src/book/TableOfContents.tsx) filters out itself and the cover. A catalogue omitting itself is shipped behaviour, not a special case.
 3. **A cataloguing book is made for the existing two demos.** Real entries, real books, not placeholders.
 4. **A second way to view the bookshelf**, where you **interact with the library catalogue** — a writing-based view of the library, against the shelf's visual one.
-5. **"Please do a good job designing the library catalogue"** — the catalogue's own design is part of the brief, not incidental furniture.
+5. **"Please do a good job designing the library catalogue"** — the catalogue's own design is part of the brief, not incidental apparatus.
 6. **"A beautiful and unique aesthetic experience when swapping"** between the shelf and the writing-based view. The **transition itself is the designed thing**, not a toggle.
 
 Two views of one library — spines and writing — is the [perspectives](../../../chemistry/.lib/particle/08-perspectives.md) design doing exactly what it was built for. **Phillip and Gabby lead**; the *extremely well-designed* filter runs here before Doug sees it.

@@ -16,7 +16,7 @@
 
 - **`$mustHaveText` was the quadratic's author** — `copy` walks the whole subtree to test for one character, re-run at every ancestor, so a node's text was walked once per ancestor. **His induction insight is verified sound**: one level suffices — a non-empty string member or a non-parenthetical writing member — because that child's own battery already proved IT has text.
 - **`$terminates` was dead code** — `void writing.book;` takes the method reference and never calls it. The one rule guarding an unterminated ancestor chain never ran, and cost nothing while proving nothing.
-- **Every letter constructed its own `Intl.Segmenter`** — a famously expensive constructor, thousands per document — re-proving the single grapheme that `$Word.reduce`'s own segmentation had just minted it from. `$Word` built a second one per instance for `reduce`.
+- **Every letter constructed its own `Intl.Segmenter`** — a famously expensive constructor, thousands per document — re-proving the single grapheme that `$Word.reduce`'s own segmentation had just made it from. `$Word` built a second one per instance for `reduce`.
 - **A phrase's bond walked its subtree text three times** (`$mustHaveText`, `$stopsAtItsEnd`, `$onOneLine`), and every ancestor walked it again.
 - **A state hazard**: `$hasType` stashes `this.for` on the specification instance, coupling rule order and making batteries non-reentrant the day they are shared.
 - **The caller map**: `valid()` has exactly ONE caller — chemistry's bond enforcement — and the seat is memo-gated (`_lastBondArgs`): N firings on first build, ZERO on steady re-render, one re-fire per changed node. `$Writing.valid()` always returns true, so the fallback message never fires for writings; the named rule messages carry the panel.

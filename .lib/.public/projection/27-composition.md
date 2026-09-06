@@ -18,7 +18,7 @@
 
 # <a id="what-this-sprint-is"></a>What this sprint is
 
-***Composition is what a level IS. The parse is only how one gets MADE from prose.*** **So the being is built before the finding**, and the whole ladder stands by hand before anything is divided.
+***Composition is what a level IS. The parse is only how one gets MADE from prose.*** **So the being is built before the finding**, and the whole chain stands by hand before anything is divided.
 
 **Seven levels, and the only thing they declare this sprint is what they compose.** *Doug: **"File is comp of documents is comp of sections is comp of paragraphs is comp of sentences is comp of words is comp of letters — I think this is most intuitive to people."***
 
@@ -105,7 +105,7 @@ export interface $Composition$<T extends $Writing> {
 
 <a id="r243"></a>**R243** — ***`specify()` leaves `$Writing`.*** **Its statement — *"a piece of writing has a type, and this one has none"* — becomes false the moment the parse exists**, because a letter found inside a word carries no `<Type>Letter</Type>`; the finder knows the level. *It is declared where it has content, on `$Type` and its levels.*
 
-## The ladder
+## The chain
 
 <a id="r244"></a>**R244** — ***seven types, each declaring what it composes and nothing else this sprint.***
 
@@ -166,7 +166,7 @@ export interface $Composition$<T extends $Writing> {
 
 # <a id="decisions"></a>Decisions
 
-<a id="d100"></a>**D100 — composition before the parse.** *Chosen over building the ladder and its divide rules together.* **A level's being is separable from how one is found**, and separating them means the whole ladder can be driven by hand — which is how the existing probes already work.
+<a id="d100"></a>**D100 — composition before the parse.** *Chosen over building the chain and its divide rules together.* **A level's being is separable from how one is found**, and separating them means the whole chain can be driven by hand — which is how the existing probes already work.
 
 <a id="d101"></a>**D101 — the five monadic members on `$Type`, not on each level.** *Chosen over seven implementations.* **They are one specification, and `parts()` is the only place the levels differ.** *Doug ruled it.*
 
@@ -192,7 +192,7 @@ export interface $Composition$<T extends $Writing> {
 
 <a id="u195"></a>**U195 — the five on `$Type`, and the parameter.** [R238](#r238)–[R240](#r240). **Files:** `notation/Type.tsx`. **Demo contribution:** one level's `where`/`select`/`selectMany`/`single` answering without that level implementing any of them. **Depends on:** U194.
 
-<a id="u196"></a>**U196 — the ladder wired.** [R244](#r244)–[R245](#r245), and each level's `parts()`. **Files:** all seven under `writing/`. **Demo contribution:** **a file built by hand, read all the way down to its letters.** **Depends on:** U195.
+<a id="u196"></a>**U196 — the chain wired.** [R244](#r244)–[R245](#r245), and each level's `parts()`. **Files:** all seven under `writing/`. **Demo contribution:** **a file built by hand, read all the way down to its letters.** **Depends on:** U195.
 
 <a id="u197"></a>**U197 — the two questions.** [R246](#r246)–[R248](#r248). **Files:** the seven levels. **Demo contribution:** the Smiley standing as a letter **at** its level and **not** the canonical kind, said in two answers rather than one. **Depends on:** U196.
 
@@ -216,7 +216,7 @@ export interface $Composition$<T extends $Writing> {
 
 *[A requirement that cannot be seen satisfied is not a requirement.](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-specification)*
 
-<a id="ae1"></a>**AE1** — a `$File` written by hand, holding a `$Document`, holding a `$Section`, holding a `$Paragraph`, holding a `$Sentence`, holding a `$Word`, holding letters. **`parts()` answers at every rung**, and `canonical()` answers the first. *Covers [R244](#r244), [R239](#r239).*
+<a id="ae1"></a>**AE1** — a `$File` written by hand, holding a `$Document`, holding a `$Section`, holding a `$Paragraph`, holding a `$Sentence`, holding a `$Word`, holding letters. **`parts()` answers at every step**, and `canonical()` answers the first. *Covers [R244](#r244), [R239](#r239).*
 
 <a id="ae2"></a>**AE2** — a level answers `where`, `select`, `selectMany` and `single` **without declaring any of them**. *Covers [R238](#r238).*
 
@@ -287,7 +287,7 @@ export interface $Composition$<T extends $Writing> {
 | **[U193](#u193)** | **`$Writing` cleaned** — `text` is optional, the `annotation` marker is **struck**, and `parenthetical` does its work. |
 | **[U194](#u194)** | **`$Composition$` is six members**, `T extends $Writing`, `canonical()` a function. |
 | **[U195](#u195)** | **`$Type<T>`**, the five monadic members written once, and `view()` **moved up from `$Letter`** — every level draws its bound writing, so six duplications were deleted before they were written. |
-| **[U196](#u196)** | ***The ladder stands.*** A file written by hand reads down to its letters, and **`parts()` answers BOUND TYPES**, so the walk is `parts()` all the way — no second `$$` at any rung. |
+| **[U196](#u196)** | ***The chain stands.*** A file written by hand reads down to its letters, and **`parts()` answers BOUND TYPES**, so the walk is `parts()` all the way — no second `$$` at any step. |
 | **[U198](#u198)** | ***The mixed word works.*** `['h', '🙂', 'i']`, in order, the exotic letter among the plain ones. |
 
 ## What was FOUND, and none of it was looked for
@@ -317,7 +317,7 @@ export interface $Composition$<T extends $Writing> {
 |---|---|
 | ***grepping for one shape and reporting a measurement*** | The first sweep for what named `src` searched **import specifiers** and reported five configs. **Four tests read the path with `readFileSync` and took the suite red.** |
 | ***piping a gate to `tail`*** | The exit code becomes the pipe's. **A red suite reported exit 0**, twice, before it was noticed. |
-| ***assuming `parts()` answers writings*** | The ladder test called `$$` at every rung and threw *"carries no type at all"* — **because `parts()` already answers bound types.** *The design was right and the test was wrong.* |
+| ***assuming `parts()` answers writings*** | The chain test called `$$` at every step and threw *"carries no type at all"* — **because `parts()` already answers bound types.** *The design was right and the test was wrong.* |
 | ***nearly striking `$Type.is`*** | Measured dead at 0 call sites and slated for deletion. ***It is the predicate the walk needs***, and deleting it would have removed the member the very next unit required. **A member with no callers is not the same as a member with no job.** |
 
 ---
@@ -338,7 +338,7 @@ export interface $Composition$<T extends $Writing> {
 
 ## <a id="s2"></a>S2 — what hosts a carried type
 
-**`$$` reads two ways — already-is, and carries-one.** *The ladder runs entirely on the first.* **The second has lost its host**: `$Writing` has no bond, so a plain writing can no longer carry `<Type>Letter</Type>`, and 12 promises in `letter.test` and `smiley.test` fail for that one reason.
+**`$$` reads two ways — already-is, and carries-one.** *The chain runs entirely on the first.* **The second has lost its host**: `$Writing` has no bond, so a plain writing can no longer carry `<Type>Letter</Type>`, and 12 promises in `letter.test` and `smiley.test` fail for that one reason.
 
 *Candidates, neither taken: the exotic kind carries its own type, or it is simply a subclass and carriage is given up.* ***Doug's ruling owed.***
 
@@ -380,7 +380,7 @@ export interface $Composition$<T extends $Writing> {
 
 ***This is the load-bearing one. Every other constraint about the levels is read against it.***
 
-<a id="c1"></a>**C1 — the ladder, and why it is that ladder.** *"File is comp of documents is comp of sections is comp of paragraphs is comp of sentences is comp of words is comp of letters — **I think this is most intuitive to people**."*
+<a id="c1"></a>**C1 — the chain, and why it is that chain.** *"File is comp of documents is comp of sections is comp of paragraphs is comp of sentences is comp of words is comp of letters — **I think this is most intuitive to people**."*
 
 <a id="c2"></a>**C2 — all seven implement composition, elegantly.** *"Remember that, **in very elegant form, these need to implement composition**."* + *"**You don't have the 7 implementing composition yet at all!**"*
 
@@ -532,7 +532,7 @@ $Writing<P>          parts · canonical · where · select · selectMany · sing
 | **the same shape at word grade** | `<Letter>h</Letter><Letter>i</Letter><Type>Word</Type>` reads `['h','i']` |
 | ***a chapter IS a document · a book IS a file*** | `instanceof`, and `$$(chapter, $Document)` returns the chapter itself |
 | ***A PIECE OF WRITING BEHAVES AS A BOOK*** | `<Chapter/><Chapter/><Type>Book</Type>` composes two chapters |
-| **the ladder** | file → document → section → paragraph → sentence → word → letters |
+| **the chain** | file → document → section → paragraph → sentence → word → letters |
 | **inline** | letter–sentence true, paragraph–file false |
 
 ***And the formula resolves ONLY WHEN DRAWN*** — *measured again here: built with `$()` the pattern carries a bare `$Type` and nothing behaves as anything.* **Every promise above renders.**

@@ -249,7 +249,7 @@ get library(): $Card | undefined {
 
 **D21 — The runtime is a new module in the compiler and the application's copy is deleted.** *Not moved and left dual-homed: [two homes drift](15-the-build.md#r12--one-home-and-one-pointer), and the whole point of R42 is that the compiler owns the phase.*
 
-**D22 — The compiler's suite is vitest, and the two check scripts STAY as drivers.** *This is [R43](#r43--the-compiler-is-unit-tested-and-queenie-holds-it)'s "stated either way", answered: promises are the green rung and the check scripts are the driven rung, exercising the whole pipeline against the real corpus and the real emitted output. Chosen over converting them, which would collapse two rungs into one and lose the end-to-end run.*
+**D22 — The compiler's suite is vitest, and the two check scripts STAY as drivers.** *This is [R43](#r43--the-compiler-is-unit-tested-and-queenie-holds-it)'s "stated either way", answered: promises are the green step and the check scripts are the driven step, exercising the whole pipeline against the real corpus and the real emitted output. Chosen over converting them, which would collapse two steps into one and lose the end-to-end run.*
 
 **D23 — The vocabulary sweep is its own unit and runs late.** *Folded into each unit it is invisible and unmeasurable; as a unit it produces a count, which is what [R41](#r41--the-semantics-are-validation-and-a-book-is-invalid) asks for.*
 
@@ -320,7 +320,7 @@ get library(): $Card | undefined {
 **Depends on:** [U38](#u38), so the fourth phase is among what it promises.
 **Visible end:** [AE25](#acceptance-examples) — a suite with a number, beside chemistry's 674 and lib's 239.
 
-**Scenarios.** *Per [D22](#the-decisions), the two check scripts stay and this is the rung beneath them.* Each promise is watched failing once. **The suite runs from a clean shell**, which is the thing [three artifacts on this branch could not do](../solutions/21-the-three-things-that-only-worked-here.md).
+**Scenarios.** *Per [D22](#the-decisions), the two check scripts stay and this is the step beneath them.* Each promise is watched failing once. **The suite runs from a clean shell**, which is the thing [three artifacts on this branch could not do](../solutions/21-the-three-things-that-only-worked-here.md).
 
 ### <a id="u42"></a>U42 — The demo tracks the project
 

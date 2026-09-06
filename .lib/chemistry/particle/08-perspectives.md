@@ -35,7 +35,7 @@ class $Sheet extends $Chemical {
 
 **THE SET IS OPEN, AND NOTHING ENUMERATES IT.** A class declares as many members as it has ways of being seen; the framework finds the deepest run of `$` on the prototype chain and builds every position up to it. *There is no ceiling to find — a promise stands a class at **forty** looks and draws the fortieth, another builds ten by a chain of ten subclasses each adding one.* **Where you see `view`, `$view`, `$$view` written out, read the third as an ellipsis.**
 
-**A gap is refused**, and this is the one place the implementation asserts something the design does not. *A class declaring `view` and `$$view` and nothing between them raises when its dictionary is built, naming the member that is missing.* **Since the index carries no ordering, a hole is not a broken sequence — it is almost certainly a typo**, and refusing it is worth more than allowing `look={1}` to miss. ***Raised rather than settled: if a skipped name should simply be an absent look, the check comes out.***
+**A gap is rejected**, and this is the one place the implementation asserts something the design does not. *A class declaring `view` and `$$view` and nothing between them raises when its dictionary is built, naming the member that is missing.* **Since the index carries no ordering, a hole is not a broken sequence — it is almost certainly a typo**, and rejecting it is worth more than allowing `look={1}` to miss. ***Raised rather than settled: if a skipped name should simply be an absent look, the check comes out.***
 
 **An accessor is not a look.** The descriptor's *value* must be a function, so a `get $view()` is not a member of the series. This is inherited from the machinery that came before and kept for the same reason: an accessor named like a method is not one.
 
@@ -62,7 +62,7 @@ A look may be named, and the name is given by an attribute on the method itself:
 
 **The machinery is the framework's own.** [`bond.ts`][bond] already held two decorator registries — `inertDecorators` and `reactiveDecorators` — each a `Map` keyed by prototype and read back up the chain with `Object.getPrototypeOf`. `@look` is a third beside them, resolved the same way, which is exactly the lookup a subclass-extends-the-series design needs: **a subclass's name is found from the subclass and not from its base.**
 
-**Naming is optional and additive.** An unnamed look is still reachable by position; naming one does not disturb the numbering. Two looks may not share a name, and `@look` on a member that is not part of the series is refused — both with a sentence rather than a silent miss.
+**Naming is optional and additive.** An unnamed look is still reachable by position; naming one does not disturb the numbering. Two looks may not share a name, and `@look` on a member that is not part of the series is rejected — both with a sentence rather than a silent miss.
 
 **It needs a Babel plugin in an application.** `experimentalDecorators` is read by `tsc`, by esbuild (so the suite compiles), and by the rollup `dist` build — but **not** by `@vitejs/plugin-react`, which runs Babel. Every application in this repository now configures `@babel/plugin-proposal-decorators` in `legacy` mode for exactly this reason. *The gap was older than this feature — `@inert` and `@reactive` have shipped since long before it, and nothing had ever written one in an app.*
 
@@ -81,7 +81,7 @@ Two things make it work, and both are the framework's existing machinery rather 
 
 **It is named in the props type.** [`$Properties<T>`][types] excludes every member declared on `$Chemical`, which is why `$show` and `$hide` are not writable as attributes; `look` is admitted explicitly through a small `$Attributes` type intersected into it. The same computed type **excludes the series**: `$$view` and everything deeper fall out because their first character after `$` is `$`, and `$view` is excluded by name beside `$parent`.
 
-**And the type is not the guard.** A spread, an `any`, or a plain-function path can still reach `$apply` with a prop called `view`, which would land on `$view` and overwrite a method. `$apply` refuses any prop whose `$`-form names a look, and says which attribute to use instead.
+**And the type is not the guard.** A spread, an `any`, or a plain-function path can still reach `$apply` with a prop called `view`, which would land on `$view` and overwrite a method. `$apply` rejects any prop whose `$`-form names a look, and says which attribute to use instead.
 
 ## Out of bounds
 

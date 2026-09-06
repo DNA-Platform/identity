@@ -168,7 +168,7 @@ override frame(): ReactNode {
 | ruled out | why |
 |---|---|
 | ***A blank line for "readability"*** | **a blank line is a unit of distance.** *Spending one without meaning it makes every other one weaker* |
-| ***A double blank line*** | ***there is no second rung.*** *One blank line is the group boundary; two is a distance with nothing on the other side of it* |
+| ***A double blank line*** | ***there is no second step.*** *One blank line is the group boundary; two is a distance with nothing on the other side of it* |
 | ***Moving a member out of its group to sit beside a relative*** | **the order is the scale bar** — *ruled 2026-08-30, and [the urge is diagnostic](10-the-type-and-the-instance.md#the-test)* |
 | ***A guard drawn as a branch*** | *it promises the reader a second path through the method* |
 | ***A comment*** | **[ruled at O8](../the-condition-report/02-organization.md#o8) and restated 2026-08-30** — *"no code comments; that data is moved to the library branch and the library branch references the code files"* |

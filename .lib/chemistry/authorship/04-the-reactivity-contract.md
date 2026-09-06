@@ -36,9 +36,25 @@ class $Counter extends $Chemical {
 }
 ```
 
-Fields prefixed with `$` are reactive. Other fields (no prefix, or underscore prefix `_`) are not.
+**A bare field is reactive. `_` makes one inert. `$` makes one reactive when the character after it is a lowercase identifier character.** Read off [`bond.ts`](../../package/src/abstraction/bond.ts), `$Reflection.isReactive` and `isSpecial`:
 
-**Name length matters.** `$`-prefixed field names must be at least 3 characters total — `$ab` is reactive, `$a` is not. (Two-character names like `$a` collide with framework-reserved single-letter conventions.) Use descriptive names: `$count`, `$name`, `$data`.
+| the name | reactive |
+|---|---|
+| `count`, `theme` — **no prefix** | ***yes*** |
+| `_held`, `_block` | no |
+| `$count`, `$v`, `$x` | ***yes*** |
+| `$$held`, `$_held` | no |
+| `constructor` | no |
+
+**`@inert()` and `@reactive()` override the default per property**, filed by prototype.
+
+> ***CORRECTED 2026-09-07.*** *This section read: "Fields prefixed with `$` are reactive. Other fields (no prefix, or underscore prefix `_`) are not." **That is backwards for a bare name** — `isReactive` returns `true` for any name that does not start with `$` or `_`, which is why `@dna-platform/lib` decorates [`$Writing.mention`](../../../.public/package/src/writing/Writing.tsx) with `@inert()` at all. Found while reading the source for [Sprint 46](../../../.public/.lib/projection/50-sprint-46--the-mention.md#cu1); `@dna-platform/lib`'s [own account of the same law](../../../.public/.lib/designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-reactive-law) was the one that was right.*
+
+**A `$`-prefixed name needs one character after the `$`, not two.** `isSpecial` tests `length >= 2`, so `$v` and `$x` are reactive.
+
+> ***CORRECTED 2026-09-07.*** *This read: "`$`-prefixed field names must be at least 3 characters total — `$ab` is reactive, `$a` is not." **The source says otherwise, and says why in a comment beside the test:** `>= 2` lets single-letter props like `$v` and `$x` be reactive, where `> 2` silently demoted them to inert. **The document was describing a bug that had already been fixed.***
+
+Use descriptive names anyway — `$count`, `$name`, `$data` — but because they read, not because short ones fail.
 
 **Fields need initializers.** `$data = 'pending'` creates a reactive field. `$data?: string` without an initializer doesn't create a runtime field — TypeScript just strips the type declaration and there's nothing for the accessor to bind to. If you want an initially-undefined field, use `$data? = undefined` explicitly.
 

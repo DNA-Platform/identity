@@ -117,6 +117,7 @@
 4. **`$ReferenceCard` draws as `.reflist`** — which is what `$Cited` (`styled.ol`) was written for.
 5. **`$Index` draws in columns** — `$Columns` exists for it and now wears it.
 6. ***Design `$Author` and the reader's marks ourselves.*** **The default style has nothing to say about either.**
+7. ***And build it as a DEMO.*** **A wikipedia page written in this library may invent wikipedia's content and may not invent kinds of writing** — *the first attempt declared ten new types where the framework already had words, and [what that cost is written up](../solutions/50-the-demo-that-wrote-itself-a-framework.md).*
 
 ---
 

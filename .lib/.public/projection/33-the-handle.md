@@ -172,7 +172,7 @@
 | <a id="d12"></a>**D12** | one catalogue class | **HELD, and went further** — one class, and it extends `$Writing` |
 | <a id="d13"></a>**D13** | `$Catalogue extends $Composition`; `$TypeOfCatalogue extends $TypeOfSentence` | **OVERTAKEN by his ruling** — extends `$Writing` like everything else; the type deferred whole |
 | <a id="d14"></a>**D14** | comprehend via an up-map of composer types | **OVERTAKEN — the up-map never existed.** `comprehend` concatenates the held referents; `concatenate` initializes a BARE composition; the grade question dissolved when the generic landed on `$Composition<T>` |
-| <a id="d15"></a>**D15** | the ladder's top defers to sprint five | **MOOT with D14** — nothing needs a composer type |
+| <a id="d15"></a>**D15** | the chain's top defers to sprint five | **MOOT with D14** — nothing needs a composer type |
 | <a id="d16"></a>**D16** | the printing site from three candidates | **RESOLVED BY SEATS INSTEAD** — the reference family freed to `$Writing`, every import downward, no candidate needed; the maker slot that stood briefly is a [filed wrong turn](#where-things-stand) |
 | <a id="d17"></a>**D17** | property/method groups; method-STYLE declarations | **HELD** — probe-proven, narrowing dies on arrow properties |
 | <a id="d18"></a>**D18** | readings held per instance | **CORRECTED BY DOUG** — *"we don't cache the parts. Nothing is held"*; the parser's memo is the only keeping |
@@ -262,7 +262,7 @@
 
 - [x] ONE type of reference; the handle is the **literal reference**, per instance, from indices
 - [x] `read` VETOED for the closure — *a catalogue that is a reference must stay possible*; **`comprehend`** is his, list-comprehension sense
-- [x] ***mint* struck → PRINTING** (*"this is writing"*); ***held* struck → `reduce`** (the parser's own word); *nothing is held, nothing cached beyond the parse memo*
+- [x] ***make* struck → PRINTING** (*"this is writing"*); ***held* struck → `reduce`** (the parser's own word); *nothing is held, nothing cached beyond the parse memo*
 - [x] Members on lib types get run by Doug — standing
 
 ## Open — the unticked half
@@ -299,4 +299,4 @@
 
 ## Names
 
-***His, given in the room:*** **`comprehend`** *(list-comprehension sense)*, **printing** *(mint struck: "this is writing")*, **`concatenate`**, **`read()`** *(the async face, corrected onto the interface in place of a `referent` member)*, and **the literal** *(his word — a class for one evening, prose thereafter: the loaded case, the reference that points by holding)*. ***Proxies with lineage, his to strike:*** **`composes`** *(the suite's describe-titles)*, **`reduce`** *(the parser's own parameter)*, **`$points`** *(the merged rule's method, named from its own sentence)*. ***`The Handle` remains a PROXY chapter name***, *his to rename.*
+***His, given in the room:*** **`comprehend`** *(list-comprehension sense)*, **printing** *(make struck: "this is writing")*, **`concatenate`**, **`read()`** *(the async face, corrected onto the interface in place of a `referent` member)*, and **the literal** *(his word — a class for one evening, prose thereafter: the loaded case, the reference that points by holding)*. ***Proxies with lineage, his to strike:*** **`composes`** *(the suite's describe-titles)*, **`reduce`** *(the parser's own parameter)*, **`$points`** *(the merged rule's method, named from its own sentence)*. ***`The Handle` remains a PROXY chapter name***, *his to rename.*

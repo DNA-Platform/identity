@@ -112,7 +112,7 @@ ON THE BOOK  titles: 5   of them substituted: 1
 
 ## The vocabulary ruling this session also produced
 
-*Doug: **"I don't know what the writing ladder is. Purge that from the semantics and ask again."*** **Then, pushed on the replacement:**
+*Doug: **"I don't know what the writing chain is. Purge that from the semantics and ask again."*** **Then, pushed on the replacement:**
 
 > *"**Level of representation.** Representation doesn't need to be one-dimensional. Referential versus literal is a step in a direction that might be taken to be a level. This is a **compositional representation**. GEB covers the idea of moving through levels in a hierarchy through the idea of a strange loop… the type of representation that we are referring to which has these levels is a composition, which happens to be a type of writing."*
 

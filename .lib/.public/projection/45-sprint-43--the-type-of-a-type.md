@@ -38,7 +38,7 @@
 
 **`$TypeOfType extends $TypeOfAnnotation extends $Type`, and `$TypeOfType`'s bond says `this.type ??= this`.** The loop closes on itself — measured, no regress: `names` reads `["Type"]`, and it answers as a type. *That is the self-cataloguing summit [the semantics of books](../the-semantics-of-books/07-the-subjective-subject-and-the-library.md) argues a total catalogue must have, arriving in the code for the first time.*
 
-**`$Type`'s bond mints `$TypeOfType`; `$Annotation`'s mints `$TypeOfAnnotation`; `$TypeOfReference` was re-based onto `$TypeOfAnnotation`.** So the reference family answers as annotations through the TYPES rather than through the classes.
+**`$Type`'s bond makes `$TypeOfType`; `$Annotation`'s makes `$TypeOfAnnotation`; `$TypeOfReference` was re-based onto `$TypeOfAnnotation`.** So the reference family answers as annotations through the TYPES rather than through the classes.
 
 **Every hard check is gone.** `$Writing.types` asks `reflection.is(part, $TypeOfType)`; `classNames` and `$hasType` ask only whether a type is there. `reflection.is` was restructured to short-circuit on the carried type before it computes `types`, so nothing went quadratic — suite time unchanged at 5.7s.
 
@@ -125,7 +125,7 @@
 
 ## Wrong turns, so they are not retried
 
-- ***Do not register a new print code for a kind.*** R122 rules the `$$X` kinds to the seven levels; the address system lives on anchor tags and does not grow. *Proved that registering one mints the kind — and the mechanism is not the road.*
+- ***Do not register a new print code for a kind.*** R122 rules the `$$X` kinds to the seven levels; the address system lives on anchor tags and does not grow. *Proved that registering one makes the kind — and the mechanism is not the road.*
 - ***Do not put the reference classes in reflection.*** `$Writing` imports reflection; the cycle is structural and `$Article` explodes on it first. *Tried, reverted the same hour.*
 - ***Do not put them in `$Catalogue` either*** — `$Composition` imports `$Catalogue`, so every level class comes back through it before `$Composition` is defined.
 - ***Do not make a card a section by re-basing `$IndexCard` alone.*** `reflection.is(card, $TypeOfSection)` still answers false, because `is` asks what a writing CARRIES and a card IS a type carrying none. *Measured.*

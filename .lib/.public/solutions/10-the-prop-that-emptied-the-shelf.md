@@ -8,7 +8,7 @@
 
 ## Symptoms
 
-- The shelf rendered with **no member spines and no written entries** — the furniture drew, the books were gone.
+- The shelf rendered with **no member spines and no written entries** — the apparatus drew, the books were gone.
 - The change that caused it looked innocent: the page switcher went from rendering `<S />` to rendering `<S travel={...} />` — one prop, on the same singleton instance.
 - No error anywhere. The membership (`$cards`, set from outside after the catalogue was built) was simply empty.
 

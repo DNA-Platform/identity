@@ -166,7 +166,7 @@ $$Section(block: $Block) {
 ### `reference2/Reference.tsx` · `Path.tsx`
 
 - [x] **`$Reference`, `$TypeOfReference` and `ReferenceSpecification` MOVED here** — [Q2](#q2) answered
-- [x] `$TypeOfReference.specifically` **augments** — it mints the path from the copy when the copy is a url
+- [x] `$TypeOfReference.specifically` **augments** — it makes the path from the copy when the copy is a url
 - [x] `$Path extends $Annotation` — ***a path is not part of the composition***, which is what `parenthetical` was trying to say
 - [x] both waive *composes what it holds*
 - [ ] **`reference2/Reference.tsx` HAS NO INTERFACE.** *`$Reference$` stands in `Writing.tsx` with `$Annotation$` and `$Type$`, because `$Writing$.means()` promises it.* **So the word is split across two files, which the template does not allow.** *The alternative is `means(): $Annotation$`, which weakens Doug's own sentence — "means is like type but for reference."*
@@ -294,7 +294,7 @@ tsc --noEmit -p src/tsconfig.json     0 errors
 vitest run                            78 passed (78), 5 files
 ```
 
-*The count fell from 628 because **550 of those were v2.1's**, testing classes that no longer exist. What remains drives v2.2 only: the seven levels, the specifications, the frame, the book's furniture, the title, and one promise per module that it loads standalone.*
+*The count fell from 628 because **550 of those were v2.1's**, testing classes that no longer exist. What remains drives v2.2 only: the seven levels, the specifications, the frame, the book's apparatus, the title, and one promise per module that it loads standalone.*
 
 ### Wrong turns already tried — do not retry these
 

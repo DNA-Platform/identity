@@ -231,7 +231,7 @@ With dimensions:
     `length-tier` is a pure CSS rule, not JS:
 
     ```ts
-    // pseudo: title typography ladder
+    // pseudo: title typography chain
     title.length <= 12   →  font-size: 24px;  // "Types", "Symbols", "Identity"
     title.length <= 22   →  font-size: 19px;  // "The binding constructor", "Reactive properties"
     title.length <= 32   →  font-size: 15px;  // "particular constructor argument", "Cross-chemical writes"
@@ -244,7 +244,7 @@ With dimensions:
 
   - **Mono detection:** if the title starts with `$` or contains `(`, the
     title slot uses `font-family: mono` instead of sans, and the tier
-    ladder bumps down one step (because mono runs ~10% wider per char).
+    chain bumps down one step (because mono runs ~10% wider per char).
     Catches `$Reflection.isReactive(name)`, `view()`, `$is<T>`, etc.
   - **Wrap behaviour:** allow up to 3 lines via the slot's `~80px` height
     at the largest tier (24px × 1.15 lh × 3 = 82.8px → fits with a hair to
@@ -266,7 +266,7 @@ With dimensions:
 
 ### Title-overflow strategy chosen
 
-**Discrete four-tier length ladder** (24 / 19 / 15 / 13 px) selected by
+**Discrete four-tier length chain** (24 / 19 / 15 / 13 px) selected by
 character count of the title string, applied via transient prop
 `$tier` on the styled `Title` component. **Plus** mono-detection that
 bumps the tier down one step when the title contains `$` or `(`.
@@ -663,13 +663,13 @@ count of inline-style payloads:
 | `sidebar.tsx` | ~80 | 1.5 h | hover + active state |
 | `case.tsx` | ~50 | 1 h | hover state |
 | `section-page.tsx` (without card) | ~120 | 1.5 h | dense |
-| `section-page.tsx` — periodic card | new | 2 h | new component, four-tier ladder, container query |
+| `section-page.tsx` — periodic card | new | 2 h | new component, four-tier chain, container query |
 | `code-panel.tsx` | 0 (sprint-30) | — | deferred |
 
 **Total: ~9 hours of focused work**, splittable into three sittings:
 (1) pilot + callouts + simple modules ≈ 3h, (2) sidebar + case + page
 prose ≈ 3h, (3) periodic card composition ≈ 3h. The card itself is the
-biggest single chunk because the four-tier ladder + container query +
+biggest single chunk because the four-tier chain + container query +
 mono detection are all new behaviour, not a refactor.
 
 ### Catalogue data changes
@@ -701,7 +701,7 @@ the original (it doesn't need card metadata).
 
 - **Card: 280×280**, left-aligned at top of content column, replaces
   breadcrumb + heading + group tag in one component.
-- **Title overflow: discrete 4-tier length ladder** (24/19/15/13px),
+- **Title overflow: discrete 4-tier length chain** (24/19/15/13px),
   pre-computed via transient `$tier` prop, plus mono detection that
   bumps tier down one step, plus `text-wrap: balance` for graceful 2-3
   line wrap. Verified against all 80 catalogue titles.

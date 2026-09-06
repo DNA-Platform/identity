@@ -167,7 +167,7 @@ $IndexCard           a section that holds a title, and the title refers
 
 # <a id="names"></a>Names
 
-**Proxies awaiting Doug:** `prints` on `$Type` · `at` on reflection · this chapter's title. **No new name is minted by this sprint** — every class name in it is either shipped or dictated by the type pattern.
+**Proxies awaiting Doug:** `prints` on `$Type` · `at` on reflection · this chapter's title. **No new name is made by this sprint** — every class name in it is either shipped or dictated by the type pattern.
 
 # <a id="rulings-0905b"></a>THE RULINGS THAT CLOSE K1 — Doug, 2026-09-05, verbatim
 
@@ -273,7 +273,7 @@ $Title did not call $CatalogueCard, $IndexCard — every declared bond
 constructor on the chain must be called.
 ```
 
-**So the chain must be complete, and default-first is what makes a complete chain safe:** the child plants its type, and `??=` makes every parent's default a no-op. *The two facts are the same fact — the ordering is not a style choice, it is what lets a kind sit under another kind at all.* **This is the third rung earning its place: green and driven said nothing, seen said it immediately.**
+**So the chain must be complete, and default-first is what makes a complete chain safe:** the child plants its type, and `??=` makes every parent's default a no-op. *The two facts are the same fact — the ordering is not a style choice, it is what lets a kind sit under another kind at all.* **This is the third step earning its place: green and driven said nothing, seen said it immediately.**
 
 ## <a id="books-in-the-suite"></a>The books are in the suite now
 

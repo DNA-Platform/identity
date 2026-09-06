@@ -57,7 +57,7 @@ Recorded because each one turned the design, and four of them corrected the impl
 
 - **On scope, ruled with the cut in front of him:** **one sprint, all thirteen.**
 
-- **On vocabulary, for the fifth time:** *"There's no such thing as minting. Stop saying it."* The ban is on the word wherever it is typed — the two occurrences were in conversation, which a records sweep never reaches.
+- **On vocabulary, for the fifth time:** *"There's no such thing as making. Stop saying it."* The ban is on the word wherever it is typed — the two occurrences were in conversation, which a records sweep never reaches.
 
 ## What was read — verified 2026-08-12
 

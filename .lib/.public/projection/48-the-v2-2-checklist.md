@@ -176,7 +176,7 @@
 
 #### `Reference.tsx`
 - [x] **F1 — the interface now stands with its class**, which is what following the pattern cost and gained
-- [x] F3 · [x] F4 · [x] F5 · [x] C2 · [x] C3 · [x] C10 · [x] **T4 — mints the path from the copy, then checks** · [x] T6
+- [x] F3 · [x] F4 · [x] F5 · [x] C2 · [x] C3 · [x] C10 · [x] **T4 — makes the path from the copy, then checks** · [x] T6
 - [x] S3 · [x] S5 · [x] V1–V7 · [x] L1 · [x] L2 · [x] L3 · [x] P1
 - [ ] **I2** — `$Reference$` is empty, so a replacement reference promises neither `path()` nor `read()`
 - [ ] P3
@@ -314,7 +314,7 @@
 
 ***Rolled back on his word:*** **`wikimedia-ui-base` is uninstalled and `$Theme` holds its own values again.** *"Let's just rollback the wikipedia include and delay this… we will build wikipedia soon."* **[The research](../designing-inexplicable-phenomena/18-the-wikipedia-fit.md) stands and is what we build from when we get there.**
 
-***And the book knows its own furniture, in order:*** **`cover()` · `synopsis()` · `tableOfContents()` · `index()`**, each found by searching, and four rules hold their places — *the cover is the first composed part, the synopsis second, the table of contents third, the index last, and the book makes its own index if none was written.*
+***And the book knows its own apparatus, in order:*** **`cover()` · `synopsis()` · `tableOfContents()` · `index()`**, each found by searching, and four rules hold their places — *the cover is the first composed part, the synopsis second, the table of contents third, the index last, and the book makes its own index if none was written.*
 
 **Earlier state, before the rename: `tsc` 0 · 629 promises · 43 files · ZERO stray declarations · ZERO casts.**
 
@@ -346,7 +346,7 @@ The seven `$$X` · `$Bookmark` · `$Highlight` · `$PageFold` · `$ReferenceCard
 | **`$ReferenceCard`** | `$Cited` — `styled.ol` | ***BLOCKED*** — same |
 | **`$Catalogue`** | *nothing at all* | *a decision, not a defect: it is a reading, not writing* |
 
-***THE MEASURED CONFLICT, and it is why those two dresses were never worn:*** **`$Writing.frame()` wraps every piece of writing in a `<div>`, so a dress that is a `<p>` or an `<ol>` cannot hold framed writing.** *Probed 2026-09-05 — React refused it in words:*
+***THE MEASURED CONFLICT, and it is why those two dresses were never worn:*** **`$Writing.frame()` wraps every piece of writing in a `<div>`, so a dress that is a `<p>` or an `<ol>` cannot hold framed writing.** *Probed 2026-09-05 — React rejected it in words:*
 
 > **"In HTML, `<div>` cannot be a descendant of `<p>`. This will cause a hydration error."**
 
@@ -385,7 +385,7 @@ The seven `$$X` · `$Bookmark` · `$Highlight` · `$PageFold` · `$ReferenceCard
 
 ## <a id="owed"></a>WHAT IS OWED — seven rulings
 
-1. **THE CONTAINER AND THE DRESSES.** *`$Writing.frame()` wraps everything in a `<div>`, so `$Prose` (`<p>`) and `$Cited` (`<ol>`) can never hold framed writing — measured, React refuses it.* **Either the frame's container varies by kind, or those two dresses are not for writing.**
+1. **THE CONTAINER AND THE DRESSES.** *`$Writing.frame()` wraps everything in a `<div>`, so `$Prose` (`<p>`) and `$Cited` (`<ol>`) can never hold framed writing — measured, React rejects it.* **Either the frame's container varies by kind, or those two dresses are not for writing.**
 2. **THE `$$X` COMPONENT NAME.** *Eight reference kinds are unreachable because `$($$Letter)` would export as `$Letter`, which is the class beside it.* **A name from you, or they stay class-only.**
 3. **`$Referent$` — dead. May I delete the file?**
 4. **`$Composition` — no type and no specification.** *Reason offered: it is a base in the writing chain like `$Writing` and `$Annotation`.*

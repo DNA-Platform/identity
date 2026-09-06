@@ -134,7 +134,7 @@ view()  =  set( gathered(theme), theme )
 | ***`$Book`*** | **463 lines, and it is both** `$Composition<$Chapter>` **and** `$Catalogue<$Book>`. *The dream compiles; it is also the largest single class in the package and it holds the shelf, the folio, the running head and the page turn.* |
 | ***`$Annotation`*** | ***the word means two different things across the versions.*** v1: **a `$Phrase` that points at a book**, carrying a card, with `$Author` · `$Subject` · `$Canonical` differing only by `valid()`. v2: **any parenthetical writing.** *Two ideas, one word, and [a name is owed](../the-condition-report/03-names.md).* |
 | ***`$Type`*** | v1: *the name is the content*, an annotation subclass. v2: **a formula that resolves a name to a `$TypeOfX`.** *Related, not the same.* |
-| ***the ladder itself*** | **v1 has six levels and no `$File`; `$Book` is not writing at all** (`extends $Referent`). **v2 has seven and `$Book extends $File`, so a book IS writing.** *That is a change in the derivation, not a refactor.* |
+| ***the chain itself*** | **v1 has six levels and no `$File`; `$Book` is not writing at all** (`extends $Referent`). **v2 has seven and `$Book extends $File`, so a book IS writing.** *That is a change in the derivation, not a refactor.* |
 
 ## <a id="not-yet"></a>The reference arm — deliberately not yet
 

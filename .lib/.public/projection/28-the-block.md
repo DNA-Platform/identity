@@ -6,7 +6,7 @@
 
 ---
 
-*Opened 2026-08-28 out of [Composition](27-composition.md), whose ladder stands and whose seam does not. **Status: `implementation-ready`.** Doug at the keyboard throughout; every requirement below carries the sentence it came from.*
+*Opened 2026-08-28 out of [Composition](27-composition.md), whose chain stands and whose seam does not. **Status: `implementation-ready`.** Doug at the keyboard throughout; every requirement below carries the sentence it came from.*
 
 ***The title is Doug's own word:*** ***"We will have all writing go through blocks."***
 
@@ -18,7 +18,7 @@
 
 # <a id="what-this-sprint-is"></a>What this sprint is
 
-***One bond shape, one block, and seven levels that mirror the floor.*** **[Composition](27-composition.md) built the ladder out of two bond shapes and it broke at the seam between them.** *This sprint collapses them to one and takes each level no further than `$Letter` already goes.*
+***One bond shape, one block, and seven levels that mirror the floor.*** **[Composition](27-composition.md) built the chain out of two bond shapes and it broke at the seam between them.** *This sprint collapses them to one and takes each level no further than `$Letter` already goes.*
 
 **The interpreter is named and stubbed, not written.** *Doug: **"Interpreters can be next sprint."*** ***What lands here is the seam it will grow into***, so the sprint after this one adds string division and changes no signature.
 
@@ -64,12 +64,12 @@
 |---|---|
 | **13 promises** — `letter.test`, `smiley.test` | **`$TypeOfLetter` extends `$Type` rather than the shape the other six use**, so nothing recognises it. The message says it exactly: ***`This writing is not a $Letter — it carries $Letter.`*** |
 | ***`'🙂Letter'` on the page*** | **`$Type` lost its `view()`.** *[Composition's own version](27-composition.md) returned `null` when unbound; `$Chemical.view()` returns `this.children`, so **the annotation prints its own name**.* |
-| ***the ladder stops at paragraph*** | **the seam.** *See [R258](#r258).* |
+| ***the chain stops at paragraph*** | **the seam.** *See [R258](#r258).* |
 | ***`<Type>Book</Type>`*** | `$Book` caches into the level catalogue rather than `$Type`'s. **There is no `$TypeOfBook`.** |
 
 ## And the premise that was wrong
 
-***`<Writing>…<Type>Word</Type></Writing>` ALREADY WORKS.*** **All six promises in **`behaves.test`** are green** — it carries the type resolved from the name, it *is* a file in the sense of the reading, it composes the documents written inside it, a written `<File>` and a writing that behaves as one answer alike, the same shape holds at word grade, and it reaches down a real ladder.
+***`<Writing>…<Type>Word</Type></Writing>` ALREADY WORKS.*** **All six promises in **`behaves.test`** are green** — it carries the type resolved from the name, it *is* a file in the sense of the reading, it composes the documents written inside it, a written `<File>` and a writing that behaves as one answer alike, the same shape holds at word grade, and it reaches down a real chain.
 
 ***The annotation is a formula.*** **It resolves in the render walk, by name, and the bond constructor runs after that resolution and before the view** — measured at [`particle.ts:439`](../../../chemistry/package/src/abstraction/particle.ts), which calls the bond, and line 443, which renders. *So the carried type is already sitting in the specification when the writing is bonded.* **Doug's reading that this had failed was made against the opposite ordering**, and it is what the face route was proposed to rescue; ***nothing needed rescuing.***
 
@@ -108,11 +108,11 @@ $Section    1 argument, block
 | | question | answer |
 |---|---|---|
 | **Q1** | does every bond receive **exactly one argument**, and is it a block? | ***yes, at every level*** |
-| **Q2** | does the ladder read file → letters **through paragraph**? | ***yes*** — `['h','i']` at the floor, where it returns `undefined` today |
+| **Q2** | does the chain read file → letters **through paragraph**? | ***yes*** — `['h','i']` at the floor, where it returns `undefined` today |
 | **Q3** | does an annotation land in the block and answer `parenthetical`? | ***yes*** |
 | **Q4** | does `copy` read the prose and **skip** the annotation? | ***yes*** — `'abc'` |
 
-***So the spine of this sprint is not a proposal.*** **The one thing the plan rests on — that making every level inline delivers one block everywhere and repairs the ladder — was run before the plan was written.** *What remains is the work, not the question.*
+***So the spine of this sprint is not a proposal.*** **The one thing the plan rests on — that making every level inline delivers one block everywhere and repairs the chain — was run before the plan was written.** *What remains is the work, not the question.*
 
 ---
 
@@ -128,7 +128,7 @@ $Section    1 argument, block
 
 <a id="r258"></a>**R258** — ***the bond constructor takes ONE block and holds it.*** *Doug: "In bond constructor, take the block and assign it to a block property. **We will have all writing go through blocks.**"*
 
-**This is what fixes the ladder.** *`$Sentence` is inline, so chemistry groups it into a block; `$Paragraph`'s bond is a rest array and does `filter(one => one instanceof $Writing)`; **the block is not a `$Writing`, so `written` comes out empty**. Section, Document and File work only because their children are not inline and arrive unwrapped.* ***Two bond shapes, and the break falls exactly at the seam between them.***
+**This is what fixes the chain.** *`$Sentence` is inline, so chemistry groups it into a block; `$Paragraph`'s bond is a rest array and does `filter(one => one instanceof $Writing)`; **the block is not a `$Writing`, so `written` comes out empty**. Section, Document and File work only because their children are not inline and arrive unwrapped.* ***Two bond shapes, and the break falls exactly at the seam between them.***
 
 **The parameter is declared `(block: $Html<'block'>)` and checked as itself** — no cast, no index. *That is [S1](27-composition.md#s1) obeyed rather than repeated:* ***"Check is wrong!! You have to cast to do a type check?!"***
 
@@ -154,7 +154,7 @@ $Section    1 argument, block
 
 <a id="r265"></a>**R265** — ***`interpret()` divides no strings this sprint.*** *Doug: "Interpreters can be next sprint."* **It finds, among what is written in the block, the things at the level below** — already one, or carrying that type. ***The signature is the whole point: the sprint after this one adds string division and changes nothing else.***
 
-## The ladder
+## The chain
 
 <a id="r266"></a>**R266** — ***each level mirrors `$Letter` and adds nothing.*** *Doug: "Make Word implement composition of Letter, and do the same all the way up to file as composition of document. **Don't implement more than is implemented in letter now.**"*
 
@@ -202,7 +202,7 @@ $Section    1 argument, block
 
 # <a id="decisions"></a>Decisions
 
-<a id="d106"></a>**D106 — one bond shape, taking the block.** *Chosen over teaching `$Paragraph` to unwrap a block while `$Section` keeps a rest array.* **Two shapes is what broke the ladder**, and a level should not have to know which side of the inline split it sits on.
+<a id="d106"></a>**D106 — one bond shape, taking the block.** *Chosen over teaching `$Paragraph` to unwrap a block while `$Section` keeps a rest array.* **Two shapes is what broke the chain**, and a level should not have to know which side of the inline split it sits on.
 
 <a id="d107"></a>**D107 — `interpret()` separate from `parts()`.** *Chosen over v1's held-reading cache and over letting `parts()` compute.* **A cache is a mitigation for a reading that constructs; separating the write from the read means it does not.** *v1's `_read` stays available if the separation proves insufficient.*
 
@@ -216,7 +216,7 @@ $Section    1 argument, block
 
 <a id="d113"></a>**D113 — a level carries its own type, so the reading has ONE route.** *Chosen over letting a written level and a typed writing stay two populations the reading tells apart.* ***This is [K25](27-composition.md#k25) closed rather than mitigated:*** *Composition filed it as **two populations of one object** — a writing built with `$()` carrying a bare type and one that is drawn carrying a level — and mitigated it by exercising both forms in probes.* **If every level carries its own type from its own bond, there is one population and nothing to tell apart.**
 
-<a id="d112"></a>**D112 — the suite gains one file per level, and the existing five stay.** *Chosen over rewriting the five into seven.* **The existing files promise things ACROSS levels** — a writing behaving as a type, a chapter being a document, the ladder end to end — *and those are not a `$Sentence`'s promises*. **The per-level files are [the unit-of-code rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md) reaching the suite:** *`lib`'s unit is a class because an invariant is stated over a word, and a test file should fall where the promise falls.*
+<a id="d112"></a>**D112 — the suite gains one file per level, and the existing five stay.** *Chosen over rewriting the five into seven.* **The existing files promise things ACROSS levels** — a writing behaving as a type, a chapter being a document, the chain end to end — *and those are not a `$Sentence`'s promises*. **The per-level files are [the unit-of-code rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md) reaching the suite:** *`lib`'s unit is a class because an invariant is stated over a word, and a test file should fall where the promise falls.*
 
 ---
 
@@ -247,7 +247,7 @@ $Section    1 argument, block
 **Mechanism:** *[`chemical.ts:351`](../../../chemistry/package/src/abstraction/chemical.ts)'s `isInline` groups a run of inline children into one block.* Setting `inline` on `$Writing` and deleting the four overrides makes that grouping happen at **every** level, which is what delivers one block per bond. ***Measured — see [the trace](#the-measurement).***
 **Files:** `writing/Paragraph.tsx`, `Section.tsx`, `Document.tsx`, `File.tsx`.
 **Depends on:** U203.
-**Visible end:** ***the ladder reaching paragraph on screen***, which it cannot do today.
+**Visible end:** ***the chain reaching paragraph on screen***, which it cannot do today.
 
 | | scenario | outcome |
 |---|---|---|
@@ -268,7 +268,7 @@ $Section    1 argument, block
 | **S10** | `parts()` asked **twice** | ***the identical array both times.*** *A reading that constructs would not give one, so this is the promise that pins [R264](#r264)* |
 | **S11** | a word written with the prose `'hi'` and **no letters** | ***zero parts, not two.*** **This pins the interpreter as ABSENT**, so the sprint that adds string division has a promise that visibly changes — [R265](#r265) |
 
-## <a id="u206"></a>U206 — the ladder mirrored
+## <a id="u206"></a>U206 — the chain mirrored
 
 **Requirements:** [R266](#r266), [R267](#r267).
 **Mechanism:** *each level declares `parts()`, `interpret()`, `bind()`, its bond, and its `$TypeOfX` — and nothing else.* **The five monadic members resolve on `$Writing` by ordinary prototype lookup**, which is why deleting `$Letter`'s copies changes no behaviour and turns a red promise green.
@@ -278,7 +278,7 @@ $Section    1 argument, block
 
 | | scenario | outcome |
 |---|---|---|
-| **S12** | a `$File` written by hand, seven deep | every rung answers · the floor reads `['h','i']` — **[AE7](#ae7)** |
+| **S12** | a `$File` written by hand, seven deep | every step answers · the floor reads `['h','i']` — **[AE7](#ae7)** |
 | **S13** | a word written with three letters out of alphabetical order | `parts()` answers **in the order written**, never sorted |
 | **S14** | `parts()` on a `$Letter` | `[this]` — *the floor composes itself and a descent terminates* |
 | **S15** | every level's own prototype | ***declares none of `canonical`, `where`, `select`, `selectMany`, `single`*** — and **every level answers all five** — [AE10](#ae10) |
@@ -343,7 +343,7 @@ $Section    1 argument, block
 
 ***U203 → U207 → U204 → U205 → U206 → U210 → U208 → U209.***
 
-**U207 runs second because it is three small edits that clear thirteen of the sixteen reds**, and a suite that becomes honest early is worth more than one that goes green all at once at the end. *U208 runs after the ladder because it draws it, and U210 before it because it is what makes the two populations one.*
+**U207 runs second because it is three small edits that clear thirteen of the sixteen reds**, and a suite that becomes honest early is worth more than one that goes green all at once at the end. *U208 runs after the chain because it draws it, and U210 before it because it is what makes the two populations one.*
 
 ---
 
@@ -460,7 +460,7 @@ $Section    1 argument, block
 | | |
 |---|---|
 | **[U203](#u203)** | ***`$Writing` is Doug's own***, and it grew `build()` and a `back` look during the session. |
-| **[U204](#u204)** | **Every level is inline**, one block per bond, and the ladder reaches paragraph. |
+| **[U204](#u204)** | **Every level is inline**, one block per bond, and the chain reaches paragraph. |
 | **[U206](#u206)**, **[U210](#u210)** | ***Seven levels, each implementing `$Composition$` itself*** — `$Letter` a composition **of itself** — carrying nothing but the interface, a bond, and a `$TypeOfX`. |
 | **[U207](#u207)** | All three reds cleared. |
 | ***`canonical` on `$Writing`*** | **`get canonical(): boolean`, default true**, overridden by `$Letter` — alphabetical — and `$Word` — has a letter or number. *A space and a smiley are non-canonical letters by a member rather than a class.* |

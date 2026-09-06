@@ -49,7 +49,7 @@
 | **a link** | a reference that can be traversed | *inheritance* |
 | **a signature** | a link whose both ends are constrained | *inheritance* |
 
-***And the principle stated with it is the one that governs the whole book:*** **composition ascends scale; inheritance refines within a scale.** *Every rung-change mints new properties; every species on a rung adds or constrains without changing rung.*
+***And the principle stated with it is the one that governs the whole book:*** **composition ascends scale; inheritance refines within a scale.** *Every step-change makes new properties; every species on a step adds or constrains without changing step.*
 
 ***This is where [chapter 03](03-inheritance-and-composition.md) and its source part company, and the divergence is worth naming rather than reconciling quietly.*** **That chapter placed `$Reference` as *"not a composition of parts but the general act of pointing"*.** *The source has it as a composition of exactly two parts.* ***Both readings are defensible and they build different code***, so the fork goes to Doug rather than getting settled here.
 
@@ -76,13 +76,13 @@
 
 ***So identity is not primitive here — it is earned by bearing your own name.*** **And that is the same derivation order the foundation already runs one level down**, where individuality is a theorem of referentiality rather than an axiom. *A book has identity because something refers to it, and the nearest something is its own title.*
 
-***Three grades of self-arrow fall out, and they ladder exactly onto the summit material in [chapter 07](07-the-subjective-subject-and-the-library.md):***
+***Three grades of self-arrow fall out, and they chain exactly onto the summit material in [chapter 07](07-the-subjective-subject-and-the-library.md):***
 
 - **named** — it has a title. *Every book.*
 - **held** — it is filed under a subject. *Every catalogued book.*
 - **self-holding** — it is filed under **itself**. ***The summit, and only the summit.***
 
-**Read that way, [the auto-categorical](07-the-subjective-subject-and-the-library.md) stops being a special construction and becomes the third rung of an ordinary ladder.**
+**Read that way, [the auto-categorical](07-the-subjective-subject-and-the-library.md) stops being a special construction and becomes the third step of an ordinary chain.**
 
 ---
 
@@ -220,13 +220,13 @@ export interface $Referent$ extends $Chemical { }
 
 <a id="q3"></a>**Q3 — does `index` belong to the writing or to the reference?** ***Two of Doug's own rulings disagree, and the disagreement is now in the code.*** *[The settled account](15-the-levels-of-writing.md): "a number is something a **reference** holds — that is what a `$Location` IS."* **[`$Writing.index`](../../package/src/writing/Writing.tsx) exists today and the parse assigns it.** *[The handoff flags the numbering rule as unpicked](../projection/29-the-bind.md#handoff-index); this is the same question one layer down, and references are what makes it urgent.*
 
-<a id="q4"></a>**Q4 — is `$Title` a paragraph or a reference?** ***This is the sharpest fork, because both answers are already built into different parts of the record.*** *[The Bind](../projection/29-the-bind.md#r281) mints `$Title extends $Paragraph` from paragraph residue — a level kind.* **[Chapter 05](05-the-evolutionary-root-symbol-and-literal.md) has it as *"the particle where the two lineages legitimately fuse"* — a name that is also canonical.** *And [the two loops](#two-loops) put the whole of a book's identity on it.* ***A title cannot be only a heading if identity rides on it.***
+<a id="q4"></a>**Q4 — is `$Title` a paragraph or a reference?** ***This is the sharpest fork, because both answers are already built into different parts of the record.*** *[The Bind](../projection/29-the-bind.md#r281) makes `$Title extends $Paragraph` from paragraph residue — a level kind.* **[Chapter 05](05-the-evolutionary-root-symbol-and-literal.md) has it as *"the particle where the two lineages legitimately fuse"* — a name that is also canonical.** *And [the two loops](#two-loops) put the whole of a book's identity on it.* ***A title cannot be only a heading if identity rides on it.***
 
 ***And the fork does NOT have to be settled before either is built, which is worth knowing before anyone treats it as a blocker.*** **A class gets one `extends`, so `$Title extends $Paragraph` would ordinarily foreclose `$Title extends $Reference` — and that foreclosure is precisely [the base-class scarcity](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-problem) the type split was built to remove.** *Doug's own statement of it: **"TypeOfBook holds the meaning of book, so you don't have to derive from Book to have it."*** ***So a title can be a paragraph by class and a reference by carried type***, and the two lineages fuse on the instance rather than in the hierarchy. **What stays Doug's is whether the pointing lives on the type or on the class** — *not whether one has to be given up.*
 
 <a id="q5"></a>**Q5 — is the grade of an arrow a property of the reference, or a reading over a route?** *Doug's colour is computed from a route's steps, which suggests a reading.* **But a single reference is already one step of a known grade** — *a subject entry points up, a table of contents points down* — **so the grade may be knowable at the reference itself.**
 
-<a id="q6"></a>**Q6 — where does the overflow threshold sit?** *[Chapter 09](09-composition-and-collection.md) has the law: when the payload outgrows the entry, containment turns into reference.* **The source ladders it — a dictionary entry holds a definition, an encyclopedia entry holds an article, a subject's entry holds nothing and points.** ***So an entry is one shape with a payload that may be absent, rather than two classes.*** *Whether the code says that is a design question.*
+<a id="q6"></a>**Q6 — where does the overflow threshold sit?** *[Chapter 09](09-composition-and-collection.md) has the law: when the payload outgrows the entry, containment turns into reference.* **The source chains it — a dictionary entry holds a definition, an encyclopedia entry holds an article, a subject's entry holds nothing and points.** ***So an entry is one shape with a payload that may be absent, rather than two classes.*** *Whether the code says that is a design question.*
 
 <a id="q7"></a>**Q7 — does the parse produce references?** **[R305](../projection/29-the-bind.md#r305) has the parse binding every part it finds, and [K42](../projection/29-the-bind.md#k42) is the hazard that carries.** *If a reference is written in the prose — which [inscription](#inscription) requires — then the parser meets it, and what it does with it is unruled.*
 

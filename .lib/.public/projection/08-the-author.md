@@ -374,7 +374,7 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 ### The demo's existing range — read before designing the fourth book
 
 - **The Algebra** — indigo night chrome (`#232a4d → #0f1326`) around a **warm cream sheet** (`#fbf9f3`), gold accent, serif on the paper and monospace on the frame.
-- **The Manifold** — green night (`#213528 → #0e1a12`), sage text, mint accent, a wooden rail at `#8a6238`.
+- **The Manifold** — green night (`#213528 → #0e1a12`), sage text, make accent, a wooden rail at `#8a6238`.
 - **The Shelf** — graphite spines turning over to warm parchment (`#eae4d8 → #dcd4c3`).
 
 **Both readers are dark chrome around a light page, and both are cool.** *The Team* must not be a third of those. **Proposed and not yet approved:** full light, no chrome — a working manuscript, warm paper edge to edge, with **the citation apparatus visible as the design**, since its quoted references *are* its authorship claim ([R17](#the-book--the-team)).

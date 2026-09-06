@@ -697,7 +697,7 @@
 | what is wrong | [The Condition Report](../the-condition-report/.cover.md) · [Solutions](../solutions/.cover.md) — **both exist** |
 | ***how to USE the class*** | ***the one genre with no home today*** |
 
-**NO BOOK IS MINTED YET, deliberately.** *Only the how-to-use residue is left after triage, and whether that is a paragraph or a shelf is a volume question nobody can answer before sorting.* ***Minting a shelf for un-triaged comments is the add-don't-read habit itself.*** **If it earns a companion to `lib`, the name is Doug's and the pen is Libby's.**
+**NO BOOK IS MADE YET, deliberately.** *Only the how-to-use residue is left after triage, and whether that is a paragraph or a shelf is a volume question nobody can answer before sorting.* ***Making a shelf for un-triaged comments is the add-don't-read habit itself.*** **If it earns a companion to `lib`, the name is Doug's and the pen is Libby's.**
 
 > ***AND THIS IS WHY IT IS WORTH PAYING NOW rather than after [the compiler moves into the package](#the-compiler-moves):*** **a comment inside a file travels silently when the file moves and may land somewhere wrong. A book-to-file link that breaks under a move is caught LOUDLY by the checker and repointed on purpose.** *Comment-in-code is fragile under a reorganization; book-links-to-code is self-verifying under one.*
 
@@ -737,7 +737,7 @@
 
 ***Doug, 2026-08-25: "A blank index card doesn't have a whole lot of space on it, but it might expect a title? It might expect a whole section that describes something. Think about that. Not sure it needs to be more. Work it out."***
 
-## The ladder answers it, and `$$Book` is the only rung that left
+## The chain answers it, and `$$Book` is the only step that left
 
 ***Every reference form in this framework is ONE GRADE BELOW what it stands for.*** **That is [the specification the `$$` family closed on](14-cataloguing.md), and it holds without exception until the top:**
 
@@ -900,7 +900,7 @@
 
 | | what is load-bearing in it |
 |---|---|
-| **[What an index card is](#what-a-card-is)** | ***the reference ladder, and why a card is a chapter.*** *The UI question and the model question turn out to be one question* |
+| **[What an index card is](#what-a-card-is)** | ***the reference chain, and why a card is a chapter.*** *The UI question and the model question turn out to be one question* |
 | **[`$Book.view()`](../../package/src/book/Book.tsx)** | **the framework's ENTIRE drawing, in four members** — *a running head, one standing chapter, the shelf, the turns. Everything a UI sprint would change is in that one method* |
 | **[The Manifold](../../.archive/app/src/sections/the-manifold.tsx)** | ***Doug named it as the reference for navigation*** — a closed cover you click anywhere, a running head that steps up a level, turns with a folio, lenses, ribbons, and addresses that resolve through the model |
 | **[The Theme](18-the-theme.md)** | **DEVELOP IN THE OPEN** — *six rules from the last sprint that drew, and [this session broke the first of them](#the-shelf-i-should-not-have-deleted)* |

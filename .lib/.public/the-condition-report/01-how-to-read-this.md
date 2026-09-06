@@ -64,7 +64,7 @@
 
 **Zero uses remain in this book or in the account memories.** *341 remain across [Projection](../projection/.cover.md) and 93 in the team library, and those are a sweep BY SENSE rather than a substitution — some are a demo book's chapter title and some are prose about physics.*
 
-*Previously struck on this branch and still struck:* ***ladder*** *(49 replacements),* ***emit*** *(replaced by `set`),* ***brain***, ***provenance***. *And* ***layout*** *was struck and then un-struck by Doug's own later usage, which is why a strike is recorded rather than assumed.*
+*Previously struck on this branch and still struck:* ***chain*** *(49 replacements),* ***emit*** *(replaced by `set`),* ***brain***, ***provenance***. *And* ***layout*** *was struck and then un-struck by Doug's own later usage, which is why a strike is recorded rather than assumed.*
 
 ## <a id="the-strata"></a>The strata — the framework has five, and they are datable
 

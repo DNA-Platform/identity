@@ -44,7 +44,7 @@ Terms defined in this book, alphabetical.
 
 **prototypal view** — A lightweight prototype-linked copy created via `Object.create()` that inherits all state from the original through the chain, used by `use()`, `$as()`, and `$of()` to share state without duplication.
 
-**the dictionary** — The `Map` held under `$views$`. Both a position key and a name key reach the **same function**, which is what makes `look={1}` and `look="github"` produce identical output. A gap in the series is refused when it is built.
+**the dictionary** — The `Map` held under `$views$`. Both a position key and a name key reach the **same function**, which is what makes `look={1}` and `look="github"` produce identical output. A gap in the series is rejected when it is built.
 
 **use()** — A method on `$Particle` that wraps a view function into a callable React component carrying `$view` and `$this`, creating a prototype-derived copy with a fresh cid for each call.
 

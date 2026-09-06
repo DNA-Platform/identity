@@ -6,7 +6,7 @@
 
 ---
 
-*Opened 2026-08-29 out of [The Block](28-the-block.md), whose ladder stands and whose levels say almost nothing about themselves. **Status: `implementation-ready` for Phase One; every unit is ruled and none is design owed.** Doug at the keyboard throughout, ruling as it was written.*
+*Opened 2026-08-29 out of [The Block](28-the-block.md), whose chain stands and whose levels say almost nothing about themselves. **Status: `implementation-ready` for Phase One; every unit is ruled and none is design owed.** Doug at the keyboard throughout, ruling as it was written.*
 
 ***The title is a proxy standing for Doug's pick.*** *It is taken from his own sentence — **"we are really just validating that the bind can work"** — because the bind turns out to be the one seam both halves of this sprint run through. [Nothing here is a name I invented](../../../../.claude/library/..teamsmanship/05-territory.md).*
 
@@ -33,7 +33,7 @@
 
 *Every one of these turned the design.*
 
-> ***"NEVER restore WRITEING&lt;T&gt; - put a HUGE ban. No no no no. It would allow a letter of section to be created. We curate those carefully. We do not give allowance to all of them. NO. The ladder is a convention. Okay?"***
+> ***"NEVER restore WRITEING&lt;T&gt; - put a HUGE ban. No no no no. It would allow a letter of section to be created. We curate those carefully. We do not give allowance to all of them. NO. The chain is a convention. Okay?"***
 
 > ***"We need to know that the information on letter is present, so maybe the type should be in control of telling you everything about the letter, and the letter assigns it."***
 
@@ -125,7 +125,7 @@
 
 | | claim | verdict |
 |---|---|---|
-| **1** | a subclass may re-aim a level at an unrelated rung | ***failed*** — `$Section implements $Composition$<$Word>` raises five `TS2416`s |
+| **1** | a subclass may re-aim a level at an unrelated step | ***failed*** — `$Section implements $Composition$<$Word>` raises five `TS2416`s |
 | **2** | `$Section` and `$Document` are interchangeable | ***failed*** — *"Property `$Document` is missing in type `$Section`"* |
 | **3** | `$Book` may stand where a `$File` is asked for | **allowed, and sound** — `$Chapter` is a `$Document`, so the narrowing never lies |
 | **4** | a **new** class off `$Writing` may claim to compose anything | ***allowed*** — `$WrongRung implements $Composition$<$Letter>` compiles clean |
@@ -235,11 +235,11 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="r293"></a>**R293** — ***a non-canonical instance of a level is the material a new kind is made from.*** *Doug: "**A non-canonical normal thing is a good candidate for a canonical other thing.**"*
 
-***This is the principle the rest of the phase is read against.*** **A kind is minted by taking a region its parent level calls non-canonical and declaring it canonical for itself.** *A space is a non-canonical letter and the canonical whitespace; a run of punctuation is a non-canonical word and the canonical punctuation; a heading is a non-canonical paragraph and the canonical title.*
+***This is the principle the rest of the phase is read against.*** **A kind is made by taking a region its parent level calls non-canonical and declaring it canonical for itself.** *A space is a non-canonical letter and the canonical whitespace; a run of punctuation is a non-canonical word and the canonical punctuation; a heading is a non-canonical paragraph and the canonical title.*
 
 ***And it gives `canonical()` a job it did not have.*** **It stops being a validity flag and becomes the seam where subclassing happens** — *which is [C33](27-composition.md#c33), "I want type-based subclassing for this framework", given a mechanism.*
 
-<a id="r294"></a>**R294** — ***so a level's condition must be LOOSER than its canonical, and that is now a reason rather than a preference.*** **If a level admitted only its canonical there would be no residue to mint from.**
+<a id="r294"></a>**R294** — ***so a level's condition must be LOOSER than its canonical, and that is now a reason rather than a preference.*** **If a level admitted only its canonical there would be no residue to make from.**
 
 ***This is [R246–R247](27-composition.md#r246) with its argument supplied.*** *[The Condition Report](../the-condition-report/04-semantics.md) records a word class declaring two invariants that both its subclasses repealed; it repealed them because the canonical condition had been written as the level condition.* **Under [R293](#r293) that is not a slip — it is the one mistake the design is shaped to prevent.**
 
@@ -255,9 +255,9 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="r298"></a>**R298** — ***a canonical sentence starts with a capital and ends with a stop.*** *Doug: "**Maybe anything that doesn't start with a capital letter, doesn't end with a period. Things like that.**"* **Stated over the sentence's own parts** — *its first canonical word begins with an uppercase letter, its last word is a stop* — **never over a raw string**, because the parts are what a sentence has.
 
-<a id="r299"></a>**R299** — ***a title is a non-canonical paragraph and the canonical title.*** *Doug: "**A title would be a non-canonical paragraph, which is fine.**"* ***[R293](#r293)'s first worked example***, and it is why [R281](#r281) needs no new level: **a title is minted from paragraph residue rather than carved out of the ladder.**
+<a id="r299"></a>**R299** — ***a title is a non-canonical paragraph and the canonical title.*** *Doug: "**A title would be a non-canonical paragraph, which is fine.**"* ***[R293](#r293)'s first worked example***, and it is why [R281](#r281) needs no new level: **a title is made from paragraph residue rather than carved out of the chain.**
 
-***It shows at two rungs at once*** — *a title is a non-canonical paragraph, and its line is a [non-canonical sentence](#r298) because it carries no terminal stop.* **The same fact seen one grade apart, which is what [ch. 15's figure](../the-semantics-of-books/15-the-levels-of-writing.md) predicts.**
+***It shows at two steps at once*** — *a title is a non-canonical paragraph, and its line is a [non-canonical sentence](#r298) because it carries no terminal stop.* **The same fact seen one grade apart, which is what [ch. 15's figure](../the-semantics-of-books/15-the-levels-of-writing.md) predicts.**
 
 <a id="r300"></a>**R300** — ***`canonical` defaults to NON-canonical, and each of the nine decides its own.*** *Doug: "**Canonical is now a property of writing that defaults to non-canonical I think. Each of the standard types: $Letter - $File, $Chapter, $Book - they can decide what canonical is.**"*
 
@@ -275,7 +275,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 | `$Chapter` | — | ***owed*** |
 | `$Book` | ***it does not catalogue a subject*** | **Doug's** |
 
-<a id="r301"></a>**R301** — ***a canonical book does not catalogue a subject.*** *Doug's own example, and it is [R293](#r293) at the top of the ladder:* **the non-canonical books are the ones that catalogue** — ***which is exactly the residue `$Subject` and `$Library` will be minted from.*** *[The derivation already names them](../the-semantics-of-books/09-composition-and-collection.md): a collection of books is a subject, a collection of subjects is a library.* **So the principle reaches from the letter to the library, and nobody arranged that.**
+<a id="r301"></a>**R301** — ***a canonical book does not catalogue a subject.*** *Doug's own example, and it is [R293](#r293) at the top of the chain:* **the non-canonical books are the ones that catalogue** — ***which is exactly the residue `$Subject` and `$Library` will be made from.*** *[The derivation already names them](../the-semantics-of-books/09-composition-and-collection.md): a collection of books is a subject, a collection of subjects is a library.* **So the principle reaches from the letter to the library, and nobody arranged that.**
 
 <a id="r302"></a>**R302** — ***a kind is an ENUM, and a type is for styling it.*** *Doug: "**Let's carry as enum, and then we can have types to style that in particular if we need to. We can use our inheritance infrastructure to accomplish that.**"*
 
@@ -297,7 +297,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 ***This is what connects the two phases, and it is [R249](27-composition.md#r249) arriving.*** **A level's parts are not raw writings — each is an instance of the composed level, BOUND to the writing it stands for**, *which is what `$$(one, $Letter)` already does one at a time and what `$Word.parts()` already does for written letters.*
 
-***And it walks straight into a hazard sprint 27 named and deliberately did not reach.*** **[R250](27-composition.md#r250): the danger fires "the moment `parts()` MAKES a type for a found part. This sprint makes none."** *Phase Two makes one per part per rung.* **[K42](#k42) is that risk, and [Solutions 28](../solutions/28-the-specimen-that-was-the-component.md) is the defect it becomes** — *`$lift` hands out one shared object rather than a derivative unless the instance is stamped as a template, so two parts could turn out to be one object.*
+***And it walks straight into a hazard sprint 27 named and deliberately did not reach.*** **[R250](27-composition.md#r250): the danger fires "the moment `parts()` MAKES a type for a found part. This sprint makes none."** *Phase Two makes one per part per step.* **[K42](#k42) is that risk, and [Solutions 28](../solutions/28-the-specimen-that-was-the-component.md) is the defect it becomes** — *`$lift` hands out one shared object rather than a derivative unless the instance is stamped as a template, so two parts could turn out to be one object.*
 
 <a id="r306"></a>**R306** — ***a canonical paragraph has at least one sentence and all of them are canonical.*** *Doug: "**Make it one sentence, but maybe assume a period.**"* ***The three-sentence threshold is struck by its own author*** — *it was hedged as "perhaps" when written, and [the enumeration in R309](#r309) is the case that argued with it.*
 
@@ -307,7 +307,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="r307"></a>**R307** — ***a canonical section has its title and at least one canonical paragraph under it.*** *Doug: "**I don't know. Similar to sentence? Title + at least one canonical paragraph?**"* ***The uncertainty is his and is kept*** — **this is the cell he answered least confidently, and a demo is what will settle it.**
 
-**Its residue is the bare heading** — *a section that is only a title* — **which is what a cover's opening section is**, so [R283](#r283)'s cover is minted from section residue exactly as [R299](#r299)'s title is minted from paragraph residue. ***The figure holds one more rung.***
+**Its residue is the bare heading** — *a section that is only a title* — **which is what a cover's opening section is**, so [R283](#r283)'s cover is made from section residue exactly as [R299](#r299)'s title is made from paragraph residue. ***The figure holds one more step.***
 
 <a id="r308"></a>**R308** — ***a canonical letter is alphabetical OR numeric, and this repairs a contradiction already in the code.*** *Doug: "**If we enumerated the letters, we should get the a-zA-Z (I think we should add the digits too because 123 is a word).**"*
 
@@ -403,9 +403,9 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 **`$Title extends $Paragraph`; `$TypeOfTitle extends $TypeOfParagraph`.** ***His reason is a notation reason and it is the right one*** — *a heading stands alone between blank lines, which is the delimiter that divides paragraphs, so the notation already treats it at paragraph grade.* **And because it is defined with a type, a paragraph carrying `<Type>Title</Type>` reads as one without being written as one.**
 
-***[R299](#r299) is what makes this cost nothing.*** *A title is minted from the paragraph's own non-canonical residue, so no rung moves and nothing is carved out of the ladder.*
+***[R299](#r299) is what makes this cost nothing.*** *A title is made from the paragraph's own non-canonical residue, so no step moves and nothing is carved out of the chain.*
 
-***One earlier sentence points the other way and reconciles rather than conflicts.*** *[C18's surviving thread](27-composition.md#c18): "**titles are at the sentence level, so they have to bubble up through canonicals**."* **A title is a paragraph whose canonical is the sentence that is the name**, *and that sentence is itself non-canonical for want of a stop* — ***the same claim seen at two rungs, which is [R299](#r299) exactly.*** **Flagged rather than quietly overwritten.**
+***One earlier sentence points the other way and reconciles rather than conflicts.*** *[C18's surviving thread](27-composition.md#c18): "**titles are at the sentence level, so they have to bubble up through canonicals**."* **A title is a paragraph whose canonical is the sentence that is the name**, *and that sentence is itself non-canonical for want of a stop* — ***the same claim seen at two steps, which is [R299](#r299) exactly.*** **Flagged rather than quietly overwritten.**
 
 <a id="r282"></a>**R282** — ***a book's specification is its cover.*** *Doug: "**a book has a cover which is a wrapper around the name and other things**."*
 
@@ -459,9 +459,9 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 ***The stand-in is unaffected.*** **The seal replaces the phrase with one token, the division sees one thing, restore puts the phrase back, and the flattening happens after** — *so [R315](#r315) and [R316](#r316) hold as written.*
 
-<a id="r320"></a>**R320** — ***where a phrase sits in the ladder is OWED.*** **It composes words, which is what a sentence composes** — *so it is at sentence grade structurally while sitting inside a sentence.*
+<a id="r320"></a>**R320** — ***where a phrase sits in the chain is OWED.*** **It composes words, which is what a sentence composes** — *so it is at sentence grade structurally while sitting inside a sentence.*
 
-***One reading is available and it is the one Doug's own principle predicts:*** **a name carries no capital and no terminal stop, so it is a NON-CANONICAL SENTENCE** — *[R298](#r298)'s residue* — **and [R293](#r293) says that is exactly what a kind is minted from.** *It rests on Doug's own two sentences and on nothing older: a phrase is multiple words, and a non-canonical thing at one level is the canonical thing of the next kind.*
+***One reading is available and it is the one Doug's own principle predicts:*** **a name carries no capital and no terminal stop, so it is a NON-CANONICAL SENTENCE** — *[R298](#r298)'s residue* — **and [R293](#r293) says that is exactly what a kind is made from.** *It rests on Doug's own two sentences and on nothing older: a phrase is multiple words, and a non-canonical thing at one level is the canonical thing of the next kind.*
 
 ***FLAGGED AS A READING AND NOT ACTED ON.*** **The ruling is Doug's.**
 
@@ -619,9 +619,9 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 # <a id="decisions"></a>Decisions
 
-<a id="d114"></a>**D114 — `$Writing` gets NO type parameter, ever.** ***Doug, verbatim: "NEVER restore WRITEING&lt;T&gt; - put a HUGE ban. No no no no. It would allow a letter of section to be created. We curate those carefully. We do not give allowance to all of them. NO. The ladder is a convention. Okay?"***
+<a id="d114"></a>**D114 — `$Writing` gets NO type parameter, ever.** ***Doug, verbatim: "NEVER restore WRITEING&lt;T&gt; - put a HUGE ban. No no no no. It would allow a letter of section to be created. We curate those carefully. We do not give allowance to all of them. NO. The chain is a convention. Okay?"***
 
-**Recorded as a decision rather than a note, because it is the thing a later session will re-propose.** *The audit finding it answers — that the rung is written seven times and typed zero times — **is the intended state**, not a gap.* ***And v1's `$Writing<P extends $Writing>` in [`.archive`](../../package/.archive/writing/Writing.tsx) is the banned shape: being in the archive is not an argument for it.***
+**Recorded as a decision rather than a note, because it is the thing a later session will re-propose.** *The audit finding it answers — that the step is written seven times and typed zero times — **is the intended state**, not a gap.* ***And v1's `$Writing<P extends $Writing>` in [`.archive`](../../package/.archive/writing/Writing.tsx) is the banned shape: being in the archive is not an argument for it.***
 
 <a id="d115"></a>**D115 — the level computes; the type only guarantees that it can.** *Chosen over [R274](#r274)'s shape — a type handing back a description — which Doug proposed and withdrew in the same session.*
 
@@ -792,7 +792,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 ***v1 threw here and this does not.*** **The difference is recorded rather than smoothed over**, and [R288](#r288) is closed.
 
-## <a id="u220"></a>U220 — the canonical, and the residue kinds are minted from
+## <a id="u220"></a>U220 — the canonical, and the residue kinds are made from
 
 **Requirements:** [R293](#r293), [R294](#r294), [R295](#r295), [R296](#r296), [R297](#r297), [R298](#r298), [R299](#r299).
 **Mechanism:** *`canonical` is already a property on every level; this gives it content where it has none and restates the one precondition that contradicts it.* **`$Word` gains a `kind` computed from its letters; `$TypeOfWord`'s check becomes *one run of a single class*; `$Sentence.canonical` reads its own first and last parts.** ***No new level and no new machinery*** — *a kind is a subclass whose `canonical` claims its parent's residue.*
@@ -805,7 +805,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 | **S25** | `!!!`, `???`, `::` | ***one word each, kind `punctuation`, non-canonical*** — [R296](#r296) |
 | **S26** | a run of spaces | **one word, kind `whitespace`, non-canonical** — *and it PASSES its type*, where today it fails — [R297](#r297) |
 | **S27** | `hello`, `h3llo`, `7` | canonical, one run each |
-| **S28** | ***every level*** | **there exists writing its type ACCEPTS and its canonical FAILS** — *the residue is non-empty at every rung, which is what [R294](#r294) requires and what makes minting possible* |
+| **S28** | ***every level*** | **there exists writing its type ACCEPTS and its canonical FAILS** — *the residue is non-empty at every step, which is what [R294](#r294) requires and what makes making possible* |
 | **S29** | `The cat sat.` versus `the cat sat` | ***canonical, then not*** — [R298](#r298), read from the parts and never from a raw string |
 | **S30** | a heading-shaped paragraph | ***non-canonical as a paragraph, canonical as a title*** — [R299](#r299) |
 | **S44** | writing carrying **Stanza** and **Title**, read by a section | ***the part is a `$Paragraph`*** · **it still carries both types** · `$$(part, $Title)` answers — [R330](#r330), [R331](#r331) |
@@ -819,7 +819,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 ## <a id="order"></a>The order
 
-***U211 → U212 → U213 → U220 → U214 → U215*** *(Phase One)* ***→ U216 → U217 → U218*** *(Phase Two)*. **U220 runs before U214 because a title is minted from paragraph residue, so the residue has to exist first.** **U219 blocks nothing and gates nothing; it is a ruling owed.**
+***U211 → U212 → U213 → U220 → U214 → U215*** *(Phase One)* ***→ U216 → U217 → U218*** *(Phase Two)*. **U220 runs before U214 because a title is made from paragraph residue, so the residue has to exist first.** **U219 blocks nothing and gates nothing; it is a ruling owed.**
 
 ---
 
@@ -844,7 +844,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 | [R306](#r306) a canonical paragraph | **U220** · S30 | AE18 |
 | [R291](#r291) the type holds nothing | **U211** · S4 | AE12 |
 | [R292](#r292) provability is a promise | **U211** · S32 · **U213** | AE12 |
-| [R293](#r293) residue mints kinds | **U220** · S28, S30 | **AE18** |
+| [R293](#r293) residue makes kinds | **U220** · S28, S30 | **AE18** |
 | [R294](#r294) the level is looser | **U220** · S28 | AE18 |
 | [R295](#r295) no claiming canonical ground | **U220** · S31 | AE18 |
 | [R296](#r296) a word has a kind | **U220** · S25, S26, S27 | **AE18** |
@@ -943,7 +943,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="k41"></a>**K41 — two copies of the framework loaded at once.** *[K35](28-the-block.md#k35), unchanged and still true.* **No import may cross between `src` and `.archive`.**
 
-<a id="k42"></a>**K42 — the parse makes instances, and `$lift` hands out shared ones.** *[R250](27-composition.md#r250) named this and sprint 27 avoided it by making none; [R305](#r305) makes one per part per rung.* **[`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts) takes the `direct` path — ***the instance IS the component*** — for anything that is not its class's registered template**, *so two parts of two different writings could be one object with one state.* ***[Solutions 28](../solutions/28-the-specimen-that-was-the-component.md) is this defect already met once, and its fix is one line: stamp what is handed out as a template of its own.*** **Thirty-one green promises did not see it the first time**, so the scenario is *one site cannot disturb another*, never *two parts differ*.
+<a id="k42"></a>**K42 — the parse makes instances, and `$lift` hands out shared ones.** *[R250](27-composition.md#r250) named this and sprint 27 avoided it by making none; [R305](#r305) makes one per part per step.* **[`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts) takes the `direct` path — ***the instance IS the component*** — for anything that is not its class's registered template**, *so two parts of two different writings could be one object with one state.* ***[Solutions 28](../solutions/28-the-specimen-that-was-the-component.md) is this defect already met once, and its fix is one line: stamp what is handed out as a template of its own.*** **Thirty-one green promises did not see it the first time**, so the scenario is *one site cannot disturb another*, never *two parts differ*.
 
 ---
 

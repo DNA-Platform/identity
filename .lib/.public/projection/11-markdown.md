@@ -185,7 +185,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 - **Promotion of the mini framework into `src/`.** Doug: *"we can consider it for the main framework if it works."* An explicit later decision, and this sprint does not lobby for it.
 - **Renaming `$Page`.** The population is reported above; the name is Doug's and [naming is not the implementer's](08-the-author.md). Nothing is renamed on our own word.
 - **Types.** Still ruled a sprint of its own, still behind this arc.
-- **The historical vocabulary sweep, now done for both words.** *Fail* was swept from the whole branch library and from the code on Doug's order, 2026-08-10 — **"Remove the concept of failure from all documents. You are referring to validation right?"** *Mint* was swept 2026-08-11 on his third asking — **"We aren't in the business of money. Minting is not a domain word."** — leaving only the chapters that record the ruling itself and one use of *mint* as a colour. The replacement was not chosen: [Sprint 46](03-sprint-46--the-book.md) already carried his word — *"minting is a coin word, not a book word — the word is **rendering**."* Still queued: *fail* across the team library, the personal libraries and the skills.
+- **The historical vocabulary sweep, now done for both words.** *Fail* was swept from the whole branch library and from the code on Doug's order, 2026-08-10 — **"Remove the concept of failure from all documents. You are referring to validation right?"** *Make* was swept 2026-08-11 on his third asking — **"We aren't in the business of money. Making is not a domain word."** — leaving only the chapters that record the ruling itself and one use of *make* as a colour. The replacement was not chosen: [Sprint 46](03-sprint-46--the-book.md) already carried his word — *"making is a coin word, not a book word — the word is **rendering**."* Still queued: *fail* across the team library, the personal libraries and the skills.
 - **The standing direction outlives both halves:** *"Always move the whole demo app in the direction of specialization of the parts."*
 
 ## Key flows
@@ -290,17 +290,17 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 4. **compare — the centrepiece.** The twin, above. → **AE9, AE5/R8, AE1, AE10, AE4.**
 5. **edit, inside compare** — type a word, the counts move (**AE7**); type a lone `*`, punctuation on both sides (**AE9**); type an unterminated fence, invalid in its own words and the section survives (**AE11**); two fences, two info strings, two kinds (**AE3**).
 6. **the figure** — click a part, its prose lights, and the figure's content is not in the word count. → **AE6, AE18.** *The climax.*
-7. **the classes** — the three markdown levels and `role` in the source. → **the read rung for the negatives.**
+7. **the classes** — the three markdown levels and `role` in the source. → **the read step for the negatives.**
 8. **the books → the manifold, open the cover** — no page error. → **AE15**, a regression on a page that crashes today.
 
-### The three rungs — and the four things no click can prove
+### The three steps — and the four things no click can prove
 
 **Phillip's finding, and it is a hole in the review rather than in the work: the screen confirms presence, never absence.** Four claims have no click, and if the plan does not say so, Doug reaches for one that cannot exist.
 
-| rung | how it is confirmed | what lands here |
+| step | how it is confirmed | what lands here |
 |---|---|---|
 | **the click-walk** | Doug clicks it | AE1–AE7, AE9–AE11, AE15, AE18 |
-| **the read rung** | the classes drawer, plus a grep **shown in the report** | **AE12** (no `.markdown` selector), **AE13** (no third `role` value), **AE16**'s negative half (no `$elements` scan), **R5** (`src/` untouched) |
+| **the read step** | the classes drawer, plus a grep **shown in the report** | **AE12** (no `.markdown` selector), **AE13** (no third `role` value), **AE16**'s negative half (no `$elements` scan), **R5** (`src/` untouched) |
 | **the reported numbers** | stated with their scope | AE8, AE14, AE17 |
 
 **Every negative claim in this sprint is a grep, and the grep is part of the demonstration** — not a line in a work report. A green that says *"no `.markdown` selector remains"* is worth nothing without the command and its empty output beside it.
@@ -347,7 +347,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
   **Queenie's dependency, and it reorders the sprint: AE15 cannot be verified until this is done.** The driver dies at the shelf **before it ever reaches the manifold** — so every past *"driven, zero page errors — the manifold"* was a green whose scope stopped short of the thing it claimed. **Fix the entry first, or U1's green is unexercised.**
 
 - **U1 — The manifold's crash, RED FIRST.** *Mechanism: [the-manifold.tsx:603](../../.archive/app/src/sections/the-manifold.tsx) passes bare `held` where the binding is `this.held`; every other line in the method already says `this.held`. **The check is written before the fix and must reproduce the crash against `main`** — otherwise the green proves nothing. Files: that one. Depends on: U23. Realizes: R15, AE15. **Visible end:** the check red on `main`, then green — the manifold opening at its cover and reading with no page error, on a page that is **down right now**.*
-  **It is caught at both rungs**, which is the whole R15 story: `tsc` sees an undefined name and driving sees the error boundary. It shipped for five sprints because **the type gate ran on zero files and the driver never reached the page.**
+  **It is caught at both steps**, which is the whole R15 story: `tsc` sees an undefined name and driving sees the error boundary. It shipped for five sprints because **the type gate ran on zero files and the driver never reached the page.**
 
 - **U2 — The gate gains the app project.** *Mechanism: `test` becomes `tsc --noEmit && tsc -p app/tsconfig.json --noEmit && vitest run`, per Queenie's ruling. Files: `package.json`. Depends on: nothing. Realizes: R10, R15. **Visible end:** the gate typechecking **46** app files where it typechecked none, with the error count stated.*
 
@@ -835,7 +835,7 @@ Run `npm run dev` in `library/.public/package` and open **`/page`** at the port 
 
 ## Read these five, and they are sufficient — shaped for a review
 
-1. **[The demonstration, designed first](#the-demonstration-designed-first)**, in this chapter — the eight-step walk and, more importantly, **[the three rungs](#the-three-rungs--and-the-four-things-no-click-can-prove)**: four claims have no click, because the screen confirms presence and never absence.
+1. **[The demonstration, designed first](#the-demonstration-designed-first)**, in this chapter — the eight-step walk and, more importantly, **[the three steps](#the-three-steps--and-the-four-things-no-click-can-prove)**: four claims have no click, because the screen confirms presence and never absence.
 2. **[The review's round](#the-reviews-round-and-the-six-gaps-it-found--all-closed)** — the six gaps, what closed each, and the number before and after.
 3. **[The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md)** — the settled account, now carrying the corrected mention specification.
 4. **[Solutions 14](../solutions/14-the-green-that-exercised-nothing.md) and [15](../solutions/15-the-requirement-i-invented-and-then-failed.md)** — the two defects this sprint filed, and the reason its numbers can be believed.

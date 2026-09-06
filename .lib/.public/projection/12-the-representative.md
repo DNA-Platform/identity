@@ -37,7 +37,7 @@ Recorded because each one turned the design, and three of them corrected the imp
 
 - **On the name:** *"Call the parameter 'representative' — it represents the presence of a representative for some new type of meaning. It represents in the abstract, like a punctuation mark."*
 
-- **On vocabulary, for the third time:** *"We aren't in the business of money. Minting is not a domain word. Remove it like you did with failure. Are you dealing with rendering instances of components? Good, use those words please!"* — **swept the same day**; see [Markdown's out-of-scope list](11-markdown.md#out-of-scope-named).
+- **On vocabulary, for the third time:** *"We aren't in the business of money. Making is not a domain word. Remove it like you did with failure. Are you dealing with rendering instances of components? Good, use those words please!"* — **swept the same day**; see [Markdown's out-of-scope list](11-markdown.md#out-of-scope-named).
 
 ## What was read — verified 2026-08-11
 

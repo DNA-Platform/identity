@@ -25,7 +25,7 @@
 **Two corrections from the same exchange that DO stand:**
 
 1. ***The version-one demo application is `.archive`***, and it is an archive rather than the thing being built.
-2. ***"Corpus" is not a word of ours.*** Doug: *"It's a word you invented. It's not in the base."* The binder's own vocabulary is `Library`, `Book`, `File`, `Entry`, and `Role: cover | synopsis | chapter`. **Say library, not corpus.**
+2. ***"Corpus" is not a word of ours.*** Doug: *"It's a word you invented. It's not in the base."* The v1 compiler's own vocabulary is `Library`, `Book`, `File`, `Entry`, and `Role: cover | synopsis | chapter` — [`build/library.ts`](../../build/library.ts), read 2026-09-05. **Say library, not corpus.**
 
 ***And one question that is still open and is Doug's:*** he expected `.wiki` to be empty and it is not. Whether those 50 files are wanted, stale, or were committed by a session he did not watch is his to say — **but they are his own commit, not a phantom.**
 
@@ -53,7 +53,7 @@
 
 ***So the simplest implementation is one word.*** `$IndexCard extends $ReferenceCard` rather than extending `$Annotation` — and because `$Reference` is itself an `$Annotation`, **the cards stay annotations and stay out of `types`**, which is the whole of Sprint 42's fix. Nothing is lost and the machinery arrives free.
 
-***The chapter references already exist.*** `$Catalogue.parts()` mints one reference per part through the `prints` registry, and a book's parts are chapters — so `book.catalogue().parts()` **is** the collection of `$$Chapter` references. What is missing is only that a `$$Book` **reference** does not yet answer them; today only the `$Book` itself can.
+***The chapter references already exist.*** `$Catalogue.parts()` makes one reference per part through the `prints` registry, and a book's parts are chapters — so `book.catalogue().parts()` **is** the collection of `$$Chapter` references. What is missing is only that a `$$Book` **reference** does not yet answer them; today only the `$Book` itself can.
 
 ***One place the design does not hold as spoken, and it needs his word.*** *"Every title card you can specify that its book is equal to the book of its title"* is trivially true if `card.title` stays the self-link Sprint 41 set (`$Title.title = this`), because then the two sides are the same object. **It becomes a real rule under one of two readings, and they are different features:**
 
@@ -108,10 +108,10 @@
 16. **Who calls `specify()` in production, and how deep?** — same.
 
 **Gates the Ref remainder (Wave 3):**
-17. **RESOLVED 2026-09-04, road A** — Doug: "Fix that skipped test please." `$TypeOfReference.specifically` mints the `$Path` from a url-shaped copy (only scheme://, /, or # starts — one-word copies stay pathless so bookmarks and failures hold); the test draws the writing after acceptance. The suite carries ZERO skips. — [Sprint 39 handoff](41-sprint-39--the-road.md#where-things-stand).
+17. **RESOLVED 2026-09-04, road A** — Doug: "Fix that skipped test please." `$TypeOfReference.specifically` makes the `$Path` from a url-shaped copy (only scheme://, /, or # starts — one-word copies stay pathless so bookmarks and failures hold); the test draws the writing after acceptance. The suite carries ZERO skips. — [Sprint 39 handoff](41-sprint-39--the-road.md#where-things-stand).
 18. **`$Path.read(from)`** as the one-home seat (two inline bodies say the same three lines twice today). — same.
 19. **The `references` seat at the book root** (`focus()` mis-seats; member or seat-move). — same.
-20. **The R95 corpus registry export** (route→book map from the binder's `books.ts`). — same; [Binder § R95](37-the-binder.md#r95).
+20. **The R95 library registry export** (route→book map from the emitted `books.ts`). — same; [Binder § R95](37-the-binder.md#r95).
 21. **Whether books may nest** — gates `book()`-adjacent walks. — same.
 22. **The gate/law disagreement** — read-through reads nested Chapters/Books through; their specs fail them; align. — same.
 
@@ -120,7 +120,7 @@
 24. **NAMES, batched** — the dialogue's five, the proxies (`makes`/`declared`/`levels`), the fetch-local spelling, ch15's title, sprint 38's own title, every plan placeholder; PLUS 2026-09-04's applied-but-vetoable: `reflection.is` (his floated `standsFor` the alternative), `reflection.classNames`, `reflection.names`, the `Title.KindSpec` spec name (follows the existing KindSpec convention), the test-local `$Gathering`. — [Sprint 38 § Names](40-sprint-38--the-rebuild.md#names); [Sprint 39 § rulings](41-sprint-39--the-road.md#rulings-0904).
 25. **Scope batch** — Catalogue framework-or-machinery; Referent exemption; encyclopedia dresses in/out of the spec convention (defaulting OUT). — audit asks.
 26. **Small fences** — `$References` birth facts in its bond; the `declared()` first-touch side effect; the persist equivalence guard; ch10's consumer-contract wording; the clean.ts `new-$TypeOf` guard. *(The ch12 Parser.tokens citation is RESOLVED 2026-09-03 — Sprint 31's "minimise, not undo" is the standing approval; ch12 edited.)* — audit asks; [Sprint 38 § one pass](40-sprint-38--the-rebuild.md#one-pass).
-27. **R80 at F7's return** — emitted cover rewritten or byte-identical. — [Binder § R80](37-the-binder.md#r80).
+27. **R80, when F7 is written** — emitted cover rewritten or byte-identical. — [Binder § R80](37-the-binder.md#r80).
 28. **The apparatus questions — LANDED: Q1–Q14**, with the 42-requirement R-A draft, both held in [Sprint 39 § the apparatus](41-sprint-39--the-road.md#apparatus). Sharpest: the reading flow (which furnishings are parenthetical), declared-vs-counted subjecthood, the route seat, the union re-keying, and the fourteen names.
 29. **Dresses and DI — the road, not the possibility (ANSWERED in part 2026-09-04).** Proven: DI keys on the component object, not the class — two wrapped dresses register independently in one scope, and a raw styled component even serves as a registered override. Open is WHICH ROAD makes the encyclopedia DI-able: (a) lib-side — Styled.ts exports a wrapper (`$((props) => createElement(dress, props))`) and each dress file wraps at export, no chemistry change, probed green; or (b) chemistry integration — three one-line recognition gates (chemical.ts:1342, 1485, 1690) so `$(styled.h2\`...\`)` works directly. Either road also becomes the one home for the styled-components CJS/ESM interop shim Doug flagged in Styled.ts. — [Sprint 39 § the DI answer](41-sprint-39--the-road.md#rulings-0904b).
 
@@ -135,7 +135,7 @@
 
 ## Wave 2 — THE MECHANICAL SWEEP (zero new members; per-unit gates; suite + browser where paint-visible)
 
-- **U11a–d** — **LANDED 2026-09-03 at every CHEMICAL seat** (type defaults across all 23 classes, specifically creations, catalogue/concatenate, both mints through ComponentType `prints`, the five maker closures); **the dress half FAILED — Wave-0 item 29**, dresses stand literal. — audit units.
+- **U11a–d** — **LANDED 2026-09-03 at every CHEMICAL seat** (type defaults across all 23 classes, specifically creations, catalogue/concatenate, both makes through ComponentType `prints`, the five maker closures); **the dress half FAILED — Wave-0 item 29**, dresses stand literal. — audit units.
 - **U12** — **DONE 2026-09-03**: the `inline?span:div` conditional is dead; base frames unconditionally as span; block kinds override. (Follow-ons ride rulings 3 and 5.) — audit units; the R136 shape.
 - **U13** — **DONE 2026-09-03**: numbering by the data condition (`type !== undefined`), tested by an untyped gatherer observed NOT numbering (`[0, 0]`). — audit units.
 - **U14** — one disable oracle (rides ruling 2). — audit units.
@@ -149,9 +149,11 @@
 
 - `$Subject`/`$Author` as (probably) dynamic traits; binder-generated STRONG TYPING on subject names (misspellings fail tsc when the app is specified); `$$Book` maybe trait-and-reference at once; *subject and author are kinds of books*. — [Sprint 38 R134](40-sprint-38--the-rebuild.md#one-pass).
 - Cover (+ **Illustration**, maybe **Figure**), Synopsis, TableOfContents (hopefully over Table; various reference kinds), **Index as the master catalogue** — ONE index of ALL books flattened, every book VIEWING it differently — compositional throughout so the specification carries the support. — same.
-- Folds in: **the summary and the excerpt** (his 2026-08-30 spec, three-rung fallback, `summarizationLength` on the document class, five flagged questions — zero occurrences in v2 src; placement at the Synopsis seat his to confirm) and the reference-arc remainders (the index decorations, the bootstrap books, the visitor's guide) as brainstorm inputs. — 00-planning (prior), §§ summary-and-excerpt, the-reference-plan.
+- Folds in: **the summary and the excerpt** (his 2026-08-30 spec, three-step fallback, `summarizationLength` on the document class, five flagged questions — zero occurrences in v2 src; placement at the Synopsis seat his to confirm) and the reference-arc remainders (the index decorations, the bootstrap books, the visitor's guide) as brainstorm inputs. — 00-planning (prior), §§ summary-and-excerpt, the-reference-plan.
 
-## Wave 5 — THE BINDER RETURNS, THEN THE DEMO
+## Wave 5 — THE BINDER IS WRITTEN, THEN THE DEMO
+
+***THERE IS NO BINDER, ruled 2026-09-05.*** **Doug:** *"We have the v1 compiler which will one day be the v2 binder but we have no code for that. Nothing should depend on v2."* *Sprint 37's `binding/` folder — ten loose modules with no package, no script and no importer — was **deleted** at [`4dc1e5f`](../../binding/), and nothing broke: the package still stood at `tsc` 0 and 78 promises, which is the proof it was never wired.* **So this wave is written from nothing, drawing on [`build/`](../../build/) for its ideas.** *And the standing error it must not repeat: `build/` and `app/` both declare `@dna-platform/public` and import `Summary`, `$Location` and `$$Book`, none of which exist in the 47 files of v2 — **the v1 system should point at [`package/.archive`](../../package/.archive/), not at v2.***
 
 **RULED 2026-09-04, the order and the register:** *"After book stuff, then we do the compiler. Folder conventions, what needs to be assembled. We are going to draw inspiration from v1 while aggressively reorganizing. **This can be much more technical code since it isn't public or part of a polymorphic framework** — though do use polymorphism just because we TypeScript developers are not allergic to it."*
 
@@ -159,8 +161,8 @@
 
 **THE PACKAGE SURFACE SPLIT, 2026-09-04** — Doug: *"Can't the encyclopedia things just be in encyclopedia as a little sub-directory of the package… utilities might too."* **Done, on chemistry's own `/symbolic` precedent:** `@dna-platform/lib` keeps the library's vocabulary, and `@dna-platform/lib/encyclopedia` and `@dna-platform/lib/utilities` are their own surfaces. ***This resolves the `Table` collision*** — a `Table` at the root is the writing, a `Table` in the encyclopedia is the dress, and neither has to be renamed.
 
-- **F7** — the binder's nine doors against the new framework: [U66](37-the-binder.md#u66) (v2 entry point + build — `require.resolve` must reach src's writing), R80 (ruling 27), the CHECK's `specify()` teeth, plus the apparatus's subject-typing emission. — [Binder § inventory A4](37-the-binder.md#where-things-stand).
-- **F8 — THE WIKIPEDIA DEMO, the destination:** corpus re-bound, app walked in a REAL browser (the 8/8 precedent), scroll-to-fragment, the two-Cells collision named for his word, R96's typed forms live against emitted modules. NO FEATURE SHIPS UNSEEN. — [Binder § inventory A5](37-the-binder.md#where-things-stand), [§ router review](37-the-binder.md#router-review).
+- **F7** — **nine doors cut fresh against the new framework**, none of them inherited: [U66](37-the-binder.md#u66) (v2 entry point + build — `require.resolve` must reach src's writing), R80 (ruling 27), the CHECK's `specify()` teeth, plus the apparatus's subject-typing emission. *Sprint 37's account of building them is [a true record of that sprint](37-the-binder.md#where-things-stand) and nothing more — the folder it describes is gone.*
+- **F8 — THE WIKIPEDIA DEMO, the destination:** the library re-bound, app walked in a REAL browser (the 8/8 precedent), scroll-to-fragment, the two-Cells collision named for his word, R96's typed forms live against emitted modules. NO FEATURE SHIPS UNSEEN. — [Binder § inventory A5](37-the-binder.md#where-things-stand), [§ router review](37-the-binder.md#router-review).
 
 ## Standing beside the road
 
@@ -177,7 +179,7 @@
 
 *From [The Binder's inventory](37-the-binder.md#where-things-stand):* A1 Ref+router — REBUILT (three forms green; `read()` follows an address per R72). A2 flat hierarchy — REBUILT (R105 type-chain standing; `kin` out). A3 styling frame — REBUILT pd- half (R112/R115; `flows`/`dress`/`Dress` out; two label holes ride Wave-0 ruling 5). B6 simple type — REBUILT (`type!:` + `??=`, R126). B7 table — REBUILT (`$columns`, divisibility, block-reading view — Solutions 45 cured at its own seat). B9 comment ban — a STANDING GATE. B10 battery — STRUCK by R113 (the need was F13 recursion, ruled and built). C invented members — do-not-re-add STANDS (`kin`, `seated`, `carried`, `former`, `seat`, `flows`, `dress`, `Dress`, `$TableTrait`, `$ListTrait`, lattice `stands`). C means-narrowing — STRUCK by R113. R69 arrangement codes — DISSOLVED by R106. R90 two-Links — DISSOLVED by R87.
 
-*From [The Cleaning](../the-condition-report/06-the-cleaning.md):* P1–P23 — STALE against v2 (the code they treat is archived; the compiler they audit was replaced by the binder); P10's sentence ("nothing static that is not a member") remains a standing ruling; the DECLARATIONS section is LIVE as F9; the words-owed register survives only in Wave-0 ruling 24.
+*From [The Cleaning](../the-condition-report/06-the-cleaning.md):* P1–P19 — STALE against v2, the code they treat being archived. **P20–P23 are NOT stale: the compiler they audit is [`build/`](../../build/), which still stands and was never replaced** — it was closed at [The Compiler's dispositions](../the-condition-report/08-the-compiler.md), and the binder that would succeed it is unwritten. P10's sentence ("nothing static that is not a member") remains a standing ruling; the DECLARATIONS section is LIVE as F9; the words-owed register survives only in Wave-0 ruling 24.
 
 *From this chapter's prior plans:* reference-arc sprints 1–3 DONE/ABSORBED; sprints 4–5 seeds fold into Wave 4; the four plan-owed questions ABSORBED; the Semantics object FILED by design.
 

@@ -30,4 +30,4 @@ No `canonicalForm`, no `writtenAs`, no `nests`, no `code` — the four members D
 
 ## The consumer's short form
 
-Route 3 of [the ladder](10-the-type-and-the-instance.md#the-ladder) needs only rows two and three: a `$TypeOfX` with a name and a specification IS a kind — written `<Type>X</Type>`, standing, labeled, and law-bearing with no class at all. The class row is added only when the kind holds a look of its own.
+Route 3 of [the chain](10-the-type-and-the-instance.md#the-chain) needs only rows two and three: a `$TypeOfX` with a name and a specification IS a kind — written `<Type>X</Type>`, standing, labeled, and law-bearing with no class at all. The class row is added only when the kind holds a look of its own.

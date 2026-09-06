@@ -35,11 +35,11 @@
 
 > **Closed as specification: `parts()` returns a fresh reading — never held, always compared by value.** The demo's own prose states it ("the readings parse rather than remember") and the suite exhibits it.
 
-**5. Members in exile as detached functions.** `display(x)` in `tools/html` is only ever called as `display(this)` — a member pretending to be a helper; as a protected member it becomes overridable, which is Doug's stated preference. `text()` is a genuine tool (many shapes) and stays. App-side, the same pattern: `openingFor`, `rich`, `spans`, `inked`, `rightPage` are detached dispatch/typesetting that would be overridable protected members of the reader chemical — demo furniture, but the demo teaches.
+**5. Members in exile as detached functions.** `display(x)` in `tools/html` is only ever called as `display(this)` — a member pretending to be a helper; as a protected member it becomes overridable, which is Doug's stated preference. `text()` is a genuine tool (many shapes) and stays. App-side, the same pattern: `openingFor`, `rich`, `spans`, `inked`, `rightPage` are detached dispatch/typesetting that would be overridable protected members of the reader chemical — demo apparatus, but the demo teaches.
 
 **6. Reimplemented members — divergence already visible.** The colon-split of title/subtitle exists **four times** ($Chapter.title, $Section.subtitle, $TableOfContents.heading, the demo's row) and `$TableOfContents.heading(this)` re-derives what its own `title` getter already answers, through a double fallback. `$Name.symbol === copy` since the sentence specification — a member duplicating a member, in a word ('symbol') that is not obviously book language.
 
-> **Resolved.** The colon split has one home — `$Section.heading` — with `$Chapter.title` and `$TableOfContents.heading` delegating (`c.title?.copy`); the demo's copy is frozen furniture by the independence specification. `$Name.symbol` stays: *symbol* is SRT's own word — a name's symbol is its written form — flagged to the noun audit for confirmation.
+> **Resolved.** The colon split has one home — `$Section.heading` — with `$Chapter.title` and `$TableOfContents.heading` delegating (`c.title?.copy`); the demo's copy is frozen apparatus by the independence specification. `$Name.symbol` stays: *symbol* is SRT's own word — a name's symbol is its written form — flagged to the noun audit for confirmation.
 
 **7. The character level cannot be addressed — while `$Highlight` speaks in characters.** `$Sentence.characters` builds characters but never assigns indexes (the only parts-shaped reading that doesn't), so composition addressing dead-ends exactly at the grain the highlight's `first/last` lives in. Also unfiltered by `valid()` unlike every other parts reading.
 

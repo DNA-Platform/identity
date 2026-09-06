@@ -54,7 +54,7 @@
 
 **P11 · A CLASS NEVER EXTENDS THE KIND ABOVE IT.** ***Doug:*** *"You are supposed to work on the basic types. They should extend composition"* **and, earlier,** *"`$Cover` extends `$Writing`"* **and** *"assume regular `$` class extends writing, and carry the hierarchy in the others."* ***Together: the chain is `$Chemical → $Writing → $Composition → everything`, and `$TypeOfCover extends $TypeOfChapter` carries what `$Cover extends $Chapter` would have said.***
 
-**P12 · THE BOND CREATES AND ASSIGNS.** ***Doug:*** *"I would move the creation to the bond constructor and leave validation to specifically… otherwise you lock in specific types and that is bad."* **So `$Book` makes its own index and `$Reference` mints its own path, in their bonds** — *and a consumer's own book class makes its own.*
+**P12 · THE BOND CREATES AND ASSIGNS.** ***Doug:*** *"I would move the creation to the bond constructor and leave validation to specifically… otherwise you lock in specific types and that is bad."* **So `$Book` makes its own index and `$Reference` makes its own path, in their bonds** — *and a consumer's own book class makes its own.*
 
 **P13 · `specifically` VALIDATES, AND MAY ASSIGN.** ***Doug:*** *"Specifically should be assigning interface properties if it can and might need to cast. You want as much to happen there as possible."* **`$TypeOfLetter.specifically` writes `kind` and `case`; `$TypeOfBookmark` writes `persist`. Neither creates anything.**
 
@@ -94,7 +94,7 @@ $Section(block: $Block) {
 
 ## <a id="the-drawing"></a>V · THE DRAWING
 
-**P23 · THE FRAME IS A SPAN, AND A KIND THAT NEEDS A BLOCK OVERRIDES IT.** ***Doug:*** *"wrap in a span? And then things need to override frame if they do something different. That's not hard."* ***Measured before and after:*** **a `<div>` frame inside a `<p>` dress made React refuse — *"In HTML, `<div>` cannot be a descendant of `<p>`"* — and a `<span>` clears it.**
+**P23 · THE FRAME IS A SPAN, AND A KIND THAT NEEDS A BLOCK OVERRIDES IT.** ***Doug:*** *"wrap in a span? And then things need to override frame if they do something different. That's not hard."* ***Measured before and after:*** **a `<div>` frame inside a `<p>` dress made React reject — *"In HTML, `<div>` cannot be a descendant of `<p>`"* — and a `<span>` clears it.**
 
 **P24 · THE SAME CONTAINER EVERYWHERE.** *The base declares the depth and a kind OVERRIDES it; a drawing never varies its own depth by asking a question.*
 
@@ -110,9 +110,9 @@ $Section(block: $Block) {
 
 ---
 
-## <a id="the-book"></a>VI · THE BOOK AND ITS FURNITURE
+## <a id="the-book"></a>VI · THE BOOK AND ITS APPARATUS
 
-**P30 · A BOOK ANSWERS ITS OWN FURNITURE, AND EACH STANDS IN ITS PLACE.** ***Doug:*** *"The cover should always be the first non annotative piece of writing, so that can be validated and it can be returned on book. The synopsis second, table third and index last."* **`cover()` · `synopsis()` · `tableOfContents()` · `index()`, each found by searching, and four rules hold the order.**
+**P30 · A BOOK ANSWERS ITS OWN APPARATUS, AND EACH STANDS IN ITS PLACE.** ***Doug:*** *"The cover should always be the first non annotative piece of writing, so that can be validated and it can be returned on book. The synopsis second, table third and index last."* **`cover()` · `synopsis()` · `tableOfContents()` · `index()`, each found by searching, and four rules hold the order.**
 
 **P31 · A BOOK MAKES ITS OWN INDEX, AT ITS BINDING.**
 
@@ -156,7 +156,7 @@ $Section(block: $Block) {
 
 **P45 · CHECK THE SEMANTICS, NOT ONLY THE SHAPE.** ***Doug:*** *"Do the subclasses make sense? Do the members? Does this thing mean what it is called?"* **Three of this port's real faults were found that way and none by the compiler:** *an interface extending a class, a cover found by position rather than by being one, and a `frame()` that changed the writing's depth.*
 
-**P46 · EVERY WORD IS A LIBRARY WORD.** *Struck: mint, ladder, rung, rail, seat, prose-as-a-negation, and `Ref` as an abbreviation of `Reference` — **the last is still standing and still wrong**.*
+**P46 · EVERY WORD IS A LIBRARY WORD.** *Struck: make, chain, step, rail, seat, prose-as-a-negation, and `Ref` as an abbreviation of `Reference` — **the last is still standing and still wrong**.*
 
 **P47 · NO COMMENTS IN THE SOURCE.** *The commentary lives here, and the book links to the file, never the reverse.*
 

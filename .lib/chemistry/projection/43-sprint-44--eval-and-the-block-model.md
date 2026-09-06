@@ -14,11 +14,11 @@ $Chemistry's contribution to a sprint whose real subject lives on the [public-li
 
 **The block / inline content model.** `$Html<'string' | 'number' | 'block'>` — realized not with new classes but by **declaration-merging** `string`, `number`, and `block` into React's intrinsic elements, so the existing `$Html<T>` mapped type generates their props (`$value`, `$elements`) exactly as it does for `div` or `span`. `inline` is a per-class flag read from the type. Inside a bond constructor, the parser groups every consecutive run of inline nodes — a lone `<b>`, a lone string, or a mix — into one `$Html<'block'>`, **one level deep**, and only there. `string` and `number` are internal: produced by the parser, never authored.
 
-A block is a **pure comprehension lens** — coherent grouping to be found. It is never persistent, never keyed, never a rendered wrapper; a caller renders it wherever they like (in a span, for styling), transforms it, or checks it for empty. `$check(undefined, 'block')` mints an empty block instead of throwing, so a bond constructor that wants a block always has one.
+A block is a **pure comprehension lens** — coherent grouping to be found. It is never persistent, never keyed, never a rendered wrapper; a caller renders it wherever they like (in a span, for styling), transforms it, or checks it for empty. `$check(undefined, 'block')` makes an empty block instead of throwing, so a bond constructor that wants a block always has one.
 
 ## What was learned
 
-- **Persistence is the parent's to express, via keys — never the child's to assume.** A re-render *reuses* the instance (`cid` lives in `useState`; `$Reaction.find(cid)` returns the same object); a new instance is minted only on mount. A block therefore has no place to persist, and that is correct — [keying.test](../../package/tests/react/keying.test.tsx) pins it: a keyed child carries state across a parent reorder, an unkeyed one is positional.
+- **Persistence is the parent's to express, via keys — never the child's to assume.** A re-render *reuses* the instance (`cid` lives in `useState`; `$Reaction.find(cid)` returns the same object); a new instance is made only on mount. A block therefore has no place to persist, and that is correct — [keying.test](../../package/tests/react/keying.test.tsx) pins it: a keyed child carries state across a parent reorder, an unkeyed one is positional.
 - **The bond constructor dropping raw text was a bug, not a feature** — the premise that it is *supposed* to skip text was rejected, and the drop fixed.
 
 ## Done

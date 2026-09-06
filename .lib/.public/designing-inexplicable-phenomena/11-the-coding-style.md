@@ -59,7 +59,7 @@
 | | it rules | dated to |
 |---|---|---|
 | ***a framework component is fetched through `$` at the seat*** | **Doug: *"anytime a type is used, it should be fetched using $ … Don't assign properties. Assign constants close to use."*** *A Capitalized statement-local, never hoisted, never memoized, never a member; the exemptions (specifications, reflection) and the TIMING LAW — registration is configuration BEFORE the first parse — live with the rule in [ch10](10-the-type-and-the-instance.md#the-fetch).* | ***2026-09-03*** |
-| ***how a kind is spelled*** | **[The Spelling of a Kind](15-the-spelling-of-a-kind.md)** — the nine spellings, what a kind never spells, and the type-only short form; promoted from the binder sprint's record. | ***2026-09-03*** |
+| ***how a kind is spelled*** | **[The Spelling of a Kind](15-the-spelling-of-a-kind.md)** — the nine spellings, what a kind never spells, and the type-only short form; promoted from [Sprint 37](../projection/37-the-binder.md)'s record. ***STALE against v2.2 and not yet rewritten*** — it still spells `this[cache](this.name)`, `formula = 'new'`, `parser.makes.set` and `indent = 1`, every one of which the second writing deleted. **Read [What We Believe](19-what-we-believe.md) for the template that is actually in force.** | ***2026-09-03; flagged 2026-09-05*** |
 | ***making one is asking for one that is not there*** | **[ch10 § making one](10-the-type-and-the-instance.md#making-one)** — `$check(Kind, '!')` fetches through `$` and evaluates in ONE call, so the two statements that had to stay together cannot come apart; `$check(found, Kind, '!')` is FIND OR MAKE. **The boundary: `'!'` makes an EMPTY one, `$(<Kind>…</Kind>)` writes into one.** | ***2026-09-04*** |
 | ***the bond assigns, the specification verifies*** | **[ch10 § the assignment workflow](10-the-type-and-the-instance.md#the-assignment-workflow)** — Doug's four steps, verbatim: look for one that is right and assign it; else fetch through `$`, make one and assign; then let `specifically` check it is there. *An author's own writing always wins over the default.* | ***2026-09-04*** |
 | ***asking what a block holds*** | **[ch10 § find and findOne](10-the-type-and-the-instance.md#the-block-asking-pair)** — one asking in place of **45 hand-written block scans across 15 files**. `find`/`findOne` ask the BLOCK by TYPE; `where`/`select`/`single` ask the PARTS. | ***2026-09-04*** |
@@ -100,14 +100,18 @@
 
 ***The test, in his words: does a library closed under books mint dollars, or even have rooms? No.*** **What the infrastructure may be thought to do is PRINT books, WRITE books, and hold the PARTS of the composition hierarchy** — *and he adds the caution in the same breath: anthropomorphizing too much makes it hard to find the librarian.*
 
-**The words struck 2026-09-05, with what the library says instead:**
+**The words struck, with what the library says instead. Every one is DEPRECATED TERMINOLOGY: it stands in closed records where a rewrite would be editing history, and it is never written again.**
 
-| struck | where it came from | say instead |
-|---|---|---|
-| **mint**, minted, mints | coining money | **make** — `$check(kind, '!')` says it in the source: making one is asking for one that is not there |
-| **ladder**, rung | home repair | the **four ways** a consumer changes what a type means — subclass it, carry it, extend its specification, decorate one |
-| **rail** | railways | the **rule**, or the **specification** that carries it |
-| **seat** | furniture | **place** — and where one word is not needed, name the thing: the **class**, the **member**, the **bond constructor**, the **line** |
+| struck | where it came from | say instead | struck |
+|---|---|---|---|
+| **mint**, minted, mints | coining money | **make** — `$check(kind, '!')` says it in the source: making one is asking for one that is not there | 2026-09-05 |
+| **ladder**, rung | home repair | the **four ways** a consumer changes what a type means — subclass it, carry it, extend its specification, decorate one | 2026-09-05 |
+| **rail** | railways | the **rule**, or the **specification** that carries it | 2026-09-05 |
+| **seat** | a room's fittings | **place** — and where one word is not needed, name the thing: the **class**, the **member**, the **bond constructor**, the **line** | 2026-09-05 |
+| **furniture** | a room's fittings | ***name them*** — the **cover**, the **synopsis**, the **table of contents**, the **index**. There are four and they have four names; a word that gathers them says less than the list does | **2026-09-06** |
+| **refusal** | — | what the specification **does not admit**, said as the rule that does not admit it | **2026-09-06** |
+
+***The seat row is the tell.*** *It struck a word by naming its origin — furniture — and that origin has now been struck in turn. A metaphor does not become the library's own by being used to explain another one.*
 
 ***The failure this records is not a vocabulary slip, it is a method one.*** **Doug: *"You see my cute names, see no grounding, check not at all the meaning of the code, and produce meaningless jargon. The reason why this is a mess is you not ever checking semantics."*** *A name is checked against the library it belongs to before it is used, and a design is checked for what it MEANS before it is checked for whether it compiles.*
 
