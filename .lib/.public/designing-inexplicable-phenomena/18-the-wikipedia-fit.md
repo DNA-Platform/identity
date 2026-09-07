@@ -105,9 +105,13 @@
 | **`$Path`** | *the href itself* | — | *not a structure* |
 | **`$Bookmark` · `$PageFold` · `$Highlight`** | ***nothing.*** *Wikipedia has no reader state* | — | ***no fit, and that is a real difference*** |
 | **`$Catalogue`** | *nothing — it is a reading, not a page part* | — | **no fit** |
-| **`$Author`** | ***nothing. Wikipedia has no bylines*** | — | ***no fit, and it is the sharpest one*** |
+| **`$Author`** | ***nothing ON THE PAGE. Wikipedia has no bylines*** | — | ***no fit for the page — but see the correction below*** |
 
-***Two of those absences are worth keeping:*** **Wikipedia has no author and no reader's marks**, *because it is written by nobody and read by everybody.* **Ours has both**, which is the place the default style will not carry us and we will have to draw something of our own.
+***One of those absences is real and one of them is not, and the correction came from organizing the PAGE TYPES rather than the page parts*** — [The Pages of a Third-Person Library](../the-semantics-of-books/17-the-pages-of-a-third-person-library.md#the-author).
+
+**The reader's marks are genuinely absent.** *Wikipedia has no bookmark, no fold, no highlight, because it is read by everybody and remembers nobody.* **Ours has all three, and the default style has nothing to say about any of them.**
+
+***The author is NOT absent — it is unprinted.*** **Every edit carries an author arrow, the history is the collection of them, and they point at `User:` pages, which are first-person books held inside the encyclopedia.** *So Wikipedia is not a library without authorship; it is a [third-person library](../the-semantics-of-books/14-the-first-person-and-the-third.md) that keeps the author arrow in the apparatus and shows only the account —* ***which is the same structure our own teammates' autobiographies run.*** *What the default style will not carry us through is drawing an author on the page, because theirs never does.
 
 ## <a id="what-to-do"></a>What this says to do
 

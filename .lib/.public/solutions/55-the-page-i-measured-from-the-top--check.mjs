@@ -100,6 +100,17 @@ async function settle(page) {
         await capped(Promise.all([...document.images]
             .filter(image => !image.complete)
             .map(image => new Promise(done => { image.onload = image.onerror = done; }))), 8000);
+        // A CSS background is not in document.images, and a globe that has not
+        // arrived photographs as an empty gap that reads exactly like a bug.
+        const backgrounds = new Set();
+        for (const element of document.querySelectorAll('*'))
+            for (const found of getComputedStyle(element).backgroundImage.matchAll(/url("?([^")]+)"?)/g))
+                backgrounds.add(found[1]);
+        await capped(Promise.all([...backgrounds].map(source => new Promise(done => {
+            const image = new Image();
+            image.onload = image.onerror = done;
+            image.src = source;
+        }))), 8000);
         await new Promise(done => requestAnimationFrame(() => requestAnimationFrame(done)));
     });
 }

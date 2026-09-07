@@ -37,7 +37,7 @@ class $Card extends $Chemical {
 const Card = $($Card);
 ```
 
-**`styled` is exported by the framework**, so nothing downstream writes styled-components' dual-shape import again — that resolution lives in [`styled.ts`](../package/src/abstraction/styled.ts) and nowhere else.
+**`styled` is exported by the framework**, so nothing downstream writes styled-components' dual-shape import again — that resolution lives in [`styled.ts`](../../package/src/abstraction/styled.ts) and nowhere else.
 
 ***A class that writes the element it is styled as is styled WHERE IT STANDS***, and nothing is added to the tree — the element the view wrote is the element the page gets.
 
@@ -53,13 +53,96 @@ export class $Heading extends $Style {
 
 **And a styled chemical takes ordinary props too — the blend.** *Every `$`-prop that is not one of its CSS properties reaches the element with the `$` stripped, so a styled `<a>` is given `href` and renders it.*
 
+## <a id="select"></a>`@select` — where a declaration stands
+
+***A styled chemical's fields are its stylesheet, and `@select` says WHERE each one stands.*** **Built 2026-09-07 out of Doug's seed** — *"A prefix can be used to mean a level… the prefixes nest"* — **after the gap was named: `@select` emitted one nesting level, so a media query with a descendant selector was unsayable.**
+
+```tsx
+class $Card extends $Format {
+    selector = styled.section;
+    padding = '1em';
+
+    @select('> h2') heading_fontSize = '1.5em';
+    heading_margin = '0';
+}
+```
+
+*`padding` stands at the top of the class. `heading_fontSize` and `heading_margin` stand under `> h2` — and **the selector is written once**.*
+
+### <a id="the-levels"></a>A SELECTOR OPENS THE LEVELS IT NEEDS, AND CLOSES NONE OF THEM
+
+**Write the braces you want opened and leave them open. The emit owns the closing**, because the emit is what knows where the declarations end.
+
+```tsx
+@select(`@media (max-width: 40em) {
+         .inner {`) narrow_display = 'none';
+narrow_color = 'red';
+```
+
+```css
+@media (max-width: 40em){ .pd-card .inner{ display:none; color:red; } }
+```
+
+***A selector with no braces is the ordinary one level and behaves as it always did***, which is why the feature landed without touching a single existing use. **Three levels nest the same way** — `@supports` over `@media` over a descendant — *and every one of them is closed.*
+
+### <a id="the-prefix"></a>A PREFIX NAMES ONE SELECTOR, AND SAYS IT ONCE
+
+***The prefix is everything before the property, and it is opaque*** — `one_two_property` is the prefix `one_two`, however many parts the author writes it in. **One prefix names one selector; every member carrying that prefix is under it.**
+
+| | |
+|---|---|
+| **said once** | *put `@select` on one member of the prefix; the rest carry the prefix alone* |
+| ***said twice*** | ***refused*** — *"a prefix says its selector once"* |
+| ***two selectors, one prefix*** | ***refused***, naming both — *the ambiguity was silently last-one-wins before* |
+| **an empty selector** | ***refused*** — *a selector says where a declaration stands, and an empty one says nothing* |
+| **a closing brace** | ***refused*** — *the author opens; the emit closes* |
+
+> ***Doug on why these throw:*** **"It's fine to throw exceptions when things are wrong. This is a place where a user needs feedback on being wrong. A single point of change makes it possible to maintain this and changing the selector on one property can change groups."**
+
+***The rule found six ambiguous namings across the package on its first run*** — *`cover` naming a base and its `:hover`, `logo` naming both `p:first-child` and `img`.*
+
+> ***AND THE HONEST CLAIM IS SMALLER THAN IT FIRST LOOKS.*** **Those six were NOT silent bugs.** *Under the old semantics every member carried its own `@select`, so each pair was emitting correctly and independently.* ***The rule CREATES the ambiguity — it makes six previously-harmless namings illegal — and the renames are what keep them correct.*** **The argument for the rule is still good and it is this one: an ambiguous name is a latent bug the moment anybody adds a member to the group.** *Corrected 2026-09-07 by session inexplicable-phenomena-a7, who checked the emitted CSS rather than the account.*
+
+### <a id="the-override"></a>AND A SUBCLASS MAY SAY IT AGAIN — the whole group moves
+
+***This is the part that makes it worth having.*** **A class says a prefix's selector once. A SUBCLASS may say it again, and every member of that prefix moves with it** — including the ones it inherited and never restated.
+
+```tsx
+class $Wide extends $Card {
+    @select('> h1') heading_fontSize = '2em';
+}
+```
+
+*`heading_margin` was declared on `$Card` under `> h2`. On `$Wide` it stands under `> h1`, without `$Wide` mentioning it.* ***That is a selector behaving like a member rather than like a string***, which is [the whole argument this feature exists for](#why): **a CSS string cannot be overridden, and this can.**
+
+**A subclass that changes ONLY the selector still contributes.** *Comparing the value alone would have dropped it — a real gap, found while promising the behaviour rather than after.*
+
+### <a id="no-prefix"></a>No prefix is the top of the class
+
+**A member with no prefix and no selector stands at the top.** *An unprefixed member that DOES carry a selector governs every unprefixed member of its class* — **so a class may give itself a default, and the prefixed groups stand beside it.**
+
+### <a id="the-cost"></a>What it costs
+
+***The chain walk is answered once per class and member and then cached***, because a selector is a fact about a class rather than about a render. **Declaring a selector clears the cache**, which is the only moment the answer can change.
+
+### <a id="what-it-bought"></a>What it bought, measured
+
+| | |
+|---|---|
+| ***a media query holding a descendant rule*** | **sayable** — *it was not, and two visible demo defects had been reported as the framework's fault because of it* |
+| **`@select` occurrences across the package** | ***383 → 125*** — *258 repeated selectors deleted, because a prefix says it once* |
+| **ambiguous prefixes found** | ***6***, every one a real one |
+| **promises** | ***15*** in [`styled.test.tsx`](../../package/tests/abstraction/styled.test.tsx) |
+
+*The names `narrow`, `heading`, `inner` and every prefix this feature introduced are **proxies**; they are the author's and Doug's to rename.*
+
 ## <a id="the-three-spellings"></a>The three spellings, which are the reactive law's own
 
 **Doug, ruling the convention:** *"`$background` — a prop; `background` — a reactive non-prop; `_background` a non-reactive non-prop. Allow for overriding, favor them in that order."*
 
 | written | reactive | a prop | compiles to |
 |---|---|---|---|
-| `_background` | **no** ([bond.ts:53](../package/src/abstraction/bond.ts)) | no | ***baked*** — the literal is in the class stylesheet |
+| `_background` | **no** ([bond.ts:53](../../package/src/abstraction/bond.ts)) | no | ***baked*** — the literal is in the class stylesheet |
 | `background` | yes | no | an interpolation; the chemical restyles **itself** |
 | `$background` | yes | **yes** | an interpolation; **settable from JSX** |
 
@@ -111,20 +194,20 @@ get background() { return this.$theme.paper; }
 
 | | |
 |---|---|
-| [`abstraction/styled.ts`](../package/src/abstraction/styled.ts) | the resolved `styled`, the four phases: read a class's declarations, decide which spelling stands, compile one component per class, seat it |
-| [`abstraction/particle.ts`](../package/src/abstraction/particle.ts) | `selector` and `styled` beside `inline`; `frame()` stands the written element as the compiled component; the `[style]` getter |
-| [`implementation/symbols.ts`](../package/src/implementation/symbols.ts) | `style`, exported beside `cache` — read it to reach the compiled component |
-| [`abstraction/molecule.ts`](../package/src/abstraction/molecule.ts) | `selector` joins the framework members that are never state — **a function-valued member would otherwise be bonded as a reagent and answer a bound wrapper per instance** |
+| [`abstraction/styled.ts`](../../package/src/abstraction/styled.ts) | the resolved `styled`, the four phases: read a class's declarations, decide which spelling stands, compile one component per class, seat it |
+| [`abstraction/particle.ts`](../../package/src/abstraction/particle.ts) | `selector` and `styled` beside `inline`; `frame()` stands the written element as the compiled component; the `[style]` getter |
+| [`implementation/symbols.ts`](../../package/src/implementation/symbols.ts) | `style`, exported beside `cache` — read it to reach the compiled component |
+| [`abstraction/molecule.ts`](../../package/src/abstraction/molecule.ts) | `selector` joins the framework members that are never state — **a function-valued member would otherwise be bonded as a reagent and answer a bound wrapper per instance** |
 
-**Compiled once per class**, cached in a module `WeakMap` keyed by the class and built in [`$lift`](../package/src/abstraction/particle.ts) — the one factory both particles and chemicals pass through — so the compile happens before anything of that class renders and no template is seeded mid-render.
+**Compiled once per class**, cached in a module `WeakMap` keyed by the class and built in [`$lift`](../../package/src/abstraction/particle.ts) — the one factory both particles and chemicals pass through — so the compile happens before anything of that class renders and no template is seeded mid-render.
 
 **A class wanting the component itself** — a `frame()` that does not call super — reads it at `[style]`.
 
 ## <a id="seen"></a>Seen
 
-**Four cases in the Lab, [`app/src/sections/styled/`](../package/app/src/sections/styled/), driven by [`verify-styled.mjs`](../package/app/verify-styled.mjs):** the selector as the element and the cascade; the three spellings; promotion driving a live width; and a theme fetched through `$` in a bond constructor, switchable live and swappable per scope.
+**Four cases in the Lab, [`app/src/sections/styled/`](../../package/app/src/sections/styled/), driven by [`verify-styled.mjs`](../../package/app/verify-styled.mjs):** the selector as the element and the cascade; the three spellings; promotion driving a live width; and a theme fetched through `$` in a bond constructor, switchable live and swappable per scope.
 
-**Promises:** [`tests/abstraction/styled.test.tsx`](../package/tests/abstraction/styled.test.tsx) — thirteen, including the getter road and a bond constructor assigning a styled property.
+**Promises:** [`tests/abstraction/styled.test.tsx`](../../package/tests/abstraction/styled.test.tsx) — thirteen, including the getter road and a bond constructor assigning a styled property.
 
 ## <a id="owed"></a>What is not built
 

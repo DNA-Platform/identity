@@ -48,7 +48,28 @@ Tests that are commented out, marked `it.skip`, or never run do not pin anything
 
 **The practice that follows, and it is cheap:** *a driver's targets are checked against what the application actually declares* — `grep` the declared ids, `comm` them against the driver's, and **a target with no section is an error rather than a result**. *Run that way the same day, the count went **19 of 43 to 43 of 43**, and coverage from 19 to 35 of the 42 declared sections.*
 
-## The epistemic steps
+### Evidence owes the same KIND as the failure
+
+**A gate proves nothing about a failure it cannot express.** *This is the step above [the harness's word problem](#a-harness-must-not-spend-one-word-on-two-states): there the instrument said the wrong thing about what it ran; here the instrument runs perfectly and answers a different question than the one asked.*
+
+***Observed 2026-09-07, on a sweep that deleted 258 repeated CSS selectors across two packages.*** **What was offered as evidence: `tsc` 0, 884 promises green, and the demo driven in a real browser with character counts and anchor counts identical before and after.** *Every one of those numbers was true.*
+
+> ***AND NOT ONE OF THEM COULD HAVE CAUGHT THE FAILURE.*** **A declaration standing under the WRONG SELECTOR compiles, emits, throws nothing, and leaves the page's text byte-identical.** *The characters do not move. The anchors do not move. The suite is on the mechanism, and the thing at risk was six hand-written selectors in another package that the mechanism never sees.*
+
+**The correction came from a reviewer who read the emitted stylesheet instead of the account** — *session inexplicable-phenomena-a7, whose whole check was two browser reads:*
+
+```
+.pNXpF { margin: 0.5em 0px 1em; color: rgb(32, 33, 34); }   the top of the class, NOT swept
+.gnwngD h2 { font-size … color … font-family }              all five of a prefix, both bare getters included
+```
+
+***So the standard for a change is set by the failure it can have, not by the gates that happen to exist:*** **a text change is proved by text, a styling change by the emitted CSS or a computed style, a timing change by a count.** *And the cheapness is the argument — the read that would have caught this was two lines and it was skipped because three green numbers were already in hand.*
+
+***One more thing that only a placement assertion catches.*** **A promise that a declaration EXISTS passes wherever it landed.** *The promise for this crossing asserts both sides — the span carries the colour and **the section does not** — because `outline-color` does not inherit, so a declaration that fell to the top of the class would satisfy a one-sided test and fail this one.* **And it was falsified rather than assumed: the prefix was stripped, two promises went red, the prefix was restored, thirty-one passed.**
+
+> ***THE RULE, and it is the one this chapter's [ladder](#the-epistemic-steps) rests on:*** **a promise that cannot go red for the reason you are afraid of is not evidence, however green it is.**
+
+## <a id="the-epistemic-steps"></a>The epistemic steps
 
 A behavior with both a Lab specimen and a unit test is *demonstrated and pinned* — the strongest confidence level. A behavior with only the Lab is *demonstrated but vulnerable*. A behavior with only the test is *pinned but obscure*. A behavior with neither is *speculation*.
 
