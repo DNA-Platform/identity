@@ -73,7 +73,7 @@ for (const one of this.specification)
 
 ### <a id="the-detector"></a>THE DETECTOR — one promise per module, and it earns its keep
 
-***The failure only appears when the wrong module loads FIRST, so a suite whose entry happens to import the base first is green and lying.*** **[`tests/loading.test.tsx`](../../package/src/tests/loading.test.tsx) imports each module alone into a fresh graph:**
+***The failure only appears when the wrong module loads FIRST, so a suite whose entry happens to import the base first is green and lying.*** **[`tests/loading.test.tsx`](../../package/.tests/loading.test.tsx) imports each module alone into a fresh graph:**
 
 ```tsx
 it('writing/Writing', async () => {

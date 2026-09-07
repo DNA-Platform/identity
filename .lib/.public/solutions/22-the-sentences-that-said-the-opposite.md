@@ -49,4 +49,6 @@ X fails Y       X is the one that did not succeed
 
 **And a ban exempts its own statement.** The rule that strikes a word must quote the word, once, or the rule cannot be read.
 
+*Sibling to [the rule that stopped running](54-the-rule-that-stopped-running-and-the-suite-improved.md) — the same mechanical-edit class on CODE rather than prose, where the deletion that mattered was legal like all the others and the suite IMPROVED for it.*
+
 *Distinct from [the formulas that rendered empty](01-the-formulas-that-rendered-empty.md), and kept distinct: there a rename ran **half way** and typechecked because both members were optional. Here the sweep ran **all the way** and every edit was individually correct — there is no compiler for prose, and the surviving gate is a reader.*

@@ -12,7 +12,7 @@
 
 **Identifiers.** Requirements **R258–R273**, actors **A13–A15**, acceptance examples **AE7–AE11**, risks **K31–K35**, decisions **D106–D113**, units **U203–U210**, scenarios **S1–S27**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification); a deletion leaves a gap.*
 
-**Where the code lands.** [`library/.public/package/src`](../../package/src/) — v2 — with v1 standing at [`.archive/`](../../package/.archive/) and still shipping.
+**Where the code lands.** [`library/.public/package/src`](../../package/src/) — v2 — with v1 standing at `.archive/` (v1, `.archive/`, deleted) and still shipping.
 
 ---
 
@@ -150,7 +150,7 @@ $Section    1 argument, block
 
 <a id="r264"></a>**R264** — ***`interpret()` is the write and `parts()` is the read.*** **`interpret()` is called from the bond constructor and again by the view before it prints; `parts()` returns what is held and computes nothing.**
 
-***This is not a mitigation, it is a dissolution.*** *[Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md) — three appearances — says a reading called during a render must be **HELD, not for speed but for termination**; [K29](27-composition.md#k29) says this sprint's `parts()` will fire it the moment anything draws parts.* **Splitting the write from the read means the reading a render calls constructs nothing at all.** *v1 reached the same answer by a cache — [`$Writing.reading()`](../../package/.archive/writing/Writing.tsx) holds the parse against the text it was read from, under a `_` name so it is inert to reactivity — and **the separation is the cleaner form of it.***
+***This is not a mitigation, it is a dissolution.*** *[Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md) — three appearances — says a reading called during a render must be **HELD, not for speed but for termination**; [K29](27-composition.md#k29) says this sprint's `parts()` will fire it the moment anything draws parts.* **Splitting the write from the read means the reading a render calls constructs nothing at all.** *v1 reached the same answer by a cache — `$Writing.reading()` (v1, `.archive/writing/Writing.tsx`, deleted) holds the parse against the text it was read from, under a `_` name so it is inert to reactivity — and **the separation is the cleaner form of it.***
 
 <a id="r265"></a>**R265** — ***`interpret()` divides no strings this sprint.*** *Doug: "Interpreters can be next sprint."* **It finds, among what is written in the block, the things at the level below** — already one, or carrying that type. ***The signature is the whole point: the sprint after this one adds string division and changes nothing else.***
 
@@ -404,7 +404,7 @@ $Section    1 argument, block
 
 <a id="k33"></a>**K33 — one block, or something inside is not inline.** *v1 threw a good message for this and v2 has none:* **"Writing arrives as one block. N arguments reached this bond, which means something written inside it is not inline and stood apart from the prose."** ***With [R259](#r259) making all writing inline, a second argument means something that is not writing***, and the bond should say so rather than silently keep the first.
 
-<a id="k34"></a>**K34 — the parse writes, and v1's does.** *[`.archive/writing/Word.tsx`](../../package/.archive/writing/Word.tsx) sets `part.parent = this` inside `parts()`, and [the settled account blames that line](../the-semantics-of-books/15-the-levels-of-writing.md): **"While the parse wrote, threading a parent looped the page."*** **The reference implementation is worth reading and that line is not worth copying.**
+<a id="k34"></a>**K34 — the parse writes, and v1's does.** *`.archive/writing/Word.tsx` (v1, `.archive/writing/Word.tsx`, deleted) sets `part.parent = this` inside `parts()`, and [the settled account blames that line](../the-semantics-of-books/15-the-levels-of-writing.md): **"While the parse wrote, threading a parent looped the page."*** **The reference implementation is worth reading and that line is not worth copying.**
 
 <a id="k35"></a>**K35 — two copies of the framework are loaded at once.** *[K30](27-composition.md#k30), unchanged and still true.* **No import may cross between `src` and `.archive`.**
 

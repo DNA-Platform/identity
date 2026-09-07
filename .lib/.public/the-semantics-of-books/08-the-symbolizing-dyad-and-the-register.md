@@ -35,7 +35,7 @@ Recorded as a **conjecture to track**, in Doug's own hedge — *"seems like it w
 
 ***First, Sprint 47's own retro reversed the `$Reference` row's central claim*** — [the record](../projection/05-sprint-47--the-catalogue.md), 2026-08-03, ruled **"no addresses in the model — a string address serializes a reference and the abstraction wasn't made to serialize; `$for` is now a held `$Reference` passed as an object; the `path()` utility and the book-compute died with the string."** *The row still reads "an indirect **string** target, never the object", which is the deleted design stated as built.* **`lookup()` went the same way — the built member was `read()`.**
 
-***Second, and larger: the whole model was rebuilt as v2.*** **Every row marked *built* below was built in what is now [`package/.archive/`](../../package/.archive/).** *Measured 2026-08-29 by grep across both trees:*
+***Second, and larger: the whole model was rebuilt as v2.*** **Every row marked *built* below was built in what is now `package/.archive/` (v1, `.archive/`, deleted).** *Measured 2026-08-29 by grep across both trees:*
 
 | the register says | v1 `.archive/` | v2 `src/` |
 |---|---|---|
@@ -57,7 +57,7 @@ Every class the derivation has named, kept here so none is lost and so the map s
 | class | relation | status | chapter |
 |---|---|---|---|
 | `$Chemical` | framework root — renders in React (from [$Chemistry](../../../chemistry/.lib/..representivity/.cover.md), not ours). Its `$Particle` base now carries **`frame()`** — the render template method the framework calls; `view()` is the content, `frame()` wraps it. | built (framework) | [06](06-the-canonical-echo-and-views.md) |
-| `$Reference<T>` | ***THE ROW BELOW IS TWICE SUPERSEDED — see [the status note](#register-status).*** **What is in v2 today is one empty interface**, [`$Referent$`](../../package/.archive/reference/Referent.tsx): `interface $Referent$ extends $Chemical { }`. *It constrains nothing, and `$Writing` implements it for no effect.* | ***nothing built*** | this chapter, [16](16-the-reference-and-its-locator.md) |
+| `$Reference<T>` | ***THE ROW BELOW IS TWICE SUPERSEDED — see [the status note](#register-status).*** **What is in v2 today is one empty interface**, `$Referent$` (v1, `.archive/reference/Referent.tsx`, deleted): `interface $Referent$ extends $Chemical { }`. *It constrains nothing, and `$Writing` implements it for no effect.* | ***nothing built*** | this chapter, [16](16-the-reference-and-its-locator.md) |
 | *~~`$Reference<T>`~~* | *~~→ `$Chemical`; the act of pointing — a hyperlink. Holds `$for` (an indirect **string** target, never the object), `lookup(): T` (the dereference — a navigation), and overrides `frame()` to wrap its surface in a clickable link.~~* | *~~built~~* | [03](03-inheritance-and-composition.md) |
 | `$Title` | → `$Reference`; a *canonical* reference — it points at its work and is the first/representative. Where "points at" and "is the first text" meet. | to build | [02](02-composition.md), [03](03-inheritance-and-composition.md) |
 | `$Author` | `$Reference<$Autobiography>` — a reference typed to point at an autobiography; the target constraint is the generic, checked by the compiler. | to build | [03](03-inheritance-and-composition.md), [04](04-the-book-and-subjectivity.md) |

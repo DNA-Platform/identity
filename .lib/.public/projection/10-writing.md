@@ -340,7 +340,7 @@ sections given as CHILDREN:   0 extra builds
 
 ### Referential sameness — raised, and ruled NOT a debt
 
-*Four shipped sites compare cards with `===` ([`$Canonical.valid()`](../../package/.archive/book/Canonical.tsx), `$LibraryCard$.library` *(deleted; the demo declares its own card)*, the shelf's self-exclusion, the demo's membership filter). Raised as a possible return of the equality Sprint 47 deleted.*
+*Four shipped sites compare cards with `===` (`$Canonical.valid()` (v1, `.archive/book/Canonical.tsx`, deleted), `$LibraryCard$.library` *(deleted; the demo declares its own card)*, the shelf's self-exclusion, the demo's membership filter). Raised as a possible return of the equality Sprint 47 deleted.*
 
 **Doug: *"Those are okay. That is not an equals or same method implementation. It is not that no one can check for equality. It's just not a necessary function."*** So the distinction is recorded rather than the debt: what died was **`equals`/`same()` as members the model required**, not a caller's plain comparison. No unit, no change.
 

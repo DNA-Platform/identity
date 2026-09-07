@@ -47,7 +47,7 @@
 
 ## <a id="done"></a>What was done
 
-**Unit 1 — the gate.** *Doug folded `$TypedSpecification` into [`Type.tsx`](../../package/src/writing/Writing.tsx) by hand — [ruling 1](#the-rulings) applied to the word `type`* — **and nine files still imported the deleted module.** *Repointed to `@/notation/Type`: the seven levels, **`tests/specification.test.tsx`**, and [`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/.archive/writing/Paragraph.tsx).* **Nothing else could be measured until this was closed.**
+**Unit 1 — the gate.** *Doug folded `$TypedSpecification` into [`Type.tsx`](../../package/src/writing/Writing.tsx) by hand — [ruling 1](#the-rulings) applied to the word `type`* — **and nine files still imported the deleted module.** *Repointed to `@/notation/Type`: the seven levels, **`tests/specification.test.tsx`**, and `.spec/paragraph/DerivedSpec-Title.tsx` (v1, `.archive/writing/Paragraph.tsx`, deleted).* **Nothing else could be measured until this was closed.**
 
 **Unit 2 — the order**, applied per class across `src`. *The visible moves: `$Writing`'s protected fields joined the field block and its protected getter joined the property block; `$Letter`'s `patterns` moved above its properties; `$Word`'s two fields moved above `canonical`; every `$TypeOfX` gained a blank line between `resolve` and `canonicalForm`, because those are two groups and not one; and [`rules()`](../../package/src/utilities/Specification.ts) moved above `check()` because it is a property by the test.*
 
@@ -136,7 +136,7 @@
 | **1** | ***[`Parser.tokens`](../../package/src/utilities/Parser.tsx)*** — the loop became filter · map · filter | ***the failed one, and the clearest case*** |
 | **2** | ***`Parser.parse`*** — `forEach((part, at) => { part.index = at; })` lost its braces | **ARGUABLE and listed because it is** — *the arrow went from a statement body to an expression body, so it now returns the assigned value and `forEach` discards it. No behaviour change, but it is not respacing, and it sits one line from the change that failed* |
 | **3** | ***the nine import repoints*** — `$TypedSpecification` now names a different module, one line deleted from each file | **structural: a symbol names a different module.** *Stated as fact and not as defence — it was required to fix a build [Doug's own in-flight fold had left broken](#done), 21 errors and 18 files not loading, and he had already given the fold as his intent* |
-| **4** | ***[`Document.tsx`](../../package/.archive/document/Document.tsx)*** — the dead `createElement` import deleted | **ARGUABLE** — *a line removed rather than moved* |
+| **4** | ***`Document.tsx` (v1, `.archive/document/Document.tsx`, deleted)*** — the dead `createElement` import deleted | **ARGUABLE** — *a line removed rather than moved* |
 
 ***And three that are layout by the definition but that nobody asked for***, listed at the same weight rather than tucked away: **two blank lines added inside [`$Specification.rules()`](../../package/src/utilities/Specification.ts)**, applying the paragraphs rule to a method Doug never looked at; **import ORDER rearranged in [`Book.tsx`](../../package/src/book/Book.tsx) and [`Chapter.tsx`](../../package/src/book/Chapter.tsx)**, which is the author's own notion of consistency and no rule of his; and **`$Writing.build()` going from `{ }` to a two-line empty body.**
 

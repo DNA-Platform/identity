@@ -11,7 +11,7 @@
 
 > ## ⚠ <a id="which-model"></a>WHICH MODEL THIS ACCOUNT DESCRIBES — read this before the chapter
 >
-> ***This is the settled account of v1, which now stands at [`package/.archive/`](../../package/.archive/).*** **The model was rebuilt as v2 in [`package/src/`](../../package/src/) across [Composition](../projection/27-composition.md), [The Block](../projection/28-the-block.md) and [The Bind](../projection/29-the-bind.md), and this chapter was not rewritten with it.** *It is still worth reading — the reasoning is Doug's and most of it survived — but it may not be read as a description of the code.*
+> ***This is the settled account of v1, which now stands at `package/.archive/` (v1, `.archive/`, deleted).*** **The model was rebuilt as v2 in [`package/src/`](../../package/src/) across [Composition](../projection/27-composition.md), [The Block](../projection/28-the-block.md) and [The Bind](../projection/29-the-bind.md), and this chapter was not rewritten with it.** *It is still worth reading — the reasoning is Doug's and most of it survived — but it may not be read as a description of the code.*
 >
 > ***Measured 2026-08-29 by grep across both trees, not remembered:***
 >

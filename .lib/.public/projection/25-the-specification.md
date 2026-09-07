@@ -202,10 +202,10 @@
 
 | | what it is | grade |
 |---|---|---|
-| [`$Denote`](../../package/.archive/document/Denote.tsx) | **written in the prose, points at a note by name** — *parenthetical: present in the writing, absent from the reading* | writing |
-| [`$Legend`](../../package/.archive/document/Legend.tsx) | ***the thing that HOLDS them*** — a parenthetical paragraph whose parts are `$Key`s, *"a list of what the marks mean"* | paragraph |
-| [`$Key`](../../package/.archive/document/Key.tsx) | **a name that reads to a `$Footnote`** | referent |
-| [`$Footer`](../../package/.archive/document/Footer.tsx) · `$Bibliography` | **the section the legend stands in**, at the end of the document | section |
+| `$Denote` (v1, `.archive/document/Denote.tsx`, deleted) | **written in the prose, points at a note by name** — *parenthetical: present in the writing, absent from the reading* | writing |
+| `$Legend` (v1, `.archive/document/Legend.tsx`, deleted) | ***the thing that HOLDS them*** — a parenthetical paragraph whose parts are `$Key`s, *"a list of what the marks mean"* | paragraph |
+| `$Key` (v1, `.archive/document/Key.tsx`, deleted) | **a name that reads to a `$Footnote`** | referent |
+| `$Footer` (v1, `.archive/document/Footer.tsx`, deleted) · `$Bibliography` | **the section the legend stands in**, at the end of the document | section |
 
 ***So a piece of writing already has a place where the things written into it are collected and said*** — **and it is the LEGEND, standing in a FOOTER.** *What has no such place is the other family of annotations — `$Author`, `$Subject`, `$Canonical`, `$Type` — which are about the **book** rather than about a **passage**, and are found only by walking.*
 
@@ -215,7 +215,7 @@
 
 ***My reading, said back and [flagged for correction rather than settled](../../../../.claude/library/teamspeak/03-discussion.md):*** **a specification is a part of a piece of writing that says what the writing must be — exactly as a legend is a part of a piece of writing that says what its marks mean.** *Both are parenthetical in the same sense the package already uses: **present in the writing, absent from the reading**.*
 
-***So a specification is not a method and not a schema. It is WRITING***, and [`$Legend`](../../package/.archive/document/Legend.tsx) is the shape already standing: *a parenthetical paragraph, part of its document, whose content is what the rest of the document is held to.*
+***So a specification is not a method and not a schema. It is WRITING***, and `$Legend` (v1, `.archive/document/Legend.tsx`, deleted) is the shape already standing: *a parenthetical paragraph, part of its document, whose content is what the rest of the document is held to.*
 
 <a id="r231"></a>**R231** — ***a specification is a piece of writing, carried by the thing it specifies.***
 
@@ -253,7 +253,7 @@
 | ***a formula resolution DOES go through the representative*** | [`formula.ts`](../../../chemistry/package/src/abstraction/formula.ts) passes its asker in and calls `$(component)` — **which is the whole mechanical difference between the two routes** | read |
 | ***but a book is built outside a drawing*** | generated books are `$(<Book>…</Book>)` at **module scope**, and [R202](24-the-formula.md#r202) says a formula reached outside a chemical's drawing is **not** swapped | read |
 | **`$Type` cannot extend `$Formula`** | `$Type > $Annotation > $Phrase > $Word > $Writing > $Referent`; `$Formula > $Chemical`. ***One supertype each*** | read |
-| **and `lib` already exports a `$Formula`** | [`writing/Formula.tsx`](../../package/.archive/writing/Formula.tsx) — *a KaTeX inline phrase* — **from the same `index.ts` chemistry's `$Formula` would enter** | read |
+| **and `lib` already exports a `$Formula`** | `writing/Formula.tsx` (v1, `.archive/writing/Formula.tsx`, deleted) — *a KaTeX inline phrase* — **from the same `index.ts` chemistry's `$Formula` would enter** | read |
 | **the reference forms, and their grade rule** | `$$Word` `$$Sentence` `$$Paragraph` `$$Section` `$$Chapter` `$$Synopsis` `$$Book` — **each one grade below what it stands for, and there is no `$$Phrase`** | grep |
 | **the rename surface** | `valid(` **86** across **39 files** in `lib`, `$valid(` **19**; `$Chemistry` **3** and **1**; `build/` **29** | grep |
 | **the struck words** | *specification* **329** here · **4** in chemistry's library · **7** in code · **2** legitimate in the physics corpus. *failure* **8** in code · **54** in the libraries. *make* **33** | grep |

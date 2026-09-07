@@ -371,7 +371,7 @@ draw:   my parts  →  SELECT which are present  →  ARRANGE them  →  each dr
 
 ## <a id="the-matter-is-already-in-the-model"></a>And the apparatus was already solved — by the model, two sprints ago
 
-***The previous draft had the theme injecting components for notes, discussion and annotations.*** **It does not need to.** [`$Legend`](../../package/.archive/document/Legend.tsx) is a `$Paragraph` subclass carrying `$parenthetical = true` whose `view()` answers `null` while it is; [`$Footer`](../../package/.archive/document/Footer.tsx) is a `$Section` holding footnotes; a summary is a parenthetical section.
+***The previous draft had the theme injecting components for notes, discussion and annotations.*** **It does not need to.** `$Legend` (v1, `.archive/document/Legend.tsx`, deleted) is a `$Paragraph` subclass carrying `$parenthetical = true` whose `view()` answers `null` while it is; `$Footer` (v1, `.archive/document/Footer.tsx`, deleted) is a `$Section` holding footnotes; a summary is a parenthetical section.
 
 ***So accompanying matter is ALREADY a part of the composition, marked as not-read*** — and the only shared decision left is **whether unread matter is read**, which is one value.
 

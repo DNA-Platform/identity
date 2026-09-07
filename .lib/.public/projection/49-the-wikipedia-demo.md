@@ -205,7 +205,7 @@ npx vite --config .wiki/.public/vite.config.ts    # http://localhost:5200
 
 **What could not be minimized away, and why:** the four readings on `$Book` — a reading made in a view loops React ([Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md), [51](../solutions/51-the-chapters-a-book-drew-empty.md)); `placed<T>` — the properties are required; `contents()` — a book with no table of contents makes one, his ask.
 
-**Coverage added, at his word:** [book.test](../../package/src/tests/book.test.tsx) — a book with no table of contents makes one whose entries reach heading ids; the four regions in order, the index printed; a title's heading from copy; a synopsis silent unless printed. [writing.test](../../package/src/tests/writing.test.tsx) — a paragraph worn as prose; a list's items at their marks; a table's grid of its columns.
+**Coverage added, at his word:** [book.test](../../package/.tests/book.test.tsx) — a book with no table of contents makes one whose entries reach heading ids; the four regions in order, the index printed; a title's heading from copy; a synopsis silent unless printed. [writing.test](../../package/.tests/writing.test.tsx) — a paragraph worn as prose; a list's items at their marks; a table's grid of its columns.
 
 ### The performance report — a report, and it changes nothing
 

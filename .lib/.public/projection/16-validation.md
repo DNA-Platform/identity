@@ -49,7 +49,7 @@
 - **The compiler, every module** — [`index.ts`](../../build/index.ts), [`library.ts`](../../build/library.ts), [`walk.ts`](../../build/stages/walk.ts), [`refer.ts`](../../build/stages/refer.ts), [`resolve.ts`](../../build/stages/resolve.ts), [`emit.ts`](../../build/stages/emit.ts), [`catalogue.ts`](../../build/stages/catalogue.ts), [`where.ts`](../../build/utilities/where.ts), [`verify-build.ts`](../../build/tests/building.ts). *The sprint adds a phase to this program; a requirement written without reading it would be a guess about what the phase can reach.*
 - **`valid.mts`** — the runtime that is about to move. *It is the thing being relocated, and reading it is what showed the level walk stops at paragraph.*
 - **[`app.tsx`](../../app/src/app.tsx) and [`catalogue.tsx`](../../app/src/catalogue.tsx)** — where a card is handed its book by `fetch()`. *Load-bearing: this is the only place in the tree that wires a card, and checking has to do the same thing for every book at once.*
-- **The framework's link classes** — [`Author.tsx`](../../package/src/book/Author.tsx), [`Canonical.tsx`](../../package/.archive/book/Canonical.tsx), [`Book.tsx`](../../package/src/book/Book.tsx), [`Synopsis.tsx`](../../package/src/book/Synopsis.tsx). *This is where the new rules land, and reading them found a defect the sprint now owes a fix for.*
+- **The framework's link classes** — [`Author.tsx`](../../package/src/book/Author.tsx), `Canonical.tsx` (v1, `.archive/book/Canonical.tsx`, deleted), [`Book.tsx`](../../package/src/book/Book.tsx), [`Synopsis.tsx`](../../package/src/book/Synopsis.tsx). *This is where the new rules land, and reading them found a defect the sprint now owes a fix for.*
 - **The corpus and its emitted twin** — `library/.test-library/` against [`app/src/library/`](../../app/src/library/), cover by cover. *What an author writes versus what a compiler makes, which is the only honest picture of what the machine does.*
 - **[The Process](../../.archive/app/src/sections/book/library/the-build/05-the-process.tsx)** — the demo's own account of the phases, and the chapter this sprint has to edit. *Its owed row currently names the resolving gap; checking's account is what this sprint adds beside it.*
 - **[The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) and [the three things that only worked here](../solutions/21-the-three-things-that-only-worked-here.md)** — five and three appearances between them, both about a number whose scope was silent. *A sprint whose entire product is a gate has to read the branch's two chapters about gates that lied.*
@@ -97,7 +97,7 @@
 
 ### R38 — `$Canonical` gains the `valid()` it never had
 
-**Measured, not suspected — and the measurement CORRECTED THE RECORD.** [`$Author`](../../package/src/book/Author.tsx) and `$Subject` each answer `super.valid() || this.$for !== undefined` — text **or** a card. **[`$Canonical`](../../package/.archive/book/Canonical.tsx) declares no `valid()` at all**, so it inherits `$Phrase`'s, which requires non-empty copy.
+**Measured, not suspected — and the measurement CORRECTED THE RECORD.** [`$Author`](../../package/src/book/Author.tsx) and `$Subject` each answer `super.valid() || this.$for !== undefined` — text **or** a card. **`$Canonical` (v1, `.archive/book/Canonical.tsx`, deleted) declares no `valid()` at all**, so it inherits `$Phrase`'s, which requires non-empty copy.
 
 ***The defect points the OTHER WAY from how it was filed.*** [C22](15-the-build.md#c22) recorded that *a canonical carrying neither text nor card is valid where an author in that state is not*, and this requirement inherited that sentence. **Driven, all nine cases:**
 
@@ -262,7 +262,7 @@ get library(): $Card | undefined {
 ### <a id="u35"></a>U35 — `$Canonical` gains its `valid()`
 
 **Mechanism:** the same local rule its two siblings already carry — text or a card — added where it is absent. **Realizes [R38](#r38--canonical-gains-the-valid-it-never-had).**
-**Files:** [`package/src/book/Canonical.tsx`](../../package/.archive/book/Canonical.tsx) · a promise beside the existing book promises.
+**Files:** `package/src/book/Canonical.tsx` (v1, `.archive/book/Canonical.tsx`, deleted) · a promise beside the existing book promises.
 **Depends on:** nothing.
 **Visible end:** [AE23](#acceptance-examples) — a canonical carrying neither text nor card is invalid. ***It fails before this unit and passes after***, which is the cheapest kind of visible end there is.
 

@@ -59,7 +59,7 @@ get [children](): ReactNode { return this[$children$]; }     // and `children` I
 
 ### <a id="four"></a>4 · Duck typing that reached the old name — ***silent, no error at all***
 
-**[`html.ts`](../../package/.archive/utilities/html.ts) walks an unknown node through eight guards, and one of them was:**
+**`html.ts` (v1, `.archive/utilities/html.ts`, deleted) walks an unknown node through eight guards, and one of them was:**
 
 ```typescript
 if (typeof node === 'object' && 'children' in node) return text((node as any).children);

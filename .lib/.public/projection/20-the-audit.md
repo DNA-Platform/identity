@@ -71,7 +71,7 @@
 
 **<a id="p8"></a>P8 — DRAWING IS A TEMPLATE METHOD: ASK, GATHER, SET.** [`Writing.tsx:93-111`](../../package/src/writing/Writing.tsx) — three lines, inherited by every level. **A subclass changes one of the three and inherits the other two**, [D37](18-the-theme.md#d37). *This is the principle [W5](#w5) says is only half-adopted.*
 
-**<a id="p9"></a>P9 — `frame()` WRAPS, `view()` EVOLVES.** Chemistry's own documented seam, [`particle.ts:116-127`](../../../chemistry/package/src/abstraction/particle.ts): the framework calls `frame()`, which renders the *active* view. **A wrap written into `frame()` cannot break a harvest that calls `view()`** — which is exactly why [`$Link`](../../package/.archive/reference/Link.tsx) is a link without disturbing [`$Document.declaration()`](../../package/.archive/document/Document.tsx).
+**<a id="p9"></a>P9 — `frame()` WRAPS, `view()` EVOLVES.** Chemistry's own documented seam, [`particle.ts:116-127`](../../../chemistry/package/src/abstraction/particle.ts): the framework calls `frame()`, which renders the *active* view. **A wrap written into `frame()` cannot break a harvest that calls `view()`** — which is exactly why `$Link` (v1, `.archive/reference/Link.tsx`, deleted) is a link without disturbing `$Document.declaration()` (v1, `.archive/document/Document.tsx`, deleted).
 
 **<a id="p10"></a>P10 — A READING IS POST-HOC AND PURE; IT WRITES NOTHING.** *"The parse writes nothing. Not a number, not a role."* Numbers belong to **references** — that is what a `$Location` **is** — never to parts. `parts()` returns a **fresh reading, never held, always compared by value** ([finding 4, closed as specification](04-the-member-audit.md)).
 

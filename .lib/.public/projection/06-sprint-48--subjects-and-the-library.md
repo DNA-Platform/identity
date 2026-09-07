@@ -233,7 +233,7 @@ Three things follow, and each is load-bearing.
 
 - **There is one library.** *"There will always be one that contains everything that exists on some level."* It is not one of many and it is never nested.
 - **`$Library` validation, stated exactly:** **every book in the card catalogue must arrive at the same library book.** Not merely *a* terminus each — **the same one.** If two books walked to different libraries, the catalogue would be a catalogue of nothing. **That agreement is what makes a card catalogue possible at all.**
-- *"That might earn you the location."* Location is meaningful only inside one universe — which is why [`$Location`](../../package/.archive/reference/Location.tsx) can mean anything.
+- *"That might earn you the location."* Location is meaningful only inside one universe — which is why `$Location` (v1, `.archive/reference/Location.tsx`, deleted) can mean anything.
 - **No library inside a library.** Another library *"might not even be in this framework."* Two libraries are **two different perspectives**, not a containment.
 
 **Consequence for [R58](#r58-librarycard-replaces-book--and-the-notation-becomes-vocabulary-at-book-level) and [R59](#r59-having-a-library-card-is-a-structural-fact-not-a-possession):** the library card's *"author in other libraries"* means **other perspectives — possibly outside this framework entirely** — not a second library modelled here. The card is what survives leaving the universe, which is a stronger claim than portability within it.

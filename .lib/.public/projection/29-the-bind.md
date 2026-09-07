@@ -12,9 +12,9 @@
 
 **Identifiers.** Requirements **R274–R342**, actors **A16–A18**, acceptance examples **AE12–AE18**, risks **K36–K42**, decisions **D114–D124**, units **U211–U221**, scenarios **S1–S47**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification); a deletion leaves a gap.*
 
-**Where the code lands.** [`library/.public/package/src`](../../package/src/) — v2 — with v1 standing at [`.archive/`](../../package/.archive/) and still shipping.
+**Where the code lands.** [`library/.public/package/src`](../../package/src/) — v2 — with v1 standing at `.archive/` (v1, `.archive/`, deleted) and still shipping.
 
-***HOW v1 IS USED HERE, ruled 2026-08-29.*** **Doug: *"Don't worry too much about past definitions of things. We use v1 for inspiration mostly."*** *So [`.archive/`](../../package/.archive/) and [the settled account](../the-semantics-of-books/15-the-levels-of-writing.md) are read for **evidence** — what the code measurably does, and what it cost — and never as a **specification**.* ***Where this chapter cites v1 it is citing a measurement or an inspiration; Doug's sentences are the spec.***
+***HOW v1 IS USED HERE, ruled 2026-08-29.*** **Doug: *"Don't worry too much about past definitions of things. We use v1 for inspiration mostly."*** *So `.archive/` (v1, `.archive/`, deleted) and [the settled account](../the-semantics-of-books/15-the-levels-of-writing.md) are read for **evidence** — what the code measurably does, and what it cost — and never as a **specification**.* ***Where this chapter cites v1 it is citing a measurement or an inspiration; Doug's sentences are the spec.***
 
 ---
 
@@ -152,7 +152,7 @@
 
 ## <a id="v1"></a>What v1 actually achieves — because Doug said *"we achieved that on v1, I hope"*
 
-***He is right, and the line is [`$Paragraph.parts()`](../../package/.archive/writing/Paragraph.tsx):***
+***He is right, and the line is `$Paragraph.parts()` (v1, `.archive/writing/Paragraph.tsx`, deleted):***
 
 ```
 for (const written of this.text.$elements) {
@@ -168,9 +168,9 @@ for (const written of this.text.$elements) {
 }
 ```
 
-**Two cases for an object, and that is the whole mechanism:** ***at my level → close the run and keep it as a part; below my level → push it into the run I am building, and it descends.*** *[`$Sentence.parts()`](../../package/.archive/writing/Sentence.tsx) receives it and keeps it: `if (typeof written === 'object') { stand(written); continue; }`.* **So a written word lands among the sentence's words, in written order.**
+**Two cases for an object, and that is the whole mechanism:** ***at my level → close the run and keep it as a part; below my level → push it into the run I am building, and it descends.*** *`$Sentence.parts()` (v1, `.archive/writing/Sentence.tsx`, deleted) receives it and keeps it: `if (typeof written === 'object') { stand(written); continue; }`.* **So a written word lands among the sentence's words, in written order.**
 
-***And the stand-in idea is already half-built there.*** **[`$Paragraph.stops()`](../../package/.archive/writing/Paragraph.tsx) pulls code spans and link targets out of the prose before splitting on sentence stops, then puts them back** — which is Doug's *"put it back later on"* at string grade.
+***And the stand-in idea is already half-built there.*** **`$Paragraph.stops()` (v1, `.archive/writing/Paragraph.tsx`, deleted) pulls code spans and link targets out of the prose before splitting on sentence stops, then puts them back** — which is Doug's *"put it back later on"* at string grade.
 
 ***Two things ch. 15 reports that the archive does not contain, and both matter here:***
 
@@ -435,7 +435,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="r315"></a>**R315** — ***the stand-in is not the copy, and the phrase is why.*** *Doug: "**A phrase might, for instance, be a word that contains what would be several words. So when you replace the word with a token so that you can parse, it needs to not be the copy because the copy will be multiple words. And then you can insert back based on the id that is in the token.**"*
 
-***This is the argument for the whole mechanism and it is better than the one this chapter had.*** **[`$Phrase`](../../package/.archive/writing/Phrase.tsx) is a real class in v1** — *`extends $Word`, and [ch. 15](../the-semantics-of-books/15-the-levels-of-writing.md) says why:* **"one word that admits what a name contains, spaces among them."**
+***This is the argument for the whole mechanism and it is better than the one this chapter had.*** **`$Phrase` (v1, `.archive/writing/Phrase.tsx`, deleted) is a real class in v1** — *`extends $Word`, and [ch. 15](../the-semantics-of-books/15-the-levels-of-writing.md) says why:* **"one word that admits what a name contains, spaces among them."**
 
 **So a phrase is ONE word whose COPY is several.** *Seal with the copy and the divider splits it in two; seal with an opaque id and the division sees one word and the object comes back whole.* ***The token exists precisely because an object's copy has a different shape from the object.***
 
@@ -621,7 +621,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="d114"></a>**D114 — `$Writing` gets NO type parameter, ever.** ***Doug, verbatim: "NEVER restore WRITEING&lt;T&gt; - put a HUGE ban. No no no no. It would allow a letter of section to be created. We curate those carefully. We do not give allowance to all of them. NO. The chain is a convention. Okay?"***
 
-**Recorded as a decision rather than a note, because it is the thing a later session will re-propose.** *The audit finding it answers — that the step is written seven times and typed zero times — **is the intended state**, not a gap.* ***And v1's `$Writing<P extends $Writing>` in [`.archive`](../../package/.archive/writing/Writing.tsx) is the banned shape: being in the archive is not an argument for it.***
+**Recorded as a decision rather than a note, because it is the thing a later session will re-propose.** *The audit finding it answers — that the step is written seven times and typed zero times — **is the intended state**, not a gap.* ***And v1's `$Writing<P extends $Writing>` in `.archive` (v1, `.archive/writing/Writing.tsx`, deleted) is the banned shape: being in the archive is not an argument for it.***
 
 <a id="d115"></a>**D115 — the level computes; the type only guarantees that it can.** *Chosen over [R274](#r274)'s shape — a type handing back a description — which Doug proposed and withdrew in the same session.*
 
@@ -1022,11 +1022,11 @@ ASKED $Letter | carried [ [ '$TypeOfLetter', 'bound', false, 'object' ] ]
 
 | | |
 |---|---|
-| [`Document.tsx:31`](../../package/.archive/document/Document.tsx) | `$(<Section>{loose}</Section>)` — **written this session**, for the auto-wrap |
+| `Document.tsx:31` (v1, `.archive/document/Document.tsx`, deleted) | `$(<Section>{loose}</Section>)` — **written this session**, for the auto-wrap |
 | [`Section.tsx:25`](../../package/src/writing/Section.tsx) | `$(<Paragraph>{text}</Paragraph>)` — **written this session**, for text-as-one-paragraph |
 | [`Word.tsx:29`](../../package/src/writing/Word.tsx) | `$(<Letter>{segment}</Letter>)` — ***predates this session*** |
 
-***So the auto-wrap Doug ruled is correct and the way it is built is the fourth appearance waiting to happen.*** **v1's answer is the held reading** — [`$Writing.reading()`](../../package/.archive/writing/Writing.tsx), kept per instance against the writing it came from, in the draw path alone — *and [R264](28-the-block.md#r264)'s `interpret()` is the cleaner form of the same idea, planned and never landed.*
+***So the auto-wrap Doug ruled is correct and the way it is built is the fourth appearance waiting to happen.*** **v1's answer is the held reading** — `$Writing.reading()` (v1, `.archive/writing/Writing.tsx`, deleted), kept per instance against the writing it came from, in the draw path alone — *and [R264](28-the-block.md#r264)'s `interpret()` is the cleaner form of the same idea, planned and never landed.*
 
 ## <a id="scope-correction"></a>And [Solutions 14](../solutions/14-the-green-that-exercised-nothing.md) corrects this chapter's own reporting
 
@@ -1214,7 +1214,7 @@ return parser.parse(from,
 | **decorate** | `$QuotedSpecification` **holds** a paragraph's as `parent` | *no inheritance between them* |
 | **disable** | a rule **returns `false`** | *its neighbours are untouched* |
 
-**Both kinds live in [`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/.archive/writing/Paragraph.tsx)**, *typechecked and drawn.*
+**Both kinds live in `.spec/paragraph/DerivedSpec-Title.tsx` (v1, `.archive/writing/Paragraph.tsx`, deleted)**, *typechecked and drawn.*
 
 ## <a id="itemized"></a>The rules, itemized
 
@@ -1301,7 +1301,7 @@ return parser.parse(from,
 
 *Doug: **"prepare for references. You can tell them to read about v1 references and see that they are a mess. We are going to brainstorm and build a more unified abstraction for it."***
 
-***Measured, not asserted*** — **[`.archive/reference/`](../../package/.archive/reference/), 9 files, 323 lines:**
+***Measured, not asserted*** — **`.archive/reference/` (v1, `.archive/reference/`, deleted), 9 files, 323 lines:**
 
 | | lines | imports |
 |---|---|---|

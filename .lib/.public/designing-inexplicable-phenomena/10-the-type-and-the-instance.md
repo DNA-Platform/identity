@@ -70,7 +70,7 @@
 
 > *"TypeOfBook holds the meaning of book, so you don't have to derive from Book to have it."*
 
-***And that is not a claim — it is promised and drawn.*** **[`book.test`](../../package/src/tests/book.test.tsx): writing that never derived from `$Book` composes two chapters and answers as a book because it carries `<Type>Book</Type>`.** *The same shape stands as an example in [`.spec/book/WritingSpec.tsx`](../../package/.archive/book/Book.tsx).*
+***And that is not a claim — it is promised and drawn.*** **[`book.test`](../../package/.tests/book.test.tsx): writing that never derived from `$Book` composes two chapters and answers as a book because it carries `<Type>Book</Type>`.** *The same shape stands as an example in `.spec/book/WritingSpec.tsx` (v1, `.archive/book/Book.tsx`, deleted).*
 
 ***Where this sits among known patterns*** — **recalled rather than looked up, and flagged as such until verified:** *the closest named form is **Type Object** (Johnson & Woolf, PLoP 1997), which splits a class in two so new types can be made without subclassing; its neighbours are **Entity–Component–System**, the intrinsic/extrinsic split of **Flyweight**, and **traits or roles** in Scala, Rust and Raku.*
 
@@ -105,7 +105,7 @@
 | **3** | ***a new kind, type only*** — `$TypeOfTitle extends $TypeOfParagraph`, `[cache]('Title')`, a specification | ***one declaration and no class*** — *the kind is then written `<Type>Title</Type>`* |
 | **4** | ***a new kind with its own data*** — a class **and** a type | *two declarations, and only needed when the kind holds something a paragraph does not* |
 
-***Route 3 is the one the split buys*** — **a kind that is only a meaning.** *[`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/.archive/writing/Paragraph.tsx) declares two of them, `Title` by deriving a specification and `Quotation` by decorating one, and neither has a class of its own.*
+***Route 3 is the one the split buys*** — **a kind that is only a meaning.** *`.spec/paragraph/DerivedSpec-Title.tsx` (v1, `.archive/writing/Paragraph.tsx`, deleted) declares two of them, `Title` by deriving a specification and `Quotation` by decorating one, and neither has a class of its own.*
 
 ## <a id="corollaries"></a>The corollaries, measured rather than argued
 
@@ -125,7 +125,7 @@
 
 ## <a id="three-routes"></a>Three ways to change what a type means
 
-*All three are exercised in [`.spec/paragraph/DerivedSpec-Title.tsx`](../../package/.archive/writing/Paragraph.tsx), typechecked and drawn.*
+*All three are exercised in `.spec/paragraph/DerivedSpec-Title.tsx` (v1, `.archive/writing/Paragraph.tsx`, deleted), typechecked and drawn.*
 
 | | | |
 |---|---|---|
@@ -147,7 +147,7 @@
 
 ## <a id="specifically-two-verbs"></a>specifically has TWO VERBS — enforce, and augment to enforce
 
-*Doug, giving the second verb before there was code for it: **"I want specifically to be able to do things. It modify. To enforce. But also to augment to enforce."*** **The first built use: [`$TypeOfDocument.specifically`](../../package/.archive/document/Document.tsx) CREATES the references section on any writing being a document, then checks** — one seat serving the bond path, the carried type, and the `$$` bind, where a bond-time create had broken twenty-nine carried-type fixtures at once. ***And specifically now runs at CONSTRUCTION:*** the type setter dispatches — guarded to the type's own canonical form, because [the super-chain assigns intermediate types](../solutions/41-the-phrase-that-failed-as-a-word.md).
+*Doug, giving the second verb before there was code for it: **"I want specifically to be able to do things. It modify. To enforce. But also to augment to enforce."*** **The first built use: `$TypeOfDocument.specifically` (v1, `.archive/document/Document.tsx`, deleted) CREATES the references section on any writing being a document, then checks** — one seat serving the bond path, the carried type, and the `$$` bind, where a bond-time create had broken twenty-nine carried-type fixtures at once. ***And specifically now runs at CONSTRUCTION:*** the type setter dispatches — guarded to the type's own canonical form, because [the super-chain assigns intermediate types](../solutions/41-the-phrase-that-failed-as-a-word.md).
 
 ## <a id="the-fetch"></a>The `$`-fetch corollary — RULED 2026-09-03, and it is the DI seat
 

@@ -163,7 +163,7 @@
 | <a id="d69"></a>**D69** | ***The demo is a unit with its own identifier*** — [U138](#u138) — **and the drawing group does not close without it** | *a closing flourish.* [ce-review fails a demo described rather than shown](../../../../.claude/library/our-skillset/33-ce-review.md), and [one `$Title` drawn three ways](../the-condition-report/06-the-cleaning.md#the-test) is the first of the four things a count cannot fake |
 | <a id="d70"></a>**D70** | ***[R118](#r118) takes SIX English strings, not two.*** **Re-measured this session** — [N33](../the-condition-report/03-names.md#n33) counted `'Table of Contents'` and `'Open '`; four more stand: **`'by '` and `'in '` in [`Cover.byline`](../../package/src/book/Cover.tsx), `'previous'` and `'next'` in [`Book.turning`](../../package/src/book/Book.tsx)** | *taking the entry's count.* **Same fault, same fix, and the entry undercounted by four** — *recorded as a correction with the number on both sides, because [a tally kept beside the register it describes drifts](../the-condition-report/05-implementation.md#i6)* |
 | <a id="d71"></a>**D71** | ***[R117](#r117) delivers two flags of three, and the third is recorded as NOT A DUPLICATE.*** *`isCover` has exactly two sites — **Doug at the plan: "No isCover. You can answer that with an instanceof"** — and `$display` is provably dead* — **but `$strong` is composed as a boolean at [`Sentence.tsx:69`](../../package/src/writing/Sentence.tsx), `strong={open.length > 1}`, and the `**` that decided it is consumed by `stressed()` and discarded** | *forcing it, and also renaming it.* ***The entry's premise fails rather than the fix being hard*** — **nothing else in the system knows strong-ness, so the flag duplicates nothing** — and [S16's mentioned part](../the-condition-report/04-semantics.md#s16) is the answer Doug already ruled, so *anything built now is built to be deleted.* **Recorded as a correction to [S12](../the-condition-report/04-semantics.md#s12), standing for his objection** |
-| <a id="d72"></a>**D72** | ***`follow()` drops and `read()` takes it — Doug's ruling at the plan, and the evidence was already in the interface.*** **[`$Catalogue$` declares `read(): $Composition$<T>` and `follow(): $Composition$<T>`](../../package/src/reference/Catalogue.tsx) — the same signature, twice** — and [`$Book.read()`](../../package/src/book/Book.tsx) is `return this.follow()`. *A promise already asserts they agree:* **[`cataloguing.test.tsx:151`](../../package/tests/book/cataloguing.test.tsx)** | *finding `follow()` a home.* **The question was never where a static should live — it was that one question wore two names**, and [the report files that exact fault three times one altitude down](../the-condition-report/05-implementation.md#i9) |
+| <a id="d72"></a>**D72** | ***`follow()` drops and `read()` takes it — Doug's ruling at the plan, and the evidence was already in the interface.*** **[`$Catalogue$` declares `read(): $Composition$<T>` and `follow(): $Composition$<T>`](../../package/src/reference/Catalogue.tsx) — the same signature, twice** — and [`$Book.read()`](../../package/src/book/Book.tsx) is `return this.follow()`. *A promise already asserts they agree:* **[`cataloguing.test.tsx:151`](../../package/.tests/book/cataloguing.test.tsx)** | *finding `follow()` a home.* **The question was never where a static should live — it was that one question wore two names**, and [the report files that exact fault three times one altitude down](../the-condition-report/05-implementation.md#i9) |
 | <a id="d73"></a>**D73** | ***The trailing `$` goes from every abstraction — and the collision sweep is what licensed it.*** **The only bare `$Reference` and `$Catalogue` anywhere are in [`chemistry/package/src/implementation/`](../../../chemistry/package/src/implementation/), NEITHER IS EXPORTED, and `$Reference` appears ZERO times in every `.d.ts` in chemistry's `dist`** — *[which is C5's ruling confirmed from the other side](../the-condition-report/07-the-three-codebases.md#c5)* | *keeping it.* ***And there is a second argument the instruction did not have:*** **in `$Chemistry` the trailing `$` already means SYMBOL KEY** — `$template$`, `$parent$`, `$type$`, `$activeView$`, **38 uses of `$type$` alone** — *so `lib` spelling* interface *with the mark its own substrate spells* symbol key *is [one word carrying two meanings](../the-condition-report/03-names.md), across two packages that ship together* |
 | <a id="d74"></a>**D74** | ***The theme stops deciding what is drawn.*** **[`$Particle` carries `$show`/`$hide` universally](../../../chemistry/package/src/abstraction/particle.ts) with a registered render filter, shipped in [`chemistry.d.ts:346`](../../../chemistry/package/dist/) — so `lib` never needed a visibility member.** *Doug: **"showing / hiding parentheticals isn't part of a theme. Remove it. Hide parentheticals."*** | *renaming `draws()` to `reads()`, which is what [U129](#u129) planned.* ***The member does not get a better name — it stops existing***, and one owed word dissolves with it: *"whether unread matter is read"* |
 | <a id="d75"></a>**D75** | ***A property does not need a `$` to be reactive, and this was CHECKED rather than assumed.*** **[`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts): `if (!property.startsWith("$")) return true;` — a plain property is reactive BY DEFAULT**, `$x` is reactive by `isSpecial`, and [`@inert()`/`@reactive()`](../../../chemistry/.lib/reactivity/06-decorators.md) ship as the overrides | *my own assumption, which was backwards.* ***So in `lib` the `$` marks EXTRINSIC CONTEXT and not reactivity*** — **which makes [Doug's "don't make anything a prop unless it needs to be"](../the-condition-report/03-names.md#n2) free to obey: [`$Bookmark.$for` → `place`](#u126) loses the prop and keeps the reactivity.** *Doug, at the plan: "Parenthetical isn't a constant. And it doesn't need a `$` to be reactive. Check. It was fine as is"* || <a id="d76"></a>**D76** | ***A newline is a division said twice.*** **The division is `parts()`** — joining a reading with `
@@ -205,7 +205,7 @@
 |---|---|
 | [`Section.tsx`](../../package/src/writing/Section.tsx) | **5**, ***one of which is the file importing itself*** — `import * as sections from './Section'`, never used |
 | [`Word.tsx`](../../package/src/writing/Word.tsx) | 4 |
-| [`Letter.tsx`](../../package/src/writing/Letter.tsx) · [`Footer.tsx`](../../package/.archive/document/Footer.tsx) | 3 each |
+| [`Letter.tsx`](../../package/src/writing/Letter.tsx) · `Footer.tsx` (v1, `.archive/document/Footer.tsx`, deleted) | 3 each |
 
 *A dead import is small on its own and is evidence in bulk:* **it says the file was edited by adding rather than by reading.**
 
@@ -225,7 +225,7 @@
 
 > ***The third is a judgement and is flagged rather than assumed.*** **`lay(of, uniform)`'s `of` is an extension point** — a subclass may lay out differently *for a particular composition* — **so removing it narrows what a consumer can override.** *The unit removes the two that are dead and states the third as a question, because **a parameter a subclass could use is not the same as a parameter nothing passes**.*
 
-**Files.** `Writing.tsx` · `Book.tsx` · `Theme.tsx`, and `shown`'s call sites in `Writing.tsx` and [`Document.tsx`](../../package/.archive/document/Document.tsx). **Depends on** nothing.
+**Files.** `Writing.tsx` · `Book.tsx` · `Theme.tsx`, and `shown`'s call sites in `Writing.tsx` and `Document.tsx` (v1, `.archive/document/Document.tsx`, deleted). **Depends on** nothing.
 
 ### <a id="u112"></a>U112 — The card asks the book for its chapters · [R105](#r105)
 
@@ -261,11 +261,11 @@ $Link         inherits $Phrase's     once U114 re-parents it
 
 ***And the ruling carries its own diagnostic, which this unit runs:*** *"if a child doesn't call the parent `valid`, it suggests that perhaps IT IS NOT A SUBCLASS."* **Run against the package today it names [`$IndexCard`](../../package/src/reference/IndexCard.tsx) and [`$Bookmark`](../../package/src/book/Bookmark.tsx)** — ***which is [U114](#u114) reached by a second instrument, and the strongest evidence in the report that those two re-parents are real.***
 
-**Files.** [`Word.tsx`](../../package/src/writing/Word.tsx) · [`Phrase.tsx`](../../package/src/writing/Phrase.tsx) · [`Punctuation.tsx`](../../package/.archive/writing/Punctuation.tsx) · [`Writing.tsx`](../../package/src/writing/Writing.tsx) · [`Legend.tsx`](../../package/.archive/document/Legend.tsx), **and every `valid()` the diagnostic names.** *36 implementations exist in `src`; the unit reads all of them and changes the ones that repeal.*
+**Files.** [`Word.tsx`](../../package/src/writing/Word.tsx) · [`Phrase.tsx`](../../package/src/writing/Phrase.tsx) · `Punctuation.tsx` (v1, `.archive/writing/Punctuation.tsx`, deleted) · [`Writing.tsx`](../../package/src/writing/Writing.tsx) · `Legend.tsx` (v1, `.archive/document/Legend.tsx`, deleted), **and every `valid()` the diagnostic names.** *36 implementations exist in `src`; the unit reads all of them and changes the ones that repeal.*
 
 **Depends on** nothing. ***FORCED FIRST in its group by [D63](#d63).***
 
-**Numeric end:** ***reported as a LIST, not a count*** — **every `valid()` that still does not call `super` is named, with the reason.** *[`$Referent.valid()` is the floor](../../package/.archive/reference/Referent.tsx), so zero is not the right answer and pretending it is would hide the two classes the diagnostic exists to find.*
+**Numeric end:** ***reported as a LIST, not a count*** — **every `valid()` that still does not call `super` is named, with the reason.** *`$Referent.valid()` is the floor (v1, `.archive/reference/Referent.tsx`, deleted), so zero is not the right answer and pretending it is would hide the two classes the diagnostic exists to find.*
 
 ### <a id="u114"></a>U114 — Four re-parents · [R111](#r111)
 
@@ -273,12 +273,12 @@ $Link         inherits $Phrase's     once U114 re-parents it
 
 | | today | becomes | why |
 |---|---|---|---|
-| [`$Code`](../../package/.archive/writing/Code.tsx) | `extends $Figure` | ***`extends $Paragraph`*** | ***Doug: "Code is not a Figure… CODE IS WRITING."*** [S3](../the-condition-report/04-semantics.md#s3). **`$caption` leaves with the inheritance**, taking `caption={asFence[1].trim() \|\| 'code'}` — *a fence captioned with the literal word `code`* — out of [`Section.compose()`](../../package/src/writing/Section.tsx) |
-| [`$Link`](../../package/.archive/reference/Link.tsx) | `extends $Word` | ***`extends $Phrase`*** | ***Doug: "Links too should be phrasal."*** [S18](../the-condition-report/04-semantics.md#s18) — **every multi-word link is currently a `$Word` carrying whitespace, passing only because the subclass repeals its parent.** *A `$Phrase` is still a `$Word`, so links stay enumerable among a sentence's words* |
+| `$Code` (v1, `.archive/writing/Code.tsx`, deleted) | `extends $Figure` | ***`extends $Paragraph`*** | ***Doug: "Code is not a Figure… CODE IS WRITING."*** [S3](../the-condition-report/04-semantics.md#s3). **`$caption` leaves with the inheritance**, taking `caption={asFence[1].trim() \|\| 'code'}` — *a fence captioned with the literal word `code`* — out of [`Section.compose()`](../../package/src/writing/Section.tsx) |
+| `$Link` (v1, `.archive/reference/Link.tsx`, deleted) | `extends $Word` | ***`extends $Phrase`*** | ***Doug: "Links too should be phrasal."*** [S18](../the-condition-report/04-semantics.md#s18) — **every multi-word link is currently a `$Word` carrying whitespace, passing only because the subclass repeals its parent.** *A `$Phrase` is still a `$Word`, so links stay enumerable among a sentence's words* |
 | [`$IndexCard`](../../package/src/reference/IndexCard.tsx) | `extends $Writing` | ***off writing*** | **sixteen inherited members, zero used** — [S5](../the-condition-report/04-semantics.md#s5). *It extends `$Writing` for one constructor line: `this.inline = false`* |
 | [`$Bookmark`](../../package/src/book/Bookmark.tsx) | `extends $Sentence` | ***off writing*** | **it inherits the sentence parse and uses none of it** — [S6](../the-condition-report/04-semantics.md#s6). *Right folder by [the stated rule](04-the-member-audit.md), wrong parent* |
 
-***The two that leave writing need a destination, and it is [`$Referent`](../../package/.archive/reference/Referent.tsx)*** — **the base of the hierarchy, declaring `valid()`, which both already override outright.** *That is a move rather than a design: `$Referent` is a class, both already implement `$Reference$<T>` on their own, and neither reads a writing member.*
+***The two that leave writing need a destination, and it is `$Referent` (v1, `.archive/reference/Referent.tsx`, deleted)*** — **the base of the hierarchy, declaring `valid()`, which both already override outright.** *That is a move rather than a design: `$Referent` is a class, both already implement `$Reference$<T>` on their own, and neither reads a writing member.*
 
 **Files.** `Code.tsx` · `Figure.tsx` · `Link.tsx` · `IndexCard.tsx` · `Bookmark.tsx` · `Section.tsx` *(the fence caption)* · `index.ts`. **Depends on** [U113](#u113) — *`$Link` inherits `$Phrase`'s narrowing, which does not exist until the template does.*
 
@@ -302,7 +302,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 ***And the discipline that governs how it pays is [S20](../the-condition-report/04-semantics.md#s20)'s:*** **`$of` is not in any interface.** *[`$Reference$`](../../package/src/reference/Reference.tsx) requires `copy`, `parenthetical`, `read()` and `then()`; the field that answers `read()` is the class's own business.* ***Ask what a class OWES, then ask how it pays.***
 
-**Files.** [`Book.tsx`](../../package/src/book/Book.tsx) — ***`$$Book` lives beside `$Book`, [as ruled](../the-condition-report/04-semantics.md#s19)*** — · [`IndexCard.tsx`](../../package/src/reference/IndexCard.tsx) · [`CardCatalogue.tsx`](../../package/.archive/reference/CardCatalogue.tsx), which **satisfies `$Catalogue$<$Book>` in the same act** *([S9](../the-condition-report/04-semantics.md#s9), and [chapter zero specified it that way eleven weeks ago](00-planning.md))* · `index.ts` · the generated `$Card` in [`build/catalogue.ts`](../../build/stages/catalogue.ts).
+**Files.** [`Book.tsx`](../../package/src/book/Book.tsx) — ***`$$Book` lives beside `$Book`, [as ruled](../the-condition-report/04-semantics.md#s19)*** — · [`IndexCard.tsx`](../../package/src/reference/IndexCard.tsx) · `CardCatalogue.tsx` (v1, `.archive/reference/CardCatalogue.tsx`, deleted), which **satisfies `$Catalogue$<$Book>` in the same act** *([S9](../the-condition-report/04-semantics.md#s9), and [chapter zero specified it that way eleven weeks ago](00-planning.md))* · `index.ts` · the generated `$Card` in [`build/catalogue.ts`](../../build/stages/catalogue.ts).
 
 **Depends on** [U113](#u113). ***FORCED BEFORE [U117](#u117) by [D64](#d64).***
 
@@ -337,7 +337,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 **Mechanism.** ***Doug's, ruled 2026-08-22:*** *"You can make a base class called an **`$Annotation`** and have all three come from that. An annotation would probably be at the `$Phrase` level… **Figure out how to implement that based on the library card they have access to.**"*
 
-**Measured: [`$Author`](../../package/src/book/Author.tsx), [`$Subject`](../../package/src/book/Subject.tsx) and [`$Canonical`](../../package/.archive/book/Canonical.tsx) are byte-identical under name substitution** — *every member, and the only differences are the class name and one word inside an error string.* **[Datable to one commit](../the-condition-report/01-how-to-read-this.md#the-rushes): `b91944e`, 2026-08-10.** ***Not three classes designed alike — one class copied twice in a sitting.***
+**Measured: [`$Author`](../../package/src/book/Author.tsx), [`$Subject`](../../package/src/book/Subject.tsx) and `$Canonical` (v1, `.archive/book/Canonical.tsx`, deleted) are byte-identical under name substitution** — *every member, and the only differences are the class name and one word inside an error string.* **[Datable to one commit](../the-condition-report/01-how-to-read-this.md#the-rushes): `b91944e`, 2026-08-10.** ***Not three classes designed alike — one class copied twice in a sitting.***
 
 **The three rules, and each is one compute and one comparison that opens no book:**
 
@@ -365,9 +365,9 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 |---|---|---|
 | [I6](../the-condition-report/05-implementation.md#i6) | ***the book's invariants*** — six errors thrown from the bond constructor at `Book.tsx:203-213`, the same six stated as `$valid` calls at `304-320` | **one statement, two readers.** ***The drift is already visible*** — the constructor says *"one whose reference comes home"*, `valid()` says *"and this one accounts only for other books"* |
 | [I7](../the-condition-report/05-implementation.md#i7) | ***`title`*** — three answers, one reimplementing half of `canonical` inline | **[`$TableOfContents`](../../package/src/book/TableOfContents.tsx) delegates to `canonical`** instead of copying one of its three clauses and dropping the other two |
-| [I8](../the-condition-report/05-implementation.md#i8) | ***"what document am I in"*** — a bounded careful walk that throws with a reason, and a bare cast | **[`$Section`](../../package/src/writing/Section.tsx) adopts [`$Denote`](../../package/.archive/document/Denote.tsx)'s walk**, which was written for exactly this and has been sitting two files away |
+| [I8](../the-condition-report/05-implementation.md#i8) | ***"what document am I in"*** — a bounded careful walk that throws with a reason, and a bare cast | **[`$Section`](../../package/src/writing/Section.tsx) adopts `$Denote` (v1, `.archive/document/Denote.tsx`, deleted)'s walk**, which was written for exactly this and has been sitting two files away |
 | [I9](../the-condition-report/05-implementation.md#i9) · [N32](../the-condition-report/03-names.md#n32) | ***`canonical`/`ref`, and `contents`/`tableOfContents`*** — one member under two names, twice | **one member each** — ***and it says that a book's reference IS its canonical***, a theorem rather than a coincidence it satisfies twice |
-| [S7](../the-condition-report/04-semantics.md#s7) | ***`copy` and parenthetical matter*** — the two ends skip it, the middle includes it, and nothing says why | **[`$Document`](../../package/.archive/document/Document.tsx) joins the specification [the settled account states once](../the-semantics-of-books/15-the-levels-of-writing.md)** |
+| [S7](../the-condition-report/04-semantics.md#s7) | ***`copy` and parenthetical matter*** — the two ends skip it, the middle includes it, and nothing says why | **`$Document` (v1, `.archive/document/Document.tsx`, deleted) joins the specification [the settled account states once](../the-semantics-of-books/15-the-levels-of-writing.md)** |
 | [S13](../the-condition-report/04-semantics.md#s13) | ***`letters`*** — a sentence splits `copy` into graphemes; every other level flatMaps its words | **`$Sentence.letters` joins the chain the other four use** |
 | [I15](../the-condition-report/05-implementation.md#i15) · part | ***two `try`/`catch` blocks make an invariant conditional*** | **`$Cover` and `$TableOfContents` state their own specification** instead of catching their parent's and rethrowing sometimes. ***An invariant with a `catch` around it is not an invariant.*** **The other seven catches are MONITORED and not touched** |
 
@@ -439,7 +439,7 @@ follow(): $Composition$<T>;
 
 ***The `$$` case is the one worth stating:*** **`$$Paragraph.read()` returns a `$Paragraph`, and a `$Paragraph` already IS a `$Composition$<$Sentence>`.** *So the real object answers what the synthetic reading was built to answer, and `follow()` constructs a fake composition standing next to a real one.*
 
-***And a promise already asserts the duplication.*** **[`cataloguing.test.tsx:151`](../../package/tests/book/cataloguing.test.tsx) checks `shelf.read().parts()` on the line after checking `shelf.follow().parts()`, and expects the same answer.**
+***And a promise already asserts the duplication.*** **[`cataloguing.test.tsx:151`](../../package/.tests/book/cataloguing.test.tsx) checks `shelf.read().parts()` on the line after checking `shelf.follow().parts()`, and expects the same answer.**
 
 > ***The contents is the one that changes, and the library already ruled it.*** **[S19](../the-condition-report/04-semantics.md#s19): *"`$TableOfContents` — NOT a reference form of a book — a catalogue of CHAPTERS, because it holds chapter references."*** *So its `read()` answers its listed chapters and stops returning the book.*
 >
@@ -513,7 +513,7 @@ declare module 'styled-components' {
 
 - ***The five classes that skip the drawing template join it*** — `$Figure` · `$Legend` · `$Denote` · `$Document` · `$TableOfContents` override `view()` outright and never reach `gathered()`/`set()`. *`$Document` re-implements `gathered` inline, twelve lines below the one it inherits.* **[`$Book`'s override is D49 and correct](19-the-binding.md#d49)** — *a book is in charge of its own reading environment* — **and stays.**
 - ***`named()` dissolves into `set()`*** — [a second, undeclared drawing entry point](../the-condition-report/05-implementation.md#i1) on the three annotations, called only from `$Cover.byline` while their own `set()` returns `null`. ***So a subclass overriding `set()` on an author changes nothing on screen today.***
-- ***The hex branch goes*** — `background: theme.ground === '#ffffff' ? '#f6f7f9' : theme.rule` at [`Code.tsx:25`](../../package/.archive/writing/Code.tsx). **This breaks [D40](18-the-theme.md#d40) exactly**: *a theme's values are OPAQUE to the framework*, and **a theme answering `var(--ink)` takes the wrong side of that ternary silently.**
+- ***The hex branch goes*** — `background: theme.ground === '#ffffff' ? '#f6f7f9' : theme.rule` at `Code.tsx:25` (v1, `.archive/writing/Code.tsx`, deleted). **This breaks [D40](18-the-theme.md#d40) exactly**: *a theme's values are OPAQUE to the framework*, and **a theme answering `var(--ink)` takes the wrong side of that ternary silently.**
 - ***[`Row`](../../package/src/book/TableOfContents.tsx) is a DELETION, not a rename*** — [N13](../the-condition-report/03-names.md#n13): **[B1 already ruled it](19-the-binding.md#the-board), a reference draws its own row.**
 
 **Files.** ***19 files carrying 33 style objects, counted this session:*** `Author` **2** · `Canonical` **2** · `Subject` **2** · `Synopsis` **5** · `Document` **1** · `Footer` **2** · `Footnote` **1** · `Legend` **3** · `Highlight` **1** · `Link` **1** · `Code` **1** · `Emphasis` **2** · `Figure` **2** · `Formula` **1** · `Section` **1** · `Snippet` **1** · `Subtitle` **1** · `Tagline` **1** · `Title` **3**.
@@ -530,7 +530,7 @@ declare module 'styled-components' {
 
 | | today | verified this session | becomes |
 |---|---|---|---|
-| ***`$Cover.isCover`*** | a `readonly` boolean | ***exactly two sites*** — the declaration, and [`Title.opening`'s eight-step walk](../../package/.archive/writing/Title.tsx) | **`instanceof $Cover`**, ***which deletes the walk with it*** |
+| ***`$Cover.isCover`*** | a `readonly` boolean | ***exactly two sites*** — the declaration, and `Title.opening`'s eight-step walk (v1, `.archive/writing/Title.tsx`, deleted) | **`instanceof $Cover`**, ***which deletes the walk with it*** |
 | ***`$Formula.$display`*** | a prop | ***DEAD*** — **nothing in `lib`, the demonstration, the application or the corpus sets it.** *The only other `$display` is [the demonstration's own `latex.tsx`](../../.archive/app/src/sections/page/latex.tsx), a different class* | **deleted**, *and both display branches of `set()` go with it because they are unreachable* |
 | ***`$Emphasis.$strong`*** | a boolean prop | ***composed at [`Sentence.tsx:69`](../../package/src/writing/Sentence.tsx) — `strong={open.length > 1}` — and the `**` that decided it is consumed by `stressed()` and discarded*** | ***STAYS*** — *[D71](#d71)* |
 
@@ -575,7 +575,7 @@ declare module 'styled-components' {
 |---|---|---|---|
 | `$Denote` · `$Footnote` · `$Citation` · `$Cite` | ***`$key`*** | **yes** | *a person writes `<Footnote for="arrow">` today, and it is a **key**, a string* |
 | [`$Bookmark`](../../package/src/book/Bookmark.tsx) | ***`place`*** | ***NO*** | ***nothing authors a bookmark*** — `left.$for = where`, in code, never JSX |
-| [`$Highlight`](../../package/.archive/reference/Highlight.tsx) | ***`$from` / `$to`*** | yes | *and it takes [`$first`](../the-condition-report/03-names.md#n3) with it — **a path's `$first` is a step**, which is what the word means. Both are typed `number \| string` because props arrive from JSX as strings, **the only place in the package that admits that in a type*** |
+| `$Highlight` (v1, `.archive/reference/Highlight.tsx`, deleted) | ***`$from` / `$to`*** | yes | *and it takes [`$first`](../the-condition-report/03-names.md#n3) with it — **a path's `$first` is a step**, which is what the word means. Both are typed `number \| string` because props arrive from JSX as strings, **the only place in the package that admits that in a type*** |
 | ***the annotations*** | ***the card*** | ***— and that is [U127](#u127)*** | |
 
 ***And the discipline underneath is [S20](../the-condition-report/04-semantics.md#s20)'s: the collision is not in the interface.*** **[`$Reference$`](../../package/src/reference/Reference.tsx) asks for `read()` and `then()` and for NO FIELD AT ALL — every one of these already satisfies it.** *The fault is that three classes named their backing field the same, and the payments differ.*
@@ -592,7 +592,7 @@ declare module 'styled-components' {
 
 **Today [`emit.ts`](../../build/stages/emit.ts) inserts `for={theTeam}` into an element a person authored** — `edits.push({ at: open.getEnd() - 1, …, text: ' for={' + card + '}' })` — ***precisely because the annotation cannot find its own card.***
 
-***The route that removes the prop needs no new mechanism:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md).* **[`$CardCatalogue.file(key, keyword, card)` and `find(query)`](../../package/.archive/reference/CardCatalogue.tsx) already exist for exactly a lookup by name.**
+***The route that removes the prop needs no new mechanism:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md).* **`$CardCatalogue.file(key, keyword, card)` and `find(query)` (v1, `.archive/reference/CardCatalogue.tsx`, deleted) already exist for exactly a lookup by name.**
 
 ***And they are the same two members [I14](../the-condition-report/05-implementation.md#i14) calls a string micro-language, so the two entries are ONE piece of work.*** **`find(query)` splits a colon-separated string at call time and throws when it misses, while `file(key, keyword, card)` directly above it takes the two halves as parameters.** *The class knows the shape and asks a caller to spell it.*
 
@@ -828,7 +828,7 @@ build/
 | goes | and its readers stop asking |
 |---|---|
 | **`$Theme.$reads`** and `get reads()` | — |
-| **`$Theme.draws(part)`** | [`$Book.reading`](../../package/src/book/Book.tsx) · [`$Section.view()`](../../package/src/writing/Section.tsx) · [`$Document.view()`](../../package/.archive/document/Document.tsx) |
+| **`$Theme.draws(part)`** | [`$Book.reading`](../../package/src/book/Book.tsx) · [`$Section.view()`](../../package/src/writing/Section.tsx) · `$Document.view()` (v1, `.archive/document/Document.tsx`, deleted) |
 
 ***A parenthetical thing hides itself.*** **`$parenthetical === false` means visible** — *Doug's own correction at the plan* — **so the polarity is already right and nothing is inverted.**
 
@@ -836,7 +836,7 @@ build/
 
 ***This CANCELS a rename.*** **[U129](#u129) was going to turn `draws` into `reads`; the member does not get a better name, it goes.**
 
-**Files.** `Theme.tsx` · `Book.tsx` · `Section.tsx` · `Document.tsx` · [`theme.test.tsx`](../../package/tests/writing/theme.test.tsx). **Depends on** [U122](#u122), [U123](#u123).
+**Files.** `Theme.tsx` · `Book.tsx` · `Section.tsx` · `Document.tsx` · [`theme.test.tsx`](../../package/.tests/writing/theme.test.tsx). **Depends on** [U122](#u122), [U123](#u123).
 
 **Numeric end:** ***visibility members in `lib` → 2 → 0*** · **the framework draws the same page**, *and where it does not, the difference is a parenthetical that used to be revealed by a theme flag and is now revealed by `$show` on the instance.*
 
@@ -1174,7 +1174,7 @@ read(parts)  =  { c.read() | c in chapters }
 
 ### <a id="the-trailing-dollar"></a>`$X$` — ***gone from `lib` entirely***
 
-**`lib` is at ZERO.** *The whole framework contains one trailing-`$` identifier — `$apply$` — and it is [inside a comment](../../package/.archive/document/Denote.tsx) citing `$Chemistry`, not code.* **[U139](#u139) finished the job it was given.**
+**`lib` is at ZERO.** *The whole framework contains one trailing-`$` identifier — `$apply$` — and it is inside a comment (v1, `.archive/document/Denote.tsx`, deleted) citing `$Chemistry`, not code.* **[U139](#u139) finished the job it was given.**
 
 > ***`$CHEMISTRY` THE PACKAGE IS OUT OF SCOPE AND IS NOT TO BE CHANGED OR PROPOSED AGAINST.*** **Doug, twice and then a third time: *"DONT CHANGE CHEMISTRY FRAMEWORK!!! Stop recommending changes from chemistry the actual package."*** *Anything this sprint noticed there is struck rather than filed, because [a filed entry is a proposal that comes back](../the-condition-report/06-the-cleaning.md#dispositions).* **The package is read to understand what `lib` is built on and for no other reason.**
 

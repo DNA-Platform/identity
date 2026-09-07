@@ -134,7 +134,7 @@ $Section(block: $Block) {
 
 **P38 · A WAIVER IS `return false`, AND IT IS STILL A RULE.** *So it still carries `@specify`, in the library's own words.*
 
-**P39 · EVERY MODULE MUST LOAD FIRST, STANDALONE.** ***Doug:*** *"I don't want any weird module loadings or weird solutions to get things in different files. We deal with problems by looking at the design! Not patching."* **[`loading.test.tsx`](../../package/src/tests/loading.test.tsx) imports each module into a fresh graph** — *and it caught the fatal one the moment `Writing.tsx` reached for an anchor, which is what sent `$Theme` out of writing.*
+**P39 · EVERY MODULE MUST LOAD FIRST, STANDALONE.** ***Doug:*** *"I don't want any weird module loadings or weird solutions to get things in different files. We deal with problems by looking at the design! Not patching."* **[`loading.test.tsx`](../../package/.tests/loading.test.tsx) imports each module into a fresh graph** — *and it caught the fatal one the moment `Writing.tsx` reached for an anchor, which is what sent `$Theme` out of writing.*
 
 ---
 

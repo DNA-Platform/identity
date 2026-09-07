@@ -332,7 +332,7 @@ export interface $Composition$<T extends $Writing> {
 
 **Two faults in one statement.** *The cast tells the compiler it is a block **before** the runtime check runs, so the check cannot fail at the type level and the cast lies at the value level. And `writing[0]` of a rest array checks one element of a variadic and ignores the rest.*
 
-***Fixed where it stood*** — the bond declares `(block: $Html<'block'>)` and checks that parameter, with no cast and no index. **The stack keeps it because the same shape is in `.archive`**: [`$Writing.$Writing`](../../package/.archive/writing/Writing.tsx) does `$check((block(first) ? first : undefined) as $Html<'block'>, 'block')` — the identical cast, in the version that ships.
+***Fixed where it stood*** — the bond declares `(block: $Html<'block'>)` and checks that parameter, with no cast and no index. **The stack keeps it because the same shape is in `.archive`**: `$Writing.$Writing` (v1, `.archive/writing/Writing.tsx`, deleted) does `$check((block(first) ? first : undefined) as $Html<'block'>, 'block')` — the identical cast, in the version that ships.
 
 ***And the standing instruction it came with:*** *"I need you to detect when code you write is too awful and bubble it up so we fix."* **A green gate does not catch a lying cast, and Doug should not be the detector.**
 
@@ -352,7 +352,7 @@ export interface $Composition$<T extends $Writing> {
 
 ### the original entry
 
-[`validity.test.tsx`](../../package/tests/book/validity.test.tsx)'s *"outside one they do not judge"* and *"the three no longer answer alike"*. **They assert a verdict the throw stops reaching**, so rewriting them changes what v1 promises rather than how a test says it.
+[`validity.test.tsx`](../../package/.tests/book/validity.test.tsx)'s *"outside one they do not judge"* and *"the three no longer answer alike"*. **They assert a verdict the throw stops reaching**, so rewriting them changes what v1 promises rather than how a test says it.
 
 ## <a id="s5"></a>S5 — WITHDRAWN as far away
 

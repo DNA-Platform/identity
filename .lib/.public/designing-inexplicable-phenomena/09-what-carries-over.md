@@ -11,7 +11,7 @@
 
 | | files | lines | classes | published |
 |---|---|---|---|---|
-| **v1** — [`.archive/`](../../package/.archive/), still shipping | **51** | **3,498** | **46** | **54 export lines** |
+| **v1** — `.archive/` (v1, `.archive/`, deleted), still shipping | **51** | **3,498** | **46** | **54 export lines** |
 | **v2** — [`src/`](../../package/src/) | **16** | **491** | **23** | ***nothing*** |
 
 **Eleven of the twenty-three v2 classes are `$TypeOfX`**, so the substantive count is **twelve**. *v1's arms: `writing/` 1,437 lines · `book/` 1,207 · `document/` 459 · `reference/` 323 · `utilities/` 18.*
@@ -74,10 +74,10 @@ view()  =  set( gathered(theme), theme )
 
 | where | what it does |
 |---|---|
-| [`$Section.divide` / `compose`](../../package/.archive/writing/Section.tsx) | runs marked's lexer, pulls fences whole, cuts at headings, makes a `$Title` · `$Figure` · `$Code` · quoted or marked `$Paragraph` |
-| [`$Paragraph.stops`](../../package/.archive/writing/Paragraph.tsx) | splits at sentence stops, **stepping over code spans and link targets** |
-| [`$Sentence.wordFor` / `stressed`](../../package/.archive/writing/Sentence.tsx) | one regular expression pulls links, mathematics, code spans and emphasis **whole** before anything is split |
-| [`$Word.letterFor`](../../package/.archive/writing/Word.tsx) | graphemes |
+| `$Section.divide` / `compose` (v1, `.archive/writing/Section.tsx`, deleted) | runs marked's lexer, pulls fences whole, cuts at headings, makes a `$Title` · `$Figure` · `$Code` · quoted or marked `$Paragraph` |
+| `$Paragraph.stops` (v1, `.archive/writing/Paragraph.tsx`, deleted) | splits at sentence stops, **stepping over code spans and link targets** |
+| `$Sentence.wordFor` / `stressed` (v1, `.archive/writing/Sentence.tsx`, deleted) | one regular expression pulls links, mathematics, code spans and emphasis **whole** before anything is split |
+| `$Word.letterFor` (v1, `.archive/writing/Word.tsx`, deleted) | graphemes |
 
 ***All of it is portable, minus one line.*** **Each of them writes `part.parent = this` while reading**, and [the settled account blames that line by name](../the-semantics-of-books/15-the-levels-of-writing.md): *"While the parse wrote, threading a parent looped the page."* **Take the algorithm; leave the write.**
 

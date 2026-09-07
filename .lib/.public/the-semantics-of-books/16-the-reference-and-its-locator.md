@@ -189,7 +189,7 @@
 
 ***The three smallest files are the ones the theory says are load-bearing.*** **Read against this chapter, four specific divergences stand out — and none of them is carelessness; each was a reasonable local decision:**
 
-| what the source settles | what [`.archive/reference/`](../../package/.archive/reference/) has |
+| what the source settles | what `.archive/reference/` (v1, `.archive/reference/`, deleted) has |
 |---|---|
 | **a reference is a name and a locator** | ***`$Reference` has neither*** — `copy`, `parenthetical`, `read()`, `follow()` |
 | **arrows are graded up / down / across** | ***no grade anywhere*** — every reference is the same kind of pointing |
@@ -210,11 +210,48 @@ export interface $Referent$ extends $Chemical { }
 
 ---
 
+# <a id="the-mention"></a>THE IDENTIFICATION CAN STAND ALONE, and it is called a mention — settled 2026-09-07
+
+***[Q1](#q1) is answered, by a ruling and by a measurement, and the answer is that the anatomy above is REAL rather than analytic.*** **The two halves are separable, and the library already had one of them standing on its own without a name for what it was.**
+
+**Doug, given after three promises went red at once:** ***"they are just a piece of writing that means the thing. No need for them to be a reference which takes Path."***
+
+| | | |
+|---|---|---|
+| ***a mention*** | **writing that MEANS the thing** | *the identification, alone* |
+| **a path** | where the thing is | *the locator, alone* |
+| **a reference** | ***both*** | *the composition — and `ibid.` is the same subtraction from the other side* |
+
+***And the code was already building it that way and refusing to admit it.*** **Measured on a catalogue's own part:** `[$Sentence, $Path, $TypeOfReference]` — *the writing it stands for, its position, and the type that says it points.* **A reference IS identification plus locator, in the object, at runtime.**
+
+## <a id="the-refusal"></a>What it cost to have them confused — one fault wearing three faces
+
+***Every `$TypeOf$X` mention type extended `$TypeOfReference`, so every mention inherited `ReferenceSpecification` — including `a reference carries a path`.*** **A mention has no path and never could.** *Measured under the raise, on the suite's own fixtures:*
+
+```
+check $Reference  paths=1 text="#0"        block=["#0", $TypeOfReference, $Path]      OK
+check $$Word      paths=0 text="Chemistry" block=[$Word, $TypeOfWord, $TypeOf$Word]   REFUSED
+```
+
+**Three red promises — a missing `href`, an empty list of anchors, a missing region — were that one refusal seen from three places**, *because a book whose construction aborts draws an exception panel, and a panel has neither anchors nor regions.*
+
+> ***THE GENERAL SHAPE, and it is the reusable part:*** **a stand-in inherits the rules written for the thing it stands for, and cannot satisfy them.** *The unification had already been noticed by whoever wrote `$TypeOf$X extends $TypeOfReference` — **the instinct was right and the direction was backwards.** A mention is not a kind of reference; a reference is a mention that also knows where.*
+
+## <a id="the-catalogue"></a>And the catalogue is the same object, doing the other job
+
+***Doug, on the same day:*** **"It's either a composition or annotation. It extends composition if not annotation"** *and* ***"someone else could return different things for those two. We have them as the same. They aren't bound together."***
+
+**So a mention is a `$Composition`, it IS a `$Catalogue`, and `catalogue()` answers it** — *two questions kept separate, one object answering both here, and another piece of writing free to answer them differently.* ***`parts()` catalogues what the writing REFERS TO, never itself.***
+
+***The regress this opens is closed by nullability rather than by self-reference.*** **Doug: *"Set mention to nullable. Nothing mentions a mention. It's not in the document anyways."*** *Measured before the ruling: a mention's own `mention` is `undefined`, so descending twice filled a catalogue with holes.* **A mention meaning itself would have terminated it too, and was refused — *"I love self-reference. I don't like the switch."***
+
+---
+
 # <a id="open"></a>What is open — the questions, not the answers
 
 *Each of these is a real fork with two defensible sides, and each is Doug's. **I have deliberately not chosen***, because [a plan that decides on a reading of a contradiction is how a word gets replaced a third time](../projection/29-the-bind.md#r352).
 
-<a id="q1"></a>**Q1 — is a reference COMPOSED of a name and a locator, or is pointing the primitive it specializes from?** *The source composes it; [chapter 03](03-inheritance-and-composition.md) makes pointing the general act.* **The first gives a reference parts and therefore a parse; the second gives it none.**
+<a id="q1"></a>**Q1 — ANSWERED 2026-09-07, [above](#the-mention): a reference is COMPOSED, and the identification half stands alone as a mention.** *The original question, kept because the fork was real:* **is a reference composed of a name and a locator, or is pointing the primitive it specializes from?** *The source composes it; [chapter 03](03-inheritance-and-composition.md) makes pointing the general act.* **The first gives a reference parts and therefore a parse; the second gives it none.**
 
 <a id="q2"></a>**Q2 — what is a locator, in a library with no addresses?** ***Sprint 47 ruled out the string outright*** — *"no addresses in the model — a string address serializes a reference and the abstraction wasn't made to serialize"* — **and the register still records the string as built.** *If a locator is not a string and not a held object, the third thing has not been named.*
 

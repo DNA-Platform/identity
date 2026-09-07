@@ -798,9 +798,9 @@
 
 ## <a id="the-loop-it-found"></a>What building it found — a live loop, and its root
 
-***`verify-library` went to `Maximum update depth exceeded`.*** **The card was innocent** — *probed: it declares its writing once and `parts()` is stable.* **The root is that [`$Document.title` CONSTRUCTS a fresh `$Title` chemical on every read](../../package/.archive/document/Document.tsx)**, *and the application had just started reading `card.title` inside its view.* ***A view that constructs a chemical never returns — [which is already filed](21-semantics-then-drawing.md#what-the-demo-found) — and here it looped.***
+***`verify-library` went to `Maximum update depth exceeded`.*** **The card was innocent** — *probed: it declares its writing once and `parts()` is stable.* **The root is that `$Document.title` CONSTRUCTS a fresh `$Title` chemical on every read (v1, `.archive/document/Document.tsx`, deleted)**, *and the application had just started reading `card.title` inside its view.* ***A view that constructs a chemical never returns — [which is already filed](21-semantics-then-drawing.md#what-the-demo-found) — and here it looped.***
 
-**The application reads `canonical?.heading` now, a string that constructs nothing.** ***The root remains: [`$Document.title`](../../package/.archive/document/Document.tsx) and [`$Figure.caption`](../../package/.archive/writing/Figure.tsx) both build on every read, with nothing saying so at either.***
+**The application reads `canonical?.heading` now, a string that constructs nothing.** ***The root remains: `$Document.title` (v1, `.archive/document/Document.tsx`, deleted) and `$Figure.caption` (v1, `.archive/writing/Figure.tsx`, deleted) both build on every read, with nothing saying so at either.***
 
 > ***COMPOUNDED into [The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md#a-getter-is-a-reading-too), as its THIRD appearance*** — **not a new chapter, because that chapter's specification already covers it**: *a reading called during a render must be held.* **What this appearance adds is which things are readings** — *`parts()` announced itself as one; `title` does not, which is why it survived three sprints and two appearances.*
 

@@ -19,7 +19,7 @@
 | **declarations outside the template** | *unmeasured* | **1** — [`Routed`](#q5), and it is the one I could not place |
 | **modules that load standalone** | *unmeasured* | **38 of 38**, each proved by its own promise |
 
-***The last row is a new promise and it exists because this design can fail silently.*** **[`tests/loading.test.tsx`](../../package/src/tests/loading.test.tsx) imports each module first into a fresh graph** — *a class extending a half-built base throws there rather than in a consumer's application, which is how the same fault was found twice by accident before.*
+***The last row is a new promise and it exists because this design can fail silently.*** **[`tests/loading.test.tsx`](../../package/.tests/loading.test.tsx) imports each module first into a fresh graph** — *a class extending a half-built base throws there rather than in a consumer's application, which is how the same fault was found twice by accident before.*
 
 ## <a id="template"></a>The template every file was checked against
 
@@ -310,6 +310,6 @@ vitest run                            78 passed (78), 5 files
 2. **[The v2.2 Checklist](48-the-v2-2-checklist.md)** — the checks every file is put through, and the semantic findings still owed.
 3. **[The Wikipedia Fit](../designing-inexplicable-phenomena/18-the-wikipedia-fit.md)** — the licence wall, the infobox mapping, and the two kinds with no default style at all.
 4. **[`src/writing/Writing.tsx`](../../package/src/writing/Writing.tsx)** — the base vocabulary; every other file is this shape.
-5. **[`src/tests/loading.test.tsx`](../../package/src/tests/loading.test.tsx)** — the detector that catches a fatal module cycle the moment it appears.
+5. **[`src/tests/loading.test.tsx`](../../package/.tests/loading.test.tsx)** — the detector that catches a fatal module cycle the moment it appears.
 
 *A starting point, not a boundary.*

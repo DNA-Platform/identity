@@ -63,7 +63,7 @@ filed(): [string, string][] {          // PLURAL by type
 }
 ```
 
-**And [`$CardCatalogue`](../../package/.archive/reference/CardCatalogue.tsx) was built to consume many:** *`for (const [key, keyword] of card.filed()) this.file(key, keyword, card)`, filing into a two-level `Record<key, Record<keyword, card>>`.* ***So the card could be filed several ways, the catalogue could hold several filings, and one was ever written.*** **The many-paths idea is not new work — it is the capability v1 declared and never reached.**
+**And `$CardCatalogue` (v1, `.archive/reference/CardCatalogue.tsx`, deleted) was built to consume many:** *`for (const [key, keyword] of card.filed()) this.file(key, keyword, card)`, filing into a two-level `Record<key, Record<keyword, card>>`.* ***So the card could be filed several ways, the catalogue could hold several filings, and one was ever written.*** **The many-paths idea is not new work — it is the capability v1 declared and never reached.**
 
 ***The shape, in the library's own terms:*** **a card is a composition of references whose canonical is part zero** — *which is not a new mechanism but [the rule the whole model already runs on](../the-semantics-of-books/02-composition.md), pointed at references instead of at writing.* **And it is what a card catalogue literally is**: *one work filed under author, title and subject.*
 
@@ -349,7 +349,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 <a id="u6"></a>### U6 — `$Reference`, stubbed
 
 **Mechanism:** *a kind of [`$Annotation`](../../package/src/writing/Writing.tsx) carrying a path, with its own type whose specification requires one* — **[R2](#r2), and the same shape as [the annotation check that already runs](29-the-bind.md).**
-**Files:** ***one file for the WORD `reference`***, holding its three faces — *the data, the law, and the meaning* — **which is [the unit rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md#a-word-is-not-a-class) and not three files.** *Plus [`reference/Referent.tsx`](../../package/.archive/reference/Referent.tsx), the empty interface [listed for deletion](29-the-bind.md#r340): this sprint is when that lands or it is kept deliberately.*
+**Files:** ***one file for the WORD `reference`***, holding its three faces — *the data, the law, and the meaning* — **which is [the unit rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md#a-word-is-not-a-class) and not three files.** *Plus `reference/Referent.tsx` (v1, `.archive/reference/Referent.tsx`, deleted), the empty interface [listed for deletion](29-the-bind.md#r340): this sprint is when that lands or it is kept deliberately.*
 **And it must pass the vocabulary test:** *"if a file cannot be named with a word from the vocabulary, it does not belong in `lib`"* — **`reference` passes; `path` needs Doug's word**, *since it is his (["a `$Path` path"](#the-brief)) but is not yet a word of the book domain the way title and chapter are.*
 **Depends on:** [U3](#u3).
 **Realizes:** [R1](#r1), [R2](#r2).
@@ -425,7 +425,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 | [`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx) | ***line 45 assigns the index***, and [U2](#u2)/[U4](#u4) build on it | **it is [the cleanup's own worked example](../designing-inexplicable-phenomena/12-the-closeness-rule.md#brevity) for rewriting a housekeeping loop** — *and that is the one layout rule that can change behaviour, since a loop with two early exits is not always a filter* |
 | [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx) | *[U2](#u2) and [U5](#u5) add members here* | ***already reordered once today***, and the member order it is being reordered under [changed the same day](../designing-inexplicable-phenomena/08-the-order-of-a-class.md#what-moved) |
 | [`writing/Composition.tsx`](../../package/src/writing/Composition.tsx) | *[U1](#u1) must keep this interface satisfied* | *[the last member added to it put the suite at 15 errors](00-planning.md#canonical-collision)* |
-| [`reference/Referent.tsx`](../../package/.archive/reference/Referent.tsx) | *[U6](#u6) decides its fate* | *it is [listed for deletion](29-the-bind.md#r340) and nothing depends on it* |
+| `reference/Referent.tsx` (v1, `.archive/reference/Referent.tsx`, deleted) | *[U6](#u6) decides its fate* | *it is [listed for deletion](29-the-bind.md#r340) and nothing depends on it* |
 | [`notation/Type.tsx`](../../package/src/writing/Writing.tsx) | *[U6](#u6) puts a type beside its word* | ***already changed*** — [D6](#d6)'s fold has landed, and nine files repointed with it |
 
 ***One thing that is NOT a re-verification but a gate:*** **this chapter is [UNRATIFIED](#unratified) and [sprint one has never been brainstormed](00-planning.md#v1).** *Resuming means running that brainstorm with Doug — **not** picking [the units](#units) up where they stop.*
@@ -480,7 +480,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 | [`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx) | ***`tokens()` rewritten*** from a fourteen-line loop to filter · map · filter. **The index assignment survives verbatim and only lost its braces** — *`parsed.forEach((part, at) => part.index = at)`, now line 35.* | ***[U2](#u2) and [U4](#u4) stand.*** *The line number in this chapter moved; the statement did not.* |
 | [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx) | *layout only — fields joined the field block, the protected getter joined the property block.* ***No member added, removed or renamed.*** | ***[U2](#u2) and [U5](#u5) stand***, *and the two members they add now have a group to go in.* |
 | [`writing/Composition.tsx`](../../package/src/writing/Composition.tsx) | ***byte-intact*** but for end-of-file. *Verified: `get index(): number` is still the first member.* | ***[U1](#u1)'s contract is unchanged.*** |
-| [`reference/Referent.tsx`](../../package/.archive/reference/Referent.tsx) | ***unchanged.*** *Still `export interface $Referent$ extends $Chemical { }` — empty.* | ***[U6](#u6) finds the seat exactly as it was.*** |
+| `reference/Referent.tsx` (v1, `.archive/reference/Referent.tsx`, deleted) | ***unchanged.*** *Still `export interface $Referent$ extends $Chemical { }` — empty.* | ***[U6](#u6) finds the seat exactly as it was.*** |
 | [`notation/Type.tsx`](../../package/src/writing/Writing.tsx) | *one blank line between the field and the property group, and **[D6](#d6)'s fold completed*** — nine importers repointed. | ***[U8](#u8) is DONE.*** |
 
 ***And the one hazard this chapter raised was answered rather than waved off.*** **The loop rewrite is the only layout rule that can change behaviour, and green cannot prove it did not.** *The cleanup session stated the three properties that make a loop a filter — **no state carried across iterations but the accumulator, nothing mutated that it reads, no `break` and no early `return`** — verified them against the old loop, and wrote them into [Organization](31-organization.md) as the test to apply BEFORE reaching for the rule.* ***A loop failing any of the three is not a candidate whatever its shape.***
@@ -564,7 +564,7 @@ export type Reference = {
 
 ### 2. The framework had nine classes, and the mess has a shape
 
-**[`.archive/reference/`](../../package/.archive/reference/) — 9 files, 323 lines. Read end to end, four faults, and none is carelessness:**
+**`.archive/reference/` (v1, `.archive/reference/`, deleted) — 9 files, 323 lines. Read end to end, four faults, and none is carelessness:**
 
 | | |
 |---|---|

@@ -112,16 +112,16 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 ## What he said, generalized
 
-**All writing is a reference.** It has meaning — `$Writing` already implements [`$Referent$`](../../package/.archive/reference/Referent.tsx) and already answers `means`. **So reference-hood is universal and a Link is the SPECIAL case, not the general one:** a link is a path that points *outside*, and being external is what makes reading it different. That is his phrase — *"that's what would make it a special referent"* — and it is the whole distinction.
+**All writing is a reference.** It has meaning — `$Writing` already implements `$Referent$` (v1, `.archive/reference/Referent.tsx`, deleted) and already answers `means`. **So reference-hood is universal and a Link is the SPECIAL case, not the general one:** a link is a path that points *outside*, and being external is what makes reading it different. That is his phrase — *"that's what would make it a special referent"* — and it is the whole distinction.
 
 ## The old version already had this shape
 
 *He said to look at the old version, and it is holding two of the answers.*
 
-- **[`.archive/reference/Link.tsx`](../../package/.archive/reference/Link.tsx): `$Link extends $Phrase`**, carrying a `$url` and framing its surface in an anchor. **His instinct that a phrase belongs at the level a link needs is a shape v1 already had.**
-- **[`.archive/reference/Location.tsx`](../../package/.archive/reference/Location.tsx) and [`Path.tsx`](../../package/.archive/reference/Path.tsx): a path was a COMPOSITION** — a `$Location` was an index into a composition and a `$Path` was `first` + `onward`, a cons of steps that read by following each. **v2 flattened that into a string** and [`$Catalogue.follow`](../../package/src/reference/Catalogue.tsx) parses the structure back out of it.
-- **There is already a router test** — [`tests/reference/link.test.tsx`](../../package/tests/reference/link.test.tsx) renders `<Link url="/books/moby">` inside a `MemoryRouter` and asserts the anchor. It is in the archived suite, off by default.
-- **The markdown parser has precedent too:** [`.archive/writing/Section.tsx`](../../package/.archive/writing/Section.tsx) imports `marked`'s `lexer`, and **`marked` is still a dependency of the package**, so *"maybe we use a markdown parser"* costs nothing to try.
+- **`.archive/reference/Link.tsx` (v1, `.archive/reference/Link.tsx`, deleted): `$Link extends $Phrase`**, carrying a `$url` and framing its surface in an anchor. **His instinct that a phrase belongs at the level a link needs is a shape v1 already had.**
+- **`.archive/reference/Location.tsx` (v1, `.archive/reference/Location.tsx`, deleted) and `Path.tsx` (v1, `.archive/reference/Path.tsx`, deleted): a path was a COMPOSITION** — a `$Location` was an index into a composition and a `$Path` was `first` + `onward`, a cons of steps that read by following each. **v2 flattened that into a string** and [`$Catalogue.follow`](../../package/src/reference/Catalogue.tsx) parses the structure back out of it.
+- **There is already a router test** — [`tests/reference/link.test.tsx`](../../package/.tests/reference/link.test.tsx) renders `<Link url="/books/moby">` inside a `MemoryRouter` and asserts the anchor. It is in the archived suite, off by default.
+- **The markdown parser has precedent too:** `.archive/writing/Section.tsx` (v1, `.archive/writing/Section.tsx`, deleted) imports `marked`'s `lexer`, and **`marked` is still a dependency of the package**, so *"maybe we use a markdown parser"* costs nothing to try.
 
 ## The shape proposed
 
@@ -187,7 +187,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 ***His ask:*** *"I would like strong typing. Do we get it if we use the ref as a prop or is there syntax for getting strong typing the way we have it too with interpolation?"* **Both, and neither needs anything built.**
 
-**A prop is typed because chemistry computes it.** [`$Properties<T>`](../../../chemistry/package/src/implementation/types.ts) maps a chemical's `$`-prefixed members to props with the `$` stripped — so a class declaring `$to?: $Book` **has a typed `to` prop by construction**, and a non-book will not compile. *The archived [`$Link`](../../package/.archive/reference/Link.tsx) already used this shape with `$url?: string`.*
+**A prop is typed because chemistry computes it.** [`$Properties<T>`](../../../chemistry/package/src/implementation/types.ts) maps a chemical's `$`-prefixed members to props with the `$` stripped — so a class declaring `$to?: $Book` **has a typed `to` prop by construction**, and a non-book will not compile. *The archived `$Link` (v1, `.archive/reference/Link.tsx`, deleted) already used this shape with `$url?: string`.*
 
 **Interpolation is typed because the alias is a real import.** `<Subject>{Math}</Subject>` on a cover fails to compile the moment the file is renamed or the export dropped, and [`refer.ts`](../../build/stages/refer.ts) already reads both `{Alias}` and `<Alias />`.
 
