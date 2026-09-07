@@ -247,6 +247,25 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 
 ***So the standing state of [W6](#warts) is: the cost is fixed and measured, and the narrowing it introduced is UNEXERCISED.*** **A registration or a written-in theme arriving AFTER a Format has resolved would be stale, and nothing on either page does that.** *Recorded as a known limit rather than a closed question.*
 
+
+### <a id="the-rejection"></a>AND DOUG REJECTED THE SHAPE — ***the cache was the wrong answer to a real cost***
+
+> ***Doug, reading `theme()`, 2026-09-07:*** **"Uh oh. This should be one line in the bond constructor: `this._theme = $check(this.searchForOne<$Theme>($TypeOfTheme), $Theme, '!');` What else did you mess up like that. Just make it a simple property and validate that it's assigned in specify()."**
+
+***He is right, and the reason is worse than a preference: I QUOTED THE RULE HE IS INVOKING, IN THIS CHAPTER, AT [D-E](#d-e), AND THEN WROTE SOMETHING ELSE.*** **[The assignment workflow](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-assignment-workflow) is his own, verbatim:** *"In bond constructor: check if a type of that is right and if there is one, use that by assigning it to the right property. If there is none, get the component you want to use from `$` using DI. Create one and assign. Then run specifically, which should validate the thing is assigned if necessary."*
+
+**So the lazy walk, the resolve-on-first-read and the cache are all being deleted** — *not because a good idea lost to a better one, but because **the framework already had the answer and I built past it.*** ***The 22% [7e measured](#the-after) is what that cost on a real page, and the 44× I then bought back was buying back a hole I dug.***
+
+> ***THIS IS THE THIRD INSTANCE OF THE SAME FAULT TONIGHT***, and the third is what makes it a pattern rather than a slip: **[the `$Abstract` deletion](#r-errors), [`$landsOnIt` repaired instead of removed](#warts), and now a walk built where an assignment was ruled.** *Every one is [fixing a mechanism instead of asking whether the design already wanted something else](#r-errors).*
+
+### <a id="what-survives"></a>What survives the deletion, so it is not lost with the cache
+
+| | |
+|---|---|
+| ***the mechanism, and it is the durable finding*** | **[`$Block.$elements`](../../../chemistry/package/src/abstraction/block.ts) is a `$`-prefixed REACTIVE read and the scope DEEP-CLONES a collection on read**, so any per-render `searchFor` pays a clone per element. ***A bond assignment costs neither — which is exactly why Doug's shape is both cheaper and simpler than mine.*** *Expect `theme` to leave the profile entirely rather than fall to 0.6%, because it will not be called during a render at all* |
+| ***a caution for the rule half*** | *`specify()` must be derivable from the same inputs every time.* **[Solutions 52](../solutions/52-the-pieces-a-writing-remade-each-time-it-drew.md): a bond is SKIPPED when its arguments are identical, and the pieces a writing holds are remade on every re-render while the writing keeps its identity.** *The bond is the right seat; a mutation in `specify()` is unsound where a find-or-make is fine* |
+| ***and the narrowing DIES WITH THE CACHE*** | *[7e correctly refused to call the staleness safe](#the-narrowing) — their sweep could not exercise it.* **Once the resolve happens at the bond rather than at first read, the case stops existing.** *A limit removed by someone else's design being better than mine* |
+
 ### <a id="w-ch13"></a>And one that belongs to a chapter rather than to code
 
 ***[The Default Dress](../designing-inexplicable-phenomena/13-the-default-dress.md) says `$Theme`, `$Style` and `$Anchor` live in `Writing.tsx` — "Doug's rule, and it is what dissolved a module cycle".*** **Two of the three had drifted out**, and putting `$Theme` back is what this sprint did. **`$Format` and `$AnchorFormat` are still out**, which is the whole reason [W2](#warts) exists.
@@ -669,7 +688,7 @@ $TypeOfReference
 | **5** | *the table of contents fills itself* | **hand written, compiler checked** | *automated what wanted validating* |
 | **6** | *the resolver is configurable, as a convenience* | ***it is forced*** | *under-read the constraint* |
 
-***FIVE OF THE SIX ARE ONE FAULT: adding a mechanism where the domain already had one.*** **And it is [Solutions 50's `surface-blind`](../solutions/50-the-demo-that-wrote-itself-a-framework.md) at a different altitude** — *there, local code quality decided what only position could; here, local design elegance decided what only the domain could.* **In both, careful reading produced careful wrong work, because the reading was of the wrong thing.**
+***FIVE OF THE SIX ARE ONE FAULT: adding a mechanism where the domain already had one.*** **And it happened TWICE MORE after this table was written** — *[`$landsOnIt` repaired instead of removed](#warts), and [a theme walk built where an assignment was ruled](#the-rejection).* ***Three instances make it a pattern rather than a slip, and the third is the one Doug named: "What else did you mess up like that."*** **And it is [Solutions 50's `surface-blind`](../solutions/50-the-demo-that-wrote-itself-a-framework.md) at a different altitude** — *there, local code quality decided what only position could; here, local design elegance decided what only the domain could.* **In both, careful reading produced careful wrong work, because the reading was of the wrong thing.**
 
 > ***THE HABIT THAT WOULD HAVE CAUGHT ALL FIVE:*** **before naming a mechanism, ask what a library already calls it — and before adding a direction, a fallthrough or a projection, ask whether the thing already moves in some direction of its own.** *A card's meaning was always its title's; nobody had to decide that.*
 
