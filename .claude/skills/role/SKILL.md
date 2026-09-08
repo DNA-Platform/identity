@@ -112,6 +112,4 @@ Before doing {Name}'s work, ground yourself in the current implementation:
 
 $ARGUMENTS
 
-<!-- library: .claude/library/skills-and-commands/05-role.md -->
-
 <!-- library: .claude/library/our-skillset/05-role.md -->

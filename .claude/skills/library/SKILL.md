@@ -74,6 +74,4 @@ Agent to library directory mapping:
 
 $ARGUMENTS
 
-<!-- library: .claude/library/skills-and-commands/02-library.md -->
-
 <!-- library: .claude/library/our-skillset/02-library.md -->

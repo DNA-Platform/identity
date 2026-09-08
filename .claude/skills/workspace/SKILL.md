@@ -86,6 +86,4 @@ If the path already has a `package.json`, offer to:
 
 $ARGUMENTS
 
-<!-- library: .claude/library/skills-and-commands/09-workspace.md -->
-
 <!-- library: .claude/library/our-skillset/09-workspace.md -->

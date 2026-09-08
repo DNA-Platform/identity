@@ -86,5 +86,3 @@ The teammate reads their library catalogue cover and confirms it catalogues them
 $ARGUMENTS — the new teammate's name (lowercase). If not provided, ask for it.
 
 <!-- library: .claude/library/our-skillset/14-teammate.md -->
-
-<!-- library: .claude/library/our-skillset/14-teammate.md -->

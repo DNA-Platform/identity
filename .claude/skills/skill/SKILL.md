@@ -109,6 +109,4 @@ Match this energy. A skill in this project should feel like it belongs next to t
 
 $ARGUMENTS
 
-<!-- library: .claude/library/skills-and-commands/06-skill.md -->
-
 <!-- library: .claude/library/our-skillset/06-skill.md -->

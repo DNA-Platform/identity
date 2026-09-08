@@ -78,6 +78,4 @@ If the listener dies and is restarted, `/hear` will process all `[status:unproce
 
 $ARGUMENTS
 
-<!-- library: .claude/library/skills-and-commands/12-listen.md -->
-
 <!-- library: .claude/library/our-skillset/12-listen.md -->

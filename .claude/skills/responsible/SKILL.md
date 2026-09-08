@@ -83,6 +83,4 @@ When multiple agents match a file:
 
 $ARGUMENTS
 
-<!-- library: .claude/library/skills-and-commands/04-responsible.md -->
-
 <!-- library: .claude/library/our-skillset/04-responsible.md -->

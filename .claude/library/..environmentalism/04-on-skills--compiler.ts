@@ -1,12 +1,14 @@
 // Compiler resource for Environmentalism chapter 04: On Skills
-// Reads the Skills and Commands book to generate .claude/skills/{name}/SKILL.md files
-// per the On Skills specification.
+// Finds every SKILLSET — a book whose cover declares `- **kind:** skillset` — in the
+// identity library AND in every branch library (library/*/.lib), and generates
+// .claude/skills/{name}/SKILL.md from each skillset's chapters per the On Skills
+// specification.
 // Usage: npx tsx ..environmentalism/04-on-skills--compiler.ts <library-path> [--write]
 // Without --write, previews what would change. With --write, writes the files.
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, statSync } from 'fs';
 import { execSync } from 'child_process';
-import { resolve, join } from 'path';
+import { resolve, join, relative } from 'path';
 import { rewriteLinks } from './07-on-compiled-links--rewriter';
 
 const libraryPath = process.argv[2];
@@ -18,8 +20,9 @@ if (!libraryPath) {
 }
 
 const root = resolve(libraryPath);
-const skillsDir = resolve(root, '..', 'skills');
-const bookDir = join(root, 'our-skillset');
+const claudeDir = resolve(root, '..');
+const projectRoot = resolve(claudeDir, '..');
+const skillsDir = join(claudeDir, 'skills');
 
 // --- Utilities ---
 
@@ -43,45 +46,138 @@ function normalizeLineEndings(content: string): string {
   return content.replace(/\r\n/g, '\n');
 }
 
-// --- Parse the Skills and Commands cover to discover all skills ---
+// Cover metadata is markdown bullets, not YAML: `- **kind:** skillset`.
+function coverField(content: string, field: string): string | null {
+  const m = content.match(new RegExp(`^- \\*\\*${field}:\\*\\*\\s*(.+)$`, 'm'));
+  return m ? m[1].trim() : null;
+}
 
-const coverPath = join(bookDir, '.cover.md');
-if (!existsSync(coverPath)) {
-  console.error(`Skills and Commands cover not found at ${coverPath}`);
+// A repo-root-relative path, forward-slashed — the form the provenance comment uses,
+// so a reader can walk back from a compiled skill to its source from the repo root
+// whether that source is in the identity library or in a branch.
+function fromProjectRoot(p: string): string {
+  return relative(projectRoot, p).replace(/\\/g, '/');
+}
+
+// --- Discover every library root: the identity library, then every branch ---
+// This is the enumeration pattern the validation runner already uses. It is a GLOB,
+// not a link: no branch path is written down in the identity library, so removing a
+// branch removes its skills and breaks nothing. See 04-on-skills.md, "Branch skillsets
+// and the one-way link convention".
+
+type LibraryRoot = { dir: string; origin: 'identity' | 'branch' };
+
+const libraryRoots: LibraryRoot[] = [{ dir: root, origin: 'identity' }];
+
+const projectLib = join(projectRoot, 'library');
+if (existsSync(projectLib)) {
+  for (const area of readdirSync(projectLib)) {
+    const lib = join(projectLib, area, '.lib');
+    try {
+      if (statSync(lib).isDirectory()) libraryRoots.push({ dir: lib, origin: 'branch' });
+    } catch { /* no .lib in this area */ }
+  }
+}
+
+// --- Find the skillsets: books whose cover declares the kind ---
+
+type Skillset = { dir: string; label: string; origin: 'identity' | 'branch' };
+
+const skillsets: Skillset[] = [];
+
+for (const lr of libraryRoots) {
+  let entries: string[];
+  try { entries = readdirSync(lr.dir); } catch { continue; }
+  for (const entry of entries) {
+    const bookDir = join(lr.dir, entry);
+    try { if (!statSync(bookDir).isDirectory()) continue; } catch { continue; }
+    const coverPath = join(bookDir, '.cover.md');
+    if (!existsSync(coverPath)) continue;
+    const kind = coverField(normalizeLineEndings(readFileSync(coverPath, 'utf-8')), 'kind');
+    if (!kind || kind.toLowerCase() !== 'skillset') continue;
+    skillsets.push({ dir: bookDir, label: fromProjectRoot(bookDir), origin: lr.origin });
+  }
+}
+
+if (skillsets.length === 0) {
+  console.error('No skillsets found. A skillset is a book whose cover declares `- **kind:** skillset`.');
+  console.error('See .claude/library/..environmentalism/04-on-skills.md');
   process.exit(1);
 }
 
-const coverContent = normalizeLineEndings(readFileSync(coverPath, 'utf-8'));
+console.log(`Found ${skillsets.length} skillset(s):`);
+for (const s of skillsets) console.log(`  ${s.origin === 'branch' ? 'branch  ' : 'identity'}  ${s.label}`);
+console.log('');
 
+// --- Parse each skillset cover to discover its skills ---
 // Extract the chapter list: lines like "1. [sprint](01-sprint.md) — description"
 // Skill names and chapter files may contain hyphens (e.g. think-async), so the
 // name and filename groups allow [\w-], not just \w.
-const chapterPattern = /^\d+\.\s+\[([\w-]+)\]\((\d+-[\w-]+\.md)\)\s+—\s+(.+)$/gm;
-const skills: { name: string; chapterFile: string; coverDescription: string }[] = [];
 
-let match: RegExpExecArray | null;
-while ((match = chapterPattern.exec(coverContent)) !== null) {
-  skills.push({
-    name: match[1],
-    chapterFile: match[2],
-    coverDescription: match[3].trim(),
-  });
+type Skill = { name: string; chapterFile: string; coverDescription: string; book: Skillset };
+
+const skills: Skill[] = [];
+const claimed = new Map<string, Skill>();
+let collisions = 0;
+
+for (const book of skillsets) {
+  const coverContent = normalizeLineEndings(readFileSync(join(book.dir, '.cover.md'), 'utf-8'));
+  const chapterPattern = /^\d+\.\s+\[([\w-]+)\]\((\d+-[\w-]+\.md)\)\s+—\s+(.+)$/gm;
+
+  let match: RegExpExecArray | null;
+  let found = 0;
+  while ((match = chapterPattern.exec(coverContent)) !== null) {
+    const skill: Skill = {
+      name: match[1],
+      chapterFile: match[2],
+      coverDescription: match[3].trim(),
+      book,
+    };
+    found++;
+
+    // One flat namespace: /{name} must mean exactly one chapter. A collision is an
+    // ERROR naming both books — never a silent last-one-wins, which would let a branch
+    // quietly redefine a team skill.
+    const prior = claimed.get(skill.name);
+    if (prior) {
+      console.log(`ERROR   /${skill.name} — name claimed by two skillsets:`);
+      console.log(`          ${prior.book.label}/${prior.chapterFile}`);
+      console.log(`          ${skill.book.label}/${skill.chapterFile}`);
+      collisions++;
+      continue;
+    }
+    claimed.set(skill.name, skill);
+    skills.push(skill);
+  }
+
+  if (found === 0) {
+    console.log(`WARNING ${book.label} — declares kind: skillset but its cover lists no skills.`);
+    console.log(`  Chapter entries must read: N. [name](NN-name.md) — description`);
+    console.log('');
+  }
 }
 
-if (skills.length === 0) {
-  console.error('No skills found in the cover. Check the chapter list format.');
+if (collisions > 0) {
+  console.error(`\n${collisions} skill name collision(s). Rename in one of the skillsets and re-run. Nothing was written.`);
   process.exit(1);
 }
 
-console.log(`Found ${skills.length} skills in the catalogue.\n`);
+if (skills.length === 0) {
+  console.error('No skills found in any skillset cover. Check the chapter list format.');
+  process.exit(1);
+}
+
+console.log(`Found ${skills.length} skills across ${skillsets.length} skillset(s).\n`);
 
 // --- Process each skill ---
 
 let generated = 0;
 let unchanged = 0;
 let created = 0;
+const produced = new Set<string>();
 
 for (const skill of skills) {
+  const bookDir = skill.book.dir;
   const chapterPath = join(bookDir, skill.chapterFile);
   const existingPath = join(skillsDir, skill.name, 'SKILL.md');
 
@@ -92,9 +188,11 @@ for (const skill of skills) {
     chapterContent = normalizeLineEndings(readFileSync(chapterPath, 'utf-8'));
     chapterBody = bodyAfterFrontmatter(chapterContent);
   } else {
-    console.log(`SKIP    ${skill.name} — chapter file not found: ${skill.chapterFile}`);
+    console.log(`SKIP    ${skill.name} — chapter file not found: ${skill.book.label}/${skill.chapterFile}`);
     continue;
   }
+
+  produced.add(skill.name);
 
   // Read existing SKILL.md if present
   let existingContent = '';
@@ -166,10 +264,16 @@ for (const skill of skills) {
 
   // Body: ALWAYS generate from the library chapter. The library is the source of truth.
   // If the existing SKILL.md has a hand-written body that differs, WARN loudly.
-  const libraryLink = `<!-- library: .claude/library/our-skillset/${skill.chapterFile} -->`;
+  // Provenance points at the chapter that actually produced this file — the BRANCH
+  // path for a branch skillset. A provenance line that names the wrong book breaks the
+  // walk back to source, so it is computed, never assumed.
+  const chapterFromRoot = fromProjectRoot(chapterPath);
+  const libraryLink = `<!-- library: ${chapterFromRoot} -->`;
 
-  // Generate the body from the library chapter
-  let generatedBody = chapterBody;
+  // Generate the body from the library chapter. Strip any provenance line the chapter
+  // itself carries: a past round-trip wrote compiled comments back into library sources,
+  // and appending to those accumulates a second, stale line that makes provenance lie.
+  let generatedBody = chapterBody.replace(/<!-- library: \S+ -->/g, '').trimEnd();
   // Rewrite all links from library source location to compiled output location.
   const sourceDir = bookDir;
   const outputDir = join(skillsDir, skill.name);
@@ -185,7 +289,7 @@ for (const skill of skills) {
     // file's body but is added separately to generated output, so leaving it in made
     // every existing skill look "changed" (a false positive).
     const stripComments = (s: string) => s
-      .replace(/<!-- library: \.claude\/library\/\S+ -->/g, '')
+      .replace(/<!-- library: \S+ -->/g, '')
       .replace(/<!-- Generated by [^>]*-->/g, '')
       .trim();
     const existingClean = stripComments(existingBody);
@@ -193,12 +297,12 @@ for (const skill of skills) {
 
     if (existingClean !== generatedClean) {
       console.log(`WARNING ${skill.name} — SKILL.md body differs from library chapter!`);
-      console.log(`  The library chapter at our-skillset/${skill.chapterFile} has changed,`);
+      console.log(`  The library chapter at ${skill.book.label}/${skill.chapterFile} has changed,`);
       console.log(`  but skills/${skill.name}/SKILL.md has a different body.`);
       console.log(`  The library is the source of truth. The SKILL.md body will be`);
       console.log(`  REGENERATED from the library chapter.`);
       console.log(`  If the SKILL.md had hand-written content you want to keep,`);
-      console.log(`  move it to the library chapter at: .claude/library/our-skillset/${skill.chapterFile}`);
+      console.log(`  move it to the library chapter at: ${chapterFromRoot}`);
       console.log(`  See: .claude/library/..environmentalism/04-on-skills.md`);
       console.log(`  See: .claude/library/.compilation/03-compilers.md`);
       console.log('');
@@ -230,7 +334,7 @@ for (const skill of skills) {
     if (hasExisting) {
       console.log(`UPDATED ${skill.name}`);
     } else {
-      console.log(`CREATED ${skill.name}`);
+      console.log(`CREATED ${skill.name}  (from ${skill.book.label})`);
       created++;
     }
   } else {
@@ -270,11 +374,37 @@ for (const skill of skills) {
         }
       }
     } else {
-      console.log(`CREATE  ${skill.name} — new skill directory`);
+      console.log(`CREATE  ${skill.name} — new skill directory (from ${skill.book.label})`);
       created++;
     }
   }
   generated++;
+}
+
+// --- Orphans ---
+// Compiled output is a projection of current state, so a skill left behind by a
+// skillset that no longer claims it — or by a branch that is simply gone — is stale,
+// not additive. Reported, never deleted: removing a directory is the operator's call.
+
+let orphans = 0;
+if (existsSync(skillsDir)) {
+  for (const name of readdirSync(skillsDir)) {
+    if (produced.has(name)) continue;
+    const f = join(skillsDir, name, 'SKILL.md');
+    if (!existsSync(f)) continue;
+    const matches = [...readFileSync(f, 'utf-8').matchAll(/<!-- library: (\S+) -->/g)];
+    const src = matches.length ? matches[matches.length - 1][1] : null;
+    const reason = !src
+      ? 'no provenance comment — not compiled from any skillset'
+      : existsSync(resolve(projectRoot, src))
+        ? `its source ${src} exists but no skillset cover lists it`
+        : `its source ${src} no longer exists`;
+    console.log(`ORPHAN  ${name} — ${reason}`);
+    orphans++;
+  }
+}
+if (orphans > 0) {
+  console.log(`\n${orphans} orphaned skill(s) in .claude/skills/. Remove the directory, or list the chapter in a skillset cover.`);
 }
 
 console.log(`\n${doWrite ? 'Generated' : 'Would generate'} ${generated} skill files (${created} new, ${unchanged} unchanged)`);

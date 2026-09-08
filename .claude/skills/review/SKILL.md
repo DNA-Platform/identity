@@ -156,6 +156,4 @@ If the review found stale assignments (deleted files, shifted scope), offer to u
 
 $ARGUMENTS
 
-<!-- library: .claude/library/skills-and-commands/07-review.md -->
-
 <!-- library: .claude/library/our-skillset/07-review.md -->
