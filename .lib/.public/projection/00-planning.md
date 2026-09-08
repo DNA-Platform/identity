@@ -7,6 +7,20 @@
 
 *The planning scratchpad per [the convention](../../../../.claude/library/library-tree/03-sprints.md#the-planning-scratchpad--chapter-zero): overwritten as intentions are addressed — it holds what is INTENDED. Overwritten whole 2026-09-03 twice at Doug's order: first gathered by the librarian (every open item, cited), then organized into THE ROAD — all of it, in order, before the Wikipedia demo. His words: "It matters less how many sprints it is. We just need to write it down. It is the work we must do first before creating our wikipedia demo." Prior plans are superseded; their anchors survive [at the tail](#swept) so closed chapters' links resolve.*
 
+# <a id="the-assignment"></a>THE ASSIGNMENT — Doug, 2026-09-08, the current intention; everything below it is history or input
+
+***Given at the close of the five-folder catchup, after an afternoon of rulings recorded in [Sprint 53](57-sprint-53--the-annotative-theme.md#rulings). Multi-sprint, self-handed-off; the demos functional and looking right at the end.*** **The order, and each is a sprint or more:**
+
+1. **THE BRACKET — [Sprint 53](57-sprint-53--the-annotative-theme.md)**: theme and format as annotations, the base theme as the sheet, kinds writing their semantic elements, `writing / composition / annotation / type / reference / letter–book` as clean as they can be, `writing/` the default door and `book/` its own; the register of every member with its three lines and provenance; the `_` properties struck or cited.
+2. **MATH, EQUATION, CODE IN THE BASE** — *"basic math should work without [the theme] and you'll need a latex processing method that is efficient in components that represent equations"*; Code at paragraph grade with `$language`, the code as the writing, drawn through `prism-react-renderer` as the old demo did, parts a line-based read on demand.
+3. **`/article` IS THE LATEX ARTICLE, `/encyclopedia` IS WIKIPEDIA** — each a book type: its kinds plus an optional theme to install; the base theme must stand wherever a registered theme says nothing. `/latex` and `/markdown` do not exist.
+4. **THE `.latex` DEMO** — a Scott Aaronson article Doug supplies (*"about times when undecidability cropped up to argue why P=NP is unlikely"*; best identification: *Is P Versus NP Formally Independent?*, 2003), replicated so it feels native — **and THE `.wiki` DEMO**: the portal and article structure as now, plus books for the SUBJECT CHAIN above the Turing article — *"what would be the page representing the subject of turing, and the subject of that? How far up does it go?"* Each demo carries INTEGRATION TESTS that install its theme and drive the served page ([PS5, PS6](#the-running-promises)).
+5. **THE COMPILER** — *"use the .book and .chapter files to build abstractions needed for the chapters and you can move them to a place where they can be referenced by multiple books."*
+
+**The constraint at every place:** *"is this framework built to support what I am implementing now?"* — chemistry bugs fixed alone if truly bugs; chemistry features pitched, batched, after the most possible work; design doubts raised to Doug in batches. **The push to origin is Doug's; commits are local.**
+
+***THE ROAD below is superseded as a plan by this assignment*** — its waves stand as the record of what was intended before, and every anchor survives.
+
 # <a id="working-copy-warning"></a>READ FIRST — THE SESSION THAT LOOKED DISCONNECTED WAS NOT, AND HERE IS THE EVIDENCE
 
 ***Doug, 2026-09-04, from his phone:*** *"The wiki is the thing we're making in the future, but the wiki folder is empty right now. You might not even see it because you're not on my computer at the moment… I think we interrupted a session."*
@@ -68,6 +82,26 @@
 - **Which reading of the title equality** — local or reciprocal, above.
 - **Where the two booleans sit** — on the cover, on the card, or read rather than stored.
 - **Whether `$$Chapter` wraps a book reference too**, given its address already carries the book step.
+
+# <a id="the-running-promises"></a>THE PROMISES THE RUNNING DEMO OWES — Doug, 2026-09-08
+
+*Cathy's audits in [the public skillset](../the-public-skillset/.cover.md) are the PROCEDURE — how the running demo is measured. These are the WORK: the promises owed, recorded here as intentions. A count in an audit is a reading taken once; a promise goes red when someone breaks it, and the audit is not a substitute for it (Cathy's [parse audit](../the-public-skillset/03-public-audit-parse.md#the-cutoff) says this in his words). Nothing here designs the mechanism — each item is what must be TRUE and what would SHOW it; the how belongs to a plan.*
+
+**The governing ruling — the cutoff is the paragraph.** *Doug, verbatim:* "Yes you can pay for the parse above Paragraph. That's our cutoff." — "A book only has chapters. The whole point of composition is that. We should validate book parts because it's above section. We should validate section parts. Neither should parse downward. We should have a test for that as a promise." **Above the paragraph the parse IS composition and is afforded — a book asking whether it holds only chapters, and a section asking whether it holds only paragraphs, are each entitled to their parts. Below the paragraph the parse is not allowed at all.** The promises below split that cutoff in both directions.
+
+**PS1 — a book asked for its parts answers CHAPTERS and does not descend.** One level, one step: a call for a book's parts must not produce a call for any section's parts in the same act. *What would show it:* a promise that goes red when a book's parts-call reaches below chapters. *Owed with it, and this belongs in the record because it is Doug's own note:* this is a fact about the CALL GRAPH, not the totals — the per-class counter that proves PS3 cannot see it, because it counts calls by class and cannot tell a book's own descent from a section's. A depth-aware observation is required and is not built yet; naming that it is owed is the whole of what belongs here.
+
+**PS2 — a section asked for its parts answers PARAGRAPHS and does not descend.** PS1 one level lower: a section's parts-call must not reach below paragraphs in the same act. *What would show it:* the same depth-aware promise, one level down.
+
+**PS3 — parts() is never called at or below the paragraph.** Zero calls on `$Paragraph`, `$Sentence`, `$Word`, `$Letter`; a single call is a failure. *What would show it:* a promise red on the first such call. *Measured true once* — Cathy's [parse audit](../the-public-skillset/03-public-audit-parse.md), 2026-09-08: 78 on `$Section`, 3 on `$Header`, nothing below. The promise is what keeps it true when the audit is not running.
+
+**PS4 — every instance draws a bounded number of times, stated per instance, against the measured baseline of three.** *Doug:* "We shouldn't have many renders." Every chemical draws three times per load and the page commits to the DOM once ([performance audit](../the-public-skillset/02-public-audit-performance.md#the-gate); the account is [The Three Passes](../../../chemistry/.lib/particle/12-the-three-passes.md)). *What would show it:* a promise stating the per-instance count and going red when it grows past three.
+
+**PS5 — the running demo carries its OWN promises, in the demo code.** *Doug:* "We should have promises, even in the wikipedia code, to catch issues." The Wikipedia demo is what proves the framework in action, so it is not a demo we can leave unpinned. *What would show it:* promises authored in the demo itself, not only in the package suites.
+
+**PS6 — there is a way to run promises against the RUNNING demo.** *Doug:* "We need to have some sort of tests for the running wikipedia because we use it to prove the framework in action." A suite that drives the served page and asserts on what it actually did — distinct from the unit suites, which pin behaviour a level below, and from the audit, which is a reading taken once.
+
+**The defect these would have caught, confirmed in a real browser 2026-09-08.** The Turing page's table of contents carries a Colophon anchor, because `$Book` decides what is a chapter by subtracting five instances it has not finished assigning ([Book.tsx:51](../../package/src/book/Book.tsx)). No promise in [`.tests`](../../package/.tests/) authors a footer, which is why nothing is red — exactly the gap PS5 closes. The defect is recorded on the design side in [Polymorphic Limiting](../designing-inexplicable-phenomena/21-polymorphic-limiting.md#the-instances) and belongs, when diagnosed, in [Solutions](../solutions/.cover.md); this note only says why the promises are owed.
 
 # <a id="the-road"></a>THE ROAD TO THE WIKIPEDIA DEMO
 

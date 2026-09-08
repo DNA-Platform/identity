@@ -1,0 +1,87 @@
+# public-audit
+
+- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+
+---
+
+Run every audit this branch has, in order, against a **production build driven in a real browser**, and report one verdict. It is the single command that means *"is `.public` still fast and still chunking correctly?"*
+
+It runs [public-audit-parse](03-public-audit-parse.md) first and [public-audit-performance](02-public-audit-performance.md) second, because a parse that has run away makes every performance number meaningless — you would be measuring the runaway. Then it runs [public-audit-code-patterns](04-public-audit-code-patterns.md), which is a reading rather than a measurement and needs the other two in hand: **the ceremony reading and the performance reading find the same defects from opposite sides**, and neither sees what the other saw.
+
+## Read this first, or the numbers will mislead you
+
+**Two facts about this branch will waste an hour each if you do not know them.**
+
+***The demo does not read `.public/package/src`.*** [The wiki's vite config](../../package/.wiki/.public/vite.config.ts) aliases `@dna-platform/public` to `../../dist/lib.js` — **the rollup output**. A probe added to `src/` and then measured shows *nothing*, silently. Run `npm run build` in `library/.public/package` first. **`@dna-platform/chemistry` is aliased to source**, so chemistry probes take effect immediately; the asymmetry is the trap.
+
+***Every route builds every book.*** [main.tsx](../../package/.wiki/.public/main.tsx) imports the encyclopedia, the article and the Turing books at module scope, and `$<$Book>(…)` constructs eagerly. Measured 2026-09-08: **9,587 chemicals constructed before any render, identical on `/` and on `/turing`** — 1,009 characters of text against 57,286. So a per-route number is not a per-book number, and a change that only moves one route has probably moved nothing.
+
+## Run it — and it MUST be one command
+
+*The probe patches two source trees. **Install, build, drive and revert belong in a single invocation**, so a failure anywhere cannot leave a counter behind.* **Build into a scratch directory; never into the package.**
+
+```bash
+BOOK=library/.public/.lib/the-public-skillset
+node $BOOK/03-public-audit-parse--probe.cjs install <scratch>/bak &&
+  ( cd library/.public/package && npm run build && npx vite build .wiki/.public --outDir <scratch>/dist --emptyOutDir ) &&
+  node $BOOK/02-public-audit-performance--drive.mjs <scratch>/dist AUDIT 5 ;
+node $BOOK/03-public-audit-parse--probe.cjs revert <scratch>/bak ;
+git status --porcelain library/chemistry/package/src library/.public/package/src
+```
+
+***AND REBUILD `dist` FROM CLEAN SOURCE WHEN YOU ARE DONE.*** *The revert restores `src`; it does not restore the rollup output, and the next person to open the demo would be running your counters.*
+
+> ***THE PROBE MUST NOT BE IN THE MEASUREMENT WHEN YOU QUOTE A TIME.*** *It costs a few percent.* **Quote timings from an UNPROBED build and counts from the probed one.** *They are two runs, and saying so is part of the report.*
+
+## Steps
+
+1. **Build the package, then the wiki.** Both, in that order, or you are auditing a stale bundle.
+   ```bash
+   cd library/.public/package && npm run build && npx vite build .wiki/.public --outDir <scratch>/wikidist --emptyOutDir
+   ```
+
+2. **Run [public-audit-parse](03-public-audit-parse.md).** If any level below a section is having `parts()` called on it, **stop and report that** — it is a correctness failure and it invalidates the performance run.
+
+3. **Run [public-audit-performance](02-public-audit-performance.md).** Take the median of five runs per route. A single run of this page varies by 300ms.
+
+4. **Run [public-audit-code-patterns](04-public-audit-code-patterns.md).** It has no tool — it is a reading against [the style documents](../designing-inexplicable-phenomena/11-the-coding-style.md). Carry the two measurements into it: *an idiom repeated in every class is a missing framework feature, and the performance run will usually have priced it already.*
+
+5. **Report all three, together, with the gate values beside them.** A performance number without its text hash is not a result — see [the gate](02-public-audit-performance.md#the-gate). Every finding carries its proposal, per [the five phases](#how-an-audit-runs), and anything already fixed is marked fixed, per [the standing rule](#fix-what-has-a-clear-solution).
+
+## <a id="how-an-audit-runs"></a>HOW AN AUDIT RUNS — five phases, one pass
+
+***Doug, 2026-09-08:*** **"Audits should come with thoughtful proposals for fixes. They have a read phase, a discuss phase, a research phase, a design phase and a report phase, all done in one go."**
+
+**One invocation carries all five.** *An audit that stops at a list of findings has done the cheap part and left the expensive part to whoever reads it.*
+
+| | |
+|---|---|
+| **1 · READ** | *the code and the documents that govern it, end to end.* **Never from memory** — [cite or stop](../../../../.claude/library/..teamsmanship/08-coding-policy.md) |
+| **2 · DISCUSS** | *the finding argued from more than one perspective before it is believed.* **A finding nobody has argued against is a guess with a file path** — ***but see [the defence is the finding](04-public-audit-code-patterns.md#the-defence-is-the-finding): for a MEASUREMENT, arguing means trying to refute; for CEREMONY it does not, and running the second like the first makes the audit report its own failure as a success*** |
+| **3 · RESEARCH** | *what already exists.* **Search this branch first** — [The Condition Report](../the-condition-report/.cover.md), [Solutions](../solutions/.cover.md), [Projection](../projection/.cover.md). *A problem solved before does not get re-solved, and a wart already registered gains its new evidence in place rather than a second entry* |
+| **4 · DESIGN** | ***the proposal, not the complaint.*** *What the fix IS, what it costs, what it breaks, and what would prove it worked. A finding without a proposal is half a finding* |
+| **5 · REPORT** | *the findings, ranked, each with its proposal and its evidence, and* **the ones already fixed marked as fixed** |
+
+## <a id="fix-what-has-a-clear-solution"></a>FIX WHAT HAS A CLEAR SOLUTION — do not ask
+
+***Doug, 2026-09-08:*** **"Bugs can be viewed as something with a clear solution in the audit and should be fixed eagerly and reported rather than asked. So that audits can be useful. Then after an audit, I give feedback and you address the issue."**
+
+**This is a deliberate exception to the standing rule that every change in `.public/package/src` is asked for first.** *Inside an audit, a defect with an unambiguous fix is repaired and reported; the feedback comes after, on the diff, rather than before, on a question.* **That is what makes an audit worth running.**
+
+***And the exception has an edge, which is what keeps it honest:***
+
+| | |
+|---|---|
+| ***FIX IT*** | **a defect with ONE obvious correct answer** — a wrong path, a broken guard, a rule no valid input can satisfy, a member that contradicts its own type |
+| ***PROPOSE IT*** | **anything where a competent person could choose differently** — a design change, a new member, a rename, a deletion, a change of shape |
+
+**A rename is never fixed eagerly.** *[Names are proxies and Doug's to rule](../designing-inexplicable-phenomena/11-the-coding-style.md#no-jargon).*
+
+**And every eager fix ships with its evidence**, held to the same standard as any other change here: *[evidence owes the same KIND as the failure](../../../chemistry/.lib/testing/01-the-contract.md#evidence-owes-the-same-kind-as-the-failure)*, and a green suite is not evidence for a failure the suite cannot express.
+## What this audit does not do
+
+It does not fix anything, and it does not decide anything. **It does not run the unit suites** — those pin behaviour, and every failure this audit is built to catch is one they cannot see. That is the whole reason it exists, and the reason is [written down](../../../chemistry/.lib/testing/01-the-contract.md#evidence-owes-the-same-kind-as-the-failure): *a promise that cannot go red for the reason you are afraid of is not evidence, however green it is.*
+
+## Where the standing findings live
+
+Anything this audit surfaces that is a **defect** goes to [Solutions](../solutions/.cover.md), indexed by symptom. Anything that is a **wart** goes to [The Condition Report](../the-condition-report/.cover.md). Sprint-shaped work goes to [Projection](../projection/.cover.md). This book holds only the *procedure*.

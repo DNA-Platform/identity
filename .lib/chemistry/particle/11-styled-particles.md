@@ -115,6 +115,8 @@ class $Wide extends $Card {
 
 *`heading_margin` was declared on `$Card` under `> h2`. On `$Wide` it stands under `> h1`, without `$Wide` mentioning it.* ***That is a selector behaving like a member rather than like a string***, which is [the whole argument this feature exists for](#why): **a CSS string cannot be overridden, and this can.**
 
+> ***AND THIS IS WHY SAYING IT ONCE IS NOT A TIDY.*** **[`reading`](../../package/src/abstraction/styled.ts) answers a member's OWN decorator before it consults the prefix group** — *so a member carrying its own `@select` never asks the group, and a subclass moving that group cannot move it.* ***Every repeated selector was PINNING its member against override.*** **The 258 deleted from this package were not noise; they were the reason those groups could not be moved.** *Observed by session inexplicable-phenomena-0a and confirmed at the line.*
+
 **A subclass that changes ONLY the selector still contributes.** *Comparing the value alone would have dropped it — a real gap, found while promising the behaviour rather than after.*
 
 ### <a id="no-prefix"></a>No prefix is the top of the class

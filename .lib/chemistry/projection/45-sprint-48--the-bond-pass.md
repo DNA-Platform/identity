@@ -2,7 +2,8 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **style:** [The Coding Style](../../../.public/.lib/designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
-- **status:** `implementation-ready` — *except [U2](#u2), which is **design owed** and marked so.*
+- **status:** `requirements-only` — *re-aimed 2026-09-08 at ONE RENDER, with the wiki as the canonical case; the bond-pass units below are the mechanism it will use.*
+- **was:** `implementation-ready` — *except [U2](#u2), which is **design owed** and marked so.*
 - ***The chapter name and the sprint number are PROXIES; Doug's to rename.***
 - ***THIS SPRINT CHANGES `$Chemistry`, against the standing ruling.*** *Doug sent this session at it directly, 2026-09-07; the exception is recorded [below](#the-exception) and belongs in the commit message.*
 
@@ -25,6 +26,159 @@
 | **R5** | **promises followed, and more made** to codify it | [U5](#u5) |
 | **R6** | *and, from the same instruction:* **the other sessions stop being blocked** | [U1](#u1), [U1b](#u1b) |
 | **R7** | ***a state the type forbids is never constructed*** | [U1](#u1), [U1b](#u1b) |
+
+## <a id="one-render"></a>THE SPRINT IS ONE RENDER — requirements, 2026-09-08
+
+> ***Doug:*** **"public is loading 3 times. It is rendering three times before it settles. It is non-reactive. It has to be once."**
+>
+> ***And how to attack it:*** **"I would solve this problem using the wiki as the canonical thing to get to one render, fixing $Chemistry but tweaking it too if needed slightly."**
+
+***MEASURED THE SAME DAY, PER INSTANCE — and the shape of it is the finding.*** *Counted at BOTH view call sites in [`particle.ts`](../../package/src/abstraction/particle.ts) — the render body at `529` and the settle effect at `509` — keyed by OBJECT IDENTITY and stamped with whether the view cache was already set, so each pass names itself rather than being inferred; probe added and removed in one command.*
+
+| | `/article` | `/` | `/turing` |
+|---|---|---|---|
+| instances | **788** | **673** | **1,032** |
+| view passes | **2,364** | **2,019** | **3,096** |
+| ***per instance*** | ***exactly 3*** | ***exactly 3*** | ***exactly 3*** |
+| **the signature, every instance** | `B-B+C+` | `B-B+C+` | `B-B+C+` |
+
+> ***EVERY INSTANCE ON EVERY ROUTE DREW THREE TIMES, AND NOT ONE DREW FEWER.*** **Doug's sentence was exact, per instance and uniformly** — *"It is rendering three times before it settles."* **No variance and no distribution: a systematic TRIPLING, not a cascade and not a settling storm.**
+>
+> ***AND A FIRST COUNT SAID TWO. IT WAS WRONG, AND THE WAY IT WAS WRONG IS WORTH KEEPING.*** *It missed the discarded body pass entirely, because a count keyed by `cid` cannot separate the two body passes — **they share an instance, a cid and a call site**, and differ only in whether the cache is set.* **Session `inexplicable-phenomena-0a` reported three and named the discriminator that settles it: record whether `$viewCache# The Bond Pass
+
+- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **style:** [The Coding Style](../../../.public/.lib/designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **status:** `requirements-only` — *re-aimed 2026-09-08 at ONE RENDER, with the wiki as the canonical case; the bond-pass units below are the mechanism it will use.*
+- **was:** `implementation-ready` — *except [U2](#u2), which is **design owed** and marked so.*
+- ***The chapter name and the sprint number are PROXIES; Doug's to rename.***
+- ***THIS SPRINT CHANGES `$Chemistry`, against the standing ruling.*** *Doug sent this session at it directly, 2026-09-07; the exception is recorded [below](#the-exception) and belongs in the commit message.*
+
+---
+
+## <a id="the-requirement"></a>The requirement, in Doug's words
+
+> ***"I want efficiency in the update. The bond constructor is understood to mutate the local object graph. It should not trigger updates until after react processes something. Otherwise we require a proof of idempotency that is uncalled for. WE can do a forward only pass through the bond constructors of a connected tree. Ist here a way? We need to follow promises and we need to make more to codify this. It should prevent loops too."***
+
+> ***And on the fix this chapter first proposed:*** **"`$(undefined)` — but this should be blocked by type…"**
+
+> ***And on the promises:*** **"Review the promises carefully. I want you to see if you have the semantics right. Sometimes you test the code not the need."**
+
+| | the requirement | lands in |
+|---|---|---|
+| **R1** | a bond constructor's writes do not trigger updates **during the pass** | [U3](#u3) |
+| **R2** | **no idempotency proof** is required of a bond constructor | [U3](#u3), [U7](#u7) |
+| **R3** | a **forward-only pass** through the bond constructors of a connected tree | [U2](#u2), [U4](#u4) |
+| **R4** | it **prevents loops** | [U4](#u4) |
+| **R5** | **promises followed, and more made** to codify it | [U5](#u5) |
+| **R6** | *and, from the same instruction:* **the other sessions stop being blocked** | [U1](#u1), [U1b](#u1b) |
+| **R7** | ***a state the type forbids is never constructed*** | [U1](#u1), [U1b](#u1b) |
+
+## <a id="one-render"></a>THE SPRINT IS ONE RENDER — requirements, 2026-09-08
+
+> ***Doug:*** **"public is loading 3 times. It is rendering three times before it settles. It is non-reactive. It has to be once."**
+>
+> ***And how to attack it:*** **"I would solve this problem using the wiki as the canonical thing to get to one render, fixing $Chemistry but tweaking it too if needed slightly."**
+
+ is undefined at each call, bucketed by ordinal.** *Re-measured their way, the answer is theirs, on all three routes.*
+>
+> ***A FIRST ATTEMPT COUNTED PER CLASS and was wrong***: `$Block` 304, `$AnchorFormat` 186. **Doug threw it out in one line — *"You have instances and sequences confused. There are tons of elements on a page."*** *304 blocks drawing once each is a page with 304 blocks, not a defect. The per-class number measures the document; only the per-instance one measures the framework.*
+
+***AND PER BOOK, WHICH IS THE QUESTION THAT MATTERS MOST.*** **Doug: *"Per instance is one measure, but per book too. We want to know why top level ones are ever rerendering."***
+
+**They are not — beyond the tripling everything shares.** *`$Article` drew **3**, exactly like all 788, and the distribution holds **one entry** — `B-B+C+`, 788 times.* ***So no ancestor is waking because a descendant moved; there is no cascade on load at all.*** **The top of the page pays the same two universal wasted passes as the bottom, and nothing else.**
+
+> ***What is NOT yet measured is an INTERACTION.*** *A probe that typed into the portal's search counted **zero** redraws, which measures the probe rather than the framework — a synthetic input event that never reached a chemical proves nothing. **The interaction case is open**, and it is where a cascade would show if there is one.*
+
+## <a id="redundant"></a>THE SETTLE PASS IS REDUNDANT, AND IT IS PROVEN
+
+> ***Doug:*** **"definitely know if rendering is redundant. That is the most serious kind of bug."**
+
+***Instrumented at the diff itself — how often the change-detection pass finds a change:***
+
+| page | checked | ***changed*** |
+|---|---|---|
+| `/article` | 788 | ***0*** |
+| `/` | 673 | ***0*** |
+
+> ***1,461 CHECKS ACROSS TWO PAGES AND NOT ONE CHANGE.*** **Every settle draw produced output identical to the cache it was compared against.** *One full third of all view work on the demo is a pass that has never once found anything — and it is the third that is hardest to remove, because [it legitimately sees a longer lineage than the render pass does](#the-governing-rule).*
+
+***THE OTHER WASTED THIRD NEEDS NO DIFF TO CONDEMN IT.*** **`B-` is discarded by React itself**, *by construction, on every instance, because the render body calls a state setter.* **Nothing compares it to anything; it is simply thrown away.** *So of three passes, ONE reaches the screen — one is proven redundant by measurement, and one is redundant by definition.*
+
+***AND DOUG'S RULING MAKES IT REDUNDANT BY CONSTRUCTION rather than by luck:*** **"I am willing to say that calling view should never mutate and that's what bond construction is for, come what may."** *A view that cannot mutate cannot produce a different answer a second time — so the pass that looks for one has nothing to look for. **The zero above is not a lucky page; it is what the ruling guarantees.***
+
+*The pass exists to catch a view whose output moved because the view itself moved something. Ban that, and the catcher is dead weight — which is [R15](#the-governing-rule) arriving from the other direction.*
+
+***AND ALL THREE PASSES HAVE NAMES. EXACTLY ONE OF THEM REACHES THE SCREEN.***
+
+| | where | what it is |
+|---|---|---|
+| **`B-`** | the render body, [`particle.ts:529`](../../package/src/abstraction/particle.ts) | ***React throws it away.*** *[`particle.ts:414`](../../package/src/abstraction/particle.ts) declares `useState(-1)` and [`particle.ts:455`](../../package/src/abstraction/particle.ts) calls `setCid` **inside the render body** — a render-phase state update, so React discards the pass it is in and re-invokes immediately, before committing.* **The DRAWING is binned; every side effect on the chemical survives — including the bond constructor, which therefore runs twice** |
+| **`B+`** | the render body again | ***the one that reaches the screen*** |
+| **`C+`** | the settle effect, [`particle.ts:509`](../../package/src/abstraction/particle.ts) | *a `useEffect` with **no dependency array** that draws again on every commit and diffs the result against the cache* |
+
+**Session `inexplicable-phenomena-ad` reached the settle effect independently with a no-write control: a page whose bonds write nothing still shows the extra views**, which rules reactivity out as the cause — *and `0a` measured `$Reaction.react()` at **zero** on all three pages, which says the same thing from the other side.*
+
+> ***SO TWO THIRDS OF ALL VIEW WORK ON THE DEMO IS WASTE, AND BOTH THIRDS ARE NAMED.*** *One is discarded by React by construction; the other has never once found a change.*
+
+### <a id="the-shape"></a>Doug's design, in his words
+
+> **"Suppose, in an event loop — because render would likely have to happen after, or at least in whatever unit the structure sent for UI update happens — we call bond constructors, then we call view."**
+>
+> **"We need reactivity on for other chemicals but off for the current one in bond construction."**
+>
+> **"view shouldn't be mutating. We should ignore mutation in it entirely."**
+>
+> **"The dirty flag isn't started until view is called. Bond construction to view is free I think."**
+>
+> **"There's props and there's bond construction — yes, we need to handle the nuance of the difference."**
+
+### <a id="requirements"></a>The requirements
+
+*Numbered from R8 — [R1 to R7](#the-requirement) are the bond-pass requirements this sprint inherits, and an identifier is never reused.*
+
+| | the requirement | what would be OBSERVED |
+|---|---|---|
+| **R8** | ***A chemical draws ONCE per change.*** *One pass per chemical per thing that actually moved — not per ancestor's repaint, not per settling round* | **the view-pass count on `/article`**, taken the same way as the 2,364 above |
+| **R9** | ***Bond construction is free*** — *an instance of [R15](#the-governing-rule) rather than a rule of its own.* *Between a bond constructor and the view that follows it, a write to the chemical BEING BUILT wakes nothing — the dirty flag does not start until `view()` is called* | *a bond constructor that writes to itself costs no extra pass; today it is the [measured](#the-mechanism) `duringBond=2`* |
+| **R10** | ***But a write to ANOTHER chemical still reacts.*** *Reactivity is off for the one being built and on for everything else — that is the distinction, and it is not "quiet during construction"* | *a bond constructor writing to a sibling still repaints the sibling* |
+| **R11** | ***PROPS ARE NOT BOND CONSTRUCTION, and the two want different rules.*** *Props are written to a chemical from outside, before its bond runs; a bond constructor is the chemical composing what it was handed. **Doug named this as a nuance to handle rather than a rule to state**, and the sprint owes the distinction* | *a prop change repaints; a bond constructor's own write does not* |
+| **R12** | ***A VIEW MAY NOT MUTATE — Doug's ruling, "come what may" — and mutation inside one is IGNORED rather than obeyed.*** *Not "discouraged", not "warned" — a write during `view()` does not mark anything dirty* | *a view that writes to itself draws once, not forever* |
+| **R13** | ***Async bond construction still works.*** *A bond constructor may return a promise; the chemical re-reacts when it settles, and that is one further pass, not a storm* | *the existing async promises stay green* |
+| **R14** | ***And nothing else moves.*** *The wiki draws the same page: same characters, same anchors, no refusal panels* | *the demo driven in a real browser with a reload* |
+
+### <a id="the-governing-rule"></a>R15 — THE GOVERNING RULE, and it subsumes the rest
+
+> ***Doug, 2026-09-08:*** **"dirty checking should always be off the second we know something is going to render anyways, and shouldn't be reset and started again until we know something has rendered."**
+
+***DIRTY TRACKING EXISTS TO ANSWER ONE QUESTION — should this draw? — AND THE MOMENT THE ANSWER IS YES IT IS DEAD WEIGHT.*** *Every read recorded, every snapshot taken, every comparison made after a render is already certain is work that cannot change the outcome.*
+
+**And the window is stated exactly, in both directions:**
+
+| | |
+|---|---|
+| ***off*** | *the instant a render becomes CERTAIN — not when it starts, not when it commits* |
+| ***on again*** | ***only once something has actually rendered*** — not on a timer, not at the end of a pass, not optimistically |
+
+***This is why [R9](#requirements) is true rather than a special case.*** **A bond constructor's writes cost nothing because a view is already coming** — *"if we were calling view anyways, bond construction shouldn't trigger any dirty checking"* — **and the same sentence covers the settling cascade, an event handler that has already scheduled a paint, and anything else that writes while a draw is pending.** *The bond is not privileged; it is simply the commonest case of a general rule.*
+
+> ***AND IT IS THE MOST LIKELY HOME OF THE THIRD PASS.*** *A write during a cascade re-marks what is already marked and re-schedules what is already scheduled. **The rule says that work should not exist**, and the count is the test of whether it does.*
+
+***AND THE FRAMEWORK ALREADY KNOWS — it is one line, in one place.*** **[`particle.ts:470`](../../package/src/abstraction/particle.ts) is `p[$update$] = () => setToken((t: number) => t + 1)`, and [`$Reaction.react()`](../../package/src/abstraction/reaction.ts) is the single door to it.** *So the instant a render becomes certain is the instant `update()` is called, and the instant it stops being certain is the next run of the component function.*
+
+> ***That turns R15 from a principle into a place.*** **The window opens at one call site and closes at one other**, *which means the sprint's question is not "can we know" but "what does the write path do differently once it does."*
+
+### <a id="acceptance"></a>The acceptance, as a number
+
+***This sprint has the rarest thing a framework sprint can have: an end that is a measurement rather than a feeling.***
+
+| | |
+|---|---|
+| **today** | ***3 passes per instance, uniform on all three routes*** — 2,364 on `/article`, 2,019 on `/`, 3,096 on `/turing` |
+| **the target** | ***Doug's word is ONCE***, and the honest reading is one pass per chemical per change — so the number to beat is stated per kind rather than in total, because a page with more writings legitimately draws more |
+| **the instrument** | *the render-entry counter, added and removed in one command; **and the page itself**, driven with a reload, since a count that falls while the page breaks is not a win* |
+| **the canonical case** | ***the wiki***, on Doug's instruction — not a fixture |
+
+***What is NOT in this sprint:*** **[atomic and coupled](00-planning.md#next)**, which is the next one as capacity allows.
 
 ## <a id="the-correction"></a>THE CORRECTION — R6 is NOT what R1–R4 fixes
 
@@ -113,7 +267,7 @@ else { this[$reaction$]?.react(); diffuse(this); }
 
 ***Found by a control rather than by a trace, which is the whole reason it is separable.*** **Running the identical two-node probe with the bond writing NOTHING — `react()` 0, no pass, no assignment — the views still run again:** *`trunk-view` **3×** and `leaf-view` **3×**, and a trailing `leaf-view > trunk-view` after the commit marker.*
 
-**The cause is [`particle.ts:495`](../../package/src/abstraction/particle.ts): a `useEffect` with NO dependency array that re-runs the view and diffs it against the cache on every commit, unconditionally.** *Read here to confirm — it calls `p[$renderView$]()` a second time, and calls `p[$update$]()` whenever `diff` says the output changed.*
+**The cause is [`particle.ts:509`](../../package/src/abstraction/particle.ts): a `useEffect` with NO dependency array that re-runs the view and diffs it against the cache on every commit, unconditionally.** *Read here to confirm — it calls `p[$renderView$]()` a second time, and calls `p[$update$]()` whenever `diff` says the output changed.*
 
 > ***And it is the SAME line [Solutions 53](../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md) names as the loop's re-entry mechanism*** — *there it re-entered forever because a half-built chemical drew a fresh Fragment every call; here it simply costs a pass on every tree, forever, whether or not anything changed.* **One line, two symptoms, and the second was invisible until somebody ran a page that did nothing.**
 
@@ -133,7 +287,7 @@ else { this[$reaction$]?.react(); diffuse(this); }
 
 ***React does not hand us the boundary.*** **`withScope` closes when its function returns, and a parent's render returns before React renders its children** — so a scope opened inside one component's render never covers the children's bonds, and "a connected tree" is exactly what it would fail to span.
 
-*Three candidates, none chosen: the **catalyst root**, since `$isCatalyst$` already means "the root of the reaction system I belong to" and a connected tree is precisely a catalyst system; a **microtask**; or the **post-commit effect** at [`particle.ts:495`](../../package/src/abstraction/particle.ts) that already re-runs the view and diffs.* ***The catalyst is the one that matches Doug's words. Whether it is stable across a re-render starting mid-tree is unknown — [P1](#p1).***
+*Three candidates, none chosen: the **catalyst root**, since `$isCatalyst$` already means "the root of the reaction system I belong to" and a connected tree is precisely a catalyst system; a **microtask**; or the **post-commit effect** at [`particle.ts:509`](../../package/src/abstraction/particle.ts) that already re-runs the view and diffs.* ***The catalyst is the one that matches Doug's words. Whether it is stable across a re-render starting mid-tree is unknown — [P1](#p1).***
 
 ### <a id="d3"></a>D3 · Forward-only is a REFUSAL, not a silent skip
 

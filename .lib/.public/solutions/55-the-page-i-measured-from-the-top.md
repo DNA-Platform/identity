@@ -38,6 +38,12 @@
 
 **THIRD, THE FIRST SCREEN.** *A viewport is not a page.* **`fullPage: true` is one word and its absence made every visual comparison I did structurally incapable of seeing the fault Doug was pointing at.**
 
+***A FOURTH, FOUND 2026-09-08, AND IT IS THE SAME TRAP WITH A CLOCK.*** **Timing a test suite, I ran `npx vitest run --reporter=basic`.** *There is no `basic` reporter in this vitest; the run failed at startup, printed a stack, and executed **no promises at all**.* **I timed it at `4,049 ms` and was one sentence away from reporting that as the suite's cost.**
+
+***What makes it the same disease is what makes it dangerous: the real suite is 3,830 ms.*** **A number produced by a run that did nothing agreed with the true number to within 200 ms.** *Nothing about `4,049` looked wrong — it was the right order of magnitude, stable, and reproducible.* ***It was caught only by opening the output file*** — *which is the same act that would have caught the empty detector above, and it is the only act that ever catches this.*
+
+**The rule the three instruments already gave, restated for a clock:** ***a measurement of a thing that did not happen is not a small measurement, it is not a measurement.*** **So a timed run reports what it ran** — *tests executed, files collected, exit code* — **and a timing with no work behind it is an error, exactly as an empty match is.**
+
 ## What the instrument has to do instead
 
 **Assert on what a reader sees.** *The refusal carries no class, no attribute and no tag of its own — but it always carries its words. `document.body.innerText` is the only surface that cannot be styled out from under a check.*
