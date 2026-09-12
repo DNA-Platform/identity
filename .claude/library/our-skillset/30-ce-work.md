@@ -17,11 +17,11 @@ Execute an implementation-ready plan — figuring out the **how** with the code 
 
 **Announce at start:** "Using work to execute the plan."
 
-## The refusals — read these before starting
+## The failures — read these before starting
 
 Two gates, both from their skill and both kept:
 
-**A sprint chapter marked `requirements-only` is refused.** Stop, say the guardrails are missing, and offer the exact [`/ce-plan`](29-ce-plan.md) handoff. Do not implement from requirements.
+**A sprint chapter marked `requirements-only` fails validation.** Stop, say the guardrails are missing, and offer the exact [`/ce-plan`](29-ce-plan.md) handoff. Do not implement from requirements.
 
 **Large work is routed back.** Cross-cutting, architectural, touching many files, or reaching into anything load-bearing — say so, and recommend [ce-brainstorm](28-ce-brainstorm.md) or [ce-plan](29-ce-plan.md) first. Then **honour the choice**: if Doug says proceed, proceed.
 

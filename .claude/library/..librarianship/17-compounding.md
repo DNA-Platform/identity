@@ -48,6 +48,18 @@ npx tsx .claude/library/bookkeeping/03-on-covers--toc.ts <cover.md> --get <NN-ch
 
 It parses every entry, round-trips them, and refuses to write a cover it cannot reproduce — so a cover is updated **without reading the whole book**, and an existing synopsis is never lost by accident.
 
+## Compounding subtracts, and a sprint chapter is where it subtracts most
+
+**Distribution is only half of it.** A lesson that leaves the sprint chapter for its own room has been *copied*, not moved, until the sprint chapter stops carrying it — and a library that only grows stops being findable, which is the one thing this whole apparatus exists to prevent. **An unread eighteen-thousand-word chapter is exactly as unfindable as a missing one.**
+
+**A sprint chapter is written at full working weight while the sprint runs, and that is correct** — requirements, units, cleanup, test scenarios, order, risks, a self-check are what run it. Compounding is when it stops being a plan and becomes the index this book already says it is.
+
+What is spent once a sprint closes, and it is provable rather than a matter of taste: **the test scenarios became the suite**, the order happened, **a risk that fired is in the record** with what it cost, and the self-check passed before work started. Each is replaced by **a stub saying what stood there** — never a silent deletion, which would leave a later reader thinking the sprint never planned. Units and requirements survive as a **register**, one line each, because the record cites them by identifier and those links must not break.
+
+**Three rules keep it honest.** *Measure before and after and state both* — "122,595 words to 105,982" is a finding and "compacted the library" is not. *Check every anchor before and after* — and expect the check to earn its keep even where nothing is cut, because it finds links that never resolved. *A cover is re-edited only if the cut made it false*; the requirement is that a synopsis stays true, not that it is rewritten.
+
+**Across chapters as well as within them.** Where a sprint record restates what a settled account now holds, the sprint record yields and keeps the finding plus a link. **Settled accounts are the destination; sprint records are the trail.**
+
 ## What a compounding pass does
 
 1. **Name what was learned**, in one line, as an observation rather than a conclusion.
@@ -58,6 +70,8 @@ It parses every entry, round-trips them, and refuses to write a cover it cannot 
 6. **Check the neighbourhood, with bounds.** Look at what the edited chapter cross-references and what references it; fix what this lesson's own evidence shows is wrong. **Neighbourhood only, never a whole-book audit, and never on a guess** — if judging a neighbour needs investigation this lesson did not do, flag it for the retro instead.
 7. **Update the cover** in the same act, with the tool.
 8. **Link it from the sprint chapter.**
+9. **Compact the sprint chapter**, its lessons now living in their rooms.
+10. **Prove no link broke**, and report the count.
 
 ## Doing it with the team
 

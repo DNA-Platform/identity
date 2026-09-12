@@ -76,8 +76,8 @@ bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit
 
 The script detects what changed and routes each category to the right place:
 
-- **Identity changes** (`.claude/`): synced to the identity repo via robocopy, committed to `dna-platform`, merged to `main`, pushed.
-- **The project branch** (named after the project directory): the tool always downstream-merges `dna-platform` into it — so `.claude`/`CLAUDE.md` reach the project branch even when there is no branch library — then syncs every discovered `library/*/.lib` to the identity repo (`.lib/<area>`), commits, and pushes. The branch is created from `dna-platform` on first push if it does not exist. Routing is derived from the project directory name and the `library/*/.lib` glob, not hardcoded to any one project.
+- **Identity AND the branch libraries go to ONE place: the identity branch named after the repo.** `.claude/` and every `library/*/.lib` are mirrored onto it, committed and pushed together. **That branch is the object of record** — nothing else writes to it, so there is nothing to reconcile and no shared branch to clobber. *(Doug, 2026-08-12: "`.claude` and library branches get pushed to the identity branch with the repo name and this is the object of record so no syncing problems.")*
+- **There is no shared-branch step and no merge to `main`.** Both were removed on 2026-08-12: a shared `dna-platform` push is what created the mutual-clobber trap below, and the repo-named branch dissolves it rather than guarding against it. The branch is created on first push if missing; routing is derived from the project directory name and the `library/*/.lib` glob, never hardcoded.
 - **Project code changes**: committed and pushed in the project repo. Generates the project-root `CLAUDE.md` with link prefix adjustment.
 
 The script runs [validation](05-on-validation.md) before any commits. If validation fails, nothing is pushed. The branching model is enforced by the tool — the operator does not need to remember which branch to push to.
@@ -141,7 +141,7 @@ Why split? A single command had to *infer* "fresh run versus resume" from an anc
 
 ## The mirror hazard: the sync pauses, it does not cold-automate
 
-Both sync tools mirror with robocopy `/MIR`, and a mirror **deletes whatever the destination has that the source lacks.** With two active projects sharing `dna-platform`, that is a mutual-clobber trap: whoever pushes second silently deletes the other project's un-pulled work, and a reconcile cannot win a race against a peer who is actively pushing. (We learned this the hard way — one project's push deleted the other's just-pushed chapters and tools off `dna-platform`. The work survived only because it was also in a working copy and in git history.)
+**RESOLVED 2026-08-12, and the fix was to remove the shared branch rather than guard it.** Both sync tools mirror with robocopy `/MIR`, and a mirror **deletes whatever the destination has that the source lacks.** While two projects shared `dna-platform`, that was a mutual-clobber trap: whoever pushed second silently deleted the other's un-pulled work, and a reconcile could not win a race against a peer actively pushing. (We learned it the hard way — one project's push deleted the other's just-pushed chapters off `dna-platform`.) **Each repo now writes only to its own branch, so a mirror can lose nothing that is not its own.** The history below is kept because the trap is what a shared mirror always is, and anyone reintroducing one should read it first.
 
 So the sync **must not be cold-automated.** Two protections enforce that, and both are in the tools:
 
