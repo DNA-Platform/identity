@@ -67,6 +67,10 @@
 
 ***What the book had to give them was one formatting context.*** *Every prose document was its own grid item — each placed in the text column by the theme — and a float cannot cross from one grid item to another, whatever the nesting. **The body is that context**, and with it a line in the chapter after the manual measured 374 wide against the manual's edge and 676 below it.*
 
+## <a id="header-footer"></a>Ruled 2026-09-13 — `header()` and `footer()` are a book kind's, not `$Book`'s
+
+**Doug:** *"Book can assume nothing and the Article can and the Encyclopedia can be a type of Article. This is all fine. Move it to where it is needed. But document that Books are for layout and this is exactly the kind of thing one does when implementing a book."* **So `$Book` composes its writing and assumes no layout section; a book kind that has a header writes `header()` — the article's strip, the encyclopedia's bar — and that is what implementing a book IS.** *Planned as [Sprint 69 U4](../projection/75-sprint-69--the-wart-hunt.md#u4).*
+
 ## <a id="see-also"></a>See also
 
 - **[Using the Public Library](01-using-the-public-library.md)** — *what a consumer imports and through which door*

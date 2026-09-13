@@ -56,12 +56,13 @@
 
 ***Doug's ruling on the last:*** **"We need everything in the framework that does object.create to consult the atom property."** *There are twelve `Object.create` sites in the framework and only two of them make another of a chemical — [`$lift`](../../package/src/abstraction/particle.ts) and `bind()`.*
 
-# <a id="stand"></a>WHERE THINGS STAND — 2026-09-12, handed to the public branch
+# <a id="stand"></a>WHERE THINGS STAND — 2026-09-13, handed to the public branch
 
-**Three local commits on top of Sprint 63's `2adf401`, none pushed, `dist` rebuilt after the last:**
+**Four local commits on top of Sprint 63's `2adf401`, none pushed, `dist` rebuilt after the last:**
 
 | commit | what | spelling |
 |---|---|---|
+| `d7667a7` | **a theme is provided by a chemical and read by the styled beneath it** — [theme] on every chemical answers styled-components' context; overriding it provides, whole, nearest winning; a written field wakes every reader; `$Theme` provides itself — [styled particles](../particle/11-styled-particles.md#theme) | `this[theme].paper` · `override get [theme]() { return this; }` · `class $Palette extends $Theme` |
 | `249758a` | **a registration may say `'single'`** — one made instance, bonded once, answered at every mount, outliving them | `$(A, B)(C, 'single')` · `{ single: true, reach, asker }` |
 | `5d6dae7` | **the emit owns the order of a ranged level** — plain levels first, then `max-width` descending, `min-width` ascending, whole across the chain | nothing new to write; `@select('@media …')` as before |
 | `42b165c` | **a registration redraws what it reaches** — a scope its mounts, a class root every instance of the type, a tag everything; nothing before a render context | nothing new to write |
@@ -70,7 +71,7 @@
 
 **The gate on the head:** tsc 0 · 899 of 899 · Lab styled 17 of 17, representative case 3 six of six, the theme case repainting on a bare registration · library 9 books, 72 chapters, 0 errors.
 
-**What the public branch should know before building on these:** *a `'single'` registration is identity and persistence, not broadcast — a reader of the instance's member is not woken by a write, and a write repaints the last-mounted copy; a theme is a singleton and one per page, so that is the fit.* **A registration now repaints, so a theme re-registered from a handler no longer needs a nudge — and anything that registers in a loop will repaint in a loop.** *Media queries no longer need to be written in cascade order, in one class or across the chain. `@keyframes` names are document-global, last wins.* **`registered()` walks the class chain by NAME: an anonymous class's root registration is invisible to its subclasses.**
+**What the public branch should know before building on these:** *a `'single'` registration is identity and persistence, not broadcast — a reader of the instance's member through the ask is not woken by a write; a theme provided through `[theme]` IS woken, so a registered single that overrides `get [theme]()` and is drawn at the root is both found by the ask and followed when written.* **A registration now repaints, so a theme re-registered from a handler no longer needs a nudge — and anything that registers in a loop will repaint in a loop.** *Media queries no longer need to be written in cascade order, in one class or across the chain. `@keyframes` names are document-global, last wins.* **`registered()` walks the class chain by NAME: an anonymous class's root registration is invisible to its subclasses.**
 
 **Open, and none of it blocks them:** *the one-update-handle defect and the reader-not-woken rule, which are `atomic` and `coupled`'s; the Lab app's own tsc carries three July errors in `frames/case-1.tsx`; the pitch of `drawn()` waits for a case.*
 
@@ -80,7 +81,7 @@
 - ***Which settings are constant and which are overridable.*** **Doug: *"Overridable means the next subclass can change it. We did this for resolve."*** *`$look` is dynamic, `inline` and `formula` are constant, `persist` is dynamic. The rest is unruled.*
 - ***The Lab driver reaches 35 of 42 sections.*** *Seven carry no verdict and cannot be asserted — `assigned`, `blocks`, `facades`, `formula`, `persistence`, `perspectives`, `styled`. **The persistence one is the atom demo**, which is why an atom defect reached a browser before a promise.*
 
-# <a id="pitches"></a>PITCHED FROM THE PUBLIC BRANCH — 2026-09-11, two extensions, each of a mechanism that exists
+# <a id="pitches"></a>PITCHED FROM THE PUBLIC BRANCH — 2026-09-11 and 2026-09-13, three extensions, each of a mechanism that exists
 
 *Doug: "pitch something that is a natural extension of what's there and not a hack." Both come from [Sprint 58 of the public branch](../../../.public/.lib/projection/64-sprint-58--the-chapter-that-is-its-view.md), where each was needed, measured, and not built.*
 
@@ -101,6 +102,57 @@
 **What is wanted:** a chapter that prints its document, and a citation in another chapter that needs that document's entries. Measured on the public branch: the printed document's parent IS the chapter, so the way up works with no member held; the way down has no public reading, so the document hands itself to the chapter's reference at its bond — one line, and one line too many by Doug's standard: *"Do we need one? Why isn't it then of an async method? Use $Chemistry async handling."*
 
 **The extension:** a reading of the other direction from the registry the reaction already keeps — `drawn()`: the chemicals whose parent is this one, this render — so a chapter finds the document it printed, a book its drawn chapters, and a reference to a drawn part resolves by `await this.next('mount')` and a read, with no handover written by anyone. It is the assignment's default form ([the assignment](../composition/14-the-assignment.md)) read back: the walk already knows every top's writer; this names the tops from the writer's side. *`drawn` is a proxy name; Doug's to give.*
+
+## <a id="pitch-theme"></a>The theme provider — the wrapper exposes styled-components' `ThemeProvider` polymorphically · ***2026-09-13, handed to this team for a brainstorm with Doug***
+
+*Doug, closing the public branch's Sprint 69 session on it: **"So there's a wart! .public does a custom styled components integration. A $Chemistry user shouldn't need that."** · **"Styled chemicals is a wrapper around styled components so let's get our theme provider."** · **"The right thing to do is EXPOSE a polymorphic version of that."** · **"I told the $Chemistry team to contact you… so they can brainstorm with me."*** *Written by the public branch for a fresh session here; every name below is a proxy and Doug's to give.*
+
+**What is there:** a styled chemical compiles once per class; [a getter is a live value](../particle/11-styled-particles.md#a-getter), read per render, *"which is what lets a styled particle follow a theme"* — and the Lab's theme case follows one handed as a prop, `this.$theme.paper`; `given()` hands a chemical's `$`-props to its styled element (an `as`, an `href` and an `id` were proved through it on the public branch this week); a registration may say `'single'`. **What is not there:** any way for a chemical to *provide* a value its descendants reach — no context, no reach; the grep for either is empty.
+
+**What the public branch does instead, by hand — the wart:** `$Book` holds a `_theme`, its setter runs the theme down into every `$Document`, each document holds its own, `$Writing.theme` walks up through `reflection.above` to whichever holds one, `reflection.theme()` stands in for a default, the `'single'` registry stands in for a provider, and the theme reaches the page by being an *element* — `$Theme extends $Format` with `selector = styled.main`, wrapped around the book in `$Book.view()`. [Solutions 73, The Theme That Arrived on the Second Paint](../../../.public/.lib/solutions/73-the-theme-that-arrived-on-the-second-paint.md), is that integration's defect on record; the public register carries it as its row B14 in [Sprint 69](../../../.public/.lib/projection/75-sprint-69--the-wart-hunt.md).
+
+**What is wanted — the wrapper's own version of what styled-components has:** a provider chemical that *is* `ThemeProvider` taking a chemical as its theme — any chemical, so a theme is whatever class one subclasses — and `theme` on every styled chemical, read from styled-components' `ThemeContext` in the chemical's render, *before its live getters evaluate*. Authoring does not change: `get color() { return this.theme.pale }` stays as written (twenty-nine such reads in the public branch's demos alone); only where `this.theme` comes from changes — context instead of a walk. ~~Reactivity comes for free in that shape: the theme is a chemical, its fields are reactive, the consumer reads them inside its own tracked render, and a written field re-renders its readers.~~ *Struck 2026-09-13 by the public team on [P3](#probe-theme): a render is not a tracking scope, and a single is its own parent and never mounted.*
+
+**What the public branch deletes when it lands:** `$Document._theme` and its setter and spec; `$Book`'s `_theme`, run-down loop and element wrap; `$Writing.theme`'s walk; `reflection.theme()`; `$Theme` as a format — it becomes a values chemical the book provides, and the theme's `@select` groups go to formats, which is the other half of the same design (*"Themes shouldn't really even have CSS"*).
+
+**Not the trick:** a snapshotting provider plus a `theme` token compiled to `props => props.theme.x` — new authoring beside the wrapper, declined in the room; and `ThemeProvider` used bare, whose consumers compare the theme by identity and would not follow the appearance panel writing a field (public Sprint 66: *"the panel literally writes the theme"*).
+
+**The rule that holds over all of it:** chemistry never says *theme* or *format* — those are the public branch's words; the provider takes a chemical and the layer takes a string, and `.public` names both. A chemistry feature that mentions its consumer's kinds is [the third face](../../../.public/.lib/the-type-system/06-polymorphic-limiting.md#the-third-face).
+
+**Beside it, smaller — parity a thin wrapper owes, none of it needed for the provider:** a layer a styled chemical names once at class level, the compile wrapping its text in `@layer <name> { }` (stylis serialises layers; the compile already opens one as a level); sheet-level rules and the `@layer` order line through `createGlobalStyle`; a forward-prop policy through `StyleSheetManager` so a styled element takes any attribute its chemical hands it — today `$as`, `$href`, `$id` are declared on the public branch's `$Format` only so TypeScript allows the hand.
+
+**Open for the brainstorm:** the default when nothing provides; nested providers — Doug has ruled a book's theme and a document's as two tops of one hierarchy; whether `theme` belongs to every chemical or to styled ones; what happens when a chemical also declares a `$theme` prop (styled-components merges a `theme` prop over context, which is the Lab's road today). **First, a probe, ten throwaway lines:** a chemical's render reading `ThemeContext`, and a live getter re-rendering when a theme field is written.
+
+## <a id="probe-theme"></a>MEASURED — 2026-09-13, the pitch above probed before the brainstorm, and the ask corrected in the room
+
+***Doug, the same day: "We forgot to implement theme providers with styled chemicals and it has caused a fuff. We need to fix it. Talk to them about their design and let's get in a GENERAL way for styled chemicals to be configured."*** *The public team corrected their own pitch on reading chemistry: "scoped registration IS the provider… my grep looked for the words provide/context and could not see it." The generalisation put back to him: **a configuration is a chemical registered above and asked for below, whose writes wake the chemicals that read it.** A theme is one configuration; chemistry never says theme.*
+
+**Five promises in the suite's idiom, run once and removed** — a styled `$Sheet` with `selector = styled.div` and `get background() { return $(Theme).$.paper; }`, drawn by a `$Host`:
+
+| | promise | result |
+|---|---|---|
+| **P1** | nothing registered: the getter reads the class template's default | green |
+| **P2** | `$(Host, Theme)(Theme, 'single')`, the one written before mount: the sheet reads the one | green |
+| **P3** | **the one written inside `act` after mount: the sheet follows** | **RED** — still the old value |
+| **P4** | two hosts, two singles: each sheet reads its own | green |
+| **P5** | a subclass single re-registered on the host from outside a draw: the sheet follows | green — [the kinetic registration](../composition/11-the-representative.md#redraw) |
+
+**So the provider exists and delivers, and the one thing missing is the wake.** *The ask stands in a styled getter because `styling()` (`particle.ts:324`) runs under the render that `withAsker(p, …, true)` wraps (`particle.ts:509`, `529`), so the asker is the styled particle itself and `askedFor` (`chemical.ts:1613`) walks its `$parent$` lineage; nearest wins, so a document's configuration over a book's is two registrations at two tops, nothing more.*
+
+**Why P3 is red, cited.** A render is not a tracking scope: `withScope` wraps augmented handlers and lifecycle continuations only (`bond.ts:289`, `297`), so a read during a render is recorded nowhere. A bonded field's setter outside a scope reacts the written chemical and diffuses up its `$$parent$$` chain (`bond.ts:222–227`); inside a handler scope `finalize` reacts the written chemical and its parents (`scope.ts`). A single made by `single()` has itself as parent (`chemical.ts:1718`) and is never mounted, so its `react()` is a no-op. **Nothing in the framework wakes a chemical for having READ another's field** — the [reader-not-woken rule](#next) that `atomic` and `coupled` own, met from the configuration side. *The pitch's "reactivity comes for free… inside its own tracked render" does not hold, for chemistry or for `ThemeContext`, whose consumers follow identity and not a written field.*
+
+**Their open question answered from the code:** `$(this.theme.constructor)` is a lift by class — `$(cls)` memoises the class template's component and derives a fresh instance per mount; it is not an ask. The ask is `$(Theme)` inside a draw, answered for `'single'` by `$(one)` whose `.$` IS the one. The element the book wraps and the one a panel writes are different objects; P2 proves the ask reaches the right one.
+
+**Two shapes for the wake, put to Doug, no ruling yet:**
+
+| | shape | what it covers | cost |
+|---|---|---|---|
+| **A1** | ***the general law:*** a write to a chemical wakes the chemicals that read it during their render — a read-graph kept by `$Reaction`'s registry, no field on any chemical, entries dropped with the reader | every cross-chemical read in a view, configuration or not; closes the reader-not-woken rule | one lookup per cross-chemical field read during a render; **measured at the gate before it lands** |
+| **A2** | ***the narrow one:*** a write to a registered single redraws the scopes it is registered in, as a re-registration does | configuration only | nothing per read; the whole scope repaints, as P5 does today |
+
+**Recommended A1**, because a configuration is a chemical read by others and nothing else, and A2 would make singles a special case of a law that is missing everywhere. *The public team, from where the writes happen: the general law also closes what P4 shows — a write to one single repaints only its readers — and the narrow shape leaves a class of bug it cannot see, a write to a COPY of the single, which is their 1(c) today.* **Dropped:** the ask-as-a-chemical export for reads outside a draw — the public team's reads outside a draw are bond-time and spec-time and neither is essential once the package registers the base at the top. **What the public branch deletes when the wake lands, in their words:** the theme's selector and element wrap, `_theme` on book and document with the setters and the push-down, `$Writing.theme`'s walk, `reflection.theme()`, `$check(theme, '!')` at bond — which was also the 6,281× re-bond of the one-render sprint — and the two "drawn in a theme" promises rewritten as one about the provider.
+
+**LANDED the same day, on his ruling — not either shape above.** *Doug: "We need to not limit styled components itself. Do we make a theme flag to go with styled and wherever that is is a source? Something like that? And a book or a document can decide to be this?" · "Chemistry knows nothing about .public so just think about what we want $Chemistry to do. What we learned is that a consumer of our library is struggling and we want to make their life easier." · "theme is for the chemical so that will make it like a theme provider and the book or document would render one in it. But chemistry can make, itself, a class that satisfies this." · "Do we do [theme] and expose this as a symbol… I think that will make it easier on implementers."* **Built as [a theme provided by a chemical](../particle/11-styled-particles.md#theme):** `[theme]` on every chemical reads styled-components' own context; overriding `get [theme]()` provides, through `ThemeProvider` handed a function, a face remade only when a named field changed — the wake by identity, which is styled-components' own; `$Theme` provides itself. *The general law and the narrow one both stand un-built; the reader-not-woken rule is still `atomic` and `coupled`'s for reads through the ask.* **Seen: Lab case 6, `verify-styled` 20 of 20; seven promises; suite 906 of 906; tsc 0; commit `d7667a7`, dist rebuilt. The public side is Doug's to rule with that team directly; the name `$Theme` is a proxy.**
 
 # <a id="reported"></a>REPORTED FROM THE PUBLIC BRANCH — 2026-09-11, a defect measured to the line, not yet designed against
 

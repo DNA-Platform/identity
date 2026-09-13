@@ -7,6 +7,53 @@
 
 ***Doug asks for it constantly and it was never written down.*** **"I don't think you are asking yourself if things seem like they are implemented naturally."** *[How we find warts](../the-public-skillset/04-public-audit-code-patterns.md) is written; [how to tell a missing feature from a fact about the world](../the-public-skillset/04-public-audit-code-patterns.md#the-defence-is-the-finding) is written.* **This is the third thing, and it is the one the other two lean on** — *because "ceremony" and "ugly member" both mean **departure from the natural shape**, and neither reading works if that shape is a matter of taste.*
 
+## <a id="no-fights"></a>NATURAL MEANS NO FIGHTS — ***the tolerance, given 2026-09-13***
+
+***Doug, opening the wart hunt, and every sentence is the criterion:*** **"What is the biggest symptom of writing your own framework? That all of your implementations are natural. Having awkward problems with themes and layout? Fix them in .public so it supports the use case you want. You control the framework. Everything in the code can be natural everywhere."** · **"Writing everything — extending everything — in both component libraries and demos (.latex and .wiki) should look incredibly clean. The point is to make it easy on the implementer, both in code and conceptually. So when you look for warts, they locally look like a fight, or/and they trickle up to creating fights."** · **"Natural means no fights, warts create fights, and we have a near zero tolerance for any of it."** · **"Promises could encode warts or cause them. They are not gospel. This is the time to question them."**
+
+### <a id="a-fight"></a>What a fight is — ***the implementer's experience, not a rule's***
+
+**The three tests above say what natural IS. This says what unnatural FEELS LIKE to the person writing the next kind or the next chapter**, and it is the sense the hunt reads by: *code that fights is code where the implementer had to do something the framework should have done for them.*
+
+| locally, in the code | conceptually, in the head |
+|---|---|
+| **saying a thing twice** — a tag in `definition` and again in `selector`; a heading synthesised in three bonds; a value in a theme and again in a format | **two names for one thing** — a header that is a strip in one door and a bar in another; `$Article` a chapter type in `src` and a book in the demo |
+| **dodging a base seam** — overriding `view()` to add one attribute the base `view()` could not take; overriding `specifically()` to nothing because the base judged what it should not | **two grammars for one apparatus** — a table of contents written as mentions in one demo and as menus with hand-written anchors in the other |
+| **waiving in two places** — a rule returned `false` on the specification and its supply returned unchanged on the type, because the demand is stated twice | **a record that says one thing and code that says another** — a style chapter claiming one `view()` override remains while eleven stand |
+| **reaching through** — `(this.$of ?? this).parent as $Image`, a format finding the writing it is worn by through a cast | **a control that promises and does nothing** — a panel whose choices are written and read by nobody |
+| **hand-writing what the framework writes** — `<img>` in a `print()` where `$Image` exists; `<div className="pd-body">` where every other box is a kind | **a demo inventing a kind** — a class in `.wiki` for something the library has a word for |
+| **hiding what should not have been carried** — a theme setting `display: none` on an author the page never shows, where `print={false}` already says it | **positional selection** — `:nth-last-child(2)`, `:last-of-type`, a `:not()` roster: a concept nobody has named, selected by where it happens to stand |
+
+***One test for all of them:*** **would the implementer of the next kind, the next theme, or the next chapter have to know this?** *If a thing has to be remembered rather than met, it is a fight.*
+
+### <a id="trickle"></a>And a fight trickles — ***the base pays it once, everything beneath pays it forever***
+
+**A fight in `writing/` is paid by every kind beneath it and by every book that writes one.** *The heading a section demands is stated twice in the base — a rule and a supply — so five kinds that carry no heading answer it twice, and the sixth will too.* **A fight in a kind is paid by every book that writes it.** *A format that must restate its writing's tag, or wrap it, is a fight every demo meets the day it dresses that kind.* ***The tell that a fight has trickled is the same thing done two ways in two demos*** — **the paper and the encyclopedia are the acceptance test of the base, and where they disagree about how to write one apparatus, the base did not say.**
+
+### <a id="tolerance"></a>The tolerance is near zero, and the fix is always in `.public`
+
+**"You control the framework."** *A fight is never patched where it is met — not in the kind, not in the theme, not in the demo.* **It is filed against `.public` as the feature the framework lacks, and the feature is built so that the fight disappears everywhere it was paid.** *A workaround with a comment explaining it is a wart that has learned to talk.* **The number is [the one above](#the-measure): a fix that subtracts is the right one, and a fix that adds a member to the place the fight was met is the fight moving house.**
+
+### <a id="promises"></a>Promises are not gospel
+
+**A promise can pin a wart** — *`book.test.tsx` promises that a book's first three chapters are its cover, its synopsis and its table BY POSITION, which is the fault Doug ruled away in Sprint 64 and it has been green since.* **A promise can cause one** — *a rule pinned on a limitation makes the limitation load-bearing, and the next session repairs around it rather than through it.* ***So the hunt reads the suite as source:*** **every promise is asked what it pins, and one that pins a fight is listed beside the fight, to be rewritten when the fight is fixed and never before.**
+
+### <a id="a-fix"></a>A fix is judged as a wart too — ***and so is a design of his***
+
+> **"You need to use principles to fix the warts. You need to decide your fix isn't creating new warts. Have we solved this so you would not call the changed code a wart? Its property as a wart is that it is non-native and doesn't produce code. Don't put warts over the most important classes in the framework to get rid of minor warts elsewhere."** · **"You always have to take my design and ask — does this work or does it create a wart."**
+
+***And the first question at every wart is what the framework already has for it.*** **"definition isn't bad but if we have it, why aren't things using it? Is that the wart? … If the wart is we have the capacity to address it but classes don't, this is a cleanup with a documentation on how to use the writing class for extension."** *A new member proposed where a feature stands unused is the fix creating the wart.*
+
+### <a id="deleting"></a>And deleting has the same test
+
+> **"read and follow are essential reference function… One is an essential part of an interface, and is what allows one to get from chapter to document… See the difference between intentional but artifact of meeting interface and dead code? Don't destroy in an effort to remove warts."** · **"persist is chemistry. You need to see what is talking to the base. You need to use tools to be aware of all members on the chain when you decide something is dead… careful not to remove something that is still a sketch… delete when the semantics are bad and it's dead because the same thing is implemented elsewhere… be careful that you are not stealing the essence of something."**
+
+**So:** *a member that meets an interface is intentional without a caller; a sketch keeps its essence; the chain beneath the base is read with tools before a member is called dead; and dead is what is implemented elsewhere and semantically wrong.*
+
+### <a id="parenthetical"></a>Parenthetical is by design
+
+> **"Printing true and false is not a wart unless there is a better way. Sometimes, to have everything closed under writing, we need annotations and parentheticals. But we must look at the semantics and say 'does this deserve to be parenthetical here. Is it some text for an illustration to keep it having text? That's okay. One day that could be an aria type implementation but for now it arises by design.' Case by case. You might have warts but be sure."**
+
 ## <a id="the-three-tests"></a>THE THREE TESTS, and a thing is natural when it passes all three
 
 ### <a id="one"></a>1 · It says the thing in the DOMAIN's own words
@@ -75,3 +122,19 @@
 ***A last warning, because it is the failure mode of caring about this at all:*** **naturalness is not a licence to restructure.** *[Friction is the design speaking](../../../../.claude/library/..teamsmanship/08-coding-policy.md) — when a rule fights you, the rule is usually right and the shape underneath it is wrong.* **Three formats died in two days against a wrapper that "should" have worked**, and each attempt was a reasonable-looking natural idea that had not been measured. ***Prove the mechanism, not the output.***
 
 ***And the warning's other face, from Sprint 59:*** **when a design built to Doug's words fails its own promise, the failure is information about the reading, and the move is to HALT and re-hear the words — never to go into the framework to make the reading work.** *A scratchpad an entry wrote at its bond numbered nothing; the session went into `$Synthesis` with a probe and came back with 47 lines in and 42 out, green at 889, and Doug rolled it back: "You are allowed to fix a bug, not rewrite chemistry… If you understood what I asked for and it didn't work for what I was asking, that means HALT and redesign."* **The re-heard design — a collection that knows nothing, a fold keeping what it names, a reference reading what it refers to — needed no chemistry line at all** ([Sprint 59](../projection/65-sprint-59--the-population-that-never-drew.md#stand)). *The tell is the same as the six shapes above: a change in the framework that exists so that one reading of one design can stand.*
+
+## <a id="the-reach"></a>THE REACH — ***the fix is in the framework you control, and chemistry is that framework too · given 2026-09-13***
+
+***Doug, at the end of the wart hunt's first day, after a session spent fighting theme rules with selectors, numbers and a class lift:*** **"All this problem ever needed to be was 'We need ThemeProvider support in $Chemistry' but instead you decided to battle instead of seeing out into the framework you control. This is the essential problem that creates warts. Not seeing your ability to reach and solve problems. We must endeavor to try and learn even if mistakes are often the sign for growth."** · *Earlier the same day:* **"We can have features in $Chemistry from its main consumer."** · *And to the chemistry session, when it asked how to spell what it built:* **"What we learned is that a consumer of our library is struggling and we want to make their life easier."**
+
+**What the day looked like from inside, so the shape is recognisable next time.** *A theme rule beat a format by class count; a format restated an image's size to win; a base rule beat a card's grid; a header's wordmark was found by a path; a synopsis' text line by a `:not()`; the portal's gaps were subtracted from a recording.* **Each was met where it stood and fought there** — *a longer selector, a deleted rule, a number* — **and each fix bred the next, because they were all one problem wearing different selectors:** `.public` was hand-rolling a theme provider — `_theme` on the book and the document, a run-down setter, a walk up the tree, a registry standing in for context, the theme reaching the page as an element — **when the library chemistry wraps has one, and chemistry, a thin wrapper, had not exposed it.** *Named, it was one pitch in chemistry's chapter zero, and the source was built the same afternoon.*
+
+**So the [tolerance rule above](#tolerance) has a second clause.** *"The fix is always in `.public`"* — **and when `.public` is re-implementing what the wrapped library gives, the fix is in chemistry, which is also ours.** ***Three tells that the answer is chemistry, each one seen that day:***
+
+| the tell | what it looked like |
+|---|---|
+| **the consumer re-implements something the wrapped library has** | *a provider, a layer, a global sheet, prop forwarding — `.public` held a theme by hand where styled-components has `ThemeProvider`* |
+| **a thin wrapper is missing part of the wrapped surface** | *Doug: "We are doing a pretty thin styled components wrapper, so shouldn't this be there?"* |
+| **the compensation appears in every consumer** | *paths, rosters and restated values in both themes and both demos — the same fight paid in four places* |
+
+***And the rule that follows:*** **when a fix is a fight, ask which layer the missing feature lives in — and the layers include chemistry.** *The move is then one sentence, filed as a pitch and handed off, not a battle; the session that hits the wall is the one that can see it, and seeing it is the whole of the ability Doug named.* **Record the mistake beside the reach: the mistake is the sign of the growth.**

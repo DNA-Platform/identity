@@ -206,6 +206,39 @@ get background() { return this.$theme.paper; }
 
 ***A bond-constructor assignment is the other road and it is STATIC***: the synthesis memoises, so the bond constructor does not re-run when only a prop changed, and the value it took stands. **Measured in the browser 2026-09-04** — with the theme assigned in a bond constructor, a theme change moved the background and left the border stale; with getters, all of them follow.
 
+## <a id="theme"></a>A theme is provided by a chemical and read by the styled beneath it
+
+***Built 2026-09-13 on Doug's ruling — "We need to not limit styled components itself. Do we make a theme flag to go with styled and wherever that is is a source?… And a book or a document can decide to be this?" · "chemistry can make, itself, a class that satisfies this" · and on the spelling, "Do we do [theme] and expose this as a symbol… I think that will make it easier on implementers."*** *Measured before it was built: the ask already delivered a registered single to a styled getter, four green, and a write to it woke no reader, one red — a render is not a tracking scope, and a single is its own parent and never mounted. The wake is what this adds ([chapter zero](../projection/00-planning.md#probe-theme)).*
+
+```tsx
+import { $Chemical, $Theme, children, styled, theme } from '@dna-platform/chemistry';
+
+class $Palette extends $Theme {            // provides itself: its fields are the values
+    paper = '#f8f9fa';
+    ink = '#202122';
+    get ruled() { return `1px solid ${this.ink}`; }
+}
+
+class $Card extends $Chemical {            // reads whatever was provided above it
+    selector = styled.article;
+    get background() { return this[theme].paper; }
+    get border() { return this[theme].ruled; }
+    view() { return <article>{this[children]}</article>; }
+}
+
+<Palette><Card>…</Card><RawStyledP>…</RawStyledP></Palette>   // both follow, and both repaint when palette.paper is written
+```
+
+**`[theme]` is a member of every chemical, a symbol exported as `children` and `style` are, so it claims no name of the class's.** It answers what styled-components' own context handed the render — the lift reads the context before the view, so a styled getter reads it at draw — and outside a draw it is `undefined`, as `props.theme` is. **A class that overrides `get [theme]()` to answer something other than what it was handed PROVIDES it:** what it draws is wrapped in styled-components' `ThemeProvider`, outside its own element, so a styled chemical and a raw styled component beneath read the same theme. **Nearest wins, whole** — the theme is handed as a function so styled-components takes it as it is rather than spreading it over an outer one; inheritance is by class.
+
+**What is handed on is a face over the theme** — `Object.create(theme)`, so its fields read live, its getters and its class stand and `instanceof` holds — **remade with a new identity only when a named field's value changed.** That is the wake: a written field re-renders the provider, which is a mounted chemical; the new identity reaches every reader through the context; and an unchanged render keeps its identity, which the render diff needs to stay quiet. *The named fields: not the framework's own, not a `$`-prop, not what it holds.*
+
+**`$Theme` is chemistry's class that provides itself** — `override get [theme]() { return this; }` and `view() { return this[children]; }` — subclass it with the values and draw it around what wears them. **A chemical that would rather be its own theme overrides the same getter and adds no element.** *A consumer that wants the word and the type writes one getter on its own base* — `get theme(): $Palette { return this[theme]; }` — *and every getter beneath types through it; folding a default in, `?? defaults`, is the same line, and a base that answers a default through `[theme]` itself becomes a source of it beneath, which a nearer theme above still beats.*
+
+**The edges, stated:** one theme per subtree, as styled-components has one context — a second, independent configuration goes through [registration](../composition/11-the-representative.md), which already delivers by scope; a getter that answers a string or a number provides nothing; and the name `$Theme` is a proxy, Doug's to give.
+
+**Promises:** [`styled.test.tsx`](../../package/tests/abstraction/styled.test.tsx), seven — nothing above, styled-components' own provider above, a chemistry theme above with its getters intact, the wake, a raw styled component following the writes, the nearer theme replacing whole, a chemical that is its own theme with no element. **Seen:** Lab styled case 6, [`verify-styled`](../../package/app/verify-styled.mjs) 20 of 20. Commit `d7667a7`.
+
 ## <a id="inheritance"></a>JS inheritance is the CSS cascade
 
 **A subclass compiles only its own contribution and extends the parent's compiled component** through `styled(Parent)`, so a subclass declaring three fields keeps the padding, radius and font it never mentions.
@@ -236,13 +269,14 @@ get background() { return this.$theme.paper; }
 
 ## <a id="where-it-lives"></a>Where the mechanism lives
 
-**One file, two fields, one symbol, one method — and the walk is untouched.**
+**Two files, two fields, two exported symbols, one class — and the walk is untouched.**
 
 | | |
 |---|---|
-| [`abstraction/styled.ts`](../../package/src/abstraction/styled.ts) | the resolved `styled`, the four phases: read a class's declarations, decide which spelling stands, compile one component per class, seat it |
-| [`abstraction/particle.ts`](../../package/src/abstraction/particle.ts) | `selector` and `styled` beside `inline`; `frame()` stands the written element as the compiled component; the `[style]` getter |
-| [`implementation/symbols.ts`](../../package/src/implementation/symbols.ts) | `style`, exported beside `cache` — read it to reach the compiled component |
+| [`abstraction/styled.ts`](../../package/src/abstraction/styled.ts) | the resolved `styled`, the four phases: read a class's declarations, decide which spelling stands, compile one component per class, seat it; and `providing()`, [the provider half of a theme](#theme) |
+| [`abstraction/particle.ts`](../../package/src/abstraction/particle.ts) | `selector` and `styled` beside `inline`; `frame()` stands the written element as the compiled component; the `[style]` and `[theme]` getters, and the lift reading styled-components' context into the render |
+| [`implementation/symbols.ts`](../../package/src/implementation/symbols.ts) | `style`, exported beside `cache` — read it to reach the compiled component; `theme`, exported beside `children` — the member every chemical has |
+| [`abstraction/theme.ts`](../../package/src/abstraction/theme.ts) | `$Theme`, the class that provides itself |
 | [`abstraction/molecule.ts`](../../package/src/abstraction/molecule.ts) | `selector` joins the framework members that are never state — **a function-valued member would otherwise be bonded as a reagent and answer a bound wrapper per instance** |
 
 **Compiled once per class**, cached in a module `WeakMap` keyed by the class and built in [`$lift`](../../package/src/abstraction/particle.ts) — the one factory both particles and chemicals pass through — so the compile happens before anything of that class renders and no template is seeded mid-render.
@@ -251,11 +285,11 @@ get background() { return this.$theme.paper; }
 
 ## <a id="seen"></a>Seen
 
-**Five cases in the Lab, [`app/src/sections/styled/`](../../package/app/src/sections/styled/), driven by [`verify-styled.mjs`](../../package/app/verify-styled.mjs):** the selector as the element and the cascade; the three spellings; promotion driving a live width; a theme fetched through `$` in a bond constructor, switchable live and swappable per scope; and [an animation](#animation) whose fade is watched moving, with a subclass restating one stop stood in.
+**Six cases in the Lab, [`app/src/sections/styled/`](../../package/app/src/sections/styled/), driven by [`verify-styled.mjs`](../../package/app/verify-styled.mjs):** the selector as the element and the cascade; the three spellings; promotion driving a live width; a theme fetched through `$` in a bond constructor, switchable live and swappable per scope; and [an animation](#animation) whose fade is watched moving, with a subclass restating one stop stood in; and [a theme](#theme) provided by a chemical to a styled chemical and a raw styled component beneath it, written live and both repainting.
 
 ***The fifth case is the first Lab case to put `@select` on a class field, and it took a config change to show it:*** **the Lab's babel path could not decorate a field** — *the decorators plugin in its legacy form refuses one without the class-properties transform beside it, and with that transform it refuses TypeScript's own field syntax next* — **so no Lab case had ever shown the spelling every consumer writes.** *esbuild and rollup handle it, which is why the promises and `dist` never noticed.* **The answer needed no dependency and was already in the repository: [the wiki's config](../../../.public/package/.wiki/.public/vite.config.ts) has babel only PARSE the decorator syntax and lets esbuild transform it** — `parserOpts` on the react plugin, `experimentalDecorators` and `useDefineForClassFields: false` handed to esbuild — *and the Lab's [`vite.config.ts`](../../package/app/vite.config.ts) now takes the same shape.* **A plugin was installed for an hour first and taken back out, because the neighbour had already solved it and was not read.**
 
-**Promises:** [`tests/abstraction/styled.test.tsx`](../../package/tests/abstraction/styled.test.tsx) — thirty-four, including the getter road, a bond constructor assigning a styled property, the levels and the prefix, and the three on [an animation](#animation).
+**Promises:** [`tests/abstraction/styled.test.tsx`](../../package/tests/abstraction/styled.test.tsx) — forty-five, including the getter road, a bond constructor assigning a styled property, the levels and the prefix, the three on [an animation](#animation), and the seven on [a theme](#theme).
 
 ## <a id="owed"></a>What is not built
 

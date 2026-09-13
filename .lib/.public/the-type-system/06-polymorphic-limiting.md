@@ -77,6 +77,26 @@
 
 ***WHICH MAKES `Reflection` THE PLACE THE BRANCH'S COUPLING ACCUMULATES*** — not because it is badly written, *it is careful and it is well commented* — **but because it is the only object in the branch that may ask what kind a thing is, so every question that crosses two kinds ends there.** *The fix is not to break it up; a smaller utility with the same shape is the same defect in pieces.* **The fix is the mechanism [the third row above](#the-instances) already names: give a `$Type` the power to confer a member, and thirteen of these go home.**
 
+# <a id="the-third-face"></a>THE THIRD FACE — designing from the subclasses in front of you
+
+***Given 2026-09-13, in the wart hunt, when three of the register's own proposed fixes turned out to be this fault.*** **His words, and the chapter is built on them:**
+
+> **"Look for this polymorphism misconception as a source of warts in your analysis. The principle: don't try to predict the future. The set of subclasses is never comprehensive so don't design by what is there but what COULD BE needed in the future. Nothing is locked. Framework design is for an unknown future."**
+>
+> **"A wart is preemptively trying to predict and design around polymorphism. If there is a more natural thing, like using the classes in the class list, rather than overriding, do that. If it is a real polymorphism need, stick with it. Obviously the more we put in view and print, the more dangerous it becomes to override it. We should endeavor not to."**
+>
+> **"Chemistry is OO and react is not, and you can't import warts from a framework that doesn't support it. Think like C# and look for polymorphism done wrong or right. Overriding view is dangerous, but having an Encyclopedia book as different because it has a unique layout is not. Assuming all books need a layout section is potentially dangerous."** · **"A library like article definitely deserves its own base types if needed."**
+
+| polymorphism done WRONG — *a base designed from the subclasses that exist* | polymorphism done RIGHT |
+|---|---|
+| a parts member on `$Book` because both books in the repository have a body | a book kind with its own layout, because it is different |
+| an attributes member on `$Writing` because twelve kinds override `view()` | a kind overriding `print()`; an override of `view()` where the element is genuinely a different element |
+| a `:not()` roster naming today's apparatus | a library with its own base types |
+| a position that assumes every book's shape | a kind waiving a rule the specification chain let it waive |
+| a supply giving every section-kind a heading it may not want | a kind carrying its level in the class list instead of overriding |
+
+***The test is one question:*** **would this base member still be right for a subclass nobody has written?** *If it is only right for the ones in front of you, it is a prediction, and a prediction on a base is a wart.* **The first face and the second are its consequences:** *a member that holds the absence of a mechanism, or a utility that holds a member with the receiver demoted, is a prediction made from one kind's need.*
+
 # <a id="the-audit"></a>How this is found, and why it is hard to find
 
 ***It is found by [public-audit-code-patterns](../the-public-skillset/04-public-audit-code-patterns.md), and that skill had to be corrected before it could find anything*** — *because every instance above has a local defence, and a reader asked to refute will accept it.* **"TypeScript demands the member" is true. "The base cannot hold this" is true. "It would be slower otherwise" is true.**

@@ -1,63 +1,122 @@
 # Sprint 68 — The Style Cleanup
 
 - **author:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md)
-- **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
 - **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
-- **status:** `brief-only` — ***Doug's brief recorded 2026-09-13 at the close of [Sprint 67](73-sprint-67--the-flow-the-book-holds.md), before any brainstorm. Nothing here is planned and nothing is approved; the next session runs [`/ce-brainstorm`](../../../../.claude/library/our-skillset/28-ce-brainstorm.md) on it.***
+- **status:** `built` — *built and halted 2026-09-13 at Doug's word; planned the same day by aggregating the logged styling items at Doug's word: "ce-plan by aggregating the many little styling issues that have been logged… Let's get encyclopedia done this turn." The brief-only chapter that stood here is folded into [the brief](#brief) below.*
 - ***The chapter name is a proxy; Doug's to rename.***
 
 ---
 
-## <a id="where"></a>Where things stand — ***2026-09-13, the close of the session that built Sprint 67***
+## <a id="where"></a>Where things stand — ***2026-09-13, built and HALTED at Doug's word: "halt when complete with task"***
 
-**Next action: `/ce-brainstorm` on this chapter.** *Doug: "we will move on to a sprint that focuses on finishing the polish so we can move on from Encyclopedia."* **Ask him first whether the four threads below are the whole of it, because the brief was given in one line and a brainstorm can only be as tight as what it is told.**
+**Next action: Doug's.** He asked for the two jobs — the contents column's inner spacing and the manual — with the regression gate as the key, and to halt when done. **Both are built and measured; nothing is pushed.**
 
-**Everything is pushed.** Project repo `main` at `f40866f`; identity on `dna-platform`, both branch libraries on `inexplicable-phenomena`. **Nothing is local and nothing is owed to a push.**
+**Verification, in numbers, at the close.** The wiki gate against a recording of en.wikipedia.org taken today (`TODAY=2026-09-13`): **Turing — 20 of 20 regions within 6px at every pinned width from 1120 to 2560, no sideways scroll at any of the nineteen, 10 of 10 counts equal, every look green but one; the Manual of Style — the manual's box at Wikipedia's x and width at every desktop width, 11 of 11 groups, every look green but one.** `verify:latex` green on both readings (82,582 chars, 66 of 66, 43 of 43, 0 errors, 0 panels) · suite **101 of 101** · `tsc` **0** · `clean` **0 files cleaned**.
 
-**Verification as this closes, with the numbers.** Suite **101 of 101** across 11 files · `tsc` **0** in the package · `npm run clean` **0 files cleaned** · `verify:latex` **green on both readings** (82,582 chars, 66 rows landing 66, 43 citations landing 43, 0 KaTeX errors, 0 panels). The four pages driven at 1280: **0 page errors, 0 refusal panels, 0 blue anchors**; the article and Turing each with one body and one cover, synopsis, table of contents and footer. ***The wiki gate at nineteen widths has NOT run since `e89f5f0`, by Doug's order — this sprint is where it comes back.***
+**The two reds left, named and not looped on:** the footer's `marginBottom` is 32px where Wikipedia's is 0 — the document rule's `:not()` roster reaches the footer, and adding it to the roster raises that rule above the site row's own margin ([Solutions 69](../solutions/69-the-class-that-every-kind-beneath-it-wears.md)'s missing concept, again); it is the last 32px of the page. And **82 manual links where Wikipedia draws 90** — the reader does not read the sidebar's nested sub-lists; content, not style. ***Pre-existing and outside the two jobs:*** the portal at 768 stands ~162px low under the wordmark against today's recording; it wears its own `$PortalTheme` over the base and writes none of the kinds this sprint touched.
 
-**What to read, and what each is load-bearing for:** [The Book Is the Layout](../writing-a-book/05-the-book-is-the-layout.md) — *how a consumer writes against what Sprint 67 built, and the four rules that came with it*; [Solutions 78](../solutions/78-the-float-that-could-not-leave-its-column.md) — *why a float could not cross, and the two repairs that were wrong*; [Sprint 67](73-sprint-67--the-flow-the-book-holds.md) — *what was built, and the two things it left owed*; [Sprint 63's stand](69-sprint-63--the-encyclopedia.md#stand4) — *how the title block and the contents column were measured against the real page, which is the method this sprint repeats*; the real [`verify-wiki.mjs`](../../package/.wiki/.public/verify-wiki.mjs) — *the instrument that already records en.wikipedia.org at nineteen widths.*
+**What was built, each a pair red then green:**
+- ***The contents column*** — a nested row stands 12px in from the row that holds it, Wikipedia's own step, read off the real page by expanding one section at baseline and asserted when the gate opens ours: `opens_padding` 0.9em → 1.714em, because the top-level rows already stand 12px in and the nested ones had been given the same 12 and lined up with them. The rows' margin rule `entry_` now names `.pd-section` so it wins the tie with the paragraph rule it had been losing; rows pitch 28.
+- ***The manual*** — read off en.wikipedia.org at 1280 and its box at seven desktop widths: ground `quiet`, border `rule`, title 1.45em bold ink centred in the body face, the field alone at 253×32 with the 16px bold Search button centred 8px beneath, each group a 1.05em bold band on the tint at line-height 1.6 with `[show]` at 1em hard right, groups 4.5px apart, the foot a bold line ruled above and below in `#aaaaaa` (`faint`, a proxy name) and `v · t · e` right-aligned at 1.15em. The title had been drawn as a serif section heading with a rule under it because the document heading rule reached it at equal specificity; the encyclopedia theme now says the box's numbers after it. `:last-of-type` was the wrong word for the foot lines — it is an element-type test and caught the heading and the form — `:last-child` is right.
+- ***The frame*** — the text column ran **728 where Wikipedia sets 752** at 1280 because the fourth track, holding nothing, cost its gap; the rail's track is now `minmax(12.25em, 1fr)` and the rail held to `12.25rem`, so the text is 752 at 1280, 948 with the rail at x1458 at 1920, and the bar and footer still span the container at 1536.
+- ***The panels' rows*** — never styled: a selector that continues past `::details-content` is dropped whole by the browser, so `held_`, `group_` and `topmost_` had never reached the page. They reach the rows through the `<details>` element now; rows 14px, 6px padding, 28 tall, no paragraph margin, and the toolbar's at 1em since the toolbar already sets its size.
+- ***The rest of the eleven*** — body thumbs bordered on three sides with the caption closing the box and line-height 0; the appearance radios 18px rings in Codex's grey and blue with the panel's face; the footer's lines at 12px on a 16.8 line, its links on a 24px line, its heading hidden as the synopsis's is, no space above it; the site line, infobox rows, lead bold and italic measured green as they stood; below 1120 the bar's margins are 0 since the frame has no padding there to bleed through — it had scrolled the page 24px sideways at every width to 360.
 
-**Rulings given this session, verbatim, because they are the most expensive thing to lose.** *On the framework:* **"Book is layout. Chapters are logical parts. This is the essence of the framework."** · **"all the files except .book are the content and they only have chapters."** · **".book is the thing that inherits from encyclopedia FIRST and then all components for the book."** · **"There is a template method for each of the parts in Encyclopedia. The chapters go where put."** · **"Stop caching things. Use types. Find them when drawing… If you want anything it's a get only property."** · **"You don't need two arrays just because you have a list of two types. Just use the list."** *On validation:* **"Those errors should exist in the binder and they will… We will write tests that run on build for any library as well as cover some of it in the binder. Likely, we will disable validation in binder if we can get that to happen well. Not for now."** *On the standard:* **"Success is finding the correct, elegant implementation or not implementing and bubbling up the problem because the design didn't work. Failure is working around the problem and messing up the code."**
+**The gate, extended (its regression tests for this work):** 25 style pairs added — the manual's box, title, title link, field, search button, band, toggle (read from our summary's `::after`), link, below, navbar and navbar link; lead bold and italic; figure and figure caption; appearance option and radio; main menu, tools and languages rows; footer, footer line and footer link — plus `pinnedRegions` so one region can be held on a page whose widths are not pinned, the contents step recorded at baseline and asserted when ours opens, and the six body selectors corrected from `.pd-book > .pd-chapter > article` to `.pd-body > …`, which Sprint 67 had moved and the gate had not followed.
 
-**Blockers: none.** *Two things are owed and neither blocks this sprint:* the **infobox's kind** — its type says section, and moving it reaches `$Box`, `$Navbox` and the aside chain — and the **portal's `.book.tsx`**, whose book class stands at line 477 of 536.
+**Wrong turns this session, so they are not retaken:** `npm run build` — `rollup -c` — finishes writing `dist` and never exits, so a chain on it hangs; `build:quick` is the build. A shell one-liner rewriting a script with escaped `\r\n` broke it; a patch is a written file with an exactly-once check per edit. `:last-of-type` on a class. A `:not()` added to the document roster to spare the footer raised its specificity over the site row's tie. Eight parallel Turing tabs in the gate time out at 60s while another browser runs; one target at a time.
 
-**Wrong turns already taken this session, so they are not retaken:** believing a served page before rebinding it — the mirror held the reverted build AND its orphans, and the first measurement was of the reverted shape ([Solutions 72](../solutions/72-the-mirror-with-two-directions.md), third appearance); measuring **element** boxes where only a **line** box answers whether text flows beside something; defining a part of the page as a REMAINDER; inlining a part's drawing instead of giving it a template method; and setting a folder Doug had made aside rather than committing it — *"Commit the things I do. You will get fired for trusting yourself over me."*
+**How to see it:** `sh serve.sh` at the package root; `http://localhost:5311/turing`, `/article`; `node .wiki/.public/verify-wiki.mjs --only=turing` and `--only=article`.
 
-**How to see it:** `sh serve.sh` at the package root; the paper at `http://localhost:5310/`, the wiki at `http://localhost:5311/turing`, `/article`, `/`.
+**Read first, next time:** [the constraint](#constraint) · [Sprint 65 U6](71-sprint-65--the-encyclopedia-finished.md#u6) · [Solutions 74](../solutions/74-the-gate-that-was-green-while-the-eye-saw-the-drop.md), [77](../solutions/77-the-prefix-that-took-the-base-s-rule.md), [69](../solutions/69-the-class-that-every-kind-beneath-it-wears.md) · [`verify-wiki.mjs`](../../package/.wiki/.public/verify-wiki.mjs).
+
+## <a id="constraint"></a>The constraint, in Doug's words — ***read before any line***
+
+> **"You will be finishing up the work for encyclopedia. This will polish what is there. You are not at liberty to change structural things. You are not at liberty to move things around for polish. You are to use the themes and formats correctly with no purview to redesign this framework."**
+
+*So: no new kind, no new member, no file moved or renamed, no reader shape changed, no change under `src/writing` or `src/library` that is not a theme value. Every fix is a value or a rule group in [`$EncyclopediaTheme`](../../package/src/encyclopedia/Theme.tsx) or in the format the kind already wears — [`$ManualFormat`](../../package/src/encyclopedia/Manual.tsx), [`$InfoboxFormat`](../../package/src/encyclopedia/Infobox.tsx), [`$MenuFormat`](../../package/src/application/Menu.tsx), [`$Appearance`](../../package/src/application/Appearance.tsx) — or a pair in the gate. A fix that needs anything else is [flagged](#flagged), never built.*
 
 ## <a id="brief"></a>The brief, in Doug's words
 
-> **"This was the last big item and the next sprint would be pulling markup, making high fidelity implementation of the style for the table, the manual, and a general regression check on anything. Implementing $Bold, $Italics, $Underline very very simply and useing them where needed in style, implemented as simply as $List is implemented - I just polished it for reference."**
+> **"This was the last big item and the next sprint would be pulling markup, making high fidelity implementation of the style for the table, the manual, and a general regression check on anything. Implementing $Bold, $Italics, $Underline very very simply and useing them where needed in style, implemented as simply as $List is implemented - I just polished it for reference."** · **"When we get to style cleanup I expect this to be seriously cleaned up. Ours looks nothing like this which is the real one and the only way to fix that is to pull markup for many breakpoints and fix it."** · *today:* **"The side table of contents spacing, the cleanup of the manual, and the general polish using the regression tests as key because we do track style on the turing page."**
 
-**And the method, ruled the same day with a crop of the real Manual of Style box beside it:**
+***"The table" is read as the table of contents*** — today's sentence pairs it with the manual the same way — *and not as `$Table`, which the reader never writes (it skips `table` nodes). If Doug meant wikitables, that is a reader change and a kind's format, and a later sprint.*
 
-> **"When we get to style cleanup I expect this to be seriously cleaned up. Ours looks nothing like this which is the real one and the only way to fix that is to pull markup for many breakpoints and fix it."**
+## <a id="requirements"></a>Requirements — aggregated from the record, each cited to where it was logged
 
-## <a id="four"></a>What the brief names — four threads, none of them planned
+| | what it demands | logged at |
+|---|---|---|
+| <a id="r1"></a>**R1** | ***The contents column's spacing is Wikipedia's:*** a nested row stands IN from the row that holds it, as Vector's level-2 rows do; the (Top) row, the heading, the row pitch and the chevron hold their measured places; *the crop's second observation — a row standing while its holder is shut — is checked against the real page's own contents before anything is changed.* | [Sprint 65 U6](71-sprint-65--the-encyclopedia-finished.md#u6) · [Sprint 63 U23](69-sprint-63--the-encyclopedia.md#u23) |
+| <a id="r2"></a>**R2** | ***The manual looks like the real Manual of Style box:*** title centred and link-blue; the field alone across the box with Search beneath it, centred; each group a pale band, name centred, `[show]` hard right in link blue, bands parted by white; the foot two centred lines with `V · T · E` alone on the second. **Read off en.wikipedia.org at the gate's widths, never from the crop.** | [Sprint 65 U6](71-sprint-65--the-encyclopedia-finished.md#u6) · [Sprint 63 U27](69-sprint-63--the-encyclopedia.md#u27b) |
+| <a id="r3"></a>**R3** | ***The eleven, each a pair:*** below 1120 · infobox rows · body thumbs · the three panels' rows · the lead's bold and italics · the appearance radios · the footer · the site line as a block. *(The hide buttons are [flagged](#flagged); the nested rows are R1.)* | [Sprint 65 U6](71-sprint-65--the-encyclopedia-finished.md#u6) |
+| <a id="r4"></a>**R4** | ***The regression check:*** the wiki gate back at its nineteen widths, green on the portal, Turing and the Manual of Style; the paper's gate green on both readings; suite, `tsc`, `clean`. | [the brief](#brief) · [Sprint 65 U6](71-sprint-65--the-encyclopedia-finished.md#u6) |
+| <a id="r5"></a>**R5** | ***`$Bold`, `$Italics`, `$Underline` are used where the page uses them*** — the reader already writes them for `b`, `strong`, `i`, `em`, `u` — and the theme reaches no `font-weight` or `font-style` for PROSE that a kind should have carried. *Their spelling is already `$List`'s; the file question is [flagged](#flagged).* | [the brief](#brief) |
+| <a id="r6"></a>**R6** | ***Nothing structural changes.*** | [the constraint](#constraint) |
 
-| | |
-|---|---|
-| ***PULLING MARKUP*** | **the real page read at many breakpoints and ours fixed against that recording** — never from a picture, never at one width. The instrument the branch already has is [`verify-wiki.mjs`](../../package/.wiki/.public/verify-wiki.mjs), which records en.wikipedia.org at nineteen widths; what it does not yet do is read the MARKUP of a box as against its geometry |
-| ***HIGH FIDELITY: THE TABLE AND THE MANUAL*** | **the manual is [in the style queue with what the crop shows](71-sprint-65--the-encyclopedia-finished.md#u6)** — the Search button on its own line, the foot as two lines with `V · T · E` alone, pale bands separated by white with `[show]` hard right, the sample-layout thumbnail's expand mark. ***The table is new to the list and has no reading yet.*** His verdict on the manual stands as the bar: *"ours looks nothing like this"* |
-| ***A GENERAL REGRESSION CHECK*** | **on anything** — the wiki gate at its nineteen widths has been off since `e89f5f0` by his own order, waiting for exactly this sprint |
-| ***`$Bold`, `$Italics`, `$Underline`*** | **very very simply, as simply as `$List`, and USED where needed in style** |
+## <a id="decisions"></a>Decisions
 
-## <a id="emphasis"></a>What the code says about the emphasis thread, read before any planning
+### <a id="d1"></a>D1 · ***Every fix is a value or a rule in the theme or the kind's own format, by Sprint 63's placement rule***
+[D6](69-sprint-63--the-encyclopedia.md#d6): a look with no new meaning is the format's; where the theme already carries a kind's look because a theme rule outranks a worn format's ([pitch 3](69-sprint-63--the-encyclopedia.md#pitches)), the fix stays in the theme's group and reads its values through getters. *Chosen over* moving groups between theme and format, which is the restructure [The Motif 4](../the-motif/04-themes-per-type-formats-per-instance.md) owes and Doug has not opened.
 
-**The three kinds exist** in [`src/writing/Emphasis.tsx`](../../package/src/writing/Emphasis.tsx), 63 lines: each names its element — `b`, `i`, `u` — each carries the four declarations, and the base theme styles their classes in three lines (`.pd-bold`, `.pd-italics`, `.pd-underline`). **They are already close to `$List`'s shape**, so *"implement them very very simply"* is not about a missing kind. ***Two things are visibly different from the reference and both are for Doug to rule:***
+### <a id="d2"></a>D2 · ***The gate is the verdict, and a pair is red before it is green***
+[D14](69-sprint-63--the-encyclopedia.md#d14). Every item the gate can read becomes a pair in `verify-wiki.mjs`; the recording is re-taken ONCE at the start because pairs are added, and not again. An item the gate cannot read is measured by hand at 1280 against the real page and the numbers are written here. *Chosen over* fixing from the crops, which Doug ruled out.
 
-- **`List.tsx` is ONE word in one file** ([P5](../the-type-system/05-what-we-believe.md#the-shape): *the file is the word*) **and `Emphasis.tsx` holds THREE.**
-- **The file is still named `Emphasis`, which is the word he struck when he gave the kinds** — the comment at its head carries his sentence: *"Don't do Emphasis, make them separate."* The classes were separated; the file was not.
+### <a id="d3"></a>D3 · ***A fix that needs a kind, a member, a control, a moved file or a reader shape is flagged and not built***
+The constraint. The [flagged list](#flagged) carries each with what it would take.
 
-***And "using them where needed in style" has no reading yet*** — *it may mean the places a theme reaches for `font-weight`, `font-style` or `text-decoration` where a kind should have been written instead. That is a grep and a judgement, and it is the brainstorm's first job rather than a guess here.*
+### <a id="d4"></a>D4 · ***Selector hygiene is mechanical***
+Grep the base for a prefix before declaring one ([Solutions 77](../solutions/77-the-prefix-that-took-the-base-s-rule.md)); never restate a prefix on a member the base did not decorate; `@select` names classes; a media level is placed by its bounds. *The gate's looks are the fingerprint.*
 
-## <a id="standing"></a>What else is standing, so the brainstorm sees the whole board
+## <a id="units"></a>Units
 
-- **[Sprint 66](72-sprint-66--themes-and-formats.md)** — themes and formats, `requirements-only`, its plan revoked and its first unit **the typing of cover, synopsis and table of contents**, which Doug ruled by name in Sprint 64 and which no sprint has built.
-- **[Sprint 65](71-sprint-65--the-encyclopedia-finished.md)** — [U3](71-sprint-65--the-encyclopedia-finished.md#u3) the contents row's word and arrow; [U4](71-sprint-65--the-encyclopedia-finished.md#u4) the switch's cost in three uncached readings; [U6](71-sprint-65--the-encyclopedia-finished.md#u6) **the eleven stylistic items, which is this sprint's own list**, now carrying the contents column's nested rows and the manual's look.
-- **[Sprint 67](73-sprint-67--the-flow-the-book-holds.md)** — owed: **the infobox's kind** (`$Infobox → $Box → $Aside` says section by its type; making it a chapter's document reaches `$Box`, `$Navbox` and the aside chain, and [`Aside.tsx`](../../package/src/writing/Aside.tsx) argues the deeper answer against itself), and **the portal's `.book.tsx` reordering**, whose book class stands at line 477 of 536 against [the rule he gave the same day](../writing-a-book/05-the-book-is-the-layout.md#the-book-file).
+### <a id="u1"></a>U1 · ***The gate back on, extended, and the red recorded*** — R4, R1, R2, R3, D2
+**Mechanism:** `verify-wiki.mjs` gains pairs for what this sprint fixes — the contents' nested row (a region pair for its x and a style pair for its indent), the manual's title, band, toggle, link, field, button and foot, the lead's bold, the panels' rows, the appearance radio, the footer's text — and a per-target `pinnedRegions` so the manual's box is held to Wikipedia's at every desktop width on the article page while the rest of that page stays drawn-only, as Doug ruled. `--baseline` once; then the check, and its red list is this sprint's worklist.
+**Files:** `.wiki/.public/verify-wiki.mjs` · `.wiki/.public/.portal/portal.json`.
+**Visible end:** ***the gate runs at nineteen widths on three targets and names every failure; the failure list is written under [the stand](#where).***
 
-## <a id="state"></a>Where the code stands as this opens
+### <a id="u2"></a>U2 · ***The contents column*** — R1, D1
+**Mechanism:** the theme's contents groups — `opens_`, `opener_`, `flat_`, `rowLink_`, `arrow_`, `first_` — set to the real column's numbers read at 1280 and held at every pinned width; the nested row's indent is the `::details-content` padding and the option's own.
+**Files:** `src/encyclopedia/Theme.tsx`.
+**Visible end:** ***Family, School, Christopher Morcom stand in from Early life and education by Wikipedia's step; the pair green.***
 
-**Pushed 2026-09-13**, project repo `main` at `5930209`, identity and both branch libraries on their branches. **Suite 101 of 101 · `tsc` 0 · `clean` 0 · `verify:latex` green on both readings.** The four pages drive with **0 errors, 0 refusal panels, 0 blue anchors**; the article and Turing each carry one body and their full apparatus. ***The wiki gate at nineteen widths has not run since `e89f5f0` and this sprint is where it comes back.***
+### <a id="u3"></a>U3 · ***The manual*** — R2, D1
+**Mechanism:** `$ManualFormat`'s groups rewritten to the recording — the field and button stacked, the bands, the toggle, the foot — and the theme's `band_` value; the reader untouched.
+**Files:** `src/encyclopedia/Manual.tsx` · `src/encyclopedia/Theme.tsx`.
+**Visible end:** ***the manual's pairs green on `/article` at 1280 and its box at Wikipedia's x and width at every desktop width.***
+
+### <a id="u4"></a>U4 · ***The rest of the eleven, one pair each*** — R3, D1
+**Mechanism:** infobox rows, body thumbs, the panels' rows, the appearance radios (`appearance: none` and Codex's rings on the panel's own input), the footer, the site line — each a pair from U1 made green in the theme or the format that already owns it; below 1120 held to no sideways scroll and every region drawn.
+**Files:** `src/encyclopedia/Theme.tsx` · `src/application/Appearance.tsx` · `src/encyclopedia/Infobox.tsx`.
+**Visible end:** ***Turing's looks green at every pair; the eleven ticked here with numbers.***
+
+### <a id="u5"></a>U5 · ***The emphasis kinds where needed*** — R5
+**Mechanism:** a pair on the lead's bold name and one on an italic run proves the kinds draw as Wikipedia's `b` and `i`; the theme grepped for `fontWeight`/`fontStyle` on prose selectors and any found replaced by the kind the reader already writes.
+**Files:** `.wiki/.public/verify-wiki.mjs` · `src/encyclopedia/Theme.tsx`.
+**Visible end:** ***the lead's "Alan Mathison Turing" bold by `.pd-bold`, measured; no prose weight in the theme.***
+
+### <a id="u6"></a>U6 · ***The regression check and the close*** — R4
+**Mechanism:** rollup, the served mirror rebound, the servers restarted ([Solutions 72](../solutions/72-the-mirror-with-two-directions.md)), then `verify:wiki` whole, `verify:latex`, the suite, `tsc`, `clean`; one local commit per green unit; nothing pushed.
+**Visible end:** ***every gate green with its numbers in the stand.***
+
+## <a id="scenarios"></a>Test scenarios
+Every scenario IS a gate pair: input the served page at a pinned width, action the gate's read, expected the recording's number within slack. The failure paths are the red run of U1. No promise is added to the suite — a look is read where it runs.
+
+## <a id="risks"></a>Risks
+- **The recording drifts** — Wikipedia changes between baseline and check. *Mitigated: one baseline at the start, dated by `TODAY`.*
+- **A theme edit moves a group** ([Solutions 77](../solutions/77-the-prefix-that-took-the-base-s-rule.md)) or widens a class ([69](../solutions/69-the-class-that-every-kind-beneath-it-wears.md)). *Mitigated: D4, and the looks catch it.*
+- **A menu's rows cannot be read shut** — computed styles inside a shut `<details>` answer, but heights do not. *Mitigated: the pair reads font, colour and padding only.*
+- **The manual's sample thumbnail** is content the reader does not read. *Out of scope unless it is one reader line; noted under flagged.*
+
+## <a id="flagged"></a>Flagged — needs Doug, not built here
+- **The hide buttons** on the contents and the appearance panel — a control, so a kind: structural.
+- **A contents row's word navigating while its arrow toggles** ([Sprint 65 U3](71-sprint-65--the-encyclopedia-finished.md#u3)) — the summary is the toggle; separating them changes `$Menu`/`$Summary`: structural.
+- **`Emphasis.tsx` holds three words and carries the struck name** — a file move: structural. The kinds themselves are already `$List`-simple.
+- **The manual's sample-layout thumbnail** — reader content; one line if cheap, else next sprint.
+- **The infobox's kind** and **the portal's `.book.tsx` order** — carried from Sprint 67.
+
+## <a id="order"></a>Order
+**U1 · U2 · U3 · U4 · U5 · U6**, the gate run after each and the stand rewritten as each lands.
+
+## <a id="names"></a>Names owed to Doug
+`pinnedRegions` and every new pair name in the gate; carried from 63–65: `$Manual`, `$Option`, `--only`, `--at`, and the theme prefixes.
