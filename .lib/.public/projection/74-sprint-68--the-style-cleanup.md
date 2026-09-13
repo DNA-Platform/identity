@@ -8,6 +8,24 @@
 
 ---
 
+## <a id="where"></a>Where things stand — ***2026-09-13, the close of the session that built Sprint 67***
+
+**Next action: `/ce-brainstorm` on this chapter.** *Doug: "we will move on to a sprint that focuses on finishing the polish so we can move on from Encyclopedia."* **Ask him first whether the four threads below are the whole of it, because the brief was given in one line and a brainstorm can only be as tight as what it is told.**
+
+**Everything is pushed.** Project repo `main` at `f40866f`; identity on `dna-platform`, both branch libraries on `inexplicable-phenomena`. **Nothing is local and nothing is owed to a push.**
+
+**Verification as this closes, with the numbers.** Suite **101 of 101** across 11 files · `tsc` **0** in the package · `npm run clean` **0 files cleaned** · `verify:latex` **green on both readings** (82,582 chars, 66 rows landing 66, 43 citations landing 43, 0 KaTeX errors, 0 panels). The four pages driven at 1280: **0 page errors, 0 refusal panels, 0 blue anchors**; the article and Turing each with one body and one cover, synopsis, table of contents and footer. ***The wiki gate at nineteen widths has NOT run since `e89f5f0`, by Doug's order — this sprint is where it comes back.***
+
+**What to read, and what each is load-bearing for:** [The Book Is the Layout](../writing-a-book/05-the-book-is-the-layout.md) — *how a consumer writes against what Sprint 67 built, and the four rules that came with it*; [Solutions 78](../solutions/78-the-float-that-could-not-leave-its-column.md) — *why a float could not cross, and the two repairs that were wrong*; [Sprint 67](73-sprint-67--the-flow-the-book-holds.md) — *what was built, and the two things it left owed*; [Sprint 63's stand](69-sprint-63--the-encyclopedia.md#stand4) — *how the title block and the contents column were measured against the real page, which is the method this sprint repeats*; the real [`verify-wiki.mjs`](../../package/.wiki/.public/verify-wiki.mjs) — *the instrument that already records en.wikipedia.org at nineteen widths.*
+
+**Rulings given this session, verbatim, because they are the most expensive thing to lose.** *On the framework:* **"Book is layout. Chapters are logical parts. This is the essence of the framework."** · **"all the files except .book are the content and they only have chapters."** · **".book is the thing that inherits from encyclopedia FIRST and then all components for the book."** · **"There is a template method for each of the parts in Encyclopedia. The chapters go where put."** · **"Stop caching things. Use types. Find them when drawing… If you want anything it's a get only property."** · **"You don't need two arrays just because you have a list of two types. Just use the list."** *On validation:* **"Those errors should exist in the binder and they will… We will write tests that run on build for any library as well as cover some of it in the binder. Likely, we will disable validation in binder if we can get that to happen well. Not for now."** *On the standard:* **"Success is finding the correct, elegant implementation or not implementing and bubbling up the problem because the design didn't work. Failure is working around the problem and messing up the code."**
+
+**Blockers: none.** *Two things are owed and neither blocks this sprint:* the **infobox's kind** — its type says section, and moving it reaches `$Box`, `$Navbox` and the aside chain — and the **portal's `.book.tsx`**, whose book class stands at line 477 of 536.
+
+**Wrong turns already taken this session, so they are not retaken:** believing a served page before rebinding it — the mirror held the reverted build AND its orphans, and the first measurement was of the reverted shape ([Solutions 72](../solutions/72-the-mirror-with-two-directions.md), third appearance); measuring **element** boxes where only a **line** box answers whether text flows beside something; defining a part of the page as a REMAINDER; inlining a part's drawing instead of giving it a template method; and setting a folder Doug had made aside rather than committing it — *"Commit the things I do. You will get fired for trusting yourself over me."*
+
+**How to see it:** `sh serve.sh` at the package root; the paper at `http://localhost:5310/`, the wiki at `http://localhost:5311/turing`, `/article`, `/`.
+
 ## <a id="brief"></a>The brief, in Doug's words
 
 > **"This was the last big item and the next sprint would be pulling markup, making high fidelity implementation of the style for the table, the manual, and a general regression check on anything. Implementing $Bold, $Italics, $Underline very very simply and useing them where needed in style, implemented as simply as $List is implemented - I just polished it for reference."**
