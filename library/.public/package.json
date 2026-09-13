@@ -1,0 +1,29 @@
+{
+  "name": "@dna-platform/dougs-library",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Doug's library — the public view onto it. Consumes @dna-platform/public from the GitHub registry; nothing here is synced from inexplicable-phenomena.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@dna-platform/public": "*",
+    "@dna-platform/chemistry": "*",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "react-router-dom": ">=7.0.0",
+    "styled-components": "^6.1.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^8.0.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.9.2",
+    "vite": "^6.3.5"
+  }
+}
