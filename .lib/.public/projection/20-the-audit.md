@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -309,7 +309,7 @@
 | ***[The Condition Report](../the-condition-report/.cover.md)*** | **a new book, 7 chapters** — the standing register of the code's faults, by kind |
 | **entries** | **91 written · 10 out of scope · 20 ruled or closed · [23 problems for the next sprint](../the-condition-report/06-the-cleaning.md#actionable)** |
 | **two defects filed** | [the orphan that was not an orphan](../solutions/24-the-orphan-that-was-not-an-orphan.md) · [the card that listed a chapter the contents did not](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md) |
-| **two design chapters** | [The Live Library](../designing-inexplicable-phenomena/05-the-live-library.md) · [The Back of the Page](../designing-inexplicable-phenomena/06-the-back-of-the-page.md) |
+| **two design chapters** | [The Live Library](../ways-of-reading/05-the-live-library.md) · [The Back of the Page](../ways-of-reading/06-the-back-of-the-page.md) |
 | **one lesson compounded** | [a question the library answers is not a question](../../../../.claude/library/our-skillset/33-ce-review.md#a-question-the-library-answers-is-not-a-question) |
 | ***code changed*** | ***none*** |
 

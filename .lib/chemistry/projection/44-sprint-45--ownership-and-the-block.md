@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **style:** [The Coding Style](../../../.public/.lib/designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../../../.public/.lib/the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 

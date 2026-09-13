@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -55,7 +55,7 @@ Chosen at the opening, per [the convention](../../../../.claude/library/library-
 12. [On Synopsis](../../../../.claude/library/bookkeeping/09-on-synopsis.md) — the four layers ARE the telescope: name, then paragraph, then cover, then chapter — each layer a deeper wrap of the same reference.
 13. [On Covers](../../../../.claude/library/bookkeeping/03-on-covers.md) — the cover as the book's face; TOC entries as link-plus-description: our own entries are telescoped references already.
 14. [Librarianship's cover](../../../../.claude/library/..librarianship/.cover.md) — the living exemplar: a library catalogue whose every entry is a reference wrapped in a subject-shaped summary.
-15. [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md) — the view catalogue and the three moves; the master/detail arrangement this sprint's demo adopts; views multiply claims.
+15. [Ways of Reading](../ways-of-reading/04-ways-of-reading.md) — the view catalogue and the three moves; the master/detail arrangement this sprint's demo adopts; views multiply claims.
 
 ## The team
 

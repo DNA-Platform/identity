@@ -3,7 +3,7 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 - **status:** `closed` — ***brainstormed, approved ("Approved", with his correction executed the same hour), BUILT and compounded in one session, Doug ruling live throughout. The infrastructure is the sprint's work; the kinds ride to book territory. [Where things stand](#where-things-stand) is the handoff — written to OURSELVES, since the session continues past its own compaction.***
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force.*
 
 ---
 
@@ -100,7 +100,7 @@
 1. **The kinds in book territory** — bookmark and highlight as things, with **persistence** ([R52](#r52), [the three `perhaps`](30-the-reference.md#the-three)) — prototype, don't specify.
 2. **The rooms and the upward url** — HELD at his word ("serious thought"); [the meditation](33-the-handle.md#open) is the primary text.
 3. **The trail and decorator faces** of [the old v4 row](00-planning.md#plan-sprints), unexamined since the index was redefined.
-4. **The compound queue**: [ch18](../solutions/18-the-checkpoint-that-compared-a-number-to-itself.md)'s probe-family appearance · [ch30](../solutions/30-the-suite-that-collected-nothing.md)'s slot-and-freed-seats appearance · the struck words (mint→printing, held→reduce, composes→writtenAs) to the style register · the generic-tracks-composition-hood principle to [The Type and the Instance](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md).
+4. **The compound queue**: [ch18](../solutions/18-the-checkpoint-that-compared-a-number-to-itself.md)'s probe-family appearance · [ch30](../solutions/30-the-suite-that-collected-nothing.md)'s slot-and-freed-seats appearance · the struck words (mint→printing, held→reduce, composes→writtenAs) to the style register · the generic-tracks-composition-hood principle to [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md).
 5. **`$TypeOfCatalogue`** — still deferred; a catalogue must not be `specify()`'d until it exists.
 6. **`writtenAs`** — the one proxy name still standing unstruck.
 7. **THE PUSH** — records and code, through the commit tool, on Doug's word. *Nothing this session is committed.*

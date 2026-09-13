@@ -5,7 +5,7 @@
 
 ---
 
-*(Where [The Unit of Code](07-the-unit-of-code.md) says what one piece of code IS in each of the three programs, this says how the inside of one is ordered. It exists because the rule had to be given four times in a single sitting — **Doug, 2026-08-27: "I need you to learn this if I have to hand hold at this level."** Every rule below is quoted from him, because a paraphrase is what kept getting it wrong. **Amended 2026-08-30**, when he gave it again and it had changed: see [what moved](#what-moved).)*
+*(Where [The Unit of Code](01-the-unit-of-code.md) says what one piece of code IS in each of the three programs, this says how the inside of one is ordered. It exists because the rule had to be given four times in a single sitting — **Doug, 2026-08-27: "I need you to learn this if I have to hand hold at this level."** Every rule below is quoted from him, because a paraphrase is what kept getting it wrong. **Amended 2026-08-30**, when he gave it again and it had changed: see [what moved](#what-moved).)*
 
 ## The order
 
@@ -84,4 +84,4 @@
 
 ## Where this chapter STOPS
 
-***This orders the MEMBERS of a class and says nothing about what is written inside one.*** **How a statement is compacted, when brackets are dropped, when a method is broken into paragraphs, and what to do where no convention speaks at all — those are [The Closeness Rule](12-the-closeness-rule.md)**, *which is the law this chapter is one expression of.*
+***This orders the MEMBERS of a class and says nothing about what is written inside one.*** **How a statement is compacted, when brackets are dropped, when a method is broken into paragraphs, and what to do where no convention speaks at all — those are [The Closeness Rule](04-the-closeness-rule.md)**, *which is the law this chapter is one expression of.*

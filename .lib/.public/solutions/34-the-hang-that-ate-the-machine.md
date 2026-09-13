@@ -2,7 +2,7 @@
 
 - **author:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 
 ***keywords:*** `model` · `framework` · `construction-throw` · `detached-context` · `render-loop`
 

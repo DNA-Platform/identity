@@ -8,7 +8,7 @@
 
 ***This exists because the branch had rules for the layout of a class and none for the layout of TSX***, and the code is mostly TSX. **Doug, 2026-09-04:** *"They should be written for readability. Use indenting. This is not like code to me… You can see the structure of a class. How much do my coding conventions care about the layout of members and naming of members? A lot. We care about the layout of TSX a lot. That is why the code is so small. So the TSX takes up most of the feel of the codebase."*
 
-***The analogy that was wrong, said plainly so it is not made again:*** **elements in TSX are what members are in a class.** *[The Order of a Class](08-the-order-of-a-class.md) governs one and this governs the other, and they are the same concern — the reader sees the structure or they do not.*
+***The analogy that was wrong, said plainly so it is not made again:*** **elements in TSX are what members are in a class.** *[The Order of a Class](02-the-order-of-a-class.md) governs one and this governs the other, and they are the same concern — the reader sees the structure or they do not.*
 
 ## <a id="the-shape"></a>The shape
 
@@ -54,6 +54,8 @@ const TypeOfTable = $(typeOfTable);
 
 - ***Alias the IMPORT, never a module-level `const`.*** An import binding is **live**; `const catalogue = Catalogue;` is evaluated at load, and under a **circular import** it captures `undefined`. `Composition` and `Catalogue` import each other, and that alone reddened four promises.
 - ***The alias must not collide with an ordinary local.*** Lowercase names are exactly the names locals use — `const Path = $(path)` met a local string named `path`, and `Index as index` met a local named `index`. **This is what a meaningful alias is for.**
+
+**Measured 2026-09-12, and it is the reason the rule exists:** a `<Document>` written bare in a chapter's `print()` is never looked up — a registration on the book or on the chapter kind answers nothing — while `const Document = $(document)` in the same print is answered from either. **DI reaches only what is fetched through `$`.**
 
 ## <a id="variables"></a>Naming an ordinary variable
 
@@ -126,6 +128,6 @@ const Printed = (code ? prints.get(code) : undefined) ?? Reference;
 
 ## <a id="see-also"></a>See also
 
-- [The Type and the Instance § the fetch](10-the-type-and-the-instance.md#the-fetch) — the `$`-fetch corollary and the timing law
-- [The Order of a Class](08-the-order-of-a-class.md) — the same concern, for members
+- [The Type and the Instance § the fetch](../the-type-system/02-the-type-and-the-instance.md#the-fetch) — the `$`-fetch corollary and the timing law
+- [The Order of a Class](02-the-order-of-a-class.md) — the same concern, for members
 - [Styled Particles](../../../chemistry/.lib/particle/11-styled-particles.md) — where a class's CSS becomes members

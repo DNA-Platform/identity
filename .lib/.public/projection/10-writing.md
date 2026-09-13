@@ -1,7 +1,7 @@
 # Writing
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -498,8 +498,8 @@ counted: 11 parts · 490 words used · 491 mentioned
 
 1. **[The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md)** — the settled account of what writing now is, on one page. **Read this before the code.** It exists so this chapter does not have to be read.
 2. **[The remaining half](#the-second-sprint--the-specialization)**, in this chapter — Doug's rulings for the work ahead, verbatim.
-3. **[Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md)** — the view catalogue and the two specifications every view answers to. Load-bearing for *"each demo a unique aesthetic"*: patterns are compositions of three shipped moves, and a new lens must name the sibling that corroborates it.
-4. **[Markdown with LaTeX](../designing-inexplicable-phenomena/02-markdown-with-latex.md)** — what `$Markdown`, `$Latex` and `$Page` are today. This is the thing being rewritten, and its open questions are already written down.
+3. **[Ways of Reading](../ways-of-reading/04-ways-of-reading.md)** — the view catalogue and the two specifications every view answers to. Load-bearing for *"each demo a unique aesthetic"*: patterns are compositions of three shipped moves, and a new lens must name the sibling that corroborates it.
+4. **[Markdown with LaTeX](../ways-of-reading/02-markdown-with-latex.md)** — what `$Markdown`, `$Latex` and `$Page` are today. This is the thing being rewritten, and its open questions are already written down.
 5. **[Solutions 12](../solutions/12-the-writing-that-looped-its-page.md) and [13](../solutions/13-the-chapter-that-wrote-its-sections-twice.md)** — the two defects this sprint diagnosed. Read 13 before writing any chapter that draws itself.
 
 *If five are not enough, that is a finding about this chapter rather than a reason to read twenty more.*

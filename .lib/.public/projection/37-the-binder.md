@@ -3,7 +3,7 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **status:** `implementation-ready` — ***gated by Doug 2026-09-02, his words: "/ce-plan /ce-work great brainstorm and planning now get this in the sprint and get it in the todo list to show me what we are doing. Keep brainstorming with me as needed but get moving too."*** It opened as planning at his ruling — *"Sprint 1 is just planning… we are going to use Wikipedia as an example. We will think of it as a library"* — and its MAIN PART is [the reference, the link and the router](#the-reference): *"Let us make this the main part of the sprint. Everything I just said, and integrating the router so that internal references work."* ***The gate on the plan is passed and [the gate on the framework is NOT](#the-boundary): every unit marked ⛔ waits on his yes, one at a time.***
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 
 ---
 
@@ -55,7 +55,7 @@ The folder is **`binding`**. The command is **`bind`**. Both are his.
 
 **What survives the correction is smaller and real:** `$List` and `$Table` **carry no address code of their own** — List inherits `Ph`, Table inherits `Sn` — so nothing can name a table to point at it. That is [R69](#r69), and it stands.
 
-**AND THE LINK ALREADY WORKS, BOTH HALVES.** Writing typed as a sentence, holding words and a `<Reference><Path>`, painted to `<a href="Bk:0/Cr:1">Whateverwewant</a>` — and inside an outer sentence its parts came back `["Whatever","we","want","is","cool"]`. *The seat is the one [Shells Over Types](../designing-inexplicable-phenomena/14-shells-over-types.md) predicts: `$$Word` the CLASS is parenthetical because it extends `$Annotation`, while writing that merely CARRIES `<Type>$Word</Type>` measured `parenthetical: false` and prints. The type does not confer the hiding; the class does.*
+**AND THE LINK ALREADY WORKS, BOTH HALVES.** Writing typed as a sentence, holding words and a `<Reference><Path>`, painted to `<a href="Bk:0/Cr:1">Whateverwewant</a>` — and inside an outer sentence its parts came back `["Whatever","we","want","is","cool"]`. *The seat is the one [Shells Over Types](../the-type-system/03-shells-over-types.md) predicts: `$$Word` the CLASS is parenthetical because it extends `$Annotation`, while writing that merely CARRIES `<Type>$Word</Type>` measured `parenthetical: false` and prints. The type does not confer the hiding; the class does.*
 
 **Two more, measured.** A `<Reference>` holding only a path fails *"a piece of writing has characters, and this one is empty"* and renders a **Bond Constructor Failed panel inside the anchor**. And **`$List` and `$Table` carry no address code of their own** — List inherits `Ph`, Table inherits `Sn` — so no address can name either one.
 
@@ -216,7 +216,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 </Table>
 ```
 
-*"A lot like a list, but the person can view that however."* **A cell is a PARAGRAPH** — *"I would think each cell is a paragraph and the person is free to format them in whatever way"* — so `$Cell` is a shell over `$Paragraph` carrying its type, exactly as [the philosophy](../designing-inexplicable-phenomena/14-shells-over-types.md) says a kind should be. **Rows and columns are then not in the writing at all**, which is his own *"the order on the page is not the order of the parts"* arriving a second time from the other end.
+*"A lot like a list, but the person can view that however."* **A cell is a PARAGRAPH** — *"I would think each cell is a paragraph and the person is free to format them in whatever way"* — so `$Cell` is a shell over `$Paragraph` carrying its type, exactly as [the philosophy](../the-type-system/03-shells-over-types.md) says a kind should be. **Rows and columns are then not in the writing at all**, which is his own *"the order on the page is not the order of the parts"* arriving a second time from the other end.
 
 ***The level needed no change to get here.*** *He questioned it and then answered it himself — "I think it would be a nested section and section contributing paragraphs **as designed already**" — and measurement agreed: `$TypeOfTable extends $TypeOfSection`, whose `writtenAs` is `$Paragraph`, so a table composing cells IS a section composing paragraphs. An earlier draft of this entry called those parts ROWS and asked for the view to split them into columns. **Called cells, the same structure is right and nothing moves.***
 
@@ -224,7 +224,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 ***What is missing is the header cell.*** *Wikipedia's tables almost always open with a `<th>` row — `#eaecf0`, centred — and we have no `th` anywhere, only `Cell` as a `<td>`. An infobox is the same markup under a different class.* **The view must also stop re-reading its own text:** [`$Table.view()`](../../package/src/writing/Table.tsx) splits `html.text(this.block)` rather than asking `parts()`, which is [the cards' fault shape](#the-toolset) — one thing read twice by two readers that can disagree.
 
-## <a id="the-dress"></a>The encyclopedia folder — what the dress already is
+## <a id="the-motif"></a>The encyclopedia folder — what the dress already is
 
 *His instruction: "Remember the encyclopedia folder which you can catchup on to see what we have so far. So then have my table and cells display as a table." **Read whole, ten files, and it is a complete Wikipedia dress.***
 
@@ -326,7 +326,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 **A catalogue book: yes, and it nearly exists.** A book's parts are found by the parse over its block, so a book whose parts are `$$Book` references IS a catalogue; v1's app already draws one by hand.
 
-**An HTML book of pages: a real second thing.** It needs a type whose `writtenAs` is a page and a specification saying a page is HTML — [Shells Over Types](../designing-inexplicable-phenomena/14-shells-over-types.md) would give it cleanly — but pages exist only after a bundler runs, so that book would describe artifacts rather than writing. **Listed, not decided.** His fallback stands: tolerate a plain folder without the right format.
+**An HTML book of pages: a real second thing.** It needs a type whose `writtenAs` is a page and a specification saying a page is HTML — [Shells Over Types](../the-type-system/03-shells-over-types.md) would give it cleanly — but pages exist only after a bundler runs, so that book would describe artifacts rather than writing. **Listed, not decided.** His fallback stands: tolerate a plain folder without the right format.
 
 # <a id="names"></a>Names owed
 
@@ -401,7 +401,7 @@ The router beyond `read()` following its path. The parse above word — *a sente
 | **U64** | **the binder** — config first, then the eight tools, each with its own door | [R74](#r74)–[R80](#r80) | Arthur |
 | **U65** | **the corpus and the demo** — Wikimedia as a library, the app in `.demo` | [R81](#r81)–[R84](#r84) | Phillip |
 
-**Two names are owed before any of it:** [the two `Link`s](#r90) and [the two `Cell`s](#the-dress). *Both sit inside the units that need them, so neither can be deferred past U54.*
+**Two names are owed before any of it:** [the two `Link`s](#r90) and [the two `Cell`s](#the-motif). *Both sit inside the units that need them, so neither can be deferred past U54.*
 
 # <a id="risks"></a>Risks
 
@@ -453,7 +453,7 @@ The router beyond `read()` following its path. The parse above word — *a sente
 6. **The type is simple; the nine hand theirs back.** His words: no `carried` — `specify` requires exactly one written type and assigns it to `type`; the levels declare their type in the bond before `super`. (My `carried`/lattice version is reverted.)
 7. **The table, view-only.** His design: a table is a **number of cells + a number of columns**; `valid()` checks the columns divide the cells; a type-check on the cells; formatting in the **view**. **No `reduce`, no `former`, no `shell`, no `seated`/`seat`.** These invented members are all OUT.
 8. **Declarations look like declarations** ([on the cleaning list](../the-condition-report/06-the-cleaning.md#declarations)): `inline = true`, `parenthetical = true`, `persists = true`, `override inline = true` — needs a chemistry refactor HE directs so bare fields are safe; `_persist`'s getter/setter and the live-member traps go.
-9. **The comment ban is the complexity detector** ([recorded in The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)) — his sentence: a blob that would want a comment wants simplifying instead.
+9. **The comment ban is the complexity detector** ([recorded in The Coding Style](../the-coding-style/03-the-coding-style.md)) — his sentence: a blob that would want a comment wants simplifying instead.
 10. **The shallow battery** ([the record](39-the-shallow-battery.md)) — his induction insight, `$terminates` made live, the `surface` utility (his), one shared segmenter. Sound; re-add as members-asks. The measurement named THE MEMBRANE (two chemicals/node) as the real perf floor, not the battery.
 
 **C · INVENTED without sign-off — do NOT re-add without an explicit design from him:**

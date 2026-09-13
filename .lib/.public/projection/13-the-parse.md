@@ -1,7 +1,7 @@
 # The Parse
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -388,7 +388,7 @@ Each claim was checked against the source, and the counts are what make the requ
 | [The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) | **edited, not duplicated** — the relative `-p`, and the same disease inverted as a **false red** | overlap: both are a number true of a scope nobody stated |
 | [The regex that remembered where it stopped](../solutions/17-the-regex-that-remembered-where-it-stopped.md) | **new** — `lastIndex` surviving a call, and the tell | a genuinely new mechanism class; nothing filed carried it |
 | [The checkpoint that compared a number to itself](../solutions/18-the-checkpoint-that-compared-a-number-to-itself.md) | **new** — a green that could not go red, caught by Doug reading the screen | watching a gate go red would not have caught it, which is why it is its own chapter |
-| [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md) | **a third specification** — a view READS, it does not re-derive | not a defect: a practice, and that book already holds the specifications for views |
+| [Ways of Reading](../ways-of-reading/04-ways-of-reading.md) | **a third specification** — a view READS, it does not re-derive | not a defect: a practice, and that book already holds the specifications for views |
 | [Chapter zero](00-planning.md) | **compacted** — validation-says-why marked done with the 736 estimate corrected to 76; *how writing refers to writing* closed; the type-keyword note compressed | its own specification is that notes are overwritten when addressed |
 
 **Not filed, deliberately:** the manifold's string-sniffing, the hand-built addresses and the borrowed model member are **one lesson**, and it is a practice rather than a defect — so it went to Ways of Reading whole instead of becoming three Solutions chapters that would drift apart.

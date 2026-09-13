@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 - ***The chapter name is a PROXY; Doug's to rename.***
 
 ---
@@ -92,16 +92,16 @@ $$Section(block: $Block) {
 - [x] **`means()` goes through reflection** — no import of the reference kind, so the file has no cycle to break
 - [x] **`specify()` dedupes by constructor** — *two types on one writing no longer run the base rules twice*
 - [x] **member order is Doug's and untouched**
-- [ ] **SEMANTIC — `$Reference$` promises NOTHING.** *It is `$Annotation$` plus nothing, so a replacement reference cannot be written against it* — **[P1](../designing-inexplicable-phenomena/17-the-interface-type-system.md#the-four-purposes) unmet, and the reason `$IndexCard` has to reach through reflection to read a url.** **[S15]**
+- [ ] **SEMANTIC — `$Reference$` promises NOTHING.** *It is `$Annotation$` plus nothing, so a replacement reference cannot be written against it* — **[P1](../the-type-system/04-the-interface-type-system.md#the-four-purposes) unmet, and the reason `$IndexCard` has to reach through reflection to read a url.** **[S15]**
 - [ ] **SEMANTIC — `$Book$` CAN NEVER PROMISE A MEMBER.** *`book()` answers `this`, so any member on `$Book$` is one `$Writing` must have.* **Measured: adding `cover()` to `$Book$` produced 47 compiler errors across 30 files, all of them cascades from that one line.** **[S21]**
-- [ ] **[Q4](#q4) — `reference()` was ADDED to `$Type`**, spelled as [ch15](../designing-inexplicable-phenomena/15-the-spelling-of-a-kind.md) has it. *It is a base-class member and it is Doug's to strike.*
+- [ ] **[Q4](#q4) — `reference()` was ADDED to `$Type`**, spelled as [ch15](../the-coding-style/05-the-spelling-of-a-kind.md) has it. *It is a base-class member and it is Doug's to strike.*
 
 ### `writing2/Composition.tsx`
 
 - [x] four slots present · `$TypeOfComposition` · `CompositionSpecification`
 - [x] **the parse is here** — `parts()` · `catalogue()` · `where` · `select` · `selectMany` · `single` · `concatenate`
 - [x] `reduce()` asks the type what is beneath and the parser for its maker
-- [ ] **SEMANTIC — `$Composition` may be a distinction with no difference.** *It is `$Writing` that has parts, and [T0](../designing-inexplicable-phenomena/17-the-interface-type-system.md#definition-first) says all writing has parts by definition.* **Nothing extends it but `$Ref`, so the seven levels cannot divide themselves — [Q1](#q1).** **[S13]**
+- [ ] **SEMANTIC — `$Composition` may be a distinction with no difference.** *It is `$Writing` that has parts, and [T0](../the-type-system/04-the-interface-type-system.md#definition-first) says all writing has parts by definition.* **Nothing extends it but `$Ref`, so the seven levels cannot divide themselves — [Q1](#q1).** **[S13]**
 - [ ] **SEMANTIC — `concatenate` is not a library word.** *It is a string operation; what it does is gather several compositions' parts into one.* **[S8]**
 
 ### `writing2/Letter.tsx` · `Word.tsx` · `Sentence.tsx` · `Paragraph.tsx` · `Section.tsx`
@@ -120,7 +120,7 @@ $$Section(block: $Block) {
 
 - [x] four slots each, interfaces and specifications newly written
 - [x] `$TypeOfHeading` and `$TypeOfList` are paragraphs; `$TypeOfPhrase` is a sentence; `$TypeOfTable` is a section
-- [x] **`frame()` is no longer overridden to return `view()`** — *v2.1's Heading and List did, so the same writing sat one element shallower than its siblings;* **[ch12's same-container rule](../designing-inexplicable-phenomena/12-the-closeness-rule.md#one-container) forbids exactly that** **[S18]**
+- [x] **`frame()` is no longer overridden to return `view()`** — *v2.1's Heading and List did, so the same writing sat one element shallower than its siblings;* **[ch12's same-container rule](../the-coding-style/04-the-closeness-rule.md#one-container) forbids exactly that** **[S18]**
 - [x] `$Table.cells()` is a real member; the columns rule divides them
 - [x] each waives what it must, by returning `false` from the inherited rule — *a list may hold blank lines; a table opens without a heading*
 - [ ] **`indent = 1` was NOT carried.** *It is how a transparent kind lends its parts to its host — `$Phrase` and `$Ref` both need it, and v2.2 has no transparency.* **Recorded, not invented.**
@@ -137,7 +137,7 @@ $$Section(block: $Block) {
 - [x] eight declarations each, `$$Book` and `$$Chapter` built
 - [x] `$TypeOfBook.specifically` **augments** — it appends the index before it checks, which is the second verb
 - [x] `$Book.cover()` **is found by being a cover**, not by being first **[S3 fixed]**
-- [x] `$Chapter.frame()` keeps the `<Article><Output>` dress, indented per [The Shape of TSX](../designing-inexplicable-phenomena/16-the-shape-of-tsx.md)
+- [x] `$Chapter.frame()` keeps the `<Article><Output>` dress, indented per [The Shape of TSX](../the-coding-style/06-the-shape-of-tsx.md)
 - [ ] **SEMANTIC — `$Book$` is empty and must stay empty.** See [S21](#checklist) above.
 
 ### `book2/Cover.tsx` · `Synopsis.tsx` · `Index.tsx` · `TableOfContents.tsx`
@@ -183,7 +183,7 @@ $$Section(block: $Block) {
 
 - [x] four slots, and it is the only file with a fifth declaration
 - [ ] **`Routed` — THE ONE WART I COULD NOT PLACE.** See [Q5](#q5).
-- [ ] **SEMANTIC — `$Ref` and `$Reference` are both references, and one is named by abbreviating the other.** *`$Ref` is a link written in prose; `$Reference` is an annotation carrying a path — genuinely different kinds.* **[The anchor](../designing-inexplicable-phenomena/11-the-coding-style.md#the-anchors) rules out "ref": every word is a word a library actually uses.** **[S7]**
+- [ ] **SEMANTIC — `$Ref` and `$Reference` are both references, and one is named by abbreviating the other.** *`$Ref` is a link written in prose; `$Reference` is an annotation carrying a path — genuinely different kinds.* **[The anchor](../the-coding-style/03-the-coding-style.md#the-anchors) rules out "ref": every word is a word a library actually uses.** **[S7]**
 - [ ] `$Ref extends $Composition` rather than `$Writing`, because it overrides `reduce()` — **the flat rule is broken here and only here**, and it is [Q1](#q1) again
 
 ### `reference2/Referent.tsx`
@@ -201,7 +201,7 @@ $$Section(block: $Block) {
 
 - [x] `writing2.test.tsx` · `experiment.test.tsx` · `multiple.test.tsx` repointed
 - [x] **`loading.test.tsx` — 38 new promises**, one per module
-- [ ] **a promise per ported kind is still owed** — [the spec convention](../designing-inexplicable-phenomena/11-the-coding-style.md#the-spec-convention): a kind is not finished until its examples are enrolled. **21 kinds arrived this sprint with no examples.**
+- [ ] **a promise per ported kind is still owed** — [the spec convention](../the-coding-style/03-the-coding-style.md#the-spec-convention): a kind is not finished until its examples are enrolled. **21 kinds arrived this sprint with no examples.**
 
 ### `index2.ts`
 
@@ -216,7 +216,7 @@ $$Section(block: $Block) {
 
 <a id="q2"></a>**Q2 · `$Reference` MOVED — DONE.** *`reflection.means` finds it by the type's name, exactly as `composition()` does, so `Writing.tsx` imports nothing from `reference2` and the cycle that forced it is gone.* **Proved by `loading.test.tsx`.**
 
-<a id="q3"></a>**Q3 · `this[cache](this.name)` — NOT CARRIED.** *v2.2 has no resolution-by-name, so the line would file a key nothing reads.* **[ch15](../designing-inexplicable-phenomena/15-the-spelling-of-a-kind.md) says it is part of the template, so this is a template question and it is yours.**
+<a id="q3"></a>**Q3 · `this[cache](this.name)` — NOT CARRIED.** *v2.2 has no resolution-by-name, so the line would file a key nothing reads.* **[ch15](../the-coding-style/05-the-spelling-of-a-kind.md) says it is part of the template, so this is a template question and it is yours.**
 
 <a id="q4"></a>**Q4 · `reference()` ADDED to `$Type` — flagged.** *ch15 spells it, and without it `$$Letter` is unreachable now that `prints` is deleted.* **It is still a member on a base class.**
 
@@ -273,12 +273,12 @@ $$Section(block: $Block) {
 
 - **The `.spec` examples.** *Every kind arrived without them, and the spec convention says a kind is not finished until its examples are enrolled.*
 - **Transparency.** *`indent = 1` is not carried, so `$Phrase` and `$Ref` no longer lend their parts to a host.*
-- **The Wikipedia dresses.** *[The research](../designing-inexplicable-phenomena/18-the-wikipedia-fit.md) is done and the build is deferred by his word.*
+- **The Wikipedia dresses.** *[The research](../the-motif/02-the-wikipedia-fit.md) is done and the build is deferred by his word.*
 - **Three views.** *`$Paragraph`, `$ReferenceCard` and `$Catalogue` still draw their block; the first two were blocked by the `<div>` frame, which the span may now have unblocked.*
 
 ### THE COST OF THE DELETE, measured
 
-***Deleting v2.1 removed 63 files from `package/src`, and **121 links in the branch library now point at files that are gone**.*** *They stand in settled chapters — [The Type and the Instance](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md), [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md), earlier sprint records — written by the team about code that no longer exists.*
+***Deleting v2.1 removed 63 files from `package/src`, and **121 links in the branch library now point at files that are gone**.*** *They stand in settled chapters — [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md), [The Coding Style](../the-coding-style/03-the-coding-style.md), earlier sprint records — written by the team about code that no longer exists.*
 
 **They are NOT repaired here, deliberately.** *Rewriting 121 citations across other people's settled records, to point at files that were deleted rather than moved, would be editing the history rather than the library.* ***The honest fix is one note where a reader meets them, and that note is a job for whoever tends the branch cover — not a silent sweep.*** *(A further 112 links were already broken before this session, into `app/` and `.archive/`.)*
 
@@ -306,9 +306,9 @@ vitest run                            78 passed (78), 5 files
 
 ### What to read, and what is load-bearing in each
 
-1. **[What We Believe](../designing-inexplicable-phenomena/19-what-we-believe.md)** — ***the 48 principles***, each with Doug's ruling and what it cost. Read this before touching a file in the four folders.
+1. **[What We Believe](../the-type-system/05-what-we-believe.md)** — ***the 48 principles***, each with Doug's ruling and what it cost. Read this before touching a file in the four folders.
 2. **[The v2.2 Checklist](48-the-v2-2-checklist.md)** — the checks every file is put through, and the semantic findings still owed.
-3. **[The Wikipedia Fit](../designing-inexplicable-phenomena/18-the-wikipedia-fit.md)** — the licence wall, the infobox mapping, and the two kinds with no default style at all.
+3. **[The Wikipedia Fit](../the-motif/02-the-wikipedia-fit.md)** — the licence wall, the infobox mapping, and the two kinds with no default style at all.
 4. **[`src/writing/Writing.tsx`](../../package/src/writing/Writing.tsx)** — the base vocabulary; every other file is this shape.
 5. **[`src/tests/loading.test.tsx`](../../package/.tests/loading.test.tsx)** — the detector that catches a fatal module cycle the moment it appears.
 

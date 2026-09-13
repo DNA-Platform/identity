@@ -30,7 +30,7 @@
 | ***"You can do componenet registrations ($ does DI) in the .book file"*** · *"That's a use even for an empty book in .Book — registration"* | **an empty `.book` earns its place by registering** |
 | ***"for every link, figure out if one is a subject or author link or if maybe some are links to other chapters. A book can have other references but know which type each one is"*** | **every link knows its kind** |
 | ***"we are using the code elegance to determine what is right. This is how people will write everything in this repo"*** | *and see [the finding](#the-finding) — this is the instruction that made the central mistake worse* |
-| ***"apparatus isn't a valid function. Delete that word from all records and your memories and compound documents (or flag as deprecated terminology) along with make, chain and rejection"*** | **swept; the struck-word table in [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) is now marked DEPRECATED TERMINOLOGY** |
+| ***"apparatus isn't a valid function. Delete that word from all records and your memories and compound documents (or flag as deprecated terminology) along with make, chain and rejection"*** | **swept; the struck-word table in [The Coding Style](../the-coding-style/03-the-coding-style.md) is now marked DEPRECATED TERMINOLOGY** |
 
 ## <a id="the-finding"></a>THE FINDING — the demo wrote itself a framework
 
@@ -155,14 +155,14 @@ npx vite --config .wiki/.public/vite.config.ts    # http://localhost:5200
 
 ## <a id="where-things-stand"></a>Where things stand
 
-***Everything Doug ruled in the afternoon of 2026-09-06 is built and measured; the page draws under the library's own regions.*** *The rulings are written as [Using the Public Library](../designing-inexplicable-phenomena/20-using-the-public-library.md); the framework finding is [Solutions 51](../solutions/51-the-chapters-a-book-drew-empty.md).*
+***Everything Doug ruled in the afternoon of 2026-09-06 is built and measured; the page draws under the library's own regions.*** *The rulings are written as [Using the Public Library](../writing-a-book/01-using-the-public-library.md); the framework finding is [Solutions 51](../solutions/51-the-chapters-a-book-drew-empty.md).*
 
 ### The checklist Doug asked for
 
 | | asked | state |
 |---|---|---|
 | 1 | the registrar takes a subclass — chemistry, on his yes | **done** — `<C extends B>` on the returned function at [chemical.ts:1489-1492](../../../chemistry/package/src/abstraction/chemical.ts); two promises added to [representative.test](../../../chemistry/package/tests/abstraction/representative.test.tsx); dist rebuilt |
-| 2 | `cover` · `synopsis` · `table` · `index` as properties, none optional, `tableOfContents` → `table`, `chapters` beside them | **done** — assigned in the bond by find-or-make ([the assignment workflow](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-assignment-workflow)); the four rules now demand each in its place |
+| 2 | `cover` · `synopsis` · `table` · `index` as properties, none optional, `tableOfContents` → `table`, `chapters` beside them | **done** — assigned in the bond by find-or-make ([the assignment workflow](../the-type-system/02-the-type-and-the-instance.md#the-assignment-workflow)); the four rules now demand each in its place |
 | 3 | synopsis and index start parenthetical | **done** |
 | 4 | the book's view — header, sidebar, content, footer; Margin as the region Format with `$at`, Header top, Sidebar left, Footer bottom | **done** — `$MarginFormat` · `$HeaderFormat` · `$SidebarFormat` · `$ContentFormat` · `$FooterFormat` in `src/encyclopedia`; `$BodyFormat` is the grid with areas; the regions draw READINGS of the block made at the bond (`_opening` · `_contents` · `_body` · `_closing` — proxy names) |
 | 5 | the table: no `td`, a modern grid | **done** — `$TableFormat` is a grid div with `$gridTemplateColumns` live from `$columns`; the cells a reading of the block |
@@ -173,19 +173,19 @@ npx vite --config .wiki/.public/vite.config.ts    # http://localhost:5200
 | 10 | discuss the most elegant way | **done** — a five-proposal judge panel; the synthesis and its discussion are in the session's scratchpad, to be folded into the demo after the `.article` book sets the default |
 | 11 | the framework finding | **written** — Solutions 51; the mechanism is chemistry's and still unfound |
 | 12 | the `.article` book — the Manual of Style/Layout page as an article in the framework's default look | **done** — `.wiki/.article`: cover, printed synopsis (the lead under the short description), a table of contents, five chapters in the page's own words; the library's regions draw it as an article natively, and `/article` opens it |
-| 13 | a LaTeX and Markdown default | **open** — [ch02](../designing-inexplicable-phenomena/02-markdown-with-latex.md) holds the prior notes |
+| 13 | a LaTeX and Markdown default | **open** — [ch02](../ways-of-reading/02-markdown-with-latex.md) holds the prior notes |
 | 14 | `$Paragraph` wears `ProseFormat` at its frame; the stray root file | **done**; the file is his |
 | 15 | a title, author or subject written as text makes its own heading; a book with no table of contents makes one from its chapters | **done** — `.table.tsx` deleted from the article book; both covers are `<Title>Wikipedia</Title>` |
-| 16 | writing in the markup — no `+` chains, a sentence to a line in a template literal, links as plain markdown text; the parser trims a line's indentation | **done** — [ch20 § lines](../designing-inexplicable-phenomena/20-using-the-public-library.md#lines) |
+| 16 | writing in the markup — no `+` chains, a sentence to a line in a template literal, links as plain markdown text; the parser trims a line's indentation | **done** — [ch20 § lines](../writing-a-book/01-using-the-public-library.md#lines) |
 
 ### The redo, the evening of 2026-09-06 — Doug: "minimize only the changes you just made, and not new ones"
 
-***What this session had added to `src`, each asked [the five questions](../designing-inexplicable-phenomena/20-using-the-public-library.md#minimalism), and what it came to.*** *The stopped session's work — `rep` and `addType` on `$Writing`, the `$$X` representatives on `$Composition`, the three `$writtenIn…` rules, `Abstract` · `Part` · `Summary` — was in the working tree before this session opened (the transcript shows every one first inside a tool result) and was not touched.*
+***What this session had added to `src`, each asked [the five questions](../writing-a-book/01-using-the-public-library.md#minimalism), and what it came to.*** *The stopped session's work — `rep` and `addType` on `$Writing`, the `$$X` representatives on `$Composition`, the three `$writtenIn…` rules, `Abstract` · `Part` · `Summary` — was in the working tree before this session opened (the transcript shows every one first inside a tool result) and was not touched.*
 
 | mine | was | is now |
 |---|---|---|
 | **`$Book`** | the properties, four readings, the regions view, a `rep` loop over the chapters that carry a title, `contents()` reading `chapter.rep` | the same without the `rep` loop — `contents()` asks a chapter's first section for its heading; the body reading checks `instanceof` where it cast |
-| **`$Chapter`** | a `rep` loop over its sections, a frame carrying an `id` computed from `rep`, `Output` folded into `Article` | **HEAD's chapter** — `addType` and the frame `<Article><Output>`; ***`$OutputFormat` restored***, it is his ([The Default Dress](../designing-inexplicable-phenomena/13-the-default-dress.md)) |
+| **`$Chapter`** | a `rep` loop over its sections, a frame carrying an `id` computed from `rep`, `Output` folded into `Article` | **HEAD's chapter** — `addType` and the frame `<Article><Output>`; ***`$OutputFormat` restored***, it is his ([The Default Dress](../the-motif/01-the-default-dress.md)) |
 | **the anchor** | `$id` on `ArticleFormat`, `kebab` made public on reflection, the chapter's frame computing it — three places | **one place** — [`$Heading`](../../package/src/writing/Heading.tsx) draws `<h2 id="Order_of_article_elements">`, Wikipedia's own spelling, and `$HeadingFormat` carries `$id`; reflection back to HEAD. *Flagged: this touches two files the session had not touched before, as the smaller home of its own feature* |
 | **`$Table`** | `_opening` · `_cells` readings and a `view()` handing them to a grid | ***no view*** — `frame()` wears [`TableFormat`](../../package/src/encyclopedia/TableFormat.tsx), a grid whose `> .pd-table` is `display: contents`, its heading spanning the row; `cells()` as at HEAD |
 | **`Parser.sentences`** | a second pass splitting at stops, fourteen lines | one split — `/(?<=\n)|(?<=[.!?])[^\S\n]+(?=\S)/u` — and the method is HEAD's length |

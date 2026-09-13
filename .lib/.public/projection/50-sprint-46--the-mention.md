@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 - **status:** `implementation-ready` — ***requirements approved by Doug 2026-09-06 ("Yes — write the chapter and plan it"); guardrails set the same day.*** Two units are ***design owed*** and are marked so.
 - ***The chapter name is a PROXY; Doug's to rename.***
 
@@ -38,7 +38,7 @@
 
 ## <a id="the-literature"></a>The literature — read before a word of this was written
 
-**All 47 files of [`package/src`](../../package/src/) and all of [`.wiki`](../../package/.wiki/), end to end.** Then the nine chapters that say how code here is written: [The Unit of Code](../designing-inexplicable-phenomena/07-the-unit-of-code.md), [The Order of a Class](../designing-inexplicable-phenomena/08-the-order-of-a-class.md), [The Type and the Instance](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md), [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md), [The Closeness Rule](../designing-inexplicable-phenomena/12-the-closeness-rule.md), [The Default Dress](../designing-inexplicable-phenomena/13-the-default-dress.md), [Shells Over Types](../designing-inexplicable-phenomena/14-shells-over-types.md), [The Spelling of a Kind](../designing-inexplicable-phenomena/15-the-spelling-of-a-kind.md), [The Shape of TSX](../designing-inexplicable-phenomena/16-the-shape-of-tsx.md), [The Interface Type System](../designing-inexplicable-phenomena/17-the-interface-type-system.md), [What We Believe](../designing-inexplicable-phenomena/19-what-we-believe.md), [Using the Public Library](../designing-inexplicable-phenomena/20-using-the-public-library.md).
+**All 47 files of [`package/src`](../../package/src/) and all of [`.wiki`](../../package/.wiki/), end to end.** Then the nine chapters that say how code here is written: [The Unit of Code](../the-coding-style/01-the-unit-of-code.md), [The Order of a Class](../the-coding-style/02-the-order-of-a-class.md), [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md), [The Coding Style](../the-coding-style/03-the-coding-style.md), [The Closeness Rule](../the-coding-style/04-the-closeness-rule.md), [The Default Dress](../the-motif/01-the-default-dress.md), [Shells Over Types](../the-type-system/03-shells-over-types.md), [The Spelling of a Kind](../the-coding-style/05-the-spelling-of-a-kind.md), [The Shape of TSX](../the-coding-style/06-the-shape-of-tsx.md), [The Interface Type System](../the-type-system/04-the-interface-type-system.md), [What We Believe](../the-type-system/05-what-we-believe.md), [Using the Public Library](../writing-a-book/01-using-the-public-library.md).
 
 **Then the reference machinery**, on Doug's own catchup: [the v1 compiler's route model](../../build/library.ts), [`walk.ts`'s `routeOf`](../../build/stages/walk.ts), the archived `$Location` (v1, `.archive/reference/Location.tsx`, deleted), and [The Reference and its Locator](../the-semantics-of-books/16-the-reference-and-its-locator.md).
 
@@ -60,7 +60,7 @@
 | `_`-prefixed | no |
 | `$`-prefixed | *only if special* — `$` + one lowercase identifier char, and `isSpecial` tests **`length >= 2`** |
 
-**So the contract is backwards for bare names, and its three-character claim is contradicted by a comment in the source that says `> 2` silently demoted `$v` and `$x` and was fixed to `>= 2`.** ***It is Cathy's chapter and hers to correct*** — *and `.public`'s own [ch10 reactive law](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-reactive-law), read off the same file, is the one that is right.*
+**So the contract is backwards for bare names, and its three-character claim is contradicted by a comment in the source that says `> 2` silently demoted `$v` and `$x` and was fixed to `>= 2`.** ***It is Cathy's chapter and hers to correct*** — *and `.public`'s own [ch10 reactive law](../the-type-system/02-the-type-and-the-instance.md#the-reactive-law), read off the same file, is the one that is right.*
 
 > ***AND IT CONFIRMS [P18](#p7).*** **A bare `theme` FIELD on `$Writing` would be reactive on every letter and every word.** *The argument for making it a property was made from ch10 and now has the source under it.*
 
@@ -82,7 +82,7 @@
 
 ***Measured across `src`:*** **the `\s+ → _` transform appears at [`Heading.tsx:23`](../../package/src/writing/Heading.tsx) and [`Book.tsx:97`](../../package/src/book/Book.tsx), and nowhere else.** *`reflection.kebab()` is a **third and different** transform — kebab-case for `pd-` class names — and is not the same thing.*
 
-***`Book.tsx:97` sits inside `contents()`, which [P2/P6](#the-plan) delete.*** **So the duplication resolves itself, and the url step makes it two again.** *[P8](#p4) is therefore not a tidy-up: it is one invariant — **the url step and the anchor id must be the same string** — stated over two sites, which is exactly what [The Unit of Code](../designing-inexplicable-phenomena/07-the-unit-of-code.md#what-this-forbids) forbids leaving apart.*
+***`Book.tsx:97` sits inside `contents()`, which [P2/P6](#the-plan) delete.*** **So the duplication resolves itself, and the url step makes it two again.** *[P8](#p4) is therefore not a tidy-up: it is one invariant — **the url step and the anchor id must be the same string** — stated over two sites, which is exactly what [The Unit of Code](../the-coding-style/01-the-unit-of-code.md#what-this-forbids) forbids leaving apart.*
 
 *And it survives [The Grammar](../../../chemistry/.lib/authorship/01-the-grammar.md)'s "no utility functions", which governs `$Chemistry` rather than `.public` and is about helpers written for tidiness, not about an invariant two sites must agree on.*
 
@@ -209,12 +209,12 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 |---|---|---|
 | **W1** | ***I wrote a ceremonial bond constructor*** — `$Format(block) { }`, empty. **[The Binding Constructor](../../../chemistry/.lib/composition/03-binding-constructor.md) forbids exactly this**: *"an empty `$X() {}` makes the synthesis parse parameters and build chemicals for inputs nobody binds: a performance hazard."* **I had read that chapter this session.** | ***FIXED*** — deleted in the same act as being named |
 | **W7** | ***`theme()` read the block by hand*** — `(this._block.$elements ?? []).find(part => part instanceof $Theme)` — where `searchForOne($TypeOfTheme)` is the ask, now that a theme carries a type | ***FIXED*** — asks by type |
-| **W2** | ***FIXED — the cast became a TYPE PREDICATE***, which is [the cure the library already names](../designing-inexplicable-phenomena/19-what-we-believe.md) for exactly this fault: *"the one my own memory names as the canonical fault, a cast asserting what a check verifies, died when `reflection.writing()` became a type predicate."* **`themed(one): one is $Writing$`** — *and it names an interface `$Writing$` ALREADY PROMISES, so no new declaration was needed.* ~~It read: `$Format.theme` reaches through a duck-type and then casts what the check just verified~~ — `'theme' in at && typeof at.theme === 'function'`, then `(at.theme as () => $Theme)()`. **This is the canonical fault by my own record**, and Doug's rule is *"the unknown-cast reach is NEVER okay — a member the machinery must read is a member on the wrong object, or machinery in the wrong place."* *It exists solely to keep `Format.tsx` from importing `$Writing` as a value, which would re-form the cycle.* | ***STANDING.*** **Closed by moving `$Format` into `Writing.tsx`, which is [what ch13 rules and nobody has done](#w-ch13)** |
+| **W2** | ***FIXED — the cast became a TYPE PREDICATE***, which is [the cure the library already names](../the-type-system/05-what-we-believe.md) for exactly this fault: *"the one my own memory names as the canonical fault, a cast asserting what a check verifies, died when `reflection.writing()` became a type predicate."* **`themed(one): one is $Writing$`** — *and it names an interface `$Writing$` ALREADY PROMISES, so no new declaration was needed.* ~~It read: `$Format.theme` reaches through a duck-type and then casts what the check just verified~~ — `'theme' in at && typeof at.theme === 'function'`, then `(at.theme as () => $Theme)()`. **This is the canonical fault by my own record**, and Doug's rule is *"the unknown-cast reach is NEVER okay — a member the machinery must read is a member on the wrong object, or machinery in the wrong place."* *It exists solely to keep `Format.tsx` from importing `$Writing` as a value, which would re-form the cycle.* | ***STANDING.*** **Closed by moving `$Format` into `Writing.tsx`, which is [what ch13 rules and nobody has done](#w-ch13)** |
 | **W3** | ***FIXED.*** *Both deleted, and the promise that forced them with it: **`$IndexCard$` no longer extends `$Section$`**, because a card is ruled to stand WITHOUT a heading and an interface promising one was the wrong promise. The card's TYPE still descends from `$TypeOfSection` — the interface and the type are separate axes.* ~~It read: heading() survives only to satisfy an inherited obligation~~ *`$Section$` promises `heading()`; a card waives `$opensWithHeading` and never uses one.* **Nothing calls either** | ***STANDING*** — they go when a card becomes a reference ([D-F](#d-f)), which is unbuilt |
 | **W4** | ***ACCEPTED, not a defect.*** *A card has a title, so the dependency is real; [`loading.test`](../../package/.tests/loading.test.tsx) proves it costs no cycle. **It becomes a question only when [U6](#u6) moves `$TypeOfTitle` under `$TypeOf$Book`**, which is unbuilt.* ~~It read: reference/IndexCard.tsx now imports book/Title.tsx — a direction that did not exist before, `reference` reaching into `book`. *It loads standalone and there is no cycle, but it asks whether `$Title` is a book word or a reference word* | ***STANDING*** — a design question, not a defect |
 | **W5** | ***THE RULE IS GONE, AND MY FIRST ANSWER TO THIS WART WAS WRONG.*** *I found that [`$landsOnIt`](../../package/src/reference/Reference.tsx) read the composition type where a mention's target kind lives in its reference type, **fixed it, and wrote two promises enshrining `Cr:1`** — a form [D-K](#d-k) deletes.* **Doug: *"Weren't we removing this? Cr:1 specifies clean, Sn:0"*** — *and he was right: a fixed-order path already says the level, so there are no codes to land on.* ***So the codes are DELETED*** — `reflection.codes` and `reflection.code()`, `$landsOnIt` and its one override in `$Bookmark`, `$Catalogue`'s `code()` helper and every `kind:position` step, and `$Ref.read`'s uppercase pattern. **An address is a POSITION and nothing else.** *Net −35 lines across four files; the demo drew identically because it never used them.* **The lesson is the one this sprint keeps relearning: I fixed a mechanism instead of asking whether the design still wanted it** |
 | **W6** | ***FIXED, and the fix was forced by a measurement I could not have made.*** *I had recorded it as a wart with a micro-benchmark. **Session inexplicable-phenomena-7e profiled the real browser and found the walk at 21.3%, 22.3% and 26.0% of the demo's busy CPU across three runs — comparable to all of React's `createElement` on the same page.*** **Their mechanism sentence was exact: the cost was not the walk's DEPTH, it was that every step asks a reactive `$Block.$elements` and the scope CLONES on read** — four clones per getter, per Format, per render. ***The fix holds the answer instead of re-walking it:*** `$Format.theme` keeps its walked theme in an inert `_theme`, so a Format walks **once per mount rather than once per getter per render**; and `$Writing.theme()` holds its resolve the same way, so the reactive `searchForOne` and the recursion up the parents happen **once**. *Both fields are `_`-prefixed, so [`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts) treats them as inert and neither adds a reactive bond; **no new public member and no interface change**.* ***MEASURED AFTER, twice: 242 µs → 0.73 µs from a book and 0.20 µs from a chapter in the suite, and [22% → 0.6% of busy CPU in the real browser](#the-after)*** — *three hundred to twelve hundred times, with all three theme promises green by name.* **The one narrowing, recorded rather than hidden: a theme resolved before a later registration would now be stale. Nothing does that today, because a theme is written in markup rather than swapped at runtime** |
-| **W6b** | ***AND THE INSTRUMENT LESSON IS WORTH MORE THAN THE NUMBER.*** *7e's first profiling pass reported `theme` at **0.0%** and they caught it themselves before sending it: they were matching an **anchored** frame pattern against `functionName + ' ' + url`, so `/^theme$/` could never match, and only an unanchored pattern survived.* ***`searchFor`, `clone`, `selectProperties` and `bond` all read 0 ms in that same pass*** — **four plausible frames at exactly zero is not a result, it is a broken matcher.** *Recorded here beside the measurement because [a claim is measured or it is not made](../designing-inexplicable-phenomena/19-what-we-believe.md), and this is what checking the instrument looks like* |
+| **W6b** | ***AND THE INSTRUMENT LESSON IS WORTH MORE THAN THE NUMBER.*** *7e's first profiling pass reported `theme` at **0.0%** and they caught it themselves before sending it: they were matching an **anchored** frame pattern against `functionName + ' ' + url`, so `/^theme$/` could never match, and only an unanchored pattern survived.* ***`searchFor`, `clone`, `selectProperties` and `bond` all read 0 ms in that same pass*** — **four plausible frames at exactly zero is not a result, it is a broken matcher.** *Recorded here beside the measurement because [a claim is measured or it is not made](../the-type-system/05-what-we-believe.md), and this is what checking the instrument looks like* |
 | **W8** | ***CLOSED BY A PROMISE.*** *A bare `$Format` worn by nothing that has a theme throws with the spoken error, and [writing.test](../../package/.tests/writing.test.tsx) holds it.* ~~It read: $Format.theme now throws where it used to fall back, on a path no promise covers~~ — **the path is covered now.** ~~ *A Format drawn outside any writing has no theme and says so. Every suite and both demo pages pass, so nothing does that today* — **but it is a behaviour change on a path no promise covers** | ***STANDING*** — deliberate, per *types express expectations*, and recorded rather than assumed safe |
 | **W9** | ***DISSOLVED, not fixed.*** *Now that [W5](#warts) deleted the rule, a mention of a chapter has no rule beyond a reference's — and [the checklist](48-the-v2-2-checklist.md) says a specification carries **only rules that are ITS OWN**. **An empty derived specification is correct here**, and filling it would be inventing a rule to justify a slot.* ~~It read: I added three empty specifications~~ — `$BookSpecification`, `$ChapterSpecification`, `$SectionSpecification`. *They inherit real rules from `ReferenceSpecification` rather than holding none, which is not the same fault as [the eleven this sprint counted](#measured)* — **but a sprint that set out to fill empty specifications ended by writing three** | ***STANDING*** — they fill when [W5](#warts) is fixed and a mention has a rule of its own |
 
@@ -252,7 +252,7 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 
 > ***Doug, reading `theme()`, 2026-09-07:*** **"Uh oh. This should be one line in the bond constructor: `this._theme = $check(this.searchForOne<$Theme>($TypeOfTheme), $Theme, '!');` What else did you mess up like that. Just make it a simple property and validate that it's assigned in specify()."**
 
-***He is right, and the reason is worse than a preference: I QUOTED THE RULE HE IS INVOKING, IN THIS CHAPTER, AT [D-E](#d-e), AND THEN WROTE SOMETHING ELSE.*** **[The assignment workflow](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-assignment-workflow) is his own, verbatim:** *"In bond constructor: check if a type of that is right and if there is one, use that by assigning it to the right property. If there is none, get the component you want to use from `$` using DI. Create one and assign. Then run specifically, which should validate the thing is assigned if necessary."*
+***He is right, and the reason is worse than a preference: I QUOTED THE RULE HE IS INVOKING, IN THIS CHAPTER, AT [D-E](#d-e), AND THEN WROTE SOMETHING ELSE.*** **[The assignment workflow](../the-type-system/02-the-type-and-the-instance.md#the-assignment-workflow) is his own, verbatim:** *"In bond constructor: check if a type of that is right and if there is one, use that by assigning it to the right property. If there is none, get the component you want to use from `$` using DI. Create one and assign. Then run specifically, which should validate the thing is assigned if necessary."*
 
 **So the lazy walk, the resolve-on-first-read and the cache are all being deleted** — *not because a good idea lost to a better one, but because **the framework already had the answer and I built past it.*** ***The 22% [7e measured](#the-after) is what that cost on a real page, and the 44× I then bought back was buying back a hole I dug.***
 
@@ -268,7 +268,7 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 
 ### <a id="w-ch13"></a>And one that belongs to a chapter rather than to code
 
-***[The Default Dress](../designing-inexplicable-phenomena/13-the-default-dress.md) says `$Theme`, `$Style` and `$Anchor` live in `Writing.tsx` — "Doug's rule, and it is what dissolved a module cycle".*** **Two of the three had drifted out**, and putting `$Theme` back is what this sprint did. **`$Format` and `$AnchorFormat` are still out**, which is the whole reason [W2](#warts) exists.
+***[The Default Dress](../the-motif/01-the-default-dress.md) says `$Theme`, `$Style` and `$Anchor` live in `Writing.tsx` — "Doug's rule, and it is what dissolved a module cycle".*** **Two of the three had drifted out**, and putting `$Theme` back is what this sprint did. **`$Format` and `$AnchorFormat` are still out**, which is the whole reason [W2](#warts) exists.
 
 > ***So the chapter is not stale — it is UNOBEYED, and the cost of not obeying it is one cast.*** *Session inexplicable-phenomena-7e read ch13 as stale against v2.2; the honest form is that it states a shape the current file layout does not carry, and either the layout moves or the chapter says so.* **A ruling for Doug, not an edit to make quietly.**
 
@@ -380,7 +380,7 @@ title                                  by NAME, nearest scope
 | `<Author>Physics</Author>` | ***an author*** | a book they wrote |
 | `<Subject>Physics</Subject>` | ***a subject*** | a book filed under it |
 
-***The difference matters and it is not pedantry.*** **Under the projection reading there is ONE kind and several faces; under the correct reading there are SEVERAL KINDS, each naming a real thing a library has a word for.** *The second is the one that keeps every name a library word — which is [the anchor](../designing-inexplicable-phenomena/11-the-coding-style.md#the-anchors) — and the first would have quietly made "projection" a framework concept nobody asked for.*
+***The difference matters and it is not pedantry.*** **Under the projection reading there is ONE kind and several faces; under the correct reading there are SEVERAL KINDS, each naming a real thing a library has a word for.** *The second is the one that keeps every name a library word — which is [the anchor](../the-coding-style/03-the-coding-style.md#the-anchors) — and the first would have quietly made "projection" a framework concept nobody asked for.*
 
 ### <a id="d-b-titles"></a>And the title is the tricky one — his word
 
@@ -398,7 +398,7 @@ title                                  by NAME, nearest scope
 
 ***PROPOSED — the resolver has one job:*** **given what an author wrote and the scope it was written in, answer a REFERENCE.** *The reference it answers carries both where to land and what kind of link it is, which is the whole of Doug's "we can even change what kind of reference it is."*
 
-**Fetched through `$`, at the seat, per [the fetch corollary](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-fetch)** — so a book configures its own with a registration beside its Formats, and a single mention that needs something else takes one as a prop. ***One interface, two implementations: `import.meta.glob` in the demo today, binder-emitted in production, and the framework never learns which.***
+**Fetched through `$`, at the seat, per [the fetch corollary](../the-type-system/02-the-type-and-the-instance.md#the-fetch)** — so a book configures its own with a registration beside its Formats, and a single mention that needs something else takes one as a prop. ***One interface, two implementations: `import.meta.glob` in the demo today, binder-emitted in production, and the framework never learns which.***
 
 ***AND IT ANSWERS WHETHER `.wiki` RUNS UNBOUND: it does.*** **A hand-written resolver resolves across books with no binder at all**, and the binder later replaces it without the framework noticing.
 
@@ -468,7 +468,7 @@ physics/gauge-theory#history/se:3
 
 | | | what it costs |
 |---|---|---|
-| ***ROAD A — lineage*** | *a composition that IMPLEMENTS `$Reference$`.* `$Title extends $Composition implements $Reference$`, carrying `$TypeOfSection` for its level and `$TypeOfIndexCard` for its card-hood | **the interface must be satisfiable without the class** — *and [P40](../designing-inexplicable-phenomena/19-what-we-believe.md) is the standing warning: `$Writing` is not assignable to `$Writing$`, measured at 51 errors across 30 files* |
+| ***ROAD A — lineage*** | *a composition that IMPLEMENTS `$Reference$`.* `$Title extends $Composition implements $Reference$`, carrying `$TypeOfSection` for its level and `$TypeOfIndexCard` for its card-hood | **the interface must be satisfiable without the class** — *and [P40](../the-type-system/05-what-we-believe.md) is the standing warning: `$Writing` is not assignable to `$Writing$`, measured at 51 errors across 30 files* |
 | ***ROAD B — meaning*** | ***a thing IS a reference because it HAS a meaning***, and the specification checks that rather than an ancestry. *No lineage anywhere; `$Reference` becomes the canonical class rather than the gate* | **it makes reference-hood universal** — *which [the binder chapter already argued](37-the-binder.md#the-reference): "All writing is a reference. It has meaning… so reference-hood is universal and a Link is the SPECIAL case, not the general one"* |
 
 ***ROAD B is the one the codebase already leans toward and nobody has said out loud.*** **`$Writing.meaning()` exists on the base.** *Every piece of writing can answer it. **Nothing about being a reference requires a lineage — the lineage is how we happened to build it.***
@@ -525,7 +525,7 @@ and the mention's copy is that type, so:
 
 | | |
 |---|---|
-| **1** | ***`$Theme` becomes an `$Annotation` again***, with a `$TypeOfTheme`. *It was one — [The Default Dress](../designing-inexplicable-phenomena/13-the-default-dress.md) says so — and the code drifted off it.* **That is what lets a theme be WRITTEN INTO a block and found there** |
+| **1** | ***`$Theme` becomes an `$Annotation` again***, with a `$TypeOfTheme`. *It was one — [The Default Dress](../the-motif/01-the-default-dress.md) says so — and the code drifted off it.* **That is what lets a theme be WRITTEN INTO a block and found there** |
 | **2** | ***`theme()` is a PROPERTY on `$Writing`*** — argumentless, returns data, so it sits in the property stack — answering *the theme written into this writing, else the theme of what holds it*. **Zero fields**, so no reactive bond on every letter and no `$Theme` per word |
 | **3** | ***`$Book`'s bond does the one creation*** — `placed($TypeOfTheme, theme)`, find-or-make, once, at the top. **His "otherwise it is created"** |
 | **4** | ***`$Format` walks `parent` to the nearest `$Writing` and asks `theme()`*** — nearest, not the book, **so a chapter that themes itself themes its own Formats** |
@@ -533,7 +533,7 @@ and the mention's copy is that type, so:
 
 > ***AND IT COMPOSES WITH SESSION 41'S WORK RATHER THAN REVERSING IT.*** **`placed()` makes through `$check(kind, '!')`, which fetches through `$`** — *so a book registering `$(Wikipedia, Theme)(PortalTheme)` and writing no `<Theme>` gets a PortalTheme made for it.* ***The registration decides WHAT GETS MADE; a written theme OVERRIDES it.*** **Their DI and Doug's written-in override are the same seam at two ends, and neither has to go.**
 
-*The cost this avoids is worth stating as a number: a field on `$Writing` is a field on every letter and every word, and [every bare-named field on a chemical is a reactive bond](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-reactive-law) whether anything watches it or not.*
+*The cost this avoids is worth stating as a number: a field on `$Writing` is a field on every letter and every word, and [every bare-named field on a chemical is a reactive bond](../the-type-system/02-the-type-and-the-instance.md#the-reactive-law) whether anything watches it or not.*
 
 ## <a id="d-f"></a>D-F · The card is a reference — the chain, in Doug's own words
 
@@ -659,7 +659,7 @@ $TypeOfReference
 
 > ***Doug:*** **"it can be that the card title has to have meaning. On IndexCard you can export a Line perhaps and the canonical always has to have meaning! — references better have meaning"**
 
-***`$Line` is his word and it is already the branch's:*** *"an IndexCard can have a name and lines which are pieces of writing"* — **and [The Wikipedia Fit](../designing-inexplicable-phenomena/18-the-wikipedia-fit.md) maps it exactly: an infobox's label and data together are ONE LINE.**
+***`$Line` is his word and it is already the branch's:*** *"an IndexCard can have a name and lines which are pieces of writing"* — **and [The Wikipedia Fit](../the-motif/02-the-wikipedia-fit.md) maps it exactly: an infobox's label and data together are ONE LINE.**
 
 | | the rule | on |
 |---|---|---|
@@ -667,7 +667,7 @@ $TypeOfReference
 | **2** | ***a card's title has meaning*** | `IndexCardSpecification` |
 | **3** | ***a card's canonical line has meaning*** | `IndexCardSpecification` — **"the canonical" is the FIRST, following [`$ReferenceCard`](../../package/src/reference/ReferenceCard.tsx)'s existing "a list of references, the first canonical"** |
 
-***One caution about where `$Line` lives.*** **[The file is the WORD](../designing-inexplicable-phenomena/07-the-unit-of-code.md)**, so `$Line` in `IndexCard.tsx` is right *only if a line is always a card's line*. **If a line is general writing, it earns its own file.** *He wrote "perhaps", so it is recorded as his to settle rather than assumed.*
+***One caution about where `$Line` lives.*** **[The file is the WORD](../the-coding-style/01-the-unit-of-code.md)**, so `$Line` in `IndexCard.tsx` is right *only if a line is always a card's line*. **If a line is general writing, it earns its own file.** *He wrote "perhaps", so it is recorded as his to settle rather than assumed.*
 
 
 
@@ -782,7 +782,7 @@ $TypeOfReference
 ## <a id="p8"></a>Phase 8 — seen
 **P21** · `.wiki/.article` carries a hand-written table of contents, a chapter mention with a summary, and a book whose chapters share a title. Driven at 390, 820 and 1280. ***Remember the demo exists in two trees and only `.wiki/.public` is served.***
 
-***VISIBLE:*** ***the whole sprint.*** [No feature ships unseen](../designing-inexplicable-phenomena/11-the-coding-style.md#seen).
+***VISIBLE:*** ***the whole sprint.*** [No feature ships unseen](../the-coding-style/03-the-coding-style.md#seen).
 
 ## <a id="p-order"></a>What the order is FOR
 
@@ -828,7 +828,7 @@ $TypeOfReference
 
 *Three questions closed this round and are moved to [The Evolution](#evolution); what remains is below, smallest first.*
 
-1. ***`$$TableOfContents`, `$$Index`, `$$Cover` — do they exist at all?*** Doug asked "do we want them too?"; the answer proposed here is **types with no classes**, per [Shells Over Types](../designing-inexplicable-phenomena/14-shells-over-types.md), since none holds data a shell does not. ***Not confirmed by him.***
+1. ***`$$TableOfContents`, `$$Index`, `$$Cover` — do they exist at all?*** Doug asked "do we want them too?"; the answer proposed here is **types with no classes**, per [Shells Over Types](../the-type-system/03-shells-over-types.md), since none holds data a shell does not. ***Not confirmed by him.***
 
 2. ***How far the url reaches into a book.*** [D-H](#d-h) puts the `#` at the module boundary and says an application may translate chapters into the path. **Whether `.public` should know anything about that translation, or whether it is wholly the application's, is unruled.**
 
@@ -871,7 +871,7 @@ $TypeOfReference
 - **files:** `book/Book.tsx` · `book/Chapter.tsx` · `writing/Section.tsx` · `index.ts`
 - **depends on:** U1
 - ***SEAM:*** `Book.tsx` is shared — see [the seams](#seams)
-- ***NOTE:*** `Section.tsx` already holds `const section = Section`. [The Shape of TSX](../designing-inexplicable-phenomena/16-the-shape-of-tsx.md#naming) rules it: the file-local alias moves, the export does not.
+- ***NOTE:*** `Section.tsx` already holds `const section = Section`. [The Shape of TSX](../the-coding-style/06-the-shape-of-tsx.md#naming) rules it: the file-local alias moves, the export does not.
 - **demo contribution:** a table of contents written by hand with `<Chapter>` draws in the browser
 - **realizes:** R1, R3, R4
 
@@ -902,7 +902,7 @@ $TypeOfReference
 ### <a id="u9"></a>U9 — the table of contents fills itself — ***SUPERSEDED by [D-G](#d-g): it is HAND WRITTEN and CHECKED***
 
 > ***The unit is kept with its identifier because [scenarios S9–S11](#scenarios) and [R10, R12, R15](#requirements) cite it.*** **What replaces it is smaller: `$Book` places nothing, `$TableOfContents` fills nothing, and [U11](#u11)'s rule does the work.** *The mechanism below is the record of what was designed before the binder ruling, and it is why [K1](#k1)'s exposure fell from two units to one.*
-- **mechanism:** `$Book`'s bond places an EMPTY table of contents through `placed()`. `$TypeOfTableOfContents.specifically(writing)` then reads `writing.book().chapters`, places a `$Title` and a `$Table`, and fills the table with a mention per chapter. *A reading, never a construction in a view — [Solutions 51](../solutions/51-the-chapters-a-book-drew-empty.md) and [the view law](../designing-inexplicable-phenomena/14-shells-over-types.md#the-view-law).*
+- **mechanism:** `$Book`'s bond places an EMPTY table of contents through `placed()`. `$TypeOfTableOfContents.specifically(writing)` then reads `writing.book().chapters`, places a `$Title` and a `$Table`, and fills the table with a mention per chapter. *A reading, never a construction in a view — [Solutions 51](../solutions/51-the-chapters-a-book-drew-empty.md) and [the view law](../the-type-system/03-shells-over-types.md#the-view-law).*
 - **files:** `book/TableOfContents.tsx` · `book/Book.tsx`
 - **depends on:** U4, U5, U7
 - ***RISK [K1](#k1) — and the mechanism above may be revisable.*** *Session 41's chemistry change gives a top written in a view its parent **at derivation, before its bond runs**, so a bond constructor's `$(X)` resolves outward from its place, and they add: "if your table of contents asks the scope in its bond, it will be answered from the book."* **That is about the SCOPE, not about the book INSTANCE, and a table of contents placed by `$Book`'s bond is not written in a view — so the bond may still not reach `chapters`.** ***Probe it; do not assume it either way.*** *If the bond can reach the book, D7 is revisited and the filling moves there; until measured, `specifically` stands.*
@@ -930,7 +930,7 @@ $TypeOfReference
 - **depends on:** U9, U11
 - ***NOT `.wiki/.encyclopedia/` — that book is session 41's.*** *See [the seams](#seams).*
 - ***THE DEMO HAS TWO TREES AND AN EDIT TO ONE IS INVISIBLE.*** **`.wiki/` is the source and `.wiki/.public/` is the served copy — the vite root — and they mirror file for file** (session 41, measured 2026-09-06, having edited both by hand). *[`build.mjs`](../../package/.wiki/.public/build.mjs) is what lifts one into the other, and it **refuses to run outside `.wiki/.public`** because it once ran from `.wiki` and deleted the whole untracked demo.* **Run the build; never hand-edit one tree and believe the page.**
-- **demo contribution:** ***the whole sprint, seen.*** [No feature ships unseen](../designing-inexplicable-phenomena/11-the-coding-style.md#seen)
+- **demo contribution:** ***the whole sprint, seen.*** [No feature ships unseen](../the-coding-style/03-the-coding-style.md#seen)
 - **realizes:** R7, R13
 
 ### <a id="u15"></a>U15 — the last struck word
@@ -956,7 +956,7 @@ $TypeOfReference
 
 ***No files. No scenarios. No dependencies.***
 
-**Doug ruled the WHAT** — *"make that dependent on the type it gets for its cells... if they are paragraphs it is a section and it assigns that type"* — **and the HOW is not designed.** *`$TypeOfTable extends $TypeOfSection` is a static fact of the class; un-fixing it changes what a table IS, which is more than a line. The likely shape is that `$TypeOfTable` names no level and the table carries a derived composition type beside it under [L8](../designing-inexplicable-phenomena/17-the-interface-type-system.md#two-axes), but that has not been worked and must not be assumed.*
+**Doug ruled the WHAT** — *"make that dependent on the type it gets for its cells... if they are paragraphs it is a section and it assigns that type"* — **and the HOW is not designed.** *`$TypeOfTable extends $TypeOfSection` is a static fact of the class; un-fixing it changes what a table IS, which is more than a line. The likely shape is that `$TypeOfTable` names no level and the table carries a derived composition type beside it under [L8](../the-type-system/04-the-interface-type-system.md#two-axes), but that has not been worked and must not be assumed.*
 
 **Until it is designed, `$Table` stays as it is** — a section — which is what the derivation would answer for a table of paragraphs anyway, so **U9 does not block on it.**
 
@@ -1037,7 +1037,7 @@ $TypeOfReference
 ### <a id="k8"></a>K8 — find-or-make was broken until tonight
 ***Session 41 found and fixed it:*** **`$check(held, Kind, '!')` with the kind named by a COMPONENT never recognised what it was handed** — *`validateArgument` fell to the function-component branch* — **so it made a new one every time.** *Fixed, with a promise in `check-makes.test.tsx`, dist rebuilt.*
 
-***[U9](#u9)'s idempotence depends on find-or-make actually finding.*** **`placed()` uses `searchForOne` and then the two-argument make form, so it was never on the broken path** — *but [ch10's ruled three-argument form](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#making-one) was, and anything in this sprint reaching for it must be written against the FIXED chemistry.* **State the chemistry commit the work stands on.**
+***[U9](#u9)'s idempotence depends on find-or-make actually finding.*** **`placed()` uses `searchForOne` and then the two-argument make form, so it was never on the broken path** — *but [ch10's ruled three-argument form](../the-type-system/02-the-type-and-the-instance.md#making-one) was, and anything in this sprint reaching for it must be written against the FIXED chemistry.* **State the chemistry commit the work stands on.**
 
 ### <a id="k3"></a>K3 — Solutions 51 is unfixed and still chemistry's
 **A writing that draws its own held parts through `$(part)` draws frames and empties contents.** *[U9](#u9) must draw a **reading of its block**, never its cells through `$(cell)`.* **Mitigation: the rule is written; [S15](#scenarios) is in the real browser because happy-dom does not reproduce it.**

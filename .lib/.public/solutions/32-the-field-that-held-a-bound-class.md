@@ -80,4 +80,4 @@ get canonicalForm(): typeof $Writing { return $Letter; }
 
 - [The narrowed prop that disowned its base](20-the-narrowed-prop-that-disowned-its-base.md) — **the other place a `$`-prefixed member's declaration travels into machinery and comes back changed.** *There it was the computed props type inverting; here it is a value transformed on the way in. **Both are a declaration written for a class arriving somewhere else.***
 - [The specimen that was the component](28-the-specimen-that-was-the-component.md) — *the same family: an object that is not the object you think you are holding.*
-- [The Type and the Instance](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md) — where the rule now lives as a standing corollary.
+- [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md) — where the rule now lives as a standing corollary.

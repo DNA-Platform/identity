@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 - **status:** `design only` — ***nothing built, and nothing buildable***: [a `$Book` cannot currently be constructed](#blocked). The design is written so it is ready the moment it can be.
 - ***The chapter name is a PROXY; Doug's to rename.***
 
@@ -44,7 +44,7 @@
 
 **A heading and the writing beneath it is a SECTION.** *Five bands are five sections. A chapter of sections whose parts are all references, set in columns, is exactly what [`$Index`](../../package/src/book/Index.tsx) is — and `$Index` already wears [`$ColumnsFormat`](../../package/src/encyclopedia/ColumnsFormat.tsx) at three columns, which is what `langlist` is.*
 
-> ***AND WIKIPEDIA'S OWN CLASS FOR A BAND IS `bookshelf`.*** **Their markup reaches for the library metaphor at precisely the place we would call an index band.** *That is not decoration on our part — it is the strongest evidence in this branch that [the public library](../designing-inexplicable-phenomena/11-the-coding-style.md#the-anchors) is describing something real about how encyclopedias are already organised.*
+> ***AND WIKIPEDIA'S OWN CLASS FOR A BAND IS `bookshelf`.*** **Their markup reaches for the library metaphor at precisely the place we would call an index band.** *That is not decoration on our part — it is the strongest evidence in this branch that [the public library](../the-coding-style/03-the-coding-style.md#the-anchors) is describing something real about how encyclopedias are already organised.*
 
 **Counted from the file:**
 
@@ -146,7 +146,7 @@
 
 ***A `$Book` CANNOT CURRENTLY BE CONSTRUCTED.*** **Reported by session inexplicable-phenomena-7e, 2026-09-07, measured:** *Doug had `this.specify()` put as the last line of `$Writing`'s bond; `$Writing`'s bond is the **innermost**, so it completes FIRST — before the block's children have been bonded into writings.* **A `<Cover>` therefore fails its own specification at its own bond**, verbatim: *"a piece of writing says something, and this one says nothing at all."* **And `$Book` is worse: its bond fails, so `cover`, `synopsis`, `table` and `index` are never assigned, `view()` reads them undefined, and it loops until the heap is gone.**
 
-> ***The shape of the fault, named:*** **putting `specify()` in the innermost bond asks a thing to prove itself before it has been given what it is made of.** *That is the same fault a bond-time create already cost this branch once — [`$TypeOfDocument`'s move to `specifically`](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#specifically-two-verbs) happened because a bond-time create "broke twenty-nine carried-type fixtures at once".* ***The invariant, wherever Doug puts it: `specify()` must run when the children ARE writings, and only the outermost bond or a later phase knows that.***
+> ***The shape of the fault, named:*** **putting `specify()` in the innermost bond asks a thing to prove itself before it has been given what it is made of.** *That is the same fault a bond-time create already cost this branch once — [`$TypeOfDocument`'s move to `specifically`](../the-type-system/02-the-type-and-the-instance.md#specifically-two-verbs) happened because a bond-time create "broke twenty-nine carried-type fixtures at once".* ***The invariant, wherever Doug puts it: `specify()` must run when the children ARE writings, and only the outermost bond or a later phase knows that.***
 
 ***AND THE SHAPE TO BUILD AGAINST HAS CHANGED UNDER THIS DESIGN.*** *The interface is now PROPERTIES rather than methods — `kind` (was `type()`), `type` (was `types()`), and `book`, `theme`, `meaning`, `annotations` as getters; `$Letter.kind` became `sort`.* **Two things this design depends on were checked and are UNCHANGED: `searchForOne`'s arity and throw, and `$Book.index`.** *So [C1](#c1) stands exactly as written.*
 
@@ -165,7 +165,7 @@
 
 > ***THE REASON, and it holds for the outermost bond exactly as it does for the innermost:*** **a writing's children do not become writings until they RENDER.** *So at every bond in the chain, `searchFor` finds nothing and every structural rule fails on a writing that is plainly fine.* ***Putting `specify()` in any bond asks a thing to prove itself before it has been given what it is made of.***
 
-***THE SEATS THAT REMAIN, and both are Doug's:*** **a phase hook that runs after mount**, or **the compiler — which is [P19](../designing-inexplicable-phenomena/19-what-we-believe.md)'s original position** and where the design put it before any of this.
+***THE SEATS THAT REMAIN, and both are Doug's:*** **a phase hook that runs after mount**, or **the compiler — which is [P19](../the-type-system/05-what-we-believe.md)'s original position** and where the design put it before any of this.
 
 *And the loop the failures produced is a SEPARATE framework defect, recorded as [Solutions 53](../solutions/53-the-bond-that-failed-quietly-and-drew-forever.md): a swallowed bond throw leaves members undefined, `$(undefined)` draws a fresh Fragment every call, and a dependency-array-less effect diffs it against its cache forever.* ***Fix where it runs and this loop stops appearing; leave that defect and the next failing bond finds it again.***
 

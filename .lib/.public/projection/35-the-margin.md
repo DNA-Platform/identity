@@ -3,7 +3,7 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 - **status:** `requirements-only` — ***brainstorm in progress, 2026-09-01, same session as sprints three and four. The chapter name is a PROXY from Doug's own sentence; his to rename.***
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 
 ---
 
@@ -110,8 +110,8 @@
 | **the newline trick** | *"Is there a way that we can have a non-canonical sentence also be something on its own line … So that **new lines are optional separators for paragraphs too, but the sentence that ends with the new line as punctuation is not a canonical sentence.** The List behaves exactly like a paragraph and can probably inherit from $Paragraph."* — the paragraph's reduce splits lines, the sentence keeps its newline and declines canonicality; the section learned the symmetric blank-line split. |
 | **the table** | *"And then a table, can it be a section? And it's just like a List but for paragraphs."* — rows only; cells not ruled, deferred. A table needs no title — the section's title law stands down for it. |
 | **cover alone is ordered** | *"**Make Cover the only thing on book that needs to be ordered. The rest just find by type.**"* — synopsis and table of contents found by kind, any order; a plain book has a cover because something is first, and nothing else. |
-| **no style on HTML** | *"**Oh don't ever put style on HTML!!**"* and *"**Please test with styled components. $Chemistry goes with styled components.**"* — chemistry's dev panels rewritten as styled components, tested (818/818), dist rebuilt; both rules filed in [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md#styling). |
-| **the spec convention** | *"Write down in branch or in compound files … in findable places that **we always use the spec to show examples of the various use cases of each of our framework classes.**"* — filed in [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md#the-spec-convention); six new examples enrolled (card, trait, list ×2, table ×2), the roster count 44 → 50. |
+| **no style on HTML** | *"**Oh don't ever put style on HTML!!**"* and *"**Please test with styled components. $Chemistry goes with styled components.**"* — chemistry's dev panels rewritten as styled components, tested (818/818), dist rebuilt; both rules filed in [The Coding Style](../the-coding-style/03-the-coding-style.md#styling). |
+| **the spec convention** | *"Write down in branch or in compound files … in findable places that **we always use the spec to show examples of the various use cases of each of our framework classes.**"* — filed in [The Coding Style](../the-coding-style/03-the-coding-style.md#the-spec-convention); six new examples enrolled (card, trait, list ×2, table ×2), the roster count 44 → 50. |
 | **the flexibility chain, his articulation** | *"**Most times people subclass the strong version, and sometimes their subclass uses the type to avoid that, and maybe very occasionally they need to make a new specification … and then really rarely they need to decorate the specification to really have control over what changes.** It is very flexible but I don't think consumers will use it all."* — a compound candidate: the consumer's four steps, told from the outside in. |
 | **the meta-level** | *"We are making a beautiful codebase for **writing as the object model**. How many people operate at that meta-level? It's a fun object model and we are playful with it. And it will be **a UI framework for any sort of application**."* |
 

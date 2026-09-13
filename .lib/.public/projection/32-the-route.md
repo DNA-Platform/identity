@@ -3,7 +3,7 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
 - **status:** `requirements-only` — ***RETURNED to this state 2026-08-31. It was marked `implementation-ready` by the author, who also wrote "requirements approved" for an approval Doug never gave — [see the withdrawal](#withdrawn).***
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force.*
 
 ---
 
@@ -29,11 +29,11 @@
 
 | | what it rules, and why this sprint needs it |
 |---|---|
-| **[The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)** | ***the index of every rule in force***, and the three-register table that says when to go to [the condition report](../the-condition-report/.cover.md) or [Solutions](../solutions/.cover.md) instead |
-| **[The Unit of Code](../designing-inexplicable-phenomena/07-the-unit-of-code.md)** | ***the file is the WORD*** — *so a new word arrives as one file holding its data, its law and its meaning, never three* |
-| **[The Order of a Class](../designing-inexplicable-phenomena/08-the-order-of-a-class.md)** | ***fields · properties · bond constructor · constructor · methods · protected · private***, and **the property test: argumentless AND returns data** |
-| **[The Type and the Instance](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md)** | ***where a member goes*** — the type holds the meaning, the instance holds the data |
-| **[The Closeness Rule](../designing-inexplicable-phenomena/12-the-closeness-rule.md)** | ***what is written inside a class***, and that **art is what you do where the convention is SILENT** — never a licence to bend one |
+| **[The Coding Style](../the-coding-style/03-the-coding-style.md)** | ***the index of every rule in force***, and the three-register table that says when to go to [the condition report](../the-condition-report/.cover.md) or [Solutions](../solutions/.cover.md) instead |
+| **[The Unit of Code](../the-coding-style/01-the-unit-of-code.md)** | ***the file is the WORD*** — *so a new word arrives as one file holding its data, its law and its meaning, never three* |
+| **[The Order of a Class](../the-coding-style/02-the-order-of-a-class.md)** | ***fields · properties · bond constructor · constructor · methods · protected · private***, and **the property test: argumentless AND returns data** |
+| **[The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md)** | ***where a member goes*** — the type holds the meaning, the instance holds the data |
+| **[The Closeness Rule](../the-coding-style/04-the-closeness-rule.md)** | ***what is written inside a class***, and that **art is what you do where the convention is SILENT** — never a licence to bend one |
 
 ***Beyond the style documents, four things this sprint reads and one it must not re-derive:***
 
@@ -207,7 +207,7 @@
 
 ## <a id="decisions"></a>The decisions
 
-<a id="d7"></a>**D7 — the code lives on the TYPE, not on the class.** *[The type holds the meaning](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md); a code is meaning about a level.* **Chosen over a `static` on the class**, *because [Doug's OO ruling](../../../chemistry/.lib/authorship/01-the-grammar.md) is that a constant storing data is bad for polymorphism and a template member is both allocated once and overridable.*
+<a id="d7"></a>**D7 — the code lives on the TYPE, not on the class.** *[The type holds the meaning](../the-type-system/02-the-type-and-the-instance.md); a code is meaning about a level.* **Chosen over a `static` on the class**, *because [Doug's OO ruling](../../../chemistry/.lib/authorship/01-the-grammar.md) is that a constant storing data is bad for polymorphism and a template member is both allocated once and overridable.*
 
 <a id="d8"></a>**D8 — `ref` is computed and never stored.** *His sentence: "composition, if giving an indexed list, should always afford us this."* **Chosen over assigning a route during the parse**, *which would be a fourth write in a place [that has drawn blood three times](../solutions/16-the-parse-that-woke-its-own-parents.md).*
 
@@ -350,7 +350,7 @@
 2. **[Chapter zero's reference plan](00-planning.md#the-reference-plan)** — *the five sprints and [the sprint-three agenda](00-planning.md#v3).*
 3. **[The text that never reached the block](../solutions/36-the-text-that-never-reached-the-block.md)** — ***why a runtime name is a fact about a build***, and the anchors that govern what a bond constructor may receive.
 4. **[Cataloguing](14-cataloguing.md)** — *the last time this branch designed a catalogue, and what it ruled.*
-5. **[The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)** — ***required reading for this sprint at Doug's instruction***, and the index of every rule in force.
+5. **[The Coding Style](../the-coding-style/03-the-coding-style.md)** — ***required reading for this sprint at Doug's instruction***, and the index of every rule in force.
 
 ## Names
 

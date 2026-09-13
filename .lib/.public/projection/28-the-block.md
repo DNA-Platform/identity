@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -216,7 +216,7 @@ $Section    1 argument, block
 
 <a id="d113"></a>**D113 — a level carries its own type, so the reading has ONE route.** *Chosen over letting a written level and a typed writing stay two populations the reading tells apart.* ***This is [K25](27-composition.md#k25) closed rather than mitigated:*** *Composition filed it as **two populations of one object** — a writing built with `$()` carrying a bare type and one that is drawn carrying a level — and mitigated it by exercising both forms in probes.* **If every level carries its own type from its own bond, there is one population and nothing to tell apart.**
 
-<a id="d112"></a>**D112 — the suite gains one file per level, and the existing five stay.** *Chosen over rewriting the five into seven.* **The existing files promise things ACROSS levels** — a writing behaving as a type, a chapter being a document, the chain end to end — *and those are not a `$Sentence`'s promises*. **The per-level files are [the unit-of-code rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md) reaching the suite:** *`lib`'s unit is a class because an invariant is stated over a word, and a test file should fall where the promise falls.*
+<a id="d112"></a>**D112 — the suite gains one file per level, and the existing five stay.** *Chosen over rewriting the five into seven.* **The existing files promise things ACROSS levels** — a writing behaving as a type, a chapter being a document, the chain end to end — *and those are not a `$Sentence`'s promises*. **The per-level files are [the unit-of-code rule](../the-coding-style/01-the-unit-of-code.md) reaching the suite:** *`lib`'s unit is a class because an invariant is stated over a word, and a test file should fall where the promise falls.*
 
 ---
 
@@ -317,7 +317,7 @@ $Section    1 argument, block
 **Mechanism:** *seven test files under `tests/`, one per level, each stating what its level promises.* **The existing five stay** — they promise things across levels and are not replaced by per-level files.
 **Files:** `tests/`.
 **Depends on:** U206.
-**Visible end:** *seven files whose names are the seven words, so a reader looking for what a sentence promises opens `sentence.test.tsx`* — **[the unit-of-code rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md) applied to the suite**, which is the one place in this branch it had not been.
+**Visible end:** *seven files whose names are the seven words, so a reader looking for what a sentence promises opens `sentence.test.tsx`* — **[the unit-of-code rule](../the-coding-style/01-the-unit-of-code.md) applied to the suite**, which is the one place in this branch it had not been.
 
 | | scenario | outcome |
 |---|---|---|
@@ -492,7 +492,7 @@ $Section    1 argument, block
 | ***`$$` constructs empty, then binds*** | **`build()` repairs the classification; it does not repair the record.** *A correctly bound letter carries the failure it earned in the instant before it was bound.* **Nothing reads it today; it would show if a bound part were ever drawn.** |
 | ***`$$` never asks `specify()`*** | *A writing carrying a Letter type over three graphemes is bound and becomes a part, unchecked.* **The parser walks that path.** |
 | ***writing at the wrong level is dropped in silence*** | *The reading asks, gets false, pushes nothing and says nothing.* **v1's parse THREW, naming both levels.** |
-| ***the twelve derivations, the reference arm, the book layer*** | **[What Carries Over](../designing-inexplicable-phenomena/09-what-carries-over.md)** carries the whole map and the order the dependencies force. |
+| ***the twelve derivations, the reference arm, the book layer*** | **[What Carries Over](../the-type-system/01-what-carries-over.md)** carries the whole map and the order the dependencies force. |
 
 ## The wrong turns already taken — do not repeat these
 

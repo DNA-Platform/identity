@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -219,7 +219,7 @@
 
 <a id="r231"></a>**R231** — ***a specification is a piece of writing, carried by the thing it specifies.***
 
-<a id="r233"></a>**R233** — ***and this is [closure under books](../the-semantics-of-books/10-closure-under-books.md) applied to the RULES rather than to the content.*** **[`$Book.structure()`](../../package/src/book/Book.tsx)'s seven statements are TypeScript today** — *a specification whose home is outside the library it governs* — **and [The Live Library](../designing-inexplicable-phenomena/05-the-live-library.md) already names that as the fault:** *"a rule that lives in the compiler is a rule the browser cannot ask."* ***If a specification is writing, a book carries its own and the browser can ask it.***
+<a id="r233"></a>**R233** — ***and this is [closure under books](../the-semantics-of-books/10-closure-under-books.md) applied to the RULES rather than to the content.*** **[`$Book.structure()`](../../package/src/book/Book.tsx)'s seven statements are TypeScript today** — *a specification whose home is outside the library it governs* — **and [The Live Library](../ways-of-reading/05-the-live-library.md) already names that as the fault:** *"a rule that lives in the compiler is a rule the browser cannot ask."* ***If a specification is writing, a book carries its own and the browser can ask it.***
 
 <a id="r234"></a>**R234** — ***and it answers Doug's opening framing.*** *"Consider defining them by spec rather than by type"* — **a Cover is not a class something extends; it is a specification some writing satisfies, and the specification is itself written.**
 
@@ -230,7 +230,7 @@
 | the word | what it already means here | fit |
 |---|---|---|
 | ***imprint*** | ***Doug's own, twice in [chapter zero](00-planning.md)***: *"the imprint page (**metadata as cover parentheticals**; publisher → team)"* and *"which parentheticals on the cover are metadata (publisher, date — **the imprint's content**)… and whether the imprint page derives from a metadata reading **the way the table of contents derives from chapters**"* | ***the closest, and it is already his word for this exact thing*** |
-| **colophon** | **taken, and narrower** — [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md): *"the production record: when, by whom, in what hands"* — and it is a styled component in the demonstration | *a kind of imprint, not the general idea* |
+| **colophon** | **taken, and narrower** — [Ways of Reading](../ways-of-reading/04-ways-of-reading.md): *"the production record: when, by whom, in what hands"* — and it is a styled component in the demonstration | *a kind of imprint, not the general idea* |
 | ***cataloguing-in-publication*** | **the librarian's actual term for the catalogue record printed inside the book** — *and [already tried in the demonstration](09-the-subject.md) as "the Cataloguing-in-Publication experiment"* | ***exactly the definition Doug asked for***, and long |
 | **the card** | **already built** — [`$$Book`](../../package/src/book/Book.tsx), and [S17 already ruled it *"a REFLECTION of the book — the same property names, with references replaced by cards"*](../the-condition-report/04-semantics.md#s17-ruled) | ***the OUTSIDE form of the same information*** |
 

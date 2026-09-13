@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 - **status:** `implementation-ready`
 - ***The chapter title is a PROXY; Doug's to rename.***
 
@@ -20,7 +20,7 @@
 
 | | his words | what it decides |
 |---|---|---|
-| **RA** | *"No I mean a TypeOfIndexCard for the index card class. You do see the type pattern? Class, type, specification, optional interface if there are members"* | **The type pattern is not a choice.** Every card is spelled `$X` · `$TypeOfX` · `XSpecification` · `$X$` where it has members. It was offered as one option of three and that was the error — [ch15](../designing-inexplicable-phenomena/15-the-spelling-of-a-kind.md) already rules it. |
+| **RA** | *"No I mean a TypeOfIndexCard for the index card class. You do see the type pattern? Class, type, specification, optional interface if there are members"* | **The type pattern is not a choice.** Every card is spelled `$X` · `$TypeOfX` · `XSpecification` · `$X$` where it has members. It was offered as one option of three and that was the error — [ch15](../the-coding-style/05-the-spelling-of-a-kind.md) already rules it. |
 | **RB** | *"Annotation answers to is type of annotation"* | **The `annotation` boolean is deleted.** Annotation-hood is `reflection.is(one, $TypeOfAnnotation)` at every seat, the parser included. |
 | **RC** | *"Someone writes it"* | **A card's heading is author-written.** No bond writes one from the copy; the twelve authored files change instead. |
 | **RD** | — | **All of it, one sprint.** |
@@ -65,9 +65,9 @@ $IndexCard           a section that holds a title, and the title refers
 
 **R5** — **`annotation` as a field does not exist.** Every reader asks `reflection.is(one, $TypeOfAnnotation)` — `$Writing.annotations`, `Parser.tokens`, and every specification that filters on it. *(RB)*
 
-**R6** — **`find` and `findOne` stand on `$Writing`**, asking the BLOCK by TYPE, and replace the hand-written block scans. `findOne` fails when it finds more than one. *(the ask; bodies designed in [ch10](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-block-asking-pair))*
+**R6** — **`find` and `findOne` stand on `$Writing`**, asking the BLOCK by TYPE, and replace the hand-written block scans. `findOne` fails when it finds more than one. *(the ask; bodies designed in [ch10](../the-type-system/02-the-type-and-the-instance.md#the-block-asking-pair))*
 
-**R7** — **The bond calls `super` first and defaults after**, at all seven levels and every kind, so a carried type simply IS the type. *(the ask; [ch10 § the bond composes](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-bond-composes))*
+**R7** — **The bond calls `super` first and defaults after**, at all seven levels and every kind, so a carried type simply IS the type. *(the ask; [ch10 § the bond composes](../the-type-system/02-the-type-and-the-instance.md#the-bond-composes))*
 
 **R8** — **The make marker is used wherever a find-or-make is written.** `$check(found, Kind, '!')` replaces every find-then-construct pair. *(the ask)*
 

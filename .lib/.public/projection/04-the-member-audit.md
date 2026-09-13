@@ -14,7 +14,7 @@
 - **Chapters:** `$Chapter` (`parts`, `book`, `title`, `subtitle`, `tagline`, `summary`, `canonical`, `written`, `select`) → `$Cover` (summary = canonical), `$Synopsis` (bare), `$Index` (bare), `$TableOfContents` (`title` fallback, borrowed `summary`, `chapters`, `heading`, `row`). `$Book` (parts/chapters, cover, synopsis, tableOfContents, title, subtitle, sections, paragraphs, words, select).
 - **References:** `$Reference extends $Sentence` (`$for`, `compose`, `lookup`, `anchor`, `frame`) → `$Link` (router anchor), `$Name` (`symbol`), `$Highlight` (`$first`, `$last`), `$Bookmark` (in `book/`; lookup by select-walk).
 - **Stubs (Doug's markers, excluded from judgment):** `Author`, `Subject`, `Summary`, `Literature` — zero bytes.
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 
 ## Findings, most severe first

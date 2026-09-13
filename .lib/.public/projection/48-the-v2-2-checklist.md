@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 - ***The chapter name is a PROXY; Doug's to rename.***
 
 ---
@@ -31,10 +31,10 @@
 - **C2** — ***it extends the right thing.*** The seven and every kind extend `$Composition`; ***a kind NEVER extends the kind above it***; an annotation extends `$Annotation` or `$Reference`; a dress extends `$Style`
 - **C3** — the bond calls `super` FIRST, then folds its own type, in three lines
 - **C4** — the bond only ASSIGNS. Anything that must run again belongs in `specifically`
-- **C5** — [member order](../designing-inexplicable-phenomena/08-the-order-of-a-class.md): fields (private · public · protected) · properties · bond · constructor · methods · protected · private
+- **C5** — [member order](../the-coding-style/02-the-order-of-a-class.md): fields (private · public · protected) · properties · bond · constructor · methods · protected · private
 - **C6** — the property test: ***argumentless AND returns data***, or it is a method
-- **C7** — [the same container everywhere](../designing-inexplicable-phenomena/12-the-closeness-rule.md#one-container): `frame()` never varies its own depth
-- **C8** — [TSX indented](../designing-inexplicable-phenomena/16-the-shape-of-tsx.md), one element per line where it has children, `$` on every literal component
+- **C7** — [the same container everywhere](../the-coding-style/04-the-closeness-rule.md#one-container): `frame()` never varies its own depth
+- **C8** — [TSX indented](../the-coding-style/06-the-shape-of-tsx.md), one element per line where it has children, `$` on every literal component
 - **C9** — no cast on a strongly-typed assignment; no `as unknown as`
 - **C10** — no code comments
 
@@ -79,7 +79,7 @@
 - **M3** — does each member mean what it is called, and does that word mean ONE thing across the library?
 - **M4** — is it in the right folder?
 - **M5** — is anything dead: declared and never reached?
-- **M6** — is every name a library word — [the anchor](../designing-inexplicable-phenomena/11-the-coding-style.md#the-anchors) — rather than jargon?
+- **M6** — is every name a library word — [the anchor](../the-coding-style/03-the-coding-style.md#the-anchors) — rather than jargon?
 
 ### L · wiring
 
@@ -235,7 +235,7 @@
 - **U2** — ***it asks through the interface where it can***, not through a class, so a foreign implementation stays visible
 - **U3** — ***`instanceof` is contained HERE and nowhere else***, and the floor is checking a type as a type of type
 - **U4** — no v2.1 word that v2.2 deleted: `copy`, `parenthetical`, `block`, `index`, `level`
-- **U5** — ***a plain class, never a chemical.*** Built with `new`; never fetched through `$` — [the named exemption](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-bond-composes)
+- **U5** — ***a plain class, never a chemical.*** Built with `new`; never fetched through `$` — [the named exemption](../the-type-system/02-the-type-and-the-instance.md#the-bond-composes)
 - **U6** — ***no registry keyed by a string where an object already knows the answer***
 - **U7** — anything memoized is a BUILD fact, never a scope-resolved one
 - **U8** — every member is used; nothing is declared for a caller that does not exist
@@ -263,7 +263,7 @@
 - [ ] **U8** — `block()` is declared and never called
 
 ### `Specification.ts`
-- [x] U1 · [x] U4 · [x] **U5 — a plain class**, [never a chemical](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#plain-class) · [x] U7 *(rules cached per specification)* · [x] U9
+- [x] U1 · [x] U4 · [x] **U5 — a plain class**, [never a chemical](../the-type-system/02-the-type-and-the-instance.md#plain-class) · [x] U7 *(rules cached per specification)* · [x] U9
 - [ ] **U8** — `for` is assigned nowhere in v2.2; it was v2.1's `$hasType` that set it
 
 ### `index.ts`
@@ -294,7 +294,7 @@
 - [ ] **`utilities2/Html.ts` exports `HtmlUtilities` and `block()`, and nothing calls either**
 - [ ] **`utilities2/Specification.ts` declares `for`, assigned nowhere in v2.2** — *it was v2.1's `$hasType` that set it*
 - [ ] **`utilities2/Reflection.tsx` declares `beneath`, used by one promise and by nothing in `src`**
-- [x] **the lowercase component aliases are NOT warts** — *`letter`, `word`, `sentence`, `paragraph`, `section` exist in exactly the five files that fetch their own component, which is [the fetch rule](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-fetch): a constant close to its use*
+- [x] **the lowercase component aliases are NOT warts** — *`letter`, `word`, `sentence`, `paragraph`, `section` exist in exactly the five files that fetch their own component, which is [the fetch rule](../the-type-system/02-the-type-and-the-instance.md#the-fetch): a constant close to its use*
 
 ## <a id="views"></a>THE VIEW REGISTER — measured after the close-out
 
@@ -312,7 +312,7 @@
 
 ***What the rename cost and did not cost:*** **the wiki app reaches for nineteen names and every one still exists** — `$Book`, `$Title`, `Chapter`, `Cover`, `Section`, `Sentence`, `Ref`, `Synopsis`, `TableOfContents` and the rest. *The classes are all there; their MEMBERS are v2.2's now, so the wiki will meet type errors and not missing imports.*
 
-***Rolled back on his word:*** **`wikimedia-ui-base` is uninstalled and `$Theme` holds its own values again.** *"Let's just rollback the wikipedia include and delay this… we will build wikipedia soon."* **[The research](../designing-inexplicable-phenomena/18-the-wikipedia-fit.md) stands and is what we build from when we get there.**
+***Rolled back on his word:*** **`wikimedia-ui-base` is uninstalled and `$Theme` holds its own values again.** *"Let's just rollback the wikipedia include and delay this… we will build wikipedia soon."* **[The research](../the-motif/02-the-wikipedia-fit.md) stands and is what we build from when we get there.**
 
 ***And the book knows its own apparatus, in order:*** **`cover()` · `synopsis()` · `tableOfContents()` · `index()`**, each found by searching, and four rules hold their places — *the cover is the first composed part, the synopsis second, the table of contents third, the index last, and the book makes its own index if none was written.*
 

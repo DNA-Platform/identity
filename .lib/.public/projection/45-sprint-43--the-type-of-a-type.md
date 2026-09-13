@@ -4,7 +4,7 @@
 - **coauthor:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 - **status:** `part built, part designed` — brainstormed with Doug 2026-09-04/05, every ruling his, live. ***The chapter title and `at` and `prints` are PROXIES.***
 - **workflow:** [feature](../../../../.claude/library/..teamsmanship/19-workflows.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 
 ---
 
@@ -68,7 +68,7 @@
 
 ## The conventions
 
-**[ch10](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md) gained four sections** — the make marker, the assignment workflow verbatim, the block-asking pair with its worked examples, and the bond that composes. **[ch15](../designing-inexplicable-phenomena/15-the-spelling-of-a-kind.md) gained three rows** and lost a stale one. **[ch11](../designing-inexplicable-phenomena/11-the-coding-style.md) gained three index rows.** All three covers re-edited with the TOC tool in the same act.
+**[ch10](../the-type-system/02-the-type-and-the-instance.md) gained four sections** — the make marker, the assignment workflow verbatim, the block-asking pair with its worked examples, and the bond that composes. **[ch15](../the-coding-style/05-the-spelling-of-a-kind.md) gained three rows** and lost a stale one. **[ch11](../the-coding-style/03-the-coding-style.md) gained three index rows.** All three covers re-edited with the TOC tool in the same act.
 
 ***Three stale passages in ch10 were corrected rather than left:*** the `canonicalForm` row, the `$$` bind sentence, and the whole `$Trait` section — all three describing members deleted in Sprints 41 and 42.
 
@@ -100,7 +100,7 @@
 
 **COMPLETE:** `$TypeOfType` and `$TypeOfAnnotation` · every hard `instanceof $Type` and `instanceof $Annotation` gone from `src` · the make marker in chemistry with six promises · 27 seats converted · the print registry deleted and the codes hardcoded · Solutions 48 fixed and filed · the conventions written with worked examples.
 
-**DESIGNED, NOT BUILT — and the design is [ch10 § find and findOne](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-block-asking-pair):** `find`/`findOne` on `$Writing` · the bond reorder (super first) at all seven levels and every kind · the card family respelled · `$Synopsis`'s own members.
+**DESIGNED, NOT BUILT — and the design is [ch10 § find and findOne](../the-type-system/02-the-type-and-the-instance.md#the-block-asking-pair):** `find`/`findOne` on `$Writing` · the bond reorder (super first) at all seven levels and every kind · the card family respelled · `$Synopsis`'s own members.
 
 **`$Synopsis` today** is the shell plus `$$Synopsis`, both types and both specifications, in Doug's declaration order, with **no print code**. *No `parenthetical`, no title member — neither was ruled.*
 

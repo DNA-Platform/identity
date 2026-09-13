@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -587,7 +587,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 | ***`HtmlUtilities.block()`*** | **nothing calls it** — *searched all of `src`* |
 | ***`createElement`*** | **imported into [`Writing.tsx`](../../package/src/writing/Writing.tsx) line 1 and never used** |
 | ***`$Referent$`*** | `interface $Referent$ extends $Chemical { }` — **empty; it constrains nothing and `$Writing` implements it for no effect** |
-| ***nine `$(<Of />) as $TypeOfX` casts*** | **every level asserts what `$()` returned** — *[the cast that asserts what a check verifies](../designing-inexplicable-phenomena/08-the-order-of-a-class.md), nine times* |
+| ***nine `$(<Of />) as $TypeOfX` casts*** | **every level asserts what `$()` returned** — *[the cast that asserts what a check verifies](../the-coding-style/02-the-order-of-a-class.md), nine times* |
 
 <a id="r341"></a>**R341** — ***whether the 19 template consts go is DOUG'S, and it is raised rather than assumed.*** **[The member audit](04-the-member-audit.md) finding 11 calls the class-plus-template pair *the convention*** — *"Every file carries one class (or one interface) plus its template const — the pair being the convention. No violations."* ***His sentence "none of those are necessary in any file" may or may not reach them; guessing either way would be [the thing this sprint keeps being corrected for](#r334).***
 
@@ -772,7 +772,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 ## <a id="u218"></a>U218 — the suite, to the standard Doug named
 
 **Requirements:** [R287](#r287).
-**Mechanism:** *the per-level files gain the type's promises; the stand-in gets its own file.* **[The unit-of-code rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md) applied to the suite**, as [D112](28-the-block.md#d112) already set.
+**Mechanism:** *the per-level files gain the type's promises; the stand-in gets its own file.* **[The unit-of-code rule](../the-coding-style/01-the-unit-of-code.md) applied to the suite**, as [D112](28-the-block.md#d112) already set.
 **Files:** `tests/`.
 **Depends on:** U217.
 **Visible end:** ***a number WITH its scope*** — v1's and v2's stated separately, [never a bare PASS](../solutions/14-the-green-that-exercised-nothing.md).
@@ -1088,7 +1088,7 @@ return parser.parse(from,
     held => [$(<Paragraph>{parser.elements(held)}</Paragraph>) as $Paragraph]);
 ```
 
-***Seven levels, one walk.*** **It was written seven times** — `filter($$(one)(X)).map($$(one, X))` — *which is [the unit-of-code rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md) broken in the one place nobody had looked.*
+***Seven levels, one walk.*** **It was written seven times** — `filter($$(one)(X)).map($$(one, X))` — *which is [the unit-of-code rule](../the-coding-style/01-the-unit-of-code.md) broken in the one place nobody had looked.*
 
 ## <a id="what-each-level-composes"></a>What each level does with a run
 
@@ -1279,7 +1279,7 @@ return parser.parse(from,
 
 ***And it is still not `parent.parts().indexOf(this)`.*** **There is no parent link anywhere in the model, on purpose:** *[Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md), three appearances, ending in a heap death — **"a parse may not be given a parent while it mutates what it makes, AND GIVING THE PARENT IS ONE OF THE MUTATIONS."*** **Grepped this session: `.parent =`, `.index =`, `.role =` appear nowhere in `writing/`, `book/` or the parser.**
 
-**Also easy to miss:** *`index()` is argumentless and returns data, so [it is a PROPERTY](../designing-inexplicable-phenomena/08-the-order-of-a-class.md) and belongs in the one-line stack, not among the methods.*
+**Also easy to miss:** *`index()` is argumentless and returns data, so [it is a PROPERTY](../the-coding-style/02-the-order-of-a-class.md) and belongs in the one-line stack, not among the methods.*
 
 ***Prior art to read before designing it:*** **[the member audit](04-the-member-audit.md) closed the numbering question once** — *"counting starts at 1; a special first, one that stands for the whole, sits at 0"* — **and [the settled account](../the-semantics-of-books/15-the-levels-of-writing.md) then removed numbers entirely**: *"There is no counting column, because nothing carries a number. A number is something a **reference** holds — that is what a `$Location` IS."* ***Those two disagree, both are Doug's, and the next team should not pick silently.***
 
@@ -1287,7 +1287,7 @@ return parser.parse(from,
 
 *Doug: **"I need you to prepare the next team to audit your work so that types are solid based on the design principles we are implementing."***
 
-***The principles are written down now.*** **[The Type and the Instance](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md) is the chapter to audit against** — *written because the same understanding was rebuilt four times in one session.* **Its one question decides every member: *would this be the same for every piece of writing of this type?***
+***The principles are written down now.*** **[The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md) is the chapter to audit against** — *written because the same understanding was rebuilt four times in one session.* **Its one question decides every member: *would this be the same for every piece of writing of this type?***
 
 | | what to check |
 |---|---|
@@ -1334,7 +1334,7 @@ return parser.parse(from,
 
 ## <a id="handoff-opening"></a>How to open
 
-***Read this section, then [The Type and the Instance](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md), then run the gate.*** **Do not act on this chapter's memory of the code** — *the working copy is the truth.*
+***Read this section, then [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md), then run the gate.*** **Do not act on this chapter's memory of the code** — *the working copy is the truth.*
 
 ***AND THE SENTENCE THAT STOOD HERE WAS WRONG, WHICH IS WHY THE INSTRUCTION ABOVE EXISTS.*** *It read "the working copy is **currently red for one reason**" and never named the reason.* **Re-measured 2026-08-29 by the session that opened on it:**
 

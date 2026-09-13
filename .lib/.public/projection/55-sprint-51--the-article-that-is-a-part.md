@@ -3,7 +3,7 @@
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **subject:** [Publicity](../..publicity/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 - **status:** ***implementation-ready***
 
 ---
@@ -22,7 +22,7 @@
 
 *The first proposal put the wordmark, search and account links outside the Book, as the library around it.* **That is wrong in kind, not in placement** — [Closure Under Books](../the-semantics-of-books/10-closure-under-books.md): *reach for anything and what you get is a book; the reach never leaves the shelves.* **And the search box repeating on two pages is not evidence of a library-level reach — Doug: *"That's two books printed with the same excerpt."*** *A shared component is the whole explanation; anything more was modelling that was not asked for.*
 
-***The word for the third part fell out of the same correction.*** **Doug: *"Isn't this the stuff that would go in the Margin of the page?"*** *It retires `frame` and `apparatus` both, and it obeys the [struck-word ruling](../designing-inexplicable-phenomena/11-the-coding-style.md#the-anchors) that killed **furniture** — **name the parts, not the collection**. A margin is a place you can point at.*
+***The word for the third part fell out of the same correction.*** **Doug: *"Isn't this the stuff that would go in the Margin of the page?"*** *It retires `frame` and `apparatus` both, and it obeys the [struck-word ruling](../the-coding-style/03-the-coding-style.md#the-anchors) that killed **furniture** — **name the parts, not the collection**. A margin is a place you can point at.*
 
 ## <a id="the-model"></a>The model
 
@@ -140,13 +140,13 @@ Book — Alan Turing
 
 ### <a id="u7"></a>U7 — an empty title says its book's title · ***BUILT, RED, BLOCKED ON U1***
 
-**Mechanism:** *`$Title.canonical()` is a property — argumentless, returns data, and [the coding style names `canonical()` as the example](../designing-inexplicable-phenomena/08-the-order-of-a-class.md#what-counts-as-a-property). It answers `undefined` when the title says its own, else the book's cover's title. `view()` draws that one.* **The `Title.tsx -> Cover.tsx` cycle is declared in `knownCycles`** — *Doug: "Bundler should be handling cycling. Just work within what it allows."*
+**Mechanism:** *`$Title.canonical()` is a property — argumentless, returns data, and [the coding style names `canonical()` as the example](../the-coding-style/02-the-order-of-a-class.md#what-counts-as-a-property). It answers `undefined` when the title says its own, else the book's cover's title. `view()` draws that one.* **The `Title.tsx -> Cover.tsx` cycle is declared in `knownCycles`** — *Doug: "Bundler should be handling cycling. Just work within what it allows."*
 
 **Files:** `src/book/Title.tsx`, `rollup.config.js`, `.tests/title.test.tsx`. **Depends on:** [U1](#u1). **Demo contribution:** *the page says its title twice — once on the cover, once where an empty title stands. **A hand-authored page cannot fake it**: the promise counts occurrences, and removing the cover takes both away.*
 
 ### <a id="u8"></a>U8 — `$Sidebar` is the box, and it draws the infobox
 
-**Mechanism:** *[The Wikipedia Fit](../designing-inexplicable-phenomena/18-the-wikipedia-fit.md) already maps it and calls the fit **exact**: `.infobox-above` is the card's name, `.infobox-label` + `.infobox-data` is one of its lines, `.infobox-header` is a line that is a heading, and a blank field is simply not drawn.* **The Turing infobox matches row for row** — *an `ABOVE` ("Alan Turing OBE FRS"), twelve labelled rows, a `HEADER` ("Signature").* ***Their own caution, kept: "the table structure is soft-deprecated" — so the infobox is a fact about the FIELDS, and the card must not learn the table.***
+**Mechanism:** *[The Wikipedia Fit](../the-motif/02-the-wikipedia-fit.md) already maps it and calls the fit **exact**: `.infobox-above` is the card's name, `.infobox-label` + `.infobox-data` is one of its lines, `.infobox-header` is a line that is a heading, and a blank field is simply not drawn.* **The Turing infobox matches row for row** — *an `ABOVE` ("Alan Turing OBE FRS"), twelve labelled rows, a `HEADER` ("Signature").* ***Their own caution, kept: "the table structure is soft-deprecated" — so the infobox is a fact about the FIELDS, and the card must not learn the table.***
 
 **The four region formats are renamed off `Sidebar`.** *Typography's own four: **head**, **gutter**, **text block**, **foot** — which is what `$MarginFormat` with `$at` has been describing all along.*
 
@@ -224,4 +224,4 @@ Book — Alan Turing
 
 *Unchanged from the plan, plus one retraction:* **the two struck book rules; whether `article/` holds kinds only or kinds and their formats; and the four region names.** ***I retract head / gutter / text-block / foot*** — *the gutter is the unprinted binding margin and swaps sides between verso and recto, the text block is the whole bound stack, and the printed side margin is the **fore-edge**, which is the `right` area `$BodyFormat` already declares and nothing claims.*
 
-***And the word "dress" is struck*** — Doug, this run: *"I don't like you saying dress — not book and not article."* **The word is FORMAT.** *It is also the title of [13-the-default-dress.md](../designing-inexplicable-phenomena/13-the-default-dress.md), which teaches it to whoever reads next and is owed a correction.*
+***And the word "dress" is struck*** — Doug, this run: *"I don't like you saying dress — not book and not article."* **The word is FORMAT.** *It is also the title of [13-the-default-dress.md](../the-motif/01-the-default-dress.md), which teaches it to whoever reads next and is owed a correction.*

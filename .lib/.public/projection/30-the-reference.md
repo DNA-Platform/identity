@@ -3,7 +3,7 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
 - **status:** `closed` — ***sprint one of five, built and verified; [where things stand](#where-things-stand) carries the leftovers and the two rulings owed.***
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force.* ***Produced here: [the specification goes in the type file](#d6)*** (Doug, 2026-08-30).
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force.* ***Produced here: [the specification goes in the type file](#d6)*** (Doug, 2026-08-30).
 
 ---
 
@@ -136,7 +136,7 @@ $check(said.length === 0, said.join(' · '));
 
 ***His, and quoted because the reasoning is in the words:*** *"We could make a Semantics object, which is cool — and it can be a chemical why not and even a piece of writing — and the specification could ask for the semantics that have been assigned and one of the main assignments is specification versus demonstration. And since it's a chemical, the app could switch back and forth."*
 
-**Why a chemical beats an environment check, and this is the author's reading:** *an environment check reaches outside the model to ask a question about the model; a chemical is inside it.* **It is reactive, so the app can switch live where `process.env` cannot.** *It is writing, so it can be authored, read and referred to — a book could declare its own.* **And [`$` already reaches a chemical](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md), which is Doug's *"the specification can use `$` to ask for semantics"* with no new mechanism at all.**
+**Why a chemical beats an environment check, and this is the author's reading:** *an environment check reaches outside the model to ask a question about the model; a chemical is inside it.* **It is reactive, so the app can switch live where `process.env` cannot.** *It is writing, so it can be authored, read and referred to — a book could declare its own.* **And [`$` already reaches a chemical](../the-type-system/02-the-type-and-the-instance.md), which is Doug's *"the specification can use `$` to ask for semantics"* with no new mechanism at all.**
 
 ***`$(X, x)` for non-chemicals was raised and then withdrawn by him*** — **"Okay fine, leave `$`"** — *and the reason it is not needed is that if `$Semantics` is a chemical there is nothing non-chemical left to register.*
 
@@ -296,7 +296,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 <a id="d6"></a>**D6 — THE SPECIFICATION GOES IN THE TYPE FILE. *Doug's, 2026-08-30, given as a ruling with the class pasted:*** **"Specification goes in the type file… Put that in `Type.tsx`."**
 
-***This is a CODING-STYLE rule, not a reference decision*** — *it says where a class lives* — **so it is filed as a rule in [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md#the-documents) and executed as [U8](#u8) here.** *It is [The Type and the Instance](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md) one step on: the type holds the meaning, and **the rules that give it that meaning belong beside it.***
+***This is a CODING-STYLE rule, not a reference decision*** — *it says where a class lives* — **so it is filed as a rule in [The Coding Style](../the-coding-style/03-the-coding-style.md#the-documents) and executed as [U8](#u8) here.** *It is [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md) one step on: the type holds the meaning, and **the rules that give it that meaning belong beside it.***
 
 **Measured before it is called small:** *`notation/TypedSpecification.ts` was **23 lines**, [`notation/Type.tsx`](../../package/src/writing/Writing.tsx) was **26**, and **nine files imported the first*** — *seven levels plus the tests plus `Type.tsx` itself, which imports it only to hand one back.* ***One file of about fifty lines replaces two, and one import target moves.***
 
@@ -307,8 +307,8 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 <a id="u1"></a>### U1 — every level answers its code
 
 **Mechanism:** *a getter on each level class, inherited the way [`canonicalForm`](../../package/src/writing/Writing.tsx) is.* **Answered when asked; nothing computes it.**
-**Files:** ***nine WORD files***, not nine classes — **[the unit of `lib` is a word and a word takes three classes](../designing-inexplicable-phenomena/07-the-unit-of-code.md#a-word-is-not-a-class)**, *ruled 2026-08-30* — `Letter` · `Word` · `Sentence` · `Paragraph` · `Section` · `Document` · `File` · `Chapter` · `Book`. *One line each.*
-**Where the line goes:** ***group two.*** *A code is argumentless and returns data, so it is a **property** by [the test](../designing-inexplicable-phenomena/08-the-order-of-a-class.md), and [the order amended 2026-08-30](../designing-inexplicable-phenomena/08-the-order-of-a-class.md#what-moved) puts properties beneath fields.*
+**Files:** ***nine WORD files***, not nine classes — **[the unit of `lib` is a word and a word takes three classes](../the-coding-style/01-the-unit-of-code.md#a-word-is-not-a-class)**, *ruled 2026-08-30* — `Letter` · `Word` · `Sentence` · `Paragraph` · `Section` · `Document` · `File` · `Chapter` · `Book`. *One line each.*
+**Where the line goes:** ***group two.*** *A code is argumentless and returns data, so it is a **property** by [the test](../the-coding-style/02-the-order-of-a-class.md), and [the order amended 2026-08-30](../the-coding-style/02-the-order-of-a-class.md#what-moved) puts properties beneath fields.*
 **Depends on:** nothing.
 **Realizes:** [R9](#r9), [R10](#r10) *(with [U2](#u2))*.
 **Demo contribution:** *the nine codes printed beside their level names.* ***A page could fake this***, which is why it is not the sprint's end.
@@ -349,7 +349,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 <a id="u6"></a>### U6 — `$Reference`, stubbed
 
 **Mechanism:** *a kind of [`$Annotation`](../../package/src/writing/Writing.tsx) carrying a path, with its own type whose specification requires one* — **[R2](#r2), and the same shape as [the annotation check that already runs](29-the-bind.md).**
-**Files:** ***one file for the WORD `reference`***, holding its three faces — *the data, the law, and the meaning* — **which is [the unit rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md#a-word-is-not-a-class) and not three files.** *Plus `reference/Referent.tsx` (v1, `.archive/reference/Referent.tsx`, deleted), the empty interface [listed for deletion](29-the-bind.md#r340): this sprint is when that lands or it is kept deliberately.*
+**Files:** ***one file for the WORD `reference`***, holding its three faces — *the data, the law, and the meaning* — **which is [the unit rule](../the-coding-style/01-the-unit-of-code.md#a-word-is-not-a-class) and not three files.** *Plus `reference/Referent.tsx` (v1, `.archive/reference/Referent.tsx`, deleted), the empty interface [listed for deletion](29-the-bind.md#r340): this sprint is when that lands or it is kept deliberately.*
 **And it must pass the vocabulary test:** *"if a file cannot be named with a word from the vocabulary, it does not belong in `lib`"* — **`reference` passes; `path` needs Doug's word**, *since it is his (["a `$Path` path"](#the-brief)) but is not yet a word of the book domain the way title and chapter are.*
 **Depends on:** [U3](#u3).
 **Realizes:** [R1](#r1), [R2](#r2).
@@ -359,7 +359,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 ***RULED BY DOUG, [D6](#d6) — not a design question, and the only unit here that needs no brainstorm.***
 
-**Mechanism:** *a file move.* **`$TypedSpecification` is declared in [`Type.tsx`](../../package/src/writing/Writing.tsx) beside `$Type`; `TypedSpecification.ts` goes; nine imports retarget.** ***DONE 2026-08-30*** — *Doug did the file half, [the cleanup session](../designing-inexplicable-phenomena/11-the-coding-style.md) finished the nine imports, and the tree is green.*
+**Mechanism:** *a file move.* **`$TypedSpecification` is declared in [`Type.tsx`](../../package/src/writing/Writing.tsx) beside `$Type`; `TypedSpecification.ts` goes; nine imports retarget.** ***DONE 2026-08-30*** — *Doug did the file half, [the cleanup session](../the-coding-style/03-the-coding-style.md) finished the nine imports, and the tree is green.*
 **Files:** `notation/Type.tsx` · `notation/TypedSpecification.ts` *(deleted)* · the seven level files · `tests/specification.test.tsx`.
 **Depends on:** nothing.
 **Demo contribution:** ***none, and it should not pretend to have one*** — *it is an organization change, and its whole evidence is that [the suite stays at 552](00-planning.md#canonical-collision) across the move.*
@@ -397,9 +397,9 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 | ***A second number.*** *This sprint hangs a locator on a model that spent today removing a duplicate index.* | **`ref` STORES NOTHING** — *it reads the code and the `index` that already exist.* **[D1](#d1) is what keeps it a reading.** |
 | ***An annotation is `parenthetical = true`***, *and [the parse treats parenthetical writing differently](../../package/src/writing/Writing.tsx).* | **[U6](#u6) is built straight after [U1](#u1)**, *so the interaction is met early rather than at the end.* |
 | ***The codes are names and Doug has not given them.*** | **[D5](#d5) — placeholders, one edit to change**, *and [the collision constraint is stated](#u1-note) so the ruling has it in front of it.* |
-| ***AN IMPORT CYCLE, and [the shape is already recorded](../designing-inexplicable-phenomena/07-the-unit-of-code.md#a-word-is-not-a-class).*** **Three were hit in one sprint, every one "a class reaching for another class to ask a question about ITSELF"** — *and this sprint has exactly that shape waiting: [U1](#u1) puts a code on every level, [U3](#u3) needs the codes to build a path, and [U2](#u2) puts a path segment back on every level.* | **Resolve it the way the three before it were resolved** — *ask a nearer neighbour, or compare structurally rather than naming the far class* — **and [record it in the sprint rather than routing around it](../the-condition-report/02-organization.md#o8)**, *because a cycle is the design saying the invariant was put in the wrong place.* |
+| ***AN IMPORT CYCLE, and [the shape is already recorded](../the-coding-style/01-the-unit-of-code.md#a-word-is-not-a-class).*** **Three were hit in one sprint, every one "a class reaching for another class to ask a question about ITSELF"** — *and this sprint has exactly that shape waiting: [U1](#u1) puts a code on every level, [U3](#u3) needs the codes to build a path, and [U2](#u2) puts a path segment back on every level.* | **Resolve it the way the three before it were resolved** — *ask a nearer neighbour, or compare structurally rather than naming the far class* — **and [record it in the sprint rather than routing around it](../the-condition-report/02-organization.md#o8)**, *because a cycle is the design saying the invariant was put in the wrong place.* |
 | ***A derived path rots when the prose above it changes.*** | **Not mitigated — RECORDED.** *[R12](#r12), and [the U4 scenario asserts the rot](#scenarios) rather than hiding it.* |
-| ***A member declared in one place and never written in the other.*** **That is what put the suite at 15 errors today** — *[the interface asked for `index` and the class wrote `$index`](00-planning.md#canonical-collision)* — **and this sprint adds a member to nine level files at once**, *which is the most exposed shape there is.* | **[Every sprint chapter now carries a `style:` field](../designing-inexplicable-phenomena/11-the-coding-style.md)**, *and [U1](#u1) is exactly nine one-line edits, so the interface and the nine are checked together or not at all.* |
+| ***A member declared in one place and never written in the other.*** **That is what put the suite at 15 errors today** — *[the interface asked for `index` and the class wrote `$index`](00-planning.md#canonical-collision)* — **and this sprint adds a member to nine level files at once**, *which is the most exposed shape there is.* | **[Every sprint chapter now carries a `style:` field](../the-coding-style/03-the-coding-style.md)**, *and [U1](#u1) is exactly nine one-line edits, so the interface and the nine are checked together or not at all.* |
 
 ## <a id="lands"></a>Where every requirement lands — checked in both directions
 
@@ -422,8 +422,8 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 | | what this chapter claims | why it can move |
 |---|---|---|
-| [`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx) | ***line 45 assigns the index***, and [U2](#u2)/[U4](#u4) build on it | **it is [the cleanup's own worked example](../designing-inexplicable-phenomena/12-the-closeness-rule.md#brevity) for rewriting a housekeeping loop** — *and that is the one layout rule that can change behaviour, since a loop with two early exits is not always a filter* |
-| [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx) | *[U2](#u2) and [U5](#u5) add members here* | ***already reordered once today***, and the member order it is being reordered under [changed the same day](../designing-inexplicable-phenomena/08-the-order-of-a-class.md#what-moved) |
+| [`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx) | ***line 45 assigns the index***, and [U2](#u2)/[U4](#u4) build on it | **it is [the cleanup's own worked example](../the-coding-style/04-the-closeness-rule.md#brevity) for rewriting a housekeeping loop** — *and that is the one layout rule that can change behaviour, since a loop with two early exits is not always a filter* |
+| [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx) | *[U2](#u2) and [U5](#u5) add members here* | ***already reordered once today***, and the member order it is being reordered under [changed the same day](../the-coding-style/02-the-order-of-a-class.md#what-moved) |
 | [`writing/Composition.tsx`](../../package/src/writing/Composition.tsx) | *[U1](#u1) must keep this interface satisfied* | *[the last member added to it put the suite at 15 errors](00-planning.md#canonical-collision)* |
 | `reference/Referent.tsx` (v1, `.archive/reference/Referent.tsx`, deleted) | *[U6](#u6) decides its fate* | *it is [listed for deletion](29-the-bind.md#r340) and nothing depends on it* |
 | [`notation/Type.tsx`](../../package/src/writing/Writing.tsx) | *[U6](#u6) puts a type beside its word* | ***already changed*** — [D6](#d6)'s fold has landed, and nine files repointed with it |
@@ -452,7 +452,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 ***So his Letter–File correction was aimed at the REASONING and not at these two*** — **which is what this chapter guessed, and is now confirmed rather than assumed.**
 
-***And the case that looked awkward turns out to be the clearest one.*** **A type annotation is writing, and it MEANS the type it names** — *which is exactly what [the formula resolution](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md) already does when it reads the written name and substitutes the cached type.* ***An annotation is not an exception to `means`; it is `means` already running.***
+***And the case that looked awkward turns out to be the clearest one.*** **A type annotation is writing, and it MEANS the type it names** — *which is exactly what [the formula resolution](../the-type-system/02-the-type-and-the-instance.md) already does when it reads the written name and substitutes the cached type.* ***An annotation is not an exception to `means`; it is `means` already running.***
 
 ### <a id="writing-now"></a>What the class actually offers now
 
@@ -469,7 +469,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 ***[This chapter predicted this exact shape](#risks) before it happened*** — **"a class reaching for another class to ask a question about ITSELF"** — *and it arrived from a direction the risk did not name.* **`Writing.tsx` imported `$Type` and `$Annotation` as VALUES to run `instanceof`, and both extend `$Writing`**, *so at module load whichever side evaluated first found the other undefined.*
 
-***The distinction worth carrying, because [U1](#u1) puts a member on nine level files and [U3](#u3) needs them from one place:*** **a VALUE import joins the runtime module graph and can cycle; a `import type` is erased by the compiler and cannot.** *The pre-rewrite `Writing.tsx` used `import type { $Type }` and had no cycle; the cycle appeared when that became a value import to serve an `instanceof`.* ***So the runtime test goes structural and the compile-time type comes back through a type-only import*** — **which is the same split [The Unit of Code](../designing-inexplicable-phenomena/07-the-unit-of-code.md#a-word-is-not-a-class) records as the resolution of all three v1 cycles**, *stated in terms of imports rather than of classes.*
+***The distinction worth carrying, because [U1](#u1) puts a member on nine level files and [U3](#u3) needs them from one place:*** **a VALUE import joins the runtime module graph and can cycle; a `import type` is erased by the compiler and cannot.** *The pre-rewrite `Writing.tsx` used `import type { $Type }` and had no cycle; the cycle appeared when that became a value import to serve an `instanceof`.* ***So the runtime test goes structural and the compile-time type comes back through a type-only import*** — **which is the same split [The Unit of Code](../the-coding-style/01-the-unit-of-code.md#a-word-is-not-a-class) records as the resolution of all three v1 cycles**, *stated in terms of imports rather than of classes.*
 
 ### <a id="resume-closed"></a>DISCHARGED — the refactor finished 2026-08-30, and here is what actually moved
 
@@ -491,12 +491,12 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 ## <a id="style-in-force"></a>The style this sprint is written under
 
-***Read [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) before the first line, because three of its rules changed on 2026-08-30 and all three land on this sprint.***
+***Read [The Coding Style](../the-coding-style/03-the-coding-style.md) before the first line, because three of its rules changed on 2026-08-30 and all three land on this sprint.***
 
 - ***The unit is a WORD*** — **[U1](#u1) edits nine word files and [U6](#u6) creates one**, *not nine classes and three.*
 - ***The member order has seven groups***, **fields running private → public → protected, the opposite way from methods** — *and a code is a property, so it sits in group two.*
-- ***NO CODE COMMENTS.*** **[Ruled at O8 and restated 2026-08-30](../designing-inexplicable-phenomena/12-the-closeness-rule.md#what-it-forbids)** — *"that data is moved to the library branch and the library branch references the code files."* ***This chapter is where the explanation lives.***
-- ***And the closeness rule decides what the conventions do not:*** **[proximity encodes relatedness, size encodes relevance inverted](../designing-inexplicable-phenomena/12-the-closeness-rule.md#the-law)** — *so the nine one-line codes stack with no gaps, because they are one idea said nine times.*
+- ***NO CODE COMMENTS.*** **[Ruled at O8 and restated 2026-08-30](../the-coding-style/04-the-closeness-rule.md#what-it-forbids)** — *"that data is moved to the library branch and the library branch references the code files."* ***This chapter is where the explanation lives.***
+- ***And the closeness rule decides what the conventions do not:*** **[proximity encodes relatedness, size encodes relevance inverted](../the-coding-style/04-the-closeness-rule.md#the-law)** — *so the nine one-line codes stack with no gaps, because they are one idea said nine times.*
 
 ---
 
@@ -888,4 +888,4 @@ export type Reference = {
 
 ## <a id="stands-shape"></a>What sprint one changed about the shape, in one paragraph
 
-***The type split got its second half.*** **A type names a level and binds; an attribute names none, binds nothing, and only specifies** — *so writing carries exactly one type and as many attributes as it likes, and reference-ness can be checked on anything without a reference class appearing in its ancestry.* ***And the import cycle that has bitten this branch three times stopped existing***, **not by a structural workaround but because `$Type` is `$TypeOfWriting` and belongs in the file for the word it types.** *That is [the unit rule](../designing-inexplicable-phenomena/07-the-unit-of-code.md) applied where it had not been, and it is Doug's own answer to the question he opened the sprint with.*
+***The type split got its second half.*** **A type names a level and binds; an attribute names none, binds nothing, and only specifies** — *so writing carries exactly one type and as many attributes as it likes, and reference-ness can be checked on anything without a reference class appearing in its ancestry.* ***And the import cycle that has bitten this branch three times stopped existing***, **not by a structural workaround but because `$Type` is `$TypeOfWriting` and belongs in the file for the word it types.** *That is [the unit rule](../the-coding-style/01-the-unit-of-code.md) applied where it had not been, and it is Doug's own answer to the question he opened the sprint with.*

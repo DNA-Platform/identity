@@ -25,6 +25,7 @@ Four forms. **A representative bonds tightly to what it stands beside — no spa
 | `$(Component,$)` | *what stands behind it* | the chemical the component wraps |
 | `Component.$` | *the model behind the face* | the same chemical, read left to right |
 | `$(A,B)(C,{…})` | *…but narrowly* | the same, reached less far or by fewer askers |
+| `$(A,B)(C,'single')` | *for A, a B is THIS ONE C* | registers **one made instance's component**, and returns it |
 
 ### `$` as an argument — the representative
 
@@ -88,6 +89,31 @@ $(Shelf,TableOfContents)(MyContents);
 **You cannot register without naming a scope.** There is no process-wide form, which is why two packages sharing one `@dna-platform/chemistry` cannot collide: a registration is only ever visible to what renders inside the scope it was written on.
 
 `$(A,B)(C,{…})` carries options where a registration needs narrowing. The plain form is the one that projects downward.
+
+### <a id="single"></a>`$(A,B)(C,'single')` — for A, a B is THIS ONE C
+
+***Built 2026-09-12 out of Doug's seed: "when registering a class, you can register it as a singleton with `'single'` as an extra parameter."*** **And his reading of why it fits: *"we use a component associated with one instance, which is something `$` supports as well… make one, and then get its component and rely on it to persist."***
+
+**A class component derives an instance per mount. A component made from a held instance — `$(instance)` — IS that instance at every mount**, the form `$` has always had. *So the registrar, given the word, makes one instance, bonds it once through its own component, and answers that component:*
+
+```tsx
+const Wing = $($, House);
+const One = $(Wing, Lamp)(Lamp, 'single');   // one lamp for the wing; One.$ is it
+```
+
+| | |
+|---|---|
+| ***every ask is answered by the same one*** | *two rooms in the wing read one lamp's count* |
+| ***its bond constructor runs once, at registration*** | *never per mount — the lift of a held instance does not re-bond it* |
+| ***it outlives its mounts*** | *close the wing and open it; every room is remounted and the count is still there* |
+| **the word composes** | `{ single: true, reach: 'self' }` — *the same narrowing as ever, one instance answering it* |
+| **a plain function component** | *already stands for one thing, so the word changes nothing* |
+
+***Made at configuration, which is the one time a registration may arrive*** — never inside a draw — so a singleton is never constructed mid-render.
+
+> ***AND WHAT IT DOES NOT DO, said plainly.*** **The registry is not reactive and neither is this: a chemical that READS the one instance's member in its view is not woken by a write to it** — *[the cross-chemical rule](../reactivity/03-cross-chemical-writes.md)* — *so a room asks for its repaint, as [the Lab's theme case](../../package/app/src/sections/representative/case-2.tsx) does.* **And a write to the instance repaints only the last-mounted copy**, *the one-update-handle defect [chapter zero](../projection/00-planning.md#next) records.* ***Both are what `atomic` and `coupled` are for; this word is identity and persistence, not broadcast.***
+
+**Promised three ways in [`representative.test.tsx`](../../package/tests/abstraction/representative.test.tsx); seen in [the Lab's third representative case](../../package/app/src/sections/representative/case-3.tsx), 6 of 6 driven.** *`single` is Doug's word; `One`, `Lamp`, `Room`, `House`, `Wing` and `Study` in the case are proxies.*
 
 ### `$(Component,$)` — what stands behind it
 
@@ -153,6 +179,20 @@ $(Book,parts.TableOfContents)(MyContents);   // and this is what my book uses
 ```
 
 Downstream code imports `Book` and renders it. **Everything beneath it resolves the way this module said**, and nothing beneath it mentions a registration.
+
+### <a id="redraw"></a>A registration redraws what it reaches — since 2026-09-12
+
+***Doug: "We also need a redraw to be triggered for registration changes so that dynamic registration is something that happens… the thing that gets redrawn is related to the scope something is registered to, but nothing happens if we aren't in a render context yet."*** **Built as three reaches, each on something the framework already held:**
+
+| registered on | redraws | through |
+|---|---|---|
+| **a scope** — `$($,X)` or a held instance's | *what the scope has mounted*, and React carries it to their progeny | the `[$derivatives$]` Set `$lift` keeps |
+| **a class's root scope** — a TYPE registration | *every mounted instance of the type, subclasses included*, because a subclass inherits its base's registrations | `$Reaction`'s registry of every chemical, by `instanceof` |
+| **a tag** — `$('div', X)`, global | *everything mounted* | the same registry, whole |
+
+***"Nothing happens if we aren't in a render context yet" cost nothing:*** **`react()` is a no-op on a chemical with no update handle** — unmounted, destroyed, or unmounting ([reaction.ts](../../package/src/abstraction/reaction.ts)) — *so a registration made before anything renders redraws nothing and stands when something does.* **And a registration is refused inside a draw, so the update never lands mid-render.** *The one limit is the standing one: a chemical mounted twice has one update handle, so it repaints its last mount.*
+
+**Promised four ways in [`representative.test.tsx`](../../package/tests/abstraction/representative.test.tsx)** — *a scope registration repaints what the scope has drawn; a type registration repaints every instance including a subclass; an early registration throws nothing and stands; a global one repaints everything that asked* — **and seen in [the Lab's theme case](../../package/app/src/sections/representative/case-2.tsx), whose "register, change nothing else" now repaints.** *`redrawn` and `redraw` are proxy names.*
 
 **Registration appears only in configuration modules.** Everywhere else writes `$(X)` to ask. That is the [composition root's](https://blog.ploeh.dk/2019/06/17/composition-root-location/) own specification — the container never leaks past the place that composes — and here it is a grep with an empty result.
 

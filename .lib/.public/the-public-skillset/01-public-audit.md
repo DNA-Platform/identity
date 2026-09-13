@@ -44,7 +44,7 @@ git status --porcelain library/chemistry/package/src library/.public/package/src
 
 3. **Run [public-audit-performance](02-public-audit-performance.md).** Take the median of five runs per route. A single run of this page varies by 300ms.
 
-4. **Run [public-audit-code-patterns](04-public-audit-code-patterns.md).** It has no tool — it is a reading against [the style documents](../designing-inexplicable-phenomena/11-the-coding-style.md). Carry the two measurements into it: *an idiom repeated in every class is a missing framework feature, and the performance run will usually have priced it already.*
+4. **Run [public-audit-code-patterns](04-public-audit-code-patterns.md).** It has no tool — it is a reading against [the style documents](../the-coding-style/03-the-coding-style.md). Carry the two measurements into it: *an idiom repeated in every class is a missing framework feature, and the performance run will usually have priced it already.*
 
 5. **Report all three, together, with the gate values beside them.** A performance number without its text hash is not a result — see [the gate](02-public-audit-performance.md#the-gate). Every finding carries its proposal, per [the five phases](#how-an-audit-runs), and anything already fixed is marked fixed, per [the standing rule](#fix-what-has-a-clear-solution).
 
@@ -75,7 +75,7 @@ git status --porcelain library/chemistry/package/src library/.public/package/src
 | ***FIX IT*** | **a defect with ONE obvious correct answer** — a wrong path, a broken guard, a rule no valid input can satisfy, a member that contradicts its own type |
 | ***PROPOSE IT*** | **anything where a competent person could choose differently** — a design change, a new member, a rename, a deletion, a change of shape |
 
-**A rename is never fixed eagerly.** *[Names are proxies and Doug's to rule](../designing-inexplicable-phenomena/11-the-coding-style.md#no-jargon).*
+**A rename is never fixed eagerly.** *[Names are proxies and Doug's to rule](../the-coding-style/03-the-coding-style.md#no-jargon).*
 
 **And every eager fix ships with its evidence**, held to the same standard as any other change here: *[evidence owes the same KIND as the failure](../../../chemistry/.lib/testing/01-the-contract.md#evidence-owes-the-same-kind-as-the-failure)*, and a green suite is not evidence for a failure the suite cannot express.
 ## What this audit does not do

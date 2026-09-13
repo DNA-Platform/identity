@@ -123,6 +123,50 @@ class $Wide extends $Card {
 
 **A member with no prefix and no selector stands at the top.** *An unprefixed member that DOES carry a selector governs every unprefixed member of its class* — **so a class may give itself a default, and the prefixed groups stand beside it.**
 
+### <a id="animation"></a>AN ANIMATION IS A LEVEL, and it stands whole
+
+***Built 2026-09-11 out of the public branch's pitch*** — the landing highlight on a cited entry, *"we don't want it permanently blue."* **Doug: "Do the most natural thing. It should be a natural extension."**
+
+```tsx
+@select('@keyframes landed { from {') from_background = pale;
+@select('@keyframes landed { to {') to_background = 'transparent';
+@select('.pd-entry:target') landed_animation = 'landed 2s ease-out';
+```
+
+*A stop is a level the selector opens; a declaration is a member; the name is the author's.* **Nothing new to learn, and that is the point.** *The pitch proposed that under an at-rule a prefix should name the stop — which gives a prefix a second meaning under one kind of selector, and collides in `standing()`, where `from_background` and `to_background` would be one property under one selector.* **The levels feature already said it.**
+
+***Measured before designing, and both measurements decided the shape.*** **The stylesheet engine hoists an inline `@keyframes` to the top level by itself**, whether it is written in the component's own rule or under a descendant, *so the compiler needs no hoisting of its own.* **And the two stops, written as levels, were already legal — and compiled to TWO `@keyframes landed` blocks**, because the emit keyed each block by its whole selector string. *CSS keeps only the last same-named `@keyframes`, so one stop was lost and nothing faded.* **The same double opening happens for `@media` — the encyclopedia theme opened one query twice — and it was harmless there because conditional blocks merge by cascade, which is exactly why it had stayed invisible.**
+
+#### A level opened by two selectors is opened once
+
+**The emit keeps a selector's levels as a tree** — the text between its braces — **and writes each opening once.** *Two groups under one media query, or two stops of one animation, meet in it.* The author still opens and the emit still closes; it now closes each opening once.
+
+#### And a named at-rule is whole wherever it stands
+
+***A subclass restating one stop would otherwise lose the other***: a subclass compiles only its own contribution, and a block CSS replaces cannot be contributed to by halves. **So a named at-rule — `@keyframes`, `@font-face`, `@page`, `@property` — is emitted whole by any class that touches it, every inherited stop coming along**, *the way a subclass restating a prefix's selector [moves the whole group](#the-override).* **A conditional one — `@media`, `@supports`, `@container`, `@layer`, `@scope` — cascades as it always did.** *That is the grammar's own distinction, not the framework's.*
+
+***The name is literal and the author's, as every other selector in a theme is*** — **Doug's ruling, with its consequence measured rather than assumed: a `@keyframes` name is document-global and the last same-named block wins, so a subclass keeping the name and mounted BESIDE its base replaces the base's animation too.** *The consumer is a theme, a singleton with one on the page, where a subclass restating a stop replaces the page's fade — which is what it is for.*
+
+**Promised, as needs:** *two stops of one animation stand in one block and the name is said once; a subclass may restate one stop and the other survives; two groups under one media query open it once.* **Seen:** *the Lab's fifth case — the fade moving from yellow to transparent and, with the subclass stood in, from red to the same transparent, 17 of 17 driven.*
+
+*`landed` is the pitch's name and a proxy; `from` and `to` are CSS's own.*
+
+### <a id="order"></a>AND THE EMIT OWNS THE ORDER OF A RANGED LEVEL, as it owns the closing
+
+***Built 2026-09-12 on Doug's observation — "Media queries need to be compiled in a certain order… what if there was a media decorator, and in that case you know how to find the priority of them" — and measured before it was designed.*** **The sheet kept the order things were WRITTEN:**
+
+```
+@media (max-width: 640px)  >  .inner{  >  @media (max-width: 1119px)  >  @media (max-width: 768px)  >  @media (min-width: 900px)
+```
+
+*A base's narrow query first; a plain level written after a media block, after it, overriding it at every width; a subclass's wider queries after the base's narrow one whatever their width — so on a phone the wider query won.* **An author can order within a class by hand, and had been. No hand can order across the chain, because a subclass's block always follows its base's in the sheet.**
+
+***The answer needed no new word.*** **A media query's place in the cascade is a fact about its bounds, and the compiler reads them the way the browser does** — *`em` and `rem` are 16px in a media query by the specification.* **Plain levels first, then the ranged ones from the widest to the narrowest — `max-width` descending, then `min-width` ascending — so a narrower query has the last word.** *A level with no width — `@supports`, `@media print`, `@container` — keeps its written place among its peers.*
+
+**And across the chain, [the mechanism a named at-rule already had](#animation): a class that touches a ranged level emits the chain's ranged levels whole, in order**, *so the last word on them is spoken once by the class that knows them all.* **A `@media` decorator would be a second word for a level `@select` already names; the one thing it would buy — the priority — the query already says.** *If it is wanted as a spelling, it is one line of sugar over this.*
+
+**Promised four ways:** *a narrower query has the last word however it was written; a plain level precedes every ranged one; `min-width` follows `max-width`, ascending; a query a subclass adds is placed by its width and not by its class.* *`ordered`, `ranged`, `width` and `bounded` are proxy names.*
+
 ### <a id="the-cost"></a>What it costs
 
 ***The chain walk is answered once per class and member and then cached***, because a selector is a fact about a class rather than about a render. **Declaring a selector clears the cache**, which is the only moment the answer can change.
@@ -207,9 +251,11 @@ get background() { return this.$theme.paper; }
 
 ## <a id="seen"></a>Seen
 
-**Four cases in the Lab, [`app/src/sections/styled/`](../../package/app/src/sections/styled/), driven by [`verify-styled.mjs`](../../package/app/verify-styled.mjs):** the selector as the element and the cascade; the three spellings; promotion driving a live width; and a theme fetched through `$` in a bond constructor, switchable live and swappable per scope.
+**Five cases in the Lab, [`app/src/sections/styled/`](../../package/app/src/sections/styled/), driven by [`verify-styled.mjs`](../../package/app/verify-styled.mjs):** the selector as the element and the cascade; the three spellings; promotion driving a live width; a theme fetched through `$` in a bond constructor, switchable live and swappable per scope; and [an animation](#animation) whose fade is watched moving, with a subclass restating one stop stood in.
 
-**Promises:** [`tests/abstraction/styled.test.tsx`](../../package/tests/abstraction/styled.test.tsx) — thirteen, including the getter road and a bond constructor assigning a styled property.
+***The fifth case is the first Lab case to put `@select` on a class field, and it took a config change to show it:*** **the Lab's babel path could not decorate a field** — *the decorators plugin in its legacy form refuses one without the class-properties transform beside it, and with that transform it refuses TypeScript's own field syntax next* — **so no Lab case had ever shown the spelling every consumer writes.** *esbuild and rollup handle it, which is why the promises and `dist` never noticed.* **The answer needed no dependency and was already in the repository: [the wiki's config](../../../.public/package/.wiki/.public/vite.config.ts) has babel only PARSE the decorator syntax and lets esbuild transform it** — `parserOpts` on the react plugin, `experimentalDecorators` and `useDefineForClassFields: false` handed to esbuild — *and the Lab's [`vite.config.ts`](../../package/app/vite.config.ts) now takes the same shape.* **A plugin was installed for an hour first and taken back out, because the neighbour had already solved it and was not read.**
+
+**Promises:** [`tests/abstraction/styled.test.tsx`](../../package/tests/abstraction/styled.test.tsx) — thirty-four, including the getter road, a bond constructor assigning a styled property, the levels and the prefix, and the three on [an animation](#animation).
 
 ## <a id="owed"></a>What is not built
 

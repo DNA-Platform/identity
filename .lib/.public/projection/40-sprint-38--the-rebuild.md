@@ -3,7 +3,7 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **status:** `brainstorm` — the feature list compiled and the foundation ruled in the room, 2026-09-03. **NO CODE until the requirements are approved**, and no member enters `src` without Doug's yes, one at a time. ***The title is a proxy; sprint names are his.***
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 
 ---
 
@@ -13,7 +13,7 @@ The sprint after [The Binder](37-the-binder.md) ended in a revert. The framework
 
 1. **Members and classes in `package/src` need his explicit yes BEFORE they exist** — reaffirmed in his own catchup instruction: *"No members added anywhere in Lib if I don't approve them."*
 2. **`chemistry/package/src` is NEVER modified except by his direct instruction.**
-3. **The conventions from the Organization pass are in force**: [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) index, [The Order of a Class](../designing-inexplicable-phenomena/08-the-order-of-a-class.md), [The Closeness Rule](../designing-inexplicable-phenomena/12-the-closeness-rule.md), [The Type and the Instance](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md), [Shells Over Types](../designing-inexplicable-phenomena/14-shells-over-types.md). No comments; the comment ban is the complexity detector.
+3. **The conventions from the Organization pass are in force**: [The Coding Style](../the-coding-style/03-the-coding-style.md) index, [The Order of a Class](../the-coding-style/02-the-order-of-a-class.md), [The Closeness Rule](../the-coding-style/04-the-closeness-rule.md), [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md), [Shells Over Types](../the-type-system/03-shells-over-types.md). No comments; the comment ban is the complexity detector.
 
 # <a id="rulings"></a>The foundation rulings, verbatim — 2026-09-03
 

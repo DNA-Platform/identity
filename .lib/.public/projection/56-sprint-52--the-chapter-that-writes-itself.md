@@ -1,7 +1,7 @@
 # Sprint 52 — The Chapter That Writes Itself
 
-- **author:** [Cathy](../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **coauthor:** [Arthur](../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **state:** `requirements-only` — **SEVEN PROBLEMS, NO UNITS AND NO PROPOSED MEMBERS.** *Doug struck every member this chapter had proposed; the problems stand and the fixes are his to rule.*
 - **opened:** 2026-09-08
 

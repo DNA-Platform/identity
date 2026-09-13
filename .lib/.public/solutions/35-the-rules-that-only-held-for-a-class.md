@@ -24,7 +24,7 @@ Two rules raised their own sentences at examples that were plainly valid, and bo
 
 ## The mechanism — A RULE THAT REASONS ABOUT THE CLASS, RUN AGAINST WRITING THAT ONLY CARRIES THE TYPE
 
-***[The type holds the meaning so that a thing can carry a type it does not derive from](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md).*** **That is the whole point of the split, and it means every rule a type holds is run against two populations:** *an instance of the type's canonical form, and any writing at all that carries the type.* ***A rule is only finished when it holds for both.***
+***[The type holds the meaning so that a thing can carry a type it does not derive from](../the-type-system/02-the-type-and-the-instance.md).*** **That is the whole point of the split, and it means every rule a type holds is run against two populations:** *an instance of the type's canonical form, and any writing at all that carries the type.* ***A rule is only finished when it holds for both.***
 
 Neither of these did, and they failed for different reasons.
 
@@ -66,4 +66,4 @@ $check((writing.block?.$elements ?? []).some(one => one instanceof $Path),
 
 - [The narrowed prop that disowned its base](20-the-narrowed-prop-that-disowned-its-base.md) — the other fault in this branch caused by a subclass changing what a shape means to everything above it.
 - [The green that exercised nothing](14-the-green-that-exercised-nothing.md) — the same gate failure one level up: a number that was true about a population that could not contain the defect.
-- [The Type and the Instance](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md) — why the two populations exist at all, and the promise in `many.test.tsx` that a type's rule is enforced on implementations sharing no base.
+- [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md) — why the two populations exist at all, and the promise in `many.test.tsx` that a type's rule is enforced on implementations sharing no base.

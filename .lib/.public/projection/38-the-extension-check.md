@@ -10,7 +10,7 @@
 
 ***Doug, 2026-09-03: "Doesn't need to extend word. It can have type word. It's writing. In general, we shouldn't really be extending anything. Do an extension check. See what breaks if we free up base types and have a flat hierarchy where everything extends writing."***
 
-**Read generalized: the CLASS hierarchy of kinds flattens; the TYPE hierarchy is the record of kinship.** A Title stops *being* a Paragraph by parentage and starts *standing as* one because `$TypeOfTitle` descends from `$TypeOfParagraph` — which the type classes already record. This is [Shells Over Types](../designing-inexplicable-phenomena/14-shells-over-types.md) taken to its limit.
+**Read generalized: the CLASS hierarchy of kinds flattens; the TYPE hierarchy is the record of kinship.** A Title stops *being* a Paragraph by parentage and starts *standing as* one because `$TypeOfTitle` descends from `$TypeOfParagraph` — which the type classes already record. This is [Shells Over Types](../the-type-system/03-shells-over-types.md) taken to its limit.
 
 ## The method
 

@@ -34,7 +34,7 @@ Everything below is decided by asking a page two things, and both are already de
 | **4** | **Wikipedia** — the project | ***contains*** | ***the [auto-categorical summit](07-the-subjective-subject-and-the-library.md)*** — *the library's account of itself, shelved by itself. **Dewey at 025**, and it is where the demo's `.article` page actually lives* |
 | **12** | **Help** | ***contains*** | *the same summit, written for a reader instead of for the record* |
 | **6** | **File** | ***neither*** | ***a card for a thing that was never internalized*** — *the library holds an account of the artifact, and [never the artifact](11-idealism-or-accuracy.md)* |
-| **10** | **Template** | ***neither*** | ***not writing at all*** — **a form: structure without content.** *Ours is a `$Format`, or a specification. The infobox is [a catalogue card](../designing-inexplicable-phenomena/18-the-wikipedia-fit.md#the-card)* |
+| **10** | **Template** | ***neither*** | ***not writing at all*** — **a form: structure without content.** *Ours is a `$Format`, or a specification. The infobox is [a catalogue card](../the-motif/02-the-wikipedia-fit.md#the-card)* |
 | **828** | **Module** | ***neither*** | *code beneath the library, the way `src` is beneath `.lib`* |
 | **118** | **Draft** | ***contains*** | ***writing with no subject yet*** — *composed, uncatalogued. It is a book that has not been [collected](09-composition-and-collection.md)* |
 | **8** | **MediaWiki** | ***neither*** | *the interface's own strings — the reading room's signage, not its holdings* |
@@ -74,7 +74,7 @@ Everything below is decided by asking a page two things, and both are already de
 
 ## <a id="the-author"></a>The correction — ***Wikipedia's author arrows exist, and they escape exactly as the theory predicts***
 
-**[The Wikipedia Fit](../designing-inexplicable-phenomena/18-the-wikipedia-fit.md#the-viewless) records `$Author` → *"nothing. Wikipedia has no bylines — no fit, and it is the sharpest one."*** *That reading is right about the **page** and wrong about the **library**, and the correction is worth more than the original observation.*
+**[The Wikipedia Fit](../the-motif/02-the-wikipedia-fit.md#the-viewless) records `$Author` → *"nothing. Wikipedia has no bylines — no fit, and it is the sharpest one."*** *That reading is right about the **page** and wrong about the **library**, and the correction is worth more than the original observation.*
 
 ***Wikipedia's author arrows are everywhere.*** **Every edit carries one, the history tab is the collection of them, and they point at `User:` pages — which are first-person books held inside the encyclopedia.** *The arrow is simply not printed on the article.*
 
@@ -115,7 +115,7 @@ Everything below is decided by asking a page two things, and both are already de
 
 ---
 
-*Written 2026-09-07 out of Doug's instruction to organize Wikipedia's page types into the library. Sources read for it: [Wikipedia:Namespace](https://en.wikipedia.org/wiki/Wikipedia:Namespace) and [Wikipedia:What is an article?](https://en.wikipedia.org/wiki/Wikipedia:What_is_an_article%3F). It extends [The Wikipedia Fit](../designing-inexplicable-phenomena/18-the-wikipedia-fit.md), which mapped Wikipedia's **parts of a page** onto our viewless kinds; this one maps its **kinds of page** onto the two container operations, and corrects that chapter's reading of `$Author`.*
+*Written 2026-09-07 out of Doug's instruction to organize Wikipedia's page types into the library. Sources read for it: [Wikipedia:Namespace](https://en.wikipedia.org/wiki/Wikipedia:Namespace) and [Wikipedia:What is an article?](https://en.wikipedia.org/wiki/Wikipedia:What_is_an_article%3F). It extends [The Wikipedia Fit](../the-motif/02-the-wikipedia-fit.md), which mapped Wikipedia's **parts of a page** onto our viewless kinds; this one maps its **kinds of page** onto the two container operations, and corrects that chapter's reading of `$Author`.*
 
 <!-- citations -->
 [conv]: ../../../../../dna-library/library/claude-dna/conversations/2026-07-18-the-semantics-of-books.md

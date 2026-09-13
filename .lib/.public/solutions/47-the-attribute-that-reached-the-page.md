@@ -65,7 +65,7 @@ if (value !== undefined) props[key.slice(1)] = value;
 
 ***A closed set consulted by one of the seats that need it is a set stated in no place at all.*** The comment named the rule — *"the one thing a dress does not hand on"* — and the rule held in the file where it was written and nowhere else. **When a set is a rule, it belongs where both readers already import from**, which for this framework is `symbols.ts`.
 
-***And the class of fault is older than this instance.*** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) already carries it as the reason that chapter exists: *a closed set stated in several places, checkable in none, is the fault this repository already paid for.* This is that fault with the set stated **once** and consulted **once of twice**, which is the same failure wearing a better disguise.
+***And the class of fault is older than this instance.*** [The Coding Style](../the-coding-style/03-the-coding-style.md) already carries it as the reason that chapter exists: *a closed set stated in several places, checkable in none, is the fault this repository already paid for.* This is that fault with the set stated **once** and consulted **once of twice**, which is the same failure wearing a better disguise.
 
 ***The instrument that found it was a browser, not the suite.*** 519 tests were green over a page that carried an invalid attribute, because no test renders a cover. **A framework attribute reaching a page is invisible to any assertion that never draws.**
 

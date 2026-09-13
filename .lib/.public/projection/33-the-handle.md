@@ -3,7 +3,7 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 - **status:** `closed` — ***brainstormed, planned, BUILT and absorbed across 2026-08-31 → 09-01 with Doug in the room ruling live; compounded into [Solutions 37](../solutions/37-the-index-that-moved-when-a-stack-ran.md) with the queue in [Where things stand](#where-things-stand). His sign-offs and the push ride the close; the rooms and the upward url are held for serious thought at his word.***
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force.*
 
 ---
 
@@ -25,12 +25,12 @@
 
 # <a id="reading"></a>Required reading
 
-***Doug, 2026-08-31: "read coding conventions from a few sprints ago. Link to it in our sprint as required reading."*** **The same five style chapters are required here as in [sprint two](32-the-route.md#reading)** — *[The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) indexes them* — **and this sprint leans hardest on two of them.**
+***Doug, 2026-08-31: "read coding conventions from a few sprints ago. Link to it in our sprint as required reading."*** **The same five style chapters are required here as in [sprint two](32-the-route.md#reading)** — *[The Coding Style](../the-coding-style/03-the-coding-style.md) indexes them* — **and this sprint leans hardest on two of them.**
 
 | | why this sprint in particular |
 |---|---|
-| **[The Unit of Code](../designing-inexplicable-phenomena/07-the-unit-of-code.md)** | ***the file is the WORD.*** *`catalogue` is a new word, so it arrives as **one** file holding its law, its data and its meaning — never as `Catalogue.ts` plus `CatalogueSpecification.ts` plus `TypeOfCatalogue.ts`.* **v1 split this word across `$CardCatalogue` (68 lines) and `$IndexCard` (87), and [the three smallest files were the load-bearing ones](../the-semantics-of-books/16-the-reference-and-its-locator.md#v1-measured).** |
-| **[The Order of a Class](../designing-inexplicable-phenomena/08-the-order-of-a-class.md)** | ***the property test — argumentless AND returns data.*** **It decides where Doug's two new composition members go, and it splits them:** *`catalogue()` passes and joins the properties; `compose(...parts)` takes arguments and joins the methods beside `where`, `select`, `selectMany` and `single`.* |
+| **[The Unit of Code](../the-coding-style/01-the-unit-of-code.md)** | ***the file is the WORD.*** *`catalogue` is a new word, so it arrives as **one** file holding its law, its data and its meaning — never as `Catalogue.ts` plus `CatalogueSpecification.ts` plus `TypeOfCatalogue.ts`.* **v1 split this word across `$CardCatalogue` (68 lines) and `$IndexCard` (87), and [the three smallest files were the load-bearing ones](../the-semantics-of-books/16-the-reference-and-its-locator.md#v1-measured).** |
+| **[The Order of a Class](../the-coding-style/02-the-order-of-a-class.md)** | ***the property test — argumentless AND returns data.*** **It decides where Doug's two new composition members go, and it splits them:** *`catalogue()` passes and joins the properties; `compose(...parts)` takes arguments and joins the methods beside `where`, `select`, `selectMany` and `single`.* |
 
 ***Beyond the style documents:***
 
@@ -92,7 +92,7 @@
 
 <a id="r30"></a>**R30 · Doug.** ***ONE catalogue class serves to catalogue all the parts*** — `$Catalogue` implementing the interface, plus `$TypeOfCatalogue` which *"can validate the members if we need."* **Observable: v1's two classes and 155 lines become one word in one file.**
 
-<a id="r31"></a>**R31 · derived, from [The Unit of Code](../designing-inexplicable-phenomena/07-the-unit-of-code.md).** ***The word `catalogue` is ONE file*** holding its four faces — *the interface, the class, its specification, and its type* — **exactly as [the word `reference` was built in sprint one](30-the-reference.md#u17).** **Observable: `Catalogue.tsx`, and no sibling file named for a part of it.**
+<a id="r31"></a>**R31 · derived, from [The Unit of Code](../the-coding-style/01-the-unit-of-code.md).** ***The word `catalogue` is ONE file*** holding its four faces — *the interface, the class, its specification, and its type* — **exactly as [the word `reference` was built in sprint one](30-the-reference.md#u17).** **Observable: `Catalogue.tsx`, and no sibling file named for a part of it.**
 
 <a id="r32"></a>**R32 · Doug.** ***`$Reference$<T extends $Writing = $Writing>` carries the generic; the class `$Reference` does not.*** **Observable: `tsc` sees no type parameter on any class descending from `$Writing`.**
 
@@ -104,7 +104,7 @@
 
 <a id="r35"></a>**R35 · Doug.** ***Compositions compose*** — `compose(...parts: $Composition$<T>[]): $Composition$<T>`, *"this can be used to make interesting references."* **Observable: two compositions join into one, and the result is a composition like any other.**
 
-<a id="r36"></a>**R36 · derived, from [The Order of a Class](../designing-inexplicable-phenomena/08-the-order-of-a-class.md).** ***The two members SPLIT across two groups, and this contradicts the placement he gave.*** *Doug said "two methods placed in properties section"; his own property test is **argumentless AND returns data**.* **`catalogue()` passes and joins the properties. `compose(...parts)` takes arguments, so it joins the methods** — *the chapter names `where`, `select`, `selectMany` and `single` as exactly this case, and says one-line form does not change it.* ***Flagged rather than taken: if the order should bend here, that is his to say, and [the standing answer is that the order always wins](../designing-inexplicable-phenomena/12-the-closeness-rule.md#where-art-lives).***
+<a id="r36"></a>**R36 · derived, from [The Order of a Class](../the-coding-style/02-the-order-of-a-class.md).** ***The two members SPLIT across two groups, and this contradicts the placement he gave.*** *Doug said "two methods placed in properties section"; his own property test is **argumentless AND returns data**.* **`catalogue()` passes and joins the properties. `compose(...parts)` takes arguments, so it joins the methods** — *the chapter names `where`, `select`, `selectMany` and `single` as exactly this case, and says one-line form does not change it.* ***Flagged rather than taken: if the order should bend here, that is his to say, and [the standing answer is that the order always wins](../the-coding-style/04-the-closeness-rule.md#where-art-lives).***
 
 ## <a id="s11"></a>Section 11 — The closure
 
@@ -285,7 +285,7 @@
 
 ## The next action, as a command
 
-***`/ce-brainstorm` for sprint four, The Index — in THIS session, on Doug's word: "we won't handoff… we will go right to brainstorm."*** **Sprint three is CLOSED on its checklist: the url pair built, the spec examples landed, the plan absorbed, and the first compound run filed — [Solutions 37, the index that moved when a stack ran](../solutions/37-the-index-that-moved-when-a-stack-ran.md).** *The compound queue for later runs: the probe-that-cannot-fail as [chapter 18](../solutions/18-the-checkpoint-that-compared-a-number-to-itself.md)'s third family appearance; the maker-slot-and-freed-seats as [chapter 30](../solutions/30-the-suite-that-collected-nothing.md)'s next appearance; the struck words (mint→printing, held→reduce) to the style register; the generic-tracks-composition-hood principle to [The Type and the Instance](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md). His sign-offs (`composes`, `reduce`, `$points`, `address`, `follow`) and the push ride the close.*
+***`/ce-brainstorm` for sprint four, The Index — in THIS session, on Doug's word: "we won't handoff… we will go right to brainstorm."*** **Sprint three is CLOSED on its checklist: the url pair built, the spec examples landed, the plan absorbed, and the first compound run filed — [Solutions 37, the index that moved when a stack ran](../solutions/37-the-index-that-moved-when-a-stack-ran.md).** *The compound queue for later runs: the probe-that-cannot-fail as [chapter 18](../solutions/18-the-checkpoint-that-compared-a-number-to-itself.md)'s third family appearance; the maker-slot-and-freed-seats as [chapter 30](../solutions/30-the-suite-that-collected-nothing.md)'s next appearance; the struck words (mint→printing, held→reduce) to the style register; the generic-tracks-composition-hood principle to [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md). His sign-offs (`composes`, `reduce`, `$points`, `address`, `follow`) and the push ride the close.*
 
 ## Verified, with the numbers
 

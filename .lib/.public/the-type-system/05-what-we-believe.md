@@ -94,9 +94,15 @@ $Section(block: $Block) {
 
 ## <a id="the-drawing"></a>V · THE DRAWING
 
-**P23 · THE FRAME IS A SPAN, AND A KIND THAT NEEDS A BLOCK OVERRIDES IT.** ***Doug:*** *"wrap in a span? And then things need to override frame if they do something different. That's not hard."* ***Measured before and after:*** **a `<div>` frame inside a `<p>` dress made React reject — *"In HTML, `<div>` cannot be a descendant of `<p>`"* — and a `<span>` clears it.**
+**P23 · A KIND WRITES ITS OWN ELEMENT, AND `print(content)` IS WHERE.** ***Superseded 2026-09-08*** — *this said the frame was a span and a kind overrode `frame()`; every `frame()` override is now gone from `src`.* **`view()` builds the content and hands it to `print(content)`, the ONE method a kind overrides, in one line, writing its element with its classes** — `$Paragraph` a `<p>`, `$Section` a `<section>`, `$Quote` a `<blockquote>`. *`frame()` belongs to chemistry.* **The span survives only as the base's answer for a sentence, a word and a letter, and that is honest: HTML has no element for those.**
 
-**P24 · THE SAME CONTAINER EVERYWHERE.** *The base declares the depth and a kind OVERRIDES it; a drawing never varies its own depth by asking a question.*
+**P24 · A TEMPLATE METHOD ADDED TO A BASE IS A CLAIM ABOUT EVERY KIND, AND LEAVING ONE UNSWEPT IS A BUG.** ***Doug, on `print`:*** *"If you invent something like print on writing, all things implementing writing might need to change. So go to all of them and ask if that is the way to do it... It is at the level of bug to add print and not have it used uniformly."*
+
+***The audit that proved him right:*** **fourteen kinds overrode `print`, eleven overrode `view`, and twenty-nine overrode neither — so twenty-nine drew a bare `<span>`.** *Nine of those said by TYPE what they were and drew nothing like it: `$Synopsis`, `$Part`, `$Appendix` and `$References` carry `$TypeOfChapter`; `$Author`, `$Subject`, `$Theorem` and `$Quote` carry `$TypeOfSection`; `$Note` carries `$TypeOfParagraph`.*
+
+> ***THE MECHANISM, and it is [P11](#the-class)'s shadow: `print` is inherited by CLASS while the hierarchy rides the TYPE.*** **So a kind can say it is a chapter and draw like nothing**, and no compiler, promise or rule will mention it.
+
+***The repair needed no machinery, which is how you know it was the right one:*** **each extends the class its type already extends** — the [`$ReferenceCard extends $Reference`](../../package/src/reference/ReferenceCard.tsx) precedent. *P11 is untouched: it forbids a class extending the level ABOVE it, and a synopsis is not above a chapter, it IS one.* **Measured after: `<span>` fell to ONE per page, against 11 `<article>`, 36 `<section>`, 138 `<p>` and one `<aside>` on `/turing`.**
 
 **P25 · A TYPE DRAWS NOTHING AND FRAMES NOTHING.** *Before this, every type left an empty `<div class="">` in the DOM — found by probing, not by reading.*
 
@@ -112,13 +118,15 @@ $Section(block: $Block) {
 
 ## <a id="the-book"></a>VI · THE BOOK AND ITS APPARATUS
 
+**P29.5 · BOOK IS LAYOUT; CHAPTERS ARE LOGICAL PARTS — *the essence, given 2026-09-13*.** ***Doug:*** *"Book is layout. Chapters are logical parts. This is the essence of the framework. The page layout and logical parts of the page. Write this down prominently."* **A book answers WHERE; a chapter answers WHAT, by the type it carries.** *Written prominently in [The Coding Style](../the-coding-style/03-the-coding-style.md#book-and-chapter), which is where a reader looks before writing a line. The number is a half because the principles are cited by identifier and none is ever renumbered.*
+
 **P30 · A BOOK ANSWERS ITS OWN APPARATUS, AND EACH STANDS IN ITS PLACE.** ***Doug:*** *"The cover should always be the first non annotative piece of writing, so that can be validated and it can be returned on book. The synopsis second, table third and index last."* **`cover()` · `synopsis()` · `tableOfContents()` · `index()`, each found by searching, and four rules hold the order.**
 
 **P31 · A BOOK MAKES ITS OWN INDEX, AT ITS BINDING.**
 
 **P32 · A TITLE IS A SECTION THAT MEANS THE BOOK.** ***Doug:*** *"What is a title? Well I think we want it to be a section that means the book."* **So `$TypeOfTitle extends $TypeOfSection`, a title is its own heading, and `TitleSpecification` finally has a rule of its own.** *Author and subject went the same way, on his earlier "types of sections".* ***This also settled the finding that a title is not a card: it is not one, it is IN one.***
 
-**P33 · A CARD HAS A NAME AND LINES.** ***Doug:*** *"An IndexCard can have a name and lines which are pieces of writing. A catalogueCard can have a title because it is the title of a book and the name can be the copy of that."* **Which is the infobox's own shape** — *`.infobox-above` is the name, `.infobox-label` + `.infobox-data` is a line, and every field is optional; see [The Wikipedia Fit](18-the-wikipedia-fit.md).*
+**P33 · A CARD HAS A NAME AND LINES.** ***Doug:*** *"An IndexCard can have a name and lines which are pieces of writing. A catalogueCard can have a title because it is the title of a book and the name can be the copy of that."* **Which is the infobox's own shape** — *`.infobox-above` is the name, `.infobox-label` + `.infobox-data` is a line, and every field is optional; see [The Wikipedia Fit](../the-motif/02-the-wikipedia-fit.md).*
 
 ---
 

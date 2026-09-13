@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md), [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -45,7 +45,7 @@
 | the corpus — [a cover](../../../.test-library/.physics/the-standard-model/.cover.tsx) and [a chapter](../../../.test-library/.physics/the-standard-model/symmetry.tsx) | what an author writes, as against what is generated |
 | [The Representative](../../../chemistry/.lib/composition/11-the-representative.md) | the algebra the theme rides on, and the specification that F3 is an instance of |
 | [`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts), the `frame()` seam | chemistry's own documented wrap point, and the reason a wrap does not disturb `declaration()` |
-| [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md) | the third specification — *a view reads, it does not re-derive* — which [R70](#r70) discharges |
+| [Ways of Reading](../ways-of-reading/04-ways-of-reading.md) | the third specification — *a view reads, it does not re-derive* — which [R70](#r70) discharges |
 | [The Semantics of Books](../the-semantics-of-books/.cover.md) · [Publicity](../..publicity/.cover.md) | what a book, a subject and a catalogue are before any of this is code |
 | [Solutions 21](../solutions/21-the-three-things-that-only-worked-here.md) and [22](../solutions/22-the-sentences-that-said-the-opposite.md) | the two newest defects, both about a true number with a silent scope |
 | [ce-review](../../../../.claude/library/our-skillset/33-ce-review.md) · [Workflows](../../../../.claude/library/..teamsmanship/19-workflows.md) · [Sprints](../../../../.claude/library/library-tree/03-sprints.md) | the discipline this sprint declares, and the gate it still owes |
@@ -256,7 +256,7 @@
 
 **<a id="d46"></a>D46 — The bound is not in the base framework, and the route to it is a cover subclass.** *Doug: "simple to start with room for complexity that isn't in the base framework."* **This is [the twenty's standing rule](18-the-theme.md#the-standing-rule) applied again: see the route, ship nothing for it.**
 
-**<a id="d47"></a>D47 — The address moves into the model.** [`slug()`](../../app/src/bookmark.tsx) computes a chapter's anchor from its title in the application, which is **a view inventing an address** — [the third specification of Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md#a-third-specification-a-view-reads-it-does-not-re-derive), filed against this branch. *Moving it is not scope creep; it is that defect's own fix.*
+**<a id="d47"></a>D47 — The address moves into the model.** [`slug()`](../../app/src/bookmark.tsx) computes a chapter's anchor from its title in the application, which is **a view inventing an address** — [the third specification of Ways of Reading](../ways-of-reading/04-ways-of-reading.md#a-third-specification-a-view-reads-it-does-not-re-derive), filed against this branch. *Moving it is not scope creep; it is that defect's own fix.*
 
 **<a id="d48"></a>D48 — A requirement about our application is an observable, never the thing that must be true.** *Out of [M7](#m7) and Doug's question.* **[R65](#r65) is about a book; [R67](#r67) and [R72](#r72) are what proves it.**
 

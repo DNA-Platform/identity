@@ -3,7 +3,7 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 - **status:** `decision-first` — composed 2026-09-03 at the close of [Sprint 38](40-sprint-38--the-rebuild.md), per Doug: *"If you want to write this all as next sprint, when it comes back, you can compose, then compound and handoff and we can meet again for the next sprint."* **The sprint OPENS at Wave 0 — the decision surface walked WITH DOUG — and builds only what the walk unlocks.** ***The title is a proxy; sprint names are his.***
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 
 ---
 
@@ -11,7 +11,7 @@ This sprint runs [THE ROAD](00-planning.md#the-road) — all remaining work befo
 
 # <a id="literature"></a>The sprint opens with its literature
 
-[Chapter zero, THE ROAD](00-planning.md#the-road) — the agenda itself · [Sprint 38](40-sprint-38--the-rebuild.md) — the 36 rulings R100–R136 this sprint builds under · [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) and its four law chapters — in force · [Solutions 29](../solutions/29-the-bond-that-woke-the-tree-it-was-building.md) and [45](../solutions/45-the-view-that-constructed-its-parts.md) — both carrying second appearances dated this week; the laws most likely to be re-broken by this sprint's sweep · [The Binder](37-the-binder.md) — F7/F8's inventory, the destination's own record.
+[Chapter zero, THE ROAD](00-planning.md#the-road) — the agenda itself · [Sprint 38](40-sprint-38--the-rebuild.md) — the 36 rulings R100–R136 this sprint builds under · [The Coding Style](../the-coding-style/03-the-coding-style.md) and its four law chapters — in force · [Solutions 29](../solutions/29-the-bond-that-woke-the-tree-it-was-building.md) and [45](../solutions/45-the-view-that-constructed-its-parts.md) — both carrying second appearances dated this week; the laws most likely to be re-broken by this sprint's sweep · [The Binder](37-the-binder.md) — F7/F8's inventory, the destination's own record.
 
 # <a id="gates"></a>The standing gates
 

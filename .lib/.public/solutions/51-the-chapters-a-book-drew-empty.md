@@ -56,7 +56,7 @@ override view(): ReactNode {
 
 ## Prevention
 
-**A promise that a subclass view drawing its own parts still draws their contents — in the real browser, not happy-dom, which does not reproduce it.** *Until the mechanism is found, the rule stands in [Using the Public Library](../designing-inexplicable-phenomena/20-using-the-public-library.md#minimalism): organize the default drawing; do not replace it.*
+**A promise that a subclass view drawing its own parts still draws their contents — in the real browser, not happy-dom, which does not reproduce it.** *Until the mechanism is found, the rule stands in [Using the Public Library](../writing-a-book/01-using-the-public-library.md#minimalism): organize the default drawing; do not replace it.*
 
 ---
 

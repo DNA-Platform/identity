@@ -48,7 +48,7 @@ class $Counter extends $Chemical {
 
 **`@inert()` and `@reactive()` override the default per property**, filed by prototype.
 
-> ***CORRECTED 2026-09-07.*** *This section read: "Fields prefixed with `$` are reactive. Other fields (no prefix, or underscore prefix `_`) are not." **That is backwards for a bare name** — `isReactive` returns `true` for any name that does not start with `$` or `_`, which is why `@dna-platform/lib` decorates [`$Writing.mention`](../../../.public/package/src/writing/Writing.tsx) with `@inert()` at all. Found while reading the source for [Sprint 46](../../../.public/.lib/projection/50-sprint-46--the-mention.md#cu1); `@dna-platform/lib`'s [own account of the same law](../../../.public/.lib/designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-reactive-law) was the one that was right.*
+> ***CORRECTED 2026-09-07.*** *This section read: "Fields prefixed with `$` are reactive. Other fields (no prefix, or underscore prefix `_`) are not." **That is backwards for a bare name** — `isReactive` returns `true` for any name that does not start with `$` or `_`, which is why `@dna-platform/lib` decorates [`$Writing.mention`](../../../.public/package/src/writing/Writing.tsx) with `@inert()` at all. Found while reading the source for [Sprint 46](../../../.public/.lib/projection/50-sprint-46--the-mention.md#cu1); `@dna-platform/lib`'s [own account of the same law](../../../.public/.lib/the-type-system/02-the-type-and-the-instance.md#the-reactive-law) was the one that was right.*
 
 **A `$`-prefixed name needs one character after the `$`, not two.** `isSpecial` tests `length >= 2`, so `$v` and `$x` are reactive.
 

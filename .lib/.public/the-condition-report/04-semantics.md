@@ -143,7 +143,7 @@ const pointed = (reference?: { card?: $IndexCard<$Book> }): $Book | undefined =>
 
 *Doug: **"perhaps that validation will only be run when the library checks itself as part of the build."*** **[`validate.ts`](../../build/stages/validate.ts) is already that phase** — it holds every book at once, it already imports the cards, and it already says *"it invents no rules."*
 
-***And it must remain a caller rather than a home*** — [The Live Library](../designing-inexplicable-phenomena/05-the-live-library.md), out of Doug's own aside in the same message: **a rule that lives in the compiler is a rule the browser cannot ask**, and a library people write into needs the same rule at the moment writing arrives.
+***And it must remain a caller rather than a home*** — [The Live Library](../ways-of-reading/05-the-live-library.md), out of Doug's own aside in the same message: **a rule that lives in the compiler is a rule the browser cannot ask**, and a library people write into needs the same rule at the moment writing arrives.
 
 ### <a id="s17-ruled"></a>RULED 2026-08-22 — annotations are a member of writing, and the card reflects the book
 
@@ -229,7 +229,7 @@ $Author.valid()   the book it names is of type Autobiography
 
 ***And "yes it should be recursive" settles it against [chapter zero's aggregate reading](../projection/00-planning.md)***, which warned off following references **through books**. *A card asking another card is not that act.*
 
-***And it answers the attribute question I had guessed at:*** **an annotation does not reveal metadata by drawing or by becoming a DOM attribute. It IS the metadata, held as a member, and [the back of a page is what reads it](../designing-inexplicable-phenomena/06-the-back-of-the-page.md).**
+***And it answers the attribute question I had guessed at:*** **an annotation does not reveal metadata by drawing or by becoming a DOM attribute. It IS the metadata, held as a member, and [the back of a page is what reads it](../ways-of-reading/06-the-back-of-the-page.md).**
 
 ### <a id="s17-attribute"></a>What I had guessed, kept because the guess was wrong in a useful way
 

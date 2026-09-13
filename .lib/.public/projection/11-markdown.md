@@ -1,7 +1,7 @@
 # Markdown
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -42,7 +42,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 **So Doug's suspicion holds, and the irony is exact: the demo named `$Page` is the one that does not model a page, and the Manifold — which never claimed to — models one hardest.**
 
-**What `/page`'s `$Page` actually is: a lens.** The word *skin* is the tell, and [the code already knows](../../.archive/app/src/sections/page/sheet.tsx) — the four are revealed as `new Perspective('book')`, `'github'`, `'night'`, `'anatomy'`. That is move one of the three in [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md#the-three-moves): *one live object rendered a way*. **The machinery is right and the name is a category error.** And one of the four is not even a dress — `anatomy` is a *reading rendered*, move two, a report **about** the document rather than a presentation of it.
+**What `/page`'s `$Page` actually is: a lens.** The word *skin* is the tell, and [the code already knows](../../.archive/app/src/sections/page/sheet.tsx) — the four are revealed as `new Perspective('book')`, `'github'`, `'night'`, `'anatomy'`. That is move one of the three in [Ways of Reading](../ways-of-reading/04-ways-of-reading.md#the-three-moves): *one live object rendered a way*. **The machinery is right and the name is a category error.** And one of the four is not even a dress — `anatomy` is a *reading rendered*, move two, a report **about** the document rather than a presentation of it.
 
 **On isolation, which was the third question.** Those 560 lines are `.markdown h1`, `.markdown p`, `.markdown code` — CSS reaching into generic markup the model emitted; the four skins differ *only* in that CSS, which is why nothing about them is specialized. **The Team already shows what isolation means here:** its own `$Heading extends $Title` drawing itself, its own `$Plated`, `$Circuit`, `$Slipped`, `$Listed` ([figures.tsx](../../.archive/app/src/sections/book/library/the-team/figures.tsx)). Repeated implementations, per book. **The framework shares the *kind*; the demo repeats the *implementation*.** Doug: *"You can repeat implementations for the demo."*
 
@@ -125,7 +125,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
   **What survives the port untouched, verified by reading:** the Living Page's editing pane (it depends only on `$source`, a string, so the keystroke path is preserved), the shelf's route to `/page` (a bare `window.location.href`, zero parse dependency), and `ReadingsBar`/`Chip`/`ChipValue` (presentational; only their input numbers change source). **What moves:** the four lenses in `sheet.tsx`, the deleted `parse()` and `Entry[]`, and the classes drawer's `?raw` targets.
 
-  **And the payoff worth naming:** post-port the four lenses split cleanly into **three presentations and one report** — move one and move two of [the three moves](../designing-inexplicable-phenomena/04-ways-of-reading.md#the-three-moves). Anatomy stops being a fourth skin and becomes the reading lens, fed by `parts()`.
+  **And the payoff worth naming:** post-port the four lenses split cleanly into **three presentations and one report** — move one and move two of [the three moves](../ways-of-reading/04-ways-of-reading.md#the-three-moves). Anatomy stops being a fourth skin and becomes the reading lens, fed by `parts()`.
 
 ## Insertion into a regular section — the point of the half
 
@@ -135,7 +135,7 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 - **R9. One figure kind shows a non-text interaction: it holds REFERENCES to the section's parts, and acting on one lights that part in the prose standing around it.** *Doug: "with a `$Figure` to show non-text interactions."* **DECIDED, Gabby's**, and built from shipped prior art rather than a new mechanism.
 
-  **What it holds: references, not the parts.** The parts live in the section, which is their only home. The figure carries `section.at(i)` — reading one forward lands on the very part the prose renders, and that shared identity is what makes the figure a **corroborating sibling** under [the second specification of views](../designing-inexplicable-phenomena/04-ways-of-reading.md#two-specifications-for-every-view): acting on one lighting the other is a *check*, not a claim.
+  **What it holds: references, not the parts.** The parts live in the section, which is their only home. The figure carries `section.at(i)` — reading one forward lands on the very part the prose renders, and that shared identity is what makes the figure a **corroborating sibling** under [the second specification of views](../ways-of-reading/04-ways-of-reading.md#two-specifications-for-every-view): acting on one lighting the other is a *check*, not a claim.
 
   **What acting changes: one `$Highlight`, held by the section.** No second highlighting is invented. **The section is the common renderer of both surfaces** and hands the highlight *down* to its prose and to its figure — the prose never learns from the figure, and nothing computes `parent` at render, which [would tell the truth at binding and lie on screen](../solutions/09-the-parent-that-changed-on-screen.md). It is the shape `contents.tsx` already uses, setting `this.shelf.$reading` on an explicitly-held reference.
 

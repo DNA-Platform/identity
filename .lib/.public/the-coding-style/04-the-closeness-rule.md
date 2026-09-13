@@ -5,7 +5,7 @@
 
 ---
 
-*(Where [The Order of a Class](08-the-order-of-a-class.md) orders the MEMBERS of a class, this is about what is written INSIDE one — and about the law that the ordering is itself an expression of. **It exists because Doug named the law directly on 2026-08-30**, having previously only ever given the conventions it produces. Every rule below is quoted from him; the readings are marked as readings.)*
+*(Where [The Order of a Class](02-the-order-of-a-class.md) orders the MEMBERS of a class, this is about what is written INSIDE one — and about the law that the ordering is itself an expression of. **It exists because Doug named the law directly on 2026-08-30**, having previously only ever given the conventions it produces. Every rule below is quoted from him; the readings are marked as readings.)*
 
 ## <a id="the-law"></a>The law
 
@@ -31,9 +31,9 @@
 > ***Q: when the ORDER and the ASSOCIATION disagree — which wins?***
 > ***A: the order always wins.*** *"The fixed order is the scale bar and must never bend, or a reader can no longer trust position to mean anything."*
 
-**So a member is never moved out of its group to sit beside a relative.** *If the urge to move it is strong, that is [diagnostic rather than decorative](10-the-type-and-the-instance.md#the-test) — the member is probably on the wrong object.*
+**So a member is never moved out of its group to sit beside a relative.** *If the urge to move it is strong, that is [diagnostic rather than decorative](../the-type-system/02-the-type-and-the-instance.md#the-test) — the member is probably on the wrong object.*
 
-***Art operates in exactly two places the order says nothing about:*** **INSIDE a group** — what stacks with what, where the blank lines fall, how many lines a thing takes — **and ABOVE the class** — which classes share a file, which files share a folder. *[The file is the word](07-the-unit-of-code.md#a-word-is-not-a-class) is a ruling of the second kind; the flattened operator block below is one of the first.*
+***Art operates in exactly two places the order says nothing about:*** **INSIDE a group** — what stacks with what, where the blank lines fall, how many lines a thing takes — **and ABOVE the class** — which classes share a file, which files share a folder. *[The file is the word](01-the-unit-of-code.md#a-word-is-not-a-class) is a ruling of the second kind; the flattened operator block below is one of the first.*
 
 ## <a id="instruments"></a>The four instruments
 
@@ -41,7 +41,7 @@
 
 ### <a id="ordering"></a>1 · Ordering
 
-**Position is meaning, which is why the order never bends.** *The whole of it is [The Order of a Class](08-the-order-of-a-class.md).*
+**Position is meaning, which is why the order never bends.** *The whole of it is [The Order of a Class](02-the-order-of-a-class.md).*
 
 ### <a id="stacking"></a>2 · Stacking
 
@@ -169,7 +169,7 @@ override frame(): ReactNode {
 |---|---|
 | ***A blank line for "readability"*** | **a blank line is a unit of distance.** *Spending one without meaning it makes every other one weaker* |
 | ***A double blank line*** | ***there is no second step.*** *One blank line is the group boundary; two is a distance with nothing on the other side of it* |
-| ***Moving a member out of its group to sit beside a relative*** | **the order is the scale bar** — *ruled 2026-08-30, and [the urge is diagnostic](10-the-type-and-the-instance.md#the-test)* |
+| ***Moving a member out of its group to sit beside a relative*** | **the order is the scale bar** — *ruled 2026-08-30, and [the urge is diagnostic](../the-type-system/02-the-type-and-the-instance.md#the-test)* |
 | ***A guard drawn as a branch*** | *it promises the reader a second path through the method* |
 | ***A comment*** | **[ruled at O8](../the-condition-report/02-organization.md#o8) and restated 2026-08-30** — *"no code comments; that data is moved to the library branch and the library branch references the code files"* |
 
@@ -181,4 +181,4 @@ override frame(): ReactNode {
 
 ---
 
-*Written 2026-08-30, out of the coding-style pass that followed [The Reference](../projection/30-the-reference.md). Indexed at [The Coding Style](11-the-coding-style.md).*
+*Written 2026-08-30, out of the coding-style pass that followed [The Reference](../projection/30-the-reference.md). Indexed at [The Coding Style](03-the-coding-style.md).*

@@ -205,7 +205,7 @@
 
 | | |
 |---|---|
-| ***the wrap is a SEAM, not a step*** | *the base declares it and a kind OVERRIDES — [the standing rule](../designing-inexplicable-phenomena/11-the-coding-style.md), and the reason `$Languages` and `$Search` collapsed is that they inherited a step they could not answer* |
+| ***the wrap is a SEAM, not a step*** | *the base declares it and a kind OVERRIDES — [the standing rule](../the-coding-style/03-the-coding-style.md), and the reason `$Languages` and `$Search` collapsed is that they inherited a step they could not answer* |
 | ***a kind may CANCEL it*** | **and that is allowed** — *but the better answer is that the kind implements the wrap in its own terms, because it knows what it holds* |
 | ***the tags change, so the styling follows*** | *a wrapped section draws different elements, so a dress written against the old tags is part of the change.* ***That is the point rather than the cost: it is what makes this stylistically polymorphic*** |
 | ***components may get fancier*** | *so long as the seam stays extensible — a kind added later must be able to say how it wraps without editing the base* |
@@ -355,7 +355,7 @@ ODD $Chapter holds $Html$  type=span  elements=none  value="undefined"
 
 ***An empty `<span>` — and `$Writing.frame()` is what makes spans.*** **Instrumenting `$Chapter`'s bond prints NOTHING**, so the span is not there when the bond runs: *it is joined to the block **after**, which is [`written-after-bond`](../solutions/.cover.md) — already a named mechanism class in this book.* **The rule catching it is CORRECT; the leak is the defect, and widening the rule would hide it.**
 
-***Owed to Doug, and they are rulings rather than work:*** **is `a title means what it titles` a compiler-time rule, or must every title carry a reference?** · **and may a rule inherited from a reference ask through what a mention MEANS rather than what it directly holds?** *The second has a proposed shape from a7 — an override in `$ChapterSpecification` — which is [override-don't-condition](../designing-inexplicable-phenomena/11-the-coding-style.md) applied.*
+***Owed to Doug, and they are rulings rather than work:*** **is `a title means what it titles` a compiler-time rule, or must every title carry a reference?** · **and may a rule inherited from a reference ask through what a mention MEANS rather than what it directly holds?** *The second has a proposed shape from a7 — an override in `$ChapterSpecification` — which is [override-don't-condition](../the-coding-style/03-the-coding-style.md) applied.*
 
 ***`/ce-work` CLOSED, and NOT green — the numbers rather than the word:***
 

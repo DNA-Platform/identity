@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 
 ---
 
@@ -14,14 +14,14 @@
 
 # <a id="the-rulings"></a>What Doug ruled, in his own words
 
-*Five rulings in one session, each quoted rather than paraphrased. **[The style documents](../designing-inexplicable-phenomena/11-the-coding-style.md) carry them; this is the index of where they came from.***
+*Five rulings in one session, each quoted rather than paraphrased. **[The style documents](../the-coding-style/03-the-coding-style.md) carry them; this is the index of where they came from.***
 
 | | the ruling | where it lives now |
 |---|---|---|
-| **1** | ***the file is the WORD*** — `Letter.tsx` holding `$Letter`, `$LetterSpecification` and `$TypeOfLetter` is deliberate, not drift | **[The Unit of Code](../designing-inexplicable-phenomena/07-the-unit-of-code.md#a-word-is-not-a-class)** |
-| **2** | ***"the order always wins"*** — when the member order and the urge to associate disagree, the order never bends, because *"a reader can no longer trust position to mean anything"* | **[The Closeness Rule](../designing-inexplicable-phenomena/12-the-closeness-rule.md#where-art-lives)** |
-| **3** | ***the order itself, restated and CHANGED*** — *"fields then properties, bond constructor, constructor, methods then protected methods than private methods"*, and *"in fields, private is first, then public. Most will be public, protected is after"* | **[The Order of a Class](../designing-inexplicable-phenomena/08-the-order-of-a-class.md)** |
-| **4** | ***compactness and artfulness*** — *"one line ifs and fors should be without brackets… if they are more like asserts at the top, the whole if can be one line… if the code itself does some cleanup thing the for can be one line as a filter call might have been"*, and *"artfulness is when the convention doesn't work, you follow the closeness rule"* | **[The Closeness Rule](../designing-inexplicable-phenomena/12-the-closeness-rule.md)** |
+| **1** | ***the file is the WORD*** — `Letter.tsx` holding `$Letter`, `$LetterSpecification` and `$TypeOfLetter` is deliberate, not drift | **[The Unit of Code](../the-coding-style/01-the-unit-of-code.md#a-word-is-not-a-class)** |
+| **2** | ***"the order always wins"*** — when the member order and the urge to associate disagree, the order never bends, because *"a reader can no longer trust position to mean anything"* | **[The Closeness Rule](../the-coding-style/04-the-closeness-rule.md#where-art-lives)** |
+| **3** | ***the order itself, restated and CHANGED*** — *"fields then properties, bond constructor, constructor, methods then protected methods than private methods"*, and *"in fields, private is first, then public. Most will be public, protected is after"* | **[The Order of a Class](../the-coding-style/02-the-order-of-a-class.md)** |
+| **4** | ***compactness and artfulness*** — *"one line ifs and fors should be without brackets… if they are more like asserts at the top, the whole if can be one line… if the code itself does some cleanup thing the for can be one line as a filter call might have been"*, and *"artfulness is when the convention doesn't work, you follow the closeness rule"* | **[The Closeness Rule](../the-coding-style/04-the-closeness-rule.md)** |
 | **5** | ***we think in OO*** — *"you don't use constants to store data because that's bad for polymorphism, and you don't even use static methods much in chemistry because you have a template so members can be static and thus polymorphic… the component is like a packaging for the constructor of the class"* | **[The Grammar](../../../chemistry/.lib/authorship/01-the-grammar.md)** |
 
 ***And one refinement that arrived after the first draft and improved it***, on paragraphs in code: **"try to conceive of methods WITHOUT phases… minimize the number of semantic concepts… sometimes it's a one to one thing and there's no polymorphic reason to split, and so you might use paragraphs before deciding to create private helper methods."** *So the order is: no phases · then paragraphs · then a private helper, and only for a **polymorphic** reason.*
@@ -59,9 +59,9 @@
 >
 > ***He is right about the kind of thing it is.*** **His rule says a housekeeping `for` goes ON ONE LINE — *"as a filter call might have been"*** — *and the comparison to a filter says how SMALL the loop should be, not what it should become.* **A fourteen-line loop restructured into three chained calls is not a compaction; it is the method expressing its algorithm a different way.** ***His framing of the whole pass was "don't break anything just organize" and "this is organization."***
 >
-> ***And the sharpest part is not that the analysis was wrong — it was sound.*** **The semantics were checked rather than assumed:** *the loop carried no state across iterations but its accumulator, mutated nothing it read, and had no `break` and no early `return`, so its two `continue`s were pure skips.* **[That test survives and is good](../designing-inexplicable-phenomena/12-the-closeness-rule.md#is-it-a-filter).** ***What it may never do again is authorise a change by itself: proving a rewrite SAFE is not the same as its being ASKED FOR, and a correct rewrite is still a rewrite.***
+> ***And the sharpest part is not that the analysis was wrong — it was sound.*** **The semantics were checked rather than assumed:** *the loop carried no state across iterations but its accumulator, mutated nothing it read, and had no `break` and no early `return`, so its two `continue`s were pure skips.* **[That test survives and is good](../the-coding-style/04-the-closeness-rule.md#is-it-a-filter).** ***What it may never do again is authorise a change by itself: proving a rewrite SAFE is not the same as its being ASKED FOR, and a correct rewrite is still a rewrite.***
 >
-> **Nothing was reverted** — *Doug said minimise, not undo, and had standing instructions against reverting.* ***[Rule 3 in The Closeness Rule](../designing-inexplicable-phenomena/12-the-closeness-rule.md#brevity) has been corrected the same day, because as first written it read as licence for exactly this.***
+> **Nothing was reverted** — *Doug said minimise, not undo, and had standing instructions against reverting.* ***[Rule 3 in The Closeness Rule](../the-coding-style/04-the-closeness-rule.md#brevity) has been corrected the same day, because as first written it read as licence for exactly this.***
 
 **Unit 5 — whitespace, across all three codebases.** *One trailing space; seven double blank lines in `src` and seven files' worth in the archive; six stray blank lines opening a class body; two before a closing brace; a dead `createElement` import; end-of-file normalised everywhere.* ***The archive needed almost none of it and the compiler needed one file*** — **both were tidier than `src`.**
 
@@ -70,7 +70,7 @@
 | | why |
 |---|---|
 | ***the 5× unnamed `$elements` filter*** | **Doug ruled its design this morning** — *a public reading on writing, with the constraint as its own labelled specification rule so a user can change it* — **and then said "we'll do that kind of cleanup later."** *It is a MEANING change wearing a layout change's clothes, and it sits where [the reference sprint](30-the-reference.md) works.* |
-| ***215 comment lines in the archive*** | **[O8](../the-condition-report/02-organization.md#o8) says commentary moves to the branch library and the book links back.** *That is a HARVEST, not a strip — and [What Carries Over](../designing-inexplicable-phenomena/09-what-carries-over.md) is explicit that you read before you delete.* ***A ruling, flagged, not taken.*** |
+| ***215 comment lines in the archive*** | **[O8](../the-condition-report/02-organization.md#o8) says commentary moves to the branch library and the book links back.** *That is a HARVEST, not a strip — and [What Carries Over](../the-type-system/01-what-carries-over.md) is explicit that you read before you delete.* ***A ruling, flagged, not taken.*** |
 | ***comments in **`.spec/`***** | *Those 29 files exist TO BE READ, and each opens with one line saying what its example demonstrates.* **Stripping them would move 29 sentences into the library and make the examples harder to read.** ***Also flagged.*** |
 | ***the archive's member order*** | **46 classes in code that still ships and is scheduled to stop.** *The mechanical pass is done; the reorder is risk against value and is Doug's call.* |
 | ***the compiler's 402 comments*** | ***O8 never ruled the compiler.*** *Doug named `$Chemistry`, `lib` and "the apps"; [`library.ts`](../../build/library.ts) is the seam and is documented heavily **on purpose**.* |
@@ -85,10 +85,10 @@
 |---|---|---|
 | **1** | ***a field or property too long for one line sits at the END of its own group*** | *the 2026-08-27 order said this for properties; the 2026-08-30 order does not restate it* — **dropping a rule because a later sentence was shorter is a recency fault** |
 | **2** | ***within PROPERTIES, public comes before protected*** | **Doug gave visibility order for fields and for methods and never for properties**, *which sit between them; the method direction was taken.* ***A genuine fork, not an obvious fill*** |
-| **3** | ***a blank line separates fields from properties even when both are one line*** | *follows from "blank lines separate the groups", and [the closeness rule](../designing-inexplicable-phenomena/12-the-closeness-rule.md) makes it load-bearing rather than cosmetic — **no line means one idea*** |
+| **3** | ***a blank line separates fields from properties even when both are one line*** | *follows from "blank lines separate the groups", and [the closeness rule](../the-coding-style/04-the-closeness-rule.md) makes it load-bearing rather than cosmetic — **no line means one idea*** |
 | **4** | ***`rules()` moved above `check()`*** | **the least comfortable application in the package** — *`check` is the entry point and `rules` is its helper, so reading-order wants the reverse.* **"The order is the scale bar" is the stronger claim** |
 | **5** | ***the archive's 215 comments and `.spec/`'s were LEFT*** | *both are deletions of recorded reasoning, and neither is organization* |
-| **6** | ***the chapter title [The Closeness Rule](../designing-inexplicable-phenomena/12-the-closeness-rule.md) is a PROXY*** | **taken from Doug's own sentence**, *flagged inside the chapter as his to rename* |
+| **6** | ***the chapter title [The Closeness Rule](../the-coding-style/04-the-closeness-rule.md) is a PROXY*** | **taken from Doug's own sentence**, *flagged inside the chapter as his to rename* |
 
 ---
 
@@ -111,7 +111,7 @@
 
 ***Reading `type` and `annotations` off the block meant naming `$Type` and `$Annotation` as VALUES — and both extend `$Writing`.*** **That is a load-time import cycle: `Class extends value undefined is not a constructor or null`, and 18 of 50 suites stopped loading at all.**
 
-***It is exactly the failure [The Unit of Code](../designing-inexplicable-phenomena/07-the-unit-of-code.md#lib) already records three times in v1*** — *"a class reaching for another class to ask a question about ITSELF"* — **and Doug's resolution is the better half of its prescription.** *Not a structural test smuggled back in, but:* **`$Annotation` dissolves into a boolean, and `$Type` is needed only as a TYPE, so `import type` erases it and the cycle cannot form.**
+***It is exactly the failure [The Unit of Code](../the-coding-style/01-the-unit-of-code.md#lib) already records three times in v1*** — *"a class reaching for another class to ask a question about ITSELF"* — **and Doug's resolution is the better half of its prescription.** *Not a structural test smuggled back in, but:* **`$Annotation` dissolves into a boolean, and `$Type` is needed only as a TYPE, so `import type` erases it and the cycle cannot form.**
 
 > ***The sentence worth keeping:*** **the cast is unsafe where it is written and made safe where the class lives.** *`$Writing` casts `annotations.at(0)` to `$Type` without checking; `$TypedSpecification`, which sits beside `$Type` and can name it freely, checks it. Doug: **"in type you can do the validation to make what I just said work. That's the magic of the type system."***
 
@@ -123,7 +123,7 @@
 
 ## <a id="names-owed"></a>Names owed
 
-***Three specification members were named by the author*** — **`$block`, `$once`, `$written`** — *under Doug's ruling that **"specification members are less important to me"*** ***as long as the sentences say what they do.*** **The chapter title [The Closeness Rule](../designing-inexplicable-phenomena/12-the-closeness-rule.md) remains a proxy taken from his own words.**
+***Three specification members were named by the author*** — **`$block`, `$once`, `$written`** — *under Doug's ruling that **"specification members are less important to me"*** ***as long as the sentences say what they do.*** **The chapter title [The Closeness Rule](../the-coding-style/04-the-closeness-rule.md) remains a proxy taken from his own words.**
 
 ---
 
@@ -140,7 +140,7 @@
 
 ***And three that are layout by the definition but that nobody asked for***, listed at the same weight rather than tucked away: **two blank lines added inside [`$Specification.rules()`](../../package/src/utilities/Specification.ts)**, applying the paragraphs rule to a method Doug never looked at; **import ORDER rearranged in [`Book.tsx`](../../package/src/book/Book.tsx) and [`Chapter.tsx`](../../package/src/book/Chapter.tsx)**, which is the author's own notion of consistency and no rule of his; and **`$Writing.build()` going from `{ }` to a two-line empty body.**
 
-> ***Everything else is plain layout and the line is firm:*** **the member regrouping, the eight `single` guards collapsed to one line — [his rule 2 verbatim](../designing-inexplicable-phenomena/12-the-closeness-rule.md#brevity) — the two other guards likewise, the paragraph break in `$Letter.build`, `rules()` moving above `check()`, the whitespace collapse, and end-of-file normalisation.**
+> ***Everything else is plain layout and the line is firm:*** **the member regrouping, the eight `single` guards collapsed to one line — [his rule 2 verbatim](../the-coding-style/04-the-closeness-rule.md#brevity) — the two other guards likewise, the paragraph break in `$Letter.build`, `rules()` moving above `check()`, the whitespace collapse, and end-of-file normalisation.**
 
 ---
 
@@ -161,7 +161,7 @@
 | | count | verdict |
 |---|---|---|
 | ***truly dynamic — the ALLOWED exception*** | **~6** | ***keep*** — `{ left: this.x, top: this.y }` from a drag · `{ color: colors[this.$priority] }` · and three in chemistry tests where **the inline style IS the thing under test**, proving reactivity reaches the DOM |
-| ***styling decisions in [`the-manifold.tsx`](../../.archive/app/src/sections/the-manifold.tsx)*** | **15** | ***fix*** — *and it is one file, already recorded as known-bad by [Ways of Reading](../designing-inexplicable-phenomena/04-ways-of-reading.md)* |
+| ***styling decisions in [`the-manifold.tsx`](../../.archive/app/src/sections/the-manifold.tsx)*** | **15** | ***fix*** — *and it is one file, already recorded as known-bad by [Ways of Reading](../ways-of-reading/04-ways-of-reading.md)* |
 | ***styling decisions elsewhere*** | **~10** | ***fix*** — *spread across the two demonstrations, one or two to a file* |
 
 ***Two of the manifold's carry HARD-CODED HEX*** — `#b3a37f` and `#eef3ea` — **which is the precise drift the rule names**: *"theme values inaccessible, drift inevitable."* ***Those two are the worst of the thirty-one and the cheapest to argue about.***

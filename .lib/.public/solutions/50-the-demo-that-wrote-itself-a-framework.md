@@ -37,7 +37,7 @@
 
 **So the one decision that actually distinguishes the two surfaces — *add a kind, or override one* — got made from LOCAL CODE QUALITY.** ***And local code quality always votes for the new class***, because a new class is cleaner in the file you are looking at *and its whole cost lands in files you are not.*
 
-**That is why [the elegance instruction](../designing-inexplicable-phenomena/11-the-coding-style.md) made it worse rather than better.** *Doug asked for pristine, canonical code — "we are using the code elegance to determine what is right" — and reading each file for its own beauty is exactly the reading that cannot see the line.*
+**That is why [the elegance instruction](../the-coding-style/03-the-coding-style.md) made it worse rather than better.** *Doug asked for pristine, canonical code — "we are using the code elegance to determine what is right" — and reading each file for its own beauty is exactly the reading that cannot see the line.*
 
 ### The direction of the error, which is the part worth carrying
 
@@ -56,7 +56,7 @@
 
 | what was seen | what it was |
 |---|---|
-| ***`writing is one kind of writing, and this one is 2`*** at runtime | a demo class carrying its own `$TypeOf…` **on top of** the framework type it already had — [P11](../designing-inexplicable-phenomena/19-what-we-believe.md) rejecting a second composition type |
+| ***`writing is one kind of writing, and this one is 2`*** at runtime | a demo class carrying its own `$TypeOf…` **on top of** the framework type it already had — [P11](../the-type-system/05-what-we-believe.md) rejecting a second composition type |
 | ***an `instanceof` promise that was wrong by design*** | a demo kind carrying `$TypeOfTableOfContents` without BEING one, so only `reflection.is` could answer |
 | ***a registration that would not typecheck*** | below |
 

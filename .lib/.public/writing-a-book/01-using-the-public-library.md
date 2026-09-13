@@ -12,7 +12,7 @@
 
 > ***Doug, on a demo chapter that carried `$WikipediaChapter$`, a `$TypeOfWikipediaChapter` and a `WikipediaChapterSpecification`:*** **"Not necessary — write this down. All that complex extension was so that the end user COULD subclass if they want to. No need to do specifications and interfaces. Understand??"**
 
-**The [four-declaration file](19-what-we-believe.md#the-shape) — interface, class, type, specification — is the LIBRARY's shape.** *It exists so that a class in `src` can be replaced at any part, carried as a type, and checked at build.* ***A consumer does not repeat it.*** A consumer writes one class, extending the library's, adding the data it needs — **no `$X$`, no `$TypeOfX`, no `XSpecification`.** *The type it inherits is the true one, and a second composition type on the same writing is what `type()` [does not admit](../solutions/50-the-demo-that-wrote-itself-a-framework.md).* **A subclass that adds only a look overrides `frame()`; one that adds only a drawing overrides `view()`; one that adds a fact adds a `$field`.**
+**The [four-declaration file](../the-type-system/05-what-we-believe.md#the-shape) — interface, class, type, specification — is the LIBRARY's shape.** *It exists so that a class in `src` can be replaced at any part, carried as a type, and checked at build.* ***A consumer does not repeat it.*** A consumer writes one class, extending the library's, adding the data it needs — **no `$X$`, no `$TypeOfX`, no `XSpecification`.** *The type it inherits is the true one, and a second composition type on the same writing is what `type()` [does not admit](../solutions/50-the-demo-that-wrote-itself-a-framework.md).* **A subclass that adds only a look overrides `frame()`; one that adds only a drawing overrides `view()`; one that adds a fact adds a `$field`.**
 
 ## <a id="the-normal-chapter"></a>The convention — `.chapter` subclasses the book's normal chapter
 
@@ -30,13 +30,13 @@
 
 > ***Doug, on a book whose two regions were called the door and the foot:*** **"There is NO door. Use web design language for Wikipedia. Don't be clever. Write this down."**
 
-**The library's own words are library words — cover, chapter, section, index card — and they are the library's.** *What a consumer names on a PAGE is named the way the web names it:* **`main` and `footer`, `nav`, `logo`, `search`, `grid`, `card`.** ***A coined word for a thing the web already has a word for is the same fault as [a coined word for a thing the library already has a word for](11-the-coding-style.md#no-jargon)*** — it reads well in the file and costs every reader after.
+**The library's own words are library words — cover, chapter, section, index card — and they are the library's.** *What a consumer names on a PAGE is named the way the web names it:* **`main` and `footer`, `nav`, `logo`, `search`, `grid`, `card`.** ***A coined word for a thing the web already has a word for is the same fault as [a coined word for a thing the library already has a word for](../the-coding-style/03-the-coding-style.md#no-jargon)*** — it reads well in the file and costs every reader after.
 
 ## <a id="no-comments"></a>No comments in the code, and the demo is code
 
 > ***Doug, twice in one hour, on comment blocks in `.wiki`:*** **"Stop putting code comments in the code."**
 
-**[The ban](11-the-coding-style.md#open) covers a consumer's files exactly as it covers `src`.** *A demo is not a `.spec` — it is the framework being used, and its files are read as code.* ***What a comment would have said goes in the library, and the library links to the file.***
+**[The ban](../the-coding-style/03-the-coding-style.md#open) covers a consumer's files exactly as it covers `src`.** *A demo is not a `.spec` — it is the framework being used, and its files are read as code.* ***What a comment would have said goes in the library, and the library links to the file.***
 
 ## <a id="minimalism"></a>The questions before any class — code minimalism and code ugliness minimalism
 
@@ -83,4 +83,4 @@
 
 ---
 
-*Written 2026-09-06 out of [The Wikipedia Demo](../projection/49-the-wikipedia-demo.md). The struck-word table in [The Coding Style](11-the-coding-style.md#the-anchors) was swept wholesale the same day on Doug's order — furniture → apparatus, ladder → chain, rung → step, refusal → rejection, mint → make — across both libraries.*
+*Written 2026-09-06 out of [The Wikipedia Demo](../projection/49-the-wikipedia-demo.md). The struck-word table in [The Coding Style](../the-coding-style/03-the-coding-style.md#the-anchors) was swept wholesale the same day on Doug's order — furniture → apparatus, ladder → chain, rung → step, refusal → rejection, mint → make — across both libraries.*

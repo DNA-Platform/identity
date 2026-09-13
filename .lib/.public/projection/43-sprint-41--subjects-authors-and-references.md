@@ -4,7 +4,7 @@
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
 - **status:** `implementation-ready` — brainstormed and planned with Doug 2026-09-04, every requirement ruled by him live. ***Every name is a proxy.***
 - **workflow:** [feature](../../../../.claude/library/..teamsmanship/19-workflows.md) — brainstorm and plan HERE, work next.
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 
 ---
 

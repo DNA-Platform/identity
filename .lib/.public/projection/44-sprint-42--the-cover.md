@@ -4,7 +4,7 @@
 - **coauthor:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 - **status:** `built` — brainstormed with Doug 2026-09-04, every requirement ruled by him live, built the same session. ***Every name is a proxy.***
 - **workflow:** [feature](../../../../.claude/library/..teamsmanship/19-workflows.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 
 ---
 

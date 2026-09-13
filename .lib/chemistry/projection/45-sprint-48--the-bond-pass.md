@@ -1,7 +1,7 @@
 # The Bond Pass
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **style:** [The Coding Style](../../../.public/.lib/designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../../../.public/.lib/the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 - **status:** `requirements-only` — *re-aimed 2026-09-08 at ONE RENDER, with the wiki as the canonical case; the bond-pass units below are the mechanism it will use.*
 - **was:** `implementation-ready` — *except [U2](#u2), which is **design owed** and marked so.*
 - ***The chapter name and the sprint number are PROXIES; Doug's to rename.***
@@ -47,7 +47,7 @@
 > ***AND A FIRST COUNT SAID TWO. IT WAS WRONG, AND THE WAY IT WAS WRONG IS WORTH KEEPING.*** *It missed the discarded body pass entirely, because a count keyed by `cid` cannot separate the two body passes — **they share an instance, a cid and a call site**, and differ only in whether the cache is set.* **Session `inexplicable-phenomena-0a` reported three and named the discriminator that settles it: record whether `$viewCache# The Bond Pass
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **style:** [The Coding Style](../../../.public/.lib/designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../../../.public/.lib/the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 - **status:** `requirements-only` — *re-aimed 2026-09-08 at ONE RENDER, with the wiki as the canonical case; the bond-pass units below are the mechanism it will use.*
 - **was:** `implementation-ready` — *except [U2](#u2), which is **design owed** and marked so.*
 - ***The chapter name and the sprint number are PROXIES; Doug's to rename.***

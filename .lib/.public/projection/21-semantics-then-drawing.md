@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
@@ -351,7 +351,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 **Files.** ***a new `Annotation.tsx`*** · `Author.tsx` · `Subject.tsx` · `Canonical.tsx` · `index.ts`. **Depends on** [U113](#u113), [U115](#u115), [U116](#u116).
 
-***Where the rules RUN, and it must remain a caller rather than a home.*** **[`validate.ts`](../../build/stages/validate.ts) is already the phase that holds every book at once and already says *"it invents no rules."*** *But [a rule that lives in the compiler is a rule the browser cannot ask](../designing-inexplicable-phenomena/05-the-live-library.md), and a library people write into needs the same rule at the moment writing arrives.*
+***Where the rules RUN, and it must remain a caller rather than a home.*** **[`validate.ts`](../../build/stages/validate.ts) is already the phase that holds every book at once and already says *"it invents no rules."*** *But [a rule that lives in the compiler is a rule the browser cannot ask](../ways-of-reading/05-the-live-library.md), and a library people write into needs the same rule at the moment writing arrives.*
 
 **Numeric end:** ***156 lines → about 75***, and **three `valid()` bodies that differ.** *The three files stop matching under name substitution, which is the fault stated as a measurement.*
 
@@ -745,7 +745,7 @@ build/
 
 **Files.** ***A chapter in the branch library.*** **Depends on** [U132](#u132) — *the compiler's unit is one of the three and its code has not been read yet.*
 
-***DONE — [The Unit of Code](../designing-inexplicable-phenomena/07-the-unit-of-code.md).*** **Filed in [Designing Inexplicable Phenomena](../designing-inexplicable-phenomena/.cover.md) rather than in the report, because a convention is a design decision and not a fault.**
+***DONE — [The Unit of Code](../the-coding-style/01-the-unit-of-code.md).*** **Filed in [Designing Inexplicable Phenomena](../.designing-inexplicable-phenomena/.cover.md) rather than in the report, because a convention is a design decision and not a fault.**
 
 ***And the reading produced one rule rather than three defences:*** **THE UNIT OF CODE IS WHATEVER THAT PROGRAM STATES ITS INVARIANTS OVER.** *`lib` states them over a WORD — "a title has words", "a letter is one grapheme" — so the file is the word.* **`$Chemistry` states them BETWEEN classes** — *that a read inside a view registers against the scope that is asking* — **so the mechanism is the file.** *The compiler states them over a SEAM, so the phase is the file.*
 
@@ -1328,7 +1328,7 @@ read(parts)  =  { c.read() | c in chapters }
 
 | Doug's ask, from the letter | asked of `lib` | asked of the compiler |
 |---|---|---|
-| **1 · say what the design principles ARE** | ***yes*** — [the principles read off the code](20-the-audit.md#part-i--the-principles-read-off-the-code) | ***NO.*** *One line exists — [the unit of code is a phase](../designing-inexplicable-phenomena/07-the-unit-of-code.md) — and nothing else* |
+| **1 · say what the design principles ARE** | ***yes*** — [the principles read off the code](20-the-audit.md#part-i--the-principles-read-off-the-code) | ***NO.*** *One line exists — [the unit of code is a phase](../the-coding-style/01-the-unit-of-code.md) — and nothing else* |
 | **2 · note what is DIFFERENT** | ***yes*** | ***partly*** — [the three codebases](../the-condition-report/07-the-three-codebases.md) measured it and registered differences, not faults |
 | **3 · find the warts** | ***yes*** — 52 of them | ***the one pass*** — [eight entries](../the-condition-report/08-the-compiler.md) |
 | **4 · how a `$Theme` could unify it** | ***yes***, and superseded by the rulings | **N/A** — *the compiler draws nothing* |

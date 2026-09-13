@@ -4,7 +4,7 @@
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
 - **status:** `implementation-ready` — planned 2026-09-04 out of [Sprint 39's rigorous notes](41-sprint-39--the-road.md#styled-chemicals-notes), which are the approved requirements. ***The title is a PROXY; sprint names are Doug's.***
 - **workflow:** [feature](../../../../.claude/library/..teamsmanship/19-workflows.md) — brainstorm DONE (Sprint 39, with Doug), plan HERE, work next.
-- **style:** [The Coding Style](../designing-inexplicable-phenomena/11-the-coding-style.md)
+- **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
 
 ---
 
@@ -14,7 +14,7 @@
 
 # <a id="literature"></a>The sprint opens with its literature
 
-[Sprint 39 § the notes](41-sprint-39--the-road.md#styled-chemicals-notes) — the approved requirements, Doug's namings and rulings · [Sprint 39 § the styled finding](41-sprint-39--the-road.md#the-styled-finding) and [§ the DI answer](41-sprint-39--the-road.md#rulings-0904b) — why a raw dress fails the fetch and why the registry does not · [ch10 § the fetch](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-fetch) and [§ the reactive-property law](../designing-inexplicable-phenomena/10-the-type-and-the-instance.md#the-reactive-law) — the two laws this rides · [ch13 The Default Dress](../designing-inexplicable-phenomena/13-the-default-dress.md) — the encyclopedia's own table, being rewritten · [ch11 § styling](../designing-inexplicable-phenomena/11-the-coding-style.md#styling) — never a style attribute, $Chemistry goes with styled components · [Solutions 45](../solutions/45-the-view-that-constructed-its-parts.md) — three appearances, the weight law this sprint can break · [Solutions 29](../solutions/29-the-bond-that-woke-the-tree-it-was-building.md) — construction-versus-mutation, the other law a `frame()` change can break · [chemistry authorship](../../../chemistry/.lib/authorship/.cover.md) — the framework's own guide, and the standard "not a mess of chemistry" is measured against.
+[Sprint 39 § the notes](41-sprint-39--the-road.md#styled-chemicals-notes) — the approved requirements, Doug's namings and rulings · [Sprint 39 § the styled finding](41-sprint-39--the-road.md#the-styled-finding) and [§ the DI answer](41-sprint-39--the-road.md#rulings-0904b) — why a raw dress fails the fetch and why the registry does not · [ch10 § the fetch](../the-type-system/02-the-type-and-the-instance.md#the-fetch) and [§ the reactive-property law](../the-type-system/02-the-type-and-the-instance.md#the-reactive-law) — the two laws this rides · [ch13 The Default Dress](../the-motif/01-the-default-dress.md) — the encyclopedia's own table, being rewritten · [ch11 § styling](../the-coding-style/03-the-coding-style.md#styling) — never a style attribute, $Chemistry goes with styled components · [Solutions 45](../solutions/45-the-view-that-constructed-its-parts.md) — three appearances, the weight law this sprint can break · [Solutions 29](../solutions/29-the-bond-that-woke-the-tree-it-was-building.md) — construction-versus-mutation, the other law a `frame()` change can break · [chemistry authorship](../../../chemistry/.lib/authorship/.cover.md) — the framework's own guide, and the standard "not a mess of chemistry" is measured against.
 
 **Read in the code, whole, before U20:** `particle.ts` (the seat), `bond.ts` 1–235 (the reactive law and the inert registry), `chemical.ts` 896–1145 (facade — the precedent this imitates) and 1460–1745 (the `$` walk and DI), `molecule.ts` (what makes a field reactive), `scope.ts` (what a write reaches).
 
@@ -114,7 +114,7 @@
 ***Three corrections to what the record says:***
 
 1. **The notes say two non-flat dresses; there are THREE** — `Anchor` (`&:hover`), `Prose` (`& &`) and `Output` (`> *:first-child`). *The third was missed because it has no declaration outside its nested block.* `read`
-2. **`encyclopedia/Table.tsx` and `Columns.tsx` have ZERO consumers** — `writing/Table.tsx` imports from `Wikitable.tsx` instead, and `Table.tsx` is a near-duplicate of it. **~40 lines of dead dress in the folder being rewritten**, and [ch13](../designing-inexplicable-phenomena/13-the-default-dress.md) claims `Columns` dresses a plain file. *A thing said twice, and a thing said once and never used.* `read`
+2. **`encyclopedia/Table.tsx` and `Columns.tsx` have ZERO consumers** — `writing/Table.tsx` imports from `Wikitable.tsx` instead, and `Table.tsx` is a near-duplicate of it. **~40 lines of dead dress in the folder being rewritten**, and [ch13](../the-motif/01-the-default-dress.md) claims `Columns` dresses a plain file. *A thing said twice, and a thing said once and never used.* `read`
 3. **`Anchor` is drawn by `$Writing.view()`** ([Writing.tsx:41](../../package/src/writing/Writing.tsx)) for any writing carrying a `means` — **and `$Writing` is the base of all seven levels**, so an Anchor can land at word grade. ***That is Solutions 45's weight class, and it is the sprint's largest risk*** ([K3](#k3)). `read`
 
 # <a id="requirements"></a>The requirements — approved, from Sprint 39's brainstorm with Doug
@@ -171,7 +171,7 @@
 - <a id="d57"></a>**D57 — THE FEATURE ADDS NO NEW CONCEPT TO CHEMISTRY. It composes five that exist:** the template-read (`facadesOf`), the per-class `WeakMap` (`worn`), the descriptor walk (`deepestLook`), **the three-tier naming law (`$Reflection.isReactive`, which is Doug's three spellings already written)**, and the wrap seat (`frame`). ***This is the answer to "don't make a mess of chemistry", and it is checkable as a diff: ONE new file, ONE field on `$Particle`, ONE exported symbol, ONE protected method — and nothing else touched. `bond.ts`, `molecule.ts`, `scope.ts` and `reaction.ts` are not opened.*** [K1](#k1) is what happens if that stops being true.
 - <a id="d66"></a>**D66 — the three spellings are RESOLVED, never merged** ([R147](#r147)): one CSS property is emitted once, from its highest declared tier. **Chosen over:** emitting each spelling and letting the cascade sort it *(rejected: last-wins in CSS is position-dependent, so a subclass's `_x` could beat a base's `$x` by accident — the precedence must be decided before the stylesheet exists, not inside it)*.
 - <a id="d58"></a>**D58 — the compiled component is cached in a module-private `WeakMap` keyed by CLASS; `[style]` is the authored seat and a getter that answers either.** **Chosen over:** stamping the compiled component onto the constructor *(failed by chemical.ts:898-901's own comment — the constructor-static invariant)* and caching per instance *(rejected: R142, and it would multiply stylesheets).*
-- <a id="d59"></a>**D59 — CSS detection is `name in element.style`, computed once per name into a module-level `Set`.** **Chosen over:** a hand-kept property roster *(rejected: [The Order of a Class](../designing-inexplicable-phenomena/08-the-order-of-a-class.md)'s "an exception may never enumerate a roster", and the browser already holds the list)* and a naming convention like a `css` prefix *(rejected: Doug asked for plain camelCase fields).*
+- <a id="d59"></a>**D59 — CSS detection is `name in element.style`, computed once per name into a module-level `Set`.** **Chosen over:** a hand-kept property roster *(rejected: [The Order of a Class](../the-coding-style/02-the-order-of-a-class.md)'s "an exception may never enumerate a roster", and the browser already holds the list)* and a naming convention like a `css` prefix *(rejected: Doug asked for plain camelCase fields).*
 - <a id="d60"></a>**D60 — live props reach the stylesheet WITH their `$` intact**, not through `[$props$]()`, which strips it. **Chosen over:** reusing `[$props$]()` *(rejected: a stripped `background` prop is forwarded to the DOM by styled-components and becomes an invalid attribute — [§ the alignment](#g-props)).*
 - <a id="d61"></a>**D61 — the template guard is NOT copied from the facade.** `$Chemical.frame()` opens `if (this[$isTemplate$]) return super.frame()`; **an `$Atom` IS its own template** ([atom.ts:23-39](../../../chemistry/package/src/abstraction/atom.ts)), so copying that guard would make a styled atom — the natural theme container — the one thing that can never wear its own style. **Chosen over:** symmetry with the facade *(rejected on the read).*
 - <a id="d62"></a>**D62 — the three nested dresses (`Anchor`, `Prose`, `Output`) occupy `[style]` by hand and compile nothing.** ***They are the feature's escape hatch being exercised by its first consumer, which is the honest way to prove R144.*** **Chosen over:** teaching the compiler nested selectors *(rejected this sprint: it is a second feature wearing the first one's name).*
@@ -260,7 +260,7 @@
 
 **Mechanism:** a `verify-styled.mjs` in the `verify-*.mjs` family drives a real browser and asserts **visible text and computed style**, including a reload where persistence is claimed.
 **Files:** `chemistry/package/app/verify-styled.mjs`. **Depends on:** [U26](#u26), [U27](#u27).
-**Demo contribution:** ***the sprint's stop condition*** — [no feature ships unseen](../designing-inexplicable-phenomena/11-the-coding-style.md#seen).
+**Demo contribution:** ***the sprint's stop condition*** — [no feature ships unseen](../the-coding-style/03-the-coding-style.md#seen).
 
 # <a id="scenarios"></a>Test scenarios — Queenie's, per unit
 
@@ -352,7 +352,7 @@
 
 **THE ENCYCLOPEDIA IS REWRITTEN**: ten dresses as styled chemicals, all thirteen consumer seats fetching through `$`, the palette as **`$Theme`** in the book folder, **`utilities/Styled.ts` DELETED**, and **zero `style` attributes in lib `src`**.
 
-**DOCUMENTED IN BOTH BRANCHES**, per Doug — *"we need to not lose the idea that this is how we do it"*: [particle/11 Styled Particles](../../../chemistry/.lib/particle/11-styled-particles.md) for the mechanism, [ch13 The Default Dress](../designing-inexplicable-phenomena/13-the-default-dress.md) for how this library uses it.
+**DOCUMENTED IN BOTH BRANCHES**, per Doug — *"we need to not lose the idea that this is how we do it"*: [particle/11 Styled Particles](../../../chemistry/.lib/particle/11-styled-particles.md) for the mechanism, [ch13 The Default Dress](../the-motif/01-the-default-dress.md) for how this library uses it.
 
 ## <a id="found"></a>What the framework already knew — and I did not
 
@@ -363,7 +363,7 @@
 
 **Compounded into [chemistry's reactivity book](../../../chemistry/.lib/reactivity/01-reactive-properties.md)**, not Solutions: *a function held as a VALUE is the exception, the framework cannot know which you meant, and it gives you three ways to say so.*
 - ***`$(plainFunction)` already wraps*** what Doug asked for in September — [chemical.ts:1690](../../../chemistry/package/src/abstraction/chemical.ts). *Another thing the framework already had.*
-- ***A type error blamed on the framework was a MISUSE of `$`, and the wrong diagnosis stood for a day.*** Two sites read `$((code ? prints.get(code) : undefined) ?? reference)` and were reported as a gap in `$`'s overload set, surfaced by a stale build. **Both claims were wrong.** *Doug: "are those even components? Is this doing what you think? NO variables."* `prints.get(code)` is a **registry lookup** — already somebody's resolution — so `$` was re-asking an answered question, and the union that broke the compiler was the shape of that mistake. **Moving `$` onto the literal — `const Reference = $(reference)`, with the lookup falling back to it — dissolved the union and cleared the last `tsc` error in the package.** Compounded into [ch16 § never a variable](../designing-inexplicable-phenomena/16-the-shape-of-tsx.md#never-a-variable).
+- ***A type error blamed on the framework was a MISUSE of `$`, and the wrong diagnosis stood for a day.*** Two sites read `$((code ? prints.get(code) : undefined) ?? reference)` and were reported as a gap in `$`'s overload set, surfaced by a stale build. **Both claims were wrong.** *Doug: "are those even components? Is this doing what you think? NO variables."* `prints.get(code)` is a **registry lookup** — already somebody's resolution — so `$` was re-asking an answered question, and the union that broke the compiler was the shape of that mistake. **Moving `$` onto the literal — `const Reference = $(reference)`, with the lookup falling back to it — dissolved the union and cleared the last `tsc` error in the package.** Compounded into [ch16 § never a variable](../the-coding-style/06-the-shape-of-tsx.md#never-a-variable).
 - ***Rewriting a demo file wholesale breaks Vite's HMR*** until the server restarts, reporting *"does not provide an export named 'default'"* — a working feature that looks broken.
 
 ## <a id="closed"></a>What closed the sprint, 2026-09-04 evening
@@ -374,7 +374,7 @@
 
 **Every component local now carries its component's name**, `Wikitable` and `Styled.ts` are gone, no file in `src` sets a `style` attribute, and **`tsc` is 0**.
 
-**THE CONVENTIONS THIS PRODUCED**, which is the durable half: [The Shape of TSX](../designing-inexplicable-phenomena/16-the-shape-of-tsx.md) — layout, variable naming, `$` usage and collisions — and [ch11's no-invented-language row](../designing-inexplicable-phenomena/11-the-coding-style.md#no-jargon), restated after a second offence.
+**THE CONVENTIONS THIS PRODUCED**, which is the durable half: [The Shape of TSX](../the-coding-style/06-the-shape-of-tsx.md) — layout, variable naming, `$` usage and collisions — and [ch11's no-invented-language row](../the-coding-style/03-the-coding-style.md#no-jargon), restated after a second offence.
 
 **Not done, and named rather than omitted:** the `one` rename inside **test** files — 135 cosmetic sites — attempted twice and reverted both times, the second time after block-scoping bled across `it(…)` blocks and reddened 36 promises. It wants doing by hand.
 
@@ -404,7 +404,7 @@
 
 **COMPLETE — the styled-chemicals feature, and the encyclopedia riding it.** A class names what it is styled as; its CSS-named fields are the stylesheet; three spellings map onto chemistry's own reactive law; getters are live; nested rules are members through `@select` or a written name; a prefix frees a name only where one class says a property twice; and a styled chemical takes ordinary props too. **The encyclopedia is eleven dresses on a `$Style` base that fetches the theme once**, with no views, no comments, `Styled.ts` deleted and **no `style` attribute anywhere in lib `src`**. `@dna-platform/lib/encyclopedia` and `/utilities` are their own surfaces.
 
-**COMPLETE — the record.** [chemistry particle/11](../../../chemistry/.lib/particle/11-styled-particles.md) for the mechanism, [ch13 The Default Dress](../designing-inexplicable-phenomena/13-the-default-dress.md) for how this library uses it, [reactivity/01](../../../chemistry/.lib/reactivity/01-reactive-properties.md) for the compounded lesson, and [ch11 § no invented language](../designing-inexplicable-phenomena/11-the-coding-style.md#no-jargon) for the standing law restated.
+**COMPLETE — the record.** [chemistry particle/11](../../../chemistry/.lib/particle/11-styled-particles.md) for the mechanism, [ch13 The Default Dress](../the-motif/01-the-default-dress.md) for how this library uses it, [reactivity/01](../../../chemistry/.lib/reactivity/01-reactive-properties.md) for the compounded lesson, and [ch11 § no invented language](../the-coding-style/03-the-coding-style.md#no-jargon) for the standing law restated.
 
 **NOT STARTED — Wave 4**, and nothing of it is begun.
 

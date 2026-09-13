@@ -29,7 +29,7 @@ override view(): ReactNode {
 }
 ```
 
-*So a scope can stand a different `$Heading` behind the same word, and the consumer never knows.* **This is [the `$`-fetch corollary](10-the-type-and-the-instance.md#the-fetch) and [The Shape of TSX](16-the-shape-of-tsx.md#the-dollar) applied to the dresses**, and it is the reason chapter zero's item 29 dissolved rather than being answered.
+*So a scope can stand a different `$Heading` behind the same word, and the consumer never knows.* **This is [the `$`-fetch corollary](../the-type-system/02-the-type-and-the-instance.md#the-fetch) and [The Shape of TSX](../the-coding-style/06-the-shape-of-tsx.md#the-dollar) applied to the dresses**, and it is the reason chapter zero's item 29 dissolved rather than being answered.
 
 ***The palette is a chemical, and it is an ANNOTATION*** — so it can be written into a document and found there. [`$Theme`](../../package/src/writing/Writing.tsx) carries Wikipedia's own values — paper, ink, quiet, shade, rule, link, measure, body, display, size, leading — **and a dress fetches it through `$` in its bond constructor and decorates its properties with getters:**
 
@@ -70,7 +70,7 @@ get borderBottom() { return `1px solid ${this.theme.rule}`; }
 | `Columns` | a plain file | the category index — *"maybe that can look like an index page"* |
 | `Cited` | the references section, printed | the numbered `.references` list at the end |
 
-**A plain file alone wears the index columns — a book is a file that outgrew the index look, decided by constructor identity.** The two laws every atom obeys are filed in [The Coding Style](11-the-coding-style.md#styling): *never a style attribute on HTML*, and *$Chemistry goes with styled components* — **and `utilities/Styled.ts` is gone**, the framework exporting `styled` itself.
+**A plain file alone wears the index columns — a book is a file that outgrew the index look, decided by constructor identity.** The two laws every atom obeys are filed in [The Coding Style](../the-coding-style/03-the-coding-style.md#styling): *never a style attribute on HTML*, and *$Chemistry goes with styled components* — **and `utilities/Styled.ts` is gone**, the framework exporting `styled` itself.
 
 ## <a id="not-dressed"></a>What is deliberately not dressed
 
