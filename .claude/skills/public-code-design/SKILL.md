@@ -27,7 +27,7 @@ description: A PRINCIPLE UNDER TRIAL, given by Doug 2026-09-08 and codified as g
 1. **Create the files for everything you intend to build — all of them, now.** Every class in every folder the design names, including the demos and their tests. A file per class, in the shape every file here has (interface · class · type · specification · exports).
 2. **Every member goes in as an empty shell that throws `not implemented`**, with a comment saying what it will do and what it depends on. A member you cannot yet name goes in under a proxy name, flagged.
 3. **Build them all at once, top of the dependency hierarchy first,** so each next piece is designed for by the piece before it. *"You need to build them all at once."*
-4. **Sketch the type hierarchy and all its instantiations.** Polymorphism is the instrument: an instantiation that needs what its base does not offer is a finding about the base — [Polymorphic Limiting](../../../library/.public/.lib/designing-inexplicable-phenomena/21-polymorphic-limiting.md) — never a slot added to hold it.
+4. **Sketch the type hierarchy and all its instantiations.** Polymorphism is the instrument: an instantiation that needs what its base does not offer is a finding about the base — [Polymorphic Limiting](../../../library/.public/.lib/the-type-system/06-polymorphic-limiting.md) — never a slot added to hold it.
 5. **Edit as you go, adding little implementations**, and watch what each one does to the shells that lean on it. You will guess wrong; the shells are where a wrong guess is cheap.
 6. **Mark everything**: at the head of each file whether it is FOUNDATION (was here before), CREATED (clay — yours to change freely) or IN PROGRESS; at each member whether it is implemented, scaffolded or owed.
 7. **Take notes as code comments** — on members, on dependencies, on guesses — many of them while the work is unsettled. **A file with no comments is done.** A comment that becomes standard belongs in documentation, not in code: move it to a chapter and delete it.
@@ -37,7 +37,7 @@ description: A PRINCIPLE UNDER TRIAL, given by Doug 2026-09-08 and codified as g
 
 ## Why comments, here, against the standing ban
 
-[The Coding Style](../../../library/.public/.lib/designing-inexplicable-phenomena/11-the-coding-style.md#open) bans comments in finished code because a comment dresses density up as documented. **This procedure uses the same fact the other way round:** while a design is unsettled, the comments ARE the register of what is guessed, owed and depended on, and their disappearance is the measure of completion. The ban holds for what is finished; the shells are not finished by definition.
+[The Coding Style](../../../library/.public/.lib/the-coding-style/03-the-coding-style.md#open) bans comments in finished code because a comment dresses density up as documented. **This procedure uses the same fact the other way round:** while a design is unsettled, the comments ARE the register of what is guessed, owed and depended on, and their disappearance is the measure of completion. The ban holds for what is finished; the shells are not finished by definition.
 
 ## <a id="trial-notes"></a>Trial notes — small, dated, never editing the principle
 

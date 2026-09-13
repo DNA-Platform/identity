@@ -32,7 +32,7 @@ description: read the code against the conventions this branch wrote down and sa
 |---|---|
 | ***Doug's three sentences*** | *ceremony, ugly members, coherence — **not the implementer's criteria**, and they can convict code the implementer is proud of* |
 | ***a COUNT*** | *327 of 2,962 lines, 41 bond constructors, six identical `heading()` declarations.* **A number does not share an opinion** |
-| ***what the framework SAYS against what the code CAN SAY*** | **[Shells Over Types](../../../library/.public/.lib/designing-inexplicable-phenomena/14-shells-over-types.md) says the TYPE confers the powers; an `implements` clause cannot be satisfied by a type conferring anything.** *That gap is objective and neither side of it is a matter of taste* |
+| ***what the framework SAYS against what the code CAN SAY*** | **[Shells Over Types](../../../library/.public/.lib/the-type-system/03-shells-over-types.md) says the TYPE confers the powers; an `implements` clause cannot be satisfied by a type conferring anything.** *That gap is objective and neither side of it is a matter of taste* |
 | ***the running page*** | *the [performance](../../../library/.public/.lib/the-public-skillset/02-public-audit-performance.md) and [parse](../../../library/.public/.lib/the-public-skillset/03-public-audit-parse.md) audits, which can contradict a reading outright* |
 
 **A finding resting on none of those four is the implementer agreeing with the implementer**, *and it should be struck whether it sounds right or not.*
@@ -48,7 +48,7 @@ description: read the code against the conventions this branch wrote down and sa
 
 | the defence | what it actually says |
 |---|---|
-| ***"TypeScript demands the member"*** | **the type system cannot express what the framework says is true.** *[Shells Over Types](../../../library/.public/.lib/designing-inexplicable-phenomena/14-shells-over-types.md) says the TYPE confers the powers; an `implements` clause cannot be satisfied by a type conferring anything, so the member is copied by hand into every kind* |
+| ***"TypeScript demands the member"*** | **the type system cannot express what the framework says is true.** *[Shells Over Types](../../../library/.public/.lib/the-type-system/03-shells-over-types.md) says the TYPE confers the powers; an `implements` clause cannot be satisfied by a type conferring anything, so the member is copied by hand into every kind* |
 | ***"the convention requires eight declarations"*** | **a convention mandating eight artefacts per kind is the signal, not the excuse.** *A rule that has to be remembered eight times is a feature that was never built* |
 | ***"doing it the other way would be slower"*** | **the cost is real and it is a fact about the framework, not about the code.** *Name the cost, then ask what would make the honest shape affordable* |
 | ***"a rule that reads the parts runs the parser"*** | **the framework cannot answer a question without paying for it**, so the class works around the question instead of asking it |
@@ -124,13 +124,13 @@ super.$Composition($check(block, $Block).concat($check($TypeOfSection, '!')));
 
 ## The documents in force — read these, do not re-derive them
 
-**[The Coding Style](../../../library/.public/.lib/designing-inexplicable-phenomena/11-the-coding-style.md) is the index to all of it** and names which document rules what. The ones this audit leans on hardest:
+**[The Coding Style](../../../library/.public/.lib/the-coding-style/03-the-coding-style.md) is the index to all of it** and names which document rules what. The ones this audit leans on hardest:
 
-- **[The Unit of Code](../../../library/.public/.lib/designing-inexplicable-phenomena/07-the-unit-of-code.md)** and **[The Order of a Class](../../../library/.public/.lib/designing-inexplicable-phenomena/08-the-order-of-a-class.md)** — what a class is allowed to be, and the order its parts stand in
-- **[The Closeness Rule](../../../library/.public/.lib/designing-inexplicable-phenomena/12-the-closeness-rule.md)** — where a thing belongs
-- **[Shells Over Types](../../../library/.public/.lib/designing-inexplicable-phenomena/14-shells-over-types.md)** and **[The Interface Type System](../../../library/.public/.lib/designing-inexplicable-phenomena/17-the-interface-type-system.md)** — how a kind is declared
-- **[The Spelling of a Kind](../../../library/.public/.lib/designing-inexplicable-phenomena/15-the-spelling-of-a-kind.md)** and **[The Shape of TSX](../../../library/.public/.lib/designing-inexplicable-phenomena/16-the-shape-of-tsx.md)** — the surface a consumer reads
-- **[The two anchors](../../../library/.public/.lib/designing-inexplicable-phenomena/11-the-coding-style.md#the-anchors)** — *this is the public library, and it is closed under books.* **Every word in the code is a word a library actually uses**, and [no invented language](../../../library/.public/.lib/designing-inexplicable-phenomena/11-the-coding-style.md#no-jargon) is a standing law with two dated offences behind it
+- **[The Unit of Code](../../../library/.public/.lib/the-coding-style/01-the-unit-of-code.md)** and **[The Order of a Class](../../../library/.public/.lib/the-coding-style/02-the-order-of-a-class.md)** — what a class is allowed to be, and the order its parts stand in
+- **[The Closeness Rule](../../../library/.public/.lib/the-coding-style/04-the-closeness-rule.md)** — where a thing belongs
+- **[Shells Over Types](../../../library/.public/.lib/the-type-system/03-shells-over-types.md)** and **[The Interface Type System](../../../library/.public/.lib/the-type-system/04-the-interface-type-system.md)** — how a kind is declared
+- **[The Spelling of a Kind](../../../library/.public/.lib/the-coding-style/05-the-spelling-of-a-kind.md)** and **[The Shape of TSX](../../../library/.public/.lib/the-coding-style/06-the-shape-of-tsx.md)** — the surface a consumer reads
+- **[The two anchors](../../../library/.public/.lib/the-coding-style/03-the-coding-style.md#the-anchors)** — *this is the public library, and it is closed under books.* **Every word in the code is a word a library actually uses**, and [no invented language](../../../library/.public/.lib/the-coding-style/03-the-coding-style.md#no-jargon) is a standing law with two dated offences behind it
 - **[The coding policy](../../library/..teamsmanship/08-coding-policy.md)** — cite or stop, and the property test
 
 ## Where each finding goes
@@ -142,6 +142,6 @@ super.$Composition($check(block, $Block).concat($check($TypeOfSection, '!')));
 | a **missing framework feature** the ceremony reading exposed | **[chemistry's chapter zero](../../../library/chemistry/.lib/projection/00-planning.md)**, because the fix is one level down and not in this package |
 | a defect whose **cause** you diagnosed | **[Solutions](../../../library/.public/.lib/solutions/.cover.md)**, indexed by the symptom as it was observed |
 
-***And nothing here is a rename.*** **[Names are proxies and Doug's to rule](../../../library/.public/.lib/designing-inexplicable-phenomena/11-the-coding-style.md#no-jargon)** — *an audit may say a name is wrong and say why; it may not choose the replacement.*
+***And nothing here is a rename.*** **[Names are proxies and Doug's to rule](../../../library/.public/.lib/the-coding-style/03-the-coding-style.md#no-jargon)** — *an audit may say a name is wrong and say why; it may not choose the replacement.*
 
 <!-- library: library/.public/.lib/the-public-skillset/04-public-audit-code-patterns.md -->

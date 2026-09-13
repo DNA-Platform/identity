@@ -76,6 +76,18 @@ Their reason is that work references units by identifier *across plan edits*, so
 
 *This is the mirror of [the unit with no mechanism](#a-unit-with-no-mechanism-is-not-a-unit--added-out-of-sprint-48s-failure): there a plan claimed work it had not designed, here a plan claimed scale it had not measured. **Both are a plan asserting something about work it never looked at.***
 
+## A deferral carried into a rule is a wart the plan wrote — added out of Sprint 66
+
+**A unit whose mechanism is designed and not built is more dangerous than one with no mechanism**, because it looks finished. [Sprint 66](../../../library/.public/.lib/projection/72-sprint-66--themes-and-formats.md#d3) planned the split of every theme into formats and wrote into its assignment rule: *"cover, synopsis and contents stay with the frame until they are typed."* Doug had ruled the typing by name in Sprint 64 — *"you simply type it… in the specification of the type"* — it was that sprint's U4, unbuilt; Sprint 65 carried it as "owed"; Sprint 66 made the absence a rule and styled a basic template of the framework from its parent's selectors. Doug: **"The cover is a cover. You don't see this as a wart where you are fucking up a thing that is a basic template of a framework? You are fired."** The full account is [The Cover Is a Cover](../../../library/.public/.lib/the-type-system/08-the-cover-is-a-cover.md).
+
+**What follows:**
+
+- **A plan inherits no "owed" unit.** A kind or a mechanism Doug ruled and an earlier sprint did not build is the *first* unit of the next plan or the plan says why not, in his words, and waits.
+- **An exception list inside a decision is the tell.** *These three, until then* names the missing kind; the decision is rewritten around the kind, not around its absence.
+- **The questions a plan asks Doug are about what he has already ruled**, before they are about what is new.
+
+*The third failure of the same shape: [Sprint 48](#a-unit-with-no-mechanism-is-not-a-unit--added-out-of-sprint-48s-failure) claimed a design it never made, [The Build](#a-dispatch-is-checked-against-the-size-of-the-work--added-out-of-the-build) a scale it never measured, and Sprint 66 an absence it had been told to fill. **All three are a plan asserting something about work it never looked at.***
+
 ## Origin tracing runs BOTH directions
 
 Every requirement, actor, flow, and acceptance example from [ce-brainstorm](28-ce-brainstorm.md) **cites into** the unit or test scenario that realizes it — **and every unit cites back to a mechanism and a visible end** — a test scenario says which acceptance example it covers. Before the plan is finished, every requirement is checked to have somewhere it lands. **Nothing silently drops.**
