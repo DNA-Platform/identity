@@ -3,16 +3,34 @@
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 - **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
-- **status:** `implementation-ready` — ***HALTED at the list of work for Doug's go*** — *the register written 2026-09-13 from a reading of every file in `src` (5,781 lines), the four books' files, the suite and the design books; ruled row by row in the room; planned the same day. Nothing built, nothing deleted. Compounding after, on his word.*
+- **status:** `closed` — ***the sprint ended 2026-09-13 at Doug's word, after U1, U13 and U12; the rest of the plan stands for the next*** — *the register written 2026-09-13 from a reading of every file in `src` (5,781 lines), the four books' files, the suite and the design books; ruled row by row in the room; planned the same day. Nothing built, nothing deleted. Compounding after, on his word.*
 - ***The chapter name is a proxy; Doug's to rename.***
 
 ---
 
-## <a id="where"></a>Where things stand — ***2026-09-13, planned and HALTED at the list***
+## <a id="where"></a>Where things stand — ***2026-09-13, the sprint closed at Doug's word***
 
-**Next action: Doug's go, then `/ce-work` on [the plan](#plan) starting at [D11](#d11) and [U1](#u1).** *"Finish up the design and halt and then we implement it."* The register beneath is what was found; the rulings are his words; the plan is the eleven units. **The working copy is Sprint 68's:** `main` at `f40866f` with its five files modified and uncommitted (its cover entry says *built and halted*; its chapter's stand has not caught up); this chapter touches none of them. Chapter zero is untouched until the review.
+**Next action: `/ce-brainstorm` for the next sprint, opening from the [rulings](#rulings) below and the four books they went into** — unless Doug's first word is the yes that F11 waits on, in which case `/ce-work` on this chapter at one line: a title's bond makes a heading only from something said, which greens the one red promise. *What this session expects the next sprint to be, plainly marked as an expectation: U5 — themes hold values, formats hold CSS — because the provider now exists and the day's collisions were its symptom. The subject is his to set.*
 
-**How every row is read.** *file:line* · the fight in the implementer's words · where it is paid · what `.public` owes so it disappears · the promise that pins it · **state**: `run` (counted this session by grep) · `read` (seen at the line) · `recorded` (the library says so) · `guess`. **A row says what is; the ruling is his.** No name here is proposed; proxies are marked.
+**What Doug last said:** *"Then /ce-compound and /ce-handoff and we'll call this the end of the sprint."*
+
+**Done, in plain words.** Every kind that wears a format now draws one element — the format is the element, no wrapper, no `of` ([U1](#u1)). A writing given a reference draws as an anchor, its own element, and nothing derives a meaning from a part — the index-card kind is deleted, the catalogue card is left as subtraction left it for Doug to design, the portal's cards carry their own references, a cover's title means the book and a title elsewhere is a name ([U13](#u13)). The theme is drawn once at the book's root from the registered class, provides itself through chemistry's `[theme]`, and is reached by everything beneath — the hand-rolled theming (`_theme` twice, a run-down setter, a walk, a default, a singleton) is deleted, and a book is re-themed by registration ([U12](#u12), [B14](#b14)). The portal's `Logo` kind is gone for `Image`; two theme rules that sized images by their bytes are gone; the wiki gate's selectors that assumed wrappers are corrected. The sprint chapter was four copies of itself and is one.
+
+**Not started, for the next plan:** the `view()` overrides case by case ([U3](#u3)); the article's own book kind ([U4](#u4)); themes as values and the four-bin reading of both theme files ([U5](#u5)); the appearance panel's promise, whose mechanism now exists ([U6](#u6)); the heading demand said once, design owed ([U7](#u7)); annotations demanding nothing ([U8](#u8)); the dead and the cruft ([U9](#u9)); the parentheticals seen ([U10](#u10)); the extending-`$Writing` chapter ([U11](#u11)).
+
+**Blockers.** One red promise, `title.test` "an empty title is refused": its mechanism was the title promise Doug moved to the cover; the wart-free fix is F11's one condition in `$Title`'s bond and waits on his yes. The portal's inherited reds — search −7, language button −26, card −34 at 1280 and 1000, the narrow footer at 768 — wait on Wikipedia's own CSS being transcribed into the demo (`.search-container { margin: .4rem auto 1.95rem }` is read and not yet written); demo work, not a unit.
+
+**Verification, run fresh at the close.** Suite **107 of 108**, the red named above. `tsc` **0**. `npm run clean` **0**. `verify:latex` **green on both readings**, and seen: the LaTeX reading in Latin Modern on its desk, the Markdown reading in the system face on its card, the header's switch re-theming the page by registration, no page errors. `verify:wiki`: turing **19 of 20** at every pinned width (the footer's 32px, inherited), article **82 of 90** manual links and the same footer (inherited), portal wordmark, ring and both languages green with the four inherited drifts above. Chemistry: **d7667a7**, 906 of 906, Lab case six seen.
+
+**Wrong turns, so they are not retried.** Drawing the registered `'single'` theme with the book's children re-bonds it — no singleton, [Solutions 79](../solutions/79-the-single-that-re-bonded-with-the-book-s-children.md). A base-theme rule to keep a linked section block beat the card's grid — deleted; the display lives in the one theme that measured it. Subtracting the portal's gaps from the recording — three of four numbers landed on the wrong element — reverted. A names check on `$Title` and a `meansABook` promise on `$CatalogueCard` — reverted on his word. The whole first day chasing a page that was red at HEAD — [ce-work](../../../../.claude/library/our-skillset/30-ce-work.md) now carries the rule and [The Reach](../the-coding-style/07-what-natural-means.md#the-reach) the lesson. Two edit-script quoting faults — `$\`` in a JavaScript replacement and `$Name` in a bash double quote — corrupted two chapters, both repaired byte-exact; function replacers and spawns without a shell from now on.
+
+**The demo, and how to see it.** In `library/.public/package`: `npm run build:quick` before the suite (it reads `dist`); `sh serve.sh` — the paper at http://localhost:5310/ with LaTeX and Markdown by the header's switch, the wiki at http://localhost:5311/turing, /article and / for the portal; `npm run verify:wiki` and `npm run verify:latex` for the gates; `node .wiki/.public/build.mjs` and `node .latex/.public/build.mjs` rebind the served mirrors after a demo edit.
+
+**Read first — what each is load-bearing for, a starting point and not a boundary:** the [rulings](#rulings) below, his words; [What Natural Means](../the-coding-style/07-what-natural-means.md) — the criterion, [The Reach](../the-coding-style/07-what-natural-means.md#the-reach) and [the CSS shapes](../the-coding-style/07-what-natural-means.md#the-css-shapes); [the motif's provider section](../the-motif/04-themes-per-type-formats-per-instance.md#provider) — what stands in the code for themes now; [Solutions 79](../solutions/79-the-single-that-re-bonded-with-the-book-s-children.md) and [80](../solutions/80-the-rules-that-won-by-counting-classes.md) — the two defects; chemistry's [chapter zero](../../../chemistry/.lib/projection/00-planning.md#pitch-theme) — the provider as built.
+
+**Nothing is pushed.** The close is one local commit on `main` in the project repository; the push is Doug's. Chemistry's chapter zero carries the pitch and lives on the chemistry branch.
+
+**How every row beneath is read.** *file:line* · the fight in the implementer's words · where it is paid · what `.public` owes so it disappears · the promise that pins it · **state**: `run` (counted by grep) · `read` (seen at the line) · `recorded` (the library says so) · `guess`.
 
 ## <a id="rulings"></a>Rulings so far — ***his words, verbatim, 2026-09-13***
 
@@ -28,6 +46,13 @@
 - <a id="r-scheme"></a>**ON THE ADDRESS SCHEME:** *"span and held should be read, but read and follow are essential reference function. Look at the difference here. One is an essential part of an interface, and is what allows one to get from chapter to document. The others are blah styling mess. See the difference between intentional but artifact of meeting interface and dead code? Don't destroy in an effort to remove warts."*
 - <a id="r-themes"></a>**ON THE THEME'S TWO HOLDERS ([C3](#caching)):** *"Maybe they should have a Book theme and a DocumentTheme derived from theme so we can target them differently? Yes they are both different tops of a hierarchy and they represent targeting one chapter versus a whole book, but it is probably a wart for them not to reflect the semantics of what they target. They can share a base class."*
 - **THE DOCUMENT OWED:** *a chapter on how to use the writing class for extension* — `definition`, `print`, `print={false}`, `addType`, wearing a format, registering — a consumer's chapter, for [Writing a Book](../writing-a-book/.cover.md).
+
+- <a id="r-halt"></a>**HALT WHEN DONE, SMALL INCREMENTS — given after the first day ran away:** *"You know to halt when you have accomplished your task right? Not loop forever making new warts by fixing things you think aren't. You created these warts by running away… The harder your job is, the more you are likely fixing warts with warts. If you are making fixes that break styles, have you asked if you should be making that fix?… Check all the code you generate for warts too. Run your own test. Things are warts because your kind can't find an easy solution. If you take a long time, it means we never solved it."* · *"I am that dog. These warts are the things you crashed into with the bus."* · *"You solve nothing getting into the bus to fix warts. Small incremental progress."* · *"You are BANNED from sending off async workers. That is how warts create. So audit all of the code you touched."* — [ce-work](../../../../.claude/library/our-skillset/30-ce-work.md) carries the rule.
+- <a id="r-link"></a>**ON THE LINK, AND THE CARDS ([U13](#u13)):** *"Well is meaning a reference? I'm not sure. But this is an important pattern. I don't think link drawing should happen over and over, so there needs to be a way to resolve this recursion… it is the outer one that is being weird… it would likely take the information OUT of its meaning, but remember that it should probably be given that meaning as an input."* · *"We don't want to have to USE Reference all the time, but that is the pattern and a wrapper can use its element by presenting it to another component as a Reference."* · *"Delete IndexCard. CatalogueCard should be in library, and it will always be a book reference. That is to be designed."* · *"meansABook is AWFUL — leave CatalogueCard empty. It's not for you."* · *"We can have a title elsewhere being a name, and the cover itself will be the thing of interest. This is sensible."*
+- <a id="r-css"></a>**ON CSS:** *"it is a fact of CSS; write rules that do not collide."* · *"But you also have to write flexible CSS."* · *"I would think we need to have whatever styled components has AND have good coding for CSS."* · *"Themes shouldn't really even have CSS, and maybe a format would be better for anything CSS related, the format is reusable across formats and therefore is an easy point of change — colors, text sizes, an abstraction for styling things that is at a higher level and something to research because we know what's on a theme."* — [the CSS shapes](../the-coding-style/07-what-natural-means.md#the-css-shapes).
+- <a id="r-provider"></a>**ON THE THEME PROVIDER ([B14](#b14), [U12](#u12)):** *"So there's a wart! .public does a custom styled components integration. A $Chemistry user shouldn't need that."* · *"Styled chemicals is a wrapper around styled components so let's get our theme provider."* · *"The right thing to do is EXPOSE a polymorphic version of that."* · *"We can have features in $Chemistry from its main consumer."* · *"Assume [theme] is a symbol from chemistry so it doesn't conflict with other things."* · *"The theme goes where it is supposed to go and other things reach it? That's a way."* · *"I told the $Chemistry team to contact you… Halting is OKAY. We just need a different team for this."* — built by chemistry the same afternoon, [d7667a7](../../../chemistry/.lib/projection/00-planning.md#pitch-theme).
+- <a id="r-reach"></a>**THE REACH:** *"All this problem ever needed to be was 'We need ThemeProvider support in $Chemistry' but instead you decided to battle instead of seeing out into the framework you control. This is the essential problem that creates warts. Not seeing your ability to reach and solve problems. We must endeavor to try and learn even if mistakes are often the sign for growth."* — [What Natural Means § The Reach](../the-coding-style/07-what-natural-means.md#the-reach).
+- <a id="r-close"></a>**THE CLOSE:** *"Verify first that you expect this to solve your problem before going forward and then halt when you are done solving this problem of the red gate that needed this as a solution."* · *"Then /ce-compound and /ce-handoff and we'll call this the end of the sprint."*
 
 ## <a id="misconception"></a>The misconception, found first in this register's own rows
 
@@ -65,6 +90,7 @@
 | <a id="b10"></a>**B10** | ***three spellings of the bond line:*** `super.$X(this.addType(block, $TypeOfY))` ×70; `super.$X((block ?? new $Block()).concat($check(TypeOfY, '!')))` ×4 (`Bookmark`, `Highlight`, `PageFold`, `ReferenceCard`); `super.$X($check(block, $Block, '!').concat($check(style, '!')))` ×2 in `src` and ×7 in the portal — the third is *a kind wearing a format* said as block arithmetic | `Bookmark.tsx:12` · `Highlight.tsx:20` · `PageFold.tsx:10` · `ReferenceCard.tsx:26` · `Header.tsx:10` · `Toolbar.tsx:12` · [`.wiki/.encyclopedia/.book.tsx`](../../package/.wiki/.encyclopedia/.book.tsx) | `addType` exists — use it; and wearing a format rides [F2](#f2)'s ruling | none | `run` |
 | <a id="b11"></a>**B11** | ***comments in the base*** — over 650 comment lines in `src`, four files above 50 (`writing/Theme` 106, `article/Theme` 105, `encyclopedia/Theme` 53, `Reflection` 46); `Note` and `Aside` carry the same 30-line note verbatim; a double blank line at `Reference.tsx:84-85` | run per file | [the comment lifecycle](../the-coding-style/03-the-coding-style.md#comments): each moved to the chapter that owns its subject, then deleted | none | `run` |
 | <a id="b12"></a>**B12** | ***the record's names are not the code's:*** [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md#the-block-asking-pair) designs `find`/`findOne`; the code says `searchFor`/`searchForOne` | `Writing.tsx:77-85` | one name, Doug's | none | `run` — `findOne(` 0, `searchForOne(` 8 |
+| <a id="b14"></a>**B14** | `.public` re-implemented styled-components' theme provider by hand — `_theme` on the book and on every document, a setter running it down, `$Writing.theme` walking up, `reflection.theme()` as the default, the theme reaching the page as an element, a `'single'` so the walk had one object to find | `Book.tsx` · `Document.tsx` · `Writing.tsx` · `Reflection.tsx` · `Theme.tsx` | the fix was in chemistry — [the wrapper exposes `ThemeProvider` polymorphically](../../../chemistry/.lib/projection/00-planning.md#pitch-theme) — and `.public` deleted the lot: **DONE 2026-09-13**, [U12](#u12), [Solutions 79](../solutions/79-the-single-that-re-bonded-with-the-book-s-children.md) | `theme.test.tsx` rewritten | `run` |
 | <a id="b13"></a>**B13** | `$Writing$` promises `document`, `mention`, `meaning`, `kind`, `annotations` and not `theme`, `book`, `className`, which every writing has | `Writing.tsx:15-21` | the interface says what a writing has | none | `read` |
 
 **Not a wart, read and kept:** `$Type.name` from `constructor.name` (a [recorded caution](../the-coding-style/03-the-coding-style.md#the-build-caution), not a fault); `$Writing.inline = true` (chemistry's grouping marker, [Solutions 1](../solutions/01-the-formulas-that-rendered-empty.md)); the makers assigning `_mention` ([a ruled fact](../writing-a-book/04-the-book-s-little-framework.md#facts)); `parser.parts` (the parse memo — "asking twice answers the same parts"); `tex.rendered`; `Specification.cached`.
@@ -138,7 +164,7 @@ The paper: `<TableOfContents><Heading/><Row><Chapter>Introduction</Chapter><Row>
 
 ### <a id="f13"></a>F13 · ***cruft and shells***
 
-`CatalogueCard.title()` and `get meaning` ≡ `IndexCard`'s ([`CatalogueCard.tsx:12,18`](../../package/src/library/CatalogueCard.tsx) · [`IndexCard.tsx:14,20`](../../package/src/reference/IndexCard.tsx)) · `ReferenceCard.references()` hand-scans `_block` where `searchFor` exists ([`ReferenceCard.tsx:16-19`](../../package/src/reference/ReferenceCard.tsx)) · five files hold more than one kind against one-class-one-file (`run`: `Menu` 3, `Emphasis` 3, `Description` 2, `Infobox` 2, `Talk` 2) · three members that throw not-implemented, [ruled dead](#b9).
+`CatalogueCard.title()` and `get meaning` ≡ `IndexCard`'s ([`CatalogueCard.tsx:12,18`](../../package/src/library/CatalogueCard.tsx) · `IndexCard.tsx:14,20` *(deleted in [U13](#u13))*) · `ReferenceCard.references()` hand-scans `_block` where `searchFor` exists ([`ReferenceCard.tsx:16-19`](../../package/src/reference/ReferenceCard.tsx)) · five files hold more than one kind against one-class-one-file (`run`: `Menu` 3, `Emphasis` 3, `Description` 2, `Infobox` 2, `Talk` 2) · three members that throw not-implemented, [ruled dead](#b9).
 
 ### <a id="f14"></a>F14 · ***a control that does nothing***
 
@@ -190,111 +216,47 @@ Claims the code contradicts today (`run`/`read`): *"the ONE override left is `$F
 ## <a id="units"></a>Units — each a mechanism, its files, its scenarios, its visible end
 
 ### <a id="u1"></a>U1 · ***the lifted format*** — R1, R2, R3 · D1, D5
-**Mechanism:** `$Composition.format` asks the block for the one format worn; `$Writing.view()` draws `createElement(format ?? definition, { className }, …)`; `FormatSpecification` judges its holder — one format; `$Book` wears its theme by the same road until U5 makes it a format; `$Annotation.format`, `$Format.format`, `$of`, `handed()`, `shown()`, `reflection.formatted` deleted; each kind that wears a format loses its `definition` and says the wearing in one line (the `addType` shape, [B10](#b10)); the portal's seven say it the same way.
-**Files:** `Writing.tsx` · `Composition.tsx` · `Annotation.tsx` · `Format.tsx` · `Reflection.tsx` · `Book.tsx` · `Table.tsx` · `Image.tsx` · `Manual.tsx` · `Navbox.tsx` · `Box.tsx` · `Infobox.tsx` · `Menu.tsx` · `application/Header.tsx` · `Toolbar.tsx` · `Search.tsx` · `.wiki/.encyclopedia/.book.tsx` and its mirror.
-**Depends on:** D11.
-**Scenarios:** **T1** a kind wearing a format draws one element with the format's class and its own classes *(the probe as a promise)*. **T2** the format's bond runs once. **T3** no `of` attribute in any page's DOM, driven. **T4** two formats on one writing refused. **T5** the grep of R1 empty. **T6** the wiki gate's regions and the paper's readings unchanged. **T7** suite, `tsc`, `clean`.
-**Visible end:** ***the four pages as today, one element fewer around every worn kind — counted before and after.***
-
+**DONE 2026-09-13.** The format is the element — `$Writing.view()` draws `createElement($(format))`, `[of]` counts 0 on every page, `$of` · `handed()` · `shown()` · `reflection.formatted()` · `$Format.format()` · `$Annotation.format()` deleted, `Image` a bare `<img>`, `Illustration` a figure by its own view (F1's family: `$Image` overrides `view()` for its attributes), the seven wearers say it once, the portal's `$Logo` kind deleted for `Image`, two `height: auto` rules deleted so the page sizes its images, the gate's wrapper selectors corrected. `format.test.tsx` three promises. Left as the CSS shapes: the synopsis' `:not(.pd-image)`, the header's `.pd-image + .pd-image`, the card's `p:last-child`.
 ### <a id="u2"></a>U2 · ***the id on the element*** — R4 · D2
-**Mechanism:** the fold's key becomes the `id` of the element `view()` draws; the meaning anchor is drawn inside it; `Entry.view()` deleted; `Heading` makes a fold from its text in its bond, its `definition` a getter by depth, its view override deleted.
-**Files:** `Writing.tsx` · `Entry.tsx` · `Heading.tsx` · `Fold.tsx` *(read; possibly untouched)*.
-**Depends on:** U1.
-**Scenarios:** **T8** an entry's `<p>` carries its key as id and no anchor carries one. **T9** every heading id equals today's. **T10** `verify:latex` landing pairs green. **T11** the wiki gate's contents links land. **T12** a heading's fold is in the scratchpad *(one promise)*.
-**Visible end:** ***citations and contents still land, with no anchor wrapping an entry.***
-
+**LANDED WITH U13.** The fold's `id` and the reference's `href` sit on the writing's own element; `Entry`'s and `Heading`'s own ids are U3's.
 ### <a id="u3"></a>U3 · ***the overrides, case by case*** — R5 · D2, D7
-**Mechanism:** `Summary` → `definition = 'summary'`; `Code` → `definition = 'pre'`, `print()` writes `<code>`; `Illustration` → `definition = 'figure'`, `print()` writes the image and caption; `Line` → the label is writing: a line is a section whose heading is its label, the reader writes it so; `Ref` → the markdown link is the one spelling, read once at bond into a `$Reference` holding the path, so the base draws the anchor and `url()`, `link()` and the override go *(if it holds; else the override stays with its reason)*; `Image`, `Search`, `Math`, `Equation` keep their override and lose the `reflection.formatted` wrapper. **Each case shown before its file changes.**
-**Files:** `Menu.tsx` · `Code.tsx` · `Illustration.tsx` · `Infobox.tsx` · `Ref.tsx` · `Image.tsx` · `Search.tsx` · `Math.tsx` · `Equation.tsx` · `read-page.mjs` and the wiki's lead chapters (the `Line`).
-**Depends on:** U1, U2.
-**Scenarios:** **T13** `override view()` in `src` = 5, the five named. **T14** the paper's and the wiki's text identical; code, figures, summaries, infobox rows drawn as today by the gates. **T15** every `Ref` on `/turing` still an anchor with its href *(count equals today's)*.
-**Visible end:** ***twelve overrides to five, the pages unchanged.***
-
+**NOT STARTED.** Found on the way: `$Search.view()` asks `searchForOne($TypeOfFormat)` where `this.format` stands; `$Illustration` must override `view()` because `$Image` does.
 ### <a id="u4"></a>U4 · ***the article's book*** — R6 · D3, D10
-**Mechanism:** a book kind in `src/article` *(name owed)* with `header()`, `footer()` and a `print()` that places its parts by type — the abstract, the body's chapters, the references, the notes, the appendix — as `$Encyclopedia` does; `$Book` loses `header()`/`footer()` and its `print()` is the block; the body chapter type moves from `src/encyclopedia/Article.tsx` to `src/article` *(name owed)*; `$Encyclopedia` extends the article book; the paper's chapter class carries the type; the six-long rosters in the article and markdown themes become selectors on the body the book draws.
-**Files:** `src/article/` *(two new, one moved)* · `article.ts` · `encyclopedia/Encyclopedia.tsx` · `encyclopedia.ts` · `library/Book.tsx` · `article/Theme.tsx` · `markdown/Theme.tsx` · `.latex/aaronson/.book.tsx` · the wiki books' imports · `read-page.mjs`.
-**Depends on:** U1.
-**Scenarios:** **T16** `header`/`footer` absent from `Book.tsx`. **T17** the six-long roster count 0 in both themes. **T18** `verify:latex` both readings, 64 section numbers. **T19** the three wiki pages unchanged at the pinned widths. **T20** `loading.test` green with the moved type.
-**Visible end:** ***the paper numbered and laid out as today, by its book's layout and not by exclusion.***
-
+**NOT STARTED.**
 ### <a id="u5"></a>U5 · ***the theme split*** — R7 · D4, D6
-**Mechanism:** `$Theme` becomes values — no selector, no group, no type, no specification; registered `'single'` on `Book`, held by the book, read by every writing through `theme`; the base's 56 groups become a base book format (`styled.main`, the frame) and a base document format (the prose), each a `$Format` made in the book's and the document's bond through `$`; the article, markdown and encyclopedia themes split the same way, the encyclopedia's chrome groups going to the application kinds' own formats; every format reads values through `this.theme`; the theme tests rewritten; the paper's switch hands the book another theme and the demos register their formats in `.book`.
-**Files:** `writing/Theme.tsx` · `writing/Format.tsx` · two new base files *(names owed)* · `article/Theme.tsx` +2 · `markdown/Theme.tsx` +2 · `encyclopedia/Theme.tsx` +2 · `application/*.tsx` formats · `library/Book.tsx` · `library/Document.tsx` · `index.ts` · both demos' `.book.tsx` · `.tests/theme.test.tsx` · `.tests/book.test.tsx`.
-**Depends on:** U1, U4.
-**Scenarios:** **T21** `$Theme` declares no selector and no `@select`. **T22** the first-frame probe on all four pages: never blue. **T23** `verify:latex` both readings. **T24** the wiki gate at nineteen widths. **T25** a format registered for a book's document type is worn by every document of that book. **T26** a theme value written from a handler redraws a format reading it *(Sprint 66's AE7 probe; red first)*.
-**Visible end:** ***the four pages identical by the gates, with the theme a values class one screen long.***
-
+**NOT STARTED, AND NOW DESIGNED BY THE PROVIDER:** themes hold values and formats hold CSS ([his words](#r-css)); the first step is the four-bin reading of both theme files and the demo — a value, a kind's default look, a parent's placement, dead — reported with counts before a line moves ([Solutions 80](../solutions/80-the-rules-that-won-by-counting-classes.md)).
 ### <a id="u6"></a>U6 · ***the panel writes the theme*** — R14
-**Mechanism:** the panel asks the book's theme by registration and writes `size`, `measure` and the palette; Automatic follows `matchMedia` and its change event; the current choice is read from the theme; the night palette read off Wikipedia's night mode.
-**Files:** `application/Appearance.tsx` · `encyclopedia/Theme.tsx` (the option values) · the wiki gate.
-**Depends on:** U5 T26 green.
-**Scenarios:** **T27** Dark turns `/turing` dark live. **T28** Large grows the text; Wide widens. **T29** a reload is Standard, Standard, Automatic.
-**Visible end:** ***a control that does something — a hand-authored page cannot fake it.***
-
+**NOT STARTED; ITS MECHANISM NOW EXISTS.** A written field remakes the source's identity and wakes every reader (chemistry d7667a7); the panel writes the object it reads; the promise is owed.
 ### <a id="u7"></a>U7 · ***the heading demand said once*** — R10 · D9 — ***DESIGN OWED***
-*No files, no scenarios, no dependencies.* Three shapes stand in [D9](#d9); Doug chooses; until then `Quote`, `Aside`, `Summary`, `Theorem` and `Table` answer twice.
-
+**DESIGN OWED** — D9.
 ### <a id="u8"></a>U8 · ***an annotation demands nothing*** — R11
-**Mechanism:** the default `WritingSpecification` moves from `$Annotation` to `$Type`; `Path`, `Format` and `Catalogue` lose their `specifically()` overrides; one promise.
-**Files:** `Annotation.tsx` · `Type.tsx` · `Path.tsx` · `Format.tsx` · `Catalogue.tsx`.
-**Depends on:** nothing.
-**Scenarios:** **T30** an annotation written into a writing runs no rule on it. **T31** the suite's specify promises unchanged.
-**Visible end:** ***three overrides gone and every page the same.***
-
+**NOT STARTED** — `$Format.specifically` already judges one format (U1); `Path` and `Catalogue` remain.
 ### <a id="u9"></a>U9 · ***the dead and the cruft, per file*** — R9 · D8
-**Mechanism:** as each file is opened — and on their own where no unit opens them — strip the focus logic on `$Reference`; `concatenate`; `valid()` (tests call `specify()`); the six `url` readings; `reflection.chapter`; the three throwing shells; the seven `heading()` copies; `CatalogueCard`'s duplicated `title()` and `meaning`; `ReferenceCard.references()` → `searchFor`; the three redundant `$opensWithHeading` waivers; `Note`/`Aside`'s duplicate comment to the library. Untouched: `Highlight`'s ends, `Bookmark`/`PageFold`'s `persist`, `read`/`follow`/`held`; `span()` read hard first.
-**Files:** `Reference.tsx` · `Composition.tsx` · `Writing.tsx` · `Url.ts` · `Reflection.tsx` · `Appendix.tsx` · `Talk.tsx` · the seven · `CatalogueCard.tsx` · `ReferenceCard.tsx` · `Author.tsx` · `Subject.tsx` · `Title.tsx` · `Note.tsx` · `Aside.tsx` · `.tests/writing.test.tsx`.
-**Depends on:** nothing.
-**Scenarios:** **T32** each stripped member's grep empty in `src`, both demos and `.tests`. **T33** suite, `tsc`, `clean`. **T34** the pages unchanged.
-**Visible end:** ***the diffstat: lines subtracted, each named.***
-
+**NOT STARTED.** Added to its list: `$Writing.inline` has no reader and no writer; `$CatalogueCard.title()` duplicated `$IndexCard.title()` (gone with U13).
 ### <a id="u10"></a>U10 · ***the parentheticals, seen*** — R8
-**Mechanism:** the four pages driven; for each `display: none` in a theme, what it hides and whether the model should carry it; the wiki cover's author and subject become `print={false}` in the reader and the demo; the rest decided on the page and each kept rule given its reason in the library.
-**Files:** `read-page.mjs` · the wiki covers and mirrors · `encyclopedia/Theme.tsx` · the portal's book.
-**Depends on:** U5.
-**Scenarios:** **T35** the count of hiding rules, before and after, with a reason per survivor. **T36** the wiki gate unchanged.
-**Visible end:** ***the same pages, with the model saying what is not shown.***
-
+**NOT STARTED.**
 ### <a id="u11"></a>U11 · ***the records*** — R12
-**Mechanism:** the drawing conventions row corrected to the five overrides and their reasons; The Book Is the Layout carries D3's sentence *(done 2026-09-13)*; Motif 4 § built carries U5; The Spelling of a Kind rewritten against the code or struck; the `find`/`findOne` name ruled; the extension chapter written in Writing a Book from the code after U3 — `definition`, `print`, `print={false}`, `addType`, wearing a format, registering, and the five overrides that stay. **Compounding after, on Doug's word.**
-**Files:** the design books; every cover in the same act with the TOC tool.
-**Depends on:** U3, U5.
-**Visible end:** ***a reader of the books meets the code as it is.***
+**PARTLY, BY THE COMPOUND:** The Reach and the CSS shapes in What Natural Means, the drawing conventions repaired, the motif's provider section, Solutions 79 and 80, the ce-work failure; the extending-`$Writing` chapter still owed.
+### <a id="u12"></a>U12 · ***the theme provider*** — B14 · [his ruling](#r-provider)
+**DONE 2026-09-13.** Chemistry's `[theme]` symbol (d7667a7); `$Writing.theme` is `this[theme] ?? reflection.theme()`; `$Theme` overrides `get [theme]() { return this; }` and is the source; `$Theme.$register` registers the class plain — a single drawn with the book's children re-bonds ([Solutions 79](../solutions/79-the-single-that-re-bonded-with-the-book-s-children.md)); `$Book.view()` draws `$(Theme)` at its root; `$Book` and `$Document` lose `_theme`, getters, setters, bond assignments and both "drawn in a theme" promises; the paper's switch re-themes by registration. `theme.test.tsx` four promises. Numbers at the close: suite 107 of 108 (the red is U13's title promise), tsc 0, clean 0, `verify:latex` green on both readings and seen, `verify:wiki` unchanged.
+
+### <a id="u13"></a>U13 · ***the link is the element*** — [his ruling](#r-link)
+**DONE 2026-09-13, ONE PROMISE RED ON HIS YES.** A writing given a `Reference` draws as an anchor, its own element, with `as`/`href`/`id` handed to a worn format (`$Format` declares `$as $href $id` as `$SearchFormat` declares `$action $role`); nothing derives a meaning from a part — `IndexCard.tsx` deleted, `$CatalogueCard` left as subtraction leaves it and not designed (*"It's not for you"*), the portal's twelve cards given their `<Reference>`; the title's promise moved to the cover; `.pd-title a`, `.pd-entry > .pd-meaning:target` and the `:not([href])` rules deleted. `link.test.tsx` four promises; `writing.test`, `book.test`, `title.test` rewritten to the rulings. **Red:** `title.test` "an empty title is refused" — its mechanism was the moved promise; the wart-free fix is F11's one condition in the title's bond, a heading made only from something said, waiting on his yes.
 
 ## <a id="risks"></a>Risks
-
-| | risk | what mitigates it |
-|---|---|---|
-| **K1** | the lifted road changes the box around every worn kind and the wiki gate's 25 region pairs move | the format's element WAS the styled box; T6 before anything else is built on U1 |
-| **K2** | the theme split regresses first paint — [Solutions 73](../solutions/73-the-theme-that-arrived-on-the-second-paint.md) again | T22, the first-frame probe, red-first |
-| **K3** | a heading's fold per heading fills the scratchpad and two headings share a text | T12 counts; a duplicate key is the same collision the wiki's ids have today, named if met |
-| **K4** | the suite reads `dist` | rollup QUICK before every run, [Solutions 5](../solutions/05-the-suite-that-passed-against-a-stale-build.md) |
-| **K5** | a served page believed before the mirror is rebound | [Solutions 72](../solutions/72-the-mirror-with-two-directions.md); rebind and restart before any measurement |
-| **K6** | a fix that is itself a wart | every unit's diff read against [What Natural Means](../the-coding-style/07-what-natural-means.md#a-fix) before it stands; a change that only adds is said out loud |
-| **K7** | U4 changes `$Book` while U1 has it open | one file per step; U1 closes with its commit before U4 opens |
+*Stub, compacted 2026-09-13: seven risks K1–K7 stood here. The one that fired was not among them — a red page that was red at HEAD read as the unit's, and every fix bred the next; recorded in [ce-work](../../../../.claude/library/our-skillset/30-ce-work.md) and [The Reach](../the-coding-style/07-what-natural-means.md#the-reach).*
 
 ## <a id="order"></a>Order
-
-**D11 first** (Doug's) · **U1 · U2 · U3 · U8 · U4 · U5 · U6 · U10** — U9 rides along in every file opened and closes on its own — **U11 last**; **U7 waits on D9.** *Each unit: rollup QUICK, the suite, `tsc`, `clean`, the paper's gate on both readings, the wiki gate where a page changed; one local commit; the stand rewritten.*
+*Stub: the order stood here — D11 first · U1 · U2 · U3 · U8 · U4 · U5 · U6 · U10, U9 riding along, U11 last, U7 waiting on D9. The sprint ran U1, then U13 and U12 as the room ruled them.*
 
 ## <a id="trace"></a>Origin trace, both directions
-
-| from | lands in | | from | lands in |
-|---|---|---|---|---|
-| R1, R2, R3 | U1 | | R8 | U10 |
-| R4 | U2 | | R9 | U9 |
-| R5 | U3 | | R10 | U7 *(owed)* |
-| R6 | U4 | | R11 | U8 |
-| R7 | U5 | | R12 | U11 |
-| R13 | every unit's ledger | | R14 | U6 |
+*Stub: the origin trace, both directions, stood here; the register above keeps every identifier it cited.*
 
 ## <a id="self-check"></a>The plan against itself
-
-**One unit is owed and says so** — U7. **Two units carry a conditional** — U3's `Ref` and U10's survivors — each with its fallback named. **U5 is the largest** — six theme files split and three demos' registrations — and it is one sprint because the operation is one operation repeated; it is not divided. **The size:** U1 touches sixteen files with one edit each; U5 the most, about twenty; the whole is several sessions of one kind of work, sequential by their gates. **Every requirement has a home; every unit names what runs and what is seen.**
+*Stub: the plan's self-check stood here and passed before work began.*
 
 ## <a id="names"></a>Names owed to Doug
-
-the article book kind · the body chapter type (`$Article` stands in) · the book's format and the document's format (`$BookTheme`, `$DocumentTheme` his candidates) · the two base format files · this chapter's title.
+the article book kind · the body chapter type (`$Article` stands in, and collides with the demo's book) · the book's format and the document's format (`$BookTheme`, `$DocumentTheme` his candidates) · the two base format files · this chapter's title · `Sheet` in `$Book.view()` · `linked` and the `pd-meaning` mark in `$Writing.view()` · `Reading` in `theme.test` · The Reach · the CSS shapes · the titles of Solutions 79 and 80.
 
 ## <a id="group"></a>The group, designed — ***the four decisions the plan continues from; each tested as a wart***
 
@@ -353,7 +315,7 @@ A book kind in `src/article` (*name owed*) with its own `print()` placing its pa
 | **P7** | five reaches into `reflection.beneath` that `src` never makes | [Solutions 66](../solutions/66-the-promise-that-outlived-its-design.md), still standing |
 | **P0** | *what has no promise at all:* the format wrap, the heading twice, `print={false}`, the doors, every `view()` override | the fights nothing would go red for |
 
-## <a id="questions"></a>Rulings still needed
+## <a id="questions"></a>Rulings still needed — *the link, the cards and the title were answered in the room 2026-09-13 ([above](#r-link)); the rest stand*
 
 1. **[F2](#f2)** — RULED as a direction, to be tested: does it create a wart.
 2. **[F3](#f3)** — RULED as a direction, to be tested the same way.
@@ -366,10 +328,6 @@ A book kind in `src/article` (*name owed*) with its own `print()` placing its pa
 9. **[F15](#f15)** — the doors.
 10. **[F5](#f5)** — the hidden things, once driven.
 11. **Where this register lives** — [The Condition Report](../the-condition-report/.cover.md) or this chapter (Libby's question).
-
-## <a id="names"></a>Names owed — proxies, none taken
-
-the article book kind · this chapter's title · `$Article` as the encyclopedia's chapter type (collides with the demo's book).
 
 ## <a id="unread"></a>What this register did NOT do
 

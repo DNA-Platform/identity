@@ -138,3 +138,19 @@
 | **the compensation appears in every consumer** | *paths, rosters and restated values in both themes and both demos — the same fight paid in four places* |
 
 ***And the rule that follows:*** **when a fix is a fight, ask which layer the missing feature lives in — and the layers include chemistry.** *The move is then one sentence, filed as a pitch and handed off, not a battle; the session that hits the wall is the one that can see it, and seeing it is the whole of the ability Doug named.* **Record the mistake beside the reach: the mistake is the sign of the growth.**
+
+## <a id="the-css-shapes"></a>THE CSS SHAPES — ***rules that do not collide, given 2026-09-13***
+
+***Doug, when the day's collisions were traced to two authors of one element:*** **"it is a fact of CSS; write rules that do not collide."** · **"But you also have to write flexible CSS."** · **"I would think we need to have whatever styled components has AND have good coding for CSS."** *The first half is chemistry's parity with the library it wraps; this is the second half, and it needs no chemistry.*
+
+**A rule in a theme, a format or a demo passes when it:**
+
+| does | and never |
+|---|---|
+| **names a kind** — `.pd-image`, `.pd-title` | *a path (`.pd-book > header .pd-image`), a position (`:nth-of-type(2)`, `+`, `:last-child`), an element type, or a `:not()` roster standing in for a concept nobody named* |
+| **sets its own element** | *a descendant's look — a parent PLACES its children (grid, flex, named areas) and never paints them* |
+| **takes its numbers from the theme** — values and the theme's units | *a pixel transcribed from a page, which follows no theme's size* |
+| **places by named areas or flow** | *by DOM order or by counting siblings* |
+| **says what the kind is** | *restates a browser default (`display: block` on a section drawn as a link) or a writing's own attribute (a width the image already declares)* |
+
+***The test is the same one as everywhere in this chapter:*** **would the next theme's author have to know this rule exists to write theirs?** *A path, a roster and a restated default all say yes; a kind's own rule says no.* **And the reason it holds without a precedence mechanism:** *when no two authors set one property on one element, the cascade is never asked to choose* — [Solutions 80](../solutions/80-the-rules-that-won-by-counting-classes.md) is what it chose when it was.
