@@ -4,7 +4,7 @@
 # Usage: bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit message"
 #        DRY_RUN=true bash .../06-on-sync--commit.sh "msg"   # validate + print the plan, mutate nothing
 #
-# THREE DESTINATIONS, and each is where that kind of thing belongs:
+# FOUR DESTINATIONS, and each is where that kind of thing belongs:
 #   1. Identity (.claude/ + CLAUDE.md) → the SHARED branch, dna-platform. It is
 #      project-neutral, several projects write to it, and it is the branch Doug works
 #      on. Because it is shared, the CLOBBER GUARD runs before the mirror.
@@ -12,7 +12,11 @@
 #      branch I will be working on.")
 #   2. Branch libraries (library/*/.lib/) → the branch named after this repo. They are
 #      project-specific, this project is their only writer, and no guard is needed.
-#   3. Project code → the project repo.
+#   3. The personal library (.me/) → the CHECKOUT of it beside this project, as its
+#      `library/`, committed and pushed FROM THERE. (Doug, 2026-09-13: "Sync to
+#      ../dougs-library and push from there on the harddrive.") Nothing names it: that
+#      folder is already on its own branch and the checkout is asked which one.
+#   4. Project code → the project repo.
 #
 # Nothing is hardcoded to a particular project: the branch is the project directory's
 # name and the branch-library routing is derived from the library/*/.lib glob.
@@ -57,7 +61,7 @@ ensure_gitignore() {
     local gi="$PROJECT_ROOT/.gitignore"
     local pat changed=false
     [ -f "$gi" ] || touch "$gi"
-    for pat in ".claude/" "CLAUDE.md" "**/.lib/"; do
+    for pat in ".claude/" ".me/" "CLAUDE.md" "**/.lib/"; do
         if ! grep -qxF "$pat" "$gi" 2>/dev/null; then
             if [ "$DRY_RUN" = true ]; then
                 echo "  [dry-run] would add to .gitignore: $pat"
@@ -67,7 +71,7 @@ ensure_gitignore() {
             fi
         fi
     done
-    [ "$changed" = true ] && echo "Updated .gitignore privacy entries (.claude/, CLAUDE.md, **/.lib/)"
+    [ "$changed" = true ] && echo "Updated .gitignore privacy entries (.claude/, .me/, CLAUDE.md, **/.lib/)"
     return 0
 }
 
@@ -105,6 +109,46 @@ IDENTITY_WORK_ROOT="${IDENTITY_WORKTREES:-$(dirname "$IDENTITY_REPO")/.identity-
 IDENTITY_BRANCH="${IDENTITY_BRANCH:-dna-platform}"
 SHARED_WORK="$IDENTITY_WORK_ROOT/$IDENTITY_BRANCH"
 IDENTITY_WORK="$IDENTITY_WORK_ROOT/$PROJECT_NAME"
+
+# THE THIRD DESTINATION — THE PERSONAL LIBRARY. `.me/` is the mirror of `.claude/`:
+# same connection mechanism, opposite person (Bookkeeping, On Perspective). Where
+# `.claude/` is the team's THIRD-PERSON identity and goes to the shared branch, `.me/`
+# is one person's FIRST-PERSON library and goes to a branch of its own.
+#
+# It rides the branch-library shape exactly: mirrored into a named subtree of a detached
+# worktree, so the rest of that branch is untouched and no clobber guard is needed — one
+# library, one branch, one writer. `.me/` maps to `library/` on the branch, which is the
+# depth at which a chapter's `../../.claude/...` author links resolve in BOTH places.
+#
+# NOTHING NAMES IT, AND THAT IS THE POINT. The personal library has a CHECKOUT of its own
+# beside this project — a worktree of the identity repo, sitting on its own branch — so the
+# destination is a folder and the branch is whatever that folder is already on. The tool
+# asks the checkout; it does not derive a name from a catalogue, a folder or a package file.
+# The unique such sibling is found from the identity repo's own worktree list; ME_LIBRARY
+# overrides when there is more than one.
+ME_DIR="$PROJECT_ROOT/.me"
+me_libraries() {
+    local parent line path
+    parent="$(dirname "$PROJECT_ROOT")"
+    while IFS= read -r line; do
+        case "$line" in "worktree "*) path="${line#worktree }" ;; *) continue ;; esac
+        path="$(cd "$path" 2>/dev/null && pwd)" || continue
+        [ "$path" = "$IDENTITY_REPO" ] && continue
+        case "$path" in "$IDENTITY_WORK_ROOT"/*) continue ;; esac
+        [ "$(dirname "$path")" = "$parent" ] || continue
+        git -C "$path" symbolic-ref -q HEAD >/dev/null 2>&1 || continue
+        echo "$path"
+    done < <(git -C "$IDENTITY_REPO" worktree list --porcelain 2>/dev/null || true)
+}
+ME_LIBRARY="${ME_LIBRARY:-}"
+if [ -z "$ME_LIBRARY" ]; then
+    me_found="$(me_libraries || true)"
+    if [ "$(printf '%s' "$me_found" | grep -c . || true)" = "1" ]; then ME_LIBRARY="$me_found"; fi
+fi
+ME_BRANCH=""
+if [ -n "$ME_LIBRARY" ]; then ME_BRANCH="$(git -C "$ME_LIBRARY" branch --show-current 2>/dev/null || true)"; fi
+has_me=false
+if [ -d "$ME_DIR" ] && [ -n "$(ls -A "$ME_DIR" 2>/dev/null)" ]; then has_me=true; fi
 
 # worktree_for <branch> <path> — a DETACHED worktree at the branch's current tip.
 #
@@ -185,6 +229,11 @@ echo "Checking for changes..."
 echo "  Project code:           $has_project_changes"
 echo "  Identity (.claude/):    (will detect after sync)"
 echo "  Branch libraries:       ${#lib_dirs[@]} found (${lib_dirs[*]:-none})"
+if [ "$has_me" = true ]; then
+    echo "  Personal library (.me): ${ME_LIBRARY:-NO CHECKOUT FOUND beside this project}${ME_BRANCH:+  (branch $ME_BRANCH)}"
+else
+    echo "  Personal library (.me): none"
+fi
 echo ""
 
 # --- Step 0: Run validation ---
@@ -222,8 +271,21 @@ if command -v npx &>/dev/null; then
         fi
         echo ""
     done
+    # The personal library is validated and REPORTED, never blocking. It is a FIRST-PERSON
+    # library: its errors belong to its author, and the team's filing must not be held
+    # hostage to a library nobody else may enter (Bookkeeping, On Perspective).
+    if [ "$has_me" = true ]; then
+        echo "Running Bookkeeping validator (personal library: ${ME_BRANCH:-unnamed})..."
+        if npx tsx "$bookkeeping_path" "$ME_DIR" 2>&1; then
+            echo "  Bookkeeping (.me): PASS"
+        else
+            echo "  Bookkeeping (.me): REPORTED, NOT BLOCKING — .me is its author's to fix"
+        fi
+        echo ""
+    fi
 
     echo "Running Compiled Links validator..."
+
     if npx tsx "$compiled_links_path" "$claude_root" 2>&1; then
         echo "  Compiled Links: PASS"
     else
@@ -264,6 +326,11 @@ if [ "$DRY_RUN" = true ]; then
         echo "No branch libraries (library/*/.lib) — .claude/ still goes to $PROJECT_NAME."
     fi
     echo "Would push $PROJECT_NAME (with -u on first push)."
+    if [ "$has_me" = true ] && [ -n "$ME_LIBRARY" ] && [ -n "$ME_BRANCH" ]; then
+        echo "Would sync .me/ -> $ME_LIBRARY/library, then commit and push $ME_BRANCH FROM THERE."
+    elif [ "$has_me" = true ]; then
+        echo "Would SKIP .me/: no single personal-library checkout found beside this project. Set ME_LIBRARY=/path/to/it."
+    fi
     [ "$has_project_changes" = true ] && echo "Would commit project code + regenerate root CLAUDE.md, then push the project repo."
     echo ""
     echo "DRY RUN complete."
@@ -354,6 +421,54 @@ echo "Pushed $PROJECT_NAME"
 # Nothing to put back: the shared identity checkout was never moved.
 cd "$PROJECT_ROOT"
 echo ""
+if [ "$has_me" = true ] && [ -n "$ME_LIBRARY" ] && [ -n "$ME_BRANCH" ]; then
+    echo "========================================"
+    echo "PERSONAL LIBRARY (.me) -> $ME_LIBRARY  [$ME_BRANCH]"
+    echo "========================================"
+
+    # THIS ONE DOES TOUCH A WORKING COPY, and it is the only step that does. The others
+    # reach a branch through a detached worktree precisely so no checkout is borrowed; this
+    # step is different because the checkout IS the destination and its one writer is the
+    # person whose library it is. (Doug, 2026-09-13: "Sync to ../dougs-library and push
+    # from there on the harddrive.") So it REFUSES to run over uncommitted work there
+    # rather than mirroring across it — the same instinct, applied where it still bites.
+    if [ -n "$(git -C "$ME_LIBRARY" status --porcelain -- library/ 2>/dev/null)" ]; then
+        echo "ERROR: $ME_LIBRARY has uncommitted changes under library/."
+        git -C "$ME_LIBRARY" status --short -- library/ | head -20
+        echo "       A mirror would move them. Commit or discard them there, then run again."
+        exit 1
+    fi
+
+    # A MIRROR DELETES. One writer means a deletion is legitimate — a book removed is a book
+    # removed — so this LISTS rather than blocks. Silence here means nothing is being lost.
+    losing="$(MSYS_NO_PATHCONV=1 robocopy "$(winpath "$ME_DIR")" "$(winpath "$ME_LIBRARY/library")" /MIR /XD node_modules /L /NJH /NJS /NC /NS 2>/dev/null | grep -E '\*EXTRA' || true)"
+    if [ -n "$losing" ]; then
+        echo "This sync REMOVES from the library (it is yours, so this is allowed — read it):"
+        echo "$losing" | head -20
+        echo ""
+    fi
+
+    echo "Syncing .me/ -> $ME_LIBRARY/library"
+    mkdir -p "$ME_LIBRARY/library"
+    do_sync "$ME_DIR" "$ME_LIBRARY/library" /MIR /XD node_modules /NFL /NDL /NJH /NJS /NC /NS || exit 1
+
+    cd "$ME_LIBRARY"
+    git add -A library/ 2>/dev/null || true
+    if git diff --cached --quiet; then
+        echo "No personal-library changes to commit"
+    else
+        git commit -m "$COMMIT_MSG"
+        echo "Committed the personal library to $ME_BRANCH"
+    fi
+    git push origin "$ME_BRANCH"
+    echo "Pushed $ME_BRANCH from $ME_LIBRARY"
+    cd "$PROJECT_ROOT"
+    echo ""
+elif [ "$has_me" = true ]; then
+    echo "NOTE: .me/ holds content but no personal-library checkout was found beside this project,"
+    echo "      so it was NOT synced. Set ME_LIBRARY=/path/to/the/checkout and run again."
+    echo ""
+fi
 
 # --- Refresh the generated project-root CLAUDE.md ---
 # It is a projection of .claude/CLAUDE.md (gitignored), so it tracks IDENTITY changes,
@@ -399,6 +514,7 @@ echo "========================================"
 echo "  Identity:        $has_identity_changes"
 echo "  Branch libs:     ${#lib_dirs[@]}"
 echo "  Project code:    $has_project_changes"
+echo "  Personal lib:    ${ME_BRANCH:-none}"
 echo ""
 
 cd "$IDENTITY_REPO"

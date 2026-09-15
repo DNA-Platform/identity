@@ -25,6 +25,8 @@ Two gates, both from their skill and both kept:
 
 **Large work is routed back.** Cross-cutting, architectural, touching many files, or reaching into anything load-bearing — say so, and recommend [ce-brainstorm](28-ce-brainstorm.md) or [ce-plan](29-ce-plan.md) first. Then **honour the choice**: if Doug says proceed, proceed.
 
+**A red gate on a page that was red at HEAD is inherited, not the unit's — added out of Sprint 69.** Before fixing a red the unit did not cause, measure HEAD: stash, build, gate, restore. What was red there is recorded beside the unit with its numbers and left; what the unit broke is the unit's. [Sprint 69's first day](../../../library/.public/.lib/projection/75-sprint-69--the-wart-hunt.md) went to chasing a page that had never been green, and every fix bred the next — Doug: *"you can't run off. You will make a mess."* A unit is done at its own mechanism and its own regressions.
+
 ## How the how gets decided
 
 The plan gave guardrails, not choreography. So the implementer **decides signatures, structure, and sequence at execution time, with the code open** — that judgment is the reason a plan does not pre-write it. What the implementer may not do is quietly widen the scope, skip a stated test scenario, or contradict a decision the plan recorded. A guardrail that turns out wrong is [raised, not overridden](../teamspeak/03-discussion.md).

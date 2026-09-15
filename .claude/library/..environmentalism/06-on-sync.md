@@ -12,11 +12,12 @@ The library travels between projects. It lives in its own repository at `github.
 
 **A session closes by pushing identity to the shared branch, the branch libraries to the branch named after this repository, and the code to the project repository. That is the whole of it.**
 
-**Three steps, and [the commit tool](06-on-sync--commit.sh) does all three:**
+**Four steps, and [the commit tool](06-on-sync--commit.sh) does all four:**
 
 1. **`.claude/` and `CLAUDE.md` → the SHARED branch, `dna-platform`.** *It is project-neutral, several projects write to it, and **it is the branch Doug works on** — so [the clobber guard](#the-commit-tool) runs before the mirror.*
 2. **Every `library/*/.lib` → the branch named for this repository.** *A branch library is project-specific and this project is its only writer, so nothing has to be reconciled and no guard is needed.*
-3. **The project's own code → the project repository.**
+3. **`.me/` → the [personal library's own checkout](#the-personal-library) beside this project, as its `library/`** — committed and pushed *from there*. *One person, one library, one writer; nothing has to name it because that checkout is already on its branch.*
+4. **The project's own code → the project repository.**
 
 > ***Doug, 2026-09-05, restoring the shared branch:*** **"No it should be a shared dna-platform branch and that is the branch I will be working on."**
 
@@ -24,15 +25,17 @@ The library travels between projects. It lives in its own repository at `github.
 
 ***And neither destination is reached by borrowing a working copy*** — see [the worktree rule](#the-sync-works-in-its-own-worktree).
 
-***Everything below about tiers and downstream merges describes [the rare act](#the-rare-act), not this one.*** **A session that says "sync" means the two steps above.**
+***Everything below about tiers and downstream merges describes [the rare act](#the-rare-act), not this one.*** **A session that says "sync" means the four steps above** — *and it said "the two steps" for as long as there were three, which is what a list that grows without its sentence being reread looks like.*
 
 ## The branching model
 
-The identity repo uses a three-tier branching model. Each tier holds a different kind of content, and the tiers relate by inheritance:
+The identity repo uses a three-tier branching model. Each tier holds a different kind of content, and the tiers relate by inheritance — **the third tier has two kinds, one per question it answers: a project branch says WHAT the record is about, a personal branch says WHOSE it is.**
 
 - **`main`** is the template. It holds the library system itself — Bookkeeping conventions, Environmentalism specifications, the compilation and validation infrastructure, Teamspeak protocols. Content on `main` is team-neutral: any organization could adopt it without modification. It is the system that makes libraries possible, not any particular library's content.
 
 - **The organization branch** (e.g. `dna-platform`) holds the team's identity. Autobiographies, personal libraries, the team catalogue, accumulated knowledge — everything that makes this team THIS team. It extends `main` with team-specific content. A different organization would fork `main` and create its own organization branch with its own identity.
+
+- **Personal branches** (e.g. `dougs-library`) hold ONE PERSON'S [first-person library](../bookkeeping/14-on-perspective.md) at `library/`. Like a project branch it extends the organization branch and has a single writer; what distinguishes it is *whose* it is rather than *what* it is about. **It differs from every other branch here in one way: it is not reached, it is VISITED.** *A personal library has a checkout of its own beside the projects — `../dougs-library` — and that is where it is committed from, so the branch is simply whatever that folder is on.*
 
 - **Project branches** (e.g. `inexplicable-phenomena`) hold [branch library](../library-tree/01-branches.md) content — the `.lib/` directory for a specific project. Sprint histories, project documentation, project-specific plans. Each project branch extends the organization branch. The branch name matches the project it serves.
 
@@ -95,6 +98,35 @@ The consequence for archaeology: **to find a previous version of driver code, lo
 ## GitHub as implementation
 
 The identity repo uses Git and GitHub, but the sync pattern doesn't depend on them specifically. The principle is: identity lives in its own repository, travels by cloning, consistency is checked before sync. GitHub is the current implementation. The requirements are version control, a remote, a clone mechanism, and a branching model with merge support. Any system that provides those could host the identity. The specification is the pattern, not the platform.
+
+## <a id="the-personal-library"></a>The personal library — `.me/`
+
+**`.me/` is the mirror of `.claude/`: same connection mechanism, opposite person.** *That is [On Perspective](../bookkeeping/14-on-perspective.md)'s sentence, and the mechanism is now what makes it true rather than a shape described in advance.* **One slot in a repository for shared third-person identity, one for private first-person identity**, both gitignored, both mirrored to a branch of the identity repo, neither ever committed to the project repo.
+
+| | `.claude/` | `.me/` |
+|---|---|---|
+| **whose** | the team's, third person | one person's, [first person](../bookkeeping/14-on-perspective.md) |
+| **reached by** | a detached worktree, so no checkout is borrowed | **its own checkout beside the projects** — [visited](#visited), not reached |
+| **branch** | the shared `dna-platform` | whatever that checkout is already on |
+| **lands at** | `.claude/` on that branch | **`library/`** on that branch |
+| **writers** | several projects — so [the clobber guard](#the-commit-tool) | one — so deletions are listed, not blocked |
+| **validation** | enforced; a failure stops the push | reported; the errors are its author's |
+
+**It lands at `library/` and not at the branch root, and the reason is measured rather than chosen.** *A chapter in a personal library carries `../../.claude/…` author links. At `.me/<book>/` in a working copy and at `library/<book>/` on the branch those are the same two hops to the same place, so **sixteen of sixteen relative links in the first library synced this way resolved in both locations with nothing rewritten.** One directory deeper on either side and every one of them breaks.*
+
+## <a id="visited"></a>It is VISITED, not reached — ***ruled 2026-09-13***
+
+> ***Doug:*** **"Sync to ../dougs-library and push from there on the harddrive."** · **"You are going to sync to and from the library folder. So that .public in .me is .public in the library."**
+
+**Every other destination in this chapter is reached through [a detached worktree](#the-sync-works-in-its-own-worktree), precisely so that no working copy is borrowed. The personal library is the exception, and it is the exception because the working copy IS the destination.** *A personal library has a checkout of its own beside the projects — a worktree of the identity repo sitting on its own branch — and that is where its owner works and pushes from.*
+
+***So nothing names it.*** **The tool finds the one sibling checkout of the identity repo that is not the identity folder and not a sync worktree, and then asks that checkout what branch it is on.** *A design that derived the name instead — from a cataloguing book, a folder, a package file — was written and then deleted the same day, because* ***a checkout that already knows its branch does not need to be told its name.*** *`ME_LIBRARY` points at it directly when more than one exists.*
+
+**The worktree rule is not waived here; it is applied where it still bites.** *Its purpose was never the worktree — it was that a sync must not move somebody's uncommitted work. So this step* ***refuses to run at all*** *while the destination has uncommitted changes under `library/`, and names them. The other steps route around a working copy; this one stops in front of it.*
+
+**And the mirror's deletions are LISTED rather than blocked.** *The [clobber guard](#the-commit-tool) on `dna-platform` exists because several projects write there and a deletion is somebody else's work. One writer makes a deletion legitimate — a book removed is a book removed — so the tool prints what is going and continues. **Silence on that line means nothing is being lost**, which is worth more than a prompt nobody reads.*
+
+**Its validation is REPORTED, never enforced** — the one asymmetry with a branch library, and it follows from whose it is. *A `.lib` is ours and its errors are ours to fix, so a failure stops the push. A first-person library is [closed to everyone but its librarian](../bookkeeping/14-on-perspective.md#the-specification-no-one-enters-a-first-person-library): its errors are its author's, and* ***the team's filing must not be held hostage to a library it may not enter.***
 
 ## The commit tool
 

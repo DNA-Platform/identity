@@ -41,6 +41,16 @@ description: A PRINCIPLE UNDER TRIAL, given by Doug 2026-09-08 and codified as g
 
 ## <a id="trial-notes"></a>Trial notes — small, dated, never editing the principle
 
+- **2026-09-08, later.** ***The shells did the base's design work twice in one turn, in two different ways, and neither was a guess.***
+
+  ***FIVE SHELLS ASKING FOR THE SAME THING NAMED A BASE MEMBER.*** *`$Equation`, `$Theorem`, `$Citation`, `$Footnote` and a numbered `$Section` were each written with a `number()` that threw, and each comment named the same dependency — a reading over its peers.* **Five is not five implementations; it is one reading the base was missing**, and it could only be seen because all five were on the table at once. *`reflection.numbered` replaced them, and the fifth shell — the one that existed only to carry a number — was **deleted**, which is the method paying for itself twice.*
+
+  ***AND A SHELL THAT COULD NOT COMPILE SAID WHERE THE HIERARCHY WAS WRONG.*** *`$Citation` could not implement `$Reference$` — it demands `$focused`, `focus` and `unfocus`, so pointing and FOCUSING are one interface — and `$ReferenceCard extends $Reference` was already the precedent. **So P11's never-extend-the-kind-above governs the seven composition levels and not the reference kinds**, which nothing had written down. *`$Article extends $Part` followed the same afternoon, and stopped it copying three fields.*
+
+  ***The one that did not work: promoting from a single instance.*** *Three kinds were promoted into the framework because they were declared twice — and twice **inside one application**, which is the app's own root, not the framework's. **Promotion needs two APPLICATIONS, not two books.** All three were deleted the next turn; the application took them back and its own `.chapter.tsx` was already the right home, holding four link kinds of one line each.*
+
+- **2026-09-08, night.** *Consuming the level above found the seams in minutes:* rewriting the demo over the new theme surfaced two selectors written for the old structure (`.pd-heading h2` where the `h2` now IS the heading; `header .pd-title a` where the anchor now IS the title) and one placement fault, each found by probing the built page rather than the CSS. *The annealing pass earned its keep on the first round:* the ugliest new code was six identical `frame()` wrappers in the demo, and asking what would make them easy corrected the hierarchy — the theme's mechanism is the format's, and a theme is a format with values.
+
 - **2026-09-08, Sprint 53.** Adopted mid-sprint after the theme sheet looped a page to a heap death on the SEVENTH promise: six promises pinned the finished piece and the seventh was the next piece leaning on it. With every intended class already a shell, the chapter-level theme would have asked its question in minutes. *First success of the method, recorded before the method was in force.*
 
 <!-- library: library/.public/.lib/the-public-skillset/05-public-code-design.md -->

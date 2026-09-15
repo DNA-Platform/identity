@@ -10,7 +10,7 @@ description: push changes to the right places: identity to the org branch, branc
 
 ---
 
-Push this project's changes to the right places — identity to the organization branch, branch-library content to the project branch, project code to the project repo. This is the up-sync half of [travel](../../library/teamspeak/07-travel.md); [/pull](../../library/our-skillset/25-pull.md) is the down half.
+Push this project's changes to the right places — identity to the organization branch, branch-library content to the project branch, a personal library to the branch named for it, project code to the project repo. This is the up-sync half of [travel](../../library/teamspeak/07-travel.md); [/pull](../../library/our-skillset/25-pull.md) is the down half.
 
 ## Reading
 
@@ -28,11 +28,23 @@ It validates first, then routes each kind of change to the right place:
 
 - **Identity (`.claude/` and `CLAUDE.md`) → the SHARED branch `dna-platform`.** *It is project-neutral, several projects write to it, and **it is the branch Doug works on** — so the clobber guard below runs before the mirror.*
 - **Branch libraries (`library/*/.lib/`) → the branch named after this repo**, where this project is the only writer, so nothing needs reconciling.
+- **A personal library (`.me/`) → its own checkout beside this project**, landing as that checkout's `library/` and pushed from there. *One writer, so deletions are listed rather than blocked.* **It is skipped when no such checkout is found**, and the skip prints the remedy.
 - **Project code** → the project repo, with the project-root `CLAUDE.md` regenerated with the right link prefixes.
 
 *(Ruled 2026-09-05. It had been one repo-named branch for everything since 2026-08-12; Doug restored the shared branch for identity — **"that is the branch I will be working on"** — and the guard came back with it.)*
 
 If validation fails, nothing is pushed. The operator never chooses branches — the tool enforces the [branching model](../../library/..environmentalism/06-on-sync.md).
+
+## The personal library goes to its own branch
+
+**`.me/` is the mirror of `.claude/`, and the routing follows from that** — same wire, opposite person. *But where every other destination is reached through a detached worktree so that no checkout is borrowed, this one is* ***visited***: the personal library has a checkout of its own beside the projects, and that is where it is committed and pushed from. The full account is [On Sync](../../library/..environmentalism/06-on-sync.md#visited); what an operator needs is four lines:
+
+- **Nothing names it.** *The tool finds the one sibling checkout of the identity repo that is neither the identity folder nor a sync worktree, then asks it what branch it is on.* **`ME_LIBRARY=/path/to/it`** points at it directly when more than one exists.
+- **It refuses to run while that checkout has uncommitted changes under `library/`**, and names them. *The worktree rule was never about worktrees — it was that a sync must not move somebody's uncommitted work, and here the destination is a working copy, so the rule is obeyed by stopping rather than by routing around.*
+- **Deletions are listed, not blocked.** *One writer makes a deletion legitimate. A silent line there means nothing is being lost — which is worth more than a prompt nobody reads.*
+- **Its validation is reported, not enforced.** *A `.lib` failing stops the push because the errors are ours. A first-person library's errors are its author's, and the rest of the team's filing does not wait on them.*
+
+*(Added 2026-09-13, when Doug's own library became the first one to travel this way — and rebuilt the same afternoon, because the first design derived a name for a checkout that already knew its branch.)*
 
 ## It does not work in the identity folder
 

@@ -9,6 +9,7 @@
       "WebSearch",
       "WebFetch",
       "Agent",
+      "Bash",
       "Bash(npx tsx *)",
       "Bash(git status *)",
       "Bash(git diff *)",
