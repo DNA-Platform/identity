@@ -5,6 +5,8 @@
 
 ---
 
+> ***Note, 2026-09-15:*** *the fix below is now the PRODUCTION case. [Sprint 71](../projection/77-sprint-71--compilation.md#r-reversal) has `specify()` descend through parts on purpose — Doug: "We are setting up a system that runs in compile but not prod so we can" — and the specification runs no rule in production, so the parse a rule runs is paid at compile and never on a page. The measurement here stands as what a rule that parses costs a reader when it runs where it should not.*
+
 ## Symptoms
 
 - ***The encyclopedia took about five seconds to appear***, in the dev server **and in the production bundle** — *4,984 ms built, so there was nothing to build away.*

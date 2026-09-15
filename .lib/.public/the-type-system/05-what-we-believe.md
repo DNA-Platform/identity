@@ -82,7 +82,7 @@ $Section(block: $Block) {
 
 **P18 · A PIECE OF WRITING COMPOSES THE KIND BENEATH IT, OR ITS OWN.** ***Doug, verbatim:*** *"A paragraph is composed of sentences. It can have recursive paragraphs that contribute THEIR parts. That's it. There is no other option."*
 
-**P19 · `specify()` CHECKS ONE PIECE OF WRITING AND NEVER DESCENDS.** ***Doug:*** *"we don't want to recursively specify (we will check parts in the compiler)."*
+**P19 · `specify()` CHECKS ONE PIECE OF WRITING AND NEVER DESCENDS.** ***Doug:*** *"we don't want to recursively specify (we will check parts in the compiler)."* ***SUPERSEDED 2026-09-15, in [Sprint 71](../projection/77-sprint-71--compilation.md#r-reversal):*** *"We are setting up a system that runs in compile but not prod so we can. Please understand that that is what you are doing here."* **`specify()` now descends — a rule on the base specifies what was written into a writing, never what the parser makes, whose own promises answer for it — and the specification runs no rule in production, so the descent is a compile cost and never a reader's.** *The compiler confirms each book with one call; the framework walks.*
 
 **P20 · TWO AXES, AND THEY DO NOT INTERACT.** *The **type** says which of the seven this writing is — **closed**. The **annotation** says everything else — **open**.* ***Doug's test:*** *"if you are part of the composition, you are. If you are not, you are annotative."*
 
