@@ -1,0 +1,38 @@
+{
+  "name": "binding",
+  "private": true,
+  "type": "module",
+  "description": "The apparatus this library publishes itself with. Installed from the binding it came from by hand, and pinned to the @dna-platform versions it was built against; nothing here updates on its own.",
+  "scripts": {
+    "copy": "tsx manifest/copy.ts",
+    "sync": "tsx manifest/synced.ts",
+    "build": "tsx binding.ts",
+    "bind": "tsx binding.ts",
+    "specify": "tsx specification/specifying.ts",
+    "dev": "vite",
+    "preview": "vite preview --port 4242 --strictPort",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@dna-platform/chemistry": "^0.1.2",
+    "@dna-platform/public": "^0.0.3",
+    "chroma-js": "^3.2.0",
+    "motion": "^13.3.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "styled-components": "^6.1.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^8.0.2",
+    "@types/chroma-js": "^3.1.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.7.0",
+    "happy-dom": "^20.8.9",
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2",
+    "vite": "^7.0.0",
+    "vitest": "^4.0.0"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "books": [
+    {
+      "folder": "..reference",
+      "book": {
+        "author": "MY Library Log",
+        "catalogued": [
+          "The books",
+          "Doug’s Library",
+          "The Librarian",
+          "Table of Contents",
+          "Lead"
+        ],
+        "chapters": [
+          "Doug’s Library",
+          "The Librarian",
+          "Table of Contents",
+          "Lead",
+          "The books"
+        ],
+        "name": "Doug’s Library",
+        "subject": "Doug’s Library",
+        "title": "Doug’s Library",
+        "types": [
+          "Catalogue",
+          "Cover",
+          "Document",
+          "Document"
+        ]
+      },
+      "digest": "499ce50106d50107",
+      "walked": 165
+    },
+    {
+      "folder": ".claude-and-our-projects/.reference",
+      "book": {
+        "author": "MY Library Log",
+        "catalogued": [
+          "The Team I Write About Is Typing This",
+          "Claude & Our Projects",
+          "How We Work",
+          "Table of Contents",
+          "Lead",
+          "The projects"
+        ],
+        "chapters": [
+          "Claude & Our Projects",
+          "How We Work",
+          "Table of Contents",
+          "Lead",
+          "The projects",
+          "The Team I Write About Is Typing This"
+        ],
+        "name": "Claude & Our Projects",
+        "subject": "Doug’s Library",
+        "title": "Claude & Our Projects",
+        "types": [
+          "Catalogue",
+          "Biography",
+          "Cover",
+          "Document",
+          "Document"
+        ]
+      },
+      "digest": "1734c7e1ba6d2ac7",
+      "walked": 193
+    },
+    {
+      "folder": ".claude-and-our-projects/semantic-reference-theory/.reference",
+      "book": {
+        "author": "MY Library Log",
+        "catalogued": [
+          "Semantic Reference Theory",
+          "The Theory",
+          "Table of Contents",
+          "Lead",
+          "The conversations"
+        ],
+        "chapters": [
+          "Semantic Reference Theory",
+          "The Theory",
+          "Table of Contents",
+          "Lead",
+          "The conversations"
+        ],
+        "name": "Semantic Reference Theory",
+        "subject": "Claude & Our Projects",
+        "title": "Semantic Reference Theory",
+        "types": [
+          "Catalogue",
+          "Cover",
+          "Document",
+          "Document"
+        ]
+      },
+      "digest": "90c46259fa61630e",
+      "walked": 132
+    },
+    {
+      "folder": ".claude-and-our-projects/semantic-reference-theory/conversations/semantics-of-types",
+      "book": {
+        "author": "MY Library Log",
+        "catalogued": [
+          "Semantics of Types & More",
+          "What Was Said",
+          "Table of Contents",
+          "Lead"
+        ],
+        "chapters": [
+          "Semantics of Types & More",
+          "What Was Said",
+          "Table of Contents",
+          "Lead"
+        ],
+        "name": "Semantics of Types & More",
+        "subject": "Semantic Reference Theory",
+        "title": "Semantics of Types & More",
+        "types": [
+          "Cover",
+          "Document",
+          "Document"
+        ]
+      },
+      "digest": "e7d21cd8a5efe60e",
+      "walked": 107
+    },
+    {
+      "folder": "my-library-log",
+      "book": {
+        "author": "MY Library Log",
+        "catalogued": [
+          "Librarian's Log: Stardate 2026-09-15",
+          "MY Library Log",
+          "A Life",
+          "Table of Contents",
+          "Lead"
+        ],
+        "chapters": [
+          "MY Library Log",
+          "A Life",
+          "Table of Contents",
+          "Lead",
+          "Librarian's Log: Stardate 2026-09-15"
+        ],
+        "name": "MY Library Log",
+        "subject": "Doug’s Library",
+        "title": "MY Library Log",
+        "types": [
+          "Autobiography",
+          "Biography",
+          "Cover",
+          "Document",
+          "Document"
+        ]
+      },
+      "digest": "5a20ff1db6152b54",
+      "walked": 134
+    }
+  ]
+}

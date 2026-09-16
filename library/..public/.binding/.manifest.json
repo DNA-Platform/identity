@@ -1,0 +1,30 @@
+{
+  "assembled": [
+    ".binding/application/books/reference.tsx",
+    ".binding/application/books/claude-and-our-projects/reference.tsx",
+    ".binding/application/books/claude-and-our-projects/semantic-reference-theory/reference.tsx",
+    ".binding/application/books/claude-and-our-projects/semantic-reference-theory/conversations/semantics-of-types.tsx",
+    ".binding/application/books/my-library-log.tsx"
+  ],
+  "written": [
+    ".binding/application/books.ts",
+    ".binding/application/stylesheets.ts",
+    ".binding/application/routes.ts"
+  ],
+  "rendered": [
+    "index.html",
+    "claude-and-our-projects/index.html",
+    "semantic-reference-theory/index.html",
+    "semantics-of-types-and-more/index.html",
+    "my-library-log/index.html"
+  ],
+  "bundled": [
+    "assets/.book-DsfIt9qy.js",
+    "assets/index-DHexMGsT.js",
+    "assets/my-library-log-Daqrsufl.js",
+    "assets/reference-B3m3GdD9.js",
+    "assets/reference-BjtQEyzL.js",
+    "assets/reference-Bw8exVGH.js",
+    "assets/semantics-of-types-BW2OPyf0.js"
+  ]
+}

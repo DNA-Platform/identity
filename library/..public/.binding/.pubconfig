@@ -1,0 +1,11 @@
+{
+  "inventory": {
+    "root": "Doug’s Library"
+  },
+  "rendering": {
+    "title": "Doug's Library"
+  },
+  "manifest": {
+    "origin": "../../../library/.public/package/.binding"
+  }
+}
