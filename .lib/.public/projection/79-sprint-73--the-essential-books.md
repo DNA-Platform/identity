@@ -3,30 +3,77 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 - **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
-- **status:** `built` — ***2026-09-15: the first movement is built, seen and compounded. ALL FOUR BOOKS SPECIFY GREEN and all four pages were driven in a real browser. R8 was withdrawn and R9 answered by his word; what replaced them is one rule on the chapter. What is owed is in [Where things stand](#where).***
+- **status:** `built` — ***2026-09-15: his library exists, builds and publishes. 5 books · 258 writings · 0 failures; library rules 69 of 69; suite 114 of 114; tsc 0. What is owed is in [Where things stand](#where).***
 - ***The chapter name is a proxy; Doug's to rename.***
 
 ---
 
-## <a id="where"></a>Where things stand — ***2026-09-15, built and seen***
+## <a id="where"></a>Where things stand — ***2026-09-15, the second movement: his library exists and publishes***
 
-**Next action: `/ce-brainstorm` the next movement — the essential books of his library. Compounded 2026-09-15 into [Solutions 83](../solutions/83-the-heading-that-was-there-and-answered-nothing.md).** The first movement is built. **All four books specify green** — the paper 1,202 writings, the wiki's three 4,364 — and **all four pages were driven in a real browser**: the paper 82,577 characters with **66 of 66 contents rows landing**, 43 of 43 citations landing, 0 KaTeX errors; the portal 3,031, turing 108,867 with **32 of 32 rows landing**, the article 24,784 with **24 of 24**. **0 refusal panels on any page**, and no markdown link drew as its source. Package `tsc` 0, suite **112 of 112**, binding `tsc` 0.
+**Next action: the interactive illustrations he asked for as a SECOND PASS, and the compiled catalogue of all the books.** *The first movement — the table of contents and spelling — closed earlier and is [registered below](#first-movement). This is the movement that built his library.*
 
-**What the framework holds is READINGS and no rule.** `$Chapter.title`/`.name`, `$Catalogue.name` (and its `copy`), `$TableOfContents.chapters`, `$Book.tableOfContents`, `$TypeOfChapterMention`, and `parser.link`. **Both claims about a library are tests in the binder** — *names each chapter once*, *has a table of contents*, *is named chapter by chapter in its table of contents* — which the build runs and `npm test` runs.
+**HIS LIBRARY EXISTS, BUILDS AND PUBLISHES.** `.me/` holds five books; the binding stands at `.me/..public/.binding` and was installed with `npm run copy`. **5 books · 258 writings specified · 0 failures**, the library's own rules **69 of 69**, the package suite **114 of 114**, `tsc -p src` **0**.
 
-**`[Label](name)` is built and shared with `$Ref`, [as he asked](#r-label).** The reading moved out of `$Ref` into `parser.link`, where it belonged; `$Ref.link()` is now its caller. The paper's cover row reads `[P versus NP](mathsf-p-stackrel-mathsf-np)` — it says one thing and names another.
+| folder | name | route | carries | subject |
+|---|---|---|---|---|
+| `..reference` | **Doug** | `/` | Catalogue | Doug ← **itself** |
+| `.claude-and-our-projects/.reference` | Claude & Our Projects | `/claude-and-our-projects` | Biography, Catalogue | Doug |
+| `…/semantic-reference-theory/.reference` | Semantic Reference Theory | `/semantic-reference-theory` | Catalogue | Claude & Our Projects |
+| `…/conversations/semantics-of-types` | Semantics of Types & More | `/semantics-of-types-and-more` | — | Semantic Reference Theory |
+| `my-library-log` | MY Library Log | `/my-library-log` | Autobiography | Doug |
 
-**One base rule changed, and it was his design.** `$saysSomething` now reads `parenthetical`, the setting a kind already uses to say whether it draws — *"An annotation should still start as parenthetical and I think we want it printed if it isn't."* So writing that holds a mention is no longer empty, and nothing has to declare twice what it declared once. **The alternative was a `<Row>` wrapper around every entry, which is ceremony, and was rejected as such.**
+***The tree closes on itself.*** **Doug** is the one book filed under its own subject — the summit — and it catalogues **exactly one** autobiography. Every book names *MY Library Log* as its author, written `[Doug](MY Library Log)`: it SAYS Doug and NAMES the log.
 
-**Two reds were found to be OLDER than this work and deliberately not chased.** The prerendered page is a shell that hydrates — **byte-identical to `4a0e0af`** — so *"hydration recovered by re-rendering"* is how this rendering road has always behaved, not a regression. And **`verify-wiki.mjs` had been driving `turing/` and `article/` since Sprint 72 renamed those routes**, so every failure it reported was against a 404; its two addresses are corrected here.
+### <a id="built"></a>What was built, and what each thing cost
 
-**[R8](#r8) IS WITHDRAWN AND [R9](#r9) IS ANSWERED, both by his word, and what replaced them is one rule.** *"You should be able to recover a heading"* struck R8; *"If the created one is bad, then we wrote a bad chapter. Have chapter validate the title then rather than any header or something like that"* replaced it with **`ChapterSpecification.$isTitled`** — a chapter validates its own title, and a bad one means a chapter written wrong. **The rule immediately proved two readings blind**, which is [Solutions 83](../solutions/83-the-heading-that-was-there-and-answered-nothing.md): `heading()` and `title()` asked the block, where a heading the framework RECOVERED lives only in the parts. Both read the parts now.
+**THE ANNOTATIONS.** `$Biography`, `$Autobiography` and `$Catalogue` (exported as `Catalogues`) stand under `$Type` in `src/library/`, each filing itself with `this[cache]('Name')`. `$Type` carries `formula = true`. **`$Author` and `$Subject` are now mentions** — `$Catalogue` subclasses — so they name a book and read `[display](real)`. `$Canonical`, exported as **`For`**, says the book a synopsis is for, and `SynopsisSpecification` demands one.
 
-**So the books carry four written titles, not twelve.** Eight parenthetical `<Title>`s came out once recovery could be seen; the four that stand are each on a chapter the rule proved was written badly — the encyclopedia's synopsis, which answered its own cover's name; its two chapters headed by whole sentences; and the article's manual, whose heading holds a link and so names itself after a URL ([Solutions 82](../solutions/82-the-heading-that-named-itself-after-its-own-link.md)).
+***Two things were measured about the types and both matter.*** **Written as an element, a type resolves and its chain is readable** — `dougs-autobiography` answered **`Autobiography Biography`**. **Written as `<Type>Autobiography</Type>`, it does NOT resolve at build time**: the formula swap runs in the render walk and the binder builds books through `$()`, which [the formula](../../../chemistry/.lib/composition/12-the-formula.md) says outright is not the swap path.
 
-**Two findings about the BINDER, both costly and both fixed or filed.** *The masking:* `specify` gathered `[...verdict.failures, ...await running(…)]`, so a library suite over an incomplete graph threw *"ran no test"* **before the book's own failure was printed** — three attempts got the same useless line. Each book is specified first now and the library asked only once every book has been read. *The cache, NOT fixed:* **the digest does not change when the framework changes** — `dist` was rebuilt repeatedly and every book came back *unchanged* — so a rule change is never re-checked against the books, and deleting `.graph.json` is the only reset today. **That is [`unrun-rule`](../solutions/.cover.md) one level up and it is owed a fix.**
+**THE LIBRARY RULES**, in `.binding/specification/library.test.ts`, over the live read and never over a folder: a subject has a catalogue of that name · one catalogue per subject · exactly one book catalogues itself · the summit is an autobiography or catalogues exactly one · every book declares an author and that author is an autobiography. ***They went red with eleven failures naming the missing books before they went green.***
 
-**What is owed:** the digest above; the [link-in-a-heading defect](../solutions/82-the-heading-that-named-itself-after-its-own-link.md), filed rather than fixed; and the rest of the sprint's brief in [what follows](#what-follows).
+**NAMES ARE COPY.** `$Chapter.name` and `$Catalogue.name` answer what a person wrote; the slug happens where a URL is made — `addresses.ts` and `$Catalogue`'s own anchor. `slug` elides an apostrophe and writes `&` as *and*. **Three promises that pinned the old kebab rule were rewritten with the ruling quoted**, never deleted.
+
+**A TITLE MEANS THE THING IT TITLES.** `$Title.meaning` is `super.meaning ?? this.document`, and `$Document.mention` answers its chapter's — so a document is in charge of the link its title represents, and it is an ordinary override any kind of document can reinterpret. **No cover in the library writes a `<Reference>`.**
+
+**`[TEXT](TARGET)` IS OURS, NOT MARKDOWN'S.** `parser.link` is one expression and `marked` is imported nowhere in `src`.
+
+**THE BINDER.** A face is **found, not named** — the folder holding a binding, so `..public` sorts where its keeper wants it and the name lives in exactly one line of `copy.ts`. A first copy now takes its `package.json`. A dotted folder no longer breaks the bundle. `removal` prunes the folder a renamed book leaves behind. Publishing moved to **GitHub Packages**.
+
+**AND `$Svg`** in `src/writing/`, a kind of illustration that holds its own marks — five covers and two chapter drawings, and `$Illustration.picture()` is the seam it overrides.
+
+### <a id="reds"></a>The reds that were real, and what they cost
+
+- ***THE LIBRARY PUBLISHED ONE BOOK FIVE TIMES, GREEN.*** Four pages identical to the byte, none holding its own book. **The page template and a rendered page were the same file.** [Solutions 84](../solutions/84-the-five-pages-that-were-all-one-book.md) — *and the size was read backwards for an hour, because the copies were BIGGER than the original.*
+- ***A TYPE UNDER `$TypeOfBook` MADE A COVER TWO KINDS.*** `writing is one kind of writing, and this one is 2`. A type a book CARRIES must not be a composition level; they stand under `$Type`.
+- ***A THEME PREFIX WAS ALREADY TAKEN, TWICE.*** `mark_` owns the hamburger and `drawn_` owns `.pd-illustration img`; reusing either re-points the base's selector. **The cover plate drew at 1.25rem before this was caught.**
+- ***THE RENDER WROTE PAGE FOLDERS FROM THE NAME***, so `Claude & Our Projects/` appeared on disk beside the right one. It writes them from the ADDRESS now.
+
+### <a id="ask"></a>WHAT IS OWED — his words, and none of it designed
+
+| what | his word |
+|---|---|
+| ***interactive illustrations*** | *"use $Chemistry for the illustrations, and have them be interactive, but in a way that is surprising… perhaps an `$InteractiveIllustration` control in the application"* — **the second pass he asked for** |
+| ***a compiled catalogue of all the books*** | *"we might need to compile some sort of thing that can be imported as a sort of catalogue of all the books"* — **this is what connects the library**; `application/books.ts` and `routes.ts` are half of it |
+| ***a subject must LINK to its catalogue*** | *"we need it to have a connected library"* — a subject draws `href="#claude-and-our-projects"` where the route is `/claude-and-our-projects`; they differ by one character and only the route table knows |
+| ***`href="0"` on every title*** | a title means its chapter, whose path is the POSITIONAL address `0`, and `$Writing.view` puts it straight into `href` — **an address and a URL are the same string and should not be** |
+| ***`$$Synopsis`*** | a kind of `$$Chapter` in a table of contents; a catalogue's table names the books filed under its subject, and a synopsis not present is loaded and handed to the book at compile, at the end |
+| ***a participant in conversation*** | *"we will create the idea of a participant in conversation and we will annotate your biography as one of those"* |
+| ***a `$Markdown` kind*** | *"marked probably provides style, and maybe it should have a Markdown component in the markdown folder, where one can write markdown"* — it is now dead weight in `package.json` |
+| ***the conversation itself*** | `2026-09-09-semantics-of-types-&-more.md`, 2,282 lines, 106 messages, still a stub |
+| ***a driver*** | the master binding ships no `design/`, so **nothing here has been seen in a browser** — both demos have one and neither came from the master |
+
+### <a id="traps"></a>The traps, every one measured today
+
+- ***`.latex` AND `.wiki` ARE FROZEN AND ARE NOT TO BE UPDATED.*** His word: *"they have done their job… I don't want to deal with regression on them."* They name their root book by a slug and a name is copy now, so they would fail that lookup. **Leave them.**
+- ***THE SUITE AND THE BINDING BOTH READ `dist`.*** `npm run build:quick` before either, every time.
+- ***A GREEN BUILD SAYS NOTHING ABOUT A PAGE.*** The specification reads BOOKS; the graph is written before a page exists; the manifest records that a file was written. **Look at what is on disk.**
+- ***A THEME PREFIX IS A NAME IN A SHARED SPACE.*** Grep the base themes before choosing one.
+- ***`.me` IS ON THE LOCAL LINK.*** It pins `^0.0.3`/`^0.1.2` but resolves through the hoisted symlink; GitHub Packages holds nothing yet, so the move needs a push and CI.
+
+### <a id="first-movement"></a>The first movement, closed — registered rather than retold
+
+**The table of contents names every chapter of its book, spelled right.** Built, driven and compounded on 2026-09-15 into [Solutions 83](../solutions/83-the-heading-that-was-there-and-answered-nothing.md); the requirements and their evidence stand at [R1](#r1)–[R9](#r9) and the rulings at [the rulings](#rulings). *What it left owed — the digest that does not change when the framework changes, and [the link-in-a-heading defect](../solutions/82-the-heading-that-named-itself-after-its-own-link.md) — is still owed.*
 
 ## <a id="handoff"></a>TO THE SESSION THAT OPENS WITH HIS BRIEF — ***read this before you plan anything***
 
@@ -162,6 +209,13 @@
 ### <a id="code"></a>The code · <a id="suite"></a>what it cost the suite
 
 *Stubs, compacted at compounding: the exact members were written out here while they were being agreed, and they are now the code — /, , , , , , /, , and the two readings [Solutions 83](../solutions/83-the-heading-that-was-there-and-answered-nothing.md) corrected. A member is read where it stands. The suite cost was predicted at two promises and ran to nine before the readings were fixed; it is 112 of 112 now, which is where it is read.*
+
+## <a id="todos"></a>Sprint todos — ***his, as given***
+
+- <a id="todo-name"></a>**A NAME IS THE COPY, NOT A TOKEN.** *Doug, 2026-09-15:* **"No you NEVER write urls. Do we need to make the name on Book just the copy and it gets kebab cased when used for a url, so you understand that names aren't actually kebab cased?"** — `$Book.name`, `$Chapter.name` and `$Catalogue.name` all answer `reflection.slug(...)` today, so a name IS a token and an author writing one writes a URL. **The name should be the copy; the kebab happens where a URL is made.**
+- <a id="todo-resolve"></a>**A WRITTEN TYPE NAME DOES NOT RESOLVE AT BUILD TIME.** *Measured 2026-09-15:* `<Autobiography />` answers **`Autobiography Biography`** through `reflection.names`, and `<Type>Catalogue</Type>` answers **`Catalogue`** alone — the formula swap runs in the render walk and the binder builds books through `$()`, which [the formula](../../../chemistry/.lib/composition/12-the-formula.md) says is not the swap path. **So a library rule that reads a book cannot see a name form, only an element.**
+- <a id="todo-subject"></a>**A SUBJECT CALLED DOUG NEEDS A CATALOGUE.** *His rule:* **"there can be only one Library Catalogue"**, *and* **"every book's subject has a catalogue"** — so the subject `Doug` is owed the book that catalogues it.
+- <a id="todo-lift"></a>**A TYPE WRITTEN ON A COVER DESCRIBES THE BOOK.** [S17's lifting](../the-condition-report/04-semantics.md#s17-lifting) — *"LIFT the subject and author annotations, if not all annotations, from the cover to the book"* — is not built, so the binder reads the cover rather than the book.
 
 ## <a id="what-follows"></a>What follows in this sprint, not specified here
 
