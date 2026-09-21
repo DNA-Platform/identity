@@ -87,6 +87,40 @@ With the magnification measured rather than assumed, the arithmetic that matters
 remove it — it is a property of a 614 µm window, and it should be checked before any future
 spatial-frequency work on this recording rather than after.
 
+## IT HAPPENED AGAIN — 2026-09-21, the same fault, in the same hand, on the metamers
+
+Doug, after I had converted the post-DOI metamer's spatial period into microns of cortex for two
+animals and reported that they agreed:
+
+> *"You need to write — I am not tired — of your micron per pixel. It is invalid and you need
+> rigorous notes in the branch to stop trusting it, if for no other reason than images are
+> downsampled. Stop"*
+
+**What I did was fault Two above, verbatim.** I set the matched cells' cortical hull area equal to
+the hull area of their READOUT POSITIONS and took the square root of the ratio as microns per
+pixel — 28.5 for 33328 and 42.2 for 33977 — then multiplied the metamer's period by it and
+published 431 µm and 594 µm as cortical wavelengths that "overlap at 372–578 µm". It is the same
+move as setting 614 µm equal to a 31-pixel rectangle. **This chapter already said not to, by name,
+and I did not read it before doing it.** The lab's own `validation.retinotopy_map` on these very
+cells returns 80.9 and 291.1 µm per pixel; my 28.5 is three to ten times smaller and a scalar
+where the measurement is anisotropic 3.6×.
+
+**And Doug's reason is stronger than any of that, because it kills the UNIT and not just the
+estimate.** The frames are downsampled: `prepare.py` block-averages Erin's 576 × 1024 source into
+the scan at `[images] scale`, which is 16 source pixels per scan pixel at `scale = 1` and 4 at
+`scale = 2`. **`scale` is set for compute, and `defaults.toml` says in its own comment to move it
+to 2 when there is a machine.** So every microns-per-pixel number, and every spatial frequency in
+cycles per pixel converted through one, changes by a factor of two the day someone changes a
+setting that has nothing to do with biology. A quantity that moves when the compute budget moves
+is not a measurement of cortex.
+
+The second reason, from the same day, is that the readout positions are not a retinotopic map to
+begin with: regressed on cortical coordinates they give r = 0.86 and 0.36 on 33328's two axes and
+**0.48 and 0.25 on 33977's**, and the fitted maps are near rank-one (singular values differing 8
+to 16×). Most of the readout's spread is not position. Two of the animals' numbers then "agreeing"
+is two unreliable estimates landing near each other, which is not evidence and reads exactly like
+evidence.
+
 ## The rule this earns
 
 **A unit and a magnification are measurements, not conveniences.** Two extents being equal is not a
@@ -95,6 +129,37 @@ here produced numbers that looked entirely reasonable — 0.61 cycles per pixel 
 frequency, and a 44× spectral fall is a plausible spectrum — which is why neither was questioned for
 a day. **Check the instrument before the finding**: a broken conversion returns a plausible number,
 and a plausible number reads as a result.
+
+**STRENGTHENED 2026-09-21, after the recurrence. Three rules, and the first is absolute.**
+
+1. **Never convert a spatial frequency out of pixels.** A pixel of a twin's input is a block
+   average of the source frame whose size is a COMPUTE SETTING (`[images] scale`). Report
+   **cycles across the frame** — resolution-independent, because the frame is the monitor — or
+   cycles across the crop beside it. Both survive a change of `scale`; microns per pixel and
+   cycles per degree do not.
+2. **If a cortical distance is genuinely needed, run `validation.retinotopy_map` against
+   `validation.whitened_rf`** and report its two singular values, not a scalar. Nothing else in
+   this repository measures magnification. A ratio of two extents is not a measurement however it
+   is dressed — as a bounding box, as a convex hull, or as the square root of an area ratio.
+3. **Degrees come from the FRAME, never from a pixel.** The screen geometry is not in the
+   delivered data - no screen size, no viewing distance, no degrees anywhere in a scan's `meta/` -
+   so the one legitimate anchor is the rig itself. **Jake, via Doug, 2026-09-21: the image covers
+   about 105 degrees of the mouse's field of view.** That attaches to the MONITOR, which does not
+   change when `[images] scale` does, so
+
+   ```
+       cycles per degree = cycles across the frame / 105
+   ```
+
+   is safe and `cycles per pixel x pixels-per-degree` is not, because the second reads a compute
+   setting as if it were geometry. Do not use `PPD_AT_BASE = 0.53` from
+   `.analyses/digital-twin/resolution/resolution.py`: it is that same conversion frozen at one
+   scale, it is a script constant rather than a measurement of these recordings, and it disagrees
+   with Jake's frame (0.61 px/deg at 64 px across 105 degrees).
+   **Degrees do not reconcile two animals.** The conversion is identical for both, so a twofold
+   difference in cycles per frame stays a twofold difference in cycles per degree. Only a
+   per-animal cortical magnification could reconcile them, and that is the thing this chapter
+   says cannot be had from a ratio of extents.
 
 The estimator that finally escaped all of this uses no grid and no conversion of positions at all —
 every pair of cells at its own separation, `P(k) = (2/N) Σ_{i<j} v_i v_j J₀(2πk d_ij)` — and was
