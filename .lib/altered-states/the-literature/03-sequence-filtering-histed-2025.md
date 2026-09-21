@@ -7,7 +7,7 @@
 
 [Book: [The Literature](.cover.md)]
 
-The paper's own book is [Sequence Filtering](../../papers/sequence-filtering-histed-2025/.cover.md).
+The paper's own book is [Sequence Filtering](../../papers/histed-sequence-filtering-2025/.cover.md).
 
 ## What it is
 

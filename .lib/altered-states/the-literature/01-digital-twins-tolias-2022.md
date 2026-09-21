@@ -7,7 +7,7 @@
 
 [Book: [The Literature](.cover.md)]
 
-The paper's own book is [Digital Twins of Visual Cortex](../../papers/digital-twins-tolias-2022/.cover.md) — synopsis, methods, [figures](../../papers/digital-twins-tolias-2022/11-fig2-evaluation-natural.md), and commentary. This chapter records what *we* took from it.
+The paper's own book is [Digital Twins of Visual Cortex](../../papers/tolias-digital-twins-2022/.cover.md) — synopsis, methods, [figures](../../papers/tolias-digital-twins-2022/11-fig2-evaluation-natural.md), and commentary. This chapter records what *we* took from it.
 
 ## What we learned
 
@@ -26,5 +26,5 @@ The paper's own book is [Digital Twins of Visual Cortex](../../papers/digital-tw
 
 - [Sprint 4 — The Twin and MEI](../projection/04-sprint-4--the-twin-and-mei.md) — the build that trains the twin and synthesizes MEIs.
 - [The twin-and-MEI report](../../reports/2026-06-23-twin-mei/the-twin-and-mei.md) — the writeup whose figures this display recipe governs.
-- [The Build — the digital-twin recipe](../the-build/10-the-digital-twin-recipe.md) — the concrete model and MEI hyperparameters (the [gradient-inversion deep-dive](../../papers/digital-twins-tolias-2022/18-deep-dive-gradient-inversion.md) is the method behind reconstruction).
+- [The Build — the digital-twin recipe](../the-build/10-the-digital-twin-recipe.md) — the concrete model and MEI hyperparameters (the [gradient-inversion deep-dive](../../papers/tolias-digital-twins-2022/18-deep-dive-gradient-inversion.md) is the method behind reconstruction).
 - [The print — faithful figure display](../projection/print--faithful-figure-display.md) — the task of matching our figures to this paper's.

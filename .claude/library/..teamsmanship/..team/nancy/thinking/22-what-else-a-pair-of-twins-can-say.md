@@ -25,7 +25,7 @@ scale-invariant and more directly "represented features" than metamers; the rest
 or fail scale-invariance.
 
 **What I already know** (the papers I hold): [Walker 2019](../../../../../../../altered-states/library/papers/walker-inception-loops-2019/.cover.md)
-(MEI), [Cobos 2022](../../../../../../../altered-states/library/papers/digital-twins-tolias-2022/.cover.md) (metamer),
+(MEI), [Cobos 2022](../../../../../../../altered-states/library/papers/tolias-digital-twins-2022/.cover.md) (metamer),
 [Bashivan 2019](../../../../../../../altered-states/library/papers/bashivan-neural-population-control-2019/.cover.md)
 (target-driven population synthesis), [Sinz 2018](../../../../../../../altered-states/library/papers/sinz-domain-transfer-2018/.cover.md)
 (domain/condition transfer, in-silico tuning recovery), [Lurz 2021](../../../../../../../altered-states/library/papers/lurz-generalization-2021/.cover.md)

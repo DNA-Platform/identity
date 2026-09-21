@@ -216,7 +216,7 @@ retinotopy figure's y-axes are **stimulus-frame pixels** (azimuth 0–64, altitu
 **not visual degrees**; converting a gradient to deg/µm needs the monitor geometry, which is not pinned here.
 Altitude also starts with ~1.8× less pixel range (36-px axis vs 64), so part of "3× shallower" is range, part is
 biology. [Answered to Jake Reimer 2026-07-14; he cites the retinotopy supplement of
-[Functional Connectomics (Tolias 2024)](../../papers/functional-connectomics-tolias-2024/.cover.md), which we hold.]
+[Functional Connectomics (Tolias 2024)](../../papers/tolias-functional-connectomics-2024/.cover.md), which we hold.]
 
 ## The generation discipline (the other expensive lesson)
 

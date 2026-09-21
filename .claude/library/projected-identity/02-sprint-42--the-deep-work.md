@@ -21,7 +21,7 @@ Deep scans of both repos found these issues:
 
 **F-1. `..librarianship/02-the-linking-garden.md` line 41** — code example references `../claude-driver/` which doesn't exist here. Replace with a valid example like `../coding-policy/`.
 
-**F-2. `..librarianship/06-academic-papers-as-books.md`** — references `../../../../library/neuroscience/digital-twins-tolias-2022/.cover.md` via cross-repo path. This chapter describes a convention developed for a dna-library-specific book. Evaluate whether the chapter applies here; if not, note it as dna-library context.
+**F-2. `..librarianship/06-academic-papers-as-books.md`** — references `../../../../library/neuroscience/tolias-digital-twins-2022/.cover.md` via cross-repo path. This chapter describes a convention developed for a dna-library-specific book. Evaluate whether the chapter applies here; if not, note it as dna-library context.
 
 **F-3. `coding-policy/05-coding-style.md` and `gateway-audit.md`** — these were in the archived old coding policy. Confirm they're gone and no ghost references remain.
 

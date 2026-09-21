@@ -28,7 +28,7 @@
 
 ## Paper
 
-- **PDF:** `library/neuroscience/sequence-filtering-histed-2025/Sequence Filtering - Histed - 2025.pdf`
+- **PDF:** `library/neuroscience/histed-sequence-filtering-2025/Sequence Filtering - Histed - 2025.pdf`
 - **Status:** PDF only, no book structure yet
 
 ## Stories
@@ -52,7 +52,7 @@
 **Libby —** Verify conventions — cover frontmatter, TOC format, navigation links, resource pairs.
 
 **Acceptance:**
-- [ ] PDF renamed to slug format: `sequence-filtering-histed-2025.pdf`
+- [ ] PDF renamed to slug format: `histed-sequence-filtering-2025.pdf`
 - [ ] `.cover.md` with frontmatter (title linking to PDF, author, summary, year, journal, DOI, paper-authors)
 - [ ] Chapter stubs created: synopsis, authors, abstract, section chapters (descriptively named), references, commentary, glossary
 - [ ] Figure chapter stubs created (one per figure, `.md` + `.png` pairs)

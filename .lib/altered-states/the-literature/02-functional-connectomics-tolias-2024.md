@@ -7,7 +7,7 @@
 
 [Book: [The Literature](.cover.md)]
 
-The paper's own book is [Functional Connectomics](../../papers/functional-connectomics-tolias-2024/.cover.md). What *we* took from it:
+The paper's own book is [Functional Connectomics](../../papers/tolias-functional-connectomics-2024/.cover.md). What *we* took from it:
 
 ## What we learned
 

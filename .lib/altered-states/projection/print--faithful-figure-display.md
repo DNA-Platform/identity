@@ -9,7 +9,7 @@
 ## Checklist
 
 **Nancy — read the source for the display recipe.**
-- [ ] Read [`library/papers/digital-twins-tolias-2022/`](../../papers/digital-twins-tolias-2022/.cover.md) and [`functional-connectomics-tolias-2024/`](../../papers/functional-connectomics-tolias-2024/.cover.md) — the full PDF, the figure PNGs, the md synopsis in each folder.
+- [ ] Read [`library/papers/tolias-digital-twins-2022/`](../../papers/tolias-digital-twins-2022/.cover.md) and [`tolias-functional-connectomics-2024/`](../../papers/tolias-functional-connectomics-2024/.cover.md) — the full PDF, the figure PNGs, the md synopsis in each folder.
 - [ ] **MEI display**: colormap (grayscale vs diverging vs other), intensity normalization (per-MEI min/max vs a fixed symmetric range vs percentile clip), any smoothing / upsampling that removes grain, the resolution shown. Confirm what the paper does where ours are grainy.
 - [ ] **Reconstruction display**: contrast scaling, upsampling to original resolution, colormap.
 - [ ] Any twin methodology relevant to how outputs are shown.
