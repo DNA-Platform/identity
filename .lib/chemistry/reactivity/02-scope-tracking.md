@@ -16,13 +16,13 @@
 
 ## What is recorded
 
-- **A read** — the activated getter calls `scope.recordRead(chemical, prop, value)`, and the scope keeps [`snapshot(value)`](04-collection-mutation.md#walked) under the FIRST read of that property; later reads in the same scope do not overwrite it.
+- **A read** — the activated getter, or [a declared accessor's wrapper](01-reactive-properties.md#an-accessor-is-live), calls `scope.recordRead(chemical, prop, value)`, and the scope keeps [`snapshot(value)`](04-collection-mutation.md#walked) under the FIRST read of that property; later reads in the same scope do not overwrite it.
 - **A write** — the activated setter, having already refused an [equivalent value](01-reactive-properties.md#a-write-is-news-by-value) and a write during the chemical's own draw, calls `scope.recordWrite(chemical, prop)` instead of reacting.
 
 ## What finalize does
 
 1. **Every written chemical is dirty.**
-2. **Every read chemical whose current value is not `equivalent` to its snapshot is dirty** — this is how an in-place `push`, `set` or `add` is seen with the reference unchanged, and how a read that changed nothing is not.
+2. **Every read chemical whose current value is not `equivalent` to its snapshot is dirty** — this is how an in-place `push`, `set` or `add` is seen with the reference unchanged, and how a read that changed nothing is not. *A field's current value is its backing entry; a property recorded off an accessor has none and is re-read through the property, with no scope standing, so the getter answers again.*
 3. **Every ancestor of a dirty chemical is dirty**, walked up `$$parent$$`, so a parent that reads its child's state in its view redraws.
 4. **Each dirty chemical's `$Reaction.react()` is called once.** React batches what follows into one commit.
 

@@ -35,6 +35,18 @@ set(value) {
 
 *Before 2026-08-26 this was `store[property] === value`, and the same function was already being used one layer away — [scope tracking](./02-scope-tracking.md) has always compared read snapshots with `equivalent`. **The write path was the half that never called it.***
 
+## <a id="an-accessor-is-live"></a>An accessor is a reactive property — by the same rule as a field
+
+***Built 2026-09-22 on Doug's ruling: "It's not a rule change! These things should always have been reactive. They are props right? get $prop / set $prop. Why would a reactive property be any different. This is a bug not a feature."*** *And on what it proxies to: "It shouldn't matter if annotations are or aren't [a chemical]. The key is that there is a get / set property that proxies to anywhere. You know it exists. It should be reactive."*
+
+**A declared `get`, with or without a `set`, whose name passes [`isReactive`](../../package/src/abstraction/bond.ts) is WRAPPED as a field is activated** — [`wrap`](../../package/src/abstraction/bond.ts), a proxy name. *The wrapper is an own, non-enumerable accessor on the template and, through `double()`, on every instance that is not the template; it calls the declared accessor with the right `this`, so a derived face reaches it through the chain as it reaches a field.* **A read records the getter's ANSWER in the scope**, so a getter alone is reactive even over a plain instance: a handler that reads it and then changes what it answers redraws, because `finalize` re-reads it through the property with no scope standing. **A set is news unless the answer is unchanged** — the answer is snapshotted before the set and compared after — **and a set during the chemical's own draw or bond is construction**, exactly as for a field.
+
+***Where it had been out of whack.*** *The Sprint 18 rebuild built interception for fields and carried the legacy bond's accessor flags — `isProperty`, `isReadable`, `isWritable` — across as reflection only; the legacy snapshot had read every bond "via getter or backing field", and that reading did not cross. Since then an accessor descriptor became a bond that stored its `get` and `set` and installed nothing. A getter was live only by transparency, through the activated fields it read, and went dark over anything else; a setter recorded nothing, so `writing.$is = Narrative` from outside a draw redrew nothing. No commit ever removed a wrapper; one was never built.*
+
+**Two scans of a template's own names learned the difference the same day.** *The styled compiler's `declared` and the facade walk's `facadesOf` both read every own name's value, and a wrapped getter read outside a draw reaches what only the draw provides. The wrapper's getter carries the declared accessor under `$original$`, as an augmented handler carries the user's own function, and both scans skip what carries it.*
+
+**Promises:** [`accessors.test.tsx`](../../package/tests/abstraction/accessors.test.tsx), six — *a set through a setter from outside a draw redraws, on the direct road and on the template road; an equal set is not news; a getter proxying to a plain instance's list, read in a handler and pushed in place, is seen; a set in the bond constructor composed in a parent is construction; a getter alone read in a handler is snapshotted.* **Commit `2ffbe4c`.**
+
 ## <a id="construction-is-not-news"></a>Construction is not news
 
 ***A write made while a chemical is being SET UP stores its value and wakes nobody.*** **The flag is [`$rendering$`](../../package/src/implementation/symbols.ts), it lives on the chemical, and the setter tests it before it fans anything out.**
@@ -76,6 +88,7 @@ finally { c[$rendering$] = bonding; }
 - **A function-valued member is a REAGENT** unless you say otherwise — see [above](#a-function-is-behaviour).
 - **A `$` name must pass `isSpecial`** to be settable from JSX — `length >= 2`, second character lowercase, not `$` and not `_`.
 - **A write is compared by value**, and an equal value is not news.
+- **A declared accessor is reactive by the same rule**, wrapped rather than activated; a read records its answer, a set is news unless the answer is unchanged.
 - **A write inside the writer's own bond constructor is not news**, whatever its value.
 
 ## Cases

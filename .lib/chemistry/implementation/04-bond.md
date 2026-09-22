@@ -24,3 +24,7 @@ Bonds connect upward to the `$Molecule` (the particle's bond-map that collects a
 ## Source
 
 - `library/chemistry/src/abstraction/bond.ts`
+
+## Since 2026-09-22 — an accessor bond wraps
+
+**A declared `get`/`set` is a bond too, and `form()` now WRAPS it where a field is activated:** the wrapper is an own, non-enumerable accessor carrying the declared one under `$original$`, installed on the template and, by `double()`, on every instance that is not the template. What it does for reactivity is in [reactive properties](../reactivity/01-reactive-properties.md#an-accessor-is-live).
