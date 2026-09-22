@@ -18,9 +18,10 @@
 | **`Map`** | values copied, keys kept | same size, every key present, each value equivalent |
 | **`Set`** | members copied | same size, every member found — by `has`, or by content when the member is itself walked and so was copied |
 | **`Date`** | by time | same time |
+| **a class that declares [`@represented()`](06-decorators.md#represented)** | as its `toString` | same expression |
 | **plain object** | key by key | same keys, each value equivalent |
 
-**Held: everything else that is an object — a class instance, a chemical.** *Copied by reference, equal only to itself. The class owns its equivalence.*
+**Held: everything else that is an object — a class instance, a chemical.** *Copied by reference, equal only to itself. The class owns its equivalence — and a class that wants VALUE semantics says so with `@represented()`, whereupon its `toString` is its expression. Doug, 2026-09-22: "Perhaps we can have a decorator which expresses value semantics? Like inert, we could have @represented. And that means the person wants you to use toString as your proxy."*
 
 ***One list, because two lists disagreed.*** **From 2026-08-27 to 2026-09-22 `snapshot()` in `scope.ts` walked a `Map`, a `Set` and a `Date` while `equivalent()` in `reconcile.ts` refused every prototype that was not `Object.prototype`** — *so a walked collection never equalled its own snapshot, any scope that read one was dirty at `finalize`, a fresh equal one assigned was news, and a fresh equal one handed as a prop never settled through the [settle pass](../particle/12-the-three-passes.md#pass-c).* [Reactive properties](01-reactive-properties.md#a-write-is-news-by-value) carries the correction; [the three passes](../particle/12-the-three-passes.md#found-on-the-way) had already found the defect and measured why it never fired.
 
@@ -29,7 +30,7 @@
 - **A read that left its collection as it found it wakes nothing** — including one cleared and refilled with the same members. *Doug, 2026-09-22: "It's a set, modified in an idempotent way in the view. Should not change the snapshot but it does."*
 - **A read that changed its collection in place wakes its chemical**, whoever's reagent made the change.
 - **Assigning a fresh collection holding what the old one held is not news** — the setter compares by the same list.
-- **A held instance is compared by reference.** Mutating one in place is invisible; replace it, or make it a chemical.
+- **A held instance is compared by reference.** Mutating one in place is invisible; replace it, make it a chemical, or declare `@represented()` and let its `toString` say what it is.
 
 ## Cases
 
@@ -38,7 +39,7 @@
 - `this.map.get('x')` in a handler — draws nothing; `this.map.set('x', 2)` — draws once.
 - `<Child picked={new Set(this.items)} />` — settles; before the fix it never did.
 
-**Promises:** [`walked-collections.test.tsx`](../../package/tests/react/walked-collections.test.tsx), six; the older Set, Map and array promises in [`scope-tracking.test.tsx`](../../package/tests/react/scope-tracking.test.tsx) and [`bond-behavior.test.tsx`](../../package/tests/regression/bond-behavior.test.tsx) still hold.
+**Promises:** [`walked-collections.test.tsx`](../../package/tests/react/walked-collections.test.tsx), nine — six on the built-in shapes and three on a represented class; the older Set, Map and array promises in [`scope-tracking.test.tsx`](../../package/tests/react/scope-tracking.test.tsx) and [`bond-behavior.test.tsx`](../../package/tests/regression/bond-behavior.test.tsx) still hold.
 
 ## See also
 
