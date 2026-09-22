@@ -23,7 +23,7 @@ Click the toggle: the light wakes. Across instances, across the JSX tree, regard
 
 Reactive writes don't only fan out within the writer's scope — they walk the *catalyst graph*, the structural overlay that links composed chemicals through their `$parent` relationship. A write to `B.$x` finds B's scope, fires B's reactions, and propagates through B's derivatives. The writing handler's scope is irrelevant to who wakes.
 
-The in-scope and no-scope paths are symmetric — both call [diffuse](./05-diffuse.md), which gates fan-out on `hasOwnProperty($derivatives$)`. Sibling derivatives that prototype-inherit the registry do not leak writes.
+The in-scope and no-scope paths are symmetric — both walk `$$parent$$` upward, [diffuse](./05-diffuse.md) at once and `finalize` once at the close of the scope, so whoever composed the written chemical redraws.
 
 ## Why it's surprising
 
@@ -33,9 +33,9 @@ A reader who expected scope-boundedness will be surprised by the propagation. A 
 
 ## The rules
 
-- **In-scope writes** call `diffuse` on `scope.finalize()`. The scope snapshots state on read; on finalize, it fires `react()` for each dirty chemical and fans out to derivatives.
-- **No-scope writes** call `diffuse` immediately. The setter fires `react()` directly, then walks `$derivatives$`.
-- **The ownership gate** prevents sibling leaks. `diffuse` checks `hasOwnProperty($derivatives$)` — only chemicals that *own* their derivatives set fan out. Derivatives that inherit the set through the prototype chain are not responsible for propagation.
+- **In-scope writes** wait for `scope.finalize()`. The scope snapshots state on read; on finalize, it dirties each written chemical, each read chemical whose value is no longer [equivalent](04-collection-mutation.md#walked) to its snapshot, and every ancestor, then fires `react()` once each.
+- **No-scope writes** call `react()` and [diffuse](./05-diffuse.md) immediately.
+- *An earlier version of these rules named a `$derivatives$` registry and an ownership gate. Neither is in the source; corrected 2026-09-22.*
 
 ## History
 

@@ -6,20 +6,23 @@
 
 ## Definition
 
-`diffuse(chemical)` is the fan-out function in [scope.ts](../implementation/08-scope.md). It walks the chemical's `$derivatives$` set — but only when the chemical *owns* the set (`hasOwnProperty($derivatives$)`) — and re-renders each derivative.
+**`diffuse(chemical)` is the no-scope path's upward walk in [`scope.ts`](../../package/src/implementation/scope.ts): from the written chemical up `$$parent$$`, calling `react()` on every ancestor, so a parent that reads its child's state in its view redraws.** The setter calls it right after `react()` when no scope stands; inside a scope the same walk happens once, at `finalize`.
+
+> *An earlier version of this chapter had `diffuse` walking a `$derivatives$` set behind an ownership gate. **Neither exists in the source**; the walk is the composition tree, and it is the same walk `finalize` makes. Corrected 2026-09-22.*
 
 ## Rules
 
-- *(TBD — gated on `hasOwnProperty($derivatives$)`.)*
-- *(TBD — re-renders each registered derivative.)*
+- **Outside a scope: `react()` on the written chemical, then `diffuse`.**
+- **Inside a scope: nothing until `finalize`, which dirties the ancestors of every dirty chemical and reacts each once.**
+- **A write during the chemical's own draw does neither** — [construction is not news](01-reactive-properties.md#construction-is-not-news).
 
 ## Cases
 
-- A chemical whose own derivatives are fanned out.
-- A derivative that prototype-inherits `$derivatives$` and does not fan out.
+- A `setTimeout` writing a child's field: the child reacts, then every ancestor.
+- A handler writing a sibling's field: the sibling and its ancestors, at `finalize`.
 
 ## See also
 
-- The `$derivatives$` registry — the set this reads.
-- The ownership gate — the `hasOwnProperty` check.
-- [scope.ts](../implementation/08-scope.md) — the source file.
+- [Scope tracking](02-scope-tracking.md) — the in-scope path.
+- [Cross-chemical writes](03-cross-chemical-writes.md) — why a write reaches whoever composed the written chemical.
+- [scope.ts](../implementation/08-scope.md) — the source.

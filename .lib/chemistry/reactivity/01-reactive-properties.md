@@ -29,6 +29,8 @@ set(value) {
 
 **`equivalent` opens with `if (a === b) return true`, so a scalar costs exactly what it cost before.** Arrays and plain objects compare **element-wise**; a `Map`, a `Set` and a `Date` compare by content; and ***a class instance — a chemical included — still compares by reference***, because a class owns its own equivalence.
 
+> ***CORRECTED 2026-09-22.*** *The sentence above was false from the day it was written until this one.* **`equivalent` refused every prototype that was not `Object.prototype`, so a `Map`, a `Set` or a `Date` never equalled anything but itself — not a fresh one holding the same, and not its own snapshot, which [`snapshot()`](04-collection-mutation.md#walked) had deliberately copied by content.** *Every scope that so much as read one was dirty at `finalize`, and a fresh equal one handed as a prop never settled. It went unnoticed because no scope stood during a draw until the public redraft's Sprint 78 opened one — a child's reagent filling its writing's Set of classes while the writing drew — and looped. Doug: "It's a set, modified in an idempotent way in the view. Should not change the snapshot but it does."* **Now the copy and the comparison read [one list of walked shapes](04-collection-mutation.md#walked), so they cannot disagree again.**
+
 **So assigning a fresh collection holding what the old one held is FREE.** *A reading that rebuilds its list on every call can assign the result without waking anything, which is the ordinary shape of a derived member and used to cost a repaint every time.*
 
 *Before 2026-08-26 this was `store[property] === value`, and the same function was already being used one layer away — [scope tracking](./02-scope-tracking.md) has always compared read snapshots with `equivalent`. **The write path was the half that never called it.***
@@ -54,14 +56,14 @@ finally { c[$rendering$] = bonding; }
 
 ## <a id="a-function-is-behaviour"></a>A FUNCTION-VALUED MEMBER IS BEHAVIOUR — and three ways to say you meant a value
 
-***The membrane treats a member holding a function as a method***, because that is what one almost always is. [`$Bond.isMethod`](../package/src/abstraction/bond.ts) routes on the descriptor's value — `typeof value === 'function' && !value.$chemical` — and `$Bond.create` makes a **`$Reagent`**, whose `form()` installs a getter answering a **bound wrapper cached per instance**, with no setter.
+***The membrane treats a member holding a function as a method***, because that is what one almost always is. [`$Bond.isMethod`](../../package/src/abstraction/bond.ts) routes on the descriptor's value — `typeof value === 'function' && !value.$chemical` — and `$Bond.create` makes a **`$Reagent`**, whose `form()` installs a getter answering a **bound wrapper cached per instance**, with no setter.
 
 **A function held as a VALUE is the exception** — a factory, a class, a handler given from outside — **and the framework cannot know which you meant, so you say so.** *Three ways, each already in the framework:*
 
 | what you hold | how you say it |
 |---|---|
-| **a class, compared** — `instanceof`, `===`, a registry key | **a getter.** A wrapper is correct to call and useless to compare; this is [the identity case](../../.public/.lib/solutions/38-the-sections-that-collapsed-into-one-paragraph.md) |
-| **a factory the framework itself reads** — `selector = styled.a` | **name it in [`molecule.ts`](../package/src/abstraction/molecule.ts)'s `framework` set**, whose comment states this in advance: *"Members the framework owns, which are never state… a function-valued member would otherwise be bonded as a REAGENT"* |
+| **a class, compared** — `instanceof`, `===`, a registry key | **a getter.** A wrapper is correct to call and useless to compare; this is [the identity case](../../../.public/.lib/solutions/38-the-sections-that-collapsed-into-one-paragraph.md) |
+| **a factory the framework itself reads** — `selector = styled.a` | **name it in [`molecule.ts`](../../package/src/abstraction/molecule.ts)'s `framework` set**, whose comment states this in advance: *"Members the framework owns, which are never state… a function-valued member would otherwise be bonded as a REAGENT"* |
 | **a handler given as a prop** — `onClick` | ***declare it initialized*** — `$onClick: (() => void) | undefined = undefined` — so it is an own property when the molecule forms, bonds as a plain field, and keeps its setter |
 
 ***Left unsaid, each fails in its own quiet way.*** A compared class meets an impostor. **A factory answers a different wrapper per class, so a subclass silently stops extending its parent.** And a prop works **exactly once** — the second render's assignment meets the getter and throws *"Cannot set property $onClick … which has only a getter."*
