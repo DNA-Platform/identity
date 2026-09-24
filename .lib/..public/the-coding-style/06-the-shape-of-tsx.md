@@ -59,6 +59,25 @@ view(): ReactNode {
 
 ***And a class that draws is ordered so the story reads down:*** `view` first, then what it draws with, then the machinery — [the order of a class, as amended the same day](02-the-order-of-a-class.md#the-story-first).
 
+### <a id="define-is-a-declaration"></a>`$Define` is a declaration, and it reads as one — ***given 2026-09-24***
+
+> ***"I want your add to support multiple for an author, and I want code to look like this — like the TSX style that it evoked."*** · ***"Add that to the coding conventions — to make $Define, to the extent possible, look like TSX, alternatively, to look like object literal creation. It is like we are declaring properties right?"*** — **Doug, 2026-09-24**
+
+***`$Define` is where a class declares its default traits — what it is before anyone writes into it — the way a field declares a property.*** **So it reads as a declaration and never as a procedure: one `add` for its author, the author first on the line, and the annotations stacked beneath as TSX, one element to a line, the closing parenthesis lined up with the call.** *The components it names are fetched just above it, as a view's are, so nothing is computed inside the declaration.*
+
+```tsx
+protected override $Define(): void {
+    const Level = $(level);
+    const Open = $(open);
+    this.annotations.add(this,
+        <Level>1</Level>,
+        <Open />
+    );
+}
+```
+
+***Where what a class declares is not an element, it is shaped like an object literal instead*** — *one name and its value to a line, indented under what receives them.* **Either way the reader sees a list of what the class is, in the order written.** *Before this ruling a class's defaults were one `add` to an element, which read as steps — do this, then this — and stood the defaults in reverse, since each landed at the front; one stacked `add` stands them in the order they are read.*
+
 ## <a id="naming"></a>Naming a component you fetched
 
 ***A component local carries the COMPONENT'S NAME.*** **Doug, striking three of mine:** *"You understand that `Held` and `Asked` are the worst possible name for a component right? You throw away semantics. It's like naming a variable `Stored`, and a property `Represents`."* **And on `Piece` for a table cell:** *"USE COMPONENT NAMES! A piece of a table? Really?"*

@@ -17,9 +17,10 @@
 | member | what it is | from |
 |---|---|---|
 | `Author` | any instance; a type named for his word, so a variable is named after its type as the coding style asks | *"any instance can serve as the author"* |
-| `Side` | `'left'` or `'right'` | his `side == 'right'` |
+| `Side` | `'left'` or `'right'`, the two places `change` puts values | his `side == 'right'` |
 | `change(type, author, ...values)` | the one door every modification goes through: `'left'` and `'right'` add, then `'remove'`, `'replace'` and `'revert'` | his |
-| `add(author, value, side = 'right')` | a value on the right, or on the left when told | his |
+| `add(author, ...values)` | several values at once for one author, appended | his; *"have add be a synonym for append (calls off to it) which makes it simple to understand"* |
+| `append(author, ...values)`, `prepend(author, ...values)` | several values at the end, or at the front, in their order | *"Switch to append and prepend… append and prepend go together, add / remove go together, we intersect on add, and that is okay"* |
 | `remove(author, value)` | every entry holding the value goes | his |
 | `replace(author, value, replacement)` | the replacement stands where each entry holding the value stood | his `replace(author,old,new)`, the variables named by the coding style |
 | `revert(author)` | everything that author changed is taken back | his |
@@ -54,7 +55,7 @@
 
 ### The placeholder, gone
 
-**`ChemicalCollection` stood from C1 to C6**, today's class under a placeholder name on Doug's choice, holding up the contents and the annotations while they moved onto the core: E65's operations by type, making each chemical from a given, parented to the writing. Annotations moved in C4 and the contents in C6, as `Contents` beside it in Writing's file, whose `add(author, given, side = 'right')` makes and parents the chemical and puts it at the end, as E65's add goes to the end of source. **E65's `ensure`, and its `replace` and `remove` by type, went with it on his word** — *"We can remove that for now. I think we have built something that doesn't need it"* — since the core replaces by instance and a removal by type is a `find` and a `remove` of each chemical found.
+**`ChemicalCollection` stood from C1 to C6**, today's class under a placeholder name on Doug's choice, holding up the contents and the annotations while they moved onto the core: E65's operations by type, making each chemical from a given, parented to the writing. Annotations moved in C4 and the contents in C6, as `Contents` beside it in Writing's file, whose `append` and `prepend` make and parent each chemical from its given, and whose `add` appends, as E65's add goes to the end of source. **E65's `ensure`, and its `replace` and `remove` by type, went with it on his word** — *"We can remove that for now. I think we have built something that doesn't need it"* — since the core replaces by instance and a removal by type is a `find` and a `remove` of each chemical found.
 
 ## How it is extended
 
