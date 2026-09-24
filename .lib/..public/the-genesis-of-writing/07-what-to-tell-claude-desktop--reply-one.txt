@@ -1,0 +1,71 @@
+Held the artifacts — nothing from this is integrated until you rule on the flagged items, since several of them are the team reporting your words and I can't tell a ruling from a paraphrase.
+
+Where the team departs from the Genesis
+
+1. Title and Summary — misattributed, and two rulings that can't both hold. A.7 says "Title and Summary are classes, as the Genesis has them." The Genesis never gave them classes; that was open item 3 for six passes. Your choosing classes in the room is a ruling — fine — but the team then cites you from 2026-09-15: "The chapter title IS the heading of its first section PERIOD." That predates the Genesis and contradicts E30, where a chapter's first two parts are a title and a summary. If the title is the first section's heading, the chapter's first part is a Section, and the summary has nowhere stated to sit. One of these is canon. E30 is in the Genesis; the 9/15 line isn't.
+
+2. Heading "not by position." A.6 says Heading is found by kind, "not by position." E7 says "the section has a canonical first member called a Heading." Finding by kind is compatible with testing first; dropping first isn't. And they keep the order test for Book (A.4, "E30's order is still a rule the book tests") and for Chapter, but not for Section. The asymmetry has no basis in the stream.
+
+3. Canonical is a Letter, not an empty mention. G.1 makes the canonical mark "a mention written with no words." E33 says it "appears as a type of nameless Letter that serves as a suffix." A mention is an Annotation; annotations are parenthetical — hidden, by ruling 6. The canonical mark is printed: it's "the mark that brings you from … synopsis entry to book." Putting it in the annotation hierarchy hides the one thing the reader is meant to see. The Genesis puts it under Letter, and the reason is visible.
+
+4. "A member on Composition that searches parts by kind." A.3 carries this from the first library. E70 says the book finds its cover with the annotation. By kind — the part's class — can't find a Cover, since every cover is a Chapter; it has to be by the annotation carried. The team's sentence says "the chapter carrying Cover … through a member that searches by kind," which is either two searches or one that isn't the Genesis's. And it's an unnamed member imported from the source — your rule about liberties applies to them as much as to me. Same for their own vocabulary: worn, kind, synthesis, specimen, read/follow (they flag the last as offered; the rest they don't).
+
+5. Modes. D.7 says three modes on one flag, NODE_ENV !== 'production'. That's binary. E20 wanted dev fast and the slow validation held elsewhere; E21 wanted the specification flagged to mode. A binary can't separate dev from test.
+
+6. They don't have E68 or E69. Their stream stops at E65. Ruling 3's "levels 1 to 3" reads correctly only on E68's numbering (Letter 1, Word 2, Sentence 3 — the ones "beneath prose"); on the numbering they hold, Paragraph would be authored-when-wanted, which a closed Section forbids. Anything they've reasoned from Letter at 0 is stale. And they don't have E69's "no fixed set."
+
+7. Referent extends Reference — from the source, not the stream. E22's "parent" supports a superclass, so this isn't a misreading. But semantically a referent (what is pointed at) being a kind of reference (what points) is backwards unless a mention is understood as a reference to here. Worth your eye since it came from the first library's shape.
+
+What surprised me most
+
+$Writing is the class. Writing is the component the export pattern makes so <Writing> can be written. Your $Writing[] at E64 was the class name all along; I took it for notation. And $-prefixed fields are props — so $level, $open, $narrative — while plain fields are reactive. My model has every prop unprefixed.
+
+The table of contents is authored. I'd assumed it was the one canonical nobody writes. Your question — "how are you validating all chapters in the TOC if some of them don't have titles?" — only makes sense if it's written and checked.
+
+<Type>Cover</Type> is a formula. The name inside swaps in the subclass filed under it. The formulator resolves Type names. That's what makes "one annotation, two spellings" work.
+
+"A chemical is born its own parent." So a top-level book's parent is itself, not nothing — my no-parent test is wrong as written.
+
+Why the first library stopped splicing. Drawing from the spliced reading dissolved every nested section. The Genesis's answer is contents — draw from the unspliced children, splice only in parts. That's the thing I'd been reaching for with directWriting, and it was already there.
+
+The parse is gone. The first library parsed prose into sentences and words. Levels beneath prose are authored when wanted; otherwise calligraphy. E14 and E32 said this; I hadn't understood there was a parser to remove.
+
+What it clarifies
+
+Of the open items: Heading's depth is its Section's (2); same type is instanceof (4); a void is nothing in production (9); Of names a Book (10); Autobiography and Biography are classes (12); styled-components, with Format (15); Part is a subclass (16); specify doesn't descend — a scaffolded suite walks (17); named Types are classes, so find-by-class is find-by-name (18); no operations on parts, reading only (19). The parenthetical partner is narrative, and parenthetical means hidden rather than not rendered.
+
+Of my inserted members: parent is the framework's; items is elements; canonicalTypes and directWriting dissolve into contents; test() is the suite; by/about become each class asking for its own; resolve is offered as read. Lifting is not a member — it's what the book's bond does, through add, copying.
+
+Two things I'd want before integrating: your ruling on Title (E30 or 9/15), and whether the canonical mark stays a Letter. The rest I can apply.
+
+Semantics win here. The book has a title right? Chapters too. So the $Chapter class can specify that has a title as its first member. Chapters are permissive and closed, meaning writing is flexible while freeform React is not. The Title has to be its canonical element, and in this version of a composition, that need not be a section. More room to breath. The specification would say title has to be the first element, which is the canonical. The canonical has to be the title. And chapter subclasses can override that by changing the canonical if need be. Perhaps the summary can be an optional one of its parts, and if none is found, one is constructed from the first piece of writing that isn't the title. Is that sensible?
+The specification should be aligned to say that the canonical is a heading. And then that leaves flexibility for subclasses to simply return a new value for the heading
+Canonical is a Letter that means something, and can be used to mean things related to its parent
+This is a mess. Parts are compositional. One searches the annotations by type name to find the cover - the cover is the first, but that one also must carry the $Cover annotation which is what <Type>Cover</Type> will resolve to. This can be specified if though carefully
+I was hoping for dev / test / production and its specifically turned on in test
+Not sure. We have the levels with Letter at 1
+No more Referent. When something is a mention, if mentioned, it is referred to. But its not in types
+
+$ prefix is  on the property. On the associated component, the $ disappears. Similarly the $ is on the class. The exported component has the same name in most cases but withour the $
+
+Applying all seven and the naming rule. On the Summary question — yes, sensible, with one constraint the framework imposes: a chemical has one parent (E71 C.4), so the constructed summary can't be the first piece of writing; it has to be a copy of it or a mention of it. A mention keeps the summary true when the paragraph is edited, and a Summary is parenthetical by default, which is what a mention-that-draws-its-target wants to be. Second, smaller: if the first non-title writing is a Section, "constructed from it" could mean the section or its first paragraph. I've written it as constructing from that writing and flagged both.
+
+The naming rule changes every line of the model, so this is a rewrite rather than a patch.
+
+Nothing landed (the write is at the end of the block). The third vocabulary match failed on a character difference; switching it to a fragment match and rerunning.
+
+All seven rulings and the naming rule are in. What changed structurally:
+
+The canonical is now a member on every composition — the first element — and each level names it, specifies its kind, and lets a subclass override by returning a new value for the named getter, with canonical reading through it. That single mechanism replaces canonicalTypes, directWriting and the position tests; the unspliced reading was contents all along. Section: the canonical is a heading. Chapter: the canonical is a title, "need not be a section." Book: the canonical is the cover — first, and carrying $Cover, found by searching its annotations by type name. No search-parts member; parts are compositional.
+
+Cover, Synopsis and Table of Contents are $Type subclasses applied to chapters. <Type>Cover</Type> resolves to $Cover through the formulator. The earlier class Cover extends Chapter is gone.
+
+$Title and $Summary are classes. Summary is optional and constructed in the bond when absent, marked with the one-parent constraint. Title's superclass and level are the main thing still open.
+
+Referent is gone; $Mention and $Reference, not Types. $Canonical stays a Letter that means things related to its parent. parenthetical/narrative. specify is on in test mode, not dev — E20's "dev" is superseded in the notes.
+
+The $ naming rule is applied throughout: $Writing, $level, $open; the components and JSX props drop it. The model type-checks.
+
+Still open after this pass: Title's superclass and level; whether $Mention extends $Reference (E22's "parent" — the first library has it); copy versus mention for the constructed summary; $Author under $Autobiography is my reading of E52 with the team's H.3; by/about on Book remain marked as mine. Everything the team said that you didn't contradict is carried as [team], distinct from your rulings.
+
+Three files below. Two questions back to you were folded into the artifacts as ⚠ rather than asked, since you've answered the batch — say if you'd rather I keep asking them one at a time.

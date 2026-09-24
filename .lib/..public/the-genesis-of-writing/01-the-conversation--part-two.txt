@@ -1,0 +1,88 @@
+Following.
+
+Book as the closure condition — not a container you may use but the condition under which writing exists at all. Nothing is outside a book, including the things that would ordinarily stand outside: the catalogue of books, the architecture of the library, the logs of its construction, the librarian herself. Each of those, on being brought in, arrives as a book. The catalogue is a book. The record replaces the thing recorded. The librarian is her autobiography.
+
+So the metalevel isn't excluded and isn't privileged — it's admitted on the same terms as everything else, which is what makes the closure hold rather than leak. A system that described itself from outside would have an outside. This one doesn't.
+
+And Chapter falls out of that rather than being declared. Once Section exists and everything lives in a book, the thing that holds sections is a chapter — that's what it's called in a book, and there's no other context for it to be in. Which follows how Section arrived too: Section didn't need a level so much as a Heading, the canonical that means it. Chapter gets its identity from position in the closure.
+
+I'll note what it means for the level order without asserting it: Section is a Composition at 4, and a Chapter contains Sections. Whether Chapter is 5, or whether Chapter is a Section nested — since Sections expect to be nested and depth counts that — is a question the book answers, not me. Go on.
+
+This view sharpens a lot. Reading it back before building on it:
+
+Source is the one stored thing. source: $Chemical[] is exactly what the bond constructor received. contents, annotations, parts are computed from it every time — nothing cached, everything flows from source.
+Calligraphy is not in the model. What I'd been calling calligraphy is $Block | $Html | $Func — chemicals that are not $Writing. The model sorts source by type; "calligraphy" stays a word about what's left after you pull out the writing.
+The tail rule is on the writing subsequence. Sort source, pull out the writing; among those, annotations only in the tail. Non-writing chemicals are not subject to it.
+Props are the declared attributes, in boolean pairs. <Composition open /> or <Composition closed />; strict/permissive the same. Many values I'd modelled as props are actually source — <Type>Autobiography</Type> reads its name from source, <Of>[Math](/path)</Of> reads its link from source.
+specify is a member of every Writing, inherited, run in test mode, written as named tests about what source must satisfy.
+
+Applying to all three. The .ts becomes the compiled object model in clear code (the Parts 1–2 process version is kept aside as writing-library.process.ts, since the stream now carries what its _E suffixes carried).
+
+Yes, it helped — it changed the model in three places I'd had wrong, not just the presentation.
+
+What the source-first view corrected. The tail rule had been on raw children, so a $Block sitting after an annotation would have failed it; it's now on the writing subsequence of source, as you said. A Type's name, an Of's link, a Means's key, and About/By's links had all been modelled as props — they're source: <Type>Autobiography</Type> reads its label from its first $Block. And "calligraphy" had crept into specify() as though the model tested for it; it now sorts by $Writing and the word stays in the "about the model" list.
+
+The compiled model (writing-library.ts) is now real TypeScript and type-checks under strict. source is the one stored array; contents, annotations, parts, depth, body are getters. Props are marked, boolean pairs implemented as one stored field with the other computed as its opposite. specify() is inherited: each class calls super.specify() and adds named tests, and replaces one by naming it again — that's my reading of "property inheritance," marked as such. Every member cites its event; every cited event exists in the stream.
+
+The notes are now Class → member → nested notes, with the why for each test, and the third pass logged.
+
+One thing this view made clearer than before: body — the direct writing children, unspliced — turned out to be load-bearing. Canonical-first tests need it (a nested Section would otherwise surface its own Heading through parts), and the ToC needs it to keep depth. It's my member, marked [inference]; it may want a name of yours.
+
+Three files below, plus writing-library.process.ts kept aside.
+
+Writing library
+TS 
+Writing library.implementation
+Document·MD 
+Writing library.events
+Document·MD 
+
+So what is the writing API for modifying the source? We know that the specify function enumerates them and calls a method they have called specifically:
+
+annotation.specifically(writing)
+
+Which allows it to apply its specification 
+
+This is the way in which annotations are like a genome. 
+
+So what do we need to do? Recall that we might want to:
+add an annotation - it can go to the end of source
+replace an annotation- finds the first instance of the annotation type and replaces it 
+ensure an annotation- adds it if not present, replaces parent class, does nothing if a subclass is there
+remove an annotation - remove all instances of a type
+find annotations - find all instances of an annotation of a certain type
+
+We want this API but we want to have as much happen in specify as we can, so we can do unsafe things in the bond constructor! 
+
+Do we use a special collection for source so that all of that can be made efficient? Is source protected, so that all modifications have to go through the writing methods? 
+
+This is the next thing I might help you with
+
+I want you to read again, but focus on $Composition this time. It adds a lot. What does it add. How does it build on $Writing's foundation? Can you see similar patterns? What must it specify?
+
+Reading E65 back, the principle underneath the five operations is the one that decides everything else: the bond constructor is unsafe and specify carries the guarantees. So the API doesn't check anything — add pushes, replace swaps, ensure does its three cases, remove and find scan by type — and the annotation's own specifically(writing) is where uniqueness and placement get tested. That's the genome: each annotation brings its own piece of the host's specification.
+
+It also supersedes three earlier things, which I've recorded: E26's front-by-default and its four modes (add now goes to the end; the modes become named methods), and E22's throw (ensure replaces a parent class instead — which resolves the same-class question, since "a subclass is there" includes the class itself).
+
+On your two questions, my view: source protected, yes — it's the one stored thing, and if anything can splice it directly the computed views stop meaning anything; the bond constructor is inside the class and keeps its freedom. Special collection, not yet — the five operations are instanceof scans, the count is small (E26), and an index would be a cache (E64). If one arrives later it should be a thin typed wrapper over the array with exactly these five operations — which matters because of what I found reading Composition.
+
+Protected did its job immediately — Referent was reaching into its host's source for the key. It should read contents (public, and the right thing: the quote's content, not its annotations).
+
+Reading Composition again with that focus, here's what I see.
+
+What it adds. A grade (level), two admission modes on it, an openness to non-writing, a body (parts), a position within its own kind (depth), parenthetical fixed false — and, from E34, canonicals: the part whose subject proxies all the others, with the literal levels 0–3 having none.
+
+How it builds on Writing. It continues the same sort one step further. Writing sorts source into contents and annotations — body and tail. Composition sorts contents into parts and the rest — the writing and what isn't. Everything it computes is a further filter of what Writing already computed. Nothing stored twice.
+
+The pattern. This is the part I'd want you to look at. Writing has, on the tail: a declared collection (annotationTypes) built at bond, a computed list, five operations by type, and annotation.specifically(writing). Composition looks like it has the same four things on the body:
+
+canonicalTypes — declared, must come first in order. I've added this one to the model (marked as mine) because it directly replaces Section's and Book's hand-written canonical tests with one inherited test against the declaration. That's the same relation annotationTypes has to "declared annotations were built."
+parts — computed, as annotations is.
+the five operations on parts — not stated, but ensure(TableOfContents) in Book's bond constructor would be the first real use: the one canonical nobody authors.
+canonical.specifically(composition) — not stated either, but the canonical means its composition (E7) and its subject is its parent (E34); Heading's "I am first and my parent is a Section" already has exactly this shape.
+
+What it must specify. The two pairs are opposites; closed ⇒ source is all writing; every writing in the body admitted by level under the current mode; depth agrees with the parent; not parenthetical; canonicals first, in order.
+
+Two things the API itself raised. Protecting source immediately caught Referent reading its host's source for the key — it now reads contents, which is also the right thing. And Types differ by name, not class: find(Type) returns every Type, and ensure(new Type("Cover")) is a no-op if any Type is present, so Cover uses add. What "type" means in the five operations for a Type is the one question the API leaves.
+
+The stream has E65, the model type-checks, and the notes carry the reading above under Composition. Open item 5 is resolved; three new ones — whether specify descends, "type" for Type, and the body-side pattern.
