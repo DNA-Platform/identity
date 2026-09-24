@@ -55,7 +55,7 @@ The implementation lives in [`augment.ts`][augment-src]; this chapter only notes
 
 ## `$rendering$` — the re-entrancy flag
 
-[`[$rendering$]`][rendering-flag] is a boolean that the render body sets to `true` for the duration of the `$apply` -> `applyRenderFilters` -> `view` -> `augment` sequence, and back to `false` after. It exists because the bond setter consults it to suppress re-entrant `react()` calls during view computation.
+[`[$rendering$]`][rendering-flag] is a boolean that the render body sets to `true` for the duration of the `$apply` -> `applyRenderFilters` -> `view` -> `augment` sequence, and back to `false` after. It exists because the bond setter consults it to suppress re-entrant `react()` calls during view computation. ***Since 2026-09-24 two more doors consult it: no scope records a read of a chemical while its flag is up, and `react()` refuses it — [a chemical is not dirty while it draws](../reactivity/01-reactive-properties.md#not-dirty-while-it-draws).***
 
 The flow looks like this:
 

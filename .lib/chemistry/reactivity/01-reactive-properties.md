@@ -66,6 +66,18 @@ finally { c[$rendering$] = bonding; }
 
 **The rule to carry:** ***a bond constructor is the one place in this framework where a write is construction rather than mutation.***
 
+## <a id="not-dirty-while-it-draws"></a>A chemical is not dirty while it draws — its dirtiness starts after render
+
+***Built 2026-09-24 on Doug's rule:*** *"when view is running, and render in general, we don't need to track changes on the executing chemical itself, because we know render happens last in the pipeline because its the result of view. Other chemicals might change how they look, but we have already rendered the current one. It's dirtiness starts after render."*
+
+**The setter already kept it for writes, and two paths did not.** *A read of the drawing chemical was recorded by another chemical's scope standing during the draw — an annotation's `erase` and `defines`, each a reagent of a mounted chemical in a scope of its own — so `finalize` found it changed and reacted a chemical mid-draw. And `react()` would wake a drawing chemical from `finalize`'s upward walk or from `diffuse`.* **Now the field getter and the accessor wrapper's getter record a read only when the chemical is not drawing, and [`react()`](../../package/src/abstraction/reaction.ts) returns while its chemical draws.**
+
+**Why nothing is lost:** *a draw ends with its view's output, so a change made during it is either in that output already or seen by the settle pass, which redraws after the commit and repaints once if the output differs.* **Another chemical changed during the draw is still woken**, because it has not drawn.
+
+**The stated cost:** *an ancestor whose view reads the drawing chemical's state sees a change made during that draw only through its own settle pass, which runs when the ancestor drew in the same commit.*
+
+**Promises:** [`dirtiness-after-render.test.tsx`](../../package/tests/react/dirtiness-after-render.test.tsx), five, with render counts. **Commit `ab97399`.** *The sprint, with the measured comparison against the filter first proposed: [Dirtiness Starts After Render](../projection/47-sprint-81--dirtiness-starts-after-render.md).*
+
 ## <a id="a-function-is-behaviour"></a>A FUNCTION-VALUED MEMBER IS BEHAVIOUR — and three ways to say you meant a value
 
 ***The membrane treats a member holding a function as a method***, because that is what one almost always is. [`$Bond.isMethod`](../../package/src/abstraction/bond.ts) routes on the descriptor's value — `typeof value === 'function' && !value.$chemical` — and `$Bond.create` makes a **`$Reagent`**, whose `form()` installs a getter answering a **bound wrapper cached per instance**, with no setter.
@@ -90,6 +102,7 @@ finally { c[$rendering$] = bonding; }
 - **A write is compared by value**, and an equal value is not news.
 - **A declared accessor is reactive by the same rule**, wrapped rather than activated; a read records its answer, a set is news unless the answer is unchanged.
 - **A write inside the writer's own bond constructor is not news**, whatever its value.
+- **A chemical is not dirty while it draws**: no scope records a read of it and `react()` refuses it; its dirtiness starts after render.
 
 ## Cases
 

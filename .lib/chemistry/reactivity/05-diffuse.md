@@ -15,6 +15,7 @@
 - **Outside a scope: `react()` on the written chemical, then `diffuse`.**
 - **Inside a scope: nothing until `finalize`, which dirties the ancestors of every dirty chemical and reacts each once.**
 - **A write during the chemical's own draw does neither** — [construction is not news](01-reactive-properties.md#construction-is-not-news).
+- **An ancestor that is drawing is not woken** — `react()` refuses it, since 2026-09-24: [a chemical is not dirty while it draws](01-reactive-properties.md#not-dirty-while-it-draws).
 
 ## Cases
 
