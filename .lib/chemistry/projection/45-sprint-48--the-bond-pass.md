@@ -343,6 +343,10 @@ else { this[$reaction$]?.react(); diffuse(this); }
 
 ***Deliberately NOT scheduled.*** *With [U1](#u1) and [U1b](#u1b) in, the state it defends against should be unreachable — and [the type argument](#the-type-argument) says it always was.* **Kept as an identifier so the record shows it was considered and why it was not built.** *Doug's to call back in if he wants the defence anyway.*
 
+### <a id="u1d"></a>U1d · The flag a failed draw leaves raised — ***recorded 2026-09-24, part of this feature on Doug's word***
+
+*Four of the seven places that raise `$rendering$` lower it without a `finally`: the render body, the settle pass, the mount recall and derive's recall, all in [`particle.ts`](../../package/src/abstraction/particle.ts). The other three, props in `bind`, the bond and the persist setter, restore it in one.* **So a draw that throws leaves its chemical marked as drawing**, *and since [a chemical is not dirty while it draws](../reactivity/01-reactive-properties.md#not-dirty-while-it-draws), that mark silences every path to it, not only its setter.* **Today it is reachable only by a failed draw:** *dev mode catches a bond's error on the path that lowers the flag, nothing in chemistry or the redraft suspends inside a view, and a throwing view or prop unmounts the component. The one live trace is a direct instance whose draw threw: its setter stays silent, so a parent showing its state is not woken.* ***Doug, when the `finally` was offered as a small fix: "That sounds like something that is part of a feature."*** *It is this one, what a chemical is after its construction or draw fails, and it is built with the feature rather than alone.*
+
 ### <a id="u2"></a>U2 · The pass, opened and drained — ***ANSWERED, and it is the MICROTASK***
 
 ***Designed by session inexplicable-phenomena-ad, 2026-09-07, and every load-bearing fact independently re-checked here before it was written down.***

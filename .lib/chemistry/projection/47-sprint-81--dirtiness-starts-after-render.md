@@ -67,6 +67,6 @@
 
 **Complete.** *Project commit `ab97399`, local and not pushed; `dist` rebuilt; handed off to the redraft's session with the commit, the rule, the measurements and their command.* **Chapters tended:** *[reactive properties](../reactivity/01-reactive-properties.md#not-dirty-while-it-draws), [scope tracking](../reactivity/02-scope-tracking.md), [diffuse](../reactivity/05-diffuse.md), [the reaction](../implementation/06-reaction.md), [the view](../particle/06-view.md), and the refusal in [Walked Shapes](46-sprint-78--walked-shapes.md#the-rulings) marked reversed.*
 
-**Owed, small:** *the render body lowers the flag without a `finally`, and `react()` now trusts the flag; a view that throws leaves it raised until the component draws again, which today matters only while React unmounts or retries it.*
+**Not owed here:** *four of the seven places that raise the flag lower it without a `finally`, so a draw that throws leaves its chemical marked as drawing, and `react()` now trusts the mark. Offered as a small fix; Doug: "That sounds like something that is part of a feature." Recorded with that feature, the failure path, as [U1d in The Bond Pass](45-sprint-48--the-bond-pass.md#u1d).*
 
 **New names:** none.
