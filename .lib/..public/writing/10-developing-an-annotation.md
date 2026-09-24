@@ -74,7 +74,7 @@ export class $Parenthetical extends $Annotation {
 }
 ```
 
-**Three surfaces are yours to act on, and they behave differently when two annotations want the same one.** Each is cited: what you add is recorded as yours, so your `erase` is `revert(this)` on what you touched and never reaches anyone else's, nor the writing's own. `classes` is a collection, so any number of annotations may add to it, the same class twice if two want it, and the writing draws each once. `containers` is layered, so an annotation adds its own layer — `prepend(this, element)` outside, `append(this, element)` inside — and two annotations that each add one both draw. The `id` is a Compilation, so the last value set decides — *"last set is winning"* — and since a define runs from the first, that is the one furthest back. What the writing holds may be changed through the collection's `ensure` and `replace`, which are idempotent by nature.
+**Three surfaces are yours to act on, and they behave differently when two annotations want the same one.** Each is cited: what you add is recorded as yours, so your `erase` is `revert(this)` on what you touched and never reaches anyone else's, nor the writing's own. `classes` is a collection, so any number of annotations may add to it, the same class twice if two want it, and the writing draws each once. `containers` is layered, so an annotation adds its own layer — `prepend(this, element)` outside, `append(this, element)` inside — and two annotations that each add one both draw. The `id` is a Compilation, so the last value set decides — *"last set is winning"* — and since a define runs from the first, that is the one furthest back. What the writing holds is its `contents`, a Collection like the others, so it is changed the same way, every change cited.
 
 **`defines` need not guard against running twice, and must be exact in its undo.** A define erases everything that ran before it runs anything again, so a second call starts from what the writing holds of its own — but *"it is entirely up to the annotation to be idempotent"*: what `defines` puts, `erase` takes back, and nothing else. The shape that will still cost you a day: making something new each time, a component or an element or a chemical, so that what `erase` takes back is not what `defines` put. Make it once, in your own bond, and add the same thing every define — which is what Reference does with its anchor:
 
@@ -87,6 +87,8 @@ $Reference(...chemicals: $Chemical[]) {
 
 override defines(writing: $Writing): void {
     writing.classes.add(this, 'pa-reference');
+    if (this.identifier.startsWith('#'))
+        writing.classes.add(this, 'pa-self-reference');
     writing.containers.prepend(this, this._anchor);
 }
 ```
