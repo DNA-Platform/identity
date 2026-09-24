@@ -150,7 +150,7 @@ class $Housed extends $Format {
 
 ## The argument is content, and data is read once
 
-**Whatever an annotation needs told, it is told as content.** *"We probably didn't want a prop there, we meant that to be `<Mentioned>as-mentioned</Mentioned>`."* An annotation is a writing, so what is written inside it is its `contents`: that is where a Mentioned finds its key and a Level its number. From outside, the same annotation is given whole, `is={<Mentioned>as-mentioned</Mentioned>}`.
+**Whatever an annotation needs told, it is told as content.** *"We probably didn't want a prop there, we meant that to be `<Mentioned>as-mentioned</Mentioned>`."* An annotation is a writing, so what is written inside it is its `contents`: that is where a Referent finds its id and a Level its number. From outside, the same annotation is given whole, `is={<Mentioned>as-mentioned</Mentioned>}`.
 
 **Read it once, in your bond, into a property.** Doug: *"Is it too pricey to have the level annotation parse and supply its level as a property (not prop) and put a computed property around it? That is a simple way to convert annotations into an object surface."*
 

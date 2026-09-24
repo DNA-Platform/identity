@@ -31,13 +31,13 @@
 | a run of statements making one passage | ***Paragraph*, 4** | |
 | something that may hold anything, answering to nothing below | ***Letter*, 1** | *E3's "as a letter, it is allowed to have anything"* |
 
-**Mention is the worked case.** *It holds `[the text we mention](id)`, which may be several words of prose, and it is a Word all the same, because you point at the whole of it and nothing inside it has an address of its own.*
+**Mention is the worked case.** *It holds `[the text we mention](id)`, which may be several words of prose, and it is a Word all the same, because you point at the whole of it and nothing inside it has an address of its own.* *Means is the same case on the url side, built 2026-09-24: `<Means>[Alan Turing](/complicated-url)</Means>` is one Word whose own element is the link.*
 
 ***And the literal reading is a trap with a measurable cost, which is why this section exists.*** **Choosing a level because the name matches the size of the text is how a class gets spliced away:** *a Mention written as a Sentence would be a same-class child of every Sentence holding it, so [Composition's splice](03-composition.md) would flatten it and `sentence.parts` would never show it.* **As a Word it stays a part.** *The metaphor was the correct guide and the literal reading would have been wrong.*
 
 ## How they are extended
 
-Heading is a Sentence, in [Section's chapter](08-section-and-heading.md); Mention is a Word, ruled 2026-09-24 and unitary in the sense [above](#abstract); Quote and Ref, when they come, are a Sentence and a Word with a reference annotation, as E21 and E22 have them. A class at one of these levels that needs strict says so by standing `<Strict />` instead, and an author says it for one piece by writing it.
+Heading is a Sentence, in [Section's chapter](08-section-and-heading.md); Mention is a Word, ruled 2026-09-24 and unitary in the sense [above](#abstract); Means, its twin, is a Word too — the Word with a reference annotation that E22 calls Ref — and Quote is not built, since it was an example (R2). A class at one of these levels that needs strict says so by standing `<Strict />` instead, and an author says it for one piece by writing it.
 
 ## Promises
 
