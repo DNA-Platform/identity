@@ -28,7 +28,7 @@
 | `**[[ X ]]` | Subject — an annotation of the cover |
 | a second `[[ X ]]` in a cover, naming its own book | About — an annotation of the cover |
 | `[[[ X ]]]` | Mention |
-| `$[ X ]` | Means, or any writing standing a Reference |
+| `$[ X ]` | Means, or any writing standing a Reference — in a table, a Content, which the table finds |
 
 **Every form compiles to `[text](url)`, and the classes read it.** *Doug, 2026-09-24: "The compiler ALWAYS should give: `[text](identifier)`. It doesn't know about specific components."* A Title reads `[The Argument](/a-paper/#the-argument)` and stands a Reference to the url and a Referent for its fragment, so it links to itself and wears the id a table lands on. An Author, a Subject and an About read the same pair and stand the Reference among their own annotations.
 
@@ -62,13 +62,13 @@ export default () => (
         <Title><Parenthetical />[[ Table of Contents ]]</Title>
         <Section>
             <Heading>Contents</Heading>
-            <Paragraph><Means>$[ ./The Argument ]</Means></Paragraph>
-            <Paragraph><Means>$[ ./The Evidence ]</Means></Paragraph>
+            <Paragraph><Content>$[ ./The Argument ]</Content></Paragraph>
+            <Paragraph><Content>$[ ./The Evidence ]</Content></Paragraph>
             <Paragraph>
                 <Parenthetical />
-                <Means>$[ A Paper ]</Means>
-                <Means>$[ ./Synopsis ]</Means>
-                <Means>$[ ./Table of Contents ]</Means>
+                <Word><Content>$[ A Paper ]</Content></Word>
+                <Word><Content>$[ ./Synopsis ]</Content></Word>
+                <Word><Content>$[ ./Table of Contents ]</Content></Word>
             </Paragraph>
         </Section>
     </Chapter>

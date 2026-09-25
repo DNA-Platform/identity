@@ -14,7 +14,7 @@
 
 | seam | what a subclass does there | the rule it is under |
 |---|---|---|
-| **`$Define()`** | stands the class's own annotations, and **is called after the contents are made and before the annotations the caller wrote are added** — so it can read `this.contents`, and it cannot see what was given. What it stands is added through the collection's `add`, which means the front, and the written annotations are prepended after it, so they land in front of the class's and the caller overrides the class. [The seam, what it may read, and the shape that was reversed](#define) | ruled 2026-09-22: *"the $Redefine method on writing, called before define to ensure that all changes happen before define"*; ruled 2026-09-24: *"$Define should be called last, right before define on the annotations. That is just a bug"* and *"They can't see what is given. This scope doesn't access those args. If they need that they should override the bond constructor"* |
+| **`$Define()`** | stands the class's own annotations, and **is called after the contents are made and before the annotations the caller wrote are added** — so it can read `this.text`, and it cannot see what was given. What it stands is added through the collection's `add`, which means the front, and the written annotations are prepended after it, so they land in front of the class's and the caller overrides the class. [The seam, what it may read, and the shape that was reversed](#define) | ruled 2026-09-22: *"the $Redefine method on writing, called before define to ensure that all changes happen before define"*; ruled 2026-09-24: *"$Define should be called last, right before define on the annotations. That is just a bug"* and *"They can't see what is given. This scope doesn't access those args. If they need that they should override the bond constructor"* |
 | **its bond constructor** | names it after itself — the framework finds a class's bond by its own name and walks up when there is none — calls Writing's bond first, which sorts what came in, redefines and defines, and then does what is not about annotations, a container of its own or a canonical moved first, and nothing the base predicted for it | *"the writing bond constructor can be called at the start of every other class's bond constructor"*; *"Let each class use its genome as it sees fit"* |
 | **a question of its own** | a subclass that means something by an annotation asks its collection by type, `this.annotations.contains($Cover)`, where it needs the answer — in its view, its bond, or a rule — and never keeps a field for it | *"in writing, we can check for the presence of the… attribute"*; *"Do not take a type question and turn it into a flag"* |
 | **`defines(writing)` and `erase(writing)`** on an annotation | `defines` acts on the writing when it defines itself, at its bond and at every draw; `erase` takes back what `defines` did, and every define calls it first on every annotation that ran in the last one, last first, whether it is still there or not; a sibling is taken out of expression by asking the collection, `writing.annotations.express(annotation, false)`, and only one that has not run can be reached; neither touches the list  | *"a method that takes the thing and actually performs an action"*; *"What they can do is be idempotent"*; *"living in small families and being well-documented on mechanism"* |
@@ -33,7 +33,7 @@
 
 | | the bond | so |
 |---|---|---|
-| **1** | adds everything that is not an annotation to `contents` | `$Define` can read what has been made |
+| **1** | adds everything that is not an annotation to `text` | `$Define` can read what has been made |
 | **2** | calls `$Define()` | the class stands its own annotations, prepended |
 | **3** | adds each annotation the caller wrote, prepended in turn | the last written stands nearest the front, and all of them in front of the class's |
 
@@ -42,7 +42,7 @@
 ```tsx
 protected override $Define(): void {
     super.$Define();
-    const reference = binder.reference(html.copy(this.contents));
+    const reference = binder.reference(html.copy(this.text));
     if (reference === undefined) return;
     const Referent = $(referent);
     this.annotations.add(this,

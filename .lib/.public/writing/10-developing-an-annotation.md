@@ -79,7 +79,7 @@ export class $Parenthetical extends $Annotation {
 **`defines` need not guard against running twice, and must be exact in its undo.** A define erases everything that ran before it runs anything again, so a second call starts from what the writing holds of its own — but *"it is entirely up to the annotation to be idempotent"*: what `defines` puts, `erase` takes back, and nothing else. The shape that will still cost you a day: making something new each time, a component or an element or a chemical, so that what `erase` takes back is not what `defines` put. Make it once, in your own bond, and add the same thing every define — which is what Reference does with its anchor:
 
 ```tsx
-get identifier(): string { return html.copy(this.contents).trim(); }
+get identifier(): string { return html.copy(this.text).trim(); }
 
 $Reference(...chemicals: $Chemical[]) {
     this.$Annotation(...chemicals);
@@ -180,7 +180,7 @@ class $Housed extends $Format {
 ```tsx
 export class $Level extends $Annotation {
     get level(): number {
-        const block = this.contents.at(0);
+        const block = this.text.at(0);
         return block instanceof $Block ? Number(block.elements.join('')) : 1;
     }
 }
