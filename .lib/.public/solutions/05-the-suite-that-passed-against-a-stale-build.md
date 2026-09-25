@@ -2,7 +2,7 @@
 
 - **author:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **keywords:** verification · false-green · stale-artifact · cross-package · dist · two-copies · instanceof · driver · probe
+- **keywords:** verification · false-green · stale-artifact · cross-package · dist · two-copies · instanceof · driver · probe · node_modules · blind-instrument · absent-case
 - **sprint:** [48 — Subjects and the Library](../projection/06-sprint-48--subjects-and-the-library.md)
 
 ---
@@ -172,3 +172,29 @@ node -e "console.log(require.resolve('@dna-platform/chemistry'))"
 ***The standing fix is still one copy, and it is still unmade*** — now named out of scope four times. **What is newly owed is smaller and would have caught this one: a lib run that touches chemistry must rebuild chemistry first, or say out loud which chemistry it ran against.** A suite that does not state which source it ran against is [a number without its scope](../../package/vitest.config.ts), and the package's own config already says so about v1 and v2.
 
 ***The lesson from the second appearance, quoted because it was the diagnosis and it was on the page the whole time:*** **a probe that changes nothing is evidence of exactly two things, and from the outside they look identical** — the suspect was innocent, or the probe never landed.
+
+# <a id="the-fourth-appearance"></a>A FOURTH APPEARANCE — 2026-09-24, the same resolution reaching a whole framework
+
+***Sprint 81, and this time it was not a stale build of the right package but the wrong package altogether.***
+
+## The symptom, in the words it was observed in
+
+- **The redraft's compiler changed what it writes** — every reference now `[text](url)`, no `<Ref>` generated around one in prose — and its regression suite went to 4 of 6. **The two reds were made green by wrapping the test library's prose references in `Ref`**, an element the redraft does not have. Doug: *"Ref doesn't exist anymore, but if you are testing against old code.."*
+- **The suite then read 6 of 6, and one bind of the test library, read back, showed what it did not:** a title written `[[ X ]]` printed `[X]()`, a `<Reference>[[ X ]]</Reference>` around a section was no longer a link, and `[[[ X ]]]` printed `[X](x)` with no id.
+
+## The mechanism, which is the same one
+
+**`library/..public/package/.binding` has no `node_modules` of its own, so `@dna-platform/public` resolves by walking up to the repository's** — and there `node_modules/@dna-platform/public` is a link to `library/.public/package`, **v1**, the framework the redraft replaces.
+
+```
+ls -la node_modules/@dna-platform/
+→ public -> /c/Source/dna-platform/inexplicable-phenomena/library/.public/package
+```
+
+***So the redraft's compiler was under test and v1 drew every page it bound.*** And the suite asserts six things, none of them a title, a masthead or an allocated id, so what v1 stopped drawing nothing read — *a green on what it never read, over a library that could not exercise the change.*
+
+## The fix, and the standing one it points at again
+
+- **A change to what the compiler writes is measured on the bound pages**, one bind read back for the shapes the change touches, never by the suite's count alone.
+- **Say which framework a suite draws with before believing its green** — the one line above answers it, and the lesson of the third appearance, *say out loud which source it ran against*, is this one a package wider.
+- ***The regression suite can test the redraft's drawing only once its test library is written in the redraft's elements and resolves the redraft*** — which waits on the redraft having a Chapter, a Document, a Title, a Cover and a table of contents, and on the swap of `.public` for `..public`.

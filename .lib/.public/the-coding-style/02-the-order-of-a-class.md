@@ -29,6 +29,12 @@
 
 **Overrides go at the bottom of whatever group they are in.** *A one-line `override get` ends the property stack; a multiline override ends the class.* **Blank lines separate the groups and never the members inside a stack.**
 
+### <a id="the-story-first"></a>Amended 2026-09-22: within the methods, the top-level ones first
+
+> ***"Reorganize around the idea that the top-level methods come up top and the ones they depend on are below it. `view` would be at the top. The dependent ones below it."*** — **Doug, 2026-09-22, on the Writing class of the redraft**
+
+***So the method groups keep their visibility order, public then protected then private, and inside a group the methods a reader enters by come first, with what they depend on beneath them in the order the reader meets it.*** **In a class that draws, `view` is the first method; what it draws with — `write`, `annotate` — follows; the machinery they rest on — `define` — stands under them.** *The bond constructor keeps its place above the methods. A private method is still met last, after everything that calls it, which this reading order already implies.*
+
 ### <a id="what-moved"></a>What moved on 2026-08-30 — and one reading, flagged as a reading
 
 ***The 2026-08-27 order had ONE property group*** — *"properties — fields, getters, and argumentless data-returning members"* — **with a second group beneath it for those that could not fit on one line.** ***The 2026-08-30 order splits that first group in two*** — **fields, then properties** — *and gives fields a visibility order of their own.*

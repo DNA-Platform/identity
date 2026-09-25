@@ -38,6 +38,46 @@ return (
 
 **Lines wrap at 125.**
 
+### <a id="the-story"></a>The TSX tells the story, and the rest of the class is terse — ***given 2026-09-22***
+
+> ***"Do EVERYTHING you can to make the TSX look like well structured TSX. Remember how much indenting a class has? The name the members... I like all of that. I like TSX property indented, sometimes being quite airy to showcase what it does. It should be more visual. The rest of the class is terse so you can tell a story with the TSX."*** — **Doug, 2026-09-22**
+
+***A view is the one place in a class that is written to be looked at, and what makes it visual is indentation, never blank lines.*** **Its returned element opens on its own line, its parts are indented one level and stacked, and the closing tag lines up with the opening one.** *A first draft of this section put blank lines between a view's parts to show the space between them, and Doug struck it the same hour:* **"Remove the blank spaces. I don't think HTML uses many blank spaces. The elements provide separation. Can't you just stack those? I prefer well spaced, well indented TSX without newlines."** *So the elements are the separation, and a writing's view holds its contents and then its annotations as two stacked lines.* **Everything the view needs is named just above the return**, *a boolean for the class the element wears, a component fetched for a chemical,* **so that the TSX reads as a picture with nothing computed inside it.** *Every other method of the class stays terse: a body on its own lines, no comment.* **The view is where the class says what it is; the rest is how.**
+
+```tsx
+view(): ReactNode {
+    this.define();
+    const parenthetical = this.annotations.contains($Parenthetical);
+    return (
+        <span className={parenthetical ? 'parenthetical' : undefined}>
+            {this.write()}
+            {this.annotate()}
+        </span>
+    );
+}
+```
+
+***And a class that draws is ordered so the story reads down:*** `view` first, then what it draws with, then the machinery — [the order of a class, as amended the same day](02-the-order-of-a-class.md#the-story-first).
+
+### <a id="define-is-a-declaration"></a>`$Define` is a declaration, and it reads as one — ***given 2026-09-24***
+
+> ***"I want your add to support multiple for an author, and I want code to look like this — like the TSX style that it evoked."*** · ***"Add that to the coding conventions — to make $Define, to the extent possible, look like TSX, alternatively, to look like object literal creation. It is like we are declaring properties right?"*** — **Doug, 2026-09-24**
+
+***`$Define` is where a class declares its default traits — what it is before anyone writes into it — the way a field declares a property.*** **So it reads as a declaration and never as a procedure: one `add` for its author, the author first on the line, and the annotations stacked beneath as TSX, one element to a line, the closing parenthesis lined up with the call.** *The components it names are fetched just above it, as a view's are, so nothing is computed inside the declaration.*
+
+```tsx
+protected override $Define(): void {
+    const Level = $(level);
+    const Open = $(open);
+    this.annotations.add(this,
+        <Level>1</Level>,
+        <Open />
+    );
+}
+```
+
+***Where what a class declares is not an element, it is shaped like an object literal instead*** — *one name and its value to a line, indented under what receives them.* **Either way the reader sees a list of what the class is, in the order written.** *Before this ruling a class's defaults were one `add` to an element, which read as steps — do this, then this — and stood the defaults in reverse, since each landed at the front; one stacked `add` stands them in the order they are read.*
+
 ## <a id="naming"></a>Naming a component you fetched
 
 ***A component local carries the COMPONENT'S NAME.*** **Doug, striking three of mine:** *"You understand that `Held` and `Asked` are the worst possible name for a component right? You throw away semantics. It's like naming a variable `Stored`, and a property `Represents`."* **And on `Piece` for a table cell:** *"USE COMPONENT NAMES! A piece of a table? Really?"*

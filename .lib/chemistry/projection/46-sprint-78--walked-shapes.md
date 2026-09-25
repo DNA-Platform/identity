@@ -3,7 +3,7 @@
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **style:** [The Coding Style](../../../.public/.lib/the-coding-style/03-the-coding-style.md)
 - **status:** `closed` — *read, ruled, built, measured and committed 2026-09-22, in one session.*
-- ***The chapter name and the sprint number are PROXIES.*** *The number is the team's current one — the public redraft's [Sprint 78](../../../..public/.lib/projection/.cover.md), whose defect this answered — and `walked` is the word Doug used in the room, not a name he has given.*
+- ***The chapter name and the sprint number are PROXIES.*** *The number is the team's current one — the public redraft's [Sprint 78](../../../.public/.lib/projection/.cover.md), whose defect this answered — and `walked` is the word Doug used in the room, not a name he has given.*
 
 ---
 

@@ -552,7 +552,7 @@ writes=false   bond-open > bond-close > trunk-view > trunk-view >
 | **the regress** | *closed by **nullability**, on Doug's ruling — **"nothing mentions a mention"**. Self-reference was refused: "I love self-reference. I don't like the switch"* |
 | **the module cycle** | *dissolved by a **type-only** import — returning the mention needs no class at runtime* |
 | **`$$Book`** | *the last `addType` after `super` in the package; now the concat form.* **`addType` callers in `src`: 0** |
-| ***a url parser*** | [`src/utilities/Url.ts`](../../../.public/package/src/utilities/Url.ts) — *each part separate, `reads` versus `addresses`; `$Path` and `$Reference` both ask it instead of duplicating `URL.canParse`* |
+| ***a url parser*** | [`src/utilities/Url.ts`](../../../../.archive/.public/package/src/utilities/Url.ts) — *each part separate, `reads` versus `addresses`; `$Path` and `$Reference` both ask it instead of duplicating `URL.canParse`* |
 
 ***The lesson is compounded, not repeated here:*** **[The Reference, and What It Points With](../../../.public/.lib/the-semantics-of-books/16-the-reference-and-its-locator.md#the-mention)** — *Q1 answered, the identification half standing alone as a mention, and the general shape: **a stand-in inherits the rules written for the thing it stands for and cannot satisfy them.***
 
