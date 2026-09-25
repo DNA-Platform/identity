@@ -128,7 +128,7 @@ Each is one of Doug's sentences from 2026-09-24, with what would be observed if 
 
 ## Risks
 
-*Compacted at the close. Two fired. The compiler never compiled against the redraft: its suite ran the transform directly, as the mitigation had it, and its regression bound pages v1 drew — [Solutions 05, the fourth appearance](../solutions/05-the-suite-that-passed-against-a-stale-build.md#the-fourth-appearance). And the roster's removal changed how Doug's library is written, so his library was left unsynced on his word. The rest did not fire.*
+*Compacted at the close. Two fired. The compiler never compiled against the redraft: its suite ran the transform directly, as the mitigation had it, and its regression bound pages v1 drew — [Solutions 05, the fourth appearance](../solutions/05-the-suite-that-passed-against-a-stale-build.md#the-fourth-appearance). And the roster's removal changed how Doug's library is written, so the library in `.me` was left unsynced, on Doug's word. The rest did not fire.*
 
 ## <a id="open"></a>Open, and Doug's to rule
 
@@ -196,7 +196,7 @@ Each is one of Doug's sentences from 2026-09-24, with what would be observed if 
 
 **The rulings the sprint's code stands on**, as the handoff of 2026-09-25 recorded them:
 
-| | his words |
+| | Doug's words |
 |---|---|
 | the compiler | *"The compiler ALWAYS should give: `[text](identifier)`. It doesn't know about specific components."* · *"Fix the compiler in ..public. We need this to be done."* · *"clone it and put it in v1 too so that it runs there and is in both places."* |
 | a self-reference | *"is there no self url like #? If that url is empty, then that… have a pa-reference and a pa-self-reference (both)… I like self-referential anchors."* |
@@ -204,34 +204,34 @@ Each is one of Doug's sentences from 2026-09-24, with what would be observed if 
 | formats | *"Allow multiple formats! Promise it, in fact."* · *"document that formats should be written to be order invariant with other formats."* |
 | the drawing | *"The parent's container should be first… we should render inner to outer and that should be documented."* · *"Yes, put a framework class: pd-container."* |
 | the annotations | *"$is represents some form of edit… keep encapsulated things protected."* · *"Keep the snapshot."* · of the five families' loop: *"Keep implementing and if we keep seeing it, we'll consider… This is single subclass semantics, I think?"* |
-| his library | *"Leave it unsynced."* |
-| standing | commit locally as often as wanted and **never push until he says**; every change in `src` has his yes first |
+| the library in `.me` | *"Leave it unsynced."* |
+| standing | commit locally as often as wanted and **never push until Doug says**; every change in `src` has Doug's yes first |
 
 **A catch-up read thirty documents toward the handoff and found three things it had not said:** *that the Genesis's own order now points at the books — Sprint 80 had written it down, "then ordering and parts at E26 and E27, which are built; and the books only at E29"; that the blockers named a Document the Genesis does not have, E33's "Chapters are the first document"; and that U10 had never run.* **Doug ruled the close:** *"Close it, fix docs."*
 
-**The audit's raised warts, judged on his rule:** *"Cleanup now, but be pragmatic. Are they warts? I am particular. I don't care about the repeated lines of code, but I want everything to look uniform and maximally simple. Use Writing and Annotations classes as a guide. We don't always abstract just because the same thing is invented, especially if it is already relatively simple."*
+**The audit's raised warts, judged on Doug's rule:** *"Cleanup now, but be pragmatic. Are they warts? I am particular. I don't care about the repeated lines of code, but I want everything to look uniform and maximally simple. Use Writing and Annotations classes as a guide. We don't always abstract just because the same thing is invented, especially if it is already relatively simple."*
 
-| raised | judged | his words |
+| raised | judged | Doug's words |
 |---|---|---|
-| the change kinds `'left'` and `'right'`, and `Side` | a wart, what remained of the `side` his C9 ruling replaced — **C18 `d402a1e`**, the kinds named for their operations | chose it: *"Change kinds"* |
+| the change kinds `'left'` and `'right'`, and `Side` | a wart, what remained of the `side` Doug's C9 ruling replaced — **C18 `d402a1e`**, the kinds named for their operations | chose it: *"Change kinds"* |
 | Compilation's citations and its iterator | a wart — **C19 `b6b29ce`**: the citations gone, a compiled `value`, not iterable, the view drawing `id.value` | *"compilation is supposed to have a value which is the last element of the collection and it fails to. The id was supposed to be a compilation. Nothing is compiled in this one"* · *"type Citation<T> = { author: Author; value: T }; - why is this necessary? Remove that"* · *"Compilation shouldn't be iterable… OR the set and revert. No need to know it has a collection in it… It has a compiled value. It changes based on what is set and reverted"* |
 | five readings written into fields | a wart — **C20 `747e0e7`**: Referent's and Reference's `identifier`, Level's `level`, Mention's and Means' `text` getters over the contents | chose it: *"Readings as getters"* |
 | `html.copy(contents)`, the receiver as a parameter | proposed as a `copy` on Contents, and **refused** | *"Don't delete Html and stop trying to fold things in to coupled abstractions. Isn't Contents just a collection of chemicals? Why do we need to specialize it"* — answered from the code: Contents makes each chemical from a given and parents it, so a class adds contents in TSX as it adds annotations, and nothing in `src` does yet; *"Keep it for now"* |
-| four copies of the code that makes chemicals from givens | not a wart | his rule: repeated lines are not one |
+| four copies of the code that makes chemicals from givens | not a wart | Doug's rule: repeated lines are not one |
 | Format's `style` taking the theme's wrapper | not a wart: keeping both would add a field | — |
 | `binder.reference` beside the Reference annotation | not a wart: one word for one thing, the form the compiler writes | — |
 | Parenthetical's chain of four layers | not a wart: `:has()` cannot nest, and the limit is written in [Format and Theme](../writing/11-format-and-theme.md) | — |
-| the names of C17 | his to rule, still flagged | — |
+| the names of C17 | Doug's to rule, still flagged | — |
 
 **The docs made true:** *the three claims U10 had listed that still stood — no annotation knowing another as its twin, the levels numbered one to six, a `@reactive()` backing — and three more beside them in Composition's chapter, a pair with no `defines`, an `add` with no author, a `$Define` that sees no contents; with what C18 to C20 changed, in the Writing, Utilities and Genesis docs.* **Carried as a question, not cleanup:** *a theming Format with no style still draws a span of its own.*
 
-**And the next unit, in his words:** *"There is no newer stream afaik so if you see the topic, it was in the old conversation anyways. We did references and mentions. Chapter and Book can be next and we need to figure out how to write them. I think chapters will get their own function components. Books will be compiled to import the chapter components call the functions and send them into the book as children. We will decide if the book should be a function or go straight into the page that it represents."*
+**And the next unit, in Doug's words:** *"There is no newer stream afaik so if you see the topic, it was in the old conversation anyways. We did references and mentions. Chapter and Book can be next and we need to figure out how to write them. I think chapters will get their own function components. Books will be compiled to import the chapter components call the functions and send them into the book as children. We will decide if the book should be a function or go straight into the page that it represents."*
 
 ## Where things stand
 
-**Next: `/ce-brainstorm` for Sprint 82 — Chapter and Book, E29 to E33 of the Genesis.** *Doug set the subject: "Chapter and Book can be next and we need to figure out how to write them." The brainstorm opens on his direction, which is a direction and not yet a design: "I think chapters will get their own function components. Books will be compiled to import the chapter components call the functions and send them into the book as children. We will decide if the book should be a function or go straight into the page that it represents."*
+**Next: `/ce-brainstorm` for Sprint 82 — Chapter and Book, E29 to E33 of the Genesis.** *Doug set the subject: "Chapter and Book can be next and we need to figure out how to write them." The brainstorm opens on Doug's direction, which is a direction and not yet a design: "I think chapters will get their own function components. Books will be compiled to import the chapter components call the functions and send them into the book as children. We will decide if the book should be a function or go straight into the page that it represents."*
 
-**This sprint is closed**, 2026-09-25, on its promises: *Reference and Referent in the redraft, the compiler writing what they read, the annotation system under them sound, and a cleanup to his rule. Its browser drive — a real browser following a Means and landing on a Mention — moves to Sprint 82's visible end, since a page the redraft draws is what Chapter and Book begin.*
+**This sprint is closed**, 2026-09-25, on its promises: *Reference and Referent in the redraft, the compiler writing what they read, the annotation system under them sound, and a cleanup to Doug's rule. Its browser drive — a real browser following a Means and landing on a Mention — moves to Sprint 82's visible end, since a page the redraft draws is what Chapter and Book begin.*
 
 **Rulings to carry into the brainstorm, verbatim** — the sprint's own are in [the cleanup](#cleanup) and [the redesign](#redesign), and in the Writing docs:
 - **The subject:** *"Chapter and Book can be next and we need to figure out how to write them."*
@@ -239,16 +239,16 @@ Each is one of Doug's sentences from 2026-09-24, with what would be observed if 
 - **The title:** *"Title extends Heading."* And *"Titles should have ids as part of both the book and chapter system. They are mentioned by default in the classes."*
 - **The summary:** *"Why can't the summary be a summary anywhere in the children of the chapter. If there is one, we append a parenthetical one to the end."* And *"The parenthetical appended summary holds something like the first paragraph of the chapter. It's a proxy."*
 - **The cover:** *"The Cover annotation can only be applied to a chapter. The book can find its cover with it. The book can lift the annotations it wants out of its cover and do whatever with them."* And *"the cover is the first, but that one also must carry the $Cover annotation which is what `<Type>Cover</Type>` will resolve to."*
-- **The table of contents**, a reading and not his ruling: authored, not generated — Claude Desktop's reading of his question, *"how are you validating all chapters in the TOC if some of them don't have titles?"*
-- **Standing:** commit locally as often as wanted and **never push until he says**; every change in `src` has his yes first.
+- **The table of contents**, a reading and not Doug's ruling: authored, not generated — Claude Desktop's reading of Doug's question, *"how are you validating all chapters in the TOC if some of them don't have titles?"*
+- **Standing:** commit locally as often as wanted and **never push until Doug says**; every change in `src` has Doug's yes first.
 
 **State.**
 - ***Complete, committed locally, never pushed:*** every unit and batch in [the register](#plan), B1 `d381398` to C20 `747e0e7`.
 - ***In progress:*** nothing.
-- ***Carried to Sprint 82:*** the browser drive, as its visible end; the use stories of [the redesign](#redesign), drafted and never approved, his to approve or strike; the C17 names, flagged; the span a theming Format with no style draws, a question.
+- ***Carried to Sprint 82:*** the browser drive, as its visible end; the use stories of [the redesign](#redesign), drafted and never approved, Doug's to approve or strike; the C17 names, flagged; the span a theming Format with no style draws, a question.
 - ***Carried further:*** the rest of the compiler, whose structure pass names chapters by `<Title>` and reads a table's rows as `chapter`, `book` and `For` tags, all v1's; and the swap — *"We are retiring .public and swapping it with this one soon."*
 
-**Blockers, each with what it waits on.** *The browser drive* waits on a page the redraft draws, which Chapter and Book begin. *The compiler's regression suite* tests the redraft's drawing only once its test library is written in the redraft's elements — Chapter, Title, Book, and the cover, synopsis and table of contents on chapters, **and no Document, which the Genesis does not have** — and on the swap. *His library* waits on his word.
+**Blockers, each with what it waits on.** *The browser drive* waits on a page the redraft draws, which Chapter and Book begin. *The compiler's regression suite* tests the redraft's drawing only once its test library is written in the redraft's elements — Chapter, Title, Book, and the cover, synopsis and table of contents on chapters, **and no Document, which the Genesis does not have** — and on the swap. *The library in `.me`* waits on Doug's word.
 
 **Verification at the close, 2026-09-25:** the package typecheck 0, the quick build 0 and read for each change, **172 of 172** across eleven files with every render count held, after each of C18, C19 and C20. *The compilers are untouched since C12: at C17 each typechecked 0, unit 84 of 84, regression 6 of 6, identical file for file — not re-run at the close.*
 
@@ -262,11 +262,11 @@ Each is one of Doug's sentences from 2026-09-24, with what would be observed if 
 
 **Read these first, for the brainstorm** — the sources the designing reads, five, a starting point rather than a boundary:
 1. [The Event Stream](../the-genesis-of-writing/02-the-event-stream.md), E29 to E33, and [the conversation](../the-genesis-of-writing/01-the-conversation.md) where *"a chapter is born"* and Book arrives as the closure condition — what Chapter and Book are.
-2. [What We Need to Understand Better](../the-genesis-of-writing/05-what-we-need-to-understand-better.md) and [Answering Claude Desktop, as corrected](../the-genesis-of-writing/06-answering-claude-desktop-from-the-source.md#corrected-by-claude-desktops-reply-2026-09-21) — his rulings on the title, the summary, the cover and the canonical, which correct the Genesis's own documents.
+2. [What We Need to Understand Better](../the-genesis-of-writing/05-what-we-need-to-understand-better.md) and [Answering Claude Desktop, as corrected](../the-genesis-of-writing/06-answering-claude-desktop-from-the-source.md#corrected-by-claude-desktops-reply-2026-09-21) — Doug's rulings on the title, the summary, the cover and the canonical, which correct the Genesis's own documents.
 3. [The Implementation Notes](../the-genesis-of-writing/04-the-implementation-notes.md) on Chapter, Book, Part, Cover, Synopsis and Table of Contents, with [Claude Desktop's reply](../the-genesis-of-writing/07-what-to-tell-claude-desktop.md) — Cover, Synopsis and Table of Contents as Types on chapters.
 4. [Section and Heading](../writing/08-section-and-heading.md) — the typed canonical, found by class and going both ways, which a Chapter's Title and a Book's cover repeat.
 5. [The Binder, As Built § reading](../the-catalogue-and-the-specification/07-the-binder.md#reading) and [§ the catalogue](../the-catalogue-and-the-specification/07-the-binder.md#catalogue) — how the compiler finds a book by its files, names a chapter by its title, and addresses both.
 
-*v1's `Chapter` and `Book`, the compiler's test library and his library log are evidence of how books are written today, never the design — the Genesis is canon.*
+*v1's `Chapter` and `Book`, the compiler's test library and Doug's library log are evidence of how books are written today, never the design — the Genesis is canon.*
 
 **Nothing to look at in a browser yet** — that is Sprint 82's to change. The promises: `npm run build:quick` and then `npx vitest run` in `library/..public/package`.

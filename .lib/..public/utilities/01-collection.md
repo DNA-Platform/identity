@@ -17,7 +17,7 @@
 | member | what it is | from |
 |---|---|---|
 | `Author` | any instance; a type named for his word, so a variable is named after its type as the coding style asks | *"any instance can serve as the author"* |
-| `change(type, author, ...values)` | the one door every modification goes through, its kind the word of the operation that makes it: `'append'`, `'prepend'`, `'remove'`, `'replace'` and `'revert'` | his; the kinds were `'left'` and `'right'` until 2026-09-25, what remained of his `side == 'right'` after append and prepend replaced it, renamed on *"I want everything to look uniform and maximally simple"* |
+| `change(type, author, ...values)` | the one door every modification goes through, its kind the word of the operation that makes it: `'append'`, `'prepend'`, `'remove'`, `'replace'` and `'revert'` | his; the kinds were `'left'` and `'right'` until 2026-09-25, what remained of Doug's `side == 'right'` after append and prepend replaced it, renamed on *"I want everything to look uniform and maximally simple"* |
 | `add(author, ...values)` | several values at once for one author, appended | his; *"have add be a synonym for append (calls off to it) which makes it simple to understand"* |
 | `append(author, ...values)`, `prepend(author, ...values)` | several values at the end, or at the front, in their order | *"Switch to append and prepend… append and prepend go together, add / remove go together, we intersect on add, and that is okay"* |
 | `remove(author, value)` | every entry holding the value goes | his |

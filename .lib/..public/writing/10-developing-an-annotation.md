@@ -155,7 +155,7 @@ class $Housed extends $Format {
 
 **Whatever an annotation needs told, it is told as content.** *"We probably didn't want a prop there, we meant that to be `<Mentioned>as-mentioned</Mentioned>`."* An annotation is a writing, so what is written inside it is its `contents`: that is where a Referent finds its id and a Level its number. From outside, the same annotation is given whole, `is={<Mentioned>as-mentioned</Mentioned>}`.
 
-**Read it with a property, a getter over the contents.** Doug: *"Is it too pricey to have the level annotation parse and supply its level as a property (not prop) and put a computed property around it? That is a simple way to convert annotations into an object surface."* It was read once in the bond into a field until 2026-09-25, when he chose the getter under *"I want everything to look uniform and maximally simple"*: nothing is kept, so nothing goes stale, and every reading an annotation or a word makes of its contents is written the same way.
+**Read it with a property, a getter over the contents.** Doug: *"Is it too pricey to have the level annotation parse and supply its level as a property (not prop) and put a computed property around it? That is a simple way to convert annotations into an object surface."* It was read once in the bond into a field until 2026-09-25, when Doug chose the getter under *"I want everything to look uniform and maximally simple"*: nothing is kept, so nothing goes stale, and every reading an annotation or a word makes of its contents is written the same way.
 
 ```tsx
 export class $Level extends $Annotation {
