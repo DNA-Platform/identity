@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **status:** requirements-only — approved 2026-09-25, ready for `/ce-plan`
+- **status:** implementation-ready — planned 2026-09-25 on Doug's `/ce-plan`; requirements approved in sections the same day
 - ***The sprint's name is Doug's subject, "Chapter and Book"; opened 2026-09-25.***
 
 ---
@@ -71,6 +71,13 @@
 | **Self** | *"What's with pa-self-reference. Yes just leave it off for now, and we'll figure it out later. Why don't you subclass Reference to make a $SelfReference as a type of reference that works the same, but it also appeans pa-self-reference, and make export it as Self, put this in the $Reference file and read about and adhere to the highest coding standards"* — K3; R16's url comparison left for later |
 | **the main line** | *"You know you are rewriting the test library to use this one, and to do that you need to get chapters working as functions, books as functions, rendering them in the compiler..."* |
 | **`.public`, and `.archive/.public`** | *"Move .public into archive and change the name of what we are using to .public from ..public. You will have to clean the modules and anything else big out of it, but do this, and let's officially have this code be .public and refer to .archive/.public for references to the last version"* — the redraft is `library/.public`; v1 is `.archive/.public`, its `node_modules` gone and its `dist` kept for the two that still read it |
+| **the plan's brief** | *"Let's do it. Let's get the meat of this. I want enough implemented for the test library to live here. We need chapter and book compilation. We will write them as functions - empty function components - and they will be called when a book renders. So too for books. We don't have a compiler that does this yet. We need the .public tests running that can call specify on the test library. We need a first draft of all of it so .public stands on its own"* |
+| **what the compiler reads** | *"You don't need the compiler to check for anything. You can't! They might subclass them. That's why they are in special files"* — so it reads files and the notation, and never a tag |
+| **a title's id** | *"It uses the compiler syntax!! Please know this. All titles in chapters use it"* — the url a title's `[[ X ]]` compiles to carries its id, the fragment |
+| **the cover, redesigned** | *"We need to redesign By and Aout etc... we need to nail it down. We don't have the pattern yet and I need help"* · *"We need to figure out how compiler syntax relates to these classes"* · then a full book's cover as `<Chapter> <Cover /> <Title>My Book</Title> <Author>Me</Author> <Subject>My Life</Subject> <About>Doug</About> </Chapter>`, the About *"That it is a catalogue - that it can be a subject"*: *"I think, in each case, we want them to be annotations, but only the title is a real element. All the rest are annotations, and book can reach in an expose them, and then everyone can access them"* |
+| **annotations of annotations** | asked whether the syntax goes `[[ X ]]` for the title, `*[[ X ]]` the author, `**[[ X ]]` the subject and the title form for About: *"Yes you can, but we are deprecating By and they are all annotations. Maybe they can each create a Reference as one of their own annotations, expose it as a property, and then it can be used. Annotations of Annotations"* |
+| **About** | *"Any book can be About something, but that allows other books to then be able to use it as a subject catalogue and this one needs to be written with links because it is about that subject"* · and `<About>Me</About>` beside `<Author>Me</Author>`: *"This is a self-authoring book"* · *"I'm not using the compiler syntax but we can imagine it was added in so that these components are getting uirls where needed"* |
+| **the pointer** | a self-link keeps its pointer — chosen from *"Keep the pointer"* |
 
 ## Requirements
 
@@ -87,7 +94,7 @@
 | **R5** | A chapter file is a function that returns a Chapter, called where it is used and never rendered, so the book holds the `$Chapter` itself | a book given `{TheArgument()}` answers the chapter among its parts |
 | **R6** | A Book is a Composition at level 7, strict and closed, so it holds chapters and books | `book.level` is 7; a Section placed straight in a book fails *a strict composition holds parts at its level or one below* |
 | **R7** | A book's canonical is its one cover, the chapter expressing Cover, found by the annotation wherever it stands — *"it's more important that it has only one Cover, and no need for it to be first"* | `book.canonical` is the chapter carrying `<Cover />` in any place; a book with two covers, or none, fails, naming the book |
-| **R8** | A book exposes its title and what its cover's By, About and Subject say, read from its cover — *"they, as annotations, will have to expose something that the book likely exposes too"* | the book answers its cover's title, By, About and Subject |
+| **R8** | A book exposes its title and what its cover's Author, Subject and About say, read from its cover — *"they, as annotations, will have to expose something that the book likely exposes too"* | the book answers its cover's title, Author, Subject and About |
 | **R9** | A title has an id, worn once on the page, so a table's entry lands on it — *"Titles should have ids as part of both the book and chapter system"*; how it is given is designed with Title, and *"use the url as an id"* is the lead | on the bound page the entry for a chapter lands on its title's element, and the proof finds that id once |
 
 ### Cover, Synopsis and TableOfContents
@@ -96,18 +103,18 @@
 |---|---|---|
 | **R10** | Cover, Synopsis and TableOfContents are annotations a chapter carries, each a Format holding its look — a cover inside a `header`, a table of contents inside a `nav` — and restyled by a library's own subclass — *"They are going to end up holding the format"* | a chapter carrying `<Cover />` draws inside a `header` layer; taking `<Cover />` away takes the layer back at the next define |
 | **R11** | Each is said of a chapter, and a book has one of each, in no required place — the Book ruling, *"no need for it to be first,"* supersedes the positions first proposed | a Cover on a Section fails *a cover is said of a chapter*; two synopses in one book fail, naming the book |
-| **R12** | What a cover carries, which is Doug's *"structural validation, like coexpression with other annotations"*: a cover carries its By and its About, and By, About and Subject are said only of a cover | a cover with no By fails, naming the cover; an About on the synopsis fails |
+| **R12** | What a cover carries, which is Doug's *"structural validation, like coexpression with other annotations"*, as redesigned 2026-09-25: a cover carries its Author and its Subject and may carry an About, and Author, Subject and About are said only of a cover — the runtime's to specify, since *"You don't need the compiler to check for anything"* | a cover with no Author does not specify, naming the cover; an About on the synopsis does not specify |
 | **R13** | Whether a table of contents catalogues every chapter of its book is the compiler's to enforce — *"No! The compiler should enforce as much as possible based on what it gives. Put that as the implementation guide of the compiler. We don't move things out of the programming language because we can catch them in unit tests."* | R21 |
 
-### By, About, Subject and self-referential links
+### Author, Subject, About and self-referential links
 
 | | the requirement | observed |
 |---|---|---|
-| **R14** | By and About refer to the author and the subject — *"By and About refer to author and subject"*: on a cover, `<By>*[[ A Persona ]]</By>` and `<About>**[[ The Library ]]</About>`, each holding the text and the url the compiler writes — `*[[ A Persona ]]` compiles to `[A Persona](/a-persona/)`, and with the text apart from the id, `*[[ written by the persona ]]( A Persona )` to `[written by the persona](/a-persona/)`, since *"You always need to be able to say text versus id as an option"* — and standing a Reference on its own writing for the url, as Means does — *"I think we can repurpose Reference for this"* | the paper's cover draws "A Persona" as a link to `/a-persona/`, and the By's text is "A Persona" |
-| **R15** | Subject denotes a book that represents a subject — *"Author and Subject denote books that represent one"* — and the author is a subject, so there is no Author annotation: *"We can make life easier by deciding that the subject has to be the name of the author"*, and *"we can avoid one thing."* The subject gets the book's id back under its own label — *"any title other than the name of the subject has two titles effectively"* — and a subject may have nothing in it yet: *"allow subjects with no books - they represent a subject with nothing in it yet"* | the persona's book carries a Subject and the paper's By reaches it; a Subject with no books under it raises no fault |
-| **R16** | The fixed points are recognized by comparing urls as ids — *"The subjective author is one whos title has the same url as its Author link. The library is the same for subject"* — the autobiography, whose By's url is its own title's url, the author arrow's fixed point, and the library, auto-categorical, whose About's url is its own title's url; such a By or About is drawn as a self-referential link — **left for later on 2026-09-25:** *"Yes just leave it off for now, and we'll figure it out later"*; meanwhile a self-link is written as `<Self>`, K3 | the log, an autobiography, draws its By wearing `pa-self-reference`, and the library its About; the persona's paper draws neither so |
+| **R14** | Author and Subject refer to the author and to the subject a book is filed under, and By is deprecated — *"we are deprecating By and they are all annotations"*: each an annotation of the cover holding what the compiler writes, `<Author>*[[ A Persona ]]</Author>` as `[A Persona](/a-persona/)` and `<Subject>**[[ The Library ]]</Subject>` as `[The Library](/the-library/)`, the text apart from the id when written so — *"You always need to be able to say text versus id as an option"* — and each creating a Reference from that url as one of its own annotations and exposing it as a property: *"Maybe they can each create a Reference as one of their own annotations, expose it as a property, and then it can be used. Annotations of Annotations"* | the paper's `book.author` answers the text "A Persona" and a reference to `/a-persona/` |
+| **R15** | About denotes the subject a book represents, so other books may file under it — *"Any book can be About something, but that allows other books to then be able to use it as a subject catalogue"* — written as the title form in the cover, whose name becomes another name of the book, the *"alternate id for the book"* R15 once gave Subject; a book by what it is about is self-authoring, *"This is a self-authoring book"*; and a subject may have nothing in it yet | the log's About makes it a catalogue the persona files under; an About's name resolves to its book's address; a book filed under one with no About raises a fault |
+| **R16** | The fixed points are recognized by comparing urls as ids — *"The subjective author is one whos title has the same url as its Author link. The library is the same for subject"* — the autobiography, whose Author's url is its own title's url, the author arrow's fixed point, and the library, auto-categorical, whose Subject's url is its own title's url; such an Author or Subject is drawn as a self-referential link — **left for later on 2026-09-25:** *"Yes just leave it off for now, and we'll figure it out later"*; meanwhile a self-link is written as `<Self>`, K3 | the log, an autobiography, draws its Author wearing `pa-self-reference`, and the library its Subject; the persona's paper draws neither so |
 | **R17** | The compiler writes the normal url everywhere: its special case for a link to the page it stands on goes, and Reference's `#` branch with it | the transform writes `[The Log](/the-log/)` inside The Log, no `#` is written anywhere, and Reference tests no `#` — **built 2026-09-25**, the compiler's half in K2 `641e39b` and Reference's in K3 `e81ca19`, where `$SelfReference` wears the class |
-| **R18** | A self-referential link does not look like a link — *"style them so they don't look link-like with no underline and maybe no pointer"* — its base look carried by Reference as Parenthetical carries its own, and a sheet may override it | in the browser the log's By shows no underline |
+| **R18** | A self-referential link does not look like a link — *"style them so they don't look link-like with no underline and maybe no pointer"* — its base look carried by Self as Parenthetical carries its own, and a sheet may override it | in the browser a self-link written as Self shows no underline and keeps its pointer |
 
 ### The compiler and its test library
 
@@ -124,13 +131,13 @@
 | | the requirement | observed |
 |---|---|---|
 | **R24** | The `.public` regression suite binds the rewritten test library with the redraft and is green, and the proof reads every page back with every anchor landing on an id worn once | the regression count and the proof's anchor count, reported |
-| **R25** | Seen in a real browser: a bound book's cover in its format with its By and About as links, a table of contents whose entries land on each chapter's title, and the log's own By drawn as a self-referential link | a drive asserting the visible text, and a navigation from an entry landing on the title's id |
+| **R25** | Seen in a real browser: a bound book's cover in its format with its Author and Subject as links, drawn by its book, a table of contents whose entries land on each chapter's title, and a self-link written as Self drawn without an underline — R16's recognition left for later | a drive asserting the visible text, and a navigation from an entry landing on the title's id |
 | **R26** | What a hand-written page cannot fake: take one entry out of a table and the compiler raises a fault naming the chapter | the fault, read from the bind's own output |
 | **R27** | A book that does not show its table of contents still writes it and puts it on the page the right way, invisible, every chapter catalogued, and presents its entries another way if it likes — *"Maybe a certain book doesn't want to show the table of contents. But they can collect everything as annotations, store them, and present the table in another way. They still need to put everything on the page the right way even if it's all invisible."* | a book whose table of contents is parenthetical draws it hidden, the compiler still enforces that it catalogues every chapter, and the proof still reads its links |
 | **R28** | The classes live in a `library` folder of `src`, as v1's did — *"ALso make a library folder for this , like we had in v1"* — with its own index, and a doc book of its own beside Writing and Utilities | `src/library/index.ts` exports Chapter, Title, Book, Cover, Synopsis, TableOfContents, By, About and Subject, and the library's doc book documents each class to its four parts |
 | **R29** | `[[ X ]]*` leaves the language — Subject collapses the author syntax, so an author edge is said by the By alone and needs no answering end; and the postfix single star is left empty, so each answer carries the count of the link it answers — `[[ X ]]**` answering `**[[ X ]]`, `[[ X ]]***` answering `***[[ X ]]` — *"No this is where we need help. How do you identify the Author? You need to know that the subject is who wrote it. But then on By and About, which aren't in the compiler, how does the compiler know it has specified the author or the subject? We need to tell it that it is a subject lookup but it is for specifying the author. These don't line up. These need to be: [[ X ]]** this is subject X → the catalogue answering for X; [[ X ]]*** this is a catalogue of X → the topical catalogue answering for X. For things to line up"* | the unit suite's language promises; a By with no answering row raises no `NOT-LISTED`; `[[ ]]( A Paper )**` in the library's table answers the paper's `**[[ The Library ]]`, and `[[ X ]]*` raises `MALFORMED-ANNOTATION`; the "has written" rows leave the test library |
 | **R30** | A potential author is an autobiography — a book by its subject, its By naming the subject it represents, not the one it is filed under; *"Isn't an autobiography one that is by its subject?"* — or a book catalogued by one — *"Read this and see the correctness - a book that is by it's subject, or catalogued by one is a potential author"* — and a By must name one; authorship still begins in one self-representation | the log, by The Log and representing The Log, is an autobiography, and the persona is one by being catalogued by it; a By naming a book catalogued by no potential author raises `MAY-NOT-AUTHOR`; two books by their own subjects raise `TWO-SELF-AUTHORS`; and since 2026-09-25 one step, not a walk — *"1. A book that is by its subject - There can be only one of those 2. Any book catalogued by one that is a subject"* — so a diary two steps under the log raises `MAY-NOT-AUTHOR`, K2 |
-| **R31** | The compiler knows which subject a link specifies by its star — one the subject who wrote it, two the subject it is filed under, three a topic — and every link on the left is a subject lookup, the one-star link also checked as a potential author; By and About are the framework's readings of the same text and the compiler never reads them, so a library subclasses them freely — *"The star says it"* | the unit suite's language promises read the relation off the stars; a library's own By subclass under another name compiles unchanged |
+| **R31** | The compiler knows which subject a link specifies by its star — one the subject who wrote it, two the subject it is filed under, three a topic — and reads no tag: Title, Cover, Synopsis, TableOfContents, Author, Subject and About are the runtime's, so a library subclasses them freely — *"The star says it"*, and *"You can't! They might subclass them. That's why they are in special files"* | the unit suite's language promises read the relation off the stars; a chapter whose title element is a library's own subclass under another name compiles unchanged |
 
 ### <a id="syntax"></a>The syntax, as settled
 
@@ -166,31 +173,229 @@ EVERY FORM compiles to [text](url), except [[[ X ]]], which compiles to [text](i
 
 | | open | what is known |
 |---|---|---|
-| **O1** | Where the cover's By and About are drawn, and the book's annotations — *"we need to decide where we are drawing these things. We need formats. We would need annotations for book I think"* | the anchor splits it: *"Book is layout. Chapters are logical parts"* — where they are drawn is the book's business, a book kind's layout as `header()` is, and how they are drawn is the format's ([The Book Is the Layout](../writing-a-book/05-the-book-is-the-layout.md#the-look)); what stays open is whether the book lifts its cover's By and About into annotations of its own (E35, *"A Book sees its Cover's types and decides it deserves them"*; E57) — lifting costs a copy, since an annotation has one parent, and needs the cover's annotations built before the book's `$Define` reads them, which is unmeasured |
-| **O2** | How a title gets its id | *"use the url as an id"* is the lead; the fragment a table's link targets must be an id the page wears, and `src` reads no address |
-| **O3** | The pointer on a self-link | Doug's *"maybe no pointer"* |
-| **O4** | How the `.public` compiler resolves the redraft for its test library | today it reads v1 through a link of its own, `.binding/node_modules/@dna-platform/public` to `.archive/.public/package`, made at the rename; the redraft replaces it as a link of its own or an alias in its configuration — measured before it is relied on, since [Solutions 05](../solutions/05-the-suite-that-passed-against-a-stale-build.md#the-fourth-appearance) is what trusting the walk cost |
-| **O5** | A chapter function is called, so it holds no hooks | a rule to write into the docs with Chapter |
-| **O6** | How a Subject is written | its label, and the book's own id the compiler gives back through the words and the paren it already reads; the language does not change — *"It always was an alternate id, don't change anything"* |
+| **O1** | Where the cover's annotations are drawn — **settled**: only the title is content; the book exposes its cover's Title, Author, Subject and About, *"and then everyone can access them"*, and a library's book class, its layout, draws them | D6 |
+| **O2** | How a title gets its id — **settled**: *"It uses the compiler syntax!!"* — the fragment of the url its `[[ X ]]` compiles to, held by a Referent the Title stands | D5 |
+| **O3** | The pointer on a self-link — **settled**: kept | D10 |
+| **O4** | How the `.public` compiler resolves the redraft for its test library | today it reads v1 through a link of its own, `.binding/node_modules/@dna-platform/public` to `.archive/.public/package`, made at the rename; U10 removes it and the root workspace link resolves `library/.public/package` — measured before it is relied on, since [Solutions 05](../solutions/05-the-suite-that-passed-against-a-stale-build.md#the-fourth-appearance) is what trusting the walk cost |
+| **O5** | A chapter function is called, so it holds no hooks | written into the docs with Chapter, U12 |
+| **O6** | How a Subject is written — **superseded**: what R15 called Subject is About, the title form in the cover, whose name becomes another name of the book | D4 |
 | **O7** | Whether "catalogued by one" means catalogued by an autobiography — **settled 2026-09-25, one step**: *"1. A book that is by its subject - There can be only one of those 2. Any book catalogued by one that is a subject"* | built in K2 `641e39b` |
 
 **The working rule for the plan and the work**, in Doug's words: *"You will have to look at the existing code and work through warts as you go."*
 
+## <a id="plan"></a>Plan
+
+*Planned 2026-09-25 on Doug's `/ce-plan`, from a reading of the compiler — its tasks, the assembly, the specify phase, the app and the prerender, the inventory, the test library — of `src`'s composition classes, and of the Genesis on chapters and books, E29 to E35 and E51 to E57. The design is Doug's, from the rulings above; what is ours is flagged.*
+
+### <a id="shape"></a>The shape
+
+**Two channels reach the compiler, and classes reach the runtime.** The compiler knows a thing by the FILE it stands in and by the NOTATION written in it, and never by a tag, because a library subclasses every class — *"That's why they are in special files."* The runtime knows the same things by class.
+
+| the compiler reads | the runtime's class |
+|---|---|
+| `.book.tsx` | the library's book class, a `$Book` — its layout |
+| `.cover.tsx` · `.synopsis.tsx` · `.table.tsx` | a Chapter carrying Cover · Synopsis · TableOfContents |
+| a numbered file | a Chapter |
+| `[[ X ]]` | Title — names its file; the url it compiles to links it to itself, and the url's fragment is its id |
+| `*[[ X ]]` | Author — an annotation of the cover |
+| `**[[ X ]]` | Subject — an annotation of the cover |
+| a later `[[ X ]]` in a cover | About — an annotation of the cover, whose name is another name of the book |
+| `[[[ X ]]]` | Mention |
+| `$[ X ]` | Means, or any writing standing a Reference |
+
+**A cover, as Doug sketched it**, with the notation added — a self-authoring book, by what it is about:
+
+```tsx
+<Chapter>
+    <Cover />
+    <Title>[[ My Book ]]</Title>
+    <Author>*[[ Me ]]</Author>
+    <Subject>**[[ My Life ]]</Subject>
+    <About>[[ Me ]]</About>
+</Chapter>
+```
+
+**Only the Title is drawn as content.** Author, Subject and About are annotations, each making a Reference from its compiled url as one of its own annotations and exposing it; the book reaches into its cover and exposes all four, *"and then everyone can access them."*
+
+**Chapters and books are functions.** A chapter file default-exports a function of no arguments that returns its `<Chapter>`; the compiler writes each book module exporting `book`, a function returning the book class with each chapter function called inside it, in file order; the page renders `book`, so the chapters are called when the book renders; the specify phase calls `book()` and puts what it builds to `specify()`.
+
+### <a id="decisions"></a>Decisions
+
+| | the decision | why, and over what |
+|---|---|---|
+| **D1** | Chapters and books are functions, as above | Doug's brief; a chapter written as an element reaches the book as a `$Function$`, which `parts` never sees — found in the brainstorm |
+| **D2** | The compiler reads files and the notation, never a tag: nothing reads `Title`, `Cover`, `Option`, `For`, `book` or `chapter`, and what a file carries is the runtime's to specify | *"You don't need the compiler to check for anything. You can't! They might subclass them"*; the rules that read tags go — NO-BOOK-REFERENCE and STRAY-LISTING — and NO-SYNOPSIS is read per table |
+| **D3** | A title names what its file is: in `.cover.tsx` its book, anywhere else a chapter of its book — `[[ The Argument ]]` in `1-the-argument.tsx` compiles to `/a-paper/#the-argument` | read as it is written, a bare name is a book's and would not be found; the compiler knows the file it reads |
+| **D4** | In `.cover.tsx` the first title form is the title and gives the address; a later one is the About, whose name — the paren's, else the words' — becomes another name of the book, answering with the same address; a book may be filed under only when it is About something | *"Subject ends up like an alternate id for the book"*, now About's, and *"that allows other books to then be able to use it as a subject catalogue"*. **Flagged: order tells the About from the Title**, since the compiler reads no tag |
+| **D5** | The Title is a Sentence-level writing standing the Reference its compiled `[text](url)` gives it and a Referent holding the url's fragment; Author, Subject and About are annotations, each standing a Reference from its compiled url among its own annotations and exposing it as `reference`, and its words as `text` | *"only the title is a real element"* · *"It uses the compiler syntax!!"* · *"Annotations of Annotations"*. `reference` is a **proxy name**; `text` is the reading Mention and Means already have |
+| **D6** | The framework draws none of Author, Subject and About; the book exposes its cover's `title`, `author`, `subject` and `about`, and a library's book class draws them where it likes — the test library's draws its byline | *"book can reach in an expose them, and then everyone can access them"*; Book is layout |
+| **D7** | Cover and TableOfContents are Formats drawing their chapter in a `header` and a `nav`; Synopsis adds no layer; each is said of a chapter | R10; a library's subclass restyles, and the book finds it by `instanceof` |
+| **D8** | The compiler binds this code: the link to the archive goes with the rewrite, and `@dna-platform/public` resolves by the root workspace link to `library/.public/package`, whose `dist` is built before the regression runs | O4; measured: this code's `node_modules` is empty, so one React is resolved, the root's |
+| **D9** | Specify runs in the bind's specify phase; each failure `specify()` returns is placed on the chapter file the index in its code names | *"We need the .public tests running that can call specify on the test library"*; a book's contents are its chapters in file order, by D1 |
+| **D10** | Self keeps the pointer and loses the underline, in its note | R18, and *"Keep the pointer"* |
+| **D11** | The specify phase records no facts of v1: `specification/reading.ts` and `environment.ts` go, and the graph keeps what caching needs | their reader was retired with the library-level suite |
+| **D12** | Out of scope: Part, the built Summary, the Canonical mark, `<Type>` by name; R16's url comparison; a runtime Topic; and `<Resource>` placement, which writes v1's `CodeNavigator` and which the test library does not use — **flagged** | *"The core alone"*; *"Yes just leave it off for now, and we'll figure it out later"* |
+
+**The classes and members this plan adds to `src`**, which its approval is Doug's yes for — and nothing else is: `$Chapter`; `$Title` with `chapter`, `text` and `reference`; `$Book` with `canonical`, `title`, `author`, `subject` and `about`; `$Cover`, `$Synopsis` and `$TableOfContents`; `$Author`, `$Subject` and `$About` with `text` and `reference`; each with its specification and its export, in a `src/library` folder with its index; and Self's note.
+
+### <a id="units"></a>Units
+
+*One implementer, in the order written: the work measures one session, and dividing it would cost more than it is — [the size check](../../../../.claude/library/our-skillset/29-ce-plan.md).*
+
+#### <a id="u1"></a>U1 — Chapter and Title
+
+- **Requirements:** R1, R2, R3, R4, R9.
+- **Mechanism:** `$Chapter` is a Composition standing `<Level>6</Level>`, Permissive and Closed in `$Define`, its canonical its one `$Title`, found by class. `$Title` is a Sentence whose `chapter` is its parent when that is a Chapter, whose `$Define` reads the compiled `[text](url)` through the binder and stands a Reference to the url and, when the url has a fragment, a Referent holding it, and whose `write` draws its words. Their specifications: a chapter has one title; a title stands in a chapter and holds the link it was given.
+- **Files:** `src/library/Chapter.tsx`, `src/library/Title.tsx`, `src/library/index.ts`, `src/index.ts`, `.tests/chapter.test.tsx`.
+- **Depends on:** nothing.
+- **Scenarios:** a chapter is level 6, and a string in it does not specify *a closed composition holds only writing*; its canonical is its title standing first or second; none, or two, does not specify, naming the chapter; `title.chapter` is its chapter, and a title outside one does not specify; `$Title` is not a `$Heading`; `<Title>[The Argument](/a-paper/#the-argument)</Title>` draws "The Argument" as a link to that url, its element wearing `id="the-argument"`; a cover's title, `[The Library](/the-library/)`, wears no id; a title written as plain words does not specify.
+- **Demo:** a chapter drawn alone shows its title as a link to itself, carrying the id a table lands on.
+
+#### <a id="u2"></a>U2 — Cover, Synopsis and TableOfContents
+
+- **Requirements:** R10, R11, R12.
+- **Mechanism:** each a Format — Cover's style a `header`, TableOfContents' a `nav`, Synopsis with none; each specifies it is said of a chapter; Cover specifies that its chapter carries an Author and a Subject.
+- **Files:** `src/library/Cover.tsx`, `src/library/Synopsis.tsx`, `src/library/TableOfContents.tsx`, the index, `.tests/cover.test.tsx`.
+- **Depends on:** U1.
+- **Scenarios:** a chapter carrying `<Cover />` draws inside a `header` layer, and taking it away takes the layer back at the next define; `<TableOfContents />` draws a `nav`; `<Synopsis />` adds no layer; each, on a Section, does not specify, *said of a chapter*; a cover with no Author, or no Subject, does not specify, naming the cover; a library's own Cover subclass draws its own style and still counts as a cover.
+- **Demo:** a cover chapter drawn inside a header.
+
+#### <a id="u3"></a>U3 — Author, Subject and About
+
+- **Requirements:** R12, R14, R15, R31.
+- **Mechanism:** each an annotation of the cover, whose `$Define` reads its compiled `[text](url)` through the binder and stands a Reference to the url among its own annotations; `reference` is that Reference and `text` its words, and its own writing draws its words; its specification says it is said of a chapter carrying a Cover; it has no note.
+- **Files:** `src/library/Author.tsx`, `src/library/Subject.tsx`, `src/library/About.tsx`, the index, `.tests/cover.test.tsx`.
+- **Depends on:** U2.
+- **Scenarios:** `<Author>[A Persona](/a-persona/)</Author>` on a cover answers `text` "A Persona" and a `reference` to `/a-persona/`, and draws nothing in the ordinary view; an About on the synopsis does not specify, nor a Subject or an Author; a library's own Author subclass under another name answers the same.
+- **Demo:** none on its own — they are read through the book, U4, and drawn by a book, U9.
+
+#### <a id="u4"></a>U4 — Book
+
+- **Requirements:** R5, R6, R7, R8, R11, and R28's index.
+- **Mechanism:** `$Book` is a Composition standing `<Level>7</Level>`, Strict and Closed; its canonical is the chapter among its contents that carries a Cover; `title`, `author`, `subject` and `about` are read from that cover; its specification: one cover, one synopsis, one table of contents.
+- **Files:** `src/library/Book.tsx`, the index, `src/index.ts`, `.tests/book.test.tsx`.
+- **Depends on:** U1, U2, U3.
+- **Scenarios:** a book is level 7, and a Section straight in it does not specify *strict*; its canonical is the chapter carrying Cover wherever it stands; two covers, or none, does not specify, naming the book; two synopses do not specify; `<Book>{TheArgument()}</Book>` holds a `$Chapter` among its parts; the book answers its cover's title, author, subject and about; `book.specify()` over a whole book returns nothing when every chapter holds, and a chapter given two titles returns that failure, coded to the chapter.
+- **Demo:** a whole book built from chapter functions and specified clean.
+
+#### <a id="u5"></a>U5 — Self's look
+
+- **Requirements:** R18.
+- **Mechanism:** Self's note draws a global style taking the underline off the anchor around a writing wearing `pa-self-reference`, and keeping the pointer.
+- **Files:** `src/writing/Reference.tsx`, `.tests/reference.test.tsx`.
+- **Depends on:** nothing.
+- **Scenarios:** Self's note is a global style; a Reference has none.
+- **Demo:** a self-link with no underline, in the browser, U11.
+
+#### <a id="u6"></a>U6 — The compiler reads files and the notation
+
+- **Requirements:** R13, R21, and D2 to D4.
+- **Mechanism:** the structure names a book by the first title form in `.cover.tsx` and records a later one as another name of it; names a chapter by the title form in its file; reads a table's listings as the references `.table.tsx` makes to chapters of its book; and reads no file's tags. The reference transform resolves a title form as its own file's spot and an About's name as its book; the catalogue answers an About's name with its book's url. Wellformed raises CHAPTER-NOT-LISTED, NO-SYNOPSIS per table, and a new fault for a book filed under one that is About nothing — its name a **proxy**, `NOT-A-SUBJECT`.
+- **Files:** `catalogue/structure.ts`, `catalogue/wellformed.ts`, `catalogue/catalogue.ts`, `catalogue/reading.ts`, `reference/transform.ts`; their suites `structure.test.ts`, `wellformed.test.ts` with its page builder in this code's spelling, and `transform.test.ts`.
+- **Depends on:** lands with U9, since the unit suites read the test library.
+- **Scenarios:** a book is named by its cover's first title form; a chapter by its title form whatever element holds it, a library's own `<MyTitle>` included; `[[ The Argument ]]` in a chapter file compiles to `/a-paper/#the-argument`; an About `[[ Me ]]` lets `**[[ Me ]]` elsewhere file under its book; a book filed under one with no About raises NOT-A-SUBJECT; a table missing a chapter raises CHAPTER-NOT-LISTED, naming the book and the chapter; a catalogue answering a book in its table without referencing that book's synopsis raises NO-SYNOPSIS; a second title form in a chapter file, naming something else, raises a fault.
+- **Demo:** the fault R26 asks for, read from the compiler's own output, U10.
+
+#### <a id="u7"></a>U7 — Books compiled as functions
+
+- **Requirements:** R5, R20, D1.
+- **Mechanism:** the book module imports `.book`'s class and each chapter's function and exports `book`, a function returning the class with each chapter function called inside it, in file order; the app and the prerender render `book`; a hot update hands the new function to `opened`.
+- **Files:** `assembly/book.ts`, `application/main.tsx`, `application/opened.ts`, `rendering/draw.ts`, and a promise on the module's text.
+- **Depends on:** U4.
+- **Scenarios:** the module for a book calls each chapter function once, in file order, inside the book class; a bound page holds its book, U10.
+- **Demo:** pages drawn from books the compiler wrote as functions.
+
+#### <a id="u8"></a>U8 — Specify on this code
+
+- **Requirements:** D8, D9, D11, and `.public` standing on its own.
+- **Mechanism:** the specify phase loads each book through the one door, builds it from `book()`, keeps the failures `specify()` returns, and places each on its chapter's file; `reading.ts` and `environment.ts` go; no file of the compiler imports a name of v1.
+- **Files:** `specification/specify.ts`, `specification/specifying.ts`, `manifest/graph.ts`, `application/routes.ts`; `specification/reading.ts` and `specification/environment.ts` removed.
+- **Depends on:** U4, U7.
+- **Scenarios:** the test library specifies with no failure; a chapter given two titles fails the bind at specify, naming its file; no source of the compiler imports a name `.public` does not export.
+- **Demo:** `specify` over the test library, in the bind's own output.
+
+#### <a id="u9"></a>U9 — The test library in `.public`
+
+- **Requirements:** R22; R29 and R30 carried.
+- **Mechanism:** every chapter a function returning its `<Chapter>` in this code's elements; `.book.tsx` the test library's `$Book` subclass, the other books' extending it, drawing a byline from what the book exposes; covers with Title, Author, Subject and, where the book is a subject, About; tables referencing every chapter of their book — the dot chapters parenthetical — and answering what they catalogue with its synopsis; mentions in `<Mention>`, references in `<Means>`; the resource a function returning writing that carries a Reference; the scale suites' copies in the same shape.
+- **Files:** the 26 files under `.binding/.test/`, `.test/staging.ts`, `.test/catalogue.performance.ts`, `.test/render.performance.ts`.
+- **Depends on:** U1 to U4; lands with U6.
+- **Scenarios:** no file of `.test` uses a name of v1 — `print()`, `Document`, `Ref`, `For`, `Option`, a mention tag; the unit suites pass over it; the scale suites copy books in this shape.
+- **Demo:** the five books, readable as this code's writing.
+
+#### <a id="u10"></a>U10 — The compiler binds this code
+
+- **Requirements:** R19, R24, R26, O4.
+- **Mechanism:** the link to the archive is removed; the regression asserts that the staged bind resolves `@dna-platform/public` to `library/.public/package`, runs every phase with specify among them, and reads every page back with every anchor landing on an id worn once; and that a stage with one table entry taken out fails at catalogue, naming the book and the chapter.
+- **Files:** `.test/binding.regression.ts`, `.test/staging.ts`.
+- **Depends on:** U6 to U9.
+- **Scenarios:** each clause of the mechanism, a promise.
+- **Demo:** the bind's output over the test library, green, and the fault on the broken stage.
+
+#### <a id="u11"></a>U11 — The visible end
+
+- **Requirements:** R25, R27.
+- **Mechanism:** a drive binds a stage, serves it, and in a real browser asserts visible text: the paper's cover in its header, with its title and its byline's links; an entry of its table navigating to the title's id; the library's table drawn hidden while the proof still reads its links.
+- **Files:** a drive under `.binding/.test/`, its name a **proxy**.
+- **Depends on:** U10.
+- **Scenarios:** the three assertions, driven.
+- **Demo:** the sprint's end. What a hand-written page cannot fake is U10's fault, and a navigation landing on an id the compiler put there.
+
+#### <a id="u12"></a>U12 — The docs
+
+- **Requirements:** R28's doc book, O5.
+- **Mechanism:** a book for `src/library`, beside Writing and Utilities — front matter on the two channels and on annotations of annotations, and a chapter per class to the four parts; the binder chapter on reading files and the notation, books as functions, and specify on this code; Writing a Book's authoring surface, with the rule that a chapter function holds no hooks; this chapter kept current as each unit lands.
+- **Files:** `library/.public/.lib/library/`, `the-catalogue-and-the-specification/06-the-language.md` and `07-the-binder.md`, `writing-a-book/`.
+- **Depends on:** each unit, as it lands.
+- **Scenarios:** every link resolves; every class has its four parts.
+- **Demo:** the docs a developer extends `.public` from.
+
+### <a id="order"></a>Order
+
+U1, U2, U3, U4 and U5 in `src`, each green on its own; then U6 and U9 together, the unit suites green when both are in; then U7, U8 and U10, the regression green again at U10; then U11; U12 alongside all of them. **The regression is red from U6 to U10**, because it binds the whole; each step between them is measured by the unit suites.
+
+### <a id="risks"></a>Risks
+
+| risk | what meets it |
+|---|---|
+| the regression is red for four units | U6 and U9 land together, and the unit suites gate each step |
+| order tells the About from the Title in a cover | flagged in D4; the compiler reads no tag, so position is what it has |
+| a chapter function holding a hook would hand it to the book | O5, written into the docs; nothing can check it |
+| a failure's code placed on the wrong file | a book's contents are its chapters in file order, by D1, and U8 pins the placing with a promise |
+| two copies of React on the server | measured: this code's `node_modules` is empty |
+| a member added to `src` beyond this plan | the list above is the yes; anything else is asked |
+
+### <a id="trace"></a>Where each requirement lands
+
+| | lands in |
+|---|---|
+| R1 to R4, R9 | U1 |
+| R5 | U4, U7 |
+| R6 to R8 | U4 |
+| R10, R11, R12 | U2, U3, U4 |
+| R13, R21 | U6 |
+| R14, R15, R31 | U3, U6 |
+| R16 | left for later — *"leave it off for now"* |
+| R17 | built — K2 and K3 |
+| R18 | U5 |
+| R19, R24, R26 | U10 |
+| R20 | U7 |
+| R22 | U9 |
+| R23 | done — v1 is `.archive/.public` |
+| R25, R27 | U11 |
+| R28 | U1 to U4, U12 |
+| R29, R30 | built — K1 and K2, carried by U6 and U9 |
+
+**Checked against itself:** every requirement lands or says why not; every unit names what runs and when, its files, and what is visible when it is done; the members this plan adds to `src` are listed for Doug's yes.
+
 ## Where things stand
 
-**Next: `/ce-plan` on this chapter, the main line first** — *Doug: "You know you are rewriting the test library to use this one, and to do that you need to get chapters working as functions, books as functions, rendering them in the compiler..."* So the plan opens on R1 to R9 and R20 — Chapter and Book as functions the compiled book calls, and the compiler assembling and rendering them — with the test library moved onto this code (R19, R22), which is where `Self` is first written, on the log's By and the library's About. [O1](#open) is still the plan's first question for Doug.
+**Next: `/ce-work` on this chapter, starting at U1** — Chapter and Title, in `src/library`. *The plan is above, on Doug's brief: "I want enough implemented for the test library to live here… We need a first draft of all of it so .public stands on its own." The units run in the order written, and the regression is red from U6 to U10 by design.*
 
-**This code is `.public` since 2026-09-25, and the last version is `.archive/.public`.** *Doug: "let's officially have this code be .public and refer to .archive/.public for references to the last version."* The redraft moved from `library/..public` to `library/.public` — 416 files, the index proved blob for blob against the tree it left — in `6de984f`. v1 moved to `.archive/.public`, which the project repo ignores, so its 509 tracked files left the tree and stay in its history; its `node_modules` went (564 MB to 23 MB) and its `dist` stays, because two things still read v1: Doug's library, whose binder names `.archive/.public/package` in its `package.json` and its `.pubconfig` origin, with a link at `.me/node_modules` so its books resolve v1 too; and this compiler, through a link of its own until its test library is rewritten ([O4](#open)). The root `package.json` lost v1's two demo binders, and `.vscode`'s demo tasks name the archive.
+**The cover, as settled today:** only the Title is drawn as content; Author, Subject and About are annotations of the cover, each making a Reference from its compiled url as one of its own annotations, and the book exposes all four; By is deprecated. A title names what its file is, and its url's fragment is its id. The compiler reads files and the notation, and no tag.
 
-**Built ahead of the plan, all local, none pushed:**
+**Built, all local, none pushed:** K1 `616fbe1`, K2 `641e39b`, K3 `e81ca19`, and `6de984f` — this code as `.public`, v1 as `.archive/.public`. The gates at `6de984f`: the redraft 174 of 174; the compiler, unit 88 of 88 and regression 6 of 6, reading v1 from the archive until U10.
 
-- **K1 `616fbe1`** — `[[ X ]]*` left the language, and an author edge is said by its By alone (R29, R30).
-- **K2 `641e39b`** — who may author is one step, in Doug's two clauses; the transform writes the same url everywhere, and the catalogue's `standing` and `shared` went with its `#` (R17's compiler half, R30, O7).
-- **K3 `e81ca19`** — `$SelfReference`, exported `Self`: a Reference that also wears `pa-self-reference`; Reference's `#` branch is gone (R17's src half, R16 left for later).
-- **`6de984f`** — this code is `.public`, and v1 is `.archive/.public`.
+**Flagged, not changed:** `publish-packages.yml` publishes this code once its version is bumped; `deploy-pages.yml` builds v1's archived `app`; the root `package-lock.json` still lists two removed workspaces; `<Resource>` placement writes v1's `CodeNavigator`, D12.
 
-**Verification, from the new place:** the redraft — typecheck 0, build 0, 174 of 174 across 11 files; the compiler — typecheck 0, unit 88 of 88, regression 6 of 6, reading v1 from the archive. Doug's library's binder resolves v1 from the archive; its typecheck (18 errors, each a `.ts` standing beside an importer chapter of the same name) and one unit promise (`CHAPTER-NOT-LISTED` in its copy's own test library) are red with v1 resolving everywhere, so they are inherited by cause — `.me` is not in git, so no run of the day before proves it.
-
-**Flagged, not changed:** `publish-packages.yml` publishes `library/.public/package` on a push that changes its `src` — now this code, at 0.0.3, which is already published, so nothing publishes until the version is bumped; `deploy-pages.yml` is manual and builds `library/.public/app`, which went to the archive with v1; the root `package-lock.json` still lists the two removed workspaces until the next `npm install` at the root; and this code's package carries copies of v1's `.latex` and `.wiki`.
-
-**Standing:** commit locally as often as wanted and never push until Doug says; every change in `src` has Doug's yes first; chemistry is not changed.
+**Standing:** commit locally as often as wanted and never push until Doug says; every change in `src` has Doug's yes first, and this plan's list is that yes; chemistry is not changed.
