@@ -14,6 +14,7 @@
 |---|---|---|
 | `Book.$Define()` | stands `<Level>7</Level>`, `<Strict />` and `<Closed />`, so it holds chapters and books | E30, E62; ruling 3 of Sprint 79 |
 | `Book.canonical` | overridden: the chapter among its contents that `is(Cover)`, wherever it stands | R7 |
+| `Book.cover` · `Book.synopsis` · `Book.table` | the chapter carrying Cover, Synopsis and TableOfContents, each found by type wherever it stands; `cover` answers the canonical | Doug, 2026-09-25: *"add the cover, synopsis and table properties on book"*, and of the table, *"(can be the property for its table of contents)"* — [Sprint 83](../projection/89-sprint-83--memory-management.md), `e6119fa` |
 | `Book.title` | its cover's title | R8 |
 | `Book.author` · `Book.subject` · `Book.about` | its cover's Author, Subject and About, expressed | R8; *"book can reach in an expose them"* |
 | `Book.specification` | `new BookSpecification()`: **a book has one cover**; **one synopsis**; **one table of contents** | R11 |
@@ -68,7 +69,7 @@ protected override $Define(): void {
 
 ## Promises
 
-Six in [`.tests/book.test.tsx`](../../package/.tests/book.test.tsx): the level and pair, holding the chapters its functions return; its canonical the chapter carrying the cover wherever it stands; a book with no cover, or two, or two synopses, saying so when asked; a section standing straight in it not a part it may hold; exposing what its cover says, its title, author, subject and what it is about; a chapter that does not specify making the book say so, coded to that chapter. In the compiler's: the module text for a book, calling each chapter function once in file order inside the book class ([`assembly/book.test.ts`](../../package/.binding/assembly/book.test.ts)); and the whole test library bound, specified clean, a runtime failure placed on its chapter's file, every page drawn inside its Theme, and the byline and the table seen in a real browser ([the regression](../../package/.binding/.test/binding.regression.ts)).
+Seven in [`.tests/book.test.tsx`](../../package/.tests/book.test.tsx): exposing its cover, its synopsis and its table, wherever they stand; the level and pair, holding the chapters its functions return; its canonical the chapter carrying the cover wherever it stands; a book with no cover, or two, or two synopses, saying so when asked; a section standing straight in it not a part it may hold; exposing what its cover says, its title, author, subject and what it is about; a chapter that does not specify making the book say so, coded to that chapter. In the compiler's: the module text for a book, calling each chapter function once in file order inside the book class ([`assembly/book.test.ts`](../../package/.binding/assembly/book.test.ts)); and the whole test library bound, specified clean, a runtime failure placed on its chapter's file, every page drawn inside its Theme, and the byline and the table seen in a real browser ([the regression](../../package/.binding/.test/binding.regression.ts)).
 
 ## Gate
 
