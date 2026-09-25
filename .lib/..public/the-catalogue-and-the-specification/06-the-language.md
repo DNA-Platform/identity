@@ -12,7 +12,7 @@
 
 ***Authorship begins in a single act of self-representation and is extended only by delegation.***
 
-**One book comes into being that authors itself.** *That is a being positing itself, and it is the only claim in the library that needs no authority behind it, because there is nothing above it to grant one.* Everything in the library is then attributed to that being. **And the being may represent itself more than once** — *a persona is a second representation of the same being* — **but a further representation cannot be claimed.** It has to be **catalogued by an author and authored by that author.** Vouched for, from above.
+**One book comes into being that authors itself.** *That is a being positing itself, and it is the only claim in the library that needs no authority behind it, because there is nothing above it to grant one.* Everything in the library is then attributed to that being. **And the being may represent itself more than once** — *a persona is a second representation of the same being* — **but a further representation cannot be claimed.** It has to be **catalogued by an author and authored by that author.** Vouched for, from above. ***Since 2026-09-25 in `..public`'s compiler, being catalogued by an author is the whole of the vouching*** — Doug: *"a book that is by it's subject, or catalogued by one is a potential author"*.
 
 > ***Doug, 2026-09-18:*** **"Starting with a self-delegation that only happens once."** *And on the shape it makes:* **"It referentially colors the tree in an interesting way, including the tree that contains the authors."*
 
@@ -22,14 +22,13 @@
 
 ---
 
-## <a id="forms"></a>The seven forms
+## <a id="forms"></a>The forms
 
 **`$[ ]` only ever REFERS. `[[ ]]` only ever ANNOTATES. And the side the stars stand on is the DIRECTION of the edge relative to the writing they are written in.**
 
 ```
 [[ X ]]        this is titled X                      about this writing
 [[[ X ]]]      this is named X                       about this spot
-[[ X ]]*       this is author X                      about this writing
 [[ X ]]**      this is subject X                     about this writing
 [[ X ]]***     this is a catalogue of X              about this writing
 
@@ -39,6 +38,8 @@
 
   $[ X ]       the address of X                      about X
 ```
+
+***`[[ X ]]*` left the language on 2026-09-25, in `..public`'s compiler.*** *Doug: "if we decide that Subject collapses the Author syntax… We should be able to get rid of syntax."* **An author is a subject, and `*[[ X ]]` is the whole of the edge**, answered by nothing, so the postfix count of one stays empty and each answer carries the count of the link it answers: *"These don't line up… For things to line up."* **The star says which subject a link specifies** — one the subject who wrote it, two the subject it is filed under, three a topic — *"The star says it."* *The syntax as settled is in [Sprint 82](../projection/88-sprint-82--chapter-and-book.md#syntax); v1's compiler keeps the form.*
 
 ### <a id="words"></a>And every one of them may carry its words — `[ words ]( X )`
 
@@ -76,8 +77,8 @@ $[ the log ]( My Library Log )           the address of My Library Log; the anch
 ***The whole design turns on one move: every annotation is half of an edge, and both spellings normalise to the same edge.***
 
 ```
-  *[[ X ]]   written in A    →   edge( author, X → A )    asserted from A
-  [[ A ]]*   written in X    →   edge( author, X → A )    asserted from X
+ **[[ X ]]   written in A    →   edge( subject, X → A )   asserted from A
+  [[ A ]]**  written in X    →   edge( subject, X → A )   asserted from X
 ```
 
 **Same key.** *So the structure is a map keyed by the edge, holding every assertion that produced it, with where each was written:*
@@ -106,7 +107,7 @@ lists      Map<SpotId, Map<SpotId, Listing>>
 ```
 *Different relations get different TYPES so a cycle check cannot be run on the one where cycles are allowed.*
 
-**5 · THE COLOURING — one flood, and it is the interesting pass.** *Seed with the origin. Walk DOWN the canonical catalogue, admitting a child only if* **its catalogue is an author AND its author is that same catalogue** — *both halves, which is the delegation rule as an admission test.* **One breadth-first walk, linear.** *Every book's author must land in the resulting set.*
+**5 · THE COLOURING — one flood, and it is the interesting pass.** *Seed with the origin. Walk DOWN the canonical catalogue, admitting a child* **whose catalogue is an author** — *the delegation rule as an admission test; its second half, "and its author is that same catalogue", left `..public`'s compiler on 2026-09-25 with Doug's* *"a book that is by it's subject, or catalogued by one is a potential author"*. **One breadth-first walk, linear.** *Every book's author must land in the resulting set.*
 
 ***And everything above the boundary is strings; everything below is ids.*** **Resolve once, at the edge of the parse, and no check ever compares text again** — *which retires the whole apostrophe, entity and casing family of fault in one decision.*
 
@@ -120,7 +121,7 @@ lists      Map<SpotId, Map<SpotId, Listing>>
 
 | fault | what a reader is holding |
 |---|---|
-| `MALFORMED-ANNOTATION` | brackets that do not balance, or stars on both sides |
+| `MALFORMED-ANNOTATION` | brackets that do not balance, stars on both sides, or an author answered — `[[ X ]]*` is not the language |
 | `NO-TITLE` · `DUPLICATE-TITLE` | a book with no name, or one name on two books |
 | `UNKNOWN-REFERENCE` | `$[ X ]` naming nothing the library holds |
 | `NOT-LISTED` | a catalogue that does not answer for what stands under it |
