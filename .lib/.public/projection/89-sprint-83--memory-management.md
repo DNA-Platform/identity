@@ -33,6 +33,8 @@
 - **The collection's `add` adopts.** `book.annotations.add(this, this)` from a table made the book its parent — *"its parent was $Chapter, is now $ProbeBook"* — and the book then ran it as its own gene.
 - **An annotation the annotation installs, and takes back in its `erase`, churns.** It was in the book after construction, erased out when the book drew, and put back when the chapter drew — so the book's memory was whole only between the two draws. It cost no extra draw in a server render.
 - **An annotation the writing puts in the book, cited to itself, is run and drawn there.** Doug's variant — the writing's define finding the annotations to put in the book: the page opened `<nav class="pd-container"><span><header…`, **the whole book drawn inside the table's nav**, and the table annotation drew 4 times rather than 2, once more for each place it stood.
+- **The book's annotations are live.** *Measured in the package's own render-counting harness — a book wearing a counted Format, happy-dom, React's client — with a probe deleted the same turn.* An annotation added to a book's annotations after the mount redraws the book, whether from a handler in one of its chapters or from outside: **two draws and one paint** — the redraw and chemistry's diff after the commit — and the book then holds it. *Doug had asked "shouldn't adding to the collection trigger an update of the Book?", and it does: the collection is `@represented()` and `annotations` is a declared getter, which chemistry makes a reactive property.*
+- **And filling the memory while the book is built is free.** A book whose table's annotation installs itself — in its `$Define`, or at every define — draws three times and paints once, **exactly as a book with nothing installed**: the render, React's development double, and chemistry's diff after the commit. *So memory filled at construction costs nothing because nothing has drawn, and memory changed after the mount is live at one paint — which is what "a change costs one paint" asks.* An added annotation is found only once the book has defined again, since the collection iterates what its last define established; the redraw defines it.
 
 ## Rulings of the brainstorm, verbatim
 
@@ -47,6 +49,7 @@
 | **installation** | *"No I think we are still designing this. Content can be an annotation that knows how to register itself in the books annotations right? Cover should. TableOfContents should. The contents ones will actually know that they re being rendered in the table of contents and maybe can do something on that particular chapter, and then the whole table of contents puts itself in its parent. Let's get some tests on this installation-based system. I like it. It feels right for the semantics of annotations. They kind of mean things that can point upward and this is a nice expression of that"* · *"Wait so they can register upward?"* — measured: yes |
 | **how the book holds them** | *"Added to annotations. Define can get its annotations and find ones to put in book"* — measured: the book then runs and draws them · *"This requires design. I like it"* |
 | **the visible end** | *"Approve pending the design. We want to know that this whole strategy works"* |
+| **live** | on the three shapes offered for holding an installed annotation: *"Hmm, no shouldn't adding to the collection trigger an update of the Book? This is where it becomes questionable. We need the annotations to be live I think"* — measured: they are, at one paint, and installing while built is free |
 
 ## Requirements
 
@@ -58,7 +61,7 @@
 |---|---|---|
 | **R1** | Every writing has a `$book`: the book it was lent, else its parent's, reached for up the chain — Doug's shape, `protected _book` · `get $book()` returning it when assigned and reaching up when not · `set $book(value)` lending one to writing that stands in none. A Book is its own; the walk ends at a Book or at a writing that is its own parent. Chapters are left out: *"Actually forget chapters, let's just do this for $book"* | a paragraph three levels down answers its book in its own `$Define`; a writing built alone answers none, and nothing loops; a writing lent a book answers that one |
 | **R2** | The book's annotations are the memory every writing shares — *"a sort of denomic memory system"* — holding entries that act on nothing | a book holding an entry is not changed by it: no layer, no link, no class of the entry's |
-| **R3** | What goes into the memory is there before anything draws, so filling it costs no render — *"without triggering rerenders, so that all writing can interact with it if it wants"* | a render count shows a book with its memory filled drawing no more than one without; an entry stands in the memory once |
+| **R3** | The memory is live: filled while the book is built it costs no render — *"without triggering rerenders, so that all writing can interact with it if it wants"* — and changed after the mount it updates the book at one paint — *"We need the annotations to be live I think"* | a render count shows a book with its memory filled drawing and painting exactly as one without; an entry added after the mount redraws the book once, one paint, and is found there after |
 | **R4** | Author, Subject and About are in the book's memory — *"It's where subject and author are already going if possible"* — and the book's `author`, `subject` and `about` read them from there | the book answers them from its own annotations |
 
 ### The table of contents — in design
@@ -78,7 +81,7 @@
 
 ## Where things stand
 
-**Next: the design of installation, with Doug — then `/ce-plan` on this chapter.** *Doug: "This requires design. I like it."* The question is written above under [the table of contents](#the-table-of-contents--in-design), with the six measured facts it must answer to; the probes that measured them are in the session's scratchpad and are not the design.
+**Next: the design of installation, with Doug — then `/ce-plan` on this chapter.** *Doug: "This requires design. I like it."* The question is written above under [the table of contents](#the-table-of-contents--in-design), with the measured facts it must answer to — the last two, that the memory is live at one paint and free while the book is built; the probes that measured them were thrown away and are not the design.
 
 **Read these first:** this chapter's [measurements](#found-by-measuring-before-any-design) and [rulings](#rulings-of-the-brainstorm-verbatim); [Developing an Annotation](../writing/10-developing-an-annotation.md), for the four powers and why an erase is `revert(this)`; [The Annotation System](../writing/07-the-annotation-system.md), for what a define establishes and expresses; and [Book](../library/05-book.md), for what the book exposes today.
 
