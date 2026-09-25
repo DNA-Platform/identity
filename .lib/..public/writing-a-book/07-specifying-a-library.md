@@ -110,7 +110,7 @@
 ***Written here so the library level does not quietly grow rules that belong one floor down.*** Each of these is one book looking at itself, so each is a rule on a kind in the package — **and a package change is Doug's to approve before a line:**
 
 - **every book has a subject** — and an author, and a title that means the book; the cover's specification demands the three today, and the BOOK's does not demand a cover.
-- **the table of contents catalogues all chapters** — the contents names every chapter the book holds, and names nothing else.
+- **the table of contents catalogues all chapters** — the contents names every chapter the book holds, and names nothing else. *Ruled otherwise 2026-09-25: the compiler enforces it, since it follows from what the compiler gives — "The compiler should enforce as much as possible based on what it gives… We don't move things out of the programming language because we can catch them in unit tests" — [the compiler's implementation guide](../the-catalogue-and-the-specification/07-the-binder.md#guide).*
 - **a book's name is not empty** — currently a library test, and it is about one book; it belongs on the book.
 
 *The library level keeps only what needs more than one: names unique across books, and — when a cover's author and subject hold references rather than text — that each resolves to a book the library has.*
