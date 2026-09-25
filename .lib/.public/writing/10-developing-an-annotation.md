@@ -92,16 +92,27 @@ override defines(writing: $Writing): void {
 }
 ```
 
-**And an annotation is extended the way any class is: override the power, call the base, add what is yours.** `$SelfReference` is a Reference that also wears `pa-self-reference`, and it writes nothing else — no `erase`, since Reference's is `revert(this)` and takes back every class cited to the annotation, and no bond, since chemistry calls the nearest one up the chain. *The collection finds by `instanceof`, so a Self is found wherever a Reference is asked for, its specification included.*
+**And an annotation is extended the way any class is: override the power, call the base, add what is yours.** `$SelfReference` is a Reference that also wears `pa-self-reference` and draws its own look as its note — no `erase`, since Reference's is `revert(this)` and takes back every class cited to the annotation, and no bond, since chemistry calls the nearest one up the chain. *The collection finds by `instanceof`, so a Self is found wherever a Reference is asked for, its specification included.* Its note is a global style taking the underline off the anchor around a writing that wears the class, and keeping the pointer — Doug: *"style them so they don't look link-like with no underline and maybe no pointer"*, and asked of the pointer, *"Keep the pointer"* ([Sprint 82 U5](../projection/88-sprint-82--chapter-and-book.md#u5)). The style is a field, made once with the class, as Parenthetical's is.
 
 ```tsx
 export class $SelfReference extends $Reference {
+    style = createGlobalStyle`
+        .pd-container:has(> .pa-self-reference),
+        .pd-container:has(> .pd-container > .pa-self-reference) {
+            text-decoration: none;
+        }
+    `;
+
+    override note(): ReactNode { return <this.style />; }
+
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-self-reference');
     }
 }
 ```
+
+*Written today with its url as content, `<Self>/the-library/</Self>`, since a Reference reads its contents as the identifier; writing one with the notation waits on R16.*
 
 **And if you want a surface that someone behind you would otherwise take, take them out of expression.** Doug: *"Front has the power to turn off competitors but if it doesn't, back can erase them."* That is the whole of conflict on a surface: the front's tool is regulation, the back's tool is acting last.
 

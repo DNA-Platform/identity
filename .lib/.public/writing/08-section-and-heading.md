@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- ***Written 2026-09-22 with the unit, to [How a Class Is Documented](../the-coding-style/08-how-a-class-is-documented.md); the code is [`src/writing/Section.tsx`](../../package/src/writing/Section.tsx), the promises [`.tests/section.test.tsx`](../../package/.tests/section.test.tsx). Two classes in one chapter because they are one relation, a section and the heading that means it; a PROXY as a split, Doug's to change.***
+- ***Written 2026-09-22 with the unit, to [How a Class Is Documented](../the-coding-style/08-how-a-class-is-documented.md); the code is [`src/writing/Section.tsx`](../../package/src/writing/Section.tsx) and [`src/writing/Heading.tsx`](../../package/src/writing/Heading.tsx), a file each since 2026-09-25 on Doug's *"Make Title and Heading their own files in library and writing respectively please"* — each asks `instanceof` of the other inside a method, a module cycle declared in the build with that reason — the promises [`.tests/section.test.tsx`](../../package/.tests/section.test.tsx). Two classes in one chapter because they are one relation, a section and the heading that means it.***
 
 ---
 

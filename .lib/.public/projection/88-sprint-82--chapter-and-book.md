@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **status:** implementation-ready — planned 2026-09-25 on Doug's `/ce-plan`; requirements approved in sections the same day
+- **status:** in work — planned 2026-09-25 on Doug's `/ce-plan`; U1 to U10 and U12 built the same day; U11 waits on a ruling
 - ***The sprint's name is Doug's subject, "Chapter and Book"; opened 2026-09-25.***
 
 ---
@@ -111,7 +111,7 @@
 | | the requirement | observed |
 |---|---|---|
 | **R14** | Author and Subject refer to the author and to the subject a book is filed under, and By is deprecated — *"we are deprecating By and they are all annotations"*: each an annotation of the cover holding what the compiler writes, `<Author>*[[ A Persona ]]</Author>` as `[A Persona](/a-persona/)` and `<Subject>**[[ The Library ]]</Subject>` as `[The Library](/the-library/)`, the text apart from the id when written so — *"You always need to be able to say text versus id as an option"* — and each creating a Reference from that url as one of its own annotations and exposing it as a property: *"Maybe they can each create a Reference as one of their own annotations, expose it as a property, and then it can be used. Annotations of Annotations"* | the paper's `book.author` answers the text "A Persona" and a reference to `/a-persona/` |
-| **R15** | About denotes the subject a book represents, so other books may file under it — *"Any book can be About something, but that allows other books to then be able to use it as a subject catalogue"* — written as the title form in the cover, whose name becomes another name of the book, the *"alternate id for the book"* R15 once gave Subject; a book by what it is about is self-authoring, *"This is a self-authoring book"*; and a subject may have nothing in it yet | the log's About makes it a catalogue the persona files under; an About's name resolves to its book's address; a book filed under one with no About raises a fault |
+| **R15** | About denotes the subject a book represents, so other books may file under it — *"Any book can be About something, but that allows other books to then be able to use it as a subject catalogue"* — written as the title form in the cover naming its own book — **revised 2026-09-25** from an About whose name became another name of the book, on *"it needs no name. Title and About cover it"*; a book by what it is about is self-authoring, *"This is a self-authoring book"*; and a subject may have nothing in it yet | the log's About makes it a catalogue the persona files under; an About's url is its title's; a book filed under one with no About raises `NOT-A-SUBJECT` — **built**, U3 and U6 |
 | **R16** | The fixed points are recognized by comparing urls as ids — *"The subjective author is one whos title has the same url as its Author link. The library is the same for subject"* — the autobiography, whose Author's url is its own title's url, the author arrow's fixed point, and the library, auto-categorical, whose Subject's url is its own title's url; such an Author or Subject is drawn as a self-referential link — **left for later on 2026-09-25:** *"Yes just leave it off for now, and we'll figure it out later"*; meanwhile a self-link is written as `<Self>`, K3 | the log, an autobiography, draws its Author wearing `pa-self-reference`, and the library its Subject; the persona's paper draws neither so |
 | **R17** | The compiler writes the normal url everywhere: its special case for a link to the page it stands on goes, and Reference's `#` branch with it | the transform writes `[The Log](/the-log/)` inside The Log, no `#` is written anywhere, and Reference tests no `#` — **built 2026-09-25**, the compiler's half in K2 `641e39b` and Reference's in K3 `e81ca19`, where `$SelfReference` wears the class |
 | **R18** | A self-referential link does not look like a link — *"style them so they don't look link-like with no underline and maybe no pointer"* — its base look carried by Self as Parenthetical carries its own, and a sheet may override it | in the browser a self-link written as Self shows no underline and keeps its pointer |
@@ -199,19 +199,20 @@ EVERY FORM compiles to [text](url), except [[[ X ]]], which compiles to [text](i
 | `[[ X ]]` | Title — names its file; the url it compiles to links it to itself, and the url's fragment is its id |
 | `*[[ X ]]` | Author — an annotation of the cover |
 | `**[[ X ]]` | Subject — an annotation of the cover |
-| a later `[[ X ]]` in a cover | About — an annotation of the cover, whose name is another name of the book |
+| a later `[[ X ]]` in a cover, naming its own book | About — an annotation of the cover; *"it needs no name. Title and About cover it"* |
 | `[[[ X ]]]` | Mention |
 | `$[ X ]` | Means, or any writing standing a Reference |
 
-**A cover, as Doug sketched it**, with the notation added — a self-authoring book, by what it is about:
+**A cover, as Doug sketched it**, with the notation added — a self-authoring book, by what it is about. *As built, About names its own book — "it needs no name. Title and About cover it" — so the sketch's book is called what it is about, as the test library's log is:*
 
 ```tsx
 <Chapter>
     <Cover />
-    <Title>[[ My Book ]]</Title>
-    <Author>*[[ Me ]]</Author>
-    <Subject>**[[ My Life ]]</Subject>
-    <About>[[ Me ]]</About>
+    <Autobiography />
+    <Title>[[ The Log ]]</Title>
+    <Author>*[[ The Log ]]</Author>
+    <Subject>**[[ The Library ]]</Subject>
+    <About>[[ The Log ]]</About>
 </Chapter>
 ```
 
@@ -226,7 +227,7 @@ EVERY FORM compiles to [text](url), except [[[ X ]]], which compiles to [text](i
 | **D1** | Chapters and books are functions, as above | Doug's brief; a chapter written as an element reaches the book as a `$Function$`, which `parts` never sees — found in the brainstorm |
 | **D2** | The compiler reads files and the notation, never a tag: nothing reads `Title`, `Cover`, `Option`, `For`, `book` or `chapter`, and what a file carries is the runtime's to specify | *"You don't need the compiler to check for anything. You can't! They might subclass them"*; the rules that read tags go — NO-BOOK-REFERENCE and STRAY-LISTING — and NO-SYNOPSIS is read per table |
 | **D3** | A title names what its file is: in `.cover.tsx` its book, anywhere else a chapter of its book — `[[ The Argument ]]` in `1-the-argument.tsx` compiles to `/a-paper/#the-argument` | read as it is written, a bare name is a book's and would not be found; the compiler knows the file it reads |
-| **D4** | In `.cover.tsx` the first title form is the title and gives the address; a later one is the About, whose name — the paren's, else the words' — becomes another name of the book, answering with the same address; a book may be filed under only when it is About something | *"Subject ends up like an alternate id for the book"*, now About's, and *"that allows other books to then be able to use it as a subject catalogue"*. **Flagged: order tells the About from the Title**, since the compiler reads no tag |
+| **D4** | In `.cover.tsx` the first title form is the title and gives the address; a later one naming the same book is the About, and gives no name of its own; one naming anything else is `TITLED-TWICE`; a book may be filed under only when it is About something, `NOT-A-SUBJECT` | *"that allows other books to then be able to use it as a subject catalogue"*; **revised 2026-09-25**, from an About whose name was another name of the book, on *"it needs no name. Title and About cover it."* **Flagged: order tells the About from the Title**, since the compiler reads no tag |
 | **D5** | The Title is a Sentence-level writing standing the Reference its compiled `[text](url)` gives it and a Referent holding the url's fragment; Author, Subject and About are annotations, each standing a Reference from its compiled url among its own annotations and exposing it as `reference`, and its words as `text` | *"only the title is a real element"* · *"It uses the compiler syntax!!"* · *"Annotations of Annotations"*. `reference` is a **proxy name**; `text` is the reading Mention and Means already have |
 | **D6** | The framework draws none of Author, Subject and About; the book exposes its cover's `title`, `author`, `subject` and `about`, and a library's book class draws them where it likes — the test library's draws its byline | *"book can reach in an expose them, and then everyone can access them"*; Book is layout |
 | **D7** | Cover and TableOfContents are Formats drawing their chapter in a `header` and a `nav`; Synopsis adds no layer; each is said of a chapter | R10; a library's subclass restyles, and the book finds it by `instanceof` |
@@ -290,7 +291,7 @@ EVERY FORM compiles to [text](url), except [[[ X ]]], which compiles to [text](i
 #### <a id="u6"></a>U6 — The compiler reads files and the notation
 
 - **Requirements:** R13, R21, and D2 to D4.
-- **Mechanism:** the structure names a book by the first title form in `.cover.tsx` and records a later one as another name of it; names a chapter by the title form in its file; reads a table's listings as the references `.table.tsx` makes to chapters of its book; and reads no file's tags. The reference transform resolves a title form as its own file's spot and an About's name as its book; the catalogue answers an About's name with its book's url. Wellformed raises CHAPTER-NOT-LISTED, NO-SYNOPSIS per table, and a new fault for a book filed under one that is About nothing — its name a **proxy**, `NOT-A-SUBJECT`.
+- **Mechanism:** the structure names a book by the first title form in `.cover.tsx` and records a later one naming the same book as its About; names a chapter by the title form in its file; reads a table's listings as the references `.table.tsx` makes to chapters of its book and the answers it gives; and reads no file's tags. The reference transform resolves a title form as its own file's spot. Wellformed raises CHAPTER-NOT-LISTED, NO-SYNOPSIS per table, and two new faults, both **proxies**: `NOT-A-SUBJECT` for a book filed under one that is About nothing, and `TITLED-TWICE` for a second title form naming something else.
 - **Files:** `catalogue/structure.ts`, `catalogue/wellformed.ts`, `catalogue/catalogue.ts`, `catalogue/reading.ts`, `reference/transform.ts`; their suites `structure.test.ts`, `wellformed.test.ts` with its page builder in this code's spelling, and `transform.test.ts`.
 - **Depends on:** lands with U9, since the unit suites read the test library.
 - **Scenarios:** a book is named by its cover's first title form; a chapter by its title form whatever element holds it, a library's own `<MyTitle>` included; `[[ The Argument ]]` in a chapter file compiles to `/a-paper/#the-argument`; an About `[[ Me ]]` lets `**[[ Me ]]` elsewhere file under its book; a book filed under one with no About raises NOT-A-SUBJECT; a table missing a chapter raises CHAPTER-NOT-LISTED, naming the book and the chapter; a catalogue answering a book in its table without referencing that book's synopsis raises NO-SYNOPSIS; a second title form in a chapter file, naming something else, raises a fault.
@@ -390,11 +391,29 @@ U1, U2, U3, U4 and U5 in `src`, each green on its own; then U6 and U9 together, 
 
 ## Where things stand
 
-**Next: `/ce-work` on this chapter, starting at U1** — Chapter and Title, in `src/library`. *The plan is above, on Doug's brief: "I want enough implemented for the test library to live here… We need a first draft of all of it so .public stands on its own." The units run in the order written, and the regression is red from U6 to U10 by design.*
+**Next: a ruling from Doug, then `/ce-work` on this chapter at U11** — the browser drive. *What blocks it: nothing hides an annotation's own writing, so every link on a bound page carries its Level's number and its Reference's url as visible text. Where the ordinary view is drawn is Doug's — [flagged in the Library book](../library/01-books-in-annotations.md#what-is-not-drawn-yet).*
 
-**The cover, as settled today:** only the Title is drawn as content; Author, Subject and About are annotations of the cover, each making a Reference from its compiled url as one of its own annotations, and the book exposes all four; By is deprecated. A title names what its file is, and its url's fragment is its id. The compiler reads files and the notation, and no tag.
+**The cover, as built:** only the Title is drawn as content; Author, Subject and About are annotations of the cover, each standing a Reference from its compiled url among its own annotations, and the book exposes all four; By is deprecated; About names its own book and gives no name. A title names what its file is, and its url's fragment is its id. The compiler reads files and the notation, and no tag.
 
-**Built, all local, none pushed:** K1 `616fbe1`, K2 `641e39b`, K3 `e81ca19`, and `6de984f` — this code as `.public`, v1 as `.archive/.public`. The gates at `6de984f`: the redraft 174 of 174; the compiler, unit 88 of 88 and regression 6 of 6, reading v1 from the archive until U10.
+**Done, every unit committed locally and none pushed:**
+
+| | what | commit |
+|---|---|---|
+| **U1** | Chapter and Title | `ffdc354` |
+| **U2, U3** | Cover, Synopsis, TableOfContents; Author, Subject, About | `abd303d` |
+| **U4** | Book | `3f54cbf` |
+| — | Biography and Autobiography, placeholders | `5ba40d9` |
+| **U5** | Self's look | `54e7c59` |
+| **U6, U9, D8** | the compiler reads files and the notation; the test library in `.public`; the link to the archive gone | `beccfaf` |
+| **U7, U8, U10** | books as functions; specify on this code, each failure on its chapter's file; the compiler binds this code | `491177b` |
+| — | Title and Heading in files of their own — *"Make Title and Heading their own files in library and writing respectively please"*; the two module cycles declared in the build | `3852c1e` |
+| **U12** | the [Library](../library/.cover.md) book, six chapters to the four parts, each shown in use; [the binder chapter](../the-catalogue-and-the-specification/07-the-binder.md), Developing an Annotation's Self, How Writing Is Extended, and this chapter brought current | the identity branch |
+
+**The gates at `3852c1e`:** the package typecheck 0 errors and 202 of 202 across fifteen files; the compiler's typecheck 0 errors (23 before, every one v1's reader), unit 95 of 95, regression 11 of 11, both scale suites green over ten copies. A bind of the test library reads 5 books and specifies 147 writings in 4.7s.
+
+**Found on the way:** `.` escapes in a title read through the notation, so a fixture book called "A. Paper" read as "A Paper"; and the ordinary view above.
+
+**For Doug:** where the ordinary view is drawn; whether the test library writes a Self with its url as content before R16; and the proxy names — `titled`, `about`, `titledTwice`, `NOT-A-SUBJECT`, `TITLED-TWICE`, `RunningHead`, `text` and `reference`, and Collection's type alias `Author` beside the class.
 
 **Flagged, not changed:** `publish-packages.yml` publishes this code once its version is bumped; `deploy-pages.yml` builds v1's archived `app`; the root `package-lock.json` still lists two removed workspaces; `<Resource>` placement writes v1's `CodeNavigator`, D12.
 
