@@ -93,7 +93,21 @@ export const book = () => (
 
 ## What is not drawn yet
 
-**An annotation's own writing is hidden in the ordinary view** — [the Writing book's promise](../writing/02-theming-and-formatting.md) — ***and nothing draws that ordinary view yet.*** Measured in the first bind of the rewritten test library, 2026-09-25: every Means carries its Level's `2` and its Reference's url as text inside its link, and a cover's Author, Subject and About are drawn in its header as links. `.pd-annotation` is on each, and no sheet hides it. **Flagged for Doug**: where the ordinary view is drawn is his.
+**An annotation's own writing is hidden in the ordinary view** — [the Writing book's promise](../writing/02-theming-and-formatting.md) — ***and the ordinary view is a library's theme.*** Measured in the first bind of the rewritten test library, 2026-09-25: every Means carried its Level's `2` and its Reference's url as text inside its link, and a cover's Author, Subject and About were drawn in its header as links, `.pd-annotation` on each and no sheet hiding it. Doug ruled where it is drawn the same day: ***"if we want to have a theme, it is a format annotation that is also a theme that is global to a book. The annotation validate that it is a book. And we can use its style"*** — and of the test library's, *"Yes good to make one local to the test-library."* And he named it: *"One might give the book a format called Theme which is a theme, which would be realized in its .book or as a resource in one of its chapters, perhaps as an appendix"* — [an extension point of Book](05-book.md#how-it-is-extended). So the test library's book class stands its `Theme` in its `$Define`, a Format with `theme = true` whose style hides every `.pd-annotation` inside the book and whose specification says it is said of a book — [`the-library/.book.tsx`](../../package/.binding/.test/the-library/.book.tsx). *A library's own class: `src` has no Theme, as [Format and Theme](../writing/11-format-and-theme.md) records.*
+
+```tsx
+export class $Theme extends $Format {
+    specification = new ThemeSpecification();
+    theme = true;
+    style = styled.div`
+        .pd-annotation {
+            display: none;
+        }
+    `;
+}
+```
+
+***What is not drawn yet is the shape of the page.*** Every composition draws as the `span` Writing gives it — no class in `src` replaces its own element yet, though [the seam is there](../writing/06-how-writing-is-extended.md) — so a reader sees a table's words run together, *"ContentsThe ShelvesThe Catalogue…"*, measured in the browser drive. **Flagged for Doug.**
 
 ## Chapters
 

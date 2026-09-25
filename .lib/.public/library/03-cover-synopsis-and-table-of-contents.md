@@ -52,6 +52,6 @@ Five in the first half of [`.tests/cover.test.tsx`](../../package/.tests/cover.t
 
 ## Gate
 
-Committed as `abd303d`. Measured 2026-09-25 at the close of U10: the package 202 of 202; the compiler's unit suite 95 of 95 and regression 11 of 11.
+Committed as `abd303d`. Measured 2026-09-25 after U11: the package 202 of 202; the compiler's unit suite 95 of 95 and regression 16 of 16.
 
 **Names.** Doug's: `Cover`, `Synopsis`, `TableOfContents`. Ours, flagged: `CoverSpecification`, `SynopsisSpecification`, `TableOfContentsSpecification`, and the rules `$saidOfAChapter`, `$carriesItsAuthor`, `$carriesItsSubject`.

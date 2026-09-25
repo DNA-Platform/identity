@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **status:** in work — planned 2026-09-25 on Doug's `/ce-plan`; U1 to U10 and U12 built the same day; U11 waits on a ruling
+- **status:** built — planned 2026-09-25 on Doug's `/ce-plan`, and every unit built the same day, local and not pushed; `/ce-compound` next
 - ***The sprint's name is Doug's subject, "Chapter and Book"; opened 2026-09-25.***
 
 ---
@@ -78,6 +78,10 @@
 | **annotations of annotations** | asked whether the syntax goes `[[ X ]]` for the title, `*[[ X ]]` the author, `**[[ X ]]` the subject and the title form for About: *"Yes you can, but we are deprecating By and they are all annotations. Maybe they can each create a Reference as one of their own annotations, expose it as a property, and then it can be used. Annotations of Annotations"* |
 | **About** | *"Any book can be About something, but that allows other books to then be able to use it as a subject catalogue and this one needs to be written with links because it is about that subject"* · and `<About>Me</About>` beside `<Author>Me</Author>`: *"This is a self-authoring book"* · *"I'm not using the compiler syntax but we can imagine it was added in so that these components are getting uirls where needed"* |
 | **the pointer** | a self-link keeps its pointer — chosen from *"Keep the pointer"* |
+| **the test library's form** | *"Good go for it. You might need to change the test library code to accommodate what we have. The library is pretty bare now, but it is worth moving into this minimal form because we should have everything we need to do compiler tests, and we can evolve it to look more like a correct library as we get there"* |
+| **Title and Heading** | *"Make Title and Heading their own files in library and writing respectively please"* — `3852c1e`, the two module cycles declared in the build |
+| **the ordinary view** | asked which layer hides an annotation's own writing: *"I think, if we want to have a theme, it is a format annotation that is also a theme that is global to a book. The annottaion validate that it is a book. And we can use its style"* · *"Yes good to make one local to the test-library"* · *"And we can put that in the documentation as an extension-point for book. One might give the book a format called Theme which is a theme, which would be realized in its .book or as a resource in one of its chapters, perhaps as an appendix"* — the test library's `Theme`, `549d33b` and `7c031d1`, and [Book's extension point](../library/05-book.md#how-it-is-extended) |
+| **Self, and a cover's title** | asked whether the test library writes a Self with its url as content: *"That's not right. Self is a reference - an annotation not meaning right?? - wouldn't the title of a book have a self-link? You can put one in. Wouldn't it get the reference syntax and wouldn't it add a self-reference for its thing? If would check it it's book is a cover and if it is (make a book property on Chapter and return parent). Or is it not able to do that because objects can only check down? No this isn't quite there yet"* · *"Do it the way you are doing it and we'll see where it enters the picture"* — so no Self in the test library yet, and R16's lead is a cover's Title standing a Self, found through a `book` on Chapter |
 
 ## Requirements
 
@@ -391,7 +395,7 @@ U1, U2, U3, U4 and U5 in `src`, each green on its own; then U6 and U9 together, 
 
 ## Where things stand
 
-**Next: a ruling from Doug, then `/ce-work` on this chapter at U11** — the browser drive. *What blocks it: nothing hides an annotation's own writing, so every link on a bound page carries its Level's number and its Reference's url as visible text. Where the ordinary view is drawn is Doug's — [flagged in the Library book](../library/01-books-in-annotations.md#what-is-not-drawn-yet).*
+**Next: `/ce-compound` on this chapter** — every unit is built. *What it would distribute: that the compiler reads files and the notation and no tag; that a book and its chapters are functions; that the ordinary view is a library's theme; and the escape and the spans below.*
 
 **The cover, as built:** only the Title is drawn as content; Author, Subject and About are annotations of the cover, each standing a Reference from its compiled url among its own annotations, and the book exposes all four; By is deprecated; About names its own book and gives no name. A title names what its file is, and its url's fragment is its id. The compiler reads files and the notation, and no tag.
 
@@ -407,13 +411,14 @@ U1, U2, U3, U4 and U5 in `src`, each green on its own; then U6 and U9 together, 
 | **U6, U9, D8** | the compiler reads files and the notation; the test library in `.public`; the link to the archive gone | `beccfaf` |
 | **U7, U8, U10** | books as functions; specify on this code, each failure on its chapter's file; the compiler binds this code | `491177b` |
 | — | Title and Heading in files of their own — *"Make Title and Heading their own files in library and writing respectively please"*; the two module cycles declared in the build | `3852c1e` |
-| **U12** | the [Library](../library/.cover.md) book, six chapters to the four parts, each shown in use; [the binder chapter](../the-catalogue-and-the-specification/07-the-binder.md), Developing an Annotation's Self, How Writing Is Extended, and this chapter brought current | the identity branch |
+| **U11** | the visible end: the bound pages driven in a real browser — the cover, the byline, a table's entry landing on its title's id, the hidden entries, hydration; and the test library's `Theme` drawing the ordinary view | `549d33b`, `7c031d1` |
+| **U12** | the [Library](../library/.cover.md) book, six chapters to the four parts, each shown in use, Book's theme an extension point; [the binder chapter](../the-catalogue-and-the-specification/07-the-binder.md), Developing an Annotation's Self, How Writing Is Extended, Section and Heading, and this chapter brought current | the identity branch |
 
-**The gates at `3852c1e`:** the package typecheck 0 errors and 202 of 202 across fifteen files; the compiler's typecheck 0 errors (23 before, every one v1's reader), unit 95 of 95, regression 11 of 11, both scale suites green over ten copies. A bind of the test library reads 5 books and specifies 147 writings in 4.7s.
+**The gates at `7c031d1`:** the package typecheck 0 errors and 202 of 202 across fifteen files; the compiler's typecheck 0 errors (23 before, every one v1's reader), unit 95 of 95, regression 16 of 16 — five of them in a real browser — and both scale suites green over ten copies. A bind of the test library reads 5 books and specifies 147 writings.
 
-**Found on the way:** `.` escapes in a title read through the notation, so a fixture book called "A. Paper" read as "A Paper"; and the ordinary view above.
+**Found on the way:** `.` escapes in a title read through the notation, so a fixture book called "A. Paper" read as "A Paper"; an annotation's own writing was in every link until the test library's Theme hid it; and **every composition draws as a span**, so a reader sees a table's words run together — no class in `src` replaces its own element yet, and that is Doug's.
 
-**For Doug:** where the ordinary view is drawn; whether the test library writes a Self with its url as content before R16; and the proxy names — `titled`, `about`, `titledTwice`, `NOT-A-SUBJECT`, `TITLED-TWICE`, `RunningHead`, `text` and `reference`, and Collection's type alias `Author` beside the class.
+**For Doug:** the spans above; R16's lead, a cover's Title standing a Self through a `book` on Chapter; and the proxy names — `titled`, `about`, `titledTwice`, `NOT-A-SUBJECT`, `TITLED-TWICE`, `RunningHead`, `text` and `reference`, and Collection's type alias `Author` beside the class.
 
 **Flagged, not changed:** `publish-packages.yml` publishes this code once its version is bumped; `deploy-pages.yml` builds v1's archived `app`; the root `package-lock.json` still lists two removed workspaces; `<Resource>` placement writes v1's `CodeNavigator`, D12.
 

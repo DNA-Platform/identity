@@ -55,7 +55,7 @@ export default () => (
 </Paragraph>
 ```
 
-***Their own writing is still in the markup***, drawn inside the cover as every annotation's is, `.pd-annotation` on it — [not yet hidden](01-books-in-annotations.md#what-is-not-drawn-yet).
+***Their own writing is still in the markup***, drawn inside the cover as every annotation's is, `.pd-annotation` on it — and [the library's theme](01-books-in-annotations.md#what-is-not-drawn-yet) hides it, so the reader sees the byline and not the annotations it was drawn from.
 
 ## How they are extended
 
@@ -70,6 +70,6 @@ Five in the second half of [`.tests/cover.test.tsx`](../../package/.tests/cover.
 
 ## Gate
 
-Committed as `abd303d`, the compiler's half as `beccfaf`. Measured 2026-09-25 at the close of U10: the package 202 of 202; the compiler's unit suite 95 of 95 and regression 11 of 11, the byline drawn on every bound page.
+Committed as `abd303d`, the compiler's half as `beccfaf`. Measured 2026-09-25 after U11: the package 202 of 202; the compiler's unit suite 95 of 95 and regression 16 of 16, the byline drawn on every bound page.
 
 **Names.** Doug's: `Author`, `Subject`, `About`. Ours, flagged: `text` and `reference` on each, the three specifications and their rules, and the compiler's `about`, `titledTwice`, `NOT-A-SUBJECT` and `TITLED-TWICE`. *Collection's type alias `Author` — the author of a change — collides with this class at the package's index, which exports this one by name; flagged for Doug.*

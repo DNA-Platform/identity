@@ -49,6 +49,6 @@ Three in [`.tests/biography.test.tsx`](../../package/.tests/biography.test.tsx):
 
 ## Gate
 
-Committed as `5ba40d9`. Measured 2026-09-25: the package 202 of 202; the compiler's regression 11 of 11.
+Committed as `5ba40d9`. Measured 2026-09-25: the package 202 of 202; the compiler's regression 16 of 16.
 
 **Names.** Doug's: `Biography`, `Autobiography`, `pa-biography`, `pa-autobiography`. Ours, flagged: `AutobiographySpecification` and its rule `$byWhatItIsAbout`.
