@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **status:** built — planned 2026-09-25 on Doug's `/ce-plan`, and every unit built the same day, local and not pushed; `/ce-compound` next
+- **status:** closed — planned, built and compounded 2026-09-25, local and not pushed; `/ce-brainstorm` for Sprint 83 next, on the Genesis
 - ***The sprint's name is Doug's subject, "Chapter and Book"; opened 2026-09-25.***
 
 ---
@@ -245,130 +245,30 @@ EVERY FORM compiles to [text](url), except [[[ X ]]], which compiles to [text](i
 
 ### <a id="units"></a>Units
 
-*One implementer, in the order written: the work measures one session, and dividing it would cost more than it is — [the size check](../../../../.claude/library/our-skillset/29-ce-plan.md).*
+*Compacted at the close to a register. Each unit's mechanism, files, scenarios and demo were the plan, and the plan ran; what was built is the code and its promises, and what it means is read in the [Library](../library/.cover.md) book and [the binder chapter](../the-catalogue-and-the-specification/07-the-binder.md). A scenario that survived is a promise, and a promise is read where it runs.*
 
-#### <a id="u1"></a>U1 — Chapter and Title
-
-- **Requirements:** R1, R2, R3, R4, R9.
-- **Mechanism:** `$Chapter` is a Composition standing `<Level>6</Level>`, Permissive and Closed in `$Define`, its canonical its one `$Title`, found by class. `$Title` is a Sentence whose `chapter` is its parent when that is a Chapter, whose `$Define` reads the compiled `[text](url)` through the binder and stands a Reference to the url and, when the url has a fragment, a Referent holding it, and whose `write` draws its words. Their specifications: a chapter has one title; a title stands in a chapter and holds the link it was given.
-- **Files:** `src/library/Chapter.tsx`, `src/library/Title.tsx`, `src/library/index.ts`, `src/index.ts`, `.tests/chapter.test.tsx`.
-- **Depends on:** nothing.
-- **Scenarios:** a chapter is level 6, and a string in it does not specify *a closed composition holds only writing*; its canonical is its title standing first or second; none, or two, does not specify, naming the chapter; `title.chapter` is its chapter, and a title outside one does not specify; `$Title` is not a `$Heading`; `<Title>[The Argument](/a-paper/#the-argument)</Title>` draws "The Argument" as a link to that url, its element wearing `id="the-argument"`; a cover's title, `[The Library](/the-library/)`, wears no id; a title written as plain words does not specify.
-- **Demo:** a chapter drawn alone shows its title as a link to itself, carrying the id a table lands on.
-
-#### <a id="u2"></a>U2 — Cover, Synopsis and TableOfContents
-
-- **Requirements:** R10, R11, R12.
-- **Mechanism:** each a Format — Cover's style a `header`, TableOfContents' a `nav`, Synopsis with none; each specifies it is said of a chapter; Cover specifies that its chapter carries an Author and a Subject.
-- **Files:** `src/library/Cover.tsx`, `src/library/Synopsis.tsx`, `src/library/TableOfContents.tsx`, the index, `.tests/cover.test.tsx`.
-- **Depends on:** U1.
-- **Scenarios:** a chapter carrying `<Cover />` draws inside a `header` layer, and taking it away takes the layer back at the next define; `<TableOfContents />` draws a `nav`; `<Synopsis />` adds no layer; each, on a Section, does not specify, *said of a chapter*; a cover with no Author, or no Subject, does not specify, naming the cover; a library's own Cover subclass draws its own style and still counts as a cover.
-- **Demo:** a cover chapter drawn inside a header.
-
-#### <a id="u3"></a>U3 — Author, Subject and About
-
-- **Requirements:** R12, R14, R15, R31.
-- **Mechanism:** each an annotation of the cover, whose `$Define` reads its compiled `[text](url)` through the binder and stands a Reference to the url among its own annotations; `reference` is that Reference and `text` its words, and its own writing draws its words; its specification says it is said of a chapter carrying a Cover; it has no note.
-- **Files:** `src/library/Author.tsx`, `src/library/Subject.tsx`, `src/library/About.tsx`, the index, `.tests/cover.test.tsx`.
-- **Depends on:** U2.
-- **Scenarios:** `<Author>[A Persona](/a-persona/)</Author>` on a cover answers `text` "A Persona" and a `reference` to `/a-persona/`, and draws nothing in the ordinary view; an About on the synopsis does not specify, nor a Subject or an Author; a library's own Author subclass under another name answers the same.
-- **Demo:** none on its own — they are read through the book, U4, and drawn by a book, U9.
-
-#### <a id="u4"></a>U4 — Book
-
-- **Requirements:** R5, R6, R7, R8, R11, and R28's index.
-- **Mechanism:** `$Book` is a Composition standing `<Level>7</Level>`, Strict and Closed; its canonical is the chapter among its contents that carries a Cover; `title`, `author`, `subject` and `about` are read from that cover; its specification: one cover, one synopsis, one table of contents.
-- **Files:** `src/library/Book.tsx`, the index, `src/index.ts`, `.tests/book.test.tsx`.
-- **Depends on:** U1, U2, U3.
-- **Scenarios:** a book is level 7, and a Section straight in it does not specify *strict*; its canonical is the chapter carrying Cover wherever it stands; two covers, or none, does not specify, naming the book; two synopses do not specify; `<Book>{TheArgument()}</Book>` holds a `$Chapter` among its parts; the book answers its cover's title, author, subject and about; `book.specify()` over a whole book returns nothing when every chapter holds, and a chapter given two titles returns that failure, coded to the chapter.
-- **Demo:** a whole book built from chapter functions and specified clean.
-
-#### <a id="u5"></a>U5 — Self's look
-
-- **Requirements:** R18.
-- **Mechanism:** Self's note draws a global style taking the underline off the anchor around a writing wearing `pa-self-reference`, and keeping the pointer.
-- **Files:** `src/writing/Reference.tsx`, `.tests/reference.test.tsx`.
-- **Depends on:** nothing.
-- **Scenarios:** Self's note is a global style; a Reference has none.
-- **Demo:** a self-link with no underline, in the browser, U11.
-
-#### <a id="u6"></a>U6 — The compiler reads files and the notation
-
-- **Requirements:** R13, R21, and D2 to D4.
-- **Mechanism:** the structure names a book by the first title form in `.cover.tsx` and records a later one naming the same book as its About; names a chapter by the title form in its file; reads a table's listings as the references `.table.tsx` makes to chapters of its book and the answers it gives; and reads no file's tags. The reference transform resolves a title form as its own file's spot. Wellformed raises CHAPTER-NOT-LISTED, NO-SYNOPSIS per table, and two new faults, both **proxies**: `NOT-A-SUBJECT` for a book filed under one that is About nothing, and `TITLED-TWICE` for a second title form naming something else.
-- **Files:** `catalogue/structure.ts`, `catalogue/wellformed.ts`, `catalogue/catalogue.ts`, `catalogue/reading.ts`, `reference/transform.ts`; their suites `structure.test.ts`, `wellformed.test.ts` with its page builder in this code's spelling, and `transform.test.ts`.
-- **Depends on:** lands with U9, since the unit suites read the test library.
-- **Scenarios:** a book is named by its cover's first title form; a chapter by its title form whatever element holds it, a library's own `<MyTitle>` included; `[[ The Argument ]]` in a chapter file compiles to `/a-paper/#the-argument`; an About `[[ Me ]]` lets `**[[ Me ]]` elsewhere file under its book; a book filed under one with no About raises NOT-A-SUBJECT; a table missing a chapter raises CHAPTER-NOT-LISTED, naming the book and the chapter; a catalogue answering a book in its table without referencing that book's synopsis raises NO-SYNOPSIS; a second title form in a chapter file, naming something else, raises a fault.
-- **Demo:** the fault R26 asks for, read from the compiler's own output, U10.
-
-#### <a id="u7"></a>U7 — Books compiled as functions
-
-- **Requirements:** R5, R20, D1.
-- **Mechanism:** the book module imports `.book`'s class and each chapter's function and exports `book`, a function returning the class with each chapter function called inside it, in file order; the app and the prerender render `book`; a hot update hands the new function to `opened`.
-- **Files:** `assembly/book.ts`, `application/main.tsx`, `application/opened.ts`, `rendering/draw.ts`, and a promise on the module's text.
-- **Depends on:** U4.
-- **Scenarios:** the module for a book calls each chapter function once, in file order, inside the book class; a bound page holds its book, U10.
-- **Demo:** pages drawn from books the compiler wrote as functions.
-
-#### <a id="u8"></a>U8 — Specify on this code
-
-- **Requirements:** D8, D9, D11, and `.public` standing on its own.
-- **Mechanism:** the specify phase loads each book through the one door, builds it from `book()`, keeps the failures `specify()` returns, and places each on its chapter's file; `reading.ts` and `environment.ts` go; no file of the compiler imports a name of v1.
-- **Files:** `specification/specify.ts`, `specification/specifying.ts`, `manifest/graph.ts`, `application/routes.ts`; `specification/reading.ts` and `specification/environment.ts` removed.
-- **Depends on:** U4, U7.
-- **Scenarios:** the test library specifies with no failure; a chapter given two titles fails the bind at specify, naming its file; no source of the compiler imports a name `.public` does not export.
-- **Demo:** `specify` over the test library, in the bind's own output.
-
-#### <a id="u9"></a>U9 — The test library in `.public`
-
-- **Requirements:** R22; R29 and R30 carried.
-- **Mechanism:** every chapter a function returning its `<Chapter>` in this code's elements; `.book.tsx` the test library's `$Book` subclass, the other books' extending it, drawing a byline from what the book exposes; covers with Title, Author, Subject and, where the book is a subject, About; tables referencing every chapter of their book — the dot chapters parenthetical — and answering what they catalogue with its synopsis; mentions in `<Mention>`, references in `<Means>`; the resource a function returning writing that carries a Reference; the scale suites' copies in the same shape.
-- **Files:** the 26 files under `.binding/.test/`, `.test/staging.ts`, `.test/catalogue.performance.ts`, `.test/render.performance.ts`.
-- **Depends on:** U1 to U4; lands with U6.
-- **Scenarios:** no file of `.test` uses a name of v1 — `print()`, `Document`, `Ref`, `For`, `Option`, a mention tag; the unit suites pass over it; the scale suites copy books in this shape.
-- **Demo:** the five books, readable as this code's writing.
-
-#### <a id="u10"></a>U10 — The compiler binds this code
-
-- **Requirements:** R19, R24, R26, O4.
-- **Mechanism:** the link to the archive is removed; the regression asserts that the staged bind resolves `@dna-platform/public` to `library/.public/package`, runs every phase with specify among them, and reads every page back with every anchor landing on an id worn once; and that a stage with one table entry taken out fails at catalogue, naming the book and the chapter.
-- **Files:** `.test/binding.regression.ts`, `.test/staging.ts`.
-- **Depends on:** U6 to U9.
-- **Scenarios:** each clause of the mechanism, a promise.
-- **Demo:** the bind's output over the test library, green, and the fault on the broken stage.
-
-#### <a id="u11"></a>U11 — The visible end
-
-- **Requirements:** R25, R27.
-- **Mechanism:** a drive binds a stage, serves it, and in a real browser asserts visible text: the paper's cover in its header, with its title and its byline's links; an entry of its table navigating to the title's id; the library's table drawn hidden while the proof still reads its links.
-- **Files:** a drive under `.binding/.test/`, its name a **proxy**.
-- **Depends on:** U10.
-- **Scenarios:** the three assertions, driven.
-- **Demo:** the sprint's end. What a hand-written page cannot fake is U10's fault, and a navigation landing on an id the compiler put there.
-
-#### <a id="u12"></a>U12 — The docs
-
-- **Requirements:** R28's doc book, O5.
-- **Mechanism:** a book for `src/library`, beside Writing and Utilities — front matter on the two channels and on annotations of annotations, and a chapter per class to the four parts; the binder chapter on reading files and the notation, books as functions, and specify on this code; Writing a Book's authoring surface, with the rule that a chapter function holds no hooks; this chapter kept current as each unit lands.
-- **Files:** `library/.public/.lib/library/`, `the-catalogue-and-the-specification/06-the-language.md` and `07-the-binder.md`, `writing-a-book/`.
-- **Depends on:** each unit, as it lands.
-- **Scenarios:** every link resolves; every class has its four parts.
-- **Demo:** the docs a developer extends `.public` from.
+| | the unit | built | read now in |
+|---|---|---|---|
+| <a id="u1"></a>**U1** | Chapter and Title — a chapter at 6 whose canonical is its one title; a title at 3, its words compiler syntax | `ffdc354`; Title in its own file, `3852c1e` | [Chapter and Title](../library/02-chapter-and-title.md) |
+| <a id="u2"></a>**U2** | Cover, Synopsis and TableOfContents — Formats a chapter carries | `abd303d` | [Cover, Synopsis and TableOfContents](../library/03-cover-synopsis-and-table-of-contents.md) |
+| <a id="u3"></a>**U3** | Author, Subject and About — annotations of the cover, each standing a Reference among its own | `abd303d` | [Author, Subject and About](../library/04-author-subject-and-about.md) |
+| <a id="u4"></a>**U4** | Book — a composition at 7 whose canonical is the chapter carrying its cover, exposing what the cover says | `3f54cbf` | [Book](../library/05-book.md) |
+| <a id="u5"></a>**U5** | Self's look — its note a global style taking the underline off, the pointer kept | `54e7c59` | [Developing an Annotation](../writing/10-developing-an-annotation.md) |
+| <a id="u6"></a>**U6** | the compiler reads files and the notation and no tag; `NOT-A-SUBJECT` and `TITLED-TWICE` | `beccfaf` | [the binder chapter](../the-catalogue-and-the-specification/07-the-binder.md#reading) |
+| <a id="u7"></a>**U7** | books compiled as functions calling their chapter functions in file order | `491177b` | [Books in Annotations](../library/01-books-in-annotations.md#a-whole-book-written-out) |
+| <a id="u8"></a>**U8** | specify on this code, each failure placed on its chapter's file; v1's reader gone | `491177b` | [Book](../library/05-book.md) |
+| <a id="u9"></a>**U9** | the test library rewritten in `.public` | `beccfaf` | [the test library](../the-catalogue-and-the-specification/07-the-binder.md#test-library) |
+| <a id="u10"></a>**U10** | the compiler binds this code, and two stages broken on purpose fail by name | `491177b` | [the regression](../../package/.binding/.test/binding.regression.ts) |
+| <a id="u11"></a>**U11** | the visible end, driven in a real browser; the test library's Theme drawing the ordinary view | `549d33b`, `7c031d1` | [Book's theme](../library/05-book.md#how-it-is-extended) and [the regression](../../package/.binding/.test/binding.regression.ts) |
+| <a id="u12"></a>**U12** | the docs | the identity branch | the [Library](../library/.cover.md) book |
 
 ### <a id="order"></a>Order
 
-U1, U2, U3, U4 and U5 in `src`, each green on its own; then U6 and U9 together, the unit suites green when both are in; then U7, U8 and U10, the regression green again at U10; then U11; U12 alongside all of them. **The regression is red from U6 to U10**, because it binds the whole; each step between them is measured by the unit suites.
+*It ran as written — U1 to U5, then U6 with U9, then U7, U8 and U10, then U11, with U12 alongside. Stubbed at the close.*
 
 ### <a id="risks"></a>Risks
 
-| risk | what meets it |
-|---|---|
-| the regression is red for four units | U6 and U9 land together, and the unit suites gate each step |
-| order tells the About from the Title in a cover | flagged in D4; the compiler reads no tag, so position is what it has |
-| a chapter function holding a hook would hand it to the book | O5, written into the docs; nothing can check it |
-| a failure's code placed on the wrong file | a book's contents are its chapters in file order, by D1, and U8 pins the placing with a promise |
-| two copies of React on the server | measured: this code's `node_modules` is empty |
-| a member added to `src` beyond this plan | the list above is the yes; anything else is asked |
+*None fired as feared: the regression was red from U6 to U10 by design and green at U10, and the unit suites gated each step between. The one cost the plan did not list was a module cycle each for Title and Heading when Doug put them in files of their own, declared in the build with its reason. Stubbed at the close.*
 
 ### <a id="trace"></a>Where each requirement lands
 
@@ -391,35 +291,37 @@ U1, U2, U3, U4 and U5 in `src`, each green on its own; then U6 and U9 together, 
 | R28 | U1 to U4, U12 |
 | R29, R30 | built — K1 and K2, carried by U6 and U9 |
 
-**Checked against itself:** every requirement lands or says why not; every unit names what runs and when, its files, and what is visible when it is done; the members this plan adds to `src` are listed for Doug's yes.
+*The plan's self-check passed before the work began: every requirement landed or said why not, and the members it added to `src` were listed for Doug's yes. Stubbed at the close.*
 
 ## Where things stand
 
-**Next: `/ce-compound` on this chapter** — every unit is built. *What it would distribute: that the compiler reads files and the notation and no tag; that a book and its chapters are functions; that the ordinary view is a library's theme; and the escape and the spans below.*
+**Next: `/ce-brainstorm` for Sprint 83 — reading the Genesis against what `.public` now has, to find what it is missing; and then back to Doug's library.** *Doug, closing this sprint: "Good. I believe we have the core of a real library now! Say that we're going to spend a sprint looking at Genesis and seeing what we are missing, and then get back to my library."* The subject is his, given in the room; the sprint after it is `.me`, Doug's own library, which is still written in v1 and reads `.archive/.public`.
 
-**The cover, as built:** only the Title is drawn as content; Author, Subject and About are annotations of the cover, each standing a Reference from its compiled url among its own annotations, and the book exposes all four; By is deprecated; About names its own book and gives no name. A title names what its file is, and its url's fragment is its id. The compiler reads files and the notation, and no tag.
+**Where this sprint left `.public`, in plain words.** A library can now be written entirely in `.public`: every chapter a function returning its Chapter, a cover saying its Title, Author, Subject and About, a table referring to its chapters and answering for what it catalogues, and a book class that lays the page out. The compiler reads a library by its files and its notation and never by a tag, writes each book as a function that calls its chapters, specifies every book when it binds, and puts each failure on the file that caused it. Its five-book test library is written this way and binds green, and a real browser sees the cover, the byline and a table's entry landing on its chapter. Every unit is in [the register](#units) with its commit; what each class is, and how to extend it, is the [Library](../library/.cover.md) book.
 
-**Done, every unit committed locally and none pushed:**
+**What is missing, as far as this sprint could see** — a starting list for the brainstorm, not its brief:
 
-| | what | commit |
-|---|---|---|
-| **U1** | Chapter and Title | `ffdc354` |
-| **U2, U3** | Cover, Synopsis, TableOfContents; Author, Subject, About | `abd303d` |
-| **U4** | Book | `3f54cbf` |
-| — | Biography and Autobiography, placeholders | `5ba40d9` |
-| **U5** | Self's look | `54e7c59` |
-| **U6, U9, D8** | the compiler reads files and the notation; the test library in `.public`; the link to the archive gone | `beccfaf` |
-| **U7, U8, U10** | books as functions; specify on this code, each failure on its chapter's file; the compiler binds this code | `491177b` |
-| — | Title and Heading in files of their own — *"Make Title and Heading their own files in library and writing respectively please"*; the two module cycles declared in the build | `3852c1e` |
-| **U11** | the visible end: the bound pages driven in a real browser — the cover, the byline, a table's entry landing on its title's id, the hidden entries, hydration; and the test library's `Theme` drawing the ordinary view | `549d33b`, `7c031d1` |
-| **U12** | the [Library](../library/.cover.md) book, six chapters to the four parts, each shown in use, Book's theme an extension point; [the binder chapter](../the-catalogue-and-the-specification/07-the-binder.md), Developing an Annotation's Self, How Writing Is Extended, Section and Heading, and this chapter brought current | the identity branch |
+- **The shape of the page.** Every composition draws as the `span` Writing gives it, so a reader sees a table's words run together; no class replaces its own element yet ([the finding](../library/01-books-in-annotations.md#what-is-not-drawn-yet)).
+- **What D12 left out**: Part, a book in a book (E31); the built Summary and `Summarized` (E30); the Canonical mark (E33); `<Type>` resolved by name (E35, E51); and a runtime Topic.
+- **R16**: the fixed points recognised by comparing urls, and Doug's lead for it — a cover's Title standing a Self, found through a `book` on Chapter, [in his words](#rulings-of-the-brainstorm-verbatim).
+- **The escape reaches every title**: `[[ Dr. Who ]]` names `Dr Who` and `[[ v1.2 ]]` names `v12`, in silence ([measured](../the-catalogue-and-the-specification/07-the-binder.md#open)) — which Doug's library meets at its first bind on this code.
+- **An appendix**, the chapter kind Doug named as one home for a book's Theme.
 
-**The gates at `7c031d1`:** the package typecheck 0 errors and 202 of 202 across fifteen files; the compiler's typecheck 0 errors (23 before, every one v1's reader), unit 95 of 95, regression 16 of 16 — five of them in a real browser — and both scale suites green over ten copies. A bind of the test library reads 5 books and specifies 147 writings.
+**Read these first, for a brainstorm on the Genesis** — a starting point, not a boundary:
 
-**Found on the way:** `.` escapes in a title read through the notation, so a fixture book called "A. Paper" read as "A Paper"; an annotation's own writing was in every link until the test library's Theme hid it; and **every composition draws as a span**, so a reader sees a table's words run together — no class in `src` replaces its own element yet, and that is Doug's.
+1. [The Genesis of Writing](../the-genesis-of-writing/.cover.md) — the conversation, the event stream and the compiled object model: the source to read against. *Load-bearing: the events after E35, which no sprint has built from yet.*
+2. [What the Genesis says](#what-the-genesis-says) in this chapter, and D12 in [the decisions](#decisions) — what this sprint took from E29 to E35 and what it left.
+3. [The Library](../library/.cover.md) book — what `.public` has now, class by class, to set against the Genesis.
+4. [A Library, Necessarily and Sufficiently](../the-catalogue-and-the-specification/09-a-library-necessarily-and-sufficiently.md) — every case of a library with its checker and its state, built or planned.
 
-**For Doug:** the spans above; R16's lead, a cover's Title standing a Self through a `book` on Chapter; and the proxy names — `titled`, `about`, `titledTwice`, `NOT-A-SUBJECT`, `TITLED-TWICE`, `RunningHead`, `text` and `reference`, and Collection's type alias `Author` beside the class.
+**Verified at `7c031d1`, measured, not remembered:** the package typecheck 0 errors and 202 of 202 across fifteen files; the compiler's typecheck 0 errors, unit 95 of 95, regression 16 of 16 — five in a real browser, two stages broken on purpose — and both scale suites green over ten copies. To see it: `npx vitest run --project regression` in `library/.public/package/.binding`, which binds the test library, reads every page back, and drives the paper and the library in Chrome.
 
-**Flagged, not changed:** `publish-packages.yml` publishes this code once its version is bumped; `deploy-pages.yml` builds v1's archived `app`; the root `package-lock.json` still lists two removed workspaces; `<Resource>` placement writes v1's `CodeNavigator`, D12.
+**Wrong turns already taken, so nobody takes them again:** a regression regex pinned to v1's markup — this code draws a link's words inside their own element, so an anchor is matched by its address and first words; running one regression test with `-t` skips the test that binds, and the drive then reads no pages; `import styled from 'styled-components'` under the binder's server loader, where only the named import works; and a junction removed with anything but `rmdir`, which could follow it into its target.
+
+**Compounded at the close:** the dot escape reaching every title, into [the binder's open list](../the-catalogue-and-the-specification/07-the-binder.md#open); chapters and books as functions, into [The Book Is the Layout](../writing-a-book/05-the-book-is-the-layout.md#the-files); importing `styled` by name, into [Book's theme](../library/05-book.md#how-it-is-extended); and this chapter's spent plan compacted to a register and stubs, 11,351 words to 9,796.
+
+**For Doug, when he wants them:** the spans; R16's lead; and the proxy names — `titled`, `about`, `titledTwice`, `NOT-A-SUBJECT`, `TITLED-TWICE`, `RunningHead`, `text` and `reference` — with Collection's type alias `Author` beside the class of that name.
+
+**Flagged, not changed:** the move that made this code `.public` left **964 links in the older chapters of this branch library that no longer resolve** — 750 in the projection book, 104 in the condition report, 36 in Solutions — nearly all pointing at v1's source by paths that now lead into this code or into `.archive`; measured 2026-09-25 over 10,021 links, the files this sprint wrote reading clean but for two v1 paths already broken in The Book Is the Layout — a cleanup of its own; `publish-packages.yml` publishes this code once its version is bumped; `deploy-pages.yml` builds v1's archived `app`; the root `package-lock.json` still lists two removed workspaces; `<Resource>` placement writes v1's `CodeNavigator`, D12.
 
 **Standing:** commit locally as often as wanted and never push until Doug says; every change in `src` has Doug's yes first, and this plan's list is that yes; chemistry is not changed.

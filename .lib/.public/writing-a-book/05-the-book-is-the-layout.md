@@ -23,6 +23,8 @@
 | **`.book.tsx`** | ***the book*** — the layout, the kinds the book registers, and nothing that is content |
 | **every other file** | ***one chapter*** — `export default class $X extends <a chapter kind>`, with one `print()` writing its document |
 
+***In this code since [Sprint 82](../projection/88-sprint-82--chapter-and-book.md), every other file is a FUNCTION*** — `export default () => (<Chapter>…</Chapter>)` — **and the compiler writes the book as a function calling each one, in the order of the files, inside the class `.book` declares.** *A chapter is called, never rendered, so it holds no hooks; the table above is v1's, kept as the record. The whole of it, with a book written out: [Books in Annotations](../library/01-books-in-annotations.md#a-whole-book-written-out).*
+
 ***So a thing that is a logical part of the page is a FILE.*** **The manual of style is not something inside the lead; it is a navigation box for a whole subject area, so it is a chapter of its own** — *and the day that was got right, the lead's file lost twenty lines and gained nothing.*
 
 ### <a id="the-book-file"></a>And `.book` has an ORDER — ***the book first, then everything the book is written with***
