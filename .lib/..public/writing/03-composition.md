@@ -29,7 +29,7 @@
 | `Open` | takes every Closed beside it out of expression, in its `defines` | — | E12 |
 | `Closed` | takes every Open beside it out of expression, in its `defines` | every content is writing | E12, E13 |
 
-**None of the four has a `defines`.** A pair says which of two the composition is, and that is a question of expression, not a trait written onto the writing; so each takes its opposite out of expression in the regulation phase and says its constraint in `specifies`, and the composition reads the answer with `is`. Because expression is computed at every pass, a pair given through `$is` and then taken away leaves the class's own default expressed again.
+**Each of the four has a `defines`, and all it does is take its opposite out of expression.** A pair says which of two the composition is, and that is a question of expression, not a trait written onto the writing; so each takes the opposite standing behind it out of expression, reached with `after(this)`, says its constraint in `specifies`, and the composition reads the answer with `is`. Because expression is computed at every pass, a pair given through `$is` and then taken away leaves the class's own default expressed again.
 
 **`CompositionSpecification`** extends Writing's and adds nothing yet: Writing has no rule that it holds only writing, Closed carries that for a closed composition, and a level is always at least 1. **What is asked of a composition is asked of its annotations:** `writing.is(Strict)`, by class or by component, answers whether one is expressed, so no property on Composition says what its annotations say (ruling 4).
 
@@ -40,12 +40,19 @@
 ```tsx
 class $Fifth extends $Composition {
     protected override $Define(): void {
-        this.annotations.add(<Level>5</Level>, <Permissive />, <Closed />);
+        const Level = $(level);
+        const Permissive = $(permissive);
+        const Closed = $(closed);
+        this.annotations.add(this,
+            <Level>5</Level>,
+            <Permissive />,
+            <Closed />
+        );
     }
 }
 ```
 
-`$Define` runs first in the bond, before the written are added, so what a class stands is behind what the caller writes and the caller overrides it — *"the one passed in always beats any default in define"*: `<Fifth><Strict /></Fifth>` is strict, the written Strict inactivating the class's Permissive, and `<Fifth is={Open} />` is open, `$is` standing in front of all. A level that has its own rules reassigns `specification` to one extending Composition's; Letter's refuses a composition inside. A level with a typed canonical overrides `canonical` to find it by class, as Section will find its Heading, rather than by position. A class that needs the contents when it stands its defaults does that in its bond after `$Writing`, since `$Define` sees none.
+`$Define` runs in the bond after the contents are made and before the written annotations are added, so what a class stands is behind what the caller writes and the caller overrides it — *"the one passed in always beats any default in define"*: `<Fifth><Strict /></Fifth>` is strict, the written Strict inactivating the class's Permissive, and `<Fifth is={Open} />` is open, `$is` standing in front of all. A level that has its own rules reassigns `specification` to one extending Composition's; Letter's refuses a composition inside. A level with a typed canonical overrides `canonical` to find it by class, as Section finds its Heading, rather than by position. `$Define` may read the contents, which are made before it, and never what was given; a class that needs its arguments overrides its bond — [what it may read](06-how-writing-is-extended.md#define).
 
 ## Promises
 

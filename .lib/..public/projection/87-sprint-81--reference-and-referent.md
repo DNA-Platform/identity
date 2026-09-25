@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **status:** implementation-ready
+- **status:** closed 2026-09-25
 - ***The sprint's name is a PROXY; Doug's to rename. Opened 2026-09-24 on his choice of the unit: "Reference and Referent / Means and Mentioned."***
 
 ---
@@ -103,91 +103,32 @@ Each is one of Doug's sentences from 2026-09-24, with what would be observed if 
 
 ## Plan
 
-**Ten units, in four batches.** Every unit names what runs and when, and what is visible at its end.
+***Compacted to a register at the close, 2026-09-25.*** *The units ran in four batches, each one local commit that could be reverted whole, every generated file read back — Doug: "you need to be able to revert any particular batch if it doesn't good." What ran, and where it landed:*
 
-| | unit | mechanism — what runs, and when | visible end | files | depends |
-|---|---|---|---|---|---|
-| **U1** | the copy reading | a utility called on a writing's contents, at a bond, to read what was written as text | a promise reads `[a](b)` back out of a built writing's contents | `src/utilities/Html.ts`, `utilities/index.ts` | — |
-| **U2** | the `Binder` utility | `binder.reference(copy)` splits `[text](identifier)`, anchored, at a bond | a promise turns the compiler's exact output into its two halves, and refuses text that is not one | `src/utilities/Binder.ts`, `utilities/index.ts` | U1 |
-| **U3** | `id` on `$Writing`, rendered | a getter reading `annotations.expressed($Referent)?.identifier`, asked by `view` at every draw | the rendered element carries `id`, and a browser lands on it | `src/writing/Writing.tsx` | U4 |
-| **U4** | `$Referent` | holds `identifier`; `defines` adds `pa-referent` and `erase` removes it, in the pass; `specifies` refuses a second when the binder asks | a writing carrying one draws with the id and the class; two is a named failure | `src/writing/Referent.tsx`, `writing/index.ts` | U2 |
-| **U5** | `$Mention` | its bond reads `[text](id)` through `binder` and stands a `Referent` through `$()`, once per mount | `<Mention>[The First Shelf](the-first-shelf)</Mention>` draws as a Word whose element carries that id | `src/writing/Mention.tsx`, `writing/index.ts` | U4 |
-| **U6** | `$Reference` | holds the url; `defines` adds `pa-reference` and `erase` removes it, in the pass | a writing carrying one draws with the class, and nothing it held is replaced | `src/writing/Reference.tsx`, `writing/index.ts` | U2 |
-| **U7** | the compiler emits `[text](identifier)` | the transform's emission sites, at every `.tsx` transform | the same fixture compiles with no `<Ref>`, no `<Fold>`, and every form carrying both halves | `.binding/reference/transform.ts`, `.binding/catalogue/reading.ts` | — |
-| **U8** | `slug` into the binder | one function in the binder, called by its four sites | the binder computes every address with no reach into the package | `.binding/` — transform, catalogue, wellformed, addresses | U7 |
-| **U9** | the promises, and the counts | the suite, and a draw count around each change | the suite by number, and one paint per change | `.tests/reference.test.tsx`, `.tests/renders.test.tsx` | U3–U6 |
-| **U10** | the cleanup | — | the six stale claims below are gone and the chapters are true | `.lib/writing/05`, `06`, and the cover | U1–U9 |
-
-**U10 is not optional decoration; it is the sprint's own debt.** Six claims in the two chapters that document the API are false against the code, and one of them — *"No annotation that knows another's class as its twin"* — **Doug struck last session and the edit never ran**. It directly contradicts U5, where a Mention creates its own Referent.
-
-| the claim | where | what is true |
+| | unit | landed |
 |---|---|---|
-| *"No annotation that knows another's class as its twin"* | [06](../writing/06-how-writing-is-extended.md) | *"Annotations should come in families. They are jointly defined… They fucking DO know each other"* |
-| Word/Sentence/Paragraph at 1, 2, 3; Section at 4; Chapter 5; Book 6 | [06](../writing/06-how-writing-is-extended.md) | Letter 1 … Book 7, per ruling 3 |
-| Referent *"exported as Mentioned"* | [06](../writing/06-how-writing-is-extended.md) | no alias — D8 |
-| `annotations` *"held in a `@reactive()` backing"* | [05](../writing/05-the-writing-class.md) | no decorator; `@represented()` on `Collection` does it |
-| `$Annotation` has *"a view that draws nothing"* | [05](../writing/05-the-writing-class.md) | it draws its container and its note |
-| `toString` carries *"whether it is expressed"* | [05](../writing/05-the-writing-class.md) | membership alone |
+| **U1** | the copy reading, `html.copy` | B1 `d381398` |
+| **U2** | `binder.reference`, splitting `[text](identifier)` | B1 `d381398` |
+| **U3** | `id` on `$Writing`, drawn on its element | B2 `a6eef09`; a Compilation a Referent sets since C5 `76f9b1b`, drawn as its `value` since C19 `b6b29ce` |
+| **U4** | `$Referent` | B2 `a6eef09` |
+| **U5** | `$Mention`, a Word standing a Referent | B2 `a6eef09`, reading its contents in `$Define` since B2b `b989a09` |
+| **U6** | `$Reference` | B2 `a6eef09`; its anchor a layer since B3b `49ca2f9` |
+| **U7** | the compiler writes `[text](identifier)` | C12 `86705f8`, cloned into v1's compiler |
+| **U8** | `slug` into the binder | C12 `86705f8` |
+| **U9** | the promises and the counts | every batch; 172 of 172 at the close |
+| **U10** | the six stale claims in the Writing docs | three stood until the close and were made true there, with three more found beside them — [the cleanup](#cleanup) |
 
-### The batches, and each one reverts on its own
+**Beyond the plan**, on rulings given as the work ran: one specification per writing, B2c `4101e78`; containers, B3a `4d0d7aa`; the modification core and the annotations on it, C1 `e1e3836` to C9 `ffe156b`, from [the redesign](#redesign); multiple formats, C10 `eb0f61b`; Means, C11 `338dce6`; a self-reference an anchor, C13 `e1d5679`; the drawing inner to outer, C14 `500a368`; `pd-container`, C15 `877b73b`; the audit's clear fixes, C16 `7b9346e`; Annotations reshaped, C17 `81cb8b1`; and the cleanup, C18 `d402a1e` to C20 `747e0e7`.
 
-**Doug, 2026-09-24:** *"I want you to each read every single code file you generate with a literal file read, and then report back on the result. It can be after the batch, but you need to be prepared to reflect and you need to be able to revert any particular batch if it doesn't good."*
-
-| batch | units | why it stands alone |
-|---|---|---|
-| **B1** | U1, U2 | utilities only — no API semantics, and the thing he cares least about goes first so the surface he cares most about is written against something proven |
-| **B2** | U4, U5, U6, U3 | **the `.public` API semantics** — every line needs his explicit yes BEFORE it is written |
-| **B3** | U7, U8 | the compiler — independent of B2, and reversible without touching `src` |
-| **B4** | U9, U10 | the promises and the truth of the chapters |
-
-**Each batch is one local commit and nothing is pushed.** A batch that is not good is reverted whole rather than patched. **Every file generated in a batch is read back with a literal file read and reported on** — not the diff, the file — because a file that was written correctly and reads badly is the failure this discipline exists to catch.
-
-### The `src` consent list — nothing here is written before Doug says yes
-
-| change | file |
-|---|---|
-| `get id(): string \| undefined` reading the Referent | `Writing.tsx` |
-| `id={this.id}` on the container in `view` | `Writing.tsx` |
-| `$Referent`, `Referent` — new | `Referent.tsx` |
-| `$Mention`, `Mention` — new | `Mention.tsx` |
-| `$Reference`, and its export name — new | `Reference.tsx` |
-| `Binder`, `binder` — new | `Binder.ts` |
-| the copy reading, and its member name | `Html.ts` |
-| four lines added to two index files | `writing/index.ts`, `utilities/index.ts` |
-| the wording of two rules that claim meaning where they check containment | `Section.tsx` |
-
-***Every name above is public API***, because `src/index.ts` is `export *` throughout. **That is the surface he said he cares most about**, and it is why the list is a consent list and not a summary.
+*The consent list and the table of batches are spent: every name on the list went to Doug before it was written, and every batch landed.*
 
 ## Test scenarios
 
-**U1 · the copy reading.** A built writing holding a string answers it; one holding numbers and nested writing answers them in order; one holding nothing answers empty. *Edge:* an annotation among the contents cannot occur, because the bond sorts them out — so the v1 dodge that skipped them is not ported, and a promise says the contents never hold one.
-
-**U2 · `binder.reference`.** The compiler's exact outputs split correctly: `[The First Shelf](the-first-shelf)` into words and an id, `[The Library](/the-library/)` into words and a path, `[The Library]()` into words and an empty identifier. *Failure:* text that is not a reference answers nothing, and a reference with text either side of it answers nothing, because the reading is anchored.
-
-**U3 · `id` rendered.** A writing with no Referent renders no `id` attribute at all; one with a Referent renders it on the container; the id is the Referent's `identifier` and not its own; a Referent taken out of expression through `$is` stops conferring it **and the element loses the attribute on the next draw**.
-
-**U4 · `$Referent`.** It confers `pa-referent` when expressed and loses it when not; it holds what it was given; two on one writing is a named `specifies` failure naming the writing; one on a writing that draws puts both the id and the class on the same element.
-
-**U5 · `$Mention`.** `<Mention>[The First Shelf](the-first-shelf)</Mention>` draws as a Word whose element carries `id="the-first-shelf"` and `pa-referent`; its shown text is the words and never the syntax; a Mention inside a Sentence **is** among that sentence's parts; a Mention written by hand and one the compiler produced behave identically; a Mention whose content is not a reference stands a no Referent and is a `specifies` failure. *Integration:* a Mention inside a Paragraph inside a Section, and the id reachable from the page.
-
-**U6 · `$Reference`.** It confers `pa-reference` and loses it; it holds the url; it does not touch a Format on the same writing, and a writing that is both quoted and referencing keeps its blockquote.
-
-**U7 · the compiler.** The existing fixture compiles with **no `<Ref>` and no `<Fold>` anywhere in the output**; `[[[ X ]]]` yields `[words](id)`; every other form yields `[words](url)`; the page it stands on yields `[words]()`; a file that writes the notation and imports nothing is **no longer refused**, because `owes` is gone; an unknown name still fails by file and line. *Regression:* the roster's removal means plain words inside an element stop compiling — **a promise states that, so the change is deliberate and visible.**
-
-**U8 · `slug`.** The binder computes the same addresses it computed before, with no import from the package; the four sites agree.
-
-**U9 · the counts.** A Mention mounting draws three and paints once; giving and taking a Referent through `$is` costs one paint each way; a writing nobody touched is not redrawn when a sibling gains a Mention.
+*Compacted at the close: the scenarios became the promises — `.tests/reference.test.tsx`, `.tests/renders.test.tsx` and the compiler's `reference/transform.test.ts` — and a scenario that survived is a promise, read where it runs.*
 
 ## Risks
 
-| risk | what mitigates it |
-|---|---|
-| **The binder does not compile against v2 at all**, so U7 and U8 may not be runnable end to end | its own vitest suite runs `transforming()` directly against a fixture and needs no package — measured. If the suite cannot run, U7 stops and the finding is reported rather than worked around |
-| **The roster's removal breaks how Doug's library is written** — `<Chapter>Entries</Chapter>` stops compiling | it is in [Open](#open) and unruled. U7 stops at that line until he says |
-| **`id` on `$Writing` is a member on the base**, which he has struck before | it is a reading and not state, it is the third of a set that has two, and it is on the consent list |
-| **`$()` at construction may not have the overload** the style book's pattern assumes | measured before U5 is written, not after. If `$()` of an already-lifted component is not a thing, the pattern is the import alias and it is asked |
-| **A Mention whose content the compiler did not write** — a person typing plain words — has no reference to read | its `specifies` says so, which is where the rule belongs |
-| **Reading a file back is not the same as judging it** | the report says what each file reads like as prose, per class, and names what would be learned from it tomorrow — the cleanup skill's test, not a count of passing checks |
+*Compacted at the close. Two fired. The compiler never compiled against the redraft: its suite ran the transform directly, as the mitigation had it, and its regression bound pages v1 drew — [Solutions 05, the fourth appearance](../solutions/05-the-suite-that-passed-against-a-stale-build.md#the-fourth-appearance). And the roster's removal changed how Doug's library is written, so his library was left unsynced on his word. The rest did not fire.*
 
 ## <a id="open"></a>Open, and Doug's to rule
 
@@ -202,13 +143,7 @@ Each is one of Doug's sentences from 2026-09-24, with what would be observed if 
 
 ## Self-check
 
-**Thin, and named rather than hidden.** U6 is the least specified unit, because the url side's naming is open and its behaviour is one class plus one erase — it is buildable and its export name is not. U7's scenario for the roster's removal is a promise about a *loss*, which is unusual and deliberate.
-
-**Every requirement has a home.** R1→U4, U6 · R2→nothing, by design · R3→U10 and the `Section.tsx` wording · R4→U5 · R5→U5 · R6→U3 · R7→U4 · R8→U7 · R9→U7 · R10→D5, U8 · R11→U1, U2 · R12→D6, U5 · R13→U6.
-
-**No unit is design-owed.** Every one names a mechanism that runs and when. The three things that are not designed are in [Open](#open) and none of them blocks a unit from starting; U7 stops at one line for open 3.
-
-**Nothing is inherited as owed.** Sprint 80 left six open items and none is a kind Doug ruled and a sprint failed to build — five are questions he deferred, and the sixth, **the browser, is owed by the standing rule that nothing ships unseen.** It is this sprint's visible end rather than a unit of its own: a reference that navigates in a real browser is the one thing a hand-authored page cannot fake, because it cannot fake an id arriving on a writing's container from an annotation a Mention made out of compiled notation.
+*It passed before the work started, and is spent.*
 
 ## <a id="redesign"></a>The definition pass, redesigned — the design session of 2026-09-24
 
@@ -257,13 +192,9 @@ Each is one of Doug's sentences from 2026-09-24, with what would be observed if 
 
 **What the measurement still asks, and is open.** *An annotation can be perfectly idempotent and still wake chemistry*, because its erase and its defines are two calls, each judged in its own scope: its class goes in one and comes back in the other, and each is news. Doug has ruled that nothing is synced with a definition and that the Writing chooses what it exposes, so the answer is the Writing's — hold its classes, layers and id where chemistry does not compare them, which the probe measured at three draws — or chemistry's, whose setter already treats a write during a chemical's own draw as construction while its scope does not treat an in-place change the same way. *Two requirements follow from the rest:* the genome must report the membership the next definition will establish, pending changes included, or a change made in a method of the writing never wakes it and never applies; and today's `annotations.expressed($Level)`, the expressed one of a class, collides with his `expressed(annotation)`.
 
-## Where things stand
+## <a id="cleanup"></a>The cleanup and the close, 2026-09-25
 
-**Next: a decision of Doug's, then work.** *Decide* which of the audit's raised warts below to fix, and whether this sprint closes on its promises or waits for its browser drive — a real browser following a Means and landing on a Mention, which needs a page the redraft draws, and none exists yet. *Then* `/ce-work` on this chapter for what he rules; or, if he closes the sprint, `/ce-compound` to compact this chapter to an index and `/ce-brainstorm` for what comes next. **What this session expected next, as an expectation only:** the rest of the compiler — *"We will be supporting the rest of the compiler soon"* — and the swap — *"We are retiring .public and swapping it with this one soon."*
-
-**The objective, and his latest words on it.** Reference and Referent in the redraft, the compiler writing what they read, and the annotation system under them sound. His last instruction on the code: *"I want better code without changing how it works. Look for opportunities to have things look more like Writing and Annotation while preserving functionality."*
-
-**Rulings of this session, verbatim** — the ones the code now stands on:
+**The rulings the sprint's code stands on**, as the handoff of 2026-09-25 recorded them:
 
 | | his words |
 |---|---|
@@ -276,27 +207,66 @@ Each is one of Doug's sentences from 2026-09-24, with what would be observed if 
 | his library | *"Leave it unsynced."* |
 | standing | commit locally as often as wanted and **never push until he says**; every change in `src` has his yes first |
 
+**A catch-up read thirty documents toward the handoff and found three things it had not said:** *that the Genesis's own order now points at the books — Sprint 80 had written it down, "then ordering and parts at E26 and E27, which are built; and the books only at E29"; that the blockers named a Document the Genesis does not have, E33's "Chapters are the first document"; and that U10 had never run.* **Doug ruled the close:** *"Close it, fix docs."*
+
+**The audit's raised warts, judged on his rule:** *"Cleanup now, but be pragmatic. Are they warts? I am particular. I don't care about the repeated lines of code, but I want everything to look uniform and maximally simple. Use Writing and Annotations classes as a guide. We don't always abstract just because the same thing is invented, especially if it is already relatively simple."*
+
+| raised | judged | his words |
+|---|---|---|
+| the change kinds `'left'` and `'right'`, and `Side` | a wart, what remained of the `side` his C9 ruling replaced — **C18 `d402a1e`**, the kinds named for their operations | chose it: *"Change kinds"* |
+| Compilation's citations and its iterator | a wart — **C19 `b6b29ce`**: the citations gone, a compiled `value`, not iterable, the view drawing `id.value` | *"compilation is supposed to have a value which is the last element of the collection and it fails to. The id was supposed to be a compilation. Nothing is compiled in this one"* · *"type Citation<T> = { author: Author; value: T }; - why is this necessary? Remove that"* · *"Compilation shouldn't be iterable… OR the set and revert. No need to know it has a collection in it… It has a compiled value. It changes based on what is set and reverted"* |
+| five readings written into fields | a wart — **C20 `747e0e7`**: Referent's and Reference's `identifier`, Level's `level`, Mention's and Means' `text` getters over the contents | chose it: *"Readings as getters"* |
+| `html.copy(contents)`, the receiver as a parameter | proposed as a `copy` on Contents, and **refused** | *"Don't delete Html and stop trying to fold things in to coupled abstractions. Isn't Contents just a collection of chemicals? Why do we need to specialize it"* — answered from the code: Contents makes each chemical from a given and parents it, so a class adds contents in TSX as it adds annotations, and nothing in `src` does yet; *"Keep it for now"* |
+| four copies of the code that makes chemicals from givens | not a wart | his rule: repeated lines are not one |
+| Format's `style` taking the theme's wrapper | not a wart: keeping both would add a field | — |
+| `binder.reference` beside the Reference annotation | not a wart: one word for one thing, the form the compiler writes | — |
+| Parenthetical's chain of four layers | not a wart: `:has()` cannot nest, and the limit is written in [Format and Theme](../writing/11-format-and-theme.md) | — |
+| the names of C17 | his to rule, still flagged | — |
+
+**The docs made true:** *the three claims U10 had listed that still stood — no annotation knowing another as its twin, the levels numbered one to six, a `@reactive()` backing — and three more beside them in Composition's chapter, a pair with no `defines`, an `add` with no author, a `$Define` that sees no contents; with what C18 to C20 changed, in the Writing, Utilities and Genesis docs.* **Carried as a question, not cleanup:** *a theming Format with no style still draws a span of its own.*
+
+**And the next unit, in his words:** *"There is no newer stream afaik so if you see the topic, it was in the old conversation anyways. We did references and mentions. Chapter and Book can be next and we need to figure out how to write them. I think chapters will get their own function components. Books will be compiled to import the chapter components call the functions and send them into the book as children. We will decide if the book should be a function or go straight into the page that it represents."*
+
+## Where things stand
+
+**Next: `/ce-brainstorm` for Sprint 82 — Chapter and Book, E29 to E33 of the Genesis.** *Doug set the subject: "Chapter and Book can be next and we need to figure out how to write them." The brainstorm opens on his direction, which is a direction and not yet a design: "I think chapters will get their own function components. Books will be compiled to import the chapter components call the functions and send them into the book as children. We will decide if the book should be a function or go straight into the page that it represents."*
+
+**This sprint is closed**, 2026-09-25, on its promises: *Reference and Referent in the redraft, the compiler writing what they read, the annotation system under them sound, and a cleanup to his rule. Its browser drive — a real browser following a Means and landing on a Mention — moves to Sprint 82's visible end, since a page the redraft draws is what Chapter and Book begin.*
+
+**Rulings to carry into the brainstorm, verbatim** — the sprint's own are in [the cleanup](#cleanup) and [the redesign](#redesign), and in the Writing docs:
+- **The subject:** *"Chapter and Book can be next and we need to figure out how to write them."*
+- **The levels:** Letter 1 to Book 7, *"Letter is 1. Number up from there letter – book"* — so Chapter is 6 and Book 7.
+- **The title:** *"Title extends Heading."* And *"Titles should have ids as part of both the book and chapter system. They are mentioned by default in the classes."*
+- **The summary:** *"Why can't the summary be a summary anywhere in the children of the chapter. If there is one, we append a parenthetical one to the end."* And *"The parenthetical appended summary holds something like the first paragraph of the chapter. It's a proxy."*
+- **The cover:** *"The Cover annotation can only be applied to a chapter. The book can find its cover with it. The book can lift the annotations it wants out of its cover and do whatever with them."* And *"the cover is the first, but that one also must carry the $Cover annotation which is what `<Type>Cover</Type>` will resolve to."*
+- **The table of contents**, a reading and not his ruling: authored, not generated — Claude Desktop's reading of his question, *"how are you validating all chapters in the TOC if some of them don't have titles?"*
+- **Standing:** commit locally as often as wanted and **never push until he says**; every change in `src` has his yes first.
+
 **State.**
-- ***Complete, committed locally, never pushed:*** B1 `d381398` · B2 `a6eef09` · B2b `b989a09` · B2c `4101e78` · B3a `4d0d7aa` · B3b `49ca2f9` — the binder, Mention, Referent and Reference, `$Define` after the contents, one specification per writing, a writing's layers · C1 `e1e3836` · C2 `f0c2eda` · C3 `d850ceb` — the modification core, Collection and Compilation · C4 `64da122` to C9 `ffe156b` — the annotations on the core, defined one pass at a time, reached by `after(this)`, written as stacked TSX · C10 `eb0f61b` multiple formats · C11 `338dce6` Means · C12 `86705f8` the compiler writes `[text](identifier)`, in both `.public` and `..public` · C13 `e1d5679` a self-reference is an anchor, `#` · C14 `500a368` a writing draws inner to outer, its own element wearing its classes and id · C15 `877b73b` `pd-container`, and a Parenthetical hiding the layers around what it hides · C16 `7b9346e` the audit's clear fixes · C17 `81cb8b1` Annotations reshaped, nothing changed in how it works.
+- ***Complete, committed locally, never pushed:*** every unit and batch in [the register](#plan), B1 `d381398` to C20 `747e0e7`.
 - ***In progress:*** nothing.
-- ***Not started, and raised by the audit of 2026-09-25 for his ruling:*** Contents and Annotations each make chemicals from givens in `append` and `prepend`, four copies; the core's change kinds are `'left'` and `'right'` where its words are `append` and `prepend`, and `Side` is exported with no reader; Compilation's `Citation` records an author nothing reads; Format's bond overwrites `style` with the theme's wrapper, and a theme with no style invents a span; Referent, Reference, Mention, Means and Level store in their bond what their contents already say; `html.copy(contents)` is a reading of Contents with the receiver demoted to a parameter; `binder.reference` shares its name with the Reference annotation; the Parenthetical's rule names the layers to a depth of four. Names of ours in C17 for him to rule: `edit`, `_edit`, `_edits`, `defined`, `expresses`.
-- ***Not started, owed by the sprint:*** the browser drive; his approval of the use stories in [the redesign](#redesign).
+- ***Carried to Sprint 82:*** the browser drive, as its visible end; the use stories of [the redesign](#redesign), drafted and never approved, his to approve or strike; the C17 names, flagged; the span a theming Format with no style draws, a question.
+- ***Carried further:*** the rest of the compiler, whose structure pass names chapters by `<Title>` and reads a table's rows as `chapter`, `book` and `For` tags, all v1's; and the swap — *"We are retiring .public and swapping it with this one soon."*
 
-**Blockers, each with what it waits on.** *The browser drive* waits on a page the redraft draws — the demos and the compiler's test library are all written in v1's elements. *The compiler's regression suite* can test the redraft's drawing only once its test library is written in the redraft's elements, which waits on a Chapter, a Document, a Title, a Cover and a table of contents in `..public`, and on the swap. *His library* waits on his word: it syncs its binder from v1's, whose next sync would print thirty-four prose references, its masthead's two References and its titles as written.
+**Blockers, each with what it waits on.** *The browser drive* waits on a page the redraft draws, which Chapter and Book begin. *The compiler's regression suite* tests the redraft's drawing only once its test library is written in the redraft's elements — Chapter, Title, Book, and the cover, synopsis and table of contents on chapters, **and no Document, which the Genesis does not have** — and on the swap. *His library* waits on his word.
 
-**Verification, run 2026-09-25 after C17:** the package typecheck 0, the full build with its declarations 0, **172 of 172** across eleven files with every render count held; each compiler typecheck 0, **unit 84 of 84**, **regression 6 of 6**, the two compilers identical file for file.
+**Verification at the close, 2026-09-25:** the package typecheck 0, the quick build 0 and read for each change, **172 of 172** across eleven files with every render count held, after each of C18, C19 and C20. *The compilers are untouched since C12: at C17 each typechecked 0, unit 84 of 84, regression 6 of 6, identical file for file — not re-run at the close.*
 
 **Wrong turns already taken, so they are not taken again.**
 - *A public read of the collection's citations was proposed so the view could find the writing's own layer* — *"terrible and scares me"*; the answer was an order, the writing's own container first and the drawing inner to outer.
 - *A background job's "exit code 0" was reported as a green suite* — it was the trailing `echo`'s, and the log said 2 red; a job logs the tool's own exit code now.
 - *The compiler's regression green was taken as evidence about the redraft* — v1 draws every page it binds; [Solutions 05, the fourth appearance](../solutions/05-the-suite-that-passed-against-a-stale-build.md#the-fourth-appearance).
 - *A full reset per define was built before the collection could hold it* and looped when drawn; the scope defect was chemistry's, fixed there as `ab97399`, and the reset was rebuilt on cited collections.
+- *A handoff carried its own doc cleanup as a unit and said nothing when it never ran* — three stale claims stood past the handoff; a unit that is the sprint's own debt stays in the state until it is done.
+- *A member was proposed on Contents to take a utility's reading* — *"stop trying to fold things in to coupled abstractions."* A utility whose first parameter is the thing it reads is a finding to raise, never a licence to move a member.
 
-**Read these first** — five, each for what is load-bearing in it, and a starting point rather than a boundary:
-1. [The Annotation System](../writing/07-the-annotation-system.md) — how a define runs now: erase what ran, stand the edits in front, run one pass, the record of what was expressed.
-2. [Format and Theme](../writing/11-format-and-theme.md) — multiple formats, written order invariant, the drawing inner to outer, `pd-container`.
-3. [The Binder, As Built § the transform](../the-catalogue-and-the-specification/07-the-binder.md#transform) — what the compiler writes, and where its walk to the framework ends.
-4. [the redesign](#redesign) in this chapter — his design session of 2026-09-24, the rulings the collection keeps, and the use stories awaiting him.
-5. [Solutions 05, the fourth appearance](../solutions/05-the-suite-that-passed-against-a-stale-build.md#the-fourth-appearance) — why a green compiler suite says nothing about the redraft until the swap.
+**Read these first, for the brainstorm** — the sources the designing reads, five, a starting point rather than a boundary:
+1. [The Event Stream](../the-genesis-of-writing/02-the-event-stream.md), E29 to E33, and [the conversation](../the-genesis-of-writing/01-the-conversation.md) where *"a chapter is born"* and Book arrives as the closure condition — what Chapter and Book are.
+2. [What We Need to Understand Better](../the-genesis-of-writing/05-what-we-need-to-understand-better.md) and [Answering Claude Desktop, as corrected](../the-genesis-of-writing/06-answering-claude-desktop-from-the-source.md#corrected-by-claude-desktops-reply-2026-09-21) — his rulings on the title, the summary, the cover and the canonical, which correct the Genesis's own documents.
+3. [The Implementation Notes](../the-genesis-of-writing/04-the-implementation-notes.md) on Chapter, Book, Part, Cover, Synopsis and Table of Contents, with [Claude Desktop's reply](../the-genesis-of-writing/07-what-to-tell-claude-desktop.md) — Cover, Synopsis and Table of Contents as Types on chapters.
+4. [Section and Heading](../writing/08-section-and-heading.md) — the typed canonical, found by class and going both ways, which a Chapter's Title and a Book's cover repeat.
+5. [The Binder, As Built § reading](../the-catalogue-and-the-specification/07-the-binder.md#reading) and [§ the catalogue](../the-catalogue-and-the-specification/07-the-binder.md#catalogue) — how the compiler finds a book by its files, names a chapter by its title, and addresses both.
 
-**Nothing to look at in a browser yet.** The promises are the view: `npm run build:quick` and then `npx vitest run` in `library/..public/package`; the compiler's in `library/..public/package/.binding` with `npx vitest run --project unit` and `--project regression`.
+*v1's `Chapter` and `Book`, the compiler's test library and his library log are evidence of how books are written today, never the design — the Genesis is canon.*
+
+**Nothing to look at in a browser yet** — that is Sprint 82's to change. The promises: `npm run build:quick` and then `npx vitest run` in `library/..public/package`.

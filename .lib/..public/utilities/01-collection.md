@@ -17,8 +17,7 @@
 | member | what it is | from |
 |---|---|---|
 | `Author` | any instance; a type named for his word, so a variable is named after its type as the coding style asks | *"any instance can serve as the author"* |
-| `Side` | `'left'` or `'right'`, the two places `change` puts values | his `side == 'right'` |
-| `change(type, author, ...values)` | the one door every modification goes through: `'left'` and `'right'` add, then `'remove'`, `'replace'` and `'revert'` | his |
+| `change(type, author, ...values)` | the one door every modification goes through, its kind the word of the operation that makes it: `'append'`, `'prepend'`, `'remove'`, `'replace'` and `'revert'` | his; the kinds were `'left'` and `'right'` until 2026-09-25, what remained of his `side == 'right'` after append and prepend replaced it, renamed on *"I want everything to look uniform and maximally simple"* |
 | `add(author, ...values)` | several values at once for one author, appended | his; *"have add be a synonym for append (calls off to it) which makes it simple to understand"* |
 | `append(author, ...values)`, `prepend(author, ...values)` | several values at the end, or at the front, in their order | *"Switch to append and prepend… append and prepend go together, add / remove go together, we intersect on add, and that is okay"* |
 | `remove(author, value)` | every entry holding the value goes | his |
@@ -46,12 +45,12 @@
 
 | member | what it is | from |
 |---|---|---|
+| `value` | the compiled value: the last value set, or nothing once every author is reverted; it changes only with what is set and reverted, and a compilation is not iterable | *"It has a compiled value. It changes based on what is set and reverted"*; *"I meant the last one set. We want competition. We are going to give ordering to annotations, and with that, last set is winning"*; *"Compilation shouldn't be iterable"* |
 | `set(author, value)` | the author's value, set last, so it is answered until another author sets; an author setting again takes back its earlier value and is answered again | his |
 | `revert(author)` | the author's value is taken back, and the value set before it is answered | his |
-| iteration | at most one value, the last set | *"I meant the last one set. We want competition. We are going to give ordering to annotations, and with that, last set is winning"*; read by iterating, as a collection is, so no reader was named |
-| `@represented()`, `toString` | the value it answers, or nothing, and nothing of the values set before it | *"For compilation it only needs to report its last value"* |
+| `@represented()`, `toString` | its value, or nothing, and nothing of the values set before it | *"For compilation it only needs to report its last value"* |
 
-**It holds a `Collection` of citations** — who set a value, and what — *"It would have one of those in"*. Setting takes back the author's earlier citation and adds the new one last, and the last citation is the one answered: authors compete, and in a definition the annotation that sets last wins. *Which annotation that is belongs to the ordering Doug is giving annotations; the first draft of this class answered the first author's value, on a reading of "front citation" that he corrected the same day.*
+**It holds a `Collection` of the values set** — *"It would have one of those in"* — **and nothing outside it needs to know that:** *"No need to know it has a collection in it."* Setting takes back the author's earlier value and adds the new one last, and the last is the value: authors compete, and in a definition the annotation that sets last wins. *Until 2026-09-25 it held citations, an author beside each value, which the collection's own changes already record; Doug: "why is this necessary? Remove that."* *Which annotation that is belongs to the ordering Doug is giving annotations; the first draft of this class answered the first author's value, on a reading of "front citation" that he corrected the same day.*
 
 ### The placeholder, gone
 
@@ -71,4 +70,4 @@
 
 ## The gate
 
-**2026-09-24, commit `e1e3836`:** typecheck 0 errors; quick build fresh; 148 of 148 across eleven files, fifteen of them new; the package's root configuration reports the same 49 errors at HEAD and after, all of them the `@/` alias it does not carry. **Commit `f0c2eda`, the same day:** both classes represented by their phenotype; typecheck 0; 151 of 151, three of them new. **Commit `d850ceb`:** a compilation answers the last value set; 151 of 151, its four promises rewritten. **Commit `76f9b1b`:** the writing's classes and layers are Collections and its id a Compilation, every annotation's erase `revert(this)`; 161 of 161. **Commit `862a896`:** the contents on the core as `Contents`, and the placeholder gone; 149 of 149. **Commits `338bf35` and `5653b28`:** `at` and `after` on the core, both reading through iteration; 158 of 158.
+**2026-09-24, commit `e1e3836`:** typecheck 0 errors; quick build fresh; 148 of 148 across eleven files, fifteen of them new; the package's root configuration reports the same 49 errors at HEAD and after, all of them the `@/` alias it does not carry. **Commit `f0c2eda`, the same day:** both classes represented by their phenotype; typecheck 0; 151 of 151, three of them new. **Commit `d850ceb`:** a compilation answers the last value set; 151 of 151, its four promises rewritten. **Commit `76f9b1b`:** the writing's classes and layers are Collections and its id a Compilation, every annotation's erase `revert(this)`; 161 of 161. **Commit `862a896`:** the contents on the core as `Contents`, and the placeholder gone; 149 of 149. **Commits `338bf35` and `5653b28`:** `at` and `after` on the core, both reading through iteration; 158 of 158. **Commit `d402a1e`, 2026-09-25:** the change kinds say `append` and `prepend`, and `Side` is gone; 172 of 172. **Commit `b6b29ce`:** a compilation has a compiled value, `value`, is not iterable, and holds its values without citations; 172 of 172.

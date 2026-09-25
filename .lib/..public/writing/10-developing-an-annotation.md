@@ -79,9 +79,10 @@ export class $Parenthetical extends $Annotation {
 **`defines` need not guard against running twice, and must be exact in its undo.** A define erases everything that ran before it runs anything again, so a second call starts from what the writing holds of its own — but *"it is entirely up to the annotation to be idempotent"*: what `defines` puts, `erase` takes back, and nothing else. The shape that will still cost you a day: making something new each time, a component or an element or a chemical, so that what `erase` takes back is not what `defines` put. Make it once, in your own bond, and add the same thing every define — which is what Reference does with its anchor:
 
 ```tsx
+get identifier(): string { return html.copy(this.contents).trim(); }
+
 $Reference(...chemicals: $Chemical[]) {
     this.$Annotation(...chemicals);
-    this.identifier = html.copy(this.contents).trim();
     this._anchor = (props: { children?: ReactNode }) => <a href={this.identifier} {...props} />;
 }
 
@@ -150,20 +151,17 @@ class $Housed extends $Format {
 
 ***The general lesson, and it is the one this chapter is really for:*** **when you want a power the model does not have, ask what surface the writing already exposes.** *Two of the four things attempted on 2026-09-23 were members added where a door already stood, and both came out within hours.*
 
-## The argument is content, and data is read once
+## The argument is content, and a property reads it
 
 **Whatever an annotation needs told, it is told as content.** *"We probably didn't want a prop there, we meant that to be `<Mentioned>as-mentioned</Mentioned>`."* An annotation is a writing, so what is written inside it is its `contents`: that is where a Referent finds its id and a Level its number. From outside, the same annotation is given whole, `is={<Mentioned>as-mentioned</Mentioned>}`.
 
-**Read it once, in your bond, into a property.** Doug: *"Is it too pricey to have the level annotation parse and supply its level as a property (not prop) and put a computed property around it? That is a simple way to convert annotations into an object surface."*
+**Read it with a property, a getter over the contents.** Doug: *"Is it too pricey to have the level annotation parse and supply its level as a property (not prop) and put a computed property around it? That is a simple way to convert annotations into an object surface."* It was read once in the bond into a field until 2026-09-25, when he chose the getter under *"I want everything to look uniform and maximally simple"*: nothing is kept, so nothing goes stale, and every reading an annotation or a word makes of its contents is written the same way.
 
 ```tsx
 export class $Level extends $Annotation {
-    level = 1;
-
-    $Level(...chemicals: $Chemical[]) {
-        this.$Annotation(...chemicals);
+    get level(): number {
         const block = this.contents.at(0);
-        if (block instanceof $Block) this.level = Number(block.elements.join(''));
+        return block instanceof $Block ? Number(block.elements.join('')) : 1;
     }
 }
 ```
