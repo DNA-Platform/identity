@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
-- **status:** requirements-only — brainstormed 2026-09-25, four requirements approved; the book as memory and installation deferred
+- **status:** implementation-ready — brainstormed and planned 2026-09-25, three units; the book as memory and installation deferred
 - ***The sprint's name is Doug's subject, given in the room: "This is a session about memory management now."***
 
 ---
@@ -56,6 +56,7 @@
 | **the safe usage story** | asked whether an installed annotation is transcribed: *"The things that are meant to be put there are going to be designed for it. Maybe they can install something into book? Come up with a safe usage story where one annotation can put other annotations into the books list"* — written and measured, now [deferred](#deferred) |
 | **the table searches itself** | on hearing that a table's bond finds no cover, since a book holds no chapters until its own bond: *"Well then the table of contents annotation doesn't mean the links are anywhere. Do you have any interesting ideas? We could have the table reach out in the object tree and look for its contents. They are in there somewhere, and it can do a depth-first traversal of itself, looking for Content annotations. Does that work? It goes to the table, does the search, exposes them as its contents (let's change $Writing.contents to $Writing.text - an annotated text. And then the TableOfContents annotation can have contents. Shall we at least do that?"* · *"And Content can live in its fiel as one of its attributes"* |
 | **name and identifier** | on `text` already naming the words of six classes: *"Not text / url — name / identifier. Does that work in that context? Content is going to be what? A type of Reference that takes the []() syntax, stores name / identifier, and then adds a Means into the content? Something like that? It injects meaning? Think about that as a design"* · on how a Content draws: *"Yes it's note should draw its words. That is better than what I said. And put it in a span with a pa-content on there"* · *"Yes, build them"* · *"Yes, prove it end to end"* |
+| **the plan** | *"I think we did a great brainstorm. Put together a sprint plan. Hopefully we are ready to accomplish something in the test library. We have an interesting TableOfContents annotation to implement"* · asked what the annotation is: *"The annotation simply searches its chapters contents for their annotations recursively, deptch first, to assemble a list of tables of contents. It can also put a pa-table-of-contents on the writing"* · asked for his yes on `$book` in `src`: *"Yes, build U1"* |
 | **for now** | asked to approve the story: *"I don't see them, tell me"* — and, told: *"We are spending a lot of time on this, and the whole point is that dynamically styling the table is hard. Best to do it where it happens, and that means like Means and Mention, it can't just be an annotation on the chapter. The compiler has this figured out. The trick is that it has to be put on the page. What if we, for now, just have the book expose its cover, table, synopsis... and other things use it from there"* · the smaller sprint: *"Approve"* |
 
 ## Requirements
@@ -85,10 +86,63 @@
 
 *Set aside on Doug's "for now", and kept because it was measured and will be wanted — "These are like genes… We want the dynamism."* **What was reached:** the book's annotations are live — a change after the mount redraws the book at one paint, and filling them while the book is built costs nothing; **installing from `defines` loops forever after the mount**; and **an annotation installing, once in its own `$Define`, an annotation designed for a book** — never itself — costs nothing, draws nothing twice and wraps nothing, the installed one the book's and the installer still its own writing's. **As proposed then:** R5 what may be installed; R6 when, never from `defines`; R7 a table installing one that knows its table, and a cover one carrying its Author, Subject and About; R8 each entry a Content, *"a type of Reference"*; R9 every title a Self — with the names of what a table and a cover install, and of the member exposing a table's references, owed by Doug. **What set it aside:** a table styled from memory is styled far from where its entries are drawn; they belong on the page, where the compiler already puts them. E33's Canonical — *"a good component to make"* — waits with it.
 
+## <a id="plan"></a>The plan
+
+*Planned 2026-09-25, on Doug's "I think we did a great brainstorm. Put together a sprint plan. Hopefully we are ready to accomplish something in the test library. We have an interesting TableOfContents annotation to implement." The two owed requirements come first, since a plan inherits no owed unit, and the table annotation is the third unit.*
+
+### Decisions
+
+| | decision | why, and what it was chosen over |
+|---|---|---|
+| **D1** | `$book` is Doug's shape exactly: a protected `_book`; `get $book()` answering it, or asking the parent when it is not assigned; `set $book(value)` lending one | his words, R1. **Read in chemistry, [`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts):** a member whose name starts with `_` is never reactive, so `_book` is no bond and a lend wakes nothing — and a lend is made while a writing is built, where nothing has drawn |
+| **D2** | **The walk ends by override, never by a condition:** a Book overrides the getter to answer itself, and a writing asks its parent only while that parent is a writing other than itself | over an `instanceof $Book` in Writing, which is a kind-conditional on the base and would make `writing` import `library` when it runs; Writing names `$Book` only as a type. **A lend reaches down for free:** a writing's contents ask it, and it answers what it was lent |
+| **D3** | **R4's line is drawn by a writing of the test library's own, reading `this.$book` alone** — the `RunningHead` sketch standing unused as a resource of the library's first chapter, *"which every book of the test library could wear"*, made a class; the paper's argument wears it | a chapter function has no `this` and holds no hooks, so the line needs a class, and the sketch already says what it is for. `RunningHead` stays a PROXY, flagged |
+| **D4** | **The rename is proven in a staged copy**, as the regression's two other stages are: every file of the test library but the argument's renames the paper, and the argument's file is compared byte for byte with the original | what a hand-written page cannot fake — the argument's file never names its book. The new title has no dot, since the dot escape reaches every title |
+| **D5** | **`src` changes in U1 and U3 and nowhere else** — Writing and Book on Doug's *"Yes, build U1"*, TableOfContents on his *"It can also put a pa-table-of-contents on the writing"*; U2 is the test library's own code and the compiler's suites | the standing rule: every change in `src` has his word before it is made |
+| **D6** | **The table annotation marks its writing with a class and adds nothing else** — `contents` stays as built; the class is added and taken back the way every annotation's is, cited to itself | his words, [U3](#u3); over a member of its own, since the class collection already carries what each annotation put there until it goes |
+
+### Units
+
+**<a id="u1"></a>U1 — every writing has a book (R1).** *What runs, and when:* `$book` is read wherever a writing needs its book — its `$Define`, an annotation's `defines`, a draw — and answers the book it was lent, or its parent's; a Book answers itself. *Files:* `src/writing/Writing.tsx`, `src/library/Book.tsx`, `.tests/book.test.tsx`; the docs [The Writing Class](../writing/05-the-writing-class.md) and [Book](../library/05-book.md). *Seen:* nothing by itself — through U2. *Scenarios:*
+- a paragraph three levels down in a chapter of a book answers that book, in its own `$Define` and when drawn;
+- a book answers itself;
+- a writing lent a book answers it over the one above, and a paragraph inside it answers the lent one too;
+- a writing built alone answers none, and nothing loops — above a book stands chemistry's root, its own parent;
+- **the cost:** a book whose paragraph reads `$book` while it draws draws and paints exactly as one whose paragraph does not, counted in the package's render harness.
+
+**<a id="u2"></a>U2 — the paper's argument knows its book (R4, the visible end).** *What runs, and when:* the RunningHead reads `this.$book` when it draws — when the book holds its chapters, since a table's bond finds no cover and its draw finds everything — and writes the book's title and a link to the book's table, landing on the id the table's title wears. *Files:* `.binding/.test/the-library/1-the-shelves.tsx.tsx`, `.binding/.test/paper/1-the-argument.tsx`, `.binding/.test/binding.regression.ts`, `.binding/.test/staging.ts`; the doc [Books in Annotations](../library/01-books-in-annotations.md). *Seen:* in Chrome, the argument shows *A Paper* and a link that lands on its table; in the renamed copy, the new name, with the argument's file untouched. *Scenarios:*
+- in Chrome, the argument draws its book's title, and its link is `/a-paper/#table-of-contents`; followed, it lands on the id the table's title wears;
+- the renamed copy binds, the argument draws the new title and a link to the renamed book's table, and the argument's file is byte for byte the test library's;
+- a RunningHead standing in no book draws no line and does not throw;
+- every page still hydrates without a re-render.
+
+**<a id="u3"></a>U3 — the TableOfContents annotation marks its writing.** Doug: *"The annotation simply searches its chapters contents for their annotations recursively, deptch first, to assemble a list of tables of contents. It can also put a pa-table-of-contents on the writing."* **The search is `contents` as built at `618b99c`**, and stands; *it also reads a Content said of the chapter itself, where his words say its text — recorded, not changed.* *What runs, and when:* the annotation's `defines`, at its chapter's bond and every draw, adds `pa-table-of-contents` to the writing's classes, cited to itself, after the Format's nav; its `erase` takes back both — the comparable is [Biography](../library/06-biography-and-autobiography.md), whose `defines` adds `pa-biography` and whose `erase` reverts it. *Files:* `src/library/TableOfContents.tsx`, `.tests/table.test.tsx`, `.binding/.test/binding.regression.ts`; the doc [Cover, Synopsis and TableOfContents](../library/03-cover-synopsis-and-table-of-contents.md). *Seen:* in Chrome, the paper's table draws inside its nav on an element wearing `pa-table-of-contents`. *Scenarios:*
+- a chapter carrying a TableOfContents draws wearing `pa-table-of-contents`, inside its nav;
+- the annotation taken out, the next define takes back the class and the nav;
+- a chapter carrying no TableOfContents — the cover's, the synopsis's — wears no such class;
+- the five promises of `contents` stand;
+- **the cost:** a table's chapter draws and paints as often as it did before the class, since each define lands on the same answer;
+- in Chrome, the paper's table element wears `pa-table-of-contents` inside its `nav`.
+
+### Risks
+
+| risk | what mitigates it |
+|---|---|
+| `$book` is a reactive name by chemistry's rule — `$` and a lowercase letter — so an accessor may be installed on it, and a read in a draw could cost a draw | U1's cost scenario counts it before anything is built on it; if it costs a draw, halt and pitch — no `@inert()` without Doug |
+| the compiler may refuse a chapter of one book wearing a resource of another | measured at U2's first bind; if refused, it is the compiler's seam, designed or pitched, never routed around with a copy |
+| a reference to the paper left unrenamed fails the staged copy at catalogue | the stage renames every file but the argument's, and asserts the bind finished |
+| two staged copies left by interrupted runs stand in `.binding/.test/.staged`, ignored by git | removed at U2 |
+
+### Where each requirement lands
+
+R1 → [U1](#u1) · R2 → built, `e6119fa`, read by U2 · R3 → overtaken, built as Contents, `7460fa7` · R4 → [U2](#u2) · the table annotation → [U3](#u3).
+
+**Order:** U1, then U2, which reads `$book`; U3 depends on neither and goes last. **The plan against itself:** every requirement has a unit with a mechanism and a visible end, and every unit a scenario that counts its cost.
+
 ## Where things stand
 
-**Next: `/ce-plan` on this chapter for what is left** — R1, `$book` on every writing, and R4, the paper's argument reaching its book through `$book`. [Built already](#built), on Doug's word while the work was scoped: the book's cover, synopsis and table; `name` and `identifier`; a writing's `text`; Content and the table's contents; and the test library's tables in Contents, seen in Chrome. *The book as memory and installation are [deferred](#deferred).*
+**Next: `/ce-work` on this chapter, starting at U1.** Nothing is built yet; `src` has Doug's word for U1 and U3 ([D5](#plan)). [Built already](#built), on Doug's word while the work was scoped: the book's cover, synopsis and table; `name` and `identifier`; a writing's `text`; Content and the table's contents; and the test library's tables in Contents, seen in Chrome. *The book as memory and installation are [deferred](#deferred).*
 
-**Read these first:** [the requirements](#requirements) and the [rulings](#rulings-of-the-brainstorm-verbatim); [Book](../library/05-book.md), for what the book exposes today and how its canonical finds the cover by type; [How Writing Is Extended](../writing/06-how-writing-is-extended.md), for where a member on Writing reaches and why the base declares a seam a kind overrides; and this chapter's [measurements](#found-by-measuring-before-any-design) — every writing reaches its book while it is built, and the chain above the book never ends by itself.
+**Read these first:** [the plan](#plan), its decisions before its units; [`Writing.tsx`](../../package/src/writing/Writing.tsx), for the fields `$book` stands beside and the bond's order; [`Book.tsx`](../../package/src/library/Book.tsx), where the getter is overridden; [`Biography.tsx`](../../package/src/library/Biography.tsx), the comparable for U3's class; and the browser block of [the regression](../../package/.binding/.test/binding.regression.ts), where U2's and U3's promises join the ones for Content.
 
 **Standing:** nothing in `src` is changed until the plan's list has Doug's yes; commit locally and never push until he says.
