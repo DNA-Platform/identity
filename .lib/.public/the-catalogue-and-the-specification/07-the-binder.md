@@ -33,7 +33,7 @@
 | **resolve** | takes the route table the catalogue already built | *a root `.pubconfig` names that no book is called* |
 | **specify** | loads each book through vite, builds it with `$(book(), Book)`, and keeps what `specify()` returns, each failure on the chapter file its code numbers | *a writing that does not specify* |
 | **bundle** | `vite build` | |
-| **render** | one child process per page, as many at once as cores — [below](#render) | *a page whose book does not draw* |
+| **render** | one child, one Vite server, every page, each collecting its own styles — [below](#render) | *a page whose book does not draw* |
 | **proof** | reads every page back the way a browser will build it — [below](#proof) | *markup the parser rewrites; a link to nowhere* |
 | **record** | writes the manifest and removes what the source no longer writes | |
 
@@ -96,9 +96,18 @@
 
 ***A book module takes its own `import.meta.hot.accept`, [`application/opened.ts`](../../package/.binding/application/opened.ts) is the leaf both ends hold, and [`main.tsx`](../../package/.binding/application/main.tsx) keeps its root so a book can be drawn again.*** *React Fast Refresh declines a book module and is right to — `book` is a function the page draws, not a component it keeps, and a chapter is called inside it. The thing in the way was `@vitejs/plugin-react` itself: it self-accepts every file it touches and calls `invalidate()` from inside its callback when it cannot keep the module, which propagated to the entry and reloaded the page. Fast Refresh is kept off the modules we generate; they hold no state and are not components.* **Measured: an edit to a chapter appears on the open page in 496ms, in place; a chapter added to a running library appears in 1758ms with no bind.** ***What remains is that a re-run of `$()` over a re-run class is a new component type, so React rebuilds the book's tree rather than patching it — the seam where the substrate would keep a chemical's identity across an update. Flagged, not taken.***
 
-## <a id="render"></a>The render — one process per page, in parallel
+## <a id="render"></a>The render — one server, every page
 
-***[`rendering/rendering.ts`](../../package/.binding/rendering/rendering.ts) spawns [`render.mjs`](../../package/.binding/rendering/render.mjs) once per page, as many at once as the machine has cores, and takes the pages back in the order the names were given.*** *One process per page is correct and was measured rather than assumed: every page of a duplicated library was drawn in one process and diffed — the markup was identical and every page but the first carried the style rules of the books drawn before it, because a book registers its theme on the shared class when its module loads.* **1.23s a page over 26 pages, against 3.1s serial.** *Doug: "We can optimize but we can't test a different architecture" — same architecture, same child, same pages, together. HMR is off in the child; several at once would fight for one websocket port.* ***The isolation that would let one runtime draw them all is the substrate's to give — "Each book can have its own class with things registered to it" — recorded for that team.***
+***[`rendering/rendering.ts`](../../package/.binding/rendering/rendering.ts) spawns [`render.mjs`](../../package/.binding/rendering/render.mjs) once, with every page's name; it starts one Vite server and [`draw.ts`](../../package/.binding/rendering/draw.ts) draws the pages in the order the names were given, each inside a `ServerStyleSheet` of its own.*** Doug, 2026-09-26: ***"Let's do one server, but it truly has to speed things up."*** **And it does, measured before and after in one staged copy, the two renders run in turn three times:**
+
+| | a child per page | one server |
+|---|---|---|
+| **the test library, 5 pages** | 1.89s · 1.88s · 1.94s | 1.36s · 1.37s · 1.40s |
+| **25 books, 25 pages** | 10.2s · 12.4s · 12.9s | 2.74s · 2.70s · 2.72s |
+
+*One server pays for starting Node and Vite, and for transforming the framework, once rather than once a page — a child drawing one page took 1.6s, half of it starting — so what it saves grows with the library.*
+
+***It was a child per page because of a leak, and the leak is fixed rather than kept apart.*** *Every page drawn in one process carried the style rules of the books drawn before it, since a page read its styles from the `<style>` tags styled-components had put in the one document every page was drawn in. Doug: "Yes it was a style leak bug. Perhaps we can fix."* **Each page now collects its own**, and [the regression](../../package/.binding/.test/binding.regression.ts) holds it: the paper is typewritten and drawn first, and its style is on its page and on no other — red with one server before the sheet, green after. ***The bind draws this way itself, so the suites test what ships*** — *his earlier "We can optimize but we can't test a different architecture" stands.* **Anything registered on a class is registered on a book's own class**, so one book's registration cannot reach another drawn beside it — [the pattern, in Book](../library/05-book.md#how-it-is-extended). *HMR stays off in the child.*
 
 ## <a id="proof"></a>The proof
 
@@ -112,8 +121,8 @@
 
 | | | |
 |---|---|---|
-| **`npm test`** · unit | *the language, the faults, the structure over the test library, the transform over its prose, the module a book is written as, the proof over pages built to break* | **95 promises, ~1s** |
-| **`test:regression`** | *a real bind of the staged library with this code; pages read back; the proof; every reference at the address the page carries; the cover in its header, the table in its nav, the byline; two stages broken on purpose, one failing at catalogue and one at specify, each naming its file; and the pages driven in a real browser, asserting what a reader sees* | **16 promises, ~20s** |
+| **`npm test`** · unit | *the language, the faults, the structure over the test library, the transform over its prose, the module a book is written as, the proof over pages built to break, and the test library's own classes built in memory — `.test.ts` and `.test.tsx`* | **98 promises, ~1s** |
+| **`test:regression`** | *a real bind of the staged library with this code; pages read back; the proof; every reference at the address the page carries; the cover in its header, the table in its nav and its entries in order, the byline, the running head, one book's style on its page alone; two stages broken on purpose, one failing at catalogue and one at specify, each naming its file, staged only when they run; and one page opened in a real browser for what only a browser can say — what shows once the theme's sheet applies, and that it hydrates* | **18 promises, ~14s** |
 | **`test:performance`** | *the catalogue over 205 real books, and a bind of 25, phase by phase — printed, never a threshold* | **~3s and ~60s** |
 
 ***The regression suite paid for itself on its first run*** — *the fixture's tables had imported the composition where they mention with `book`, and the proof read three pages back with `<main>` inside a `<p>`. That is the finding that put binding resolution into the reader.*
@@ -123,9 +132,9 @@
 | | |
 |---|---|
 | **the catalogue, 205 real books** | *walk 62ms · structure 205ms cold, 23ms warm · wellformed 4ms · catalogue 37ms · holds 4ms over 1021 keys* |
-| **a bind, 25 real books, 26 pages** | *specify 5.7s · bundle 16.4s · render 32.0s in parallel (1.23s a page) · proof 0.0s* |
+| **a bind, 25 real books, 26 pages** | *specify 5.7s · bundle 16.4s · render 32.0s in parallel (1.23s a page) · proof 0.0s — before one server; render 2.9s after, 2026-09-26* |
 | **Dougs Library, 6 books** | *the parse 73ms of a 90ms cold structure; 3ms warm; bind 16–23s* |
-| **the test library on this code, 5 books, 6 pages** | *specify 1.6s, 147 writings · bundle 1.0s · render 2.1s · the bind 4.7s — 2026-09-25* |
+| **the test library on this code, 5 books, 6 pages** | *specify 1.6s, 142 writings · bundle 1.1s · render 1.5s · the bind 4.1s — 2026-09-26, one server; 410 lines in 27 files* |
 | **hot** | *a chapter edited: 496ms in place · a chapter added: 1758ms, no bind* |
 | **at a thousand synthetic books** | *structure 2.9s cold, ~0.5s warm — 287ms of which is `statSync` asking the disk what the watcher already knows* |
 

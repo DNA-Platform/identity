@@ -91,6 +91,35 @@ export const book = () => (
 
 ***Called, never rendered.*** *Written `<TheArgument1 />`, a chapter would reach the book as a function chemical its parts never see; `{TheArgument1()}` hands the book the Chapter itself — [found in the brainstorm](../projection/88-sprint-82--chapter-and-book.md) and Doug's "call the functions".* **So a chapter function holds no hooks**: it runs once when the book is made, inside no component of its own, and a hook in it would belong to the book. Nothing can check that; it is written here so nobody learns it from a crash.
 
+## Any writing reaches its book
+
+***Doug: "just have the book expose its cover, table, synopsis... and other things use it from there."*** **Every writing answers `$book`** — [the book it stands in](../writing/05-the-writing-class.md) — **and reads what the book exposes.** The test library's running head is the worked case: the library's name as a link, then the book it stands in and a link to that book's table — a resource of the library's first chapter, which the paper's argument wears, [`the-library/1-the-shelves.tsx.tsx`](../../package/.binding/.test/the-library/1-the-shelves.tsx.tsx):
+
+```tsx
+export class $RunningHead extends $Paragraph {
+    override write(): ReactNode {
+        const book = this.$book;
+        if (book === undefined) return null;
+        const table = book.table?.canonical;
+        const Means = $(means);
+        const Word = $(word);
+        const Reference = $(reference);
+        return (
+            <>
+                <Means>$[ The Library ]</Means> / <Word>{book.title?.name}</Word>: <Word><Reference>{table?.reference?.identifier}</Reference>{table?.name}</Word>
+            </>
+        );
+    }
+}
+```
+
+- **It reads when it draws**, when its book holds its chapters; in a bond [the book holds none yet](../projection/89-sprint-83--memory-management.md#found-by-measuring-before-any-design).
+- **Nothing in the argument's file names its book**, so a book renamed is followed with no edit to the chapter — [a unit promise](../../package/.binding/.test/running-head.test.tsx) stands one chapter in two books under two names.
+- **A Paragraph, not a Section:** a section's specification wants its heading written in its text, and a line drawn by `write` has none.
+- **Its notation is compiled like any resource's**: `$[ The Library ]` becomes the library's full address, since the line is drawn on other books' pages — [the transform's promise](../../package/.binding/reference/transform.test.ts) reads this file.
+- **Imported by its whole name**, `'../the-library/1-the-shelves.tsx.tsx'`: a resource belongs to a chapter by name, so the chapter's own name imports the chapter.
+- `RunningHead` is a PROXY, flagged for Doug.
+
 ## What is not drawn yet
 
 **An annotation's own writing is hidden in the ordinary view** — [the Writing book's promise](../writing/02-theming-and-formatting.md) — ***and the ordinary view is a library's theme.*** Measured in the first bind of the rewritten test library, 2026-09-25: every Means carried its Level's `2` and its Reference's url as text inside its link, and a cover's Author, Subject and About were drawn in its header as links, `.pd-annotation` on each and no sheet hiding it. Doug ruled where it is drawn the same day: ***"if we want to have a theme, it is a format annotation that is also a theme that is global to a book. The annotation validate that it is a book. And we can use its style"*** — and of the test library's, *"Yes good to make one local to the test-library."* And he named it: *"One might give the book a format called Theme which is a theme, which would be realized in its .book or as a resource in one of its chapters, perhaps as an appendix"* — [an extension point of Book](05-book.md#how-it-is-extended). So the test library's book class stands its `Theme` in its `$Define`, a Format with `theme = true` whose style hides every `.pd-annotation` inside the book and whose specification says it is said of a book — [`the-library/.book.tsx`](../../package/.binding/.test/the-library/.book.tsx). *A library's own class: `src` has no Theme, as [Format and Theme](../writing/11-format-and-theme.md) records.*
