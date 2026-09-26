@@ -387,21 +387,27 @@ uv pip install -q --python .venv/bin/python --no-deps -r ../.tools/no-deps-$vari
 .venv/bin/python -c 'import torch, numpy, sensorium, neuralpredictors, mei; print(\"torch\", torch.__version__, \"cuda available:\", torch.cuda.is_available(), \"numpy\", numpy.__version__)'"
 }
 
-cmd=${1:-check}; shift || true
-case $cmd in
-    check)     check ;;
-    run)       box_script "$*" ;;
-    sudo)      sudo_script "$*" ;;
-    pull)      box_pull "${1:-}" ;;
-    launch)    launch "${1:-}" "${2:-}" ;;
-    status)    status "${1:-}" ;;
-    watch)     watch "${1:-}" "${2:-10}" ;;
-    harvest)   harvest "${1:-}" ;;
-    probe)     probe "${1:-}" "${2:-}" "${3:-}" ;;
-    ignored)   ignored ;;
-    send)      for p in "$@"; do send_one "$p"; done ;;
-    send-list) send_list "$1" ;;
-    receive)   receive "${1:-}" "${2:-}" ;;
-    python)    python_env "${1:-}" ;;
-    *)         sed -n '2,28p' "$0"; exit 2 ;;
-esac
+# ONE COMPOUND COMMAND, EXIT INCLUDED. Bash reads a script from disk as it runs; a long `watch`
+# outlived an edit to this file once and, on returning, read a line of the new file (exit 127).
+# Grouped with its exit, the dispatch is parsed whole before it runs and nothing after it is read.
+{
+    cmd=${1:-check}; shift || true
+    case $cmd in
+        check)     check ;;
+        run)       box_script "$*" ;;
+        sudo)      sudo_script "$*" ;;
+        pull)      box_pull "${1:-}" ;;
+        launch)    launch "${1:-}" "${2:-}" ;;
+        status)    status "${1:-}" ;;
+        watch)     watch "${1:-}" "${2:-10}" ;;
+        harvest)   harvest "${1:-}" ;;
+        probe)     probe "${1:-}" "${2:-}" "${3:-}" ;;
+        ignored)   ignored ;;
+        send)      for p in "$@"; do send_one "$p"; done ;;
+        send-list) send_list "$1" ;;
+        receive)   receive "${1:-}" "${2:-}" ;;
+        python)    python_env "${1:-}" ;;
+        *)         sed -n '2,28p' "$0"; exit 2 ;;
+    esac
+    exit $?
+}
