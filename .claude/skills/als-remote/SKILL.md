@@ -13,7 +13,7 @@ description: drive the lab box (lipshutzlab-01) from this machine over Tailscale
 
 Drive the lab box — `lipshutzlab-01`, the lab's Linux GPU machine — from this machine over Tailscale SSH. The team works here and drives the box from here; the box holds a clone and runs the work.
 
-**This skill is the catalogue of how working with the box unfolds.** Every kind of interaction with it is written below as a protocol, and each protocol carries Doug's ruling, verbatim and dated, as its authority. Read the protocol for what is about to happen before doing it. The tool is [34-als-remote--box.sh](../../library/our-skillset/34-als-remote--box.sh); its partner [34-als-remote--run.sh](../../library/our-skillset/34-als-remote--run.sh) is a run itself, executed on the box.
+**This skill is the catalogue of how working with the box unfolds.** Every kind of interaction with it is written below as a protocol, and each protocol carries Doug's ruling, verbatim and dated, as its authority. Read the protocol for what is about to happen before doing it. The tool is [34-als-remote--box.sh](../../library/our-skillset/34-als-remote--box.sh); its partners are [34-als-remote--run.sh](../../library/our-skillset/34-als-remote--run.sh), a run itself, executed on the box, and [34-als-remote--pack.sh](../../library/our-skillset/34-als-remote--pack.sh), which packs a run's jobs onto the GPU.
 
 ## The protocols
 
@@ -22,7 +22,8 @@ Drive the lab box — `lipshutzlab-01`, the lab's Linux GPU machine — from thi
 3. [The run](../../library/our-skillset/34-03-als-remote--the-run.md) — commit everything here, pull there, branch `run-<YYYYMMDD-HHMM>-<name>` into a worktree beside `main`, run detached and commit everything about it there, pull it home through GitHub.
 4. [The files git does not carry](../../library/our-skillset/34-04-als-remote--the-files-git-does-not-carry.md) — `send` out and `receive` back over SSH, one path at a time, every file checked by sha256, resumable, in the background.
 5. [The environment](../../library/our-skillset/34-05-als-remote--the-environment.md) — this machine's Python rebuilt inside the folder from a lock the compiler generates from what is actually installed here; what was installed around its metadata goes around it there too; proved package by package.
-6. [Root](../../library/our-skillset/34-06-als-remote--root.md) — the password in the Windows user environment and nowhere else; every change as root is Doug's decision, because the machine is shared.
+6. [Root](../../library/our-skillset/34-06-als-remote--root.md) — the sudo password in `.env` at the project root on this machine and nowhere else, its one role, and the three walls that keep it here; every change as root is Doug's decision, simulated first, because the machine is shared.
+7. [The whole machine](../../library/our-skillset/34-07-als-remote--the-whole-machine.md) — pack the GPU by measured memory, share the CPU explicitly, poll with `watch` instead of waiting, and quote durations only from the run's own clock.
 
 **Adding a protocol.** A new kind of interaction gets a new sub-chapter, `34-NN-als-remote--<name>.md`: its ruling verbatim and dated, then the protocol. In the same act it is listed here and under this chapter on the [Our Skillset](../../library/our-skillset/.cover.md) cover, the tool gains any command it needs, and the skill is recompiled. A ruling that changes a protocol is written into that protocol, replacing what it overrules — one place, one current version.
 
@@ -45,6 +46,7 @@ bash $T sudo '<command>'             # the same, as root
 bash $T pull [--discard]             # the box's main := GitHub's main
 bash $T launch <name> '<command>'    # a run
 bash $T status [<branch>]            # every run on the box, or one run in detail
+bash $T watch <branch> [minutes]     # poll a run in the background until it has pushed
 bash $T harvest <branch>             # a finished run's branch, pulled into main here
 bash $T ignored                      # the ignored paths that `send` moves
 bash $T send <path>...               # ignored files or folders to the box, verified

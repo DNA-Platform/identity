@@ -35,7 +35,9 @@ Everything the run made is committed on its branch — a failed run too, since a
 
 **5. Pull here** — `harvest <branch>`: fetch the branch, show its record, fast-forward `main` here onto the run's commit. It stops if `main` here has moved since the run's base, rather than merge on its own. Whatever `not-committed.tsv` lists comes back by [`receive`](34-04-als-remote--the-files-git-does-not-carry.md), checked against its recorded hash.
 
-`status` lists every run on the box, running or finished, with exit codes; `status <branch>` shows one run's record, its log's tail and the GPU.
+`status` lists every run on the box, running or finished, with exit codes; `status <branch>` shows one run's record, its log's tail and the GPU; `watch <branch>` polls it in the background until it pushes. A run with several GPU jobs packs them onto the card by measured memory, and its command sees `$ALS_ROOT` (the folder) and `$ALS_RUN` (its branch) — [The whole machine](34-07-als-remote--the-whole-machine.md).
+
+A failed run is kept, branch and record, like any other: the first GPU run (`run-20260926-2347-gpu-twins`) stopped in two minutes on a stale scan folder, and its branch is the record of the bug its successor ran without.
 
 ## Why GitHub carries the results
 

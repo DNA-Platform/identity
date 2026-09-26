@@ -42,6 +42,10 @@ Doug's direction for the fix: *"use the compiler to generate such things."* The 
 
 Installed and compared package by package: of this machine's 225, 222 are on the box at the identical version or git commit, `mei` and `egg` among them. The three that differ are the ones chosen — `pywinpty` (Windows-only) and torch and torchvision, `2.12.1+cu130` there against `+cpu` here. The box's only additions are Linux's 21. The stack imports.
 
-## Open
+## The GPU
 
-**The GPU is not usable yet.** `nvidia-smi` cannot reach the driver, and `torch.cuda.is_available()` is `False`. The driver package is installed, but the NVIDIA module exists only for the old 6.14 kernel; the box has run 7.0.0-28 for five weeks without one, and 7.0.0-31 and 7.0.0-34 wait behind a reboot. Doug's choice (2026-09-26): install `linux-modules-nvidia-580-open-7.0.0-28-generic` and load it, no reboot. It waits on the sudo password.
+The protocol for root is [Root](../../../.claude/library/our-skillset/34-06-als-remote--root.md); this is how the card came up, 2026-09-26.
+
+`nvidia-smi` could not reach a driver: the NVIDIA module existed only for the old 6.14 kernel, and the box had run 7.0.0-28 for five weeks without one. Doug chose to install the module for the running kernel without a reboot. It could not be installed alone: the prebuilt module for 7.0.0-28 was built against driver 580.173 exactly, and the archive had moved on to 580.178, so no prebuilt module fitted the running kernel at any pinning. The simulation of the real alternative — upgrade the driver stack and let DKMS compile the module — showed fifteen NVIDIA packages upgraded (580.95 to 580.178), six installed (`dkms`, `nvidia-dkms-580-open`, firmware, and kernel 7.0.0-34 with its module for the next boot) and the 6.14 prebuilt module removed. Secure Boot is off, so a module DKMS builds loads without key enrollment. Doug chose it; DKMS built for 7.0.0-28, `modprobe nvidia` loaded it, and there was no reboot.
+
+The card: **NVIDIA GeForce RTX 5080**, 16 GB, compute capability 12.0, driver 580.178.04. torch `2.12.1+cu130` sees it.
