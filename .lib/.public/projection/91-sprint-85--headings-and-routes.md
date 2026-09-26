@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
-- **status:** requirements-only — brainstormed 2026-09-26, ten requirements approved; the layout annotation deferred to its own brainstorm
+- **status:** implementation-ready — brainstormed and planned 2026-09-26, five units; Paginated, the layout annotation, deferred to its own brainstorm
 - ***The sprint's name is a PROXY, the room's; Doug's to rename.***
 
 ---
@@ -42,6 +42,8 @@
 
 | **headings do as titles do** | on section B, a heading with the pair a self-referent and a plain one neither: *"Let's do like title. If no mention, the copy is slugged using the same utility and that is used as the mention and the id"* |
 | **approving the requirements** | A: *"Approve"* · B: the refinement above · C: *"Approve"* · D: *"Approve"* |
+| **the plan** | *"for this, it sounds good. Make sure that this is a reasonable usage for a router and that this is a valid way of cross app, cross router communication. Remember that this is meant to support simple and complex use cases"* · on the router: *"I think so but I need you to teach me if that is valid, and what it gains and loses. I don't know a lot about routing"* · on the prop offered as `$open`: *"Well it is the address that would be given to the chapter of it's cover by the compiler right? Would it be the mention of the book? It needs to have a prop that means this? Can you explain to me what this prop represents on a book? open makes no sense. A property isn't an action"* · on the `src` list: *"Yes to all, but I don't like open and I need a bit of teaching on how routers work. I know they enable dynamic links"* |
+| **Paginated** | *"$Paginated / <Paginated /> is the attribute that would allow a book to show chapters one at a time, as if in pages"* — the layout annotation of the later brainstorm, named |
 
 ## Requirements
 
@@ -78,6 +80,55 @@ The test library bound: every chapter a page; in Chrome, a link from the log to 
 
 **Out of scope:** the layout annotation and its view options (Doug's brainstorm); Part; the compiler reading a plain heading, which it cannot.
 
+## <a id="plan"></a>The plan
+
+*Planned 2026-09-26 on Doug's "Make sure that this is a reasonable usage for a router and that this is a valid way of cross app, cross router communication. Remember that this is meant to support simple and complex use cases." One session, five units, no division.*
+
+### Decisions
+
+| | decision | why, and what it was chosen over |
+|---|---|---|
+| **D1** | **The URL is the only protocol between pages.** Every book's page is its own app with a local router; a link to another book is a navigation the browser makes and the target page's router completes on load; a link within the book the router handles in place. No state is shared across pages | this is what makes cross-app and cross-router communication valid: nothing to synchronise, and a link from the internet is the same as a link from a sibling book. Over a site-wide router, which would need one app for the whole library and cannot be served as static pages |
+| **D2** | **The router is the app's, and it reaches the book through one reactive prop: the place the reader is at within the book**, always one of the book's own mentions, a chapter's or the cover's — **the bookmark**, `$bookmark`, Doug's word, arrived at from both sides once he struck `open`: *"A property isn't an action"*; *"Call it bookmark - it is a bookmark right? It is the place where the user is (recently was) and it is a record of him being there. Can you make that work?"* — it works: the app writes it on load and on every move within the book, the book reads it, and it stays as long as the page The app finds the route by pathname, renders the book with that bookmark, delegates every click on an internal link at the root, pushes state and renders the book again with the new one; `popstate` is the same path. **Nothing in Reference changes.** A `<Paginated />` book will read the same bookmark to choose its page | over an anchor that knows the router: a click reaching the router through the DOM is what every router does, and a Reference stays a link that works with no script. The book learns the address the way any chemical learns a prop, at one paint |
+| **D3** | **Down the page is the book's default:** when the open address changes, or after mount with one, the book scrolls the chapter that mentions that address into view; a book hiding chapters overrides this later | R10; the simple case costs the router one scroll |
+| **D4** | **A chapter's route is `/book/chapter/`, the cover's the book's; an anchor is addressed on the page of the file it stands in**, the cover's on the book's — so the structure gives an anchor its own chapter beside the spot that speaks for it | `speaks` attributes the apparatus's edges to the book and must stay; an address is the file's. Over addressing every anchor on the book's page, which routes make wrong |
+| **D5** | **The render draws the book once per route with that route's address open**, the assembled book function taking the address; the proof reads every page as it does now | R8; hydration holds because the client computes the same address from the pathname |
+| **D6** | **`Identifier` holds the slug and nothing else yet**, and the compiler's `addresses.ts` imports it from `@dna-platform/public` | R1; one function in the one place the runtime can also reach |
+| **D7** | **A plain heading means `#slug`, a Self reference**, and a marked heading means the compiler's url; both stand a Referent from `slug(name)` | Doug: *"Let's do like title. If no mention, the copy is slugged using the same utility and that is used as the mention and the id"* |
+| <a id="d8"></a>**D8** | **`src` changes, for Doug's yes:** `utilities/Identifier.ts`, new · `library/Title.tsx` (the Referent from the name) · `writing/Mention.tsx` (the same) · `writing/Heading.tsx` (`name`, `means`, its Referent and Self) · `writing/Section.tsx` (`mention`) · `library/Book.tsx` (`$open` and the scroll) | the standing rule |
+
+### Units
+
+**<a id="u1"></a>U1 — the Identifier, and the id from the name (R1–R3).** *What runs:* `Identifier.slug` at a Title's and a Mention's `$Define`; the compiler's slug becomes an import. *Files:* `src/utilities/Identifier.ts` and the utilities index; `src/library/Title.tsx`, `src/writing/Mention.tsx`; `.binding/resolution/addresses.ts`; `.tests/chapter.test.tsx`, `.tests/reference.test.tsx` or the mention's; docs: the utilities book, [Chapter and Title](../library/02-chapter-and-title.md), the writing book's mention chapter. *Scenarios:* a title written `[The Argument](anything)` wears `id="the-argument"` and means `anything`; a cover's title wears its book's slug; a mention wears its name's slug whatever its url; `Doug's Library` slugs to `dougs-library` and `Claude & Our Projects` to `claude-and-our-projects`, in the package's promise and the compiler's alike; the compiler's suites unchanged in number. *Seen:* nothing new.
+
+**<a id="u2"></a>U2 — headings do as titles do (R4–R6).** *What runs:* a Heading's `$Define` reads the compiled pair or its copy, stands a Referent from the slug and a Self reference to the url or `#slug`; `Section.mention`. *Files:* `src/writing/Heading.tsx`, `src/writing/Section.tsx`; `.tests/section.test.tsx`; the test library's argument, its "What is claimed" marked, and the log's entries referring to it, `$[ A Paper / What is claimed ]`; the transform's promises; docs: the writing book's section chapter, [Books in Annotations](../library/01-books-in-annotations.md)'s channels row. *Scenarios:* a marked heading wears its id, links to the compiler's url, and its section mentions it; a plain heading wears its copy's slug and means `#` and it; a heading built alone is the same, since nothing here needs the book; the compiler resolves the reference to the section and refuses a second heading of that name in the book; two plain headings of one name on one page are refused by the proof. *Seen:* the argument's heading a link to itself on the bound page.
+
+**<a id="u3"></a>U3 — chapters as routes in the compiler (R7).** *What runs:* the catalogue answers routes; the route table names chapters; anchors are addressed on their file's page. *Files:* `.binding/resolution/addresses.ts`, `.binding/catalogue/catalogue.ts`, `.binding/catalogue/structure.ts` (an anchor's chapter), `.binding/assembly/routes.ts`; their promises, every `/a-paper/#the-argument` in them becoming `/a-paper/the-argument/`; docs: [the binder](../the-catalogue-and-the-specification/07-the-binder.md), [the language](../the-catalogue-and-the-specification/06-the-language.md)'s account of what it compiles into. *Scenarios:* `$[ ./The Argument ]` compiles to `/a-paper/the-argument/`; `$[ A Paper ]` to `/a-paper/`; a mention in the argument to `/a-paper/the-argument/#what-is-claimed` and one in the synopsis to `/a-paper/synopsis/#…`; the route table holds every chapter with its book; the regression's page reads follow. *Seen:* the addresses in the bound pages.
+
+**<a id="u4"></a>U4 — a page per route, the open address, down the page (R8, R10).** *What runs:* the assembled book takes the address; the render draws the book once per route; `$Book` holds `$open` and scrolls the mentioned chapter into view after mount and on change. *Files:* `.binding/assembly/book.ts`, `.binding/rendering/draw.ts`, `rendering.ts`; `src/library/Book.tsx`; `.tests/book.test.tsx`, `.tests/renders.test.tsx`; the regression; docs: [Book](../library/05-book.md), the binder. *Scenarios:* every chapter of the test library has a page and the proof passes over all of them; a book given an open address answers it and, mounted, the chapter mentioning it is scrolled to — measured in the package's harness with the chapter's element; the open address changed costs one paint; a book given none does nothing; the render's time at 25 books stated. *Seen:* the chapter pages.
+
+**<a id="u5"></a>U5 — the router (R9), and the visible end.** *What runs:* the app, on load and on every internal navigation. *Files:* `.binding/application/main.tsx`; the regression's browser block; docs: the binder. *Scenarios:* a direct visit to `/a-paper/the-argument/#what-is-claimed` lands on the heading; on the log's page, the link to it navigates to the paper's page and lands on the heading; on the paper's page, a table entry switches the address without a reload and scrolls to the chapter, and back returns; a link to another book loads that book's page. *Seen:* photographed in Chrome, the argument's heading in view after the long-distance link.
+
+### Risks
+
+| risk | what mitigates it |
+|---|---|
+| a hydration mismatch between the server's open address and the client's | both derive it from the route table by pathname, and the regression's hydration promise reads the console |
+| the render's cost grows with chapters — 25 books, 4 chapters each, ~100 pages | one server since Sprint 84; measured and stated at U4; if it is a problem, it is a number for Doug |
+| scrolling during a server render, where no element exists | the scroll waits for mount and only on the client |
+| an anchor in the apparatus addressed on the book's page where it once was | U3's scenario names the synopsis case |
+| `Identifier` imported by the compiler from `dist` a stale build | the compiler's suites build first, as the package's do |
+
+### Where each requirement lands
+
+R1–R3 → [U1](#u1) · R4–R6 → [U2](#u2) · R7 → [U3](#u3) · R8, R10 → [U4](#u4) · R9 → [U5](#u5).
+
+**Order:** U1, U2, U3, U4, U5 — each the next one's ground. **The plan against itself:** every requirement lands, every unit has a mechanism and a visible end, and D2 carries the argument Doug asked for: the URL between pages, the prop within one.
+
 ## Where things stand
 
-**Next: `/ce-plan` on this chapter.** Requirements approved; nothing built. *Status: requirements-only.*
+**Next: `/ce-work` on this chapter, starting at U1.** Nothing is built; `src` has Doug's yes for the six files of [D8](#d8), and the prop is the bookmark.
+
+**Read these first, for the work:** [the plan](#plan); [`addresses.ts`](../../package/.binding/resolution/addresses.ts), for the slug that moves and the route table that grows; [`catalogue.ts`](../../package/.binding/catalogue/catalogue.ts) and [`structure.ts`](../../package/.binding/catalogue/structure.ts), for how a spot becomes an address; [`main.tsx`](../../package/.binding/application/main.tsx), where the router goes; [`Title.tsx`](../../package/src/library/Title.tsx) and [`Mention.tsx`](../../package/src/writing/Mention.tsx), the comparables for Heading.
+
+**Standing:** every change in `src` has Doug's word before it is made; commit locally and never push the project until he says; the branch library pushes itself.
