@@ -12,6 +12,7 @@ LIMIT=$((95 * 1024 * 1024))   # GitHub refuses a file over 100 MB; larger ones s
 
 source "$A/.tools/env.sh"     # the folder's own environment: nothing lands in the shared home
 export VIRTUAL_ENV=$A/main/.venv PATH=$A/main/.venv/bin:$PATH
+export ALS_ROOT=$A ALS_RUN=$branch    # for the command: the folder (its .tools/pack.sh) and the run's name
 
 {
     echo "branch:  $branch"

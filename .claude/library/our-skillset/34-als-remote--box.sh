@@ -9,6 +9,7 @@
 #   bash $T pull [--discard]             the box's main := GitHub's main (= HEAD here, once pushed)
 #   bash $T launch <name> '<command>'    the run protocol: pull, branch, run detached, commit, push
 #   bash $T status [<branch>]            the runs on the box, or one run's state and log
+#   bash $T watch <branch> [minutes]     poll a run until it has pushed (run it in the background)
 #   bash $T harvest <branch>             pull a finished run's branch here, into main
 #   bash $T ignored                      the ignored paths that travel by `send`
 #   bash $T send <path>...               copy ignored files to the box, verified by sha256
@@ -19,7 +20,7 @@
 # Environment (only `sudo` needs anything set):
 #   ALS_REMOTE_HOST      user@host                     default lipshutzlab-01@lipshutzlab-01
 #   ALS_REMOTE_ROOT      folder under the box's home   default doug/altered-states
-#   ALS_REMOTE_PASSWORD  the box user's sudo password  if unset, read from the Windows USER environment
+#   ALS_REMOTE_PASSWORD  NOT an environment variable: it lives in .env at the project root (see password())
 #
 # Never travels: .claude/, CLAUDE.md and every .lib/ (identity has them), .venv/ (rebuilt on the box),
 # .vscode/, bytecode. Local records of what was sent live in .git/als-remote/, never tracked.
@@ -70,11 +71,12 @@ check() {
     fi
 }
 
+# The one secret, in one place: `.env` at the project root on THIS machine. Gitignored, refused by
+# `send`, outside .claude - so neither git, nor the bridge, nor identity ever carries it.
 password() {
-    local p=${ALS_REMOTE_PASSWORD:-}
-    [ -n "$p" ] || p=$(powershell -NoProfile -Command \
-        "[Environment]::GetEnvironmentVariable('ALS_REMOTE_PASSWORD','User')" 2>/dev/null | tr -d '\r\n')
-    [ -n "$p" ] || { echo "ALS_REMOTE_PASSWORD is not set; the skill has the one-line setup." >&2; return 1; }
+    local p=""
+    [ -f "$REPO/.env" ] && p=$(sed -n 's/^ALS_REMOTE_PASSWORD=//p' "$REPO/.env" | tail -1 | tr -d '\r\n')
+    [ -n "$p" ] || { echo "no ALS_REMOTE_PASSWORD in $REPO/.env - the Root protocol says how" >&2; return 1; }
     printf '%s' "$p"
 }
 
@@ -137,6 +139,7 @@ launch() {
     box_pull || return 1
     branch=run-$(date +%Y%m%d-%H%M)-$name
     scp -q -o BatchMode=yes "$HERE/34-als-remote--run.sh" "$HOST:$ROOT/.tools/run.sh"
+    scp -q -o BatchMode=yes "$HERE/34-als-remote--pack.sh" "$HOST:$ROOT/.tools/pack.sh"
     box_script "set -e
 cat > \$A/.tools/env.sh <<'ALS_ENV_END'
 $BOX_ENV
@@ -173,6 +176,24 @@ echo '--- log'; tail -15 runs/$branch/log.txt 2>/dev/null; echo '--- driver'; ta
 nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv,noheader 2>/dev/null || true"
 }
 
+# Polling: one line every <minutes> until the run's driver says it pushed (or failed to). Run it in
+# the background; it ends by itself, and its last line is the verdict.
+watch() {
+    local branch=${1:-} every=${2:-10} line
+    [ -n "$branch" ] || { echo "usage: watch <branch> [minutes]"; return 2; }
+    while :; do
+        line=$(box_script "cd ../$branch 2>/dev/null || { echo 'no such run'; exit 0; }
+state=finished; pgrep -f 'run.sh $branch' >/dev/null && state=running
+gpu=\$(nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv,noheader 2>/dev/null | head -1)
+jobs=\$(for f in runs/$branch/*/[0-9][0-9].log; do [ -f \"\$f\" ] && tail -1 \"\$f\" | tr -s ' ' | cut -c1-48; done | tr '\n' '|')
+last=\$(tail -1 runs/$branch/log.txt 2>/dev/null | tr -s ' ' | cut -c1-80)
+echo \"\$state | \$(grep -h '^exit:' runs/$branch/meta.txt 2>/dev/null) | gpu \$gpu | \$(tail -1 ../$branch.out 2>/dev/null) | \$last | \$jobs\"") || line="unreachable"
+        echo "$(date +%H:%M) $line"
+        case $line in finished*|"no such run"*) return 0 ;; esac
+        sleep $((every * 60))
+    done
+}
+
 # Step 5: the run comes home through GitHub, into main here.
 harvest() {
     local branch=${1:-}
@@ -195,7 +216,7 @@ harvest() {
 ignored() {
     cd "$REPO"
     git ls-files -z --others --ignored --exclude-standard --directory | tr '\0' '\n' \
-        | grep -v -E '^(\.claude/|CLAUDE\.md$|\.venv/|\.vscode/)|(^|/)(__pycache__|\.pytest_cache|\.ipynb_checkpoints|\.lib)/|\.egg-info/' \
+        | grep -v -E '^(\.claude/|CLAUDE\.md$|\.venv/|\.vscode/|\.env)|(^|/)(__pycache__|\.pytest_cache|\.ipynb_checkpoints|\.lib)/|\.egg-info/' \
         | LC_ALL=C sort | awk 'last == "" || index($0, last) != 1 { print; last = ($0 ~ /\/$/) ? $0 : "" }' \
         || true
 }
@@ -206,8 +227,8 @@ send_one() {
     local p=${1%/} name man start files bytes
     cd "$REPO"
     [ -e "$p" ] || { echo "missing here: $p"; return 1; }
-    case $p in .claude|.claude/*|CLAUDE.md|*/.lib|*/.lib/*|.lib|.lib/*|.venv|.venv/*)
-        echo "refusing $p: identity and the venv never travel"; return 1 ;; esac
+    case $p in .claude|.claude/*|CLAUDE.md|*/.lib|*/.lib/*|.lib|.lib/*|.venv|.venv/*|.env|.env*)
+        echo "refusing $p: identity, the venv and .env never travel"; return 1 ;; esac
     name=$(printf '%s' "$p" | tr -c 'A-Za-z0-9._-' '_')
     man=$RECORD/manifests/$name.sha256
     mkdir -p "$RECORD/manifests"
@@ -334,6 +355,7 @@ case $cmd in
     pull)      box_pull "${1:-}" ;;
     launch)    launch "${1:-}" "${2:-}" ;;
     status)    status "${1:-}" ;;
+    watch)     watch "${1:-}" "${2:-10}" ;;
     harvest)   harvest "${1:-}" ;;
     ignored)   ignored ;;
     send)      for p in "$@"; do send_one "$p"; done ;;
