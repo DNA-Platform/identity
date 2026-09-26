@@ -9,15 +9,9 @@
 
 ## The rulings
 
-Doug, 2026-09-26, in order:
+The first task Doug set, 2026-09-26: *"That is your first task to get us to parity. There should be nothing to commit over there."* And on the branch library, which the project repo was tracking: *"Well git shouldn't track it so look at ../inexplicable-phenomena gitignore to learn how to ignore it and remove it from git. That should be synced on identity."* The standing rulings behind it — identity never travels, `main` the only branch until a run — are now protocol: [The folder](../../../.claude/library/our-skillset/34-02-als-remote--the-folder.md).
 
-- *"I just want us getting this repo setup over there with you driving over SSH and using the FTP server or whatever to get the files not in git either from here or because we can run pip/npm install."* — and, on a proposal to route data through Git LFS against a budget: *"Don't listen about budgets."*
-- *"That is your first task to get us to parity. There should be nothing to commit over there."*
-- *"Oh, don't move anything that goes to identity."* / *"CLAUDE.md and /.claude do not need to be transported."*
-- On the branch library, which the project repo was tracking: *"Well git shouldn't track it so look at ../inexplicable-phenomena gitignore to learn how to ignore it and remove it from git. That should be synced on identity."*
-- *"We don't need anything but main though in terms of branches in this repo. We will make them when we dispatch jobs."*
-
-So the box's `main` is a mirror. Parity means the same HEAD, the same index and the same working tree as the working copy here — uncommitted work included — reached without a commit on the box and without pushing to GitHub first.
+Parity meant the same HEAD, the same index and the same working tree as the working copy here — uncommitted work included — reached without a commit on the box and without pushing to GitHub first.
 
 ## The branch library leaves the project's git
 
@@ -25,7 +19,7 @@ So the box's `main` is a mirror. Parity means the same HEAD, the same index and 
 
 ## How parity is made
 
-This was the first parity only. It was made to carry uncommitted work without a commit; under [the run protocol](04-the-run.md) everything is committed here first and the box pulls, so the method is retired.
+This was the first parity only. It was made to carry uncommitted work without a commit; under [the run protocol](../../../.claude/library/our-skillset/34-03-als-remote--the-run.md) everything is committed here first and the box pulls, so the method is retired.
 
 **HEAD.** The box's clone stood at `a4d50c1` (GitHub's `main`); this working copy was 21 commits ahead. A git bundle of exactly those commits (116 MB) crossed by `scp` and was fast-forwarded in. Nothing was pushed to GitHub, so the box reports `ahead 21` of `origin/main`, the same line as here.
 
@@ -35,6 +29,4 @@ This was the first parity only. It was made to carry uncommitted work without a 
 
 ## The files git does not carry
 
-What `.gitignore` excludes — the scans in `library/data`, the pipeline and analysis caches, logs — crosses by the skill's `send`: one tar stream per path, the sha256 of every file taken here and checked on the box before the path is recorded as sent. A path that already verifies is skipped, so a stopped run resumes. The first full list was 117 paths, the scans first; `.vscode/` stays behind, being this machine's editor settings.
-
-What never travels: `.claude/`, `CLAUDE.md` and every `.lib/` (identity carries them), `.venv/` (rebuilt on the box, see [The box](02-the-box.md#open)), bytecode.
+The first send, under what became the protocol [The files git does not carry](../../../.claude/library/our-skillset/34-04-als-remote--the-files-git-does-not-carry.md): 117 paths, about 10 GB, the scans first, each verified on the box by sha256 before it was recorded.
