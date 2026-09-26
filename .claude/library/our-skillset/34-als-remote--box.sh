@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # als-remote — drive the lab box (lipshutzlab-01) from this machine over Tailscale SSH.
 # Resource for: 34-als-remote.md. Its partner, 34-als-remote--run.sh, is the run itself, on the box.
+# Packing jobs onto the GPU is PIPELINE code (src/pipelines/digital_twin/gpu.py), never this tool's.
 #
 # Usage, from the altered-states repo root (T=.claude/library/our-skillset/34-als-remote--box.sh):
 #   bash $T check                        is the box reachable, and if not, why
@@ -140,7 +141,6 @@ launch() {
     box_pull || return 1
     branch=run-$(date +%Y%m%d-%H%M)-$name
     scp -q -o BatchMode=yes "$HERE/34-als-remote--run.sh" "$HOST:$ROOT/.tools/run.sh"
-    scp -q -o BatchMode=yes "$HERE/34-als-remote--pack.sh" "$HOST:$ROOT/.tools/pack.sh"
     box_script "set -e
 cat > \$A/.tools/env.sh <<'ALS_ENV_END'
 $BOX_ENV
