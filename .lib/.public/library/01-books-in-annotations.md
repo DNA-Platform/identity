@@ -118,7 +118,7 @@ export class $RunningHead extends $Paragraph {
 - **A Paragraph, not a Section:** a section's specification wants its heading written in its text, and a line drawn by `write` has none.
 - **Its notation is compiled like any resource's**: `$[ The Library ]` becomes the library's full address, since the line is drawn on other books' pages — [the transform's promise](../../package/.binding/reference/transform.test.ts) reads this file.
 - **Imported by its whole name**, `'../the-library/1-the-shelves.tsx.tsx'`: a resource belongs to a chapter by name, so the chapter's own name imports the chapter.
-- `RunningHead` is a PROXY, flagged for Doug.
+- **It is the test library's own and not `.public`'s.** *Doug, 2026-09-26: "I don't know RunningHead but that doesn't belong in the .public library. It can be a component of something not user facing."* So its name is the test library's, and no reader of `.public` meets it.
 
 ## What is not drawn yet
 
