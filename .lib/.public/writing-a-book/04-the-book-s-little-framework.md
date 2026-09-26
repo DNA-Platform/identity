@@ -40,6 +40,8 @@ export default class $Introduction extends $Chapter {
 
 One page per book, the chapter's route an anchor on it, and the router *"could also render them as dynamic, as of one per view but changing."* So the anchor scheme of [chapter 25](03-the-address-and-its-wiring.md) is the page's navigation, and a chapter-at-a-time page is the same book under a different router, not a different book.
 
+*Superseded on 2026-09-26, in [Sprint 85](../projection/91-sprint-85--headings-and-routes.md#u3): the chapters became routes — Doug: "The book is a static page returned by github pages, the chapters are routes on a local spa" — so a chapter stands at `/book/chapter/`, a page of its own that the book's app answers, and a mention is a fragment on the page of the file it stands in. Down the page stays the default, and it is the book's layout that decides it, never the router; the chapter-at-a-time page is still the same book, now under `<Paginated />`.*
+
 ## <a id="levels"></a>The library level stands apart — ***what a chapter is and is not***
 
 *"The document is the literal. That it's a chapter is more like an interpretation, and that a book has many of them is more like something too. They exist at the library level and the library level should stand apart. Documents and chapters interact referentially."* So: **a chapter never holds its document** — no `below()` from chapter to document, no lifting of what a view draws into parts — **it means it, by reference.** A chapter holds annotations only, says nothing of its own, and those are its two rules.

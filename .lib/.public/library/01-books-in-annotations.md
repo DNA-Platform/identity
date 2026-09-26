@@ -93,7 +93,7 @@ export const book = () => (
 
 ## A catalogue's chapter is another book's synopsis
 
-***The Genesis, E33: "A catalogue entry is a chapter that is a synopsis; the catalogue may print or import it."*** Doug, 2026-09-26: *"Maybe it is a chapter that renders it, and then decorates it. That seems more straightforward. Chapters can be in chapters."* And: *"someone can just write a synopsis by hand. It doesn't need to be borrowed."* **So it is informal, and nothing specifies it** — a chapter of the catalogue holds another book's synopsis chapter, imported and called, beside an empty `<Synopsis />` that reaches in and means what that one means; or it holds a synopsis written by hand, naming its book. The test library's [`the-library/2-of-the-log.tsx`](../../package/.binding/.test/the-library/2-of-the-log.tsx):
+***The Genesis, E33: "A catalogue entry is a chapter that is a synopsis; the catalogue may print or import it."*** Doug, 2026-09-26: *"It is a chapter with the synopsis attribute"*; *"the synopsis attribute can take another synopsis component and populate everything under the title"*; *"Obviously the chapter is kept out of the Synopsis annotations text, so that even in theory, it is not on the page. It is used for parts to inject and express in its parent chapter."* And: *"someone can just write a synopsis by hand. It doesn't need to be borrowed."* **So a catalogue's chapter is a chapter carrying a Synopsis, written one of three ways** — empty, in the book it is a synopsis of; `<Synopsis>$[ The Log ]</Synopsis>`, naming the book; or handed the other book's own synopsis chapter, imported and called — [Cover, Synopsis and TableOfContents](03-cover-synopsis-and-table-of-contents.md). The test library's [`the-library/2-of-the-log.tsx`](../../package/.binding/.test/the-library/2-of-the-log.tsx):
 
 ```tsx
 import LogSynopsis from '../the-log/.synopsis';
@@ -101,13 +101,12 @@ import LogSynopsis from '../the-log/.synopsis';
 export default () => (
     <Chapter>
         <Title>[[ Of the Log ]]</Title>
-        {LogSynopsis()}
-        <Synopsis />
+        <Synopsis>{LogSynopsis()}</Synopsis>
     </Chapter>
 );
 ```
 
-**Three things make it work, and none is written here.** The compiler compiles the imported file in *its* book's context, so the log's title still means `/the-log/#synopsis` on the library's page; [a title bound in another book takes its id back](02-chapter-and-title.md), so the page wears `id="synopsis"` once; and [a book has one synopsis *of itself*](05-book.md), so the catalogue may carry as many others' as it catalogues. *An edit to the log's synopsis is on the library's page at the next bind, with no edit to the library.*
+**Three things make it work, and none reads a url.** The Synopsis takes the chapter it is handed aside in its bond, so it never enters the annotation's text and is never on the page; at `defines` it gives its own chapter that chapter's parts — everything but its title — and at `$Bound` sends its own chapter's title to what it means, the log, since *"we want the title of a synopsis chapter to go to the book it is a synopsis of"*; and the compiler wrote the log's url into the imported chapter's title, because it knows a synopsis by its file. So the library's page wears `id="synopsis"` once, its own; the catalogue's chapter is the log's words under *Of the Log*, which links to the log; and [a book has one synopsis *of itself*](05-book.md), so the catalogue may carry as many others' as it catalogues. *An edit to the log's synopsis is on the library's page at the next bind, with no edit to the library.* **Until 2026-09-26 the imported chapter was rendered inside the host beside an empty `<Synopsis />`, and a title abroad took its id back by reading its url's page** — struck with [the rule that `.public` never reads a url](../projection/91-sprint-85--headings-and-routes.md#d9): *"We should NEVER be reading urls. That is a separate system and you are not entitled to use it."*
 
 ## Any writing reaches its book
 
