@@ -75,7 +75,7 @@
 | a resource that titles a chapter or allocates a mention, and so stands on every page | 1, 2 | `RESOURCE-NAMES` | source |
 | a reference to a name the library does not hold, in prose, in a string, or as an element | 3 | `UNKNOWN-REFERENCE`, and the transform's `missing` | source |
 | a name nobody refers to | 4 | `UNREFERENCED-MENTION` | source |
-| a chapter its table does not list; a book its catalogue does not answer for | 4 | `CHAPTER-NOT-LISTED`, `NOT-LISTED` | source |
+| a book its catalogue does not answer for — *and until 2026-09-26 a chapter its table did not list, `CHAPTER-NOT-LISTED`, struck when a table could be drawn from what its chapters mention* | 4 | `NOT-LISTED` | source |
 | a heading wearing its own words as an id — "Cautions" in seven chapters | 2 | nothing to raise: a heading wears no id unless a mention allocated it ([B32](08-the-binders-condition.md#b32)) | framework |
 | a mention allocated inside a writing that does not print, so its id is never drawn | 3 | the proof: "nothing on this page answers to it" — the compiler does not read `print` | page |
 | two elements on one page wearing one id, whatever drew them | 2 | the proof: "worn by N elements, and an id is worn once" | page |
@@ -111,7 +111,7 @@
 | | a topic is one of the other catalogues a book stands in | compiler | `TOPIC-IS-CATALOGUE` | built |
 | | every filing and topic is answered by its catalogue, in its table | compiler | `NOT-LISTED`, `NOT-IN-THE-TABLE` | built |
 | | a catalogue's table names the synopsis of each book it holds | compiler | `NO-SYNOPSIS` | built; read per table, U6 |
-| | a table lists every chapter of its book | compiler | `CHAPTER-NOT-LISTED` | built; read by reference, U6 |
+| | a table lists every chapter of its book — *struck 2026-09-26: a title gives every chapter its address, and a table may be drawn from what the chapters mention* | compiler | ~~`CHAPTER-NOT-LISTED`~~ | removed, [Sprint 84](../projection/90-sprint-84--means-and-the-table.md#u5) |
 | | a book may be filed only under one that is About something | compiler | `NOT-A-SUBJECT`, a proxy | planned, U6 |
 | **authorship** | every book names its author | compiler | `NO-AUTHOR` | built |
 | | one book, and only one, is by its own subject | compiler | `NO-SELF-AUTHOR`, `TWO-SELF-AUTHORS` | built |

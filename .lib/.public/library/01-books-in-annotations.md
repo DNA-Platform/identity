@@ -91,6 +91,24 @@ export const book = () => (
 
 ***Called, never rendered.*** *Written `<TheArgument1 />`, a chapter would reach the book as a function chemical its parts never see; `{TheArgument1()}` hands the book the Chapter itself — [found in the brainstorm](../projection/88-sprint-82--chapter-and-book.md) and Doug's "call the functions".* **So a chapter function holds no hooks**: it runs once when the book is made, inside no component of its own, and a hook in it would belong to the book. Nothing can check that; it is written here so nobody learns it from a crash.
 
+## A catalogue's chapter is another book's synopsis
+
+***The Genesis, E33: "A catalogue entry is a chapter that is a synopsis; the catalogue may print or import it."*** Doug, 2026-09-26: *"Maybe it is a chapter that renders it, and then decorates it. That seems more straightforward. Chapters can be in chapters."* And: *"someone can just write a synopsis by hand. It doesn't need to be borrowed."* **So it is informal, and nothing specifies it** — a chapter of the catalogue holds another book's synopsis chapter, imported and called, beside an empty `<Synopsis />` that reaches in and means what that one means; or it holds a synopsis written by hand, naming its book. The test library's [`the-library/2-of-the-log.tsx`](../../package/.binding/.test/the-library/2-of-the-log.tsx):
+
+```tsx
+import LogSynopsis from '../the-log/.synopsis';
+
+export default () => (
+    <Chapter>
+        <Title>[[ Of the Log ]]</Title>
+        {LogSynopsis()}
+        <Synopsis />
+    </Chapter>
+);
+```
+
+**Three things make it work, and none is written here.** The compiler compiles the imported file in *its* book's context, so the log's title still means `/the-log/#synopsis` on the library's page; [a title bound in another book takes its id back](02-chapter-and-title.md), so the page wears `id="synopsis"` once; and [a book has one synopsis *of itself*](05-book.md), so the catalogue may carry as many others' as it catalogues. *An edit to the log's synopsis is on the library's page at the next bind, with no edit to the library.*
+
 ## Any writing reaches its book
 
 ***Doug: "just have the book expose its cover, table, synopsis... and other things use it from there."*** **Every writing answers `$book`** — [the book it stands in](../writing/05-the-writing-class.md) — **and reads what the book exposes.** The test library's running head is the worked case: the library's name as a link, then the book it stands in and a link to that book's table — a resource of the library's first chapter, which the paper's argument wears, [`the-library/1-the-shelves.tsx.tsx`](../../package/.binding/.test/the-library/1-the-shelves.tsx.tsx):
