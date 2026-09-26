@@ -14,7 +14,7 @@
 |---|---|---|
 | `Author` · `Subject` · `About` | each an Annotation under its own name; none draws a note | R12, R14, R15 |
 | `.name` | the words of the `[name](identifier)` written in it | *"Not text / url — name / identifier"* — `text` until then |
-| `.reference` | the Reference it stands, expressed | *"expose it as a property"*; `reference` is a **proxy** |
+| `.means` | the Reference it stands, expressed — what the author, the subject or the about means; `reference` until 2026-09-26 | *"expose it as a property"*; Doug, 2026-09-26, on a map of every class standing a Reference: *"Yes, means everywhere"* — [Sprint 84](../projection/90-sprint-84--means-and-the-table.md) |
 | `.$Define()` | reads its compiled `[text](url)` through the binder and stands `<Reference>{url}</Reference>` among its own annotations | *"Annotations of Annotations"* |
 | `.write()` | draws its words | — |
 | `AuthorSpecification` · `SubjectSpecification` | **an author is said of a cover** · **a subject is said of a cover** | R12 |
@@ -50,8 +50,8 @@ export default () => (
 
 ```tsx
 <Paragraph>
-    by <Word><Reference>{this.author?.reference?.identifier}</Reference>{this.author?.name}</Word>,
-    filed under <Word><Reference>{this.subject?.reference?.identifier}</Reference>{this.subject?.name}</Word>
+    by <Word><Reference>{this.author?.means?.identifier}</Reference>{this.author?.name}</Word>,
+    filed under <Word><Reference>{this.subject?.means?.identifier}</Reference>{this.subject?.name}</Word>
 </Paragraph>
 ```
 
@@ -72,4 +72,4 @@ Five in the second half of [`.tests/cover.test.tsx`](../../package/.tests/cover.
 
 Committed as `abd303d`, the compiler's half as `beccfaf`. Measured 2026-09-25 after U11: the package 202 of 202; the compiler's unit suite 95 of 95 and regression 16 of 16, the byline drawn on every bound page.
 
-**Names.** Doug's: `Author`, `Subject`, `About`. Ours, flagged: `reference` on each, the three specifications and their rules, and the compiler's `about`, `titledTwice`, `NOT-A-SUBJECT` and `TITLED-TWICE`. *Collection's type alias `Author` — the author of a change — collides with this class at the package's index, which exports this one by name; flagged for Doug.*
+**Names.** Doug's: `Author`, `Subject`, `About`, and `means` on each since 2026-09-26. Ours, flagged: the three specifications and their rules, and the compiler's `about`, `titledTwice`, `NOT-A-SUBJECT` and `TITLED-TWICE`. *Collection's type alias `Author` — the author of a change — collides with this class at the package's index, which exports this one by name; flagged for Doug.*

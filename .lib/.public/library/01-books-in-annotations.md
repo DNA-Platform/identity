@@ -36,7 +36,7 @@
 
 ## Annotations of annotations
 
-***"Maybe they can each create a Reference as one of their own annotations, expose it as a property, and then it can be used. Annotations of Annotations."*** — Doug, 2026-09-25. **An Author is an annotation of the cover, and a Reference is an annotation of the Author.** It reads the compiled `[text](url)` written inside it, stands `<Reference>{url}</Reference>` in its own `$Define`, and answers `text` and `reference`. The book reaches into its cover and exposes all four — its `title`, `author`, `subject` and `about` — *"and then everyone can access them."*
+***"Maybe they can each create a Reference as one of their own annotations, expose it as a property, and then it can be used. Annotations of Annotations."*** — Doug, 2026-09-25. **An Author is an annotation of the cover, and a Reference is an annotation of the Author.** It reads the compiled `[text](url)` written inside it, stands `<Reference>{url}</Reference>` in its own `$Define`, and answers `name` and `means` — one word for the outward direction on every class that stands a Reference, since 2026-09-26. The book reaches into its cover and exposes all four — its `title`, `author`, `subject` and `about` — *"and then everyone can access them."*
 
 ## A whole book, written out
 
@@ -124,7 +124,7 @@ export class $RunningHead extends $Paragraph {
         const Reference = $(reference);
         return (
             <>
-                <Means>$[ The Library ]</Means> / <Word>{book.title?.name}</Word>: <Word><Reference>{table?.reference?.identifier}</Reference>{table?.name}</Word>
+                <Means>$[ The Library ]</Means> / <Word>{book.title?.name}</Word>: <Word><Reference>{table?.means?.identifier}</Reference>{table?.name}</Word>
             </>
         );
     }
