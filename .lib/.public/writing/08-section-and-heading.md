@@ -14,9 +14,13 @@
 |---|---|---|
 | `Section.$Define()` | stands `<Level>5</Level>`, `<Permissive />` and `<Closed />` | E7, E13; ruling 3 |
 | `Section.canonical` | overridden: its Heading, found by type among the contents, the first if several; none is a void | E7, E19; ruling 4 |
+| `Section.mention` | what its heading means — the Reference by which the section is reached, as a chapter's `mention` is its title's `means` | E7: *"first reference: Heading means its Section"*; Doug, 2026-09-26: *"The title of the section would mean itself, but the section would have that as a mention because the title represents the section"* — [Sprint 85](../projection/91-sprint-85--headings-and-routes.md#u2) |
 | `Section.specification` | `new SectionSpecification()`: **a section means through its heading** | E19 |
 | `Heading` | a Sentence, so at 3, permissive and open by Sentence's `$Define` | E7 |
 | `Heading.section` | its parent when that is a Section, else none; `heading.section.depth` is the depth E7 has it reach for | E7; ruling 4 |
+| `Heading.name` · `Heading.means` | its words — the name of the compiled pair when the heading is written as a mention, `[[[ What is claimed ]]]`, else its copy; and the Reference it stands to itself | Doug, 2026-09-26: *"The Heading is a self-referent because it is also the piece of writing being mentioned. One should have a self-reference on the heading"* |
+| `Heading.$Define()` | **does as a title does:** stands a Referent from `identifier.slug(name)`, so the heading wears the id its name slugs to, and a Self reference — to the url the compiler gave when the pair was written, else to `#` and that slug — so it links to itself either way; a heading with no words stands neither | *"Let's do like title. If no mention, the copy is slugged using the same utility and that is used as the mention and the id"* — [the Identifier](../utilities/04-identifier.md) |
+| `Heading.write()` | its name when the pair was written, so the syntax never shows; its text as written otherwise, words and all | as Title's and Mention's |
 | `Heading.specification` | `new HeadingSpecification()`: **a heading is in a section** | E7 |
 
 **The canonical goes both ways:** `section.canonical` is the heading, `heading.section` is the section, and neither is stored. A nested section's heading is among the outer's parts, since `parts` splices a same-class child, but never the outer's canonical, which is found among its own contents.
@@ -27,10 +31,10 @@ A class of section that means through something else overrides `canonical` to fi
 
 ## Promises
 
-Five in [`.tests/section.test.tsx`](../../package/.tests/section.test.tsx): the level and pair, the canonical its heading wherever it stands; a section without a heading a void when asked; parts across subsections and the canonical its own heading only, the nested section one deeper; a heading a sentence at 3 whose section is its parent; a heading outside a section, or in a paragraph, saying so when asked, and one beside a sentence in a section up to code.
+Nine in [`.tests/section.test.tsx`](../../package/.tests/section.test.tsx). Five of the relation: the level and pair, the canonical its heading wherever it stands; a section without a heading a void when asked; parts across subsections and the canonical its own heading only, the nested section one deeper; a heading a sentence at 3 whose section is its parent; a heading outside a section, or in a paragraph, saying so when asked, and one beside a sentence in a section up to code. Four of a heading doing as a title does: written as a mention it wears its name's slug, means the compiler's url as a Self reference, and its section mentions it; written plain, its copy's slug is its id and `#` it is what it means; drawn, its words stand inside an anchor to what it means, its own element wearing the id and `pa-self-reference`, the syntax never shown; a section with no heading, or a heading with no words, mentions nothing.
 
 ## Gate
 
-Typecheck 0 errors, quick build fresh, 73 of 73 across eight files on 2026-09-22, committed locally and not pushed.
+Typecheck 0 errors, quick build fresh, 73 of 73 across eight files on 2026-09-22; 242 of 242 across eighteen on 2026-09-26 with the heading's four, `efb7f48` — committed locally and not pushed.
 
-**Names.** Doug's: `Section`, `Heading`, `canonical`, `section`. Ours, flagged: `SectionSpecification`, `HeadingSpecification`, the rules `$hasAHeading` and `$isInASection`.
+**Names.** Doug's: `Section`, `Heading`, `canonical`, `section`, `mention`, `name`, `means`. Ours, flagged: `SectionSpecification`, `HeadingSpecification`, the rules `$hasAHeading` and `$isInASection`.
