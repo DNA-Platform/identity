@@ -10,7 +10,8 @@
 #   bash $T launch <name> '<command>'    the run protocol: pull, branch, run detached, commit, push
 #   bash $T status [<branch>]            the runs on the box, or one run's state and log
 #   bash $T watch <branch> [minutes]     poll a run until it has pushed (run it in the background)
-#   bash $T harvest <branch>             pull a finished run's branch here, into main
+#   bash $T harvest <branch>             pull a finished run's branch here, into main (rebased if main moved)
+#   bash $T probe <branch> <name> '<cmd>'  test code in a run's worktree, recorded on its branch
 #   bash $T ignored                      the ignored paths that travel by `send`
 #   bash $T send <path>...               copy ignored files to the box, verified by sha256
 #   bash $T send-list <file>             send every path in <file>, one at a time
@@ -194,9 +195,38 @@ echo \"\$state | \$(grep -h '^exit:' runs/$branch/meta.txt 2>/dev/null) | gpu \$
     done
 }
 
-# Step 5: the run comes home through GitHub, into main here.
+# A probe: test code run in a run's worktree and RECORDED there - the script and what it printed, in
+# runs/<branch>/probes/ - committed with the run, or on its own commit once the run has finished.
+# Doug, 2026-09-26: "You can have probes you run as test code, but remember to record them in the
+# branch there as something we commit. Probably good records from the perspective of reproducibility."
+probe() {
+    local branch=${1:-} name=${2:-} cmd=${3:-} stamp
+    [ -n "$branch" ] && [ -n "$name" ] && [ -n "$cmd" ] || { echo "usage: probe <branch> <name> '<command>'"; return 2; }
+    [[ $name =~ ^[A-Za-z0-9-]+$ ]] || { echo "a probe name is letters, digits and hyphens"; return 2; }
+    stamp=$(date +%Y%m%d-%H%M%S)
+    box_script "set -e
+cd ../$branch
+export VIRTUAL_ENV=\$A/main/.venv PATH=\$A/main/.venv/bin:\$PATH ALS_ROOT=\$A ALS_RUN=$branch
+P=runs/$branch/probes; mkdir -p \$P
+cat > \$P/$stamp-$name.sh <<'ALS_PROBE_END'
+$cmd
+ALS_PROBE_END
+bash \$P/$stamp-$name.sh 2>&1 | tee \$P/$stamp-$name.out
+if pgrep -f 'run.sh $branch' >/dev/null; then
+    echo '(recorded in runs/$branch/probes/: committed with the run when it finishes)'
+else
+    git add -- \$P && git commit -q -m 'probe $name on $branch' && git push -q origin $branch \
+        && echo '(recorded: committed and pushed on $branch)'
+fi"
+}
+
+# Step 5: the run comes home through GitHub, into main here. MAIN HERE IS THE OBJECT OF RECORD, and
+# it keeps moving while a run is long - so when it has moved past the run's base, the run's commits
+# are REBASED onto it, never merged in sideways. Doug, 2026-09-26: "We want the object of record to be
+# here while things are long-running. You probably rebase the branch." The branch on GitHub keeps
+# the commits exactly as they ran, and meta.txt still names the base they ran from.
 harvest() {
-    local branch=${1:-}
+    local branch=${1:-} base rebased
     [ -n "$branch" ] || { echo "usage: harvest <branch>"; return 2; }
     cd "$REPO"
     [ "$(git rev-parse --abbrev-ref HEAD)" = main ] && [ -z "$(git status --porcelain)" ] \
@@ -206,9 +236,19 @@ harvest() {
     MSYS_NO_PATHCONV=1 git show "origin/$branch:runs/$branch/meta.txt"
     MSYS_NO_PATHCONV=1 git show "origin/$branch:runs/$branch/not-committed.tsv" 2>/dev/null \
         | sed 's/^/stayed on the box (receive it): /' || true
-    git merge -q --ff-only "origin/$branch" \
-        || { echo "main has moved since the run's base; merge origin/$branch by hand"; return 1; }
-    echo "HARVESTED: main is now $(git rev-parse --short HEAD), the run's commit"
+    if git merge -q --ff-only "origin/$branch" 2>/dev/null; then
+        echo "HARVESTED: main is now $(git rev-parse --short HEAD), the run's commit"; return 0
+    fi
+    base=$(git merge-base main "origin/$branch")
+    git checkout -q --detach "origin/$branch"
+    if git rebase -q --onto main "$base"; then
+        rebased=$(git rev-parse HEAD)
+        git checkout -q main && git merge -q --ff-only "$rebased"
+        echo "HARVESTED, REBASED: the run's $(git rev-list --count "$base..origin/$branch") commit(s) now sit on main at $(git rev-parse --short HEAD)"
+    else
+        git rebase --abort; git checkout -q main
+        echo "the run's commits conflict with main here - nothing changed; resolve by hand"; return 1
+    fi
 }
 
 # Ignored paths that travel: data, caches, logs. Not identity, not the venv, not bytecode.
@@ -357,10 +397,11 @@ case $cmd in
     status)    status "${1:-}" ;;
     watch)     watch "${1:-}" "${2:-10}" ;;
     harvest)   harvest "${1:-}" ;;
+    probe)     probe "${1:-}" "${2:-}" "${3:-}" ;;
     ignored)   ignored ;;
     send)      for p in "$@"; do send_one "$p"; done ;;
     send-list) send_list "$1" ;;
     receive)   receive "${1:-}" "${2:-}" ;;
     python)    python_env "${1:-}" ;;
-    *)         sed -n '2,25p' "$0"; exit 2 ;;
+    *)         sed -n '2,28p' "$0"; exit 2 ;;
 esac

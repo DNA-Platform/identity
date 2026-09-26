@@ -13,7 +13,7 @@ Drive the lab box — `lipshutzlab-01`, the lab's Linux GPU machine — from thi
 
 1. [Reaching the box](34-01-als-remote--reaching-the-box.md) — `check` first, every session. What must hold at each end: Tailscale on both machines, Tailscale SSH switched on at the box, the ACL in `accept` mode, ProtonVPN's kill switch out of the way (its symptom is a local `Permission denied`), the host key accepted on first use.
 2. [The folder](34-02-als-remote--the-folder.md) — everything inside `~/doug/altered-states/`, nothing in the lab's shared home; `main` a mirror that only moves by pulling; branches only per run; identity never travels.
-3. [The run](34-03-als-remote--the-run.md) — commit everything here, pull there, branch `run-<YYYYMMDD-HHMM>-<name>` into a worktree beside `main`, run detached and commit everything about it there, pull it home through GitHub.
+3. [The run](34-03-als-remote--the-run.md) — commit everything here, pull there, branch `run-<YYYYMMDD-HHMM>-<name>` into a worktree beside `main`, run detached and commit everything about it there, pull it home through GitHub, rebased onto `main` if `main` moved. All code is written here; every probe on the box is recorded on its run's branch.
 4. [The files git does not carry](34-04-als-remote--the-files-git-does-not-carry.md) — `send` out and `receive` back over SSH, one path at a time, every file checked by sha256, resumable, in the background.
 5. [The environment](34-05-als-remote--the-environment.md) — this machine's Python rebuilt inside the folder from a lock the compiler generates from what is actually installed here; what was installed around its metadata goes around it there too; proved package by package.
 6. [Root](34-06-als-remote--root.md) — the sudo password in `.env` at the project root on this machine and nowhere else, its one role, and the three walls that keep it here; every change as root is Doug's decision, simulated first, because the machine is shared.
@@ -41,7 +41,8 @@ bash $T pull [--discard]             # the box's main := GitHub's main
 bash $T launch <name> '<command>'    # a run
 bash $T status [<branch>]            # every run on the box, or one run in detail
 bash $T watch <branch> [minutes]     # poll a run in the background until it has pushed
-bash $T harvest <branch>             # a finished run's branch, pulled into main here
+bash $T harvest <branch>             # a finished run's branch, into main here (rebased if main moved)
+bash $T probe <branch> <name> '<cmd>'  # test code in a run's worktree, recorded on its branch
 bash $T ignored                      # the ignored paths that `send` moves
 bash $T send <path>...               # ignored files or folders to the box, verified
 bash $T send-list <file>             # every path in <file>, one at a time
