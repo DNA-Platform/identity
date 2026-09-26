@@ -19,13 +19,13 @@
 | `RunningHead` | [the test library](../../package/.binding/.test/the-library/1-the-shelves.tsx.tsx) | **yes** — the line at the head of every page naming its book | — |
 | `Typewritten` | [the paper's book](../../package/.binding/.test/paper/.book.tsx) | **yes** | — |
 | `Theme` | [the library's book](../../package/.binding/.test/the-library/.book.tsx) | Doug's | — |
-| `bound`, `printed`, `read`, `drawn` | [staging](../../package/.binding/.test/staging.ts), the regression | **yes** — the bindery and the press | — |
-| `staged`, `Staged`, `held` | staging, the regression | no — the theatre | **galley** — the trial impression pulled to be corrected before a book is bound; one galley is broken on purpose, one is measured |
+| `bound`, `printed`, `read`, `drawn` | [the galleys](../../package/.binding/.test/galleys.ts), the regression | **yes** — the bindery and the press | — |
+| `staged`, `Staged`, `held` | the galleys, the regression | no — the theatre | **renamed 2026-09-26:** `pulled()` returns a `Galley`, kept under `.test/.galleys/` in `galleys.ts` — the trial impression pulled to be corrected before a book is bound; one galley is broken on purpose, one is measured |
 | `fixture` | staging | no — the workshop | **copy** is the printer's word for the text set from, but it says too little; no exact word, so it stays |
 | `duplicated`, `Copies` | staging | no | none exact — a book set again under N names is no edition — so they stay |
-| `$CountingBook` | [the render promises](../../package/.tests/renders.test.tsx) | no | **ledger** — a book that keeps count |
+| `$CountingBook` | [the render promises](../../package/.tests/renders.test.tsx) | no | **renamed:** `$Ledger`, a book that keeps count |
 | `$Reading`, `$Unreading`, `$Looking` | the render and book promises | reading is writing's own | — |
-| `One` … `Four`, `The Table` | [the grid promise](../../package/.tests/table.test.tsx) | entries from no work | **the First Folio's Catalogue** — the plays under Comedies, Histories and Tragedies |
+| `One` … `Four`, `The Table` | [the grid promise](../../package/.tests/table.test.tsx) | entries from no work | **renamed:** the First Folio's Catalogue — *The Tempest*, *Twelfth Night*, the Histories, *Hamlet*, and *A Catalogue* said of the chapter |
 | `Budding`, `Growing`, `Grafting` | older promises | no — the garden and the cell | each to be read against what it tests |
 
 ## Annotated works beside what we built
@@ -38,7 +38,7 @@
 | **The incipit** | a medieval work known by its opening words | a composition's canonical is its first part — a section's heading, a chapter's title | **close** |
 | **The errata slip** | corrections bound in after printing, applied by the reader, the type never reset | [`$is`](../writing/05-the-writing-class.md) — the changes and not the set, stood in front of what was written and taken back whole | **close** |
 | **The colophon** | the printer's note at the end: who made the book, when, and where | the binder's `record` phase and the manifest it writes | **close in what it holds**; drawn on no page |
-| **Galley proofs** | trial impressions pulled to be corrected before binding | the regression's staged copies — [one broken on purpose, one bound whole](../the-catalogue-and-the-specification/07-the-binder.md#test-library) | **close**; the name is the theatre's |
+| **Galley proofs** | trial impressions pulled to be corrected before binding | the regression's galleys — [one broken on purpose, one bound whole](../the-catalogue-and-the-specification/07-the-binder.md#test-library) | **close** — and now the name too |
 | **The catchword** | the next page's first word printed at the foot of this one | `after(this)` — an annotation reaching what stands behind it | **a likeness**, not a component |
 | **The Glossa Ordinaria** | the text with glosses between its lines and around it | every annotation's note is drawn after its writing — and hidden by the test library's Theme | **partial** — there is no margin |
 | **The Talmud page** | the text at the center, Rashi and Tosafot around it, glosses on glosses, a reference apparatus on every page | annotations of annotations — an Author carries its Reference; Means and Mention | **partial** — the page has no shape; every composition draws as a span |
@@ -49,7 +49,7 @@
 
 ## Seen as a cell
 
-**Read only for structure — the names stay writing's.** Doug's likeness holds further than expected: the sequence and the annotations on it behave the way a text and its annotations do.
+**Read only for structure — the names stay writing's.** The likeness is already the annotation system's own, [said once and plainly](../writing/07-the-annotation-system.md#the-genetics-said-once-and-plainly), and Doug put it this way the same day: ***"Our annotation system is like trait based genome, where each annotation confers a phenotype, it is about some particular property of the writing. The same annotation can be written on many pieces of writing."*** So a Cover is a trait — being a cover — and it can be written on any chapter; what the survey adds is where the likeness reaches past the annotation itself, into the page and the books around it:
 
 | in an annotated work | in a cell |
 |---|---|
@@ -64,6 +64,10 @@
 
 *Two rows are exact enough to guide a design. **A rubric is an epigenetic mark:** each marks without rewriting, and each is read by whatever comes after — which is why a `pa-` class belongs to an annotation and never to the text. **A parenthetical is an intron:** present in what was written, absent from what is read — which is why a table can hide its apparatus entries and the compiler still read them.*
 
+## <a id="practice"></a>Standing: the test library as practice
+
+***"You own the test library. You can rename freely based on the principles I have given you."*** — Doug, 2026-09-26, and the same hour: *"note, somewhere, to replace and improve the semantics of the test library for the sake of practicing your development abilities and learning how to infer what is a well-named component for a public library."* **So the test library is ours to name, and it is practice ground:** it faces no reader of `.public`, and every name in it is a rehearsal for naming a public component well. The cursory pass renamed what the audit found — the galley, the ledger, the First Folio's plays — and left the rest for that practice: the older promises' garden words, `Budding`, `Growing` and `Grafting`, each to be read against what it tests; the test library's books themselves, which could grow toward the annotated works above — a gloss, a colophon, a page with margins once the page has a shape. **The rule for the practice:** writing's lexicon and the book arts; a book word only where it is exact; the genome as structure and never the name.
+
 ## What it asks of Doug
 
-The renames the audit offers — **galley** for the staged copies, **ledger** for the book that keeps count, **the First Folio's plays** for the grid's entries — and whether the page's shape, with the Glossa and the Talmud page as its examples, is the next thing to build.
+Whether the page's shape — a center, margins, a place beside the text for what is said of it, with the Glossa and the Talmud page as its examples — is the next thing to build.
