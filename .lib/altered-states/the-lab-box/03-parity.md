@@ -25,7 +25,7 @@ So the box's `main` is a mirror. Parity means the same HEAD, the same index and 
 
 ## How parity is made
 
-The [skill's `sync`](../../../.claude/library/our-skillset/34-als-remote.md#sync--parity-with-nothing-committed-on-the-box) does this; the first parity was made by hand the same way.
+This was the first parity only. It was made to carry uncommitted work without a commit; under [the run protocol](04-the-run.md) everything is committed here first and the box pulls, so the method is retired.
 
 **HEAD.** The box's clone stood at `a4d50c1` (GitHub's `main`); this working copy was 21 commits ahead. A git bundle of exactly those commits (116 MB) crossed by `scp` and was fast-forwarded in. Nothing was pushed to GitHub, so the box reports `ahead 21` of `origin/main`, the same line as here.
 
