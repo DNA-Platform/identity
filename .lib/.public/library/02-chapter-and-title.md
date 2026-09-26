@@ -18,7 +18,8 @@
 | `Title` | a Sentence, so at 3, permissive and open; not a Heading | *"it can be at the Sentence level"*; R3 |
 | `Title.chapter` | its parent when that is a Chapter, else none — the reading `heading.section` is | *"a similar relationship"*; R3 |
 | `Title.name` | the words of the `[name](identifier)` the compiler wrote in it | Doug, 2026-09-25: *"Not text / url — name / identifier"* — `text` until then |
-| `Title.reference` | the Reference it stands, expressed | D5; `reference` is a **proxy** |
+| `Title.means` | the Reference it stands, expressed — what the title means, which is its chapter; `reference` until 2026-09-26 | D5; Doug, 2026-09-26: *"title.means = Reference to chapter"* — [Sprint 84](../projection/90-sprint-84--means-and-the-table.md#u1) |
+| `Chapter.title` · `Chapter.mention` | its Title, which is its canonical; and what that title means, so a chapter mentions itself by its title's Reference | *"chapter.mention is a get property that returns title.means"* — [Sprint 84](../projection/90-sprint-84--means-and-the-table.md#u1) |
 | `Title.$Define()` | reads the compiled `[text](url)` through the binder and stands `<Reference>{url}</Reference>`, and `<Referent>{fragment}</Referent>` when the url has one | *"It uses the compiler syntax!!"*; *"Titles should have ids"*; *"use the url as an id"* |
 | `Title.write()` | draws its words | R4 |
 | `Title.specification` | `new TitleSpecification()`: **a title is in a chapter**; **a title holds the link the compiler gives it** | R3, R4 |
@@ -56,4 +57,4 @@ Eight in [`.tests/chapter.test.tsx`](../../package/.tests/chapter.test.tsx): the
 
 Committed as `ffdc354`, and Title moved to its own file at `3852c1e`. Measured 2026-09-25 after the move: the package typecheck 0 errors and 202 of 202 across fifteen files; bound in the compiler's test library, every chapter's title wearing its id once, [the proof](../../package/.binding/specification/proof.ts) reading every link back to it.
 
-**Names.** Doug's: `Chapter`, `Title`, `canonical`, and `chapter` as `section` is. Ours, flagged: `reference` on Title, `ChapterSpecification`, `TitleSpecification`, and the rules `$hasOneTitle`, `$isInAChapter` and `$holdsItsLink`.
+**Names.** Doug's: `Chapter`, `Title`, `canonical`, `chapter` as `section` is, and since 2026-09-26 `means`, `title` and `mention`. Ours, flagged: `ChapterSpecification`, `TitleSpecification`, and the rules `$hasOneTitle`, `$isInAChapter` and `$holdsItsLink`.

@@ -13,12 +13,14 @@
 | member | what it is | cited |
 |---|---|---|
 | `Book.$Define()` | stands `<Level>7</Level>`, `<Strict />` and `<Closed />`, so it holds chapters and books | E30, E62; ruling 3 of Sprint 79 |
+| `Book.$Book(...chemicals)` | its bond: Writing's, and then `$Bound()` last, once every chapter is in — **the only bond constructor that calls it**, so every writing in a book is bound top to bottom the moment the book is whole | Doug, 2026-09-26: *"$Book is the only bond constructor that actually calls it"* — [Sprint 84](../projection/90-sprint-84--means-and-the-table.md#u2) |
 | `Book.canonical` | overridden: the chapter among its contents that `is(Cover)`, wherever it stands | R7 |
 | `Book.$book` | overridden: the book itself, so every writing in it that asks its parent for [its book](../writing/05-the-writing-class.md) ends here — the walk ends by override, never by a condition in Writing | R1 of [Sprint 83](../projection/89-sprint-83--memory-management.md#u1): *"give every writing a book"*, `b90d70f` |
-| `Book.cover` · `Book.synopsis` · `Book.table` | the chapter carrying Cover, Synopsis and TableOfContents, each found by type wherever it stands; `cover` answers the canonical | Doug, 2026-09-25: *"add the cover, synopsis and table properties on book"*, and of the table, *"(can be the property for its table of contents)"* — [Sprint 83](../projection/89-sprint-83--memory-management.md), `e6119fa` |
+| `Book.cover` · `Book.synopsis` · `Book.table` | the chapter carrying Cover and the one carrying TableOfContents, each found by type wherever it stands, `cover` answering the canonical; and **the chapter that is its synopsis of itself** — whose Synopsis means the book — since a catalogue's chapters are synopses of other books, and a book may carry any number of those | Doug, 2026-09-25: *"add the cover, synopsis and table properties on book"*, and of the table, *"(can be the property for its table of contents)"* — [Sprint 83](../projection/89-sprint-83--memory-management.md), `e6119fa` |
 | `Book.title` | its cover's title | R8 |
+| `Book.means` | what its cover means — its cover's mention, the Reference to the book | Doug, 2026-09-26: *"Book can mean what its Cover means - return that, because a link that goes to the cover is one that goes to the book"* — [Sprint 84](../projection/90-sprint-84--means-and-the-table.md#u1) |
 | `Book.author` · `Book.subject` · `Book.about` | its cover's Author, Subject and About, expressed | R8; *"book can reach in an expose them"* |
-| `Book.specification` | `new BookSpecification()`: **a book has one cover**; **one synopsis**; **one table of contents** | R11 |
+| `Book.specification` | `new BookSpecification()`: **a book has one cover**; **one synopsis of itself**; **one table of contents** | R11; *of itself* since 2026-09-26, forced by the catalogue's shape — [Sprint 84, D4](../projection/90-sprint-84--means-and-the-table.md#plan) |
 
 **The book is layout** — [*"Book is layout. Chapters are logical parts."*](../the-coding-style/03-the-coding-style.md#book-and-chapter) It decides where its chapters go, and asks what each is by what it carries; it reads its cover rather than storing a word of it, so `book.author` is always what the cover says now.
 
