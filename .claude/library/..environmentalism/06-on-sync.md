@@ -80,6 +80,8 @@ The script detects what changed and routes each category to the right place:
 - **There is no shared-branch step and no merge to `main`.** Both were removed on 2026-08-12: a shared `dna-platform` push is what created the mutual-clobber trap below, and the repo-named branch dissolves it rather than guarding against it. The branch is created on first push if missing; routing is derived from the project directory name and the `library/*/.lib` glob, never hardcoded.
 - **Project code changes**: committed and pushed in the project repo. Generates the project-root `CLAUDE.md` with link prefix adjustment.
 
+`IDENTITY_ONLY=true` stops after the identity push and leaves the project repo untouched. The project step runs `git add -A`, so without it any uncommitted project work — the owner's, until the owner commits it — would be swept into the identity commit's message and pushed.
+
 The script runs [validation](05-on-validation.md) before any commits. If validation fails, nothing is pushed. The branching model is enforced by the tool — the operator does not need to remember which branch to push to.
 
 The tool is bash, not TypeScript. It is git operations, not library parsing. It belongs beside this chapter as a resource because it is the mechanism that implements the sync specification.

@@ -3,6 +3,7 @@
 # Resource for: 06-on-sync.md
 # Usage: bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 61: commit message"
 #        DRY_RUN=true bash .../06-on-sync--commit.sh "msg"   # validate + print the plan, mutate nothing
+#        IDENTITY_ONLY=true bash .../06-on-sync--commit.sh "msg"   # step 1 only: the project repo is left untouched
 #
 # Two-way commit:
 #   1. Identity (.claude/) AND the branch libraries (library/*/.lib/) → identity repo,
@@ -24,6 +25,9 @@
 set -euo pipefail
 
 DRY_RUN="${DRY_RUN:-false}"
+# Uncommitted project work is the owner's until they commit it; step 2's `git add -A` would sweep it
+# into this message and push it. IDENTITY_ONLY stops after the identity push.
+IDENTITY_ONLY="${IDENTITY_ONLY:-false}"
 
 # --- Helpers ---
 
@@ -206,7 +210,11 @@ if [ "$DRY_RUN" = true ]; then
         echo "No branch libraries (library/*/.lib) — .claude/ still goes to $PROJECT_NAME."
     fi
     echo "Would push $PROJECT_NAME (with -u on first push)."
-    [ "$has_project_changes" = true ] && echo "Would commit project code + regenerate root CLAUDE.md, then push the project repo."
+    if [ "$IDENTITY_ONLY" = true ]; then
+        echo "IDENTITY_ONLY: would leave the project repo untouched."
+    elif [ "$has_project_changes" = true ]; then
+        echo "Would commit project code + regenerate root CLAUDE.md, then push the project repo."
+    fi
     echo ""
     echo "DRY RUN complete."
     exit 0
@@ -292,7 +300,10 @@ fi
 
 # --- Step 2: Project code → project repo ---
 
-if [ "$has_project_changes" = true ]; then
+if [ "$IDENTITY_ONLY" = true ]; then
+    echo "IDENTITY_ONLY: project repo left untouched."
+    echo ""
+elif [ "$has_project_changes" = true ]; then
     echo "========================================"
     echo "PROJECT CODE → project repo"
     echo "========================================"
