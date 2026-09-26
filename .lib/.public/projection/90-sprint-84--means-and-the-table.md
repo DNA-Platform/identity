@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
-- **status:** requirements-only — brainstormed 2026-09-26, eleven requirements approved
+- **status:** implementation-ready — brainstormed and planned 2026-09-26, seven units
 - ***The sprint's name is a PROXY, the room's, taken from Doug's two words for it; his to rename.***
 
 ---
@@ -47,7 +47,7 @@
 | **R1** | `Title.means` — the Reference a title stands to its chapter, the proxy `Title.reference` renamed | the argument's title means `/a-paper/#the-argument` |
 | **R2** | `Chapter.title`, its Title, and `Chapter.mention`, its title's `means` | every chapter of the test library answers both |
 | **R3** | `Book.means` — what its cover means, *"because a link that goes to the cover is one that goes to the book"* | the paper means `/a-paper/` |
-| **R4** | `Synopsis.means` — the book it is a synopsis of: the reference written inside it, `<Synopsis>$[ The Log ]</Synopsis>`; else, reaching into its own chapter, the `means` of a chapter there that is a synopsis; else its chapter's mention | the three cases, each in a unit promise |
+| **R4** | `Synopsis.means` — the book it is a synopsis of: the reference written inside it, `<Synopsis>$[ The Log ]</Synopsis>`; else, reaching into its own chapter, the `means` of a chapter there that is a synopsis; else the book its chapter's title names — *corrected at the plan from 'its chapter's mention', on Doug's 'or get its book'* | the three cases, each in a unit promise |
 
 ### B. `$Bound` — the moment a book is whole
 
@@ -80,6 +80,60 @@
 
 **Out of scope:** E33's Canonical; Part; a table drawing itself from its contents in every book.
 
+## <a id="plan"></a>The plan
+
+*Planned 2026-09-26, after a catch-up of thirty documents. **One session, seven units, no division:** the work is smaller than the briefs a division would need. Every `src` change is listed under [D9](#d9) for Doug's yes before it is made.*
+
+### Decisions
+
+| | decision | why, and what it was chosen over |
+|---|---|---|
+| **D1** | **`means` is per class and on no base** — `Title.means` (the proxy `Title.reference` renamed), `Book.means` its cover's mention, `Synopsis.means` its own; `Chapter.mention` its title's `means`; Author, Subject and About keep `reference` this sprint | Doug: *"which I don't want to put on a base class for now"*. Renaming the other three is a separate word from him |
+| **D2** | **`$Bound()` is protected on Writing, beside `$Define`**, and does the walk itself: its own text, then its annotations, each `$Bound()`. An override does its work and then calls `super.$Bound()`. `$Book` gains a bond constructor, `$Book(...chemicals)`, calling Writing's and then `$Bound()` last | his shape exactly; chemistry finds a bond by the class's own name and walks up, so Book must own one to be *"the only bond constructor that actually calls it"* |
+| **D3** | **A title abroad takes its Referent back in `$Bound`** — when the book part of its `means` is not its `$book.means` — and keeps standing it in `$Define` | [`chapter.test.tsx`](../../package/.tests/chapter.test.tsx) promises a chapter built alone wears its id; moving the Referent to `$Bound` would break that. Removal is the collection's own move, and the next define takes the id back |
+| **D4** | **A book has one synopsis *of itself***: the specification counts its chapters whose Synopsis means the book, and `Book.synopsis` answers that one | asked, Doug answered with the right question — *"The book wouldn't carry a chapter rendered in a chapter, would it? The chapter is still the one in the file"* — and it does not: `text.find($Chapter)` reads a book's direct chapters, so the rendered synopsis is never counted. **But the host chapter is the one in the file, and in his shape it carries `<Synopsis />` too**, so The Library holds two chapters of its own wearing Synopsis, one meaning `/the-library/` and one `/the-log/`. Built as *of itself*, for him to overrule |
+| **D5** | **`Synopsis.means` is the Synopsis's own Reference, stood in `$Define` as Author stands its**, from the first of three: the compiled pair written inside it; else the `means` of a synopsis chapter among its chapter's text; else the book its chapter's title names, the title's address before its fragment. `write()` draws its name | R4 and Doug's *"or get its book"* — an imported synopsis cannot reach its book's object from inside another book, but its title already names it; and one shape for all three cases, never another writing's annotation handed back |
+| **D6** | **`TableOfContents.contents` answers `$Reference[]`** — the mentions of its book's chapters, depth-first, a chapter in a chapter after its host, its own included; Content is untouched, and the page-order walk of Contents from Sprint 83 goes, its promise with it | R6, his *"just get all of the references"*; the drawn table pairs a name with each by asking the chapters, never by casting a Reference's parent |
+| **D7** | **The Table's rows are the composition's parts from `$start`, and cells a row's parts.** `$start` is a prop; when it is not given, a Table said of a section or a chapter sets it to 1, past the canonical, and to 0 otherwise | Doug: *"This has to be configured as a prop: $start: number, start = 1 would skip the canonical, and we can make table smart enough to typecheck for sections and chapters and set start to 1 if undefined"* — over rows by level, which was offered |
+| **D8** | **The compiler's every-chapter rule goes and nothing else does**: the fault, the loop, its unit case, and the regression galley that raised it, re-aimed at `NO-SYNOPSIS`. `structure.lists` stays, since a catalogue's answering rows still need it | R8; a title already guarantees every chapter an address, and *"the links are dynamic"* |
+| <a id="d9"></a>**D9** | **`src` changes, with Doug's yes:** `Writing.tsx` (`$Bound`) · `Title.tsx` (`means`, a `$Bound` override) · `Chapter.tsx` (`title`, `mention`) · `Book.tsx` (`means`, the bond, the synopsis rule and getter) · `Synopsis.tsx` (`means`, `$Define`, `write`) · `TableOfContents.tsx` (`contents`) · `Table.tsx`, new in `writing`. **Every one to the conventions, pristine** — [the order of a class](../the-coding-style/02-the-order-of-a-class.md), [the code patterns](../the-coding-style/03-the-coding-style.md#code-patterns): a name says the type, a known parent is typed by a property and never a cast, `$Define` written like TSX, no member beyond the list | *"Yes build all 7, but be very very careful about naming and coding conventions I want these classes looking pristine based on conventions please"* |
+
+### Units
+
+**<a id="u1"></a>U1 — what writings mean (R1–R3).** *What runs:* getters. *Files:* `src/library/Title.tsx`, `Chapter.tsx`, `Book.tsx`; the RunningHead, which reads `table?.reference` today; `.tests/chapter.test.tsx`, `.tests/book.test.tsx`; docs [Chapter and Title](../library/02-chapter-and-title.md), [Book](../library/05-book.md). *Scenarios:* the argument's title means `/a-paper/#the-argument`; a chapter's `title` is its canonical and its `mention` that title's `means`; a chapter with no title mentions nothing; the paper means `/a-paper/`; the RunningHead still draws its line. *Seen:* nothing new; the page as it was.
+
+**<a id="u2"></a>U2 — `$Bound` (R5).** *What runs, and when:* once, at the end of the book's bond, top to bottom. *Files:* `src/writing/Writing.tsx`, `src/library/Book.tsx`; `.tests/book.test.tsx`, `.tests/renders.test.tsx`; docs [The Writing Class](../writing/05-the-writing-class.md), [How Writing Is Extended](../writing/06-how-writing-is-extended.md) — the seam row and the pattern *do your work, then `super`*. *Scenarios:* a paragraph three levels down finds, in its `$Bound`, its book whole — cover and table found; an annotation's `$Bound` is called too; a chapter built alone is never bound and does not throw; **the cost:** a book whose paragraph overrides `$Bound` mounts at 6 draws, 1 paint, 1 commit, as the control does.
+
+**<a id="u3"></a>U3 — `Synopsis.means`, and one synopsis of itself (R4, D4).** *Files:* `src/library/Synopsis.tsx`, `Book.tsx`; `.tests/cover.test.tsx`, `.tests/book.test.tsx`; docs [Cover, Synopsis and TableOfContents](../library/03-cover-synopsis-and-table-of-contents.md), [Book](../library/05-book.md). *Scenarios:* written `[The Log](/the-log/)`, it means `/the-log/`; empty, its chapter holding a chapter whose Synopsis means `/the-log/`, it means that; empty and alone, its chapter titled `[Synopsis](/the-log/#synopsis)`, it means `/the-log/`; a book with its own synopsis and a chapter holding another book's specifies clean and answers its own as `synopsis`; two of its own do not specify.
+
+**<a id="u4"></a>U4 — the table's contents are its chapters' mentions (R6, R7).** *Files:* `src/library/TableOfContents.tsx`; `.tests/table.test.tsx`, rewritten — the Folio grid kept for U7; the regression; docs [Cover, Synopsis and TableOfContents](../library/03-cover-synopsis-and-table-of-contents.md). *Scenarios:* a paper-shaped book's table answers five mentions in book order, its own among them; a chapter in a chapter is answered after its host; a book with a written table: every Content's identifier is among the contents' (R7, in memory); in the regression, on every page with a written table, each `pa-content` anchor's address is one a chapter's title wears (R7, the markup read).
+
+**<a id="u5"></a>U5 — Some Projects' table drawn, and the rule removed (R8, D8).** *Files:* `.binding/.test/projects/.table.tsx` and a resource beside it, `.table.tsx.tsx`, whose class draws the entries from `$book` — a name of the test library's own; `.binding/catalogue/wellformed.ts`, its faults, `wellformed.test.ts`; `.binding/.test/binding.regression.ts`, the broken galley re-aimed; a unit promise in `.binding/.test/`; docs [the binder](../the-catalogue-and-the-specification/07-the-binder.md). *Scenarios:* in memory, a book with the drawn table lists its chapters as links with their names, and a chapter added is listed after the next draw, the cost counted; the compiler's unit suite without the every-chapter case; a galley with a catalogue row missing its synopsis fails at catalogue with `NO-SYNOPSIS`; the bound Some Projects page lists The Work, the cover, the synopsis and the table as links. *Seen:* the page photographed.
+
+**<a id="u6"></a>U6 — a catalogue chapter holding another book's synopsis (R9, R10, D3).** *Files:* `src/library/Title.tsx`; `.binding/.test/the-library/2-of-the-log.tsx` — a chapter titled `[[ Of the Log ]]`, holding The Log's `.synopsis` imported and called, and `<Synopsis />`; The Library's table listing it; `.tests/chapter.test.tsx`, `.tests/cover.test.tsx`; the regression; docs [Books in Annotations](../library/01-books-in-annotations.md), [Cover, Synopsis and TableOfContents](../library/03-cover-synopsis-and-table-of-contents.md). *Scenarios:* in memory, a book bound with a chapter holding another book's synopsis chapter: the host's Synopsis means the other book, the foreign title wears no id after the bind and the home titles do; The Library binds, its page wears `id="synopsis"` once, the proof passes, and the page holds The Log's synopsis words. *Seen:* the page photographed — and since the synopsis is imported, an edit to The Log's synopsis is on The Library's page at the next bind with no edit to The Library.
+
+**<a id="u7"></a>U7 — the Table (R11, D7).** *Files:* `src/writing/Table.tsx`; `.tests/table.test.tsx` renamed to the table of contents' and `table.test.tsx` given to the Table, the Folio grid its fixture; `.binding/.test/the-library/.table.tsx`, its catalogue section wearing `<Table />`; the regression; a new chapter of [Writing](../writing/.cover.md). *Scenarios:* a Section with a Heading and three Paragraphs of two Words, `$start` not given: three rows wearing `pa-row` and `pa-row-start-1..3`, six cells wearing `pa-col` and `pa-col-start-1..2`, the section `pa-table pa-cols-2`, the heading unmarked; a Paragraph of three Sentences, `$start` not given: three rows; `$start` of 1 on that paragraph: two; `$columns` of 2 with a row of three: specify says so; the Table taken out, the next define takes every class back; **the cost:** a section wearing a Table mounts as one without; its note carries the sheet, rows `display: contents`; The Library's catalogue section wears the classes on its bound page. *Seen:* the page photographed as a grid.
+
+### Risks
+
+| risk | what mitigates it |
+|---|---|
+| a Table writing classes onto its children from the parent's define wakes them, or loops as installing into the book did | U7's cost scenario counts it before anything is built on it; if it costs a draw, halt and pitch — it is the one place this sprint reaches across a define |
+| `$Bound` reaching an annotation's own writing recurses into a Reference's text and beyond | the walk is over `$Writing` instances only, and a Book inside a Book is out of scope |
+| a foreign title's Referent taken back in `$Bound` leaves the id until the next define | the draw defines first; the server's page is drawn after the bind |
+| the compiler's `duplicated()` inserts catalogue rows after a known line of The Library's table | the line is kept as it is; U6 adds a row beside it |
+| `NO-SYNOPSIS` was never raised by a galley before | U5 raises it on purpose, and reads the fault by name |
+
+### Where each requirement lands
+
+R1–R3 → [U1](#u1) · R4 → [U3](#u3) · R5 → [U2](#u2) · R6, R7 → [U4](#u4) · R8 → [U5](#u5) · R9, R10 → [U6](#u6) · R11 → [U7](#u7).
+
+**Order:** U1, U2, U3, U4, then U6 (which needs `$Bound` and `Synopsis.means`), U5, and U7 last, since it depends on nothing. **The plan against itself:** every requirement lands in a unit with a mechanism, a visible end and a cost scenario; D4 and D7 are decisions the requirements did not make, and both are in the questions put to Doug.
+
 ## Where things stand
 
-**Next: `/ce-plan` on this chapter.** The requirements are approved; nothing is built. *Status: requirements-only.*
+**Next: `/ce-work` on this chapter, starting at U1.** Nothing is built; `src` has Doug's yes for the seven files of [D9](#d9), pristine to the conventions.
+
+**Read these first, for the work:** [the plan](#plan); [`Writing.tsx`](../../package/src/writing/Writing.tsx), where `$Bound` stands beside `$Define`; [`Title.tsx`](../../package/src/library/Title.tsx), for the Referent `$Bound` takes back; [`Synopsis.tsx`](../../package/src/library/Synopsis.tsx) beside [`Cover.tsx`](../../package/src/library/Cover.tsx)'s Author, the comparable for `means`; [`Composition.tsx`](../../package/src/writing/Composition.tsx), for `parts` and `level`, which the Table reads; and [`wellformed.ts`](../../package/.binding/catalogue/wellformed.ts), for the one rule that goes.
+
+**Standing:** every change in `src` has Doug's word before it is made; commit locally and never push the project until he says; the branch library pushes itself.
