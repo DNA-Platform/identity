@@ -15,14 +15,14 @@
 | place | what it dresses | how | in the test library |
 |---|---|---|---|
 | **the theme's values** | everything, by inheritance | a class under `$Theme` sets any of the eight | `$LibraryTheme`: Georgia, a wider measure, a longer leading, an oxblood link, a warm paper |
-| **the theme's sheet, extended** | *the framework's marks* — `pd-chapter`, `pa-cover`, `pa-synopsis`, `pa-table-of-contents`, `pa-col`, `pa-page` | the theme's bond reassigns `style` to a styled component that **extends** the default sheet | the cover card, the kind labels, the counted chapters, the synopsis rule, the boxed table |
+| **the theme's sheet, extended** | *the framework's marks* — `pd-chapter`, `pa-cover`, `pa-synopsis`, `pa-table-of-contents`, `pa-col`, `pa-page` | the theme's `$Define` reassigns `style` to a styled component that **extends** the default sheet | the cover card, the kind labels, the counted chapters, the synopsis rule, the boxed table |
 | **a format in front of the theme** | *the library's own marks* — `pd-running-head`, `pd-byline`, `pd-label`, `pd-catchword` — and any place a book or chapter chooses | a class under `$Format` with a `style`, stood on a book in `$Define` or on chapters at `$Bound` | `Navigable` on every book; `Framed` on Some Projects and on each of the persona's chapters; `Typewritten` on the paper |
 
 **The division is the lesson.** The default sheet already comprehends every class the framework puts on an element, and a promise holds it to that — so a library's theme does not restate it; it extends it, and its extension speaks only of the same marks. What the library *adds* to a page — a masthead, a byline, a catchword — is the library's kind, wears the library's mark, and is dressed by the library's format. One never reaches into the other.
 
-## Extending the default sheet is one line in the bond
+## Extending the default sheet is one line in `$Define`
 
-`$Theme` holds its sheet in a field, `style`, and the theme's provider reads that field **when it draws** — [`Theme.tsx`](../../package/src/writing/Theme.tsx), `const Sheet = this.$theme.style`. So a subclass cannot extend it in a field initialiser, where the base's field is not yet the base's, but it can in its bond, once it is:
+`$Theme` holds its sheet in a field, `style`, and the theme's provider reads that field **when it draws** — [`Theme.tsx`](../../package/src/writing/Theme.tsx), `const Sheet = this.$theme.style`. So a subclass cannot extend it in a field initialiser, where the base's field is not yet the base's, but it can in its `$Define`, which Writing's bond calls once the fields hold:
 
 ```tsx
 export class $LibraryTheme extends $Theme {
@@ -31,8 +31,8 @@ export class $LibraryTheme extends $Theme {
     link = '#5b2f2a';
     // …the eight, as many as the library changes
 
-    $LibraryTheme(...chemicals: $Chemical[]) {
-        this.$Theme(...chemicals);
+    protected override $Define(): void {
+        super.$Define();
         this.style = selection(this.style as ComponentType<{ className?: string }>)`
             .pd-book { counter-reset: chapter; }
             .pd-chapter .pd-title::before { content: 'Chapter ' counter(chapter); /* … */ }
@@ -47,7 +47,31 @@ export class $LibraryTheme extends $Theme {
 
 `selection(component)` is styled-components' own extension: the new sheet carries every rule of the old and adds its own after, so the library's rules win where they meet. **Every added rule reads the theme's values** — `${at('space')}`, `${at('ink')}`, `color-mix(in srgb, ${at('ink')} 18%, ${at('paper')})` — never a literal, so a book that overrides the values keeps the look: Libby's dark book, which sets three, is the same card, labels and rules in ivory on charcoal, with no rule of its own. *Seen in the photographs.*
 
-**A subclass of the extending theme inherits the extension**, because a class with no bond of its own is bonded by its parent's — `$DarkTheme extends $LibraryTheme` sets three values and nothing else.
+**A subclass of the extending theme inherits the extension**, as it inherits `$Define` — `$DarkTheme extends $LibraryTheme` sets three values and nothing else.
+
+**Not in a bond of its own, and a defect found on the way.** The first draft extended the sheet in a bond, `$LibraryTheme(...chemicals) { this.$Theme(...chemicals); this.style = … }`, and every page carried a console error from chemistry's chain rule: *"$LibraryTheme did not call $Format — every declared bond constructor on the chain must be called."* With the bond gone the error stayed and named `$Theme` instead: **Theme's own bond passes over Format's on purpose**, since Format's bond would wrap the theme in a second provider, and chemistry has been reporting that on every page of every themed book since Theme was built, logging and carrying on, so nothing looked wrong. That is `.public`'s to settle — a template method on Format that Theme overrides, so Theme may call Format's bond — and is pitched with an expected-failure promise in [the regression](../../package/.binding/.test/binding.regression.ts), reading Chrome's console — the check does not fire in the package's own build, which is a question for chemistry — not fixed here. `$Define` needs no bond and is where a kind's defaults belong.
+
+## Each book its own feel, and where a feel lives
+
+Doug: *"I like each book having slightly different feels. A more monospace programmery look somewhere, a more literary look somewhere else… You want to keep the complexity in the theme and formats and annotations, while preserving the semantic structure mostly, though to achieve interesting layouts or effects, book and chapter type can be used to organize their children by type or annotation into more legible arrangements for the purpose."*
+
+| book | its feel | how, and nothing else changed |
+|---|---|---|
+| **The Library** | the card catalogue: Georgia, the labelled card, the boxed table | the library's theme, which every book inherits |
+| **Libby** | the same language on charcoal | `$DarkTheme`, three values |
+| **A Paper** | typewritten, a manuscript | `$Typewritten`, a Format on the book, one rule |
+| **A Persona** | literary: Palatino, centred small-capped titles, paragraphs indented and set close, the poem breathing, every chapter framed | `$Literary`, a Format on the book; `<Framed />` on each chapter at the bind |
+| **Some Projects** | pages, one at a time, framed | `<Paginated />` and `<Framed />` in `$Define` |
+
+**The semantic structure is untouched in every one:** the same chapters, sections, paragraphs and marks, so a mention from another book lands the same way in each. A feel is a theme's values, or a format in front, and that is all a feel is allowed to be until a layout needs a book or chapter class to arrange its children, which none of these has needed.
+
+## Driving the links, and what the compiler refused
+
+**Every visible anchor of a page, clicked in Chrome, with the landing recorded** — the address, and the first identified element whose box reaches the viewport's top band — is how the two turns that Doug clicked were found to fail, and how Libby's hops were proven: [Sprint 88, U10](../projection/93-sprint-88--the-theme-the-element-and-the-blank.md#u10) has the findings. Three things a library writer meets on that road:
+
+- **A mention nobody refers to is refused at the bind** — *UNREFERENCED-MENTION: "a name nobody spends is unnecessary, and a library is compact."* Make a heading a mention, `[[[ Delegation ]]]`, only where another chapter will hop to it.
+- **A hop across books lands on its heading through the page's own router**, `#delegation`, `#what-was-found`; a chapter's route within a longform book turns by the Book's own scroll, which is the Book's to get right and a book's to override — the test library's book opens the cover's route at the top of the page, masthead in view.
+- **A line break before a reference swallows the space before it.** Keep the word and its `<Means>` on one line.
 
 ## The visual language, and where each cue comes from
 
@@ -89,7 +113,7 @@ export class $LibraryTheme extends $Theme {
 
 ## Is it easy? The honest report
 
-**Yes.** A format with a style is a class with one field, five lines; applying it is one JSX element in `$Define` or `$Bound`. A component with annotations as defaults is the same `$Define` with `this.annotations.add`. Extending the theme's sheet is one reassignment in the bond. The whole dress, both files, is under three hundred lines, half of them CSS.
+**Yes.** A format with a style is a class with one field, five lines; applying it is one JSX element in `$Define` or `$Bound`. A component with annotations as defaults is the same `$Define` with `this.annotations.add`. Extending the theme's sheet is one reassignment in `$Define`. The whole dress, both files, is under three hundred lines, half of them CSS.
 
 **What was not there, and is flagged:** the default sheet's helper that reads a value, `value(property)` in `Theme.tsx`, is not exported, so the test library wrote its own, `at(property, fallback)`. Two helpers for one job is a wart; whether `.public` exports its own is Doug's to say. And the semantic wrapper's element is known only by reading a bound page — the card selector depends on `header` and `nav`, which no chapter of this library names; [Book](../library/05-book.md) should.
 
