@@ -49,6 +49,7 @@ export UV_PYTHON_BIN_DIR=$A/.tools/bin UV_CACHE_DIR=$A/.tools/cache/uv UV_TOOL_D
 export PIP_CACHE_DIR=$A/.tools/cache/pip XDG_CACHE_HOME=$A/.tools/cache XDG_CONFIG_HOME=$A/.tools/config
 export XDG_DATA_HOME=$A/.tools/data XDG_STATE_HOME=$A/.tools/state
 export MPLCONFIGDIR=$A/.tools/config/matplotlib TORCH_HOME=$A/.tools/cache/torch
+export PYTHONPYCACHEPREFIX=$A/.tools/cache/pycache
 export PATH=$A/.tools/bin:$PATH'
 
 # A script over stdin, so no command ever needs a second layer of quoting.
