@@ -18,7 +18,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@dna-platform/chemistry": "file:../../../library/chemistry/package",
+    "@dna-platform/chemistry": "0.1.2",
     "@dna-platform/public": "file:../../../.archive/.public/package",
     "chroma-js": "^3.2.0",
     "motion": "^13.3.0",
