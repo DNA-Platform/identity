@@ -4,9 +4,11 @@
 - **coauthor:** [David](../../../.claude/library/..teamsmanship/..team/david/the-devops-journal/.cover.md), [Adam](../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
 - **status:** `active` — 2026-09-26/27. Six GPU twins trained, harvested, their figures and validation
   in the pipeline's artifacts for both datasets. MEIs for every matched cell with FEVE >= 0 in both
-  conditions, two recipes: 1,478 `walker` MEIs made and harvested; the batched synthesis proved equal to
-  the single-cell one on the real twins, but it buys 2x, not the tenfold hoped - the next run's shape is
-  Doug's to set.
+  conditions, two recipes: 1,478 `walker` MEIs made and harvested; then the lab's step made fast, each
+  change measured on full MEIs against the lab's - one evaluation instead of two, the weights out of
+  autograd, tuned kernels, a compiled twin, the readout of the batch's own cells, sixteen a batch -
+  **0.99 s an MEI** against 12.6 s, images within 1.8e-3 a pixel. Then every matched cell, both
+  datasets, both recipes.
 ---
 
 The sprint moved the work onto the lab's GPU machine and, in doing so, retired the CPU world. How the
@@ -39,6 +41,16 @@ the record of the machine. This chapter is what the science pipelines became, an
   scale: *"We can filter by FEVE"*, the threshold chosen at **>= 0.0**, and *"Do the FEVE but also take
   the intersection of pre- versus post"* - which the worse-half rule already is. *"There must be a way to
   batch some of this."*
+- **Fast, and then all of them.** *"change the lab code. We need this fast. WE need to use what is in
+  sensorium and we need to find examples in github repos of the right packages to see the right way to
+  make this but fast… THe lab code is our best attempt but I am sure we can find a fast way. Now is the
+  time to find it."* Then: *"If it's fast we want to do all 749 adn 3K pre- and post- in the two
+  datasets respectively"* - the FEVE filter lifted. *"I thought we could get a 50x increase in speed…
+  That's sub-second MEI I think."* *"Yes do these changes and please make them efficient."* *"If there
+  is a near identical way to train or compute that fits the box or setup better, or a better setup,
+  please make changes for the sake of perforamnce."*
+- **Checked against what came before.** *"Make sure to be able to check in on them to confirm that they
+  look like the ones we computed before."*
 
 ## What the pipelines became
 
@@ -75,6 +87,34 @@ a batch of cells' images and nothing else: every walker op acts per image except
 one image at a time, unmodified; every image starts from the single-cell seed-0 noise. On the CPU,
 batched equals single to 1e-7 per pixel for both recipes.
 
+**Then the lab's step, changed.** Doug: *"change the lab code. We need this fast. WE need to use what
+is in sensorium and we need to find examples in github repos… THe lab code is our best attempt but I am
+sure we can find a fast way. Now is the time to find it."* The lab's own large runs were read first:
+the MICrONS MEIs (`cajal/microns-vei-2025`) and `sinzlab/laminr` make one neuron per job, and MICrONS
+steps with `featurevis.gradient_ascent`, one forward a step. Our package's `mei.optimization.MEI.step`
+evaluates the model twice and multiplies the second by zero when the MEI is excitatory; `lean_step` is
+that step with the dead evaluation and an unread CPU copy removed - the same images, exactly, at half
+the time. The torch profiler then put 61% of the card's time in `convolution_backward`:
+`gradient_ascent` leaves the twin's weights trainable, so every step computes every seed's weight
+gradients and discards them. `frozen` holds them out of autograd. The image's gradient is the same
+function; on the card a different cuDNN kernel runs. The profiler then showed one input-gradient
+convolution at about 2 TFLOPS and PyTorch's own depthwise kernels at 41%: `tuned_kernels` lets cuDNN
+time its kernels and runs the twin in `channels_last`, which sends the depthwise layers to cuDNN.
+Measured on full 1,000-step MEIs of 16 cells of 33977's pre twin, against the lab's own step at that
+batch (6.32 s an MEI): lean and frozen 2.04 s, at most 5.4e-4 a pixel away; tuned 1.43 s, at most
+1.8e-3, r 1.000000 in every cell - where two cells' MEIs differ by 1.7-2.3. The figure
+(`mei/artifacts/33977/figures/speed_check.png`) shows the same cells made each way, indistinguishable.
+bfloat16 was measured under Doug's "yes" and refused under his "near identical": 1.23 s, but pixels
+moved by up to 0.178. Batch 16 stays fastest (8: 1.50 ms an MEI-step, 32: 2.00) - a batch-16 layer is
+~38 MB and the card's L2 64 MB. On the tuned path the element-wise passes were 44% of the card:
+`torch.compile` fuses them - 1.11 s. And the readout computed every neuron of the twin for every image
+while the objective kept the diagonal: `FullGaussian2d`'s own `out_idx` restricts it to the batch's
+cells - 0.99 s, and not one pixel moved by it. A compiled twin called at a second batch size switched
+to a dynamic-shape graph three times slower (`fill_` half the card, in the profiler's own run); so
+compiles are static and a short batch is padded to sixteen. Every MEI's `.json` names how it was made, and a cell counts as done
+only when both its halves were made the same way (`_made_alike`); batches are cut from the cells still
+to make, so every batch is full.
+
 ## Measured
 
 | | | source |
@@ -86,7 +126,12 @@ batched equals single to 1e-7 per pixel for both recipes.
 | pairs with worse-half FEVE >= 0 | 33977 2,328 of 3,256; 33328 635 of 749 | the `feve-by-pair` probe |
 | one MEI | 20.6 s, 424 MiB beside twin training; 12.6 s, 409 MiB on a free card | the `mei-timing` probe; `pipelines.mei.check` |
 | batched MEI, per MEI | batch 8: 6.48 s (2.9 GB); 16: **6.05 s** (5.5 GB); 32: 7.11 s (11.0 GB); 64: out of the card's 16 GB | `run-20260927-0720-mei-batch-check` |
-| batched against single, 4 cells of 33328 pre | `walker`: identical, 0 difference; `contrast-0.2`: at most 5.6e-4 per pixel (two cells differ by 1.67) - the order of `ChangeStd`'s reduction on a batch, compounded over 1,000 steps | the same run |
+| batched against single, 4 cells of 33328 pre | `walker`: identical, 0 difference (two cells differ by 2.30); `contrast-0.2`: at most 5.6e-4 per pixel (two cells differ by 1.67) - the order of `ChangeStd`'s reduction on a batch, compounded over 1,000 steps | the same run |
+| a step at batch 16, per MEI-step, 100-step MEIs | the lab's step 6.2 ms; one evaluation 3.1 ms (0 difference); and frozen weights 1.9 ms (1.94e-4) | `run-20260927-0747-mei-profile-frozen` |
+| the same, full 1,000-step MEIs, against the lab's step | the lab's step 6.32 s an MEI; lean + frozen 2.04 s (5.4e-4); + tuned kernels **1.43 s** (1.8e-3, r 1.000000); + bfloat16 1.23 s (0.178, r 0.9994) - refused | `run-20260927-0803-mei-speed` |
+| tuned, by batch, per MEI-step | 8: 1.50 ms (1.6 GB); 16: 1.43; 32: 2.00 (5.7 GB) | the same run |
+| full MEIs, warm-up excluded, against the lab's step | the lab's step 6.31 s; tuned 1.32 s; compiled 1.11 s (1.8e-3, r 1.000000); + own readout **0.99 s** (1.8e-3, unchanged) | `run-20260927-0810-mei-compile`, `-0815-mei-readout` |
+| where the card's time went | the lab's step: `convolution_backward` 61%. Frozen: the card saturated, 629 ms of kernels in 20 steps; an input-gradient convolution 28%, native depthwise 41%. Tuned: convolutions under half, element-wise passes (batch norm, ELU, adds) 44%, the readout's `grid_sampler` backward 8% | `run-20260927-0745-mei-profile`, `-0747-`, `-0803-mei-speed` |
 
 For reference, not as a standard: the June 33328 twins scored FEVE 0.480 / 0.512 on the delivered 1x
 frames on the CPU. The 2x GPU pair is lower; it is a different resolution and a different device, and it
@@ -104,6 +149,13 @@ is recorded, not explained.
 | `run-20260927-0220-meis` | packed MEIs, both recipes, FEVE >= 0 | exit 143: stopped for batching; 1,478 `walker` MEIs, harvested |
 | `run-20260927-0231-mei-batch-check` | the batched-MEI proof | exit 1: out of GPU memory beside the packed run |
 | `run-20260927-0720-mei-batch-check` | the batched-MEI proof, on a free card | equivalence and batches 1-32 measured; exit 1 at batch 64, out of memory |
+| `run-20260927-0745-mei-profile` | the lab's step against one evaluation, and the profiler | exit 0; harvested |
+| `run-20260927-0747-mei-profile-frozen` | the same, with frozen weights and a batch sweep | exit 0; harvested |
+| `run-20260927-0754-meis-fast` | every remaining MEI, both recipes, FEVE >= 0, on the fast path | exit 143: stopped - it was pairing lab-step halves with fast-path halves; harvested |
+| `run-20260927-0757-meis-all` | every matched cell, both recipes, no filter | exit 143: stopped for the next speedup after 114 MEIs; harvested |
+| `run-20260927-0803-mei-speed` | tuned kernels and bfloat16 against the lab's step, 1,000 steps | exit 0; harvested |
+| `run-20260927-0810-mei-compile` | `torch.compile` against the lab's step | exit 0; harvested |
+| `run-20260927-0815-mei-readout` | the readout of the batch's own cells | 0.99 s an MEI |
 
 ## What went wrong, and why
 
@@ -118,19 +170,32 @@ is recorded, not explained.
   matters for which MEIs are read as meaningful.
 - **The narrator, and the book left behind.** For most of the night the team reported to Doug instead of
   discussing, and the code moved while this library did not.
+- **A cause asserted before it was measured.** This chapter first said a step was "overhead, not
+  arithmetic - about 97 ms a step at batch 16 for roughly 2 ms of floating point", and blamed the
+  walker ops rebuilding their masks on the CPU. The profiler said otherwise: the card was busy with
+  real work, the weight gradients no one reads. The estimate was of the forward pass alone - and it is
+  where Doug's "50x" came from: our number, never a measurement. His "sub-second MEI" was reached by
+measurement - 0.99 s - at 12.7x, not 50x.
+- **A difference measured on a shorter MEI than the pipeline makes.** The frozen path's 1.94e-4 was
+  from 100-step MEIs and was quoted as the pipeline's; at 1,000 steps it is 5.4e-4. Every variant is
+  now measured on the whole recipe.
+- **Halves made two ways.** The first fast-path run resumed cells the packed run had stopped between
+  their twins, and made the missing half on the new path. Queenie caught it from the counts (743 pre,
+  735 post); `_made_alike` is the rule that followed.
 
 ## Still open
 
-1. **The MEI run's shape.** Batching is proved and buys 2x: at batch 16, 6 s per MEI, so 11,852 MEIs
-   (both recipes, FEVE >= 0) is about 18 h after the 1,478 already made. Past batch 16 the card gives
-   nothing more. The time is overhead, not arithmetic - about 97 ms a step at batch 16 for roughly 2 ms of
-   floating point: the lab's `MEI.step` evaluates the model twice a step, and the walker ops rebuild their
-   Fourier mask and blur kernel on the CPU every step. Going faster means touching the lab's code or its
-   determinism, which is Doug's to rule.
-2. Whether the MEI filter should also require the lab's reliability rule (FEV >= 0.15 in both
+1. **Three ways of making an MEI in one cache.** The lab's step (the first `walker` MEIs of 33977),
+   lean + frozen (the stopped runs), and the tuned path - each cell's two halves always one way, the
+   paths within 1.8e-3 a pixel of each other. If Doug wants every MEI on one path, the earlier ones are
+   deleted and remade: about 2,000 MEIs, under an hour.
+2. **Twin training on the same terms.** Doug's licence covers training too: tuned kernels and fused
+   element-wise passes would apply to the next twins trained. The six are done; retraining them for
+   speed is his to rule, not ours.
+3. Whether the MEI filter should also require the lab's reliability rule (FEV >= 0.15 in both
    conditions).
-3. [The Altered Cortex](../the-altered-cortex/.cover.md)'s validator reports 20 errors, nearly all older
+4. [The Altered Cortex](../the-altered-cortex/.cover.md)'s validator reports 20 errors, nearly all older
    than this sprint - moved `src/library/stats` links, stale study marks, June figures cited and gone - and
    one that tells a reader to relaunch a CPU generation watchdog, which must not be followed.
-4. The legacy twins' validation outputs still sit at the old place, `src/pipelines/.analyses/digital-twin/twin/`.
-5. 33977's pre/post comparison waits, as before, on Erin's word about 17-3's coordinates.
+5. The legacy twins' validation outputs still sit at the old place, `src/pipelines/.analyses/digital-twin/twin/`.
+6. 33977's pre/post comparison waits, as before, on Erin's word about 17-3's coordinates.
