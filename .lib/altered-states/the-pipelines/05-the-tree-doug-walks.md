@@ -5,7 +5,7 @@
 
 ---
 
-[Book: [The Build](.cover.md)]
+[Book: [The Pipelines](.cover.md)]
 
 Part of this repository is a place Doug walks to show the work. That part is optimized for him, and
 for nothing else - not for our convenience, not for our checks, not for what a tool happens to leave
@@ -80,4 +80,4 @@ is part of doing it.
 
 ---
 
-[Previous: [Why synthesis is slow](14-why-synthesis-is-slow.md)] | [Book: [The Build](.cover.md)]
+[Previous: [How they are organized](04-how-they-are-organized.md)] | [Book: [The Pipelines](.cover.md)]

@@ -2,13 +2,14 @@
 
 - **author:** [Nancy](../../../.claude/library/..teamsmanship/..team/nancy/nancy-or-the-weight-of-evidence/.cover.md)
 - **coauthor:** [David](../../../.claude/library/..teamsmanship/..team/david/the-devops-journal/.cover.md), [Adam](../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- **status:** `active` — 2026-09-26/27. Six GPU twins trained, harvested, their figures and validation
-  in the pipeline's artifacts for both datasets. MEIs for every matched cell with FEVE >= 0 in both
-  conditions, two recipes: 1,478 `walker` MEIs made and harvested; then the lab's step made fast, each
-  change measured on full MEIs against the lab's - one evaluation instead of two, the weights out of
-  autograd, tuned kernels, a compiled twin, the readout of the batch's own cells, sixteen a batch -
-  **0.99 s an MEI** against 12.6 s, images within 1.8e-3 a pixel. Then every matched cell, both
-  datasets, both recipes.
+- **status:** `active` - 2026-09-26/27. The twins settled: kernels scaled to the 2x frame, the
+  smoothing weight as published, the MEI test passed against a fixed 1x benchmark; 33977's four retrained
+  the same way. Every 33977 recording found registered - its matching valid. The chain from matched cells
+  to MEIs running for both datasets (33328 first, then 33977 once 33328 is confirmed), MEIs on the pairs
+  reliable in both conditions at the in-between blur, the filter figure drawn at the end. The metamer
+  surface built on the intersection twins and batched: per-stimulus, unconditioned, null, and the
+  spontaneous moments pre-pre and pre-post. The pipelines written down as a book,
+  [The Pipelines](../the-pipelines/.cover.md).
 ---
 
 The sprint moved the work onto the lab's GPU machine and, in doing so, retired the CPU world. How the
@@ -66,7 +67,7 @@ the record of the machine. This chapter is what the science pipelines became, an
   we can't have said to have simply scaled something up."* - *"Now you know that you can use MEI
   artifacts as a way of validating the twins. That is a good result."*
 - **The tree Doug walks.** *"figures is a place where I ask for work, not a dumping ground for your
-  mess."* The rule is [The Build ch15](../the-build/15-the-tree-doug-walks.md).
+  mess."* The rule is [The Pipelines ch5](../the-pipelines/05-the-tree-doug-walks.md).
 
 ## What the pipelines became
 
@@ -172,6 +173,11 @@ is recorded, not explained.
 | `run-20260927-0803-mei-speed` | tuned kernels and bfloat16 against the lab's step, 1,000 steps | exit 0; harvested |
 | `run-20260927-0810-mei-compile` | `torch.compile` against the lab's step | exit 0; harvested |
 | `run-20260927-0815-mei-readout` | the readout of the batch's own cells | 0.99 s an MEI |
+| `run-20260927-1435-twins-published-smoothing` | 33328's 2x pair at the published smoothing, and the benchmark | exit 0; the pair Doug chose |
+| `run-20260927-1550-mei-blur-between` | the chosen twin at three MEI blurs | exit 0; the in-between blur chosen |
+| `run-20260927-1555-twins-33977` | 33977's four twins, frame-scaled | exit 0; intersection FEVE 0.16 / 0.30 |
+| `run-20260927-1737-chain-mei` | matched -> twins -> MEIs, 33328 then 33977 | stopped after 33328, by plan |
+| `run-20260927-1746-metamer-check` | the batched metamer against the single one | exit 1: a stimulus left on the card |
 
 ## What went wrong, and why
 
@@ -220,21 +226,65 @@ measurement - 0.99 s - at 12.7x, not 50x.
   compiled twin and a narrowed readout - each measured equal to within 1.8e-3, and each ours, which is
   what Doug rules out. It is off the path to published MEIs.
 - **Figures and bytecode on Doug's path**, and names he could not scan: fixed, and written down as the
-  rule of [The Build ch15](../the-build/15-the-tree-doug-walks.md).
+  rule of [The Pipelines ch5](../the-pipelines/05-the-tree-doug-walks.md).
+
+## The twins settled, the chain, and the metamer surface (2026-09-27, afternoon)
+
+**The resolution rule, in one sentence.** What sets an extent scales with the frame; what limits
+frequency stays as published. The twin's kernels scaled (9 -> 17, 7 -> 13); its smoothing weight, first
+scaled by 16 on a continuum argument that measurement refuted (the equivalent on the trained 1x filters
+was 2.2-3.5), went back to the published value. Doug: *"We didn't scale it because we increased the
+resolution to give the system the ability to detect finer frequencies. It doesn't seem to, but keeping
+that low made it possible."* Fit is flat across x1, x4 and x16 (validation correlation 0.311, 0.309,
+0.311), and the MEIs through either twin are the same pattern, cell for cell: *"we are getting nearly
+identical answers, which is good."*
+
+**A fixed benchmark.** *"The pre- 1x should be a constant. Otherwise you don't understand validation."*
+The 1x twin's MEIs of the eight cells Doug first accepted, saved once (`validation/config-search/
+benchmark-1x.npz`), every 2x candidate drawn against it.
+
+**The MEI blur, between.** *"Actually, I like less mei blur too. I want something in between."* 2.25 ->
+0.015 px at 2x, halfway between as published and scaled to the frame; `verification/twins-compared.png`
+draws all three on one twin.
+
+**The chain, enforced.** *"We don't compute twins for the MEI alone. It is part of the pipeline of
+connected results."* Every MEI, metamer, fit score and cell index records the identity of the twin that
+made it and is remade when it changes; the MEI index refuses twins not built from the matched table;
+`--then` starts a dependant only on a finished build. The filter figure - June's spectrum and filter,
+cycles per frame width - is drawn by the MEI pipeline, June's reaching half amplitude at 24.5.
+
+**Units, and two wrong answers.** Every session's activity is normalized by its own session's scale,
+the lab's way, and the model is invariant to it - *"I thought we assumed values were zscore normalized
+across the session."* I twice proposed otherwise (the pre twin's divisor; raw activity at fixed gain),
+reading a per-cell difference between sessions as a distortion when it may be the drug. Withdrawn; the
+per-cell scale is now the lab's `NeuroNormalizer` object rather than our division.
+
+**Matching: every 33977 recording is registered.** 17-3 was labelled motor because Erin's file for it
+is header-only; its export's coordinates are the registered ones (the same delivery's 12-1 export is her
+file cell for cell), and the pairs saturate past 10 um as 33328's do - 3,256, 3,350, 3,382 at 10, 15, 20.
+*"If you believe cells can't be found across then matched is not working as a pipeline and something is
+seriously wrong."* The tables are unchanged; only the label and the comparison it refused.
+
+**The metamer surface.** *"We want all the regular metamers, which is one per stimulus. We want one
+unconditional metamer across all trials - we always use the twin that is the intersection of all four
+datasets. We want the spontaneous metameric moments on pre- and we want spontaneous metameric moments
+from post spontaneous, but on pre-... we need it to be performant."* The union retired; every metamer
+from the intersection twins; the moments moved from `analyses/spontaneous` into the pipeline; all of it
+batched through one compiled twin, held against the single-image recipe by `metamer/check.py`.
 
 ## Still open
 
-1. **The scaled 2x twins must pass the MEI test**: for the same cells, approximately the 1x twin's
-   receptive field and MEI, sharper - then 33977's four twins are retrained the same way.
-2. **The pipeline's one MEI code**: Walker's `inception_loop` or the lab's `featurevis` recipe, without
-   our fast path.
-2a. **Duplicate cells.** Units 2333, 577 and 1212 - ranks 1, 3 and 5 by pre-FEVE - have the same MEI on
-   every twin: one soma, likely, counted in several planes. Walker removed any cell within 20 um of a
-   better one before making MEIs.
-3. Whether the MEI filter should also require the lab's reliability rule (FEV >= 0.15 in both
-   conditions).
-4. [The Altered Cortex](../the-altered-cortex/.cover.md)'s validator reports 20 errors, nearly all older
-   than this sprint - moved `src/library/stats` links, stale study marks, June figures cited and gone - and
-   one that tells a reader to relaunch a CPU generation watchdog, which must not be followed.
-5. The legacy twins' validation outputs still sit at the old place, `src/pipelines/.analyses/digital-twin/twin/`.
-6. 33977's pre/post comparison waits, as before, on Erin's word about 17-3's coordinates.
+1. **33328's MEIs and metamers confirmed by Doug**, then 33977's: its twin pipeline rerun with the
+   matching fix (no retraining - it re-records the build and runs the comparison it refused), then its
+   MEIs and metamers. Then the spontaneous moments.
+2. **The batched metamer's check** (`metamer/check.py`): nothing uses the batched path until it agrees
+   with the single-image recipe target for target.
+3. **Speed on the scaled twin**: 7.6 s an MEI on the compiled batch-16 path, against 0.99 on the unscaled
+   one. Next: the five ensemble members fused into one set of kernels, measured on a free card.
+4. **Duplicate cells.** Units 2333, 577 and 1212 - ranks 1, 3 and 5 by pre-FEVE - have the same MEI on
+   every twin: one soma across neighbouring planes (0.1-5.6 um apart laterally, 5-25 um in depth).
+   Doug's ruling: *"we can make all MEI, and then exclude based on criteria like that for the summary
+   statistic figures"* - the criterion that fits is lateral distance.
+5. [The Altered Cortex](../the-altered-cortex/.cover.md)'s validator reports errors nearly all older
+   than this sprint, and one that tells a reader to relaunch a CPU watchdog, which must not be followed.
+6. The legacy twins' validation outputs still sit at the old place, `src/pipelines/.analyses/digital-twin/twin/`.

@@ -11,7 +11,11 @@
 
 Doug, 2026-09-26: *"There should be a way for you to poll. Make sure you get the most out of the machine. No one else is using it."* And, once the first GPU run had been orchestrated by hand in its own command: *"Write things to run as a pipeline. Try your best to engineer it like that, so then we get the analysis figures."*
 
+Doug, 2026-09-27: *"Write this down, performance is a critical and necessary condition of correctness and not a nicety. We are migrating from CPU. If things are taking 20 minutes at a time for a batch, unless it's HUGE, we obviously aren't using the new tech. This is a feature and it's a bug and bad practice to not notice... You have been innocently reporting these long runtimes. It is your bug to solve, and performance if your anchor and responsibility."* - *"We can only imagine using 2x because performance helps us."* - *"You would not exist if performance was not factored in to the creation of your networks."*
+
 ## The protocol
+
+**Performance is part of correctness.** A run that is slow is not done, whatever its numbers say. Before a runtime is reported it is judged against what the card can do - the laptop's CPU took minutes for what the card does in seconds, and the move to the GPU is only worth anything at the speed it buys. A duration that looks like the CPU's (an MEI in minutes, a check that runs for an hour) is a bug to find, not a number to relay: batch size one on a busy-waiting card, a kernel PyTorch does not accelerate (a 13 x 13 depthwise convolution ran at 894 ms a step until cuDNN chose it: 61 ms), a copy to the CPU each step, work repeated that already exists. Find it with the profiler before the run, not after.
 
 **A run's command is a pipeline's entry point.** One line — `cd src && python -m pipelines.digital_twin 33977 33328` — and the pipeline does the rest in the order it owns: prepare, the matched pipeline, the ceilings, every twin trained, validate, compare, the figures, the manifest. Orchestration written for one occasion — a jobs list, a sequence of partial calls, a packer invoked from the command — is not reproducible from the repository and does not end in the analysis figures by construction; when a run needs it, it is written into the pipeline first, committed here, and the run calls the entry point.
 
