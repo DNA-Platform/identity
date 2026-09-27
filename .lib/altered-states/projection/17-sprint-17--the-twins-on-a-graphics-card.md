@@ -51,6 +51,22 @@ the record of the machine. This chapter is what the science pipelines became, an
   please make changes for the sake of perforamnce."*
 - **Checked against what came before.** *"Make sure to be able to check in on them to confirm that they
   look like the ones we computed before."*
+- **The MEIs failed, and the twin was the culprit.** *"MEI didn't work. There are little squares. That is
+  not even almost the published result or anything we've ever seen. Did you not look? Do you not know
+  what they should look like? Educate yourself on MEI."* - *"We need to be using preexisting code
+  exactly. No room for innovation at all except to adapt to the new resolution, and maybe cell count if
+  it's not usual. Obviously pre and post twins need to be identical. This is one of our first usages of
+  the twins. They too might be faulty."* - *"This is not Nancy/Claude's time-to-shine-innovating-on-a-
+  published-technique-thus-making-it-harder-to-publish-this-result Day."* - *"If there is a
+  reimplementation from the lab, that is okay. It can be the evolution of published code... not
+  handrolled."* - *"Fix the twin! They are obviously wrong, thus negating the idea that we are ready to
+  run MEI. The MEI are, in some sense, a test of the twin and it failed. The twins should produce higher
+  resolutions of the same thing. Anything else and we have failed to adapt the system to 2x."* - on
+  sameness: *"That is subjective not bytecode identical. But it should be approximately true, otherwise
+  we can't have said to have simply scaled something up."* - *"Now you know that you can use MEI
+  artifacts as a way of validating the twins. That is a good result."*
+- **The tree Doug walks.** *"figures is a place where I ask for work, not a dumping ground for your
+  mess."* The rule is [The Build ch15](../the-build/15-the-tree-doug-walks.md).
 
 ## What the pipelines became
 
@@ -182,16 +198,39 @@ measurement - 0.99 s - at 12.7x, not 50x.
 - **Halves made two ways.** The first fast-path run resumed cells the packed run had stopped between
   their twins, and made the missing half on the new path. Queenie caught it from the counts (743 pre,
   735 post); `_made_alike` is the rule that followed.
+- **Every 2x MEI was a square, and we explained it instead of convicting it.** Published MEIs (Walker
+  2019 Fig. 3, Lurz 2021 Fig. 6) are small compact features fading to grey; ours filled a hard-edged
+  square the size of the core's reach. Nancy looked at the squares three times and each time gave them an
+  architectural story. Doug saw them once. What found the cause: each cell's sensitivity at the grey
+  image - one gradient, no MEI calculation - was already a square with bright edges on the 2x twin, and
+  a smooth falling blob on our 1x twin; on the 1x twin both MEI codes, the lab's re-implementation and
+  Walker's own, gave the summer's soft features, and on the 2x twin both gave squares, whatever the
+  blur. **The twins were trained at 2x with the published 36 x 64 config**: kernels 9 and 7 in pixels,
+  a 27-pixel reach that covered half the visual angle, receptive fields spilling past it. The fix scales
+  the three pixel-unit numbers (`model_config_for`): kernels 17 and 13, the Laplace smoothness penalty
+  x 16. The unscaled twins and every MEI made from them were removed.
+- **The MEI recipe was never the published code.** The summer's and ours came from `featurevis`'s
+  `walker` re-implementation (`nnvision.mei.regularizers`), whose `FourierSmoothing(0.04)` - commented
+  "close" to Walker's `fft_smooth(0.1)` - passes 0.95-0.99 of the gradient where Walker's passes
+  0.5-0.76, and whose noise start is eight times Walker's. Walker's own code is `deepdraw`/`make_step` in
+  cajal/inception_loop2019 (and microns-vei-2025); it is ported verbatim, every change declared, in
+  `mei/inception_loop.py`. Doug allows the lab's re-implementation too; which is the pipeline's one way
+  is his to rule.
+- **The fast path was ours, hand-rolled.** Batching, a patched step, frozen weights, tuned kernels, a
+  compiled twin and a narrowed readout - each measured equal to within 1.8e-3, and each ours, which is
+  what Doug rules out. It is off the path to published MEIs.
+- **Figures and bytecode on Doug's path**, and names he could not scan: fixed, and written down as the
+  rule of [The Build ch15](../the-build/15-the-tree-doug-walks.md).
 
 ## Still open
 
-1. **Three ways of making an MEI in one cache.** The lab's step (the first `walker` MEIs of 33977),
-   lean + frozen (the stopped runs), and the tuned path - each cell's two halves always one way, the
-   paths within 1.8e-3 a pixel of each other. If Doug wants every MEI on one path, the earlier ones are
-   deleted and remade: about 2,000 MEIs, under an hour.
-2. **Twin training on the same terms.** Doug's licence covers training too: tuned kernels and fused
-   element-wise passes would apply to the next twins trained. The six are done; retraining them for
-   speed is his to rule, not ours.
+1. **The scaled 2x twins must pass the MEI test**: for the same cells, approximately the 1x twin's
+   receptive field and MEI, sharper - then 33977's four twins are retrained the same way.
+2. **The pipeline's one MEI code**: Walker's `inception_loop` or the lab's `featurevis` recipe, without
+   our fast path.
+2a. **Duplicate cells.** Units 2333, 577 and 1212 - ranks 1, 3 and 5 by pre-FEVE - have the same MEI on
+   every twin: one soma, likely, counted in several planes. Walker removed any cell within 20 um of a
+   better one before making MEIs.
 3. Whether the MEI filter should also require the lab's reliability rule (FEV >= 0.15 in both
    conditions).
 4. [The Altered Cortex](../the-altered-cortex/.cover.md)'s validator reports 20 errors, nearly all older

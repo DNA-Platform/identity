@@ -52,8 +52,12 @@ and the system becomes untraversable."* And: *"Don't label like contrast-02 beca
 and only one way to generate it."*
 
 1. **Ask of every name: would Doug, scanning, know what this is?** Reading costs him; a name is read
-   many more times than it is written. `explained-variance.png` passes; `checks.png`,
-   `resolution.png`, `page_01.png` do not.
+   many more times than it is written. `explained-variance.png` passes; `checks.png` and
+   `resolution.png` are too short to say anything, and `mei-before-and-after-doi.png` is too long -
+   *"too much reading for a human."* His layout for the MEI figure is the pattern: *"all the pages in
+   the comparison folder and then why not do comparison.png at the root with the other figures"* -
+   `figures/comparison.png`, and `figures/comparison/page-01.png` onward, where the folder says what
+   the pages are.
 2. **Balance.** A few plain words, hyphenated - long enough to say what it is, short enough to scan.
    No abbreviations he has to decode, no machine labels (`contrast-0.2`, `B_matched`) where a word
    would do.
