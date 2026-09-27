@@ -157,13 +157,23 @@ export class Uia {
               }
 '@
           }
-          [UiaClickHelper]::SetCursorPos($x, $y)
+          [UiaClickHelper]::SetCursorPos($x, $y) | Out-Null
           [UiaClickHelper]::mouse_event(0x0002, 0, 0, 0, [UIntPtr]::Zero)
           [UiaClickHelper]::mouse_event(0x0004, 0, 0, 0, [UIntPtr]::Zero)
           'true'
         } else { 'false' }
       } else { 'false' }
     `, 15_000);
+    // THE `| Out-Null` ABOVE IS THIS RETURN VALUE. SetCursorPos is declared `bool`, and
+    // an unassigned call to a non-void method writes its result to PowerShell's output
+    // stream, which the shell hands back whole — so the result was 'True\r\ntrue' and
+    // this comparison was FALSE ON EVERY SUCCESSFUL CLICK. The click always worked: the
+    // cursor moved, the button went down and came up, and the method called it a
+    // failure anyway. It hid for months because every caller discarded the boolean, and
+    // it surfaced only once ComposerController.click was made to throw on false and a
+    // working dispatch started failing with "was on the tree but could not be clicked".
+    // The two mouse_event calls are declared `void` and emit nothing, so they are left
+    // unpiped on purpose — piping them would imply they had been suspects too.
     return result?.trim() === 'true';
   }
 
@@ -334,12 +344,21 @@ export class Uia {
         foreach ($el in $elements) {
           $vp = $null
           if ($el.TryGetCurrentPattern([System.Windows.Automation.ValuePattern]::Pattern, [ref]$vp)) {
-            $vp.Current.Value
+            'VALUE:' + $vp.Current.Value
             break
           }
         }
       `, 15_000);
-      return result?.trim() || null;
+      // AN EMPTY BOX IS A VALUE. This was `result?.trim() || null`, and '' || null is
+      // null — so a composer with nothing in it was reported exactly the same as an
+      // element with no value to read at all. `readDraft` then turned that null back
+      // into '', and the two mistakes cancelled until one of them was fixed: the
+      // moment an absent value was made to throw, every empty composer threw with it.
+      // The marker is what separates them, because only a found ValuePattern emits it.
+      if (result === undefined || result === null) return null;
+      const said = result.replace(/^\s+/, '');
+      if (!said.startsWith('VALUE:')) return null;
+      return said.slice('VALUE:'.length).trim();
     } catch {
       return null;
     }

@@ -28,6 +28,20 @@ Together: **35s → 7s** on the integration suite, **1675ms → 2ms** on a disci
 
 **What to do when something feels slow:** measure each layer separately before theorising. Run [`measure.ts`](../../src/scripts/measure.ts) — `npx tsx src/scripts/measure.ts`. It is read-only, it times every layer in one pass, and it found all of this immediately. Three plausible theories about the tree would have found nothing, because the tree was innocent.
 
+## PowerShell honours a CURLY quote as a string delimiter
+
+**Sprint 77 finding, 2026-09-18.** A message would not send. The driver printed PowerShell parse errors, and they quoted *the message's own prose* back as broken code — `Unexpected token 'THE' in expression or statement`, where `THE` was a heading in the text being sent.
+
+[`setValue`](../../src/uia.ts) builds a PowerShell script with the value inside single quotes and escapes it by doubling the apostrophe: `value.replace(/'/g, "''")`. That covers `'` (U+0027). **It does not cover `‘` (U+2018) or `’` (U+2019), and PowerShell accepts all three as string delimiters.** So one typographic apostrophe closes the value string early, and everything after it is parsed as PowerShell.
+
+**Two curly quotes were the whole cause.** Straightening them sent the same message immediately.
+
+**Why it looks intermittent, which is the part that wastes an afternoon:** an *even* number of curly quotes still parses — the string simply ends and restarts in the wrong places, producing a mangled value rather than a syntax error. So some messages go, some fail, and nothing about their size or shape predicts which. A 100KB message with an even count sent perfectly an hour before a 7KB one with an odd count would not.
+
+**And this library is made of curly quotes.** `Doug’s Library` is the name of the root book; it appears in almost every message the team sends outward.
+
+**What to do:** the escape must cover all three delimiters, not one. Until it does, straighten typographic quotes in anything typed through the driver — and when the driver reports a PowerShell parse error that quotes your own words back at you, that is this, not your prose.
+
 ## Never `app.exit()` from a tool
 
 `exit()` closes **Claude Desktop itself**, taking whatever the user was doing with it. A driver attached to a running app gives the computer back with `window.minimize()` and `auto.shell.close()` — the window goes away, the app does not. Minimize *before* closing the shell, because minimizing speaks through it.

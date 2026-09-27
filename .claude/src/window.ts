@@ -274,9 +274,31 @@ export class Window {
   }
 
   /** Give the renderer time to build its accessibility tree, then look ONCE. */
-  async waitForUia(settleMs = 4_000): Promise<boolean> {
+  /** Is the app publishing an accessibility tree yet?
+   *
+   *  LOOK FIRST, THEN WAIT ONLY AS LONG AS IT TAKES. This slept a flat FOUR SECONDS
+   *  before looking once — on every single invocation of the driver, including the
+   *  overwhelming common case where the app has been open for hours and the tree has
+   *  been there the whole time. It was the largest blind wait in the driver and it was
+   *  paid in Doug's foreground, because the window has to be up for the tree to update
+   *  at all. Doug, 2026-09-17: *"you should never wait blind, so the absence of a
+   *  confirmation is the do and check is just proof that you are blind"*, and *"if you
+   *  HAVE to wait, wait 250"*. So: ask, and ask again on a taper only while the answer
+   *  is no. An app that is already readable now costs one question. */
+  async waitForUia(budgetMs = 4_000): Promise<boolean> {
     this.requireHandle();
-    await sleep(settleMs);
+    const deadline = Date.now() + budgetMs;
+    let delay = 50;
+    for (;;) {
+      if (await this.publishesTree()) return true;
+      const remaining = deadline - Date.now();
+      if (remaining <= 0) return false;
+      await sleep(Math.min(delay, remaining));
+      delay = Math.min(delay * 2, 250);
+    }
+  }
+
+  private async publishesTree(): Promise<boolean> {
     const count = await this.shell.run(`
       Add-Type -AssemblyName UIAutomationClient
       Add-Type -AssemblyName UIAutomationTypes

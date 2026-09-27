@@ -6,7 +6,7 @@
 
 import type { Automation } from '../automation.ts';
 import { ProjectFile } from '../components/project-file.ts';
-import { isMoreOptions, isComposerPlaceholder, normalizeSpaces } from '../text.ts';
+import { isMoreOptions, isComposerPlaceholder, normalizeSpaces, isSidebarChrome } from '../text.ts';
 
 export class ProjectController {
   constructor(private readonly auto: Automation) {}
@@ -223,11 +223,29 @@ export class ProjectController {
   async readConversations(): Promise<{ title: string; lastMessage: string }[]> {
     this.auto.navigator.requireScreen('project');
 
+    // READ THE ELEMENTS, NOT THE WINDOW'S TEXT. Every conversation on a project page
+    // is a Hyperlink whose Name is exactly its title — verified against the live tree
+    // 2026-09-17, where the Claude project showed ten Hyperlinks, eight of them
+    // conversations and two of them chrome.
+    //
+    // It parsed `readText()` instead, and required a line beginning "Last message "
+    // before it would emit anything. The app stopped writing that — a row now reads
+    // "Test" then "Jun 21" — so NO line ever matched and this returned an EMPTY LIST
+    // for every project. `openTopic` then reported "No conversation X in the Claude
+    // project" about conversations sitting in plain view, which is what took /think
+    // down. A flat text stream has no boundaries in it; the element names do.
     return this.auto.gateway.read(
       async () => {
-        const text = await this.auto.uia.readText();
-        if (!text) return [];
-        return this.parseScopedConversations(text);
+        const links = await this.auto.uia.findAllNames('Hyperlink');
+        return links
+          .map(name => normalizeSpaces(name.trim()))
+          // `lastMessage` is EMPTY BY ADMISSION rather than by accident: the app no
+          // longer publishes it, the Hyperlink carries only the title, and inventing
+          // one from the neighbouring Text would be pairing by position on a list
+          // whose positions just moved. exports/capture.ts reads it and will record
+          // it blank, which is true.
+          .filter(name => name !== '' && !isSidebarChrome(name))
+          .map(title => ({ title, lastMessage: '' }));
       },
       () => true,
       { description: 'Read project conversations' },
@@ -249,12 +267,33 @@ export class ProjectController {
     this.auto.navigator.requireScreen('project');
 
     await this.auto.keyboard.sendKeys('{END}');
-    await new Promise(r => setTimeout(r, 1_000));
+
+    // Two flat `setTimeout(1_000)` sleeps stood here until 2026-09-17 — two seconds
+    // of dead time on the hot path of every /think, paid in full whether the app
+    // answered in 30ms or never answered at all. The gateway asks instead, on its
+    // taper, and stops the moment it is answered. The budget is the ceiling the sleep
+    // used to be, so the slow case still costs exactly what it did.
+    //
+    // The question after END is whether the list has rendered far enough to show its
+    // "Show more" — matched the way invokeByNameLast matches it, a Button or a
+    // Hyperlink whose name STARTS that way, so the wait and the click below agree
+    // about what they are looking for. Neither answer is acted on, deliberately: if
+    // the button never appears the click is the no-op it has always been, and a list
+    // that was already whole reads correctly either way.
+    await this.auto.gateway.check(
+      async () => (await this.auto.uia.allNames())
+        .some(n => /^ControlType\.(Button|Hyperlink) \| Show more/.test(n)),
+      { description: 'Wait for "Show more" after scrolling to the end' },
+    );
 
     // Click the LAST "Show more" — the one in the conversation list, not the
     // description. If it is not there, the list is already whole.
+    const before = (await this.auto.uia.findAllNames('Hyperlink')).length;
     await this.auto.uia.invokeByNameLast('Show more');
-    await new Promise(r => setTimeout(r, 1_000));
+    await this.auto.gateway.check(
+      async () => (await this.auto.uia.findAllNames('Hyperlink')).length > before,
+      { description: 'Wait for the conversation list to grow' },
+    );
 
     return this.readConversations();
   }
@@ -361,49 +400,6 @@ export class ProjectController {
       }
     }
     return files;
-  }
-
-  private parseScopedConversations(text: string): { title: string; lastMessage: string }[] {
-    // Scoped conversations appear as title + "Last message N ago" pairs.
-    // They appear after the composer area and before the right panel sections.
-    // Anchors: "Start a task in Cowork" or the composer placeholder.
-    const lines = text.split('\n').map(l => normalizeSpaces(l.trim()));
-
-    let startIdx = lines.findIndex(l => l === 'Start a task in Cowork');
-    if (startIdx === -1) {
-      // Fallback: start from "Press and hold to record" (mic button) or composer
-      startIdx = lines.findIndex(l => l === 'Press and hold to record');
-    }
-    if (startIdx === -1) {
-      // Fallback: find the first "Last message" line and work backwards
-      startIdx = lines.findIndex(l => l.startsWith('Last message '));
-      if (startIdx > 0) startIdx -= 1;
-    }
-    if (startIdx === -1) return [];
-
-    const conversations: { title: string; lastMessage: string }[] = [];
-    let title = '';
-
-    for (let i = startIdx; i < lines.length; i++) {
-      const line = lines[i];
-      if (!line || line === '￼') continue;
-      if (this.isSectionHeader(line)) break;
-      if (isMoreOptions(line)) continue;
-      if (line === 'Start a task in Cowork') continue;
-      if (line === 'Press and hold to record') continue;
-
-      if (line.startsWith('Last message ')) {
-        if (title) {
-          conversations.push({ title, lastMessage: line });
-          title = '';
-        }
-        continue;
-      }
-
-      title = line;
-    }
-
-    return conversations;
   }
 
   private isPlaceholder(text: string): boolean {

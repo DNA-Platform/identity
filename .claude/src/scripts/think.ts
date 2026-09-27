@@ -42,7 +42,7 @@ async function main(): Promise<void> {
       const isNew = rest.includes('new');
       const attach = resolveArg(rest.find(a => a !== 'new'));   // optional attachment — anything but the 'new' flag; @file reads from disk
       await dispatch(app, topic, resolveArg(say)!, isNew, attach);
-      console.log(`[think] WRITE done — "${topic}" (${isNew ? 'new topic' : 'continued'}${attach ? ', + attachment' : ''}), streaming detected, minimized.`);
+      console.log(`[think] WRITE done — "${topic}" (${isNew ? 'new topic' : 'continued'}${attach ? ', + attachment' : ''}), message sent, screen released.`);
       break;
     }
     case 'read': {

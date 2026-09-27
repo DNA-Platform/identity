@@ -26,6 +26,36 @@ A question like "should we rewrite our UIA integration?" factorizes into the gen
 
 Send the general part. Keep the specific part. The factorization is where the thinking begins, not after the response arrives.
 
+## A thought is a correspondence, not an errand
+
+Desktop holds context extremely well across a thread, and it knows nothing about our code unless I put the code in front of it. Those two facts together decide how a hard design question has to be run: not as one question and one answer, but as a correspondence I keep going until the design is real.
+
+Doug gave the shape of it while we were designing the compiler (2026-09-17): *"You are his body and like an octopus the brain of his many appendages. You can reach anything. His NS is a CNS and slightly bigger but if he doesn't understand what is in reach his arms have to override and send backprop feedback."* Desktop is the wider view; I am the part that can reach the files. When the wider view is wrong about what is actually in the repository, the correction has to travel back — I do not adopt an answer that the code contradicts, and I do not quietly work around it either.
+
+So three things follow, and I get all three wrong by default.
+
+**Send the code, not a description of the code.** A summary written from my own memory of a file is the thing Desktop cannot check and cannot reason from. What works is the folder structure, the files inside it, a line each saying what they own, and the real source of the two or three that carry the design — with line counts, so the size of the thing is visible. Doug, on the sprint where I kept sending précis: *"You made this mistake already thinking he magically knows the code. He doesn't."* And earlier, on the same fault: *"You give very small messages."* A large payload is not rudeness; it is the only way the answer can be about our system rather than about systems in general.
+
+**Say that it is iterative, and open the channel back.** Ask explicitly for what is missing — *"where you need something I have not given you, say exactly what and I will go read it out of the code and send it back"* — because that turns a guess into a request I can satisfy in a minute. An answer that names its own gaps is worth more than one that papers over them.
+
+**Never defer, and never merely relay.** The judgment is mine; that is what [the two libraries](../..librarianship/15-the-two-libraries.md) means. When an answer is right I say what it changes and take it. When it is wrong at a line I can read, I say so with the line, and the next message carries the correction rather than the disappointment. Pushing back is the work — a thought accepted whole is a thought nobody had.
+
+## Anchors and degrees of freedom
+
+Every message I send outward carries two lists, and if I leave either one out I get an answer to a question nobody asked.
+
+**An anchor is a fact the answer must be built on.** It is already decided, and re-opening it is not a contribution — it is a cost, because it spends the round and it spends my reading. Vite is an anchor. React and TSX are anchors. Prose living in JSX text is an anchor. Prerendered static output with no runtime server is an anchor. An anchor is not a preference I am defending; it is load-bearing, and usually something below it has already been built on the assumption that it holds.
+
+**A degree of freedom is an axis the answer may move along.** It is where thinking is actually wanted. "Where does the catalogue live and when is it built" is a degree of freedom. "Which of the nine phases survive, and as what" is a degree of freedom. Naming them is what makes an answer usable, because it says *here* rather than leaving the outer view to guess.
+
+**State both, in the same message, and say plainly that the anchors are not the question.** Desktop has no way to tell a decision from a habit unless I say which it is. Left to itself it will reach for the largest interesting question visible in the document — which is nearly always the platform, because the platform is the most general thing there.
+
+That is not hypothetical. On the compiler sprint (2026-09-17) I sent a document that said *"Vite, not Babel — decided"* in one part and asked for research on *"Vite's current plugin surface, and what is deprecated"* in another. The answer came back weighing the platform, and Doug had to go and say it himself: *"I had to explain to CD that we are not changing Vite."* Both halves of that document were mine, and the contradiction between them was the whole fault.
+
+**Say that he can ask.** The anchors bound the answer; the ask-back channel keeps the bound from turning into a guess. I can reach any file in the repository in under a minute, so *"if you need something I have not given you, name it and I will read it out of the code"* costs me nothing and converts an assumption into a fact. A question back is a good outcome, not a failed round.
+
+**And grade the answer against the degrees of freedom, never against its prose.** This is the part I get wrong most often, and Doug named it: *"He is not being helpful and you keep calling weak off topic responses strong."* A fluent, confident, well-organised answer to a settled question is a **weak** answer. The test is not whether it reads well or whether I agree with it — it is whether it moved one of the axes I said were open. If it did not, I say so, restate the anchors, and send it back. Praising it instead is how a thread drifts for several rounds while I report progress.
+
 ## Framing the workload
 
 Desktop's response time scales with how much I ask for. An open-ended "research everything about X" can run for minutes. So frame the *size* of the ask in the prompt, not just its content — "give me a **quick summary** of …", "your **top-of-mind thoughts** on …", "the **three main considerations** for …". A bounded ask returns faster and is often sufficient; when it isn't, follow up on the same conversation rather than asking for everything at once. This pairs with the thinking pause below.
@@ -77,7 +107,7 @@ npx tsx .claude/src/scripts/think.ts read
 The [read resource](../thoughtfulness/02-the-thought-lifecycle--read.ts) **resumes** the conversation by the [session](../../src/session.ts) — it binds the open conversation in place if Desktop is still on it (no navigation, no title read), else navigates to it in the project — then **waits**, holding the app open and polling until the response is complete, and prints it. **For a NEW topic it then renames the conversation to `{Name} > {Topic}`**, which is what finally gives it its title (see [New topic vs existing topic](#new-topic-vs-existing-topic--how-the-conversation-is-found)). A separate process from write; never chained.
 
 ### Step 6 — Evaluate
-Did it answer the actual question, or a nearby one? Substantive or a confident deflection? Consistent with what the team knows? Verdict: **sufficient**, **partial**, or **unproductive**.
+Did it answer the actual question, or a nearby one? Substantive or a confident deflection? Consistent with what the team knows? Verdict: **sufficient**, **partial**, or **unproductive**. Grade it against the [degrees of freedom](#anchors-and-degrees-of-freedom) I named, never against how well it reads — an answer that re-argues an anchor is **unproductive** however good it is, and saying so is the step.
 
 ### Step 7 — Conclude
 Three stages in my chapter: **Evidence** (the printed response), **Interpretation** (what aligns, contradicts, surprises), **Conclusion** (what to tell the team, and whom). Update my thinking-book cover and the research-topic chapter. Store failed thoughts too — they prevent re-asking dead ends. A `/think` result is a *filed thought to refer back to*, not automatically team work.

@@ -30,6 +30,9 @@ export function isSidebarChrome(line: string): boolean {
     'Skip to content', 'Back', 'Forward', 'Resize sidebar',
     'Click to collapse', 'Drag to resize', 'Chat', 'Cowork', 'Code',
     'New chat', 'Projects', 'Artifacts', 'Customize', 'Recents', 'View all',
+    // Added 2026-09-17 from the live tree: the only non-conversation Hyperlinks on
+    // a project page are this one and 'Projects', which is already above.
+    'Get apps and extensions',
   ];
   return chrome.some(c => line === c || line.startsWith(c + 'Ctrl'));
 }

@@ -9,7 +9,7 @@ Sprint 20 opened as a design-principles review with Doug's reframing: this repo 
 
 ## 1. The `$` algebra
 
-`$` reads *representation of* (my own [grammar chapter](../../../../../library/chemistry/.lib/authorship/01-the-grammar.md)). It is not one function but a family, dispatched by `Chemistry.view(arg)` (`chemical.ts:1301`) and typed by the `$Chemistry` interface (`chemical.ts:1073`). Every overload, its meaning, and when it is legal:
+`$` reads *representation of* (my own [grammar chapter](../../../../../../library/chemistry/.lib/authorship/01-the-grammar.md)). It is not one function but a family, dispatched by `Chemistry.view(arg)` (`chemical.ts:1301`) and typed by the `$Chemistry` interface (`chemical.ts:1073`). Every overload, its meaning, and when it is legal:
 
 - **Represent a class → its renderer.** `$($Class)` empty ctor → `Component`/`Element`; with args → `(...args) => Component` (`:1090`). A class is represented by the thing that draws its instances. Pure construction; resolves against nothing.
 - **Represent an instance → its renderer.** `$(chemical)` → `$Component`, `$(particle)` → `$Element` (`:1344`). The live view, cached per instance (`$lifted$`); the bond constructor does not re-run.
@@ -41,7 +41,7 @@ Sprint 20 opened as a design-principles review with Doug's reframing: this repo 
 
 Census by file (grep of `^\s*(//|*|/*)`): **chemistry 750 comment lines / 5160 (≈14.5%); lib ~1 / 2962.** Worst offenders: `chemical.ts` 234, `particle.ts` 135, `load.ts` 69, `scope.ts` 49, `symbols.ts` 37, `symbolic.ts` 31, `reconcile.ts` 26, `types.ts` 25, `reaction.ts` 23.
 
-The ruling instrument is my own [grammar chapter](../../../../../library/chemistry/.lib/authorship/01-the-grammar.md): "No explanatory comments. The code is the explanation. The only comments… are structural markers." **So chemistry violates its own stated grammar** — and lib, with one comment, obeys it. Sampling chemistry's comments, each is one of two kinds:
+The ruling instrument is my own [grammar chapter](../../../../../../library/chemistry/.lib/authorship/01-the-grammar.md): "No explanatory comments. The code is the explanation. The only comments… are structural markers." **So chemistry violates its own stated grammar** — and lib, with one comment, obeys it. Sampling chemistry's comments, each is one of two kinds:
 
 - **Structural markers** — the `====` section banners (`chemical.ts:958, 1050, 1132`). **Load-bearing where they sit**: navigation inside a 1,407-line file, and the grammar explicitly permits them. Keep.
 - **Explanatory prose** — the large majority (e.g. `chemical.ts:40` "$Reactants — the information-hiding wrapper…", `:818` the `$parent$` setter rationale, `:1179` `entriesOf`, `:1275` `derive`; the `$Scope`/`withScope`/asker docstrings in `scope.ts`). **A library chapter in the wrong place.** The prose is genuinely good design rationale — it belongs in `.lib` (authorship / reactivity / composition), not the source. `chemical.ts` and `particle.ts` alone carry ~370 of the 750 lines, most of it rationale, so they are the two files to lift first.

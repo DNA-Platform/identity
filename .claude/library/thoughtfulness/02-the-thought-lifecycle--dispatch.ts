@@ -74,9 +74,20 @@ export async function dispatch(app: Claude, topic: string, say: string, isNew: b
   const page = isNew
     ? await send((await claudeProject(app)).composer, say, attach)   // new: born in the project composer
     : await send((await resume(app, topic)).composer, say, attach);  // existing: resume in place, or navigate
-  await page.response.waitUntilStreaming();
+  // GIVE THE MACHINE BACK THE MOMENT THE MESSAGE IS GONE. This used to wait here for
+  // `page.response.waitUntilStreaming()` before minimizing — and because the tree does
+  // not update while the window is minimized, that wait was paid IN Doug's foreground,
+  // holding his keyboard for seconds while Claude Desktop decided to start answering.
+  // `send()` has already verified the message left the box, so streaming is a fact we
+  // do not need yet and `read` establishes for free when it resumes. Doug, 2026-09-17:
+  // *"So I am typing intentionally, know I will get interrupted. So when you pop things
+  // open, do it ASAP so I can get back to typing."* The measure is not whether we
+  // interrupt him; it is how many seconds his typing went somewhere else.
+  //
+  // `remember` and `writeState` stay ahead of the release because `remember` reads the
+  // URL off the tree and cannot do it minimized — they are two crossings, not a wait.
   await app.session.remember();                                      // so read can resume this conversation
   writeState({ topic, message: say, isNew, startedAt: new Date().toISOString() });
-  app.window.minimize();
+  await app.window.minimize();                                       // awaited: the release is the point, not a parting gesture
   return page.response;
 }

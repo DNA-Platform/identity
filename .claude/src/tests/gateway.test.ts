@@ -81,18 +81,36 @@ test('a bare waitFor is its own operation, so it does pay for its own check', as
   assert.equal(windowCalls.requireForeground, 1);
 });
 
-test('THE LOOK HAPPENS EXACTLY ONCE — a verify is not retried either', async () => {
+test('THE ACTION FIRES EXACTLY ONCE — and only the look is repeated', async () => {
   const { gateway, windowCalls } = build();
+  let fired = 0;
   let looks = 0;
   await assert.rejects(
-    () => gateway.act(async () => {}, async () => { looks++; return false; },
-      { description: 'a verify that says no', settleMs: 1 }),
+    () => gateway.act(async () => { fired++; }, async () => { looks++; return false; },
+      { description: 'a verify that never says yes', settleMs: 200 }),
     (e: Error) => /did not show what was expected/.test(e.message));
-  assert.equal(looks, 1,
-    'it looked once and stopped. The old gateway polled with a tapering backoff for ' +
-    'up to thirty seconds, holding the screen while it asked the same question again ' +
-    'and again. If one look says no, hand over the tree and stand down.');
+  assert.equal(fired, 1,
+    'this is the whole rule, and it is about clicking and typing into someone\'s app. ' +
+    'Doug: "if it fails, you get the UIA tree, see what went wrong, edit the code and ' +
+    'start again. You do not loop." A driver that fires twice is a driver holding a ' +
+    'computer hostage; a driver that READS twice has only asked a question again.');
+  assert.ok(looks > 1,
+    'and the verify is re-read, because the version that looked once slept a flat ' +
+    '1000ms first — every action paid the app\'s worst case whether it answered in ' +
+    '30ms or never (Doug, 2026-09-17: "Performance is real and the mechanism is too ' +
+    'slow. Use gateways to do test and fast check").');
   assert.equal(windowCalls.requireForeground, 1);
+});
+
+test('a verify that is already true costs one look and no sleeping', async () => {
+  const { gateway } = build();
+  let looks = 0;
+  await gateway.act(async () => {}, async () => { looks++; return true; },
+    { description: 'an app that already agreed' });
+  assert.equal(looks, 1,
+    'the budget is a ceiling, not a floor. This is the repair: ten of these run per ' +
+    '/think dispatch, and each one used to sleep the full second before its first ' +
+    'and only look.');
 });
 
 test('a failed action hands back the tree and gives the screen back', async () => {

@@ -13,7 +13,7 @@ console.log('URL:', url);
 
 const buttons = await app.auto.uia.findAllNames('Button');
 console.log('\n=== Buttons ===');
-for (const b of buttons.slice(0, 30)) console.log('  ', b);
+for (const b of buttons) console.log('  ', b);
 
 const text = await app.auto.uia.readText();
 const lines = text?.split('\n').slice(0, 30) ?? [];

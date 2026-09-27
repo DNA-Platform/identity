@@ -92,7 +92,12 @@ export class SidebarController {
     const wasBefore = await this.checkVisible();
     await this.auto.gateway.act(
       async () => {
-        const invoked = await this.auto.uia.invokeByName('Toggle sidebar')
+        // Newest first, the way HOME_AFFORDANCES is ordered. `Hide sidebar` is what
+        // the live tree shows (captured 2026-09-17); `Toggle sidebar` is not on it
+        // at all, and `Resize sidebar` is a Thumb rather than the button — it is
+        // kept because it was once what worked, not because it is what to try first.
+        const invoked = await this.auto.uia.invokeByName('Hide sidebar')
+          || await this.auto.uia.invokeByName('Toggle sidebar')
           || await this.auto.uia.invokeByName('Resize sidebar');
         if (!invoked) {
           await this.auto.keyboard.sendKeys('^b');
@@ -103,16 +108,24 @@ export class SidebarController {
     );
   }
 
+  /** Is the sidebar showing? Answered by whichever "start a fresh chat" affordance
+   *  is actually on the tree.
+   *
+   *  It asked `readText().includes('New chat')` — the name the app stopped using,
+   *  which `newChat()` above already learned and `HOME_AFFORDANCES` already records.
+   *  The same drift, in the same file, in a second place that was never moved over.
+   *  And a substring of the whole screen's text is not an element: `includes('Chat')`
+   *  matched the word wherever it fell, so this answered true off the sidebar's own
+   *  conversation titles. One snapshot, exact names. */
   async checkVisible(): Promise<boolean> {
-    const text = await this.auto.uia.readText();
-    if (!text) return false;
-    return text.includes('New chat') || text.includes('Chat');
+    const tree = await this.auto.uia.snapshot();
+    if (tree.isEmpty) return false;
+    return HOME_AFFORDANCES.some(name => tree.has({ name }));
   }
 
   async switchToChat(): Promise<void> {
-    const text = await this.auto.uia.readText();
-    // Already in chat mode if "New chat" is visible
-    if (text?.includes('New chat')) return;
+    // Already in chat mode if a "start a fresh chat" affordance is on the tree.
+    if (await this.checkVisible()) return;
 
     await this.auto.gateway.act(
       async () => {
@@ -121,10 +134,7 @@ export class SidebarController {
           throw new Error('Could not find "Chat" tab in the UIA tree');
         }
       },
-      async () => {
-        const t = await this.auto.uia.readText();
-        return t?.includes('New chat') ?? false;
-      },
+      async () => this.checkVisible(),
       { description: 'Switch to Chat tab' },
     );
   }

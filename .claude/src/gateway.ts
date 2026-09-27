@@ -1,24 +1,42 @@
-///: Gateway — act once, look once, and if it did not work, STAND DOWN.
+///: Gateway — act ONCE, look until the app answers, and if it never does, STAND DOWN.
 ///:
-///: **There are no loops in this file.** Not a retry, not a poll, not a backoff.
-///: This is Doug's machine, and a driver that loops is a driver holding a computer
-///: hostage while its owner tries to type. The rule, in his words: *if it fails, you
-///: get the UIA tree, see what went wrong, edit the code and start again. You do not
-///: loop.*
+///: **The action fires exactly once. Only the LOOK repeats.** That one distinction is
+///: the discipline of this file, and nothing else in it matters as much. Doug's rule
+///: was always about the action: *if it fails, you get the UIA tree, see what went
+///: wrong, edit the code and start again. You do not loop.* It was written against a
+///: real defect — a driver clicking and typing into Claude Desktop again and again
+///: while its owner tried to use their own computer. No action is ever re-fired here.
 ///:
-///: So every failure produces the same three things and then gets out of the way:
+///: Looking is not acting. Reading the tree changes nothing on screen, and the file
+///: spent a while confusing the two: `act` slept a flat `DEFAULT_SETTLE_MS` and then
+///: looked once, so every operation paid 1000ms whether the app answered in 30ms or
+///: not at all. A tree read costs 77–133ms; one `/think` dispatch crosses this gateway
+///: about ten times — goHome, sidebar, projects, open project, open conversation,
+///: clear, the stability wait, type, paste, send. Ten seconds of sleeping, to watch an
+///: app that usually answers before the first blink. Doug, 2026-09-17: *"Fix.
+///: Performance is real and the mechanism is too slow. Use gateways to do test and
+///: fast check"*.
+///:
+///: So `poll` re-reads a verify on a tapering backoff — 50, 100, 200, 400, 800, capped
+///: at 1000 — and returns the instant it passes. `settleMs` is now the BUDGET rather
+///: than the wait. The last look still lands exactly on it, so every verify the old
+///: single look said yes to still gets its yes; what changed is that a verify which
+///: was going to pass at 30ms stops paying for the other 970.
+///:
+///: Failure is unchanged, and still produces the same three things before getting out
+///: of the way:
 ///:   1. **the tree** — what the app actually showed at the moment it failed,
 ///:      attached to the error and written to `debug/`;
 ///:   2. **a minimize** — the screen goes back to its owner immediately;
-///:   3. **a throw** — the caller stops. Nothing is attempted a second time.
+///:   3. **a throw** — the caller stops. The ACTION is never attempted a second time.
 ///:
-///: That is not a weaker guarantee than polling. It is a stronger one: a poll that
-///: eventually succeeds hides the fact that the first look was wrong, and a poll
-///: that eventually fails has spent thirty seconds of someone's screen to tell you
-///: nothing you could not learn from one tree read. The tree IS the diagnosis.
+///: The tree IS the diagnosis. A poll that eventually fails has told you nothing you
+///: could not learn from one tree read, which is why the budget is small and the
+///: failure still hands the tree over rather than asking for longer.
 ///:
-///: Three methods: act (precheck, fire once, settle, look once), check (settle, look
-///: once), read (read once, validate).
+///: Three methods: act (precheck, fire once, poll the verify), check (poll a
+///: predicate), read (read once, validate — a reader is not a verify, and re-reading
+///: a bad answer is just hoping).
 ///:
 ///: [The Gateway Pattern](../library/reference-desk/02-02-the-architecture--gateway.md) — full specification.
 ///: [Coding Philosophy](../library/reference-desk/05-coding-philosophy.md) — the elevator metaphor: open your eyes and look.
@@ -29,8 +47,10 @@ import type { TreeQuery, TreeSnapshot } from './tree.ts';
 import { DriverError, PreconditionError } from './errors.ts';
 
 export interface GatewayOptions {
-  /** How long to let the app settle before looking. **One wait, then one look** —
-   *  this is not a timeout on a poll, because there is no poll. */
+  /** The BUDGET for looking, not a wait. The gateway asks on a tapering backoff and
+   *  answers the moment the app agrees; this is only the point at which it stops
+   *  asking. It was a flat sleep until 2026-09-17, which charged every operation the
+   *  worst case, so the name reads the same at the call sites and costs a tenth. */
   settleMs?: number;
   description?: string;
   screenshotOnFailure?: string;
@@ -49,7 +69,16 @@ export interface GatewayOptions {
   snapshot?: TreeSnapshot;
 }
 
-const DEFAULT_SETTLE_MS = 1_000;
+// THE BUDGET IS A CEILING, NOT A COST, and the difference is the whole point of the
+// taper. While this was a flat sleep, every act paid it in full and Doug felt every
+// one of them: 250 was the right number for a wait you cannot see the end of. Now that
+// act, check and read all POLL — first look immediately, then 50, 100, 200ms and up —
+// a generous ceiling costs nothing when the app is quick and is the only thing that
+// lets a genuine navigation finish. Measured 2026-09-17: with the ceiling at 250 a
+// project navigation failed outright, because opening a page is simply slower than
+// that and no amount of impatience makes it faster. What must stay small is the time
+// actually spent, and that is now decided by the app rather than by this number.
+const DEFAULT_SETTLE_MS = 5_000;
 
 export class Gateway {
   constructor(
@@ -61,6 +90,36 @@ export class Gateway {
     if (this.window) await this.window.requireForeground();
   }
 
+  /** Ask the same question on a tapering backoff — 50, 100, 200, 400, 800, then 1000
+   *  — and stop the moment the answer is yes or the budget is gone.
+   *
+   *  **Only a look ever comes through here.** An action is fired by its caller before
+   *  the first question is asked and is never reachable from inside this loop.
+   *
+   *  It asks ONCE before it sleeps at all, so an app that already agrees costs
+   *  nothing; and the last sleep is clamped so the final look begins exactly at the
+   *  budget — the same instant the old single look began. That clamp is why this is
+   *  purely a speed-up: anything the one-sleep-one-look gateway would have seen is
+   *  still seen, at the same moment, by the same predicate.
+   *
+   *  It never checks the foreground. That belongs to the operation that called it,
+   *  which paid for it once at the top — discipline re-asserted at every level reads
+   *  as rigour and behaves as a tax, and it is what made this driver glacial before. */
+  private async poll(
+    predicate: () => boolean | Promise<boolean>,
+    budgetMs: number,
+  ): Promise<boolean> {
+    const deadline = Date.now() + budgetMs;
+    let delay = 50;
+    for (;;) {
+      if (await predicate()) return true;
+      const remaining = deadline - Date.now();
+      if (remaining <= 0) return false;
+      await sleep(Math.min(delay, remaining));
+      delay = Math.min(delay * 2, 1_000);
+    }
+  }
+
   /** The screen right now. One walk answers many questions, and it is the cheapest
    *  thing in the driver (~80ms). Never throws — an unreadable app yields an empty
    *  snapshot, which means "we could not see", not "it is not there". */
@@ -68,15 +127,16 @@ export class Gateway {
     return this.diagnostics.snapshot();
   }
 
-  /** Precheck → act once → settle → look once.
+  /** Precheck → act once → poll the verify.
    *
    *  **Precheck** (when `options.target` is given): confirm the element the actuator
    *  is about to touch is on screen. If it is not, throw BEFORE firing — the action
    *  did not happen, the error names what was expected, and it carries the tree that
    *  disagreed.
    *
-   *  **Act** fires exactly once. **Look** happens exactly once, after a single
-   *  settle. If the look says no, we do not look again: we hand back the tree and
+   *  **Act** fires exactly once, before any looking, and is never reached again.
+   *  **Look** repeats on a tapering backoff until the app agrees or `settleMs` is
+   *  spent. When the budget runs out we do not act again: we hand back the tree and
    *  minimize. Read the tree, fix the code, run it again. */
   async act(
     action: () => void | Promise<void>,
@@ -101,12 +161,12 @@ export class Gateway {
       }
     }
 
-    // Fire the action ONCE.
+    // Fire the action ONCE. Nothing below this line touches the app.
     await action();
 
-    // Let the app settle, once, then look, once.
-    await sleep(settleMs);
-    const ok = await verify();
+    // Look until the app agrees, or until the budget is gone. Re-READING is not
+    // re-ACTING: `poll` only ever asks the question again.
+    const ok = await this.poll(verify, settleMs);
 
     const duration = Date.now() - startTime;
     if (ok) {
@@ -118,27 +178,27 @@ export class Gateway {
     const tree = await this.tree();
     await this.standDown(desc);
     throw new DriverError(
-      `${desc} — the action fired, and ${settleMs}ms later the app did not show what was expected.\n` +
-      'It was NOT tried again. The tree below is what the app actually showed; ' +
-      'read it, change the code, and run it once more.',
+      `${desc} — the action fired, and ${settleMs}ms of looking later the app did not show what was expected.\n` +
+      'The ACTION was NOT tried again; only the look was repeated. The tree below is ' +
+      'what the app actually showed; read it, change the code, and run it once more.',
     ).withTree(tree);
   }
 
-  /** Settle once, then look once. Returns what it saw — no loop, no deadline.
+  /** Ask until the answer is yes or the budget is spent, then say what you saw.
    *
-   *  Callers that used this to wait for something slow now get a straight answer
-   *  about the moment they asked. If the answer is wrong, the tree says why. */
+   *  It fires nothing, so asking again is only ever a tree read, and `settleMs` is a
+   *  ceiling instead of a floor: a transition the app has already made is reported
+   *  immediately, and one it never makes still costs no more than it used to. */
   async check(
     predicate: () => boolean | Promise<boolean>,
     options: Pick<GatewayOptions, 'settleMs' | 'description'> = {},
   ): Promise<boolean> {
     await this.requireForeground();
-    await sleep(options.settleMs ?? DEFAULT_SETTLE_MS);
-    return predicate();
+    return this.poll(predicate, options.settleMs ?? DEFAULT_SETTLE_MS);
   }
 
-  /** The old name, kept so call sites read the same. It does NOT wait for anything
-   *  repeatedly — it settles once and looks once, exactly like `check`. */
+  /** The old name, kept so call sites read the same. Identical to `check` — it waits
+   *  no longer than the app takes, and never longer than the budget. */
   async waitFor(
     predicate: () => boolean | Promise<boolean>,
     options: Pick<GatewayOptions, 'settleMs' | 'description'> = {},
@@ -157,8 +217,25 @@ export class Gateway {
     const desc = options.description ?? 'Read';
     const startTime = Date.now();
 
-    const result = await reader();
-    if (isValid(result)) {
+    // READ UNTIL THE ANSWER IS USABLE, on the same taper `act` and `check` use. This
+    // read exactly once, and that was the last place in the gateway without sight.
+    // It matters because `detectScreen()` is the URL and nothing else, and in a
+    // single-page app the address bar changes BEFORE the page is painted — so a
+    // navigation's verify passes on a screen that has not drawn, and whatever reads
+    // next gets the previous one. `ProjectsPage.projects()` validates only that the
+    // tree is not empty, which the screen we just left satisfies perfectly, and
+    // `claudeProject` then reported "Claude project not found" about a project
+    // sitting in plain view (measured 2026-09-17, the first dispatch after the flat
+    // one-second settle was removed — that settle had been paying for the render
+    // without anyone writing it down). Re-READING is not re-ACTING: nothing is fired
+    // here, the screen is only looked at again.
+    let result!: T;
+    const usable = await this.poll(async () => {
+      result = await reader();
+      return isValid(result);
+    }, options.settleMs ?? DEFAULT_SETTLE_MS);
+
+    if (usable) {
       this.diagnostics.record(desc, true, Date.now() - startTime);
       return result;
     }
@@ -167,8 +244,8 @@ export class Gateway {
     const tree = await this.tree();
     await this.standDown(desc);
     throw new DriverError(
-      `${desc} — read the screen once and what came back was not usable. It was NOT ` +
-      're-read. The tree below is what the app actually showed.',
+      `${desc} — the screen was read until it should have settled and what came back ` +
+      'was still not usable. The tree below is what the app actually showed.',
     ).withTree(tree);
   }
 

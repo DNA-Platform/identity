@@ -11,6 +11,26 @@ A chapter is a markdown file inside a [book](01-on-books.md). It is the base uni
 
 Chapters are named `NN-slug.md` where `NN` is a two-digit number and `slug` is a kebab-case title. The number is a sort key for reading order, not semantic content. `01` comes before `02`. The reader encounters them in this order in the [table of contents](03-on-covers.md). Gaps are fine — renumbering everything when you insert a chapter between 03 and 04 is unnecessary churn.
 
+## Where a new chapter goes
+
+> ***Doug, 2026-09-16, on a chapter added to the end of his own book because that was where there was room:*** **"EVERYTIME you add something to a book, you need to ask yourself how to organize it… being lazy is the equivalent of murdering dewey. The man who invented the decimal system would cry at end-append as an organizational system."**
+
+**Appending is not an organizational system.** *A number is a reading order, and a reading order is an editorial decision — so the moment a chapter is added, the question is not "what is the next free number" but "where does this belong".* **A chapter placed where there happened to be room has been filed by the filing cabinet rather than by the librarian.**
+
+***And renumbering to answer that question is not churn.*** *The [numbering](#numbering) section says gaps are fine and that renumbering everything to insert between 03 and 04 is unnecessary — which is true of a gap, and NOT a licence to leave a chapter in the wrong place because moving it would renumber its neighbours.* **Cheap to write is not the same as right to read.**
+
+### A library in the first person tells a narrative
+
+**Where a chapter goes is a question about the story the book tells** — *Doug: "MY library is first person perspective so we tell my narrative. Where does this importer go in the narrative?"* **So the ordering test is readable out loud: does the book still say what it means, read front to back?**
+
+*The worked example, the same day.* **A chapter about importing conversations was added last, after a chapter cataloguing a project.** *It belongs BEFORE it, because the importing is what makes the conversations into the books the project is catalogued as — the essay says think in books, the importer is how the talking becomes one, and only then can the project be filed.*
+
+### Synopsis chapters go at the end
+
+> ***Doug, 2026-09-16:*** **"All of the synopsis chapters would go at the end."**
+
+**A chapter that CATALOGUES — one carrying [synopses](09-on-synopsis.md) of the books filed under this book's subject — stands after the chapters that say something.** *It is the shelf at the back of the room, not a step in the argument, and a reader who is still being told something should not walk into it halfway.*
+
 ## Parts
 
 A chapter can contain sub-chapters when it grows too large or covers distinct topics within a single theme. The convention:

@@ -6,15 +6,22 @@
 ///: > writing here. If it fails, you get the UIA tree, see what went wrong, edit the
 ///: > code and start again. You do not loop. YOU are the retry loop.*
 ///:
-///: So: **nothing in the driver may act on the app more than once.** Not a retry,
-///: not a poll, not a backoff, not a five-attempt foreground steal. A failure
-///: produces the tree, minimizes, and stops. A person reads the tree, changes the
-///: code, and runs it again. The intelligence is in the change, not in the repetition —
-///: repeating an action that just failed, unchanged, cannot succeed for any reason
-///: except luck, and it costs someone their machine while it tries.
+///: So: **nothing in the driver may act on the app more than once.** Not a retry, not
+///: a second click, not a five-attempt foreground steal. A failure produces the tree,
+///: minimizes, and stops. A person reads the tree, changes the code, and runs it
+///: again. The intelligence is in the change, not in the repetition — repeating an
+///: action that just failed, unchanged, cannot succeed for any reason except luck,
+///: and it costs someone their machine while it tries.
 ///:
-///: The one legitimate wait is a SETTLE: "I may have looked too early" is real
-///: evidence, and the gateway settles once and looks once. That is not a loop.
+///: **Looking is not acting.** "I may have looked too early" is real evidence, and
+///: reading the tree changes nothing on anyone's screen. The gateway used to buy that
+///: with a flat 1000ms sleep before a single look, which charged every operation the
+///: app's worst case; Doug, 2026-09-17: *"Fix. Performance is real and the mechanism
+///: is too slow. Use gateways to do test and fast check."* So a verify is now
+///: re-read on a tapering backoff until the app answers or a budget runs out.
+///:
+///: That is the ONE loop in the driver. It lives in `gateway.poll`, no action is
+///: reachable from inside it, and the test below holds it to exactly that.
 ///:
 ///: This test greps the driver's own source. That is deliberate — the rule is about
 ///: what the code CONTAINS, not what it happens to do on one run, and a rule you can
@@ -22,7 +29,7 @@
 ///:
 ///: Run: npx tsx --test "src/tests/**/*.test.ts"
 ///:
-///: [The Gateway Pattern](../../library/reference-desk/02-02-the-architecture--gateway.md) — act once, look once, stand down.
+///: [The Gateway Pattern](../../library/reference-desk/02-02-the-architecture--gateway.md) — act once, look until it answers, stand down.
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -67,11 +74,10 @@ function code(text: string): string {
     .replace(/`[\s\S]*?`/g, '``');          // template literals (PowerShell lives here)
 }
 
-/** A loop that contains an `await` is a loop that acts on the app repeatedly. A loop
- *  over an already-fetched array of text is not — the driver parses UIA text with
- *  plenty of those and they touch nothing. */
-function repeatedActions(source: string): string[] {
-  const found: string[] = [];
+/** Every loop in the source, with the block it governs — found by matching braces
+ *  from the loop keyword. The body is what the rule is actually about. */
+function loops(source: string): { header: string; body: string }[] {
+  const found: { header: string; body: string }[] = [];
   const loop = /\b(while|for)\s*\(/g;
   let m: RegExpExecArray | null;
   while ((m = loop.exec(source))) {
@@ -83,19 +89,31 @@ function repeatedActions(source: string): string[] {
       if (source[i] === '{') depth++;
       else if (source[i] === '}' && --depth === 0) break;
     }
-    const body = source.slice(open, i);
-    if (/\bawait\b/.test(body)) {
-      found.push(source.slice(m.index, Math.min(m.index + 60, source.length)).split('\n')[0].trim());
-    }
+    found.push({
+      header: source.slice(m.index, Math.min(m.index + 60, source.length)).split('\n')[0].trim(),
+      body: source.slice(open, i),
+    });
   }
   return found;
+}
+
+/** A loop that contains an `await` is a loop that acts on the app repeatedly. A loop
+ *  over an already-fetched array of text is not — the driver parses UIA text with
+ *  plenty of those and they touch nothing. */
+function repeatedActions(source: string): string[] {
+  return loops(source).filter(l => /\bawait\b/.test(l.body)).map(l => l.header);
 }
 
 test('NOTHING IN THE DRIVER LOOPS OVER AN ACTION — this is Doug\'s machine', () => {
   const offenders: string[] = [];
   for (const file of drivingFiles()) {
+    const rel = relative(SRC, file).replace(/\\/g, '/');
+    // The gateway is the ONE place a loop is allowed, because the only thing it
+    // repeats is a question. The test below is stricter than this one about it:
+    // it pins the loop down to a verify and proves no action can be reached inside.
+    if (rel === 'gateway.ts') continue;
     const loops = repeatedActions(code(readFileSync(file, 'utf-8')));
-    for (const l of loops) offenders.push(`${relative(SRC, file).replace(/\\/g, '/')}: ${l}`);
+    for (const l of loops) offenders.push(`${rel}: ${l}`);
   }
   assert.deepEqual(offenders, [],
     'These loop with an await inside, which means they act on the running app more ' +
@@ -103,11 +121,23 @@ test('NOTHING IN THE DRIVER LOOPS OVER AN ACTION — this is Doug\'s machine', (
     'owner. Fail once, hand over the tree, minimize, stop:\n  ' + offenders.join('\n  '));
 });
 
-test('the gateway has no loop at all — not even over a read', () => {
+test('the gateway loops over the LOOK, and the action can never be reached from inside it', () => {
   const source = code(readFileSync(join(SRC, 'gateway.ts'), 'utf-8'));
-  assert.equal(/\b(while|for)\s*\(/.test(source), false,
-    'the gateway is the discipline layer; a loop here is a loop everywhere');
-  assert.match(source, /await sleep\(/, 'it may settle ONCE before it looks');
+  const all = loops(source);
+  assert.equal(all.length, 1,
+    'exactly one loop, in `poll`. The gateway is the discipline layer, so a second ' +
+    'loop here is a second loop everywhere. Doug, 2026-09-17: "Fix. Performance is ' +
+    'real and the mechanism is too slow. Use gateways to do test and fast check" — ' +
+    'that bought a tapering re-read of a verify, and nothing else.');
+  const [poll] = all;
+  assert.match(poll.body, /await predicate\(\)/, 'what repeats is a question');
+  assert.match(poll.body, /await sleep\(/, 'asked on a taper, not spun on');
+  assert.equal(/\baction\b/.test(poll.body), false,
+    'AND THIS IS THE RULE. Reading a tree again changes nothing on screen; clicking ' +
+    'and typing again is what took Doug\'s keyboard away from him. No action is ' +
+    'reachable from inside this loop.');
+  assert.equal((source.match(/await action\(\)/g) ?? []).length, 1,
+    'and the action is fired in exactly one place, before any looking begins');
 });
 
 test('nothing retries the foreground — the keyboard is not ours to take', () => {
