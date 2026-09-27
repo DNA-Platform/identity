@@ -115,7 +115,7 @@
 - ***Which settings are constant and which are overridable.*** **Doug: *"Overridable means the next subclass can change it. We did this for resolve."*** *`$look` is dynamic, `inline` and `formula` are constant, `persist` is dynamic. The rest is unruled.*
 - ***The Lab driver reaches 35 of 42 sections.*** *Seven carry no verdict and cannot be asserted — `assigned`, `blocks`, `facades`, `formula`, `persistence`, `perspectives`, `styled`. **The persistence one is the atom demo**, which is why an atom defect reached a browser before a promise.*
 
-# <a id="pitches"></a>PITCHED FROM THE PUBLIC BRANCH — 2026-09-11 and 2026-09-13, three extensions, each of a mechanism that exists
+# <a id="pitches"></a>PITCHED FROM THE PUBLIC BRANCH — 2026-09-11, 2026-09-13 and 2026-09-27, four extensions, each of a mechanism that exists
 
 *Doug: "pitch something that is a natural extension of what's there and not a hack." Both come from [Sprint 58 of the public branch](../../../.public/.lib/projection/64-sprint-58--the-chapter-that-is-its-view.md), where each was needed, measured, and not built.*
 
@@ -192,6 +192,14 @@
 
 *Reported by the public redraft's Sprint 78, ruled and built the same day, recorded whole in [Walked Shapes](46-sprint-78--walked-shapes.md). The second defect it surfaced — a derivative sharing its template's collection until assigned — was ruled the design's: reset at bond construction.*
 
+
+## <a id="pitch-cascade"></a>A parent's redraw is its children's — the memo the lift does not have · ***2026-09-27, from Sprint 85 of the public branch***
+
+**What is there:** [the lift](../particle/04-lift.md) makes a chemical's React component, and its render body draws the view on every React render of that component — `p[$apply$](props)`, then `augment(withAsker(p, () => p[$renderView$]()))`, then `p[$viewCache$] = output` ([particle.ts](../../package/src/abstraction/particle.ts#L544), the body's last lines) — and the `diff` against the cache stands only in the settle effect, where it decides whether to force one more render. A chemical's own writes reach its component through its `$update$` token; its parent's reach it through React, which calls a child component whenever the parent's view returns a new element for it.
+
+**What is wanted:** a book that is told where its reader is — `$bookmark`, a reactive member on `$Book`, set by the page's router on every move within the book — and that draws its chapters down the page. Every chapter is already on the page, and a move should cost the book its own small view. Measured on the public branch, 2026-09-27, a book of three paragraphs behind a counted format layer: **3 / 9 / 1** at mount — the book's views, its paragraphs', the layer's render — **2 / 6 / 1** on one reactive write of the book, **0 / 0 / 0** on an unchanged write. *The book redraws twice and every paragraph under it redraws twice, though nothing of theirs moved; on a book of a hundred chapters a move is two hundred views.* Doug: *"This sounds like a chemistry bug that a change is so painful. Why doesn't idempotency prevent other chapters from rewriting. I thought prop changes were cheap."* — and idempotency does hold, one pass late: the diff stops the settle pass repeating, and nothing stops the render pass that React begins.
+
+**The extension, as pitched:** the lifted component memoized on its props — `React.memo` around the closure, or the equivalent shallow comparison at re-entry — so that a child whose props did not change is not called when its parent renders, while its own reaction still re-renders it through the token. A chemical's view reads its own state, so a parent's render carries it no news; a child written by its parent's view with new props is re-rendered as it is today, since the props differ. *Expected after: 2 / 0 / 1 on the same write.* **Not the trick:** `@inert()` on the member, which stills the book too, and was reached for on the public branch and struck the same hour — *"Why would you make a prop inert?"* **To check before building:** [the three passes](../particle/12-the-three-passes.md#what-it-could-catch) — the settle pass resolves an element's type through `askedFor` walking `$parent$`, threaded at mount, so a child skipped on its parent's render must still have had its own settle pass; and whether any consumer relies on a parent's render re-applying a child's props unchanged.
 
 # <a id="reported"></a>REPORTED FROM THE PUBLIC BRANCH — 2026-09-11, a defect measured to the line, not yet designed against
 
