@@ -8,6 +8,8 @@
 
 **Doug, 2026-09-27:** *"The annotation system is flexible? Building an object graph with gettable reactive properties. Being able to rely on the type hierarchy and the more dynamic annotations with the components. It's a flexible way to build a set of dependencies that can be used to style something."*
 
+**This is React.** Doug, 2026-09-27: *"Chemistry is just react. `$` is a mirror between objects and their components… `.public` is obviously not the only component library or app framework supported by `$Chemistry`, and this is only the version we have built personally."* Writing is that version's skeleton, and what is new is the form of app design: the object graph first, meaning expressed on it by annotations — [The Annotated Version](../writing/16-the-annotated-version.md) — and the page drawn from the meaning.
+
 **A library is an object graph, and everything you build sits in front of it.** The graph is the writings — a book holding chapters holding sections, each a typed chemical — and what each exposes as a property: `book.cover`, `book.author`, `chapter.next`, `title.means`, `writing.annotations.expressed($Theme)`. The properties are gettable and reactive: read one, and what you drew redraws when it changes. Nothing in front computes what the graph already knows.
 
 ## The five moves, and each is a few lines
