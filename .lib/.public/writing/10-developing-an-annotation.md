@@ -175,6 +175,15 @@ class $Housed extends $Format {
 
 ***The general lesson, and it is the one this chapter is really for:*** **when you want a power the model does not have, ask what surface the writing already exposes.** *Two of the four things attempted on 2026-09-23 were members added where a door already stood, and both came out within hours.*
 
+### If you must INSERT something, you are still an annotation — a layer with content, or text
+
+**Two doors, both already in the language, and neither is a fifth power.** Doug, 2026-09-27, on a kind label that had been written as CSS content: *"Whatever the kind label is, it sounds like an annotation? Whatever needs to be inserted, can you not design an annotation for it?"*
+
+- **A layer with content.** A Format's `style` is any element type, and [`Format.defines`](../../package/src/writing/Format.tsx) adds it as a container around the writing. A container made in `defines` may draw what it likes before the children — a label word, a rule, a figure — and since it is made per instance in `defines`, it may close over what that instance learned there. *This is the door for a kind label:* a `Kind` format on every chapter at the book's `$Bound`, whose `defines` reads what the chapter carries — `writing.is($Cover)`, `is($Autobiography)`, `is($Synopsis)` — sets `this.style` to a component drawing `<span class="pd-label">Autobiography</span>` before its children, and calls Format's `defines`. Real text, read by a screen reader, dressed by the theme through the mark. *Designed 2026-09-27, not yet built; the CSS labels in the test library stand until it is.*
+- **Text.** [`Synopsis.defines`](../../package/src/library/Synopsis.tsx) appends the imported chapter's parts to its own writing's text, `writing.text.append(this, ...)`, authored by the annotation and reverted at `erase`. An annotation may put words on the page this way too — with the writing's composition to respect: a chapter holds sections and paragraphs, so what is appended must be what the level admits.
+
+*The note cannot do either: it is a sibling of the contents, hidden by every theme, and that is right — a note is the annotation's own writing, not the writing's.*
+
 ## The argument is content, and a property reads it
 
 **Whatever an annotation needs told, it is told as content.** *"We probably didn't want a prop there, we meant that to be `<Mentioned>as-mentioned</Mentioned>`."* An annotation is a writing, so what is written inside it is its `contents`: that is where a Referent finds its id and a Level its number. From outside, the same annotation is given whole, `is={<Mentioned>as-mentioned</Mentioned>}`.

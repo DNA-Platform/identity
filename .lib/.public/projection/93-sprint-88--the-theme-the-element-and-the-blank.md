@@ -39,53 +39,9 @@
 
 ## Requirements
 
-*Approved by section on 2026-09-27. Each names what would be observed if it held.*
+*Approved by section on 2026-09-27, each naming what would be observed; compacted to a register at compounding — the promises they became are read where they run. **R1** Inline and Block, Composition's third pair, Block replacing the element. **R2** the defaults in `$Define`. **R3** every level's own mark. **R4** nothing destroyed, the span promises re-read. **R5** Theme in the writing folder, said of a book, stood by nobody in `src`. **R6** singular, `$is` switching it. **R7** eight live properties, reactive, not props. **R8** the default sheet comprehending every class. **R9** designed to be extended. **R10** Blank beside Parenthetical. **R11** Space, Break and Line. **R12** Emphasis, Bold and Underline as Formats. **R13** the visible end, the test library re-dressed. Actors A1–A3, flows F1–F3 and acceptance examples AE1–AE4 landed in the units below. Out of scope: the app-like book, the first library's dress, markdown, Part, a theme per kind.*
 
-### A. Inline, Block and the level marks
-
-| | requirement | observed |
-|---|---|---|
-| **R1** | `Inline` and `Block` are annotations in Composition's file, the third pair: each `defines` takes its opposite after it out of expression; Block's `defines` replaces the writing's own element, the span, with a div, cited to itself, and its `erase` gives the span back; Inline leaves the span. Each is said of a composition | a Sentence written `<Sentence><Block />…</Sentence>` draws a div; `$is = Inline` on a drawn paragraph draws it as a span at the next paint, one paint; the pair's promises beside Open and Closed's |
-| **R2** | the defaults stand in `$Define`: Letter, Word and Sentence `<Inline />`; Paragraph, Section, Chapter and Book `<Block />` | in the served markup a paragraph's own element is a div and a word's a span; a promise per level |
-| **R3** | every level puts its own mark, `pd-letter`, `pd-word`, `pd-sentence`, `pd-paragraph`, `pd-section`, `pd-chapter`, `pd-book`, inherited by every subclass, so a library's running head wears `pd-paragraph`; a kind of writing may put its own beside it under the same convention, `pd-` and its name, as an annotation puts `pa-` and its — Doug: *"you can extend components and annotations with more classes using our naming convention if more are needed"* | every element in the regression's pages wears its level's mark; a Line wears `pd-sentence` and `pd-line` |
-| **R4** | nothing is destroyed: the regression's promises that matched a span after a header or a nav are re-read for the div, and every other promise stands; an anchor around a block is valid and the proof still reads every link | the regression green with the re-read promises named in the record |
-
-### B. The Theme
-
-| | requirement | observed |
-|---|---|---|
-| **R5** | `Theme` is a class in the writing folder, a Format with `theme = true`, said of a book, exported, and stood by nobody in `src`: a library puts it in its book's `$Define`, as the test library does | a book without one draws bare, no provider; the test library's book class stands its own |
-| **R6** | **singular:** its `defines` takes every Theme after it out of expression, so a book has one theme, the front's, and `$is = Other` on the book switches it — the dynamic annotation system changing themes | two themes on a book: one provider, the front's; `$is` switched, one paint, and a styled element beneath reads the new values |
-| **R7** | **eight live properties** — `font`, `size`, `leading`, `measure`, `space`, `ink`, `paper`, `link` — reactive, given by a subclass as fields, written as attributes, and settable at runtime on the instance; a property set on a drawn book is seen by every styled element under it in one paint. *Risk, carried to the plan: styled-components sees a theme by identity, so the provider must hand a value that changes when a property does* | in Chrome, `ink` set on the served book changes the computed colour of a paragraph; a promise counts the paint |
-| **R8** | **the default style is the minimal viewing of a library and comprehends every class `.public` puts on an element** — today `pd-container`, `pd-annotation`, `pa-parenthetical`, `pa-reference`, `pa-self-reference`, `pa-referent`, `pa-content`, `pa-table`, `pa-row`, `pa-col` and their numbered forms, `pa-cover`, `pa-synopsis`, `pa-table-of-contents`, `pa-biography`, `pa-autobiography`, `pa-paginated`, `pa-page`, `pa-open`; with this sprint the seven level marks, `pa-blank`, `pa-emphasis`, `pa-bold`, `pa-underline` — a rule for each, reading the eight properties, the ordinary view among them: an annotation's own writing hidden, which leaves the test library's Theme | **a promise diffs the set of classes the source puts on elements against the set the theme's sheet addresses and is red when they differ**; the served pages carry the default sheet |
-| **R9** | **designed to be extended:** a subclass overrides `style`, declared inside as every Format's is, and any property; the test library's Theme becomes a subclass setting a property or two and nothing else | `the-library/.book.tsx` shorter than today; the served pages dressed by the default sheet under the subclass's values |
-
-### C. Whitespace
-
-| | requirement | observed |
-|---|---|---|
-| **R10** | `Blank` is an annotation beside Parenthetical in Writing's file: it marks `pa-blank`, and its note's style keeps the writing's extent and shows nothing — `visibility: hidden` where Parenthetical is `display: none`; *"a fine genetic trait, like being albino"* | a blank word takes its width in Chrome and shows nothing; the proof still reads a link through it |
-| **R11** | `Space` is a Letter that is Blank and Inline whose argument is its width, `<Space>2em</Space>`; `Break` is a Letter that is Blank and Block with nothing in it; `Line` is a Sentence that is Block | a poem in Lines in the persona's book, each line its own line in Chrome; a Space and a Break in the paper, the Space's box as wide as its argument and what follows the Break on the next line |
-
-### D. The basics
-
-| | requirement | observed |
-|---|---|---|
-| **R12** | `Emphasis`, `Bold` and `Underline` are Formats whose style is the semantic element, `em`, `b` and `u`, a layer around the writing, each marking `pa-emphasis`, `pa-bold`, `pa-underline`; said of a writing; written `<Word><Emphasis />really</Word>` or on a sentence | drawn, `<em class="pd-container"><span class="pd-word pa-emphasis">really</span></em>`; in Chrome the computed font-style italic, weight bold, decoration underline; the theme comprehends the three |
-
-### E. The visible end
-
-| | requirement | observed |
-|---|---|---|
-| **R13** | the test library re-dressed: the library's book class stands its Theme subclass; a poem chapter in Lines in the persona's book; Emphasis, Bold and Underline in the paper; a Space and a Break; every block level a div; Some Projects still paginated; bound, served on 4242 and photographed | Doug sent the links, and the photographs show a dressed library where before every span ran into the next |
-
-**Out of scope:** the app-like book; the Wikipedia dress and every reading of the first library; markdown; Part; a theme per kind, [the earlier ruling's first thread](../the-motif/04-themes-per-type-formats-per-instance.md), which this sprint's Theme is the base of and does not build.
-
-**Actors and flows.** *A1 the author*, putting a theme in a book and subclassing it; *A2 the reader*, seeing a dressed book; *A3 a styled element* anywhere under the theme, reading its values. *F1* an author stands `<Theme />` in a book and every page is dressed. *F2* an author switches the theme through `$is` and the book repaints once. *F3* an author writes a poem in Lines and it stacks. *F4* `ink` is set on a drawn book and the page's colour changes.
-
-**Acceptance examples.** *AE1* the served markup: `<div class="pd-paragraph">` and `<span class="pd-word">`. *AE2* the set-diff promise: classes in the source minus classes in the theme's sheet equals the empty set. *AE3* `book.$is = Dark` — one provider, the new values, one paint. *AE4* `<Paragraph><Line>…</Line><Line>…</Line></Paragraph>` — two divs wearing `pd-sentence pd-line`, one under the other in Chrome.
-
-**Names.** Doug's: `Inline`, `Block`, `Theme`, `Blank`, `Space`, `Break`, `Line`, `Emphasis`, `Bold`, `Underline`. Proposed by us and accepted in the room, *"If you know that every theme needs those, then great"*: `font`, `size`, `leading`, `measure`, `space`, `ink`, `paper`, `link`. Ours, flagged: the spellings `pd-letter` through `pd-book`, `pa-blank`, `pa-emphasis`, `pa-bold`, `pa-underline`, and the sprint's name.
+**Names.** Doug's: `Inline`, `Block`, `Theme`, `Blank`, `Space`, `Break`, `Line`, `Emphasis`, `Bold`, `Underline`; the eight properties proposed by us and accepted in the room.
 
 ## <a id="plan"></a>The plan
 
@@ -93,16 +49,7 @@
 
 ### Decisions
 
-| | decision | why, and what it was chosen over |
-|---|---|---|
-| **D1** | **Inline and Block are annotations in Composition's file, the third pair.** Each `defines` takes its opposite after it out of expression, as Open and Closed do. Block's `defines` replaces the writing's own element — the first container, the span its bond added — with a div, cited to itself; its `erase` is `revert(this)`, and the span is back. Inline touches no container. Each is said of a composition, by specification | Doug: *"Yes, the third pair."* The first container is replaced by identity, `containers.at(0)`, and never by the word `span`, so a layer that happens to be a span is untouched. Over a class replacing its element in its bond, which a writer cannot override without a subclass |
-| **D2** | **Every level stands its pair and its mark in `$Define`:** Letter, Word and Sentence `<Inline />`, Paragraph, Section, Chapter and Book `<Block />`; and each adds its mark to its own classes there, `pd-letter` through `pd-book`, so a subclass that calls `super.$Define()` inherits both. Title, Heading and Line add `pd-title`, `pd-heading` and `pd-line` beside the sentence's; Space and Break `pd-space` and `pd-break` beside the letter's | Doug: *"Don't we have the composition types put pd-letter, pd-word, etc…"* and *"you can extend components and annotations with more classes using our naming convention."* A mark is the class's phenotype, and `$Define` is where a class says what it is by default. Over deriving the mark from the class name, which a minifier renames |
-| **D3** | **Theme is a Format in `src/writing/Theme.tsx`**, `theme = true`, said of a book by its specification, exported, stood by no class in `src`. **Singular:** its `defines` takes every Theme after it out of expression, then calls the base. **Its eight properties are reactive regular members** — `font`, `size`, `leading`, `measure`, `space`, `ink`, `paper`, `link` — not props: a field in a subclass, settable on the instance, never written as an attribute; and the provider hands them **bare**, `props.theme.ink`, as a values object, never the chemical | Doug: *"one puts their theme in the book. It just occupies the Theme class in the writing folder and should be designed to be extended and made to be dynamic"*; *"singular semantics… That is cool."*; asked whether they are `$`-members: *"Not props. We don't need them. But they should be reactive regular properties that can be interacted with."* Bare keys because *"Other formats for components can get the books theme and use its exposed properties"* — handing the chemical exposes its machinery, and [it matters the day somebody names a value `style`](../writing/11-format-and-theme.md#theming) |
-| **D4** | **How a live property reaches the styled elements, R7 — two mechanisms designed, a promise deciding.** *(a)* The Theme's `defines` reads its eight properties inside the book's define, which runs at the head of the book's view, so the book's scope depends on them: a property set on the instance is news to the book, the book redraws, the provider layer renders, and it hands a fresh values object, which styled-components sees as a new theme. *(b)* If the scope does not register another chemical's read, the provider layer is a small chemical of Theme's own whose view reads the eight and draws the provider around its children: the property is news to that chemical alone, and nothing else redraws. **The first scenario of U2 is the measurement**, and the chapter records which mechanism stands | *"live reactive properties that can be dynamically set."* Both keep the provider as the writing's own, which is the design Doug kept when chemistry's theme seam was tried and refused. *(a)* costs a line; *(b)* costs a class and spares the cascade |
-| **D5** | **The default style is the minimal viewing of a library, and the promise that it comprehends every class reads two sets:** the classes the source puts on elements — every `pd-` and `pa-` literal in `src`, read from disk by the promise, the numbered forms by prefix — and the selectors of the theme's sheet, rendered through styled-components' `ServerStyleSheet`, which is its public server API and needs no browser. Where an annotation's note already carries a mechanism — Parenthetical's hiding, Self's underline, the Table's grid, Paginated's page — the theme's rule is the look, and the mechanism stays the note's. The ordinary view's one rule, an annotation's own writing hidden, is the default's and leaves the test library | Doug: *"The theme should EXACTLY make use of all the classes in .public. It exists to comprehend them."* Over reading the sheet in Chrome, which sees only the classes the test library happens to use |
-| **D6** | **Blank, Space, Break and Line.** Blank is an annotation in Writing's file beside Parenthetical, marking `pa-blank`, its note a global style keeping the extent and hiding the ink. Space is a Letter standing Blank and its mark, whose **count is a `$length` prop**, `<Space length={3} />`, one by default, and which draws that many non-breaking spaces — a CSS length would need a style attribute on the element, which is never written, or a class per value, which cannot be named. Break is a Letter standing Blank and Block, drawing nothing. Line is a Sentence standing Block | *"a configurable Space… a Break that can add a linebreak, and Line… a Line could be a type of sentence in a div."* Asked whether the argument is a count: *"Maybe use a $length prop for that one. But yes, do the count"* |
-| **D7** | **Emphasis, Bold and Underline are Formats** whose style is the semantic element — `em`, `b`, `u` — a layer as Cover's header is, each adding its `pa-` mark; no specification beyond a Format's, since each is said of any writing | *"the basics - emphasis, underline, bold"*, in his words; the elements carry the semantics and the theme the look |
-| <a id="d8"></a>**D8** | **`src` changes, for Doug's yes:** `writing/Composition.tsx` (Inline, Block, their specifications) · `writing/Letter.tsx`, `Word.tsx`, `Sentence.tsx`, `Paragraph.tsx`, `Section.tsx`, `Heading.tsx`, `library/Chapter.tsx`, `library/Book.tsx`, `library/Title.tsx` (the pair and the mark in `$Define`) · `writing/Writing.tsx` (Blank) · `writing/Theme.tsx`, `writing/Space.tsx`, `writing/Break.tsx`, `writing/Line.tsx`, `writing/Emphasis.tsx`, `writing/Bold.tsx`, `writing/Underline.tsx`, new · `writing/index.ts` · and, only if mechanism *(b)* stands, `writing/Format.tsx` unchanged and the provider chemical inside `Theme.tsx` | the standing rule; every member named in the approved requirements |
+*Eight decisions, compacted to a register at compounding; what each built is in the units and the settled chapters.* **D1** Inline and Block as the third pair, Block replacing the first container. **D2** every level standing its pair and its mark in `$Define`. **D3** Theme a Format in `src/writing/Theme.tsx`, singular, said of a book. **D4** the live properties reaching styled elements by a provider chemical of the theme's own — the first mechanism, a read for its side effect, was not built. **D5** the default sheet the minimal viewing, the set-diff promise holding it. **D6** Blank, Space, Break and Line. **D7** Emphasis, Bold and Underline as Formats whose style is the element. <a id="d8"></a>**D8** the `src` changes listed for Doug's yes — *"Yes to all."*
 
 ### Units
 
@@ -132,21 +79,9 @@
 
 **<a id="u5"></a>U5 — the visible end and the documentation (R13).** *What runs:* the bind, the regression, the preview on 4242, the photographs; prose. *Files:* `.binding/.test/binding.regression.ts`; the writing book: a Theme chapter, the pairs and marks in [Composition](../writing/03-composition.md), a chapter for Blank, Space, Break and Line, a chapter for Emphasis, Bold and Underline; the library book's rows for Chapter, Book and Title; [The Coding Style](../the-coding-style/03-the-coding-style.md), the marks as a code pattern; the covers by the tool. *Scenarios:* the compiler's typecheck 0, unit and regression green with the new promises counted; the three links sent and the photographs read. *Seen:* the library dressed.
 
-### Risks
+### Risks, and where each requirement landed
 
-| risk | what mitigates it |
-|---|---|
-| mechanism *(a)* does not register a cross-chemical read, so a property set at runtime is not news to the book | the first scenario of U2 measures it before anything else is built on it; *(b)* is designed and costs a class |
-| styled-components sees a theme by identity | the provider hands a fresh values object each render; the consumers re-render with their parent as they do today |
-| Block replacing a layer rather than the writing's element | replaced by identity, the first container, never by the word |
-| the regression's span promises go red | named in U1 as re-reads, not damage; the proof over every link is the gate that nothing else moved |
-| happy-dom carries no stylesheet | the server sheet for what a rule says, Chrome for what it does |
-| the test library's `Theme` name against the exported `Theme` | the library's becomes a subclass under a name of its own, ours to give |
-| a `div` inside an anchor | valid HTML; the argument's title is a span still |
-
-### Where each requirement lands
-
-R1–R4 → [U1](#u1) · R5–R9 → [U2](#u2) · R10, R11 → [U3](#u3) · R12 → [U4](#u4) · R13 → [U5](#u5). *AE1 in U1; AE2 in U2; AE3 in U2; AE4 in U3.* **Order:** U1, U2, U3, U4, U5 — U3 and U4 may run beside U2. **The plan against itself:** every requirement lands; every unit names what runs and what is seen; D4 is the one mechanism the brainstorm owed and it is designed twice with a measurement between; the plan asks Doug three things, below.
+*Seven risks stood here and were compacted at compounding: one fired — the first live-property mechanism did not register a cross-chemical read, and D4's provider replaced it — and the rest did not. R1–R4 landed in [U1](#u1), R5–R9 in [U2](#u2), R10–R11 in [U3](#u3), R12 in [U4](#u4), R13 in [U5](#u5); the order ran U1, U2, U3, U4, U5, and then the units Doug added in the room, U6 to U13.*
 
 ## The audit of the code, for the next sprint
 
@@ -172,7 +107,7 @@ R1–R4 → [U1](#u1) · R5–R9 → [U2](#u2) · R10, R11 → [U3](#u3) · R12 
 
 ## Where things stand
 
-**Next: Doug's review of Sprint 86 and this sprint together, as he ruled, then `/ce-compound` on this chapter; the sprint after is a `/ce-brainstorm` on the subject he set at the close of [U8](#u8): what a subject, an author and a catalogue are in a library closed under books, before the compiler changes.** Every unit is built, gated and committed locally, the last, [U13](#u13), as `e3f728a`; nothing is pushed to origin.
+**Next: `/ce-brainstorm` for the next sprint, opening from [the audit above](#the-audit-of-the-code-for-the-next-sprint) and from the subject Doug set at the close of [U8](#u8): what a subject, an author and a catalogue are in a library closed under books, before the compiler changes.** Every unit is built, gated and committed locally, the last, [U13](#u13), as `e3f728a`; nothing is pushed to origin. **Compounded 2026-09-27:** the lessons distributed to [The Object Graph](../writing-a-book/10-the-object-graph.md), [Dressing a Library](../writing-a-book/09-dressing-a-library.md), [Developing an Annotation](../writing/10-developing-an-annotation.md), [Book](../library/05-book.md), [Chapter and Title](../library/02-chapter-and-title.md) and [Next and Previous](../library/07-next-and-previous.md); this chapter's requirements, decisions and risks compacted to registers, 9824 words to 7600, every anchor kept.
 
 **The four questions [U10](#u10) put to Doug were answered the same day and built as [U13](#u13):** the turn scrolls the chapter's element; the Synopsis leaves the chapter's title alone; Format gets a template method Theme overrides; nothing is exported for reading a theme, and a promise says why — the theme is in reach by type from any writing, a style is not the place to reach from. Doug's yes to [D8](#d8), 2026-09-27: *"Yes to all."*
 
