@@ -178,6 +178,10 @@ is recorded, not explained.
 | `run-20260927-1555-twins-33977` | 33977's four twins, frame-scaled | exit 0; intersection FEVE 0.16 / 0.30 |
 | `run-20260927-1737-chain-mei` | matched -> twins -> MEIs, 33328 then 33977 | stopped after 33328, by plan |
 | `run-20260927-1746-metamer-check` | the batched metamer against the single one | exit 1: a stimulus left on the card |
+| `run-20260927-1946-metamers-33328` | the metamer check, then 33328's metamers | exit 0; the batched path equal to 1.9e-3, r 1.000000 |
+| `run-20260927-2121-metamers-33328-singulars` | the unconditioned remade on the current twins | exit 0 |
+| `run-20260927-2239-pipelines-33977` | matched rebuilt -> twins re-recorded -> MEIs -> metamers | exit 0; the comparison no longer refused |
+| `run-20260928-0033-metamers-cross` | the pre twin reading the post responses, both datasets | exit 0 |
 
 ## What went wrong, and why
 
@@ -272,19 +276,40 @@ from post spontaneous, but on pre-... we need it to be performant."* The union r
 from the intersection twins; the moments moved from `analyses/spontaneous` into the pipeline; all of it
 batched through one compiled twin, held against the single-image recipe by `metamer/check.py`.
 
+## Both datasets through the chain (2026-09-27, night)
+
+**33328**, signed off by Doug as the organization for both: 317 MEI pairs reliable in both conditions;
+the MEI filter replicates June's roll-off to about 22 cycles per frame width and bottoms at 0.59 near 27
+where June's crossed half amplitude at 24 - one octave, 16-32, holding 4.5% of each MEI's variance before
+and 1.7% after. The metamers - 100 per twin, re-evoke 0.86 and 0.83 - show no such low-pass (lowest
+0.85 at 37, the same with the seed's finest band removed). Figures: the MEI comparison and its pages;
+`metamers.png` and pages of stimulus, before, after and after-read-by-the-pre-twin, full frame at its own
+proportion; the spectrum and filter for each, amplitude on a log axis over log frequency.
+
+**33977**, overnight: every recording found registered, so the pre/post comparison runs - intersection
+FEVE 0.181 before, 0.310 after. 329 MEI pairs; its MEI filter is NOT low-pass (above 1 between 8 and 16,
+lowest 0.91 at 57), and its MEIs are large smooth blobs without 33328's bars and gratings - with its
+twins' low fit, a question about the twins before it is a finding. Metamers re-evoke 0.91 and 0.92. The
+figure titles had carried June's "low-pass filter" as a claim; they now state only what is drawn.
+
+**The pre twin reading the post responses** - Doug: *"to decode what they look like. So we can compare
+those too."* Re-evoke 0.79 on 33328 and 0.67 on 33977, below each twin's reading of its own. Seen in
+both datasets and not yet measured: after-DOI metamers carrying oriented stripes that neither their
+stimulus nor the before-DOI metamer has.
+
 ## Still open
 
-1. **33328's MEIs and metamers confirmed by Doug**, then 33977's: its twin pipeline rerun with the
-   matching fix (no retraining - it re-records the build and runs the comparison it refused), then its
-   MEIs and metamers. Then the spontaneous moments.
-2. **The batched metamer's check** (`metamer/check.py`): nothing uses the batched path until it agrees
-   with the single-image recipe target for target.
-3. **Speed on the scaled twin**: 7.6 s an MEI on the compiled batch-16 path, against 0.99 on the unscaled
-   one. Next: the five ensemble members fused into one set of kernels, measured on a free card.
-4. **Duplicate cells.** Units 2333, 577 and 1212 - ranks 1, 3 and 5 by pre-FEVE - have the same MEI on
-   every twin: one soma across neighbouring planes (0.1-5.6 um apart laterally, 5-25 um in depth).
-   Doug's ruling: *"we can make all MEI, and then exclude based on criteria like that for the summary
-   statistic figures"* - the criterion that fits is lateral distance.
-5. [The Altered Cortex](../the-altered-cortex/.cover.md)'s validator reports errors nearly all older
+1. **Doug's decisions**: where the filter stops being plotted (37, where the middle halves overlap
+   again, or the floor at about 34); Cobos's 1,000 steps against our convergence gate; the duplicate-soma
+   criterion for summaries (lateral distance); whether the metamer summary leads by how well-determined
+   the target is or by re-evoke.
+2. **33977's MEIs as a test of its twins** - smooth blobs, FEVE 0.18 and 0.31.
+3. **The stripes after DOI** - a measure of periodic, oriented energy, post against pre, before any claim.
+4. **The spontaneous moments** - built, by name only; Doug: *"Not yet."*
+5. **Speed on the scaled twin**: 7.5 s an MEI or metamer at batch 16. Next: the five ensemble members fused
+   into one set of kernels, measured on a free card.
+6. **Duplicate cells** - one soma across neighbouring planes (0.1-5.6 um laterally, 5-25 um in depth);
+   Doug: *"we can make all MEI, and then exclude based on criteria like that for the summary statistic
+   figures."*
+7. [The Altered Cortex](../the-altered-cortex/.cover.md)'s validator reports errors nearly all older
    than this sprint, and one that tells a reader to relaunch a CPU watchdog, which must not be followed.
-6. The legacy twins' validation outputs still sit at the old place, `src/pipelines/.analyses/digital-twin/twin/`.
