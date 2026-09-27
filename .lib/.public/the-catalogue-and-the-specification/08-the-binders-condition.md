@@ -40,7 +40,7 @@
 
 ## <a id="b9"></a>B9 — Processes our work leaves running — **TREATED 2026-09-19**, as a tool
 
-*Twenty-seven node processes and nine esbuild services from four days of sessions.* **[The sweep](../../../../.claude/library/..environmentalism/09-on-strays.md) is in the team library because the strays come from more than the binder.**
+*Twenty-seven node processes and nine esbuild services from four days of sessions.* **[The sweep](../../../../.claude/library/..environmentalism/11-on-strays.md) is in the team library because the strays come from more than the binder.**
 
 ## <a id="b10"></a>B10 — `retaking` and `retakes` — **MONITOR**
 

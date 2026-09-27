@@ -66,6 +66,97 @@ protected override $Define(): void {
 
 ## How it is extended
 
+**Implementing a book is largely about how to display its chapters.** Doug, 2026-09-27: *"implementing books is largely about how to display the chapters. You implement various types of chapters through direct types or annotations, and use them in Book… A book can't be limited in how its chapters are displayed and .public gives its authors the ability to subclass Book and do sophisticated usecases."* So the first seam of a book is the display of its chapters, and it is three rules and two examples.
+
+- **A book kind places its chapters by what they carry — a group found by an annotation or a type — never by position and never as a remainder.** What a chapter is, it is by what it carries: a cover is the chapter carrying Cover, and a kind's own groups are its own marks, classes under Annotation or Format in the book's file, each putting its `pa-` class on the chapter it is said of and taking it back. The book asks `this.text.find($Chapter)` and filters by `is`.
+- **It reads its bookmark to decide what is open.** `bookmark` is the chapter the address names; a layout that shows one chapter at a time reads it, and the router never decides what is visible — it sets the bookmark on the held book and the book turns.
+- **The look is the format's.** A Format said of the book, the theme, carries the frame's CSS keyed on the marks; an annotation never adds an element the author did not ask for, and a kind that needs its own element overrides `view()`.
+- **Two examples, and *"the two examples are just good enough"*:** [Paginated](08-paginated.md), an annotation that **confers** a display on the book — its chapters pages, the bookmarked one open; and [Next and Previous](07-next-and-previous.md), components that **represent** a property of the chapter — the chapter after and before, drawn as links. One confers and one represents, and a kind composes both.
+
+### The app-like book, analysed in full
+
+*Doug: "Let's pretend we had the first M and last N chapters that we wanted to be fixed in view like an app, and you can think of the first as header and sidebar and the last as footer, and the rest of the chapters as tabs, scrollable content, or just with links that move between… Just imagine there were Header, Footer and Document annotations on the chapters and the book reads them to decide what to do with them, and it wants the router to be able to show the active tab based on the url… Explain to me how one would implement such a thing, and how complex it would be."* **Five things, all in the library's own files — the book's `.book.tsx` and one resource of its header chapter — and nothing in `src`, the compiler or the router.** Each names the mechanism it rests on and what it costs in lines.
+
+**1. Three marks, in `.book.tsx` — about sixteen lines.** A header and a footer that should be elements are classes under Format with that `style`, as Cover is; a document is a class under Annotation, as Biography is. Each puts its class on the chapter and takes it back:
+
+```tsx
+export class $Header extends $Format {
+    style: ElementType = 'header';
+    override defines(writing: $Writing): void { super.defines(writing); writing.classes.add(this, 'pa-header'); }
+    override erase(writing: $Writing): void { super.erase(writing); writing.classes.revert(this); }
+}
+export class $Footer extends $Format { /* the same, 'footer' and 'pa-footer' */ }
+export class $Document extends $Annotation {
+    override defines(writing: $Writing): void { writing.classes.add(this, 'pa-document'); }
+    override erase(writing: $Writing): void { writing.classes.revert(this); }
+}
+```
+
+The author writes `<Header />` in the first M chapter files, `<Footer />` in the last N and `<Document />` in the rest, exactly as `<Cover />` is written; a sidebar is a fourth mark of the same six lines. *The mechanism is the [annotation's four powers](../writing/10-developing-an-annotation.md); the compiler reads no tag, so it learns nothing and refuses nothing here, and every chapter keeps its route.*
+
+**2. Which chapters are pages — seven lines, and four in the kind's `$Define`.** A class under Paginated says its pages are the documents, and that the open page is a document even when the address names the header:
+
+```tsx
+export class $Tabbed extends $Paginated {
+    override get pages(): $Chapter[] { return super.pages.filter(page => page.is($Document)); }
+    override get open(): $Chapter | undefined {
+        const open = super.open;
+        return open !== undefined && this.pages.includes(open) ? open : this.pages[0];
+    }
+}
+```
+
+The book kind stands `<Tabbed />` in its `$Define` beside its theme, as Some Projects stands `<Paginated />`. *The mechanism is Paginated's: the header and footer never wear `pa-page`, so its note never hides them; the open document is the bookmarked one, and the router already lands there.*
+
+**3. The fixed frame is the theme's — some twenty lines of CSS, and no element.** The book's Format, which the test library already gives every book, becomes a grid whose areas are the marks:
+
+```tsx
+style = styled.div`
+    > span { display: grid; grid-template-rows: auto 1fr auto; grid-template-columns: 12rem 1fr; min-height: 100vh; }
+    .pa-header { grid-column: 1 / -1; position: sticky; top: 0; }
+    .pa-sidebar { grid-column: 1; grid-row: 2; }
+    .pa-document { grid-column: 2; grid-row: 2; overflow: auto; }
+    .pa-footer { grid-column: 1 / -1; position: sticky; bottom: 0; }
+`;
+```
+
+The grid stands on the book's own element, the child of the theme's layer; a kind that wants that element to be a `div` overrides `view()` in one line. *The mechanism is [Format's](../writing/11-format-and-theme.md): a layer around the writing, its sheet global to the book.*
+
+**4. The tabs are a table of contents drawn from what the book exposes — about fifteen lines**, in a resource of the header chapter, as the test library's [Entries](../../package/.binding/.test/projects/.table.tsx.tsx) draws Some Projects' table: a Section whose `write()` makes an entry per document, each a Word with a Reference to the document's mention, and marks the one whose mention is the book's bookmark:
+
+```tsx
+export class $Tabs extends $Section {
+    override write(): ReactNode {
+        const book = this.$book;
+        const open = book?.bookmark?.mention?.identifier;
+        const documents = book?.text.find($Chapter).filter(chapter => chapter.is($Document)) ?? [];
+        const Word = $(word);
+        const Reference = $(reference);
+        return (
+            <>
+                {super.write()}
+                {documents.map((document, index) => (
+                    <Word key={index}>
+                        <Reference>{document.mention?.identifier}</Reference>
+                        <span className={document.mention?.identifier === open ? 'pa-open-tab' : undefined}>{document.title?.name}</span>
+                    </Word>
+                ))}
+            </>
+        );
+    }
+}
+```
+
+*The mechanism is `$book` and what the book exposes — `bookmark`, its chapters, each chapter's `mention` and `title` — read while drawing at no extra cost, [promised](../../package/.tests/renders.test.tsx); the open tab is one comparison of two identifiers, and the span inside the Word is plain React, side by side.*
+
+**5. The active tab by the url costs nothing more.** The url is the bookmark: the router sets it on the held book, the book redraws, the tabs' `write()` reads it again and the comparison marks the other tab, while Paginated's define moves the open mark to the other document — two writes. The server draws each page with its bookmark set, so the open tab and the open document are in the served markup and the first paint is the paint; hydration draws nothing again.
+
+**Complexity, as lines and files:** three marks at sixteen, a fourth for the sidebar at six, the Paginated subclass at seven, the kind's `$Define` at four, the theme's grid at twenty, the tabs at fifteen — **about seventy lines**, in `.book.tsx` and one resource of the header chapter, plus one tag at the top of each chapter file; four classes that are annotations, one Paginated, one theme, one drawn section. Every line is in the author's register, and not one is a hook, a registry or a flag.
+
+**Where a fight would appear, and what already answers it.** *The header redrawing on a move* — the book redraws whole on a move today, [the cascade](../../../chemistry/.lib/projection/00-planning.md#pitch-cascade), chemistry's to end, costing the author no line; when it ends, the two documents whose mark changed and the two tabs are what redraw. *A document opened should stand at its top* — the book's `turn` scrolls the bookmarked title into view, and inside a scrolling document area the browser scrolls that area. *The address names the header* — the `open` override above, four lines. *The tabs should not be a page* — they stand in the header chapter, which carries no Document. *A chapter belongs to two groups* — it carries two marks, and each rule reads its own.
+
+**What would make it impossible, and is not there.** A book that could not read its chapters' marks — it can, by `is`. A layout the router decided — it never does; it sets the bookmark. A url the classes had to parse — they compare identifiers and never read one. A display that needed the compiler to know the kind — it knows files and notation, and every chapter file here is an ordinary chapter file with one tag more.
+
 - **A book kind** is a class under Book, overriding `write()` — or `view()` for its element — to place its chapters: a template method per part, as [The Book Is the Layout](../writing-a-book/05-the-book-is-the-layout.md#the-parts) has it, finding each part by what it carries and never by position or by name.
 - **A book's theme** is a Format said of the book. Doug, 2026-09-25: ***"One might give the book a format called Theme which is a theme, which would be realized in its .book or as a resource in one of its chapters, perhaps as an appendix."*** A library writes it as a class under Format with `theme = true`, so its properties reach everything the book draws, and its `style` wraps the book — *"a format annotation that is also a theme that is global to a book"*; its specification says it is said of a book — *"The annotation validate that it is a book"*; and the book class stands it in `$Define`, or a chapter carries it as a resource. The test library's `Theme` draws the ordinary view, hiding every annotation's own writing — [the front matter](01-books-in-annotations.md#what-is-not-drawn-yet). **Import `styled` by name**, `import { styled } from 'styled-components'`: the binder's server loader hands the default import back as the module's namespace, so `styled.div` is not a function there — measured 2026-09-25, the specify phase failing at the theme's first bind, and the reason [the coding style](../the-coding-style/03-the-coding-style.md#styling) notes the two shapes of styled-components' default. *`src` has no Theme class and adds none: theming is a way of writing a Format ([Format and Theme](../writing/11-format-and-theme.md)), and the appendix is a chapter kind not yet written.*
 - **Every book has its own class, wherever anything is registered on a class** — the general pattern for dependency injection. *Doug, 2026-09-26: "we document that if we use DI, we need all books to have their own class as a general design pattern."* A book that injects anything by registering it on a class — a theme, a format, a service — registers it on its own class and never on one another book shares, so a book drawn beside another in [the one server](../the-catalogue-and-the-specification/07-the-binder.md#render) carries only what it registered. The test library keeps it: every book extends the library's class with one of its own, `$APaper extends $TheLibrary`, and the paper's typewritten Format stands in its own class's `$Define`, where no other book reaches it.
@@ -80,6 +171,6 @@ Thirteen in [`.tests/book.test.tsx`](../../package/.tests/book.test.tsx): given 
 
 ## Gate
 
-Committed as `3f54cbf`, the compiler's half as `491177b`. Measured 2026-09-25: the package 202 of 202; the compiler's typecheck 0 errors, unit 95 of 95, regression 16 of 16; a bind of the test library reading 5 books and specifying 147 writings in 4.7s. `$book` committed as `b90d70f`, measured 2026-09-26: the package's typecheck 0 errors and 213 of 213; the compiler's typecheck 0 errors and unit 95 of 95. **The bookmark, [Sprint 85, U4](../projection/91-sprint-85--headings-and-routes.md#u4), `5de3a89`, measured 2026-09-27:** the package's typecheck 0 errors and 250 of 250; the compiler's typecheck 0 errors, unit 98 of 98, regression 24 of 24 — the evidence's page opening turned to the evidence in Chrome; 23 pages rendered in 3.8s. Amended at `e33086d`: the book built once and told its bookmark on the instance, never rendered to be told; the cascade pinned at 2 / 6 / 1 and pitched; the package 250 of 250, the regression 26 of 26.
+Committed as `3f54cbf`, the compiler's half as `491177b`. Measured 2026-09-25: the package 202 of 202; the compiler's typecheck 0 errors, unit 95 of 95, regression 16 of 16; a bind of the test library reading 5 books and specifying 147 writings in 4.7s. `$book` committed as `b90d70f`, measured 2026-09-26: the package's typecheck 0 errors and 213 of 213; the compiler's typecheck 0 errors and unit 95 of 95. **The bookmark, [Sprint 85, U4](../projection/91-sprint-85--headings-and-routes.md#u4), `5de3a89`, measured 2026-09-27:** the package's typecheck 0 errors and 250 of 250; the compiler's typecheck 0 errors, unit 98 of 98, regression 24 of 24 — the evidence's page opening turned to the evidence in Chrome; 23 pages rendered in 3.8s. Amended at `e33086d`: the book built once and told its bookmark on the instance, never rendered to be told; the cascade pinned at 2 / 6 / 1 and pitched; the package 250 of 250, the regression 26 of 26. **The extension story rewritten with [Sprint 86](../projection/92-sprint-86--next-previous-and-the-display-of-chapters.md#u5), 2026-09-27**, nothing of the class changed: the package 268 of 268; the compiler's typecheck 0 errors, unit 98 of 98, regression 30 of 30, Some Projects paginated and every chapter carrying its catchword.
 
 **Names.** Doug's: `Book`, `canonical`, `title`, `author`, `subject`, `about`, `bookmark`. Ours, flagged: `BookSpecification` and its rules `$hasOneCover`, `$hasOneSynopsis`, `$hasOneTableOfContents`; `turn`, the protected method by which a book turns to its bookmark, and `_bookmark` behind it; and the compiler's `book` for the function a module exports, which the plan uses and Doug has not named.

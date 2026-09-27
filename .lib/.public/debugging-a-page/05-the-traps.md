@@ -15,7 +15,7 @@
 
 ## <a id="stale-binder"></a>The dev server's stale compiler
 
-**Symptom:** *a bind succeeds and prints `EPERM: operation not permitted, rename …/.vite/deps_temp_… -> …/.vite/deps`; a page on the dev server draws with yesterday's addresses.* **Cause:** *the dev server loaded the binder's plugins when it started and never again; it also holds vite's deps folder open.* **Rule:** *restart the dev server after any change to the binder, and sweep it before a bind ([the sweep](../../../../.claude/library/..environmentalism/09-on-strays.md)).* ***Idea:*** *the server watches its own plugin files and restarts itself.*
+**Symptom:** *a bind succeeds and prints `EPERM: operation not permitted, rename …/.vite/deps_temp_… -> …/.vite/deps`; a page on the dev server draws with yesterday's addresses.* **Cause:** *the dev server loaded the binder's plugins when it started and never again; it also holds vite's deps folder open.* **Rule:** *restart the dev server after any change to the binder, and sweep it before a bind ([the sweep](../../../../.claude/library/..environmentalism/11-on-strays.md)).* ***Idea:*** *the server watches its own plugin files and restarts itself.*
 
 ## <a id="grep"></a>A class grepped in a bundle
 
