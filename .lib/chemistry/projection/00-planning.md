@@ -203,7 +203,7 @@
 
 ## <a id="pitch-symbols"></a>A clean surface — the basic words a chemical exposes become exported symbols · ***2026-09-27, from Sprint 86 of the public branch, ruled by Doug in the room***
 
-***TAKEN 2026-09-27 — built as [A Clean Surface](48-sprint-87--a-clean-surface.md).*** *`parent` stayed public on Doug's word, `draw` became the internal `$draw$`, `frame` and `view` stayed public, `style` stayed the compiled component's symbol and `styled` became the boolean one, the callable proxied as `styledComponents`; what follows is the pitch as it stood.*
+***TAKEN 2026-09-27 — built as [A Clean Surface](48-sprint-87--a-clean-surface.md).*** *`parent` stayed public on Doug's word, `draw` became the internal `$draw$`, `frame` and `view` stayed public, `style` stayed the compiled component's symbol and `styled` became the boolean one, the callable named `selection`; what follows is the pitch as it stood.*
 
 **What is there:** chemistry already keys its internals by symbols — fifty `unique symbol` declarations in [`chemistry.d.ts`](../../package/dist/chemistry.d.ts), `$bond$`, `$formula$`, `$parent$`, `$resolve$`, `$phase$` among them — and it already exports five symbols under plain names for consumers to key with: `children`, `cache`, `style`, `theme` and `resolved`, so a chemical declares `[children]: ReactNode` and a styled chemical `[style]`. Beside them stand the members still spelled as basic words: on the particle `inline`, `selector`, `styled`, `draw()`, `frame()`, `next(phase)`; on the chemical `resolve`, `formula`, `persist`, `parent` — with a `$parent$` symbol accessor already standing beside the word — and `view()`. The `$`-members, `$show`, `$hide`, `$look`, `$on`, `$pid`, `$new`, are the prop membrane and another matter.
 

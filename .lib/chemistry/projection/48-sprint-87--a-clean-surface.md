@@ -29,7 +29,7 @@
 | `parent` | **stays public** | ***"Know this.parent stays public. That is essential"*** — *given mid-build, after the sweep had already rewritten it; the rewrite was reverted and `parent` never exported as a symbol* |
 | `styled`, the boolean | **an exported symbol, kept** | *"I doubt you can drop things. That is bad thinking. Give your past selves the benefit of the doubt but check."* — the check found [R140](../../../../.archive/.public/.lib/projection/42-sprint-40--styled-chemicals.md#r140), his own: *"keep it — if styled is undefined we just read the selector; if it is false or true we read styled and selector"* |
 | `style` | **the compiled component's symbol, `[style]`, as it was from Sprint 40** | *"might style be a method and styled be the boolean? Ponder that, both as symbols"* — ***built first as the callable on my recommendation, and corrected: "We moved this to symbols for EXACTLY this reason"*** |
-| the styled-components callable | **proxy `styledComponents`** — *his to name* | *`style` and `styled` are both chemistry's symbols, so the callable takes neither* |
+| the styled-components callable | **`selection`** — `[selector] = selection.section` | *"[selector] = selection.section? How about that??"* — *`select` is the decorator and `elements` the block's getter, so both were taken* |
 | `draw()` | **internal, `$draw$`** — outside chemistry only one test file called it | *"Is this an exported member that users should use? Otherwise it needs the $draw or $draw$ symbol"* |
 | `frame()`, `view()` | **stay public** | *"frame is a real method, like view, and deserves to be at that level. Leave it"* |
 | the archived first draft, and Doug's library that binds it | **pinned to the published chemistry 0.1.2** | *chosen over migrating the archive or leaving it to break* |
@@ -42,10 +42,10 @@
 ## <a id="built"></a>What was built
 
 - **[`symbols.ts`](../../package/src/implementation/symbols.ts)** — *`formula`, `resolve`, `persist`, `inline`, `selector`, `styled`, `next` as `unique symbol`s beside `style`; the internal `$draw$`.*
-- **[`index.ts`](../../package/src/index.ts)** — *exports the seven beside `cache`, `children`, `style`, `theme`, `resolved`; the callable is `styledComponents`; nothing is exported as `parent` or `draw`.*
+- **[`index.ts`](../../package/src/index.ts)** — *exports the seven beside `cache`, `children`, `style`, `theme`, `resolved`; the callable is `selection`; nothing is exported as `parent` or `draw`.*
 - **The particle and the chemical** — *every one of those members keyed by its symbol; `parent`, `view` and `frame` public; the styled compiler, hydration and the formula read by symbol; the molecule's framework set drops `selector`, since a symbol is never walked.*
 - **Chemistry's promises and the Lab** — *nineteen promise files and ten Lab cases re-spelled; the carrier promise now checks the `next` symbol it lifts.*
-- **The public branch** — *Book waits on `this[next]('mount')`; five promise files import the callable as `styledComponents as styled`, so their bodies read as they did.*
+- **The public branch** — *Book waits on `this[next]('mount')`; five promise files import the callable as `selection as styled`, so their bodies read as they did.*
 - **The pins** — *the archived first draft's package asks for `0.1.2`; Doug's library compiler asks for `0.1.2` and holds a real 0.1.2 folder, matching its lock's integrity, in place of a junction to the workspace. Both on disk only: `.archive/.public` is ignored by this repository and `.me` syncs elsewhere.*
 
 ## <a id="measured"></a>What was measured
@@ -54,20 +54,20 @@
 |---|---|
 | chemistry's promises | **937 of 937**, tsc **0** |
 | the Lab in Chrome | styled **20 of 20**, persistence **7 of 7**; its **30** type errors are the same 30 at HEAD, none in a migrated file |
-| chemistry's build | the dist exports the symbols, `style` among them, and `styledComponents` the callable; a chemical answers `[next]` and keeps `parent`, `view`, `frame` |
+| chemistry's build | the dist exports the symbols, `style` among them, and `selection` the callable; a chemical answers `[next]` and keeps `parent`, `view`, `frame` |
 | the public branch | typecheck **0**, quick build fresh, **268 of 268**; its compiler typecheck **0**, unit **98 of 98**, regression **30 of 30** |
 | Doug's library compiler | one chemistry, 0.1.2, and one React; every name it and the archive import from chemistry exists in 0.1.2; its **18** type errors and **1** unit failure name no chemistry word — *read as older than this change, not measured against a before-state; a full bind was not run* |
 
 ## <a id="stand"></a>Where things stand
 
-**Implemented; the other team has resumed** — *Chapter carries `next` and `previous` at their `bf82472`.* *Project commits `541fc24` — chemistry's source, promises and Lab — `698d863` — the public branch's one line and five imports — and `71ca298` — `[style]` restored and the callable renamed; nothing pushed to origin.*
+**Implemented; the other team has resumed** — *Chapter carries `next` and `previous` at their `bf82472`.* *Project commits `541fc24` — chemistry's source, promises and Lab — `698d863` — the public branch's one line and five imports — `71ca298` — `[style]` restored — and the callable named `selection`; nothing pushed to origin.*
 
 **Owed:**
 - **U6, the docs** — *chemistry's teaching chapters and the public branch's still spell `selector =`, `next('mount')`, `persist =`, `inline =`, `styled.x`; sprint records stay as history.*
 - **The version** — *the surface change is breaking, so chemistry is 0.2.0 at its next publish, with the public branch's pins raised to `^0.2.0` in the same act; publishing is Doug's.*
 
 **For Doug:**
-- **`styledComponents` is a proxy** for the styled-components callable. *The first build gave it `style`, which put chemistry's export on the same word as the public branch's own `style` member; with `[style]` a symbol again, nothing chemistry exports shares a word with it.*
+- **The callable was named `selection` by Doug** after two builds: the first gave it `style`, which put chemistry's export on the same word as the public branch's own `style` member, and the second the proxy `styledComponents`.
 - **`.latex` and `.wiki` inside the public package** pin `@dna-platform/public` 0.0.3 and chemistry 0.1.2 exactly, and nothing builds them, so they stay on the old surface by their own pins.
 
-**New names, proxies:** `styledComponents`, `$draw$`. **His:** every symbol's name.
+**New names, proxies:** `$draw$`. **His:** every symbol's name, and `selection`.
