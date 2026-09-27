@@ -148,6 +148,28 @@
 
 R1–R4 → [U1](#u1) · R5–R9 → [U2](#u2) · R10, R11 → [U3](#u3) · R12 → [U4](#u4) · R13 → [U5](#u5). *AE1 in U1; AE2 in U2; AE3 in U2; AE4 in U3.* **Order:** U1, U2, U3, U4, U5 — U3 and U4 may run beside U2. **The plan against itself:** every requirement lands; every unit names what runs and what is seen; D4 is the one mechanism the brainstorm owed and it is designed twice with a measurement between; the plan asks Doug three things, below.
 
+## The audit of the code, for the next sprint
+
+*Doug, 2026-09-27: "audit the code you wrote and report back any insights that might reveal something about .public — the surprisingly good and the could be easier… Is there anything that feels strained but should feel natural in either .public or the test library? Is that due to a lack of familiarity of .public, a missing feature there, something more fundamental?"* Read fresh from disk: the library's book and theme (156 lines, 90 of them rules), its resources (150), the four book classes (17 to 43 each), Libby's story (61), and the three changes to `.public`.
+
+**Surprisingly good, and it carried the sprint:**
+- **The marks and the sheet.** Every kind wears a mark and the default sheet already comprehends them all, so the whole visual language was written against marks that were there — not one element or class was added in `.public` for it, and the set-diff promise would have said so.
+- **The provider's values as props.** A format anywhere beneath the theme reads `props.theme.space`; Libby's dark book is three values and inherits the card, the labels, the rules. One mechanism, reactive, and it composed with a subclass extending the sheet in `$Define`.
+- **Everything in reach.** `this.$book` from an annotation, `book.author?.means?.identifier` for a byline, `chapter.previous.title?.name` for a catchword: each of the library's own kinds is a few lines because the book exposes what it holds.
+- **Annotations as defaults.** A book class of twenty lines dresses five books; a per-chapter default at `$Bound` is four lines; a book's feel is one Format in front. Nothing in the base is edited to make a book look different.
+- **The compiler's refusals.** A mention nobody spends is refused at the bind, which kept Libby's story compact the moment it over-reached; every hop across five books resolved from names alone.
+
+**Strained, and what each is due to:**
+- **Lending the book, `book={this}`.** A paragraph a book draws in its own `write` is outside the writing tree, so it has no `$book` and must be lent one. *Fundamental, mostly:* a book's text is chapters, and a masthead is not a chapter, so the layout lives in `write`; what could be easier is that things a book draws know the book that drew them. **A missing seam to consider.**
+- **The kind labels live in CSS.** *Cover*, *Chapter 1* are `::before` content, unreadable to a screen reader and untranslatable. *Unfamiliarity:* a Format's `style` is any element type, so a `Labelled` format could draw the label as part of its own layer, in the framework's own terms. **The natural way was there and was not taken.**
+- **The semantic wrappers are unnamed.** The cover's `header` and the table's `nav` wear only `pd-container`; the card and the box select them by `:has()`, learned from a bound page, and a format in front of the chapter breaks the adjacency. *A missing mark, or a chapter's own element should be the wrapper.*
+- **Extending the theme's sheet is a discovered idiom**, `selection(this.style)` in `$Define`, and it took one wrong turn to find. *A small missing seam:* a template method on Theme returning the rules a subclass adds.
+- **Re-lifting inside `write`.** Every `write` opens with `const Word = $(word)` over components already lifted at export, and imports are aliased lowercase to make room. *Not understood:* whether the re-lift is required for chemistry's scoping or is inherited habit. **To verify before the next library copies it.**
+- **The turn finds an element by a mark.** `Book.turn` reaches the chapter's element through `getElementById` and `closest('.pd-chapter')`. *Fundamental to a page that is served and hydrated,* but a chapter that knew its own element would make it a line.
+- **A parenthetical title is hidden, and it holds the chapter's id.** Doug's own question: something visible has to identify the chapter. *A design question for `.public`:* whether Parenthetical hides or only quietens, or whether the chapter's element holds the id when its title does not print.
+- **Promises that read serialised CSS**, `border:1px solid #23262a;padding:1.25rem`, broke on every value change. *Test-side:* assert the computed style in Chrome, or the class, not the string.
+- **Small:** `at()` duplicates the sheet's `value()`; a line break before `<Means>` swallows the space; chemistry's chain check fires only in the bound page.
+
 ## Where things stand
 
 **Next: Doug's review of Sprint 86 and this sprint together, as he ruled, then `/ce-compound` on this chapter; the sprint after is a `/ce-brainstorm` on the subject he set at the close of [U8](#u8): what a subject, an author and a catalogue are in a library closed under books, before the compiler changes.** Every unit is built, gated and committed locally, the last, [U13](#u13), as `e3f728a`; nothing is pushed to origin.
