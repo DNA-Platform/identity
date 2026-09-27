@@ -20,7 +20,7 @@
 |---|---|---|
 | `theme` | whether this format also provides its own properties to everything it draws. False on the base | Doug, written as `class MyFormat extends Format { theme = true; }` |
 | `style` | the styled component the writing is drawn inside, a layer of its own. Absent on the base, so a bare Format adds nothing | E23; Doug, *"No Format.format. Format.style."* |
-| the bond | wraps the style in a provider handing the annotation itself, once per mount, and only when `theme` is set | E24, *"often contains a styled-components theme provider"* |
+| the bond | wraps the style in a provider handing the annotation itself, once per mount, and only when `theme` is set — through `provide`, a template method since 2026-09-27, which Theme overrides to hand the style back, providing through a chemical of its own, so Theme calls Format's bond and chemistry's chain is whole | E24, *"often contains a styled-components theme provider"*; Doug, 2026-09-27: a template method on Format |
 | `defines(writing)` | one sentence: stand its style as a layer, cited to itself, outside every layer already standing — and since 2026-09-24 nothing else | Doug, *"All formats prevent multiple formats right?"*, and then *"Allow multiple formats! Promise it, in fact."* |
 | `erase(writing)` | takes back its own layer, `revert(this)`, and nothing else | Doug, 2026-09-24: *"have it have a way of an annotation removing the elements it registered for erase"* |
 
