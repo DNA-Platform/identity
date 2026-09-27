@@ -98,7 +98,7 @@
 
 ## <a id="render"></a>The render — one server, every page
 
-***[`rendering/rendering.ts`](../../package/.binding/rendering/rendering.ts) spawns [`render.mjs`](../../package/.binding/rendering/render.mjs) once, with every page's name; it starts one Vite server and [`draw.ts`](../../package/.binding/rendering/draw.ts) draws the pages in the order the names were given, each inside a `ServerStyleSheet` of its own.*** Doug, 2026-09-26: ***"Let's do one server, but it truly has to speed things up."*** **And it does, measured before and after in one staged copy, the two renders run in turn three times:**
+***[`rendering/rendering.ts`](../../package/.binding/rendering/rendering.ts) spawns [`render.mjs`](../../package/.binding/rendering/render.mjs) once, with every page's address — a book's and each of its chapters', since [Sprint 85](../projection/91-sprint-85--headings-and-routes.md#u3); it starts one Vite server and [`draw.ts`](../../package/.binding/rendering/draw.ts) draws the pages in the order the addresses were given, each inside a `ServerStyleSheet` of its own, the book found by any of its addresses and handed the page's url as its bookmark, so a chapter's page opens turned to that chapter.*** Doug, 2026-09-26: ***"Let's do one server, but it truly has to speed things up."*** **And it does, measured before and after in one staged copy, the two renders run in turn three times:**
 
 | | a child per page | one server |
 |---|---|---|
@@ -135,6 +135,7 @@
 | **a bind, 25 real books, 26 pages** | *specify 5.7s · bundle 16.4s · render 32.0s in parallel (1.23s a page) · proof 0.0s — before one server; render 2.9s after, 2026-09-26* |
 | **Dougs Library, 6 books** | *the parse 73ms of a 90ms cold structure; 3ms warm; bind 16–23s* |
 | **the test library on this code, 5 books, 6 pages** | *specify 1.6s, 142 writings · bundle 1.1s · render 1.5s · the bind 4.1s — 2026-09-26, one server; 410 lines in 27 files* |
+| **the test library, 5 books, 23 pages — chapters as routes** | *render 3.8s · the bind 7.2s — 2026-09-27, one server; the whole book drawn at every address* |
 | **hot** | *a chapter edited: 496ms in place · a chapter added: 1758ms, no bind* |
 | **at a thousand synthetic books** | *structure 2.9s cold, ~0.5s warm — 287ms of which is `statSync` asking the disk what the watcher already knows* |
 
