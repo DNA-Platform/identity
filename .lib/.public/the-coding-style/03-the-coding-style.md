@@ -230,6 +230,16 @@
 | **[Composing with React](../../../chemistry/.lib/authorship/05-composing-with-react.md)** | *the boundary with React* |
 | **[Glossary](../../../chemistry/.lib/authorship/06-glossary.md)** | *the words* |
 
+### <a id="the-surface"></a>Chemistry's surface — words and symbols, ***given 2026-09-27***
+
+**Doug, when the public branch could not give Chapter a `next` because every chemical's lifecycle method held the word:** *"for everything from formula to next, we expose symbols that we export with those names and compel people to use them. view is still public, but let's give $Chemistry a clean surface area."* And the principle: *"If something is useful. view and parent are those. We keep children symbolic because it is not recommended."* Built in chemistry the same day — [A Clean Surface](../../../chemistry/.lib/projection/48-sprint-87--a-clean-surface.md) — and the day after, *"Use next and almost all members as you see fit. $Chemistry hides its internals now."*
+
+| | it rules |
+|---|---|
+| ***what stays a word*** | `view`, `frame` and `parent` — *"Know this.parent stays public. That is essential"* — and the `$`-props, the prop membrane |
+| ***what is a symbol*** | every opt-in feature: `formula`, `resolve`, `persist`, `inline`, `selector`, `styled`, `next`, beside `children`, `cache`, `style`, `theme` and `resolved` — imported by name and written as a key: `import { next } from '@dna-platform/chemistry'` then `this[next]('mount')`; the styled-components callable is `selection`, `[selector] = selection.section` |
+| ***what follows for the library*** | **every other word is the library's.** Chapter carries `next` and `previous`; a class of `.public` names a member `style` without sharing it with chemistry; chemistry's machinery is `$x$` symbols it does not export, and nothing in `.public` reaches one |
+
 ### <a id="the-migration"></a>The migration record — not a rule, but read it before deleting anything
 
 **[What Carries Over](../the-type-system/01-what-carries-over.md)** *(**2026-08-28**)* — ***v1 against v2, measured on the day: 51 files and 3,498 lines against 19 and 830.*** **It is the document that says which v1 ideas were kept deliberately and which were dropped deliberately**, *which is exactly the distinction a cleanup cannot make from the code alone.*
