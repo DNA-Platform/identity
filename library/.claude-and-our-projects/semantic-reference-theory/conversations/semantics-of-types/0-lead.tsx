@@ -1,6 +1,6 @@
 import { Bold, Document, Heading, Italics, Paragraph, Section, Subject, Title } from '@dna-platform/public';
 import { $Article, Line } from '../../../../..reference/.book';
-import { About } from '../../../.reference/.book';
+import { About } from '../../../..reference/.book';
 import { Participant } from '@dna-platform/public/conversation';
 
 export default class $Lead extends $Article {
@@ -14,7 +14,7 @@ export default class $Lead extends $Article {
                     <Line label="Held">Over two days in September 2026</Line>
                     <Line label="Length">100 messages in eight movements</Line>
                     <Line label="Between">
-                        <Participant>[Doug](MY Library Log)</Participant>
+                        <Participant>[Doug](My Library Log)</Participant>
                         <Participant>[Claude](Claude &amp; Our Projects)</Participant>
                     </Line>
                     <Line label="Filed under"><Subject>Semantic Reference Theory</Subject></Line>

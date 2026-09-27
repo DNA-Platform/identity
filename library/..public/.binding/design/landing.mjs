@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 
-const BASE = process.argv[2] || 'http://localhost:4241';
+const BASE = process.argv[2] || 'http://localhost:4242';
 const b = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
 
 const where = async page => page.evaluate(() => ({

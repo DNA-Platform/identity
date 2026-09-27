@@ -3,24 +3,46 @@
     {
       "folder": "..reference",
       "book": {
-        "author": "MY Library Log",
+        "author": "/my-library-log/",
         "catalogued": [
-          "The books",
-          "Doug’s Library",
-          "The Librarian",
-          "Table of Contents",
-          "Lead"
+          "/dougs-library/#the-books",
+          "/dougs-library/#the-sheet",
+          "/dougs-library/#the-masthead",
+          "/dougs-library/#the-chapter-mark",
+          "/dougs-library/#the-plate",
+          "/dougs-library/#the-ledger",
+          "/dougs-library/#the-switchboard",
+          "/dougs-library/#the-domain",
+          "",
+          "",
+          "",
+          "",
+          "/my-library-log/",
+          "/claude-and-our-projects/"
         ],
         "chapters": [
-          "Doug’s Library",
-          "The Librarian",
+          "Dougs Library",
+          "Synopsis",
           "Table of Contents",
           "Lead",
-          "The books"
+          "The books",
+          "The Sheet",
+          "The Masthead",
+          "The Chapter Mark",
+          "The Plate",
+          "The Ledger",
+          "The Switchboard",
+          "The Domain"
         ],
-        "name": "Doug’s Library",
-        "subject": "Doug’s Library",
-        "title": "Doug’s Library",
+        "name": "Dougs Library",
+        "shelves": [
+          "",
+          "",
+          "/my-library-log/",
+          "/claude-and-our-projects/"
+        ],
+        "subject": "",
+        "title": "Dougs Library ",
         "types": [
           "Catalogue",
           "Cover",
@@ -28,32 +50,43 @@
           "Document"
         ]
       },
-      "digest": "499ce50106d50107",
-      "walked": 165
+      "digest": "58ee3b3b37102778",
+      "walked": 434
     },
     {
-      "folder": ".claude-and-our-projects/.reference",
+      "folder": ".claude-and-our-projects/..reference",
       "book": {
-        "author": "MY Library Log",
+        "author": "/my-library-log/",
         "catalogued": [
-          "The Team I Write About Is Typing This",
-          "Claude & Our Projects",
-          "How We Work",
-          "Table of Contents",
-          "Lead",
-          "The projects"
+          "/claude-and-our-projects/#the-team-i-write-about-is-typing-this",
+          "/claude-and-our-projects/#importing-a-conversation",
+          "/claude-and-our-projects/#the-projects",
+          "/semantic-reference-theory/#synopsis",
+          "/claude-and-our-projects/#the-tools",
+          "/claudes-library-importer/#synopsis",
+          "",
+          "/claude-and-our-projects/#synopsis",
+          "/claude-and-our-projects/#table-of-contents",
+          "/claude-and-our-projects/#lead"
         ],
         "chapters": [
           "Claude & Our Projects",
-          "How We Work",
+          "Synopsis",
           "Table of Contents",
           "Lead",
+          "The Team I Write About Is Typing This",
+          "Importing a Conversation",
           "The projects",
-          "The Team I Write About Is Typing This"
+          "The tools"
         ],
         "name": "Claude & Our Projects",
-        "subject": "Doug’s Library",
-        "title": "Claude & Our Projects",
+        "shelves": [
+          "",
+          "/semantic-reference-theory/",
+          "/claudes-library-importer/"
+        ],
+        "subject": "/dougs-library/",
+        "title": "Claude & Our Projects ",
         "types": [
           "Catalogue",
           "Biography",
@@ -62,30 +95,76 @@
           "Document"
         ]
       },
-      "digest": "1734c7e1ba6d2ac7",
-      "walked": 193
+      "digest": "5cfd9758bc9a2cf9",
+      "walked": 273
+    },
+    {
+      "folder": ".claude-and-our-projects/.claudes-importer",
+      "book": {
+        "author": "/my-library-log/",
+        "catalogued": [
+          "/claudes-library-importer/#the-importer",
+          "/claudes-library-importer/#the-source",
+          "/claudes-library-importer/#the-thread",
+          "/claudes-library-importer/#the-movements",
+          "/claudes-library-importer/#the-writing",
+          "/claudes-library-importer/#the-book",
+          "",
+          "",
+          ""
+        ],
+        "chapters": [
+          "Claude’s Library Importer",
+          "Synopsis",
+          "Table of Contents",
+          "The Importer",
+          "The Source",
+          "The Thread",
+          "The Movements",
+          "The Writing",
+          "The Book"
+        ],
+        "name": "Claude’s Library Importer",
+        "shelves": [
+          ""
+        ],
+        "subject": "/claude-and-our-projects/",
+        "title": "Claude’s Library Importer ",
+        "types": [
+          "Cover",
+          "Document",
+          "Document"
+        ]
+      },
+      "digest": "ca03914bb516e685",
+      "walked": 239
     },
     {
       "folder": ".claude-and-our-projects/semantic-reference-theory/.reference",
       "book": {
-        "author": "MY Library Log",
+        "author": "/my-library-log/",
         "catalogued": [
-          "Semantic Reference Theory",
-          "The Theory",
-          "Table of Contents",
-          "Lead",
-          "The conversations"
+          "/semantic-reference-theory/#the-conversations",
+          "/semantics-of-types-and-more/#synopsis",
+          "",
+          "/semantic-reference-theory/#synopsis",
+          "/semantic-reference-theory/#table-of-contents",
+          "/semantic-reference-theory/#lead"
         ],
         "chapters": [
           "Semantic Reference Theory",
-          "The Theory",
+          "Synopsis",
           "Table of Contents",
           "Lead",
           "The conversations"
         ],
         "name": "Semantic Reference Theory",
-        "subject": "Claude & Our Projects",
-        "title": "Semantic Reference Theory",
+        "shelves": [
+          "",
+          "/semantics-of-types-and-more/"
+        ],
+        "subject": "/claude-and-our-projects/",
+        "title": "Semantic Reference Theory ",
         "types": [
           "Catalogue",
           "Cover",
@@ -93,58 +172,80 @@
           "Document"
         ]
       },
-      "digest": "90c46259fa61630e",
-      "walked": 132
+      "digest": "71177684e518583a",
+      "walked": 124
     },
     {
       "folder": ".claude-and-our-projects/semantic-reference-theory/conversations/semantics-of-types",
       "book": {
-        "author": "MY Library Log",
+        "author": "/my-library-log/",
         "catalogued": [
-          "Semantics of Types & More",
-          "What Was Said",
-          "Table of Contents",
-          "Lead"
+          "/semantics-of-types-and-more/#ivitivity",
+          "/semantics-of-types-and-more/#subjectivity-and-passivity",
+          "/semantics-of-types-and-more/#adjectivity",
+          "/semantics-of-types-and-more/#the-ten-referents",
+          "/semantics-of-types-and-more/#a-property-of-the-type",
+          "/semantics-of-types-and-more/#the-little-type-document",
+          "/semantics-of-types-and-more/#narrowing-and-the-diamond",
+          "/semantics-of-types-and-more/#semantic-context",
+          "",
+          "/semantics-of-types-and-more/#synopsis",
+          "/semantics-of-types-and-more/#table-of-contents",
+          "/semantics-of-types-and-more/#lead"
         ],
         "chapters": [
           "Semantics of Types & More",
-          "What Was Said",
+          "Synopsis",
           "Table of Contents",
-          "Lead"
+          "Lead",
+          "Ivitivity",
+          "Subjectivity and Passivity",
+          "Adjectivity",
+          "The Ten Referents",
+          "A Property of the Type",
+          "The Little Type Document",
+          "Narrowing and the Diamond",
+          "Semantic Context"
         ],
         "name": "Semantics of Types & More",
-        "subject": "Semantic Reference Theory",
-        "title": "Semantics of Types & More",
+        "shelves": [
+          ""
+        ],
+        "subject": "/semantic-reference-theory/",
+        "title": "Semantics of Types & More ",
         "types": [
           "Cover",
           "Document",
           "Document"
         ]
       },
-      "digest": "e7d21cd8a5efe60e",
-      "walked": 107
+      "digest": "83d5f4474de13991",
+      "walked": 1457
     },
     {
       "folder": "my-library-log",
       "book": {
-        "author": "MY Library Log",
+        "author": "",
         "catalogued": [
-          "Librarian's Log: Stardate 2026-09-15",
-          "MY Library Log",
-          "A Life",
-          "Table of Contents",
-          "Lead"
+          "/my-library-log/#entries",
+          "/my-library-log/#the-semantics-of-this-library",
+          "",
+          "/my-library-log/#synopsis",
+          "/my-library-log/#table-of-contents"
         ],
         "chapters": [
-          "MY Library Log",
-          "A Life",
+          "My Library Log",
+          "Synopsis",
           "Table of Contents",
-          "Lead",
-          "Librarian's Log: Stardate 2026-09-15"
+          "Entries",
+          "The Semantics of THIS Library"
         ],
-        "name": "MY Library Log",
-        "subject": "Doug’s Library",
-        "title": "MY Library Log",
+        "name": "My Library Log",
+        "shelves": [
+          ""
+        ],
+        "subject": "/dougs-library/",
+        "title": "My Library Log ",
         "types": [
           "Autobiography",
           "Biography",
@@ -153,8 +254,8 @@
           "Document"
         ]
       },
-      "digest": "5a20ff1db6152b54",
-      "walked": 134
+      "digest": "0762b8e3af745c7a",
+      "walked": 141
     }
   ]
 }

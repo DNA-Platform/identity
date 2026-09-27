@@ -1,11 +1,15 @@
 {
   "inventory": {
-    "root": "Doug’s Library"
+    "root": "Dougs Library",
+    "exclude": []
   },
   "rendering": {
-    "title": "Doug's Library"
+    "title": "Dougs Library",
+    "stylesheets": [
+      "./code.css"
+    ]
   },
   "manifest": {
-    "origin": "../../../library/.public/package/.binding"
+    "origin": "../../../.archive/.public/package/.binding"
   }
 }

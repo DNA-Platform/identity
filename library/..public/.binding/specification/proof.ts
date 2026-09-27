@@ -38,7 +38,30 @@ const kinds = (attrs: string): string => ((/class="([^"]*)"/.exec(attrs) ?? ['',
 
 const at = (tag: Tag): string => `<${tag.name}> (${kinds(tag.attrs)})`;
 
-export const proof = (face: string, pages: string[]): Diagnostic[] => {
+// WHICH BUILT PAGE AN INTERNAL ADDRESS LEADS TO, and where on it. `/dougs-library/#the-books` is
+// the page `dougs-library/index.html` and the id `the-books`; `/` is the root page. Written from the
+// base the library is served under, because every address on every page is.
+const leads = (href: string, base: string): { page: string; fragment: string | undefined } | undefined => {
+    if (!href.startsWith(base)) return undefined;
+    const [path, fragment] = href.slice(base.length).split('#');
+    const folder = path.replace(/^\/+|\/+$/gu, '');
+
+    return { page: `${folder === '' ? '' : `${folder}/`}index.html`, fragment: fragment === '' ? undefined : fragment };
+};
+
+// WHAT IS WRONG WITH WHERE A FRAGMENT LEADS, or nothing. Exactly one element may answer to it: none
+// and the link is dead; more than one and the browser lands a reader on whichever comes first, which
+// is how a link to a synopsis chapter arrived at a section of another chapter and looked right.
+const answering = (ids: Map<string, number>, fragment: string, on: string): string | undefined => {
+    const count = ids.get(fragment) ?? 0;
+    if (count === 1) return undefined;
+
+    return count === 0
+        ? `nothing on ${on} answers to ${on === 'this page' ? 'it' : `#${fragment}`}`
+        : `${count} elements on ${on} answer to ${on === 'this page' ? 'it' : `#${fragment}`}, so a reader lands on whichever comes first`;
+};
+
+export const proof = (face: string, pages: string[], base = '/'): Diagnostic[] => {
     const wrong: Diagnostic[] = [];
     const said = new Set<string>();
     const fault = (page: string, says: string): void => {
@@ -48,11 +71,21 @@ export const proof = (face: string, pages: string[]): Diagnostic[] => {
         wrong.push({ at: page, file: join(face, page), says });
     };
 
+    // EVERY PAGE'S IDS ARE GATHERED BEFORE ANY PAGE'S LINKS ARE JUDGED, because a link leads to a
+    // page that has not been read yet as often as to one that has. AND THEY ARE COUNTED, NOT
+    // COLLECTED: a set swallowed the second `my-library-log` on Doug's summit page (2026-09-20), the
+    // row's link was passed as answered, and the browser landed it on the first element wearing the
+    // id — a section of another chapter that happened to print the same synopsis. Doug: "It
+    // concerns me that navigation worked."
+    const answers = new Map<string, Map<string, number>>();
+    const leaving: { page: string; href: string }[] = [];
+
     for (const page of pages) {
         const html = readFileSync(join(face, page), 'utf8');
         const open: Tag[] = [];
-        const ids = new Set<string>();
+        const ids = new Map<string, number>();
         const fragments: string[] = [];
+        answers.set(page, ids);
 
         for (const tag of html.matchAll(/<(\/?)([a-zA-Z0-9-]+)((?:"[^"]*"|'[^']*'|[^>"'])*)>/g)) {
             const name = tag[2].toLowerCase();
@@ -65,7 +98,7 @@ export const proof = (face: string, pages: string[]): Diagnostic[] => {
             }
 
             const id = /\sid="([^"]*)"/.exec(attrs);
-            if (id !== null && id[1] !== '') ids.add(id[1]);
+            if (id !== null && id[1] !== '') ids.set(id[1], (ids.get(id[1]) ?? 0) + 1);
             const href = /\shref="#([^"]*)"/.exec(attrs);
             if (href !== null && href[1] !== '') fragments.push(href[1]);
 
@@ -74,6 +107,9 @@ export const proof = (face: string, pages: string[]): Diagnostic[] => {
             const to = /\shref="([^"#][^"]*)"/.exec(attrs);
             if (to !== null && !/^([a-z]+:|\/)/.test(to[1]))
                 fault(page, `${at({ name, attrs })} addresses ${to[1]}, which is read from whatever folder the page is served in`);
+            // ONLY AN ANCHOR LEADS A READER SOMEWHERE. A `<link>` addresses a stylesheet, and the
+            // first run of this asked where its page was.
+            if (to !== null && name === 'a' && to[1].startsWith('/')) leaving.push({ page, href: to[1] });
 
             if (empty.has(name) || attrs.trimEnd().endsWith('/')) continue;
 
@@ -88,8 +124,29 @@ export const proof = (face: string, pages: string[]): Diagnostic[] => {
             open.push({ name, attrs });
         }
 
-        for (const fragment of new Set(fragments))
-            if (!ids.has(fragment)) fault(page, `a link addresses #${fragment}, and nothing on this page answers to it`);
+        // AND AN ID IS WORN ONCE, addressed or not. Doug, 2026-09-20: "it should refuse mentions
+        // that surface the same id" — two elements claiming one name on a page, and the first link
+        // written to it lands on whichever comes first.
+        for (const [id, count] of ids)
+            if (count > 1) fault(page, `#${id} is worn by ${count} elements on this page, and an id is worn once`);
+
+        for (const fragment of new Set(fragments)) {
+            const said = answering(ids, fragment, 'this page');
+            if (said !== undefined) fault(page, `a link addresses #${fragment}, and ${said}`);
+        }
+    }
+
+    // AND EVERY ADDRESS INTO THE LIBRARY LEADS TO A PAGE THE BINDER BUILT, at a place on it that
+    // exists — read off the pages rather than the catalogue, so it cannot agree with the catalogue
+    // by construction.
+    for (const { page, href } of leaving) {
+        const led = leads(href, base);
+        if (led === undefined) continue;
+        const ids = answers.get(led.page);
+        if (ids === undefined) { fault(page, `a link addresses ${href}, and no page was built at ${led.page}`); continue; }
+        if (led.fragment === undefined) continue;
+        const said = answering(ids, led.fragment, led.page);
+        if (said !== undefined) fault(page, `a link addresses ${href}, and ${said}`);
     }
 
     return wrong;

@@ -1,4 +1,4 @@
-import { Heading, Italics, Paragraph, Section, Document, Title } from '@dna-platform/public';
+import { Fold,Heading, Italics, Paragraph, Section, Document, Title } from '@dna-platform/public';
 import { $Article, Infobox, Line, Fixed } from '../../../..reference/.book';
 
 export default class $Lead extends $Article {
@@ -16,7 +16,7 @@ export default class $Lead extends $Article {
                     <Line label="Filed under">Claude &amp; Our Projects</Line>
                 </Infobox>
                 <Section>
-                    <Heading>Reference is not travel</Heading>
+                    <Heading>[[[ Reference is not travel ]]]</Heading>
                     <Paragraph>
                         The theory is a first-order logic whose domain is referents and whose canonical semantic
                         form is <Italics>library semantics</Italics>. The library metaphor came first and brought the

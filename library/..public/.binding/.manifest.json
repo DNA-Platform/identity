@@ -2,6 +2,7 @@
   "assembled": [
     ".binding/application/books/reference.tsx",
     ".binding/application/books/claude-and-our-projects/reference.tsx",
+    ".binding/application/books/claude-and-our-projects/claudes-importer.tsx",
     ".binding/application/books/claude-and-our-projects/semantic-reference-theory/reference.tsx",
     ".binding/application/books/claude-and-our-projects/semantic-reference-theory/conversations/semantics-of-types.tsx",
     ".binding/application/books/my-library-log.tsx"
@@ -12,19 +13,24 @@
     ".binding/application/routes.ts"
   ],
   "rendered": [
-    "index.html",
+    "dougs-library/index.html",
     "claude-and-our-projects/index.html",
+    "claudes-library-importer/index.html",
     "semantic-reference-theory/index.html",
     "semantics-of-types-and-more/index.html",
-    "my-library-log/index.html"
+    "my-library-log/index.html",
+    "index.html"
   ],
   "bundled": [
-    "assets/.book-DsfIt9qy.js",
-    "assets/index-DHexMGsT.js",
-    "assets/my-library-log-Daqrsufl.js",
-    "assets/reference-B3m3GdD9.js",
-    "assets/reference-BjtQEyzL.js",
-    "assets/reference-Bw8exVGH.js",
-    "assets/semantics-of-types-BW2OPyf0.js"
+    "assets/.book-CxLle75a.js",
+    "assets/.book-dQJs_G0C.js",
+    "assets/claudes-importer-B3v6isRO.js",
+    "assets/index-B5LgH-wL.js",
+    "assets/index-Ch2EwETz.css",
+    "assets/my-library-log-DlXUGjkm.js",
+    "assets/reference-ClitLtrF.js",
+    "assets/reference-DXhg1zv3.js",
+    "assets/reference-pntdPGlo.js",
+    "assets/semantics-of-types-CBoXNjt6.js"
   ]
 }

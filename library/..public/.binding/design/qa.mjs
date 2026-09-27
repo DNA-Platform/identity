@@ -10,9 +10,22 @@ import puppeteer from 'puppeteer';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { untilThePlateIsDrawn } from './waiting.mjs';
 
-const [, , BASE = 'http://localhost:4229'] = process.argv;
-const routes = ['/', '/my-library-log/', '/claude-and-our-projects/', '/semantic-reference-theory/', '/semantics-of-types-and-more/'];
+const [, , BASE = 'http://localhost:4242'] = process.argv;
+
+// THE SIX BOOKS AT THEIR OWN ADDRESSES, AND THE FRONT DOOR, WHICH IS NOT A BOOK.
+//
+// `/` DRAWS THE ROOT BOOK BUT IS NOT WHERE IT STANDS. Every page in the library links to that book
+// at `/dougs-library/`, because that is the address the catalogue gives it — so a reachability set
+// that counts `/` among the books asks every page for a link no page draws, and reports five pages
+// broken for a link that would be wrong to have. Measured 2026-09-19: exactly that, four times.
+//
+// AND TWO BOOKS WERE NEVER LOOKED AT. `/dougs-library/` and `/claudes-library-importer/` were not in
+// this list at all, so the root book was only ever checked through the door and the importer was
+// never opened — the suite reported a healthy library while two of its seven pages went unread.
+const books = ['/dougs-library/', '/my-library-log/', '/claude-and-our-projects/', '/claudes-library-importer/', '/semantic-reference-theory/', '/semantics-of-types-and-more/'];
+const routes = ['/', ...books];
 
 // AND IT LEAVES PICTURES, BECAUSE A NUMBER IS NOT A LOOK. Doug, 2026-09-15: "Are you driving this
 // with a browser and even asking yourselves if it looks good?" Half a dozen one-off scripts existed
@@ -66,8 +79,18 @@ for (const route of routes) {
         return {
             drew: document.querySelectorAll('.pd-book').length > 0,
             refused: document.body.innerText.includes('Bond Constructor Failed'),
-            blueNotLinks: [...document.querySelectorAll('body *')].filter(one => own(one) && one.closest('a') === null && near(tone(one), link)).length,
-            swallowing: [...document.querySelectorAll('a')].filter(one => one.querySelector('p, h1, h2, h3, h4, section, nav, ul, li, figure')).length,
+            // BLUE IN THE PROSE, WHICH IS WHAT THE COMPLAINT WAS ABOUT. Doug reported text that looked
+            // like a link and was not, and this has caught that twice. Code is not prose: a resource is
+            // drawn with syntax colouring and a keyword is blue because it is a keyword, which nobody
+            // has ever tried to press. Measured 2026-09-17, the day the manual began drawing its own
+            // resources: 633, of which 633 were hljs tokens inside a pre. Narrowed to what was meant.
+            blueNotLinks: [...document.querySelectorAll('body *')].filter(one => own(one) && one.closest('a') === null && one.closest('pre, code') === null && near(tone(one), link)).length,
+            // AN ANCHOR SWALLOWS A BLOCK when it holds another anchor — the contents drawn as one
+            // <a> on 2026-09-15 — or holds blocks without being a writing given a reference. A
+            // section given one draws as the anchor that holds its heading and its mark; that is
+            // the framework's promise, and the brand is one.
+            swallowing: [...document.querySelectorAll('a')].filter(one => one.querySelector('a') !== null
+                || (!one.classList.contains('pd-meaning') && one.querySelector('p, h1, h2, h3, h4, section, nav, ul, li, figure'))).length,
             dangling: [...document.querySelectorAll('a[href^="#"]')].filter(one => { const id = one.getAttribute('href').slice(1); return id !== '' && document.getElementById(id) === null; }).length,
             relative: [...document.querySelectorAll('a[href]')].filter(one => { const h = one.getAttribute('href'); return h !== '' && !h.startsWith('#') && !h.startsWith('/') && !h.startsWith('http'); }).length,
             inside: [...new Set([...document.querySelectorAll('a[href]')].map(one => one.getAttribute('href')).filter(h => h !== null && h.startsWith('/')))],
@@ -97,12 +120,25 @@ for (const route of routes) {
         seen.author?.goes ?? 'not drawn as a link');
 
     // HOVERING PROSE RECOLOURS NOTHING. `.pd-reference:hover` once matched the whole book.
-    const body = await page.evaluate(() => { const one = document.querySelector('.pd-body .pd-paragraph'); const r = one.getBoundingClientRect(); return { x: r.x + 30, y: r.y + 8 }; });
-    await page.mouse.move(body.x, body.y, { steps: 4 });
-    await new Promise(done => setTimeout(done, 500));
-    const after = await page.evaluate(() => [...document.querySelectorAll('.pd-body *, .pd-cover *')].slice(0, 400).map(one => getComputedStyle(one).color));
-    const moved = seen.before.filter((one, at) => one !== after[at]).length;
-    check(`${route} hovering prose recolours nothing`, moved === 0, `${moved} elements changed colour`);
+    //
+    // A PAGE WITH NO PROSE IS A FINDING, NOT A CRASH. This read the paragraph's box straight off the
+    // query and a page that had none threw inside the browser, which took the whole suite down and
+    // reported none of the sixty checks standing behind it — so one book being mid-write hid the
+    // state of every other. It is asked as a question now, like everything else here.
+    const body = await page.evaluate(() => {
+        const one = document.querySelector('.pd-body .pd-paragraph');
+        if (one === null) return null;
+        const r = one.getBoundingClientRect();
+        return { x: r.x + 30, y: r.y + 8 };
+    });
+    check(`${route} has prose in its body`, body !== null, 'no paragraph under .pd-body');
+    if (body !== null) {
+        await page.mouse.move(body.x, body.y, { steps: 4 });
+        await new Promise(done => setTimeout(done, 500));
+        const after = await page.evaluate(() => [...document.querySelectorAll('.pd-body *, .pd-cover *')].slice(0, 400).map(one => getComputedStyle(one).color));
+        const moved = seen.before.filter((one, at) => one !== after[at]).length;
+        check(`${route} hovering prose recolours nothing`, moved === 0, `${moved} elements changed colour`);
+    }
 
     await page.close();
 }
@@ -141,8 +177,10 @@ for (const route of routes) {
         if (at === undefined) { check(`pressing ${href} arrives at a page that draws`, false, 'no link to it can be seen'); continue; }
         await page.mouse.click(at.x, at.y);
         await new Promise(done => setTimeout(done, 1600));
+        // A CHAPTER'S ADDRESS IS ITS BOOK'S PAGE AND A FRAGMENT, so what must match is the page —
+        // the fragment is where on it, and the browser keeps that out of the pathname.
         const landed = await page.evaluate(() => ({ at: location.pathname, drew: document.querySelectorAll('.pd-book').length > 0 }));
-        check(`pressing ${href} arrives at a page that draws`, landed.at === href && landed.drew, `landed on ${landed.at}, drew ${landed.drew}`);
+        check(`pressing ${href} arrives at a page that draws`, landed.at === href.split('#')[0] && landed.drew, `landed on ${landed.at}, drew ${landed.drew}`);
     }
     await page.close();
 }
@@ -151,29 +189,69 @@ for (const route of routes) {
 for (const route of routes) {
     const found = new Set([route]);
     for (let pass = 0; pass < routes.length; pass++) [...found].forEach(at => (reaches.get(at) ?? []).forEach(to => found.add(to)));
-    const missing = routes.filter(one => !found.has(one));
+    const missing = books.filter(one => !found.has(one));
     check(`from ${route} every book is reachable`, missing.length === 0, missing.join(', '));
 }
 
 // ─── THE CONTENTS TABLE ───────────────────────────────────────────────────────────────────────────
 {
     const { page } = await opened('/');
+    // ASKED, NOT ASSUMED. Every part of a contents table this reaches for is a question of its own,
+    // because a book that stops drawing one of them should say so rather than throw inside the browser
+    // and take the sixty checks behind it down with it. Measured 2026-09-16: the reference manual's
+    // restructure changed what the table draws, and `getComputedStyle(null)` reported nothing at all.
     const toc = await page.evaluate(() => {
         const rows = [...document.querySelectorAll('.pd-table-of-contents .pd-paragraph.pd-option')];
         const squares = [...document.querySelectorAll('.pd-table-of-contents .pd-book.pd-catalogue > .pd-meaning')];
+        const heading = document.querySelector('.pd-table-of-contents .pd-heading');
+        // THE FIRST ROW'S OWN WORDS, WHATEVER KIND OF MENTION IT IS AND WHETHER OR NOT IT LEADS
+        // ANYWHERE. This asked for `.pd-ref`, which was true while the table listed headings by hand;
+        // it lists mentions now, and the very first one names the book you are standing on — which
+        // this library draws as plain text with no anchor at all, so asking for a link found nothing
+        // and the check reported "not drawn" about a row that was plainly on the page.
+        const first = rows[0]?.querySelector('.pd-ref, .pd-meaning, a') ?? rows[0];
 
         return {
-            tall: rows.filter(one => one.getBoundingClientRect().height > 34).length,
-            heading: getComputedStyle(document.querySelector('.pd-table-of-contents .pd-heading')).fontWeight,
-            firstWeight: getComputedStyle(rows[0].querySelector('.pd-ref')).fontWeight,
-            squares: squares.map(one => { const r = one.getBoundingClientRect(); const row = one.closest('.pd-option').querySelector('.pd-ref').getBoundingClientRect(); return { size: Math.round(r.width), goes: one.getAttribute('href'), level: Math.abs((r.top + r.height / 2) - (row.top + row.height / 2)) < 2 }; }),
+            rows: rows.length,
+            tall: rows.filter(one => one.getBoundingClientRect().height > 58).length,
+            heading: heading === null ? null : getComputedStyle(heading).fontWeight,
+            firstWeight: first == null ? null : getComputedStyle(first).fontWeight,
+            // A BOOK IS MARKED, NAMED AND LEADS SOMEWHERE. The mark used to BE the row — a small
+            // bordered square standing in for a book whose words were written beside it as a ref —
+            // and this measured that square's own box. The row is the book's name now and the mark
+            // is a ::before in front of it, which no selector can reach, so it is read off the
+            // pseudo-element. Doug, 2026-09-16: "There are no images for the book names."
+            // A CATALOGUED BOOK'S ROW IS A BOX AND A NAME: the box is the book's own link, written with
+            // an empty display and drawn as a bordered square, and the name is the chapter beside it
+            // that is the book's synopsis — Doug, 2026-09-19. A book listed but not catalogued here is
+            // a plain link that says its name.
+            books: [...document.querySelectorAll('.pd-table-of-contents .pd-book.pd-catalogue')].map(one => {
+                const link = one.querySelector('a');
+                const box = link !== null && link.textContent === '' ? getComputedStyle(link) : null;
+                return {
+                    says: one.textContent.trim() || (one.parentElement?.querySelector(':scope > .pd-chapter-mention .pd-meaning')?.textContent.trim() ?? ''),
+                    marked: box !== null && parseFloat(box.width) >= 6 && Math.abs(parseFloat(box.width) - parseFloat(box.height)) < 1 && box.borderTopWidth !== '0px',
+                    goes: link?.getAttribute('href') ?? null,
+                };
+            }),
         };
     });
-    check('contents rows are single lines', toc.tall === 0, `${toc.tall} rows taller than one line`);
-    check('only the Contents heading is bold', toc.heading === '700' && toc.firstWeight !== '700', `heading ${toc.heading}, first entry ${toc.firstWeight}`);
-    check('every book square is square, level with its words, and goes to a book', toc.squares.length > 0
-        && toc.squares.every(one => one.size >= 7 && one.size <= 12 && one.level && one.goes.startsWith('/')),
-        JSON.stringify(toc.squares));
+    check('the contents table has rows', toc.rows > 0, 'no .pd-option rows in the table of contents');
+    // A ROW MAY RUN TO A SECOND LINE AND NO FURTHER. It was one line, which was right while a row was
+    // a short ref beside a mark; a row is a book's whole name now and three of them do not fit the
+    // rail. What must not happen is the thing Doug called critical — a row's mark falling onto a line
+    // of its own — and that is the `marked` question below, not this one.
+    check('no contents row runs past two lines', toc.tall === 0, `${toc.tall} rows taller than two lines`);
+    // A LABEL IN A SIDEBAR IS NOT A HEADLINE. Doug, 2026-09-16: "can you not make those titles bold on
+    // the side? Is that what wikipedia even does? It seems like something in text styled more to fit
+    // in would work better." It is not what wikipedia does — its sidebar labels are small and quiet.
+    // This asserted the opposite, which was pinning a decision rather than a requirement.
+    check('nothing in the contents is set bold', toc.heading !== null && toc.heading !== '700' && toc.firstWeight !== null && toc.firstWeight !== '700',
+        `heading ${toc.heading ?? 'not drawn'}, first entry ${toc.firstWeight ?? 'not drawn'}`);
+    check('every book in the catalogue is named and goes to a book, and a catalogued one is a box beside its synopsis chapter', toc.books.length > 0
+        && toc.books.some(one => one.marked)
+        && toc.books.every(one => one.says !== '' && (one.goes === null || one.goes.startsWith('/'))),
+        JSON.stringify(toc.books));
     await page.close();
 }
 
@@ -182,7 +260,7 @@ for (const route of routes) {
     const { page } = await opened('/');
     await page.evaluate(() => window.localStorage.clear());
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await new Promise(done => setTimeout(done, 1400));
+    await untilThePlateIsDrawn(page);
     const read = () => page.evaluate(() => {
         const stop = document.createElement('style');
         stop.textContent = '*{transition:none !important}';

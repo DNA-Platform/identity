@@ -11,14 +11,13 @@ export default class $Table extends $Chapter {
                 <Title print={false}>Table of Contents</Title>
                 <Section>
                     <Heading>Contents</Heading>
-                    <Option><Ref>[Reference is not travel](#reference-is-not-travel)</Ref></Option>
-                    <Option><Ref>[The conversations](#the-conversations)</Ref></Option>
-                    <Option><Ref>[Semantics of Types &amp; More](#semantics-of-types-and-more)</Ref><Book>Semantics of Types &amp; More</Book></Option>
+                    <Option>$[ ./Reference is not travel ]</Option>
+                    <Option><Chapter>The conversations</Chapter></Option>
+                    <Option><Chapter>[[ Semantics of Types &amp; More ]]( Semantics of Types &amp; More / Synopsis )</Chapter>&nbsp;<Book>[[ ]]( Semantics of Types &amp; More )**</Book></Option>
                     <Chapter print={false}>Semantic Reference Theory</Chapter>
-                    <Chapter print={false}>The Theory</Chapter>
+                    <Chapter print={false}>Synopsis</Chapter>
                     <Chapter print={false}>Table of Contents</Chapter>
                     <Chapter print={false}>Lead</Chapter>
-                    <Chapter print={false}>The conversations</Chapter>
                 </Section>
             </TableOfContents>
         );

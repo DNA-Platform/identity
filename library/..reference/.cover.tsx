@@ -1,4 +1,4 @@
-import { $Chapter, Author, Cover, Subject, Title } from '@dna-platform/public';
+import { $Chapter, Author, Cover, Ref, Subject, Title } from '@dna-platform/public';
 import { Catalogues, Chrome, Tabs } from './.book';
 
 export default class $Cover extends $Chapter {
@@ -6,11 +6,11 @@ export default class $Cover extends $Chapter {
         return (
             <Cover>
                 <Chrome />
-                <Title>Doug&rsquo;s Library</Title>
-                <Author>[Author: Doug](MY Library Log)</Author>
-                <Subject>[Doug](Doug&rsquo;s Library)</Subject>
+                <Title>[[ Dougs Library ]] $[ ]( Dougs Library )</Title>
+                <Author>*[[ Author: Doug ]]( My Library Log )</Author>
+                <Subject>**[[ Doug ]]( Dougs Library )</Subject>
                 <Catalogues />
-                <Tabs here={"Doug’s Library"} about={"Doug’s Library"} by={"MY Library Log"} />
+                <Tabs here={"Dougs Library"} about={"[[ Subject ]]( Dougs Library )"} by={"[[ Author ]]( My Library Log )"} />
             </Cover>
         );
     }

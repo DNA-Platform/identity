@@ -1,4 +1,4 @@
-// THE FIVE COVERS, DRIVEN — AND THE TEST IS NOT WHAT IT WAS. It used to move a pointer across a
+// THE FOUR COVERS, DRIVEN — AND THE TEST IS NOT WHAT IT WAS. It used to move a pointer across a
 // plate and assert that something changed, which is precisely what Doug rejected: "Something that
 // moves with you isn't interacting it is REACTING." So every check here asks the questions that
 // separate interacting from flinching, and then the one that separates a state from a ratchet:
@@ -15,6 +15,7 @@
 // chapter began, and both marks move as the record re-divides, so its inverse is named rather than
 // assumed. Reloading the page is not an inversion and does not count as one.
 import puppeteer from 'puppeteer';
+import { untilThePlateIsDrawn } from './waiting.mjs';
 
 const BASE = process.argv[2] || 'http://localhost:4242';
 const results = [];
@@ -28,14 +29,19 @@ const opened = async (route, what) => {
     await page.setViewport({ width: 1400, height: 1000 });
     await page.goto(BASE + route, { waitUntil: 'domcontentloaded' });
     await settle(1700);
+    // A PAGE WITH NO PLATE IS A FINDING, NOT A CRASH. This read the box straight off the query and a
+    // page that had none threw inside the browser, taking the whole suite down and reporting none of
+    // the checks behind it — so one cover being absent hid the state of every other.
     const box = await page.evaluate(() => {
         const one = document.querySelector('.pd-infobox [role="img"]');
+        if (one === null) return null;
         one.scrollIntoView({ block: 'center' });
         const r = one.getBoundingClientRect();
         return { x: r.x, y: r.y, w: r.width, h: r.height };
     });
-    check(what + ': the plate is drawn at a readable size', box.w > 180 && box.h > 180,
-        Math.round(box.w) + ' by ' + Math.round(box.h));
+    check(what + ': there is a plate on its cover', box !== null, 'nothing matches .pd-infobox [role="img"]');
+    check(what + ': the plate is drawn at a readable size', box !== null && box.w > 180 && box.h > 180,
+        box === null ? 'no plate' : Math.round(box.w) + ' by ' + Math.round(box.h));
     return { page, box };
 };
 
@@ -70,6 +76,7 @@ const differ = (a, c) => a.reduce((n, one, at) => n + (one === c[at] ? 0 : 1), 0
 // re-divides. So a check names the mark that inverts rather than assuming it is the one it pressed.
 const drive = async (route, what, press, again, wait, undo = 'same') => {
     const { page, box } = await opened(route, what);
+    if (box === null) { await page.close(); return; }
     const rest = await look(page);
 
     await page.mouse.move(box.x + box.w * 0.2, box.y + box.h * 0.25);
@@ -111,10 +118,41 @@ const drive = async (route, what, press, again, wait, undo = 'same') => {
     await page.close();
 };
 
-await drive('/my-library-log/', 'the register', 1, 1, 900, 0);
+// THE REGISTER IS NOT DRIVEN LIKE THE OTHERS, AND THAT IS ITS DESIGN. Three of the four covers hold
+// a state a reader may change and put back. The log's does not: each square is one entry and pressing
+// it goes and reads that entry — "a log is a record, and the way you interact with a record is that
+// you go and read it." It was in the list above until 2026-09-16, where it asked for the SECOND
+// pressable square and a log with one entry has one, so the suite died before reporting anything.
+{
+    const { page } = await opened('/my-library-log/', 'the register');
+    const seats = await page.evaluate(() => {
+        const plate = document.querySelector('.pd-infobox [role="img"]');
+        const links = [...plate.querySelectorAll('a')];
+        return { of: plate.children.length, led: links.map(one => one.getAttribute('href')), first: links[0]?.getAttribute('href') ?? null };
+    });
+    check('the register holds nine seats', seats.of === 9, seats.of + ' seats');
+    check('an entry of the log has a seat that leads to it', seats.led.length > 0 && seats.led.every(one => /^#.+/.test(one)),
+        seats.led.length === 0 ? 'no seat leads anywhere — the plate found no entries' : seats.led.join(', '));
+    if (seats.first !== null) {
+        await page.click(`.pd-infobox [role="img"] a[href="${seats.first}"]`);
+        await settle(600);
+        const arrived = await page.evaluate(at => {
+            const target = document.querySelector(at);
+            return { there: target !== null, said: target?.textContent?.trim().slice(0, 60) ?? '' };
+        }, seats.first);
+        check('pressing a seat arrives at that entry', arrived.there, `nothing on the page answers to ${seats.first}`);
+    }
+    await page.close();
+}
+
 await drive('/claude-and-our-projects/', 'the switchboard', 1, 2, 800);
 await drive('/semantic-reference-theory/', 'the domain', 40, 99, 900);
-await drive('/semantics-of-types-and-more/', 'the transcript', 12, 40, 800);
+
+// AND THE TRANSCRIPT HAS NO COVER ART, WHICH IS A RULING AND NOT A GAP. Doug, reviewing the five
+// proposals: "the dark spots on the library logs seem unnecessary. The semantics of types isn't
+// necessary. But otherwise they look great. Please implement them." Four were implemented; that book
+// carries an `<About>` box and no plate. It was still being driven here as a fifth, so it reported
+// two failures a night against a decision that had already been made.
 
 // AND THE CATALOGUE STILL REMEMBERS, because it is the only one that may.
 {
@@ -125,7 +163,8 @@ await drive('/semantics-of-types-and-more/', 'the transcript', 12, 40, 800);
     await settle(800);
     const laid = await look(page);
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await settle(1900);
+    await untilThePlateIsDrawn(page);
+    await settle(500);
     const after = await look(page);
     check('the catalogue keeps what you make across a reload',
         differ(laid, after) < Math.max(4, laid.length * 0.2),
