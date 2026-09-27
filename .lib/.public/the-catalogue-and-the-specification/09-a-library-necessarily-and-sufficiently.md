@@ -49,7 +49,7 @@
 | **the library** | the one book filed under itself — auto-categorical, the root of the tree | its Subject names itself |
 | **the autobiography** | the one book by what it is about — the author arrow's fixed point, the root of authorship | its Author's url is its About's, and its About's is its title's — Autobiography's specification says so without a name |
 
-*Every other author is a book the autobiography catalogues — one step, never a walk: Doug, "1. A book that is by its subject - There can be only one of those 2. Any book catalogued by one that is a subject."* **The two fixed points may be two books or one:** *the test library keeps them apart, the library written by the log that writes itself; a personal library whose top is its own autobiography is one book filed under itself, by itself, and about itself.*
+*Every other author is a book the autobiography catalogues — one step, never a walk: Doug, "1. A book that is by its subject - There can be only one of those 2. Any book catalogued by one that is a subject."* **The two fixed points may be two books or one:** *the test library keeps them apart, the library written by Libby, whose autobiography is by herself; a personal library whose top is its own autobiography is one book filed under itself, by itself, and about itself.*
 
 ## <a id="principles"></a>The principles of a URL, as invariants of a library
 
@@ -127,7 +127,7 @@
 | shape | a library? | because |
 |---|---|---|
 | one book, filed under itself, by itself and about itself, its table listing its chapters | **yes** | one root, one autobiography, and its only author is itself |
-| a library written by an autobiography it files — the test library | **yes** | the library is the root; the log is by what it is about and so the origin; the library's author is the log |
+| a library written by an autobiography it files — the test library | **yes** | the library is the root; Libby is by what she is about and so the origin; the library's author is Libby |
 | a persona the autobiography files, writing a book of its own | **yes** | the persona is catalogued by the autobiography, one step |
 | a book two steps under the autobiography, writing | **no** | `MAY-NOT-AUTHOR`: its subject is not the autobiography |
 | a second book by its own subject | **no** | `TWO-SELF-AUTHORS` |

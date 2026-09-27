@@ -25,23 +25,24 @@
 | written in a cover | the compiler reads | it says |
 |---|---|---|
 | `<Author>*[[ A Persona ]]</Author>` | an author edge — the whole of it, since an author is answered by nothing | this book is by A Persona |
-| `<Subject>**[[ The Library ]]</Subject>` | a catalogue edge, answered by `[[ A Paper ]]**` in The Library's table | this book is filed under The Library |
-| `<About>[[ The Log ]]</About>`, after the title | a second title form naming the book itself | this book is about what it is called, so others may be filed under it |
+| `<Subject>**[[ Libraries ]]( The Library )</Subject>` | a catalogue edge, answered by `[[ A Paper ]]**` in The Library's table; the words are the subject's name and the paren the book that is that subject | this book is filed under Libraries, which is the library's own catalogue |
+| `<About>[[ Libby ]]</About>`, after the title | a second title form naming the book itself | this book is about what it is called, so others may be filed under it |
 
-**Every one may give words apart from its name**, the paren tight against the bracket: `<Author>*[[ the log ]]( The Log )</Author>` shows "the log" and means The Log. *Doug: "You always need to be able to say text versus id as an option."*
+**Every one may give words apart from its name**, the paren tight against the bracket: `<Subject>**[[ Libraries ]]( The Library )</Subject>` shows "Libraries" and means The Library — which is how the top of a library is filed under what it is about without a second book, [What a Library Is](../writing-a-book/08-what-a-library-is.md). *Doug: "You always need to be able to say text versus id as an option."*
 
 ### In use
 
 ```tsx
-// the-log/.cover.tsx — the autobiography: by what it is about
+// libby/.cover.tsx — the autobiography: by its own subject, a librarian's book filed under the library she keeps.
+// Doug, 2026-09-27: "her subject is the library as she is its librarian, but her autobiography is about herself - Libby."
 export default () => (
     <Chapter>
         <Cover />
         <Autobiography />
-        <Title>[[ The Log ]]</Title>
-        <Author>*[[ The Log ]]</Author>
-        <Subject>**[[ The Library ]]</Subject>
-        <About>[[ The Log ]]</About>
+        <Title>[[ Libby ]]</Title>
+        <Author>*[[ Libby ]]</Author>
+        <Subject>**[[ Libraries ]]( The Library )</Subject>
+        <About>[[ Libby ]]</About>
     </Chapter>
 );
 ```
@@ -66,7 +67,7 @@ export default () => (
 
 ## Promises
 
-Five in the second half of [`.tests/cover.test.tsx`](../../package/.tests/cover.test.tsx): an author answers its words and a reference to its url standing among its own annotations; a subject and an about answer the same way; each is said of a cover, and on the synopsis says so; about names its own book, its url its title's; a library's own author, under another name, answers the same. In the compiler's: a book filed under one about nothing raises `NOT-A-SUBJECT`, and a cover whose second title form names another book raises `TITLED-TWICE`; the structure reads the library, the log and the persona as about something, [promised over the test library](../../package/.binding/catalogue/structure.test.ts).
+Five in the second half of [`.tests/cover.test.tsx`](../../package/.tests/cover.test.tsx): an author answers its words and a reference to its url standing among its own annotations; a subject and an about answer the same way; each is said of a cover, and on the synopsis says so; about names its own book, its url its title's; a library's own author, under another name, answers the same. In the compiler's: a book filed under one about nothing raises `NOT-A-SUBJECT`, and a cover whose second title form names another book raises `TITLED-TWICE`; the structure reads the library, Libby and the persona as about something, [promised over the test library](../../package/.binding/catalogue/structure.test.ts).
 
 ## Gate
 

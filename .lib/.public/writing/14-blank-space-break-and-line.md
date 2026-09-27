@@ -24,7 +24,7 @@
 ```tsx
 // persona/1-who-writes-here.tsx
 <Paragraph>
-    <Line>A voice the log lent out,</Line>
+    <Line>A voice Libby lent out,</Line>
     <Line>and filed beneath itself,</Line>
     <Line>writes papers of its own.</Line>
 </Paragraph>

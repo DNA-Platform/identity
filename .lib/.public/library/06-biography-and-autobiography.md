@@ -17,25 +17,25 @@
 | `Autobiography.defines` | calls Biography's, then adds `pa-autobiography`; Biography's `erase` is `revert(this)` and takes back both | *"also adds pa-autobiography"* |
 | `Autobiography.specification` | `new AutobiographySpecification()`: **an autobiography is by what it is about** — its Author's url is its About's | *"Autobiograhy can enforce the author rule in its specification"* |
 
-***It needs no name.*** **The autobiography is the book whose Author and About name the same book, and its title and its About already say which book that is** — so nothing new is written to make one: `<Author>*[[ The Log ]]</Author>` and `<About>[[ The Log ]]</About>` on The Log's own cover, and the urls agree.
+***It needs no name.*** **The autobiography is the book whose Author and About name the same book, and its title and its About already say which book that is** — so nothing new is written to make one: `<Author>*[[ Libby ]]</Author>` and `<About>[[ Libby ]]</About>` on Libby's own cover, and the urls agree.
 
 ### In use
 
 ```tsx
-// persona/.cover.tsx — a biography: about the persona, by the log
+// persona/.cover.tsx — a biography: about the persona, by Libby
 export default () => (
     <Chapter>
         <Cover />
         <Biography />
         <Title>[[ A Persona ]]</Title>
-        <Author>*[[ The Log ]]</Author>
-        <Subject>**[[ The Log ]]</Subject>
+        <Author>*[[ Libby ]]</Author>
+        <Subject>**[[ Libby ]]</Subject>
         <About>[[ A Persona ]]</About>
     </Chapter>
 );
 ```
 
-**The log carries `<Autobiography />`** — [its cover is in the chapter before](04-author-subject-and-about.md#in-use) — and a bound page shows both marks on its header's element: `<header class="pd-container"><span class="pa-biography pa-autobiography">`.
+**Libby carries `<Autobiography />`** — [its cover is in the chapter before](04-author-subject-and-about.md#in-use) — and a bound page shows both marks on its header's element: `<header class="pd-container"><span class="pa-biography pa-autobiography">`.
 
 ## How they are extended
 
@@ -45,7 +45,7 @@ export default () => (
 
 ## Promises
 
-Three in [`.tests/biography.test.tsx`](../../package/.tests/biography.test.tsx): a biography adds `pa-biography` and takes it back when it goes; an autobiography is a biography and adds both; an autobiography is by what it is about, which its title and About name — a persona written as an autobiography by the log does not specify, and neither does one with no About. In the compiler's regression, the log's and the persona's bound headers wear their marks.
+Three in [`.tests/biography.test.tsx`](../../package/.tests/biography.test.tsx): a biography adds `pa-biography` and takes it back when it goes; an autobiography is a biography and adds both; an autobiography is by what it is about, which its title and About name — a persona written as an autobiography by Libby does not specify, and neither does one with no About. In the compiler's regression, Libby's and the persona's bound headers wear their marks.
 
 ## Gate
 
