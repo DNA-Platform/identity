@@ -8,7 +8,7 @@
 
 ## What it is
 
-**An Append is a file's contents, appended to its chapter by the binder, uninterpreted.** Doug, 2026-09-28: *"What if we be neutral and just call the annotation Append. Like an appendix, but by action… And then it's just text that has been appended to the chapter."* It is an annotation said of a chapter: its text is the file's text, or a picture's address; its two fields, written as attributes, are `identifier` and `type` as the file spelled them. It draws nothing of its own and is hidden as every annotation's writing is, wearing `pa-append`; the chapter's annotations hold it and anyone may find it, `chapter.annotations.find($Append)`. Nothing enforces that a figure shows it — *"We can't. But it will be there as an annotation."*
+**An Append is a file's contents, appended to its chapter by the binder, uninterpreted.** Doug, 2026-09-28: *"What if we be neutral and just call the annotation Append. Like an appendix, but by action… And then it's just text that has been appended to the chapter."* It is an annotation said of a chapter: its text is the file's text, or a picture's address; its two fields, written as attributes, are `identifier` and `type` as the file spelled them. It draws nothing of its own and is hidden as every annotation's writing is, wearing `pa-append`; the chapter's annotations hold it and anyone may find it, `chapter.annotations.find($Append)`. Nothing reads it but a [Figure](02-figure.md), and nothing enforces that one does — *"We can't. But it will be there as an annotation."* Since [Sprint 91](../projection/96-sprint-91--the-comments-leave-the-code.md) the file carries no comment; this chapter is its account.
 
 | member | what it is |
 |---|---|

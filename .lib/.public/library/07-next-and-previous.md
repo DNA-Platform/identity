@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
+- ***The code is [`src/libraries/Next.tsx`](../../package/src/libraries/Next.tsx) and [`Previous.tsx`](../../package/src/libraries/Previous.tsx); cited here since [Sprint 91](../projection/96-sprint-91--the-comments-leave-the-code.md), so the correspondence checker finds their specifications documented.***
 
 ---
 

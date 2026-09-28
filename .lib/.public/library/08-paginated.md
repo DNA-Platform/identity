@@ -2,6 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
+- ***The code is [`src/libraries/Paginated.tsx`](../../package/src/libraries/Paginated.tsx); cited here since [Sprint 91](../projection/96-sprint-91--the-comments-leave-the-code.md).***
 
 ---
 

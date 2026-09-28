@@ -33,3 +33,15 @@
 ## When a class is called done
 
 A class is done when its four parts are current, no `ask:` line stands in its file, every name in it is Doug's or accepted, and its code carries no comment. Until then the chapter says which of those is missing.
+
+## <a id="back-and-forth"></a>The way back and forth, and the tool that keeps it
+
+**The correspondence is by name, and it is how we get around.** Folder is book, class is chapter, member is row. From a file, its chapter is the book named for its folder — `src/figures` is [Figures](../figures/.cover.md), `src/libraries` is [Library](../library/.cover.md) — and the chapter whose cover entry names its class, or whose header cites the file; from a chapter, its header links the file; and `grep` for the class's name across the branch library finds every mention of it. No line in the code points at a chapter. Doug, 2026-09-28: *"For the regular code, we have the documentation library sadly detached, so we have the branch point to the code."* And on whose it is: *"Whatever it is, be prepared to maintain it. And it should be designed for you to navigate. You have the cover. You have grep… the library itself is the view for the documentation, so it is clear where all code is documented… the documentation is the primary source and the code are documents to be considered."*
+
+**[The tool beside this chapter](08-how-a-class-is-documented--check.ts) keeps it true.** It reads every exported class of `src` and every chapter of the books that document it, and prints, in the binder's form, each class no chapter of its folder's book names in its title or cites by file — `UNDOCUMENTED-CLASS` — and each chapter citing a file that is not there — `MISSING-FILE`. A specification is documented by the chapter that cites its class's file. Run it after a class is added or a file moves:
+
+```bash
+npx tsx library/.public/.lib/the-coding-style/08-how-a-class-is-documented--check.ts
+```
+
+*Written with [Sprint 91](../projection/96-sprint-91--the-comments-leave-the-code.md), which found six classes undocumented on the tool's first run and wrote their chapters.*
