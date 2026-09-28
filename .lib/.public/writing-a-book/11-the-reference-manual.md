@@ -29,7 +29,7 @@ Doug: *"One way something can become a subject is when a book is complex and nee
 ## What bit, so it does not bite the next librarian
 
 - **Section headings repeat across a manual's chapters** — *What it is*, *The file* — and a longform page wears every chapter, so an id stood twice and the proof refused the bind. Name each chapter's sections for the chapter: *The book's file*, *The theme's file*.
-- **A picture imported by the module got the dev server's address**, `/@fs/…`, which no published page serves. Its Append's text is now the address beside the book's pages, and the render phase copies the picture there.
+- **A picture imported by the module got the dev server's address**, `/@fs/…`, which no published page serves. Its Append's text is now the address beside the book's pages, and the render phase copies the picture there — [The Picture That Came From the Dev Server](../solutions/95-the-picture-that-came-from-the-dev-server.md).
 - **A page holding a picture opens with a preload link** React emits before the theme's container; a promise reading the root's first child must allow it.
 - **A printed file quotes rules.** The faces' file says `font-family: monospace`, so a promise that reads a page's text for a style reads the style blocks instead.
 - **The prose stays legible.** Each chapter holds one figure per file, the appends are hidden, and the composition is a chapter's — Doug: *"so much of .public exists to protect the integrity of the semantic structure of the text."*
