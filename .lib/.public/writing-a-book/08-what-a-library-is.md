@@ -58,4 +58,6 @@ The compiler's own words, in [`catalogue/wellformed.ts`](../../package/.binding/
 
 ## What is not yet nailed down
 
+What follows from the metaphor for whoever builds and tends a library — closure as identity, why it decides the code, the questions in order and the tools — is [How to Be a Librarian](12-how-to-be-a-librarian.md).
+
 Doug: *"WE are all learning to specify a library formally. Let's nail down what it means."* Open, and to be ruled: whether a book may be filed under more than one subject; what a topical catalogue is beside a subject catalogue, which the compiler already distinguishes; and, now that the About may differ from the title, whether the top's second form is *Libraries* or its own name. This chapter is edited as each is ruled.
