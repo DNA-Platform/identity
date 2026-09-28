@@ -150,6 +150,14 @@
 
 *Doug: "You should have a spec of what a library is and you should look for things that would obviously be true. Use principles of urls. Do you ever get the same? Then validate that that scenario is impossible. It should express necessity and sufficiency." [A Library, Necessarily and Sufficiently](09-a-library-necessarily-and-sufficiently.md) is that specification, and writing it found what nothing refused: the slug is not one-to-one, so "Doug's Library" and "Dougs Library", or "The Sheet" and "the sheet", were two names at one address; a name of punctuation slugged to nothing; a book called "Assets" would have been written into the bundle's folder; a chapter titled with its own book's name was skipped in silence, its fragment the cover's; and a resource could title a chapter or allocate a mention and so stand on every page.* **`SAME-ADDRESS`, `NO-ADDRESS`, `RESERVED-ADDRESS`, `RESOURCE-NAMES`, each with a promise built to break its way; the silent skip is gone.** *The four fault names are PROXIES, flagged for Doug.*
 
+## <a id="b37"></a>B37 — The scanner read raw source, so a comment could name a chapter — **TREATED 2026-09-28**, [Sprint 90](../projection/95-sprint-90--the-binder-reads-with-the-parser.md)
+
+*`annotating` ran the language's regex over a file's whole source while the transform beside it parsed and read only the tree's text nodes; a form in a comment or an import's path was a title to the catalogue and nothing to the page. Found by a probe, 2026-09-28. Treated with [`catalogue/source.ts`](../../package/.binding/catalogue/source.ts): one parse per file, both passes reading the same runs, the structure's `lines` helper gone — [Reading TSX with the Compiler API](10-reading-tsx-with-the-compiler-api.md).*
+
+## <a id="b38"></a>B38 — The plugin dropped a module's query, so a raw module was transformed — **TREATED 2026-09-28**, [Solutions 96](../solutions/96-the-literal-the-transform-modified.md)
+
+*`id.split('?')[0]` decided by the path alone; an Append's `?raw` module, one string holding a file, had its notation compiled, and the manual printed the masthead's `$[ The Library ]` as the address. Treated with `literal(query)`; the regression promises every printed file equals the file on disk.*
+
 ## <a id="how"></a>How to use this register
 
 - **Cleaning:** *read the entries marked TREAT; treat them; mark them with the date. Add what you found on the way, whether or not you treated it.*
