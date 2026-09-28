@@ -35,7 +35,9 @@ And, the same night, once runs were long: *"remember that all code it written he
 
 Everything the run made is committed on its branch — a failed run too, since a failure is a result — and the branch is pushed, with retries. A file over GitHub's limit stays on the box, recorded by hash.
 
-**5. Pull here** — `harvest <branch>`: fetch the branch, show its record, and bring its commits onto `main` here. **Main here is the object of record** and keeps moving while a run is long, so when it has moved past the run's base, the run's commits are rebased onto it and `main` fast-forwards onto the result; a conflict aborts the rebase and changes nothing. The branch on GitHub keeps the commits exactly as they ran, and `meta.txt` still names their base. Whatever `not-committed.tsv` lists comes back by [`receive`](34-04-als-remote--the-files-git-does-not-carry.md), checked against its recorded hash.
+**5. Pull here** — `harvest <branch>`: fetch the branch, show its record, and bring its commits onto `main` here. **Main here is the object of record** and keeps moving while a run is long, so when it has moved past the run's base, the run's commits are rebased onto it and `main` fast-forwards onto the result; a conflict aborts the rebase and changes nothing. The branch on GitHub keeps the commits exactly as they ran, and `meta.txt` still names their base.
+
+**6. Close it** - `close <branch>`, which does step 5 and the rest: `main` pushed, whatever `not-committed.tsv` lists brought over the wire to both mains and checked against its recorded hash, and the box's `main` pulled back in step. A run is done when it is closed, not when it exits: [Closing a run](34-08-als-remote--closing-a-run.md).
 
 `status` lists every run on the box, running or finished, with exit codes; `status <branch>` shows one run's record, its log's tail and the GPU; `watch <branch>` polls it in the background until it pushes. A run with several GPU jobs packs them onto the card by measured memory, and its command sees `$ALS_ROOT` (the folder) and `$ALS_RUN` (its branch) — [The whole machine](34-07-als-remote--the-whole-machine.md).
 

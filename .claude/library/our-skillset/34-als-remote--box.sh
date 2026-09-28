@@ -12,6 +12,8 @@
 #   bash $T status [<branch>]            the runs on the box, or one run's state and log
 #   bash $T watch <branch> [minutes]     poll a run until it has pushed (run it in the background)
 #   bash $T harvest <branch>             pull a finished run's branch here, into main (rebased if main moved)
+#   bash $T close <branch>               bring a finished run home: harvest, push, the files GitHub could
+#                                        not take to both mains, the box's main pulled - rerun until CLOSED
 #   bash $T probe <branch> <name> '<cmd>'  test code in a run's worktree, recorded on its branch
 #   bash $T ignored                      the ignored paths that travel by `send`
 #   bash $T send <path>...               copy ignored files to the box, verified by sha256
@@ -162,14 +164,37 @@ setsid nohup bash ../.tools/run.sh $branch > ../$branch.out 2>&1 < /dev/null &
 echo \"launched $branch in ~/$ROOT/$branch\""
 }
 
-# Where the runs stand: running or finished, exit code, pushed or not, the log's tail.
+# Where the runs stand: running or finished, exit code, and - so none is lost track of - whether it
+# is HOME: harvested into main here (its runs/<branch>/ record is in main), and every file GitHub
+# could not take here at its recorded size. Then whether the box's main is main here.
 status() {
-    local branch=${1:-}
+    local branch=${1:-} b state rest home list missing box_head
     if [ -z "$branch" ]; then
+        cd "$REPO"
         box_script 'for d in ../run-*/; do [ -d "$d" ] || continue; b=$(basename "$d")
     state=finished; pgrep -f "run.sh $b" >/dev/null && state=running
-    printf "%-44s %-9s %s\n" "$b" "$state" "$(grep -h "^exit:" "$d/runs/$b/meta.txt" 2>/dev/null)"
-done'
+    printf "%s %s %s\n" "$b" "$state" "$(grep -h "^exit:" "$d/runs/$b/meta.txt" 2>/dev/null | tr -s " ")"
+done
+echo "main $(git rev-parse HEAD)"' | while read -r b state rest; do
+            if [ "$b" = main ]; then
+                box_head=$state
+                [ "$box_head" = "$(git rev-parse HEAD)" ] && echo "the box's main is main here" \
+                    || echo "the box's main is $(git rev-parse --short "$box_head" 2>/dev/null || echo "${box_head:0:8}"), main here $(git rev-parse --short HEAD) - close the last run, or pull"
+                continue
+            fi
+            home="NOT HARVESTED - close it"
+            if MSYS_NO_PATHCONV=1 git cat-file -e "HEAD:runs/$b/meta.txt" 2>/dev/null; then
+                home=home; missing=0
+                list=$(MSYS_NO_PATHCONV=1 git show "HEAD:runs/$b/not-committed.tsv" 2>/dev/null || true)
+                while IFS=$'\t' read -r _ size path; do
+                    [ -n "$path" ] || continue
+                    [ "$(stat -c %s -- "$REPO/$path" 2>/dev/null)" = "$size" ] || missing=$((missing + 1))
+                done <<< "$list"
+                [ "$missing" = 0 ] || home="harvested; $missing file(s) not received - close it"
+            fi
+            [ "$state" = running ] && home="running"
+            printf "%-44s %-9s %-9s %s\n" "$b" "$state" "$rest" "$home"
+        done
         return
     fi
     box_script "cd ../$branch && cat runs/$branch/meta.txt; git status -sb | head -1
@@ -250,6 +275,78 @@ harvest() {
         git rebase --abort; git checkout -q main
         echo "the run's commits conflict with main here - nothing changed; resolve by hand"; return 1
     fi
+}
+
+# One file GitHub could not take, brought to BOTH mains at its path, as the bytes the run recorded:
+# here over SSH (receive, then checked against the run's own sha256), and on the box copied from the
+# run's worktree into its main. Each is kept out of git by the clone's local info/exclude, so neither
+# main is dirty, and the run's tracked not-committed.tsv is what proves the bytes.
+bring() {
+    local branch=$1 sha=$2 path=$3 tmp
+    if [ -f "$REPO/$path" ] && [ "$(sha256sum < "$REPO/$path" | cut -d' ' -f1)" = "$sha" ]; then
+        echo "   here already: $path"
+    else
+        tmp=$(mktemp -d)
+        receive "$branch/$path" "$tmp" > /dev/null || { rm -rf "$tmp"; return 1; }
+        [ "$(sha256sum < "$tmp/$branch/$path" | cut -d' ' -f1)" = "$sha" ] \
+            || { echo "HASH MISMATCH: $path is not the bytes the run recorded"; rm -rf "$tmp"; return 1; }
+        mkdir -p "$(dirname "$REPO/$path")"
+        mv "$tmp/$branch/$path" "$REPO/$path"; rm -rf "$tmp"
+        echo "   received here: $path"
+    fi
+    grep -qxF "/$path" "$REPO/.git/info/exclude" 2>/dev/null || echo "/$path" >> "$REPO/.git/info/exclude"
+    box_script "set -e
+f='$path'; want=$sha
+if [ ! -f \"\$f\" ] || [ \"\$(sha256sum < \"\$f\" | cut -d' ' -f1)\" != \$want ]; then
+    mkdir -p \"\$(dirname \"\$f\")\"; cp -- ../$branch/\"\$f\" \"\$f\"
+fi
+[ \"\$(sha256sum < \"\$f\" | cut -d' ' -f1)\" = \$want ] || { echo \"HASH MISMATCH on the box's main: \$f\"; exit 1; }
+ex=\$(git rev-parse --git-common-dir)/info/exclude
+grep -qxF \"/\$f\" \$ex || echo \"/\$f\" >> \$ex
+echo \"   on the box's main: \$f\""
+}
+
+# Closing a run: nothing it made is left behind, and both machines are on one main. Every step is
+# idempotent and checked before the next, so `close` can be rerun until it says CLOSED. Doug,
+# 2026-09-28: "you are going to make sure to move the remote back to main, merge from the branch to
+# main over here, pull things over the wire if it doesn't fit into Github? Make sure not to lose track."
+close() {
+    local branch=${1:-} list sha size path
+    [ -n "$branch" ] || { echo "usage: close <branch>"; return 2; }
+    cd "$REPO"
+    # 1. finished and on GitHub
+    git fetch -q origin "$branch" 2>/dev/null \
+        || { echo "$branch is not on GitHub - still running, or its push failed (status $branch)"; return 1; }
+    MSYS_NO_PATHCONV=1 git show "origin/$branch:runs/$branch/meta.txt" | grep -q '^exit:' \
+        || { echo "$branch has recorded no exit - still running (status $branch)"; return 1; }
+    # 2. harvested into main here
+    if MSYS_NO_PATHCONV=1 git cat-file -e "HEAD:runs/$branch/meta.txt" 2>/dev/null; then
+        echo "1. harvested: runs/$branch/ is in main here"
+    else
+        harvest "$branch" || return 1
+        echo "1. harvested"
+    fi
+    # 3. main here is GitHub's main
+    git fetch -q origin main
+    if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+        [ -z "$(git status --porcelain)" ] || { echo "uncommitted work here - commit it, then close again"; return 1; }
+        git push -q origin main || { echo "push failed - close again"; return 1; }
+    fi
+    echo "2. main here is GitHub's main: $(git rev-parse --short HEAD)"
+    # 4. what GitHub could not take: over the wire, to both mains
+    list=$(MSYS_NO_PATHCONV=1 git show "HEAD:runs/$branch/not-committed.tsv" 2>/dev/null || true)
+    if [ -z "$list" ]; then
+        echo "3. nothing stayed on the box: every file came through GitHub"
+    else
+        echo "3. the files GitHub could not take:"
+        while IFS=$'\t' read -r sha size path; do
+            [ -n "$path" ] || continue
+            bring "$branch" "$sha" "$path" || return 1
+        done <<< "$list"
+    fi
+    # 5. the box's main back in step with main here
+    box_pull || return 1
+    echo "CLOSED: $branch is home, and both machines are on $(git rev-parse --short HEAD)"
 }
 
 # Ignored paths that travel: data, caches, logs. Not identity, not the venv, not bytecode.
@@ -402,13 +499,14 @@ uv pip install -q --python .venv/bin/python --no-deps -r ../.tools/no-deps-$vari
         status)    status "${1:-}" ;;
         watch)     watch "${1:-}" "${2:-10}" ;;
         harvest)   harvest "${1:-}" ;;
+        close)     close "${1:-}" ;;
         probe)     probe "${1:-}" "${2:-}" "${3:-}" ;;
         ignored)   ignored ;;
         send)      for p in "$@"; do send_one "$p"; done ;;
         send-list) send_list "$1" ;;
         receive)   receive "${1:-}" "${2:-}" ;;
         python)    python_env "${1:-}" ;;
-        *)         sed -n '2,28p' "$0"; exit 2 ;;
+        *)         sed -n '2,30p' "$0"; exit 2 ;;
     esac
     exit $?
 }

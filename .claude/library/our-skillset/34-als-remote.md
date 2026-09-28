@@ -18,6 +18,7 @@ Drive the lab box — `lipshutzlab-01`, the lab's Linux GPU machine — from thi
 5. [The environment](34-05-als-remote--the-environment.md) — this machine's Python rebuilt inside the folder from a lock the compiler generates from what is actually installed here; what was installed around its metadata goes around it there too; proved package by package.
 6. [Root](34-06-als-remote--root.md) — the sudo password in `.env` at the project root on this machine and nowhere else, its one role, and the three walls that keep it here; every change as root is Doug's decision, simulated first, because the machine is shared.
 7. [The whole machine](34-07-als-remote--the-whole-machine.md) — a run's command is a pipeline's entry point, never orchestration written for the occasion; the pipelines pack the GPU by measured memory and share the CPU explicitly; poll with `watch`; quote durations only from the run's own clock.
+8. [Closing a run](34-08-als-remote--closing-a-run.md) — a run is done when it is closed, not when it exits: `close` merges it into `main` here, pushes, brings what GitHub refused over the wire to both mains by sha256, and pulls the box's `main` back in step; `status` says which runs are not home, and a run whose products were superseded comes home as its record.
 
 **Adding a protocol.** A new kind of interaction gets a new sub-chapter, `34-NN-als-remote--<name>.md`: its ruling verbatim and dated, then the protocol. In the same act it is listed here and under this chapter on the [Our Skillset](.cover.md) cover, the tool gains any command it needs, and the skill is recompiled. A ruling that changes a protocol is written into that protocol, replacing what it overrules — one place, one current version.
 
@@ -39,9 +40,10 @@ bash $T run  '<command>'             # run in ~/doug/altered-states/main
 bash $T sudo '<command>'             # the same, as root
 bash $T pull [--discard]             # the box's main := GitHub's main
 bash $T launch <name> '<command>'    # a run
-bash $T status [<branch>]            # every run on the box, or one run in detail
+bash $T status [<branch>]            # every run on the box and whether it is home, or one run in detail
 bash $T watch <branch> [minutes]     # poll a run in the background until it has pushed
 bash $T harvest <branch>             # a finished run's branch, into main here (rebased if main moved)
+bash $T close <branch>               # a finished run home: harvest, push, over-size files to both mains, box pulled
 bash $T probe <branch> <name> '<cmd>'  # test code in a run's worktree, recorded on its branch
 bash $T ignored                      # the ignored paths that `send` moves
 bash $T send <path>...               # ignored files or folders to the box, verified
