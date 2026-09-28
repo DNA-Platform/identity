@@ -50,7 +50,7 @@
 - **`valid.mts`** — the runtime that is about to move. *It is the thing being relocated, and reading it is what showed the level walk stops at paragraph.*
 - **[`app.tsx`](../../app/src/app.tsx) and [`catalogue.tsx`](../../app/src/catalogue.tsx)** — where a card is handed its book by `fetch()`. *Load-bearing: this is the only place in the tree that wires a card, and checking has to do the same thing for every book at once.*
 - **The framework's link classes** — [`Author.tsx`](../../package/src/book/Author.tsx), `Canonical.tsx` (v1, `.archive/book/Canonical.tsx`, deleted), [`Book.tsx`](../../package/src/book/Book.tsx), [`Synopsis.tsx`](../../package/src/book/Synopsis.tsx). *This is where the new rules land, and reading them found a defect the sprint now owes a fix for.*
-- **The corpus and its emitted twin** — `library/.test-library/` against [`app/src/library/`](../../app/src/library/), cover by cover. *What an author writes versus what a compiler makes, which is the only honest picture of what the machine does.*
+- **The corpus and its emitted twin** — `library/.test-library/` against [`app/src/libraries/`](../../app/src/libraries/), cover by cover. *What an author writes versus what a compiler makes, which is the only honest picture of what the machine does.*
 - **[The Process](../../.archive/app/src/sections/book/library/the-build/05-the-process.tsx)** — the demo's own account of the phases, and the chapter this sprint has to edit. *Its owed row currently names the resolving gap; checking's account is what this sprint adds beside it.*
 - **[The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) and [the three things that only worked here](../solutions/21-the-three-things-that-only-worked-here.md)** — five and three appearances between them, both about a number whose scope was silent. *A sprint whose entire product is a gate has to read the branch's two chapters about gates that lied.*
 - **[Chapter zero](00-planning.md)'s Sprint 50** — the roadmap's own version of this work, whose recorded risk is exactly this sprint's: *"a compiler that fails often gets bypassed… failure messages must name the fix, or the specification breeds the disease it prevents."*
@@ -119,7 +119,7 @@
 
 **A book whose subject reads home IS the library.** Every other book's library is **its subject's library**, which makes the answer a computation rather than a stored fact.
 
-***And the rule already exists one grade below where it belongs.*** The generated [`cards.tsx`](../../app/src/library/cards.tsx) declares it today:
+***And the rule already exists one grade below where it belongs.*** The generated [`cards.tsx`](../../app/src/libraries/cards.tsx) declares it today:
 
 ```ts
 get library(): $Card | undefined {

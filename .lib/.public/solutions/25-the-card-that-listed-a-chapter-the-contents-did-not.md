@@ -10,7 +10,7 @@
 
 - **A book's card and the same book's table of contents disagree about its chapters.** On **all seven books** in the corpus.
 - ***The Standard Model's card says*** `["Synopsis", "Symmetry"]`. ***Its contents says*** `["Symmetry"]`.
-- **Every card in the generated catalogue begins with the entry `"Synopsis"`** — [`app/src/library/cards.tsx`](../../app/src/library/cards.tsx), seven of seven.
+- **Every card in the generated catalogue begins with the entry `"Synopsis"`** — [`app/src/libraries/cards.tsx`](../../app/src/libraries/cards.tsx), seven of seven.
 - ***And every gate is green.*** The compiler's four phases pass, `CHECK` reports 7/7 books standing, the framework suite is 336/336, the driver's checkpoints hold. **Nothing anywhere reports a fault.**
 
 ## What did not work

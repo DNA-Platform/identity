@@ -41,7 +41,7 @@
 | [`Writing.tsx`](../../package/src/writing/Writing.tsx) · [`Book.tsx`](../../package/src/book/Book.tsx) · `Document.tsx` (v1, `.archive/document/Document.tsx`, deleted) | the three things that lay parts, and the drawing template they share |
 | [`Section`](../../package/src/writing/Section.tsx) · [`Paragraph`](../../package/src/writing/Paragraph.tsx) · `Title` (v1, `.archive/writing/Title.tsx`, deleted) · [`Cover`](../../package/src/book/Cover.tsx) · [`Synopsis`](../../package/src/book/Synopsis.tsx) · [`Author`](../../package/src/book/Author.tsx) · [`Subject`](../../package/src/book/Subject.tsx) · `Canonical` (v1, `.archive/book/Canonical.tsx`, deleted) · [`Chapter`](../../package/src/book/Chapter.tsx) · [`TableOfContents`](../../package/src/book/TableOfContents.tsx) · [`Phrase`](../../package/src/writing/Phrase.tsx) · [`IndexCard`](../../package/src/reference/IndexCard.tsx) · `Link` (v1, `.archive/reference/Link.tsx`, deleted) | every class that draws, and the one that follows |
 | [`app.tsx`](../../app/src/app.tsx) · [`bookmark.tsx`](../../app/src/bookmark.tsx) · [`catalogue.tsx`](../../app/src/catalogue.tsx) · [`storage.ts`](../../app/src/storage.ts) · [`main.tsx`](../../app/src/main.tsx) · [`verify-library.mjs`](../../app/verify-library.mjs) · [`vite.config.ts`](../../app/vite.config.ts) | the surface being changed, and the 29 checkpoints that guard it |
-| [`emit.ts`](../../build/stages/emit.ts) · the generated [`cards.tsx`](../../app/src/library/cards.tsx), [`books.tsx`](../../app/src/library/books.tsx) and a book module | what a compiled book actually looks like, since the design turns on it |
+| [`emit.ts`](../../build/stages/emit.ts) · the generated [`cards.tsx`](../../app/src/libraries/cards.tsx), [`books.tsx`](../../app/src/libraries/books.tsx) and a book module | what a compiled book actually looks like, since the design turns on it |
 | the corpus — [a cover](../../../.test-library/.physics/the-standard-model/.cover.tsx) and [a chapter](../../../.test-library/.physics/the-standard-model/symmetry.tsx) | what an author writes, as against what is generated |
 | [The Representative](../../../chemistry/.lib/composition/11-the-representative.md) | the algebra the theme rides on, and the specification that F3 is an instance of |
 | [`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts), the `frame()` seam | chemistry's own documented wrap point, and the reason a wrap does not disturb `declaration()` |
@@ -78,9 +78,9 @@
 
 **Three findings, and two of them are reassurances:**
 
-- ***Books already load one at a time.*** [`books.tsx`](../../app/src/library/books.tsx) is a map of dynamic imports, so a page fetches the one book it shows. **That is Doug's own answer arriving before the question** — *"we probably want chapters loaded lazily but all at once"* — and it is already true.
+- ***Books already load one at a time.*** [`books.tsx`](../../app/src/libraries/books.tsx) is a map of dynamic imports, so a page fetches the one book it shows. **That is Doug's own answer arriving before the question** — *"we probably want chapters loaded lazily but all at once"* — and it is already true.
 - ***Drawing is already bounded, by a rule and not by luck.*** A paragraph of plain prose draws as **one run of its own text**, never as sentences into words into letters, which is why a page is **50–91 nodes rather than 7,666** ([U53](18-the-theme.md#u53)). **That bound holds at any corpus size.**
-- ***The card catalogue is the one eager module.*** [`cards.tsx`](../../app/src/library/cards.tsx) is 3.8KB for 7 cards — **about 52KB at 95 books**, imported on every page. Fine at our size, unbounded beyond it. **Named, measured, and [out of scope](#out-of-scope).**
+- ***The card catalogue is the one eager module.*** [`cards.tsx`](../../app/src/libraries/cards.tsx) is 3.8KB for 7 cards — **about 52KB at 95 books**, imported on every page. Fine at our size, unbounded beyond it. **Named, measured, and [out of scope](#out-of-scope).**
 
 ## <a id="m9"></a>M9 — The framework already ships one followable reference, and the application cannot run it
 
@@ -92,7 +92,7 @@
 
 ## <a id="m10"></a>M10 — A route can be answered without loading a book
 
-[`$Subject`](../../package/src/book/Subject.tsx) carries `$for: $IndexCard<$Book>`, and a card's `name` **is** the route — the generated [`$Card`](../../app/src/library/cards.tsx) says so: *"Identity is the ROUTE, because a route is what a reader arrives holding."*
+[`$Subject`](../../package/src/book/Subject.tsx) carries `$for: $IndexCard<$Book>`, and a card's `name` **is** the route — the generated [`$Card`](../../app/src/libraries/cards.tsx) says so: *"Identity is the ROUTE, because a route is what a reader arrives holding."*
 
 **So the computation from a book up to the library runs card to card and opens nothing.** *That is what makes [R73](#r73) affordable at 95 books and at 95,000.*
 
@@ -149,7 +149,7 @@
 **Three reasons this is the cover's and not the book class's:**
 
 - ***A binding is what physically contains a book***, and what a book is bound in is what you meet before you read it. **Doug's analogy, and it is the domain's own.**
-- ***The cover is the one AUTHORED file in a compiled book.*** [`.cover.tsx`](../../../.test-library/.physics/the-standard-model/.cover.tsx) is written by a person; [`book.tsx`](../../app/src/library/.physics/the-standard-model/book.tsx) is generated. **So a declaration on the cover needs no compiler change and no scope trick** — which is the whole of what [route C](18-the-theme.md#routes) could not reach.
+- ***The cover is the one AUTHORED file in a compiled book.*** [`.cover.tsx`](../../../.test-library/.physics/the-standard-model/.cover.tsx) is written by a person; [`book.tsx`](../../app/src/libraries/.physics/the-standard-model/book.tsx) is generated. **So a declaration on the cover needs no compiler change and no scope trick** — which is the whole of what [route C](18-the-theme.md#routes) could not reach.
 - ***A book holds exactly one cover***, `chapters[0]`, alive as long as the book. **So where a reader is survives every render without anything being added** — React never owns it.
 
 ***And it answers Doug's opening question directly:*** *"is there any way that a cover could be responsible for most of the styling of the book, so that one doesn't have to override book to do much?"* **Yes — and it is the same route that makes a paginating book possible without the base framework knowing what a page is.**
@@ -286,7 +286,7 @@
 
 **2 — THE ROUTER BOUNDARY HAS EXACT PRIOR ART HERE, and it is documented as unsafe on purpose.** [`lab.tsx`](../../.archive/app/src/apparatus/lab.tsx) is *"the root of the app. A function component at the react-router boundary… Everything below it is $Chemistry chemicals. **This is the 'unsafe' boundary — a plain React function that bridges the ecosystem package into the chemical tree.**"* ***The shape is copied rather than invented***, and it answers the one question a chemical cannot: hooks do not belong inside `view()`.
 
-**3 — A CARD DOES NOT KNOW ITS OWN SUBJECT, so the computation is the library's and not the framework's.** [`$IndexCard`](../../package/src/reference/IndexCard.tsx) carries a `name` and a pointer, and `$CardCatalogue` (v1, `.archive/reference/CardCatalogue.tsx`, deleted) files cards by name — **neither holds a subject link.** The generated [`$Card`](../../app/src/library/cards.tsx) does, and says why: *"which fields a library's cards carry is that library's business."* ***So [R73](#r73) is answered by cards the compiler emits — which are model objects — and it needs no framework change***, which narrows the unit rather than the requirement. *A framework-level subject on a card is [design owed](#names-owed) and is not built.*
+**3 — A CARD DOES NOT KNOW ITS OWN SUBJECT, so the computation is the library's and not the framework's.** [`$IndexCard`](../../package/src/reference/IndexCard.tsx) carries a `name` and a pointer, and `$CardCatalogue` (v1, `.archive/reference/CardCatalogue.tsx`, deleted) files cards by name — **neither holds a subject link.** The generated [`$Card`](../../app/src/libraries/cards.tsx) does, and says why: *"which fields a library's cards carry is that library's business."* ***So [R73](#r73) is answered by cards the compiler emits — which are model objects — and it needs no framework change***, which narrows the unit rather than the requirement. *A framework-level subject on a card is [design owed](#names-owed) and is not built.*
 
 **4 — `accounts()` ALREADY SURVIVES AN UNPOINTED CARD**, catching the throw and answering false. **[U62](#u62) depends on that**, because on a subject page every entry's card is unpointed by construction — the books are not loaded.
 

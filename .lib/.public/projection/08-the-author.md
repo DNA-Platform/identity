@@ -206,19 +206,19 @@ The demo's figures — the loop drawn from the model, a card printing its own fi
 
 ## Units
 
-### The card family — `library/.public/package/src/library/`
+### The card family — `library/.public/package/src/libraries/`
 
 - **U5 — `$IndexCard<T>`.** A reference to a T that carries T's surrogate, implementing `$Reference$<T>`.
-  *Mechanism: the shipped reference-kind pattern — a writing-level chemical holding static metadata, `read()` answering the referent, `then()` composing a path, exactly as `$Bookmark` and `$RibbonMark` do. Zero framework change expected. Files: new under `src/library/`, `src/index.ts`. Depends on: nothing. Realizes: R1. **Visible end:** a card that reads to its referent — AE1.*
+  *Mechanism: the shipped reference-kind pattern — a writing-level chemical holding static metadata, `read()` answering the referent, `then()` composing a path, exactly as `$Bookmark` and `$RibbonMark` do. Zero framework change expected. Files: new under `src/libraries/`, `src/index.ts`. Depends on: nothing. Realizes: R1. **Visible end:** a card that reads to its referent — AE1.*
 
 - **U6 — `$CardCatalogue`.** Catalogues T through index cards; a composition of cards that is also a reference to that composition.
-  *Mechanism: implement `$Catalogue$<T>` against `$Composible$`, the way `$TableOfContents` already does one level down — the interface is not to be changed to fit. Files: new under `src/library/`, `src/index.ts`. Depends on: U5. Realizes: R2. **Visible end:** the interface satisfied unchanged — AE2.*
+  *Mechanism: implement `$Catalogue$<T>` against `$Composible$`, the way `$TableOfContents` already does one level down — the interface is not to be changed to fit. Files: new under `src/libraries/`, `src/index.ts`. Depends on: U5. Realizes: R2. **Visible end:** the interface satisfied unchanged — AE2.*
 
 - **U7 — `$LibraryCard`.** Extends `$IndexCard<$Book>`. The book's surrogate: property names identical to the book's, with book-valued properties carried as **cards**.
-  *Mechanism: a subclass fixing T to `$Book` and declaring the surrogate members; `author` typed as `$LibraryCard`. Files: new under `src/library/`, `src/index.ts`. Depends on: U5. Realizes: R3, R4, R5. **Visible end:** a card whose property names match its book's, `author` among them — AE3.*
+  *Mechanism: a subclass fixing T to `$Book` and declaring the surrogate members; `author` typed as `$LibraryCard`. Files: new under `src/libraries/`, `src/index.ts`. Depends on: U5. Realizes: R3, R4, R5. **Visible end:** a card whose property names match its book's, `author` among them — AE3.*
 
 - **U8 — `$LibraryCatalogue`.** Extends `$CardCatalogue`, cataloguing books through library cards. The one catalogue the demo's four books are in.
-  *Mechanism: a subclass fixing the card kind; lookup from a book's identity to its card. **How an author link obtains the catalogue instance is a HOW**, decided with the code open — and if it needs machinery the framework does not have, it is raised. Files: new under `src/library/`, `src/index.ts`. Depends on: U6, U7. Realizes: R3, R8. **Visible end:** four books, four cards, one catalogue — AE2.*
+  *Mechanism: a subclass fixing the card kind; lookup from a book's identity to its card. **How an author link obtains the catalogue instance is a HOW**, decided with the code open — and if it needs machinery the framework does not have, it is raised. Files: new under `src/libraries/`, `src/index.ts`. Depends on: U6, U7. Realizes: R3, R8. **Visible end:** four books, four cards, one catalogue — AE2.*
 
 - **U9 — The card's computed type.** The mapping from a book's type to its card's type expressed **as a type** where it can be, with dynamic properties for derived book types.
   *Mechanism: a mapped type over the book's members converting book-valued properties to their card references, plus an informal extension surface for subtype-derived information. Files: the card unit's files. Depends on: U7. Realizes: R4, R6. **Visible end:** the mapping holds at `tsc` rather than by convention — AE3.*

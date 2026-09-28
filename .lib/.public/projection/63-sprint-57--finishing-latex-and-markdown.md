@@ -93,7 +93,7 @@
 
 ***What this BUYS, and it is the reason the rule exists:*** **`$Writing.view()` applies the classes, the meaning-and-fold anchor, and `reflection.formatted` — so a kind that replaced it was silently unreachable by every sheet and every format.** *Measured last sprint: 32 of 33 anchors on `/turing` were classless for exactly this reason, and `$Reference` and `$Ref` each carry a comment admitting it.*
 
-**Files:** `src/writing/Type.tsx` · `src/reference/Path.tsx` · `src/reference/Ref.tsx` · `src/reference/Reference.tsx` · `src/library/Title.tsx`.
+**Files:** `src/writing/Type.tsx` · `src/reference/Path.tsx` · `src/reference/Ref.tsx` · `src/reference/Reference.tsx` · `src/libraries/Title.tsx`.
 
 **Visible end:** ***both pages draw the same text they draw today*** — *this is a refactor and its end is that nothing moved* — **plus a promise that greps `src` for `override view()` and expects only what [U3](#u3) leaves standing.**
 
@@ -115,7 +115,7 @@
 
 **Mechanism:** [D2](#d2). *`$Book`'s bond walks every writing beneath it; during that walk each chapter is matched to the document whose title it names, and the document's classes are ADDED to the chapter with `addClass` — the member that already exists for this.* **The `classes` getter override is deleted.**
 
-**Files:** `src/library/Book.tsx` · `src/library/Chapter.tsx`.
+**Files:** `src/libraries/Book.tsx` · `src/libraries/Chapter.tsx`.
 
 **Visible end:** ***the paper's 65 contents entries carry exactly the classes they carry today*** — *the appendices still tell themselves apart from the body* — **and the 715 title comparisons per draw become 65 done once.**
 
@@ -127,7 +127,7 @@
 
 ***BLOCKED ON A NAME, which is Doug's*** — [names are never mine to choose](../../../../.claude/library/..teamsmanship/05-territory.md). **Three shapes are on the table and they differ in more than spelling:** *the anchor takes the chapter's own classes; the anchor takes one new class Doug names; or the anchor becomes a piece of writing and is classed by the machinery that classes everything else.*
 
-**Files:** `src/library/Chapter.tsx`, and possibly `src/article/Theme.tsx` if a rule can then stop reaching through the row.
+**Files:** `src/libraries/Chapter.tsx`, and possibly `src/article/Theme.tsx` if a rule can then stop reaching through the row.
 
 **Visible end:** ***a theme rule that addresses the contents link directly instead of `> .pd-chapter > a`.*** **Today's `top_fontWeight` group is exactly that reach, and it is the proof.**
 

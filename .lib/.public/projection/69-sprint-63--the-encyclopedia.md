@@ -565,7 +565,7 @@ $(Infobox, Theme)(InfoboxTheme);
 
 **Mechanism:** the real contents opens with a "(Top)" row that means the head of the article, and carries a hide control; ours has neither.
 
-**Files:** `src/library/TableOfContents.tsx` *(presented first — it is foundational)* or `src/encyclopedia/`.
+**Files:** `src/libraries/TableOfContents.tsx` *(presented first — it is foundational)* or `src/encyclopedia/`.
 
 **Visible end:** ***a (Top) row 228×28 at the head of the contents, and the contents 228 wide at x208.***
 

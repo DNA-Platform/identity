@@ -44,7 +44,7 @@
 
 **RULING** — *"Like horizontal gene transfer, it's a piece of writing that isn't created in the DOM."* And: *"We want DI and bond construction to happen at render… based on the cached DOM."*
 
-**LANDS ON** — [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx), whose bond constructor `$Writing(block)` is what every writing is built through; and [`library/CatalogueCard.tsx`](../../package/src/library/CatalogueCard.tsx), which today is a `$Composition` built the ordinary way.
+**LANDS ON** — [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx), whose bond constructor `$Writing(block)` is what every writing is built through; and [`library/CatalogueCard.tsx`](../../package/src/libraries/CatalogueCard.tsx), which today is a `$Composition` built the ordinary way.
 
 **RULED** — *"Yes let's make it like that, and if it's a problem, we'll add some ability to bind in the code."* **Doug, 2026-09-17, on two construction modes.**
 

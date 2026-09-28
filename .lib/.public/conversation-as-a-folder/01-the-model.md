@@ -22,7 +22,7 @@ a-conversation/
 
 ## <a id="hierarchy"></a>The composition hierarchy
 
-**Read at [`Book.tsx:74-78`](../../package/src/library/Book.tsx), where reflection is handed it once:**
+**Read at [`Book.tsx:74-78`](../../package/src/libraries/Book.tsx), where reflection is handed it once:**
 
 | | levels, bottom to top |
 |---|---|
@@ -102,7 +102,7 @@ return reflection.is(token, beneath) ? token : undefined;
 
 **`$Participant` is a `$Reference` an exchange carries, and it points at a biography** — the story of that person, held in this library. **The author is the participant the book's cover names**, and the author's own participant link points at the author's story of themselves. ***Everyone in a conversation has a biography here; the author is the one who wrote them.***
 
-**What exists today, and what it lacks:** [`$Author`](../../package/src/library/Author.tsx) and [`$Subject`](../../package/src/library/Subject.tsx) are **byte-identical twins** — both `extends $Section`, both *"is its own heading"*, both promoting their text into a `$Heading` in the bond. **Neither carries a reference to anything.** *So there is no participant machinery today; there are two headings with different names, and this design is what gives them somewhere to point.*
+**What exists today, and what it lacks:** [`$Author`](../../package/src/libraries/Author.tsx) and [`$Subject`](../../package/src/libraries/Subject.tsx) are **byte-identical twins** — both `extends $Section`, both *"is its own heading"*, both promoting their text into a `$Heading` in the bond. **Neither carries a reference to anything.** *So there is no participant machinery today; there are two headings with different names, and this design is what gives them somewhere to point.*
 
 ***And it closes a gap the record already named***, in [`Talk.tsx`](../../package/src/encyclopedia/Talk.tsx), before any of this:
 

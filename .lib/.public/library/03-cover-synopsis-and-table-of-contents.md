@@ -2,7 +2,7 @@
 
 - **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md)
-- ***Written 2026-09-25 with U2 of [Sprint 82](../projection/88-sprint-82--chapter-and-book.md#u2), to [How a Class Is Documented](../the-coding-style/08-how-a-class-is-documented.md); the code is [`Cover.tsx`](../../package/src/library/Cover.tsx), [`Synopsis.tsx`](../../package/src/library/Synopsis.tsx) and [`TableOfContents.tsx`](../../package/src/library/TableOfContents.tsx), the promises the first half of [`.tests/cover.test.tsx`](../../package/.tests/cover.test.tsx). Three classes in one chapter because they are one idea, what a chapter is in its book.***
+- ***Written 2026-09-25 with U2 of [Sprint 82](../projection/88-sprint-82--chapter-and-book.md#u2), to [How a Class Is Documented](../the-coding-style/08-how-a-class-is-documented.md); the code is [`Cover.tsx`](../../package/src/libraries/Cover.tsx), [`Synopsis.tsx`](../../package/src/libraries/Synopsis.tsx) and [`TableOfContents.tsx`](../../package/src/libraries/TableOfContents.tsx), the promises the first half of [`.tests/cover.test.tsx`](../../package/.tests/cover.test.tsx). Three classes in one chapter because they are one idea, what a chapter is in its book.***
 
 ---
 

@@ -937,13 +937,13 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 *Each claim was checked against the source this session, not recalled.*
 
-- **The emitted cover does not carry a card — it carries a bare string.** Diffed: the authored [`.physics/.subject/.cover.tsx`](../../../.test-library/) imports `TestLibraryCover as ATestLibrary` and writes `<Subject>{ATestLibrary}</Subject>`; [the hand-written copy](../../app/src/library/.physics/.subject/.cover.tsx) **drops the import** and leaves `<Subject>A Test Library</Subject>`. **The card is patched in afterwards at load** by `shelve()` in [`catalogue.tsx`](../../app/src/catalogue.tsx), reading a hand-written `held` map. *So the link lives in two places today and neither is derived — which is exactly what the first ruling above names.*
+- **The emitted cover does not carry a card — it carries a bare string.** Diffed: the authored [`.physics/.subject/.cover.tsx`](../../../.test-library/) imports `TestLibraryCover as ATestLibrary` and writes `<Subject>{ATestLibrary}</Subject>`; [the hand-written copy](../../app/src/libraries/.physics/.subject/.cover.tsx) **drops the import** and leaves `<Subject>A Test Library</Subject>`. **The card is patched in afterwards at load** by `shelve()` in [`catalogue.tsx`](../../app/src/catalogue.tsx), reading a hand-written `held` map. *So the link lives in two places today and neither is derived — which is exactly what the first ruling above names.*
 - **`<TableOfContents />` is typed by hand in every book module**, at position two. The folder never says it.
-- **A subject's catalogue is hand-composed.** [`.physics/.subject/book.tsx`](../../app/src/library/.physics/.subject/book.tsx) imports `StandardModelSynopsis` and `GaugeTheorySynopsis` and stands them among its own chapters. Nothing derives them from who declared physics.
+- **A subject's catalogue is hand-composed.** [`.physics/.subject/book.tsx`](../../app/src/libraries/.physics/.subject/book.tsx) imports `StandardModelSynopsis` and `GaugeTheorySynopsis` and stands them among its own chapters. Nothing derives them from who declared physics.
 - **`$Book` already declares `$Catalogue$<$Book>` and satisfies it loosely.** [`follow()`](../../package/src/book/Book.tsx) filters chapters whose `read()` is not this book, inside a `try/catch`, and casts the survivors. **There is no entry type behind that reading** — which is the hole `$$Synopsis` fills.
 - **`$TableOfContents.parts()` makes one kind of row** — every non-parenthetical chapter, wrapped in `$$Chapter`. In physics's contents, *What Physics Is* and *The Standard Model* are indistinguishable.
 - **The canonical default in the book is already wrong under the ruling above.** [The Canonical Hierarchy](../../.archive/app/src/sections/book/library/the-build/04-the-canonical-hierarchy.tsx) says *the first book in the contents*, and its figure computes `declared || books[0]`. **Shortest title replaces it**, and the figure runs its rule, so the page changes when the rule does.
-- **The corpus is invisible to git while its output is committed.** `git ls-files` reports every file under `app/src/library/` tracked and **nothing** under `library/.test-library/`. *[Risk 1](#risks) still standing, still undecided.*
+- **The corpus is invisible to git while its output is committed.** `git ls-files` reports every file under `app/src/libraries/` tracked and **nothing** under `library/.test-library/`. *[Risk 1](#risks) still standing, still undecided.*
 
 ## The actors
 
@@ -1107,7 +1107,7 @@ A book module gains its contents from the machine. **Seen:** `<TableOfContents /
 
 ## The epiphenomenal decisions — surfaced because nobody ruled them
 
-- **The fixture became the library, and the repository kept the output.** `library/.test-library/` is gitignored; its copy under `app/src/library/` is committed. Two `.gitignore` rules meeting, not a decision.
+- **The fixture became the library, and the repository kept the output.** `library/.test-library/` is gitignored; its copy under `app/src/libraries/` is committed. Two `.gitignore` rules meeting, not a decision.
 - **`.claude` and `.me/*` are npm workspaces** in a repository where both are gitignored.
 - **`refer.ts` reads references from covers only**, by construction — a reference authored anywhere else is invisible. *Probably correct and nowhere written down.*
 - **The demo is the only finished aesthetic object here, and it is the one artifact never deployed** — [the demo specification](#r13--the-book-gets-its-own-aesthetic-world) and [D13](#d13) are both right and together they mean the beautiful thing is unpublished.
@@ -1131,7 +1131,7 @@ A book module gains its contents from the machine. **Seen:** `<TableOfContents /
 
 ### R30 — The output is REGENERATED, never hand-edited
 
-*Doug: "we are going to have to adjust the test data a lot."* **Once v1 lands, no file under `app/src/library/` or `app/src/catalogue.tsx` is edited by a person again** — a corpus change is followed by a run, and the diff is the report.
+*Doug: "we are going to have to adjust the test data a lot."* **Once v1 lands, no file under `app/src/libraries/` or `app/src/catalogue.tsx` is edited by a person again** — a corpus change is followed by a run, and the diff is the report.
 
 **Seen:** [the orphan](#d-orphan) disappears **because it was not regenerated**, not because somebody deleted it. **That is the first real proof the machine is load-bearing.**
 
@@ -1485,9 +1485,9 @@ EMIT      18 carried · 6 generated · 1 removed
 
 **Run:** `/ce-work` on this chapter, taking C. **Owns:** `.public/build/assemble.ts`.
 **Builds against:** a resolved library, or the demo's book folders, which already have the shape.
-**Done when:** one module per book folder composes cover, contents, synopsis and chapters **in manifest order**, the source lands under [`.public/app/src/library/`](../../app/src/library/), and a typecheck **entered through a book module** passes over it.
+**Done when:** one module per book folder composes cover, contents, synopsis and chapters **in manifest order**, the source lands under [`.public/app/src/libraries/`](../../app/src/libraries/), and a typecheck **entered through a book module** passes over it.
 ***The trap, and it is the sprint's most expensive finding:*** **a glob will not see `.cover.tsx` or `.synopsis.tsx`.** Any check walking `src/**` reports a confident zero over half a missing book. **Enter through the emitted module, never by pattern** — and **add resources by computed path**, because a chapter need not import the code beside it.
-*Where the output lands is a **policy of this stage**, not a stage of its own. The folder is `src/library/` and not `generated/`: [that name was wrong and Doug said so](#f--where-it-stands--the-library-is-on-screen-driven-and-seen).*
+*Where the output lands is a **policy of this stage**, not a stage of its own. The folder is `src/libraries/` and not `generated/`: [that name was wrong and Doug said so](#f--where-it-stands--the-library-is-on-screen-driven-and-seen).*
 
 ### D — EMITTING THE CATALOGUE
 
@@ -1540,7 +1540,7 @@ EMIT      18 carried · 6 generated · 1 removed
 
 **[U22](#u22)–[U30](#u30) DONE, DRIVEN AND SEEN, 2026-08-15.** A path resolves through a catalogue to a card, **one** book's module loads, and the book draws itself — as a reader or as a catalogue, decided by counting. **19 checkpoints, 19 passed, 0 console errors, exit 0**, and it was **watched going red twice** before its green was trusted.
 
-**AND `generated/` IS GONE — the naming was wrong and Doug said so.** *"Does generated help? The whole `.public` workspace is in there. Technically you are generating the whole site right?… consider normal app design in naming here."* **Correct: it named a folder for how its contents arrived rather than for what they are**, and [R19](#r19--publication-the-output-mirrors-the-library-and-a-book-is-a-page) already says the output mirrors `library/`. So the folder is **`src/library/`**, and with [D12](#d12) declaring no book class there is no `book/` either. What is left is an ordinary small app: `main.tsx` · `app.tsx` · `library/` · `catalogue.tsx` · `theme.ts` · `teaser.tsx`. ***One word fewer, and the word that went was mine.***
+**AND `generated/` IS GONE — the naming was wrong and Doug said so.** *"Does generated help? The whole `.public` workspace is in there. Technically you are generating the whole site right?… consider normal app design in naming here."* **Correct: it named a folder for how its contents arrived rather than for what they are**, and [R19](#r19--publication-the-output-mirrors-the-library-and-a-book-is-a-page) already says the output mirrors `library/`. So the folder is **`src/libraries/`**, and with [D12](#d12) declaring no book class there is no `book/` either. What is left is an ordinary small app: `main.tsx` · `app.tsx` · `library/` · `catalogue.tsx` · `theme.ts` · `teaser.tsx`. ***One word fewer, and the word that went was mine.***
 
 **THE UNFAKEABLE CLAIM, WATCHED IN THE NEGATIVE.** With the card assignment disabled, **the front door drew as a READER instead of a catalogue** — same module, same surface, the only change being whether anything points elsewhere. *And with one card removed the walk stalled naming it: `The catalogue holds no card for "/physics/gauge-theory"`.*
 

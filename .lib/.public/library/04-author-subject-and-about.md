@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- ***Written 2026-09-25 with U3 of [Sprint 82](../projection/88-sprint-82--chapter-and-book.md#u3), to [How a Class Is Documented](../the-coding-style/08-how-a-class-is-documented.md); the code is [`src/library/Cover.tsx`](../../package/src/library/Cover.tsx), the promises the second half of [`.tests/cover.test.tsx`](../../package/.tests/cover.test.tsx). Three classes in one chapter because they are what one cover says.***
+- ***Written 2026-09-25 with U3 of [Sprint 82](../projection/88-sprint-82--chapter-and-book.md#u3), to [How a Class Is Documented](../the-coding-style/08-how-a-class-is-documented.md); the code is [`src/libraries/Cover.tsx`](../../package/src/libraries/Cover.tsx), the promises the second half of [`.tests/cover.test.tsx`](../../package/.tests/cover.test.tsx). Three classes in one chapter because they are what one cover says.***
 
 ---
 

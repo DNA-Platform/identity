@@ -34,7 +34,7 @@
 
 ### <a id="u1"></a>U1 · ***The wiki's books in the paper's shape*** — [Sprint 64 U3](70-sprint-64--themes-by-registration.md#u3), [U4](70-sprint-64--themes-by-registration.md#u4)
 **Mechanism:** every `.chapter.tsx` under `.wiki` deleted; `.wiki/.article/.book.tsx` carries the article book, its chapter kind, its document kind, the four link kinds and the theme registration on `Book` it already has; the Turing book and the portal extend or mirror it; the reader writes chapters that import from the package and from `../.article/.book`, and fetch their document through `$` where the book's kind must take; cover, synopsis and contents become typed documents with their logic in their specifications, the book finding them by type.
-**Files:** `.wiki/.chapter.tsx` *(deleted)* · `.wiki/*/.chapter.tsx` *(deleted)* · `.wiki/.article/.book.tsx` · `.wiki/alan-turing/.book.tsx` · `.wiki/.encyclopedia/.book.tsx` · `.wiki/.public/read-page.mjs` · `src/library/Cover.tsx` · `src/library/Synopsis.tsx` · `src/library/TableOfContents.tsx` · `src/library/Row.tsx` · `src/library/Book.tsx`.
+**Files:** `.wiki/.chapter.tsx` *(deleted)* · `.wiki/*/.chapter.tsx` *(deleted)* · `.wiki/.article/.book.tsx` · `.wiki/alan-turing/.book.tsx` · `.wiki/.encyclopedia/.book.tsx` · `.wiki/.public/read-page.mjs` · `src/libraries/Cover.tsx` · `src/libraries/Synopsis.tsx` · `src/libraries/TableOfContents.tsx` · `src/libraries/Row.tsx` · `src/libraries/Book.tsx`.
 **Visible end:** ***no `.chapter.tsx` anywhere; both wiki pages and the portal draw as before; the three classes gone.***
 
 ### <a id="u2"></a>U2 · ***The appearance panel hands the book a theme*** — [Sprint 64 U5](70-sprint-64--themes-by-registration.md#u5), Sprint 63 R7

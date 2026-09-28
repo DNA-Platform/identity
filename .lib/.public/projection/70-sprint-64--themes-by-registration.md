@@ -13,7 +13,7 @@
 ## <a id="read"></a>What the code says, read before the requirements
 
 - **A theme is found today by a walk.** [`reflection.theme`](../../package/src/utilities/Reflection.tsx) walks a writing's parents for a `$Theme` annotation and falls back to the base template; a parent whose bond has not run has no block, so the first draw of anything beneath it falls back. **That fallback is the blue first paint.**
-- **The theme is worn by concatenation.** [`$Book`](../../package/src/library/Book.tsx)'s bond concatenates `Theme` into its block when none was written; DI swaps in the registered sheet. The LaTeX book's `wears()` re-registers and then **filters its own block by hand** to swap the annotation — the file itself says those lines belong in `$Book` and cannot live there. **That is the hack to delete.**
+- **The theme is worn by concatenation.** [`$Book`](../../package/src/libraries/Book.tsx)'s bond concatenates `Theme` into its block when none was written; DI swaps in the registered sheet. The LaTeX book's `wears()` re-registers and then **filters its own block by hand** to swap the annotation — the file itself says those lines belong in `$Book` and cannot live there. **That is the hack to delete.**
 - **Registration already has scope, reach and asker**, the later of equals wins, and as of chemistry `249758a` a registration may say `'single'`: *for A, a B is THIS ONE C.* The base theme's `static $register(within)` is already `$(within, Theme)($(this))`.
 - **A book is not a lineage parent.** Chapters' documents are made by chapter components; nothing beneath a document reaches the book by chemistry's lineage. Scope is the document's, or global.
 
@@ -93,7 +93,7 @@ Measured in U1 by identity: if a chapter's document does not find the book's reg
 
 ### <a id="u1"></a>U1 · ***The LaTeX proof*** — D1, D2, D3 · F1
 **Mechanism:** `$Theme.$register(within)` registers `'single'`; the paper's `.book` carries its chapter class, registers `$ArticleTheme` so, and deletes `wears()`; its switch handler registers `$MarkdownTheme`; `$Book`'s bond stops concatenating a theme and its specification asks instead of counting; `reflection.theme` asks; `reflection.formatted` wears the asked theme at the book. An identity test asks `Theme` from the book, from a chapter's document and from a paragraph, and expects one instance.
-**Files:** `.latex/aaronson/.book.tsx` · `.latex/aaronson/.chapter.tsx` *(deleted)* · `src/writing/Theme.tsx` · `src/library/Book.tsx` · `src/utilities/Reflection.tsx` · the public suite.
+**Files:** `.latex/aaronson/.book.tsx` · `.latex/aaronson/.chapter.tsx` *(deleted)* · `src/writing/Theme.tsx` · `src/libraries/Book.tsx` · `src/utilities/Reflection.tsx` · the public suite.
 **Visible end:** ***the paper switches to Markdown by registration alone, `verify:latex` green on both readings, three asks one instance.***
 
 ### <a id="u2"></a>U2 · ***First paint on Turing*** — D1 · F2

@@ -6,7 +6,7 @@
 
 ---
 
-**The `library` folder, [`src/library`](../../package/src/library/), holds the classes a library is written in above the level of one text: the chapter, the book, and what a cover says.** Doug set it going on 2026-09-25: *"Start with Genesis, really think about annotations, because this is going to be a place where we don't just use them as defaults but start building things like Cover and TableOfContents and Synopsis whatever we do for Subject and Author to all be attributes."* And gave it its folder: *"make a library folder for this, like we had in v1."*
+**The `library` folder, [`src/library`](../../package/src/libraries/), holds the classes a library is written in above the level of one text: the chapter, the book, and what a cover says.** Doug set it going on 2026-09-25: *"Start with Genesis, really think about annotations, because this is going to be a place where we don't just use them as defaults but start building things like Cover and TableOfContents and Synopsis whatever we do for Subject and Author to all be attributes."* And gave it its folder: *"make a library folder for this, like we had in v1."*
 
 ## What the folder's classes share
 
@@ -110,7 +110,7 @@ export default () => (
 
 ## Any writing reaches its book
 
-***Doug: "just have the book expose its cover, table, synopsis... and other things use it from there."*** **Every writing answers `$book`** (and a paragraph a book draws in its own `write` stands outside the tree and is lent it, `book={this}`, which is how the test library's running head became every book's masthead in Sprint 88) — [the book it stands in](../writing/05-the-writing-class.md) — **and reads what the book exposes.** The test library's running head is the worked case: the library's name as a link, then the book it stands in and a link to that book's table — a resource of the library's first chapter, which the paper's argument wears, [`the-library/1-the-shelves.tsx.tsx`](../../package/.binding/.test/the-library/1-the-shelves.tsx.tsx):
+***Doug: "just have the book expose its cover, table, synopsis... and other things use it from there."*** **Every writing answers `$book`** (and a paragraph a book draws in its own `write` stands outside the tree and is lent it, `book={this}`, which is how the test library's running head became every book's masthead in Sprint 88) — [the book it stands in](../writing/05-the-writing-class.md) — **and reads what the book exposes.** The test library's running head is the worked case: the library's name as a link, then the book it stands in and a link to that book's table — a resource of the library's first chapter, which the paper's argument wears, [`manual/3-the-masthead-and-the-byline.code.tsx`](../../package/.binding/.test/manual/3-the-masthead-and-the-byline.code.tsx):
 
 ```tsx
 export class $RunningHead extends $Paragraph {
@@ -134,7 +134,7 @@ export class $RunningHead extends $Paragraph {
 - **Nothing in the argument's file names its book**, so a book renamed is followed with no edit to the chapter — [a unit promise](../../package/.binding/.test/running-head.test.tsx) stands one chapter in two books under two names.
 - **A Paragraph, not a Section:** a section's specification wants its heading written in its text, and a line drawn by `write` has none.
 - **Its notation is compiled like any resource's**: `$[ The Library ]` becomes the library's full address, since the line is drawn on other books' pages — [the transform's promise](../../package/.binding/reference/transform.test.ts) reads this file.
-- **Imported by its whole name**, `'../the-library/1-the-shelves.tsx.tsx'`: a resource belongs to a chapter by name, so the chapter's own name imports the chapter.
+- **Imported by its whole name**, `'../manual/3-the-masthead-and-the-byline.code.tsx'`: a resource belongs to a chapter by name, so the chapter's own name imports the chapter.
 - **It is the test library's own and not `.public`'s.** *Doug, 2026-09-26: "I don't know RunningHead but that doesn't belong in the .public library. It can be a component of something not user facing."* So its name is the test library's, and no reader of `.public` meets it.
 
 ## What is not drawn yet

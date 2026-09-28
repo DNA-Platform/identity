@@ -34,10 +34,10 @@
 | gap | the measurement |
 |---|---|
 | ***no mention above a section*** | `grep 'mention ='` in `src`: **four sites** — Word, Sentence, Paragraph, Section. **A book, a chapter and a document have none**, so `book.catalogue()` is `undefined` and `$Ref.read('#3/0')` falls through to *"this route is the application to follow."* **The scheme is dormant on the whole library ladder.** |
-| ***no `$$Chapter`*** | [Chapter.tsx](../../package/src/library/Chapter.tsx) declares `$Chapter`, `$TypeOfChapter`, `ChapterSpecification` — three of the four, and the one Sprint 46 named is the missing one. |
+| ***no `$$Chapter`*** | [Chapter.tsx](../../package/src/libraries/Chapter.tsx) declares `$Chapter`, `$TypeOfChapter`, `ChapterSpecification` — three of the four, and the one Sprint 46 named is the missing one. |
 | ***ids are made from text*** | [`$Heading.print`](../../package/src/writing/Heading.tsx) writes `id={text with underscores}` — **a string where R10 says a number** — so two headings with the same words collide (`/turing` carries one twice) and the contents links by title rather than by address. |
 | ***the word is mangled*** | `adstyle` / `adstyles` in [Catalogue.tsx](../../package/src/reference/Catalogue.tsx) and [Url.ts](../../package/src/utilities/Url.ts) **is `address`**, struck by the sweep that removed "dress" — first seen at commit `06a4d0a`. *It reads as jargon and is a casualty, not a name.* |
-| ***nothing leverages a writing's document*** | *Doug, 2026-09-10:* **"I don't think anything leverages the document reference on writing. If you make it a reference, everyone can refer to their document, and for the book, it's the cover."** [`$Bookmark.document()`](../../package/src/library/Bookmark.tsx) walks parents to the nearest document by hand — *the seam is on the base and one kind wrote its own.* |
+| ***nothing leverages a writing's document*** | *Doug, 2026-09-10:* **"I don't think anything leverages the document reference on writing. If you make it a reference, everyone can refer to their document, and for the book, it's the cover."** [`$Bookmark.document()`](../../package/src/libraries/Bookmark.tsx) walks parents to the nearest document by hand — *the seam is on the base and one kind wrote its own.* |
 
 ## <a id="convention"></a>The anchor convention, in his words
 

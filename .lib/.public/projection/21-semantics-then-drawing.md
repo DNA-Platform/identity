@@ -187,7 +187,7 @@
 
 | file | lines | importers |
 |---|---|---|
-| **`package/src/library/Literature.tsx`** | **0** | none |
+| **`package/src/libraries/Literature.tsx`** | **0** | none |
 | **`app/src/teaser.tsx`** | **198** | none |
 | [`package/app/src/apparatus/case-shell.tsx`](../../../chemistry/package/app/src/apparatus/case-shell.tsx) | **152** | none |
 

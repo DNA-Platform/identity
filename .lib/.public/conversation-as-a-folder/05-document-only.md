@@ -91,7 +91,7 @@
 | | |
 |---|---|
 | **scoping** | [`$Theme.$register(within?)`](../../package/src/writing/Theme.tsx) — *"registering WITH a scope makes THIS sheet the theme"*. `$Book.$register()` is `$Theme.$register(Book)` |
-| **provision** | two lines in [`$Book.view()`](../../package/src/library/Book.tsx) — fetch the sheet, wrap the subtree. Chemistry's context nests, so an inner sheet wins for its subtree |
+| **provision** | two lines in [`$Book.view()`](../../package/src/libraries/Book.tsx) — fetch the sheet, wrap the subtree. Chemistry's context nests, so an inner sheet wins for its subtree |
 | **re-dressing** | promised already: *"a book is re-themed by registration, and redraws in the new one"* |
 
 ***So a poly theme world is those two lines moved off `$Book` and onto the base, so that ANY kind which registers a theme draws one.*** **A book wears the library's; a dialogue inside it wears the conversation's; and "more than one theme for multiple use cases" is the same registration one rung down** — *a chat dress, a transcript dress, a script dress, chosen by which is installed.*

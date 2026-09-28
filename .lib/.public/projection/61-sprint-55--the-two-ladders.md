@@ -42,7 +42,7 @@
 - ***the dirty book*** — `_block` filtered and concatenated by hand to swap a theme, in a demo.
 - ***`$Book.placed()`*** — five members placed by hand at fixed positions, with a promise asserting the third is a table of contents.
 - ***`get chapters()`*** — a searchFor followed by a filter that names five apparatus members it must exclude, one by one.
-- ***"a book cannot know its own scope"*** — recorded [in `$Book` itself](../../package/src/library/Book.tsx) as a design owed.
+- ***"a book cannot know its own scope"*** — recorded [in `$Book` itself](../../package/src/libraries/Book.tsx) as a design owed.
 - ***"a heading named in math has no name"*** — the contents reads TEXT out of a heading because it has no reference to the document that heading opens.
 
 ***Every one of those is a book reaching THROUGH a chapter to a document.*** **Give the chapter its own rung and the reach disappears.**

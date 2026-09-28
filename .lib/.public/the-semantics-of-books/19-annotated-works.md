@@ -16,7 +16,7 @@
 
 | name | where | writing's? | the book word, where it is exact |
 |---|---|---|---|
-| `RunningHead` | [the test library](../../package/.binding/.test/the-library/1-the-shelves.tsx.tsx) | **yes** — the line at the head of every page naming its book | — |
+| `RunningHead` | [the test library](../../package/.binding/.test/manual/3-the-masthead-and-the-byline.code.tsx) | **yes** — the line at the head of every page naming its book | — |
 | `Typewritten` | [the paper's book](../../package/.binding/.test/paper/.book.tsx) | **yes** | — |
 | `Theme` | [the library's book](../../package/.binding/.test/the-library/.book.tsx) | Doug's | — |
 | `bound`, `printed`, `read`, `drawn` | [the galleys](../../package/.binding/.test/galleys.ts), the regression | **yes** — the bindery and the press | — |

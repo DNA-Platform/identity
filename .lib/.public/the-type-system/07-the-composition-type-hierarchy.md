@@ -14,7 +14,7 @@
 | **text** | Letter · Word · Sentence · Paragraph · Section · Document |
 | **library** | Chapter · Book |
 
-**Reflection holds them as data**, handed once from [`$Book.$register`](../../package/src/library/Book.tsx) beside the hierarchy tops it already hands over, because the book is the one file that imports every level without a cycle. Nothing above a chapter composes a document: [the library level stands apart](../writing-a-book/04-the-book-s-little-framework.md#levels), and a chapter means its document by reference.
+**Reflection holds them as data**, handed once from [`$Book.$register`](../../package/src/libraries/Book.tsx) beside the hierarchy tops it already hands over, because the book is the one file that imports every level without a cycle. Nothing above a chapter composes a document: [the library level stands apart](../writing-a-book/04-the-book-s-little-framework.md#levels), and a chapter means its document by reference.
 
 ## <a id="rung"></a>The rung below a kind, by type inheritance
 

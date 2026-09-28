@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- ***Written 2026-09-25 with U4, U7 and U8 of [Sprint 82](../projection/88-sprint-82--chapter-and-book.md#u4), to [How a Class Is Documented](../the-coding-style/08-how-a-class-is-documented.md); the code is [`src/library/Book.tsx`](../../package/src/library/Book.tsx), the promises [`.tests/book.test.tsx`](../../package/.tests/book.test.tsx).***
+- ***Written 2026-09-25 with U4, U7 and U8 of [Sprint 82](../projection/88-sprint-82--chapter-and-book.md#u4), to [How a Class Is Documented](../the-coding-style/08-how-a-class-is-documented.md); the code is [`src/libraries/Book.tsx`](../../package/src/libraries/Book.tsx), the promises [`.tests/book.test.tsx`](../../package/.tests/book.test.tsx).***
 
 ---
 

@@ -41,7 +41,7 @@
 *Named so the size is visible, and **none of it is proposed**.*
 
 - **A write path.** *A limited API token against one branch* — Doug's own framing. **A public site cannot hold a token that can write**, so this is a function somewhere, or an app, or a form that opens a pull request. ***Unanswered.***
-- **A fetch path that is not a module import.** [`books.tsx`](../../app/src/library/books.tsx) is a map of dynamic imports the compiler wrote; **a comment arrives as data and has to become writing at runtime.** *The framework can do that — a `$Section` composes from a block — but nothing today builds writing from anything but a module.*
+- **A fetch path that is not a module import.** [`books.tsx`](../../app/src/libraries/books.tsx) is a map of dynamic imports the compiler wrote; **a comment arrives as data and has to become writing at runtime.** *The framework can do that — a `$Section` composes from a block — but nothing today builds writing from anything but a module.*
 - ***Live validation, which is the same `valid()` and a different caller.***
 - **A section that belongs to a reader.** *Doug: "their section of it."* **The model has no notion of who may write where**, and [the library's own summit is a single autobiographical subject](../the-semantics-of-books/07-the-subjective-subject-and-the-library.md) — *a library of many journals is a shape the derivation has not been asked about.*
 

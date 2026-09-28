@@ -576,7 +576,7 @@
 
 | | | |
 |---|---|---|
-| **the `library/` folder** | ***"Remove the library folder and put CardCatalogue in reference"*** | **done** — `package/src/library/` held one class; it is `reference/CardCatalogue.tsx` now, and `tests/library/` moved with it |
+| **the `library/` folder** | ***"Remove the library folder and put CardCatalogue in reference"*** | **done** — `package/src/libraries/` held one class; it is `reference/CardCatalogue.tsx` now, and `tests/library/` moved with it |
 | **its comments** | ***"Move the code comments out of the file and into the library branch"*** | **stripped to zero** — *and [the 362 lines sprint 19 harvested are still owed a home](19-the-binding.md#f10), so this one's commentary is owed with them* |
 | **the card** | ***"a CardCatalogue was supposed to be a catalogue of `$IndexCard`s`<T>` and `$$Book` was supposed to be an `$IndexCard<$Book>`"*** | **done** — `$IndexCard<T>` is a class in `reference/`, `$$Book extends $IndexCard<$Book>`, and **identity, filing and AUTHORSHIP moved onto the card**, because those are facts about a card in a catalogue rather than about a book |
 | **the default** | ***"No, book is not the default. Create a `$CardCatalogue<$Book>`"*** | **done** — generic over what it catalogues, holding `$IndexCard<T>[]`, no `$$Book` default |

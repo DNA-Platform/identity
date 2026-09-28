@@ -22,7 +22,7 @@
 ### In use
 
 ```tsx
-// the-library/1-the-shelves.tsx.tsx — a resource of the test library, beside the running head
+// manual/3-the-masthead-and-the-byline.code.tsx — a resource of the test library, beside the running head
 export class $PreviousTitle extends $Previous {
     override write(): ReactNode { return this.chapter?.previous.title?.name; }
 }
@@ -52,7 +52,7 @@ export class $Catchword extends $Paragraph {
 
 ## How they are extended
 
-- **A component that represents another property copies the four moves**, which are the whole of the class: a typed reading of the writing that holds the property (`chapter`), one name read of it (`next`), the one thing it draws made at `$Bound` and defined there, and `means` answering the made thing. The test library's [running head](../../package/.binding/.test/the-library/1-the-shelves.tsx.tsx) is the hand-written case before this one, a paragraph reading its book's title and table in `write()`; the pattern stands as a row in [How Writing Is Extended](../writing/06-how-writing-is-extended.md#the-seams).
+- **A component that represents another property copies the four moves**, which are the whole of the class: a typed reading of the writing that holds the property (`chapter`), one name read of it (`next`), the one thing it draws made at `$Bound` and defined there, and `means` answering the made thing. The test library's [running head](../../package/.binding/.test/manual/3-the-masthead-and-the-byline.code.tsx) is the hand-written case before this one, a paragraph reading its book's title and table in `write()`; the pattern stands as a row in [How Writing Is Extended](../writing/06-how-writing-is-extended.md#the-seams).
 - **What is shown is the writer's.** A subclass that wants the neighbour's title draws it in `write()`, reading `this.chapter?.next.title?.name` — the catchword's business, and not the component's (D4).
 - **A subclass never computes the book's order**, never stores the neighbour, and never reads at `$Define`. The property is the chapter's; the component only represents it.
 - **A property of a library's own book kind** — an author who gives their chapters a `part`, say — gets its component the same way, in the library's own files, with no change here.

@@ -198,8 +198,8 @@
 | [`src/writing/Writing.tsx`](../../package/src/writing/Writing.tsx) | `book` is an `@inert()` member SET at bond time, not derived · `parenthetical` + `$print` live here and `view()` reads `parenthetical` · `classes`/`addClass`/`removeClass`/`addType` |
 | [`src/utilities/Reflection.tsx`](../../package/src/utilities/Reflection.tsx) | **`is<T>()` is the ONE asking** — `instanceOf` deleted · `writing()`, `annotation()`, `composition()` · `level()` walks `hierarchies` · **no name-based validation left** |
 | [`src/writing/Type.tsx`](../../package/src/writing/Type.tsx) | `name` derives from the class in its FIELD INITIALISER — *not the bond, because `reflection.names()` reads a template built with `new`* · a type written as content takes its own name |
-| [`src/library/Book.tsx`](../../package/src/library/Book.tsx) | 65 lines · `cover`/`synopsis`/`table`/`chapters` as get-only properties · sets `book` on everything beneath · `$register` hands over the two hierarchy tops |
-| [`src/library/Chapter.tsx`](../../package/src/library/Chapter.tsx) | a `$Composition` whose TYPE is a `$TypeOfReference` · holds sub-chapters · prints a row and an anchor · ***carries wart W2, the per-read search*** |
+| [`src/libraries/Book.tsx`](../../package/src/libraries/Book.tsx) | 65 lines · `cover`/`synopsis`/`table`/`chapters` as get-only properties · sets `book` on everything beneath · `$register` hands over the two hierarchy tops |
+| [`src/libraries/Chapter.tsx`](../../package/src/libraries/Chapter.tsx) | a `$Composition` whose TYPE is a `$TypeOfReference` · holds sub-chapters · prints a row and an anchor · ***carries wart W2, the per-read search*** |
 | [`src/reference/Fold.tsx`](../../package/src/reference/Fold.tsx) | the annotation that gives its holder a KEY; `$PageFold`, `$Bookmark`, `$Highlight` extend it |
 | [`src/writing/Image.tsx`](../../package/src/writing/Image.tsx) | `$source`, `$width`, `$height` — the base of `$Illustration` and `$Figure` |
 | [`src/formatting/Theme.tsx`](../../package/src/formatting/Theme.tsx) | the base sheet, the contents row group, `leader`/`place`/`spacing` |

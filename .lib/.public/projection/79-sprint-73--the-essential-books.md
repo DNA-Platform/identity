@@ -26,7 +26,7 @@
 
 ### <a id="built"></a>What was built, and what each thing cost
 
-**THE ANNOTATIONS.** `$Biography`, `$Autobiography` and `$Catalogue` (exported as `Catalogues`) stand under `$Type` in `src/library/`, each filing itself with `this[cache]('Name')`. `$Type` carries `formula = true`. **`$Author` and `$Subject` are now mentions** — `$Catalogue` subclasses — so they name a book and read `[display](real)`. `$Canonical`, exported as **`For`**, says the book a synopsis is for, and `SynopsisSpecification` demands one.
+**THE ANNOTATIONS.** `$Biography`, `$Autobiography` and `$Catalogue` (exported as `Catalogues`) stand under `$Type` in `src/libraries/`, each filing itself with `this[cache]('Name')`. `$Type` carries `formula = true`. **`$Author` and `$Subject` are now mentions** — `$Catalogue` subclasses — so they name a book and read `[display](real)`. `$Canonical`, exported as **`For`**, says the book a synopsis is for, and `SynopsisSpecification` demands one.
 
 ***Two things were measured about the types and both matter.*** **Written as an element, a type resolves and its chain is readable** — `dougs-autobiography` answered **`Autobiography Biography`**. **Written as `<Type>Autobiography</Type>`, it does NOT resolve at build time**: the formula swap runs in the render walk and the binder builds books through `$()`, which [the formula](../../../chemistry/.lib/composition/12-the-formula.md) says outright is not the swap path.
 
@@ -77,7 +77,7 @@
 
 ## <a id="handoff"></a>TO THE SESSION THAT OPENS WITH HIS BRIEF — ***read this before you plan anything***
 
-***You are not starting this sprint. Its first movement is built, green and seen, and the brief you were handed is the SAME brief — he is shipping it again, not asking for it twice.*** **The line *"the first thing we are going to do is make sure that the table of contents has all of the chapters in its book, and they have to be spelled right"* is DONE.** *Do not rebuild it. Read [Where things stand](#where) for the numbers and `src/library/Chapter.tsx`, `Document.tsx`, `TableOfContents.tsx`, `Book.tsx`, `reference/Catalogue.tsx` and `.binding/specification/library.test.ts` for what it became.*
+***You are not starting this sprint. Its first movement is built, green and seen, and the brief you were handed is the SAME brief — he is shipping it again, not asking for it twice.*** **The line *"the first thing we are going to do is make sure that the table of contents has all of the chapters in its book, and they have to be spelled right"* is DONE.** *Do not rebuild it. Read [Where things stand](#where) for the numbers and `src/libraries/Chapter.tsx`, `Document.tsx`, `TableOfContents.tsx`, `Book.tsx`, `reference/Catalogue.tsx` and `.binding/specification/library.test.ts` for what it became.*
 
 ### <a id="handoff-standing"></a>What stands, so you do not re-derive it
 
@@ -111,7 +111,7 @@
 
 **What it grows from.** [Sprint 72](78-sprint-72--the-compilation-audit.md) made the library specifiable and left three rules explicitly [owed to the framework](../writing-a-book/07-specifying-a-library.md#owed) — *the table of contents catalogues all chapters* is one of them, and this is that debt paid.
 
-**Read first:** [the rulings](#rulings) · [the analysis](#analysis) · [the requirements](#requirements) · [Specifying a Library](../writing-a-book/07-specifying-a-library.md) · `src/library/Chapter.tsx`, `TableOfContents.tsx`, `Book.tsx`, `Document.tsx` as they stand.
+**Read first:** [the rulings](#rulings) · [the analysis](#analysis) · [the requirements](#requirements) · [Specifying a Library](../writing-a-book/07-specifying-a-library.md) · `src/libraries/Chapter.tsx`, `TableOfContents.tsx`, `Book.tsx`, `Document.tsx` as they stand.
 
 ## <a id="rulings"></a>Rulings — ***his words, verbatim, 2026-09-16***
 
@@ -219,7 +219,7 @@
 
 ## <a id="what-follows"></a>What follows in this sprint, not specified here
 
-***Named so the brief is not lost, and none of it is designed yet.*** **The essential books of Doug's library, defined and scaffolded** — `library/` holds thirteen zero-byte files under `dictionary`, a byte-identical copy under `.reference/dictionary`, and three subjects that are a `package.json` each. **A real conversation imported and drawn** — the corpus is 465 files in the sibling `dna-library` repository. **A view over all of it.** **And the annotations:** subject and author, biography and autobiography, subjects and catalogue — *for which [`$Author` and `$Subject` already exist as sections of a cover holding TEXT](../../package/src/library/Author.tsx), [Sprint 72's D4](78-sprint-72--the-compilation-audit.md#d4) held the reference convention deliberately, and [The Author's Fixed Point](../the-semantics-of-books/13-the-authors-fixed-point.md) carries the derivation.*
+***Named so the brief is not lost, and none of it is designed yet.*** **The essential books of Doug's library, defined and scaffolded** — `library/` holds thirteen zero-byte files under `dictionary`, a byte-identical copy under `.reference/dictionary`, and three subjects that are a `package.json` each. **A real conversation imported and drawn** — the corpus is 465 files in the sibling `dna-library` repository. **A view over all of it.** **And the annotations:** subject and author, biography and autobiography, subjects and catalogue — *for which [`$Author` and `$Subject` already exist as sections of a cover holding TEXT](../../package/src/libraries/Author.tsx), [Sprint 72's D4](78-sprint-72--the-compilation-audit.md#d4) held the reference convention deliberately, and [The Author's Fixed Point](../the-semantics-of-books/13-the-authors-fixed-point.md) carries the derivation.*
 
 **Out of scope by his word or by silence:** the `[Label](name)` alternate syntax he asked us to *consider* — *"in case we want to write a different label for it"* — which is real work, since `$Catalogue` does not parse a markdown link and `$Ref` does; a general rename of `$Heading` to `$Title`; and a type for the other seven `$$` classes, which nothing yet needs.
 

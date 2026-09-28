@@ -137,7 +137,7 @@ Three findings from that table, each a ruling of his: the paper's title is a for
 | `IS_REACT_ACT_ENVIRONMENT` set in the DOM for a render that never calls `act` | `rendering/dom.ts:22` | recorded, offered |
 | `Failure` and `Diagnostic` are one shape spelled twice | `specify.ts:10`, `library.ts:28` | U4 — one `Diagnostic` with `problem()` beside it |
 | four identical problem-matcher blocks in the tasks file; two entry points for specify | `.vscode/tasks.json`, `package.json:11` | U7 — one entry point; the matcher named, held |
-| dead imports in the package's library folder (`$check`, `specify`, `$Writing`, `$Document` in `Book.tsx`; more in `Title`, `TableOfContents`, `Synopsis`, `Index`, `Notes`, `References`) | `src/library/*.tsx` | offered, deletion only, his yes |
+| dead imports in the package's library folder (`$check`, `specify`, `$Writing`, `$Document` in `Book.tsx`; more in `Title`, `TableOfContents`, `Synopsis`, `Index`, `Notes`, `References`) | `src/libraries/*.tsx` | offered, deletion only, his yes |
 | three copies of *a section that is its own heading* and five `$opensWithHeading → false` overrides | `Title.tsx:29`, `Author.tsx:16`, `Subject.tsx:17` | Sprint 69's F11 — recorded, not this sprint's |
 | Sprint 71's units U1–U6 read against the code: the toggle read once per process, the descent through the block, the chapter's printed parts, the harness per book, the reflection memos — each as the chapter says | `Specification.ts:6`, `Writing.tsx:137`, `Chapter.tsx:18`, `specify.ts`, `Reflection.tsx:15–20` | done correctly; no finding |
 

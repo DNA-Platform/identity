@@ -46,7 +46,7 @@
 
 **Four words, and the distinctions between them are exact:** a type **specifies**; a thing **satisfies** a specification; checking one against the other is **validation**.
 
-<a id="r206"></a>**R206** — ***the domain word is `specification`, and "specification" is struck from the corpus.*** **329 occurrences in this branch library, 4 in chemistry's, 7 in code** — *measured this session.* **The only survivors are the demonstration corpus's own physics prose** — *"conservation specifications" in [`symmetry.tsx`](../../app/src/library/.physics/the-standard-model/symmetry.tsx), which is a book's content rather than our vocabulary.*
+<a id="r206"></a>**R206** — ***the domain word is `specification`, and "specification" is struck from the corpus.*** **329 occurrences in this branch library, 4 in chemistry's, 7 in code** — *measured this session.* **The only survivors are the demonstration corpus's own physics prose** — *"conservation specifications" in [`symmetry.tsx`](../../app/src/libraries/.physics/the-standard-model/symmetry.tsx), which is a book's content rather than our vocabulary.*
 
 <a id="r207"></a>**R207** — ***`valid()` is renamed `specify()`.*** **86 call sites across 39 files in `lib`, 3 in `$Chemistry`** — *measured.* **The replacement reaches the comments as well as the code**, which is Doug's own note on the shape of this work.
 
