@@ -26,7 +26,7 @@ That is all of it. Everything the compiler checks is a consequence.
 | **a biography** | a book about a person by someone else, filed under whoever vouches for it; About itself, it is a subject in turn, and what is filed under it may author | `<Biography />`, `<Author>*[[ Libby ]]</Author>`, `<Subject>**[[ Libby ]]</Subject>`, `<About>[[ A Persona ]]</About>` |
 | **the library** | the top catalogue: filed under what it is about, which is itself, said as a subject — a library of one librarian is about Libraries | `<Subject>**[[ Libraries ]]( The Library )</Subject>`, `<About>[[ The Library ]]</About>` |
 | **a catalogue's chapter** | the synopsis of a book filed under it, imported or written; the Synopsis puts the imported chapter's contents in and leaves the chapter's own title alone, since 2026-09-27 — Doug: *"the Synopsis can't use the title of the chapter… skip the title as a default and customize from there for your library"* | `<Synopsis>{TheirSynopsis()}</Synopsis>` |
-| **a table of contents** | where a book answers for what it holds and, if it is a catalogue, for what is filed under it, each row referring to that book's own synopsis | `[[ Their Name ]]**` beside `$[ Their Name / Synopsis ]` |
+| **a table of contents** | where a book answers for what it holds and, if it is a catalogue, for what is filed under it, each row referring to that book's own synopsis | `[[ Their Name ]]**` beside `$[[ Their Name / Synopsis ]]` |
 
 **Words apart from a name.** Any of these may show one thing and mean another, the paren tight against the bracket: `**[[ Libraries ]]( The Library )` shows *Libraries* and means the book named The Library. That is how the top is filed under what it is about without a second book.
 

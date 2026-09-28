@@ -23,10 +23,10 @@
 | **what a folder's name says** | its type: `.` a subject, `..` a library | nothing — the compiler reads no folder name for a kind; a dot in front is a convention a library may keep |
 | **who wrote it, where it stands, what it is about** | frontmatter: `author:`, `subject:`, `catalogues:` | annotations on the cover, in the notation: `*[[ Libby ]]`, `**[[ Libraries ]]( The Library )`, `[[ The Library ]]` as the About |
 | **a subject** | a book in a `.` folder that self-catalogues | any book whose cover says an About; others are filed under it by `**[[ ]]` and its table answers for them |
-| **a catalogue's answer for a book** | a synopsis paragraph in the cover's table of contents | a row in `.table.tsx`, `[[ Their Name ]]**` beside `$[ Their Name / Synopsis ]`, and a chapter that is a `Synopsis` importing theirs |
+| **a catalogue's answer for a book** | a synopsis paragraph in the cover's table of contents | a row in `.table.tsx`, `[[ Their Name ]]**` beside `$[[ Their Name / Synopsis ]]`, and a chapter that is a `Synopsis` importing theirs |
 | **the autobiography** | ten, one per teammate, each the sole author of their own library | **exactly one** — the librarian's; the compiler refuses a second, `TWO-SELF-AUTHORS`, and every other author is vouched for from it in one step |
 | **a person who is not the librarian** | a teammate with their own autobiography and library | a biography filed under the autobiography — a persona — which may author in turn |
-| **a link** | a relative path, checked after the fact | `$[ words ]( Book / Chapter )`, resolved by the catalogue at bind and written as the address; a wrong one cannot be written |
+| **a link** | a relative path, checked after the fact | `$[[ words ]]( Book / Chapter )`, resolved by the catalogue at bind and written as the address; a wrong one cannot be written |
 | **a place in a chapter** | a heading's anchor | `[[[ A Heading ]]]`, an id made from the name, refused if nobody refers to it |
 | **being wrong** | a validator's warning | a compile error naming the file and line: the bind refuses |
 | **how it looks** | the renderer's | its own Theme, its Formats, its figures — a look per library, in the library |
@@ -56,8 +56,9 @@
 |---|---|---|
 | a book, its title, its author, where it stands, what it is about | a folder with `.book.tsx`, `.cover.tsx` carrying `Title`, `Author`, `Subject`, `About`; `.synopsis.tsx`; `.table.tsx` | [Book](../library/05-book.md), [Cover, Synopsis and TableOfContents](../library/03-cover-synopsis-and-table-of-contents.md), [Author, Subject and About](../library/04-author-subject-and-about.md) |
 | that a book is a person, or about one | `<Autobiography />` on the one; `<Biography />` on the others | [Biography and Autobiography](../library/06-biography-and-autobiography.md) |
-| that a catalogue answers for a book | a row in its table, `[[ Their Name ]]**` beside `$[ Their Name / Synopsis ]`; the catalogue's chapter a `Synopsis` importing theirs | [Table](../writing/12-table.md), [What a Library Is](08-what-a-library-is.md) |
-| a place others may reach | `[[[ A Heading ]]]` in a heading; `$[ words ]( Book / Chapter )` to reach it | [The Language](../the-catalogue-and-the-specification/06-the-language.md) |
+| that a catalogue answers for a book | a row in its table, `[[ Their Name ]]**` beside `$[[ Their Name / Synopsis ]]`; the catalogue's chapter a `Synopsis` importing theirs | [Table](../writing/12-table.md), [What a Library Is](08-what-a-library-is.md) |
+| a place others may reach | `[[[ A Heading ]]]` in a heading; `$[[ words ]]( Book / Chapter )` to reach it | [The Language](../the-catalogue-and-the-specification/06-the-language.md) |
+| a file beside a chapter, shown where you want it | `![[ code.tsx ]]` inside a Code figure, `![[ this ]]` for the chapter's own source, `![[ .png ]]` inside an Image; every file beside a chapter is inserted or imported by it | [The Language](../the-catalogue-and-the-specification/06-the-language.md), [The Reference Manual](11-the-reference-manual.md) |
 | how the library looks, once | a Theme said of the book — its values, and its sheet extended in `$Define` on the framework's marks | [Theme](../writing/13-theme.md), [Dressing a Library](09-dressing-a-library.md) |
 | what a kind of chapter is, and how it feels | a Format in front — a face, a label, a frame — on the library's own marks; never a compiler feature | [Format and Theme](../writing/11-format-and-theme.md), [Dressing a Library](09-dressing-a-library.md) |
 | a way through the books | Next and Previous, and the book's own `write()` for masthead and byline | [Next and Previous](../library/07-next-and-previous.md), [The Object Graph](10-the-object-graph.md) |

@@ -24,7 +24,7 @@
 
 ## <a id="forms"></a>The forms
 
-**`$[ ]` only ever REFERS. `[[ ]]` only ever ANNOTATES. And the side the stars stand on is the DIRECTION of the edge relative to the writing they are written in.**
+**`$[[ ]]` only ever REFERS. `[[ ]]` only ever ANNOTATES. And the side the stars stand on is the DIRECTION of the edge relative to the writing they are written in.**
 
 ```
 [[ X ]]        this is titled X                      about this writing
@@ -36,8 +36,13 @@
  **[[ X ]]     this is catalogued by X canonically   about X
 ***[[ X ]]     this is catalogued by X               about X
 
-  $[ X ]       the address of X                      about X
+  $[[ X ]]     the address of X                      about X
+
+  ![[ this ]]  my own source, as written             inserted here
+  ![[ id.t ]]  the file beside me named id.t         inserted here
 ```
+
+***Every family writes two brackets, since [Sprint 92](../projection/97-sprint-92--the-literal-form.md)*** — Doug, 2026-09-28: *"We should stick to two."* The referring form was `$[[ X ]]` until then; one bracket or three is now read and refused by name, never left in the prose. **And the third family is the literal**, `!` before the brackets: it inserts a file where it stands rather than naming anything — the chapter's own source as written, `![[ this ]]`, or the file beside the chapter by its identifier and type, `![[ code.tsx ]]`, `![[ .png ]]` for a type alone. It has one slot and never a paren — *"This inserts a whole file in. No need to be anything else but what it is"* — and it never reaches another chapter: *"If it goes across chapters, it has no meaning which chapter its associated with."* It compiles to the file's text as one string expression, or a picture's address beside the pages; and the compiler holds a chapter to its files both ways, `UNKNOWN-FILE` for a literal naming no file beside the chapter and `UNUSED-FILE` for a file beside a chapter that nothing in it inserts or imports — *"the compiler can now enforce that all resources are used."*
 
 ***`[[ X ]]*` left the language on 2026-09-25, in `.public`'s compiler.*** *Doug: "if we decide that Subject collapses the Author syntax… We should be able to get rid of syntax."* **An author is a subject, and `*[[ X ]]` is the whole of the edge**, answered by nothing, so the postfix count of one stays empty and each answer carries the count of the link it answers: *"These don't line up… For things to line up."* **The star says which subject a link specifies** — one the subject who wrote it, two the subject it is filed under, three a topic — *"The star says it."* *The syntax as settled is in [Sprint 82](../projection/88-sprint-82--chapter-and-book.md#syntax); v1's compiler, in `.archive/.public`, keeps the form.*
 
@@ -48,7 +53,7 @@
 ```
 *[[ Author: Doug ]]( My Library Log )    authored by My Library Log; the page reads "Author: Doug"
 **[[ Doug ]]( Dougs Library )            catalogued by Dougs Library; the page reads "Doug"
-$[ the log ]( My Library Log )           the address of My Library Log; the anchor reads "the log"
+$[[ the log ]]( My Library Log )           the address of My Library Log; the anchor reads "the log"
 [[ X ]]                                   without a paren, the words ARE the name
 ```
 
@@ -121,9 +126,10 @@ lists      Map<SpotId, Map<SpotId, Listing>>
 
 | fault | what a reader is holding |
 |---|---|
-| `MALFORMED-ANNOTATION` | brackets that do not balance, stars on both sides, or an author answered — `[[ X ]]*` is not the language |
+| `MALFORMED-ANNOTATION` | brackets that do not balance or are not two, stars on both sides, an author answered — `[[ X ]]*` is not the language — or a literal with a words half, in a string, or reaching across chapters, each said with its reason |
+| `UNKNOWN-FILE` · `UNUSED-FILE` | a literal naming no file beside its chapter; a file beside a chapter that nothing in it inserts or imports |
 | `NO-TITLE` · `DUPLICATE-TITLE` | a book with no name, or one name on two books |
-| `UNKNOWN-REFERENCE` | `$[ X ]` naming nothing the library holds |
+| `UNKNOWN-REFERENCE` | `$[[ X ]]` naming nothing the library holds |
 | `NOT-LISTED` | a catalogue that does not answer for what stands under it |
 | `NO-LIBRARY` · `TWO-LIBRARIES` | no root, or more than one |
 | `CIRCULAR-CATALOGUE` | a ring of books that reaches the library from nowhere |

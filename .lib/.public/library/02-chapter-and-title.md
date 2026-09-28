@@ -42,7 +42,7 @@ export default () => (
 );
 ```
 
-**A chapter whose title a reader need not see declares it and hides it**, which is how every synopsis and table of the test library is titled: `<Title><Parenthetical />[[ Synopsis ]]</Title>`. The title still stands its Reference and wears its id, so `$[ The Library / Synopsis ]` lands on it, and the compiler still names the chapter by it, since it reads the form and not whether it prints.
+**A chapter whose title a reader need not see declares it and hides it**, which is how every synopsis and table of the test library is titled: `<Title><Parenthetical />[[ Synopsis ]]</Title>`. The title still stands its Reference and wears its id, so `$[[ The Library / Synopsis ]]` lands on it, and the compiler still names the chapter by it, since it reads the form and not whether it prints.
 
 ## How they are extended
 

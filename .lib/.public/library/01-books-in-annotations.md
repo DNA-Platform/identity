@@ -28,7 +28,7 @@
 | `**[[ X ]]` | Subject — an annotation of the cover |
 | a second `[[ X ]]` in a cover, naming its own book | About — an annotation of the cover |
 | `[[[ X ]]]` | Mention |
-| `$[ X ]` | Means, or any writing standing a Reference — in a table, a Content, which the table finds |
+| `$[[ X ]]` | Means, or any writing standing a Reference — in a table, a Content, which the table finds |
 
 **Every form compiles to `[text](url)`, and the classes read it.** *Doug, 2026-09-24: "The compiler ALWAYS should give: `[text](identifier)`. It doesn't know about specific components."* A Title reads `[The Argument](/a-paper/#the-argument)` and stands a Reference to the url and a Referent from its name's slug — `identifier.slug`, [the Identifier](../utilities/04-identifier.md), the one function the compiler writes its fragments with — so it links to itself and wears the id a table lands on, whatever the url says; since 2026-09-26 a cover's title wears its book's slug too. An Author, a Subject and an About read the same pair and stand the Reference among their own annotations.
 
@@ -62,13 +62,13 @@ export default () => (
         <Title><Parenthetical />[[ Table of Contents ]]</Title>
         <Section>
             <Heading>Contents</Heading>
-            <Paragraph><Content>$[ ./The Argument ]</Content></Paragraph>
-            <Paragraph><Content>$[ ./The Evidence ]</Content></Paragraph>
+            <Paragraph><Content>$[[ ./The Argument ]]</Content></Paragraph>
+            <Paragraph><Content>$[[ ./The Evidence ]]</Content></Paragraph>
             <Paragraph>
                 <Parenthetical />
-                <Word><Content>$[ A Paper ]</Content></Word>
-                <Word><Content>$[ ./Synopsis ]</Content></Word>
-                <Word><Content>$[ ./Table of Contents ]</Content></Word>
+                <Word><Content>$[[ A Paper ]]</Content></Word>
+                <Word><Content>$[[ ./Synopsis ]]</Content></Word>
+                <Word><Content>$[[ ./Table of Contents ]]</Content></Word>
             </Paragraph>
         </Section>
     </Chapter>
@@ -93,7 +93,7 @@ export const book = () => (
 
 ## A catalogue's chapter is another book's synopsis
 
-***The Genesis, E33: "A catalogue entry is a chapter that is a synopsis; the catalogue may print or import it."*** Doug, 2026-09-26: *"It is a chapter with the synopsis attribute"*; *"the synopsis attribute can take another synopsis component and populate everything under the title"*; *"Obviously the chapter is kept out of the Synopsis annotations text, so that even in theory, it is not on the page. It is used for parts to inject and express in its parent chapter."* And: *"someone can just write a synopsis by hand. It doesn't need to be borrowed."* **So a catalogue's chapter is a chapter carrying a Synopsis, written one of three ways** — empty, in the book it is a synopsis of; `<Synopsis>$[ Libby ]</Synopsis>`, naming the book; or handed the other book's own synopsis chapter, imported and called — [Cover, Synopsis and TableOfContents](03-cover-synopsis-and-table-of-contents.md). The test library's [`the-library/2-libby.tsx`](../../package/.binding/.test/the-library/2-libby.tsx):
+***The Genesis, E33: "A catalogue entry is a chapter that is a synopsis; the catalogue may print or import it."*** Doug, 2026-09-26: *"It is a chapter with the synopsis attribute"*; *"the synopsis attribute can take another synopsis component and populate everything under the title"*; *"Obviously the chapter is kept out of the Synopsis annotations text, so that even in theory, it is not on the page. It is used for parts to inject and express in its parent chapter."* And: *"someone can just write a synopsis by hand. It doesn't need to be borrowed."* **So a catalogue's chapter is a chapter carrying a Synopsis, written one of three ways** — empty, in the book it is a synopsis of; `<Synopsis>$[[ Libby ]]</Synopsis>`, naming the book; or handed the other book's own synopsis chapter, imported and called — [Cover, Synopsis and TableOfContents](03-cover-synopsis-and-table-of-contents.md). The test library's [`the-library/2-libby.tsx`](../../package/.binding/.test/the-library/2-libby.tsx):
 
 ```tsx
 import LibbySynopsis from '../libby/.synopsis';
@@ -123,7 +123,7 @@ export class $RunningHead extends $Paragraph {
         const Reference = $(reference);
         return (
             <>
-                <Means>$[ The Library ]</Means> / <Word>{book.title?.name}</Word>: <Word><Reference>{table?.means?.identifier}</Reference>{table?.name}</Word>
+                <Means>$[[ The Library ]]</Means> / <Word>{book.title?.name}</Word>: <Word><Reference>{table?.means?.identifier}</Reference>{table?.name}</Word>
             </>
         );
     }
@@ -133,7 +133,7 @@ export class $RunningHead extends $Paragraph {
 - **It reads when it draws**, when its book holds its chapters; in a bond [the book holds none yet](../projection/89-sprint-83--memory-management.md#found-by-measuring-before-any-design).
 - **Nothing in the argument's file names its book**, so a book renamed is followed with no edit to the chapter — [a unit promise](../../package/.binding/.test/running-head.test.tsx) stands one chapter in two books under two names.
 - **A Paragraph, not a Section:** a section's specification wants its heading written in its text, and a line drawn by `write` has none.
-- **Its notation is compiled like any resource's**: `$[ The Library ]` becomes the library's full address, since the line is drawn on other books' pages — [the transform's promise](../../package/.binding/reference/transform.test.ts) reads this file.
+- **Its notation is compiled like any resource's**: `$[[ The Library ]]` becomes the library's full address, since the line is drawn on other books' pages — [the transform's promise](../../package/.binding/reference/transform.test.ts) reads this file.
 - **Imported by its whole name**, `'../manual/3-the-masthead-and-the-byline.code.tsx'`: a resource belongs to a chapter by name, so the chapter's own name imports the chapter.
 - **It is the test library's own and not `.public`'s.** *Doug, 2026-09-26: "I don't know RunningHead but that doesn't belong in the .public library. It can be a component of something not user facing."* So its name is the test library's, and no reader of `.public` meets it.
 

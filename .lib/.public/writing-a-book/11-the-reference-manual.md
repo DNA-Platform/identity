@@ -24,10 +24,10 @@ Doug: *"One way something can become a subject is when a book is complex and nee
 
 ## How to write one
 
-1. **Name each tool's file for its chapter**: the chapter's extension-free name, a separator, an identifier and the type — `3-the-masthead-and-the-byline.code.tsx`. The dot is the convention; a `.tsx` needs an identifier; identifiers are unique per type — [Append](../figures/01-append.md).
+1. **Name each tool's file for its chapter**: the chapter's extension-free name, a separator, an identifier and the type — `3-the-masthead-and-the-byline.code.tsx`. The dot is the convention; a `.tsx` needs an identifier; identifiers are unique per type — [Append](../writing/19-append.md).
 2. **Make the manual's `.book.tsx` the door**: `export * from './3-the-masthead-and-the-byline.code.tsx'` for each, and the book class itself imported from its chapter's file.
 3. **Import from the door everywhere else**: `import { $TheLibrary, Framed } from '../manual/.book'`; the library's own `.book.tsx` may be one line, `export { $TheLibrary as default } from '../manual/.book'`.
-4. **Print the file in its chapter** with a Code figure, and say how you use it; **show a picture** with an Image and a mark with an Svg, each from its file beside the chapter or from what you write — [Code, Image and Svg](../figures/03-code-image-and-svg.md).
+4. **Insert the file in its chapter with the literal** — `<Code>![[ code.tsx ]]</Code>` prints the file beside the chapter; `![[ this ]]` prints the chapter's own source; `<Svg>![[ .svg ]]</Svg>` and `<Image>![[ .png ]]</Image>` show a mark and a picture — and say how you use the tool. Every file beside a chapter is inserted or imported by it, or the bind refuses it; since [Sprint 92](../projection/97-sprint-92--the-literal-form.md) the binder appends nothing, and an Append is yours to write when you want an appendix among the chapter's annotations — [Code, Image and Svg](../figures/03-code-image-and-svg.md).
 5. **List the manual in the library's catalogue** as any book, a row referring to its synopsis.
 
 ## What bit, so it does not bite the next librarian
