@@ -50,10 +50,13 @@ at a time for a batch, unless it's HUGE, we obviously aren't using the new tech.
 solve."* The rule is [chapter 3, rule 9](03-the-rules-every-pipeline-follows.md#9-performance-is-part-of-correctness)
 and the skill's [whole machine](../../../.claude/library/our-skillset/34-07-als-remote--the-whole-machine.md).
 
-**Resolution became affordable, and had to be adapted to.** The card made the 2x frame (72 x 128)
-practical, and the first 2x twins were wrong in a way only an MEI showed: every MEI a square, because
-the network's kernels, sized in pixels, saw half the visual angle. The twins were rebuilt with their
-extents scaled and their frequency limits left as published ([chapter 3, rule 6](03-the-rules-every-pipeline-follows.md#6-published-code-adapted-to-our-resolution-and-no-further)).
+**Resolution became affordable, was tried, and was set back.** The card made the 2x frame (72 x 128)
+practical, and the first 2x twins were wrong in a way only an MEI showed: every MEI was a square,
+because the network's kernels, sized in pixels, saw half the visual angle. Rebuilt with their extents
+scaled, the twins carried both datasets through the whole chain. On 2026-09-28 Doug set the pipelines
+back to the one frame the published method is for: *"We don't want pipelines to have settings. That is
+just going to create confusing."* The 2x work is archived whole, and the pipelines build the delivered
+36 x 64 ([chapter 3, rule 6](03-the-rules-every-pipeline-follows.md#6-published-code-on-the-published-frame-and-no-settings)).
 
 **The pipelines became a chain.** Matched cells build the twins, the twins build the MEIs and the
 metamers, and one command runs it: *"We don't compute twins for the MEI alone. It is part of the

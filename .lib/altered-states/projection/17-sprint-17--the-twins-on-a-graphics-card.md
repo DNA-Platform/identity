@@ -2,14 +2,13 @@
 
 - **author:** [Nancy](../../../.claude/library/..teamsmanship/..team/nancy/nancy-or-the-weight-of-evidence/.cover.md)
 - **coauthor:** [David](../../../.claude/library/..teamsmanship/..team/david/the-devops-journal/.cover.md), [Adam](../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- **status:** `active` - 2026-09-26/27. The twins settled: kernels scaled to the 2x frame, the
-  smoothing weight as published, the MEI test passed against a fixed 1x benchmark; 33977's four retrained
-  the same way. Every 33977 recording found registered - its matching valid. The chain from matched cells
-  to MEIs running for both datasets (33328 first, then 33977 once 33328 is confirmed), MEIs on the pairs
-  reliable in both conditions at the in-between blur, the filter figure drawn at the end. The metamer
-  surface built on the intersection twins and batched: per-stimulus, unconditioned, null, and the
-  spontaneous moments pre-pre and pre-post. The pipelines written down as a book,
-  [The Pipelines](../the-pipelines/.cover.md).
+- **status:** `active` - 2026-09-26/28. The twins went onto the card, and the chain from matched cells to
+  MEIs and metamers was enforced; both datasets ran through it at 2x (72x128). On 2026-09-28 the
+  pipelines were set back to one frame, the delivered 36x64, and nothing else. The 2x twins and all
+  they made are archived in `src/pipelines/.archive/2x-twins/` (tag `archive/2x-twins`). The 1x chain is
+  running on the box for both datasets, to be held to June's twins and MEIs. Every 33977 recording was
+  found registered, so its matching is valid. The metamer surface is built on the intersection twins,
+  batched. The pipelines are written down as a book, [The Pipelines](../the-pipelines/.cover.md).
 ---
 
 The sprint moved the work onto the lab's GPU machine and, in doing so, retired the CPU world. How the
@@ -68,6 +67,12 @@ the record of the machine. This chapter is what the science pipelines became, an
   artifacts as a way of validating the twins. That is a good result."*
 - **The tree Doug walks.** *"figures is a place where I ask for work, not a dumping ground for your
   mess."* The rule is [The Pipelines ch5](../the-pipelines/05-the-tree-doug-walks.md).
+- **One frame.** On 2026-09-28, after both datasets had run at 2x: *"Blegh this is a big exploration.
+  Find some way of archiving the code to create the 2x twins and lets move back to 1x twins, where you
+  refer to the code we have been using in spontaneous and most-exciting-image."* When offered a
+  resolution setting: *"We don't want pipelines to have settings. That is just going to create
+  confusing."* On the bar: *"double and triple check that we have a publication quality twin in place
+  that is making near identical MEI to the ones generated in most-exciting-image."*
 
 ## What the pipelines became
 
@@ -297,19 +302,64 @@ those too."* Re-evoke 0.79 on 33328 and 0.67 on 33977, below each twin's reading
 both datasets and not yet measured: after-DOI metamers carrying oriented stripes that neither their
 stimulus nor the before-DOI metamer has.
 
+## One frame: the 2x twins archived (2026-09-28)
+
+**What moved.** The code as it ran is the git tag `archive/2x-twins`. Everything it made moved by `git
+mv` into `src/pipelines/.archive/2x-twins/<pipeline>/<animal>/`, 4,605 files: seeds and manifests, the
+validation and the config search, every MEI and metamer, and their figures. The folder's
+[cover](../../../src/pipelines/.archive/2x-twins/.cover.md) gives the reason for 2x, the method, what
+it found, and how to make it again. The CPU 1x twins, June's imports and June's metamer targets stayed
+where they were.
+
+**What the pipelines are now.** One frame, the delivered 36x64:
+
+- there is no `scale` key;
+- the registry holds each export and its `-1x` assembly from the frame store;
+- `train` uses Sensorium's config verbatim and refuses any other frame;
+- the MEI blur is Walker's as published, and Walker's own code has no zoom;
+- `gamma_search.py` is back where `config_search.py` stood.
+
+The twins are `<animal>-<cond>-1x/B/<cells>` on the card, beside the CPU 1x twins under `@legacy`. The
+per-scan caches kept at 1x equal the box's current-export ones exactly. Thirteen tests had gone stale
+during the sprint (the legacy argument, per-cell-set verdicts, the metamer surface, checkpoints that
+record device and config). They were brought up to what the code promises, and 53 pass.
+
+**The bar, and how it is checked.** The 33328 pair is held to June's in two ways:
+
+- **Seed by seed** against the `@june` import (`library.reproduction`). June trained on the CPU, so the
+  bar is seed noise, not four decimals. The pipeline's own CPU 1x pair reached 0.314 and 0.268 against
+  June's 0.313 and 0.271.
+- **Cell by cell**, every MEI against June's MEI of the same cell (`mei.check --before`), now on the one
+  frame both were made on.
+
+`mei.check --published` sets Walker 2019's own code against the pipeline's MEI on the same twin.
+33977's CPU 1x twins fit no better than its 2x ones did (validation correlation 0.147 and 0.137), so
+the frame was not what held its fit down; its MEIs are looked at again on the published frame. Run
+`run-20260928-1350-twins-1x` covers both datasets, twins → MEIs → metamers, from `84250af2`.
+
 ## Still open
 
-1. **Doug's decisions**: where the filter stops being plotted (37, where the middle halves overlap
-   again, or the floor at about 34); Cobos's 1,000 steps against our convergence gate; the duplicate-soma
-   criterion for summaries (lateral distance); whether the metamer summary leads by how well-determined
-   the target is or by re-evoke.
-2. **33977's MEIs as a test of its twins** - smooth blobs, FEVE 0.18 and 0.31.
-3. **The stripes after DOI** - a measure of periodic, oriented energy, post against pre, before any claim.
+1. **Doug's decisions**:
+   - where the filter stops being plotted: at 37, where the middle halves overlap again, or at the floor
+     near 34;
+   - Cobos's 1,000 steps against our convergence gate;
+   - the duplicate-soma criterion for summaries (lateral distance);
+   - whether the metamer summary leads by how well-determined the target is, or by re-evoke.
+2. **The 1x twins held to June's** - once `run-20260928-1350-twins-1x` is home:
+   - 33328's fit seed by seed;
+   - every 33328 MEI against June's;
+   - Walker's code against the pipeline;
+   - 33977's MEIs, looked at again on the published frame.
+3. **The stripes after DOI** - seen on the 2x metamers. Look for them on the 1x ones, then measure
+   periodic, oriented energy, post against pre, before making any claim.
 4. **The spontaneous moments** - built, by name only; Doug: *"Not yet."*
-5. **Speed on the scaled twin**: 7.5 s an MEI or metamer at batch 16. Next: the five ensemble members fused
-   into one set of kernels, measured on a free card.
+5. **Speed on the card** - the 2x twin made an MEI or metamer in 7.5 s at batch 16, and the 1x rate
+   will be in the run's log. Next: the five ensemble members fused into one set of kernels, measured on
+   a free card.
 6. **Duplicate cells** - one soma across neighbouring planes (0.1-5.6 um laterally, 5-25 um in depth);
    Doug: *"we can make all MEI, and then exclude based on criteria like that for the summary statistic
    figures."*
-7. [The Altered Cortex](../the-altered-cortex/.cover.md)'s validator reports errors nearly all older
-   than this sprint, and one that tells a reader to relaunch a CPU watchdog, which must not be followed.
+7. **The 2x data** - the `-2x` scan folders and the 2x frame store are still in `library/data` on both
+   machines, and no pipeline reads them. Doug decides whether they stay.
+8. [The Altered Cortex](../the-altered-cortex/.cover.md)'s validator reports errors, nearly all older
+   than this sprint. One of them tells a reader to relaunch a CPU watchdog, which must not be followed.

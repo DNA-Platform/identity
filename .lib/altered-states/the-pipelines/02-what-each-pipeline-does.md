@@ -41,15 +41,21 @@ order is identity downstream: the spine's order is every twin's readout order.
 
 ## `digital_twin` - the twins
 
-[`src/pipelines/digital_twin/`](../../../src/pipelines/digital_twin/.cover.md). Phases `prepare`
-(scans assembled at the configured scale), `match`, `ceiling` (the lab's noise ceiling), `twin` (the
-dataset's pairs, trained packed onto the card by measured memory), `validate` (FEVE and the health
-panels), `compare` (pre against post on cells reliable in both), `figures` (explained variance). Two
-twins for a dataset without spontaneous recordings - the spine pair - and four with them, adding the
-**intersection** pair on the four-way cells. The published Sensorium configuration, its kernels scaled
-to the frame. When every phase has run, the **canonical build** (`build.json`) is written: the exact
-checkpoints with their hashes, the settings, the data's fingerprint - and every reader of a twin loads
-through it.
+[`src/pipelines/digital_twin/`](../../../src/pipelines/digital_twin/.cover.md). Its phases:
+
+- `prepare` - each scan's frames assembled from the stimulus set's, at the delivered 36x64;
+- `match`;
+- `ceiling` - the lab's noise ceiling;
+- `twin` - the dataset's pairs, trained packed onto the card by measured memory;
+- `validate` - FEVE and the health panels;
+- `compare` - pre against post on cells reliable in both;
+- `figures` - explained variance.
+
+A dataset without spontaneous recordings gets two twins, the spine pair. A dataset with them gets four,
+adding the **intersection** pair on the four-way cells. The twins use the published Sensorium
+configuration, verbatim, on the frame it was published for. When every phase has run, the pipeline
+writes the **canonical build** (`build.json`): the exact checkpoints with their hashes, the settings,
+and the data's fingerprint. Every reader of a twin loads through it.
 
 ## `mei` - most exciting images
 

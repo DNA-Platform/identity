@@ -47,19 +47,25 @@ phase - and not at all if it stopped, because a dependant started after a stoppe
 previous build as if it were this one's. Doug: *"We don't compute twins for the MEI alone. It is part of
 the pipeline of connected results."*
 
-## 6. Published code, adapted to our resolution and no further
+## 6. Published code, on the published frame, and no settings
 
 The method is the published one, run on the lab's own code: Sensorium's twin, Walker's MEI ops,
 Cobos's `gauss_loss`, the lab's `NeuroNormalizer`. A lab function is imported, never rewritten, even
 when a rewrite would agree. Doug: *"This is not Nancy/Claude's time-to-shine-innovating-on-a-published-
-technique-thus-making-it-harder-to-publish-this-result Day."* The one adaptation is to our 2x frame,
-and it follows one sentence: **what sets an extent scales with the frame; what limits frequency stays
-as published, because finer frequencies are what the finer frame is for.** The twin's kernel sizes
-scale (`input_kern 9 -> 17`, `hidden_kern 7 -> 13`); its smoothing penalty stays - *"We didn't scale it
-because we increased the resolution to give the system the ability to detect finer frequencies."* The
-MEI blur sits between as published and scaled to the frame (2.25 -> 0.015 px), Doug's choice with both
-ends in view. A change to the fast path must leave the lab's images unchanged to the precision it was
-measured at, and the measurement is kept.
+technique-thus-making-it-harder-to-publish-this-result Day."*
+
+The frame is the delivered 36 x 64, the one Sensorium's config and Walker's blur were published for.
+Both are used as published, and a frame of any other shape is refused, not adapted.
+
+A pipeline builds one thing. The pipelines once trained 2x twins, and resolution became something to
+choose. Doug, 2026-09-28: *"We don't want pipelines to have settings. That is just going to create
+confusing."* The 2x work is archived whole in
+[`src/pipelines/.archive/2x-twins/`](../../../src/pipelines/.archive/2x-twins/.cover.md): its rule for
+adapting (what sets an extent scales with the frame; what limits frequency stays) and everything it
+made. Its code is the tag `archive/2x-twins`.
+
+A change to the fast path must leave the lab's images unchanged to the precision it was measured at,
+and the measurement is kept.
 
 ## 7. Ordering never filters; a filter is a ruling
 
@@ -99,10 +105,14 @@ a pipeline and something is seriously wrong."*
 
 ## 11. An MEI is a test of the twin, and a check is not a figure
 
-MEIs unlike the published ones are evidence against the twin before the MEI code: the squares of the
-first 2x MEIs were the twin's reach, not the recipe. The twin's sensitivity at the grey image - its
-linear receptive field, no MEI involved - separates the two. Checks like this are welcome and are kept,
-in `verification/` or `validation/`, beside their numbers and off Doug's path ([chapter 5](05-the-tree-doug-walks.md)).
+MEIs unlike the published ones are evidence against the twin before the MEI code. The squares of the
+first 2x MEIs came from the twin's reach, not the recipe. On the published frame, two checks apply:
+
+- every 33328 MEI against June's MEI of the same cell (`mei.check --before`);
+- Walker's own code against the pipeline's MEI on the same twin (`--published`).
+
+Checks like these are welcome and are kept in `verification/` or `validation/`, beside their numbers
+and off Doug's path ([chapter 5](05-the-tree-doug-walks.md)).
 
 ---
 

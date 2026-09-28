@@ -42,8 +42,9 @@ Inside `artifacts/<animal>/`:
 |---|---|
 | `src/pipelines/.cover.md` | the four pipelines and the distinction between them and their checks |
 | `src/pipelines/.analyses/` | scratch studies that checked a pipeline, mirroring its shape; nothing imports from them |
+| `src/pipelines/.archive/` | what the pipelines made and no longer make: one folder each with a cover, its code in a git tag (the 2x twins). Nothing reads from it |
 | `src/analyses/<name>/` | Doug's analyses, reading the pipelines' artifacts |
-| `library/data/<animal>/` | **each dataset in its own folder**: the lab's exports as delivered, the scans prepared at each scale beside them, the spontaneous recordings, the registered coordinate files |
+| `library/data/<animal>/` | **each dataset in its own folder**: the lab's exports as delivered, each scan's frames assembled beside them (`-1x`), the spontaneous recordings, the registered coordinate files |
 | `src/pipelines/digital_twin/configs/<animal>.toml` | every decision about a dataset, each override with its justification; `defaults.toml` for the rest |
 | `runs/<branch>/` | a box run's record - its command, log, environment and exit - committed on its branch and harvested |
 | `library/.lib/` | this branch library: what the team knows, named; never inside the project's code |
