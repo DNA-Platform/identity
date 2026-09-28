@@ -196,7 +196,10 @@ is recorded, not explained.
 | `run-20260928-1456-mei-published` | Walker 2019's code against the pipeline's MEI, 33328's pre twin | exit 0; r 0.986-0.991 on the 8 best-fit cells; closed |
 | `run-20260928-1549-twins` | the twins retrained under their plain names, then MEIs and metamers | exit 0 in 34 minutes; closed |
 | `run-20260928-1634-mei-published` | Walker 2019's code against the pipeline, the retrained twin | exit 0; r 0.976-0.991, median 0.989; closed |
-| `run-20260928-1644-mei-profile` | where an MEI's time goes on the 1x twins, every way of making one | running |
+| `run-20260928-1644-mei-profile` | where an MEI's time goes on the 1x twins, every way of making one | exit 0; the pipeline 0.30 s an MEI, the lab's step 1.64 s; the CPU the bottleneck; closed |
+| `run-20260928-1655-moments-twin` | the twin the spontaneous moments used against the pipeline's, 33977 | exit 0; 658 MEIs median r 0.935; both filters a mid-frequency gain near 1.45, peaks near 12 and 17; closed |
+| `run-20260928-1700-mei-speed` | CUDA graphs, bfloat16, and batches to every cell | exit 1 in the profiler, after measuring: graphs 0.26, bfloat16 0.33, 64 cells 0.22 ms an MEI-step; closed |
+| `run-20260928-1724-meis-integrity` | every MEI remade the new way: graphs, 64 a batch, the recipe in the record | exit 0 in 6 minutes; the science unchanged to three decimals; closed |
 
 ## What went wrong, and why
 
@@ -405,6 +408,33 @@ The Build and The Lab Box now sit in `src/.lib`, catalogued by
 reorganized code now point at `.archive/`; both branches link clean. The code's covers are de-named
 project content (`author: Doug`, no link into the identity layer) - *"I am never an author in that
 library though I suppose you can use my name when quoting me or referencing me."*
+
+## Integrity for publication, and the MEI a fifth of a second (2026-09-28, evening)
+
+Doug: *"We may have improved things in spontaneous, and then we need to check the integrity of the MEI
+and the spectral and filter analysis on the new way of building."* The spontaneous work's controls,
+applied to the MEI pipeline:
+- **A permutation null** for the pre/post comparison. A cell's before-MEI against a different cell's
+  after-MEI scores 0.26 on 33328 and 0.36 on 33977, against 0.06 for independent noise, because every
+  MEI shares a seed, a schedule and a clip. Matched pairs clear it at 0.81 and 0.89.
+- **A 95% bootstrap band** on the filter, over cells.
+- **The lowest ring** of the drawn spectrum removed.
+- **The recipe's numbers** written into the MEI record.
+
+The contrast titration, the non-square binning and a spectral floor were measured and do not apply.
+
+Doug on the bar for speed: *"It doesn't need to be equivalent ... compare the MEI to see if there is
+subjective equivalence! Like, the scientific result is the same."* The twin's kernels are now replayed as
+a CUDA graph at 64 cells a batch: 0.22 s an MEI against 0.31, with the same images. Every MEI was remade
+that way in six minutes, and the science held to three decimals: 634 MEIs against June's at median r
+0.894, and the filter at 23.4. bfloat16 is slower at this frame. Past this, the card is the bottleneck,
+and 38% of it is the first layer's one-channel convolution.
+
+Doug asked whether most-exciting-image's twin is the moments' twin. It is not: that is June's 33328 pair,
+while the moments were inverted through 33977's CPU spine twins. Their MEIs against the pipeline's four-way
+pair, on the same 329 pairs: median r 0.935, and both filters show a mid-frequency gain after DOI near 1.45
+with no low-pass. The gain peaks near 12 cycles per frame width on the pipeline's twins and near 17 on the
+moments' twins.
 
 ## Still open
 
