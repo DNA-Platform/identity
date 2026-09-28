@@ -11,7 +11,7 @@
 
 A package should own its own runtime artifacts. In `src/analyses/most-exciting-image/`, the three working directories — `_cache/` (noise-ceiling arrays), `_checkpoints/` (the twin ensembles and gamma searches), `_logs/` (train/run logs) — currently sit at the *analysis root*, beside the `pipeline/` package that writes them. That split is the smell: the code lives in `pipeline/`, but its working state lives one level up, reached by `parents[2]` anchors. Move the three inside `pipeline/` and the package becomes relocatable and self-describing — everything it generates lives under it.
 
-The distinction that makes this clean: **runtime artifacts are not deliverables.** `_cache/_checkpoints/_logs` are regenerable, gitignored working state — they belong to the package. `results/` (the arrays and figures the deliverable reads) is the *output*, and it stays at the analysis root beside `deliverable.md`. So this sprint moves exactly three directories and touches `results/` not at all. The organizing instinct is the one in [The Build ch 8 — The organization](../the-build/08-the-organization.md): things live where they are owned.
+The distinction that makes this clean: **runtime artifacts are not deliverables.** `_cache/_checkpoints/_logs` are regenerable, gitignored working state — they belong to the package. `results/` (the arrays and figures the deliverable reads) is the *output*, and it stays at the analysis root beside `deliverable.md`. So this sprint moves exactly three directories and touches `results/` not at all. The organizing instinct is the one in [The Build ch 8 — The organization](../../../src/.lib/the-build/08-the-organization.md): things live where they are owned.
 
 ## Tasks
 

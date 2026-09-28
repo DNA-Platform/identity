@@ -14,10 +14,10 @@
 One letter — a leading dot — carries the whole rule, the same way the library's own [dot type system](../../../.claude/library/bookkeeping/.cover.md#the-dot-type-system) does:
 
 - **`library/`** (no dot) is the **shared code** — the installable, reusable core that analyses import.
-- **`.lib/`** (dotted) is the **prose catalogue of building it** — *this* book, The Build, lives here, alongside [Datasets](../datasets/.cover.md) and the [toolchain index](07-the-toolchain-index.md). The dot means "the writing *about* making the thing," exactly as a `.`-prefixed [subject catalogue](../../../.claude/library/bookkeeping/07-on-subjects.md) is the writing about its books.
+- **`.lib/`** (dotted) is the **prose catalogue of building it** — *this* book, The Build, lives here, alongside [Datasets](../../../library/.lib/datasets/.cover.md) and the [toolchain index](07-the-toolchain-index.md). The dot means "the writing *about* making the thing," exactly as a `.`-prefixed [subject catalogue](../../../.claude/library/bookkeeping/07-on-subjects.md) is the writing about its books.
 - **`library/`** (the main team library) is **knowledge** — findings, results, the science. This is where real analysis *results* live.
 
-Doug's rule, encoded: **construction stays in `.lib/`; knowledge graduates to `library/`.** [The Altered Cortex](../the-altered-cortex/.cover.md)'s *plan and build* are catalogued in `.lib/`; its eventual *results* — what the analysis actually finds about V1 under DOI — graduate up to the main `library/` as knowledge the whole team holds. The build is how; the finding is what; they live in different trees on purpose.
+Doug's rule, encoded: **construction stays in `.lib/`; knowledge graduates to `library/`.** [The Altered Cortex](../../../library/.lib/the-altered-cortex/.cover.md)'s *plan and build* are catalogued in `.lib/`; its eventual *results* — what the analysis actually finds about V1 under DOI — graduate up to the main `library/` as knowledge the whole team holds. The build is how; the finding is what; they live in different trees on purpose.
 
 ## The sketch tree
 
@@ -82,7 +82,7 @@ Two disciplines from Nancy's exchange make this hold:
 
 ## The experiments layer (`experiments/`)
 
-Beside the persistent, manifested analyses sits a lighter tier for **one-off probes**: `experiments/`. Each experiment is a **dated folder** — `YYYY-MM-DD-<name>`, so they sort chronologically — and is **self-contained**: its own script(s) plus its **own local gitignored `results/`**, so an experiment's outputs stay local to it and never leak into the shared tree. An experiment is *not* an analysis: it carries no `manifest.toml`, makes no promises, and is free to be thrown away. The discipline is the promotion rule again — when an experiment produces something worth keeping, it **graduates** into a catalogued library artifact: a [Datasets](../datasets/.cover.md) chapter, a core module, or a manifested analysis. The cell [matcher](../datasets/04-matching-cells.md) is the worked example — it began as a dated exploration and graduated into a verified core module with a regression test.
+Beside the persistent, manifested analyses sits a lighter tier for **one-off probes**: `experiments/`. Each experiment is a **dated folder** — `YYYY-MM-DD-<name>`, so they sort chronologically — and is **self-contained**: its own script(s) plus its **own local gitignored `results/`**, so an experiment's outputs stay local to it and never leak into the shared tree. An experiment is *not* an analysis: it carries no `manifest.toml`, makes no promises, and is free to be thrown away. The discipline is the promotion rule again — when an experiment produces something worth keeping, it **graduates** into a catalogued library artifact: a [Datasets](../../../library/.lib/datasets/.cover.md) chapter, a core module, or a manifested analysis. The cell [matcher](../../../library/.lib/datasets/04-matching-cells.md) is the worked example — it began as a dated exploration and graduated into a verified core module with a regression test.
 
 ## Testing — test-driven, and central
 

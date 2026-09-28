@@ -14,11 +14,11 @@ Not every dependency is equally risky, so the install is split in two and the ce
 - **The data tier** — `numpy`, `scipy`, `pandas`, `matplotlib`, `Pillow`, `ipykernel`. Universal wheels, no drama. It installed clean and imported on the first try.
 - **The modelling tier** — `torch` plus the git-only research code (the Sensorium triple). This is the version-sensitive part, and it is the whole subject of [the next chapter](03-the-stack-and-why-it-fought.md).
 
-The data tier is all that loading and exploring the recordings requires — reading the [FileTreeDataset](../datasets/02-the-static-scan-format.md) is pure numpy. So verifying it first unblocked real data work immediately, while the modelling tier was still being wrestled into place.
+The data tier is all that loading and exploring the recordings requires — reading the [FileTreeDataset](../../../library/.lib/datasets/02-the-static-scan-format.md) is pure numpy. So verifying it first unblocked real data work immediately, while the modelling tier was still being wrestled into place.
 
 ## The principle
 
-This is a grounding factorization: separate what you know from what you don't, install and *verify* the certain part first, and stand on it while you fight the uncertain part. The reward is that exploration of the [data](../datasets/.cover.md) never waits on the fragile stack — and the failures, when they come, are isolated to the half of the environment that was always going to be hard.
+This is a grounding factorization: separate what you know from what you don't, install and *verify* the certain part first, and stand on it while you fight the uncertain part. The reward is that exploration of the [data](../../../library/.lib/datasets/.cover.md) never waits on the fragile stack — and the failures, when they come, are isolated to the half of the environment that was always going to be hard.
 
 ---
 

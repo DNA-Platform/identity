@@ -19,7 +19,7 @@ System Python on the machine was **3.13**. torch and the Sensorium triple suppor
 
 ## The principle
 
-Pin the Python version before anything else, and pick the newest version the **core framework** supports — never the newest that exists. Get that interpreter side-by-side (`uv`, `pyenv`), and leave the system Python alone. Every later choice in this book — the lockfile, the stack, the kernel that runs the notebooks — assumes this 3.11 venv as its floor. The science that the environment serves ([The Altered Cortex](../the-altered-cortex/.cover.md)) is indifferent to the interpreter; the modelling stack that produces it is not, which is exactly why the interpreter is settled first.
+Pin the Python version before anything else, and pick the newest version the **core framework** supports — never the newest that exists. Get that interpreter side-by-side (`uv`, `pyenv`), and leave the system Python alone. Every later choice in this book — the lockfile, the stack, the kernel that runs the notebooks — assumes this 3.11 venv as its floor. The science that the environment serves ([The Altered Cortex](../../../library/.lib/the-altered-cortex/.cover.md)) is indifferent to the interpreter; the modelling stack that produces it is not, which is exactly why the interpreter is settled first.
 
 ---
 

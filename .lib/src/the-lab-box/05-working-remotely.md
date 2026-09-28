@@ -57,7 +57,7 @@ what anyone can rerun, and the record says so. The chain from matched cells to M
 
 The skill holds the protocols, each with its ruling, current. This book holds the machine and what was
 learned getting onto it. The sprints hold what happened, in time order -
-[Sprint 17](../projection/17-sprint-17--the-twins-on-a-graphics-card.md) for the move itself.
+[Sprint 17](../../../library/.lib/projection/17-sprint-17--the-twins-on-a-graphics-card.md) for the move itself.
 
 ---
 

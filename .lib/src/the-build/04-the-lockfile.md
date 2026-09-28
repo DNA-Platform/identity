@@ -86,7 +86,7 @@ even when the lockfile looks complete, because it is the only record that lists 
 *outside* the lockfile.
 
 *Found while documenting the twin pipeline for the plenoptic replication
-([Sprint 13](../projection/13-sprint-13--reading-the-machine-we-built.md)), where the missing
+([Sprint 13](../../../library/.lib/projection/13-sprint-13--reading-the-machine-we-built.md)), where the missing
 commits had been filed as a P1 risk — "the twins can be loaded but not rebuilt" — on the strength of
 a version string.*
 

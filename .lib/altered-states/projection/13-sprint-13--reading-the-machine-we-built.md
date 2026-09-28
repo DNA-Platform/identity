@@ -69,8 +69,8 @@ Nine items, none of which anyone had listed. The full record is
   and one nobody knew was installed. All resolve upstream, and the install timestamps predate the
   training timestamps by five to seven days with no reinstall between, so those are demonstrably
   the commits that trained the delivered twins.
-  **Compounded into [The Build ch4, The lockfile](../the-build/04-the-lockfile.md#what-the-lockfile-cannot-express-and-where-the-pin-actually-lives)**,
-  which also corrected a stale instruction in [ch7](../the-build/07-the-toolchain-index.md) telling
+  **Compounded into [The Build ch4, The lockfile](../../../src/.lib/the-build/04-the-lockfile.md#what-the-lockfile-cannot-express-and-where-the-pin-actually-lives)**,
+  which also corrected a stale instruction in [ch7](../../../src/.lib/the-build/07-the-toolchain-index.md) telling
   the reader to add `mei` to `requirements.in` — the one thing that would break the environment.
 - **The gamma verify-search was run, and it vindicates the inherited hyperparameters** — the
   published point is 0.2% off the grid best and ranks 2nd of 10, across a grid spanning 0.002 in

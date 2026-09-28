@@ -219,7 +219,17 @@ The altered-states branch at `library/.lib/` is the project-root library branch.
 | `library/.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Sprint planning within the branch. The architect plans sprints. |
 | `library/.lib/the-altered-cortex/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The experiment made falsifiable — dataset, the seven hypotheses, the analysis plan. Nancy owns the science substance; Libby tends the structure. |
 | `library/.lib/datasets/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The dataset characterized from the files — what we analyse. The analyst documents the data; the librarian tends it. |
-| `library/.lib/the-build/**` | [Adam](..team/adam/adam-between-the-wires/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The compute environment, toolchain, and code organization — how the analysis is built and run. The automation engineer documents the build; the librarian tends it. |
+
+The Computation branch at `src/.lib/` is the branch beside the altered-states code, spanning all of `src/` (Doug, 2026-09-28: *"the one in src can span all code"*). The code's own `.cover.md` files are project content and name no teammate; the team's knowledge of the code lives here.
+
+| Path | Owner | Why |
+|------|-------|-----|
+| `src/.lib/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The librarian tends all branch content; she ensures the Computation branch meets library standards. |
+| `src/.lib/..computation/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The cataloguing book — the branch's identity. |
+| `src/.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Sprint planning within the branch. The architect plans sprints. |
+| `src/.lib/the-pipelines/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) + [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | How the work is computed: the four pipelines, their rules and organization. The architect holds the shape; the neuroscientist writes the science as code; the librarian tends it. |
+| `src/.lib/the-build/**` | [Adam](..team/adam/adam-between-the-wires/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The compute environment, toolchain, and code organization — how the analysis is built and run. The automation engineer documents the build; the librarian tends it. |
+| `src/.lib/the-lab-box/**` | [David](..team/david/the-devops-journal/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The lab's GPU machine and how the team works on it. The DevOps engineer is the domain source; the librarian tends it. |
 
 The Publicity branch at `library/.public/.lib/` is the branch for `.public` — the public view onto the repository and the home of `@dna-platform/lib`, the canonical code library for creating libraries. Libby owns all branch content (`**/.lib/**`); the explicit entries name the per-book owners within it.
 

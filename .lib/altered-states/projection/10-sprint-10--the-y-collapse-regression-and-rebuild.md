@@ -40,7 +40,7 @@ post/A) is collapsed; **arm B (pre/B, post/B) is valid.** This must be **verifie
    gate so a collapse can never ship silently again.)
 2. **[recover] The canonical shifter config.** Source the Franke-2022 shifter regularization
    (`gamma_shifter` + companions) — Sprint-7's dropped "CD (async)" step — and **catalogue it in
-   [the twin recipe, ch12](../the-build/12-how-we-make-a-publication-grade-twin.md)** where the next person reads
+   [the twin recipe, ch12](../../../src/.lib/the-build/12-how-we-make-a-publication-grade-twin.md)** where the next person reads
    it, not in a sprint note that scrolls away.
 3. **[fix] Code.** Set the shifter config in `build_model` (`model/__init__.py`) so arm A trains a *regularized*
    shifter; assert non-collapse in the verify gate.

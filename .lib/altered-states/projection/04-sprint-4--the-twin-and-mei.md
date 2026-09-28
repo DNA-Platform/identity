@@ -12,13 +12,13 @@ that bounds the whole sprint: *a twin that fits is not a mechanism.* This proves
 exists; it makes no claim about DOI, and the writeup says so.
 
 **Grounding** (cross-references, not restatements): the toolchain is
-[The Build ch 7 — the toolchain index](../the-build/07-the-toolchain-index.md) — **neuralpredictors**
+[The Build ch 7 — the toolchain index](../../../src/.lib/the-build/07-the-toolchain-index.md) — **neuralpredictors**
 (cores/readouts, `FileTreeDataset`), **sensorium** (the 2022 static-scan model builder + loaders),
 **mei** (gradient-ascent synthesis), **torch** (CPU); the env resolution is
-[`src/library/model/NOTES.md`](../../../src/library/model/NOTES.md) — datajoint 0.14.9, `mei`
+[`src/library/model/NOTES.md`](../../../.archive/library/model/NOTES.md) — datajoint 0.14.9, `mei`
 installed `--no-deps`, and **mei's datajoint pipeline is never invoked** (MEI is gradient ascent on
 the trained model and needs no datajoint). The science is [Step 1](../the-altered-cortex/03-the-analysis-plan.md);
-the data is [Datasets](../datasets/.cover.md); the model port is [`src/library/model/base.py`](../../../src/library/model/base.py); the concrete baseline twin + MEI hyperparameters are [The Build ch 10 — the digital-twin recipe](../the-build/10-the-digital-twin-recipe.md).
+the data is [Datasets](../datasets/.cover.md); the model port is [`src/library/model/base.py`](../../../.archive/library/model/base.py); the concrete baseline twin + MEI hyperparameters are [The Build ch 10 — the digital-twin recipe](../../../src/.lib/the-build/10-the-digital-twin-recipe.md).
 
 ## Goal
 
@@ -54,8 +54,8 @@ dated-experiment + `library/` conventions, and what gets documented in which boo
 ### Phase 0 — Scaffold & imports
 **Owners:** Adam (env), Arthur (structure).
 
-- [ ] Create `src/experiments/2026-06-23-twin-mei/` (the dated-experiment convention, [The Build ch 8](../the-build/08-the-organization.md)), with its own `results/`.
-- [ ] Smoke-confirm the stack imports together: `torch`, `neuralpredictors`, `sensorium`, `mei` (per [model NOTES](../../../src/library/model/NOTES.md)).
+- [ ] Create `src/experiments/2026-06-23-twin-mei/` (the dated-experiment convention, [The Build ch 8](../../../src/.lib/the-build/08-the-organization.md)), with its own `results/`.
+- [ ] Smoke-confirm the stack imports together: `torch`, `neuralpredictors`, `sensorium`, `mei` (per [model NOTES](../../../.archive/library/model/NOTES.md)).
 - [ ] Build dataloaders for **both scans** (pre-DOI and post-DOI) via the sensorium static loader / `FileTreeDataset`, reading the paths from `library/io/registry`. Confirm each yields (image → response) batches with the train/validation/test tiers.
 
 ### Phase 1 — Train & validate the twins (pre and post)
@@ -91,12 +91,12 @@ aligned to the pre (Phase 1), **side by side pre vs post** so the comparison rea
 
 - [ ] Assemble Figures A and B into a short proof writeup in the experiment (and, if it earns it, a `library/reports/2026-06-23-twin-mei/` entry).
 - [ ] Queenie: a smoke test that the twin trains a step and predicts the right shape, and that an MEI synthesizes — marked so the dial can run it alone.
-- [ ] Catalogue (Libby, one-way `.lib`→code): the twin-training + checkpoint + mei-usage contracts into [The Build](../the-build/.cover.md); mark **Step 1 realized** in [The Altered Cortex](../the-altered-cortex/03-the-analysis-plan.md) with the realistic validation number; this sprint's retro here.
+- [ ] Catalogue (Libby, one-way `.lib`→code): the twin-training + checkpoint + mei-usage contracts into [The Build](../../../src/.lib/the-build/.cover.md); mark **Step 1 realized** in [The Altered Cortex](../the-altered-cortex/03-the-analysis-plan.md) with the realistic validation number; this sprint's retro here.
 
 ## Risks & boundaries
 
 - **CPU time vs quality — quality wins.** The pictures have to look right, so the rule is *train well, scope small*: if the full set is too slow, cut to a well-chosen subset and train it properly. Never undertrain to where the MEIs are static — a clean MEI grid on 200 good neurons beats a noisy one on 1,654.
-- **The mei / datajoint landmine.** Use only gradient-ascent synthesis; never invoke mei's datajoint-backed pipeline ([model NOTES](../../../src/library/model/NOTES.md)).
+- **The mei / datajoint landmine.** Use only gradient-ascent synthesis; never invoke mei's datajoint-backed pipeline ([model NOTES](../../../.archive/library/model/NOTES.md)).
 - **Session-bound.** The twin is fit on pre-DOI; applying it across to post-DOI (H4) and the residual/inversion tests (H5–H6) are **explicitly out of scope** — later sprints.
 - **Honesty.** Pipeline proof, not a DOI result. The writeup states the validation number plainly and claims nothing about the drug.
 

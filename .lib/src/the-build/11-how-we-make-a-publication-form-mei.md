@@ -13,7 +13,7 @@ How we synthesize and display a most-exciting image so an author of the source p
 
 | Aspect | What we did | Published target (learned) | → next step |
 |---|---|---|---|
-| **Synthesis smoothing** | constant Gaussian blur of the *gradient*, σ = 1.0 ([`GaussianBlurPrecondition`](../../../src/library/model/mei_ops.py)) | annealed blur of the *image*, σ 1.5 → 0.01 over 1000 iters (truncate 4, reflect pad), as a **post-update**; *plus* Fourier-smoothed gradient (`FourierSmoothing(0.04)`) and magnitude-normalized (`DivideByMeanOfAbsolute`), annealed step (`MultiplyBy` 1/850 → 1/20400). Heavy-early, decay-to-zero: low-freq forms first, detail only late, so noise never amplifies | re-synthesize with the annealed **image** blur + Fourier-smoothed gradient (CPU fallback: constant gradient blur σ = 1 is acceptable but noisier) |
+| **Synthesis smoothing** | constant Gaussian blur of the *gradient*, σ = 1.0 ([`GaussianBlurPrecondition`](../../../.archive/library/model/mei_ops.py)) | annealed blur of the *image*, σ 1.5 → 0.01 over 1000 iters (truncate 4, reflect pad), as a **post-update**; *plus* Fourier-smoothed gradient (`FourierSmoothing(0.04)`) and magnitude-normalized (`DivideByMeanOfAbsolute`), annealed step (`MultiplyBy` 1/850 → 1/20400). Heavy-early, decay-to-zero: low-freq forms first, detail only late, so noise never amplifies | re-synthesize with the annealed **image** blur + Fourier-smoothed gradient (CPU fallback: constant gradient blur σ = 1 is acceptable but noisier) |
 | **Norm budget** | `PNormConstraint` (ceiling only, p = 2, norm = 25) | `PNormConstraintAndClip` — norm budget **+** a pixel clip to the normalized data extremes (lo = −img_mean/img_std, hi = (255−img_mean)/img_std); set norm empirically so the clip almost never triggers (flat saturated patches ⇒ norm too high) | switch to `PNormConstraintAndClip` / `ChangeNormAndClip`, tune norm |
 | **Optimizer / init / iters** | SGD lr = 0.1, RandomNormal, 1000 iters | SGD (demo lr 1; Walker step 0.1, effective step set by the annealed `MultiplyBy`), RandomNormal = `torch.randn` mean 0 / std 1 **unscaled**, 1000 iters fixed, no early stop | already essentially right — minor |
 | **Regularizers** | none | none (**confirmed**): `TV` (w = 1) and `LpNorm` (p = 6) exist in `mei/legacy/ops.py` but are **not** in the V1 recipe; smoothness is all precondition + post-update + clip | no change |
@@ -27,14 +27,14 @@ The merge of these two rules is exactly the error this entry records:
 - **MEI:** fixed-range, **shared-panel** grayscale, no per-image rescale.
 - **Reconstruction:** **per-image** min/max + bicubic upsample 36 × 64 → 144 × 256.
 
-Nancy's first reading transferred the reconstruction rule (per-image) onto MEIs; the repo configs corrected it to fixed-range shared-panel. The reconstruction rule itself ([The Literature — digital-twins](../the-literature/01-digital-twins-tolias-2022.md)) is unchanged.
+Nancy's first reading transferred the reconstruction rule (per-image) onto MEIs; the repo configs corrected it to fixed-range shared-panel. The reconstruction rule itself ([The Literature — digital-twins](../../../library/.lib/the-literature/01-digital-twins-tolias-2022.md)) is unchanged.
 
 ## Next (falls out of the table)
 
 1. Re-synthesize MEIs with the annealed **image** blur (1.5 → 0.01) + Fourier-smoothed gradient + `ChangeNormAndClip` (or the pragmatic `PNormConstraintAndClip`), via the `mei` `method_config`.
 2. Display the MEI grid + matched-cell MEI with **fixed-range shared-panel** grayscale (no per-image rescale).
 3. Regenerate figures **B** and **C**, re-display, and compare panel-to-panel against Walker / Sensorium.
-4. Reframe the [report](../../reports/2026-06-23-twin-mei/the-twin-and-mei.md) captions: MEIs complex by design; "clean" = low-noise; the Gabor is the LN-RF control.
+4. Reframe the [report](../../../library/reports/2026-06-23-twin-mei/the-twin-and-mei.md) captions: MEIs complex by design; "clean" = low-noise; the Gabor is the LN-RF control.
 5. Leave the **reconstruction** display as-is (per-image + bicubic).
 
 ## Final-audit update — the constraint is ours, and the fixed states
@@ -52,4 +52,4 @@ A near-miss worth keeping. The walker ops *looked* gone: `nnvision/mei/regulariz
 
 **The standing principle (Doug, in force for the whole analysis):** *we have no autonomy to reimplement anything that has been published.* If the code used in the canonical or most-recent publication exists, **we use it, period**, and we work around whatever packaging constraints it carries — a pinned commit, a bundled copy, a separate env if truly necessary. When something "can't be installed," the answer is to **find the real code** (the right commit, the bundled copy, the GitHub source), never to write our own version of a published method. We are programmers here only insofar as we use the right analysis code.
 
-This is the work the [figure-display print](../projection/print--faithful-figure-display.md) tracks; the working recipe it scales from is [ch 10](10-the-digital-twin-recipe.md). Recorded as evolution — accreted, not overwritten — because the *path* (what we did → what we learned → what's left) is the value.
+This is the work the [figure-display print](../../../library/.lib/projection/print--faithful-figure-display.md) tracks; the working recipe it scales from is [ch 10](10-the-digital-twin-recipe.md). Recorded as evolution — accreted, not overwritten — because the *path* (what we did → what we learned → what's left) is the value.

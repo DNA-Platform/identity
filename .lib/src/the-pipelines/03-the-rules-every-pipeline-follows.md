@@ -60,7 +60,7 @@ Both are used as published, and a frame of any other shape is refused, not adapt
 A pipeline builds one thing. The pipelines once trained 2x twins, and resolution became something to
 choose. Doug, 2026-09-28: *"We don't want pipelines to have settings. That is just going to create
 confusing."* The 2x work is archived whole in
-[`src/pipelines/.archive/2x-twins/`](../../../src/pipelines/.archive/2x-twins/.cover.md): its rule for
+[`src/pipelines/.archive/2x-twins/`](../../pipelines/.archive/2x-twins/.cover.md): its rule for
 adapting (what sets an extent scales with the frame; what limits frequency stays) and everything it
 made. Its code is the tag `archive/2x-twins`.
 

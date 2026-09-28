@@ -32,11 +32,11 @@ Three cautions I hold beyond Desktop's answer, and will carry into every later e
 
 - Geometry layer: lead with **dPCA** (principled) or **CEBRA** (turnkey)?
 - First milestone: **digital-twin fit**, or a **model-free** pass at pre/post tuning and population structure?
-- These two are now also the structural question of **which `analyses/` module to build first** — the codebase organization is resolved, so the next decision is what to point it at. (Adam is separately cataloguing the package/tool index into [The Build](../../../../../../../altered-states/library/.lib/the-build/.cover.md); complementary to this thread.)
+- These two are now also the structural question of **which `analyses/` module to build first** — the codebase organization is resolved, so the next decision is what to point it at. (Adam is separately cataloguing the package/tool index into [The Build](../../../../../../../altered-states/src/.lib/the-build/.cover.md); complementary to this thread.)
 
 ## Where this connects in the project
 
-- [The Build](../../../../../../../altered-states/library/.lib/the-build/.cover.md) — the environment this toolchain populates (`requirements.in`).
+- [The Build](../../../../../../../altered-states/src/.lib/the-build/.cover.md) — the environment this toolchain populates (`requirements.in`).
 - [Datasets](../../../../../../../altered-states/library/.lib/datasets/.cover.md) — the on-disk data the tools load, including the arousal/locomotion confound the cautions guard against.
 - [The Altered Cortex](../../../../../../../altered-states/library/.lib/the-altered-cortex/.cover.md) — the science and the analysis plan the tools serve.
 
@@ -44,6 +44,6 @@ Three cautions I hold beyond Desktop's answer, and will carry into every later e
 [thinking]: ../thinking/.cover.md
 [exchange-1]: ../thinking/01-the-toolchain-and-what-to-leave-out.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
-[the-build]: ../../../../../../../altered-states/library/.lib/the-build/.cover.md
+[the-build]: ../../../../../../../altered-states/src/.lib/the-build/.cover.md
 [datasets]: ../../../../../../../altered-states/library/.lib/datasets/.cover.md
 [the-altered-cortex]: ../../../../../../../altered-states/library/.lib/the-altered-cortex/.cover.md

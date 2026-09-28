@@ -17,7 +17,7 @@ The test runner is a dial, configured in [`pyproject.toml`](../../../pyproject.t
 - `pytest -m core` — just the shared library, the stable spine
 - `pytest -m <analysis>` (e.g. `pytest -m v1_doi`) — one analysis
 
-Easy to run all, easy to run a few. Tests live under [`src/tests/`](../../../src/tests/) for the core and beside each analysis (`analyses/<owner>/<name>/tests/`); both are on pytest's `testpaths`.
+Easy to run all, easy to run a few. Tests live under [`src/tests/`](../../tests/) for the core and beside each analysis (`analyses/<owner>/<name>/tests/`); both are on pytest's `testpaths`.
 
 **The modes.** `pytest -m core` is the **always-on gate** — fast, run on every change; the spine must stay green. The full `pytest` run — including the **expensive dataset and experiment tests** — is run **sometimes** (before a merge, after a core change), not on every edit. **Experiment tests live beside their experiment** (the dated [`experiments/`](08-the-organization.md#the-experiments-layer-experiments) folders), carry their own marker, and **never gate the core** — a throwaway probe must never be able to redden the shared spine.
 
@@ -40,14 +40,14 @@ Easy to run all, easy to run a few. Tests live under [`src/tests/`](../../../src
 
 ## The per-task loop
 
-Every increment follows one rhythm (from [Sprint 3](../projection/03-sprint-3--model-free-first.md)): **think it through → do it → test it → catalogue it → review.** Nothing is "done" until it is tested and catalogued. Doing is small, tested, catalogued increments — one contract proven before the next, never a giant branch. This is [Build, then verify](06-build-then-verify.md) carried from "the environment installs green" to "the science reproduces green."
+Every increment follows one rhythm (from [Sprint 3](../../../library/.lib/projection/03-sprint-3--model-free-first.md)): **think it through → do it → test it → catalogue it → review.** Nothing is "done" until it is tested and catalogued. Doing is small, tested, catalogued increments — one contract proven before the next, never a giant branch. This is [Build, then verify](06-build-then-verify.md) carried from "the environment installs green" to "the science reproduces green."
 
 ## Where the policy lives
 
-- The dial and markers — [`pyproject.toml`](../../../pyproject.toml); the core smoke test — [`src/tests/`](../../../src/tests/).
+- The dial and markers — [`pyproject.toml`](../../../pyproject.toml); the core smoke test — [`src/tests/`](../../tests/).
 - The structure these protocols govern — [The organization](08-the-organization.md) (the `library/` vs `analyses/` design) and the [toolchain index](07-the-toolchain-index.md) (what is installed).
 - The reasoning behind the contracts — Nancy's think records: [the toolchain and what to leave out](../../../.claude/library/..teamsmanship/..team/nancy/thinking/01-the-toolchain-and-what-to-leave-out.md) and [a codebase that outlives the project](../../../.claude/library/..teamsmanship/..team/nancy/thinking/02-a-codebase-that-outlives-the-project.md).
-- The sprint that executes them — [Sprint 3 — Model-Free First](../projection/03-sprint-3--model-free-first.md).
+- The sprint that executes them — [Sprint 3 — Model-Free First](../../../library/.lib/projection/03-sprint-3--model-free-first.md).
 
 ---
 

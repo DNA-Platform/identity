@@ -23,7 +23,7 @@ The modelling tier is `torch` + `torchvision` and the **Sensorium triple** — `
 
 ## The gates
 
-Because the failures hide past the install, two gates verify the stack: first an **import smoke-test of every top-level package** (the eight imports all green), then a **tiny real operation** — load a model, one forward pass, load one [data sample](../datasets/.cover.md) — because import-green is still not runs-green. What those gates protect is captured and made repeatable by the [lockfile](04-the-lockfile.md).
+Because the failures hide past the install, two gates verify the stack: first an **import smoke-test of every top-level package** (the eight imports all green), then a **tiny real operation** — load a model, one forward pass, load one [data sample](../../../library/.lib/datasets/.cover.md) — because import-green is still not runs-green. What those gates protect is captured and made repeatable by the [lockfile](04-the-lockfile.md).
 
 ---
 

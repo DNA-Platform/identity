@@ -67,8 +67,8 @@ Read the provided materials and the domain conventions *before* the first comput
 
 Make the docs fall out of the code so they can't drift:
 
-- **The docstring is the documentation.** Each figure is a function whose docstring carries Data / Equation / Citation / Why / Reading; a generator turns those docstrings into per-figure `.md`. See [`exploration.py`](../../../src/experiments/2026-06-23-exploration/exploration.py).
+- **The docstring is the documentation.** Each figure is a function whose docstring carries Data / Equation / Citation / Why / Reading; a generator turns those docstrings into per-figure `.md`. See [`exploration.py`](../../../.archive/experiments/2026-06-23-exploration/exploration.py).
 - **The report is woven from the docs**, not hand-kept in parallel — so when the analysis changes, the source of truth is one place.
 - **A create-if-missing compute cache** (gitignored) makes iterating on figures cheap; the slow load runs once.
 
-A report is the [per-task loop](../the-build/09-the-coding-protocols.md)'s *catalogue + review* made legible to an outsider. Write it last, once the figures are right — and edit **this** chapter whenever a report teaches us a better way to make one.
+A report is the [per-task loop](../../../src/.lib/the-build/09-the-coding-protocols.md)'s *catalogue + review* made legible to an outsider. Write it last, once the figures are right — and edit **this** chapter whenever a report teaches us a better way to make one.

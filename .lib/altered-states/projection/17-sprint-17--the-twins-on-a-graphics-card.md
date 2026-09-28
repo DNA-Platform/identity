@@ -8,12 +8,12 @@
   they made are archived in `src/pipelines/.archive/2x-twins/` (tag `archive/2x-twins`). The 1x chain is
   running on the box for both datasets, to be held to June's twins and MEIs. Every 33977 recording was
   found registered, so its matching is valid. The metamer surface is built on the intersection twins,
-  batched. The pipelines are written down as a book, [The Pipelines](../the-pipelines/.cover.md).
+  batched. The pipelines are written down as a book, [The Pipelines](../../../src/.lib/the-pipelines/.cover.md).
 ---
 
 The sprint moved the work onto the lab's GPU machine and, in doing so, retired the CPU world. How the
 box is reached and driven is not recorded here: it is the [`/als-remote`](../../../.claude/library/our-skillset/34-als-remote.md)
-skill, a catalogue of protocols each carrying its ruling, and [The Lab Box](../the-lab-box/.cover.md),
+skill, a catalogue of protocols each carrying its ruling, and [The Lab Box](../../../src/.lib/the-lab-box/.cover.md),
 the record of the machine. This chapter is what the science pipelines became, and why.
 
 ## The rulings, verbatim
@@ -66,7 +66,7 @@ the record of the machine. This chapter is what the science pipelines became, an
   we can't have said to have simply scaled something up."* - *"Now you know that you can use MEI
   artifacts as a way of validating the twins. That is a good result."*
 - **The tree Doug walks.** *"figures is a place where I ask for work, not a dumping ground for your
-  mess."* The rule is [The Pipelines ch5](../the-pipelines/05-the-tree-doug-walks.md).
+  mess."* The rule is [The Pipelines ch5](../../../src/.lib/the-pipelines/05-the-tree-doug-walks.md).
 - **One frame.** On 2026-09-28, after both datasets had run at 2x: *"Blegh this is a big exploration.
   Find some way of archiving the code to create the 2x twins and lets move back to 1x twins, where you
   refer to the code we have been using in spontaneous and most-exciting-image."* When offered a
@@ -242,7 +242,7 @@ measurement - 0.99 s - at 12.7x, not 50x.
   compiled twin and a narrowed readout - each measured equal to within 1.8e-3, and each ours, which is
   what Doug rules out. It is off the path to published MEIs.
 - **Figures and bytecode on Doug's path**, and names he could not scan: fixed, and written down as the
-  rule of [The Pipelines ch5](../the-pipelines/05-the-tree-doug-walks.md).
+  rule of [The Pipelines ch5](../../../src/.lib/the-pipelines/05-the-tree-doug-walks.md).
 
 ## The twins settled, the chain, and the metamer surface (2026-09-27, afternoon)
 

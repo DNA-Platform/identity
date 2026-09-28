@@ -30,7 +30,7 @@ written for the occasion.
 
 ## `matched` - which neuron is which
 
-[`src/pipelines/matched/`](../../../src/pipelines/matched/.cover.md). The same cell across every
+[`src/pipelines/matched/`](../../pipelines/matched/.cover.md). The same cell across every
 recording of a dataset: Erin's matcher (mutual nearest neighbours) at her 10 µm on registered stack
 coordinates, every link between two recordings given a status - `valid` for two registered frames,
 `provisional` for the same session in mixed frames, `unregistered` otherwise - so no figure can imply
@@ -41,7 +41,7 @@ order is identity downstream: the spine's order is every twin's readout order.
 
 ## `digital_twin` - the twins
 
-[`src/pipelines/digital_twin/`](../../../src/pipelines/digital_twin/.cover.md). Its phases:
+[`src/pipelines/digital_twin/`](../../pipelines/digital_twin/.cover.md). Its phases:
 
 - `prepare` - each scan's frames assembled from the stimulus set's, at the delivered 36x64;
 - `match`;
@@ -62,7 +62,7 @@ and the data's fingerprint. Every reader of a twin loads through it.
 
 ## `mei` - most exciting images
 
-[`src/pipelines/mei/`](../../../src/pipelines/mei/.cover.md). Walker 2019's recipe on the lab's ops,
+[`src/pipelines/mei/`](../../pipelines/mei/.cover.md). Walker 2019's recipe on the lab's ops,
 for every matched pair reliable in both conditions (the lab's FEV >= 0.15), from the dataset's pair of
 twins; best-understood cells first. Phases `index`, `mei` (sixteen
 cells a batch on the fast path), `quality`, `organize`, `figures` - which are the two Doug asked for:
@@ -73,7 +73,7 @@ against the fixed 1x benchmark at three MEI blurs, the filter against June's - w
 
 ## `metamer` - the image that evokes a measured response
 
-[`src/pipelines/metamer/`](../../../src/pipelines/metamer/.cover.md). Cobos 2022's inversion of the twin
+[`src/pipelines/metamer/`](../../pipelines/metamer/.cover.md). Cobos 2022's inversion of the twin
 against a response the animal actually gave. The surface Doug set on 2026-09-27, all on the pair
 `mei` uses: one metamer per test stimulus (`--full`), one **unconditioned** metamer (every trial
 pooled), the **null** metamer (a spontaneous recording pooled), and the **spontaneous metameric

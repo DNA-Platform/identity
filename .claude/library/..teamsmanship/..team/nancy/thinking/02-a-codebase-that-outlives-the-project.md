@@ -39,11 +39,11 @@ Two points land directly on my lens, and they are why this matters to me and not
 
 **Resolved:** the package fork goes to an installable src-layout monorepo; the social-contract boundary is law; the stats/confound layer is the most-tested code in the tree.
 
-**Still open to Doug:** which `analyses/` module we build *first* — which is his earlier [dPCA-vs-CEBRA and twin-fit-vs-model-free](01-the-toolchain-and-what-to-leave-out.md) calls, now wearing a structural hat. Note: Adam is separately cataloguing the package/tool index into [The Build](../../../../../../../altered-states/library/.lib/the-build/.cover.md); this organization thinking and that tool index are complementary, not redundant — his is *what we install*, this is *how it's arranged to last*.
+**Still open to Doug:** which `analyses/` module we build *first* — which is his earlier [dPCA-vs-CEBRA and twin-fit-vs-model-free](01-the-toolchain-and-what-to-leave-out.md) calls, now wearing a structural hat. Note: Adam is separately cataloguing the package/tool index into [The Build](../../../../../../../altered-states/src/.lib/the-build/.cover.md); this organization thinking and that tool index are complementary, not redundant — his is *what we install*, this is *how it's arranged to last*.
 
 <!-- citations -->
 [previous]: 01-the-toolchain-and-what-to-leave-out.md
 [research-topics]: ../research-topics/01-neuroscience.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md
-[the-build]: ../../../../../../../altered-states/library/.lib/the-build/.cover.md
+[the-build]: ../../../../../../../altered-states/src/.lib/the-build/.cover.md
 [the-altered-cortex-plan]: ../../../../../../../altered-states/library/.lib/the-altered-cortex/03-the-analysis-plan.md

@@ -74,13 +74,17 @@ ensure_gitignore() {
 }
 
 # Identity-side namespace for a branch library. A project-root library/.lib maps to the
-# project name; a per-area library/<area>/.lib maps to the area (the .lib's parent dir).
+# project name; a per-area library/<area>/.lib maps to the area (the .lib's parent dir); a
+# branch beside code outside library/ maps to its path, slashes as hyphens - src/.lib is `src`.
+# The identity side is a mirror, never a home, so a name need only be unique within the project.
 lib_name_for() {
-    if [ "$(dirname "$1")" = "$PROJECT_ROOT/library" ]; then
-        echo "$PROJECT_NAME"
-    else
-        echo "$(basename "$(dirname "$1")")"
-    fi
+    local parent rel
+    parent="$(dirname "$1")"
+    case "$parent" in
+        "$PROJECT_ROOT/library") echo "$PROJECT_NAME" ;;
+        "$PROJECT_ROOT/library/"*) basename "$parent" ;;
+        *) rel="${parent#"$PROJECT_ROOT"/}"; echo "${rel//\//-}" ;;
+    esac
 }
 
 # --- Configuration ---
@@ -122,12 +126,14 @@ fi
 # and is set false if the .claude/ sync produces no diff.
 has_identity_changes=true
 
-# Branch libraries are discovered generically (any .lib under library/), not hardcoded —
-# this finds a project-root library/.lib as well as per-area library/<area>/.lib.
+# Branch libraries are discovered generically (any .lib under library/ or src/), not hardcoded —
+# this finds a project-root library/.lib, per-area library/<area>/.lib, and a branch beside the
+# code such as src/.lib (Library Tree: a .lib goes where the knowledge is). The data and the
+# pipelines' artifacts are pruned, so the search stays fast on a project with large data.
 lib_dirs=()
 while IFS= read -r lib_dir; do
     [ -n "$lib_dir" ] && lib_dirs+=("$lib_dir")
-done < <(find "$PROJECT_ROOT/library" -type d -name .lib 2>/dev/null | sort)
+done < <(find "$PROJECT_ROOT/library" "$PROJECT_ROOT/src" \( -path "$PROJECT_ROOT/library/data" -o -name artifacts -o -name node_modules -o -name .venv -o -name __pycache__ \) -prune -o -type d -name .lib -print 2>/dev/null | sort)
 
 echo "Checking for changes..."
 echo "  Project code:           $has_project_changes"
@@ -195,7 +201,7 @@ if [ "$DRY_RUN" = true ]; then
     echo "========================================"
     echo "DRY RUN — validation passed; mutating nothing"
     echo "========================================"
-    echo "Would sync .claude/ AND library/*/.lib → identity branch $PROJECT_NAME (the object of record), commit if changed."
+    echo "Would sync .claude/ AND every branch library (.lib under library/ or src/) → identity branch $PROJECT_NAME (the object of record), commit if changed."
     if git -C "$IDENTITY_REPO" show-ref --verify --quiet "refs/heads/$PROJECT_NAME"; then
         echo "Identity branch $PROJECT_NAME: EXISTS → would fast-forward from origin, then mirror onto it."
     else
@@ -207,7 +213,7 @@ if [ "$DRY_RUN" = true ]; then
             echo "Would sync $lib_dir → $IDENTITY_REPO/.lib/$lib_name on $PROJECT_NAME."
         done
     else
-        echo "No branch libraries (library/*/.lib) — .claude/ still goes to $PROJECT_NAME."
+        echo "No branch libraries (.lib under library/ or src/) — .claude/ still goes to $PROJECT_NAME."
     fi
     echo "Would push $PROJECT_NAME (with -u on first push)."
     if [ "$IDENTITY_ONLY" = true ]; then
@@ -251,7 +257,7 @@ do_sync "$CLAUDE_DIR" "$IDENTITY_REPO/.claude" /MIR /XD node_modules run /NFL /N
 cp "$CLAUDE_DIR/CLAUDE.md" "$IDENTITY_REPO/CLAUDE.md"
 rm -rf "$IDENTITY_REPO/.claude/run"
 
-# Sync each branch library library/<area>/.lib → identity .lib/<area>
+# Sync each branch library → identity .lib/<name> (lib_name_for)
 for lib_dir in "${lib_dirs[@]}"; do
     lib_name="$(lib_name_for "$lib_dir")"
     echo "Syncing $lib_dir → .lib/$lib_name"

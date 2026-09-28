@@ -7,7 +7,7 @@
 
 **Status: CLOSED at the descriptive slice (retro at the foot of this chapter).** The plan was written before the work per [Sprints](../../../.claude/library/library-tree/03-sprints.md); in practice we took a step it assumed away — a *descriptive* model-free pass before the controlled comparison — so the plan below stands as written and the retro reconciles it against what actually shipped. [Sprint 1](01-sprint-1--does-the-mouse-hallucinate.md) set up the DOI question; [Sprint 2](02-sprint-2--equipping-the-team.md) equipped the team and built the environment.
 
-**Grounding** (cross-references, not restatements): the organization plan is [The Build, ch 8 — The organization](../the-build/08-the-organization.md); the toolchain index is [The Build, ch 7](../the-build/07-the-toolchain-index.md); the reasoning behind the tool choices is in Nancy's thinking — [the toolchain and what to leave out](../../../.claude/library/..teamsmanship/..team/nancy/thinking/01-the-toolchain-and-what-to-leave-out.md) and [a codebase that outlives the project](../../../.claude/library/..teamsmanship/..team/nancy/thinking/02-a-codebase-that-outlives-the-project.md); the science plan is [The Altered Cortex, ch 3 — The analysis plan](../the-altered-cortex/03-the-analysis-plan.md); the data contract is the [Datasets](../datasets/.cover.md) book.
+**Grounding** (cross-references, not restatements): the organization plan is [The Build, ch 8 — The organization](../../../src/.lib/the-build/08-the-organization.md); the toolchain index is [The Build, ch 7](../../../src/.lib/the-build/07-the-toolchain-index.md); the reasoning behind the tool choices is in Nancy's thinking — [the toolchain and what to leave out](../../../.claude/library/..teamsmanship/..team/nancy/thinking/01-the-toolchain-and-what-to-leave-out.md) and [a codebase that outlives the project](../../../.claude/library/..teamsmanship/..team/nancy/thinking/02-a-codebase-that-outlives-the-project.md); the science plan is [The Altered Cortex, ch 3 — The analysis plan](../the-altered-cortex/03-the-analysis-plan.md); the data contract is the [Datasets](../datasets/.cover.md) book.
 
 ## The key decision: model-free first
 
@@ -18,13 +18,13 @@ So the twin is not the foundation. It is a **deferred, optional leaf the analysi
 ## Phases
 
 ### Phase 0 — Scaffold & environment
-**Owners:** Adam (infra/env), Arthur (structure); David (large files). Prerequisite for everything; grounded in [The Build ch 8](../the-build/08-the-organization.md) and [ch 7](../the-build/07-the-toolchain-index.md).
+**Owners:** Adam (infra/env), Arthur (structure); David (large files). Prerequisite for everything; grounded in [The Build ch 8](../../../src/.lib/the-build/08-the-organization.md) and [ch 7](../../../src/.lib/the-build/07-the-toolchain-index.md).
 
 - [ ] Flatten `src/scripts/` to just `extract_pptx.py` — remove the `altered-states-doi/` nesting and the duplicate `load_scan.py`.
 - [ ] Create the `library/` package skeleton — `io`, `model`, `stats`, `viz`, `tests` — with `pyproject.toml`.
 - [ ] Extract the two data archives (still zipped in `library/data/`) — prerequisite for any loading. *(David: large files.)*
 - [ ] Add the approved deps to `requirements.in` and recompile the lock: statsmodels, pynapple, rastermap, umap-learn, cebra, mei; **dPCA vendored**, **fitgabor optional**.
-- [ ] As each dep lands, catalogue it in the toolchain index ([The Build ch 7](../the-build/07-the-toolchain-index.md)) — one-way `.lib`→code links only. *(Adam.)*
+- [ ] As each dep lands, catalogue it in the toolchain index ([The Build ch 7](../../../src/.lib/the-build/07-the-toolchain-index.md)) — one-way `.lib`→code links only. *(Adam.)*
 
 ### Phase 1 — Core lib & registries
 **Owners:** Adam/Arthur build; Queenie tests; Cathy on the ports/abstractions.
@@ -53,7 +53,7 @@ So the twin is not the foundation. It is a **deferred, optional leaf the analysi
 ### Cataloguing — throughout
 **Owner:** Libby.
 
-- [ ] As code and deps land, catalogue the model/checkpoint/training contracts in [The Build](../the-build/.cover.md) and the io/meta contract in [Datasets](../datasets/.cover.md) — one-way `.lib`→code links, never code→`.lib`.
+- [ ] As code and deps land, catalogue the model/checkpoint/training contracts in [The Build](../../../src/.lib/the-build/.cover.md) and the io/meta contract in [Datasets](../datasets/.cover.md) — one-way `.lib`→code links, never code→`.lib`.
 
 ## How thinking and doing work
 
@@ -87,7 +87,7 @@ The sprint ends with a **review**: walk the model-free results with their contro
 
 ### Built
 
-- **The first model-free analysis, descriptive** — a nine-panel pass over both sessions and the 749 matched cells: single-image cortical maps, behavioural-state distributions, per-cell split-half reliability, the population rate profile and value distribution, a Rastermap co-activity raster, the matched-cell pre/post scatter, and the behaviour-only drug-state classifier. It lives in `src/experiments/2026-06-23-exploration/` (the dated-experiment convention, [The Build ch 8](../the-build/08-the-organization.md)), reading through `library/io` (registry, loader, the verified matcher).
+- **The first model-free analysis, descriptive** — a nine-panel pass over both sessions and the 749 matched cells: single-image cortical maps, behavioural-state distributions, per-cell split-half reliability, the population rate profile and value distribution, a Rastermap co-activity raster, the matched-cell pre/post scatter, and the behaviour-only drug-state classifier. It lives in `src/experiments/2026-06-23-exploration/` (the dated-experiment convention, [The Build ch 8](../../../src/.lib/the-build/08-the-organization.md)), reading through `library/io` (registry, loader, the verified matcher).
 - **A shared figure grammar + primitives** — `library/viz/style.py` (grayscale = magnitude with white = silent, two hues = condition, a diverging map reserved for signed differences), reusable `plot_*` primitives, and a create-if-missing compute cache so figure iteration is cheap.
 - **The report and its method, catalogued** — the woven [Initial Data Exploration](../../reports/2026-06-23-exploration/initial-data-exploration.md), and a new book, [The Exploration Report](../the-exploration-report/.cover.md), recording how to write one.
 

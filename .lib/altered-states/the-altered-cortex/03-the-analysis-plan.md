@@ -19,7 +19,7 @@
 Each of these was broken, and each break cost real time. [`--check.py`](00-the-turn--check.py) enforces them, so
 they are contract, not etiquette.
 
-**Where code lives** — the boundary is [The Build ch8](../the-build/08-the-organization.md) (Libby's chapter;
+**Where code lives** — the boundary is [The Build ch8](../../../src/.lib/the-build/08-the-organization.md) (Libby's chapter;
 read it, don't restate it): **`src/library/`** is the shared core — `io` (loading + the data registry), `model`,
 `stats` (nulls, confound control, and the map-reading machinery), `viz` (the shared palette). **Analyses import
 it and never edit it.** So a function that isn't about *this* experiment goes there and is imported — never
@@ -83,8 +83,8 @@ the one that gets forgotten:
 
 | what | the ONE home | checked / used by |
 |---|---|---|
-| **generic, reusable — NOT about this experiment.** `gradient_axis` (collapse a 2-D map to the axis it varies along), `binned` / `choose_bins` (equal-count bins + **LOOCV** bin selection), `hist_bins` (**Freedman-Diaconis**). **Import; never copy.** | [`src/library/stats/`](../../../src/library/stats/) — the shared core ([Build ch8](../the-build/08-the-organization.md)) | `_check_all_twins.py`, `_prepost_analysis.py` |
-| **the shared visual language** — `use_style()`, `PALETTE["pre"]`/`["post"]`. *"The hex values are the truth; keep them here and nowhere else."* A hardcoded hex in a study is a rival. | [`src/library/viz/style.py`](../../../src/library/viz/style.py) | every figure |
+| **generic, reusable — NOT about this experiment.** `gradient_axis` (collapse a 2-D map to the axis it varies along), `binned` / `choose_bins` (equal-count bins + **LOOCV** bin selection), `hist_bins` (**Freedman-Diaconis**). **Import; never copy.** | [`src/library/stats/`](../../../.archive/library/stats/) — the shared core ([Build ch8](../../../src/.lib/the-build/08-the-organization.md)) | `_check_all_twins.py`, `_prepost_analysis.py` |
+| **the shared visual language** — `use_style()`, `PALETTE["pre"]`/`["post"]`. *"The hex values are the truth; keep them here and nowhere else."* A hardcoded hex in a study is a rival. | [`src/library/viz/style.py`](../../../.archive/library/viz/style.py) | every figure |
 | image primitives — `pearson`, `ncc_surface`/`aligned_corr` (peak NCC over ±8 px), `hf_fraction` (HF-energy ratio = blur, energy-invariant), `rf_mask`, `upsample`/`norm01`/`zscore` | [`pipeline/metrics.py`](../../../src/analyses/most-exciting-image/pipeline/metrics.py) | every study; the one home after the same primitives were copy-pasted across five scripts |
 | **the MEI energy distribution — Doug's measure, verbatim**: `energy_pmf` = **square the MEI, divide by the sum**; `energy_entropy` = the entropy of that. **The mean is NOT subtracted.** The specificity/resolution scalar — lower = concentrated/sharp, higher = diffuse; scale-free. ⚠ `subtract_mean=True` computes a *different* quantity and **was the default**, so the measure ran wrong for months; it is now off and stays off. | [`pipeline/metrics.py`](../../../src/analyses/most-exciting-image/pipeline/metrics.py) | [`_prepost_analysis.py`](../../../src/analyses/most-exciting-image/pipeline/studies/_prepost_analysis.py) → comparison.md **F10** |
 | **the MEI centre + extent** — `energy_focus` (robust, k·σ-trimmed weighted moments; **load-bearing — `validation.whitened_rf` builds the Q7 ground truth from it**). *(The naive `energy_center` rival — every pixel votes, dragging the centroid to frame-centre — was callerless and deleted in the 2026-07-18 clean-shop, along with the `gaussian_focus` name its docstring wrongly cited.)* | [`pipeline/metrics.py`](../../../src/analyses/most-exciting-image/pipeline/metrics.py) | `energy_focus` → [`validation.whitened_rf`](../../../src/analyses/most-exciting-image/pipeline/validation.py) |

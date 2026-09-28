@@ -39,8 +39,11 @@ CLAUDE_DIR="$PROJECT_ROOT/.claude"
 PROJECT_NAME="$(basename "$PROJECT_ROOT")"
 RESOLVE="$SCRIPT_DIR/06-on-sync--resolve.sh"
 
-lib_dirs=(); while IFS= read -r d; do [ -n "$d" ] && lib_dirs+=("$d"); done < <(find "$PROJECT_ROOT/library" -type d -name .lib 2>/dev/null | sort)
-lib_name_for() { if [ "$(dirname "$1")" = "$PROJECT_ROOT/library" ]; then echo "$PROJECT_NAME"; else echo "$(basename "$(dirname "$1")")"; fi; }
+lib_dirs=(); while IFS= read -r d; do [ -n "$d" ] && lib_dirs+=("$d"); done < <(find "$PROJECT_ROOT/library" "$PROJECT_ROOT/src" \( -path "$PROJECT_ROOT/library/data" -o -name artifacts -o -name node_modules -o -name .venv -o -name __pycache__ \) -prune -o -type d -name .lib -print 2>/dev/null | sort)
+lib_name_for() {   # as in 06-on-sync--commit.sh: library/.lib -> the project, library/<area>/.lib -> the area, else the path
+  local parent rel; parent="$(dirname "$1")"
+  case "$parent" in "$PROJECT_ROOT/library") echo "$PROJECT_NAME" ;; "$PROJECT_ROOT/library/"*) basename "$parent" ;;
+    *) rel="${parent#"$PROJECT_ROOT"/}"; echo "${rel//\//-}" ;; esac; }
 
 echo "========================================"
 echo "PULL phase 1  (working copy -> $PROJECT_NAME branch -> merge dna-platform)"

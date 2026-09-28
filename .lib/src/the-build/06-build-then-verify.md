@@ -11,7 +11,7 @@ One idea runs under every chapter of this book: **the environment must verify it
 
 ## Immutable-data discipline
 
-Reproducibility starts from treating the source archives as read-only truth. The raw scans are never edited in place; they are extracted into a gitignored `extracted/` *beside* the originals, and everything downstream is made regenerable *from* the raw. The raw recording is the thing; the derived artifacts are descriptions of it, and descriptions are gitignored because they can always be rebuilt. [Datasets](../datasets/.cover.md) documents the raw the discipline protects.
+Reproducibility starts from treating the source archives as read-only truth. The raw scans are never edited in place; they are extracted into a gitignored `extracted/` *beside* the originals, and everything downstream is made regenerable *from* the raw. The raw recording is the thing; the derived artifacts are descriptions of it, and descriptions are gitignored because they can always be rebuilt. [Datasets](../../../library/.lib/datasets/.cover.md) documents the raw the discipline protects.
 
 ## What "reproducible" means here
 
@@ -29,7 +29,7 @@ So the archaeology need not repeat, a rebuild answers these up front:
 - **Lock** — where does it live, and does it pin exact versions, git SHAs, *and* index URLs, with comments on the non-obvious constraints?
 - **Verification** — what smoke-test proves the environment correct (imports, kernel resolution, a one-sample load), and is it part of the setup itself?
 
-The difference between an environment that installs and one that is correct is entirely the last answer. The verified environment is what lets [The Altered Cortex](../the-altered-cortex/.cover.md) be run instead of merely planned.
+The difference between an environment that installs and one that is correct is entirely the last answer. The verified environment is what lets [The Altered Cortex](../../../library/.lib/the-altered-cortex/.cover.md) be run instead of merely planned.
 
 ---
 

@@ -31,7 +31,7 @@ below it.**
 | package | what it makes | entry |
 |---|---|---|
 | [`digital_twin`](../../../src/pipelines/digital_twin/.cover.md) | the dataset registry, matched cells, noise ceiling, the twin pair | `python -m digital_twin 33977` |
-| [`most_exciting_image`](../../../src/pipelines/most_exciting_image/.cover.md) | Walker 2019 MEIs, **best-understood cells first** | `python -m most_exciting_image 33977` |
+| [`most_exciting_image`](../../../src/pipelines/mei/.cover.md) | Walker 2019 MEIs, **best-understood cells first** | `python -m most_exciting_image 33977` |
 | [`metamer`](../../../src/pipelines/metamer/.cover.md) | Cobos 2022 metamers, **best-determined targets first** | `python -m metamer 33977` |
 
 `--then most_exciting_image,metamer` chains them, so the twin pipeline kicks off its dependants and

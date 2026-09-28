@@ -13,7 +13,7 @@ Through the summer the analysis lived in `src/analyses/most-exciting-image/` on 
 module core, studies run by hand, notebooks, and results written wherever the study put them. It
 produced the June delivery to the Reimer lab, and it produced the failure that ends every such
 arrangement - ten scripts doing one job, three reversals of one decision, and figures whose evidence
-had been deleted still reading as findings ([The Altered Cortex, ch0](../the-altered-cortex/00-the-turn.md)
+had been deleted still reading as findings ([The Altered Cortex, ch0](../../../library/.lib/the-altered-cortex/00-the-turn.md)
 is the record of that and of the discipline written against it). Synthesis ran on a CPU, where one
 1,000-step MEI took seconds to minutes and the whole population took a night
 ([The Build ch14](../the-build/14-why-synthesis-is-slow.md)).
@@ -27,7 +27,7 @@ pipeline. Try your best to engineer it like that, so then we get the analysis fi
 
 So each stage of the work became a package under `src/pipelines/` with one conductor, phases that run
 in order, products filed by dataset, and nothing shared with the next package but the dataset's name
-and the files it leaves. [Sprint 16](../projection/16-sprint-16--the-pipeline-and-the-second-animal.md)
+and the files it leaves. [Sprint 16](../../../library/.lib/projection/16-sprint-16--the-pipeline-and-the-second-animal.md)
 is the record of building them. What they are now is [chapter 2](02-what-each-pipeline-does.md).
 
 ## The new machine, Sprint 17

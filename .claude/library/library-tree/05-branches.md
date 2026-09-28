@@ -24,7 +24,16 @@ The branch for the $Chemistry reactive framework. Records the team's applied kno
 - **Cataloguing book:** [Altered States](../../../../altered-states/library/.lib/..altered-states/.cover.md)
 - **Sprint book:** [Projection](../../../../altered-states/library/.lib/projection/.cover.md)
 
-The branch for the altered-states project — a psychedelic exploration into altered states of consciousness using mouse visual cortex as its lens. The `.lib/` sits at the project's library root because the branch records the whole project's applied knowledge, not one framework within it. The cataloguing book Altered States names the subject the project studies; the record grows as the work proceeds.
+The branch for the altered-states project, a psychedelic exploration into altered states of consciousness using mouse visual cortex as its lens. The `.lib/` sits at the project's library root because the branch records the project's science and the sprint-by-sprint record of all the work, not one framework within it. The cataloguing book Altered States names the subject the project studies; the record grows as the work proceeds. The project's code has its own branch beside it, Computation, below.
+
+### Computation
+
+- **Repo:** altered-states
+- **Location:** [`src/.lib/`](../../../../altered-states/src/.lib/)
+- **Cataloguing book:** [Computation](../../../../altered-states/src/.lib/..computation/.cover.md)
+- **Sprint book:** [Projection](../../../../altered-states/src/.lib/projection/.cover.md)
+
+The branch beside the altered-states code, spanning all of `src/`: the pipelines, the analyses built on them, the environment they run in, and the lab machine they run on. It records what the team learned building and running that code (The Pipelines, The Build, The Lab Box), while the code's own documentation stays in each folder's de-named `.cover.md`. Doug, 2026-09-28: *"I think src/.lib is fine and we can have a library/.lib, two of them. And the one in src can span all code."* It is the first branch outside a project's `library/`. The commit tool finds a `.lib` under `library/` or `src/`, and mirrors this one into the identity repository as `.lib/src`. The cataloguing book Computation names the subject: the team's applied knowledge of computing the experiment.
 
 ### The Public Library
 

@@ -69,7 +69,7 @@ catalogued the competition baseline (stimulus-only) but never the Franke behavio
 (the `gamma_shifter` and its companions), so enabling the shifter fell back to the wrong default. A
 cataloguing/reading failure, found in the code, caught by the by-eye gate before four more seeds
 burned. Canonical shifter config sourced from CD (async); the run is **paused with seed 1 saved**;
-no re-train until the config is corrected **and catalogued in [the twin recipe](../the-build/12-how-we-make-a-publication-grade-twin.md) where the next person will read it** — not left in a sprint note that scrolls away.
+no re-train until the config is corrected **and catalogued in [the twin recipe](../../../src/.lib/the-build/12-how-we-make-a-publication-grade-twin.md) where the next person will read it** — not left in a sprint note that scrolls away.
 
 ## Review
 
