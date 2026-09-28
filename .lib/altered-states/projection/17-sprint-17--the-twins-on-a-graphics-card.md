@@ -194,6 +194,9 @@ is recorded, not explained.
 | `run-20260928-1350-twins-1x` | the 1x chain, both datasets, six twins | exit 143: stopped once the twins were built, for the one-pair rule; harvested, 33977's spine pair removed |
 | `run-20260928-1438-chain-1x` | the 1x chain on the one pair each: twins recorded, MEIs, metamers | exit 0 in 7.5 minutes; both builds recorded, 317 + 329 MEI pairs, 100 metamers per stimulus set per reading; the first run closed by `close` |
 | `run-20260928-1456-mei-published` | Walker 2019's code against the pipeline's MEI, 33328's pre twin | exit 0; r 0.986-0.991 on the 8 best-fit cells; closed |
+| `run-20260928-1549-twins` | the twins retrained under their plain names, then MEIs and metamers | exit 0 in 34 minutes; closed |
+| `run-20260928-1634-mei-published` | Walker 2019's code against the pipeline, the retrained twin | exit 0; r 0.976-0.991, median 0.989; closed |
+| `run-20260928-1644-mei-profile` | where an MEI's time goes on the 1x twins, every way of making one | running |
 
 ## What went wrong, and why
 
@@ -376,6 +379,32 @@ by eye. Those eight cells hold two or three MEIs between them - units 1134, 345,
 
 33977's MEIs on the published frame are still large smooth blobs and rings, without 33328's bars and
 gratings. The frame did not make them; the twins are the same method on another dataset.
+
+## Just the twins, and a branch beside the code (2026-09-28, afternoon)
+
+**No 1x and 2x.** Doug: *"They are now just the twins. No 1x and 2x."* The twins' scan is
+`<animal>-<condition>`, its frames assembled at `library/data/<animal>/<session-scan>` beside the export,
+which is `<animal>-<condition>-export`. The folders were renamed in place on both machines, and parity
+was proven after. A twin's name is written into its checkpoint, so the twins were retrained under
+their names, not renamed: `33328-{pre,pst}/B/matched` and `33977-{pre,pst}/B/four-way`. The legacy CPU
+twins were renamed with their hashes unchanged.
+
+**The retrained twins, held to June's again:**
+- validation correlation within ±0.009 of June's same seed;
+- FEVE 0.488 and 0.502 on the same 456 and 369 cells;
+- 634 MEIs at median r 0.894 against June's, cell by cell;
+- the filter's half amplitude at 23.4 cycles per frame width, June's at 24.1;
+- Walker's own code against the pipeline, median r 0.989.
+
+33977's pair has FEVE 0.187 and 0.260.
+
+**Two branch libraries.** Asked where the pipelines' knowledge belongs, Doug ruled: *"I think src/.lib
+is fine and we can have a library/.lib, two of them. And the one in src can span all code."* The Pipelines,
+The Build and The Lab Box now sit in `src/.lib`, catalogued by
+[Computation](../../../src/.lib/..computation/.cover.md). 169 links were re-derived, and 27 older links to
+reorganized code now point at `.archive/`; both branches link clean. The code's covers are de-named
+project content (`author: Doug`, no link into the identity layer) - *"I am never an author in that
+library though I suppose you can use my name when quoting me or referencing me."*
 
 ## Still open
 
