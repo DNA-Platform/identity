@@ -14,6 +14,7 @@
 #   bash $T harvest <branch>             pull a finished run's branch here, into main (rebased if main moved)
 #   bash $T close <branch>               bring a finished run home: harvest, push, the files GitHub could
 #                                        not take to both mains, the box's main pulled - rerun until CLOSED
+#   bash $T sync                         work done here: main pushed, the box's main pulled onto it
 #   bash $T probe <branch> <name> '<cmd>'  test code in a run's worktree, recorded on its branch
 #   bash $T ignored                      the ignored paths that travel by `send`
 #   bash $T send <path>...               copy ignored files to the box, verified by sha256
@@ -349,6 +350,24 @@ close() {
     echo "CLOSED: $branch is home, and both machines are on $(git rev-parse --short HEAD)"
 }
 
+# Work done here, not in a run: main here onto GitHub, and the box's main onto it - so the two machines
+# are on one commit whenever work stops, not only at the next launch. Doug, 2026-09-28: "You should
+# probably be able to run it here. Remember to have parity. /als-remote should have protocols on getting
+# everything onto main and merging and file transfer if needed."
+sync() {
+    cd "$REPO"
+    [ "$(git rev-parse --abbrev-ref HEAD)" = main ] || { echo "not on main here"; return 1; }
+    [ -z "$(git status --porcelain)" ] \
+        || { echo "uncommitted work here - commit it, then sync"; git status --short | head; return 1; }
+    git fetch -q origin main
+    git merge-base --is-ancestor origin/main HEAD \
+        || { echo "GitHub's main has commits main here lacks - close the run they came from, or pull them"; return 1; }
+    [ "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" ] || git push -q origin main \
+        || { echo "push failed - sync again"; return 1; }
+    echo "main here is GitHub's main: $(git rev-parse --short HEAD)"
+    box_pull
+}
+
 # Ignored paths that travel: data, caches, logs. Not identity, not the venv, not bytecode.
 # Git names a folder and sometimes files inside it too; the folder covers them, so they are dropped.
 ignored() {
@@ -500,13 +519,14 @@ uv pip install -q --python .venv/bin/python --no-deps -r ../.tools/no-deps-$vari
         watch)     watch "${1:-}" "${2:-10}" ;;
         harvest)   harvest "${1:-}" ;;
         close)     close "${1:-}" ;;
+        sync)      sync ;;
         probe)     probe "${1:-}" "${2:-}" "${3:-}" ;;
         ignored)   ignored ;;
         send)      for p in "$@"; do send_one "$p"; done ;;
         send-list) send_list "$1" ;;
         receive)   receive "${1:-}" "${2:-}" ;;
         python)    python_env "${1:-}" ;;
-        *)         sed -n '2,30p' "$0"; exit 2 ;;
+        *)         sed -n '2,31p' "$0"; exit 2 ;;
     esac
     exit $?
 }
