@@ -51,8 +51,11 @@ order is identity downstream: the spine's order is every twin's readout order.
 - `compare` - pre against post on cells reliable in both;
 - `figures` - explained variance.
 
-A dataset without spontaneous recordings gets two twins, the spine pair. A dataset with them gets four,
-adding the **intersection** pair on the four-way cells. The twins use the published Sensorium
+Every dataset gets **two twins**, pre and post, trained on the cells `matched` finds in **all** of its
+recordings (`run.cell_set`). For 33328, with two driven recordings, that is the spine. For 33977, with
+two spontaneous recordings as well, it is the four-way **intersection**. Doug, 2026-09-28: *"the rule is
+that from matched, we take the intersection of all recordings... That's a simplifying assumption."*
+The twins use the published Sensorium
 configuration, verbatim, on the frame it was published for. When every phase has run, the pipeline
 writes the **canonical build** (`build.json`): the exact checkpoints with their hashes, the settings,
 and the data's fingerprint. Every reader of a twin loads through it.
@@ -60,8 +63,8 @@ and the data's fingerprint. Every reader of a twin loads through it.
 ## `mei` - most exciting images
 
 [`src/pipelines/mei/`](../../../src/pipelines/mei/.cover.md). Walker 2019's recipe on the lab's ops,
-for every matched pair reliable in both conditions (the lab's FEV >= 0.15), from the intersection pair
-where there is one, else the spine pair; best-understood cells first. Phases `index`, `mei` (sixteen
+for every matched pair reliable in both conditions (the lab's FEV >= 0.15), from the dataset's pair of
+twins; best-understood cells first. Phases `index`, `mei` (sixteen
 cells a batch on the fast path), `quality`, `organize`, `figures` - which are the two Doug asked for:
 `comparison.png` (every pair, before above after, by pre-FEVE, its pages in `comparison/`) and
 `spectrum-and-filter.png` (the MEI spectrum before and after DOI, and the filter between them - the

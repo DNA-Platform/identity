@@ -73,6 +73,10 @@ the record of the machine. This chapter is what the science pipelines became, an
   resolution setting: *"We don't want pipelines to have settings. That is just going to create
   confusing."* On the bar: *"double and triple check that we have a publication quality twin in place
   that is making near identical MEI to the ones generated in most-exciting-image."*
+- **Two twins for each.** Replacing *two twins, or four* (above), 2026-09-28: *"I think, perhaps, we
+  should just have two twins for each and the rule is that from matched, we take the intersection of
+  all recordings, so for 33328 its the two driven ones and the 33977 it's the four with two
+  spontaneous ones. That's a simplifying assumption."*
 
 ## What the pipelines became
 
@@ -187,6 +191,8 @@ is recorded, not explained.
 | `run-20260927-2121-metamers-33328-singulars` | the unconditioned remade on the current twins | exit 0 |
 | `run-20260927-2239-pipelines-33977` | matched rebuilt -> twins re-recorded -> MEIs -> metamers | exit 0; the comparison no longer refused |
 | `run-20260928-0033-metamers-cross` | the pre twin reading the post responses, both datasets | exit 0 |
+| `run-20260928-1350-twins-1x` | the 1x chain, both datasets, six twins | exit 143: stopped once the twins were built, for the one-pair rule; harvested, 33977's spine pair removed |
+| `run-20260928-1438-chain-1x` | the 1x chain on the one pair each: twins recorded, MEIs, metamers | running |
 
 ## What went wrong, and why
 
@@ -334,8 +340,25 @@ record device and config). They were brought up to what the code promises, and 5
 
 `mei.check --published` sets Walker 2019's own code against the pipeline's MEI on the same twin.
 33977's CPU 1x twins fit no better than its 2x ones did (validation correlation 0.147 and 0.137), so
-the frame was not what held its fit down; its MEIs are looked at again on the published frame. Run
-`run-20260928-1350-twins-1x` covers both datasets, twins → MEIs → metamers, from `84250af2`.
+the frame was not what held its fit down; its MEIs are looked at again on the published frame.
+
+**Two twins for each, and the first of the bar met.** Under Doug's rule the pair is trained on the
+cells matched across all the dataset's recordings (`run.cell_set`): 33328's two driven recordings,
+749 cells; 33977's four, two driven and two spontaneous, 1,177. The `[twin] cells` setting is gone.
+The GPU 1x twins of `run-20260928-1350-twins-1x` were built under the rule before it, six of them. It
+was stopped as its MEIs began, and 33977's spine pair (3,256 cells) was removed from `main` (history
+`30e20a9e`).
+
+The 33328 pair against June's, seed by seed (validation correlation):
+
+| | seed 0 | seed 1 | seed 2 | seed 3 | seed 4 | June's seed range |
+|---|---|---|---|---|---|---|
+| pre | +0.0041 | -0.0005 | +0.0037 | +0.0009 | +0.0006 | 0.3088-0.3167 |
+| post | -0.0041 | -0.0052 | +0.0013 | -0.0034 | +0.0076 | 0.2645-0.2753 |
+
+FEVE is 0.501 and 0.497 on the same 456 and 369 scored cells, against June's recorded 0.480 and 0.512.
+33977's pair has FEVE 0.227 and 0.260 on 489 and 406 cells. `run-20260928-1438-chain-1x` re-records
+both builds and makes the MEIs and metamers.
 
 ## Still open
 
@@ -345,8 +368,7 @@ the frame was not what held its fit down; its MEIs are looked at again on the pu
    - Cobos's 1,000 steps against our convergence gate;
    - the duplicate-soma criterion for summaries (lateral distance);
    - whether the metamer summary leads by how well-determined the target is, or by re-evoke.
-2. **The 1x twins held to June's** - once `run-20260928-1350-twins-1x` is home:
-   - 33328's fit seed by seed;
+2. **The 1x twins held to June's** - the fit is met (above); once `run-20260928-1438-chain-1x` is home:
    - every 33328 MEI against June's;
    - Walker's code against the pipeline;
    - 33977's MEIs, looked at again on the published frame.
