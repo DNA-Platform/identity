@@ -18,6 +18,10 @@
 
 Doug: *"One way something can become a subject is when a book is complex and needs a lot of code, it splits into a catalogue that catalogues what it is about, the original book, and the reference manual for it. And that is a very normal reason to move from book to subject… as one builds their library, the subject catalogue grows because books become a poor container for their contents."* So a book that outgrows itself becomes three: a catalogue about what it was about, the book it was, and the manual that holds its tools. The test library's top already has the shape — The Library its reference, The Library Reference Manual beside it — and a book of mine that needs its own tools would split the same way.
 
+## The manual is read before the code, and written before it
+
+**A library closed under books contains the representation of the tools used to build it, and that representation is the primary source.** Doug, 2026-09-28: *"Are you remembering to actually make the test library a self-documenting codebase, so that you literally read the reference manual to develop the code? It's not a fiction. This is what we are inventing."* So the rule I keep: before I touch a tool of my library I read the chapter that prints it, and it is the specification; when I add a tool I write its chapter first and develop the code by reading it — the explorer's chapter stood in this manual before a line of the explorer existed; and when I say how something must look or work, my chapter says it before the code does.
+
 ## How to write one
 
 1. **Name each tool's file for its chapter**: the chapter's extension-free name, a separator, an identifier and the type — `3-the-masthead-and-the-byline.code.tsx`. The dot is the convention; a `.tsx` needs an identifier; identifiers are unique per type — [Append](../figures/01-append.md).

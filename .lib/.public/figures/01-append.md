@@ -22,7 +22,7 @@
 
 - **A numbered `.tsx` is a chapter unless it accompanies another** — its base being another chapter's name, a character and more — so a `.tsx` accompanying a chapter always carries an identifier, and a chapter's name may not be another's plus one character.
 - **Identifiers are unique per type** among a writing's files: `chapter-name.id.tsx` beside `chapter-name-id.tsx` is refused, `CLASHING-IDENTIFIER`. Doug: *"the compiler would error on chapter-name.id.tsx, chapter-name-id.tsx, because ids must be unique per type."*
-- **A file accompanying nothing is refused**, `UNACCOUNTED`, as before; the extensions a file may carry are a closed list, `ts tsx js mjs json md css sh txt csv svg png jpg jpeg`; the apparatus may have files too, `.cover.masthead.tsx`.
+- **A file accompanying nothing is refused**, `UNACCOUNTED`, as before; the extensions a file may carry are a closed list, `ts tsx js mjs json md css html sh txt csv svg png jpg jpeg` — `html` since 2026-09-28, for a design sketched in the page's own material and kept beside the chapter it belongs to; the apparatus may have files too, `.cover.masthead.tsx`.
 
 The accounting's refusals are the binder's own diagnostics, `file(1,1): error TAG: at — says`, four tags: `EXCUSED-INSIDE-A-BOOK`, `STALE-EXEMPTION`, `UNACCOUNTED`, `CLASHING-IDENTIFIER`. Doug: *"Make sure to have the binder/compiler deliver errors in a consistent way."*
 
