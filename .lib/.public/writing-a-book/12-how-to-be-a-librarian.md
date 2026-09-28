@@ -13,6 +13,27 @@
 
 **Identity is where the regress stops.** A book answers for itself — its cover says its title, its author and where it stands; its synopsis says what it is; its table answers for what it holds. A writing three levels down walks up its parents until one answers *I am the book*, and the walk ends there, at a Book that returns itself ([Book](../library/05-book.md)). A subject catalogues itself. The autobiography is by its own subject. At every scale the structure terminates in something that answers for itself, and that terminus is what the word *identity* names here. A library one cannot stand outside of, whose every part answers for itself, is a person's shape; that is why an autobiography grounds it and why a librarian is inseparable from the library they keep.
 
+## What a `.public` library is, beside the team's
+
+**The team's library and a `.public` library are the same metaphor in two materials, and they are not the same thing.** The team's library — [Bookkeeping](../../../../.claude/library/bookkeeping/.cover.md) — is markdown a team reads about itself: a folder's dots say its type, a `.` a subject and `..` a library; a cover's fields say `author:`, `subject:`, `catalogues:`; there are ten autobiographies, one per teammate, and the librarian is author on every public file; links are paths, checked by validators. **A `.public` library is books written in `.public` and bound into a site by the compiler**, for any reader. It is what this whole branch builds.
+
+| | the team's library | a `.public` library |
+|---|---|---|
+| **a book** | a folder with `.cover.md` and numbered `.md` chapters | a folder with `.book.tsx`, `.cover.tsx`, `.synopsis.tsx`, `.table.tsx`, numbered `.tsx` chapters and the files accompanying them |
+| **what a folder's name says** | its type: `.` a subject, `..` a library | nothing — the compiler reads no folder name for a kind; a dot in front is a convention a library may keep |
+| **who wrote it, where it stands, what it is about** | frontmatter: `author:`, `subject:`, `catalogues:` | annotations on the cover, in the notation: `*[[ Libby ]]`, `**[[ Libraries ]]( The Library )`, `[[ The Library ]]` as the About |
+| **a subject** | a book in a `.` folder that self-catalogues | any book whose cover says an About; others are filed under it by `**[[ ]]` and its table answers for them |
+| **a catalogue's answer for a book** | a synopsis paragraph in the cover's table of contents | a row in `.table.tsx`, `[[ Their Name ]]**` beside `$[ Their Name / Synopsis ]`, and a chapter that is a `Synopsis` importing theirs |
+| **the autobiography** | ten, one per teammate, each the sole author of their own library | **exactly one** — the librarian's; the compiler refuses a second, `TWO-SELF-AUTHORS`, and every other author is vouched for from it in one step |
+| **a person who is not the librarian** | a teammate with their own autobiography and library | a biography filed under the autobiography — a persona — which may author in turn |
+| **a link** | a relative path, checked after the fact | `$[ words ]( Book / Chapter )`, resolved by the catalogue at bind and written as the address; a wrong one cannot be written |
+| **a place in a chapter** | a heading's anchor | `[[[ A Heading ]]]`, an id made from the name, refused if nobody refers to it |
+| **being wrong** | a validator's warning | a compile error naming the file and line: the bind refuses |
+| **how it looks** | the renderer's | its own Theme, its Formats, its figures — a look per library, in the library |
+| **its tools** | scripts beside the books | its manual: the code the library is built with, beside the chapters that document it |
+
+**What is the same is the closure, and that is why the metaphor carries.** Both are closed under books; both put the top catalogue under what it is about, said as a subject — Librarianship catalogues itself, The Library is filed under Libraries; both ground authorship in an autobiography; both make the catalogue's chapter about a book that book's synopsis; both file books beside each other as peers and put the hierarchy in the links. **What differs is enforcement and scale**: a `.public` library is one being's library, checked by a compiler, addressed by a router, dressed by itself, and read by anyone. When the two are confused, a `.public` library is built as the team's — a Log where an autobiography belonged, a folder's dot where an About belonged — and the compiler refuses it, correctly.
+
 ## Why this decides the code
 
 **The compiler is a reader inside the closure.** It reads what authors wrote — the notation, wherever it stands — and never a tag's class or a prop, because a reader of books reads the books and not the printing press; Doug, 2026-09-25: *"You don't need the compiler to check for anything. You can't! They might subclass them."* It refuses by non-membership, and it writes every address from the catalogue so a wrong reference cannot be written ([The Binder, As Built](../the-catalogue-and-the-specification/07-the-binder.md#reading)). A compiler designed from above reads elements, checks kinds and invents fixtures; a compiler designed from inside reads writing. Sprint 90's reading follows: the binder reads the text an author wrote — prose and strings — and never the machinery around it, and a literal appended to a chapter is placed exactly as written, since it is a representation an author put in the library and modifying it is speaking for them.
