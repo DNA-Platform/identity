@@ -192,7 +192,8 @@ is recorded, not explained.
 | `run-20260927-2239-pipelines-33977` | matched rebuilt -> twins re-recorded -> MEIs -> metamers | exit 0; the comparison no longer refused |
 | `run-20260928-0033-metamers-cross` | the pre twin reading the post responses, both datasets | exit 0 |
 | `run-20260928-1350-twins-1x` | the 1x chain, both datasets, six twins | exit 143: stopped once the twins were built, for the one-pair rule; harvested, 33977's spine pair removed |
-| `run-20260928-1438-chain-1x` | the 1x chain on the one pair each: twins recorded, MEIs, metamers | running |
+| `run-20260928-1438-chain-1x` | the 1x chain on the one pair each: twins recorded, MEIs, metamers | exit 0 in 7.5 minutes; both builds recorded, 317 + 329 MEI pairs, 100 metamers per stimulus set per reading; the first run closed by `close` |
+| `run-20260928-1456-mei-published` | Walker 2019's code against the pipeline's MEI, 33328's pre twin | exit 0; r 0.986-0.991 on the 8 best-fit cells; closed |
 
 ## What went wrong, and why
 
@@ -357,8 +358,24 @@ The 33328 pair against June's, seed by seed (validation correlation):
 | post | -0.0041 | -0.0052 | +0.0013 | -0.0034 | +0.0076 | 0.2645-0.2753 |
 
 FEVE is 0.501 and 0.497 on the same 456 and 369 scored cells, against June's recorded 0.480 and 0.512.
-33977's pair has FEVE 0.227 and 0.260 on 489 and 406 cells. `run-20260928-1438-chain-1x` re-records
-both builds and makes the MEIs and metamers.
+33977's pair has FEVE 0.227 and 0.260 on 489 and 406 cells. `run-20260928-1438-chain-1x` re-recorded
+both builds and made the MEIs and metamers.
+
+**The MEIs against June's.** 634 of 33328's MEIs were each set against June's MEI of the same cell and
+condition (`mei.check --before`): pixel correlation median 0.894, quartiles 0.808-0.937, 10th to 90th
+percentile 0.708-0.960. Row by row the pipeline's MEI is June's feature in June's place. The worst shown,
+pair 215 after DOI at -0.120, is the same oriented bars in the same place at the opposite phase, which
+a pixel correlation counts as a mismatch. The filter from before to after DOI on the same 317 cells
+(`--filter`) reaches half amplitude at 24.8 cycles per frame width, June's at 24.1; the two curves
+overlap from 2 to 32.
+
+Walker 2019's own code (`inception_loop.py`, ported verbatim) and the pipeline's fast path, on the same
+twin and the 8 best-fit cells (`--published`): r 0.986-0.991, median 0.988, and each pair the same image
+by eye. Those eight cells hold two or three MEIs between them - units 1134, 345, 30 and 1568 one, 644,
+318 and 2361 another - which is the duplicate-soma question (open item 7) showing in the MEIs.
+
+33977's MEIs on the published frame are still large smooth blobs and rings, without 33328's bars and
+gratings. The frame did not make them; the twins are the same method on another dataset.
 
 ## Still open
 
@@ -368,20 +385,20 @@ both builds and makes the MEIs and metamers.
    - Cobos's 1,000 steps against our convergence gate;
    - the duplicate-soma criterion for summaries (lateral distance);
    - whether the metamer summary leads by how well-determined the target is, or by re-evoke.
-2. **The 1x twins held to June's** - the fit is met (above); once `run-20260928-1438-chain-1x` is home:
-   - every 33328 MEI against June's;
-   - Walker's code against the pipeline;
-   - 33977's MEIs, looked at again on the published frame.
-3. **The stripes after DOI** - seen on the 2x metamers. Look for them on the 1x ones, then measure
+2. **The 1x twins held to June's** - met: the fit seed by seed, the MEIs cell by cell, the filter, and
+   Walker's own code against the pipeline (above).
+3. **33977's MEIs as a test of its twins** - smooth blobs on the published frame too, FEVE 0.23 and
+   0.26: a question about 33977's twins before any finding on them.
+4. **The stripes after DOI** - seen on the 2x metamers. Look for them on the 1x ones, then measure
    periodic, oriented energy, post against pre, before making any claim.
-4. **The spontaneous moments** - built, by name only; Doug: *"Not yet."*
-5. **Speed on the card** - the 2x twin made an MEI or metamer in 7.5 s at batch 16, and the 1x rate
-   will be in the run's log. Next: the five ensemble members fused into one set of kernels, measured on
+5. **The spontaneous moments** - built, by name only; Doug: *"Not yet."*
+6. **Speed on the card** - the 2x twin made an MEI or metamer in 7.5 s at batch 16; the 1x twins make
+   an MEI in 0.41 s (`run-20260928-1438-chain-1x`). Next: the five ensemble members fused into one set of kernels, measured on
    a free card.
-6. **Duplicate cells** - one soma across neighbouring planes (0.1-5.6 um laterally, 5-25 um in depth);
+7. **Duplicate cells** - one soma across neighbouring planes (0.1-5.6 um laterally, 5-25 um in depth);
    Doug: *"we can make all MEI, and then exclude based on criteria like that for the summary statistic
    figures."*
-7. **The 2x data** - the `-2x` scan folders and the 2x frame store are still in `library/data` on both
+8. **The 2x data** - the `-2x` scan folders and the 2x frame store are still in `library/data` on both
    machines, and no pipeline reads them. Doug decides whether they stay.
-8. [The Altered Cortex](../the-altered-cortex/.cover.md)'s validator reports errors, nearly all older
+9. [The Altered Cortex](../the-altered-cortex/.cover.md)'s validator reports errors, nearly all older
    than this sprint. One of them tells a reader to relaunch a CPU watchdog, which must not be followed.
