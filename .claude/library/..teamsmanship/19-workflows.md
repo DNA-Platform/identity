@@ -42,6 +42,19 @@ What we already do with Doug, now named so it can be declared. It precedes the f
 
 **The gate:** no code before the ruling. The most expensive failures on record are all this gate not existing.
 
+## The prototype workflow
+
+Named by Doug on 2026-09-28, when the team was asked to make a reference manual into an application and reached for requirements before it had seen anything: *"this is a new workflow where you prototype as a team, discuss, get it to a form where you can figure out what to build, and then move it to .public. Remember to think in the semantics of the thing. Be creative… Invest in design to see what words semantically, interactively, visually before committing to it. And you have to make fundamental changes too."* It runs where an **experience** is at stake, before the feature workflow's brainstorm can say what the thing needs to be.
+
+1. **Sketch** — in the cheapest medium that can be looked at: HTML written to be thrown away, photographed at a real size, and looked at before it is described. *"Sketch what you want in HTML that you can throw away to see what you want as your design medium."*
+2. **Discuss** — in the room, every voice by territory: the **words**, what each part is in the semantics of the thing rather than in the medium it resembles; the **interaction**, one sentence per move; the **visual**, what stays and what the sketch adds. A sketch nobody discussed is a picture.
+3. **Iterate** — the discussion's conclusions drawn into the next sketch, photographed and looked at again, until the form is one the team can build from and say what it will cost.
+4. **Then the feature workflow** — the requirements written to the form reached, the fundamental changes to the framework among them and not routed around, and the plan and the work moving it into `.public`.
+
+**The sketch is kept.** *"The throwaway sketch doesn't literally need to be thrown away. Maybe Libby wants to put it in her Library somewhere. But it is the design."* It stands beside the sprint chapter it belongs to, with its photograph, and where the thing sketched has a chapter of its own the photograph is that chapter's appendix. The first run is [Sprint 93](../../../library/.public/.lib/projection/98-sprint-93--the-explorer.md).
+
+**The gate:** no requirements before a sketch has been discussed. The failure it exists for is the one it was named on: a brainstorm that maps parts to a medium's names — tree, tabs, outline — and asks for approval of the mapping, where the thing's own semantics had a word for each part and nobody had looked.
+
 ## The debug workflow
 
 Different from the feature workflow, and it replaces steps 1–3 rather than preceding them.
