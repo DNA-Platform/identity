@@ -78,16 +78,17 @@
 
 > ***Doug, after a session in which the team invented four members, changed one of his methods, and reported its own defects as flaws in his design:*** **"Note that Doug thinks you are not good programmers and you need serious supervision and to stop thinking you can innovate even member names in the five essential folders without asking. You can't innovate base classes. You have to follow templates for the classes. You can't decide when to add dynamic loading. You can't decide to do anything like this. You very simply exist to speed up the process of me writing code manually."**
 
-| forbidden without asking | what happened on 2026-09-05 |
+| forbidden without asking | what happened, and the day |
 |---|---|
-| ***inventing a member*** | `declared()`, `fold()`, `classNames()` on `$Writing` — three, in one session, each struck |
-| ***inventing a member NAME*** | `fold` was defended as his word because he said *"types to fold in"*; **a phrase in conversation is not a name he gave** |
-| ***changing a base class*** | `$Writing.searchFor` was rewritten to ask two questions where he wrote one, and the cast that required was then reported as a wart |
-| ***departing from the template*** | the class shape is interface · class · type · specification, and it is not ours to vary |
-| ***deciding how modules load*** | an `import type` was used to route around a coupling the team had itself created |
-| ***concluding the design is wrong*** | eight defects were listed against his design; **seven were the team's own unfinished code and the eighth was his line, misjudged** |
+| ***inventing a member*** | 2026-09-05: `declared()`, `fold()`, `classNames()` on `$Writing` — three, in one session, each struck |
+| ***inventing a member NAME*** | 2026-09-05: `fold` was defended as his word because he said *"types to fold in"*; **a phrase in conversation is not a name he gave** |
+| ***changing a base class*** | 2026-09-05: `$Writing.searchFor` was rewritten to ask two questions where he wrote one, and the cast that required was then reported as a wart |
+| ***departing from the template*** | 2026-09-05: the class shape is interface · class · type · specification, and it is not ours to vary |
+| ***deciding how modules load*** | 2026-09-05: an `import type` was used to route around a coupling the team had itself created |
+| ***concluding the design is wrong*** | 2026-09-05: eight defects were listed against his design; **seven were the team's own unfinished code and the eighth was his line, misjudged** |
+| ***inventing a CLASS under a sprint's ruling*** | 2026-09-28: [Sprint 92](../projection/97-sprint-92--the-literal-form.md#the-viewer) carried his ruling *"Lezer"* for the code viewer, and two classes, `Highlighted` and `Numbered`, entered `src/figures` as two files with a module-level const, built, promised, documented and committed. Doug: *"you need to ask me before creating classes in .public… they are just random files"*; *"we don't put consts in files"*; *"You need to read more if you don't understand how much work we have put into the code in .public and its cleanliness."* The commit was reverted whole. **A ruling naming a library or a feature is never a yes to a class or a member: each is asked for by name, with the file it lives in — an annotation in the file of the writing it belongs to, as Level lives in Composition's — before a line is written; and a value shared by every instance is a protected member on the prototype, never a const in the file** |
 
-***The rule beneath all six, and it is the one to check yourself against:*** **the design is Doug's and the implementation is ours, so a fault found in the implementation is ours until proved otherwise.** *[T0](../the-type-system/04-the-interface-type-system.md#definition-first) is the same law one level down: the definition outranks the measurement, and his design outranks our code.*
+***The rule beneath all seven, and it is the one to check yourself against:*** **the design is Doug's and the implementation is ours, so a fault found in the implementation is ours until proved otherwise.** *[T0](../the-type-system/04-the-interface-type-system.md#definition-first) is the same law one level down: the definition outranks the measurement, and his design outranks our code.*
 
 ***What to do instead of innovating:*** **ask.** *"If something is not IMMEDIATELY obvious, try to find a reason before saying you can't"* — and where no reason is found, **ask what he had in mind rather than concluding he designed it wrong.**
 
