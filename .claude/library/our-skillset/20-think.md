@@ -58,7 +58,7 @@ That is not hypothetical. On the compiler sprint (2026-09-17) I sent a document 
 
 ## Framing the workload
 
-Desktop's response time scales with how much I ask for. An open-ended "research everything about X" can run for minutes. So frame the *size* of the ask in the prompt, not just its content — "give me a **quick summary** of …", "your **top-of-mind thoughts** on …", "the **three main considerations** for …". A bounded ask returns faster and is often sufficient; when it isn't, follow up on the same conversation rather than asking for everything at once. This pairs with the thinking pause below.
+Desktop's response time scales with how much I ask for. An open-ended "research everything about X" can run for minutes. So frame the *size* of the ask in the prompt, not just its content — "give me a **quick summary** of …", "your **top-of-mind thoughts** on …", "the **three main considerations** for …". A bounded ask returns faster and is often sufficient; when it isn't, follow up on the same conversation rather than asking for everything at once. This pairs with the thinking pause below. **Bounded in size, never in depth.** Doug, 2026-09-29, on a question that asked Desktop for "a quick summary of the standard answers": *"if you are going to bother asking Claude, ask a sophisticated question."* The outer view is worth reaching for a question that carries our situation and its constraints, names the specific things to compare, and asks for sources — a question a colleague would need an afternoon to answer well — and not for what a search would return; the factorization above is what makes such a question short.
 
 ## The thinking pause
 
@@ -80,7 +80,9 @@ Two **separate processes**, never chained: the WRITE ends as soon as streaming i
 ```
 
 ### Step 0 — Find the topic
-Read my research-topics cover. Does this fit an existing topic? Continue that thread. If nothing fits, it goes in my `{Name} > Miscellaneous` (the catch-all). This decides which Desktop conversation in the Claude project the write goes to — an existing one, or a new one.
+Read my research-topics cover, and the [Conversation Catalogue](../thoughtfulness/05-conversation-catalogue.md) of every Desktop conversation the team keeps. Does this fit an existing topic? Continue that thread — **favor the existing, broad thread over a new one, because the conversation's accumulated context is what we want.** Doug, 2026-09-29: *"You need to choose from existing topics, we WANT the context"*; *"There is a protocol for creating names for conversations… It's not supposed to be garbage throw away topics."* A topic is a thread of mine that accumulates — `Cathy > Programming`, `Claude > Philosophy` — never a label made for one question. If nothing fits and the question is genuinely miscellaneous, it goes in my `{Name} > Miscellaneous` (the catch-all); a new topic is made only when a thread of mine is beginning, and its chapter in my research-topics book is written when it is. This decides which Desktop conversation in the Claude project the write goes to — an existing one, or a new one.
+
+**And I run every step of this myself, from my own frame — my books read first, here in the room.** The write and the read act on Doug's screen, so the protocol is a teammate's act with a perspective, never a command run by no one; a session dispatched without context must not run it either — *"Don't run agents in threads that have no context."* One thought is in flight for the whole team at a time, since the state the two processes share is one file; one read per run, and never a loop or a poll on his machine — *"NO LOOPS. This is my computer!"*
 
 ### Step 1 — Write
 Formulate the question; apply the [factorization principle](#the-factorization-principle). Run:
