@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Library Reference Manual — the third sketch: slices, and the appendix as a tab</title>
+<style>
+  :root { --paper: #faf8f4; --paper-2: #f2efe9; --ink: #23262a; --ink-2: #6b6a66; --rule: #dcd8cf; --link: #5b2f2a; --lit: #f1e6d2; --code: #f6f3ec; --kw: #5b2f2a; --str: #3c6e4f; --fn: #23262a; --cm: #8a8377; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { font: 17px/1.7 Georgia, 'Times New Roman', serif; color: var(--ink); background: var(--paper); }
+  .app { height: 100vh; display: grid; grid-template-rows: 44px 1fr 36px; grid-template-columns: 300px 1fr 280px; grid-template-areas: "head head head" "table main index" "foot foot foot"; }
+  .head { grid-area: head; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid var(--rule); background: var(--paper-2); font-size: 15px; }
+  .head a { color: var(--ink); text-decoration: none; }
+  .head .sep { color: var(--ink-2); margin: 0 .5em; }
+  .head .byline { color: var(--ink-2); }
+  .head .byline b { font-weight: 600; color: var(--ink); }
+  .label { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; opacity: .65; padding: 0 20px 8px; }
+  .table { grid-area: table; border-right: 1px solid var(--rule); background: var(--paper-2); padding: 14px 0; overflow: auto; font-size: 15px; }
+  .table ul { list-style: none; margin: 0; padding: 0; }
+  .table .node { display: flex; align-items: baseline; gap: 8px; padding: 5px 20px; cursor: pointer; }
+  .table .node:hover { background: rgba(0,0,0,.04); }
+  .table .node.open-chapter { background: rgba(91,47,42,.08); }
+  .table .glyph { width: 12px; color: var(--ink-2); font-size: 11px; }
+  .table .n { color: var(--ink-2); font-size: 12px; width: 18px; text-align: right; }
+  .table .cover .node { font-variant: small-caps; letter-spacing: .05em; }
+  .table .apparatus .node { color: var(--ink-2); font-style: italic; }
+  .table .leaf .node { padding-left: 50px; font: 12.5px/1.5 ui-monospace, "Cascadia Mono", Consolas, monospace; color: var(--ink-2); white-space: nowrap; }
+  .table .leaf .node:before { content: "·"; margin-right: 8px; }
+  .table .leaf .node.open-appendix { color: var(--ink); background: rgba(91,47,42,.08); }
+  .main { grid-area: main; display: grid; grid-template-rows: 40px 1fr; min-width: 0; }
+  .tabs { display: flex; align-items: stretch; border-bottom: 1px solid var(--rule); background: var(--paper-2); overflow: hidden; }
+  .tab { display: flex; align-items: center; gap: 10px; padding: 0 16px; border-right: 1px solid var(--rule); font-size: 14px; color: var(--ink-2); cursor: pointer; }
+  .tab.active { background: var(--paper); color: var(--ink); border-bottom: 1px solid var(--paper); margin-bottom: -1px; }
+  .tab .x { color: var(--ink-2); font-size: 12px; }
+  .tab.cover { font-variant: small-caps; letter-spacing: .05em; }
+  .tab.appendix { font: 13px/1 ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  .tab.appendix .kind { font: italic 12px Georgia, serif; opacity: .7; }
+  .page { overflow: auto; padding: 36px 56px 64px; }
+  .chapter { max-width: 42rem; }
+  .kind-label { font-size: 12px; letter-spacing: .15em; text-transform: uppercase; opacity: .65; }
+  h1 { font-weight: bold; font-size: 26px; margin: 4px 0 20px; }
+  h2 { font-weight: bold; font-size: 19px; margin: 30px 0 8px; }
+  p { margin: 0 0 14px; }
+  a.means { color: var(--link); text-decoration: underline; text-decoration-color: rgba(91,47,42,.35); }
+  a.symbol { font: 15px/1 ui-monospace, "Cascadia Mono", Consolas, monospace; color: var(--ink); background: var(--lit); padding: 1px 5px; border-radius: 3px; text-decoration: none; border-bottom: 1px solid var(--link); }
+  .listing { margin: 12px 0 18px; border-left: 2px solid rgba(35,38,42,.25); background: var(--code); }
+  .listing .file { display: flex; justify-content: space-between; padding: 5px 14px; font: 12px/1.4 ui-monospace, "Cascadia Mono", Consolas, monospace; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+  .listing .file i { font: italic 12px Georgia, serif; }
+  .listing pre { margin: 0; padding: 10px 0; font: 13.5px/1.5 ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  .listing .line { display: block; padding: 0 14px 0 58px; text-indent: -58px; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .listing .line.lit { background: var(--lit); box-shadow: inset 3px 0 0 var(--link); }
+  .listing .ln { display: inline-block; width: 44px; padding-right: 14px; text-align: right; text-indent: 0; color: #b7b0a3; user-select: none; }
+  .kw { color: var(--kw); } .str { color: var(--str); } .fn { color: var(--fn); font-weight: 600; } .cm { color: var(--cm); font-style: italic; }
+  .index { grid-area: index; border-left: 1px solid var(--rule); padding: 14px 0; font-size: 14px; overflow: auto; }
+  .index ul { list-style: none; margin: 0 0 20px; padding: 0 20px; }
+  .index li { display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; color: var(--ink-2); }
+  .index li.here { color: var(--ink); }
+  .index li code { font: 13px/1.5 ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  .index li .at { color: #b7b0a3; font-size: 12px; font-variant-numeric: tabular-nums; }
+  .index li.from { font-style: italic; }
+  .index li.sub { padding-left: 14px; }
+  .foot { grid-area: foot; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-top: 1px solid var(--rule); background: var(--paper-2); font-size: 14px; color: var(--ink-2); }
+  .foot a { color: var(--ink); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="head">
+    <div><a href="#">The Library</a><span class="sep">/</span><a href="#">The Library Reference Manual</a></div>
+    <div class="byline">author <b>Libby</b><span class="sep">·</span>filed under <b>Libraries</b></div>
+  </header>
+
+  <nav class="table">
+    <div class="label">Table of Contents</div>
+    <ul>
+      <li class="cover"><div class="node"><span class="glyph"></span><span class="n"></span>The Library Reference Manual</div></li>
+      <li class="apparatus"><div class="node"><span class="glyph"></span><span class="n"></span>Synopsis</div></li>
+      <li><div class="node"><span class="glyph">▸</span><span class="n">1</span>The Book</div></li>
+      <li><div class="node open-chapter"><span class="glyph">▾</span><span class="n">2</span>The Theme</div>
+        <ul><li class="leaf"><div class="node open-appendix">2-the-theme.code.tsx</div></li></ul></li>
+      <li><div class="node"><span class="glyph">▸</span><span class="n">3</span>The Masthead and the Byline</div></li>
+      <li><div class="node"><span class="glyph">▸</span><span class="n">4</span>The Catchword</div></li>
+      <li><div class="node"><span class="glyph">▸</span><span class="n">5</span>The Faces</div></li>
+      <li><div class="node"><span class="glyph">▸</span><span class="n">6</span>The Mark and the Photograph</div></li>
+      <li><div class="node"><span class="glyph">▸</span><span class="n">7</span>The Explorer</div></li>
+    </ul>
+  </nav>
+
+  <section class="main">
+    <div class="tabs">
+      <div class="tab cover">The Library Reference Manual</div>
+      <div class="tab active">The Theme <span class="x">×</span></div>
+      <div class="tab appendix">2-the-theme.code.tsx <span class="kind">appendix · 103 lines</span> <span class="x">×</span></div>
+    </div>
+    <div class="page">
+      <article class="chapter">
+        <div class="kind-label">Chapter 2</div>
+        <h1>The Theme</h1>
+
+        <h2>What the theme is</h2>
+        <p>The one thing every book here shares. It is <a class="symbol" href="#L8">$LibraryTheme</a>, a class under the framework's Theme; it sets the eight values a theme has, and in its define it extends the default sheet rather than replacing it, since the default comprehends every mark the framework puts on an element and mine adds the library's look on top of those same marks. Every rule reads the theme's values, so a book that overrides them keeps the look in another ink, which is what <a class="means" href="#">Libby</a> does to go dark.</p>
+
+        <h2>The helper every style reads through</h2>
+        <p>The file opens with <a class="symbol" href="#L5">at</a>, a small helper every style in this library uses to read a value: the property named on the theme the format stands inside. A book always has a theme, so the fallback it still carries is never reached; what it reads is the theme's variable.</p>
+        <div class="listing">
+          <div class="file"><span>2-the-theme.code.tsx</span><span><i>lines</i> 5–6</span></div>
+<pre><span class="line" id="L5"><span class="ln">5</span><span class="kw">export const</span> <span class="fn">at</span> = (property: string, fallback = <span class="str">''</span>) =&gt;</span
+><span class="line"><span class="ln">6</span>    ({ theme }: { theme: Record&lt;string, string | undefined&gt; }): string =&gt; theme[property] ?? fallback;</span
+></pre>
+        </div>
+
+        <h2>The seven values the library sets</h2>
+        <p>The class sets seven of the eight and leaves the size alone: Georgia, a longer leading, a wider measure, a warmer space, a dark ink, a warm paper and an oxblood link. Nothing else about the look is a value; everything else is a rule reading these.</p>
+        <div class="listing">
+          <div class="file"><span>2-the-theme.code.tsx</span><span><i>lines</i> 8–15</span></div>
+<pre><span class="line lit" id="L8"><span class="ln">8</span><span class="kw">export class</span> <span class="fn">$LibraryTheme</span> <span class="kw">extends</span> $Theme {</span
+><span class="line"><span class="ln">9</span>    font = <span class="str">"Georgia, 'Times New Roman', serif"</span>;</span
+><span class="line"><span class="ln">10</span>    leading = <span class="str">'1.7'</span>;</span
+><span class="line"><span class="ln">11</span>    measure = <span class="str">'42rem'</span>;</span
+><span class="line"><span class="ln">12</span>    space = <span class="str">'1.25rem'</span>;</span
+><span class="line"><span class="ln">13</span>    ink = <span class="str">'#23262a'</span>;</span
+><span class="line"><span class="ln">14</span>    paper = <span class="str">'#faf8f4'</span>;</span
+><span class="line"><span class="ln">15</span>    link = <span class="str">'#5b2f2a'</span>;</span
+></pre>
+        </div>
+
+        <h2>Extending the sheet in its define</h2>
+        <p>The sheet is extended and never replaced: <a class="symbol" href="#L17">$Define</a> calls the base's, then reassigns the style to a selection of it, so every rule of the default stands and the library's are added after it and win where they meet.</p>
+        <div class="listing">
+          <div class="file"><span>2-the-theme.code.tsx</span><span><i>lines</i> 17–19</span></div>
+<pre><span class="line" id="L17"><span class="ln">17</span>    <span class="kw">protected override</span> <span class="fn">$Define</span>(): <span class="kw">void</span> {</span
+><span class="line"><span class="ln">18</span>        <span class="kw">super</span>.$Define();</span
+><span class="line"><span class="ln">19</span>        <span class="kw">this</span>.style = selection(<span class="kw">this</span>.style <span class="kw">as</span> ComponentType&lt;{ className?: string }&gt;)<span class="str">`</span></span
+></pre>
+        </div>
+
+        <h2>One voice for every label</h2>
+        <p>The kind labels, the parenthetical titles, the table's headings and its header row share one rule, small, uppercase, letter-spaced and faded, so a reader learns once what a label looks like. The label above a chapter's title is a counter, and the apparatus names itself.</p>
+        <div class="listing">
+          <div class="file"><span>2-the-theme.code.tsx</span><span><i>lines</i> 44–58</span></div>
+<pre><span class="line" id="L44"><span class="ln">44</span>            .pd-chapter .pd-title::before,</span
+><span class="line"><span class="ln">45</span>            .pd-title.pa-parenthetical,</span
+><span class="line"><span class="ln">46</span>            .pa-table-of-contents .pd-heading,</span
+><span class="line"><span class="ln">47</span>            .pa-row:first-child .pa-col {</span
+><span class="line"><span class="ln">48</span>                font-size: calc(0.7 * ${at(<span class="str">'size'</span>)});</span
+><span class="line"><span class="ln">49</span>                font-weight: normal;</span
+><span class="line"><span class="ln">50</span>                letter-spacing: 0.15em;</span
+><span class="line"><span class="ln">51</span>                text-transform: uppercase;</span
+><span class="line"><span class="ln">52</span>                opacity: 0.65;</span
+><span class="line"><span class="ln">53</span>            }</span
+><span class="line"><span class="ln">54</span>            .pd-chapter .pd-title::before {</span
+><span class="line"><span class="ln">55</span>                display: block;</span
+><span class="line"><span class="ln">56</span>                margin-block-end: calc(${at(<span class="str">'space'</span>)} / 4);</span
+><span class="line"><span class="ln">57</span>                content: <span class="str">'Chapter '</span> counter(chapter);</span
+><span class="line"><span class="ln">58</span>            }</span
+></pre>
+        </div>
+        <p>The rest of the sheet, the card, the synopsis rule, the boxed table and the figure set off, is in the appendix, which is the whole file as it stands on disk.</p>
+      </article>
+    </div>
+  </section>
+
+  <aside class="index">
+    <div class="label">Index of this chapter</div>
+    <ul>
+      <li class="here"><span>What the theme is</span></li>
+      <li><span>The helper every style reads through</span><span class="at">5</span></li>
+      <li><span>The seven values the library sets</span><span class="at">8</span></li>
+      <li><span>Extending the sheet in its define</span><span class="at">17</span></li>
+      <li><span>One voice for every label</span><span class="at">44</span></li>
+    </ul>
+    <div class="label">The appendix · 2-the-theme.code.tsx</div>
+    <ul>
+      <li><code>at</code><span class="at">5</span></li>
+      <li class="here"><code>$LibraryTheme</code><span class="at">8</span></li>
+      <li class="sub"><code>$Define</code><span class="at">17</span></li>
+      <li><code>LibraryTheme</code><span class="at">103</span></li>
+    </ul>
+    <div class="label">Referred to from</div>
+    <ul>
+      <li class="from"><span>The Book</span><span class="at">1</span></li>
+      <li class="from"><span>The Faces</span><span class="at">5</span></li>
+      <li class="from"><span>Libby · This book</span><span class="at"></span></li>
+    </ul>
+  </aside>
+
+  <footer class="foot">
+    <a href="#">← The Book</a>
+    <span>Chapter 2 of 7</span>
+    <a href="#">The Masthead and the Byline →</a>
+  </footer>
+</div>
+</body>
+</html>

@@ -32,7 +32,7 @@
 </Section>
 ```
 
-*The test library's catalogue, [`the-library/.table.tsx`](../../package/.binding/.test/the-library/.table.tsx): the heading is the section's canonical and no row, each paragraph a row, each Word a cell — drawn on the bound page as a grid two columns wide wearing `pa-table`, three rows, six cells. The theme's sheet gives the grid its gaps, its header row its weight and rule, its cells their padding: looks, by mark; the grid itself is the Format's.*
+*The test library's catalogue, [`the-library/.table.tsx`](../../package/.binding/.test/library/.table.tsx): the heading is the section's canonical and no row, each paragraph a row, each Word a cell — drawn on the bound page as a grid two columns wide wearing `pa-table`, three rows, six cells. The theme's sheet gives the grid its gaps, its header row its weight and rule, its cells their padding: looks, by mark; the grid itself is the Format's.*
 
 ## <a id="why-the-marks-are-the-binds"></a>Why the marks are the bind's, and not the define's
 

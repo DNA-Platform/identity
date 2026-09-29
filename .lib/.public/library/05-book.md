@@ -31,7 +31,7 @@
 
 ### In use
 
-**A library's book class** stands at the top of its `.book.tsx` and draws the book; the test library's draws a byline from what the book exposes before its chapters — [`the-library/.book.tsx`](../../package/.binding/.test/the-library/.book.tsx):
+**A library's book class** stands at the top of its `.book.tsx` and draws the book; the test library's draws a byline from what the book exposes before its chapters — [`the-library/.book.tsx`](../../package/.binding/.test/library/.book.tsx):
 
 ```tsx
 export default class $TheLibrary extends $Book {

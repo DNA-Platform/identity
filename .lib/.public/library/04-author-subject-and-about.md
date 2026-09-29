@@ -47,7 +47,7 @@ export default () => (
 );
 ```
 
-**The framework draws none of them as the page**; the [book](05-book.md) exposes them, and a library's book class draws what it likes. The test library's draws a byline from `book.author` and `book.subject`, [in its `.book.tsx`](../../package/.binding/.test/the-library/.book.tsx) — a word standing a Reference to what each exposes:
+**The framework draws none of them as the page**; the [book](05-book.md) exposes them, and a library's book class draws what it likes. The test library's draws a byline from `book.author` and `book.subject`, [in its `.book.tsx`](../../package/.binding/.test/library/.book.tsx) — a word standing a Reference to what each exposes:
 
 ```tsx
 <Paragraph>

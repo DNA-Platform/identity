@@ -18,7 +18,7 @@
 |---|---|---|---|
 | `RunningHead` | [the test library](../../package/.binding/.test/manual/3-the-masthead-and-the-byline.code.tsx) | **yes** — the line at the head of every page naming its book | — |
 | `Typewritten` | [the paper's book](../../package/.binding/.test/paper/.book.tsx) | **yes** | — |
-| `Theme` | [the library's book](../../package/.binding/.test/the-library/.book.tsx) | Doug's | — |
+| `Theme` | [the library's book](../../package/.binding/.test/library/.book.tsx) | Doug's | — |
 | `bound`, `printed`, `read`, `drawn` | [the galleys](../../package/.binding/.test/galleys.ts), the regression | **yes** — the bindery and the press | — |
 | `staged`, `Staged`, `held` | the galleys, the regression | no — the theatre | **renamed 2026-09-26:** `pulled()` returns a `Galley`, kept under `.test/.galleys/` in `galleys.ts` — the trial impression pulled to be corrected before a book is bound; one galley is broken on purpose, one is measured |
 | `fixture` | staging | no — the workshop | **copy** is the printer's word for the text set from, but it says too little; no exact word, so it stays |

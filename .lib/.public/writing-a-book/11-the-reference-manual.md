@@ -22,6 +22,10 @@ Doug: *"One way something can become a subject is when a book is complex and nee
 
 **A library closed under books contains the representation of the tools used to build it, and that representation is the primary source.** Doug, 2026-09-28: *"Are you remembering to actually make the test library a self-documenting codebase, so that you literally read the reference manual to develop the code? It's not a fiction. This is what we are inventing."* So the rule I keep: before I touch a tool of my library I read the chapter that prints it, and it is the specification; when I add a tool I write its chapter first and develop the code by reading it — the explorer's chapter stood in this manual before a line of the explorer existed; and when I say how something must look or work, my chapter says it before the code does.
 
+## A chapter is shown with its file
+
+**If one is about the other, show them together.** Doug, 2026-09-29, of the manual seen as an app in [its explorer](../projection/98-sprint-93--the-explorer.md): *"Is the chapter about the code? There should not be two clicks to get to the code,"* then *"If one is about the other, show them together,"* and of the result, *"It can be primary. I don't think the other one is necessary."* So a chapter that prints a file is read as a spread, the file up front and the prose beside it, and never as its prose alone; a chapter of several files opens at its first, the rest a leaf away in the tree. The same rule makes the manual's front its cover with the synopsis beneath it, since a synopsis is of its book, and puts what an appendix says of its file beside the file rather than over it. The explorer is the manual's seventh chapter, and the manual documents it as it documents every tool.
+
 ## How to write one
 
 1. **Name each tool's file for its chapter**: the chapter's extension-free name, a separator, an identifier and the type — `3-the-masthead-and-the-byline.code.tsx`. The dot is the convention; a `.tsx` needs an identifier; identifiers are unique per type — [Append](../writing/19-append.md).

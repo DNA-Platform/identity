@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md)
-- ***Written 2026-09-27 with U9 of [Sprint 88](../projection/93-sprint-88--the-theme-the-element-and-the-blank.md#u9), on Doug's asking for a visual language in the test library and a report on how easy it is to make one. The code is the test library's own: [`the-library/.book.tsx`](../../package/.binding/.test/the-library/.book.tsx) and [`3-the-masthead-and-the-byline.code.tsx`](../../package/.binding/.test/manual/3-the-masthead-and-the-byline.code.tsx). The chapter's name is a PROXY.***
+- ***Written 2026-09-27 with U9 of [Sprint 88](../projection/93-sprint-88--the-theme-the-element-and-the-blank.md#u9), on Doug's asking for a visual language in the test library and a report on how easy it is to make one. The code is the test library's own: [`the-library/.book.tsx`](../../package/.binding/.test/library/.book.tsx) and [`3-the-masthead-and-the-byline.code.tsx`](../../package/.binding/.test/manual/3-the-masthead-and-the-byline.code.tsx). The chapter's name is a PROXY.***
 
 ---
 
