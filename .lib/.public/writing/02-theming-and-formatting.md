@@ -82,6 +82,55 @@ renders as a span with `pa-parenthetical` on it, holding the text, then a span w
 
 **The nearer relatives are outside React.** Vue's custom directives and Angular's attribute directives annotate an element with a behaviour that has lifecycle hooks and compose several to one element; Svelte's actions attach a behaviour to a node with an update and a destroy, which are `defines` and `erase` by other names. Nearer still is the entity-component-system, where an entity is the memory and attached components are the behaviours a system walks, which is the writing and its annotations and the pass. The difference Doug names is the right one: here the chemical is the memory container and the component rolled together, and an annotation is a plugin on that instance, typed by its class, found by the collection, acting on the writing's state before it renders and rendering as a note on its page. It is not a trait of the class, as a mixin or a decorator is; it is an annotation of the writing, and two writings of one class carry different ones.
 
+## <a id="where-a-look-lives"></a>Where a look lives — the standard, and the questions it answers
+
+**Doug, 2026-09-29, on finding Table carrying a global style while not being a Format:** *"I would think we want format annotations to be standardized. They can do other things."* And the questions the standard must answer, verbatim: *"Is it a mistake that global styles are being created? We do want unitary control over style, but we also want to control things with subclassing and part of the purpose of styled components is modularization of user interface. On the other hand, we have a theme and injecting classes, in some cases is better… Should formats be local styled components? Do all globals go to the theme? When might it make sense to have other themes — when types of chapters look different perhaps? What is the rationale? What does one get and give up? We care about dynamism and flexibility but also about performance."* And then: *"does one still ever use styled components, as Formats are setup to do? Let's make the documentation self-consistent but let's also improve the development story. When should style be local and when should it be global? … I am sure there are standard answers within the frontend community and the styled components community."* This section is the one place the answer lives; [Format and Theme](11-format-and-theme.md), [Theme](13-theme.md) and [Developing an Annotation](10-developing-an-annotation.md) point here rather than restating it. **The section's name is a proxy, and the standard below is a proposal until he rules on it, except where marked built.**
+
+### What was found
+
+Five annotations that are not Formats carried a `createGlobalStyle` in a field named `style`, returned from `note()`: Parenthetical, Blank, SelfReference, Paginated and Table. Six Formats carry the same name for the element the writing draws as. One word, two things — and the collisions that follow: Blank's `visibility: hidden` written twice, in its own style and in the theme's sheet; Parenthetical's own `display: none` beside the theme's `opacity: 0.6` for the same mark, the theme's rule dead; the table's structure, `display: contents` on its rows and the spanning of a container child, written in the theme's sheet, which should know nothing of how a grid is made. The guide had taught the pattern: chapter 10 showed Parenthetical's global-style note as the way to mark, and Table (Sprint 84) copied it.
+
+### The community's answers, as far as they go
+
+The styled-components documentation and the practice around it give standard answers, recorded here from what we know of them rather than researched afresh on the day: **styles are component-scoped by default**, since a namespace nobody shares is the point of CSS-in-JS; **`createGlobalStyle` is for resets, base typography and fonts**, used once at a root and warned against for component styling; **a ThemeProvider carries tokens** — values, never rules — that components read; **variants are transient props**, `$columns`, never classes toggled from outside; **a parent places its children and never paints them**, and a component that must reach another names it, `${Other}`, so the coupling is written; and **the modern turn is CSS custom properties as the token carrier**, set once and read locally, cheap because no class regenerates when a value changes. **And there is a second tradition these answers do not cover**, the semantic class read by a stylesheet — BEM, and every design system with a `.button--primary` — which is where a library restyles meaning it did not write. `.public` sits across the two on purpose: marks and the theme's sheet are the second tradition, Formats the first.
+
+### The standard: three kinds of rule, three homes
+
+| the rule says | its home | built or proposed |
+|---|---|---|
+| **what a Format IS as an element** — a grid, a header, a nav, a sheet | **the Format's own styled component**, declared inside the class, local, reading the theme's values through the provider; the Format may lend it as a layer (Cover, TableOfContents) or take the writing's own element with it (Table) | built: Table, 2026-09-29 |
+| **what an annotation MEANS to the eye** — parenthetical is hidden, blank is blank, a closed page is unseen, a self-reference wears no underline | **the annotation's own note**, a global style for its mark, and only the rule that is the meaning, so that no theme can un-mean it by forgetting a rule | as it stands — Doug: *"I don't agree with your placement of the annotations"* when they were proposed for the theme |
+| **how a mark LOOKS** — gaps, borders, weights, margins, ink | **the theme's sheet**, which comprehends every mark | as it stands |
+
+**The one law across the three: no property on one element is written by two authors.** Blank's duplicate and the theme's dead Parenthetical rule are the two known breaches, and both are the theme's to give up — proposed, since the sheet is `src`.
+
+### The development story — one question, six answers
+
+A developer wanting something to look a certain way asks *what kind of rule is this*, and the table answers where to write it:
+
+| the rule is | write it | as |
+|---|---|---|
+| what the element **is** — display, its children's placement, its own box | in the Format that is the element | its styled component, declared inside the class; `$props` for what varies per instance |
+| what the annotation **means** to the eye | in the annotation's `note` | a global style on its mark, and only that rule |
+| how a mark **looks** in this library | in the theme's sheet | a rule by mark, its numbers from the theme's values |
+| a **value** used everywhere — ink, paper, space, size | in the theme | a value; every Format and the sheet read it through the provider |
+| one **kind's** own look | in that kind's `$Define` | a Format the kind stands, in front of the class's own; or `$is` on one instance |
+| another **set of values** for a subtree — a dark chapter in a light book | on that writing | a Format with `theme = true`; the front-most theme on one writing wins |
+
+And what never: a parent painting a child's look; a rule about structure anywhere but the Format that is the element; a look written outside the theme; two authors on one property; a component made per pass.
+
+### The questions, answered
+
+- **Is a global style a mistake?** No: a mark is global by nature, and a rule about a mark is a global rule. The mistake is a global rule about a *look* outside the theme, or about *structure* anywhere but the Format that is the element, or the same property written twice.
+- **Should Formats be local styled components?** Yes, and they are. That is styled-components' modularization and the theme's unitary control at once: the component's rules ship with the class and are subclassed with it, and its values come from the theme through the provider, so a library changes every table's gap by changing one value. Declared inside the class ([ruled 2026-09-23](11-format-and-theme.md#declared-inside)); made once per instance in the bond where it needs the instance, as Table's grid is handed its column count.
+- **Do all globals go to the theme?** Looks, yes. Meanings stay with the annotation whose meaning they are. Structure goes to the Format. And a Format's lent layer wears only `pd-container`, so a theme cannot reach it by mark — which is why Table takes the element instead of lending a layer, and is an open question below.
+- **When another theme?** A Theme is a Format with `theme = true` said of a book, and the same said of a chapter — or stood by a kind of chapter in its `$Define` — provides its own values to that subtree through the provider `Format.provide` already composes; the front-most theme on one writing wins. So chapter kinds that look different are Formats those kinds stand, reading the book's values; a chapter that needs its own *values*, dark in a light book, is a theme of its own. A theme changes values; it never changes what an element is.
+- **What does one get and give up?** A local styled component: modularity, subclassing, one class per distinct prop value at render, and no reach from outside except through values and marks. The theme's sheet: one style element per book, every mark in one place, overridable whole by a library's Theme, and coupled to every mark it must know. An annotation's note: the meaning travels with the class, and a library that wants another meaning subclasses the annotation rather than styling around it.
+- **Dynamism against performance.** A mark toggled is one class; a Format swapped through `$is` is one paint; a styled component reading a prop is one generated class per distinct value; a global style is injected once. What costs is a component made per pass — [never](10-developing-an-annotation.md#what-never-to-do) — and two authors fighting over one property, which costs a reader's afternoon. The community's turn to CSS custom properties is the one answer we have not taken: the theme's eight values as `--ink`, `--space` on the sheet's element would let every Format read `var(--space)` with no provider read, no helper and no typing, and a value change would repaint nothing but the browser's own cascade.
+
+### Open, and his to rule
+
+Whether a Format's lent layer should wear the annotation's mark, so a theme can reach a Cover's header as it reaches a table's grid. Whether the theme's eight values become CSS custom properties, or styled-components' `DefaultTheme` is augmented with them, so a Format reads a value without a helper; today Theme keeps a protected `provided` for its own sheet. Whether the theme's two breaches above go.
 ## Where things are
 
 | what | where | state |
