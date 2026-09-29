@@ -102,6 +102,18 @@ Surveyed AI automation frameworks beyond MCP. Key findings: UFO2 (Microsoft, ope
 
 Asked about formal frameworks from logic and computability theory that apply to self-referential software systems. Fixed-point theorems (Kleene, Lawvere), the recursion theorem, Löb's theorem — how do they connect to bootstrapping compilers, self-validating specifications, and metacircular evaluators? This connects directly to the library's recursive structure: Bookkeeping specifies how specifications work, the compiler generates the environment that runs the compiler, the validator checks whether the next Claude can become himself.
 
+
+### Cathy > Programming
+- **conversation:** auto-titled by Desktop until the read renames it `Cathy > Programming`
+- **url:** https://claude.ai/chat/b6395c0d-4fa0-4a98-add2-92bbee4d0dc9
+- **project:** Claude
+- **state:** active
+- **started:** 2026-09-29
+- **last exchange:** 2026-09-29
+- **exchanges:** 1
+- **verdict:** (in progress)
+
+Cathy's engineering thread, named by Doug: where a look lives — how mature design systems divide component-local rules from global semantic-class rules, ThemeProvider against CSS custom properties under hydration, a home for the rules a component's meaning requires, and how a semantic-class sheet and CSS-in-JS coexist. Her books: [research topic](../..teamsmanship/..team/cathy/research-topics/01-programming.md), [thinking chapter](../..teamsmanship/..team/cathy/thinking/02-where-a-look-lives.md). The read waits on Doug's word.
 ## Planned research topics
 
 Topics for future thoughts, each chosen for relevance to the team's work:

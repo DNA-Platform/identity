@@ -89,6 +89,16 @@ export class Composer {
   }
 
   async clear(): Promise<void> {
+    // WAIT FOR THE COMPOSER TO BE DRAWN BEFORE LOOKING FOR IT — the same look `send`
+    // makes for its button, for the same reason. `clear` is the first touch a dispatch
+    // makes on a page it has just navigated to, and the project page puts its composer
+    // on the tree a beat after its URL changes. A look, never a sleep: the taper exits
+    // on the first true answer, so a page already drawn pays one tree read.
+    await this.gateway.waitFor(() => this.controller.hasComposer(), {
+      settleMs: 5_000,
+      description: 'Wait for the composer to be drawn',
+    });
+
     const found = await this.controller.findComposer();
     const draft = await this.controller.readDraftOf(found.name);
     if (!draft) return;

@@ -143,6 +143,19 @@ export class ComposerController {
     return false;
   }
 
+  /** Whether a composer is on the tree yet — the sibling of `hasSendButton`, for the
+   *  same reason: a page that was just navigated to draws its composer a beat after
+   *  its URL changes, and a caller that looks once in that gap sees no composer on a
+   *  screen that has one (measured 2026-09-29: a new topic's write, born in the Claude
+   *  project's composer, failed "not on screen" while the tree read moments later
+   *  carried `Edit | Write your prompt to Claude`). */
+  async hasComposer(): Promise<boolean> {
+    for (const name of composerNames) {
+      if (await this.auto.uia.existsByName(name)) return true;
+    }
+    return false;
+  }
+
   /** How many pasted-text attachments are present. A large paste becomes one of these
    *  instead of draft text, so it is how `paste` confirms a big add landed. */
   async countPastedAttachments(): Promise<number> {

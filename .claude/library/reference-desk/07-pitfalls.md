@@ -150,3 +150,7 @@ If NONE of these appear within 30 seconds, phase 1 throws — the message wasn't
 ## The "Show more" ambiguity
 
 Multiple UI elements can have the same accessible name. "Show more" appears in project descriptions AND conversation lists. [`invokeByNameLast()`](../../src/uia.ts) takes the last match, which is usually the right one (conversation lists are lower on the page). But this is a heuristic, not a guarantee. See [UIA § Element finding strategies](04-01-platform--uia.md).
+
+## The composer looked for before the page had drawn it
+
+A page that was just navigated to puts its composer on the tree a beat after its URL changes, and a dispatch that looks once inside that beat reports "The composer is not on screen" for a screen that has one. Measured 2026-09-29: a new topic's write, born in the Claude project's composer, failed with that message while the tree read moments later carried `Edit | Write your prompt to Claude`, the first name the controller knows. The name was right; the moment was wrong — the same fault [`send`](../../src/components/composer.ts) had already met for its button on 2026-09-17. The repair is the same shape and not a name: the controller has a [`hasComposer`](../../src/controllers/composer-controller.ts) sensor beside `hasSendButton`, asked by name, and `clear`, the first touch a dispatch makes on a fresh page, waits on it through the gateway's taper — a look that exits on the first true answer, never a sleep. Doug: *"Edit the controllers carefully, so that it preserves use of the gateway. Fix the app, don't patch it."*
