@@ -19,6 +19,14 @@ import type { Turn } from '../components/turn.ts';
 import { parseStructuredText, parseResponseFromText, parseTurns } from '../components/message.ts';
 import { isMoreOptions, isSidebarChrome, isModelLine, isComposerPlaceholder, isMessageTimestamp, isStatusLine, isThinkingBoilerplate, isPastedTextButton, deduplicateConsecutive, normalizeSpaces } from '../text.ts';
 
+// The header's rename affordance is a Button named "<title>, rename session" — ", rename
+// chat" until 2026-09-29, when the live tree showed the new word; both are kept, the
+// current first, since a capture taken at a failure does not prove a name dead.
+const renameSuffixes = [', rename session', ', rename chat'];
+// The field the affordance opens: "Chat name" grounded by diag-rename; "Session name"
+// expected to have followed the header's word on 2026-09-29, to be confirmed live.
+const chatNameFields = ['Chat name', 'Session name'];
+
 export class ConversationController {
   constructor(private readonly auto: Automation) {}
 
@@ -52,12 +60,11 @@ export class ConversationController {
   async rename(newTitle: string): Promise<void> {
     this.auto.navigator.requireScreen('conversation');
 
-    // Click the breadcrumb rename button — it opens the field with text pre-selected
-    const title = await this.readTitle();
-    const clicked = await this.auto.uia.clickByName(`${title}, rename chat`);
+    // Click the header's rename button — it opens the field with text pre-selected
+    const clicked = await this.clickRenameChat();
     if (!clicked) {
       // Fallback: try clicking the title itself
-      await this.auto.uia.clickByName(title);
+      await this.auto.uia.clickByName(await this.readTitle());
     }
 
     // Type the new title (field should have old text selected)
@@ -299,34 +306,48 @@ export class ConversationController {
   }
 
   /** Click the page header's rename affordance, a Button named "<title>, rename
-   *  chat". Matched by the ", rename chat" SUFFIX, not the title — Desktop
-   *  re-titles a new conversation (sometimes twice) while we work, so the title
-   *  prefix is unstable. Grounded: src/trees/conversation-streaming.txt and the
-   *  new-conversation capture (the affordance is on the page we're already on, so
-   *  no sidebar-name match is needed). */
+   *  session" (", rename chat" until 2026-09-29). Matched by the SUFFIX, not the
+   *  title — Desktop re-titles a new conversation (sometimes twice) while we work,
+   *  so the title prefix is unstable. Grounded: src/trees/conversation-streaming.txt,
+   *  the new-conversation capture, and the live tree of 2026-09-29 (the affordance is
+   *  on the page we're already on, so no sidebar-name match is needed). */
   async clickRenameChat(): Promise<boolean> {
-    const buttons = await this.auto.uia.findAllNames('Button');
-    const renameBtn = buttons.find(n => n.endsWith(', rename chat'));
-    if (!renameBtn) return false;
-    return this.auto.uia.invokeByName(renameBtn);
+    const found = await this.renameButton();
+    if (!found) return false;
+    return this.auto.uia.invokeByName(found.name);
   }
 
   /** The conversation's EXACT current title, read from the header's
-   *  "<title>, rename chat" button — authoritative and guaranteed to match the
+   *  "<title>, rename session" button — authoritative and guaranteed to match the
    *  "More options for <title>" button, unlike parseTitleFromText (a heuristic on
    *  the page text). Returns null if no conversation header is present. */
   async currentTitle(): Promise<string | null> {
-    const suffix = ', rename chat';
-    const buttons = await this.auto.uia.findAllNames('Button');
-    const renameBtn = buttons.find(n => n.endsWith(suffix));
-    return renameBtn ? renameBtn.slice(0, -suffix.length) : null;
+    const found = await this.renameButton();
+    return found ? found.name.slice(0, -found.suffix.length) : null;
   }
 
   /** The header rename opens an Edit named "Chat name" (grounded: diag-rename,
    *  the new-conversation capture) — distinct from the sidebar menu's
-   *  "Edit | Rename". Its presence is the field-active signal. */
+   *  "Edit | Rename". Its presence is the field-active signal. Since the header's
+   *  affordance became "rename session" (2026-09-29) the field is read by the same
+   *  two words, so the name that followed it is accepted too; a field under a third
+   *  name fails here, by name, on the tree the failure carries. */
   async isChatNameFieldActive(): Promise<boolean> {
-    return this.auto.uia.exists('Edit', 'Chat name');
+    for (const name of chatNameFields) {
+      if (await this.auto.uia.exists('Edit', name)) return true;
+    }
+    return false;
+  }
+
+  /** The header's rename button, whichever suffix the app wears today — one tree
+   *  read, shared by the click and the title. */
+  private async renameButton(): Promise<{ name: string; suffix: string } | undefined> {
+    const buttons = await this.auto.uia.findAllNames('Button');
+    for (const suffix of renameSuffixes) {
+      const name = buttons.find(n => n.endsWith(suffix));
+      if (name) return { name, suffix };
+    }
+    return undefined;
   }
 
   /** Type into the open "Chat name" field and commit. The field opens with the
