@@ -53,6 +53,10 @@ The branch for the altered-states project, at `library/.lib/` in the altered-sta
 
 The branch beside the altered-states code, at `src/.lib/` in the altered-states repo, spanning all of `src/`. Catalogued by [Computation](../../../../altered-states/src/.lib/..computation/.cover.md). It records what the team learned building and running the code - the pipelines, the build, the lab machine - while each code folder's own `.cover.md` documents the code, de-named. The first branch outside a project's `library/`: placement beside the code, as above, carried by the commit tool's discovery of a `.lib` under `library/` or `src/`.
 
+### [Theory](../../../../altered-states/library/theory/.lib/..theory/.cover.md) — Theory
+
+The branch beside the theory shelf, at `library/theory/.lib/` in the altered-states repo. Catalogued by [Theory](../../../../altered-states/library/theory/.lib/..theory/.cover.md). Sprint history in [Projection](../../../../altered-states/library/theory/.lib/projection/.cover.md). The shelf holds mathematics written in LaTeX to be published, one folder per document; the branch records how it is written, built, sent and checked, so the shelf's own cover stays short.
+
 ### [The Public Library](../../../../inexplicable-phenomena/library/.public/.lib/..publicity/.cover.md) — Publicity
 
 The branch for `.public`, at `library/.public/.lib/` in the inexplicable-phenomena repo. Catalogued by [Publicity](../../../../inexplicable-phenomena/library/.public/.lib/..publicity/.cover.md). Sprint history in [Projection](../../../../inexplicable-phenomena/library/.public/.lib/projection/.cover.md). `.public` is the subject of publicity — the public view onto the repository and the home of `@dna-platform/lib`, the canonical code library for creating libraries — and the branch records the team's knowledge of building the library metaphor as renderable code.

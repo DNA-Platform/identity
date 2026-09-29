@@ -231,6 +231,15 @@ The Computation branch at `src/.lib/` is the branch beside the altered-states co
 | `src/.lib/the-build/**` | [Adam](..team/adam/adam-between-the-wires/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The compute environment, toolchain, and code organization — how the analysis is built and run. The automation engineer documents the build; the librarian tends it. |
 | `src/.lib/the-lab-box/**` | [David](..team/david/the-devops-journal/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The lab's GPU machine and how the team works on it. The DevOps engineer is the domain source; the librarian tends it. |
 
+The Theory branch at `library/theory/.lib/` is the branch beside the theory shelf, where mathematics is written in LaTeX to be published (Doug, 2026-09-29: *"initialize a library branch for theory, and move documentation into there"*). The documents and the shelf's `.cover.md` are project content, authored by Doug; the team's knowledge of writing them lives here.
+
+| Path | Owner | Why |
+|------|-------|-----|
+| `library/theory/.lib/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The librarian tends all branch content; she ensures the Theory branch meets library standards. |
+| `library/theory/.lib/..theory/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The cataloguing book — the branch's identity. |
+| `library/theory/.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Sprint planning within the branch. The architect plans sprints. |
+| `library/theory/.lib/writing-theory/**` | [Claude](..team/claude/claude-or-the-recursive-mirror/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | How the shelf is written, built, sent and checked: the LaTeX toolchain and the build are environment. The environmentalist documents it; the librarian tends it. |
+
 The Publicity branch at `library/.public/.lib/` is the branch for `.public` — the public view onto the repository and the home of `@dna-platform/lib`, the canonical code library for creating libraries. Libby owns all branch content (`**/.lib/**`); the explicit entries name the per-book owners within it.
 
 | Path | Owner | Why |

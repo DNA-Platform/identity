@@ -35,6 +35,15 @@ The branch for the altered-states project, a psychedelic exploration into altere
 
 The branch beside the altered-states code, spanning all of `src/`: the pipelines, the analyses built on them, the environment they run in, and the lab machine they run on. It records what the team learned building and running that code (The Pipelines, The Build, The Lab Box), while the code's own documentation stays in each folder's de-named `.cover.md`. Doug, 2026-09-28: *"I think src/.lib is fine and we can have a library/.lib, two of them. And the one in src can span all code."* It is the first branch outside a project's `library/`. The commit tool finds a `.lib` under `library/` or `src/`, and mirrors this one into the identity repository as `.lib/src`. The cataloguing book Computation names the subject: the team's applied knowledge of computing the experiment.
 
+### Theory
+
+- **Repo:** altered-states
+- **Location:** [`library/theory/.lib/`](../../../../altered-states/library/theory/.lib/)
+- **Cataloguing book:** [Theory](../../../../altered-states/library/theory/.lib/..theory/.cover.md)
+- **Sprint book:** [Projection](../../../../altered-states/library/theory/.lib/projection/.cover.md)
+
+The branch beside `library/theory/`, the project's shelf of mathematics written in LaTeX to be published: one folder per document, a shared preamble and notation, and a build that makes each document a sendable pair (a PDF with fonts embedded, and one standalone `.tex` proven to compile alone). It records how the shelf works and why (Writing Theory), while the shelf's own `.cover.md` says only what is there and how to build it. Doug, 2026-09-29: *"initialize a library branch for theory, and move documentation into there."* A per-area branch under `library/`, so the commit tool mirrors it into the identity repository as `.lib/theory`.
+
 ### The Public Library
 
 - **Repo:** inexplicable-phenomena
