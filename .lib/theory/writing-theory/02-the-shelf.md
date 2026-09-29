@@ -17,6 +17,7 @@ library/theory/
   notation.tex          shared symbols, one definition each
   template.tex          a new document starts as a copy of this
   build.py              builds a document and its standalone pair
+  .sample/              the reference: a finished document with every part in use
   <name>/
     main.tex            the source: the only file edited by hand
     check.py            the document's checks, when it has any
@@ -24,6 +25,24 @@ library/theory/
     <name>.pdf          generated: the PDF, sent and committed
     main.pdf            the preview built on save, local only
 ```
+
+A generated file drops any leading dot in its folder's name, so `.sample/` holds `sample.tex` and
+`sample.pdf`.
+
+## The reference
+
+Doug named the first document's folder `.sample`, *"so we use it as a reference."* Before writing a new
+document, read [`.sample/main.tex`](../../.sample/main.tex) beside its PDF. It is a complete example,
+showing:
+- an assumption, a definition, lemmas, propositions, a corollary, a theorem and remarks, all sharing one
+  counter;
+- proofs that cite by `\cref` and `\eqref`;
+- a booktabs table;
+- a pgfplots figure computed from the formula it illustrates;
+- a `thebibliography` block with checked DOIs;
+- a `check.py` that the build runs.
+
+`template.tex` is the empty start, and `.sample` is the finished form.
 
 ## What the shared files hold
 
@@ -68,7 +87,7 @@ equation.
 
 A document should compile from one file, which is what makes it sendable
 ([Building and sending](03-building-and-sending.md)). Two consequences follow:
-- **Figures are drawn in pgfplots.** The curve in the first document's Figure 1 is `\addplot` of its own
+- **Figures are drawn in pgfplots.** The curve in the sample's Figure 1 is `\addplot` of its own
   formula, so the figure cannot drift from the mathematics.
 - **References are a `thebibliography` block** in the source, not a `.bib` file. Each DOI is checked
   against Crossref before it is written, as for the papers' books.

@@ -40,9 +40,9 @@ A document with checks has a `check.py` beside `main.tex`. The script prints one
 the paper's own numbering, and exits non-zero if any claim fails. `build.py` runs it on every build. The
 paper points to it in a closing remark, and that remark states what was checked, and how.
 
-## The first document
+## The sample
 
-*What a first-order inversion leaves in a calcium trace* is elementary probability and calculus, which is
+*What a first-order inversion leaves in a calcium trace*, at [`.sample/`](../../.sample/check.py), is elementary probability and calculus, which is
 the case computer algebra covers. Its `check.py` makes fifteen checks:
 - **By SymPy:** Lemma 2.1's decomposition; Proposition 2.2's mean; Proposition 3.1's three
   autocovariances; Corollary 3.2's bound, written out as an exact gap that is zero only at v = 0;

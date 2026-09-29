@@ -44,7 +44,7 @@ edit the pair by hand.
 
 ## The first run
 
-The first document was built on 2026-09-29. Rereading the rendered pages turned up four faults:
+The first document, now [`.sample/`](../../.sample/main.tex), was built on 2026-09-29. Rereading the rendered pages turned up four faults:
 - the curve's label sat on the curve;
 - a y-axis tick was missing;
 - one sentence overclaimed what a nonnegative deconvolution returns;
