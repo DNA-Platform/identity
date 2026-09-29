@@ -18,9 +18,10 @@
 
 | member | what it is | where it comes from |
 |---|---|---|
-| `theme` | whether this format also provides its own properties to everything it draws. False on the base | Doug, written as `class MyFormat extends Format { theme = true; }` |
-| `style` | the styled component the writing is drawn inside, a layer of its own. Absent on the base, so a bare Format adds nothing | E23; Doug, *"No Format.format. Format.style."* |
-| the bond | wraps the style in a provider handing the annotation itself, once per mount, and only when `theme` is set — through `provide`, a template method since 2026-09-27, which Theme overrides to hand the style back, providing through a chemical of its own, so Theme calls Format's bond and chemistry's chain is whole | E24, *"often contains a styled-components theme provider"*; Doug, 2026-09-27: a template method on Format |
+| `themeProvider` | whether this format's styled component provides its theme to everything it draws. False on the base; `theme = true` until 2026-09-29 | Doug, written as `class MyFormat extends Format { theme = true; }`; renamed by him for [Sprint 94](../projection/99-sprint-94--the-styling-standard.md#d11): *"Give it a property called themeProvider = true - it is a styled component, so we can reference that"* |
+| `theme` | **every format has a theme: its book's**, typed as the base Theme, thrown where there is no book; a subclass narrows the type with a cast or overrides it to reach another theme | Doug, 2026-09-29: *"get theme() { return this.book.theme; } And that can be progressively typed on subclasses. Now every format has a theme, and it has the structure to reach to other themes if need be in subclasses"* |
+| `style` | the styled component the writing is drawn inside, a layer of its own. Absent on the base, so a bare Format adds nothing. A format's own properties, and the theme's, reach it as transient props on a component made once in the bond, as Table hands its grid `$columns` | E23; Doug, *"No Format.format. Format.style."*; 2026-09-29: *"Formats can consume theme properties as well as exposing their own, both of which can be passed to their components or maybe to control the classes they put on their writing"* |
+| the bond | wraps the style in a provider handing **its theme's contract**, once per mount, and only when `themeProvider` is set — through `provide`, a template method since 2026-09-27, which Theme overrides to hand the style back, providing through a chemical of its own, so Theme calls Format's bond and chemistry's chain is whole. Until Sprint 94 the provider was handed the annotation itself | E24, *"often contains a styled-components theme provider"*; Doug, 2026-09-27: a template method on Format |
 | `defines(writing)` | one sentence: stand its style as a layer, cited to itself, outside every layer already standing — and since 2026-09-24 nothing else | Doug, *"All formats prevent multiple formats right?"*, and then *"Allow multiple formats! Promise it, in fact."* |
 | `erase(writing)` | takes back its own layer, `revert(this)`, and nothing else | Doug, 2026-09-24: *"have it have a way of an annotation removing the elements it registered for erase"* |
 
@@ -42,7 +43,7 @@ class $Quoted extends $Format {
 }
 
 class $Housed extends $Format {
-    theme = true;
+    themeProvider = true;
     style = Panel;
 }
 ```
@@ -99,7 +100,7 @@ class $Replacing extends $Format {
 
 ## <a id="theming"></a>Theming is a way of writing a Format
 
-**`theme = true` and the format's style is drawn inside a provider carrying the format itself.** The provider goes above the element because the style component puts it there, **so nothing on Writing exposes a seam for this** — the question of the day, whether a wrapping mechanism was needed, is answered no.
+**`themeProvider = true` and the format's style is drawn inside a provider carrying the format's theme — its book's, or another its `theme` reaches — as the eight variables of the theme's contract.** Until [Sprint 94](../projection/99-sprint-94--the-styling-standard.md#d11) the provider carried the format itself, its own fields read by name; a format's own properties now reach its component as transient props. The provider goes above the element because the style component puts it there, **so nothing on Writing exposes a seam for this** — the question of the day, whether a wrapping mechanism was needed, is answered no.
 
 | measured 2026-09-23 | |
 |---|---|
@@ -115,7 +116,7 @@ class $Replacing extends $Format {
 
 **Themes nest through the document.** *One on a book and another on a chapter are two writings, their providers nest as React nests them, and styled-components merges the nearer object over the farther, so a chapter refines its book's palette by naming only what differs. Two theming formats on one writing nest the same way, the front one's provider inside — derived from the order, and not yet measured.* **Composition is the enclave.**
 
-***One cost, so it is known.*** **The theme handed down is the annotation itself**, so everything on the chemical is in it — `theme`, `style`, its collections. *A styled component reads only what it names, so nothing breaks; but when two nest, the inner's machinery names overwrite the outer's.* **It matters the day somebody names a theme value `style`.**
+***One cost, so it is known — and gone since [Sprint 94](../projection/99-sprint-94--the-styling-standard.md#d11).*** **The theme handed down was the annotation itself**, so everything on the chemical was in it — `theme`, `style`, its collections — and it mattered the day somebody named a theme value `style`. *A Format that provides now hands its theme's contract, the eight as variables and nothing else;* a Format's own properties reach its component as transient props instead, and the theme's type is the eight.
 
 ## <a id="evolution"></a>How a format evolves, and why theming is a property
 
@@ -125,7 +126,8 @@ class $Replacing extends $Format {
 |---|---|---|
 | **one format** | a class with a `style` | nothing else exists yet |
 | **it specializes** | sub-formats extending it | nothing; each stands where it is written, and every one draws, the front innermost |
-| **one needs to set values for what is inside it** | `theme = true` | **one line, and nothing else moves at all** |
+| **one needs values of its own for its component** | fields on the format, handed to its component as `$props` in the bond | nothing; the component reads what it is handed |
+| **one needs to provide a theme to what is inside it** | `themeProvider = true`, and `theme` overridden to reach the theme it provides | **one line, and nothing else moves at all** — the declarations that make another theme's values take effect beneath it are owed |
 | **several theme, at different levels** | the same line in each | each becomes a provider scope |
 | **the scopes nest** | nothing | they nest because the document nests |
 

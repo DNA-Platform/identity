@@ -74,6 +74,8 @@ export class $Parenthetical extends $Annotation {
 }
 ```
 
+*Since [Sprint 94](../projection/99-sprint-94--the-styling-standard.md) the rule in Parenthetical's note lays itself in `@layer pd.invariants`, `!important`, as every rule that is an annotation's meaning does, and a parenthetical is present to a reader and not to the eye — [Themes and Formats](20-themes-and-formats.md).*
+
 **<a id="mark"></a>An annotation should frequently mark its presence with a CSS class** — `pa-` and its own name, added to the writing's classes in `defines`, cited to itself, and taken back by `erase` — so a sheet can find every writing it stands on. *Doug, 2026-09-25: "Note in documents that the annotations should frequently mark their presence with a CSS class."* Parenthetical wears `pa-parenthetical`, Reference `pa-reference`, Referent `pa-referent`, Biography `pa-biography`; Cover, Synopsis and TableOfContents wear `pa-cover`, `pa-synopsis` and `pa-table-of-contents`, on his word the same day — [Sprint 83, U3](../projection/89-sprint-83--memory-management.md#u3). *Frequently, not always: a pair marks nothing, as [below](#taking-another-out-of-expression--how-a-family-speaks) says, since which of two a writing is is a question of expression.* The mark goes on the writing; the annotation's own writing wears `pd-annotation`, which Writing gives it. *And the reason the mark belongs to the annotation and never to the text: a `pa-` class is a **rubric** — red ink saying where a thing begins and changing no word — which is the same part as an epigenetic mark, read by whatever comes after and rewriting nothing. A mark that edited the text would not be a mark. [Annotated Works](../the-semantics-of-books/19-annotated-works.md) scores the row.*
 
 **Three surfaces are yours to act on, and they behave differently when two annotations want the same one.** Each is cited: what you add is recorded as yours, so your `erase` is `revert(this)` on what you touched and never reaches anyone else's, nor the writing's own. `classes` is a collection, so any number of annotations may add to it, the same class twice if two want it, and the writing draws each once. `containers` is layered and drawn inner to outer: the first is the writing's own element, wearing its classes and id, and an annotation adds its own layer after it with `add(this, element)`, drawn around whatever stands before it; two annotations that each add one both draw, the later outside. The `id` is a Compilation, so the last value set decides — *"last set is winning"* — and since a define runs from the first, that is the one furthest back. What the writing holds is its `text`, a Collection like the others, so it is changed the same way, every change cited.
@@ -166,12 +168,12 @@ export class StrictSpecification extends AnnotationSpecification {
 
 ```tsx
 class $Housed extends $Format {
-    theme = true;
+    themeProvider = true;
     style = Panel;
 }
 ```
 
-**[Format](11-format-and-theme.md) does the whole of it**, and `theme = true` is the worked case: the bond composes the style with a provider, so the provider is the element's parent and everything the writing holds reads it. *The writing keeps its own element and its classes, which a power that replaced the element would have taken.*
+**[Format](11-format-and-theme.md) does the whole of it**, and `themeProvider = true` is the worked case: the bond composes the style with a provider, so the provider is the element's parent and everything the writing holds reads it. *The writing keeps its own element and its classes, which a power that replaced the element would have taken.*
 
 ***The general lesson, and it is the one this chapter is really for:*** **when you want a power the model does not have, ask what surface the writing already exposes.** *Two of the four things attempted on 2026-09-23 were members added where a door already stood, and both came out within hours.*
 

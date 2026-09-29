@@ -50,7 +50,7 @@ export default () => (
 ## How they are extended
 
 - **A library's own look** is a subclass giving its own `style` — *"a library's own cover draws its own element and is still a cover"* is a promise — and the book still finds it, since the collection finds by `instanceof`.
-- **A theme** is `theme = true` on that subclass, as on any Format; nothing here adds to it.
+- **A theme** is `themeProvider = true` on that subclass, as on any Format; nothing here adds to it.
 - **What a cover must carry** is the cover's specification; a library that carries more says so in its own subclass's specification, extending this one.
 - **What a table must list** is the compiler's, because the compiler gave the names it lists; a table is never dropped to make a layout work — [The Cover Is a Cover](../the-type-system/08-the-cover-is-a-cover.md#his-cause).
 
