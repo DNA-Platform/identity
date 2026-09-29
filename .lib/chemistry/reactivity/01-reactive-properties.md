@@ -78,26 +78,18 @@ finally { c[$rendering$] = bonding; }
 
 **Promises:** [`dirtiness-after-render.test.tsx`](../../package/tests/react/dirtiness-after-render.test.tsx), five, with render counts. **Commit `ab97399`.** *The sprint, with the measured comparison against the filter first proposed: [Dirtiness Starts After Render](../projection/47-sprint-81--dirtiness-starts-after-render.md).*
 
-## <a id="a-function-is-behaviour"></a>A FUNCTION-VALUED MEMBER IS BEHAVIOUR — and three ways to say you meant a value
+## <a id="a-function-is-behaviour"></a>A method is a function on the prototype; a field is a value, even holding a function
 
-***The membrane treats a member holding a function as a method***, because that is what one almost always is. [`$Bond.isMethod`](../../package/src/abstraction/bond.ts) routes on the descriptor's value — `typeof value === 'function' && !value.$chemical` — and `$Bond.create` makes a **`$Reagent`**, whose `form()` installs a getter answering a **bound wrapper cached per instance**, with no setter.
+***Corrected 2026-09-29, on the public branch's Sprint 93 pitch and Doug's "That's a serious bug. It means chemistry can't have handlers passed as props."*** **A member is judged by where it stands.** [The molecule](../../package/src/abstraction/molecule.ts) tells `formBonds` which names the instance itself holds; [`$Bond.create`](../../package/src/abstraction/bond.ts) never makes one of those a `$Reagent`, and `form()` activates it whatever it holds, so a field is settable and reactive even when its value is a function. **Only a function declared on the prototype — a class method — is a reagent**, answering a bound wrapper per instance and running in a scope.
 
-**A function held as a VALUE is the exception** — a factory, a class, a handler given from outside — **and the framework cannot know which you meant, so you say so.** *Three ways, each already in the framework:*
+**So a prop with a default is one field**, as React's `({ onPick = noop })` is: `$onPick = () => 'default'` given `onPick={…}` calls what was given; not given, the default; written after mount, the view follows at the cost of any other write. *A class held in a field compares as itself and a factory held in a field is the factory, so the getter, the framework set and the `= undefined` initialiser this chapter once taught for those cases are no longer needed for them.*
 
-| what you hold | how you say it |
-|---|---|
-| **a class, compared** — `instanceof`, `===`, a registry key | **a getter.** A wrapper is correct to call and useless to compare; this is [the identity case](../../../.public/.lib/solutions/38-the-sections-that-collapsed-into-one-paragraph.md) |
-| **a factory the framework itself reads** — `selector = styled.a` | **name it in [`molecule.ts`](../../package/src/abstraction/molecule.ts)'s `framework` set**, whose comment states this in advance: *"Members the framework owns, which are never state… a function-valued member would otherwise be bonded as a REAGENT"* |
-| **a handler given as a prop** — `onClick` | ***declare it initialized*** — `$onClick: (() => void) | undefined = undefined` — so it is an own property when the molecule forms, bonds as a plain field, and keeps its setter |
-
-***Left unsaid, each fails in its own quiet way.*** A compared class meets an impostor. **A factory answers a different wrapper per class, so a subclass silently stops extending its parent.** And a prop works **exactly once** — the second render's assignment meets the getter and throws *"Cannot set property $onClick … which has only a getter."*
-
-**Written 2026-09-04 out of styled chemicals**, whose `selector` is a factory and whose `$Anchor` is the first chemical in the repository to be handed a function as a prop.
+***What it was, so the record stays true:*** *from the membrane's first days until 2026-09-29, `$Bond.isMethod` routed on the value alone — any function that was not a chemical component became a getter-only reagent — so a field whose default was a function could never be set: "Cannot set property $highlighter … which has only a getter."* **The risk that was searched:** an arrow-function field used as a method is now a plain value, and none stood in chemistry, its Lab or the public branch. **Promises:** [`function-fields.test.tsx`](../../package/tests/react/function-fields.test.tsx), four — the given handler, the default, a write after mount at the cost of any other, and a prototype method still a reagent. **Commit `f21f051`.**
 
 ## Rules
 
 - **A plain field is reactive.** `$` is not the switch; `_` and `constructor` are the exclusions.
-- **A function-valued member is a REAGENT** unless you say otherwise — see [above](#a-function-is-behaviour).
+- **A function on the prototype is a method, a REAGENT; a field is a value** even when it holds a function — see [above](#a-function-is-behaviour).
 - **A `$` name must pass `isSpecial`** to be settable from JSX — `length >= 2`, second character lowercase, not `$` and not `_`.
 - **A write is compared by value**, and an equal value is not news.
 - **A declared accessor is reactive by the same rule**, wrapped rather than activated; a read records its answer, a set is news unless the answer is unchanged.
