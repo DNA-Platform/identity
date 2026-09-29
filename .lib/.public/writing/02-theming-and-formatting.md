@@ -122,6 +122,12 @@ A developer wanting something to look a certain way asks *what kind of rule is t
 | a **value** used everywhere — ink, paper, space, size | in the theme | a value; every Format and the sheet read it through the provider |
 | one **kind's** own look | in that kind's `$Define` | a Format the kind stands, in front of the class's own; or `$is` on one instance |
 | another **set of values** for a subtree — a dark chapter in a light book | on that writing | a Format with `theme = true`; the front-most theme on one writing wins |
+| a meaning that is **unseen** — gone from everyone | in the annotation's invariant rule | `display: none`: out of layout and out of the accessibility tree |
+| **unseen** — present to a reader, not to the eye | the same | visually hidden: clipped to nothing, still read aloud |
+| **unseen** — keeping its place on the page | the same | `visibility: hidden` |
+| **unseen** — closed, but still findable | the same | `hidden="until-found"`: find-in-page reaches it, the eye does not |
+
+*The four kinds of unseen are the field's, from Cathy's research: what the meaning requires decides the CSS, and an annotation's chapter states which its meaning is — Doug, 2026-09-29: "I want to know the pattern. We need a development guide that helps you find the right answer easily."*
 
 And what never: a parent painting a child's look; a rule about structure anywhere but the Format that is the element; a look written outside the theme; two authors on one property; a component made per pass.
 
