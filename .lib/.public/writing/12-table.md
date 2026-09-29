@@ -17,7 +17,7 @@
 | `composition` | its parent when that is a composition, typed as Title's chapter is | the code pattern: a known parent is typed by a property |
 | `start` | `$start`, or 1 past the canonical when the composition is a section or a chapter, else 0 | his words above |
 | `rows` · `columns` | the parts from `start`; `$columns`, or the widest row | *"rows its parts, cells their parts"* |
-| `defines(writing)` · `erase(writing)` | the Inline and Block standing after it taken out of expression, as a pair does; `pa-table` on the composition; and the writing's own element replaced with the grid, `containers.replace`, as Block replaces a span with a div — all taken back | [an annotation marks its presence](10-developing-an-annotation.md#mark); [a Format may take the element](11-format-and-theme.md#winner-take-all) |
+| `defines(writing)` · `erase(writing)` | the Inline and Block standing after it taken out of expression, as a pair does; `pa-table` on the composition; and the writing's own element replaced with the grid, `containers.replace`, as Block replaces a span with a div — all taken back | [an annotation marks its presence](10-developing-an-annotation.md#mark); [a Format may replace the writing's own container](11-format-and-theme.md#winner-take-all) |
 | `$Bound()` | **once, when the book is whole:** `pa-row` and `pa-row-start-I` on each row, `pa-col` and `pa-col-start-J` on each cell, and `pa-col-span-K` on the last cell of a row shorter than the table — then `super.$Bound()` | *"Mark at bound is great"* — [why](#why-the-marks-are-the-binds) |
 | `TableSpecification` | **a table is said of a composition**; **a table has the rows it says**; **a table has the columns it says** | `$rows` and `$columns` *"validate"* |
 
