@@ -18,9 +18,9 @@
 |---|---|---|
 | **show a property** | a component in front of the writing that holds it, reading it in `write()` | `PreviousTitle`: `this.chapter?.previous.title?.name` — [Next and Previous](../library/07-next-and-previous.md) |
 | **draw a book's layout** | the book class's `write()`, from what the book exposes | the masthead and byline — [Book](../library/05-book.md#how-it-is-extended) |
-| **give a kind a default** | `$Define` adding annotations; `$Bound` adding them to every chapter once the book is whole | `<Navigable />`, `<LibraryTheme />`; `<Framed />` on each chapter — [Dressing a Library](09-dressing-a-library.md) |
+| **give a kind a default** | `$Define` adding annotations; `$Bound` adding them to every chapter once the book is whole | `<Navigable />`, `<LibraryTheme />`; `<Framed />` on each chapter — [Dressing a Library](02-dressing-a-library.md) |
 | **insert something** | an annotation: a Format whose layer draws content, or one that appends text | the kind label, designed — [Developing an Annotation](../writing/10-developing-an-annotation.md#if-you-must-insert-something-you-are-still-an-annotation--a-layer-with-content-or-text) |
-| **dress it** | the theme's values and its sheet on the framework's marks; a Format in front on the library's own marks | [Theme](../writing/13-theme.md); [Dressing a Library](09-dressing-a-library.md) |
+| **dress it** | the theme's values and its sheet on the framework's marks; a Format in front on the library's own marks | [Theme](../writing/13-theme.md); [Dressing a Library](02-dressing-a-library.md) |
 
 ## What you rely on
 
@@ -32,7 +32,7 @@
 
 ## What to know before it bites
 
-- A style is compiled once per class; read the theme through the provider's props, never through a closure over `this` — [Dressing a Library](09-dressing-a-library.md).
+- A style is compiled once per class; read the theme through the provider's props, never through a closure over `this` — [Dressing a Library](02-dressing-a-library.md).
 - Theme's bond passes over Format's through `provide`; a theme subclass extends the sheet in `$Define`, not in a bond of its own.
 - A paragraph a book draws in its `write` is lent the book, `book={this}`, until the difference between the package's render and the binder's is pinned.
 - A format in front of a chapter is one more layer between the semantic wrapper and the chapter's element; the wrapper carries `pd-container` only.

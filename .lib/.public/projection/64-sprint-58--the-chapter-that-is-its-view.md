@@ -32,7 +32,7 @@
 | **R15** | themes per type, formats per instance | names landed; restructure after LaTeX — [The Motif, ch. 4](../the-motif/04-themes-per-type-formats-per-instance.md) |
 | **R16** | comments leave the code per file | open — Sprint 62 |
 
-*The rulings behind R8–R16 are gathered in [The Book's Little Framework](../writing-a-book/04-the-book-s-little-framework.md).*
+*The rulings behind R8–R16 are gathered in [The Book's Little Framework](../the-first-draft/04-the-book-s-little-framework.md).*
 
 ## <a id="sweep"></a>The sweep — ***the paper driven and clicked, 2026-09-10, head `f2f0a38`, working copy clean***
 
@@ -81,7 +81,7 @@
 
 ## <a id="part-two"></a>PART TWO — citations, and every other bug — ***register***
 
-- <a id="u5"></a>**U5** · a citation's number is the entry's place — the design is the scratchpad, [Writing a Book, ch. 4](../writing-a-book/04-the-book-s-little-framework.md#citations); blocked on [Solutions 71](../solutions/71-the-population-that-never-drew.md).
+- <a id="u5"></a>**U5** · a citation's number is the entry's place — the design is the scratchpad, [Writing a Book, ch. 4](../the-first-draft/04-the-book-s-little-framework.md#citations); blocked on [Solutions 71](../solutions/71-the-population-that-never-drew.md).
 - <a id="u6"></a>**U6** · a citation set as LaTeX sets it, a space before the mark — open, Sprint 60.
 - <a id="u7"></a>**U7** · a contents link lands below the strip, `scroll-margin-top` by the strip's height — open, Sprint 60.
 - <a id="u8"></a>**U8** · no equation draws its source — `\#P` written into both trees at the close through the editor, because the shell mangles a backslash; to be seen on the next drive.

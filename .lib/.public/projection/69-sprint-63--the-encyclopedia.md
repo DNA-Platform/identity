@@ -109,7 +109,7 @@ $(Infobox, Theme)(InfoboxTheme);
 
 **The ring — chosen: the seam.** *`$Language`'s bond writes `<LanguageFormat at={this.$at} />` in place of an empty one, and `$LanguageFormat.handed()` answers `{ at: this.$at }`; the same for the globe.* **Chosen over a ring that positions its own children, which is a framework-shaped change for a demo's page.** *The gap it exposes — a worn format cannot read the writing it clothes, so a prop crosses twice — is pitched to chemistry, not built here.*
 
-**The article — chosen: read the source.** *Parsoid's HTML is semantic and licensed CC BY-SA, the same licence the footer already carries.* **A script maps its sections to chapter files, its thumbnails to `<Figure>`, its blockquotes to `<Quote>`, its hatnotes to `<Hatnote>`, its infobox cells to `<Infobox>` lines, its two reference groups to `<References>` and `<Notes>` of keyed entries, its citation marks to `<Citation>` by key, its navboxes and categories to the new kinds.** *The script is kept beside the book, as [`.paper/`](../../package/.latex/.public/.paper/) is kept beside the paper; [Reading the Source](../writing-a-book/02-reading-the-source.md) is the rule.*
+**The article — chosen: read the source.** *Parsoid's HTML is semantic and licensed CC BY-SA, the same licence the footer already carries.* **A script maps its sections to chapter files, its thumbnails to `<Figure>`, its blockquotes to `<Quote>`, its hatnotes to `<Hatnote>`, its infobox cells to `<Infobox>` lines, its two reference groups to `<References>` and `<Notes>` of keyed entries, its citation marks to `<Citation>` by key, its navboxes and categories to the new kinds.** *The script is kept beside the book, as [`.paper/`](../../package/.latex/.public/.paper/) is kept beside the paper; [Reading the Source](../the-first-draft/02-reading-the-source.md) is the rule.*
 
 ## <a id="acceptance"></a>Acceptance examples
 
@@ -137,7 +137,7 @@ $(Infobox, Theme)(InfoboxTheme);
 
 **U1 through U6 touch `.wiki` and `package.json` only.** *The kinds — adapting `$Infobox`, and the six that do not exist — are `src/encyclopedia/` and stand behind [the presentation](#presented).* **That split is the plan's shape, not a caution added to it:** a session that can be stopped at any unit boundary and still have shipped something visible is the only kind this sprint can be.
 
-### <a id="d4"></a>D4 · ***The Turing content is READ, never written*** — [Reading the Source](../writing-a-book/02-reading-the-source.md)
+### <a id="d4"></a>D4 · ***The Turing content is READ, never written*** — [Reading the Source](../the-first-draft/02-reading-the-source.md)
 
 **Wikipedia's API serves the article as clean Parsoid HTML, 1,086,131 bytes, and a script maps it into chapter files** the way `.paper/` maps the PDF. *The script and its source are saved beside the book.* ***A plausible substitute is exactly what a demo must not be, and this demo already carries one: 32 hand-made sections against the article's 33, 13 citation marks against 848.***
 
@@ -610,7 +610,7 @@ $(Infobox, Theme)(InfoboxTheme);
 
 ### <a id="d10"></a>D10 · ***Two files a book writes, and no third***
 
-**`.chapter.tsx` carries the book's chapter subclass, its normal document, and every chapter-like kind the book's chapters share; `.book.tsx` carries the book subclass and its DI.** *`.document.tsx` is not a file anyone may create.* **The four link kinds every `.wiki` book shares stand in `.wiki/.chapter.tsx` at the application's root**, on the same word. *This supersedes the `.document.tsx` row of [The Book's Little Framework](../writing-a-book/04-the-book-s-little-framework.md#files), which is corrected in the same act.*
+**`.chapter.tsx` carries the book's chapter subclass, its normal document, and every chapter-like kind the book's chapters share; `.book.tsx` carries the book subclass and its DI.** *`.document.tsx` is not a file anyone may create.* **The four link kinds every `.wiki` book shares stand in `.wiki/.chapter.tsx` at the application's root**, on the same word. *This supersedes the `.document.tsx` row of [The Book's Little Framework](../the-first-draft/04-the-book-s-little-framework.md#files), which is corrected in the same act.*
 
 ### <a id="d11"></a>D11 · ***A look is measured or it is not claimed***
 
@@ -628,7 +628,7 @@ $(Infobox, Theme)(InfoboxTheme);
 
 **Mechanism:** the four `.document.tsx` files are deleted; `.wiki/.chapter.tsx` takes the four links; each book's `.chapter.tsx` takes its `Document` line; the reader's emitter and the gate import from `./.chapter` and `../.chapter`; the canon row corrected.
 
-**Files:** `.wiki/.chapter.tsx` *(new)* · `.wiki/.article/.chapter.tsx` · `.wiki/alan-turing/.chapter.tsx` · `.wiki/.encyclopedia/.chapter.tsx` · `.wiki/.public/read-page.mjs` · `../writing-a-book/04-the-book-s-little-framework.md`.
+**Files:** `.wiki/.chapter.tsx` *(new)* · `.wiki/.article/.chapter.tsx` · `.wiki/alan-turing/.chapter.tsx` · `.wiki/.encyclopedia/.chapter.tsx` · `.wiki/.public/read-page.mjs` · `../the-first-draft/04-the-book-s-little-framework.md`.
 
 **Visible end:** ***`find .wiki -name .document.tsx` reads nothing; both gates green with the same numbers.***
 

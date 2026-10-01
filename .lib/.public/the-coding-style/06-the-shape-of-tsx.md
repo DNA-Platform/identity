@@ -95,7 +95,7 @@ const TypeOfTable = $(typeOfTable);
 - ***Alias the IMPORT, never a module-level `const`.*** An import binding is **live**; `const catalogue = Catalogue;` is evaluated at load, and under a **circular import** it captures `undefined`. `Composition` and `Catalogue` import each other, and that alone reddened four promises.
 - ***The alias must not collide with an ordinary local.*** Lowercase names are exactly the names locals use — `const Path = $(path)` met a local string named `path`, and `Index as index` met a local named `index`. **This is what a meaningful alias is for.**
 
-**Measured 2026-09-12, and it is the reason the rule exists:** a `<Document>` written bare in a chapter's `print()` is never looked up — a registration on the book or on the chapter kind answers nothing — while `const Document = $(document)` in the same print is answered from either. **DI reaches only what is fetched through `$`.**
+**Measured 2026-09-12, and it is the reason the rule exists:** a `<Document>` written bare in a chapter's writing method — the first draft's `print()`, the redraft's `write()` — is never looked up — a registration on the book or on the chapter kind answers nothing — while `const Document = $(document)` in the same method is answered from either. **DI reaches only what is fetched through `$`.**
 
 ## <a id="variables"></a>Naming an ordinary variable
 

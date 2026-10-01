@@ -155,7 +155,7 @@ npx vite --config .wiki/.public/vite.config.ts    # http://localhost:5200
 
 ## <a id="where-things-stand"></a>Where things stand
 
-***Everything Doug ruled in the afternoon of 2026-09-06 is built and measured; the page draws under the library's own regions.*** *The rulings are written as [Using the Public Library](../writing-a-book/01-using-the-public-library.md); the framework finding is [Solutions 51](../solutions/51-the-chapters-a-book-drew-empty.md).*
+***Everything Doug ruled in the afternoon of 2026-09-06 is built and measured; the page draws under the library's own regions.*** *The rulings are written as [Using the Public Library](../the-first-draft/01-using-the-public-library.md); the framework finding is [Solutions 51](../solutions/51-the-chapters-a-book-drew-empty.md).*
 
 ### The checklist Doug asked for
 
@@ -176,11 +176,11 @@ npx vite --config .wiki/.public/vite.config.ts    # http://localhost:5200
 | 13 | a LaTeX and Markdown default | **open** — [ch02](../ways-of-reading/02-markdown-with-latex.md) holds the prior notes |
 | 14 | `$Paragraph` wears `ProseFormat` at its frame; the stray root file | **done**; the file is his |
 | 15 | a title, author or subject written as text makes its own heading; a book with no table of contents makes one from its chapters | **done** — `.table.tsx` deleted from the article book; both covers are `<Title>Wikipedia</Title>` |
-| 16 | writing in the markup — no `+` chains, a sentence to a line in a template literal, links as plain markdown text; the parser trims a line's indentation | **done** — [ch20 § lines](../writing-a-book/01-using-the-public-library.md#lines) |
+| 16 | writing in the markup — no `+` chains, a sentence to a line in a template literal, links as plain markdown text; the parser trims a line's indentation | **done** — [ch20 § lines](../the-first-draft/01-using-the-public-library.md#lines) |
 
 ### The redo, the evening of 2026-09-06 — Doug: "minimize only the changes you just made, and not new ones"
 
-***What this session had added to `src`, each asked [the five questions](../writing-a-book/01-using-the-public-library.md#minimalism), and what it came to.*** *The stopped session's work — `rep` and `addType` on `$Writing`, the `$$X` representatives on `$Composition`, the three `$writtenIn…` rules, `Abstract` · `Part` · `Summary` — was in the working tree before this session opened (the transcript shows every one first inside a tool result) and was not touched.*
+***What this session had added to `src`, each asked [the five questions](../the-first-draft/01-using-the-public-library.md#minimalism), and what it came to.*** *The stopped session's work — `rep` and `addType` on `$Writing`, the `$$X` representatives on `$Composition`, the three `$writtenIn…` rules, `Abstract` · `Part` · `Summary` — was in the working tree before this session opened (the transcript shows every one first inside a tool result) and was not touched.*
 
 | mine | was | is now |
 |---|---|---|

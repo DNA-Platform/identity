@@ -37,4 +37,4 @@ override supplies(writing: $Writing, parts: $Writing[]): $Writing[] {
 ## Related
 
 - [The demand that was made twice](60-the-demand-that-was-made-twice.md) — a rule stated in two places and answered in one; this is a rule and a SUPPLY stating the same demand, answered in one.
-- [Reading the Source](../writing-a-book/02-reading-the-source.md) — the other half of the same day: what a demo demonstrates is exactly what it contains.
+- [Reading the Source](../the-first-draft/02-reading-the-source.md) — the other half of the same day: what a demo demonstrates is exactly what it contains.

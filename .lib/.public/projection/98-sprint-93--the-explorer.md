@@ -128,7 +128,7 @@
 **Compounded 2026-09-30.** Each lesson went to its room, the covers edited with the tool:
 - the fourteenth finding, a defect, to Solutions as [The File a Shared Link Never Opened](../solutions/98-the-file-a-shared-link-never-opened.md);
 - the first, that the collection answers from construction and `$Bound` runs once every chapter is in, to [Developing an Annotation](../writing/10-developing-an-annotation.md);
-- the sixteenth, if one is about the other show them together, to [The Reference Manual](../writing-a-book/11-the-reference-manual.md#a-chapter-is-shown-with-its-file);
+- the sixteenth, if one is about the other show them together, to [The Reference Manual](../writing-a-book/04-the-reference-manual.md#a-chapter-is-shown-with-its-file);
 - the fifteenth is chemistry's own, in its [reactive properties](../../../chemistry/.lib/reactivity/01-reactive-properties.md#a-function-is-behaviour).
 
 This chapter was compacted from 10,692 words to 6,191, the requirements and the plan to registers and the trail of the design and the viewer to a paragraph each, every anchor into it kept.

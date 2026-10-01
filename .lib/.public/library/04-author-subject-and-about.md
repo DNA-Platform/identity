@@ -28,7 +28,7 @@
 | `<Subject>**[[ Libraries ]]( The Library )</Subject>` | a catalogue edge, answered by `[[ A Paper ]]**` in The Library's table; the words are the subject's name and the paren the book that is that subject | this book is filed under Libraries, which is the library's own catalogue |
 | `<About>[[ Libby ]]</About>`, after the title | a second title form naming the book itself | this book is about what it is called, so others may be filed under it |
 
-**Every one may give words apart from its name**, the paren tight against the bracket: `<Subject>**[[ Libraries ]]( The Library )</Subject>` shows "Libraries" and means The Library — which is how the top of a library is filed under what it is about without a second book, [What a Library Is](../writing-a-book/08-what-a-library-is.md). *Doug: "You always need to be able to say text versus id as an option."*
+**Every one may give words apart from its name**, the paren tight against the bracket: `<Subject>**[[ Libraries ]]( The Library )</Subject>` shows "Libraries" and means The Library — which is how the top of a library is filed under what it is about without a second book, [What a Library Is](../writing-a-book/01-what-a-library-is.md). *Doug: "You always need to be able to say text versus id as an option."*
 
 ### In use
 

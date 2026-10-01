@@ -7,7 +7,7 @@
 
 ## <a id="folder"></a>The folder — ***a conversation is a book, and a book is already a folder***
 
-**Nothing needs inventing here.** [The Book Is the Layout](../../.lib/writing-a-book/05-the-book-is-the-layout.md) rules it: *"all the files except .book are the content and they only have chapters"*, and `.book.tsx` holds the book class first and the components it is written with after. A conversation folder is that shape and no other:
+**Nothing needs inventing here.** [The Book Is the Layout](../../.lib/the-first-draft/05-the-book-is-the-layout.md) rules it: *"all the files except .book are the content and they only have chapters"*, and `.book.tsx` holds the book class first and the components it is written with after. A conversation folder is that shape and no other:
 
 ```
 a-conversation/
@@ -132,5 +132,5 @@ return reflection.is(token, beneath) ? token : undefined;
 
 - **[The Format and the Theme](02-the-format-and-the-theme.md)** — *how it draws, and why it survives two dresses*
 - **[What Claude Writes](03-what-claude-writes.md)** — *the inventory, and the kinds that do not exist yet*
-- **[The Book Is the Layout](../../.lib/writing-a-book/05-the-book-is-the-layout.md)** — *a book answers where, a chapter answers what*
+- **[The Book Is the Layout](../../.lib/the-first-draft/05-the-book-is-the-layout.md)** — *a book answers where, a chapter answers what*
 - **[The Types](04-the-types.md)** — *level types against annotative ones, and what each specification validates*

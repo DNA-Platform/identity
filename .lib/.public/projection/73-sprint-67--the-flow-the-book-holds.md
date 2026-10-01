@@ -46,7 +46,7 @@
 
 **Wrong turns this session, so they are not retaken:** believing a served page before rebinding it — the mirror held the reverted one-document build and its orphans, and the first measurement was of the reverted shape ([Solutions 72](../solutions/72-the-mirror-with-two-directions.md) again, third time); and measuring element boxes instead of line boxes, which reads a float as working when nothing long enough is standing beside it.
 
-**Compounded 2026-09-13:** the defect is [Solutions 78 — The Float That Could Not Leave Its Column](../solutions/78-the-float-that-could-not-leave-its-column.md), indexed by the symptom; how a consumer writes against what this sprint built is [The Book Is the Layout](../writing-a-book/05-the-book-is-the-layout.md); the anchor it stands on is [The Coding Style's third anchor](../the-coding-style/03-the-coding-style.md#book-and-chapter) and [What We Believe P29.5](../the-type-system/05-what-we-believe.md#the-drawing).
+**Compounded 2026-09-13:** the defect is [Solutions 78 — The Float That Could Not Leave Its Column](../solutions/78-the-float-that-could-not-leave-its-column.md), indexed by the symptom; how a consumer writes against what this sprint built is [The Book Is the Layout](../the-first-draft/05-the-book-is-the-layout.md); the anchor it stands on is [The Coding Style's third anchor](../the-coding-style/03-the-coding-style.md#book-and-chapter) and [What We Believe P29.5](../the-type-system/05-what-we-believe.md#the-drawing).
 
 **How to see it:** `sh serve.sh` at the package root; `http://localhost:5311/article`, `/turing`, `/`.
 

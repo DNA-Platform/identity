@@ -43,4 +43,4 @@ A grid item establishes an independent formatting context. **So the defect was n
 
 ## Where it is recorded
 
-[Sprint 67](../projection/73-sprint-67--the-flow-the-book-holds.md), which built it; [The Book Is the Layout](../writing-a-book/05-the-book-is-the-layout.md#the-look), which carries the rule for a consumer; [Sprint 65](../projection/71-sprint-65--the-encyclopedia-finished.md), whose U5 this closes.
+[Sprint 67](../projection/73-sprint-67--the-flow-the-book-holds.md), which built it; [The Book Is the Layout](../the-first-draft/05-the-book-is-the-layout.md#the-look), which carries the rule for a consumer; [Sprint 65](../projection/71-sprint-65--the-encyclopedia-finished.md), whose U5 this closes.

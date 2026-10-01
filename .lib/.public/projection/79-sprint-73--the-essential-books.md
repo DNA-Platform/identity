@@ -109,9 +109,9 @@
 
 **The sprint is larger than what is specified here.** Doug's brief opens it: *"define the essential books of my library, scaffold them, import a real conversation of ours into chemistry, and create a view of all of it"* — inventing, on the way, *"the subject and author annotations, the biography and autobiography annotation, the subjects and catalogue annotations, all in library"*. **This chapter specifies the FIRST movement only**, which he named: *"the first thing we are going to do is make sure that the table of contents has all of the chapters in its book, and they have to be spelled right."* The rest is [what follows](#what-follows).
 
-**What it grows from.** [Sprint 72](78-sprint-72--the-compilation-audit.md) made the library specifiable and left three rules explicitly [owed to the framework](../writing-a-book/07-specifying-a-library.md#owed) — *the table of contents catalogues all chapters* is one of them, and this is that debt paid.
+**What it grows from.** [Sprint 72](78-sprint-72--the-compilation-audit.md) made the library specifiable and left three rules explicitly [owed to the framework](../the-first-draft/07-specifying-a-library.md#owed) — *the table of contents catalogues all chapters* is one of them, and this is that debt paid.
 
-**Read first:** [the rulings](#rulings) · [the analysis](#analysis) · [the requirements](#requirements) · [Specifying a Library](../writing-a-book/07-specifying-a-library.md) · `src/libraries/Chapter.tsx`, `TableOfContents.tsx`, `Book.tsx`, `Document.tsx` as they stand.
+**Read first:** [the rulings](#rulings) · [the analysis](#analysis) · [the requirements](#requirements) · [Specifying a Library](../the-first-draft/07-specifying-a-library.md) · `src/libraries/Chapter.tsx`, `TableOfContents.tsx`, `Book.tsx`, `Document.tsx` as they stand.
 
 ## <a id="rulings"></a>Rulings — ***his words, verbatim, 2026-09-16***
 
@@ -164,7 +164,7 @@
 
 **`$Book.cover`/`synopsis`/`table` are `chapters[0]`/`[1]`/`[2]`.** *Measured 2026-09-16:* **`.wiki/.encyclopedia` holds no `.table.tsx` at all** — its chapters are cover, synopsis, then four content chapters — **so `$Book.table` answers `1-the-languages` today.** A wrong answer, standing, not hypothetical.
 
-***That is an argument FOR position rather than against it.*** **Position is trustworthy exactly when the apparatus is mandatory, and [R4](#r4) makes it mandatory.** *Reading them by type instead would call `print()` on chapters merely to find the table, which at a thousand heavy books is not free — the memory wall [Sprint 72 measured](../writing-a-book/07-specifying-a-library.md#wall).*
+***That is an argument FOR position rather than against it.*** **Position is trustworthy exactly when the apparatus is mandatory, and [R4](#r4) makes it mandatory.** *Reading them by type instead would call `print()` on chapters merely to find the table, which at a thousand heavy books is not free — the memory wall [Sprint 72 measured](../the-first-draft/07-specifying-a-library.md#wall).*
 
 ### <a id="the-title"></a>Why the title costs no `src` change
 

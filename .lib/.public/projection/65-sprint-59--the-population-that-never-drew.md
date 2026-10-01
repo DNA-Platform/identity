@@ -10,7 +10,7 @@
 
 ***The end, from chapter zero:*** **the paper's seven citations draw the paper's own numbers again — 76, 122, 38, 223, 10, 280, 197 — from the scratchpad, land when clicked, and swapping two entries renumbers two marks; the suite is green; chemistry evaluates a mounted chemical's children once and has a promise saying so.** *Doug on the chemistry half: "Do we need this? Has it been broken? Yes if we need it and it's broken, please fix it."*
 
-**Read first, in this order:** this chapter · [Sprint 58 § Where things stand](64-sprint-58--the-chapter-that-is-its-view.md#stand) · [Solutions 71](../solutions/71-the-population-that-never-drew.md) · [Writing a Book, ch. 4 § citations](../writing-a-book/04-the-book-s-little-framework.md#citations) · chemistry's [composition/08](../../../chemistry/.lib/composition/08-catalyst-graph.md) and [particle/04](../../../chemistry/.lib/particle/04-lift.md) · then the code named in each unit, end to end.
+**Read first, in this order:** this chapter · [Sprint 58 § Where things stand](64-sprint-58--the-chapter-that-is-its-view.md#stand) · [Solutions 71](../solutions/71-the-population-that-never-drew.md) · [Writing a Book, ch. 4 § citations](../the-first-draft/04-the-book-s-little-framework.md#citations) · chemistry's [composition/08](../../../chemistry/.lib/composition/08-catalyst-graph.md) and [particle/04](../../../chemistry/.lib/particle/04-lift.md) · then the code named in each unit, end to end.
 
 ## <a id="requirements"></a>Requirements — ***the register***
 

@@ -32,7 +32,7 @@ That is all of it. Everything the compiler checks is a consequence.
 
 ## Who may author, exactly
 
-The compiler's own words, in [`catalogue/wellformed.ts`](../../package/.binding/catalogue/wellformed.ts): *"one book is by its own subject — the autobiography, and there can be only one of those — and a book may author when that autobiography is its subject."* So an author is either the autobiography, or a book filed under it. Doug, 2026-09-25: *"1. A book that is by its subject — There can be only one of those. 2. Any book catalogued by one that is a subject."* **Querying by author** is answered by the book the author names: `*[[ Libby ]]` is her autobiography, and a book's `author.means` is a reference to it.
+The compiler's own words, in [`catalogue/wellformed.ts`](../../package/.binding/catalogue/wellformed.ts): *"one book is by its own subject — the autobiography, and there can be only one of those — and a book may author when that autobiography is its subject."* So an author is either the autobiography, or a book filed under it. Doug, 2026-09-25: *"1. A book that is by its subject — There can be only one of those. 2. Any book catalogued by one that is a subject."* And again, 2026-09-30, at Sprint 95's reading: *"one autobiographical subject… And it may catalogue other books that can be referred to as an author by their subject name."* **Querying by author** is answered by the book the author names: `*[[ Libby ]]` is her autobiography, and a book's `author.means` is a reference to it.
 
 ## The test library, as an instance
 
@@ -58,6 +58,6 @@ The compiler's own words, in [`catalogue/wellformed.ts`](../../package/.binding/
 
 ## What is not yet nailed down
 
-What follows from the metaphor for whoever builds and tends a library — closure as identity, why it decides the code, the questions in order and the tools — is [How to Be a Librarian](12-how-to-be-a-librarian.md).
+What follows from the metaphor for whoever builds and tends a library — closure as identity, why it decides the code, the questions in order and the tools — is [How to Be a Librarian](05-how-to-be-a-librarian.md).
 
 Doug: *"WE are all learning to specify a library formally. Let's nail down what it means."* Open, and to be ruled: whether a book may be filed under more than one subject; what a topical catalogue is beside a subject catalogue, which the compiler already distinguishes; and, now that the About may differ from the title, whether the top's second form is *Libraries* or its own name. This chapter is edited as each is ruled.

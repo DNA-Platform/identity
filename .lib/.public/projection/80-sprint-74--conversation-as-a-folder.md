@@ -342,7 +342,7 @@ Quote   holds [Paragraph | Aside]             ← nor this
 
 ## <a id="reading"></a>Read first
 
-[The recovered design, all four chapters](#recovered) · [The Book Is the Layout](../writing-a-book/05-the-book-is-the-layout.md) · [The Book's Little Framework](../writing-a-book/04-the-book-s-little-framework.md) · [What Natural Means](../the-coding-style/07-what-natural-means.md) · [The Order of a Class](../the-coding-style/02-the-order-of-a-class.md) · `src/encyclopedia/` whole · `src/libraries/Chapter.tsx`, `Document.tsx`, `Book.tsx`, `Author.tsx`, `Subject.tsx` · `src/reference/Catalogue.tsx` · `.me/..reference/` whole
+[The recovered design, all four chapters](#recovered) · [The Book Is the Layout](../the-first-draft/05-the-book-is-the-layout.md) · [The Book's Little Framework](../the-first-draft/04-the-book-s-little-framework.md) · [What Natural Means](../the-coding-style/07-what-natural-means.md) · [The Order of a Class](../the-coding-style/02-the-order-of-a-class.md) · `src/encyclopedia/` whole · `src/libraries/Chapter.tsx`, `Document.tsx`, `Book.tsx`, `Author.tsx`, `Subject.tsx` · `src/reference/Catalogue.tsx` · `.me/..reference/` whole
 
 ## <a id="names"></a>Names — proxies flagged
 

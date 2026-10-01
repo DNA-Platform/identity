@@ -93,7 +93,7 @@
 | <a id="b14"></a>**B14** | `.public` re-implemented styled-components' theme provider by hand — `_theme` on the book and on every document, a setter running it down, `$Writing.theme` walking up, `reflection.theme()` as the default, the theme reaching the page as an element, a `'single'` so the walk had one object to find | `Book.tsx` · `Document.tsx` · `Writing.tsx` · `Reflection.tsx` · `Theme.tsx` | the fix was in chemistry — [the wrapper exposes `ThemeProvider` polymorphically](../../../chemistry/.lib/projection/00-planning.md#pitch-theme) — and `.public` deleted the lot: **DONE 2026-09-13**, [U12](#u12), [Solutions 79](../solutions/79-the-single-that-re-bonded-with-the-book-s-children.md) | `theme.test.tsx` rewritten | `run` |
 | <a id="b13"></a>**B13** | `$Writing$` promises `document`, `mention`, `meaning`, `kind`, `annotations` and not `theme`, `book`, `className`, which every writing has | `Writing.tsx:15-21` | the interface says what a writing has | none | `read` |
 
-**Not a wart, read and kept:** `$Type.name` from `constructor.name` (a [recorded caution](../the-coding-style/03-the-coding-style.md#the-build-caution), not a fault); `$Writing.inline = true` (chemistry's grouping marker, [Solutions 1](../solutions/01-the-formulas-that-rendered-empty.md)); the makers assigning `_mention` ([a ruled fact](../writing-a-book/04-the-book-s-little-framework.md#facts)); `parser.parts` (the parse memo — "asking twice answers the same parts"); `tex.rendered`; `Specification.cached`.
+**Not a wart, read and kept:** `$Type.name` from `constructor.name` (a [recorded caution](../the-coding-style/03-the-coding-style.md#the-build-caution), not a fault); `$Writing.inline = true` (chemistry's grouping marker, [Solutions 1](../solutions/01-the-formulas-that-rendered-empty.md)); the makers assigning `_mention` ([a ruled fact](../the-first-draft/04-the-book-s-little-framework.md#facts)); `parser.parts` (the parse memo — "asking twice answers the same parts"); `tex.rendered`; `Specification.cached`.
 
 ## <a id="fights"></a>The fights, by the seam `.public` owes
 
@@ -148,7 +148,7 @@ The paper: `<TableOfContents><Heading/><Row><Chapter>Introduction</Chapter><Row>
 
 ### <a id="f9"></a>F9 · ***the portal is a third shape of book***
 
-[`.wiki/.encyclopedia/.book.tsx`](../../package/.wiki/.encyclopedia/.book.tsx): 536 lines, the book class at 477 ([ruled a fault](../writing-a-book/05-the-book-is-the-layout.md#the-book-file)); seven kinds wearing a format by block arithmetic (`run`: 7, [B10](#b10)); `$Logo.print()` hand-writes `<img>` **where `$Image` exists** ([Sprint 56's finding](62-sprint-56--the-encyclopedia.md), still); `$Project.view()` wraps in `CardFormat` by hand; a second `$Search` **where the application's exists**; `painted` duplicated; `$LanguageFormat` placing ten languages by a lookup table on `$at`; `$PortalTheme` selecting `.pd-book > header`, `header p:has(img)`. *The portal being a different book is right; what it re-invents is not.*
+[`.wiki/.encyclopedia/.book.tsx`](../../package/.wiki/.encyclopedia/.book.tsx): 536 lines, the book class at 477 ([ruled a fault](../the-first-draft/05-the-book-is-the-layout.md#the-book-file)); seven kinds wearing a format by block arithmetic (`run`: 7, [B10](#b10)); `$Logo.print()` hand-writes `<img>` **where `$Image` exists** ([Sprint 56's finding](62-sprint-56--the-encyclopedia.md), still); `$Project.view()` wraps in `CardFormat` by hand; a second `$Search` **where the application's exists**; `painted` duplicated; `$LanguageFormat` placing ten languages by a lookup table on `$at`; `$PortalTheme` selecting `.pd-book > header`, `header p:has(img)`. *The portal being a different book is right; what it re-invents is not.*
 
 ### <a id="f10"></a>F10 · ***`$Ref` is a bramble***
 
@@ -299,7 +299,7 @@ A book kind in `src/article` (*name owed*) with its own `print()` placing its pa
 | **C2** | `reflection.readings` — `Reflection.tsx:15` | the same, for parts | same |
 | **C3** | `$Document._theme`, `$Book._theme` and a setter that runs it down (`Book.tsx:41-44`) | [ruled 2026-09-12](../the-motif/04-themes-per-type-formats-per-instance.md#built): store and make | **Ruled ([his words](#r-themes)): a `$BookTheme` and a `$DocumentTheme` over a shared base, each reflecting the top of the hierarchy it targets** — his design, tested for warts in the group's design (where the two share values is where a fight could arise) |
 | **C4** | `$Format.$of` — `Format.tsx:15` | the second instance ([F2](#f2)) | goes with F2 |
-| **C5** | `$Writing._mention` assigned by makers and by `$Book`'s bond | [a ruled fact](../writing-a-book/04-the-book-s-little-framework.md#facts) | keep |
+| **C5** | `$Writing._mention` assigned by makers and by `$Book`'s bond | [a ruled fact](../the-first-draft/04-the-book-s-little-framework.md#facts) | keep |
 | **C6** | `reflection.templates`, `parser.parts`, `tex.rendered`, `Specification.cached` | per-class or per-string facts | keep |
 
 ## <a id="promises"></a>The promises to question — Queenie

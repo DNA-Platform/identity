@@ -28,4 +28,4 @@ The assembled book module imported the picture as a module, so that the Append's
 ## See also
 
 - [The Suite That Passed Against a Stale Build](05-the-suite-that-passed-against-a-stale-build.md) — the same shape from the other side: a gate green against an artefact that was not the one shipped.
-- [The Reference Manual](../writing-a-book/11-the-reference-manual.md) — Libby's list of what bit while the manual was written, this among it.
+- [The Reference Manual](../writing-a-book/04-the-reference-manual.md) — Libby's list of what bit while the manual was written, this among it.

@@ -64,16 +64,18 @@
 
 ### <a id="guards-stack"></a>Guards stack at the top, and nothing separates them from what follows
 
-> ***Doug, 2026-09-05, on a `frame()` with a blank line before its markup:*** *"The purpose of the flat is to stack. And one main reason we stack is to move if breaks to the top so we can show the main thing. No break between markup and code above it. No need."*
+> ***Doug, 2026-09-05, on a drawing method with a blank line before its markup:*** *"The purpose of the flat is to stack. And one main reason we stack is to move if breaks to the top so we can show the main thing. No break between markup and code above it. No need."*
 
 ***A method's guards go to the top and stack with no gaps*** — that is what stacking is FOR here: **it clears the way so the main thing is what the reader lands on.** *And there is no blank line between the stack and the markup beneath it, because the markup is not a second phase — it is the thing the stack was clearing the way to.*
 
 ```tsx
-override frame(): ReactNode {
-    const named = reflection2.classNames(this);
-    return <div className={named.join(' ')}>{super.frame()}</div>;
+override view(): ReactNode {
+    const named = [...this.classes].join(' ');
+    return <div className={named}>{super.view()}</div>;
 }
 ```
+
+*The example was the first draft's `frame()` on 2026-09-05; recast 2026-10-01 to the redraft's `view()`, which draws the container, since the law is the same and the name is gone — [The First Draft](../the-first-draft/.cover.md).*
 
 ***A blank line there says "the thought turns", and it does not turn*** — [paragraphs](#paragraphs) are for a method with real stages, and a guard plus its return is one stage.
 
@@ -81,7 +83,7 @@ override frame(): ReactNode {
 
 > ***Doug, same reading, on the line the blank line was hiding:*** *"But it's also wrong. We need the same container everywhere. You are writing markup that is at different levels."*
 
-***The `frame()` above had a guard that returned `super.frame()` bare when there were no names, and the wrapped `<div>` otherwise.*** **So the same writing sat one element deeper or shallower depending on a fact about its types**, and everything downstream — a selector, a walk, a layout — met two shapes where it was promised one.
+***The `view()` above had a guard that returned `super.view()` bare when there were no names, and the wrapped `<div>` otherwise.*** **So the same writing sat one element deeper or shallower depending on a fact about its types**, and everything downstream — a selector, a walk, a layout — met two shapes where it was promised one.
 
 | ruled out | why |
 |---|---|

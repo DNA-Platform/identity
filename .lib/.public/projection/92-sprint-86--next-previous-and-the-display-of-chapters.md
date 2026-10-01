@@ -17,7 +17,7 @@
 
 - **The bookmark is on the book and reactive** — `$bookmark`, the url the page is open at, set on the held instance by the app and the render; `bookmark` the chapter whose title means it — [Book](../library/05-book.md). A layout that shows one chapter at a time reads it; the redraw of every chapter on a move is [the cascade, pitched to chemistry](../../../chemistry/.lib/projection/00-planning.md#pitch-cascade).
 - **The router never decides what is visible** — Sprint 85's D3; the book's layout decides what to show.
-- **A group is named, never left over** — [The Book Is the Layout](../writing-a-book/05-the-book-is-the-layout.md), the first library's ruling that still holds.
+- **A group is named, never left over** — [The Book Is the Layout](../the-first-draft/05-the-book-is-the-layout.md), the first library's ruling that still holds.
 - **An annotation acts through four powers** — [Developing an Annotation](../writing/10-developing-an-annotation.md); a mark on a child from `defines` costs that child a draw.
 - **A synopsis stands its Reference at `$Bound`, from what its book holds** — [Cover, Synopsis and TableOfContents](../library/03-cover-synopsis-and-table-of-contents.md); Next and Previous are the same shape.
 

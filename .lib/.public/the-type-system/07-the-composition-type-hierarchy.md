@@ -14,7 +14,7 @@
 | **text** | Letter · Word · Sentence · Paragraph · Section · Document |
 | **library** | Chapter · Book |
 
-**Reflection holds them as data**, handed once from [`$Book.$register`](../../package/src/libraries/Book.tsx) beside the hierarchy tops it already hands over, because the book is the one file that imports every level without a cycle. Nothing above a chapter composes a document: [the library level stands apart](../writing-a-book/04-the-book-s-little-framework.md#levels), and a chapter means its document by reference.
+**Reflection holds them as data**, handed once from [`$Book.$register`](../../package/src/libraries/Book.tsx) beside the hierarchy tops it already hands over, because the book is the one file that imports every level without a cycle. Nothing above a chapter composes a document: [the library level stands apart](../the-first-draft/04-the-book-s-little-framework.md#levels), and a chapter means its document by reference.
 
 ## <a id="rung"></a>The rung below a kind, by type inheritance
 
@@ -41,7 +41,7 @@ A list's copy becomes items and a contents' parts are rows, and each supports th
 
 ## <a id="pointers"></a>Where the rest is
 
-- **What a level IS** — [The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md), the settled account, and *"each type carries the one below it"* in [The Book's Little Framework](../writing-a-book/04-the-book-s-little-framework.md#levels).
+- **What a level IS** — [The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md), the settled account, and *"each type carries the one below it"* in [The Book's Little Framework](../the-first-draft/04-the-book-s-little-framework.md#levels).
 - **Why types stay in the block** — *"All types should have their `specifically` run on the class. That is the way multiple inheritance works here"* — the same chapter, and [Shells Over Types](03-shells-over-types.md).
 - **The reading that uses the rung** — [`$Composition.parts()`](../../package/src/writing/Composition.tsx).
 - **Registration and scope** — chemistry's [The Representative](../../../chemistry/.lib/composition/11-the-representative.md), and where a scope reaches.

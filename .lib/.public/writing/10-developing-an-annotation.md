@@ -21,7 +21,7 @@ export class $Aside extends $Annotation {
 export const Aside = $($Aside);
 ```
 
-**That class is already a working annotation.** It is a piece of writing, so whatever is written inside it is its `contents`; it is rendered as a note on the page; it is counted by `writing.is(Aside)`; it takes part in the pass. It does nothing to its writing yet, and that is the base's promise: **an annotation does nothing until it says what it does.**
+**That class is already a working annotation.** It is a piece of writing, so whatever is written inside it is its `text`; it is rendered as a note on the page; it is counted by `writing.is(Aside)`; it takes part in the pass. It does nothing to its writing yet, and that is the base's promise: **an annotation does nothing until it says what it does.**
 
 **Name it after the trait it points out, never after what it does.** Parenthetical is the writing that is parenthetical; Strict is the composition that is strict. *"When you annotate writing, are you not pointing out some trait that it has?"* A name ending in -er or -ing is a role and is wrong here.
 
@@ -185,7 +185,7 @@ class $Housed extends $Format {
 
 ## The argument is content, and a property reads it
 
-**Whatever an annotation needs told, it is told as content.** *"We probably didn't want a prop there, we meant that to be `<Mentioned>as-mentioned</Mentioned>`."* An annotation is a writing, so what is written inside it is its `contents`: that is where a Referent finds its id and a Level its number. From outside, the same annotation is given whole, `is={<Mentioned>as-mentioned</Mentioned>}`.
+**Whatever an annotation needs told, it is told as content.** *"We probably didn't want a prop there, we meant that to be `<Mentioned>as-mentioned</Mentioned>`."* An annotation is a writing, so what is written inside it is its `text`: that is where a Referent finds its id and a Level its number. From outside, the same annotation is given whole, `is={<Mentioned>as-mentioned</Mentioned>}`.
 
 **Read it with a property, a getter over the contents.** Doug: *"Is it too pricey to have the level annotation parse and supply its level as a property (not prop) and put a computed property around it? That is a simple way to convert annotations into an object surface."* It was read once in the bond into a field until 2026-09-25, when Doug chose the getter under *"I want everything to look uniform and maximally simple"*: nothing is kept, so nothing goes stale, and every reading an annotation or a word makes of its contents is written the same way.
 
