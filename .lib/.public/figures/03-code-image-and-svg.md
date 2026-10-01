@@ -12,7 +12,7 @@
 
 | figure | what it draws | its mark | from a file | from input |
 |---|---|---|---|---|
-| `Code` | a block letter holding a code element, whitespace kept | `pd-code` | `<Code identifier="code" />`, `<Code type=".ts" />` | `<Code>{'const x = 1;'}</Code>` |
+| `Code` | a block letter holding a code element, whitespace kept, each line of it in a span wearing `pd-code-line`, Doug's name since [Sprint 95, U7](../projection/100-sprint-95--pages-formats-and-words.md#u7), which the Theme counts and numbers; until then the span wore `pd-line`, the Line's, and a poem's Lines were numbered by the code's rule | `pd-code`, `pd-code-line` | `<Code identifier="code" />`, `<Code type=".ts" />` | `<Code>{'const x = 1;'}</Code>` |
 | `Image` | a picture whose source is the append's address, its `alt` the identifier | `pd-image` | `<Image type=".png" />` | `<Image>{'/elsewhere.jpg'}</Image>` |
 | `Svg` | the append's markup inline, or the author's own elements as written | `pd-svg` | `<Svg type=".svg" />` | `<Svg><svg viewBox="0 0 1 1"><circle r="1" /></svg></Svg>` |
 
@@ -28,4 +28,4 @@ Three in [`.tests/figures.test.tsx`](../../package/.tests/figures.test.tsx), eac
 
 Measured 2026-09-28: the package 302 of 302; the manual's pages photographed, the mark inline, the photograph drawn from its address beside the pages.
 
-**Names.** Doug's: `Code`, `Image`, `Svg`. Ours, flagged: the three marks.
+**Names.** Doug's: `Code`, `Image`, `Svg`, `pd-code-line`. Ours, flagged: the three marks.

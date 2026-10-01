@@ -13,8 +13,8 @@
 | member | what it is | where it comes from |
 |---|---|---|
 | `$Reference.identifier` | the address, its text trimmed — the url the compiler resolved | Sprint 81 D2: the annotation's own field is `identifier`, since `id` on a writing is a reading |
-| `$Reference.defines(writing)` | adds `pa-reference` and an anchor, `<a href={identifier}>`, to the writing's containers; `erase` takes both back | Sprint 81 U5, the layer a reference adds |
-| `$SelfReference`, exported `Self` | a reference that also wears `pa-self-reference`, whose note is a global style taking the underline off its link | Sprint 85, a heading linking to itself |
+| `$Reference.defines(writing)` · `anchor` | adds `pa-reference` and an anchor to the writing's containers; `erase` takes both back. The anchor is `anchor`, a styled anchor declared once on the class and wearing the same class through styled-components' `attrs`, `selection.a.attrs({ className: 'pa-reference' })`, given its href per instance in the bond; an underline is the anchor's own, so a sheet dresses a link by name, `.pa-reference`, and reaches no layer through the word it holds | Sprint 81 U5, the layer a reference adds; [Sprint 95, U16](../projection/100-sprint-95--pages-formats-and-words.md#u16), on Doug's *"Yes, the same class, through attrs"* |
+| `$SelfReference`, exported `Self` | a reference that also wears `pa-self-reference`, its anchor too, extending its parent's `anchor` with `attrs`; its note a global style taking the underline off that class, in the invariants' layer | Sprint 85, a heading linking to itself; [Sprint 95, U16](../projection/100-sprint-95--pages-formats-and-words.md#u16) |
 | `ReferenceSpecification` | **a reference holds the address its writing means** | Sprint 81 R6 |
 | `$Referent.identifier` | the id, its text trimmed — the name's slug, made by the Mention that stands it | Sprint 81 D2; Sprint 85: an id comes from the name |
 | `$Referent.defines(writing)` | sets the writing's `id` and adds `pa-referent`; `erase` reverts both | Sprint 81 D1, Doug: *"I put an id on writing and it starts as undefined. Perhaps we can have the annotation set that and add pa-referent to the classes"* |
@@ -22,7 +22,7 @@
 
 ## How they are extended
 
-- **A kind of link is a class under Reference** that adds its own mark in `defines`, after `super.defines`, and a note for its style — `$SelfReference` is the example, and the shape a library's own follows. The anchor is the base's; a subclass does not draw a second.
+- **A kind of link is a class under Reference** that adds its own mark in `defines`, after `super.defines`, and a note for its style — `$SelfReference` is the example, and the shape a library's own follows. The anchor is the base's; a subclass does not draw a second, and one that wants its own class on it extends the base's `anchor` with `attrs`, as Self does.
 - **A Referent is stood by a Mention**, which reads the compiler's form and makes the id from the name; a writing may also stand one by hand, holding any id, and the specification still holds it to one.
 - **A format composes with the anchor in either order**, and whichever acts later is drawn outside; a reference taken out of expression loses its layer and the format keeps its own.
 - **Neither is a word.** What shows the words is [Mention and Means](18-mention-and-means.md); these hold what the words point at.
@@ -35,4 +35,4 @@ In [`.tests/reference.test.tsx`](../../package/.tests/reference.test.tsx): *a re
 
 Measured 2026-09-28: the package 302 of 302, typecheck 0.
 
-**Names.** Doug's: `Reference`, `Referent`, `Means` for the exported word, `identifier`; struck by him: the alias `Mentioned` — *"Have Referent and Mention exist in files."* Ours, flagged: `Self` as the export of `$SelfReference`, `_anchor`, the two marks.
+**Names.** Doug's: `Reference`, `Referent`, `Means` for the exported word, `identifier`; struck by him: the alias `Mentioned` — *"Have Referent and Mention exist in files."* Ours, flagged: `Self` as the export of `$SelfReference`, `anchor` and `_anchor`, the two marks.

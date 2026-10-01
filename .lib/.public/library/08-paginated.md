@@ -12,9 +12,9 @@
 
 | member | what it is | cited |
 |---|---|---|
-| `Paginated` | an Annotation, not a Format: it adds no layer, and changes nothing of how the book writes; it marks, and its note styles the marks | D3 of [Sprint 86](../projection/92-sprint-86--next-previous-and-the-display-of-chapters.md#plan): *"over a Format, since no layer is added; over the book drawing differently, since an annotation cannot change what a writing writes — and need not"* |
-| `Paginated.style` | a global style: under `.pa-paginated`, a `.pa-page` that is not `.pa-open` is not displayed — keyed on the book's own mark, so an unpaginated book is untouched | R4 |
-| `Paginated.book` | its parent when that is a Book, else none | the reading `synopsis.chapter` is |
+| `Paginated` | an Annotation, not a Format: it adds no layer, and changes nothing of how the book writes; it marks, and the Theme's sheet hides a closed page by the marks, an invariant since [Sprint 95, U5](../projection/100-sprint-95--pages-formats-and-words.md#u5) | D3 of [Sprint 86](../projection/92-sprint-86--next-previous-and-the-display-of-chapters.md#plan): *"over a Format, since no layer is added; over the book drawing differently, since an annotation cannot change what a writing writes — and need not"* |
+| *the rule* | not a member since [Sprint 95, U5](../projection/100-sprint-95--pages-formats-and-words.md#u5): in the Theme's sheet, under `.pa-paginated`, a `.pa-page` that is not `.pa-open` is not displayed — keyed on the book's own mark, so an unpaginated book is untouched; until then a global style in the annotation's note | R4 |
+| `Paginated.book` | its parent when that is a Book, else none | a known parent typed by a property, as `heading.section` is |
 | `Paginated.pages` | the book's own chapters, in order — **overridable**, so a class under it may say which chapters are its pages | R5; Doug: *"might also be inherited from perhaps?"* |
 | `Paginated.open` | the page that is open: the book's `bookmark`, else its cover — overridable too | R4: *"the bookmarked chapter — the cover when the bookmark names none"* |
 | `Paginated.note()` | the style | the [note power](../writing/10-developing-an-annotation.md) |
@@ -39,7 +39,7 @@ export default class $SomeProjects extends $TheLibrary {
 }
 ```
 
-*Stood in the book class's `$Define`, as the test library's Theme is, so every page of Some Projects shows one chapter: `/some-projects/` the cover, `/some-projects/the-work/` the work, and its catchword's Previous turns to the table in place — U4 of [Sprint 86](../projection/92-sprint-86--next-previous-and-the-display-of-chapters.md#u4).* The router is untouched: it sets the bookmark and the book turns; Paginated only reads what the book already exposes.
+*Stood in the book class's `$Define`, as the test library's Theme is, so Some Projects shows one chapter at a time on its one page: `/some-projects/` the cover, `/some-projects/#the-work` the work — a fragment since [Sprint 95](../projection/100-sprint-95--pages-formats-and-words.md#d1), a route of its own before — and its catchword's Previous turns to the table in place — U4 of [Sprint 86](../projection/92-sprint-86--next-previous-and-the-display-of-chapters.md#u4).* The router is untouched: it sets the bookmark and the book turns; Paginated only reads what the book already exposes.
 
 ## How it is extended
 

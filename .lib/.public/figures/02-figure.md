@@ -13,7 +13,7 @@
 | member | what it is |
 |---|---|
 | `$identifier` · `$type` | which append: `<Figure identifier="version1" />` names one by identifier, any type; `<Figure type=".ts" />` names the one whose identifier is empty |
-| `chapter` | the nearest chapter above, found as [Next](../library/07-next-and-previous.md) finds its own |
+| `chapter`, Writing's | the chapter it stands in; the figure's own walk, `chapter`, went 2026-09-30 when the reading became Writing's |
 | `names` | whether it names an append at all |
 | `append` | the Append it interfaces, among the chapter's annotations |
 | `contents` | that append's text, copied |
@@ -35,4 +35,4 @@ Six in [`.tests/figure.test.tsx`](../../package/.tests/figure.test.tsx): named b
 
 Measured 2026-09-28: the package 302 of 302.
 
-**Names.** Doug's: `Figure`, `identifier`, `type`. Ours, flagged: `names`, `append`, `contents`, `chapter` on the figure.
+**Names.** Doug's: `Figure`, `identifier`, `type`. Ours, flagged: `names`, `append`, `contents`.

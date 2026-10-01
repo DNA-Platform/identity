@@ -68,13 +68,12 @@ export class $Narrative extends $Annotation {
 
 ```tsx
 export class $Parenthetical extends $Annotation {
-    override note(): ReactNode { return <ParentheticalStyle />; }
     override defines(writing: $Writing): void { writing.classes.add(this, 'pa-parenthetical'); }
     override erase(writing: $Writing): void { writing.classes.revert(this); }
 }
 ```
 
-*Since [Sprint 94](../projection/99-sprint-94--the-styling-standard.md) the rule in Parenthetical's note lays itself in `@layer pd.invariants`, `!important`, as every rule that is an annotation's meaning does, and a parenthetical is present to a reader and not to the eye — [Themes and Formats](20-themes-and-formats.md).*
+*The rule that hides the class is the Theme's sheet's, in `@layer pd.invariants`, `!important`, as every rule that is an annotation's meaning is since [Sprint 95, U5](../projection/100-sprint-95--pages-formats-and-words.md#u5) — Parenthetical's hiding, Blank's box, Paginated's closed page, Self's underline — and a parenthetical is present to a reader and not to the eye; until Sprint 95 each annotation carried its rule as a global style in its note — [Themes and Formats](20-themes-and-formats.md).*
 
 **<a id="mark"></a>An annotation should frequently mark its presence with a CSS class** — `pa-` and its own name, added to the writing's classes in `defines`, cited to itself, and taken back by `erase` — so a sheet can find every writing it stands on. *Doug, 2026-09-25: "Note in documents that the annotations should frequently mark their presence with a CSS class."* Parenthetical wears `pa-parenthetical`, Reference `pa-reference`, Referent `pa-referent`, Biography `pa-biography`; Cover, Synopsis and TableOfContents wear `pa-cover`, `pa-synopsis` and `pa-table-of-contents`, on his word the same day — [Sprint 83, U3](../projection/89-sprint-83--memory-management.md#u3). *Frequently, not always: a pair marks nothing, as [below](#taking-another-out-of-expression--how-a-family-speaks) says, since which of two a writing is is a question of expression.* The mark goes on the writing; the annotation's own writing wears `pd-annotation`, which Writing gives it. *And the reason the mark belongs to the annotation and never to the text: a `pa-` class is a **rubric** — red ink saying where a thing begins and changing no word — which is the same part as an epigenetic mark, read by whatever comes after and rewriting nothing. A mark that edited the text would not be a mark. [Annotated Works](../the-semantics-of-books/19-annotated-works.md) scores the row.*
 
@@ -85,9 +84,12 @@ export class $Parenthetical extends $Annotation {
 ```tsx
 get identifier(): string { return html.copy(this.text).trim(); }
 
+anchor: ElementType = selection.a.attrs({ className: 'pa-reference' })``;
+
 $Reference(...chemicals: $Chemical[]) {
     this.$Annotation(...chemicals);
-    this._anchor = (props: { children?: ReactNode }) => <a href={this.identifier} {...props} />;
+    const Anchor = this.anchor;
+    this._anchor = (props: { children?: ReactNode }) => <Anchor href={this.identifier} {...props} />;
 }
 
 override defines(writing: $Writing): void {
@@ -98,18 +100,11 @@ override defines(writing: $Writing): void {
 
 **<a id="two-authors"></a>A mark that must stay and a mark that must move are two authorships.** `revert(author)` takes back everything cited to that author on a surface, so an annotation that puts a permanent mark and a moving mark on the same children with one author cannot take back the one without the other — and `remove` instead of `revert` leaves a change in the collection's record for every move, which grows with the reader. [Paginated](../library/08-paginated.md) is the case, from [Sprint 86](../projection/92-sprint-86--next-previous-and-the-display-of-chapters.md#u3): every page wears `pa-page` cited to the annotation, put once at `$Bound` when nothing has drawn; the open page wears `pa-open` cited to *the book*, since which page is open is the bookmark's doing, put in `defines` only when the page asked of the collection is not the open one — `opened?.classes.revert(book)` on the old page and `add(book, 'pa-open')` on the new, two writes on a move and none where the bookmark stands. Its `erase` is `revert(this)` on the book alone: the pages' marks stay when the annotation goes, as the Table's do, and the moving mark is the book's to keep.
 
-**And an annotation is extended the way any class is: override the power, call the base, add what is yours.** `$SelfReference` is a Reference that also wears `pa-self-reference` and draws its own look as its note — no `erase`, since Reference's is `revert(this)` and takes back every class cited to the annotation, and no bond, since chemistry calls the nearest one up the chain. *The collection finds by `instanceof`, so a Self is found wherever a Reference is asked for, its specification included.* Its note is a global style taking the underline off the anchor around a writing that wears the class, and keeping the pointer — Doug: *"style them so they don't look link-like with no underline and maybe no pointer"*, and asked of the pointer, *"Keep the pointer"* ([Sprint 82 U5](../projection/88-sprint-82--chapter-and-book.md#u5)). The style is a field, made once with the class, as Parenthetical's is.
+**And an annotation is extended the way any class is: override the power, call the base, add what is yours.** `$SelfReference` is a Reference that also wears `pa-self-reference`, its anchor too — no `erase`, since Reference's is `revert(this)` and takes back every class cited to the annotation, and no bond, since chemistry calls the nearest one up the chain. *The collection finds by `instanceof`, so a Self is found wherever a Reference is asked for, its specification included.* Its anchor wears the class too, extending its parent's `anchor` with `attrs`, so its note is a global style taking the underline off the class by name, and keeping the pointer — Doug: *"style them so they don't look link-like with no underline and maybe no pointer"*, and asked of the pointer, *"Keep the pointer"* ([Sprint 82 U5](../projection/88-sprint-82--chapter-and-book.md#u5)). The style is a field, made once with the class, as Parenthetical's is.
 
 ```tsx
 export class $SelfReference extends $Reference {
-    style = createGlobalStyle`
-        .pd-container:has(> .pa-self-reference),
-        .pd-container:has(> .pd-container > .pa-self-reference) {
-            text-decoration: none;
-        }
-    `;
-
-    override note(): ReactNode { return <this.style />; }
+    override anchor: ElementType = selection(this.anchor as ComponentType<{ className?: string }>).attrs({ className: 'pa-self-reference' })``;
 
     override defines(writing: $Writing): void {
         super.defines(writing);
@@ -158,7 +153,7 @@ export class StrictSpecification extends AnnotationSpecification {
 
 ### `note` — what you put on the page
 
-**An annotation is a note on the page, and its note is what it has to say at the level of the writing it annotates.** Its own writing renders first, its container with `pd-annotation` on it, holding whatever an author wrote inside it, hidden in the ordinary view and shown in an annotated one. Then the note, which is null by default. A global style, an anchor, a footnote's text, a mark: whatever belongs beside the writing rather than inside the annotation's own body. **Since 2026-09-29 a global style in a note is for a rule that IS the annotation's meaning** — Parenthetical hidden, Blank blank, Paginated's closed pages unseen — and never for a look, which is the theme's, nor for what an element is, which is a Format's own styled component. [Where a look lives](02-theming-and-formatting.md#where-a-look-lives) is the standard; Table, which carried a grid in its note until that day, is a Format now.
+**An annotation is a note on the page, and its note is what it has to say at the level of the writing it annotates.** Its own writing renders first, its container with `pd-annotation` on it, holding whatever an author wrote inside it, hidden in the ordinary view and shown in an annotated one. Then the note, which is null by default. A global style, an anchor, a footnote's text, a mark: whatever belongs beside the writing rather than inside the annotation's own body. **Since 2026-09-30 no note carries a global style: a rule that IS the annotation's meaning** — Parenthetical hidden, Blank blank, Paginated's closed pages unseen, a self-reference without an underline — is the Theme's sheet's, in its invariants' layer, [Sprint 95, U5](../projection/100-sprint-95--pages-formats-and-words.md#u5); a look is the theme's too, by mark; and what an element is, is a Format's own styled component. A note is for what stands on the page beside the writing: an anchor, a footnote, a label. [Where a look lives](02-theming-and-formatting.md#where-a-look-lives) is the standard; Table, which carried a grid in its note until that day, is a Format now.
 
 **The notes render back to front, so the front's note is last on the page.** For a stylesheet that means the front's rules win a tie, which is dominance in the cascade matching dominance in the genome — *"the one on top doesn't mean first in the DOM, it means last, which is to mean most powerful."*
 

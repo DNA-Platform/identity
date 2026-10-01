@@ -32,7 +32,7 @@
 
 | the work | what it does | what we have | how close |
 |---|---|---|---|
-| **The running head** | the book's or chapter's name set atop every page by the compositor, never by the chapter's author | the [RunningHead](../library/01-books-in-annotations.md#any-writing-reaches-its-book), reading `this.$book` so nothing in the chapter names its book | **close** — and it was the name we already had |
+| **The running head** | the book's or chapter's name set atop every page by the compositor, never by the chapter's author | the [RunningHead](../library/01-books-in-annotations.md#any-writing-reaches-its-book), reading `this.book` so nothing in the chapter names its book | **close** — and it was the name we already had |
 | **Rubrication** | red ink marking where a thing begins, or what kind of thing it is — a *rubric* | `pa-cover`, `pa-synopsis`, `pa-table-of-contents`: [an annotation marks its presence with a class](../writing/10-developing-an-annotation.md#mark) | **close** — a `pa-` class is a rubric |
 | **The First Folio's Catalogue**, 1623 | the table of contents set as a grid, the plays under Comedies, Histories and Tragedies — read column by column | a table's [`contents`](../library/03-cover-synopsis-and-table-of-contents.md), in the order the page shows their names | **close** — the order follows the page, so a grid written a column to a section reads as the Folio reads |
 | **The incipit** | a medieval work known by its opening words | a composition's canonical is its first part — a section's heading, a chapter's title | **close** |

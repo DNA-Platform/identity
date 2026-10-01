@@ -104,6 +104,22 @@
 
 ***A change that only ADDS is a change to be suspicious of.*** **It may still be right** — `$Cell` and `$Fold` both added a file — *but each of those deleted a rule that had been standing in for the missing kind*, **and if yours deletes nothing, say so out loud and expect to be asked why.**
 
+***And the number has a limit, found 2026-09-30:*** **a count is evidence for a reading and never the verdict.** *The first build of Sprint 95's U3 moved every Format's class to the element it gives and counted well — `src` +28 −82, Libby's library 15 lines for 15 — and read badly: her sheet had to say* a cover that directly contains a chapter *and to count chapters and then un-count two kinds.* **The next section is what the count was standing in for.**
+
+## <a id="the-grade"></a>THE GRADE IS READ IN THE LIBRARY — ***given 2026-09-30, at the first build of Sprint 95's U3***
+
+***Doug, when a change to the framework was handed to him with its counts:*** **"Remember that every change has to be graded against what the code had to do to adapt. Did these changes help or hurt the library code?"** *And when the grade came back as a count:* **"But I am not responsible for Libby's library. You guys grade how natural the code works. You should be able to look at this in the reference manual, and other places that appendical code is stored. It is in the library. Have you improved the library with the changes in this code? Imagine that we can all see it. Is it a more natural extension of .public? You'll know when something feels more natural."**
+
+**So every change to `.public` is graded by whether the library written against it reads as a more natural extension of it, and the grade is ours to give — read where the library's code is printed for everyone, the manual's chapters and their files, by the librarian whose library it is, against [the three tests](#the-three-tests) and the one question under them: would the next librarian write this without being told?** *The counts — lines in `src`, lines in her library, promise lines, pixels, `:has(` — are evidence for that reading. A look of the library's own is the librarian's to decide; a look Doug approved at a showing is kept.*
+
+***And a change is judged whole, because a half of one reads as a fight.*** *The first build's direction was right and its grade was bad, and the fault was not the direction: what a librarian writes without being told is `.pa-cover { the card }` and `.pd-canonical.pd-chapter { counted }`, and the second needs a word, `pd-canonical`, that had not yet been given — so her sheet was compensating for a missing word, and the count was measuring the compensation.* **Moving a class is not adding one: a class may leave a writing only when what it told a reader has another plain word.** *The trials that settled it, three forms read side by side, are [Sprint 95's](../projection/100-sprint-95--pages-formats-and-words.md#trials).*
+
+| what the grade reads | where |
+|---|---|
+| **the rule a librarian writes** — is it one plain sentence about a mark? | *the manual, at the spread that prints her theme beside its prose* |
+| **the fights that remain** — each named with the word or the mechanism it is missing | *the same files, read whole* |
+| **the counts** | *beside the verdict, as evidence* |
+
 ## <a id="unnatural"></a>WHAT UNNATURAL LOOKS LIKE IN THIS CODEBASE — six shapes, each with a real one behind it
 
 1. ***A kind-conditional on a base.*** **Doug: "so so so so important" — the base declares the seam, the kinds OVERRIDE.** *A `if (this instanceof X)` on a base class is the base knowing its own subclasses.*

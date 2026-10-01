@@ -104,7 +104,7 @@ Five annotations that are not Formats carried a `createGlobalStyle` in a field n
 
 | the rule says | its home | built or proposed |
 |---|---|---|
-| **what a Format IS as an element** — a grid, a header, a nav, a sheet | **the Format's own styled component**, declared inside the class, local, reading the theme's values through the provider; the Format may add it as a container around the writing's own (Cover, TableOfContents) or replace the writing's own container with it (Table) | built: Table, 2026-09-29 |
+| **what a Format IS as an element** — a header, a nav, a sheet | **the Format's own styled component**, declared inside the class, local, reading the theme's values through the provider; the Format adds it as a container around the writing's own (Cover, TableOfContents); replacing the writing's own container with it was built for Table on 2026-09-29 and struck on 2026-09-30, the grid the sheet's by the mark since ([Sprint 95, U4](../projection/100-sprint-95--pages-formats-and-words.md#u4)) | built: Table, 2026-09-29; unbuilt 2026-09-30 |
 | **what an annotation MEANS to the eye** — parenthetical is hidden, blank is blank, a closed page is unseen, a self-reference wears no underline | **the annotation's own note**, a global style for its mark, and only the rule that is the meaning, so that no theme can un-mean it by forgetting a rule | as it stands — Doug: *"I don't agree with your placement of the annotations"* when they were proposed for the theme |
 | **how a mark LOOKS** — gaps, borders, weights, margins, ink | **the theme's sheet**, which comprehends every mark | as it stands |
 

@@ -8,15 +8,15 @@
 
 ## What they are
 
-**Three Formats whose style is the semantic element, a layer around the writing, each marking it.** Doug, 2026-09-27: *"think about what might be useful in terms of the basics - emphasis, underline, bold."* They are Cover's shape — a Format with an element for its `style` — said of any writing: a word, a sentence, a paragraph.
+**Three Formats whose style is the semantic element, a layer around the writing, the element wearing its class.** Doug, 2026-09-27: *"think about what might be useful in terms of the basics - emphasis, underline, bold."* They are Cover's shape — a Format with an element for its `style` — said of any writing: a word, a sentence, a paragraph.
 
-| class | the element | the mark |
+| class | the element | the class its element wears |
 |---|---|---|
 | `Emphasis` | `em` | `pa-emphasis` |
 | `Bold` | `b` | `pa-bold` |
 | `Underline` | `u` | `pa-underline` |
 
-Each `defines` calls Format's, which stands the element as a layer cited to itself, and adds its mark; each `erase` takes both back. Two on one word nest, the one written last innermost. The element carries the semantics and the theme the look — its rules for the three restate the browser's, so a theme that wants emphasis drawn otherwise says so on the mark.
+Each is one line since 2026-09-30, `style: ElementType = selection.b.attrs({ className: 'pa-bold' })` with an empty template: the element and its class are one styled component, the class given with styled-components' own `attrs`, and the class has no `defines` or `erase` of its own, Format's standing the element as a layer cited to itself and taking it back. Two on one word nest, the one written last innermost, each tag wearing its own class. The browser draws the three tags, so neither the class nor the Theme's sheet carries a rule for them; a library that wants emphasis drawn otherwise says so on the class, or stands its own Emphasis in place of this one — [Sprint 95, U3](../projection/100-sprint-95--pages-formats-and-words.md#u3), on Doug's *"I like that it is optional. It is up to the writer of the styled component to do this right? This seems like it is where it belongs."* Until then each marked the word itself and the sheet restated the browser's three rules.
 
 ### In use
 
@@ -27,12 +27,12 @@ A reference <Word><Emphasis />names</Word> a thing and <Word><Bold />never</Word
 
 ## How they are extended
 
-- **A basic of your own** — small caps, strikethrough, a code span — is a Format with its element and its mark, six lines, in the library's own file; the theme comprehends it by its mark.
+- **A basic of your own** — small caps, strikethrough, a code span — is a Format whose `style` is a styled component, its rules in its own template and a class through `attrs` if another sheet is to address it; a few lines, in the library's own file.
 - **A look without an element** is a Format with a styled `style` instead, as [Format and Theme](11-format-and-theme.md) has it; these three chose the element because `em`, `b` and `u` say what they are to a reader that is not a sheet.
 
 ## Promises
 
-Three in [`.tests/emphasis.test.tsx`](../../package/.tests/emphasis.test.tsx): each is a format that draws its element as a layer around the word, which wears its class; two on one word nest, the one written last innermost, and both marks are worn; each is said of any writing, a sentence as well as a word. In [the regression](../../package/.binding/.test/binding.regression.ts): the three in the argument's markup as their elements; in Chrome, the computed font style, weight and decoration on the paper's words.
+Three in [`.tests/emphasis.test.tsx`](../../package/.tests/emphasis.test.tsx): each is a format that draws its element as a layer around the word, the element wearing its class and the word none; two on one word nest, the one written last innermost, each tag wearing its own class; each is said of any writing, a sentence as well as a word. In [the regression](../../package/.binding/.test/binding.regression.ts): the three in the argument's markup as their elements; in Chrome, the computed font style, weight and decoration on the paper's words.
 
 ## Gate
 

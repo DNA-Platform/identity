@@ -110,12 +110,12 @@ export default () => (
 
 ## Any writing reaches its book
 
-***Doug: "just have the book expose its cover, table, synopsis... and other things use it from there."*** **Every writing answers `$book`** (and a paragraph a book draws in its own `write` stands outside the tree and is lent it, `book={this}`, which is how the test library's running head became every book's masthead in Sprint 88) — [the book it stands in](../writing/05-the-writing-class.md) — **and reads what the book exposes.** The test library's running head is the worked case: the library's name as a link, then the book it stands in and a link to that book's table — a resource of the library's first chapter, which the paper's argument wears, [`manual/3-the-masthead-and-the-byline.code.tsx`](../../package/.binding/.test/manual/3-the-masthead-and-the-byline.code.tsx):
+***Doug: "just have the book expose its cover, table, synopsis... and other things use it from there."*** **Every writing answers `book`**, the book of the chapter it stands in (and a paragraph a book draws in its own `write` stands in no chapter and is given the cover as its chapter, `chapter={this.cover}`, which is how the test library's running head is every book's masthead) — [the book it stands in](../writing/05-the-writing-class.md) — **and reads what the book exposes.** The test library's running head is the worked case: the library's name as a link, then the book it stands in and a link to that book's table — a resource of the library's first chapter, which the paper's argument wears, [`manual/3-the-masthead-and-the-byline.code.tsx`](../../package/.binding/.test/manual/3-the-masthead-and-the-byline.code.tsx):
 
 ```tsx
 export class $RunningHead extends $Paragraph {
     override write(): ReactNode {
-        const book = this.$book;
+        const book = this.book;
         if (book === undefined) return null;
         const table = book.table?.canonical;
         const Means = $(means);

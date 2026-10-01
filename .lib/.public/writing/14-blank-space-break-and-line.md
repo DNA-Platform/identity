@@ -12,12 +12,12 @@
 
 | class | what it is | cited |
 |---|---|---|
-| `Blank` | an annotation in Writing's file: marks `pa-blank`, and its note is the global style that keeps the writing's box and hides its ink, `visibility: hidden` — where [Parenthetical](05-the-writing-class.md) is `display: none` and leaves the flow | *"maintain its spatial extent but as a blank element"* |
+| `Blank` | an annotation in Writing's file: marks `pa-blank`, and the Theme's sheet keeps the writing's box and hides its ink, `visibility: hidden`, an invariant since [Sprint 95, U5](../projection/100-sprint-95--pages-formats-and-words.md#u5) — where [Parenthetical](05-the-writing-class.md) is clipped away and leaves the flow | *"maintain its spatial extent but as a blank element"* |
 | `Space` | a Letter standing Blank and its mark `pd-space`, whose count is a `$length` prop, one by default, `<Space length={3} />`, and which draws that many non-breaking spaces | *"Maybe use a $length prop for that one. But yes, do the count"* — a CSS length would need a style attribute on the element, never written, or a class per value, which cannot be named |
 | `Break` | a Letter standing Blank and Block, marking `pd-break`, drawing nothing: an empty div, so what follows starts a new line | *"a Break that can add a linebreak"* |
 | `Line` | a Sentence standing Block, marking `pd-line`: a sentence that stands on a line of its own, so the lines of a poem stack with nothing written between them | *"a Line could be a type of sentence in a div so that lines of a poem, or something like that, might look good"* |
 
-**None of them adds a mechanism.** Blank is one more annotation with a note, as Parenthetical is; Space and Break are Letters whose `$Define` calls the base's and stands one or two annotations more; Line is a Sentence doing the same. The theme comprehends the four marks: `.pd-line` keeps white space, `.pd-space` too, `.pd-break` clears, `.pa-blank` restates the hiding.
+**None of them adds a mechanism.** Blank is one more annotation with a note, as Parenthetical is; Space and Break are Letters whose `$Define` calls the base's and stands one or two annotations more; Line is a Sentence doing the same. The theme comprehends the four marks: `.pd-line` keeps white space and nothing more since [Sprint 95, U7](../projection/100-sprint-95--pages-formats-and-words.md#u7), the code figure's lines wearing `pd-code-line` and the counter with them, `.pd-space` too, `.pd-break` clears, `.pa-blank` keeps the box by the invariant.
 
 ### In use
 
@@ -42,7 +42,7 @@ Set apart by a break,<Space length={3} />and spaced by three.
 
 ## Promises
 
-Four in [`.tests/blank.test.tsx`](../../package/.tests/blank.test.tsx): a blank word wears `pa-blank` and its note hides the ink and keeps the box; a space is a blank inline letter whose length is a count, one by default, drawn as non-breaking spaces; a break is a blank block letter that draws nothing; a line is a block sentence, a part of its paragraph, drawn as a div wearing the sentence's mark and its own. In [the regression](../../package/.binding/.test/binding.regression.ts): the persona's poem as three lines and the argument's space, break and basics in the markup; in Chrome, the lines one under another, the space three wide, the break a block.
+Four in [`.tests/blank.test.tsx`](../../package/.tests/blank.test.tsx): a blank word wears `pa-blank` and the Theme's sheet hides the ink and keeps the box, the annotation carrying no note; a space is a blank inline letter whose length is a count, one by default, drawn as non-breaking spaces; a break is a blank block letter that draws nothing; a line is a block sentence, a part of its paragraph, drawn as a div wearing the sentence's mark and its own. In [the regression](../../package/.binding/.test/binding.regression.ts): the persona's poem as three lines and the argument's space, break and basics in the markup; in Chrome, the lines one under another, the space three wide, the break a block.
 
 ## Gate
 

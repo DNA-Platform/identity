@@ -123,7 +123,7 @@
 
 ## Where things stand
 
-**Next: `/ce-brainstorm` for the next sprint, on Doug's word at the close — *"I think it's time to work on my library again."* The sprint is closed and compounded; its two open rulings below wait on him and do not block the brainstorm.**
+**Next: `/ce-brainstorm` for the next sprint, on Doug's word at the close — *"I think it's time to work on my library again."* Asked whether his library moves onto the redraft, is written in as it stands, or takes the conversation kinds first, he ruled 2026-09-30: *"We are starting from scratch. Just halt if you are done and give me time to think."* So no port of `.me` is proposed; the next sprint begins from his word when he gives it. The sprint is closed and compounded; its two open rulings below wait on him.**
 
 **Compounded 2026-09-30.** Each lesson went to its room, the covers edited with the tool:
 - the fourteenth finding, a defect, to Solutions as [The File a Shared Link Never Opened](../solutions/98-the-file-a-shared-link-never-opened.md);
