@@ -59,7 +59,7 @@ Every mark is on the page at the first paint, served; the one that moves after i
 | class | on | put there | inside it | a theme usually says |
 |---|---|---|---|---|
 | `pd-figure` | `span`, also `pd-letter` | `$Figure.$Define` | the figure's element | `max-width` |
-| `pd-code` | `div`, also `pd-figure`, `pd-letter` | `$Code.$Define`, Block | `pre > code.language-x`, the highlighter's `span.hljs-*`; numbered, a `span.pd-code-line` per line carrying `data-line` under the policy | the block's ground and rule, `font-family`, `font-size`, `overflow-x`; the line's number by `::before { content: attr(data-line) }`; the highlighter's colours by its classes |
+| `pd-code` | `pre`, also `pd-figure`, `pd-letter` — its own element, replacing its span at the bond as a Date's `time` does | `$Code.$Define` | `code.language-x`, the highlighter's `span.hljs-*`; numbered, a `span.pd-code-line` per line carrying `data-line` | the block's ground and rule, `font-family`, `font-size`, `overflow-x`; the line's number by `::before { content: attr(data-line) }`; the highlighter's colours by its classes |
 | `pd-image` | `span`, also `pd-figure` | `$Image.$Define` | `img[src][alt]` | `img { max-width: 100%; height: auto; display: block }` — by element type, since the base marks no `img` |
 | `pd-svg` | `span`, also `pd-figure` | `$Svg.$Define` | the file's own `svg` | the same, `svg { max-width: 100% }` |
 

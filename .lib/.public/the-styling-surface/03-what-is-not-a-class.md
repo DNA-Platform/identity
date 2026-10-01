@@ -17,11 +17,9 @@
 | `data-line` | a numbered line's `span.pd-code-line` | Code, under the policy | **yes, as content**: `.pd-code-line::before { content: attr(data-line) }` — the one attribute a rule reads, because the number is data and the look is the library's |
 | `src`, `alt` | an `img` | Image, from the appended picture | no |
 | `class="language-x"` | a `code` element | Code, from the file's type | yes, if a highlighter theme is keyed by language; ours are not |
-| `style="--pd-…"` | the theme's own element | the provider, from the library's `values` | **it is what every rule reads**, through `var()`; a rule never sets one |
+## The theme's properties — in the sheet, not on the page
 
-## The custom properties
-
-A library's theme names its values — fields on the class, listed in `values` — and the provider declares each on the theme's element as `--pd-<name>`, once, inline. Every rule beneath reads them as `${({ theme }) => theme.name}`, which styled-components' `createTheme` has made `var(--pd-name, <the class's value>)`; so a class is generated once per component and a value written on the held theme moves one declaration. *A rule never writes a custom property and never reads one by hand*; the provider's form is the one form.
+A library's theme declares its properties as reactive fields and nothing else; the provider layer answers chemistry's `theme` with it, and chemistry's own provision hands every styled component beneath a live face over the theme, so `${({ theme }) => theme.ink}` is the field itself, templated into the generated rule: the sheet carries `color:#23262a`, and the page carries no declaration. A field written on the held theme remakes the face and regenerates the rules that read it. *A rule never carries the value as a literal*; it reads the field through the provider's props, which is the one form.
 
 ## The foreign markup, and its stylesheet
 
@@ -29,7 +27,7 @@ A library's theme names its values — fields on the class, listed in `values` �
 |---|---|---|---|
 | `.pd-math` | `span.katex` and KaTeX's tree | `katex.renderToString` | KaTeX's own stylesheet, which the binder links on every page since the [binder utility](../utilities/.cover.md) names it; a library's rule on `.pd-math` for its place in the line |
 | `.pd-equation` | `span > .katex-display` | the same, display mode | the same; a library's rule for the number |
-| `.pd-code` | `pre > code` with `span.hljs-keyword`, `.hljs-string`, `.hljs-comment`, … | highlight.js | a library's rules by the highlighter's classes, or a highlight.js theme stylesheet it links; the base colours nothing |
+| `.pd-code`, which is the `pre` itself | `code` with `span.hljs-keyword`, `.hljs-string`, `.hljs-comment`, … | highlight.js | a library's rules by the highlighter's classes, or a highlight.js theme stylesheet it links; the base colours nothing |
 | `.pd-image` | `img` | the appended picture | `.pd-image img { … }` |
 | `.pd-svg` | the file's own `svg` and its children | the appended file | `.pd-svg svg { … }` |
 

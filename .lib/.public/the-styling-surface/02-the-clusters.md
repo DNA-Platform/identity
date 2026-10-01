@@ -102,9 +102,9 @@ export class $LibraryCover extends $Cover {
 
 | class | on | put there | the base's template says |
 |---|---|---|---|
-| `pd-container`, and `style="--pd-…"` | the theme's own element, a `div`, around the book | the provider, at every draw | nothing — the base theme has no style; the library's component is this element |
+| `pd-container` | the theme's own element, a `div`, around the book | the provider, at every draw, which answers chemistry's `theme` with the Theme so its fields reach every template beneath | nothing — the base theme has no style; the library's component is this element |
 
-*What a library writes:* its whole base sheet — the font, size, leading, ink and paper read from its own values; every rule of [the first chapter](01-the-base-themes-classes.md); the marks of any cluster above it chose not to replace.
+*What a library writes:* its whole base sheet — the font, size, leading, ink and paper read from its own fields; every rule of [the first chapter](01-the-base-themes-classes.md); the marks of any cluster above it chose not to replace.
 
 ## The clusters at a glance
 
@@ -118,4 +118,4 @@ export class $LibraryCover extends $Cover {
 | Synopsis | a chapter | none | `pa-synopsis` | the theme by mark, or a subclass with a `style` |
 | Biography, Autobiography | a chapter | none | `pa-biography`, `pa-autobiography` | the theme by mark |
 | Bold, Emphasis, Underline | any writing | `b`, `em`, `u` | the class on the element | a subclass, rarely |
-| Theme | a book | `div`, outermost | the custom properties | **always** — the library's theme is this |
+| Theme | a book | `div`, outermost | none; its fields reach every template beneath | **always** — the library's theme is this |

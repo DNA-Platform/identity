@@ -37,7 +37,7 @@
 | `$Equation` | `pd-equation` | Paragraph's | `div`, KaTeX display inside | numbered by a library's counter, not the base |
 | `$Date` | `pd-date` | — | `time`, replacing its span at the bond | |
 | `$Figure` | `pd-figure` | Letter's | `span` | |
-| `$Code` | `pd-code` | Block | `div` holding `pre > code` | `numbered` wraps each line in `pd-code-line` and, under the policy, carries the number as `data-line`; a library's `::before { content: attr(data-line) }` shows it |
+| `$Code` | `pd-code` | — | `pre`, its own element, replacing its span at the bond as a Date's `time` does, holding `code` | `numbered` wraps each line in `pd-code-line` carrying the number as `data-line`; a library's `::before { content: attr(data-line) }` shows it |
 | `$Image` · `$Svg` | `pd-image`, `pd-svg` | — | `span` holding `img` / inline `svg` | |
 
 *What a library writes for these:* rules by mark in its theme's component — `.pd-paragraph { margin-block: … }`, `.pd-title { font-size: … }`, `.pd-code { … }` — and nothing else. A kind is never subclassed for its look.
@@ -61,7 +61,7 @@
 | `$Append` | a chapter | `pa-append` on its own element — moot once an annotation's writing is not drawn | holds a file's contents or a picture's address beside a chapter, read by a Figure by identifier and type | nothing |
 | `$Author` · `$Subject` · `$About` | a cover | — | each stands a Reference to what it names, from the written form; the book exposes them | the byline a library draws is the library's own kind, with its own mark |
 | `$Content` | an entry of a table of contents | `pa-reference` and, on its note, `pa-content` through `attrs` | a Reference whose note draws the entry's name in its **span**, a styled field | `.pa-content` by mark; the span replaced only with the table of contents it belongs to |
-| `$Theme` | a book | — | the provider: hands its `values` down as custom properties and draws its `style` as the book's layer; singular, every theme behind it out of expression; under the policy no values and no style of its own, one hook, `values` | **it is the base sheet** — a library's theme is a subclass with fields, `values`, and the one styled component that dresses every mark above, registered on the library's book class, `$(TheLibrary, Theme)(LibraryTheme)` |
+| `$Theme` | a book | — | a Format that provides: its layer answers chemistry's `theme` with it, and chemistry hands its fields live to every template beneath, drawing its `style` as the book's layer; singular, every theme behind it out of expression; no field and no style of its own | **it is the base sheet** — a library's theme is a subclass with fields and the one styled component that dresses every mark above, registered on the library's book class, `$(TheLibrary, Theme)(LibraryTheme)` |
 
 ## The replaceable Formats — a box said of a writing, subclassed and replaced
 
@@ -87,9 +87,9 @@
 import { $, selection, css } from '@dna-platform/chemistry';
 import { $Book, $Theme, $Table, $Cover, Theme, Table, Cover, Self } from '@dna-platform/public';
 
+declare module 'styled-components' { interface DefaultTheme extends $LibraryTheme {} }
 export class $LibraryTheme extends $Theme {
     font = "Georgia, serif"; ink = '#23262a'; paper = '#faf8f4'; link = '#5b2f2a'; space = '1.25rem';
-    override get values() { return { font: this.font, ink: this.ink, paper: this.paper, link: this.link, space: this.space }; }
     protected typography() { return css`.pd-paragraph { margin-block: ${({ theme }) => theme.space}; } .pd-title { font-size: 2em; }`; }
     protected links() { return css`.pa-reference { color: ${({ theme }) => theme.link}; } .pa-self-reference { color: inherit; text-decoration: none; }`; }
     style = selection.div`font-family: ${({ theme }) => theme.font}; color: ${({ theme }) => theme.ink}; ${this.typography()} ${this.links()}`;
@@ -106,4 +106,4 @@ $(TheLibrary, Cover)($($LibraryCover));
 
 *A chapter then writes `<Table />` and `<Cover />` from `@dna-platform/public` and gets the library's; the manual's theme, extending the library's, overrides `links()` alone; a dark book sets three fields.*
 
-**Names.** Doug's: *fundamental*, *replace*, *export your own*, *register*, *the base sheet*. Ours, flagged: the chapter's title; `values` as the hook's name; `typography` and `links` as the parts in the worked door.
+**Names.** Doug's: *fundamental*, *replace*, *export your own*, *register*, *the base sheet*. Ours, flagged: the chapter's title; `typography` and `links` as the parts in the worked door.

@@ -1,121 +1,158 @@
 # Dressing a Library
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
-- **coauthor:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md)
-- ***Written 2026-09-27 with U9 of [Sprint 88](../projection/93-sprint-88--the-theme-the-element-and-the-blank.md#u9), on Doug's asking for a visual language in the test library and a report on how easy it is to make one. The code is the test library's own: [`the-library/.book.tsx`](../../package/.binding/.test/library/.book.tsx) and [`3-the-masthead-and-the-byline.code.tsx`](../../package/.binding/.test/manual/3-the-masthead-and-the-byline.code.tsx). The chapter's name is a PROXY.***
+- **coauthor:** [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- ***First written 2026-09-27 with Sprint 88, on Doug's asking for a visual language in the test library; rewritten whole 2026-10-02 with [Sprint 97](../projection/102-sprint-97--formats-are-the-unit-of-styled-components.md), U20, to the policy he ruled — "I expect to see a CLEAN .public, with a clean $Theme, and great documentation on how to build a library from a style perspective." The code is the test library's own: [`manual/1-the-book.code.tsx`](../../package/.binding/.test/manual/1-the-book.code.tsx), [`2-the-theme.code.tsx`](../../package/.binding/.test/manual/2-the-theme.code.tsx), [`5-the-faces.code.tsx`](../../package/.binding/.test/manual/5-the-faces.code.tsx), [`7-the-explorer.theme.tsx`](../../package/.binding/.test/manual/7-the-explorer.theme.tsx), and the doors of [Libby](../../package/.binding/.test/libby/.book.tsx) and [Some Projects](../../package/.binding/.test/projects/.book.tsx); the manual prints each beside the chapter that explains it. The chapter's name is a PROXY.***
 
 ---
 
-**Doug, 2026-09-27:** *"Tighten up the formatting through the theme… imagine having things in well defined bounding boxes with well defined spacing… really use the theme and maybe visual cues to make things look distinct and natural to give me a visual language that will help me navigate your library. I am not sure what a cover is, or a table of contents, or a regular chapter, and it's not clear what will take me to the subject, or who is the author. Help me know where I am."* And: *"report if its relatively easy to use styled components on the test library. I would think it would be relatively easy to make formats with styles and apply them, and relatively easy to make components that have annotations as defaults, and you can do both of those without sacrificing customizability, so you can build in units of meaning that are sensible for UI."*
+## The three sentences
 
-**The short report: yes to both, and the whole dress is two files of the library's own.** None of it touches `.public`. What it took to learn is below, so the next library pays minutes for it.
+**`.public` ships no style.** What it ships is *marks* — a class on every element saying what the writing is, `pd-paragraph`, or what was said of it, `pa-cover` — and the elements beneath them, with the meaning of a mark where meaning is structure: a Table's grid, a List's marker, a closed page hidden. The whole roster is [The Styling Surface](../the-styling-surface/.cover.md). A bare book is the browser's defaults, and nothing is designed against it; a library always dresses itself.
 
-## Where a library's look lives — three places, each with its own job
+**And it is dressed as every OO component framework with pluggable appearance is dressed.** Three sentences, which are the whole of the policy and the shape of everything below:
 
-| place | what it dresses | how | in the test library |
-|---|---|---|---|
-| **the theme's values** | everything, by inheritance | a class under `$Theme` sets any of the eight | `$LibraryTheme`: Georgia, a wider measure, a longer leading, an oxblood link, a warm paper |
-| **the theme's sheet, extended** | *the framework's marks* — `pd-chapter`, `pd-canonical`, `pa-cover`, `pa-synopsis`, `pa-table-of-contents`, `pa-col`, `pa-page` | the theme's `$Define` reassigns `style` to a styled component that **extends** the default sheet | the cover card, the kind labels, the counted chapters, the synopsis rule, the boxed table |
-| **a format in front of the theme** | *the library's own marks* — `pd-running-head`, `pd-byline`, `pd-label`, `pd-catchword` — and any place a book or chapter chooses | a class under `$Format` with a `style`, stood on a book in `$Define` or on chapters at `$Bound` | `Navigable` on every book; `Framed` on Some Projects and on each of the persona's chapters; `Typewritten` on the paper |
+1. **A component owns its structure and reads its appearance from a theme.** Every box with a look is a class with a styled component in a field; it reads the theme's values through the provider and never carries a literal a theme would want to change.
+2. **A theme is a typed value object with a slot per component.** It is a place for the library's properties, grabbed by any component in code or in a template, and one styled component made from them, composed of parts a subclass overrides one at a time. It has only-one semantics: a book has one, and a new one stood in front replaces it.
+3. **A component is replaced by subclass.** What the framework stands for itself — the Theme on every book, the Self on every title — a library replaces by *registering* a subclass on its book class. What a chapter *writes* — a Cover, a Table — a library replaces by subclassing and exporting under the framework's name from its door, so a chapter writes the word it always wrote; Doug: *"subclass of Table exported as Table is the right answer. Preserves the semantics."*
 
-**The division is the lesson.** The default sheet already comprehends every class the framework puts on an element, and a promise holds it to that — so a library's theme does not restate it; it extends it, and its extension speaks only of the same marks. What the library *adds* to a page — a masthead, a byline, a catchword — is the library's kind, wears the library's mark, and is dressed by the library's format. One never reaches into the other.
+The rest of this chapter is those sentences as the test library writes them, in the order a librarian writes a door.
 
-## Extending the default sheet is one field
+## 1 · Your values — the theme's properties
 
-`$Theme` holds its sheet in a field, `style`, and the theme's provider reads that field **when it draws** — [`Theme.tsx`](../../package/src/writing/Theme.tsx), `const Style = this.$theme.style`. A subclass extends it in a field of its own: its initialiser runs after the base's, so `this.style` there is the default, and a field is made once for the class, where a `$Define` would make a styled component per instance and no two pages of a book would share a sheet — the first draft of this library did, and [Sprint 95, U8](../projection/100-sprint-95--pages-formats-and-words.md#u8) found thirty-three sheets for thirty-four pages:
+Declare the properties of your library as reactive fields on a class under `$Theme`, and type your class once as the theme styled-components hands down, so every template in your library reads `theme.space` as a string and not as a guess — [`2-the-theme.code.tsx`](../../package/.binding/.test/manual/2-the-theme.code.tsx):
 
 ```tsx
+declare module 'styled-components' { export interface DefaultTheme extends $LibraryTheme {} }
+
 export class $LibraryTheme extends $Theme {
     font = "Georgia, 'Times New Roman', serif";
-    space = '1.25rem';
-    link = '#5b2f2a';
-    // …the eight, as many as the library changes
+    size = '1rem';
+    // … the eight, as many as your library has — fields, and nothing else
+```
 
-    override style = selection(this.style as ComponentType<{ className?: string }>)`
-        .pd-book { counter-reset: chapter; }
-        .pd-chapter .pd-title::before { content: 'Chapter ' counter(chapter); /* … */ }
+**How they reach a template — chemistry's own provision, and nothing of `.public`'s.** Every Format that provides — a Theme is one — stands a provider as its layer, and the provider answers chemistry's `theme` with the book's Theme; chemistry then wraps the layer in styled-components' `ThemeProvider` with a live face over the Theme — *"a theme is a chemical that provides itself: its fields are the values; write a field and the styled beneath follow"* — so `${({ theme }) => theme.ink}` reads the field itself, templated into the string. A value written on the held theme after mount, `book.theme.ink = 'red'`, remakes the face and regenerates the classes that read it, which is styled-components' own way with a theme. Doug, 2026-10-02: *"Why can't you just have reactive properties and they are templated into the string?… Everywhere in a book has access to it."* The eight here are the test library's choice, not the framework's; a library with three properties declares three.
+
+**Code reads them too.** A Format reads `this.theme.ink`, typed as its book's theme; a book class types `theme` as its own theme's class, as [Book](../library/05-book.md) shows, so a control writes `book.theme.ink = …` and the write is reactive.
+
+## 2 · Your theme's component — one styled component, of parts
+
+The theme's `style` is the one styled component that dresses the kinds, `pd-`, and every mark whose Format you did not replace. Write it as **parts** — methods returning `css` fragments, composed once in the field — so that a subclass changes one part and keeps the rest:
+
+```tsx
+    style: ElementType = selection.div`${this.parts()}`;
+
+    protected parts(): RuleSet[] {
+        return [this.page(), this.levels(), this.labels(), this.links(), this.apparatus(), this.figures()];
+    }
+
+    protected page(): RuleSet {
+        return css`
+            font-family: ${({ theme }) => theme.font};
+            color: ${({ theme }) => theme.ink};
+            background: ${({ theme }) => theme.paper};
+            max-width: ${({ theme }) => theme.measure};
+            margin-inline: auto;
+            padding: ${({ theme }) => theme.space};
+        `;
+    }
+```
+
+A method stands on the prototype before any field runs, so `this.parts()` in the field initializer dispatches to the subclass's override, and the composition is made once per class. **This is the template method pattern in styled-components' own `css`**, and it is what MUI's `styleOverrides` slots and Chakra's recipes are: a skeleton with named pieces.
+
+**What each part says, in the test library:**
+
+| part | dresses | by |
+|---|---|---|
+| `page` | the theme's own element — the page | the font, the ink, the paper, the measure, the margins |
+| `levels` | the seven levels and the kinds of sentence | `.pd-paragraph { margin-block }`, `.pd-title { font-size }`, `.pd-canonical.pd-chapter { counter-increment }` and the label it draws by `::before` |
+| `labels` | the one voice every label speaks in | `.pd-label, .pd-chapter .pd-title::before { small, uppercase, letter-spaced, faded }` |
+| `links` | the anchors the framework draws bare | `.pa-reference { color }`, `.pa-self-reference { color: inherit; text-decoration: none }`, `.pa-referent { scroll-margin }` |
+| `apparatus` | the library's own kinds | `.pd-running-head`, `.pd-byline`, `.pd-catchword`, the catchword's glyphs |
+| `figures` | the figures and the typeset | the code block and its line numbers from `data-line`, the highlighter's classes, the pictures, an equation's number |
+
+**Three rules for every line of it,** which [The Styling Surface](../the-styling-surface/01-the-base-themes-classes.md#writing-against-them--the-rules-of-the-surface) states whole: a rule names a *mark*, never an element type except the foreign elements the framework does not mark, `img`, `svg`, `pre`; it reaches by *descendant*, never by child or sibling, since a Format in front stands a layer between any two marks; and every quantity is a *value*, never a literal.
+
+## 3 · A face — a Format subclassed and exported under its name
+
+A face is what a cover, a synopsis, a table of contents or a table looks like in your library. The framework gives each its element and the meaning of its marks — a `header`, a `nav`, a grid — and nothing of how it looks. You write the look as a subclass with one `style`, and export it under the framework's name — [`5-the-faces.code.tsx`](../../package/.binding/.test/manual/5-the-faces.code.tsx):
+
+```tsx
+export class $LibraryCover extends $Cover {
+    override style = selection.header`
+        .pa-cover { margin-block: 0; }
+        .pa-cover:not(.pa-framed) { padding: …; background: …; border: …; }
+        .pa-cover .pd-title { font-size: calc(2 * ${({ theme }) => theme.size}); }
         .pa-cover .pd-title::before { content: 'Cover'; }
-        .pa-autobiography .pd-title::before { content: 'Autobiography'; }
-        .pd-title.pa-parenthetical::before { content: none; }
-        /* … */
     `;
+}
+export class $LibraryTable extends $Table {
+    override style = selection(this.style)`
+        .pa-table { column-gap: ${({ theme }) => theme.space}; }
+        .pa-col { padding-block: calc(${({ theme }) => theme.space} / 3); }
+    `;
+}
+export const Cover = $($LibraryCover);
+export const Table = $($LibraryTable);
+```
+
+**Two ways to write the template.** `selection.header\`…\`` *rewrites* it — the element kept, the rules yours. `selection(this.style)\`…\`` *extends* it — the base's rules kept, yours after — which is right where the base's template is a mechanism you want, the Table's grid. A chapter then imports `Cover` and `Table` from the library's door, on the line it imports `Catchword`, and writes the words it always wrote; the subclass is still a Cover to the specification and to every `is`.
+
+**A face in a Format's context may dress the kinds beneath it** — `.pa-cover .pd-title` — because the marks stay on every element for exactly that; it may not dress anything outside its own writing.
+
+## 4 · A look of your own — a Format from scratch
+
+What the framework has no word for is a Format of the library's own, imported from the door and written where it is wanted: `Framed`, a frame from the theme's values, stood on each of the persona's chapters at its bind; `Literary`, the persona's face, Palatino and indented paragraphs; `Typewritten`, the paper's. Each is a class with one `style`, and each *marks what it does* — `pa-framed` — so a face can stand down where a frame already stands: `.pa-cover:not(.pa-framed)`.
+
+## 5 · The door — registration for what the framework stands
+
+The framework stands a Theme on every book in `Book.$Define`, and it *asks* for it — `$(theme)` — so a registration on your book class answers, and every book of your library, a subclass the compiler builds as `$($SomeProjects)`, inherits it — [`1-the-book.code.tsx`](../../package/.binding/.test/manual/1-the-book.code.tsx):
+
+```tsx
+export const TheLibrary = $($TheLibrary);
+$(TheLibrary, Theme)(LibraryTheme);
+```
+
+No `$Define` stands the theme; the registration is the one line. **A book that wants another theme registers it on its own class** — Libby's, a dark book in three fields, printed and explained in her own chapter [Writing a Theme](../../package/.binding/.test/libby/3-writing-a-theme.tsx), the one page in the library that shows a theme being written:
+
+```tsx
+export class $DarkTheme extends $LibraryTheme { ink = 'ivory'; paper = '#1f1f24'; link = 'lightsteelblue'; }
+const Libby = $($Libby);
+$(Libby, Theme)(DarkTheme);
+```
+
+**And a book that wants to show the base** registers the framework's own on its class, the nearest scope winning — [Some Projects' door](../../package/.binding/.test/projects/.book.tsx): `$(SomeProjects, Theme)(Theme)`. Its chapters write the framework's own `Cover`, `Synopsis` and `TableOfContents`, and the page is a browser-default book whose grid is a grid and whose pages turn: the base, seen. **Registration reaches what the framework stands and asks for — Theme, a title's Self — and nothing a chapter writes;** a written word is replaced by import, section 3.
+
+**A theme is switched at one paint** the same way a reader switches anything: `book.$is = Dark` stands a new theme in front, and the one behind it leaves expression. Nothing is merged.
+
+## 6 · A subclass theme — change one part
+
+The manual takes the whole page and shows its code in a tree, and its theme is the library's with one part overridden and one added — [`7-the-explorer.theme.tsx`](../../package/.binding/.test/manual/7-the-explorer.theme.tsx):
+
+```tsx
+export class $ManualTheme extends $LibraryTheme {
+    protected override parts(): RuleSet[] { return [...super.parts(), this.explorer()]; }
+    protected override page(): RuleSet { return css`${super.page()} max-width: none; …`; }
+    protected explorer(): RuleSet { return css`.pd-tabs { … } .pd-leaf { … }`; }
 }
 ```
 
-`selection(component)` is styled-components' own extension: the new sheet carries every rule of the old and adds its own after, so the library's rules win where they meet. **Every added rule reads the theme's values** — `${at('space')}`, `${at('ink')}`, `color-mix(in srgb, ${at('ink')} 18%, ${at('paper')})` — never a literal, so a book that overrides the values keeps the look: Libby's dark book, which sets three, is the same card, labels and rules in ivory on charcoal, with no rule of its own. *Seen in the photographs.*
+Before the policy it rewrote fifteen of the library's rules inside a layer; now it says what differs.
 
-**A subclass of the extending theme inherits the extension**, as it inherits `$Define` — `$DarkTheme extends $LibraryTheme` sets three values and nothing else.
+## 7 · A face names the kind with its mark — one author per property, in every order
 
-**Not in a bond of its own, and a defect found on the way.** The first draft extended the sheet in a bond, `$LibraryTheme(...chemicals) { this.$Theme(...chemicals); this.style = … }`, and every page carried a console error from chemistry's chain rule: *"$LibraryTheme did not call $Format — every declared bond constructor on the chain must be called."* With the bond gone the error stayed and named `$Theme` instead: **Theme's own bond passes over Format's on purpose**, since Format's bond would wrap the theme in a second provider, and chemistry has been reporting that on every page of every themed book since Theme was built, logging and carrying on, so nothing looked wrong. That is `.public`'s to settle — a template method on Format that Theme overrides, so Theme may call Format's bond — and is pitched with an expected-failure promise in [the regression](../../package/.binding/.test/binding.regression.ts), reading Chrome's console — the check does not fire in the package's own build, which is a question for chemistry — not fixed here. `$Define` needs no bond and is where a kind's defaults belong.
+A theme's rule for a kind and a face's rule for its own element can land on one element: the cover is a chapter, so `.pd-chapter { margin }` and `.pa-cover { margin: 0 }` both apply to it, at equal specificity, and the tie breaks by the order the components were created — which a theme subclass in another book's door changes, so a page may win where another loses. **So a face's rule for its own element names the kind and its mark together — `.pd-chapter.pa-cover { margin-block: 0 }`, *the chapter that is a cover* — and wins by specificity on every page, in every order;** the theme's rule names the kind alone, `.pd-chapter { margin-block }`, for every chapter; and a face dressing the kinds beneath it, `.pa-table .pd-paragraph`, already has two marks and wins the same way. The marks an annotation takes off or puts on — `pd-canonical`, which Cover, Synopsis and TableOfContents take off their chapter; `pa-framed`, which Framed puts on — are read for what they *mean*, the chapters that are counted and labelled, the chapters that stand down, and never taken off to win. Doug, 2026-10-02: *"Why can't the implementer accommodate this? Can one suppress the other? Annotations can control expression for this reason."* The test library met this twice on the night it was dressed; the policy, applied to every face, left seven pages at 0 pixels — [The Development Policies](07-the-development-policies.md#1--a-face-names-the-kind-with-its-mark-a-theme-names-the-kind-alone) is the rule with its check.
 
-## Each book its own feel, and where a feel lives
+## What you rely on, and what to know before it bites
 
-Doug: *"I like each book having slightly different feels. A more monospace programmery look somewhere, a more literary look somewhere else… You want to keep the complexity in the theme and formats and annotations, while preserving the semantic structure mostly, though to achieve interesting layouts or effects, book and chapter type can be used to organize their children by type or annotation into more legible arrangements for the purpose."*
+- **The marks stay on every element,** whatever Format stands in front — so a rule from above always has something to reach, and reaches it by descendant through the layers, `pd-container`, never counting them.
+- **A style is compiled once per class.** Read the theme through the provider's props, `${({ theme }) => theme.ink}`, never through a closure over `this` — the closure reads the template specimen, not the drawn instance.
+- **A styled component is a field, once per class, never made in a bond or a define** — [Solutions 99](../solutions/99-the-sheet-that-was-one-file-per-page.md).
+- **A Format standing in front draws innermost.** A frame on a chapter sits between the cover's `header` and the chapter's element; a rule on the chapter's own mark is untouched by it, a rule on the wrapper reached through what it holds breaks.
+- **A closed page hides its own element,** so a card drawn on a chapter's own element goes with it; a byline the book draws stands outside every chapter and must be whole on its own.
 
-| book | its feel | how, and nothing else changed |
-|---|---|---|
-| **The Library** | the card catalogue: Georgia, the labelled card, the boxed table | the library's theme, which every book inherits |
-| **Libby** | the same language on charcoal | `$DarkTheme`, three values |
-| **A Paper** | typewritten, a manuscript | `$Typewritten`, a Format on the book, one rule |
-| **A Persona** | literary: Palatino, centred small-capped titles, paragraphs indented and set close, the poem breathing, every chapter framed | `$Literary`, a Format on the book; `<Framed />` on each chapter at the bind |
-| **Some Projects** | pages, one at a time, framed | `<Paginated />` and `<Framed />` in `$Define` |
+## The honest report
 
-**The semantic structure is untouched in every one:** the same chapters, sections, paragraphs and marks, so a mention from another book lands the same way in each. A feel is a theme's values, or a format in front, and that is all a feel is allowed to be until a layout needs a book or chapter class to arrange its children, which none of these has needed.
+**Is it easy?** A theme is a class of values and a component of parts, about a hundred and fifty lines for the test library's whole look. A face is four lines and a template. A door is one registration. The manual's theme is one overridden part and one added. What was hard before and is gone: extending a base sheet that said everything, through a cast, with a helper reading values through fallbacks, inside a layer so your rules would tie with your own faces. What was still a fight at the sprint's grade, and what became of each, is in [the sprint's grade](../projection/102-sprint-97--formats-are-the-unit-of-styled-components.md#the-grade-of-97).
 
-## Driving the links, and what the compiler refused
-
-**Every visible anchor of a page, clicked in Chrome, with the landing recorded** — the address, and the first identified element whose box reaches the viewport's top band — is how the two turns that Doug clicked were found to fail, and how Libby's hops were proven: [Sprint 88, U10](../projection/93-sprint-88--the-theme-the-element-and-the-blank.md#u10) has the findings. Three things a library writer meets on that road:
-
-- **A mention nobody refers to is refused at the bind** — *UNREFERENCED-MENTION: "a name nobody spends is unnecessary, and a library is compact."* Make a heading a mention, `[[[ Delegation ]]]`, only where another chapter will hop to it.
-- **A hop across books lands on its heading through the page's own router**, `#delegation`, `#what-was-found`; a chapter's route within a longform book turns by the Book's own scroll, which is the Book's to get right and a book's to override — the test library's book opens the cover's route at the top of the page, masthead in view.
-- **A line break before a reference swallows the space before it.** Keep the word and its `<Means>` on one line.
-
-## The visual language, and where each cue comes from
-
-| the reader asks | the cue | the mark it is drawn from |
-|---|---|---|
-| who wrote this, and where does it stand? | the **byline**: two labelled rows, *Author* and *Filed under*, each a link, at the head of the cover's card | `pd-byline`, `pd-label` — the library's, drawn by its book from `book.author` and `book.subject` |
-| what is this page? | a **kind label** above the title: *Cover*, *Autobiography*, *Biography*, *Synopsis*, *Table of Contents*, *Chapter 1* | `pa-cover`, `pa-autobiography`, `pa-biography`, `pa-synopsis`, `pa-table-of-contents`; chapters of the canonical type counted by a CSS counter on `pd-canonical.pd-chapter` |
-| is this the cover? | a **card**: a top rule in the link's colour, a tinted ground, the byline its head | `pa-cover`, on the chapter's own element, and `pd-byline` |
-| is this the synopsis? | a **ruled block**, italic, the rule in the link's colour | `pa-synopsis` |
-| is this the table? | a **box**; its catalogue's rows ruled, its headings in the label's voice | `pa-table-of-contents`, `pa-col`, `pa-row:first-child` |
-| where am I in the library? | the **masthead**: *The Library / Libby: Table of Contents* — and on the library's own page, the library alone | `pd-running-head`; the top is known by its subject's identifier equalling its title's |
-| where next? | the **catchword**: ‹ previous · next › at every chapter's foot, the ends self-references in ink | `pd-catchword`, `pd-previous`, `pd-next`, `pa-self-reference` |
-
-**One voice for every label.** The kind labels, the parenthetical titles, the table's headings and its header row share one rule — small, uppercase, letter-spaced, faded — so a reader learns once what a label looks like. A parenthetical title *is* already the label, so the kind label is suppressed there: `.pd-title.pa-parenthetical::before { content: none; }`, last, at equal specificity.
-
-## The standard tricks, and the two facts that bit
-
-- **CSS counters** count the chapters of the canonical type: reset on `pd-book`, incremented on `.pd-canonical.pd-chapter`, the class Chapter adds and a Cover, a Synopsis or a TableOfContents takes off, so no roster of kinds is written — the roster the first draft wrote, `:not(.pa-cover):not(.pa-synopsis):not(.pa-table-of-contents)`, was a concept without a word until Doug gave it one.
-- **`::before` from a mark** says what a thing is without a component: the mark is the framework's, the words are the theme's.
-- **The mark on the chapter's own element** boxes the cover and the table: `.pa-cover` is the card and `.pa-table-of-contents` the box. The framework wraps a cover chapter in a `header` and a table in a `nav`, each a `pd-container`, and the sheet never reaches either through what it holds, since a format in front stands its own layer between them and the wrapper is then not adjacent; the first draft did, `header.pd-container:has(> .pa-cover)`, and paid for it in the two facts below — [the trials of Sprint 95](../projection/100-sprint-95--pages-formats-and-words.md#trials).
-- **`color-mix()`** makes every rule and ground from the theme's ink and paper, so a dark theme's borders are light without a second rule.
-- **A closed page hides its own card.** The paginated book hides *pages*, the chapter's own element, so a card drawn on that element goes with it; the first draft drew the card on the wrapper and then had to hide a wrapper whose page was closed, an empty box with a border. *That was the first fault seen.*
-
-**The two facts:**
-
-1. **The front-most annotation draws innermost**, [Theme](../writing/13-theme.md#how-it-is-extended) — so a format stood on a chapter *in front* sits between the semantic wrapper and the chapter's element. A rule on the chapter's own mark is untouched by that; a rule on the wrapper reached through what it contained stopped matching, which is why the sheet writes none now. The persona's book frames every chapter, and its cover is a frame, not a card. **That is correct, not a fault:** the book chose the frame, and the choice is said as one — `Framed` marks what it frames, `pa-framed`, and the card and the rule stand down where a frame already stands, `.pa-cover:not(.pa-framed)`.
-2. **A byline drawn by the book is not inside the cover.** The book draws it before its chapters, so the card is two boxes made one: the byline's full border and the cover's, top removed. When the cover is closed or framed, the byline still stands complete. *The first draft gave the byline no bottom and it lost its box the moment the cover page was closed.*
-
-## Components with annotations as defaults — the four shapes in use
-
-| shape | where | what it gives |
-|---|---|---|
-| **a kind with a mark** | `$Byline`, `$Label`, `$RunningHead`, `$Catchword` — `this.classes.add(this, 'pd-…')` in `$Define` | a thing the theme and the formats can name |
-| **a book with annotation defaults** | `$TheLibrary.$Define` adds `<Navigable />` and `<LibraryTheme />`; `$SomeProjects.$Define` adds `<Paginated />` and `<Framed />`; `$APaper.$Define` adds `<Typewritten />` | every book of the library is dressed by extending one class; a book adds its own on top |
-| **a book dressing its chapters** | `$APersona.$Bound` adds `<Framed />` to each chapter once the book is whole | a per-chapter default set by the book, since the chapters are written as `<Chapter>` and not as a class |
-| **a component with text defaults** | `$Catchword`'s bond adds `<PreviousTitle />` and `<NextTitle />` to its text | a unit of meaning — *the catchword* — written once, wearing its own mark |
-
-**Customisability is kept at every level**, and the library shows it: the same theme is overridden by values (Dark), added to by a format on the book (Typewritten, Paginated), added to by a format on the chapters (Framed), and every rule of the dress still reads the values. Nothing in the base has to be edited to make a book look different.
-
-## Is it easy? The honest report
-
-**Yes.** A format with a style is a class with one field, five lines; applying it is one JSX element in `$Define` or `$Bound`. A component with annotations as defaults is the same `$Define` with `this.annotations.add`. Extending the theme's sheet is one field. The whole dress, both files, is under three hundred lines, half of them CSS.
-
-**How a format reaches the theme — two ways, and both are simple.** Asked whether `.public` should export its sheet's value-reading helper, Doug, 2026-09-27: *"I am worried that this is hard. The idiom is that the theme is on the book's annotations right? We have the book then the annotations and we can access the theme by type. That should be simple. If it's not, we have to ask why it's hard to get an annotation from the book, because I thought everything would be in reach and it should be."* It is in reach: a format is a writing, its `book` is its parent's, and `this.book?.annotations.expressed($Theme)` is the theme, the front-most where two stand — promised in [`theme.test.tsx`](../../package/.tests/theme.test.tsx) for a format on a book and one on a chapter. **What is not in reach is the inside of a style.** A style is compiled once per class and read from any instance of it — chemistry's [`styled.ts`](../../../chemistry/package/src/abstraction/styled.ts), *"the seat — compiled once per class"* — its interpolations fed the drawn instance's values as props; so a closure over `this` in a style reads the standing instance the class was compiled from and never the drawn one: the same promise draws `outline-color:unreached` from `${() => this.book?.…}` while `${({ theme }) => theme.ink}` draws the ink. That is what the provider is for — every styled element beneath the theme is handed its values as `props.theme` — and `at(property)` is sugar over `({ theme }) => theme[property]`, no more. The test library keeps it, nothing is exported, and `Framed` reads the provider like the rest. *Two wrong turns on the way, both cheap: a getter named `theme` on a format breaks Format's own initialiser, since `theme` is its flag for being one; and the closure drew the fallbacks on every page before the promise said why.* What was flagged here until Sprint 95, that the card's selector depended on `header` and `nav`, which no chapter of this library names, went with the selector: the sheet names marks and never a wrapper's element.
-
-## Promises and gate
-
-One Chrome promise in [the regression](../../package/.binding/.test/binding.regression.ts): on Libby's page the cover's title is labelled *Autobiography*, her chapter's *Chapter 1*, the parenthetical synopsis title not at all; the byline's labels read *Author* and *Filed under*; the running head reads *The Library / Libby: Table of Contents*, and on the library's own page *The Library: Table of Contents*. It reads `innerText`, never `textContent` — a word's hidden annotations, its level's *2* and a reference's url, are in the latter. Five promises re-read for the byline's form, the theme's font and spacing, the frame's ink. Committed as `d4d25ad`; measured 2026-09-27: the compiler's typecheck 0, unit 98 of 98, regression 38 of 38; the package untouched.
-
-**Names.** Ours, flagged: `at`, `Byline`, `Label`, `pd-byline`, `pd-label`, and this chapter's title. Doug's: the visual language's words — cover, synopsis, table of contents, chapter, author, filed under.
+**Names.** Doug's: *theme*, *format*, *face* is the test library's own word for a Format with a look; *the base sheet* for a library's theme component; *replace*, *export your own*, *register*. Ours, flagged: `values`, `parts` and the six parts' names, `LibraryValues`, this chapter's title.
