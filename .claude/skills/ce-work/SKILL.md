@@ -41,7 +41,7 @@ The plan gave guardrails, not choreography. So the implementer **decides signatu
 
 Take units in dependency order. For each one:
 
-1. **Read the unit** — its files, its test scenarios, what it depends on.
+1. **Read the unit** — its files, its test scenarios, what it depends on — **and write into [Where things stand](../../library/our-skillset/32-ce-handoff.md) that it is begun, before the first edit.** A unit is recorded at both ends, not only at its green: on 2026-10-01 Sprint 95's U9 was half-built across seven files when a compaction fell, its chapter still said *not built*, and the next session found it only by reading `git status` — a working tree is the truth, but a record that contradicts it costs a catchup to notice.
 2. **Write the specification first** where the unit bears behaviour — a [test is a promise](../../library/..teamsmanship/..team/queenie/test-architecture/.cover.md), and the scenarios were enumerated so nobody has to invent them.
 3. **Implement** the smallest thing that satisfies the guardrails.
 4. **Verify with evidence.** Run the command. Read the output. [Green, driven, seen](../../library/..teamsmanship/..team/queenie/test-architecture/04-the-three-steps.md) — and no completion claim without a fresh run in the same message.
