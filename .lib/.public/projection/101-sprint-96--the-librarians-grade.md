@@ -141,6 +141,29 @@ On the cast and the helper: *"I'm not sure. I need this to be read through style
 
 **Settled 2026-10-01, in his words after the standard was read back:** *"Why can't formats be the unit of styled components? And one subclasses a Format and overrides the style to change things? You can subclass many things easily. We document what one might want to subclass? I would think that much of the styling would come from the custom book and theme, and all of the basics can be styled in a sheet. Annotations tend to be formats and carry their own style, and they can easily be subclassed."* And: *"It shouldn't be hard to subclass an annotation, export it with the same name and just draw from the one exported in the library, so it's still Table, and just do a sort of by-name replacement. These are what styled components look like just with a format wrapper."* **So:** a Format is the unit of styled components, its wrapper's template carrying the rules for its own marks; the basics — the levels' and kinds' typography and the invariants — are the Theme's sheet, with the tokens; an annotation with a look is a Format; a library overrides by subclassing a Format, rewriting its `style` and exporting it under the same name from its own door, so a chapter's `Table` is the library's by import; what one subclasses is documented. No seam on a kind, no entry on the theme, no registry. *The headless reading below it and the earlier rulings are the trail to this.*
 
+<a id="the-split"></a>**The split, on his word — *"This is an OO framework and one massive string styled component stylesheet might as well literally be CSS… come up with a sensible split for what should be in a theme, what should be modular formats, and what overriding the style looks like across the library."*** The principle: in an OO framework a thing's style is a member of its class, overridden by subclassing, and the sheet is the one place that is not OO, so it holds only what is global by nature and nothing that has a class to live in. Read rule by rule from `Theme.tsx` as it stands, 26 `pd-` rules, 24 `pa-`, the invariants, the highlighter's four, the twelve generated starts and spans:
+
+| where | what | from the sheet today |
+|---|---|---|
+| **the Theme** | the tokens, the eight as custom properties, and the provider | `values`, `contract`, `declarations` |
+| | the page frame, the theme's own element | font, size, leading, ink, paper, measure, margin, padding |
+| | the invariants — meaning, `!important`, their own layer, so no library's override reaches them | parenthetical, blank, self-reference, closed page |
+| | the base typography of the levels and kinds, which have no class of their own to carry a look | the margins of book, chapter, section, paragraph; title, heading; line, space, break; sentence, word, letter; container, annotation; figure, image, svg; code, code-line and the highlighter's four; math, date, equation; previous and next — about thirty, and the sheet stops growing |
+| **a Format, its own styled component** | Table — the grid, rows, cells, the twelve starts and spans, the header row | twenty rules |
+| | List — the items, the ordered marker | three |
+| | Cover — its margin, the title at twice the size, on the header it lends | two |
+| | TableOfContents — its margin, its entries, on its nav | two |
+| | Synopsis — its italic paragraphs, which means it lends a layer it does not lend today | one |
+| | Reference and Content — colour and underline on the anchor they declare; Referent its scroll margin | four |
+| | Biography and Autobiography — a title's small caps and italic | two |
+| | Paginated — its margins; the hiding stays an invariant; Append — its white space | three |
+| **overriding, across a library** | *values*: subclass the Theme and set the eight | `$LibraryValues` |
+| | *the basics*: subclass the Theme and extend its `style`, the one selector a library writes for a kind, with no cast once the type says the eight are present | `$LibraryTheme` |
+| | *a Format's look*: subclass it, rewrite `style`, export it under the same name from the library's door; a chapter's `Table` is the library's by import | by-name replacement |
+| | *a kind in context*: a Format's template targets the kind's mark under its own class | a synopsis's paragraphs italic is the Synopsis's sentence |
+| | *a new look*: a Format of the library's own | Framed, Literary |
+| | the library's Book stands its Theme and Formats in `$Define` and draws its apparatus in `write()`; Writing a Book documents these five as what one subclasses | `$TheLibrary` |
+
 **His rulings, in order, the same afternoon:** *"We ARE using styled components, so let's use them right."* · *"Can't we have both? Format adds classes and styles, and overriding can happen at either layer?"* · *"The classes don't have to be removed for the styled component to target locally with them."* · *"It shouldn't be so hard to write styled components to override the format of components. Just subclass an annotation and rewrite its style."* · *"No you don't need DI!"* · *"Just rewrite the annotation and use yours!"* · *"Style the semantic compositions in the theme, but for the annotations, shouldn't we make them self-contained?"* · *"The right way ISN'T one per page."*
 
 **The standard, as people develop with it:** one styled component per kind of element rendered, declared once at the module's top, never per page and never per instance; one `ThemeProvider` at the root holding tokens, a second only to change tokens for a subtree; one global style at the root for the reset and the base typography, which in a content application is treated as part of the theme; a component with a box of its own carries its own rules and a parent styles a child only by referring to the child's component inside its own template; overriding by wrapping, or by writing your own and using it in place.
