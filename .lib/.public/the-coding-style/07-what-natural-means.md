@@ -120,6 +120,8 @@
 | **the fights that remain** — each named with the word or the mechanism it is missing | *the same files, read whole* |
 | **the counts** | *beside the verdict, as evidence* |
 
+***And WHEN the grade is given, ruled 2026-10-01 at the opening of Sprint 96 — before a real library is committed to the patterns, and never for a use case that has not arrived.*** **Doug:** *"My library happens after we grade this process so far, and that everything that is future work is work we think can be done when it is required, as it isn't great to design something before we have a use case. On the other hand, there can be things that we have already committed to that are causing the early signs of pain, and that is why we look to see if something is unnatural before we run off, committing to a whole new and real library with these patterns."* *So the grade reads what is already committed to — the patterns the first library stands on — for the early signs of pain, and files each as an ask; it does not read forward into what a later library might want, which is [built when it is required](03-the-coding-style.md#as-needed). A library made to exercise the steps before the library that needs them exists was proposed that day and struck the same hour: a design before its use case.*
+
 ## <a id="unnatural"></a>WHAT UNNATURAL LOOKS LIKE IN THIS CODEBASE — six shapes, each with a real one behind it
 
 1. ***A kind-conditional on a base.*** **Doug: "so so so so important" — the base declares the seam, the kinds OVERRIDE.** *A `if (this instanceof X)` on a base class is the base knowing its own subclasses.*
