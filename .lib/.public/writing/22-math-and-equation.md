@@ -8,7 +8,7 @@
 
 ## What they are
 
-***"List and Math are fundamental… along with the Math components that we had in the last version, adapted."*** — Doug, 2026-09-30. **A Math is a Word whose text is TeX, typeset inline; an Equation is a Paragraph whose text is TeX, typeset in display mode on a line of its own and numbered by the Theme's sheet.** Both print through a typesetter, a prop defaulting to KaTeX, as [Code](../figures/03-code-image-and-svg.md) prints through its highlighter, so a library that wants another typesetter hands one in and the class knows nothing of it. Two classes in one chapter because they are one idea at two levels, as Section and Heading are.
+***"List and Math are fundamental… along with the Math components that we had in the last version, adapted."*** — Doug, 2026-09-30. **A Math is a Word whose text is TeX, typeset inline; an Equation is a Paragraph whose text is TeX, typeset in display mode on a line of its own and numbered by a library's theme, which counts `pd-equation`.** Both print through a typesetter, a prop defaulting to KaTeX, as [Code](../figures/03-code-image-and-svg.md) prints through its highlighter, so a library that wants another typesetter hands one in and the class knows nothing of it. Two classes in one chapter because they are one idea at two levels, as Section and Heading are.
 
 | member | what it is | cited |
 |---|---|---|
@@ -17,7 +17,7 @@
 | `tex` | what was written in it, the copy of its text, trimmed; written as a string child, `{'\\frac{a}{b}'}`, since braces are JSX's | the copy utility, one level deep |
 | `Math.write()` | the typesetter's inline markup inside its own element | `pd-math` on the word |
 | `Equation.write()` | the typesetter's display markup inside its own element | `pd-equation` on the paragraph |
-| *the number* | not a member: the Theme's sheet counts `pd-equation` and writes the count after it, in parentheses at the line's end, the counter reset on the book | the sheet is the one global sheet |
+| *the number* | not a member: a library's theme counts `pd-equation` and writes the count after it, in parentheses at the line's end, the counter reset on the book; the base numbers nothing since Sprint 97 | the base ships no look |
 | *the stylesheet* | KaTeX's own, named on the [binder](../utilities/05-binder.md) utility, `binder.stylesheets`, which the compiler's assembly links before the sheets a library's own configuration names, so a library that writes a formula does nothing to see it | D6 of the sprint: *"the package names it and the binder links it"* |
 
 ### In use
@@ -41,7 +41,7 @@
 
 ## Promises
 
-Seven in [`.tests/math.test.tsx`](../../package/.tests/math.test.tsx): a Math is a word at 2 whose TeX is what was written, drawn as KaTeX's inline markup inside its own element; it stands in a sentence as a word does; a stub typesetter draws the stub's markup, told it is inline; an Equation is a paragraph at 4 drawn as KaTeX's display markup; its typesetter is told to display; drawn in its book, the sheet counts it, reset on the book, and writes its number after it; and KaTeX's stylesheet is named on the binder and nowhere in the class. In the compiler's [regression](../../package/.binding/.test/binding.regression.ts): the evidence's formula in KaTeX's face, its equation displayed and numbered, KaTeX's rules among the page's stylesheets and a stylesheet linked in its head.
+Seven in [`.tests/math.test.tsx`](../../package/.tests/math.test.tsx): a Math is a word at 2 whose TeX is what was written, drawn as KaTeX's inline markup inside its own element; it stands in a sentence as a word does; a stub typesetter draws the stub's markup, told it is inline; an Equation is a paragraph at 4 drawn as KaTeX's display markup; its typesetter is told to display; drawn in its book, marked `pd-equation` and `pd-math` and numbered by nothing of the base's; and KaTeX's stylesheet is named on the binder and nowhere in the class. In the compiler's [regression](../../package/.binding/.test/binding.regression.ts): the evidence's formula in KaTeX's face, its equation displayed and numbered, KaTeX's rules among the page's stylesheets and a stylesheet linked in its head.
 
 ## Gate
 

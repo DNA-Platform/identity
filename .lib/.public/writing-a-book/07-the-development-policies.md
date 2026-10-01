@@ -12,7 +12,7 @@ A practice is a policy when a librarian who has never seen this code would keep 
 
 The policies rest on [the three sentences](02-dressing-a-library.md#the-three-sentences): a component owns its structure and reads its appearance from a theme; a theme is a typed value object with a slot per component, only one per book; a component is replaced by subclass. What follows is how to keep them.
 
-## 1 · A face names the kind with its mark; a theme names the kind alone
+## <a id="1--a-face-names-the-kind-with-its-mark-a-theme-names-the-kind-alone"></a>1 · A face names the kind with its mark; a theme names the kind alone
 
 **The rule.** A theme's rule for a kind of writing names that kind's mark: `.pd-chapter { margin-block: … }`. A face's rule for its *own* element names the kind *and* its mark, read as *the chapter that is a cover*: `.pd-chapter.pa-cover { margin-block: 0 }`. A face's rule for the kinds *beneath* it names its mark and the kind: `.pa-table .pd-paragraph { margin-block: 0 }`.
 
@@ -48,7 +48,7 @@ The policies rest on [the three sentences](02-dressing-a-library.md#the-three-se
 
 **Where it holds.** Nineteen chapters importing from [`manual/.book`](../../package/.binding/.test/manual/.book.tsx); [Some Projects](../../package/.binding/.test/projects/.book.tsx) importing the framework's own and registering the framework's Theme on its class, which is how a librarian says *show me the base*.
 
-## 4 · A theme is properties; every template reads them through the provider, in one form
+## <a id="4--a-theme-is-properties-every-template-reads-them-through-the-provider-in-one-form"></a>4 · A theme is properties; every template reads them through the provider, in one form
 
 **The rule.** A theme declares its properties as reactive fields and nothing else, and types its class once as the theme styled-components hands down. Every template in the library — the theme's own included — reads a property as `${({ theme }) => theme.space}`, never as a literal and never through a closure over `this`. Code reads `this.theme.space`. A book takes another theme by registration; a reader switches one with `$is`; nothing is merged.
 
@@ -94,7 +94,7 @@ The policies rest on [the three sentences](02-dressing-a-library.md#the-three-se
 
 **The check.** A grep of a library's templates for `>`, `+`, `~`, `:first-child`, `:nth-`, `:has(`; the explorer's are the known remainder.
 
-## 8 · The base ships mechanism and no appearance, and a change to it is graded in the library
+## <a id="8--the-base-ships-mechanism-and-no-appearance-and-a-change-to-it-is-graded-in-the-library"></a>8 · The base ships mechanism and no appearance, and a change to it is graded in the library
 
 **The rule.** `src` carries what a mark *means* — a grid, a marker, a hidden page, a header's element — and nothing a library would choose: no size, colour, weight, margin, padding, border, background or glyph; no `@layer`, no `!important`, no `:has` chain, no global style, no theme augmentation. A rule that leaves `src` is deleted, not moved. A change to `src` is proposed as a diff for Doug's yes, and judged by whether the test library written against it reads as a more natural extension — [the grade](../the-coding-style/07-what-natural-means.md#the-grade).
 

@@ -78,7 +78,7 @@ Every mark is on the page at the first paint, served; the one that moves after i
 | `pa-append` | the Append's own element — **moot** once an annotation's writing is not drawn | `$Append.$Define` | — | nothing |
 | `pd-container` | **every layer** a Format or a Reference stands around a writing, and the theme's own element | `$Writing.view`, on every layer but the writing's own | — | nothing — a rule crosses it and never names it, but a library's layout may say `display: contents` of the ones that wrap what it places |
 
-## Writing against them — the rules of the surface
+## <a id="writing-against-them--the-rules-of-the-surface"></a>Writing against them — the rules of the surface
 
 - **By descendant, never by child or sibling.** `.pa-cover .pd-title`, never `.pa-cover > .pd-title` and never `.pd-heading + .pd-paragraph` — a Format in front stands a layer between any two marks, and a rule written to the layers of one galley breaks on the next.
 - **By mark, never by element type — except the foreign elements.** The base marks every element it draws itself; `img`, `svg`, `pre`, `code`, `time` and KaTeX's output are the only things on the page without a mark of ours, and a rule names them under the mark that holds them: `.pd-image img`.

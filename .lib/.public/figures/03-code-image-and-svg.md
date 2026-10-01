@@ -12,7 +12,7 @@
 
 | figure | what it draws | its mark | from a file | from input |
 |---|---|---|---|---|
-| `Code` | a block letter holding a code element, whitespace kept, each line of it in a span wearing `pd-code-line`, Doug's name since [Sprint 95, U7](../projection/100-sprint-95--pages-formats-and-words.md#u7), which the Theme counts and numbers; until then the span wore `pd-line`, the Line's, and a poem's Lines were numbered by the code's rule | `pd-code`, `pd-code-line` | `<Code identifier="code" />`, `<Code type=".ts" />` | `<Code>{'const x = 1;'}</Code>` |
+| `Code` | a letter whose own element is the `pre` since [Sprint 97](../projection/102-sprint-97--formats-are-the-unit-of-styled-components.md), replacing its span at the bond as a Date replaces its with a `time`, holding a code element; numbered, each line in a span wearing `pd-code-line`, Doug's name since [Sprint 95, U7](../projection/100-sprint-95--pages-formats-and-words.md#u7), and carrying its number as `data-line`, which a library's theme shows by `::before { content: attr(data-line) }` — the base draws no number; until Sprint 97 a `div` holding a `pre` nobody marked, the base's sheet counting the lines | `pd-code`, `pd-code-line` | `<Code identifier="code" />`, `<Code type=".ts" />` | `<Code>{'const x = 1;'}</Code>` |
 | `Image` | a picture whose source is the append's address, its `alt` the identifier | `pd-image` | `<Image type=".png" />` | `<Image>{'/elsewhere.jpg'}</Image>` |
 | `Svg` | the append's markup inline, or the author's own elements as written | `pd-svg` | `<Svg type=".svg" />` | `<Svg><svg viewBox="0 0 1 1"><circle r="1" /></svg></Svg>` |
 
