@@ -84,7 +84,7 @@ The policies rest on [the three sentences](02-dressing-a-library.md#the-three-se
 
 **Where it holds.** [`Code.tsx`](../../package/src/figures/Code.tsx), [`Date.tsx`](../../package/src/writing/Date.tsx); the test library's theme dressing `.pd-code` alone.
 
-## 7 · Every rule names a mark, reaches by descendant, and takes its numbers from the theme
+## <a id="7--every-rule-names-a-mark-reaches-by-descendant-and-takes-its-numbers-from-the-theme"></a>7 · Every rule names a mark, reaches by descendant, and takes its numbers from the theme
 
 **The rule.** A rule names a mark, never an element type except the foreign elements the framework does not mark; it reaches a mark inside another by descendant, `.pa-cover .pd-title`, never by child, sibling or position; every quantity in it is a theme property; a state is a mark the class toggles, `pa-open`, and a rule reads it. [The Styling Surface](../the-styling-surface/01-the-base-themes-classes.md#writing-against-them--the-rules-of-the-surface) states it whole.
 
