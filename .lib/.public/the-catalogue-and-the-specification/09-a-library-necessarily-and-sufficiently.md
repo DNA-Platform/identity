@@ -75,7 +75,8 @@
 | a resource that titles a chapter or allocates a mention, and so stands on every page | 1, 2 | `RESOURCE-NAMES` | source |
 | a reference to a name the library does not hold, in prose, in a string, or as an element | 3 | `UNKNOWN-REFERENCE`, and the transform's `missing` | source |
 | a name nobody refers to | 4 | `UNREFERENCED-MENTION` | source |
-| a book its catalogue does not answer for — *and until 2026-09-26 a chapter its table did not list, `CHAPTER-NOT-LISTED`, struck when a table could be drawn from what its chapters mention* | 4 | `NOT-LISTED` | source |
+| a book its catalogue does not answer for | 4 | `NOT-LISTED` | source |
+| a chapter its own book's table does not refer to, the table itself among them — *struck 2026-09-26 when a table could be drawn from what its chapters mention, restored 2026-10-05 when the table became the link aggregator* | 4 | `CHAPTER-NOT-LISTED` | source |
 | a heading wearing its own words as an id — "Cautions" in seven chapters | 2 | nothing to raise: a heading wears no id unless a mention allocated it ([B32](08-the-binders-condition.md#b32)) | framework |
 | a mention allocated inside a writing that does not print, so its id is never drawn | 3 | the proof: "nothing on this page answers to it" — the compiler does not read `print` | page |
 | two elements on one page wearing one id, whatever drew them | 2 | the proof: "worn by N elements, and an id is worn once" | page |
@@ -110,8 +111,8 @@
 | **the catalogue** | filing is a tree with one root | compiler | `CIRCULAR-CATALOGUE`, `NO-LIBRARY`, `TWO-LIBRARIES` | built |
 | | a topic is one of the other catalogues a book stands in | compiler | `TOPIC-IS-CATALOGUE` | built |
 | | every filing and topic is answered by its catalogue, in its table | compiler | `NOT-LISTED`, `NOT-IN-THE-TABLE` | built |
-| | a catalogue's table names the synopsis of each book it holds | compiler | `NO-SYNOPSIS` | built; read per table, U6 |
-| | a table lists every chapter of its book — *struck 2026-09-26: a title gives every chapter its address, and a table may be drawn from what the chapters mention* | compiler | ~~`CHAPTER-NOT-LISTED`~~ | removed, [Sprint 84](../projection/90-sprint-84--means-and-the-table.md#u5) |
+| | a table refers to every chapter of its book, itself among them — Doug, 2026-10-05: *"The table needs to refer to all chapters including itself"* | compiler | `CHAPTER-NOT-LISTED` | built, [Sprint 99](../projection/104-sprint-99--the-link-aggregator.md#u1); removed in [Sprint 84](../projection/90-sprint-84--means-and-the-table.md#u5) and restored |
+| | a catalogue's table names the synopsis of each book it holds — *gone 2026-10-05: every book holds a synopsis and its own table refers to it, so the catalogue's link to the book is enough* | compiler | ~~`NO-SYNOPSIS`~~ | removed, [Sprint 99](../projection/104-sprint-99--the-link-aggregator.md#u2) |
 | | a book may be filed only under one that is About something | compiler | `NOT-A-SUBJECT`, a proxy | planned, U6 |
 | **authorship** | every book names its author | compiler | `NO-AUTHOR` | built |
 | | one book, and only one, is by its own subject | compiler | `NO-SELF-AUTHOR`, `TWO-SELF-AUTHORS` | built |

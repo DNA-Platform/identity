@@ -29,6 +29,14 @@ The harness finds a row by the half that names the book, `[[ name ]]**`, and ins
 
 **A promise that no gate runs is a promise nobody is keeping, and its red is the same colour as its green.** The performance project is not part of `npm test` because a bind is slow, and that is right; but a change to the test library's shape — a table's rows, a book's mentions, the count of books — is a change to what the performance project copies, and the sprint that makes it owes the project one run. The tell is a measured table in the design of record whose date is older than the library it measures.
 
+## It happened again, the next day
+
+**The fix above landed on 2026-09-28. On 2026-09-29, [Sprint 93](../projection/98-sprint-93--the-explorer.md) renamed the test library's catalogue folder from `the-library` to `library`, and the performance project's two files still named the old one.** It was red from that commit, through the gates of Sprints 93 to 98, for six days and nobody ran it: `ENOENT … the-library\.table.tsx`, thrown by the harness opening a table to list the copies after. It was found on 2026-10-05 only because [Sprint 99](../projection/104-sprint-99--the-link-aggregator.md) changed the rules a table is held to and ran it to see them hold over many books. Doug: *"Wait the binder has a red performance suite? This is the time to fix it… Binder performance is critical."*
+
+**The mending was one word in two files, and a count:** the folder's name, and the render promise's five books made six with a page counted for the root — [`.test/catalogue.performance.ts`](../../package/.binding/.test/catalogue.performance.ts), [`.test/render.performance.ts`](../../package/.binding/.test/render.performance.ts). It is no benchmark and failed on no number: it asserts that the library is still one and that the bind finishes, and prints what each step cost — his own rule of 2026-09-19, *"don't confuse unit / regression / performance."*
+
+**The lesson above was written the first time and not kept, because it was a sentence and not a step.** *"The sprint that makes it owes the project one run"* asked each sprint to remember. So it is a step now: [the order of work](../writing-a-book/07-the-development-policies.md) runs the performance suite with the gates whenever the binder or the shape of the test library changes, and writes the numbers into [the design of record](../the-catalogue-and-the-specification/07-the-binder.md#measured) beside the last run's, where a missing date shows.
+
 ## See also
 
 - [The Suite That Passed Against a Stale Build](05-the-suite-that-passed-against-a-stale-build.md) — a green that measured yesterday.

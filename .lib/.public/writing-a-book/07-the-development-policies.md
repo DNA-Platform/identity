@@ -106,14 +106,15 @@ The policies rest on [the three sentences](02-dressing-a-library.md#the-three-se
 
 **Where it holds.** `Theme.tsx` at twenty-six lines; Some Projects on the base, a browser-default book whose sheet is 111 bytes.
 
-## The order of work, and how a sprint on the look is closed
+## <a id="order"></a>The order of work, and how a sprint on the look is closed
 
 1. **The door first:** the theme's properties and its parts; the faces, each one field; the library's own Formats; the registrations. Nothing in a chapter until the door typechecks.
 2. **The chapters import from the door** — the framework's words the library replaced, and the library's own.
-3. **Bind, and run the gates:** the package's suite, the binder's unit suite, the regression in Chrome. A red is read, never worked around.
-4. **Photograph every page against the last galley Doug signed.** A page at 0 pixels is proof; a page that moved is read with the box probe for *which element* moved and *which rule* moved it, and the rule is corrected by a policy above, never by ordering components.
-5. **The grade:** the library's files read at the manual's spread against [the three tests](../the-coding-style/07-what-natural-means.md#the-three-tests) — would the next librarian write this unprompted? — with what is still a fight named beside the word or mechanism it is missing.
-6. **Serve on 4242 and vouch for it,** with the numbers said: bytes and nodes per page, the sheets' sizes, the gates' counts.
+3. **Work with the page open, and never bind to look.** Every look while the work is in progress is taken through the workbench, on the live page, where a save shows in under a second and the compiler's refusal shows on the page — [How a Library Is Developed](01-02-how-a-library-is-developed.md#the-protocol) is the protocol, with its commands and what each step costs. Doug, 2026-10-05: *"When doing UI work you need rapid feedback right? If the system doesn't give that to you, the system is a failure."* *Until that day this list went from the chapters straight to a bind, and a session that kept it bound twenty times to look.*
+4. **Bind once, when the piece of work is done, and run the gates:** the package's suite, the binder's unit suite, the regression in Chrome — and, when the binder or the shape of the test library changed, the binder's performance suite, its numbers written into [The Binder, As Built](../the-catalogue-and-the-specification/07-the-binder.md#measured) beside the last run's. Doug, 2026-10-05: *"Binder performance is critical."* A red is read, never worked around. *The bind is the gate because it checks what the live page does not: each book's own rules, the printed page, and every link — [the table](01-02-how-a-library-is-developed.md#live-and-bound).*
+5. **Photograph every page of the built site against the last galley Doug signed.** A page at 0 pixels is proof; a page that moved is read with the box probe for *which element* moved and *which rule* moved it, and the rule is corrected by a policy above, never by ordering components.
+6. **The grade:** the library's files read at the manual's spread against [the three tests](../the-coding-style/07-what-natural-means.md#the-three-tests) — would the next librarian write this unprompted? — with what is still a fight named beside the word or mechanism it is missing.
+7. **Serve on 4242 and vouch for it,** with the numbers said: bytes and nodes per page, the sheets' sizes, the gates' counts.
 
 ## What is not a policy yet
 

@@ -1,0 +1,133 @@
+# How a Library Is Developed
+
+- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
+- ***Written 2026-10-05 at the close of [Sprint 99](../projection/104-sprint-99--the-link-aggregator.md), on Doug's words: "if dev time becomes too slow and you can't rapidly iterate, your ability to style goes into the gutter… We lost an important part of this design" — "When doing UI work you need rapid feedback right? If the system doesn't give that to you, the system is a failure" — "We need future sessions to know, beyond a doubt, how to develop when building a library." [How a Library Is Designed](01-01-how-a-library-is-designed.md) says what to build; this says how to work while building it. The chapter's name, and the words workbench, look and live, are PROXIES.***
+
+---
+
+## <a id="the-protocol"></a>The protocol
+
+**A library is developed with its pages open. Nothing is bound in order to look at it.**
+
+1. **Open the workbench once, in the background, and leave it open for the session.**
+
+   ```
+   node .me/.manual/6-developing-a-library~workbench.mjs
+   ```
+
+   It says `the library is live at …` within ten seconds. It is the binder's own dev server and one Chrome, both kept open.
+
+2. **Edit a file. Look.**
+
+   ```
+   node .me/.manual/6-developing-a-library~workbench.mjs look dougs-story
+   node .me/.manual/6-developing-a-library~workbench.mjs look dougs-story/#closure phone at=.pd-title
+   ```
+
+   A look waits for the save to reach the open page, prints what it found, and names a photograph. Read the photograph. Everything else is asked in the same call: `read=` what an element says, `style=` what it computes to, `box=` where it stands, `after=` what is drawn before and after it, `rules=` every rule that names a word in the order they apply, `at=` one element alone, `click=` a press first, `phone` a phone's width, `fresh` a new load. The whole list is at the head of [the file](../../../../.me/.manual/6-developing-a-library~workbench.mjs).
+
+3. **Bind once, when the piece of work is done, and look at what it built.**
+
+   ```
+   npm run bind                                   (in .me/..public/.binding)
+   node .me/.manual/6-developing-a-library~workbench.mjs look dougs-story built fresh
+   ```
+
+   The built site on 4242 is the one Doug reads, and [the bind is the gate](#live-and-bound), not the live page.
+
+4. **Close the workbench when the session ends:** the same file with `close`.
+
+**Three signs the protocol is being broken:** a script written into the scratchpad to see a page; a second bind inside one piece of work; a claim about how something looks with no photograph named.
+
+*The workbench stands in Doug's library, beside the chapter of his manual that says what it is — [Developing a Library](../../../../.me/.manual/6-developing-a-library.tsx) — because [what builds a library lives inside it](05-how-to-be-a-librarian.md). A design is still drawn in a sketch first and the book photographed beside it; his design book's camera photographs the sketches, and the workbench photographs the book.*
+
+## <a id="costs"></a>What each step costs
+
+*Measured 2026-10-05 on Doug's library of four books, in Chrome, each number a match and never a timeout.*
+
+| step | time |
+|---|---|
+| the workbench opens | the dev server up in **2.4s**, the first page drawn **1.9s** after |
+| a sentence saved in a chapter → on the open page | **0.19–0.24s**, in place |
+| a declaration saved in the library's theme → computed on the page | **0.24–0.33s**, in place |
+| the same in the design book, the heaviest theme | **0.59–0.68s**, in place |
+| a chapter's link taken out of a table → the compiler's refusal on the page | **0.11s**, naming the chapter; gone when mended |
+| a look at a book already open | **0.3–0.4s** |
+| the first look at a book | **1.2–4.0s** |
+| a look at the built site, loaded fresh | **1.0–1.3s** |
+| a bind | **6.6s** with nothing changed, about **9s** changed, **13.4s** run beside the open workbench |
+| the way a look was taken before: a bind, a probe written for the occasion, a new Chrome | **15–25s**, and a file to write and remove |
+
+**The cost that matters is the second-order one**, and it was written on 2026-09-20 in [One browser, kept open](../debugging-a-page/03-one-browser-kept-open.md#fact): *at ten seconds a look you look after every third change, and the change you did not look at is the one that was wrong.*
+
+## <a id="live-and-bound"></a>What the live page checks, and what only the bind checks
+
+**The live page is for looking. The bind is the gate.**
+
+| | on the live page | in a bind |
+|---|---|---|
+| **the notation resolved** — every `[[ … ]]` in a file | as that file is saved | yes |
+| **the catalogue's rules** — the twenty-four faults of [`wellformed`](../../package/.binding/catalogue/wellformed.ts) | **only at start and when a cover, a synopsis or a table is saved** — [`catalogue/holds.ts`](../../package/.binding/catalogue/holds.ts) | yes, every time |
+| **each book asked its own rules** — the specification of writing | no | yes, *specify* |
+| **the page as it is printed** — what a reader gets before the code arrives, and that the code takes it up | no; the live site sends an empty page and draws it | yes, *render* |
+| **every link against the page it leads to, every id worn once** | no | yes, *proof* |
+
+*Measured the same day: a sixth chapter added to Doug's manual appeared on the open page at once and raised nothing, though the table did not list it. The refusal came when the table was next saved.* **So a fault introduced by any file but a dot chapter waits for the next dot chapter's save, or for the bind.** *And "seen live" is never "shipped": the last look at finished work is `built fresh`, the standing rule that a feature is driven in the real browser before it is called working.*
+
+## <a id="hot"></a>What reaches the open page, and what does not
+
+*Doug's commission of 2026-09-17, the fourth of [his six](../the-catalogue-and-the-specification/01-the-commission.md): "it is known which parts support hot reload and which parts don't and we support as many as possible because restarting a server is death." Each row says how it is known.*
+
+| what was edited | reaches the open page | how this is known |
+|---|---|---|
+| a chapter's words | in place | measured 2026-10-05 |
+| a theme, a face, any code file beside a chapter | in place | measured 2026-10-05, on two themes |
+| a table, a cover, a synopsis | in place, and the catalogue's rules are asked | measured 2026-10-05 |
+| a chapter added | in place, with no bind | seen 2026-10-05; timed at 1.76s on 2026-09-25 |
+| a sheet named in `.pubconfig` | in place at 1.4s | measured 2026-09-20; **not measured since** |
+| **the framework's `src`** | **no.** The face reads the package from `dist` — seen 2026-10-05 in a compiled table, whose import resolved to `package/dist/lib.js`. A `src` edit is the package's build, then a look with `fresh` | the build timed at 4.4–5.0s on 2026-09-20; **not measured since** |
+| **the binder's own files** | **no.** The dev server keeps the binder it started with. Sync the face, then close the workbench and open it | read in [The Binder, As Built](../the-catalogue-and-the-specification/07-the-binder.md#dev) |
+| `.pubconfig` | **not known** | not measured |
+
+*A bind run beside the open workbench works, and leaves one error on each open live page — React's `createRoot() on a container that has already been passed to createRoot()` — until that page is looked at with `fresh`.*
+
+## <a id="the-tool"></a>What the workbench learned in its first hour
+
+**Three faults, each a rule in the tool now**, as [the tool before it](../debugging-a-page/03-one-browser-kept-open.md#design) had three:
+
+- **A page just loaded from the live site is blank.** The live site prints nothing and draws the book when its code arrives, so the first photograph was of an empty page. *A page is waited on until it says something, or the compiler does.*
+- **A page behind another draws nothing.** A look at a book opened earlier never answered: the wait was on an animation frame, and a tab that is not in front is given none. *The page looked at is brought forward, nothing waits on a frame, and every look has thirty seconds before the page is closed and the next look opens it again.*
+- **An element is photographed by clipping the page to where it stands,** in page coordinates, *the lesson of 2026-09-20 carried over, with reading the pseudo-elements and reading which rule wins.*
+
+## <a id="lost"></a>How this was lost, twice
+
+1. **2026-09-17.** Doug's commission for the binder: *"And remember as an anchor, support for hot reload is obviously ESSENTIAL."* It was built; an edit appeared in place in 496ms.
+2. **2026-09-20.** After a day of ten-second looks he asked: *"Did you maintain a single connection to the browser and refresh? … Did hot reload allow you to work in front of the compiled output?"* The answers were no. The team wrote [Debugging a Page](../debugging-a-page/.cover.md), five chapters, and built a kept-open browser that answered in 13–20ms.
+3. **2026-10-02.** His library started from scratch. The tool had stood in a folder inside the old face's copy of the binder, and went to the archive with that face. The book stayed, describing a tool that no longer stood where it said.
+4. **2026-10-05.** A session bound his library about twenty times to look at it, wrote a probe for each look, and did not know whether an edit still appeared in place. He asked again.
+
+**Two causes, and neither is forgetfulness.** *The tool stood where a new face replaces it, and in no book.* **And every document a session follows said to bind:** [the order of work](07-the-development-policies.md#order) said *"Bind, and run the gates"* and *"Serve on 4242"*; every sprint's *to see it* said `npm run bind`; his own manual said the bind and the preview. The live loop was described once, as mechanism, in the binder's design record, and was a step nowhere. *A session that kept our documents faithfully did what that session did.*
+
+**What is different this time.** The tool is a resource of a chapter of his manual, so the compiler holds it to its chapter and a new face cannot remove it. And the protocol is said at every door a session comes in by:
+
+| the door | what it says |
+|---|---|
+| the session's memory, loaded every time | *develop-with-the-page-open*: the two commands, and never a bind to look |
+| [the order of work](07-the-development-policies.md#order) | its third step is the open page; the bind is the fourth |
+| [`/ce-work`](../../../../.claude/library/our-skillset/30-ce-work.md) | before the first edit, how this branch sees a change |
+| [`/ce-handoff`](../../../../.claude/library/our-skillset/32-ce-handoff.md) | a sprint's *to see it* names the loop, and the workbench is closed |
+| Doug's manual, [Developing a Library](../../../../.me/.manual/6-developing-a-library.tsx) | the practice in his words, and the tool |
+| [The Binder, As Built](../the-catalogue-and-the-specification/07-the-binder.md#hot) and [One browser, kept open](../debugging-a-page/03-one-browser-kept-open.md) | each points here |
+
+*When one of these is edited, the others are checked against it.*
+
+## <a id="open"></a>What is open, and whose it is
+
+- **No promise holds the live path.** Nothing in the binder's three suites starts the dev server, so an edit could stop appearing in place and every gate would stay green. *A regression promise that serves a galley live, saves a chapter and a theme, and requires each on the open page without a reload. The test library is the team's; not written.*
+- **The catalogue's rules on every save,** not only a dot chapter's. *They cost 37ms and 6ms over 206 books once the files are read. A change to the binder; Doug's.*
+- **The workbench in the binder,** so every face has it by sync and the test library, which has no face and is bound only through a galley, can be looked at live too. *Built in his library first, as a pattern; the pitch is Doug's to hear.*
+- **The dev server's port is not pinned.** It takes 5173 or the next free one, and the workbench reads the address it prints. *A tab Doug keeps on the live site would drift as his preview once did. A change to the binder; Doug's.*
+- **`src` reaching the page without a build** — the dev server reading the package from `src` in development, the idea of 2026-09-20. *Doug's.*
+
+**Names.** Doug's: *rapid feedback*, *the development process*, *hot reload*. Ours, flagged: *the workbench*, *a look*, *live* and *built*, this chapter's title.
