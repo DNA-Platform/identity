@@ -16,6 +16,16 @@
 >
 > **"We will have a mind for structure and semantics, letting the book design guide us, and genuinely wonder how we will render a cover in different ways, or how to reinterpret a table of contents as another application experience, or what to put in a synopsis and whether it should be parenthetical. We will use those designs but we will see them through the lens of books in a library. We should not find this design restrictive at all."**
 
+*And the hour after, setting the work and then the sprint that is to do it — [Sprint 100](../projection/105-sprint-100--the-big-plan.md):*
+
+> **"Well this is where you need to look at your designs and decide what structure is common across them versus what is local to a specific book. Try to imagine where the chapters go, and therefore, what the different types of chapters are - and we can create annotations for the different types of chapters to help our base book organize them. This will give our base books much more power to place and render books as they want. The different chapter types can come with classes and formats. Come up with a plan for which design or designs will go with each book - and where I note that I like two versions we might provide toggles to switch between different ways of showing the same data."**
+>
+> **"Is it pretty clear which code is general and deserves to be in the reference manual? Remember that the reference manual is one of the things that needs style. Things that are more local can get catalogued in the appendix, which might also be given a view similar to a reference manual. But we want to make sure to keep the more general things scoped to the right place. We can possibly create reference manuals that, in addition to having their code, also catalogue other reference manuals, so that you can move back and forth between a subject of reference manuals if needed."**
+>
+> **"…a big plan that includes the different designs, which books will have them - and be sure to put this in the design book! And then common themes across them, and what sort of classes, annotations, and components you will create to make it more like the chapters are modular plugins provided to a book, and the book chooses how to work with them in specific ways, while also managing to be a sensible document of their own in linear order."**
+
+**The sentence the plan is held to is the last one, and it has two halves:** a chapter is a plugin a book is given, and the book chooses what to do with it; and the book, read in the order its chapters are written, is still a sensible document with nothing choosing. *The plan itself is written in his design book, and the team's first reading of it is in [the sprint's chapter](../projection/105-sprint-100--the-big-plan.md#a-first-reading--what-the-plan-is-expected-to-say).*
+
 **What follows from it, for these notes and for the work.**
 
 - **No code in his library is a model.** The classes in `.me/.design` and `.me/.manual` got a design book standing so the designs could be chosen. They are read as what was tried and never as how it is done, and all of it is to be rewritten.
