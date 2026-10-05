@@ -10,6 +10,8 @@ declare module 'styled-components' {
 export class $DougsTheme extends $Theme {
     measure = '44rem';
     space = '1.5rem';
+    side = '16rem';
+    narrow = '56rem';
     style: ElementType = selection.div`${this.parts()}`;
 
     protected parts(): RuleSet[] {
@@ -18,8 +20,6 @@ export class $DougsTheme extends $Theme {
 
     protected page(): RuleSet {
         return css`
-            max-width: ${({ theme }) => theme.measure};
-            margin-inline: auto;
             padding: ${({ theme }) => theme.space};
         `;
     }
@@ -27,6 +27,7 @@ export class $DougsTheme extends $Theme {
     protected writing(): RuleSet {
         return css`
             .pd-chapter, .pd-section, .pd-paragraph { margin-block: ${({ theme }) => theme.space}; }
+            .pd-chapter { max-width: ${({ theme }) => theme.measure}; }
         `;
     }
 

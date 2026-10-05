@@ -17,10 +17,6 @@ export class $Concept extends $Annotation {
     }
 }
 
-export class $Sketch extends $Annotation {
-    specification = new SketchSpecification();
-}
-
 export class ConceptSpecification extends AnnotationSpecification {
     @specify('a concept is said of a section')
     $saidOfASection(writing: $Writing): void {
@@ -34,12 +30,4 @@ export class ConceptSpecification extends AnnotationSpecification {
     }
 }
 
-export class SketchSpecification extends AnnotationSpecification {
-    @specify('a sketch is said of a concept')
-    $saidOfAConcept(writing: $Writing): void {
-        $check(writing.is($Concept), 'a sketch is said of a concept, and this is not one');
-    }
-}
-
 export const Concept = $($Concept);
-export const Sketch = $($Sketch);

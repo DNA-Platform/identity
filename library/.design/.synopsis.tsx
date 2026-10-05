@@ -9,7 +9,7 @@ export default () => (
         </Title>
         <Paragraph>
             The story of how this library was designed, told as it happens, with every sketch kept beside the
-            telling: the page to open, the photograph of it, and its code.
+            telling: the photographs of it, and its code.
         </Paragraph>
     </Chapter>
 );

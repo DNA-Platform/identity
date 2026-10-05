@@ -1,0 +1,10 @@
+.jdwVGt{padding:1.5rem;}/*!sc*/
+.jdwVGt .pd-chapter,.jdwVGt .pd-section,.jdwVGt .pd-paragraph{margin-block:1.5rem;}/*!sc*/
+.jdwVGt .pd-chapter{max-width:44rem;}/*!sc*/
+.jdwVGt .pd-image img{display:block;max-width:100%;height:auto;}/*!sc*/
+.jdwVGt .pd-code{overflow-x:auto;}/*!sc*/
+data-styled.g18[id="sc-hBMXrk"]{content:"jdwVGt,"}/*!sc*/
+.wtqjd .pd-book{display:grid;grid-template-columns:16rem minmax(0, 1fr);column-gap:1.5rem;align-items:start;}/*!sc*/
+@media (max-width: 56rem){.wtqjd .pd-book{display:block;}}/*!sc*/
+.wtqjd .pd-page:not(.pa-open){display:none;}/*!sc*/
+data-styled.g20[id="sc-fFSRQT"]{content:"wtqjd,"}/*!sc*/

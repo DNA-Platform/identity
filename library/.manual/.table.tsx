@@ -19,6 +19,9 @@ export default () => (
                 <Content>$[[ ./The Theme ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./The Author and the Subject ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Parenthetical />
                 <Word>
                     <Content>$[[ Dougs Reference Manual ]]</Content>
@@ -38,9 +41,21 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Looking at a book</Heading>
+            <Heading>How a book is arranged</Heading>
+            <Paragraph>
+                <Content>$[[ ./The Switch ]]</Content>
+            </Paragraph>
             <Paragraph>
                 <Content>$[[ ./The Outline ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Pages ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Sidebar ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Spread ]]</Content>
             </Paragraph>
         </Section>
         <Section>

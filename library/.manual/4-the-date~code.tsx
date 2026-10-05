@@ -15,9 +15,7 @@ export class $Dated extends $Annotation {
     }
 
     override note(): ReactNode {
-        const date = this.date;
-        if (date === undefined) return null;
-        const Date = $(date);
+        const Date = $(this.date!);
         return (
             <Date />
         );

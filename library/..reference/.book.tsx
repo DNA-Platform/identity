@@ -1,3 +1,1 @@
-import { $DougsBook } from '../.manual/.book';
-
-export default class $DougsLibrary extends $DougsBook { }
+export { $DougsLibrary as default } from './90-the-two-bars~code.tsx';

@@ -9,12 +9,12 @@ export default () => (
                 A concept is one sketch of one idea.
                 In <Means>$[[ Every Concept ]]( ./Every Concept )</Means> each has a section of its own: its name,
                 its number, what it is drawn after, the idea in a sentence, a photograph of it at a desk and on a
-                phone, and under those what I said of it, if I said anything.
+                phone, what I said of it if I said anything, and last the sketch's own code.
             </Paragraph>
             <Paragraph>
                 The section says it is a concept and gives its number, which it keeps for good. I answer by that
-                number. The sketch itself is a page. It is kept beside the chapter and given to its section as it
-                is.
+                number. The sketch itself is a file kept beside the chapter. It is there to document the concept,
+                so its section prints it as code, and nothing in this library opens it or draws it.
             </Paragraph>
             <Paragraph>
                 Another chapter points to a concept by its number, as a link to its place in Every Concept. It

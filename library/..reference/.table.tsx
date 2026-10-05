@@ -49,5 +49,11 @@ export default () => (
                 </Word>
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>How this book is built</Heading>
+            <Paragraph>
+                <Content>$[[ ./The Two Bars ]]</Content>
+            </Paragraph>
+        </Section>
     </Chapter>
 );

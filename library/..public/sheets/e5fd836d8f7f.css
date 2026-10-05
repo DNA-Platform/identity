@@ -1,0 +1,16 @@
+.ldScnz .pa-list{counter-reset:list-item;}/*!sc*/
+.ldScnz .pa-item{display:list-item;list-style:disc inside;}/*!sc*/
+.ldScnz .pa-ordered .pa-item{list-style-type:decimal;}/*!sc*/
+data-styled.g12[id="sc-kEqYZi"]{content:"ldScnz,"}/*!sc*/
+.jdwVGt{padding:1.5rem;}/*!sc*/
+.jdwVGt .pd-chapter,.jdwVGt .pd-section,.jdwVGt .pd-paragraph{margin-block:1.5rem;}/*!sc*/
+.jdwVGt .pd-chapter{max-width:44rem;}/*!sc*/
+.jdwVGt .pd-image img{display:block;max-width:100%;height:auto;}/*!sc*/
+.jdwVGt .pd-code{overflow-x:auto;}/*!sc*/
+data-styled.g18[id="sc-hBMXrk"]{content:"jdwVGt,"}/*!sc*/
+.hQKPGZ .pd-book{display:grid;grid-template-columns:16rem minmax(0, 1fr);column-gap:1.5rem;align-items:start;}/*!sc*/
+@media (max-width: 56rem){.hQKPGZ .pd-book{display:block;}}/*!sc*/
+.hQKPGZ .pd-page:not(.pa-open){display:none;}/*!sc*/
+.hQKPGZ .pd-page.pa-open{display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);column-gap:1.5rem;align-items:start;}/*!sc*/
+@media (max-width: 56rem){.hQKPGZ .pd-page.pa-open{display:block;}}/*!sc*/
+data-styled.g21[id="sc-bkbknG"]{content:"hQKPGZ,"}/*!sc*/

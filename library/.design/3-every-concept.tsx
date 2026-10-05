@@ -1,5 +1,5 @@
-import { Chapter, Heading, Image, Paragraph, Section, Title } from '@dna-platform/public';
-import { Concept, Said, Sketch } from './.book';
+import { Chapter, Code, Heading, Image, Paragraph, Section, Title } from '@dna-platform/public';
+import { Concept, Said } from './.book';
 
 export default () => (
     <Chapter>
@@ -19,7 +19,6 @@ export default () => (
             </Paragraph>
             <Section>
                 <Concept>1</Concept>
-                <Sketch>![[ 001.html ]]</Sketch>
                 <Heading>[[[ The Shelf ]]]</Heading>
                 <Paragraph>
                     Concept 1, after Apple Books.
@@ -37,10 +36,12 @@ export default () => (
                     I really like the book view, and aside from color, we will need some sort of visual landmark to
                     ground the book, which justifies seeing the cover.
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 001.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>2</Concept>
-                <Sketch>![[ 002.html ]]</Sketch>
                 <Heading>[[[ Ask the Sources ]]]</Heading>
                 <Paragraph>
                     Concept 2, after NotebookLM.
@@ -58,10 +59,12 @@ export default () => (
                     The sources really look great. I really like it. I like the little view and the logo. But what
                     would it mean to type in a message? We have to be realistic.
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 002.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>3</Concept>
-                <Sketch>![[ 003.html ]]</Sketch>
                 <Heading>[[[ The Wall ]]]</Heading>
                 <Paragraph>
                     Concept 3, after Pinterest.
@@ -75,10 +78,12 @@ export default () => (
                     <Image>![[ 003-desk.png ]]</Image>
                     <Image>![[ 003-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 003.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>4</Concept>
-                <Sketch>![[ 004.html ]]</Sketch>
                 <Heading>The Command Line</Heading>
                 <Paragraph>
                     Concept 4, after keyboard-first tools: command palettes, launchers and the leader keys of
@@ -93,10 +98,12 @@ export default () => (
                     <Image>![[ 004-desk.png ]]</Image>
                     <Image>![[ 004-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 004.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>5</Concept>
-                <Sketch>![[ 005.html ]]</Sketch>
                 <Heading>[[[ The Front Page ]]]</Heading>
                 <Paragraph>
                     Concept 5, after a newspaper's front page and the long-read site's home.
@@ -111,6 +118,9 @@ export default () => (
                     <Image>![[ 005-desk.png ]]</Image>
                     <Image>![[ 005-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 005.html ]]</Code>
+                </Paragraph>
             </Section>
         </Section>
         <Section>
@@ -122,7 +132,6 @@ export default () => (
             </Paragraph>
             <Section>
                 <Concept>6</Concept>
-                <Sketch>![[ 006.html ]]</Sketch>
                 <Heading>[[[ Side by Side ]]]</Heading>
                 <Paragraph>
                     Concept 6, after API documentation, as Stripe sets it.
@@ -140,10 +149,12 @@ export default () => (
                     6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and
                     documentation emphasized. Code doesn't look right unless in full view.
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 006.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>7</Concept>
-                <Sketch>![[ 007.html ]]</Sketch>
                 <Heading>[[[ The Notebook ]]]</Heading>
                 <Paragraph>
                     Concept 7, after a computational notebook, as Observable sets it.
@@ -156,10 +167,12 @@ export default () => (
                     <Image>![[ 007-desk.png ]]</Image>
                     <Image>![[ 007-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 007.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>8</Concept>
-                <Sketch>![[ 008.html ]]</Sketch>
                 <Heading>[[[ The Workbench ]]]</Heading>
                 <Paragraph>
                     Concept 8, after a component workshop, as Storybook sets it.
@@ -172,6 +185,9 @@ export default () => (
                     <Image>![[ 008-desk.png ]]</Image>
                     <Image>![[ 008-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 008.html ]]</Code>
+                </Paragraph>
             </Section>
         </Section>
         <Section>
@@ -182,7 +198,6 @@ export default () => (
             </Paragraph>
             <Section>
                 <Concept>9</Concept>
-                <Sketch>![[ 009.html ]]</Sketch>
                 <Heading>[[[ The Database ]]]</Heading>
                 <Paragraph>
                     Concept 9, after Notion.
@@ -201,10 +216,12 @@ export default () => (
                     For the catalogue across projects I like 9 the best, and I might even like a splash of the
                     Claude theme to delineate that this view is Claude projects.
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 009.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>10</Concept>
-                <Sketch>![[ 010.html ]]</Sketch>
                 <Heading>[[[ The Map ]]]</Heading>
                 <Paragraph>
                     Concept 10, after market maps and disk-usage maps — the squarified treemap.
@@ -217,6 +234,9 @@ export default () => (
                 <Paragraph>
                     <Image>![[ 010-desk.png ]]</Image>
                     <Image>![[ 010-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Code>![[ 010.html ]]</Code>
                 </Paragraph>
             </Section>
         </Section>
@@ -232,7 +252,6 @@ export default () => (
             </Paragraph>
             <Section>
                 <Concept>11</Concept>
-                <Sketch>![[ 011.html ]]</Sketch>
                 <Heading>[[[ A Black Side Bar ]]]</Heading>
                 <Paragraph>
                     Concept 11, an idea, after the homes I liked, in the coming-soon page's soft black.
@@ -246,10 +265,12 @@ export default () => (
                     <Image>![[ 011-desk.png ]]</Image>
                     <Image>![[ 011-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 011.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>12</Concept>
-                <Sketch>![[ 012.html ]]</Sketch>
                 <Heading>[[[ A Light Side Bar ]]]</Heading>
                 <Paragraph>
                     Concept 12, an idea, after the homes I liked, the lighter way.
@@ -262,10 +283,12 @@ export default () => (
                     <Image>![[ 012-desk.png ]]</Image>
                     <Image>![[ 012-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 012.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>13</Concept>
-                <Sketch>![[ 013.html ]]</Sketch>
                 <Heading>[[[ A Black Top Bar ]]]</Heading>
                 <Paragraph>
                     Concept 13, an idea, after the homes I liked, in the coming-soon page's soft black.
@@ -279,10 +302,12 @@ export default () => (
                     <Image>![[ 013-desk.png ]]</Image>
                     <Image>![[ 013-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 013.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>14</Concept>
-                <Sketch>![[ 014.html ]]</Sketch>
                 <Heading>[[[ A White Top Bar ]]]</Heading>
                 <Paragraph>
                     Concept 14, an idea, after the homes I liked, the lighter way.
@@ -295,10 +320,12 @@ export default () => (
                     <Image>![[ 014-desk.png ]]</Image>
                     <Image>![[ 014-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 014.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>15</Concept>
-                <Sketch>![[ 015.html ]]</Sketch>
                 <Heading>[[[ A Black Top Bar and an Opal Side Bar ]]]</Heading>
                 <Paragraph>
                     Concept 15, an idea, after the coming-soon page: its soft black, and its opal between that and
@@ -312,10 +339,12 @@ export default () => (
                     <Image>![[ 015-desk.png ]]</Image>
                     <Image>![[ 015-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 015.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>16</Concept>
-                <Sketch>![[ 016.html ]]</Sketch>
                 <Heading>A White Top Bar and an Opal Side Bar</Heading>
                 <Paragraph>
                     Concept 16, an idea, after the homes I liked, the lighter way.
@@ -328,10 +357,12 @@ export default () => (
                     <Image>![[ 016-desk.png ]]</Image>
                     <Image>![[ 016-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 016.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>17</Concept>
-                <Sketch>![[ 017.html ]]</Sketch>
                 <Heading>[[[ A Black Rail and a Blue Top ]]]</Heading>
                 <Paragraph>
                     Concept 17, an idea, after the coming-soon page: its soft black, and the blue it suggests.
@@ -345,10 +376,12 @@ export default () => (
                     <Image>![[ 017-desk.png ]]</Image>
                     <Image>![[ 017-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 017.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>18</Concept>
-                <Sketch>![[ 018.html ]]</Sketch>
                 <Heading>An Opal Rail and a White Top</Heading>
                 <Paragraph>
                     Concept 18, an idea, after the homes I liked, the lighter way.
@@ -361,10 +394,12 @@ export default () => (
                     <Image>![[ 018-desk.png ]]</Image>
                     <Image>![[ 018-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 018.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>19</Concept>
-                <Sketch>![[ 019.html ]]</Sketch>
                 <Heading>[[[ Two Top Bars: Black, then Sky ]]]</Heading>
                 <Paragraph>
                     Concept 19, an idea, after the coming-soon page: its soft black, and a lighter step of the blue.
@@ -384,10 +419,12 @@ export default () => (
                     black and sky, though I think I want to be able to switch the view as part of the dynamism of
                     the page.
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 019.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>20</Concept>
-                <Sketch>![[ 020.html ]]</Sketch>
                 <Heading>[[[ Two Top Bars: White, then Opal ]]]</Heading>
                 <Paragraph>
                     Concept 20, an idea, after the homes I liked, the lighter way.
@@ -405,10 +442,12 @@ export default () => (
                     to think that maybe I don't want quite so much of the dark. The opal is interesting too, and
                     while we would need to use that effect carefully, I like it as a type of annotation.
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 020.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>21</Concept>
-                <Sketch>![[ 021.html ]]</Sketch>
                 <Heading>[[[ No Bars: White Cards ]]]</Heading>
                 <Paragraph>
                     Concept 21, an idea, after the home that asks its sources.
@@ -421,10 +460,12 @@ export default () => (
                     <Image>![[ 021-desk.png ]]</Image>
                     <Image>![[ 021-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 021.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>22</Concept>
-                <Sketch>![[ 022.html ]]</Sketch>
                 <Heading>No Bars: White Cards on Black</Heading>
                 <Paragraph>
                     Concept 22, an idea, after the home that asks its sources, on the coming-soon page's ground.
@@ -437,10 +478,12 @@ export default () => (
                     <Image>![[ 022-desk.png ]]</Image>
                     <Image>![[ 022-phone.png ]]</Image>
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 022.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>23</Concept>
-                <Sketch>![[ 023.html ]]</Sketch>
                 <Heading>[[[ A Conversation, in the Black Side Bar ]]]</Heading>
                 <Paragraph>
                     Concept 23, an idea, after the application the conversations come from.
@@ -459,6 +502,9 @@ export default () => (
                     Yes, 23, though we might vary the color scheme based on project, but start assuming the dark
                     sidebar. That theme looks nice.
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 023.html ]]</Code>
+                </Paragraph>
             </Section>
         </Section>
         <Section>
@@ -470,7 +516,6 @@ export default () => (
             </Paragraph>
             <Section>
                 <Concept>24</Concept>
-                <Sketch>![[ 024.html ]]</Sketch>
                 <Heading>[[[ The Title Page ]]]</Heading>
                 <Paragraph>
                     Concept 24, an idea, after the coming-soon page.
@@ -489,10 +534,12 @@ export default () => (
                     Beautiful. We will be repurposing the design you put on the library home screen, but not at this
                     very moment.
                 </Paragraph>
+                <Paragraph>
+                    <Code>![[ 024.html ]]</Code>
+                </Paragraph>
             </Section>
             <Section>
                 <Concept>25</Concept>
-                <Sketch>![[ 025.html ]]</Sketch>
                 <Heading>[[[ The Reading View ]]]</Heading>
                 <Paragraph>
                     Concept 25, an idea, after the algebra of perspective, in the original demo.
@@ -511,6 +558,9 @@ export default () => (
                     <Said />
                     I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so
                     noticeable, but I really like it for bookish chapters like the autobiography.
+                </Paragraph>
+                <Paragraph>
+                    <Code>![[ 025.html ]]</Code>
                 </Paragraph>
             </Section>
         </Section>

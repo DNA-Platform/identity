@@ -57,7 +57,16 @@ export default () => (
                     <Means>$[[ The date ]]( Dougs Reference Manual / The Date )</Means>, which a chapter like this one carries.
                 </Line>
                 <Line>
-                    <Means>$[[ The outline ]]( Dougs Reference Manual / The Outline )</Means>, which shows a book the way the code sees it.
+                    <Means>$[[ The author and the subject ]]( Dougs Reference Manual / The Author and the Subject )</Means>, the two links every book is drawn with.
+                </Line>
+                <Line>
+                    <Means>$[[ The switch ]]( Dougs Reference Manual / The Switch )</Means>, which is something I press to see a book another way.
+                </Line>
+                <Line>
+                    <Means>$[[ The outline ]]( Dougs Reference Manual / The Outline )</Means>, which shows a book's structure.
+                </Line>
+                <Line>
+                    <Means>$[[ The pages ]]( Dougs Reference Manual / The Pages )</Means>, <Means>$[[ the sidebar ]]( Dougs Reference Manual / The Sidebar )</Means> and <Means>$[[ the spread ]]( Dougs Reference Manual / The Spread )</Means>, which lay out a book read one chapter at a time.
                 </Line>
                 <Line>
                     <Means>$[[ Initializing a library ]]( Dougs Reference Manual / Initializing a Library )</Means>, which says how one like this is begun and how it is bound.
@@ -79,7 +88,9 @@ export default () => (
                 </Line>
             </Paragraph>
             <Paragraph>
-                This book and the catalogue carry none of their own yet.
+                This book carries <Means>$[[ the sheet ]]( ./The Sheet )</Means>, and the catalogue
+                carries <Means>$[[ the two bars ]]( Dougs Library / The Two Bars )</Means>. Each says how its own
+                book is laid out.
             </Paragraph>
             <Paragraph>
                 An appendix reads like a page of the reference manual, because a chapter that carries its file is

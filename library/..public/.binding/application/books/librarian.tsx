@@ -8,6 +8,7 @@ import StartingOver1 from '../../../../.librarian/1-starting-over';
 import ChoosingADesign2 from '../../../../.librarian/2-choosing-a-design';
 import Closure3 from '../../../../.librarian/3-closure';
 import GhostWriting4 from '../../../../.librarian/4-ghost-writing';
+import TheSheet90 from '../../../../.librarian/90-the-sheet';
 
 const Book = $($Book);
 
@@ -20,6 +21,7 @@ export const book = () => (
         {ChoosingADesign2()}
         {Closure3()}
         {GhostWriting4()}
+        {TheSheet90()}
     </Book>
 );
 
