@@ -1,4 +1,4 @@
-import { Chapter, Code, Heading, Paragraph, Section, Title } from '@dna-platform/public';
+import { Chapter, Code, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Appendix, Wide } from './.book';
 
 export default () => (
@@ -11,7 +11,9 @@ export default () => (
                 A concept is a page, and its card in this book shows a photograph of it at a desk's width with
                 another, at a phone's, laid over the corner. The camera takes those photographs. It is the one
                 tool this book needs that the framework does not give, so it stands here, beside the chapter
-                that says what it is, and nothing that builds this book stands outside it.
+                that says what it is, and nothing that builds this book stands outside it. It was once a script
+                kept outside the library, and how it came to stand here is told
+                in <Means>$[[ Closure ]]( Dougs Story / Closure )</Means>.
             </Paragraph>
             <Paragraph>
                 It looks at every concept that stands beside a chapter of this book under its number,

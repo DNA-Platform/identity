@@ -16,6 +16,9 @@ export default () => (
                 <Content>$[[ ./The Theme ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./The Date ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Content>$[[ ./Initializing a Library ]]</Content>
             </Paragraph>
             <Paragraph>

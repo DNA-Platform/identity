@@ -4,7 +4,10 @@ import $Book from '../../../../.librarian/.book';
 import Cover from '../../../../.librarian/.cover';
 import Synopsis from '../../../../.librarian/.synopsis';
 import Table from '../../../../.librarian/.table';
-import AFirstChapter1 from '../../../../.librarian/1-a-first-chapter';
+import StartingOver1 from '../../../../.librarian/1-starting-over';
+import ChoosingADesign2 from '../../../../.librarian/2-choosing-a-design';
+import Closure3 from '../../../../.librarian/3-closure';
+import GhostWriting4 from '../../../../.librarian/4-ghost-writing';
 
 const Book = $($Book);
 
@@ -13,7 +16,10 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {AFirstChapter1()}
+        {StartingOver1()}
+        {ChoosingADesign2()}
+        {Closure3()}
+        {GhostWriting4()}
     </Book>
 );
 

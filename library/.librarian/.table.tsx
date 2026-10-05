@@ -10,7 +10,16 @@ export default () => (
         <Section>
             <Heading>Contents</Heading>
             <Paragraph>
-                <Content>$[[ ./A First Chapter ]]</Content>
+                <Content>$[[ ./Starting Over ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./Choosing a Design ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./Closure ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./Ghost-Writing ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Parenthetical />

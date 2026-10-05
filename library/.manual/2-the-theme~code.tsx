@@ -19,7 +19,7 @@ export class $DougsTheme extends $Theme {
     style: ElementType = selection.div`${this.parts()}`;
 
     protected parts(): RuleSet[] {
-        return [this.page(), this.levels(), this.links()];
+        return [this.page(), this.levels(), this.links(), this.apparatus()];
     }
 
     protected page(): RuleSet {
@@ -56,6 +56,14 @@ export class $DougsTheme extends $Theme {
             .pa-reference { color: ${({ theme }) => theme.link}; text-decoration-color: ${({ theme }) => theme.link}; text-underline-offset: 0.15em; }
             .pa-self-reference { color: inherit; text-decoration: none; }
             .pa-content { color: ${({ theme }) => theme.link}; }
+        `;
+    }
+
+    protected apparatus(): RuleSet {
+        return css`
+            .pd-paragraph.pd-byline { margin-block: 0; text-align: end; font-size: calc(0.8 * ${({ theme }) => theme.size}); letter-spacing: 0.08em; }
+            .pd-byline .pa-reference { text-decoration: none; }
+            .pd-dateline { display: block; margin-block-start: ${({ theme }) => theme.space}; text-align: end; font-size: calc(0.8 * ${({ theme }) => theme.size}); font-style: italic; color: color-mix(in srgb, ${({ theme }) => theme.ink} 64%, ${({ theme }) => theme.paper}); }
         `;
     }
 }

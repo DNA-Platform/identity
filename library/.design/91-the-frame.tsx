@@ -17,8 +17,10 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 The masthead is a paragraph the book draws before its chapters: the library this book stands in,
-                and the book's own name, each a way back. And a paragraph that says it is wide is let out of the
-                reading measure, which is how a sketch or a listing takes the whole page.
+                and the book's own name, each a way back. Under it stands the byline every book of my library
+                draws, my name as a way to my story, and the frame keeps it in the rail. And a paragraph that says
+                it is wide is let out of the reading measure, which is how a sketch or a listing takes the whole
+                page.
             </Paragraph>
         </Section>
         <Section>

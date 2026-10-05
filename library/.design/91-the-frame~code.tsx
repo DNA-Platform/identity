@@ -46,6 +46,7 @@ export class $Gallery extends $Format {
         &::before { content: ''; position: fixed; z-index: 2; left: 0; top: 0; bottom: 0; width: var(--rail); background: ${({ theme }) => theme.accent}; }
         .pd-book { box-sizing: border-box; margin: 0 0 0 var(--rail); max-width: none; min-height: 100vh; padding: 0 clamp(1.5rem, 4vw, 4.5rem) 4rem; }
         .pd-masthead { position: fixed; z-index: 3; left: 0; top: 0; width: var(--rail); margin: 0; padding: 1.7rem 1.6rem 0; }
+        .pd-byline { box-sizing: border-box; position: fixed; z-index: 3; left: 0; top: 7.1rem; width: var(--rail); padding: 0 1.6rem; }
         .pa-table-of-contents { position: fixed; z-index: 3; left: 0; top: 7.4rem; bottom: 0; width: var(--rail); margin: 0; padding: 0 1.6rem 2rem; overflow: auto; }
         .pa-synopsis:not(.pa-open) { display: none; }
         .pd-paragraph.pa-wide { max-width: none; }
@@ -55,6 +56,7 @@ export class $Gallery extends $Format {
             .pd-book { display: flex; flex-direction: column; margin: 0; padding: 0 1.25rem 4rem; }
             .pd-book > * { min-width: 0; }
             .pd-book > .pd-masthead { order: -2; position: static; width: auto; margin: 0 -1.25rem; padding: .9rem 1.25rem .3rem; background: ${({ theme }) => theme.accent}; }
+            .pd-byline { order: -2; position: static; width: auto; margin: 0 -1.25rem; padding: 0 1.25rem .5rem; background: ${({ theme }) => theme.accent}; }
             .pd-book > nav { order: -1; position: sticky; z-index: 3; top: 0; margin: 0 -1.25rem; background: ${({ theme }) => theme.accent}; }
             .pd-book [id] { scroll-margin-top: 4.5rem; }
             .pd-book > nav .pd-chapter.pa-table-of-contents { position: static; display: flex; gap: 1.5rem; width: auto; margin: 0; padding: .45rem 1.25rem .7rem; overflow: auto hidden; scrollbar-width: none; }

@@ -9,11 +9,12 @@ export default () => (
             <Paragraph>
                 These are the designs I am going with, one for each kind of book in my library. Under each are the
                 concepts it comes from, how it came to be, and the book it is for. This page changes as the library
-                is built: the story goes on, and the pages that wear a design are linked from it.
+                is built: the story goes on, and the pages that wear a design are linked from it. The two days of
+                choosing are told in <Means>$[[ Choosing a Design ]]( Dougs Story / Choosing a Design )</Means>.
             </Paragraph>
         </Section>
         <Section>
-            <Heading>The library's catalogue</Heading>
+            <Heading>[[[ The library's catalogue ]]]</Heading>
             <Paragraph>
                 <Chosen />
                 The shelf of 1 under the black and sky of 19, with the view switching among 1, 2 and 3.
@@ -38,7 +39,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>The reference manual</Heading>
+            <Heading>[[[ The reference manual ]]]</Heading>
             <Paragraph>
                 <Chosen />
                 The words beside the file as in 6, a part opened alone on the bench as in 8, and a toggle between
@@ -62,7 +63,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>The design book</Heading>
+            <Heading>[[[ The design book ]]]</Heading>
             <Paragraph>
                 <Chosen />
                 This book: light and airy, with a toggle between a library mode and a gallery mode.
@@ -78,7 +79,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>My autobiography</Heading>
+            <Heading>[[[ My autobiography ]]]</Heading>
             <Paragraph>
                 <Chosen />
                 The reading view of 25: one typeset sheet, a chapter at a time, likely under a dark bar on top.
@@ -92,14 +93,18 @@ export default () => (
                 I remembered the algebra of perspective in the original demo, with its dark and light theme and its
                 simple reading view, and asked for something like that. It was drawn again as 25 and I like it. It
                 is beautiful, and right for bookish chapters like the autobiography. There will likely be a bar on
-                top as well, in dark perhaps, so that it isn't so noticeable.
+                top as well, in dark perhaps, so that it isn't so noticeable. Since then I have said what the book
+                is for. It is a story about me and what I create, a narrative slice of the library that helps to
+                navigate everything we have built, so that it is the most relevant place to begin from. Its
+                chapters are annotated by date and time, and it is to have a view that sorts them for recency. It
+                was also very hard to get to from another book, so every book now carries my name as a way to it.
             </Paragraph>
             <Paragraph>
                 It is for <Means>$[[ Dougs Story ]]</Means>, which does not wear it yet.
             </Paragraph>
         </Section>
         <Section>
-            <Heading>The Claude project catalogue</Heading>
+            <Heading>[[[ The Claude project catalogue ]]]</Heading>
             <Paragraph>
                 <Chosen />
                 The table of 9 under the white and opal bars of 20, with a splash of the Claude theme.
@@ -121,7 +126,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>A project's conversation catalogue</Heading>
+            <Heading>[[[ A project's conversation catalogue ]]]</Heading>
             <Paragraph>
                 <Chosen />
                 A multi-view that begins as a plain list downward, with views by recency and by size and each
@@ -140,7 +145,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>A Claude conversation</Heading>
+            <Heading>[[[ A Claude conversation ]]]</Heading>
             <Paragraph>
                 <Chosen />
                 23: the conversation in the black side bar, in the form of the application it comes from.

@@ -9,8 +9,7 @@ export default () => (
         </Title>
         <Paragraph>
             The catalogue of my library, filed under what it is about, which is itself. Everything I keep stands
-            under it, directly or through another book. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            under it, directly or through another book.
         </Paragraph>
     </Chapter>
 );

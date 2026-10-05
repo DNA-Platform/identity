@@ -40,6 +40,8 @@ export class $DesignTheme extends $DougsTheme {
             .pd-masthead .pa-reference { color: inherit; text-decoration: none; }
             .pd-shelf { display: block; font-size: .68rem; letter-spacing: .24em; text-transform: uppercase; color: color-mix(in srgb, ${({ theme }) => theme.bright} 60%, ${({ theme }) => theme.accent}); }
             .pd-here { display: block; margin-block-start: .45rem; font-size: 1.5rem; font-weight: 300; letter-spacing: .08em; paint-order: stroke fill; -webkit-text-stroke: 2px rgba(100, 210, 210, .22); }
+            .pd-paragraph.pd-byline { text-align: start; font-size: .8rem; letter-spacing: .04em; color: color-mix(in srgb, ${({ theme }) => theme.bright} 60%, ${({ theme }) => theme.accent}); }
+            .pd-byline .pa-reference { color: ${({ theme }) => theme.bright}; }
             .pa-table-of-contents { color: ${({ theme }) => theme.bright}; scrollbar-width: thin; scrollbar-color: color-mix(in srgb, ${({ theme }) => theme.bright} 20%, ${({ theme }) => theme.accent}) transparent; }
             .pa-table-of-contents .pd-section { margin-block: 0 1.5rem; }
             .pa-table-of-contents .pd-heading { font-size: .66rem; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: color-mix(in srgb, ${({ theme }) => theme.bright} 58%, ${({ theme }) => theme.accent}); margin: 0 0 .5rem; }
