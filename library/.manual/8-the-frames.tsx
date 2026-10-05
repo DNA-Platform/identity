@@ -7,30 +7,36 @@ export default () => (
         <Section>
             <Heading>What a frame is</Heading>
             <Paragraph>
-                A frame places the parts every book has: the library's name, the book's cover, its table of
-                contents and the open page. It is a mark said of the book, and it adds nothing to the book. The
-                chapters stay in the order they are written, and each one stands where the frame puts it by what
-                it is. With no frame, a book reads down the page in that order.
+                A frame is where a book puts its parts on the screen: the library's name, the cover and its
+                lines, the table of contents, the open page and the switch. A book is layout, so a frame is
+                written in the book. Each frame is a class
+                under <Means>$[[ the library's book ]]( ./The Book )</Means>, and what it writes is the layout:
+                every part drawn in an element of the frame's own.
             </Paragraph>
             <Paragraph>
-                Only one frame holds at a time. A frame given later stands in front of the one a book already
-                has and takes it out, so a book or a reader can change the frame and no chapter is rewritten.
+                A chapter does not know where it is put. The book finds each one by what it is, the cover, the
+                table of contents, a page, and draws it where the frame wants it. What a chapter wraps itself in
+                makes no difference to the frame, since the frame only places its own elements.
             </Paragraph>
             <Paragraph>
-                What a frame looks like is not written with the frame. It is a part
-                of <Means>$[[ the theme ]]( ./The Theme )</Means>, keyed on the frame's mark. A theme can be changed
-                from outside, and a theme that comes in that way has to bring every frame's rules with it, or the
-                frame is left with no values to read.
+                A frame's rules are written with it, in one styled component that reads the values
+                of <Means>$[[ the theme ]]( ./The Theme )</Means>. It is drawn inside the book, so it reads
+                whichever theme the book has at that moment, its own or one given to it from outside.
+            </Paragraph>
+            <Paragraph>
+                With no frame, a book reads down the page: the library's name, the cover and its lines, the table
+                of contents, the pages, the switch. That is what the library's book writes by itself.
             </Paragraph>
         </Section>
         <Section>
             <Heading>The side bar</Heading>
             <Paragraph>
-                The first frame sets the cover and the table of contents down a dark bar at the left, with the
-                open page beside it. It is the frame of two
+                This frame sets the library's name and the cover at the top of a dark bar at the left, and the
+                table of contents under them. The open page is beside the bar, with the switch above it. It is the
+                frame of two
                 of <Means>$[[ the designs I am going with ]]( Dougs Design / The Designs I Am Going With )</Means>,
-                the reference manual's and a conversation's. On a narrow screen it stands down, and the book
-                reads down the page.
+                the reference manual's and a conversation's. On a narrow screen there is no bar, and the book
+                reads down the page: the cover, the open page, then the table of contents.
             </Paragraph>
         </Section>
         <Section>

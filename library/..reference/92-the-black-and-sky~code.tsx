@@ -7,43 +7,7 @@ export class $BlackAndSky extends $DougsTheme {
     tint = '#a9d3e6';
 
     protected override parts(): RuleSet[] {
-        return [...super.parts(), this.topBars(), this.shelf(), this.list()];
-    }
-
-    protected topBars(): RuleSet {
-        return css`
-            .pd-book.pa-top-bars {
-                display: grid;
-                grid-template-columns: auto minmax(0, 1fr) auto;
-                grid-template-areas: 'library . author' 'title filed tools';
-                align-content: start;
-                align-items: center;
-                min-height: 100vh;
-                padding: 0;
-            }
-            .pd-book.pa-top-bars::before { content: ''; grid-row: 1; grid-column: 1 / -1; align-self: stretch; background: ${({ theme }) => theme.bar}; }
-            .pd-book.pa-top-bars::after { content: ''; grid-row: 2; grid-column: 1 / -1; align-self: stretch; background: ${({ theme }) => theme.tint}; }
-            .pa-top-bars > .pd-container, .pa-top-bars .pd-chapter.pa-cover, .pa-top-bars .pa-cover .pd-container { display: contents; }
-            .pa-top-bars .pd-library-title, .pa-top-bars .pd-byline, .pa-top-bars .pa-cover .pd-title, .pa-top-bars .pd-filed, .pa-top-bars .pd-switch { z-index: 1; margin: 0; }
-            .pa-top-bars .pd-library-title {
-                grid-area: library;
-                padding: calc(${({ theme }) => theme.space} / 2) ${({ theme }) => theme.space};
-                font-size: calc(0.6 * ${({ theme }) => theme.size});
-                letter-spacing: 0.24em;
-                text-transform: uppercase;
-                color: ${({ theme }) => theme.bright};
-            }
-            .pa-top-bars .pd-byline { grid-area: author; padding-inline: ${({ theme }) => theme.space}; color: ${({ theme }) => theme.bright}; }
-            .pa-top-bars .pd-library-title .pa-reference, .pa-top-bars .pd-byline .pa-reference { color: inherit; }
-            .pa-top-bars .pa-cover .pd-title { grid-area: title; padding: calc(${({ theme }) => theme.space} / 2) ${({ theme }) => theme.space}; font-size: calc(1.4 * ${({ theme }) => theme.size}); letter-spacing: 0.04em; }
-            .pa-top-bars .pd-filed { grid-area: filed; }
-            .pa-top-bars .pd-switch { grid-area: tools; padding-inline: ${({ theme }) => theme.space}; }
-            .pa-top-bars .pd-chapter.pa-page, .pa-top-bars .pd-chapter.pa-table-of-contents {
-                grid-column: 1 / -1;
-                margin: 0;
-                padding: ${({ theme }) => theme.space} calc(2 * ${({ theme }) => theme.space}) 0;
-            }
-        `;
+        return [...super.parts(), this.shelf(), this.list()];
     }
 
     protected shelf(): RuleSet {

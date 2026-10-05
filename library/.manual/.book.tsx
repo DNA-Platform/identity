@@ -1,6 +1,6 @@
-import { $DougsLibrary } from './1-the-book~code.tsx';
+import { $SideBar } from './8-the-frames~code.tsx';
 
-export default class $TheManual extends $DougsLibrary { }
+export default class $TheManual extends $SideBar { }
 
 export * from './1-the-book~code.tsx';
 export * from './2-the-theme~code.tsx';

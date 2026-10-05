@@ -14,8 +14,9 @@ export default () => (
             <Paragraph>
                 It is the frame
                 of <Means>$[[ the design I chose for the library's catalogue ]]( Dougs Design / The library's catalogue )</Means>,
-                and it is <Means>$[[ a frame ]]( Dougs Reference Manual / The Frames )</Means> like any other. It is
-                kept here until a second catalogue wears it.
+                and it is <Means>$[[ a frame ]]( Dougs Reference Manual / The Frames )</Means> like any other, a
+                class under the library's book that places the parts. It is kept here until a second catalogue
+                uses it.
             </Paragraph>
         </Section>
         <Section>

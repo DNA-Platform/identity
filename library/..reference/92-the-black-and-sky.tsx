@@ -13,8 +13,9 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 The theme is <Means>$[[ the library's ]]( Dougs Reference Manual / The Theme )</Means> with two
-                values changed and three parts added: the rules that set <Means>$[[ the bars ]]( ./The Bars )</Means>,
-                and the rules that set the table as <Means>$[[ a shelf ]]( ./The Shelf )</Means> and as a list.
+                values changed and two parts added: the rules that set the table
+                as <Means>$[[ a shelf ]]( ./The Shelf )</Means> and as a list. <Means>$[[ The bars ]]( ./The Bars )</Means> carry
+                their own rules and read these values.
             </Paragraph>
         </Section>
         <Section>

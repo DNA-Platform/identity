@@ -13,8 +13,8 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 The open page is the chapter the address names. At the book's own address no chapter is named,
-                and the page that opens is the synopsis, which says what the book is. The pages mark the book
-                when it stands at its front like that, so a frame can show more there. An address may also name
+                and the page that opens is the synopsis, which says what the book is. The pages put a class on the
+                book when it is at its front like that, so a frame can show more there. An address may also name
                 a place inside a chapter, a heading, and then the page that holds that place opens.
             </Paragraph>
             <Paragraph>

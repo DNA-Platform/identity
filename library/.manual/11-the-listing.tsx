@@ -14,7 +14,7 @@ export default () => (
             <Paragraph>
                 This manual's chapters are of that kind. So is the appendix of any other book, where the code
                 that builds the book is kept, which is why an appendix here reads like a page of this manual.
-                Nothing marks such a chapter but the file it carries.
+                Nothing says a chapter is of this kind but the file it carries.
             </Paragraph>
         </Section>
         <Section>

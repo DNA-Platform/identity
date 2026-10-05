@@ -22,7 +22,7 @@ export class $DougsTheme extends $Theme {
     style: ElementType = selection.div`${this.parts()}`;
 
     protected parts(): RuleSet[] {
-        return [this.page(), this.levels(), this.links(), this.figures(), this.apparatus(), this.sideBar(), this.spread()];
+        return [this.page(), this.levels(), this.links(), this.figures(), this.apparatus(), this.spread()];
     }
 
     protected page(): RuleSet {
@@ -34,7 +34,6 @@ export class $DougsTheme extends $Theme {
             color: ${({ theme }) => theme.ink};
             background: ${({ theme }) => theme.paper};
             min-height: 100vh;
-            .pd-book { padding: ${({ theme }) => theme.space}; }
         `;
     }
 
@@ -100,47 +99,6 @@ export class $DougsTheme extends $Theme {
                 font-size: calc(0.8 * ${({ theme }) => theme.size});
                 font-style: italic;
                 color: color-mix(in srgb, ${({ theme }) => theme.ink} 64%, ${({ theme }) => theme.paper});
-            }
-        `;
-    }
-
-    protected sideBar(): RuleSet {
-        return css`
-            .pa-side-bar .pd-library-title { font-size: calc(0.55 * ${({ theme }) => theme.size}); font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; }
-            .pa-side-bar .pd-chapter.pa-cover .pd-title { font-size: calc(1.2 * ${({ theme }) => theme.size}); line-height: 1.3; margin-block: 0; }
-            .pa-side-bar .pd-chapter.pa-cover .pd-paragraph { margin-block: calc(${({ theme }) => theme.space} / 4) 0; }
-            .pa-side-bar .pd-chapter.pa-table-of-contents .pd-heading {
-                font-size: calc(0.55 * ${({ theme }) => theme.size});
-                font-weight: 500;
-                letter-spacing: 0.24em;
-                text-transform: uppercase;
-                opacity: 0.6;
-            }
-            .pa-side-bar .pd-chapter.pa-table-of-contents .pd-paragraph { margin-block: calc(${({ theme }) => theme.space} / 3); font-size: calc(0.85 * ${({ theme }) => theme.size}); line-height: 1.3; }
-            .pa-side-bar .pd-chapter.pa-table-of-contents .pa-reference { color: inherit; text-decoration: none; }
-            .pa-side-bar .pd-chapter.pa-table-of-contents .pa-content { color: inherit; opacity: 0.76; }
-            .pa-side-bar .pd-chapter.pa-table-of-contents .pd-appended { float: inline-end; line-height: 2.2; }
-            .pa-side-bar .pd-chapter.pa-table-of-contents .pa-entry.pa-open .pa-content { opacity: 1; font-weight: 700; }
-
-            @media (min-width: 48rem) {
-                .pd-book.pa-side-bar {
-                    position: fixed;
-                    inset: 0;
-                    padding: 0;
-                    display: grid;
-                    grid-template-columns: 17.5rem minmax(0, 1fr);
-                    grid-template-rows: auto auto minmax(0, 1fr);
-                    grid-template-areas: 'library tools' 'cover page' 'table page';
-                }
-                .pd-book.pa-side-bar::before { content: ''; grid-column: 1; grid-row: 1 / -1; background: ${({ theme }) => theme.bar}; }
-                .pa-side-bar > .pd-container { display: contents; }
-                .pa-side-bar .pd-library-title { grid-area: library; margin: 0; padding: ${({ theme }) => theme.space} ${({ theme }) => theme.space} 0; color: ${({ theme }) => theme.bright}; }
-                .pa-side-bar .pd-chapter.pa-cover { grid-area: cover; margin: 0; padding: calc(${({ theme }) => theme.space} / 4) ${({ theme }) => theme.space} ${({ theme }) => theme.space}; color: ${({ theme }) => theme.bright}; }
-                .pa-side-bar .pd-chapter.pa-table-of-contents { grid-area: table; margin: 0; padding: 0 ${({ theme }) => theme.space} ${({ theme }) => theme.space}; overflow: auto; color: ${({ theme }) => theme.bright}; }
-                .pa-side-bar .pd-library-title .pa-reference, .pa-side-bar .pd-chapter.pa-cover .pa-reference { color: inherit; }
-                .pa-side-bar .pd-chapter.pa-table-of-contents .pa-entry.pa-open .pa-content { color: ${({ theme }) => theme.tint}; font-weight: inherit; }
-                .pa-side-bar .pd-switch { grid-area: tools; justify-self: end; margin: 0; padding: calc(${({ theme }) => theme.space} / 2) calc(3 * ${({ theme }) => theme.space}) 0; }
-                .pa-side-bar .pd-chapter.pa-page { grid-area: page; margin: 0; padding: calc(2 * ${({ theme }) => theme.space}) calc(3 * ${({ theme }) => theme.space}); overflow: auto; }
             }
         `;
     }

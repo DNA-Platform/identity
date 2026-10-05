@@ -1,13 +1,15 @@
 import { ReactNode } from 'react';
 import { $ } from '@dna-platform/chemistry';
-import { $Annotation, $Append, $Book, $Paragraph, Means as means, Theme, reflection } from '@dna-platform/public';
+import { $Annotation, $Append, $Book, $Chapter, $Paragraph, Means as means, Theme, reflection } from '@dna-platform/public';
 import type { Given } from '@dna-platform/public';
 import { DougsTheme } from './2-the-theme~code.tsx';
 import { $Paged, Paged as paged } from './7-the-pages~code.tsx';
-import { SideBar as sideBar } from './8-the-frames~code.tsx';
+import { Byline as byline, Filed as filed } from './9-the-cover~code.tsx';
 import { CodeForward as codeForward, WordsForward as wordsForward } from './11-the-listing~code.tsx';
 
 export class $DougsLibrary extends $Book {
+    get pages(): $Chapter[] { return this.annotations.expressed($Paged)?.pages ?? []; }
+
     get views(): Given<$Annotation>[][] {
         const WordsForward = $(wordsForward);
         const CodeForward = $(codeForward);
@@ -15,24 +17,62 @@ export class $DougsLibrary extends $Book {
     }
 
     override write(): ReactNode {
-        const LibraryTitle = $(libraryTitle);
-        const Switch = $(switching);
         return (
             <>
-                <LibraryTitle chapter={this.cover} />
-                {super.write()}
-                <Switch chapter={this.cover} />
+                {this.library()}
+                {this.place(this.cover)}
+                {this.filed()}
+                {this.byline()}
+                {this.place(this.table)}
+                {this.place(...this.pages)}
+                {this.controls()}
             </>
+        );
+    }
+
+    place(...chapters: ($Chapter | undefined)[]): ReactNode {
+        return chapters.map((chapter, index) => {
+            if (chapter === undefined) return null;
+            const Chapter = $(chapter);
+            return (
+                <Chapter key={index} />
+            );
+        });
+    }
+
+    library(): ReactNode {
+        const LibraryTitle = $(libraryTitle);
+        return (
+            <LibraryTitle chapter={this.cover} />
+        );
+    }
+
+    filed(): ReactNode {
+        const Filed = $(filed);
+        return (
+            <Filed chapter={this.cover} />
+        );
+    }
+
+    byline(): ReactNode {
+        const Byline = $(byline);
+        return (
+            <Byline chapter={this.cover} />
+        );
+    }
+
+    controls(): ReactNode {
+        const Switch = $(switching);
+        return (
+            <Switch chapter={this.cover} />
         );
     }
 
     protected override $Define(): void {
         super.$Define();
-        const SideBar = $(sideBar);
         const WordsForward = $(wordsForward);
         const Paged = $(paged);
         this.annotations.add(this,
-            <SideBar />,
             <WordsForward />,
             <Paged />
         );
@@ -74,7 +114,7 @@ export class $Switch extends $Paragraph {
                                 key={this.says(view)}
                                 type="button"
                                 className={view === this.shown(views) ? 'pd-view pa-shown' : 'pd-view'}
-                                onClick={() => this.shows(views, view)}
+                                onClick={() => this.shows(view)}
                             >
                                 {this.says(view)}
                             </button>
@@ -90,10 +130,10 @@ export class $Switch extends $Paragraph {
         return given.find(annotation => views.includes(annotation)) ?? views[0];
     }
 
-    shows(views: Given<$Annotation>[], view: Given<$Annotation>): void {
+    shows(view: Given<$Annotation>): void {
         const library = this.library;
         if (library === undefined) return;
-        library.$is = [...[library.$is].flat().filter(annotation => !views.includes(annotation)), view];
+        library.$is = [view, ...[library.$is].flat().filter(given => given !== view)];
     }
 
     says(view: Given<$Annotation>): string {

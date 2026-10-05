@@ -17,8 +17,9 @@ export default () => (
                 itself.
             </Paragraph>
             <Paragraph>
-                The sheet is <Means>$[[ a frame ]]( Dougs Reference Manual / The Frames )</Means>. It is kept here
-                because this is the only book that wears it. When a second book wants it, it moves to the manual.
+                The sheet is <Means>$[[ a frame ]]( Dougs Reference Manual / The Frames )</Means>: a class under
+                the library's book that places the parts, and this book's own class extends it. It is kept here
+                because this is the only book that uses it. When a second book wants it, it moves to the manual.
             </Paragraph>
         </Section>
         <Section>

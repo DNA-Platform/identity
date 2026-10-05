@@ -7,8 +7,8 @@ export default () => (
         <Section>
             <Heading>What the theme is</Heading>
             <Paragraph>
-                A place for the library's properties, and the one styled component that dresses the framework's
-                marks with them. The framework's Theme is bare, so the properties are this library's own: the font,
+                A place for the library's properties, and the one styled component that styles the framework's
+                classes with them. The framework's Theme is bare, so the properties are this library's own: the font,
                 the size, the leading, the measure, the space, the ink, the paper and the link, and three for a bar:
                 its dark, the bright that is written on it, and a tint. They are declared as fields and read by every
                 rule beneath through the theme's own provision. The values stand in for a design
@@ -18,11 +18,10 @@ export default () => (
             <Paragraph>
                 The component is composed of parts, each a method returning a fragment of rules, so that a book
                 changes one part and keeps the rest: the page, the levels, the links, the figures, and the
-                apparatus, which is the lines of a cover, the switch, the shelfmark and the dateline. Two more
-                parts say what a mark on the book looks like: the side bar
-                of <Means>$[[ ./The Frames ]]</Means>, and the spread of <Means>$[[ ./The Listing ]]</Means>. A
-                book that has a frame of its own adds that frame's part in its own theme. Every rule names a mark
-                the framework or this library puts on the writing.
+                apparatus, which is the lines of a cover, the switch, the shelfmark and the dateline. One more
+                part sets the spread of <Means>$[[ ./The Listing ]]</Means>. Where things go on the screen is not
+                the theme's to say: <Means>$[[ a frame ]]( ./The Frames )</Means> carries its own rules and reads
+                the theme's values. Every rule names a class the framework or this library puts on the writing.
             </Paragraph>
         </Section>
         <Section>

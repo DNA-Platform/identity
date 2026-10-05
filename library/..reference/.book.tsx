@@ -1,12 +1,11 @@
 import { $ } from '@dna-platform/chemistry';
 import { $Annotation, Theme } from '@dna-platform/public';
 import type { Given } from '@dna-platform/public';
-import { $DougsLibrary } from '../.manual/.book';
-import { TopBars as topBars } from './90-the-bars~code.tsx';
+import { $TopBars } from './90-the-bars~code.tsx';
 import { List as list, Shelf as shelf } from './91-the-shelf~code.tsx';
 import { BlackAndSky as blackAndSky } from './92-the-black-and-sky~code.tsx';
 
-export default class $TheCatalogue extends $DougsLibrary {
+export default class $TheCatalogue extends $TopBars {
     override get views(): Given<$Annotation>[][] {
         const Shelf = $(shelf);
         const List = $(list);
@@ -15,10 +14,8 @@ export default class $TheCatalogue extends $DougsLibrary {
 
     protected override $Define(): void {
         super.$Define();
-        const TopBars = $(topBars);
         const Shelf = $(shelf);
         this.annotations.add(this,
-            <TopBars />,
             <Shelf />
         );
     }

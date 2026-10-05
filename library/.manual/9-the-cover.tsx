@@ -8,19 +8,22 @@ export default () => (
             <Heading>The lines of a cover</Heading>
             <Paragraph>
                 A cover says a book's title, who wrote it and what it is filed under. The framework's cover
-                draws the title. Mine also writes the other two as lines of the cover, each a link: the subject
-                the book is filed under, and the author, which leads to <Means>$[[ Dougs Story ]]</Means> from
-                every book. The library is filed under itself, so its cover says no second line.
+                draws the title. The other two are lines the book draws from what its cover says, each a link:
+                the subject the book is filed under, and the author, which leads
+                to <Means>$[[ Dougs Story ]]</Means> from every book. The library is filed under itself, so it
+                has no second line.
             </Paragraph>
             <Paragraph>
-                The lines are part of the cover and not something a book draws beside it.
-                So <Means>$[[ a frame ]]( ./The Frames )</Means> can set a cover as a bar, a board or one running
-                line, and it is the same cover each time.
+                The lines are the book's and not the cover's, so <Means>$[[ a frame ]]( ./The Frames )</Means> puts
+                each one where it wants. The side bar sets both under the
+                title. <Means>$[[ The catalogue's bars ]]( Dougs Library / The Bars )</Means> set the author at the
+                far end of the library's bar. <Means>$[[ The story's sheet ]]( Dougs Story / The Sheet )</Means> runs
+                the author on after the title and leaves the other out.
             </Paragraph>
         </Section>
         <Section>
             <Listing />
-            <Heading>The cover's file</Heading>
+            <Heading>The lines' file</Heading>
             <Paragraph>
                 <Code identifier="code" />
             </Paragraph>

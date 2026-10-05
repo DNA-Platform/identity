@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { $, $Chemical } from '@dna-platform/chemistry';
-import { $Cover, $Paragraph, $Writing, Reference as reference, Word as word } from '@dna-platform/public';
+import { $ } from '@dna-platform/chemistry';
+import { $Paragraph, Reference as reference, Word as word } from '@dna-platform/public';
 
 export class $Filed extends $Paragraph {
     override write(): ReactNode {
@@ -51,30 +51,5 @@ export class $Byline extends $Paragraph {
     }
 }
 
-export class $DougsCover extends $Cover {
-    $DougsCover(...chemicals: $Chemical[]) {
-        this.$Format(...chemicals);
-        const Filed = $(filed);
-        const Byline = $(byline);
-        this.text.add(this,
-            <Filed />,
-            <Byline />
-        );
-    }
-
-    override defines(writing: $Writing): void {
-        super.defines(writing);
-        writing.text.append(this, ...this.text);
-    }
-
-    override erase(writing: $Writing): void {
-        super.erase(writing);
-        writing.text.revert(this);
-    }
-}
-
 export const Filed = $($Filed);
-const filed = Filed;
 export const Byline = $($Byline);
-const byline = Byline;
-export const Cover = $($DougsCover);
