@@ -1,0 +1,24 @@
+{
+  "books": [
+    {
+      "folder": "..reference",
+      "digest": "873f89b1994b9b06",
+      "walked": 38
+    },
+    {
+      "folder": ".design",
+      "digest": "91795dbad42975b9",
+      "walked": 231
+    },
+    {
+      "folder": ".librarian",
+      "digest": "13d8571b35ef8604",
+      "walked": 21
+    },
+    {
+      "folder": ".manual",
+      "digest": "9075c1aa892b91f4",
+      "walked": 61
+    }
+  ]
+}

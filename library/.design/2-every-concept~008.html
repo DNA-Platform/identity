@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Workbench</title>
+<meta name="number" content="8">
+<meta name="after" content="a component workshop, as Storybook sets it">
+<meta name="idea" content="A part is met by using it: the part itself drawn alone on a bench, its properties beside it to change, and the line a chapter would write rewriting itself as they change.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500&display=swap" rel="stylesheet">
+<style>
+    :root { --ui: #f4f5f7; --card: #ffffff; --line: #e2e4ea; --ink: #1b1d29; --soft: #565a6e; --faint: #8b8fa3; --violet: #5746d9; --violet-soft: #ecebfb; --ok: #1f8a5b; --sans: 'Geist', system-ui, sans-serif; --mono: 'Geist Mono', ui-monospace, monospace; }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body { background: var(--ui); color: var(--ink); font: 400 13.5px/1.5 var(--sans); display: grid; grid-template: 48px minmax(0, 1fr) / 244px minmax(0, 1fr); overflow: hidden; }
+    svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    input, textarea { font: inherit; color: inherit; }
+
+    .bar { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; padding: 0 16px; background: var(--card); border-bottom: 1px solid var(--line); }
+    .bar .mark { width: 24px; height: 24px; border-radius: 6px; background: var(--ink); color: #fff; display: grid; place-items: center; font: 600 12px/1 var(--sans); }
+    .bar .path { color: var(--faint); }
+    .bar .path b { color: var(--ink); font-weight: 500; }
+    .bar .find { margin-left: auto; display: flex; align-items: center; gap: 8px; width: 260px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; color: var(--faint); background: var(--ui); }
+    .bar .find kbd { margin-left: auto; font: 500 11px/1 var(--mono); border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; background: #fff; }
+    .bar .count { color: var(--soft); }
+    .pick { display: none; }
+
+    .tree { background: var(--card); border-right: 1px solid var(--line); padding: 12px 10px; overflow: auto; }
+    .tree h4 { font: 600 10.5px/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin: 14px 8px 6px; }
+    .tree h4:first-child { margin-top: 4px; }
+    .tree .file { display: flex; align-items: center; gap: 6px; padding: 5px 8px; color: var(--soft); font-weight: 500; }
+    .tree .file svg { width: 12px; height: 12px; color: var(--faint); }
+    .tree a { display: flex; align-items: center; gap: 8px; padding: 4px 8px 4px 28px; border-radius: 6px; color: var(--soft); }
+    .tree a i { width: 8px; height: 8px; border-radius: 2px; background: var(--k, #c3c6d4); flex: none; }
+    .tree a small { margin-left: auto; font: 400 10.5px/1 var(--mono); color: var(--faint); }
+    .tree a.on { background: var(--violet-soft); color: var(--violet); font-weight: 500; }
+    .tree a.on small { color: var(--violet); }
+    .figure { --k: #e0795a; } .format { --k: #3b9ab2; } .mark-k { --k: #b7a13a; } .para { --k: #7d6bd6; } .theme { --k: #4aa36c; }
+
+    .bench { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-width: 0; min-height: 0; }
+    .tools { display: flex; align-items: center; gap: 10px; padding: 9px 16px; background: var(--card); border-bottom: 1px solid var(--line); }
+    .tools h1 { font: 600 16px/1.2 var(--sans); }
+    .tools .kind { font: 500 11px/1 var(--mono); color: #b0522f; background: #fbeee8; border-radius: 99px; padding: 4px 9px; }
+    .tools .from { color: var(--faint); font: 400 12px/1 var(--mono); }
+    .tools .right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+    .seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--ui); }
+    .seg span { padding: 5px 10px; color: var(--soft); display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .seg span.on { background: #fff; color: var(--ink); font-weight: 500; box-shadow: 0 0 0 1px var(--line); }
+    .seg u { width: 11px; height: 11px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .18); }
+    .alone { color: var(--violet); font-weight: 500; white-space: nowrap; }
+
+    .canvas { position: relative; display: grid; place-items: center; overflow: auto; padding: 22px; background: radial-gradient(circle, #cfd2dc 1px, transparent 1.3px) 0 0 / 18px 18px, #fafbfc; }
+    .canvas.night { background: radial-gradient(circle, #2b4a52 1px, transparent 1.3px) 0 0 / 18px 18px, #0f2329; }
+    .part { width: 330px; }
+    .concept { background: #fff; border: 1px solid #e3ded2; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px -14px rgba(20, 30, 50, .35); }
+    .concept .shot { position: relative; aspect-ratio: 16 / 9.4; background: #f5f1e8; padding: 16px 16px 0; overflow: hidden; }
+    .concept .shot .row { display: flex; gap: 8px; align-items: flex-end; height: 100%; }
+    .concept .shot .row b { flex: 1; border-radius: 4px 4px 0 0; }
+    .concept .shot .tel { position: absolute; right: 12px; bottom: -10px; width: 58px; height: 104px; border-radius: 10px; border: 3px solid #1b1d29; background: #fff; padding: 8px 6px; display: grid; gap: 4px; align-content: start; }
+    .concept .shot .tel b { height: 22px; border-radius: 3px; }
+    .concept .words { padding: 13px 16px 16px; }
+    .concept .name { font: 500 21px/1.15 'Fraunces', Georgia, serif; color: #14262b; }
+    .concept .after { font-size: 12px; color: #6f7b78; margin: 2px 0 8px; }
+    .concept .says { font-size: 13.5px; line-height: 1.5; color: #3a4a4c; }
+    .measure { margin-top: 10px; text-align: center; font: 400 11px/1 var(--mono); color: var(--faint); }
+    .night .measure { color: #7fa3a8; }
+
+    .dock { background: var(--card); border-top: 1px solid var(--line); min-width: 0; }
+    .tabs { display: flex; gap: 2px; padding: 0 12px; border-bottom: 1px solid var(--line); }
+    .tabs span { padding: 9px 12px; color: var(--soft); border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+    .tabs span.on { color: var(--violet); border-bottom-color: var(--violet); font-weight: 500; }
+    .tabs span em { font-style: normal; font: 500 10.5px/1 var(--mono); background: var(--ui); border-radius: 99px; padding: 2px 6px; margin-left: 4px; color: var(--soft); }
+    .panes { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+    .props { padding: 4px 16px 12px; }
+    .prop { display: grid; grid-template-columns: 76px minmax(0, 1fr) minmax(0, 1.15fr); gap: 14px; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--line); }
+    .prop:last-child { border-bottom: 0; }
+    .prop b { font: 500 12.5px/1.4 var(--mono); }
+    .prop b small { display: block; font: 400 11px/1.3 var(--sans); color: var(--faint); }
+    .prop p { color: var(--soft); font-size: 12.5px; line-height: 1.4; }
+    .prop input, .prop textarea { width: 100%; border: 1px solid var(--line); border-radius: 7px; padding: 6px 9px; background: var(--ui); resize: none; outline: none; }
+    .prop input:focus, .prop textarea:focus { border-color: var(--violet); background: #fff; box-shadow: 0 0 0 3px var(--violet-soft); }
+    .prop .lits { display: flex; flex-wrap: wrap; gap: 4px; }
+    .prop .lits span { font: 400 11px/1 var(--mono); background: var(--ui); border: 1px solid var(--line); border-radius: 5px; padding: 4px 6px; color: var(--soft); }
+    .written { border-left: 1px solid var(--line); padding: 12px 16px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+    .written .head { display: flex; align-items: center; color: var(--faint); font-size: 12px; }
+    .written .head span { margin-left: auto; display: flex; align-items: center; gap: 5px; color: var(--soft); }
+    .written pre { flex: 1; font: 400 12px/1.7 var(--mono); background: #171a2b; color: #d9dcf2; border-radius: 9px; padding: 12px 14px; overflow: auto; white-space: pre-wrap; word-break: break-word; }
+    .written pre .t { color: #9db7ff; } .written pre .a { color: #c8a6ff; } .written pre .s { color: #ffcf8a; } .written pre .c { color: #6f7598; }
+    .written .ok { display: flex; align-items: center; gap: 6px; color: var(--ok); font-size: 12px; }
+
+    @media (max-width: 760px) {
+        html, body { height: auto; }
+        body { display: block; overflow: visible; }
+        .bar { position: sticky; top: 0; z-index: 3; height: 50px; }
+        .bar .path, .bar .find, .bar .count { display: none; }
+        .pick { display: flex; align-items: center; gap: 8px; flex: 1; font-weight: 500; font-size: 15px; }
+        .pick small { color: var(--faint); font-weight: 400; font-size: 12.5px; }
+        .pick svg { margin-left: auto; }
+        .tree { display: none; }
+        .tools { flex-wrap: wrap; padding: 10px 14px; }
+        .tools h1, .tools .from, .alone, .seg.width { display: none; }
+        .tools .right { margin-left: auto; }
+        .canvas { padding: 22px 14px 18px; overflow: visible; }
+        .part { width: min(330px, 100%); }
+        .tabs { overflow-x: auto; padding: 0 6px; scrollbar-width: none; }
+        .panes { grid-template-columns: minmax(0, 1fr); }
+        .props { padding: 2px 14px 8px; }
+        .prop { grid-template-columns: minmax(0, 1fr); gap: 5px; padding: 11px 0; }
+        .prop b small { display: inline; margin-left: 6px; }
+        .written { border-left: 0; border-top: 1px solid var(--line); padding: 14px; }
+        input, textarea { font-size: 16px; }
+    }
+</style>
+</head>
+<body>
+<header class="bar">
+    <span class="mark">D</span>
+    <span class="path">Dougs Library / <b>Dougs Reference Manual</b></span>
+    <span class="pick">Concept <small>a figure · part 9 of 11</small><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></span>
+    <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find a part<kbd>/</kbd></span>
+    <span class="count">11 parts in 6 files</span>
+</header>
+
+<nav class="tree">
+    <h4>The library</h4>
+    <div class="file"><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg>The Book</div>
+    <a class="para"><i></i>DougsLibrary<small>book</small></a>
+    <div class="file"><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg>The Theme</div>
+    <a class="theme"><i></i>DougsTheme<small>theme</small></a>
+    <h4>The design book</h4>
+    <div class="file"><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg>The Pages</div>
+    <a class="format"><i></i>Paged<small>format</small></a>
+    <a class="mark-k"><i></i>Entry<small>mark</small></a>
+    <a class="mark-k"><i></i>Appendix<small>mark</small></a>
+    <div class="file"><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg>The Frame</div>
+    <a class="para"><i></i>Masthead<small>paragraph</small></a>
+    <a class="format"><i></i>Gallery<small>format</small></a>
+    <div class="file"><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg>The Concept</div>
+    <a class="figure on"><i></i>Concept<small>figure</small></a>
+    <a class="mark-k"><i></i>Concepts<small>mark</small></a>
+    <a class="para"><i></i>Viewer<small>paragraph</small></a>
+    <div class="file"><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg>The Theme</div>
+    <a class="theme"><i></i>DesignTheme<small>theme</small></a>
+</nav>
+
+<main class="bench">
+    <div class="tools">
+        <h1>Concept</h1><span class="kind">a figure</span><span class="from">92-the-concept~code.tsx</span>
+        <div class="right">
+            <div class="seg paper"><span class="on" data-paper="day"><u style="background:#fafbfc"></u>Paper</span><span data-paper="night"><u style="background:#0f2329"></u>Dark</span></div>
+            <div class="seg width"><span class="on">Desk</span><span>Phone</span></div>
+            <span class="alone">Open alone ↗</span>
+        </div>
+    </div>
+
+    <div class="canvas" id="canvas">
+        <div class="part">
+            <div class="concept">
+                <div class="shot">
+                    <div class="row"><b style="height:78%;background:#b4553f"></b><b style="height:92%;background:#2f6b5f"></b><b style="height:70%;background:#33507f"></b><b style="height:86%;background:#c79a3b"></b><b style="height:64%;background:#6d4a7c"></b><b style="height:80%;background:#3f7f8c"></b></div>
+                    <div class="tel"><b style="background:#b4553f"></b><b style="background:#2f6b5f"></b><b style="background:#33507f"></b></div>
+                </div>
+                <div class="words">
+                    <div class="name" data-shows="named">The Shelf</div>
+                    <div class="after">after <span data-shows="draws">a reading app's bookshelf</span></div>
+                    <div class="says" data-shows="says">The library opens on its books, face out, and the one last read is already open.</div>
+                </div>
+            </div>
+            <div class="measure">330 wide · drawn by write()</div>
+        </div>
+    </div>
+
+    <section class="dock">
+        <div class="tabs"><span class="on">Properties<em>4</em></span><span>The file</span><span>Used in<em>4</em></span><span>The chapter</span></div>
+        <div class="panes">
+            <div class="props">
+                <div class="prop"><b>named<small>string</small></b><p>The concept's name, set under its picture.</p><input id="named" value="The Shelf"></div>
+                <div class="prop"><b>draws<small>string</small></b><p>What the concept is drawn after.</p><input id="draws" value="a reading app's bookshelf"></div>
+                <div class="prop"><b>says<small>string</small></b><p>The idea, in one sentence.</p><textarea id="says" rows="2">The library opens on its books, face out, and the one last read is already open.</textarea></div>
+                <div class="prop"><b>text<small>three literals</small></b><p>The desk picture, the phone picture and the page itself.</p><div class="lits"><span>desk.png</span><span>phone.png</span><span>.html</span></div></div>
+            </div>
+            <div class="written">
+                <div class="head">As a chapter writes it<span><svg viewBox="0 0 16 16"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 10.5V4a1 1 0 0 1 1-1h6.5"/></svg>Copy</span></div>
+<pre>&lt;<span class="t">Concept</span>
+    <span class="a">named</span>=<span class="s">"<span data-shows="named">The Shelf</span>"</span>
+    <span class="a">draws</span>=<span class="s">"<span data-shows="draws">a reading app's bookshelf</span>"</span>
+    <span class="a">says</span>=<span class="s">"<span data-shows="says">The library opens on its books, face out, and the one last read is already open.</span>"</span>&gt;
+    <span class="c">!&#91;&#91; 01-the-shelf-desk.png &#93;&#93; !&#91;&#91; 01-the-shelf-phone.png &#93;&#93; !&#91;&#91; 01-the-shelf.html &#93;&#93;</span>
+&lt;/<span class="t">Concept</span>&gt;</pre>
+                <div class="ok"><svg viewBox="0 0 16 16"><path d="m3.5 8.5 3 3 6-7"/></svg>Three literals, each beside the chapter. It would bind.</div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    for (const field of document.querySelectorAll('.prop input, .prop textarea'))
+        field.addEventListener('input', () => { for (const shown of document.querySelectorAll(`[data-shows="${field.id}"]`)) shown.textContent = field.value; });
+    for (const paper of document.querySelectorAll('.seg.paper span'))
+        paper.addEventListener('click', () => {
+            for (const other of paper.parentElement.children) other.classList.toggle('on', other === paper);
+            document.getElementById('canvas').classList.toggle('night', paper.dataset.paper === 'night');
+        });
+</script>
+</body>
+</html>

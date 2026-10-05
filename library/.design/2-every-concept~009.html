@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Database</title>
+<meta name="number" content="9">
+<meta name="said" content="For the catalogue across projects I like 9 the best, and I might even like a splash of the Claude theme to delineate that this view is Claude projects.">
+<meta name="after" content="Notion">
+<meta name="idea" content="Every conversation is a row with properties — project, AI, kept, chapters, citations — so one set of records is seen as a table, a board or a gallery, and opening a row peeks its page beside the list.">
+<style>
+    :root { --ink: #37352f; --soft: #787774; --faint: #9b9a97; --line: #e9e9e7; --side: #f7f7f5; --hover: #efefed; --blue: #2383e2;
+        --tag-first: #d3e5ef; --tag-second: #dbeddb; --tag-third: #fadec9; --tag-ai: #e8deee; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 14px/1.5 ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--ink); background: #fff; }
+    .app { display: grid; grid-template-columns: 240px minmax(0, 1fr) 400px; min-height: 100vh; }
+    .side { background: var(--side); border-right: 1px solid var(--line); padding: 12px 8px; font-size: 14px; color: #5f5e5b; }
+    .side .who { display: flex; align-items: center; gap: 8px; padding: 6px 8px; font-weight: 600; color: var(--ink); }
+    .side .who b { width: 22px; height: 22px; border-radius: 4px; background: #e3d6c8; display: grid; place-items: center; font-size: 12px; color: #6b5440; }
+    .side .head { margin: 18px 8px 4px; font-size: 12px; font-weight: 600; color: var(--faint); }
+    .side a { display: flex; justify-content: space-between; padding: 3px 8px 3px 10px; border-radius: 4px; color: inherit; text-decoration: none; }
+    .side a:hover { background: var(--hover); }
+    .side a.on { background: #e6e5e2; color: var(--ink); font-weight: 500; }
+    .side a span { color: var(--faint); font-size: 12px; }
+    .side .in { padding-left: 26px; }
+    main { padding: 28px 32px 60px; min-width: 0; }
+    .crumb { font-size: 13px; color: var(--soft); margin-bottom: 26px; }
+    h1 { font-size: 34px; line-height: 1.2; margin: 0 0 6px; font-weight: 700; }
+    .lede { color: var(--soft); margin: 0 0 22px; }
+    .views { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 4px; font-size: 14px; }
+    .views span { padding: 6px 10px; color: var(--soft); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+    .views span.on { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
+    .views em { margin-left: auto; font-style: normal; color: var(--faint); padding: 6px 4px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { text-align: left; font-weight: 400; color: var(--soft); font-size: 13px; padding: 8px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    td { padding: 7px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    tr.open td { background: #f2f7fc; }
+    td.name { font-weight: 500; }
+    td.num { text-align: right; color: var(--soft); }
+    .tag { display: inline-block; padding: 0 6px; border-radius: 3px; font-size: 13px; line-height: 20px; }
+    .first { background: var(--tag-first); } .second { background: var(--tag-second); } .third { background: var(--tag-third); } .ai { background: var(--tag-ai); }
+    .board-title { margin: 34px 0 10px; font-size: 13px; color: var(--soft); }
+    .board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .lane h3 { margin: 0 0 8px; font-size: 13px; font-weight: 500; }
+    .lane h3 .tag { margin-right: 6px; }
+    .card { background: #fff; border-radius: 6px; box-shadow: 0 0 0 1px rgba(15,15,15,.08), 0 2px 4px rgba(15,15,15,.06); padding: 9px 10px; margin-bottom: 8px; }
+    .card b { display: block; font-weight: 500; }
+    .card small { color: var(--soft); }
+    .peek { border-left: 1px solid var(--line); box-shadow: -8px 0 24px rgba(15,15,15,.05); padding: 22px 30px 40px; background: #fff; overflow: hidden; }
+    .peek .bar { display: flex; gap: 14px; color: var(--faint); font-size: 13px; margin-bottom: 22px; }
+    .peek h2 { font-size: 26px; margin: 0 0 14px; line-height: 1.25; }
+    .props { display: grid; grid-template-columns: 110px 1fr; gap: 7px 10px; font-size: 14px; margin-bottom: 18px; }
+    .props dt { color: var(--soft); }
+    .props dd { margin: 0; }
+    .props dd a { color: var(--ink); text-decoration: underline; text-decoration-color: #c9c8c5; }
+    .peek hr { border: 0; border-top: 1px solid var(--line); margin: 16px 0; }
+    .peek h4 { margin: 0 0 10px; font-size: 16px; }
+    .turn { margin: 0 0 12px; }
+    .turn .who { font-size: 12px; font-weight: 600; color: var(--soft); text-transform: uppercase; letter-spacing: .04em; }
+    .turn.mine p { color: #5f5e5b; font-style: italic; }
+    .turn p { margin: 2px 0 0; }
+    mark { background: #fbf3db; border-bottom: 2px solid #f1d57a; }
+    .callout { display: flex; gap: 10px; background: #fbf3db; border-radius: 6px; padding: 10px 12px; font-size: 14px; margin: 6px 0 14px; }
+    .callout small { display: block; color: var(--soft); }
+    .topbar { display: none; }
+    @media (max-width: 700px) {
+        .app { grid-template-columns: 1fr; }
+        .side { display: none; }
+        .topbar { display: flex; align-items: center; gap: 12px; position: sticky; top: 0; background: #fff; border-bottom: 1px solid var(--line); padding: 10px 14px; font-weight: 600; z-index: 2; }
+        .topbar i { font-style: normal; font-size: 18px; color: var(--soft); }
+        main { padding: 16px 14px 20px; }
+        .crumb { display: none; }
+        h1 { font-size: 26px; }
+        .views { overflow-x: auto; overflow-y: hidden; white-space: nowrap; scrollbar-width: none; } .views em { display: none; }
+        table, thead, tbody, tr, td { display: block; width: auto; }
+        thead { display: none; }
+        tr { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; }
+        tr.open { border-color: #b7d4f0; background: #f2f7fc; }
+        tr.open td { background: none; }
+        td { border: 0; padding: 1px 0; display: inline-block; margin-right: 6px; }
+        td.name { display: block; font-size: 15px; }
+        td.num::after { content: ' chapters'; }
+        .board, .board-title { display: none; }
+        .peek { border-left: 0; border-top: 1px solid var(--line); box-shadow: none; padding: 18px 14px 40px; }
+        .props { grid-template-columns: 100px 1fr; }
+    }
+</style>
+</head>
+<body>
+<div class="topbar"><i>☰</i> Conversations with Claude</div>
+<div class="app">
+    <nav class="side">
+        <div class="who"><b>D</b> Dougs Library</div>
+        <div class="head">Books</div>
+        <a href="#">Dougs Story</a>
+        <a href="#">Dougs Design</a>
+        <a href="#">Dougs Reference Manual</a>
+        <div class="head">Conversations</div>
+        <a href="#" class="on">With Claude <span>212</span></a>
+        <a href="#" class="in">A First Project <span>38</span></a>
+        <a href="#" class="in">A Second Project <span>91</span></a>
+        <a href="#" class="in">A Third Project <span>83</span></a>
+        <a href="#">With ChatGPT <span>147</span></a>
+        <div class="head">Mine</div>
+        <a href="#">Notes</a>
+        <a href="#">Citations</a>
+    </nav>
+    <main>
+        <div class="crumb">Dougs Library / Conversations / With Claude</div>
+        <h1>Conversations with Claude</h1>
+        <p class="lede">212 conversations, each kept as a book. One set of records, seen any way.</p>
+        <div class="views"><span class="on">▤ Table</span><span>▥ Board</span><span>▦ Gallery</span><span>▦ Calendar</span><em>Filter · Sort · New</em></div>
+        <table>
+            <thead><tr><th>Aa Name</th><th>Project</th><th>Kept</th><th>Chapters</th><th>Cited in</th></tr></thead>
+            <tbody>
+                <tr><td class="name">Quis Nostrud</td><td><span class="tag first">A First Project</span></td><td>1 Oct 2026</td><td class="num">6</td><td></td></tr>
+                <tr><td class="name">Ut Enim ad Minim</td><td><span class="tag first">A First Project</span></td><td>27 Sep 2026</td><td class="num">3</td><td></td></tr>
+                <tr><td class="name">Magna Aliqua</td><td><span class="tag third">A Third Project</span></td><td>20 Sep 2026</td><td class="num">11</td><td></td></tr>
+                <tr><td class="name">Tempor Incididunt</td><td><span class="tag second">A Second Project</span></td><td>12 Sep 2026</td><td class="num">7</td><td></td></tr>
+                <tr class="open"><td class="name">Lorem Ipsum Dolor</td><td><span class="tag first">A First Project</span></td><td>9 Sep 2026</td><td class="num">8</td><td>2 books</td></tr>
+                <tr><td class="name">Sed Do Eiusmod</td><td><span class="tag first">A First Project</span></td><td>5 Sep 2026</td><td class="num">2</td><td></td></tr>
+                <tr><td class="name">Adipiscing Elit</td><td><span class="tag first">A First Project</span></td><td>2 Sep 2026</td><td class="num">9</td><td>1 book</td></tr>
+                <tr><td class="name">Sit Amet Consectetur</td><td><span class="tag first">A First Project</span></td><td>21 Jul 2026</td><td class="num">14</td><td></td></tr>
+            </tbody>
+        </table>
+        <div class="board-title">The same records as a Board, by project</div>
+        <div class="board">
+            <div class="lane"><h3><span class="tag first">A First Project</span> 38</h3>
+                <div class="card"><b>Quis Nostrud</b><small>1 Oct · 6 chapters</small></div>
+                <div class="card"><b>Lorem Ipsum Dolor</b><small>9 Sep · 8 chapters · cited 2×</small></div>
+                <div class="card"><b>Adipiscing Elit</b><small>2 Sep · 9 chapters</small></div></div>
+            <div class="lane"><h3><span class="tag second">A Second Project</span> 91</h3>
+                <div class="card"><b>Tempor Incididunt</b><small>12 Sep · 7 chapters</small></div></div>
+            <div class="lane"><h3><span class="tag third">A Third Project</span> 83</h3>
+                <div class="card"><b>Magna Aliqua</b><small>20 Sep · 11 chapters</small></div></div>
+        </div>
+    </main>
+    <aside class="peek">
+        <div class="bar"><span>⇥ Close</span><span>⤢ Open as page</span><span>Chapter 1 of 8</span></div>
+        <h2>Lorem Ipsum Dolor</h2>
+        <dl class="props">
+            <dt>Project</dt><dd><span class="tag first">A First Project</span></dd>
+            <dt>AI</dt><dd><span class="tag ai">Claude</span></dd>
+            <dt>Kept</dt><dd>9 September 2026</dd>
+            <dt>Chapters</dt><dd>8</dd>
+            <dt>Cited in</dt><dd><a href="#">Sit Amet Consectetur</a> ch. 3, <a href="#">Dougs Story</a> ch. 1</dd>
+            <dt>Cites</dt><dd><a href="#">Adipiscing Elit</a> ch. 2</dd>
+            <dt>Notes</dt><dd>1</dd>
+        </dl>
+        <hr>
+        <h4>A First Chapter</h4>
+        <div class="turn mine"><div class="who">The Librarian</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit? Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+        <div class="turn"><div class="who">Claude</div><p>Ut enim ad minim veniam, quis nostrud exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <mark>Excepteur sint occaecat cupidatat non proident</mark>, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
+        <div class="callout">✎<div>Lorem ipsum, a note of mine beside the passage it is about.<small>3 Oct 2026</small></div></div>
+        <div class="turn mine"><div class="who">The Librarian</div><p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit?</p></div>
+        <div class="turn"><div class="who">Claude</div><p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p></div>
+    </aside>
+</div>
+</body>
+</html>

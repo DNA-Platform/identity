@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Command Line</title>
+<meta name="number" content="4">
+<meta name="after" content="keyboard-first tools: command palettes, launchers and the leader keys of editors">
+<meta name="idea" content="The library opens on one line: type to go anywhere or do anything, the last places are a number away and every book, grouping and list is two keystrokes away — and the same line waits at the top of every page, which is what unites them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root { --bg: #f6f4ee; --card: #fffdf8; --ink: #1f2328; --soft: #6b6f76; --faint: #a2a5aa; --line: #e4e0d6; --accent: #2b50c8; --accent-soft: #e6ecfb;
+        --sans: 'IBM Plex Sans', system-ui, sans-serif; --mono: 'IBM Plex Mono', ui-monospace, monospace; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 15px/1.5 var(--sans); color: var(--ink); background: var(--bg) radial-gradient(circle, #e2ded3 1px, transparent 1.2px) 0 0 / 22px 22px; min-height: 100vh; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 26px 32px 30px; }
+    .top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; }
+    .top b { font-size: 20px; font-weight: 700; letter-spacing: -.01em; }
+    .top span { color: var(--soft); font-size: 13px; font-family: var(--mono); }
+    .line { display: flex; align-items: center; gap: 14px; background: var(--card); border: 1.5px solid var(--ink); border-radius: 14px; padding: 16px 20px; box-shadow: 0 10px 30px rgba(31,35,40,.10); }
+    .line .prompt { font: 600 24px/1 var(--mono); color: var(--accent); }
+    .line .text { flex: 1; font: 400 22px/1.3 var(--sans); color: var(--faint); }
+    .line .text::after { content: ''; display: inline-block; width: 2px; height: 24px; background: var(--accent); margin-left: 2px; vertical-align: -4px; }
+    .line .hint { display: flex; gap: 6px; align-items: center; color: var(--soft); font-size: 13px; }
+    kbd { white-space: nowrap; display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 6px; border: 1px solid #cfcabf; border-bottom-width: 2px; background: #fff; font: 500 12px/1 var(--mono); color: var(--ink); }
+    .grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 20px; margin-top: 20px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+    .card h2 { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 10px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--soft); }
+    .card h2 span { text-transform: none; letter-spacing: 0; font-weight: 400; font-family: var(--mono); }
+    .recent a { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 9px 8px; border-radius: 9px; color: inherit; text-decoration: none; }
+    .recent a.on { background: var(--accent-soft); }
+    .recent .kind { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; font: 600 12px/1 var(--mono); color: #fff; }
+    .recent b { display: block; font-weight: 600; }
+    .recent small { color: var(--soft); font-size: 13px; }
+    .recent em { white-space: nowrap; font-style: normal; display: flex; gap: 4px; align-items: center; color: var(--faint); font-size: 12px; }
+    .keys { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 18px; }
+    .keys h3 { grid-column: 1 / -1; margin: 10px 0 4px; font-size: 13px; font-weight: 600; }
+    .keys h3:first-child { margin-top: 0; }
+    .key { display: flex; align-items: center; gap: 10px; padding: 4px 0; }
+    .key span { display: flex; gap: 3px; flex: none; width: 64px; }
+    .key b { font-weight: 500; }
+    .key small { color: var(--soft); margin-left: auto; font-family: var(--mono); font-size: 12px; }
+    .frame { margin-top: 20px; }
+    .frame h2 { margin-bottom: 12px; }
+    .pages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .page { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; }
+    .page .bar { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-bottom: 1.5px solid var(--ink); font: 500 12px/1 var(--mono); color: var(--soft); }
+    .page .bar b { color: var(--accent); }
+    .page .bar i { margin-left: auto; font-style: normal; }
+    .page .body { padding: 10px 12px 12px; }
+    .page .body strong { display: block; font-size: 14px; margin-bottom: 6px; }
+    .page .body p { margin: 0; height: 7px; border-radius: 4px; background: #ece9e1; margin-bottom: 6px; }
+    .page .body p.s { width: 70%; } .page .body p.t { width: 45%; }
+    .page .body .row { display: flex; gap: 5px; margin-bottom: 6px; } .page .body .row i { flex: 1; height: 26px; border-radius: 5px; background: #eef2fd; }
+    .tiles { display: none; }
+    .line .short { display: none; }
+    @media (max-width: 700px) {
+        body { background-size: 18px 18px; }
+        .wrap { padding: 18px 16px 120px; }
+        .top { margin-bottom: 12px; } .top span { display: none; }
+        .line { position: fixed; left: 12px; right: 12px; bottom: 14px; z-index: 5; padding: 12px 14px; border-radius: 16px; }
+        .line .text { font-size: 17px; } .line .long { display: none; } .line .short { display: inline; } .card h2 span { display: none; } .line .prompt { font-size: 20px; } .line .hint { display: none; }
+        .grid { display: block; margin-top: 0; }
+        .card { margin-bottom: 14px; }
+        .recent em { display: none; }
+        .keys { display: none; }
+        .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+        .tiles span { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 8px; text-align: center; font-size: 13px; font-weight: 500; }
+        .tiles span kbd { display: grid; margin: 0 auto 6px; width: 30px; }
+        .pages { grid-template-columns: 1fr; }
+        .page:nth-child(n+2) { display: none; }
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <header class="top"><b>Dougs Library</b><span>kept by The Librarian · 3 books · 359 conversations · 41 notes</span></header>
+    <div class="line"><span class="prompt">›</span><span class="text"><span class="long">Go to a book, a project, a conversation — or type a command</span><span class="short">Go anywhere, or type a command</span></span><span class="hint"><kbd>Ctrl</kbd><kbd>K</kbd> anywhere</span></div>
+    <div class="grid">
+        <section class="card recent">
+            <h2>Recent places <span>Ctrl+1 – Ctrl+6</span></h2>
+            <a href="#" class="on"><span class="kind" style="background:#1f8a7a">C</span><div><b>Lorem Ipsum Dolor</b><small>chapter 1 · A First Project · with Claude</small></div><em><kbd>Ctrl</kbd><kbd>1</kbd></em></a>
+            <a href="#"><span class="kind" style="background:#b4542f">B</span><div><b>Dougs Story</b><small>a book of mine · chapter 1</small></div><em><kbd>Ctrl</kbd><kbd>2</kbd></em></a>
+            <a href="#"><span class="kind" style="background:#d98c1f">P</span><div><b>A Second Project</b><small>91 conversations with Claude</small></div><em><kbd>Ctrl</kbd><kbd>3</kbd></em></a>
+            <a href="#"><span class="kind" style="background:#3d5f96">B</span><div><b>Dougs Reference Manual</b><small>the parts it is built with</small></div><em><kbd>Ctrl</kbd><kbd>4</kbd></em></a>
+            <a href="#"><span class="kind" style="background:#8a6d1f">N</span><div><b>A note on “Excepteur sint occaecat…”</b><small>3 Oct 2026 · in Lorem Ipsum Dolor</small></div><em><kbd>Ctrl</kbd><kbd>5</kbd></em></a>
+            <a href="#"><span class="kind" style="background:#c2456a">C</span><div><b>Magna Aliqua</b><small>11 chapters · A Third Project</small></div><em><kbd>Ctrl</kbd><kbd>6</kbd></em></a>
+        </section>
+        <section class="card">
+            <h2>Two keys away <span>press G, then…</span></h2>
+            <div class="keys">
+                <h3>Books</h3>
+                <div class="key"><span><kbd>G</kbd><kbd>L</kbd></span><b>Dougs Library</b></div>
+                <div class="key"><span><kbd>G</kbd><kbd>S</kbd></span><b>Dougs Story</b></div>
+                <div class="key"><span><kbd>G</kbd><kbd>D</kbd></span><b>Dougs Design</b></div>
+                <div class="key"><span><kbd>G</kbd><kbd>M</kbd></span><b>Reference Manual</b></div>
+                <h3>Conversations</h3>
+                <div class="key"><span><kbd>G</kbd><kbd>C</kbd></span><b>With Claude</b><small>212</small></div>
+                <div class="key"><span><kbd>G</kbd><kbd>G</kbd></span><b>With ChatGPT</b><small>147</small></div>
+                <div class="key"><span><kbd>G</kbd><kbd>1</kbd></span><b>A First Project</b><small>38</small></div>
+                <div class="key"><span><kbd>G</kbd><kbd>2</kbd></span><b>A Second Project</b><small>91</small></div>
+                <div class="key"><span><kbd>G</kbd><kbd>3</kbd></span><b>A Third Project</b><small>83</small></div>
+                <div class="key"><span><kbd>G</kbd><kbd>Y</kbd></span><b>The year</b></div>
+                <h3>Do</h3>
+                <div class="key"><span><kbd>/</kbd></span><b>Find any passage</b></div>
+                <div class="key"><span><kbd>N</kbd></span><b>New note here</b></div>
+                <div class="key"><span><kbd>C</kbd></span><b>Cite this passage</b></div>
+                <div class="key"><span><kbd>?</kbd></span><b>Every key</b></div>
+            </div>
+            <div class="tiles">
+                <span><kbd>S</kbd>Dougs Story</span><span><kbd>D</kbd>Dougs Design</span><span><kbd>M</kbd>Manual</span>
+                <span><kbd>C</kbd>With Claude</span><span><kbd>G</kbd>With ChatGPT</span><span><kbd>N</kbd>My notes</span>
+            </div>
+        </section>
+    </div>
+    <section class="card frame">
+        <h2>The same line on every page <span>it is the one thing that stays</span></h2>
+        <div class="pages">
+            <div class="page"><div class="bar"><b>›</b>Dougs Story <i>Ctrl+K</i></div><div class="body"><strong>Dougs Story · chapter 1</strong><p></p><p></p><p class="s"></p><p></p><p class="t"></p></div></div>
+            <div class="page"><div class="bar"><b>›</b>A First Project <i>Ctrl+K</i></div><div class="body"><strong>A First Project · 38</strong><div class="row"><i></i><i></i><i></i></div><div class="row"><i></i><i></i><i></i></div><p class="s"></p></div></div>
+            <div class="page"><div class="bar"><b>›</b>Lorem Ipsum Dolor <i>Ctrl+K</i></div><div class="body"><strong>Lorem Ipsum Dolor · chapter 1</strong><p class="s"></p><p></p><p class="t"></p><p class="s"></p><p></p></div></div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
