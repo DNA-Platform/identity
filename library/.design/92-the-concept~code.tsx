@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { $, $Block } from '@dna-platform/chemistry';
-import { $Annotation, $Figure, $Paragraph, $Writing } from '@dna-platform/public';
+import { $Annotation, $Chapter, $Figure, $Paragraph, $Section, $Writing } from '@dna-platform/public';
 
 type Shown = { number: string; named: string; draws: string; says: string; sketch: string };
 
@@ -31,6 +31,26 @@ export class $Asked extends $Annotation {
 export class $Answered extends $Annotation {
     override defines(writing: $Writing): void {
         writing.classes.add(this, 'pa-answered');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class $Chosen extends $Annotation {
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-chosen');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class $Story extends $Annotation {
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-story');
     }
 
     override erase(writing: $Writing): void {
@@ -191,10 +211,12 @@ export class $Viewer extends $Paragraph {
 }
 
 export class $Concept extends $Figure {
-    get parts(): string[] {
+    get written(): string[] {
         return [...this.text].filter((chemical): chemical is $Block => chemical instanceof $Block)
             .flatMap(block => block.elements).map(String).filter(part => part.trim() !== '');
     }
+    get parts(): string[] { return this.written; }
+    get number(): string { return this.says(this.parts[2] ?? '', 'number'); }
 
     override write(): ReactNode {
         const [desk, phone, sketch = ''] = this.parts;
@@ -258,8 +280,23 @@ export class $Concept extends $Figure {
     }
 }
 
+export class $Shown extends $Concept {
+    get stands(): $Concept | undefined {
+        const number = this.written[0]?.trim();
+        return this.book?.text.find($Chapter)
+            .flatMap(chapter => chapter.text.find($Section))
+            .flatMap(section => section.text.find($Paragraph))
+            .flatMap(paragraph => paragraph.text.find($Concept))
+            .find(concept => !(concept instanceof $Shown) && concept.number === number);
+    }
+    override get parts(): string[] { return this.stands?.parts ?? []; }
+}
+
 export const Concepts = $($Concepts);
+export const Shown = $($Shown);
 export const Asked = $($Asked);
 export const Answered = $($Answered);
+export const Chosen = $($Chosen);
+export const Story = $($Story);
 export const Viewer = $($Viewer);
 export const Concept = $($Concept);

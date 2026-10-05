@@ -60,6 +60,11 @@ export default () => (
                 the compiler exists, no title, not listed, may not author, and the library is initialized when it
                 raises none.
             </Paragraph>
+            <Paragraph>
+                The bind is run in the face's binding folder, as npm run bind, and the site it builds is served
+                from that folder with npx vite preview. The face keeps the pictures that stood beside a chapter
+                after they are taken out of the book, until that book's folder in the face is cleared by hand.
+            </Paragraph>
         </Section>
     </Chapter>
 );

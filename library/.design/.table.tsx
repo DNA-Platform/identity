@@ -9,7 +9,11 @@ export default () => (
             [[ Table of Contents ]]
         </Title>
         <Section>
-            <Heading>The concepts</Heading>
+            <Heading>The design</Heading>
+            <Paragraph>
+                <Entry />
+                <Content>$[[ ./The Designs I Am Going With ]]</Content>
+            </Paragraph>
             <Paragraph>
                 <Entry />
                 <Content>$[[ ./What I Am Asked ]]</Content>
@@ -68,6 +72,10 @@ export default () => (
             <Paragraph>
                 <Entry />
                 <Content>$[[ ./The Theme ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Entry />
+                <Content>$[[ ./The Camera ]]</Content>
             </Paragraph>
         </Section>
     </Chapter>

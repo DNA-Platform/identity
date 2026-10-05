@@ -82,9 +82,12 @@ export class $DesignTheme extends $DougsTheme {
 
     protected concepts(): RuleSet {
         return css`
-            .pd-canonical.pd-chapter .pd-section:is(:has(.pa-concepts), :has(.pa-asked)) .pd-heading { margin: 2.4rem 0 .4rem; font-size: 1.7rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: ${({ theme }) => theme.ink}; }
-            .pd-canonical.pd-chapter .pd-section:is(:has(.pa-concepts), :has(.pa-asked)) .pd-heading .pa-reference { color: inherit; text-decoration: none; }
-            .pd-canonical.pd-chapter .pd-paragraph.pa-asked { max-width: 46rem; font-size: 1.3rem; line-height: 1.45; }
+            .pd-canonical.pd-chapter .pd-section:is(:has(.pa-concepts), :has(.pa-asked), :has(.pa-chosen)) .pd-heading { margin: 2.4rem 0 .4rem; font-size: 1.7rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: ${({ theme }) => theme.ink}; }
+            .pd-canonical.pd-chapter .pd-section:is(:has(.pa-concepts), :has(.pa-asked), :has(.pa-chosen)) .pd-heading .pa-reference { color: inherit; text-decoration: none; }
+            .pd-canonical.pd-chapter .pd-paragraph:is(.pa-asked, .pa-chosen) { max-width: 46rem; font-size: 1.3rem; line-height: 1.45; }
+            .pd-canonical.pd-chapter .pd-paragraph.pa-story { max-width: 46rem; margin-block-start: 2.2rem; padding-inline-start: .9rem; border-inline-start: 3px solid ${({ theme }) => theme.link}; }
+            .pd-paragraph.pa-story::before { content: 'how it came to be'; display: block; font: 600 .6rem/1.9 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: ${({ theme }) => theme.link}; }
+            .pd-canonical.pd-chapter .pd-paragraph.pa-story + .pd-paragraph { max-width: 46rem; padding-inline-start: calc(.9rem + 3px); color: ${({ theme }) => theme.quiet}; }
             .pd-canonical.pd-chapter .pd-paragraph.pa-answered { max-width: 46rem; margin-block-start: 2.2rem; padding-inline-start: .9rem; border-inline-start: 3px solid ${({ theme }) => theme.mine}; }
             .pd-paragraph.pa-answered::before { content: 'what I said'; display: block; font: 600 .6rem/1.9 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: ${({ theme }) => theme.mine}; }
             .pd-paragraph.pa-concepts { display: grid; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); gap: 2.8rem 1.6rem; margin-block: 1.6rem 1rem; }

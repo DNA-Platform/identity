@@ -1,0 +1,32 @@
+import { Chapter, Code, Heading, Paragraph, Section, Title } from '@dna-platform/public';
+import { Appendix, Wide } from './.book';
+
+export default () => (
+    <Chapter>
+        <Appendix />
+        <Title>[[ The Camera ]]</Title>
+        <Section>
+            <Heading>What the camera is</Heading>
+            <Paragraph>
+                A concept is a page, and its card in this book shows a photograph of it at a desk's width with
+                another, at a phone's, laid over the corner. The camera takes those photographs. It is the one
+                tool this book needs that the framework does not give, so it stands here, beside the chapter
+                that says what it is, and nothing that builds this book stands outside it.
+            </Paragraph>
+            <Paragraph>
+                It looks at every concept that stands beside a chapter of this book under its number,
+                photographs the ones that are newer than their photographs, and says how many things on each
+                run past the right edge of the screen. That count is how a page that does not fit a phone is
+                caught before I am shown it. It writes nothing but the photographs, and the book is bound
+                afterwards in the usual way.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>The camera's file</Heading>
+            <Paragraph>
+                <Wide />
+                <Code language="javascript">![[ camera.mjs ]]</Code>
+            </Paragraph>
+        </Section>
+    </Chapter>
+);
