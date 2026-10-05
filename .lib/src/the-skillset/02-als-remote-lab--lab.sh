@@ -8,6 +8,7 @@
 #   bash $L container <name> <host> <file.py>  a Python file in the lab's image on a compute server, the lab
 #                                              password on its stdin, RECORDED and committed
 #   bash $L tunnel up|down|status              the lab database on 127.0.0.1:$LAB_PORT here, through the box
+#   bash $L kube <kubectl arguments>           kubectl on the lab's GPU cluster, namespace doug, through the box
 #
 # THE CHAIN. This machine -> the box (Tailscale SSH) -> the BCM network. Every login is by this machine's
 # key (~/.ssh/reimer_ed25519), jumping through the box; the box forwards the connection and holds nothing,
@@ -32,6 +33,14 @@ CPUS=${LAB_CPUS:-4}
 MEMORY=${LAB_MEMORY:-16g}
 RECORDS=$REPO/runs/lab
 PIDFILE=$REPO/.git/als-remote-lab-tunnel.pid      # inside .git: never committed, never synced
+# The GPU cluster. Its config (Ming, 2026-10-05) is a client key: it lives on this machine only, outside
+# the repo, like the SSH key. Its server is on BCM's network, so kubectl reaches it through the box.
+KUBECONFIG_FILE=${LAB_KUBECONFIG:-$HOME/.kube/jr-k8s.yaml}
+KUBE_API=$(sed -n 's|^ *server: https://||p' "$KUBECONFIG_FILE" 2>/dev/null | head -1 | tr -d '\r')
+KUBE_PORT=${KUBE_PORT:-16443}
+KUBE_PIDFILE=$REPO/.git/als-remote-lab-kube.pid
+# The config pins the API server's own certificate; it names kubernetes, not 127.0.0.1.
+KUBE_TLS_NAME=kubernetes
 
 host_of() {
     case $1 in
@@ -78,6 +87,11 @@ check() {
     timeout 20 ssh -o BatchMode=yes -o ConnectTimeout=15 -W "$DATABASE:3306" "$BOX" </dev/null 2>/dev/null \
         | head -c 40 | tr -c '[:print:]' '.' | grep -q 'mysql\|5\.7' && echo "answers through the box" \
         || echo "no answer through the box"
+    printf 'GPU cluster: '
+    [ -f "$KUBECONFIG_FILE" ] || echo "no config at $KUBECONFIG_FILE"
+    [ -f "$KUBECONFIG_FILE" ] && ssh -o BatchMode=yes -o ConnectTimeout=15 "$BOX" \
+        "timeout 5 bash -c '</dev/tcp/${KUBE_API%:*}/${KUBE_API#*:}'" 2>/dev/null \
+        && echo "the API server answers through the box" || { [ -f "$KUBECONFIG_FILE" ] && echo "no answer through the box"; }
     tunnel status || true          # down is the normal state, not a failed check
 }
 
@@ -111,25 +125,43 @@ container() {
     commit_record "$name" "$RECORDS/$stamp-$name.py" "$RECORDS/$stamp-$name.sh" "$RECORDS/$stamp-$name.out"
 }
 
+listening() { (exec 3<>"/dev/tcp/127.0.0.1/$1") 2>/dev/null; }
+
+forward() {   # forward <local port> <target host:port> <pidfile>: an ssh -L through the box, left running
+    listening "$1" && return 0
+    nohup ssh -N -o BatchMode=yes -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 \
+        -L "127.0.0.1:$1:$2" "$BOX" >/dev/null 2>&1 &
+    echo $! > "$3"; disown 2>/dev/null || true
+    local i; for i in 1 2 3 4 5 6 7 8 9 10; do listening "$1" && return 0; sleep 1; done
+    return 1
+}
+
 tunnel() {
     case ${1:-status} in
         up)
-            if tunnel status >/dev/null; then echo "tunnel already up on 127.0.0.1:$LAB_PORT"; return 0; fi
-            nohup ssh -N -o BatchMode=yes -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 \
-                -L "127.0.0.1:$LAB_PORT:$DATABASE:3306" "$BOX" >/dev/null 2>&1 &
-            echo $! > "$PIDFILE"; disown 2>/dev/null || true
-            local i; for i in 1 2 3 4 5 6 7 8 9 10; do tunnel status >/dev/null && break; sleep 1; done
-            tunnel status ;;
-        down)
-            [ -f "$PIDFILE" ] && kill "$(cat "$PIDFILE")" 2>/dev/null; rm -f "$PIDFILE"
+            forward "$LAB_PORT" "$DATABASE:3306" "$PIDFILE"; tunnel status ;;
+        down)            # both forwards: the database's and the cluster's
+            local file; for file in "$PIDFILE" "$KUBE_PIDFILE"; do
+                [ -f "$file" ] && kill "$(cat "$file")" 2>/dev/null; rm -f "$file"
+            done
             echo "tunnel down" ;;
         status)
-            if (exec 3<>"/dev/tcp/127.0.0.1/$LAB_PORT") 2>/dev/null; then
-                echo "tunnel up: the lab database is 127.0.0.1:$LAB_PORT here"; return 0
-            fi
+            listening "$KUBE_PORT" && echo "the GPU cluster's API is 127.0.0.1:$KUBE_PORT here"
+            if listening "$LAB_PORT"; then echo "tunnel up: the lab database is 127.0.0.1:$LAB_PORT here"; return 0; fi
             echo "tunnel down"; return 1 ;;
         *) echo "usage: tunnel up|down|status"; return 2 ;;
     esac
+}
+
+kube() {
+    [ -f "$KUBECONFIG_FILE" ] || { echo "no cluster config at $KUBECONFIG_FILE - it lives on this machine only"; return 1; }
+    command -v kubectl >/dev/null || { echo "no kubectl here: v1.30.1, the cluster's version, from dl.k8s.io"; return 1; }
+    forward "$KUBE_PORT" "$KUBE_API" "$KUBE_PIDFILE" || { echo "the cluster's API did not answer through the box"; return 1; }
+    # MSYS_NO_PATHCONV: Git Bash would otherwise rewrite an argument like /apis/... into a Windows path,
+    # so the one real path is converted by hand
+    local config; config=$(cygpath -w "$KUBECONFIG_FILE" 2>/dev/null || echo "$KUBECONFIG_FILE")
+    MSYS_NO_PATHCONV=1 kubectl --kubeconfig "$config" --server "https://127.0.0.1:$KUBE_PORT" \
+        --tls-server-name "$KUBE_TLS_NAME" --request-timeout 30s "$@"
 }
 
 main() {
@@ -140,7 +172,8 @@ main() {
         probe)     probe "$@" ;;
         container) container "$@" ;;
         tunnel)    tunnel "$@" ;;
-        *) sed -n '3,12p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; return 2 ;;
+        kube)      kube "$@" ;;
+        *) sed -n '3,13p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; return 2 ;;
     esac
 }
 main "$@"

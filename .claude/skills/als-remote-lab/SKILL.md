@@ -28,6 +28,7 @@ this machine ──Tailscale SSH──► the box (lipshutzlab-01, on BCM's netw
 - **Every login is by this machine's key**, `~/.ssh/reimer_ed25519`, jumping through the box (`ssh -J`). The box forwards the connection and holds nothing, because its account is shared and a key stored there would let anyone on it into doug's lab account. The public half is in doug's `authorized_keys` on each compute server.
 - **The lab password** is `REIMER_PASSWORD` in `.env` at the project root here, and nowhere else (the [Root](../../../src/.lib/the-skillset/01-06-als-remote--root.md) rule). It reaches the lab only as the first line of a process's stdin: never on a command line, never in an environment that `docker inspect` would show the whole docker group, never in a file. Every record is checked for it before it is committed.
 - **The database here, when wanted:** `tunnel up` makes the lab database `127.0.0.1:13306` on this machine, through the box.
+- **The GPU cluster:** its config is a client key, kept like the SSH key at `~/.kube/jr-k8s.yaml` on this machine only. `kube` forwards the API server through the box and runs kubectl here, in the namespace `doug` ([The GPU cluster](../../../src/.lib/the-skillset/02-01-als-remote-lab--the-reimer-lab.md#the-gpu-cluster)).
 
 ## Doing things by the book
 
@@ -47,7 +48,8 @@ bash $L check                              # key logins to every compute server;
 bash $L run <host> '<command>'             # on jr-compute 001, 003 or 005, not recorded
 bash $L probe <name> <host> '<command>'    # the same, recorded in runs/lab/ and committed
 bash $L container <name> <host> <file.py>  # a Python file in the lab's image; PASSWORD is set from stdin
-bash $L tunnel up|down|status              # the lab database on 127.0.0.1:13306 here
+bash $L tunnel up|down|status              # the lab database on 127.0.0.1:13306 here; down closes every forward
+bash $L kube <kubectl arguments>           # kubectl on the GPU cluster, namespace doug, through the box
 ```
 
 Inside a `container` file, `PASSWORD` already holds the lab password. The file sets

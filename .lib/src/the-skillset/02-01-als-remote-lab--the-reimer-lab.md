@@ -35,12 +35,28 @@ The value goes as the first line of stdin and is read into an *unexported* varia
 
 | resource | reached | what is there |
 |---|---|---|
-| **jr-database** (MySQL 5.7.33) | from the box, with DataJoint (already in the box's environment); **from this machine through the box**, by `ssh -L 3306:jr-database.ad.bcm.edu:3306 lipshutzlab-01@lipshutzlab-01 -N`, because Tailscale SSH forwards ports | `doug@%` reads `common_mice`, `common_lab` and every `pipeline_*` schema (61), and has all privileges on `doug_*`, our own schemas |
+| **jr-database** (MySQL 5.7.33) | from the box, with DataJoint (already in the box's environment); **from this machine through the box**, by `tunnel up` (`127.0.0.1:13306` here), because Tailscale SSH forwards ports | `doug@%` reads `common_mice`, `common_lab` and every `pipeline_*` schema (61), and has all privileges on `doug_*`, our own schemas |
 | **jr-compute001/003/005** | SSH from the box with the password (the box has no `sshpass`, so a probe drives the prompt through a pseudo-terminal); from here by `ssh -J lipshutzlab-01@lipshutzlab-01 doug@jr-compute001.ad.bcm.edu` | jr-compute001: 80 CPUs, 376 GB, no GPU; the lab's storage over CIFS (`/mnt/lab`, `jr-stor01`, the scratch volumes, the DataJoint stores `jrdj_stor01` and `dj-stor01`); `docker`, with doug in the docker group; `kubectl` |
-| **GPU servers** | Kubernetes, from a compute server's `kubectl` | not yet: needs the config file Ming offered |
+| **GPU cluster** (Kubernetes v1.30.1) | `kube`: kubectl on this machine, the API server forwarded through the box | the namespace `doug`, ours alone ([The GPU cluster](#the-gpu-cluster)) |
 | **The lab's code** | GitHub, publicly: [reimerlab](https://github.com/reimerlab) (28 repositories, among them `datajoint-djp-python`, `jedi3-paper`, `nnfabrik`, `scanreader`, `microns-nda-access`, `odor_meso`), and the pipeline, `cajal/pipeline` | private repositories need membership of the organisation |
 
 Known hosts for the lab's machines live in `.tools/known_hosts_reimer` inside [the folder](01-02-als-remote--the-folder.md), never in the shared home's `~/.ssh`. Every `ssh` is run with `-F /dev/null`, so the shared account's own SSH configuration is never read.
+
+## The GPU cluster
+
+Ming sent the config on 2026-10-05. It holds a client certificate and its private key for the user `doug`, so it is kept like the SSH key: `~/.kube/jr-k8s.yaml` on this machine only, outside the repo, and never on the box or in git, the library or memory. The API server, `10.28.0.136:6443`, is on BCM's network. So `kube` forwards it through the box to `127.0.0.1:16443` and runs kubectl here. That kubectl is v1.30.1, the server's version, installed in `~/.local/bin` and checked against its published SHA-256.
+
+The config pins the API server's own certificate rather than a certificate authority. That certificate names `kubernetes`, `jr-kubemaster01` and `10.28.0.136`, so kubectl verifies the tunnelled server under the name `kubernetes`. The pinned certificate expires on 2027-07-24 and the client certificate on 2029-07-01. After the first date the config needs replacing from Ming.
+
+**What our account can do** (`kube auth can-i --list`, 2026-10-05): create, read, change and delete pods, jobs, cron jobs, deployments, services and secrets in the namespace `doug`, and nothing outside it. It cannot list nodes, namespaces, quotas or limit ranges, so we cannot see the cluster's GPUs, their names or our share of them. A running pod's `nvidia-smi` will be the first look.
+
+**The lab's way to run a GPU job** is `cajal/pipeline`'s `K8/Jobs/minion-mcl-gpu.yaml`:
+- a batch Job running a lab image, with `/mnt` mounted from the host;
+- `nvidia.com/gpu: 1` as a limit, with requests of 4 CPUs and 30 Gi;
+- a toleration for the `gpu=true:NoSchedule` taint, and a node pinned by hostname;
+- the DataJoint credentials (`DJ_HOST`, `DJ_USER`, `DJ_PASS`) injected as environment variables from a Secret named `datajoint-credentials` in the job's namespace.
+
+That manifest was written for another cluster (its node is `at-gpu1` and its image comes from `at-docker`), so the Reimer cluster's node names and taint still have to be asked. A job has no stdin, so the lab's Secret departs from the rule that the password travels only on stdin. Whether our jobs use a Secret in `doug` is Doug's decision, to be made when the first job is built.
 
 ## How the lab works — by the book
 
@@ -114,7 +130,7 @@ Asked of the lab, 2026-10-05:
    segmentation 6, on all four scans, as was done for 33328.
 3. **The exporter.** Where the code Erin uses for these exports lives (her matching script reads
    "nexport datasets"; `sinzlab/nexport` is private), and access to it.
-4. **The Kubernetes config file** for the GPU servers.
+4. **The Kubernetes config file** for the GPU servers. Received 2026-10-05 ([The GPU cluster](#the-gpu-cluster)).
 5. **Etiquette for a personal container**: which compute server, what limits, and whether
    `ml-gpu-pipeline:cleaned` is the image to use.
 
