@@ -51,9 +51,22 @@ Named by Doug on 2026-09-28, when the team was asked to make a reference manual 
 3. **Iterate** — the discussion's conclusions drawn into the next sketch, photographed and looked at again, until the form is one the team can build from and say what it will cost.
 4. **Then the feature workflow** — the requirements written to the form reached, the fundamental changes to the framework among them and not routed around, and the plan and the work moving it into `.public`.
 
-**The sketch is kept.** *"The throwaway sketch doesn't literally need to be thrown away. Maybe Libby wants to put it in her Library somewhere. But it is the design."* It stands beside the sprint chapter it belongs to, with its photograph, and where the thing sketched has a chapter of its own the photograph is that chapter's appendix. The first run is [Sprint 93](../../../library/.public/.lib/projection/98-sprint-93--the-explorer.md).
+**The sketch is kept.** *"The throwaway sketch doesn't literally need to be thrown away. Maybe Libby wants to put it in her Library somewhere. But it is the design."* It stands beside the sprint chapter it belongs to, with its photograph, and where the thing sketched has a chapter of its own the photograph is that chapter's appendix. The first run is [Sprint 93](../../../library/.public/.lib/projection/98-sprint-93--the-explorer.md); the second is [Sprint 98](../../../library/.public/.lib/projection/103-sprint-98--dougs-design.md), where the sketches stand numbered in the design book of the library they design.
 
 **The gate:** no requirements before a sketch has been discussed. The failure it exists for is the one it was named on: a brainstorm that maps parts to a medium's names — tree, tabs, outline — and asks for approval of the mapping, where the thing's own semantics had a word for each part and nobody had looked.
+
+### What the second run added — out of Sprint 98
+
+*The workflow's second run was the design of a whole library, over two days, with Doug in the room choosing. It reached a design for each of seven books, and it reached it late: every rule below was learned by breaking it first, and each is given in the words that corrected it. The record is [Sprint 98](../../../library/.public/.lib/projection/103-sprint-98--dougs-design.md).*
+
+- **The thing looked at lives in the library.** *"Your numbered sheet is in the archive, and is not a chapter in the book. So you are not succeeding at having the canonical thing we inspect actually be in the book."* · *"If the thing you think is most productive for me to look at isn't the thing you are putting in the design book, that is something to seriously consider."* A sketch is given a number once, its own for good, and stands in one chapter of the book that records the design. A page of sketches kept beside the library is a second catalogue, and its numbers are positions that move.
+- **Whoever draws it looks at it first**, at every size it must work at. *"Don't just photograph it. Why don't YOU look at the photos and see if you have created something usable?"* · *"Don't show me anything that you would never choose as a design."*
+- **A question about a design is asked by showing.** *"If you want to ask me a design question SHOW ME SOMETHING."* A poll in words about sketches he had not looked at was answered *"I don't know! I need to see things."* What worked, and he said so: the question written into the book with the numbered sketches it is about drawn under it, then asked by its letter, his answer written under it in his own words.
+- **Options, never one guess, and marked as ideas until he chooses.** *"You really want to give options. Not to one guess."* One drawing with the one thing varied — the frame, a tone — so that only that thing differs between the options.
+- **A correction is answered by correcting or deleting, never by adding.** *"Why did you extend rather than correct?"* · *"Please be subtractive. You are accruing all of these bad designs… Delete the bad ones."*
+- **A value that has a source is measured from the source.** Told the blue was the one his own page suggests, a blue was chosen; it was a periwinkle. The hue was then read from the page's two colors in a minute.
+- **Step 2 is not optional.** The discussion by territory was skipped for a day, and the corrections that day were each one a voice in its own territory would have made before he had to: the words, by the librarian; the moves, by whoever owns the visible layer; the look, argued from what the thing is.
+- **Fast is part of it.** *"It was meant to be a design brainstorming session… That's not the same as me waiting half an hour between prompts."* A few sketches in minutes, looked at, beats a finished round in an hour.
 
 ## The debug workflow
 
