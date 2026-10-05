@@ -68,7 +68,30 @@ standard code."* Read off jr-compute001 and the lab's code, on `run-20261005-161
 
 So by the book, the team's lab-side work runs in a personal container from the lab's image on a
 compute server, as Erin's does. The box is the bridge between this machine and the lab, and the
-team's own GPU.
+team's own GPU. Doug, 2026-10-05: *"We are them. I am hired in the lab. What is stopping us from doing
+things?"*, and *"I want to be as autonomous as possible without damaging anything ... I am okay taking
+liberties by running things on docker containers etc. I am a part of the lab."*
+
+**The lab's pattern** is `cajal/pipeline`'s `docker-compose.yml`: services `notebook` (Jupyter Lab),
+`minion`, `minion-gpu` and `bash`, each mounting `/mnt` (the lab's storage) and reading DataJoint
+credentials from a `.env` beside the compose file. Erin's `erin-jr_notebook-1` is project `erin-jr`,
+service `notebook`. On the lab side, then, the credential's by-the-book home is a `.env` in doug's own
+home on the compute server, readable only by him. That is his account, not a shared one.
+
+**The key lives on this machine only.** `~/.ssh/reimer_ed25519` is here. Its public half is in
+doug's `authorized_keys` on jr-compute001, 003 and 005; their homes are local disks, so each needed
+its own copy. Every login goes from here, by key, through the box:
+`ssh -i ~/.ssh/reimer_ed25519 -J lipshutzlab-01@lipshutzlab-01 doug@jr-compute00N.ad.bcm.edu`. The box
+only forwards the connection and holds nothing, because its account is shared and a key stored there
+would let anyone on it into doug's lab account.
+
+**What stops us is the grant, and only the grant.** In a throwaway container from
+`ml-gpu-pipeline:cleaned` on jr-compute001, the lab's code connects (`datajoint 0.12.9`), then stops at
+`from pipeline import meso`: `meso` imports `injection`, which imports `commons.virus`, which declares
+`common_virus`. doug cannot read that schema, so DataJoint tries to create it and is refused
+(`runs/run-20261005-1651-reimer-container/lab/`). The lab's own code needs read access to `common_*`
+before it can be imported. Populating `meso.StackCoordinates` needs insert on `pipeline_meso`; the
+grant allows only select.
 
 ## Our data, at the source
 
@@ -81,10 +104,18 @@ team's own GPU.
 
 So the 33328-standard processing of 33977 already exists in the lab's database. Its traces fetch directly through DataJoint: `pipeline_meso.Activity.Trace`, float32, 11,400 frames for 12-2, sparse.
 
-## What is open — Doug's to decide or to ask for
+## What is open
 
-1. **A key for the compute servers**, so runs can reach them without a password: a team key in the folder's `.key/`, its public half added to doug's `authorized_keys` on the jr-compute machines.
-2. **A `tunnel` command in the tool**, so code here talks to the lab database through the box.
-3. **The Kubernetes config file** from Ming, for the GPU servers.
-4. **Membership of the `reimerlab` GitHub organisation**, for anything not public.
-5. **Where lab-side work lives**: a clone in doug's home on a compute server, run in a container next to the data, or runs on the box that pull from the database.
+Asked of the lab, 2026-10-05:
+1. **Read access to `common_*`**, without which the lab's `pipeline` package cannot be imported.
+2. **Insert on `pipeline_meso`**, or the lab's populate run for us: `meso.StackCoordinates` for 33977,
+   segmentation 6, on all four scans, as was done for 33328.
+3. **The exporter.** Where the code Erin uses for these exports lives (her matching script reads
+   "nexport datasets"; `sinzlab/nexport` is private), and access to it.
+4. **The Kubernetes config file** for the GPU servers.
+5. **Etiquette for a personal container**: which compute server, what limits, and whether
+   `ml-gpu-pipeline:cleaned` is the image to use.
+
+Decided: lab-side work runs in a personal container from the lab's image on a compute server
+(Doug, 2026-10-05). The key is installed. The skill for the lab is `als-remote-lab`, which carries the
+`tunnel` and jump commands and the lab's knowledge.
