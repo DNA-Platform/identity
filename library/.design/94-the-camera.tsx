@@ -22,6 +22,11 @@ export default () => (
                 caught before I am shown it. It writes nothing but the photographs, and the book is bound
                 afterwards in the usual way.
             </Paragraph>
+            <Paragraph>
+                The camera photographs concepts. A page of the library itself is looked at
+                with <Means>$[[ the workbench ]]( Dougs Reference Manual / Developing a Library )</Means>, which keeps
+                the page open while I write it.
+            </Paragraph>
         </Section>
         <Section>
             <Heading>The camera's file</Heading>

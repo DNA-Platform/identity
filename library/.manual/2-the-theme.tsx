@@ -16,8 +16,8 @@ export default () => (
             <Paragraph>
                 The component is composed of parts, each a method returning a fragment of rules, so that a book
                 changes one part and keeps the rest: the page, the levels, the links, and the apparatus, which is
-                the byline and the dateline. Every rule names a mark the framework or this library puts on the
-                writing.
+                the byline, the dateline, and the rows of a table of contents with the shelfmark at their right.
+                Every rule names a mark the framework or this library puts on the writing.
             </Paragraph>
         </Section>
         <Section>

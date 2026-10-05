@@ -32,7 +32,12 @@ export default () => (
                 When I saw the black and sky I wanted it for the library itself, with its more bookish view, and
                 each cataloguing book under it moving into colors of its own. I want to switch the view among 1, 2
                 and 3 on the page, because many ways to view the same thing will be important. How a book is built
-                to carry many views is still to be worked out.
+                to carry many views is still to be worked out. What is settled is where a view gets its books
+                from: the table of contents. A catalogue holds a chapter for each book filed under it, and
+                in <Means>$[[ its table ]]( Dougs Library / Table of Contents )</Means> the row for that chapter
+                ends in a small square at the right,
+                its <Means>$[[ shelfmark ]]( Dougs Reference Manual / The Shelfmark )</Means>, which leads to the
+                book. A shelf or a list will read the table and nothing else.
             </Paragraph>
             <Paragraph>
                 It is for <Means>$[[ Dougs Library ]]</Means>, which does not wear it yet.

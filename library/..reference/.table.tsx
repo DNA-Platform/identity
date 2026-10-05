@@ -1,4 +1,5 @@
-import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Table, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Shelfmark } from '../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -13,6 +14,30 @@ export default () => (
                 <Content>$[[ ./The Shelves ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Word>
+                    <Content>$[[ ./Dougs Story ]]</Content>
+                </Word>
+                <Word>
+                    <Shelfmark>[[ Dougs Story ]]**</Shelfmark>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Dougs Design ]]</Content>
+                </Word>
+                <Word>
+                    <Shelfmark>[[ Dougs Design ]]**</Shelfmark>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Dougs Reference Manual ]]</Content>
+                </Word>
+                <Word>
+                    <Shelfmark>[[ Dougs Reference Manual ]]**</Shelfmark>
+                </Word>
+            </Paragraph>
+            <Paragraph>
                 <Parenthetical />
                 <Word>
                     <Content>$[[ Dougs Library ]]</Content>
@@ -22,38 +47,6 @@ export default () => (
                 </Word>
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Table />
-            <Heading>The Catalogue</Heading>
-            <Paragraph>
-                <Word>Book</Word>
-                <Word>What it is</Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>[[ Dougs Story ]]**</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ my own account ]]( Dougs Story / Synopsis )</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>[[ Dougs Design ]]**</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ the design of this library ]]( Dougs Design / Synopsis )</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>[[ Dougs Reference Manual ]]**</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ the parts this library is built with ]]( Dougs Reference Manual / Synopsis )</Content>
                 </Word>
             </Paragraph>
         </Section>

@@ -43,9 +43,9 @@ export class $DesignTheme extends $DougsTheme {
             .pd-paragraph.pd-byline { text-align: start; font-size: .8rem; letter-spacing: .04em; color: color-mix(in srgb, ${({ theme }) => theme.bright} 60%, ${({ theme }) => theme.accent}); }
             .pd-byline .pa-reference { color: ${({ theme }) => theme.bright}; }
             .pa-table-of-contents { color: ${({ theme }) => theme.bright}; scrollbar-width: thin; scrollbar-color: color-mix(in srgb, ${({ theme }) => theme.bright} 20%, ${({ theme }) => theme.accent}) transparent; }
-            .pa-table-of-contents .pd-section { margin-block: 0 1.5rem; }
+            .pa-table-of-contents .pd-section { width: auto; max-width: none; margin-block: 0 1.5rem; }
             .pa-table-of-contents .pd-heading { font-size: .66rem; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: color-mix(in srgb, ${({ theme }) => theme.bright} 58%, ${({ theme }) => theme.accent}); margin: 0 0 .5rem; }
-            .pa-table-of-contents .pd-paragraph { margin: 0; padding: .3rem 0 .3rem .9rem; border-inline-start: 1px solid color-mix(in srgb, ${({ theme }) => theme.bright} 16%, ${({ theme }) => theme.accent}); line-height: 1.3; }
+            .pa-table-of-contents .pd-paragraph { display: block; margin: 0; padding: .3rem 0 .3rem .9rem; border-inline-start: 1px solid color-mix(in srgb, ${({ theme }) => theme.bright} 16%, ${({ theme }) => theme.accent}); line-height: 1.3; }
             .pa-table-of-contents .pa-reference { text-decoration: none; }
             .pa-table-of-contents .pa-content { font-size: 1.02rem; font-weight: 400; color: color-mix(in srgb, ${({ theme }) => theme.bright} 76%, ${({ theme }) => theme.accent}); transition: color .4s ease; }
             .pa-table-of-contents .pa-reference:hover .pa-content { color: ${({ theme }) => theme.bright}; }

@@ -63,6 +63,11 @@ export class $DougsTheme extends $Theme {
         return css`
             .pd-paragraph.pd-byline { margin-block: 0; text-align: end; font-size: calc(0.8 * ${({ theme }) => theme.size}); letter-spacing: 0.08em; }
             .pd-byline .pa-reference { text-decoration: none; }
+            .pa-table-of-contents .pd-section { width: max-content; max-width: 100%; }
+            .pa-table-of-contents .pd-paragraph { display: flex; align-items: baseline; }
+            .pd-container.pa-shelfmark { margin-inline-start: auto; padding-inline-start: calc(2 * ${({ theme }) => theme.space}); }
+            .pd-word.pa-shelfmark .pa-content { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+            .pd-word.pa-shelfmark::after { content: ''; display: inline-block; width: calc(0.45 * ${({ theme }) => theme.size}); height: calc(0.45 * ${({ theme }) => theme.size}); border: 1px solid ${({ theme }) => theme.link}; }
             .pd-dateline { display: block; margin-block-start: ${({ theme }) => theme.space}; text-align: end; font-size: calc(0.8 * ${({ theme }) => theme.size}); font-style: italic; color: color-mix(in srgb, ${({ theme }) => theme.ink} 64%, ${({ theme }) => theme.paper}); }
         `;
     }

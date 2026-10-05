@@ -30,6 +30,10 @@ export default () => (
                 <Line>a table of contents, which answers for the chapters the book holds and for the books it catalogues.</Line>
             </Paragraph>
             <Paragraph>
+                The compiler holds the table to its word: it must link to every chapter of its book, itself among
+                them, and to every book filed under it, or the bind refuses.
+            </Paragraph>
+            <Paragraph>
                 Then numbered chapters, each a file whose first words are its title. A file beside a chapter, named
                 for it with an identifier and a type, is the chapter's to print or to import, and the compiler
                 refuses one the chapter does not use.
@@ -64,6 +68,10 @@ export default () => (
                 The bind is run in the face's binding folder, as npm run bind, and the site it builds is served
                 from that folder with npx vite preview. The face keeps the pictures that stood beside a chapter
                 after they are taken out of the book, until that book's folder in the face is cleared by hand.
+            </Paragraph>
+            <Paragraph>
+                The bind publishes the library. It is not how I look at the library while I am writing it, and
+                that is said in <Means>$[[ ./Developing a Library ]]</Means>.
             </Paragraph>
         </Section>
     </Chapter>

@@ -19,7 +19,13 @@ export default () => (
                 <Content>$[[ ./The Date ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./The Shelfmark ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Content>$[[ ./Initializing a Library ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./Developing a Library ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Parenthetical />
