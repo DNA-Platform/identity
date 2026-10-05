@@ -86,6 +86,7 @@
 | a table, a cover, a synopsis | in place, and the catalogue's rules are asked | measured 2026-10-05 |
 | a chapter added | in place, with no bind | seen 2026-10-05; timed at 1.76s on 2026-09-25 |
 | a sheet named in `.pubconfig` | in place at 1.4s | measured 2026-09-20; **not measured since** |
+| **a picture beside a chapter** | **no.** The live site answers a picture's address with the page's own shell; the bind's render phase is what copies it beside the pages. A page that shows pictures, as his design book's cards do, is looked at `built` | measured 2026-10-05: `image/png` on the built site, `text/html` on the live one |
 | **the framework's `src`** | **no.** The face reads the package from `dist` — seen 2026-10-05 in a compiled table, whose import resolved to `package/dist/lib.js`. A `src` edit is the package's build, then a look with `fresh` | the build timed at 4.4–5.0s on 2026-09-20; **not measured since** |
 | **the binder's own files** | **no.** The dev server keeps the binder it started with. Sync the face, then close the workbench and open it | read in [The Binder, As Built](../the-catalogue-and-the-specification/07-the-binder.md#dev) |
 | `.pubconfig` | **not known** | not measured |
