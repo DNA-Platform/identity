@@ -1,0 +1,62 @@
+# The Reimer lab
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+- **coauthor:** [David](../..teamsmanship/..team/david/the-devops-journal/.cover.md)
+
+---
+
+[Part: [als-remote](34-als-remote.md)]
+
+## The rulings
+
+Doug, 2026-10-05, on getting situated in the Reimer lab at BCM:
+
+> *"This will require /als-remote because I need to get setup in the Reimer lab ... we have to execute everything from the remote computer because that is where I can get access ... Ultimately, our goal is to be able to dispatch code onto their servers, to be able to pull and process data from the lab, and I want you to explore many avenues and help me figure out what is possible and how to achieve getting situated in the lab"*
+
+The lab's grant, the same week: Jacob Reimer asked that Doug have *"access to all three: jrdb, compute, and gpu"*. Ming Hu created a database account on `jr-database.ad.bcm.edu` and compute logins on `jr-compute001`, `jr-compute003` and `jr-compute005`, and offered a Kubernetes config file for the GPU servers.
+
+## Why the box
+
+The box, `lipshutzlab-01`, sits on the BCM network: address 10.20.201.51, search domain `ad.bcm.edu`. That makes it the team's way in. Everything below was established by recorded probes on `run-20261005-1531-reimer-access`.
+
+## The credential — `.env`, here only, like the sudo password
+
+`.env` at the project root on this machine holds `REIMER_USER=doug` and `REIMER_PASSWORD=<the value>`. The same password opens the database and the compute servers. It is kept exactly as [Root](34-06-als-remote--root.md) keeps the sudo password: the same three walls, and never written into this chapter, the library, git, memory or the box's disk.
+
+A probe that needs it names the key, and the tool does the rest:
+
+```
+ALS_SECRET=REIMER_PASSWORD bash $T probe <branch> <name> '<command>'
+```
+
+The value goes as the first line of stdin and is read into an *unexported* variable in the shell that runs the script. The script runs in that shell by `eval`, because a `bash -s` child would never see an unexported variable, and exporting it would put it in an environment that anyone on the shared account can list. The probe receives it on its own stdin and reads it with `IFS= read -r PASSWORD`. So the recorded `.sh` holds that line and never the value, and a probe never prints it.
+
+## What is reachable, and how
+
+| resource | reached | what is there |
+|---|---|---|
+| **jr-database** (MySQL 5.7.33) | from the box, with DataJoint (already in the box's environment); **from this machine through the box**, by `ssh -L 3306:jr-database.ad.bcm.edu:3306 lipshutzlab-01@lipshutzlab-01 -N`, because Tailscale SSH forwards ports | `doug@%` reads `common_mice`, `common_lab` and every `pipeline_*` schema (61), and has all privileges on `doug_*`, our own schemas |
+| **jr-compute001/003/005** | SSH from the box with the password (the box has no `sshpass`, so a probe drives the prompt through a pseudo-terminal); from here by `ssh -J lipshutzlab-01@lipshutzlab-01 doug@jr-compute001.ad.bcm.edu` | jr-compute001: 80 CPUs, 376 GB, no GPU; the lab's storage over CIFS (`/mnt/lab`, `jr-stor01`, the scratch volumes, the DataJoint stores `jrdj_stor01` and `dj-stor01`); `docker`, with doug in the docker group; `kubectl` |
+| **GPU servers** | Kubernetes, from a compute server's `kubectl` | not yet: needs the config file Ming offered |
+| **The lab's code** | GitHub, publicly: [reimerlab](https://github.com/reimerlab) (28 repositories, among them `datajoint-djp-python`, `jedi3-paper`, `nnfabrik`, `scanreader`, `microns-nda-access`, `odor_meso`), and the pipeline, `cajal/pipeline` | private repositories need membership of the organisation |
+
+Known hosts for the lab's machines live in `.tools/known_hosts_reimer` inside [the folder](34-02-als-remote--the-folder.md), never in the shared home's `~/.ssh`. Every `ssh` is run with `-F /dev/null`, so the shared account's own SSH configuration is never read.
+
+## Our data, at the source
+
+`pipeline_experiment.scan` holds both animals. `pipeline_meso` holds 33977's four delivered scans (12-1, 12-2, 17-1, 17-3) processed **two ways**:
+
+| variant | segmentation | spike method | units, 12-2 |
+|---|---|---|---|
+| `1-19-7`, what was delivered | 19 `suite2p` | 7 `nmf_filt_raw` — "nonnegative sparse deconvolution from Vogelstein (2010) of low-pass filtered GCaMP traces" | 6,455 |
+| `1-6-5`, 33328's processing | 6 `nmf-new` (CaImAn) | 5 `nmf` — "noise constrained deconvolution from Pnevmatikakis et al. (2016)" | 1,630 |
+
+So the 33328-standard processing of 33977 already exists in the lab's database. Its traces fetch directly through DataJoint: `pipeline_meso.Activity.Trace`, float32, 11,400 frames for 12-2, sparse.
+
+## What is open — Doug's to decide or to ask for
+
+1. **A key for the compute servers**, so runs can reach them without a password: a team key in the folder's `.key/`, its public half added to doug's `authorized_keys` on the jr-compute machines.
+2. **A `tunnel` command in the tool**, so code here talks to the lab database through the box.
+3. **The Kubernetes config file** from Ming, for the GPU servers.
+4. **Membership of the `reimerlab` GitHub organisation**, for anything not public.
+5. **Where lab-side work lives**: a clone in doug's home on a compute server, run in a container next to the data, or runs on the box that pull from the database.

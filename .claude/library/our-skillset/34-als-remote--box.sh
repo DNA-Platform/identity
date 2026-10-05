@@ -86,6 +86,16 @@ password() {
     printf '%s' "$p"
 }
 
+# Any other secret in .env, by its key - the Reimer lab's REIMER_PASSWORD. The same three walls as
+# the sudo password: read here, sent as the first line of stdin, never on a command line, never in
+# an exported environment the shared account could list, never on the box's disk.
+secret() {
+    local key=$1 v=""
+    [ -f "$REPO/.env" ] && v=$(sed -n "s/^$key=//p" "$REPO/.env" | tail -1 | tr -d '\r\n')
+    [ -n "$v" ] || { echo "no $key in $REPO/.env - it goes there and nowhere else" >&2; return 1; }
+    printf '%s' "$v"
+}
+
 # -k ignores any cached sudo ticket, so sudo ALWAYS reads the password line first; the rest of
 # stdin is the script. Without -k a cached ticket would leave the password to be run as a command.
 sudo_script() {
@@ -227,18 +237,37 @@ echo \"\$state | \$(grep -h '^exit:' runs/$branch/meta.txt 2>/dev/null) | gpu \$
 # Doug, 2026-09-26: "You can have probes you run as test code, but remember to record them in the
 # branch there as something we commit. Probably good records from the perspective of reproducibility."
 probe() {
-    local branch=${1:-} name=${2:-} cmd=${3:-} stamp
-    [ -n "$branch" ] && [ -n "$name" ] && [ -n "$cmd" ] || { echo "usage: probe <branch> <name> '<command>'"; return 2; }
+    local branch=${1:-} name=${2:-} cmd=${3:-} stamp value="" runner
+    [ -n "$branch" ] && [ -n "$name" ] && [ -n "$cmd" ] || { echo "usage: [ALS_SECRET=<key>] probe <branch> <name> '<command>'"; return 2; }
     [[ $name =~ ^[A-Za-z0-9-]+$ ]] || { echo "a probe name is letters, digits and hyphens"; return 2; }
     stamp=$(date +%Y%m%d-%H%M%S)
-    box_script "set -e
+    # WITH A SECRET: its value is the first line on stdin, read into an unexported shell variable
+    # before the script, and handed to the probe on ITS stdin - so the probe reads it with
+    # `IFS= read -r <name>` and the recorded .sh holds only that line, never the value.
+    if [ -n "${ALS_SECRET:-}" ]; then
+        value=$(secret "$ALS_SECRET") || return 1
+        runner="printf '%s\n' \"\$ALS_SECRET_VALUE\" | bash"
+    else
+        runner="bash"
+    fi
+    { [ -n "$value" ] && printf '%s\n' "$value"; printf '%s\n%s\n' "$BOX_ENV" "set -e
 cd ../$branch
 export VIRTUAL_ENV=\$A/main/.venv PATH=\$A/main/.venv/bin:\$PATH ALS_ROOT=\$A ALS_RUN=$branch
 P=runs/$branch/probes; mkdir -p \$P
 cat > \$P/$stamp-$name.sh <<'ALS_PROBE_END'
 $cmd
 ALS_PROBE_END
-bash \$P/$stamp-$name.sh 2>&1 | tee \$P/$stamp-$name.out
+$runner \$P/$stamp-$name.sh 2>&1 | tee \$P/$stamp-$name.out"; } \
+        | if [ -n "$value" ]; then
+              # the script runs IN the shell that read the secret (eval), because `bash -s` would be
+              # a child that an unexported variable never reaches - and exporting it would put it in
+              # an environment the shared account can list
+              box "cd $MAIN && IFS= read -r ALS_SECRET_VALUE && eval \"\$(cat)\""
+          else
+              box "cd $MAIN && bash -s"
+          fi
+    box_script "cd ../$branch
+P=runs/$branch/probes
 if pgrep -f 'run.sh $branch' >/dev/null; then
     echo '(recorded in runs/$branch/probes/: committed with the run when it finishes)'
 else

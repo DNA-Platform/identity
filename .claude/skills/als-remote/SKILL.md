@@ -26,6 +26,7 @@ Drive the lab box — `lipshutzlab-01`, the lab's Linux GPU machine — from thi
 7. [The whole machine](../../library/our-skillset/34-07-als-remote--the-whole-machine.md) — a run's command is a pipeline's entry point, never orchestration written for the occasion; the pipelines pack the GPU by measured memory and share the CPU explicitly; poll with `watch`; quote durations only from the run's own clock.
 8. [Closing a run](../../library/our-skillset/34-08-als-remote--closing-a-run.md) — a run is done when it is closed, not when it exits: `close` merges it into `main` here, pushes, brings what GitHub refused over the wire to both mains by sha256, and pulls the box's `main` back in step; `status` says which runs are not home, and a run whose products were superseded comes home as its record.
 9. [Work done here](../../library/our-skillset/34-09-als-remote--work-done-here.md) — work that needs no GPU runs here on `main` (a pipeline's figures redrawn, a check, a cover); `sync` pushes it and pulls the box's `main` onto it, so the machines are on one commit whenever work stops; what git does not carry moves by `send` and `receive`, checked by sha256.
+10. [The Reimer lab](../../library/our-skillset/34-10-als-remote--the-reimer-lab.md) — the box is on the BCM network, so it is the way into the lab: the lab database (from the box with DataJoint, or from here through an SSH tunnel), the compute servers with their mounted storage and docker, the GPU servers by Kubernetes; the lab password in `.env` here, passed to a probe on stdin with `ALS_SECRET`; and 33977 already processed the 33328 way in the lab's own tables.
 
 **Adding a protocol.** A new kind of interaction gets a new sub-chapter, `34-NN-als-remote--<name>.md`: its ruling verbatim and dated, then the protocol. In the same act it is listed here and under this chapter on the [Our Skillset](../../library/our-skillset/.cover.md) cover, the tool gains any command it needs, and the skill is recompiled. A ruling that changes a protocol is written into that protocol, replacing what it overrules — one place, one current version.
 
@@ -53,6 +54,7 @@ bash $T harvest <branch>             # a finished run's branch, into main here (
 bash $T close <branch>               # a finished run home: harvest, push, over-size files to both mains, box pulled
 bash $T sync                         # work done here: main pushed, the box's main pulled onto it
 bash $T probe <branch> <name> '<cmd>'  # test code in a run's worktree, recorded on its branch
+ALS_SECRET=<key> bash $T probe ...     # the same, with a .env secret on the probe's stdin (The Reimer lab)
 bash $T ignored                      # the ignored paths that `send` moves
 bash $T send <path>...               # ignored files or folders to the box, verified
 bash $T send-list <file>             # every path in <file>, one at a time
