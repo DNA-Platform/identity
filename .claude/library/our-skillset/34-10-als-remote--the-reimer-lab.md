@@ -102,7 +102,7 @@ grant allows only select.
 | `1-19-7`, what was delivered | 19 `suite2p` | 7 `nmf_filt_raw` — "nonnegative sparse deconvolution from Vogelstein (2010) of low-pass filtered GCaMP traces" | 6,455 |
 | `1-6-5`, 33328's processing | 6 `nmf-new` (CaImAn) | 5 `nmf` — "noise constrained deconvolution from Pnevmatikakis et al. (2016)" | 1,630 |
 
-So the 33328-standard processing of 33977 already exists in the lab's database. Its traces fetch directly through DataJoint: `pipeline_meso.Activity.Trace`, float32, 11,400 frames for 12-2, sparse.
+So the 33328-standard processing of 33977 already exists in the lab's database. Its traces fetch directly through DataJoint: `pipeline_meso.Activity.Trace`, float32, 11,400 frames for 12-2, sparse. It is Erin's data (Doug, 2026-10-05: *"It's all Erin's - it's her data"*). **Both animals are GCaMP6s** (`pipeline_experiment.session__fluorophore`, every session). The "GCaMP8m" in segmentation 19's description describes the method, not 33977's indicator, so the lab's CaImAn standard suits this mouse as it suited 33328.
 
 ## What is open
 
