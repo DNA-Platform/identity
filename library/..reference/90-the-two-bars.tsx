@@ -13,14 +13,42 @@ export default () => (
                 a shelf when no chapter is open, and otherwise the open chapter.
             </Paragraph>
             <Paragraph>
+                The two bars are the arrangement said of the book. The design it follows
+                is <Means>$[[ the shelf ]]( Dougs Design / The Shelf )</Means> under <Means>$[[ the black and the sky ]]( Dougs Design / Two Top Bars: Black, then Sky )</Means>.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>What is on the shelf</Heading>
+            <Paragraph>
                 The shelf holds the chapters that each represent a book. The class of this book finds them by what
                 they are: a chapter that carries the synopsis of a book other than this one. Its specification
                 says every chapter I add has a place.
             </Paragraph>
             <Paragraph>
-                The two bars are the arrangement said of the book. The design it is growing toward
-                is <Means>$[[ the shelf ]]( Dougs Design / The Shelf )</Means> under <Means>$[[ the black and the sky ]]( Dougs Design / Two Top Bars: Black, then Sky )</Means>.
-                It has no covers and no color yet, and the shelf is its only view.
+                On the shelf such a chapter is drawn as its book: the title as a cover, and its words under it.
+                The title leads to the book itself. Anywhere else a title refers to its own chapter. In this book,
+                where the chapter carries another book's synopsis, it refers to that book. That is a class of the
+                framework's reference from a title to itself, registered on this book's class, so no chapter has
+                to ask for it.
+            </Paragraph>
+            <Paragraph>
+                The shelf is one view of those chapters, and the list is another: one to a row, the name first
+                and the words under it. A view is a thing said of the book. The class says the shelf, and I can
+                pick the list in its place. Only one view is said at a time, because a view that is said takes
+                the one said before it away. That is how the framework keeps a book to one theme, done here for
+                views.
+            </Paragraph>
+            <Paragraph>
+                The buttons that pick a view are <Means>$[[ the switch ]]( Dougs Reference Manual / The Switch )</Means> in
+                its second form: one of a set, where pressing one drops the others.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>How it is dressed</Heading>
+            <Paragraph>
+                The theme is the library's, with this book's colors and its own parts: the two bars, the list at
+                the left, the front page and the covers. The cover and the table of contents are this book's own.
+                Each is the framework's with a look, and the cover file and the table file take them from here.
             </Paragraph>
         </Section>
         <Append
@@ -28,6 +56,30 @@ export default () => (
             type=".tsx"
         >
             ![[ code.tsx ]]
+        </Append>
+        <Append
+            identifier="itself"
+            type=".tsx"
+        >
+            ![[ itself.tsx ]]
+        </Append>
+        <Append
+            identifier="views"
+            type=".tsx"
+        >
+            ![[ views.tsx ]]
+        </Append>
+        <Append
+            identifier="faces"
+            type=".tsx"
+        >
+            ![[ faces.tsx ]]
+        </Append>
+        <Append
+            identifier="theme"
+            type=".tsx"
+        >
+            ![[ theme.tsx ]]
         </Append>
     </Chapter>
 );

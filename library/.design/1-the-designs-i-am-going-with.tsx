@@ -29,15 +29,16 @@ export default () => (
                 I liked the shelf from the start: the book view, with the cover as the landmark that grounds a book.
                 When I saw the black and sky I wanted it for the library itself, with its more bookish view, and
                 each cataloguing book under it moving into colors of its own. I want to switch the view among 1, 2
-                and 3 on the page, because many ways to view the same thing will be important. How a book is built
-                to carry many views is still to be worked out. What is settled is where a view gets its books
-                from: the table of contents. A catalogue holds a chapter for each book filed under it, and
-                in <Means>$[[ its table ]]( Dougs Library / Table of Contents )</Means> the row for that chapter
-                ends in a small square at the right, which leads to the book. A shelf or a list will read the
-                table and nothing else.
+                and 3 on the page, because many ways to view the same thing will be important. A book carries
+                many views by having each one said of it, one at a time, and a shelf and a list are the first
+                two. Where a view gets its books from is settled too. A catalogue holds a chapter for each book
+                filed under it. That chapter carries the book's synopsis and its title leads to the book, and a
+                view draws those chapters. In <Means>$[[ its table ]]( Dougs Library / Table of Contents )</Means> the
+                row for such a chapter ends in a small square at the right, which leads to the book as well.
             </Paragraph>
             <Paragraph>
-                It is for <Means>$[[ Dougs Library ]]</Means>, which does not have it yet.
+                It is for <Means>$[[ Dougs Library ]]</Means>, which has the two bars, the shelf and the list.
+                The views of 2 and 3 are not built.
             </Paragraph>
         </Section>
         <Section>
@@ -59,7 +60,8 @@ export default () => (
                 before it spins off into a book of its own when the book becomes too large.
             </Paragraph>
             <Paragraph>
-                It is for <Means>$[[ Dougs Reference Manual ]]</Means>, which does not have it yet.
+                It is for <Means>$[[ Dougs Reference Manual ]]</Means>, which has the words beside the file and
+                the toggle. A part opened alone on the bench is not built.
             </Paragraph>
         </Section>
         <Section>
@@ -97,7 +99,8 @@ export default () => (
                 was also very hard to get to from another book, so every book now carries my name as a way to it.
             </Paragraph>
             <Paragraph>
-                It is for <Means>$[[ Dougs Story ]]</Means>, which does not have it yet.
+                It is for <Means>$[[ Dougs Story ]]</Means>, which has the sheet, its type and its three papers.
+                The view that sorts by recency is not built.
             </Paragraph>
         </Section>
         <Section>

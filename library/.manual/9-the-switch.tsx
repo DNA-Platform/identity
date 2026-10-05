@@ -17,6 +17,12 @@ export default () => (
                 choice only adds to what the class says. It cannot take away something the class says itself.
             </Paragraph>
             <Paragraph>
+                Some choices come as a set, where only one can hold: the paper a book is printed on, or the view
+                of a shelf. A pick is a choice for that. It is given the thing it says and the set it belongs to.
+                Pressed, it says its own thing and takes back the others of the set, and pressing the one that
+                already holds changes nothing.
+            </Paragraph>
+            <Paragraph>
                 The first choice every book carries
                 is <Means>$[[ the outline ]]( ./The Outline )</Means>. <Means>$[[ The book ]]( ./The Book )</Means> draws
                 it, and a book that has more to choose from draws more.

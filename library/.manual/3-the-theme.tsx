@@ -10,17 +10,21 @@ export default () => (
                 drawn inside. The framework's own theme has no values and no rules, so everything here is mine.
             </Paragraph>
             <Paragraph>
-                It is small on purpose. No design is built yet, so it holds four values: a measure, a space, how
-                wide a side is, which is also the least width of a book on a shelf, and how narrow a screen is
-                before a book stops setting things side by side. And it holds only the rules a plain page needs:
-                the page keeps the space around it, a chapter keeps to the measure, a chapter, a section and a
-                paragraph each keep the space above and below, a picture is never wider than its place, and a
-                listing scrolls sideways when its lines are long. It grows as each design is built, and every
-                value added to it is one I chose.
+                It holds two things. The first is the properties: the faces, the sizes and the spaces, the colors
+                of a page, the colors of the dark panel a file is printed on, and the colors of the library's
+                frame, which are the soft black, the sky and the opal. Every property the library uses is
+                declared here, so a rule anywhere can read it. A book's own theme sets some of them again and
+                declares none.
+            </Paragraph>
+            <Paragraph>
+                The second is the rules every book needs: the page, the space around a chapter, a section and a
+                paragraph, a link, a picture, a listing with its numbered lines, the switch, and the line at the
+                foot of a chapter. It grows as each design is built, and every value in it is one I chose.
             </Paragraph>
             <Paragraph>
                 The component is made of parts, each a method that returns some rules, so a book can change one
-                part and keep the rest.
+                part and keep the rest. A book's own theme is a class under this one. It sets properties, adds
+                parts, and is registered on that book's class.
             </Paragraph>
         </Section>
         <Append

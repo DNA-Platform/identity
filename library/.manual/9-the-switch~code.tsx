@@ -32,4 +32,15 @@ export class $Choice extends $Word {
     }
 }
 
+export class $Pick extends $Choice {
+    $among!: Given<$Annotation>[];
+
+    override press(): void {
+        const book = this.book!;
+        const kept = [book.$is].flat().filter(each => !this.$among.includes(each));
+        book.$is = [this.$of, ...kept];
+    }
+}
+
 export const Choice = $($Choice);
+export const Pick = $($Pick);

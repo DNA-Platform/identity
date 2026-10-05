@@ -30,7 +30,7 @@ export default () => (
                 <Line>what the page says, or any part of it;</Line>
                 <Line>what a rule computes to on an element, and where the element is;</Line>
                 <Line>how many things run past the right edge of the screen;</Line>
-                <Line>anything that went wrong on the page, and the compiler's refusal if there is one.</Line>
+                <Line>anything that went wrong on the page, and what the compiler says is wrong if it stopped.</Line>
             </Paragraph>
             <Paragraph>
                 A look takes under a second, because the browser is already open and the page is already

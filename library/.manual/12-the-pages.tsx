@@ -13,9 +13,9 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 This is the rule that goes with them: a page that is not open is not shown. It is said of every
-                book once, here. An arrangement of a book, such
-                as <Means>$[[ the sidebar ]]( ./The Sidebar )</Means>, is this with rules of its own added, and a
-                book says which arrangement it has in one line.
+                book once, here. An arrangement of a book, such as the spread
+                of <Means>$[[ a manual ]]( ./The Manual )</Means>, is this with rules of its own added, and a
+                type of book says which arrangement it has in one line.
             </Paragraph>
         </Section>
         <Append

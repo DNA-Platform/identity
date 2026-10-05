@@ -12,7 +12,7 @@ export class $Outlined extends $Format {
         .pd-chapter::before, .pd-section::before, .pd-listing::before, .pd-paragraph[class*='pa-']::before {
             content: attr(class);
             display: block;
-            font-family: monospace;
+            font-family: ${({ theme }) => theme.mono};
             font-size: smaller;
         }
     `;

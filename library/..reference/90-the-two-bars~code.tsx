@@ -1,13 +1,20 @@
 import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
-import { $, $check } from '@dna-platform/chemistry';
-import { $Chapter, $Synopsis, $Writing, specify } from '@dna-platform/public';
-import { $DougsBook, $Paged, DougsBookSpecification, Paged } from '../.manual/.book';
+import { $ } from '@dna-platform/chemistry';
+import { $Annotation, $Chapter, $Synopsis, $Writing, Given, Self } from '@dna-platform/public';
+import { $DougsBook, $Paged, Paged, Pick as pick } from '../.manual/.book';
+import { BookItself } from './90-the-two-bars~itself.tsx';
+import { Listed as listed, Shelved as shelved } from './90-the-two-bars~views.tsx';
 
 export class $DougsLibrary extends $DougsBook {
-    specification = new DougsLibrarySpecification();
     get books(): $Chapter[] {
         return this.text.find($Chapter).filter(chapter => chapter.is($Synopsis) && chapter !== this.synopsis);
+    }
+    get views(): Given<$Annotation>[] {
+        return [shelved, listed];
+    }
+    override get placed(): ($Chapter | undefined)[] {
+        return [...super.placed, ...this.books];
     }
 
     override write(): ReactNode {
@@ -22,25 +29,54 @@ export class $DougsLibrary extends $DougsBook {
                 </div>
                 <div className="pd-book-bar">
                     <Cover />
-                    {this.choices()}
+                    <div className="pd-choices">
+                        {this.choices()}
+                    </div>
                 </div>
                 <div className="pd-holds">
                     <Table />
                 </div>
-                <div className="pd-main">
-                    <div className={this.open === undefined ? 'pd-page pd-front pd-open' : 'pd-page pd-front'}>
-                        <Synopsis />
-                        <div className="pd-shelf">
-                            {this.shelved()}
-                        </div>
-                    </div>
+                <div className="pd-pages">
+                    {this.front(
+                        <>
+                            <div className="pd-words">
+                                <Synopsis />
+                            </div>
+                            <div className="pd-shelf">
+                                {this.volumes()}
+                            </div>
+                        </>
+                    )}
                     {this.pages()}
                 </div>
             </>
         );
     }
 
-    shelved(): ReactNode {
+    override choices(): ReactNode {
+        const Pick = $(pick);
+        return (
+            <>
+                <Pick
+                    chapter={this.cover}
+                    of={shelved}
+                    among={this.views}
+                >
+                    shelf
+                </Pick>
+                <Pick
+                    chapter={this.cover}
+                    of={listed}
+                    among={this.views}
+                >
+                    list
+                </Pick>
+                {super.choices()}
+            </>
+        );
+    }
+
+    volumes(): ReactNode {
         return this.books.map((book, index) => {
             const Book = $(book);
             return (
@@ -53,6 +89,14 @@ export class $DougsLibrary extends $DougsBook {
             );
         });
     }
+
+    protected override $Define(): void {
+        super.$Define();
+        const Shelved = $(shelved);
+        this.annotations.add(this,
+            <Shelved />
+        );
+    }
 }
 
 export class $TwoBars extends $Paged {
@@ -62,55 +106,56 @@ export class $TwoBars extends $Paged {
     }
 
     protected override parts(): RuleSet[] {
-        return [...super.parts(), this.columns(), this.bars(), this.shelf()];
+        return [...super.parts(), this.areas(), this.bars(), this.narrow()];
     }
 
-    protected columns(): RuleSet {
+    protected areas(): RuleSet {
         return css`
             .pd-book.pa-two-bars {
                 display: grid;
                 grid-template-columns: ${({ theme }) => theme.side} minmax(0, 1fr);
-                column-gap: ${({ theme }) => theme.space};
-                align-items: start;
+                grid-template-rows: auto auto minmax(0, 1fr);
+                grid-template-areas: 'library library' 'book book' 'holds pages';
+                height: 100vh;
             }
-            @media (max-width: ${({ theme }) => theme.narrow}) {
-                .pd-book.pa-two-bars { display: block; }
-            }
+            .pa-two-bars .pd-library-bar { grid-area: library; }
+            .pa-two-bars .pd-book-bar { grid-area: book; }
+            .pa-two-bars .pd-holds { grid-area: holds; overflow-y: auto; }
+            .pa-two-bars .pd-pages { grid-area: pages; overflow-y: auto; }
+            .pa-two-bars .pd-words .pd-chapter { scroll-margin-block-start: ${({ theme }) => theme.space}; }
         `;
     }
 
     protected bars(): RuleSet {
         return css`
-            .pd-library-bar, .pd-book-bar {
-                grid-column: 1 / -1;
+            .pa-two-bars .pd-library-bar, .pa-two-bars .pd-book-bar {
                 display: flex;
-                flex-wrap: wrap;
-                align-items: baseline;
+                align-items: center;
                 justify-content: space-between;
                 column-gap: ${({ theme }) => theme.space};
             }
+            .pa-two-bars .pd-choices {
+                display: flex;
+                gap: calc(${({ theme }) => theme.space} / 3);
+            }
         `;
     }
 
-    protected shelf(): RuleSet {
+    protected narrow(): RuleSet {
         return css`
-            .pd-shelf {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(${({ theme }) => theme.side}, 1fr));
-                gap: ${({ theme }) => theme.space};
+            @media (max-width: ${({ theme }) => theme.narrow}) {
+                .pd-book.pa-two-bars { display: block; height: auto; }
+                .pa-two-bars .pd-library-bar, .pa-two-bars .pd-holds {
+                    overflow-x: auto;
+                    white-space: nowrap;
+                    scrollbar-width: none;
+                }
             }
         `;
     }
 }
 
-export class DougsLibrarySpecification extends DougsBookSpecification {
-    @specify('my library has a place for every chapter it holds')
-    $placesEveryChapter(book: $DougsLibrary): void {
-        const placed = [book.cover, book.synopsis, book.table, ...book.chapters, ...book.books];
-        $check(book.text.find($Chapter).every(chapter => placed.includes(chapter)),
-            'my library places its cover, its synopsis, its table of contents, its chapters and the chapters that represent its books, and it holds a chapter that is none of them');
-    }
-}
-
+export const DougsLibrary = $($DougsLibrary);
 export const TwoBars = $($TwoBars);
-$($($DougsLibrary), Paged)(TwoBars);
+$(DougsLibrary, Paged)(TwoBars);
+$(DougsLibrary, Self)(BookItself);

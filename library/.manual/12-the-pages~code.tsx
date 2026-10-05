@@ -1,16 +1,19 @@
 import { ElementType } from 'react';
 import { css, RuleSet } from 'styled-components';
-import { $, $check, selection } from '@dna-platform/chemistry';
-import { $Book, $Format, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
+import { $, selection } from '@dna-platform/chemistry';
+import { $Format, $Writing } from '@dna-platform/public';
+import type { $DougsBook } from './1-the-book~code.tsx';
+import { OfABookSpecification } from './1-the-book~said.tsx';
 
 export class $Paged extends $Format {
-    specification = new PagedSpecification();
+    specification = new OfABookSpecification();
     themeProvider = true;
     style: ElementType = selection.div`${this.parts()}`;
 
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-paged');
+        if ((writing as $DougsBook).open !== undefined) writing.classes.add(this, 'pa-turned');
     }
 
     override erase(writing: $Writing): void {
@@ -26,13 +29,6 @@ export class $Paged extends $Format {
         return css`
             .pd-page:not(.pd-open) { display: none; }
         `;
-    }
-}
-
-export class PagedSpecification extends AnnotationSpecification {
-    @specify('paged is said of a book')
-    $saidOfABook(writing: $Writing): void {
-        $check(writing instanceof $Book, 'paged is said of a book, and this is not one');
     }
 }
 

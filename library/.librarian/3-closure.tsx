@@ -51,7 +51,7 @@ export default () => (
                     <Means>$[[ The listing ]]( Dougs Reference Manual / The Listing )</Means>, which is how a book shows a file a chapter keeps beside it.
                 </Line>
                 <Line>
-                    <Means>$[[ The theme ]]( Dougs Reference Manual / The Theme )</Means>, which holds almost nothing until the designs are built.
+                    <Means>$[[ The theme ]]( Dougs Reference Manual / The Theme )</Means>, which holds every value the library's rules read.
                 </Line>
                 <Line>
                     <Means>$[[ The date ]]( Dougs Reference Manual / The Date )</Means>, which a chapter like this one carries.
@@ -66,7 +66,13 @@ export default () => (
                     <Means>$[[ The outline ]]( Dougs Reference Manual / The Outline )</Means>, which shows a book's structure.
                 </Line>
                 <Line>
-                    <Means>$[[ The pages ]]( Dougs Reference Manual / The Pages )</Means>, <Means>$[[ the sidebar ]]( Dougs Reference Manual / The Sidebar )</Means> and <Means>$[[ the spread ]]( Dougs Reference Manual / The Spread )</Means>, which lay out a book read one chapter at a time.
+                    <Means>$[[ The pages ]]( Dougs Reference Manual / The Pages )</Means> and <Means>$[[ the catchword ]]( Dougs Reference Manual / The Catchword )</Means>, which show a book one chapter at a time and lead from each to the next.
+                </Line>
+                <Line>
+                    <Means>$[[ The entry ]]( Dougs Reference Manual / The Entry )</Means>, a row of a table of contents that knows the chapter it leads to.
+                </Line>
+                <Line>
+                    <Means>$[[ The manual ]]( Dougs Reference Manual / The Manual )</Means>, the first type of book: an index at the side and each chapter beside its file.
                 </Line>
                 <Line>
                     <Means>$[[ Initializing a library ]]( Dougs Reference Manual / Initializing a Library )</Means>, which says how one like this is begun and how it is bound.

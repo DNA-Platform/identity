@@ -13,9 +13,10 @@ import DevelopingALibrary6 from '../../../../.manual/6-developing-a-library';
 import TheOutline7 from '../../../../.manual/7-the-outline';
 import TheAuthorAndTheSubject8 from '../../../../.manual/8-the-author-and-the-subject';
 import TheSwitch9 from '../../../../.manual/9-the-switch';
-import TheSidebar10 from '../../../../.manual/10-the-sidebar';
-import TheSpread11 from '../../../../.manual/11-the-spread';
+import TheManual10 from '../../../../.manual/10-the-manual';
 import ThePages12 from '../../../../.manual/12-the-pages';
+import TheCatchword13 from '../../../../.manual/13-the-catchword';
+import TheEntry14 from '../../../../.manual/14-the-entry';
 
 const Book = $($Book);
 
@@ -33,9 +34,10 @@ export const book = () => (
         {TheOutline7()}
         {TheAuthorAndTheSubject8()}
         {TheSwitch9()}
-        {TheSidebar10()}
-        {TheSpread11()}
+        {TheManual10()}
         {ThePages12()}
+        {TheCatchword13()}
+        {TheEntry14()}
     </Book>
 );
 

@@ -7,17 +7,18 @@ import { Outlined as outlined } from './7-the-outline~code.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Choice as choice } from './9-the-switch~code.tsx';
 import { Paged as paged } from './12-the-pages~code.tsx';
+import { Catchword as catchword } from './13-the-catchword~code.tsx';
 
 export class $DougsBook extends $Book {
     specification = new DougsBookSpecification();
     get chapters(): $Chapter[] {
         return this.text.find($Chapter).filter(chapter => [...chapter.classes].includes('pd-canonical'));
     }
+    get placed(): ($Chapter | undefined)[] {
+        return [this.cover, this.synopsis, this.table, ...this.chapters];
+    }
     get open(): $Chapter | undefined {
-        const place = this.$bookmark;
-        if (place === undefined) return undefined;
-        return this.chapters.find(chapter => chapter.mention?.identifier === place
-            || this.sections(chapter).some(section => section.mention?.identifier === place));
+        return this.$bookmark === undefined ? undefined : this.named(this.$bookmark);
     }
 
     override write(): ReactNode {
@@ -33,6 +34,11 @@ export class $DougsBook extends $Book {
                 </Fragment>
             );
         });
+    }
+
+    named(place: string): $Chapter | undefined {
+        return this.chapters.find(chapter => chapter.mention?.identifier === place
+            || this.sections(chapter).some(section => section.mention?.identifier === place));
     }
 
     byline(): ReactNode {
@@ -61,6 +67,14 @@ export class $DougsBook extends $Book {
         );
     }
 
+    front(holds: ReactNode): ReactNode {
+        return (
+            <div className={this.open === undefined ? 'pd-page pd-front pd-open' : 'pd-page pd-front'}>
+                {holds}
+            </div>
+        );
+    }
+
     pages(): ReactNode {
         return this.chapters.map((chapter, index) => {
             const Chapter = $(chapter);
@@ -82,7 +96,7 @@ export class $DougsBook extends $Book {
 
     listings(chapter: $Chapter): ReactNode {
         const Listing = $(listing);
-        return chapter.annotations.find($Append).map((append, index) => (
+        return chapter.annotations.find($Append).reverse().map((append, index) => (
             <Listing
                 key={index}
                 chapter={chapter}
@@ -96,12 +110,26 @@ export class $DougsBook extends $Book {
         return composition.text.find($Section).flatMap(section => [section, ...this.sections(section)]);
     }
 
+    protected override turn(): void {
+        if (this.bookmark === this.cover) return;
+        super.turn();
+    }
+
     protected override $Define(): void {
         super.$Define();
         const Paged = $(paged);
         this.annotations.add(this,
             <Paged />
         );
+    }
+
+    protected override $Bound(): void {
+        const Catchword = $(catchword);
+        for (const chapter of this.chapters)
+            chapter.text.add(this,
+                <Catchword />
+            );
+        super.$Bound();
     }
 }
 
@@ -110,6 +138,12 @@ export class DougsBookSpecification extends BookSpecification {
     $holdsOnlyChapters(book: $DougsBook): void {
         $check([...book.text].every(chemical => chemical instanceof $Chapter),
             'a book of this library holds only chapters, and this one holds something else');
+    }
+
+    @specify('a book of this library has a place for every chapter it holds')
+    $placesEveryChapter(book: $DougsBook): void {
+        $check(book.text.find($Chapter).every(chapter => book.placed.includes(chapter)),
+            'a book of this library has a place for every chapter it holds, and this one holds a chapter it places nowhere');
     }
 
     @specify('only an ordinary chapter appends a file')

@@ -1,4 +1,5 @@
-import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
+import { TableOfContents } from './10-the-manual~faces.tsx';
 
 export default () => (
     <Chapter>
@@ -13,13 +14,22 @@ export default () => (
                 <Content>$[[ ./The Book ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./The Listing ]]</Content>
-            </Paragraph>
-            <Paragraph>
                 <Content>$[[ ./The Theme ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Content>$[[ ./The Author and the Subject ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Pages ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Catchword ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Entry ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Listing ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Parenthetical />
@@ -35,27 +45,24 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>What a chapter may carry</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Date ]]</Content>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>How a book is arranged</Heading>
+            <Heading>What a reader may switch</Heading>
             <Paragraph>
                 <Content>$[[ ./The Switch ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Content>$[[ ./The Outline ]]</Content>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>What a chapter may carry</Heading>
             <Paragraph>
-                <Content>$[[ ./The Pages ]]</Content>
+                <Content>$[[ ./The Date ]]</Content>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>The types of book</Heading>
             <Paragraph>
-                <Content>$[[ ./The Sidebar ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Spread ]]</Content>
+                <Content>$[[ ./The Manual ]]</Content>
             </Paragraph>
         </Section>
         <Section>

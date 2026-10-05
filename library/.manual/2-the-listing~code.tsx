@@ -18,6 +18,7 @@ export class $Listing extends $Paragraph {
                 <Code
                     identifier={this.$identifier}
                     type={this.$type}
+                    numbered
                 />
             </>
         );

@@ -1,4 +1,5 @@
-import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
+import { TableOfContents } from './90-the-two-bars~faces.tsx';
 
 export default () => (
     <Chapter>
