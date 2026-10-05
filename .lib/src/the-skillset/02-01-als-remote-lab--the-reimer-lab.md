@@ -104,6 +104,8 @@ grant allows only select.
 
 So the 33328-standard processing of 33977 already exists in the lab's database. Its traces fetch directly through DataJoint: `pipeline_meso.Activity.Trace`, float32, 11,400 frames for 12-2, sparse. It is Erin's data (Doug, 2026-10-05: *"It's all Erin's - it's her data"*). **Both animals are GCaMP6s** (`pipeline_experiment.session__fluorophore`, every session). The "GCaMP8m" in segmentation 19's description describes the method, not 33977's indicator, so the lab's CaImAn standard suits this mouse as it suited 33328.
 
+**Where 33977's coordinates stand in the database** (`runs/lab/*-coordinates-33977.*`, 2026-10-05). All four scans are registered to stack 17-6 (`pipeline_stack.Registration`, method 5, every field). Segmentation and `ScanSet` exist for all four scans in both processings; segmentation 6 has 1,904, 1,630, 1,782 and 2,386 units on 12-1, 12-2, 17-1 and 17-3. `meso.StackCoordinates`, the populate that places each unit in the stack through that registration, exists only for **12-1 and 17-3, and only on segmentation 19**. So for 1-6-5 the populate is the one missing step. The delivered coordinates for 12-2 and 17-1 did not come from that table, so how they were made is a question for Erin.
+
 ## What is open
 
 Asked of the lab, 2026-10-05:
