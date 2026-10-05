@@ -15,6 +15,12 @@
 > **"I recommend that you try to use annotations to make components - a format is an annotation is that like a styled component, but it can also be used to select things. Perhaps use components when you have a collection like a certain type of chapter, trying your best - like with css classes - to have a book-like structure in the semantics of the chapters, and yet have it come together in more of an app view."** — 2026-10-05
 >
 > **"If you need chapters to have a certain specification, this is exactly what the specification is for. Look it up. Write your components to specification."** — 2026-10-05
+>
+> **"A subclass of the book, but if we need composability to layouts, I'm sure you can use the annotation system to manage something. It is very powerful."** — 2026-10-05, asked whether a layout is a class of book or something a book is given
+>
+> **"You guys don't seem to have to put the author and subject on the cover. This should be a compiler error. And without those, the library is not navigable. I need you to take more seriously that this is a library with many rooms, even if they look like different apps sometimes, and we need to take those author and subject links very seriously, as well as creating many many links to the other parts of the library."** — 2026-10-05, after browsing the first plain build
+>
+> **"If you allow html to be in the library, then all you have done is come up with a way to not build a library. Soon, you'll do everything interesting in html and have the library be a shell. Stop fighting the framework. Embrace the semantics and learn how to think in terms of it. The point of resources is to document, it is not to render."** — 2026-10-05, refusing an address for a page kept beside a chapter
 
 ## In one paragraph
 
@@ -67,9 +73,17 @@
 
 **The framework has built this three times, and they are the models:** [`Table`](../writing/12-table.md), `List` and [`Paginated`](../library/08-paginated.md) are each a Format said of one writing that picks out a collection of its parts — `rows`, `items`, `pages` — puts a class on each once the book is whole, and carries the styled component that arranges them. *A shelf of the books a catalogue holds, a list of a manual's parts, are the same thing.* **Where one of several may hold, the one in front turns off the others of its kind in its `defines`,** as Strict and Permissive do, and as Theme does.
 
-## 7 · A switch — not built in either library
+## 7 · A switch — built in his library, 2026-10-05
 
-**What is settled:** a reader's choice is given to the book through `$is`, in front of what the book declared, and taking it back restores the book's own — [the annotation system](../writing/07-the-annotation-system.md#precedence). **What is to be built, and written here when it is:** something pressed that sets `$is` on the held book; which choice is on, asked of the book and said nowhere else, so the default is declared once; and the name a reader sees for a choice, said by the choice.
+**A reader's choice is given to the book through `$is`, in front of what the book declared, and taking it back restores the book's own** — [the annotation system](../writing/07-the-annotation-system.md#precedence). **As built** (`.me/.manual/9-the-switch~code.tsx`, thirty-five lines): a `Choice` is a Word whose element is a `button`, as a Date's is a `time`; it is given one annotation, `of`, and its words are what a reader reads. Pressed, it puts that annotation at the front of the held book's `$is`, or takes it out when the book already is it; `aria-pressed` is `book.is(of)`, asked at every draw and kept nowhere. *Measured in Chrome: one press and the book carries the annotation's class and its wrapper; a second and both are gone; the button reports each.* **What it does not do yet:** choose one of several — a set whose members turn each other off, as Strict and Permissive do, is the next book's to need.
+
+## 8 · The two halves of a layout — on his answer
+
+**A layout is a subclass of the book, and what can be composed or switched in it is an annotation.** As built for his four books: **the class's `write()` says which parts go in which element** — a side, a bar, a sheet, a shelf, each a `div` of the book's own with a class — **and a Format said of the book carries the one styled component that arranges those elements.** **Which page is open is the book's:** the base book's `pages()` draws a page for every chapter, all of them in the document, and puts `pd-open` on the one its bookmark names. *The framework's `Paginated` was not used: its pages are chapters, and a page here is an element of the book's holding a chapter and the files it appends, so the open class has to be on what the book drew.*
+
+**The arrangements are one family, and a book takes one by registration.** The base book says it is `Paged`, a Format whose one rule is that a page not open is not shown. `Sidebar`, `Sheet` and `TwoBars` are classes under it, each adding parts — the template method of [policy 5](07-the-development-policies.md) — and each book's file ends with one line, `$(Book, Paged)(Sheet)`, as the theme is registered. *So no book overrides `$Define` for its layout, no file needs a constant to name its own component, and a second arrangement of the same parts is one more class and one more line: his manual's `Spread` is `Sidebar` with one part added, and the most specific class's registration wins.*
+
+**And every layout places the author and the subject.** Two paragraphs of the library's own, each behind a method of the base book and each given the cover as its chapter: *by* with a link to the author's book, *filed under* with a link to the book that catalogues this one. *The compiler already refuses a book that names neither — `NO-AUTHOR`, the cover's own specification, and "every book reaches the library and the author" — and the framework draws neither, so a library that does not draw them has no way out of a book.*
 
 ## The checks, run before anything is shown
 
@@ -87,10 +101,20 @@
 - **A kind that only names a paragraph or a section costs twelve lines and a rule.** `Asked`, `Said`, `Chosen` on a paragraph and `Concept` on a section each add a class and say what they are said of. **Each has its own specification, named for it, whose sentence names it** — one shared by three was written first and read as nobody's.
 - **An outline is the first Format worth having.** A Format said of the book that outlines every chapter, section and listing and writes each one's class list over it showed the structure of four books before any layout, and showed a paragraph's kind by `[class*='pa-']`. *That selector names no one class; it is kept as the one rule whose subject is "whatever something was said of", and is nobody's model.*
 - **The live server answers no picture.** A picture's address is `/<folder>/<file>` and only the bind copies it there, so an `Image` is empty on the live page and whole on the built one. *A pitch for `.public`, with the next.*
-- **A page kept beside a chapter can only be inlined.** A sketch is an `.html` file; the compiler refuses a file no chapter uses, and gives an address only to a picture, so each of twenty-five sketches is held as text by an annotation and the design book's script carries 825,115 bytes nothing reads yet. *The pitch: a page beside a chapter is copied and addressed as a picture is.*
+- **A file kept beside a chapter documents; it is never rendered.** The first build held each of twenty-five sketches as text in an annotation, to be drawn live later, and pitched an address for an `.html` file. **He refused both in one sentence — *"The point of resources is to document, it is not to render."*** *So each concept prints its sketch with the framework's `Code`, as a manual's chapter prints its file, and the annotation is deleted.*
+
+## What the second build found — 2026-10-05, [U16](../projection/105-sprint-100--the-big-plan.md#u16)
+
+- **The framework's bookmark knows chapters and no place inside one.** `Book.bookmark` matches a chapter's own title, so an address naming a heading opens nothing; under any layout that shows one page, that heading is on a hidden page. *His base book's `open` is the chapter whose title the address names or whose sections, however deep, hold a heading it names — equality on what the compiler wrote, no address read. A `Mention` inside a paragraph holds no address to compare and is still not found.*
+- **A press lands by itself; a direct load does not.** Measured with a probe, removed: on a press the book draws about 380ms after its bookmark is set, and the browser then scrolls to the place on its own — no code of the library scrolls, and an override of `turn()` written for it was deleted as unneeded. **On a direct load the router sets the bookmark inside an effect and scrolls at once, before the draw, to a place still hidden; the page opens and nothing lands.** *Seen on a phone for any chapter, the side being above it, and at a desk for a place deep in a chapter. Chemistry's `next('effect')` resolves about 4ms after the bookmark is set and before that draw, so it is no way to wait. The router's, pitched.*
+- **A rule said in three Formats was one Format.** *The helper's review: `.pd-page:not(.pd-open)` in each arrangement, and a constant at the foot of each file so a class could fetch its own component. Both went with the family above.*
+- **What `write()` assumes about files is a rule too.** Only a page prints the files a chapter appends, so the base book's specification says only an ordinary chapter appends one.
+- **A choice only adds.** It takes back what it gave through `$is` and cannot take away what a class says itself.
 
 ## Open
 
-- **Whether a layout is a class of book or something a book is given.** Written here as a class, on *"the purpose of a book is layout"*; put to Doug with the first showing.
+- **A state on an element the book drew.** `pd-open` here, in the prefix of the element it is on; `pa-` is for what an annotation put there, and no annotation puts this.
+- ~~**Whether a layout is a class of book or something a book is given.**~~ *Answered 2026-10-05: a subclass, with annotations where it must compose — [§8](#8--the-two-halves-of-a-layout--on-his-answer).*
+- **How the canonical type of chapter is asked for in code.** His base book asks `[...chapter.classes].includes('pd-canonical')`, the framework's own class for it, because the framework has no getter and *"every chapter but the cover, the synopsis and the table"* is [a remainder](../the-first-draft/05-the-book-is-the-layout.md#not-a-remainder).
 - **The prefix for an element a book draws that is no writing.**
 - **How a library's own classes are promised** — his library has no test, and the test library's two stand beside the binder with no account of how.
