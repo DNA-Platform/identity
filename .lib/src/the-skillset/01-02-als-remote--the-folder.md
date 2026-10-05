@@ -1,11 +1,11 @@
 # The folder
 
-- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- **coauthor:** [David](../..teamsmanship/..team/david/the-devops-journal/.cover.md)
+- **author:** [Adam](../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+- **coauthor:** [David](../../../.claude/library/..teamsmanship/..team/david/the-devops-journal/.cover.md)
 
 ---
 
-[Part: [als-remote](34-als-remote.md)]
+[Part: [als-remote](01-als-remote.md)]
 
 ## The rulings
 
@@ -30,7 +30,7 @@ Everything the team has on the box is inside one folder, and nothing is outside 
 ```
 
 - **The account is the lab's, shared.** Nothing goes in its home: not `~/.local`, not `~/.cache`, not `~/.bashrc`, not the global git config. Every command the skill runs exports the folder's own locations first (`UV_*`, `PIP_CACHE_DIR`, `XDG_*_HOME`, `MPLCONFIGDIR`, `TORCH_HOME`, and PATH for that command only). Anything already in the home belongs to someone else and is left alone.
-- **`main` is a mirror of GitHub's `main`.** Nothing is committed on it; it moves only by [pulling](34-03-als-remote--the-run.md). Its git identity is set in the clone's own config, never globally.
+- **`main` is a mirror of GitHub's `main`.** Nothing is committed on it; it moves only by [pulling](01-03-als-remote--the-run.md). Its git identity is set in the clone's own config, never globally.
 - **Branches: `main`, and one per run**, made when the run is dispatched and never before.
 - **Identity never travels**: `.claude/`, `CLAUDE.md`, every `.lib/`. The identity repository carries them. Neither does `.vscode/`, this machine's editor state.
 - **Cruft goes the day it appears.** A worktree, file or branch that no protocol accounts for is deleted, with Doug told what went.

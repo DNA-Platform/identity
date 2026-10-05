@@ -1,11 +1,11 @@
 # Root
 
-- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- **coauthor:** [David](../..teamsmanship/..team/david/the-devops-journal/.cover.md)
+- **author:** [Adam](../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+- **coauthor:** [David](../../../.claude/library/..teamsmanship/..team/david/the-devops-journal/.cover.md)
 
 ---
 
-[Part: [als-remote](34-als-remote.md)]
+[Part: [als-remote](01-als-remote.md)]
 
 ## The rulings
 
@@ -29,4 +29,4 @@ Doug, 2026-09-26: *"right it down on an .env file here that doesn't get transfer
 
 **No reboot unless there is no other way** — and then Doug is told before it happens.
 
-Everything the team itself needs lives in [the folder](34-02-als-remote--the-folder.md) and needs no root at all.
+Everything the team itself needs lives in [the folder](01-02-als-remote--the-folder.md) and needs no root at all.

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # The run, on the box: record it, execute it, commit everything it made, push its branch.
-# Resource for: 34-als-remote.md. `launch` copies this to ~/doug/altered-states/.tools/run.sh and
+# Resource for: 01-als-remote.md. `launch` copies this to ~/doug/altered-states/.tools/run.sh and
 # starts it detached from the run's worktree:   bash ../.tools/run.sh <branch>
 # The command is runs/<branch>/command.sh, written by `launch` and committed with everything else.
 set -uo pipefail

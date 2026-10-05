@@ -34,6 +34,14 @@ The protocol says WHAT SHOULD HAPPEN. The skill says HOW TO MAKE IT HAPPEN. When
 
 Each SKILL.md is one file in one directory. The mapping is one-to-one: one skill, one directory, one SKILL.md. Additional files in the skill directory (templates, scripts) support execution but the SKILL.md is the platform's entry point. The compiler preserves existing SKILL.md frontmatter and instructions, adding or updating only the library link comment.
 
+## Branch-local skillsets
+
+A skill that belongs to one project — its machines, its lab — is not written in Our Skillset. Our Skillset is identity: it travels to every project and merges with the organisation, so a project's skill there can collide with another project's number or be overwritten by an organisation merge. On 2026-10-05 that had already happened in waiting: `als-remote` sat at 34 on altered-states' identity branch while the organisation's 34 was `catchup`. Doug: *"Maybe even some sort of branch local skillset? ... I don't want them overwritten."*
+
+A project's own skills live in a **branch-local skillset**: a book named `the-skillset` inside one of the project's branch libraries (a `.lib` under `library/` or `src/`). It has the same shape as Our Skillset: a cover whose numbered list names each skill (`1. [name](01-name.md) — description`), a chapter per skill, protocols as sub-chapters, and tools as resources. The branch library is mirrored into identity under the project alone and never merges into the organisation, so nothing upstream can reach it.
+
+The compiler reads every skillset: Our Skillset first, then each `the-skillset` it finds by the commit tool's own `.lib` discovery, with the same prunes. It compiles them all into `.claude/skills/`, each SKILL.md's provenance comment naming its real source. **One name, one source:** a name defined in two skillsets stops the compile with both sources named, before anything is written, because two chapters compiling into one SKILL.md is the silent overwrite this exists to prevent. In altered-states the branch skillset is `src/.lib/the-skillset/`, holding `als-remote` and `als-remote-lab`.
+
 ## Provenance
 
 Every compiled SKILL.md is a generated artifact — though it may also contain hand-written instructions that the compiler preserves. The compilation chain: `04-on-skills.md` specifies, `04-on-skills--compiler.ts` compiles, `.claude/skills/{name}/SKILL.md` is the output. The compiler adds a `<!-- library: ... -->` comment to each generated file, linking the compiled output back to its library source chapter. A reader who finds a compiled skill follows this chain backward to reach the specification that governs it.

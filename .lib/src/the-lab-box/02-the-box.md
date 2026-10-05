@@ -24,7 +24,7 @@ The survey was read-only; nothing on the box was installed or changed by it.
 
 ## What was found
 
-The protocols for the folder and for root are [The folder](../../../.claude/library/our-skillset/34-02-als-remote--the-folder.md) and [Root](../../../.claude/library/our-skillset/34-06-als-remote--root.md).
+The protocols for the folder and for root are [The folder](../the-skillset/01-02-als-remote--the-folder.md) and [Root](../the-skillset/01-06-als-remote--root.md).
 
 `main`'s git config already routed GitHub through the repository's deploy key (`core.sshCommand` points at `.key/id`), and GitHub lists that key with write access — so the box can fetch and push without any credential of Doug's.
 
@@ -34,7 +34,7 @@ Another lab member's uv (0.9.17, installed 2025-12-09, with Pythons 3.13 and 3.1
 
 ## How its Python was built
 
-The protocol is [The environment](../../../.claude/library/our-skillset/34-05-als-remote--the-environment.md); this is how it was arrived at.
+The protocol is [The environment](../the-skillset/01-05-als-remote--the-environment.md); this is how it was arrived at.
 
 Doug chose the CUDA build of the same torch (2.12.1) over the CPU build this machine runs. The first install, straight from this machine's actual package list, stopped at resolution with nothing installed: `mei` declares `numpy<=1.26.4`, and this machine runs numpy 2.4.6 only because the lock installs `mei` with `--no-deps` ([requirements.in](../../../requirements.in) says so). A resolver cannot reproduce an environment that was assembled past one.
 
@@ -44,7 +44,7 @@ Installed and compared package by package: of this machine's 225, 222 are on the
 
 ## The GPU
 
-The protocol for root is [Root](../../../.claude/library/our-skillset/34-06-als-remote--root.md); this is how the card came up, 2026-09-26.
+The protocol for root is [Root](../the-skillset/01-06-als-remote--root.md); this is how the card came up, 2026-09-26.
 
 `nvidia-smi` could not reach a driver: the NVIDIA module existed only for the old 6.14 kernel, and the box had run 7.0.0-28 for five weeks without one. Doug chose to install the module for the running kernel without a reboot. It could not be installed alone: the prebuilt module for 7.0.0-28 was built against driver 580.173 exactly, and the archive had moved on to 580.178, so no prebuilt module fitted the running kernel at any pinning. The simulation of the real alternative — upgrade the driver stack and let DKMS compile the module — showed fifteen NVIDIA packages upgraded (580.95 to 580.178), six installed (`dkms`, `nvidia-dkms-580-open`, firmware, and kernel 7.0.0-34 with its module for the next boot) and the 6.14 prebuilt module removed. Secure Boot is off, so a module DKMS builds loads without key enrollment. Doug chose it; DKMS built for 7.0.0-28, `modprobe nvidia` loaded it, and there was no reboot.
 

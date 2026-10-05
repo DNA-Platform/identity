@@ -1,11 +1,11 @@
 # Closing a run
 
-- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- **coauthor:** [David](../..teamsmanship/..team/david/the-devops-journal/.cover.md)
+- **author:** [Adam](../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+- **coauthor:** [David](../../../.claude/library/..teamsmanship/..team/david/the-devops-journal/.cover.md)
 
 ---
 
-[Part: [als-remote](34-als-remote.md)]
+[Part: [als-remote](01-als-remote.md)]
 
 ## The ruling
 
@@ -15,7 +15,7 @@ Doug, 2026-09-28:
 
 ## Why it is its own protocol
 
-[The run](34-03-als-remote--the-run.md) used to end at `harvest`. Everything after that depended on
+[The run](01-03-als-remote--the-run.md) used to end at `harvest`. Everything after that depended on
 someone remembering it:
 - `main` here reached GitHub only at the next `/push`;
 - the box's `main` came back in step only at the next `launch`;
@@ -33,7 +33,7 @@ after, so `close` can be rerun until it prints `CLOSED`. Nothing is overwritten 
 
 1. **Finished and on GitHub.** The run's branch is fetched, and its `meta.txt` must record an exit. A
    run still going, or one whose push failed, is refused and named.
-2. **Merged into `main` here.** This is [`harvest`](34-03-als-remote--the-run.md): fast-forward when
+2. **Merged into `main` here.** This is [`harvest`](01-03-als-remote--the-run.md): fast-forward when
    `main` has not moved, rebased onto it when it has. A conflict changes nothing. A run whose
    `runs/<branch>/` record is already in `main` is not harvested twice.
 3. **`main` here on GitHub.** It is pushed when it is ahead. Uncommitted work here stops the close,
@@ -47,7 +47,7 @@ after, so `close` can be rerun until it prints `CLOSED`. Nothing is overwritten 
 
    Each is kept out of git by that clone's local `info/exclude`, so neither `main` is dirty. The run's
    tracked `not-committed.tsv` is the proof of the bytes, and both machines hold the same files
-   ([parity](34-04-als-remote--the-files-git-does-not-carry.md)).
+   ([parity](01-04-als-remote--the-files-git-does-not-carry.md)).
 5. **The box back on `main`.** The box's `main` is pulled (`pull`) and proven to equal `main` here and
    on GitHub. After a close, both machines are on one commit.
 

@@ -7,7 +7,7 @@
 
 [Book: [The Lab Box](.cover.md)]
 
-This chapter held the run protocol — Doug's ruling of 2026-09-26, the five steps, the run record and why GitHub carries the results — for its first hour. When Doug made the `/als-remote` skill the catalogue of every protocol for the box, it moved there whole: [The run](../../../.claude/library/our-skillset/34-03-als-remote--the-run.md). One protocol, one place.
+This chapter held the run protocol — Doug's ruling of 2026-09-26, the five steps, the run record and why GitHub carries the results — for its first hour. When Doug made the `/als-remote` skill the catalogue of every protocol for the box, it moved there whole: [The run](../the-skillset/01-03-als-remote--the-run.md). One protocol, one place.
 
 ---
 

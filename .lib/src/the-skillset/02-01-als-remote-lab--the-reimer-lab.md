@@ -1,11 +1,11 @@
 # The Reimer lab
 
-- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- **coauthor:** [David](../..teamsmanship/..team/david/the-devops-journal/.cover.md)
+- **author:** [Adam](../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+- **coauthor:** [David](../../../.claude/library/..teamsmanship/..team/david/the-devops-journal/.cover.md)
 
 ---
 
-[Part: [als-remote](34-als-remote.md)]
+[Part: [als-remote-lab](02-als-remote-lab.md)]
 
 ## The rulings
 
@@ -21,7 +21,7 @@ The box, `lipshutzlab-01`, sits on the BCM network: address 10.20.201.51, search
 
 ## The credential — `.env`, here only, like the sudo password
 
-`.env` at the project root on this machine holds `REIMER_USER=doug` and `REIMER_PASSWORD=<the value>`. The same password opens the database and the compute servers. It is kept exactly as [Root](34-06-als-remote--root.md) keeps the sudo password: the same three walls, and never written into this chapter, the library, git, memory or the box's disk.
+`.env` at the project root on this machine holds `REIMER_USER=doug` and `REIMER_PASSWORD=<the value>`. The same password opens the database and the compute servers. It is kept exactly as [Root](01-06-als-remote--root.md) keeps the sudo password: the same three walls, and never written into this chapter, the library, git, memory or the box's disk.
 
 A probe that needs it names the key, and the tool does the rest:
 
@@ -40,7 +40,7 @@ The value goes as the first line of stdin and is read into an *unexported* varia
 | **GPU servers** | Kubernetes, from a compute server's `kubectl` | not yet: needs the config file Ming offered |
 | **The lab's code** | GitHub, publicly: [reimerlab](https://github.com/reimerlab) (28 repositories, among them `datajoint-djp-python`, `jedi3-paper`, `nnfabrik`, `scanreader`, `microns-nda-access`, `odor_meso`), and the pipeline, `cajal/pipeline` | private repositories need membership of the organisation |
 
-Known hosts for the lab's machines live in `.tools/known_hosts_reimer` inside [the folder](34-02-als-remote--the-folder.md), never in the shared home's `~/.ssh`. Every `ssh` is run with `-F /dev/null`, so the shared account's own SSH configuration is never read.
+Known hosts for the lab's machines live in `.tools/known_hosts_reimer` inside [the folder](01-02-als-remote--the-folder.md), never in the shared home's `~/.ssh`. Every `ssh` is run with `-F /dev/null`, so the shared account's own SSH configuration is never read.
 
 ## How the lab works — by the book
 

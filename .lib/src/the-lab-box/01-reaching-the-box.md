@@ -7,7 +7,7 @@
 
 [Book: [The Lab Box](.cover.md)]
 
-The protocol this chapter's failures produced is [Reaching the box](../../../.claude/library/our-skillset/34-01-als-remote--reaching-the-box.md). This is what happened, 2026-09-26.
+The protocol this chapter's failures produced is [Reaching the box](../the-skillset/01-01-als-remote--reaching-the-box.md). This is what happened, 2026-09-26.
 
 ## Tailscale on one end
 

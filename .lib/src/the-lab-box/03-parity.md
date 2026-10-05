@@ -9,7 +9,7 @@
 
 ## The rulings
 
-The first task Doug set, 2026-09-26: *"That is your first task to get us to parity. There should be nothing to commit over there."* And on the branch library, which the project repo was tracking: *"Well git shouldn't track it so look at ../inexplicable-phenomena gitignore to learn how to ignore it and remove it from git. That should be synced on identity."* The standing rulings behind it — identity never travels, `main` the only branch until a run — are now protocol: [The folder](../../../.claude/library/our-skillset/34-02-als-remote--the-folder.md).
+The first task Doug set, 2026-09-26: *"That is your first task to get us to parity. There should be nothing to commit over there."* And on the branch library, which the project repo was tracking: *"Well git shouldn't track it so look at ../inexplicable-phenomena gitignore to learn how to ignore it and remove it from git. That should be synced on identity."* The standing rulings behind it — identity never travels, `main` the only branch until a run — are now protocol: [The folder](../the-skillset/01-02-als-remote--the-folder.md).
 
 Parity meant the same HEAD, the same index and the same working tree as the working copy here — uncommitted work included — reached without a commit on the box and without pushing to GitHub first.
 
@@ -19,7 +19,7 @@ Parity meant the same HEAD, the same index and the same working tree as the work
 
 ## How parity is made
 
-This was the first parity only. It was made to carry uncommitted work without a commit; under [the run protocol](../../../.claude/library/our-skillset/34-03-als-remote--the-run.md) everything is committed here first and the box pulls, so the method is retired.
+This was the first parity only. It was made to carry uncommitted work without a commit; under [the run protocol](../the-skillset/01-03-als-remote--the-run.md) everything is committed here first and the box pulls, so the method is retired.
 
 **HEAD.** The box's clone stood at `a4d50c1` (GitHub's `main`); this working copy was 21 commits ahead. A git bundle of exactly those commits (116 MB) crossed by `scp` and was fast-forwarded in. Nothing was pushed to GitHub, so the box reports `ahead 21` of `origin/main`, the same line as here.
 
@@ -29,4 +29,4 @@ This was the first parity only. It was made to carry uncommitted work without a 
 
 ## The files git does not carry
 
-The first send, under what became the protocol [The files git does not carry](../../../.claude/library/our-skillset/34-04-als-remote--the-files-git-does-not-carry.md): 117 paths, about 10 GB, the scans first, each verified on the box by sha256 before it was recorded.
+The first send, under what became the protocol [The files git does not carry](../the-skillset/01-04-als-remote--the-files-git-does-not-carry.md): 117 paths, about 10 GB, the scans first, each verified on the box by sha256 before it was recorded.

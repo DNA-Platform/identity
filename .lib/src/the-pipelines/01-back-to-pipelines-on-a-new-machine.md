@@ -37,7 +37,7 @@ where the work runs, and the pipelines went with it. Doug: *"I actually think we
 the assumption that there will be a GPU. We can't have multiple worlds here... This research requires
 it. So we are replacing."* The CPU twins stayed, loadable by name as legacy; everything new runs on the
 card. How the box is reached and driven is The Lab Box's [working remotely](../the-lab-box/05-working-remotely.md)
-and the [`/als-remote`](../../../.claude/library/our-skillset/34-als-remote.md) skill; the short form is
+and the [`/als-remote`](../the-skillset/01-als-remote.md) skill; the short form is
 that the team writes and commits code on Doug's machine, the box pulls, and every run is a pipeline's
 entry point on its own branch, committed there and harvested back.
 
@@ -48,7 +48,7 @@ defect rather than a fact to report. Doug, 2026-09-27: *"performance is a critic
 condition of correctness and not a nicety. We are migrating from CPU. If things are taking 20 minutes
 at a time for a batch, unless it's HUGE, we obviously aren't using the new tech... It is your bug to
 solve."* The rule is [chapter 3, rule 9](03-the-rules-every-pipeline-follows.md#9-performance-is-part-of-correctness)
-and the skill's [whole machine](../../../.claude/library/our-skillset/34-07-als-remote--the-whole-machine.md).
+and the skill's [whole machine](../the-skillset/01-07-als-remote--the-whole-machine.md).
 
 **Resolution became affordable, was tried, and was set back.** The card made the 2x frame (72 x 128)
 practical, and the first 2x twins were wrong in a way only an MEI showed: every MEI was a square,

@@ -8,7 +8,7 @@
 [Book: [The Lab Box](.cover.md)]
 
 The transition from a laptop that did everything to a laptop that writes and a box that runs. What
-each interaction with the box is, step by step, is the [`/als-remote`](../../../.claude/library/our-skillset/34-als-remote.md)
+each interaction with the box is, step by step, is the [`/als-remote`](../the-skillset/01-als-remote.md)
 skill; this chapter is what the move changed in how the team works, and where in the skill each part
 of it is written down. Its other half, what the pipelines became on the new machine, is
 [The Pipelines ch1](../the-pipelines/01-back-to-pipelines-on-a-new-machine.md).
@@ -24,8 +24,8 @@ moves by pulling; the run gets its own branch `run-<YYYYMMDD-HHMM>-<name>` in a 
 executes detached, and commits everything it made - its products, its log, its environment, its exit -
 and pushes. `harvest` brings the branch home, rebased onto `main` if `main` moved. A failed run is kept
 like any other: its branch is the record of the bug its successor ran without. The protocol is
-[the run](../../../.claude/library/our-skillset/34-03-als-remote--the-run.md); the folder it lives in,
-and why nothing of ours is in the lab's shared home, is [the folder](../../../.claude/library/our-skillset/34-02-als-remote--the-folder.md).
+[the run](../the-skillset/01-03-als-remote--the-run.md); the folder it lives in,
+and why nothing of ours is in the lab's shared home, is [the folder](../the-skillset/01-02-als-remote--the-folder.md).
 
 **A run's command is a pipeline's entry point.** Never a script written for the occasion: what ran is
 what anyone can rerun, and the record says so. The chain from matched cells to MEIs is one command
@@ -42,15 +42,15 @@ what anyone can rerun, and the record says so. The chain from matched cells to M
   stopper on the box waits for the phase's last line and stops exactly that run's process. The run's
   own wrapper still commits and pushes what it made.
 - **Speed is correctness.** On a card a slow run is our defect; the protocol is
-  [the whole machine](../../../.claude/library/our-skillset/34-07-als-remote--the-whole-machine.md).
+  [the whole machine](../the-skillset/01-07-als-remote--the-whole-machine.md).
 - **Files git does not carry** travel by `send` and `receive`, checked by sha256
-  ([the files git does not carry](../../../.claude/library/our-skillset/34-04-als-remote--the-files-git-does-not-carry.md)).
+  ([the files git does not carry](../the-skillset/01-04-als-remote--the-files-git-does-not-carry.md)).
 - **The environment is proved, not assumed** - the box's Python rebuilt from a lock generated from
-  what is installed here ([the environment](../../../.claude/library/our-skillset/34-05-als-remote--the-environment.md)).
+  what is installed here ([the environment](../the-skillset/01-05-als-remote--the-environment.md)).
 - **Root is Doug's.** The sudo password lives in `.env` at the project root on this machine and nowhere
   else; every change as root is his decision, simulated first, because the account is shared
-  ([root](../../../.claude/library/our-skillset/34-06-als-remote--root.md)).
-- **Reaching the box** is checked first every session ([reaching the box](../../../.claude/library/our-skillset/34-01-als-remote--reaching-the-box.md));
+  ([root](../the-skillset/01-06-als-remote--root.md)).
+- **Reaching the box** is checked first every session ([reaching the box](../the-skillset/01-01-als-remote--reaching-the-box.md));
   what failed on the way in is [chapter 1](01-reaching-the-box.md).
 
 ## Where the record is

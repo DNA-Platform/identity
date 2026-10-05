@@ -32,7 +32,7 @@ behind. The spring cleaning made it navigable; this chapter is what keeps it tha
    showing it where the work is shown is not.
 3. **No bytecode in the tree.** The project's Python writes it outside the repository: here through
    `sys.pycache_prefix`, set by `altered_states_pycache.pth` in the venv's site-packages; on the box
-   through `PYTHONPYCACHEPREFIX` in [`/als-remote`](../../../.claude/library/our-skillset/34-als-remote.md)'s
+   through `PYTHONPYCACHEPREFIX` in [`/als-remote`](../the-skillset/01-als-remote.md)'s
    environment, into `.tools`. A `__pycache__` seen anywhere under `src/` is a regression: delete it and
    find what wrote it.
 4. **No orphans.** A cache, log or file that no code writes any more goes in the change that orphaned

@@ -92,7 +92,7 @@ On the card a slow run is a defect, not a number to relay: judge a runtime again
 do, profile before reporting it, batch everything, and never share the card between two jobs whose
 timings matter. Doug: *"performance is a critical and necessary condition of correctness and not a
 nicety... It is your bug to solve."* Every speed-up is a change to the method until it is measured not
-to be. The protocol is the skill's [whole machine](../../../.claude/library/our-skillset/34-07-als-remote--the-whole-machine.md).
+to be. The protocol is the skill's [whole machine](../the-skillset/01-07-als-remote--the-whole-machine.md).
 
 ## 10. A label is a claim, and the data decide it
 

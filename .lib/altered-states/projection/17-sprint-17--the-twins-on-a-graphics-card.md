@@ -12,7 +12,7 @@
 ---
 
 The sprint moved the work onto the lab's GPU machine and, in doing so, retired the CPU world. How the
-box is reached and driven is not recorded here: it is the [`/als-remote`](../../../.claude/library/our-skillset/34-als-remote.md)
+box is reached and driven is not recorded here: it is the [`/als-remote`](../../../src/.lib/the-skillset/01-als-remote.md)
 skill, a catalogue of protocols each carrying its ruling, and [The Lab Box](../../../src/.lib/the-lab-box/.cover.md),
 the record of the machine. This chapter is what the science pipelines became, and why.
 

@@ -1,11 +1,11 @@
 # The files git does not carry
 
-- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- **coauthor:** [David](../..teamsmanship/..team/david/the-devops-journal/.cover.md)
+- **author:** [Adam](../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+- **coauthor:** [David](../../../.claude/library/..teamsmanship/..team/david/the-devops-journal/.cover.md)
 
 ---
 
-[Part: [als-remote](34-als-remote.md)]
+[Part: [als-remote](01-als-remote.md)]
 
 ## The rulings
 
@@ -13,7 +13,7 @@ Doug, 2026-09-26: *"… using the FTP server or whatever to get the files not in
 
 ## The protocol
 
-Git carries what is tracked. What `.gitignore` excludes — the scans under `library/data`, pipeline and analysis caches, logs — crosses over SSH, and each piece either comes from here or is rebuilt there; an environment is always rebuilt ([The environment](34-05-als-remote--the-environment.md)), never copied.
+Git carries what is tracked. What `.gitignore` excludes — the scans under `library/data`, pipeline and analysis caches, logs — crosses over SSH, and each piece either comes from here or is rebuilt there; an environment is always rebuilt ([The environment](01-05-als-remote--the-environment.md)), never copied.
 
 **Out to the box — `send`.** `ignored` lists what travels, as whole folders where git can name one. Each path is one unit: the sha256 of every file taken here, the path streamed as one `tar | gzip -1` over SSH into the same relative place in `main`, `sha256sum -c` run there, and only then recorded — `.git/als-remote/sent.tsv` and a manifest per path in `.git/als-remote/manifests/`, inside `.git` so never tracked. A path whose manifest already verifies on the box is skipped, so a stopped `send-list` resumes where it stopped. Identity and the venv are refused. Long lists run in the background.
 

@@ -13,36 +13,36 @@ description: drive the lab box (lipshutzlab-01) from this machine over Tailscale
 
 Drive the lab box — `lipshutzlab-01`, the lab's Linux GPU machine — from this machine over Tailscale SSH. The team works here and drives the box from here; the box holds a clone and runs the work.
 
-**This skill is the catalogue of how working with the box unfolds.** Every kind of interaction with it is written below as a protocol, and each protocol carries Doug's ruling, verbatim and dated, as its authority. Read the protocol for what is about to happen before doing it. The tool is [34-als-remote--box.sh](../../library/our-skillset/34-als-remote--box.sh); its partner [34-als-remote--run.sh](../../library/our-skillset/34-als-remote--run.sh) is a run itself, executed on the box.
+**This skill is the catalogue of how working with the box unfolds.** Every kind of interaction with it is written below as a protocol, and each protocol carries Doug's ruling, verbatim and dated, as its authority. Read the protocol for what is about to happen before doing it. The tool is [01-als-remote--box.sh](../../../src/.lib/the-skillset/01-als-remote--box.sh); its partner [01-als-remote--run.sh](../../../src/.lib/the-skillset/01-als-remote--run.sh) is a run itself, executed on the box.
 
 ## The protocols
 
-1. [Reaching the box](../../library/our-skillset/34-01-als-remote--reaching-the-box.md) — `check` first, every session. What must hold at each end: Tailscale on both machines, Tailscale SSH switched on at the box, the ACL in `accept` mode, ProtonVPN's kill switch out of the way (its symptom is a local `Permission denied`), the host key accepted on first use.
-2. [The folder](../../library/our-skillset/34-02-als-remote--the-folder.md) — everything inside `~/doug/altered-states/`, nothing in the lab's shared home; `main` a mirror that only moves by pulling; branches only per run; identity never travels.
-3. [The run](../../library/our-skillset/34-03-als-remote--the-run.md) — commit everything here, pull there, branch `run-<YYYYMMDD-HHMM>-<name>` into a worktree beside `main`, run detached and commit everything about it there, pull it home through GitHub, rebased onto `main` if `main` moved. All code is written here; every probe on the box is recorded on its run's branch.
-4. [The files git does not carry](../../library/our-skillset/34-04-als-remote--the-files-git-does-not-carry.md) — `send` out and `receive` back over SSH, one path at a time, every file checked by sha256, resumable, in the background; and **parity** - after every data delivery the two machines' `library/data` are listed and hashed, and a folder that differs is replaced by the box's; nothing ignored stays tracked in git.
-5. [The environment](../../library/our-skillset/34-05-als-remote--the-environment.md) — this machine's Python rebuilt inside the folder from a lock the compiler generates from what is actually installed here; what was installed around its metadata goes around it there too; proved package by package.
-6. [Root](../../library/our-skillset/34-06-als-remote--root.md) — the sudo password in `.env` at the project root on this machine and nowhere else, its one role, and the three walls that keep it here; every change as root is Doug's decision, simulated first, because the machine is shared.
-7. [The whole machine](../../library/our-skillset/34-07-als-remote--the-whole-machine.md) — a run's command is a pipeline's entry point, never orchestration written for the occasion; the pipelines pack the GPU by measured memory and share the CPU explicitly; poll with `watch`; quote durations only from the run's own clock.
-8. [Closing a run](../../library/our-skillset/34-08-als-remote--closing-a-run.md) — a run is done when it is closed, not when it exits: `close` merges it into `main` here, pushes, brings what GitHub refused over the wire to both mains by sha256, and pulls the box's `main` back in step; `status` says which runs are not home, and a run whose products were superseded comes home as its record.
-9. [Work done here](../../library/our-skillset/34-09-als-remote--work-done-here.md) — work that needs no GPU runs here on `main` (a pipeline's figures redrawn, a check, a cover); `sync` pushes it and pulls the box's `main` onto it, so the machines are on one commit whenever work stops; what git does not carry moves by `send` and `receive`, checked by sha256.
-10. [The Reimer lab](../../library/our-skillset/34-10-als-remote--the-reimer-lab.md) — the box is on the BCM network, so it is the way into the lab: the lab database (from the box with DataJoint, or from here through an SSH tunnel), the compute servers with their mounted storage and docker, the GPU servers by Kubernetes; the lab password in `.env` here, passed to a probe on stdin with `ALS_SECRET`; and 33977 already processed the 33328 way in the lab's own tables.
+1. [Reaching the box](../../../src/.lib/the-skillset/01-01-als-remote--reaching-the-box.md) — `check` first, every session. What must hold at each end: Tailscale on both machines, Tailscale SSH switched on at the box, the ACL in `accept` mode, ProtonVPN's kill switch out of the way (its symptom is a local `Permission denied`), the host key accepted on first use.
+2. [The folder](../../../src/.lib/the-skillset/01-02-als-remote--the-folder.md) — everything inside `~/doug/altered-states/`, nothing in the lab's shared home; `main` a mirror that only moves by pulling; branches only per run; identity never travels.
+3. [The run](../../../src/.lib/the-skillset/01-03-als-remote--the-run.md) — commit everything here, pull there, branch `run-<YYYYMMDD-HHMM>-<name>` into a worktree beside `main`, run detached and commit everything about it there, pull it home through GitHub, rebased onto `main` if `main` moved. All code is written here; every probe on the box is recorded on its run's branch.
+4. [The files git does not carry](../../../src/.lib/the-skillset/01-04-als-remote--the-files-git-does-not-carry.md) — `send` out and `receive` back over SSH, one path at a time, every file checked by sha256, resumable, in the background; and **parity** - after every data delivery the two machines' `library/data` are listed and hashed, and a folder that differs is replaced by the box's; nothing ignored stays tracked in git.
+5. [The environment](../../../src/.lib/the-skillset/01-05-als-remote--the-environment.md) — this machine's Python rebuilt inside the folder from a lock the compiler generates from what is actually installed here; what was installed around its metadata goes around it there too; proved package by package.
+6. [Root](../../../src/.lib/the-skillset/01-06-als-remote--root.md) — the sudo password in `.env` at the project root on this machine and nowhere else, its one role, and the three walls that keep it here; every change as root is Doug's decision, simulated first, because the machine is shared.
+7. [The whole machine](../../../src/.lib/the-skillset/01-07-als-remote--the-whole-machine.md) — a run's command is a pipeline's entry point, never orchestration written for the occasion; the pipelines pack the GPU by measured memory and share the CPU explicitly; poll with `watch`; quote durations only from the run's own clock.
+8. [Closing a run](../../../src/.lib/the-skillset/01-08-als-remote--closing-a-run.md) — a run is done when it is closed, not when it exits: `close` merges it into `main` here, pushes, brings what GitHub refused over the wire to both mains by sha256, and pulls the box's `main` back in step; `status` says which runs are not home, and a run whose products were superseded comes home as its record.
+9. [Work done here](../../../src/.lib/the-skillset/01-09-als-remote--work-done-here.md) — work that needs no GPU runs here on `main` (a pipeline's figures redrawn, a check, a cover); `sync` pushes it and pulls the box's `main` onto it, so the machines are on one commit whenever work stops; what git does not carry moves by `send` and `receive`, checked by sha256.
+The box is also the way into the Reimer lab at BCM. Everything about the lab — its database, compute servers, GPU cluster, and how the lab works — is the sibling skill [als-remote-lab](../../../src/.lib/the-skillset/02-als-remote-lab.md). From this skill it needs only `ALS_SECRET=<key> probe`, which hands a probe a `.env` secret on its stdin.
 
-**Adding a protocol.** A new kind of interaction gets a new sub-chapter, `34-NN-als-remote--<name>.md`: its ruling verbatim and dated, then the protocol. In the same act it is listed here and under this chapter on the [Our Skillset](../../library/our-skillset/.cover.md) cover, the tool gains any command it needs, and the skill is recompiled. A ruling that changes a protocol is written into that protocol, replacing what it overrules — one place, one current version.
+**Adding a protocol.** A new kind of interaction gets a new sub-chapter, `01-NN-als-remote--<name>.md`: its ruling verbatim and dated, then the protocol. In the same act it is listed here and under this chapter on [The Skillset](../../../src/.lib/the-skillset/.cover.md) cover, the tool gains any command it needs, and the skill is recompiled. This skill lives in the project's [branch-local skillset](../../library/..environmentalism/04-on-skills.md#branch-local-skillsets), so no organisation merge can overwrite it. A ruling that changes a protocol is written into that protocol, replacing what it overrules — one place, one current version.
 
 ## The box
 
 | | |
 |---|---|
 | host | `lipshutzlab-01@lipshutzlab-01` — the Tailscale MagicDNS name |
-| folder | `~/doug/altered-states/` — `main/`, `run-…/`, `.tools/`, `.key/` ([The folder](../../library/our-skillset/34-02-als-remote--the-folder.md)) |
+| folder | `~/doug/altered-states/` — `main/`, `run-…/`, `.tools/`, `.key/` ([The folder](../../../src/.lib/the-skillset/01-02-als-remote--the-folder.md)) |
 | the account | the lab's, shared |
 | branches | `main`, and one per run |
 
 ## Commands
 
 ```
-T=.claude/library/our-skillset/34-als-remote--box.sh
+T=src/.lib/the-skillset/01-als-remote--box.sh
 bash $T check                        # tailnet ping and SSH login; names the cause of a failure
 bash $T run  '<command>'             # run in ~/doug/altered-states/main
 bash $T sudo '<command>'             # the same, as root
@@ -64,4 +64,4 @@ bash $T python [cpu|cuda]            # the box's Python, inside the folder
 
 Every command runs from the project root, reaches the box as a script on stdin (nothing is quoted twice), and exports the folder's own environment first.
 
-<!-- library: .claude/library/our-skillset/34-als-remote.md -->
+<!-- library: src/.lib/the-skillset/01-als-remote.md -->

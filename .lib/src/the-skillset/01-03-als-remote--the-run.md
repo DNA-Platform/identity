@@ -1,11 +1,11 @@
 # The run
 
-- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
-- **coauthor:** [David](../..teamsmanship/..team/david/the-devops-journal/.cover.md)
+- **author:** [Adam](../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+- **coauthor:** [David](../../../.claude/library/..teamsmanship/..team/david/the-devops-journal/.cover.md)
 
 ---
 
-[Part: [als-remote](34-als-remote.md)]
+[Part: [als-remote](01-als-remote.md)]
 
 ## The ruling
 
@@ -17,7 +17,7 @@ And, the same night, once runs were long: *"remember that all code it written he
 
 ## The protocol
 
-**1. Commit everything here** — [/push](26-push.md), which pushes the project repository to GitHub and identity to its branch. A run never starts from uncommitted work: the commit is its reproducibility anchor. `launch` refuses when anything is uncommitted or HEAD is not GitHub's `main`.
+**1. Commit everything here** — [/push](../../../.claude/library/our-skillset/26-push.md), which pushes the project repository to GitHub and identity to its branch. A run never starts from uncommitted work: the commit is its reproducibility anchor. `launch` refuses when anything is uncommitted or HEAD is not GitHub's `main`.
 
 **2. Pull there** — `pull` (and `launch` pulls first). The box's `main` fast-forwards to GitHub's `main` with the deploy key. It is proven by the box's HEAD equalling HEAD here, with nothing uncommitted on the box. Uncommitted state on the box is dropped only when it is exactly the tree being pulled, or on `pull --discard`.
 
@@ -37,9 +37,9 @@ Everything the run made is committed on its branch — a failed run too, since a
 
 **5. Pull here** — `harvest <branch>`: fetch the branch, show its record, and bring its commits onto `main` here. **Main here is the object of record** and keeps moving while a run is long, so when it has moved past the run's base, the run's commits are rebased onto it and `main` fast-forwards onto the result; a conflict aborts the rebase and changes nothing. The branch on GitHub keeps the commits exactly as they ran, and `meta.txt` still names their base.
 
-**6. Close it** - `close <branch>`, which does step 5 and the rest: `main` pushed, whatever `not-committed.tsv` lists brought over the wire to both mains and checked against its recorded hash, and the box's `main` pulled back in step. A run is done when it is closed, not when it exits: [Closing a run](34-08-als-remote--closing-a-run.md).
+**6. Close it** - `close <branch>`, which does step 5 and the rest: `main` pushed, whatever `not-committed.tsv` lists brought over the wire to both mains and checked against its recorded hash, and the box's `main` pulled back in step. A run is done when it is closed, not when it exits: [Closing a run](01-08-als-remote--closing-a-run.md).
 
-`status` lists every run on the box, running or finished, with exit codes; `status <branch>` shows one run's record, its log's tail and the GPU; `watch <branch>` polls it in the background until it pushes. A run with several GPU jobs packs them onto the card by measured memory, and its command sees `$ALS_ROOT` (the folder) and `$ALS_RUN` (its branch) — [The whole machine](34-07-als-remote--the-whole-machine.md).
+`status` lists every run on the box, running or finished, with exit codes; `status <branch>` shows one run's record, its log's tail and the GPU; `watch <branch>` polls it in the background until it pushes. A run with several GPU jobs packs them onto the card by measured memory, and its command sees `$ALS_ROOT` (the folder) and `$ALS_RUN` (its branch) — [The whole machine](01-07-als-remote--the-whole-machine.md).
 
 A failed run is kept, branch and record, like any other: the first GPU run (`run-20260926-2347-gpu-twins`) stopped in two minutes on a stale scan folder, and its branch is the record of the bug its successor ran without.
 
