@@ -131,7 +131,8 @@ lists      Map<SpotId, Map<SpotId, Listing>>
 | `NO-TITLE` · `DUPLICATE-TITLE` | a book with no name, or one name on two books |
 | `UNKNOWN-REFERENCE` | `$[[ X ]]` naming nothing the library holds |
 | `NOT-LISTED` | a catalogue that does not answer for what stands under it |
-| `NO-LIBRARY` · `TWO-LIBRARIES` | no root, or more than one |
+| `NO-LIBRARY` · `TWO-LIBRARIES` | no book that catalogues itself — since 2026-10-02 a book filed under nothing is not the library by default, on Doug's *"make sure that the compiler enforces that we need to have a library catalogue"* — or more than one at the top |
+| `TITLED-TWICE` | a cover's second title form naming another book, or a name two covers say their books are about — since 2026-10-02 the About is the name of the subject the book represents and need not be the title, so `**[[ The Library ]]` files under the book about The Library whatever it is called |
 | `CIRCULAR-CATALOGUE` | a ring of books that reaches the library from nowhere |
 | `TOPIC-IS-CATALOGUE` · `NO-SYNOPSIS` | a topic that is the canonical catalogue; a listing that says nothing |
 | `NO-AUTHOR` · `NO-SELF-AUTHOR` · `TWO-SELF-AUTHORS` | nothing grounded, or two beings in one library |

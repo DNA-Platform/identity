@@ -10,6 +10,58 @@
 
 ***The analogy that was wrong, said plainly so it is not made again:*** **elements in TSX are what members are in a class.** *[The Order of a Class](02-the-order-of-a-class.md) governs one and this governs the other, and they are the same concern — the reader sees the structure or they do not.*
 
+## <a id="markup-is-expanded"></a>MARKUP IS WRITTEN FULLY EXPANDED — ***given 2026-10-04, and it governs everything below***
+
+> ***"We don't write compact TSX like we write the inside of the lines of functions. We fully expand out markup… So much of $Chemistry and .public exists to reduce TypeScript to the TSX as much as possible. Please format your code like markup. You are drawing a bad inference that I would want TSX formatted like this. Please correct this misconception."*** — **Doug, 2026-10-04**
+
+***The misconception, said plainly so it is not made again:*** **the compactness this branch prizes in code — the one-line property, the terse method, [the closeness rule](04-the-closeness-rule.md) — is a rule for the LINES OF FUNCTIONS and never for markup.** *TSX is not a dense expression that happens to have angle brackets. It is the markup the whole framework exists to reduce a program to, and it is laid out the way markup is: opened out, one thing to a line, its structure visible in its indentation.* **This holds wherever TSX is written — a view in `src`, a chapter of a library, a table of contents, a file a tool generates.** *A generator is held to it exactly as a hand is.*
+
+**The rules, each one checkable by looking:**
+
+- **One element to a line.** An element that holds another element opens on its own line, its children are stacked beneath it one level in, and its closing tag stands on its own line under the opening one.
+- **An element stays on one line only when it holds nothing but its own short text, or nothing at all** — `<Heading>Contents</Heading>`, `<Content>$[[ ./The Book ]]</Content>`, `<Parenthetical />`. *The moment it holds another element, it opens out.*
+- **More than one attribute is stacked**, one to a line, one level in, and the `>` that ends the opening tag stands on its own line under the tag's `<`.
+- **A string is written as a string** — `title="The Shelf"`, never `title={"The Shelf"}`.
+- **A literal or a line of text that is a child stands on its own line**, one to a line.
+- **An inline element in a running sentence stays in the sentence** — a `<Means>` among a paragraph's words is prose, and prose wraps as prose.
+- **No blank lines between elements**; the elements are the separation ([below](#the-story)).
+- **What a tag cannot say shortly does not belong in the tag.** *A sentence of prose passed as an attribute is the sign: it is a child, or it is read from where it already stands.*
+
+***What was struck, as it stood in a chapter a tool of ours generated:***
+
+```tsx
+<Paragraph>
+    <Concepts />
+    <Concept named={"The Shelf"} draws={"Apple Books"} says={"Every conversation gets a cover. The library opens on …"}>![[ 01-the-shelf-desk.png ]] ![[ 01-the-shelf-phone.png ]] ![[ 01-the-shelf.html ]]</Concept>
+</Paragraph>
+```
+
+***And what stands now:***
+
+```tsx
+<Paragraph>
+    <Concepts />
+    <Concept>
+        ![[ 01-the-shelf-desk.png ]]
+        ![[ 01-the-shelf-phone.png ]]
+        ![[ 01-the-shelf.html ]]
+    </Concept>
+</Paragraph>
+```
+
+*The three attributes were not stacked, they were removed: the name, what it draws on and what it says already stand in the head of the page the third literal inserts, and the figure reads them there. Expanding markup often shows what it was saying twice.*
+
+**The same for a line of a table of contents, which the first libraries wrote on one line:**
+
+```tsx
+<Paragraph>
+    <Entry />
+    <Content>$[[ ./The Library's Home ]]</Content>
+</Paragraph>
+```
+
+***Owed, and recorded as debt rather than exemption:*** *the test library's tables and its promises still carry `<Paragraph><Content>…</Content></Paragraph>` and `<Word><Content>…</Content></Word>` on one line. They were written before this ruling and are wrong by it.*
+
 ## <a id="the-shape"></a>The shape
 
 **A returned element opens on its own line and its children are indented.** *One element per line where the element has children; the closing tag lines up with the opening one.*
@@ -34,7 +86,7 @@ return (
 
 ***What this replaces, and it was in the codebase:*** **a single line carrying five elements, two closures and a nested map** — *structure invisible, and nothing about it readable as the table it draws.*
 
-**A childless element may stay on one line.** `return <div />;` and `return <Anchor href={url}>{this.written}</Anchor>;` are complete thoughts and do not earn four lines.
+**An element that holds no other element may stay on one line.** `return <div />;` and `return <Anchor href={url}>{this.written}</Anchor>;` are complete thoughts and do not earn four lines — *one attribute and one short child at most, by [the rule above](#markup-is-expanded).*
 
 **Lines wrap at 125.**
 
