@@ -24,6 +24,12 @@
 >
 > **"…a big plan that includes the different designs, which books will have them - and be sure to put this in the design book! And then common themes across them, and what sort of classes, annotations, and components you will create to make it more like the chapters are modular plugins provided to a book, and the book chooses how to work with them in specific ways, while also managing to be a sensible document of their own in linear order."**
 
+*And his first correction of the reading, which had asked whether a manual that catalogues manuals is two things at once:*
+
+> **"Something does not need to JUST be a catalogue. I would argue that a reference manual that catalogues reference manuals is still a reference manual. Can we design a combination reference manual that can have others, so that we don't need to split everything up to create a new reference manual, we can just make new ones as needed and extend the current ones to catalogue them."**
+
+**So cataloguing is not a kind of book.** It is what any book does for the books filed under it: a chapter that stands for each, and an answer for each in its table, beside whatever chapters of its own it has. *The Binder already holds it — the test library's Libby has chapters of her own and answers for the persona filed under her. The plan carries no base book that is only a catalogue — [D10](../projection/105-sprint-100--the-big-plan.md#d10).*
+
 **The sentence the plan is held to is the last one, and it has two halves:** a chapter is a plugin a book is given, and the book chooses what to do with it; and the book, read in the order its chapters are written, is still a sensible document with nothing choosing. *The plan itself is written in his design book, and the team's first reading of it is in [the sprint's chapter](../projection/105-sprint-100--the-big-plan.md#a-first-reading--what-the-plan-is-expected-to-say).*
 
 **What follows from it, for these notes and for the work.**
