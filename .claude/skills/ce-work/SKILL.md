@@ -37,6 +37,14 @@ Two gates, both from their skill and both kept:
 
 The plan gave guardrails, not choreography. So the implementer **decides signatures, structure, and sequence at execution time, with the code open** — that judgment is the reason a plan does not pre-write it. What the implementer may not do is quietly widen the scope, skip a stated test scenario, or contradict a decision the plan recorded. A guardrail that turns out wrong is [raised, not overridden](../../library/teamspeak/03-discussion.md).
 
+## <a id="the-loop"></a>Before the first edit: how this branch sees a change — added out of Sprint 99
+
+**Every branch has a fastest way from a saved file to a seen result. Find it before the first edit, and take every look through it.** It is written in the branch library; for a library on `.public` it is [How a Library Is Developed](../../../library/.public/.lib/writing-a-book/01-02-how-a-library-is-developed.md) — a page kept open, where a save shows in under a second, and one command that looks.
+
+**The full build is the gate at the end of a unit. It is never the way to look during one.** On 2026-10-05 a session built [Sprint 99](../../../library/.public/.lib/projection/104-sprint-99--the-link-aggregator.md) by binding Doug's library about twenty times, seven to thirteen seconds each, and writing a probe for every look, while the same edits would have shown on an open page in half a second. It had kept its documents faithfully: each one said to bind. Doug: ***"When doing UI work you need rapid feedback right? If the system doesn't give that to you, the system is a failure."***
+
+**Three signs the loop is not being used:** a script written for one look; the full build run twice inside one unit; a claim about how something looks with no photograph named. **And if the branch library does not say how the branch is developed, finding out and writing it down is the first unit of the work.**
+
 ## Unit by unit
 
 Take units in dependency order. For each one:

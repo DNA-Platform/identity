@@ -61,7 +61,7 @@ The handoff this session opened from listed four things to read — all of them 
 
 Mid-session, a push was stopped for reconciliation, the tool's advice was followed on the spot — and the reconcile's down-sync **overwrote the session's unpushed records**, which survived only because the conversation still held every word. The specification now lives in [On Sync](../..environmentalism/06-on-sync.md#uncommitted-work-is-not-protected-by-any-of-this): **treat every reconcile as a session boundary — push the branch library or copy it aside before running pull or resolve.** For the handoff, the rule is simpler still: if step 3's push fails validation, **securing the branch library comes before obeying any tool's next suggestion.**
 
-### 8. A sprint with a demo hands over the way to see it
+<a id="8-a-sprint-with-a-demo-hands-over-the-way-to-see-it"></a>### 8. A sprint with a demo hands over the way to see it
 
 Doug asked for the link mid-session, and the serve had to be rediscovered — the port, the route, the command. **When the sprint has something to look at, Where things stand says how:** the command that serves it, the route to open, and what the reader should see first. A demonstration that must be rediscovered is not handed off.
 
@@ -80,6 +80,27 @@ The reading list said *"Read these four, and they are sufficient."* Doug's openi
 The handoff pointed the brainstorm at *the build*. The sprint became **cataloguing**, on Doug's redirect inside the session: *"Figuring out cataloguing books can be the subject of this sprint. And the next sprint can be about the build."*
 
 **Naming the step was right and naming the subject was not.** A handoff can know which command comes next, because that follows from where the work stopped. **It cannot know what the next sprint is about, because that is Doug's to set and he sets it in the room.** Write the subject as *what this session expected*, plainly marked as an expectation, and let the reading list carry it — never as the next session's brief.
+
+## Two more, out of a close that waited to be told — added 2026-10-05
+
+*[Sprint 99](../../../library/.public/.lib/projection/104-sprint-99--the-link-aggregator.md) was built and verified, and then sat uncommitted while its session asked whether it might commit, and said that pushing was Doug's. His answers are the rule now.*
+
+<a id="11-the-work-is-made-official-before-it-is-handed-off"></a>### 11. The work is made official before it is handed off
+
+> ***Doug, 2026-10-05:*** **"Stop making commits this sacred thing. Commit often."** · **"You are in charge of the code. Commit to Github when we complete something please."** · **"Before handing things off, make the work done the official work… and we better be syncing identity to origin too — part of ce-handoff."**
+
+**Committing is part of the lifecycle, not a permission to be asked for.** A unit that is built and verified is committed, locally, when it is done. A piece of work that is complete is pushed. And a handoff does not end until everything the session made stands where the next session, and Doug, will find it:
+
+1. **The project's own tree is committed** — every change under the code, with a message that says what and on whose word.
+2. **The project is pushed to its repository on GitHub.**
+3. **The libraries are synced with the [commit tool](../..environmentalism/06-on-sync--commit.sh)**, run on that clean tree: the team's identity to its shared branch, the branch library to the project's branch, and a personal library to its own checkout — each committed and pushed from where it lives.
+4. **Each commit is reported by its hash**, and `git status` in each place is clean or the handoff says what is not and why.
+
+*Mention that it is being done; do not ask whether to. What still needs Doug's yes is unchanged and is about the change, never the commit: a change to code he guards is shown to him before it is made.*
+
+<a id="12-the-way-to-see-it-is-the-way-the-branch-is-developed"></a>### 12. The way to see it is the way the branch is developed
+
+[Rule 8](#8-a-sprint-with-a-demo-hands-over-the-way-to-see-it) hands over the way to see a demo, and for ten sprints every *to see it* said to run a bind. A session that followed them bound a library twenty times to look at it, while an edit would have shown on an open page in half a second. **When the next step is work on something seen, *to see it* names the branch's development loop — the command that opens it and the command that looks — and where that loop is written down.** *For a library on `.public` that is [How a Library Is Developed](../../../library/.public/.lib/writing-a-book/01-02-how-a-library-is-developed.md).* **And what the session opened to see with — a live site, a kept-open browser — is closed before the handoff ends**, or it is [a stray](../..environmentalism/11-on-strays.md) the next session inherits.
 
 ## What we were missing
 
@@ -125,9 +146,10 @@ Within a session, [ce-work](30-ce-work.md) tracks unit-by-unit progress in the *
 
 **To close a session:**
 1. Read the sprint chapter and the plan chapter — state from evidence, not memory.
-2. Rewrite **Where things stand** with everything above, **opening with the next action as a command** — the step, never the sprint's subject.
-3. **Push.** The branch library to the [object of record](../..environmentalism/06-on-sync.md), the code to the project repo. Report both commits.
-4. Say in one line what it captured.
+2. Rewrite **Where things stand** with everything above, **opening with the next action as a command** — the step, never the sprint's subject — and with *to see it* naming [the branch's development loop](#12-the-way-to-see-it-is-the-way-the-branch-is-developed).
+3. **Close what the session opened** — a live site, a kept-open browser.
+4. **Make the work official**, [all four parts](#11-the-work-is-made-official-before-it-is-handed-off): commit the project's tree, push it to GitHub, sync the identity, the branch library and any personal library with the commit tool, and report each commit.
+5. Say in one line what it captured.
 
 **To open one:**
 1. Read the last sprint chapter of the branch you are working in.
