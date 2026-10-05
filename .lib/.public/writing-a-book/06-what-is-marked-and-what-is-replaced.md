@@ -78,7 +78,7 @@
 | `$Biography` · `$Autobiography` | a chapter | `pa-biography`, `pa-autobiography` | under the policy no layer; annotations that mark | by mark in the theme, or a subclass with a `style` for a box |
 | `$Bold` · `$Emphasis` · `$Underline` | any writing | `pa-bold`, `pa-emphasis`, `pa-underline` through `attrs` on their own element | `b`, `em`, `u` — the semantic element and nothing | a subclass with a `style` for another element or a look; a library's own basic by the same six lines |
 
-**And using yours in place of the framework's — two ways, by what the framework does with the word.** Where the framework stands a component for itself — Book's Theme, a Title's Self — a library *registers* a subclass on its book class, in its door, once: `$(TheLibrary, Self)(LibrarySelf)`; every book of the library is a subclass of that class and resolves it. Where a chapter *writes* the word — `<Table />`, `<Cover />` — the same registration answers, since under the policy the framework asks for a written annotation's type in the scope it is written in: `$(TheLibrary, Table)(LibraryTable)`, and every `<Table />` in the library is the library's. A library may instead export its subclass under the framework's name from its door and import it in its chapters; that is a choice of import, not a mechanism, and it is how a look that the framework has no word for — a Card, a Frame — is used: imported from the door and written.
+**And using yours in place of the framework's — two ways, by what the framework does with the word.** Where the framework stands a component for itself — Book's Theme, a Title's Self — a library *registers* a subclass on its book class, in its door, once: `$(TheLibrary, Self)(LibrarySelf)`; every book of the library is a subclass of that class and resolves it. Where a chapter *writes* the word — `<Table />`, `<Cover />` — **a registration does not reach it:** the library exports its subclass under the framework's name from its door, and the chapter imports it from there. *Corrected 2026-10-05. This paragraph said until then that the same registration answers a written word; [`registration.test.tsx`](../../package/.tests/registration.test.tsx) promises the opposite — "a chapter's written `<Table />` is not, and is replaced by importing the library's as Table" — and [policy 3](07-the-development-policies.md) has it right, with the reason: a written word is made before any `.public` code could ask. Making a written word ask was pitched in Sprint 97 and parked.* A look the framework has no word for — a Card, a Frame — is used the same way: imported from the door and written.
 
 ## A door, worked
 
@@ -100,10 +100,10 @@ export class $LibraryCover extends $Cover { override style = selection.header`.p
 export class $TheLibrary extends $Book { /* write(): the running head and the byline */ }
 export const TheLibrary = $($TheLibrary);
 $(TheLibrary, Theme)($($LibraryTheme));
-$(TheLibrary, Table)($($LibraryTable));
-$(TheLibrary, Cover)($($LibraryCover));
+export const Table = $($LibraryTable);
+export const Cover = $($LibraryCover);
 ```
 
-*A chapter then writes `<Table />` and `<Cover />` from `@dna-platform/public` and gets the library's; the manual's theme, extending the library's, overrides `links()` alone; a dark book sets three fields.*
+*A chapter then imports `Table` and `Cover` from this door and writes the words it always wrote; the Theme is registered, since the framework stands it; the manual's theme, extending the library's, overrides `links()` alone; a dark book sets three fields. Corrected 2026-10-05: the door registered Table and Cover until then, which reaches nothing.*
 
 **Names.** Doug's: *fundamental*, *replace*, *export your own*, *register*, *the base sheet*. Ours, flagged: the chapter's title; `typography` and `links` as the parts in the worked door.

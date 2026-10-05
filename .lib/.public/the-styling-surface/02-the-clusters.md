@@ -21,7 +21,7 @@ export class $LibraryCover extends $Cover {
 }
 ```
 
-**And it is put in place one of two ways,** by what the framework does with the word — [P5](../projection/102-sprint-97--formats-are-the-unit-of-styled-components.md#p5): where the framework stands the Format for itself or a chapter writes the framework's word, the library's door *registers* it on the library's book class, `$(TheLibrary, Table)($($LibraryTable))`, and every `<Table />` in every book of the library is the library's; a word the framework has no name for — Framed, Literary, a Card — is *imported* from the door and written. Sprint 97's U17 is the line that makes a written word ask.
+**And it is put in place one of two ways,** by what the framework does with the word: where the framework stands the Format for itself — the Theme on every book, the Self on every title — the library's door *registers* its subclass on the library's book class; where a chapter *writes* the word — `<Table />`, `<Cover />` — the door *exports* the subclass under the framework's name and the chapter imports it from there, as it imports a word the framework has no name for, Framed, Literary, a Card. *Corrected 2026-10-05: this said a registration makes every written `<Table />` the library's, which [`registration.test.tsx`](../../package/.tests/registration.test.tsx) promises it does not; [policy 3](../writing-a-book/07-the-development-policies.md) is the rule. Sprint 97's U17, which would have made a written word ask, was pitched and parked.*
 
 ## Table — nine classes
 
