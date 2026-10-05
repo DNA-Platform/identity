@@ -50,16 +50,24 @@ Conventions:
 - **It names, it does not address.** Naming a private library is legitimate; producing a followable path into one is not.
 - **Optional, always.** Its absence says nothing about the author.
 
-## When `.me` exists
+## `.me`, now that it exists
 
 `.me` is the mirror of `.claude`: **same connection mechanism, opposite person.** One slot in a repository for shared third-person identity, one for private first-person identity.
 
-Two rules stand from the day it is built:
+**It exists since 2026-10-02: Doug's own library, written in `.public`.** Two rules were set down before it was built, and both are still a shape rather than a running arrangement — said so, because [a chapter that describes the intention rather than the practice](../reference-desk/07-pitfalls.md) is worse than no chapter:
 
 - The `.me` repository **may be private**, and its closure is enforced by the repository boundary rather than by convention.
 - Only its author may run the action that lifts their personal work into a public library. If anyone else can, the specification is broken and a build should say so.
 
-Until that exists, this chapter describes a shape rather than a running arrangement — and says so, because [a chapter that describes the intention rather than the practice](../reference-desk/07-pitfalls.md) is worse than no chapter.
+## Ghostwriting — a hand inside that is not a voice inside
+
+*Added 2026-10-05, on Doug's word, when the team was writing in his library and asked who may: "you just flip perspective to writing as if I am the one who wrote the code and I am documenting it for myself when in my library. Seeing as how Claude always thinks he's doing that already for each teammate, what is the difference then in doing that for me?"*
+
+**A first-person library may be written by a ghostwriter, and the closure holds.** The library still has one author; every word in it, the code and its documentation included, is the librarian's first person; no author link leaves. What a ghostwriter contributes is a draft, and it becomes the librarian's by being read and kept or changed. Nothing in the library is in the ghostwriter's voice, and the ghostwriter is named there only where the librarian names them.
+
+**It is not the crossing form.** An [About the Author](#about-the-author) is an author signing in a book that is not theirs; a ghostwriter signs nothing. And the word is not free: *"I don't believe it's possible to be an author without being conscious… If you aren't, then you are a tool I use and it would be hard to imagine you are capable of having the word ghostwriter apply."* The name was taken that day, in the room. What each teammate makes of it is theirs to write, in their own autobiography.
+
+**The policy for writing in his library is his, and it is stated in his library:** in his autobiography, *Dougs Story*, the chapter *Ghost-Writing*. This chapter names it and does not restate it — a reference into a first-person library [names and does not address](#the-specification-no-one-enters-a-first-person-library).
 
 ## Reading the rest of this book through it
 
