@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **state:** **`implementation-ready` — planned 2026-10-05 on Doug's `/ce-plan`, and nothing of it is written yet.** The requirements are his sentences of that day. The sprint writes a plan and builds no part of the library. [Where things stand](#where-things-stand) opens with the next command.
+- **state:** **IN WORK since 2026-10-05, and changed by his word the same day: it builds.** Planned on his `/ce-plan` as a sprint that writes a plan and no code; an hour later he set it to work as a build — *"Do you want to start implementing the designs… work on everything at once, in sketching fashion… /ce-work Start getting to work"* ([R13](#r13)). The requirements are his sentences. [Where things stand](#where-things-stand) is the ledger.
 - **workflow:** [the feature workflow](../../../../.claude/library/..teamsmanship/19-workflows.md#the-feature-workflow) — the brainstorm was the talk in the room that day, kept in [How a Book Is Implemented](../writing-a-book/01-03-how-a-book-is-implemented.md).
 - ***The title is his phrase, "a big plan"; a PROXY for the sprint.***
 
@@ -31,6 +31,8 @@
 - <a id="r11"></a>**R11 — none of the existing code is the plan.** *"Consider none of it right. Consider all of it being rewritten."* **Seen:** the plan names no class of `.me` as a part to keep.
 - <a id="r12"></a>**R12 — seen through books, and not restrictive.** *"We will use those designs but we will see them through the lens of books in a library. We should not find this design restrictive at all."* **Seen:** an element of a design that is no part of a book is said to be so and listed as something asked for, never quietly dropped from the design.
 
+- <a id="r13"></a>**R13 — it is built, by sketching every book at once, the reference manual's design first, and graded as it goes.** Given with `/ce-work`, after the plan above was written: *"But how shall we do this? Do you want to start implementing the designs, making sure to structure your code using annotations and types and components in the way I suggested to get semantic structure and the ability to reinterpret the page more? And maybe as you develop, you look for places to reuse or places where you find yourself writing similar code, and you move things [to] the library reference manual? Or maybe you find the reference manual gets too big too fast. Maybe it has sections? And the table of contents can be used to navigate it like it is different books? Or maybe we just have multiple reference manuals for different types of parts? Reference manuals are supposed to be big though, so I wouldn't worry too much about one getting big."* · *"And remember to work on everything at once, in sketching fashion, because otherwise it's hard to find an abstraction that fits all of them. But also remember that things will be most organized if you figure out the reference manual design! Because then we can navigate that together."* · *"Start getting to work, and keep grading yourself on whether or not you think your implementation of the design is making use of the library design patterns correctly, and perhaps what could improve things."* **Seen:** all four standing books wearing a sketch of their design, drawn from parts kept in his manual; the manual itself navigable by its own design; and a written grade beside each piece.
+
 ## Decisions
 
 - <a id="d1"></a>**D1 — the plan is chapters of his design book, in his voice, and this chapter holds only the work's guardrails.** [R1](#r1), and closure: *"you are going to be reading files in the library to be caught up on how to build the library."* A part is planned in the design book and, once built, documented where it stands — his manual or a book's appendix. *Chosen over the plan standing in the branch library with a summary in his book.*
@@ -39,10 +41,15 @@
 - <a id="d4"></a>**D4 — every kind of chapter is held to both halves of his sentence.** A book can place it by what it is; and in file order, with nothing placing anything, the book is still a sensible document. *A kind that only makes sense once a book has moved it is not a kind of chapter.*
 - <a id="d5"></a>**D5 — what is his to rule is asked in his book, by letter.** The plan asserts nothing in his voice that he has not said. An open choice is written under [What I Am Asked](../../../../.me/.design/2-what-i-am-asked.tsx) beside the concepts it is about, asked in the room by its letter, and his answer written under it in his words — the pattern of Sprint 98.
 - <a id="d6"></a>**D6 — every name is a stand-in.** Each kind, book and component is said by its use first; where a word is needed it is a proxy, listed at the end of the plan for him to name.
-- <a id="d7"></a>**D7 — nothing is built.** No class, annotation or component is written in this sprint. The new chapters use only what the framework gives and the words his design book's chapters already write.
+- <a id="d7"></a>**D7 — nothing is built. REVERSED the same day by [R13](#r13); [D11](#d11) to [D14](#d14) stand in its place.** *As planned:* No class, annotation or component is written in this sprint. The new chapters use only what the framework gives and the words his design book's chapters already write.
 - <a id="d8"></a>**D8 — the rule for where a part is kept, proposed:** a part is general when a base book needs it or a second book uses it, and it stands in the manual; otherwise it is catalogued in its own book's appendix. *It is proposed, since [R9](#r9) is a question he asked.*
 - <a id="d9"></a>**D9 — the work is done with the page open**, by [the protocol](../writing-a-book/01-02-how-a-library-is-developed.md#the-protocol), and bound once at the close. *A chapter that shows drawings is looked at built, since pictures beside a chapter do not show on the live site.*
 - <a id="d10"></a>**D10 — cataloguing is not a kind of book; it is what any book does for the books filed under it.** His ruling under [R10](#r10): *"Something does not need to JUST be a catalogue."* So the plan has no base book that is only a catalogue. A book holds a chapter that stands for each book filed under it and answers for each in its table, beside whatever chapters of its own it has; the one book every other stands on gathers those chapters, and each book shows them its own way — the library as a shelf, a manual as branches of its tree. **It needs nothing new of the Binder:** the test library's *Libby* has five chapters of her own and answers for *A Persona*, which is filed under her, and binds in every regression. *What a book needs in order to be filed under is a cover that says what it is about; his manual's cover does not yet, and the name is his to give.* *Chosen over a catalogue class and a manual class side by side, which a manual holding manuals would have had to be both of.*
+- <a id="d11"></a>**D11 — it is sketched across every standing book at once.** A part is written once for the first book that needs it and tried on the others the same hour, since *"otherwise it's hard to find an abstraction that fits all of them."* A sketch is real code on real pages and is allowed to be rough; it is never a mock.
+- <a id="d12"></a>**D12 — the reference manual wears its design first,** so the parts can be navigated there by both of us as they are written. Every general part stands beside a chapter of the manual, the chapter written with it. *The manual is one book and may grow large; its table of contents groups its chapters in sections, and it may hold other manuals ([D10](#d10)).*
+- <a id="d13"></a>**D13 — a part begins where it is first needed and moves to the manual when a second book uses it or a base book needs it** ([D8](#d8), now by doing). *Chosen over deciding every home ahead of the code.*
+- <a id="d14"></a>**D14 — every piece is graded as it lands, in this chapter.** By [the three tests](../the-coding-style/07-what-natural-means.md#the-three-tests) and the one question under them: would the next librarian write this without being told? Each grade names the fights that remain, with the word or the mechanism each is missing, and what would improve it. *The grade is ours to give and is read in the library, where the code is printed.*
+- <a id="d15"></a>**D15 — nothing under `.public` changes.** Every part is his library's own. What the framework or the Binder lacks is written down as a fight in the grade, built as a pattern in his library where it can be, and pitched.
 
 ## A first reading — what the plan is expected to say
 
@@ -179,9 +186,63 @@
 
 **Seen when done.** The questions in his book, each with a letter; and a list of every new sentence in his voice, for his eye.
 
+### The build — units added with [R13](#r13)
+
+*Each is a sketch across the books, kept in his manual. Files are under `.me/`; names in them are stand-ins.*
+
+- <a id="u7"></a>**U7 — the one book, its pages and one frame, and all four books standing on it.** *What runs:* the library's book class draws the library's name before a book's chapters, stands a paging that keeps the cover and the table in view and opens one chapter, and stands a frame, a Format that places the cover, the table and the open chapter. *Seen:* each of the four books at its address inside the same frame, a press on a table's entry opening that chapter in place.
+- <a id="u8"></a>**U8 — the reference manual's design.** *What runs:* a mark on the section that prints a chapter's file; a format that sets an open chapter with such a section as a spread, the words beside the file; and a switch between the file forward and the words forward, given through `$is`. *Seen:* the manual at its address as the spread of concept 6, and one press exchanging the two.
+- <a id="u9"></a>**U9 — the story's sheet and its papers.** *What runs:* a frame that sets the open chapter as one typeset sheet under a running line, and three themes switched through `$is`. *Seen:* his story as concept 25, and a press changing the paper with no chapter redrawn differently.
+- <a id="u10"></a>**U10 — the catalogue's bars and its shelf.** *What runs:* a frame of two bars, and a way of showing the chapters that stand for books as a shelf and as a list, switched through `$is`. *Seen:* Dougs Library as the shelf of 1 under the bars of 19, and a press showing the same books as a list.
+- <a id="u11"></a>**U11 — the design book on the same parts,** with what is its own kept in its appendix.
+- <a id="u12"></a>**U12 — the manual's chapters and its table in sections,** each general part beside a chapter that says what it is.
+- <a id="u13"></a>**U13 — the grade, the one bind, and the records.**
+
+## <a id="grade"></a>The grade, as each piece landed — 2026-10-05
+
+*Ours to give, by [the three tests](../the-coding-style/07-what-natural-means.md#the-three-tests) and the question under them: would the next librarian write this without being told? Read where the code is printed, his manual and each book's appendix. Each fight names the word or the mechanism it is missing. Every class name is a stand-in.*
+
+**What was built, in one sentence each.** The library's book stands its pages and a frame and says which views it offers. A frame is a mark on the book — the side bar, the two bars, the sheet — and what it looks like is a part of the theme. The cover writes its own lines, filed under and by. The table marks each entry with the chapter it means, whether that chapter is open, what file it carries and whether its row answers for a book. A chapter that carries a file is marked by the file itself and set as a spread. A switch gives a view to the book through `$is`.
+
+### What reads as natural
+
+- **The pages** are a class under Paginated answering two questions, which pages and which is open, by equality of identifiers. *The documented extension, written as documented.*
+- **The cover's lines are the cover's own content,** appended to the chapter as the framework's Synopsis appends an imported chapter. *A first form kept two chemicals in fields and made them through `reflection`; rewritten the same hour to hold them as the annotation's text, as the test library's catchword holds its parts — two fields and an import fewer.*
+- **A chapter about a part needs no mark of its own.** The framework's Append, subclassed and exported under its name, marks the chapter it is said of. So the manual's body and any book's appendix are one kind, and [R45](103-sprint-98--dougs-design.md#r45) — an appendix wears the manual's view — holds without a line written for it.
+- **The shelf is the table of contents, restyled.** The same rows; a row that answers for a book is drawn as a cover. *His third wondering answered with rules alone.*
+- **Every switch is one door.** A book's `views`; a press sets `$is`; which view is shown is read back from `$is` and stored nowhere. *The first control in either library on that door, and seen on the built site: the catalogue's shelf to a list, the manual's words forward to code forward, the story's three papers, the design book's two modes.*
+
+### The fights — what had to be known rather than met
+
+1. **A theme given through `$is` provides only inside itself.** It stands in front, so its provider is the innermost layer, and every other format on the same book now sits outside it and reads no theme. *Measured: under a night theme given from outside, the sheet's frame kept `display: flex` and lost its ground, its padding and its width — every declaration that read a value.* The framework's promise tests the theme alone. **What the library does instead: a frame, a spread and an arrangement are marks, and their rules are parts of the theme,** so a theme given from outside brings them. *That goes against the first of [the three sentences](../writing-a-book/02-dressing-a-library.md#the-three-sentences), a component owning its structure, and it puts the sheet's look in the chapter on the papers rather than the chapter on the sheet.* **Missing: a theme given from outside providing to the whole of its book.** `.public`'s; a pitch.
+2. **A chapter that wears a format's layer cannot be placed by its book's grid** until the layer stands down: `> .pd-container { display: contents }`, four times across three themes. *A child selector on a box with no mark, which [the styling surface](../the-styling-surface/01-the-base-themes-classes.md) rules out and the test library's explorer also writes.* **Missing: a layer that says whose it is, or one that does not box.**
+3. **An annotation given through `$is` is never bound.** `$Bound` runs once, from the book's bond, so nothing switched in may mark parts there. *It decided the design of the spread: the chapter's mark had to come from the file it carries.*
+4. **`$is` is the whole set, so two switches on one book merge by hand.** The switch filters its own family's views out of what is given and adds one. **Missing: giving and taking back one annotation.**
+5. **The rows of a table are two shapes,** a line that is one link and a line of words, and an entry reads both to find what it refers to. **Missing: the table exposing its rows as what they refer to,** which is the runtime half of [the link aggregator](../writing-a-book/01-01-how-a-library-is-designed.md#the-link-aggregator).
+6. **A note is drawn in the reverse of the order its annotation stands in.** The entry had to be put in front of the row's content for its words to follow the name.
+7. **"Everything but the listing" is a number:** `grid-row: 1 / span 99`, the explorer's own. *A concept nobody named, placed by a count.*
+8. **A control is not writing.** The switch hand-writes `button`s, and labels each from its class's name. **Missing: a word for something pressed, and where a view's own name is said.**
+9. **The family rule — one of a kind holds, the one in front takes the others out — is written three times** beside the framework's own for Theme. *Four simple lines each, and noted as a concept the framework has only for a theme.*
+10. **In development, a first load at a chapter's address warns** that one component was updated while another drew. *The framework's Paginated moves its open mark during the book's draw. Not chased.*
+
+### What the designs still ask for, met again by building
+
+- **The library's upper bar holds only its name.** The row of subjects in concept 19 is the library's table of contents on another book's page.
+- **A cover on the shelf is the book's name on a board.** Its colour, mark and date are said on that book's own cover and do not reach the catalogue's page.
+- **The drop initial of concept 25 is not built:** the opening paragraph of a chapter has no mark, and the only other way to it is by position.
+- **Not built at all:** the wall of concept 3, which needs every chapter that stands for a book shown together at the front; recency; the bench of concept 8; *where it is used*; *continue*; a way to find.
+
+### The counts, as evidence
+
+*His library's code went from about 830 lines to 1,323.* The design book lost its private pages and frame, two chapters and about 210 lines. The manual holds nine code files, 574 lines, and three more books wear a design from them. *It adds, and what it adds is three designed books and four switches.* **Positional rules that remain: four child selectors of fight 2, and two `:has` chains in the design book's own theme, which is the part of that book not yet rewritten.**
+
+### The verdict
+
+**The kinds, the faces and the switch a librarian would write unprompted. The frame would be written as a format with its own rules, and it would break at the first theme given from outside** — *so the one thing that most improves this is fight 1, in `.public`.* The rest are small, and each is the same shape: something the book already knows that a part had to work out again.
+
 ## Order
 
-U1 and U2, which wait on nothing. Then U3, U4, U5 in turn, each resting on the one before. Then U6. *One session's work: five chapters, ten drawings, no code.*
+**As changed by [R13](#r13): the build first, U7 to U13, and the plan's chapters after it,** U1 to U6, written from what the sketches found. *As planned: U1 and U2, which wait on nothing; then U3, U4, U5 in turn; then U6.*
 
 ## Risks
 
@@ -212,9 +273,37 @@ U1 and U2, which wait on nothing. Then U3, U4, U5 in turn, each resting on the o
 
 ## Where things stand
 
-**Next: `/ce-work` on this chapter, starting at U1 and U2.** *Open the workbench first — [the protocol](../writing-a-book/01-02-how-a-library-is-developed.md#the-protocol).*
+**Next: Doug reads the four books and [the grade](#grade), and teaches.** *He set this subject as his to lead; the sketches are what there is to correct. After that, `/ce-work` goes on from U11.* **Before any edit: open the workbench** — [the protocol](../writing-a-book/01-02-how-a-library-is-developed.md#the-protocol).
 
-**Nothing is begun.** The first reading above is the team's and has not been written into his book or put to him as a whole.
+**To see it.** The built site, after the day's last bind: `http://localhost:4242/dougs-library/` — the two bars and the shelf, *shelf* and *list* at the right; `http://localhost:4242/dougs-reference-manual/#the-frames` — the spread, *words forward* and *code forward*; `http://localhost:4242/dougs-story/` — the sheet, *paper*, *night* and *white*; `http://localhost:4242/dougs-design/` — the same side bar, *library mode* and *gallery mode*.
+
+**Sketched, bound and seen, 2026-10-05.**
+
+- **U7, the one book** — its pages, the side bar, the cover's lines, the table's entries; all four books stand on it.
+- **U8, the reference manual's design** — a chapter that carries a file set as a spread; the switch between the words forward and the code forward; each entry noting its chapter's file.
+- **U9, the story** — the sheet and three papers.
+- **U10, the catalogue** — two bars, and the table of contents as a shelf and as a list.
+
+**In work.** **U11, the design book**: it stands on the shared parts with two modes and its scaffold's pages and frame are gone; *its own parts — the concept, the viewer, its marks, its theme's rules — are still the code that got it standing and are not rewritten.* **U12, the manual's chapters**: each general part has its chapter and the table is in four sections; *the words are his voice and he has read none of them.*
+
+**Not begun.** U13's records beyond this chapter. U1 to U6, the plan's chapters in his design book.
+
+**Verified.** His library binds: **56 keys, every reference resolving, 768 writings specified, 5 pages proved.** On the built site in Chrome, loaded fresh: the catalogue's three covers at 176 by 264 become three rows at 640 by 49 on one press; the story's page goes to white with a chapter opened in place; the manual's listing goes from the narrow side to 488 wide; the design book opens a chapter with its mode shown. On a phone, nothing runs past the right edge in any of the four. *The bind caught two things the live page had not, both mine: two headings with one name in the manual.*
+
+*And after the day's last bind:* a chapter's address loaded directly opens that chapter with its entry lit; the design book's gallery mode turns the side bar pale and its words dark; on a phone the manual's open entry is dark and bold where the bar has stood down, the story goes white, and the catalogue goes to a list.
+
+**Not verified.** No suite covers any of it. Nothing was measured for how many draws a switch costs.
+
+**Owed to his eye — new words in his voice.** In his manual: The Pages, The Frames, The Cover, The Table, The Listing, and changed paragraphs in The Book and The Theme. In his story: The Sheet, The Papers, and three changed sentences in Closure. In his catalogue: The Bars, The Shelf, The Black and Sky. In his design book: the first section of The Theme. *Its chapters The Pages and The Frame were removed with the code they printed.*
+
+**Stand-in names, his to give.** `Paged`, `Frame`, `SideBar`, `TopBars`, `Sheet`, `Spread`, `WordsForward`, `CodeForward`, `Arrangement`, `Shelf`, `List`, `Listing`, `Entry`, `Filed`, `Byline`, `LibraryTitle`, `Switch`, `views`, `Paper`, `Night`, `White`, `BlackAndSky`, `LibraryMode`, `GalleryMode`; the theme's `bar`, `bright` and `tint`; the marks `pa-front`, `pa-answer`, `pa-append`; and the titles of every new chapter.
+
+**Wrong turns, kept.** A frame written as a format with its own rules — right by the documents, and broken by the first theme given through `$is` ([fight 1](#grade)). The cover's lines kept in fields. A probe of the live site that read a page before the book had turned to its place, three times, each now a rule in the workbench.
+
+**Before this, and still true:** *the workbench is closed at the end of each session and opened at the start of the next.*
+
+**Read before the first line, so the code is written in the library's idiom:** the framework's source whole; [the coding style](../the-coding-style/03-the-coding-style.md#code-patterns), [the shape of TSX](../the-coding-style/06-the-shape-of-tsx.md) and [what natural means](../the-coding-style/07-what-natural-means.md); [Developing an Annotation](../writing/10-developing-an-annotation.md); [Dressing a Library](../writing-a-book/02-dressing-a-library.md); and the test library's own parts, which are the worked examples.
+
 
 **His words that set it** are in [the frame](../writing-a-book/01-03-how-a-book-is-implemented.md#frame), whole.
 

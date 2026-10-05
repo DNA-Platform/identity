@@ -91,7 +91,7 @@
 | **the binder's own files** | **no.** The dev server keeps the binder it started with. Sync the face, then close the workbench and open it | read in [The Binder, As Built](../the-catalogue-and-the-specification/07-the-binder.md#dev) |
 | `.pubconfig` | **not known** | not measured |
 
-*A bind run beside the open workbench works, and leaves one error on each open live page — React's `createRoot() on a container that has already been passed to createRoot()` — until that page is looked at with `fresh`.*
+*A bind run beside the open workbench works, and leaves one error on each open live page — React's `createRoot() on a container that has already been passed to createRoot()` — until that page is looked at with `fresh`. And once a library has been bound, a live page loaded fresh is taken up over the last bind's print, so it warns of a mismatch wherever the source has moved on since; the page is right, and the warning goes at the next bind.*
 
 ## <a id="the-tool"></a>What the workbench learned in its first hour
 
@@ -100,6 +100,12 @@
 - **A page just loaded from the live site is blank.** The live site prints nothing and draws the book when its code arrives, so the first photograph was of an empty page. *A page is waited on until it says something, or the compiler does.*
 - **A page behind another draws nothing.** A look at a book opened earlier never answered: the wait was on an animation frame, and a tab that is not in front is given none. *The page looked at is brought forward, nothing waits on a frame, and every look has thirty seconds before the page is closed and the next look opens it again.*
 - **An element is photographed by clipping the page to where it stands,** in page coordinates, *the lesson of 2026-09-20 carried over, with reading the pseudo-elements and reading which rule wins.*
+
+**And three more in its first day of real use,** building [Sprint 100](../projection/105-sprint-100--the-big-plan.md)'s sketches:
+
+- **A built page is printed before its code takes hold of it,** so a look just after a load read the print and not the book. *A page just loaded is waited on until the book's code has taken it, and, at a chapter's address, until the book has turned to that place.*
+- **`fresh` loads the address asked for, never the one the tab was left at.** *A press moves the tab to another chapter; a reload kept it there and photographed the wrong page.*
+- **The tree under an element is a question of its own:** `tree=<selector>|<depth>` prints each element with its marks and its size. *Writing a frame's rules without it was guessing at which box wears which mark.*
 
 ## <a id="lost"></a>How this was lost, twice
 

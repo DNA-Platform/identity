@@ -32,6 +32,8 @@
 
 **The sentence the plan is held to is the last one, and it has two halves:** a chapter is a plugin a book is given, and the book chooses what to do with it; and the book, read in the order its chapters are written, is still a sensible document with nothing choosing. *The plan itself is written in his design book, and the team's first reading of it is in [the sprint's chapter](../projection/105-sprint-100--the-big-plan.md#a-first-reading--what-the-plan-is-expected-to-say).*
 
+**The first sketches, and what they found.** *The same day he set the work going — "work on everything at once, in sketching fashion… keep grading yourself" — and all four standing books were sketched from shared parts in his manual. What reads as natural, the ten fights, and what the designs still ask for are [the grade](../projection/105-sprint-100--the-big-plan.md#grade). The one that changes how a library is written: **a theme given through `$is` provides only inside itself, so a frame is a mark and its rules are a part of the theme.***
+
 **What follows from it, for these notes and for the work.**
 
 - **No code in his library is a model.** The classes in `.me/.design` and `.me/.manual` got a design book standing so the designs could be chosen. They are read as what was tried and never as how it is done, and all of it is to be rewritten.
