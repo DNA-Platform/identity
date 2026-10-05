@@ -1,5 +1,4 @@
-import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
-import { Shelfmark, TableOfContents } from '../.manual/.book';
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
 
 export default () => (
     <Chapter>
@@ -18,7 +17,7 @@ export default () => (
                     <Content>$[[ ./Dougs Story ]]</Content>
                 </Word>
                 <Word>
-                    <Shelfmark>[[ Dougs Story ]]**</Shelfmark>
+                    <Content>[[ □ ]]( Dougs Story )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -26,7 +25,7 @@ export default () => (
                     <Content>$[[ ./Dougs Design ]]</Content>
                 </Word>
                 <Word>
-                    <Shelfmark>[[ Dougs Design ]]**</Shelfmark>
+                    <Content>[[ □ ]]( Dougs Design )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -34,7 +33,7 @@ export default () => (
                     <Content>$[[ ./Dougs Reference Manual ]]</Content>
                 </Word>
                 <Word>
-                    <Shelfmark>[[ Dougs Reference Manual ]]**</Shelfmark>
+                    <Content>[[ □ ]]( Dougs Reference Manual )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -48,18 +47,6 @@ export default () => (
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>How this book is built</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Bars ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Shelf ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Black and Sky ]]</Content>
             </Paragraph>
         </Section>
     </Chapter>

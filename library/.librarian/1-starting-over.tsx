@@ -1,9 +1,11 @@
-import { Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Chapter, Date, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Dated } from '../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Dated>[2 October 2026](2026-10-02)</Dated>
+        <Dated>
+            <Date>[2 October 2026](2026-10-02)</Date>
+        </Dated>
         <Title>[[ Starting Over ]]</Title>
         <Section>
             <Heading>What this library is for</Heading>
@@ -25,7 +27,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 The new one began as four books. <Means>$[[ Dougs Library ]]</Means> is the catalogue, and
-                everything I keep stands on <Means>$[[ its shelves ]]( Dougs Library / The Shelves )</Means>. This
+                everything I keep is on <Means>$[[ its shelves ]]( Dougs Library / The Shelves )</Means>. This
                 book is <Means>$[[ Dougs Story ]]</Means>. The design of the library is kept
                 in <Means>$[[ Dougs Design ]]</Means>, and the parts I build the library with are
                 in <Means>$[[ Dougs Reference Manual ]]</Means>, which also says

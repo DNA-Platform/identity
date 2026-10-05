@@ -1,9 +1,11 @@
-import { Chapter, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Chapter, Date, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Dated } from '../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Dated>[4 October 2026](2026-10-04)</Dated>
+        <Dated>
+            <Date>[4 October 2026](2026-10-04)</Date>
+        </Dated>
         <Title>[[ Choosing a Design ]]</Title>
         <Section>
             <Heading>Seeing before choosing</Heading>
@@ -21,7 +23,7 @@ export default () => (
             <Paragraph>
                 I was asked about them by letter, and what I said is kept under each question
                 in <Means>$[[ What I Am Asked ]]( Dougs Design / What I Am Asked )</Means>. Two questions are still
-                open: where I am on a screen, and what stands at the right of a page.
+                open: where I am on a screen, and what goes at the right of a page.
             </Paragraph>
         </Section>
         <Section>
@@ -68,7 +70,7 @@ export default () => (
                 </Line>
             </Paragraph>
             <Paragraph>
-                None of my books wears its design yet, and the colors in the sketches are stand-ins. I will choose
+                None of my books has its design yet, and the colors in the sketches are stand-ins. I will choose
                 the colors by my synaesthetic preferences. What is to be worked out first is how a book is built to
                 carry many views, since many ways to view the same thing will be important.
             </Paragraph>

@@ -10,9 +10,9 @@ export default () => (
                 is the top: every other book is filed under it, and it is filed under what it is about, which is
                 itself. The librarian's autobiography, the one book that is by its own subject, which grounds who
                 may author anything here. And a reference manual, this book, where the reusable parts of the
-                library stand beside the chapters that say what they are. Each is a folder, and the folders here
+                library are kept beside the chapters that say what they are. Each is a folder, and the folders here
                 are <Means>$[[ Dougs Library ]]</Means> in a folder named as a library catalogue, <Means>$[[ Dougs Story ]]</Means> in
-                one named as a subject, and this manual in one named as a subject too. A fourth stands beside
+                one named as a subject, and this manual in one named as a subject too. A fourth is beside
                 them, <Means>$[[ Dougs Design ]]</Means>, where the design of the library is kept. The compiler reads
                 no folder name; the dots are a convention kept for the person reading the tree.
             </Paragraph>
@@ -24,7 +24,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <List />
-                <Line>a book file, which exports the class the book is, taken from this manual's door;</Line>
+                <Line>a book file, which exports the class the book is, taken from this manual's book file;</Line>
                 <Line>a cover, which says the book's title, who wrote it, where it is filed and what it is about;</Line>
                 <Line>a synopsis, which says what the book is in a paragraph, and is what a catalogue's row refers to;</Line>
                 <Line>a table of contents, which answers for the chapters the book holds and for the books it catalogues.</Line>

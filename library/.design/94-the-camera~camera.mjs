@@ -3,8 +3,8 @@
 //
 //     node .me/.design/94-the-camera~camera.mjs
 //
-// A concept is a page that stands beside a chapter under its number, as 3-every-concept~025.html. Its two
-// photographs stand beside it under the same number. Bind the book afterwards.
+// A concept is a page kept beside a chapter under its number, as 3-every-concept~025.html. Its two
+// photographs are kept beside it under the same number. Bind the book afterwards.
 import { createRequire } from 'node:module';
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';

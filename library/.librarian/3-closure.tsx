@@ -1,9 +1,11 @@
-import { Chapter, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Chapter, Date, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Dated } from '../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Dated>[5 October 2026](2026-10-05)</Dated>
+        <Dated>
+            <Date>[5 October 2026](2026-10-05)</Date>
+        </Dated>
         <Title>[[ Closure ]]</Title>
         <Section>
             <Heading>A script outside the book</Heading>
@@ -17,11 +19,11 @@ export default () => (
             <Paragraph>
                 So the script was retired. What it did is
                 now <Means>$[[ the camera ]]( Dougs Design / The Camera )</Means>, a chapter at the back of the
-                design book that prints the file that takes the photographs. Each sketch stands once,
+                design book that prints the file that takes the photographs. Each sketch is shown once,
                 in <Means>$[[ Every Concept ]]( Dougs Design / Every Concept )</Means>, with its page and its two
-                photographs beside that chapter. Any other chapter shows a sketch by writing its number, which is
-                how <Means>$[[ the designs I am going with ]]( Dougs Design / The Designs I Am Going With )</Means> shows
-                them and what <Means>$[[ the concept ]]( Dougs Design / The Concept )</Means> is built to do. My
+                photographs kept beside that chapter. Any other chapter links to a sketch by its number,
+                as <Means>$[[ the designs I am going with ]]( Dougs Design / The Designs I Am Going With )</Means> does,
+                and <Means>$[[ the concept ]]( Dougs Design / The Concept )</Means> says how. My
                 answers had been kept in a file outside as well, and are now written by hand under their questions
                 in <Means>$[[ What I Am Asked ]]( Dougs Design / What I Am Asked )</Means>.
             </Paragraph>
@@ -46,16 +48,16 @@ export default () => (
                     <Means>$[[ The book ]]( Dougs Reference Manual / The Book )</Means>, which every book here is.
                 </Line>
                 <Line>
-                    <Means>$[[ The theme ]]( Dougs Reference Manual / The Theme )</Means>, which is a stand-in until the designs are built.
+                    <Means>$[[ The listing ]]( Dougs Reference Manual / The Listing )</Means>, which is how a book shows a file a chapter keeps beside it.
+                </Line>
+                <Line>
+                    <Means>$[[ The theme ]]( Dougs Reference Manual / The Theme )</Means>, which holds almost nothing until the designs are built.
                 </Line>
                 <Line>
                     <Means>$[[ The date ]]( Dougs Reference Manual / The Date )</Means>, which a chapter like this one carries.
                 </Line>
                 <Line>
-                    <Means>$[[ The pages ]]( Dougs Reference Manual / The Pages )</Means>, one chapter open at a time.
-                </Line>
-                <Line>
-                    <Means>$[[ The frames ]]( Dougs Reference Manual / The Frames )</Means>, where things stand on the screen.
+                    <Means>$[[ The outline ]]( Dougs Reference Manual / The Outline )</Means>, which shows a book the way the code sees it.
                 </Line>
                 <Line>
                     <Means>$[[ Initializing a library ]]( Dougs Reference Manual / Initializing a Library )</Means>, which says how one like this is begun and how it is bound.
@@ -67,23 +69,21 @@ export default () => (
             <Paragraph>
                 <List />
                 <Line>
-                    <Means>$[[ The concept ]]( Dougs Design / The Concept )</Means>, a numbered sketch and the viewer it opens in.
+                    <Means>$[[ The concept ]]( Dougs Design / The Concept )</Means>, a numbered sketch of one idea.
                 </Line>
                 <Line>
-                    <Means>$[[ Its theme ]]( Dougs Design / The Theme )</Means>, the paper, the ink and its two modes.
+                    <Means>$[[ The paragraphs ]]( Dougs Design / The Paragraphs )</Means>, which say what was asked, what I said and what I chose.
                 </Line>
                 <Line>
                     <Means>$[[ The camera ]]( Dougs Design / The Camera )</Means>, which photographs each sketch.
                 </Line>
             </Paragraph>
             <Paragraph>
-                This book carries two of its own, <Means>$[[ the sheet ]]( ./The Sheet )</Means> it is read on
-                and <Means>$[[ its papers ]]( ./The Papers )</Means>. The catalogue
-                carries <Means>$[[ its bars ]]( Dougs Library / The Bars )</Means> and <Means>$[[ its shelf ]]( Dougs Library / The Shelf )</Means>.
+                This book and the catalogue carry none of their own yet.
             </Paragraph>
             <Paragraph>
                 An appendix reads like a page of the reference manual, because a chapter that carries its file is
-                the same kind of chapter wherever it stands. So it can spin off into a book of its own when its
+                the same kind of chapter wherever it is. So it can spin off into a book of its own when its
                 book grows too large, and nothing in it is rewritten.
             </Paragraph>
         </Section>

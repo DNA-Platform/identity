@@ -19,8 +19,8 @@
 //     click=<selector>               press it first
 //     read=<selector>                print what each match says
 //     style=<selector>|<property>    print what each match computes to, the properties separated by commas
-//     box=<selector>                 print where each match stands
-//     tree=<selector>|<depth>        print the elements under the first match, each with its marks and its size
+//     box=<selector>                 print where each match is
+//     tree=<selector>|<depth>        print the elements under the first match, each with its classes and its size
 //     after=<selector>               print what is drawn before and after the first match
 //     rules=<word>|<property>        print every rule whose selector holds the word, in the order they apply
 //     out=<file>                     where the photograph goes
@@ -56,7 +56,7 @@ const asked = async what => {
 };
 
 const open = async () => {
-    if (binding === undefined) throw new Error(`no face with a binding stands in ${library}`);
+    if (binding === undefined) throw new Error(`no folder with a binding is in ${library}`);
     if (await asked('open') !== null) return console.log('the workbench is already open');
     mkdirSync(kept, { recursive: true });
 
@@ -211,7 +211,7 @@ const open = async () => {
                 const box = one.getBoundingClientRect();
                 return `${Math.round(box.x)},${Math.round(box.y)} ${Math.round(box.width)}×${Math.round(box.height)}`;
             }));
-            says.push(...(boxes.length === 0 ? [`nothing matches ${selector}`] : boxes.map(text => `${selector} stands at ${text}`)));
+            says.push(...(boxes.length === 0 ? [`nothing matches ${selector}`] : boxes.map(text => `${selector} is at ${text}`)));
         }
 
         for (const pair of wanted.getAll('tree')) {
@@ -220,8 +220,8 @@ const open = async () => {
                 const lines = [];
                 const walk = (element, level) => {
                     const box = element.getBoundingClientRect();
-                    const marks = [...element.classList].map(name => `.${name}`).join('');
-                    lines.push(`${'  '.repeat(level)}${element.tagName.toLowerCase()}${element.id === '' ? '' : `#${element.id}`}${marks} ${Math.round(box.width)}×${Math.round(box.height)}`);
+                    const classes = [...element.classList].map(name => `.${name}`).join('');
+                    lines.push(`${'  '.repeat(level)}${element.tagName.toLowerCase()}${element.id === '' ? '' : `#${element.id}`}${classes} ${Math.round(box.width)}×${Math.round(box.height)}`);
                     if (level < depth)
                         for (const child of element.children)
                             walk(child, level + 1);
@@ -263,7 +263,7 @@ const open = async () => {
 
         doing.what = 'photographing the page';
         const photograph = wanted.get('out') ?? join(kept, `${(path || 'library').replace(/\W+/gu, '-')}-${device}.png`);
-        // An element is photographed by clipping the page to where it stands. Asking the element to photograph
+        // An element is photographed by clipping the page to where it is. Asking the element to photograph
         // itself can hang.
         const clip = wanted.has('at') ? await page.$eval(wanted.get('at'), one => {
             const box = one.getBoundingClientRect();

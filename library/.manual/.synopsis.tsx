@@ -8,8 +8,8 @@ export default () => (
             [[ Synopsis ]]
         </Title>
         <Paragraph>
-            The reusable parts of this library, each standing beside the chapter that says what it is. The book
-            file of this manual is the door the other books import their tools from.
+            The reusable parts of this library, each beside the chapter that says what it is. The other books
+            import their tools from this manual's book file.
         </Paragraph>
     </Chapter>
 );

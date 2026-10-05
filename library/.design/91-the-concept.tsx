@@ -1,0 +1,31 @@
+import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+
+export default () => (
+    <Chapter>
+        <Title>[[ The Concept ]]</Title>
+        <Section>
+            <Heading>What a concept is</Heading>
+            <Paragraph>
+                A concept is one sketch of one idea.
+                In <Means>$[[ Every Concept ]]( ./Every Concept )</Means> each has a section of its own: its name,
+                its number, what it is drawn after, the idea in a sentence, a photograph of it at a desk and on a
+                phone, and under those what I said of it, if I said anything.
+            </Paragraph>
+            <Paragraph>
+                The section says it is a concept and gives its number, which it keeps for good. I answer by that
+                number. The sketch itself is a page. It is kept beside the chapter and given to its section as it
+                is.
+            </Paragraph>
+            <Paragraph>
+                Another chapter points to a concept by its number, as a link to its place in Every Concept. It
+                does not show the concept a second time.
+            </Paragraph>
+        </Section>
+        <Append
+            identifier="code"
+            type=".tsx"
+        >
+            ![[ code.tsx ]]
+        </Append>
+    </Chapter>
+);

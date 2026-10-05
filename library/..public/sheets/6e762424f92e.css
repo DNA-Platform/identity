@@ -1,0 +1,11 @@
+.ldScnz .pa-list{counter-reset:list-item;}/*!sc*/
+.ldScnz .pa-item{display:list-item;list-style:disc inside;}/*!sc*/
+.ldScnz .pa-ordered .pa-item{list-style-type:decimal;}/*!sc*/
+data-styled.g12[id="sc-kEqYZi"]{content:"ldScnz,"}/*!sc*/
+.hfozdf{max-width:44rem;margin-inline:auto;padding:1.5rem;}/*!sc*/
+.hfozdf .pd-image img{display:block;max-width:100%;height:auto;}/*!sc*/
+.hfozdf .pd-code{overflow-x:auto;}/*!sc*/
+data-styled.g18[id="sc-hBMXrk"]{content:"hfozdf,"}/*!sc*/
+.jVufue .pd-chapter,.jVufue .pd-section,.jVufue .pd-listing,.jVufue .pd-paragraph[class*='pa-']{margin-block:2em;outline:1px dashed currentColor;outline-offset:0.5em;}/*!sc*/
+.jVufue .pd-chapter::before,.jVufue .pd-section::before,.jVufue .pd-listing::before,.jVufue .pd-paragraph[class*='pa-']::before{content:attr(class);display:block;font-family:ui-monospace,monospace;font-size:smaller;opacity:0.6;}/*!sc*/
+data-styled.g19[id="sc-fnWaXB"]{content:"jVufue,"}/*!sc*/

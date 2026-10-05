@@ -1,5 +1,5 @@
-import { Chapter, Heading, Paragraph, Section, Title } from '@dna-platform/public';
-import { Answered, Asked, Concepts, Shown } from './.book';
+import { Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Asked, Said } from './.book';
 
 export default () => (
     <Chapter>
@@ -7,9 +7,8 @@ export default () => (
         <Section>
             <Heading>By letter</Heading>
             <Paragraph>
-                Each question here has a letter, and is about the numbered concepts drawn under it. Pressing one
-                opens it, and the arrow keys go between the ones the question is about. I answer by the letter, in
-                my own words, and what I say is written under the question.
+                Each question here has a letter, and is about the numbered concepts linked under it. I answer by
+                the letter, in my own words, and what I say is written under the question.
             </Paragraph>
         </Section>
         <Section>
@@ -20,11 +19,10 @@ export default () => (
                 or only a face as in 17? And is the orange right for me, under my name and on my turns in 23?
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>11</Shown>
-                <Shown>13</Shown>
-                <Shown>17</Shown>
-                <Shown>23</Shown>
+                Concept <Means>$[[ 11 ]]( ./A Black Side Bar )</Means>,
+                concept <Means>$[[ 13 ]]( ./A Black Top Bar )</Means>,
+                concept <Means>$[[ 17 ]]( ./A Black Rail and a Blue Top )</Means> and
+                concept <Means>$[[ 23 ]]( ./A Conversation, in the Black Side Bar )</Means>.
             </Paragraph>
         </Section>
         <Section>
@@ -36,10 +34,9 @@ export default () => (
                 in it?
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>11</Shown>
-                <Shown>23</Shown>
-                <Shown>2</Shown>
+                Concept <Means>$[[ 11 ]]( ./A Black Side Bar )</Means>,
+                concept <Means>$[[ 23 ]]( ./A Conversation, in the Black Side Bar )</Means> and
+                concept <Means>$[[ 2 ]]( ./Ask the Sources )</Means>.
             </Paragraph>
         </Section>
         <Section>
@@ -51,13 +48,12 @@ export default () => (
                 opal of 20, or the shelf as it stands in 1? And what do I come to this page to do?
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>1</Shown>
-                <Shown>19</Shown>
-                <Shown>20</Shown>
+                Concept <Means>$[[ 1 ]]( ./The Shelf )</Means>,
+                concept <Means>$[[ 19 ]]( ./Two Top Bars: Black, then Sky )</Means> and
+                concept <Means>$[[ 20 ]]( ./Two Top Bars: White, then Opal )</Means>.
             </Paragraph>
             <Paragraph>
-                <Answered />
+                <Said />
                 Yes, and I like the black and sky, though I think I want to be able to switch the view between 1 to
                 3 as part of the dynamism of the page. We will talk about how to implement a book, and you will find
                 that you might want to do more structurally than you expect to support many different views. Many
@@ -73,13 +69,12 @@ export default () => (
                 do I come to a manual to do: read it through, look up a part, copy its code?
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>6</Shown>
-                <Shown>7</Shown>
-                <Shown>8</Shown>
+                Concept <Means>$[[ 6 ]]( ./Side by Side )</Means>,
+                concept <Means>$[[ 7 ]]( ./The Notebook )</Means> and
+                concept <Means>$[[ 8 ]]( ./The Workbench )</Means>.
             </Paragraph>
             <Paragraph>
-                <Answered />
+                <Said />
                 6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and
                 documentation emphasized. Code doesn't look right unless in full view, so we might want a view where
                 we show one write-up on the right side of the code and another that moves the code off to the right,
@@ -96,7 +91,7 @@ export default () => (
                 I change in it?
             </Paragraph>
             <Paragraph>
-                <Answered />
+                <Said />
                 Yeah, how about we keep design light and airy. But no, if the dark sidebar is the thing that makes
                 the library memorable, then maybe we have a toggle between library and gallery mode, and gallery
                 mode is more white themed with subtle variation, and library mode is more dark themed.
@@ -112,14 +107,13 @@ export default () => (
                 is the title page of 24 nearer, the front page of 5, the reading column of 7?
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>25</Shown>
-                <Shown>24</Shown>
-                <Shown>5</Shown>
-                <Shown>7</Shown>
+                Concept <Means>$[[ 25 ]]( ./The Reading View )</Means>,
+                concept <Means>$[[ 24 ]]( ./The Title Page )</Means>,
+                concept <Means>$[[ 5 ]]( ./The Front Page )</Means> and
+                concept <Means>$[[ 7 ]]( ./The Notebook )</Means>.
             </Paragraph>
             <Paragraph>
-                <Answered />
+                <Said />
                 I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so
                 noticeable, but I really like it for bookish chapters like the autobiography.
             </Paragraph>
@@ -134,14 +128,13 @@ export default () => (
                 10?
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>9</Shown>
-                <Shown>20</Shown>
-                <Shown>11</Shown>
-                <Shown>10</Shown>
+                Concept <Means>$[[ 9 ]]( ./The Database )</Means>,
+                concept <Means>$[[ 20 ]]( ./Two Top Bars: White, then Opal )</Means>,
+                concept <Means>$[[ 11 ]]( ./A Black Side Bar )</Means> and
+                concept <Means>$[[ 10 ]]( ./The Map )</Means>.
             </Paragraph>
             <Paragraph>
-                <Answered />
+                <Said />
                 9 under white and opal.
             </Paragraph>
         </Section>
@@ -155,14 +148,13 @@ export default () => (
                 each conversation's synopsis?
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>9</Shown>
-                <Shown>2</Shown>
-                <Shown>1</Shown>
-                <Shown>10</Shown>
+                Concept <Means>$[[ 9 ]]( ./The Database )</Means>,
+                concept <Means>$[[ 2 ]]( ./Ask the Sources )</Means>,
+                concept <Means>$[[ 1 ]]( ./The Shelf )</Means> and
+                concept <Means>$[[ 10 ]]( ./The Map )</Means>.
             </Paragraph>
             <Paragraph>
-                <Answered />
+                <Said />
                 I think we want to start with a multi-view. We will have to write an importer, and we will likely
                 have to add annotations. So let's think about the types of ways we want to enable interaction with
                 the data. In Claude, the simplest way is just a downward list of conversations. And we will probably
@@ -183,11 +175,10 @@ export default () => (
                 what should go?
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>23</Shown>
+                Concept <Means>$[[ 23 ]]( ./A Conversation, in the Black Side Bar )</Means>.
             </Paragraph>
             <Paragraph>
-                <Answered />
+                <Said />
                 Yes, 23, though we might vary the color scheme based on project, but start assuming the dark
                 sidebar. That theme looks nice.
             </Paragraph>
@@ -201,16 +192,15 @@ export default () => (
                 of page want different frames.
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>11</Shown>
-                <Shown>13</Shown>
-                <Shown>15</Shown>
-                <Shown>17</Shown>
-                <Shown>19</Shown>
-                <Shown>21</Shown>
+                Concept <Means>$[[ 11 ]]( ./A Black Side Bar )</Means>,
+                concept <Means>$[[ 13 ]]( ./A Black Top Bar )</Means>,
+                concept <Means>$[[ 15 ]]( ./A Black Top Bar and an Opal Side Bar )</Means>,
+                concept <Means>$[[ 17 ]]( ./A Black Rail and a Blue Top )</Means>,
+                concept <Means>$[[ 19 ]]( ./Two Top Bars: Black, then Sky )</Means> and
+                concept <Means>$[[ 21 ]]( ./No Bars: White Cards )</Means>.
             </Paragraph>
             <Paragraph>
-                <Answered />
+                <Said />
                 The side bar, yes: we like it for this design we are converging on, though let's explore other
                 options too. The top bar too, and I'd like to explore a version that has them both. Might the top
                 bar be a version of the cover and the side bar be a version of the table of contents? I do want to
@@ -231,14 +221,13 @@ export default () => (
                 to, as in 12 and 14? Or the other way round? Or does it depend on the page?
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>11</Shown>
-                <Shown>12</Shown>
-                <Shown>13</Shown>
-                <Shown>14</Shown>
+                Concept <Means>$[[ 11 ]]( ./A Black Side Bar )</Means>,
+                concept <Means>$[[ 12 ]]( ./A Light Side Bar )</Means>,
+                concept <Means>$[[ 13 ]]( ./A Black Top Bar )</Means> and
+                concept <Means>$[[ 14 ]]( ./A White Top Bar )</Means>.
             </Paragraph>
             <Paragraph>
-                <Answered />
+                <Said />
                 It depends on the page for sure. Maybe I like the black and sky for the library itself, with its
                 more bookish view, and then moving into different color themes for each cataloguing book. We do
                 truly want the different parts of the app, in some ways, to feel like different apps, and that can
@@ -254,16 +243,15 @@ export default () => (
                 5, the table in 9, the map in 10?
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>1</Shown>
-                <Shown>2</Shown>
-                <Shown>3</Shown>
-                <Shown>5</Shown>
-                <Shown>9</Shown>
-                <Shown>10</Shown>
+                Concept <Means>$[[ 1 ]]( ./The Shelf )</Means>,
+                concept <Means>$[[ 2 ]]( ./Ask the Sources )</Means>,
+                concept <Means>$[[ 3 ]]( ./The Wall )</Means>,
+                concept <Means>$[[ 5 ]]( ./The Front Page )</Means>,
+                concept <Means>$[[ 9 ]]( ./The Database )</Means> and
+                concept <Means>$[[ 10 ]]( ./The Map )</Means>.
             </Paragraph>
             <Paragraph>
-                <Answered />
+                <Said />
                 The shelf, the table and the map are all good for different catalogues. We have the across Claude
                 projects catalogue, and then we have the conversations per project catalogue, and we have the
                 library catalogue. These should all look like different things, and I am inclined to choose between
@@ -291,12 +279,11 @@ export default () => (
                 who the conversation was with, or stay the book's own?
             </Paragraph>
             <Paragraph>
-                <Concepts />
-                <Shown>1</Shown>
-                <Shown>11</Shown>
+                Concept <Means>$[[ 1 ]]( ./The Shelf )</Means> and
+                concept <Means>$[[ 11 ]]( ./A Black Side Bar )</Means>.
             </Paragraph>
             <Paragraph>
-                <Answered />
+                <Said />
                 I will choose colors based on my synaesthetic preferences. I also think we want some form of cover
                 art, and the cover art perhaps for the library can be the logo of the library. Perhaps the cover art
                 is simply the logo of the book, and we just have a progressive logo.

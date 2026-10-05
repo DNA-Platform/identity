@@ -7,8 +7,8 @@ import Table from '../../../../.design/.table';
 import TheDesignsIAmGoingWith1 from '../../../../.design/1-the-designs-i-am-going-with';
 import WhatIAmAsked2 from '../../../../.design/2-what-i-am-asked';
 import EveryConcept3 from '../../../../.design/3-every-concept';
-import TheConcept92 from '../../../../.design/92-the-concept';
-import TheTheme93 from '../../../../.design/93-the-theme';
+import TheParagraphs90 from '../../../../.design/90-the-paragraphs';
+import TheConcept91 from '../../../../.design/91-the-concept';
 import TheCamera94 from '../../../../.design/94-the-camera';
 
 const Book = $($Book);
@@ -21,8 +21,8 @@ export const book = () => (
         {TheDesignsIAmGoingWith1()}
         {WhatIAmAsked2()}
         {EveryConcept3()}
-        {TheConcept92()}
-        {TheTheme93()}
+        {TheParagraphs90()}
+        {TheConcept91()}
         {TheCamera94()}
     </Book>
 );

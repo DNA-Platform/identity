@@ -1,5 +1,5 @@
-import { Chapter, Heading, Paragraph, Section, Title } from '@dna-platform/public';
-import { Concept, Concepts } from './.book';
+import { Chapter, Heading, Image, Paragraph, Section, Title } from '@dna-platform/public';
+import { Concept, Said, Sketch } from './.book';
 
 export default () => (
     <Chapter>
@@ -7,8 +7,8 @@ export default () => (
         <Section>
             <Heading>By number</Heading>
             <Paragraph>
-                Every concept here has a number, and keeps it. I press one to open it at a desk and on a phone, and
-                I answer by its number. What I say of one is written under it.
+                Every concept here has a number, and keeps it. Each is shown as it looks at a desk and on a phone,
+                and I answer by its number. What I say of one is written under it.
             </Paragraph>
         </Section>
         <Section>
@@ -17,34 +17,101 @@ export default () => (
                 The first page of the library: where everything I keep is found from. Each of these is a different
                 layout, with different tools in different places and a different way of moving around.
             </Paragraph>
-            <Paragraph>
-                <Concepts />
-                <Concept>
-                    ![[ 001-desk.png ]]
-                    ![[ 001-phone.png ]]
-                    ![[ 001.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 002-desk.png ]]
-                    ![[ 002-phone.png ]]
-                    ![[ 002.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 003-desk.png ]]
-                    ![[ 003-phone.png ]]
-                    ![[ 003.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 004-desk.png ]]
-                    ![[ 004-phone.png ]]
-                    ![[ 004.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 005-desk.png ]]
-                    ![[ 005-phone.png ]]
-                    ![[ 005.html ]]
-                </Concept>
-            </Paragraph>
+            <Section>
+                <Concept>1</Concept>
+                <Sketch>![[ 001.html ]]</Sketch>
+                <Heading>[[[ The Shelf ]]]</Heading>
+                <Paragraph>
+                    Concept 1, after Apple Books.
+                </Paragraph>
+                <Paragraph>
+                    Every conversation gets a cover. The library opens on what I was last reading and on shelves by
+                    project, and a conversation is picked up by its face, the way a book is.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 001-desk.png ]]</Image>
+                    <Image>![[ 001-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Said />
+                    I really like the book view, and aside from color, we will need some sort of visual landmark to
+                    ground the book, which justifies seeing the cover.
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>2</Concept>
+                <Sketch>![[ 002.html ]]</Sketch>
+                <Heading>[[[ Ask the Sources ]]]</Heading>
+                <Paragraph>
+                    Concept 2, after NotebookLM.
+                </Paragraph>
+                <Paragraph>
+                    The conversations are sources, and the library answers questions from them: every sentence of an
+                    answer carries the number of the passage it rests on, one press from the passage itself.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 002-desk.png ]]</Image>
+                    <Image>![[ 002-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Said />
+                    The sources really look great. I really like it. I like the little view and the logo. But what
+                    would it mean to type in a message? We have to be realistic.
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>3</Concept>
+                <Sketch>![[ 003.html ]]</Sketch>
+                <Heading>[[[ The Wall ]]]</Heading>
+                <Paragraph>
+                    Concept 3, after Pinterest.
+                </Paragraph>
+                <Paragraph>
+                    The library browsed by what catches the eye: passages, notes, book covers and conversations
+                    pinned to one wall in a masonry of different sizes, each saved to boards, so finding is
+                    wandering and keeping is one button.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 003-desk.png ]]</Image>
+                    <Image>![[ 003-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>4</Concept>
+                <Sketch>![[ 004.html ]]</Sketch>
+                <Heading>The Command Line</Heading>
+                <Paragraph>
+                    Concept 4, after keyboard-first tools: command palettes, launchers and the leader keys of
+                    editors.
+                </Paragraph>
+                <Paragraph>
+                    The library opens on one line: type to go anywhere or do anything, the last places are a number
+                    away and every book, grouping and list is two keystrokes away — and the same line waits at the
+                    top of every page, which is what unites them.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 004-desk.png ]]</Image>
+                    <Image>![[ 004-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>5</Concept>
+                <Sketch>![[ 005.html ]]</Sketch>
+                <Heading>[[[ The Front Page ]]]</Heading>
+                <Paragraph>
+                    Concept 5, after a newspaper's front page and the long-read site's home.
+                </Paragraph>
+                <Paragraph>
+                    The library opens like a front page: the conversation most recently kept leads with a
+                    standfirst, what was kept lately runs down a column by day, notes and citations take the next,
+                    and the books and groupings stand in the masthead's index — movement is by reading and by the
+                    sections across the top.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 005-desk.png ]]</Image>
+                    <Image>![[ 005-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
         </Section>
         <Section>
             <Heading>[[[ A Reference Manual ]]]</Heading>
@@ -53,24 +120,59 @@ export default () => (
                 it is. These are different ways to show a chapter and its code together, and to move among the
                 parts.
             </Paragraph>
-            <Paragraph>
-                <Concepts />
-                <Concept>
-                    ![[ 006-desk.png ]]
-                    ![[ 006-phone.png ]]
-                    ![[ 006.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 007-desk.png ]]
-                    ![[ 007-phone.png ]]
-                    ![[ 007.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 008-desk.png ]]
-                    ![[ 008-phone.png ]]
-                    ![[ 008.html ]]
-                </Concept>
-            </Paragraph>
+            <Section>
+                <Concept>6</Concept>
+                <Sketch>![[ 006.html ]]</Sketch>
+                <Heading>[[[ Side by Side ]]]</Heading>
+                <Paragraph>
+                    Concept 6, after API documentation, as Stripe sets it.
+                </Paragraph>
+                <Paragraph>
+                    A chapter and its file are always seen together: the words on the left, the file they are about
+                    held still on the right, and every name in the words lights the line it means.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 006-desk.png ]]</Image>
+                    <Image>![[ 006-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Said />
+                    6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and
+                    documentation emphasized. Code doesn't look right unless in full view.
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>7</Concept>
+                <Sketch>![[ 007.html ]]</Sketch>
+                <Heading>[[[ The Notebook ]]]</Heading>
+                <Paragraph>
+                    Concept 7, after a computational notebook, as Observable sets it.
+                </Paragraph>
+                <Paragraph>
+                    A chapter is a column of cells: what I say, the file itself, and the part shown working, one
+                    under the other, so the manual proves each part as it explains it.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 007-desk.png ]]</Image>
+                    <Image>![[ 007-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>8</Concept>
+                <Sketch>![[ 008.html ]]</Sketch>
+                <Heading>[[[ The Workbench ]]]</Heading>
+                <Paragraph>
+                    Concept 8, after a component workshop, as Storybook sets it.
+                </Paragraph>
+                <Paragraph>
+                    A part is met by using it: the part itself drawn alone on a bench, its properties beside it to
+                    change, and the line a chapter would write rewriting itself as they change.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 008-desk.png ]]</Image>
+                    <Image>![[ 008-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
         </Section>
         <Section>
             <Heading>[[[ A Grouping of Projects ]]]</Heading>
@@ -78,19 +180,45 @@ export default () => (
                 A page for one grouping of my conversations, such as everything kept with Claude, with its projects
                 and the conversations in each. These are different ways to see and move through many of them.
             </Paragraph>
-            <Paragraph>
-                <Concepts />
-                <Concept>
-                    ![[ 009-desk.png ]]
-                    ![[ 009-phone.png ]]
-                    ![[ 009.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 010-desk.png ]]
-                    ![[ 010-phone.png ]]
-                    ![[ 010.html ]]
-                </Concept>
-            </Paragraph>
+            <Section>
+                <Concept>9</Concept>
+                <Sketch>![[ 009.html ]]</Sketch>
+                <Heading>[[[ The Database ]]]</Heading>
+                <Paragraph>
+                    Concept 9, after Notion.
+                </Paragraph>
+                <Paragraph>
+                    Every conversation is a row with properties — project, AI, kept, chapters, citations — so one
+                    set of records is seen as a table, a board or a gallery, and opening a row peeks its page beside
+                    the list.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 009-desk.png ]]</Image>
+                    <Image>![[ 009-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Said />
+                    For the catalogue across projects I like 9 the best, and I might even like a splash of the
+                    Claude theme to delineate that this view is Claude projects.
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>10</Concept>
+                <Sketch>![[ 010.html ]]</Sketch>
+                <Heading>[[[ The Map ]]]</Heading>
+                <Paragraph>
+                    Concept 10, after market maps and disk-usage maps — the squarified treemap.
+                </Paragraph>
+                <Paragraph>
+                    The grouping is a map of where the thinking went: each project a region as large as the
+                    conversations it holds, each conversation a tile as large as its chapters and as dark as it is
+                    recent, so the whole of it is seen at once and any tile is one look from its name.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 010-desk.png ]]</Image>
+                    <Image>![[ 010-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
         </Section>
         <Section>
             <Heading>[[[ Layout Ideas ]]]</Heading>
@@ -102,74 +230,236 @@ export default () => (
                 reports to its subject. The last shows a conversation inside the black side bar. I will choose which
                 of them stay.
             </Paragraph>
-            <Paragraph>
-                <Concepts />
-                <Concept>
-                    ![[ 011-desk.png ]]
-                    ![[ 011-phone.png ]]
-                    ![[ 011.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 012-desk.png ]]
-                    ![[ 012-phone.png ]]
-                    ![[ 012.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 013-desk.png ]]
-                    ![[ 013-phone.png ]]
-                    ![[ 013.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 014-desk.png ]]
-                    ![[ 014-phone.png ]]
-                    ![[ 014.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 015-desk.png ]]
-                    ![[ 015-phone.png ]]
-                    ![[ 015.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 016-desk.png ]]
-                    ![[ 016-phone.png ]]
-                    ![[ 016.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 017-desk.png ]]
-                    ![[ 017-phone.png ]]
-                    ![[ 017.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 018-desk.png ]]
-                    ![[ 018-phone.png ]]
-                    ![[ 018.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 019-desk.png ]]
-                    ![[ 019-phone.png ]]
-                    ![[ 019.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 020-desk.png ]]
-                    ![[ 020-phone.png ]]
-                    ![[ 020.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 021-desk.png ]]
-                    ![[ 021-phone.png ]]
-                    ![[ 021.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 022-desk.png ]]
-                    ![[ 022-phone.png ]]
-                    ![[ 022.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 023-desk.png ]]
-                    ![[ 023-phone.png ]]
-                    ![[ 023.html ]]
-                </Concept>
-            </Paragraph>
+            <Section>
+                <Concept>11</Concept>
+                <Sketch>![[ 011.html ]]</Sketch>
+                <Heading>[[[ A Black Side Bar ]]]</Heading>
+                <Paragraph>
+                    Concept 11, an idea, after the homes I liked, in the coming-soon page's soft black.
+                </Paragraph>
+                <Paragraph>
+                    One bar, at the left, in soft black: the library's mark, its subjects, what the open one holds,
+                    and me at its foot. The page beside it is white. Press a cover, a subject, or me; press Shelf
+                    and List to see the same books two ways.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 011-desk.png ]]</Image>
+                    <Image>![[ 011-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>12</Concept>
+                <Sketch>![[ 012.html ]]</Sketch>
+                <Heading>[[[ A Light Side Bar ]]]</Heading>
+                <Paragraph>
+                    Concept 12, an idea, after the homes I liked, the lighter way.
+                </Paragraph>
+                <Paragraph>
+                    The same side bar, lighter: a pale bar with the mark in black, as the shelf's home had it. The
+                    color is all in the covers and the light accents.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 012-desk.png ]]</Image>
+                    <Image>![[ 012-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>13</Concept>
+                <Sketch>![[ 013.html ]]</Sketch>
+                <Heading>[[[ A Black Top Bar ]]]</Heading>
+                <Paragraph>
+                    Concept 13, an idea, after the homes I liked, in the coming-soon page's soft black.
+                </Paragraph>
+                <Paragraph>
+                    One bar, across the top, in soft black: the mark, the subjects as its tabs, and me at its right
+                    end. No side bar; what a subject holds is a row under its name, and the whole width is for its
+                    books.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 013-desk.png ]]</Image>
+                    <Image>![[ 013-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>14</Concept>
+                <Sketch>![[ 014.html ]]</Sketch>
+                <Heading>[[[ A White Top Bar ]]]</Heading>
+                <Paragraph>
+                    Concept 14, an idea, after the homes I liked, the lighter way.
+                </Paragraph>
+                <Paragraph>
+                    The same top bar, lighter: white, with the mark in black and the open subject underlined in its
+                    own color.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 014-desk.png ]]</Image>
+                    <Image>![[ 014-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>15</Concept>
+                <Sketch>![[ 015.html ]]</Sketch>
+                <Heading>[[[ A Black Top Bar and an Opal Side Bar ]]]</Heading>
+                <Paragraph>
+                    Concept 15, an idea, after the coming-soon page: its soft black, and its opal between that and
+                    white.
+                </Paragraph>
+                <Paragraph>
+                    Both. The top bar is the library's, in soft black; the side bar is the open subject's, in the
+                    pale opal, which is the step between the black and the white page.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 015-desk.png ]]</Image>
+                    <Image>![[ 015-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>16</Concept>
+                <Sketch>![[ 016.html ]]</Sketch>
+                <Heading>A White Top Bar and an Opal Side Bar</Heading>
+                <Paragraph>
+                    Concept 16, an idea, after the homes I liked, the lighter way.
+                </Paragraph>
+                <Paragraph>
+                    Both, lighter: the top bar white, the side bar still the pale opal. The lightest frame that
+                    still has two bars.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 016-desk.png ]]</Image>
+                    <Image>![[ 016-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>17</Concept>
+                <Sketch>![[ 017.html ]]</Sketch>
+                <Heading>[[[ A Black Rail and a Blue Top ]]]</Heading>
+                <Paragraph>
+                    Concept 17, an idea, after the coming-soon page: its soft black, and the blue it suggests.
+                </Paragraph>
+                <Paragraph>
+                    A narrow soft-black rail holds only the subjects as marks and me as a face. The open subject's
+                    name stands on a band of the blue, the step between the black and the white, and what it holds
+                    is a row beneath.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 017-desk.png ]]</Image>
+                    <Image>![[ 017-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>18</Concept>
+                <Sketch>![[ 018.html ]]</Sketch>
+                <Heading>An Opal Rail and a White Top</Heading>
+                <Paragraph>
+                    Concept 18, an idea, after the homes I liked, the lighter way.
+                </Paragraph>
+                <Paragraph>
+                    The same narrow rail, lighter: pale opal, the subjects' marks carrying the color, and the
+                    subject's name on white.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 018-desk.png ]]</Image>
+                    <Image>![[ 018-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>19</Concept>
+                <Sketch>![[ 019.html ]]</Sketch>
+                <Heading>[[[ Two Top Bars: Black, then Sky ]]]</Heading>
+                <Paragraph>
+                    Concept 19, an idea, after the coming-soon page: its soft black, and a lighter step of the blue.
+                </Paragraph>
+                <Paragraph>
+                    Two bars across the top. The black one is the library's and never changes; the lighter blue one
+                    under it is the open subject's own, with its name and its tools, so a subject reads as a place
+                    of its own inside the library.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 019-desk.png ]]</Image>
+                    <Image>![[ 019-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Said />
+                    Maybe I like the black and sky for the library itself, with its more bookish view. I like the
+                    black and sky, though I think I want to be able to switch the view as part of the dynamism of
+                    the page.
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>20</Concept>
+                <Sketch>![[ 020.html ]]</Sketch>
+                <Heading>[[[ Two Top Bars: White, then Opal ]]]</Heading>
+                <Paragraph>
+                    Concept 20, an idea, after the homes I liked, the lighter way.
+                </Paragraph>
+                <Paragraph>
+                    The same two bars, lighter: the library's in white, the subject's in the pale opal.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 020-desk.png ]]</Image>
+                    <Image>![[ 020-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Said />
+                    The white and then opal looks really good. A clean white theme with the dark logo makes me start
+                    to think that maybe I don't want quite so much of the dark. The opal is interesting too, and
+                    while we would need to use that effect carefully, I like it as a type of annotation.
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>21</Concept>
+                <Sketch>![[ 021.html ]]</Sketch>
+                <Heading>[[[ No Bars: White Cards ]]]</Heading>
+                <Paragraph>
+                    Concept 21, an idea, after the home that asks its sources.
+                </Paragraph>
+                <Paragraph>
+                    No bar at all, as the home that asks its sources had it: the mark and the subjects sit on a pale
+                    ground, and what the subject holds, its books and what cites them are three white cards.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 021-desk.png ]]</Image>
+                    <Image>![[ 021-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>22</Concept>
+                <Sketch>![[ 022.html ]]</Sketch>
+                <Heading>No Bars: White Cards on Black</Heading>
+                <Paragraph>
+                    Concept 22, an idea, after the home that asks its sources, on the coming-soon page's ground.
+                </Paragraph>
+                <Paragraph>
+                    The same three cards, darker: on the soft black, so the black is the ground the whole library
+                    stands on and the pages are white.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 022-desk.png ]]</Image>
+                    <Image>![[ 022-phone.png ]]</Image>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>23</Concept>
+                <Sketch>![[ 023.html ]]</Sketch>
+                <Heading>[[[ A Conversation, in the Black Side Bar ]]]</Heading>
+                <Paragraph>
+                    Concept 23, an idea, after the application the conversations come from.
+                </Paragraph>
+                <Paragraph>
+                    The black side bar with a conversation open: its chapters down the bar as that application lists
+                    its chats, the turns in that application's own form, my turns in my color, and my notes and what
+                    cites the chapter beside it.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 023-desk.png ]]</Image>
+                    <Image>![[ 023-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Said />
+                    Yes, 23, though we might vary the color scheme based on project, but start assuming the dark
+                    sidebar. That theme looks nice.
+                </Paragraph>
+            </Section>
         </Section>
         <Section>
             <Heading>[[[ A Bookish Page ]]]</Heading>
@@ -178,19 +468,51 @@ export default () => (
                 set its own, a byline, a synopsis, and the catalogue as a contents page. It is kept here as the
                 bookish way a book can open, for my own account.
             </Paragraph>
-            <Paragraph>
-                <Concepts />
-                <Concept>
-                    ![[ 024-desk.png ]]
-                    ![[ 024-phone.png ]]
-                    ![[ 024.html ]]
-                </Concept>
-                <Concept>
-                    ![[ 025-desk.png ]]
-                    ![[ 025-phone.png ]]
-                    ![[ 025.html ]]
-                </Concept>
-            </Paragraph>
+            <Section>
+                <Concept>24</Concept>
+                <Sketch>![[ 024.html ]]</Sketch>
+                <Heading>[[[ The Title Page ]]]</Heading>
+                <Paragraph>
+                    Concept 24, an idea, after the coming-soon page.
+                </Paragraph>
+                <Paragraph>
+                    A book opens like a book: its title set as the coming-soon page set its own, who it is by and
+                    what it is filed under beneath, its synopsis, and its contents as a contents page. Nothing else
+                    is on the page.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 024-desk.png ]]</Image>
+                    <Image>![[ 024-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Said />
+                    Beautiful. We will be repurposing the design you put on the library home screen, but not at this
+                    very moment.
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>25</Concept>
+                <Sketch>![[ 025.html ]]</Sketch>
+                <Heading>[[[ The Reading View ]]]</Heading>
+                <Paragraph>
+                    Concept 25, an idea, after the algebra of perspective, in the original demo.
+                </Paragraph>
+                <Paragraph>
+                    A book is read a chapter at a time on one typeset sheet, as the original demo set the algebra of
+                    perspective: who wrote it in a running head, the title centred, a drop initial, justified serif
+                    prose, the chapters either side at the foot, on the demo's two papers, its warm book and its
+                    night, and a third in plain white.
+                </Paragraph>
+                <Paragraph>
+                    <Image>![[ 025-desk.png ]]</Image>
+                    <Image>![[ 025-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Said />
+                    I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so
+                    noticeable, but I really like it for bookish chapters like the autobiography.
+                </Paragraph>
+            </Section>
         </Section>
     </Chapter>
 );

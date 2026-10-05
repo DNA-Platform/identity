@@ -1,5 +1,4 @@
-import { Chapter, Code, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Append, Listing } from './.book';
+import { Append, Chapter, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
 
 export default () => (
     <Chapter>
@@ -29,7 +28,7 @@ export default () => (
             <Paragraph>
                 <List />
                 <Line>what the page says, or any part of it;</Line>
-                <Line>what a rule computes to on an element, and where the element stands;</Line>
+                <Line>what a rule computes to on an element, and where the element is;</Line>
                 <Line>how many things run past the right edge of the screen;</Line>
                 <Line>anything that went wrong on the page, and the compiler's refusal if there is one.</Line>
             </Paragraph>
@@ -37,8 +36,8 @@ export default () => (
                 A look takes under a second, because the browser is already open and the page is already
                 drawn. It can press something first, load the page again as a reader arriving would, and say
                 which of the rules that name a thing wins. What the workbench does for a book is
-                what <Means>$[[ the camera ]]( Dougs Design / The Camera )</Means> does for a concept, and it stands
-                here for the same reason the camera stands there, which is told
+                what <Means>$[[ the camera ]]( Dougs Design / The Camera )</Means> does for a concept, and it is kept
+                here for the same reason the camera is kept there, which is told
                 in <Means>$[[ Closure ]]( Dougs Story / Closure )</Means>.
             </Paragraph>
         </Section>
@@ -54,13 +53,6 @@ export default () => (
                 page as it is printed for a reader who arrives before the code does, and every link against
                 the page it leads to. So my last look at finished work is at the site the bind built, loaded
                 afresh, and the workbench takes that look too.
-            </Paragraph>
-        </Section>
-        <Section>
-            <Listing />
-            <Heading>The workbench's file</Heading>
-            <Paragraph>
-                <Code identifier="workbench" />
             </Paragraph>
         </Section>
         <Append

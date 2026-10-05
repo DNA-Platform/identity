@@ -1,9 +1,11 @@
-import { Chapter, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Chapter, Date, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Dated } from '../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Dated>[5 October 2026, in the afternoon](2026-10-05T14:15)</Dated>
+        <Dated>
+            <Date>[5 October 2026, in the afternoon](2026-10-05T14:15)</Date>
+        </Dated>
         <Title>[[ Ghost-Writing ]]</Title>
         <Section>
             <Heading>Who wrote this</Heading>

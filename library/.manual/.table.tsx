@@ -1,5 +1,4 @@
-import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
-import { TableOfContents } from './.book';
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
 
 export default () => (
     <Chapter>
@@ -9,18 +8,15 @@ export default () => (
             [[ Table of Contents ]]
         </Title>
         <Section>
-            <Heading>The book and its frame</Heading>
+            <Heading>What every book is</Heading>
             <Paragraph>
                 <Content>$[[ ./The Book ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./The Listing ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Content>$[[ ./The Theme ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Pages ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Frames ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Parenthetical />
@@ -36,24 +32,15 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>What every book has</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Cover ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Table ]]</Content>
-            </Paragraph>
-        </Section>
-        <Section>
             <Heading>What a chapter may carry</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Listing ]]</Content>
-            </Paragraph>
             <Paragraph>
                 <Content>$[[ ./The Date ]]</Content>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Looking at a book</Heading>
             <Paragraph>
-                <Content>$[[ ./The Shelfmark ]]</Content>
+                <Content>$[[ ./The Outline ]]</Content>
             </Paragraph>
         </Section>
         <Section>

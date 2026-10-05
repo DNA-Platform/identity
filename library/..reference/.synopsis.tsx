@@ -8,7 +8,7 @@ export default () => (
             [[ Synopsis ]]
         </Title>
         <Paragraph>
-            The catalogue of my library, filed under what it is about, which is itself. Everything I keep stands
+            The catalogue of my library, filed under what it is about, which is itself. Everything I keep is filed
             under it, directly or through another book.
         </Paragraph>
     </Chapter>

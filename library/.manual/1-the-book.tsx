@@ -1,5 +1,4 @@
-import { Chapter, Code, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Append, Listing } from './.book';
+import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 
 export default () => (
     <Chapter>
@@ -7,35 +6,24 @@ export default () => (
         <Section>
             <Heading>What a book is here</Heading>
             <Paragraph>
-                Every book in this library extends the library's own book class, so what a book is here is decided
-                once. The class knows the parts every book has. The cover, the table of contents
-                and <Means>$[[ the pages ]]( ./The Pages )</Means> are chapters, and it finds each by what it is.
-                The library's name, which is a way home from every
-                book, <Means>$[[ the lines that go with a cover ]]( ./The Cover )</Means> and the switch it draws
-                itself. By itself it writes them down the page in that order. A class under it places them on
-                the screen, and that is <Means>$[[ a frame ]]( ./The Frames )</Means>.
+                Every book in this library extends one class, so what a book is here is said once. A book of mine
+                holds chapters and nothing else. The class says so in its specification, and the bind holds every
+                book to it.
             </Paragraph>
             <Paragraph>
-                Its file is also where the theme is registered for the framework's on the library's book
-                class: every book of the library is a subclass and inherits the registration, so the Theme the
-                framework gives every book is <Means>$[[ ./The Theme ]]</Means>.
+                Left to itself, the class writes the chapters down the page in the order of their files. A chapter
+                may append a file kept beside it, and under each chapter the class prints the files it appends,
+                each as <Means>$[[ a listing ]]( ./The Listing )</Means>. A book that wants its parts somewhere else on
+                the screen is a class under this one, and writes them there.
             </Paragraph>
             <Paragraph>
-                The file also holds the switch. A book says which views it offers, a spread, a paper, a way of
-                showing its table, and the switch draws them as words to press. A press gives the book that view
-                from outside, in front of its own. The view in front turns off the others of its kind, so
-                pressing another is all it takes to change back. No chapter is rewritten for a view.
-            </Paragraph>
-        </Section>
-        <Section>
-            <Listing />
-            <Heading>The book's file</Heading>
-            <Paragraph>
-                The file stands beside this chapter and is printed as it is on disk. The manual's book file is the
-                door: it takes the class from here, and every other book of the library imports it from there.
+                This manual's book file is where every other book takes the class from.
+                And <Means>$[[ the theme ]]( ./The Theme )</Means> is registered on the class, once, so every
+                book gets it.
             </Paragraph>
             <Paragraph>
-                <Code identifier="code" />
+                For now every book also shows <Means>$[[ its outline ]]( ./The Outline )</Means>. That is there
+                while the structure is being built, and it comes off when there is a switch for it.
             </Paragraph>
         </Section>
         <Append

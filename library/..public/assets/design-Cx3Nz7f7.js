@@ -1,67 +1,4 @@
-var na=Object.defineProperty;var l=(ra,e)=>na(ra,"name",{value:e,configurable:!0});import{$ as h,a as D,l as da,m as pa,n as ia,o as ca,p as ha,j as a,f as ma,T as ba,C as v,b as ga,c as y,A as ua,S as xa,P as ta,h as i,H as o,g as t,i as m,W as q,M as f,k as H}from"./index-hQSJOtq-.js";import{a as fa,b as va,T as ya,L as G,A as U}from"./10-the-table~code-HIvctq9u.js";import{S as wa}from"./.synopsis-C2FuI9lm.js";const ka={wide:1280},E={wide:390,tall:844},sa=20,V=class V extends D{defines(e){e.classes.add(this,"pa-concepts")}erase(e){e.classes.revert(this)}};l(V,"$Concepts");let F=V;const Q=class Q extends D{defines(e){e.classes.add(this,"pa-asked")}erase(e){e.classes.revert(this)}};l(Q,"$Asked");let B=Q;const W=class W extends D{defines(e){e.classes.add(this,"pa-answered")}erase(e){e.classes.revert(this)}};l(W,"$Answered");let P=W;const K=class K extends D{defines(e){e.classes.add(this,"pa-chosen")}erase(e){e.classes.revert(this)}};l(K,"$Chosen");let N=K;const Y=class Y extends D{defines(e){e.classes.add(this,"pa-story")}erase(e){e.classes.revert(this)}};l(Y,"$Story");let O=Y;const d=class d extends ia{static pane(){return document.querySelector(".pd-viewer")}static cards(e){return[...e?.closest(".pa-concepts")?.querySelectorAll(".pd-concept-opens")??[]]}static shown(){return document.querySelector(".pd-concept-opens[data-shown]")}static shows(e,r){const n=d.pane();if(n===null)return;const w=d.cards(r),g=w.indexOf(r);d.shown()?.removeAttribute("data-shown"),r.dataset.shown="yes";const x=l((C,I)=>{const S=n.querySelector(C);S!==null&&(S.textContent=I)},"says");x(".pd-viewer-number",e.number),x(".pd-viewer-name",e.named),x(".pd-viewer-after",e.draws===""?"":`after ${e.draws}`),x(".pd-viewer-idea",e.says),x(".pd-viewer-count",`${g+1} of ${w.length}`);for(const C of n.querySelectorAll("iframe"))C.srcdoc=e.sketch;n.dataset.at=String(g),n.dataset.device===void 0&&(n.dataset.device="both"),d.listens(n),document.fullscreenElement===n?d.fits():n.requestFullscreen().then(()=>d.fits())}static fits(){const e=d.pane(),r=e?.querySelector(".pd-viewer-stage");if(e==null||r==null||document.fullscreenElement!==e)return;const n=getComputedStyle(r),w=r.clientWidth-parseFloat(n.paddingLeft)-parseFloat(n.paddingRight)-sa,g=r.clientHeight-parseFloat(n.paddingTop)-parseFloat(n.paddingBottom)-sa,x=e.dataset.device==="both"?(w-parseFloat(n.columnGap))/(ka.wide+E.wide):w/E.wide;e.style.setProperty("--scale",String(Math.min(1,x,g/E.tall)))}static moves(e){const r=d.pane(),n=d.cards(d.shown());r===null||n.length===0||n[(Number(r.dataset.at??0)+e+n.length)%n.length].click()}static device(e){const r=d.pane();r!==null&&(r.dataset.device=e,d.fits())}static closes(){document.fullscreenElement!==null&&document.exitFullscreen()}static listens(e){e.dataset.listening!=="yes"&&(e.dataset.listening="yes",window.addEventListener("resize",()=>d.fits()),document.addEventListener("fullscreenchange",()=>d.fits()),document.addEventListener("keydown",r=>{document.fullscreenElement===e&&(r.key==="ArrowRight"&&d.moves(1),r.key==="ArrowLeft"&&d.moves(-1),r.key==="1"&&d.device("both"),r.key==="2"&&d.device("desk"),r.key==="3"&&d.device("phone"))}))}write(){return a.jsxs(a.Fragment,{children:[a.jsxs("span",{className:"pd-viewer-bar",children:[a.jsxs("span",{className:"pd-viewer-what",children:[a.jsx("span",{className:"pd-viewer-number"}),a.jsx("span",{className:"pd-viewer-name"}),a.jsx("span",{className:"pd-viewer-after"}),a.jsx("span",{className:"pd-viewer-idea"})]}),a.jsxs("span",{className:"pd-viewer-devices",children:[a.jsx("button",{type:"button","data-shows":"both",onClick:l(()=>d.device("both"),"onClick"),children:"desk and phone"}),a.jsx("button",{type:"button","data-shows":"desk",onClick:l(()=>d.device("desk"),"onClick"),children:"desk"}),a.jsx("button",{type:"button","data-shows":"phone",onClick:l(()=>d.device("phone"),"onClick"),children:"phone"})]}),a.jsxs("span",{className:"pd-viewer-moves",children:[a.jsx("button",{type:"button",onClick:l(()=>d.moves(-1),"onClick"),children:"‹ previous"}),a.jsx("span",{className:"pd-viewer-count"}),a.jsx("button",{type:"button",onClick:l(()=>d.moves(1),"onClick"),children:"next ›"}),a.jsx("button",{type:"button",className:"pd-viewer-closes",onClick:l(()=>d.closes(),"onClick"),children:"close"})]})]}),a.jsxs("span",{className:"pd-viewer-stage",children:[a.jsx("span",{className:"pd-viewer-desk",children:a.jsx("iframe",{title:"at a desk"})}),a.jsx("span",{className:"pd-viewer-phone",children:a.jsx("iframe",{title:"on a phone"})})]})]})}$Define(){super.$Define(),this.classes.add(this,"pd-viewer")}};l(d,"$Viewer");let L=d;const X=class X extends ca{get written(){return[...this.text].filter(e=>e instanceof ha).flatMap(e=>e.elements).map(String).filter(e=>e.trim()!=="")}get parts(){return this.written}get number(){return this.says(this.parts[2]??"","number")}write(){const[e,r,n=""]=this.parts,w=/<title>([^<]*)<\/title>/u.exec(n)?.[1]??"",g={number:this.says(n,"number"),named:w,draws:this.says(n,"after"),says:this.says(n,"idea"),sketch:n},x=this.says(n,"state"),C=this.says(n,"said"),I=x!=="",S=C!=="";return a.jsxs(a.Fragment,{children:[a.jsxs("button",{type:"button",className:"pd-concept-opens",title:"open, at a desk and on a phone",onClick:l(la=>L.shows(g,la.currentTarget),"onClick"),children:[a.jsx("img",{className:"pd-concept-desk",src:e,alt:`${g.named}, at a desk`,loading:"lazy"}),a.jsx("img",{className:"pd-concept-phone",src:r,alt:`${g.named}, on a phone`,loading:"lazy"}),a.jsx("span",{className:"pd-concept-number",children:g.number})]}),a.jsx("span",{className:"pd-concept-name",children:g.named}),I&&a.jsx("span",{className:"pd-concept-state",children:x}),a.jsx("span",{className:"pd-concept-says",children:g.says}),S&&a.jsx("span",{className:"pd-concept-said",children:C})]})}says(e,r){return new RegExp(`<meta\\s+name="${r}"\\s+content="([^"]*)"`,"u").exec(e)?.[1]??""}$Define(){super.$Define(),this.classes.add(this,"pd-concept")}};l(X,"$Concept");let M=X;const T=class T extends M{get stands(){const e=this.written[0]?.trim();return this.book?.text.find(da).flatMap(r=>r.text.find(pa)).flatMap(r=>r.text.find(ia)).flatMap(r=>r.text.find(M)).find(r=>!(r instanceof T)&&r.number===e)}get parts(){return this.stands?.parts??[]}};l(T,"$Shown");let $=T;const c=h(F),s=h($),b=h(B),u=h(P),k=h(N),j=h(O),ja=h(L),p=h(M),Z=class Z extends fa{constructor(){super(...arguments),this.size="1.2rem",this.ink="#10252c",this.paper="#f6fbfd",this.link="#166178",this.accent="#0c1b1f",this.bright="#e8e4df",this.opal="#c8f4fb",this.tint="#c8f4fb",this.mine="#e8590c",this.quiet=`color-mix(in srgb, ${this.ink} 64%, ${this.paper})`,this.hairline=`color-mix(in srgb, ${this.ink} 14%, ${this.paper})`}parts(){return[...super.parts(),this.concepts()]}concepts(){return ma`
-            .pd-canonical.pd-chapter .pd-section:is(:has(.pa-concepts), :has(.pa-asked), :has(.pa-chosen)) .pd-heading { margin: 2.4rem 0 .4rem; font-size: 1.7rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: ${({theme:e})=>e.ink}; }
-            .pd-canonical.pd-chapter .pd-section:is(:has(.pa-concepts), :has(.pa-asked), :has(.pa-chosen)) .pd-heading .pa-reference { color: inherit; text-decoration: none; }
-            .pd-canonical.pd-chapter .pd-paragraph:is(.pa-asked, .pa-chosen) { max-width: 46rem; font-size: 1.3rem; line-height: 1.45; }
-            .pd-canonical.pd-chapter .pd-paragraph.pa-story { max-width: 46rem; margin-block-start: 2.2rem; padding-inline-start: .9rem; border-inline-start: 3px solid ${({theme:e})=>e.link}; }
-            .pd-paragraph.pa-story::before { content: 'how it came to be'; display: block; font: 600 .6rem/1.9 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: ${({theme:e})=>e.link}; }
-            .pd-canonical.pd-chapter .pd-paragraph.pa-story + .pd-paragraph { max-width: 46rem; padding-inline-start: calc(.9rem + 3px); color: ${({theme:e})=>e.quiet}; }
-            .pd-canonical.pd-chapter .pd-paragraph.pa-answered { max-width: 46rem; margin-block-start: 2.2rem; padding-inline-start: .9rem; border-inline-start: 3px solid ${({theme:e})=>e.mine}; }
-            .pd-paragraph.pa-answered::before { content: 'what I said'; display: block; font: 600 .6rem/1.9 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: ${({theme:e})=>e.mine}; }
-            .pd-paragraph.pa-concepts, .pd-paragraph.pa-wide { max-width: none; }
-            .pd-paragraph.pa-concepts { display: grid; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); gap: 2.8rem 1.6rem; margin-block: 1.6rem 1rem; }
-            .pd-concept { display: block; }
-            .pd-concept-opens { display: block; position: relative; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
-            .pd-concept-number { position: absolute; left: -.6rem; top: -.6rem; display: grid; place-items: center; min-width: 2.1rem; height: 2.1rem; padding: 0 .45rem; border-radius: 99px; background: ${({theme:e})=>e.accent}; color: #fff; font: 600 .86rem/1 system-ui, sans-serif; box-shadow: 0 0 0 2px ${({theme:e})=>e.paper}; }
-            .pd-concept-state { display: inline-block; margin-inline-start: .5rem; padding: 0 .5rem; border-radius: 99px; background: ${({theme:e})=>e.opal}; color: ${({theme:e})=>e.accent}; font: 600 .56rem/1.9 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; vertical-align: .2em; }
-            .pd-concept-said { display: block; margin-block-start: .55rem; padding-inline-start: .65rem; border-inline-start: 2px solid ${({theme:e})=>e.mine}; font-size: .98rem; line-height: 1.35; }
-            .pd-concept-said::before { content: 'what I said'; display: block; font: 600 .56rem/1.8 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: ${({theme:e})=>e.mine}; }
-            .pd-concept-desk { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border-radius: 4px; box-shadow: 0 0 0 1px ${({theme:e})=>e.hairline}, 0 18px 40px -26px rgba(12, 27, 31, .55); transition: box-shadow .35s ease, transform .35s ease; }
-            .pd-concept-phone { position: absolute; right: 5%; bottom: -9%; width: 19%; aspect-ratio: 390 / 844; object-fit: cover; object-position: top; border-radius: 9px; border: 3px solid ${({theme:e})=>e.accent}; background: ${({theme:e})=>e.accent}; box-shadow: 0 14px 26px -14px rgba(12, 27, 31, .7); transition: transform .35s ease; }
-            .pd-concept-opens:hover .pd-concept-desk { box-shadow: 0 0 0 1px ${({theme:e})=>e.link}, 0 22px 44px -24px rgba(12, 27, 31, .6); transform: translateY(-2px); }
-            .pd-concept-opens:hover .pd-concept-phone { transform: translateY(-4px); }
-            .pd-concept-name { display: inline-block; margin-block-start: 1.5rem; font-size: 1.25rem; font-weight: 600; line-height: 1.2; }
-            .pd-concept-says { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin-block-start: .3rem; font-size: .98rem; line-height: 1.38; font-style: italic; font-weight: 400; color: ${({theme:e})=>e.quiet}; }
-
-            .pd-viewer { display: none; }
-            .pd-viewer:fullscreen { --scale: 1; display: grid; grid-template: auto minmax(0, 1fr) / minmax(0, 1fr); width: 100vw; height: 100vh; margin: 0; background: #d5e3e9; color: ${({theme:e})=>e.ink}; }
-            .pd-viewer-number { display: grid; place-items: center; flex: none; align-self: center; min-width: 2rem; height: 2rem; padding: 0 .45rem; border-radius: 99px; background: ${({theme:e})=>e.opal}; color: ${({theme:e})=>e.accent}; font: 600 .86rem/1 system-ui, sans-serif; }
-            .pd-viewer-bar { display: flex; align-items: center; gap: 2rem; padding: .7rem 1.4rem; background: ${({theme:e})=>e.accent}; color: ${({theme:e})=>e.bright}; }
-            .pd-viewer-what { display: flex; align-items: baseline; gap: 1rem; flex: 1 1 0; min-width: 0; overflow: hidden; }
-            .pd-viewer-name { font-size: 1.35rem; font-weight: 500; letter-spacing: .04em; white-space: nowrap; }
-            .pd-viewer-after { font-size: .68rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: ${({theme:e})=>e.opal}; white-space: nowrap; }
-            .pd-viewer-idea { min-width: 0; font-size: 1rem; font-style: italic; font-weight: 400; opacity: .78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-            .pd-viewer-devices, .pd-viewer-moves { display: flex; flex: none; align-items: baseline; gap: 1.1rem; white-space: nowrap; }
-            .pd-viewer-bar button { font: inherit; font-size: .98rem; color: inherit; background: none; border: 0; border-block-end: 1px solid transparent; padding: 0 0 .1rem; cursor: pointer; opacity: .78; }
-            .pd-viewer-bar button:hover { opacity: 1; }
-            .pd-viewer[data-device='both'] button[data-shows='both'], .pd-viewer[data-device='desk'] button[data-shows='desk'], .pd-viewer[data-device='phone'] button[data-shows='phone'] { opacity: 1; color: ${({theme:e})=>e.opal}; border-block-end-color: ${({theme:e})=>e.opal}; }
-            .pd-viewer-count { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; opacity: .7; }
-            .pd-viewer-stage { display: flex; align-items: center; justify-content: center; gap: 1.6rem; padding: 1.4rem; min-width: 0; min-height: 0; overflow: hidden; }
-            .pd-viewer-desk { display: block; flex: none; width: calc(1280px * var(--scale)); height: calc(800px * var(--scale)); overflow: hidden; background: white; box-shadow: 0 0 0 1px rgba(12, 27, 31, .16), 0 30px 60px -36px rgba(12, 27, 31, .6); }
-            .pd-viewer-phone { display: block; flex: none; box-sizing: content-box; width: calc(390px * var(--scale)); height: calc(844px * var(--scale)); border: 10px solid ${({theme:e})=>e.accent}; border-radius: calc(40px * var(--scale) + 10px); overflow: hidden; background: white; box-shadow: 0 30px 60px -30px rgba(12, 27, 31, .7); }
-            .pd-viewer iframe { display: block; border: 0; transform: scale(var(--scale)); transform-origin: 0 0; }
-            .pd-viewer-desk iframe { width: 1280px; height: 800px; }
-            .pd-viewer-phone iframe { width: 390px; height: 844px; }
-            .pd-viewer[data-device='desk'] .pd-viewer-desk { width: 100%; height: 100%; }
-            .pd-viewer[data-device='desk'] .pd-viewer-desk iframe { width: 100%; height: 100%; transform: none; }
-            .pd-viewer[data-device='desk'] .pd-viewer-phone, .pd-viewer[data-device='phone'] .pd-viewer-desk { display: none; }
-
-            @media (max-width: 760px) {
-                .pd-paragraph.pa-concepts { grid-template-columns: minmax(0, 1fr); }
-                .pd-viewer-bar { gap: .9rem; padding: .55rem .9rem; }
-                .pd-viewer-after, .pd-viewer-idea, .pd-viewer-devices { display: none; }
-                .pd-viewer-name { overflow: hidden; text-overflow: ellipsis; font-size: 1.1rem; }
-                .pd-viewer-stage { padding: 0; }
-                .pd-viewer[data-device] .pd-viewer-desk { display: none; }
-                .pd-viewer[data-device] .pd-viewer-phone { display: block; width: 100%; height: 100%; border: 0; border-radius: 0; }
-                .pd-viewer[data-device] .pd-viewer-phone iframe { width: 100%; height: 100%; transform: none; }
-            }
-
-            .pd-code { max-height: 26rem; overflow: auto; margin: 0; font-size: .74rem; font-weight: 400; border-inline-start: 2px solid ${({theme:e})=>e.link}; scrollbar-width: thin; }
-            .hljs-tag, .hljs-name, .hljs-keyword, .hljs-selector-class, .hljs-selector-id, .hljs-selector-tag, .hljs-title { color: ${({theme:e})=>e.link}; }
-            .hljs-attr, .hljs-attribute, .hljs-property { color: #5b4a8c; }
-            .hljs-string, .hljs-number { color: #8a4a2b; }
-            .hljs-comment { color: ${({theme:e})=>e.quiet}; font-style: italic; }
-        `}};l(Z,"$DesignTheme");let A=Z;const _=class _ extends A{};l(_,"$LibraryMode");let J=_;const aa=class aa extends A{constructor(){super(...arguments),this.paper="#ffffff",this.bar="#eaf1f5",this.bright="#10252c",this.tint="#166178"}};l(aa,"$GalleryMode");let R=aa;h(A);const oa=h(J),Ca=h(R),ea=class ea extends va{get views(){const e=h(oa),r=h(Ca);return[...super.views,[e,r]]}write(){const e=h(ja);return a.jsxs(a.Fragment,{children:[super.write(),a.jsx(e,{chapter:this.cover})]})}};l(ea,"$DougsDesign");let z=ea;const Ma=h(z);h(Ma,ba)(oa);const Aa=l(()=>a.jsxs(v,{children:[a.jsx(ga,{}),a.jsx(y,{children:"[Dougs Design](/dougs-design/)"}),a.jsx(ua,{children:"[The Librarian](/dougs-story/)"}),a.jsx(xa,{children:"[The Library](/dougs-library/)"})]}),"Cover"),Da=l(()=>a.jsxs(v,{children:[a.jsx(ya,{}),a.jsxs(y,{children:[a.jsx(ta,{}),"[Table of Contents](/dougs-design/#table-of-contents)"]}),a.jsxs(i,{children:[a.jsx(o,{children:"The design"}),a.jsx(t,{children:a.jsx(m,{children:"[The Designs I Am Going With](/dougs-design/#the-designs-i-am-going-with)"})}),a.jsx(t,{children:a.jsx(m,{children:"[What I Am Asked](/dougs-design/#what-i-am-asked)"})}),a.jsx(t,{children:a.jsx(m,{children:"[Every Concept](/dougs-design/#every-concept)"})}),a.jsx(t,{children:a.jsx(m,{children:"[The Library's Home](/dougs-design/#the-librarys-home)"})}),a.jsx(t,{children:a.jsx(m,{children:"[A Reference Manual](/dougs-design/#a-reference-manual)"})}),a.jsx(t,{children:a.jsx(m,{children:"[A Grouping of Projects](/dougs-design/#a-grouping-of-projects)"})}),a.jsx(t,{children:a.jsx(m,{children:"[Layout Ideas](/dougs-design/#layout-ideas)"})}),a.jsx(t,{children:a.jsx(m,{children:"[A Bookish Page](/dougs-design/#a-bookish-page)"})}),a.jsxs(t,{children:[a.jsx(ta,{}),a.jsx(q,{children:a.jsx(m,{children:"[Dougs Design](/dougs-design/)"})}),a.jsx(q,{children:a.jsx(m,{children:"[Synopsis](/dougs-design/#synopsis)"})}),a.jsx(q,{children:a.jsx(m,{children:"[Table of Contents](/dougs-design/#table-of-contents)"})})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"How this book is built"}),a.jsx(t,{children:a.jsx(m,{children:"[The Concept](/dougs-design/#the-concept)"})}),a.jsx(t,{children:a.jsx(m,{children:"[The Theme](/dougs-design/#the-theme)"})}),a.jsx(t,{children:a.jsx(m,{children:"[The Camera](/dougs-design/#the-camera)"})})]})]}),"Table"),Sa=l(()=>a.jsxs(v,{children:[a.jsx(y,{children:"[The Designs I Am Going With](/dougs-design/#the-designs-i-am-going-with)"}),a.jsxs(i,{children:[a.jsx(o,{children:"One for each kind of book"}),a.jsxs(t,{children:["These are the designs I am going with, one for each kind of book in my library. Under each are the concepts it comes from, how it came to be, and the book it is for. This page changes as the library is built: the story goes on, and the pages that wear a design are linked from it. The two days of choosing are told in ",a.jsx(f,{children:"[Choosing a Design](/dougs-story/#choosing-a-design)"}),"."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The library's catalogue](/dougs-design/#the-librarys-catalogue)"}),a.jsxs(t,{children:[a.jsx(k,{}),"The shelf of 1 under the black and sky of 19, with the view switching among 1, 2 and 3."]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"1"}),a.jsx(s,{children:"19"}),a.jsx(s,{children:"2"}),a.jsx(s,{children:"3"})]}),a.jsxs(t,{children:[a.jsx(j,{}),"I liked the shelf from the start: the book view, with the cover as the landmark that grounds a book. When I saw the black and sky I wanted it for the library itself, with its more bookish view, and each cataloguing book under it moving into colors of its own. I want to switch the view among 1, 2 and 3 on the page, because many ways to view the same thing will be important. How a book is built to carry many views is still to be worked out. What is settled is where a view gets its books from: the table of contents. A catalogue holds a chapter for each book filed under it, and in ",a.jsx(f,{children:"[its table](/dougs-library/#table-of-contents)"})," the row for that chapter ends in a small square at the right, its ",a.jsx(f,{children:"[shelfmark](/dougs-reference-manual/#the-shelfmark)"}),", which leads to the book. A shelf or a list will read the table and nothing else."]}),a.jsxs(t,{children:["It is for ",a.jsx(f,{children:"[Dougs Library](/dougs-library/)"}),", which does not wear it yet."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The reference manual](/dougs-design/#the-reference-manual)"}),a.jsxs(t,{children:[a.jsx(k,{}),"The words beside the file as in 6, a part opened alone on the bench as in 8, and a toggle between the code forward and the words forward."]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"6"}),a.jsx(s,{children:"8"})]}),a.jsxs(t,{children:[a.jsx(j,{}),"Code doesn't look right unless it is in full view. So I want one view with the write-up at the right of the code, and another that moves the code off to the right, there mostly to give the sense that it can be expanded out again. The appendix of a book will likely wear this view too. An appendix holds the code that builds its book and documents it there, so it can look like a reference manual before it spins off into a book of its own when the book becomes too large."]}),a.jsxs(t,{children:["It is for ",a.jsx(f,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"}),", which does not wear it yet."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The design book](/dougs-design/#the-design-book)"}),a.jsxs(t,{children:[a.jsx(k,{}),"This book: light and airy, with a toggle between a library mode and a gallery mode."]}),a.jsxs(t,{children:[a.jsx(j,{}),"I began to like this book's own page while the designs in it were still wrong. I want it kept light and airy. But if the dark side bar is the thing that makes the library memorable, there can be two modes: a gallery mode that is white with subtle variation, and a library mode that is darker."]}),a.jsxs(t,{children:["It is for ",a.jsx(f,{children:"[Dougs Design](/dougs-design/)"}),", which does not wear it yet."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[My autobiography](/dougs-design/#my-autobiography)"}),a.jsxs(t,{children:[a.jsx(k,{}),"The reading view of 25: one typeset sheet, a chapter at a time, likely under a dark bar on top."]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"25"})]}),a.jsxs(t,{children:[a.jsx(j,{}),"I remembered the algebra of perspective in the original demo, with its dark and light theme and its simple reading view, and asked for something like that. It was drawn again as 25 and I like it. It is beautiful, and right for bookish chapters like the autobiography. There will likely be a bar on top as well, in dark perhaps, so that it isn't so noticeable. Since then I have said what the book is for. It is a story about me and what I create, a narrative slice of the library that helps to navigate everything we have built, so that it is the most relevant place to begin from. Its chapters are annotated by date and time, and it is to have a view that sorts them for recency. It was also very hard to get to from another book, so every book now carries my name as a way to it."]}),a.jsxs(t,{children:["It is for ",a.jsx(f,{children:"[Dougs Story](/dougs-story/)"}),", which does not wear it yet."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The Claude project catalogue](/dougs-design/#the-claude-project-catalogue)"}),a.jsxs(t,{children:[a.jsx(k,{}),"The table of 9 under the white and opal bars of 20, with a splash of the Claude theme."]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"9"}),a.jsx(s,{children:"20"})]}),a.jsxs(t,{children:[a.jsx(j,{}),"Of the ways to see a catalogue across projects I liked 9 the best, with a splash of the Claude theme to say that this view is Claude's projects. The white and then opal of 20 looks really good, and it made me think I may not want quite so much of the dark. The opal is to be used carefully, as a kind of annotation."]}),a.jsx(t,{children:"No book of mine holds this yet."})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A project's conversation catalogue](/dougs-design/#a-projects-conversation-catalogue)"}),a.jsxs(t,{children:[a.jsx(k,{}),"A multi-view that begins as a plain list downward, with views by recency and by size and each conversation's synopsis. It is not drawn yet."]}),a.jsxs(t,{children:[a.jsx(j,{}),"This is the one to think hard about, and not yet, because we will have to build the importer first and likely add annotations. In Claude the simplest way is a list of conversations downward. I want views by recency and by size, something from each conversation's synopsis to say what it is about, and perhaps conversations annotated by topic. A search can come later, and we annotate as if we will build one."]}),a.jsx(t,{children:"No book of mine holds this yet."})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Claude conversation](/dougs-design/#a-claude-conversation)"}),a.jsxs(t,{children:[a.jsx(k,{}),"23: the conversation in the black side bar, in the form of the application it comes from."]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"23"})]}),a.jsxs(t,{children:[a.jsx(j,{}),"It will look a lot like a Claude conversation, because the artifacts and the code blocks come from there. 23 is it. The color scheme might vary by project, but it starts from the dark side bar. That theme looks nice."]}),a.jsx(t,{children:"No book of mine holds this yet."})]})]}),"TheDesignsIAmGoingWith1"),La=l(()=>a.jsxs(v,{children:[a.jsx(y,{children:"[What I Am Asked](/dougs-design/#what-i-am-asked)"}),a.jsxs(i,{children:[a.jsx(o,{children:"By letter"}),a.jsx(t,{children:"Each question here has a letter, and is about the numbered concepts drawn under it. Pressing one opens it, and the arrow keys go between the ones the question is about. I answer by the letter, in my own words, and what I say is written under the question."})]}),a.jsxs(i,{children:[a.jsx(o,{children:"E · Where I am"}),a.jsxs(t,{children:[a.jsx(b,{}),"Where am I on the screen: a card at the foot of the bar as in 11, the end of the top bar as in 13, or only a face as in 17? And is the orange right for me, under my name and on my turns in 23?"]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"11"}),a.jsx(s,{children:"13"}),a.jsx(s,{children:"17"}),a.jsx(s,{children:"23"})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"F · What stands at the right"}),a.jsxs(t,{children:[a.jsx(b,{}),"In 11 and 23 the right side holds what the page cites, what cites it and my notes. In 2 it holds what was made from the sources. Is that column always there or opened when wanted, and what belongs in it?"]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"11"}),a.jsx(s,{children:"23"}),a.jsx(s,{children:"2"})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"H · The library's catalogue"}),a.jsxs(t,{children:[a.jsx(b,{}),"For the library's own catalogue I chose the shelf of 1, and spoke of black and sky for the library itself, as in 19. Is the library's page the shelf of 1 under the two bars of 19, under the white and opal of 20, or the shelf as it stands in 1? And what do I come to this page to do?"]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"1"}),a.jsx(s,{children:"19"}),a.jsx(s,{children:"20"})]}),a.jsxs(t,{children:[a.jsx(u,{}),"Yes, and I like the black and sky, though I think I want to be able to switch the view between 1 to 3 as part of the dynamism of the page. We will talk about how to implement a book, and you will find that you might want to do more structurally than you expect to support many different views. Many ways to view the same thing will be important."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"I · The reference manual"}),a.jsxs(t,{children:[a.jsx(b,{}),"A reference manual shows a chapter and the file it is about. Which is nearest: the words beside the file as in 6, the column of cells as in 7, the part on a bench with its properties as in 8? And what do I come to a manual to do: read it through, look up a part, copy its code?"]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"6"}),a.jsx(s,{children:"7"}),a.jsx(s,{children:"8"})]}),a.jsxs(t,{children:[a.jsx(u,{}),"6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and documentation emphasized. Code doesn't look right unless in full view, so we might want a view where we show one write-up on the right side of the code and another that moves the code off to the right, but it's mostly there to give the visual sense that it can be expanded out again. Something like that."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"J · The design book"}),a.jsxs(t,{children:[a.jsx(b,{}),"The design book is the book I am reading now: a dark rail with its index, the questions I am asked, the numbered concepts, a card that opens across the whole screen. Is this its design, and what would I change in it?"]}),a.jsxs(t,{children:[a.jsx(u,{}),"Yeah, how about we keep design light and airy. But no, if the dark sidebar is the thing that makes the library memorable, then maybe we have a toggle between library and gallery mode, and gallery mode is more white themed with subtle variation, and library mode is more dark themed."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"K · My autobiography"}),a.jsxs(t,{children:[a.jsx(b,{}),"My own account can be more of a bookish view. I pointed at the algebra of perspective in the original demo, with its dark and light theme and its simple reading view, and 25 is that view drawn again for my story. Is 25 it, and on which paper: the demo's book, its night, or the plain white? Or is the title page of 24 nearer, the front page of 5, the reading column of 7?"]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"25"}),a.jsx(s,{children:"24"}),a.jsx(s,{children:"5"}),a.jsx(s,{children:"7"})]}),a.jsxs(t,{children:[a.jsx(u,{}),"I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so noticeable, but I really like it for bookish chapters like the autobiography."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"L · The Claude project catalogue"}),a.jsxs(t,{children:[a.jsx(b,{}),"Conversations with Claude holds my Claude projects. I chose the table of 9 with a splash of the Claude theme. Does it sit under the white and opal bars of 20, beside the black side bar of 11, or as it stands in 9? And what is a project on this page: a row, a cover with its mark, a region as in 10?"]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"9"}),a.jsx(s,{children:"20"}),a.jsx(s,{children:"11"}),a.jsx(s,{children:"10"})]}),a.jsxs(t,{children:[a.jsx(u,{}),"9 under white and opal."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"M · A project's conversation catalogue"}),a.jsxs(t,{children:[a.jsx(b,{}),"One for each project, and the one to think hard about. Which is nearest to begin from: the table of 9, the light and airy list of 2, the shelf of 1, the map of 10 by size? And what do I need there first: a search I configure, the views by recency and by size, my annotations on each conversation, each conversation's synopsis?"]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"9"}),a.jsx(s,{children:"2"}),a.jsx(s,{children:"1"}),a.jsx(s,{children:"10"})]}),a.jsxs(t,{children:[a.jsx(u,{}),"I think we want to start with a multi-view. We will have to write an importer, and we will likely have to add annotations. So let's think about the types of ways we want to enable interaction with the data. In Claude, the simplest way is just a downward list of conversations. And we will probably want to do something with importing information from the synopsis of each conversation to help give a sense for what it is about. Maybe we will annotate conversations by topic. So let's not think too much about the conversation view yet, because we will have to build the importer. Of what the first version needs: the views by recency and size, and each one's synopsis. The search might make more sense in the front of Claude. Let's annotate like we will create a search and need some form of indexing, but not do it in version 1."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"N · A Claude conversation"}),a.jsxs(t,{children:[a.jsx(b,{}),"It will look a lot like a Claude conversation. Is 23 it: the black side bar holding the chapters, my turns in my color, what the chapter cites and my notes at the right? What is missing from it, and what should go?"]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"23"})]}),a.jsxs(t,{children:[a.jsx(u,{}),"Yes, 23, though we might vary the color scheme based on project, but start assuming the dark sidebar. That theme looks nice."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"A · Where the frame goes"}),a.jsxs(t,{children:[a.jsx(b,{}),"Where does the library's frame go: a side bar as in 11, a top bar as in 13, both as in 15, a narrow rail as in 17, two top bars as in 19, or none as in 21? More than one may stay, if different kinds of page want different frames."]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"11"}),a.jsx(s,{children:"13"}),a.jsx(s,{children:"15"}),a.jsx(s,{children:"17"}),a.jsx(s,{children:"19"}),a.jsx(s,{children:"21"})]}),a.jsxs(t,{children:[a.jsx(u,{}),"The side bar, yes: we like it for this design we are converging on, though let's explore other options too. The top bar too, and I'd like to explore a version that has them both. Might the top bar be a version of the cover and the side bar be a version of the table of contents? I do want to explore that more, because they might be good things to think about as the meaning of the cover and table of contents. For the narrow rail, we might like something collapsible in cases where screen real estate could be useful, so let's keep them all in mind. I also want to see designs that are quite different before converging on exactly this. Of two top bars and the white cards, it is hard to say. The white and then opal looks really good. A clean white theme with the dark logo makes me start to think that maybe I don't want quite so much of the dark. The opal is interesting too, and while we would need to use that effect carefully, I like it as a type of annotation."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"B · Darker or lighter"}),a.jsxs(t,{children:[a.jsx(b,{}),"Is the soft black the library's own, as in 11 and 13, with the lighter of each a thing I may switch to, as in 12 and 14? Or the other way round? Or does it depend on the page?"]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"11"}),a.jsx(s,{children:"12"}),a.jsx(s,{children:"13"}),a.jsx(s,{children:"14"})]}),a.jsxs(t,{children:[a.jsx(u,{}),"It depends on the page for sure. Maybe I like the black and sky for the library itself, with its more bookish view, and then moving into different color themes for each cataloguing book. We do truly want the different parts of the app, in some ways, to feel like different apps, and that can even mean the top bar has different colors and an evolving logo."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"C · The ways to read one subject"}),a.jsxs(t,{children:[a.jsx(b,{}),"A subject's page can be read many ways. Which of these become views I switch between on one subject, and which go: the shelf of covers in 1, the list of sources in 2, the wall in 3, the front page in 5, the table in 9, the map in 10?"]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"1"}),a.jsx(s,{children:"2"}),a.jsx(s,{children:"3"}),a.jsx(s,{children:"5"}),a.jsx(s,{children:"9"}),a.jsx(s,{children:"10"})]}),a.jsxs(t,{children:[a.jsx(u,{}),"The shelf, the table and the map are all good for different catalogues. We have the across Claude projects catalogue, and then we have the conversations per project catalogue, and we have the library catalogue. These should all look like different things, and I am inclined to choose between them. I really like the UI of the checked version in 2, the light and airy feel. But so much of that user interface is interactive, where one selects their books. I want those features, but we need to imagine things based on the set of features we want in each interaction. For the library's own catalogue I like the shelf, but can we consider implementing it in a way where we can dynamically change the view? Dynamic view change is proof that we are coding the semantics and annotating the semantic structure with what is necessary for the view. For the catalogue across projects I like 9 the best, and I might even like a splash of the Claude theme to delineate that this view is Claude projects. And I think we need to think hard about the project view. This is where we might even want to have some form of search that we configure. We will also want some color and icon-based theming to indicate what project we are on. I like the different views to comprehend the conversations, by recency, by conversation size, and maybe others, and perhaps we can annotate the conversations and this can help us build the view. A good use for the synopsis of a conversation might be surfacing the information that the project catalogue needs."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"D · What a cover's color says"}),a.jsxs(t,{children:[a.jsx(b,{}),"In 11 every book has a color of its own, and the color means nothing. In 1 the projects have colors and the covers nearly follow them. Should a cover's color say something, its project, its subject, who the conversation was with, or stay the book's own?"]}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(s,{children:"1"}),a.jsx(s,{children:"11"})]}),a.jsxs(t,{children:[a.jsx(u,{}),"I will choose colors based on my synaesthetic preferences. I also think we want some form of cover art, and the cover art perhaps for the library can be the logo of the library. Perhaps the cover art is simply the logo of the book, and we just have a progressive logo."]})]})]}),"WhatIAmAsked2"),za=l(()=>a.jsxs(v,{children:[a.jsx(y,{children:"[Every Concept](/dougs-design/#every-concept)"}),a.jsxs(i,{children:[a.jsx(o,{children:"By number"}),a.jsx(t,{children:"Every concept here has a number, and keeps it. I press one to open it at a desk and on a phone, and I answer by its number. What I say of one is written under it."})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The Library's Home](/dougs-design/#the-librarys-home)"}),a.jsx(t,{children:"The first page of the library: where everything I keep is found from. Each of these is a different layout, with different tools in different places and a different way of moving around."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsxs(p,{children:["/.design/3-every-concept~001-desk.png","/.design/3-every-concept~001-phone.png",`<!doctype html>
+var ta=Object.defineProperty;var d=(u,l)=>ta(u,"name",{value:l,configurable:!0});import{$ as w,h as M,i as D,k as y,l as N,s as k,m as ea,n as sa,j as a,C as m,a as ia,T as g,A as oa,S as la,e as ra,P as Z,f as s,H as i,d as t,g as c,W as I,M as e,I as o,o as O}from"./index-Ot7VZqdN.js";import{$ as na}from"./4-the-date~code-BmQA-91_.js";import{S as da}from"./.synopsis-C9BaWHFv.js";var pa=Object.defineProperty,ca=Object.getOwnPropertyDescriptor,J=d((u,l,x,aa)=>{for(var h=ca(l,x),f=u.length-1,j;f>=0;f--)(j=u[f])&&(h=j(l,x,h)||h);return h&&pa(l,x,h),h},"__decorateClass$1");const H=class H extends M{constructor(){super(...arguments),this.specification=new S}defines(l){l.classes.add(this,"pa-asked")}erase(l){l.classes.revert(this)}};d(H,"$Asked");let q=H;const G=class G extends M{constructor(){super(...arguments),this.specification=new L}defines(l){l.classes.add(this,"pa-said")}erase(l){l.classes.revert(this)}};d(G,"$Said");let E=G;const U=class U extends M{constructor(){super(...arguments),this.specification=new T}defines(l){l.classes.add(this,"pa-chosen")}erase(l){l.classes.revert(this)}};d(U,"$Chosen");let B=U;const W=class W extends D{$saidOfAParagraph(l){y(l instanceof N,"asked is said of a paragraph, and this is not one")}};d(W,"AskedSpecification");let S=W;J([k("asked is said of a paragraph")],S.prototype,"$saidOfAParagraph");const $=class $ extends D{$saidOfAParagraph(l){y(l instanceof N,"said is said of a paragraph, and this is not one")}};d($,"SaidSpecification");let L=$;J([k("said is said of a paragraph")],L.prototype,"$saidOfAParagraph");const Q=class Q extends D{$saidOfAParagraph(l){y(l instanceof N,"chosen is said of a paragraph, and this is not one")}};d(Q,"ChosenSpecification");let T=Q;J([k("chosen is said of a paragraph")],T.prototype,"$saidOfAParagraph");const b=w(q),p=w(E),v=w(B);var ha=Object.defineProperty,ba=Object.getOwnPropertyDescriptor,R=d((u,l,x,aa)=>{for(var h=ba(l,x),f=u.length-1,j;f>=0;f--)(j=u[f])&&(h=j(l,x,h)||h);return h&&ha(l,x,h),h},"__decorateClass");const V=class V extends M{constructor(){super(...arguments),this.specification=new A}get number(){const l=ea.copy(this.text).trim();return l===""?NaN:Number(l)}defines(l){l.classes.add(this,"pa-concept")}erase(l){l.classes.revert(this)}};d(V,"$Concept");let C=V;const K=class K extends M{constructor(){super(...arguments),this.specification=new z}};d(K,"$Sketch");let F=K;const Y=class Y extends D{$saidOfASection(l){y(l instanceof sa,"a concept is said of a section, and this is not one")}$givenItsNumber(l){y(Number.isInteger(l.annotations.expressed(C)?.number),"a concept is given its number, and this one was given something else")}};d(Y,"ConceptSpecification");let A=Y;R([k("a concept is said of a section")],A.prototype,"$saidOfASection");R([k("a concept is given its number")],A.prototype,"$givenItsNumber");const _=class _ extends D{$saidOfAConcept(l){y(l.is(C),"a sketch is said of a concept, and this is not one")}};d(_,"SketchSpecification");let z=_;R([k("a sketch is said of a concept")],z.prototype,"$saidOfAConcept");const r=w(C),n=w(F),X=class X extends na{};d(X,"$DougsDesign");let P=X;const ma=d(()=>a.jsxs(m,{children:[a.jsx(ia,{}),a.jsx(g,{children:"[Dougs Design](/dougs-design/)"}),a.jsx(oa,{children:"[The Librarian](/dougs-story/)"}),a.jsx(la,{children:"[The Library](/dougs-library/)"})]}),"Cover"),ga=d(()=>a.jsxs(m,{children:[a.jsx(ra,{}),a.jsxs(g,{children:[a.jsx(Z,{}),"[Table of Contents](/dougs-design/#table-of-contents)"]}),a.jsxs(s,{children:[a.jsx(i,{children:"The design"}),a.jsx(t,{children:a.jsx(c,{children:"[The Designs I Am Going With](/dougs-design/#the-designs-i-am-going-with)"})}),a.jsx(t,{children:a.jsx(c,{children:"[What I Am Asked](/dougs-design/#what-i-am-asked)"})}),a.jsx(t,{children:a.jsx(c,{children:"[Every Concept](/dougs-design/#every-concept)"})}),a.jsx(t,{children:a.jsx(c,{children:"[The Library's Home](/dougs-design/#the-librarys-home)"})}),a.jsx(t,{children:a.jsx(c,{children:"[A Reference Manual](/dougs-design/#a-reference-manual)"})}),a.jsx(t,{children:a.jsx(c,{children:"[A Grouping of Projects](/dougs-design/#a-grouping-of-projects)"})}),a.jsx(t,{children:a.jsx(c,{children:"[Layout Ideas](/dougs-design/#layout-ideas)"})}),a.jsx(t,{children:a.jsx(c,{children:"[A Bookish Page](/dougs-design/#a-bookish-page)"})}),a.jsxs(t,{children:[a.jsx(Z,{}),a.jsx(I,{children:a.jsx(c,{children:"[Dougs Design](/dougs-design/)"})}),a.jsx(I,{children:a.jsx(c,{children:"[Synopsis](/dougs-design/#synopsis)"})}),a.jsx(I,{children:a.jsx(c,{children:"[Table of Contents](/dougs-design/#table-of-contents)"})})]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"How this book is built"}),a.jsx(t,{children:a.jsx(c,{children:"[The Paragraphs](/dougs-design/#the-paragraphs)"})}),a.jsx(t,{children:a.jsx(c,{children:"[The Concept](/dougs-design/#the-concept)"})}),a.jsx(t,{children:a.jsx(c,{children:"[The Camera](/dougs-design/#the-camera)"})})]})]}),"Table"),ua=d(()=>a.jsxs(m,{children:[a.jsx(g,{children:"[The Designs I Am Going With](/dougs-design/#the-designs-i-am-going-with)"}),a.jsxs(s,{children:[a.jsx(i,{children:"One for each kind of book"}),a.jsxs(t,{children:["These are the designs I am going with, one for each kind of book in my library. Under each are the concepts it comes from, how it came to be, and the book it is for. This page changes as the library is built: the story goes on, and the pages that have a design are linked from it. The two days of choosing are told in ",a.jsx(e,{children:"[Choosing a Design](/dougs-story/#choosing-a-design)"}),"."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[The library's catalogue](/dougs-design/#the-librarys-catalogue)"}),a.jsxs(t,{children:[a.jsx(v,{}),"The shelf of 1 under the black and sky of 19, with the view switching among 1, 2 and 3."]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[1](/dougs-design/#the-shelf)"}),", concept ",a.jsx(e,{children:"[19](/dougs-design/#two-top-bars-black-then-sky)"}),", concept ",a.jsx(e,{children:"[2](/dougs-design/#ask-the-sources)"})," and concept ",a.jsx(e,{children:"[3](/dougs-design/#the-wall)"}),"."]}),a.jsxs(t,{children:["I liked the shelf from the start: the book view, with the cover as the landmark that grounds a book. When I saw the black and sky I wanted it for the library itself, with its more bookish view, and each cataloguing book under it moving into colors of its own. I want to switch the view among 1, 2 and 3 on the page, because many ways to view the same thing will be important. How a book is built to carry many views is still to be worked out. What is settled is where a view gets its books from: the table of contents. A catalogue holds a chapter for each book filed under it, and in ",a.jsx(e,{children:"[its table](/dougs-library/#table-of-contents)"})," the row for that chapter ends in a small square at the right, which leads to the book. A shelf or a list will read the table and nothing else."]}),a.jsxs(t,{children:["It is for ",a.jsx(e,{children:"[Dougs Library](/dougs-library/)"}),", which does not have it yet."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[The reference manual](/dougs-design/#the-reference-manual)"}),a.jsxs(t,{children:[a.jsx(v,{}),"The words beside the file as in 6, a part opened alone on the bench as in 8, and a toggle between the code forward and the words forward."]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[6](/dougs-design/#side-by-side)"})," and concept ",a.jsx(e,{children:"[8](/dougs-design/#the-workbench)"}),"."]}),a.jsx(t,{children:"Code doesn't look right unless it is in full view. So I want one view with the write-up at the right of the code, and another that moves the code off to the right, there mostly to give the sense that it can be expanded out again. The appendix of a book will likely have this view too. An appendix holds the code that builds its book and documents it there, so it can look like a reference manual before it spins off into a book of its own when the book becomes too large."}),a.jsxs(t,{children:["It is for ",a.jsx(e,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"}),", which does not have it yet."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[The design book](/dougs-design/#the-design-book)"}),a.jsxs(t,{children:[a.jsx(v,{}),"This book: light and airy, with a toggle between a library mode and a gallery mode."]}),a.jsx(t,{children:"I began to like this book's own page while the designs in it were still wrong. I want it kept light and airy. But if the dark side bar is the thing that makes the library memorable, there can be two modes: a gallery mode that is white with subtle variation, and a library mode that is darker."}),a.jsxs(t,{children:["It is for ",a.jsx(e,{children:"[Dougs Design](/dougs-design/)"}),", which does not have it yet."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[My autobiography](/dougs-design/#my-autobiography)"}),a.jsxs(t,{children:[a.jsx(v,{}),"The reading view of 25: one typeset sheet, a chapter at a time, likely under a dark bar on top."]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[25](/dougs-design/#the-reading-view)"}),"."]}),a.jsx(t,{children:"I remembered the algebra of perspective in the original demo, with its dark and light theme and its simple reading view, and asked for something like that. It was drawn again as 25 and I like it. It is beautiful, and right for bookish chapters like the autobiography. There will likely be a bar on top as well, in dark perhaps, so that it isn't so noticeable. Since then I have said what the book is for. It is a story about me and what I create, a narrative slice of the library that helps to navigate everything we have built, so that it is the most relevant place to begin from. Its chapters are annotated by date and time, and it is to have a view that sorts them for recency. It was also very hard to get to from another book, so every book now carries my name as a way to it."}),a.jsxs(t,{children:["It is for ",a.jsx(e,{children:"[Dougs Story](/dougs-story/)"}),", which does not have it yet."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[The Claude project catalogue](/dougs-design/#the-claude-project-catalogue)"}),a.jsxs(t,{children:[a.jsx(v,{}),"The table of 9 under the white and opal bars of 20, with a splash of the Claude theme."]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[9](/dougs-design/#the-database)"})," and concept ",a.jsx(e,{children:"[20](/dougs-design/#two-top-bars-white-then-opal)"}),"."]}),a.jsx(t,{children:"Of the ways to see a catalogue across projects I liked 9 the best, with a splash of the Claude theme to say that this view is Claude's projects. The white and then opal of 20 looks really good, and it made me think I may not want quite so much of the dark. The opal is to be used carefully, as a kind of annotation."}),a.jsx(t,{children:"No book of mine holds this yet."})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[A project's conversation catalogue](/dougs-design/#a-projects-conversation-catalogue)"}),a.jsxs(t,{children:[a.jsx(v,{}),"A multi-view that begins as a plain list downward, with views by recency and by size and each conversation's synopsis. It is not drawn yet."]}),a.jsx(t,{children:"This is the one to think hard about, and not yet, because we will have to build the importer first and likely add annotations. In Claude the simplest way is a list of conversations downward. I want views by recency and by size, something from each conversation's synopsis to say what it is about, and perhaps conversations annotated by topic. A search can come later, and we annotate as if we will build one."}),a.jsx(t,{children:"No book of mine holds this yet."})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[A Claude conversation](/dougs-design/#a-claude-conversation)"}),a.jsxs(t,{children:[a.jsx(v,{}),"23: the conversation in the black side bar, in the form of the application it comes from."]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"}),"."]}),a.jsx(t,{children:"It will look a lot like a Claude conversation, because the artifacts and the code blocks come from there. 23 is it. The color scheme might vary by project, but it starts from the dark side bar. That theme looks nice."}),a.jsx(t,{children:"No book of mine holds this yet."})]})]}),"TheDesignsIAmGoingWith1"),xa=d(()=>a.jsxs(m,{children:[a.jsx(g,{children:"[What I Am Asked](/dougs-design/#what-i-am-asked)"}),a.jsxs(s,{children:[a.jsx(i,{children:"By letter"}),a.jsx(t,{children:"Each question here has a letter, and is about the numbered concepts linked under it. I answer by the letter, in my own words, and what I say is written under the question."})]}),a.jsxs(s,{children:[a.jsx(i,{children:"E · Where I am"}),a.jsxs(t,{children:[a.jsx(b,{}),"Where am I on the screen: a card at the foot of the bar as in 11, the end of the top bar as in 13, or only a face as in 17? And is the orange right for me, under my name and on my turns in 23?"]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(e,{children:"[13](/dougs-design/#a-black-top-bar)"}),", concept ",a.jsx(e,{children:"[17](/dougs-design/#a-black-rail-and-a-blue-top)"})," and concept ",a.jsx(e,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"}),"."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"F · What stands at the right"}),a.jsxs(t,{children:[a.jsx(b,{}),"In 11 and 23 the right side holds what the page cites, what cites it and my notes. In 2 it holds what was made from the sources. Is that column always there or opened when wanted, and what belongs in it?"]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(e,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"})," and concept ",a.jsx(e,{children:"[2](/dougs-design/#ask-the-sources)"}),"."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"H · The library's catalogue"}),a.jsxs(t,{children:[a.jsx(b,{}),"For the library's own catalogue I chose the shelf of 1, and spoke of black and sky for the library itself, as in 19. Is the library's page the shelf of 1 under the two bars of 19, under the white and opal of 20, or the shelf as it stands in 1? And what do I come to this page to do?"]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[1](/dougs-design/#the-shelf)"}),", concept ",a.jsx(e,{children:"[19](/dougs-design/#two-top-bars-black-then-sky)"})," and concept ",a.jsx(e,{children:"[20](/dougs-design/#two-top-bars-white-then-opal)"}),"."]}),a.jsxs(t,{children:[a.jsx(p,{}),"Yes, and I like the black and sky, though I think I want to be able to switch the view between 1 to 3 as part of the dynamism of the page. We will talk about how to implement a book, and you will find that you might want to do more structurally than you expect to support many different views. Many ways to view the same thing will be important."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"I · The reference manual"}),a.jsxs(t,{children:[a.jsx(b,{}),"A reference manual shows a chapter and the file it is about. Which is nearest: the words beside the file as in 6, the column of cells as in 7, the part on a bench with its properties as in 8? And what do I come to a manual to do: read it through, look up a part, copy its code?"]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[6](/dougs-design/#side-by-side)"}),", concept ",a.jsx(e,{children:"[7](/dougs-design/#the-notebook)"})," and concept ",a.jsx(e,{children:"[8](/dougs-design/#the-workbench)"}),"."]}),a.jsxs(t,{children:[a.jsx(p,{}),"6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and documentation emphasized. Code doesn't look right unless in full view, so we might want a view where we show one write-up on the right side of the code and another that moves the code off to the right, but it's mostly there to give the visual sense that it can be expanded out again. Something like that."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"J · The design book"}),a.jsxs(t,{children:[a.jsx(b,{}),"The design book is the book I am reading now: a dark rail with its index, the questions I am asked, the numbered concepts, a card that opens across the whole screen. Is this its design, and what would I change in it?"]}),a.jsxs(t,{children:[a.jsx(p,{}),"Yeah, how about we keep design light and airy. But no, if the dark sidebar is the thing that makes the library memorable, then maybe we have a toggle between library and gallery mode, and gallery mode is more white themed with subtle variation, and library mode is more dark themed."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"K · My autobiography"}),a.jsxs(t,{children:[a.jsx(b,{}),"My own account can be more of a bookish view. I pointed at the algebra of perspective in the original demo, with its dark and light theme and its simple reading view, and 25 is that view drawn again for my story. Is 25 it, and on which paper: the demo's book, its night, or the plain white? Or is the title page of 24 nearer, the front page of 5, the reading column of 7?"]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[25](/dougs-design/#the-reading-view)"}),", concept ",a.jsx(e,{children:"[24](/dougs-design/#the-title-page)"}),", concept ",a.jsx(e,{children:"[5](/dougs-design/#the-front-page)"})," and concept ",a.jsx(e,{children:"[7](/dougs-design/#the-notebook)"}),"."]}),a.jsxs(t,{children:[a.jsx(p,{}),"I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so noticeable, but I really like it for bookish chapters like the autobiography."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"L · The Claude project catalogue"}),a.jsxs(t,{children:[a.jsx(b,{}),"Conversations with Claude holds my Claude projects. I chose the table of 9 with a splash of the Claude theme. Does it sit under the white and opal bars of 20, beside the black side bar of 11, or as it stands in 9? And what is a project on this page: a row, a cover with its mark, a region as in 10?"]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[9](/dougs-design/#the-database)"}),", concept ",a.jsx(e,{children:"[20](/dougs-design/#two-top-bars-white-then-opal)"}),", concept ",a.jsx(e,{children:"[11](/dougs-design/#a-black-side-bar)"})," and concept ",a.jsx(e,{children:"[10](/dougs-design/#the-map)"}),"."]}),a.jsxs(t,{children:[a.jsx(p,{}),"9 under white and opal."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"M · A project's conversation catalogue"}),a.jsxs(t,{children:[a.jsx(b,{}),"One for each project, and the one to think hard about. Which is nearest to begin from: the table of 9, the light and airy list of 2, the shelf of 1, the map of 10 by size? And what do I need there first: a search I configure, the views by recency and by size, my annotations on each conversation, each conversation's synopsis?"]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[9](/dougs-design/#the-database)"}),", concept ",a.jsx(e,{children:"[2](/dougs-design/#ask-the-sources)"}),", concept ",a.jsx(e,{children:"[1](/dougs-design/#the-shelf)"})," and concept ",a.jsx(e,{children:"[10](/dougs-design/#the-map)"}),"."]}),a.jsxs(t,{children:[a.jsx(p,{}),"I think we want to start with a multi-view. We will have to write an importer, and we will likely have to add annotations. So let's think about the types of ways we want to enable interaction with the data. In Claude, the simplest way is just a downward list of conversations. And we will probably want to do something with importing information from the synopsis of each conversation to help give a sense for what it is about. Maybe we will annotate conversations by topic. So let's not think too much about the conversation view yet, because we will have to build the importer. Of what the first version needs: the views by recency and size, and each one's synopsis. The search might make more sense in the front of Claude. Let's annotate like we will create a search and need some form of indexing, but not do it in version 1."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"N · A Claude conversation"}),a.jsxs(t,{children:[a.jsx(b,{}),"It will look a lot like a Claude conversation. Is 23 it: the black side bar holding the chapters, my turns in my color, what the chapter cites and my notes at the right? What is missing from it, and what should go?"]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"}),"."]}),a.jsxs(t,{children:[a.jsx(p,{}),"Yes, 23, though we might vary the color scheme based on project, but start assuming the dark sidebar. That theme looks nice."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"A · Where the frame goes"}),a.jsxs(t,{children:[a.jsx(b,{}),"Where does the library's frame go: a side bar as in 11, a top bar as in 13, both as in 15, a narrow rail as in 17, two top bars as in 19, or none as in 21? More than one may stay, if different kinds of page want different frames."]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(e,{children:"[13](/dougs-design/#a-black-top-bar)"}),", concept ",a.jsx(e,{children:"[15](/dougs-design/#a-black-top-bar-and-an-opal-side-bar)"}),", concept ",a.jsx(e,{children:"[17](/dougs-design/#a-black-rail-and-a-blue-top)"}),", concept ",a.jsx(e,{children:"[19](/dougs-design/#two-top-bars-black-then-sky)"})," and concept ",a.jsx(e,{children:"[21](/dougs-design/#no-bars-white-cards)"}),"."]}),a.jsxs(t,{children:[a.jsx(p,{}),"The side bar, yes: we like it for this design we are converging on, though let's explore other options too. The top bar too, and I'd like to explore a version that has them both. Might the top bar be a version of the cover and the side bar be a version of the table of contents? I do want to explore that more, because they might be good things to think about as the meaning of the cover and table of contents. For the narrow rail, we might like something collapsible in cases where screen real estate could be useful, so let's keep them all in mind. I also want to see designs that are quite different before converging on exactly this. Of two top bars and the white cards, it is hard to say. The white and then opal looks really good. A clean white theme with the dark logo makes me start to think that maybe I don't want quite so much of the dark. The opal is interesting too, and while we would need to use that effect carefully, I like it as a type of annotation."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"B · Darker or lighter"}),a.jsxs(t,{children:[a.jsx(b,{}),"Is the soft black the library's own, as in 11 and 13, with the lighter of each a thing I may switch to, as in 12 and 14? Or the other way round? Or does it depend on the page?"]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(e,{children:"[12](/dougs-design/#a-light-side-bar)"}),", concept ",a.jsx(e,{children:"[13](/dougs-design/#a-black-top-bar)"})," and concept ",a.jsx(e,{children:"[14](/dougs-design/#a-white-top-bar)"}),"."]}),a.jsxs(t,{children:[a.jsx(p,{}),"It depends on the page for sure. Maybe I like the black and sky for the library itself, with its more bookish view, and then moving into different color themes for each cataloguing book. We do truly want the different parts of the app, in some ways, to feel like different apps, and that can even mean the top bar has different colors and an evolving logo."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"C · The ways to read one subject"}),a.jsxs(t,{children:[a.jsx(b,{}),"A subject's page can be read many ways. Which of these become views I switch between on one subject, and which go: the shelf of covers in 1, the list of sources in 2, the wall in 3, the front page in 5, the table in 9, the map in 10?"]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[1](/dougs-design/#the-shelf)"}),", concept ",a.jsx(e,{children:"[2](/dougs-design/#ask-the-sources)"}),", concept ",a.jsx(e,{children:"[3](/dougs-design/#the-wall)"}),", concept ",a.jsx(e,{children:"[5](/dougs-design/#the-front-page)"}),", concept ",a.jsx(e,{children:"[9](/dougs-design/#the-database)"})," and concept ",a.jsx(e,{children:"[10](/dougs-design/#the-map)"}),"."]}),a.jsxs(t,{children:[a.jsx(p,{}),"The shelf, the table and the map are all good for different catalogues. We have the across Claude projects catalogue, and then we have the conversations per project catalogue, and we have the library catalogue. These should all look like different things, and I am inclined to choose between them. I really like the UI of the checked version in 2, the light and airy feel. But so much of that user interface is interactive, where one selects their books. I want those features, but we need to imagine things based on the set of features we want in each interaction. For the library's own catalogue I like the shelf, but can we consider implementing it in a way where we can dynamically change the view? Dynamic view change is proof that we are coding the semantics and annotating the semantic structure with what is necessary for the view. For the catalogue across projects I like 9 the best, and I might even like a splash of the Claude theme to delineate that this view is Claude projects. And I think we need to think hard about the project view. This is where we might even want to have some form of search that we configure. We will also want some color and icon-based theming to indicate what project we are on. I like the different views to comprehend the conversations, by recency, by conversation size, and maybe others, and perhaps we can annotate the conversations and this can help us build the view. A good use for the synopsis of a conversation might be surfacing the information that the project catalogue needs."]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"D · What a cover's color says"}),a.jsxs(t,{children:[a.jsx(b,{}),"In 11 every book has a color of its own, and the color means nothing. In 1 the projects have colors and the covers nearly follow them. Should a cover's color say something, its project, its subject, who the conversation was with, or stay the book's own?"]}),a.jsxs(t,{children:["Concept ",a.jsx(e,{children:"[1](/dougs-design/#the-shelf)"})," and concept ",a.jsx(e,{children:"[11](/dougs-design/#a-black-side-bar)"}),"."]}),a.jsxs(t,{children:[a.jsx(p,{}),"I will choose colors based on my synaesthetic preferences. I also think we want some form of cover art, and the cover art perhaps for the library can be the logo of the library. Perhaps the cover art is simply the logo of the book, and we just have a progressive logo."]})]})]}),"WhatIAmAsked2"),fa=d(()=>a.jsxs(m,{children:[a.jsx(g,{children:"[Every Concept](/dougs-design/#every-concept)"}),a.jsxs(s,{children:[a.jsx(i,{children:"By number"}),a.jsx(t,{children:"Every concept here has a number, and keeps it. Each is shown as it looks at a desk and on a phone, and I answer by its number. What I say of one is written under it."})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[The Library's Home](/dougs-design/#the-librarys-home)"}),a.jsx(t,{children:"The first page of the library: where everything I keep is found from. Each of these is a different layout, with different tools in different places and a different way of moving around."}),a.jsxs(s,{children:[a.jsx(r,{children:"1"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -200,7 +137,7 @@ var na=Object.defineProperty;var l=(ra,e)=>na(ra,"name",{value:e,configurable:!0
 </nav>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~002-desk.png","/.design/3-every-concept~002-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[The Shelf](/dougs-design/#the-shelf)"}),a.jsx(t,{children:"Concept 1, after Apple Books."}),a.jsx(t,{children:"Every conversation gets a cover. The library opens on what I was last reading and on shelves by project, and a conversation is picked up by its face, the way a book is."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~001-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~001-phone.png"})]}),a.jsxs(t,{children:[a.jsx(p,{}),"I really like the book view, and aside from color, we will need some sort of visual landmark to ground the book, which justifies seeing the cover."]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"2"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -356,7 +293,7 @@ var na=Object.defineProperty;var l=(ra,e)=>na(ra,"name",{value:e,configurable:!0
 </div>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~003-desk.png","/.design/3-every-concept~003-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[Ask the Sources](/dougs-design/#ask-the-sources)"}),a.jsx(t,{children:"Concept 2, after NotebookLM."}),a.jsx(t,{children:"The conversations are sources, and the library answers questions from them: every sentence of an answer carries the number of the passage it rests on, one press from the passage itself."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~002-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~002-phone.png"})]}),a.jsxs(t,{children:[a.jsx(p,{}),"The sources really look great. I really like it. I like the little view and the logo. But what would it mean to type in a message? We have to be realistic."]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"3"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -482,7 +419,7 @@ var na=Object.defineProperty;var l=(ra,e)=>na(ra,"name",{value:e,configurable:!0
 <nav class="tabbar"><span class="on">⌂</span><span>⌕</span><span>＋</span><span>☰</span><span class="me">L</span></nav>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~004-desk.png","/.design/3-every-concept~004-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[The Wall](/dougs-design/#the-wall)"}),a.jsx(t,{children:"Concept 3, after Pinterest."}),a.jsx(t,{children:"The library browsed by what catches the eye: passages, notes, book covers and conversations pinned to one wall in a masonry of different sizes, each saved to boards, so finding is wandering and keeping is one button."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~003-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~003-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"4"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -610,7 +547,7 @@ var na=Object.defineProperty;var l=(ra,e)=>na(ra,"name",{value:e,configurable:!0
 </div>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~005-desk.png","/.design/3-every-concept~005-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"The Command Line"}),a.jsx(t,{children:"Concept 4, after keyboard-first tools: command palettes, launchers and the leader keys of editors."}),a.jsx(t,{children:"The library opens on one line: type to go anywhere or do anything, the last places are a number away and every book, grouping and list is two keystrokes away — and the same line waits at the top of every page, which is what unites them."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~004-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~004-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"5"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -735,7 +672,7 @@ var na=Object.defineProperty;var l=(ra,e)=>na(ra,"name",{value:e,configurable:!0
 </div>
 </body>
 </html>
-`]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Reference Manual](/dougs-design/#a-reference-manual)"}),a.jsx(t,{children:"A reference manual holds the parts a library is built with, each beside the chapter that says what it is. These are different ways to show a chapter and its code together, and to move among the parts."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsxs(p,{children:["/.design/3-every-concept~006-desk.png","/.design/3-every-concept~006-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[The Front Page](/dougs-design/#the-front-page)"}),a.jsx(t,{children:"Concept 5, after a newspaper's front page and the long-read site's home."}),a.jsx(t,{children:"The library opens like a front page: the conversation most recently kept leads with a standfirst, what was kept lately runs down a column by day, notes and citations take the next, and the books and groupings stand in the masthead's index — movement is by reading and by the sections across the top."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~005-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~005-phone.png"})]})]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[A Reference Manual](/dougs-design/#a-reference-manual)"}),a.jsx(t,{children:"A reference manual holds the parts a library is built with, each beside the chapter that says what it is. These are different ways to show a chapter and its code together, and to move among the parts."}),a.jsxs(s,{children:[a.jsx(r,{children:"6"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -852,7 +789,7 @@ var na=Object.defineProperty;var l=(ra,e)=>na(ra,"name",{value:e,configurable:!0
 </aside>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~007-desk.png","/.design/3-every-concept~007-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[Side by Side](/dougs-design/#side-by-side)"}),a.jsx(t,{children:"Concept 6, after API documentation, as Stripe sets it."}),a.jsx(t,{children:"A chapter and its file are always seen together: the words on the left, the file they are about held still on the right, and every name in the words lights the line it means."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~006-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~006-phone.png"})]}),a.jsxs(t,{children:[a.jsx(p,{}),"6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and documentation emphasized. Code doesn't look right unless in full view."]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"7"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -983,7 +920,7 @@ var na=Object.defineProperty;var l=(ra,e)=>na(ra,"name",{value:e,configurable:!0
 </div>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~008-desk.png","/.design/3-every-concept~008-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[The Notebook](/dougs-design/#the-notebook)"}),a.jsx(t,{children:"Concept 7, after a computational notebook, as Observable sets it."}),a.jsx(t,{children:"A chapter is a column of cells: what I say, the file itself, and the part shown working, one under the other, so the manual proves each part as it explains it."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~007-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~007-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"8"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1190,7 +1127,7 @@ var na=Object.defineProperty;var l=(ra,e)=>na(ra,"name",{value:e,configurable:!0
 <\/script>
 </body>
 </html>
-`]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Grouping of Projects](/dougs-design/#a-grouping-of-projects)"}),a.jsx(t,{children:"A page for one grouping of my conversations, such as everything kept with Claude, with its projects and the conversations in each. These are different ways to see and move through many of them."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsxs(p,{children:["/.design/3-every-concept~009-desk.png","/.design/3-every-concept~009-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[The Workbench](/dougs-design/#the-workbench)"}),a.jsx(t,{children:"Concept 8, after a component workshop, as Storybook sets it."}),a.jsx(t,{children:"A part is met by using it: the part itself drawn alone on a bench, its properties beside it to change, and the line a chapter would write rewriting itself as they change."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~008-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~008-phone.png"})]})]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[A Grouping of Projects](/dougs-design/#a-grouping-of-projects)"}),a.jsx(t,{children:"A page for one grouping of my conversations, such as everything kept with Claude, with its projects and the conversations in each. These are different ways to see and move through many of them."}),a.jsxs(s,{children:[a.jsx(r,{children:"9"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1350,7 +1287,7 @@ var na=Object.defineProperty;var l=(ra,e)=>na(ra,"name",{value:e,configurable:!0
 </div>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~010-desk.png","/.design/3-every-concept~010-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[The Database](/dougs-design/#the-database)"}),a.jsx(t,{children:"Concept 9, after Notion."}),a.jsx(t,{children:"Every conversation is a row with properties — project, AI, kept, chapters, citations — so one set of records is seen as a table, a board or a gallery, and opening a row peeks its page beside the list."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~009-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~009-phone.png"})]}),a.jsxs(t,{children:[a.jsx(p,{}),"For the catalogue across projects I like 9 the best, and I might even like a splash of the Claude theme to delineate that this view is Claude projects."]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"10"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1455,7 +1392,7 @@ var na=Object.defineProperty;var l=(ra,e)=>na(ra,"name",{value:e,configurable:!0
 </div>
 </body>
 </html>
-`]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[Layout Ideas](/dougs-design/#layout-ideas)"}),a.jsx(t,{children:"These are ideas, not choices yet. Each is the same pages inside a different frame: a side bar, a top bar, both, a narrow rail, two bars, or none, each once darker and once lighter, in soft black, a blue between it and white, and white. What does not change is taken from the homes I liked: covers in many colors, light accents, the library's mark, a way to me from every screen, and a book that reports to its subject. The last shows a conversation inside the black side bar. I will choose which of them stay."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsxs(p,{children:["/.design/3-every-concept~011-desk.png","/.design/3-every-concept~011-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[The Map](/dougs-design/#the-map)"}),a.jsx(t,{children:"Concept 10, after market maps and disk-usage maps — the squarified treemap."}),a.jsx(t,{children:"The grouping is a map of where the thinking went: each project a region as large as the conversations it holds, each conversation a tile as large as its chapters and as dark as it is recent, so the whole of it is seen at once and any tile is one look from its name."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~010-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~010-phone.png"})]})]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[Layout Ideas](/dougs-design/#layout-ideas)"}),a.jsx(t,{children:"These are ideas, not choices yet. Each is the same pages inside a different frame: a side bar, a top bar, both, a narrow rail, two bars, or none, each once darker and once lighter, in soft black, a blue between it and white, and white. What does not change is taken from the homes I liked: covers in many colors, light accents, the library's mark, a way to me from every screen, and a book that reports to its subject. The last shows a conversation inside the black side bar. I will choose which of them stay."}),a.jsxs(s,{children:[a.jsx(r,{children:"11"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="side" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -1997,7 +1934,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~012-desk.png","/.design/3-every-concept~012-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[A Black Side Bar](/dougs-design/#a-black-side-bar)"}),a.jsx(t,{children:"Concept 11, an idea, after the homes I liked, in the coming-soon page's soft black."}),a.jsx(t,{children:"One bar, at the left, in soft black: the library's mark, its subjects, what the open one holds, and me at its foot. The page beside it is white. Press a cover, a subject, or me; press Shelf and List to see the same books two ways."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~011-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~011-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"12"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="side" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -2539,7 +2476,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~013-desk.png","/.design/3-every-concept~013-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[A Light Side Bar](/dougs-design/#a-light-side-bar)"}),a.jsx(t,{children:"Concept 12, an idea, after the homes I liked, the lighter way."}),a.jsx(t,{children:"The same side bar, lighter: a pale bar with the mark in black, as the shelf's home had it. The color is all in the covers and the light accents."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~012-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~012-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"13"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="header" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -3081,7 +3018,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~014-desk.png","/.design/3-every-concept~014-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[A Black Top Bar](/dougs-design/#a-black-top-bar)"}),a.jsx(t,{children:"Concept 13, an idea, after the homes I liked, in the coming-soon page's soft black."}),a.jsx(t,{children:"One bar, across the top, in soft black: the mark, the subjects as its tabs, and me at its right end. No side bar; what a subject holds is a row under its name, and the whole width is for its books."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~013-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~013-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"14"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="header" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -3623,7 +3560,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~015-desk.png","/.design/3-every-concept~015-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[A White Top Bar](/dougs-design/#a-white-top-bar)"}),a.jsx(t,{children:"Concept 14, an idea, after the homes I liked, the lighter way."}),a.jsx(t,{children:"The same top bar, lighter: white, with the mark in black and the open subject underlined in its own color."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~014-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~014-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"15"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="both" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -4165,7 +4102,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~016-desk.png","/.design/3-every-concept~016-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[A Black Top Bar and an Opal Side Bar](/dougs-design/#a-black-top-bar-and-an-opal-side-bar)"}),a.jsx(t,{children:"Concept 15, an idea, after the coming-soon page: its soft black, and its opal between that and white."}),a.jsx(t,{children:"Both. The top bar is the library's, in soft black; the side bar is the open subject's, in the pale opal, which is the step between the black and the white page."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~015-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~015-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"16"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="both" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -4707,7 +4644,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~017-desk.png","/.design/3-every-concept~017-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"A White Top Bar and an Opal Side Bar"}),a.jsx(t,{children:"Concept 16, an idea, after the homes I liked, the lighter way."}),a.jsx(t,{children:"Both, lighter: the top bar white, the side bar still the pale opal. The lightest frame that still has two bars."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~016-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~016-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"17"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="rail" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -5249,7 +5186,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~018-desk.png","/.design/3-every-concept~018-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[A Black Rail and a Blue Top](/dougs-design/#a-black-rail-and-a-blue-top)"}),a.jsx(t,{children:"Concept 17, an idea, after the coming-soon page: its soft black, and the blue it suggests."}),a.jsx(t,{children:"A narrow soft-black rail holds only the subjects as marks and me as a face. The open subject's name stands on a band of the blue, the step between the black and the white, and what it holds is a row beneath."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~017-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~017-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"18"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="rail" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -5791,7 +5728,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~019-desk.png","/.design/3-every-concept~019-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"An Opal Rail and a White Top"}),a.jsx(t,{children:"Concept 18, an idea, after the homes I liked, the lighter way."}),a.jsx(t,{children:"The same narrow rail, lighter: pale opal, the subjects' marks carrying the color, and the subject's name on white."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~018-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~018-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"19"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="two" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -6333,7 +6270,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~020-desk.png","/.design/3-every-concept~020-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[Two Top Bars: Black, then Sky](/dougs-design/#two-top-bars-black-then-sky)"}),a.jsx(t,{children:"Concept 19, an idea, after the coming-soon page: its soft black, and a lighter step of the blue."}),a.jsx(t,{children:"Two bars across the top. The black one is the library's and never changes; the lighter blue one under it is the open subject's own, with its name and its tools, so a subject reads as a place of its own inside the library."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~019-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~019-phone.png"})]}),a.jsxs(t,{children:[a.jsx(p,{}),"Maybe I like the black and sky for the library itself, with its more bookish view. I like the black and sky, though I think I want to be able to switch the view as part of the dynamism of the page."]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"20"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="two" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -6875,7 +6812,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~021-desk.png","/.design/3-every-concept~021-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[Two Top Bars: White, then Opal](/dougs-design/#two-top-bars-white-then-opal)"}),a.jsx(t,{children:"Concept 20, an idea, after the homes I liked, the lighter way."}),a.jsx(t,{children:"The same two bars, lighter: the library's in white, the subject's in the pale opal."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~020-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~020-phone.png"})]}),a.jsxs(t,{children:[a.jsx(p,{}),"The white and then opal looks really good. A clean white theme with the dark logo makes me start to think that maybe I don't want quite so much of the dark. The opal is interesting too, and while we would need to use that effect carefully, I like it as a type of annotation."]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"21"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="cards" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -7417,7 +7354,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~022-desk.png","/.design/3-every-concept~022-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[No Bars: White Cards](/dougs-design/#no-bars-white-cards)"}),a.jsx(t,{children:"Concept 21, an idea, after the home that asks its sources."}),a.jsx(t,{children:"No bar at all, as the home that asks its sources had it: the mark and the subjects sit on a pale ground, and what the subject holds, its books and what cites them are three white cards."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~021-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~021-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"22"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="cards" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -7959,7 +7896,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~023-desk.png","/.design/3-every-concept~023-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"No Bars: White Cards on Black"}),a.jsx(t,{children:"Concept 22, an idea, after the home that asks its sources, on the coming-soon page's ground."}),a.jsx(t,{children:"The same three cards, darker: on the soft black, so the black is the ground the whole library stands on and the pages are white."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~022-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~022-phone.png"})]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"23"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="side" data-tone="dark" data-at="chat" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -8501,7 +8438,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Bookish Page](/dougs-design/#a-bookish-page)"}),a.jsx(t,{children:"The first home drawn for this library, which I called beautiful: a title set as the coming-soon page set its own, a byline, a synopsis, and the catalogue as a contents page. It is kept here as the bookish way a book can open, for my own account."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsxs(p,{children:["/.design/3-every-concept~024-desk.png","/.design/3-every-concept~024-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[A Conversation, in the Black Side Bar](/dougs-design/#a-conversation-in-the-black-side-bar)"}),a.jsx(t,{children:"Concept 23, an idea, after the application the conversations come from."}),a.jsx(t,{children:"The black side bar with a conversation open: its chapters down the bar as that application lists its chats, the turns in that application's own form, my turns in my color, and my notes and what cites the chapter beside it."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~023-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~023-phone.png"})]}),a.jsxs(t,{children:[a.jsx(p,{}),"Yes, 23, though we might vary the color scheme based on project, but start assuming the dark sidebar. That theme looks nice."]})]})]}),a.jsxs(s,{children:[a.jsx(i,{children:"[A Bookish Page](/dougs-design/#a-bookish-page)"}),a.jsx(t,{children:"The first home drawn for this library, which I called beautiful: a title set as the coming-soon page set its own, a byline, a synopsis, and the catalogue as a contents page. It is kept here as the bookish way a book can open, for my own account."}),a.jsxs(s,{children:[a.jsx(r,{children:"24"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -8652,7 +8589,7 @@ return lorem.consectetur();</pre>
 </div>
 </body>
 </html>
-`]}),a.jsxs(p,{children:["/.design/3-every-concept~025-desk.png","/.design/3-every-concept~025-phone.png",`<!doctype html>
+`}),a.jsx(i,{children:"[The Title Page](/dougs-design/#the-title-page)"}),a.jsx(t,{children:"Concept 24, an idea, after the coming-soon page."}),a.jsx(t,{children:"A book opens like a book: its title set as the coming-soon page set its own, who it is by and what it is filed under beneath, its synopsis, and its contents as a contents page. Nothing else is on the page."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~024-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~024-phone.png"})]}),a.jsxs(t,{children:[a.jsx(p,{}),"Beautiful. We will be repurposing the design you put on the library home screen, but not at this very moment."]})]}),a.jsxs(s,{children:[a.jsx(r,{children:"25"}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-theme="book">
 <head>
 <meta charset="utf-8">
@@ -8913,27 +8850,12 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`]})]})]})]}),"EveryConcept3"),Ta=l(()=>a.jsxs(v,{children:[a.jsx(y,{children:"[The Concept](/dougs-design/#the-concept)"}),a.jsxs(i,{children:[a.jsx(o,{children:"What a concept is"}),a.jsx(t,{children:"A concept is one page of HTML that shows the library in use. It works at a desk's width and at a phone's, and it says what it is in its own head: its name, its idea, whether it is still only an idea, what I have said of it, and its number. The number is given once and is the concept's own for good, so I can say eleven and mean one thing after others have come and gone."}),a.jsx(t,{children:"Every concept stands once, in this book, beside the chapter Every Concept: the page under its number, and its two photographs under the same number. That is the only place it is kept. A card is the concept as the book draws it: its photograph at a desk, its photograph on a phone laid over the corner, its number, and what it says of itself, read from the page's own head."}),a.jsx(t,{children:"Any other chapter shows a concept by its number. It writes the number and nothing else, and the card is drawn from the one place the concept stands, so there is no second copy to fall behind. The designs I am going with are written that way, each with the concepts it comes from, how it came to be, and the book it is for. So are the questions I am asked, each with the concepts it is about and my answer under it. Marks say which paragraph is the choice, the story, the question and the answer."}),a.jsx(t,{children:"Pressing a card opens the viewer, which takes the whole screen and runs the concept live, at a desk and on a phone side by side. The arrow keys move among the cards that stand together, the keys one, two and three choose both, the desk or the phone, and escape comes back. The viewer is one paragraph the book draws once; a card hands it the page to show."}),a.jsx(t,{children:"The desk is 1280 by 800 and the phone 390 by 844. Side by side they are run at those sizes when the screen holds them, and made smaller together when it does not, so the two are always seen at one scale. The desk alone takes the whole screen as it is. On a phone the viewer shows the phone alone, edge to edge."})]}),a.jsxs(i,{children:[a.jsx(o,{children:"How a concept is added"}),a.jsx(t,{children:"A new concept is a page set beside Every Concept under the next number, with that number in its head, and one more line in that chapter. The camera, which has a chapter of its own in this appendix, takes its photographs. Then the book is bound. Nothing outside this book is needed to make it, and every chapter of it is written by hand."})]}),a.jsxs(i,{children:[a.jsx(G,{}),a.jsx(o,{children:"The concept's file"}),a.jsx(t,{children:a.jsx(H,{identifier:"code"})})]}),a.jsx(U,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
-import { $, $Block } from '@dna-platform/chemistry';
-import { $Annotation, $Chapter, $Figure, $Paragraph, $Section, $Writing } from '@dna-platform/public';
-
-type Shown = { number: string; named: string; draws: string; says: string; sketch: string };
-
-const desk = { wide: 1280, tall: 800 };
-const phone = { wide: 390, tall: 844 };
-const bezel = 20;
-
-export class $Concepts extends $Annotation {
-    override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-concepts');
-    }
-
-    override erase(writing: $Writing): void {
-        writing.classes.revert(this);
-    }
-}
+`}),a.jsx(i,{children:"[The Reading View](/dougs-design/#the-reading-view)"}),a.jsx(t,{children:"Concept 25, an idea, after the algebra of perspective, in the original demo."}),a.jsx(t,{children:"A book is read a chapter at a time on one typeset sheet, as the original demo set the algebra of perspective: who wrote it in a running head, the title centred, a drop initial, justified serif prose, the chapters either side at the foot, on the demo's two papers, its warm book and its night, and a third in plain white."}),a.jsxs(t,{children:[a.jsx(o,{children:"/.design/3-every-concept~025-desk.png"}),a.jsx(o,{children:"/.design/3-every-concept~025-phone.png"})]}),a.jsxs(t,{children:[a.jsx(p,{}),"I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so noticeable, but I really like it for bookish chapters like the autobiography."]})]})]})]}),"EveryConcept3"),va=d(()=>a.jsxs(m,{children:[a.jsx(g,{children:"[The Paragraphs](/dougs-design/#the-paragraphs)"}),a.jsxs(s,{children:[a.jsx(i,{children:"What a paragraph may be"}),a.jsx(t,{children:"Most of this book is ordinary paragraphs. Three kinds are not. One is a question I am asked. One is what I said, in my own words. One is a design I chose."}),a.jsxs(t,{children:["A paragraph says which of these it is. So a page can show a question and its answer differently, and everything I said can be found. The questions and my answers are in ",a.jsx(e,{children:"[What I Am Asked](/dougs-design/#what-i-am-asked)"}),", and the designs I chose are in ",a.jsx(e,{children:"[The Designs I Am Going With](/dougs-design/#the-designs-i-am-going-with)"}),"."]})]}),a.jsx(O,{identifier:"code",type:".tsx",children:`import { $, $check } from '@dna-platform/chemistry';
+import { $Annotation, $Paragraph, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 
 export class $Asked extends $Annotation {
+    specification = new AskedSpecification();
+
     override defines(writing: $Writing): void {
         writing.classes.add(this, 'pa-asked');
     }
@@ -8943,9 +8865,11 @@ export class $Asked extends $Annotation {
     }
 }
 
-export class $Answered extends $Annotation {
+export class $Said extends $Annotation {
+    specification = new SaidSpecification();
+
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-answered');
+        writing.classes.add(this, 'pa-said');
     }
 
     override erase(writing: $Writing): void {
@@ -8954,6 +8878,8 @@ export class $Answered extends $Annotation {
 }
 
 export class $Chosen extends $Annotation {
+    specification = new ChosenSpecification();
+
     override defines(writing: $Writing): void {
         writing.classes.add(this, 'pa-chosen');
     }
@@ -8963,9 +8889,42 @@ export class $Chosen extends $Annotation {
     }
 }
 
-export class $Story extends $Annotation {
+export class AskedSpecification extends AnnotationSpecification {
+    @specify('asked is said of a paragraph')
+    $saidOfAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Paragraph, 'asked is said of a paragraph, and this is not one');
+    }
+}
+
+export class SaidSpecification extends AnnotationSpecification {
+    @specify('said is said of a paragraph')
+    $saidOfAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Paragraph, 'said is said of a paragraph, and this is not one');
+    }
+}
+
+export class ChosenSpecification extends AnnotationSpecification {
+    @specify('chosen is said of a paragraph')
+    $saidOfAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Paragraph, 'chosen is said of a paragraph, and this is not one');
+    }
+}
+
+export const Asked = $($Asked);
+export const Said = $($Said);
+export const Chosen = $($Chosen);
+`})]}),"TheParagraphs90"),ya=d(()=>a.jsxs(m,{children:[a.jsx(g,{children:"[The Concept](/dougs-design/#the-concept)"}),a.jsxs(s,{children:[a.jsx(i,{children:"What a concept is"}),a.jsxs(t,{children:["A concept is one sketch of one idea. In ",a.jsx(e,{children:"[Every Concept](/dougs-design/#every-concept)"})," each has a section of its own: its name, its number, what it is drawn after, the idea in a sentence, a photograph of it at a desk and on a phone, and under those what I said of it, if I said anything."]}),a.jsx(t,{children:"The section says it is a concept and gives its number, which it keeps for good. I answer by that number. The sketch itself is a page. It is kept beside the chapter and given to its section as it is."}),a.jsx(t,{children:"Another chapter points to a concept by its number, as a link to its place in Every Concept. It does not show the concept a second time."})]}),a.jsx(O,{identifier:"code",type:".tsx",children:`import { $, $check } from '@dna-platform/chemistry';
+import { $Annotation, $Section, $Writing, AnnotationSpecification, html, specify } from '@dna-platform/public';
+
+export class $Concept extends $Annotation {
+    specification = new ConceptSpecification();
+    get number(): number {
+        const written = html.copy(this.text).trim();
+        return written === '' ? NaN : Number(written);
+    }
+
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-story');
+        writing.classes.add(this, 'pa-concept');
     }
 
     override erase(writing: $Writing): void {
@@ -8973,360 +8932,39 @@ export class $Story extends $Annotation {
     }
 }
 
-export class $Viewer extends $Paragraph {
-    static pane(): HTMLElement | null {
-        return document.querySelector<HTMLElement>('.pd-viewer');
+export class $Sketch extends $Annotation {
+    specification = new SketchSpecification();
+}
+
+export class ConceptSpecification extends AnnotationSpecification {
+    @specify('a concept is said of a section')
+    $saidOfASection(writing: $Writing): void {
+        $check(writing instanceof $Section, 'a concept is said of a section, and this is not one');
     }
 
-    static cards(card: HTMLElement | null): HTMLElement[] {
-        return [...card?.closest('.pa-concepts')?.querySelectorAll<HTMLElement>('.pd-concept-opens') ?? []];
-    }
-
-    static shown(): HTMLElement | null {
-        return document.querySelector<HTMLElement>('.pd-concept-opens[data-shown]');
-    }
-
-    static shows(concept: Shown, card: HTMLElement): void {
-        const pane = $Viewer.pane();
-        if (pane === null) return;
-        const cards = $Viewer.cards(card);
-        const at = cards.indexOf(card);
-        $Viewer.shown()?.removeAttribute('data-shown');
-        card.dataset.shown = 'yes';
-        const says = (part: string, text: string): void => { const held = pane.querySelector(part); if (held !== null) held.textContent = text; };
-        says('.pd-viewer-number', concept.number);
-        says('.pd-viewer-name', concept.named);
-        says('.pd-viewer-after', concept.draws === '' ? '' : \`after \${concept.draws}\`);
-        says('.pd-viewer-idea', concept.says);
-        says('.pd-viewer-count', \`\${at + 1} of \${cards.length}\`);
-        for (const frame of pane.querySelectorAll('iframe')) frame.srcdoc = concept.sketch;
-        pane.dataset.at = String(at);
-        if (pane.dataset.device === undefined) pane.dataset.device = 'both';
-        $Viewer.listens(pane);
-        if (document.fullscreenElement === pane) $Viewer.fits();
-        else void pane.requestFullscreen().then(() => $Viewer.fits());
-    }
-
-    static fits(): void {
-        const pane = $Viewer.pane();
-        const stage = pane?.querySelector<HTMLElement>('.pd-viewer-stage');
-        if (pane == null || stage == null || document.fullscreenElement !== pane) return;
-        const style = getComputedStyle(stage);
-        const wide = stage.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - bezel;
-        const tall = stage.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom) - bezel;
-        const across = pane.dataset.device === 'both' ? (wide - parseFloat(style.columnGap)) / (desk.wide + phone.wide) : wide / phone.wide;
-        pane.style.setProperty('--scale', String(Math.min(1, across, tall / phone.tall)));
-    }
-
-    static moves(by: number): void {
-        const pane = $Viewer.pane();
-        const cards = $Viewer.cards($Viewer.shown());
-        if (pane === null || cards.length === 0) return;
-        cards[(Number(pane.dataset.at ?? 0) + by + cards.length) % cards.length].click();
-    }
-
-    static device(device: string): void {
-        const pane = $Viewer.pane();
-        if (pane === null) return;
-        pane.dataset.device = device;
-        $Viewer.fits();
-    }
-
-    static closes(): void {
-        if (document.fullscreenElement !== null) void document.exitFullscreen();
-    }
-
-    static listens(pane: HTMLElement): void {
-        if (pane.dataset.listening === 'yes') return;
-        pane.dataset.listening = 'yes';
-        window.addEventListener('resize', () => $Viewer.fits());
-        document.addEventListener('fullscreenchange', () => $Viewer.fits());
-        document.addEventListener('keydown', event => {
-            if (document.fullscreenElement !== pane) return;
-            if (event.key === 'ArrowRight') $Viewer.moves(1);
-            if (event.key === 'ArrowLeft') $Viewer.moves(-1);
-            if (event.key === '1') $Viewer.device('both');
-            if (event.key === '2') $Viewer.device('desk');
-            if (event.key === '3') $Viewer.device('phone');
-        });
-    }
-
-    override write(): ReactNode {
-        return (
-            <>
-                <span className="pd-viewer-bar">
-                    <span className="pd-viewer-what">
-                        <span className="pd-viewer-number" />
-                        <span className="pd-viewer-name" />
-                        <span className="pd-viewer-after" />
-                        <span className="pd-viewer-idea" />
-                    </span>
-                    <span className="pd-viewer-devices">
-                        <button
-                            type="button"
-                            data-shows="both"
-                            onClick={() => $Viewer.device('both')}
-                        >
-                            desk and phone
-                        </button>
-                        <button
-                            type="button"
-                            data-shows="desk"
-                            onClick={() => $Viewer.device('desk')}
-                        >
-                            desk
-                        </button>
-                        <button
-                            type="button"
-                            data-shows="phone"
-                            onClick={() => $Viewer.device('phone')}
-                        >
-                            phone
-                        </button>
-                    </span>
-                    <span className="pd-viewer-moves">
-                        <button
-                            type="button"
-                            onClick={() => $Viewer.moves(-1)}
-                        >
-                            ‹ previous
-                        </button>
-                        <span className="pd-viewer-count" />
-                        <button
-                            type="button"
-                            onClick={() => $Viewer.moves(1)}
-                        >
-                            next ›
-                        </button>
-                        <button
-                            type="button"
-                            className="pd-viewer-closes"
-                            onClick={() => $Viewer.closes()}
-                        >
-                            close
-                        </button>
-                    </span>
-                </span>
-                <span className="pd-viewer-stage">
-                    <span className="pd-viewer-desk">
-                        <iframe title="at a desk" />
-                    </span>
-                    <span className="pd-viewer-phone">
-                        <iframe title="on a phone" />
-                    </span>
-                </span>
-            </>
-        );
-    }
-
-    protected override $Define(): void {
-        super.$Define();
-        this.classes.add(this, 'pd-viewer');
+    @specify('a concept is given its number')
+    $givenItsNumber(writing: $Writing): void {
+        $check(Number.isInteger(writing.annotations.expressed($Concept)?.number),
+            'a concept is given its number, and this one was given something else');
     }
 }
 
-export class $Concept extends $Figure {
-    get written(): string[] {
-        return [...this.text].filter((chemical): chemical is $Block => chemical instanceof $Block)
-            .flatMap(block => block.elements).map(String).filter(part => part.trim() !== '');
-    }
-    get parts(): string[] { return this.written; }
-    get number(): string { return this.says(this.parts[2] ?? '', 'number'); }
-
-    override write(): ReactNode {
-        const [desk, phone, sketch = ''] = this.parts;
-        const named = /<title>([^<]*)<\\/title>/u.exec(sketch)?.[1] ?? '';
-        const shown: Shown = { number: this.says(sketch, 'number'), named, draws: this.says(sketch, 'after'), says: this.says(sketch, 'idea'), sketch };
-        const state = this.says(sketch, 'state');
-        const said = this.says(sketch, 'said');
-        const marked = state !== '';
-        const answered = said !== '';
-        return (
-            <>
-                <button
-                    type="button"
-                    className="pd-concept-opens"
-                    title="open, at a desk and on a phone"
-                    onClick={event => $Viewer.shows(shown, event.currentTarget)}
-                >
-                    <img
-                        className="pd-concept-desk"
-                        src={desk}
-                        alt={\`\${shown.named}, at a desk\`}
-                        loading="lazy"
-                    />
-                    <img
-                        className="pd-concept-phone"
-                        src={phone}
-                        alt={\`\${shown.named}, on a phone\`}
-                        loading="lazy"
-                    />
-                    <span className="pd-concept-number">
-                        {shown.number}
-                    </span>
-                </button>
-                <span className="pd-concept-name">
-                    {shown.named}
-                </span>
-                {marked && (
-                    <span className="pd-concept-state">
-                        {state}
-                    </span>
-                )}
-                <span className="pd-concept-says">
-                    {shown.says}
-                </span>
-                {answered && (
-                    <span className="pd-concept-said">
-                        {said}
-                    </span>
-                )}
-            </>
-        );
-    }
-
-    protected says(sketch: string, name: string): string {
-        return new RegExp(\`<meta\\\\s+name="\${name}"\\\\s+content="([^"]*)"\`, 'u').exec(sketch)?.[1] ?? '';
-    }
-
-    protected override $Define(): void {
-        super.$Define();
-        this.classes.add(this, 'pd-concept');
+export class SketchSpecification extends AnnotationSpecification {
+    @specify('a sketch is said of a concept')
+    $saidOfAConcept(writing: $Writing): void {
+        $check(writing.is($Concept), 'a sketch is said of a concept, and this is not one');
     }
 }
 
-export class $Shown extends $Concept {
-    get stands(): $Concept | undefined {
-        const number = this.written[0]?.trim();
-        return this.book?.text.find($Chapter)
-            .flatMap(chapter => chapter.text.find($Section))
-            .flatMap(section => section.text.find($Paragraph))
-            .flatMap(paragraph => paragraph.text.find($Concept))
-            .find(concept => !(concept instanceof $Shown) && concept.number === number);
-    }
-    override get parts(): string[] { return this.stands?.parts ?? []; }
-}
-
-export const Concepts = $($Concepts);
-export const Shown = $($Shown);
-export const Asked = $($Asked);
-export const Answered = $($Answered);
-export const Chosen = $($Chosen);
-export const Story = $($Story);
-export const Viewer = $($Viewer);
 export const Concept = $($Concept);
-`})]}),"TheConcept92"),Ia=l(()=>a.jsxs(v,{children:[a.jsx(y,{children:"[The Theme](/dougs-design/#the-theme)"}),a.jsxs(i,{children:[a.jsx(o,{children:"What this book's theme is"}),a.jsx(t,{children:"This book wears a theme of its own, registered on its own book class, so no other book of the library sees it. It is the library's theme with other values and one part added. The part is the concepts: the cards, the questions and my answers under them, and the viewer a card opens in."}),a.jsx(t,{children:"The theme comes in two modes, and I change between them at the top of the page. The library mode keeps the dark of the coming-soon page on the side bar. The gallery mode is white, with the side bar pale. A mode is the same theme with a few values changed, so nothing else in the book knows which one it is in."})]}),a.jsxs(i,{children:[a.jsx(G,{}),a.jsx(o,{children:"The theme's file"}),a.jsx(t,{children:a.jsx(H,{identifier:"code"})})]}),a.jsx(U,{identifier:"code",type:".tsx",children:`import { css, RuleSet } from 'styled-components';
-import { $ } from '@dna-platform/chemistry';
-import { $DougsTheme } from '../.manual/.book';
-
-declare module 'styled-components' {
-    export interface DefaultTheme extends $DesignTheme {}
-}
-
-export class $DesignTheme extends $DougsTheme {
-    size = '1.2rem';
-    ink = '#10252c';
-    paper = '#f6fbfd';
-    link = '#166178';
-    accent = '#0c1b1f';
-    bright = '#e8e4df';
-    opal = '#c8f4fb';
-    tint = '#c8f4fb';
-    mine = '#e8590c';
-    quiet = \`color-mix(in srgb, \${this.ink} 64%, \${this.paper})\`;
-    hairline = \`color-mix(in srgb, \${this.ink} 14%, \${this.paper})\`;
-
-    protected override parts(): RuleSet[] {
-        return [...super.parts(), this.concepts()];
-    }
-
-    protected concepts(): RuleSet {
-        return css\`
-            .pd-canonical.pd-chapter .pd-section:is(:has(.pa-concepts), :has(.pa-asked), :has(.pa-chosen)) .pd-heading { margin: 2.4rem 0 .4rem; font-size: 1.7rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: \${({ theme }) => theme.ink}; }
-            .pd-canonical.pd-chapter .pd-section:is(:has(.pa-concepts), :has(.pa-asked), :has(.pa-chosen)) .pd-heading .pa-reference { color: inherit; text-decoration: none; }
-            .pd-canonical.pd-chapter .pd-paragraph:is(.pa-asked, .pa-chosen) { max-width: 46rem; font-size: 1.3rem; line-height: 1.45; }
-            .pd-canonical.pd-chapter .pd-paragraph.pa-story { max-width: 46rem; margin-block-start: 2.2rem; padding-inline-start: .9rem; border-inline-start: 3px solid \${({ theme }) => theme.link}; }
-            .pd-paragraph.pa-story::before { content: 'how it came to be'; display: block; font: 600 .6rem/1.9 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: \${({ theme }) => theme.link}; }
-            .pd-canonical.pd-chapter .pd-paragraph.pa-story + .pd-paragraph { max-width: 46rem; padding-inline-start: calc(.9rem + 3px); color: \${({ theme }) => theme.quiet}; }
-            .pd-canonical.pd-chapter .pd-paragraph.pa-answered { max-width: 46rem; margin-block-start: 2.2rem; padding-inline-start: .9rem; border-inline-start: 3px solid \${({ theme }) => theme.mine}; }
-            .pd-paragraph.pa-answered::before { content: 'what I said'; display: block; font: 600 .6rem/1.9 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: \${({ theme }) => theme.mine}; }
-            .pd-paragraph.pa-concepts, .pd-paragraph.pa-wide { max-width: none; }
-            .pd-paragraph.pa-concepts { display: grid; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); gap: 2.8rem 1.6rem; margin-block: 1.6rem 1rem; }
-            .pd-concept { display: block; }
-            .pd-concept-opens { display: block; position: relative; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
-            .pd-concept-number { position: absolute; left: -.6rem; top: -.6rem; display: grid; place-items: center; min-width: 2.1rem; height: 2.1rem; padding: 0 .45rem; border-radius: 99px; background: \${({ theme }) => theme.accent}; color: #fff; font: 600 .86rem/1 system-ui, sans-serif; box-shadow: 0 0 0 2px \${({ theme }) => theme.paper}; }
-            .pd-concept-state { display: inline-block; margin-inline-start: .5rem; padding: 0 .5rem; border-radius: 99px; background: \${({ theme }) => theme.opal}; color: \${({ theme }) => theme.accent}; font: 600 .56rem/1.9 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; vertical-align: .2em; }
-            .pd-concept-said { display: block; margin-block-start: .55rem; padding-inline-start: .65rem; border-inline-start: 2px solid \${({ theme }) => theme.mine}; font-size: .98rem; line-height: 1.35; }
-            .pd-concept-said::before { content: 'what I said'; display: block; font: 600 .56rem/1.8 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: \${({ theme }) => theme.mine}; }
-            .pd-concept-desk { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border-radius: 4px; box-shadow: 0 0 0 1px \${({ theme }) => theme.hairline}, 0 18px 40px -26px rgba(12, 27, 31, .55); transition: box-shadow .35s ease, transform .35s ease; }
-            .pd-concept-phone { position: absolute; right: 5%; bottom: -9%; width: 19%; aspect-ratio: 390 / 844; object-fit: cover; object-position: top; border-radius: 9px; border: 3px solid \${({ theme }) => theme.accent}; background: \${({ theme }) => theme.accent}; box-shadow: 0 14px 26px -14px rgba(12, 27, 31, .7); transition: transform .35s ease; }
-            .pd-concept-opens:hover .pd-concept-desk { box-shadow: 0 0 0 1px \${({ theme }) => theme.link}, 0 22px 44px -24px rgba(12, 27, 31, .6); transform: translateY(-2px); }
-            .pd-concept-opens:hover .pd-concept-phone { transform: translateY(-4px); }
-            .pd-concept-name { display: inline-block; margin-block-start: 1.5rem; font-size: 1.25rem; font-weight: 600; line-height: 1.2; }
-            .pd-concept-says { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin-block-start: .3rem; font-size: .98rem; line-height: 1.38; font-style: italic; font-weight: 400; color: \${({ theme }) => theme.quiet}; }
-
-            .pd-viewer { display: none; }
-            .pd-viewer:fullscreen { --scale: 1; display: grid; grid-template: auto minmax(0, 1fr) / minmax(0, 1fr); width: 100vw; height: 100vh; margin: 0; background: #d5e3e9; color: \${({ theme }) => theme.ink}; }
-            .pd-viewer-number { display: grid; place-items: center; flex: none; align-self: center; min-width: 2rem; height: 2rem; padding: 0 .45rem; border-radius: 99px; background: \${({ theme }) => theme.opal}; color: \${({ theme }) => theme.accent}; font: 600 .86rem/1 system-ui, sans-serif; }
-            .pd-viewer-bar { display: flex; align-items: center; gap: 2rem; padding: .7rem 1.4rem; background: \${({ theme }) => theme.accent}; color: \${({ theme }) => theme.bright}; }
-            .pd-viewer-what { display: flex; align-items: baseline; gap: 1rem; flex: 1 1 0; min-width: 0; overflow: hidden; }
-            .pd-viewer-name { font-size: 1.35rem; font-weight: 500; letter-spacing: .04em; white-space: nowrap; }
-            .pd-viewer-after { font-size: .68rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: \${({ theme }) => theme.opal}; white-space: nowrap; }
-            .pd-viewer-idea { min-width: 0; font-size: 1rem; font-style: italic; font-weight: 400; opacity: .78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-            .pd-viewer-devices, .pd-viewer-moves { display: flex; flex: none; align-items: baseline; gap: 1.1rem; white-space: nowrap; }
-            .pd-viewer-bar button { font: inherit; font-size: .98rem; color: inherit; background: none; border: 0; border-block-end: 1px solid transparent; padding: 0 0 .1rem; cursor: pointer; opacity: .78; }
-            .pd-viewer-bar button:hover { opacity: 1; }
-            .pd-viewer[data-device='both'] button[data-shows='both'], .pd-viewer[data-device='desk'] button[data-shows='desk'], .pd-viewer[data-device='phone'] button[data-shows='phone'] { opacity: 1; color: \${({ theme }) => theme.opal}; border-block-end-color: \${({ theme }) => theme.opal}; }
-            .pd-viewer-count { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; opacity: .7; }
-            .pd-viewer-stage { display: flex; align-items: center; justify-content: center; gap: 1.6rem; padding: 1.4rem; min-width: 0; min-height: 0; overflow: hidden; }
-            .pd-viewer-desk { display: block; flex: none; width: calc(1280px * var(--scale)); height: calc(800px * var(--scale)); overflow: hidden; background: white; box-shadow: 0 0 0 1px rgba(12, 27, 31, .16), 0 30px 60px -36px rgba(12, 27, 31, .6); }
-            .pd-viewer-phone { display: block; flex: none; box-sizing: content-box; width: calc(390px * var(--scale)); height: calc(844px * var(--scale)); border: 10px solid \${({ theme }) => theme.accent}; border-radius: calc(40px * var(--scale) + 10px); overflow: hidden; background: white; box-shadow: 0 30px 60px -30px rgba(12, 27, 31, .7); }
-            .pd-viewer iframe { display: block; border: 0; transform: scale(var(--scale)); transform-origin: 0 0; }
-            .pd-viewer-desk iframe { width: 1280px; height: 800px; }
-            .pd-viewer-phone iframe { width: 390px; height: 844px; }
-            .pd-viewer[data-device='desk'] .pd-viewer-desk { width: 100%; height: 100%; }
-            .pd-viewer[data-device='desk'] .pd-viewer-desk iframe { width: 100%; height: 100%; transform: none; }
-            .pd-viewer[data-device='desk'] .pd-viewer-phone, .pd-viewer[data-device='phone'] .pd-viewer-desk { display: none; }
-
-            @media (max-width: 760px) {
-                .pd-paragraph.pa-concepts { grid-template-columns: minmax(0, 1fr); }
-                .pd-viewer-bar { gap: .9rem; padding: .55rem .9rem; }
-                .pd-viewer-after, .pd-viewer-idea, .pd-viewer-devices { display: none; }
-                .pd-viewer-name { overflow: hidden; text-overflow: ellipsis; font-size: 1.1rem; }
-                .pd-viewer-stage { padding: 0; }
-                .pd-viewer[data-device] .pd-viewer-desk { display: none; }
-                .pd-viewer[data-device] .pd-viewer-phone { display: block; width: 100%; height: 100%; border: 0; border-radius: 0; }
-                .pd-viewer[data-device] .pd-viewer-phone iframe { width: 100%; height: 100%; transform: none; }
-            }
-
-            .pd-code { max-height: 26rem; overflow: auto; margin: 0; font-size: .74rem; font-weight: 400; border-inline-start: 2px solid \${({ theme }) => theme.link}; scrollbar-width: thin; }
-            .hljs-tag, .hljs-name, .hljs-keyword, .hljs-selector-class, .hljs-selector-id, .hljs-selector-tag, .hljs-title { color: \${({ theme }) => theme.link}; }
-            .hljs-attr, .hljs-attribute, .hljs-property { color: #5b4a8c; }
-            .hljs-string, .hljs-number { color: #8a4a2b; }
-            .hljs-comment { color: \${({ theme }) => theme.quiet}; font-style: italic; }
-        \`;
-    }
-}
-
-export class $LibraryMode extends $DesignTheme { }
-
-export class $GalleryMode extends $DesignTheme {
-    paper = '#ffffff';
-    bar = '#eaf1f5';
-    bright = '#10252c';
-    tint = '#166178';
-}
-
-export const DesignTheme = $($DesignTheme);
-export const LibraryMode = $($LibraryMode);
-export const GalleryMode = $($GalleryMode);
-`})]}),"TheTheme93"),qa=l(()=>a.jsxs(v,{children:[a.jsx(y,{children:"[The Camera](/dougs-design/#the-camera)"}),a.jsxs(i,{children:[a.jsx(o,{children:"What the camera is"}),a.jsxs(t,{children:["A concept is a page, and its card in this book shows a photograph of it at a desk's width with another, at a phone's, laid over the corner. The camera takes those photographs. It is the one tool this book needs that the framework does not give, so it stands here, beside the chapter that says what it is, and nothing that builds this book stands outside it. It was once a script kept outside the library, and how it came to stand here is told in ",a.jsx(f,{children:"[Closure](/dougs-story/#closure)"}),"."]}),a.jsx(t,{children:"It looks at every concept that stands beside a chapter of this book under its number, photographs the ones that are newer than their photographs, and says how many things on each run past the right edge of the screen. That count is how a page that does not fit a phone is caught before I am shown it. It writes nothing but the photographs, and the book is bound afterwards in the usual way."}),a.jsxs(t,{children:["The camera photographs concepts. A page of the library itself is looked at with ",a.jsx(f,{children:"[the workbench](/dougs-reference-manual/#developing-a-library)"}),", which keeps the page open while I write it."]})]}),a.jsxs(i,{children:[a.jsx(G,{}),a.jsx(o,{children:"The camera's file"}),a.jsx(t,{children:a.jsx(H,{identifier:"camera"})})]}),a.jsx(U,{identifier:"camera",type:".mjs",children:`// Photographs each concept of this book that is newer than its photographs, at a desk's width and at a phone's,
+export const Sketch = $($Sketch);
+`})]}),"TheConcept91"),wa=d(()=>a.jsxs(m,{children:[a.jsx(g,{children:"[The Camera](/dougs-design/#the-camera)"}),a.jsxs(s,{children:[a.jsx(i,{children:"What the camera is"}),a.jsxs(t,{children:["A concept is a page, and this book shows a photograph of it at a desk's width and another at a phone's. The camera takes those photographs. It is the one tool this book needs that the framework does not give, so it is kept here, beside the chapter that says what it is, and nothing that builds this book is kept outside it. It was once a script kept outside the library, and how it came to be here is told in ",a.jsx(e,{children:"[Closure](/dougs-story/#closure)"}),"."]}),a.jsx(t,{children:"It looks at every concept that is kept beside a chapter of this book under its number, photographs the ones that are newer than their photographs, and says how many things on each run past the right edge of the screen. That count is how a page that does not fit a phone is caught before I am shown it. It writes nothing but the photographs, and the book is bound afterwards in the usual way."}),a.jsxs(t,{children:["The camera photographs concepts. A page of the library itself is looked at with ",a.jsx(e,{children:"[the workbench](/dougs-reference-manual/#developing-a-library)"}),", which keeps the page open while I write it."]})]}),a.jsx(O,{identifier:"camera",type:".mjs",children:`// Photographs each concept of this book that is newer than its photographs, at a desk's width and at a phone's,
 // and says what on it runs past the edge of the screen. Run from anywhere:
 //
 //     node .me/.design/94-the-camera~camera.mjs
 //
-// A concept is a page that stands beside a chapter under its number, as 3-every-concept~025.html. Its two
-// photographs stand beside it under the same number. Bind the book afterwards.
+// A concept is a page kept beside a chapter under its number, as 3-every-concept~025.html. Its two
+// photographs are kept beside it under the same number. Bind the book afterwards.
 import { createRequire } from 'node:module';
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -9368,4 +9006,4 @@ else {
     await browser.close();
     console.log(\`photographed \${wanted.length}; bind the book to see them\`);
 }
-`})]}),"TheCamera94"),Ea=h(z),Oa=l(()=>a.jsxs(Ea,{children:[Aa(),wa(),Da(),Sa(),La(),za(),Ta(),Ia(),qa()]}),"book");export{Oa as book};
+`})]}),"TheCamera94"),ka=w(P),Da=d(()=>a.jsxs(ka,{children:[ma(),da(),ga(),ua(),xa(),fa(),va(),ya(),wa()]}),"book");export{Da as book};
