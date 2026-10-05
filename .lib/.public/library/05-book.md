@@ -121,6 +121,8 @@ style = styled.div`
 
 The grid stands on the book's own element, the child of the theme's layer; a kind that wants that element to be a `div` overrides `view()` in one line. *The mechanism is [Format's](../writing/11-format-and-theme.md): a layer around the writing, its sheet global to the book.*
 
+> **BUILT THIS WAY ON 2026-10-05 IN DOUG'S LIBRARY, AND CORRECTED BY HIM THE SAME DAY.** A grid places its direct children, and the `$Header` of step 1 is a Format, so the chapter it is said of is drawn inside a `header` and the rule `.pa-header { grid-column: … }` names the element inside the grid's child. It was met as three wrappers told `display: contents` and reported to him as a defect; his answer: *"Why would the annotations a chapter has affect what a book decides to do with it in its view? The purpose of a book is layout."* **Step 3 is struck: the frame is the book's `write()`, as the last section below already says** — each part found by what it carries and drawn inside an element the book makes, its CSS in a styled component on the book's class. The whole of it: [what he corrected first](../writing-a-book/01-03-how-a-book-is-implemented.md#corrected). *Steps 1, 2, 4 and 5 stand.*
+
 **4. The tabs are a table of contents drawn from what the book exposes — about fifteen lines**, in a resource of the header chapter, as the test library's [Entries](../../package/.binding/.test/projects/.table.tsx.tsx) draws Some Projects' table: a Section whose `write()` makes an entry per document, each a Word with a Reference to the document's mention, and marks the one whose mention is the book's bookmark:
 
 ```tsx

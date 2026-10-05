@@ -76,7 +76,7 @@ Every mark is on the page at the first paint, served; the one that moves after i
 | `pa-blank` | the writing's own element | `$Blank.defines` — stood by Space and Break | — | nothing; what wears it has no ink |
 | `pa-content` | the `span` a Content draws as its note, inside the entry | `$Content.note`, through `attrs` | the entry's anchor around the entry | the entry's name: colour, weight |
 | `pa-append` | the Append's own element — **moot** once an annotation's writing is not drawn | `$Append.$Define` | — | nothing |
-| `pd-container` | **every layer** a Format or a Reference stands around a writing, and the theme's own element | `$Writing.view`, on every layer but the writing's own | — | nothing — a rule crosses it and never names it, but a library's layout may say `display: contents` of the ones that wrap what it places |
+| `pd-container` | **every layer** a Format or a Reference stands around a writing, and the theme's own element | `$Writing.view`, on every layer but the writing's own | — | nothing — a rule crosses it and never names it. *A layout that needs to say `display: contents` of one is laying out from outside the book: the book's `write()` places each chapter inside an element of its own, and then the wrapper is never the thing being placed — Doug, 2026-10-05, [what he corrected](../writing-a-book/01-03-how-a-book-is-implemented.md#corrected).* |
 
 ## <a id="writing-against-them--the-rules-of-the-surface"></a>Writing against them — the rules of the surface
 
