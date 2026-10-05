@@ -8,6 +8,9 @@ import TheShelves1 from '../../../../..reference/1-the-shelves';
 import DougsStory2 from '../../../../..reference/2-dougs-story';
 import DougsDesign3 from '../../../../..reference/3-dougs-design';
 import DougsReferenceManual4 from '../../../../..reference/4-dougs-reference-manual';
+import TheBars90 from '../../../../..reference/90-the-bars';
+import TheShelf91 from '../../../../..reference/91-the-shelf';
+import TheBlackAndSky92 from '../../../../..reference/92-the-black-and-sky';
 
 const Book = $($Book);
 
@@ -20,6 +23,9 @@ export const book = () => (
         {DougsStory2()}
         {DougsDesign3()}
         {DougsReferenceManual4()}
+        {TheBars90()}
+        {TheShelf91()}
+        {TheBlackAndSky92()}
     </Book>
 );
 

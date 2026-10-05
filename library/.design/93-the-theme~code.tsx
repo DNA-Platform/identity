@@ -14,72 +14,13 @@ export class $DesignTheme extends $DougsTheme {
     accent = '#0c1b1f';
     bright = '#e8e4df';
     opal = '#c8f4fb';
+    tint = '#c8f4fb';
     mine = '#e8590c';
     quiet = `color-mix(in srgb, ${this.ink} 64%, ${this.paper})`;
     hairline = `color-mix(in srgb, ${this.ink} 14%, ${this.paper})`;
 
     protected override parts(): RuleSet[] {
-        return [...super.parts(), this.rail(), this.front(), this.reading(), this.concepts()];
-    }
-
-    protected override page(): RuleSet {
-        return css`
-            font-family: ${({ theme }) => theme.font};
-            font-size: ${({ theme }) => theme.size};
-            font-weight: 500;
-            line-height: ${({ theme }) => theme.leading};
-            color: ${({ theme }) => theme.ink};
-            background: ${({ theme }) => theme.paper};
-            min-height: 100vh;
-        `;
-    }
-
-    protected rail(): RuleSet {
-        return css`
-            .pd-masthead { color: ${({ theme }) => theme.bright}; line-height: 1.3; }
-            .pd-masthead .pa-reference { color: inherit; text-decoration: none; }
-            .pd-shelf { display: block; font-size: .68rem; letter-spacing: .24em; text-transform: uppercase; color: color-mix(in srgb, ${({ theme }) => theme.bright} 60%, ${({ theme }) => theme.accent}); }
-            .pd-here { display: block; margin-block-start: .45rem; font-size: 1.5rem; font-weight: 300; letter-spacing: .08em; paint-order: stroke fill; -webkit-text-stroke: 2px rgba(100, 210, 210, .22); }
-            .pd-paragraph.pd-byline { text-align: start; font-size: .8rem; letter-spacing: .04em; color: color-mix(in srgb, ${({ theme }) => theme.bright} 60%, ${({ theme }) => theme.accent}); }
-            .pd-byline .pa-reference { color: ${({ theme }) => theme.bright}; }
-            .pa-table-of-contents { color: ${({ theme }) => theme.bright}; scrollbar-width: thin; scrollbar-color: color-mix(in srgb, ${({ theme }) => theme.bright} 20%, ${({ theme }) => theme.accent}) transparent; }
-            .pa-table-of-contents .pd-section { width: auto; max-width: none; margin-block: 0 1.5rem; }
-            .pa-table-of-contents .pd-heading { font-size: .66rem; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: color-mix(in srgb, ${({ theme }) => theme.bright} 58%, ${({ theme }) => theme.accent}); margin: 0 0 .5rem; }
-            .pa-table-of-contents .pd-paragraph { display: block; margin: 0; padding: .3rem 0 .3rem .9rem; border-inline-start: 1px solid color-mix(in srgb, ${({ theme }) => theme.bright} 16%, ${({ theme }) => theme.accent}); line-height: 1.3; }
-            .pa-table-of-contents .pa-reference { text-decoration: none; }
-            .pa-table-of-contents .pa-content { font-size: 1.02rem; font-weight: 400; color: color-mix(in srgb, ${({ theme }) => theme.bright} 76%, ${({ theme }) => theme.accent}); transition: color .4s ease; }
-            .pa-table-of-contents .pa-reference:hover .pa-content { color: ${({ theme }) => theme.bright}; }
-            .pa-table-of-contents .pd-paragraph.pa-open { border-inline-start-color: ${({ theme }) => theme.opal}; }
-            .pa-table-of-contents .pd-paragraph.pa-open .pa-content { color: ${({ theme }) => theme.opal}; }
-
-            @media (max-width: 760px) {
-                .pd-here { margin-block-start: .2rem; font-size: 1.3rem; }
-                .pa-table-of-contents .pd-paragraph { padding: .1rem 0 .25rem; border-inline-start: 0; border-block-end: 1px solid transparent; }
-                .pa-table-of-contents .pd-paragraph.pa-open { border-block-end-color: ${({ theme }) => theme.opal}; }
-            }
-        `;
-    }
-
-    protected front(): RuleSet {
-        return css`
-            .pd-chapter.pa-cover { margin: 0; padding-block-start: 17vh; text-align: center; }
-            .pd-chapter.pa-cover .pd-title { font-size: clamp(2.6rem, 5.5vw, 4.4rem); line-height: 1.1; margin: 0; }
-            .pd-chapter.pa-cover::after { content: ''; display: block; width: clamp(80px, 12vw, 160px); height: 1px; margin: 26px auto 0; background: linear-gradient(90deg, transparent, ${({ theme }) => theme.link}, transparent); }
-            .pd-chapter.pa-synopsis { margin: 5vh auto 0; max-width: 34rem; text-align: center; font-size: 1.35rem; font-style: italic; font-weight: 400; color: ${({ theme }) => theme.quiet}; }
-        `;
-    }
-
-    protected reading(): RuleSet {
-        return css`
-            .pd-canonical.pd-chapter { margin: 0; padding-block-start: 2.4rem; }
-            .pd-canonical.pd-chapter .pd-title { font-size: 2.3rem; line-height: 1.15; margin: 0 0 1.5rem; }
-            .pd-canonical.pd-chapter .pd-title::after { content: ''; display: block; width: 110px; height: 1px; margin: 16px 0 0; background: linear-gradient(90deg, ${({ theme }) => theme.link}, transparent); }
-            .pd-canonical.pd-chapter.pa-appendix .pd-title::before { content: 'how this book is built'; display: block; margin-block-end: .5rem; font-size: .7rem; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: ${({ theme }) => theme.quiet}; }
-            .pd-canonical.pd-chapter .pd-section { margin-block: 0 2rem; }
-            .pd-canonical.pd-chapter .pd-heading { font-size: .72rem; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: ${({ theme }) => theme.quiet}; margin: 0 0 .7rem; }
-            .pd-canonical.pd-chapter .pd-paragraph { max-width: ${({ theme }) => theme.measure}; margin-block: 0 1rem; }
-            .pd-canonical.pd-chapter .pd-paragraph.pa-wide, .pd-canonical.pd-chapter .pd-paragraph.pa-concepts { max-width: none; }
-        `;
+        return [...super.parts(), this.concepts()];
     }
 
     protected concepts(): RuleSet {
@@ -92,6 +33,7 @@ export class $DesignTheme extends $DougsTheme {
             .pd-canonical.pd-chapter .pd-paragraph.pa-story + .pd-paragraph { max-width: 46rem; padding-inline-start: calc(.9rem + 3px); color: ${({ theme }) => theme.quiet}; }
             .pd-canonical.pd-chapter .pd-paragraph.pa-answered { max-width: 46rem; margin-block-start: 2.2rem; padding-inline-start: .9rem; border-inline-start: 3px solid ${({ theme }) => theme.mine}; }
             .pd-paragraph.pa-answered::before { content: 'what I said'; display: block; font: 600 .6rem/1.9 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: ${({ theme }) => theme.mine}; }
+            .pd-paragraph.pa-concepts, .pd-paragraph.pa-wide { max-width: none; }
             .pd-paragraph.pa-concepts { display: grid; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); gap: 2.8rem 1.6rem; margin-block: 1.6rem 1rem; }
             .pd-concept { display: block; }
             .pd-concept-opens { display: block; position: relative; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
@@ -149,4 +91,15 @@ export class $DesignTheme extends $DougsTheme {
     }
 }
 
+export class $LibraryMode extends $DesignTheme { }
+
+export class $GalleryMode extends $DesignTheme {
+    paper = '#ffffff';
+    bar = '#eaf1f5';
+    bright = '#10252c';
+    tint = '#166178';
+}
+
 export const DesignTheme = $($DesignTheme);
+export const LibraryMode = $($LibraryMode);
+export const GalleryMode = $($GalleryMode);

@@ -43,13 +43,19 @@ export default () => (
             <Paragraph>
                 <List />
                 <Line>
-                    <Means>$[[ The book ]]( Dougs Reference Manual / The Book )</Means>, which puts my name on every book.
+                    <Means>$[[ The book ]]( Dougs Reference Manual / The Book )</Means>, which every book here is.
                 </Line>
                 <Line>
                     <Means>$[[ The theme ]]( Dougs Reference Manual / The Theme )</Means>, which is a stand-in until the designs are built.
                 </Line>
                 <Line>
                     <Means>$[[ The date ]]( Dougs Reference Manual / The Date )</Means>, which a chapter like this one carries.
+                </Line>
+                <Line>
+                    <Means>$[[ The pages ]]( Dougs Reference Manual / The Pages )</Means>, one chapter open at a time.
+                </Line>
+                <Line>
+                    <Means>$[[ The frames ]]( Dougs Reference Manual / The Frames )</Means>, where things stand on the screen.
                 </Line>
                 <Line>
                     <Means>$[[ Initializing a library ]]( Dougs Reference Manual / Initializing a Library )</Means>, which says how one like this is begun and how it is bound.
@@ -61,24 +67,24 @@ export default () => (
             <Paragraph>
                 <List />
                 <Line>
-                    <Means>$[[ The pages ]]( Dougs Design / The Pages )</Means>, one chapter open at a time.
-                </Line>
-                <Line>
-                    <Means>$[[ The frame ]]( Dougs Design / The Frame )</Means>, where things stand on the screen.
-                </Line>
-                <Line>
                     <Means>$[[ The concept ]]( Dougs Design / The Concept )</Means>, a numbered sketch and the viewer it opens in.
                 </Line>
                 <Line>
-                    <Means>$[[ Its theme ]]( Dougs Design / The Theme )</Means>, the paper, the ink and the dark of the rail.
+                    <Means>$[[ Its theme ]]( Dougs Design / The Theme )</Means>, the paper, the ink and its two modes.
                 </Line>
                 <Line>
                     <Means>$[[ The camera ]]( Dougs Design / The Camera )</Means>, which photographs each sketch.
                 </Line>
             </Paragraph>
             <Paragraph>
-                An appendix like that is to look like a reference manual, so that it can read as one before it
-                spins off into a book of its own when its book grows too large.
+                This book carries two of its own, <Means>$[[ the sheet ]]( ./The Sheet )</Means> it is read on
+                and <Means>$[[ its papers ]]( ./The Papers )</Means>. The catalogue
+                carries <Means>$[[ its bars ]]( Dougs Library / The Bars )</Means> and <Means>$[[ its shelf ]]( Dougs Library / The Shelf )</Means>.
+            </Paragraph>
+            <Paragraph>
+                An appendix reads like a page of the reference manual, because a chapter that carries its file is
+                the same kind of chapter wherever it stands. So it can spin off into a book of its own when its
+                book grows too large, and nothing in it is rewritten.
             </Paragraph>
         </Section>
     </Chapter>

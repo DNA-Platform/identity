@@ -20,6 +20,7 @@
 //     read=<selector>                print what each match says
 //     style=<selector>|<property>    print what each match computes to, the properties separated by commas
 //     box=<selector>                 print where each match stands
+//     tree=<selector>|<depth>        print the elements under the first match, each with its marks and its size
 //     after=<selector>               print what is drawn before and after the first match
 //     rules=<word>|<property>        print every rule whose selector holds the word, in the order they apply
 //     out=<file>                     where the photograph goes
@@ -83,9 +84,15 @@ const open = async () => {
     let saved = 0;
     watch(library, { recursive: true }, () => { saved = Date.now(); });
 
-    // The live site sends a page with nothing printed on it and draws the book once its code arrives, so a page
-    // just loaded is waited on until it says something, or the compiler does.
-    const drawn = page => page.waitForFunction(() => document.body.innerText.trim() !== '' || document.querySelector('vite-error-overlay') !== null, { timeout: 20000, polling: 50 }).catch(() => undefined);
+    // The live site sends a page with nothing printed on it and draws the book once its code arrives, and the
+    // built site prints the page and takes it up a moment later. So a page just loaded is waited on until the
+    // book's code has taken hold of it and it says something, or until the compiler speaks.
+    const drawn = page => page.waitForFunction(() => {
+        if (document.querySelector('vite-error-overlay') !== null) return true;
+        const root = document.getElementById('root');
+        const taken = root !== null && Object.keys(root).some(key => key.startsWith('__reactContainer'));
+        return taken && document.body.innerText.trim() !== '';
+    }, { timeout: 20000, polling: 50 }).catch(() => undefined);
 
     // A page behind another draws nothing and cannot be photographed, so the one looked at is brought forward.
     const tab = async (address, device, fresh) => {
@@ -94,7 +101,8 @@ const open = async () => {
         if (held !== undefined && !held.page.isClosed()) {
             await held.page.bringToFront();
             if (fresh) {
-                await held.page.reload({ waitUntil: 'load' });
+                await held.page.goto('about:blank');
+                await held.page.goto(address, { waitUntil: 'load' });
                 await drawn(held.page);
             }
             return held;
@@ -151,6 +159,11 @@ const open = async () => {
         doing.key = `${device} ${address}`;
         doing.what = 'opening the page';
         const { page, wrong } = await tab(address, device, wanted.has('fresh'));
+        // A book turns to the place its address names a moment after it is drawn, so that place is waited for.
+        if (mark !== undefined) {
+            doing.what = `waiting for the book to turn to ${mark}`;
+            await page.waitForFunction(to => (document.getElementById(to)?.getBoundingClientRect().height ?? 0) > 0, { timeout: 5000, polling: 50 }, mark).catch(() => undefined);
+        }
         doing.what = 'waiting for the page to go quiet';
         await settled(page);
         for (const selector of wanted.getAll('click')) {
@@ -201,6 +214,23 @@ const open = async () => {
             says.push(...(boxes.length === 0 ? [`nothing matches ${selector}`] : boxes.map(text => `${selector} stands at ${text}`)));
         }
 
+        for (const pair of wanted.getAll('tree')) {
+            const [selector, deep = '3'] = pair.split('|');
+            const drawn = await page.$eval(selector, (one, depth) => {
+                const lines = [];
+                const walk = (element, level) => {
+                    const box = element.getBoundingClientRect();
+                    const marks = [...element.classList].map(name => `.${name}`).join('');
+                    lines.push(`${'  '.repeat(level)}${element.tagName.toLowerCase()}${element.id === '' ? '' : `#${element.id}`}${marks} ${Math.round(box.width)}×${Math.round(box.height)}`);
+                    if (level < depth)
+                        for (const child of element.children)
+                            walk(child, level + 1);
+                };
+                walk(one, 0);
+                return lines;
+            }, Number(deep)).catch(() => [`nothing matches ${selector}`]);
+            says.push(...drawn);
+        }
         for (const selector of wanted.getAll('after')) {
             const drawn = await page.$eval(selector, one => ['::before', '::after'].map(which => {
                 const style = getComputedStyle(one, which);

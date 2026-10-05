@@ -1,5 +1,5 @@
-import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
-import { Shelfmark } from '../.manual/.book';
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
+import { Shelfmark, TableOfContents } from '../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -48,6 +48,18 @@ export default () => (
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>How this book is built</Heading>
+            <Paragraph>
+                <Content>$[[ ./The Bars ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Shelf ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Black and Sky ]]</Content>
             </Paragraph>
         </Section>
     </Chapter>

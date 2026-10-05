@@ -1,4 +1,5 @@
-import { About, Author, Autobiography, Chapter, Cover, Subject, Title } from '@dna-platform/public';
+import { About, Author, Autobiography, Chapter, Subject, Title } from '@dna-platform/public';
+import { Cover } from '../.manual/.book';
 
 export default () => (
     <Chapter>

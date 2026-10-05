@@ -1,4 +1,5 @@
-import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
+import { TableOfContents } from './.book';
 
 export default () => (
     <Chapter>
@@ -8,7 +9,7 @@ export default () => (
             [[ Table of Contents ]]
         </Title>
         <Section>
-            <Heading>Contents</Heading>
+            <Heading>The book and its frame</Heading>
             <Paragraph>
                 <Content>$[[ ./The Book ]]</Content>
             </Paragraph>
@@ -16,16 +17,10 @@ export default () => (
                 <Content>$[[ ./The Theme ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./The Date ]]</Content>
+                <Content>$[[ ./The Pages ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./The Shelfmark ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./Initializing a Library ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./Developing a Library ]]</Content>
+                <Content>$[[ ./The Frames ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Parenthetical />
@@ -38,6 +33,36 @@ export default () => (
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>What every book has</Heading>
+            <Paragraph>
+                <Content>$[[ ./The Cover ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Table ]]</Content>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>What a chapter may carry</Heading>
+            <Paragraph>
+                <Content>$[[ ./The Listing ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Date ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Shelfmark ]]</Content>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Making the library</Heading>
+            <Paragraph>
+                <Content>$[[ ./Initializing a Library ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./Developing a Library ]]</Content>
             </Paragraph>
         </Section>
     </Chapter>

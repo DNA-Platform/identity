@@ -1,9 +1,8 @@
 import { Chapter, Code, Heading, Paragraph, Section, Title } from '@dna-platform/public';
-import { Appendix, Wide } from './.book';
+import { Append, Listing } from '../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Appendix />
         <Title>[[ The Concept ]]</Title>
         <Section>
             <Heading>What a concept is</Heading>
@@ -50,11 +49,17 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Listing />
             <Heading>The concept's file</Heading>
             <Paragraph>
-                <Wide />
-                <Code language="tsx">![[ code.tsx ]]</Code>
+                <Code identifier="code" />
             </Paragraph>
         </Section>
+        <Append
+            identifier="code"
+            type=".tsx"
+        >
+            ![[ code.tsx ]]
+        </Append>
     </Chapter>
 );

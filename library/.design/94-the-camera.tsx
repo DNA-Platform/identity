@@ -1,9 +1,8 @@
 import { Chapter, Code, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Appendix, Wide } from './.book';
+import { Append, Listing } from '../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Appendix />
         <Title>[[ The Camera ]]</Title>
         <Section>
             <Heading>What the camera is</Heading>
@@ -29,11 +28,17 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Listing />
             <Heading>The camera's file</Heading>
             <Paragraph>
-                <Wide />
-                <Code language="javascript">![[ camera.mjs ]]</Code>
+                <Code identifier="camera" />
             </Paragraph>
         </Section>
+        <Append
+            identifier="camera"
+            type=".mjs"
+        >
+            ![[ camera.mjs ]]
+        </Append>
     </Chapter>
 );

@@ -1,4 +1,5 @@
 import { Chapter, Code, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Append, Listing } from './.book';
 
 export default () => (
     <Chapter>
@@ -56,10 +57,17 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Listing />
             <Heading>The workbench's file</Heading>
             <Paragraph>
-                <Code language="javascript">![[ workbench.mjs ]]</Code>
+                <Code identifier="workbench" />
             </Paragraph>
         </Section>
+        <Append
+            identifier="workbench"
+            type=".mjs"
+        >
+            ![[ workbench.mjs ]]
+        </Append>
     </Chapter>
 );

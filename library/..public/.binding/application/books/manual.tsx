@@ -10,6 +10,11 @@ import TheDate3 from '../../../../.manual/3-the-date';
 import TheShelfmark4 from '../../../../.manual/4-the-shelfmark';
 import InitializingALibrary5 from '../../../../.manual/5-initializing-a-library';
 import DevelopingALibrary6 from '../../../../.manual/6-developing-a-library';
+import ThePages7 from '../../../../.manual/7-the-pages';
+import TheFrames8 from '../../../../.manual/8-the-frames';
+import TheCover9 from '../../../../.manual/9-the-cover';
+import TheTable10 from '../../../../.manual/10-the-table';
+import TheListing11 from '../../../../.manual/11-the-listing';
 
 const Book = $($Book);
 
@@ -24,6 +29,11 @@ export const book = () => (
         {TheShelfmark4()}
         {InitializingALibrary5()}
         {DevelopingALibrary6()}
+        {ThePages7()}
+        {TheFrames8()}
+        {TheCover9()}
+        {TheTable10()}
+        {TheListing11()}
     </Book>
 );
 

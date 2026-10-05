@@ -1,4 +1,5 @@
 import { Chapter, Code, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Append, Listing } from './.book';
 
 export default () => (
     <Chapter>
@@ -7,23 +8,36 @@ export default () => (
             <Heading>What a book is here</Heading>
             <Paragraph>
                 Every book in this library extends the library's own book class, so what a book is here is decided
-                once. The class draws one thing before a book's chapters: a byline, the author the book's cover
-                names, which leads to <Means>$[[ Dougs Story ]]</Means> from every book. A book opened at its cover
-                stays at the top of its page, so the byline is the first thing in view. Its file is also where the
-                theme is registered for the framework's on the library's book class: every book of the library is a
-                subclass and inherits the registration, so the Theme the framework stands on every book
-                is <Means>$[[ ./The Theme ]]</Means>.
+                once. The class does three things. It writes the library's name before a book's chapters, a way
+                home from every book. It stands <Means>$[[ ./The Pages ]]</Means>, so one chapter is open at a time.
+                And it stands a frame, the side bar of <Means>$[[ ./The Frames ]]</Means>, unless a book says
+                another. Its file is also where the theme is registered for the framework's on the library's book
+                class: every book of the library is a subclass and inherits the registration, so the Theme the
+                framework stands on every book is <Means>$[[ ./The Theme ]]</Means>.
+            </Paragraph>
+            <Paragraph>
+                The file also holds the switch. A book says which views it offers, a spread, a paper, a way of
+                showing its table, and the switch draws them as words to press. A press gives the book that view
+                from outside, in front of its own, and pressing another takes it back out. No chapter is rewritten
+                for a view.
             </Paragraph>
         </Section>
         <Section>
+            <Listing />
             <Heading>The book's file</Heading>
             <Paragraph>
                 The file stands beside this chapter and is printed as it is on disk. The manual's book file is the
                 door: it takes the class from here, and every other book of the library imports it from there.
             </Paragraph>
             <Paragraph>
-                <Code>![[ code.tsx ]]</Code>
+                <Code identifier="code" />
             </Paragraph>
         </Section>
+        <Append
+            identifier="code"
+            type=".tsx"
+        >
+            ![[ code.tsx ]]
+        </Append>
     </Chapter>
 );

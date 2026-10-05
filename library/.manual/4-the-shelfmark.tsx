@@ -1,4 +1,5 @@
 import { Chapter, Code, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Append, Listing } from './.book';
 
 export default () => (
     <Chapter>
@@ -20,10 +21,17 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Listing />
             <Heading>The shelfmark's file</Heading>
             <Paragraph>
-                <Code>![[ code.tsx ]]</Code>
+                <Code identifier="code" />
             </Paragraph>
         </Section>
+        <Append
+            identifier="code"
+            type=".tsx"
+        >
+            ![[ code.tsx ]]
+        </Append>
     </Chapter>
 );
