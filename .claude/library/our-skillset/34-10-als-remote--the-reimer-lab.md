@@ -42,6 +42,34 @@ The value goes as the first line of stdin and is read into an *unexported* varia
 
 Known hosts for the lab's machines live in `.tools/known_hosts_reimer` inside [the folder](34-02-als-remote--the-folder.md), never in the shared home's `~/.ssh`. Every `ssh` is run with `-F /dev/null`, so the shared account's own SSH configuration is never read.
 
+## How the lab works — by the book
+
+Doug, 2026-10-05: *"I want us to be completely by the book. How do people usually do things like
+this? ... Should we be doing this on the servers that Jake/Ming gave us? Is this a kind of workflow
+they would do there?"* — and: *"we want to be doing things in the standard way for the lab, using the
+standard code."* Read off jr-compute001 and the lab's code, on `run-20261005-1614-reimer-sources`:
+
+- **The pipeline is a container.** `cajal/pipeline` ships as the image `ninai/pipeline`, and its
+  `K8/` folder holds the Kubernetes manifests the lab runs it with. "Minion" CronJobs populate the
+  tables (`minion.yaml`, `minion-gpu.yaml`), and there are Jupyter notebook pod deployments.
+- **People work in containers on the compute servers, from the lab's registry**
+  (`jr-saltmaster.ad.bcm.edu:5000`). On 2026-10-05, `erin-jr_notebook-1` was running from
+  `ml-gpu-pipeline:cleaned` and had been up three weeks; `jrlab-stimulus-pipeline` and
+  `dj-mcp-analysis-jrlab` containers ran beside it. About fifty people, Erin, Ming, Beth, Cameron and
+  doug among them, have homes there.
+- **What the lab's images hold.** `ml-gpu-pipeline:cleaned` has `datajoint 0.12.9`, `pipeline 0.2.0`,
+  `stimulus`, `scanreader` and `torch 2.8`. `jrlab-stimulus-pipeline` adds `caiman 1.0`. The registry
+  also has `caiman_pipeline:v1.9.6` and `stack-minion:v1`. **`nexport`, the lab's exporter, is in
+  none of them.**
+- **Tables a pipeline computes are filled by the lab's jobs** into `pipeline_*`. A person's own
+  derived tables go in their own prefixed schema: doug's grant is `doug_%`, the arrangement Ming set
+  up. Other people's schemas are invisible to us, so whether, for example, Erin has `erin_*` cannot be
+  seen.
+
+So by the book, the team's lab-side work runs in a personal container from the lab's image on a
+compute server, as Erin's does. The box is the bridge between this machine and the lab, and the
+team's own GPU.
+
 ## Our data, at the source
 
 `pipeline_experiment.scan` holds both animals. `pipeline_meso` holds 33977's four delivered scans (12-1, 12-2, 17-1, 17-3) processed **two ways**:
