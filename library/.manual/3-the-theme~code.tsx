@@ -16,11 +16,7 @@ export class $LibraryBookTheme extends $Theme {
     measure = '44rem';
     side = '15.5rem';
     space = '1.5rem';
-    sideColumn = '256px';
-    bothColumn = '240px';
-    twoColumn = '236px';
-    cardsColumn = '244px';
-    railColumn = '68px';
+    holdsColumn = '240px';
     barHeight = '50px';
     beat = '320ms';
     narrow = '48rem';

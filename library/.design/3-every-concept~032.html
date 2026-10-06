@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en" data-at="library">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Library's Page, in the Site's Language</title>
+<meta name="number" content="32">
+<meta name="state" content="idea">
+<meta name="after" content="the shelf of 1 in the frame of 15, in the visual language of the coming-soon page: mostly black, one touch at the edge of noticing">
+<meta name="idea" content="The catalogue's page in the site's visual language rather than its elements: the black ground and the warm off-white words; a book's hue read as the dot beside its name and the hairline under it when it is open, never as a paint; its cover in its own scheme. The catalogue is the first book on its own shelf. An entry pressed in the side bar opens on this page; a cover goes to the book.">
+<meta name="said" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    /* ---- the scheme, by role, in the language of the coming-soon page: mostly black, one touch at the threshold of noticing. ----
+       ground        what the site sits on, the soft black
+       words         what is read on the ground, the warm off-white, and a dimmer step of it
+       hue           a book's one hue, one of the page's five orbs: warm 30, rose 340, lavender 250, sky 200, mint 160.
+                     It is never painted. It is an undertone in a cover's black, a dot, and a hairline under an open name.
+       paper, ink    the page a book is read on, warm, and what is read on it */
+    :root {
+        --ground: #0c1b1f; --words: #e8e4df; --words-dim: rgba(232, 228, 223, .55); --on-ground: rgba(232, 228, 223, .07); --ground-line: rgba(232, 228, 223, .09);
+        --paper: #faf8f5; --ink: #1d2528; --soft: #6a7378; --line: #e5e1da; --panel: #f3f0eb;
+        --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Inter', system-ui, sans-serif;
+    }
+    /* every other book has a scheme of its own, made by the same method (33); on this page it shows as its cover, its dot and its hairline */
+    .story, .me { --hue: 30; --own-ground: #1a1410; --own-words: #ece4d6; }
+    .design { --hue: 340; --own-ground: #1b1015; --own-words: #f0e6e8; }
+    .manual { --hue: 250; --own-ground: #100f1a; --own-words: #e4e3ee; }
+    .story, .design, .manual, .me {
+        --dot: hsl(var(--hue) 32% 60%);
+        --hairline: linear-gradient(90deg, transparent, hsl(var(--hue) 40% 62% / .6), transparent);
+    }
+
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body { display: grid; grid-template: auto auto minmax(0, 1fr) / 240px minmax(0, 1fr); grid-template-areas: "lib lib" "holds sub" "holds thing"; overflow: hidden; background: var(--paper); color: var(--ink); font: 400 14px/1.5 var(--sans); }
+    a { color: inherit; text-decoration: none; cursor: pointer; }
+    svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    h4 { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font: 600 10.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+    h4 small { margin-left: auto; font: 400 11.5px/1 var(--sans); letter-spacing: 0; text-transform: none; }
+
+    /* the bar across the top is the library's, on the ground. Nothing on it is painted; the open subject is lit by a hairline. */
+    .lib { grid-area: lib; display: flex; align-items: center; gap: 6px; min-width: 0; padding: 9px 18px; background: var(--ground); color: var(--words); }
+    .logo { position: relative; display: flex; align-items: center; gap: 10px; flex: none; margin-right: 12px; padding: 4px 8px 6px; border-radius: 8px; }
+    .logo i { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--ground-line); border-radius: 8px; font: 400 17px/1 var(--serif); font-style: normal; }
+    .logo b { font: 400 21px/1 var(--serif); letter-spacing: .04em; white-space: nowrap; }
+    .subjects { display: flex; gap: 2px; min-width: 0; }
+    .s { position: relative; display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px; color: var(--words-dim); font-size: 13.5px; white-space: nowrap; }
+    .s i { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--dot); opacity: .8; }
+    .s b { font-weight: 500; }
+    .s.on, [data-at="library"] .logo { background: var(--on-ground); color: var(--words); }
+    .s.on::after, [data-at="library"] .logo::after { content: ''; position: absolute; left: 10px; right: 10px; bottom: 1px; height: 1px; background: var(--hairline, linear-gradient(90deg, transparent, rgba(232, 228, 223, .45), transparent)); }
+    .find { display: flex; align-items: center; gap: 8px; margin-left: auto; padding: 6px 11px; border-radius: 9px; background: var(--on-ground); color: var(--words-dim); white-space: nowrap; }
+    .me { display: flex; align-items: center; gap: 9px; margin-left: 14px; color: var(--words); }
+    .me i { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid hsl(var(--hue) 40% 62% / .55); border-radius: 50%; font: 400 15px/1 var(--serif); font-style: normal; }
+    .me b { font-weight: 500; white-space: nowrap; }
+
+    /* the side bar holds what this book holds: its own chapter, and an entry for each book filed here. An entry opens on this page. */
+    .holds { grid-area: holds; min-width: 0; padding: 18px 12px; overflow: auto; background: var(--ground); color: var(--words); border-right: 1px solid var(--ground-line); }
+    .holds .chain { margin: 0 9px 16px; font-size: 12px; line-height: 1.4; color: var(--words-dim); }
+    .holds .chain b { display: block; margin-top: 2px; font: 400 17px/1.1 var(--serif); letter-spacing: .02em; color: var(--words); }
+    .holds h4 { margin: 0 0 8px; color: var(--words-dim); }
+    .holds a { display: flex; align-items: center; gap: 9px; padding: 6px 9px; border-radius: 8px; color: var(--words-dim); }
+    .holds a i { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--dot, var(--words-dim)); opacity: .75; }
+    .holds a.self i { background: var(--words); opacity: .7; }
+    .holds a b { font-weight: 500; }
+    .holds a small { margin-left: auto; font-size: 12px; color: var(--words-dim); }
+    .holds a.on { background: var(--on-ground); color: var(--words); }
+    .holds a.on i { opacity: 1; }
+    .holds .built { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--ground-line); }
+    .holds .built a { font-size: 12.5px; padding: 4px 9px; }
+
+    /* the page's head: what it is filed under, its name, who it is by, its tools */
+    .sub { grid-area: sub; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 20px; min-width: 0; padding: 22px 32px 14px; }
+    .chain { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--soft); white-space: nowrap; }
+    .chain em { font: 600 9.5px/1 var(--sans); font-style: normal; letter-spacing: .12em; text-transform: uppercase; }
+    .chain a { font-weight: 500; color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+    .title { min-width: 0; }
+    h1 { margin-top: 4px; font: 400 36px/1.04 var(--serif); letter-spacing: .02em; white-space: nowrap; }
+    .title p { margin-top: 4px; font-size: 13px; color: var(--soft); }
+    .title p a { font-weight: 500; color: var(--ink); }
+    .tools { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+    .seg { display: flex; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); }
+    .seg span { padding: 6px 12px; color: var(--soft); }
+    .seg span.on { background: var(--ground); color: var(--words); font-weight: 500; }
+
+    /* the page: what the book says of itself, then its shelf, then the entry that was pressed */
+    .thing { grid-area: thing; min-width: 0; padding: 6px 32px 40px; overflow: auto; }
+    .says { max-width: 56ch; margin-bottom: 28px; font: 400 20px/1.5 var(--serif); color: var(--ink); }
+    .shelf { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; margin-bottom: 34px; }
+    .book p { margin-top: 8px; font-weight: 500; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .book small { color: var(--soft); font-size: 12px; }
+
+    /* a cover: the book's face, as 1 draws it. My own books are the ground; a book's hue is an undertone in that black, felt before it is seen.
+       The foot names who it is by. The book that catalogues itself is the first on the shelf, in the library's own scheme. */
+    .cover { position: relative; display: flex; flex-direction: column; aspect-ratio: 2 / 3; padding: 13px 12px 11px 16px; border-radius: 4px 7px 7px 4px; color: var(--own-words, var(--words)); background: var(--own-ground, var(--ground)); box-shadow: inset 5px 0 0 rgba(0, 0, 0, .28), inset 6px 0 0 rgba(255, 255, 255, .08), 0 10px 20px -10px rgba(0, 0, 0, .45); }
+    .cover b { font: 400 15px/1.15 var(--serif); letter-spacing: .02em; }
+    .cover i { margin-top: auto; font: 500 9.5px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; font-style: normal; opacity: .55; }
+    .cover::after { content: ''; position: absolute; left: 16px; right: 12px; top: 56%; height: 1px; background: rgba(255, 255, 255, .14); }
+
+    /* the entry pressed in the side bar, open under the shelf: the cover large, what the book is about, and the way in */
+    .entry { display: flex; gap: 26px; align-items: flex-start; padding: 22px 24px; border: 1px solid var(--line); border-radius: 16px; }
+    .entry .cover { flex: none; width: 150px; padding: 18px 14px 12px 22px; }
+    .entry .cover b { font-size: 22px; }
+    .entry .words { min-width: 0; }
+    .entry em { display: flex; align-items: center; gap: 8px; font: 600 10.5px/1 var(--sans); font-style: normal; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+    .entry em i { width: 7px; height: 7px; border-radius: 50%; background: var(--dot); }
+    .entry h2 { margin: 6px 0 8px; font: 400 26px/1.1 var(--serif); letter-spacing: .02em; }
+    .entry .says { margin-bottom: 14px; font-size: 18px; }
+    .entry .counts { display: flex; gap: 22px; margin-bottom: 18px; font-size: 12.5px; color: var(--soft); }
+    .entry .counts b { color: var(--ink); font-weight: 500; }
+    .read { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 99px; background: var(--ground); color: var(--words); font-weight: 500; white-space: nowrap; }
+
+    /* on a phone: the bar stays at the top, what the page holds becomes a row of pills under its name, the shelf three across */
+    @media (max-width: 760px) {
+        body { display: flex; flex-direction: column; overflow: auto; height: auto; min-height: 100%; }
+        .lib { position: sticky; top: 0; z-index: 4; height: 50px; margin-right: 54px; padding: 0 8px 0 14px; gap: 4px; overflow: auto hidden; scrollbar-width: none; }
+        .logo { margin-right: 8px; }
+        .logo b { font-size: 19px; }
+        .find, .me b { display: none; }
+        .me { position: fixed; z-index: 5; top: 0; right: 0; justify-content: center; width: 54px; height: 50px; margin: 0; background: var(--ground); }
+        .sub { order: 1; flex-direction: column; align-items: stretch; padding: 16px 16px 12px; }
+        h1 { font-size: 28px; white-space: normal; }
+        .holds { order: 2; display: flex; align-items: center; gap: 6px; padding: 10px 16px 12px; overflow: auto hidden; scrollbar-width: none; border-right: 0; }
+        .holds .chain, .holds h4 small { display: none; }
+        .holds h4 { flex: none; margin: 0 6px 0 0; }
+        .holds a { flex: none; padding: 5px 11px 5px 9px; border: 1px solid var(--ground-line); border-radius: 99px; white-space: nowrap; }
+        .holds a.on { border-color: rgba(232, 228, 223, .3); }
+        .holds a small { margin-left: 4px; }
+        .holds .built { display: contents; }
+        .thing { order: 3; padding: 16px 16px 24px; }
+        .says { font-size: 18px; }
+        .shelf { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+        .cover b { font-size: 14.5px; }
+        .entry { flex-direction: column; gap: 16px; padding: 16px; }
+        .entry .cover { width: 120px; }
+    }
+</style>
+</head>
+<body>
+
+<header class="lib">
+    <a class="logo"><i>D</i><b>Dougs Library</b></a>
+    <nav class="subjects">
+        <a class="s story"><i></i><b>Dougs Story</b></a>
+        <a class="s design"><i></i><b>Dougs Design</b></a>
+        <a class="s manual"><i></i><b>Dougs Reference Manual</b></a>
+    </nav>
+    <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find in the library</span>
+    <a class="me"><i>D</i><b>The Librarian</b></a>
+</header>
+
+<aside class="holds">
+    <div class="chain">Filed under itself<b>Dougs Library</b></div>
+    <h4>Holds<small>1 chapter · 4 books</small></h4>
+    <a><i></i><b>The Shelves</b></a>
+    <a class="self"><i></i><b>Dougs Library</b></a>
+    <a class="on story"><i></i><b>Dougs Story</b><small>4</small></a>
+    <a class="design"><i></i><b>Dougs Design</b><small>4</small></a>
+    <a class="manual"><i></i><b>Dougs Reference Manual</b><small>18</small></a>
+    <div class="built">
+        <h4>How this book is built</h4>
+        <a><i></i><b>The Bars</b></a>
+    </div>
+</aside>
+
+<section class="sub">
+    <div class="title">
+        <div class="chain"><em>Filed under</em><a>itself</a></div>
+        <h1>Dougs Library</h1>
+        <p>by <a>The Librarian</a> · four books on one shelf · catalogued by itself</p>
+    </div>
+    <div class="tools">
+        <span class="seg"><span class="on">Shelf</span><span>List</span></span>
+    </div>
+</section>
+
+<main class="thing">
+    <p class="says">The catalogue of my library, filed under what it is about, which is itself. Everything I keep is filed under it, directly or through another book.</p>
+
+    <h4>My books<small>4</small></h4>
+    <div class="shelf">
+        <div class="book"><div class="cover self"><b>Dougs Library</b><i>The Librarian</i></div><p>Dougs Library</p><small>this catalogue · 1 chapter</small></div>
+        <div class="book story"><div class="cover"><b>Dougs Story</b><i>The Librarian</i></div><p>Dougs Story</p><small>my own account · 4 chapters</small></div>
+        <div class="book design"><div class="cover"><b>Dougs Design</b><i>The Librarian</i></div><p>Dougs Design</p><small>the design · 4 chapters</small></div>
+        <div class="book manual"><div class="cover"><b>Dougs Reference Manual</b><i>The Librarian</i></div><p>Dougs Reference Manual</p><small>the parts · 18 chapters</small></div>
+    </div>
+
+    <div class="entry story">
+        <div class="cover"><b>Dougs Story</b><i>The Librarian</i></div>
+        <div class="words">
+            <em><i></i>Filed here · pressed in the contents</em>
+            <h2>Dougs Story</h2>
+            <p class="says">My own account, and the one book here that is by its own subject: a story about me and what I create, told so that it helps to navigate the rest of the library.</p>
+            <div class="counts"><span><b>4</b> chapters</span><span>latest <b>6 October 2026</b></span><span>by <b>The Librarian</b></span></div>
+            <a class="read">Read from Starting Over<svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

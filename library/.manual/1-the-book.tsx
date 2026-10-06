@@ -30,12 +30,12 @@ export default () => (
             <Paragraph>
                 The purpose of a book is layout: the book's own class places its parts, each in an element of its
                 own with a class, and it finds its chapters by what they carry, never by position. Where the
-                regions go is not the book's to say; that is <Means>$[[ an arrangement ]]( ./The Bars )</Means>,
-                one of six said of the book, and <Means>$[[ the layout ]]( ./The Layout )</Means> carries their
-                grids. What colours the regions is <Means>$[[ a tone ]]( ./The Tone )</Means>, said of the book
-                too. The class gives every book its layout, its arrangement and its tone when it is defined, and
-                a type of book that wants another registers it on its class in one line, the way the framework's
-                own theme is registered.
+                regions go is not the book's to say; that is <Means>$[[ the layout ]]( ./The Layout )</Means>,
+                said of the book once, whose one grid is the frame: the library's bar across the top, what the
+                book holds down the side. What colours the regions is <Means>$[[ a tone ]]( ./The Tone )</Means>,
+                said of the book too. The class gives every book its layout and its tone when it is defined, and
+                a type of book that wants another tone registers it on its class in one line, the way the
+                framework's own theme is registered.
             </Paragraph>
         </Section>
         <Section>
@@ -54,7 +54,7 @@ export default () => (
             <Paragraph>
                 What a type reads: its chapters, the ordinary ones; what it places, which its specification
                 counts; which chapter is open, the one the address names, whether the address names the chapter
-                or a heading inside it; the six arrangements and the three tones it may offer as switches. What a
+                or a heading inside it; the three tones it may offer as switches. What a
                 type overrides: the library's bar, the subjects, what the book holds, the head, the front, what the
                 book opens on, the leaves, the switches, the listings a chapter's files are printed as.
             </Paragraph>

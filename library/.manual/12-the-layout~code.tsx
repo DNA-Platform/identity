@@ -76,48 +76,12 @@ export class $Layout extends $Paginated {
 
     protected areas(): RuleSet {
         return css`
-            .pd-book.pa-layout.pa-both-bars {
-                grid-template-columns: ${({ theme }) => theme.bothColumn} minmax(0, 1fr);
+            .pd-book.pa-layout {
+                grid-template-columns: ${({ theme }) => theme.holdsColumn} minmax(0, 1fr);
                 grid-template-rows: auto auto minmax(0, 1fr);
                 grid-template-areas: 'library library' 'holds head' 'holds leaves';
             }
-            .pd-book.pa-layout.pa-side-bar {
-                grid-template-columns: ${({ theme }) => theme.sideColumn} minmax(0, 1fr);
-                grid-template-rows: auto auto minmax(0, 1fr) auto;
-                grid-template-areas: 'library head' 'library leaves' 'holds leaves' 'me leaves';
-            }
-            .pa-layout.pa-side-bar .pd-library { flex-direction: column; align-items: stretch; }
-            .pd-book.pa-layout.pa-top-bar {
-                grid-template-columns: minmax(0, 1fr);
-                grid-template-rows: auto auto auto minmax(0, 1fr);
-                grid-template-areas: 'library' 'head' 'holds' 'leaves';
-            }
-            .pa-layout.pa-top-bar .pd-holds { overflow: auto hidden; white-space: nowrap; scrollbar-width: none; }
-            .pd-book.pa-layout.pa-two-bars {
-                grid-template-columns: ${({ theme }) => theme.twoColumn} minmax(0, 1fr);
-                grid-template-rows: auto auto minmax(0, 1fr);
-                grid-template-areas: 'library library' 'head head' 'holds leaves';
-            }
-            .pd-book.pa-layout.pa-rail {
-                grid-template-columns: ${({ theme }) => theme.railColumn} minmax(0, 1fr);
-                grid-template-rows: auto auto minmax(0, 1fr) auto;
-                grid-template-areas: 'library head' 'library holds' 'library leaves' 'me leaves';
-            }
-            .pa-layout.pa-rail .pd-library { flex-direction: column; align-items: center; }
-            .pa-layout.pa-rail .pd-me { justify-content: center; }
-            .pa-layout.pa-rail .pd-holds { overflow: auto hidden; white-space: nowrap; scrollbar-width: none; }
-            .pd-book.pa-layout.pa-cards {
-                grid-template-columns: ${({ theme }) => theme.cardsColumn} minmax(0, 1fr);
-                grid-template-rows: auto auto minmax(0, 1fr);
-                grid-template-areas: 'library library' 'holds head' 'holds leaves';
-                column-gap: calc(${({ theme }) => theme.space} / 2);
-                padding: 0 calc(${({ theme }) => theme.space} / 2) calc(${({ theme }) => theme.space} / 2);
-                box-sizing: border-box;
-            }
-            .pa-layout.pa-cards .pd-holds { border-radius: calc(${({ theme }) => theme.space} * 0.67); }
-            .pa-layout.pa-cards .pd-head { border-radius: calc(${({ theme }) => theme.space} * 0.67) calc(${({ theme }) => theme.space} * 0.67) 0 0; }
-            .pa-layout.pa-cards .pd-leaves { border-radius: 0 0 calc(${({ theme }) => theme.space} * 0.67) calc(${({ theme }) => theme.space} * 0.67); }
-            .pd-book.pa-layout.pa-both-bars .pd-me, .pd-book.pa-layout.pa-top-bar .pd-me, .pd-book.pa-layout.pa-two-bars .pd-me, .pd-book.pa-layout.pa-cards .pd-me {
+            .pa-layout .pd-me {
                 grid-area: library;
                 justify-self: end;
                 background: none;

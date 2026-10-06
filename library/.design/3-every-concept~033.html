@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four Schemes</title>
+<meta name="number" content="33">
+<meta name="state" content="idea">
+<meta name="after" content="the restraint of the coming-soon page, applied once per book, with none of its effects">
+<meta name="idea" content="A colour scheme for each book, each a set of roles: a deep ground that is never pure black and has an undertone of its own; words in an off-white of the opposite temperature; a hairline as the only rule; a dot; a paper and an ink of its own to read on. Each is shown as it works — the library's bar with the book lit, the book's contents, its page, its cover. The library's is the site's own. The other three are first proposals.">
+<meta name="said" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    /* ---- the roles every scheme fills. Nothing here is an effect; each role is read somewhere. ----
+       ground      the bars: a deep colour, never pure black, with an undertone of its own
+       words       what is read on the ground: an off-white of the opposite temperature, and a dimmer step of it
+       hue         the book's one hue, read as its dot beside a name and as the hairline under the open one
+       paper, ink  what the book is read on, and what is read on it; soft and line follow */
+    .library { --ground: #0c1b1f; --words: #e8e4df; --hue: 200 30% 62%; --paper: #faf8f5; --ink: #1d2528; --soft: #6a7378; --line: #e5e1da; }
+    .story { --ground: #1a1410; --words: #ece4d6; --hue: 30 36% 60%; --paper: #fbf9f3; --ink: #29251d; --soft: #8a8070; --line: #e4ddc9; }
+    .manual { --ground: #100f1a; --words: #e4e3ee; --hue: 250 34% 66%; --paper: #fbfbfd; --ink: #1e1d2b; --soft: #6c6a80; --line: #e3e1ec; }
+    .design { --ground: #1b1015; --words: #f0e6e8; --hue: 340 32% 66%; --paper: #ffffff; --ink: #221a1e; --soft: #7a6b71; --line: #ebe3e6; }
+
+    * { box-sizing: border-box; margin: 0; }
+    body { padding: 28px 32px 40px; background: #f4f2ee; color: #1d2528; font: 400 14px/1.5 'Inter', system-ui, sans-serif; }
+    h1 { font: 400 30px/1.1 'Cormorant Garamond', Georgia, serif; letter-spacing: .02em; }
+    .sub { margin: 4px 0 22px; font-size: 13px; color: #6a7378; max-width: 78ch; }
+    .schemes { display: grid; gap: 18px; }
+    .scheme { border-radius: 14px; overflow: hidden; background: var(--paper); color: var(--ink); box-shadow: 0 10px 24px -16px rgba(12, 27, 31, .35); }
+
+    /* the library's bar, with this book lit */
+    .bar { display: flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--ground); color: var(--words); }
+    .bar .logo { display: flex; align-items: center; gap: 9px; margin-right: 10px; }
+    .bar .logo i { display: grid; place-items: center; width: 26px; height: 26px; border: 1px solid rgba(255, 255, 255, .12); border-radius: 7px; font: 400 15px/1 'Cormorant Garamond', Georgia, serif; font-style: normal; }
+    .bar .logo b { font: 400 18px/1 'Cormorant Garamond', Georgia, serif; letter-spacing: .04em; }
+    .bar a { position: relative; display: flex; align-items: center; gap: 7px; padding: 6px 9px; border-radius: 7px; font-size: 12.5px; opacity: .6; }
+    .bar a i { width: 6px; height: 6px; border-radius: 50%; background: hsl(var(--hue)); }
+    .bar a.on { background: rgba(255, 255, 255, .07); opacity: 1; }
+    .bar a.on::after { content: ''; position: absolute; left: 9px; right: 9px; bottom: 1px; height: 1px; background: linear-gradient(90deg, transparent, hsl(var(--hue) / .7), transparent); }
+
+    /* under it: the book's contents, its page, its cover and its roles */
+    .page { display: grid; grid-template-columns: 170px minmax(0, 1fr) 232px; }
+    .holds { padding: 16px 10px; background: var(--ground); color: var(--words); border-right: 1px solid rgba(255, 255, 255, .08); }
+    .holds h4 { margin: 0 8px 8px; font: 600 10px/1 'Inter'; letter-spacing: .12em; text-transform: uppercase; opacity: .55; }
+    .holds a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 7px; font-size: 12.5px; opacity: .6; }
+    .holds a i { width: 6px; height: 6px; border-radius: 50%; background: hsl(var(--hue)); }
+    .holds a small { margin-left: auto; font-size: 11px; opacity: .7; }
+    .holds a.on { background: rgba(255, 255, 255, .07); opacity: 1; }
+    .words { padding: 22px 26px 26px; }
+    .words h2 { font: 400 26px/1.1 'Cormorant Garamond', Georgia, serif; letter-spacing: .02em; }
+    .words small { display: block; margin: 4px 0 12px; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
+    .words p { max-width: 48ch; font: 400 15.5px/1.6 'Cormorant Garamond', Georgia, serif; }
+    .words p a { color: var(--ink); text-decoration: underline; text-decoration-color: hsl(var(--hue)); text-underline-offset: 3px; }
+    .words hr { width: 120px; height: 1px; margin: 16px 0 0; border: 0; background: linear-gradient(90deg, hsl(var(--hue) / .6), transparent); }
+
+    .roles { display: grid; grid-template-columns: auto 1fr; align-items: center; align-content: start; gap: 7px 12px; padding: 18px 18px 18px 16px; border-left: 1px solid var(--line); font-size: 11.5px; white-space: nowrap; }
+    .roles .cover { display: flex; flex-direction: column; grid-row: span 6; width: 66px; aspect-ratio: 2 / 3; padding: 8px 7px 6px 10px; border-radius: 3px 5px 5px 3px; background: var(--ground); color: var(--words); box-shadow: inset 3px 0 0 rgba(0, 0, 0, .28), inset 4px 0 0 rgba(255, 255, 255, .08), 0 8px 14px -8px rgba(0, 0, 0, .5); }
+    .roles .cover b { font: 400 10.5px/1.15 'Cormorant Garamond', Georgia, serif; letter-spacing: .02em; }
+    .roles .cover i { margin-top: auto; font: 500 6px/1.2 'Inter'; letter-spacing: .08em; text-transform: uppercase; font-style: normal; opacity: .6; }
+    .role { display: flex; align-items: center; gap: 7px; color: var(--soft); }
+    .role i { flex: none; width: 14px; height: 14px; border-radius: 4px; border: 1px solid rgba(0, 0, 0, .08); }
+    .role b { font-weight: 500; color: var(--ink); }
+    .role.ground i { background: var(--ground); }
+    .role.wordsr i { background: var(--words); }
+    .role.hue i { background: hsl(var(--hue)); }
+    .role.hair i { height: 2px; border: 0; background: linear-gradient(90deg, transparent, hsl(var(--hue) / .7), transparent); }
+    .role.paper i { background: var(--paper); }
+    .role.ink i { background: var(--ink); }
+
+    @media (max-width: 760px) {
+        body { padding: 16px; }
+        .bar { overflow: auto hidden; scrollbar-width: none; }
+        .bar a { white-space: nowrap; }
+        .page { grid-template-columns: minmax(0, 1fr); }
+        .holds { display: flex; gap: 6px; padding: 10px 12px; overflow: auto hidden; scrollbar-width: none; border-right: 0; }
+        .holds h4 { display: none; }
+        .holds a { flex: none; border: 1px solid rgba(255, 255, 255, .1); border-radius: 99px; white-space: nowrap; }
+        .roles { border-left: 0; border-top: 1px solid var(--line); }
+    }
+</style>
+</head>
+<body>
+<h1>Four schemes</h1>
+<p class="sub">A scheme for each book, each a set of roles and nothing else: a deep ground with an undertone, words of the opposite temperature, one hue read as a dot and a hairline, a paper and an ink. Shown as each works. The library's is the site's own; the others are first proposals.</p>
+
+<div class="schemes">
+    <section class="scheme library">
+        <header class="bar"><span class="logo"><i>D</i><b>Dougs Library</b></span><a class="on"><i></i>Dougs Library</a><a><i></i>Dougs Story</a><a><i></i>Dougs Design</a><a><i></i>Dougs Reference Manual</a></header>
+        <div class="page">
+            <aside class="holds"><h4>Holds</h4><a class="on"><i></i>The Shelves</a><a><i></i>Dougs Story<small>4</small></a><a><i></i>Dougs Design<small>4</small></a><a><i></i>Dougs Reference Manual<small>18</small></a></aside>
+            <div class="words"><h2>The Shelves</h2><small>Dougs Library · chapter 1</small><p>Everything I keep is filed under this catalogue, directly or through another book, and the shelf is where I pick a book up by its face. My own account is <a>Dougs Story</a>.</p><hr></div>
+            <div class="roles">
+                <span class="cover"><b>Dougs Library</b><i>The Librarian</i></span>
+                <span class="role ground"><i></i><b>ground</b> blue-black</span><span class="role wordsr"><i></i><b>words</b> warm</span>
+                <span class="role hue"><i></i><b>hue</b> sky</span><span class="role hair"><i></i><b>hairline</b> sky</span>
+                <span class="role paper"><i></i><b>paper</b> warm white</span><span class="role ink"><i></i><b>ink</b> slate</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="scheme story">
+        <header class="bar"><span class="logo"><i>D</i><b>Dougs Library</b></span><a class="on"><i></i>Dougs Story</a><a><i></i>Dougs Design</a><a><i></i>Dougs Reference Manual</a></header>
+        <div class="page">
+            <aside class="holds"><h4>Holds</h4><a class="on"><i></i>Starting Over<small>1</small></a><a><i></i>Choosing a Design<small>2</small></a><a><i></i>Closure<small>3</small></a><a><i></i>Ghost-Writing<small>4</small></a></aside>
+            <div class="words"><h2>Starting Over</h2><small>Dougs Story · 30 September 2026</small><p>We are starting from scratch. The library I had was never a design, and nothing of it is lifted unless I point at it. What I keep is catalogued in <a>Dougs Library</a>.</p><hr></div>
+            <div class="roles">
+                <span class="cover"><b>Dougs Story</b><i>The Librarian</i></span>
+                <span class="role ground"><i></i><b>ground</b> umber black</span><span class="role wordsr"><i></i><b>words</b> cream</span>
+                <span class="role hue"><i></i><b>hue</b> amber</span><span class="role hair"><i></i><b>hairline</b> amber</span>
+                <span class="role paper"><i></i><b>paper</b> book</span><span class="role ink"><i></i><b>ink</b> sepia</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="scheme manual">
+        <header class="bar"><span class="logo"><i>D</i><b>Dougs Library</b></span><a><i></i>Dougs Story</a><a><i></i>Dougs Design</a><a class="on"><i></i>Dougs Reference Manual</a></header>
+        <div class="page">
+            <aside class="holds"><h4>Holds</h4><a class="on"><i></i>The Book<small>1</small></a><a><i></i>The Theme<small>3</small></a><a><i></i>The Layout<small>12</small></a><a><i></i>The Turn<small>13</small></a></aside>
+            <div class="words"><h2>The Book</h2><small>Dougs Reference Manual · 1-the-book~code.tsx</small><p>A book of this library draws five regions of its own and places its chapters in them; a type of book says what it holds and how it is read. The theme it reads from is <a>The Theme</a>.</p><hr></div>
+            <div class="roles">
+                <span class="cover"><b>Dougs Reference Manual</b><i>The Librarian</i></span>
+                <span class="role ground"><i></i><b>ground</b> ink violet</span><span class="role wordsr"><i></i><b>words</b> cool</span>
+                <span class="role hue"><i></i><b>hue</b> lavender</span><span class="role hair"><i></i><b>hairline</b> lavender</span>
+                <span class="role paper"><i></i><b>paper</b> cool white</span><span class="role ink"><i></i><b>ink</b> indigo</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="scheme design">
+        <header class="bar"><span class="logo"><i>D</i><b>Dougs Library</b></span><a><i></i>Dougs Story</a><a class="on"><i></i>Dougs Design</a><a><i></i>Dougs Reference Manual</a></header>
+        <div class="page">
+            <aside class="holds"><h4>Holds</h4><a><i></i>The Designs I Am Going With<small>1</small></a><a><i></i>What I Am Asked<small>2</small></a><a class="on"><i></i>Every Concept<small>3</small></a><a><i></i>Driving the Build<small>4</small></a></aside>
+            <div class="words"><h2>Every Concept</h2><small>Dougs Design · by number</small><p>Every concept here has a number, and keeps it. Each is shown as it looks at a desk and on a phone, and I answer by its number. What I found driving the build is in <a>Driving the Build</a>.</p><hr></div>
+            <div class="roles">
+                <span class="cover"><b>Dougs Design</b><i>The Librarian</i></span>
+                <span class="role ground"><i></i><b>ground</b> rose black</span><span class="role wordsr"><i></i><b>words</b> blush</span>
+                <span class="role hue"><i></i><b>hue</b> rose</span><span class="role hair"><i></i><b>hairline</b> rose</span>
+                <span class="role paper"><i></i><b>paper</b> white</span><span class="role ink"><i></i><b>ink</b> plum</span>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

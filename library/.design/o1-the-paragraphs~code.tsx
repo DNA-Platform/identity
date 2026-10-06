@@ -37,6 +37,30 @@ export class $Decision extends $Annotation {
     }
 }
 
+export class $Pain extends $Annotation {
+    specification = new PainSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-pain');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class $Solution extends $Annotation {
+    specification = new SolutionSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-solution');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
 export class QuestionSpecification extends AnnotationSpecification {
     @specify('asked is said of a paragraph')
     $saidOfAParagraph(writing: $Writing): void {
@@ -58,6 +82,22 @@ export class DecisionSpecification extends AnnotationSpecification {
     }
 }
 
+export class PainSpecification extends AnnotationSpecification {
+    @specify('a pain is said of a paragraph')
+    $saidOfAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Paragraph, 'a pain is said of a paragraph, and this is not one');
+    }
+}
+
+export class SolutionSpecification extends AnnotationSpecification {
+    @specify('a solution is said of a paragraph')
+    $saidOfAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Paragraph, 'a solution is said of a paragraph, and this is not one');
+    }
+}
+
 export const Question = $($Question);
 export const Answer = $($Answer);
 export const Decision = $($Decision);
+export const Pain = $($Pain);
+export const Solution = $($Solution);

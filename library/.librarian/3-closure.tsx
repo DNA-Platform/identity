@@ -64,9 +64,6 @@ export default () => (
                     <Means>$[[ The switch ]]( Dougs Reference Manual / The Switch )</Means>, which is something I press to see a book another way.
                 </Line>
                 <Line>
-                    <Means>$[[ The outline ]]( Dougs Reference Manual / The Outline )</Means>, which shows a book's structure.
-                </Line>
-                <Line>
                     <Means>$[[ The pages ]]( Dougs Reference Manual / The Layout )</Means> and <Means>$[[ the turn ]]( Dougs Reference Manual / The Turn )</Means>, which show a book one chapter at a time and lead from each to the next.
                 </Line>
                 <Line>

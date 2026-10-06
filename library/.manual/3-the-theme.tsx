@@ -15,8 +15,8 @@ export default () => (
                 drawn inside. The framework's own theme has no values and no rules, so everything here is mine.
                 Its values are the frame's sketch's own: the soft black of my coming-soon page, the blues walked
                 from it to white, the opal, the orange that is me, one serif and one sans; the fourteen values of
-                the two tones, seven each; the widths of the six arrangements; the faces, sizes and spaces; and
-                one colour, which each book sets to its own.
+                the two tones, seven each; the width of the side bar; the faces, sizes and spaces; and one
+                colour, which each book sets to its own.
             </Paragraph>
         </Section>
         <Section>
@@ -26,10 +26,10 @@ export default () => (
                 anywhere is typed against one theme; a book's own theme sets values and adds parts, and declares
                 nothing. The rules are parts, each a method that returns some rules for one thing on the page —
                 the page, the writing, the links, the figures, the listings, the switches, the turns, the
-                library's bar, the head, the holds, the tones, the outline — composed once in the field that
-                holds the component, so a book's theme changes one part and keeps the rest. What a reader
-                switches is never a part: <Means>$[[ a tone ]]( ./The Tone )</Means>, <Means>$[[ an arrangement ]]( ./The Bars )</Means>, <Means>$[[ the outline ]]( ./The Outline )</Means> each
-                add a class, and the parts that read those classes are here, always.
+                library's bar, the head, the holds, the tones — composed once in the field that holds the
+                component, so a book's theme changes one part and keeps the rest. What a reader switches is
+                never a part: <Means>$[[ a tone ]]( ./The Tone )</Means>, a reading, a paper each add a class,
+                and the parts that read those classes are here, always.
             </Paragraph>
         </Section>
         <Section>

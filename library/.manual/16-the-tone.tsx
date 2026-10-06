@@ -14,7 +14,7 @@ export default () => (
                 The frame has a tone, and a book wears one. Dark is the soft black of my coming-soon page on
                 every bar; light is white; white over black is the light bar over the dark side, which
                 is <Means>$[[ the frame of 26 ]]( Dougs Design / A White Top Bar and a Black Side Bar )</Means> and
-                the frame my story wears. A tone is one of a kind, as <Means>$[[ an arrangement ]]( ./The Bars )</Means> is,
+                the frame my story wears. A tone is one of a kind — saying a second one stands the first down —
                 and every book wears the dark tone unless it says otherwise, because the dark side bar is the
                 thing that makes the library memorable.
             </Paragraph>

@@ -64,7 +64,7 @@ export default () => (
                 perhaps a white bar, all supported, with the dark side bar as the default. The colors of the top
                 bar, the side bar and the logo are values a book sets, so 26 and 27 are two settings of them and
                 not a choice between them. Each book has a color of its own. Where it
-                is: <Means>$[[ every book wears the frame as both bars, drawn once by the base ]]( Dougs Reference Manual / The Book )</Means>, <Means>$[[ the six arrangements as classes a book takes ]]( Dougs Reference Manual / The Bars )</Means>, <Means>$[[ the three tones, dark by default ]]( Dougs Reference Manual / The Tone )</Means>, and <Means>$[[ each book's colour, said on the shelf and in its theme ]]( Dougs Reference Manual / The Colour )</Means>.
+                is: <Means>$[[ every book wears the frame as both bars, drawn once by the base ]]( Dougs Reference Manual / The Book )</Means>, <Means>$[[ the one grid of the frame, the top bar over the side bar ]]( Dougs Reference Manual / The Layout )</Means>, <Means>$[[ the three tones, dark by default ]]( Dougs Reference Manual / The Tone )</Means>, and <Means>$[[ each book's colour, said on the shelf and in its theme ]]( Dougs Reference Manual / The Colour )</Means>.
             </Paragraph>
         </Section>
         <Section>

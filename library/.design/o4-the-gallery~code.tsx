@@ -32,7 +32,7 @@ export class $Gallery extends $Format {
         .pa-gallery .pa-concept .pd-paragraph.pa-source, .pa-gallery .pa-concept .pd-paragraph.pa-close { display: none; }
         .pa-gallery .pd-section.pa-concept.pa-open {
             position: fixed;
-            inset: 0 0 0 ${({ theme }) => theme.bothColumn};
+            inset: 0 0 0 ${({ theme }) => theme.holdsColumn};
             z-index: 1;
             overflow-y: auto;
             padding: ${({ theme }) => theme.space} calc(${({ theme }) => theme.space} * 1.17);

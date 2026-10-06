@@ -31,9 +31,6 @@ export default () => (
                 <Content>$[[ ./The Entry ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./The Bars ]]</Content>
-            </Paragraph>
-            <Paragraph>
                 <Content>$[[ ./The Listing ]]</Content>
             </Paragraph>
             <Paragraph>
@@ -53,9 +50,6 @@ export default () => (
             <Heading>What a reader may switch</Heading>
             <Paragraph>
                 <Content>$[[ ./The Switch ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Outline ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Content>$[[ ./The Tone ]]</Content>

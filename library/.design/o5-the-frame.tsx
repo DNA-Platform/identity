@@ -10,14 +10,18 @@ export default () => (
                 by <Means>$[[ the base book ]]( Dougs Reference Manual / The Book )</Means>: the library's bar across
                 the top with the library's subjects and me, this book's contents down the side, its name and its
                 switches at the head, and the page beside. It wears the frame in the light tone, white, which is
-                this book's colour, and offers every arrangement and every tone as a tab at its head — <Means>$[[ the six arrangements ]]( Dougs Reference Manual / The Bars )</Means> and <Means>$[[ the three tones ]]( Dougs Reference Manual / The Tone )</Means> — because
-                this is the book I look at them in. Its own colour, the rose the frame's sketch gives it, is on
-                its index and its pressed tabs.
+                this book's colour, and offers its two tones as tabs at its head — white, and the black side
+                bar, two of <Means>$[[ the three tones ]]( Dougs Reference Manual / The Tone )</Means> — because
+                this is the book I look at them in. The six arrangements it once offered as tabs are gone: an
+                arrangement is a book's, fixed where the book is registered, and every book of mine wears the
+                same one. Its own colour, the rose the frame's sketch gives it, is on its index and its pressed
+                tabs.
             </Paragraph>
             <Paragraph>
                 The design it follows is <Means>$[[ the white top bar and the opal side bar ]]( ./A White Top Bar and an Opal Side Bar )</Means> in
                 the light tone, with <Means>$[[ the white cards ]]( ./No Bars: White Cards )</Means> in its
-                gallery; the black side bar and the blue with the black top are its other options, one tab away.
+                gallery; the black side bar is its other option, one tab away, and the blue with the black top is
+                sketched before it is a tab.
             </Paragraph>
             <Paragraph>
                 The class of this book overrides what the base draws in two places only: which chapter opens

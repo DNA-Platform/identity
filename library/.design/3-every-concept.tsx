@@ -893,5 +893,81 @@ export default () => (
                 </Paragraph>
             </Section>
         </Section>
+        <Section>
+            <Heading>[[[ Sketched from the Build ]]]</Heading>
+            <Paragraph>
+                These were sketched on 6 October after driving what had been built, for the pains written
+                in <Means>$[[ Driving the Build ]]( ./Driving the Build )</Means>. They are drawn in the visual
+                language of the coming-soon page rather than from its elements: mostly black, one touch at the
+                edge of noticing, and every subtle thing with a function.
+            </Paragraph>
+            <Section>
+                <Concept>32</Concept>
+                <Heading>[[[ The Library's Page, in the Site's Language ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
+                    Concept 32, an idea, after the shelf of 1 in the frame of 15, in the language of the
+                    coming-soon page.
+                </Paragraph>
+                <Paragraph>
+                    The catalogue's page with every catalogue on it given a use. The top bar holds the books
+                    filed under the library and lights the open one with a hairline in its hue. The side bar
+                    holds what this book holds — its own chapter and an entry for each book filed here, each
+                    with a dot in its hue — and an entry pressed there opens on this page, under the shelf: the
+                    cover large, what the book is about, and the way in. A cover on the shelf goes to the book.
+                    The catalogue is the first book on its own shelf, in the library's own scheme, because it
+                    is the book that catalogues itself; every other cover is in its book's scheme. Under a
+                    cover, one line.
+                </Paragraph>
+                <Paragraph>
+                    <Photographs />
+                    <Image>![[ 032-desk.png ]]</Image>
+                    <Image>![[ 032-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    Sketched for <Means>$[[ the catalogue's page ]]( Dougs Library )</Means>, which stands as it
+                    was built until this is chosen.
+                </Paragraph>
+                <Paragraph>
+                    <Source />
+                    <Code>![[ 032.html ]]</Code>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>33</Concept>
+                <Heading>[[[ Four Schemes ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
+                    Concept 33, an idea, after the restraint of the coming-soon page, with none of its effects.
+                </Paragraph>
+                <Paragraph>
+                    A colour scheme for each book, each a set of roles and nothing else: a deep ground that is
+                    never pure black and has an undertone of its own; words in an off-white of the opposite
+                    temperature; one hue, read as a dot and as a hairline; a paper and an ink to read on. Each
+                    is shown as it works — the library's bar with the book lit, the book's contents, its page,
+                    its cover. The library's is the site's own. The story's, the manual's and the design book's
+                    are first proposals.
+                </Paragraph>
+                <Paragraph>
+                    <Photographs />
+                    <Image>![[ 033-desk.png ]]</Image>
+                    <Image>![[ 033-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    Sketched for <Means>$[[ the theme every book's theme sets its values on ]]( Dougs Reference Manual / The Theme )</Means>,
+                    whose fields are to be named for these roles.
+                </Paragraph>
+                <Paragraph>
+                    <Source />
+                    <Code>![[ 033.html ]]</Code>
+                </Paragraph>
+            </Section>
+        </Section>
     </Chapter>
 );

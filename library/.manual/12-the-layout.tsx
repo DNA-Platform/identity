@@ -15,9 +15,9 @@ export default () => (
                 book, once, and it does two things. It shows one chapter at a time: <Means>$[[ the book ]]( ./The Book )</Means> draws
                 each chapter on a leaf of its own and says which leaf is open, and the layout hides the rest —
                 every leaf stays in the document, so a link to any place in the book has somewhere to land. And
-                it carries the six grids of <Means>$[[ the arrangements ]]( ./The Bars )</Means>, each keyed by
-                the class the arrangement puts on the book, so that pressing from one arrangement to another
-                changes a class and redraws nothing.
+                it carries the one grid of the frame — the library's bar across the top with me at its end, what
+                the book holds down the side, the head and the leaves beside — which every book of mine wears,
+                because I want a top bar on every screen and a side bar on most.
             </Paragraph>
         </Section>
         <Section>
@@ -27,8 +27,9 @@ export default () => (
                 which chapters are pages and which is open, with the book's own chapters and the book's own
                 open, and keeps the framework's way of marking them. It is a Format with a look, a styled
                 component composed of parts — the paging, the regions, the grids, the phone — and it is given to
-                every book when the book is defined, so it is always there. That is why the arrangements can be
-                annotations that add a class and nothing else: the rules that read the class live here.
+                every book when the book is defined, so it is always there. That is why a tone, a reading and a
+                paper can be annotations that add a class and nothing else: the rules that read the class live
+                in a container that never leaves.
             </Paragraph>
         </Section>
         <Section>
@@ -55,9 +56,10 @@ export default () => (
             <Heading>Where the layout bites</Heading>
             <Paragraph>
                 A Format given through a switch is a container, and a container added to the book remounts
-                everything inside it. The arrangements were Formats once, and a press replaced the whole book;
-                measured, then made annotations, with their grids here. Anything a reader switches follows that
-                rule: the class changes, the rules were always there.
+                everything inside it. The six arrangements this layout once carried were Formats, and a press
+                replaced the whole book; measured, then made annotations, and then cut, because every book of
+                mine wears the same frame and an arrangement is never a reader's press. Anything a reader
+                switches follows the rule: the class changes, the rules were always there.
             </Paragraph>
         </Section>
         <Append

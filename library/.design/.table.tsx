@@ -22,6 +22,9 @@ export default () => (
                 <Content>$[[ ./Every Concept ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./Driving the Build ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Content>$[[ ./The Library's Home ]]</Content>
             </Paragraph>
             <Paragraph>
@@ -38,6 +41,9 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Content>$[[ ./Sketched to Decide ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./Sketched from the Build ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Content>$[[ ./The frame on every screen ]]</Content>

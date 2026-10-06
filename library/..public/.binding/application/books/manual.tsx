@@ -10,14 +10,12 @@ import TheTheme3 from '../../../../.manual/3-the-theme';
 import TheDate4 from '../../../../.manual/4-the-date';
 import InitializingALibrary5 from '../../../../.manual/5-initializing-a-library';
 import DevelopingALibrary6 from '../../../../.manual/6-developing-a-library';
-import TheOutline7 from '../../../../.manual/7-the-outline';
 import TheAuthorAndTheSubject8 from '../../../../.manual/8-the-author-and-the-subject';
 import TheSwitch9 from '../../../../.manual/9-the-switch';
 import TheManual10 from '../../../../.manual/10-the-manual';
 import TheLayout12 from '../../../../.manual/12-the-layout';
 import TheTurn13 from '../../../../.manual/13-the-turn';
 import TheEntry14 from '../../../../.manual/14-the-entry';
-import TheBars15 from '../../../../.manual/15-the-bars';
 import TheTone16 from '../../../../.manual/16-the-tone';
 import TheFirst17 from '../../../../.manual/17-the-first';
 import TheColour18 from '../../../../.manual/18-the-colour';
@@ -35,14 +33,12 @@ export const book = () => (
         {TheDate4()}
         {InitializingALibrary5()}
         {DevelopingALibrary6()}
-        {TheOutline7()}
         {TheAuthorAndTheSubject8()}
         {TheSwitch9()}
         {TheManual10()}
         {TheLayout12()}
         {TheTurn13()}
         {TheEntry14()}
-        {TheBars15()}
         {TheTone16()}
         {TheFirst17()}
         {TheColour18()}
