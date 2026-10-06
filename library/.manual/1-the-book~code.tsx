@@ -2,15 +2,15 @@ import { Fragment, ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import { $Append, $Book, $Chapter, $Composition, $Section, BookSpecification, Theme, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
-import { DougsTheme } from './3-the-theme~code.tsx';
+import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Outlined as outlined } from './7-the-outline~code.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Switch as switching } from './9-the-switch~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
 
-export class $DougsBook extends $Book {
-    specification = new DougsBookSpecification();
+export class $LibraryBook extends $Book {
+    specification = new LibraryBookSpecification();
     get chapters(): $Chapter[] {
         return this.text.find($Chapter).filter(chapter => [...chapter.classes].includes('pd-canonical'));
     }
@@ -133,25 +133,25 @@ export class $DougsBook extends $Book {
     }
 }
 
-export class DougsBookSpecification extends BookSpecification {
+export class LibraryBookSpecification extends BookSpecification {
     @specify('a book of this library holds only chapters')
-    $holdsOnlyChapters(book: $DougsBook): void {
+    $holdsOnlyChapters(book: $LibraryBook): void {
         $check([...book.text].every(chemical => chemical instanceof $Chapter),
             'a book of this library holds only chapters, and this one holds something else');
     }
 
     @specify('a book of this library has a place for every chapter it holds')
-    $placesEveryChapter(book: $DougsBook): void {
+    $placesEveryChapter(book: $LibraryBook): void {
         $check(book.text.find($Chapter).every(chapter => book.placed.includes(chapter)),
             'a book of this library has a place for every chapter it holds, and this one holds a chapter it places nowhere');
     }
 
     @specify('only an ordinary chapter appends a file')
-    $onlyAChapterAppends(book: $DougsBook): void {
+    $onlyAChapterAppends(book: $LibraryBook): void {
         $check(book.text.find($Chapter).every(chapter => book.chapters.includes(chapter) || !chapter.is($Append)),
             'only an ordinary chapter appends a file, and here a cover, a synopsis or a table of contents appends one');
     }
 }
 
-export const DougsBook = $($DougsBook);
-$(DougsBook, Theme)(DougsTheme);
+export const LibraryBook = $($LibraryBook);
+$(LibraryBook, Theme)(LibraryBookTheme);

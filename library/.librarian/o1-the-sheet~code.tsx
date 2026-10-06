@@ -2,10 +2,10 @@ import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Paragraph, $Section, $Writing, Given, Theme } from '@dna-platform/public';
-import { $DougsBook, $Layout, Layout, Tab as tab } from '../.manual/.book';
+import { $LibraryBook, $Layout, Layout, Tab as tab } from '../.manual/.book';
 import { BookPaper as bookPaper, NightPaper as nightPaper, WhitePaper as whitePaper } from './o1-the-sheet~theme.tsx';
 
-export class $DougsStory extends $DougsBook {
+export class $Story extends $LibraryBook {
     get papers(): Given<$Annotation>[] {
         return [bookPaper, nightPaper, whitePaper];
     }
@@ -135,13 +135,13 @@ export class $Sheet extends $Layout {
     }
 
     protected override $Bound(): void {
-        for (const chapter of (this.book as $DougsBook).chapters)
+        for (const chapter of (this.book as $LibraryBook).chapters)
             this.opening(chapter)?.classes.add(this, 'pa-opening');
         super.$Bound();
     }
 }
 
-export const DougsStory = $($DougsStory);
+export const Story = $($Story);
 export const Sheet = $($Sheet);
-$(DougsStory, Layout)(Sheet);
-$(DougsStory, Theme)(bookPaper);
+$(Story, Layout)(Sheet);
+$(Story, Theme)(bookPaper);

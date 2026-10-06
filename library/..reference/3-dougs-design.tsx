@@ -1,5 +1,5 @@
 import { Chapter, Means, Paragraph, Synopsis, Title } from '@dna-platform/public';
-import DougsDesignSynopsis from '../.design/.synopsis';
+import DesignSynopsis from '../.design/.synopsis';
 
 export default () => (
     <Chapter>
@@ -7,6 +7,6 @@ export default () => (
         <Paragraph>
             The book <Means>$[[ Dougs Design ]]</Means> keeps the design of this library.
         </Paragraph>
-        <Synopsis>{DougsDesignSynopsis()}</Synopsis>
+        <Synopsis>{DesignSynopsis()}</Synopsis>
     </Chapter>
 );

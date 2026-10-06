@@ -14,12 +14,14 @@ export class $Gallery extends $Format {
         .pa-gallery .pd-section .pa-self-reference.pd-container, .pa-gallery .pd-section .pd-paragraph { grid-column: 1 / -1; }
         .pa-gallery .pd-section.pa-concept {
             display: grid;
-            grid-template-columns: minmax(0, 1fr);
-            grid-template-areas: 'pictures' 'name';
+            grid-template-columns: auto minmax(0, 1fr);
+            grid-template-areas: 'pictures pictures' 'number name';
+            align-items: baseline;
             gap: calc(${({ theme }) => theme.space} / 2);
         }
+        .pa-gallery .pa-concept .pa-number { grid-area: number; }
         .pa-gallery .pa-concept .pa-self-reference.pd-container { grid-area: name; }
-        .pa-gallery .pa-concept .pd-paragraph { grid-column: auto; }
+        .pa-gallery .pa-concept .pd-paragraph { grid-column: 1 / -1; }
         .pa-gallery .pa-concept .pd-paragraph.pa-photographs {
             grid-area: pictures;
             display: flex;

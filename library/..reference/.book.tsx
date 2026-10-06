@@ -1,4 +1,4 @@
-export { $DougsLibrary as default } from './o1-the-bars~code.tsx';
+export { $Library as default } from './o1-the-bars~code.tsx';
 
 export * from './o1-the-bars~code.tsx';
 export * from './o1-the-bars~booklink.tsx';

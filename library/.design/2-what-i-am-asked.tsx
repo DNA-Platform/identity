@@ -54,7 +54,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Answer />
-                Yes, and I like the black and sky, though I think I want to be able to switch the view between 1 to
+                I like the black and sky, though I think I want to be able to switch the view between 1 to
                 3 as part of the dynamism of the page. We will talk about how to implement a book, and you will find
                 that you might want to do more structurally than you expect to support many different views. Many
                 ways to view the same thing will be important.

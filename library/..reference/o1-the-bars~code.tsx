@@ -2,11 +2,11 @@ import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Chapter, $Synopsis, $Writing, Self } from '@dna-platform/public';
-import { $DougsBook, $Layout, Layout } from '../.manual/.book';
+import { $LibraryBook, $Layout, Layout } from '../.manual/.book';
 import { BookLink } from './o1-the-bars~booklink.tsx';
 import { Shelf as shelf } from './o1-the-bars~views.tsx';
 
-export class $DougsLibrary extends $DougsBook {
+export class $Library extends $LibraryBook {
     get books(): $Chapter[] {
         return this.text.find($Chapter).filter(chapter => chapter.is($Synopsis) && chapter !== this.synopsis);
     }
@@ -129,7 +129,7 @@ export class $Bars extends $Layout {
     }
 }
 
-export const DougsLibrary = $($DougsLibrary);
+export const Library = $($Library);
 export const Bars = $($Bars);
-$(DougsLibrary, Layout)(Bars);
-$(DougsLibrary, Self)(BookLink);
+$(Library, Layout)(Bars);
+$(Library, Self)(BookLink);

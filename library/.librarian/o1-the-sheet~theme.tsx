@@ -1,8 +1,8 @@
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
-import { $DougsTheme } from '../.manual/.book';
+import { $LibraryBookTheme } from '../.manual/.book';
 
-export class $StoryTheme extends $DougsTheme {
+export class $StoryTheme extends $LibraryBookTheme {
     font = "Georgia, 'Iowan Old Style', 'Times New Roman', serif";
     mono = 'ui-monospace, Menlo, Consolas, monospace';
     size = '1.075rem';
@@ -39,7 +39,7 @@ export class $StoryTheme extends $DougsTheme {
     protected bar(): RuleSet {
         return css`
             .pa-sheet .pd-bar { margin-block-end: calc(${({ theme }) => theme.space} * 1.44); }
-            .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-bar .pd-paragraph.pd-filedUnder {
+            .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-bar .pd-paragraph.pd-filed-under {
                 margin-block: 0;
                 padding: calc(${({ theme }) => theme.space} * 0.39) calc(${({ theme }) => theme.space} * 0.83);
                 font-family: ${({ theme }) => theme.mono};
@@ -56,7 +56,7 @@ export class $StoryTheme extends $DougsTheme {
                 background: ${({ theme }) => theme.tint};
                 border-color: ${({ theme }) => theme.lit};
             }
-            .pa-sheet .pd-bar .pd-filedUnder .pa-reference { color: inherit; text-decoration: none; }
+            .pa-sheet .pd-bar .pd-filed-under .pa-reference { color: inherit; text-decoration: none; }
         `;
     }
 
@@ -195,7 +195,7 @@ export class $StoryTheme extends $DougsTheme {
                     padding: calc(${({ theme }) => theme.space} * 0.78) calc(${({ theme }) => theme.space} * 0.89);
                     background: ${({ theme }) => theme.panel};
                 }
-                .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-bar .pd-paragraph.pd-filedUnder {
+                .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-bar .pd-paragraph.pd-filed-under {
                     padding: calc(${({ theme }) => theme.space} * 0.33) calc(${({ theme }) => theme.space} * 0.67);
                 }
                 .pa-sheet .pd-sheet {

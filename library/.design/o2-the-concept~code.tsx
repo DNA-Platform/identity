@@ -1,11 +1,18 @@
-import { $, $check } from '@dna-platform/chemistry';
+import { ReactNode } from 'react';
+import { $, $check, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Paragraph, $Section, $Writing, AnnotationSpecification, html, specify } from '@dna-platform/public';
 
 export class $Concept extends $Annotation {
     specification = new ConceptSpecification();
+    span = selection.span.attrs({ className: 'pa-number' })``;
     get number(): number {
         const written = html.copy(this.text).trim();
         return written === '' ? NaN : Number(written);
+    }
+
+    override note(): ReactNode {
+        const Span = this.span;
+        return <Span>{this.number}</Span>;
     }
 
     override defines(writing: $Writing): void {

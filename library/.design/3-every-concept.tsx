@@ -91,7 +91,7 @@ export default () => (
             </Section>
             <Section>
                 <Concept>4</Concept>
-                <Heading>The Command Line</Heading>
+                <Heading>[[[ The Command Line ]]]</Heading>
                 <Paragraph>
                     Concept 4, after keyboard-first tools: command palettes, launchers and the leader keys of
                     editors.
@@ -376,7 +376,7 @@ export default () => (
             </Section>
             <Section>
                 <Concept>16</Concept>
-                <Heading>A White Top Bar and an Opal Side Bar</Heading>
+                <Heading>[[[ A White Top Bar and an Opal Side Bar ]]]</Heading>
                 <Paragraph>
                     Concept 16, an idea, after the homes I liked, the lighter way.
                 </Paragraph>
@@ -417,7 +417,7 @@ export default () => (
             </Section>
             <Section>
                 <Concept>18</Concept>
-                <Heading>An Opal Rail and a White Top</Heading>
+                <Heading>[[[ An Opal Rail and a White Top ]]]</Heading>
                 <Paragraph>
                     Concept 18, an idea, after the homes I liked, the lighter way.
                 </Paragraph>
@@ -509,7 +509,7 @@ export default () => (
             </Section>
             <Section>
                 <Concept>22</Concept>
-                <Heading>No Bars: White Cards on Black</Heading>
+                <Heading>[[[ No Bars: White Cards on Black ]]]</Heading>
                 <Paragraph>
                     Concept 22, an idea, after the home that asks its sources, on the coming-soon page's ground.
                 </Paragraph>

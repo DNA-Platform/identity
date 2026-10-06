@@ -1,15 +1,15 @@
 import { $, $check } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Content, $Paragraph, $Section, $TableOfContents, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
-import type { $DougsBook } from './1-the-book~code.tsx';
+import type { $LibraryBook } from './1-the-book~code.tsx';
 
 export class $Entry extends $Annotation {
     specification = new EntrySpecification();
     get place(): string { return (this.parent as $Writing).annotations.expressed($Content)!.identifier; }
-    get leads(): $Chapter | undefined { return (this.book as $DougsBook).named(this.place); }
+    get leads(): $Chapter | undefined { return (this.book as $LibraryBook).named(this.place); }
 
     override defines(writing: $Writing): void {
         writing.classes.add(this, 'pa-entry');
-        if (this.place === this.book?.$bookmark || this.place === (this.book as $DougsBook).open?.mention?.identifier) writing.classes.add(this, 'pa-open');
+        if (this.place === this.book?.$bookmark || this.place === (this.book as $LibraryBook).open?.mention?.identifier) writing.classes.add(this, 'pa-open');
     }
 
     override erase(writing: $Writing): void {

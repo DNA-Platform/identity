@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 import { $ } from '@dna-platform/chemistry';
 import { $Chapter, $Paragraph, $Word, Reference as reference, Self as self, Word as word } from '@dna-platform/public';
-import type { $DougsBook } from './1-the-book~code.tsx';
+import type { $LibraryBook } from './1-the-book~code.tsx';
 
 export class $Count extends $Word {
     override write(): ReactNode {
-        const chapters = (this.book as $DougsBook).chapters;
+        const chapters = (this.book as $LibraryBook).chapters;
         return `${chapters.indexOf(this.chapter!) + 1} of ${chapters.length}`;
     }
 
@@ -17,11 +17,11 @@ export class $Count extends $Word {
 
 export class $Turn extends $Paragraph {
     get before(): $Chapter {
-        const chapters = (this.book as $DougsBook).chapters;
+        const chapters = (this.book as $LibraryBook).chapters;
         return chapters[chapters.indexOf(this.chapter!) - 1] ?? this.chapter!;
     }
     get after(): $Chapter {
-        const chapters = (this.book as $DougsBook).chapters;
+        const chapters = (this.book as $LibraryBook).chapters;
         return chapters[chapters.indexOf(this.chapter!) + 1] ?? this.chapter!;
     }
 

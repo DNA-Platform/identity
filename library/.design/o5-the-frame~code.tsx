@@ -1,13 +1,20 @@
 import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
-import { $Annotation, $Writing, Given, Theme } from '@dna-platform/public';
-import { $DougsBook, $Layout, Layout, Tab as tab } from '../.manual/.book';
+import { $Annotation, $Chapter, $Writing, Given, Theme } from '@dna-platform/public';
+import { $LibraryBook, $Layout, Layout, Tab as tab } from '../.manual/.book';
+import { Gallery } from './o4-the-gallery~code.tsx';
 import { GalleryMode as galleryMode, LibraryMode as libraryMode } from './o5-the-frame~theme.tsx';
 
-export class $DougsDesign extends $DougsBook {
+export class $Design extends $LibraryBook {
     get modes(): Given<$Annotation>[] {
         return [libraryMode, galleryMode];
+    }
+    get gallery(): $Chapter | undefined {
+        return this.chapters.find(chapter => chapter.is(Gallery));
+    }
+    override get open(): $Chapter | undefined {
+        return super.open ?? this.gallery;
     }
 
     override write(): ReactNode {
@@ -93,7 +100,7 @@ export class $Frame extends $Layout {
                 grid-template-areas: 'home' 'contents' 'me';
                 overflow: hidden;
             }
-            .pa-frame .pd-side .pd-filedUnder { grid-area: home; }
+            .pa-frame .pd-side .pd-filed-under { grid-area: home; }
             .pa-frame .pd-contents { grid-area: contents; overflow-y: auto; }
             .pa-frame .pd-side .pd-byline { grid-area: me; }
             .pa-frame .pd-main {
@@ -131,7 +138,7 @@ export class $Frame extends $Layout {
     }
 }
 
-export const DougsDesign = $($DougsDesign);
+export const Design = $($Design);
 export const Frame = $($Frame);
-$(DougsDesign, Layout)(Frame);
-$(DougsDesign, Theme)(galleryMode);
+$(Design, Layout)(Frame);
+$(Design, Theme)(galleryMode);

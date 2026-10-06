@@ -1,10 +1,10 @@
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { Theme } from '@dna-platform/public';
-import { $DougsTheme } from '../.manual/.book';
-import { DougsLibrary } from './o1-the-bars~code.tsx';
+import { $LibraryBookTheme } from '../.manual/.book';
+import { Library } from './o1-the-bars~code.tsx';
 
-export class $LibraryTheme extends $DougsTheme {
+export class $LibraryTheme extends $LibraryBookTheme {
     ink = '#10252c';
     soft = '#516770';
     line = '#dbe7ec';
@@ -23,7 +23,7 @@ export class $LibraryTheme extends $DougsTheme {
                 color: ${({ theme }) => theme.haze};
                 padding: calc(${({ theme }) => theme.space} * 0.375) calc(${({ theme }) => theme.space} * 0.75);
             }
-            .pd-library-bar .pd-filedUnder, .pd-library-bar .pd-byline {
+            .pd-library-bar .pd-filed-under, .pd-library-bar .pd-byline {
                 display: flex;
                 align-items: center;
                 gap: calc(${({ theme }) => theme.space} * 0.4);
@@ -35,14 +35,14 @@ export class $LibraryTheme extends $DougsTheme {
                 font-size: ${({ theme }) => theme.size};
                 font-weight: 500;
             }
-            .pd-library-bar .pd-filedUnder .pd-word {
+            .pd-library-bar .pd-filed-under .pd-word {
                 font-family: ${({ theme }) => theme.serif};
                 font-size: calc(1.45 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1;
             }
             .pd-library-bar .pa-reference { color: inherit; text-decoration: none; }
-            .pd-library-bar .pd-filedUnder::before, .pd-library-bar .pd-byline::before {
+            .pd-library-bar .pd-filed-under::before, .pd-library-bar .pd-byline::before {
                 content: ${({ theme }) => theme.initial};
                 display: grid;
                 place-items: center;
@@ -51,7 +51,7 @@ export class $LibraryTheme extends $DougsTheme {
                 font-size: ${({ theme }) => theme.size};
                 font-weight: 600;
             }
-            .pd-library-bar .pd-filedUnder::before {
+            .pd-library-bar .pd-filed-under::before {
                 border-radius: calc(${({ theme }) => theme.space} / 3);
                 background: ${({ theme }) => theme.opal};
                 color: ${({ theme }) => theme.night};
@@ -171,4 +171,4 @@ export class $LibraryTheme extends $DougsTheme {
 }
 
 export const LibraryTheme = $($LibraryTheme);
-$(DougsLibrary, Theme)(LibraryTheme);
+$(Library, Theme)(LibraryTheme);

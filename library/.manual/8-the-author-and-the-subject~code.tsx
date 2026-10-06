@@ -40,7 +40,7 @@ export class $FiledUnder extends $Paragraph {
 
     protected override $Define(): void {
         super.$Define();
-        this.classes.add(this, 'pd-filedUnder');
+        this.classes.add(this, 'pd-filed-under');
     }
 }
 

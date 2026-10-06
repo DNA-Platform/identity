@@ -4,10 +4,10 @@ import { $, selection } from '@dna-platform/chemistry';
 import { $Theme } from '@dna-platform/public';
 
 declare module 'styled-components' {
-    export interface DefaultTheme extends $DougsTheme {}
+    export interface DefaultTheme extends $LibraryBookTheme {}
 }
 
-export class $DougsTheme extends $Theme {
+export class $LibraryBookTheme extends $Theme {
     font = "'Inter', system-ui, sans-serif";
     mono = "'JetBrains Mono', ui-monospace, monospace";
     size = '0.90625rem';
@@ -176,4 +176,4 @@ export class $DougsTheme extends $Theme {
     }
 }
 
-export const DougsTheme = $($DougsTheme);
+export const LibraryBookTheme = $($LibraryBookTheme);

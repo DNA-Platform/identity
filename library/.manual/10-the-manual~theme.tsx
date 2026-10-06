@@ -1,10 +1,10 @@
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { Theme } from '@dna-platform/public';
-import { $DougsTheme } from './3-the-theme~code.tsx';
+import { $LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Manual } from './10-the-manual~code.tsx';
 
-export class $ManualTheme extends $DougsTheme {
+export class $ManualTheme extends $LibraryBookTheme {
     measure = '58ch';
 
     protected override parts(): RuleSet[] {
@@ -20,12 +20,12 @@ export class $ManualTheme extends $DougsTheme {
                 scrollbar-width: thin;
                 scrollbar-color: ${({ theme }) => theme.line} transparent;
             }
-            .pd-side .pd-filedUnder, .pd-side .pd-byline {
+            .pd-side .pd-filed-under, .pd-side .pd-byline {
                 margin-block: 0;
                 font-size: calc(0.83 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.faint};
             }
-            .pd-side .pd-filedUnder .pa-reference, .pd-side .pd-byline .pa-reference {
+            .pd-side .pd-filed-under .pa-reference, .pd-side .pd-byline .pa-reference {
                 color: ${({ theme }) => theme.soft};
                 text-decoration: none;
             }

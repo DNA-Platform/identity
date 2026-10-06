@@ -2,12 +2,12 @@ import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Writing } from '@dna-platform/public';
-import { $DougsBook } from './1-the-book~code.tsx';
+import { $LibraryBook } from './1-the-book~code.tsx';
 import { Switch as switching } from './9-the-switch~code.tsx';
 import { CodeForward as codeForward } from './10-the-manual~forward.tsx';
 import { $Layout, Layout } from './12-the-layout~code.tsx';
 
-export class $Manual extends $DougsBook {
+export class $Manual extends $LibraryBook {
     override write(): ReactNode {
         const Cover = $(this.cover!);
         const Synopsis = $(this.synopsis!);

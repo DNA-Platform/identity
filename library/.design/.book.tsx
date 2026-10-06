@@ -1,4 +1,4 @@
-export { $DougsDesign as default } from './o5-the-frame~code.tsx';
+export { $Design as default } from './o5-the-frame~code.tsx';
 
 export * from './o1-the-paragraphs~code.tsx';
 export * from './o2-the-concept~code.tsx';

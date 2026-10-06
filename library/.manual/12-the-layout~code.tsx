@@ -2,7 +2,7 @@ import { ElementType } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $, selection } from '@dna-platform/chemistry';
 import { $Format, $Writing } from '@dna-platform/public';
-import type { $DougsBook } from './1-the-book~code.tsx';
+import type { $LibraryBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 
 export class $Layout extends $Format {
@@ -13,7 +13,7 @@ export class $Layout extends $Format {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-layout');
-        if ((writing as $DougsBook).open !== undefined) writing.classes.add(this, 'pa-turned');
+        if ((writing as $LibraryBook).open !== undefined) writing.classes.add(this, 'pa-turned');
     }
 
     override erase(writing: $Writing): void {

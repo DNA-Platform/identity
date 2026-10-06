@@ -1,8 +1,8 @@
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
-import { $DougsTheme } from '../.manual/.book';
+import { $LibraryBookTheme } from '../.manual/.book';
 
-export class $DesignTheme extends $DougsTheme {
+export class $DesignTheme extends $LibraryBookTheme {
 
     protected override parts(): RuleSet[] {
         return [...super.parts(), this.sideBar(), this.head(), this.words(), this.cards(), this.small()];
@@ -15,7 +15,7 @@ export class $DesignTheme extends $DougsTheme {
                 color: ${({ theme }) => theme.barInk};
                 border-inline-end: thin solid ${({ theme }) => theme.barLine};
             }
-            .pd-side .pd-filedUnder, .pd-side .pd-byline {
+            .pd-side .pd-filed-under, .pd-side .pd-byline {
                 display: flex;
                 align-items: center;
                 gap: calc(${({ theme }) => theme.space} * 0.4);
@@ -29,14 +29,14 @@ export class $DesignTheme extends $DougsTheme {
                 color: ${({ theme }) => theme.barInk};
                 font-weight: 500;
             }
-            .pd-side .pd-filedUnder .pd-word {
+            .pd-side .pd-filed-under .pd-word {
                 font-family: ${({ theme }) => theme.serif};
                 font-size: calc(1.45 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1;
             }
             .pd-side .pa-reference { color: inherit; text-decoration: none; }
-            .pd-side .pd-filedUnder::before, .pd-side .pd-byline::before {
+            .pd-side .pd-filed-under::before, .pd-side .pd-byline::before {
                 content: ${({ theme }) => theme.initial};
                 display: grid;
                 place-items: center;
@@ -45,7 +45,7 @@ export class $DesignTheme extends $DougsTheme {
                 font-size: ${({ theme }) => theme.size};
                 font-weight: 600;
             }
-            .pd-side .pd-filedUnder::before {
+            .pd-side .pd-filed-under::before {
                 border-radius: calc(${({ theme }) => theme.space} / 3);
                 background: ${({ theme }) => theme.opal};
                 color: ${({ theme }) => theme.night};
@@ -116,13 +116,17 @@ export class $DesignTheme extends $DougsTheme {
                 background: ${({ theme }) => theme.paper};
                 box-shadow: ${({ theme }) => theme.shadow};
             }
-            .pa-gallery .pa-concept .pd-heading {
+            .pa-gallery .pa-concept .pd-heading, .pa-gallery .pa-concept .pa-number {
                 font-family: ${({ theme }) => theme.serif};
                 font-size: calc(1.3 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 letter-spacing: 0;
                 text-transform: none;
                 color: ${({ theme }) => theme.heading};
+            }
+            .pa-gallery .pa-concept .pa-number {
+                font-size: calc(1.6 * ${({ theme }) => theme.size});
+                color: ${({ theme }) => theme.accent};
             }
             .pa-gallery .pa-concept .pd-paragraph {
                 margin-block: 0;
