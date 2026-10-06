@@ -3,6 +3,7 @@ import { $ } from '@dna-platform/chemistry';
 import { $LibraryBookTheme } from '../.manual/.book';
 
 export class $DesignTheme extends $LibraryBookTheme {
+    colour = '#c24a78';
 
     protected override parts(): RuleSet[] {
         return [...super.parts(), this.sideBar(), this.head(), this.words(), this.cards(), this.small()];

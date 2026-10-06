@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { $ } from '@dna-platform/chemistry';
-import { $Annotation, $Chapter, $Writing, Given, Theme } from '@dna-platform/public';
-import { $LibraryBook, $Layout, Layout, Tab as tab } from '../.manual/.book';
+import { $Annotation, $Chapter, Given, Theme } from '@dna-platform/public';
+import { $LibraryBook, BothBars as bothBars, Cards as cards, Dark as dark, Light as light, Rail as rail, SideBar as sideBar, Tab as tab, TopBar as topBar, TwoBars as twoBars } from '../.manual/.book';
 import { Gallery } from './o4-the-gallery~code.tsx';
 import { GalleryMode as galleryMode, LibraryMode as libraryMode } from './o5-the-frame~theme.tsx';
 
@@ -34,20 +34,67 @@ export class $Design extends $LibraryBook {
                 >
                     gallery
                 </Tab>
+                <Tab
+                    chapter={this.cover}
+                    of={bothBars}
+                    among={this.arrangements}
+                >
+                    both
+                </Tab>
+                <Tab
+                    chapter={this.cover}
+                    of={sideBar}
+                    among={this.arrangements}
+                >
+                    side
+                </Tab>
+                <Tab
+                    chapter={this.cover}
+                    of={topBar}
+                    among={this.arrangements}
+                >
+                    top
+                </Tab>
+                <Tab
+                    chapter={this.cover}
+                    of={twoBars}
+                    among={this.arrangements}
+                >
+                    two
+                </Tab>
+                <Tab
+                    chapter={this.cover}
+                    of={rail}
+                    among={this.arrangements}
+                >
+                    rail
+                </Tab>
+                <Tab
+                    chapter={this.cover}
+                    of={cards}
+                    among={this.arrangements}
+                >
+                    cards
+                </Tab>
+                <Tab
+                    chapter={this.cover}
+                    of={dark}
+                    among={this.tones}
+                >
+                    dark
+                </Tab>
+                <Tab
+                    chapter={this.cover}
+                    of={light}
+                    among={this.tones}
+                >
+                    light
+                </Tab>
                 {super.switches()}
             </>
         );
     }
 }
 
-export class $Frame extends $Layout {
-    override defines(writing: $Writing): void {
-        super.defines(writing);
-        writing.classes.add(this, 'pa-frame');
-    }
-}
-
 export const Design = $($Design);
-export const Frame = $($Frame);
-$(Design, Layout)(Frame);
 $(Design, Theme)(galleryMode);

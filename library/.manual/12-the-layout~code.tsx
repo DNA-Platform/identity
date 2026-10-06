@@ -13,6 +13,9 @@ export class $Layout extends $Paginated {
     override get open(): $Chapter | undefined { return (this.book as $LibraryBook).open; }
 
     override defines(writing: $Writing): void {
+        for (const annotation of writing.annotations.after(this))
+            if (annotation instanceof $Layout)
+                writing.annotations.express(annotation, false);
         super.defines(writing);
         writing.classes.add(this, 'pa-layout');
         if (this.open !== undefined) writing.classes.add(this, 'pa-turned');
@@ -24,7 +27,7 @@ export class $Layout extends $Paginated {
     }
 
     protected parts(): RuleSet[] {
-        return [this.paging(), this.areas(), this.narrow()];
+        return [this.paging(), this.regions(), this.areas(), this.phone()];
     }
 
     protected paging(): RuleSet {
@@ -33,49 +36,122 @@ export class $Layout extends $Paginated {
         `;
     }
 
-    protected areas(): RuleSet {
+    protected regions(): RuleSet {
         return css`
-            .pd-book.pa-layout {
-                display: grid;
-                grid-template-columns: ${({ theme }) => theme.side} minmax(0, 1fr);
-                grid-template-rows: auto auto minmax(0, 1fr);
-                grid-template-areas: 'library library' 'holds head' 'holds leaves';
-                height: 100vh;
-            }
+            .pd-book.pa-layout { display: grid; height: 100vh; }
             .pa-layout .pd-library {
                 grid-area: library;
                 display: flex;
                 align-items: center;
-                column-gap: ${({ theme }) => theme.space};
+                column-gap: calc(${({ theme }) => theme.space} / 4);
+                min-width: 0;
             }
-            .pa-layout .pd-holds { grid-area: holds; overflow-y: auto; }
+            .pa-layout .pd-me {
+                grid-area: me;
+                display: flex;
+                align-items: center;
+                column-gap: calc(${({ theme }) => theme.space} * 0.375);
+            }
+            .pa-layout .pd-holds { grid-area: holds; min-width: 0; overflow-y: auto; }
             .pa-layout .pd-head {
                 grid-area: head;
                 display: flex;
                 flex-wrap: wrap;
-                align-items: center;
+                align-items: flex-end;
                 justify-content: space-between;
-                column-gap: ${({ theme }) => theme.space};
+                gap: calc(${({ theme }) => theme.space} * 0.42) calc(${({ theme }) => theme.space} * 0.83);
+                min-width: 0;
             }
             .pa-layout .pd-switches {
                 display: flex;
                 flex-wrap: wrap;
+                justify-content: flex-end;
+                align-items: center;
                 gap: calc(${({ theme }) => theme.space} / 3);
             }
-            .pa-layout .pd-leaves { grid-area: leaves; overflow-y: auto; }
+            .pa-layout .pd-leaves { grid-area: leaves; min-width: 0; overflow-y: auto; }
             .pa-layout .pd-words .pd-chapter { scroll-margin-block-start: ${({ theme }) => theme.space}; }
         `;
     }
 
-    protected narrow(): RuleSet {
+    protected areas(): RuleSet {
+        return css`
+            .pd-book.pa-layout.pa-both-bars {
+                grid-template-columns: ${({ theme }) => theme.bothColumn} minmax(0, 1fr);
+                grid-template-rows: auto auto minmax(0, 1fr);
+                grid-template-areas: 'library library' 'holds head' 'holds leaves';
+            }
+            .pd-book.pa-layout.pa-side-bar {
+                grid-template-columns: ${({ theme }) => theme.sideColumn} minmax(0, 1fr);
+                grid-template-rows: auto auto minmax(0, 1fr) auto;
+                grid-template-areas: 'library head' 'library leaves' 'holds leaves' 'me leaves';
+            }
+            .pa-layout.pa-side-bar .pd-library { flex-direction: column; align-items: stretch; }
+            .pd-book.pa-layout.pa-top-bar {
+                grid-template-columns: minmax(0, 1fr);
+                grid-template-rows: auto auto auto minmax(0, 1fr);
+                grid-template-areas: 'library' 'head' 'holds' 'leaves';
+            }
+            .pa-layout.pa-top-bar .pd-holds { overflow: auto hidden; white-space: nowrap; scrollbar-width: none; }
+            .pd-book.pa-layout.pa-two-bars {
+                grid-template-columns: ${({ theme }) => theme.twoColumn} minmax(0, 1fr);
+                grid-template-rows: auto auto minmax(0, 1fr);
+                grid-template-areas: 'library library' 'head head' 'holds leaves';
+            }
+            .pd-book.pa-layout.pa-rail {
+                grid-template-columns: ${({ theme }) => theme.railColumn} minmax(0, 1fr);
+                grid-template-rows: auto auto minmax(0, 1fr) auto;
+                grid-template-areas: 'library head' 'library holds' 'library leaves' 'me leaves';
+            }
+            .pa-layout.pa-rail .pd-library { flex-direction: column; align-items: center; }
+            .pa-layout.pa-rail .pd-me { justify-content: center; }
+            .pa-layout.pa-rail .pd-holds { overflow: auto hidden; white-space: nowrap; scrollbar-width: none; }
+            .pd-book.pa-layout.pa-cards {
+                grid-template-columns: ${({ theme }) => theme.cardsColumn} minmax(0, 1fr);
+                grid-template-rows: auto auto minmax(0, 1fr);
+                grid-template-areas: 'library library' 'holds head' 'holds leaves';
+                column-gap: calc(${({ theme }) => theme.space} / 2);
+                padding: 0 calc(${({ theme }) => theme.space} / 2) calc(${({ theme }) => theme.space} / 2);
+                box-sizing: border-box;
+            }
+            .pa-layout.pa-cards .pd-holds { border-radius: calc(${({ theme }) => theme.space} * 0.67); }
+            .pa-layout.pa-cards .pd-head { border-radius: calc(${({ theme }) => theme.space} * 0.67) calc(${({ theme }) => theme.space} * 0.67) 0 0; }
+            .pa-layout.pa-cards .pd-leaves { border-radius: 0 0 calc(${({ theme }) => theme.space} * 0.67) calc(${({ theme }) => theme.space} * 0.67); }
+            .pd-book.pa-layout.pa-both-bars .pd-me, .pd-book.pa-layout.pa-top-bar .pd-me, .pd-book.pa-layout.pa-two-bars .pd-me, .pd-book.pa-layout.pa-cards .pd-me {
+                grid-area: library;
+                justify-self: end;
+                background: none;
+            }
+        `;
+    }
+
+    protected phone(): RuleSet {
         return css`
             @media (max-width: ${({ theme }) => theme.narrow}) {
-                .pd-book.pa-layout { display: block; height: auto; }
-                .pa-layout .pd-library, .pa-layout .pd-holds {
-                    overflow-x: auto;
+                .pd-book.pa-layout { display: flex; flex-direction: column; height: auto; }
+                .pa-layout .pd-library {
+                    position: sticky;
+                    top: 0;
+                    z-index: 4;
+                    height: ${({ theme }) => theme.barHeight};
+                    margin-inline-end: ${({ theme }) => theme.barHeight};
+                    overflow: auto hidden;
                     white-space: nowrap;
                     scrollbar-width: none;
                 }
+                .pa-layout .pd-me {
+                    position: fixed;
+                    z-index: 5;
+                    top: 0;
+                    right: 0;
+                    justify-content: center;
+                    width: ${({ theme }) => theme.barHeight};
+                    height: ${({ theme }) => theme.barHeight};
+                }
+                .pa-layout .pd-head { order: 1; flex-direction: column; align-items: stretch; }
+                .pa-layout .pd-switches { justify-content: flex-start; }
+                .pa-layout .pd-holds { order: 2; overflow: auto hidden; white-space: nowrap; scrollbar-width: none; }
+                .pa-layout .pd-leaves { order: 3; overflow: visible; }
                 .pa-layout.pa-turned .pa-table-of-contents { display: none; }
             }
         `;

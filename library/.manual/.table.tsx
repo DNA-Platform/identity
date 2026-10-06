@@ -57,6 +57,9 @@ export default () => (
             <Paragraph>
                 <Content>$[[ ./The Outline ]]</Content>
             </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Tone ]]</Content>
+            </Paragraph>
         </Section>
         <Section>
             <Heading>What a chapter may carry</Heading>

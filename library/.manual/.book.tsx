@@ -17,4 +17,5 @@ export * from './12-the-layout~code.tsx';
 export * from './13-the-turn~code.tsx';
 export * from './14-the-entry~code.tsx';
 export * from './15-the-bars~code.tsx';
+export * from './16-the-tone~code.tsx';
 export * from './10-the-manual~forward.tsx';

@@ -3,6 +3,7 @@ import { $ } from '@dna-platform/chemistry';
 import { $LibraryBookTheme } from '../.manual/.book';
 
 export class $StoryTheme extends $LibraryBookTheme {
+    colour = '#e8590c';
     font = "Georgia, 'Iowan Old Style', 'Times New Roman', serif";
     mono = 'ui-monospace, Menlo, Consolas, monospace';
     size = '1.075rem';

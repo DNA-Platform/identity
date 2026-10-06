@@ -19,8 +19,6 @@ export class $LibraryTheme extends $LibraryBookTheme {
     protected libraryBar(): RuleSet {
         return css`
             .pd-library {
-                background: ${({ theme }) => theme.night};
-                color: ${({ theme }) => theme.haze};
                 padding: calc(${({ theme }) => theme.space} * 0.375) calc(${({ theme }) => theme.space} * 0.75);
             }
             .pd-library .pd-filed-under, .pd-library .pd-byline {
@@ -31,7 +29,6 @@ export class $LibraryTheme extends $LibraryBookTheme {
                 font-size: calc(0.83 * ${({ theme }) => theme.size});
             }
             .pd-library .pd-word {
-                color: ${({ theme }) => theme.paper};
                 font-size: ${({ theme }) => theme.size};
                 font-weight: 500;
             }
@@ -67,7 +64,6 @@ export class $LibraryTheme extends $LibraryBookTheme {
     protected bookBar(): RuleSet {
         return css`
             .pd-head {
-                background: ${({ theme }) => theme.sky};
                 padding: calc(${({ theme }) => theme.space} * 0.375) ${({ theme }) => theme.space};
             }
             .pd-head .pd-switch {

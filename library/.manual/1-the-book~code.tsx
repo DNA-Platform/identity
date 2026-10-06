@@ -1,12 +1,14 @@
 import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
-import { $Append, $Book, $Chapter, $Composition, $Section, BookSpecification, Theme, specify } from '@dna-platform/public';
+import { $Annotation, $Append, $Book, $Chapter, $Composition, $Section, BookSpecification, Given, Theme, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Outlined as outlined } from './7-the-outline~code.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Switch as switching } from './9-the-switch~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
+import { Bars as bars, BothBars as bothBars, Cards as cards, Rail as rail, SideBar as sideBar, TopBar as topBar, TwoBars as twoBars } from './15-the-bars~code.tsx';
+import { Dark as dark, Light as light, Tone as tone } from './16-the-tone~code.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
 
 export class $LibraryBook extends $Book {
@@ -20,12 +22,21 @@ export class $LibraryBook extends $Book {
     get open(): $Chapter | undefined {
         return this.$bookmark === undefined ? undefined : this.named(this.$bookmark);
     }
+    get arrangements(): Given<$Annotation>[] {
+        return [bothBars, sideBar, topBar, twoBars, rail, cards];
+    }
+    get tones(): Given<$Annotation>[] {
+        return [dark, light];
+    }
 
     override write(): ReactNode {
         return (
             <>
                 <div className="pd-library">
                     {this.library()}
+                </div>
+                <div className="pd-me">
+                    {this.byline()}
                 </div>
                 <div className="pd-holds">
                     {this.holds()}
@@ -46,7 +57,6 @@ export class $LibraryBook extends $Book {
             <>
                 {this.filed()}
                 {this.subjects()}
-                {this.byline()}
             </>
         );
     }
@@ -165,8 +175,12 @@ export class $LibraryBook extends $Book {
     protected override $Define(): void {
         super.$Define();
         const Layout = $(layout);
+        const Bars = $(bars);
+        const Tone = $(tone);
         this.annotations.add(this,
-            <Layout />
+            <Layout />,
+            <Bars />,
+            <Tone />
         );
     }
 
@@ -202,3 +216,5 @@ export class LibraryBookSpecification extends BookSpecification {
 
 export const LibraryBook = $($LibraryBook);
 $(LibraryBook, Theme)(LibraryBookTheme);
+$(LibraryBook, bars)(bothBars);
+$(LibraryBook, tone)(dark);

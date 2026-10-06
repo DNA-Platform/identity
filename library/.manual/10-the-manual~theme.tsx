@@ -6,19 +6,46 @@ import { Manual } from './10-the-manual~code.tsx';
 
 export class $ManualTheme extends $LibraryBookTheme {
     measure = '58ch';
+    side = '15.5rem';
+    colour = '#7a4a8c';
+    ink = '#1a1f36';
+    heading = '#1a1f36';
+    soft = '#4f566b';
+    faint = '#8792a2';
+    line = '#e6e8ee';
+    rule = '#e6e8ee';
+    panel = '#f7f8fa';
+    accent = '#0a7a70';
+    capital = '#0a7a70';
+    lit = '#0a7a70';
+    tint = '#e3f4f1';
+    night = '#0f2a33';
+    dusk = '#17363f';
 
     protected override parts(): RuleSet[] {
         return [...super.parts(), this.index(), this.words(), this.small()];
     }
 
+    protected override holds(): RuleSet {
+        return css`
+            ${super.holds()}
+            .pd-holds .pd-paragraph.pa-entry { padding: calc(${({ theme }) => theme.space} / 4) calc(${({ theme }) => theme.space} / 3); }
+            .pd-holds .pd-paragraph.pa-entry::before { content: none; }
+        `;
+    }
+
     protected index(): RuleSet {
         return css`
-            .pd-holds, .pd-library {
+            .pd-holds {
                 background: ${({ theme }) => theme.panel};
                 border-inline-end: thin solid ${({ theme }) => theme.line};
                 padding: calc(${({ theme }) => theme.space} * 0.75) calc(${({ theme }) => theme.space} * 0.6);
                 scrollbar-width: thin;
                 scrollbar-color: ${({ theme }) => theme.line} transparent;
+            }
+            .pd-library {
+                background: ${({ theme }) => theme.panel};
+                border-block-end: thin solid ${({ theme }) => theme.line};
             }
             .pd-library .pd-filed-under, .pd-library .pd-byline {
                 margin-block: 0;
