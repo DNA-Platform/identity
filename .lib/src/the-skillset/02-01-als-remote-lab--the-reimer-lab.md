@@ -159,5 +159,12 @@ Asked of the lab on 2026-10-05, with the answers as they came:
    the fluorescence frames, and ours should be less.*
 
 Decided: lab-side work runs in a personal container from the lab's image on a compute server
-(Doug, 2026-10-05). A container launched by hand goes on jr-compute003 (Cameron, 2026-10-05). The key is installed. The skill for the lab is `als-remote-lab`, which carries the
+(Doug, 2026-10-05). A container launched by hand goes on jr-compute003 (Cameron, 2026-10-05).
+
+**Who is asked what.** Erin is responsible for the datasets. Doug, 2026-10-06: *"I don't want to
+bother people too much about specific datasets. Erin is responsible for that."* So the lab's thread
+carries access and infrastructure only (grants, the GPU cluster, etiquette). Anything about a dataset
+goes to Erin, in one message, after the database has answered what it can. Erin re-did 33977's
+segmentation and deconvolution in CaImAn to match 33328; that redo is the `1-6-5` processing in
+`pipeline_meso`. She said she would send the redone data. The key is installed. The skill for the lab is `als-remote-lab`, which carries the
 `tunnel` and jump commands and the lab's knowledge.
