@@ -77,6 +77,7 @@ export class $LibraryBookTheme extends $Theme {
     haze = '#a9bcc1';
     glass = 'rgba(255, 255, 255, 0.62)';
     binding = 'linear-gradient(160deg, #16303a, #0c1b1f)';
+    spine = 'inset 5px 0 0 rgba(0, 0, 0, 0.14), inset 6px 0 0 rgba(255, 255, 255, 0.12), 0 10px 20px -10px rgba(0, 0, 0, 0.45)';
     shadow = '0 0.75rem 1.4rem -0.9rem rgba(12, 27, 31, 0.55)';
     initial = "'D'";
     volume = '11.5rem';

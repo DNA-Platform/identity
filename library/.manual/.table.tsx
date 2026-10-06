@@ -66,6 +66,12 @@ export default () => (
             <Paragraph>
                 <Content>$[[ ./The Date ]]</Content>
             </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The First ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Colour ]]</Content>
+            </Paragraph>
         </Section>
         <Section>
             <Heading>The types of book</Heading>

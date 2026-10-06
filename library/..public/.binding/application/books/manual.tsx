@@ -19,6 +19,8 @@ import TheTurn13 from '../../../../.manual/13-the-turn';
 import TheEntry14 from '../../../../.manual/14-the-entry';
 import TheBars15 from '../../../../.manual/15-the-bars';
 import TheTone16 from '../../../../.manual/16-the-tone';
+import TheFirst17 from '../../../../.manual/17-the-first';
+import TheColour18 from '../../../../.manual/18-the-colour';
 
 const Book = $($Book);
 
@@ -42,6 +44,8 @@ export const book = () => (
         {TheEntry14()}
         {TheBars15()}
         {TheTone16()}
+        {TheFirst17()}
+        {TheColour18()}
     </Book>
 );
 
