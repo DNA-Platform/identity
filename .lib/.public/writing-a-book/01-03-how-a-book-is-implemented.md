@@ -93,7 +93,7 @@
 
 | | the book | its folder | the design | what stands today |
 |---|---|---|---|---|
-| 1 | **the library's catalogue**, *Dougs Library* | `.me/..reference/` | the shelf of **1** under the black and sky bars of **19**, the view switching among **1**, **2** and **3** | its chapters and its table, on the scaffold |
+| 1 | **the library's catalogue**, *Dougs Library* | `.me/..reference/` | the shelf of **1** under the black and sky bars of **19**, the view switching among **1**, **2** and **3** — *struck by him 2026-10-06, "the two header sky and dark was never one of them"; the exact design is to be found again* | its chapters and its table, on the scaffold |
 | 2 | **the reference manual**, *Dougs Reference Manual* | `.me/.manual/` | the words beside the file as in **6**, a part alone on the bench as in **8**, a toggle between code forward and words forward | its chapters, on the scaffold |
 | 3 | **the design book**, *Dougs Design* | `.me/.design/` | light and airy, with a toggle between a library mode and a gallery mode | its chapters and the concepts, held up by code that is to be rewritten |
 | 4 | **his autobiography**, *Dougs Story* | `.me/.librarian/` | the reading view of **25**: one typeset sheet, a chapter at a time, likely under a dark bar; papers *book*, *night* and *white*; a view by recency | four dated chapters, on the scaffold |

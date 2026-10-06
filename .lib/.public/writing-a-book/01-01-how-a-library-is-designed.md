@@ -135,7 +135,7 @@ And for a sprint that builds one, Doug's test of an end: **could a hand-authored
 
 | the screen | which thing in the library it is | not there yet |
 |---|---|---|
-| **the library's catalogue** — the shelf of 1 under the two bars of 19, switching among 1, 2 and 3 | the library's own page: its cover and table as the upper bar, the open subject's cover as the lower, and the books filed under that subject, read from its table, at cover rank, name rank and synopsis rank | what stands for a book above its name; *cited from outside* is the reverse of a reference crossing a subject |
+| **the library's catalogue** — the shelf of 1 under the two bars of 19, switching among 1, 2 and 3 — *as read from his answer H; on 2026-10-06, after it was built so, he said "the two header sky and dark was never one of them", and the design per page is to be found again with him* | the library's own page: its cover and table as the upper bar, the open subject's cover as the lower, and the books filed under that subject, read from its table, at cover rank, name rank and synopsis rank | what stands for a book above its name; *cited from outside* is the reverse of a reference crossing a subject |
 | **the reference manual** — 6, with 8 for a part | a chapter and the file beside it shown together; the tree is the table of contents with each chapter's files as leaves | *where it is used* is the reverse of a reference; code forward or words forward is the reader's |
 | **the design book** — light, with a library mode and a gallery mode | one book under two sets of a theme's values | — |
 | **the autobiography** — 25 | the flattening, one chapter open at a time; by recency, an order over chapters that carry a date | the order |
