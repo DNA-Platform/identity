@@ -29,7 +29,7 @@ export class $Design extends $LibraryBook {
                     of={dark}
                     among={this.tones}
                 >
-                    black side bar
+                    black top bar
                 </Tab>
             </>
         );

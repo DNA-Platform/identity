@@ -11,7 +11,7 @@ export class $LibraryBookTheme extends $Theme {
     font = "'Inter', system-ui, sans-serif";
     prose = "'Inter', system-ui, sans-serif";
     mono = "'JetBrains Mono', ui-monospace, monospace";
-    size = '0.90625rem';
+    size = '0.875rem';
     leading = '1.6';
     measure = '44rem';
     spreadColumn = '15.5rem';
@@ -48,75 +48,8 @@ export class $LibraryBookTheme extends $Theme {
     me = '#e8590c';
     wash = 'linear-gradient(105deg, #e2f6fb 0%, #ecf0fd 52%, #fae9f4 100%)';
     serif = "'Cormorant Garamond', Georgia, serif";
-    bookGround = 'radial-gradient(1200px 700px at 50% -10%, #232a4d 0%, #171c33 45%, #0f1326 100%)';
-    bookChipFill = 'rgba(15, 19, 38, .72)';
-    bookChipLine = 'rgba(124, 138, 200, .35)';
-    bookChipInk = '#aab4e8';
-    bookChipOnFill = 'rgba(255, 210, 122, .12)';
-    bookChipOnLine = 'rgba(255, 210, 122, .75)';
-    bookChipOnInk = '#ffd27a';
-    bookSheet = '#fbf9f3';
-    bookSheetBorder = '0';
-    bookSheetRadius = '6px';
-    bookSheetShadow = '0 1px 0 rgba(255, 255, 255, .08), 0 34px 90px -24px rgba(0, 0, 0, .65)';
-    bookSheetWidth = '780px';
-    bookSheetPad = '68px 76px 56px';
-    bookSheetPadPhone = '40px 26px 36px';
-    bookSheetInk = '#29251d';
-    bookHeading = '#1f1b14';
-    bookInitial = '#6d6146';
-    bookLink = '#705f38';
-    bookKicker = '#9a9178';
-    bookKickerRule = '#d6cfb9';
-    bookFoot = '#9a9178';
-    bookFootValue = '#5e553d';
-    bookFootLine = '#e4ddc9';
-    nightGround = 'radial-gradient(1200px 700px at 50% -10%, #232a4d 0%, #171c33 45%, #0f1326 100%)';
-    nightChipFill = 'rgba(15, 19, 38, .72)';
-    nightChipLine = 'rgba(124, 138, 200, .35)';
-    nightChipInk = '#aab4e8';
-    nightChipOnFill = 'rgba(255, 210, 122, .12)';
-    nightChipOnLine = 'rgba(255, 210, 122, .75)';
-    nightChipOnInk = '#ffd27a';
-    nightSheet = 'linear-gradient(168deg, #191f3a 0%, #12162a 100%)';
-    nightSheetBorder = '1px solid #2c3358';
-    nightSheetRadius = '14px';
-    nightSheetShadow = '0 34px 90px -24px rgba(0, 0, 0, .8)';
-    nightSheetWidth = '760px';
-    nightSheetPad = '56px 64px 44px';
-    nightSheetPadPhone = '36px 24px';
-    nightSheetInk = '#c9d0f2';
-    nightHeading = '#f2ecd9';
-    nightInitial = '#ffd27a';
-    nightLink = '#7cf0c8';
-    nightKicker = '#9a9178';
-    nightKickerRule = '#d6cfb9';
-    nightFoot = '#7a86b8';
-    nightFootValue = '#ffd27a';
-    nightFootLine = '#2a3055';
-    whiteGround = 'radial-gradient(1200px 700px at 50% -10%, #ffffff 0%, #f1f7f9 45%, #e3f5fa 100%)';
-    whiteChipFill = '#ffffff';
-    whiteChipLine = '#dbe7ec';
-    whiteChipInk = '#516770';
-    whiteChipOnFill = '#0c1b1f';
-    whiteChipOnLine = '#0c1b1f';
-    whiteChipOnInk = '#ffffff';
-    whiteSheet = '#ffffff';
-    whiteSheetBorder = '1px solid #dbe7ec';
-    whiteSheetRadius = '6px';
-    whiteSheetShadow = '0 34px 90px -40px rgba(12, 27, 31, .28)';
-    whiteSheetWidth = '780px';
-    whiteSheetPad = '68px 76px 56px';
-    whiteSheetPadPhone = '40px 26px 36px';
-    whiteSheetInk = '#10252c';
-    whiteHeading = '#0c1b1f';
-    whiteInitial = '#166178';
-    whiteLink = '#166178';
-    whiteKicker = '#516770';
-    whiteKickerRule = '#8fc8dc';
-    whiteFoot = '#516770';
-    whiteFootValue = '#10252c';
-    whiteFootLine = '#dbe7ec';
+    bookPaper = '#fbf9f3';
+    bookInk = '#29251d';
     heading = '#10252c';
     capital = '#166178';
     lit = '#166178';
@@ -296,7 +229,7 @@ export class $LibraryBookTheme extends $Theme {
                 gap: calc(${({ theme }) => theme.space} / 3);
                 padding: calc(${({ theme }) => theme.space} * 0.29) calc(${({ theme }) => theme.space} * 0.42);
                 border-radius: calc(${({ theme }) => theme.space} / 3);
-                font-size: calc(0.93 * ${({ theme }) => theme.size});
+                font-size: calc(0.964 * ${({ theme }) => theme.size});
                 white-space: nowrap;
             }
             .pd-subjects .pd-paragraph::before {
@@ -316,7 +249,7 @@ export class $LibraryBookTheme extends $Theme {
             .pd-head .pd-chapter { margin-block: 0; }
             .pd-head .pd-title {
                 font-family: ${({ theme }) => theme.serif};
-                font-size: calc(1.8 * ${({ theme }) => theme.size});
+                font-size: calc(2.57 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1.04;
                 color: ${({ theme }) => theme.heading};
@@ -444,7 +377,7 @@ export class $LibraryBookTheme extends $Theme {
                 display: flex;
                 justify-content: space-between;
                 gap: ${({ theme }) => theme.space};
-                font-size: calc(0.93 * ${({ theme }) => theme.size});
+                font-size: calc(0.786 * ${({ theme }) => theme.size});
             }
             .pd-turn .pa-reference { font-weight: 500; text-decoration: none; }
             .pd-turn .pd-count { color: ${({ theme }) => theme.faint}; }

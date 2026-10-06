@@ -138,6 +138,7 @@ export class $Layout extends $Paginated {
                 .pa-layout .pd-switches { justify-content: flex-start; }
                 .pa-layout .pd-holds { order: 2; overflow: auto hidden; white-space: nowrap; scrollbar-width: none; }
                 .pa-layout .pd-leaves { order: 3; overflow: visible; }
+                .pa-layout .pd-words .pd-chapter { scroll-margin-block-start: calc(${({ theme }) => theme.barHeight} + ${({ theme }) => theme.space} / 2); }
             }
         `;
     }

@@ -24,10 +24,12 @@ export default () => (
             <Heading>How the layout fits the library's patterns</Heading>
             <Paragraph>
                 The layout is the framework's own Paginated extended: it answers the framework's two questions,
-                which chapters are pages and which is open, with the book's own chapters and the book's own
-                open, and keeps the framework's way of marking them. It is a Format with a look, a styled
-                component composed of parts — the paging, the regions, the grids, the phone — and it is given to
-                every book when the book is defined, so it is always there. That is why a tone, a reading and a
+                which chapters are pages and which is open, with the book's own pages — its chapters without
+                the appendix — and the book's own open, and keeps the framework's way of marking them. It is a
+                Format with a look, a styled component composed of parts — the paging, the regions, the grid, the
+                phone — and it is given to every book when the book is defined, so it is always there. It is
+                also the one thing on the page that knows the book's address, so it is the layout that lights
+                the library's subject that is this book, by a rule that names that address. That is why a tone, a reading and a
                 paper can be annotations that add a class and nothing else: the rules that read the class live
                 in a container that never leaves.
             </Paragraph>
@@ -47,9 +49,9 @@ export default () => (
             <Paragraph>
                 The paging, which hides every leaf but the open one. The regions: what each of the five does
                 inside its area — the library's bar a row, the head a row that wraps, the holds and the leaves
-                scrolling on their own. The areas, one grid per arrangement, with the widths from the theme. The
+                scrolling on their own. The areas: the frame's one grid, the side bar's width from the theme. The
                 phone: one column, the library's bar stuck at the top at the bar's height, me fixed at the
-                right, the table of contents hidden once a chapter is open.
+                right, the table of contents a row of pills under the head.
             </Paragraph>
         </Section>
         <Section>

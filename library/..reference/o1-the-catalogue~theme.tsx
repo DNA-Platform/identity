@@ -26,7 +26,7 @@ export class $CatalogueTheme extends $LibraryBookTheme {
                 margin-block: 0;
                 max-width: 56ch;
                 font-family: ${({ theme }) => theme.serif};
-                font-size: calc(1.38 * ${({ theme }) => theme.size});
+                font-size: calc(1.43 * ${({ theme }) => theme.size});
                 font-weight: 400;
                 line-height: 1.5;
             }
@@ -48,7 +48,7 @@ export class $CatalogueTheme extends $LibraryBookTheme {
                 background: linear-gradient(160deg, color-mix(in srgb, var(--colour, ${({ theme }) => theme.colour}) 90%, white), color-mix(in srgb, var(--colour, ${({ theme }) => theme.colour}) 86%, black));
                 color: ${({ theme }) => theme.white};
                 font-family: ${({ theme }) => theme.serif};
-                font-size: calc(1.03 * ${({ theme }) => theme.size});
+                font-size: calc(1.07 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1.12;
                 letter-spacing: -0.005em;
@@ -64,7 +64,7 @@ export class $CatalogueTheme extends $LibraryBookTheme {
             .pd-volume .pd-paragraph {
                 margin-block: calc(${({ theme }) => theme.space} / 3) 0;
                 overflow: hidden;
-                font-size: calc(0.9 * ${({ theme }) => theme.size});
+                font-size: calc(0.93 * ${({ theme }) => theme.size});
                 font-weight: 500;
                 white-space: nowrap;
                 text-overflow: ellipsis;
@@ -104,7 +104,7 @@ export class $CatalogueTheme extends $LibraryBookTheme {
                 margin-block: 0 calc(${({ theme }) => theme.space} / 2);
                 max-width: 56ch;
                 font-family: ${({ theme }) => theme.serif};
-                font-size: calc(1.25 * ${({ theme }) => theme.size});
+                font-size: calc(1.29 * ${({ theme }) => theme.size});
                 font-weight: 400;
                 letter-spacing: 0;
                 line-height: 1.5;

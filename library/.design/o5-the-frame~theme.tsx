@@ -32,7 +32,7 @@ export class $DesignTheme extends $LibraryBookTheme {
             .pd-words .pd-chapter { margin-block: 0; max-width: none; }
             .pd-words .pd-title {
                 font-family: ${({ theme }) => theme.serif};
-                font-size: calc(2.5 * ${({ theme }) => theme.size});
+                font-size: calc(2.57 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1.04;
                 color: ${({ theme }) => theme.heading};
@@ -47,8 +47,8 @@ export class $DesignTheme extends $LibraryBookTheme {
             .pd-words .pd-paragraph { max-width: ${({ theme }) => theme.measure}; }
             .pd-front .pd-words .pd-paragraph {
                 font-family: ${({ theme }) => theme.serif};
-                font-size: calc(1.5 * ${({ theme }) => theme.size});
-                line-height: 1.25;
+                font-size: calc(1.43 * ${({ theme }) => theme.size});
+                line-height: 1.5;
             }
         `;
     }

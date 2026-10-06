@@ -13,10 +13,13 @@ export default () => (
             <Paragraph>
                 The theme is where this library keeps its values, and the one styled component every book is
                 drawn inside. The framework's own theme has no values and no rules, so everything here is mine.
-                Its values are the frame's sketch's own: the soft black of my coming-soon page, the blues walked
-                from it to white, the opal, the orange that is me, one serif and one sans; the fourteen values of
-                the two tones, seven each; the width of the side bar; the faces, sizes and spaces; and one
-                colour, which each book sets to its own.
+                Its values are the frame's sketch's own, named as that file names them, by role: the bar and
+                what is read on it — the bar, its ink, its dim ink, what is on, its line, the mark; the side bar
+                and what is read on it; the paper and the ink, the soft and the line; the orange that is me, one
+                serif and one sans; the width of the side bar; the faces, sizes and spaces. Five of them are the
+                ones a book sets to have a colour scheme of its own — its colour, its accent, its side bar, its
+                paper and its ink — and the frame reads those and nothing else, so every book not yet written
+                has a scheme the moment it sets five values.
             </Paragraph>
         </Section>
         <Section>
@@ -36,10 +39,11 @@ export default () => (
             <Heading>How the theme is used</Heading>
             <Paragraph>
                 A book's theme is a class under this one, registered on the book's class in one
-                line. <Means>$[[ The manual's ]]( ./The Manual )</Means> sets its measure, its own side, its
-                purple, and the teal of its sketch, and adds the parts for its index and its words; the
-                catalogue's sets six values and adds the parts for its front and its covers; my story's sets its
-                prose face and its three papers' values.
+                line. <Means>$[[ The manual's ]]( ./The Manual )</Means> sets its measure, its spread's column
+                and the teal of its sketch as its colour, accent and side bar, and adds the parts for its index
+                and its words; the catalogue's keeps the base's values, which are the site's own, and adds the
+                parts for its front and its covers; my story's sets its prose face, its amber on book paper and
+                its three papers' values; the design book's its rose on white.
             </Paragraph>
         </Section>
         <Section>

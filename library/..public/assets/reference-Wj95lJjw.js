@@ -1,4 +1,4 @@
-var _=Object.defineProperty;var t=(p,e)=>_(p,"name",{value:e,configurable:!0});import{$ as h,a as H,b as N,i as E,c as F,A as V,d as q,e as G,s as J,f as K,g as Q,h as U,j as s,k as X,S as Y,T as Z,l as $,C as d,m as ee,n as l,o as se,p as te,q as ne,r as j,P as T,t as n,u as oe,v as u,H as g,w as r,W as c,M as i,x}from"./index-CGc9CIyY.js";import{O as ae,$ as ie,a as re,C as S,I as he,A as ce}from"./17-the-first~code-DmqHGuAn.js";import{S as de}from"./.synopsis-BUXYumTX.js";import{S as le}from"./.synopsis-CTIIrX4_.js";import{S as pe}from"./.synopsis-CT4P6oix.js";var fe=Object.defineProperty,me=t((p,e,o,m)=>{for(var a=void 0,f=p.length-1,b;f>=0;f--)(b=p[f])&&(a=b(e,o,a)||a);return a&&fe(e,o,a),a},"__decorateClass$1");const A=class A extends H{get identifier(){return this._book??super.identifier}$Bound(){super.$Bound(),this._book=this.chapter?.annotations.expressed(N)?.means?.identifier}};t(A,"$BookLink");let w=A;me([E()],w.prototype,"_book");const ue=h(w);var ge=Object.defineProperty,be=Object.getOwnPropertyDescriptor,xe=t((p,e,o,m)=>{for(var a=be(e,o),f=p.length-1,b;f>=0;f--)(b=p[f])&&(a=b(e,o,a)||a);return a&&ge(e,o,a),a},"__decorateClass");const B=class B extends F{constructor(){super(...arguments),this.specification=new y}defines(e){e.classes.add(this,"pa-caption")}erase(e){e.classes.revert(this)}};t(B,"$Caption");let C=B;const O=class O extends V{$saidOfAParagraph(e){q(e instanceof G,"a caption is said of a paragraph, and this is not one")}};t(O,"CaptionSpecification");let y=O;xe([Q("a caption is said of a paragraph")],y.prototype,"$saidOfAParagraph");const k=class k extends K{constructor(){super(...arguments),this.specification=new ae,this.themeProvider=!0}defines(e){for(const o of e.annotations.after(this))o instanceof k&&e.annotations.express(o,!1);super.defines(e)}erase(e){super.erase(e),e.classes.revert(this)}};t(k,"$View");let z=k;const M=class M extends z{constructor(){super(...arguments),this.style=J.div`
+var _=Object.defineProperty;var t=(p,e)=>_(p,"name",{value:e,configurable:!0});import{$ as h,a as H,b as N,i as E,c as F,A as V,d as q,e as G,s as J,f as K,g as Q,h as U,j as s,k as X,S as Y,T as Z,l as $,C as d,m as ee,n as l,o as se,p as te,q as ne,r as j,P as T,t as n,u as oe,v as u,H as g,w as r,W as c,M as i,x}from"./index-DGVF6UTJ.js";import{O as ae,$ as ie,a as re,C as S,I as he,A as ce}from"./17-the-first~code-CdkQni5j.js";import{S as de}from"./.synopsis-DYQ3PcK2.js";import{S as le}from"./.synopsis-Dqi7FWNL.js";import{S as pe}from"./.synopsis-Dt8WY-HI.js";var fe=Object.defineProperty,me=t((p,e,o,m)=>{for(var a=void 0,f=p.length-1,b;f>=0;f--)(b=p[f])&&(a=b(e,o,a)||a);return a&&fe(e,o,a),a},"__decorateClass$1");const A=class A extends H{get identifier(){return this._book??super.identifier}$Bound(){super.$Bound(),this._book=this.chapter?.annotations.expressed(N)?.means?.identifier}};t(A,"$BookLink");let w=A;me([E()],w.prototype,"_book");const ue=h(w);var ge=Object.defineProperty,be=Object.getOwnPropertyDescriptor,xe=t((p,e,o,m)=>{for(var a=be(e,o),f=p.length-1,b;f>=0;f--)(b=p[f])&&(a=b(e,o,a)||a);return a&&ge(e,o,a),a},"__decorateClass");const B=class B extends F{constructor(){super(...arguments),this.specification=new y}defines(e){e.classes.add(this,"pa-caption")}erase(e){e.classes.revert(this)}};t(B,"$Caption");let C=B;const O=class O extends V{$saidOfAParagraph(e){q(e instanceof G,"a caption is said of a paragraph, and this is not one")}};t(O,"CaptionSpecification");let y=O;xe([Q("a caption is said of a paragraph")],y.prototype,"$saidOfAParagraph");const k=class k extends K{constructor(){super(...arguments),this.specification=new ae,this.themeProvider=!0}defines(e){for(const o of e.annotations.after(this))o instanceof k&&e.annotations.express(o,!1);super.defines(e)}erase(e){super.erase(e),e.classes.revert(this)}};t(k,"$View");let z=k;const M=class M extends z{constructor(){super(...arguments),this.style=J.div`
         .pd-book.pa-shelf .pd-shelf {
             display: grid;
             grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -16,7 +16,7 @@ var _=Object.defineProperty;var t=(p,e)=>_(p,"name",{value:e,configurable:!0});i
                 margin-block: 0;
                 max-width: 56ch;
                 font-family: ${({theme:e})=>e.serif};
-                font-size: calc(1.38 * ${({theme:e})=>e.size});
+                font-size: calc(1.43 * ${({theme:e})=>e.size});
                 font-weight: 400;
                 line-height: 1.5;
             }
@@ -34,7 +34,7 @@ var _=Object.defineProperty;var t=(p,e)=>_(p,"name",{value:e,configurable:!0});i
                 background: linear-gradient(160deg, color-mix(in srgb, var(--colour, ${({theme:e})=>e.colour}) 90%, white), color-mix(in srgb, var(--colour, ${({theme:e})=>e.colour}) 86%, black));
                 color: ${({theme:e})=>e.white};
                 font-family: ${({theme:e})=>e.serif};
-                font-size: calc(1.03 * ${({theme:e})=>e.size});
+                font-size: calc(1.07 * ${({theme:e})=>e.size});
                 font-weight: 600;
                 line-height: 1.12;
                 letter-spacing: -0.005em;
@@ -50,7 +50,7 @@ var _=Object.defineProperty;var t=(p,e)=>_(p,"name",{value:e,configurable:!0});i
             .pd-volume .pd-paragraph {
                 margin-block: calc(${({theme:e})=>e.space} / 3) 0;
                 overflow: hidden;
-                font-size: calc(0.9 * ${({theme:e})=>e.size});
+                font-size: calc(0.93 * ${({theme:e})=>e.size});
                 font-weight: 500;
                 white-space: nowrap;
                 text-overflow: ellipsis;
@@ -90,7 +90,7 @@ var _=Object.defineProperty;var t=(p,e)=>_(p,"name",{value:e,configurable:!0});i
                 margin-block: 0 calc(${({theme:e})=>e.space} / 2);
                 max-width: 56ch;
                 font-family: ${({theme:e})=>e.serif};
-                font-size: calc(1.25 * ${({theme:e})=>e.size});
+                font-size: calc(1.29 * ${({theme:e})=>e.size});
                 font-weight: 400;
                 letter-spacing: 0;
                 line-height: 1.5;
@@ -303,7 +303,7 @@ export class $CatalogueTheme extends $LibraryBookTheme {
                 margin-block: 0;
                 max-width: 56ch;
                 font-family: \${({ theme }) => theme.serif};
-                font-size: calc(1.38 * \${({ theme }) => theme.size});
+                font-size: calc(1.43 * \${({ theme }) => theme.size});
                 font-weight: 400;
                 line-height: 1.5;
             }
@@ -325,7 +325,7 @@ export class $CatalogueTheme extends $LibraryBookTheme {
                 background: linear-gradient(160deg, color-mix(in srgb, var(--colour, \${({ theme }) => theme.colour}) 90%, white), color-mix(in srgb, var(--colour, \${({ theme }) => theme.colour}) 86%, black));
                 color: \${({ theme }) => theme.white};
                 font-family: \${({ theme }) => theme.serif};
-                font-size: calc(1.03 * \${({ theme }) => theme.size});
+                font-size: calc(1.07 * \${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1.12;
                 letter-spacing: -0.005em;
@@ -341,7 +341,7 @@ export class $CatalogueTheme extends $LibraryBookTheme {
             .pd-volume .pd-paragraph {
                 margin-block: calc(\${({ theme }) => theme.space} / 3) 0;
                 overflow: hidden;
-                font-size: calc(0.9 * \${({ theme }) => theme.size});
+                font-size: calc(0.93 * \${({ theme }) => theme.size});
                 font-weight: 500;
                 white-space: nowrap;
                 text-overflow: ellipsis;
@@ -381,7 +381,7 @@ export class $CatalogueTheme extends $LibraryBookTheme {
                 margin-block: 0 calc(\${({ theme }) => theme.space} / 2);
                 max-width: 56ch;
                 font-family: \${({ theme }) => theme.serif};
-                font-size: calc(1.25 * \${({ theme }) => theme.size});
+                font-size: calc(1.29 * \${({ theme }) => theme.size});
                 font-weight: 400;
                 letter-spacing: 0;
                 line-height: 1.5;

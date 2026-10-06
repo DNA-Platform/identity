@@ -2,7 +2,7 @@ import { ElementType, ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Date, $Format, $Writing, Given, Theme, Word as word } from '@dna-platform/public';
-import { $Count, $Dated, $LibraryBook, Count as count, OfABookSpecification, Tab as tab, Tone as tone, WhiteOverBlack as whiteOverBlack } from '../.manual/.book';
+import { $Count, $Dated, $LibraryBook, Count as count, OfABookSpecification, Tab as tab } from '../.manual/.book';
 import { StoryTheme } from './o1-the-sheet~theme.tsx';
 
 export class $Paper extends $Annotation {
@@ -100,13 +100,11 @@ export class $Sheet extends $Format {
         return css`
             .pa-sheet .pd-leaves {
                 display: grid;
+                grid-template-columns: min(calc(${({ theme }) => theme.measure} + ${({ theme }) => theme.space} * 6.3333), 100%);
                 grid-template-areas: 'masthead' 'leaf';
                 justify-content: center;
                 align-content: start;
             }
-            .pd-book.pa-book-paper .pd-leaves { grid-template-columns: min(${({ theme }) => theme.bookSheetWidth}, 100%); }
-            .pd-book.pa-night-paper .pd-leaves { grid-template-columns: min(${({ theme }) => theme.nightSheetWidth}, 100%); }
-            .pd-book.pa-white-paper .pd-leaves { grid-template-columns: min(${({ theme }) => theme.whiteSheetWidth}, 100%); }
             .pa-sheet .pd-leaves::before {
                 content: '';
                 grid-column: 1;
@@ -233,6 +231,5 @@ export class $Story extends $LibraryBook {
 
 export const Story = $($Story);
 $(Story, Theme)(StoryTheme);
-$(Story, tone)(whiteOverBlack);
 $(Story, Paper)(BookPaper);
 $(Story, count)(StoryCount);

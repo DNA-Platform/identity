@@ -6,21 +6,23 @@ export default () => (
         <Title>[[ The Colour ]]</Title>
         <Paragraph>
             <Brief />
-            Said of a chapter that stands for a book, holding the book's colour, which paints its cover.
+            Said of a chapter or a paragraph that stands for a book, holding the book's colour for the rules beside it to read.
         </Paragraph>
         <Section>
             <Heading>Each book has a colour of its own</Heading>
             <Paragraph>
                 A chapter that stands for a book on a shelf says the book's colour, as a librarian's label does,
-                and its cover is painted in it: the name on a gradient of that colour, the line across it a
-                tint. The book itself says the same colour in its own theme, so its dots and its pressed
-                switches wear it. That is one colour said in two places for now, because what a cover says does
-                not yet reach its catalogue's page, and the two are brought to one when it does.
+                and so does the paragraph that names the book in the library's bar. The colour is set where it
+                is said, as a property the rules beside it read: the cover on the shelf is a gradient of it, the
+                dot beside the name is it, the line under the open subject is it, and a row of the contents
+                reads it from the chapter it leads to. The book itself says the same colour in its own theme,
+                so its pressed switches wear it. That is one colour said in two places for now, because what a
+                cover says does not yet reach its catalogue's page, and the two are brought to one when it does.
             </Paragraph>
             <Paragraph>
-                The colours are the ones the frame's sketch gives the library's subjects: my own books the soft
-                black of the library, the design book a rose, the manual a purple, my story the orange that is
-                me. <Means>$[[ The catalogue ]]( Dougs Library )</Means> says each.
+                The colours are each book's scheme's, drawn from the comparables and softened to the frame: the
+                catalogue the site's blue-black, my story an amber, the design book a rose, the manual the teal
+                of its sketch. <Means>$[[ The catalogue ]]( Dougs Library )</Means> says each.
             </Paragraph>
         </Section>
         <Append

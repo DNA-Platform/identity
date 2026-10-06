@@ -52,6 +52,9 @@ export class $Gallery extends $Format {
         .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-photographs, .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-source { max-width: none; }
         .pa-gallery .pa-concept.pa-open .pa-photographs { flex-wrap: wrap; overflow: visible; }
         .pa-gallery .pa-concept.pa-open .pa-photographs img { height: auto; max-width: 100%; }
+        @media (max-width: ${({ theme }) => theme.narrow}) {
+            .pa-gallery .pd-section.pa-concept.pa-open { inset: ${({ theme }) => theme.barHeight} 0 0 0; }
+        }
         .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-source { display: block; }
         @media (max-width: ${({ theme }) => theme.narrow}) {
             .pa-gallery .pd-section.pa-concept.pa-open { inset: 0; }
