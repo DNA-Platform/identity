@@ -6,8 +6,8 @@ export default () => (
         <Cover />
         <Coloured>#0c1b1f</Coloured>
         <Title>[[ Dougs Library ]]</Title>
-        <Author>*[[ The Librarian ]]</Author>
-        <Subject>**[[ The Library ]]</Subject>
+        <Author>*[[ Doug ]]( The Librarian )</Author>
+        <Subject>**[[ Library ]]( The Library )</Subject>
         <About>[[ The Library ]]</About>
     </Chapter>
 );

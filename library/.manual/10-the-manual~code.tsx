@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { $, $check, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Format, $Paragraph, $Writing, Given, specify } from '@dna-platform/public';
+import { $Annotation, $Chapter, $Format, $Paragraph, $Writing, Given, specify } from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 import { Tab as tab } from './9-the-switch~code.tsx';
@@ -23,15 +23,29 @@ export class $Spread extends $Format {
         .pa-spread .pd-files:empty { display: none; }
         .pa-spread.pa-words-forward .pd-leaf.pd-open { grid-template-columns: minmax(0, 1fr) calc(2.33 * ${({ theme }) => theme.space}); }
         .pa-spread.pa-words-forward .pd-files { overflow: hidden; }
+        .pa-spread.pa-words-forward .pd-paragraph.pd-listing {
+            display: flex;
+            justify-content: center;
+            padding: calc(${({ theme }) => theme.space} * 0.6667) 0 0;
+        }
         .pa-spread.pa-words-forward .pd-listing .pd-word {
             writing-mode: vertical-rl;
-            border-start-start-radius: 0;
-            border-start-end-radius: calc(${({ theme }) => theme.space} * 0.3);
-            border-end-end-radius: calc(${({ theme }) => theme.space} * 0.3);
+            padding: 0;
+            border-radius: 0;
         }
         .pa-spread.pa-words-forward .pd-listing .pd-code { display: none; }
         .pa-spread.pa-words-forward .pd-words .pd-paragraph.pa-brief { display: none; }
-        .pa-spread.pa-code-forward .pd-leaf.pd-open { grid-template-columns: calc(1.4 * ${({ theme }) => theme.spreadColumn}) minmax(0, 1fr); }
+        .pa-spread.pa-code-forward .pd-leaf.pd-open {
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-areas: 'words' 'files';
+            height: auto;
+        }
+        .pa-spread.pa-code-forward .pd-words, .pa-spread.pa-code-forward .pd-files { overflow: visible; }
+        .pa-spread.pa-code-forward .pd-files {
+            margin: 0 calc(${({ theme }) => theme.space} * 1.8333) calc(${({ theme }) => theme.space} * 1.6667);
+            border-radius: calc(${({ theme }) => theme.space} / 2);
+            min-height: calc(${({ theme }) => theme.space} * 17.5);
+        }
         .pa-spread.pa-code-forward .pd-words .pd-section { display: none; }
         @media (max-width: ${({ theme }) => theme.narrow}) {
             .pa-spread .pd-leaf.pd-open { display: block; height: auto; }
@@ -56,6 +70,13 @@ export class $Manual extends $LibraryBook {
     override specification = new ManualSpecification();
     get readings(): Given<$Annotation>[] {
         return [codeForward, wordsForward];
+    }
+    override get open(): $Chapter | undefined {
+        return super.open ?? this.pages[0];
+    }
+
+    override front(): ReactNode {
+        return undefined;
     }
 
     override switches(): ReactNode {

@@ -1,13 +1,13 @@
 import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
-import { $Annotation, $Append, $Book, $Chapter, $Composition, $Reference, $Section, BookSpecification, Given, Theme, specify } from '@dna-platform/public';
+import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Section, BookSpecification, Given, Theme, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
-import { $Appendix } from './14-the-entry~code.tsx';
+import { $Appendix, leads } from './14-the-entry~code.tsx';
 import { Dark as dark, Light as light, Tone as tone, WhiteOverBlack as whiteOverBlack } from './16-the-tone~code.tsx';
-import { Subjects } from '../..reference/o1-the-catalogue~subjects.tsx';
+import { Logo, Subjects } from '../..reference/o1-the-catalogue~subjects.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
 
 export class $LibraryBook extends $Book {
@@ -26,7 +26,7 @@ export class $LibraryBook extends $Book {
         const table = this.table;
         if (table === undefined) return [];
         const places = table.text.find($Section).filter(section => section.is($Appendix))
-            .flatMap(section => section.text.find($Reference).map(reference => reference.identifier));
+            .flatMap(section => section.text.find($Paragraph).map(paragraph => leads(paragraph)?.identifier));
         return this.chapters.filter(chapter => places.includes(chapter.mention?.identifier ?? ''));
     }
     get open(): $Chapter | undefined {
@@ -62,9 +62,17 @@ export class $LibraryBook extends $Book {
     library(): ReactNode {
         return (
             <>
-                {this.filed()}
+                {this.logo()}
                 {this.subjects()}
             </>
+        );
+    }
+
+    logo(): ReactNode {
+        return (
+            <div className="pd-logo">
+                <Logo />
+            </div>
         );
     }
 
@@ -87,6 +95,7 @@ export class $LibraryBook extends $Book {
         const Cover = $(this.cover!);
         return (
             <>
+                {this.filed()}
                 <Cover />
                 <div className="pd-switches">
                     {this.switches()}

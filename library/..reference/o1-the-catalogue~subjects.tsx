@@ -1,6 +1,12 @@
 import { Means, Paragraph, Section } from '@dna-platform/public';
 import { Coloured } from '../.manual/18-the-colour~code.tsx';
 
+export const Logo = () => (
+    <Paragraph>
+        <Means>$[[ Dougs Library ]]</Means>
+    </Paragraph>
+);
+
 export const Subjects = () => (
     <Section>
         <Paragraph>
@@ -8,7 +14,7 @@ export const Subjects = () => (
             <Means>$[[ Dougs Story ]]</Means>
         </Paragraph>
         <Paragraph>
-            <Coloured>#d487a8</Coloured>
+            <Coloured>#3b6cf0</Coloured>
             <Means>$[[ Dougs Design ]]</Means>
         </Paragraph>
         <Paragraph>

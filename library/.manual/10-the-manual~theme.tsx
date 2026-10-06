@@ -25,7 +25,7 @@ export class $ManualTheme extends $LibraryBookTheme {
     dusk = '#17363f';
 
     protected override parts(): RuleSet[] {
-        return [...super.parts(), this.index(), this.words(), this.small()];
+        return [...super.parts(), this.index(), this.words(), this.file(), this.fold(), this.small()];
     }
 
     protected override holds(): RuleSet {
@@ -49,12 +49,12 @@ export class $ManualTheme extends $LibraryBookTheme {
                 background: ${({ theme }) => theme.panel};
                 border-block-end: thin solid ${({ theme }) => theme.line};
             }
-            .pd-library .pd-filed-under, .pd-library .pd-byline {
+            .pd-logo .pd-paragraph, .pd-library .pd-byline {
                 margin-block: 0;
                 font-size: calc(0.83 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.faint};
             }
-            .pd-library .pd-filed-under .pa-reference, .pd-library .pd-byline .pa-reference {
+            .pd-logo .pa-reference, .pd-library .pd-byline .pa-reference {
                 color: ${({ theme }) => theme.soft};
                 text-decoration: none;
             }
@@ -65,10 +65,13 @@ export class $ManualTheme extends $LibraryBookTheme {
 
     protected words(): RuleSet {
         return css`
-            .pd-words { padding: calc(${({ theme }) => theme.space} * 1.4) calc(${({ theme }) => theme.space} * 1.8); }
+            .pd-words {
+                padding: calc(${({ theme }) => theme.space} * 1.4) calc(${({ theme }) => theme.space} * 1.8);
+                font-size: calc(1.0357 * ${({ theme }) => theme.size});
+            }
             .pd-words .pd-chapter { margin-block: 0; }
             .pd-words .pd-title {
-                font-size: calc(2.07 * ${({ theme }) => theme.size});
+                font-size: calc(2.1429 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1.15;
                 letter-spacing: -0.02em;
@@ -76,7 +79,7 @@ export class $ManualTheme extends $LibraryBookTheme {
             }
             .pd-words .pd-section { margin-block-start: calc(${({ theme }) => theme.space} * 1.25); }
             .pd-words .pd-heading {
-                font-size: calc(0.9 * ${({ theme }) => theme.size});
+                font-size: calc(0.9286 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 letter-spacing: 0.06em;
                 text-transform: uppercase;
@@ -87,11 +90,28 @@ export class $ManualTheme extends $LibraryBookTheme {
             }
             .pd-words .pd-paragraph { margin-block: calc(${({ theme }) => theme.space} * 0.4); }
             .pd-words .pd-paragraph.pd-turn { margin-block-start: calc(${({ theme }) => theme.space} * 1.1); }
-            .pd-words .pa-synopsis .pd-paragraph {
-                font-size: calc(1.1 * ${({ theme }) => theme.size});
+            .pd-book.pa-code-forward .pd-words { padding: calc(${({ theme }) => theme.space} * 1.1667) calc(${({ theme }) => theme.space} * 1.8333) calc(${({ theme }) => theme.space} * 0.75); }
+            .pd-book.pa-code-forward .pd-words .pd-paragraph.pa-brief {
+                font-size: calc(1.1429 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.soft};
             }
-            .pd-book.pa-code-forward .pd-words { font-size: calc(0.9 * ${({ theme }) => theme.size}); }
+        `;
+    }
+
+    protected file(): RuleSet {
+        return css`
+            .pd-book.pa-code-forward .pd-listing .pd-code { font-size: calc(0.9286 * ${({ theme }) => theme.size}); }
+        `;
+    }
+
+    protected fold(): RuleSet {
+        return css`
+            .pa-words-forward .pd-listing .pd-word {
+                background: none;
+                font-size: calc(0.8571 * ${({ theme }) => theme.size});
+                letter-spacing: 0.08em;
+                color: color-mix(in srgb, ${({ theme }) => theme.glow} 70%, ${({ theme }) => theme.night});
+            }
         `;
     }
 

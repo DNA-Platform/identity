@@ -54,6 +54,40 @@ export default () => (
                 the site's own blue-black. A book's hue means its genre, and the four share one darkness of
                 ground and one lightness of words so that they read as one house.
             </Paragraph>
+            <Paragraph>
+                <Pain />
+                And then I saw rose taking over the design gallery, and it made me sad. Are art galleries
+                usually rose? I am male, you know that. Everything was starting to look soft, with the
+                frilliness of the coming-soon font on every title and big type for old people to read.
+            </Paragraph>
+            <Paragraph>
+                <Solution />
+                The comparables for a gallery of screens are Mobbin, Figma Community, Behance and Are.na: a
+                white page, near-black text, one cool blue accent, and a sans throughout — Dribbble's pink is
+                a brand mark, not a gallery's palette. So the design book is a gallery: Inter at 600 for its
+                titles, at 28 and 15 rather than 36 and 18, and the colour Behance gives a gallery — an electric
+                cobalt — for its dot and its pressed tab, with its side bar the pale of that cobalt. I like
+                colours, and grey is not one; rose to grey skips every colour between, and a masculine scheme
+                is a stronger colour, not the absence of one. And the books do not all use their colours the
+                same way, because they should not all look the same: the catalogue is 15, a black bar over an
+                opal side with the sea as its dots; my story is 29, a white bar over a night side on book
+                paper with amber on its entries; the design book puts the cobalt on the bar itself, as Behance
+                does, over a white side; the manual, after Mintlify, keeps white bars and marks the current
+                row by its teal text alone. The teaser's serif stays where the frame put it, on the library's page
+                and the covers, and goes from the gallery.
+            </Paragraph>
+            <Paragraph>
+                <Pain />
+                The books in the header are cool, and if we start doing stateful things people might pin
+                them. But is that a user interface that scales? A library should be allowed to get very large.
+            </Paragraph>
+            <Paragraph>
+                <Solution />
+                The bar holds the library's subjects — what is filed directly under it — never every book; in
+                the frame file those are a handful, with a find beside them. The three names in the bar today
+                are the three subjects the library has. As it grows, books file under subjects and a subject's
+                page holds its books; pins come when there is state to pin with.
+            </Paragraph>
         </Section>
         <Section>
             <Heading>The library's page</Heading>
@@ -71,7 +105,8 @@ export default () => (
                 The catalogue is the first book on its own shelf, in black, as my own books are black in 1 and
                 in 15. Pressing it opens its entry, which says what it is; opening the book from there brings
                 this page back, showing that I was just reading about the thing I am on. That is the closure
-                this library has — the library catalogues itself — and it is shown, never avoided.
+                this library has — the library catalogues itself — and it is shown, never avoided. Built the
+                same day: the catalogue's own cover is the first on its shelf, and its head holds nothing else.
             </Paragraph>
             <Paragraph>
                 <Pain />
@@ -87,8 +122,9 @@ export default () => (
                 shelves, and an entry for each book filed here, marked with the book's colour, and pressing an
                 entry opens it on this page — the cover, what the book is about, and the way in. A cover on the
                 shelf goes straight to the book. Explored
-                in <Means>$[[ 32 ]]( ./The Library's Page, in the Frame of 15 )</Means>, not decided from
-                the photograph.
+                in <Means>$[[ 32 ]]( ./The Library's Page, in the Frame of 15 )</Means>, and built from it the
+                same day: a row in the contents opens the entry in place under the shelf, its second word, an
+                arrow, leads to the book, and the subject that is this book is lit in the bar.
             </Paragraph>
             <Paragraph>
                 <Pain />
@@ -102,7 +138,8 @@ export default () => (
                 <Solution />
                 A row in the contents does one thing when pressed, and the row that is lit is the thing shown.
                 An entry for a book filed here opens that entry on this page, as 32 sketches; a group heading
-                is a label, not a link; one row is lit at a time.
+                is a label, not a link; one row is lit at a time. Built the same day for the entries; the
+                headings stand as they were.
             </Paragraph>
             <Paragraph>
                 <Pain />
@@ -114,7 +151,9 @@ export default () => (
             <Paragraph>
                 <Solution />
                 Under a cover, one line: how many chapters, and the date of the latest when the book has dates.
-                What a book is about is read on its entry, not on the shelf.
+                What a book is about is read on its entry, not on the shelf. Built the same day as the caption,
+                a thing said of the one line in each entry; the counts and the dates wait on what a page may
+                know of another book.
             </Paragraph>
             <Paragraph>
                 <Pain />
@@ -136,7 +175,8 @@ export default () => (
             <Paragraph>
                 <Solution />
                 Every size in the theme is the file's value, written beside it, and the wash is kept for a card
-                that invites a press.
+                that invites a press. Done the same day: a 14px body, the title 36, the cover's name 15, the
+                synopsis 20, the subjects 13.5, the turn 11, measured live.
             </Paragraph>
             <Paragraph>
                 <Pain />
@@ -202,7 +242,8 @@ export default () => (
                 colour, writing page titles in it is not using the palette, whatever the swatch says. Every
                 value in a scheme carries the role it was designed for, and a theme names its fields for those
                 roles — ground, words, hue, paper, ink — never for the colours, so that a value cannot wander
-                into a role it was not designed for.
+                into a role it was not designed for. Built the same day, in the frame's own words for the roles
+                — bar, side, colour, accent, paper, ink — with each book's theme setting five.
             </Paragraph>
         </Section>
         <Section>
@@ -249,7 +290,8 @@ export default () => (
             <Paragraph>
                 <Solution />
                 The story opens on a chapter, dated in its masthead, with the folio and the turns at the foot.
-                A short entry is still a page when the title, the drop cap and the foot are there.
+                A short entry is still a page when the title, the drop cap and the foot are there. Built the
+                same day: the latest dated entry opens, its date in the masthead, the folio chapter N of M.
             </Paragraph>
             <Paragraph>
                 <Pain />
@@ -259,7 +301,8 @@ export default () => (
             <Paragraph>
                 <Solution />
                 What a book is built with stands at the foot of the contents in a smaller voice, or is reached
-                from the manual, which is where the parts live.
+                from the manual, which is where the parts live. Built the same day, for every book: the group
+                is said to be the appendix, stands at the foot, and is left out of the folio and the turns.
             </Paragraph>
         </Section>
         <Section>
@@ -313,7 +356,32 @@ export default () => (
                 <Solution />
                 The bar keeps the frame file's margin for the face; what opens under a sticky bar leaves room
                 for it; the × stands clear of the face; the manual's chapters on a phone are picked, not
-                scrolled; the sheet fills the screen as 29's does.
+                scrolled; the sheet fills the screen as 29's does. Done the same day but the picker: the ×
+                at 55 under a face ending at 50, a chapter's title at 62 under a bar ending at 50, the sheet
+                filling the screen.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Where the sketch phase ended</Heading>
+            <Paragraph>
+                <Image>![[ library-black.png ]]</Image>
+                <Image>![[ design-cobalt.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                <Pain />
+                I hate what I see here. My brain wants to vomit looking at it. We are a long, long way from
+                something usable. Those books are huge. Is there even a book selection view that tells you
+                something about one? Maybe there is something useful the UI on this page can do. The black is
+                not working; it is too loud. Loud cobalt is not subtle. I feel so much pain and sadness looking
+                at this work.
+            </Paragraph>
+            <Paragraph>
+                <Solution />
+                Go light. Gentle. Pastels with accent colours, a little more in the blue, green and purple
+                than the yellow, orange and pink, with interesting contrasts, and several colours that span
+                the wheel so that no book is any one thing and no one colour occupies so much. Be thoughtful
+                about font, font size and palette. And stop here: this is where the sketch phase ends, and the
+                design phase begins from each book's own data in HTML, designed together, one book at a time.
             </Paragraph>
         </Section>
     </Chapter>

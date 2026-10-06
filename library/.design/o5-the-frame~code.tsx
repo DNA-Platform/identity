@@ -19,17 +19,17 @@ export class $Design extends $LibraryBook {
             <>
                 <Tab
                     chapter={this.cover}
+                    of={dark}
+                    among={this.tones}
+                >
+                    cobalt
+                </Tab>
+                <Tab
+                    chapter={this.cover}
                     of={light}
                     among={this.tones}
                 >
                     white
-                </Tab>
-                <Tab
-                    chapter={this.cover}
-                    of={dark}
-                    among={this.tones}
-                >
-                    black top bar
                 </Tab>
             </>
         );
@@ -38,4 +38,4 @@ export class $Design extends $LibraryBook {
 
 export const Design = $($Design);
 $(Design, Theme)(DesignTheme);
-$(Design, tone)(light);
+$(Design, tone)(dark);

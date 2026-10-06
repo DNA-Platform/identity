@@ -3,11 +3,20 @@ import { $ } from '@dna-platform/chemistry';
 import { $LibraryBookTheme } from '../.manual/.book';
 
 export class $DesignTheme extends $LibraryBookTheme {
-    colour = '#d487a8';
-    accent = '#a83a66';
-    side = '#fae9f0';
-    sideLine = '#f1cfdc';
-    ink = '#221a1e';
+    colour = '#3b6cf0';
+    accent = '#1f4fd6';
+    bar = '#1f4fd6';
+    barInk = '#ffffff';
+    barDim = 'rgba(255, 255, 255, 0.74)';
+    barOn = 'rgba(255, 255, 255, 0.16)';
+    barLine = '#1a44b8';
+    mark = '#ffffff';
+    side = '#ffffff';
+    sideOn = '#e6eeff';
+    sideLine = '#e4e8f3';
+    ink = '#111318';
+    heading = '#111318';
+    serif = "'Inter', system-ui, sans-serif";
 
     protected override parts(): RuleSet[] {
         return [...super.parts(), this.tools(), this.words(), this.cards(), this.small()];
@@ -30,11 +39,16 @@ export class $DesignTheme extends $LibraryBookTheme {
         return css`
             .pd-leaves { padding: calc(${({ theme }) => theme.space} * 0.83) calc(${({ theme }) => theme.space} * 1.17) calc(${({ theme }) => theme.space} * 1.67); }
             .pd-words .pd-chapter { margin-block: 0; max-width: none; }
+            .pd-head .pd-title {
+                font-size: calc(2 * ${({ theme }) => theme.size});
+                letter-spacing: -0.02em;
+            }
             .pd-words .pd-title {
                 font-family: ${({ theme }) => theme.serif};
-                font-size: calc(2.57 * ${({ theme }) => theme.size});
+                font-size: calc(2 * ${({ theme }) => theme.size});
                 font-weight: 600;
-                line-height: 1.04;
+                letter-spacing: -0.02em;
+                line-height: 1.1;
                 color: ${({ theme }) => theme.heading};
             }
             .pd-words .pd-heading {
@@ -46,9 +60,9 @@ export class $DesignTheme extends $LibraryBookTheme {
             }
             .pd-words .pd-paragraph { max-width: ${({ theme }) => theme.measure}; }
             .pd-front .pd-words .pd-paragraph {
-                font-family: ${({ theme }) => theme.serif};
-                font-size: calc(1.43 * ${({ theme }) => theme.size});
-                line-height: 1.5;
+                font-size: calc(1.14 * ${({ theme }) => theme.size});
+                line-height: 1.6;
+                color: ${({ theme }) => theme.soft};
             }
         `;
     }
@@ -64,15 +78,15 @@ export class $DesignTheme extends $LibraryBookTheme {
             }
             .pa-gallery .pa-concept .pd-heading, .pa-gallery .pa-concept .pa-number {
                 font-family: ${({ theme }) => theme.serif};
-                font-size: calc(1.3 * ${({ theme }) => theme.size});
+                font-size: calc(1.07 * ${({ theme }) => theme.size});
                 font-weight: 600;
-                letter-spacing: 0;
+                letter-spacing: -0.01em;
                 text-transform: none;
                 color: ${({ theme }) => theme.heading};
             }
             .pa-gallery .pa-concept .pa-number {
-                font-size: calc(1.6 * ${({ theme }) => theme.size});
-                color: ${({ theme }) => theme.accent};
+                font-size: calc(1.07 * ${({ theme }) => theme.size});
+                color: ${({ theme }) => theme.soft};
             }
             .pa-gallery .pa-concept .pd-paragraph {
                 margin-block: 0;

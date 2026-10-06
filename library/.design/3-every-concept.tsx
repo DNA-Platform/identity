@@ -929,8 +929,8 @@ export default () => (
                     <Image>![[ 032-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
-                    Sketched for <Means>$[[ the catalogue's page ]]( Dougs Library )</Means>, which stands as it
-                    was built until this is chosen.
+                    Where it is: <Means>$[[ built as the catalogue's page ]]( Dougs Library )</Means>, its own
+                    cover first on its shelf, an entry opening in place under the shelf from its row or its cover.
                 </Paragraph>
                 <Paragraph>
                     <Source />
@@ -963,8 +963,8 @@ export default () => (
                     <Image>![[ 033-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
-                    Sketched for <Means>$[[ the theme every book's theme sets its values on ]]( Dougs Reference Manual / The Theme )</Means>,
-                    whose fields are to be named for these roles.
+                    Where it is: <Means>$[[ built as the theme's roles, five of which a book sets ]]( Dougs Reference Manual / The Theme )</Means>,
+                    the frame of 15 read from them by <Means>$[[ the tone ]]( Dougs Reference Manual / The Tone )</Means>.
                 </Paragraph>
                 <Paragraph>
                     <Source />

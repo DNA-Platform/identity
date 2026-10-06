@@ -3,6 +3,7 @@ import { $Cover, $TableOfContents } from '@dna-platform/public';
 
 export class $StoryCover extends $Cover {
     override style = selection.header`
+        justify-self: end;
         .pd-chapter.pa-cover { margin-block: 0; }
     `;
 }

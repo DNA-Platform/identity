@@ -125,7 +125,7 @@ export class $Sheet extends $Format {
                 justify-content: center;
                 align-items: baseline;
             }
-            .pa-sheet .pd-masthead .pd-paragraph.pd-byline { grid-area: byline; }
+            .pa-sheet .pd-masthead .pd-paragraph.pd-byline { grid-area: byline; justify-self: start; }
             .pa-sheet .pd-masthead .pd-word.pd-date { grid-area: date; justify-self: center; }
             .pa-sheet .pd-masthead::after { grid-area: rule; justify-self: center; }
             .pa-sheet .pd-leaf .pd-chapter.pa-dated .pd-word.pd-date { display: none; }

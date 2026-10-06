@@ -84,7 +84,7 @@ export class EntrySpecification extends AnnotationSpecification {
     }
 }
 
-const leads = (paragraph: $Writing): $Content | undefined =>
+export const leads = (paragraph: $Writing): $Content | undefined =>
     paragraph.annotations.expressed($Content) ?? paragraph.text.find($Word).map(word => word.annotations.expressed($Content)).find(content => content !== undefined);
 
 export const Entry = $($Entry);

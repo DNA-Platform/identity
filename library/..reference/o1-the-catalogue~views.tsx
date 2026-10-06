@@ -42,7 +42,7 @@ export class $Shelf extends $View {
     style = selection.div`
         .pd-book.pa-shelf .pd-shelf {
             display: grid;
-            grid-template-columns: repeat(6, minmax(0, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(124px, 148px));
             gap: calc(${({ theme }) => theme.space} * 0.83);
             align-items: start;
         }

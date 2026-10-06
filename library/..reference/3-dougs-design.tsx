@@ -5,7 +5,7 @@ import DesignSynopsis from '../.design/.synopsis';
 
 export default () => (
     <Chapter>
-        <Coloured>#d487a8</Coloured>
+        <Coloured>#3b6cf0</Coloured>
         <Title>[[ Dougs Design ]]</Title>
         <Paragraph>
             <Caption />

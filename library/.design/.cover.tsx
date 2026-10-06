@@ -5,7 +5,7 @@ export default () => (
     <Chapter>
         <Cover />
         <Title>[[ Dougs Design ]]</Title>
-        <Author>*[[ The Librarian ]]</Author>
-        <Subject>**[[ The Library ]]</Subject>
+        <Author>*[[ Doug ]]( The Librarian )</Author>
+        <Subject>**[[ Library ]]( The Library )</Subject>
     </Chapter>
 );

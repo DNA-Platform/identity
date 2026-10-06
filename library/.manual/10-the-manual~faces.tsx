@@ -40,9 +40,8 @@ export class $ManualTableOfContents extends $TableOfContents {
             font-weight: 500;
         }
         .pa-table-of-contents .pa-reference { color: inherit; text-decoration: none; }
-        .pa-table-of-contents .pa-file-type {
-            font-family: ${({ theme }) => theme.mono};
-            font-size: calc(0.76 * ${({ theme }) => theme.size});
+        .pa-table-of-contents .pa-number {
+            font-size: calc(0.8571 * ${({ theme }) => theme.size});
             color: ${({ theme }) => theme.faint};
         }
     `;
