@@ -142,11 +142,15 @@ Asked of the lab on 2026-10-05, with the answers as they came:
    "nexport datasets"; `sinzlab/nexport` is private), and access to it. *Cameron: Erin has the copy of
    nexport she used. His own copy is modified for novel cases (an intentional lag on `frame_times`,
    crops of fluorescence frames) and is offered for reference. Erin's made the delivered exports, so
-   hers is the one to run.* *The 33328 exports were almost certainly Cameron's. The originals are in
-   `/mnt/jrdj_stor01/astroml/` (2026-01-05), beside an astrocyte project's exports named for the features
-   Cameron says his copy adds (`astrolag[N]ms`, `masked`, `rgeco`, 6–16 GB each). `/mnt/lab/users/erin/nexport`
-   holds Erin's 33977 exports before and after neuropil subtraction, not the code
-   (`runs/lab/*-who-made-33328-exports.*`).*
+   hers is the one to run.* *How sure each claim is. **33977's exports were made with nexport, by Erin**:
+   Cameron says so, her matching script calls them "nexport datasets", and her folder on the lab's
+   storage, `/mnt/lab/users/erin/nexport`, holds them before and after neuropil subtraction (it holds
+   the exports, not the code). **33328's exports are in nexport's format**, laid out file for file like
+   33977's, but a format does not name the tool that wrote it. **Who made them is not established**:
+   the originals are in `/mnt/jrdj_stor01/astroml/` (2026-01-05), beside an astrocyte project's exports
+   named for the features Cameron says his copy adds (`astrolag[N]ms`, `masked`, `rgeco`). That is an
+   inference, so it is asked rather than stated (`runs/lab/*-who-made-33328-exports.*`). Because the
+   comparison is 33977 against 33977, the exporter to hold constant is Erin's, with her settings.*
 4. **The Kubernetes config file** for the GPU servers. *Received 2026-10-05 ([The GPU cluster](#the-gpu-cluster)).*
 5. **Etiquette for a personal container**: which compute server, what limits, and whether
    `ml-gpu-pipeline:cleaned` is the image to use. *Cameron: some people use Kubernetes, and some launch
