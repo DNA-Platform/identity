@@ -1,5 +1,5 @@
 import { Chapter, Date, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Dated } from '../.manual/.book';
+import { Dated, First } from '../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -10,6 +10,7 @@ export default () => (
         <Section>
             <Heading>Seeing before choosing</Heading>
             <Paragraph>
+                <First />
                 I can't design from a description. I need to see things, many of them and quickly, and choose. So
                 for two days I looked at sketches, each one a page I could open at a desk and on a phone, each with
                 a number it keeps. There are twenty-five of them,

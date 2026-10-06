@@ -9,6 +9,7 @@ declare module 'styled-components' {
 
 export class $LibraryBookTheme extends $Theme {
     font = "'Inter', system-ui, sans-serif";
+    prose = "'Inter', system-ui, sans-serif";
     mono = "'JetBrains Mono', ui-monospace, monospace";
     size = '0.90625rem';
     leading = '1.6';
@@ -102,6 +103,7 @@ export class $LibraryBookTheme extends $Theme {
 
     protected writing(): RuleSet {
         return css`
+            .pd-leaves { font-family: ${({ theme }) => theme.prose}; }
             .pd-chapter, .pd-section, .pd-paragraph { margin-block: ${({ theme }) => theme.space}; }
             .pd-chapter { max-width: ${({ theme }) => theme.measure}; }
         `;
@@ -181,7 +183,7 @@ export class $LibraryBookTheme extends $Theme {
                 padding: calc(${({ theme }) => theme.space} / 8) calc(${({ theme }) => theme.space} / 2);
                 cursor: pointer;
             }
-            .pd-switch[aria-pressed='true'] {
+            .pd-word.pd-switch[aria-pressed='true'] {
                 color: ${({ theme }) => theme.white};
                 background: ${({ theme }) => theme.colour};
                 border-color: ${({ theme }) => theme.colour};
@@ -194,6 +196,35 @@ export class $LibraryBookTheme extends $Theme {
             .pd-library { padding: calc(${({ theme }) => theme.space} * 0.375) calc(${({ theme }) => theme.space} * 0.75); }
             .pd-library .pd-paragraph, .pd-me .pd-paragraph { margin-block: 0; }
             .pd-me { padding: 0 calc(${({ theme }) => theme.space} * 0.75); }
+            .pd-library .pd-filed-under, .pd-me .pd-byline {
+                display: flex;
+                align-items: center;
+                gap: calc(${({ theme }) => theme.space} * 0.4);
+                font-size: calc(0.83 * ${({ theme }) => theme.size});
+            }
+            .pd-library .pd-word, .pd-me .pd-word { font-weight: 500; }
+            .pd-library .pd-filed-under .pd-word {
+                font-family: ${({ theme }) => theme.serif};
+                font-size: calc(1.45 * ${({ theme }) => theme.size});
+                font-weight: 600;
+                line-height: 1;
+            }
+            .pd-library .pa-reference, .pd-me .pa-reference { color: inherit; text-decoration: none; }
+            .pd-library .pd-filed-under::before, .pd-me .pd-byline::before {
+                content: ${({ theme }) => theme.initial};
+                display: grid;
+                place-items: center;
+                width: calc(${({ theme }) => theme.space} * 1.3);
+                height: calc(${({ theme }) => theme.space} * 1.3);
+                font-size: ${({ theme }) => theme.size};
+                font-weight: 600;
+            }
+            .pd-library .pd-filed-under::before { border-radius: calc(${({ theme }) => theme.space} / 3); }
+            .pd-me .pd-byline::before {
+                border-radius: 50%;
+                background: ${({ theme }) => theme.me};
+                color: ${({ theme }) => theme.white};
+            }
             .pd-subjects { min-width: 0; }
             .pd-subjects .pd-section {
                 display: flex;
@@ -295,6 +326,25 @@ export class $LibraryBookTheme extends $Theme {
                 background: ${({ theme }) => theme.lightMark};
                 color: ${({ theme }) => theme.lightMarkInk};
             }
+            .pa-white-over-black .pd-library, .pa-white-over-black .pd-me {
+                background: ${({ theme }) => theme.lightBar};
+                color: ${({ theme }) => theme.lightBarInk};
+            }
+            .pa-white-over-black .pd-library { border-block-end: thin solid ${({ theme }) => theme.lightBarLine}; }
+            .pa-white-over-black .pd-library .pd-word, .pa-white-over-black .pd-me .pd-word { color: ${({ theme }) => theme.lightBarInk}; }
+            .pa-white-over-black .pd-library .pd-label, .pa-white-over-black .pd-me .pd-label { color: ${({ theme }) => theme.lightBarDim}; }
+            .pa-white-over-black .pd-library .pd-filed-under::before {
+                background: ${({ theme }) => theme.lightMark};
+                color: ${({ theme }) => theme.lightMarkInk};
+            }
+            .pa-white-over-black .pd-holds {
+                background: ${({ theme }) => theme.darkBar};
+                color: ${({ theme }) => theme.darkBarInk};
+                border-inline-end: thin solid ${({ theme }) => theme.darkBarLine};
+            }
+            .pa-white-over-black .pd-holds .pd-chapter, .pa-white-over-black .pd-holds .pd-heading { color: ${({ theme }) => theme.darkBarDim}; }
+            .pa-white-over-black .pd-holds .pd-paragraph.pa-entry { color: ${({ theme }) => theme.darkBarInk}; }
+            .pa-white-over-black .pd-holds .pd-paragraph.pa-entry.pa-open { background: ${({ theme }) => theme.darkBarOn}; }
         `;
     }
 

@@ -8,7 +8,7 @@ import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-t
 import { Switch as switching } from './9-the-switch~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
 import { Bars as bars, BothBars as bothBars, Cards as cards, Rail as rail, SideBar as sideBar, TopBar as topBar, TwoBars as twoBars } from './15-the-bars~code.tsx';
-import { Dark as dark, Light as light, Tone as tone } from './16-the-tone~code.tsx';
+import { Dark as dark, Light as light, Tone as tone, WhiteOverBlack as whiteOverBlack } from './16-the-tone~code.tsx';
 import { Subjects } from '../..reference/o1-the-bars~subjects.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
 
@@ -27,7 +27,7 @@ export class $LibraryBook extends $Book {
         return [bothBars, sideBar, topBar, twoBars, rail, cards];
     }
     get tones(): Given<$Annotation>[] {
-        return [dark, light];
+        return [dark, light, whiteOverBlack];
     }
 
     override write(): ReactNode {

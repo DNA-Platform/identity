@@ -31,6 +31,14 @@ export class $Light extends $Tone {
     }
 }
 
+export class $WhiteOverBlack extends $Tone {
+    override defines(writing: $Writing): void {
+        super.defines(writing);
+        writing.classes.add(this, 'pa-white-over-black');
+    }
+}
+
 export const Tone = $($Tone);
 export const Dark = $($Dark);
 export const Light = $($Light);
+export const WhiteOverBlack = $($WhiteOverBlack);

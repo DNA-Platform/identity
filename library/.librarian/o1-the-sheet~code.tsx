@@ -1,22 +1,14 @@
-import { ReactNode } from 'react';
+import { ElementType, ReactNode } from 'react';
+import { css, RuleSet } from 'styled-components';
 import { $, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Chapter, $Format, $Paragraph, $Section, $Writing, Given, Theme } from '@dna-platform/public';
-import { $LibraryBook, OfABookSpecification, Tab as tab } from '../.manual/.book';
+import { $Annotation, $Format, $Writing, Given, Theme } from '@dna-platform/public';
+import { $LibraryBook, OfABookSpecification, Tab as tab, Tone as tone, WhiteOverBlack as whiteOverBlack } from '../.manual/.book';
 import { BookPaper as bookPaper, NightPaper as nightPaper, WhitePaper as whitePaper } from './o1-the-sheet~theme.tsx';
 
 export class $Sheet extends $Format {
     specification = new OfABookSpecification();
     themeProvider = true;
-    style = selection.div`
-        .pa-sheet .pd-leaves { display: grid; justify-items: center; align-content: start; }
-        .pa-sheet .pd-leaf {
-            box-sizing: border-box;
-            width: min(${({ theme }) => theme.measure}, 100%);
-        }
-        @media (max-width: ${({ theme }) => theme.narrow}) {
-            .pa-sheet .pd-leaves { justify-items: stretch; }
-        }
-    `;
+    style: ElementType = selection.div`${this.parts()}`;
 
     override defines(writing: $Writing): void {
         super.defines(writing);
@@ -28,16 +20,60 @@ export class $Sheet extends $Format {
         writing.classes.revert(this);
     }
 
-    protected opening(chapter: $Chapter): $Paragraph | undefined {
-        return chapter.parts
-            .flatMap(part => part instanceof $Section ? part.parts : [part])
-            .find((part): part is $Paragraph => part instanceof $Paragraph);
+    protected parts(): RuleSet[] {
+        return [this.tools(), this.sheet(), this.masthead(), this.phone()];
     }
 
-    protected override $Bound(): void {
-        for (const chapter of (this.book as $LibraryBook).chapters)
-            this.opening(chapter)?.classes.add(this, 'pa-opening');
-        super.$Bound();
+    protected tools(): RuleSet {
+        return css`
+            .pd-book.pa-sheet .pd-head { justify-content: center; }
+            .pd-book.pa-sheet .pd-switches { justify-content: center; }
+        `;
+    }
+
+    protected sheet(): RuleSet {
+        return css`
+            .pa-sheet .pd-leaves {
+                display: grid;
+                grid-template-columns: min(${({ theme }) => theme.measure}, 100%);
+                grid-template-areas: 'masthead' 'leaf';
+                justify-content: center;
+                align-content: start;
+            }
+            .pa-sheet .pd-leaves::before {
+                content: '';
+                grid-column: 1;
+                grid-row: masthead-start / leaf-end;
+            }
+            .pa-sheet .pd-masthead { grid-area: masthead; }
+            .pa-sheet .pd-leaf { grid-area: leaf; }
+            .pd-book.pa-sheet .pd-words .pd-chapter { scroll-margin-block-start: calc(${({ theme }) => theme.space} * 10); }
+        `;
+    }
+
+    protected masthead(): RuleSet {
+        return css`
+            .pa-sheet .pd-masthead {
+                display: grid;
+                grid-template-columns: auto auto;
+                grid-template-areas: 'cover byline' 'rule rule';
+                justify-content: center;
+                align-items: baseline;
+            }
+            .pa-sheet .pd-masthead .pd-paragraph.pd-byline { grid-area: byline; }
+            .pa-sheet .pd-masthead::after { grid-area: rule; justify-self: center; }
+        `;
+    }
+
+    protected phone(): RuleSet {
+        return css`
+            @media (max-width: ${({ theme }) => theme.narrow}) {
+                .pd-book.pa-sheet .pd-holds { order: 1; }
+                .pd-book.pa-sheet .pd-head { order: 2; }
+                .pd-book.pa-sheet .pd-switches { gap: calc(${({ theme }) => theme.space} / 4); }
+                .pa-sheet .pd-leaves { grid-template-columns: minmax(0, 1fr); }
+            }
+        `;
     }
 }
 
@@ -46,6 +82,33 @@ export const Sheet = $($Sheet);
 export class $Story extends $LibraryBook {
     get papers(): Given<$Annotation>[] {
         return [bookPaper, nightPaper, whitePaper];
+    }
+
+    override head(): ReactNode {
+        return (
+            <div className="pd-switches">
+                {this.switches()}
+            </div>
+        );
+    }
+
+    override front(): ReactNode {
+        return (
+            <>
+                {this.masthead()}
+                {super.front()}
+            </>
+        );
+    }
+
+    masthead(): ReactNode {
+        const Cover = $(this.cover!);
+        return (
+            <div className="pd-masthead">
+                <Cover />
+                {this.byline()}
+            </div>
+        );
     }
 
     override switches(): ReactNode {
@@ -89,3 +152,4 @@ export class $Story extends $LibraryBook {
 
 export const Story = $($Story);
 $(Story, Theme)(bookPaper);
+$(Story, tone)(whiteOverBlack);

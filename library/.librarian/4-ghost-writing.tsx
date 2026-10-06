@@ -1,5 +1,5 @@
 import { Chapter, Date, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Dated } from '../.manual/.book';
+import { Dated, First } from '../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -10,6 +10,7 @@ export default () => (
         <Section>
             <Heading>Who wrote this</Heading>
             <Paragraph>
+                <First />
                 Lots of people let an AI ghostwrite for them these days. I am one of them. Most of the sentences
                 in <Means>$[[ this library ]]( Dougs Library )</Means> were drafted by Claude, and I am their
                 author. Both are true, and this chapter says how.

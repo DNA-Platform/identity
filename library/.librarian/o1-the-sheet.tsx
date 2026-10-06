@@ -1,4 +1,5 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { First } from '../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -6,6 +7,7 @@ export default () => (
         <Section>
             <Heading>How this book is laid out</Heading>
             <Paragraph>
+                <First />
                 This book is read a chapter at a time, on one sheet. Over the sheet is a thin bar,
                 with <Means>$[[ the switch ]]( Dougs Reference Manual / The Switch )</Means> and the way back to
                 the library. At the head of the sheet runs one line: the book's name and mine. Under it is one

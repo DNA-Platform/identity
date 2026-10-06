@@ -6,77 +6,18 @@ export class $DesignTheme extends $LibraryBookTheme {
     colour = '#c24a78';
 
     protected override parts(): RuleSet[] {
-        return [...super.parts(), this.sideBar(), this.head(), this.words(), this.cards(), this.small()];
+        return [...super.parts(), this.tools(), this.words(), this.cards(), this.small()];
     }
 
-    protected sideBar(): RuleSet {
+    protected tools(): RuleSet {
         return css`
-            .pd-holds, .pd-library {
-                background: ${({ theme }) => theme.barFill};
-                color: ${({ theme }) => theme.barInk};
-                border-inline-end: thin solid ${({ theme }) => theme.barLine};
-            }
-            .pd-library .pd-filed-under, .pd-library .pd-byline {
-                display: flex;
-                align-items: center;
-                gap: calc(${({ theme }) => theme.space} * 0.4);
-                margin-block: 0;
-                padding: calc(${({ theme }) => theme.space} * 0.6) calc(${({ theme }) => theme.space} * 0.6);
-                font-size: calc(0.83 * ${({ theme }) => theme.size});
-                color: ${({ theme }) => theme.barDim};
-            }
-            .pd-library .pd-byline { border-block-start: thin solid ${({ theme }) => theme.barLine}; }
-            .pd-library .pd-word {
-                color: ${({ theme }) => theme.barInk};
-                font-weight: 500;
-            }
-            .pd-library .pd-filed-under .pd-word {
-                font-family: ${({ theme }) => theme.serif};
-                font-size: calc(1.45 * ${({ theme }) => theme.size});
-                font-weight: 600;
-                line-height: 1;
-            }
-            .pd-library .pa-reference { color: inherit; text-decoration: none; }
-            .pd-library .pd-filed-under::before, .pd-library .pd-byline::before {
-                content: ${({ theme }) => theme.initial};
-                display: grid;
-                place-items: center;
-                width: calc(${({ theme }) => theme.space} * 1.3);
-                height: calc(${({ theme }) => theme.space} * 1.3);
-                font-size: ${({ theme }) => theme.size};
-                font-weight: 600;
-            }
-            .pd-library .pd-filed-under::before {
-                border-radius: calc(${({ theme }) => theme.space} / 3);
-                background: ${({ theme }) => theme.opal};
-                color: ${({ theme }) => theme.night};
-            }
-            .pd-library .pd-byline::before {
-                border-radius: 50%;
-                background: ${({ theme }) => theme.me};
-                color: ${({ theme }) => theme.paper};
-            }
-            .pd-holds { padding: 0 calc(${({ theme }) => theme.space} / 2) ${({ theme }) => theme.space}; }
-        `;
-    }
-
-    protected head(): RuleSet {
-        return css`
-            .pd-head {
-                padding: calc(${({ theme }) => theme.space} * 0.83) calc(${({ theme }) => theme.space} * 1.17) calc(${({ theme }) => theme.space} * 0.6);
-                border-block-end: thin solid ${({ theme }) => theme.line};
-            }
+            .pd-head { border-block-end: thin solid ${({ theme }) => theme.line}; }
             .pd-head .pd-switch {
                 border: none;
                 border-radius: calc(${({ theme }) => theme.space} * 0.375);
                 padding: calc(${({ theme }) => theme.space} / 4) calc(${({ theme }) => theme.space} / 2);
                 background: ${({ theme }) => theme.panel};
                 color: ${({ theme }) => theme.soft};
-            }
-            .pd-head .pd-switch[aria-pressed='true'] {
-                background: ${({ theme }) => theme.night};
-                color: ${({ theme }) => theme.paper};
-                font-weight: 500;
             }
         `;
     }
@@ -154,22 +95,4 @@ export class $DesignTheme extends $LibraryBookTheme {
     }
 }
 
-export class $GalleryMode extends $DesignTheme {
-    barFill = '#f1f7f9';
-    barInk = '#10252c';
-    barDim = '#516770';
-    barOn = '#e3f5fa';
-    barLine = '#dbe7ec';
-}
-
-export class $LibraryMode extends $DesignTheme {
-    barFill = '#0c1b1f';
-    barInk = '#ffffff';
-    barDim = '#a9bcc1';
-    barOn = 'rgba(255, 255, 255, 0.11)';
-    barLine = '#1d3339';
-}
-
 export const DesignTheme = $($DesignTheme);
-export const GalleryMode = $($GalleryMode);
-export const LibraryMode = $($LibraryMode);

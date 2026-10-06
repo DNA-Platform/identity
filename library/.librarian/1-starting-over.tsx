@@ -1,5 +1,5 @@
 import { Chapter, Date, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Dated } from '../.manual/.book';
+import { Dated, First } from '../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -10,6 +10,7 @@ export default () => (
         <Section>
             <Heading>What this library is for</Heading>
             <Paragraph>
+                <First />
                 This library is a home for the raw materials of IXP: my primary source, which is my conversations,
                 including my conversations with Claude. It has to bring me a sense of pride, fit in, make me happy,
                 and be an effective way to store, annotate and explore those materials.

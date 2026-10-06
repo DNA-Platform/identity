@@ -1,14 +1,11 @@
 import { ReactNode } from 'react';
 import { $ } from '@dna-platform/chemistry';
-import { $Annotation, $Chapter, Given, Theme } from '@dna-platform/public';
-import { $LibraryBook, BothBars as bothBars, Cards as cards, Dark as dark, Light as light, Rail as rail, SideBar as sideBar, Tab as tab, TopBar as topBar, TwoBars as twoBars } from '../.manual/.book';
+import { $Chapter, Theme } from '@dna-platform/public';
+import { $LibraryBook, BothBars as bothBars, Cards as cards, Dark as dark, Light as light, Rail as rail, SideBar as sideBar, Tab as tab, Tone as tone, TopBar as topBar, TwoBars as twoBars, WhiteOverBlack as whiteOverBlack } from '../.manual/.book';
 import { Gallery } from './o4-the-gallery~code.tsx';
-import { GalleryMode as galleryMode, LibraryMode as libraryMode } from './o5-the-frame~theme.tsx';
+import { DesignTheme } from './o5-the-frame~theme.tsx';
 
 export class $Design extends $LibraryBook {
-    get modes(): Given<$Annotation>[] {
-        return [libraryMode, galleryMode];
-    }
     get gallery(): $Chapter | undefined {
         return this.chapters.find(chapter => chapter.is(Gallery));
     }
@@ -20,20 +17,6 @@ export class $Design extends $LibraryBook {
         const Tab = $(tab);
         return (
             <>
-                <Tab
-                    chapter={this.cover}
-                    of={libraryMode}
-                    among={this.modes}
-                >
-                    library
-                </Tab>
-                <Tab
-                    chapter={this.cover}
-                    of={galleryMode}
-                    among={this.modes}
-                >
-                    gallery
-                </Tab>
                 <Tab
                     chapter={this.cover}
                     of={bothBars}
@@ -90,6 +73,13 @@ export class $Design extends $LibraryBook {
                 >
                     light
                 </Tab>
+                <Tab
+                    chapter={this.cover}
+                    of={whiteOverBlack}
+                    among={this.tones}
+                >
+                    white over black
+                </Tab>
                 {super.switches()}
             </>
         );
@@ -97,4 +87,5 @@ export class $Design extends $LibraryBook {
 }
 
 export const Design = $($Design);
-$(Design, Theme)(galleryMode);
+$(Design, Theme)(DesignTheme);
+$(Design, tone)(light);

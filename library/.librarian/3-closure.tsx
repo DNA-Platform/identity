@@ -1,5 +1,5 @@
 import { Chapter, Date, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Dated } from '../.manual/.book';
+import { Dated, First } from '../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -10,6 +10,7 @@ export default () => (
         <Section>
             <Heading>A script outside the book</Heading>
             <Paragraph>
+                <First />
                 While the designs were being drawn, the sketches were photographed by a script kept outside the
                 library, in an archive. For a while that script was also writing chapters of the design book, from
                 files it kept beside itself. I asked why it was being edited at all. There shouldn't be any script
