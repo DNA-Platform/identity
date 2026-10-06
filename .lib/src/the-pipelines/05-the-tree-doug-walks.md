@@ -68,6 +68,16 @@ and only one way to generate it."*
 4. **No variant labels for the method.** We are finding one way to make each thing; the names say
    what it is, not which of our trials made it. A second way is exploration, and exploration does not
    go on his path.
+5. **A figure is named for its analysis and its condition, never for its interpretation, and the same
+   analysis has the same name in every dataset's folder.** Doug, 2026-10-06: *"you are naming the
+   figures with some sort of sentence that is illegible, It needs to identify analysis and condition,
+   not interpretation. How would I know that it is the same analysis across the datasets? I wouldn't
+   even imagine you used the same code and I would be scared to even show people can claim it was the
+   same."* So `ensemble-recurrence-driven.png` sits in both animals' folders, and its title states the
+   analysis, the condition and the mouse, then the numbers in the same order every time. The
+   interpretation belongs in the cover. A request for "more interesting names" (2026-09-25) was read as
+   naming figures for their conclusions. That reading produced
+   `under-the-images-the-pattern-drifts-as-far-as-doi-moves-it.png`, and it is withdrawn.
 
 ## How it failed, 2026-09-27
 
