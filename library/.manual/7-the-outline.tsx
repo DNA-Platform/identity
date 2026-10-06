@@ -28,6 +28,15 @@ export default () => (
                 of <Means>$[[ the switch ]]( ./The Switch )</Means>, and every book carries it.
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>How the outline fits the library's patterns</Heading>
+            <Paragraph>
+                The outline is said of a book and adds one class to it; the rules that draw the lines and the
+                names over every part are a part of <Means>$[[ the theme ]]( ./The Theme )</Means>, always there,
+                so pressing it changes a class and redraws nothing. It was a format once, and the press replaced
+                the whole book; measured, and made what it is.
+            </Paragraph>
+        </Section>
         <Append
             identifier="code"
             type=".tsx"

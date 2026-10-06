@@ -9,45 +9,52 @@ export default () => (
             The type of book that shows a chapter beside its file, read code first or words first.
         </Paragraph>
         <Section>
-            <Heading>A book for looking things up</Heading>
+            <Heading>What a manual is</Heading>
             <Paragraph>
-                A manual is one of the types of book in my library. It is read to look something up, so it keeps
-                its table of contents at the side as an index, and shows one chapter at a time with the file that
-                chapter is about beside it. This book is one. The design it follows
-                is <Means>$[[ Side by Side ]]( Dougs Design / Side by Side )</Means>.
+                A manual is one of the types of book in my library. It is read to learn how to use the code, so
+                every chapter of it is about one tool and ends in the file that tool is: the chapter beside the
+                file, as <Means>$[[ Side by Side ]]( Dougs Design / Side by Side )</Means> has it, read two
+                ways — <Means>$[[ the code in front ]]( Dougs Design / The Code in Front )</Means> and <Means>$[[ the words in front ]]( Dougs Design / The Words in Front )</Means>.
+                This book is one.
             </Paragraph>
         </Section>
         <Section>
-            <Heading>What a manual is made of</Heading>
+            <Heading>How a manual fits the library's patterns</Heading>
             <Paragraph>
-                The class of book says where each part goes. At the side it puts what the book is filed under,
-                the cover, who it is by, <Means>$[[ the switch ]]( ./The Switch )</Means> and the table of
-                contents. Beside the side it puts the chapters, each on <Means>$[[ a leaf ]]( ./The Layout )</Means> of
-                its own: the synopsis on the front, then each chapter with its files.
+                The frame is <Means>$[[ the book's ]]( ./The Book )</Means>; the manual overrides only its
+                switches. What it adds is inside the page: the spread, a Format the manual gives itself when it
+                is defined, which sets a chapter's words and its file in two columns on the open leaf and
+                carries the geometry of both readings keyed by the reading's class. A reading is an annotation
+                of one kind, as <Means>$[[ a tone ]]( ./The Tone )</Means> is: words in front, where the file
+                folds to a strip at the right with its name turned on its side, and code in front, where the
+                file takes the room and the chapter keeps its title and its brief in a column beside it, its
+                sections put away. The move between them is a transition of the grid's columns, a beat long.
             </Paragraph>
             <Paragraph>
-                The spread is the layout said of the book: the side and the leaves in two columns, and on
-                the open leaf the words in one column and the file in another. On a narrow screen everything is
-                one column, and the index closes while a chapter is open.
+                The brief is a paragraph said to be so, written after every chapter's title: a much smaller
+                synopsis of the tool for the code reading, where the words that teach are put away. The
+                manual's own specification refuses a chapter that has none. Its cover and its table of contents
+                are the framework's with a look, the table being <Means>$[[ the index ]]( ./The Entry )</Means> with
+                its own kind of entry registered, which shows the type of the file a chapter appends.
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>How a manual is used</Heading>
             <Paragraph>
-                The cover and the table of contents are this type's own. The cover is the framework's with a
-                look. The table of contents is <Means>$[[ the index ]]( ./The Entry )</Means> with a look, so each
-                of its rows that leads somewhere is an entry and lights when its chapter is the open one. A
-                manual's cover file and table file take them from here.
+                A chapter about a tool writes its title, a paragraph that says it is brief, its sections, and an
+                append for each file beside it; the manual draws the rest. A new tool is a new chapter beside its
+                file, listed in the table under its group. The two readings are tabs at the head; words in front
+                is the manual's default, registered on its class, and the light tone with it, since its sketch
+                is a light one.
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Where a manual bites</Heading>
             <Paragraph>
-                A manual has its own kind of entry, registered on its class. It shows the type of the file its
-                chapter appends, so the index tells a chapter about a tool from one that only explains.
-            </Paragraph>
-            <Paragraph>
-                The theme is the library's with three parts added: the side, the words, and what changes on a
-                narrow screen.
-            </Paragraph>
-            <Paragraph>
-                A manual gives the words the room unless I press code forward. Then the file takes the room and
-                the words keep to a narrow column beside it. It is one more thing said of the book, so it goes on
-                and comes off without anything being drawn again from the start.
+                The readings were once a Format given through the switch, and a press replaced the whole book
+                beneath it; they are classes now and the rules were always in the spread. A paragraph that is
+                brief must stand directly under the chapter, before its sections, or the rule that asks for it
+                does not find it. The press on the folded strip itself does not open the code; the tab does.
             </Paragraph>
         </Section>
         <Append

@@ -9,25 +9,41 @@ export default () => (
             A row of the table of contents that leads somewhere, lit when its chapter is open.
         </Paragraph>
         <Section>
-            <Heading>A row that leads somewhere</Heading>
+            <Heading>What an entry is</Heading>
             <Paragraph>
                 A table of contents is a list of rows, and most of them lead to a chapter. I call such a row an
                 entry. An entry knows the chapter it leads to, whether the row names the chapter or a heading
                 inside it, and it says so when that chapter is the open one. So a table of contents can show
-                where I am in the book.
+                where I am in the book, in the frame's holds, where <Means>$[[ the book ]]( ./The Book )</Means> draws
+                it.
             </Paragraph>
         </Section>
         <Section>
-            <Heading>How a table of contents gets its entries</Heading>
+            <Heading>How an entry fits the library's patterns</Heading>
             <Paragraph>
-                The index is the framework's table of contents with one thing added. When the book is bound it
-                says of each row that leads somewhere that it is an entry. A book's own table of contents is an
-                index with a look, so no table file has to say entry on every row.
+                The index is the framework's table of contents with one thing added: when the book is bound it
+                says of each row that leads somewhere that it is an entry. The table file says it is the table
+                of contents and that it is an index, two things said of one chapter, and the chapter stays a
+                table of contents; no table file says entry on every row. An entry is an annotation, and the
+                row's look is the theme's holds part, in the colours of <Means>$[[ the tone ]]( ./The Tone )</Means>.
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>How an entry is used</Heading>
             <Paragraph>
-                A type of book may have its own kind of entry. It registers that kind on its class and the index
-                uses it. The one in <Means>$[[ the manual ]]( ./The Manual )</Means> also shows the type of the
-                file its chapter appends.
+                A type of book may have its own kind of entry, registered on its class, and the index uses it:
+                the one in <Means>$[[ the manual ]]( ./The Manual )</Means> also shows the type of the file its
+                chapter appends. The catalogue's rows that stand for books end in a square that leads to the
+                book itself.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Where an entry bites</Heading>
+            <Paragraph>
+                An entry lights for the place the address names or for the open chapter's own name, and for
+                nothing else; a row naming a heading of another chapter is never lit. The library's subjects in
+                the bar are not entries — they are references to other books, and the one that is this book is
+                not yet lit.
             </Paragraph>
         </Section>
         <Append

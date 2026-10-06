@@ -43,6 +43,9 @@ export default () => (
                     ground the book, which justifies seeing the cover.
                 </Paragraph>
                 <Paragraph>
+                    Where it is: <Means>$[[ built as the catalogue's shelf, its covers in each book's colour, inside the frame ]]( Dougs Library )</Means>.
+                </Paragraph>
+                <Paragraph>
                     <Source />
                     <Code>![[ 001.html ]]</Code>
                 </Paragraph>
@@ -184,6 +187,9 @@ export default () => (
                     <Answer />
                     6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and
                     documentation emphasized. Code doesn't look right unless in full view.
+                </Paragraph>
+                <Paragraph>
+                    Where it is: <Means>$[[ built as the manual's words reading, the chapter beside its file ]]( Dougs Reference Manual / The Manual )</Means>.
                 </Paragraph>
                 <Paragraph>
                     <Source />
@@ -744,6 +750,9 @@ export default () => (
                     <Image>![[ 026-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    Where it is: <Means>$[[ built as the tone white over black, which my story wears ]]( Dougs Reference Manual / The Tone )</Means>.
+                </Paragraph>
+                <Paragraph>
                     <Source />
                     <Code>![[ 026.html ]]</Code>
                 </Paragraph>
@@ -795,6 +804,9 @@ export default () => (
                     <Image>![[ 028-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    Where it is: <Means>$[[ built as the manual's code reading, the file across the page ]]( Dougs Reference Manual / The Manual )</Means>.
+                </Paragraph>
+                <Paragraph>
                     <Source />
                     <Code>![[ 028.html ]]</Code>
                 </Paragraph>
@@ -820,6 +832,9 @@ export default () => (
                     <Image>![[ 031-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    Where it is: <Means>$[[ built as the manual's words reading, the file folded to a strip ]]( Dougs Reference Manual / The Manual )</Means>.
+                </Paragraph>
+                <Paragraph>
                     <Source />
                     <Code>![[ 031.html ]]</Code>
                 </Paragraph>
@@ -843,6 +858,9 @@ export default () => (
                     <Photographs />
                     <Image>![[ 029-desk.png ]]</Image>
                     <Image>![[ 029-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    Where it is: <Means>$[[ built as my story's sheet in the frame ]]( Dougs Story / The Sheet )</Means>.
                 </Paragraph>
                 <Paragraph>
                     <Source />

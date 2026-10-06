@@ -6,15 +6,18 @@ export default () => (
         <Section>
             <Heading>How this book is laid out</Heading>
             <Paragraph>
-                This book is the way into every other, so it is laid out as a place to choose from. Across the top
-                are two bars. The first is the library's: what this book is filed under, and me. The second is this
-                book's: its cover, and <Means>$[[ the switch ]]( Dougs Reference Manual / The Switch )</Means>.
-                Under the bars the table of contents is kept at the left. Beside it is one page: the synopsis and
-                a shelf when no chapter is open, and otherwise the open chapter.
+                This book is the way into every other, so it is laid out as a place to choose from. It stands in
+                the frame every book of mine stands in, drawn by <Means>$[[ the base book ]]( Dougs Reference Manual / The Book )</Means>:
+                the library's bar across the top, with my three books as its subjects, this book's contents at
+                the left, its name and <Means>$[[ the switch ]]( Dougs Reference Manual / The Switch )</Means> at
+                the head, and beside them one page: the synopsis and a shelf when no chapter is open, and
+                otherwise the open chapter. It wears the dark tone, the library's own.
             </Paragraph>
             <Paragraph>
-                The two bars are the arrangement said of the book. The design it follows
-                is <Means>$[[ the shelf ]]( Dougs Design / The Shelf )</Means> under <Means>$[[ the black and the sky ]]( Dougs Design / Two Top Bars: Black, then Sky )</Means>.
+                The design it follows is <Means>$[[ the shelf ]]( Dougs Design / The Shelf )</Means> inside the
+                frame: the covers at two by three in each book's colour, with the spine's lines and the rule
+                across, six to a row at a desk and three on a phone. Beside this chapter the library's subjects
+                are written once, as three references to the books, and every book draws them in its bar.
             </Paragraph>
         </Section>
         <Section>
@@ -42,9 +45,10 @@ export default () => (
         <Section>
             <Heading>How it is dressed</Heading>
             <Paragraph>
-                The theme is the library's, with this book's colors and its own parts: the two bars, the contents at
-                the left, the front page and the covers. The cover and the table of contents are this book's own.
-                Each is the framework's with a look, and the cover file and the table file take them from here.
+                The theme is the library's, with this book's colours and its own parts: the front page and the
+                covers. Each chapter that stands for a book says <Means>$[[ the book's colour ]]( Dougs Reference Manual / The Colour )</Means>,
+                and the cover on the shelf is painted in it. The cover and the table of contents are this book's
+                own, each the framework's with a look, and the cover file and the table file take them from here.
             </Paragraph>
         </Section>
         <Append

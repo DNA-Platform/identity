@@ -6,24 +6,23 @@ export default () => (
         <Section>
             <Heading>How this book is laid out</Heading>
             <Paragraph>
-                This book is laid out as the frame I answered on: a bar down the side with the way to the
-                library at its head, this book's contents in the middle and me at its foot, and beside it the
-                page, with the book's name and <Means>$[[ the switch ]]( Dougs Reference Manual / The Switch )</Means> across
-                its top. One chapter is open at a time. The table of contents says of itself that it is a side
-                bar and the cover that it is a top bar, <Means>$[[ two things said of them ]]( Dougs Reference Manual / The Bars )</Means> that
-                are the manual's.
+                This book stands in the frame every book of mine stands in, drawn
+                by <Means>$[[ the base book ]]( Dougs Reference Manual / The Book )</Means>: the library's bar across
+                the top with the library's subjects and me, this book's contents down the side, its name and its
+                switches at the head, and the page beside. It wears the frame in the light tone, white, which is
+                this book's colour, and offers every arrangement and every tone as a tab at its head — <Means>$[[ the six arrangements ]]( Dougs Reference Manual / The Bars )</Means> and <Means>$[[ the three tones ]]( Dougs Reference Manual / The Tone )</Means> — because
+                this is the book I look at them in. Its own colour, the rose the frame's sketch gives it, is on
+                its index and its pressed tabs.
             </Paragraph>
             <Paragraph>
-                The design it follows is <Means>$[[ the black side bar ]]( ./A Black Side Bar )</Means> in
-                library mode and <Means>$[[ the white cards ]]( ./No Bars: White Cards )</Means> in gallery
-                mode. The two modes are two themes under this book's theme, and set only the bar's colors;
-                gallery mode is the one registered, so the book opens light and airy, and I pick the other with
-                the switch.
+                The design it follows is <Means>$[[ the white top bar and the opal side bar ]]( ./A White Top Bar and an Opal Side Bar )</Means> in
+                the light tone, with <Means>$[[ the white cards ]]( ./No Bars: White Cards )</Means> in its
+                gallery; the black side bar and the blue with the black top are its other options, one tab away.
             </Paragraph>
             <Paragraph>
-                The class of this book writes those parts where they go, and the frame is the arrangement said
-                of the book. Its theme adds the side bar's look, the head, the words, and the cards
-                of <Means>$[[ the gallery ]]( ./The Gallery )</Means>.
+                The class of this book overrides what the base draws in two places only: which chapter opens
+                when none is named, the gallery, and its switches. Its theme sets its colour and adds the look of
+                the cards and the words. Its cover and its table of contents are the framework's own.
             </Paragraph>
         </Section>
         <Append

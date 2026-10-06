@@ -9,21 +9,40 @@ export default () => (
             Two paragraphs every book draws from its cover: by whom, and filed under what.
         </Paragraph>
         <Section>
-            <Heading>Two links on every book</Heading>
+            <Heading>What the two lines is</Heading>
             <Paragraph>
-                Every cover in this library names who wrote the book and what it is filed under. The compiler
-                refuses a book that leaves out either. But naming them draws nothing: the framework keeps both on the
-                cover as facts and leaves it to a library to show them.
+                Every cover in this library names who wrote the book and what it is filed under, and the
+                compiler refuses a book that leaves out either. Naming them draws nothing: the framework keeps
+                both on the cover as facts and leaves it to a library to show them. So <Means>$[[ the book ]]( ./The Book )</Means> draws
+                them on every book as two paragraphs: by, which leads to the author's own book, and filed
+                under, which leads to the book that catalogues this one. They are the way out of any book and
+                into the rest of the library, and a book of mine is never drawn without them.
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>How the two lines fits the library's patterns</Heading>
             <Paragraph>
-                So <Means>$[[ the book ]]( ./The Book )</Means> draws them, on every book, as two short lines. One
-                says who the book is by and leads to that author's own book. The other says what the book is
-                filed under and leads to the book that catalogues it. They are the way out of any book and into
-                the rest of the library, and a book of mine is never drawn without them.
+                Each is a paragraph with content of its own, written by the book, never by a chapter, so the
+                frame places them: filed under stands at the head of the library's bar as its mark and its name,
+                and by stands as me, at the bar's end or the column's foot. Each opens with a word said to be a
+                label — by, filed under — so a theme sets the label apart from the name and a phone can keep
+                the face and drop the words, as the frame's sketch does.
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>How the two lines is used</Heading>
             <Paragraph>
-                Each is a paragraph of its own, so a book that arranges its parts can put the two in different
-                places.
+                A book writes nothing for them; it writes its cover with an author and a subject, and the base
+                draws both. The mark before filed under and the face before by are the theme's, in the colours
+                of <Means>$[[ the tone ]]( ./The Tone )</Means>.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Where the two lines bite</Heading>
+            <Paragraph>
+                The two were once lines inside the cover, put there so a rule could reach them, and the
+                catalogue's bars then tore the cover apart to place them; a paragraph the book draws goes where
+                the book puts it.
             </Paragraph>
         </Section>
         <Append

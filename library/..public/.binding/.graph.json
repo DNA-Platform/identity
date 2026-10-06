@@ -2,13 +2,13 @@
   "books": [
     {
       "folder": "..reference",
-      "digest": "0588f3674c21e9a9",
-      "walked": 71
+      "digest": "3bde20426db903e6",
+      "walked": 72
     },
     {
       "folder": ".design",
-      "digest": "6be118c03c270c16",
-      "walked": 674
+      "digest": "4de58307f3795464",
+      "walked": 690
     },
     {
       "folder": ".librarian",
@@ -17,8 +17,8 @@
     },
     {
       "folder": ".manual",
-      "digest": "0a14948d1a17edaa",
-      "walked": 266
+      "digest": "015ca7c75ce08904",
+      "walked": 366
     }
   ]
 }

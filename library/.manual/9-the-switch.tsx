@@ -9,28 +9,44 @@ export default () => (
             A word a reader presses to say one thing of the book, and one of a set.
         </Paragraph>
         <Section>
-            <Heading>Something a reader presses</Heading>
+            <Heading>What a switch is</Heading>
             <Paragraph>
                 A switch is a word drawn as a button. It is given one thing that can be said of a book. Pressed,
-                it says that thing of the book I am reading. Pressed again, it takes it back. The button itself
-                reports whether the thing is said, by asking the book.
+                it says that thing of the book I am reading; pressed again, it takes it back; and the button
+                reports whether the thing is said by asking the book. Some switches come as a set where only one
+                can hold — the paper a book is printed on, the tone of the frame, where the bars go. A tab is a
+                switch for that: given its own thing and the set it belongs to, it says its own and takes back
+                the others, and pressing the one that already holds changes nothing.
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>How a switch fits the library's patterns</Heading>
             <Paragraph>
-                Nothing is rebuilt when I press one. The book I am reading is given the thing in front of what its
-                class already says, and draws again. So a view I can switch to is written the same way as a view
-                a book always has, and what a book shows before I press anything is said once, by its class. A
-                switch only adds to what the class says. It cannot take away something the class says itself.
+                The book I am reading is given the thing in front of what its class already says, and draws
+                again; so a view I can switch to is written the same way as a view a book always has, and what a
+                book shows before I press anything is said once, by its class, in one line of registration. A
+                switch only adds; it cannot take away something the class says itself. And the thing a switch
+                says is always an annotation that adds a class — <Means>$[[ a tone ]]( ./The Tone )</Means>, <Means>$[[ an arrangement ]]( ./The Bars )</Means>, <Means>$[[ the outline ]]( ./The Outline )</Means>, a
+                reading, a paper — with the rules that read the class in a theme or a format that is always
+                there, so a press changes a class on the book and redraws nothing.
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>How a switch is used</Heading>
             <Paragraph>
-                Some switches come as a set, where only one can hold: the paper a book is printed on, or the view
-                of a shelf. A tab is a switch for that. It is given the thing it says and the set it belongs to.
-                Pressed, it says its own thing and takes back the others of the set, and pressing the one that
-                already holds changes nothing.
+                <Means>$[[ The book ]]( ./The Book )</Means> draws the first switch every book carries, the
+                outline, and a type that has more to choose from draws more in its switches: the manual its two
+                readings, my story its three papers, the design book every arrangement and tone, so I can look
+                at them.
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Where a switch bites</Heading>
             <Paragraph>
-                The first switch every book carries
-                is <Means>$[[ the outline ]]( ./The Outline )</Means>. <Means>$[[ The book ]]( ./The Book )</Means> draws
-                it, and a book that has more to choose from draws more.
+                A Format given through a switch is a container, and a container put in front of the book
+                remounts everything inside it — measured on the first tone, and then found on every paper and on
+                the outline, none of which anyone had counted. The rule that follows is the one above: what a
+                reader presses adds a class, and the rules were always there.
             </Paragraph>
         </Section>
         <Append

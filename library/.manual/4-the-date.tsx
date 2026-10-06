@@ -21,6 +21,14 @@ export default () => (
                 of <Means>$[[ Dougs Story ]]</Means> are dated, and no book of mine sorts by date yet.
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>How a date fits the library's patterns</Heading>
+            <Paragraph>
+                Dated is said of a chapter, and the date it holds is the framework's own word for a day, read
+                the way a title or a mention reads its words. Nothing is found by where it stands: a chapter is
+                dated because it says so, and a book that will sort by recency asks each chapter for its date.
+            </Paragraph>
+        </Section>
         <Append
             identifier="code"
             type=".tsx"

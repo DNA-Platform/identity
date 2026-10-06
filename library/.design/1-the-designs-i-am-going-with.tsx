@@ -63,7 +63,8 @@ export default () => (
                 A top bar on every screen and a side bar on most: the arrangements of 15 and 16, and of 23 with
                 perhaps a white bar, all supported, with the dark side bar as the default. The colors of the top
                 bar, the side bar and the logo are values a book sets, so 26 and 27 are two settings of them and
-                not a choice between them. Each book has a color of its own.
+                not a choice between them. Each book has a color of its own. Where it
+                is: <Means>$[[ every book wears the frame as both bars, drawn once by the base ]]( Dougs Reference Manual / The Book )</Means>, <Means>$[[ the six arrangements as classes a book takes ]]( Dougs Reference Manual / The Bars )</Means>, <Means>$[[ the three tones, dark by default ]]( Dougs Reference Manual / The Tone )</Means>, and <Means>$[[ each book's colour, said on the shelf and in its theme ]]( Dougs Reference Manual / The Colour )</Means>.
             </Paragraph>
         </Section>
         <Section>
@@ -90,9 +91,9 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Decision />
-                The shelf of 1, inside the frame, with views that feel like 2 and 3 to come. It is
-                for <Means>$[[ Dougs Library ]]</Means>, which has the two bars, the shelf and the list until it
-                is rebuilt.
+                The shelf of 1, inside the frame, with views that feel like 2 and 3 to come. Where it
+                is: <Means>$[[ the catalogue shows 1's shelf of covers in each book's colour, inside the frame, with the list as its second view ]]( Dougs Library )</Means>;
+                the views of 2 and 3 are not built.
             </Paragraph>
         </Section>
         <Section>
@@ -126,8 +127,8 @@ export default () => (
                 <Decision />
                 6, read two ways as 28 and 31: the code in front with a much smaller synopsis of its own above
                 it, and the words in front as a substantive write-up with the file folded to a strip, with a
-                transition between them. It is for <Means>$[[ Dougs Reference Manual ]]</Means>, which has
-                the words beside the file and a toggle until it is rebuilt.
+                transition between them. Where it
+                is: <Means>$[[ the manual reads as 28 and 31, code first or words first, switched at its head ]]( Dougs Reference Manual / The Manual )</Means>.
             </Paragraph>
         </Section>
         <Section>
@@ -153,8 +154,8 @@ export default () => (
             <Paragraph>
                 <Decision />
                 White is this book's color, in the frame; the black side bar and the blue with the black top are
-                its other options. It is for <Means>$[[ Dougs Design ]]</Means>, which is drawn in the side bar
-                of 11 and 12 with the cards of 21 until the frame is built.
+                its other options. Where it
+                is: <Means>$[[ this book wears the frame in the light tone, with the cards of 21 in its gallery and every arrangement and tone as a tab ]]( ./The Frame )</Means>.
             </Paragraph>
         </Section>
         <Section>
@@ -187,7 +188,8 @@ export default () => (
                 me and what I create, a narrative slice of the library that helps to navigate everything we have
                 built, so that it is the most relevant place to begin from. Its chapters are annotated by date and
                 time, and it is to have a view that sorts them for recency. It is
-                for <Means>$[[ Dougs Story ]]</Means>, which has the sheet, its type and its three papers.
+                for my story. Where it
+                is: <Means>$[[ my story reads as 29, the sheet of 25 under the white bar over the black side, its chapters at the side ]]( Dougs Story / The Sheet )</Means>.
             </Paragraph>
         </Section>
         <Section>

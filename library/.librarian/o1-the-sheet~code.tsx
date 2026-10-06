@@ -3,7 +3,48 @@ import { css, RuleSet } from 'styled-components';
 import { $, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Format, $Writing, Given, Theme } from '@dna-platform/public';
 import { $LibraryBook, OfABookSpecification, Tab as tab, Tone as tone, WhiteOverBlack as whiteOverBlack } from '../.manual/.book';
-import { BookPaper as bookPaper, NightPaper as nightPaper, WhitePaper as whitePaper } from './o1-the-sheet~theme.tsx';
+import { StoryTheme } from './o1-the-sheet~theme.tsx';
+
+export class $Paper extends $Annotation {
+    specification = new OfABookSpecification();
+
+    override defines(writing: $Writing): void {
+        for (const annotation of writing.annotations.after(this))
+            if (annotation instanceof $Paper)
+                writing.annotations.express(annotation, false);
+        writing.classes.add(this, 'pa-paper');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class $BookPaper extends $Paper {
+    override defines(writing: $Writing): void {
+        super.defines(writing);
+        writing.classes.add(this, 'pa-book-paper');
+    }
+}
+
+export class $NightPaper extends $Paper {
+    override defines(writing: $Writing): void {
+        super.defines(writing);
+        writing.classes.add(this, 'pa-night-paper');
+    }
+}
+
+export class $WhitePaper extends $Paper {
+    override defines(writing: $Writing): void {
+        super.defines(writing);
+        writing.classes.add(this, 'pa-white-paper');
+    }
+}
+
+export const Paper = $($Paper);
+export const BookPaper = $($BookPaper);
+export const NightPaper = $($NightPaper);
+export const WhitePaper = $($WhitePaper);
 
 export class $Sheet extends $Format {
     specification = new OfABookSpecification();
@@ -35,11 +76,13 @@ export class $Sheet extends $Format {
         return css`
             .pa-sheet .pd-leaves {
                 display: grid;
-                grid-template-columns: min(${({ theme }) => theme.measure}, 100%);
                 grid-template-areas: 'masthead' 'leaf';
                 justify-content: center;
                 align-content: start;
             }
+            .pd-book.pa-book-paper .pd-leaves { grid-template-columns: min(${({ theme }) => theme.bookSheetWidth}, 100%); }
+            .pd-book.pa-night-paper .pd-leaves { grid-template-columns: min(${({ theme }) => theme.nightSheetWidth}, 100%); }
+            .pd-book.pa-white-paper .pd-leaves { grid-template-columns: min(${({ theme }) => theme.whiteSheetWidth}, 100%); }
             .pa-sheet .pd-leaves::before {
                 content: '';
                 grid-column: 1;
@@ -71,7 +114,7 @@ export class $Sheet extends $Format {
                 .pd-book.pa-sheet .pd-holds { order: 1; }
                 .pd-book.pa-sheet .pd-head { order: 2; }
                 .pd-book.pa-sheet .pd-switches { gap: calc(${({ theme }) => theme.space} / 4); }
-                .pa-sheet .pd-leaves { grid-template-columns: minmax(0, 1fr); }
+                .pd-book.pa-sheet .pd-leaves { grid-template-columns: minmax(0, 1fr); }
             }
         `;
     }
@@ -81,7 +124,7 @@ export const Sheet = $($Sheet);
 
 export class $Story extends $LibraryBook {
     get papers(): Given<$Annotation>[] {
-        return [bookPaper, nightPaper, whitePaper];
+        return [BookPaper, NightPaper, WhitePaper];
     }
 
     override head(): ReactNode {
@@ -117,21 +160,21 @@ export class $Story extends $LibraryBook {
             <>
                 <Tab
                     chapter={this.cover}
-                    of={bookPaper}
+                    of={BookPaper}
                     among={this.papers}
                 >
                     book
                 </Tab>
                 <Tab
                     chapter={this.cover}
-                    of={nightPaper}
+                    of={NightPaper}
                     among={this.papers}
                 >
                     night
                 </Tab>
                 <Tab
                     chapter={this.cover}
-                    of={whitePaper}
+                    of={WhitePaper}
                     among={this.papers}
                 >
                     white
@@ -144,12 +187,15 @@ export class $Story extends $LibraryBook {
     protected override $Define(): void {
         super.$Define();
         const Given = $(Sheet);
+        const Worn = $(Paper);
         this.annotations.add(this,
-            <Given />
+            <Given />,
+            <Worn />
         );
     }
 }
 
 export const Story = $($Story);
-$(Story, Theme)(bookPaper);
+$(Story, Theme)(StoryTheme);
 $(Story, tone)(whiteOverBlack);
+$(Story, Paper)(BookPaper);

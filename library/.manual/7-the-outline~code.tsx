@@ -1,29 +1,14 @@
-import { $, $check, selection } from '@dna-platform/chemistry';
-import { $Book, $Format, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
+import { $, $check } from '@dna-platform/chemistry';
+import { $Annotation, $Book, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 
-export class $Outlined extends $Format {
+export class $Outlined extends $Annotation {
     specification = new OutlineSpecification();
-    themeProvider = true;
-    style = selection.div`
-        .pd-chapter, .pd-section, .pd-listing, .pd-paragraph[class*='pa-'] {
-            outline: thin dashed currentColor;
-            outline-offset: calc(${({ theme }) => theme.space} / 4);
-        }
-        .pd-chapter::before, .pd-section::before, .pd-listing::before, .pd-paragraph[class*='pa-']::before {
-            content: attr(class);
-            display: block;
-            font-family: ${({ theme }) => theme.mono};
-            font-size: smaller;
-        }
-    `;
 
     override defines(writing: $Writing): void {
-        super.defines(writing);
         writing.classes.add(this, 'pa-outlined');
     }
 
     override erase(writing: $Writing): void {
-        super.erase(writing);
         writing.classes.revert(this);
     }
 }

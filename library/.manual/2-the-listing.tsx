@@ -25,6 +25,15 @@ export default () => (
                 manual.
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>How a listing fits the library's patterns</Heading>
+            <Paragraph>
+                A listing is a paragraph with content of its own: the file's name as a word, and the file as the
+                framework's own code figure, numbered and coloured. The book draws one for each file a chapter
+                appends, in the leaf beside the chapter, and <Means>$[[ the manual ]]( ./The Manual )</Means> sets
+                the two side by side or folds the listing to a strip, its name turned on its side.
+            </Paragraph>
+        </Section>
         <Append
             identifier="code"
             type=".tsx"

@@ -133,6 +133,7 @@ export class $Layout extends $Paginated {
                     position: sticky;
                     top: 0;
                     z-index: 4;
+                    box-sizing: border-box;
                     height: ${({ theme }) => theme.barHeight};
                     margin-inline-end: ${({ theme }) => theme.barHeight};
                     overflow: auto hidden;
@@ -145,14 +146,16 @@ export class $Layout extends $Paginated {
                     top: 0;
                     right: 0;
                     justify-content: center;
+                    box-sizing: border-box;
                     width: ${({ theme }) => theme.barHeight};
                     height: ${({ theme }) => theme.barHeight};
+                    padding: 0;
                 }
+                .pa-layout .pd-me .pd-word { display: none; }
                 .pa-layout .pd-head { order: 1; flex-direction: column; align-items: stretch; }
                 .pa-layout .pd-switches { justify-content: flex-start; }
                 .pa-layout .pd-holds { order: 2; overflow: auto hidden; white-space: nowrap; scrollbar-width: none; }
                 .pa-layout .pd-leaves { order: 3; overflow: visible; }
-                .pa-layout.pa-turned .pa-table-of-contents { display: none; }
             }
         `;
     }
