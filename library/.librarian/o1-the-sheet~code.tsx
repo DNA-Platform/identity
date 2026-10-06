@@ -10,33 +10,6 @@ export class $Story extends $LibraryBook {
         return [bookPaper, nightPaper, whitePaper];
     }
 
-    override write(): ReactNode {
-        const Cover = $(this.cover!);
-        const Synopsis = $(this.synopsis!);
-        const Table = $(this.table!);
-        return (
-            <>
-                <div className="pd-bar">
-                    {this.switches()}
-                    {this.filed()}
-                </div>
-                <div className="pd-sheet">
-                    <div className="pd-head">
-                        <Cover />
-                        {this.byline()}
-                    </div>
-                    {this.front(
-                        <div className="pd-words">
-                            <Synopsis />
-                            <Table />
-                        </div>
-                    )}
-                    {this.leaves()}
-                </div>
-            </>
-        );
-    }
-
     override switches(): ReactNode {
         const Tab = $(tab);
         return (
@@ -75,55 +48,18 @@ export class $Sheet extends $Layout {
     }
 
     protected override parts(): RuleSet[] {
-        return [...super.parts(), this.areas(), this.bar(), this.head(), this.phone()];
+        return [...super.parts(), this.sheet()];
     }
 
-    protected areas(): RuleSet {
+    protected sheet(): RuleSet {
         return css`
-            .pd-book.pa-sheet {
-                display: grid;
-                grid-template-areas: 'bar' 'sheet';
-                justify-items: center;
-            }
-            .pa-sheet .pd-bar { grid-area: bar; }
-            .pa-sheet .pd-sheet {
-                grid-area: sheet;
+            .pa-sheet .pd-leaves { display: grid; justify-items: center; align-content: start; }
+            .pa-sheet .pd-leaf {
                 box-sizing: border-box;
                 width: min(${({ theme }) => theme.measure}, 100%);
             }
-        `;
-    }
-
-    protected bar(): RuleSet {
-        return css`
-            .pa-sheet .pd-bar {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-                gap: calc(${({ theme }) => theme.space} * 0.44);
-            }
-        `;
-    }
-
-    protected head(): RuleSet {
-        return css`
-            .pa-sheet .pd-head {
-                display: grid;
-                grid-template-columns: auto auto;
-                grid-template-areas: 'cover byline' 'rule rule';
-                justify-content: center;
-                align-items: baseline;
-            }
-            .pa-sheet .pd-head .pd-paragraph.pd-byline { grid-area: byline; }
-            .pa-sheet .pd-head::after { grid-area: rule; justify-self: center; }
-        `;
-    }
-
-    protected phone(): RuleSet {
-        return css`
             @media (max-width: ${({ theme }) => theme.narrow}) {
-                .pd-book.pa-sheet { justify-items: stretch; }
+                .pa-sheet .pd-leaves { justify-items: stretch; }
             }
         `;
     }

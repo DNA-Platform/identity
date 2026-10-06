@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Writing, Given, Theme } from '@dna-platform/public';
 import { $LibraryBook, $Layout, Layout, Tab as tab } from '../.manual/.book';
@@ -15,39 +14,6 @@ export class $Design extends $LibraryBook {
     }
     override get open(): $Chapter | undefined {
         return super.open ?? this.gallery;
-    }
-
-    override write(): ReactNode {
-        const Cover = $(this.cover!);
-        const Synopsis = $(this.synopsis!);
-        const Table = $(this.table!);
-        return (
-            <>
-                <div className="pd-side">
-                    {this.filed()}
-                    <div className="pd-contents">
-                        <Table />
-                    </div>
-                    {this.byline()}
-                </div>
-                <div className="pd-main">
-                    <div className="pd-head">
-                        <Cover />
-                        <div className="pd-switches">
-                            {this.switches()}
-                        </div>
-                    </div>
-                    <div className="pd-leaves">
-                        {this.front(
-                            <div className="pd-words">
-                                <Synopsis />
-                            </div>
-                        )}
-                        {this.leaves()}
-                    </div>
-                </div>
-            </>
-        );
     }
 
     override switches(): ReactNode {
@@ -78,63 +44,6 @@ export class $Frame extends $Layout {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-frame');
-    }
-
-    protected override parts(): RuleSet[] {
-        return [...super.parts(), this.areas(), this.narrow()];
-    }
-
-    protected areas(): RuleSet {
-        return css`
-            .pd-book.pa-frame {
-                display: grid;
-                grid-template-columns: ${({ theme }) => theme.side} minmax(0, 1fr);
-                grid-template-rows: minmax(0, 1fr);
-                grid-template-areas: 'side main';
-                height: 100vh;
-            }
-            .pa-frame .pd-side {
-                grid-area: side;
-                display: grid;
-                grid-template-rows: auto minmax(0, 1fr) auto;
-                grid-template-areas: 'home' 'contents' 'me';
-                overflow: hidden;
-            }
-            .pa-frame .pd-side .pd-filed-under { grid-area: home; }
-            .pa-frame .pd-contents { grid-area: contents; overflow-y: auto; }
-            .pa-frame .pd-side .pd-byline { grid-area: me; }
-            .pa-frame .pd-main {
-                grid-area: main;
-                display: grid;
-                grid-template-rows: auto minmax(0, 1fr);
-                grid-template-areas: 'head' 'pages';
-            }
-            .pa-frame .pd-head {
-                grid-area: head;
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: space-between;
-                column-gap: ${({ theme }) => theme.space};
-            }
-            .pa-frame .pd-switches {
-                display: flex;
-                gap: calc(${({ theme }) => theme.space} / 3);
-            }
-            .pa-frame .pd-leaves { grid-area: pages; overflow-y: auto; }
-            .pa-frame .pd-words .pd-chapter { scroll-margin-block-start: ${({ theme }) => theme.space}; }
-        `;
-    }
-
-    protected narrow(): RuleSet {
-        return css`
-            @media (max-width: ${({ theme }) => theme.narrow}) {
-                .pd-book.pa-frame { display: block; height: auto; }
-                .pa-frame .pd-side { display: block; }
-                .pa-frame .pd-main { display: block; }
-                .pa-frame.pa-turned .pa-table-of-contents { display: none; }
-            }
-        `;
     }
 }
 

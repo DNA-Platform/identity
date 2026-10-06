@@ -10,12 +10,12 @@ export class $DesignTheme extends $LibraryBookTheme {
 
     protected sideBar(): RuleSet {
         return css`
-            .pd-side {
+            .pd-holds, .pd-library {
                 background: ${({ theme }) => theme.barFill};
                 color: ${({ theme }) => theme.barInk};
                 border-inline-end: thin solid ${({ theme }) => theme.barLine};
             }
-            .pd-side .pd-filed-under, .pd-side .pd-byline {
+            .pd-library .pd-filed-under, .pd-library .pd-byline {
                 display: flex;
                 align-items: center;
                 gap: calc(${({ theme }) => theme.space} * 0.4);
@@ -24,19 +24,19 @@ export class $DesignTheme extends $LibraryBookTheme {
                 font-size: calc(0.83 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.barDim};
             }
-            .pd-side .pd-byline { border-block-start: thin solid ${({ theme }) => theme.barLine}; }
-            .pd-side .pd-word {
+            .pd-library .pd-byline { border-block-start: thin solid ${({ theme }) => theme.barLine}; }
+            .pd-library .pd-word {
                 color: ${({ theme }) => theme.barInk};
                 font-weight: 500;
             }
-            .pd-side .pd-filed-under .pd-word {
+            .pd-library .pd-filed-under .pd-word {
                 font-family: ${({ theme }) => theme.serif};
                 font-size: calc(1.45 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1;
             }
-            .pd-side .pa-reference { color: inherit; text-decoration: none; }
-            .pd-side .pd-filed-under::before, .pd-side .pd-byline::before {
+            .pd-library .pa-reference { color: inherit; text-decoration: none; }
+            .pd-library .pd-filed-under::before, .pd-library .pd-byline::before {
                 content: ${({ theme }) => theme.initial};
                 display: grid;
                 place-items: center;
@@ -45,17 +45,17 @@ export class $DesignTheme extends $LibraryBookTheme {
                 font-size: ${({ theme }) => theme.size};
                 font-weight: 600;
             }
-            .pd-side .pd-filed-under::before {
+            .pd-library .pd-filed-under::before {
                 border-radius: calc(${({ theme }) => theme.space} / 3);
                 background: ${({ theme }) => theme.opal};
                 color: ${({ theme }) => theme.night};
             }
-            .pd-side .pd-byline::before {
+            .pd-library .pd-byline::before {
                 border-radius: 50%;
                 background: ${({ theme }) => theme.me};
                 color: ${({ theme }) => theme.paper};
             }
-            .pd-side .pd-contents { padding: 0 calc(${({ theme }) => theme.space} / 2) ${({ theme }) => theme.space}; }
+            .pd-holds { padding: 0 calc(${({ theme }) => theme.space} / 2) ${({ theme }) => theme.space}; }
         `;
     }
 
@@ -146,7 +146,7 @@ export class $DesignTheme extends $LibraryBookTheme {
     protected small(): RuleSet {
         return css`
             @media (max-width: ${({ theme }) => theme.narrow}) {
-                .pd-side { border-inline-end: none; }
+                .pd-holds, .pd-library { border-inline-end: none; }
                 .pd-leaves { padding: calc(${({ theme }) => theme.space} * 0.67); }
             }
         `;

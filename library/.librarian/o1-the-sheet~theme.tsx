@@ -38,8 +38,8 @@ export class $StoryTheme extends $LibraryBookTheme {
 
     protected bar(): RuleSet {
         return css`
-            .pa-sheet .pd-bar { margin-block-end: calc(${({ theme }) => theme.space} * 1.44); }
-            .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-bar .pd-paragraph.pd-filed-under {
+            .pa-sheet .pd-head { margin-block-end: calc(${({ theme }) => theme.space} * 1.44); }
+            .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-library .pd-paragraph.pd-filed-under {
                 margin-block: 0;
                 padding: calc(${({ theme }) => theme.space} * 0.39) calc(${({ theme }) => theme.space} * 0.83);
                 font-family: ${({ theme }) => theme.mono};
@@ -56,13 +56,13 @@ export class $StoryTheme extends $LibraryBookTheme {
                 background: ${({ theme }) => theme.tint};
                 border-color: ${({ theme }) => theme.lit};
             }
-            .pa-sheet .pd-bar .pd-filed-under .pa-reference { color: inherit; text-decoration: none; }
+            .pa-sheet .pd-library .pd-filed-under .pa-reference { color: inherit; text-decoration: none; }
         `;
     }
 
     protected sheet(): RuleSet {
         return css`
-            .pa-sheet .pd-sheet {
+            .pa-sheet .pd-leaf {
                 padding: calc(${({ theme }) => theme.space} * 3.78) calc(${({ theme }) => theme.space} * 4.22) calc(${({ theme }) => theme.space} * 3.11);
                 background: ${({ theme }) => theme.paper};
                 border: thin solid ${({ theme }) => theme.edge};
@@ -190,15 +190,15 @@ export class $StoryTheme extends $LibraryBookTheme {
             @media (max-width: ${({ theme }) => theme.narrow}) {
                 padding: 0;
                 background: ${({ theme }) => theme.paper};
-                .pa-sheet .pd-bar {
+                .pa-sheet .pd-head {
                     margin-block-end: 0;
                     padding: calc(${({ theme }) => theme.space} * 0.78) calc(${({ theme }) => theme.space} * 0.89);
                     background: ${({ theme }) => theme.panel};
                 }
-                .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-bar .pd-paragraph.pd-filed-under {
+                .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-library .pd-paragraph.pd-filed-under {
                     padding: calc(${({ theme }) => theme.space} * 0.33) calc(${({ theme }) => theme.space} * 0.67);
                 }
-                .pa-sheet .pd-sheet {
+                .pa-sheet .pd-leaf {
                     padding: calc(${({ theme }) => theme.space} * 2.22) calc(${({ theme }) => theme.space} * 1.44) calc(${({ theme }) => theme.space} * 2);
                     border-inline: none;
                     border-block-end: none;

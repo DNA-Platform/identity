@@ -1,4 +1,4 @@
-import { Fragment, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import { $Append, $Book, $Chapter, $Composition, $Section, BookSpecification, Theme, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
@@ -22,16 +22,90 @@ export class $LibraryBook extends $Book {
     }
 
     override write(): ReactNode {
-        return this.text.find($Chapter).map((chapter, index) => {
+        return (
+            <>
+                <div className="pd-library">
+                    {this.library()}
+                </div>
+                <div className="pd-holds">
+                    {this.holds()}
+                </div>
+                <div className="pd-head">
+                    {this.head()}
+                </div>
+                <div className="pd-leaves">
+                    {this.front()}
+                    {this.leaves()}
+                </div>
+            </>
+        );
+    }
+
+    library(): ReactNode {
+        return (
+            <>
+                {this.filed()}
+                {this.subjects()}
+                {this.byline()}
+            </>
+        );
+    }
+
+    subjects(): ReactNode {
+        return null;
+    }
+
+    holds(): ReactNode {
+        const Table = $(this.table!);
+        return (
+            <Table />
+        );
+    }
+
+    head(): ReactNode {
+        const Cover = $(this.cover!);
+        return (
+            <>
+                <Cover />
+                <div className="pd-switches">
+                    {this.switches()}
+                </div>
+            </>
+        );
+    }
+
+    front(): ReactNode {
+        return (
+            <div className={this.open === undefined ? 'pd-leaf pd-front pd-open' : 'pd-leaf pd-front'}>
+                {this.opening()}
+            </div>
+        );
+    }
+
+    opening(): ReactNode {
+        const Synopsis = $(this.synopsis!);
+        return (
+            <div className="pd-words">
+                <Synopsis />
+            </div>
+        );
+    }
+
+    leaves(): ReactNode {
+        return this.chapters.map((chapter, index) => {
             const Chapter = $(chapter);
             return (
-                <Fragment key={index}>
-                    <Chapter />
-                    {chapter === this.cover && this.byline()}
-                    {chapter === this.cover && this.filed()}
-                    {chapter === this.cover && this.switches()}
-                    {this.listings(chapter)}
-                </Fragment>
+                <div
+                    key={index}
+                    className={chapter === this.open ? 'pd-leaf pd-open' : 'pd-leaf'}
+                >
+                    <div className="pd-words">
+                        <Chapter />
+                    </div>
+                    <div className="pd-files">
+                        {this.listings(chapter)}
+                    </div>
+                </div>
             );
         });
     }
@@ -65,33 +139,6 @@ export class $LibraryBook extends $Book {
                 outline
             </Switch>
         );
-    }
-
-    front(holds: ReactNode): ReactNode {
-        return (
-            <div className={this.open === undefined ? 'pd-leaf pd-front pd-open' : 'pd-leaf pd-front'}>
-                {holds}
-            </div>
-        );
-    }
-
-    leaves(): ReactNode {
-        return this.chapters.map((chapter, index) => {
-            const Chapter = $(chapter);
-            return (
-                <div
-                    key={index}
-                    className={chapter === this.open ? 'pd-leaf pd-open' : 'pd-leaf'}
-                >
-                    <div className="pd-words">
-                        <Chapter />
-                    </div>
-                    <div className="pd-files">
-                        {this.listings(chapter)}
-                    </div>
-                </div>
-            );
-        });
     }
 
     listings(chapter: $Chapter): ReactNode {

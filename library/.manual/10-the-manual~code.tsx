@@ -8,33 +8,6 @@ import { CodeForward as codeForward } from './10-the-manual~forward.tsx';
 import { $Layout, Layout } from './12-the-layout~code.tsx';
 
 export class $Manual extends $LibraryBook {
-    override write(): ReactNode {
-        const Cover = $(this.cover!);
-        const Synopsis = $(this.synopsis!);
-        const Table = $(this.table!);
-        return (
-            <>
-                <div className="pd-side">
-                    {this.filed()}
-                    <Cover />
-                    {this.byline()}
-                    <div className="pd-switches">
-                        {this.switches()}
-                    </div>
-                    <Table />
-                </div>
-                <div className="pd-leaves">
-                    {this.front(
-                        <div className="pd-words">
-                            <Synopsis />
-                        </div>
-                    )}
-                    {this.leaves()}
-                </div>
-            </>
-        );
-    }
-
     override switches(): ReactNode {
         const Switch = $(switching);
         return (
@@ -58,25 +31,7 @@ export class $Spread extends $Layout {
     }
 
     protected override parts(): RuleSet[] {
-        return [...super.parts(), this.columns(), this.spread(), this.narrow()];
-    }
-
-    protected columns(): RuleSet {
-        return css`
-            .pd-book.pa-spread {
-                display: grid;
-                grid-template-columns: ${({ theme }) => theme.side} minmax(0, 1fr);
-                grid-template-areas: 'side pages';
-                height: 100vh;
-            }
-            .pa-spread .pd-side { grid-area: side; overflow-y: auto; }
-            .pa-spread .pd-leaves { grid-area: pages; min-height: 0; }
-            .pa-spread .pd-switches {
-                display: flex;
-                flex-wrap: wrap;
-                gap: calc(${({ theme }) => theme.space} / 4);
-            }
-        `;
+        return [...super.parts(), this.spread(), this.one()];
     }
 
     protected spread(): RuleSet {
@@ -93,13 +48,11 @@ export class $Spread extends $Layout {
         `;
     }
 
-    protected narrow(): RuleSet {
+    protected one(): RuleSet {
         return css`
             @media (max-width: ${({ theme }) => theme.narrow}) {
-                .pd-book.pa-spread { display: block; height: auto; }
                 .pa-spread .pd-leaf.pd-open { display: block; height: auto; }
                 .pa-spread .pd-files { width: auto; }
-                .pa-spread.pa-turned .pa-table-of-contents { display: none; }
             }
         `;
     }

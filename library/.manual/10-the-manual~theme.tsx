@@ -13,24 +13,24 @@ export class $ManualTheme extends $LibraryBookTheme {
 
     protected index(): RuleSet {
         return css`
-            .pd-side {
+            .pd-holds, .pd-library {
                 background: ${({ theme }) => theme.panel};
                 border-inline-end: thin solid ${({ theme }) => theme.line};
                 padding: calc(${({ theme }) => theme.space} * 0.75) calc(${({ theme }) => theme.space} * 0.6);
                 scrollbar-width: thin;
                 scrollbar-color: ${({ theme }) => theme.line} transparent;
             }
-            .pd-side .pd-filed-under, .pd-side .pd-byline {
+            .pd-library .pd-filed-under, .pd-library .pd-byline {
                 margin-block: 0;
                 font-size: calc(0.83 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.faint};
             }
-            .pd-side .pd-filed-under .pa-reference, .pd-side .pd-byline .pa-reference {
+            .pd-library .pd-filed-under .pa-reference, .pd-library .pd-byline .pa-reference {
                 color: ${({ theme }) => theme.soft};
                 text-decoration: none;
             }
-            .pd-side .pd-switches { margin-block-start: calc(${({ theme }) => theme.space} / 2); }
-            .pd-side .pd-switch { font-size: calc(0.9 * ${({ theme }) => theme.size}); }
+            .pd-head .pd-switches { margin-block-start: calc(${({ theme }) => theme.space} / 2); }
+            .pd-head .pd-switch { font-size: calc(0.9 * ${({ theme }) => theme.size}); }
         `;
     }
 
@@ -69,7 +69,7 @@ export class $ManualTheme extends $LibraryBookTheme {
     protected small(): RuleSet {
         return css`
             @media (max-width: ${({ theme }) => theme.narrow}) {
-                .pd-side {
+                .pd-holds, .pd-library {
                     border-inline-end: none;
                     border-block-end: thin solid ${({ theme }) => theme.line};
                 }

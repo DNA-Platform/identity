@@ -18,31 +18,31 @@ export class $LibraryTheme extends $LibraryBookTheme {
 
     protected libraryBar(): RuleSet {
         return css`
-            .pd-library-bar {
+            .pd-library {
                 background: ${({ theme }) => theme.night};
                 color: ${({ theme }) => theme.haze};
                 padding: calc(${({ theme }) => theme.space} * 0.375) calc(${({ theme }) => theme.space} * 0.75);
             }
-            .pd-library-bar .pd-filed-under, .pd-library-bar .pd-byline {
+            .pd-library .pd-filed-under, .pd-library .pd-byline {
                 display: flex;
                 align-items: center;
                 gap: calc(${({ theme }) => theme.space} * 0.4);
                 margin-block: 0;
                 font-size: calc(0.83 * ${({ theme }) => theme.size});
             }
-            .pd-library-bar .pd-word {
+            .pd-library .pd-word {
                 color: ${({ theme }) => theme.paper};
                 font-size: ${({ theme }) => theme.size};
                 font-weight: 500;
             }
-            .pd-library-bar .pd-filed-under .pd-word {
+            .pd-library .pd-filed-under .pd-word {
                 font-family: ${({ theme }) => theme.serif};
                 font-size: calc(1.45 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1;
             }
-            .pd-library-bar .pa-reference { color: inherit; text-decoration: none; }
-            .pd-library-bar .pd-filed-under::before, .pd-library-bar .pd-byline::before {
+            .pd-library .pa-reference { color: inherit; text-decoration: none; }
+            .pd-library .pd-filed-under::before, .pd-library .pd-byline::before {
                 content: ${({ theme }) => theme.initial};
                 display: grid;
                 place-items: center;
@@ -51,12 +51,12 @@ export class $LibraryTheme extends $LibraryBookTheme {
                 font-size: ${({ theme }) => theme.size};
                 font-weight: 600;
             }
-            .pd-library-bar .pd-filed-under::before {
+            .pd-library .pd-filed-under::before {
                 border-radius: calc(${({ theme }) => theme.space} / 3);
                 background: ${({ theme }) => theme.opal};
                 color: ${({ theme }) => theme.night};
             }
-            .pd-library-bar .pd-byline::before {
+            .pd-library .pd-byline::before {
                 border-radius: 50%;
                 background: ${({ theme }) => theme.me};
                 color: ${({ theme }) => theme.paper};
@@ -66,18 +66,18 @@ export class $LibraryTheme extends $LibraryBookTheme {
 
     protected bookBar(): RuleSet {
         return css`
-            .pd-book-bar {
+            .pd-head {
                 background: ${({ theme }) => theme.sky};
                 padding: calc(${({ theme }) => theme.space} * 0.375) ${({ theme }) => theme.space};
             }
-            .pd-book-bar .pd-switch {
+            .pd-head .pd-switch {
                 border: none;
                 border-radius: calc(${({ theme }) => theme.space} * 0.375);
                 padding: calc(${({ theme }) => theme.space} / 4) calc(${({ theme }) => theme.space} / 2);
                 background: ${({ theme }) => theme.glass};
                 color: ${({ theme }) => theme.ink};
             }
-            .pd-book-bar .pd-switch[aria-pressed='true'] {
+            .pd-head .pd-switch[aria-pressed='true'] {
                 background: ${({ theme }) => theme.night};
                 color: ${({ theme }) => theme.paper};
                 font-weight: 500;
