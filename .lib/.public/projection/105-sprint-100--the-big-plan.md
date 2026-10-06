@@ -451,8 +451,8 @@
 | the manual | `9-the-switch~code.tsx` | `$Switch`, a word whose element is a `button`, giving one annotation to the book through `$is` and taking it back; `$Tab`, a switch that is one of a set |
 | the manual | `12-the-layout~code.tsx` | `$Layout`, a Format said of every book: each chapter on a leaf of its own, one open at a time |
 | the manual | `13-the-turn~code.tsx` | `$Turn`, a paragraph at the foot of each chapter: the chapter before, the `$Count`, the chapter after, among the book's own chapters |
-| the manual | `14-the-entry~code.tsx` | `$Entry`, said of a table of contents' row that leads somewhere, lit when its chapter is open; `$Index`, the framework's table of contents saying so of each such row at the bind |
-| the manual | `15-the-bars~code.tsx` | `$TopBar`, the cover as a bar; `$SideBar`, the index as a bar — reusable faces, their colours the theme's |
+| the manual | `14-the-entry~code.tsx` | `$Entry`, said of a table of contents' row that leads somewhere, lit when its chapter is open; `$Index`, said of a table of contents, saying so of each such row at the bind |
+| the manual | `15-the-bars~code.tsx` | `$TopBar`, a Format said of a cover; `$SideBar`, a Format said of a table of contents — each a look, their colours the theme's |
 | the manual | `10-the-manual~code.tsx` | `$Manual`, the type: a side and the leaves; `$Spread`, its layout |
 | the manual | `10-the-manual~faces.tsx`, `~theme.tsx`, `~entry.tsx`, `~forward.tsx` | its cover and its index; its theme's three parts; `$FileEntry`, registered as the manual's kind of entry; `$CodeForward` |
 | the catalogue | `o1-the-bars~code.tsx` | `$DougsLibrary`, the type: two bars, the contents, a front of synopsis and shelf; `books`, the chapters that each carry another book's synopsis; `$Bars`, its layout |
@@ -462,7 +462,7 @@
 | his story | `o1-the-sheet~code.tsx` | `$DougsStory`, the type: a bar, and a sheet with the cover and *by* at its head over one chapter; `papers`; `$Sheet`, its layout, which also gives each chapter's opening paragraph its class at the bind |
 | his story | `o1-the-sheet~theme.tsx`, `~faces.tsx` | `$StoryTheme`, the sheet's type in seven parts, and under it three papers that set colours only — `$BookPaper`, registered, `$NightPaper`, `$WhitePaper`; its cover as the running line and its index set in the middle |
 | the design book | `o5-the-frame~code.tsx` | `$DougsDesign`, the type: the side bar, and beside it the top bar over the leaves; `modes`; `$Frame`, its layout |
-| the design book | `o5-the-frame~theme.tsx`, `~faces.tsx` | `$DesignTheme` and under it `$GalleryMode`, registered, and `$LibraryMode`, setting the bar's colours; its faces are the base's `TopBar` and `SideBar` |
+| the design book | `o5-the-frame~theme.tsx`, `~faces.tsx` | `$DesignTheme` and under it `$GalleryMode`, registered, and `$LibraryMode`, setting the bar's colours; its cover and table are the framework's own, with `TopBar`, `Index` and `SideBar` said of them in the chapter files |
 | the design book | `o4-the-gallery~code.tsx` | `$Gallery`, a Format said of a chapter whose sections are concepts: each group a grid, each concept a card, the open one across the gallery |
 | the design book | `o2-the-concept~code.tsx`, `o1-the-paragraphs~code.tsx` | `$Concept`, said of a section, open when the bookmark names it; `$Photographs` and `$Source`, said of a concept's paragraphs; `$Question`, `$Answer`, `$Decision` |
 

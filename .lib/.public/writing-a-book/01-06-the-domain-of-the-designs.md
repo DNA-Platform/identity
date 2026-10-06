@@ -27,7 +27,7 @@ The library's classes had been named for what they did — `BookItself`, `Listed
 |---|---|---|
 | **the books** | `Book`, `Manual`, `Library`, `Story`, `Design` | the base every book of his extends, and the four types |
 | **the layouts** | `Layout`, `Spread`, `Sheet`, `Bars`, `Frame` | the base — one chapter open at a time — and one under it for each type; a book takes its layout by registration |
-| **the bars, and what stands on them** | `TopBar`, `SideBar`, `FiledUnder`, `Byline`, `Switch`, `Tab` | the cover as a bar and the table of contents as a bar, each a reusable face; the two lines every book draws; a button that says a thing of the book, and one of a set |
+| **the bars, and what stands on them** | `TopBar`, `SideBar`, `FiledUnder`, `Byline`, `Switch`, `Tab` | a top bar said of the cover and a side bar said of the table of contents — annotations beside `Cover` and `TableOfContents` in the chapter file, never subclasses of them; the two lines every book draws; a button that says a thing of the book, and one of a set |
 | **the table of contents** | `Index`, `Entry` | a table of contents whose rows lead somewhere; a row, lit when its chapter is open |
 | **reading a chapter** | `Turn`, `Count`, `Listing`, `Outline`, `CodeForward`, `Timestamp` | before and after at the foot of a chapter; *N of M*; a file printed under its name; the structure drawn over the page; the file given the room; the date a chapter carries |
 | **the catalogue** | `Shelf`, `View`, `BookLink` | the books as covers; a family of which one is said at a time; the title on the shelf that opens the book |
