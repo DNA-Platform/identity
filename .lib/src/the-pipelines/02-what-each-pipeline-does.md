@@ -7,13 +7,17 @@
 
 [Book: [The Pipelines](.cover.md)]
 
-Four pipelines, each answering one question and reading only the finished products of the ones before
+Five pipelines, each answering one question and reading only the finished products of the ones before
 it. Each package's cover is its documentation; this chapter is the map.
 
 ```
+export  ->  (matched's code)
 matched  ->  digital_twin  ->  mei
                           \->  metamer
 ```
+
+`export` stands apart from the chain, because it is where data comes from rather than what is made
+of it ([below](#export---a-dataset-in-the-labs-caiman-processing)).
 
 ## The chain, as one command
 
@@ -27,6 +31,20 @@ every phase and recorded the dataset's canonical build does `--then` start the p
 it, each on the same dataset. Every phase checks for its product first, so a rerun costs only what is
 missing. On the box a run's command is exactly this - a pipeline's entry point, never orchestration
 written for the occasion.
+
+## `export` - a dataset in the lab's CaImAn processing
+
+[`src/pipelines/export/`](../../pipelines/export/.cover.md), added 2026-10-06. It pulls a dataset's
+recordings from the lab's database, in 33328's processing (`1-6-5`), by the lab's own code in the lab's
+image on jr-compute003, through the [`als-remote-lab`](../the-skillset/02-als-remote-lab.md) tool. Each
+pull is recorded in `runs/lab/`. It writes nothing until the lab's code reproduces outputs the lab
+already produced: its stored stack coordinates, and the unit sets every delivery kept. Doug, 2026-10-06:
+*"They keep giving me access and I can't do anything with it?"* The answer was to check the lab's
+code against the lab's outputs instead of waiting for the person who ran it.
+
+Today it leaves 33977's coordinates and its four-way match, made by `matched.cells.build` on the soma
+units. Under CaImAn, 980 cells track pre to post and 393 are in all four recordings, against 3,256
+and 1,177 delivered under Suite2P. The export itself waits on the lab's exporter, nexport.
 
 ## `matched` - which neuron is which
 
