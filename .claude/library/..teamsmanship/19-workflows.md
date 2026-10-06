@@ -68,6 +68,15 @@ Named by Doug on 2026-09-28, when the team was asked to make a reference manual 
 - **Step 2 is not optional.** The discussion by territory was skipped for a day, and the corrections that day were each one a voice in its own territory would have made before he had to: the words, by the librarian; the moves, by whoever owns the visible layer; the look, argued from what the thing is.
 - **Fast is part of it.** *"It was meant to be a design brainstorming session… That's not the same as me waiting half an hour between prompts."* A few sketches in minutes, looked at, beats a finished round in an hour.
 
+### What the third run added — out of Sprint 100
+
+*The third run was the correlation of the designs with the books — "so let's correlate them" — done with the design book open, by number, through one question per kind of book, after the books had first been built to a matching nobody had chosen. The record is [Sprint 100](../../../library/.public/.lib/projection/105-sprint-100--the-big-plan.md#where-things-stand).*
+
+- **The HTML is the design, and it is read whole before building.** *"Don't look at the photos. Look at the html of the designs that were decided on, and then look at the photos of them."* · *"If you have been working from photos and not html, you have been trying to create something that could have been created far more accurately because we literally designed in HTML."* The sketch's values are replicated exactly; the photographs check the built page. The map from each design's regions to the library's parts is [The Domain of the Designs](../../../library/.public/.lib/writing-a-book/01-06-the-domain-of-the-designs.md).
+- **The matching per book is his, by number, and never recommended.** The catalogue had been built as two bars he had never approved — *"I never approved a two-bar design."* · *"I'm not even sure why you would recommend one. That's not a standard for anything."* The question is asked with the numbered cards in front of him, one kind of book at a time, the record's reading marked as the record's; his answer written verbatim under it.
+- **What no concept draws is sketched as a new numbered concept, and shown full screen.** *"You need to show me designs."* · *"I can barely see these designs."* Six were sketched in one evening from the files already there — [the protocol](../../../library/.public/.lib/writing-a-book/01-02-how-a-library-is-developed.md#sketch-first) — and a press on a card opens it full screen with its close.
+- **Numbers are for speaking; nothing in the code is labelled by one.** *"The numbers are dangerous because then you have some trouble displaying similar ones together. It is a brittle design, do try to label the themes based on what they are and not what their number is."*
+
 ## The debug workflow
 
 Different from the feature workflow, and it replaces steps 1–3 rather than preceding them.
