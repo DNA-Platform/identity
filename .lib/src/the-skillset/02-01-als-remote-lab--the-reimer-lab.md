@@ -48,7 +48,17 @@ Ming sent the config on 2026-10-05. It holds a client certificate and its privat
 
 The config pins the API server's own certificate rather than a certificate authority. That certificate names `kubernetes`, `jr-kubemaster01` and `10.28.0.136`, so kubectl verifies the tunnelled server under the name `kubernetes`. The pinned certificate expires on 2027-07-24 and the client certificate on 2029-07-01. After the first date the config needs replacing from Ming.
 
-**What our account can do** (`kube auth can-i --list`, 2026-10-05): create, read, change and delete pods, jobs, cron jobs, deployments, services and secrets in the namespace `doug`, and nothing outside it. It cannot list nodes, namespaces, quotas or limit ranges, so we cannot see the cluster's GPUs, their names or our share of them. A running pod's `nvidia-smi` will be the first look.
+**What our account can do** (`kube auth can-i --list`, 2026-10-05): create, read, change and delete pods, jobs, cron jobs, deployments, services and secrets in the namespace `doug`, and nothing outside it. It cannot list nodes, namespaces, quotas or limit ranges.
+
+**What the cluster has, and how to ask for it** (Ming, 2026-10-06):
+
+| GPU | memory | count |
+|---|---|---|
+| V100 | 32 GB | 3 |
+| A40 | 48 GB | 1 |
+| L4 | 24 GB | 1 |
+
+Each GPU is on its own node. *"You can request as many as you need, the cluster will do the provision. If not available, your request will be pending till other GPU jobs finish and release GPUs."* There is no quota to plan around. A job asks for what it needs, as `nvidia.com/gpu` in its limits, and waits its turn. Node listing will be granted later, but requesting a GPU does not need it (*"you don't need that role to request GPU"*). Ming did not mention a taint, so whether a job needs a toleration will be seen on the first one: a pod that stays pending says why in `kube describe`.
 
 **The lab's way to run a GPU job** is `cajal/pipeline`'s `K8/Jobs/minion-mcl-gpu.yaml`:
 - a batch Job running a lab image, with `/mnt` mounted from the host;
@@ -56,7 +66,7 @@ The config pins the API server's own certificate rather than a certificate autho
 - a toleration for the `gpu=true:NoSchedule` taint, and a node pinned by hostname;
 - the DataJoint credentials (`DJ_HOST`, `DJ_USER`, `DJ_PASS`) injected as environment variables from a Secret named `datajoint-credentials` in the job's namespace.
 
-That manifest was written for another cluster (its node is `at-gpu1` and its image comes from `at-docker`), so the Reimer cluster's node names and taint still have to be asked. A job has no stdin, so the lab's Secret departs from the rule that the password travels only on stdin. Whether our jobs use a Secret in `doug` is Doug's decision, to be made when the first job is built.
+That manifest was written for another cluster (its node is `at-gpu1` and its image comes from `at-docker`). On this one a job requests a GPU without naming a node. A job has no stdin, so the lab's Secret departs from the rule that the password travels only on stdin. Whether our jobs use a Secret in `doug` is Doug's decision, to be made when the first job is built.
 
 ## How the lab works — by the book
 
