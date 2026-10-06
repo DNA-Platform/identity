@@ -132,6 +132,56 @@ So the 33328-standard processing of 33977 already exists in the lab's database. 
 
 **Where 33977's coordinates stand in the database** (`runs/lab/*-coordinates-33977.*`, 2026-10-05). All four scans are registered to stack 17-6 (`pipeline_stack.Registration`, method 5, every field). Segmentation and `ScanSet` exist for all four scans in both processings; segmentation 6 has 1,904, 1,630, 1,782 and 2,386 units on 12-1, 12-2, 17-1 and 17-3. `meso.StackCoordinates`, the populate that places each unit in the stack through that registration, exists only for **12-1 and 17-3, and only on segmentation 19**. So for 1-6-5 the populate is the one missing step. The delivered coordinates for 12-2 and 17-1 did not come from that table, so how they were made is a question for Erin.
 
+## The exporter, reconstructed (2026-10-06)
+
+Doug, 2026-10-06: *"you don't think you can infer the nexport from what you can find about 33328 and
+see if you can figure it out?"* nexport is private, but its ancestor, the lab's public
+[`cajal/neuro_data`](https://github.com/cajal/neuro_data), is not. The lab's release notebook
+(`cajal/static_v1_data_release`) also carries nexport's `ImageNet` exporter class verbatim. The
+delivered exports were the answer key, read straight from the original archives on the lab's storage.
+Each stage is recorded in `runs/lab/*-nexport-stage-*.{py,out}`.
+
+**33328, scan 6-2 (CaImAn, 1-6-5): reproduced exactly, every field, zero difference.** The method is
+`neuro_data`'s, unchanged:
+- **traces:** `meso.Activity.Trace` of the soma units, NaNs filled linearly, each unit timed by its
+  `ms_delay`;
+- **filter:** a hamming window of `2·⌊0.5/d⌋+1` frames (`d` the median frame period; 7 frames here),
+  normalised to sum to one;
+- **sampling:** a linear spline read at stimulus onset + 0.3 s;
+- **trials:** the image trials (three flips, which `ExcludedTrial` encodes) in condition-hash order,
+  minus those with a NaN in pupil or treadmill (64 here, all from the pupil);
+- **behaviour:** `Eye` and `Treadmill` (hamming, `dhamming` for the derivative, |velocity|, through the
+  behaviour clock);
+- **metadata:** each column of `stimulus.Frame * Trial`, datetimes written as `repr`;
+- **statistics:** `run_stats` over the train tier.
+
+The release notebook's boxcar is not what nexport ran: it correlates 0.986 and matches nothing exactly.
+
+**Tiers belong to the image**, assigned once by the lab (`ImageNetSplit`: the repeated images are
+`test`, a random-order 10% of the rest `validation`). They cannot be recomputed, and need not be.
+Every delivered export agrees on every image two exports share (33328 against 33977: 5,050 of 5,050),
+so an export of a scan takes the tiers already assigned to its images.
+
+**33977, scan 12-1 (Suite2P, 1-19-7), Erin's original archive: the bookkeeping matches, the responses
+do not.** The procedure reproduces her 6,084 units and her 6,000 trials, both in her order. But her
+responses equal none of what the pipeline stores, as far as tested on 200 units (median per-cell
+correlation, and her values over ours):
+
+| her responses against | correlation | ratio |
+|---|---|---|
+| hamming of `Activity.Trace`, spike method 7 (the only one) | 0.92 | 3.13 |
+| boxcar of the same | 0.85 | 3.13 |
+| hamming of `Fluorescence.Trace` | 0.76 | 0.60 |
+
+So her Suite2P responses come from something other than the stored traces, or from a setting none of
+these reproduce. That agrees with the earlier finding that 33977's delivered activity behaves like a
+first-order kernel inversion. What it is, is Erin's to say.
+
+**Open:** `album` (`oracle`/`single`). Collection 1's oracle set is exactly the delivered oracle
+images, but album membership alone does not reproduce the per-trial labels. Nothing in the pipelines
+reads it. nexport's `area` and `layer` come from anatomy tables, and Erin's 33977 export carried
+neither.
+
 ## What is open
 
 Asked of the lab on 2026-10-05, with the answers as they came:
