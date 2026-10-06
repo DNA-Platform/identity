@@ -101,13 +101,13 @@ its own copy. Every login goes from here, by key, through the box:
 only forwards the connection and holds nothing, because its account is shared and a key stored there
 would let anyone on it into doug's lab account.
 
-**What stops us is the grant, and only the grant.** In a throwaway container from
-`ml-gpu-pipeline:cleaned` on jr-compute001, the lab's code connects (`datajoint 0.12.9`), then stops at
-`from pipeline import meso`: `meso` imports `injection`, which imports `commons.virus`, which declares
-`common_virus`. doug cannot read that schema, so DataJoint tries to create it and is refused
-(`runs/run-20261005-1651-reimer-container/lab/`). The lab's own code needs read access to `common_*`
-before it can be imported. Populating `meso.StackCoordinates` needs insert on `pipeline_meso`; the
-grant allows only select.
+**The lab's code imports.** At first, in a throwaway container from `ml-gpu-pipeline:cleaned` on
+jr-compute001, the lab's code connected (`datajoint 0.12.9`) and then stopped at `from pipeline import meso`.
+`meso` imports `injection`, which imports `commons.virus`, which declares `common_virus`. doug could not
+read that schema, so DataJoint tried to create it and was refused
+(`runs/run-20261005-1651-reimer-container/lab/`). Ming granted read on `common_*` the same evening, and
+`from pipeline import meso, stack` now imports in the lab's image (`runs/lab/*-common-and-stacks.*`).
+Populating `meso.StackCoordinates` still needs insert on `pipeline_meso`, and the grant allows only select.
 
 ## Our data, at the source
 
@@ -124,16 +124,25 @@ So the 33328-standard processing of 33977 already exists in the lab's database. 
 
 ## What is open
 
-Asked of the lab, 2026-10-05:
+Asked of the lab on 2026-10-05, with the answers as they came:
 1. **Read access to `common_*`**, without which the lab's `pipeline` package cannot be imported.
+   *Granted by Ming the same day; the package imports.*
 2. **Insert on `pipeline_meso`**, or the lab's populate run for us: `meso.StackCoordinates` for 33977,
-   segmentation 6, on all four scans, as was done for 33328.
+   segmentation 6, on all four scans, as was done for 33328. *Cameron asked which scans and which
+   stacks. The answer is scans 12-1, 12-2, 17-1 and 17-3, all four registered to stack 17-6 (registration
+   method 5). 33977's other stack, 5-7, is a 320–720 µm V1 stack. Erin collected them.*
 3. **The exporter.** Where the code Erin uses for these exports lives (her matching script reads
-   "nexport datasets"; `sinzlab/nexport` is private), and access to it.
-4. **The Kubernetes config file** for the GPU servers. Received 2026-10-05 ([The GPU cluster](#the-gpu-cluster)).
+   "nexport datasets"; `sinzlab/nexport` is private), and access to it. *Cameron: Erin has the copy of
+   nexport she used. His own copy is modified for novel cases (an intentional lag on `frame_times`,
+   crops of fluorescence frames) and is offered for reference. Erin's made the delivered exports, so
+   hers is the one to run.*
+4. **The Kubernetes config file** for the GPU servers. *Received 2026-10-05 ([The GPU cluster](#the-gpu-cluster)).*
 5. **Etiquette for a personal container**: which compute server, what limits, and whether
-   `ml-gpu-pipeline:cleaned` is the image to use.
+   `ml-gpu-pipeline:cleaned` is the image to use. *Cameron: some people use Kubernetes, and some launch
+   containers by hand on **jr-compute003**, which is off Kubernetes and kept for large-memory work. There
+   is no known standard limit for notebooks. nexport's memory ran "absurdly large" for him because of
+   the fluorescence frames, and ours should be less.*
 
 Decided: lab-side work runs in a personal container from the lab's image on a compute server
-(Doug, 2026-10-05). The key is installed. The skill for the lab is `als-remote-lab`, which carries the
+(Doug, 2026-10-05). A container launched by hand goes on jr-compute003 (Cameron, 2026-10-05). The key is installed. The skill for the lab is `als-remote-lab`, which carries the
 `tunnel` and jump commands and the lab's knowledge.

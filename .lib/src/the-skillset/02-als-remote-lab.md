@@ -26,7 +26,7 @@ this machine ──Tailscale SSH──► the box (lipshutzlab-01, on BCM's netw
 
 ## Doing things by the book
 
-- **The lab's code, in the lab's image.** A container runs from `ml-gpu-pipeline:cleaned` (the image Erin's notebook uses, with the lab's `pipeline`, `stimulus` and `datajoint 0.12.9`) unless `LAB_IMAGE` names another. Its CPU and memory are capped (`LAB_CPUS`, default 4; `LAB_MEMORY`, default 16g) until the lab says what limits it uses. The lab's storage is mounted **read-only**.
+- **The lab's code, in the lab's image.** A container runs from `ml-gpu-pipeline:cleaned` (the image Erin's notebook uses, with the lab's `pipeline`, `stimulus` and `datajoint 0.12.9`) unless `LAB_IMAGE` names another. Its CPU and memory are capped (`LAB_CPUS`, default 4; `LAB_MEMORY`, default 16g) until the lab says what limits it uses. The lab's storage is mounted **read-only**. A container launched by hand goes on **jr-compute003**, which the lab keeps off Kubernetes for large-memory work (Cameron, 2026-10-05). Work on the cluster goes through `kube`.
 - **Read the lab's tables; write only ours.** `pipeline_*` is the lab's: our grant reads it, and a populate there is the lab's to run or to grant. Our own tables go in `doug_*`.
 - **Never touch another person's container,** home or job. On a shared server we look at what is running and do not stop it.
 
