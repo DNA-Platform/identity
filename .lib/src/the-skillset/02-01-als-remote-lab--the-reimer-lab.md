@@ -130,12 +130,23 @@ Asked of the lab on 2026-10-05, with the answers as they came:
 2. **Insert on `pipeline_meso`**, or the lab's populate run for us: `meso.StackCoordinates` for 33977,
    segmentation 6, on all four scans, as was done for 33328. *Cameron asked which scans and which
    stacks. The answer is scans 12-1, 12-2, 17-1 and 17-3, all four registered to stack 17-6 (registration
-   method 5). 33977's other stack, 5-7, is a 320–720 µm V1 stack. Erin collected them.*
+   method 5). 33977's other stack, 5-7, is a 320–720 µm V1 stack. Erin collected them.* *Not needed
+   after all: the lab's own `meso.StackCoordinates.make` (fifteen lines: the affine registration grid at
+   the field's resolution, each unit's centroid mapped through it) runs in our container with its two
+   inserts captured in memory. It reproduces all 20,233 stored rows of segmentation 19 on 12-1 and 17-3 to
+   within 0.0005 µm, which is float rounding, and places all 7,702 segmentation-6 units of the four scans
+   (`runs/lab/*-stack-coordinates-captured.*`, 2026-10-06). 33328's matching used the same table: its
+   `unit_stack_coords.csv` carries `stack_x`, `stack_y` and `stack_z`, and `meso.StackCoordinates` holds 33328's scans
+   6-2 and 7-1 on stack 6-3 and 8-2, 9-1 and 9-2 on stack 8-1, all on segmentation 6.*
 3. **The exporter.** Where the code Erin uses for these exports lives (her matching script reads
    "nexport datasets"; `sinzlab/nexport` is private), and access to it. *Cameron: Erin has the copy of
    nexport she used. His own copy is modified for novel cases (an intentional lag on `frame_times`,
    crops of fluorescence frames) and is offered for reference. Erin's made the delivered exports, so
-   hers is the one to run.*
+   hers is the one to run.* *The 33328 exports were almost certainly Cameron's. The originals are in
+   `/mnt/jrdj_stor01/astroml/` (2026-01-05), beside an astrocyte project's exports named for the features
+   Cameron says his copy adds (`astrolag[N]ms`, `masked`, `rgeco`, 6–16 GB each). `/mnt/lab/users/erin/nexport`
+   holds Erin's 33977 exports before and after neuropil subtraction, not the code
+   (`runs/lab/*-who-made-33328-exports.*`).*
 4. **The Kubernetes config file** for the GPU servers. *Received 2026-10-05 ([The GPU cluster](#the-gpu-cluster)).*
 5. **Etiquette for a personal container**: which compute server, what limits, and whether
    `ml-gpu-pipeline:cleaned` is the image to use. *Cameron: some people use Kubernetes, and some launch
