@@ -125,6 +125,17 @@
 - **A font named in `.pubconfig` reaches the live page only after a bind**, because the bind writes the page's shell. *The comparison below read Segoe UI and a Consolas-width face in the manual's photographs for that reason.*
 - **Two reviewers that write nothing ran beside the build, and each found what the builder had not.** A rule audit of sixty files: none of the forbidden constructs, seven things written twice, five paragraphs the code had moved past, the previous and next walking the wrong list. A comparison of four photographs with the sketch: arrangement, colour and scale right at a desk; scrollbars, spacing, the fonts above, and a phone whose first screen is all index. *The sketch's sticky bar on a phone and its table of a part's fields are not built.*
 
+## What the fourth build found — 2026-10-06, the design book made usable for deciding
+
+**The design book was put together so the designs could be associated with the books again, by number, and four things were learned building it — none of them a change to `.public`.**
+
+- **An annotation draws a note where it is written.** `$Annotation.note()` is the framework's seam for it — `$Content` draws its name that way — and `$Concept.note()` draws the concept's number as `span.pa-number` where `<Concept>N</Concept>` stands in the section, which the gallery places before the name. *The number had first been written into the heading's text and broke every link to the place: [Solutions 103](../solutions/103-the-heading-that-took-a-number.md).* **A name holds nothing but the name.**
+- **A close is a reference written in the chapter.** A reference's text is its compiled address, so code composes none; an open concept's way back is `<Means>$[[ × ]]( ./Every Concept )</Means>` in each concept's section, said to be its `Close` beside `Photographs` and `Source`, and shown by the gallery only on the open card — as the catalogue's square is the link's only word. Thirty-one lines the binder checks, in place of a viewer of static methods and element lookups.
+- **A type of book says what opens when nothing is named.** `$Design.open` falls back to the chapter that is a `Gallery`, so the book opens on its cards; the front page is for books whose front says something.
+- **An open state that takes the screen puts first what a press goes to.** The gallery's open card is `position: fixed` beside the side bar, the title row first and the photographs under it — the order that kept the photographs in view once the router scrolled the heading in ([Solutions 104](../solutions/104-the-card-that-opened-out-of-sight.md)).
+
+**And two rules of the build itself, written where they are found:** the HTML of a decided concept is the design, read whole before building, the photographs the check — [The Domain of the Designs](01-06-the-domain-of-the-designs.md); and a theme is a tone named from that file, never for a book and never by a number — [How a Thing Is Named](../the-coding-style/09-how-a-thing-is-named.md#a-theme-is-a-tone).
+
 ## Open
 
 - **A state on an element the book drew.** `pd-open` here, in the prefix of the element it is on; `pa-` is for what an annotation put there, and no annotation puts this.

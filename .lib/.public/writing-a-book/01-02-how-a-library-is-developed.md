@@ -129,6 +129,20 @@
 
 *When one of these is edited, the others are checked against it.*
 
+## <a id="sketch-first"></a>Sketch in HTML in the design book before `.public` — 2026-10-06
+
+**Doug: *"you can always sketch in html in the design book when doing UI work to save yourself time, rather than going right to .public."*** And of what a sketch is: *"the html will have something you can follow exactly. Names are wrong, but the numerical shapes and fonts etc. can be replicated."* So a view no concept draws is not built first and shown after; it is sketched as a numbered concept in the design book, photographed, looked at full screen, and answered by number — and only then built, from the file.
+
+**The steps, as run for six concepts in one evening** — the frame with a dark side bar under a white top and under a black top, the manual read code-first and words-first, the story in the frame navigated two ways:
+
+1. **Make the file from one already there.** A concept is `3-every-concept~NNN.html` beside the chapter; the next number is its own for good. The frames 11 to 23 are one file with four attributes — `data-layout`, `data-tone`, `data-at`, `data-view` — so a new frame is a copy with the attributes set and one rule added; a new reading of a page is its file with a `data-view` and the rules for it. *The `<meta name="idea">` is the sentence the card shows; `said` stays empty until he says.*
+2. **Photograph it with the camera** — `node .me/.design/o3-the-camera~camera.mjs`, which photographs every concept newer than its photographs at a desk and on a phone and says what runs past the edge. Seconds.
+3. **Give it a section in *Every Concept*** under a group — `<Concept>NNN</Concept>`, the heading as a place, the idea, `<Photographs />` with both pictures, `<Source />` with the file, `<Close />` with the word back to the chapter — and **link it from the chapter that decides**, since a place nobody refers to is refused.
+4. **Bind, and look at it full screen on the built site** — a press on the card opens it beside the index, the title first, the desk photograph at full width, its × back to the chapter.
+5. **Ask by number, showing.** Never recommend one — *"I'm not even sure why you would recommend one. That's not a standard for anything."* His answer is written verbatim under the question and the decision under that.
+
+**What it cost.** A frame from the frame file: a copy and six lines, minutes. The manual's two readings from 6's file: the longest, under half an hour, most of it the write-up. Two binds that refused — a number written into a heading's text, which changed every place's address ([Solutions 103](../solutions/103-the-heading-that-took-a-number.md)), and five places nobody referred to — each named exactly, each cured in a line. **And one card opened out of sight until a probe pressed it** ([Solutions 104](../solutions/104-the-card-that-opened-out-of-sight.md)): a look that loads a page by its address is not a look that presses.
+
 ## <a id="open"></a>What is open, and whose it is
 
 - **No promise holds the live path.** Nothing in the binder's three suites starts the dev server, so an edit could stop appearing in place and every gate would stay green. *A regression promise that serves a galley live, saves a chapter and a theme, and requires each on the open page without a reload. The test library is the team's; not written.*
