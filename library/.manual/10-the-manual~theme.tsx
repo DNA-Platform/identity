@@ -20,12 +20,12 @@ export class $ManualTheme extends $DougsTheme {
                 scrollbar-width: thin;
                 scrollbar-color: ${({ theme }) => theme.line} transparent;
             }
-            .pd-side .pd-classmark, .pd-side .pd-byline {
+            .pd-side .pd-filedUnder, .pd-side .pd-byline {
                 margin-block: 0;
                 font-size: calc(0.83 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.faint};
             }
-            .pd-side .pd-classmark .pa-reference, .pd-side .pd-byline .pa-reference {
+            .pd-side .pd-filedUnder .pa-reference, .pd-side .pd-byline .pa-reference {
                 color: ${({ theme }) => theme.soft};
                 text-decoration: none;
             }
@@ -57,7 +57,7 @@ export class $ManualTheme extends $DougsTheme {
                 border-block-start: thin solid ${({ theme }) => theme.line};
             }
             .pd-words .pd-paragraph { margin-block: calc(${({ theme }) => theme.space} * 0.4); }
-            .pd-words .pd-paragraph.pd-catchword { margin-block-start: calc(${({ theme }) => theme.space} * 1.1); }
+            .pd-words .pd-paragraph.pd-turn { margin-block-start: calc(${({ theme }) => theme.space} * 1.1); }
             .pd-words .pa-synopsis .pd-paragraph {
                 font-size: calc(1.1 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.soft};

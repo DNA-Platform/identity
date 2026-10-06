@@ -2,7 +2,7 @@ import { $, selection } from '@dna-platform/chemistry';
 import { $Cover } from '@dna-platform/public';
 import { $Index } from './14-the-entry~code.tsx';
 
-export class $Banner extends $Cover {
+export class $TopBar extends $Cover {
     override style = selection.header`
         .pd-chapter.pa-cover { margin-block: 0; }
         .pa-cover .pd-title {
@@ -15,7 +15,7 @@ export class $Banner extends $Cover {
     `;
 }
 
-export class $Sidebar extends $Index {
+export class $SideBar extends $Index {
     override style = selection.nav`
         .pd-chapter.pa-table-of-contents {
             margin-block: 0;
@@ -59,5 +59,5 @@ export class $Sidebar extends $Index {
     `;
 }
 
-export const Banner = $($Banner);
-export const Sidebar = $($Sidebar);
+export const TopBar = $($TopBar);
+export const SideBar = $($SideBar);

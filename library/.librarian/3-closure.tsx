@@ -1,11 +1,11 @@
 import { Chapter, Date, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Dateline } from '../.manual/.book';
+import { Dated } from '../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Dateline>
+        <Dated>
             <Date>[5 October 2026](2026-10-05)</Date>
-        </Dateline>
+        </Dated>
         <Title>[[ Closure ]]</Title>
         <Section>
             <Heading>A script outside the book</Heading>
@@ -66,7 +66,7 @@ export default () => (
                     <Means>$[[ The outline ]]( Dougs Reference Manual / The Outline )</Means>, which shows a book's structure.
                 </Line>
                 <Line>
-                    <Means>$[[ The pages ]]( Dougs Reference Manual / The Imposition )</Means> and <Means>$[[ the catchword ]]( Dougs Reference Manual / The Catchword )</Means>, which show a book one chapter at a time and lead from each to the next.
+                    <Means>$[[ The pages ]]( Dougs Reference Manual / The Layout )</Means> and <Means>$[[ the turn ]]( Dougs Reference Manual / The Turn )</Means>, which show a book one chapter at a time and lead from each to the next.
                 </Line>
                 <Line>
                     <Means>$[[ The entry ]]( Dougs Reference Manual / The Entry )</Means>, a row of a table of contents that knows the chapter it leads to.
@@ -95,7 +95,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 This book carries <Means>$[[ the sheet ]]( ./The Sheet )</Means>, and the catalogue
-                carries <Means>$[[ the two bars ]]( Dougs Library / The Two Bars )</Means>. Each says how its own
+                carries <Means>$[[ the two bars ]]( Dougs Library / The Bars )</Means>. Each says how its own
                 book is laid out.
             </Paragraph>
             <Paragraph>

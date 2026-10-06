@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Paragraph, $Section, $Writing, Given, Theme } from '@dna-platform/public';
-import { $DougsBook, $Imposition, Imposition, Tab as tab } from '../.manual/.book';
+import { $DougsBook, $Layout, Layout, Tab as tab } from '../.manual/.book';
 import { BookPaper as bookPaper, NightPaper as nightPaper, WhitePaper as whitePaper } from './o1-the-sheet~theme.tsx';
 
 export class $DougsStory extends $DougsBook {
@@ -18,7 +18,7 @@ export class $DougsStory extends $DougsBook {
             <>
                 <div className="pd-bar">
                     {this.switches()}
-                    {this.classmark()}
+                    {this.filed()}
                 </div>
                 <div className="pd-sheet">
                     <div className="pd-head">
@@ -68,7 +68,7 @@ export class $DougsStory extends $DougsBook {
     }
 }
 
-export class $Sheet extends $Imposition {
+export class $Sheet extends $Layout {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-sheet');
@@ -143,5 +143,5 @@ export class $Sheet extends $Imposition {
 
 export const DougsStory = $($DougsStory);
 export const Sheet = $($Sheet);
-$(DougsStory, Imposition)(Sheet);
+$(DougsStory, Layout)(Sheet);
 $(DougsStory, Theme)(bookPaper);

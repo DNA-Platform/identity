@@ -8,7 +8,7 @@ import TheShelves1 from '../../../../..reference/1-the-shelves';
 import DougsStory2 from '../../../../..reference/2-dougs-story';
 import DougsDesign3 from '../../../../..reference/3-dougs-design';
 import DougsReferenceManual4 from '../../../../..reference/4-dougs-reference-manual';
-import TheTwoBarso1 from '../../../../..reference/o1-the-two-bars';
+import TheBarso1 from '../../../../..reference/o1-the-bars';
 
 const Book = $($Book);
 
@@ -21,7 +21,7 @@ export const book = () => (
         {DougsStory2()}
         {DougsDesign3()}
         {DougsReferenceManual4()}
-        {TheTwoBarso1()}
+        {TheBarso1()}
     </Book>
 );
 

@@ -18,11 +18,11 @@ export class $Concept extends $Annotation {
     }
 }
 
-export class $Plates extends $Annotation {
+export class $Photographs extends $Annotation {
     specification = new OfAConceptSpecification();
 
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-plates');
+        writing.classes.add(this, 'pa-photographs');
     }
 
     override erase(writing: $Writing): void {
@@ -64,5 +64,5 @@ export class OfAConceptSpecification extends AnnotationSpecification {
 }
 
 export const Concept = $($Concept);
-export const Plates = $($Plates);
+export const Photographs = $($Photographs);
 export const Source = $($Source);

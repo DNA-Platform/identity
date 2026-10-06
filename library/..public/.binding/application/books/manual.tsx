@@ -14,8 +14,8 @@ import TheOutline7 from '../../../../.manual/7-the-outline';
 import TheAuthorAndTheSubject8 from '../../../../.manual/8-the-author-and-the-subject';
 import TheSwitch9 from '../../../../.manual/9-the-switch';
 import TheManual10 from '../../../../.manual/10-the-manual';
-import TheImposition12 from '../../../../.manual/12-the-imposition';
-import TheCatchword13 from '../../../../.manual/13-the-catchword';
+import TheLayout12 from '../../../../.manual/12-the-layout';
+import TheTurn13 from '../../../../.manual/13-the-turn';
 import TheEntry14 from '../../../../.manual/14-the-entry';
 import TheBars15 from '../../../../.manual/15-the-bars';
 
@@ -36,8 +36,8 @@ export const book = () => (
         {TheAuthorAndTheSubject8()}
         {TheSwitch9()}
         {TheManual10()}
-        {TheImposition12()}
-        {TheCatchword13()}
+        {TheLayout12()}
+        {TheTurn13()}
         {TheEntry14()}
         {TheBars15()}
     </Book>

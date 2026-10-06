@@ -2,12 +2,12 @@ import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Date, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 
-export class $Dateline extends $Annotation {
+export class $Dated extends $Annotation {
     specification = new DatedSpecification();
     get date(): $Date | undefined { return this.text.find($Date)[0]; }
 
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-dateline');
+        writing.classes.add(this, 'pa-dated');
     }
 
     override erase(writing: $Writing): void {
@@ -30,14 +30,14 @@ export class DatedSpecification extends AnnotationSpecification {
 
     @specify('a chapter is dated once')
     $datedOnce(writing: $Writing): void {
-        $check(writing.annotations.containsOne($Dateline), 'a chapter is dated once, and this one is dated more than once');
+        $check(writing.annotations.containsOne($Dated), 'a chapter is dated once, and this one is dated more than once');
     }
 
     @specify('a dated chapter is given one date')
     $givenOneDate(writing: $Writing): void {
-        $check(writing.annotations.expressed($Dateline)?.text.find($Date).length === 1,
+        $check(writing.annotations.expressed($Dated)?.text.find($Date).length === 1,
             'a dated chapter is given one date, and this one is given none or more than one');
     }
 }
 
-export const Dateline = $($Dateline);
+export const Dated = $($Dated);

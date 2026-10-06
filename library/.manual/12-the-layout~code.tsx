@@ -5,14 +5,14 @@ import { $Format, $Writing } from '@dna-platform/public';
 import type { $DougsBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 
-export class $Imposition extends $Format {
+export class $Layout extends $Format {
     specification = new OfABookSpecification();
     themeProvider = true;
     style: ElementType = selection.div`${this.parts()}`;
 
     override defines(writing: $Writing): void {
         super.defines(writing);
-        writing.classes.add(this, 'pa-imposition');
+        writing.classes.add(this, 'pa-layout');
         if ((writing as $DougsBook).open !== undefined) writing.classes.add(this, 'pa-turned');
     }
 
@@ -32,4 +32,4 @@ export class $Imposition extends $Format {
     }
 }
 
-export const Imposition = $($Imposition);
+export const Layout = $($Layout);

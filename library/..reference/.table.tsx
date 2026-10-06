@@ -1,5 +1,5 @@
 import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
-import { TableOfContents } from './o1-the-two-bars~faces.tsx';
+import { TableOfContents } from './o1-the-bars~faces.tsx';
 
 export default () => (
     <Chapter>
@@ -53,7 +53,7 @@ export default () => (
         <Section>
             <Heading>How this book is built</Heading>
             <Paragraph>
-                <Content>$[[ ./The Two Bars ]]</Content>
+                <Content>$[[ ./The Bars ]]</Content>
             </Paragraph>
         </Section>
     </Chapter>

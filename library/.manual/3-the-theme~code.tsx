@@ -55,7 +55,7 @@ export class $DougsTheme extends $Theme {
     initial = "'D'";
     volume = '11.5rem';
     card = '18rem';
-    plate = '7rem';
+    photo = '7rem';
     style: ElementType = selection.div`${this.parts()}`;
 
     protected parts(): RuleSet[] {
@@ -164,14 +164,14 @@ export class $DougsTheme extends $Theme {
 
     protected turns(): RuleSet {
         return css`
-            .pd-paragraph.pd-catchword {
+            .pd-paragraph.pd-turn {
                 display: flex;
                 justify-content: space-between;
                 gap: ${({ theme }) => theme.space};
                 font-size: calc(0.93 * ${({ theme }) => theme.size});
             }
-            .pd-catchword .pa-reference { font-weight: 500; text-decoration: none; }
-            .pd-catchword .pd-folio { color: ${({ theme }) => theme.faint}; }
+            .pd-turn .pa-reference { font-weight: 500; text-decoration: none; }
+            .pd-turn .pd-count { color: ${({ theme }) => theme.faint}; }
         `;
     }
 }

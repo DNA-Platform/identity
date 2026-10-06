@@ -2,7 +2,7 @@ import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna
 
 export default () => (
     <Chapter>
-        <Title>[[ The Two Bars ]]</Title>
+        <Title>[[ The Bars ]]</Title>
         <Section>
             <Heading>How this book is laid out</Heading>
             <Paragraph>
@@ -26,9 +26,9 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 On the shelf such a chapter is drawn as its book: the title as a cover, and its words under it.
-                The title is the book's shelfmark: it leads to the book. Anywhere else a title refers to its
+                The title leads to the book. Anywhere else a title refers to its
                 own chapter. In this book, where the chapter carries another book's synopsis, it refers to that
-                book. The shelfmark is a class of the framework's reference from a title to itself, registered
+                book. That link is a class of the framework's reference from a title to itself, registered
                 on this book's class, so no chapter has to ask for it.
             </Paragraph>
             <Paragraph>
@@ -54,10 +54,10 @@ export default () => (
             ![[ code.tsx ]]
         </Append>
         <Append
-            identifier="shelfmark"
+            identifier="booklink"
             type=".tsx"
         >
-            ![[ shelfmark.tsx ]]
+            ![[ booklink.tsx ]]
         </Append>
         <Append
             identifier="views"

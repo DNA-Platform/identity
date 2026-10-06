@@ -3,11 +3,11 @@ import { $, $check } from '@dna-platform/chemistry';
 import { $Append, $Book, $Chapter, $Composition, $Section, BookSpecification, Theme, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
 import { DougsTheme } from './3-the-theme~code.tsx';
-import { Outline as outline } from './7-the-outline~code.tsx';
-import { Byline as byline, Classmark as classmark } from './8-the-author-and-the-subject~code.tsx';
+import { Outlined as outlined } from './7-the-outline~code.tsx';
+import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Switch as switching } from './9-the-switch~code.tsx';
-import { Imposition as imposition } from './12-the-imposition~code.tsx';
-import { Catchword as catchword } from './13-the-catchword~code.tsx';
+import { Layout as layout } from './12-the-layout~code.tsx';
+import { Turn as turn } from './13-the-turn~code.tsx';
 
 export class $DougsBook extends $Book {
     specification = new DougsBookSpecification();
@@ -28,7 +28,7 @@ export class $DougsBook extends $Book {
                 <Fragment key={index}>
                     <Chapter />
                     {chapter === this.cover && this.byline()}
-                    {chapter === this.cover && this.classmark()}
+                    {chapter === this.cover && this.filed()}
                     {chapter === this.cover && this.switches()}
                     {this.listings(chapter)}
                 </Fragment>
@@ -48,10 +48,10 @@ export class $DougsBook extends $Book {
         );
     }
 
-    classmark(): ReactNode {
-        const Classmark = $(classmark);
+    filed(): ReactNode {
+        const FiledUnder = $(filedUnder);
         return (
-            <Classmark chapter={this.cover} />
+            <FiledUnder chapter={this.cover} />
         );
     }
 
@@ -60,7 +60,7 @@ export class $DougsBook extends $Book {
         return (
             <Switch
                 chapter={this.cover}
-                of={outline}
+                of={outlined}
             >
                 outline
             </Switch>
@@ -117,17 +117,17 @@ export class $DougsBook extends $Book {
 
     protected override $Define(): void {
         super.$Define();
-        const Imposition = $(imposition);
+        const Layout = $(layout);
         this.annotations.add(this,
-            <Imposition />
+            <Layout />
         );
     }
 
     protected override $Bound(): void {
-        const Catchword = $(catchword);
+        const Turn = $(turn);
         for (const chapter of this.chapters)
             chapter.text.add(this,
-                <Catchword />
+                <Turn />
             );
         super.$Bound();
     }

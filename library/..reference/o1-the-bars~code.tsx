@@ -2,9 +2,9 @@ import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Chapter, $Synopsis, $Writing, Self } from '@dna-platform/public';
-import { $DougsBook, $Imposition, Imposition } from '../.manual/.book';
-import { Shelfmark } from './o1-the-two-bars~shelfmark.tsx';
-import { Shelf as shelf } from './o1-the-two-bars~views.tsx';
+import { $DougsBook, $Layout, Layout } from '../.manual/.book';
+import { BookLink } from './o1-the-bars~booklink.tsx';
+import { Shelf as shelf } from './o1-the-bars~views.tsx';
 
 export class $DougsLibrary extends $DougsBook {
     get books(): $Chapter[] {
@@ -21,7 +21,7 @@ export class $DougsLibrary extends $DougsBook {
         return (
             <>
                 <div className="pd-library-bar">
-                    {this.classmark()}
+                    {this.filed()}
                     {this.byline()}
                 </div>
                 <div className="pd-book-bar">
@@ -73,10 +73,10 @@ export class $DougsLibrary extends $DougsBook {
     }
 }
 
-export class $TwoBars extends $Imposition {
+export class $Bars extends $Layout {
     override defines(writing: $Writing): void {
         super.defines(writing);
-        writing.classes.add(this, 'pa-two-bars');
+        writing.classes.add(this, 'pa-bars');
     }
 
     protected override parts(): RuleSet[] {
@@ -85,30 +85,30 @@ export class $TwoBars extends $Imposition {
 
     protected areas(): RuleSet {
         return css`
-            .pd-book.pa-two-bars {
+            .pd-book.pa-bars {
                 display: grid;
                 grid-template-columns: ${({ theme }) => theme.side} minmax(0, 1fr);
                 grid-template-rows: auto auto minmax(0, 1fr);
                 grid-template-areas: 'library library' 'book book' 'holds pages';
                 height: 100vh;
             }
-            .pa-two-bars .pd-library-bar { grid-area: library; }
-            .pa-two-bars .pd-book-bar { grid-area: book; }
-            .pa-two-bars .pd-holds { grid-area: holds; overflow-y: auto; }
-            .pa-two-bars .pd-leaves { grid-area: pages; overflow-y: auto; }
-            .pa-two-bars .pd-words .pd-chapter { scroll-margin-block-start: ${({ theme }) => theme.space}; }
+            .pa-bars .pd-library-bar { grid-area: library; }
+            .pa-bars .pd-book-bar { grid-area: book; }
+            .pa-bars .pd-holds { grid-area: holds; overflow-y: auto; }
+            .pa-bars .pd-leaves { grid-area: pages; overflow-y: auto; }
+            .pa-bars .pd-words .pd-chapter { scroll-margin-block-start: ${({ theme }) => theme.space}; }
         `;
     }
 
     protected bars(): RuleSet {
         return css`
-            .pa-two-bars .pd-library-bar, .pa-two-bars .pd-book-bar {
+            .pa-bars .pd-library-bar, .pa-bars .pd-book-bar {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 column-gap: ${({ theme }) => theme.space};
             }
-            .pa-two-bars .pd-switches {
+            .pa-bars .pd-switches {
                 display: flex;
                 gap: calc(${({ theme }) => theme.space} / 3);
             }
@@ -118,8 +118,8 @@ export class $TwoBars extends $Imposition {
     protected narrow(): RuleSet {
         return css`
             @media (max-width: ${({ theme }) => theme.narrow}) {
-                .pd-book.pa-two-bars { display: block; height: auto; }
-                .pa-two-bars .pd-library-bar, .pa-two-bars .pd-holds {
+                .pd-book.pa-bars { display: block; height: auto; }
+                .pa-bars .pd-library-bar, .pa-bars .pd-holds {
                     overflow-x: auto;
                     white-space: nowrap;
                     scrollbar-width: none;
@@ -130,6 +130,6 @@ export class $TwoBars extends $Imposition {
 }
 
 export const DougsLibrary = $($DougsLibrary);
-export const TwoBars = $($TwoBars);
-$(DougsLibrary, Imposition)(TwoBars);
-$(DougsLibrary, Self)(Shelfmark);
+export const Bars = $($Bars);
+$(DougsLibrary, Layout)(Bars);
+$(DougsLibrary, Self)(BookLink);

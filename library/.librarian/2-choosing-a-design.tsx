@@ -1,11 +1,11 @@
 import { Chapter, Date, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Dateline } from '../.manual/.book';
+import { Dated } from '../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Dateline>
+        <Dated>
             <Date>[4 October 2026](2026-10-04)</Date>
-        </Dateline>
+        </Dated>
         <Title>[[ Choosing a Design ]]</Title>
         <Section>
             <Heading>Seeing before choosing</Heading>

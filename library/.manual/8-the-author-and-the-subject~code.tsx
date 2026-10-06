@@ -23,7 +23,7 @@ export class $Byline extends $Paragraph {
     }
 }
 
-export class $Classmark extends $Paragraph {
+export class $FiledUnder extends $Paragraph {
     override write(): ReactNode {
         const subject = this.book!.subject!;
         const Word = $(word);
@@ -40,9 +40,9 @@ export class $Classmark extends $Paragraph {
 
     protected override $Define(): void {
         super.$Define();
-        this.classes.add(this, 'pd-classmark');
+        this.classes.add(this, 'pd-filedUnder');
     }
 }
 
 export const Byline = $($Byline);
-export const Classmark = $($Classmark);
+export const FiledUnder = $($FiledUnder);

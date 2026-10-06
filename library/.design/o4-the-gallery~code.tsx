@@ -20,17 +20,17 @@ export class $Gallery extends $Format {
         }
         .pa-gallery .pa-concept .pa-self-reference.pd-container { grid-area: name; }
         .pa-gallery .pa-concept .pd-paragraph { grid-column: auto; }
-        .pa-gallery .pa-concept .pd-paragraph.pa-plates {
+        .pa-gallery .pa-concept .pd-paragraph.pa-photographs {
             grid-area: pictures;
             display: flex;
             gap: calc(${({ theme }) => theme.space} / 2);
             overflow: hidden;
         }
-        .pa-gallery .pa-concept .pa-plates img { height: ${({ theme }) => theme.plate}; width: auto; max-width: none; }
+        .pa-gallery .pa-concept .pa-photographs img { height: ${({ theme }) => theme.photo}; width: auto; max-width: none; }
         .pa-gallery .pa-concept .pd-paragraph.pa-source { display: none; }
         .pa-gallery .pa-concept.pa-open { grid-column: 1 / -1; }
-        .pa-gallery .pa-concept.pa-open .pa-plates { flex-wrap: wrap; }
-        .pa-gallery .pa-concept.pa-open .pa-plates img { height: auto; max-width: 100%; }
+        .pa-gallery .pa-concept.pa-open .pa-photographs { flex-wrap: wrap; }
+        .pa-gallery .pa-concept.pa-open .pa-photographs img { height: auto; max-width: 100%; }
         .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-source { display: block; }
     `;
 

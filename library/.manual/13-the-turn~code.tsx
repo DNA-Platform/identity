@@ -3,7 +3,7 @@ import { $ } from '@dna-platform/chemistry';
 import { $Chapter, $Paragraph, $Word, Reference as reference, Self as self, Word as word } from '@dna-platform/public';
 import type { $DougsBook } from './1-the-book~code.tsx';
 
-export class $Folio extends $Word {
+export class $Count extends $Word {
     override write(): ReactNode {
         const chapters = (this.book as $DougsBook).chapters;
         return `${chapters.indexOf(this.chapter!) + 1} of ${chapters.length}`;
@@ -11,11 +11,11 @@ export class $Folio extends $Word {
 
     protected override $Define(): void {
         super.$Define();
-        this.classes.add(this, 'pd-folio');
+        this.classes.add(this, 'pd-count');
     }
 }
 
-export class $Catchword extends $Paragraph {
+export class $Turn extends $Paragraph {
     get before(): $Chapter {
         const chapters = (this.book as $DougsBook).chapters;
         return chapters[chapters.indexOf(this.chapter!) - 1] ?? this.chapter!;
@@ -27,7 +27,7 @@ export class $Catchword extends $Paragraph {
 
     override write(): ReactNode {
         const Word = $(word);
-        const Place = $(Folio);
+        const Place = $(Count);
         const Before = $(this.before === this.chapter ? self : reference);
         const After = $(this.after === this.chapter ? self : reference);
         return (
@@ -47,9 +47,9 @@ export class $Catchword extends $Paragraph {
 
     protected override $Define(): void {
         super.$Define();
-        this.classes.add(this, 'pd-catchword');
+        this.classes.add(this, 'pd-turn');
     }
 }
 
-export const Folio = $($Folio);
-export const Catchword = $($Catchword);
+export const Count = $($Count);
+export const Turn = $($Turn);

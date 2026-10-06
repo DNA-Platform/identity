@@ -1,5 +1,5 @@
 import { About, Author, Chapter, Subject, Title } from '@dna-platform/public';
-import { Cover } from './o1-the-two-bars~faces.tsx';
+import { Cover } from './o1-the-bars~faces.tsx';
 
 export default () => (
     <Chapter>

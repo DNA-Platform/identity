@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Annotation, $Writing, Given, Theme } from '@dna-platform/public';
-import { $DougsBook, $Imposition, Imposition, Tab as tab } from '../.manual/.book';
+import { $DougsBook, $Layout, Layout, Tab as tab } from '../.manual/.book';
 import { GalleryMode as galleryMode, LibraryMode as libraryMode } from './o5-the-frame~theme.tsx';
 
 export class $DougsDesign extends $DougsBook {
@@ -17,7 +17,7 @@ export class $DougsDesign extends $DougsBook {
         return (
             <>
                 <div className="pd-side">
-                    {this.classmark()}
+                    {this.filed()}
                     <Table />
                     {this.byline()}
                 </div>
@@ -65,7 +65,7 @@ export class $DougsDesign extends $DougsBook {
     }
 }
 
-export class $Frame extends $Imposition {
+export class $Frame extends $Layout {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-frame');
@@ -90,7 +90,7 @@ export class $Frame extends $Imposition {
                 grid-template-areas: 'home' 'contents' 'me';
                 overflow: hidden;
             }
-            .pa-frame .pd-side .pd-classmark { grid-area: home; }
+            .pa-frame .pd-side .pd-filedUnder { grid-area: home; }
             .pa-frame .pd-side .pa-table-of-contents.pd-container { grid-area: contents; overflow-y: auto; }
             .pa-frame .pd-side .pd-byline { grid-area: me; }
             .pa-frame .pd-main {
@@ -130,5 +130,5 @@ export class $Frame extends $Imposition {
 
 export const DougsDesign = $($DougsDesign);
 export const Frame = $($Frame);
-$(DougsDesign, Imposition)(Frame);
+$(DougsDesign, Layout)(Frame);
 $(DougsDesign, Theme)(galleryMode);

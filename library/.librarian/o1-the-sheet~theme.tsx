@@ -39,7 +39,7 @@ export class $StoryTheme extends $DougsTheme {
     protected bar(): RuleSet {
         return css`
             .pa-sheet .pd-bar { margin-block-end: calc(${({ theme }) => theme.space} * 1.44); }
-            .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-bar .pd-paragraph.pd-classmark {
+            .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-bar .pd-paragraph.pd-filedUnder {
                 margin-block: 0;
                 padding: calc(${({ theme }) => theme.space} * 0.39) calc(${({ theme }) => theme.space} * 0.83);
                 font-family: ${({ theme }) => theme.mono};
@@ -56,7 +56,7 @@ export class $StoryTheme extends $DougsTheme {
                 background: ${({ theme }) => theme.tint};
                 border-color: ${({ theme }) => theme.lit};
             }
-            .pa-sheet .pd-bar .pd-classmark .pa-reference { color: inherit; text-decoration: none; }
+            .pa-sheet .pd-bar .pd-filedUnder .pa-reference { color: inherit; text-decoration: none; }
         `;
     }
 
@@ -149,7 +149,7 @@ export class $StoryTheme extends $DougsTheme {
 
     protected foot(): RuleSet {
         return css`
-            .pa-sheet .pd-leaf:not(.pd-front) .pd-paragraph.pd-catchword {
+            .pa-sheet .pd-leaf:not(.pd-front) .pd-paragraph.pd-turn {
                 flex-wrap: wrap;
                 align-items: baseline;
                 gap: calc(${({ theme }) => theme.space} * 0.56) calc(${({ theme }) => theme.space} * 1.44);
@@ -164,15 +164,15 @@ export class $StoryTheme extends $DougsTheme {
                 hyphens: manual;
                 color: ${({ theme }) => theme.faint};
             }
-            .pa-sheet .pd-catchword .pa-reference {
+            .pa-sheet .pd-turn .pa-reference {
                 font-size: calc(0.73 * ${({ theme }) => theme.size});
                 font-weight: 700;
                 letter-spacing: 0.02em;
                 text-transform: none;
                 color: ${({ theme }) => theme.soft};
             }
-            .pa-sheet .pd-catchword .pa-reference.pa-self-reference { color: ${({ theme }) => theme.faint}; }
-            .pa-sheet .pd-chapter.pa-dateline .pd-word.pd-date {
+            .pa-sheet .pd-turn .pa-reference.pa-self-reference { color: ${({ theme }) => theme.faint}; }
+            .pa-sheet .pd-chapter.pa-dated .pd-word.pd-date {
                 display: block;
                 margin-block-start: ${({ theme }) => theme.space};
                 font-family: ${({ theme }) => theme.mono};
@@ -195,7 +195,7 @@ export class $StoryTheme extends $DougsTheme {
                     padding: calc(${({ theme }) => theme.space} * 0.78) calc(${({ theme }) => theme.space} * 0.89);
                     background: ${({ theme }) => theme.panel};
                 }
-                .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-bar .pd-paragraph.pd-classmark {
+                .pa-sheet .pd-word.pd-switch, .pa-sheet .pd-bar .pd-paragraph.pd-filedUnder {
                     padding: calc(${({ theme }) => theme.space} * 0.33) calc(${({ theme }) => theme.space} * 0.67);
                 }
                 .pa-sheet .pd-sheet {
@@ -205,7 +205,7 @@ export class $StoryTheme extends $DougsTheme {
                     border-radius: 0;
                     box-shadow: none;
                 }
-                .pa-sheet .pd-catchword .pd-word.pd-folio {
+                .pa-sheet .pd-turn .pd-word.pd-count {
                     order: -1;
                     flex-basis: 100%;
                     text-align: center;

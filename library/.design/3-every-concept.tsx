@@ -1,5 +1,5 @@
 import { Chapter, Code, Heading, Image, Paragraph, Section, Title } from '@dna-platform/public';
-import { Concept, Gallery, Plates, Answer, Source } from './.book';
+import { Concept, Gallery, Photographs, Answer, Source } from './.book';
 
 export default () => (
     <Chapter>
@@ -29,7 +29,7 @@ export default () => (
                     project, and a conversation is picked up by its face, the way a book is.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 001-desk.png ]]</Image>
                     <Image>![[ 001-phone.png ]]</Image>
                 </Paragraph>
@@ -54,7 +54,7 @@ export default () => (
                     answer carries the number of the passage it rests on, one press from the passage itself.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 002-desk.png ]]</Image>
                     <Image>![[ 002-phone.png ]]</Image>
                 </Paragraph>
@@ -80,7 +80,7 @@ export default () => (
                     wandering and keeping is one button.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 003-desk.png ]]</Image>
                     <Image>![[ 003-phone.png ]]</Image>
                 </Paragraph>
@@ -102,7 +102,7 @@ export default () => (
                     top of every page, which is what unites them.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 004-desk.png ]]</Image>
                     <Image>![[ 004-phone.png ]]</Image>
                 </Paragraph>
@@ -124,7 +124,7 @@ export default () => (
                     sections across the top.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 005-desk.png ]]</Image>
                     <Image>![[ 005-phone.png ]]</Image>
                 </Paragraph>
@@ -152,7 +152,7 @@ export default () => (
                     held still on the right, and every name in the words lights the line it means.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 006-desk.png ]]</Image>
                     <Image>![[ 006-phone.png ]]</Image>
                 </Paragraph>
@@ -177,7 +177,7 @@ export default () => (
                     under the other, so the manual proves each part as it explains it.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 007-desk.png ]]</Image>
                     <Image>![[ 007-phone.png ]]</Image>
                 </Paragraph>
@@ -197,7 +197,7 @@ export default () => (
                     change, and the line a chapter would write rewriting itself as they change.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 008-desk.png ]]</Image>
                     <Image>![[ 008-phone.png ]]</Image>
                 </Paragraph>
@@ -225,7 +225,7 @@ export default () => (
                     the list.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 009-desk.png ]]</Image>
                     <Image>![[ 009-phone.png ]]</Image>
                 </Paragraph>
@@ -251,7 +251,7 @@ export default () => (
                     recent, so the whole of it is seen at once and any tile is one look from its name.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 010-desk.png ]]</Image>
                     <Image>![[ 010-phone.png ]]</Image>
                 </Paragraph>
@@ -283,7 +283,7 @@ export default () => (
                     and List to see the same books two ways.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 011-desk.png ]]</Image>
                     <Image>![[ 011-phone.png ]]</Image>
                 </Paragraph>
@@ -303,7 +303,7 @@ export default () => (
                     color is all in the covers and the light accents.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 012-desk.png ]]</Image>
                     <Image>![[ 012-phone.png ]]</Image>
                 </Paragraph>
@@ -324,7 +324,7 @@ export default () => (
                     books.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 013-desk.png ]]</Image>
                     <Image>![[ 013-phone.png ]]</Image>
                 </Paragraph>
@@ -344,7 +344,7 @@ export default () => (
                     own color.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 014-desk.png ]]</Image>
                     <Image>![[ 014-phone.png ]]</Image>
                 </Paragraph>
@@ -365,7 +365,7 @@ export default () => (
                     pale opal, which is the step between the black and the white page.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 015-desk.png ]]</Image>
                     <Image>![[ 015-phone.png ]]</Image>
                 </Paragraph>
@@ -385,7 +385,7 @@ export default () => (
                     still has two bars.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 016-desk.png ]]</Image>
                     <Image>![[ 016-phone.png ]]</Image>
                 </Paragraph>
@@ -406,7 +406,7 @@ export default () => (
                     is a row beneath.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 017-desk.png ]]</Image>
                     <Image>![[ 017-phone.png ]]</Image>
                 </Paragraph>
@@ -426,7 +426,7 @@ export default () => (
                     subject's name on white.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 018-desk.png ]]</Image>
                     <Image>![[ 018-phone.png ]]</Image>
                 </Paragraph>
@@ -447,7 +447,7 @@ export default () => (
                     of its own inside the library.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 019-desk.png ]]</Image>
                     <Image>![[ 019-phone.png ]]</Image>
                 </Paragraph>
@@ -472,7 +472,7 @@ export default () => (
                     The same two bars, lighter: the library's in white, the subject's in the pale opal.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 020-desk.png ]]</Image>
                     <Image>![[ 020-phone.png ]]</Image>
                 </Paragraph>
@@ -498,7 +498,7 @@ export default () => (
                     ground, and what the subject holds, its books and what cites them are three white cards.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 021-desk.png ]]</Image>
                     <Image>![[ 021-phone.png ]]</Image>
                 </Paragraph>
@@ -518,7 +518,7 @@ export default () => (
                     stands on and the pages are white.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 022-desk.png ]]</Image>
                     <Image>![[ 022-phone.png ]]</Image>
                 </Paragraph>
@@ -539,7 +539,7 @@ export default () => (
                     cites the chapter beside it.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 023-desk.png ]]</Image>
                     <Image>![[ 023-phone.png ]]</Image>
                 </Paragraph>
@@ -573,7 +573,7 @@ export default () => (
                     is on the page.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 024-desk.png ]]</Image>
                     <Image>![[ 024-phone.png ]]</Image>
                 </Paragraph>
@@ -600,7 +600,7 @@ export default () => (
                     night, and a third in plain white.
                 </Paragraph>
                 <Paragraph>
-                    <Plates />
+                    <Photographs />
                     <Image>![[ 025-desk.png ]]</Image>
                     <Image>![[ 025-phone.png ]]</Image>
                 </Paragraph>

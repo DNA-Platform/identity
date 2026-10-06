@@ -5,7 +5,7 @@ import { $Writing } from '@dna-platform/public';
 import { $DougsBook } from './1-the-book~code.tsx';
 import { Switch as switching } from './9-the-switch~code.tsx';
 import { CodeForward as codeForward } from './10-the-manual~forward.tsx';
-import { $Imposition, Imposition } from './12-the-imposition~code.tsx';
+import { $Layout, Layout } from './12-the-layout~code.tsx';
 
 export class $Manual extends $DougsBook {
     override write(): ReactNode {
@@ -15,7 +15,7 @@ export class $Manual extends $DougsBook {
         return (
             <>
                 <div className="pd-side">
-                    {this.classmark()}
+                    {this.filed()}
                     <Cover />
                     {this.byline()}
                     <div className="pd-switches">
@@ -51,7 +51,7 @@ export class $Manual extends $DougsBook {
     }
 }
 
-export class $Spread extends $Imposition {
+export class $Spread extends $Layout {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-spread');
@@ -107,4 +107,4 @@ export class $Spread extends $Imposition {
 
 export const Manual = $($Manual);
 export const Spread = $($Spread);
-$(Manual, Imposition)(Spread);
+$(Manual, Layout)(Spread);

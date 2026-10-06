@@ -31,14 +31,14 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 It can draw the front, which is open while no chapter is, and it says what goes on it. And it
-                can draw <Means>$[[ a leaf ]]( ./The Imposition )</Means> for each chapter: the chapter, the files
+                can draw <Means>$[[ a leaf ]]( ./The Layout )</Means> for each chapter: the chapter, the files
                 it appends, and whether it is the open one. A book that draws chapters of another sort adds them
                 to what it places, and the specification counts them.
             </Paragraph>
             <Paragraph>
                 Three things the class does for every book without being asked. It gives the book
-                its <Means>$[[ imposition ]]( ./The Imposition )</Means>. It gives each chapter
-                its <Means>$[[ catchword ]]( ./The Catchword )</Means>. And when the address names the cover it
+                its <Means>$[[ layout ]]( ./The Layout )</Means>. It gives each chapter
+                its <Means>$[[ turn ]]( ./The Turn )</Means>. And when the address names the cover it
                 leaves the screen where it is. <Means>$[[ The manual ]]( ./The Manual )</Means> is one type of
                 book, and the others are documented in the books they lay out.
             </Paragraph>
@@ -51,7 +51,7 @@ export default () => (
         <Section>
             <Heading>What is said of a book</Heading>
             <Paragraph>
-                Some things are said of a whole book: its imposition, its outline, that its code is forward. Each must be said of a book of this library and of nothing else, so that rule is written
+                Some things are said of a whole book: its layout, that it is outlined, that its code is forward. Each must be said of a book of this library and of nothing else, so that rule is written
                 once, in the second file below, and each of them takes it.
             </Paragraph>
         </Section>

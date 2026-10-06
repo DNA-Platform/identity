@@ -5,17 +5,17 @@ import { $DougsTheme } from '../.manual/.book';
 export class $DesignTheme extends $DougsTheme {
 
     protected override parts(): RuleSet[] {
-        return [...super.parts(), this.sidebar(), this.head(), this.words(), this.cards(), this.small()];
+        return [...super.parts(), this.sideBar(), this.head(), this.words(), this.cards(), this.small()];
     }
 
-    protected sidebar(): RuleSet {
+    protected sideBar(): RuleSet {
         return css`
             .pd-side {
                 background: ${({ theme }) => theme.barFill};
                 color: ${({ theme }) => theme.barInk};
                 border-inline-end: thin solid ${({ theme }) => theme.barLine};
             }
-            .pd-side .pd-classmark, .pd-side .pd-byline {
+            .pd-side .pd-filedUnder, .pd-side .pd-byline {
                 display: flex;
                 align-items: center;
                 gap: calc(${({ theme }) => theme.space} * 0.4);
@@ -29,14 +29,14 @@ export class $DesignTheme extends $DougsTheme {
                 color: ${({ theme }) => theme.barInk};
                 font-weight: 500;
             }
-            .pd-side .pd-classmark .pd-word {
+            .pd-side .pd-filedUnder .pd-word {
                 font-family: ${({ theme }) => theme.serif};
                 font-size: calc(1.45 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1;
             }
             .pd-side .pa-reference { color: inherit; text-decoration: none; }
-            .pd-side .pd-classmark::before, .pd-side .pd-byline::before {
+            .pd-side .pd-filedUnder::before, .pd-side .pd-byline::before {
                 content: ${({ theme }) => theme.initial};
                 display: grid;
                 place-items: center;
@@ -45,7 +45,7 @@ export class $DesignTheme extends $DougsTheme {
                 font-size: ${({ theme }) => theme.size};
                 font-weight: 600;
             }
-            .pd-side .pd-classmark::before {
+            .pd-side .pd-filedUnder::before {
                 border-radius: calc(${({ theme }) => theme.space} / 3);
                 background: ${({ theme }) => theme.opal};
                 color: ${({ theme }) => theme.night};
@@ -134,7 +134,7 @@ export class $DesignTheme extends $DougsTheme {
                 border-inline-start: calc(${({ theme }) => theme.space} / 8) solid ${({ theme }) => theme.me};
                 color: ${({ theme }) => theme.ink};
             }
-            .pa-gallery .pa-concept .pa-plates img { border-radius: calc(${({ theme }) => theme.space} / 4); border: thin solid ${({ theme }) => theme.line}; }
+            .pa-gallery .pa-concept .pa-photographs img { border-radius: calc(${({ theme }) => theme.space} / 4); border: thin solid ${({ theme }) => theme.line}; }
             .pa-gallery .pa-concept.pa-open { box-shadow: 0 0 0 calc(${({ theme }) => theme.space} / 8) ${({ theme }) => theme.accent}; }
         `;
     }
