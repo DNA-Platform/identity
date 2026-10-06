@@ -38,6 +38,12 @@ export default () => (
                 <Content>$[[ ./A Bookish Page ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./Sketched to Decide ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The frame on every screen ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Parenthetical />
                 <Word>
                     <Content>$[[ Dougs Design ]]</Content>

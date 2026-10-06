@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en" data-theme="book" data-nav="foot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reading View, in the Frame, with the Chapters at the Foot</title>
+<meta name="number" content="30">
+<meta name="state" content="idea">
+<meta name="said" content="">
+<meta name="after" content="25 under the top bar of 16, and nothing else">
+<meta name="idea" content="The sheet of 25 integrated the other way: only the library's bar across the top, and the book navigated as 25 navigates it, by the chapters either side at the foot of the sheet, with the papers above it.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+        --mono: ui-monospace, Menlo, Consolas, monospace;
+        --me: #e8590c;
+        /* the frame's own palette, as 11 to 23 have it */
+        --night: #0c1b1f; --sea: #4e9eb9; --ink: #10252c; --soft: #516770; --line: #dbe7ec; --white: #ffffff;
+        --frame-serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Inter', system-ui, sans-serif;
+        --bar: var(--white); --bar-fg: var(--ink); --bar-dim: var(--soft); --bar-on: #e3f5fa; --bar-line: var(--line); --mark: var(--night); --mark-fg: #ffffff;
+        --side: var(--night); --side-fg: #ffffff; --side-dim: #a9bcc1; --side-on: rgba(255, 255, 255, .11); --side-line: #1d3339;
+    }
+
+    /* the demo's frame, the same behind its book and its night */
+    [data-theme="book"], [data-theme="night"] {
+        --ground: radial-gradient(1200px 700px at 50% -10%, #232a4d 0%, #171c33 45%, #0f1326 100%);
+        --ground-end: #0f1326;
+        --chip-fill: rgba(15, 19, 38, .72); --chip-line: rgba(124, 138, 200, .35); --chip-ink: #aab4e8;
+        --chip-hover-ink: #e6eaff; --chip-hover-line: rgba(170, 180, 232, .7);
+        --chip-on-fill: rgba(255, 210, 122, .12); --chip-on-line: rgba(255, 210, 122, .75); --chip-on-ink: #ffd27a; --chip-rule: rgba(124, 138, 200, .3);
+    }
+    [data-theme="book"] {
+        --sheet: #fbf9f3; --sheet-border: 0; --sheet-radius: 6px; --sheet-shadow: 0 1px 0 rgba(255, 255, 255, .08), 0 34px 90px -24px rgba(0, 0, 0, .65);
+        --sheet-width: 780px; --sheet-pad: 68px 76px 56px; --sheet-pad-phone: 40px 26px 36px;
+        --sheet-ink: #29251d; --heading: #1f1b14; --strong: #14100a; --emphasis: #3c352a; --initial: #6d6146; --link: #705f38;
+        --kicker: #9a9178; --kicker-rule: #d6cfb9; --foot: #9a9178; --foot-value: #5e553d; --foot-line: #e4ddc9;
+    }
+    [data-theme="night"] {
+        --sheet: linear-gradient(168deg, #191f3a 0%, #12162a 100%); --sheet-border: 1px solid #2c3358; --sheet-radius: 14px; --sheet-shadow: 0 34px 90px -24px rgba(0, 0, 0, .8);
+        --sheet-width: 760px; --sheet-pad: 56px 64px 44px; --sheet-pad-phone: 36px 24px;
+        --sheet-ink: #c9d0f2; --heading: #f2ecd9; --strong: #ffd27a; --emphasis: #9fd0ff; --initial: #ffd27a; --link: #7cf0c8;
+        --kicker: #9a9178; --kicker-rule: #d6cfb9; --foot: #7a86b8; --foot-value: #ffd27a; --foot-line: #2a3055;
+    }
+    [data-theme="white"] {
+        --ground: radial-gradient(1200px 700px at 50% -10%, #ffffff 0%, #f1f7f9 45%, #e3f5fa 100%); --ground-end: #e3f5fa;
+        --chip-fill: #ffffff; --chip-line: #dbe7ec; --chip-ink: #516770; --chip-hover-ink: #10252c; --chip-hover-line: #8fc8dc;
+        --chip-on-fill: #0c1b1f; --chip-on-line: #0c1b1f; --chip-on-ink: #ffffff; --chip-rule: #dbe7ec;
+        --sheet: #ffffff; --sheet-border: 1px solid #dbe7ec; --sheet-radius: 6px; --sheet-shadow: 0 34px 90px -40px rgba(12, 27, 31, .28);
+        --sheet-width: 780px; --sheet-pad: 68px 76px 56px; --sheet-pad-phone: 40px 26px 36px;
+        --sheet-ink: #10252c; --heading: #0c1b1f; --strong: #0c1b1f; --emphasis: #14323c; --initial: #166178; --link: #166178;
+        --kicker: #516770; --kicker-rule: #8fc8dc; --foot: #516770; --foot-value: #10252c; --foot-line: #dbe7ec;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--ground-end); }
+    body { margin: 0; font: 400 14px/1.5 var(--sans); color: var(--ink); }
+    a { color: inherit; text-decoration: none; }
+    svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    [hidden] { display: none !important; }
+
+    /* the library's bar across the top, in the frame's light tone: the mark, the subjects, find, me */
+    .lib { display: flex; align-items: center; gap: 6px; height: 50px; padding: 0 18px; background: var(--bar); color: var(--bar-fg); border-bottom: 1px solid var(--bar-line); }
+    .logo { display: flex; align-items: center; gap: 10px; flex: none; margin-right: 12px; }
+    .logo i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: var(--mark); color: var(--mark-fg); font: 600 15px/1 var(--sans); font-style: normal; }
+    .logo b { font: 600 21px/1 var(--frame-serif); white-space: nowrap; }
+    .subjects { display: flex; gap: 2px; min-width: 0; overflow: hidden; }
+    .s { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px; color: var(--bar-dim); font-size: 13.5px; white-space: nowrap; }
+    .s i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+    .s b { font-weight: 500; }
+    .s.on { background: var(--bar-on); color: var(--bar-fg); box-shadow: inset 0 -2px 0 var(--c); }
+    .find { display: flex; align-items: center; gap: 8px; margin-left: auto; padding: 6px 11px; border-radius: 9px; background: var(--bar-on); color: var(--bar-dim); white-space: nowrap; }
+    .me { display: flex; align-items: center; gap: 9px; margin-left: 14px; }
+    .me i { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--me); color: #fff; font: 600 14px/1 var(--sans); font-style: normal; }
+    .me b { font-weight: 500; white-space: nowrap; }
+
+    /* under it: the book's chapters down a soft black side bar, and the page */
+    .page { display: grid; grid-template-columns: minmax(0, 1fr); min-height: calc(100vh - 50px); }
+    .holds { padding: 18px 12px; background: var(--side); color: var(--side-fg); border-right: 1px solid var(--side-line); }
+    .holds h4 { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font: 600 10.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--side-dim); }
+    .holds h4 small { margin-left: auto; font: 400 11.5px/1 var(--sans); letter-spacing: 0; text-transform: none; }
+    .holds h4.next { margin-top: 22px; }
+    .holds a { display: flex; align-items: center; gap: 9px; padding: 6px 9px; border-radius: 8px; }
+    .holds a i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--me); }
+    .holds a b { font-weight: 500; }
+    .holds a small { margin-left: auto; font-size: 12px; color: var(--side-dim); }
+    .holds a.on { background: var(--side-on); }
+    .holds .chain { margin: 0 9px 14px; font-size: 12px; color: var(--side-dim); line-height: 1.4; }
+    .holds .chain b { display: block; font: 600 17px/1.1 var(--frame-serif); color: var(--side-fg); margin-top: 2px; }
+
+    .frame { display: flex; flex-direction: column; align-items: center; padding: 40px 20px 96px; background: var(--ground); }
+
+    /* the book's own tools above the sheet: the three papers */
+    .controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-bottom: 26px; }
+    .chip { padding: 7px 15px; border: 1px solid var(--chip-line); border-radius: 999px; background: var(--chip-fill); color: var(--chip-ink); font: 12px/1.2 var(--mono); letter-spacing: .05em; cursor: pointer; }
+    .chip[aria-pressed="true"] { color: var(--chip-on-ink); border-color: var(--chip-on-line); background: var(--chip-on-fill); }
+
+    /* the sheet, as 25 */
+    .pd-book { width: min(var(--sheet-width), 100%); padding: var(--sheet-pad); border: var(--sheet-border); border-radius: var(--sheet-radius); background: var(--sheet); box-shadow: var(--sheet-shadow); font-family: var(--serif); color: var(--sheet-ink); }
+    .masthead { margin: 0 0 44px; text-align: center; text-indent: .32em; font: 10.5px/1.7 var(--mono); letter-spacing: .32em; text-transform: uppercase; color: var(--kicker); }
+    .masthead::after { content: ''; display: block; width: 56px; height: 1px; margin: 16px auto 0; background: var(--kicker-rule); }
+    .masthead .pa-cover, .masthead .pd-title, .masthead .pd-byline { display: inline; margin: 0; }
+    .masthead .pd-byline::before { content: '·'; margin: 0 .55em 0 .25em; }
+    .masthead a.to-me { padding-bottom: 3px; background: linear-gradient(var(--me), var(--me)) left bottom / calc(100% - .32em) 2px no-repeat; }
+    .pd-canonical .pd-title { margin: 0 0 30px; font: 700 39px/1.15 var(--serif); letter-spacing: -.01em; text-align: center; color: var(--heading); }
+    .pd-canonical .pd-heading { margin: 32px 0 12px; font: 700 21px/1.15 var(--serif); letter-spacing: -.01em; text-align: center; color: var(--heading); }
+    .pd-canonical .pd-paragraph { margin: 0 0 18px; font-size: 17.2px; line-height: 1.8; text-align: justify; hyphens: auto; color: var(--sheet-ink); }
+    .pd-canonical .pd-section:first-of-type .pd-paragraph:first-of-type::first-letter { float: left; padding: 6px 10px 0 0; font-size: 57px; line-height: .85; color: var(--initial); }
+    .pd-canonical .pd-paragraph strong { font-weight: 700; color: var(--strong); }
+    .pd-canonical .pd-paragraph em { font-style: italic; color: var(--emphasis); }
+    .pd-canonical .pd-paragraph a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+    .turn { display: grid; grid-template-columns: 1fr auto 1fr; grid-template-areas: "before folio after"; align-items: baseline; gap: 10px 26px; margin-top: 46px; padding-top: 18px; border-top: 1px solid var(--foot-line); font: 11px/1.5 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--foot); }
+    .turn b { font-size: 12.5px; letter-spacing: .02em; text-transform: none; color: var(--foot-value); }
+    .turn a { display: inline-flex; align-items: baseline; gap: 6px; }
+    .turn .before { grid-area: before; justify-self: start; }
+    .turn .folio { grid-area: folio; }
+    .turn .after { grid-area: after; justify-self: end; }
+
+    /* a phone: the bar stays at the top, the chapters as a row of pills under it, the sheet is the screen */
+    @media (max-width: 720px) {
+        .lib { position: sticky; top: 0; z-index: 4; padding: 0 8px 0 14px; gap: 4px; overflow: auto hidden; scrollbar-width: none; }
+        .logo { margin-right: 8px; }
+        .logo b { font-size: 19px; }
+        .find, .me b { display: none; }
+        .me { position: fixed; z-index: 5; top: 0; right: 0; justify-content: center; width: 54px; height: 50px; margin: 0; }
+        .page { grid-template-columns: minmax(0, 1fr); }
+        .holds { display: flex; align-items: center; gap: 6px; padding: 10px 16px 12px; overflow: auto hidden; scrollbar-width: none; border-right: 0; border-bottom: 1px solid var(--side-line); }
+        .holds .chain, .holds h4 small { display: none; }
+        .holds h4 { flex: none; margin: 0 6px 0 0; }
+        .holds a { flex: none; padding: 5px 11px 5px 9px; border: 1px solid var(--side-line); border-radius: 99px; white-space: nowrap; }
+        .holds a small { margin-left: 4px; }
+        .frame { padding: 14px 0 0; }
+        .controls { gap: 6px; margin-bottom: 14px; padding: 0 16px; }
+        .chip { padding: 6px 12px; }
+        .pd-book { flex: 1; width: 100%; padding: var(--sheet-pad-phone); border-inline: 0; border-bottom: 0; border-radius: 0; box-shadow: none; }
+        .turn { grid-template-columns: 1fr 1fr; grid-template-areas: "folio folio" "before after"; }
+        .turn .folio { justify-self: center; }
+    }
+</style>
+</head>
+<body>
+<header class="lib">
+    <a class="logo"><i>D</i><b>Dougs Library</b></a>
+    <nav class="subjects">
+        <a class="s" style="--c: var(--sea)"><i></i><b>Conversations with Claude</b></a>
+        <a class="s" style="--c: #1f8a78"><i></i><b>Conversations with ChatGPT</b></a>
+        <a class="s" style="--c: #c24a78"><i></i><b>Dougs Design</b></a>
+        <a class="s" style="--c: #7a4a8c"><i></i><b>Dougs Reference Manual</b></a>
+    </nav>
+    <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find in the library</span>
+    <a class="me"><i>D</i><b>The Librarian</b></a>
+</header>
+
+<div class="page">
+    <div class="frame">
+        <nav class="controls">
+            <button class="chip" type="button" data-theme-to="book" aria-pressed="true">book</button>
+            <button class="chip" type="button" data-theme-to="night" aria-pressed="false">night</button>
+            <button class="chip" type="button" data-theme-to="white" aria-pressed="false">white</button>
+        </nav>
+
+        <article class="pd-book">
+            <header class="masthead">
+                <div class="pd-chapter pa-biography pa-autobiography pa-cover"><a href="/dougs-story/"><div id="dougs-story" class="pd-sentence pd-title">Dougs Story</div></a></div>
+                <p class="pd-paragraph pd-byline"><span class="pd-label">by</span> <a class="to-me" href="/dougs-story/"><span class="pd-word">The Librarian</span></a></p>
+            </header>
+
+            <div class="pd-chapter pd-canonical" data-chapter="a-first-chapter">
+                <a href="#a-first-chapter"><div id="a-first-chapter" class="pd-sentence pd-title">A First Chapter</div></a>
+                <div class="pd-section">
+                    <div class="pd-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, <a class="pa-reference" href="/lorem-ipsum-dolor/"><span class="pd-word">Lorem Ipsum Dolor</span></a>, excepteur sint occaecat cupidatat non proident.</div>
+                    <div class="pd-paragraph">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. <em>Nemo enim ipsam voluptatem</em> quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</div>
+                </div>
+                <div class="pd-section">
+                    <a href="#neque-porro-quisquam"><div id="neque-porro-quisquam" class="pd-sentence pd-heading">Neque porro quisquam</div></a>
+                    <div class="pd-paragraph">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</div>
+                    <div class="pd-paragraph">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.</div>
+                </div>
+                <div class="pd-section">
+                    <a href="#at-vero-eos"><div id="at-vero-eos" class="pd-sentence pd-heading">At vero eos</div></a>
+                    <div class="pd-paragraph">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus <strong>asperiores repellat</strong>.</div>
+                </div>
+                <nav class="turn">
+                    <span class="folio">chapter <b>1</b> of <b>3</b></span>
+                    <a class="after" href="#a-second-chapter" data-to="a-second-chapter"><b>A Second Chapter</b> →</a>
+                </nav>
+            </div>
+
+            <div class="pd-chapter pd-canonical" data-chapter="a-second-chapter" hidden>
+                <a href="#a-second-chapter"><div id="a-second-chapter" class="pd-sentence pd-title">A Second Chapter</div></a>
+                <div class="pd-section">
+                    <div class="pd-paragraph">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                    <div class="pd-paragraph">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+                </div>
+                <nav class="turn">
+                    <a class="before" href="#a-first-chapter" data-to="a-first-chapter">← <b>A First Chapter</b></a>
+                    <span class="folio">chapter <b>2</b> of <b>3</b></span>
+                    <a class="after" href="#a-third-chapter" data-to="a-third-chapter"><b>A Third Chapter</b> →</a>
+                </nav>
+            </div>
+
+            <div class="pd-chapter pd-canonical" data-chapter="a-third-chapter" hidden>
+                <a href="#a-third-chapter"><div id="a-third-chapter" class="pd-sentence pd-title">A Third Chapter</div></a>
+                <div class="pd-section">
+                    <div class="pd-paragraph">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</div>
+                </div>
+                <nav class="turn">
+                    <a class="before" href="#a-second-chapter" data-to="a-second-chapter">← <b>A Second Chapter</b></a>
+                    <span class="folio">chapter <b>3</b> of <b>3</b></span>
+                </nav>
+            </div>
+        </article>
+    </div>
+</div>
+<script>
+    const root = document.documentElement;
+    const papers = document.querySelectorAll('[data-theme-to]');
+    papers.forEach(chip => chip.addEventListener('click', () => {
+        root.dataset.theme = chip.dataset.themeTo;
+        papers.forEach(other => other.setAttribute('aria-pressed', String(other === chip)));
+    }));
+    document.querySelectorAll('[data-to]').forEach(link => link.addEventListener('click', event => {
+        event.preventDefault();
+        document.querySelectorAll('[data-chapter]').forEach(chapter => { chapter.hidden = chapter.dataset.chapter !== link.dataset.to; });
+        document.querySelectorAll('.holds a').forEach(row => row.classList.toggle('on', row.dataset.to === link.dataset.to));
+        scrollTo(0, 0);
+    }));
+</script>
+</body>
+</html>

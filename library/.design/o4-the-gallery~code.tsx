@@ -30,10 +30,23 @@ export class $Gallery extends $Format {
         }
         .pa-gallery .pa-concept .pa-photographs img { height: ${({ theme }) => theme.photo}; width: auto; max-width: none; }
         .pa-gallery .pa-concept .pd-paragraph.pa-source { display: none; }
-        .pa-gallery .pa-concept.pa-open { grid-column: 1 / -1; }
-        .pa-gallery .pa-concept.pa-open .pa-photographs { flex-wrap: wrap; }
+        .pa-gallery .pd-section.pa-concept.pa-open {
+            position: fixed;
+            inset: 0 0 0 ${({ theme }) => theme.side};
+            z-index: 1;
+            overflow-y: auto;
+            padding: ${({ theme }) => theme.space} calc(${({ theme }) => theme.space} * 1.17);
+            background: ${({ theme }) => theme.paper};
+            grid-template-areas: 'number name' 'pictures pictures';
+            align-content: start;
+        }
+        .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-photographs, .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-source { max-width: none; }
+        .pa-gallery .pa-concept.pa-open .pa-photographs { flex-wrap: wrap; overflow: visible; }
         .pa-gallery .pa-concept.pa-open .pa-photographs img { height: auto; max-width: 100%; }
         .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-source { display: block; }
+        @media (max-width: ${({ theme }) => theme.narrow}) {
+            .pa-gallery .pd-section.pa-concept.pa-open { inset: 0; }
+        }
     `;
 
     override defines(writing: $Writing): void {

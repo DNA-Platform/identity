@@ -615,5 +615,141 @@ export default () => (
                 </Paragraph>
             </Section>
         </Section>
+        <Section>
+            <Heading>[[[ Sketched to Decide ]]]</Heading>
+            <Paragraph>
+                These were sketched on 6 October, after the fact check of the designs by number, for the things
+                the concepts above do not draw and I said I would need to see: the top bar over the dark side bar
+                I want as the default, the manual with its code in front, and my story in the frame, navigated
+                two ways. Each is made from the files above, so the numerical shapes and the fonts are the same.
+            </Paragraph>
+            <Section>
+                <Concept>26</Concept>
+                <Heading>[[[ A White Top Bar and a Black Side Bar ]]]</Heading>
+                <Paragraph>
+                    Concept 26, an idea, after 16 and 23, to see the top over the dark side bar.
+                </Paragraph>
+                <Paragraph>
+                    The library's bar white across the top; under it, what the open book holds down a soft black
+                    side bar, and the book's name and tools beside it on white. The black bar is the one I said
+                    should be the default, with a top bar over it.
+                </Paragraph>
+                <Paragraph>
+                    <Photographs />
+                    <Image>![[ 026-desk.png ]]</Image>
+                    <Image>![[ 026-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Source />
+                    <Code>![[ 026.html ]]</Code>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>27</Concept>
+                <Heading>[[[ A Black Top Bar and a Black Side Bar ]]]</Heading>
+                <Paragraph>
+                    Concept 27, an idea, after 15 and 11, to see the top over the dark side bar.
+                </Paragraph>
+                <Paragraph>
+                    The same, darker: the library's bar and the side bar both in the soft black, one dark L
+                    around the white page, the book's name and tools on white.
+                </Paragraph>
+                <Paragraph>
+                    <Photographs />
+                    <Image>![[ 027-desk.png ]]</Image>
+                    <Image>![[ 027-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Source />
+                    <Code>![[ 027.html ]]</Code>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>28</Concept>
+                <Heading>[[[ The Code in Front ]]]</Heading>
+                <Paragraph>
+                    Concept 28, an idea, after 6, with the file given the room.
+                </Paragraph>
+                <Paragraph>
+                    The same manual as 6, with two readings of one chapter. Code: the file is the thing being
+                    viewed, across the whole width, one line of its own facts above it and its fields below.
+                    Words: the write-up you read to learn how to use the part, with the file folded to a strip
+                    at the right that opens out again. The words are substantive, because the manual is more
+                    than a code reader. This is the code reading; 31 is the words reading of the same page.
+                </Paragraph>
+                <Paragraph>
+                    <Photographs />
+                    <Image>![[ 028-desk.png ]]</Image>
+                    <Image>![[ 028-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Source />
+                    <Code>![[ 028.html ]]</Code>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>31</Concept>
+                <Heading>[[[ The Words in Front ]]]</Heading>
+                <Paragraph>
+                    Concept 31, an idea, after 28, opened on the words.
+                </Paragraph>
+                <Paragraph>
+                    The same page as 28, read the other way: what the part is, how it is used with an example,
+                    its fields, and what to know before it bites, with the file folded to a strip at the right.
+                    A press on the strip opens the code out again.
+                </Paragraph>
+                <Paragraph>
+                    <Photographs />
+                    <Image>![[ 031-desk.png ]]</Image>
+                    <Image>![[ 031-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Source />
+                    <Code>![[ 031.html ]]</Code>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>29</Concept>
+                <Heading>[[[ The Reading View, in the Frame, with the Chapters at the Side ]]]</Heading>
+                <Paragraph>
+                    Concept 29, an idea, after 25 under the top bar of 16, with the side bar of 26.
+                </Paragraph>
+                <Paragraph>
+                    The sheet of 25 integrated: the library's bar across the top, the book's chapters down a
+                    soft black side bar with the open one lit, the papers as the book's own tools above the
+                    sheet, and the chapters either side still at its foot.
+                </Paragraph>
+                <Paragraph>
+                    <Photographs />
+                    <Image>![[ 029-desk.png ]]</Image>
+                    <Image>![[ 029-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Source />
+                    <Code>![[ 029.html ]]</Code>
+                </Paragraph>
+            </Section>
+            <Section>
+                <Concept>30</Concept>
+                <Heading>[[[ The Reading View, in the Frame, with the Chapters at the Foot ]]]</Heading>
+                <Paragraph>
+                    Concept 30, an idea, after 25 under the top bar of 16, and nothing else.
+                </Paragraph>
+                <Paragraph>
+                    The sheet of 25 integrated the other way: only the library's bar across the top, and the
+                    book navigated as 25 navigates it, by the chapters either side at the foot of the sheet,
+                    with the papers above it.
+                </Paragraph>
+                <Paragraph>
+                    <Photographs />
+                    <Image>![[ 030-desk.png ]]</Image>
+                    <Image>![[ 030-phone.png ]]</Image>
+                </Paragraph>
+                <Paragraph>
+                    <Source />
+                    <Code>![[ 030.html ]]</Code>
+                </Paragraph>
+            </Section>
+        </Section>
     </Chapter>
 );

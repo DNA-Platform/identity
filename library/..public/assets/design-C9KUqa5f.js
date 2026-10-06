@@ -1,8 +1,8 @@
-var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0});import{$ as g,c as Ca,s as ya,r as S,t as M,d as Aa,u as D,f as C,j as a,T as Ma,v as L,w as O,x as Da,y as Sa,z as La,C as y,B as za,h as w,A as Ta,k as Ia,D as qa,P as fa,o as i,H as o,n as t,p as u,W as J,M as s,I as r,E as d,q as A}from"./index-D0AUi5xz.js";import{b as Ea,$ as Fa,T as Ba,L as Pa,a as $a,c as Na,I as Oa,S as Ja}from"./15-the-bars~code-CoKII3Fe.js";import{S as Ra}from"./.synopsis-Dh-szpWs.js";var Ha=Object.defineProperty,Ga=Object.getOwnPropertyDescriptor,Wa=l((v,e,x,E)=>{for(var m=Ga(e,x),f=v.length-1,k;f>=0;f--)(k=v[f])&&(m=k(e,x,m)||m);return m&&Ha(e,x,m),m},"__decorateClass$2");const aa=class aa extends Ca{constructor(){super(...arguments),this.specification=new F,this.themeProvider=!0,this.style=ya.div`
+var ja=Object.defineProperty;var l=(v,t)=>ja(v,"name",{value:t,configurable:!0});import{$ as g,c as Ca,s as ya,r as S,t as M,d as Aa,u as D,f as C,j as a,T as Ma,v as L,w as O,x as Da,y as Sa,z as La,C as y,B as Ta,h as w,A as za,k as Ia,D as qa,P as fa,o as i,H as o,n as e,p as u,W as R,M as s,I as r,E as n,q as A}from"./index-BhOTLg6T.js";import{b as Ea,$ as Ba,T as Fa,L as Pa,a as $a,c as Na,I as Oa,S as Ra}from"./15-the-bars~code-CG6t1H1f.js";import{S as Ja}from"./.synopsis-DJMHagnf.js";var Ha=Object.defineProperty,Ga=Object.getOwnPropertyDescriptor,Wa=l((v,t,x,E)=>{for(var b=Ga(t,x),f=v.length-1,k;f>=0;f--)(k=v[f])&&(b=k(t,x,b)||b);return b&&Ha(t,x,b),b},"__decorateClass$2");const aa=class aa extends Ca{constructor(){super(...arguments),this.specification=new B,this.themeProvider=!0,this.style=ya.div`
         .pd-chapter.pa-gallery .pd-section {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(${({theme:e})=>e.card}, 1fr));
-            gap: ${({theme:e})=>e.space};
+            grid-template-columns: repeat(auto-fill, minmax(${({theme:t})=>t.card}, 1fr));
+            gap: ${({theme:t})=>t.space};
             align-items: start;
         }
         .pa-gallery .pd-section .pa-self-reference.pd-container, .pa-gallery .pd-section .pd-paragraph { grid-column: 1 / -1; }
@@ -11,7 +11,7 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
             grid-template-columns: auto minmax(0, 1fr);
             grid-template-areas: 'pictures pictures' 'number name';
             align-items: baseline;
-            gap: calc(${({theme:e})=>e.space} / 2);
+            gap: calc(${({theme:t})=>t.space} / 2);
         }
         .pa-gallery .pa-concept .pa-number { grid-area: number; }
         .pa-gallery .pa-concept .pa-self-reference.pd-container { grid-area: name; }
@@ -19,143 +19,156 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
         .pa-gallery .pa-concept .pd-paragraph.pa-photographs {
             grid-area: pictures;
             display: flex;
-            gap: calc(${({theme:e})=>e.space} / 2);
+            gap: calc(${({theme:t})=>t.space} / 2);
             overflow: hidden;
         }
-        .pa-gallery .pa-concept .pa-photographs img { height: ${({theme:e})=>e.photo}; width: auto; max-width: none; }
+        .pa-gallery .pa-concept .pa-photographs img { height: ${({theme:t})=>t.photo}; width: auto; max-width: none; }
         .pa-gallery .pa-concept .pd-paragraph.pa-source { display: none; }
-        .pa-gallery .pa-concept.pa-open { grid-column: 1 / -1; }
-        .pa-gallery .pa-concept.pa-open .pa-photographs { flex-wrap: wrap; }
+        .pa-gallery .pd-section.pa-concept.pa-open {
+            position: fixed;
+            inset: 0 0 0 ${({theme:t})=>t.side};
+            z-index: 1;
+            overflow-y: auto;
+            padding: ${({theme:t})=>t.space} calc(${({theme:t})=>t.space} * 1.17);
+            background: ${({theme:t})=>t.paper};
+            grid-template-areas: 'number name' 'pictures pictures';
+            align-content: start;
+        }
+        .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-photographs, .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-source { max-width: none; }
+        .pa-gallery .pa-concept.pa-open .pa-photographs { flex-wrap: wrap; overflow: visible; }
         .pa-gallery .pa-concept.pa-open .pa-photographs img { height: auto; max-width: 100%; }
         .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-source { display: block; }
-    `}defines(e){super.defines(e),e.classes.add(this,"pa-gallery")}erase(e){super.erase(e),e.classes.revert(this)}};l(aa,"$Gallery");let R=aa;const ea=class ea extends S{$saidOfAChapter(e){M(e instanceof Aa,"a gallery is said of a chapter, and this is not one")}};l(ea,"GallerySpecification");let F=ea;Wa([D("a gallery is said of a chapter")],F.prototype,"$saidOfAChapter");const wa=g(R),ta=class ta extends Ea{parts(){return[...super.parts(),this.sideBar(),this.head(),this.words(),this.cards(),this.small()]}sideBar(){return C`
+        @media (max-width: ${({theme:t})=>t.narrow}) {
+            .pa-gallery .pd-section.pa-concept.pa-open { inset: 0; }
+        }
+    `}defines(t){super.defines(t),t.classes.add(this,"pa-gallery")}erase(t){super.erase(t),t.classes.revert(this)}};l(aa,"$Gallery");let J=aa;const ea=class ea extends S{$saidOfAChapter(t){M(t instanceof Aa,"a gallery is said of a chapter, and this is not one")}};l(ea,"GallerySpecification");let B=ea;Wa([D("a gallery is said of a chapter")],B.prototype,"$saidOfAChapter");const wa=g(J),ta=class ta extends Ea{parts(){return[...super.parts(),this.sideBar(),this.head(),this.words(),this.cards(),this.small()]}sideBar(){return C`
             .pd-side {
-                background: ${({theme:e})=>e.barFill};
-                color: ${({theme:e})=>e.barInk};
-                border-inline-end: thin solid ${({theme:e})=>e.barLine};
+                background: ${({theme:t})=>t.barFill};
+                color: ${({theme:t})=>t.barInk};
+                border-inline-end: thin solid ${({theme:t})=>t.barLine};
             }
             .pd-side .pd-filed-under, .pd-side .pd-byline {
                 display: flex;
                 align-items: center;
-                gap: calc(${({theme:e})=>e.space} * 0.4);
+                gap: calc(${({theme:t})=>t.space} * 0.4);
                 margin-block: 0;
-                padding: calc(${({theme:e})=>e.space} * 0.6) calc(${({theme:e})=>e.space} * 0.6);
-                font-size: calc(0.83 * ${({theme:e})=>e.size});
-                color: ${({theme:e})=>e.barDim};
+                padding: calc(${({theme:t})=>t.space} * 0.6) calc(${({theme:t})=>t.space} * 0.6);
+                font-size: calc(0.83 * ${({theme:t})=>t.size});
+                color: ${({theme:t})=>t.barDim};
             }
-            .pd-side .pd-byline { border-block-start: thin solid ${({theme:e})=>e.barLine}; }
+            .pd-side .pd-byline { border-block-start: thin solid ${({theme:t})=>t.barLine}; }
             .pd-side .pd-word {
-                color: ${({theme:e})=>e.barInk};
+                color: ${({theme:t})=>t.barInk};
                 font-weight: 500;
             }
             .pd-side .pd-filed-under .pd-word {
-                font-family: ${({theme:e})=>e.serif};
-                font-size: calc(1.45 * ${({theme:e})=>e.size});
+                font-family: ${({theme:t})=>t.serif};
+                font-size: calc(1.45 * ${({theme:t})=>t.size});
                 font-weight: 600;
                 line-height: 1;
             }
             .pd-side .pa-reference { color: inherit; text-decoration: none; }
             .pd-side .pd-filed-under::before, .pd-side .pd-byline::before {
-                content: ${({theme:e})=>e.initial};
+                content: ${({theme:t})=>t.initial};
                 display: grid;
                 place-items: center;
-                width: calc(${({theme:e})=>e.space} * 1.3);
-                height: calc(${({theme:e})=>e.space} * 1.3);
-                font-size: ${({theme:e})=>e.size};
+                width: calc(${({theme:t})=>t.space} * 1.3);
+                height: calc(${({theme:t})=>t.space} * 1.3);
+                font-size: ${({theme:t})=>t.size};
                 font-weight: 600;
             }
             .pd-side .pd-filed-under::before {
-                border-radius: calc(${({theme:e})=>e.space} / 3);
-                background: ${({theme:e})=>e.opal};
-                color: ${({theme:e})=>e.night};
+                border-radius: calc(${({theme:t})=>t.space} / 3);
+                background: ${({theme:t})=>t.opal};
+                color: ${({theme:t})=>t.night};
             }
             .pd-side .pd-byline::before {
                 border-radius: 50%;
-                background: ${({theme:e})=>e.me};
-                color: ${({theme:e})=>e.paper};
+                background: ${({theme:t})=>t.me};
+                color: ${({theme:t})=>t.paper};
             }
-            .pd-side .pd-contents { padding: 0 calc(${({theme:e})=>e.space} / 2) ${({theme:e})=>e.space}; }
+            .pd-side .pd-contents { padding: 0 calc(${({theme:t})=>t.space} / 2) ${({theme:t})=>t.space}; }
         `}head(){return C`
             .pd-head {
-                padding: calc(${({theme:e})=>e.space} * 0.83) calc(${({theme:e})=>e.space} * 1.17) calc(${({theme:e})=>e.space} * 0.6);
-                border-block-end: thin solid ${({theme:e})=>e.line};
+                padding: calc(${({theme:t})=>t.space} * 0.83) calc(${({theme:t})=>t.space} * 1.17) calc(${({theme:t})=>t.space} * 0.6);
+                border-block-end: thin solid ${({theme:t})=>t.line};
             }
             .pd-head .pd-switch {
                 border: none;
-                border-radius: calc(${({theme:e})=>e.space} * 0.375);
-                padding: calc(${({theme:e})=>e.space} / 4) calc(${({theme:e})=>e.space} / 2);
-                background: ${({theme:e})=>e.panel};
-                color: ${({theme:e})=>e.soft};
+                border-radius: calc(${({theme:t})=>t.space} * 0.375);
+                padding: calc(${({theme:t})=>t.space} / 4) calc(${({theme:t})=>t.space} / 2);
+                background: ${({theme:t})=>t.panel};
+                color: ${({theme:t})=>t.soft};
             }
             .pd-head .pd-switch[aria-pressed='true'] {
-                background: ${({theme:e})=>e.night};
-                color: ${({theme:e})=>e.paper};
+                background: ${({theme:t})=>t.night};
+                color: ${({theme:t})=>t.paper};
                 font-weight: 500;
             }
         `}words(){return C`
-            .pd-leaves { padding: calc(${({theme:e})=>e.space} * 0.83) calc(${({theme:e})=>e.space} * 1.17) calc(${({theme:e})=>e.space} * 1.67); }
+            .pd-leaves { padding: calc(${({theme:t})=>t.space} * 0.83) calc(${({theme:t})=>t.space} * 1.17) calc(${({theme:t})=>t.space} * 1.67); }
             .pd-words .pd-chapter { margin-block: 0; max-width: none; }
             .pd-words .pd-title {
-                font-family: ${({theme:e})=>e.serif};
-                font-size: calc(2.5 * ${({theme:e})=>e.size});
+                font-family: ${({theme:t})=>t.serif};
+                font-size: calc(2.5 * ${({theme:t})=>t.size});
                 font-weight: 600;
                 line-height: 1.04;
-                color: ${({theme:e})=>e.heading};
+                color: ${({theme:t})=>t.heading};
             }
             .pd-words .pd-heading {
-                font-size: calc(0.76 * ${({theme:e})=>e.size});
+                font-size: calc(0.76 * ${({theme:t})=>t.size});
                 font-weight: 600;
                 letter-spacing: 0.12em;
                 text-transform: uppercase;
-                color: ${({theme:e})=>e.soft};
+                color: ${({theme:t})=>t.soft};
             }
-            .pd-words .pd-paragraph { max-width: ${({theme:e})=>e.measure}; }
+            .pd-words .pd-paragraph { max-width: ${({theme:t})=>t.measure}; }
             .pd-front .pd-words .pd-paragraph {
-                font-family: ${({theme:e})=>e.serif};
-                font-size: calc(1.5 * ${({theme:e})=>e.size});
+                font-family: ${({theme:t})=>t.serif};
+                font-size: calc(1.5 * ${({theme:t})=>t.size});
                 line-height: 1.25;
             }
         `}cards(){return C`
             .pa-gallery .pd-section.pa-concept {
-                padding: calc(${({theme:e})=>e.space} * 0.6);
-                border: thin solid ${({theme:e})=>e.line};
-                border-radius: calc(${({theme:e})=>e.space} * 0.6);
-                background: ${({theme:e})=>e.paper};
-                box-shadow: ${({theme:e})=>e.shadow};
+                padding: calc(${({theme:t})=>t.space} * 0.6);
+                border: thin solid ${({theme:t})=>t.line};
+                border-radius: calc(${({theme:t})=>t.space} * 0.6);
+                background: ${({theme:t})=>t.paper};
+                box-shadow: ${({theme:t})=>t.shadow};
             }
             .pa-gallery .pa-concept .pd-heading, .pa-gallery .pa-concept .pa-number {
-                font-family: ${({theme:e})=>e.serif};
-                font-size: calc(1.3 * ${({theme:e})=>e.size});
+                font-family: ${({theme:t})=>t.serif};
+                font-size: calc(1.3 * ${({theme:t})=>t.size});
                 font-weight: 600;
                 letter-spacing: 0;
                 text-transform: none;
-                color: ${({theme:e})=>e.heading};
+                color: ${({theme:t})=>t.heading};
             }
             .pa-gallery .pa-concept .pa-number {
-                font-size: calc(1.6 * ${({theme:e})=>e.size});
-                color: ${({theme:e})=>e.accent};
+                font-size: calc(1.6 * ${({theme:t})=>t.size});
+                color: ${({theme:t})=>t.accent};
             }
             .pa-gallery .pa-concept .pd-paragraph {
                 margin-block: 0;
-                font-size: calc(0.86 * ${({theme:e})=>e.size});
-                color: ${({theme:e})=>e.soft};
+                font-size: calc(0.86 * ${({theme:t})=>t.size});
+                color: ${({theme:t})=>t.soft};
             }
             .pa-gallery .pa-concept .pd-paragraph.pa-answer {
-                padding-inline-start: calc(${({theme:e})=>e.space} / 2);
-                border-inline-start: calc(${({theme:e})=>e.space} / 8) solid ${({theme:e})=>e.me};
-                color: ${({theme:e})=>e.ink};
+                padding-inline-start: calc(${({theme:t})=>t.space} / 2);
+                border-inline-start: calc(${({theme:t})=>t.space} / 8) solid ${({theme:t})=>t.me};
+                color: ${({theme:t})=>t.ink};
             }
-            .pa-gallery .pa-concept .pa-photographs img { border-radius: calc(${({theme:e})=>e.space} / 4); border: thin solid ${({theme:e})=>e.line}; }
-            .pa-gallery .pa-concept.pa-open { box-shadow: 0 0 0 calc(${({theme:e})=>e.space} / 8) ${({theme:e})=>e.accent}; }
+            .pa-gallery .pa-concept .pa-photographs img { border-radius: calc(${({theme:t})=>t.space} / 4); border: thin solid ${({theme:t})=>t.line}; }
+            .pa-gallery .pa-concept.pa-open { box-shadow: 0 0 0 calc(${({theme:t})=>t.space} / 8) ${({theme:t})=>t.accent}; }
         `}small(){return C`
-            @media (max-width: ${({theme:e})=>e.narrow}) {
+            @media (max-width: ${({theme:t})=>t.narrow}) {
                 .pd-side { border-inline-end: none; }
-                .pd-leaves { padding: calc(${({theme:e})=>e.space} * 0.67); }
+                .pd-leaves { padding: calc(${({theme:t})=>t.space} * 0.67); }
             }
-        `}};l(ta,"$DesignTheme");let z=ta;const sa=class sa extends z{constructor(){super(...arguments),this.barFill="#f1f7f9",this.barInk="#10252c",this.barDim="#516770",this.barOn="#e3f5fa",this.barLine="#dbe7ec"}};l(sa,"$GalleryMode");let H=sa;const ia=class ia extends z{constructor(){super(...arguments),this.barFill="#0c1b1f",this.barInk="#ffffff",this.barDim="#a9bcc1",this.barOn="rgba(255, 255, 255, 0.11)",this.barLine="#1d3339"}};l(ia,"$LibraryMode");let G=ia;g(z);const W=g(H),va=g(G),oa=class oa extends Fa{get modes(){return[va,W]}get gallery(){return this.chapters.find(e=>e.is(wa))}get open(){return super.open??this.gallery}write(){const e=g(this.cover),x=g(this.synopsis),E=g(this.table);return a.jsxs(a.Fragment,{children:[a.jsxs("div",{className:"pd-side",children:[this.filed(),a.jsx("div",{className:"pd-contents",children:a.jsx(E,{})}),this.byline()]}),a.jsxs("div",{className:"pd-main",children:[a.jsxs("div",{className:"pd-head",children:[a.jsx(e,{}),a.jsx("div",{className:"pd-switches",children:this.switches()})]}),a.jsxs("div",{className:"pd-leaves",children:[this.front(a.jsx("div",{className:"pd-words",children:a.jsx(x,{})})),this.leaves()]})]})]})}switches(){const e=g(Ba);return a.jsxs(a.Fragment,{children:[a.jsx(e,{chapter:this.cover,of:va,among:this.modes,children:"library"}),a.jsx(e,{chapter:this.cover,of:W,among:this.modes,children:"gallery"}),super.switches()]})}};l(oa,"$Design");let B=oa;const ra=class ra extends $a{defines(e){super.defines(e),e.classes.add(this,"pa-frame")}parts(){return[...super.parts(),this.areas(),this.narrow()]}areas(){return C`
+        `}};l(ta,"$DesignTheme");let T=ta;const sa=class sa extends T{constructor(){super(...arguments),this.barFill="#f1f7f9",this.barInk="#10252c",this.barDim="#516770",this.barOn="#e3f5fa",this.barLine="#dbe7ec"}};l(sa,"$GalleryMode");let H=sa;const ia=class ia extends T{constructor(){super(...arguments),this.barFill="#0c1b1f",this.barInk="#ffffff",this.barDim="#a9bcc1",this.barOn="rgba(255, 255, 255, 0.11)",this.barLine="#1d3339"}};l(ia,"$LibraryMode");let G=ia;g(T);const W=g(H),va=g(G),oa=class oa extends Ba{get modes(){return[va,W]}get gallery(){return this.chapters.find(t=>t.is(wa))}get open(){return super.open??this.gallery}write(){const t=g(this.cover),x=g(this.synopsis),E=g(this.table);return a.jsxs(a.Fragment,{children:[a.jsxs("div",{className:"pd-side",children:[this.filed(),a.jsx("div",{className:"pd-contents",children:a.jsx(E,{})}),this.byline()]}),a.jsxs("div",{className:"pd-main",children:[a.jsxs("div",{className:"pd-head",children:[a.jsx(t,{}),a.jsx("div",{className:"pd-switches",children:this.switches()})]}),a.jsxs("div",{className:"pd-leaves",children:[this.front(a.jsx("div",{className:"pd-words",children:a.jsx(x,{})})),this.leaves()]})]})]})}switches(){const t=g(Fa);return a.jsxs(a.Fragment,{children:[a.jsx(t,{chapter:this.cover,of:va,among:this.modes,children:"library"}),a.jsx(t,{chapter:this.cover,of:W,among:this.modes,children:"gallery"}),super.switches()]})}};l(oa,"$Design");let F=oa;const ra=class ra extends $a{defines(t){super.defines(t),t.classes.add(this,"pa-frame")}parts(){return[...super.parts(),this.areas(),this.narrow()]}areas(){return C`
             .pd-book.pa-frame {
                 display: grid;
-                grid-template-columns: ${({theme:e})=>e.side} minmax(0, 1fr);
+                grid-template-columns: ${({theme:t})=>t.side} minmax(0, 1fr);
                 grid-template-rows: minmax(0, 1fr);
                 grid-template-areas: 'side main';
                 height: 100vh;
@@ -182,22 +195,22 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
                 flex-wrap: wrap;
                 align-items: center;
                 justify-content: space-between;
-                column-gap: ${({theme:e})=>e.space};
+                column-gap: ${({theme:t})=>t.space};
             }
             .pa-frame .pd-switches {
                 display: flex;
-                gap: calc(${({theme:e})=>e.space} / 3);
+                gap: calc(${({theme:t})=>t.space} / 3);
             }
             .pa-frame .pd-leaves { grid-area: pages; overflow-y: auto; }
-            .pa-frame .pd-words .pd-chapter { scroll-margin-block-start: ${({theme:e})=>e.space}; }
+            .pa-frame .pd-words .pd-chapter { scroll-margin-block-start: ${({theme:t})=>t.space}; }
         `}narrow(){return C`
-            @media (max-width: ${({theme:e})=>e.narrow}) {
+            @media (max-width: ${({theme:t})=>t.narrow}) {
                 .pd-book.pa-frame { display: block; height: auto; }
                 .pa-frame .pd-side { display: block; }
                 .pa-frame .pd-main { display: block; }
                 .pa-frame.pa-turned .pa-table-of-contents { display: none; }
             }
-        `}};l(ra,"$Frame");let U=ra;const ka=g(B),Ua=g(U);g(ka,Pa)(Ua);g(ka,Ma)(W);var Qa=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Z=l((v,e,x,E)=>{for(var m=Va(e,x),f=v.length-1,k;f>=0;f--)(k=v[f])&&(m=k(e,x,m)||m);return m&&Qa(e,x,m),m},"__decorateClass$1");const la=class la extends L{constructor(){super(...arguments),this.specification=new P}defines(e){e.classes.add(this,"pa-question")}erase(e){e.classes.revert(this)}};l(la,"$Question");let Q=la;const na=class na extends L{constructor(){super(...arguments),this.specification=new $}defines(e){e.classes.add(this,"pa-answer")}erase(e){e.classes.revert(this)}};l(na,"$Answer");let V=na;const da=class da extends L{constructor(){super(...arguments),this.specification=new N}defines(e){e.classes.add(this,"pa-decision")}erase(e){e.classes.revert(this)}};l(da,"$Decision");let K=da;const pa=class pa extends S{$saidOfAParagraph(e){M(e instanceof O,"asked is said of a paragraph, and this is not one")}};l(pa,"QuestionSpecification");let P=pa;Z([D("asked is said of a paragraph")],P.prototype,"$saidOfAParagraph");const ca=class ca extends S{$saidOfAParagraph(e){M(e instanceof O,"said is said of a paragraph, and this is not one")}};l(ca,"AnswerSpecification");let $=ca;Z([D("said is said of a paragraph")],$.prototype,"$saidOfAParagraph");const ha=class ha extends S{$saidOfAParagraph(e){M(e instanceof O,"chosen is said of a paragraph, and this is not one")}};l(ha,"DecisionSpecification");let N=ha;Z([D("chosen is said of a paragraph")],N.prototype,"$saidOfAParagraph");const b=g(Q),n=g(V),j=g(K);var Ka=Object.defineProperty,Ya=Object.getOwnPropertyDescriptor,_=l((v,e,x,E)=>{for(var m=Ya(e,x),f=v.length-1,k;f>=0;f--)(k=v[f])&&(m=k(e,x,m)||m);return m&&Ka(e,x,m),m},"__decorateClass");const ma=class ma extends L{constructor(){super(...arguments),this.specification=new I,this.span=ya.span.attrs({className:"pa-number"})``}get number(){const e=Da.copy(this.text).trim();return e===""?NaN:Number(e)}note(){const e=this.span;return a.jsx(e,{children:this.number})}defines(e){e.classes.add(this,"pa-concept"),e.mention?.identifier===this.book?.$bookmark&&e.classes.add(this,"pa-open")}erase(e){e.classes.revert(this)}};l(ma,"$Concept");let T=ma;const ba=class ba extends L{constructor(){super(...arguments),this.specification=new q}defines(e){e.classes.add(this,"pa-photographs")}erase(e){e.classes.revert(this)}};l(ba,"$Photographs");let Y=ba;const ga=class ga extends L{constructor(){super(...arguments),this.specification=new q}defines(e){e.classes.add(this,"pa-source")}erase(e){e.classes.revert(this)}};l(ga,"$Source");let X=ga;const ua=class ua extends S{$saidOfASection(e){M(e instanceof Sa,"a concept is said of a section, and this is not one")}$givenItsNumber(e){M(Number.isInteger(e.annotations.expressed(T)?.number),"a concept is given its number, and this one was given something else")}};l(ua,"ConceptSpecification");let I=ua;_([D("a concept is said of a section")],I.prototype,"$saidOfASection");_([D("a concept is given its number")],I.prototype,"$givenItsNumber");const xa=class xa extends S{$saidOfAParagraphOfAConcept(e){M(e instanceof O&&e.parent instanceof La&&e.parent.is(T),"this is said of a paragraph of a concept, and here it is said of something else")}};l(xa,"OfAConceptSpecification");let q=xa;_([D("this is said of a paragraph of a concept")],q.prototype,"$saidOfAParagraphOfAConcept");const p=g(T),c=g(Y),h=g(X),Xa=l(()=>a.jsxs(y,{children:[a.jsx(za,{}),a.jsx(Na,{}),a.jsx(w,{children:"[Dougs Design](/dougs-design/)"}),a.jsx(Ta,{children:"[The Librarian](/dougs-story/)"}),a.jsx(Ia,{children:"[The Library](/dougs-library/)"})]}),"Cover"),Za=l(()=>a.jsxs(y,{children:[a.jsx(qa,{}),a.jsx(Oa,{}),a.jsx(Ja,{}),a.jsxs(w,{children:[a.jsx(fa,{}),"[Table of Contents](/dougs-design/#table-of-contents)"]}),a.jsxs(i,{children:[a.jsx(o,{children:"The design"}),a.jsx(t,{children:a.jsx(u,{children:"[The Designs I Am Going With](/dougs-design/#the-designs-i-am-going-with)"})}),a.jsx(t,{children:a.jsx(u,{children:"[What I Am Asked](/dougs-design/#what-i-am-asked)"})}),a.jsx(t,{children:a.jsx(u,{children:"[Every Concept](/dougs-design/#every-concept)"})}),a.jsx(t,{children:a.jsx(u,{children:"[The Library's Home](/dougs-design/#the-librarys-home)"})}),a.jsx(t,{children:a.jsx(u,{children:"[A Reference Manual](/dougs-design/#a-reference-manual)"})}),a.jsx(t,{children:a.jsx(u,{children:"[A Grouping of Projects](/dougs-design/#a-grouping-of-projects)"})}),a.jsx(t,{children:a.jsx(u,{children:"[Layout Ideas](/dougs-design/#layout-ideas)"})}),a.jsx(t,{children:a.jsx(u,{children:"[A Bookish Page](/dougs-design/#a-bookish-page)"})}),a.jsxs(t,{children:[a.jsx(fa,{}),a.jsx(J,{children:a.jsx(u,{children:"[Dougs Design](/dougs-design/)"})}),a.jsx(J,{children:a.jsx(u,{children:"[Synopsis](/dougs-design/#synopsis)"})}),a.jsx(J,{children:a.jsx(u,{children:"[Table of Contents](/dougs-design/#table-of-contents)"})})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"How this book is built"}),a.jsx(t,{children:a.jsx(u,{children:"[The Paragraphs](/dougs-design/#the-paragraphs)"})}),a.jsx(t,{children:a.jsx(u,{children:"[The Concept](/dougs-design/#the-concept)"})}),a.jsx(t,{children:a.jsx(u,{children:"[The Camera](/dougs-design/#the-camera)"})}),a.jsx(t,{children:a.jsx(u,{children:"[The Gallery](/dougs-design/#the-gallery)"})}),a.jsx(t,{children:a.jsx(u,{children:"[The Frame](/dougs-design/#the-frame)"})})]})]}),"Table"),_a=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Designs I Am Going With](/dougs-design/#the-designs-i-am-going-with)"}),a.jsxs(i,{children:[a.jsx(o,{children:"One for each kind of book"}),a.jsxs(t,{children:["This is where the design of each kind of book in my library is decided, this book among them. Under each kind is what I come to the book to do, the concepts that could be its design, what I have said so far, and the decision, or that it is not decided yet. A press on a concept opens its card across ",a.jsx(s,{children:"[the gallery](/dougs-design/#every-concept)"}),", with both of its photographs and its code. The two days of choosing are told in ",a.jsx(s,{children:"[Choosing a Design](/dougs-story/#choosing-a-design)"}),"."]}),a.jsx(t,{children:"A design is one concept, exactly. Some concepts are a page, with its tools in their places; some are a frame, the same page inside a side bar, a top bar, both, or none, each once darker and once lighter. Where I have paired a page with a frame, as the shelf under the two bars, that is two concepts and not a design, and it is decided again here."})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The library's catalogue](/dougs-design/#the-librarys-catalogue)"}),a.jsxs(t,{children:[a.jsx(b,{}),"The library's own page, where everything I keep is found from. Which one of these is it?"]}),a.jsxs(t,{children:["The pages: concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"}),", concept ",a.jsx(s,{children:"[2](/dougs-design/#ask-the-sources)"}),", concept ",a.jsx(s,{children:"[3](/dougs-design/#the-wall)"}),", concept ",a.jsx(s,{children:"[4](/dougs-design/#the-command-line)"})," and concept ",a.jsx(s,{children:"[5](/dougs-design/#the-front-page)"}),". The frames, each with this page inside it: concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[12](/dougs-design/#a-light-side-bar)"}),", concept ",a.jsx(s,{children:"[13](/dougs-design/#a-black-top-bar)"}),", concept ",a.jsx(s,{children:"[14](/dougs-design/#a-white-top-bar)"}),", concept ",a.jsx(s,{children:"[15](/dougs-design/#a-black-top-bar-and-an-opal-side-bar)"}),", concept ",a.jsx(s,{children:"[16](/dougs-design/#a-white-top-bar-and-an-opal-side-bar)"}),", concept ",a.jsx(s,{children:"[17](/dougs-design/#a-black-rail-and-a-blue-top)"}),", concept ",a.jsx(s,{children:"[18](/dougs-design/#an-opal-rail-and-a-white-top)"}),", concept ",a.jsx(s,{children:"[19](/dougs-design/#two-top-bars-black-then-sky)"}),", concept ",a.jsx(s,{children:"[20](/dougs-design/#two-top-bars-white-then-opal)"}),", concept ",a.jsx(s,{children:"[21](/dougs-design/#no-bars-white-cards)"})," and concept ",a.jsx(s,{children:"[22](/dougs-design/#no-bars-white-cards-on-black)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"I liked the shelf from the start: the book view, with the cover as the landmark that grounds a book. When I saw the black and sky I wanted it for the library itself, with its more bookish view, and each cataloguing book under it moving into colors of its own. I want to switch the view among 1, 2 and 3 on the page, because many ways to view the same thing will be important. Then the shelf of 1 under the black and sky of 19 was built, and it looked nothing like a design: the two header sky and dark was never one of them."]}),a.jsxs(t,{children:[a.jsx(j,{}),"Not decided. It is for ",a.jsx(s,{children:"[Dougs Library](/dougs-library/)"}),", which has the two bars, the shelf and the list until it is."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The reference manual](/dougs-design/#the-reference-manual)"}),a.jsxs(t,{children:[a.jsx(b,{}),"A chapter and the file it is about, seen together, and a way among the parts. Which one of these is it?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[6](/dougs-design/#side-by-side)"}),", concept ",a.jsx(s,{children:"[7](/dougs-design/#the-notebook)"})," and concept ",a.jsx(s,{children:"[8](/dougs-design/#the-workbench)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and documentation emphasized. Code doesn't look right unless in full view, so we might want a view where we show one write-up on the right side of the code and another that moves the code off to the right, but it's mostly there to give the visual sense that it can be expanded out again."]}),a.jsxs(t,{children:[a.jsx(j,{}),"The words beside the file as in 6, a part opened alone on the bench as in 8, and a toggle between the code forward and the words forward. It is for ",a.jsx(s,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"}),", which has the words beside the file and the toggle. A part opened alone on the bench is not built."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The design book](/dougs-design/#the-design-book)"}),a.jsxs(t,{children:[a.jsx(b,{}),"This book, where I look at the concepts and decide. Its page is the gallery I am reading now, light and airy, with a toggle between a library mode and a gallery mode. Which frame is it in, and in which tone?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[12](/dougs-design/#a-light-side-bar)"}),", concept ",a.jsx(s,{children:"[13](/dougs-design/#a-black-top-bar)"}),", concept ",a.jsx(s,{children:"[14](/dougs-design/#a-white-top-bar)"}),", concept ",a.jsx(s,{children:"[21](/dougs-design/#no-bars-white-cards)"})," and concept ",a.jsx(s,{children:"[22](/dougs-design/#no-bars-white-cards-on-black)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"Yeah, how about we keep design light and airy. But no, if the dark sidebar is the thing that makes the library memorable, then maybe we have a toggle between library and gallery mode, and gallery mode is more white themed with subtle variation, and library mode is more dark themed."]}),a.jsxs(t,{children:[a.jsx(j,{}),"Not decided. It is for ",a.jsx(s,{children:"[Dougs Design](/dougs-design/)"}),", which is drawn in the black side bar of 11 in library mode and the light side bar of 12 in gallery mode, with the cards of 21, until it is."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[My autobiography](/dougs-design/#my-autobiography)"}),a.jsxs(t,{children:[a.jsx(b,{}),"A story about me and what I create, read a chapter at a time. Which one of these is it?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[25](/dougs-design/#the-reading-view)"}),", concept ",a.jsx(s,{children:"[24](/dougs-design/#the-title-page)"}),", concept ",a.jsx(s,{children:"[5](/dougs-design/#the-front-page)"})," and concept ",a.jsx(s,{children:"[7](/dougs-design/#the-notebook)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so noticeable, but I really like it for bookish chapters like the autobiography."]}),a.jsxs(t,{children:[a.jsx(j,{}),"The reading view of 25: one typeset sheet, a chapter at a time, likely under a dark bar on top. It is a story about me and what I create, a narrative slice of the library that helps to navigate everything we have built, so that it is the most relevant place to begin from. Its chapters are annotated by date and time, and it is to have a view that sorts them for recency. It was also very hard to get to from another book, so every book now carries my name as a way to it. It is for ",a.jsx(s,{children:"[Dougs Story](/dougs-story/)"}),", which has the sheet, its type and its three papers. The view that sorts by recency is not built."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The Claude project catalogue](/dougs-design/#the-claude-project-catalogue)"}),a.jsxs(t,{children:[a.jsx(b,{}),"My Claude projects, across all of them. Which one of these is it?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[9](/dougs-design/#the-database)"}),", concept ",a.jsx(s,{children:"[10](/dougs-design/#the-map)"}),", concept ",a.jsx(s,{children:"[20](/dougs-design/#two-top-bars-white-then-opal)"})," and concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"9 under white and opal. The white and then opal of 20 looks really good, and it made me think I may not want quite so much of the dark. The opal is to be used carefully, as a kind of annotation, and a splash of the Claude theme says that this view is Claude's projects."]}),a.jsxs(t,{children:[a.jsx(j,{}),"The table of 9 under the white and opal bars of 20, with a splash of the Claude theme. No book of mine holds this yet."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A project's conversation catalogue](/dougs-design/#a-projects-conversation-catalogue)"}),a.jsxs(t,{children:[a.jsx(b,{}),"One for each project, and the one to think hard about. Which one of these is nearest to begin from?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[9](/dougs-design/#the-database)"}),", concept ",a.jsx(s,{children:"[2](/dougs-design/#ask-the-sources)"}),", concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"})," and concept ",a.jsx(s,{children:"[10](/dougs-design/#the-map)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"I think we want to start with a multi-view. We will have to write an importer, and we will likely have to add annotations. In Claude, the simplest way is just a downward list of conversations. Of what the first version needs: the views by recency and size, and each one's synopsis. Let's annotate like we will create a search and need some form of indexing, but not do it in version 1."]}),a.jsxs(t,{children:[a.jsx(j,{}),"A multi-view that begins as a plain list downward, with views by recency and by size and each conversation's synopsis. It is not drawn yet, and no book of mine holds it."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Claude conversation](/dougs-design/#a-claude-conversation)"}),a.jsxs(t,{children:[a.jsx(b,{}),"One conversation, in the form of the application it comes from. Is 23 it?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"Yes, 23, though we might vary the color scheme based on project, but start assuming the dark sidebar. That theme looks nice."]}),a.jsxs(t,{children:[a.jsx(j,{}),"23: the conversation in the black side bar, in the form of the application it comes from. The artifacts and the code blocks come from there. No book of mine holds this yet."]})]})]}),"TheDesignsIAmGoingWith1"),ae=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[What I Am Asked](/dougs-design/#what-i-am-asked)"}),a.jsxs(i,{children:[a.jsx(o,{children:"By letter"}),a.jsx(t,{children:"Each question here has a letter, and is about the numbered concepts linked under it. I answer by the letter, in my own words, and what I say is written under the question."})]}),a.jsxs(i,{children:[a.jsx(o,{children:"E · Where I am"}),a.jsxs(t,{children:[a.jsx(b,{}),"Where am I on the screen: a card at the foot of the bar as in 11, the end of the top bar as in 13, or only a face as in 17? And is the orange right for me, under my name and on my turns in 23?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[13](/dougs-design/#a-black-top-bar)"}),", concept ",a.jsx(s,{children:"[17](/dougs-design/#a-black-rail-and-a-blue-top)"})," and concept ",a.jsx(s,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"}),"."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"F · What stands at the right"}),a.jsxs(t,{children:[a.jsx(b,{}),"In 11 and 23 the right side holds what the page cites, what cites it and my notes. In 2 it holds what was made from the sources. Is that column always there or opened when wanted, and what belongs in it?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"})," and concept ",a.jsx(s,{children:"[2](/dougs-design/#ask-the-sources)"}),"."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"H · The library's catalogue"}),a.jsxs(t,{children:[a.jsx(b,{}),"For the library's own catalogue I chose the shelf of 1, and spoke of black and sky for the library itself, as in 19. Is the library's page the shelf of 1 under the two bars of 19, under the white and opal of 20, or the shelf as it stands in 1? And what do I come to this page to do?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"}),", concept ",a.jsx(s,{children:"[19](/dougs-design/#two-top-bars-black-then-sky)"})," and concept ",a.jsx(s,{children:"[20](/dougs-design/#two-top-bars-white-then-opal)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"I like the black and sky, though I think I want to be able to switch the view between 1 to 3 as part of the dynamism of the page. We will talk about how to implement a book, and you will find that you might want to do more structurally than you expect to support many different views. Many ways to view the same thing will be important."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"I · The reference manual"}),a.jsxs(t,{children:[a.jsx(b,{}),"A reference manual shows a chapter and the file it is about. Which is nearest: the words beside the file as in 6, the column of cells as in 7, the part on a bench with its properties as in 8? And what do I come to a manual to do: read it through, look up a part, copy its code?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[6](/dougs-design/#side-by-side)"}),", concept ",a.jsx(s,{children:"[7](/dougs-design/#the-notebook)"})," and concept ",a.jsx(s,{children:"[8](/dougs-design/#the-workbench)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and documentation emphasized. Code doesn't look right unless in full view, so we might want a view where we show one write-up on the right side of the code and another that moves the code off to the right, but it's mostly there to give the visual sense that it can be expanded out again. Something like that."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"J · The design book"}),a.jsxs(t,{children:[a.jsx(b,{}),"The design book is the book I am reading now: a dark rail with its index, the questions I am asked, the numbered concepts, a card that opens across the whole screen. Is this its design, and what would I change in it?"]}),a.jsxs(t,{children:[a.jsx(n,{}),"Yeah, how about we keep design light and airy. But no, if the dark sidebar is the thing that makes the library memorable, then maybe we have a toggle between library and gallery mode, and gallery mode is more white themed with subtle variation, and library mode is more dark themed."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"K · My autobiography"}),a.jsxs(t,{children:[a.jsx(b,{}),"My own account can be more of a bookish view. I pointed at the algebra of perspective in the original demo, with its dark and light theme and its simple reading view, and 25 is that view drawn again for my story. Is 25 it, and on which paper: the demo's book, its night, or the plain white? Or is the title page of 24 nearer, the front page of 5, the reading column of 7?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[25](/dougs-design/#the-reading-view)"}),", concept ",a.jsx(s,{children:"[24](/dougs-design/#the-title-page)"}),", concept ",a.jsx(s,{children:"[5](/dougs-design/#the-front-page)"})," and concept ",a.jsx(s,{children:"[7](/dougs-design/#the-notebook)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so noticeable, but I really like it for bookish chapters like the autobiography."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"L · The Claude project catalogue"}),a.jsxs(t,{children:[a.jsx(b,{}),"Conversations with Claude holds my Claude projects. I chose the table of 9 with a splash of the Claude theme. Does it sit under the white and opal bars of 20, beside the black side bar of 11, or as it stands in 9? And what is a project on this page: a row, a cover with its mark, a region as in 10?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[9](/dougs-design/#the-database)"}),", concept ",a.jsx(s,{children:"[20](/dougs-design/#two-top-bars-white-then-opal)"}),", concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"})," and concept ",a.jsx(s,{children:"[10](/dougs-design/#the-map)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"9 under white and opal."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"M · A project's conversation catalogue"}),a.jsxs(t,{children:[a.jsx(b,{}),"One for each project, and the one to think hard about. Which is nearest to begin from: the table of 9, the light and airy list of 2, the shelf of 1, the map of 10 by size? And what do I need there first: a search I configure, the views by recency and by size, my annotations on each conversation, each conversation's synopsis?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[9](/dougs-design/#the-database)"}),", concept ",a.jsx(s,{children:"[2](/dougs-design/#ask-the-sources)"}),", concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"})," and concept ",a.jsx(s,{children:"[10](/dougs-design/#the-map)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"I think we want to start with a multi-view. We will have to write an importer, and we will likely have to add annotations. So let's think about the types of ways we want to enable interaction with the data. In Claude, the simplest way is just a downward list of conversations. And we will probably want to do something with importing information from the synopsis of each conversation to help give a sense for what it is about. Maybe we will annotate conversations by topic. So let's not think too much about the conversation view yet, because we will have to build the importer. Of what the first version needs: the views by recency and size, and each one's synopsis. The search might make more sense in the front of Claude. Let's annotate like we will create a search and need some form of indexing, but not do it in version 1."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"N · A Claude conversation"}),a.jsxs(t,{children:[a.jsx(b,{}),"It will look a lot like a Claude conversation. Is 23 it: the black side bar holding the chapters, my turns in my color, what the chapter cites and my notes at the right? What is missing from it, and what should go?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"Yes, 23, though we might vary the color scheme based on project, but start assuming the dark sidebar. That theme looks nice."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"A · Where the frame goes"}),a.jsxs(t,{children:[a.jsx(b,{}),"Where does the library's frame go: a side bar as in 11, a top bar as in 13, both as in 15, a narrow rail as in 17, two top bars as in 19, or none as in 21? More than one may stay, if different kinds of page want different frames."]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[13](/dougs-design/#a-black-top-bar)"}),", concept ",a.jsx(s,{children:"[15](/dougs-design/#a-black-top-bar-and-an-opal-side-bar)"}),", concept ",a.jsx(s,{children:"[17](/dougs-design/#a-black-rail-and-a-blue-top)"}),", concept ",a.jsx(s,{children:"[19](/dougs-design/#two-top-bars-black-then-sky)"})," and concept ",a.jsx(s,{children:"[21](/dougs-design/#no-bars-white-cards)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"The side bar, yes: we like it for this design we are converging on, though let's explore other options too. The top bar too, and I'd like to explore a version that has them both. Might the top bar be a version of the cover and the side bar be a version of the table of contents? I do want to explore that more, because they might be good things to think about as the meaning of the cover and table of contents. For the narrow rail, we might like something collapsible in cases where screen real estate could be useful, so let's keep them all in mind. I also want to see designs that are quite different before converging on exactly this. Of two top bars and the white cards, it is hard to say. The white and then opal looks really good. A clean white theme with the dark logo makes me start to think that maybe I don't want quite so much of the dark. The opal is interesting too, and while we would need to use that effect carefully, I like it as a type of annotation."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"B · Darker or lighter"}),a.jsxs(t,{children:[a.jsx(b,{}),"Is the soft black the library's own, as in 11 and 13, with the lighter of each a thing I may switch to, as in 12 and 14? Or the other way round? Or does it depend on the page?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[12](/dougs-design/#a-light-side-bar)"}),", concept ",a.jsx(s,{children:"[13](/dougs-design/#a-black-top-bar)"})," and concept ",a.jsx(s,{children:"[14](/dougs-design/#a-white-top-bar)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"It depends on the page for sure. Maybe I like the black and sky for the library itself, with its more bookish view, and then moving into different color themes for each cataloguing book. We do truly want the different parts of the app, in some ways, to feel like different apps, and that can even mean the top bar has different colors and an evolving logo."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"C · The ways to read one subject"}),a.jsxs(t,{children:[a.jsx(b,{}),"A subject's page can be read many ways. Which of these become views I switch between on one subject, and which go: the shelf of covers in 1, the list of sources in 2, the wall in 3, the front page in 5, the table in 9, the map in 10?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"}),", concept ",a.jsx(s,{children:"[2](/dougs-design/#ask-the-sources)"}),", concept ",a.jsx(s,{children:"[3](/dougs-design/#the-wall)"}),", concept ",a.jsx(s,{children:"[5](/dougs-design/#the-front-page)"}),", concept ",a.jsx(s,{children:"[9](/dougs-design/#the-database)"})," and concept ",a.jsx(s,{children:"[10](/dougs-design/#the-map)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"The shelf, the table and the map are all good for different catalogues. We have the across Claude projects catalogue, and then we have the conversations per project catalogue, and we have the library catalogue. These should all look like different things, and I am inclined to choose between them. I really like the UI of the checked version in 2, the light and airy feel. But so much of that user interface is interactive, where one selects their books. I want those features, but we need to imagine things based on the set of features we want in each interaction. For the library's own catalogue I like the shelf, but can we consider implementing it in a way where we can dynamically change the view? Dynamic view change is proof that we are coding the semantics and annotating the semantic structure with what is necessary for the view. For the catalogue across projects I like 9 the best, and I might even like a splash of the Claude theme to delineate that this view is Claude projects. And I think we need to think hard about the project view. This is where we might even want to have some form of search that we configure. We will also want some color and icon-based theming to indicate what project we are on. I like the different views to comprehend the conversations, by recency, by conversation size, and maybe others, and perhaps we can annotate the conversations and this can help us build the view. A good use for the synopsis of a conversation might be surfacing the information that the project catalogue needs."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"D · What a cover's color says"}),a.jsxs(t,{children:[a.jsx(b,{}),"In 11 every book has a color of its own, and the color means nothing. In 1 the projects have colors and the covers nearly follow them. Should a cover's color say something, its project, its subject, who the conversation was with, or stay the book's own?"]}),a.jsxs(t,{children:["Concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"})," and concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),"."]}),a.jsxs(t,{children:[a.jsx(n,{}),"I will choose colors based on my synaesthetic preferences. I also think we want some form of cover art, and the cover art perhaps for the library can be the logo of the library. Perhaps the cover art is simply the logo of the book, and we just have a progressive logo."]})]})]}),"WhatIAmAsked2"),ee=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[Every Concept](/dougs-design/#every-concept)"}),a.jsx(wa,{}),a.jsxs(i,{children:[a.jsx(o,{children:"By number"}),a.jsx(t,{children:"Every concept here has a number, and keeps it. Each is shown as it looks at a desk and on a phone, and I answer by its number. What I say of one is written under it."})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The Library's Home](/dougs-design/#the-librarys-home)"}),a.jsx(t,{children:"The first page of the library: where everything I keep is found from. Each of these is a different layout, with different tools in different places and a different way of moving around."}),a.jsxs(i,{children:[a.jsx(p,{children:"1"}),a.jsx(o,{children:"[The Shelf](/dougs-design/#the-shelf)"}),a.jsx(t,{children:"Concept 1, after Apple Books."}),a.jsx(t,{children:"Every conversation gets a cover. The library opens on what I was last reading and on shelves by project, and a conversation is picked up by its face, the way a book is."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~001-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~001-phone.png"})]}),a.jsxs(t,{children:[a.jsx(n,{}),"I really like the book view, and aside from color, we will need some sort of visual landmark to ground the book, which justifies seeing the cover."]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+        `}};l(ra,"$Frame");let U=ra;const ka=g(F),Ua=g(U);g(ka,Pa)(Ua);g(ka,Ma)(W);var Qa=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Z=l((v,t,x,E)=>{for(var b=Va(t,x),f=v.length-1,k;f>=0;f--)(k=v[f])&&(b=k(t,x,b)||b);return b&&Qa(t,x,b),b},"__decorateClass$1");const la=class la extends L{constructor(){super(...arguments),this.specification=new P}defines(t){t.classes.add(this,"pa-question")}erase(t){t.classes.revert(this)}};l(la,"$Question");let Q=la;const na=class na extends L{constructor(){super(...arguments),this.specification=new $}defines(t){t.classes.add(this,"pa-answer")}erase(t){t.classes.revert(this)}};l(na,"$Answer");let V=na;const da=class da extends L{constructor(){super(...arguments),this.specification=new N}defines(t){t.classes.add(this,"pa-decision")}erase(t){t.classes.revert(this)}};l(da,"$Decision");let K=da;const pa=class pa extends S{$saidOfAParagraph(t){M(t instanceof O,"asked is said of a paragraph, and this is not one")}};l(pa,"QuestionSpecification");let P=pa;Z([D("asked is said of a paragraph")],P.prototype,"$saidOfAParagraph");const ca=class ca extends S{$saidOfAParagraph(t){M(t instanceof O,"said is said of a paragraph, and this is not one")}};l(ca,"AnswerSpecification");let $=ca;Z([D("said is said of a paragraph")],$.prototype,"$saidOfAParagraph");const ha=class ha extends S{$saidOfAParagraph(t){M(t instanceof O,"chosen is said of a paragraph, and this is not one")}};l(ha,"DecisionSpecification");let N=ha;Z([D("chosen is said of a paragraph")],N.prototype,"$saidOfAParagraph");const m=g(Q),h=g(V),j=g(K);var Ka=Object.defineProperty,Ya=Object.getOwnPropertyDescriptor,_=l((v,t,x,E)=>{for(var b=Ya(t,x),f=v.length-1,k;f>=0;f--)(k=v[f])&&(b=k(t,x,b)||b);return b&&Ka(t,x,b),b},"__decorateClass");const ma=class ma extends L{constructor(){super(...arguments),this.specification=new I,this.span=ya.span.attrs({className:"pa-number"})``}get number(){const t=Da.copy(this.text).trim();return t===""?NaN:Number(t)}note(){const t=this.span;return a.jsx(t,{children:this.number})}defines(t){t.classes.add(this,"pa-concept"),t.mention?.identifier===this.book?.$bookmark&&t.classes.add(this,"pa-open")}erase(t){t.classes.revert(this)}};l(ma,"$Concept");let z=ma;const ba=class ba extends L{constructor(){super(...arguments),this.specification=new q}defines(t){t.classes.add(this,"pa-photographs")}erase(t){t.classes.revert(this)}};l(ba,"$Photographs");let Y=ba;const ga=class ga extends L{constructor(){super(...arguments),this.specification=new q}defines(t){t.classes.add(this,"pa-source")}erase(t){t.classes.revert(this)}};l(ga,"$Source");let X=ga;const ua=class ua extends S{$saidOfASection(t){M(t instanceof Sa,"a concept is said of a section, and this is not one")}$givenItsNumber(t){M(Number.isInteger(t.annotations.expressed(z)?.number),"a concept is given its number, and this one was given something else")}};l(ua,"ConceptSpecification");let I=ua;_([D("a concept is said of a section")],I.prototype,"$saidOfASection");_([D("a concept is given its number")],I.prototype,"$givenItsNumber");const xa=class xa extends S{$saidOfAParagraphOfAConcept(t){M(t instanceof O&&t.parent instanceof La&&t.parent.is(z),"this is said of a paragraph of a concept, and here it is said of something else")}};l(xa,"OfAConceptSpecification");let q=xa;_([D("this is said of a paragraph of a concept")],q.prototype,"$saidOfAParagraphOfAConcept");const d=g(z),p=g(Y),c=g(X),Xa=l(()=>a.jsxs(y,{children:[a.jsx(Ta,{}),a.jsx(Na,{}),a.jsx(w,{children:"[Dougs Design](/dougs-design/)"}),a.jsx(za,{children:"[The Librarian](/dougs-story/)"}),a.jsx(Ia,{children:"[The Library](/dougs-library/)"})]}),"Cover"),Za=l(()=>a.jsxs(y,{children:[a.jsx(qa,{}),a.jsx(Oa,{}),a.jsx(Ra,{}),a.jsxs(w,{children:[a.jsx(fa,{}),"[Table of Contents](/dougs-design/#table-of-contents)"]}),a.jsxs(i,{children:[a.jsx(o,{children:"The design"}),a.jsx(e,{children:a.jsx(u,{children:"[The Designs I Am Going With](/dougs-design/#the-designs-i-am-going-with)"})}),a.jsx(e,{children:a.jsx(u,{children:"[What I Am Asked](/dougs-design/#what-i-am-asked)"})}),a.jsx(e,{children:a.jsx(u,{children:"[Every Concept](/dougs-design/#every-concept)"})}),a.jsx(e,{children:a.jsx(u,{children:"[The Library's Home](/dougs-design/#the-librarys-home)"})}),a.jsx(e,{children:a.jsx(u,{children:"[A Reference Manual](/dougs-design/#a-reference-manual)"})}),a.jsx(e,{children:a.jsx(u,{children:"[A Grouping of Projects](/dougs-design/#a-grouping-of-projects)"})}),a.jsx(e,{children:a.jsx(u,{children:"[Layout Ideas](/dougs-design/#layout-ideas)"})}),a.jsx(e,{children:a.jsx(u,{children:"[A Bookish Page](/dougs-design/#a-bookish-page)"})}),a.jsx(e,{children:a.jsx(u,{children:"[Sketched to Decide](/dougs-design/#sketched-to-decide)"})}),a.jsx(e,{children:a.jsx(u,{children:"[The frame on every screen](/dougs-design/#the-frame-on-every-screen)"})}),a.jsxs(e,{children:[a.jsx(fa,{}),a.jsx(R,{children:a.jsx(u,{children:"[Dougs Design](/dougs-design/)"})}),a.jsx(R,{children:a.jsx(u,{children:"[Synopsis](/dougs-design/#synopsis)"})}),a.jsx(R,{children:a.jsx(u,{children:"[Table of Contents](/dougs-design/#table-of-contents)"})})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"How this book is built"}),a.jsx(e,{children:a.jsx(u,{children:"[The Paragraphs](/dougs-design/#the-paragraphs)"})}),a.jsx(e,{children:a.jsx(u,{children:"[The Concept](/dougs-design/#the-concept)"})}),a.jsx(e,{children:a.jsx(u,{children:"[The Camera](/dougs-design/#the-camera)"})}),a.jsx(e,{children:a.jsx(u,{children:"[The Gallery](/dougs-design/#the-gallery)"})}),a.jsx(e,{children:a.jsx(u,{children:"[The Frame](/dougs-design/#the-frame)"})})]})]}),"Table"),_a=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Designs I Am Going With](/dougs-design/#the-designs-i-am-going-with)"}),a.jsxs(i,{children:[a.jsx(o,{children:"One for each kind of book"}),a.jsxs(e,{children:["This is where the design of each kind of book in my library is decided, this book among them. Under each kind is what I come to the book to do, the concepts that could be its design, what I have said, and the decision. A press on a concept opens its card across ",a.jsx(s,{children:"[the gallery](/dougs-design/#every-concept)"}),", with both of its photographs and its code. The two days of choosing are told in ",a.jsx(s,{children:"[Choosing a Design](/dougs-story/#choosing-a-design)"}),"; the fact check of the whole page, by number, was done on 6 October."]}),a.jsx(e,{children:"A design is a page from the concepts, inside the frame below. Where a book needs a view no concept draws, it is sketched in this book first, as a new concept with a number, and decided here before anything is built. The numbers are for speaking of the concepts; nothing in the code is labelled by a number, because similar concepts have to be shown together and a number says nothing of what a thing is."})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The frame on every screen](/dougs-design/#the-frame-on-every-screen)"}),a.jsxs(e,{children:[a.jsx(m,{}),"The frame is on every screen: the library's own bar, and under it the open book's cover and table of contents. Which arrangement is it, and in which tone?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[15](/dougs-design/#a-black-top-bar-and-an-opal-side-bar)"}),", concept ",a.jsx(s,{children:"[16](/dougs-design/#a-white-top-bar-and-an-opal-side-bar)"})," and concept ",a.jsx(s,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"}),"; sketched after the answer, concept ",a.jsx(s,{children:"[26](/dougs-design/#a-white-top-bar-and-a-black-side-bar)"})," and concept ",a.jsx(s,{children:"[27](/dougs-design/#a-black-top-bar-and-a-black-side-bar)"}),". The other frames: concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[12](/dougs-design/#a-light-side-bar)"}),", concept ",a.jsx(s,{children:"[13](/dougs-design/#a-black-top-bar)"}),", concept ",a.jsx(s,{children:"[14](/dougs-design/#a-white-top-bar)"}),", concept ",a.jsx(s,{children:"[17](/dougs-design/#a-black-rail-and-a-blue-top)"}),", concept ",a.jsx(s,{children:"[18](/dougs-design/#an-opal-rail-and-a-white-top)"}),", concept ",a.jsx(s,{children:"[19](/dougs-design/#two-top-bars-black-then-sky)"}),", concept ",a.jsx(s,{children:"[20](/dougs-design/#two-top-bars-white-then-opal)"}),", concept ",a.jsx(s,{children:"[21](/dougs-design/#no-bars-white-cards)"})," and concept ",a.jsx(s,{children:"[22](/dougs-design/#no-bars-white-cards-on-black)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"I think we always want a top bar on every screen and probably a sidebar on most, and then will often represent the cover and table of contents. I like 15 / 16 and 23, but 23 perhaps with a white bar. Since we are going to be color fluid, we have to support all of these easily, because we will be augmenting the color palette. Each book will have a color. I think you can make the dark sidebar the default, but we don't know how to integrate the top with the dark sidebar yet. Shown 26 and 27: we need this to be color fluid. So we can try black and black, and white and black, but make it configurable. We need the logo too, and we need that color configurable as well."]}),a.jsxs(e,{children:[a.jsx(j,{}),"A top bar on every screen and a side bar on most: the arrangements of 15 and 16, and of 23 with perhaps a white bar, all supported, with the dark side bar as the default. The colors of the top bar, the side bar and the logo are values a book sets, so 26 and 27 are two settings of them and not a choice between them. Each book has a color of its own."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The library's catalogue](/dougs-design/#the-librarys-catalogue)"}),a.jsxs(e,{children:[a.jsx(m,{}),"The library's own page, where everything I keep is found from. Which one of these is it?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"}),", concept ",a.jsx(s,{children:"[2](/dougs-design/#ask-the-sources)"}),", concept ",a.jsx(s,{children:"[3](/dougs-design/#the-wall)"}),", concept ",a.jsx(s,{children:"[4](/dougs-design/#the-command-line)"})," and concept ",a.jsx(s,{children:"[5](/dougs-design/#the-front-page)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"I liked the shelf from the start: the book view, with the cover as the landmark that grounds a book. I want to switch the view on the page, because many ways to view the same thing will be important. So 1, with support for things that feel more like 2 and 3. But we also have to figure out our top bar and side bar, and we will be changing the color scheme for different books. It is important that we standardize the look. Those are the high level designs. The shelf of 1 under the two bars of 19 was built once, and I never approved a two-bar design."]}),a.jsxs(e,{children:[a.jsx(j,{}),"The shelf of 1, inside the frame, with views that feel like 2 and 3 to come. It is for ",a.jsx(s,{children:"[Dougs Library](/dougs-library/)"}),", which has the two bars, the shelf and the list until it is rebuilt."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The reference manual](/dougs-design/#the-reference-manual)"}),a.jsxs(e,{children:[a.jsx(m,{}),"A chapter and the file it is about, seen together, and a way among the parts. Which one of these is it?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[6](/dougs-design/#side-by-side)"}),", concept ",a.jsx(s,{children:"[7](/dougs-design/#the-notebook)"})," and concept ",a.jsx(s,{children:"[8](/dougs-design/#the-workbench)"}),"; sketched after the answer, concept ",a.jsx(s,{children:"[28](/dougs-design/#the-code-in-front)"})," and concept ",a.jsx(s,{children:"[31](/dougs-design/#the-words-in-front)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"6 for most of it, but we need an interaction where the code is in front and the documentation is around it, and perhaps some ability to toggle to the documentation, with the ability to expand out the code again. When the code is showing, it needs to look like the thing being viewed. Code as a sidebar doesn't look right to anyone. So yes, this design, but we have to fix problems first. Shown 28: we need the code in the top to be different to the text you see when you collapse the code. We need someone to be able to write something substantive, because the reference manual is more than just a code reader. It is the thing you read to learn how to use the code."]}),a.jsxs(e,{children:[a.jsx(j,{}),"6, with two readings of one chapter as 28 and 31 sketch them: the code in front with its own line above it, and the words in front as a substantive write-up with the file folded to a strip. Not decided until I have seen them. It is for ",a.jsx(s,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"}),", which has the words beside the file and a toggle until then."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The design book](/dougs-design/#the-design-book)"}),a.jsxs(e,{children:[a.jsx(m,{}),"This book, where I look at the concepts and decide. Its page is the gallery I am reading now. Which frame is it in, and in which tone?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[12](/dougs-design/#a-light-side-bar)"}),", concept ",a.jsx(s,{children:"[13](/dougs-design/#a-black-top-bar)"}),", concept ",a.jsx(s,{children:"[17](/dougs-design/#a-black-rail-and-a-blue-top)"})," and concept ",a.jsx(s,{children:"[21](/dougs-design/#no-bars-white-cards)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"I think we liked the idea of the white theme as the default, and maybe white will be the color of the design book, but then the black sidebar and the blue with the black top are other options. We need to get these basic views."]}),a.jsxs(e,{children:[a.jsx(j,{}),"White is this book's color, in the frame; the black side bar and the blue with the black top are its other options. It is for ",a.jsx(s,{children:"[Dougs Design](/dougs-design/)"}),", which is drawn in the side bar of 11 and 12 with the cards of 21 until the frame is built."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[My autobiography](/dougs-design/#my-autobiography)"}),a.jsxs(e,{children:[a.jsx(m,{}),"A story about me and what I create, read a chapter at a time. Which one of these is it?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[25](/dougs-design/#the-reading-view)"}),", concept ",a.jsx(s,{children:"[24](/dougs-design/#the-title-page)"}),", concept ",a.jsx(s,{children:"[5](/dougs-design/#the-front-page)"})," and concept ",a.jsx(s,{children:"[7](/dougs-design/#the-notebook)"}),"; sketched after the answer, concept ",a.jsx(s,{children:"[29](/dougs-design/#the-reading-view-in-the-frame-with-the-chapters-at-the-side)"})," and concept ",a.jsx(s,{children:"[30](/dougs-design/#the-reading-view-in-the-frame-with-the-chapters-at-the-foot)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"Yeah, 25, but the idea was that it would be integrated, likely with a top bar, probably with different options. These things need to be unified into one style, and that is some of the work left to be done. I would need to see options. Is the table in the sidebar? Definitely a top bar. We need to find a solution to navigate the book. Shown 29 and 30 as cards: you need to show me designs, and I need to click on a design and see it full screen; I can barely see these."]}),a.jsxs(e,{children:[a.jsx(j,{}),"The reading view of 25, under the frame's top bar; how the book is navigated, with or without its table in the side bar, is sketched as options in this book and decided here. It is a story about me and what I create, a narrative slice of the library that helps to navigate everything we have built, so that it is the most relevant place to begin from. Its chapters are annotated by date and time, and it is to have a view that sorts them for recency. It is for ",a.jsx(s,{children:"[Dougs Story](/dougs-story/)"}),", which has the sheet, its type and its three papers."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The Claude project catalogue](/dougs-design/#the-claude-project-catalogue)"}),a.jsxs(e,{children:[a.jsx(m,{}),"My Claude projects, across all of them. Which one of these is it?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[9](/dougs-design/#the-database)"}),", concept ",a.jsx(s,{children:"[10](/dougs-design/#the-map)"}),", concept ",a.jsx(s,{children:"[20](/dougs-design/#two-top-bars-white-then-opal)"})," and concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"9 under white and opal. The white and then opal of 20 looks really good, and it made me think I may not want quite so much of the dark. The opal is to be used carefully, as a kind of annotation, and a splash of the Claude theme says that this view is Claude's projects."]}),a.jsxs(e,{children:[a.jsx(j,{}),"The table of 9, with a splash of the Claude theme, inside the frame. No book of mine holds this yet."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A project's conversation catalogue](/dougs-design/#a-projects-conversation-catalogue)"}),a.jsxs(e,{children:[a.jsx(m,{}),"One for each project, and the one to think hard about. Which one of these is nearest to begin from?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[9](/dougs-design/#the-database)"}),", concept ",a.jsx(s,{children:"[2](/dougs-design/#ask-the-sources)"}),", concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"})," and concept ",a.jsx(s,{children:"[10](/dougs-design/#the-map)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"I think we want to start with a multi-view. We will have to write an importer, and we will likely have to add annotations. In Claude, the simplest way is just a downward list of conversations. Of what the first version needs: the views by recency and size, and each one's synopsis. Let's annotate like we will create a search and need some form of indexing, but not do it in version 1."]}),a.jsxs(e,{children:[a.jsx(j,{}),"A multi-view that begins as a plain list downward, with views by recency and by size and each conversation's synopsis. It is not drawn yet, and no book of mine holds it."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Claude conversation](/dougs-design/#a-claude-conversation)"}),a.jsxs(e,{children:[a.jsx(m,{}),"One conversation, in the form of the application it comes from. Is 23 it?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"Yes, 23, though we might vary the color scheme based on project, but start assuming the dark sidebar. That theme looks nice."]}),a.jsxs(e,{children:[a.jsx(j,{}),"23: the conversation in the black side bar, in the form of the application it comes from. The artifacts and the code blocks come from there. No book of mine holds this yet."]})]})]}),"TheDesignsIAmGoingWith1"),ae=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[What I Am Asked](/dougs-design/#what-i-am-asked)"}),a.jsxs(i,{children:[a.jsx(o,{children:"By letter"}),a.jsx(e,{children:"Each question here has a letter, and is about the numbered concepts linked under it. I answer by the letter, in my own words, and what I say is written under the question."})]}),a.jsxs(i,{children:[a.jsx(o,{children:"E · Where I am"}),a.jsxs(e,{children:[a.jsx(m,{}),"Where am I on the screen: a card at the foot of the bar as in 11, the end of the top bar as in 13, or only a face as in 17? And is the orange right for me, under my name and on my turns in 23?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[13](/dougs-design/#a-black-top-bar)"}),", concept ",a.jsx(s,{children:"[17](/dougs-design/#a-black-rail-and-a-blue-top)"})," and concept ",a.jsx(s,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"}),"."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"F · What stands at the right"}),a.jsxs(e,{children:[a.jsx(m,{}),"In 11 and 23 the right side holds what the page cites, what cites it and my notes. In 2 it holds what was made from the sources. Is that column always there or opened when wanted, and what belongs in it?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"})," and concept ",a.jsx(s,{children:"[2](/dougs-design/#ask-the-sources)"}),"."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"H · The library's catalogue"}),a.jsxs(e,{children:[a.jsx(m,{}),"For the library's own catalogue I chose the shelf of 1, and spoke of black and sky for the library itself, as in 19. Is the library's page the shelf of 1 under the two bars of 19, under the white and opal of 20, or the shelf as it stands in 1? And what do I come to this page to do?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"}),", concept ",a.jsx(s,{children:"[19](/dougs-design/#two-top-bars-black-then-sky)"})," and concept ",a.jsx(s,{children:"[20](/dougs-design/#two-top-bars-white-then-opal)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"I like the black and sky, though I think I want to be able to switch the view between 1 to 3 as part of the dynamism of the page. We will talk about how to implement a book, and you will find that you might want to do more structurally than you expect to support many different views. Many ways to view the same thing will be important."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"I · The reference manual"}),a.jsxs(e,{children:[a.jsx(m,{}),"A reference manual shows a chapter and the file it is about. Which is nearest: the words beside the file as in 6, the column of cells as in 7, the part on a bench with its properties as in 8? And what do I come to a manual to do: read it through, look up a part, copy its code?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[6](/dougs-design/#side-by-side)"}),", concept ",a.jsx(s,{children:"[7](/dougs-design/#the-notebook)"})," and concept ",a.jsx(s,{children:"[8](/dougs-design/#the-workbench)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and documentation emphasized. Code doesn't look right unless in full view, so we might want a view where we show one write-up on the right side of the code and another that moves the code off to the right, but it's mostly there to give the visual sense that it can be expanded out again. Something like that."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"J · The design book"}),a.jsxs(e,{children:[a.jsx(m,{}),"The design book is the book I am reading now: a dark rail with its index, the questions I am asked, the numbered concepts, a card that opens across the whole screen. Is this its design, and what would I change in it?"]}),a.jsxs(e,{children:[a.jsx(h,{}),"Yeah, how about we keep design light and airy. But no, if the dark sidebar is the thing that makes the library memorable, then maybe we have a toggle between library and gallery mode, and gallery mode is more white themed with subtle variation, and library mode is more dark themed."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"K · My autobiography"}),a.jsxs(e,{children:[a.jsx(m,{}),"My own account can be more of a bookish view. I pointed at the algebra of perspective in the original demo, with its dark and light theme and its simple reading view, and 25 is that view drawn again for my story. Is 25 it, and on which paper: the demo's book, its night, or the plain white? Or is the title page of 24 nearer, the front page of 5, the reading column of 7?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[25](/dougs-design/#the-reading-view)"}),", concept ",a.jsx(s,{children:"[24](/dougs-design/#the-title-page)"}),", concept ",a.jsx(s,{children:"[5](/dougs-design/#the-front-page)"})," and concept ",a.jsx(s,{children:"[7](/dougs-design/#the-notebook)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so noticeable, but I really like it for bookish chapters like the autobiography."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"L · The Claude project catalogue"}),a.jsxs(e,{children:[a.jsx(m,{}),"Conversations with Claude holds my Claude projects. I chose the table of 9 with a splash of the Claude theme. Does it sit under the white and opal bars of 20, beside the black side bar of 11, or as it stands in 9? And what is a project on this page: a row, a cover with its mark, a region as in 10?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[9](/dougs-design/#the-database)"}),", concept ",a.jsx(s,{children:"[20](/dougs-design/#two-top-bars-white-then-opal)"}),", concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"})," and concept ",a.jsx(s,{children:"[10](/dougs-design/#the-map)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"9 under white and opal."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"M · A project's conversation catalogue"}),a.jsxs(e,{children:[a.jsx(m,{}),"One for each project, and the one to think hard about. Which is nearest to begin from: the table of 9, the light and airy list of 2, the shelf of 1, the map of 10 by size? And what do I need there first: a search I configure, the views by recency and by size, my annotations on each conversation, each conversation's synopsis?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[9](/dougs-design/#the-database)"}),", concept ",a.jsx(s,{children:"[2](/dougs-design/#ask-the-sources)"}),", concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"})," and concept ",a.jsx(s,{children:"[10](/dougs-design/#the-map)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"I think we want to start with a multi-view. We will have to write an importer, and we will likely have to add annotations. So let's think about the types of ways we want to enable interaction with the data. In Claude, the simplest way is just a downward list of conversations. And we will probably want to do something with importing information from the synopsis of each conversation to help give a sense for what it is about. Maybe we will annotate conversations by topic. So let's not think too much about the conversation view yet, because we will have to build the importer. Of what the first version needs: the views by recency and size, and each one's synopsis. The search might make more sense in the front of Claude. Let's annotate like we will create a search and need some form of indexing, but not do it in version 1."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"N · A Claude conversation"}),a.jsxs(e,{children:[a.jsx(m,{}),"It will look a lot like a Claude conversation. Is 23 it: the black side bar holding the chapters, my turns in my color, what the chapter cites and my notes at the right? What is missing from it, and what should go?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[23](/dougs-design/#a-conversation-in-the-black-side-bar)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"Yes, 23, though we might vary the color scheme based on project, but start assuming the dark sidebar. That theme looks nice."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"A · Where the frame goes"}),a.jsxs(e,{children:[a.jsx(m,{}),"Where does the library's frame go: a side bar as in 11, a top bar as in 13, both as in 15, a narrow rail as in 17, two top bars as in 19, or none as in 21? More than one may stay, if different kinds of page want different frames."]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[13](/dougs-design/#a-black-top-bar)"}),", concept ",a.jsx(s,{children:"[15](/dougs-design/#a-black-top-bar-and-an-opal-side-bar)"}),", concept ",a.jsx(s,{children:"[17](/dougs-design/#a-black-rail-and-a-blue-top)"}),", concept ",a.jsx(s,{children:"[19](/dougs-design/#two-top-bars-black-then-sky)"})," and concept ",a.jsx(s,{children:"[21](/dougs-design/#no-bars-white-cards)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"The side bar, yes: we like it for this design we are converging on, though let's explore other options too. The top bar too, and I'd like to explore a version that has them both. Might the top bar be a version of the cover and the side bar be a version of the table of contents? I do want to explore that more, because they might be good things to think about as the meaning of the cover and table of contents. For the narrow rail, we might like something collapsible in cases where screen real estate could be useful, so let's keep them all in mind. I also want to see designs that are quite different before converging on exactly this. Of two top bars and the white cards, it is hard to say. The white and then opal looks really good. A clean white theme with the dark logo makes me start to think that maybe I don't want quite so much of the dark. The opal is interesting too, and while we would need to use that effect carefully, I like it as a type of annotation."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"B · Darker or lighter"}),a.jsxs(e,{children:[a.jsx(m,{}),"Is the soft black the library's own, as in 11 and 13, with the lighter of each a thing I may switch to, as in 12 and 14? Or the other way round? Or does it depend on the page?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),", concept ",a.jsx(s,{children:"[12](/dougs-design/#a-light-side-bar)"}),", concept ",a.jsx(s,{children:"[13](/dougs-design/#a-black-top-bar)"})," and concept ",a.jsx(s,{children:"[14](/dougs-design/#a-white-top-bar)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"It depends on the page for sure. Maybe I like the black and sky for the library itself, with its more bookish view, and then moving into different color themes for each cataloguing book. We do truly want the different parts of the app, in some ways, to feel like different apps, and that can even mean the top bar has different colors and an evolving logo."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"C · The ways to read one subject"}),a.jsxs(e,{children:[a.jsx(m,{}),"A subject's page can be read many ways. Which of these become views I switch between on one subject, and which go: the shelf of covers in 1, the list of sources in 2, the wall in 3, the front page in 5, the table in 9, the map in 10?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"}),", concept ",a.jsx(s,{children:"[2](/dougs-design/#ask-the-sources)"}),", concept ",a.jsx(s,{children:"[3](/dougs-design/#the-wall)"}),", concept ",a.jsx(s,{children:"[5](/dougs-design/#the-front-page)"}),", concept ",a.jsx(s,{children:"[9](/dougs-design/#the-database)"})," and concept ",a.jsx(s,{children:"[10](/dougs-design/#the-map)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"The shelf, the table and the map are all good for different catalogues. We have the across Claude projects catalogue, and then we have the conversations per project catalogue, and we have the library catalogue. These should all look like different things, and I am inclined to choose between them. I really like the UI of the checked version in 2, the light and airy feel. But so much of that user interface is interactive, where one selects their books. I want those features, but we need to imagine things based on the set of features we want in each interaction. For the library's own catalogue I like the shelf, but can we consider implementing it in a way where we can dynamically change the view? Dynamic view change is proof that we are coding the semantics and annotating the semantic structure with what is necessary for the view. For the catalogue across projects I like 9 the best, and I might even like a splash of the Claude theme to delineate that this view is Claude projects. And I think we need to think hard about the project view. This is where we might even want to have some form of search that we configure. We will also want some color and icon-based theming to indicate what project we are on. I like the different views to comprehend the conversations, by recency, by conversation size, and maybe others, and perhaps we can annotate the conversations and this can help us build the view. A good use for the synopsis of a conversation might be surfacing the information that the project catalogue needs."]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"D · What a cover's color says"}),a.jsxs(e,{children:[a.jsx(m,{}),"In 11 every book has a color of its own, and the color means nothing. In 1 the projects have colors and the covers nearly follow them. Should a cover's color say something, its project, its subject, who the conversation was with, or stay the book's own?"]}),a.jsxs(e,{children:["Concept ",a.jsx(s,{children:"[1](/dougs-design/#the-shelf)"})," and concept ",a.jsx(s,{children:"[11](/dougs-design/#a-black-side-bar)"}),"."]}),a.jsxs(e,{children:[a.jsx(h,{}),"I will choose colors based on my synaesthetic preferences. I also think we want some form of cover art, and the cover art perhaps for the library can be the logo of the library. Perhaps the cover art is simply the logo of the book, and we just have a progressive logo."]})]})]}),"WhatIAmAsked2"),ee=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[Every Concept](/dougs-design/#every-concept)"}),a.jsx(wa,{}),a.jsxs(i,{children:[a.jsx(o,{children:"By number"}),a.jsx(e,{children:"Every concept here has a number, and keeps it. Each is shown as it looks at a desk and on a phone, and I answer by its number. What I say of one is written under it."})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[The Library's Home](/dougs-design/#the-librarys-home)"}),a.jsx(e,{children:"The first page of the library: where everything I keep is found from. Each of these is a different layout, with different tools in different places and a different way of moving around."}),a.jsxs(i,{children:[a.jsx(d,{children:"1"}),a.jsx(o,{children:"[The Shelf](/dougs-design/#the-shelf)"}),a.jsx(e,{children:"Concept 1, after Apple Books."}),a.jsx(e,{children:"Every conversation gets a cover. The library opens on what I was last reading and on shelves by project, and a conversation is picked up by its face, the way a book is."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~001-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~001-phone.png"})]}),a.jsxs(e,{children:[a.jsx(h,{}),"I really like the book view, and aside from color, we will need some sort of visual landmark to ground the book, which justifies seeing the cover."]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -336,7 +349,7 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
 </nav>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"2"}),a.jsx(o,{children:"[Ask the Sources](/dougs-design/#ask-the-sources)"}),a.jsx(t,{children:"Concept 2, after NotebookLM."}),a.jsx(t,{children:"The conversations are sources, and the library answers questions from them: every sentence of an answer carries the number of the passage it rests on, one press from the passage itself."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~002-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~002-phone.png"})]}),a.jsxs(t,{children:[a.jsx(n,{}),"The sources really look great. I really like it. I like the little view and the logo. But what would it mean to type in a message? We have to be realistic."]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"2"}),a.jsx(o,{children:"[Ask the Sources](/dougs-design/#ask-the-sources)"}),a.jsx(e,{children:"Concept 2, after NotebookLM."}),a.jsx(e,{children:"The conversations are sources, and the library answers questions from them: every sentence of an answer carries the number of the passage it rests on, one press from the passage itself."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~002-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~002-phone.png"})]}),a.jsxs(e,{children:[a.jsx(h,{}),"The sources really look great. I really like it. I like the little view and the logo. But what would it mean to type in a message? We have to be realistic."]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -492,7 +505,7 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
 </div>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"3"}),a.jsx(o,{children:"[The Wall](/dougs-design/#the-wall)"}),a.jsx(t,{children:"Concept 3, after Pinterest."}),a.jsx(t,{children:"The library browsed by what catches the eye: passages, notes, book covers and conversations pinned to one wall in a masonry of different sizes, each saved to boards, so finding is wandering and keeping is one button."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~003-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~003-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"3"}),a.jsx(o,{children:"[The Wall](/dougs-design/#the-wall)"}),a.jsx(e,{children:"Concept 3, after Pinterest."}),a.jsx(e,{children:"The library browsed by what catches the eye: passages, notes, book covers and conversations pinned to one wall in a masonry of different sizes, each saved to boards, so finding is wandering and keeping is one button."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~003-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~003-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -618,7 +631,7 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
 <nav class="tabbar"><span class="on">⌂</span><span>⌕</span><span>＋</span><span>☰</span><span class="me">L</span></nav>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"4"}),a.jsx(o,{children:"[The Command Line](/dougs-design/#the-command-line)"}),a.jsx(t,{children:"Concept 4, after keyboard-first tools: command palettes, launchers and the leader keys of editors."}),a.jsx(t,{children:"The library opens on one line: type to go anywhere or do anything, the last places are a number away and every book, grouping and list is two keystrokes away — and the same line waits at the top of every page, which is what unites them."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~004-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~004-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"4"}),a.jsx(o,{children:"[The Command Line](/dougs-design/#the-command-line)"}),a.jsx(e,{children:"Concept 4, after keyboard-first tools: command palettes, launchers and the leader keys of editors."}),a.jsx(e,{children:"The library opens on one line: type to go anywhere or do anything, the last places are a number away and every book, grouping and list is two keystrokes away — and the same line waits at the top of every page, which is what unites them."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~004-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~004-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -746,7 +759,7 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
 </div>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"5"}),a.jsx(o,{children:"[The Front Page](/dougs-design/#the-front-page)"}),a.jsx(t,{children:"Concept 5, after a newspaper's front page and the long-read site's home."}),a.jsx(t,{children:"The library opens like a front page: the conversation most recently kept leads with a standfirst, what was kept lately runs down a column by day, notes and citations take the next, and the books and groupings stand in the masthead's index — movement is by reading and by the sections across the top."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~005-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~005-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"5"}),a.jsx(o,{children:"[The Front Page](/dougs-design/#the-front-page)"}),a.jsx(e,{children:"Concept 5, after a newspaper's front page and the long-read site's home."}),a.jsx(e,{children:"The library opens like a front page: the conversation most recently kept leads with a standfirst, what was kept lately runs down a column by day, notes and citations take the next, and the books and groupings stand in the masthead's index — movement is by reading and by the sections across the top."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~005-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~005-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -871,7 +884,7 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
 </div>
 </body>
 </html>
-`})]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Reference Manual](/dougs-design/#a-reference-manual)"}),a.jsx(t,{children:"A reference manual holds the parts a library is built with, each beside the chapter that says what it is. These are different ways to show a chapter and its code together, and to move among the parts."}),a.jsxs(i,{children:[a.jsx(p,{children:"6"}),a.jsx(o,{children:"[Side by Side](/dougs-design/#side-by-side)"}),a.jsx(t,{children:"Concept 6, after API documentation, as Stripe sets it."}),a.jsx(t,{children:"A chapter and its file are always seen together: the words on the left, the file they are about held still on the right, and every name in the words lights the line it means."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~006-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~006-phone.png"})]}),a.jsxs(t,{children:[a.jsx(n,{}),"6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and documentation emphasized. Code doesn't look right unless in full view."]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Reference Manual](/dougs-design/#a-reference-manual)"}),a.jsx(e,{children:"A reference manual holds the parts a library is built with, each beside the chapter that says what it is. These are different ways to show a chapter and its code together, and to move among the parts."}),a.jsxs(i,{children:[a.jsx(d,{children:"6"}),a.jsx(o,{children:"[Side by Side](/dougs-design/#side-by-side)"}),a.jsx(e,{children:"Concept 6, after API documentation, as Stripe sets it."}),a.jsx(e,{children:"A chapter and its file are always seen together: the words on the left, the file they are about held still on the right, and every name in the words lights the line it means."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~006-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~006-phone.png"})]}),a.jsxs(e,{children:[a.jsx(h,{}),"6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and documentation emphasized. Code doesn't look right unless in full view."]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -988,7 +1001,7 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
 </aside>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"7"}),a.jsx(o,{children:"[The Notebook](/dougs-design/#the-notebook)"}),a.jsx(t,{children:"Concept 7, after a computational notebook, as Observable sets it."}),a.jsx(t,{children:"A chapter is a column of cells: what I say, the file itself, and the part shown working, one under the other, so the manual proves each part as it explains it."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~007-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~007-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"7"}),a.jsx(o,{children:"[The Notebook](/dougs-design/#the-notebook)"}),a.jsx(e,{children:"Concept 7, after a computational notebook, as Observable sets it."}),a.jsx(e,{children:"A chapter is a column of cells: what I say, the file itself, and the part shown working, one under the other, so the manual proves each part as it explains it."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~007-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~007-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1119,7 +1132,7 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
 </div>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"8"}),a.jsx(o,{children:"[The Workbench](/dougs-design/#the-workbench)"}),a.jsx(t,{children:"Concept 8, after a component workshop, as Storybook sets it."}),a.jsx(t,{children:"A part is met by using it: the part itself drawn alone on a bench, its properties beside it to change, and the line a chapter would write rewriting itself as they change."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~008-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~008-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"8"}),a.jsx(o,{children:"[The Workbench](/dougs-design/#the-workbench)"}),a.jsx(e,{children:"Concept 8, after a component workshop, as Storybook sets it."}),a.jsx(e,{children:"A part is met by using it: the part itself drawn alone on a bench, its properties beside it to change, and the line a chapter would write rewriting itself as they change."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~008-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~008-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1326,7 +1339,7 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
 <\/script>
 </body>
 </html>
-`})]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Grouping of Projects](/dougs-design/#a-grouping-of-projects)"}),a.jsx(t,{children:"A page for one grouping of my conversations, such as everything kept with Claude, with its projects and the conversations in each. These are different ways to see and move through many of them."}),a.jsxs(i,{children:[a.jsx(p,{children:"9"}),a.jsx(o,{children:"[The Database](/dougs-design/#the-database)"}),a.jsx(t,{children:"Concept 9, after Notion."}),a.jsx(t,{children:"Every conversation is a row with properties — project, AI, kept, chapters, citations — so one set of records is seen as a table, a board or a gallery, and opening a row peeks its page beside the list."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~009-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~009-phone.png"})]}),a.jsxs(t,{children:[a.jsx(n,{}),"For the catalogue across projects I like 9 the best, and I might even like a splash of the Claude theme to delineate that this view is Claude projects."]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Grouping of Projects](/dougs-design/#a-grouping-of-projects)"}),a.jsx(e,{children:"A page for one grouping of my conversations, such as everything kept with Claude, with its projects and the conversations in each. These are different ways to see and move through many of them."}),a.jsxs(i,{children:[a.jsx(d,{children:"9"}),a.jsx(o,{children:"[The Database](/dougs-design/#the-database)"}),a.jsx(e,{children:"Concept 9, after Notion."}),a.jsx(e,{children:"Every conversation is a row with properties — project, AI, kept, chapters, citations — so one set of records is seen as a table, a board or a gallery, and opening a row peeks its page beside the list."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~009-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~009-phone.png"})]}),a.jsxs(e,{children:[a.jsx(h,{}),"For the catalogue across projects I like 9 the best, and I might even like a splash of the Claude theme to delineate that this view is Claude projects."]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1486,7 +1499,7 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
 </div>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"10"}),a.jsx(o,{children:"[The Map](/dougs-design/#the-map)"}),a.jsx(t,{children:"Concept 10, after market maps and disk-usage maps — the squarified treemap."}),a.jsx(t,{children:"The grouping is a map of where the thinking went: each project a region as large as the conversations it holds, each conversation a tile as large as its chapters and as dark as it is recent, so the whole of it is seen at once and any tile is one look from its name."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~010-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~010-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"10"}),a.jsx(o,{children:"[The Map](/dougs-design/#the-map)"}),a.jsx(e,{children:"Concept 10, after market maps and disk-usage maps — the squarified treemap."}),a.jsx(e,{children:"The grouping is a map of where the thinking went: each project a region as large as the conversations it holds, each conversation a tile as large as its chapters and as dark as it is recent, so the whole of it is seen at once and any tile is one look from its name."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~010-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~010-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1591,7 +1604,7 @@ var ja=Object.defineProperty;var l=(v,e)=>ja(v,"name",{value:e,configurable:!0})
 </div>
 </body>
 </html>
-`})]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[Layout Ideas](/dougs-design/#layout-ideas)"}),a.jsx(t,{children:"These are ideas, not choices yet. Each is the same pages inside a different frame: a side bar, a top bar, both, a narrow rail, two bars, or none, each once darker and once lighter, in soft black, a blue between it and white, and white. What does not change is taken from the homes I liked: covers in many colors, light accents, the library's mark, a way to me from every screen, and a book that reports to its subject. The last shows a conversation inside the black side bar. I will choose which of them stay."}),a.jsxs(i,{children:[a.jsx(p,{children:"11"}),a.jsx(o,{children:"[A Black Side Bar](/dougs-design/#a-black-side-bar)"}),a.jsx(t,{children:"Concept 11, an idea, after the homes I liked, in the coming-soon page's soft black."}),a.jsx(t,{children:"One bar, at the left, in soft black: the library's mark, its subjects, what the open one holds, and me at its foot. The page beside it is white. Press a cover, a subject, or me; press Shelf and List to see the same books two ways."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~011-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~011-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[Layout Ideas](/dougs-design/#layout-ideas)"}),a.jsx(e,{children:"These are ideas, not choices yet. Each is the same pages inside a different frame: a side bar, a top bar, both, a narrow rail, two bars, or none, each once darker and once lighter, in soft black, a blue between it and white, and white. What does not change is taken from the homes I liked: covers in many colors, light accents, the library's mark, a way to me from every screen, and a book that reports to its subject. The last shows a conversation inside the black side bar. I will choose which of them stay."}),a.jsxs(i,{children:[a.jsx(d,{children:"11"}),a.jsx(o,{children:"[A Black Side Bar](/dougs-design/#a-black-side-bar)"}),a.jsx(e,{children:"Concept 11, an idea, after the homes I liked, in the coming-soon page's soft black."}),a.jsx(e,{children:"One bar, at the left, in soft black: the library's mark, its subjects, what the open one holds, and me at its foot. The page beside it is white. Press a cover, a subject, or me; press Shelf and List to see the same books two ways."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~011-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~011-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="side" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -2133,7 +2146,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"12"}),a.jsx(o,{children:"[A Light Side Bar](/dougs-design/#a-light-side-bar)"}),a.jsx(t,{children:"Concept 12, an idea, after the homes I liked, the lighter way."}),a.jsx(t,{children:"The same side bar, lighter: a pale bar with the mark in black, as the shelf's home had it. The color is all in the covers and the light accents."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~012-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~012-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"12"}),a.jsx(o,{children:"[A Light Side Bar](/dougs-design/#a-light-side-bar)"}),a.jsx(e,{children:"Concept 12, an idea, after the homes I liked, the lighter way."}),a.jsx(e,{children:"The same side bar, lighter: a pale bar with the mark in black, as the shelf's home had it. The color is all in the covers and the light accents."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~012-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~012-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="side" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -2675,7 +2688,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"13"}),a.jsx(o,{children:"[A Black Top Bar](/dougs-design/#a-black-top-bar)"}),a.jsx(t,{children:"Concept 13, an idea, after the homes I liked, in the coming-soon page's soft black."}),a.jsx(t,{children:"One bar, across the top, in soft black: the mark, the subjects as its tabs, and me at its right end. No side bar; what a subject holds is a row under its name, and the whole width is for its books."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~013-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~013-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"13"}),a.jsx(o,{children:"[A Black Top Bar](/dougs-design/#a-black-top-bar)"}),a.jsx(e,{children:"Concept 13, an idea, after the homes I liked, in the coming-soon page's soft black."}),a.jsx(e,{children:"One bar, across the top, in soft black: the mark, the subjects as its tabs, and me at its right end. No side bar; what a subject holds is a row under its name, and the whole width is for its books."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~013-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~013-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="header" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -3217,7 +3230,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"14"}),a.jsx(o,{children:"[A White Top Bar](/dougs-design/#a-white-top-bar)"}),a.jsx(t,{children:"Concept 14, an idea, after the homes I liked, the lighter way."}),a.jsx(t,{children:"The same top bar, lighter: white, with the mark in black and the open subject underlined in its own color."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~014-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~014-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"14"}),a.jsx(o,{children:"[A White Top Bar](/dougs-design/#a-white-top-bar)"}),a.jsx(e,{children:"Concept 14, an idea, after the homes I liked, the lighter way."}),a.jsx(e,{children:"The same top bar, lighter: white, with the mark in black and the open subject underlined in its own color."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~014-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~014-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="header" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -3759,7 +3772,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"15"}),a.jsx(o,{children:"[A Black Top Bar and an Opal Side Bar](/dougs-design/#a-black-top-bar-and-an-opal-side-bar)"}),a.jsx(t,{children:"Concept 15, an idea, after the coming-soon page: its soft black, and its opal between that and white."}),a.jsx(t,{children:"Both. The top bar is the library's, in soft black; the side bar is the open subject's, in the pale opal, which is the step between the black and the white page."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~015-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~015-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"15"}),a.jsx(o,{children:"[A Black Top Bar and an Opal Side Bar](/dougs-design/#a-black-top-bar-and-an-opal-side-bar)"}),a.jsx(e,{children:"Concept 15, an idea, after the coming-soon page: its soft black, and its opal between that and white."}),a.jsx(e,{children:"Both. The top bar is the library's, in soft black; the side bar is the open subject's, in the pale opal, which is the step between the black and the white page."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~015-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~015-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="both" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -4301,7 +4314,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"16"}),a.jsx(o,{children:"[A White Top Bar and an Opal Side Bar](/dougs-design/#a-white-top-bar-and-an-opal-side-bar)"}),a.jsx(t,{children:"Concept 16, an idea, after the homes I liked, the lighter way."}),a.jsx(t,{children:"Both, lighter: the top bar white, the side bar still the pale opal. The lightest frame that still has two bars."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~016-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~016-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"16"}),a.jsx(o,{children:"[A White Top Bar and an Opal Side Bar](/dougs-design/#a-white-top-bar-and-an-opal-side-bar)"}),a.jsx(e,{children:"Concept 16, an idea, after the homes I liked, the lighter way."}),a.jsx(e,{children:"Both, lighter: the top bar white, the side bar still the pale opal. The lightest frame that still has two bars."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~016-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~016-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="both" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -4843,7 +4856,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"17"}),a.jsx(o,{children:"[A Black Rail and a Blue Top](/dougs-design/#a-black-rail-and-a-blue-top)"}),a.jsx(t,{children:"Concept 17, an idea, after the coming-soon page: its soft black, and the blue it suggests."}),a.jsx(t,{children:"A narrow soft-black rail holds only the subjects as marks and me as a face. The open subject's name stands on a band of the blue, the step between the black and the white, and what it holds is a row beneath."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~017-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~017-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"17"}),a.jsx(o,{children:"[A Black Rail and a Blue Top](/dougs-design/#a-black-rail-and-a-blue-top)"}),a.jsx(e,{children:"Concept 17, an idea, after the coming-soon page: its soft black, and the blue it suggests."}),a.jsx(e,{children:"A narrow soft-black rail holds only the subjects as marks and me as a face. The open subject's name stands on a band of the blue, the step between the black and the white, and what it holds is a row beneath."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~017-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~017-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="rail" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -5385,7 +5398,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"18"}),a.jsx(o,{children:"[An Opal Rail and a White Top](/dougs-design/#an-opal-rail-and-a-white-top)"}),a.jsx(t,{children:"Concept 18, an idea, after the homes I liked, the lighter way."}),a.jsx(t,{children:"The same narrow rail, lighter: pale opal, the subjects' marks carrying the color, and the subject's name on white."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~018-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~018-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"18"}),a.jsx(o,{children:"[An Opal Rail and a White Top](/dougs-design/#an-opal-rail-and-a-white-top)"}),a.jsx(e,{children:"Concept 18, an idea, after the homes I liked, the lighter way."}),a.jsx(e,{children:"The same narrow rail, lighter: pale opal, the subjects' marks carrying the color, and the subject's name on white."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~018-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~018-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="rail" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -5927,7 +5940,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"19"}),a.jsx(o,{children:"[Two Top Bars: Black, then Sky](/dougs-design/#two-top-bars-black-then-sky)"}),a.jsx(t,{children:"Concept 19, an idea, after the coming-soon page: its soft black, and a lighter step of the blue."}),a.jsx(t,{children:"Two bars across the top. The black one is the library's and never changes; the lighter blue one under it is the open subject's own, with its name and its tools, so a subject reads as a place of its own inside the library."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~019-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~019-phone.png"})]}),a.jsxs(t,{children:[a.jsx(n,{}),"Maybe I like the black and sky for the library itself, with its more bookish view. I like the black and sky, though I think I want to be able to switch the view as part of the dynamism of the page."]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"19"}),a.jsx(o,{children:"[Two Top Bars: Black, then Sky](/dougs-design/#two-top-bars-black-then-sky)"}),a.jsx(e,{children:"Concept 19, an idea, after the coming-soon page: its soft black, and a lighter step of the blue."}),a.jsx(e,{children:"Two bars across the top. The black one is the library's and never changes; the lighter blue one under it is the open subject's own, with its name and its tools, so a subject reads as a place of its own inside the library."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~019-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~019-phone.png"})]}),a.jsxs(e,{children:[a.jsx(h,{}),"Maybe I like the black and sky for the library itself, with its more bookish view. I like the black and sky, though I think I want to be able to switch the view as part of the dynamism of the page."]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="two" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -6469,7 +6482,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"20"}),a.jsx(o,{children:"[Two Top Bars: White, then Opal](/dougs-design/#two-top-bars-white-then-opal)"}),a.jsx(t,{children:"Concept 20, an idea, after the homes I liked, the lighter way."}),a.jsx(t,{children:"The same two bars, lighter: the library's in white, the subject's in the pale opal."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~020-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~020-phone.png"})]}),a.jsxs(t,{children:[a.jsx(n,{}),"The white and then opal looks really good. A clean white theme with the dark logo makes me start to think that maybe I don't want quite so much of the dark. The opal is interesting too, and while we would need to use that effect carefully, I like it as a type of annotation."]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"20"}),a.jsx(o,{children:"[Two Top Bars: White, then Opal](/dougs-design/#two-top-bars-white-then-opal)"}),a.jsx(e,{children:"Concept 20, an idea, after the homes I liked, the lighter way."}),a.jsx(e,{children:"The same two bars, lighter: the library's in white, the subject's in the pale opal."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~020-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~020-phone.png"})]}),a.jsxs(e,{children:[a.jsx(h,{}),"The white and then opal looks really good. A clean white theme with the dark logo makes me start to think that maybe I don't want quite so much of the dark. The opal is interesting too, and while we would need to use that effect carefully, I like it as a type of annotation."]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="two" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -7011,7 +7024,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"21"}),a.jsx(o,{children:"[No Bars: White Cards](/dougs-design/#no-bars-white-cards)"}),a.jsx(t,{children:"Concept 21, an idea, after the home that asks its sources."}),a.jsx(t,{children:"No bar at all, as the home that asks its sources had it: the mark and the subjects sit on a pale ground, and what the subject holds, its books and what cites them are three white cards."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~021-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~021-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"21"}),a.jsx(o,{children:"[No Bars: White Cards](/dougs-design/#no-bars-white-cards)"}),a.jsx(e,{children:"Concept 21, an idea, after the home that asks its sources."}),a.jsx(e,{children:"No bar at all, as the home that asks its sources had it: the mark and the subjects sit on a pale ground, and what the subject holds, its books and what cites them are three white cards."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~021-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~021-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="cards" data-tone="light" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -7553,7 +7566,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"22"}),a.jsx(o,{children:"[No Bars: White Cards on Black](/dougs-design/#no-bars-white-cards-on-black)"}),a.jsx(t,{children:"Concept 22, an idea, after the home that asks its sources, on the coming-soon page's ground."}),a.jsx(t,{children:"The same three cards, darker: on the soft black, so the black is the ground the whole library stands on and the pages are white."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~022-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~022-phone.png"})]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"22"}),a.jsx(o,{children:"[No Bars: White Cards on Black](/dougs-design/#no-bars-white-cards-on-black)"}),a.jsx(e,{children:"Concept 22, an idea, after the home that asks its sources, on the coming-soon page's ground."}),a.jsx(e,{children:"The same three cards, darker: on the soft black, so the black is the ground the whole library stands on and the pages are white."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~022-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~022-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="cards" data-tone="dark" data-at="subject" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -8095,7 +8108,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"23"}),a.jsx(o,{children:"[A Conversation, in the Black Side Bar](/dougs-design/#a-conversation-in-the-black-side-bar)"}),a.jsx(t,{children:"Concept 23, an idea, after the application the conversations come from."}),a.jsx(t,{children:"The black side bar with a conversation open: its chapters down the bar as that application lists its chats, the turns in that application's own form, my turns in my color, and my notes and what cites the chapter beside it."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~023-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~023-phone.png"})]}),a.jsxs(t,{children:[a.jsx(n,{}),"Yes, 23, though we might vary the color scheme based on project, but start assuming the dark sidebar. That theme looks nice."]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"23"}),a.jsx(o,{children:"[A Conversation, in the Black Side Bar](/dougs-design/#a-conversation-in-the-black-side-bar)"}),a.jsx(e,{children:"Concept 23, an idea, after the application the conversations come from."}),a.jsx(e,{children:"The black side bar with a conversation open: its chapters down the bar as that application lists its chats, the turns in that application's own form, my turns in my color, and my notes and what cites the chapter beside it."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~023-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~023-phone.png"})]}),a.jsxs(e,{children:[a.jsx(h,{}),"Yes, 23, though we might vary the color scheme based on project, but start assuming the dark sidebar. That theme looks nice."]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-layout="side" data-tone="dark" data-at="chat" data-view="shelf">
 <head>
 <meta charset="utf-8">
@@ -8637,7 +8650,7 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Bookish Page](/dougs-design/#a-bookish-page)"}),a.jsx(t,{children:"The first home drawn for this library, which I called beautiful: a title set as the coming-soon page set its own, a byline, a synopsis, and the catalogue as a contents page. It is kept here as the bookish way a book can open, for my own account."}),a.jsxs(i,{children:[a.jsx(p,{children:"24"}),a.jsx(o,{children:"[The Title Page](/dougs-design/#the-title-page)"}),a.jsx(t,{children:"Concept 24, an idea, after the coming-soon page."}),a.jsx(t,{children:"A book opens like a book: its title set as the coming-soon page set its own, who it is by and what it is filed under beneath, its synopsis, and its contents as a contents page. Nothing else is on the page."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~024-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~024-phone.png"})]}),a.jsxs(t,{children:[a.jsx(n,{}),"Beautiful. We will be repurposing the design you put on the library home screen, but not at this very moment."]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[A Bookish Page](/dougs-design/#a-bookish-page)"}),a.jsx(e,{children:"The first home drawn for this library, which I called beautiful: a title set as the coming-soon page set its own, a byline, a synopsis, and the catalogue as a contents page. It is kept here as the bookish way a book can open, for my own account."}),a.jsxs(i,{children:[a.jsx(d,{children:"24"}),a.jsx(o,{children:"[The Title Page](/dougs-design/#the-title-page)"}),a.jsx(e,{children:"Concept 24, an idea, after the coming-soon page."}),a.jsx(e,{children:"A book opens like a book: its title set as the coming-soon page set its own, who it is by and what it is filed under beneath, its synopsis, and its contents as a contents page. Nothing else is on the page."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~024-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~024-phone.png"})]}),a.jsxs(e,{children:[a.jsx(h,{}),"Beautiful. We will be repurposing the design you put on the library home screen, but not at this very moment."]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -8788,7 +8801,7 @@ return lorem.consectetur();</pre>
 </div>
 </body>
 </html>
-`})]})]}),a.jsxs(i,{children:[a.jsx(p,{children:"25"}),a.jsx(o,{children:"[The Reading View](/dougs-design/#the-reading-view)"}),a.jsx(t,{children:"Concept 25, an idea, after the algebra of perspective, in the original demo."}),a.jsx(t,{children:"A book is read a chapter at a time on one typeset sheet, as the original demo set the algebra of perspective: who wrote it in a running head, the title centred, a drop initial, justified serif prose, the chapters either side at the foot, on the demo's two papers, its warm book and its night, and a third in plain white."}),a.jsxs(t,{children:[a.jsx(c,{}),a.jsx(r,{children:"/.design/3-every-concept~025-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~025-phone.png"})]}),a.jsxs(t,{children:[a.jsx(n,{}),"I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so noticeable, but I really like it for bookish chapters like the autobiography."]}),a.jsxs(t,{children:[a.jsx(h,{}),a.jsx(d,{children:`<!doctype html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"25"}),a.jsx(o,{children:"[The Reading View](/dougs-design/#the-reading-view)"}),a.jsx(e,{children:"Concept 25, an idea, after the algebra of perspective, in the original demo."}),a.jsx(e,{children:"A book is read a chapter at a time on one typeset sheet, as the original demo set the algebra of perspective: who wrote it in a running head, the title centred, a drop initial, justified serif prose, the chapters either side at the foot, on the demo's two papers, its warm book and its night, and a third in plain white."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~025-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~025-phone.png"})]}),a.jsxs(e,{children:[a.jsx(h,{}),"I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so noticeable, but I really like it for bookish chapters like the autobiography."]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
 <html lang="en" data-theme="book">
 <head>
 <meta charset="utf-8">
@@ -9049,7 +9062,1943 @@ return lorem.consectetur();</pre>
 <\/script>
 </body>
 </html>
-`})]})]})]})]}),"EveryConcept3"),te=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Paragraphs](/dougs-design/#the-paragraphs)"}),a.jsxs(i,{children:[a.jsx(o,{children:"What a paragraph may be"}),a.jsx(t,{children:"Most of this book is ordinary paragraphs. Three kinds are not. One is a question I am asked. One is what I said, in my own words. One is a design I chose."}),a.jsxs(t,{children:["A paragraph says which of these it is. So a page can show a question and its answer differently, and everything I said can be found. The questions and my answers are in ",a.jsx(s,{children:"[What I Am Asked](/dougs-design/#what-i-am-asked)"}),", and the designs I chose are in ",a.jsx(s,{children:"[The Designs I Am Going With](/dougs-design/#the-designs-i-am-going-with)"}),"."]})]}),a.jsx(A,{identifier:"code",type:".tsx",children:`import { $, $check } from '@dna-platform/chemistry';
+`})]})]})]}),a.jsxs(i,{children:[a.jsx(o,{children:"[Sketched to Decide](/dougs-design/#sketched-to-decide)"}),a.jsx(e,{children:"These were sketched on 6 October, after the fact check of the designs by number, for the things the concepts above do not draw and I said I would need to see: the top bar over the dark side bar I want as the default, the manual with its code in front, and my story in the frame, navigated two ways. Each is made from the files above, so the numerical shapes and the fonts are the same."}),a.jsxs(i,{children:[a.jsx(d,{children:"26"}),a.jsx(o,{children:"[A White Top Bar and a Black Side Bar](/dougs-design/#a-white-top-bar-and-a-black-side-bar)"}),a.jsx(e,{children:"Concept 26, an idea, after 16 and 23, to see the top over the dark side bar."}),a.jsx(e,{children:"The library's bar white across the top; under it, what the open book holds down a soft black side bar, and the book's name and tools beside it on white. The black bar is the one I said should be the default, with a top bar over it."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~026-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~026-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
+<html lang="en" data-layout="both" data-tone="light" data-side="dark" data-at="subject" data-view="shelf">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A White Top Bar and a Black Side Bar</title>
+<meta name="number" content="26">
+<meta name="state" content="idea">
+<meta name="after" content="16 and 23, to see the top over the dark side bar">
+<meta name="idea" content="The library's bar white across the top; under it, what the open book holds down a soft black side bar, and the book's name and tools beside it on white. The black bar is the one I said should be the default, with a top bar over it.">
+<meta name="said" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    /* ---- what does not change between the ideas ----
+       The frame is soft black, the blue between it and white, and white. The soft black #0c1b1f and the opal #c8f4fb are the
+       coming-soon page's own; the blues are the hue between them (208 to 223 in OKLCH) walked from dark to light.
+       The CONTENT keeps its own colors: every book a cover of its own, the light accents the opal's wave. */
+    :root { --night: #0c1b1f; --deep: #14323c; --blue: #166178; --sea: #4e9eb9; --sky: #8fc8dc; --opal: #c8f4fb; --pale: #e3f5fa; --mist: #f1f7f9; --white: #ffffff;
+        --ink: #10252c; --soft: #516770; --line: #dbe7ec; --me: #e8590c;
+        --wash: linear-gradient(105deg, #e2f6fb 0%, #ecf0fd 52%, #fae9f4 100%);
+        --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Inter', system-ui, sans-serif; }
+    [data-tone="dark"] { --bar: var(--night); --bar-fg: #ffffff; --bar-dim: #a9bcc1; --bar-on: rgba(255, 255, 255, .11); --bar-line: #1d3339; --mark: var(--opal); --mark-fg: var(--night); }
+    [data-tone="light"] { --bar: var(--white); --bar-fg: var(--ink); --bar-dim: var(--soft); --bar-on: var(--pale); --bar-line: var(--line); --mark: var(--night); --mark-fg: #ffffff; }
+    [data-at="library"] [class*="at-"]:not(.at-library), [data-at="subject"] [class*="at-"]:not(.at-subject), [data-at="book"] [class*="at-"]:not(.at-book), [data-at="chat"] [class*="at-"]:not(.at-chat), [data-at="author"] [class*="at-"]:not(.at-author) { display: none !important; }
+
+    * { box-sizing: border-box; margin: 0; }
+    body { background: var(--white); color: var(--ink); font: 400 14px/1.5 var(--sans); }
+    a { color: inherit; text-decoration: none; }
+    svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    [data-go], [data-view-is] { cursor: pointer; }
+    h4 { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font: 600 10.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+    h4 small { margin-left: auto; font: 400 11.5px/1 var(--sans); letter-spacing: 0; text-transform: none; }
+    h4.next { margin-top: 22px; }
+    .star { color: var(--me); font-style: normal; }
+
+    /* the library's own things: its mark, its subjects, a way to find, and me. They are held together only where an idea has a side bar. */
+    .side { display: contents; }
+    [data-at="chat"] .holds a.first { background: var(--bar-on, var(--pale)); }
+    .lib { grid-area: lib; display: flex; align-items: center; gap: 6px; min-width: 0; background: var(--bar); color: var(--bar-fg); }
+    .logo { display: flex; align-items: center; gap: 10px; flex: none; }
+    .logo i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: var(--mark); color: var(--mark-fg); font: 600 15px/1 var(--sans); font-style: normal; }
+    .logo b { font: 600 21px/1 var(--serif); white-space: nowrap; }
+    .subjects { display: flex; gap: 2px; min-width: 0; }
+    .s { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px; color: var(--bar-dim); font-size: 13.5px; }
+    .s i { display: grid; place-items: center; flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--c); color: #fff; font: 600 0/1 var(--sans); font-style: normal; }
+    .s b { font-weight: 500; }
+    .s small { font-size: 12px; opacity: .7; }
+    :is([data-at="subject"], [data-at="book"], [data-at="chat"]) .s.is-claude { background: var(--bar-on); color: var(--bar-fg); }
+    .find { display: flex; align-items: center; gap: 8px; padding: 6px 11px; border-radius: 9px; white-space: nowrap; }
+    .lib .find { margin-left: auto; background: var(--bar-on); color: var(--bar-dim); }
+    .me { grid-area: me; display: flex; align-items: center; gap: 9px; background: var(--bar); color: var(--bar-fg); }
+    .me i { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--me); color: #fff; font: 600 14px/1 var(--sans); font-style: normal; }
+    .me b { display: block; font-weight: 500; line-height: 1.2; white-space: nowrap; }
+    .me small { display: block; font-size: 11.5px; opacity: .7; white-space: nowrap; }
+
+    /* the open page's own things: what it is filed under, its name, who it is by, its tools */
+    .sub { --sub-fg: var(--ink); --sub-dim: var(--soft); --ctl: var(--mist); --ctl-line: var(--line); --ctl-fg: var(--soft); --on: var(--night); --on-fg: #fff; --lnk: var(--blue); --melnk: var(--me);
+        grid-area: sub; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 20px; min-width: 0; padding: 20px 28px 14px; color: var(--sub-fg); }
+    .chain { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--sub-dim); white-space: nowrap; }
+    .chain em { font: 600 9.5px/1 var(--sans); font-style: normal; letter-spacing: .12em; text-transform: uppercase; }
+    .chain span { display: flex; align-items: center; gap: 7px; }
+    .chain i { font-style: normal; opacity: .55; }
+    .chain a { font-weight: 500; color: var(--lnk); }
+    .title { min-width: 0; }
+    h1 { margin-top: 4px; font: 600 36px/1.04 var(--serif); white-space: nowrap; }
+    .title p { margin-top: 4px; font-size: 13px; color: var(--sub-dim); }
+    .title p a { color: var(--lnk); font-weight: 500; }
+    .title p a.to-me { color: var(--melnk); text-decoration: underline; text-decoration-color: var(--me); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+    .tools { margin-left: auto; }
+    .tools > div { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 8px; }
+    .seg { display: flex; overflow: hidden; border: 1px solid var(--ctl-line); border-radius: 9px; background: var(--ctl); }
+    .seg span { padding: 6px 12px; color: var(--ctl-fg); }
+    .seg span.on { background: var(--on); color: var(--on-fg); font-weight: 500; }
+    .sub .find { border: 1px solid var(--ctl-line); background: var(--ctl); color: var(--ctl-fg); }
+    .fav { display: flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 9px; background: color-mix(in srgb, var(--me) 12%, white); color: #a8400a; font-weight: 500; white-space: nowrap; }
+
+    /* down: what the open page holds */
+    .holds { grid-area: holds; min-width: 0; }
+    .holds a { display: flex; align-items: center; gap: 9px; padding: 6px 9px; border-radius: 8px; }
+    .holds a i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--c, var(--sea)); }
+    .holds a b { font-weight: 500; }
+    .holds a small { margin-left: auto; font-size: 12px; color: var(--soft); }
+    .holds a.on { background: var(--pale); }
+
+    /* the page itself */
+    .thing { grid-area: thing; min-width: 0; }
+    .go { display: flex; align-items: center; gap: 20px; margin-bottom: 22px; padding: 16px 20px; border-radius: 16px; background: var(--wash); }
+    .go .cover { flex: none; width: 92px; padding: 10px 8px 8px 13px; }
+    .go .cover b { font-size: 13.5px; }
+    .go .cover small { font-size: 7.5px; padding-top: 6px; }
+    .go em { font: 600 10.5px/1 var(--sans); font-style: normal; letter-spacing: .1em; text-transform: uppercase; color: var(--me); }
+    .go h2 { margin: 4px 0 2px; font: 600 24px/1.1 var(--serif); }
+    .go p { max-width: 52ch; font-size: 13px; color: var(--soft); }
+    .go u { display: block; width: 260px; max-width: 100%; height: 4px; margin: 10px 0 6px; border-radius: 9px; background: rgba(12, 27, 31, .1); text-decoration: none; }
+    .go u i { display: block; width: 14%; height: 100%; border-radius: 9px; background: var(--me); }
+    .go small { font-size: 12px; color: var(--soft); }
+    .go .read { margin-left: auto; }
+    .read { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 99px; background: var(--night); color: #fff; font-weight: 500; white-space: nowrap; }
+
+    /* a cover is the landmark of a book, and every book has a color of its own; my own books are the soft black */
+    .cover { position: relative; display: flex; flex-direction: column; aspect-ratio: 3 / 4; padding: 13px 11px 10px 17px; border-radius: 3px 7px 7px 3px; color: #fff; background: linear-gradient(160deg, color-mix(in srgb, var(--c) 90%, white), color-mix(in srgb, var(--c) 86%, black)); box-shadow: 0 12px 22px -14px rgba(12, 27, 31, .55); }
+    .cover::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, .3); }
+    .cover b { font: 600 17px/1.08 var(--serif); }
+    .cover small { margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, .32); font: 600 9px/1.2 var(--sans); letter-spacing: .1em; text-transform: uppercase; opacity: .92; }
+    .cover.mine { --c: var(--night); color: var(--opal); background: linear-gradient(160deg, #16303a, var(--night)); }
+    .bk:nth-child(8n+1), .open, .go { --c: #e07a35; }
+    .bk:nth-child(8n+2) { --c: #c2413f; }
+    .bk:nth-child(8n+3) { --c: #4450b8; }
+    .bk:nth-child(8n+4) { --c: #1f8a78; }
+    .bk:nth-child(8n+5) { --c: #7a4a8c; }
+    .bk:nth-child(8n+6) { --c: #2f7fb0; }
+    .bk:nth-child(8n+7) { --c: #3d7a4e; }
+    .bk:nth-child(8n) { --c: #c24a78; }
+    .shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(124px, 1fr)); gap: 22px 18px; }
+    .bk { display: block; }
+    .bk .name { display: none; }
+    .bk p { display: flex; gap: 6px; margin-top: 8px; font-size: 12px; color: var(--soft); }
+    [data-view="list"] .shelf { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    [data-view="list"] .bk { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line); }
+    [data-view="list"] .bk .cover { padding: 0; border-radius: 2px 4px 4px 2px; box-shadow: none; }
+    [data-view="list"] .bk .cover::before { left: 4px; }
+    [data-view="list"] .bk .cover b, [data-view="list"] .bk .cover small { display: none; }
+    [data-view="list"] .bk .name { display: block; font: 600 19px/1.2 var(--serif); }
+    [data-view="list"] .bk p { margin: 0; }
+    .mines { display: grid; grid-template-columns: repeat(auto-fill, minmax(124px, 148px)); gap: 18px; }
+
+    .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; margin-bottom: 26px; }
+    .tile { display: block; padding: 14px 16px 16px; border-radius: 14px; background: var(--t); }
+    .tile i { display: block; width: 26px; height: 26px; margin-bottom: 24px; border-radius: 8px; background: var(--c); }
+    .tile b { display: block; font: 600 21px/1.1 var(--serif); }
+    .tile small { font-size: 12.5px; color: var(--soft); }
+
+    .open, .person { display: flex; gap: 26px; align-items: flex-start; }
+    .cover.big { flex: none; width: 180px; padding: 20px 15px 13px 24px; }
+    .cover.big b { font-size: 26px; }
+    .cover.big::before { left: 11px; }
+    .words { min-width: 0; }
+    .says { max-width: 56ch; font: 500 20px/1.5 var(--serif); }
+    .words .read { margin-top: 18px; }
+    .face { display: grid; place-items: center; flex: none; width: 96px; height: 96px; border-radius: 50%; background: var(--me); color: #fff; font: 600 46px/1 var(--serif); box-shadow: 0 0 0 5px var(--white), 0 0 0 6px color-mix(in srgb, var(--me) 45%, white); }
+    .counts { display: flex; gap: 26px; margin: 16px 0 22px; color: var(--soft); font-size: 12.5px; }
+    .counts b { display: block; font: 600 26px/1.1 var(--serif); color: var(--ink); }
+
+    /* a conversation, in the form of the application it comes from; my turns in my color */
+    .chat { display: grid; gap: 20px; max-width: 720px; margin: 0 auto; }
+    .chat .who { display: block; margin-bottom: 4px; font: 600 10.5px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+    .chat .mine { justify-self: end; max-width: 78%; padding: 11px 16px; border-radius: 18px 18px 4px 18px; background: color-mix(in srgb, var(--me) 9%, white); font-size: 15px; }
+    .chat .mine .who { color: var(--me); }
+    .chat .theirs p { font: 500 19.5px/1.55 var(--serif); }
+    .chat .theirs p + p { margin-top: 10px; }
+    .chat mark { padding: 1px 3px; border-radius: 3px; background: var(--pale); color: inherit; }
+    .chat sup { margin-left: 2px; font: 600 10.5px/1 var(--sans); color: var(--me); }
+    .chat pre { margin: 12px 0; padding: 12px 14px; border-radius: 10px; background: var(--night); color: #d7e6ea; font: 400 12.5px/1.6 ui-monospace, 'Cascadia Code', Consolas, monospace; overflow: auto; }
+    .chat .made { display: flex; align-items: center; gap: 10px; width: fit-content; margin-top: 12px; padding: 9px 13px; border: 1px solid var(--line); border-radius: 12px; font-size: 13px; }
+    .chat .made i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: var(--pale); color: var(--blue); font-style: normal; }
+    .chat .made small { display: block; color: var(--soft); font-size: 12px; }
+    .chat .turns { display: flex; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--line); color: var(--blue); font-weight: 500; }
+
+    /* across: what it cites, what cites it, and what I wrote beside it */
+    .across { grid-area: across; min-width: 0; }
+    .ref { display: block; margin-bottom: 8px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--white); }
+    .ref .to { display: flex; align-items: center; gap: 7px; font-weight: 600; }
+    .ref .to svg { color: var(--soft); }
+    .ref .to i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--c, var(--sea)); }
+    .ref p { margin-top: 2px; font-size: 12.5px; color: var(--soft); }
+    .ref q { display: block; margin-top: 7px; padding: 6px 9px; border-radius: 7px; background: var(--pale); font: italic 500 15.5px/1.35 var(--serif); quotes: '“' '”'; }
+    .note { padding: 10px 12px; border: 1px dashed var(--line); border-radius: 12px; font-size: 13px; color: var(--soft); }
+    .note b { display: block; margin-bottom: 2px; color: var(--ink); font-weight: 500; }
+    .return { display: none; align-items: center; gap: 8px; margin-bottom: 14px; padding: 9px 12px; border-radius: 10px; background: var(--night); color: #fff; font-weight: 500; }
+    .return svg { color: var(--sky); }
+    [data-at="author"][data-from="book"] .return.to-book, [data-at="author"][data-from="subject"] .return.to-subject { display: flex; }
+
+    /* ---- what each idea colors, at every width ---- */
+    [data-layout="both"] .holds { background: var(--pale); }
+    [data-layout="both"] .holds a.on { background: var(--white); }
+    /* the dark side bar under a top bar: what the book holds, in the soft black, whatever the top bar's tone */
+    [data-layout="both"][data-side="dark"] .holds { background: var(--night); color: #ffffff; border-right-color: #1d3339; }
+    [data-layout="both"][data-side="dark"] .holds h4, [data-layout="both"][data-side="dark"] .holds a small { color: #a9bcc1; }
+    [data-layout="both"][data-side="dark"] .holds a.on { background: rgba(255, 255, 255, .11); }
+    [data-layout="both"][data-side="dark"] .holds a i { box-shadow: 0 0 0 2px rgba(255, 255, 255, .15); }
+    [data-layout="rail"][data-tone="dark"] .sub { --sub-fg: #fff; --sub-dim: rgba(255, 255, 255, .8); --ctl: rgba(12, 27, 31, .26); --ctl-line: transparent; --ctl-fg: #fff; --on: #fff; --on-fg: var(--night); --lnk: #fff; --melnk: #fff; background: var(--blue); }
+    [data-layout="rail"][data-tone="dark"] .fav { background: #fff; }
+    [data-layout="rail"][data-tone="light"] { --bar: var(--pale); --bar-on: #fff; --bar-line: #cbe6ee; }
+    [data-layout="two"][data-tone="dark"] .sub { --sub-dim: #27505c; --ctl: rgba(255, 255, 255, .62); --ctl-line: transparent; --ctl-fg: var(--ink); --lnk: var(--deep); background: var(--sky); }
+    [data-layout="two"][data-tone="light"] .sub { --ctl: #fff; background: var(--pale); }
+    [data-layout="side"][data-tone="light"] { --bar: var(--mist); --bar-on: #fff; }
+    [data-layout="cards"][data-tone="light"] { --canvas: #e9f2f5; --bar-on: #fff; }
+    [data-layout="cards"][data-tone="dark"] { --canvas: var(--night); }
+    [data-layout="cards"] body, [data-layout="cards"] .lib, [data-layout="cards"] .me { background: var(--canvas); }
+    [data-layout="cards"] :is(.sub, .holds, .thing, .across) { background: var(--white); }
+    :is([data-layout="header"], [data-layout="both"], [data-layout="two"], [data-layout="cards"]):is([data-at="subject"], [data-at="book"], [data-at="chat"]) .s.is-claude { box-shadow: inset 0 -2px 0 var(--c); }
+
+    /* ---- at a desk: where each idea puts the bars ---- */
+    @media (min-width: 761px) {
+        html, body { height: 100%; }
+        body { display: grid; overflow: hidden; }
+        .thing { padding: 20px 28px 40px; overflow: auto; }
+        .holds { padding: 18px 12px; overflow: auto; }
+        .across { padding: 18px 16px; overflow: auto; border-left: 1px solid var(--line); }
+
+        /* a bar across the top holds the library, with me at its right end */
+        :is([data-layout="header"], [data-layout="both"], [data-layout="two"], [data-layout="cards"]) .lib { padding: 9px 170px 9px 18px; }
+        :is([data-layout="header"], [data-layout="both"], [data-layout="two"], [data-layout="cards"]) .logo { margin-right: 12px; }
+        :is([data-layout="header"], [data-layout="both"], [data-layout="two"], [data-layout="cards"]) :is(.s small, .me small, .lib .find em) { display: none; }
+        :is([data-layout="header"], [data-layout="both"], [data-layout="two"], [data-layout="cards"]) .me { grid-area: lib; justify-self: end; z-index: 1; padding: 0 18px 0 8px; background: none; }
+        [data-tone="light"]:is([data-layout="header"], [data-layout="both"], [data-layout="two"]) .lib { border-bottom: 1px solid var(--line); }
+
+        [data-layout="header"] body { grid-template: auto auto auto minmax(0, 1fr) / minmax(0, 1fr) 300px; grid-template-areas: "lib lib" "sub sub" "holds holds" "thing across"; }
+        [data-layout="both"] body { grid-template: auto auto minmax(0, 1fr) / 240px minmax(0, 1fr) 300px; grid-template-areas: "lib lib lib" "holds sub sub" "holds thing across"; }
+        [data-layout="both"] .holds { padding: 20px 12px; border-right: 1px solid #cbe6ee; }
+        [data-layout="two"] body { grid-template: auto auto minmax(0, 1fr) / 236px minmax(0, 1fr) 300px; grid-template-areas: "lib lib lib" "sub sub sub" "holds thing across"; }
+        [data-layout="two"] .sub { align-items: center; padding: 9px 24px; }
+        [data-layout="two"] .title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
+        [data-layout="two"] h1 { margin: 0; font-size: 26px; order: -1; }
+        [data-layout="two"] .title p { display: none; }
+        [data-layout="two"] .holds { border-right: 1px solid var(--line); }
+        [data-layout="cards"] body { grid-template: auto auto minmax(0, 1fr) / 244px minmax(0, 1fr) 300px; grid-template-areas: "lib lib lib" "holds sub across" "holds thing across"; column-gap: 12px; padding: 0 12px 12px; }
+        [data-layout="cards"] .lib { padding: 11px 170px 11px 6px; }
+        [data-layout="cards"] .me { padding: 0 6px; }
+        [data-layout="cards"] :is(.holds, .across) { border: 0; border-radius: 16px; }
+        [data-layout="cards"] .sub { border-radius: 16px 16px 0 0; }
+        [data-layout="cards"] .thing { border-radius: 0 0 16px 16px; }
+
+        /* a bar down the left holds the library, with me at its foot */
+        [data-layout="side"] body { grid-template: auto minmax(0, 1fr) / 256px minmax(0, 1fr) 300px; grid-template-areas: "side sub sub" "side thing across"; }
+        [data-layout="side"] .side { grid-area: side; display: flex; flex-direction: column; min-height: 0; background: var(--bar); }
+        [data-layout="side"] .holds { flex: 1; order: 1; }
+        [data-layout="side"] .me { order: 2; }
+        [data-layout="side"] .lib { flex-direction: column; align-items: stretch; gap: 2px; padding: 18px 12px 12px; }
+        [data-layout="side"] .logo { padding: 0 6px 14px; }
+        [data-layout="side"] .subjects { flex-direction: column; }
+        [data-layout="side"] .s small { margin-left: auto; }
+        [data-layout="side"] .lib .find { margin: 10px 0 0; }
+        [data-layout="side"] .holds { padding: 14px 12px; border-top: 1px solid var(--bar-line); background: var(--bar); color: var(--bar-fg); }
+        [data-layout="side"] .holds h4, [data-layout="side"] .holds a small { color: var(--bar-dim); }
+        [data-layout="side"] .holds a.on { background: var(--bar-on); }
+        [data-layout="side"] .me { padding: 12px 18px 14px; border-top: 1px solid var(--bar-line); }
+        [data-layout="side"][data-tone="light"] .side { border-right: 1px solid var(--line); }
+
+        /* a narrow rail holds the subjects as marks and me as a face */
+        [data-layout="rail"] body { grid-template: auto auto minmax(0, 1fr) auto / 68px minmax(0, 1fr) 300px; grid-template-areas: "lib sub sub" "lib holds holds" "lib thing across" "me thing across"; }
+        [data-layout="rail"] .lib { flex-direction: column; gap: 12px; padding: 14px 0; }
+        [data-layout="rail"] :is(.logo b, .lib .find, .s b, .s small, .me span) { display: none; }
+        [data-layout="rail"] .subjects { flex-direction: column; align-items: center; gap: 10px; }
+        [data-layout="rail"] .s { padding: 0; background: none; }
+        [data-layout="rail"] :is(.s i, .logo i, .me i) { width: 40px; height: 40px; border-radius: 11px; font-size: 13px; }
+        [data-layout="rail"] .logo i, [data-layout="rail"] .me i { font-size: 16px; }
+        [data-layout="rail"] .me i { border-radius: 50%; }
+        [data-layout="rail"]:is([data-at="subject"], [data-at="book"], [data-at="chat"]) .s.is-claude i { box-shadow: 0 0 0 2px var(--bar), 0 0 0 4px var(--c); }
+        [data-layout="rail"] .me { justify-content: center; padding: 10px 0 14px; }
+        [data-layout="rail"] .sub { padding: 16px 26px 14px; }
+        [data-layout="rail"][data-tone="light"] :is(.lib, .me) { border-right: 1px solid #cbe6ee; }
+
+        /* with no side bar, what the page holds is a row under its name */
+        :is([data-layout="header"], [data-layout="rail"]) .holds { padding: 12px 28px; overflow: auto hidden; border-bottom: 1px solid var(--line); scrollbar-width: none; }
+        [data-layout="header"] .holds { padding-top: 0; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds > div { display: flex; align-items: center; gap: 6px; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds h4 { flex: none; margin: 0 6px 0 0; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds h4.next { margin-left: 18px; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds h4 small { display: none; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds a { flex: none; padding: 5px 11px 5px 9px; border: 1px solid var(--line); border-radius: 99px; white-space: nowrap; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds a small { margin-left: 4px; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds a.on { border-color: transparent; }
+    }
+
+    /* ---- on a phone: one bar at the top, the page beneath it in one column ---- */
+    @media (max-width: 760px) {
+        body { position: relative; display: flex; flex-direction: column; }
+        .sub { order: 1; }
+        .holds { order: 2; }
+        .thing { order: 3; }
+        .across { order: 4; }
+        .lib { position: sticky; top: 0; z-index: 4; height: 50px; margin-right: 54px; padding: 0 8px 0 14px; gap: 4px; overflow: auto hidden; scrollbar-width: none; }
+        .logo { margin-right: 8px; }
+        .logo b { font-size: 19px; }
+        .s { white-space: nowrap; }
+        .s small, .lib .find, .me span { display: none; }
+        .me { position: fixed; z-index: 5; top: 0; right: 0; justify-content: center; width: 54px; height: 50px; }
+        [data-tone="light"] :is(.lib, .me) { border-bottom: 1px solid var(--line); }
+        .sub { flex-direction: column; flex-wrap: nowrap; align-items: stretch; padding: 16px 16px 12px; }
+        h1 { font-size: 28px; white-space: normal; }
+        .chain { overflow: auto hidden; scrollbar-width: none; }
+        .tools { margin: 0; }
+        .tools > div { justify-content: flex-start; }
+        .holds { padding: 10px 16px 12px; overflow: auto hidden; border-bottom: 1px solid var(--line); scrollbar-width: none; }
+        .holds > div { display: flex; align-items: center; gap: 6px; }
+        .holds h4 { flex: none; margin: 0 6px 0 0; }
+        .holds h4.next { margin-left: 18px; }
+        .holds h4 small { display: none; }
+        .holds a { flex: none; padding: 5px 11px 5px 9px; border: 1px solid var(--line); border-radius: 99px; background: var(--white); white-space: nowrap; }
+        .holds a small { margin-left: 4px; }
+        .thing { padding: 16px 16px 24px; }
+        .go { flex-wrap: wrap; gap: 14px; padding: 14px; }
+        .go > div { flex: 1 1 60%; min-width: 0; }
+        .go .read { margin: 0; }
+        .shelf { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 12px; }
+        .cover { padding: 10px 8px 8px 13px; }
+        .cover b { font-size: 14.5px; }
+        .open, .person { flex-direction: column; gap: 16px; }
+        .cover.big { width: 150px; }
+        .cover.big b { font-size: 22px; }
+        .counts { gap: 18px; }
+        .chat .mine { max-width: 88%; }
+        .across { padding: 16px; border-top: 1px solid var(--line); }
+
+        /* a side bar or a rail turns to lie along the foot, the subjects as marks */
+        :is([data-layout="side"], [data-layout="rail"]) body { padding-bottom: 60px; }
+        :is([data-layout="side"], [data-layout="rail"]) .subjects { position: fixed; z-index: 4; left: 0; right: 0; bottom: 0; justify-content: space-around; padding: 8px 10px; border-top: 1px solid var(--bar-line); background: var(--bar); }
+        :is([data-layout="side"], [data-layout="rail"]) .s { padding: 0; background: none; box-shadow: none; }
+        :is([data-layout="side"], [data-layout="rail"]) .s b { display: none; }
+        :is([data-layout="side"], [data-layout="rail"]) .s i { width: 42px; height: 42px; border-radius: 12px; font-size: 13px; }
+        :is([data-layout="side"], [data-layout="rail"]):is([data-at="subject"], [data-at="book"], [data-at="chat"]) .s.is-claude i { box-shadow: 0 0 0 2px var(--bar), 0 0 0 4px var(--c); }
+
+        [data-layout="two"] .sub { padding: 12px 16px; }
+        [data-layout="two"] .title p { display: none; }
+        [data-layout="cards"] body { padding-bottom: 10px; }
+        [data-layout="cards"] :is(.sub, .holds, .thing, .across) { margin: 0 10px; }
+        [data-layout="cards"] .sub { margin-top: 4px; border-radius: 14px 14px 0 0; }
+        [data-layout="cards"] .thing { border-radius: 0 0 14px 14px; }
+        [data-layout="cards"] .across { margin-top: 10px; border: 0; border-radius: 14px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="side">
+<header class="lib">
+    <a class="logo" data-go="library"><i>D</i><b>Dougs Library</b></a>
+    <nav class="subjects">
+        <a class="s is-claude" data-go="subject" style="--c: var(--sea)"><i>Cl</i><b>Conversations with Claude</b><small>212</small></a>
+        <a class="s" style="--c: #1f8a78"><i>Ch</i><b>Conversations with ChatGPT</b><small>147</small></a>
+        <a class="s" style="--c: #c24a78"><i>De</i><b>Dougs Design</b><small>5</small></a>
+        <a class="s" style="--c: #7a4a8c"><i>Rm</i><b>Dougs Reference Manual</b><small>3</small></a>
+    </nav>
+    <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg><em style="font-style: normal">Find in the library</em></span>
+</header>
+
+<a class="me" data-go="author"><i>D</i><span><b>The Librarian</b><small>my own account</small></span></a>
+
+<aside class="holds">
+    <div class="at-library">
+        <h4>My favorites<small>3</small></h4>
+        <a data-go="book" style="--c: #e07a35"><i></i><b>Lorem Ipsum Dolor</b><small class="star">★</small></a>
+        <a style="--c: #4450b8"><i></i><b>Magna Aliqua</b><small class="star">★</small></a>
+        <a style="--c: #c24a78"><i></i><b>The Library's Home</b><small class="star">★</small></a>
+    </div>
+    <div class="at-subject">
+        <h4>Holds<small>3 projects</small></h4>
+        <a class="on" style="--c: #e07a35"><i></i><b>A First Project</b><small>38</small></a>
+        <a style="--c: #1f8a78"><i></i><b>A Second Project</b><small>91</small></a>
+        <a style="--c: #4450b8"><i></i><b>A Third Project</b><small>83</small></a>
+        <h4 class="next">My favorites here<small>2</small></h4>
+        <a data-go="book" style="--c: #e07a35"><i></i><b>Lorem Ipsum Dolor</b><small class="star">★</small></a>
+        <a style="--c: #4450b8"><i></i><b>Magna Aliqua</b><small class="star">★</small></a>
+    </div>
+    <div class="at-book at-chat">
+        <h4>Holds<small>8 chapters</small></h4>
+        <a class="first" data-go="chat" style="--c: #e07a35"><i></i><b>A First Chapter</b><small>1</small></a>
+        <a style="--c: #e07a35"><i></i><b>A Second Chapter</b><small>2</small></a>
+        <a style="--c: #e07a35"><i></i><b>A Third Chapter</b><small>3</small></a>
+        <a style="--c: #e07a35"><i></i><b>A Fourth Chapter</b><small>4</small></a>
+        <a style="--c: #e07a35"><i></i><b>A Fifth Chapter</b><small>5</small></a>
+    </div>
+    <div class="at-author">
+        <h4>My books<small>3</small></h4>
+        <a class="on" style="--c: var(--me)"><i></i><b>Dougs Story</b><small>3</small></a>
+        <a style="--c: #c24a78"><i></i><b>Dougs Design</b><small>5</small></a>
+        <a style="--c: #7a4a8c"><i></i><b>Dougs Reference Manual</b><small>3</small></a>
+    </div>
+</aside>
+</div>
+
+<section class="sub">
+    <div class="title">
+        <div class="chain">
+            <em>Filed under</em>
+            <span class="at-library">itself</span>
+            <span class="at-subject"><a data-go="library">Dougs Library</a></span>
+            <span class="at-book"><a data-go="subject">Conversations with Claude</a><i>›</i><a data-go="subject">A First Project</a></span>
+            <span class="at-chat"><a data-go="subject">Conversations with Claude</a><i>›</i><a data-go="subject">A First Project</a><i>›</i><a data-go="book">Lorem Ipsum Dolor</a></span>
+            <span class="at-author"><a data-go="library">Dougs Library</a></span>
+        </div>
+        <h1 class="at-library">Dougs Library</h1>
+        <h1 class="at-subject">Conversations with Claude</h1>
+        <h1 class="at-book">Lorem Ipsum Dolor</h1>
+        <h1 class="at-chat">A First Chapter</h1>
+        <h1 class="at-author">Dougs Story</h1>
+        <p class="at-library">by <a class="to-me" data-go="author">The Librarian</a> · three books and two subjects · 359 conversations kept</p>
+        <p class="at-subject">a subject · 212 books in three projects · by <a class="to-me" data-go="author">The Librarian</a></p>
+        <p class="at-book">by <a class="to-me" data-go="author">The Librarian</a> and Claude · 8 chapters · kept 9 Sep 2026</p>
+        <p class="at-chat">chapter 1 of 8 · <a class="to-me" data-go="author">The Librarian</a> and Claude · kept 9 Sep 2026</p>
+        <p class="at-author">The Librarian · my own account</p>
+    </div>
+    <div class="tools">
+        <div class="at-subject">
+            <span class="seg"><span class="on" data-view-is="shelf">Shelf</span><span data-view-is="list">List</span><span>Table</span></span>
+            <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find in this subject</span>
+        </div>
+        <div class="at-book">
+            <span class="fav"><em class="star">★</em>Among my favorites</span>
+            <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find in this book</span>
+        </div>
+        <div class="at-chat">
+            <span class="find"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg>Note on a passage</span>
+            <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find in this book</span>
+        </div>
+    </div>
+</section>
+
+<main class="thing">
+    <div class="at-library">
+        <h4>Subjects</h4>
+        <div class="tiles">
+            <a class="tile" data-go="subject" style="--t: #dff3fa; --c: var(--sea)"><i></i><b>Conversations with Claude</b><small>212 books in three projects</small></a>
+            <a class="tile" style="--t: #dcf5ee; --c: #1f8a78"><i></i><b>Conversations with ChatGPT</b><small>147 books</small></a>
+        </div>
+        <h4>My books</h4>
+        <div class="mines">
+            <a class="cover mine" data-go="author"><b>Dougs Story</b><small>my own account</small></a>
+            <a class="cover mine"><b>Dougs Design</b><small>the design</small></a>
+            <a class="cover mine"><b>Dougs Reference Manual</b><small>the parts</small></a>
+        </div>
+    </div>
+
+    <div class="at-subject">
+        <div class="go">
+            <span class="cover"><b>Lorem Ipsum Dolor</b><small>with Claude</small></span>
+            <div>
+                <em>Continue</em>
+                <h2>Lorem Ipsum Dolor</h2>
+                <p>A First Project · kept 9 September 2026. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                <u><i></i></u>
+                <small>Chapter 1 of 8 · 2 notes of mine · cited twice</small>
+            </div>
+            <a class="read" data-go="chat">Read</a>
+        </div>
+        <h4>Lately kept<small>212 books · newest first</small></h4>
+        <div class="shelf">
+            <a class="bk" data-go="book"><span class="cover"><b>Lorem Ipsum Dolor</b><small>with Claude</small></span><b class="name">Lorem Ipsum Dolor</b><p>9 Sep · 8 chapters <em class="star">★</em></p></a>
+            <a class="bk"><span class="cover"><b>Quis Nostrud</b><small>with Claude</small></span><b class="name">Quis Nostrud</b><p>1 Oct · 6 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Magna Aliqua</b><small>with Claude</small></span><b class="name">Magna Aliqua</b><p>20 Sep · 11 chapters <em class="star">★</em></p></a>
+            <a class="bk"><span class="cover"><b>Tempor Incididunt</b><small>with Claude</small></span><b class="name">Tempor Incididunt</b><p>12 Sep · 7 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Ut Enim ad Minim</b><small>with Claude</small></span><b class="name">Ut Enim ad Minim</b><p>27 Sep · 3 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Sed Do Eiusmod</b><small>with Claude</small></span><b class="name">Sed Do Eiusmod</b><p>5 Sep · 2 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Adipiscing Elit</b><small>with Claude</small></span><b class="name">Adipiscing Elit</b><p>2 Sep · 9 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Sit Amet Consectetur</b><small>with Claude</small></span><b class="name">Sit Amet Consectetur</b><p>21 Jul · 14 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Duis Aute Irure</b><small>with Claude</small></span><b class="name">Duis Aute Irure</b><p>14 Jul · 5 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Excepteur Sint</b><small>with Claude</small></span><b class="name">Excepteur Sint</b><p>2 Jul · 4 chapters</p></a>
+        </div>
+    </div>
+
+    <div class="open at-book">
+        <span class="cover big"><b>Lorem Ipsum Dolor</b><small>with Claude</small></span>
+        <div class="words">
+            <p class="says">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+            <a class="read" data-go="chat">Read from A First Chapter<svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+    </div>
+
+    <div class="chat at-chat">
+        <div class="mine"><span class="who">The Librarian</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit? Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+        <div class="theirs">
+            <span class="who">Claude</span>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <mark>Excepteur sint occaecat cupidatat non proident</mark><sup>1</sup>, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<pre>const lorem = ipsum.dolor('sit amet');
+return lorem.consectetur();</pre>
+            <a class="made"><i>◇</i><span><b>Lorem Ipsum, a first draft</b><small>made in this turn · opens beside the page</small></span></a>
+        </div>
+        <div class="mine"><span class="who">The Librarian</span>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit?</div>
+        <div class="theirs">
+            <span class="who">Claude</span>
+            <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+        </div>
+        <div class="turns"><span></span><a>A Second Chapter →</a></div>
+    </div>
+
+    <div class="person at-author">
+        <span class="face">D</span>
+        <div class="words">
+            <p class="says">My own account, and the one book here that is by its own subject. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+            <div class="counts"><span><b>3</b>books written</span><span><b>359</b>conversations kept</span><span><b>41</b>notes</span></div>
+            <div class="mines">
+                <a class="cover mine"><b>Dougs Story</b><small>my own account</small></a>
+                <a class="cover mine"><b>Dougs Design</b><small>the design</small></a>
+                <a class="cover mine"><b>Dougs Reference Manual</b><small>the parts</small></a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<aside class="across">
+    <a class="return to-book" data-go="book"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg>Back to Lorem Ipsum Dolor</a>
+    <a class="return to-subject" data-go="subject"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg>Back to Conversations with Claude</a>
+
+    <div class="at-library">
+        <h4>Lately kept</h4>
+        <a class="ref" style="--c: #c2413f"><span class="to"><i></i>Quis Nostrud</span><p>1 Oct · Conversations with Claude</p></a>
+        <a class="ref" style="--c: #7a4a8c"><span class="to"><i></i>Ut Enim ad Minim</span><p>27 Sep · Conversations with Claude</p></a>
+        <h4 class="next">My notes<small>41</small></h4>
+        <div class="note"><b>3 Oct 2026 · in Lorem Ipsum Dolor</b>Lorem ipsum, a note of mine beside the passage it is about.</div>
+    </div>
+
+    <div class="at-subject">
+        <h4>Cited from outside<small>2</small></h4>
+        <a class="ref" data-go="author" data-from="subject" style="--c: var(--me)"><span class="to"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg><i></i>Dougs Story</span><p>chapter 1 cites Lorem Ipsum Dolor</p></a>
+        <a class="ref" style="--c: #1f8a78"><span class="to"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg><i></i>Conversations with ChatGPT</span><p>one book cites Adipiscing Elit</p></a>
+        <h4 class="next">My notes here<small>12</small></h4>
+        <div class="note"><b>3 Oct 2026 · in Lorem Ipsum Dolor</b>Lorem ipsum, a note of mine beside the passage it is about.</div>
+    </div>
+
+    <div class="at-book at-chat">
+        <h4>Cites<small>1</small></h4>
+        <a class="ref" style="--c: #3d7a4e"><span class="to"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg><i></i>Adipiscing Elit</span><p>chapter 2 · A First Project</p></a>
+        <h4 class="next">Cited by<small>2</small></h4>
+        <a class="ref" data-go="author" data-from="book" style="--c: var(--me)"><span class="to"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg><i></i>Dougs Story</span><p>chapter 1 · my own account</p><q>Excepteur sint occaecat cupidatat non proident</q></a>
+        <a class="ref" style="--c: #c24a78"><span class="to"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg><i></i>Sit Amet Consectetur</span><p>chapter 3 · A First Project</p></a>
+        <h4 class="next">My notes<small>1</small></h4>
+        <div class="note"><b>1 · 3 Oct 2026</b>Lorem ipsum, a note of mine beside the passage it is about.</div>
+    </div>
+
+    <div class="at-author">
+        <h4>Cites<small>1</small></h4>
+        <a class="ref" data-go="book" style="--c: #e07a35"><span class="to"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg><i></i>Lorem Ipsum Dolor</span><p>chapter 1 · a conversation with Claude</p><q>Excepteur sint occaecat cupidatat non proident</q></a>
+        <h4 class="next">Cited by<small>0</small></h4>
+        <div class="note">Nothing cites this chapter yet.</div>
+    </div>
+</aside>
+
+<script>
+    const page = document.documentElement;
+    for (const door of document.querySelectorAll('[data-go]'))
+        door.addEventListener('click', () => {
+            if (door.dataset.from) page.dataset.from = door.dataset.from;
+            else delete page.dataset.from;
+            page.dataset.at = door.dataset.go;
+            window.scrollTo(0, 0);
+            for (const column of document.querySelectorAll('.thing, .holds, .across')) column.scrollTop = 0;
+        });
+    for (const view of document.querySelectorAll('[data-view-is]'))
+        view.addEventListener('click', () => {
+            page.dataset.view = view.dataset.viewIs;
+            for (const other of view.parentElement.children) other.classList.toggle('on', other === view);
+        });
+<\/script>
+</body>
+</html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"27"}),a.jsx(o,{children:"[A Black Top Bar and a Black Side Bar](/dougs-design/#a-black-top-bar-and-a-black-side-bar)"}),a.jsx(e,{children:"Concept 27, an idea, after 15 and 11, to see the top over the dark side bar."}),a.jsx(e,{children:"The same, darker: the library's bar and the side bar both in the soft black, one dark L around the white page, the book's name and tools on white."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~027-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~027-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
+<html lang="en" data-layout="both" data-tone="dark" data-side="dark" data-at="subject" data-view="shelf">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Black Top Bar and a Black Side Bar</title>
+<meta name="number" content="27">
+<meta name="state" content="idea">
+<meta name="after" content="15 and 11, to see the top over the dark side bar">
+<meta name="idea" content="The same, darker: the library's bar and the side bar both in the soft black, one dark L around the white page, the book's name and tools on white.">
+<meta name="said" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    /* ---- what does not change between the ideas ----
+       The frame is soft black, the blue between it and white, and white. The soft black #0c1b1f and the opal #c8f4fb are the
+       coming-soon page's own; the blues are the hue between them (208 to 223 in OKLCH) walked from dark to light.
+       The CONTENT keeps its own colors: every book a cover of its own, the light accents the opal's wave. */
+    :root { --night: #0c1b1f; --deep: #14323c; --blue: #166178; --sea: #4e9eb9; --sky: #8fc8dc; --opal: #c8f4fb; --pale: #e3f5fa; --mist: #f1f7f9; --white: #ffffff;
+        --ink: #10252c; --soft: #516770; --line: #dbe7ec; --me: #e8590c;
+        --wash: linear-gradient(105deg, #e2f6fb 0%, #ecf0fd 52%, #fae9f4 100%);
+        --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Inter', system-ui, sans-serif; }
+    [data-tone="dark"] { --bar: var(--night); --bar-fg: #ffffff; --bar-dim: #a9bcc1; --bar-on: rgba(255, 255, 255, .11); --bar-line: #1d3339; --mark: var(--opal); --mark-fg: var(--night); }
+    [data-tone="light"] { --bar: var(--white); --bar-fg: var(--ink); --bar-dim: var(--soft); --bar-on: var(--pale); --bar-line: var(--line); --mark: var(--night); --mark-fg: #ffffff; }
+    [data-at="library"] [class*="at-"]:not(.at-library), [data-at="subject"] [class*="at-"]:not(.at-subject), [data-at="book"] [class*="at-"]:not(.at-book), [data-at="chat"] [class*="at-"]:not(.at-chat), [data-at="author"] [class*="at-"]:not(.at-author) { display: none !important; }
+
+    * { box-sizing: border-box; margin: 0; }
+    body { background: var(--white); color: var(--ink); font: 400 14px/1.5 var(--sans); }
+    a { color: inherit; text-decoration: none; }
+    svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    [data-go], [data-view-is] { cursor: pointer; }
+    h4 { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font: 600 10.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+    h4 small { margin-left: auto; font: 400 11.5px/1 var(--sans); letter-spacing: 0; text-transform: none; }
+    h4.next { margin-top: 22px; }
+    .star { color: var(--me); font-style: normal; }
+
+    /* the library's own things: its mark, its subjects, a way to find, and me. They are held together only where an idea has a side bar. */
+    .side { display: contents; }
+    [data-at="chat"] .holds a.first { background: var(--bar-on, var(--pale)); }
+    .lib { grid-area: lib; display: flex; align-items: center; gap: 6px; min-width: 0; background: var(--bar); color: var(--bar-fg); }
+    .logo { display: flex; align-items: center; gap: 10px; flex: none; }
+    .logo i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: var(--mark); color: var(--mark-fg); font: 600 15px/1 var(--sans); font-style: normal; }
+    .logo b { font: 600 21px/1 var(--serif); white-space: nowrap; }
+    .subjects { display: flex; gap: 2px; min-width: 0; }
+    .s { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px; color: var(--bar-dim); font-size: 13.5px; }
+    .s i { display: grid; place-items: center; flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--c); color: #fff; font: 600 0/1 var(--sans); font-style: normal; }
+    .s b { font-weight: 500; }
+    .s small { font-size: 12px; opacity: .7; }
+    :is([data-at="subject"], [data-at="book"], [data-at="chat"]) .s.is-claude { background: var(--bar-on); color: var(--bar-fg); }
+    .find { display: flex; align-items: center; gap: 8px; padding: 6px 11px; border-radius: 9px; white-space: nowrap; }
+    .lib .find { margin-left: auto; background: var(--bar-on); color: var(--bar-dim); }
+    .me { grid-area: me; display: flex; align-items: center; gap: 9px; background: var(--bar); color: var(--bar-fg); }
+    .me i { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--me); color: #fff; font: 600 14px/1 var(--sans); font-style: normal; }
+    .me b { display: block; font-weight: 500; line-height: 1.2; white-space: nowrap; }
+    .me small { display: block; font-size: 11.5px; opacity: .7; white-space: nowrap; }
+
+    /* the open page's own things: what it is filed under, its name, who it is by, its tools */
+    .sub { --sub-fg: var(--ink); --sub-dim: var(--soft); --ctl: var(--mist); --ctl-line: var(--line); --ctl-fg: var(--soft); --on: var(--night); --on-fg: #fff; --lnk: var(--blue); --melnk: var(--me);
+        grid-area: sub; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 20px; min-width: 0; padding: 20px 28px 14px; color: var(--sub-fg); }
+    .chain { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--sub-dim); white-space: nowrap; }
+    .chain em { font: 600 9.5px/1 var(--sans); font-style: normal; letter-spacing: .12em; text-transform: uppercase; }
+    .chain span { display: flex; align-items: center; gap: 7px; }
+    .chain i { font-style: normal; opacity: .55; }
+    .chain a { font-weight: 500; color: var(--lnk); }
+    .title { min-width: 0; }
+    h1 { margin-top: 4px; font: 600 36px/1.04 var(--serif); white-space: nowrap; }
+    .title p { margin-top: 4px; font-size: 13px; color: var(--sub-dim); }
+    .title p a { color: var(--lnk); font-weight: 500; }
+    .title p a.to-me { color: var(--melnk); text-decoration: underline; text-decoration-color: var(--me); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+    .tools { margin-left: auto; }
+    .tools > div { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 8px; }
+    .seg { display: flex; overflow: hidden; border: 1px solid var(--ctl-line); border-radius: 9px; background: var(--ctl); }
+    .seg span { padding: 6px 12px; color: var(--ctl-fg); }
+    .seg span.on { background: var(--on); color: var(--on-fg); font-weight: 500; }
+    .sub .find { border: 1px solid var(--ctl-line); background: var(--ctl); color: var(--ctl-fg); }
+    .fav { display: flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 9px; background: color-mix(in srgb, var(--me) 12%, white); color: #a8400a; font-weight: 500; white-space: nowrap; }
+
+    /* down: what the open page holds */
+    .holds { grid-area: holds; min-width: 0; }
+    .holds a { display: flex; align-items: center; gap: 9px; padding: 6px 9px; border-radius: 8px; }
+    .holds a i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--c, var(--sea)); }
+    .holds a b { font-weight: 500; }
+    .holds a small { margin-left: auto; font-size: 12px; color: var(--soft); }
+    .holds a.on { background: var(--pale); }
+
+    /* the page itself */
+    .thing { grid-area: thing; min-width: 0; }
+    .go { display: flex; align-items: center; gap: 20px; margin-bottom: 22px; padding: 16px 20px; border-radius: 16px; background: var(--wash); }
+    .go .cover { flex: none; width: 92px; padding: 10px 8px 8px 13px; }
+    .go .cover b { font-size: 13.5px; }
+    .go .cover small { font-size: 7.5px; padding-top: 6px; }
+    .go em { font: 600 10.5px/1 var(--sans); font-style: normal; letter-spacing: .1em; text-transform: uppercase; color: var(--me); }
+    .go h2 { margin: 4px 0 2px; font: 600 24px/1.1 var(--serif); }
+    .go p { max-width: 52ch; font-size: 13px; color: var(--soft); }
+    .go u { display: block; width: 260px; max-width: 100%; height: 4px; margin: 10px 0 6px; border-radius: 9px; background: rgba(12, 27, 31, .1); text-decoration: none; }
+    .go u i { display: block; width: 14%; height: 100%; border-radius: 9px; background: var(--me); }
+    .go small { font-size: 12px; color: var(--soft); }
+    .go .read { margin-left: auto; }
+    .read { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 99px; background: var(--night); color: #fff; font-weight: 500; white-space: nowrap; }
+
+    /* a cover is the landmark of a book, and every book has a color of its own; my own books are the soft black */
+    .cover { position: relative; display: flex; flex-direction: column; aspect-ratio: 3 / 4; padding: 13px 11px 10px 17px; border-radius: 3px 7px 7px 3px; color: #fff; background: linear-gradient(160deg, color-mix(in srgb, var(--c) 90%, white), color-mix(in srgb, var(--c) 86%, black)); box-shadow: 0 12px 22px -14px rgba(12, 27, 31, .55); }
+    .cover::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, .3); }
+    .cover b { font: 600 17px/1.08 var(--serif); }
+    .cover small { margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, .32); font: 600 9px/1.2 var(--sans); letter-spacing: .1em; text-transform: uppercase; opacity: .92; }
+    .cover.mine { --c: var(--night); color: var(--opal); background: linear-gradient(160deg, #16303a, var(--night)); }
+    .bk:nth-child(8n+1), .open, .go { --c: #e07a35; }
+    .bk:nth-child(8n+2) { --c: #c2413f; }
+    .bk:nth-child(8n+3) { --c: #4450b8; }
+    .bk:nth-child(8n+4) { --c: #1f8a78; }
+    .bk:nth-child(8n+5) { --c: #7a4a8c; }
+    .bk:nth-child(8n+6) { --c: #2f7fb0; }
+    .bk:nth-child(8n+7) { --c: #3d7a4e; }
+    .bk:nth-child(8n) { --c: #c24a78; }
+    .shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(124px, 1fr)); gap: 22px 18px; }
+    .bk { display: block; }
+    .bk .name { display: none; }
+    .bk p { display: flex; gap: 6px; margin-top: 8px; font-size: 12px; color: var(--soft); }
+    [data-view="list"] .shelf { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    [data-view="list"] .bk { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line); }
+    [data-view="list"] .bk .cover { padding: 0; border-radius: 2px 4px 4px 2px; box-shadow: none; }
+    [data-view="list"] .bk .cover::before { left: 4px; }
+    [data-view="list"] .bk .cover b, [data-view="list"] .bk .cover small { display: none; }
+    [data-view="list"] .bk .name { display: block; font: 600 19px/1.2 var(--serif); }
+    [data-view="list"] .bk p { margin: 0; }
+    .mines { display: grid; grid-template-columns: repeat(auto-fill, minmax(124px, 148px)); gap: 18px; }
+
+    .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; margin-bottom: 26px; }
+    .tile { display: block; padding: 14px 16px 16px; border-radius: 14px; background: var(--t); }
+    .tile i { display: block; width: 26px; height: 26px; margin-bottom: 24px; border-radius: 8px; background: var(--c); }
+    .tile b { display: block; font: 600 21px/1.1 var(--serif); }
+    .tile small { font-size: 12.5px; color: var(--soft); }
+
+    .open, .person { display: flex; gap: 26px; align-items: flex-start; }
+    .cover.big { flex: none; width: 180px; padding: 20px 15px 13px 24px; }
+    .cover.big b { font-size: 26px; }
+    .cover.big::before { left: 11px; }
+    .words { min-width: 0; }
+    .says { max-width: 56ch; font: 500 20px/1.5 var(--serif); }
+    .words .read { margin-top: 18px; }
+    .face { display: grid; place-items: center; flex: none; width: 96px; height: 96px; border-radius: 50%; background: var(--me); color: #fff; font: 600 46px/1 var(--serif); box-shadow: 0 0 0 5px var(--white), 0 0 0 6px color-mix(in srgb, var(--me) 45%, white); }
+    .counts { display: flex; gap: 26px; margin: 16px 0 22px; color: var(--soft); font-size: 12.5px; }
+    .counts b { display: block; font: 600 26px/1.1 var(--serif); color: var(--ink); }
+
+    /* a conversation, in the form of the application it comes from; my turns in my color */
+    .chat { display: grid; gap: 20px; max-width: 720px; margin: 0 auto; }
+    .chat .who { display: block; margin-bottom: 4px; font: 600 10.5px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+    .chat .mine { justify-self: end; max-width: 78%; padding: 11px 16px; border-radius: 18px 18px 4px 18px; background: color-mix(in srgb, var(--me) 9%, white); font-size: 15px; }
+    .chat .mine .who { color: var(--me); }
+    .chat .theirs p { font: 500 19.5px/1.55 var(--serif); }
+    .chat .theirs p + p { margin-top: 10px; }
+    .chat mark { padding: 1px 3px; border-radius: 3px; background: var(--pale); color: inherit; }
+    .chat sup { margin-left: 2px; font: 600 10.5px/1 var(--sans); color: var(--me); }
+    .chat pre { margin: 12px 0; padding: 12px 14px; border-radius: 10px; background: var(--night); color: #d7e6ea; font: 400 12.5px/1.6 ui-monospace, 'Cascadia Code', Consolas, monospace; overflow: auto; }
+    .chat .made { display: flex; align-items: center; gap: 10px; width: fit-content; margin-top: 12px; padding: 9px 13px; border: 1px solid var(--line); border-radius: 12px; font-size: 13px; }
+    .chat .made i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: var(--pale); color: var(--blue); font-style: normal; }
+    .chat .made small { display: block; color: var(--soft); font-size: 12px; }
+    .chat .turns { display: flex; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--line); color: var(--blue); font-weight: 500; }
+
+    /* across: what it cites, what cites it, and what I wrote beside it */
+    .across { grid-area: across; min-width: 0; }
+    .ref { display: block; margin-bottom: 8px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--white); }
+    .ref .to { display: flex; align-items: center; gap: 7px; font-weight: 600; }
+    .ref .to svg { color: var(--soft); }
+    .ref .to i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--c, var(--sea)); }
+    .ref p { margin-top: 2px; font-size: 12.5px; color: var(--soft); }
+    .ref q { display: block; margin-top: 7px; padding: 6px 9px; border-radius: 7px; background: var(--pale); font: italic 500 15.5px/1.35 var(--serif); quotes: '“' '”'; }
+    .note { padding: 10px 12px; border: 1px dashed var(--line); border-radius: 12px; font-size: 13px; color: var(--soft); }
+    .note b { display: block; margin-bottom: 2px; color: var(--ink); font-weight: 500; }
+    .return { display: none; align-items: center; gap: 8px; margin-bottom: 14px; padding: 9px 12px; border-radius: 10px; background: var(--night); color: #fff; font-weight: 500; }
+    .return svg { color: var(--sky); }
+    [data-at="author"][data-from="book"] .return.to-book, [data-at="author"][data-from="subject"] .return.to-subject { display: flex; }
+
+    /* ---- what each idea colors, at every width ---- */
+    [data-layout="both"] .holds { background: var(--pale); }
+    [data-layout="both"] .holds a.on { background: var(--white); }
+    /* the dark side bar under a top bar: what the book holds, in the soft black, whatever the top bar's tone */
+    [data-layout="both"][data-side="dark"] .holds { background: var(--night); color: #ffffff; border-right-color: #1d3339; }
+    [data-layout="both"][data-side="dark"] .holds h4, [data-layout="both"][data-side="dark"] .holds a small { color: #a9bcc1; }
+    [data-layout="both"][data-side="dark"] .holds a.on { background: rgba(255, 255, 255, .11); }
+    [data-layout="both"][data-side="dark"] .holds a i { box-shadow: 0 0 0 2px rgba(255, 255, 255, .15); }
+    [data-layout="rail"][data-tone="dark"] .sub { --sub-fg: #fff; --sub-dim: rgba(255, 255, 255, .8); --ctl: rgba(12, 27, 31, .26); --ctl-line: transparent; --ctl-fg: #fff; --on: #fff; --on-fg: var(--night); --lnk: #fff; --melnk: #fff; background: var(--blue); }
+    [data-layout="rail"][data-tone="dark"] .fav { background: #fff; }
+    [data-layout="rail"][data-tone="light"] { --bar: var(--pale); --bar-on: #fff; --bar-line: #cbe6ee; }
+    [data-layout="two"][data-tone="dark"] .sub { --sub-dim: #27505c; --ctl: rgba(255, 255, 255, .62); --ctl-line: transparent; --ctl-fg: var(--ink); --lnk: var(--deep); background: var(--sky); }
+    [data-layout="two"][data-tone="light"] .sub { --ctl: #fff; background: var(--pale); }
+    [data-layout="side"][data-tone="light"] { --bar: var(--mist); --bar-on: #fff; }
+    [data-layout="cards"][data-tone="light"] { --canvas: #e9f2f5; --bar-on: #fff; }
+    [data-layout="cards"][data-tone="dark"] { --canvas: var(--night); }
+    [data-layout="cards"] body, [data-layout="cards"] .lib, [data-layout="cards"] .me { background: var(--canvas); }
+    [data-layout="cards"] :is(.sub, .holds, .thing, .across) { background: var(--white); }
+    :is([data-layout="header"], [data-layout="both"], [data-layout="two"], [data-layout="cards"]):is([data-at="subject"], [data-at="book"], [data-at="chat"]) .s.is-claude { box-shadow: inset 0 -2px 0 var(--c); }
+
+    /* ---- at a desk: where each idea puts the bars ---- */
+    @media (min-width: 761px) {
+        html, body { height: 100%; }
+        body { display: grid; overflow: hidden; }
+        .thing { padding: 20px 28px 40px; overflow: auto; }
+        .holds { padding: 18px 12px; overflow: auto; }
+        .across { padding: 18px 16px; overflow: auto; border-left: 1px solid var(--line); }
+
+        /* a bar across the top holds the library, with me at its right end */
+        :is([data-layout="header"], [data-layout="both"], [data-layout="two"], [data-layout="cards"]) .lib { padding: 9px 170px 9px 18px; }
+        :is([data-layout="header"], [data-layout="both"], [data-layout="two"], [data-layout="cards"]) .logo { margin-right: 12px; }
+        :is([data-layout="header"], [data-layout="both"], [data-layout="two"], [data-layout="cards"]) :is(.s small, .me small, .lib .find em) { display: none; }
+        :is([data-layout="header"], [data-layout="both"], [data-layout="two"], [data-layout="cards"]) .me { grid-area: lib; justify-self: end; z-index: 1; padding: 0 18px 0 8px; background: none; }
+        [data-tone="light"]:is([data-layout="header"], [data-layout="both"], [data-layout="two"]) .lib { border-bottom: 1px solid var(--line); }
+
+        [data-layout="header"] body { grid-template: auto auto auto minmax(0, 1fr) / minmax(0, 1fr) 300px; grid-template-areas: "lib lib" "sub sub" "holds holds" "thing across"; }
+        [data-layout="both"] body { grid-template: auto auto minmax(0, 1fr) / 240px minmax(0, 1fr) 300px; grid-template-areas: "lib lib lib" "holds sub sub" "holds thing across"; }
+        [data-layout="both"] .holds { padding: 20px 12px; border-right: 1px solid #cbe6ee; }
+        [data-layout="two"] body { grid-template: auto auto minmax(0, 1fr) / 236px minmax(0, 1fr) 300px; grid-template-areas: "lib lib lib" "sub sub sub" "holds thing across"; }
+        [data-layout="two"] .sub { align-items: center; padding: 9px 24px; }
+        [data-layout="two"] .title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
+        [data-layout="two"] h1 { margin: 0; font-size: 26px; order: -1; }
+        [data-layout="two"] .title p { display: none; }
+        [data-layout="two"] .holds { border-right: 1px solid var(--line); }
+        [data-layout="cards"] body { grid-template: auto auto minmax(0, 1fr) / 244px minmax(0, 1fr) 300px; grid-template-areas: "lib lib lib" "holds sub across" "holds thing across"; column-gap: 12px; padding: 0 12px 12px; }
+        [data-layout="cards"] .lib { padding: 11px 170px 11px 6px; }
+        [data-layout="cards"] .me { padding: 0 6px; }
+        [data-layout="cards"] :is(.holds, .across) { border: 0; border-radius: 16px; }
+        [data-layout="cards"] .sub { border-radius: 16px 16px 0 0; }
+        [data-layout="cards"] .thing { border-radius: 0 0 16px 16px; }
+
+        /* a bar down the left holds the library, with me at its foot */
+        [data-layout="side"] body { grid-template: auto minmax(0, 1fr) / 256px minmax(0, 1fr) 300px; grid-template-areas: "side sub sub" "side thing across"; }
+        [data-layout="side"] .side { grid-area: side; display: flex; flex-direction: column; min-height: 0; background: var(--bar); }
+        [data-layout="side"] .holds { flex: 1; order: 1; }
+        [data-layout="side"] .me { order: 2; }
+        [data-layout="side"] .lib { flex-direction: column; align-items: stretch; gap: 2px; padding: 18px 12px 12px; }
+        [data-layout="side"] .logo { padding: 0 6px 14px; }
+        [data-layout="side"] .subjects { flex-direction: column; }
+        [data-layout="side"] .s small { margin-left: auto; }
+        [data-layout="side"] .lib .find { margin: 10px 0 0; }
+        [data-layout="side"] .holds { padding: 14px 12px; border-top: 1px solid var(--bar-line); background: var(--bar); color: var(--bar-fg); }
+        [data-layout="side"] .holds h4, [data-layout="side"] .holds a small { color: var(--bar-dim); }
+        [data-layout="side"] .holds a.on { background: var(--bar-on); }
+        [data-layout="side"] .me { padding: 12px 18px 14px; border-top: 1px solid var(--bar-line); }
+        [data-layout="side"][data-tone="light"] .side { border-right: 1px solid var(--line); }
+
+        /* a narrow rail holds the subjects as marks and me as a face */
+        [data-layout="rail"] body { grid-template: auto auto minmax(0, 1fr) auto / 68px minmax(0, 1fr) 300px; grid-template-areas: "lib sub sub" "lib holds holds" "lib thing across" "me thing across"; }
+        [data-layout="rail"] .lib { flex-direction: column; gap: 12px; padding: 14px 0; }
+        [data-layout="rail"] :is(.logo b, .lib .find, .s b, .s small, .me span) { display: none; }
+        [data-layout="rail"] .subjects { flex-direction: column; align-items: center; gap: 10px; }
+        [data-layout="rail"] .s { padding: 0; background: none; }
+        [data-layout="rail"] :is(.s i, .logo i, .me i) { width: 40px; height: 40px; border-radius: 11px; font-size: 13px; }
+        [data-layout="rail"] .logo i, [data-layout="rail"] .me i { font-size: 16px; }
+        [data-layout="rail"] .me i { border-radius: 50%; }
+        [data-layout="rail"]:is([data-at="subject"], [data-at="book"], [data-at="chat"]) .s.is-claude i { box-shadow: 0 0 0 2px var(--bar), 0 0 0 4px var(--c); }
+        [data-layout="rail"] .me { justify-content: center; padding: 10px 0 14px; }
+        [data-layout="rail"] .sub { padding: 16px 26px 14px; }
+        [data-layout="rail"][data-tone="light"] :is(.lib, .me) { border-right: 1px solid #cbe6ee; }
+
+        /* with no side bar, what the page holds is a row under its name */
+        :is([data-layout="header"], [data-layout="rail"]) .holds { padding: 12px 28px; overflow: auto hidden; border-bottom: 1px solid var(--line); scrollbar-width: none; }
+        [data-layout="header"] .holds { padding-top: 0; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds > div { display: flex; align-items: center; gap: 6px; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds h4 { flex: none; margin: 0 6px 0 0; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds h4.next { margin-left: 18px; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds h4 small { display: none; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds a { flex: none; padding: 5px 11px 5px 9px; border: 1px solid var(--line); border-radius: 99px; white-space: nowrap; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds a small { margin-left: 4px; }
+        :is([data-layout="header"], [data-layout="rail"]) .holds a.on { border-color: transparent; }
+    }
+
+    /* ---- on a phone: one bar at the top, the page beneath it in one column ---- */
+    @media (max-width: 760px) {
+        body { position: relative; display: flex; flex-direction: column; }
+        .sub { order: 1; }
+        .holds { order: 2; }
+        .thing { order: 3; }
+        .across { order: 4; }
+        .lib { position: sticky; top: 0; z-index: 4; height: 50px; margin-right: 54px; padding: 0 8px 0 14px; gap: 4px; overflow: auto hidden; scrollbar-width: none; }
+        .logo { margin-right: 8px; }
+        .logo b { font-size: 19px; }
+        .s { white-space: nowrap; }
+        .s small, .lib .find, .me span { display: none; }
+        .me { position: fixed; z-index: 5; top: 0; right: 0; justify-content: center; width: 54px; height: 50px; }
+        [data-tone="light"] :is(.lib, .me) { border-bottom: 1px solid var(--line); }
+        .sub { flex-direction: column; flex-wrap: nowrap; align-items: stretch; padding: 16px 16px 12px; }
+        h1 { font-size: 28px; white-space: normal; }
+        .chain { overflow: auto hidden; scrollbar-width: none; }
+        .tools { margin: 0; }
+        .tools > div { justify-content: flex-start; }
+        .holds { padding: 10px 16px 12px; overflow: auto hidden; border-bottom: 1px solid var(--line); scrollbar-width: none; }
+        .holds > div { display: flex; align-items: center; gap: 6px; }
+        .holds h4 { flex: none; margin: 0 6px 0 0; }
+        .holds h4.next { margin-left: 18px; }
+        .holds h4 small { display: none; }
+        .holds a { flex: none; padding: 5px 11px 5px 9px; border: 1px solid var(--line); border-radius: 99px; background: var(--white); white-space: nowrap; }
+        .holds a small { margin-left: 4px; }
+        .thing { padding: 16px 16px 24px; }
+        .go { flex-wrap: wrap; gap: 14px; padding: 14px; }
+        .go > div { flex: 1 1 60%; min-width: 0; }
+        .go .read { margin: 0; }
+        .shelf { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 12px; }
+        .cover { padding: 10px 8px 8px 13px; }
+        .cover b { font-size: 14.5px; }
+        .open, .person { flex-direction: column; gap: 16px; }
+        .cover.big { width: 150px; }
+        .cover.big b { font-size: 22px; }
+        .counts { gap: 18px; }
+        .chat .mine { max-width: 88%; }
+        .across { padding: 16px; border-top: 1px solid var(--line); }
+
+        /* a side bar or a rail turns to lie along the foot, the subjects as marks */
+        :is([data-layout="side"], [data-layout="rail"]) body { padding-bottom: 60px; }
+        :is([data-layout="side"], [data-layout="rail"]) .subjects { position: fixed; z-index: 4; left: 0; right: 0; bottom: 0; justify-content: space-around; padding: 8px 10px; border-top: 1px solid var(--bar-line); background: var(--bar); }
+        :is([data-layout="side"], [data-layout="rail"]) .s { padding: 0; background: none; box-shadow: none; }
+        :is([data-layout="side"], [data-layout="rail"]) .s b { display: none; }
+        :is([data-layout="side"], [data-layout="rail"]) .s i { width: 42px; height: 42px; border-radius: 12px; font-size: 13px; }
+        :is([data-layout="side"], [data-layout="rail"]):is([data-at="subject"], [data-at="book"], [data-at="chat"]) .s.is-claude i { box-shadow: 0 0 0 2px var(--bar), 0 0 0 4px var(--c); }
+
+        [data-layout="two"] .sub { padding: 12px 16px; }
+        [data-layout="two"] .title p { display: none; }
+        [data-layout="cards"] body { padding-bottom: 10px; }
+        [data-layout="cards"] :is(.sub, .holds, .thing, .across) { margin: 0 10px; }
+        [data-layout="cards"] .sub { margin-top: 4px; border-radius: 14px 14px 0 0; }
+        [data-layout="cards"] .thing { border-radius: 0 0 14px 14px; }
+        [data-layout="cards"] .across { margin-top: 10px; border: 0; border-radius: 14px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="side">
+<header class="lib">
+    <a class="logo" data-go="library"><i>D</i><b>Dougs Library</b></a>
+    <nav class="subjects">
+        <a class="s is-claude" data-go="subject" style="--c: var(--sea)"><i>Cl</i><b>Conversations with Claude</b><small>212</small></a>
+        <a class="s" style="--c: #1f8a78"><i>Ch</i><b>Conversations with ChatGPT</b><small>147</small></a>
+        <a class="s" style="--c: #c24a78"><i>De</i><b>Dougs Design</b><small>5</small></a>
+        <a class="s" style="--c: #7a4a8c"><i>Rm</i><b>Dougs Reference Manual</b><small>3</small></a>
+    </nav>
+    <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg><em style="font-style: normal">Find in the library</em></span>
+</header>
+
+<a class="me" data-go="author"><i>D</i><span><b>The Librarian</b><small>my own account</small></span></a>
+
+<aside class="holds">
+    <div class="at-library">
+        <h4>My favorites<small>3</small></h4>
+        <a data-go="book" style="--c: #e07a35"><i></i><b>Lorem Ipsum Dolor</b><small class="star">★</small></a>
+        <a style="--c: #4450b8"><i></i><b>Magna Aliqua</b><small class="star">★</small></a>
+        <a style="--c: #c24a78"><i></i><b>The Library's Home</b><small class="star">★</small></a>
+    </div>
+    <div class="at-subject">
+        <h4>Holds<small>3 projects</small></h4>
+        <a class="on" style="--c: #e07a35"><i></i><b>A First Project</b><small>38</small></a>
+        <a style="--c: #1f8a78"><i></i><b>A Second Project</b><small>91</small></a>
+        <a style="--c: #4450b8"><i></i><b>A Third Project</b><small>83</small></a>
+        <h4 class="next">My favorites here<small>2</small></h4>
+        <a data-go="book" style="--c: #e07a35"><i></i><b>Lorem Ipsum Dolor</b><small class="star">★</small></a>
+        <a style="--c: #4450b8"><i></i><b>Magna Aliqua</b><small class="star">★</small></a>
+    </div>
+    <div class="at-book at-chat">
+        <h4>Holds<small>8 chapters</small></h4>
+        <a class="first" data-go="chat" style="--c: #e07a35"><i></i><b>A First Chapter</b><small>1</small></a>
+        <a style="--c: #e07a35"><i></i><b>A Second Chapter</b><small>2</small></a>
+        <a style="--c: #e07a35"><i></i><b>A Third Chapter</b><small>3</small></a>
+        <a style="--c: #e07a35"><i></i><b>A Fourth Chapter</b><small>4</small></a>
+        <a style="--c: #e07a35"><i></i><b>A Fifth Chapter</b><small>5</small></a>
+    </div>
+    <div class="at-author">
+        <h4>My books<small>3</small></h4>
+        <a class="on" style="--c: var(--me)"><i></i><b>Dougs Story</b><small>3</small></a>
+        <a style="--c: #c24a78"><i></i><b>Dougs Design</b><small>5</small></a>
+        <a style="--c: #7a4a8c"><i></i><b>Dougs Reference Manual</b><small>3</small></a>
+    </div>
+</aside>
+</div>
+
+<section class="sub">
+    <div class="title">
+        <div class="chain">
+            <em>Filed under</em>
+            <span class="at-library">itself</span>
+            <span class="at-subject"><a data-go="library">Dougs Library</a></span>
+            <span class="at-book"><a data-go="subject">Conversations with Claude</a><i>›</i><a data-go="subject">A First Project</a></span>
+            <span class="at-chat"><a data-go="subject">Conversations with Claude</a><i>›</i><a data-go="subject">A First Project</a><i>›</i><a data-go="book">Lorem Ipsum Dolor</a></span>
+            <span class="at-author"><a data-go="library">Dougs Library</a></span>
+        </div>
+        <h1 class="at-library">Dougs Library</h1>
+        <h1 class="at-subject">Conversations with Claude</h1>
+        <h1 class="at-book">Lorem Ipsum Dolor</h1>
+        <h1 class="at-chat">A First Chapter</h1>
+        <h1 class="at-author">Dougs Story</h1>
+        <p class="at-library">by <a class="to-me" data-go="author">The Librarian</a> · three books and two subjects · 359 conversations kept</p>
+        <p class="at-subject">a subject · 212 books in three projects · by <a class="to-me" data-go="author">The Librarian</a></p>
+        <p class="at-book">by <a class="to-me" data-go="author">The Librarian</a> and Claude · 8 chapters · kept 9 Sep 2026</p>
+        <p class="at-chat">chapter 1 of 8 · <a class="to-me" data-go="author">The Librarian</a> and Claude · kept 9 Sep 2026</p>
+        <p class="at-author">The Librarian · my own account</p>
+    </div>
+    <div class="tools">
+        <div class="at-subject">
+            <span class="seg"><span class="on" data-view-is="shelf">Shelf</span><span data-view-is="list">List</span><span>Table</span></span>
+            <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find in this subject</span>
+        </div>
+        <div class="at-book">
+            <span class="fav"><em class="star">★</em>Among my favorites</span>
+            <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find in this book</span>
+        </div>
+        <div class="at-chat">
+            <span class="find"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg>Note on a passage</span>
+            <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find in this book</span>
+        </div>
+    </div>
+</section>
+
+<main class="thing">
+    <div class="at-library">
+        <h4>Subjects</h4>
+        <div class="tiles">
+            <a class="tile" data-go="subject" style="--t: #dff3fa; --c: var(--sea)"><i></i><b>Conversations with Claude</b><small>212 books in three projects</small></a>
+            <a class="tile" style="--t: #dcf5ee; --c: #1f8a78"><i></i><b>Conversations with ChatGPT</b><small>147 books</small></a>
+        </div>
+        <h4>My books</h4>
+        <div class="mines">
+            <a class="cover mine" data-go="author"><b>Dougs Story</b><small>my own account</small></a>
+            <a class="cover mine"><b>Dougs Design</b><small>the design</small></a>
+            <a class="cover mine"><b>Dougs Reference Manual</b><small>the parts</small></a>
+        </div>
+    </div>
+
+    <div class="at-subject">
+        <div class="go">
+            <span class="cover"><b>Lorem Ipsum Dolor</b><small>with Claude</small></span>
+            <div>
+                <em>Continue</em>
+                <h2>Lorem Ipsum Dolor</h2>
+                <p>A First Project · kept 9 September 2026. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                <u><i></i></u>
+                <small>Chapter 1 of 8 · 2 notes of mine · cited twice</small>
+            </div>
+            <a class="read" data-go="chat">Read</a>
+        </div>
+        <h4>Lately kept<small>212 books · newest first</small></h4>
+        <div class="shelf">
+            <a class="bk" data-go="book"><span class="cover"><b>Lorem Ipsum Dolor</b><small>with Claude</small></span><b class="name">Lorem Ipsum Dolor</b><p>9 Sep · 8 chapters <em class="star">★</em></p></a>
+            <a class="bk"><span class="cover"><b>Quis Nostrud</b><small>with Claude</small></span><b class="name">Quis Nostrud</b><p>1 Oct · 6 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Magna Aliqua</b><small>with Claude</small></span><b class="name">Magna Aliqua</b><p>20 Sep · 11 chapters <em class="star">★</em></p></a>
+            <a class="bk"><span class="cover"><b>Tempor Incididunt</b><small>with Claude</small></span><b class="name">Tempor Incididunt</b><p>12 Sep · 7 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Ut Enim ad Minim</b><small>with Claude</small></span><b class="name">Ut Enim ad Minim</b><p>27 Sep · 3 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Sed Do Eiusmod</b><small>with Claude</small></span><b class="name">Sed Do Eiusmod</b><p>5 Sep · 2 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Adipiscing Elit</b><small>with Claude</small></span><b class="name">Adipiscing Elit</b><p>2 Sep · 9 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Sit Amet Consectetur</b><small>with Claude</small></span><b class="name">Sit Amet Consectetur</b><p>21 Jul · 14 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Duis Aute Irure</b><small>with Claude</small></span><b class="name">Duis Aute Irure</b><p>14 Jul · 5 chapters</p></a>
+            <a class="bk"><span class="cover"><b>Excepteur Sint</b><small>with Claude</small></span><b class="name">Excepteur Sint</b><p>2 Jul · 4 chapters</p></a>
+        </div>
+    </div>
+
+    <div class="open at-book">
+        <span class="cover big"><b>Lorem Ipsum Dolor</b><small>with Claude</small></span>
+        <div class="words">
+            <p class="says">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+            <a class="read" data-go="chat">Read from A First Chapter<svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+    </div>
+
+    <div class="chat at-chat">
+        <div class="mine"><span class="who">The Librarian</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit? Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+        <div class="theirs">
+            <span class="who">Claude</span>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <mark>Excepteur sint occaecat cupidatat non proident</mark><sup>1</sup>, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<pre>const lorem = ipsum.dolor('sit amet');
+return lorem.consectetur();</pre>
+            <a class="made"><i>◇</i><span><b>Lorem Ipsum, a first draft</b><small>made in this turn · opens beside the page</small></span></a>
+        </div>
+        <div class="mine"><span class="who">The Librarian</span>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit?</div>
+        <div class="theirs">
+            <span class="who">Claude</span>
+            <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+        </div>
+        <div class="turns"><span></span><a>A Second Chapter →</a></div>
+    </div>
+
+    <div class="person at-author">
+        <span class="face">D</span>
+        <div class="words">
+            <p class="says">My own account, and the one book here that is by its own subject. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+            <div class="counts"><span><b>3</b>books written</span><span><b>359</b>conversations kept</span><span><b>41</b>notes</span></div>
+            <div class="mines">
+                <a class="cover mine"><b>Dougs Story</b><small>my own account</small></a>
+                <a class="cover mine"><b>Dougs Design</b><small>the design</small></a>
+                <a class="cover mine"><b>Dougs Reference Manual</b><small>the parts</small></a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<aside class="across">
+    <a class="return to-book" data-go="book"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg>Back to Lorem Ipsum Dolor</a>
+    <a class="return to-subject" data-go="subject"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg>Back to Conversations with Claude</a>
+
+    <div class="at-library">
+        <h4>Lately kept</h4>
+        <a class="ref" style="--c: #c2413f"><span class="to"><i></i>Quis Nostrud</span><p>1 Oct · Conversations with Claude</p></a>
+        <a class="ref" style="--c: #7a4a8c"><span class="to"><i></i>Ut Enim ad Minim</span><p>27 Sep · Conversations with Claude</p></a>
+        <h4 class="next">My notes<small>41</small></h4>
+        <div class="note"><b>3 Oct 2026 · in Lorem Ipsum Dolor</b>Lorem ipsum, a note of mine beside the passage it is about.</div>
+    </div>
+
+    <div class="at-subject">
+        <h4>Cited from outside<small>2</small></h4>
+        <a class="ref" data-go="author" data-from="subject" style="--c: var(--me)"><span class="to"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg><i></i>Dougs Story</span><p>chapter 1 cites Lorem Ipsum Dolor</p></a>
+        <a class="ref" style="--c: #1f8a78"><span class="to"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg><i></i>Conversations with ChatGPT</span><p>one book cites Adipiscing Elit</p></a>
+        <h4 class="next">My notes here<small>12</small></h4>
+        <div class="note"><b>3 Oct 2026 · in Lorem Ipsum Dolor</b>Lorem ipsum, a note of mine beside the passage it is about.</div>
+    </div>
+
+    <div class="at-book at-chat">
+        <h4>Cites<small>1</small></h4>
+        <a class="ref" style="--c: #3d7a4e"><span class="to"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg><i></i>Adipiscing Elit</span><p>chapter 2 · A First Project</p></a>
+        <h4 class="next">Cited by<small>2</small></h4>
+        <a class="ref" data-go="author" data-from="book" style="--c: var(--me)"><span class="to"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg><i></i>Dougs Story</span><p>chapter 1 · my own account</p><q>Excepteur sint occaecat cupidatat non proident</q></a>
+        <a class="ref" style="--c: #c24a78"><span class="to"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4"/></svg><i></i>Sit Amet Consectetur</span><p>chapter 3 · A First Project</p></a>
+        <h4 class="next">My notes<small>1</small></h4>
+        <div class="note"><b>1 · 3 Oct 2026</b>Lorem ipsum, a note of mine beside the passage it is about.</div>
+    </div>
+
+    <div class="at-author">
+        <h4>Cites<small>1</small></h4>
+        <a class="ref" data-go="book" style="--c: #e07a35"><span class="to"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg><i></i>Lorem Ipsum Dolor</span><p>chapter 1 · a conversation with Claude</p><q>Excepteur sint occaecat cupidatat non proident</q></a>
+        <h4 class="next">Cited by<small>0</small></h4>
+        <div class="note">Nothing cites this chapter yet.</div>
+    </div>
+</aside>
+
+<script>
+    const page = document.documentElement;
+    for (const door of document.querySelectorAll('[data-go]'))
+        door.addEventListener('click', () => {
+            if (door.dataset.from) page.dataset.from = door.dataset.from;
+            else delete page.dataset.from;
+            page.dataset.at = door.dataset.go;
+            window.scrollTo(0, 0);
+            for (const column of document.querySelectorAll('.thing, .holds, .across')) column.scrollTop = 0;
+        });
+    for (const view of document.querySelectorAll('[data-view-is]'))
+        view.addEventListener('click', () => {
+            page.dataset.view = view.dataset.viewIs;
+            for (const other of view.parentElement.children) other.classList.toggle('on', other === view);
+        });
+<\/script>
+</body>
+</html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"28"}),a.jsx(o,{children:"[The Code in Front](/dougs-design/#the-code-in-front)"}),a.jsx(e,{children:"Concept 28, an idea, after 6, with the file given the room."}),a.jsx(e,{children:"The same manual as 6, with two readings of one chapter. Code: the file is the thing being viewed, across the whole width, one line of its own facts above it and its fields below. Words: the write-up you read to learn how to use the part, with the file folded to a strip at the right that opens out again. The words are substantive, because the manual is more than a code reader. This is the code reading; 31 is the words reading of the same page."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~028-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~028-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
+<html lang="en" data-view="code">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Code in Front</title>
+<meta name="number" content="28">
+<meta name="state" content="idea">
+<meta name="said" content="">
+<meta name="after" content="6, with the file given the room">
+<meta name="idea" content="The same manual as 6, but with two readings of one chapter. Code: the file is the thing being viewed, across the whole width, one line of its own facts above it and its fields below. Words: the write-up you read to learn how to use the part, what it is, how it is used with an example, its fields, what bites, with the file folded to a strip at the right that opens out again.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+    :root { --bg: #ffffff; --side: #f7f8fa; --line: #e6e8ee; --ink: #1a1f36; --soft: #4f566b; --faint: #8792a2; --teal: #0a7a70; --teal-soft: #e3f4f1; --night: #0f2a33; --night-2: #17363f; --code: #cfe6e3; }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body { background: var(--bg); color: var(--ink); font: 400 14.5px/1.6 'Inter', system-ui, sans-serif; display: grid; grid-template-columns: 248px minmax(0, 1fr); overflow: hidden; }
+    code, pre { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+    nav.parts { background: var(--side); border-right: 1px solid var(--line); padding: 18px 14px; overflow: hidden; }
+    .where { font-size: 12px; color: var(--faint); margin-bottom: 4px; }
+    .book { font-weight: 600; font-size: 15px; margin-bottom: 14px; }
+    .find { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 9px; color: var(--faint); font-size: 13px; }
+    .find kbd { margin-left: auto; font: 500 11px/1 'Inter'; border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; }
+    nav.parts h4 { font: 600 11px/1 'Inter'; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin: 20px 6px 8px; }
+    nav.parts a { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px; border-radius: 6px; color: var(--soft); }
+    nav.parts a.on { background: var(--teal-soft); color: var(--teal); font-weight: 500; }
+    nav.parts a small { font: 400 11px/1 'JetBrains Mono'; color: var(--faint); }
+
+    /* the page: the chapter and its file, arranged by the view */
+    main { display: grid; min-height: 0; overflow: auto; }
+    .crumb { font-size: 12.5px; color: var(--faint); }
+    h1 { font-size: 30px; line-height: 1.15; letter-spacing: -.02em; margin: 6px 0 10px; }
+    .lead { font-size: 16px; color: var(--soft); max-width: 54ch; }
+    .brief { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 500 12.5px/1.6 'JetBrains Mono'; color: var(--faint); }
+    .brief b { color: var(--teal); font-weight: 500; }
+    pre.example { margin: 12px 0 0; padding: 12px 16px; border-radius: 8px; background: var(--side); border: 1px solid var(--line); font-size: 12.5px; line-height: 1.7; color: var(--ink); overflow: auto; white-space: pre; }
+    pre.example .k { color: #0a7a70; } pre.example .s { color: #a35a00; } pre.example .t { color: #1f4f9c; } pre.example .c { color: var(--faint); }
+    [data-view="code"] .lead, [data-view="code"] .writeup { display: none; }
+    [data-view="words"] .brief { display: none; }
+    h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin: 30px 0 4px; padding-top: 22px; border-top: 1px solid var(--line); }
+    p { max-width: 58ch; }
+    p + p { margin-top: 10px; }
+    .field { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .field b { font: 500 13.5px/1.6 'JetBrains Mono'; }
+    .field b small { display: block; font: 400 11.5px/1.3 'Inter'; color: var(--faint); }
+    .field.lit { margin: 0 -12px; padding: 12px; background: var(--teal-soft); border-radius: 8px; border-bottom-color: transparent; }
+    .field.lit b { color: var(--teal); }
+    .next { display: flex; justify-content: space-between; margin-top: 26px; font-size: 13.5px; }
+    .next a { color: var(--teal); font-weight: 500; }
+
+    /* the switch between the two views, at the head of the page */
+    .views { display: flex; align-items: center; gap: 6px; }
+    .views span { padding: 5px 11px; border: 1px solid var(--line); border-radius: 7px; color: var(--soft); font-size: 13px; cursor: pointer; }
+    .views span.on { background: var(--night); border-color: var(--night); color: #fff; font-weight: 500; }
+
+    aside.file { background: var(--night); color: var(--code); display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+    .tabs { display: flex; align-items: center; gap: 2px; padding: 12px 14px 0; font-size: 12.5px; }
+    .tabs span { padding: 7px 12px; border-radius: 7px 7px 0 0; color: #8fb0ad; }
+    .tabs span.on { background: var(--night-2); color: #fff; }
+    .tabs .copy { margin-left: auto; display: flex; align-items: center; gap: 6px; color: #8fb0ad; padding-bottom: 6px; }
+    pre { background: var(--night-2); margin: 0 14px; border-radius: 0 10px 10px 10px; padding: 16px 0; font-size: 12.2px; line-height: 1.75; overflow: auto; flex: 1; scrollbar-width: thin; scrollbar-color: #2f5a62 transparent; }
+    pre span.l { display: block; padding: 0 18px 0 0; white-space: pre; }
+    pre span.l::before { content: attr(data-n); display: inline-block; width: 42px; padding-right: 14px; text-align: right; color: #4f7672; }
+    pre span.hit { background: rgba(102, 220, 200, .14); box-shadow: inset 3px 0 0 #58d6c2; }
+    .k { color: #8ad7ff; } .s { color: #ffd48a; } .t { color: #9be3d6; } .c { color: #5f8a86; }
+    .used { margin: 14px; padding: 12px 14px; border: 1px solid #24484f; border-radius: 10px; font-size: 12.5px; color: #9fc2bf; }
+    .used b { display: block; color: #fff; font-weight: 500; margin-bottom: 4px; }
+    .used span { display: inline-block; margin: 4px 6px 0 0; padding: 2px 9px; border-radius: 99px; background: #1d4049; color: #cfe6e3; }
+
+    /* code in front: one column; the head of the chapter, then the file across the whole width, then the rest of the words */
+    [data-view="code"] main { grid-template-rows: auto auto minmax(0, 1fr); grid-template-areas: 'head' 'file' 'words'; }
+    [data-view="code"] .head { grid-area: head; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 24px; padding: 28px 44px 18px; }
+    [data-view="code"] aside.file { grid-area: file; margin: 0 44px; border-radius: 12px; min-height: 420px; }
+    [data-view="code"] aside.file pre { font-size: 13px; }
+    [data-view="code"] .words { grid-area: words; padding: 10px 44px 40px; }
+    [data-view="code"] .words h2:first-child { border-top: 0; padding-top: 10px; margin-top: 10px; }
+
+    /* words in front: the words at the left as in 6, the file folded to a strip at the right that opens out again */
+    [data-view="words"] main { grid-template-columns: minmax(0, 1fr) 56px; grid-template-rows: auto minmax(0, 1fr); grid-template-areas: 'head file' 'words file'; overflow: hidden; }
+    [data-view="words"] .head { grid-area: head; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 24px; padding: 34px 44px 0; }
+    [data-view="words"] .words { grid-area: words; overflow: auto; padding: 0 44px 40px; }
+    [data-view="words"] aside.file { grid-area: file; cursor: pointer; }
+    [data-view="words"] aside.file .tabs, [data-view="words"] aside.file pre, [data-view="words"] aside.file .used { display: none; }
+    [data-view="words"] aside.file .fold { display: flex; }
+    .fold { display: none; flex: 1; align-items: flex-start; justify-content: center; padding-top: 16px; color: #8fb0ad; writing-mode: vertical-rl; font: 500 12px/1 'JetBrains Mono'; letter-spacing: .08em; gap: 10px; }
+
+    .pick { display: none; }
+    @media (max-width: 760px) {
+        html, body { height: auto; }
+        body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; overflow: visible; }
+        nav.parts { display: none; }
+        .pick { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--side); font-weight: 500; position: sticky; top: 0; z-index: 2; }
+        .pick small { color: var(--faint); font-weight: 400; }
+        main { overflow: visible; }
+        [data-view="code"] .head, [data-view="words"] .head { padding: 20px 16px 8px; grid-template-columns: minmax(0, 1fr); }
+        [data-view="code"] aside.file { margin: 8px 12px 0; min-height: 0; }
+        [data-view="code"] .words, [data-view="words"] .words { padding: 8px 16px 20px; }
+        [data-view="words"] main { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'head' 'words' 'file'; }
+        [data-view="words"] aside.file { margin: 8px 12px 18px; border-radius: 12px; min-height: 48px; }
+        [data-view="words"] .fold { writing-mode: horizontal-tb; padding: 14px; }
+        h1 { font-size: 25px; }
+        .field { grid-template-columns: 84px minmax(0, 1fr); gap: 10px; }
+        pre { font-size: 11.5px; margin: 0 10px; }
+        pre span.l::before { width: 30px; padding-right: 10px; }
+        .next { display: none; }
+    }
+</style>
+</head>
+<body>
+<nav class="parts">
+    <div class="where">Dougs Library</div>
+    <div class="book">Dougs Reference Manual</div>
+    <div class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find a part<kbd>/</kbd></div>
+    <h4>The library</h4>
+    <a>The Book<small>.tsx</small></a>
+    <a class="on">The Theme<small>.tsx</small></a>
+    <a>Initializing a Library</a>
+    <h4>The design book</h4>
+    <a>The Pages<small>.tsx</small></a>
+    <a>The Frame<small>.tsx</small></a>
+    <a>The Concept<small>.tsx</small></a>
+    <h4>Kept with</h4>
+    <a>The Importer<small>.ts</small></a>
+    <a>The Session<small>.mjs</small></a>
+</nav>
+<div class="pick"><span>The Theme <small>· part 2 of 8</small></span><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></div>
+
+<main>
+    <div class="head">
+        <div>
+            <div class="crumb">Dougs Reference Manual / The library</div>
+            <h1>The Theme</h1>
+            <p class="lead">A place for the library's properties, and the one styled component that dresses the framework's marks with them. Read this page to write your library's theme; the file beside it is the one the library runs.</p>
+            <p class="brief"><b>2-the-theme~code.tsx</b><span>19 lines</span><span>one class, $LibraryBookTheme</span><span>five fields, three parts</span><span>ink read in 14 places</span></p>
+        </div>
+        <div class="views"><span class="on" data-view-is="code">code</span><span data-view-is="words">words</span></div>
+    </div>
+
+    <aside class="file" data-view-is="code">
+        <div class="tabs"><span class="on">2-the-theme~code.tsx</span><span>where it is used</span><span class="copy"><svg viewBox="0 0 16 16"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 10.5V4a1 1 0 0 1 1-1h6.5"/></svg>Copy</span></div>
+        <pre><span class="l" data-n="1"><span class="k">export class</span> <span class="t">$LibraryBookTheme</span> <span class="k">extends</span> <span class="t">$Theme</span> {</span><span class="l" data-n="2">    font = <span class="s">"'Inter', system-ui, sans-serif"</span>;</span><span class="l" data-n="3">    size = <span class="s">'0.90625rem'</span>;</span><span class="l hit" data-n="4">    ink = <span class="s">'#1a1f36'</span>;</span><span class="l" data-n="5">    paper = <span class="s">'#ffffff'</span>;</span><span class="l" data-n="6">    accent = <span class="s">'#0a7a70'</span>;</span><span class="l" data-n="7">    style = selection.div<span class="s">\`</span>\${<span class="k">this</span>.parts()}<span class="s">\`</span>;</span><span class="l" data-n="8"></span><span class="l" data-n="9">    <span class="k">protected</span> parts(): <span class="t">RuleSet</span>[] {</span><span class="l" data-n="10">        <span class="k">return</span> [<span class="k">this</span>.page(), <span class="k">this</span>.writing(), <span class="k">this</span>.links()];</span><span class="l" data-n="11">    }</span><span class="l" data-n="12"></span><span class="l" data-n="13">    <span class="k">protected</span> page(): <span class="t">RuleSet</span> {</span><span class="l" data-n="14">        <span class="k">return</span> css<span class="s">\`</span></span><span class="l hit" data-n="15"><span class="s">            color: </span>\${({ theme }) =&gt; theme.ink}<span class="s">;</span></span><span class="l" data-n="16"><span class="s">            background: </span>\${({ theme }) =&gt; theme.paper}<span class="s">;</span></span><span class="l" data-n="17"><span class="s">        \`</span>;</span><span class="l" data-n="18">    }</span><span class="l" data-n="19">}</span></pre>
+        <div class="used"><b>ink is read in 14 places</b>Lines 4 and 15 here, and in<span>The Book</span><span>The Frame</span><span>The Concept</span></div>
+        <div class="fold"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>2-the-theme~code.tsx</div>
+    </aside>
+
+    <div class="words">
+        <div class="writeup">
+            <h2>What it is</h2>
+            <p>The framework's Theme is bare: it stands on every book and provides itself, and nothing else. So the properties are this library's own. They are declared as fields on a class under the framework's Theme, and every rule beneath reads them through the theme's own provision, as a value templated into the string.</p>
+            <p>The component is one styled element, composed of parts. Each part is a method returning a fragment of rules for one thing on the page, so that a book changes one part and keeps the rest, and a reader of the file sees the look as a list of named pieces.</p>
+            <h2>How it is used</h2>
+            <p>Declare the fields your library reads, as many as it has. Compose the parts in the field that holds the style. Then register the theme on your book class, once, in the file that exports the class; every book of the library inherits it, and a book that wants another theme registers its own.</p>
+            <pre class="example"><span class="k">export class</span> <span class="t">$ManualTheme</span> <span class="k">extends</span> <span class="t">$LibraryBookTheme</span> {
+    measure = <span class="s">'58ch'</span>;                              <span class="c">// one value changed</span>
+    <span class="k">protected override</span> parts(): <span class="t">RuleSet</span>[] {
+        <span class="k">return</span> [...<span class="k">super</span>.parts(), <span class="k">this</span>.index()];  <span class="c">// one part added</span>
+    }
+}
+$(Manual, Theme)(ManualTheme);                       <span class="c">// registered on the book</span></pre>
+            <p>A rule names a class the framework puts on an element, never the element itself; it reaches by descendant, never by child; and every quantity in it is one of these fields, never a literal. A face that must win over the theme on one element names the kind with its class, as the chapter on the faces says.</p>
+        </div>
+        <h2>Fields</h2>
+        <div class="field"><b>font<small>string</small></b><span>The family every book is set in.</span></div>
+        <div class="field lit"><b>ink<small>color</small></b><span>The color of the words. Every rule that needs it reads this field, so a book that changes it keeps the look in another ink.</span></div>
+        <div class="field"><b>paper<small>color</small></b><span>The color of the page behind them.</span></div>
+        <div class="field"><b>accent<small>color</small></b><span>The color of a reference to another place in the library.</span></div>
+        <div class="writeup">
+            <h2>Before it bites</h2>
+            <p>A style is compiled once per class, so a value is read through the provider's props and never through a closure over the instance. A part must not take the name of a member the class already has; the typecheck names such a thing at once, and the page breaks somewhere else if it is not run. A font declared here reaches the live page only after a bind.</p>
+        </div>
+        <div class="next"><a>← The Book</a><a>Initializing a Library →</a></div>
+    </div>
+</main>
+<script>
+    const page = document.documentElement;
+    for (const view of document.querySelectorAll('[data-view-is]'))
+        view.addEventListener('click', () => {
+            page.dataset.view = view.dataset.viewIs;
+            for (const other of document.querySelectorAll('.views span')) other.classList.toggle('on', other.dataset.viewIs === view.dataset.viewIs);
+        });
+<\/script>
+</body>
+</html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"31"}),a.jsx(o,{children:"[The Words in Front](/dougs-design/#the-words-in-front)"}),a.jsx(e,{children:"Concept 31, an idea, after 28, opened on the words."}),a.jsx(e,{children:"The same page as 28, read the other way: what the part is, how it is used with an example, its fields, and what to know before it bites, with the file folded to a strip at the right. A press on the strip opens the code out again."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~031-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~031-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
+<html lang="en" data-view="words">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Words in Front</title>
+<meta name="number" content="31">
+<meta name="state" content="idea">
+<meta name="said" content="">
+<meta name="after" content="28, opened on the words">
+<meta name="idea" content="The same manual as 6, but with two readings of one chapter. Code: the file is the thing being viewed, across the whole width, one line of its own facts above it and its fields below. Words: the write-up you read to learn how to use the part, what it is, how it is used with an example, its fields, what bites, with the file folded to a strip at the right that opens out again.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+    :root { --bg: #ffffff; --side: #f7f8fa; --line: #e6e8ee; --ink: #1a1f36; --soft: #4f566b; --faint: #8792a2; --teal: #0a7a70; --teal-soft: #e3f4f1; --night: #0f2a33; --night-2: #17363f; --code: #cfe6e3; }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body { background: var(--bg); color: var(--ink); font: 400 14.5px/1.6 'Inter', system-ui, sans-serif; display: grid; grid-template-columns: 248px minmax(0, 1fr); overflow: hidden; }
+    code, pre { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+    nav.parts { background: var(--side); border-right: 1px solid var(--line); padding: 18px 14px; overflow: hidden; }
+    .where { font-size: 12px; color: var(--faint); margin-bottom: 4px; }
+    .book { font-weight: 600; font-size: 15px; margin-bottom: 14px; }
+    .find { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 9px; color: var(--faint); font-size: 13px; }
+    .find kbd { margin-left: auto; font: 500 11px/1 'Inter'; border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; }
+    nav.parts h4 { font: 600 11px/1 'Inter'; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin: 20px 6px 8px; }
+    nav.parts a { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px; border-radius: 6px; color: var(--soft); }
+    nav.parts a.on { background: var(--teal-soft); color: var(--teal); font-weight: 500; }
+    nav.parts a small { font: 400 11px/1 'JetBrains Mono'; color: var(--faint); }
+
+    /* the page: the chapter and its file, arranged by the view */
+    main { display: grid; min-height: 0; overflow: auto; }
+    .crumb { font-size: 12.5px; color: var(--faint); }
+    h1 { font-size: 30px; line-height: 1.15; letter-spacing: -.02em; margin: 6px 0 10px; }
+    .lead { font-size: 16px; color: var(--soft); max-width: 54ch; }
+    .brief { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 500 12.5px/1.6 'JetBrains Mono'; color: var(--faint); }
+    .brief b { color: var(--teal); font-weight: 500; }
+    pre.example { margin: 12px 0 0; padding: 12px 16px; border-radius: 8px; background: var(--side); border: 1px solid var(--line); font-size: 12.5px; line-height: 1.7; color: var(--ink); overflow: auto; white-space: pre; }
+    pre.example .k { color: #0a7a70; } pre.example .s { color: #a35a00; } pre.example .t { color: #1f4f9c; } pre.example .c { color: var(--faint); }
+    [data-view="code"] .lead, [data-view="code"] .writeup { display: none; }
+    [data-view="words"] .brief { display: none; }
+    h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin: 30px 0 4px; padding-top: 22px; border-top: 1px solid var(--line); }
+    p { max-width: 58ch; }
+    p + p { margin-top: 10px; }
+    .field { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .field b { font: 500 13.5px/1.6 'JetBrains Mono'; }
+    .field b small { display: block; font: 400 11.5px/1.3 'Inter'; color: var(--faint); }
+    .field.lit { margin: 0 -12px; padding: 12px; background: var(--teal-soft); border-radius: 8px; border-bottom-color: transparent; }
+    .field.lit b { color: var(--teal); }
+    .next { display: flex; justify-content: space-between; margin-top: 26px; font-size: 13.5px; }
+    .next a { color: var(--teal); font-weight: 500; }
+
+    /* the switch between the two views, at the head of the page */
+    .views { display: flex; align-items: center; gap: 6px; }
+    .views span { padding: 5px 11px; border: 1px solid var(--line); border-radius: 7px; color: var(--soft); font-size: 13px; cursor: pointer; }
+    .views span.on { background: var(--night); border-color: var(--night); color: #fff; font-weight: 500; }
+
+    aside.file { background: var(--night); color: var(--code); display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+    .tabs { display: flex; align-items: center; gap: 2px; padding: 12px 14px 0; font-size: 12.5px; }
+    .tabs span { padding: 7px 12px; border-radius: 7px 7px 0 0; color: #8fb0ad; }
+    .tabs span.on { background: var(--night-2); color: #fff; }
+    .tabs .copy { margin-left: auto; display: flex; align-items: center; gap: 6px; color: #8fb0ad; padding-bottom: 6px; }
+    pre { background: var(--night-2); margin: 0 14px; border-radius: 0 10px 10px 10px; padding: 16px 0; font-size: 12.2px; line-height: 1.75; overflow: auto; flex: 1; scrollbar-width: thin; scrollbar-color: #2f5a62 transparent; }
+    pre span.l { display: block; padding: 0 18px 0 0; white-space: pre; }
+    pre span.l::before { content: attr(data-n); display: inline-block; width: 42px; padding-right: 14px; text-align: right; color: #4f7672; }
+    pre span.hit { background: rgba(102, 220, 200, .14); box-shadow: inset 3px 0 0 #58d6c2; }
+    .k { color: #8ad7ff; } .s { color: #ffd48a; } .t { color: #9be3d6; } .c { color: #5f8a86; }
+    .used { margin: 14px; padding: 12px 14px; border: 1px solid #24484f; border-radius: 10px; font-size: 12.5px; color: #9fc2bf; }
+    .used b { display: block; color: #fff; font-weight: 500; margin-bottom: 4px; }
+    .used span { display: inline-block; margin: 4px 6px 0 0; padding: 2px 9px; border-radius: 99px; background: #1d4049; color: #cfe6e3; }
+
+    /* code in front: one column; the head of the chapter, then the file across the whole width, then the rest of the words */
+    [data-view="code"] main { grid-template-rows: auto auto minmax(0, 1fr); grid-template-areas: 'head' 'file' 'words'; }
+    [data-view="code"] .head { grid-area: head; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 24px; padding: 28px 44px 18px; }
+    [data-view="code"] aside.file { grid-area: file; margin: 0 44px; border-radius: 12px; min-height: 420px; }
+    [data-view="code"] aside.file pre { font-size: 13px; }
+    [data-view="code"] .words { grid-area: words; padding: 10px 44px 40px; }
+    [data-view="code"] .words h2:first-child { border-top: 0; padding-top: 10px; margin-top: 10px; }
+
+    /* words in front: the words at the left as in 6, the file folded to a strip at the right that opens out again */
+    [data-view="words"] main { grid-template-columns: minmax(0, 1fr) 56px; grid-template-rows: auto minmax(0, 1fr); grid-template-areas: 'head file' 'words file'; overflow: hidden; }
+    [data-view="words"] .head { grid-area: head; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 24px; padding: 34px 44px 0; }
+    [data-view="words"] .words { grid-area: words; overflow: auto; padding: 0 44px 40px; }
+    [data-view="words"] aside.file { grid-area: file; cursor: pointer; }
+    [data-view="words"] aside.file .tabs, [data-view="words"] aside.file pre, [data-view="words"] aside.file .used { display: none; }
+    [data-view="words"] aside.file .fold { display: flex; }
+    .fold { display: none; flex: 1; align-items: flex-start; justify-content: center; padding-top: 16px; color: #8fb0ad; writing-mode: vertical-rl; font: 500 12px/1 'JetBrains Mono'; letter-spacing: .08em; gap: 10px; }
+
+    .pick { display: none; }
+    @media (max-width: 760px) {
+        html, body { height: auto; }
+        body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; overflow: visible; }
+        nav.parts { display: none; }
+        .pick { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--side); font-weight: 500; position: sticky; top: 0; z-index: 2; }
+        .pick small { color: var(--faint); font-weight: 400; }
+        main { overflow: visible; }
+        [data-view="code"] .head, [data-view="words"] .head { padding: 20px 16px 8px; grid-template-columns: minmax(0, 1fr); }
+        [data-view="code"] aside.file { margin: 8px 12px 0; min-height: 0; }
+        [data-view="code"] .words, [data-view="words"] .words { padding: 8px 16px 20px; }
+        [data-view="words"] main { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'head' 'words' 'file'; }
+        [data-view="words"] aside.file { margin: 8px 12px 18px; border-radius: 12px; min-height: 48px; }
+        [data-view="words"] .fold { writing-mode: horizontal-tb; padding: 14px; }
+        h1 { font-size: 25px; }
+        .field { grid-template-columns: 84px minmax(0, 1fr); gap: 10px; }
+        pre { font-size: 11.5px; margin: 0 10px; }
+        pre span.l::before { width: 30px; padding-right: 10px; }
+        .next { display: none; }
+    }
+</style>
+</head>
+<body>
+<nav class="parts">
+    <div class="where">Dougs Library</div>
+    <div class="book">Dougs Reference Manual</div>
+    <div class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find a part<kbd>/</kbd></div>
+    <h4>The library</h4>
+    <a>The Book<small>.tsx</small></a>
+    <a class="on">The Theme<small>.tsx</small></a>
+    <a>Initializing a Library</a>
+    <h4>The design book</h4>
+    <a>The Pages<small>.tsx</small></a>
+    <a>The Frame<small>.tsx</small></a>
+    <a>The Concept<small>.tsx</small></a>
+    <h4>Kept with</h4>
+    <a>The Importer<small>.ts</small></a>
+    <a>The Session<small>.mjs</small></a>
+</nav>
+<div class="pick"><span>The Theme <small>· part 2 of 8</small></span><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></div>
+
+<main>
+    <div class="head">
+        <div>
+            <div class="crumb">Dougs Reference Manual / The library</div>
+            <h1>The Theme</h1>
+            <p class="lead">A place for the library's properties, and the one styled component that dresses the framework's marks with them. Read this page to write your library's theme; the file beside it is the one the library runs.</p>
+            <p class="brief"><b>2-the-theme~code.tsx</b><span>19 lines</span><span>one class, $LibraryBookTheme</span><span>five fields, three parts</span><span>ink read in 14 places</span></p>
+        </div>
+        <div class="views"><span data-view-is="code">code</span><span class="on" data-view-is="words">words</span></div>
+    </div>
+
+    <aside class="file" data-view-is="code">
+        <div class="tabs"><span class="on">2-the-theme~code.tsx</span><span>where it is used</span><span class="copy"><svg viewBox="0 0 16 16"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 10.5V4a1 1 0 0 1 1-1h6.5"/></svg>Copy</span></div>
+        <pre><span class="l" data-n="1"><span class="k">export class</span> <span class="t">$LibraryBookTheme</span> <span class="k">extends</span> <span class="t">$Theme</span> {</span><span class="l" data-n="2">    font = <span class="s">"'Inter', system-ui, sans-serif"</span>;</span><span class="l" data-n="3">    size = <span class="s">'0.90625rem'</span>;</span><span class="l hit" data-n="4">    ink = <span class="s">'#1a1f36'</span>;</span><span class="l" data-n="5">    paper = <span class="s">'#ffffff'</span>;</span><span class="l" data-n="6">    accent = <span class="s">'#0a7a70'</span>;</span><span class="l" data-n="7">    style = selection.div<span class="s">\`</span>\${<span class="k">this</span>.parts()}<span class="s">\`</span>;</span><span class="l" data-n="8"></span><span class="l" data-n="9">    <span class="k">protected</span> parts(): <span class="t">RuleSet</span>[] {</span><span class="l" data-n="10">        <span class="k">return</span> [<span class="k">this</span>.page(), <span class="k">this</span>.writing(), <span class="k">this</span>.links()];</span><span class="l" data-n="11">    }</span><span class="l" data-n="12"></span><span class="l" data-n="13">    <span class="k">protected</span> page(): <span class="t">RuleSet</span> {</span><span class="l" data-n="14">        <span class="k">return</span> css<span class="s">\`</span></span><span class="l hit" data-n="15"><span class="s">            color: </span>\${({ theme }) =&gt; theme.ink}<span class="s">;</span></span><span class="l" data-n="16"><span class="s">            background: </span>\${({ theme }) =&gt; theme.paper}<span class="s">;</span></span><span class="l" data-n="17"><span class="s">        \`</span>;</span><span class="l" data-n="18">    }</span><span class="l" data-n="19">}</span></pre>
+        <div class="used"><b>ink is read in 14 places</b>Lines 4 and 15 here, and in<span>The Book</span><span>The Frame</span><span>The Concept</span></div>
+        <div class="fold"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>2-the-theme~code.tsx</div>
+    </aside>
+
+    <div class="words">
+        <div class="writeup">
+            <h2>What it is</h2>
+            <p>The framework's Theme is bare: it stands on every book and provides itself, and nothing else. So the properties are this library's own. They are declared as fields on a class under the framework's Theme, and every rule beneath reads them through the theme's own provision, as a value templated into the string.</p>
+            <p>The component is one styled element, composed of parts. Each part is a method returning a fragment of rules for one thing on the page, so that a book changes one part and keeps the rest, and a reader of the file sees the look as a list of named pieces.</p>
+            <h2>How it is used</h2>
+            <p>Declare the fields your library reads, as many as it has. Compose the parts in the field that holds the style. Then register the theme on your book class, once, in the file that exports the class; every book of the library inherits it, and a book that wants another theme registers its own.</p>
+            <pre class="example"><span class="k">export class</span> <span class="t">$ManualTheme</span> <span class="k">extends</span> <span class="t">$LibraryBookTheme</span> {
+    measure = <span class="s">'58ch'</span>;                              <span class="c">// one value changed</span>
+    <span class="k">protected override</span> parts(): <span class="t">RuleSet</span>[] {
+        <span class="k">return</span> [...<span class="k">super</span>.parts(), <span class="k">this</span>.index()];  <span class="c">// one part added</span>
+    }
+}
+$(Manual, Theme)(ManualTheme);                       <span class="c">// registered on the book</span></pre>
+            <p>A rule names a class the framework puts on an element, never the element itself; it reaches by descendant, never by child; and every quantity in it is one of these fields, never a literal. A face that must win over the theme on one element names the kind with its class, as the chapter on the faces says.</p>
+        </div>
+        <h2>Fields</h2>
+        <div class="field"><b>font<small>string</small></b><span>The family every book is set in.</span></div>
+        <div class="field lit"><b>ink<small>color</small></b><span>The color of the words. Every rule that needs it reads this field, so a book that changes it keeps the look in another ink.</span></div>
+        <div class="field"><b>paper<small>color</small></b><span>The color of the page behind them.</span></div>
+        <div class="field"><b>accent<small>color</small></b><span>The color of a reference to another place in the library.</span></div>
+        <div class="writeup">
+            <h2>Before it bites</h2>
+            <p>A style is compiled once per class, so a value is read through the provider's props and never through a closure over the instance. A part must not take the name of a member the class already has; the typecheck names such a thing at once, and the page breaks somewhere else if it is not run. A font declared here reaches the live page only after a bind.</p>
+        </div>
+        <div class="next"><a>← The Book</a><a>Initializing a Library →</a></div>
+    </div>
+</main>
+<script>
+    const page = document.documentElement;
+    for (const view of document.querySelectorAll('[data-view-is]'))
+        view.addEventListener('click', () => {
+            page.dataset.view = view.dataset.viewIs;
+            for (const other of document.querySelectorAll('.views span')) other.classList.toggle('on', other.dataset.viewIs === view.dataset.viewIs);
+        });
+<\/script>
+</body>
+</html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"29"}),a.jsx(o,{children:"[The Reading View, in the Frame, with the Chapters at the Side](/dougs-design/#the-reading-view-in-the-frame-with-the-chapters-at-the-side)"}),a.jsx(e,{children:"Concept 29, an idea, after 25 under the top bar of 16, with the side bar of 26."}),a.jsx(e,{children:"The sheet of 25 integrated: the library's bar across the top, the book's chapters down a soft black side bar with the open one lit, the papers as the book's own tools above the sheet, and the chapters either side still at its foot."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~029-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~029-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
+<html lang="en" data-theme="book" data-nav="side">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reading View, in the Frame, with the Chapters at the Side</title>
+<meta name="number" content="29">
+<meta name="state" content="idea">
+<meta name="said" content="">
+<meta name="after" content="25 under the top bar of 16, with the side bar of 26">
+<meta name="idea" content="The sheet of 25 integrated: the library's bar across the top, the book's chapters down a soft black side bar with the open one lit, the papers as the book's own tools above the sheet, and the chapters either side still at its foot.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+        --mono: ui-monospace, Menlo, Consolas, monospace;
+        --me: #e8590c;
+        /* the frame's own palette, as 11 to 23 have it */
+        --night: #0c1b1f; --sea: #4e9eb9; --ink: #10252c; --soft: #516770; --line: #dbe7ec; --white: #ffffff;
+        --frame-serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Inter', system-ui, sans-serif;
+        --bar: var(--white); --bar-fg: var(--ink); --bar-dim: var(--soft); --bar-on: #e3f5fa; --bar-line: var(--line); --mark: var(--night); --mark-fg: #ffffff;
+        --side: var(--night); --side-fg: #ffffff; --side-dim: #a9bcc1; --side-on: rgba(255, 255, 255, .11); --side-line: #1d3339;
+    }
+
+    /* the demo's frame, the same behind its book and its night */
+    [data-theme="book"], [data-theme="night"] {
+        --ground: radial-gradient(1200px 700px at 50% -10%, #232a4d 0%, #171c33 45%, #0f1326 100%);
+        --ground-end: #0f1326;
+        --chip-fill: rgba(15, 19, 38, .72); --chip-line: rgba(124, 138, 200, .35); --chip-ink: #aab4e8;
+        --chip-hover-ink: #e6eaff; --chip-hover-line: rgba(170, 180, 232, .7);
+        --chip-on-fill: rgba(255, 210, 122, .12); --chip-on-line: rgba(255, 210, 122, .75); --chip-on-ink: #ffd27a; --chip-rule: rgba(124, 138, 200, .3);
+    }
+    [data-theme="book"] {
+        --sheet: #fbf9f3; --sheet-border: 0; --sheet-radius: 6px; --sheet-shadow: 0 1px 0 rgba(255, 255, 255, .08), 0 34px 90px -24px rgba(0, 0, 0, .65);
+        --sheet-width: 780px; --sheet-pad: 68px 76px 56px; --sheet-pad-phone: 40px 26px 36px;
+        --sheet-ink: #29251d; --heading: #1f1b14; --strong: #14100a; --emphasis: #3c352a; --initial: #6d6146; --link: #705f38;
+        --kicker: #9a9178; --kicker-rule: #d6cfb9; --foot: #9a9178; --foot-value: #5e553d; --foot-line: #e4ddc9;
+    }
+    [data-theme="night"] {
+        --sheet: linear-gradient(168deg, #191f3a 0%, #12162a 100%); --sheet-border: 1px solid #2c3358; --sheet-radius: 14px; --sheet-shadow: 0 34px 90px -24px rgba(0, 0, 0, .8);
+        --sheet-width: 760px; --sheet-pad: 56px 64px 44px; --sheet-pad-phone: 36px 24px;
+        --sheet-ink: #c9d0f2; --heading: #f2ecd9; --strong: #ffd27a; --emphasis: #9fd0ff; --initial: #ffd27a; --link: #7cf0c8;
+        --kicker: #9a9178; --kicker-rule: #d6cfb9; --foot: #7a86b8; --foot-value: #ffd27a; --foot-line: #2a3055;
+    }
+    [data-theme="white"] {
+        --ground: radial-gradient(1200px 700px at 50% -10%, #ffffff 0%, #f1f7f9 45%, #e3f5fa 100%); --ground-end: #e3f5fa;
+        --chip-fill: #ffffff; --chip-line: #dbe7ec; --chip-ink: #516770; --chip-hover-ink: #10252c; --chip-hover-line: #8fc8dc;
+        --chip-on-fill: #0c1b1f; --chip-on-line: #0c1b1f; --chip-on-ink: #ffffff; --chip-rule: #dbe7ec;
+        --sheet: #ffffff; --sheet-border: 1px solid #dbe7ec; --sheet-radius: 6px; --sheet-shadow: 0 34px 90px -40px rgba(12, 27, 31, .28);
+        --sheet-width: 780px; --sheet-pad: 68px 76px 56px; --sheet-pad-phone: 40px 26px 36px;
+        --sheet-ink: #10252c; --heading: #0c1b1f; --strong: #0c1b1f; --emphasis: #14323c; --initial: #166178; --link: #166178;
+        --kicker: #516770; --kicker-rule: #8fc8dc; --foot: #516770; --foot-value: #10252c; --foot-line: #dbe7ec;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--ground-end); }
+    body { margin: 0; font: 400 14px/1.5 var(--sans); color: var(--ink); }
+    a { color: inherit; text-decoration: none; }
+    svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    [hidden] { display: none !important; }
+
+    /* the library's bar across the top, in the frame's light tone: the mark, the subjects, find, me */
+    .lib { display: flex; align-items: center; gap: 6px; height: 50px; padding: 0 18px; background: var(--bar); color: var(--bar-fg); border-bottom: 1px solid var(--bar-line); }
+    .logo { display: flex; align-items: center; gap: 10px; flex: none; margin-right: 12px; }
+    .logo i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: var(--mark); color: var(--mark-fg); font: 600 15px/1 var(--sans); font-style: normal; }
+    .logo b { font: 600 21px/1 var(--frame-serif); white-space: nowrap; }
+    .subjects { display: flex; gap: 2px; min-width: 0; overflow: hidden; }
+    .s { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px; color: var(--bar-dim); font-size: 13.5px; white-space: nowrap; }
+    .s i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+    .s b { font-weight: 500; }
+    .s.on { background: var(--bar-on); color: var(--bar-fg); box-shadow: inset 0 -2px 0 var(--c); }
+    .find { display: flex; align-items: center; gap: 8px; margin-left: auto; padding: 6px 11px; border-radius: 9px; background: var(--bar-on); color: var(--bar-dim); white-space: nowrap; }
+    .me { display: flex; align-items: center; gap: 9px; margin-left: 14px; }
+    .me i { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--me); color: #fff; font: 600 14px/1 var(--sans); font-style: normal; }
+    .me b { font-weight: 500; white-space: nowrap; }
+
+    /* under it: the book's chapters down a soft black side bar, and the page */
+    .page { display: grid; grid-template-columns: 240px minmax(0, 1fr); min-height: calc(100vh - 50px); }
+    .holds { padding: 18px 12px; background: var(--side); color: var(--side-fg); border-right: 1px solid var(--side-line); }
+    .holds h4 { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font: 600 10.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--side-dim); }
+    .holds h4 small { margin-left: auto; font: 400 11.5px/1 var(--sans); letter-spacing: 0; text-transform: none; }
+    .holds h4.next { margin-top: 22px; }
+    .holds a { display: flex; align-items: center; gap: 9px; padding: 6px 9px; border-radius: 8px; }
+    .holds a i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--me); }
+    .holds a b { font-weight: 500; }
+    .holds a small { margin-left: auto; font-size: 12px; color: var(--side-dim); }
+    .holds a.on { background: var(--side-on); }
+    .holds .chain { margin: 0 9px 14px; font-size: 12px; color: var(--side-dim); line-height: 1.4; }
+    .holds .chain b { display: block; font: 600 17px/1.1 var(--frame-serif); color: var(--side-fg); margin-top: 2px; }
+
+    .frame { display: flex; flex-direction: column; align-items: center; padding: 40px 20px 96px; background: var(--ground); }
+
+    /* the book's own tools above the sheet: the three papers */
+    .controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-bottom: 26px; }
+    .chip { padding: 7px 15px; border: 1px solid var(--chip-line); border-radius: 999px; background: var(--chip-fill); color: var(--chip-ink); font: 12px/1.2 var(--mono); letter-spacing: .05em; cursor: pointer; }
+    .chip[aria-pressed="true"] { color: var(--chip-on-ink); border-color: var(--chip-on-line); background: var(--chip-on-fill); }
+
+    /* the sheet, as 25 */
+    .pd-book { width: min(var(--sheet-width), 100%); padding: var(--sheet-pad); border: var(--sheet-border); border-radius: var(--sheet-radius); background: var(--sheet); box-shadow: var(--sheet-shadow); font-family: var(--serif); color: var(--sheet-ink); }
+    .masthead { margin: 0 0 44px; text-align: center; text-indent: .32em; font: 10.5px/1.7 var(--mono); letter-spacing: .32em; text-transform: uppercase; color: var(--kicker); }
+    .masthead::after { content: ''; display: block; width: 56px; height: 1px; margin: 16px auto 0; background: var(--kicker-rule); }
+    .masthead .pa-cover, .masthead .pd-title, .masthead .pd-byline { display: inline; margin: 0; }
+    .masthead .pd-byline::before { content: '·'; margin: 0 .55em 0 .25em; }
+    .masthead a.to-me { padding-bottom: 3px; background: linear-gradient(var(--me), var(--me)) left bottom / calc(100% - .32em) 2px no-repeat; }
+    .pd-canonical .pd-title { margin: 0 0 30px; font: 700 39px/1.15 var(--serif); letter-spacing: -.01em; text-align: center; color: var(--heading); }
+    .pd-canonical .pd-heading { margin: 32px 0 12px; font: 700 21px/1.15 var(--serif); letter-spacing: -.01em; text-align: center; color: var(--heading); }
+    .pd-canonical .pd-paragraph { margin: 0 0 18px; font-size: 17.2px; line-height: 1.8; text-align: justify; hyphens: auto; color: var(--sheet-ink); }
+    .pd-canonical .pd-section:first-of-type .pd-paragraph:first-of-type::first-letter { float: left; padding: 6px 10px 0 0; font-size: 57px; line-height: .85; color: var(--initial); }
+    .pd-canonical .pd-paragraph strong { font-weight: 700; color: var(--strong); }
+    .pd-canonical .pd-paragraph em { font-style: italic; color: var(--emphasis); }
+    .pd-canonical .pd-paragraph a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+    .turn { display: grid; grid-template-columns: 1fr auto 1fr; grid-template-areas: "before folio after"; align-items: baseline; gap: 10px 26px; margin-top: 46px; padding-top: 18px; border-top: 1px solid var(--foot-line); font: 11px/1.5 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--foot); }
+    .turn b { font-size: 12.5px; letter-spacing: .02em; text-transform: none; color: var(--foot-value); }
+    .turn a { display: inline-flex; align-items: baseline; gap: 6px; }
+    .turn .before { grid-area: before; justify-self: start; }
+    .turn .folio { grid-area: folio; }
+    .turn .after { grid-area: after; justify-self: end; }
+
+    /* a phone: the bar stays at the top, the chapters as a row of pills under it, the sheet is the screen */
+    @media (max-width: 720px) {
+        .lib { position: sticky; top: 0; z-index: 4; padding: 0 8px 0 14px; gap: 4px; overflow: auto hidden; scrollbar-width: none; }
+        .logo { margin-right: 8px; }
+        .logo b { font-size: 19px; }
+        .find, .me b { display: none; }
+        .me { position: fixed; z-index: 5; top: 0; right: 0; justify-content: center; width: 54px; height: 50px; margin: 0; }
+        .page { grid-template-columns: minmax(0, 1fr); }
+        .holds { display: flex; align-items: center; gap: 6px; padding: 10px 16px 12px; overflow: auto hidden; scrollbar-width: none; border-right: 0; border-bottom: 1px solid var(--side-line); }
+        .holds .chain, .holds h4 small { display: none; }
+        .holds h4 { flex: none; margin: 0 6px 0 0; }
+        .holds a { flex: none; padding: 5px 11px 5px 9px; border: 1px solid var(--side-line); border-radius: 99px; white-space: nowrap; }
+        .holds a small { margin-left: 4px; }
+        .frame { padding: 14px 0 0; }
+        .controls { gap: 6px; margin-bottom: 14px; padding: 0 16px; }
+        .chip { padding: 6px 12px; }
+        .pd-book { flex: 1; width: 100%; padding: var(--sheet-pad-phone); border-inline: 0; border-bottom: 0; border-radius: 0; box-shadow: none; }
+        .turn { grid-template-columns: 1fr 1fr; grid-template-areas: "folio folio" "before after"; }
+        .turn .folio { justify-self: center; }
+    }
+</style>
+</head>
+<body>
+<header class="lib">
+    <a class="logo"><i>D</i><b>Dougs Library</b></a>
+    <nav class="subjects">
+        <a class="s" style="--c: var(--sea)"><i></i><b>Conversations with Claude</b></a>
+        <a class="s" style="--c: #1f8a78"><i></i><b>Conversations with ChatGPT</b></a>
+        <a class="s" style="--c: #c24a78"><i></i><b>Dougs Design</b></a>
+        <a class="s" style="--c: #7a4a8c"><i></i><b>Dougs Reference Manual</b></a>
+    </nav>
+    <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find in the library</span>
+    <a class="me"><i>D</i><b>The Librarian</b></a>
+</header>
+
+<div class="page">
+    <aside class="holds">
+        <div class="chain">Filed under Dougs Library<b>Dougs Story</b></div>
+        <h4>Holds<small>3 chapters</small></h4>
+        <a class="on" data-to="a-first-chapter"><i></i><b>A First Chapter</b><small>1</small></a>
+        <a data-to="a-second-chapter"><i></i><b>A Second Chapter</b><small>2</small></a>
+        <a data-to="a-third-chapter"><i></i><b>A Third Chapter</b><small>3</small></a>
+    </aside>
+
+    <div class="frame">
+        <nav class="controls">
+            <button class="chip" type="button" data-theme-to="book" aria-pressed="true">book</button>
+            <button class="chip" type="button" data-theme-to="night" aria-pressed="false">night</button>
+            <button class="chip" type="button" data-theme-to="white" aria-pressed="false">white</button>
+        </nav>
+
+        <article class="pd-book">
+            <header class="masthead">
+                <div class="pd-chapter pa-biography pa-autobiography pa-cover"><a href="/dougs-story/"><div id="dougs-story" class="pd-sentence pd-title">Dougs Story</div></a></div>
+                <p class="pd-paragraph pd-byline"><span class="pd-label">by</span> <a class="to-me" href="/dougs-story/"><span class="pd-word">The Librarian</span></a></p>
+            </header>
+
+            <div class="pd-chapter pd-canonical" data-chapter="a-first-chapter">
+                <a href="#a-first-chapter"><div id="a-first-chapter" class="pd-sentence pd-title">A First Chapter</div></a>
+                <div class="pd-section">
+                    <div class="pd-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, <a class="pa-reference" href="/lorem-ipsum-dolor/"><span class="pd-word">Lorem Ipsum Dolor</span></a>, excepteur sint occaecat cupidatat non proident.</div>
+                    <div class="pd-paragraph">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. <em>Nemo enim ipsam voluptatem</em> quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</div>
+                </div>
+                <div class="pd-section">
+                    <a href="#neque-porro-quisquam"><div id="neque-porro-quisquam" class="pd-sentence pd-heading">Neque porro quisquam</div></a>
+                    <div class="pd-paragraph">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</div>
+                    <div class="pd-paragraph">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.</div>
+                </div>
+                <div class="pd-section">
+                    <a href="#at-vero-eos"><div id="at-vero-eos" class="pd-sentence pd-heading">At vero eos</div></a>
+                    <div class="pd-paragraph">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus <strong>asperiores repellat</strong>.</div>
+                </div>
+                <nav class="turn">
+                    <span class="folio">chapter <b>1</b> of <b>3</b></span>
+                    <a class="after" href="#a-second-chapter" data-to="a-second-chapter"><b>A Second Chapter</b> →</a>
+                </nav>
+            </div>
+
+            <div class="pd-chapter pd-canonical" data-chapter="a-second-chapter" hidden>
+                <a href="#a-second-chapter"><div id="a-second-chapter" class="pd-sentence pd-title">A Second Chapter</div></a>
+                <div class="pd-section">
+                    <div class="pd-paragraph">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                    <div class="pd-paragraph">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+                </div>
+                <nav class="turn">
+                    <a class="before" href="#a-first-chapter" data-to="a-first-chapter">← <b>A First Chapter</b></a>
+                    <span class="folio">chapter <b>2</b> of <b>3</b></span>
+                    <a class="after" href="#a-third-chapter" data-to="a-third-chapter"><b>A Third Chapter</b> →</a>
+                </nav>
+            </div>
+
+            <div class="pd-chapter pd-canonical" data-chapter="a-third-chapter" hidden>
+                <a href="#a-third-chapter"><div id="a-third-chapter" class="pd-sentence pd-title">A Third Chapter</div></a>
+                <div class="pd-section">
+                    <div class="pd-paragraph">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</div>
+                </div>
+                <nav class="turn">
+                    <a class="before" href="#a-second-chapter" data-to="a-second-chapter">← <b>A Second Chapter</b></a>
+                    <span class="folio">chapter <b>3</b> of <b>3</b></span>
+                </nav>
+            </div>
+        </article>
+    </div>
+</div>
+<script>
+    const root = document.documentElement;
+    const papers = document.querySelectorAll('[data-theme-to]');
+    papers.forEach(chip => chip.addEventListener('click', () => {
+        root.dataset.theme = chip.dataset.themeTo;
+        papers.forEach(other => other.setAttribute('aria-pressed', String(other === chip)));
+    }));
+    document.querySelectorAll('[data-to]').forEach(link => link.addEventListener('click', event => {
+        event.preventDefault();
+        document.querySelectorAll('[data-chapter]').forEach(chapter => { chapter.hidden = chapter.dataset.chapter !== link.dataset.to; });
+        document.querySelectorAll('.holds a').forEach(row => row.classList.toggle('on', row.dataset.to === link.dataset.to));
+        scrollTo(0, 0);
+    }));
+<\/script>
+</body>
+</html>
+`})]})]}),a.jsxs(i,{children:[a.jsx(d,{children:"30"}),a.jsx(o,{children:"[The Reading View, in the Frame, with the Chapters at the Foot](/dougs-design/#the-reading-view-in-the-frame-with-the-chapters-at-the-foot)"}),a.jsx(e,{children:"Concept 30, an idea, after 25 under the top bar of 16, and nothing else."}),a.jsx(e,{children:"The sheet of 25 integrated the other way: only the library's bar across the top, and the book navigated as 25 navigates it, by the chapters either side at the foot of the sheet, with the papers above it."}),a.jsxs(e,{children:[a.jsx(p,{}),a.jsx(r,{children:"/.design/3-every-concept~030-desk.png"}),a.jsx(r,{children:"/.design/3-every-concept~030-phone.png"})]}),a.jsxs(e,{children:[a.jsx(c,{}),a.jsx(n,{children:`<!doctype html>
+<html lang="en" data-theme="book" data-nav="foot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reading View, in the Frame, with the Chapters at the Foot</title>
+<meta name="number" content="30">
+<meta name="state" content="idea">
+<meta name="said" content="">
+<meta name="after" content="25 under the top bar of 16, and nothing else">
+<meta name="idea" content="The sheet of 25 integrated the other way: only the library's bar across the top, and the book navigated as 25 navigates it, by the chapters either side at the foot of the sheet, with the papers above it.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+        --mono: ui-monospace, Menlo, Consolas, monospace;
+        --me: #e8590c;
+        /* the frame's own palette, as 11 to 23 have it */
+        --night: #0c1b1f; --sea: #4e9eb9; --ink: #10252c; --soft: #516770; --line: #dbe7ec; --white: #ffffff;
+        --frame-serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Inter', system-ui, sans-serif;
+        --bar: var(--white); --bar-fg: var(--ink); --bar-dim: var(--soft); --bar-on: #e3f5fa; --bar-line: var(--line); --mark: var(--night); --mark-fg: #ffffff;
+        --side: var(--night); --side-fg: #ffffff; --side-dim: #a9bcc1; --side-on: rgba(255, 255, 255, .11); --side-line: #1d3339;
+    }
+
+    /* the demo's frame, the same behind its book and its night */
+    [data-theme="book"], [data-theme="night"] {
+        --ground: radial-gradient(1200px 700px at 50% -10%, #232a4d 0%, #171c33 45%, #0f1326 100%);
+        --ground-end: #0f1326;
+        --chip-fill: rgba(15, 19, 38, .72); --chip-line: rgba(124, 138, 200, .35); --chip-ink: #aab4e8;
+        --chip-hover-ink: #e6eaff; --chip-hover-line: rgba(170, 180, 232, .7);
+        --chip-on-fill: rgba(255, 210, 122, .12); --chip-on-line: rgba(255, 210, 122, .75); --chip-on-ink: #ffd27a; --chip-rule: rgba(124, 138, 200, .3);
+    }
+    [data-theme="book"] {
+        --sheet: #fbf9f3; --sheet-border: 0; --sheet-radius: 6px; --sheet-shadow: 0 1px 0 rgba(255, 255, 255, .08), 0 34px 90px -24px rgba(0, 0, 0, .65);
+        --sheet-width: 780px; --sheet-pad: 68px 76px 56px; --sheet-pad-phone: 40px 26px 36px;
+        --sheet-ink: #29251d; --heading: #1f1b14; --strong: #14100a; --emphasis: #3c352a; --initial: #6d6146; --link: #705f38;
+        --kicker: #9a9178; --kicker-rule: #d6cfb9; --foot: #9a9178; --foot-value: #5e553d; --foot-line: #e4ddc9;
+    }
+    [data-theme="night"] {
+        --sheet: linear-gradient(168deg, #191f3a 0%, #12162a 100%); --sheet-border: 1px solid #2c3358; --sheet-radius: 14px; --sheet-shadow: 0 34px 90px -24px rgba(0, 0, 0, .8);
+        --sheet-width: 760px; --sheet-pad: 56px 64px 44px; --sheet-pad-phone: 36px 24px;
+        --sheet-ink: #c9d0f2; --heading: #f2ecd9; --strong: #ffd27a; --emphasis: #9fd0ff; --initial: #ffd27a; --link: #7cf0c8;
+        --kicker: #9a9178; --kicker-rule: #d6cfb9; --foot: #7a86b8; --foot-value: #ffd27a; --foot-line: #2a3055;
+    }
+    [data-theme="white"] {
+        --ground: radial-gradient(1200px 700px at 50% -10%, #ffffff 0%, #f1f7f9 45%, #e3f5fa 100%); --ground-end: #e3f5fa;
+        --chip-fill: #ffffff; --chip-line: #dbe7ec; --chip-ink: #516770; --chip-hover-ink: #10252c; --chip-hover-line: #8fc8dc;
+        --chip-on-fill: #0c1b1f; --chip-on-line: #0c1b1f; --chip-on-ink: #ffffff; --chip-rule: #dbe7ec;
+        --sheet: #ffffff; --sheet-border: 1px solid #dbe7ec; --sheet-radius: 6px; --sheet-shadow: 0 34px 90px -40px rgba(12, 27, 31, .28);
+        --sheet-width: 780px; --sheet-pad: 68px 76px 56px; --sheet-pad-phone: 40px 26px 36px;
+        --sheet-ink: #10252c; --heading: #0c1b1f; --strong: #0c1b1f; --emphasis: #14323c; --initial: #166178; --link: #166178;
+        --kicker: #516770; --kicker-rule: #8fc8dc; --foot: #516770; --foot-value: #10252c; --foot-line: #dbe7ec;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--ground-end); }
+    body { margin: 0; font: 400 14px/1.5 var(--sans); color: var(--ink); }
+    a { color: inherit; text-decoration: none; }
+    svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    [hidden] { display: none !important; }
+
+    /* the library's bar across the top, in the frame's light tone: the mark, the subjects, find, me */
+    .lib { display: flex; align-items: center; gap: 6px; height: 50px; padding: 0 18px; background: var(--bar); color: var(--bar-fg); border-bottom: 1px solid var(--bar-line); }
+    .logo { display: flex; align-items: center; gap: 10px; flex: none; margin-right: 12px; }
+    .logo i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: var(--mark); color: var(--mark-fg); font: 600 15px/1 var(--sans); font-style: normal; }
+    .logo b { font: 600 21px/1 var(--frame-serif); white-space: nowrap; }
+    .subjects { display: flex; gap: 2px; min-width: 0; overflow: hidden; }
+    .s { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px; color: var(--bar-dim); font-size: 13.5px; white-space: nowrap; }
+    .s i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+    .s b { font-weight: 500; }
+    .s.on { background: var(--bar-on); color: var(--bar-fg); box-shadow: inset 0 -2px 0 var(--c); }
+    .find { display: flex; align-items: center; gap: 8px; margin-left: auto; padding: 6px 11px; border-radius: 9px; background: var(--bar-on); color: var(--bar-dim); white-space: nowrap; }
+    .me { display: flex; align-items: center; gap: 9px; margin-left: 14px; }
+    .me i { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--me); color: #fff; font: 600 14px/1 var(--sans); font-style: normal; }
+    .me b { font-weight: 500; white-space: nowrap; }
+
+    /* under it: the book's chapters down a soft black side bar, and the page */
+    .page { display: grid; grid-template-columns: minmax(0, 1fr); min-height: calc(100vh - 50px); }
+    .holds { padding: 18px 12px; background: var(--side); color: var(--side-fg); border-right: 1px solid var(--side-line); }
+    .holds h4 { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font: 600 10.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--side-dim); }
+    .holds h4 small { margin-left: auto; font: 400 11.5px/1 var(--sans); letter-spacing: 0; text-transform: none; }
+    .holds h4.next { margin-top: 22px; }
+    .holds a { display: flex; align-items: center; gap: 9px; padding: 6px 9px; border-radius: 8px; }
+    .holds a i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--me); }
+    .holds a b { font-weight: 500; }
+    .holds a small { margin-left: auto; font-size: 12px; color: var(--side-dim); }
+    .holds a.on { background: var(--side-on); }
+    .holds .chain { margin: 0 9px 14px; font-size: 12px; color: var(--side-dim); line-height: 1.4; }
+    .holds .chain b { display: block; font: 600 17px/1.1 var(--frame-serif); color: var(--side-fg); margin-top: 2px; }
+
+    .frame { display: flex; flex-direction: column; align-items: center; padding: 40px 20px 96px; background: var(--ground); }
+
+    /* the book's own tools above the sheet: the three papers */
+    .controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-bottom: 26px; }
+    .chip { padding: 7px 15px; border: 1px solid var(--chip-line); border-radius: 999px; background: var(--chip-fill); color: var(--chip-ink); font: 12px/1.2 var(--mono); letter-spacing: .05em; cursor: pointer; }
+    .chip[aria-pressed="true"] { color: var(--chip-on-ink); border-color: var(--chip-on-line); background: var(--chip-on-fill); }
+
+    /* the sheet, as 25 */
+    .pd-book { width: min(var(--sheet-width), 100%); padding: var(--sheet-pad); border: var(--sheet-border); border-radius: var(--sheet-radius); background: var(--sheet); box-shadow: var(--sheet-shadow); font-family: var(--serif); color: var(--sheet-ink); }
+    .masthead { margin: 0 0 44px; text-align: center; text-indent: .32em; font: 10.5px/1.7 var(--mono); letter-spacing: .32em; text-transform: uppercase; color: var(--kicker); }
+    .masthead::after { content: ''; display: block; width: 56px; height: 1px; margin: 16px auto 0; background: var(--kicker-rule); }
+    .masthead .pa-cover, .masthead .pd-title, .masthead .pd-byline { display: inline; margin: 0; }
+    .masthead .pd-byline::before { content: '·'; margin: 0 .55em 0 .25em; }
+    .masthead a.to-me { padding-bottom: 3px; background: linear-gradient(var(--me), var(--me)) left bottom / calc(100% - .32em) 2px no-repeat; }
+    .pd-canonical .pd-title { margin: 0 0 30px; font: 700 39px/1.15 var(--serif); letter-spacing: -.01em; text-align: center; color: var(--heading); }
+    .pd-canonical .pd-heading { margin: 32px 0 12px; font: 700 21px/1.15 var(--serif); letter-spacing: -.01em; text-align: center; color: var(--heading); }
+    .pd-canonical .pd-paragraph { margin: 0 0 18px; font-size: 17.2px; line-height: 1.8; text-align: justify; hyphens: auto; color: var(--sheet-ink); }
+    .pd-canonical .pd-section:first-of-type .pd-paragraph:first-of-type::first-letter { float: left; padding: 6px 10px 0 0; font-size: 57px; line-height: .85; color: var(--initial); }
+    .pd-canonical .pd-paragraph strong { font-weight: 700; color: var(--strong); }
+    .pd-canonical .pd-paragraph em { font-style: italic; color: var(--emphasis); }
+    .pd-canonical .pd-paragraph a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+    .turn { display: grid; grid-template-columns: 1fr auto 1fr; grid-template-areas: "before folio after"; align-items: baseline; gap: 10px 26px; margin-top: 46px; padding-top: 18px; border-top: 1px solid var(--foot-line); font: 11px/1.5 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--foot); }
+    .turn b { font-size: 12.5px; letter-spacing: .02em; text-transform: none; color: var(--foot-value); }
+    .turn a { display: inline-flex; align-items: baseline; gap: 6px; }
+    .turn .before { grid-area: before; justify-self: start; }
+    .turn .folio { grid-area: folio; }
+    .turn .after { grid-area: after; justify-self: end; }
+
+    /* a phone: the bar stays at the top, the chapters as a row of pills under it, the sheet is the screen */
+    @media (max-width: 720px) {
+        .lib { position: sticky; top: 0; z-index: 4; padding: 0 8px 0 14px; gap: 4px; overflow: auto hidden; scrollbar-width: none; }
+        .logo { margin-right: 8px; }
+        .logo b { font-size: 19px; }
+        .find, .me b { display: none; }
+        .me { position: fixed; z-index: 5; top: 0; right: 0; justify-content: center; width: 54px; height: 50px; margin: 0; }
+        .page { grid-template-columns: minmax(0, 1fr); }
+        .holds { display: flex; align-items: center; gap: 6px; padding: 10px 16px 12px; overflow: auto hidden; scrollbar-width: none; border-right: 0; border-bottom: 1px solid var(--side-line); }
+        .holds .chain, .holds h4 small { display: none; }
+        .holds h4 { flex: none; margin: 0 6px 0 0; }
+        .holds a { flex: none; padding: 5px 11px 5px 9px; border: 1px solid var(--side-line); border-radius: 99px; white-space: nowrap; }
+        .holds a small { margin-left: 4px; }
+        .frame { padding: 14px 0 0; }
+        .controls { gap: 6px; margin-bottom: 14px; padding: 0 16px; }
+        .chip { padding: 6px 12px; }
+        .pd-book { flex: 1; width: 100%; padding: var(--sheet-pad-phone); border-inline: 0; border-bottom: 0; border-radius: 0; box-shadow: none; }
+        .turn { grid-template-columns: 1fr 1fr; grid-template-areas: "folio folio" "before after"; }
+        .turn .folio { justify-self: center; }
+    }
+</style>
+</head>
+<body>
+<header class="lib">
+    <a class="logo"><i>D</i><b>Dougs Library</b></a>
+    <nav class="subjects">
+        <a class="s" style="--c: var(--sea)"><i></i><b>Conversations with Claude</b></a>
+        <a class="s" style="--c: #1f8a78"><i></i><b>Conversations with ChatGPT</b></a>
+        <a class="s" style="--c: #c24a78"><i></i><b>Dougs Design</b></a>
+        <a class="s" style="--c: #7a4a8c"><i></i><b>Dougs Reference Manual</b></a>
+    </nav>
+    <span class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find in the library</span>
+    <a class="me"><i>D</i><b>The Librarian</b></a>
+</header>
+
+<div class="page">
+    <div class="frame">
+        <nav class="controls">
+            <button class="chip" type="button" data-theme-to="book" aria-pressed="true">book</button>
+            <button class="chip" type="button" data-theme-to="night" aria-pressed="false">night</button>
+            <button class="chip" type="button" data-theme-to="white" aria-pressed="false">white</button>
+        </nav>
+
+        <article class="pd-book">
+            <header class="masthead">
+                <div class="pd-chapter pa-biography pa-autobiography pa-cover"><a href="/dougs-story/"><div id="dougs-story" class="pd-sentence pd-title">Dougs Story</div></a></div>
+                <p class="pd-paragraph pd-byline"><span class="pd-label">by</span> <a class="to-me" href="/dougs-story/"><span class="pd-word">The Librarian</span></a></p>
+            </header>
+
+            <div class="pd-chapter pd-canonical" data-chapter="a-first-chapter">
+                <a href="#a-first-chapter"><div id="a-first-chapter" class="pd-sentence pd-title">A First Chapter</div></a>
+                <div class="pd-section">
+                    <div class="pd-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, <a class="pa-reference" href="/lorem-ipsum-dolor/"><span class="pd-word">Lorem Ipsum Dolor</span></a>, excepteur sint occaecat cupidatat non proident.</div>
+                    <div class="pd-paragraph">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. <em>Nemo enim ipsam voluptatem</em> quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</div>
+                </div>
+                <div class="pd-section">
+                    <a href="#neque-porro-quisquam"><div id="neque-porro-quisquam" class="pd-sentence pd-heading">Neque porro quisquam</div></a>
+                    <div class="pd-paragraph">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</div>
+                    <div class="pd-paragraph">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.</div>
+                </div>
+                <div class="pd-section">
+                    <a href="#at-vero-eos"><div id="at-vero-eos" class="pd-sentence pd-heading">At vero eos</div></a>
+                    <div class="pd-paragraph">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus <strong>asperiores repellat</strong>.</div>
+                </div>
+                <nav class="turn">
+                    <span class="folio">chapter <b>1</b> of <b>3</b></span>
+                    <a class="after" href="#a-second-chapter" data-to="a-second-chapter"><b>A Second Chapter</b> →</a>
+                </nav>
+            </div>
+
+            <div class="pd-chapter pd-canonical" data-chapter="a-second-chapter" hidden>
+                <a href="#a-second-chapter"><div id="a-second-chapter" class="pd-sentence pd-title">A Second Chapter</div></a>
+                <div class="pd-section">
+                    <div class="pd-paragraph">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                    <div class="pd-paragraph">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+                </div>
+                <nav class="turn">
+                    <a class="before" href="#a-first-chapter" data-to="a-first-chapter">← <b>A First Chapter</b></a>
+                    <span class="folio">chapter <b>2</b> of <b>3</b></span>
+                    <a class="after" href="#a-third-chapter" data-to="a-third-chapter"><b>A Third Chapter</b> →</a>
+                </nav>
+            </div>
+
+            <div class="pd-chapter pd-canonical" data-chapter="a-third-chapter" hidden>
+                <a href="#a-third-chapter"><div id="a-third-chapter" class="pd-sentence pd-title">A Third Chapter</div></a>
+                <div class="pd-section">
+                    <div class="pd-paragraph">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</div>
+                </div>
+                <nav class="turn">
+                    <a class="before" href="#a-second-chapter" data-to="a-second-chapter">← <b>A Second Chapter</b></a>
+                    <span class="folio">chapter <b>3</b> of <b>3</b></span>
+                </nav>
+            </div>
+        </article>
+    </div>
+</div>
+<script>
+    const root = document.documentElement;
+    const papers = document.querySelectorAll('[data-theme-to]');
+    papers.forEach(chip => chip.addEventListener('click', () => {
+        root.dataset.theme = chip.dataset.themeTo;
+        papers.forEach(other => other.setAttribute('aria-pressed', String(other === chip)));
+    }));
+    document.querySelectorAll('[data-to]').forEach(link => link.addEventListener('click', event => {
+        event.preventDefault();
+        document.querySelectorAll('[data-chapter]').forEach(chapter => { chapter.hidden = chapter.dataset.chapter !== link.dataset.to; });
+        document.querySelectorAll('.holds a').forEach(row => row.classList.toggle('on', row.dataset.to === link.dataset.to));
+        scrollTo(0, 0);
+    }));
+<\/script>
+</body>
+</html>
+`})]})]})]})]}),"EveryConcept3"),te=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Paragraphs](/dougs-design/#the-paragraphs)"}),a.jsxs(i,{children:[a.jsx(o,{children:"What a paragraph may be"}),a.jsx(e,{children:"Most of this book is ordinary paragraphs. Three kinds are not. One is a question I am asked. One is what I said, in my own words. One is a design I chose."}),a.jsxs(e,{children:["A paragraph says which of these it is. So a page can show a question and its answer differently, and everything I said can be found. The questions and my answers are in ",a.jsx(s,{children:"[What I Am Asked](/dougs-design/#what-i-am-asked)"}),", and the designs I chose are in ",a.jsx(s,{children:"[The Designs I Am Going With](/dougs-design/#the-designs-i-am-going-with)"}),"."]})]}),a.jsx(A,{identifier:"code",type:".tsx",children:`import { $, $check } from '@dna-platform/chemistry';
 import { $Annotation, $Paragraph, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 
 export class $Question extends $Annotation {
@@ -9112,7 +11061,7 @@ export class DecisionSpecification extends AnnotationSpecification {
 export const Question = $($Question);
 export const Answer = $($Answer);
 export const Decision = $($Decision);
-`})]}),"TheParagraphso1"),se=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Concept](/dougs-design/#the-concept)"}),a.jsxs(i,{children:[a.jsx(o,{children:"What a concept is"}),a.jsxs(t,{children:["A concept is one sketch of one idea. In ",a.jsx(s,{children:"[Every Concept](/dougs-design/#every-concept)"})," each has a section of its own: its name, its number, what it is drawn after, the idea in a sentence, a photograph of it at a desk and on a phone, what I said of it if I said anything, and last the sketch's own code."]}),a.jsx(t,{children:"The section says it is a concept and gives its number, which it keeps for good. I answer by that number. The sketch itself is a file kept beside the chapter. It is there to document the concept, so its section prints it as code, and nothing in this library opens it or draws it."}),a.jsx(t,{children:"Another chapter points to a concept by its number, as a link to its place in Every Concept. It does not show the concept a second time."})]}),a.jsx(A,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
+`})]}),"TheParagraphso1"),se=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Concept](/dougs-design/#the-concept)"}),a.jsxs(i,{children:[a.jsx(o,{children:"What a concept is"}),a.jsxs(e,{children:["A concept is one sketch of one idea. In ",a.jsx(s,{children:"[Every Concept](/dougs-design/#every-concept)"})," each has a section of its own: its name, its number, what it is drawn after, the idea in a sentence, a photograph of it at a desk and on a phone, what I said of it if I said anything, and last the sketch's own code."]}),a.jsx(e,{children:"The section says it is a concept and gives its number, which it keeps for good. I answer by that number. The sketch itself is a file kept beside the chapter. It is there to document the concept, so its section prints it as code, and nothing in this library opens it or draws it."}),a.jsx(e,{children:"Another chapter points to a concept by its number, as a link to its place in Every Concept. It does not show the concept a second time."})]}),a.jsx(A,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
 import { $, $check, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Paragraph, $Section, $Writing, AnnotationSpecification, html, specify } from '@dna-platform/public';
 
@@ -9187,7 +11136,7 @@ export class OfAConceptSpecification extends AnnotationSpecification {
 export const Concept = $($Concept);
 export const Photographs = $($Photographs);
 export const Source = $($Source);
-`})]}),"TheConcepto2"),ie=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Camera](/dougs-design/#the-camera)"}),a.jsxs(i,{children:[a.jsx(o,{children:"What the camera is"}),a.jsxs(t,{children:["A concept is a page, and this book shows a photograph of it at a desk's width and another at a phone's. The camera takes those photographs. It is the one tool this book needs that the framework does not give, so it is kept here, beside the chapter that says what it is, and nothing that builds this book is kept outside it. It was once a script kept outside the library, and how it came to be here is told in ",a.jsx(s,{children:"[Closure](/dougs-story/#closure)"}),"."]}),a.jsx(t,{children:"It looks at every concept that is kept beside a chapter of this book under its number, photographs the ones that are newer than their photographs, and says how many things on each run past the right edge of the screen. That count is how a page that does not fit a phone is caught before I am shown it. It writes nothing but the photographs, and the book is bound afterwards in the usual way."}),a.jsxs(t,{children:["The camera photographs concepts. A page of the library itself is looked at with ",a.jsx(s,{children:"[the workbench](/dougs-reference-manual/#developing-a-library)"}),", which keeps the page open while I write it."]})]}),a.jsx(A,{identifier:"camera",type:".mjs",children:`// Photographs each concept of this book that is newer than its photographs, at a desk's width and at a phone's,
+`})]}),"TheConcepto2"),ie=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Camera](/dougs-design/#the-camera)"}),a.jsxs(i,{children:[a.jsx(o,{children:"What the camera is"}),a.jsxs(e,{children:["A concept is a page, and this book shows a photograph of it at a desk's width and another at a phone's. The camera takes those photographs. It is the one tool this book needs that the framework does not give, so it is kept here, beside the chapter that says what it is, and nothing that builds this book is kept outside it. It was once a script kept outside the library, and how it came to be here is told in ",a.jsx(s,{children:"[Closure](/dougs-story/#closure)"}),"."]}),a.jsx(e,{children:"It looks at every concept that is kept beside a chapter of this book under its number, photographs the ones that are newer than their photographs, and says how many things on each run past the right edge of the screen. That count is how a page that does not fit a phone is caught before I am shown it. It writes nothing but the photographs, and the book is bound afterwards in the usual way."}),a.jsxs(e,{children:["The camera photographs concepts. A page of the library itself is looked at with ",a.jsx(s,{children:"[the workbench](/dougs-reference-manual/#developing-a-library)"}),", which keeps the page open while I write it."]})]}),a.jsx(A,{identifier:"camera",type:".mjs",children:`// Photographs each concept of this book that is newer than its photographs, at a desk's width and at a phone's,
 // and says what on it runs past the edge of the screen. Run from anywhere:
 //
 //     node .me/.design/o3-the-camera~camera.mjs
@@ -9235,7 +11184,7 @@ else {
     await browser.close();
     console.log(\`photographed \${wanted.length}; bind the book to see them\`);
 }
-`})]}),"TheCamerao3"),oe=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Gallery](/dougs-design/#the-gallery)"}),a.jsxs(i,{children:[a.jsx(o,{children:"The concepts as cards"}),a.jsx(t,{children:"A gallery is said of a chapter whose sections are concepts. In it, each group of concepts is a grid, and each concept is a card: its two photographs first, then its name, what it is after, its idea, and what I said of it. The sketch's own code is not on the card."}),a.jsx(t,{children:"A card opens across the whole gallery when its address is the one I am at, and then it shows its photographs at full size and the sketch's code under them. The concept says of itself that it is open when the book's bookmark names it, and the gallery reads that; no card keeps a state of its own."}),a.jsxs(t,{children:["The two paragraphs the card places are said to be what they are in the chapter: the one holding the photographs is the pictures, and the one holding the code is the source. Both are kinds of ",a.jsx(s,{children:"[a concept's](/dougs-design/#the-concept)"})," paragraph."]})]}),a.jsx(A,{identifier:"code",type:".tsx",children:`import { $, $check, selection } from '@dna-platform/chemistry';
+`})]}),"TheCamerao3"),oe=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Gallery](/dougs-design/#the-gallery)"}),a.jsxs(i,{children:[a.jsx(o,{children:"The concepts as cards"}),a.jsx(e,{children:"A gallery is said of a chapter whose sections are concepts. In it, each group of concepts is a grid, and each concept is a card: its two photographs first, then its name, what it is after, its idea, and what I said of it. The sketch's own code is not on the card."}),a.jsx(e,{children:"A card opens across the whole gallery when its address is the one I am at, and then it shows its photographs at full size and the sketch's code under them. The concept says of itself that it is open when the book's bookmark names it, and the gallery reads that; no card keeps a state of its own."}),a.jsxs(e,{children:["The two paragraphs the card places are said to be what they are in the chapter: the one holding the photographs is the pictures, and the one holding the code is the source. Both are kinds of ",a.jsx(s,{children:"[a concept's](/dougs-design/#the-concept)"})," paragraph."]})]}),a.jsx(A,{identifier:"code",type:".tsx",children:`import { $, $check, selection } from '@dna-platform/chemistry';
 import { $Chapter, $Format, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 
 export class $Gallery extends $Format {
@@ -9267,10 +11216,23 @@ export class $Gallery extends $Format {
         }
         .pa-gallery .pa-concept .pa-photographs img { height: \${({ theme }) => theme.photo}; width: auto; max-width: none; }
         .pa-gallery .pa-concept .pd-paragraph.pa-source { display: none; }
-        .pa-gallery .pa-concept.pa-open { grid-column: 1 / -1; }
-        .pa-gallery .pa-concept.pa-open .pa-photographs { flex-wrap: wrap; }
+        .pa-gallery .pd-section.pa-concept.pa-open {
+            position: fixed;
+            inset: 0 0 0 \${({ theme }) => theme.side};
+            z-index: 1;
+            overflow-y: auto;
+            padding: \${({ theme }) => theme.space} calc(\${({ theme }) => theme.space} * 1.17);
+            background: \${({ theme }) => theme.paper};
+            grid-template-areas: 'number name' 'pictures pictures';
+            align-content: start;
+        }
+        .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-photographs, .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-source { max-width: none; }
+        .pa-gallery .pa-concept.pa-open .pa-photographs { flex-wrap: wrap; overflow: visible; }
         .pa-gallery .pa-concept.pa-open .pa-photographs img { height: auto; max-width: 100%; }
         .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-source { display: block; }
+        @media (max-width: \${({ theme }) => theme.narrow}) {
+            .pa-gallery .pd-section.pa-concept.pa-open { inset: 0; }
+        }
     \`;
 
     override defines(writing: $Writing): void {
@@ -9292,7 +11254,7 @@ export class GallerySpecification extends AnnotationSpecification {
 }
 
 export const Gallery = $($Gallery);
-`})]}),"TheGalleryo4"),re=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Frame](/dougs-design/#the-frame)"}),a.jsxs(i,{children:[a.jsx(o,{children:"How this book is laid out"}),a.jsxs(t,{children:["This book is laid out as the frame I answered on: a bar down the side with the way to the library at its head, this book's contents in the middle and me at its foot, and beside it the page, with the book's name and ",a.jsx(s,{children:"[the switch](/dougs-reference-manual/#the-switch)"})," across its top. One chapter is open at a time. The table of contents says of itself that it is a side bar and the cover that it is a top bar, ",a.jsx(s,{children:"[two things said of them](/dougs-reference-manual/#the-bars)"})," that are the manual's."]}),a.jsxs(t,{children:["The design it follows is ",a.jsx(s,{children:"[the black side bar](/dougs-design/#a-black-side-bar)"})," in library mode and ",a.jsx(s,{children:"[the white cards](/dougs-design/#no-bars-white-cards)"})," in gallery mode. The two modes are two themes under this book's theme, and set only the bar's colors; gallery mode is the one registered, so the book opens light and airy, and I pick the other with the switch."]}),a.jsxs(t,{children:["The class of this book writes those parts where they go, and the frame is the arrangement said of the book. Its theme adds the side bar's look, the head, the words, and the cards of ",a.jsx(s,{children:"[the gallery](/dougs-design/#the-gallery)"}),"."]})]}),a.jsx(A,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
+`})]}),"TheGalleryo4"),re=l(()=>a.jsxs(y,{children:[a.jsx(w,{children:"[The Frame](/dougs-design/#the-frame)"}),a.jsxs(i,{children:[a.jsx(o,{children:"How this book is laid out"}),a.jsxs(e,{children:["This book is laid out as the frame I answered on: a bar down the side with the way to the library at its head, this book's contents in the middle and me at its foot, and beside it the page, with the book's name and ",a.jsx(s,{children:"[the switch](/dougs-reference-manual/#the-switch)"})," across its top. One chapter is open at a time. The table of contents says of itself that it is a side bar and the cover that it is a top bar, ",a.jsx(s,{children:"[two things said of them](/dougs-reference-manual/#the-bars)"})," that are the manual's."]}),a.jsxs(e,{children:["The design it follows is ",a.jsx(s,{children:"[the black side bar](/dougs-design/#a-black-side-bar)"})," in library mode and ",a.jsx(s,{children:"[the white cards](/dougs-design/#no-bars-white-cards)"})," in gallery mode. The two modes are two themes under this book's theme, and set only the bar's colors; gallery mode is the one registered, so the book opens light and airy, and I pick the other with the switch."]}),a.jsxs(e,{children:["The class of this book writes those parts where they go, and the frame is the arrangement said of the book. Its theme adds the side bar's look, the head, the words, and the cards of ",a.jsx(s,{children:"[the gallery](/dougs-design/#the-gallery)"}),"."]})]}),a.jsx(A,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Writing, Given, Theme } from '@dna-platform/public';
@@ -9611,4 +11573,4 @@ export const DesignTheme = $($DesignTheme);
 export const GalleryMode = $($GalleryMode);
 export const LibraryMode = $($LibraryMode);
 `}),a.jsx(A,{identifier:"faces",type:".tsx",children:`export { Cover, TableOfContents } from '@dna-platform/public';
-`})]}),"TheFrameo5"),le=g(B),he=l(()=>a.jsxs(le,{children:[Xa(),Ra(),Za(),_a(),ae(),ee(),te(),se(),ie(),oe(),re()]}),"book");export{he as book};
+`})]}),"TheFrameo5"),le=g(F),he=l(()=>a.jsxs(le,{children:[Xa(),Ja(),Za(),_a(),ae(),ee(),te(),se(),ie(),oe(),re()]}),"book");export{he as book};

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" data-view="words">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Words in Front</title>
+<meta name="number" content="31">
+<meta name="state" content="idea">
+<meta name="said" content="">
+<meta name="after" content="28, opened on the words">
+<meta name="idea" content="The same manual as 6, but with two readings of one chapter. Code: the file is the thing being viewed, across the whole width, one line of its own facts above it and its fields below. Words: the write-up you read to learn how to use the part, what it is, how it is used with an example, its fields, what bites, with the file folded to a strip at the right that opens out again.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+    :root { --bg: #ffffff; --side: #f7f8fa; --line: #e6e8ee; --ink: #1a1f36; --soft: #4f566b; --faint: #8792a2; --teal: #0a7a70; --teal-soft: #e3f4f1; --night: #0f2a33; --night-2: #17363f; --code: #cfe6e3; }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body { background: var(--bg); color: var(--ink); font: 400 14.5px/1.6 'Inter', system-ui, sans-serif; display: grid; grid-template-columns: 248px minmax(0, 1fr); overflow: hidden; }
+    code, pre { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+    nav.parts { background: var(--side); border-right: 1px solid var(--line); padding: 18px 14px; overflow: hidden; }
+    .where { font-size: 12px; color: var(--faint); margin-bottom: 4px; }
+    .book { font-weight: 600; font-size: 15px; margin-bottom: 14px; }
+    .find { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 9px; color: var(--faint); font-size: 13px; }
+    .find kbd { margin-left: auto; font: 500 11px/1 'Inter'; border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; }
+    nav.parts h4 { font: 600 11px/1 'Inter'; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin: 20px 6px 8px; }
+    nav.parts a { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px; border-radius: 6px; color: var(--soft); }
+    nav.parts a.on { background: var(--teal-soft); color: var(--teal); font-weight: 500; }
+    nav.parts a small { font: 400 11px/1 'JetBrains Mono'; color: var(--faint); }
+
+    /* the page: the chapter and its file, arranged by the view */
+    main { display: grid; min-height: 0; overflow: auto; }
+    .crumb { font-size: 12.5px; color: var(--faint); }
+    h1 { font-size: 30px; line-height: 1.15; letter-spacing: -.02em; margin: 6px 0 10px; }
+    .lead { font-size: 16px; color: var(--soft); max-width: 54ch; }
+    .brief { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 500 12.5px/1.6 'JetBrains Mono'; color: var(--faint); }
+    .brief b { color: var(--teal); font-weight: 500; }
+    pre.example { margin: 12px 0 0; padding: 12px 16px; border-radius: 8px; background: var(--side); border: 1px solid var(--line); font-size: 12.5px; line-height: 1.7; color: var(--ink); overflow: auto; white-space: pre; }
+    pre.example .k { color: #0a7a70; } pre.example .s { color: #a35a00; } pre.example .t { color: #1f4f9c; } pre.example .c { color: var(--faint); }
+    [data-view="code"] .lead, [data-view="code"] .writeup { display: none; }
+    [data-view="words"] .brief { display: none; }
+    h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin: 30px 0 4px; padding-top: 22px; border-top: 1px solid var(--line); }
+    p { max-width: 58ch; }
+    p + p { margin-top: 10px; }
+    .field { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .field b { font: 500 13.5px/1.6 'JetBrains Mono'; }
+    .field b small { display: block; font: 400 11.5px/1.3 'Inter'; color: var(--faint); }
+    .field.lit { margin: 0 -12px; padding: 12px; background: var(--teal-soft); border-radius: 8px; border-bottom-color: transparent; }
+    .field.lit b { color: var(--teal); }
+    .next { display: flex; justify-content: space-between; margin-top: 26px; font-size: 13.5px; }
+    .next a { color: var(--teal); font-weight: 500; }
+
+    /* the switch between the two views, at the head of the page */
+    .views { display: flex; align-items: center; gap: 6px; }
+    .views span { padding: 5px 11px; border: 1px solid var(--line); border-radius: 7px; color: var(--soft); font-size: 13px; cursor: pointer; }
+    .views span.on { background: var(--night); border-color: var(--night); color: #fff; font-weight: 500; }
+
+    aside.file { background: var(--night); color: var(--code); display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+    .tabs { display: flex; align-items: center; gap: 2px; padding: 12px 14px 0; font-size: 12.5px; }
+    .tabs span { padding: 7px 12px; border-radius: 7px 7px 0 0; color: #8fb0ad; }
+    .tabs span.on { background: var(--night-2); color: #fff; }
+    .tabs .copy { margin-left: auto; display: flex; align-items: center; gap: 6px; color: #8fb0ad; padding-bottom: 6px; }
+    pre { background: var(--night-2); margin: 0 14px; border-radius: 0 10px 10px 10px; padding: 16px 0; font-size: 12.2px; line-height: 1.75; overflow: auto; flex: 1; scrollbar-width: thin; scrollbar-color: #2f5a62 transparent; }
+    pre span.l { display: block; padding: 0 18px 0 0; white-space: pre; }
+    pre span.l::before { content: attr(data-n); display: inline-block; width: 42px; padding-right: 14px; text-align: right; color: #4f7672; }
+    pre span.hit { background: rgba(102, 220, 200, .14); box-shadow: inset 3px 0 0 #58d6c2; }
+    .k { color: #8ad7ff; } .s { color: #ffd48a; } .t { color: #9be3d6; } .c { color: #5f8a86; }
+    .used { margin: 14px; padding: 12px 14px; border: 1px solid #24484f; border-radius: 10px; font-size: 12.5px; color: #9fc2bf; }
+    .used b { display: block; color: #fff; font-weight: 500; margin-bottom: 4px; }
+    .used span { display: inline-block; margin: 4px 6px 0 0; padding: 2px 9px; border-radius: 99px; background: #1d4049; color: #cfe6e3; }
+
+    /* code in front: one column; the head of the chapter, then the file across the whole width, then the rest of the words */
+    [data-view="code"] main { grid-template-rows: auto auto minmax(0, 1fr); grid-template-areas: 'head' 'file' 'words'; }
+    [data-view="code"] .head { grid-area: head; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 24px; padding: 28px 44px 18px; }
+    [data-view="code"] aside.file { grid-area: file; margin: 0 44px; border-radius: 12px; min-height: 420px; }
+    [data-view="code"] aside.file pre { font-size: 13px; }
+    [data-view="code"] .words { grid-area: words; padding: 10px 44px 40px; }
+    [data-view="code"] .words h2:first-child { border-top: 0; padding-top: 10px; margin-top: 10px; }
+
+    /* words in front: the words at the left as in 6, the file folded to a strip at the right that opens out again */
+    [data-view="words"] main { grid-template-columns: minmax(0, 1fr) 56px; grid-template-rows: auto minmax(0, 1fr); grid-template-areas: 'head file' 'words file'; overflow: hidden; }
+    [data-view="words"] .head { grid-area: head; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 24px; padding: 34px 44px 0; }
+    [data-view="words"] .words { grid-area: words; overflow: auto; padding: 0 44px 40px; }
+    [data-view="words"] aside.file { grid-area: file; cursor: pointer; }
+    [data-view="words"] aside.file .tabs, [data-view="words"] aside.file pre, [data-view="words"] aside.file .used { display: none; }
+    [data-view="words"] aside.file .fold { display: flex; }
+    .fold { display: none; flex: 1; align-items: flex-start; justify-content: center; padding-top: 16px; color: #8fb0ad; writing-mode: vertical-rl; font: 500 12px/1 'JetBrains Mono'; letter-spacing: .08em; gap: 10px; }
+
+    .pick { display: none; }
+    @media (max-width: 760px) {
+        html, body { height: auto; }
+        body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; overflow: visible; }
+        nav.parts { display: none; }
+        .pick { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--side); font-weight: 500; position: sticky; top: 0; z-index: 2; }
+        .pick small { color: var(--faint); font-weight: 400; }
+        main { overflow: visible; }
+        [data-view="code"] .head, [data-view="words"] .head { padding: 20px 16px 8px; grid-template-columns: minmax(0, 1fr); }
+        [data-view="code"] aside.file { margin: 8px 12px 0; min-height: 0; }
+        [data-view="code"] .words, [data-view="words"] .words { padding: 8px 16px 20px; }
+        [data-view="words"] main { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'head' 'words' 'file'; }
+        [data-view="words"] aside.file { margin: 8px 12px 18px; border-radius: 12px; min-height: 48px; }
+        [data-view="words"] .fold { writing-mode: horizontal-tb; padding: 14px; }
+        h1 { font-size: 25px; }
+        .field { grid-template-columns: 84px minmax(0, 1fr); gap: 10px; }
+        pre { font-size: 11.5px; margin: 0 10px; }
+        pre span.l::before { width: 30px; padding-right: 10px; }
+        .next { display: none; }
+    }
+</style>
+</head>
+<body>
+<nav class="parts">
+    <div class="where">Dougs Library</div>
+    <div class="book">Dougs Reference Manual</div>
+    <div class="find"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>Find a part<kbd>/</kbd></div>
+    <h4>The library</h4>
+    <a>The Book<small>.tsx</small></a>
+    <a class="on">The Theme<small>.tsx</small></a>
+    <a>Initializing a Library</a>
+    <h4>The design book</h4>
+    <a>The Pages<small>.tsx</small></a>
+    <a>The Frame<small>.tsx</small></a>
+    <a>The Concept<small>.tsx</small></a>
+    <h4>Kept with</h4>
+    <a>The Importer<small>.ts</small></a>
+    <a>The Session<small>.mjs</small></a>
+</nav>
+<div class="pick"><span>The Theme <small>· part 2 of 8</small></span><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></div>
+
+<main>
+    <div class="head">
+        <div>
+            <div class="crumb">Dougs Reference Manual / The library</div>
+            <h1>The Theme</h1>
+            <p class="lead">A place for the library's properties, and the one styled component that dresses the framework's marks with them. Read this page to write your library's theme; the file beside it is the one the library runs.</p>
+            <p class="brief"><b>2-the-theme~code.tsx</b><span>19 lines</span><span>one class, $LibraryBookTheme</span><span>five fields, three parts</span><span>ink read in 14 places</span></p>
+        </div>
+        <div class="views"><span data-view-is="code">code</span><span class="on" data-view-is="words">words</span></div>
+    </div>
+
+    <aside class="file" data-view-is="code">
+        <div class="tabs"><span class="on">2-the-theme~code.tsx</span><span>where it is used</span><span class="copy"><svg viewBox="0 0 16 16"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 10.5V4a1 1 0 0 1 1-1h6.5"/></svg>Copy</span></div>
+        <pre><span class="l" data-n="1"><span class="k">export class</span> <span class="t">$LibraryBookTheme</span> <span class="k">extends</span> <span class="t">$Theme</span> {</span><span class="l" data-n="2">    font = <span class="s">"'Inter', system-ui, sans-serif"</span>;</span><span class="l" data-n="3">    size = <span class="s">'0.90625rem'</span>;</span><span class="l hit" data-n="4">    ink = <span class="s">'#1a1f36'</span>;</span><span class="l" data-n="5">    paper = <span class="s">'#ffffff'</span>;</span><span class="l" data-n="6">    accent = <span class="s">'#0a7a70'</span>;</span><span class="l" data-n="7">    style = selection.div<span class="s">`</span>${<span class="k">this</span>.parts()}<span class="s">`</span>;</span><span class="l" data-n="8"></span><span class="l" data-n="9">    <span class="k">protected</span> parts(): <span class="t">RuleSet</span>[] {</span><span class="l" data-n="10">        <span class="k">return</span> [<span class="k">this</span>.page(), <span class="k">this</span>.writing(), <span class="k">this</span>.links()];</span><span class="l" data-n="11">    }</span><span class="l" data-n="12"></span><span class="l" data-n="13">    <span class="k">protected</span> page(): <span class="t">RuleSet</span> {</span><span class="l" data-n="14">        <span class="k">return</span> css<span class="s">`</span></span><span class="l hit" data-n="15"><span class="s">            color: </span>${({ theme }) =&gt; theme.ink}<span class="s">;</span></span><span class="l" data-n="16"><span class="s">            background: </span>${({ theme }) =&gt; theme.paper}<span class="s">;</span></span><span class="l" data-n="17"><span class="s">        `</span>;</span><span class="l" data-n="18">    }</span><span class="l" data-n="19">}</span></pre>
+        <div class="used"><b>ink is read in 14 places</b>Lines 4 and 15 here, and in<span>The Book</span><span>The Frame</span><span>The Concept</span></div>
+        <div class="fold"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>2-the-theme~code.tsx</div>
+    </aside>
+
+    <div class="words">
+        <div class="writeup">
+            <h2>What it is</h2>
+            <p>The framework's Theme is bare: it stands on every book and provides itself, and nothing else. So the properties are this library's own. They are declared as fields on a class under the framework's Theme, and every rule beneath reads them through the theme's own provision, as a value templated into the string.</p>
+            <p>The component is one styled element, composed of parts. Each part is a method returning a fragment of rules for one thing on the page, so that a book changes one part and keeps the rest, and a reader of the file sees the look as a list of named pieces.</p>
+            <h2>How it is used</h2>
+            <p>Declare the fields your library reads, as many as it has. Compose the parts in the field that holds the style. Then register the theme on your book class, once, in the file that exports the class; every book of the library inherits it, and a book that wants another theme registers its own.</p>
+            <pre class="example"><span class="k">export class</span> <span class="t">$ManualTheme</span> <span class="k">extends</span> <span class="t">$LibraryBookTheme</span> {
+    measure = <span class="s">'58ch'</span>;                              <span class="c">// one value changed</span>
+    <span class="k">protected override</span> parts(): <span class="t">RuleSet</span>[] {
+        <span class="k">return</span> [...<span class="k">super</span>.parts(), <span class="k">this</span>.index()];  <span class="c">// one part added</span>
+    }
+}
+$(Manual, Theme)(ManualTheme);                       <span class="c">// registered on the book</span></pre>
+            <p>A rule names a class the framework puts on an element, never the element itself; it reaches by descendant, never by child; and every quantity in it is one of these fields, never a literal. A face that must win over the theme on one element names the kind with its class, as the chapter on the faces says.</p>
+        </div>
+        <h2>Fields</h2>
+        <div class="field"><b>font<small>string</small></b><span>The family every book is set in.</span></div>
+        <div class="field lit"><b>ink<small>color</small></b><span>The color of the words. Every rule that needs it reads this field, so a book that changes it keeps the look in another ink.</span></div>
+        <div class="field"><b>paper<small>color</small></b><span>The color of the page behind them.</span></div>
+        <div class="field"><b>accent<small>color</small></b><span>The color of a reference to another place in the library.</span></div>
+        <div class="writeup">
+            <h2>Before it bites</h2>
+            <p>A style is compiled once per class, so a value is read through the provider's props and never through a closure over the instance. A part must not take the name of a member the class already has; the typecheck names such a thing at once, and the page breaks somewhere else if it is not run. A font declared here reaches the live page only after a bind.</p>
+        </div>
+        <div class="next"><a>← The Book</a><a>Initializing a Library →</a></div>
+    </div>
+</main>
+<script>
+    const page = document.documentElement;
+    for (const view of document.querySelectorAll('[data-view-is]'))
+        view.addEventListener('click', () => {
+            page.dataset.view = view.dataset.viewIs;
+            for (const other of document.querySelectorAll('.views span')) other.classList.toggle('on', other.dataset.viewIs === view.dataset.viewIs);
+        });
+</script>
+</body>
+</html>
