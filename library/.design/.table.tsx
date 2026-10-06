@@ -1,9 +1,12 @@
 import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
+import { Index, SideBar } from '../.manual/.book';
 import { TableOfContents } from './o5-the-frame~faces.tsx';
 
 export default () => (
     <Chapter>
         <TableOfContents />
+        <Index />
+        <SideBar />
         <Title>
             <Parenthetical />
             [[ Table of Contents ]]

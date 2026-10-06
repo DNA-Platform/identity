@@ -1,6 +1,5 @@
 import { $, selection } from '@dna-platform/chemistry';
-import { $Cover } from '@dna-platform/public';
-import { $Index } from './14-the-entry~code.tsx';
+import { $Cover, $TableOfContents } from '@dna-platform/public';
 
 export class $ManualCover extends $Cover {
     override style = selection.header`
@@ -12,7 +11,7 @@ export class $ManualCover extends $Cover {
     `;
 }
 
-export class $ManualTableOfContents extends $Index {
+export class $ManualTableOfContents extends $TableOfContents {
     override style = selection.nav`
         .pd-chapter.pa-table-of-contents { margin-block: ${({ theme }) => theme.space}; }
         .pa-table-of-contents .pd-section { margin-block: calc(${({ theme }) => theme.space} * 0.83) 0; }

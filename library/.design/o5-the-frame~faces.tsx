@@ -1,1 +1,1 @@
-export { SideBar as TableOfContents, TopBar as Cover } from '../.manual/.book';
+export { Cover, TableOfContents } from '@dna-platform/public';

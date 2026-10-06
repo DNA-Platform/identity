@@ -55,7 +55,7 @@ export class $DesignTheme extends $DougsTheme {
                 background: ${({ theme }) => theme.me};
                 color: ${({ theme }) => theme.paper};
             }
-            .pd-side .pa-table-of-contents.pd-container { padding: 0 calc(${({ theme }) => theme.space} / 2) ${({ theme }) => theme.space}; }
+            .pd-side .pd-contents { padding: 0 calc(${({ theme }) => theme.space} / 2) ${({ theme }) => theme.space}; }
         `;
     }
 

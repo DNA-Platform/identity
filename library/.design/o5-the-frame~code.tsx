@@ -18,7 +18,9 @@ export class $DougsDesign extends $DougsBook {
             <>
                 <div className="pd-side">
                     {this.filed()}
-                    <Table />
+                    <div className="pd-contents">
+                        <Table />
+                    </div>
                     {this.byline()}
                 </div>
                 <div className="pd-main">
@@ -80,6 +82,7 @@ export class $Frame extends $Layout {
             .pd-book.pa-frame {
                 display: grid;
                 grid-template-columns: ${({ theme }) => theme.side} minmax(0, 1fr);
+                grid-template-rows: minmax(0, 1fr);
                 grid-template-areas: 'side main';
                 height: 100vh;
             }
@@ -91,7 +94,7 @@ export class $Frame extends $Layout {
                 overflow: hidden;
             }
             .pa-frame .pd-side .pd-filedUnder { grid-area: home; }
-            .pa-frame .pd-side .pa-table-of-contents.pd-container { grid-area: contents; overflow-y: auto; }
+            .pa-frame .pd-contents { grid-area: contents; overflow-y: auto; }
             .pa-frame .pd-side .pd-byline { grid-area: me; }
             .pa-frame .pd-main {
                 grid-area: main;

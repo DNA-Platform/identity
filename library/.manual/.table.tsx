@@ -1,9 +1,11 @@
 import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
+import { Index } from './14-the-entry~code.tsx';
 import { TableOfContents } from './10-the-manual~faces.tsx';
 
 export default () => (
     <Chapter>
         <TableOfContents />
+        <Index />
         <Title>
             <Parenthetical />
             [[ Table of Contents ]]

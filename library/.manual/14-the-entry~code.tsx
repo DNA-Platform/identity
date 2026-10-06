@@ -4,14 +4,12 @@ import type { $DougsBook } from './1-the-book~code.tsx';
 
 export class $Entry extends $Annotation {
     specification = new EntrySpecification();
-    get leads(): $Chapter | undefined {
-        const place = (this.parent as $Writing).annotations.expressed($Content)!.identifier;
-        return (this.book as $DougsBook).named(place);
-    }
+    get place(): string { return (this.parent as $Writing).annotations.expressed($Content)!.identifier; }
+    get leads(): $Chapter | undefined { return (this.book as $DougsBook).named(this.place); }
 
     override defines(writing: $Writing): void {
         writing.classes.add(this, 'pa-entry');
-        if (this.leads !== undefined && this.leads === (this.book as $DougsBook).open) writing.classes.add(this, 'pa-open');
+        if (this.place === this.book?.$bookmark || this.place === (this.book as $DougsBook).open?.mention?.identifier) writing.classes.add(this, 'pa-open');
     }
 
     override erase(writing: $Writing): void {
@@ -19,7 +17,8 @@ export class $Entry extends $Annotation {
     }
 }
 
-export class $Index extends $TableOfContents {
+export class $Index extends $Annotation {
+    specification = new IndexSpecification();
     get entries(): $Paragraph[] {
         const sections = this.chapter!.text.find($Section);
         return sections.flatMap(section => section.text.find($Paragraph)).filter(paragraph => paragraph.is($Content));
@@ -32,6 +31,13 @@ export class $Index extends $TableOfContents {
                 <Kind />
             );
         super.$Bound();
+    }
+}
+
+export class IndexSpecification extends AnnotationSpecification {
+    @specify('an index is said of a table of contents')
+    $saidOfATableOfContents(writing: $Writing): void {
+        $check(writing.is($TableOfContents), 'an index is said of a table of contents, and this chapter is not one');
     }
 }
 

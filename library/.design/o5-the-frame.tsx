@@ -9,9 +9,9 @@ export default () => (
                 This book is laid out as the frame I answered on: a bar down the side with the way to the
                 library at its head, this book's contents in the middle and me at its foot, and beside it the
                 page, with the book's name and <Means>$[[ the switch ]]( Dougs Reference Manual / The Switch )</Means> across
-                its top. One chapter is open at a time. The side bar
-                is <Means>$[[ the table of contents ]]( Dougs Reference Manual / The Bars )</Means> as a bar,
-                and the top is the cover as a bar, both taken from the manual.
+                its top. One chapter is open at a time. The table of contents says of itself that it is a side
+                bar and the cover that it is a top bar, <Means>$[[ two things said of them ]]( Dougs Reference Manual / The Bars )</Means> that
+                are the manual's.
             </Paragraph>
             <Paragraph>
                 The design it follows is <Means>$[[ the black side bar ]]( ./A Black Side Bar )</Means> in
