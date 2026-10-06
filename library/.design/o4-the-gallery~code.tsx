@@ -29,7 +29,7 @@ export class $Gallery extends $Format {
             overflow: hidden;
         }
         .pa-gallery .pa-concept .pa-photographs img { height: ${({ theme }) => theme.photo}; width: auto; max-width: none; }
-        .pa-gallery .pa-concept .pd-paragraph.pa-source { display: none; }
+        .pa-gallery .pa-concept .pd-paragraph.pa-source, .pa-gallery .pa-concept .pd-paragraph.pa-close { display: none; }
         .pa-gallery .pd-section.pa-concept.pa-open {
             position: fixed;
             inset: 0 0 0 ${({ theme }) => theme.side};
@@ -37,9 +37,18 @@ export class $Gallery extends $Format {
             overflow-y: auto;
             padding: ${({ theme }) => theme.space} calc(${({ theme }) => theme.space} * 1.17);
             background: ${({ theme }) => theme.paper};
-            grid-template-areas: 'number name' 'pictures pictures';
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            grid-template-areas: 'number name close' 'pictures pictures pictures';
             align-content: start;
         }
+        .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-close {
+            display: block;
+            grid-area: close;
+            margin: 0;
+            font-size: calc(1.6 * ${({ theme }) => theme.size});
+            line-height: 1;
+        }
+        .pa-gallery .pa-concept.pa-open .pa-close .pa-reference { text-decoration: none; }
         .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-photographs, .pa-gallery .pa-concept.pa-open .pd-paragraph.pa-source { max-width: none; }
         .pa-gallery .pa-concept.pa-open .pa-photographs { flex-wrap: wrap; overflow: visible; }
         .pa-gallery .pa-concept.pa-open .pa-photographs img { height: auto; max-width: 100%; }

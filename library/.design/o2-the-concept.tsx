@@ -20,6 +20,11 @@ export default () => (
                 Another chapter points to a concept by its number, as a link to its place in Every Concept. It
                 does not show the concept a second time.
             </Paragraph>
+            <Paragraph>
+                The number is drawn where the section says it is a concept, as the note of that saying, so it
+                stands on the card before the name. A concept opened across the screen has a close, a word
+                written in its section as a link back to Every Concept, which the gallery shows only then.
+            </Paragraph>
         </Section>
         <Append
             identifier="code"

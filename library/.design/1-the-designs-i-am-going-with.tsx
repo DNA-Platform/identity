@@ -117,14 +117,17 @@ export default () => (
                 as a sidebar doesn't look right to anyone. So yes, this design, but we have to fix problems first.
                 Shown 28: we need the code in the top to be different to the text you see when you collapse the
                 code. We need someone to be able to write something substantive, because the reference manual
-                is more than just a code reader. It is the thing you read to learn how to use the code.
+                is more than just a code reader. It is the thing you read to learn how to use the code. Seen
+                full size: yes, 28 and 31, and make a nice transition between the code view and the writing
+                view if it can be expressed annotatively and elegantly. All writing in the code view is
+                different, with a much smaller synopsis.
             </Paragraph>
             <Paragraph>
                 <Decision />
-                6, with two readings of one chapter as 28 and 31 sketch them: the code in front with its own
-                line above it, and the words in front as a substantive write-up with the file folded to a strip.
-                Not decided until I have seen them. It is for <Means>$[[ Dougs Reference Manual ]]</Means>,
-                which has the words beside the file and a toggle until then.
+                6, read two ways as 28 and 31: the code in front with a much smaller synopsis of its own above
+                it, and the words in front as a substantive write-up with the file folded to a strip, with a
+                transition between them. It is for <Means>$[[ Dougs Reference Manual ]]</Means>, which has
+                the words beside the file and a toggle until it is rebuilt.
             </Paragraph>
         </Section>
         <Section>
@@ -174,12 +177,13 @@ export default () => (
                 different options. These things need to be unified into one style, and that is some of the work
                 left to be done. I would need to see options. Is the table in the sidebar? Definitely a top bar.
                 We need to find a solution to navigate the book. Shown 29 and 30 as cards: you need to show me
-                designs, and I need to click on a design and see it full screen; I can barely see these.
+                designs, and I need to click on a design and see it full screen; I can barely see these. Seen
+                full size: 29 is nice.
             </Paragraph>
             <Paragraph>
                 <Decision />
-                The reading view of 25, under the frame's top bar; how the book is navigated, with or without its
-                table in the side bar, is sketched as options in this book and decided here. It is a story about
+                29: the reading view of 25 under the frame's top bar, the chapters down the side bar with the
+                open one lit, the papers above the sheet, the turn at its foot. It is a story about
                 me and what I create, a narrative slice of the library that helps to navigate everything we have
                 built, so that it is the most relevant place to begin from. Its chapters are annotated by date and
                 time, and it is to have a view that sorts them for recency. It is

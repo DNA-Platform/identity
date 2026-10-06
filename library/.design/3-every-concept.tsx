@@ -1,5 +1,5 @@
-import { Chapter, Code, Heading, Image, Paragraph, Section, Title } from '@dna-platform/public';
-import { Concept, Gallery, Photographs, Answer, Source } from './.book';
+import { Chapter, Code, Heading, Image, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Close, Concept, Gallery, Photographs, Answer, Source } from './.book';
 
 export default () => (
     <Chapter>
@@ -21,6 +21,10 @@ export default () => (
             <Section>
                 <Concept>1</Concept>
                 <Heading>[[[ The Shelf ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 1, after Apple Books.
                 </Paragraph>
@@ -47,6 +51,10 @@ export default () => (
                 <Concept>2</Concept>
                 <Heading>[[[ Ask the Sources ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 2, after NotebookLM.
                 </Paragraph>
                 <Paragraph>
@@ -72,6 +80,10 @@ export default () => (
                 <Concept>3</Concept>
                 <Heading>[[[ The Wall ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 3, after Pinterest.
                 </Paragraph>
                 <Paragraph>
@@ -92,6 +104,10 @@ export default () => (
             <Section>
                 <Concept>4</Concept>
                 <Heading>[[[ The Command Line ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 4, after keyboard-first tools: command palettes, launchers and the leader keys of
                     editors.
@@ -114,6 +130,10 @@ export default () => (
             <Section>
                 <Concept>5</Concept>
                 <Heading>[[[ The Front Page ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 5, after a newspaper's front page and the long-read site's home.
                 </Paragraph>
@@ -145,6 +165,10 @@ export default () => (
                 <Concept>6</Concept>
                 <Heading>[[[ Side by Side ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 6, after API documentation, as Stripe sets it.
                 </Paragraph>
                 <Paragraph>
@@ -170,6 +194,10 @@ export default () => (
                 <Concept>7</Concept>
                 <Heading>[[[ The Notebook ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 7, after a computational notebook, as Observable sets it.
                 </Paragraph>
                 <Paragraph>
@@ -189,6 +217,10 @@ export default () => (
             <Section>
                 <Concept>8</Concept>
                 <Heading>[[[ The Workbench ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 8, after a component workshop, as Storybook sets it.
                 </Paragraph>
@@ -217,6 +249,10 @@ export default () => (
                 <Concept>9</Concept>
                 <Heading>[[[ The Database ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 9, after Notion.
                 </Paragraph>
                 <Paragraph>
@@ -242,6 +278,10 @@ export default () => (
             <Section>
                 <Concept>10</Concept>
                 <Heading>[[[ The Map ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 10, after market maps and disk-usage maps — the squarified treemap.
                 </Paragraph>
@@ -275,6 +315,10 @@ export default () => (
                 <Concept>11</Concept>
                 <Heading>[[[ A Black Side Bar ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 11, an idea, after the homes I liked, in the coming-soon page's soft black.
                 </Paragraph>
                 <Paragraph>
@@ -296,6 +340,10 @@ export default () => (
                 <Concept>12</Concept>
                 <Heading>[[[ A Light Side Bar ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 12, an idea, after the homes I liked, the lighter way.
                 </Paragraph>
                 <Paragraph>
@@ -315,6 +363,10 @@ export default () => (
             <Section>
                 <Concept>13</Concept>
                 <Heading>[[[ A Black Top Bar ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 13, an idea, after the homes I liked, in the coming-soon page's soft black.
                 </Paragraph>
@@ -337,6 +389,10 @@ export default () => (
                 <Concept>14</Concept>
                 <Heading>[[[ A White Top Bar ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 14, an idea, after the homes I liked, the lighter way.
                 </Paragraph>
                 <Paragraph>
@@ -356,6 +412,10 @@ export default () => (
             <Section>
                 <Concept>15</Concept>
                 <Heading>[[[ A Black Top Bar and an Opal Side Bar ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 15, an idea, after the coming-soon page: its soft black, and its opal between that and
                     white.
@@ -378,6 +438,10 @@ export default () => (
                 <Concept>16</Concept>
                 <Heading>[[[ A White Top Bar and an Opal Side Bar ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 16, an idea, after the homes I liked, the lighter way.
                 </Paragraph>
                 <Paragraph>
@@ -397,6 +461,10 @@ export default () => (
             <Section>
                 <Concept>17</Concept>
                 <Heading>[[[ A Black Rail and a Blue Top ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 17, an idea, after the coming-soon page: its soft black, and the blue it suggests.
                 </Paragraph>
@@ -419,6 +487,10 @@ export default () => (
                 <Concept>18</Concept>
                 <Heading>[[[ An Opal Rail and a White Top ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 18, an idea, after the homes I liked, the lighter way.
                 </Paragraph>
                 <Paragraph>
@@ -438,6 +510,10 @@ export default () => (
             <Section>
                 <Concept>19</Concept>
                 <Heading>[[[ Two Top Bars: Black, then Sky ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 19, an idea, after the coming-soon page: its soft black, and a lighter step of the blue.
                 </Paragraph>
@@ -466,6 +542,10 @@ export default () => (
                 <Concept>20</Concept>
                 <Heading>[[[ Two Top Bars: White, then Opal ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 20, an idea, after the homes I liked, the lighter way.
                 </Paragraph>
                 <Paragraph>
@@ -491,6 +571,10 @@ export default () => (
                 <Concept>21</Concept>
                 <Heading>[[[ No Bars: White Cards ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 21, an idea, after the home that asks its sources.
                 </Paragraph>
                 <Paragraph>
@@ -511,6 +595,10 @@ export default () => (
                 <Concept>22</Concept>
                 <Heading>[[[ No Bars: White Cards on Black ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 22, an idea, after the home that asks its sources, on the coming-soon page's ground.
                 </Paragraph>
                 <Paragraph>
@@ -530,6 +618,10 @@ export default () => (
             <Section>
                 <Concept>23</Concept>
                 <Heading>[[[ A Conversation, in the Black Side Bar ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 23, an idea, after the application the conversations come from.
                 </Paragraph>
@@ -565,6 +657,10 @@ export default () => (
                 <Concept>24</Concept>
                 <Heading>[[[ The Title Page ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 24, an idea, after the coming-soon page.
                 </Paragraph>
                 <Paragraph>
@@ -590,6 +686,10 @@ export default () => (
             <Section>
                 <Concept>25</Concept>
                 <Heading>[[[ The Reading View ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 25, an idea, after the algebra of perspective, in the original demo.
                 </Paragraph>
@@ -627,6 +727,10 @@ export default () => (
                 <Concept>26</Concept>
                 <Heading>[[[ A White Top Bar and a Black Side Bar ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 26, an idea, after 16 and 23, to see the top over the dark side bar.
                 </Paragraph>
                 <Paragraph>
@@ -648,6 +752,10 @@ export default () => (
                 <Concept>27</Concept>
                 <Heading>[[[ A Black Top Bar and a Black Side Bar ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 27, an idea, after 15 and 11, to see the top over the dark side bar.
                 </Paragraph>
                 <Paragraph>
@@ -667,6 +775,10 @@ export default () => (
             <Section>
                 <Concept>28</Concept>
                 <Heading>[[[ The Code in Front ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 28, an idea, after 6, with the file given the room.
                 </Paragraph>
@@ -691,6 +803,10 @@ export default () => (
                 <Concept>31</Concept>
                 <Heading>[[[ The Words in Front ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 31, an idea, after 28, opened on the words.
                 </Paragraph>
                 <Paragraph>
@@ -712,6 +828,10 @@ export default () => (
                 <Concept>29</Concept>
                 <Heading>[[[ The Reading View, in the Frame, with the Chapters at the Side ]]]</Heading>
                 <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
+                <Paragraph>
                     Concept 29, an idea, after 25 under the top bar of 16, with the side bar of 26.
                 </Paragraph>
                 <Paragraph>
@@ -732,6 +852,10 @@ export default () => (
             <Section>
                 <Concept>30</Concept>
                 <Heading>[[[ The Reading View, in the Frame, with the Chapters at the Foot ]]]</Heading>
+                <Paragraph>
+                    <Close />
+                    <Means>$[[ × ]]( ./Every Concept )</Means>
+                </Paragraph>
                 <Paragraph>
                     Concept 30, an idea, after 25 under the top bar of 16, and nothing else.
                 </Paragraph>

@@ -49,6 +49,18 @@ export class $Source extends $Annotation {
     }
 }
 
+export class $Close extends $Annotation {
+    specification = new OfAConceptSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-close');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
 export class ConceptSpecification extends AnnotationSpecification {
     @specify('a concept is said of a section')
     $saidOfASection(writing: $Writing): void {
@@ -73,3 +85,4 @@ export class OfAConceptSpecification extends AnnotationSpecification {
 export const Concept = $($Concept);
 export const Photographs = $($Photographs);
 export const Source = $($Source);
+export const Close = $($Close);
