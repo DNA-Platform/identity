@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Outline ]]</Title>
+        <Paragraph>
+            <Brief />
+            A switch that draws each part's classes over the page, to see the structure.
+        </Paragraph>
         <Section>
             <Heading>What the outline shows</Heading>
             <Paragraph>

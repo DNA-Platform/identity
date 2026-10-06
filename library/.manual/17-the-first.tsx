@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The First ]]</Title>
+        <Paragraph>
+            <Brief />
+            Said of the paragraph a chapter opens with, so a book may set its first letter large.
+        </Paragraph>
         <Section>
             <Heading>The paragraph a chapter opens with</Heading>
             <Paragraph>

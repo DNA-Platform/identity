@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Switch ]]</Title>
+        <Paragraph>
+            <Brief />
+            A word a reader presses to say one thing of the book, and one of a set.
+        </Paragraph>
         <Section>
             <Heading>Something a reader presses</Heading>
             <Paragraph>

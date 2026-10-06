@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Turn ]]</Title>
+        <Paragraph>
+            <Brief />
+            The line at the foot of a chapter: the one before, which of how many, the one after.
+        </Paragraph>
         <Section>
             <Heading>The way to the next chapter</Heading>
             <Paragraph>

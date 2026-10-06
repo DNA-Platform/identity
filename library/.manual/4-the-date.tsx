@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Date ]]</Title>
+        <Paragraph>
+            <Brief />
+            Said of a chapter that carries the day it was written.
+        </Paragraph>
         <Section>
             <Heading>What a dated chapter is</Heading>
             <Paragraph>

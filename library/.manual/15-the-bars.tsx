@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Bars ]]</Title>
+        <Paragraph>
+            <Brief />
+            Where the library's bar goes: six arrangements, one said of a book at a time.
+        </Paragraph>
         <Section>
             <Heading>The cover as a top bar, the table of contents as a side bar</Heading>
             <Paragraph>

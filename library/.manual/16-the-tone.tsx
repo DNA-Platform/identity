@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Tone ]]</Title>
+        <Paragraph>
+            <Brief />
+            Dark, light, or white over black: what colours the frame's five regions.
+        </Paragraph>
         <Section>
             <Heading>Dark or light</Heading>
             <Paragraph>

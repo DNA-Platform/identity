@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Entry ]]</Title>
+        <Paragraph>
+            <Brief />
+            A row of the table of contents that leads somewhere, lit when its chapter is open.
+        </Paragraph>
         <Section>
             <Heading>A row that leads somewhere</Heading>
             <Paragraph>

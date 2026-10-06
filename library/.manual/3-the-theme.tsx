@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Theme ]]</Title>
+        <Paragraph>
+            <Brief />
+            Every value the library's rules read, declared once, and the parts that dress the frame.
+        </Paragraph>
         <Section>
             <Heading>What the theme is</Heading>
             <Paragraph>

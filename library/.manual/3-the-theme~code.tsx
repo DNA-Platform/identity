@@ -22,6 +22,7 @@ export class $LibraryBookTheme extends $Theme {
     cardsColumn = '244px';
     railColumn = '68px';
     barHeight = '50px';
+    beat = '320ms';
     narrow = '48rem';
     colour = '#0c1b1f';
     night = '#0c1b1f';

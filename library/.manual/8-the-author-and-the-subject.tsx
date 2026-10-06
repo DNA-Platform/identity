@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Author and the Subject ]]</Title>
+        <Paragraph>
+            <Brief />
+            Two paragraphs every book draws from its cover: by whom, and filed under what.
+        </Paragraph>
         <Section>
             <Heading>Two links on every book</Heading>
             <Paragraph>

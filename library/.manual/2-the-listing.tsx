@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Listing ]]</Title>
+        <Paragraph>
+            <Brief />
+            A paragraph that prints a file beside its chapter under the file's own name.
+        </Paragraph>
         <Section>
             <Heading>A chapter and its file</Heading>
             <Paragraph>

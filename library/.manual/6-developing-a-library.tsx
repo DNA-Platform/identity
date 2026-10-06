@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ Developing a Library ]]</Title>
+        <Paragraph>
+            <Brief />
+            How a page of this library is worked on with the page open, and bound once.
+        </Paragraph>
         <Section>
             <Heading>The page stays open</Heading>
             <Paragraph>

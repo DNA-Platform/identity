@@ -1,8 +1,13 @@
 import { Chapter, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ Initializing a Library ]]</Title>
+        <Paragraph>
+            <Brief />
+            How this library was first set up, step by step.
+        </Paragraph>
         <Section>
             <Heading>What a library needs to begin</Heading>
             <Paragraph>

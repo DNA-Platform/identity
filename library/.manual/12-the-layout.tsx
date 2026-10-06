@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Layout ]]</Title>
+        <Paragraph>
+            <Brief />
+            Said of every book: each chapter on a leaf of its own, one open at a time, in the frame's grid.
+        </Paragraph>
         <Section>
             <Heading>One chapter open at a time</Heading>
             <Paragraph>

@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Book ]]</Title>
+        <Paragraph>
+            <Brief />
+            The class every book of this library stands on: it draws the frame once and collects its chapters.
+        </Paragraph>
         <Section>
             <Heading>What a book is here</Heading>
             <Paragraph>

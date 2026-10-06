@@ -1,24 +1,56 @@
-import { $, selection } from '@dna-platform/chemistry';
-import { $Format, $Writing } from '@dna-platform/public';
+import { $, $check } from '@dna-platform/chemistry';
+import { $Annotation, $Paragraph, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 
-export class $CodeForward extends $Format {
+export class $Reading extends $Annotation {
     specification = new OfABookSpecification();
-    themeProvider = true;
-    style = selection.div`
-        .pd-book.pa-code-forward .pd-leaf.pd-open { grid-template-columns: calc(1.4 * ${({ theme }) => theme.side}) minmax(0, 1fr); }
-        .pd-book.pa-code-forward .pd-files { width: auto; }
-    `;
 
     override defines(writing: $Writing): void {
-        super.defines(writing);
-        writing.classes.add(this, 'pa-code-forward');
+        for (const annotation of writing.annotations.after(this))
+            if (annotation instanceof $Reading)
+                writing.annotations.express(annotation, false);
+        writing.classes.add(this, 'pa-reading');
     }
 
     override erase(writing: $Writing): void {
-        super.erase(writing);
         writing.classes.revert(this);
     }
 }
 
+export class $CodeForward extends $Reading {
+    override defines(writing: $Writing): void {
+        super.defines(writing);
+        writing.classes.add(this, 'pa-code-forward');
+    }
+}
+
+export class $WordsForward extends $Reading {
+    override defines(writing: $Writing): void {
+        super.defines(writing);
+        writing.classes.add(this, 'pa-words-forward');
+    }
+}
+
+export class $Brief extends $Annotation {
+    specification = new BriefSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-brief');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class BriefSpecification extends AnnotationSpecification {
+    @specify('brief is said of a paragraph')
+    $saidOfAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Paragraph, 'brief is said of a paragraph, and this is not one');
+    }
+}
+
+export const Reading = $($Reading);
 export const CodeForward = $($CodeForward);
+export const WordsForward = $($WordsForward);
+export const Brief = $($Brief);

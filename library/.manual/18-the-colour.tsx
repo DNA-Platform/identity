@@ -1,8 +1,13 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Brief } from './10-the-manual~forward.tsx';
 
 export default () => (
     <Chapter>
         <Title>[[ The Colour ]]</Title>
+        <Paragraph>
+            <Brief />
+            Said of a chapter that stands for a book, holding the book's colour, which paints its cover.
+        </Paragraph>
         <Section>
             <Heading>Each book has a colour of its own</Heading>
             <Paragraph>
