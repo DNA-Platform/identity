@@ -1,7 +1,7 @@
 import { $, inert } from '@dna-platform/chemistry';
 import { $SelfReference, $Synopsis } from '@dna-platform/public';
 
-export class $BookItself extends $SelfReference {
+export class $Shelfmark extends $SelfReference {
     @inert() protected _book?: string;
     override get identifier(): string { return this._book ?? super.identifier; }
 
@@ -11,4 +11,4 @@ export class $BookItself extends $SelfReference {
     }
 }
 
-export const BookItself = $($BookItself);
+export const Shelfmark = $($Shelfmark);

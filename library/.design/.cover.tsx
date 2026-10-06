@@ -1,4 +1,5 @@
-import { Author, Chapter, Cover, Subject, Title } from '@dna-platform/public';
+import { Author, Chapter, Subject, Title } from '@dna-platform/public';
+import { Cover } from './o5-the-frame~faces.tsx';
 
 export default () => (
     <Chapter>

@@ -5,14 +5,14 @@ import { $Format, $Writing } from '@dna-platform/public';
 import type { $DougsBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 
-export class $Paged extends $Format {
+export class $Imposition extends $Format {
     specification = new OfABookSpecification();
     themeProvider = true;
     style: ElementType = selection.div`${this.parts()}`;
 
     override defines(writing: $Writing): void {
         super.defines(writing);
-        writing.classes.add(this, 'pa-paged');
+        writing.classes.add(this, 'pa-imposition');
         if ((writing as $DougsBook).open !== undefined) writing.classes.add(this, 'pa-turned');
     }
 
@@ -27,9 +27,9 @@ export class $Paged extends $Format {
 
     protected paging(): RuleSet {
         return css`
-            .pd-page:not(.pd-open) { display: none; }
+            .pd-leaf:not(.pd-open) { display: none; }
         `;
     }
 }
 
-export const Paged = $($Paged);
+export const Imposition = $($Imposition);

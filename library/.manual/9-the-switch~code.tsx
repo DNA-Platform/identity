@@ -2,12 +2,12 @@ import { ElementType, ReactNode } from 'react';
 import { $, $Chemical } from '@dna-platform/chemistry';
 import { $Annotation, $Word, Given } from '@dna-platform/public';
 
-export class $Choice extends $Word {
+export class $Switch extends $Word {
     $of!: Given<$Annotation>;
     protected _button!: ElementType;
     get on(): boolean { return this.book!.is(this.$of); }
 
-    $Choice(...chemicals: $Chemical[]) {
+    $Switch(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
         this._button = (props: { children?: ReactNode }) => (
             <button
@@ -28,11 +28,11 @@ export class $Choice extends $Word {
 
     protected override $Define(): void {
         super.$Define();
-        this.classes.add(this, 'pd-choice');
+        this.classes.add(this, 'pd-switch');
     }
 }
 
-export class $Pick extends $Choice {
+export class $Tab extends $Switch {
     $among!: Given<$Annotation>[];
 
     override press(): void {
@@ -42,5 +42,5 @@ export class $Pick extends $Choice {
     }
 }
 
-export const Choice = $($Choice);
-export const Pick = $($Pick);
+export const Switch = $($Switch);
+export const Tab = $($Tab);

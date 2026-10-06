@@ -3,10 +3,10 @@ import { $, $check } from '@dna-platform/chemistry';
 import { $Append, $Book, $Chapter, $Composition, $Section, BookSpecification, Theme, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
 import { DougsTheme } from './3-the-theme~code.tsx';
-import { Outlined as outlined } from './7-the-outline~code.tsx';
-import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
-import { Choice as choice } from './9-the-switch~code.tsx';
-import { Paged as paged } from './12-the-pages~code.tsx';
+import { Outline as outline } from './7-the-outline~code.tsx';
+import { Byline as byline, Classmark as classmark } from './8-the-author-and-the-subject~code.tsx';
+import { Switch as switching } from './9-the-switch~code.tsx';
+import { Imposition as imposition } from './12-the-imposition~code.tsx';
 import { Catchword as catchword } from './13-the-catchword~code.tsx';
 
 export class $DougsBook extends $Book {
@@ -28,8 +28,8 @@ export class $DougsBook extends $Book {
                 <Fragment key={index}>
                     <Chapter />
                     {chapter === this.cover && this.byline()}
-                    {chapter === this.cover && this.filed()}
-                    {chapter === this.cover && this.choices()}
+                    {chapter === this.cover && this.classmark()}
+                    {chapter === this.cover && this.switches()}
                     {this.listings(chapter)}
                 </Fragment>
             );
@@ -48,40 +48,40 @@ export class $DougsBook extends $Book {
         );
     }
 
-    filed(): ReactNode {
-        const FiledUnder = $(filedUnder);
+    classmark(): ReactNode {
+        const Classmark = $(classmark);
         return (
-            <FiledUnder chapter={this.cover} />
+            <Classmark chapter={this.cover} />
         );
     }
 
-    choices(): ReactNode {
-        const Choice = $(choice);
+    switches(): ReactNode {
+        const Switch = $(switching);
         return (
-            <Choice
+            <Switch
                 chapter={this.cover}
-                of={outlined}
+                of={outline}
             >
                 outline
-            </Choice>
+            </Switch>
         );
     }
 
     front(holds: ReactNode): ReactNode {
         return (
-            <div className={this.open === undefined ? 'pd-page pd-front pd-open' : 'pd-page pd-front'}>
+            <div className={this.open === undefined ? 'pd-leaf pd-front pd-open' : 'pd-leaf pd-front'}>
                 {holds}
             </div>
         );
     }
 
-    pages(): ReactNode {
+    leaves(): ReactNode {
         return this.chapters.map((chapter, index) => {
             const Chapter = $(chapter);
             return (
                 <div
                     key={index}
-                    className={chapter === this.open ? 'pd-page pd-open' : 'pd-page'}
+                    className={chapter === this.open ? 'pd-leaf pd-open' : 'pd-leaf'}
                 >
                     <div className="pd-words">
                         <Chapter />
@@ -117,9 +117,9 @@ export class $DougsBook extends $Book {
 
     protected override $Define(): void {
         super.$Define();
-        const Paged = $(paged);
+        const Imposition = $(imposition);
         this.annotations.add(this,
-            <Paged />
+            <Imposition />
         );
     }
 

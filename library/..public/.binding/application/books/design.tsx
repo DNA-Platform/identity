@@ -7,9 +7,11 @@ import Table from '../../../../.design/.table';
 import TheDesignsIAmGoingWith1 from '../../../../.design/1-the-designs-i-am-going-with';
 import WhatIAmAsked2 from '../../../../.design/2-what-i-am-asked';
 import EveryConcept3 from '../../../../.design/3-every-concept';
-import TheParagraphs90 from '../../../../.design/90-the-paragraphs';
-import TheConcept91 from '../../../../.design/91-the-concept';
-import TheCamera94 from '../../../../.design/94-the-camera';
+import TheParagraphso1 from '../../../../.design/o1-the-paragraphs';
+import TheConcepto2 from '../../../../.design/o2-the-concept';
+import TheCamerao3 from '../../../../.design/o3-the-camera';
+import TheGalleryo4 from '../../../../.design/o4-the-gallery';
+import TheFrameo5 from '../../../../.design/o5-the-frame';
 
 const Book = $($Book);
 
@@ -21,9 +23,11 @@ export const book = () => (
         {TheDesignsIAmGoingWith1()}
         {WhatIAmAsked2()}
         {EveryConcept3()}
-        {TheParagraphs90()}
-        {TheConcept91()}
-        {TheCamera94()}
+        {TheParagraphso1()}
+        {TheConcepto2()}
+        {TheCamerao3()}
+        {TheGalleryo4()}
+        {TheFrameo5()}
     </Book>
 );
 

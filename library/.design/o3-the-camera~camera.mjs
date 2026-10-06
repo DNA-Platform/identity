@@ -1,7 +1,7 @@
 // Photographs each concept of this book that is newer than its photographs, at a desk's width and at a phone's,
 // and says what on it runs past the edge of the screen. Run from anywhere:
 //
-//     node .me/.design/94-the-camera~camera.mjs
+//     node .me/.design/o3-the-camera~camera.mjs
 //
 // A concept is a page kept beside a chapter under its number, as 3-every-concept~025.html. Its two
 // photographs are kept beside it under the same number. Bind the book afterwards.

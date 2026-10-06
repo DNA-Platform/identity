@@ -1,9 +1,10 @@
 import { Chapter, Code, Heading, Image, Paragraph, Section, Title } from '@dna-platform/public';
-import { Concept, Said } from './.book';
+import { Concept, Gallery, Plates, Answer, Source } from './.book';
 
 export default () => (
     <Chapter>
         <Title>[[ Every Concept ]]</Title>
+        <Gallery />
         <Section>
             <Heading>By number</Heading>
             <Paragraph>
@@ -28,15 +29,17 @@ export default () => (
                     project, and a conversation is picked up by its face, the way a book is.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 001-desk.png ]]</Image>
                     <Image>![[ 001-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
-                    <Said />
+                    <Answer />
                     I really like the book view, and aside from color, we will need some sort of visual landmark to
                     ground the book, which justifies seeing the cover.
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 001.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -51,15 +54,17 @@ export default () => (
                     answer carries the number of the passage it rests on, one press from the passage itself.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 002-desk.png ]]</Image>
                     <Image>![[ 002-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
-                    <Said />
+                    <Answer />
                     The sources really look great. I really like it. I like the little view and the logo. But what
                     would it mean to type in a message? We have to be realistic.
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 002.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -75,10 +80,12 @@ export default () => (
                     wandering and keeping is one button.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 003-desk.png ]]</Image>
                     <Image>![[ 003-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 003.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -95,10 +102,12 @@ export default () => (
                     top of every page, which is what unites them.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 004-desk.png ]]</Image>
                     <Image>![[ 004-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 004.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -115,10 +124,12 @@ export default () => (
                     sections across the top.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 005-desk.png ]]</Image>
                     <Image>![[ 005-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 005.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -141,15 +152,17 @@ export default () => (
                     held still on the right, and every name in the words lights the line it means.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 006-desk.png ]]</Image>
                     <Image>![[ 006-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
-                    <Said />
+                    <Answer />
                     6 with 8 for a part, yes, though I think we want a way to toggle between code emphasized and
                     documentation emphasized. Code doesn't look right unless in full view.
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 006.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -164,10 +177,12 @@ export default () => (
                     under the other, so the manual proves each part as it explains it.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 007-desk.png ]]</Image>
                     <Image>![[ 007-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 007.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -182,10 +197,12 @@ export default () => (
                     change, and the line a chapter would write rewriting itself as they change.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 008-desk.png ]]</Image>
                     <Image>![[ 008-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 008.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -208,15 +225,17 @@ export default () => (
                     the list.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 009-desk.png ]]</Image>
                     <Image>![[ 009-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
-                    <Said />
+                    <Answer />
                     For the catalogue across projects I like 9 the best, and I might even like a splash of the
                     Claude theme to delineate that this view is Claude projects.
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 009.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -232,10 +251,12 @@ export default () => (
                     recent, so the whole of it is seen at once and any tile is one look from its name.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 010-desk.png ]]</Image>
                     <Image>![[ 010-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 010.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -262,10 +283,12 @@ export default () => (
                     and List to see the same books two ways.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 011-desk.png ]]</Image>
                     <Image>![[ 011-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 011.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -280,10 +303,12 @@ export default () => (
                     color is all in the covers and the light accents.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 012-desk.png ]]</Image>
                     <Image>![[ 012-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 012.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -299,10 +324,12 @@ export default () => (
                     books.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 013-desk.png ]]</Image>
                     <Image>![[ 013-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 013.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -317,10 +344,12 @@ export default () => (
                     own color.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 014-desk.png ]]</Image>
                     <Image>![[ 014-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 014.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -336,10 +365,12 @@ export default () => (
                     pale opal, which is the step between the black and the white page.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 015-desk.png ]]</Image>
                     <Image>![[ 015-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 015.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -354,10 +385,12 @@ export default () => (
                     still has two bars.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 016-desk.png ]]</Image>
                     <Image>![[ 016-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 016.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -373,10 +406,12 @@ export default () => (
                     is a row beneath.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 017-desk.png ]]</Image>
                     <Image>![[ 017-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 017.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -391,10 +426,12 @@ export default () => (
                     subject's name on white.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 018-desk.png ]]</Image>
                     <Image>![[ 018-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 018.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -410,16 +447,18 @@ export default () => (
                     of its own inside the library.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 019-desk.png ]]</Image>
                     <Image>![[ 019-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
-                    <Said />
+                    <Answer />
                     Maybe I like the black and sky for the library itself, with its more bookish view. I like the
                     black and sky, though I think I want to be able to switch the view as part of the dynamism of
                     the page.
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 019.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -433,16 +472,18 @@ export default () => (
                     The same two bars, lighter: the library's in white, the subject's in the pale opal.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 020-desk.png ]]</Image>
                     <Image>![[ 020-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
-                    <Said />
+                    <Answer />
                     The white and then opal looks really good. A clean white theme with the dark logo makes me start
                     to think that maybe I don't want quite so much of the dark. The opal is interesting too, and
                     while we would need to use that effect carefully, I like it as a type of annotation.
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 020.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -457,10 +498,12 @@ export default () => (
                     ground, and what the subject holds, its books and what cites them are three white cards.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 021-desk.png ]]</Image>
                     <Image>![[ 021-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 021.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -475,10 +518,12 @@ export default () => (
                     stands on and the pages are white.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 022-desk.png ]]</Image>
                     <Image>![[ 022-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 022.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -494,15 +539,17 @@ export default () => (
                     cites the chapter beside it.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 023-desk.png ]]</Image>
                     <Image>![[ 023-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
-                    <Said />
+                    <Answer />
                     Yes, 23, though we might vary the color scheme based on project, but start assuming the dark
                     sidebar. That theme looks nice.
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 023.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -526,15 +573,17 @@ export default () => (
                     is on the page.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 024-desk.png ]]</Image>
                     <Image>![[ 024-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
-                    <Said />
+                    <Answer />
                     Beautiful. We will be repurposing the design you put on the library home screen, but not at this
                     very moment.
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 024.html ]]</Code>
                 </Paragraph>
             </Section>
@@ -551,15 +600,17 @@ export default () => (
                     night, and a third in plain white.
                 </Paragraph>
                 <Paragraph>
+                    <Plates />
                     <Image>![[ 025-desk.png ]]</Image>
                     <Image>![[ 025-phone.png ]]</Image>
                 </Paragraph>
                 <Paragraph>
-                    <Said />
+                    <Answer />
                     I like 25, beautiful. We will likely have a bar on top also, in dark perhaps so it isn't so
                     noticeable, but I really like it for bookish chapters like the autobiography.
                 </Paragraph>
                 <Paragraph>
+                    <Source />
                     <Code>![[ 025.html ]]</Code>
                 </Paragraph>
             </Section>

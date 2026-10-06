@@ -1,17 +1,14 @@
 import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
-import { $Annotation, $Chapter, $Synopsis, $Writing, Given, Self } from '@dna-platform/public';
-import { $DougsBook, $Paged, Paged, Pick as pick } from '../.manual/.book';
-import { BookItself } from './90-the-two-bars~itself.tsx';
-import { Listed as listed, Shelved as shelved } from './90-the-two-bars~views.tsx';
+import { $Chapter, $Synopsis, $Writing, Self } from '@dna-platform/public';
+import { $DougsBook, $Imposition, Imposition } from '../.manual/.book';
+import { Shelfmark } from './o1-the-two-bars~shelfmark.tsx';
+import { Shelf as shelf } from './o1-the-two-bars~views.tsx';
 
 export class $DougsLibrary extends $DougsBook {
     get books(): $Chapter[] {
         return this.text.find($Chapter).filter(chapter => chapter.is($Synopsis) && chapter !== this.synopsis);
-    }
-    get views(): Given<$Annotation>[] {
-        return [shelved, listed];
     }
     override get placed(): ($Chapter | undefined)[] {
         return [...super.placed, ...this.books];
@@ -24,19 +21,19 @@ export class $DougsLibrary extends $DougsBook {
         return (
             <>
                 <div className="pd-library-bar">
-                    {this.filed()}
+                    {this.classmark()}
                     {this.byline()}
                 </div>
                 <div className="pd-book-bar">
                     <Cover />
-                    <div className="pd-choices">
-                        {this.choices()}
+                    <div className="pd-switches">
+                        {this.switches()}
                     </div>
                 </div>
                 <div className="pd-holds">
                     <Table />
                 </div>
-                <div className="pd-pages">
+                <div className="pd-leaves">
                     {this.front(
                         <>
                             <div className="pd-words">
@@ -47,31 +44,8 @@ export class $DougsLibrary extends $DougsBook {
                             </div>
                         </>
                     )}
-                    {this.pages()}
+                    {this.leaves()}
                 </div>
-            </>
-        );
-    }
-
-    override choices(): ReactNode {
-        const Pick = $(pick);
-        return (
-            <>
-                <Pick
-                    chapter={this.cover}
-                    of={shelved}
-                    among={this.views}
-                >
-                    shelf
-                </Pick>
-                <Pick
-                    chapter={this.cover}
-                    of={listed}
-                    among={this.views}
-                >
-                    list
-                </Pick>
-                {super.choices()}
             </>
         );
     }
@@ -92,14 +66,14 @@ export class $DougsLibrary extends $DougsBook {
 
     protected override $Define(): void {
         super.$Define();
-        const Shelved = $(shelved);
+        const Shelf = $(shelf);
         this.annotations.add(this,
-            <Shelved />
+            <Shelf />
         );
     }
 }
 
-export class $TwoBars extends $Paged {
+export class $TwoBars extends $Imposition {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-two-bars');
@@ -121,7 +95,7 @@ export class $TwoBars extends $Paged {
             .pa-two-bars .pd-library-bar { grid-area: library; }
             .pa-two-bars .pd-book-bar { grid-area: book; }
             .pa-two-bars .pd-holds { grid-area: holds; overflow-y: auto; }
-            .pa-two-bars .pd-pages { grid-area: pages; overflow-y: auto; }
+            .pa-two-bars .pd-leaves { grid-area: pages; overflow-y: auto; }
             .pa-two-bars .pd-words .pd-chapter { scroll-margin-block-start: ${({ theme }) => theme.space}; }
         `;
     }
@@ -134,7 +108,7 @@ export class $TwoBars extends $Paged {
                 justify-content: space-between;
                 column-gap: ${({ theme }) => theme.space};
             }
-            .pa-two-bars .pd-choices {
+            .pa-two-bars .pd-switches {
                 display: flex;
                 gap: calc(${({ theme }) => theme.space} / 3);
             }
@@ -157,5 +131,5 @@ export class $TwoBars extends $Paged {
 
 export const DougsLibrary = $($DougsLibrary);
 export const TwoBars = $($TwoBars);
-$(DougsLibrary, Paged)(TwoBars);
-$(DougsLibrary, Self)(BookItself);
+$(DougsLibrary, Imposition)(TwoBars);
+$(DougsLibrary, Self)(Shelfmark);

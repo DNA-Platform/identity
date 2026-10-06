@@ -14,9 +14,10 @@ import TheOutline7 from '../../../../.manual/7-the-outline';
 import TheAuthorAndTheSubject8 from '../../../../.manual/8-the-author-and-the-subject';
 import TheSwitch9 from '../../../../.manual/9-the-switch';
 import TheManual10 from '../../../../.manual/10-the-manual';
-import ThePages12 from '../../../../.manual/12-the-pages';
+import TheImposition12 from '../../../../.manual/12-the-imposition';
 import TheCatchword13 from '../../../../.manual/13-the-catchword';
 import TheEntry14 from '../../../../.manual/14-the-entry';
+import TheBars15 from '../../../../.manual/15-the-bars';
 
 const Book = $($Book);
 
@@ -35,9 +36,10 @@ export const book = () => (
         {TheAuthorAndTheSubject8()}
         {TheSwitch9()}
         {TheManual10()}
-        {ThePages12()}
+        {TheImposition12()}
         {TheCatchword13()}
         {TheEntry14()}
+        {TheBars15()}
     </Book>
 );
 

@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Paragraph, $Section, $Writing, Given, Theme } from '@dna-platform/public';
-import { $DougsBook, $Paged, Paged, Pick as pick } from '../.manual/.book';
-import { BookPaper as bookPaper, NightPaper as nightPaper, WhitePaper as whitePaper } from './90-the-sheet~theme.tsx';
+import { $DougsBook, $Imposition, Imposition, Tab as tab } from '../.manual/.book';
+import { BookPaper as bookPaper, NightPaper as nightPaper, WhitePaper as whitePaper } from './o1-the-sheet~theme.tsx';
 
 export class $DougsStory extends $DougsBook {
     get papers(): Given<$Annotation>[] {
@@ -17,8 +17,8 @@ export class $DougsStory extends $DougsBook {
         return (
             <>
                 <div className="pd-bar">
-                    {this.choices()}
-                    {this.filed()}
+                    {this.switches()}
+                    {this.classmark()}
                 </div>
                 <div className="pd-sheet">
                     <div className="pd-head">
@@ -31,44 +31,44 @@ export class $DougsStory extends $DougsBook {
                             <Table />
                         </div>
                     )}
-                    {this.pages()}
+                    {this.leaves()}
                 </div>
             </>
         );
     }
 
-    override choices(): ReactNode {
-        const Pick = $(pick);
+    override switches(): ReactNode {
+        const Tab = $(tab);
         return (
             <>
-                <Pick
+                <Tab
                     chapter={this.cover}
                     of={bookPaper}
                     among={this.papers}
                 >
                     book
-                </Pick>
-                <Pick
+                </Tab>
+                <Tab
                     chapter={this.cover}
                     of={nightPaper}
                     among={this.papers}
                 >
                     night
-                </Pick>
-                <Pick
+                </Tab>
+                <Tab
                     chapter={this.cover}
                     of={whitePaper}
                     among={this.papers}
                 >
                     white
-                </Pick>
-                {super.choices()}
+                </Tab>
+                {super.switches()}
             </>
         );
     }
 }
 
-export class $Sheet extends $Paged {
+export class $Sheet extends $Imposition {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-sheet');
@@ -143,5 +143,5 @@ export class $Sheet extends $Paged {
 
 export const DougsStory = $($DougsStory);
 export const Sheet = $($Sheet);
-$(DougsStory, Paged)(Sheet);
+$(DougsStory, Imposition)(Sheet);
 $(DougsStory, Theme)(bookPaper);

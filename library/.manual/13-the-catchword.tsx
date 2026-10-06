@@ -12,7 +12,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 The line asks <Means>$[[ the book ]]( ./The Book )</Means> for its chapters, so it counts and
-                leads through the pages I can open, and not the cover or the table of contents. Each link is a
+                leads through the chapters I can open, and not the cover or the table of contents. Each link is a
                 word that refers to a chapter and says that chapter's title. At the first chapter the one before
                 is the chapter itself, and at the last the one after is, so the line is the same at both ends.
             </Paragraph>

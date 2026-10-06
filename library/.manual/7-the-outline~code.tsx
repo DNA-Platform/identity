@@ -1,8 +1,8 @@
 import { $, $check, selection } from '@dna-platform/chemistry';
 import { $Book, $Format, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 
-export class $Outlined extends $Format {
-    specification = new OutlinedSpecification();
+export class $Outline extends $Format {
+    specification = new OutlineSpecification();
     themeProvider = true;
     style = selection.div`
         .pd-chapter, .pd-section, .pd-listing, .pd-paragraph[class*='pa-'] {
@@ -19,7 +19,7 @@ export class $Outlined extends $Format {
 
     override defines(writing: $Writing): void {
         super.defines(writing);
-        writing.classes.add(this, 'pa-outlined');
+        writing.classes.add(this, 'pa-outline');
     }
 
     override erase(writing: $Writing): void {
@@ -28,11 +28,11 @@ export class $Outlined extends $Format {
     }
 }
 
-export class OutlinedSpecification extends AnnotationSpecification {
-    @specify('outlined is said of a book')
+export class OutlineSpecification extends AnnotationSpecification {
+    @specify('outline is said of a book')
     $saidOfABook(writing: $Writing): void {
-        $check(writing instanceof $Book, 'outlined is said of a book, and this is not one');
+        $check(writing instanceof $Book, 'outline is said of a book, and this is not one');
     }
 }
 
-export const Outlined = $($Outlined);
+export const Outline = $($Outline);

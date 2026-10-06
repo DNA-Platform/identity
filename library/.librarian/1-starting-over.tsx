@@ -1,11 +1,11 @@
 import { Chapter, Date, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Dated } from '../.manual/.book';
+import { Dateline } from '../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Dated>
+        <Dateline>
             <Date>[2 October 2026](2026-10-02)</Date>
-        </Dated>
+        </Dateline>
         <Title>[[ Starting Over ]]</Title>
         <Section>
             <Heading>What this library is for</Heading>

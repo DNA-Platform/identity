@@ -1,4 +1,5 @@
-import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
+import { TableOfContents } from './o5-the-frame~faces.tsx';
 
 export default () => (
     <Chapter>
@@ -56,6 +57,12 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Content>$[[ ./The Camera ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Gallery ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Frame ]]</Content>
             </Paragraph>
         </Section>
     </Chapter>

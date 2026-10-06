@@ -1,11 +1,11 @@
 import { $, $check } from '@dna-platform/chemistry';
 import { $Annotation, $Paragraph, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 
-export class $Asked extends $Annotation {
-    specification = new AskedSpecification();
+export class $Question extends $Annotation {
+    specification = new QuestionSpecification();
 
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-asked');
+        writing.classes.add(this, 'pa-question');
     }
 
     override erase(writing: $Writing): void {
@@ -13,11 +13,11 @@ export class $Asked extends $Annotation {
     }
 }
 
-export class $Said extends $Annotation {
-    specification = new SaidSpecification();
+export class $Answer extends $Annotation {
+    specification = new AnswerSpecification();
 
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-said');
+        writing.classes.add(this, 'pa-answer');
     }
 
     override erase(writing: $Writing): void {
@@ -25,11 +25,11 @@ export class $Said extends $Annotation {
     }
 }
 
-export class $Chosen extends $Annotation {
-    specification = new ChosenSpecification();
+export class $Decision extends $Annotation {
+    specification = new DecisionSpecification();
 
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-chosen');
+        writing.classes.add(this, 'pa-decision');
     }
 
     override erase(writing: $Writing): void {
@@ -37,27 +37,27 @@ export class $Chosen extends $Annotation {
     }
 }
 
-export class AskedSpecification extends AnnotationSpecification {
+export class QuestionSpecification extends AnnotationSpecification {
     @specify('asked is said of a paragraph')
     $saidOfAParagraph(writing: $Writing): void {
         $check(writing instanceof $Paragraph, 'asked is said of a paragraph, and this is not one');
     }
 }
 
-export class SaidSpecification extends AnnotationSpecification {
+export class AnswerSpecification extends AnnotationSpecification {
     @specify('said is said of a paragraph')
     $saidOfAParagraph(writing: $Writing): void {
         $check(writing instanceof $Paragraph, 'said is said of a paragraph, and this is not one');
     }
 }
 
-export class ChosenSpecification extends AnnotationSpecification {
+export class DecisionSpecification extends AnnotationSpecification {
     @specify('chosen is said of a paragraph')
     $saidOfAParagraph(writing: $Writing): void {
         $check(writing instanceof $Paragraph, 'chosen is said of a paragraph, and this is not one');
     }
 }
 
-export const Asked = $($Asked);
-export const Said = $($Said);
-export const Chosen = $($Chosen);
+export const Question = $($Question);
+export const Answer = $($Answer);
+export const Decision = $($Decision);

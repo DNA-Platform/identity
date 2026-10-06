@@ -27,6 +27,11 @@ export class $DougsTheme extends $Theme {
     line = '#e6e8ee';
     rule = '#e6e8ee';
     edge = 'transparent';
+    barFill = '#f7f8fa';
+    barInk = '#1a1f36';
+    barDim = '#8792a2';
+    barOn = '#e3f4f1';
+    barLine = '#e6e8ee';
     accent = '#0a7a70';
     tint = '#e3f4f1';
     night = '#0f2a33';
@@ -49,10 +54,12 @@ export class $DougsTheme extends $Theme {
     shadow = '0 0.75rem 1.4rem -0.9rem rgba(12, 27, 31, 0.55)';
     initial = "'D'";
     volume = '11.5rem';
+    card = '18rem';
+    plate = '7rem';
     style: ElementType = selection.div`${this.parts()}`;
 
     protected parts(): RuleSet[] {
-        return [this.page(), this.writing(), this.links(), this.figures(), this.listings(), this.choices(), this.turns()];
+        return [this.page(), this.writing(), this.links(), this.figures(), this.listings(), this.switches(), this.turns()];
     }
 
     protected page(): RuleSet {
@@ -136,9 +143,9 @@ export class $DougsTheme extends $Theme {
         `;
     }
 
-    protected choices(): RuleSet {
+    protected switches(): RuleSet {
         return css`
-            .pd-choice {
+            .pd-switch {
                 font: inherit;
                 color: ${({ theme }) => theme.soft};
                 background: ${({ theme }) => theme.paper};
@@ -147,7 +154,7 @@ export class $DougsTheme extends $Theme {
                 padding: calc(${({ theme }) => theme.space} / 8) calc(${({ theme }) => theme.space} / 2);
                 cursor: pointer;
             }
-            .pd-choice[aria-pressed='true'] {
+            .pd-switch[aria-pressed='true'] {
                 color: ${({ theme }) => theme.accent};
                 background: ${({ theme }) => theme.tint};
                 border-color: ${({ theme }) => theme.tint};

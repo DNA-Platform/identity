@@ -6,7 +6,7 @@ export class $CodeForward extends $Format {
     specification = new OfABookSpecification();
     themeProvider = true;
     style = selection.div`
-        .pd-book.pa-code-forward .pd-page.pd-open { grid-template-columns: calc(1.4 * ${({ theme }) => theme.side}) minmax(0, 1fr); }
+        .pd-book.pa-code-forward .pd-leaf.pd-open { grid-template-columns: calc(1.4 * ${({ theme }) => theme.side}) minmax(0, 1fr); }
         .pd-book.pa-code-forward .pd-files { width: auto; }
     `;
 

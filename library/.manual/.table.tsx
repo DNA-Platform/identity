@@ -20,13 +20,16 @@ export default () => (
                 <Content>$[[ ./The Author and the Subject ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./The Pages ]]</Content>
+                <Content>$[[ ./The Imposition ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Content>$[[ ./The Catchword ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Content>$[[ ./The Entry ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Bars ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Content>$[[ ./The Listing ]]</Content>

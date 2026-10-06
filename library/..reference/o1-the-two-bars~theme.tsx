@@ -2,7 +2,7 @@ import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { Theme } from '@dna-platform/public';
 import { $DougsTheme } from '../.manual/.book';
-import { DougsLibrary } from './90-the-two-bars~code.tsx';
+import { DougsLibrary } from './o1-the-two-bars~code.tsx';
 
 export class $LibraryTheme extends $DougsTheme {
     ink = '#10252c';
@@ -23,7 +23,7 @@ export class $LibraryTheme extends $DougsTheme {
                 color: ${({ theme }) => theme.haze};
                 padding: calc(${({ theme }) => theme.space} * 0.375) calc(${({ theme }) => theme.space} * 0.75);
             }
-            .pd-library-bar .pd-filed-under, .pd-library-bar .pd-byline {
+            .pd-library-bar .pd-classmark, .pd-library-bar .pd-byline {
                 display: flex;
                 align-items: center;
                 gap: calc(${({ theme }) => theme.space} * 0.4);
@@ -35,14 +35,14 @@ export class $LibraryTheme extends $DougsTheme {
                 font-size: ${({ theme }) => theme.size};
                 font-weight: 500;
             }
-            .pd-library-bar .pd-filed-under .pd-word {
+            .pd-library-bar .pd-classmark .pd-word {
                 font-family: ${({ theme }) => theme.serif};
                 font-size: calc(1.45 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1;
             }
             .pd-library-bar .pa-reference { color: inherit; text-decoration: none; }
-            .pd-library-bar .pd-filed-under::before, .pd-library-bar .pd-byline::before {
+            .pd-library-bar .pd-classmark::before, .pd-library-bar .pd-byline::before {
                 content: ${({ theme }) => theme.initial};
                 display: grid;
                 place-items: center;
@@ -51,7 +51,7 @@ export class $LibraryTheme extends $DougsTheme {
                 font-size: ${({ theme }) => theme.size};
                 font-weight: 600;
             }
-            .pd-library-bar .pd-filed-under::before {
+            .pd-library-bar .pd-classmark::before {
                 border-radius: calc(${({ theme }) => theme.space} / 3);
                 background: ${({ theme }) => theme.opal};
                 color: ${({ theme }) => theme.night};
@@ -70,14 +70,14 @@ export class $LibraryTheme extends $DougsTheme {
                 background: ${({ theme }) => theme.sky};
                 padding: calc(${({ theme }) => theme.space} * 0.375) ${({ theme }) => theme.space};
             }
-            .pd-book-bar .pd-choice {
+            .pd-book-bar .pd-switch {
                 border: none;
                 border-radius: calc(${({ theme }) => theme.space} * 0.375);
                 padding: calc(${({ theme }) => theme.space} / 4) calc(${({ theme }) => theme.space} / 2);
                 background: ${({ theme }) => theme.glass};
                 color: ${({ theme }) => theme.ink};
             }
-            .pd-book-bar .pd-choice[aria-pressed='true'] {
+            .pd-book-bar .pd-switch[aria-pressed='true'] {
                 background: ${({ theme }) => theme.night};
                 color: ${({ theme }) => theme.paper};
                 font-weight: 500;
@@ -96,7 +96,7 @@ export class $LibraryTheme extends $DougsTheme {
 
     protected front(): RuleSet {
         return css`
-            .pd-pages { padding: calc(${({ theme }) => theme.space} * 0.83) calc(${({ theme }) => theme.space} * 1.17) calc(${({ theme }) => theme.space} * 1.67); }
+            .pd-leaves { padding: calc(${({ theme }) => theme.space} * 0.83) calc(${({ theme }) => theme.space} * 1.17) calc(${({ theme }) => theme.space} * 1.67); }
             .pd-front .pd-words {
                 margin-block-end: ${({ theme }) => theme.space};
                 padding: calc(${({ theme }) => theme.space} * 0.67) calc(${({ theme }) => theme.space} * 0.83);
@@ -117,7 +117,7 @@ export class $LibraryTheme extends $DougsTheme {
     protected covers(): RuleSet {
         return css`
             .pd-volume .pd-chapter { margin-block: 0; }
-            .pd-book.pa-shelved .pd-volume .pd-title {
+            .pd-book.pa-shelf .pd-volume .pd-title {
                 display: flex;
                 aspect-ratio: 3 / 4;
                 padding: calc(${({ theme }) => theme.space} * 0.6) calc(${({ theme }) => theme.space} / 2) calc(${({ theme }) => theme.space} / 2) calc(${({ theme }) => theme.space} * 0.75);
@@ -131,17 +131,6 @@ export class $LibraryTheme extends $DougsTheme {
                 font-weight: 600;
                 line-height: 1.08;
             }
-            .pd-book.pa-listed .pd-volume {
-                padding: calc(${({ theme }) => theme.space} / 2) 0 calc(${({ theme }) => theme.space} / 2) calc(${({ theme }) => theme.space} * 0.67);
-                border-block-end: thin solid ${({ theme }) => theme.line};
-                border-inline-start: calc(${({ theme }) => theme.space} / 4) solid ${({ theme }) => theme.night};
-            }
-            .pd-book.pa-listed .pd-volume .pd-title {
-                font-family: ${({ theme }) => theme.serif};
-                font-size: calc(1.3 * ${({ theme }) => theme.size});
-                font-weight: 600;
-                line-height: 1.2;
-            }
             .pd-volume .pd-paragraph {
                 margin-block: calc(${({ theme }) => theme.space} / 3) 0;
                 font-size: calc(0.86 * ${({ theme }) => theme.size});
@@ -152,13 +141,13 @@ export class $LibraryTheme extends $DougsTheme {
 
     protected words(): RuleSet {
         return css`
-            .pd-page .pd-words .pd-title {
+            .pd-leaf .pd-words .pd-title {
                 font-family: ${({ theme }) => theme.serif};
                 font-size: calc(2.5 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1.04;
             }
-            .pd-page .pd-words .pd-heading {
+            .pd-leaf .pd-words .pd-heading {
                 font-size: calc(0.76 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 letter-spacing: 0.12em;
@@ -175,7 +164,7 @@ export class $LibraryTheme extends $DougsTheme {
                     border-inline-end: none;
                     border-block-end: thin solid ${({ theme }) => theme.line};
                 }
-                .pd-pages { padding: calc(${({ theme }) => theme.space} * 0.67); }
+                .pd-leaves { padding: calc(${({ theme }) => theme.space} * 0.67); }
             }
         `;
     }

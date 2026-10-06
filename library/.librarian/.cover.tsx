@@ -1,5 +1,5 @@
 import { About, Author, Autobiography, Chapter, Subject, Title } from '@dna-platform/public';
-import { Cover } from './90-the-sheet~faces.tsx';
+import { Cover } from './o1-the-sheet~faces.tsx';
 
 export default () => (
     <Chapter>

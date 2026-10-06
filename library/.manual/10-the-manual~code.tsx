@@ -3,9 +3,9 @@ import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Writing } from '@dna-platform/public';
 import { $DougsBook } from './1-the-book~code.tsx';
-import { Choice as choice } from './9-the-switch~code.tsx';
+import { Switch as switching } from './9-the-switch~code.tsx';
 import { CodeForward as codeForward } from './10-the-manual~forward.tsx';
-import { $Paged, Paged } from './12-the-pages~code.tsx';
+import { $Imposition, Imposition } from './12-the-imposition~code.tsx';
 
 export class $Manual extends $DougsBook {
     override write(): ReactNode {
@@ -15,43 +15,43 @@ export class $Manual extends $DougsBook {
         return (
             <>
                 <div className="pd-side">
-                    {this.filed()}
+                    {this.classmark()}
                     <Cover />
                     {this.byline()}
-                    <div className="pd-choices">
-                        {this.choices()}
+                    <div className="pd-switches">
+                        {this.switches()}
                     </div>
                     <Table />
                 </div>
-                <div className="pd-pages">
+                <div className="pd-leaves">
                     {this.front(
                         <div className="pd-words">
                             <Synopsis />
                         </div>
                     )}
-                    {this.pages()}
+                    {this.leaves()}
                 </div>
             </>
         );
     }
 
-    override choices(): ReactNode {
-        const Choice = $(choice);
+    override switches(): ReactNode {
+        const Switch = $(switching);
         return (
             <>
-                {super.choices()}
-                <Choice
+                {super.switches()}
+                <Switch
                     chapter={this.cover}
                     of={codeForward}
                 >
                     code forward
-                </Choice>
+                </Switch>
             </>
         );
     }
 }
 
-export class $Spread extends $Paged {
+export class $Spread extends $Imposition {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-spread');
@@ -70,8 +70,8 @@ export class $Spread extends $Paged {
                 height: 100vh;
             }
             .pa-spread .pd-side { grid-area: side; overflow-y: auto; }
-            .pa-spread .pd-pages { grid-area: pages; min-height: 0; }
-            .pa-spread .pd-choices {
+            .pa-spread .pd-leaves { grid-area: pages; min-height: 0; }
+            .pa-spread .pd-switches {
                 display: flex;
                 flex-wrap: wrap;
                 gap: calc(${({ theme }) => theme.space} / 4);
@@ -81,7 +81,7 @@ export class $Spread extends $Paged {
 
     protected spread(): RuleSet {
         return css`
-            .pa-spread .pd-page.pd-open {
+            .pa-spread .pd-leaf.pd-open {
                 display: grid;
                 grid-template-columns: minmax(0, 1fr) auto;
                 grid-template-areas: 'words files';
@@ -97,7 +97,7 @@ export class $Spread extends $Paged {
         return css`
             @media (max-width: ${({ theme }) => theme.narrow}) {
                 .pd-book.pa-spread { display: block; height: auto; }
-                .pa-spread .pd-page.pd-open { display: block; height: auto; }
+                .pa-spread .pd-leaf.pd-open { display: block; height: auto; }
                 .pa-spread .pd-files { width: auto; }
                 .pa-spread.pa-turned .pa-table-of-contents { display: none; }
             }
@@ -107,4 +107,4 @@ export class $Spread extends $Paged {
 
 export const Manual = $($Manual);
 export const Spread = $($Spread);
-$(Manual, Paged)(Spread);
+$(Manual, Imposition)(Spread);

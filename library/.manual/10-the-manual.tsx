@@ -17,12 +17,12 @@ export default () => (
             <Paragraph>
                 The class of book says where each part goes. At the side it puts what the book is filed under,
                 the cover, who it is by, <Means>$[[ the switch ]]( ./The Switch )</Means> and the table of
-                contents. Beside the side it puts <Means>$[[ the pages ]]( ./The Pages )</Means>: the synopsis
-                on the front page, then each chapter with its files.
+                contents. Beside the side it puts the chapters, each on <Means>$[[ a leaf ]]( ./The Imposition )</Means> of
+                its own: the synopsis on the front, then each chapter with its files.
             </Paragraph>
             <Paragraph>
-                The spread is the arrangement said of the book: the side and the pages in two columns, and on
-                the open page the words in one column and the file in another. On a narrow screen everything is
+                The spread is the imposition said of the book: the side and the leaves in two columns, and on
+                the open leaf the words in one column and the file in another. On a narrow screen everything is
                 one column, and the index closes while a chapter is open.
             </Paragraph>
             <Paragraph>
@@ -33,7 +33,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 A manual has its own kind of entry, registered on its class. It shows the type of the file its
-                chapter appends, so the index tells a page about a tool from a page that only explains.
+                chapter appends, so the index tells a chapter about a tool from one that only explains.
             </Paragraph>
             <Paragraph>
                 The theme is the library's with three parts added: the side, the words, and what changes on a

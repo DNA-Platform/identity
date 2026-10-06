@@ -1,10 +1,10 @@
-var j=Object.defineProperty;var i=(v,n)=>j(v,"name",{value:n,configurable:!0});import{$ as g,e as T,s as k,j as e,C as d,g as c,A as S,h as A,P as $,n as a,H as s,m as t,o as h,W as p,M as o,p as r,L as x,F as l}from"./index-CAgF6Vkk.js";import{e as C,d as D}from"./10-the-manual~theme-Cda3STKW.js";import{S as I}from"./.synopsis-DkQ4kE5m.js";const w=class w extends C{};i(w,"$DougsReferenceManual");let m=w;const b=class b extends T{constructor(){super(...arguments),this.style=k.header`
+var j=Object.defineProperty;var i=(v,n)=>j(v,"name",{value:n,configurable:!0});import{$ as g,e as T,s as k,j as e,C as c,g as d,A as S,h as A,P as $,n as a,H as s,m as t,o as h,W as p,M as o,p as r,L as x,E as l}from"./index-DcwFE8Nk.js";import{d as C,c as I}from"./15-the-bars~code-D9MSnkBH.js";import{S as D}from"./.synopsis-oL5oqToJ.js";const w=class w extends C{};i(w,"$DougsReferenceManual");let m=w;const b=class b extends T{constructor(){super(...arguments),this.style=k.header`
         .pd-chapter.pa-cover { margin-block: 0; }
         .pa-cover .pd-title {
             font-size: calc(1.04 * ${({theme:n})=>n.size});
             font-weight: 600;
         }
-    `}};i(b,"$ManualCover");let f=b;const y=class y extends D{constructor(){super(...arguments),this.style=k.nav`
+    `}};i(b,"$ManualCover");let f=b;const y=class y extends I{constructor(){super(...arguments),this.style=k.nav`
         .pd-chapter.pa-table-of-contents { margin-block: ${({theme:n})=>n.space}; }
         .pa-table-of-contents .pd-section { margin-block: calc(${({theme:n})=>n.space} * 0.83) 0; }
         .pa-table-of-contents .pd-heading {
@@ -37,15 +37,15 @@ var j=Object.defineProperty;var i=(v,n)=>j(v,"name",{value:n,configurable:!0});i
             font-size: calc(0.76 * ${({theme:n})=>n.size});
             color: ${({theme:n})=>n.faint};
         }
-    `}};i(y,"$ManualTableOfContents");let u=y;const W=g(f),R=g(u),B=i(()=>e.jsxs(d,{children:[e.jsx(W,{}),e.jsx(c,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"}),e.jsx(S,{children:"[The Librarian](/dougs-story/)"}),e.jsx(A,{children:"[The Library](/dougs-library/)"})]}),"Cover"),P=i(()=>e.jsxs(d,{children:[e.jsx(R,{}),e.jsxs(c,{children:[e.jsx($,{}),"[Table of Contents](/dougs-reference-manual/#table-of-contents)"]}),e.jsxs(a,{children:[e.jsx(s,{children:"What every book is"}),e.jsx(t,{children:e.jsx(h,{children:"[The Book](/dougs-reference-manual/#the-book)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Theme](/dougs-reference-manual/#the-theme)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Author and the Subject](/dougs-reference-manual/#the-author-and-the-subject)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Pages](/dougs-reference-manual/#the-pages)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Catchword](/dougs-reference-manual/#the-catchword)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Entry](/dougs-reference-manual/#the-entry)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Listing](/dougs-reference-manual/#the-listing)"})}),e.jsxs(t,{children:[e.jsx($,{}),e.jsx(p,{children:e.jsx(h,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"})}),e.jsx(p,{children:e.jsx(h,{children:"[Synopsis](/dougs-reference-manual/#synopsis)"})}),e.jsx(p,{children:e.jsx(h,{children:"[Table of Contents](/dougs-reference-manual/#table-of-contents)"})})]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a reader may switch"}),e.jsx(t,{children:e.jsx(h,{children:"[The Switch](/dougs-reference-manual/#the-switch)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Outline](/dougs-reference-manual/#the-outline)"})})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a chapter may carry"}),e.jsx(t,{children:e.jsx(h,{children:"[The Date](/dougs-reference-manual/#the-date)"})})]}),e.jsxs(a,{children:[e.jsx(s,{children:"The types of book"}),e.jsx(t,{children:e.jsx(h,{children:"[The Manual](/dougs-reference-manual/#the-manual)"})})]}),e.jsxs(a,{children:[e.jsx(s,{children:"Making the library"}),e.jsx(t,{children:e.jsx(h,{children:"[Initializing a Library](/dougs-reference-manual/#initializing-a-library)"})}),e.jsx(t,{children:e.jsx(h,{children:"[Developing a Library](/dougs-reference-manual/#developing-a-library)"})})]})]}),"Table"),z=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[The Book](/dougs-reference-manual/#the-book)"}),e.jsxs(a,{children:[e.jsx(s,{children:"What a book is here"}),e.jsx(t,{children:"Every book in this library extends one class, so what a book is here is said once. A book of mine holds chapters and nothing else, it has a place for every chapter it holds, and only an ordinary chapter appends a file. The class says all three in its specification, and the bind holds every book to it."}),e.jsxs(t,{children:["Left to itself, the class writes the chapters down the page in the order of their files. Under the cover it draws ",e.jsx(o,{children:"[who the book is by and what it is filed under](/dougs-reference-manual/#the-author-and-the-subject)"}),", and ",e.jsx(o,{children:"[the switch](/dougs-reference-manual/#the-switch)"}),". A chapter may append a file kept beside it, and under each chapter the class prints the files it appends, each as ",e.jsx(o,{children:"[a listing](/dougs-reference-manual/#the-listing)"}),"."]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a type of book is given"}),e.jsx(t,{children:"A book that wants its parts somewhere else on the screen is a class under this one, and writes them there. The class gives it what it needs for that. It can ask for its chapters. Those are the ordinary ones: the framework puts a class on every chapter and takes it off a cover, a synopsis and a table of contents, and my book reads that class. It can ask which chapter a place names, whether the place is the chapter or a heading inside it, and so which chapter is open: the one the address names."}),e.jsxs(t,{children:["It can draw the front page, which is the open one while no chapter is, and it says what goes on it. And it can draw ",e.jsx(o,{children:"[a page](/dougs-reference-manual/#the-pages)"})," for each chapter: its words, the files it appends, and whether it is the open one. A book that draws chapters of another sort adds them to what it places, and the specification counts them."]}),e.jsxs(t,{children:["Three things the class does for every book without being asked. It says the book is ",e.jsx(o,{children:"[paged](/dougs-reference-manual/#the-pages)"}),". It gives each chapter its ",e.jsx(o,{children:"[catchword](/dougs-reference-manual/#the-catchword)"}),". And when the address names the cover it leaves the page where it is. ",e.jsx(o,{children:"[The manual](/dougs-reference-manual/#the-manual)"})," is one type of book, and the others are documented in the books they lay out."]}),e.jsxs(t,{children:["This manual's book file is where every other book takes the class from. And ",e.jsx(o,{children:"[the theme](/dougs-reference-manual/#the-theme)"})," is registered on the class, once, so every book gets it."]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What is said of a book"}),e.jsx(t,{children:"Some things are said of a whole book: that it is paged, that it is outlined, that its code is forward. Each must be said of a book of this library and of nothing else, so that rule is written once, in the second file below, and each of them takes it."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { Fragment, ReactNode } from 'react';
+    `}};i(y,"$ManualTableOfContents");let u=y;const W=g(f),B=g(u),R=i(()=>e.jsxs(c,{children:[e.jsx(W,{}),e.jsx(d,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"}),e.jsx(S,{children:"[The Librarian](/dougs-story/)"}),e.jsx(A,{children:"[The Library](/dougs-library/)"})]}),"Cover"),z=i(()=>e.jsxs(c,{children:[e.jsx(B,{}),e.jsxs(d,{children:[e.jsx($,{}),"[Table of Contents](/dougs-reference-manual/#table-of-contents)"]}),e.jsxs(a,{children:[e.jsx(s,{children:"What every book is"}),e.jsx(t,{children:e.jsx(h,{children:"[The Book](/dougs-reference-manual/#the-book)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Theme](/dougs-reference-manual/#the-theme)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Author and the Subject](/dougs-reference-manual/#the-author-and-the-subject)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Imposition](/dougs-reference-manual/#the-imposition)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Catchword](/dougs-reference-manual/#the-catchword)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Entry](/dougs-reference-manual/#the-entry)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Bars](/dougs-reference-manual/#the-bars)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Listing](/dougs-reference-manual/#the-listing)"})}),e.jsxs(t,{children:[e.jsx($,{}),e.jsx(p,{children:e.jsx(h,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"})}),e.jsx(p,{children:e.jsx(h,{children:"[Synopsis](/dougs-reference-manual/#synopsis)"})}),e.jsx(p,{children:e.jsx(h,{children:"[Table of Contents](/dougs-reference-manual/#table-of-contents)"})})]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a reader may switch"}),e.jsx(t,{children:e.jsx(h,{children:"[The Switch](/dougs-reference-manual/#the-switch)"})}),e.jsx(t,{children:e.jsx(h,{children:"[The Outline](/dougs-reference-manual/#the-outline)"})})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a chapter may carry"}),e.jsx(t,{children:e.jsx(h,{children:"[The Date](/dougs-reference-manual/#the-date)"})})]}),e.jsxs(a,{children:[e.jsx(s,{children:"The types of book"}),e.jsx(t,{children:e.jsx(h,{children:"[The Manual](/dougs-reference-manual/#the-manual)"})})]}),e.jsxs(a,{children:[e.jsx(s,{children:"Making the library"}),e.jsx(t,{children:e.jsx(h,{children:"[Initializing a Library](/dougs-reference-manual/#initializing-a-library)"})}),e.jsx(t,{children:e.jsx(h,{children:"[Developing a Library](/dougs-reference-manual/#developing-a-library)"})})]})]}),"Table"),E=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Book](/dougs-reference-manual/#the-book)"}),e.jsxs(a,{children:[e.jsx(s,{children:"What a book is here"}),e.jsx(t,{children:"Every book in this library extends one class, so what a book is here is said once. A book of mine holds chapters and nothing else, it has a place for every chapter it holds, and only an ordinary chapter appends a file. The class says all three in its specification, and the bind holds every book to it."}),e.jsxs(t,{children:["Left to itself, the class writes the chapters down the page in the order of their files. Under the cover it draws ",e.jsx(o,{children:"[who the book is by and what it is filed under](/dougs-reference-manual/#the-author-and-the-subject)"}),", and ",e.jsx(o,{children:"[the switch](/dougs-reference-manual/#the-switch)"}),". A chapter may append a file kept beside it, and under each chapter the class prints the files it appends, each as ",e.jsx(o,{children:"[a listing](/dougs-reference-manual/#the-listing)"}),"."]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a type of book is given"}),e.jsx(t,{children:"A book that wants its parts somewhere else on the screen is a class under this one, and writes them there. The class gives it what it needs for that. It can ask for its chapters. Those are the ordinary ones: the framework puts a class on every chapter and takes it off a cover, a synopsis and a table of contents, and my book reads that class. It can ask which chapter a place names, whether the place is the chapter or a heading inside it, and so which chapter is open: the one the address names."}),e.jsxs(t,{children:["It can draw the front, which is open while no chapter is, and it says what goes on it. And it can draw ",e.jsx(o,{children:"[a leaf](/dougs-reference-manual/#the-imposition)"})," for each chapter: the chapter, the files it appends, and whether it is the open one. A book that draws chapters of another sort adds them to what it places, and the specification counts them."]}),e.jsxs(t,{children:["Three things the class does for every book without being asked. It gives the book its ",e.jsx(o,{children:"[imposition](/dougs-reference-manual/#the-imposition)"}),". It gives each chapter its ",e.jsx(o,{children:"[catchword](/dougs-reference-manual/#the-catchword)"}),". And when the address names the cover it leaves the screen where it is. ",e.jsx(o,{children:"[The manual](/dougs-reference-manual/#the-manual)"})," is one type of book, and the others are documented in the books they lay out."]}),e.jsxs(t,{children:["This manual's book file is where every other book takes the class from. And ",e.jsx(o,{children:"[the theme](/dougs-reference-manual/#the-theme)"})," is registered on the class, once, so every book gets it."]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What is said of a book"}),e.jsx(t,{children:"Some things are said of a whole book: its imposition, its outline, that its code is forward. Each must be said of a book of this library and of nothing else, so that rule is written once, in the second file below, and each of them takes it."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { Fragment, ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import { $Append, $Book, $Chapter, $Composition, $Section, BookSpecification, Theme, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
 import { DougsTheme } from './3-the-theme~code.tsx';
-import { Outlined as outlined } from './7-the-outline~code.tsx';
-import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
-import { Choice as choice } from './9-the-switch~code.tsx';
-import { Paged as paged } from './12-the-pages~code.tsx';
+import { Outline as outline } from './7-the-outline~code.tsx';
+import { Byline as byline, Classmark as classmark } from './8-the-author-and-the-subject~code.tsx';
+import { Switch as switching } from './9-the-switch~code.tsx';
+import { Imposition as imposition } from './12-the-imposition~code.tsx';
 import { Catchword as catchword } from './13-the-catchword~code.tsx';
 
 export class $DougsBook extends $Book {
@@ -67,8 +67,8 @@ export class $DougsBook extends $Book {
                 <Fragment key={index}>
                     <Chapter />
                     {chapter === this.cover && this.byline()}
-                    {chapter === this.cover && this.filed()}
-                    {chapter === this.cover && this.choices()}
+                    {chapter === this.cover && this.classmark()}
+                    {chapter === this.cover && this.switches()}
                     {this.listings(chapter)}
                 </Fragment>
             );
@@ -87,40 +87,40 @@ export class $DougsBook extends $Book {
         );
     }
 
-    filed(): ReactNode {
-        const FiledUnder = $(filedUnder);
+    classmark(): ReactNode {
+        const Classmark = $(classmark);
         return (
-            <FiledUnder chapter={this.cover} />
+            <Classmark chapter={this.cover} />
         );
     }
 
-    choices(): ReactNode {
-        const Choice = $(choice);
+    switches(): ReactNode {
+        const Switch = $(switching);
         return (
-            <Choice
+            <Switch
                 chapter={this.cover}
-                of={outlined}
+                of={outline}
             >
                 outline
-            </Choice>
+            </Switch>
         );
     }
 
     front(holds: ReactNode): ReactNode {
         return (
-            <div className={this.open === undefined ? 'pd-page pd-front pd-open' : 'pd-page pd-front'}>
+            <div className={this.open === undefined ? 'pd-leaf pd-front pd-open' : 'pd-leaf pd-front'}>
                 {holds}
             </div>
         );
     }
 
-    pages(): ReactNode {
+    leaves(): ReactNode {
         return this.chapters.map((chapter, index) => {
             const Chapter = $(chapter);
             return (
                 <div
                     key={index}
-                    className={chapter === this.open ? 'pd-page pd-open' : 'pd-page'}
+                    className={chapter === this.open ? 'pd-leaf pd-open' : 'pd-leaf'}
                 >
                     <div className="pd-words">
                         <Chapter />
@@ -156,9 +156,9 @@ export class $DougsBook extends $Book {
 
     protected override $Define(): void {
         super.$Define();
-        const Paged = $(paged);
+        const Imposition = $(imposition);
         this.annotations.add(this,
-            <Paged />
+            <Imposition />
         );
     }
 
@@ -204,7 +204,7 @@ export class OfABookSpecification extends AnnotationSpecification {
         $check(writing instanceof $DougsBook, 'this is said of a book of this library, and here it is said of something else');
     }
 }
-`})]}),"TheBook1"),E=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[The Listing](/dougs-reference-manual/#the-listing)"}),e.jsxs(a,{children:[e.jsx(s,{children:"A chapter and its file"}),e.jsx(t,{children:"A chapter that is about a part of this library keeps the part's file beside it, and appends it. The words say what the part is and how I use it. The file is the part."}),e.jsxs(t,{children:["A listing is how a book shows one such file: the name it was appended under, and under that the file as it is on disk. ",e.jsx(o,{children:"[The book](/dougs-reference-manual/#the-book)"})," decides where a listing goes. Left to itself it prints each one under its chapter."]}),e.jsx(t,{children:"This manual's chapters are of that kind. So are the chapters at the back of any other book, where the code that builds that book is kept, which is why the back of a book reads like a page of this manual."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
+`})]}),"TheBook1"),N=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Listing](/dougs-reference-manual/#the-listing)"}),e.jsxs(a,{children:[e.jsx(s,{children:"A chapter and its file"}),e.jsx(t,{children:"A chapter that is about a part of this library keeps the part's file beside it, and appends it. The words say what the part is and how I use it. The file is the part."}),e.jsxs(t,{children:["A listing is how a book shows one such file: the name it was appended under, and under that the file as it is on disk. ",e.jsx(o,{children:"[The book](/dougs-reference-manual/#the-book)"})," decides where a listing goes. Left to itself it prints each one under its chapter."]}),e.jsx(t,{children:"This manual's chapters are of that kind. So are the chapters at the back of any other book, where the code that builds that book is kept, which is why the back of a book reads like a page of this manual."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
 import { $ } from '@dna-platform/chemistry';
 import { $Paragraph, Code as code, Word as word } from '@dna-platform/public';
 
@@ -237,7 +237,7 @@ export class $Listing extends $Paragraph {
 }
 
 export const Listing = $($Listing);
-`})]}),"TheListing2"),N=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[The Theme](/dougs-reference-manual/#the-theme)"}),e.jsxs(a,{children:[e.jsx(s,{children:"What the theme is"}),e.jsx(t,{children:"The theme is where this library keeps its values, and the one styled component every book is drawn inside. The framework's own theme has no values and no rules, so everything here is mine."}),e.jsx(t,{children:"It holds two things. The first is the properties: the faces, the sizes and the spaces, the colors of a page, the colors of the dark panel a file is printed on, and the colors of the library's frame, which are the soft black, the sky and the opal. Every property the library uses is declared here, so a rule anywhere can read it. A book's own theme sets some of them again and declares none."}),e.jsx(t,{children:"The second is the rules every book needs: the page, the space around a chapter, a section and a paragraph, a link, a picture, a listing with its numbered lines, the switch, and the line at the foot of a chapter. It grows as each design is built, and every value in it is one I chose."}),e.jsx(t,{children:"The component is made of parts, each a method that returns some rules, so a book can change one part and keep the rest. A book's own theme is a class under this one. It sets properties, adds parts, and is registered on that book's class."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ElementType } from 'react';
+`})]}),"TheListing2"),O=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Theme](/dougs-reference-manual/#the-theme)"}),e.jsxs(a,{children:[e.jsx(s,{children:"What the theme is"}),e.jsx(t,{children:"The theme is where this library keeps its values, and the one styled component every book is drawn inside. The framework's own theme has no values and no rules, so everything here is mine."}),e.jsx(t,{children:"It holds two things. The first is the properties: the faces, the sizes and the spaces, the colors of a page, the colors of the dark panel a file is printed on, and the colors of the library's frame, which are the soft black, the sky and the opal. Every property the library uses is declared here, so a rule anywhere can read it. A book's own theme sets some of them again and declares none."}),e.jsx(t,{children:"The second is the rules every book needs: the page, the space around a chapter, a section and a paragraph, a link, a picture, a listing with its numbered lines, the switch, and the line at the foot of a chapter. It grows as each design is built, and every value in it is one I chose."}),e.jsx(t,{children:"The component is made of parts, each a method that returns some rules, so a book can change one part and keep the rest. A book's own theme is a class under this one. It sets properties, adds parts, and is registered on that book's class."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ElementType } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $, selection } from '@dna-platform/chemistry';
 import { $Theme } from '@dna-platform/public';
@@ -266,6 +266,11 @@ export class $DougsTheme extends $Theme {
     line = '#e6e8ee';
     rule = '#e6e8ee';
     edge = 'transparent';
+    barFill = '#f7f8fa';
+    barInk = '#1a1f36';
+    barDim = '#8792a2';
+    barOn = '#e3f4f1';
+    barLine = '#e6e8ee';
     accent = '#0a7a70';
     tint = '#e3f4f1';
     night = '#0f2a33';
@@ -288,10 +293,12 @@ export class $DougsTheme extends $Theme {
     shadow = '0 0.75rem 1.4rem -0.9rem rgba(12, 27, 31, 0.55)';
     initial = "'D'";
     volume = '11.5rem';
+    card = '18rem';
+    plate = '7rem';
     style: ElementType = selection.div\`\${this.parts()}\`;
 
     protected parts(): RuleSet[] {
-        return [this.page(), this.writing(), this.links(), this.figures(), this.listings(), this.choices(), this.turns()];
+        return [this.page(), this.writing(), this.links(), this.figures(), this.listings(), this.switches(), this.turns()];
     }
 
     protected page(): RuleSet {
@@ -375,9 +382,9 @@ export class $DougsTheme extends $Theme {
         \`;
     }
 
-    protected choices(): RuleSet {
+    protected switches(): RuleSet {
         return css\`
-            .pd-choice {
+            .pd-switch {
                 font: inherit;
                 color: \${({ theme }) => theme.soft};
                 background: \${({ theme }) => theme.paper};
@@ -386,7 +393,7 @@ export class $DougsTheme extends $Theme {
                 padding: calc(\${({ theme }) => theme.space} / 8) calc(\${({ theme }) => theme.space} / 2);
                 cursor: pointer;
             }
-            .pd-choice[aria-pressed='true'] {
+            .pd-switch[aria-pressed='true'] {
                 color: \${({ theme }) => theme.accent};
                 background: \${({ theme }) => theme.tint};
                 border-color: \${({ theme }) => theme.tint};
@@ -409,16 +416,16 @@ export class $DougsTheme extends $Theme {
 }
 
 export const DougsTheme = $($DougsTheme);
-`})]}),"TheTheme3"),F=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[The Date](/dougs-reference-manual/#the-date)"}),e.jsxs(a,{children:[e.jsx(s,{children:"What a dated chapter is"}),e.jsx(t,{children:"A chapter of mine may say when it is from. It says so once: the words I want read, and the day a machine can read, with the time where I know it. The date itself is the framework's own. What this adds is a way for a chapter to carry one, so that a book can ask a chapter for its date, and every dated chapter can be found."}),e.jsxs(t,{children:["The chapter draws its date at its foot. The chapters of ",e.jsx(o,{children:"[Dougs Story](/dougs-story/)"})," are dated, and no book of mine sorts by date yet."]})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
+`})]}),"TheTheme3"),L=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Date](/dougs-reference-manual/#the-date)"}),e.jsxs(a,{children:[e.jsx(s,{children:"What a dated chapter is"}),e.jsx(t,{children:"A chapter of mine may say when it is from. It says so once: the words I want read, and the day a machine can read, with the time where I know it. The date itself is the framework's own. What this adds is a way for a chapter to carry one, so that a book can ask a chapter for its date, and every dated chapter can be found."}),e.jsxs(t,{children:["The chapter draws its date at its foot. The chapters of ",e.jsx(o,{children:"[Dougs Story](/dougs-story/)"})," are dated, and no book of mine sorts by date yet."]})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Date, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 
-export class $Dated extends $Annotation {
+export class $Dateline extends $Annotation {
     specification = new DatedSpecification();
     get date(): $Date | undefined { return this.text.find($Date)[0]; }
 
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-dated');
+        writing.classes.add(this, 'pa-dateline');
     }
 
     override erase(writing: $Writing): void {
@@ -441,18 +448,18 @@ export class DatedSpecification extends AnnotationSpecification {
 
     @specify('a chapter is dated once')
     $datedOnce(writing: $Writing): void {
-        $check(writing.annotations.containsOne($Dated), 'a chapter is dated once, and this one is dated more than once');
+        $check(writing.annotations.containsOne($Dateline), 'a chapter is dated once, and this one is dated more than once');
     }
 
     @specify('a dated chapter is given one date')
     $givenOneDate(writing: $Writing): void {
-        $check(writing.annotations.expressed($Dated)?.text.find($Date).length === 1,
+        $check(writing.annotations.expressed($Dateline)?.text.find($Date).length === 1,
             'a dated chapter is given one date, and this one is given none or more than one');
     }
 }
 
-export const Dated = $($Dated);
-`})]}),"TheDate4"),O=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[Initializing a Library](/dougs-reference-manual/#initializing-a-library)"}),e.jsxs(a,{children:[e.jsx(s,{children:"What a library needs to begin"}),e.jsxs(t,{children:["A library is books and nothing else, and it begins with three. The library's own catalogue, which is the top: every other book is filed under it, and it is filed under what it is about, which is itself. The librarian's autobiography, the one book that is by its own subject, which grounds who may author anything here. And a reference manual, this book, where the reusable parts of the library are kept beside the chapters that say what they are. Each is a folder, and the folders here are ",e.jsx(o,{children:"[Dougs Library](/dougs-library/)"})," in a folder named as a library catalogue, ",e.jsx(o,{children:"[Dougs Story](/dougs-story/)"})," in one named as a subject, and this manual in one named as a subject too. A fourth is beside them, ",e.jsx(o,{children:"[Dougs Design](/dougs-design/)"}),", where the design of the library is kept. The compiler reads no folder name; the dots are a convention kept for the person reading the tree."]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a book is made of"}),e.jsx(t,{children:"A folder is a book when it holds a book file, and a book holds four files before any chapter:"}),e.jsxs(t,{children:[e.jsx(x,{}),e.jsx(l,{children:"a book file, which exports the class the book is, taken from this manual's book file;"}),e.jsx(l,{children:"a cover, which says the book's title, who wrote it, where it is filed and what it is about;"}),e.jsx(l,{children:"a synopsis, which says what the book is in a paragraph, and is what a catalogue's row refers to;"}),e.jsx(l,{children:"a table of contents, which answers for the chapters the book holds and for the books it catalogues."})]}),e.jsx(t,{children:"The compiler holds the table to its word: it must link to every chapter of its book, itself among them, and to every book filed under it, or the bind refuses."}),e.jsx(t,{children:"Then numbered chapters, each a file whose first words are its title. A file beside a chapter, named for it with an identifier and a type, is the chapter's to print or to import, and the compiler refuses one the chapter does not use."})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a cover says"}),e.jsx(t,{children:"Everything a cover says is said in the notation, whatever element holds it. Two brackets around a name is a title. A second title form on a cover is what the book is about, the name of the subject it represents, which need not be the book's name: this library is called Dougs Library and is about The Library, and the autobiography is about The Librarian, so an author is written as The Librarian and a book is filed under The Library. One star before the brackets says who wrote the book; two say which catalogue it is filed under. The top says it is filed under itself, and the compiler requires that one book here does so, or there is no library."})]}),e.jsxs(a,{children:[e.jsx(s,{children:"The face, and the bind"}),e.jsx(t,{children:"The library publishes to a face, a folder beside the books that holds the binding and the site it builds. The face is made once, by running the master binding's copy script pointed at the library's folder; it names the face with as many dots as put it above every book, and writes a configuration naming where the copy came from, so that syncing brings the master in before every build. The configuration also names the root book, the title of the site, and the stylesheets and fonts a page loads. Then the bind: it reads every book, checks the library is well-formed, and writes one page per book. Every fault it raises is a sentence a librarian could say about the library without knowing the compiler exists, no title, not listed, may not author, and the library is initialized when it raises none."}),e.jsx(t,{children:"The bind is run in the face's binding folder, as npm run bind, and the site it builds is served from that folder with npx vite preview. The face keeps the pictures that stood beside a chapter after they are taken out of the book, until that book's folder in the face is cleared by hand."}),e.jsxs(t,{children:["The bind publishes the library. It is not how I look at the library while I am writing it, and that is said in ",e.jsx(o,{children:"[Developing a Library](/dougs-reference-manual/#developing-a-library)"}),"."]})]})]}),"InitializingALibrary5"),L=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[Developing a Library](/dougs-reference-manual/#developing-a-library)"}),e.jsxs(a,{children:[e.jsx(s,{children:"The page stays open"}),e.jsx(t,{children:"I develop this library with its pages open. The binder serves the library live, straight from the files I am writing, and when I save one the open page changes in place: a sentence in a chapter in a quarter of a second, a rule in a theme in about half of one. Nothing is bound and the page is not loaded again. If what I saved breaks the library, the page says so in the compiler's own sentence, and the sentence goes when I mend the file."}),e.jsx(t,{children:"This is the only way I look at the library while I am working on it. Work on how a page looks needs its answer at once, and a way of working that cannot give one has failed at what it is for."})]}),e.jsxs(a,{children:[e.jsx(s,{children:"The workbench"}),e.jsx(t,{children:"The workbench is the tool I do this with. Opened once, it starts the live site and keeps a browser open on it. After that I ask it for a look at any book. It waits for my last save to reach the page, photographs the page at a desk's width or a phone's, and tells me:"}),e.jsxs(t,{children:[e.jsx(x,{}),e.jsx(l,{children:"what the page says, or any part of it;"}),e.jsx(l,{children:"what a rule computes to on an element, and where the element is;"}),e.jsx(l,{children:"how many things run past the right edge of the screen;"}),e.jsx(l,{children:"anything that went wrong on the page, and what the compiler says is wrong if it stopped."})]}),e.jsxs(t,{children:["A look takes under a second, because the browser is already open and the page is already drawn. It can press something first, load the page again as a reader arriving would, and say which of the rules that name a thing wins. What the workbench does for a book is what ",e.jsx(o,{children:"[the camera](/dougs-design/#the-camera)"})," does for a concept, and it is kept here for the same reason the camera is kept there, which is told in ",e.jsx(o,{children:"[Closure](/dougs-story/#closure)"}),"."]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"When I bind"}),e.jsxs(t,{children:["The bind is how the library is published, and it is not how I look at it. What it does is said in ",e.jsx(o,{children:"[Initializing a Library](/dougs-reference-manual/#initializing-a-library)"}),". It takes seconds where a save takes none, so I bind when a piece of work is done."]}),e.jsx(t,{children:"The bind checks three things the live site does not: each book against its own rules, each page as it is printed for a reader who arrives before the code does, and every link against the page it leads to. So my last look at finished work is at the site the bind built, loaded afresh, and the workbench takes that look too."})]}),e.jsx(r,{identifier:"workbench",type:".mjs",children:`// The workbench: the library served live from its sources, a browser kept open on it, and a way to ask that
+export const Dateline = $($Dateline);
+`})]}),"TheDate4"),P=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[Initializing a Library](/dougs-reference-manual/#initializing-a-library)"}),e.jsxs(a,{children:[e.jsx(s,{children:"What a library needs to begin"}),e.jsxs(t,{children:["A library is books and nothing else, and it begins with three. The library's own catalogue, which is the top: every other book is filed under it, and it is filed under what it is about, which is itself. The librarian's autobiography, the one book that is by its own subject, which grounds who may author anything here. And a reference manual, this book, where the reusable parts of the library are kept beside the chapters that say what they are. Each is a folder, and the folders here are ",e.jsx(o,{children:"[Dougs Library](/dougs-library/)"})," in a folder named as a library catalogue, ",e.jsx(o,{children:"[Dougs Story](/dougs-story/)"})," in one named as a subject, and this manual in one named as a subject too. A fourth is beside them, ",e.jsx(o,{children:"[Dougs Design](/dougs-design/)"}),", where the design of the library is kept. The compiler reads no folder name; the dots are a convention kept for the person reading the tree."]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a book is made of"}),e.jsx(t,{children:"A folder is a book when it holds a book file, and a book holds four files before any chapter:"}),e.jsxs(t,{children:[e.jsx(x,{}),e.jsx(l,{children:"a book file, which exports the class the book is, taken from this manual's book file;"}),e.jsx(l,{children:"a cover, which says the book's title, who wrote it, where it is filed and what it is about;"}),e.jsx(l,{children:"a synopsis, which says what the book is in a paragraph, and is what a catalogue's row refers to;"}),e.jsx(l,{children:"a table of contents, which answers for the chapters the book holds and for the books it catalogues."})]}),e.jsx(t,{children:"The compiler holds the table to its word: it must link to every chapter of its book, itself among them, and to every book filed under it, or the bind refuses."}),e.jsx(t,{children:"Then numbered chapters, each a file whose first words are its title. A file beside a chapter, named for it with an identifier and a type, is the chapter's to print or to import, and the compiler refuses one the chapter does not use."})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a cover says"}),e.jsx(t,{children:"Everything a cover says is said in the notation, whatever element holds it. Two brackets around a name is a title. A second title form on a cover is what the book is about, the name of the subject it represents, which need not be the book's name: this library is called Dougs Library and is about The Library, and the autobiography is about The Librarian, so an author is written as The Librarian and a book is filed under The Library. One star before the brackets says who wrote the book; two say which catalogue it is filed under. The top says it is filed under itself, and the compiler requires that one book here does so, or there is no library."})]}),e.jsxs(a,{children:[e.jsx(s,{children:"The face, and the bind"}),e.jsx(t,{children:"The library publishes to a face, a folder beside the books that holds the binding and the site it builds. The face is made once, by running the master binding's copy script pointed at the library's folder; it names the face with as many dots as put it above every book, and writes a configuration naming where the copy came from, so that syncing brings the master in before every build. The configuration also names the root book, the title of the site, and the stylesheets and fonts a page loads. Then the bind: it reads every book, checks the library is well-formed, and writes one page per book. Every fault it raises is a sentence a librarian could say about the library without knowing the compiler exists, no title, not listed, may not author, and the library is initialized when it raises none."}),e.jsx(t,{children:"The bind is run in the face's binding folder, as npm run bind, and the site it builds is served from that folder with npx vite preview. The face keeps the pictures that stood beside a chapter after they are taken out of the book, until that book's folder in the face is cleared by hand."}),e.jsxs(t,{children:["The bind publishes the library. It is not how I look at the library while I am writing it, and that is said in ",e.jsx(o,{children:"[Developing a Library](/dougs-reference-manual/#developing-a-library)"}),"."]})]})]}),"InitializingALibrary5"),F=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[Developing a Library](/dougs-reference-manual/#developing-a-library)"}),e.jsxs(a,{children:[e.jsx(s,{children:"The page stays open"}),e.jsx(t,{children:"I develop this library with its pages open. The binder serves the library live, straight from the files I am writing, and when I save one the open page changes in place: a sentence in a chapter in a quarter of a second, a rule in a theme in about half of one. Nothing is bound and the page is not loaded again. If what I saved breaks the library, the page says so in the compiler's own sentence, and the sentence goes when I mend the file."}),e.jsx(t,{children:"This is the only way I look at the library while I am working on it. Work on how a page looks needs its answer at once, and a way of working that cannot give one has failed at what it is for."})]}),e.jsxs(a,{children:[e.jsx(s,{children:"The workbench"}),e.jsx(t,{children:"The workbench is the tool I do this with. Opened once, it starts the live site and keeps a browser open on it. After that I ask it for a look at any book. It waits for my last save to reach the page, photographs the page at a desk's width or a phone's, and tells me:"}),e.jsxs(t,{children:[e.jsx(x,{}),e.jsx(l,{children:"what the page says, or any part of it;"}),e.jsx(l,{children:"what a rule computes to on an element, and where the element is;"}),e.jsx(l,{children:"how many things run past the right edge of the screen;"}),e.jsx(l,{children:"anything that went wrong on the page, and what the compiler says is wrong if it stopped."})]}),e.jsxs(t,{children:["A look takes under a second, because the browser is already open and the page is already drawn. It can press something first, load the page again as a reader arriving would, and say which of the rules that name a thing wins. What the workbench does for a book is what ",e.jsx(o,{children:"[the camera](/dougs-design/#the-camera)"})," does for a concept, and it is kept here for the same reason the camera is kept there, which is told in ",e.jsx(o,{children:"[Closure](/dougs-story/#closure)"}),"."]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"When I bind"}),e.jsxs(t,{children:["The bind is how the library is published, and it is not how I look at it. What it does is said in ",e.jsx(o,{children:"[Initializing a Library](/dougs-reference-manual/#initializing-a-library)"}),". It takes seconds where a save takes none, so I bind when a piece of work is done."]}),e.jsx(t,{children:"The bind checks three things the live site does not: each book against its own rules, each page as it is printed for a reader who arrives before the code does, and every link against the page it leads to. So my last look at finished work is at the site the bind built, loaded afresh, and the workbench takes that look too."})]}),e.jsx(r,{identifier:"workbench",type:".mjs",children:`// The workbench: the library served live from its sources, a browser kept open on it, and a way to ask that
 // browser what a page looks like. Open it once and leave it open:
 //
 //     node .me/.manual/6-developing-a-library~workbench.mjs
@@ -794,11 +801,11 @@ else if (verb === 'look' || verb === 'close') {
     }
     console.log(await asked(verb === 'look' ? \`look?\${wanted}\` : 'close') ?? 'no workbench is open; open one by running this file with nothing after it');
 } else console.log('open the workbench with nothing after the file; then look <a book\\'s address>, or close');
-`})]}),"DevelopingALibrary6"),M=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[The Outline](/dougs-reference-manual/#the-outline)"}),e.jsxs(a,{children:[e.jsx(s,{children:"What the outline shows"}),e.jsx(t,{children:"The outline draws a dashed line around every chapter, every section, every listing, and every paragraph that something has been said of. Over each it writes the classes that part carries. A class is put on a part by what the part is, or by something said of it. A rule finds the part by its class. The code mostly finds it by asking what was said of it. So the outline shows what a design has to work with."}),e.jsx(t,{children:"It is there to check the structure of a book before any design is built on it. A cover says it is a cover. A chapter that represents another book says it is a synopsis. A dated chapter says it is dated. If a chapter does not say what I expect, the structure is wrong, and no design will fix that."}),e.jsxs(t,{children:["It is off until I press it. It is the first choice of ",e.jsx(o,{children:"[the switch](/dougs-reference-manual/#the-switch)"}),", and every book carries it."]})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { $, $check, selection } from '@dna-platform/chemistry';
+`})]}),"DevelopingALibrary6"),M=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Outline](/dougs-reference-manual/#the-outline)"}),e.jsxs(a,{children:[e.jsx(s,{children:"What the outline shows"}),e.jsx(t,{children:"The outline draws a dashed line around every chapter, every section, every listing, and every paragraph that something has been said of. Over each it writes the classes that part carries. A class is put on a part by what the part is, or by something said of it. A rule finds the part by its class. The code mostly finds it by asking what was said of it. So the outline shows what a design has to work with."}),e.jsx(t,{children:"It is there to check the structure of a book before any design is built on it. A cover says it is a cover. A chapter that represents another book says it is a synopsis. A dated chapter says it is dated. If a chapter does not say what I expect, the structure is wrong, and no design will fix that."}),e.jsxs(t,{children:["It is off until I press it. It is the first choice of ",e.jsx(o,{children:"[the switch](/dougs-reference-manual/#the-switch)"}),", and every book carries it."]})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { $, $check, selection } from '@dna-platform/chemistry';
 import { $Book, $Format, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 
-export class $Outlined extends $Format {
-    specification = new OutlinedSpecification();
+export class $Outline extends $Format {
+    specification = new OutlineSpecification();
     themeProvider = true;
     style = selection.div\`
         .pd-chapter, .pd-section, .pd-listing, .pd-paragraph[class*='pa-'] {
@@ -815,7 +822,7 @@ export class $Outlined extends $Format {
 
     override defines(writing: $Writing): void {
         super.defines(writing);
-        writing.classes.add(this, 'pa-outlined');
+        writing.classes.add(this, 'pa-outline');
     }
 
     override erase(writing: $Writing): void {
@@ -824,15 +831,15 @@ export class $Outlined extends $Format {
     }
 }
 
-export class OutlinedSpecification extends AnnotationSpecification {
-    @specify('outlined is said of a book')
+export class OutlineSpecification extends AnnotationSpecification {
+    @specify('outline is said of a book')
     $saidOfABook(writing: $Writing): void {
-        $check(writing instanceof $Book, 'outlined is said of a book, and this is not one');
+        $check(writing instanceof $Book, 'outline is said of a book, and this is not one');
     }
 }
 
-export const Outlined = $($Outlined);
-`})]}),"TheOutline7"),q=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[The Author and the Subject](/dougs-reference-manual/#the-author-and-the-subject)"}),e.jsxs(a,{children:[e.jsx(s,{children:"Two links on every book"}),e.jsx(t,{children:"Every cover in this library names who wrote the book and what it is filed under. The compiler refuses a book that leaves out either. But naming them draws nothing: the framework keeps both on the cover as facts and leaves it to a library to show them."}),e.jsxs(t,{children:["So ",e.jsx(o,{children:"[the book](/dougs-reference-manual/#the-book)"})," draws them, on every book, as two short lines. One says who the book is by and leads to that author's own book. The other says what the book is filed under and leads to the book that catalogues it. They are the way out of any book and into the rest of the library, and a book of mine is never drawn without them."]}),e.jsx(t,{children:"Each is a paragraph of its own, so a book that arranges its parts can put the two in different places."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
+export const Outline = $($Outline);
+`})]}),"TheOutline7"),q=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Author and the Subject](/dougs-reference-manual/#the-author-and-the-subject)"}),e.jsxs(a,{children:[e.jsx(s,{children:"Two links on every book"}),e.jsx(t,{children:"Every cover in this library names who wrote the book and what it is filed under. The compiler refuses a book that leaves out either. But naming them draws nothing: the framework keeps both on the cover as facts and leaves it to a library to show them."}),e.jsxs(t,{children:["So ",e.jsx(o,{children:"[the book](/dougs-reference-manual/#the-book)"})," draws them, on every book, as two short lines. One says who the book is by and leads to that author's own book. The other says what the book is filed under and leads to the book that catalogues it. They are the way out of any book and into the rest of the library, and a book of mine is never drawn without them."]}),e.jsx(t,{children:"Each is a paragraph of its own, so a book that arranges its parts can put the two in different places."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
 import { $ } from '@dna-platform/chemistry';
 import { $Paragraph, Reference as reference, Word as word } from '@dna-platform/public';
 
@@ -857,7 +864,7 @@ export class $Byline extends $Paragraph {
     }
 }
 
-export class $FiledUnder extends $Paragraph {
+export class $Classmark extends $Paragraph {
     override write(): ReactNode {
         const subject = this.book!.subject!;
         const Word = $(word);
@@ -874,22 +881,22 @@ export class $FiledUnder extends $Paragraph {
 
     protected override $Define(): void {
         super.$Define();
-        this.classes.add(this, 'pd-filed-under');
+        this.classes.add(this, 'pd-classmark');
     }
 }
 
 export const Byline = $($Byline);
-export const FiledUnder = $($FiledUnder);
-`})]}),"TheAuthorAndTheSubject8"),U=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[The Switch](/dougs-reference-manual/#the-switch)"}),e.jsxs(a,{children:[e.jsx(s,{children:"Something a reader presses"}),e.jsx(t,{children:"A choice is a word drawn as a button. It is given one thing that can be said of a book. Pressed, it says that thing of the book I am reading. Pressed again, it takes it back. The button itself reports whether the thing is said, by asking the book."}),e.jsx(t,{children:"Nothing is rebuilt when I press one. The book I am reading is given the thing in front of what its class already says, and draws again. So a view I can switch to is written the same way as a view a book always has, and what a book shows before I press anything is said once, by its class. A choice only adds to what the class says. It cannot take away something the class says itself."}),e.jsx(t,{children:"Some choices come as a set, where only one can hold: the paper a book is printed on, or the view of a shelf. A pick is a choice for that. It is given the thing it says and the set it belongs to. Pressed, it says its own thing and takes back the others of the set, and pressing the one that already holds changes nothing."}),e.jsxs(t,{children:["The first choice every book carries is ",e.jsx(o,{children:"[the outline](/dougs-reference-manual/#the-outline)"}),". ",e.jsx(o,{children:"[The book](/dougs-reference-manual/#the-book)"})," draws it, and a book that has more to choose from draws more."]})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ElementType, ReactNode } from 'react';
+export const Classmark = $($Classmark);
+`})]}),"TheAuthorAndTheSubject8"),H=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Switch](/dougs-reference-manual/#the-switch)"}),e.jsxs(a,{children:[e.jsx(s,{children:"Something a reader presses"}),e.jsx(t,{children:"A switch is a word drawn as a button. It is given one thing that can be said of a book. Pressed, it says that thing of the book I am reading. Pressed again, it takes it back. The button itself reports whether the thing is said, by asking the book."}),e.jsx(t,{children:"Nothing is rebuilt when I press one. The book I am reading is given the thing in front of what its class already says, and draws again. So a view I can switch to is written the same way as a view a book always has, and what a book shows before I press anything is said once, by its class. A switch only adds to what the class says. It cannot take away something the class says itself."}),e.jsx(t,{children:"Some switches come as a set, where only one can hold: the paper a book is printed on, or the view of a shelf. A tab is a switch for that. It is given the thing it says and the set it belongs to. Pressed, it says its own thing and takes back the others of the set, and pressing the one that already holds changes nothing."}),e.jsxs(t,{children:["The first switch every book carries is ",e.jsx(o,{children:"[the outline](/dougs-reference-manual/#the-outline)"}),". ",e.jsx(o,{children:"[The book](/dougs-reference-manual/#the-book)"})," draws it, and a book that has more to choose from draws more."]})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ElementType, ReactNode } from 'react';
 import { $, $Chemical } from '@dna-platform/chemistry';
 import { $Annotation, $Word, Given } from '@dna-platform/public';
 
-export class $Choice extends $Word {
+export class $Switch extends $Word {
     $of!: Given<$Annotation>;
     protected _button!: ElementType;
     get on(): boolean { return this.book!.is(this.$of); }
 
-    $Choice(...chemicals: $Chemical[]) {
+    $Switch(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
         this._button = (props: { children?: ReactNode }) => (
             <button
@@ -910,11 +917,11 @@ export class $Choice extends $Word {
 
     protected override $Define(): void {
         super.$Define();
-        this.classes.add(this, 'pd-choice');
+        this.classes.add(this, 'pd-switch');
     }
 }
 
-export class $Pick extends $Choice {
+export class $Tab extends $Switch {
     $among!: Given<$Annotation>[];
 
     override press(): void {
@@ -924,16 +931,16 @@ export class $Pick extends $Choice {
     }
 }
 
-export const Choice = $($Choice);
-export const Pick = $($Pick);
-`})]}),"TheSwitch9"),G=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[The Manual](/dougs-reference-manual/#the-manual)"}),e.jsxs(a,{children:[e.jsx(s,{children:"A book for looking things up"}),e.jsxs(t,{children:["A manual is one of the types of book in my library. It is read to look something up, so it keeps its table of contents at the side as an index, and shows one chapter at a time with the file that chapter is about beside it. This book is one. The design it follows is ",e.jsx(o,{children:"[Side by Side](/dougs-design/#side-by-side)"}),"."]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a manual is made of"}),e.jsxs(t,{children:["The class of book says where each part goes. At the side it puts what the book is filed under, the cover, who it is by, ",e.jsx(o,{children:"[the switch](/dougs-reference-manual/#the-switch)"})," and the table of contents. Beside the side it puts ",e.jsx(o,{children:"[the pages](/dougs-reference-manual/#the-pages)"}),": the synopsis on the front page, then each chapter with its files."]}),e.jsx(t,{children:"The spread is the arrangement said of the book: the side and the pages in two columns, and on the open page the words in one column and the file in another. On a narrow screen everything is one column, and the index closes while a chapter is open."}),e.jsxs(t,{children:["The cover and the table of contents are this type's own. The cover is the framework's with a look. The table of contents is ",e.jsx(o,{children:"[the index](/dougs-reference-manual/#the-entry)"})," with a look, so each of its rows that leads somewhere is an entry and lights when its chapter is the open one. A manual's cover file and table file take them from here."]}),e.jsx(t,{children:"A manual has its own kind of entry, registered on its class. It shows the type of the file its chapter appends, so the index tells a page about a tool from a page that only explains."}),e.jsx(t,{children:"The theme is the library's with three parts added: the side, the words, and what changes on a narrow screen."}),e.jsx(t,{children:"A manual gives the words the room unless I press code forward. Then the file takes the room and the words keep to a narrow column beside it. It is one more thing said of the book, so it goes on and comes off without anything being drawn again from the start."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
+export const Switch = $($Switch);
+export const Tab = $($Tab);
+`})]}),"TheSwitch9"),G=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Manual](/dougs-reference-manual/#the-manual)"}),e.jsxs(a,{children:[e.jsx(s,{children:"A book for looking things up"}),e.jsxs(t,{children:["A manual is one of the types of book in my library. It is read to look something up, so it keeps its table of contents at the side as an index, and shows one chapter at a time with the file that chapter is about beside it. This book is one. The design it follows is ",e.jsx(o,{children:"[Side by Side](/dougs-design/#side-by-side)"}),"."]})]}),e.jsxs(a,{children:[e.jsx(s,{children:"What a manual is made of"}),e.jsxs(t,{children:["The class of book says where each part goes. At the side it puts what the book is filed under, the cover, who it is by, ",e.jsx(o,{children:"[the switch](/dougs-reference-manual/#the-switch)"})," and the table of contents. Beside the side it puts the chapters, each on ",e.jsx(o,{children:"[a leaf](/dougs-reference-manual/#the-imposition)"})," of its own: the synopsis on the front, then each chapter with its files."]}),e.jsx(t,{children:"The spread is the imposition said of the book: the side and the leaves in two columns, and on the open leaf the words in one column and the file in another. On a narrow screen everything is one column, and the index closes while a chapter is open."}),e.jsxs(t,{children:["The cover and the table of contents are this type's own. The cover is the framework's with a look. The table of contents is ",e.jsx(o,{children:"[the index](/dougs-reference-manual/#the-entry)"})," with a look, so each of its rows that leads somewhere is an entry and lights when its chapter is the open one. A manual's cover file and table file take them from here."]}),e.jsx(t,{children:"A manual has its own kind of entry, registered on its class. It shows the type of the file its chapter appends, so the index tells a chapter about a tool from one that only explains."}),e.jsx(t,{children:"The theme is the library's with three parts added: the side, the words, and what changes on a narrow screen."}),e.jsx(t,{children:"A manual gives the words the room unless I press code forward. Then the file takes the room and the words keep to a narrow column beside it. It is one more thing said of the book, so it goes on and comes off without anything being drawn again from the start."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Writing } from '@dna-platform/public';
 import { $DougsBook } from './1-the-book~code.tsx';
-import { Choice as choice } from './9-the-switch~code.tsx';
+import { Switch as switching } from './9-the-switch~code.tsx';
 import { CodeForward as codeForward } from './10-the-manual~forward.tsx';
-import { $Paged, Paged } from './12-the-pages~code.tsx';
+import { $Imposition, Imposition } from './12-the-imposition~code.tsx';
 
 export class $Manual extends $DougsBook {
     override write(): ReactNode {
@@ -943,43 +950,43 @@ export class $Manual extends $DougsBook {
         return (
             <>
                 <div className="pd-side">
-                    {this.filed()}
+                    {this.classmark()}
                     <Cover />
                     {this.byline()}
-                    <div className="pd-choices">
-                        {this.choices()}
+                    <div className="pd-switches">
+                        {this.switches()}
                     </div>
                     <Table />
                 </div>
-                <div className="pd-pages">
+                <div className="pd-leaves">
                     {this.front(
                         <div className="pd-words">
                             <Synopsis />
                         </div>
                     )}
-                    {this.pages()}
+                    {this.leaves()}
                 </div>
             </>
         );
     }
 
-    override choices(): ReactNode {
-        const Choice = $(choice);
+    override switches(): ReactNode {
+        const Switch = $(switching);
         return (
             <>
-                {super.choices()}
-                <Choice
+                {super.switches()}
+                <Switch
                     chapter={this.cover}
                     of={codeForward}
                 >
                     code forward
-                </Choice>
+                </Switch>
             </>
         );
     }
 }
 
-export class $Spread extends $Paged {
+export class $Spread extends $Imposition {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-spread');
@@ -998,8 +1005,8 @@ export class $Spread extends $Paged {
                 height: 100vh;
             }
             .pa-spread .pd-side { grid-area: side; overflow-y: auto; }
-            .pa-spread .pd-pages { grid-area: pages; min-height: 0; }
-            .pa-spread .pd-choices {
+            .pa-spread .pd-leaves { grid-area: pages; min-height: 0; }
+            .pa-spread .pd-switches {
                 display: flex;
                 flex-wrap: wrap;
                 gap: calc(\${({ theme }) => theme.space} / 4);
@@ -1009,7 +1016,7 @@ export class $Spread extends $Paged {
 
     protected spread(): RuleSet {
         return css\`
-            .pa-spread .pd-page.pd-open {
+            .pa-spread .pd-leaf.pd-open {
                 display: grid;
                 grid-template-columns: minmax(0, 1fr) auto;
                 grid-template-areas: 'words files';
@@ -1025,7 +1032,7 @@ export class $Spread extends $Paged {
         return css\`
             @media (max-width: \${({ theme }) => theme.narrow}) {
                 .pd-book.pa-spread { display: block; height: auto; }
-                .pa-spread .pd-page.pd-open { display: block; height: auto; }
+                .pa-spread .pd-leaf.pd-open { display: block; height: auto; }
                 .pa-spread .pd-files { width: auto; }
                 .pa-spread.pa-turned .pa-table-of-contents { display: none; }
             }
@@ -1035,7 +1042,7 @@ export class $Spread extends $Paged {
 
 export const Manual = $($Manual);
 export const Spread = $($Spread);
-$(Manual, Paged)(Spread);
+$(Manual, Imposition)(Spread);
 `}),e.jsx(r,{identifier:"faces",type:".tsx",children:`import { $, selection } from '@dna-platform/chemistry';
 import { $Cover } from '@dna-platform/public';
 import { $Index } from './14-the-entry~code.tsx';
@@ -1133,17 +1140,17 @@ export class $ManualTheme extends $DougsTheme {
                 scrollbar-width: thin;
                 scrollbar-color: \${({ theme }) => theme.line} transparent;
             }
-            .pd-side .pd-filed-under, .pd-side .pd-byline {
+            .pd-side .pd-classmark, .pd-side .pd-byline {
                 margin-block: 0;
                 font-size: calc(0.83 * \${({ theme }) => theme.size});
                 color: \${({ theme }) => theme.faint};
             }
-            .pd-side .pd-filed-under .pa-reference, .pd-side .pd-byline .pa-reference {
+            .pd-side .pd-classmark .pa-reference, .pd-side .pd-byline .pa-reference {
                 color: \${({ theme }) => theme.soft};
                 text-decoration: none;
             }
-            .pd-side .pd-choices { margin-block-start: calc(\${({ theme }) => theme.space} / 2); }
-            .pd-side .pd-choice { font-size: calc(0.9 * \${({ theme }) => theme.size}); }
+            .pd-side .pd-switches { margin-block-start: calc(\${({ theme }) => theme.space} / 2); }
+            .pd-side .pd-switch { font-size: calc(0.9 * \${({ theme }) => theme.size}); }
         \`;
     }
 
@@ -1203,7 +1210,7 @@ export class $CodeForward extends $Format {
     specification = new OfABookSpecification();
     themeProvider = true;
     style = selection.div\`
-        .pd-book.pa-code-forward .pd-page.pd-open { grid-template-columns: calc(1.4 * \${({ theme }) => theme.side}) minmax(0, 1fr); }
+        .pd-book.pa-code-forward .pd-leaf.pd-open { grid-template-columns: calc(1.4 * \${({ theme }) => theme.side}) minmax(0, 1fr); }
         .pd-book.pa-code-forward .pd-files { width: auto; }
     \`;
 
@@ -1219,21 +1226,21 @@ export class $CodeForward extends $Format {
 }
 
 export const CodeForward = $($CodeForward);
-`})]}),"TheManual10"),H=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[The Pages](/dougs-reference-manual/#the-pages)"}),e.jsxs(a,{children:[e.jsx(s,{children:"One page open at a time"}),e.jsxs(t,{children:["A page is a chapter together with the files it appends. ",e.jsx(o,{children:"[The book](/dougs-reference-manual/#the-book)"})," draws one for each of its chapters, and says which one is open. Every page is in the document, so a link to any place in the book has somewhere to land."]}),e.jsxs(t,{children:["This is the rule that goes with them: a page that is not open is not shown. It is said of every book once, here. An arrangement of a book, such as the spread of ",e.jsx(o,{children:"[a manual](/dougs-reference-manual/#the-manual)"}),", is this with rules of its own added, and a type of book says which arrangement it has in one line."]})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ElementType } from 'react';
+`})]}),"TheManual10"),U=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Imposition](/dougs-reference-manual/#the-imposition)"}),e.jsxs(a,{children:[e.jsx(s,{children:"One chapter open at a time"}),e.jsxs(t,{children:["In printing, the imposition is the arrangement of a book's parts on the sheet. Here it is the arrangement said of a book: where its chapters go and which of them is shown. The one every book of mine starts from shows one chapter at a time. ",e.jsx(o,{children:"[The book](/dougs-reference-manual/#the-book)"})," draws each chapter on a leaf of its own, with the files the chapter appends, and says which leaf is open; a leaf that is not open is not shown. Every leaf is in the document, so a link to any place in the book has somewhere to land."]}),e.jsxs(t,{children:["A type of book has an imposition of its own under this one, with its own rules added: the spread of ",e.jsx(o,{children:"[a manual](/dougs-reference-manual/#the-manual)"}),", the sheet of my story, the frame of the design book. A type says which it has in one line."]})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ElementType } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $, selection } from '@dna-platform/chemistry';
 import { $Format, $Writing } from '@dna-platform/public';
 import type { $DougsBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 
-export class $Paged extends $Format {
+export class $Imposition extends $Format {
     specification = new OfABookSpecification();
     themeProvider = true;
     style: ElementType = selection.div\`\${this.parts()}\`;
 
     override defines(writing: $Writing): void {
         super.defines(writing);
-        writing.classes.add(this, 'pa-paged');
+        writing.classes.add(this, 'pa-imposition');
         if ((writing as $DougsBook).open !== undefined) writing.classes.add(this, 'pa-turned');
     }
 
@@ -1248,13 +1255,13 @@ export class $Paged extends $Format {
 
     protected paging(): RuleSet {
         return css\`
-            .pd-page:not(.pd-open) { display: none; }
+            .pd-leaf:not(.pd-open) { display: none; }
         \`;
     }
 }
 
-export const Paged = $($Paged);
-`})]}),"ThePages12"),V=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[The Catchword](/dougs-reference-manual/#the-catchword)"}),e.jsxs(a,{children:[e.jsx(s,{children:"The way to the next chapter"}),e.jsx(t,{children:"In an old book the catchword is the word at the foot of a page that says how the next page begins. Here it is a line at the foot of every chapter: the chapter before, where this one is in the book, and the chapter after."}),e.jsxs(t,{children:["The line asks ",e.jsx(o,{children:"[the book](/dougs-reference-manual/#the-book)"})," for its chapters, so it counts and leads through the pages I can open, and not the cover or the table of contents. Each link is a word that refers to a chapter and says that chapter's title. At the first chapter the one before is the chapter itself, and at the last the one after is, so the line is the same at both ends."]}),e.jsx(t,{children:"Between the links is the folio, which says which chapter this is and of how many. The book gives every chapter a catchword when the book is whole, so no chapter writes its own."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
+export const Imposition = $($Imposition);
+`})]}),"TheImposition12"),V=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Catchword](/dougs-reference-manual/#the-catchword)"}),e.jsxs(a,{children:[e.jsx(s,{children:"The way to the next chapter"}),e.jsx(t,{children:"In an old book the catchword is the word at the foot of a page that says how the next page begins. Here it is a line at the foot of every chapter: the chapter before, where this one is in the book, and the chapter after."}),e.jsxs(t,{children:["The line asks ",e.jsx(o,{children:"[the book](/dougs-reference-manual/#the-book)"})," for its chapters, so it counts and leads through the chapters I can open, and not the cover or the table of contents. Each link is a word that refers to a chapter and says that chapter's title. At the first chapter the one before is the chapter itself, and at the last the one after is, so the line is the same at both ends."]}),e.jsx(t,{children:"Between the links is the folio, which says which chapter this is and of how many. The book gives every chapter a catchword when the book is whole, so no chapter writes its own."})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
 import { $ } from '@dna-platform/chemistry';
 import { $Chapter, $Paragraph, $Word, Reference as reference, Self as self, Word as word } from '@dna-platform/public';
 import type { $DougsBook } from './1-the-book~code.tsx';
@@ -1309,7 +1316,7 @@ export class $Catchword extends $Paragraph {
 
 export const Folio = $($Folio);
 export const Catchword = $($Catchword);
-`})]}),"TheCatchword13"),_=i(()=>e.jsxs(d,{children:[e.jsx(c,{children:"[The Entry](/dougs-reference-manual/#the-entry)"}),e.jsxs(a,{children:[e.jsx(s,{children:"A row that leads somewhere"}),e.jsx(t,{children:"A table of contents is a list of rows, and most of them lead to a chapter. I call such a row an entry. An entry knows the chapter it leads to, whether the row names the chapter or a heading inside it, and it says so when that chapter is the open one. So a table of contents can show where I am in the book."})]}),e.jsxs(a,{children:[e.jsx(s,{children:"How a table of contents gets its entries"}),e.jsx(t,{children:"The index is the framework's table of contents with one thing added. When the book is bound it says of each row that leads somewhere that it is an entry. A book's own table of contents is an index with a look, so no table file has to say entry on every row."}),e.jsxs(t,{children:["A type of book may have its own kind of entry. It registers that kind on its class and the index uses it. The one in ",e.jsx(o,{children:"[the manual](/dougs-reference-manual/#the-manual)"})," also shows the type of the file its chapter appends."]})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { $, $check } from '@dna-platform/chemistry';
+`})]}),"TheCatchword13"),_=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Entry](/dougs-reference-manual/#the-entry)"}),e.jsxs(a,{children:[e.jsx(s,{children:"A row that leads somewhere"}),e.jsx(t,{children:"A table of contents is a list of rows, and most of them lead to a chapter. I call such a row an entry. An entry knows the chapter it leads to, whether the row names the chapter or a heading inside it, and it says so when that chapter is the open one. So a table of contents can show where I am in the book."})]}),e.jsxs(a,{children:[e.jsx(s,{children:"How a table of contents gets its entries"}),e.jsx(t,{children:"The index is the framework's table of contents with one thing added. When the book is bound it says of each row that leads somewhere that it is an entry. A book's own table of contents is an index with a look, so no table file has to say entry on every row."}),e.jsxs(t,{children:["A type of book may have its own kind of entry. It registers that kind on its class and the index uses it. The one in ",e.jsx(o,{children:"[the manual](/dougs-reference-manual/#the-manual)"})," also shows the type of the file its chapter appends."]})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { $, $check } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Content, $Paragraph, $Section, $TableOfContents, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 import type { $DougsBook } from './1-the-book~code.tsx';
 
@@ -1356,4 +1363,67 @@ export class EntrySpecification extends AnnotationSpecification {
 
 export const Entry = $($Entry);
 export const Index = $($Index);
-`})]}),"TheEntry14"),J=g(m),Z=i(()=>e.jsxs(J,{children:[B(),I(),P(),z(),E(),N(),F(),O(),L(),M(),q(),U(),G(),H(),V(),_()]}),"book");export{Z as book};
+`})]}),"TheEntry14"),J=i(()=>e.jsxs(c,{children:[e.jsx(d,{children:"[The Bars](/dougs-reference-manual/#the-bars)"}),e.jsxs(a,{children:[e.jsx(s,{children:"The cover as a top bar, the table of contents as a side bar"}),e.jsx(t,{children:"Most of my designs have a bar across the top and a bar down the side. The bar across the top is the book's cover: its name, what it is filed under and who it is by, set in a line. The bar down the side is the book's table of contents: its chapters in groups, the open one lit. So the two bars are not new things. They are the cover and the table of contents, each with a look, and any book that wants a bar takes it from here."}),e.jsxs(t,{children:["The top bar is the framework's cover with a look. The side bar is ",e.jsx(o,{children:"[the index](/dougs-reference-manual/#the-entry)"})," with a look, so each of its rows that leads somewhere is an entry. Each reads its colors from the theme, so one book's side bar is dark and another's is pale with nothing in the bar itself changed."]})]}),e.jsx(r,{identifier:"code",type:".tsx",children:`import { $, selection } from '@dna-platform/chemistry';
+import { $Cover } from '@dna-platform/public';
+import { $Index } from './14-the-entry~code.tsx';
+
+export class $Banner extends $Cover {
+    override style = selection.header\`
+        .pd-chapter.pa-cover { margin-block: 0; }
+        .pa-cover .pd-title {
+            font-family: \${({ theme }) => theme.serif};
+            font-size: calc(1.8 * \${({ theme }) => theme.size});
+            font-weight: 600;
+            line-height: 1.04;
+            color: \${({ theme }) => theme.heading};
+        }
+    \`;
+}
+
+export class $Sidebar extends $Index {
+    override style = selection.nav\`
+        .pd-chapter.pa-table-of-contents {
+            margin-block: 0;
+            color: \${({ theme }) => theme.barDim};
+        }
+        .pa-table-of-contents .pd-section { margin-block: \${({ theme }) => theme.space} 0; }
+        .pa-table-of-contents .pd-heading {
+            display: flex;
+            justify-content: space-between;
+            margin-block: 0 calc(\${({ theme }) => theme.space} / 3);
+            padding-inline: calc(\${({ theme }) => theme.space} * 0.375);
+            font-size: calc(0.76 * \${({ theme }) => theme.size});
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: \${({ theme }) => theme.barDim};
+        }
+        .pa-table-of-contents .pd-paragraph.pa-entry {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: calc(\${({ theme }) => theme.space} * 0.375);
+            margin-block: 0;
+            padding: calc(\${({ theme }) => theme.space} / 4) calc(\${({ theme }) => theme.space} * 0.375) calc(\${({ theme }) => theme.space} / 4) calc(\${({ theme }) => theme.space} * 1.1);
+            border-radius: calc(\${({ theme }) => theme.space} / 3);
+            font-weight: 500;
+            color: \${({ theme }) => theme.barInk};
+        }
+        .pa-table-of-contents .pd-paragraph.pa-entry::before {
+            content: '';
+            position: absolute;
+            inset-inline-start: calc(\${({ theme }) => theme.space} * 0.375);
+            width: calc(\${({ theme }) => theme.space} * 0.375);
+            height: calc(\${({ theme }) => theme.space} * 0.375);
+            border-radius: 50%;
+            background: \${({ theme }) => theme.sea};
+        }
+        .pa-table-of-contents .pd-paragraph.pa-entry.pa-open { background: \${({ theme }) => theme.barOn}; }
+        .pa-table-of-contents .pa-reference.pa-reference { color: inherit; text-decoration: none; }
+    \`;
+}
+
+export const Banner = $($Banner);
+export const Sidebar = $($Sidebar);
+`})]}),"TheBars15"),K=g(m),ee=i(()=>e.jsxs(K,{children:[R(),D(),z(),E(),N(),O(),L(),P(),F(),M(),q(),H(),G(),U(),V(),_(),J()]}),"book");export{ee as book};

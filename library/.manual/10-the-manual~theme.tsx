@@ -20,17 +20,17 @@ export class $ManualTheme extends $DougsTheme {
                 scrollbar-width: thin;
                 scrollbar-color: ${({ theme }) => theme.line} transparent;
             }
-            .pd-side .pd-filed-under, .pd-side .pd-byline {
+            .pd-side .pd-classmark, .pd-side .pd-byline {
                 margin-block: 0;
                 font-size: calc(0.83 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.faint};
             }
-            .pd-side .pd-filed-under .pa-reference, .pd-side .pd-byline .pa-reference {
+            .pd-side .pd-classmark .pa-reference, .pd-side .pd-byline .pa-reference {
                 color: ${({ theme }) => theme.soft};
                 text-decoration: none;
             }
-            .pd-side .pd-choices { margin-block-start: calc(${({ theme }) => theme.space} / 2); }
-            .pd-side .pd-choice { font-size: calc(0.9 * ${({ theme }) => theme.size}); }
+            .pd-side .pd-switches { margin-block-start: calc(${({ theme }) => theme.space} / 2); }
+            .pd-side .pd-switch { font-size: calc(0.9 * ${({ theme }) => theme.size}); }
         `;
     }
 

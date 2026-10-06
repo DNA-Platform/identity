@@ -1,11 +1,11 @@
 import { Chapter, Date, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Dated } from '../.manual/.book';
+import { Dateline } from '../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Dated>
+        <Dateline>
             <Date>[5 October 2026](2026-10-05)</Date>
-        </Dated>
+        </Dateline>
         <Title>[[ Closure ]]</Title>
         <Section>
             <Heading>A script outside the book</Heading>
@@ -66,7 +66,7 @@ export default () => (
                     <Means>$[[ The outline ]]( Dougs Reference Manual / The Outline )</Means>, which shows a book's structure.
                 </Line>
                 <Line>
-                    <Means>$[[ The pages ]]( Dougs Reference Manual / The Pages )</Means> and <Means>$[[ the catchword ]]( Dougs Reference Manual / The Catchword )</Means>, which show a book one chapter at a time and lead from each to the next.
+                    <Means>$[[ The pages ]]( Dougs Reference Manual / The Imposition )</Means> and <Means>$[[ the catchword ]]( Dougs Reference Manual / The Catchword )</Means>, which show a book one chapter at a time and lead from each to the next.
                 </Line>
                 <Line>
                     <Means>$[[ The entry ]]( Dougs Reference Manual / The Entry )</Means>, a row of a table of contents that knows the chapter it leads to.

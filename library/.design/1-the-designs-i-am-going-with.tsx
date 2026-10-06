@@ -1,5 +1,5 @@
 import { Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Chosen } from './.book';
+import { Decision } from './.book';
 
 export default () => (
     <Chapter>
@@ -16,7 +16,7 @@ export default () => (
         <Section>
             <Heading>[[[ The library's catalogue ]]]</Heading>
             <Paragraph>
-                <Chosen />
+                <Decision />
                 The shelf of 1 under the black and sky of 19, with the view switching among 1, 2 and 3.
             </Paragraph>
             <Paragraph>
@@ -44,7 +44,7 @@ export default () => (
         <Section>
             <Heading>[[[ The reference manual ]]]</Heading>
             <Paragraph>
-                <Chosen />
+                <Decision />
                 The words beside the file as in 6, a part opened alone on the bench as in 8, and a toggle between
                 the code forward and the words forward.
             </Paragraph>
@@ -67,7 +67,7 @@ export default () => (
         <Section>
             <Heading>[[[ The design book ]]]</Heading>
             <Paragraph>
-                <Chosen />
+                <Decision />
                 This book: light and airy, with a toggle between a library mode and a gallery mode.
             </Paragraph>
             <Paragraph>
@@ -82,7 +82,7 @@ export default () => (
         <Section>
             <Heading>[[[ My autobiography ]]]</Heading>
             <Paragraph>
-                <Chosen />
+                <Decision />
                 The reading view of 25: one typeset sheet, a chapter at a time, likely under a dark bar on top.
             </Paragraph>
             <Paragraph>
@@ -106,7 +106,7 @@ export default () => (
         <Section>
             <Heading>[[[ The Claude project catalogue ]]]</Heading>
             <Paragraph>
-                <Chosen />
+                <Decision />
                 The table of 9 under the white and opal bars of 20, with a splash of the Claude theme.
             </Paragraph>
             <Paragraph>
@@ -126,7 +126,7 @@ export default () => (
         <Section>
             <Heading>[[[ A project's conversation catalogue ]]]</Heading>
             <Paragraph>
-                <Chosen />
+                <Decision />
                 A multi-view that begins as a plain list downward, with views by recency and by size and each
                 conversation's synopsis. It is not drawn yet.
             </Paragraph>
@@ -144,7 +144,7 @@ export default () => (
         <Section>
             <Heading>[[[ A Claude conversation ]]]</Heading>
             <Paragraph>
-                <Chosen />
+                <Decision />
                 23: the conversation in the black side bar, in the form of the application it comes from.
             </Paragraph>
             <Paragraph>

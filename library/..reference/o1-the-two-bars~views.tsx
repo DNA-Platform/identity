@@ -19,35 +19,23 @@ export class $View extends $Format {
     }
 }
 
-export class $Shelved extends $View {
+export class $Shelf extends $View {
     style = selection.div`
-        .pd-book.pa-shelved .pd-shelf {
+        .pd-book.pa-shelf .pd-shelf {
             display: grid;
             grid-template-columns: repeat(auto-fill, ${({ theme }) => theme.volume});
             gap: ${({ theme }) => theme.space};
             align-items: start;
         }
         @media (max-width: ${({ theme }) => theme.narrow}) {
-            .pd-book.pa-shelved .pd-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .pd-book.pa-shelf .pd-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
     `;
 
     override defines(writing: $Writing): void {
         super.defines(writing);
-        writing.classes.add(this, 'pa-shelved');
+        writing.classes.add(this, 'pa-shelf');
     }
 }
 
-export class $Listed extends $View {
-    style = selection.div`
-        .pd-book.pa-listed .pd-volume { max-width: ${({ theme }) => theme.measure}; }
-    `;
-
-    override defines(writing: $Writing): void {
-        super.defines(writing);
-        writing.classes.add(this, 'pa-listed');
-    }
-}
-
-export const Shelved = $($Shelved);
-export const Listed = $($Listed);
+export const Shelf = $($Shelf);
