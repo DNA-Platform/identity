@@ -1,4 +1,4 @@
-var j=Object.defineProperty;var s=(v,t)=>j(v,"name",{value:t,configurable:!0});import{$ as g,e as T,s as k,g as B,j as e,C as d,h as c,A as S,k as A,P as $,o,H as r,n,p as h,W as p,M as a,q as i,L as x,J as l}from"./index-BhWStiZN.js";import{e as C,I as L}from"./10-the-manual~theme-0f0Xg1M9.js";import{S as I}from"./.synopsis-Bt24x-_L.js";const b=class b extends C{};s(b,"$ReferenceManual");let m=b;const w=class w extends T{constructor(){super(...arguments),this.style=k.header`
+var j=Object.defineProperty;var s=(v,t)=>j(v,"name",{value:t,configurable:!0});import{$ as g,e as T,s as k,g as B,j as e,C as d,h as c,A as S,k as A,P as $,o,H as r,n,p as h,W as p,M as a,q as i,L as x,J as l}from"./index-Bl1XWPeB.js";import{e as C,I as L}from"./10-the-manual~theme-DKo59PnT.js";import{S as I}from"./.synopsis-pfsy29yI.js";const b=class b extends C{};s(b,"$ReferenceManual");let m=b;const w=class w extends T{constructor(){super(...arguments),this.style=k.header`
         .pd-chapter.pa-cover { margin-block: 0; }
         .pa-cover .pd-title {
             font-size: calc(1.04 * ${({theme:t})=>t.size});
@@ -48,6 +48,7 @@ import { Switch as switching } from './9-the-switch~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
 import { Bars as bars, BothBars as bothBars, Cards as cards, Rail as rail, SideBar as sideBar, TopBar as topBar, TwoBars as twoBars } from './15-the-bars~code.tsx';
 import { Dark as dark, Light as light, Tone as tone } from './16-the-tone~code.tsx';
+import { Subjects } from '../..reference/o1-the-bars~subjects.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
 
 export class $LibraryBook extends $Book {
@@ -101,7 +102,11 @@ export class $LibraryBook extends $Book {
     }
 
     subjects(): ReactNode {
-        return null;
+        return (
+            <div className="pd-subjects">
+                <Subjects />
+            </div>
+        );
     }
 
     holds(): ReactNode {
@@ -495,6 +500,19 @@ export class $LibraryBookTheme extends $Theme {
             .pd-library { padding: calc(\${({ theme }) => theme.space} * 0.375) calc(\${({ theme }) => theme.space} * 0.75); }
             .pd-library .pd-paragraph, .pd-me .pd-paragraph { margin-block: 0; }
             .pd-me { padding: 0 calc(\${({ theme }) => theme.space} * 0.75); }
+            .pd-subjects { min-width: 0; }
+            .pd-subjects .pd-section {
+                display: flex;
+                gap: calc(\${({ theme }) => theme.space} / 12);
+                margin-block: 0;
+            }
+            .pd-subjects .pd-paragraph {
+                padding: calc(\${({ theme }) => theme.space} * 0.29) calc(\${({ theme }) => theme.space} * 0.42);
+                border-radius: calc(\${({ theme }) => theme.space} / 3);
+                font-size: calc(0.93 * \${({ theme }) => theme.size});
+                white-space: nowrap;
+            }
+            .pd-subjects .pa-reference { color: inherit; text-decoration: none; }
         \`;
     }
 

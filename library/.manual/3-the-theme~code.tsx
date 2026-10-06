@@ -193,6 +193,19 @@ export class $LibraryBookTheme extends $Theme {
             .pd-library { padding: calc(${({ theme }) => theme.space} * 0.375) calc(${({ theme }) => theme.space} * 0.75); }
             .pd-library .pd-paragraph, .pd-me .pd-paragraph { margin-block: 0; }
             .pd-me { padding: 0 calc(${({ theme }) => theme.space} * 0.75); }
+            .pd-subjects { min-width: 0; }
+            .pd-subjects .pd-section {
+                display: flex;
+                gap: calc(${({ theme }) => theme.space} / 12);
+                margin-block: 0;
+            }
+            .pd-subjects .pd-paragraph {
+                padding: calc(${({ theme }) => theme.space} * 0.29) calc(${({ theme }) => theme.space} * 0.42);
+                border-radius: calc(${({ theme }) => theme.space} / 3);
+                font-size: calc(0.93 * ${({ theme }) => theme.size});
+                white-space: nowrap;
+            }
+            .pd-subjects .pa-reference { color: inherit; text-decoration: none; }
         `;
     }
 

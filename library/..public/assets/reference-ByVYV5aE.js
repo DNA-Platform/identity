@@ -1,4 +1,4 @@
-var P=Object.defineProperty;var n=(g,e)=>P(g,"name",{value:e,configurable:!0});import{$ as a,a as H,b as W,i as E,s as B,c as F,d as q,j as t,S as _,T as U,f as l,e as V,g as G,C as c,h,A as J,k as K,l as Q,m as y,P as w,n as s,o as m,H as f,p as r,W as o,M as i,q as b}from"./index-BhWStiZN.js";import{O as X,$ as Y,a as Z,I as ee}from"./10-the-manual~theme-0f0Xg1M9.js";import{S as te}from"./.synopsis-DiLc1ERS.js";import{S as ne}from"./.synopsis-C48HkIQd.js";import{S as se}from"./.synopsis-Bt24x-_L.js";var re=Object.defineProperty,ae=n((g,e,d,I)=>{for(var p=void 0,k=g.length-1,M;k>=0;k--)(M=g[k])&&(p=M(e,d,p)||p);return p&&re(e,d,p),p},"__decorateClass");const D=class D extends H{get identifier(){return this._book??super.identifier}$Bound(){super.$Bound(),this._book=this.chapter?.annotations.expressed(W)?.means?.identifier}};n(D,"$BookLink");let u=D;ae([E()],u.prototype,"_book");const ie=a(u),x=class x extends F{constructor(){super(...arguments),this.specification=new X,this.themeProvider=!0}defines(e){for(const d of e.annotations.after(this))d instanceof x&&e.annotations.express(d,!1);super.defines(e)}erase(e){super.erase(e),e.classes.revert(this)}};n(x,"$View");let j=x;const C=class C extends j{constructor(){super(...arguments),this.style=B.div`
+var N=Object.defineProperty;var n=(g,e)=>N(g,"name",{value:e,configurable:!0});import{$ as r,a as H,b as I,i as E,s as B,c as F,d as q,j as t,S as _,T as U,f as d,e as V,g as G,C as c,h,A as J,k as K,l as Q,m as y,P as w,n as s,o as f,H as b,p as a,W as o,M as i,q as m}from"./index-Bl1XWPeB.js";import{O as X,$ as Y,a as Z,I as ee}from"./10-the-manual~theme-DKo59PnT.js";import{S as te}from"./.synopsis-C3Tk5d9c.js";import{S as ne}from"./.synopsis-yoxdmFc5.js";import{S as se}from"./.synopsis-pfsy29yI.js";var ae=Object.defineProperty,re=n((g,e,l,O)=>{for(var p=void 0,k=g.length-1,A;k>=0;k--)(A=g[k])&&(p=A(e,l,p)||p);return p&&ae(e,l,p),p},"__decorateClass");const D=class D extends H{get identifier(){return this._book??super.identifier}$Bound(){super.$Bound(),this._book=this.chapter?.annotations.expressed(I)?.means?.identifier}};n(D,"$BookLink");let u=D;re([E()],u.prototype,"_book");const ie=r(u),x=class x extends F{constructor(){super(...arguments),this.specification=new X,this.themeProvider=!0}defines(e){for(const l of e.annotations.after(this))l instanceof x&&e.annotations.express(l,!1);super.defines(e)}erase(e){super.erase(e),e.classes.revert(this)}};n(x,"$View");let j=x;const C=class C extends j{constructor(){super(...arguments),this.style=B.div`
         .pd-book.pa-shelf .pd-shelf {
             display: grid;
             grid-template-columns: repeat(auto-fill, ${({theme:e})=>e.volume});
@@ -8,7 +8,7 @@ var P=Object.defineProperty;var n=(g,e)=>P(g,"name",{value:e,configurable:!0});i
         @media (max-width: ${({theme:e})=>e.narrow}) {
             .pd-book.pa-shelf .pd-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
-    `}defines(e){super.defines(e),e.classes.add(this,"pa-shelf")}};n(C,"$Shelf");let v=C;const oe=a(v),L=class L extends Y{get books(){return this.text.find(q).filter(e=>e.is(W)&&e!==this.synopsis)}get placed(){return[...super.placed,...this.books]}opening(){return t.jsxs(t.Fragment,{children:[super.opening(),t.jsx("div",{className:"pd-shelf",children:this.volumes()})]})}volumes(){return this.books.map((e,d)=>{const I=a(e);return t.jsx("div",{className:"pd-volume",children:t.jsx(I,{})},d)})}$Define(){super.$Define();const e=a(oe);this.annotations.add(this,t.jsx(e,{}))}};n(L,"$Library");let $=L;const N=a($);a(N,_)(ie);const R=class R extends Z{constructor(){super(...arguments),this.ink="#10252c",this.soft="#516770",this.line="#dbe7ec",this.accent="#166178",this.tint="#e3f5fa",this.night="#0c1b1f"}parts(){return[...super.parts(),this.libraryBar(),this.bookBar(),this.holds(),this.front(),this.covers(),this.words(),this.small()]}libraryBar(){return l`
+    `}defines(e){super.defines(e),e.classes.add(this,"pa-shelf")}};n(C,"$Shelf");let v=C;const oe=r(v),L=class L extends Y{get books(){return this.text.find(q).filter(e=>e.is(I)&&e!==this.synopsis)}get placed(){return[...super.placed,...this.books]}opening(){return t.jsxs(t.Fragment,{children:[super.opening(),t.jsx("div",{className:"pd-shelf",children:this.volumes()})]})}volumes(){return this.books.map((e,l)=>{const O=r(e);return t.jsx("div",{className:"pd-volume",children:t.jsx(O,{})},l)})}$Define(){super.$Define();const e=r(oe);this.annotations.add(this,t.jsx(e,{}))}};n(L,"$Library");let $=L;const W=r($);r(W,_)(ie);const R=class R extends Z{constructor(){super(...arguments),this.ink="#10252c",this.soft="#516770",this.line="#dbe7ec",this.accent="#166178",this.tint="#e3f5fa",this.night="#0c1b1f"}parts(){return[...super.parts(),this.libraryBar(),this.bookBar(),this.holds(),this.front(),this.covers(),this.words(),this.small()]}libraryBar(){return d`
             .pd-library {
                 padding: calc(${({theme:e})=>e.space} * 0.375) calc(${({theme:e})=>e.space} * 0.75);
             }
@@ -49,7 +49,7 @@ var P=Object.defineProperty;var n=(g,e)=>P(g,"name",{value:e,configurable:!0});i
                 background: ${({theme:e})=>e.me};
                 color: ${({theme:e})=>e.paper};
             }
-        `}bookBar(){return l`
+        `}bookBar(){return d`
             .pd-head {
                 padding: calc(${({theme:e})=>e.space} * 0.375) ${({theme:e})=>e.space};
             }
@@ -65,12 +65,12 @@ var P=Object.defineProperty;var n=(g,e)=>P(g,"name",{value:e,configurable:!0});i
                 color: ${({theme:e})=>e.paper};
                 font-weight: 500;
             }
-        `}holds(){return l`
+        `}holds(){return d`
             .pd-holds {
                 padding: calc(${({theme:e})=>e.space} * 0.75) calc(${({theme:e})=>e.space} / 2);
                 border-inline-end: thin solid ${({theme:e})=>e.line};
             }
-        `}front(){return l`
+        `}front(){return d`
             .pd-leaves { padding: calc(${({theme:e})=>e.space} * 0.83) calc(${({theme:e})=>e.space} * 1.17) calc(${({theme:e})=>e.space} * 1.67); }
             .pd-front .pd-words {
                 margin-block-end: ${({theme:e})=>e.space};
@@ -86,7 +86,7 @@ var P=Object.defineProperty;var n=(g,e)=>P(g,"name",{value:e,configurable:!0});i
                 font-weight: 500;
                 line-height: 1.25;
             }
-        `}covers(){return l`
+        `}covers(){return d`
             .pd-volume .pd-chapter { margin-block: 0; }
             .pd-book.pa-shelf .pd-volume .pd-title {
                 display: flex;
@@ -107,7 +107,7 @@ var P=Object.defineProperty;var n=(g,e)=>P(g,"name",{value:e,configurable:!0});i
                 font-size: calc(0.86 * ${({theme:e})=>e.size});
                 color: ${({theme:e})=>e.soft};
             }
-        `}words(){return l`
+        `}words(){return d`
             .pd-leaf .pd-words .pd-title {
                 font-family: ${({theme:e})=>e.serif};
                 font-size: calc(2.5 * ${({theme:e})=>e.size});
@@ -121,7 +121,7 @@ var P=Object.defineProperty;var n=(g,e)=>P(g,"name",{value:e,configurable:!0});i
                 text-transform: uppercase;
                 color: ${({theme:e})=>e.soft};
             }
-        `}small(){return l`
+        `}small(){return d`
             @media (max-width: ${({theme:e})=>e.narrow}) {
                 .pd-holds {
                     border-inline-end: none;
@@ -129,7 +129,7 @@ var P=Object.defineProperty;var n=(g,e)=>P(g,"name",{value:e,configurable:!0});i
                 }
                 .pd-leaves { padding: calc(${({theme:e})=>e.space} * 0.67); }
             }
-        `}};n(R,"$LibraryTheme");let S=R;const ce=a(S);a(N,U)(ce);const O=class O extends V{constructor(){super(...arguments),this.style=B.header`
+        `}};n(R,"$LibraryTheme");let S=R;const ce=r(S);r(W,U)(ce);const M=class M extends V{constructor(){super(...arguments),this.style=B.header`
         .pd-chapter.pa-cover { margin-block: 0; }
         .pa-cover .pd-title {
             font-family: ${({theme:e})=>e.serif};
@@ -137,7 +137,7 @@ var P=Object.defineProperty;var n=(g,e)=>P(g,"name",{value:e,configurable:!0});i
             font-weight: 600;
             line-height: 1.04;
         }
-    `}};n(O,"$LibraryCover");let T=O;const A=class A extends G{constructor(){super(...arguments),this.style=B.nav`
+    `}};n(M,"$LibraryCover");let T=M;const P=class P extends G{constructor(){super(...arguments),this.style=B.nav`
         .pd-chapter.pa-table-of-contents { margin-block: 0; }
         .pa-table-of-contents .pd-section { margin-block: 0 ${({theme:e})=>e.space}; }
         .pa-table-of-contents .pd-heading {
@@ -185,7 +185,7 @@ var P=Object.defineProperty;var n=(g,e)=>P(g,"name",{value:e,configurable:!0});i
                 white-space: nowrap;
             }
         }
-    `}};n(A,"$LibraryTableOfContents");let z=A;const he=a(T),de=a(z),le=n(()=>t.jsxs(c,{children:[t.jsx(he,{}),t.jsx(h,{children:"[Dougs Library](/dougs-library/)"}),t.jsx(J,{children:"[The Librarian](/dougs-story/)"}),t.jsx(K,{children:"[The Library](/dougs-library/)"}),t.jsx(Q,{children:"[The Library](/dougs-library/)"})]}),"Cover"),pe=n(()=>t.jsxs(c,{children:[t.jsx(y,{}),t.jsxs(h,{children:[t.jsx(w,{}),"[Synopsis](/dougs-library/)"]}),t.jsx(s,{children:"The catalogue of my library, filed under what it is about, which is itself. Everything I keep is filed under it, directly or through another book."})]}),"Synopsis"),me=n(()=>t.jsxs(c,{children:[t.jsx(de,{}),t.jsx(ee,{}),t.jsxs(h,{children:[t.jsx(w,{}),"[Table of Contents](/dougs-library/#table-of-contents)"]}),t.jsxs(m,{children:[t.jsx(f,{children:"Contents"}),t.jsx(s,{children:t.jsx(r,{children:"[The Shelves](/dougs-library/#the-shelves)"})}),t.jsxs(s,{children:[t.jsx(o,{children:t.jsx(r,{children:"[Dougs Story](/dougs-library/#dougs-story)"})}),t.jsx(o,{children:t.jsx(r,{children:"[□](/dougs-story/)"})})]}),t.jsxs(s,{children:[t.jsx(o,{children:t.jsx(r,{children:"[Dougs Design](/dougs-library/#dougs-design)"})}),t.jsx(o,{children:t.jsx(r,{children:"[□](/dougs-design/)"})})]}),t.jsxs(s,{children:[t.jsx(o,{children:t.jsx(r,{children:"[Dougs Reference Manual](/dougs-library/#dougs-reference-manual)"})}),t.jsx(o,{children:t.jsx(r,{children:"[□](/dougs-reference-manual/)"})})]}),t.jsxs(s,{children:[t.jsx(w,{}),t.jsx(o,{children:t.jsx(r,{children:"[Dougs Library](/dougs-library/)"})}),t.jsx(o,{children:t.jsx(r,{children:"[Synopsis](/dougs-library/#synopsis)"})}),t.jsx(o,{children:t.jsx(r,{children:"[Table of Contents](/dougs-library/#table-of-contents)"})})]})]}),t.jsxs(m,{children:[t.jsx(f,{children:"How this book is built"}),t.jsx(s,{children:t.jsx(r,{children:"[The Bars](/dougs-library/#the-bars)"})})]})]}),"Table"),fe=n(()=>t.jsxs(c,{children:[t.jsx(h,{children:"[The Shelves](/dougs-library/#the-shelves)"}),t.jsxs(m,{children:[t.jsx(f,{children:"What is here"}),t.jsxs(s,{children:["Three books are filed under this one. ",t.jsx(i,{children:"[Dougs Story](/dougs-story/)"})," is mine, and the one book here that is by its own subject. It is the place to begin from, and it begins with ",t.jsx(i,{children:"[starting over](/dougs-story/#starting-over)"}),". The design of this library is kept in ",t.jsx(i,{children:"[Dougs Design](/dougs-design/)"}),". The parts I build this library with are in ",t.jsx(i,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"}),", each beside the chapter that says what it is."]}),t.jsx(s,{children:"Each of the three has a chapter here that represents it and carries its synopsis. In the table of contents the name leads to that chapter, and the small square after it leads to the book itself."})]})]}),"TheShelves1"),be=n(()=>t.jsxs(c,{children:[t.jsx(h,{children:"[Dougs Story](/dougs-library/#dougs-story)"}),t.jsxs(s,{children:["My own book, ",t.jsx(i,{children:"[Dougs Story](/dougs-story/)"}),", is the place to begin from."]}),t.jsx(y,{children:te()})]}),"DougsStory2"),ge=n(()=>t.jsxs(c,{children:[t.jsx(h,{children:"[Dougs Design](/dougs-library/#dougs-design)"}),t.jsxs(s,{children:["The book ",t.jsx(i,{children:"[Dougs Design](/dougs-design/)"})," keeps the design of this library."]}),t.jsx(y,{children:ne()})]}),"DougsDesign3"),ue=n(()=>t.jsxs(c,{children:[t.jsx(h,{children:"[Dougs Reference Manual](/dougs-library/#dougs-reference-manual)"}),t.jsxs(s,{children:["The book ",t.jsx(i,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"})," holds the parts this library is built with."]}),t.jsx(y,{children:se()})]}),"DougsReferenceManual4"),$e=n(()=>t.jsxs(c,{children:[t.jsx(h,{children:"[The Bars](/dougs-library/#the-bars)"}),t.jsxs(m,{children:[t.jsx(f,{children:"How this book is laid out"}),t.jsxs(s,{children:["This book is the way into every other, so it is laid out as a place to choose from. Across the top are two bars. The first is the library's: what this book is filed under, and me. The second is this book's: its cover, and ",t.jsx(i,{children:"[the switch](/dougs-reference-manual/#the-switch)"}),". Under the bars the table of contents is kept at the left. Beside it is one page: the synopsis and a shelf when no chapter is open, and otherwise the open chapter."]}),t.jsxs(s,{children:["The two bars are the arrangement said of the book. The design it follows is ",t.jsx(i,{children:"[the shelf](/dougs-design/#the-shelf)"})," under ",t.jsx(i,{children:"[the black and the sky](/dougs-design/#two-top-bars-black-then-sky)"}),"."]})]}),t.jsxs(m,{children:[t.jsx(f,{children:"What is on the shelf"}),t.jsx(s,{children:"The shelf holds the chapters that each represent a book. The class of this book finds them by what they are: a chapter that carries the synopsis of a book other than this one. Its specification says every chapter I add has a place."}),t.jsx(s,{children:"On the shelf such a chapter is drawn as its book: the title as a cover, and its words under it. The title leads to the book. Anywhere else a title refers to its own chapter. In this book, where the chapter carries another book's synopsis, it refers to that book. That link is a class of the framework's reference from a title to itself, registered on this book's class, so no chapter has to ask for it."}),t.jsx(s,{children:"The shelf is one view of those chapters, and the views I chose for this book are three: the shelf, the sources and the wall. A view is a thing said of the book, and only one is said at a time, because a view that is said takes the one said before it away. That is how the framework keeps a book to one theme, done here for views. The class says the shelf; the other two are not drawn yet."})]}),t.jsxs(m,{children:[t.jsx(f,{children:"How it is dressed"}),t.jsx(s,{children:"The theme is the library's, with this book's colors and its own parts: the two bars, the contents at the left, the front page and the covers. The cover and the table of contents are this book's own. Each is the framework's with a look, and the cover file and the table file take them from here."})]}),t.jsx(b,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
+    `}};n(P,"$LibraryTableOfContents");let z=P;const he=r(T),le=r(z),de=n(()=>t.jsxs(c,{children:[t.jsx(he,{}),t.jsx(h,{children:"[Dougs Library](/dougs-library/)"}),t.jsx(J,{children:"[The Librarian](/dougs-story/)"}),t.jsx(K,{children:"[The Library](/dougs-library/)"}),t.jsx(Q,{children:"[The Library](/dougs-library/)"})]}),"Cover"),pe=n(()=>t.jsxs(c,{children:[t.jsx(y,{}),t.jsxs(h,{children:[t.jsx(w,{}),"[Synopsis](/dougs-library/)"]}),t.jsx(s,{children:"The catalogue of my library, filed under what it is about, which is itself. Everything I keep is filed under it, directly or through another book."})]}),"Synopsis"),me=n(()=>t.jsxs(c,{children:[t.jsx(le,{}),t.jsx(ee,{}),t.jsxs(h,{children:[t.jsx(w,{}),"[Table of Contents](/dougs-library/#table-of-contents)"]}),t.jsxs(f,{children:[t.jsx(b,{children:"Contents"}),t.jsx(s,{children:t.jsx(a,{children:"[The Shelves](/dougs-library/#the-shelves)"})}),t.jsxs(s,{children:[t.jsx(o,{children:t.jsx(a,{children:"[Dougs Story](/dougs-library/#dougs-story)"})}),t.jsx(o,{children:t.jsx(a,{children:"[□](/dougs-story/)"})})]}),t.jsxs(s,{children:[t.jsx(o,{children:t.jsx(a,{children:"[Dougs Design](/dougs-library/#dougs-design)"})}),t.jsx(o,{children:t.jsx(a,{children:"[□](/dougs-design/)"})})]}),t.jsxs(s,{children:[t.jsx(o,{children:t.jsx(a,{children:"[Dougs Reference Manual](/dougs-library/#dougs-reference-manual)"})}),t.jsx(o,{children:t.jsx(a,{children:"[□](/dougs-reference-manual/)"})})]}),t.jsxs(s,{children:[t.jsx(w,{}),t.jsx(o,{children:t.jsx(a,{children:"[Dougs Library](/dougs-library/)"})}),t.jsx(o,{children:t.jsx(a,{children:"[Synopsis](/dougs-library/#synopsis)"})}),t.jsx(o,{children:t.jsx(a,{children:"[Table of Contents](/dougs-library/#table-of-contents)"})})]})]}),t.jsxs(f,{children:[t.jsx(b,{children:"How this book is built"}),t.jsx(s,{children:t.jsx(a,{children:"[The Bars](/dougs-library/#the-bars)"})})]})]}),"Table"),fe=n(()=>t.jsxs(c,{children:[t.jsx(h,{children:"[The Shelves](/dougs-library/#the-shelves)"}),t.jsxs(f,{children:[t.jsx(b,{children:"What is here"}),t.jsxs(s,{children:["Three books are filed under this one. ",t.jsx(i,{children:"[Dougs Story](/dougs-story/)"})," is mine, and the one book here that is by its own subject. It is the place to begin from, and it begins with ",t.jsx(i,{children:"[starting over](/dougs-story/#starting-over)"}),". The design of this library is kept in ",t.jsx(i,{children:"[Dougs Design](/dougs-design/)"}),". The parts I build this library with are in ",t.jsx(i,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"}),", each beside the chapter that says what it is."]}),t.jsx(s,{children:"Each of the three has a chapter here that represents it and carries its synopsis. In the table of contents the name leads to that chapter, and the small square after it leads to the book itself."})]})]}),"TheShelves1"),be=n(()=>t.jsxs(c,{children:[t.jsx(h,{children:"[Dougs Story](/dougs-library/#dougs-story)"}),t.jsxs(s,{children:["My own book, ",t.jsx(i,{children:"[Dougs Story](/dougs-story/)"}),", is the place to begin from."]}),t.jsx(y,{children:te()})]}),"DougsStory2"),ge=n(()=>t.jsxs(c,{children:[t.jsx(h,{children:"[Dougs Design](/dougs-library/#dougs-design)"}),t.jsxs(s,{children:["The book ",t.jsx(i,{children:"[Dougs Design](/dougs-design/)"})," keeps the design of this library."]}),t.jsx(y,{children:ne()})]}),"DougsDesign3"),ue=n(()=>t.jsxs(c,{children:[t.jsx(h,{children:"[Dougs Reference Manual](/dougs-library/#dougs-reference-manual)"}),t.jsxs(s,{children:["The book ",t.jsx(i,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"})," holds the parts this library is built with."]}),t.jsx(y,{children:se()})]}),"DougsReferenceManual4"),$e=n(()=>t.jsxs(c,{children:[t.jsx(h,{children:"[The Bars](/dougs-library/#the-bars)"}),t.jsxs(f,{children:[t.jsx(b,{children:"How this book is laid out"}),t.jsxs(s,{children:["This book is the way into every other, so it is laid out as a place to choose from. Across the top are two bars. The first is the library's: what this book is filed under, and me. The second is this book's: its cover, and ",t.jsx(i,{children:"[the switch](/dougs-reference-manual/#the-switch)"}),". Under the bars the table of contents is kept at the left. Beside it is one page: the synopsis and a shelf when no chapter is open, and otherwise the open chapter."]}),t.jsxs(s,{children:["The two bars are the arrangement said of the book. The design it follows is ",t.jsx(i,{children:"[the shelf](/dougs-design/#the-shelf)"})," under ",t.jsx(i,{children:"[the black and the sky](/dougs-design/#two-top-bars-black-then-sky)"}),"."]})]}),t.jsxs(f,{children:[t.jsx(b,{children:"What is on the shelf"}),t.jsx(s,{children:"The shelf holds the chapters that each represent a book. The class of this book finds them by what they are: a chapter that carries the synopsis of a book other than this one. Its specification says every chapter I add has a place."}),t.jsx(s,{children:"On the shelf such a chapter is drawn as its book: the title as a cover, and its words under it. The title leads to the book. Anywhere else a title refers to its own chapter. In this book, where the chapter carries another book's synopsis, it refers to that book. That link is a class of the framework's reference from a title to itself, registered on this book's class, so no chapter has to ask for it."}),t.jsx(s,{children:"The shelf is one view of those chapters, and the views I chose for this book are three: the shelf, the sources and the wall. A view is a thing said of the book, and only one is said at a time, because a view that is said takes the one said before it away. That is how the framework keeps a book to one theme, done here for views. The class says the shelf; the other two are not drawn yet."})]}),t.jsxs(f,{children:[t.jsx(b,{children:"How it is dressed"}),t.jsx(s,{children:"The theme is the library's, with this book's colors and its own parts: the two bars, the contents at the left, the front page and the covers. The cover and the table of contents are this book's own. Each is the framework's with a look, and the cover file and the table file take them from here."})]}),t.jsx(m,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
 import { $ } from '@dna-platform/chemistry';
 import { $Chapter, $Synopsis, Self } from '@dna-platform/public';
 import { $LibraryBook } from '../.manual/.book';
@@ -236,7 +236,7 @@ export class $Library extends $LibraryBook {
 
 export const Library = $($Library);
 $(Library, Self)(BookLink);
-`}),t.jsx(b,{identifier:"booklink",type:".tsx",children:`import { $, inert } from '@dna-platform/chemistry';
+`}),t.jsx(m,{identifier:"booklink",type:".tsx",children:`import { $, inert } from '@dna-platform/chemistry';
 import { $SelfReference, $Synopsis } from '@dna-platform/public';
 
 export class $BookLink extends $SelfReference {
@@ -250,7 +250,7 @@ export class $BookLink extends $SelfReference {
 }
 
 export const BookLink = $($BookLink);
-`}),t.jsx(b,{identifier:"views",type:".tsx",children:`import { $, selection } from '@dna-platform/chemistry';
+`}),t.jsx(m,{identifier:"views",type:".tsx",children:`import { $, selection } from '@dna-platform/chemistry';
 import { $Format, $Writing } from '@dna-platform/public';
 import { OfABookSpecification } from '../.manual/.book';
 
@@ -291,7 +291,7 @@ export class $Shelf extends $View {
 }
 
 export const Shelf = $($Shelf);
-`}),t.jsx(b,{identifier:"faces",type:".tsx",children:`import { $, selection } from '@dna-platform/chemistry';
+`}),t.jsx(m,{identifier:"faces",type:".tsx",children:`import { $, selection } from '@dna-platform/chemistry';
 import { $Cover, $TableOfContents } from '@dna-platform/public';
 
 export class $LibraryCover extends $Cover {
@@ -360,7 +360,7 @@ export class $LibraryTableOfContents extends $TableOfContents {
 
 export const Cover = $($LibraryCover);
 export const TableOfContents = $($LibraryTableOfContents);
-`}),t.jsx(b,{identifier:"theme",type:".tsx",children:`import { css, RuleSet } from 'styled-components';
+`}),t.jsx(m,{identifier:"theme",type:".tsx",children:`import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { Theme } from '@dna-platform/public';
 import { $LibraryBookTheme } from '../.manual/.book';
@@ -530,4 +530,19 @@ export class $LibraryTheme extends $LibraryBookTheme {
 
 export const LibraryTheme = $($LibraryTheme);
 $(Library, Theme)(LibraryTheme);
-`})]}),"TheBarso1"),xe=a($),Te=n(()=>t.jsxs(xe,{children:[le(),pe(),me(),fe(),be(),ge(),ue(),$e()]}),"book");export{Te as book};
+`}),t.jsx(m,{identifier:"subjects",type:".tsx",children:`import { Means, Paragraph, Section } from '@dna-platform/public';
+
+export const Subjects = () => (
+    <Section>
+        <Paragraph>
+            <Means>$[[ Dougs Story ]]</Means>
+        </Paragraph>
+        <Paragraph>
+            <Means>$[[ Dougs Design ]]</Means>
+        </Paragraph>
+        <Paragraph>
+            <Means>$[[ Dougs Reference Manual ]]</Means>
+        </Paragraph>
+    </Section>
+);
+`})]}),"TheBarso1"),xe=r($),Te=n(()=>t.jsxs(xe,{children:[de(),pe(),me(),fe(),be(),ge(),ue(),$e()]}),"book");export{Te as book};

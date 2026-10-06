@@ -77,5 +77,11 @@ export default () => (
         >
             ![[ theme.tsx ]]
         </Append>
+        <Append
+            identifier="subjects"
+            type=".tsx"
+        >
+            ![[ subjects.tsx ]]
+        </Append>
     </Chapter>
 );
