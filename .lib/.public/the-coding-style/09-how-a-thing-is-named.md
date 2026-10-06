@@ -38,6 +38,20 @@ A library built on `.public` was written with classes named `BookItself`, `Liste
 6. **A file is named for the thing it documents or holds.** A chapter `N-the-<thing>.tsx`; a file beside it `N-the-<thing>~<what it holds>.tsx` — `code`, `theme`, `faces`, `views`, `entry`, `forward` — one concern each, a noun each. An appendix chapter is `oN-…`.
 7. **Flag what is still a stand-in.** A name is Doug's to keep or change; it is written where he reads, with `PROXY` beside the ones not yet his.
 
+## Nouns and annotations — when a thing is new, and when it is said of a writing
+
+**Doug, 2026-10-06, after the night's names:** *"isn't the topbar a reinterpretation of the cover? Can any other chapter really be a top bar? Maybe it's an annotation for a cover?… When do you create something new in the domain - like an Image that is categorically different - versus annotating a paragraph as First perhaps, or making an annotation that allows you to insert classes into a piece of writing. Is FirstParagraph really a component? No, I don't think so. You have to choose nouns and verbs when you write a sentence. You also have to choose how to write an object model in .public."*
+
+**The choice, in the order it is asked:**
+
+1. **Is it an existing writing seen, placed, dressed or given a role?** Then it is an **annotation said of that writing**, and its content stays the writing's. The cover as a top bar is the cover: `$TopBar extends $Cover`, so `<Cover />` in the book's cover file is the bar, and the book's one-cover rule says which chapter can be it. A paragraph that opens a chapter is *First*, an annotation on that paragraph in the chapter — never a `FirstParagraph` component, which would be a second Paragraph. A section that is a concept, a row that is an entry, a chapter that is dated, a book that is outlined, laid out as a spread, shown as a shelf: all said of what is already there. **Read it in `is()`: *this paragraph is First*.**
+2. **Does it write content of its own that no existing writing produces?** Then it is a **new writing — a noun**, categorically different as Image and Code are from Paragraph. A byline writes the author's name and link from the cover; a switch is a word whose element is a button and whose press writes `$is`; a turn writes the chapters either side; a count writes *N of M*. The framework's own precedent is Next and Previous: words that represent a property they can reach. **Test: does it have a `write()` of its own? If not, it is not a noun.**
+3. **Does an existing annotation need a look in this book?** Then it is a **face**: a subclass with a `style`, exported under the framework's name and imported by the chapter that writes it — `ManualCover`, `StoryTableOfContents`, `TopBar`, `SideBar`.
+4. **Does the book place its chapters differently?** Then it is a **type of book**: a subclass whose `write()` places, with its layout, theme and faces beside it.
+5. **Is it only values?** A theme.
+
+**What this corrected in his library:** the story's opening paragraph was found by position in code and is to be *First*, an annotation written in each chapter; and the base `Layout` rebuilt what `Paginated` already gives — `pages` and `open` overridable, as the test library's `Tabbed` uses them — where it should have extended it.
+
 ## The test
 
 Read the folder's class names as one list beside the design it builds. **Every name should be a word on the sketch or an ordinary word for what is on it; a reader of the list should be able to say what each thing is without opening a file; and nothing in the list should need a dictionary.** His: *"An implementer should be able to look at your code and understand what it is doing based on the words."*
