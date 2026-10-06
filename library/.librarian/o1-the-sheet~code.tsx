@@ -1,8 +1,8 @@
 import { ElementType, ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Format, $Writing, Given, Theme } from '@dna-platform/public';
-import { $LibraryBook, OfABookSpecification, Tab as tab, Tone as tone, WhiteOverBlack as whiteOverBlack } from '../.manual/.book';
+import { $Annotation, $Chapter, $Date, $Format, $Writing, Given, Theme, Word as word } from '@dna-platform/public';
+import { $Count, $Dated, $LibraryBook, Count as count, OfABookSpecification, Tab as tab, Tone as tone, WhiteOverBlack as whiteOverBlack } from '../.manual/.book';
 import { StoryTheme } from './o1-the-sheet~theme.tsx';
 
 export class $Paper extends $Annotation {
@@ -45,6 +45,30 @@ export const Paper = $($Paper);
 export const BookPaper = $($BookPaper);
 export const NightPaper = $($NightPaper);
 export const WhitePaper = $($WhitePaper);
+
+export class $ChapterDate extends $Date {
+    get shown(): $Date | undefined { return (this.book as $Story).open?.annotations.expressed($Dated)?.date; }
+    override get name(): string { return this.shown?.name ?? ''; }
+    override get date(): string | undefined { return this.shown?.date; }
+}
+
+export class $StoryCount extends $Count {
+    override write(): ReactNode {
+        const chapters = (this.book as $LibraryBook).pages;
+        const Word = $(word);
+        return (
+            <>
+                {'chapter '}
+                <Word>{String(chapters.indexOf(this.chapter!) + 1)}</Word>
+                {' of '}
+                <Word>{String(chapters.length)}</Word>
+            </>
+        );
+    }
+}
+
+export const ChapterDate = $($ChapterDate);
+export const StoryCount = $($StoryCount);
 
 export class $Sheet extends $Format {
     specification = new OfABookSpecification();
@@ -99,12 +123,14 @@ export class $Sheet extends $Format {
             .pa-sheet .pd-masthead {
                 display: grid;
                 grid-template-columns: auto auto;
-                grid-template-areas: 'cover byline' 'rule rule';
+                grid-template-areas: 'cover byline' 'date date' 'rule rule';
                 justify-content: center;
                 align-items: baseline;
             }
             .pa-sheet .pd-masthead .pd-paragraph.pd-byline { grid-area: byline; }
+            .pa-sheet .pd-masthead .pd-word.pd-date { grid-area: date; justify-self: center; }
             .pa-sheet .pd-masthead::after { grid-area: rule; justify-self: center; }
+            .pa-sheet .pd-leaf .pd-chapter.pa-dated .pd-word.pd-date { display: none; }
         `;
     }
 
@@ -114,7 +140,13 @@ export class $Sheet extends $Format {
                 .pd-book.pa-sheet .pd-holds { order: 1; }
                 .pd-book.pa-sheet .pd-head { order: 2; }
                 .pd-book.pa-sheet .pd-switches { gap: calc(${({ theme }) => theme.space} / 4); }
-                .pd-book.pa-sheet .pd-leaves { grid-template-columns: minmax(0, 1fr); }
+                .pd-book.pa-sheet { min-height: 100vh; }
+                .pd-book.pa-sheet .pd-leaves {
+                    flex: 1;
+                    grid-template-columns: minmax(0, 1fr);
+                    grid-template-rows: auto 1fr;
+                    align-content: stretch;
+                }
             }
         `;
     }
@@ -126,6 +158,13 @@ export class $Story extends $LibraryBook {
     get papers(): Given<$Annotation>[] {
         return [BookPaper, NightPaper, WhitePaper];
     }
+    get latest(): $Chapter | undefined {
+        const day = (chapter: $Chapter): string => chapter.annotations.expressed($Dated)?.date?.date ?? '';
+        return this.pages.reduce<$Chapter | undefined>((latest, chapter) => (latest === undefined || day(chapter) > day(latest) ? chapter : latest), undefined);
+    }
+    override get open(): $Chapter | undefined {
+        return super.open ?? this.latest;
+    }
 
     override head(): ReactNode {
         return (
@@ -136,20 +175,17 @@ export class $Story extends $LibraryBook {
     }
 
     override front(): ReactNode {
-        return (
-            <>
-                {this.masthead()}
-                {super.front()}
-            </>
-        );
+        return this.masthead();
     }
 
     masthead(): ReactNode {
         const Cover = $(this.cover!);
+        const Day = $(ChapterDate);
         return (
             <div className="pd-masthead">
                 <Cover />
                 {this.byline()}
+                <Day chapter={this.cover} />
             </div>
         );
     }
@@ -199,3 +235,4 @@ export const Story = $($Story);
 $(Story, Theme)(StoryTheme);
 $(Story, tone)(whiteOverBlack);
 $(Story, Paper)(BookPaper);
+$(Story, count)(StoryCount);

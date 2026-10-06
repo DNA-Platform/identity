@@ -6,8 +6,10 @@ import { Manual } from './10-the-manual~code.tsx';
 
 export class $ManualTheme extends $LibraryBookTheme {
     measure = '58ch';
-    side = '15.5rem';
-    colour = '#7a4a8c';
+    spreadColumn = '15.5rem';
+    colour = '#4fb3a8';
+    side = '#e3f4f1';
+    sideLine = '#c6e5df';
     ink = '#1a1f36';
     heading = '#1a1f36';
     soft = '#4f566b';

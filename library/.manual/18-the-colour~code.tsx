@@ -1,14 +1,11 @@
 import { ElementType, ReactNode } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
-import { $Chapter, $Format, $Writing, AnnotationSpecification, html, specify } from '@dna-platform/public';
+import { $Chapter, $Format, $Paragraph, $Writing, AnnotationSpecification, html, specify } from '@dna-platform/public';
 
 export class $Coloured extends $Format {
     specification = new ColouredSpecification();
     style: ElementType = selection.div<{ $colour: string }>`
-        .pd-chapter.pa-coloured .pd-title {
-            background: linear-gradient(160deg, color-mix(in srgb, ${props => props.$colour} 90%, white), color-mix(in srgb, ${props => props.$colour} 86%, black));
-        }
-        .pd-chapter.pa-coloured .pd-title::after { background: color-mix(in srgb, ${props => props.$colour} 60%, white); }
+        .pa-coloured { --colour: ${props => props.$colour}; }
     `;
     protected _painted!: ElementType;
     get colour(): string { return html.copy(this.text).trim(); }
@@ -31,9 +28,9 @@ export class $Coloured extends $Format {
 }
 
 export class ColouredSpecification extends AnnotationSpecification {
-    @specify('coloured is said of a chapter')
-    $saidOfAChapter(writing: $Writing): void {
-        $check(writing instanceof $Chapter, 'coloured is said of a chapter, and this is not one');
+    @specify('coloured is said of a chapter or a paragraph')
+    $saidOfAChapterOrAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Chapter || writing instanceof $Paragraph, 'coloured is said of a chapter or a paragraph, and this is neither');
     }
 
     @specify('coloured is given its colour')

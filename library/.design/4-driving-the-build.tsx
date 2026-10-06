@@ -22,6 +22,38 @@ export default () => (
                 then what I think solves it. The solutions are sketched in HTML before anything is coded, because
                 designing is easier in HTML, and each sketch links to the book it is for.
             </Paragraph>
+            <Paragraph>
+                And a sketch starts from comparables. When a house is sold, it is priced from the houses like
+                it; a design is drawn from the sites that already do the interaction well, with the elements
+                taken from each named, before a line of HTML is written. Nobody simply inventing a design would
+                invent two different painful blues side by side, as my story had — the night paper's indigo
+                against the frame's blue-black — and that is what inventing without a comparable produces. Each
+                sketch from here says what it is after, and what it took.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>The comparables</Heading>
+            <Paragraph>
+                For the shelf: Apple Books, which 1 is after, and the shelf apps beside it, Literal and
+                Hardcover — a shelf is scanned at a glance, the covers pop, and one line stands under each.
+                For the manual: Stripe's documentation, whose worth is the relationship between its prose and
+                its code — the code re-pins to the part being read — and whose rail is organized by object,
+                never by method, which here means by part and never by file; and Mintlify's documented system,
+                a side bar of 240 pixels, prose capped at 720, a body of 16 pixels in Inter and code of 14 in
+                a mono, borders at seven per cent, soft text at sixty, and the current item marked by the colour
+                of its text alone with nothing filled behind it. For my story: Matter's reading themes — Paper,
+                Sepia and Dawn to reduce contrast; Winter, Forest and True Black to bring richness to night
+                reading, with a hint of the reader's own palette — which is the rule that ends the two blues: a
+                dark paper carries a hint of its own book's hue and never a foreign one. For the design book:
+                Mobbin's cards, the screen first and the name under it, the open one across the whole screen
+                with a close.
+            </Paragraph>
+            <Paragraph>
+                And for the hues themselves: on the web each genre already wears one. Developer documentation
+                is indigo; reading apps are sepia and paper; the design community is rose; and the library is
+                the site's own blue-black. A book's hue means its genre, and the four share one darkness of
+                ground and one lightness of words so that they read as one house.
+            </Paragraph>
         </Section>
         <Section>
             <Heading>The library's page</Heading>
@@ -55,7 +87,7 @@ export default () => (
                 shelves, and an entry for each book filed here, marked with the book's colour, and pressing an
                 entry opens it on this page — the cover, what the book is about, and the way in. A cover on the
                 shelf goes straight to the book. Explored
-                in <Means>$[[ 32 ]]( ./The Library's Page, in the Site's Language )</Means>, not decided from
+                in <Means>$[[ 32 ]]( ./The Library's Page, in the Frame of 15 )</Means>, not decided from
                 the photograph.
             </Paragraph>
             <Paragraph>

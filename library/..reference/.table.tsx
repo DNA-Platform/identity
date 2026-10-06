@@ -1,6 +1,5 @@
-import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
-import { Index } from '../.manual/.book';
-import { TableOfContents } from './o1-the-bars~faces.tsx';
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Appendix, Index } from '../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -20,7 +19,7 @@ export default () => (
                     <Content>$[[ ./Dougs Story ]]</Content>
                 </Word>
                 <Word>
-                    <Content>[[ □ ]]( Dougs Story )**</Content>
+                    <Content>[[ → ]]( Dougs Story )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -28,7 +27,7 @@ export default () => (
                     <Content>$[[ ./Dougs Design ]]</Content>
                 </Word>
                 <Word>
-                    <Content>[[ □ ]]( Dougs Design )**</Content>
+                    <Content>[[ → ]]( Dougs Design )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -36,7 +35,7 @@ export default () => (
                     <Content>$[[ ./Dougs Reference Manual ]]</Content>
                 </Word>
                 <Word>
-                    <Content>[[ □ ]]( Dougs Reference Manual )**</Content>
+                    <Content>[[ → ]]( Dougs Reference Manual )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -53,9 +52,10 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Appendix />
             <Heading>How this book is built</Heading>
             <Paragraph>
-                <Content>$[[ ./The Bars ]]</Content>
+                <Content>$[[ ./The Catalogue ]]</Content>
             </Paragraph>
         </Section>
     </Chapter>

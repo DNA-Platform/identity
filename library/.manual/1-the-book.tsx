@@ -41,9 +41,10 @@ export default () => (
         <Section>
             <Heading>How the book is used</Heading>
             <Paragraph>
-                A type of book is a class under this one. <Means>$[[ The catalogue ]]( Dougs Library / The Bars )</Means> overrides
-                one method, what the book opens on, to put its shelf beside its synopsis, and overrides nothing
-                else; <Means>$[[ the manual ]]( ./The Manual )</Means> overrides its switches and gives itself the
+                A type of book is a class under this one. <Means>$[[ The catalogue ]]( Dougs Library / The Catalogue )</Means> overrides
+                what the book opens on, to put its shelf under its synopsis with its own cover first, its head,
+                which it leaves to its switches, and its front, which is always open, and names its entries as
+                pages; <Means>$[[ the manual ]]( ./The Manual )</Means> overrides its switches and gives itself the
                 spread that sets a chapter beside its file; <Means>$[[ my story ]]( Dougs Story / The Sheet )</Means> overrides
                 its head and its front, and <Means>$[[ the design book ]]( Dougs Design / The Frame )</Means> says
                 which chapter opens when none is named. Each is a few lines, because the frame is this class's.

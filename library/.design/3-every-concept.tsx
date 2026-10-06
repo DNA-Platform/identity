@@ -903,14 +903,15 @@ export default () => (
             </Paragraph>
             <Section>
                 <Concept>32</Concept>
-                <Heading>[[[ The Library's Page, in the Site's Language ]]]</Heading>
+                <Heading>[[[ The Library's Page, in the Frame of 15 ]]]</Heading>
                 <Paragraph>
                     <Close />
                     <Means>$[[ × ]]( ./Every Concept )</Means>
                 </Paragraph>
                 <Paragraph>
                     Concept 32, an idea, after the shelf of 1 in the frame of 15, in the language of the
-                    coming-soon page.
+                    coming-soon page; its comparables Apple Books, Literal and Hardcover for the shelf, and
+                    Mintlify's documented side bar for the current item marked by its text alone.
                 </Paragraph>
                 <Paragraph>
                     The catalogue's page with every catalogue on it given a use. The top bar holds the books
@@ -944,7 +945,9 @@ export default () => (
                     <Means>$[[ × ]]( ./Every Concept )</Means>
                 </Paragraph>
                 <Paragraph>
-                    Concept 33, an idea, after the restraint of the coming-soon page, with none of its effects.
+                    Concept 33, an idea, after the restraint of the coming-soon page, with none of its effects;
+                    its comparables the hues each genre wears on the web — documentation indigo, reading sepia,
+                    design rose — and Matter's dark themes, which carry a hint of the reader's own palette.
                 </Paragraph>
                 <Paragraph>
                     A colour scheme for each book, each a set of roles and nothing else: a deep ground that is

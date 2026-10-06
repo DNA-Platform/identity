@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Library's Page, in the Site's Language</title>
+<title>The Library's Page, in the Frame of 15</title>
 <meta name="number" content="32">
 <meta name="state" content="idea">
-<meta name="after" content="the shelf of 1 in the frame of 15, in the visual language of the coming-soon page: mostly black, one touch at the edge of noticing">
+<meta name="after" content="the shelf of 1 in the frame of 15 — a black top bar, an opal side bar, a white page — with each catalogue on the page given a use">
 <meta name="idea" content="The catalogue's page in the site's visual language rather than its elements: the black ground and the warm off-white words; a book's hue read as the dot beside its name and the hairline under it when it is open, never as a paint; its cover in its own scheme. The catalogue is the first book on its own shelf. An entry pressed in the side bar opens on this page; a cover goes to the book.">
 <meta name="said" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,17 +19,18 @@
                      It is never painted. It is an undertone in a cover's black, a dot, and a hairline under an open name.
        paper, ink    the page a book is read on, warm, and what is read on it */
     :root {
-        --ground: #0c1b1f; --words: #e8e4df; --words-dim: rgba(232, 228, 223, .55); --on-ground: rgba(232, 228, 223, .07); --ground-line: rgba(232, 228, 223, .09);
+        --ground: #0c1b1f; --words: #ffffff; --words-dim: #a9bcc1; --on-ground: rgba(255, 255, 255, .11); --ground-line: #1d3339;
+        --side: #e3f5fa; --side-line: #cbe6ee; --accent: #166178;
         --paper: #faf8f5; --ink: #1d2528; --soft: #6a7378; --line: #e5e1da; --panel: #f3f0eb;
         --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Inter', system-ui, sans-serif;
     }
     /* every other book has a scheme of its own, made by the same method (33); on this page it shows as its cover, its dot and its hairline */
-    .story, .me { --hue: 30; --own-ground: #1a1410; --own-words: #ece4d6; }
-    .design { --hue: 340; --own-ground: #1b1015; --own-words: #f0e6e8; }
-    .manual { --hue: 250; --own-ground: #100f1a; --own-words: #e4e3ee; }
+    .story, .me { --hue: 30; --c: #d9a05b; }
+    .design { --hue: 340; --c: #d487a8; }
+    .manual { --hue: 174; --c: #4fb3a8; }
     .story, .design, .manual, .me {
-        --dot: hsl(var(--hue) 32% 60%);
-        --hairline: linear-gradient(90deg, transparent, hsl(var(--hue) 40% 62% / .6), transparent);
+        --dot: var(--c);
+        --hairline: linear-gradient(90deg, transparent, var(--c), transparent);
     }
 
     * { box-sizing: border-box; margin: 0; }
@@ -43,32 +44,32 @@
     /* the bar across the top is the library's, on the ground. Nothing on it is painted; the open subject is lit by a hairline. */
     .lib { grid-area: lib; display: flex; align-items: center; gap: 6px; min-width: 0; padding: 9px 18px; background: var(--ground); color: var(--words); }
     .logo { position: relative; display: flex; align-items: center; gap: 10px; flex: none; margin-right: 12px; padding: 4px 8px 6px; border-radius: 8px; }
-    .logo i { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--ground-line); border-radius: 8px; font: 400 17px/1 var(--serif); font-style: normal; }
-    .logo b { font: 400 21px/1 var(--serif); letter-spacing: .04em; white-space: nowrap; }
+    .logo i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: #c8f4fb; color: var(--ground); font: 600 15px/1 var(--sans); font-style: normal; }
+    .logo b { font: 600 21px/1 var(--serif); white-space: nowrap; }
     .subjects { display: flex; gap: 2px; min-width: 0; }
     .s { position: relative; display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px; color: var(--words-dim); font-size: 13.5px; white-space: nowrap; }
-    .s i { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--dot); opacity: .8; }
+    .s i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--dot); }
     .s b { font-weight: 500; }
     .s.on, [data-at="library"] .logo { background: var(--on-ground); color: var(--words); }
-    .s.on::after, [data-at="library"] .logo::after { content: ''; position: absolute; left: 10px; right: 10px; bottom: 1px; height: 1px; background: var(--hairline, linear-gradient(90deg, transparent, rgba(232, 228, 223, .45), transparent)); }
+    .s.on { box-shadow: inset 0 -2px 0 var(--c); }
+    [data-at="library"] .logo { box-shadow: inset 0 -2px 0 #c8f4fb; }
     .find { display: flex; align-items: center; gap: 8px; margin-left: auto; padding: 6px 11px; border-radius: 9px; background: var(--on-ground); color: var(--words-dim); white-space: nowrap; }
     .me { display: flex; align-items: center; gap: 9px; margin-left: 14px; color: var(--words); }
-    .me i { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid hsl(var(--hue) 40% 62% / .55); border-radius: 50%; font: 400 15px/1 var(--serif); font-style: normal; }
+    .me i { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #e8590c; color: #fff; font: 600 14px/1 var(--sans); font-style: normal; }
     .me b { font-weight: 500; white-space: nowrap; }
 
-    /* the side bar holds what this book holds: its own chapter, and an entry for each book filed here. An entry opens on this page. */
-    .holds { grid-area: holds; min-width: 0; padding: 18px 12px; overflow: auto; background: var(--ground); color: var(--words); border-right: 1px solid var(--ground-line); }
-    .holds .chain { margin: 0 9px 16px; font-size: 12px; line-height: 1.4; color: var(--words-dim); }
-    .holds .chain b { display: block; margin-top: 2px; font: 400 17px/1.1 var(--serif); letter-spacing: .02em; color: var(--words); }
-    .holds h4 { margin: 0 0 8px; color: var(--words-dim); }
-    .holds a { display: flex; align-items: center; gap: 9px; padding: 6px 9px; border-radius: 8px; color: var(--words-dim); }
-    .holds a i { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--dot, var(--words-dim)); opacity: .75; }
-    .holds a.self i { background: var(--words); opacity: .7; }
+    /* the side bar is 15's opal, and holds what this book holds: its own chapter, and an entry for each book filed here. An entry opens on this page. */
+    .holds { grid-area: holds; min-width: 0; padding: 20px 12px; overflow: auto; background: var(--side); color: var(--ink); border-right: 1px solid var(--side-line); }
+    .holds .chain { margin: 0 9px 16px; font-size: 12px; line-height: 1.4; color: var(--soft); }
+    .holds .chain b { display: block; margin-top: 2px; font: 600 17px/1.1 var(--serif); color: var(--ink); }
+    .holds h4 { margin: 0 0 8px; color: var(--soft); }
+    .holds a { display: flex; align-items: center; gap: 9px; padding: 6px 9px; border-radius: 8px; color: var(--ink); }
+    .holds a i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--dot, #4e9eb9); }
+    .holds a.self i { background: var(--ground); }
     .holds a b { font-weight: 500; }
-    .holds a small { margin-left: auto; font-size: 12px; color: var(--words-dim); }
-    .holds a.on { background: var(--on-ground); color: var(--words); }
-    .holds a.on i { opacity: 1; }
-    .holds .built { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--ground-line); }
+    .holds a small { margin-left: auto; font-size: 12px; color: var(--soft); }
+    .holds a.on { background: var(--paper); color: var(--accent); }
+    .holds .built { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--side-line); }
     .holds .built a { font-size: 12.5px; padding: 4px 9px; }
 
     /* the page's head: what it is filed under, its name, who it is by, its tools */
@@ -83,7 +84,7 @@
     .tools { margin-left: auto; display: flex; align-items: center; gap: 8px; }
     .seg { display: flex; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); }
     .seg span { padding: 6px 12px; color: var(--soft); }
-    .seg span.on { background: var(--ground); color: var(--words); font-weight: 500; }
+    .seg span.on { background: var(--ground); color: #fff; font-weight: 500; }
 
     /* the page: what the book says of itself, then its shelf, then the entry that was pressed */
     .thing { grid-area: thing; min-width: 0; padding: 6px 32px 40px; overflow: auto; }
@@ -92,12 +93,13 @@
     .book p { margin-top: 8px; font-weight: 500; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .book small { color: var(--soft); font-size: 12px; }
 
-    /* a cover: the book's face, as 1 draws it. My own books are the ground; a book's hue is an undertone in that black, felt before it is seen.
-       The foot names who it is by. The book that catalogues itself is the first on the shelf, in the library's own scheme. */
-    .cover { position: relative; display: flex; flex-direction: column; aspect-ratio: 2 / 3; padding: 13px 12px 11px 16px; border-radius: 4px 7px 7px 4px; color: var(--own-words, var(--words)); background: var(--own-ground, var(--ground)); box-shadow: inset 5px 0 0 rgba(0, 0, 0, .28), inset 6px 0 0 rgba(255, 255, 255, .08), 0 10px 20px -10px rgba(0, 0, 0, .45); }
-    .cover b { font: 400 15px/1.15 var(--serif); letter-spacing: .02em; }
-    .cover i { margin-top: auto; font: 500 9.5px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; font-style: normal; opacity: .55; }
-    .cover::after { content: ''; position: absolute; left: 16px; right: 12px; top: 56%; height: 1px; background: rgba(255, 255, 255, .14); }
+    /* a cover: the book's face, as 1 draws it, in the book's hue with 1's gradient. The foot names who it is by.
+       The book that catalogues itself is the first on the shelf, in the site's own blue-black, because it is the site. */
+    .cover { position: relative; display: flex; flex-direction: column; aspect-ratio: 2 / 3; padding: 13px 12px 11px 16px; border-radius: 4px 7px 7px 4px; color: #fff; background: linear-gradient(160deg, color-mix(in srgb, var(--c, #14323c) 90%, white), color-mix(in srgb, var(--c, #0c1b1f) 86%, black)); box-shadow: inset 5px 0 0 rgba(0, 0, 0, .28), inset 6px 0 0 rgba(255, 255, 255, .08), 0 10px 20px -10px rgba(0, 0, 0, .45); }
+    .cover b { font: 600 15px/1.12 var(--serif); letter-spacing: -.005em; }
+    .cover i { margin-top: auto; font: 500 9.5px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; font-style: normal; opacity: .85; }
+    .cover::after { content: ''; position: absolute; left: 16px; right: 12px; top: 56%; height: 1px; background: rgba(255, 255, 255, .35); }
+    .cover.self { background: linear-gradient(160deg, #16303a, #0c1b1f); }
 
     /* the entry pressed in the side bar, open under the shelf: the cover large, what the book is about, and the way in */
     .entry { display: flex; gap: 26px; align-items: flex-start; padding: 22px 24px; border: 1px solid var(--line); border-radius: 16px; }
@@ -110,7 +112,7 @@
     .entry .says { margin-bottom: 14px; font-size: 18px; }
     .entry .counts { display: flex; gap: 22px; margin-bottom: 18px; font-size: 12.5px; color: var(--soft); }
     .entry .counts b { color: var(--ink); font-weight: 500; }
-    .read { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 99px; background: var(--ground); color: var(--words); font-weight: 500; white-space: nowrap; }
+    .read { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 99px; background: var(--ground); color: #fff; font-weight: 500; white-space: nowrap; }
 
     /* on a phone: the bar stays at the top, what the page holds becomes a row of pills under its name, the shelf three across */
     @media (max-width: 760px) {
@@ -122,11 +124,11 @@
         .me { position: fixed; z-index: 5; top: 0; right: 0; justify-content: center; width: 54px; height: 50px; margin: 0; background: var(--ground); }
         .sub { order: 1; flex-direction: column; align-items: stretch; padding: 16px 16px 12px; }
         h1 { font-size: 28px; white-space: normal; }
-        .holds { order: 2; display: flex; align-items: center; gap: 6px; padding: 10px 16px 12px; overflow: auto hidden; scrollbar-width: none; border-right: 0; }
+        .holds { order: 2; display: flex; align-items: center; gap: 6px; padding: 10px 16px 12px; overflow: auto hidden; scrollbar-width: none; border-right: 0; border-bottom: 1px solid var(--side-line); }
         .holds .chain, .holds h4 small { display: none; }
         .holds h4 { flex: none; margin: 0 6px 0 0; }
-        .holds a { flex: none; padding: 5px 11px 5px 9px; border: 1px solid var(--ground-line); border-radius: 99px; white-space: nowrap; }
-        .holds a.on { border-color: rgba(232, 228, 223, .3); }
+        .holds a { flex: none; padding: 5px 11px 5px 9px; border: 1px solid var(--side-line); border-radius: 99px; white-space: nowrap; }
+        .holds a.on { border-color: transparent; }
         .holds a small { margin-left: 4px; }
         .holds .built { display: contents; }
         .thing { order: 3; padding: 16px 16px 24px; }

@@ -1,9 +1,10 @@
-import { About, Author, Chapter, Subject, Title } from '@dna-platform/public';
-import { Cover } from './o1-the-bars~faces.tsx';
+import { About, Author, Chapter, Cover, Subject, Title } from '@dna-platform/public';
+import { Coloured } from '../.manual/18-the-colour~code.tsx';
 
 export default () => (
     <Chapter>
         <Cover />
+        <Coloured>#0c1b1f</Coloured>
         <Title>[[ Dougs Library ]]</Title>
         <Author>*[[ The Librarian ]]</Author>
         <Subject>**[[ The Library ]]</Subject>

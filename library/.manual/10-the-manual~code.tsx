@@ -13,7 +13,7 @@ export class $Spread extends $Format {
     style = selection.div`
         .pa-spread .pd-leaf.pd-open {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) calc(2.2 * ${({ theme }) => theme.side});
+            grid-template-columns: minmax(0, 1fr) calc(2.2 * ${({ theme }) => theme.spreadColumn});
             grid-template-areas: 'words files';
             height: 100%;
             transition: grid-template-columns ${({ theme }) => theme.beat};
@@ -31,7 +31,7 @@ export class $Spread extends $Format {
         }
         .pa-spread.pa-words-forward .pd-listing .pd-code { display: none; }
         .pa-spread.pa-words-forward .pd-words .pd-paragraph.pa-brief { display: none; }
-        .pa-spread.pa-code-forward .pd-leaf.pd-open { grid-template-columns: calc(1.4 * ${({ theme }) => theme.side}) minmax(0, 1fr); }
+        .pa-spread.pa-code-forward .pd-leaf.pd-open { grid-template-columns: calc(1.4 * ${({ theme }) => theme.spreadColumn}) minmax(0, 1fr); }
         .pa-spread.pa-code-forward .pd-words .pd-section { display: none; }
         @media (max-width: ${({ theme }) => theme.narrow}) {
             .pa-spread .pd-leaf.pd-open { display: block; height: auto; }

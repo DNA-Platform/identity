@@ -13,9 +13,10 @@ export default () => (
                 in <Means>$[[ Dougs Reference Manual ]]</Means>, each beside the chapter that says what it is.
             </Paragraph>
             <Paragraph>
-                Each of the three has a chapter here that represents it and carries its synopsis. In the table
-                of contents the name leads to that chapter, and the small square after it leads to the book
-                itself.
+                Each of the three has a chapter here that represents it and carries its synopsis: its entry,
+                drawn on the shelf as a cover with one line under it. In the contents the name opens the entry
+                on this page, and the arrow after it leads to the book itself. And this catalogue is on its own
+                shelf, first, because it is filed under what it is about, which is itself.
             </Paragraph>
         </Section>
     </Chapter>

@@ -93,7 +93,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 This book carries <Means>$[[ the sheet ]]( ./The Sheet )</Means>, and the catalogue
-                carries <Means>$[[ the two bars ]]( Dougs Library / The Bars )</Means>. Each says how its own
+                carries <Means>$[[ the two bars ]]( Dougs Library / The Catalogue )</Means>. Each says how its own
                 book is laid out.
             </Paragraph>
             <Paragraph>

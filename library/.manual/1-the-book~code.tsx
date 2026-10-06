@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
-import { $Annotation, $Append, $Book, $Chapter, $Composition, $Section, BookSpecification, Given, Theme, specify } from '@dna-platform/public';
+import { $Annotation, $Append, $Book, $Chapter, $Composition, $Reference, $Section, BookSpecification, Given, Theme, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
+import { $Appendix } from './14-the-entry~code.tsx';
 import { Dark as dark, Light as light, Tone as tone, WhiteOverBlack as whiteOverBlack } from './16-the-tone~code.tsx';
-import { Subjects } from '../..reference/o1-the-bars~subjects.tsx';
+import { Subjects } from '../..reference/o1-the-catalogue~subjects.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
 
 export class $LibraryBook extends $Book {
@@ -16,6 +17,17 @@ export class $LibraryBook extends $Book {
     }
     get placed(): ($Chapter | undefined)[] {
         return [this.cover, this.synopsis, this.table, ...this.chapters];
+    }
+    get pages(): $Chapter[] {
+        const appendix = this.appendix;
+        return this.chapters.filter(chapter => !appendix.includes(chapter));
+    }
+    get appendix(): $Chapter[] {
+        const table = this.table;
+        if (table === undefined) return [];
+        const places = table.text.find($Section).filter(section => section.is($Appendix))
+            .flatMap(section => section.text.find($Reference).map(reference => reference.identifier));
+        return this.chapters.filter(chapter => places.includes(chapter.mention?.identifier ?? ''));
     }
     get open(): $Chapter | undefined {
         return this.$bookmark === undefined ? undefined : this.named(this.$bookmark);
@@ -175,7 +187,7 @@ export class $LibraryBook extends $Book {
 
     protected override $Bound(): void {
         const Turn = $(turn);
-        for (const chapter of this.chapters)
+        for (const chapter of this.pages)
             chapter.text.add(this,
                 <Turn />
             );

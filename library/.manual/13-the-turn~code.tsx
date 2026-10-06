@@ -5,7 +5,7 @@ import type { $LibraryBook } from './1-the-book~code.tsx';
 
 export class $Count extends $Word {
     override write(): ReactNode {
-        const chapters = (this.book as $LibraryBook).chapters;
+        const chapters = (this.book as $LibraryBook).pages;
         return `${chapters.indexOf(this.chapter!) + 1} of ${chapters.length}`;
     }
 
@@ -53,11 +53,11 @@ export const After = $($After);
 
 export class $Turn extends $Paragraph {
     get before(): $Chapter {
-        const chapters = (this.book as $LibraryBook).chapters;
+        const chapters = (this.book as $LibraryBook).pages;
         return chapters[chapters.indexOf(this.chapter!) - 1] ?? this.chapter!;
     }
     get after(): $Chapter {
-        const chapters = (this.book as $LibraryBook).chapters;
+        const chapters = (this.book as $LibraryBook).pages;
         return chapters[chapters.indexOf(this.chapter!) + 1] ?? this.chapter!;
     }
 

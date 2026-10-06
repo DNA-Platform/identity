@@ -1,4 +1,4 @@
-import { ElementType } from 'react';
+import { ElementType, ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $, selection } from '@dna-platform/chemistry';
 import { $Chapter, $Paginated, $Writing } from '@dna-platform/public';
@@ -8,9 +8,27 @@ import { OfABookSpecification } from './1-the-book~said.tsx';
 export class $Layout extends $Paginated {
     override specification = new OfABookSpecification();
     themeProvider = true;
-    style: ElementType = selection.div`${this.parts()}`;
-    override get pages(): $Chapter[] { return (this.book as $LibraryBook).chapters; }
+    style: ElementType = selection.div<{ $at?: string }>`
+        ${this.parts()}
+        .pa-dark .pd-subjects .pd-paragraph:has(> .pa-reference[href='${props => props.$at}']) {
+            background: ${({ theme }) => theme.barOn};
+            color: ${({ theme }) => theme.barInk};
+            box-shadow: inset 0 -2px 0 var(--colour, ${({ theme }) => theme.barDim});
+        }
+        .pa-light .pd-subjects .pd-paragraph:has(> .pa-reference[href='${props => props.$at}']), .pa-white-over-black .pd-subjects .pd-paragraph:has(> .pa-reference[href='${props => props.$at}']) {
+            background: ${({ theme }) => theme.side};
+            color: ${({ theme }) => theme.ink};
+            box-shadow: inset 0 -2px 0 var(--colour, ${({ theme }) => theme.soft});
+        }
+    `;
+    override get pages(): $Chapter[] { return (this.book as $LibraryBook).pages; }
     override get open(): $Chapter | undefined { return (this.book as $LibraryBook).open; }
+
+    protected override $Bound(): void {
+        const Here = this.style;
+        this.style = (props: { children?: ReactNode }) => <Here $at={(this.book as $LibraryBook).means?.identifier} {...props} />;
+        super.$Bound();
+    }
 
     override defines(writing: $Writing): void {
         for (const annotation of writing.annotations.after(this))

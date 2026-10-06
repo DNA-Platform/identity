@@ -1,5 +1,5 @@
 import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
-import { Index } from '../.manual/.book';
+import { Appendix, Index } from '../.manual/.book';
 import { TableOfContents } from './o5-the-frame~faces.tsx';
 
 export default () => (
@@ -62,6 +62,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Appendix />
             <Heading>How this book is built</Heading>
             <Paragraph>
                 <Content>$[[ ./The Paragraphs ]]</Content>

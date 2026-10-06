@@ -1,6 +1,25 @@
-import { $, selection } from '@dna-platform/chemistry';
-import { $Format, $Writing } from '@dna-platform/public';
+import { $, $check, selection } from '@dna-platform/chemistry';
+import { $Annotation, $Format, $Paragraph, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 import { OfABookSpecification } from '../.manual/.book';
+
+export class $Caption extends $Annotation {
+    specification = new CaptionSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-caption');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class CaptionSpecification extends AnnotationSpecification {
+    @specify('a caption is said of a paragraph')
+    $saidOfAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Paragraph, 'a caption is said of a paragraph, and this is not one');
+    }
+}
 
 export class $View extends $Format {
     specification = new OfABookSpecification();
@@ -39,3 +58,4 @@ export class $Shelf extends $View {
 }
 
 export const Shelf = $($Shelf);
+export const Caption = $($Caption);

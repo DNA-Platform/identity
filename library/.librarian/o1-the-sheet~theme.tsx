@@ -6,7 +6,10 @@ export class $StoryTheme extends $LibraryBookTheme {
     prose = "Georgia, 'Iowan Old Style', 'Times New Roman', serif";
     mono = 'ui-monospace, Menlo, Consolas, monospace';
     narrow = '45rem';
-    colour = '#e8590c';
+    colour = '#d9a05b';
+    accent = '#8a5a1e';
+    side = '#f7ebd9';
+    sideLine = '#e9d8bd';
 
     protected override parts(): RuleSet[] {
         return [...super.parts(), this.ground(), this.chips(), this.sheet(), this.masthead(), this.letterpress(), this.front(), this.foot(), this.phone()];
@@ -148,6 +151,7 @@ export class $StoryTheme extends $LibraryBookTheme {
                 text-decoration-thickness: calc(${({ theme }) => theme.space} / 12);
                 text-underline-offset: calc(${({ theme }) => theme.space} / 6);
             }
+            .pa-sheet .pd-masthead .pd-word.pd-date { margin-block-start: calc(${({ theme }) => theme.space} * 0.25); }
             .pa-sheet .pd-masthead::after {
                 content: '';
                 width: calc(${({ theme }) => theme.space} * 2.3333);
@@ -240,33 +244,33 @@ export class $StoryTheme extends $LibraryBookTheme {
             }
             .pa-sheet .pd-turn .pd-word.pa-after { display: block; text-align: end; }
             .pa-sheet .pd-turn .pa-self-reference { visibility: hidden; }
-            .pa-sheet .pd-chapter.pa-dated .pd-word.pd-date {
-                display: block;
-                margin-block-start: calc(${({ theme }) => theme.space} * 0.75);
-                font-family: ${({ theme }) => theme.mono};
-                font-size: calc(0.7586 * ${({ theme }) => theme.size});
-                letter-spacing: 0.08em;
-                text-align: center;
-                text-transform: uppercase;
+            .pa-sheet .pd-turn .pd-count .pd-word {
+                font-size: calc(0.8621 * ${({ theme }) => theme.size});
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                text-transform: none;
             }
             .pa-book-paper .pd-leaf:not(.pd-front) .pd-paragraph.pd-turn {
                 color: ${({ theme }) => theme.bookFoot};
                 border-block-start-color: ${({ theme }) => theme.bookFootLine};
             }
             .pa-book-paper .pd-leaf:not(.pd-front) .pd-paragraph.pd-turn .pa-reference { color: ${({ theme }) => theme.bookFootValue}; }
-            .pa-book-paper .pd-turn .pd-word.pd-count, .pa-book-paper .pd-chapter.pa-dated .pd-word.pd-date { color: ${({ theme }) => theme.bookFoot}; }
+            .pa-book-paper .pd-turn .pd-word.pd-count { color: ${({ theme }) => theme.bookFoot}; }
+            .pa-book-paper .pd-turn .pd-count .pd-word { color: ${({ theme }) => theme.bookFootValue}; }
             .pa-night-paper .pd-leaf:not(.pd-front) .pd-paragraph.pd-turn {
                 color: ${({ theme }) => theme.nightFoot};
                 border-block-start-color: ${({ theme }) => theme.nightFootLine};
             }
             .pa-night-paper .pd-leaf:not(.pd-front) .pd-paragraph.pd-turn .pa-reference { color: ${({ theme }) => theme.nightFootValue}; }
-            .pa-night-paper .pd-turn .pd-word.pd-count, .pa-night-paper .pd-chapter.pa-dated .pd-word.pd-date { color: ${({ theme }) => theme.nightFoot}; }
+            .pa-night-paper .pd-turn .pd-word.pd-count { color: ${({ theme }) => theme.nightFoot}; }
+            .pa-night-paper .pd-turn .pd-count .pd-word { color: ${({ theme }) => theme.nightFootValue}; }
             .pa-white-paper .pd-leaf:not(.pd-front) .pd-paragraph.pd-turn {
                 color: ${({ theme }) => theme.whiteFoot};
                 border-block-start-color: ${({ theme }) => theme.whiteFootLine};
             }
             .pa-white-paper .pd-leaf:not(.pd-front) .pd-paragraph.pd-turn .pa-reference { color: ${({ theme }) => theme.whiteFootValue}; }
-            .pa-white-paper .pd-turn .pd-word.pd-count, .pa-white-paper .pd-chapter.pa-dated .pd-word.pd-date { color: ${({ theme }) => theme.whiteFoot}; }
+            .pa-white-paper .pd-turn .pd-word.pd-count { color: ${({ theme }) => theme.whiteFoot}; }
+            .pa-white-paper .pd-turn .pd-count .pd-word { color: ${({ theme }) => theme.whiteFootValue}; }
         `;
     }
 

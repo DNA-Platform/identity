@@ -6,95 +6,98 @@
 <title>Four Schemes</title>
 <meta name="number" content="33">
 <meta name="state" content="idea">
-<meta name="after" content="the restraint of the coming-soon page, applied once per book, with none of its effects">
-<meta name="idea" content="A colour scheme for each book, each a set of roles: a deep ground that is never pure black and has an undertone of its own; words in an off-white of the opposite temperature; a hairline as the only rule; a dot; a paper and an ink of its own to read on. Each is shown as it works — the library's bar with the book lit, the book's contents, its page, its cover. The library's is the site's own. The other three are first proposals.">
+<meta name="after" content="the pairing of 15 — a black top bar, a blue side bar, a white page — with the side bar's blue become each book's pale hue; the comparables Apple Books and Literal for the shelf, Mintlify and Stripe for documentation, Matter for reading, borrowed literally where they give a value">
+<meta name="idea" content="A colour scheme for each book, on the frame of 15: the library's bar black across the top, the side bar in the book's pale hue as 15's is opal, the page white. One ink in steps — text, soft text at sixty per cent, borders at seven. One accent per book, read as the current item's text and as the dot beside its name, never as a fill. A cover in the book's hue, with 1's own gradient. The catalogue's cover is the site's blue-black, one dark book among light ones, because it is the site. Night is an option, tinted with the book's hue.">
 <meta name="said" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-    /* ---- the roles every scheme fills. Nothing here is an effect; each role is read somewhere. ----
-       ground      the bars: a deep colour, never pure black, with an undertone of its own
-       words       what is read on the ground: an off-white of the opposite temperature, and a dimmer step of it
-       hue         the book's one hue, read as its dot beside a name and as the hairline under the open one
-       paper, ink  what the book is read on, and what is read on it; soft and line follow */
-    .library { --ground: #0c1b1f; --words: #e8e4df; --hue: 200 30% 62%; --paper: #faf8f5; --ink: #1d2528; --soft: #6a7378; --line: #e5e1da; }
-    .story { --ground: #1a1410; --words: #ece4d6; --hue: 30 36% 60%; --paper: #fbf9f3; --ink: #29251d; --soft: #8a8070; --line: #e4ddc9; }
-    .manual { --ground: #100f1a; --words: #e4e3ee; --hue: 250 34% 66%; --paper: #fbfbfd; --ink: #1e1d2b; --soft: #6c6a80; --line: #e3e1ec; }
-    .design { --ground: #1b1015; --words: #f0e6e8; --hue: 340 32% 66%; --paper: #ffffff; --ink: #221a1e; --soft: #7a6b71; --line: #ebe3e6; }
+    /* ---- the roles every scheme fills, light by default ----
+       paper, ink   the page and what is read on it; soft and line are steps of the ink: 60% and 7% (Mintlify)
+       chrome       the side bar's ground: 15's opal for the library, and each other book's pale hue — the blue side bar, relative to the black top bar
+       accent       the book's hue as text on paper: the current item, a link's underline, the dot (Mintlify: the current item by its text alone)
+       hue          the book's hue as a cover: 1's gradient, color-mix(hue 90% white) to color-mix(hue 86% black)
+       night        the top bar's black, the site's own, the same on every book: black on one bar, relative to the pale side bar beside it and the white page under it */
+    .library { --paper: #ffffff; --ink: #10252c; --chrome: #e3f5fa; --accent: #166178; --hue: #4e9eb9; --night: #0c1b1f; }
+    .story { --paper: #fbf9f3; --ink: #29251d; --chrome: #f7ebd9; --accent: #8a5a1e; --hue: #d9a05b; --night: #0c1b1f; }
+    .manual { --paper: #fcfcfe; --ink: #1a1f36; --chrome: #e3f4f1; --accent: #0a7a70; --hue: #4fb3a8; --night: #0c1b1f; }
+    .design { --paper: #ffffff; --ink: #221a1e; --chrome: #fae9f0; --accent: #a83a66; --hue: #d487a8; --night: #0c1b1f; }
+    .scheme { --soft: color-mix(in srgb, var(--ink) 60%, transparent); --line: color-mix(in srgb, var(--ink) 8%, transparent); --lit: color-mix(in srgb, var(--ink) 6%, transparent); --tint: color-mix(in srgb, var(--accent) 9%, transparent); }
 
     * { box-sizing: border-box; margin: 0; }
-    body { padding: 28px 32px 40px; background: #f4f2ee; color: #1d2528; font: 400 14px/1.5 'Inter', system-ui, sans-serif; }
-    h1 { font: 400 30px/1.1 'Cormorant Garamond', Georgia, serif; letter-spacing: .02em; }
-    .sub { margin: 4px 0 22px; font-size: 13px; color: #6a7378; max-width: 78ch; }
+    body { padding: 28px 32px 40px; background: #eeedea; color: #10252c; font: 400 14px/1.5 'Inter', system-ui, sans-serif; }
+    h1 { font: 500 30px/1.1 'Cormorant Garamond', Georgia, serif; letter-spacing: .01em; }
+    .sub { margin: 4px 0 22px; font-size: 13px; color: #516770; max-width: 80ch; }
     .schemes { display: grid; gap: 18px; }
-    .scheme { border-radius: 14px; overflow: hidden; background: var(--paper); color: var(--ink); box-shadow: 0 10px 24px -16px rgba(12, 27, 31, .35); }
+    .scheme { border-radius: 14px; overflow: hidden; background: var(--paper); color: var(--ink); box-shadow: 0 1px 0 rgba(0, 0, 0, .04), 0 12px 28px -18px rgba(12, 27, 31, .3); }
 
-    /* the library's bar, with this book lit */
-    .bar { display: flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--ground); color: var(--words); }
-    .bar .logo { display: flex; align-items: center; gap: 9px; margin-right: 10px; }
-    .bar .logo i { display: grid; place-items: center; width: 26px; height: 26px; border: 1px solid rgba(255, 255, 255, .12); border-radius: 7px; font: 400 15px/1 'Cormorant Garamond', Georgia, serif; font-style: normal; }
-    .bar .logo b { font: 400 18px/1 'Cormorant Garamond', Georgia, serif; letter-spacing: .04em; }
-    .bar a { position: relative; display: flex; align-items: center; gap: 7px; padding: 6px 9px; border-radius: 7px; font-size: 12.5px; opacity: .6; }
-    .bar a i { width: 6px; height: 6px; border-radius: 50%; background: hsl(var(--hue)); }
-    .bar a.on { background: rgba(255, 255, 255, .07); opacity: 1; }
-    .bar a.on::after { content: ''; position: absolute; left: 9px; right: 9px; bottom: 1px; height: 1px; background: linear-gradient(90deg, transparent, hsl(var(--hue) / .7), transparent); }
+    /* the library's bar, black across the top as 15 has it, this book lit by its text and an underline in its hue */
+    .bar { display: flex; align-items: center; gap: 4px; padding: 8px 16px; background: var(--night); color: #fff; }
+    .bar .logo { display: flex; align-items: center; gap: 9px; margin-right: 12px; }
+    .bar .logo i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 7px; background: #c8f4fb; color: var(--night); font: 600 14px/1 'Inter'; font-style: normal; }
+    .bar .logo b { font: 500 18px/1 'Cormorant Garamond', Georgia, serif; letter-spacing: .02em; }
+    .bar a { display: flex; align-items: center; gap: 7px; padding: 6px 9px; border-radius: 7px; font-size: 12.5px; color: #a9bcc1; }
+    .bar a i { width: 6px; height: 6px; border-radius: 50%; background: var(--hue); }
+    .bar a.on { background: rgba(255, 255, 255, .11); color: #fff; font-weight: 500; box-shadow: inset 0 -2px 0 var(--hue); }
 
-    /* under it: the book's contents, its page, its cover and its roles */
-    .page { display: grid; grid-template-columns: 170px minmax(0, 1fr) 232px; }
-    .holds { padding: 16px 10px; background: var(--ground); color: var(--words); border-right: 1px solid rgba(255, 255, 255, .08); }
-    .holds h4 { margin: 0 8px 8px; font: 600 10px/1 'Inter'; letter-spacing: .12em; text-transform: uppercase; opacity: .55; }
-    .holds a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 7px; font-size: 12.5px; opacity: .6; }
-    .holds a i { width: 6px; height: 6px; border-radius: 50%; background: hsl(var(--hue)); }
-    .holds a small { margin-left: auto; font-size: 11px; opacity: .7; }
-    .holds a.on { background: rgba(255, 255, 255, .07); opacity: 1; }
+    /* under it: the book's contents on the chrome, its page, its cover and its roles */
+    .page { display: grid; grid-template-columns: 180px minmax(0, 1fr) 232px; }
+    .holds { padding: 16px 10px; background: var(--chrome); border-right: 1px solid color-mix(in srgb, var(--hue) 30%, transparent); }
+    .holds h4 { margin: 0 8px 8px; font: 600 10px/1 'Inter'; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+    .holds a { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 7px; font-size: 12.5px; color: var(--ink); }
+    .holds a i { width: 6px; height: 6px; border-radius: 50%; background: var(--hue); }
+    .holds a small { margin-left: auto; font-size: 11px; color: var(--soft); }
+    .holds a.on { background: var(--paper); color: var(--accent); font-weight: 500; }
     .words { padding: 22px 26px 26px; }
-    .words h2 { font: 400 26px/1.1 'Cormorant Garamond', Georgia, serif; letter-spacing: .02em; }
-    .words small { display: block; margin: 4px 0 12px; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
-    .words p { max-width: 48ch; font: 400 15.5px/1.6 'Cormorant Garamond', Georgia, serif; }
-    .words p a { color: var(--ink); text-decoration: underline; text-decoration-color: hsl(var(--hue)); text-underline-offset: 3px; }
-    .words hr { width: 120px; height: 1px; margin: 16px 0 0; border: 0; background: linear-gradient(90deg, hsl(var(--hue) / .6), transparent); }
+    .words h2 { font: 500 26px/1.1 'Cormorant Garamond', Georgia, serif; letter-spacing: .01em; }
+    .words small { display: block; margin: 4px 0 12px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
+    .words p { max-width: 48ch; font: 400 16px/1.6 'Cormorant Garamond', Georgia, serif; }
+    .words p a { color: var(--accent); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent); text-underline-offset: 3px; }
+    .words .night { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 6px 10px; border-radius: 7px; background: var(--night); color: #fff; font-size: 11.5px; }
+    .words .night i { width: 6px; height: 6px; border-radius: 50%; background: var(--hue); }
 
     .roles { display: grid; grid-template-columns: auto 1fr; align-items: center; align-content: start; gap: 7px 12px; padding: 18px 18px 18px 16px; border-left: 1px solid var(--line); font-size: 11.5px; white-space: nowrap; }
-    .roles .cover { display: flex; flex-direction: column; grid-row: span 6; width: 66px; aspect-ratio: 2 / 3; padding: 8px 7px 6px 10px; border-radius: 3px 5px 5px 3px; background: var(--ground); color: var(--words); box-shadow: inset 3px 0 0 rgba(0, 0, 0, .28), inset 4px 0 0 rgba(255, 255, 255, .08), 0 8px 14px -8px rgba(0, 0, 0, .5); }
-    .roles .cover b { font: 400 10.5px/1.15 'Cormorant Garamond', Georgia, serif; letter-spacing: .02em; }
-    .roles .cover i { margin-top: auto; font: 500 6px/1.2 'Inter'; letter-spacing: .08em; text-transform: uppercase; font-style: normal; opacity: .6; }
+    .roles .cover { display: flex; flex-direction: column; grid-row: span 6; width: 66px; aspect-ratio: 2 / 3; padding: 8px 7px 6px 10px; border-radius: 3px 5px 5px 3px; color: #fff; background: linear-gradient(160deg, color-mix(in srgb, var(--hue) 90%, white), color-mix(in srgb, var(--hue) 86%, black)); box-shadow: inset 3px 0 0 rgba(0, 0, 0, .14), inset 4px 0 0 rgba(255, 255, 255, .12), 0 8px 14px -8px rgba(0, 0, 0, .45); }
+    .library .roles .cover { background: linear-gradient(160deg, #16303a, var(--night)); }
+    .roles .cover b { font: 600 10.5px/1.15 'Cormorant Garamond', Georgia, serif; }
+    .roles .cover i { margin-top: auto; font: 500 6px/1.2 'Inter'; letter-spacing: .08em; text-transform: uppercase; font-style: normal; opacity: .85; }
     .role { display: flex; align-items: center; gap: 7px; color: var(--soft); }
     .role i { flex: none; width: 14px; height: 14px; border-radius: 4px; border: 1px solid rgba(0, 0, 0, .08); }
     .role b { font-weight: 500; color: var(--ink); }
-    .role.ground i { background: var(--ground); }
-    .role.wordsr i { background: var(--words); }
-    .role.hue i { background: hsl(var(--hue)); }
-    .role.hair i { height: 2px; border: 0; background: linear-gradient(90deg, transparent, hsl(var(--hue) / .7), transparent); }
     .role.paper i { background: var(--paper); }
     .role.ink i { background: var(--ink); }
+    .role.chrome i { background: var(--chrome); }
+    .role.accent i { background: var(--accent); }
+    .role.hue i { background: var(--hue); }
+    .role.nightr i { background: var(--night); }
 
     @media (max-width: 760px) {
         body { padding: 16px; }
         .bar { overflow: auto hidden; scrollbar-width: none; }
         .bar a { white-space: nowrap; }
         .page { grid-template-columns: minmax(0, 1fr); }
-        .holds { display: flex; gap: 6px; padding: 10px 12px; overflow: auto hidden; scrollbar-width: none; border-right: 0; }
+        .holds { display: flex; gap: 6px; padding: 10px 12px; overflow: auto hidden; scrollbar-width: none; border-right: 0; border-bottom: 1px solid var(--line); }
         .holds h4 { display: none; }
-        .holds a { flex: none; border: 1px solid rgba(255, 255, 255, .1); border-radius: 99px; white-space: nowrap; }
+        .holds a { flex: none; border: 1px solid var(--line); border-radius: 99px; white-space: nowrap; background: var(--paper); }
         .roles { border-left: 0; border-top: 1px solid var(--line); }
     }
 </style>
 </head>
 <body>
 <h1>Four schemes</h1>
-<p class="sub">A scheme for each book, each a set of roles and nothing else: a deep ground with an undertone, words of the opposite temperature, one hue read as a dot and a hairline, a paper and an ink. Shown as each works. The library's is the site's own; the others are first proposals.</p>
+<p class="sub">On the frame of 15: the library's bar black across the top, the side bar in the book's pale hue as 15's is opal, the page white. One ink in steps; one accent per book, read as the current item's text and as a dot; a cover in the book's hue with 1's gradient. The library's cover is the site's blue-black, the one dark book, because it is the site.</p>
 
 <div class="schemes">
     <section class="scheme library">
         <header class="bar"><span class="logo"><i>D</i><b>Dougs Library</b></span><a class="on"><i></i>Dougs Library</a><a><i></i>Dougs Story</a><a><i></i>Dougs Design</a><a><i></i>Dougs Reference Manual</a></header>
         <div class="page">
             <aside class="holds"><h4>Holds</h4><a class="on"><i></i>The Shelves</a><a><i></i>Dougs Story<small>4</small></a><a><i></i>Dougs Design<small>4</small></a><a><i></i>Dougs Reference Manual<small>18</small></a></aside>
-            <div class="words"><h2>The Shelves</h2><small>Dougs Library · chapter 1</small><p>Everything I keep is filed under this catalogue, directly or through another book, and the shelf is where I pick a book up by its face. My own account is <a>Dougs Story</a>.</p><hr></div>
+            <div class="words"><h2>The Shelves</h2><small>Dougs Library · chapter 1</small><p>Everything I keep is filed under this catalogue, directly or through another book, and the shelf is where I pick a book up by its face. My own account is <a>Dougs Story</a>.</p></div>
             <div class="roles">
                 <span class="cover"><b>Dougs Library</b><i>The Librarian</i></span>
-                <span class="role ground"><i></i><b>ground</b> blue-black</span><span class="role wordsr"><i></i><b>words</b> warm</span>
-                <span class="role hue"><i></i><b>hue</b> sky</span><span class="role hair"><i></i><b>hairline</b> sky</span>
-                <span class="role paper"><i></i><b>paper</b> warm white</span><span class="role ink"><i></i><b>ink</b> slate</span>
+                <span class="role paper"><i></i><b>paper</b> white</span><span class="role ink"><i></i><b>ink</b> slate</span>
+                <span class="role chrome"><i></i><b>side bar</b> opal</span><span class="role accent"><i></i><b>accent</b> deep blue</span>
+                <span class="role hue"><i></i><b>hue</b> sea</span><span class="role nightr"><i></i><b>top bar</b> the site's black</span>
             </div>
         </div>
     </section>
@@ -103,12 +106,12 @@
         <header class="bar"><span class="logo"><i>D</i><b>Dougs Library</b></span><a class="on"><i></i>Dougs Story</a><a><i></i>Dougs Design</a><a><i></i>Dougs Reference Manual</a></header>
         <div class="page">
             <aside class="holds"><h4>Holds</h4><a class="on"><i></i>Starting Over<small>1</small></a><a><i></i>Choosing a Design<small>2</small></a><a><i></i>Closure<small>3</small></a><a><i></i>Ghost-Writing<small>4</small></a></aside>
-            <div class="words"><h2>Starting Over</h2><small>Dougs Story · 30 September 2026</small><p>We are starting from scratch. The library I had was never a design, and nothing of it is lifted unless I point at it. What I keep is catalogued in <a>Dougs Library</a>.</p><hr></div>
+            <div class="words"><h2>Starting Over</h2><small>Dougs Story · 30 September 2026</small><p>We are starting from scratch. The library I had was never a design, and nothing of it is lifted unless I point at it. What I keep is catalogued in <a>Dougs Library</a>.</p></div>
             <div class="roles">
                 <span class="cover"><b>Dougs Story</b><i>The Librarian</i></span>
-                <span class="role ground"><i></i><b>ground</b> umber black</span><span class="role wordsr"><i></i><b>words</b> cream</span>
-                <span class="role hue"><i></i><b>hue</b> amber</span><span class="role hair"><i></i><b>hairline</b> amber</span>
                 <span class="role paper"><i></i><b>paper</b> book</span><span class="role ink"><i></i><b>ink</b> sepia</span>
+                <span class="role chrome"><i></i><b>side bar</b> pale amber</span><span class="role accent"><i></i><b>accent</b> umber</span>
+                <span class="role hue"><i></i><b>hue</b> amber</span><span class="role nightr"><i></i><b>top bar</b> the site's black</span>
             </div>
         </div>
     </section>
@@ -117,12 +120,12 @@
         <header class="bar"><span class="logo"><i>D</i><b>Dougs Library</b></span><a><i></i>Dougs Story</a><a><i></i>Dougs Design</a><a class="on"><i></i>Dougs Reference Manual</a></header>
         <div class="page">
             <aside class="holds"><h4>Holds</h4><a class="on"><i></i>The Book<small>1</small></a><a><i></i>The Theme<small>3</small></a><a><i></i>The Layout<small>12</small></a><a><i></i>The Turn<small>13</small></a></aside>
-            <div class="words"><h2>The Book</h2><small>Dougs Reference Manual · 1-the-book~code.tsx</small><p>A book of this library draws five regions of its own and places its chapters in them; a type of book says what it holds and how it is read. The theme it reads from is <a>The Theme</a>.</p><hr></div>
+            <div class="words"><h2>The Book</h2><small>Dougs Reference Manual · 1-the-book~code.tsx</small><p>A book of this library draws five regions of its own and places its chapters in them; a type of book says what it holds and how it is read. The theme it reads from is <a>The Theme</a>.</p></div>
             <div class="roles">
                 <span class="cover"><b>Dougs Reference Manual</b><i>The Librarian</i></span>
-                <span class="role ground"><i></i><b>ground</b> ink violet</span><span class="role wordsr"><i></i><b>words</b> cool</span>
-                <span class="role hue"><i></i><b>hue</b> lavender</span><span class="role hair"><i></i><b>hairline</b> lavender</span>
-                <span class="role paper"><i></i><b>paper</b> cool white</span><span class="role ink"><i></i><b>ink</b> indigo</span>
+                <span class="role paper"><i></i><b>paper</b> cool white</span><span class="role ink"><i></i><b>ink</b> navy ink</span>
+                <span class="role chrome"><i></i><b>side bar</b> pale teal</span><span class="role accent"><i></i><b>accent</b> teal</span>
+                <span class="role hue"><i></i><b>hue</b> sea green</span><span class="role nightr"><i></i><b>top bar</b> the site's black</span>
             </div>
         </div>
     </section>
@@ -131,12 +134,12 @@
         <header class="bar"><span class="logo"><i>D</i><b>Dougs Library</b></span><a><i></i>Dougs Story</a><a class="on"><i></i>Dougs Design</a><a><i></i>Dougs Reference Manual</a></header>
         <div class="page">
             <aside class="holds"><h4>Holds</h4><a><i></i>The Designs I Am Going With<small>1</small></a><a><i></i>What I Am Asked<small>2</small></a><a class="on"><i></i>Every Concept<small>3</small></a><a><i></i>Driving the Build<small>4</small></a></aside>
-            <div class="words"><h2>Every Concept</h2><small>Dougs Design · by number</small><p>Every concept here has a number, and keeps it. Each is shown as it looks at a desk and on a phone, and I answer by its number. What I found driving the build is in <a>Driving the Build</a>.</p><hr></div>
+            <div class="words"><h2>Every Concept</h2><small>Dougs Design · by number</small><p>Every concept here has a number, and keeps it. Each is shown as it looks at a desk and on a phone, and I answer by its number. What I found driving the build is in <a>Driving the Build</a>.</p></div>
             <div class="roles">
                 <span class="cover"><b>Dougs Design</b><i>The Librarian</i></span>
-                <span class="role ground"><i></i><b>ground</b> rose black</span><span class="role wordsr"><i></i><b>words</b> blush</span>
-                <span class="role hue"><i></i><b>hue</b> rose</span><span class="role hair"><i></i><b>hairline</b> rose</span>
-                <span class="role paper"><i></i><b>paper</b> white</span><span class="role ink"><i></i><b>ink</b> plum</span>
+                <span class="role paper"><i></i><b>paper</b> white</span><span class="role ink"><i></i><b>ink</b> plum ink</span>
+                <span class="role chrome"><i></i><b>side bar</b> pale rose</span><span class="role accent"><i></i><b>accent</b> deep rose</span>
+                <span class="role hue"><i></i><b>hue</b> rose</span><span class="role nightr"><i></i><b>top bar</b> the site's black</span>
             </div>
         </div>
     </section>
