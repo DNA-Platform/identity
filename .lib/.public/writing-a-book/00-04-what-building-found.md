@@ -56,10 +56,19 @@ A line each: a rule that held or a thing that bit, and where it is caught. The r
 - **At runtime `TableOfContents.contents` answers the chapters' own mentions and not the rows naming other books**, so a subject's books are presented by the table and not yet exposed.
 - **A rule that a catalogue must hold a chapter for each book was tried and withdrawn.** Doug: *"I don't know how we'd validate that books have chapters, and I am worried that you might be looking for components."* The chapter is the library's choice; the link is the compiler's rule.
 
+## What the bookshelf's build found — 2026-10-07
+
+- **A chapter held in an annotation's field and never appended has run its `$Define`**, since a chemical defines itself at its construction: `Author` has its `means`, `Scheme` its colours, the drawing its markup, all read off a held cover. What a held chapter has not had is `$Bound`, which the book walks only through its text — a held cover's `BookLink` would not know its book.
+- **A thing said of a cover with several values takes them as props, which land on `$`-fields** — `<Scheme ground="…" band="…" />` is `$ground`, `$band`, as `Append`'s `identifier` is `$identifier` — and sets them where the thing is drawn through a styled wrapper bound to the instance, `Coloured`'s device: the cover's own element through `defines`, and anything drawn *from* the cover by wrapping the drawing in the scheme's `painted`. A theme then reads `var(--band)` and knows no book by name.
+- **The type of book stands in the manual and the library's door is one line** — `export default class $Library extends $Catalogue { }` — the registrations on the type inherited, as the manual's own door has always been. A theme that reads a class an annotation puts on belongs in the same chapter as that annotation, or a second library cannot wear it.
+- **A theme part named for a value of the base is the shadowing the previous build warned of, met again**: `bar()` beside `bar = '#0c1b1f'` threw *this.bar is not a function* at the first draw. Read the base's fields before naming a part.
+- **The base's `pages` leaves the appendix out** — it is what the turn walks — **and a `leaves()` that walks `pages` never draws an appendix chapter.** Leaves are drawn from `chapters`; the turn from `pages`.
+- **Two escapes from the rule against combinators, both position-free.** A child that must fill its parent's height without `> *`: the parent `display: grid; grid-template-rows: minmax(0, 1fr)` stretches its one child. A hover that must reach a sibling region: `.pd-library:has(.pd-filed:hover) .pd-logo`, the one combinator that reads as a sentence about the bar, and the one the base's layout already uses.
+- **A heading repeated across two chapters of a manual is an id worn twice on its page** — *What a cover says* stood in two chapters; the proof refused the page. Name a section for its chapter.
+
 ## Open
 
 - **How the canonical type of chapter is asked for in code.** The base asks `[...chapter.classes].includes('pd-canonical')`, since the framework has no getter and *every chapter but the cover, the synopsis and the table* is a remainder.
-- **Whether a chapter held in a field and never appended runs its `$Define`** — where `Author` gains its `means`. The port of the bookshelf measures it first.
 - **How a library's own classes are promised.** His library has no test; the test library's two stand beside the binder with no account of how.
 - **No promise holds the live path.** Nothing in the binder's suites starts the dev server; an edit could stop appearing in place and every gate would stay green.
 - **The catalogue's rules on every save**, the dev server's port, `src` reaching the page without a build: each a change to the binder, and Doug's.

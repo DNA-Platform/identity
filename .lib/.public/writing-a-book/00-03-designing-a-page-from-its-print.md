@@ -43,7 +43,7 @@ A library's words — subject, book, cover, synopsis, table of contents, *filed 
 | on the page | in `.public` | stands |
 |---|---|---|
 | the bar | the book's cover: the subject's mark, the book's mark and name, the byline with the author's mark | built, from the cover alone — `Mark` drawn from a cover the book can reach, `coverOf` |
-| the subject's mark | the subject's cover, drawn through its illustration | built where the subject is the book itself; a foreign subject's cover is held the same way a volume is, when a book is designed that needs it |
+| the subject's mark | the subject's cover, drawn through its illustration; absent when the book is filed under itself, which only the library is; resting on it unfolds the subject's name in the book's formatting, in the book's place | built; a foreign subject's cover is held the same way a volume is, when a book is designed that needs it |
 | the side bar | the table of contents; the open row's strip its `pa-open`; each row's dot and strip the scheme of the cover it leads to, through `Entry` | built |
 | the `▷` after a filed book | the table's second word, `[[ ▷ ]]( Dougs Story )**`, said `Arrow` | built |
 | the shelf | **the table of contents drawn as jackets** — a `Jacket` per entry, drawn from the cover the entry holds as a `Volume`, with the name under it leading to the entry's place | built; no chapter is drawn twice, since a jacket is data drawn, not a chapter |
