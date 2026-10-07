@@ -356,7 +356,7 @@ export class $Bookshelf extends $LibraryBookTheme {
                 position: relative;
                 max-height: calc(${({ theme }) => theme.volume} * 1.5);
                 padding-block-start: calc(${({ theme }) => theme.space} / 4);
-                overflow: hidden;
+                overflow: clip;
             }
             .pd-leaf.pd-open .pd-words::after {
                 content: '';

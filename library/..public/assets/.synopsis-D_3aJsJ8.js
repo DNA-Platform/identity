@@ -1,4 +1,4 @@
-var p=Object.defineProperty;var a=(d,u)=>p(d,"name",{value:u,configurable:!0});import{$ as n,s as h,z as x,j as s,C as i,B as b,T as c,A as j,S as g,a as y,P as l,b as M,c as f,d as v}from"./index-BJ1_IxhS.js";import{f as m,S as k,W as z,I as w}from"./20-the-bookshelf~code-BIlVIM9a.js";const o=class o extends m{constructor(){super(...arguments),this.style=h.header`
+var p=Object.defineProperty;var a=(d,u)=>p(d,"name",{value:u,configurable:!0});import{$ as n,s as h,z as x,j as s,C as i,B as b,T as c,A as j,S as g,a as y,P as l,b as M,c as f,d as v}from"./index-DlSGUwS8.js";import{f as m,S as k,W as z,I as w}from"./20-the-bookshelf~code-d1h-Ctq6.js";const o=class o extends m{constructor(){super(...arguments),this.style=h.header`
         justify-self: end;
         .pd-chapter.pa-cover { margin-block: 0; }
     `}};a(o,"$StoryCover");let t=o;const r=class r extends x{constructor(){super(...arguments),this.style=h.nav`
