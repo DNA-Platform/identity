@@ -1,4 +1,4 @@
-var Sa=Object.defineProperty;var o=(C,e)=>Sa(C,"name",{value:e,configurable:!0});import{$ as v,i as Da,s as $a,k as z,l as A,m as za,n as M,o as F,j as a,p as La,q as T,r as q,t as qa,u as Ia,v as Ea,C as y,e as Ba,T as w,d as Ca,f as t,H as p,P as s,g as m,W as G,M as n,I as i,w as l,h as $}from"./index-BO4PXq3Q.js";import{c as Fa,d as Pa,T as Na,D as Aa,L as Oa,e as Ra,a as Wa,b as Ha}from"./20-the-bookshelf~code-CVKgzPMK.js";import{C as Ja,S as Ga}from"./.synopsis-Dl8fOtv5.js";var Ua=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Qa=o((C,e,k,ja)=>{for(var f=Va(e,k),j=C.length-1,S;j>=0;j--)(S=C[j])&&(f=S(e,k,f)||f);return f&&Ua(e,k,f),f},"__decorateClass$2");const na=class na extends Da{constructor(){super(...arguments),this.specification=new P,this.themeProvider=!0,this.style=$a.div`
+var Sa=Object.defineProperty;var o=(C,e)=>Sa(C,"name",{value:e,configurable:!0});import{$ as v,i as Da,s as $a,k as z,l as A,m as za,n as M,o as F,j as a,p as La,q as T,r as q,t as qa,u as Ia,v as Ea,C as y,e as Ba,T as w,d as Ca,f as t,H as p,P as s,g as m,W as G,M as n,I as i,w as l,h as $}from"./index-Cds4BIk7.js";import{c as Fa,d as Pa,T as Na,D as Aa,L as Oa,e as Ra,a as Wa,b as Ha}from"./20-the-bookshelf~code-bBXpwPFF.js";import{C as Ja,S as Ga}from"./.synopsis-BDDE35VA.js";var Ua=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Qa=o((C,e,k,ja)=>{for(var f=Va(e,k),j=C.length-1,S;j>=0;j--)(S=C[j])&&(f=S(e,k,f)||f);return f&&Ua(e,k,f),f},"__decorateClass$2");const na=class na extends Da{constructor(){super(...arguments),this.specification=new P,this.themeProvider=!0,this.style=$a.div`
         .pd-chapter.pa-gallery .pd-section {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(${({theme:e})=>e.card}, 1fr));
@@ -11907,7 +11907,7 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
     :root {
         --paper: #fdfcfa; --text: #343c4a; --soft: #727d8c; --faint: #9ea8b5; --line: #e4e9f2; --tint: #f0f4fc; --bar-tint: #f8fafe;
         --side-tint: #f7f8fb; --read-tint: #fbfaf6;
-        --sky: #e3edfb; --sky-ink: #4a6ea0; --wash: linear-gradient(135deg, #f2f6fd 0%, #fdfcfa 48%, #fdf6f1 100%);
+        --sky: #e3edfb; --sky-ink: #4a6ea0; --wash: linear-gradient(135deg, #ecf2fc 0%, #fdfcfa 46%, #fbf1e9 100%);
         --sans: 'Inter', system-ui, sans-serif; --serif: 'Source Serif 4', Georgia, serif; --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
         --bar: 52px; --side: 248px; --space: 24px; --open: 184px; --radius: 6px;
         --beat: .22s;
@@ -11936,7 +11936,7 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
 
     /* ---- the bar is the cover. The two marks stand like two characters, four pixels apart, then the name; resting on the
        subject's mark turns the lockup into the subject's own — its mark alone, its name in its ink — and back. ---- */
-    .pd-library { grid-area: library; position: sticky; top: 0; z-index: 3; display: flex; align-items: center; height: var(--bar); padding: 0 18px; background: var(--bar-tint); border-bottom: 1px solid var(--line); box-shadow: 0 1px 0 rgba(43, 54, 60, .035); }
+    .pd-library { grid-area: library; position: sticky; top: 0; z-index: 3; display: flex; align-items: center; height: var(--bar); padding: 0 18px; background: linear-gradient(180deg, #fbfcfe 0%, #f8fafe 60%, #f1f4fa 100%); border-bottom: 1px solid #dfe4ed; box-shadow: 0 1px 0 rgba(43, 54, 60, .05); }
     .pd-lockup { display: flex; align-items: center; height: var(--bar); }
     .pd-lockup .pa-reference { display: block; }
     .pd-lockup .pd-mark { transition: width var(--beat) ease, margin var(--beat) ease, opacity var(--beat) ease, border-width var(--beat) ease; }
@@ -11954,46 +11954,50 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
     .pd-me .pd-word.pa-reference { color: var(--text); font-weight: 500; }
 
     /* ---- the index is a file tree: groups as folders that fold, chapters as pages, their files beneath them ---- */
-    .pd-holds { grid-area: holds; position: sticky; top: var(--bar); align-self: start; display: grid; grid-template-rows: minmax(0, 1fr); height: calc(100vh - var(--bar)); padding: 10px 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #d5dbe4 transparent; background: var(--side-tint); border-right: 1px solid #e3e7ee; font-size: 12.5px; }
+    .pd-holds { grid-area: holds; position: sticky; top: var(--bar); align-self: start; display: grid; grid-template-rows: minmax(0, 1fr); height: calc(100vh - var(--bar)); padding: 14px 0 16px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: transparent transparent; background: linear-gradient(90deg, #f8f9fc 0%, #f7f8fb 82%, #eef1f6 100%); border-right: 1px solid #dde2ea; font-size: 12.5px; transition: scrollbar-color var(--beat) ease; }
+    .pd-holds:hover { scrollbar-color: #cfd6e0 transparent; }
+    .pd-holds::-webkit-scrollbar { width: 7px; }
+    .pd-holds::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
+    .pd-holds:hover::-webkit-scrollbar-thumb { background: #cfd6e0; }
     .pd-holds .pd-chapter { display: flex; flex-direction: column; min-height: 100%; }
-    .pd-holds .pd-section { margin: 0 0 6px; }
+    .pd-holds .pd-section { margin: 0 0 12px; }
     .pd-holds .pd-heading { display: none; }
-    .pd-holds .pd-folder { display: flex; align-items: center; gap: 6px; width: 100%; padding: 3px 10px 3px 7px; text-align: left; font: 600 12.5px/1.5 var(--sans); color: #4b5563; transition: color var(--beat) ease; }
+    .pd-holds .pd-folder { display: flex; align-items: center; gap: 7px; width: 100%; padding: 5px 12px 5px 10px; text-align: left; font: 600 12.5px/1.5 var(--sans); color: #4b5563; transition: color var(--beat) ease; }
     .pd-holds .pd-folder::before { content: ''; flex: none; width: 0; height: 0; border: 4px solid transparent; border-left: 5px solid #a5aebb; border-right: 0; transform: rotate(90deg); transition: transform .18s ease, border-left-color var(--beat) ease; }
     .pd-holds .pd-section.folded .pd-folder::before { transform: rotate(0deg); }
     .pd-holds .pd-folder:hover { color: var(--text); }
     .pd-holds .pd-folder:hover::before { border-left-color: var(--band-ink); }
     .pd-holds .pd-section.folded .pd-container, .pd-holds .pd-section.folded .pd-file, .pd-holds .pd-section.folded .pd-key { display: none; }
-    .pd-holds .pa-entry { display: flex; align-items: center; gap: 6px; margin: 0; padding: 2px 10px 2px 22px; font-weight: 450; font-size: 12.5px; line-height: 1.5; color: #3a4452; cursor: pointer; box-shadow: inset 3px 0 0 transparent; transition: background var(--beat) ease, color var(--beat) ease, box-shadow var(--beat) ease; }
+    .pd-holds .pa-entry { display: flex; align-items: center; gap: 7px; margin: 0; padding: 4px 12px 4px 27px; font-weight: 450; font-size: 12.5px; line-height: 1.5; color: #3a4452; cursor: pointer; box-shadow: inset 3px 0 0 transparent; transition: background var(--beat) ease, color var(--beat) ease, box-shadow var(--beat) ease; }
     .pd-holds .pd-icon { flex: none; width: 14px; height: 14px; color: #a5aebb; transition: color var(--beat) ease; }
     .pd-holds .pa-entry .pa-content { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .pd-holds .pa-entry:hover { background: color-mix(in oklch, var(--band) 28%, white); }
     .pd-holds .pa-entry.pa-open { background: color-mix(in oklch, var(--band) 42%, white); color: var(--band-ink); box-shadow: inset 3px 0 0 var(--band-ink); }
     .pd-holds .pa-entry.pa-open .pd-icon { color: var(--band-ink); }
     .pd-holds .pa-number { font-size: 10.5px; color: color-mix(in oklch, var(--foot-ink) 48%, white); font-variant-numeric: tabular-nums; }
-    .pd-holds .pd-file { display: flex; align-items: center; gap: 6px; width: 100%; padding: 1px 10px 1px 40px; text-align: left; font: 400 11.5px/1.6 var(--mono); color: #6b7684; transition: background var(--beat) ease, color var(--beat) ease; }
+    .pd-holds .pd-file { display: flex; align-items: center; gap: 6px; width: 100%; padding: 2px 12px 2px 48px; text-align: left; font: 400 11.5px/1.6 var(--mono); color: #6b7684; transition: background var(--beat) ease, color var(--beat) ease; }
     .pd-holds .pd-file:hover { background: color-mix(in oklch, var(--band) 28%, white); color: var(--text); }
     .pd-holds .pd-file.pa-open { color: var(--foot-ink); font-weight: 500; }
     .pd-holds .pa-parenthetical { display: none; }
 
     /* ---- a glyph per piece of code: one of seven kinds, a shape and a colour each, so related code looks related ---- */
-    .kind-type { --kind-fill: #cfd6da; --kind-ink: #2b363c; }
-    .kind-theme { --kind-fill: #ebe0bc; --kind-ink: #5d4a16; }
-    .kind-annotation { --kind-fill: #c3e3e6; --kind-ink: #1c565c; }
-    .kind-noun { --kind-fill: #c9d6e6; --kind-ink: #2a4262; }
-    .kind-layout { --kind-fill: #dccbe0; --kind-ink: #5a3a66; }
-    .kind-face { --kind-fill: #e8cdc6; --kind-ink: #7d3429; }
-    .kind-tool { --kind-fill: #d2dece; --kind-ink: #3f5a3a; }
+    .kind-type { --kind-fill: #c3ccd2; --kind-ink: #26323a; }
+    .kind-theme { --kind-fill: #e6d7a3; --kind-ink: #5a4610; }
+    .kind-annotation { --kind-fill: #b3dde1; --kind-ink: #185056; }
+    .kind-noun { --kind-fill: #bccde3; --kind-ink: #263e60; }
+    .kind-layout { --kind-fill: #d4bfdb; --kind-ink: #553561; }
+    .kind-face { --kind-fill: #e3c0b7; --kind-ink: #772f25; }
+    .kind-tool { --kind-fill: #c6d6c1; --kind-ink: #3a5535; }
     .kind-folder { --kind-fill: #f1f3f5; --kind-ink: #8a94a3; }
     .pd-kind { flex: none; width: 16px; height: 16px; fill: none; stroke: var(--kind-ink); stroke-width: 1.25; stroke-linejoin: round; stroke-linecap: round; }
     .pd-kind .k-ground { fill: var(--kind-fill); stroke: var(--kind-ink); stroke-width: 1.5; }
     .pd-kind .k-dot { fill: var(--kind-ink); stroke: none; }
     .pd-kind .k-thin { stroke-width: .9; opacity: .7; }
     .pd-kind .k-over { fill: var(--kind-fill); }
-    .pd-holds .pd-file .pd-kind, .pd-holds .pd-key .pd-kind { width: 13px; height: 13px; }
-    .pd-holds .pd-file.pa-open .pd-kind .k-ground { fill: var(--kind-ink); }
-    .pd-holds .pd-file.pa-open .pd-kind { stroke: var(--kind-fill); }
-    .pd-holds .pd-file.pa-open .pd-kind .k-dot { fill: var(--kind-fill); }
+    .pd-kind .k-solid { fill: var(--kind-ink); stroke: var(--kind-ink); }
+    .pd-file-icon { flex: none; width: 13px; height: 13px; color: #9aa4b3; transition: color var(--beat) ease; }
+    .pd-holds .pd-file.pa-open .pd-file-icon, .pd-tabs .pd-tab.pa-open .pd-file-icon, .pd-rail .pd-tab.pa-open .pd-file-icon, .pd-kinds .pd-kind-press.pa-open .pd-file-icon { color: var(--kind-ink); }
+    .pd-holds .pd-key .pd-kind { width: 13px; height: 13px; }
     .pd-words .pd-title { display: flex; align-items: center; gap: 10px; }
     .pd-words .pd-title .pd-kind { width: 22px; height: 22px; }
     .pd-leaf[data-panel="full"] .pd-words .pd-title .pd-kind { width: 18px; height: 18px; }
@@ -12010,12 +12014,12 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
        as in an editor, and the words step to a reading column on the right. ---- */
     .pd-leaves { grid-area: leaves; min-width: 0; }
     .pd-desk, .pd-switches, .pd-brief-bar { display: none; }
-    .pd-leaf { display: grid; grid-template-columns: minmax(0, 1fr) 0 38px; grid-template-areas: 'words panel rail'; min-height: calc(100vh - var(--bar)); transition: grid-template-columns .28s ease; }
-    .pd-leaf[data-panel="open"] { grid-template-columns: minmax(380px, 1fr) min(44vw, 720px) 38px; }
+    .pd-leaf { display: grid; grid-template-columns: minmax(0, 1fr) 0 48px; grid-template-areas: 'words panel rail'; min-height: calc(100vh - var(--bar)); transition: grid-template-columns .28s ease; }
+    .pd-leaf[data-panel="open"] { grid-template-columns: minmax(380px, 1fr) min(44vw, 720px) 48px; }
     .pd-leaf[data-panel="full"] { grid-template-areas: 'panel words'; grid-template-columns: minmax(0, 1fr) clamp(300px, 32vw, 460px); height: calc(100vh - var(--bar)); }
     .pd-words { grid-area: words; min-width: 0; padding: 22px 36px 40px; overflow: hidden; }
     .pd-leaf[data-panel="open"] .pd-words { padding: 22px 28px 40px 32px; }
-    .pd-leaf[data-panel="full"] .pd-words { background: var(--read-tint); border-left: 1px solid var(--line); padding: 22px 28px 40px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #d5dbe4 transparent; }
+    .pd-leaf[data-panel="full"] .pd-words { background: linear-gradient(90deg, #f1efe8 0%, #fbfaf6 32px); border-left: 1px solid #e0ddd4; padding: 22px 28px 40px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #d5dbe4 transparent; }
     .pd-words .pd-chapter { max-width: 104ch; }
     .pd-words .pd-title { font: 600 24px/1.2 var(--sans); letter-spacing: -0.02em; margin-bottom: 6px; color: #1a1f36; }
     .pd-leaf[data-panel="full"] .pd-words .pd-title { font-size: 19px; }
@@ -12031,17 +12035,20 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
     .pd-words .pd-turn .pd-count { color: var(--faint); }
 
     /* the rail: a sliver of the black, the files' names on it; gone when the editor's tab bar has them */
-    .pd-rail { grid-area: rail; display: flex; flex-direction: column; align-items: stretch; gap: 2px; padding: 10px 0; background: var(--night); box-shadow: inset 1px 0 0 rgba(255, 255, 255, .06); transition: background var(--beat) ease; }
+    .pd-rail { grid-area: rail; display: flex; flex-direction: column; align-items: stretch; gap: 2px; padding: 10px 0; background: linear-gradient(90deg, color-mix(in oklch, var(--night) 82%, white) 0%, var(--night) 22%); box-shadow: inset 1px 0 0 rgba(255, 255, 255, .08); transition: background var(--beat) ease; }
     .pd-leaf[data-panel="full"] .pd-rail { display: none; }
-    .pd-rail .pd-tab { display: flex; flex-direction: column; align-items: center; gap: 8px; writing-mode: vertical-rl; padding: 10px 0; font: 500 11px/1 var(--mono); letter-spacing: .04em; color: color-mix(in oklch, var(--glow) 62%, var(--night)); border-left: 2px solid transparent; transition: background var(--beat) ease, color var(--beat) ease, border-color var(--beat) ease; }
-    .pd-rail .pd-tab .pd-kind { writing-mode: horizontal-tb; }
+    .pd-rail .pd-tab { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px 0 8px; font: 500 11px/1 var(--mono); letter-spacing: .04em; color: color-mix(in oklch, var(--glow) 66%, var(--night)); border-left: 2px solid transparent; transition: background var(--beat) ease, color var(--beat) ease, border-color var(--beat) ease; }
+    .pd-rail .pd-tab .pd-tab-name { writing-mode: vertical-rl; }
+    .pd-rail .pd-skeleton { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; width: 26px; margin-top: 2px; opacity: .55; transition: opacity var(--beat) ease; }
+    .pd-rail .pd-skeleton i { display: block; height: 2px; border-radius: 1px; background: color-mix(in oklch, var(--brass) 60%, var(--glow)); }
+    .pd-rail .pd-tab:hover .pd-skeleton, .pd-rail .pd-tab.pa-open .pd-skeleton { opacity: .9; }
     .pd-rail .pd-tab:hover { color: var(--glow); background: var(--dusk); }
     .pd-rail .pd-tab.pa-open { color: var(--glow); border-left-color: var(--foot); background: var(--dusk); }
 
     /* the panel: the editor's tab bar at its head, the active file below; the options at the bar's end */
-    .pd-files { grid-area: panel; display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; overflow: hidden; background: var(--night); color: var(--glow); box-shadow: -10px 0 18px -16px rgba(43, 54, 60, .5); transition: background var(--beat) ease, color var(--beat) ease; }
+    .pd-files { grid-area: panel; display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; overflow: hidden; background: linear-gradient(90deg, color-mix(in oklch, var(--night) 90%, white) 0%, var(--night) 36px); color: var(--glow); box-shadow: -10px 0 18px -16px rgba(43, 54, 60, .5); transition: background var(--beat) ease, color var(--beat) ease; }
     .pd-leaf[data-panel="full"] .pd-files { box-shadow: none; }
-    .pd-tabs { display: flex; align-items: stretch; gap: 1px; background: var(--dusk); padding: 0 0 0 2px; border-bottom: 1px solid color-mix(in oklch, var(--foot) 28%, var(--dusk)); }
+    .pd-tabs { display: flex; align-items: stretch; gap: 1px; background: linear-gradient(180deg, color-mix(in oklch, var(--dusk) 88%, white) 0%, var(--dusk) 100%); padding: 0 0 0 2px; border-bottom: 1px solid color-mix(in oklch, var(--foot) 28%, var(--dusk)); }
     .pd-tabs .pd-tab { display: flex; align-items: center; gap: 7px; padding: 9px 14px 8px 12px; font: 500 12px/1 var(--mono); color: color-mix(in oklch, var(--glow) 62%, var(--night)); border-top: 2px solid transparent; transition: background var(--beat) ease, color var(--beat) ease, border-color var(--beat) ease; }
     .pd-tabs .pd-tab:hover { color: var(--glow); }
     .pd-tabs .pd-tab.pa-open { color: var(--glow); background: var(--night); border-top-color: var(--foot); }
@@ -12054,7 +12061,8 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
     .pd-options .pd-option:hover { color: var(--glow); }
     .pd-options .pd-option[aria-pressed="true"] { color: var(--glow); background: var(--dawn); }
     .pd-listing { display: none; margin: 0; min-height: 0; }
-    .pd-listing.pa-open { display: block; overflow: auto; scrollbar-width: thin; scrollbar-color: var(--dim) transparent; }
+    .pd-listing.pa-open { display: block; overflow: auto; scrollbar-width: thin; scrollbar-color: transparent transparent; transition: scrollbar-color var(--beat) ease; }
+    .pd-listing.pa-open:hover { scrollbar-color: var(--dim) transparent; }
     .pd-listing .pd-word { display: none; }
     .pd-listing .pd-code { margin: 0; padding: 14px 0; font: 400 12px/1.7 var(--mono); white-space: normal; cursor: zoom-in; background: transparent; }
     .pd-leaf[data-panel="full"] .pd-listing .pd-code { cursor: default; }
@@ -14305,15 +14313,17 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
     // every mark is a square of one family with the site's: the kind's ink as its border, the kind's pastel as its ground, an
     // abstract figure in the ink — a spine and two shelves for a type of book, three dots for a theme, a tag's corner for a thing
     // said, a nib for a thing drawn, a grid for a layout, a square over a square for a face, a hub with its ticks for a tool
+    // closed shapes, or shapes that meet the border — never a floating line
     const glyphs = {
-        type: '<path d="M5.5 3v10M8 6.5h5M8 9.5h5"/>',
-        theme: '<circle cx="5.5" cy="6" r="1.2" class="k-dot"/><circle cx="10.5" cy="5.5" r="1.2" class="k-dot"/><circle cx="8" cy="10.5" r="1.2" class="k-dot"/>',
-        annotation: '<path d="M3 3h5l5 5-5 5-5-5z"/><circle cx="6" cy="6" r="1" class="k-dot"/>',
-        noun: '<path d="M4 12l6-6M10 6l1.5-1.5M4 12l-.5 .5"/><path d="M10 6l2 2-6 6" class="k-thin"/>',
-        layout: '<path d="M3 7h10M8 7v6M3 3v10h10V3z"/>',
-        face: '<path d="M3 3h7v7H3z"/><path d="M6 6h7v7H6z" class="k-over"/>',
-        tool: '<circle cx="8" cy="8" r="2.2" class="k-dot"/><path d="M8 2.5v2M8 11.5v2M2.5 8h2M11.5 8h2"/>',
+        type: '<path d="M5.5 .75v14.5M5.5 6h9.75M5.5 10h9.75"/>',
+        theme: '<circle cx="5.5" cy="6" r="1.6" class="k-dot"/><circle cx="10.5" cy="5.5" r="1.6" class="k-dot"/><circle cx="8" cy="10.5" r="1.6" class="k-dot"/>',
+        annotation: '<path d="M.75 8 8 .75 15.25 8 8 15.25z"/><circle cx="8" cy="8" r="1.4" class="k-dot"/>',
+        noun: '<path d="M.75 15.25 10 6l2 2-9.25 9.25z" class="k-solid"/><path d="M10 6l2.5-2.5 2.5 2.5L12.5 8.5"/>',
+        layout: '<path d="M.75 6.5h14.5M8 6.5v8.75"/>',
+        face: '<path d="M.75 .75h9v9h-9z"/><path d="M6.25 6.25h9v9h-9z" class="k-over"/>',
+        tool: '<circle cx="8" cy="8" r="2.6" class="k-dot"/><path d="M8 .75v3.5M8 11.75v3.5M.75 8h3.5M11.75 8h3.5"/>',
     };
+    const fileIcon = '<svg class="pd-icon pd-file-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.5 3.5 8 6 11.5M10 4.5 12.5 8 10 11.5"/></svg>';
     const names = { type: 'a type of book', theme: 'a theme', annotation: 'a thing said of a writing', noun: 'a thing the library draws', layout: 'a layout', face: 'a face', tool: 'a tool' };
     const chapters = { 'the-book': 'type', 'the-theme': 'theme', 'the-cover': 'annotation', 'the-bookshelf': 'type', 'developing-a-library': 'tool', 'the-manual': 'type', 'the-layout': 'layout', 'the-turn': 'noun', 'the-switch': 'noun', 'the-listing': 'noun', 'the-author-and-the-subject': 'noun', 'the-entry': 'annotation', 'the-tone': 'annotation', 'the-first': 'annotation', 'the-colour': 'annotation', 'the-date': 'annotation', 'initializing-a-library': 'tool' };
     const kindOf = (chapter, file) => {
@@ -14359,13 +14369,15 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
         leaf.dataset.numbers = 'on';
         leaf.dataset.wrap = 'off';
         listings.forEach((listing, index) => highlight(listing, files[index]));
-        leaf.insertAdjacentHTML('beforeend', '<div class="pd-rail">' + files.map((file, index) => '<button class="pd-tab" data-file="' + index + '">' + glyph(kindOf(chapter, file)) + file + '</button>').join('') + '</div>');
+        // the rail's hint of what a press opens: a skeleton of the file's own first lines, each bar as long as its line
+        const skeleton = (listing) => '<span class="pd-skeleton">' + Array.from(listing.querySelectorAll('.pd-code-line')).slice(0, 14).map(line => '<i style="width:' + Math.max(12, Math.min(100, line.textContent.length * 2.2)) + '%"></i>').join('') + '</span>';
+        leaf.insertAdjacentHTML('beforeend', '<div class="pd-rail">' + files.map((file, index) => '<button class="pd-tab kind-' + kindOf(chapter, file) + '" data-file="' + index + '">' + fileIcon + '<span class="pd-tab-name">' + file + '</span>' + skeleton(listings[index]) + '</button>').join('') + '</div>');
         leaf.querySelector('.pd-files').insertAdjacentHTML('afterbegin',
-            '<div class="pd-tabs">' + files.map((file, index) => '<button class="pd-tab" data-file="' + index + '">' + glyph(kindOf(chapter, file)) + file + '</button>').join('')
+            '<div class="pd-tabs">' + files.map((file, index) => '<button class="pd-tab kind-' + kindOf(chapter, file) + '" data-file="' + index + '">' + fileIcon + file + '</button>').join('')
             + '<button class="pd-dock">dock</button>'
             + '<span class="pd-options"><button class="pd-option" data-option="code" aria-pressed="false">light</button><button class="pd-option" data-option="wrap" aria-pressed="false">wrap</button><button class="pd-option" data-option="numbers" aria-pressed="true">lines</button></span>'
             + '</div>');
-        const presses = files.map((file, index) => { const kind = kindOf(chapter, file); return '<button class="pd-kind-press kind-' + kind + '" data-file="' + index + '" title="' + names[kind] + '">' + glyph(kind) + file + '</button>'; }).join('');
+        const presses = files.map((file, index) => { const kind = kindOf(chapter, file); return '<button class="pd-kind-press kind-' + kind + '" data-file="' + index + '" title="' + names[kind] + '">' + fileIcon + file + '</button>'; }).join('');
         (leaf.querySelector('.pd-title').closest('a') ?? leaf.querySelector('.pd-title')).insertAdjacentHTML('afterend', '<div class="pd-kinds">' + presses + '</div>');
         // the chapter's own mark, at the left of its title, as the book's mark stands at the left of its name in the bar
         leaf.querySelector('.pd-title').insertAdjacentHTML('afterbegin', glyph(chapters[chapter] ?? 'noun'));
@@ -14409,7 +14421,7 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
         row.insertAdjacentHTML('afterbegin', name in chapters ? glyph(chapters[name]) : icons.page);
         const leaf = leaves.find(one => one.dataset.chapter === name);
         if (!leaf) continue;
-        anchor.insertAdjacentHTML('afterend', leaf.files.map((file, index) => '<button class="pd-file" data-chapter="' + name + '" data-file="' + index + '">' + glyph(kindOf(name, file)) + file + '</button>').join(''));
+        anchor.insertAdjacentHTML('afterend', leaf.files.map((file, index) => '<button class="pd-file kind-' + kindOf(name, file) + '" data-chapter="' + name + '" data-file="' + index + '">' + fileIcon + file + '</button>').join(''));
     }
     for (const file of document.querySelectorAll('.pd-holds .pd-file'))
         file.addEventListener('click', () => { show(file.dataset.chapter); leaves.find(one => one.dataset.chapter === file.dataset.chapter).open(Number(file.dataset.file), 'open'); });
