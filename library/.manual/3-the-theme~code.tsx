@@ -223,14 +223,14 @@ export class $LibraryBookTheme extends $Theme {
 
     protected library(): RuleSet {
         return css`
-            .pd-book .pd-library { padding: 0 calc(${({ theme }) => theme.space} * 0.75); background: ${({ theme }) => theme.barTint}; border-block-end: thin solid ${({ theme }) => theme.line}; }
+            .pd-book .pd-library { box-sizing: border-box; height: ${({ theme }) => theme.barHeight}; padding: 0 calc(${({ theme }) => theme.space} * 0.75); background: ${({ theme }) => theme.barTint}; border-block-end: thin solid ${({ theme }) => theme.line}; }
             .pd-library .pd-paragraph, .pd-me .pd-paragraph { margin-block: 0; }
             .pd-library .pa-reference, .pd-me .pa-reference { color: inherit; text-decoration: none; }
             .pd-paragraph.pd-logo { display: flex; align-items: center; height: ${({ theme }) => theme.barHeight}; }
             .pd-logo .pa-reference, .pd-me .pd-mark .pa-reference { display: block; }
             .pd-logo .pd-filed, .pd-logo .pd-own { display: block; flex: none; overflow: hidden; transition: width ${({ theme }) => theme.beat} ease, margin ${({ theme }) => theme.beat} ease, opacity ${({ theme }) => theme.beat} ease; }
             .pd-logo .pd-own { width: calc(2 * ${({ theme }) => theme.size}); }
-            .pd-logo .pd-filed + .pd-scheme .pd-own, .pd-logo .pd-filed + .pd-own { margin-inline-start: calc(${({ theme }) => theme.space} / 6); }
+            .pd-logo .pd-scheme + .pd-scheme .pd-own { margin-inline-start: calc(${({ theme }) => theme.space} / 6); }
             .pa-filed .pd-own { width: 0; margin-inline-start: 0; opacity: 0; }
             .pd-names { display: grid; margin-inline-start: calc(${({ theme }) => theme.space} * 0.375); }
             .pd-names .pd-scheme { grid-area: 1 / 1; }

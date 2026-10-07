@@ -99,7 +99,16 @@ export default () => (
                 it had imported worked once and then never, because the imported component is a factory and the
                 component a press passes is the instance's own, one object per instance; so every press in the
                 manual is a noun that compares what came through its props with what came through its props, as
-                the tab always did, and the rule is written down. The names changed with the port: the marks and the name in the bar
+                the tab always did, and the rule is written down. Then the audit, on my word that the marks were
+                pressed together and the gradients and the nuance were missing: one probe read the same forty
+                properties on this page and on the built manual, and every difference had a cause in the
+                sheet, a rule of the port losing to a base rule that came later or bound tighter, a selector
+                naming the wrong sibling, the wash on the page's body and on nothing of the book; mended, the bar,
+                the side bar and the words measure as the page's. And the fold's slowness, profiled: a press on a
+                folder's twist makes the whole book render again from its root, three seconds in the dev serve
+                and three quarters of one in the build, most of it React and the framework redrawing what did not
+                change and the code figure highlighting every file again. That is a finding about the framework,
+                written up for the pitch list, not something the page can fix. The names changed with the port: the marks and the name in the bar
                 are the logo, since a masthead is a part of a boat. What is not carried: the presses for a chapter's
                 files under its title, which wait on a face for the title. The chapters themselves did not change
                 beyond the one line that says their kind.

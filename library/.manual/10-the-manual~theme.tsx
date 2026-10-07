@@ -35,6 +35,17 @@ export class $ManualTheme extends $LibraryBookTheme {
         return [...super.parts(), this.tree(), this.icons(), this.words(), this.rail(), this.grip(), this.files(), this.code(), this.small()];
     }
 
+    protected override library(): RuleSet {
+        return css`
+            ${super.library()}
+            .pd-book.pa-tone .pd-library {
+                background: linear-gradient(180deg, #fbfcfe 0%, #f8fafe 60%, #f1f4fa 100%);
+                border-block-end: thin solid #dfe4ed;
+                box-shadow: 0 1px 0 rgba(43, 54, 60, 0.05);
+            }
+        `;
+    }
+
     protected override holds(): RuleSet {
         return css`
             ${super.holds()}
@@ -62,18 +73,14 @@ export class $ManualTheme extends $LibraryBookTheme {
                 --dim: color-mix(in oklch, #5d4a16 45%, white);
                 --brass: #5d4a16;
             }
-            .pd-book .pd-library {
-                background: linear-gradient(180deg, #fbfcfe 0%, #f8fafe 60%, #f1f4fa 100%);
-                border-block-end: thin solid #dfe4ed;
-                box-shadow: 0 1px 0 rgba(43, 54, 60, 0.05);
-            }
-            .pd-head { display: none; }
+            .pd-book.pa-layout { background: ${({ theme }) => theme.wash}; }
+            .pd-book .pd-head { display: none; padding: 0; }
         `;
     }
 
     protected tree(): RuleSet {
         return css`
-            .pd-holds {
+            .pd-book .pd-holds {
                 padding: calc(${({ theme }) => theme.space} * 0.5833) 0 calc(${({ theme }) => theme.space} * 0.6667);
                 background: linear-gradient(90deg, #f9fafc 0%, #f7f8fb 86%, #f2f4f8 100%);
                 border-inline-end: thin solid ${({ theme }) => theme.sideLine};
@@ -82,12 +89,12 @@ export class $ManualTheme extends $LibraryBookTheme {
                 scrollbar-color: transparent transparent;
                 transition: scrollbar-color ${({ theme }) => theme.beat} ease;
             }
-            .pd-holds:hover { scrollbar-color: color-mix(in oklch, var(--band) 62%, white) transparent; }
-            .pd-holds .pd-chapter { display: flex; flex-direction: column; min-height: 100%; margin: 0; }
+            .pd-book .pd-holds:hover { scrollbar-color: color-mix(in oklch, var(--band) 62%, white) transparent; }
+            .pd-book .pd-holds .pd-chapter { display: flex; flex-direction: column; min-height: 100%; margin: 0; color: ${({ theme }) => theme.sideInk}; }
             .pd-holds .pa-parenthetical { display: none; }
             .pd-holds .pd-section { margin: 0 0 calc(${({ theme }) => theme.space} / 3); }
             .pd-holds .pd-folder { position: relative; }
-            .pd-holds .pd-heading {
+            .pd-book .pd-holds .pd-heading {
                 display: flex;
                 align-items: center;
                 height: calc(1.9286 * ${({ theme }) => theme.size});
@@ -96,7 +103,7 @@ export class $ManualTheme extends $LibraryBookTheme {
                 border: 0;
                 font-size: calc(0.9286 * ${({ theme }) => theme.size});
                 font-weight: 400;
-                line-height: 1;
+                line-height: calc(1.9286 * ${({ theme }) => theme.size});
                 letter-spacing: 0;
                 text-transform: none;
                 color: ${({ theme }) => theme.sideInk};
@@ -119,6 +126,7 @@ export class $ManualTheme extends $LibraryBookTheme {
             }
             .pd-holds .pd-twist .pd-drawing { display: block; width: calc(0.7143 * ${({ theme }) => theme.size}); height: calc(0.7143 * ${({ theme }) => theme.size}); }
             .pd-holds .pd-twist svg, .pd-holds .pd-folder-mark svg, .pd-holds .pd-file svg { display: block; width: 100%; height: 100%; }
+            .pd-holds .pd-word.pd-twist[aria-pressed='true'] { color: #a5aebb; background: none; border-color: transparent; }
             .pd-holds .pd-twist[aria-pressed='false'] { transform: rotate(90deg); }
             .pd-holds .pd-twist:hover { color: ${({ theme }) => theme.ink}; }
             .pd-holds .pd-folder .pd-twist { position: absolute; top: calc(${({ theme }) => theme.space} * 0.2292); left: calc(${({ theme }) => theme.space} * 0.4167); }
@@ -132,7 +140,7 @@ export class $ManualTheme extends $LibraryBookTheme {
             }
             .pd-holds .pd-folder-mark .ground { fill: #f1f3f5; stroke: #8a94a3; stroke-width: 1.5; }
             .pd-holds .pa-folded .pd-paragraph.pa-entry { display: none; }
-            .pd-holds .pd-paragraph.pa-entry {
+            .pd-book .pd-holds .pd-paragraph.pa-entry {
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;
@@ -150,34 +158,41 @@ export class $ManualTheme extends $LibraryBookTheme {
                 box-shadow: inset 3px 0 0 transparent;
                 transition: background ${({ theme }) => theme.beat} ease, color ${({ theme }) => theme.beat} ease, box-shadow ${({ theme }) => theme.beat} ease;
             }
-            .pd-holds .pa-entry .pd-twist { order: -2; }
+            .pd-holds .pa-entry .pd-twist { order: -2; position: static; }
             .pd-holds .pa-entry .pd-twist.pd-blank { visibility: hidden; }
             .pd-holds .pa-entry .pd-icon { order: -1; }
             .pd-holds .pa-entry .pa-content { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-            .pd-holds .pa-entry:hover { background: color-mix(in oklch, var(--band) 28%, white); }
-            .pd-holds .pd-paragraph.pa-entry.pa-open { background: color-mix(in oklch, var(--band) 42%, white); color: var(--band-ink); box-shadow: inset 3px 0 0 var(--band-ink); }
+            .pd-book .pd-holds .pa-entry:hover { background: color-mix(in oklch, var(--band) 28%, white); }
+            .pd-book .pd-holds .pd-paragraph.pa-entry.pa-open { background: color-mix(in oklch, var(--band) 42%, white); color: var(--band-ink); font-weight: 400; box-shadow: inset 3px 0 0 var(--band-ink); }
             .pd-holds .pa-number { order: 1; margin: 0; font-size: calc(0.75 * ${({ theme }) => theme.size}); color: color-mix(in oklch, var(--foot-ink) 48%, white); font-variant-numeric: tabular-nums; }
-            .pd-holds .pa-entry .pd-file { order: 2; flex: 0 0 auto; width: calc(100% - ${({ theme }) => theme.space} * 1.7083); margin-inline-start: calc(${({ theme }) => theme.space} * 1.7083); }
+            .pd-holds .pa-entry .pd-file {
+                order: 2;
+                flex: 0 0 calc(100% + ${({ theme }) => theme.space} * 1.75);
+                margin: 0 calc(${({ theme }) => theme.space} * -0.5833) 0 calc(${({ theme }) => theme.space} * -1.1667);
+                padding: 0 calc(${({ theme }) => theme.space} * 0.5833) 0 calc(${({ theme }) => theme.space} * 2.875);
+            }
             .pd-holds .pa-entry.pa-folded .pd-file { display: none; }
-            .pd-holds .pd-file {
+            .pd-book .pd-holds .pd-file {
                 display: flex;
                 align-items: center;
                 gap: calc(${({ theme }) => theme.space} * 0.2917);
                 height: calc(1.9286 * ${({ theme }) => theme.size});
-                padding: 0;
                 border: 0;
+                border-radius: 0;
                 background: none;
                 font: inherit;
                 font-size: calc(0.9286 * ${({ theme }) => theme.size});
+                font-weight: 400;
+                line-height: calc(1.9286 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.sideInk};
                 text-align: start;
                 cursor: pointer;
-                transition: color ${({ theme }) => theme.beat} ease;
+                transition: background ${({ theme }) => theme.beat} ease, color ${({ theme }) => theme.beat} ease;
             }
-            .pd-holds .pd-file .pd-drawing { flex: none; width: calc(0.9286 * ${({ theme }) => theme.size}); height: calc(0.9286 * ${({ theme }) => theme.size}); color: #9aa4b3; }
-            .pd-holds .pd-file:hover { color: ${({ theme }) => theme.ink}; }
-            .pd-holds .pd-file[aria-pressed='true'] { color: var(--band-ink); font-weight: 500; background: none; border-color: transparent; }
-            .pd-holds .pd-file[aria-pressed='true'] .pd-drawing { color: var(--colour); }
+            .pd-holds .pd-file .pd-drawing { flex: none; width: ${({ theme }) => theme.size}; height: ${({ theme }) => theme.size}; color: #a5aebb; transition: color ${({ theme }) => theme.beat} ease; }
+            .pd-book .pd-holds .pd-file:hover { background: color-mix(in oklch, var(--band) 28%, white); color: ${({ theme }) => theme.ink}; }
+            .pa-split .pd-holds .pd-file[aria-pressed='true'], .pa-code-forward .pd-holds .pd-file[aria-pressed='true'] { color: var(--band-ink); font-weight: 500; background: color-mix(in oklch, var(--band) 30%, white); }
+            .pa-split .pd-holds .pd-file[aria-pressed='true'] .pd-drawing, .pa-code-forward .pd-holds .pd-file[aria-pressed='true'] .pd-drawing { color: var(--colour); }
             .pd-holds .pd-section.pa-appendix { margin: auto 0 0; padding-block-start: calc(${({ theme }) => theme.space} / 3); border-block-start: thin solid #e3e7ee; opacity: 1; }
             .pd-holds .pd-section.pa-appendix .pd-heading { font-size: calc(0.9286 * ${({ theme }) => theme.size}); }
             .pd-holds .pd-section.pa-appendix .pa-entry { font-size: calc(0.9286 * ${({ theme }) => theme.size}); font-weight: 400; }
@@ -199,12 +214,12 @@ export class $ManualTheme extends $LibraryBookTheme {
             .pd-icon .dot, .pd-svg .dot { fill: var(--colour); stroke: none; }
             .pd-icon .over, .pd-svg .over { fill: color-mix(in oklch, var(--colour) 24%, white); }
             .pd-icon .solid, .pd-svg .solid { fill: var(--colour); }
-            .pd-holds .pd-word.pd-icon { width: ${({ theme }) => theme.size}; height: ${({ theme }) => theme.size}; }
+            .pd-holds .pd-word.pd-icon { width: calc(1.1429 * ${({ theme }) => theme.size}); height: calc(1.1429 * ${({ theme }) => theme.size}); }
             .pd-words .pd-icon {
                 float: inline-start;
                 width: calc(1.571 * ${({ theme }) => theme.size});
                 height: calc(1.571 * ${({ theme }) => theme.size});
-                margin: calc(${({ theme }) => theme.space} * 0.2083) calc(${({ theme }) => theme.space} * 0.4167) 0 0;
+                margin: calc(${({ theme }) => theme.space} * 0.1417) calc(${({ theme }) => theme.space} * 0.4167) 0 0;
             }
             .pd-words .pd-paragraph .pd-svg { display: block; width: calc(${({ theme }) => theme.space} * 4); height: calc(${({ theme }) => theme.space} * 4); }
         `;
@@ -294,8 +309,9 @@ export class $ManualTheme extends $LibraryBookTheme {
             .pd-rail .pd-skeleton { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; width: calc(${({ theme }) => theme.space} * 1.0833); margin-block-start: 2px; opacity: 0.55; transition: opacity ${({ theme }) => theme.beat} ease; }
             .pd-rail .pd-skeleton i { display: block; height: 2px; border-radius: 1px; background: color-mix(in oklch, var(--brass) 60%, var(--glow)); }
             .pd-rail .pd-file:hover { color: var(--glow); background: var(--dusk); }
-            .pd-rail .pd-file[aria-pressed='true'] { color: var(--glow); border-inline-start-color: var(--foot); background: var(--dusk); }
-            .pd-rail .pd-file:hover .pd-skeleton, .pd-rail .pd-file[aria-pressed='true'] .pd-skeleton { opacity: 0.9; }
+            .pd-rail .pd-word.pd-switch[aria-pressed='true'] { color: color-mix(in oklch, var(--glow) 66%, var(--night)); border-color: transparent; background: none; }
+            .pa-split .pd-rail .pd-file[aria-pressed='true'] { color: var(--glow); border-inline-start-color: var(--foot); background: var(--dusk); }
+            .pd-rail .pd-file:hover .pd-skeleton, .pa-split .pd-rail .pd-file[aria-pressed='true'] .pd-skeleton { opacity: 0.9; }
         `;
     }
 

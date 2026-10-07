@@ -91,7 +91,10 @@ export class $File extends $Tab {
     style: ElementType = selection.button<{ $colour: string }>`
         --colour: ${props => props.$colour};
     `;
-    override get on(): boolean { return this.$chapter !== undefined && (this.book as $Manual).fileOf(this.$chapter) === this.$name; }
+    override get on(): boolean {
+        const book = this.book as $Manual;
+        return this.$chapter !== undefined && this.$chapter === book.open && book.fileOf(this.$chapter) === this.$name;
+    }
     get colour(): string { return this.$chapter?.annotations.expressed($Kind)?.colour ?? ''; }
     get lines(): string[] { return linesOf(this.$chapter, this.$name); }
 

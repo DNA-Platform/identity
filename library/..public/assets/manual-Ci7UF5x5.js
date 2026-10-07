@@ -1,4 +1,4 @@
-var k=Object.defineProperty;var o=(x,y)=>k(x,"name",{value:y,configurable:!0});import{j as e,C as s,T as d,P as b,c as t,H as a,a as n,d as r,W as g,M as i,A as l,L as $,x as p,v as m,$ as v}from"./index-BRw03ong.js";import{n as j,I as T,a as S,o as A,K as h,B as c,p as f}from"./.cover-NItAYJ7S.js";import{T as C,C as W,S as R}from"./.synopsis-XZys686N.js";const w=class w extends j{};o(w,"$ReferenceManual");let u=w;const z=o(()=>e.jsxs(s,{children:[e.jsx(C,{}),e.jsx(T,{}),e.jsxs(d,{children:[e.jsx(b,{}),"[Table of Contents](/dougs-reference-manual/#table-of-contents)"]}),e.jsxs(t,{children:[e.jsx(a,{children:"What every book is"}),e.jsx(n,{children:e.jsx(r,{children:"[The Book](/dougs-reference-manual/#the-book)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Theme](/dougs-reference-manual/#the-theme)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Author and the Subject](/dougs-reference-manual/#the-author-and-the-subject)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Cover](/dougs-reference-manual/#the-cover)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Layout](/dougs-reference-manual/#the-layout)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Turn](/dougs-reference-manual/#the-turn)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Entry](/dougs-reference-manual/#the-entry)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Listing](/dougs-reference-manual/#the-listing)"})}),e.jsxs(n,{children:[e.jsx(b,{}),e.jsx(g,{children:e.jsx(r,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"})}),e.jsx(g,{children:e.jsx(r,{children:"[Synopsis](/dougs-reference-manual/#synopsis)"})}),e.jsx(g,{children:e.jsx(r,{children:"[Table of Contents](/dougs-reference-manual/#table-of-contents)"})})]})]}),e.jsxs(t,{children:[e.jsx(a,{children:"What a reader may switch"}),e.jsx(n,{children:e.jsx(r,{children:"[The Switch](/dougs-reference-manual/#the-switch)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Tone](/dougs-reference-manual/#the-tone)"})})]}),e.jsxs(t,{children:[e.jsx(a,{children:"What a chapter may carry"}),e.jsx(n,{children:e.jsx(r,{children:"[The Date](/dougs-reference-manual/#the-date)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The First](/dougs-reference-manual/#the-first)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Colour](/dougs-reference-manual/#the-colour)"})})]}),e.jsxs(t,{children:[e.jsx(a,{children:"The types of book"}),e.jsx(n,{children:e.jsx(r,{children:"[The Manual](/dougs-reference-manual/#the-manual)"})})]}),e.jsxs(t,{children:[e.jsx(a,{children:"The designs"}),e.jsx(n,{children:e.jsx(r,{children:"[The Bookshelf](/dougs-reference-manual/#the-bookshelf)"})})]}),e.jsxs(t,{children:[e.jsx(a,{children:"Making the library"}),e.jsx(n,{children:e.jsx(r,{children:"[Initializing a Library](/dougs-reference-manual/#initializing-a-library)"})}),e.jsx(n,{children:e.jsx(r,{children:"[Developing a Library](/dougs-reference-manual/#developing-a-library)"})})]}),e.jsxs(t,{children:[e.jsx(S,{}),e.jsx(A,{}),e.jsx(a,{children:"Key"}),e.jsx(n,{children:e.jsx(r,{children:"[The Key](/dougs-reference-manual/#the-key)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Type of Book](/dougs-reference-manual/#a-type-of-book)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Theme](/dougs-reference-manual/#a-theme)"})}),e.jsx(n,{children:e.jsx(r,{children:"[An Annotation](/dougs-reference-manual/#an-annotation)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Noun](/dougs-reference-manual/#a-noun)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Layout](/dougs-reference-manual/#a-layout)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Face](/dougs-reference-manual/#a-face)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Tool](/dougs-reference-manual/#a-tool)"})})]})]}),"Table"),N=o(()=>e.jsxs(s,{children:[e.jsx(h,{children:"[A Type of Book](/dougs-reference-manual/#a-type-of-book)"}),e.jsx(d,{children:"[The Book](/dougs-reference-manual/#the-book)"}),e.jsxs(n,{children:[e.jsx(c,{}),"The class every book of this library stands on: it draws the frame once and collects its chapters."]}),e.jsxs(t,{children:[e.jsx(a,{children:"What the book is"}),e.jsx(n,{children:"Every book in this library extends one class, so what a book is here is said once. A book of mine holds chapters and nothing else, it has a place for every chapter it holds, and only an ordinary chapter appends a file. The class says all three in its specification, and the bind holds every book to it."}),e.jsx(n,{children:"The class draws the frame that is on every screen, in five regions named as the frame's sketch names them: the library's bar, with what the book is filed under and the library's own subjects; me, who the book is by; what the book holds, its table of contents; the head, its cover and its switches; and the leaves, the front it opens on and then one leaf for each chapter, the chapter with the files it appends. A region is a method, and a type of book overrides the method whose region it fills differently, and nothing else."})]}),e.jsxs(t,{children:[e.jsx(a,{children:"How the book fits the library's patterns"}),e.jsxs(n,{children:["The purpose of a book is layout: the book's own class places its parts, each in an element of its own with a class, and it finds its chapters by what they carry, never by position. Where the regions go is not the book's to say; that is ",e.jsx(i,{children:"[the layout](/dougs-reference-manual/#the-layout)"}),", said of the book once, whose one grid is the frame: the library's bar across the top, what the book holds down the side. What colours the regions is ",e.jsx(i,{children:"[a tone](/dougs-reference-manual/#the-tone)"}),", said of the book too. The class gives every book its layout and its tone when it is defined, and a type of book that wants another tone registers it on its class in one line, the way the framework's own theme is registered."]})]}),e.jsxs(t,{children:[e.jsx(a,{children:"How the book is used"}),e.jsxs(n,{children:["A type of book is a class under this one. ",e.jsx(i,{children:"[The catalogue](/dougs-library/#the-catalogue)"})," overrides what the book opens on, to put its shelf under its synopsis with its own cover first, its head, which it leaves to its switches, and its front, which is always open, and names its entries as pages; ",e.jsx(i,{children:"[the manual](/dougs-reference-manual/#the-manual)"})," overrides its switches and gives itself the spread that sets a chapter beside its file; ",e.jsx(i,{children:"[my story](/dougs-story/#the-sheet)"})," overrides its head and its front, and ",e.jsx(i,{children:"[the design book](/dougs-design/#the-frame)"})," says which chapter opens when none is named. Each is a few lines, because the frame is this class's."]})]}),e.jsxs(t,{children:[e.jsx(a,{children:"What the book gives a type"}),e.jsx(n,{children:"What a type reads: its chapters, the ordinary ones; what it places, which its specification counts; which chapter is open, the one the address names, whether the address names the chapter or a heading inside it; the three tones it may offer as switches. What a type overrides: the library's bar, the subjects, what the book holds, the head, the front, what the book opens on, the leaves, the switches, the listings a chapter's files are printed as."})]}),e.jsxs(t,{children:[e.jsx(a,{children:"Where the book bites"}),e.jsx(n,{children:"A type overrides a region and never redraws the frame; a type that wrote its own bars was the wrong turn this class ended. A thing said of a book of this library takes the one rule in the second file below, so it is said of a book of this library and of nothing else. And the class imports the library's subjects from the catalogue through a file beside that book's chapter which imports only the framework, because the catalogue's table imports this manual's door, and a cycle through the door loads half a module."})]}),e.jsx(l,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
+var y=Object.defineProperty;var o=(k,x)=>y(k,"name",{value:x,configurable:!0});import{j as e,C as s,T as d,P as b,c as t,H as a,a as n,d as r,W as g,M as i,A as l,L as $,x as p,v as m,$ as v}from"./index-mciUWs8M.js";import{n as j,I as T,a as S,o as A,K as h,B as c,p as f}from"./.cover-CIfTffl9.js";import{T as C,C as W,S as R}from"./.synopsis-DcQpESKS.js";const w=class w extends j{};o(w,"$ReferenceManual");let u=w;const z=o(()=>e.jsxs(s,{children:[e.jsx(C,{}),e.jsx(T,{}),e.jsxs(d,{children:[e.jsx(b,{}),"[Table of Contents](/dougs-reference-manual/#table-of-contents)"]}),e.jsxs(t,{children:[e.jsx(a,{children:"What every book is"}),e.jsx(n,{children:e.jsx(r,{children:"[The Book](/dougs-reference-manual/#the-book)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Theme](/dougs-reference-manual/#the-theme)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Author and the Subject](/dougs-reference-manual/#the-author-and-the-subject)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Cover](/dougs-reference-manual/#the-cover)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Layout](/dougs-reference-manual/#the-layout)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Turn](/dougs-reference-manual/#the-turn)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Entry](/dougs-reference-manual/#the-entry)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Listing](/dougs-reference-manual/#the-listing)"})}),e.jsxs(n,{children:[e.jsx(b,{}),e.jsx(g,{children:e.jsx(r,{children:"[Dougs Reference Manual](/dougs-reference-manual/)"})}),e.jsx(g,{children:e.jsx(r,{children:"[Synopsis](/dougs-reference-manual/#synopsis)"})}),e.jsx(g,{children:e.jsx(r,{children:"[Table of Contents](/dougs-reference-manual/#table-of-contents)"})})]})]}),e.jsxs(t,{children:[e.jsx(a,{children:"What a reader may switch"}),e.jsx(n,{children:e.jsx(r,{children:"[The Switch](/dougs-reference-manual/#the-switch)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Tone](/dougs-reference-manual/#the-tone)"})})]}),e.jsxs(t,{children:[e.jsx(a,{children:"What a chapter may carry"}),e.jsx(n,{children:e.jsx(r,{children:"[The Date](/dougs-reference-manual/#the-date)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The First](/dougs-reference-manual/#the-first)"})}),e.jsx(n,{children:e.jsx(r,{children:"[The Colour](/dougs-reference-manual/#the-colour)"})})]}),e.jsxs(t,{children:[e.jsx(a,{children:"The types of book"}),e.jsx(n,{children:e.jsx(r,{children:"[The Manual](/dougs-reference-manual/#the-manual)"})})]}),e.jsxs(t,{children:[e.jsx(a,{children:"The designs"}),e.jsx(n,{children:e.jsx(r,{children:"[The Bookshelf](/dougs-reference-manual/#the-bookshelf)"})})]}),e.jsxs(t,{children:[e.jsx(a,{children:"Making the library"}),e.jsx(n,{children:e.jsx(r,{children:"[Initializing a Library](/dougs-reference-manual/#initializing-a-library)"})}),e.jsx(n,{children:e.jsx(r,{children:"[Developing a Library](/dougs-reference-manual/#developing-a-library)"})})]}),e.jsxs(t,{children:[e.jsx(S,{}),e.jsx(A,{}),e.jsx(a,{children:"Key"}),e.jsx(n,{children:e.jsx(r,{children:"[The Key](/dougs-reference-manual/#the-key)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Type of Book](/dougs-reference-manual/#a-type-of-book)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Theme](/dougs-reference-manual/#a-theme)"})}),e.jsx(n,{children:e.jsx(r,{children:"[An Annotation](/dougs-reference-manual/#an-annotation)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Noun](/dougs-reference-manual/#a-noun)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Layout](/dougs-reference-manual/#a-layout)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Face](/dougs-reference-manual/#a-face)"})}),e.jsx(n,{children:e.jsx(r,{children:"[A Tool](/dougs-reference-manual/#a-tool)"})})]})]}),"Table"),N=o(()=>e.jsxs(s,{children:[e.jsx(h,{children:"[A Type of Book](/dougs-reference-manual/#a-type-of-book)"}),e.jsx(d,{children:"[The Book](/dougs-reference-manual/#the-book)"}),e.jsxs(n,{children:[e.jsx(c,{}),"The class every book of this library stands on: it draws the frame once and collects its chapters."]}),e.jsxs(t,{children:[e.jsx(a,{children:"What the book is"}),e.jsx(n,{children:"Every book in this library extends one class, so what a book is here is said once. A book of mine holds chapters and nothing else, it has a place for every chapter it holds, and only an ordinary chapter appends a file. The class says all three in its specification, and the bind holds every book to it."}),e.jsx(n,{children:"The class draws the frame that is on every screen, in five regions named as the frame's sketch names them: the library's bar, with what the book is filed under and the library's own subjects; me, who the book is by; what the book holds, its table of contents; the head, its cover and its switches; and the leaves, the front it opens on and then one leaf for each chapter, the chapter with the files it appends. A region is a method, and a type of book overrides the method whose region it fills differently, and nothing else."})]}),e.jsxs(t,{children:[e.jsx(a,{children:"How the book fits the library's patterns"}),e.jsxs(n,{children:["The purpose of a book is layout: the book's own class places its parts, each in an element of its own with a class, and it finds its chapters by what they carry, never by position. Where the regions go is not the book's to say; that is ",e.jsx(i,{children:"[the layout](/dougs-reference-manual/#the-layout)"}),", said of the book once, whose one grid is the frame: the library's bar across the top, what the book holds down the side. What colours the regions is ",e.jsx(i,{children:"[a tone](/dougs-reference-manual/#the-tone)"}),", said of the book too. The class gives every book its layout and its tone when it is defined, and a type of book that wants another tone registers it on its class in one line, the way the framework's own theme is registered."]})]}),e.jsxs(t,{children:[e.jsx(a,{children:"How the book is used"}),e.jsxs(n,{children:["A type of book is a class under this one. ",e.jsx(i,{children:"[The catalogue](/dougs-library/#the-catalogue)"})," overrides what the book opens on, to put its shelf under its synopsis with its own cover first, its head, which it leaves to its switches, and its front, which is always open, and names its entries as pages; ",e.jsx(i,{children:"[the manual](/dougs-reference-manual/#the-manual)"})," overrides its switches and gives itself the spread that sets a chapter beside its file; ",e.jsx(i,{children:"[my story](/dougs-story/#the-sheet)"})," overrides its head and its front, and ",e.jsx(i,{children:"[the design book](/dougs-design/#the-frame)"})," says which chapter opens when none is named. Each is a few lines, because the frame is this class's."]})]}),e.jsxs(t,{children:[e.jsx(a,{children:"What the book gives a type"}),e.jsx(n,{children:"What a type reads: its chapters, the ordinary ones; what it places, which its specification counts; which chapter is open, the one the address names, whether the address names the chapter or a heading inside it; the three tones it may offer as switches. What a type overrides: the library's bar, the subjects, what the book holds, the head, the front, what the book opens on, the leaves, the switches, the listings a chapter's files are printed as."})]}),e.jsxs(t,{children:[e.jsx(a,{children:"Where the book bites"}),e.jsx(n,{children:"A type overrides a region and never redraws the frame; a type that wrote its own bars was the wrong turn this class ended. A thing said of a book of this library takes the one rule in the second file below, so it is said of a book of this library and of nothing else. And the class imports the library's subjects from the catalogue through a file beside that book's chapter which imports only the framework, because the catalogue's table imports this manual's door, and a cycle through the door loads half a module."})]}),e.jsx(l,{identifier:"code",type:".tsx",children:`import { ReactNode } from 'react';
 import { $, $check, inert } from '@dna-platform/chemistry';
 import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Section, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
@@ -362,7 +362,10 @@ export class $File extends $Tab {
     style: ElementType = selection.button<{ $colour: string }>\`
         --colour: \${props => props.$colour};
     \`;
-    override get on(): boolean { return this.$chapter !== undefined && (this.book as $Manual).fileOf(this.$chapter) === this.$name; }
+    override get on(): boolean {
+        const book = this.book as $Manual;
+        return this.$chapter !== undefined && this.$chapter === book.open && book.fileOf(this.$chapter) === this.$name;
+    }
     get colour(): string { return this.$chapter?.annotations.expressed($Kind)?.colour ?? ''; }
     get lines(): string[] { return linesOf(this.$chapter, this.$name); }
 
@@ -645,14 +648,14 @@ export class $LibraryBookTheme extends $Theme {
 
     protected library(): RuleSet {
         return css\`
-            .pd-book .pd-library { padding: 0 calc(\${({ theme }) => theme.space} * 0.75); background: \${({ theme }) => theme.barTint}; border-block-end: thin solid \${({ theme }) => theme.line}; }
+            .pd-book .pd-library { box-sizing: border-box; height: \${({ theme }) => theme.barHeight}; padding: 0 calc(\${({ theme }) => theme.space} * 0.75); background: \${({ theme }) => theme.barTint}; border-block-end: thin solid \${({ theme }) => theme.line}; }
             .pd-library .pd-paragraph, .pd-me .pd-paragraph { margin-block: 0; }
             .pd-library .pa-reference, .pd-me .pa-reference { color: inherit; text-decoration: none; }
             .pd-paragraph.pd-logo { display: flex; align-items: center; height: \${({ theme }) => theme.barHeight}; }
             .pd-logo .pa-reference, .pd-me .pd-mark .pa-reference { display: block; }
             .pd-logo .pd-filed, .pd-logo .pd-own { display: block; flex: none; overflow: hidden; transition: width \${({ theme }) => theme.beat} ease, margin \${({ theme }) => theme.beat} ease, opacity \${({ theme }) => theme.beat} ease; }
             .pd-logo .pd-own { width: calc(2 * \${({ theme }) => theme.size}); }
-            .pd-logo .pd-filed + .pd-scheme .pd-own, .pd-logo .pd-filed + .pd-own { margin-inline-start: calc(\${({ theme }) => theme.space} / 6); }
+            .pd-logo .pd-scheme + .pd-scheme .pd-own { margin-inline-start: calc(\${({ theme }) => theme.space} / 6); }
             .pa-filed .pd-own { width: 0; margin-inline-start: 0; opacity: 0; }
             .pd-names { display: grid; margin-inline-start: calc(\${({ theme }) => theme.space} * 0.375); }
             .pd-names .pd-scheme { grid-area: 1 / 1; }
@@ -1602,37 +1605,7 @@ export class $ManualCover extends $BookshelfCover {
 
 export class $ManualTableOfContents extends $TableOfContents {
     override style = selection.nav\`
-        .pd-chapter.pa-table-of-contents { margin-block: \${({ theme }) => theme.space}; }
-        .pa-table-of-contents .pd-section { margin-block: calc(\${({ theme }) => theme.space} * 0.83) 0; }
-        .pa-table-of-contents .pd-heading {
-            font-size: calc(0.76 * \${({ theme }) => theme.size});
-            font-weight: 600;
-            line-height: 1;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: \${({ theme }) => theme.faint};
-            padding-inline: calc(\${({ theme }) => theme.space} / 4);
-            margin-block-end: calc(\${({ theme }) => theme.space} / 3);
-        }
-        .pa-table-of-contents .pd-paragraph.pa-entry {
-            display: flex;
-            align-items: center;
-            margin-block: 0;
-            padding: calc(\${({ theme }) => theme.space} / 4) calc(\${({ theme }) => theme.space} / 3);
-            border-radius: calc(\${({ theme }) => theme.space} / 4);
-            color: \${({ theme }) => theme.soft};
-        }
-        .pa-table-of-contents .pd-paragraph.pa-entry.pa-open {
-            background: \${({ theme }) => theme.tint};
-            color: \${({ theme }) => theme.accent};
-            font-weight: 500;
-        }
         .pa-table-of-contents .pa-reference { color: inherit; text-decoration: none; }
-        .pa-table-of-contents .pa-number {
-            margin-inline-start: auto;
-            font-size: calc(0.8571 * \${({ theme }) => theme.size});
-            color: \${({ theme }) => theme.faint};
-        }
     \`;
 }
 
@@ -1734,6 +1707,17 @@ export class $ManualTheme extends $LibraryBookTheme {
         return [...super.parts(), this.tree(), this.icons(), this.words(), this.rail(), this.grip(), this.files(), this.code(), this.small()];
     }
 
+    protected override library(): RuleSet {
+        return css\`
+            \${super.library()}
+            .pd-book.pa-tone .pd-library {
+                background: linear-gradient(180deg, #fbfcfe 0%, #f8fafe 60%, #f1f4fa 100%);
+                border-block-end: thin solid #dfe4ed;
+                box-shadow: 0 1px 0 rgba(43, 54, 60, 0.05);
+            }
+        \`;
+    }
+
     protected override holds(): RuleSet {
         return css\`
             \${super.holds()}
@@ -1761,18 +1745,14 @@ export class $ManualTheme extends $LibraryBookTheme {
                 --dim: color-mix(in oklch, #5d4a16 45%, white);
                 --brass: #5d4a16;
             }
-            .pd-book .pd-library {
-                background: linear-gradient(180deg, #fbfcfe 0%, #f8fafe 60%, #f1f4fa 100%);
-                border-block-end: thin solid #dfe4ed;
-                box-shadow: 0 1px 0 rgba(43, 54, 60, 0.05);
-            }
-            .pd-head { display: none; }
+            .pd-book.pa-layout { background: \${({ theme }) => theme.wash}; }
+            .pd-book .pd-head { display: none; padding: 0; }
         \`;
     }
 
     protected tree(): RuleSet {
         return css\`
-            .pd-holds {
+            .pd-book .pd-holds {
                 padding: calc(\${({ theme }) => theme.space} * 0.5833) 0 calc(\${({ theme }) => theme.space} * 0.6667);
                 background: linear-gradient(90deg, #f9fafc 0%, #f7f8fb 86%, #f2f4f8 100%);
                 border-inline-end: thin solid \${({ theme }) => theme.sideLine};
@@ -1781,12 +1761,12 @@ export class $ManualTheme extends $LibraryBookTheme {
                 scrollbar-color: transparent transparent;
                 transition: scrollbar-color \${({ theme }) => theme.beat} ease;
             }
-            .pd-holds:hover { scrollbar-color: color-mix(in oklch, var(--band) 62%, white) transparent; }
-            .pd-holds .pd-chapter { display: flex; flex-direction: column; min-height: 100%; margin: 0; }
+            .pd-book .pd-holds:hover { scrollbar-color: color-mix(in oklch, var(--band) 62%, white) transparent; }
+            .pd-book .pd-holds .pd-chapter { display: flex; flex-direction: column; min-height: 100%; margin: 0; color: \${({ theme }) => theme.sideInk}; }
             .pd-holds .pa-parenthetical { display: none; }
             .pd-holds .pd-section { margin: 0 0 calc(\${({ theme }) => theme.space} / 3); }
             .pd-holds .pd-folder { position: relative; }
-            .pd-holds .pd-heading {
+            .pd-book .pd-holds .pd-heading {
                 display: flex;
                 align-items: center;
                 height: calc(1.9286 * \${({ theme }) => theme.size});
@@ -1795,7 +1775,7 @@ export class $ManualTheme extends $LibraryBookTheme {
                 border: 0;
                 font-size: calc(0.9286 * \${({ theme }) => theme.size});
                 font-weight: 400;
-                line-height: 1;
+                line-height: calc(1.9286 * \${({ theme }) => theme.size});
                 letter-spacing: 0;
                 text-transform: none;
                 color: \${({ theme }) => theme.sideInk};
@@ -1818,6 +1798,7 @@ export class $ManualTheme extends $LibraryBookTheme {
             }
             .pd-holds .pd-twist .pd-drawing { display: block; width: calc(0.7143 * \${({ theme }) => theme.size}); height: calc(0.7143 * \${({ theme }) => theme.size}); }
             .pd-holds .pd-twist svg, .pd-holds .pd-folder-mark svg, .pd-holds .pd-file svg { display: block; width: 100%; height: 100%; }
+            .pd-holds .pd-word.pd-twist[aria-pressed='true'] { color: #a5aebb; background: none; border-color: transparent; }
             .pd-holds .pd-twist[aria-pressed='false'] { transform: rotate(90deg); }
             .pd-holds .pd-twist:hover { color: \${({ theme }) => theme.ink}; }
             .pd-holds .pd-folder .pd-twist { position: absolute; top: calc(\${({ theme }) => theme.space} * 0.2292); left: calc(\${({ theme }) => theme.space} * 0.4167); }
@@ -1831,7 +1812,7 @@ export class $ManualTheme extends $LibraryBookTheme {
             }
             .pd-holds .pd-folder-mark .ground { fill: #f1f3f5; stroke: #8a94a3; stroke-width: 1.5; }
             .pd-holds .pa-folded .pd-paragraph.pa-entry { display: none; }
-            .pd-holds .pd-paragraph.pa-entry {
+            .pd-book .pd-holds .pd-paragraph.pa-entry {
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;
@@ -1849,34 +1830,41 @@ export class $ManualTheme extends $LibraryBookTheme {
                 box-shadow: inset 3px 0 0 transparent;
                 transition: background \${({ theme }) => theme.beat} ease, color \${({ theme }) => theme.beat} ease, box-shadow \${({ theme }) => theme.beat} ease;
             }
-            .pd-holds .pa-entry .pd-twist { order: -2; }
+            .pd-holds .pa-entry .pd-twist { order: -2; position: static; }
             .pd-holds .pa-entry .pd-twist.pd-blank { visibility: hidden; }
             .pd-holds .pa-entry .pd-icon { order: -1; }
             .pd-holds .pa-entry .pa-content { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-            .pd-holds .pa-entry:hover { background: color-mix(in oklch, var(--band) 28%, white); }
-            .pd-holds .pd-paragraph.pa-entry.pa-open { background: color-mix(in oklch, var(--band) 42%, white); color: var(--band-ink); box-shadow: inset 3px 0 0 var(--band-ink); }
+            .pd-book .pd-holds .pa-entry:hover { background: color-mix(in oklch, var(--band) 28%, white); }
+            .pd-book .pd-holds .pd-paragraph.pa-entry.pa-open { background: color-mix(in oklch, var(--band) 42%, white); color: var(--band-ink); font-weight: 400; box-shadow: inset 3px 0 0 var(--band-ink); }
             .pd-holds .pa-number { order: 1; margin: 0; font-size: calc(0.75 * \${({ theme }) => theme.size}); color: color-mix(in oklch, var(--foot-ink) 48%, white); font-variant-numeric: tabular-nums; }
-            .pd-holds .pa-entry .pd-file { order: 2; flex: 0 0 auto; width: calc(100% - \${({ theme }) => theme.space} * 1.7083); margin-inline-start: calc(\${({ theme }) => theme.space} * 1.7083); }
+            .pd-holds .pa-entry .pd-file {
+                order: 2;
+                flex: 0 0 calc(100% + \${({ theme }) => theme.space} * 1.75);
+                margin: 0 calc(\${({ theme }) => theme.space} * -0.5833) 0 calc(\${({ theme }) => theme.space} * -1.1667);
+                padding: 0 calc(\${({ theme }) => theme.space} * 0.5833) 0 calc(\${({ theme }) => theme.space} * 2.875);
+            }
             .pd-holds .pa-entry.pa-folded .pd-file { display: none; }
-            .pd-holds .pd-file {
+            .pd-book .pd-holds .pd-file {
                 display: flex;
                 align-items: center;
                 gap: calc(\${({ theme }) => theme.space} * 0.2917);
                 height: calc(1.9286 * \${({ theme }) => theme.size});
-                padding: 0;
                 border: 0;
+                border-radius: 0;
                 background: none;
                 font: inherit;
                 font-size: calc(0.9286 * \${({ theme }) => theme.size});
+                font-weight: 400;
+                line-height: calc(1.9286 * \${({ theme }) => theme.size});
                 color: \${({ theme }) => theme.sideInk};
                 text-align: start;
                 cursor: pointer;
-                transition: color \${({ theme }) => theme.beat} ease;
+                transition: background \${({ theme }) => theme.beat} ease, color \${({ theme }) => theme.beat} ease;
             }
-            .pd-holds .pd-file .pd-drawing { flex: none; width: calc(0.9286 * \${({ theme }) => theme.size}); height: calc(0.9286 * \${({ theme }) => theme.size}); color: #9aa4b3; }
-            .pd-holds .pd-file:hover { color: \${({ theme }) => theme.ink}; }
-            .pd-holds .pd-file[aria-pressed='true'] { color: var(--band-ink); font-weight: 500; background: none; border-color: transparent; }
-            .pd-holds .pd-file[aria-pressed='true'] .pd-drawing { color: var(--colour); }
+            .pd-holds .pd-file .pd-drawing { flex: none; width: \${({ theme }) => theme.size}; height: \${({ theme }) => theme.size}; color: #a5aebb; transition: color \${({ theme }) => theme.beat} ease; }
+            .pd-book .pd-holds .pd-file:hover { background: color-mix(in oklch, var(--band) 28%, white); color: \${({ theme }) => theme.ink}; }
+            .pa-split .pd-holds .pd-file[aria-pressed='true'], .pa-code-forward .pd-holds .pd-file[aria-pressed='true'] { color: var(--band-ink); font-weight: 500; background: color-mix(in oklch, var(--band) 30%, white); }
+            .pa-split .pd-holds .pd-file[aria-pressed='true'] .pd-drawing, .pa-code-forward .pd-holds .pd-file[aria-pressed='true'] .pd-drawing { color: var(--colour); }
             .pd-holds .pd-section.pa-appendix { margin: auto 0 0; padding-block-start: calc(\${({ theme }) => theme.space} / 3); border-block-start: thin solid #e3e7ee; opacity: 1; }
             .pd-holds .pd-section.pa-appendix .pd-heading { font-size: calc(0.9286 * \${({ theme }) => theme.size}); }
             .pd-holds .pd-section.pa-appendix .pa-entry { font-size: calc(0.9286 * \${({ theme }) => theme.size}); font-weight: 400; }
@@ -1898,12 +1886,12 @@ export class $ManualTheme extends $LibraryBookTheme {
             .pd-icon .dot, .pd-svg .dot { fill: var(--colour); stroke: none; }
             .pd-icon .over, .pd-svg .over { fill: color-mix(in oklch, var(--colour) 24%, white); }
             .pd-icon .solid, .pd-svg .solid { fill: var(--colour); }
-            .pd-holds .pd-word.pd-icon { width: \${({ theme }) => theme.size}; height: \${({ theme }) => theme.size}; }
+            .pd-holds .pd-word.pd-icon { width: calc(1.1429 * \${({ theme }) => theme.size}); height: calc(1.1429 * \${({ theme }) => theme.size}); }
             .pd-words .pd-icon {
                 float: inline-start;
                 width: calc(1.571 * \${({ theme }) => theme.size});
                 height: calc(1.571 * \${({ theme }) => theme.size});
-                margin: calc(\${({ theme }) => theme.space} * 0.2083) calc(\${({ theme }) => theme.space} * 0.4167) 0 0;
+                margin: calc(\${({ theme }) => theme.space} * 0.1417) calc(\${({ theme }) => theme.space} * 0.4167) 0 0;
             }
             .pd-words .pd-paragraph .pd-svg { display: block; width: calc(\${({ theme }) => theme.space} * 4); height: calc(\${({ theme }) => theme.space} * 4); }
         \`;
@@ -1993,8 +1981,9 @@ export class $ManualTheme extends $LibraryBookTheme {
             .pd-rail .pd-skeleton { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; width: calc(\${({ theme }) => theme.space} * 1.0833); margin-block-start: 2px; opacity: 0.55; transition: opacity \${({ theme }) => theme.beat} ease; }
             .pd-rail .pd-skeleton i { display: block; height: 2px; border-radius: 1px; background: color-mix(in oklch, var(--brass) 60%, var(--glow)); }
             .pd-rail .pd-file:hover { color: var(--glow); background: var(--dusk); }
-            .pd-rail .pd-file[aria-pressed='true'] { color: var(--glow); border-inline-start-color: var(--foot); background: var(--dusk); }
-            .pd-rail .pd-file:hover .pd-skeleton, .pd-rail .pd-file[aria-pressed='true'] .pd-skeleton { opacity: 0.9; }
+            .pd-rail .pd-word.pd-switch[aria-pressed='true'] { color: color-mix(in oklch, var(--glow) 66%, var(--night)); border-color: transparent; background: none; }
+            .pa-split .pd-rail .pd-file[aria-pressed='true'] { color: var(--glow); border-inline-start-color: var(--foot); background: var(--dusk); }
+            .pd-rail .pd-file:hover .pd-skeleton, .pa-split .pd-rail .pd-file[aria-pressed='true'] .pd-skeleton { opacity: 0.9; }
         \`;
     }
 
