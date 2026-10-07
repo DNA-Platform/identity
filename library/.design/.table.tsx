@@ -28,6 +28,9 @@ export default () => (
                 <Content>$[[ ./The Bookshelf ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./The Manual's Page ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Content>$[[ ./The Library's Home ]]</Content>
             </Paragraph>
             <Paragraph>
