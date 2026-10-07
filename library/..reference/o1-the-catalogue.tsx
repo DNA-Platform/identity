@@ -6,68 +6,67 @@ export default () => (
         <Section>
             <Heading>How this book is laid out</Heading>
             <Paragraph>
-                This book is the way into every other, so it is laid out as a place to choose from. It stands in
-                the frame every book of mine stands in, drawn by <Means>$[[ the base book ]]( Dougs Reference Manual / The Book )</Means>:
-                the library's bar black across the top, with my three books as its subjects, each beside a dot
-                in its colour and the open one lit by a line in that colour; this book's contents down the
-                opal side bar; and the page beside. It has no head of its own, because its cover stands on its
-                shelf. The page is always the synopsis and the shelf, and under the shelf the entry that is
-                open, if one is. It wears the dark tone, the library's own, which
-                is <Means>$[[ the black top bar over the opal side bar ]]( Dougs Design / A Black Top Bar and an Opal Side Bar )</Means>.
+                This book is the way into every other, so it is laid out as a place to choose from: the
+                bookshelf, designed as one page in <Means>$[[ the design book ]]( Dougs Design / The Bookshelf )</Means> and
+                carried into the library's words here. The bar across the top is the cover and nothing else:
+                the mark of the subject I am filed under, which is this catalogue itself, unfolding to its name
+                when the pointer rests on it; my own mark and my name; and my author at the right with the
+                mark of his book. The contents stand down the side, each row with a dot in its book's colour
+                and a triangle after it that leads to the book. The page is the desk and the shelf: the open
+                book lies large on the desk above, and the shelf below stays as it is while books are picked
+                from it.
             </Paragraph>
             <Paragraph>
-                The design it follows is <Means>$[[ the shelf ]]( Dougs Design / The Shelf )</Means> inside that
-                frame, explored again as <Means>$[[ the library's page ]]( Dougs Design / The Library's Page, in the Frame of 15 )</Means>:
-                the covers at two by three in each book's colour, with the spine's lines and the rule across,
-                six to a row at a desk and three on a phone, and one line under each. Beside this chapter the
-                library's subjects are written once, as three references to the books, each saying its book's
-                colour, and every book draws them in its bar.
+                When nothing is open, the catalogue's own book is on the desk — I am reading about the thing I
+                am on, which is the closure this library has, shown rather than avoided. A book pressed on the
+                shelf or in the contents comes down onto the desk in its place. The desk keeps its shape: the
+                words stand as tall as the jacket, a long entry fades at the foot, and <Means>$[[ read on ]]( ./The Catalogue )</Means> is
+                a thing said of the book that lets the desk take the shelf's place, and holds while other books
+                are picked. The book is drawn by <Means>$[[ the base book ]]( Dougs Reference Manual / The Book )</Means>'s
+                regions, with the shelf added after the leaves.
             </Paragraph>
         </Section>
         <Section>
             <Heading>What is on the shelf</Heading>
             <Paragraph>
-                The first book on the shelf is this one. The catalogue is filed under what it is about, which is
-                itself, so its own cover stands first, in the site's blue-black, and pressing it brings this page
-                back: I was just reading about the thing I am on. That is the closure this library has, shown
-                rather than avoided.
+                The first book on the shelf is this one, and after it stand the chapters that each stand for a
+                book filed here. The class of this book finds them by what they are: a chapter that carries the
+                synopsis of a book other than this one. Each such chapter also holds that book's cover, imported
+                and said as a volume, so the catalogue knows a book's jacket because the book's own cover says
+                it — <Means>$[[ the cover ]]( Dougs Reference Manual / The Cover )</Means> is the book's data
+                model, and nothing of the held cover is drawn as writing. On the shelf the chapter is drawn as
+                its jacket with the book's name under it, and the name opens the entry on the desk; on the desk
+                the jacket stands large beside the chapter's words — the sentence the entry says is <Means>$[[ its caption ]]( ./The Catalogue )</Means>,
+                then the book's own synopsis — with the way to the book under them.
             </Paragraph>
             <Paragraph>
-                After it stand the chapters that each represent a book. The class of this book finds them by
-                what they are: a chapter that carries the synopsis of a book other than this one. Its
-                specification says every chapter I add has a place. On the shelf such a chapter is drawn as its
-                book: the title as a cover, and under it one line, the sentence the entry says
-                is <Means>$[[ its caption ]]( ./The Catalogue )</Means>. The rest of the entry — the book's own
-                synopsis — is read when the entry is open.
+                Anywhere else a title refers to its own chapter; in this book, where a chapter carries another
+                book's synopsis, its title refers to that book, by a class of the framework's reference from a
+                title to itself, registered on this book's class. The row's second word, the triangle, leads
+                to the book too, and is the reference the library requires a catalogue's table to carry for
+                every book filed under it.
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>The two views</Heading>
             <Paragraph>
-                An entry opens from its row in the contents, which is marked with the book's colour, or from its
-                cover. It opens in place: the volume spans the row under the shelf, the cover large, the caption
-                over the synopsis, as a concept opens in the design book. The title leads to the book. Anywhere
-                else a title refers to its own chapter; in this book, where the chapter carries another book's
-                synopsis, it refers to that book, by a class of the framework's reference from a title to
-                itself, registered on this book's class, so no chapter has to ask for it. The row's second word,
-                an arrow, leads to the book too, and is the reference the library requires a catalogue's table
-                to carry for every book filed under it.
-            </Paragraph>
-            <Paragraph>
-                The shelf is one view of those chapters, and the views I chose for this book are three: the
-                shelf, the sources and the wall. A view is a thing said of the book, and only one is said at a
-                time, because a view that is said takes the one said before it away. That is how the framework
-                keeps a book to one theme, done here for views. The class says the shelf; the other two are not
-                drawn yet.
+                The page has two views and one table of contents. Reading, the contents stand first and the
+                page is the desk and the shelf. Built, which is where this chapter is read, the group that says
+                how this book is built stands first, the shelf and the desk step aside, and the open chapter is
+                shown with its files as the reference manual shows a chapter. Which view stands is a class the
+                layout puts on the book when the open chapter is in the appendix, so a press on a row of the
+                other group is the toggle between them.
             </Paragraph>
         </Section>
         <Section>
             <Heading>How it is dressed</Heading>
             <Paragraph>
-                The theme is the base's with this book's scheme, which is the site's own — the sea as its
-                colour, the deep blue as its accent, the opal as its side bar — and two parts of its own: the
-                front, which sets the synopsis plain in the serif at the file's size, and the covers. Each entry
-                says <Means>$[[ its book's colour ]]( Dougs Reference Manual / The Colour )</Means>, and the
-                cover on the shelf, the dot in the contents and the dot in the library's bar are painted from
-                that one saying. The cover and the table of contents are the framework's own, undressed; what
-                they look like here is the base's.
+                The theme is <Means>$[[ the Bookshelf ]]( Dougs Reference Manual / The Bookshelf )</Means>,
+                kept in the manual because any catalogue with a shelf may wear it, registered on this book's
+                class with the light tone. It knows no book by name: every colour on a jacket, a mark, a row or
+                the desk is the scheme the book's own cover says, set where the thing is drawn. Beside this
+                chapter the library's subjects are still written once, as three references to the books with a
+                colour each, for the bars of the other books until their own designs come.
             </Paragraph>
         </Section>
         <Append
@@ -83,16 +82,10 @@ export default () => (
             ![[ booklink.tsx ]]
         </Append>
         <Append
-            identifier="views"
+            identifier="said"
             type=".tsx"
         >
-            ![[ views.tsx ]]
-        </Append>
-        <Append
-            identifier="theme"
-            type=".tsx"
-        >
-            ![[ theme.tsx ]]
+            ![[ said.tsx ]]
         </Append>
         <Append
             identifier="subjects"

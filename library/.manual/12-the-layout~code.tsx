@@ -36,7 +36,9 @@ export class $Layout extends $Paginated {
                 writing.annotations.express(annotation, false);
         super.defines(writing);
         writing.classes.add(this, 'pa-layout');
-        if (this.open !== undefined) writing.classes.add(this, 'pa-turned');
+        const open = this.open;
+        if (open !== undefined) writing.classes.add(this, 'pa-turned');
+        if (open !== undefined && (this.book as $LibraryBook).appendix.includes(open)) writing.classes.add(this, 'pa-built');
     }
 
     override erase(writing: $Writing): void {

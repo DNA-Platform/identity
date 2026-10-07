@@ -1,5 +1,6 @@
 import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
 import { Appendix, Index } from '../.manual/.book';
+import { Arrow } from './o1-the-catalogue~said.tsx';
 
 export default () => (
     <Chapter>
@@ -12,14 +13,15 @@ export default () => (
         <Section>
             <Heading>Contents</Heading>
             <Paragraph>
-                <Content>$[[ ./The Shelves ]]</Content>
+                <Content>$[[ Dougs Library ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Word>
                     <Content>$[[ ./Dougs Story ]]</Content>
                 </Word>
                 <Word>
-                    <Content>[[ → ]]( Dougs Story )**</Content>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Dougs Story )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -27,7 +29,8 @@ export default () => (
                     <Content>$[[ ./Dougs Design ]]</Content>
                 </Word>
                 <Word>
-                    <Content>[[ → ]]( Dougs Design )**</Content>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Dougs Design )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -35,14 +38,12 @@ export default () => (
                     <Content>$[[ ./Dougs Reference Manual ]]</Content>
                 </Word>
                 <Word>
-                    <Content>[[ → ]]( Dougs Reference Manual )**</Content>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Dougs Reference Manual )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Parenthetical />
-                <Word>
-                    <Content>$[[ Dougs Library ]]</Content>
-                </Word>
                 <Word>
                     <Content>$[[ ./Synopsis ]]</Content>
                 </Word>

@@ -73,8 +73,14 @@ export class $LibraryBookTheme extends $Theme {
     shadow = '0 0.75rem 1.4rem -0.9rem rgba(12, 27, 31, 0.55)';
     initial = "'D'";
     volume = '11.5rem';
+    cover = '8.25rem';
     card = '18rem';
     photo = '7rem';
+    radius = '0.375rem';
+    barTint = '#ffffff';
+    skyInk = '#166178';
+    lift = 'inset 5px 0 0 rgba(0, 0, 0, 0.14), inset 6px 0 0 rgba(255, 255, 255, 0.12), 0 14px 24px -12px rgba(0, 0, 0, 0.5)';
+    openSpine = 'inset 7px 0 0 rgba(0, 0, 0, 0.14), inset 8px 0 0 rgba(255, 255, 255, 0.12), 0 12px 22px -14px rgba(0, 0, 0, 0.5)';
     style: ElementType = selection.div`${this.parts()}`;
 
     protected parts(): RuleSet[] {
@@ -273,6 +279,7 @@ export class $LibraryBookTheme extends $Theme {
                 line-height: 1.04;
                 color: ${({ theme }) => theme.heading};
             }
+            .pd-head .pa-illustration { display: none; }
         `;
     }
 

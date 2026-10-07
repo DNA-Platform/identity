@@ -22,6 +22,9 @@ export default () => (
                 <Content>$[[ ./The Author and the Subject ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./The Cover ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Content>$[[ ./The Layout ]]</Content>
             </Paragraph>
             <Paragraph>
@@ -71,6 +74,12 @@ export default () => (
             <Heading>The types of book</Heading>
             <Paragraph>
                 <Content>$[[ ./The Manual ]]</Content>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>The designs</Heading>
+            <Paragraph>
+                <Content>$[[ ./The Bookshelf ]]</Content>
             </Paragraph>
         </Section>
         <Section>

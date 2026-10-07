@@ -1,4 +1,4 @@
-import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Append, Chapter, Heading, Image, Means, Paragraph, Section, Title } from '@dna-platform/public';
 
 export default () => (
     <Chapter>
@@ -73,6 +73,57 @@ export default () => (
                 render. The method —
                 the page from the print, a thing changed per round, comparables before invention — is the branch
                 library's; the tool that makes a page from a print is <Means>$[[ The Print ]]( ./The Print )</Means>.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Built from the page</Heading>
+            <Paragraph>
+                <Image>![[ built-desk.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                The same day the page was decided it was carried into the library, through the words above and
+                nothing else: the cover type and what a cover carries in <Means>$[[ The Cover ]]( Dougs Reference Manual / The Cover )</Means>,
+                the theme in <Means>$[[ The Bookshelf ]]( Dougs Reference Manual / The Bookshelf )</Means>, and
+                the catalogue drawing its regions. Every book's cover now says its scheme, its window and its
+                illustration, the illustration a file beside the cover, and the catalogue's entries each hold
+                their book's cover as a volume. This is the built page with the catalogue's own book on the
+                desk, in the page's fonts.
+            </Paragraph>
+            <Paragraph>
+                <Image>![[ built-open.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                My story pressed, on the desk above the untouched shelf, its row lit in its own band. Two things
+                stand differently from the page, and both on purpose. The way to the book stands under the words
+                rather than inside them, because inside them the fade swallowed it. And the line that says by
+                whom and where it is filed comes after an entry's words, because a chapter is drawn whole and its
+                title cannot be parted from its paragraphs; on the catalogue's own desk it stands under the name
+                as the page had it.
+            </Paragraph>
+            <Paragraph>
+                <Image>![[ built-unfolded.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                Read on: the shelf steps aside, the words run full, the press moves to the top. It is a thing
+                said of the book by a switch, and the switch still says read on when the shelf is away; the
+                page said the shelf then, and that word is a small thing still owed.
+            </Paragraph>
+            <Paragraph>
+                <Image>![[ built-view.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                The built view: the appendix first in the contents, the chapter that says how this book is
+                built shown with its files in the manual's look. It is a class the layout puts on the book when
+                the open chapter is in the appendix, so a press on a row of the other group is the way back; the
+                group's heading is not yet a press. This view is designed properly when the manual is, so that
+                what a reference manual looks like is decided once.
+            </Paragraph>
+            <Paragraph>
+                <Image>![[ built-phone.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                The phone, which the page never drew: the base's story, the contents as a row of pills, the
+                desk stacked with the jacket at the shelf's size, the shelf three across below it.
             </Paragraph>
         </Section>
         <Append

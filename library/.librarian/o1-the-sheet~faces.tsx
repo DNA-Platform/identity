@@ -1,7 +1,8 @@
 import { $, selection } from '@dna-platform/chemistry';
-import { $Cover, $TableOfContents } from '@dna-platform/public';
+import { $TableOfContents } from '@dna-platform/public';
+import { $BookshelfCover } from '../.manual/.book';
 
-export class $StoryCover extends $Cover {
+export class $StoryCover extends $BookshelfCover {
     override style = selection.header`
         justify-self: end;
         .pd-chapter.pa-cover { margin-block: 0; }

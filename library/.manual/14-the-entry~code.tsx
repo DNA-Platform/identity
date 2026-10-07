@@ -3,26 +3,35 @@ import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Content, $Format, $Paragraph, $Parenthetical, $Section, $TableOfContents, $Word, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { $Coloured } from './18-the-colour~code.tsx';
+import { $Scheme, $Volume } from './19-the-cover~code.tsx';
 
 export class $Entry extends $Format {
     specification = new EntrySpecification();
-    style: ElementType = selection.div<{ $colour?: string }>`
-        ${props => props.$colour === undefined ? '' : `.pa-entry { --colour: ${props.$colour}; }`}
+    style: ElementType = selection.div<{ $vars?: string }>`
+        ${props => props.$vars === undefined ? '' : `.pa-entry { ${props.$vars} }`}
     `;
-    protected _coloured!: ElementType;
+    protected _painted!: ElementType;
     get place(): string { return leads(this.parent as $Writing)!.identifier; }
     get leads(): $Chapter | undefined { return (this.book as $LibraryBook).named(this.place); }
-    get colour(): string | undefined { return this.leads?.annotations.expressed($Coloured)?.colour; }
+    get cover(): $Chapter | undefined {
+        return this.leads?.annotations.expressed($Volume)?.cover ?? (this.book as $LibraryBook).coverOf(this.place);
+    }
+    get vars(): string | undefined {
+        const scheme = this.cover?.annotations.expressed($Scheme);
+        if (scheme !== undefined) return scheme.declarations;
+        const colour = this.leads?.annotations.expressed($Coloured)?.colour;
+        return colour === undefined ? undefined : `--colour: ${colour};`;
+    }
 
     $Entry(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
-        const Coloured = this.style;
-        this._coloured = (props: { children?: ReactNode }) => <Coloured $colour={this.colour} {...props} />;
+        const Painted = this.style;
+        this._painted = (props: { children?: ReactNode }) => <Painted $vars={this.vars} {...props} />;
     }
 
     override defines(writing: $Writing): void {
         writing.classes.add(this, 'pa-entry');
-        writing.containers.add(this, this._coloured);
+        writing.containers.add(this, this._painted);
         if (this.place === this.book?.$bookmark || this.place === (this.book as $LibraryBook).open?.mention?.identifier) writing.classes.add(this, 'pa-open');
     }
 

@@ -1,11 +1,12 @@
 import { Chapter, Means, Paragraph, Synopsis, Title } from '@dna-platform/public';
-import { Coloured } from '../.manual/.book';
-import { Caption } from './o1-the-catalogue~views.tsx';
+import { Volume } from '../.manual/.book';
+import { Caption } from './o1-the-catalogue~said.tsx';
+import DesignCover from '../.design/.cover';
 import DesignSynopsis from '../.design/.synopsis';
 
 export default () => (
     <Chapter>
-        <Coloured>#3b6cf0</Coloured>
+        <Volume>{DesignCover()}</Volume>
         <Title>[[ Dougs Design ]]</Title>
         <Paragraph>
             <Caption />

@@ -28,7 +28,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 The new one began as four books. <Means>$[[ Dougs Library ]]</Means> is the catalogue, and
-                everything I keep is on <Means>$[[ its shelves ]]( Dougs Library / The Shelves )</Means>. This
+                everything I keep is on <Means>$[[ its shelves ]]( Dougs Library )</Means>. This
                 book is <Means>$[[ Dougs Story ]]</Means>. The design of the library is kept
                 in <Means>$[[ Dougs Design ]]</Means>, and the parts I build the library with are
                 in <Means>$[[ Dougs Reference Manual ]]</Means>, which also says

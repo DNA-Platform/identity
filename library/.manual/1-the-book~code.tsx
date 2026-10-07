@@ -145,6 +145,10 @@ export class $LibraryBook extends $Book {
             || this.sections(chapter).some(section => section.mention?.identifier === place));
     }
 
+    coverOf(identifier: string | undefined): $Chapter | undefined {
+        return identifier !== undefined && this.means?.identifier === identifier ? this.cover : undefined;
+    }
+
     byline(): ReactNode {
         const Byline = $(byline);
         return (
