@@ -191,7 +191,7 @@ export class $ManualTheme extends $LibraryBookTheme {
             }
             .pd-holds .pd-file .pd-drawing { flex: none; width: ${({ theme }) => theme.size}; height: ${({ theme }) => theme.size}; color: #a5aebb; transition: color ${({ theme }) => theme.beat} ease; }
             .pd-book .pd-holds .pd-file:hover { background: color-mix(in oklch, var(--band) 28%, white); color: ${({ theme }) => theme.ink}; }
-            .pa-split .pd-holds .pd-file[aria-pressed='true'], .pa-code-forward .pd-holds .pd-file[aria-pressed='true'] { color: var(--band-ink); font-weight: 500; background: color-mix(in oklch, var(--band) 30%, white); }
+            .pa-split .pd-holds .pd-file[aria-pressed='true'], .pa-code-forward .pd-holds .pd-file[aria-pressed='true'] { color: ${({ theme }) => theme.skyInk}; font-weight: 500; background: color-mix(in oklch, ${({ theme }) => theme.sky} 55%, white); }
             .pa-split .pd-holds .pd-file[aria-pressed='true'] .pd-drawing, .pa-code-forward .pd-holds .pd-file[aria-pressed='true'] .pd-drawing { color: var(--colour); }
             .pd-holds .pd-section.pa-appendix { margin: auto 0 0; padding-block-start: calc(${({ theme }) => theme.space} / 3); border-block-start: thin solid #e3e7ee; opacity: 1; }
             .pd-holds .pd-section.pa-appendix .pd-heading { font-size: calc(0.9286 * ${({ theme }) => theme.size}); }
@@ -407,7 +407,8 @@ export class $ManualTheme extends $LibraryBookTheme {
             }
             .pd-options .pd-word.pd-switch:hover { color: var(--glow); }
             .pd-options .pd-word.pd-switch[aria-pressed='true'] { color: var(--glow); background: var(--dawn); border-color: transparent; }
-            .pd-listings { display: grid; min-height: 0; overflow: hidden; }
+            .pd-listings { display: grid; grid-template-rows: minmax(0, 1fr); align-content: start; min-height: 0; overflow: hidden; }
+            .pd-listings .pd-container { display: contents; }
         `;
     }
 
