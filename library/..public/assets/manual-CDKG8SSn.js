@@ -1,4 +1,4 @@
-var T=Object.defineProperty;var o=(j,r)=>T(j,"name",{value:r,configurable:!0});import{$ as b,F as A,s as k,G as S,j as e,C as d,n as c,o as W,p as C,P as x,v as n,H as a,t,w as h,W as m,M as s,x as i,L as v,N as p}from"./index-B6eU_VfC.js";import{g as L,I as B,B as l}from"./17-the-first~code-DY6OZakh.js";import{S as R}from"./.synopsis-BiQ2TCfH.js";const w=class w extends L{};o(w,"$ReferenceManual");let f=w;const y=class y extends A{constructor(){super(...arguments),this.style=k.header`
+var T=Object.defineProperty;var o=(j,r)=>T(j,"name",{value:r,configurable:!0});import{$ as b,F as A,s as k,G as S,j as e,C as d,n as c,o as W,p as C,P as x,v as n,H as a,t,w as h,W as m,M as s,x as i,L as v,N as p}from"./index-BxEKil5N.js";import{g as L,I as B,B as l}from"./17-the-first~code-BJtXoKUX.js";import{S as R}from"./.synopsis-DQqGiC0r.js";const w=class w extends L{};o(w,"$ReferenceManual");let f=w;const y=class y extends A{constructor(){super(...arguments),this.style=k.header`
         .pd-chapter.pa-cover { margin-block: 0; }
         .pa-cover .pd-title {
             font-size: calc(1.04 * ${({theme:r})=>r.size});

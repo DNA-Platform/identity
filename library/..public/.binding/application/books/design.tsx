@@ -8,6 +8,7 @@ import TheDesignsIAmGoingWith1 from '../../../../.design/1-the-designs-i-am-goin
 import WhatIAmAsked2 from '../../../../.design/2-what-i-am-asked';
 import EveryConcept3 from '../../../../.design/3-every-concept';
 import DrivingTheBuild4 from '../../../../.design/4-driving-the-build';
+import TheBookshelf5 from '../../../../.design/5-the-bookshelf';
 import TheParagraphso1 from '../../../../.design/o1-the-paragraphs';
 import TheConcepto2 from '../../../../.design/o2-the-concept';
 import TheCamerao3 from '../../../../.design/o3-the-camera';
@@ -25,6 +26,7 @@ export const book = () => (
         {WhatIAmAsked2()}
         {EveryConcept3()}
         {DrivingTheBuild4()}
+        {TheBookshelf5()}
         {TheParagraphso1()}
         {TheConcepto2()}
         {TheCamerao3()}

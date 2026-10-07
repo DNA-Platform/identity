@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Bookshelf</title>
+<meta name="number" content="34">
+<meta name="state" content="design">
+<meta name="after" content="the catalogue's own print; Penguin's tri-band and Bauhaus blocks for the covers; Apple Books for a book opening large">
+<meta name="idea" content="The catalogue's page from its print, light and gentle. Each book is a cover with three colours in blocks and an illustration — one colour on the shelf, its colours when open — and pressing a book opens it large above the shelf with what the catalogue says of it, the shelf untouched below.">
+<meta name="said" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+    /* ---- the page's palette: slate ink, never black; a faint cool tint; one sky accent for the library itself ---- */
+    :root {
+        --paper: #fdfcfa; --ink: #343c4a; --soft: #727d8c; --faint: #9ea8b5; --line: #e4e9f2; --tint: #f0f4fc; --bar-tint: #f8fafe;
+        --sky: #e3edfb; --sky-ink: #4a6ea0; --wash: linear-gradient(135deg, #f2f6fd 0%, #fdfcfa 48%, #fdf6f1 100%);
+        --sans: 'Inter', system-ui, sans-serif; --serif: 'Source Serif 4', Georgia, serif;
+        --bar: 52px; --side: 232px; --space: 24px;
+        --cover: 132px; --open: 184px; --radius: 6px;
+    }
+    /* ---- each book's three colours come from what the book is: the catalogue wears the site's own opal and teal; the story a
+       Field Notes notebook, kraft and cream with a fountain-pen blue; the design book a blueprint with a red marking pencil; the
+       reference manual a workshop, gunmetal and brass ---- */
+    /* ---- the drawing, drawn the same wherever it stands: lines in the book's ink, books in the foot's colour, lights white ---- */
+    .pd-illustration { fill: none; stroke: var(--draw); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .pd-illustration .pa-fill { fill: var(--k); stroke: var(--draw); }
+    .pd-illustration .pa-light { fill: #ffffff; stroke: none; }
+    /* where it stands: on a cover at 54% of the cover's width; in a mark, a window onto the desk's cover at that cover's scale */
+    .pd-title .pd-illustration { align-self: center; justify-self: center; width: 54%; height: auto; }
+    .pd-mark { display: block; position: relative; flex: none; box-sizing: border-box; width: 28px; height: 28px; border: calc(var(--open) * 0.54 / 64 * 1.7) solid var(--draw); background: var(--b); overflow: hidden; }
+    .pd-mark .pd-illustration { position: absolute; width: calc(var(--open) * 0.54); height: calc(var(--open) * 0.54); }
+    .pd-mark.library .pd-illustration { left: -46px; top: -13px; }
+    .pd-mark.story .pd-illustration { left: -44px; top: -22px; }
+
+    .library { --a: #eef5f6; --b: #c3e3e6; --b-ink: #1c565c; --k: #8db9bd; --k-ink: #153e43; --draw: #1f5a60; }
+    .story { --a: #f5eedf; --b: #d9c3a3; --b-ink: #4a3626; --k: #a3b6cc; --k-ink: #2a4262; --draw: #2f4a6a; }
+    .design { --a: #edf2f9; --b: #b3c6e4; --b-ink: #23407a; --k: #e6a69a; --k-ink: #7d3429; --draw: #8a3a2f; }
+    .manual { --a: #eef1f2; --b: #b6c1c6; --b-ink: #2b363c; --k: #d8c48e; --k-ink: #5d4a16; --draw: #4b3d14; }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body { display: grid; grid-template: var(--bar) auto / var(--side) minmax(0, 1fr); grid-template-areas: 'library library' 'holds leaves'; align-items: start; min-height: 100%; background: var(--wash); color: var(--ink); font: 400 14px/1.55 var(--sans); }
+    a { color: inherit; text-decoration: none; }
+    [hidden] { display: none !important; }
+    .pd-paragraph { margin: 0; }
+
+    /* the bar: white, a hairline, the mark in sky, the subjects with their books' dots, me at the end */
+    .pd-library { grid-area: library; position: sticky; top: 0; z-index: 3; display: flex; align-items: center; gap: 4px; height: var(--bar); padding: 0 18px; background: var(--bar-tint); border-bottom: 1px solid var(--line); }
+    .pd-logo .pd-paragraph { display: flex; align-items: center; gap: 9px; height: var(--bar); margin-right: 27px; }
+    .pd-logo .pd-word { display: block; font: 700 18px/1 var(--serif); letter-spacing: -0.015em; color: #1c565c; transform: translateY(1px); }
+    .pd-subjects { display: none; }
+    .pd-filed { display: flex; align-items: center; height: var(--bar); margin-right: 10px; }
+    .pd-filed .pd-paragraph { display: flex; align-items: center; gap: 9px; }
+    .pd-filed .pa-label { display: none; }
+    .pd-filed .pd-paragraph > .pd-word:last-child { display: grid; grid-template-columns: 0fr; overflow: hidden; transition: grid-template-columns .22s ease; }
+    .pd-filed .pd-paragraph > .pd-word:last-child > * { min-width: 0; overflow: hidden; white-space: nowrap; font: 500 13px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--soft); }
+    .pd-filed:hover .pd-paragraph > .pd-word:last-child { grid-template-columns: 1fr; }
+    .pd-filed:hover .pd-paragraph > .pd-word:last-child > * { padding-right: 6px; }
+    .pd-filed::after { content: ''; width: 1px; height: 18px; margin-left: 10px; background: var(--line); }
+    .pd-subjects .pd-section { display: flex; gap: 2px; }
+    .pd-subjects .pd-paragraph { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: var(--radius); color: var(--soft); font-size: 13.5px; font-weight: 500; }
+    .pd-subjects .pd-paragraph::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--b-ink, var(--faint)); }
+    .pd-subjects .pd-paragraph:hover { background: var(--tint); color: var(--ink); }
+    .pd-me { grid-area: library; position: sticky; top: 0; z-index: 4; justify-self: end; align-self: center; margin-right: 18px; }
+    .pd-me .pd-byline { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--soft); }
+    .pd-me .pa-reference { color: var(--ink); font-weight: 500; }
+
+    /* the side bar: the faintest cool tint, each row with its book's dot, the open row white */
+    .pd-holds { grid-area: holds; position: sticky; top: var(--bar); align-self: start; min-height: calc(100vh - var(--bar)); padding: 18px 0; background: #f7f8fb; border-right: 1px solid #e3e7ee; }
+    .pd-holds nav, .pd-holds .pd-chapter { display: flex; flex-direction: column; min-height: calc(100vh - var(--bar) - 36px); }
+    .pd-holds .pd-chapter { flex: 1; }
+    .pd-holds .pd-section { margin: 0 0 16px; }
+    .pd-holds .pd-heading { margin: 0 22px 6px; font: 600 10.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: #7f8a9b; }
+    .pd-holds .pa-entry { display: flex; align-items: center; gap: 9px; margin: 0; padding: 4px 14px 4px 40px; border-radius: 0; position: relative; font-weight: 500; font-size: 13px; line-height: 1.35; color: #3a4452; cursor: pointer; box-shadow: inset 3px 0 0 transparent; }
+    .pd-holds .pa-entry::before { content: ''; position: absolute; left: 23px; width: 8px; height: 8px; border-radius: 50%; background: var(--b-ink, var(--sky-ink)); box-shadow: 0 0 0 2px #ffffff; }
+    .pd-holds .pa-entry:hover { background: color-mix(in oklch, var(--b, #dfe6f0) 30%, white); }
+    .pd-holds .pa-entry > a:last-child { display: grid; place-items: center; width: 20px; height: 20px; margin-left: auto; border: 1px solid transparent; border-radius: 50%; color: #aab3c2; }
+    .pd-holds .pa-entry > a:last-child .pa-content { display: block; margin-left: 1px; font-size: 11px; line-height: 1; color: inherit; }
+    .pd-holds .pa-entry:hover > a:last-child { border-color: #d9dfe8; background: #ffffff; color: #6f7a88; }
+    .pd-holds .pa-entry > a:last-child:hover { border-color: var(--b-ink, var(--sky-ink)); background: var(--b, var(--sky)); color: var(--b-ink, var(--sky-ink)); }
+    .pd-holds .pa-entry.pa-open { background: color-mix(in oklch, var(--b, #dfe6f0) 45%, white); color: var(--b-ink, var(--sky-ink)); box-shadow: inset 3px 0 0 var(--b-ink, var(--sky-ink)); }
+    .pd-holds .pa-parenthetical { display: none; }
+    .pd-holds .pd-section.pa-appendix { margin: auto 0 0; padding-top: 14px; border-top: 1px solid #e3e7ee; opacity: .85; }
+    .pd-holds .pd-section.pa-appendix .pd-heading { font-size: 9.5px; }
+    .pd-holds .pd-section.pa-appendix .pa-entry { font-size: 12.5px; font-weight: 400; }
+
+    /* the page: the synopsis in a quiet serif; then the open book, large, with what the catalogue says of it; then the shelf */
+    .pd-leaves { grid-area: leaves; padding: 28px 36px 48px; }
+    .pd-front .pd-words { display: none; }
+    .pd-shelf { display: grid; grid-template-columns: repeat(auto-fill, var(--cover)); gap: 26px 26px; align-items: start; }
+
+    /* ---- a cover, the same for every book: three bands of three colours. The block above with the title centred in the ground's
+       colour; the ground between with the illustration drawn in the third colour; the third colour as the band at the foot, the author on it.
+       Hairlines of the ground part the bands, as Penguin's did. ---- */
+    .pd-title { position: relative; display: grid; grid-template-rows: 30% 1fr 24%; width: var(--cover); height: calc(var(--cover) * 1.5); overflow: hidden; border-radius: 2px 4px 4px 2px; background: var(--a); color: var(--b-ink); font: 700 13.5px/1.18 var(--serif); letter-spacing: -0.005em; text-align: center; box-shadow: inset 3px 0 0 rgba(0, 0, 0, .08), inset 4px 0 0 rgba(255, 255, 255, .35), 0 6px 12px -10px rgba(44, 52, 64, .3); cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
+    .pd-volume:hover .pd-title { transform: translateY(-2px); box-shadow: inset 3px 0 0 rgba(0, 0, 0, .08), inset 4px 0 0 rgba(255, 255, 255, .35), 0 10px 16px -12px rgba(44, 52, 64, .35); }
+    .pd-title .pa-name { display: grid; place-items: center; padding: 3px 10px 3px 13px; background: var(--b); color: var(--b-ink); box-shadow: 0 2px 0 #ffffff; }
+    .pd-title .pa-author { display: grid; place-items: center; padding: 0 10px 0 13px; background: var(--k); color: var(--k-ink); font: 500 8px/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase; box-shadow: 0 -2px 0 #ffffff; }
+    /* under a cover: nothing but the book's name; the words wait for the book to open */
+    .pd-volume .pd-paragraph { display: none; }
+    .pd-volume .pa-name-under { display: block; margin-top: 10px; font-size: 13px; font-weight: 500; line-height: 1.3; text-align: center; color: var(--ink); }
+    .pd-volume .pa-caption { display: none; }
+
+    /* ---- the open book: large above the shelf, its illustration in its colours, the catalogue's words beside it ---- */
+    .pd-desk { display: none; grid-template-columns: var(--open) minmax(0, 1fr); gap: 28px; align-items: start; margin-bottom: 28px; padding: 20px 24px; border: 1px solid color-mix(in oklch, var(--b) 40%, white); border-radius: 10px; background: linear-gradient(135deg, color-mix(in oklch, var(--b) 45%, white), color-mix(in oklch, var(--a) 60%, white) 55%, #ffffff); box-shadow: 0 8px 20px -18px color-mix(in oklch, var(--b-ink) 45%, transparent); }
+    .pd-desk.pa-open { display: grid; }
+    .pd-desk .pd-title { --cover: var(--open); font-size: 19px; box-shadow: inset 7px 0 0 rgba(0, 0, 0, .07), inset 9px 0 0 rgba(255, 255, 255, .45), 0 12px 22px -16px rgba(44, 52, 64, .35); cursor: default; }
+    .pd-desk .pd-title .pa-name { padding: 12px 20px 12px 23px; box-shadow: 0 3px 0 #ffffff; }
+    .pd-desk .pd-title .pa-author { padding: 0 18px 0 21px; font-size: 10.5px; letter-spacing: .18em; box-shadow: 0 -3px 0 #ffffff; }
+    .pd-desk .pd-words { padding-top: 6px; }
+    .pd-desk .pa-kicker { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font: 600 10.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--k-ink); }
+    .pd-desk .pa-kicker::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--k); }
+    .pd-desk h2 { margin: 0 0 4px; font: 700 24px/1.1 var(--serif); letter-spacing: -0.01em; color: var(--b-ink); }
+    .pd-desk .pa-line { margin-bottom: 16px; font-size: 13px; color: var(--soft); }
+    .pd-desk .pa-line a { color: var(--b-ink); font-weight: 500; }
+    .pd-desk .pd-paragraph { display: block; max-width: 56ch; margin-bottom: 10px; font: 400 15px/1.55 var(--serif); color: var(--ink); }
+    .pd-desk .pd-paragraph.pd-turn { display: none; }
+    .pd-desk .pd-paragraph.pa-caption { font: 500 14px/1.5 var(--sans); color: var(--b-ink); }
+    .pd-desk .pd-paragraph a { color: var(--b-ink); }
+    .pd-desk .pa-read { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; padding: 8px 14px; border-radius: var(--radius); background: var(--b); color: var(--b-ink); font-weight: 600; font-size: 13.5px; }
+    .pd-desk .pa-read:hover { background: var(--k); color: var(--k-ink); }
+    .pd-desk .pa-close { position: absolute; top: 16px; right: 18px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; color: var(--soft); font-size: 18px; cursor: pointer; }
+    .pd-desk .pa-close:hover { background: var(--tint); color: var(--ink); }
+    .pd-desk { position: relative; }
+
+    /* ---- the desk keeps its shape: the words as tall as the cover, long entries fading at the foot, and a way to read on across the screen ---- */
+    .pd-desk .pd-words { position: relative; max-height: calc(var(--open) * 1.5); overflow: hidden; }
+    .pd-desk .pd-words.pa-more::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 72px; background: linear-gradient(to bottom, transparent, color-mix(in oklch, var(--a) 60%, white) 70%, color-mix(in oklch, var(--a) 60%, white)); pointer-events: none; }
+    .pd-desk .pa-on { display: none; position: absolute; right: 24px; bottom: 22px; z-index: 1; align-items: center; gap: 7px; padding: 6px 12px; border: 1px solid color-mix(in oklch, var(--b) 60%, white); border-radius: var(--radius); background: #ffffff; color: var(--b-ink); font: 500 12.5px/1 var(--sans); cursor: pointer; }
+    .pd-desk .pa-on::after { content: ''; width: 9px; height: 9px; border-right: 1.5px solid currentColor; border-top: 1.5px solid currentColor; transform: translateY(1px); }
+    .pd-desk .pd-words.pa-more + .pa-on { display: inline-flex; }
+    .pd-desk .pa-on:hover { background: var(--b); }
+    /* read on: a state of the page. The desk stays and grows into the shelf's place, the shelf steps aside, and the state holds
+       while other books are picked from the contents, so entries can be browsed at full length. */
+    body[data-read="on"] .pd-shelf { display: none; }
+    body[data-read="on"] .pd-desk { margin-bottom: 0; }
+    body[data-read="on"] .pd-desk .pd-title { position: sticky; top: calc(var(--bar) + 20px); }
+    body[data-read="on"] .pd-desk .pd-words { max-height: none; overflow: visible; max-width: 60ch; }
+    body[data-read="on"] .pd-desk .pd-words::after { display: none; }
+    body[data-read="on"] .pd-desk .pd-paragraph { font-size: 16px; line-height: 1.6; }
+    body[data-read="on"] .pd-desk .pa-on { display: inline-flex; top: 16px; right: 56px; bottom: auto; }
+    body[data-read="on"] .pd-desk .pa-on::after { transform: translateY(1px) rotate(180deg); }
+
+
+    /* ---- the page in its two states. The table of contents is the same in both; the reading state renders the contents,
+       the built state renders how the book is built, and the heading of each group is the way into the other. ---- */
+    .pd-holds .pd-section > a:first-child { cursor: pointer; }
+    .pd-holds .pd-heading::after { content: ''; display: inline-block; width: 0; height: 0; margin-left: 8px; vertical-align: 1px; border: 3px solid transparent; border-left: 5px solid #c1c9d6; border-right: 0; opacity: 0; transition: opacity .15s; }
+    .pd-holds .pd-section > a:first-child:hover .pd-heading { color: var(--sky-ink); }
+    .pd-holds .pd-section > a:first-child:hover .pd-heading::after { opacity: 1; }
+    body[data-view="built"] .pd-holds .pd-section:not(.pa-appendix) { opacity: .55; }
+    body[data-view="built"] .pd-holds .pd-section:not(.pa-appendix) .pa-entry { display: none; }
+    body[data-view="built"] .pd-holds .pd-section.pa-appendix { opacity: 1; margin-top: 0; padding-top: 0; border-top: 0; order: -1; }
+    body[data-view="built"] .pd-holds .pd-section.pa-appendix .pd-heading { font-size: 10.5px; }
+    body[data-view="built"] .pd-holds .pd-section.pa-appendix .pa-entry { font-size: 13.5px; font-weight: 500; }
+    body[data-view="built"] .pd-holds .pd-section.pa-appendix .pa-entry::before { background: var(--sky-ink); }
+    body[data-view="built"] .pd-desk, body[data-view="built"] .pd-front { display: none; }
+    .pd-built { display: none; }
+    body[data-view="built"] .pd-built { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+
+    /* the built view wears the manual's look: the chapter's words, then its files as light listings */
+    .pd-built .pd-words .pd-chapter { max-width: 64ch; }
+    .pd-built .pd-words .pd-title { display: block; width: auto; height: auto; aspect-ratio: auto; overflow: visible; margin: 0 0 6px; padding: 0; border-radius: 0; background: none; box-shadow: none; color: var(--ink); font: 700 26px/1.15 var(--serif); letter-spacing: -0.01em; text-align: left; cursor: default; }
+    .pd-built .pd-words .pd-heading { margin: 26px 0 8px; font: 600 11px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+    .pd-built .pd-words .pd-paragraph { margin: 0 0 14px; font: 400 15.5px/1.6 var(--serif); color: var(--ink); }
+    .pd-built .pd-words .pd-paragraph a { color: var(--sky-ink); }
+    .pd-built .pd-words .pd-turn { display: none; }
+    .pd-built .pd-files { display: grid; gap: 18px; }
+    .pd-built .pd-listing { margin: 0; border: 1px solid #e3e7ee; border-radius: var(--radius); background: #f7f8fb; overflow: hidden; }
+    .pd-built .pd-listing > .pd-word { display: flex; align-items: center; gap: 8px; padding: 7px 12px; border-bottom: 1px solid #e3e7ee; background: #ffffff; font: 500 12px/1 var(--sans); color: var(--soft); }
+    .pd-built .pd-listing > .pd-word::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--sky-ink); opacity: .6; }
+    .pd-built .pd-code { margin: 0; padding: 12px 0; font: 400 12.5px/1.65 ui-monospace, 'SF Mono', Menlo, Consolas, monospace; color: #3a4452; overflow-x: auto; }
+    .pd-built .pd-code-line { display: block; padding: 0 16px 0 0; white-space: pre; }
+    .pd-built .pd-code-line::before { content: attr(data-line); display: inline-block; width: 44px; padding-right: 14px; text-align: right; color: #b3bcc9; user-select: none; }
+    .pd-built .hljs-keyword, .pd-built .hljs-built_in, .pd-built .hljs-literal { color: #5a4fa8; }
+    .pd-built .hljs-string, .pd-built .hljs-regexp, .pd-built .hljs-number { color: #2f7f6e; }
+    .pd-built .hljs-title, .pd-built .hljs-type, .pd-built .hljs-tag, .pd-built .hljs-name, .pd-built .hljs-attr { color: #23407a; }
+    .pd-built .hljs-comment, .pd-built .hljs-meta { color: #8a94a3; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="pd-library"><div class="pd-logo"><div class="pd-paragraph"><a href="/dougs-library/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Library</span></a></div></div><div class="pd-subjects"><div class="pd-section"><div class="pd-container"><div class="pd-paragraph pa-coloured"><a href="/dougs-story/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Story</span></a></div></div><div class="pd-container"><div class="pd-paragraph pa-coloured"><a href="/dougs-design/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Design</span></a></div></div><div class="pd-container"><div class="pd-paragraph pa-coloured"><a href="/dougs-reference-manual/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Reference Manual</span></a></div></div></div></div></div>
+<div class="pd-me"><div class="pd-paragraph pd-byline"><span class="pd-word pa-label">by</span><a href="/dougs-story/" class="pa-reference pd-container"><span class="pd-word pa-reference">Doug</span></a></div></div>
+<div class="pd-holds"><nav class="pd-container"><div class="pd-chapter pa-table-of-contents"><a href="/dougs-library/#table-of-contents" class="pa-reference pa-self-reference pd-container"><span id="table-of-contents" class="pd-sentence pd-title pa-parenthetical pa-reference pa-self-reference pa-referent" hidden=""></span></a><div class="pd-section"><a href="#contents" class="pa-reference pa-self-reference pd-container"><div id="contents" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">Contents</div></a><a href="/dougs-library/#the-shelves" class="pa-reference pd-container"><div class="pd-container"><div class="pd-paragraph pa-entry pa-reference"><span class="pa-content">The Shelves</span></div></div></a><div class="pd-container"><div class="pd-paragraph pa-entry"><a href="/dougs-library/#dougs-story" class="pa-reference pd-container"><span class="pd-word pa-reference"><span class="pa-content">Dougs Story</span></span></a><a href="/dougs-story/" class="pa-reference pd-container"><span class="pd-word pa-reference"><span class="pa-content">→</span></span></a></div></div><div class="pd-container"><div class="pd-paragraph pa-entry"><a href="/dougs-library/#dougs-design" class="pa-reference pd-container"><span class="pd-word pa-reference"><span class="pa-content">Dougs Design</span></span></a><a href="/dougs-design/" class="pa-reference pd-container"><span class="pd-word pa-reference"><span class="pa-content">→</span></span></a></div></div><div class="pd-container"><div class="pd-paragraph pa-entry"><a href="/dougs-library/#dougs-reference-manual" class="pa-reference pd-container"><span class="pd-word pa-reference"><span class="pa-content">Dougs Reference Manual</span></span></a><a href="/dougs-reference-manual/" class="pa-reference pd-container"><span class="pd-word pa-reference"><span class="pa-content">→</span></span></a></div></div><span class="pd-paragraph pa-parenthetical" hidden=""></span></div><div class="pd-section pa-appendix"><a href="#how-this-book-is-built" class="pa-reference pa-self-reference pd-container"><div id="how-this-book-is-built" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">How this book is built</div></a><a href="/dougs-library/#the-catalogue" class="pa-reference pd-container"><div class="pd-container"><div class="pd-paragraph pa-entry pa-reference"><span class="pa-content">The Catalogue</span></div></div></a></div></div></nav></div>
+<div class="pd-leaves">
+<section class="pd-desk"></section>
+<div class="pd-leaf pd-shelves" hidden><div class="pd-words"><div class="pd-chapter pd-canonical pa-page"><a href="/dougs-library/#the-shelves" class="pa-reference pa-self-reference pd-container"><div id="the-shelves" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">The Shelves</div></a><div class="pd-section"><a href="#what-is-here" class="pa-reference pa-self-reference pd-container"><div id="what-is-here" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">What is here</div></a><div class="pd-paragraph">Three books are filed under this one. <a href="/dougs-story/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Story</span></a> is mine, and the one book here that is by its own subject. It is the place to begin from, and it begins with <a href="/dougs-story/#starting-over" class="pa-reference pd-container"><span class="pd-word pa-reference">starting over</span></a>. The design of this library is kept in <a href="/dougs-design/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Design</span></a>. The parts I build this library with are in <a href="/dougs-reference-manual/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Reference Manual</span></a>, each beside the chapter that says what it is.</div><div class="pd-paragraph">Each of the three has a chapter here that represents it and carries its synopsis: its entry, drawn on the shelf as a cover with one line under it. In the contents the name opens the entry on this page, and the arrow after it leads to the book itself. And this catalogue is on its own shelf, first, because it is filed under what it is about, which is itself.</div></div><div class="pd-paragraph pd-turn"><a href="/dougs-library/#the-shelves" class="pa-reference pa-self-reference pd-container"><span class="pd-word pa-reference pa-self-reference pa-before">← <!-- -->The Shelves</span></a><span class="pd-word pd-count">1 of 5</span><a href="/dougs-library/#the-catalogue" class="pa-reference pd-container"><span class="pd-word pa-reference pa-after">The Catalogue<!-- --> →</span></a></div></div></div><div class="pd-files"></div></div>
+<div class="pd-leaf pd-built"><div class="pd-words"><div class="pd-chapter pd-canonical pa-page"><a href="/dougs-library/#the-catalogue" class="pa-reference pa-self-reference pd-container"><div id="the-catalogue" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">The Catalogue</div></a><div class="pd-section"><a href="#how-this-book-is-laid-out" class="pa-reference pa-self-reference pd-container"><div id="how-this-book-is-laid-out" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">How this book is laid out</div></a><div class="pd-paragraph">This book is the way into every other, so it is laid out as a place to choose from. It stands in the frame every book of mine stands in, drawn by <a href="/dougs-reference-manual/#the-book" class="pa-reference pd-container"><span class="pd-word pa-reference">the base book</span></a>: the library&#x27;s bar black across the top, with my three books as its subjects, each beside a dot in its colour and the open one lit by a line in that colour; this book&#x27;s contents down the opal side bar; and the page beside. It has no head of its own, because its cover stands on its shelf. The page is always the synopsis and the shelf, and under the shelf the entry that is open, if one is. It wears the dark tone, the library&#x27;s own, which is <a href="/dougs-design/#a-black-top-bar-and-an-opal-side-bar" class="pa-reference pd-container"><span class="pd-word pa-reference">the black top bar over the opal side bar</span></a>.</div><div class="pd-paragraph">The design it follows is <a href="/dougs-design/#the-shelf" class="pa-reference pd-container"><span class="pd-word pa-reference">the shelf</span></a> inside that frame, explored again as <a href="/dougs-design/#the-librarys-page-in-the-frame-of-15" class="pa-reference pd-container"><span class="pd-word pa-reference">the library&#x27;s page</span></a>: the covers at two by three in each book&#x27;s colour, with the spine&#x27;s lines and the rule across, six to a row at a desk and three on a phone, and one line under each. Beside this chapter the library&#x27;s subjects are written once, as three references to the books, each saying its book&#x27;s colour, and every book draws them in its bar.</div></div><div class="pd-section"><a href="#what-is-on-the-shelf" class="pa-reference pa-self-reference pd-container"><div id="what-is-on-the-shelf" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">What is on the shelf</div></a><div class="pd-paragraph">The first book on the shelf is this one. The catalogue is filed under what it is about, which is itself, so its own cover stands first, in the site&#x27;s blue-black, and pressing it brings this page back: I was just reading about the thing I am on. That is the closure this library has, shown rather than avoided.</div><div class="pd-paragraph">After it stand the chapters that each represent a book. The class of this book finds them by what they are: a chapter that carries the synopsis of a book other than this one. Its specification says every chapter I add has a place. On the shelf such a chapter is drawn as its book: the title as a cover, and under it one line, the sentence the entry says is <a href="/dougs-library/#the-catalogue" class="pa-reference pd-container"><span class="pd-word pa-reference">its caption</span></a>. The rest of the entry — the book&#x27;s own synopsis — is read when the entry is open.</div><div class="pd-paragraph">An entry opens from its row in the contents, which is marked with the book&#x27;s colour, or from its cover. It opens in place: the volume spans the row under the shelf, the cover large, the caption over the synopsis, as a concept opens in the design book. The title leads to the book. Anywhere else a title refers to its own chapter; in this book, where the chapter carries another book&#x27;s synopsis, it refers to that book, by a class of the framework&#x27;s reference from a title to itself, registered on this book&#x27;s class, so no chapter has to ask for it. The row&#x27;s second word, an arrow, leads to the book too, and is the reference the library requires a catalogue&#x27;s table to carry for every book filed under it.</div><div class="pd-paragraph">The shelf is one view of those chapters, and the views I chose for this book are three: the shelf, the sources and the wall. A view is a thing said of the book, and only one is said at a time, because a view that is said takes the one said before it away. That is how the framework keeps a book to one theme, done here for views. The class says the shelf; the other two are not drawn yet.</div></div><div class="pd-section"><a href="#how-it-is-dressed" class="pa-reference pa-self-reference pd-container"><div id="how-it-is-dressed" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">How it is dressed</div></a><div class="pd-paragraph">The theme is the base&#x27;s with this book&#x27;s scheme, which is the site&#x27;s own — the sea as its colour, the deep blue as its accent, the opal as its side bar — and two parts of its own: the front, which sets the synopsis plain in the serif at the file&#x27;s size, and the covers. Each entry says <a href="/dougs-reference-manual/#the-colour" class="pa-reference pd-container"><span class="pd-word pa-reference">its book&#x27;s colour</span></a>, and the cover on the shelf, the dot in the contents and the dot in the library&#x27;s bar are painted from that one saying. The cover and the table of contents are the framework&#x27;s own, undressed; what they look like here is the base&#x27;s.</div></div><div class="pd-paragraph pd-turn"><a href="/dougs-library/#the-shelves" class="pa-reference pd-container"><span class="pd-word pa-reference pa-before">← <!-- -->The Shelves</span></a><span class="pd-word pd-count">2 of 5</span><a href="/dougs-story/" class="pa-reference pd-container"><span class="pd-word pa-reference pa-after">Dougs Story<!-- --> →</span></a></div></div></div><div class="pd-files"><div class="pd-paragraph pd-listing"><span class="pd-word">code.tsx</span><pre class="pd-letter pd-figure pd-code"><code><span class="pd-code-line" data-line="1"><span>import</span> { <span>ReactNode</span> } <span>from</span> <span>&#x27;react&#x27;</span>;</span>
+<span class="pd-code-line" data-line="2"><span>import</span> { $ } <span>from</span> <span>&#x27;@dna-platform/chemistry&#x27;</span>;</span>
+<span class="pd-code-line" data-line="3"><span>import</span> { $Chapter, $Referent, $Synopsis, <span>Self</span> } <span>from</span> <span>&#x27;@dna-platform/public&#x27;</span>;</span>
+<span class="pd-code-line" data-line="4"><span>import</span> { $LibraryBook } <span>from</span> <span>&#x27;../.manual/.book&#x27;</span>;</span>
+<span class="pd-code-line" data-line="5"><span>import</span> { <span>BookLink</span> } <span>from</span> <span>&#x27;./o1-the-catalogue~booklink.tsx&#x27;</span>;</span>
+<span class="pd-code-line" data-line="6"><span>import</span> { <span>Shelf</span> <span>as</span> shelf } <span>from</span> <span>&#x27;./o1-the-catalogue~views.tsx&#x27;</span>;</span>
+<span class="pd-code-line" data-line="7"></span>
+<span class="pd-code-line" data-line="8"><span>export</span> <span>class</span> <span>$Catalogue</span> <span>extends</span> <span>$LibraryBook</span> {</span>
+<span class="pd-code-line" data-line="9">    <span>get</span> <span>books</span>(): $Chapter[] {</span>
+<span class="pd-code-line" data-line="10">        <span>return</span> <span>this</span>.<span>text</span>.<span>find</span>($Chapter).<span>filter</span>(<span><span>chapter</span> =&gt;</span> chapter.<span>is</span>($Synopsis) &amp;&amp; chapter !== <span>this</span>.<span>synopsis</span>);</span>
+<span class="pd-code-line" data-line="11">    }</span>
+<span class="pd-code-line" data-line="12">    <span>override</span> <span>get</span> <span>placed</span>(): ($Chapter | <span>undefined</span>)[] {</span>
+<span class="pd-code-line" data-line="13">        <span>return</span> [...<span>super</span>.<span>placed</span>, ...<span>this</span>.<span>books</span>];</span>
+<span class="pd-code-line" data-line="14">    }</span>
+<span class="pd-code-line" data-line="15">    <span>override</span> <span>get</span> <span>pages</span>(): $Chapter[] {</span>
+<span class="pd-code-line" data-line="16">        <span>return</span> [...<span>this</span>.<span>chapters</span>, ...<span>this</span>.<span>books</span>];</span>
+<span class="pd-code-line" data-line="17">    }</span>
+<span class="pd-code-line" data-line="18"></span>
+<span class="pd-code-line" data-line="19">    <span>override</span> <span>head</span>(): <span>ReactNode</span> {</span>
+<span class="pd-code-line" data-line="20">        <span>return</span> (</span>
+<span class="pd-code-line" data-line="21">            <span><span>&lt;<span>div</span> <span>className</span>=<span>&quot;pd-switches&quot;</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="22"><span>                {this.switches()}</span></span>
+<span class="pd-code-line" data-line="23"><span>            <span>&lt;/<span>div</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="24">        );</span>
+<span class="pd-code-line" data-line="25">    }</span>
+<span class="pd-code-line" data-line="26"></span>
+<span class="pd-code-line" data-line="27">    <span>override</span> <span>front</span>(): <span>ReactNode</span> {</span>
+<span class="pd-code-line" data-line="28">        <span>return</span> (</span>
+<span class="pd-code-line" data-line="29">            <span><span>&lt;<span>div</span> <span>className</span>=<span>&quot;pd-leaf pd-front pd-open&quot;</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="30"><span>                {this.opening()}</span></span>
+<span class="pd-code-line" data-line="31"><span>            <span>&lt;/<span>div</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="32">        );</span>
+<span class="pd-code-line" data-line="33">    }</span>
+<span class="pd-code-line" data-line="34"></span>
+<span class="pd-code-line" data-line="35">    <span>override</span> <span>opening</span>(): <span>ReactNode</span> {</span>
+<span class="pd-code-line" data-line="36">        <span>return</span> (</span>
+<span class="pd-code-line" data-line="37">            <span><span>&lt;&gt;</span></span></span>
+<span class="pd-code-line" data-line="38"><span>                {super.opening()}</span></span>
+<span class="pd-code-line" data-line="39"><span>                <span>&lt;<span>div</span> <span>className</span>=<span>&quot;pd-shelf&quot;</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="40"><span>                    {this.volumes()}</span></span>
+<span class="pd-code-line" data-line="41"><span>                <span>&lt;/<span>div</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="42"><span>            <span>&lt;/&gt;</span></span></span>
+<span class="pd-code-line" data-line="43">        );</span>
+<span class="pd-code-line" data-line="44">    }</span>
+<span class="pd-code-line" data-line="45"></span>
+<span class="pd-code-line" data-line="46">    <span>volumes</span>(): <span>ReactNode</span> {</span>
+<span class="pd-code-line" data-line="47">        <span>return</span> [<span>this</span>.<span>cover</span>!, ...<span>this</span>.<span>books</span>].<span>map</span>(<span>(<span>volume, index</span>) =&gt;</span> {</span>
+<span class="pd-code-line" data-line="48">            <span>const</span> <span>Volume</span> = $(volume);</span>
+<span class="pd-code-line" data-line="49">            <span>return</span> (</span>
+<span class="pd-code-line" data-line="50">                <span><span>&lt;<span>div</span></span></span></span>
+<span class="pd-code-line" data-line="51"><span><span>                    <span>key</span>=<span>{index}</span></span></span></span>
+<span class="pd-code-line" data-line="52"><span><span>                    <span>className</span>=<span>{volume</span> === <span>this.open</span> ? &#x27;<span>pd-volume</span> <span>pa-open</span>&#x27; <span>:</span> &#x27;<span>pd-volume</span>&#x27;}</span></span></span>
+<span class="pd-code-line" data-line="53"><span><span>                &gt;</span></span></span>
+<span class="pd-code-line" data-line="54"><span>                    <span>&lt;<span>Volume</span> /&gt;</span></span></span>
+<span class="pd-code-line" data-line="55"><span>                <span>&lt;/<span>div</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="56">            );</span>
+<span class="pd-code-line" data-line="57">        });</span>
+<span class="pd-code-line" data-line="58">    }</span>
+<span class="pd-code-line" data-line="59"></span>
+<span class="pd-code-line" data-line="60">    <span>override</span> <span>named</span>(<span>place</span>: <span>string</span>): $Chapter | <span>undefined</span> {</span>
+<span class="pd-code-line" data-line="61">        <span>return</span> <span>super</span>.<span>named</span>(place) ?? <span>this</span>.<span>books</span>.<span>find</span>(<span><span>book</span> =&gt;</span> <span>this</span>.<span>placeOf</span>(book) === place);</span>
+<span class="pd-code-line" data-line="62">    }</span>
+<span class="pd-code-line" data-line="63"></span>
+<span class="pd-code-line" data-line="64">    <span>placeOf</span>(<span>entry</span>: $Chapter): <span>string</span> | <span>undefined</span> {</span>
+<span class="pd-code-line" data-line="65">        <span>const</span> slug = entry.<span>title</span>?.<span>annotations</span>.<span>expressed</span>($Referent)?.<span>identifier</span>;</span>
+<span class="pd-code-line" data-line="66">        <span>const</span> address = <span>this</span>.<span>means</span>?.<span>identifier</span>;</span>
+<span class="pd-code-line" data-line="67">        <span>if</span> (slug === <span>undefined</span> || address === <span>undefined</span>) <span>return</span> <span>undefined</span>;</span>
+<span class="pd-code-line" data-line="68">        <span>return</span> <span>`<span>${address.replace(/\/+$/u, <span>&#x27;&#x27;</span>)}</span>/#<span>${slug}</span>`</span>;</span>
+<span class="pd-code-line" data-line="69">    }</span>
+<span class="pd-code-line" data-line="70"></span>
+<span class="pd-code-line" data-line="71">    <span>protected</span> <span>override</span> $Define(): <span>void</span> {</span>
+<span class="pd-code-line" data-line="72">        <span>super</span>.$Define();</span>
+<span class="pd-code-line" data-line="73">        <span>const</span> <span>Shelf</span> = $(shelf);</span>
+<span class="pd-code-line" data-line="74">        <span>this</span>.<span>annotations</span>.<span>add</span>(<span>this</span>,</span>
+<span class="pd-code-line" data-line="75">            <span><span>&lt;<span>Shelf</span> /&gt;</span></span></span>
+<span class="pd-code-line" data-line="76">        );</span>
+<span class="pd-code-line" data-line="77">    }</span>
+<span class="pd-code-line" data-line="78">}</span>
+<span class="pd-code-line" data-line="79"></span>
+<span class="pd-code-line" data-line="80"><span>export</span> <span>const</span> <span>Catalogue</span> = $($Catalogue);</span>
+<span class="pd-code-line" data-line="81">$(<span>Catalogue</span>, <span>Self</span>)(<span>BookLink</span>);</span>
+<span class="pd-code-line" data-line="82"></span></code></pre></div><div class="pd-paragraph pd-listing"><span class="pd-word">booklink.tsx</span><pre class="pd-letter pd-figure pd-code"><code><span class="pd-code-line" data-line="1"><span>import</span> { $, inert } <span>from</span> <span>&#x27;@dna-platform/chemistry&#x27;</span>;</span>
+<span class="pd-code-line" data-line="2"><span>import</span> { $SelfReference, $Synopsis } <span>from</span> <span>&#x27;@dna-platform/public&#x27;</span>;</span>
+<span class="pd-code-line" data-line="3"></span>
+<span class="pd-code-line" data-line="4"><span>export</span> <span>class</span> <span>$BookLink</span> <span>extends</span> <span>$SelfReference</span> {</span>
+<span class="pd-code-line" data-line="5">    <span>@inert</span>() <span>protected</span> <span>_book</span>?: <span>string</span>;</span>
+<span class="pd-code-line" data-line="6">    <span>override</span> <span>get</span> <span>identifier</span>(): <span>string</span> { <span>return</span> <span>this</span>.<span>_book</span> ?? <span>super</span>.<span>identifier</span>; }</span>
+<span class="pd-code-line" data-line="7"></span>
+<span class="pd-code-line" data-line="8">    <span>protected</span> <span>override</span> $Bound(): <span>void</span> {</span>
+<span class="pd-code-line" data-line="9">        <span>super</span>.$Bound();</span>
+<span class="pd-code-line" data-line="10">        <span>this</span>.<span>_book</span> = <span>this</span>.<span>chapter</span>?.<span>annotations</span>.<span>expressed</span>($Synopsis)?.<span>means</span>?.<span>identifier</span>;</span>
+<span class="pd-code-line" data-line="11">    }</span>
+<span class="pd-code-line" data-line="12">}</span>
+<span class="pd-code-line" data-line="13"></span>
+<span class="pd-code-line" data-line="14"><span>export</span> <span>const</span> <span>BookLink</span> = $($BookLink);</span>
+<span class="pd-code-line" data-line="15"></span></code></pre></div><div class="pd-paragraph pd-listing"><span class="pd-word">views.tsx</span><pre class="pd-letter pd-figure pd-code"><code><span class="pd-code-line" data-line="1"><span>import</span> { $, $check, selection } <span>from</span> <span>&#x27;@dna-platform/chemistry&#x27;</span>;</span>
+<span class="pd-code-line" data-line="2"><span>import</span> { $Annotation, $Format, $Paragraph, $Writing, <span>AnnotationSpecification</span>, specify } <span>from</span> <span>&#x27;@dna-platform/public&#x27;</span>;</span>
+<span class="pd-code-line" data-line="3"><span>import</span> { <span>OfABookSpecification</span> } <span>from</span> <span>&#x27;../.manual/.book&#x27;</span>;</span>
+<span class="pd-code-line" data-line="4"></span>
+<span class="pd-code-line" data-line="5"><span>export</span> <span>class</span> <span>$Caption</span> <span>extends</span> <span>$Annotation</span> {</span>
+<span class="pd-code-line" data-line="6">    specification = <span>new</span> <span>CaptionSpecification</span>();</span>
+<span class="pd-code-line" data-line="7"></span>
+<span class="pd-code-line" data-line="8">    <span>override</span> <span>defines</span>(<span>writing</span>: $Writing): <span>void</span> {</span>
+<span class="pd-code-line" data-line="9">        writing.<span>classes</span>.<span>add</span>(<span>this</span>, <span>&#x27;pa-caption&#x27;</span>);</span>
+<span class="pd-code-line" data-line="10">    }</span>
+<span class="pd-code-line" data-line="11"></span>
+<span class="pd-code-line" data-line="12">    <span>override</span> <span>erase</span>(<span>writing</span>: $Writing): <span>void</span> {</span>
+<span class="pd-code-line" data-line="13">        writing.<span>classes</span>.<span>revert</span>(<span>this</span>);</span>
+<span class="pd-code-line" data-line="14">    }</span>
+<span class="pd-code-line" data-line="15">}</span>
+<span class="pd-code-line" data-line="16"></span>
+<span class="pd-code-line" data-line="17"><span>export</span> <span>class</span> <span>CaptionSpecification</span> <span>extends</span> <span>AnnotationSpecification</span> {</span>
+<span class="pd-code-line" data-line="18">    <span>@specify</span>(<span>&#x27;a caption is said of a paragraph&#x27;</span>)</span>
+<span class="pd-code-line" data-line="19">    $saidOfAParagraph(<span>writing</span>: $Writing): <span>void</span> {</span>
+<span class="pd-code-line" data-line="20">        $check(writing <span>instanceof</span> $Paragraph, <span>&#x27;a caption is said of a paragraph, and this is not one&#x27;</span>);</span>
+<span class="pd-code-line" data-line="21">    }</span>
+<span class="pd-code-line" data-line="22">}</span>
+<span class="pd-code-line" data-line="23"></span>
+<span class="pd-code-line" data-line="24"><span>export</span> <span>class</span> <span>$View</span> <span>extends</span> <span>$Format</span> {</span>
+<span class="pd-code-line" data-line="25">    specification = <span>new</span> <span>OfABookSpecification</span>();</span>
+<span class="pd-code-line" data-line="26">    themeProvider = <span>true</span>;</span>
+<span class="pd-code-line" data-line="27"></span>
+<span class="pd-code-line" data-line="28">    <span>override</span> <span>defines</span>(<span>writing</span>: $Writing): <span>void</span> {</span>
+<span class="pd-code-line" data-line="29">        <span>for</span> (<span>const</span> annotation <span>of</span> writing.<span>annotations</span>.<span>after</span>(<span>this</span>))</span>
+<span class="pd-code-line" data-line="30">            <span>if</span> (annotation <span>instanceof</span> $View)</span>
+<span class="pd-code-line" data-line="31">                writing.<span>annotations</span>.<span>express</span>(annotation, <span>false</span>);</span>
+<span class="pd-code-line" data-line="32">        <span>super</span>.<span>defines</span>(writing);</span>
+<span class="pd-code-line" data-line="33">    }</span>
+<span class="pd-code-line" data-line="34"></span>
+<span class="pd-code-line" data-line="35">    <span>override</span> <span>erase</span>(<span>writing</span>: $Writing): <span>void</span> {</span>
+<span class="pd-code-line" data-line="36">        <span>super</span>.<span>erase</span>(writing);</span>
+<span class="pd-code-line" data-line="37">        writing.<span>classes</span>.<span>revert</span>(<span>this</span>);</span>
+<span class="pd-code-line" data-line="38">    }</span>
+<span class="pd-code-line" data-line="39">}</span>
+<span class="pd-code-line" data-line="40"></span>
+<span class="pd-code-line" data-line="41"><span>export</span> <span>class</span> <span>$Shelf</span> <span>extends</span> <span>$View</span> {</span>
+<span class="pd-code-line" data-line="42">    style = selection.<span>div</span><span>`</span></span>
+<span class="pd-code-line" data-line="43"><span>        .pd-book.pa-shelf .pd-shelf {</span></span>
+<span class="pd-code-line" data-line="44"><span>            display: grid;</span></span>
+<span class="pd-code-line" data-line="45"><span>            grid-template-columns: repeat(auto-fill, minmax(124px, 148px));</span></span>
+<span class="pd-code-line" data-line="46"><span>            gap: calc(<span>${({ theme }) =&gt; theme.space}</span> * 0.83);</span></span>
+<span class="pd-code-line" data-line="47"><span>            align-items: start;</span></span>
+<span class="pd-code-line" data-line="48"><span>        }</span></span>
+<span class="pd-code-line" data-line="49"><span>        @media (max-width: <span>${({ theme }) =&gt; theme.narrow}</span>) {</span></span>
+<span class="pd-code-line" data-line="50"><span>            .pd-book.pa-shelf .pd-shelf { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(<span>${({ theme }) =&gt; theme.space}</span> * 0.58) calc(<span>${({ theme }) =&gt; theme.space}</span> / 2); }</span></span>
+<span class="pd-code-line" data-line="51"><span>        }</span></span>
+<span class="pd-code-line" data-line="52"><span>    `</span>;</span>
+<span class="pd-code-line" data-line="53"></span>
+<span class="pd-code-line" data-line="54">    <span>override</span> <span>defines</span>(<span>writing</span>: $Writing): <span>void</span> {</span>
+<span class="pd-code-line" data-line="55">        <span>super</span>.<span>defines</span>(writing);</span>
+<span class="pd-code-line" data-line="56">        writing.<span>classes</span>.<span>add</span>(<span>this</span>, <span>&#x27;pa-shelf&#x27;</span>);</span>
+<span class="pd-code-line" data-line="57">    }</span>
+<span class="pd-code-line" data-line="58">}</span>
+<span class="pd-code-line" data-line="59"></span>
+<span class="pd-code-line" data-line="60"><span>export</span> <span>const</span> <span>Shelf</span> = $($Shelf);</span>
+<span class="pd-code-line" data-line="61"><span>export</span> <span>const</span> <span>Caption</span> = $($Caption);</span>
+<span class="pd-code-line" data-line="62"></span></code></pre></div><div class="pd-paragraph pd-listing"><span class="pd-word">theme.tsx</span><pre class="pd-letter pd-figure pd-code"><code><span class="pd-code-line" data-line="1"><span>import</span> { css, <span>RuleSet</span> } <span>from</span> <span>&#x27;styled-components&#x27;</span>;</span>
+<span class="pd-code-line" data-line="2"><span>import</span> { $ } <span>from</span> <span>&#x27;@dna-platform/chemistry&#x27;</span>;</span>
+<span class="pd-code-line" data-line="3"><span>import</span> { <span>Theme</span> } <span>from</span> <span>&#x27;@dna-platform/public&#x27;</span>;</span>
+<span class="pd-code-line" data-line="4"><span>import</span> { $LibraryBookTheme } <span>from</span> <span>&#x27;../.manual/.book&#x27;</span>;</span>
+<span class="pd-code-line" data-line="5"><span>import</span> { <span>Catalogue</span> } <span>from</span> <span>&#x27;./o1-the-catalogue~code.tsx&#x27;</span>;</span>
+<span class="pd-code-line" data-line="6"></span>
+<span class="pd-code-line" data-line="7"><span>export</span> <span>class</span> <span>$CatalogueTheme</span> <span>extends</span> <span>$LibraryBookTheme</span> {</span>
+<span class="pd-code-line" data-line="8">    ink = <span>&#x27;#10252c&#x27;</span>;</span>
+<span class="pd-code-line" data-line="9">    soft = <span>&#x27;#516770&#x27;</span>;</span>
+<span class="pd-code-line" data-line="10">    line = <span>&#x27;#dbe7ec&#x27;</span>;</span>
+<span class="pd-code-line" data-line="11">    accent = <span>&#x27;#166178&#x27;</span>;</span>
+<span class="pd-code-line" data-line="12">    tint = <span>&#x27;#e3f5fa&#x27;</span>;</span>
+<span class="pd-code-line" data-line="13">    night = <span>&#x27;#0c1b1f&#x27;</span>;</span>
+<span class="pd-code-line" data-line="14">    spine = <span>&#x27;inset 5px 0 0 rgba(0, 0, 0, 0.14), inset 6px 0 0 rgba(255, 255, 255, 0.12), 0 10px 20px -10px rgba(0, 0, 0, 0.45)&#x27;</span>;</span>
+<span class="pd-code-line" data-line="15"></span>
+<span class="pd-code-line" data-line="16">    <span>protected</span> <span>override</span> <span>parts</span>(): <span>RuleSet</span>[] {</span>
+<span class="pd-code-line" data-line="17">        <span>return</span> [...<span>super</span>.<span>parts</span>(), <span>this</span>.<span>front</span>(), <span>this</span>.<span>covers</span>(), <span>this</span>.<span>words</span>(), <span>this</span>.<span>small</span>()];</span>
+<span class="pd-code-line" data-line="18">    }</span>
+<span class="pd-code-line" data-line="19"></span>
+<span class="pd-code-line" data-line="20">    <span>protected</span> <span>front</span>(): <span>RuleSet</span> {</span>
+<span class="pd-code-line" data-line="21">        <span>return</span> css`<span></span></span>
+<span class="pd-code-line" data-line="22"><span>            <span>.pd-leaves</span> { <span>padding</span>: <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.83</span>) <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>1.17</span>) <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>1.67</span>); }</span></span>
+<span class="pd-code-line" data-line="23"><span>            <span>.pd-front</span> <span>.pd-words</span> { <span>margin-block-end</span>: <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>1.17</span>); }</span></span>
+<span class="pd-code-line" data-line="24"><span>            <span>.pd-front</span> <span>.pd-words</span> <span>.pd-chapter</span> { <span>margin-block</span>: <span>0</span>; }</span></span>
+<span class="pd-code-line" data-line="25"><span>            <span>.pd-front</span> <span>.pd-words</span> <span>.pd-paragraph</span> {</span></span>
+<span class="pd-code-line" data-line="26"><span>                <span>margin-block</span>: <span>0</span>;</span></span>
+<span class="pd-code-line" data-line="27"><span>                <span>max-width</span>: <span>56ch</span>;</span></span>
+<span class="pd-code-line" data-line="28"><span>                <span>font-family</span>: </span><span>${({ theme }) =&gt; theme.serif}</span><span>;</span></span>
+<span class="pd-code-line" data-line="29"><span>                <span>font-size</span>: <span>calc</span>(<span>1.43</span> * </span><span>${({ theme }) =&gt; theme.size}</span><span>);</span></span>
+<span class="pd-code-line" data-line="30"><span>                <span>font-weight</span>: <span>400</span>;</span></span>
+<span class="pd-code-line" data-line="31"><span>                <span>line-height</span>: <span>1.5</span>;</span></span>
+<span class="pd-code-line" data-line="32"><span>            }</span></span>
+<span class="pd-code-line" data-line="33"><span>        `</span>;</span>
+<span class="pd-code-line" data-line="34">    }</span>
+<span class="pd-code-line" data-line="35"></span>
+<span class="pd-code-line" data-line="36">    <span>protected</span> <span>covers</span>(): <span>RuleSet</span> {</span>
+<span class="pd-code-line" data-line="37">        <span>return</span> css`<span></span></span>
+<span class="pd-code-line" data-line="38"><span>            <span>.pd-volume</span> <span>.pd-chapter</span> { <span>margin-block</span>: <span>0</span>; }</span></span>
+<span class="pd-code-line" data-line="39"><span>            <span>.pd-book</span><span>.pa-shelf</span> <span>.pd-volume</span> <span>.pd-title</span> {</span></span>
+<span class="pd-code-line" data-line="40"><span>                <span>position</span>: relative;</span></span>
+<span class="pd-code-line" data-line="41"><span>                <span>display</span>: flex;</span></span>
+<span class="pd-code-line" data-line="42"><span>                <span>flex-direction</span>: column;</span></span>
+<span class="pd-code-line" data-line="43"><span>                <span>aspect-ratio</span>: <span>2</span> / <span>3</span>;</span></span>
+<span class="pd-code-line" data-line="44"><span>                <span>box-sizing</span>: border-box;</span></span>
+<span class="pd-code-line" data-line="45"><span>                <span>padding</span>: <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.54</span>) <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> / <span>2</span>) <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.46</span>) <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.67</span>);</span></span>
+<span class="pd-code-line" data-line="46"><span>                <span>border-radius</span>: <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> / <span>6</span>) <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.29</span>) <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.29</span>) <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> / <span>6</span>);</span></span>
+<span class="pd-code-line" data-line="47"><span>                <span>box-shadow</span>: </span><span>${({ theme }) =&gt; theme.spine}</span><span>;</span></span>
+<span class="pd-code-line" data-line="48"><span>                <span>background</span>: <span>linear-gradient</span>(<span>160deg</span>, <span>color-mix</span>(in srgb, <span>var</span>(--colour, </span><span>${({ theme }) =&gt; theme.colour}</span><span>) <span>90%</span>, white), <span>color-mix</span>(in srgb, <span>var</span>(--colour, </span><span>${({ theme }) =&gt; theme.colour}</span><span>) <span>86%</span>, black));</span></span>
+<span class="pd-code-line" data-line="49"><span>                <span>color</span>: </span><span>${({ theme }) =&gt; theme.white}</span><span>;</span></span>
+<span class="pd-code-line" data-line="50"><span>                <span>font-family</span>: </span><span>${({ theme }) =&gt; theme.serif}</span><span>;</span></span>
+<span class="pd-code-line" data-line="51"><span>                <span>font-size</span>: <span>calc</span>(<span>1.07</span> * </span><span>${({ theme }) =&gt; theme.size}</span><span>);</span></span>
+<span class="pd-code-line" data-line="52"><span>                <span>font-weight</span>: <span>600</span>;</span></span>
+<span class="pd-code-line" data-line="53"><span>                <span>line-height</span>: <span>1.12</span>;</span></span>
+<span class="pd-code-line" data-line="54"><span>                <span>letter-spacing</span>: -<span>0.005em</span>;</span></span>
+<span class="pd-code-line" data-line="55"><span>            }</span></span>
+<span class="pd-code-line" data-line="56"><span>            <span>.pd-book</span><span>.pa-shelf</span> <span>.pd-volume</span> <span>.pd-title</span><span>::after</span> {</span></span>
+<span class="pd-code-line" data-line="57"><span>                <span>content</span>: <span>&#x27;&#x27;</span>;</span></span>
+<span class="pd-code-line" data-line="58"><span>                <span>position</span>: absolute;</span></span>
+<span class="pd-code-line" data-line="59"><span>                <span>inset-inline</span>: <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.67</span>) <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> / <span>2</span>);</span></span>
+<span class="pd-code-line" data-line="60"><span>                <span>top</span>: <span>56%</span>;</span></span>
+<span class="pd-code-line" data-line="61"><span>                <span>height</span>: <span>1px</span>;</span></span>
+<span class="pd-code-line" data-line="62"><span>                <span>background</span>: </span><span>${({ theme }) =&gt; theme.glass}</span><span>;</span></span>
+<span class="pd-code-line" data-line="63"><span>            }</span></span>
+<span class="pd-code-line" data-line="64"><span>            <span>.pd-volume</span> <span>.pd-paragraph</span> {</span></span>
+<span class="pd-code-line" data-line="65"><span>                <span>margin-block</span>: <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> / <span>3</span>) <span>0</span>;</span></span>
+<span class="pd-code-line" data-line="66"><span>                <span>overflow</span>: hidden;</span></span>
+<span class="pd-code-line" data-line="67"><span>                <span>font-size</span>: <span>calc</span>(<span>0.93</span> * </span><span>${({ theme }) =&gt; theme.size}</span><span>);</span></span>
+<span class="pd-code-line" data-line="68"><span>                <span>font-weight</span>: <span>500</span>;</span></span>
+<span class="pd-code-line" data-line="69"><span>                <span>white-space</span>: nowrap;</span></span>
+<span class="pd-code-line" data-line="70"><span>                <span>text-overflow</span>: ellipsis;</span></span>
+<span class="pd-code-line" data-line="71"><span>                <span>color</span>: </span><span>${({ theme }) =&gt; theme.ink}</span><span>;</span></span>
+<span class="pd-code-line" data-line="72"><span>            }</span></span>
+<span class="pd-code-line" data-line="73"><span>            <span>.pd-volume</span> <span>.pd-paragraph</span><span>:not</span>(<span>.pa-caption</span>) { <span>display</span>: none; }</span></span>
+<span class="pd-code-line" data-line="74"><span>            <span>.pd-book</span><span>.pa-shelf</span> <span>.pd-volume</span><span>.pa-open</span> {</span></span>
+<span class="pd-code-line" data-line="75"><span>                <span>grid-column</span>: <span>1</span> / -<span>1</span>;</span></span>
+<span class="pd-code-line" data-line="76"><span>                <span>order</span>: <span>1</span>;</span></span>
+<span class="pd-code-line" data-line="77"><span>                <span>padding</span>: <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.92</span>) </span><span>${({ theme }) =&gt; theme.space}</span><span>;</span></span>
+<span class="pd-code-line" data-line="78"><span>                <span>border</span>: thin solid </span><span>${({ theme }) =&gt; theme.line}</span><span>;</span></span>
+<span class="pd-code-line" data-line="79"><span>                <span>border-radius</span>: <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.67</span>);</span></span>
+<span class="pd-code-line" data-line="80"><span>            }</span></span>
+<span class="pd-code-line" data-line="81"><span>            <span>.pd-volume</span><span>.pa-open</span> <span>.pd-chapter</span> {</span></span>
+<span class="pd-code-line" data-line="82"><span>                <span>display</span>: grid;</span></span>
+<span class="pd-code-line" data-line="83"><span>                <span>grid-template-columns</span>: </span><span>${({ theme }) =&gt; theme.volume}</span><span> <span>minmax</span>(<span>0</span>, <span>1</span>fr);</span></span>
+<span class="pd-code-line" data-line="84"><span>                <span>grid-auto-rows</span>: max-content;</span></span>
+<span class="pd-code-line" data-line="85"><span>                <span>column-gap</span>: <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>1.08</span>);</span></span>
+<span class="pd-code-line" data-line="86"><span>            }</span></span>
+<span class="pd-code-line" data-line="87"><span>            <span>.pd-volume</span><span>.pa-open</span> <span>.pd-chapter</span> &gt; <span>a</span> { <span>grid-row</span>: <span>1</span> / span <span>3</span>; }</span></span>
+<span class="pd-code-line" data-line="88"><span>            <span>.pd-book</span><span>.pa-shelf</span> <span>.pd-volume</span><span>.pa-open</span> <span>.pd-title</span> {</span></span>
+<span class="pd-code-line" data-line="89"><span>                <span>padding</span>: <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.75</span>) <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.58</span>) <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> / <span>2</span>) </span><span>${({ theme }) =&gt; theme.space}</span><span>;</span></span>
+<span class="pd-code-line" data-line="90"><span>                <span>font-size</span>: <span>calc</span>(<span>1.5</span> * </span><span>${({ theme }) =&gt; theme.size}</span><span>);</span></span>
+<span class="pd-code-line" data-line="91"><span>            }</span></span>
+<span class="pd-code-line" data-line="92"><span>            <span>.pd-volume</span><span>.pa-open</span> <span>.pd-paragraph</span> {</span></span>
+<span class="pd-code-line" data-line="93"><span>                <span>margin-block</span>: <span>0</span> <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> / <span>3</span>);</span></span>
+<span class="pd-code-line" data-line="94"><span>                <span>overflow</span>: visible;</span></span>
+<span class="pd-code-line" data-line="95"><span>                <span>font-size</span>: <span>calc</span>(<span>0.76</span> * </span><span>${({ theme }) =&gt; theme.size}</span><span>);</span></span>
+<span class="pd-code-line" data-line="96"><span>                <span>font-weight</span>: <span>600</span>;</span></span>
+<span class="pd-code-line" data-line="97"><span>                <span>letter-spacing</span>: <span>0.1em</span>;</span></span>
+<span class="pd-code-line" data-line="98"><span>                <span>text-transform</span>: uppercase;</span></span>
+<span class="pd-code-line" data-line="99"><span>                <span>white-space</span>: normal;</span></span>
+<span class="pd-code-line" data-line="100"><span>                <span>color</span>: </span><span>${({ theme }) =&gt; theme.soft}</span><span>;</span></span>
+<span class="pd-code-line" data-line="101"><span>            }</span></span>
+<span class="pd-code-line" data-line="102"><span>            <span>.pd-volume</span><span>.pa-open</span> <span>.pd-paragraph</span><span>:not</span>(<span>.pa-caption</span>) {</span></span>
+<span class="pd-code-line" data-line="103"><span>                <span>display</span>: block;</span></span>
+<span class="pd-code-line" data-line="104"><span>                <span>margin-block</span>: <span>0</span> <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> / <span>2</span>);</span></span>
+<span class="pd-code-line" data-line="105"><span>                <span>max-width</span>: <span>56ch</span>;</span></span>
+<span class="pd-code-line" data-line="106"><span>                <span>font-family</span>: </span><span>${({ theme }) =&gt; theme.serif}</span><span>;</span></span>
+<span class="pd-code-line" data-line="107"><span>                <span>font-size</span>: <span>calc</span>(<span>1.29</span> * </span><span>${({ theme }) =&gt; theme.size}</span><span>);</span></span>
+<span class="pd-code-line" data-line="108"><span>                <span>font-weight</span>: <span>400</span>;</span></span>
+<span class="pd-code-line" data-line="109"><span>                <span>letter-spacing</span>: <span>0</span>;</span></span>
+<span class="pd-code-line" data-line="110"><span>                <span>line-height</span>: <span>1.5</span>;</span></span>
+<span class="pd-code-line" data-line="111"><span>                <span>text-transform</span>: none;</span></span>
+<span class="pd-code-line" data-line="112"><span>                <span>color</span>: </span><span>${({ theme }) =&gt; theme.ink}</span><span>;</span></span>
+<span class="pd-code-line" data-line="113"><span>            }</span></span>
+<span class="pd-code-line" data-line="114"><span>        `</span>;</span>
+<span class="pd-code-line" data-line="115">    }</span>
+<span class="pd-code-line" data-line="116"></span>
+<span class="pd-code-line" data-line="117">    <span>protected</span> <span>words</span>(): <span>RuleSet</span> {</span>
+<span class="pd-code-line" data-line="118">        <span>return</span> css`<span></span></span>
+<span class="pd-code-line" data-line="119"><span>            <span>.pd-leaf</span> <span>.pd-words</span> <span>.pd-title</span> {</span></span>
+<span class="pd-code-line" data-line="120"><span>                <span>font-family</span>: </span><span>${({ theme }) =&gt; theme.serif}</span><span>;</span></span>
+<span class="pd-code-line" data-line="121"><span>                <span>font-size</span>: <span>calc</span>(<span>2.5</span> * </span><span>${({ theme }) =&gt; theme.size}</span><span>);</span></span>
+<span class="pd-code-line" data-line="122"><span>                <span>font-weight</span>: <span>600</span>;</span></span>
+<span class="pd-code-line" data-line="123"><span>                <span>line-height</span>: <span>1.04</span>;</span></span>
+<span class="pd-code-line" data-line="124"><span>            }</span></span>
+<span class="pd-code-line" data-line="125"><span>            <span>.pd-leaf</span> <span>.pd-words</span> <span>.pd-heading</span> {</span></span>
+<span class="pd-code-line" data-line="126"><span>                <span>font-size</span>: <span>calc</span>(<span>0.76</span> * </span><span>${({ theme }) =&gt; theme.size}</span><span>);</span></span>
+<span class="pd-code-line" data-line="127"><span>                <span>font-weight</span>: <span>600</span>;</span></span>
+<span class="pd-code-line" data-line="128"><span>                <span>letter-spacing</span>: <span>0.12em</span>;</span></span>
+<span class="pd-code-line" data-line="129"><span>                <span>text-transform</span>: uppercase;</span></span>
+<span class="pd-code-line" data-line="130"><span>                <span>color</span>: </span><span>${({ theme }) =&gt; theme.soft}</span><span>;</span></span>
+<span class="pd-code-line" data-line="131"><span>            }</span></span>
+<span class="pd-code-line" data-line="132"><span>        `</span>;</span>
+<span class="pd-code-line" data-line="133">    }</span>
+<span class="pd-code-line" data-line="134"></span>
+<span class="pd-code-line" data-line="135">    <span>protected</span> <span>small</span>(): <span>RuleSet</span> {</span>
+<span class="pd-code-line" data-line="136">        <span>return</span> css`<span></span></span>
+<span class="pd-code-line" data-line="137"><span>            <span>@media</span> (<span>max-width</span>: </span><span>${({ theme }) =&gt; theme.narrow}</span><span>) {</span></span>
+<span class="pd-code-line" data-line="138"><span>                <span>.pd-holds</span> {</span></span>
+<span class="pd-code-line" data-line="139"><span>                    <span>border-inline-end</span>: none;</span></span>
+<span class="pd-code-line" data-line="140"><span>                    <span>border-block-end</span>: thin solid </span><span>${({ theme }) =&gt; theme.line}</span><span>;</span></span>
+<span class="pd-code-line" data-line="141"><span>                }</span></span>
+<span class="pd-code-line" data-line="142"><span>                <span>.pd-leaves</span> { <span>padding</span>: <span>calc</span>(</span><span>${({ theme }) =&gt; theme.space}</span><span> * <span>0.67</span>); }</span></span>
+<span class="pd-code-line" data-line="143"><span>            }</span></span>
+<span class="pd-code-line" data-line="144"><span>        `</span>;</span>
+<span class="pd-code-line" data-line="145">    }</span>
+<span class="pd-code-line" data-line="146">}</span>
+<span class="pd-code-line" data-line="147"></span>
+<span class="pd-code-line" data-line="148"><span>export</span> <span>const</span> <span>CatalogueTheme</span> = $($CatalogueTheme);</span>
+<span class="pd-code-line" data-line="149">$(<span>Catalogue</span>, <span>Theme</span>)(<span>CatalogueTheme</span>);</span>
+<span class="pd-code-line" data-line="150"></span></code></pre></div><div class="pd-paragraph pd-listing"><span class="pd-word">subjects.tsx</span><pre class="pd-letter pd-figure pd-code"><code><span class="pd-code-line" data-line="1"><span>import</span> { <span>Means</span>, <span>Paragraph</span>, <span>Section</span> } <span>from</span> <span>&#x27;@dna-platform/public&#x27;</span>;</span>
+<span class="pd-code-line" data-line="2"><span>import</span> { <span>Coloured</span> } <span>from</span> <span>&#x27;../.manual/18-the-colour~code.tsx&#x27;</span>;</span>
+<span class="pd-code-line" data-line="3"></span>
+<span class="pd-code-line" data-line="4"><span>export</span> <span>const</span> <span>Logo</span> = (<span></span>) =&gt; (</span>
+<span class="pd-code-line" data-line="5">    <span><span>&lt;<span>Paragraph</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="6"><span>        <span>&lt;<span>Means</span>&gt;</span>$[[ Dougs Library ]]<span>&lt;/<span>Means</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="7"><span>    <span>&lt;/<span>Paragraph</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="8">);</span>
+<span class="pd-code-line" data-line="9"></span>
+<span class="pd-code-line" data-line="10"><span>export</span> <span>const</span> <span>Subjects</span> = (<span></span>) =&gt; (</span>
+<span class="pd-code-line" data-line="11">    <span><span>&lt;<span>Section</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="12"><span>        <span>&lt;<span>Paragraph</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="13"><span>            <span>&lt;<span>Coloured</span>&gt;</span>#d9a05b<span>&lt;/<span>Coloured</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="14"><span>            <span>&lt;<span>Means</span>&gt;</span>$[[ Dougs Story ]]<span>&lt;/<span>Means</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="15"><span>        <span>&lt;/<span>Paragraph</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="16"><span>        <span>&lt;<span>Paragraph</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="17"><span>            <span>&lt;<span>Coloured</span>&gt;</span>#3b6cf0<span>&lt;/<span>Coloured</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="18"><span>            <span>&lt;<span>Means</span>&gt;</span>$[[ Dougs Design ]]<span>&lt;/<span>Means</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="19"><span>        <span>&lt;/<span>Paragraph</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="20"><span>        <span>&lt;<span>Paragraph</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="21"><span>            <span>&lt;<span>Coloured</span>&gt;</span>#4fb3a8<span>&lt;/<span>Coloured</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="22"><span>            <span>&lt;<span>Means</span>&gt;</span>$[[ Dougs Reference Manual ]]<span>&lt;/<span>Means</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="23"><span>        <span>&lt;/<span>Paragraph</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="24"><span>    <span>&lt;/<span>Section</span>&gt;</span></span></span>
+<span class="pd-code-line" data-line="25">);</span>
+<span class="pd-code-line" data-line="26"></span></code></pre></div></div></div>
+<div class="pd-leaf pd-front pd-open"><div class="pd-words"><div class="pd-chapter pa-synopsis"><a href="/dougs-library/" class="pa-reference pa-self-reference pd-container"><span id="synopsis" class="pd-sentence pd-title pa-parenthetical pa-reference pa-self-reference pa-referent" hidden=""></span></a><div class="pd-paragraph">The catalogue of my library, filed under what it is about, which is itself. Everything I keep is filed under it, directly or through another book.</div></div></div><div class="pd-shelf"><div class="pd-volume"><header class="pd-container"><div class="pd-container"><div class="pd-chapter pa-coloured pa-cover"><a href="/dougs-library/" class="pa-reference pa-self-reference pd-container"><div id="dougs-library" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">Dougs Library</div></a></div></div></header></div><div class="pd-volume"><div class="pd-container"><div class="pd-chapter pa-page pa-synopsis pa-coloured"><a href="/dougs-story/" class="pa-reference pa-self-reference pd-container"><div id="dougs-story" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">Dougs Story</div></a><div class="pd-paragraph pa-caption">My own book, <a href="/dougs-story/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Story</span></a>, is the place to begin from.</div><div class="pd-paragraph pd-turn"><a href="/dougs-library/#the-catalogue" class="pa-reference pd-container"><span class="pd-word pa-reference pa-before">← <!-- -->The Catalogue</span></a><span class="pd-word pd-count">3 of 5</span><a href="/dougs-design/" class="pa-reference pd-container"><span class="pd-word pa-reference pa-after">Dougs Design<!-- --> →</span></a></div><div class="pd-paragraph">My own account, and the one book here that is by its own subject: a story about me and what I create, told so that it helps to navigate the rest of the library. Every other book in this library is written by me or by someone I have vouched for.</div></div></div></div><div class="pd-volume"><div class="pd-container"><div class="pd-chapter pa-page pa-synopsis pa-coloured"><a href="/dougs-design/" class="pa-reference pa-self-reference pd-container"><div id="dougs-design" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">Dougs Design</div></a><div class="pd-paragraph pa-caption">The book <a href="/dougs-design/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Design</span></a> keeps the design of this library.</div><div class="pd-paragraph pd-turn"><a href="/dougs-story/" class="pa-reference pd-container"><span class="pd-word pa-reference pa-before">← <!-- -->Dougs Story</span></a><span class="pd-word pd-count">4 of 5</span><a href="/dougs-reference-manual/" class="pa-reference pd-container"><span class="pd-word pa-reference pa-after">Dougs Reference Manual<!-- --> →</span></a></div><div class="pd-paragraph">The story of how this library was designed, told as it happens, with every sketch kept beside the telling: the photographs of it, and its code.</div></div></div></div><div class="pd-volume"><div class="pd-container"><div class="pd-chapter pa-page pa-synopsis pa-coloured"><a href="/dougs-reference-manual/" class="pa-reference pa-self-reference pd-container"><div id="dougs-reference-manual" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">Dougs Reference Manual</div></a><div class="pd-paragraph pa-caption">The book <a href="/dougs-reference-manual/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Reference Manual</span></a> holds the parts this library is built with.</div><div class="pd-paragraph pd-turn"><a href="/dougs-design/" class="pa-reference pd-container"><span class="pd-word pa-reference pa-before">← <!-- -->Dougs Design</span></a><span class="pd-word pd-count">5 of 5</span><a href="/dougs-reference-manual/" class="pa-reference pa-self-reference pd-container"><span class="pd-word pa-reference pa-self-reference pa-after">Dougs Reference Manual<!-- --> →</span></a></div><div class="pd-paragraph">The reusable parts of this library, each beside the chapter that says what it is. The other books import their tools from this manual&#x27;s book file.</div></div></div></div></div></div>
+</div>
+<script>
+    // What the cover's annotations would add: which book each cover is, its illustration, its author at the foot.
+    const books = {
+        '/dougs-library/': { key: 'library', author: 'The Librarian', art: '<svg viewBox="0 0 64 64" class="pd-illustration"><path class="pa-light" d="M9 7h46v50H9z"/><path d="M9 7h46v50H9zM9 24h46M9 41h46"/><path class="pa-fill" d="M13 11h5v13h-5zM20 9h4v15h-4zM26 13h6v11h-6zM34 10h4v14h-4zM40 14h6v10h-6z"/><path d="M48 24l4-12 3 1-4 11z"/><path class="pa-fill" d="M13 28h4v13h-4zM19 30h7v11h-7zM28 27h4v14h-4zM34 31h5v10h-5zM41 28h6v13h-6zM49 29h3v12h-3z"/><path class="pa-fill" d="M13 46h6v11h-6zM21 44h4v13h-4zM27 47h8v10h-8zM37 45h4v12h-4zM43 48h6v9h-6z"/><path d="M50 57l3-11 3 1-3 10z"/></svg>' },
+        '/dougs-story/': { key: 'story', author: 'Doug', art: '<svg viewBox="0 0 64 64" class="pd-illustration"><path class="pa-light" d="M8 13h23v38H8zM33 13h23v38H33z"/><path d="M8 13h23v38H8zM33 13h23v38H33z"/><path d="M13 21h13M13 27h13M13 33h9M38 21h13M38 27h13M38 33h13M38 39h8"/><path class="pa-fill" d="M15 55 45 25l4 4-30 30-6 2z"/><path d="M15 55 45 25l4 4-30 30-6 2zM43 27l4 4M17 53l2 2"/></svg>' },
+        '/dougs-design/': { key: 'design', author: 'Doug', art: '<svg viewBox="0 0 64 64" class="pd-illustration"><path class="pa-light" d="M9 8h46v48H9z"/><path d="M9 8h46v48H9z"/><circle cx="41" cy="22" r="7"/><path d="M41 15v-3M41 29v3M34 22h-3M48 22h3"/><path class="pa-fill" d="M22 50h20L22 28z"/><path d="M22 50h20L22 28zM26 44h8l-8-10z"/><path d="M19 16l-6 26M19 16l6 26M19 16v-5"/><circle class="pa-fill" cx="19" cy="10" r="2.5"/></svg>' },
+        '/dougs-reference-manual/': { key: 'manual', author: 'Doug', art: '<svg viewBox="0 0 64 64" class="pd-illustration"><circle class="pa-fill" cx="24" cy="41" r="10"/><circle class="pa-light" cx="24" cy="41" r="3.5"/><circle cx="24" cy="41" r="3.5"/><path d="M24 28v-4M24 54v4M11 41H7M37 41h4M15 32l-3-3M33 32l3-3M15 50l-3 3M33 50l3 3"/><path class="pa-fill" d="M38 10l5-5 9 9-5 5-4-1L31 30l-5-5 12-12z"/><path d="M38 10l5-5 9 9-5 5-4-1L31 30l-5-5 12-12zM44 12l3 3"/></svg>' },
+    };
+    // each volume on the shelf: its book, its cover's parts, its name under it
+    for (const volume of document.querySelectorAll('.pd-volume')) {
+        const link = volume.querySelector('.pd-chapter > a');
+        const book = books[link.getAttribute('href')];
+        if (!book) continue;
+        volume.classList.add(book.key);
+        const title = volume.querySelector('.pd-title');
+        const name = title.textContent;
+        title.innerHTML = '<span class="pa-name">' + name + '</span>' + book.art.replace('class="pd-illustration"', 'id="' + book.key + '-illustration" class="pd-illustration"') + '<span class="pa-author">' + book.author + '</span>';
+        const under = document.createElement('div');
+        under.className = 'pd-paragraph pa-name-under';
+        under.textContent = name;
+        volume.appendChild(under);
+        // pressing a cover opens the book above the shelf; the shelf stays as it is
+        link.addEventListener('click', event => { event.preventDefault(); open(volume, book, name, link.getAttribute('href')); });
+    }
+    for (const paragraph of document.querySelectorAll('.pd-subjects .pd-paragraph')) {
+        const book = books[paragraph.querySelector('a')?.getAttribute('href')];
+        if (book) paragraph.classList.add(book.key);
+    }
+    for (const row of document.querySelectorAll('.pd-holds .pa-entry')) {
+        const href = row.querySelector('a')?.getAttribute('href') ?? '';
+        const book = Object.entries(books).find(([address]) => href.endsWith('#' + address.replaceAll('/', '')))?.[1];
+        if (book) { row.classList.add(book.key); row.addEventListener('click', event => { event.preventDefault(); const volume = document.querySelector('.pd-volume.' + book.key); open(volume, book, volume.querySelector('.pa-name').textContent, Object.keys(books).find(a => books[a] === book)); }); }
+    }
+    for (const glyph of document.querySelectorAll('.pd-holds .pa-entry .pa-content'))
+        if (glyph.textContent.trim() === '→') glyph.textContent = '▷';
+    // the two states: the heading of the contents is the way back to reading, the heading of how it is built the way into the built view
+    const view = (state) => { document.body.dataset.view = state; window.scrollTo({ top: 0 }); };
+    for (const section of document.querySelectorAll('.pd-holds .pd-section')) {
+        const heading = section.querySelector(':scope > a:first-child');
+        if (!heading) continue;
+        heading.addEventListener('click', event => { event.preventDefault(); view(section.classList.contains('pa-appendix') ? 'built' : 'reading'); });
+    }
+    for (const row of document.querySelectorAll('.pd-holds .pd-section.pa-appendix .pa-entry'))
+        row.addEventListener('click', event => { event.preventDefault(); view('built'); for (const other of document.querySelectorAll('.pd-holds .pa-entry')) other.classList.toggle('pa-open', other === row); });
+    document.body.dataset.view = 'reading';
+    // the marks at the bar's ends are the two books' covers, cropped to their illustrations
+    const marks = {
+        library: '<svg class="pd-mark" viewBox="0 0 27 27"><rect class="pa-ground" width="27" height="27"/><rect class="pa-ink" x="0" y="22" width="27" height="2.2"/><rect class="pa-ink" x="2" y="4" width="4" height="18"/><rect class="pa-ink" x="7" y="1" width="3.2" height="21"/><rect class="pa-ink" x="11.2" y="6" width="5" height="16"/><rect class="pa-ink" x="17.2" y="2.5" width="3.4" height="19.5"/><path class="pa-ink" d="M21.6 22 24.2 3.4l2.6.4L24.2 22z"/><rect class="pa-paper" x="3.2" y="8" width="1.6" height="1.6"/><rect class="pa-paper" x="12.4" y="10" width="2.6" height="1.6"/></svg>',
+        author: '<svg class="pd-mark" viewBox="0 0 27 27"><rect class="pa-ground" width="27" height="27"/><rect class="pa-paper" x="8" y="-2" width="24" height="26" rx=".8"/><rect class="pa-ink" x="12" y="4" width="11" height="1.4"/><rect class="pa-ink" x="12" y="8" width="11" height="1.4"/><rect class="pa-ink" x="12" y="12" width="7" height="1.4"/><path class="pa-ink" d="M2 25.5 18.5 9l2.6 2.6L4.6 28.1 1 28.6z"/></svg>',
+    };
+    // a mark is a window cut from its book's illustration, at the scale the illustration has on the open cover
+    // a mark refers to the drawing on its book's cover: one drawing on the page, the mark a window onto it
+    const clip = (key) => '<span class="pd-mark ' + key + '"><svg class="pd-illustration" viewBox="0 0 64 64"><use href="#' + key + '-illustration"/></svg></span>';
+    document.querySelector('.pd-logo .pd-paragraph').insertAdjacentHTML('afterbegin', clip('library'));
+    // the subject the cover is filed under, as its mark; on hover, the subject's name, which is what a press shows
+    document.querySelector('.pd-logo').insertAdjacentHTML('beforebegin', '<div class="pd-filed"><div class="pd-paragraph pd-filed-under"><span class="pd-word pa-label">filed under</span><a href="/dougs-library/" class="pa-reference pd-container">' + clip('library') + '</a><span class="pd-word"><a href="/dougs-library/" class="pa-reference pd-container"><span class="pd-word pa-reference">Library</span></a></span></div></div>');
+    document.querySelector('.pd-me .pd-byline').insertAdjacentHTML('beforeend', clip('story'));
+    // The Shelves is this view: its row opens the catalogue's own book on the desk and lights while it is there
+    const shelvesRow = Array.from(document.querySelectorAll('.pd-holds .pa-entry')).find(row => row.textContent.includes('The Shelves'));
+    if (shelvesRow) { shelvesRow.classList.add('library'); shelvesRow.querySelector('.pa-content').textContent = 'Dougs Library'; shelvesRow.addEventListener('click', event => { event.preventDefault(); const volume = document.querySelector('.pd-volume.library'); open(volume, books['/dougs-library/'], 'Dougs Library', '/dougs-library/'); }); }
+    const stage = document.querySelector('.pd-desk');
+    const catalogue = document.querySelector('.pd-volume.library');
+    const synopsis = document.querySelector('.pd-front .pd-words .pd-paragraph');
+    if (catalogue && synopsis) {
+        catalogue.appendChild(synopsis.cloneNode(true));
+        for (const paragraph of document.querySelectorAll('.pd-shelves .pd-words .pd-paragraph:not(.pd-turn)')) catalogue.appendChild(paragraph.cloneNode(true));
+        open(catalogue, books['/dougs-library/'], 'Dougs Library', '/dougs-library/');
+    }
+    function open(volume, book, name, address) {
+        view('reading');
+        stage.className = 'pd-desk pa-open ' + book.key;
+        const words = Array.from(volume.querySelectorAll('.pd-paragraph:not(.pa-name-under)')).map(p => p.outerHTML).join('');
+        stage.innerHTML = '<a class="pa-close" title="close">×</a>' + volume.querySelector('.pd-title').outerHTML.replace(/ id="[a-z]+-illustration"/u, '')
+            + '<div class="pd-words"><div class="pa-kicker">filed here</div><h2>' + name + '</h2><div class="pa-line">by <a href="/dougs-story/">' + book.author + '</a> · filed under <a href="/dougs-library/">Library</a></div>' + words
+            + '<a class="pa-read" href="' + address + '">Read ' + name + ' →</a></div>';
+        stage.querySelector('.pa-close').addEventListener('click', () => {
+            stage.className = 'pd-desk'; stage.innerHTML = ''; document.body.dataset.read = 'off';
+            for (const row of document.querySelectorAll('.pd-holds .pa-entry')) row.classList.remove('pa-open');
+        });
+        // the words as tall as the cover: when they run past it, they fade and a mark offers to read on
+        const column = stage.querySelector('.pd-words');
+        column.insertAdjacentHTML('afterend', '<a class="pa-on">' + (document.body.dataset.read === 'on' ? 'the shelf' : 'read on') + '</a>');
+        requestAnimationFrame(() => column.classList.toggle('pa-more', column.scrollHeight > column.clientHeight + 4));
+        stage.querySelector('.pa-on').addEventListener('click', () => {
+            const on = document.body.dataset.read !== 'on';
+            document.body.dataset.read = on ? 'on' : 'off';
+            stage.querySelector('.pa-on').textContent = on ? 'the shelf' : 'read on';
+            requestAnimationFrame(() => column.classList.toggle('pa-more', !on && column.scrollHeight > column.clientHeight + 4));
+        });
+        for (const row of document.querySelectorAll('.pd-holds .pa-entry')) row.classList.toggle('pa-open', row.classList.contains(book.key));
+        stage.querySelector('.pa-kicker').textContent = book.key === 'library' ? 'filed under itself' : 'filed here';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        stage.querySelector('.pa-read').textContent = (book.key === 'library' ? 'This is the catalogue: ' : 'Read ') + name + ' →';
+    }
+</script>
+</body>
+</html>

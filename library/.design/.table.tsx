@@ -25,6 +25,9 @@ export default () => (
                 <Content>$[[ ./Driving the Build ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./The Bookshelf ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Content>$[[ ./The Library's Home ]]</Content>
             </Paragraph>
             <Paragraph>
