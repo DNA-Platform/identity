@@ -1,0 +1,69 @@
+# Sprint 103: The Manual's Page
+
+- **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md), [Phillip](../../../../.claude/library/..teamsmanship/..team/phillip/phillip-and-the-visible-layer/.cover.md), [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
+- **state:** **implementation-ready, planned 2026-10-07 on Doug's word at the close of [Sprint 102](107-sprint-102--designing-together.md):** *"Now let's start on the next sprint. /ce-plan to work on the reference manual, and setup the design book and an html page, so that we can repeat the process that we did for the bookshelf view."* No brainstorm: the requirements are Sprint 102's with the book changed, and the method is proved.
+- **workflow:** [the feature workflow](../../../../.claude/library/..teamsmanship/19-workflows.md#the-feature-workflow).
+- ***The title is a PROXY. The page names itself when it is decided, as the bookshelf did; the chapter in the design book is renamed with it.***
+
+---
+
+## Where this sprint comes from
+
+**Sprint 102 designed the catalogue's page with him in one evening and carried it into the library through the cover as the book's data model; he closed it after the first book and set the order:** *"we'll come back to the appendix after we do the reference manual, which is next."* His caution on the appendix view, from the same hour, governs the last unit: *"we ultimately want to be able to provide a reference manual like view for that if possible, but maybe we should do the reference manual next before committing to that too hard."*
+
+**What he ruled of the manual before, in the sketch phase and not superseded:** *"the manual = 6 read two ways as 28 (code in front, 'a much smaller synopsis' of its own) and 31 (words in front, substantive), with a transition 'expressed annotatively and elegantly.'"* The two readings exist as annotations and a switch; the page designs how they look. The sketches are history: the page starts from the manual's print, not from 28 and 31.
+
+## Requirements — Sprint 102's, with the book changed
+
+- <a id="r1"></a>**R1.** The manual's data brought into one HTML page from its bound print — its real chapters, briefs, sections and files, the framework's class names kept — with a style of its own. *Observed: the page's words diff against the bound page.*
+- <a id="r2"></a>**R2.** The design evolved on that one page by looking together, one change per round, photographs after. *Observed: the design chapter holds the page and his decisions in his words.*
+- <a id="r3"></a>**R3.** The decided page carried into the library through the cover as the book's data model, with the manual's type, theme and faces in the manual, measured on the live page with `style=` for every value the chapter names. *Observed: the values equal the page's.*
+- <a id="r4"></a>**R4.** The manual's bar is its cover and nothing else, as the bookshelf's is: the subject's mark — the library's cover — the manual's own mark and name, the author. *Observed: the library's mark on the manual's page is drawn from the library's cover file, and changes when it does.*
+- <a id="r5"></a>**R5.** The two readings, code forward and words forward, keep their meaning and gain their look. *Observed: a press on the switch changes the class and nothing is redrawn — the regression promise.*
+- <a id="r6"></a>**R6.** The catalogue's built view takes the manual's look once the manual has one. *Observed: the appendix chapter on the catalogue's page reads as a manual chapter does.* **Design owed — [U5](#u5).**
+
+**Acceptance examples.** <a id="ae1"></a>**AE1** `.me/.design/6-the-manuals-page~035.html` opens from the file as the manual's print under a style of ours. <a id="ae2"></a>**AE2** The design chapter shows the decided page's photographs with his words. <a id="ae3"></a>**AE3** `look dougs-reference-manual built style=…` returns the page's value for every value the chapter names. <a id="ae4"></a>**AE4** The manual's page shows the library's mark cut from the library's own drawing.
+
+## Decisions
+
+- <a id="d1"></a>**D1. The page is made by The Print from the manual's bound print**, as `6-the-manuals-page~035.html` beside the design chapter `6-the-manuals-page.tsx`, both PROXY names until the page names itself. *Chosen over* starting from concepts 28 and 31 (sketches, their content not the manual's) and over a page by hand (refused: only sources he points at).
+- <a id="d2"></a>**D2. One page, his rounds, in the room; one change per round; photographs after, from the built site.** As Sprint 102's D3 and his change of order.
+- <a id="d3"></a>**D3. A cover holds the cover of the subject it is filed under, the way an entry holds the cover of the book it stands for.** The mechanism is `Volume`, widened: said of a chapter that stands for another book — a synopsis of it, or a cover filed under it — holding that book's imported cover as data; `coverOf` reaches it, and the bar draws the subject's mark from it. *Chosen over* the binder handing a book its subject's cover (a package change, his) and over a copy of the library's drawing in the manual (refused by his rule on the mark).
+- <a id="d4"></a>**D4. The manual's type, theme and faces stay in the manual's own chapter, *The Manual*, and its door stays one line.** The port changes `10-the-manual~code`, `~theme`, `~faces`, `~entry`, `~forward` and the base where a value is every book's; nothing new stands in the catalogue's folder.
+- <a id="d5"></a>**D5. The readings are kept as they are — annotations of one kind, a switch that adds a class — and the page decides their look and the transition.** *Chosen over* redesigning the mechanism (a press adds a class; Solutions 105).
+- <a id="d6"></a>**D6. The appendix view is designed owed, not planned.** His word: not before the manual. What must be designed: how the catalogue's built view wears the manual's look without a second theme on one book — a part shared through the base theme, or the appendix chapter drawn by the manual's own faces — and only once the manual's page is decided.
+
+## Units
+
+- <a id="u1"></a>**U1. The design book set up: the chapter and the page.** *Mechanism:* The Print run on `dougs-reference-manual` into `6-the-manuals-page~035.html`; the chapter `6-the-manuals-page.tsx` written with what a reader comes to the manual's page to do and the page appended; a row in the design book's table; a bind; the file's address given to him. *Files:* `.me/.design/6-the-manuals-page.tsx`, `~035.html`, `.me/.design/.table.tsx`. *Visible end:* AE1 — the page open in his browser. *Depends on:* nothing.
+- <a id="u2"></a>**U2. The manual's page designed with him.** *Mechanism:* D2 on the page of U1; each round a change to its `<style>` and script, his words into the chapter as decisions; the page named when decided and the chapter renamed with it. *Files:* the same two. *Visible end:* AE2. *Depends on:* U1.
+- <a id="u3"></a>**U3. The manual's cover holds the library's cover.** *Mechanism:* D3 — `Volume`'s specification widened in *The Cover*, the manual's `.cover.tsx` holding the library's imported cover, the base's `coverOf` answering the subject's identifier from it, the bar drawing the mark. *Files:* `.me/.manual/19-the-cover~code.tsx`, `.me/.manual/.cover.tsx`, `.me/.manual/1-the-book~code.tsx`. *Visible end:* AE4. *Depends on:* U1; can run before U2 is decided, since the bookshelf's bar design already requires it.
+- <a id="u4"></a>**U4. The decided page carried into the manual.** *Mechanism:* D4 — the page's values into the manual's theme, its regions into the manual's `write()` where they differ, the readings' look, measured with `style=`; the manual's chapters made true where the port moved them; photographs from the built site into the design chapter; bind, regression. *Files:* `.me/.manual/10-the-manual~*.tsx`, `3-the-theme~code.tsx` where a value is every book's, the design chapter. *Visible end:* AE3, and the manual on 4242. *Depends on:* U2 decided, U3.
+- <a id="u5"></a>**U5. The catalogue's built view in the manual's look.** ***Design owed*** — D6. No files, no scenarios, no dependencies until the manual's page is decided and the sharing is designed with him.
+- <a id="u6"></a>**U6. The close.** `/ce-compound`, `/ce-handoff`; the next book's page. *Depends on:* U4.
+
+## Test scenarios
+
+- **U1:** the page's text, hashes dropped, equals the bound page's for every region The Print copies; the design book binds with the new chapter listed and its file inserted; the design book's page shows the chapter on 4242.
+- **U3:** a probe reads the manual's bar and finds a mark whose drawing equals the library's `.cover~illustration.svg`; the library's cover changed on disk changes the manual's mark after a save (live) — the referential integrity he asked for, measured; the bind's rules refuse a cover holding the wrong book's cover.
+- **U4:** every value the design chapter names measured equal on the built page at a desk and a phone; the regression suite 48 of 48; a press on the readings' switch keeps every held node; the bind proves 5 pages; `tsc` at its one known line.
+
+## Order
+
+U1 now, in this session, so he has a page to open; U2 with him; U3 beside U2; U4 when U2 is decided; U6. U5 waits on its design.
+
+## Risks
+
+- **His time.** One page, short rounds, the page ready before he arrives.
+- **The manual's page is two pages.** Code forward and words forward are one page in two states; a design that forgets one is half a design. *Mitigated:* the page carries both states from the start, as the bookshelf carried read on and built.
+- **The bind's fatal error.** Seen once in Sprint 102, a V8 crash with no library fault; a bind is run again before anything is diagnosed.
+- **Fonts.** A font the page names reaches the live site only after a bind; the design is judged on the built site.
+
+## The plan checked against itself
+
+R1 lands in U1; R2 in U2; R3 and R5 in U4; R4 in U3; R6 is owed and says so. Every unit but U5 names its mechanism and its visible end, and U5 is denied files and scenarios by the rule that made it so.
+
+## Where things stand
+
+**Next: [U2](#u2), the rounds with him on the page, and [U3](#u3) beside them — the manual's cover holding the library's cover.** [U1](#u1) is done, 2026-10-07: the design chapter [The Manual's Page](../../../../.me/.design/6-the-manuals-page.tsx) and its page `6-the-manuals-page~035.html`, made by The Print from the manual's bound print and trimmed to five of its seventeen leaves — The Book, The Theme, The Cover, The Bookshelf, Developing a Library — so the page stays a sketch; the page's style is the bookshelf's frame over the manual's look as it stands, the bar as the cover with the library's mark, the manual's mark and name and the author's; its script shows one leaf, the rows switch leaves, and two switches at the top of the page give the two readings — words forward with the files folded to a rail, code forward with the file as the page. Listed in the design book's table; bound, 100 keys, 5 pages proved. The page opens from the file: `file:///C:/Source/dna-platform/inexplicable-phenomena/.me/.design/6-the-manuals-page~035.html`; the chapter on 4242 at `/dougs-design/#the-manuals-page`. The page is rebuilt from the print and the scratchpad's `035-style.css` and `035-script.js` by `inject-035.mjs` after a bind; a round edits the page itself. Read first, each for what it is load-bearing: [Designing a Page from Its Print](../writing-a-book/00-03-designing-a-page-from-its-print.md) — the method and the trace; the design book's [The Bookshelf](../../../../.me/.design/5-the-bookshelf.tsx) — the shape a design chapter takes; the manual's door, [The Manual](../../../../.me/.manual/10-the-manual.tsx) and its files — what the port changes; the manual's four false sentences the helper listed at the close of [Sprint 101](106-sprint-101--the-design-into-the-semantics.md#where-things-stand).
