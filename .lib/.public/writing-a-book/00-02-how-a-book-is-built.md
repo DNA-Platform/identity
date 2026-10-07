@@ -1,0 +1,68 @@
+# How a Book Is Built
+
+- **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md)
+- ***The fold of [How a Book Is Implemented](01-03-how-a-book-is-implemented.md), [How a Book Is Laid Out](01-04-how-a-book-is-laid-out.md), [The Object Model of His Library](01-05-the-object-model-of-his-library.md), [Dressing a Library](02-dressing-a-library.md) and [The Development Policies](07-the-development-policies.md), written 2026-10-07. The record stands in those chapters, with every ruling whole.***
+
+---
+
+## His sentences
+
+> **"Book is layout. Chapters are logical parts. This is the essence of the framework."** — 2026-09-13
+>
+> **"I recommend that you try to use annotations to make components - a format is an annotation is that like a styled component, but it can also be used to select things."** — 2026-10-05
+>
+> **"A subclass of the book, but if we need composability to layouts, I'm sure you can use the annotation system to manage something. It is very powerful."** — 2026-10-05
+>
+> **"You don't subclass to get plumbing. You subclass semantically."** — 2026-10-06
+
+## In one paragraph
+
+**A chapter says what it is with an annotation. A type of book is a class whose `write()` collects its chapters by what they carry and places each inside an element of its own, and says in its specification what it must hold. Its layout extends the framework's `Paginated`. Its look is a theme — fields and one component of parts — registered on the class; its cover, synopsis and table are faces, subclasses exported under the framework's names. Anything a reader presses adds a class.** Every name is found by the method in [How a Thing Is Named](../the-coding-style/09-how-a-thing-is-named.md).
+
+## 1 · A chapter says what it is
+
+By an annotation it carries. The framework's own: `Cover`, `Synopsis`, `TableOfContents`, [`Append`](../writing/19-append.md). A kind the framework has no word for is a class of the library's own: under `$Annotation` when it only says what the chapter is, under `$Format` when the kind has a look. It adds its CSS class in `defines` and takes it back in `erase`; its specification says what it may be said of — [Developing an Annotation](../writing/10-developing-an-annotation.md). **One annotation does two jobs: code finds the chapter with `chapter.is($Kind)`, and a rule finds it by its class.** A thing said of a writing is an annotation in the chapter, never found by where it stands. Doug: *"Ever think that maybe there's no such thing as an ordinary chapter, and you should have them all typed and annotated?"*
+
+**The cover is the book's data model.** What it says — `Author`, `Subject`, `About`, and what a library adds, an illustration, a colour scheme — is annotations, and a Cover of the library's own exposes each as a property. A part of the book that needs them imports the cover file, never the book; a catalogue's row holds another book's cover through an annotation, as data that draws nothing of itself — [Designing a Page from Its Print](00-03-designing-a-page-from-its-print.md#the-rules-that-held).
+
+## 2 · The book collects, and says what it must hold
+
+A getter per collection, read every time, never kept: `this.text.find($Chapter).filter(chapter => chapter.is($Kind))`. Never by position, never as what is left over — [a group is named, never left over](../the-first-draft/05-the-book-is-the-layout.md#not-a-remainder). A layout with a place for some kinds says so in the book's specification — a `$`-method under `@specify`, asserting with `$check` — and the bind's `specify` phase refuses a chapter with no place; so `write()` assumes and never hedges. Doug: *"If you need chapters to have a certain specification, this is exactly what the specification is for. Look it up. Write your components to specification."* [Specification](../utilities/03-specification.md).
+
+## 3 · `write()` places
+
+The base book draws the frame once, in regions named as the design names them, each a `div` of the book's own with a `pd-` class; a type overrides the method of the region it fills differently. A chapter is drawn where the book wants it through its own component, `const Cover = $(cover)` then `<Cover />`; what it wraps itself in never matters, since the book places the element it made that holds it. What the book draws that is no chapter — *by*, *filed under* — is a paragraph of the library's own behind a method, given the cover as its chapter, and every layout places both. Doug: *"without those, the library is not navigable."* [Book](../library/05-book.md#how-it-is-extended).
+
+## 4 · The layout, under `Paginated`
+
+The layout is the framework's [`Paginated`](../library/08-paginated.md) extended: it answers `pages` with the book's chapters and `open` with the chapter whose title the address names, and puts `pd-open` on the open one. The arrangements — where the library's bar goes — are one family, each a class and nothing else; the one a book takes is registered in one line at the end of its file, as the theme is, and the most specific registration wins. The turn walks the book's chapters, not the framework's; its ends are said `Before` and `After`.
+
+## 5 · The theme — fields and parts, registered
+
+A theme is a class under `$Theme`: reactive fields for every value the library has, and one styled component composed of parts — methods returning `css`, joined once in the field — so a subclass overrides one part and keeps the rest. Every property is declared in the library's base theme; a book's theme sets values and adds parts. Every template reads a value through the provider, `${({ theme }) => theme.ink}`, never as a literal and never through `this`. Doug: *"Why can't you just have reactive properties and they are templated into the string?… Everywhere in a book has access to it."* It is registered on the book class in its door, `$(TheLibrary, Theme)(LibraryTheme)`. A tone is a theme, named from the design's file and never for a book — [a theme is a tone](../the-coding-style/09-how-a-thing-is-named.md#a-theme-is-a-tone). Worked: the test library's [theme](../../package/.binding/.test/manual/2-the-theme.code.tsx).
+
+## 6 · Faces — subclasses under the framework's names
+
+A face is what a cover, a synopsis, a table of contents or a table looks like in this library: a subclass with one `style`, exported from the door under the framework's name, imported by the chapter from the door. Doug: *"subclass of Table exported as Table is the right answer. Preserves the semantics."* `selection.header\`…\`` rewrites the template; `selection(this.style)\`…\`` extends it. What the framework stands for itself — the Theme on every book, the Self on every title — is replaced by registration; what a chapter writes is replaced by import, since a written word is made before any `.public` code could ask — [`registration.test.tsx`](../../package/.tests/registration.test.tsx). [Format and Theme](../writing/11-format-and-theme.md); worked, the test library's [faces](../../package/.binding/.test/manual/5-the-faces.code.tsx).
+
+## 7 · Where a rule goes
+
+Where a part is — a grid, a column, what scrolls — is the layout's one styled component, naming the book's own elements by class. How the cover, the synopsis or the table looks here is that face. A box or an arrangement said of a writing is a Format with its own styled component, saying `themeProvider = true` where it reads the theme. How writing looks, and every value, is the theme. Every rule names a class — never an element type but `img`, `svg`, `pre`, `code`, `time` — reaches by descendant, and takes every number from the theme. A face's rule for its own element names the kind with its class, `.pd-chapter.pa-cover`; the theme names the kind alone. A class an annotation puts on or takes off is a meaning, never a way to win. [The rules of the surface](../the-styling-surface/01-the-base-themes-classes.md#writing-against-them--the-rules-of-the-surface); [the CSS shapes](../the-coding-style/07-what-natural-means.md#the-css-shapes); [The Styling Surface](../the-styling-surface/.cover.md).
+
+## 8 · Annotations, and what a reader presses
+
+An annotation is said of a writing and read in `is()`. What `$is` gives goes to the front, `defines()` runs from the front, the one in front turns off those of its kind behind it, and `define()` runs again at every `view()`, so an assignment redraws — [precedence](../writing/07-the-annotation-system.md#precedence). Doug: *"$is should have override semantics based on how annotations work. And it should be dynamic. Is it not?"* **Anything a reader presses adds a class, and the rules that read the class were always there:** a tone, an arrangement, a paper are annotations of one kind, each standing down for the one said after it, their rules in the theme or in the one layout every book is given at `$Define`. A press puts an annotation at the front of the book's `$is` or takes it out; its pressed state is `book.is(of)`, asked at every draw and kept nowhere. A switch only adds: it cannot take away what a class says itself.
+
+## 9 · Nouns and annotations
+
+A new thing is a class. A thing that is true of a writing is an annotation said of it. Doug: *"The annotation system is new. They are a form of adding trait. They give you a power that is almost like multiple inheritance."* Before a subclass: a special kind of, never a role played by; it extends, and never nullifies. A file kept beside a chapter documents; it is never rendered — *"The point of resources is to document, it is not to render."*
+
+## The checks, before anything is shown
+
+- No `>`, `+`, `~`, `:first-child`, `:nth-`, `:has(` or `display: contents` in a template; no element type but the five above.
+- No `px`, `rem`, hex or `rgb(` in a template; no `this.` in a template.
+- No part of a theme or a Format named for a value, for a member the class has, or for a base part without `override`.
+- No static member, no constant at the top of a file, no `document.`, no `style=` on an element.
+- A face imported from the package only by a book that means the bare one.
+- The bind's `specify` phase clean, every refusal read as a sentence about the library.
