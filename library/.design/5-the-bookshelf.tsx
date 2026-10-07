@@ -65,7 +65,12 @@ export default () => (
                 in regions; a few annotations — a volume said of a row, holding the imported cover; the synopsis
                 said of a row as well as a chapter; an illustration said of a cover; the colour grown to a scheme;
                 and a custom cover in <Means>$[[ the manual ]]( Dougs Reference Manual )</Means> that exposes
-                what a cover says as properties, so the bar, the volume and the mark read one cover. The method —
+                what a cover says as properties, so the bar, the volume and the mark read one cover. The cover is
+                the book's importable data model: its annotations hold the data, a cover type of my own, referenced
+                in the appendix, exposes it, and any part of the book imports the cover rather than the whole book
+                to read it. That is a sensible way to share state, and it is how another book's cover enters this
+                catalogue — injected by an annotation, as data, so it is no part of what would cause things to
+                render. The method —
                 the page from the print, a thing changed per round, comparables before invention — is the branch
                 library's; the tool that makes a page from a print is <Means>$[[ The Print ]]( ./The Print )</Means>.
             </Paragraph>
