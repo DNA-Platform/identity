@@ -9,7 +9,7 @@ export default () => (
         <Title>[[ Dougs Reference Manual ]]</Title>
         <Paragraph>
             <Caption />
-            The book <Means>$[[ Dougs Reference Manual ]]</Means> holds the parts this library is built with.
+            What the library is built with, and how to build with it: <Means>$[[ Dougs Reference Manual ]]</Means>.
         </Paragraph>
         <Synopsis>{ManualSynopsis()}</Synopsis>
     </Chapter>

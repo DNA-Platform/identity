@@ -8,48 +8,32 @@ export default () => (
             <Paragraph>
                 This book is the way into every other, so it is laid out as a place to choose from: the
                 bookshelf, designed as one page in <Means>$[[ the design book ]]( Dougs Design / The Bookshelf )</Means> and
-                carried into the library's words as <Means>$[[ the Bookshelf ]]( Dougs Reference Manual / The Bookshelf )</Means> in
-                the manual — a type of book, a catalogue, with its theme. This book's own door says one
-                thing, that the library is a catalogue, and holds nothing else; what is beside this chapter is
-                the one file this library writes for itself, its subjects, which the bars of the other books
-                still draw until their own designs come.
+                carried into the library as <Means>$[[ the Bookshelf ]]( Dougs Reference Manual / The Bookshelf )</Means> —
+                a catalogue, a type of book, with its theme. This book's own door says one thing, that the
+                library is a catalogue; beside this chapter stands the one file it writes for itself, its
+                subjects, which the other books' bars draw until their own designs come.
             </Paragraph>
             <Paragraph>
-                The bar across the top is the cover and nothing else: my own mark and my name, and my author
-                at the right with the mark of his book. A book filed under another would show its subject's
-                mark first, unfolding to the subject's name in place of the book's own; this catalogue is
-                filed under itself, the one book that can be, so the catalogue draws no subject's mark for it.
-                The contents stand down the side, each row with a dot in its book's colour and a triangle
-                after it that leads to the book. The page is the desk and the shelf: the open book lies large
-                on the desk above, and the shelf below stays as it is while books are picked from it.
-            </Paragraph>
-            <Paragraph>
-                When nothing is open, the catalogue's own book is on the desk — I am reading about the thing I
-                am on, which is the closure this library has, shown rather than avoided. A book pressed on the
-                shelf or in the contents comes down onto the desk in its place. The desk keeps its shape: the
-                words stand as tall as the jacket, a long entry fades at the foot, and read on is a thing said
-                of the book that lets the desk take the shelf's place, and holds while other books are picked.
+                The bar is the cover and nothing else: my mark and my name, and my author at the right with
+                the mark of his book. A book filed under another would show its subject's mark first; this
+                catalogue is filed under itself, the one book that can be. The contents stand down the side,
+                a dot in each book's colour and a triangle that leads to the book. The page is the desk and
+                the shelf: when nothing is open the catalogue's own book is on the desk, and a book pressed on
+                the shelf or in the contents comes down onto it in its place. The desk keeps its shape, a long
+                entry fades, and read on lets the desk take the shelf's place while other books are picked.
             </Paragraph>
         </Section>
         <Section>
             <Heading>What is on the shelf</Heading>
             <Paragraph>
-                The first book on the shelf is this one, and after it stand the chapters that each stand for a
-                book filed here. The catalogue finds them by what they are: a chapter that carries the synopsis
-                of a book other than this one. Each such chapter also holds that book's cover, imported and
-                said as a volume, so the catalogue knows a book's jacket because the book's own cover says
-                it — <Means>$[[ the cover ]]( Dougs Reference Manual / The Cover )</Means> is the book's data
-                model, and nothing of the held cover is drawn as writing. On the shelf the chapter is drawn as
-                its jacket with the book's name under it, and the name opens the entry on the desk; on the desk
-                the jacket stands large beside the chapter's words — the sentence the entry says is <Means>$[[ its caption ]]( ./The Catalogue )</Means>,
-                then the book's own synopsis — with the way to the book under them.
-            </Paragraph>
-            <Paragraph>
-                Anywhere else a title refers to its own chapter; in a catalogue, where a chapter carries
-                another book's synopsis, its title refers to that book, by a class of the framework's
-                reference from a title to itself, registered on the catalogue's class. The row's second word,
-                the triangle, leads to the book too, and is the reference the library requires a catalogue's
-                table to carry for every book filed under it.
+                Every chapter after the table stands for a book filed here: it carries that book's synopsis,
+                imported from the book, and holds the book's cover as a volume, so the catalogue knows a
+                jacket because the book's own cover says it — <Means>$[[ the cover ]]( Dougs Reference Manual / The Cover )</Means> is
+                a book's data model. On the shelf the chapter is its jacket with the name under it; on the
+                desk the jacket stands large beside the one line the entry says, <Means>$[[ its caption ]]( ./The Catalogue )</Means>,
+                the book's synopsis, by whom and where it is filed, and the way into the book. A title in such
+                a chapter refers to the book it stands for, and the triangle in its row is the reference the
+                library requires a catalogue to carry for every book filed under it.
             </Paragraph>
         </Section>
         <Section>

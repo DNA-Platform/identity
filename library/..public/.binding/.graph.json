@@ -2,23 +2,23 @@
   "books": [
     {
       "folder": "..reference",
-      "digest": "4574583ff5cc471d",
-      "walked": 70
+      "digest": "090d75ccdd5d15a0",
+      "walked": 85
     },
     {
       "folder": ".design",
-      "digest": "d10ff5a40eea33bb",
-      "walked": 866
+      "digest": "df144308afa904ee",
+      "walked": 873
     },
     {
       "folder": ".librarian",
-      "digest": "2333bd69f19cfb37",
-      "walked": 196
+      "digest": "8bde170bfdf22c7d",
+      "walked": 200
     },
     {
       "folder": ".manual",
-      "digest": "9359642d3a39a823",
-      "walked": 353
+      "digest": "8cd108aca40c5d9a",
+      "walked": 359
     }
   ]
 }

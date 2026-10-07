@@ -9,7 +9,7 @@ export default () => (
         <Title>[[ Dougs Story ]]</Title>
         <Paragraph>
             <Caption />
-            My own book, <Means>$[[ Dougs Story ]]</Means>, is the place to begin from.
+            Begin here: <Means>$[[ Dougs Story ]]</Means> is the one book by its own subject.
         </Paragraph>
         <Synopsis>{StorySynopsis()}</Synopsis>
     </Chapter>
