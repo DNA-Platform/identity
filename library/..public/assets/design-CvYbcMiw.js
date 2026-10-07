@@ -1,4 +1,4 @@
-var Sa=Object.defineProperty;var o=(C,e)=>Sa(C,"name",{value:e,configurable:!0});import{$ as v,e as Da,s as $a,f as z,g as A,h as za,i as M,k as F,j as a,l as La,m as T,n as q,o as qa,p as Ia,q as Ea,C as y,b as Ba,T as w,P as Ca,c as p,H as i,a as s,d as m,W as G,M as n,I as t,r as l,A as $}from"./index-BFG4bYkF.js";import{d as Fa,e as Pa,T as Na,D as Aa,L as Oa,f as Ra,I as Wa,a as Ha}from"./.cover-CZ-gxfnI.js";import{C as Ja,S as Ga}from"./.synopsis-BmOO_mXI.js";var Ua=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Qa=o((C,e,k,ja)=>{for(var f=Va(e,k),j=C.length-1,S;j>=0;j--)(S=C[j])&&(f=S(e,k,f)||f);return f&&Ua(e,k,f),f},"__decorateClass$2");const na=class na extends Da{constructor(){super(...arguments),this.specification=new P,this.themeProvider=!0,this.style=$a.div`
+var Sa=Object.defineProperty;var o=(C,e)=>Sa(C,"name",{value:e,configurable:!0});import{$ as v,e as Da,s as $a,f as z,g as A,h as za,i as M,k as F,j as a,l as La,m as T,n as q,o as qa,p as Ia,q as Ea,C as y,b as Ba,T as w,P as Ca,c as p,H as i,a as s,d as m,W as G,M as n,I as t,r as l,A as $}from"./index-YbQR2f5X.js";import{d as Fa,e as Pa,T as Na,D as Aa,L as Oa,f as Ra,I as Wa,a as Ha}from"./.cover-BfALclD9.js";import{C as Ja,S as Ga}from"./.synopsis-DttVxUZV.js";var Ua=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Qa=o((C,e,k,ja)=>{for(var f=Va(e,k),j=C.length-1,S;j>=0;j--)(S=C[j])&&(f=S(e,k,f)||f);return f&&Ua(e,k,f),f},"__decorateClass$2");const na=class na extends Da{constructor(){super(...arguments),this.specification=new P,this.themeProvider=!0,this.style=$a.div`
         .pd-chapter.pa-gallery .pd-section {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(${({theme:e})=>e.card}, 1fr));
@@ -11898,7 +11898,7 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
 <meta name="idea" content="">
 <meta name="said" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Sans+3:wght@500;600;700&family=Source+Sans+3:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Sans+3:wght@500;600;700&family=Source+Sans+3:wght@500;600;700&family=Source+Sans+3:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 <style>
     /* ---- the page's palette, the bookshelf's: slate text, never black; a faint cool tint; the manual's own scheme on the body.
        The manual's two colours do quiet work: gunmetal, the band, is structure — the open row's strip, the lockup's ink;
@@ -11969,18 +11969,18 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
     .pd-holds .pd-twist svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
     .pd-holds .pd-twist.open { transform: rotate(90deg); }
     .pd-holds .pd-twist:hover { color: var(--text); }
-    .pd-holds .pd-folder:hover { background: color-mix(in oklab, var(--band) 22%, white); }
+    .pd-holds .pd-folder:hover { background: color-mix(in oklab, var(--sky) 30%, white); }
     .pd-holds .pd-section.folded .pd-container, .pd-holds .pd-section.folded .pd-file, .pd-holds .pd-section.folded .pd-key { display: none; }
     .pd-holds .pa-entry { display: flex; align-items: center; gap: 7px; margin: 0; height: 27px; padding: 0 14px 0 28px; font: 400 13px/27px var(--sans); color: #3a4452; cursor: pointer; box-shadow: inset 3px 0 0 transparent; transition: background var(--beat) ease, color var(--beat) ease, box-shadow var(--beat) ease; }
     .pd-holds .pd-icon { flex: none; width: 14px; height: 14px; color: #a5aebb; transition: color var(--beat) ease; }
     .pd-holds .pa-entry .pa-content { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .pd-holds .pa-entry:hover { background: color-mix(in oklab, var(--band) 28%, white); }
-    .pd-holds .pa-entry.pa-open { background: color-mix(in oklab, var(--band) 42%, white); color: var(--band-ink); box-shadow: inset 3px 0 0 var(--band-ink); }
+    .pd-holds .pa-entry:hover { background: color-mix(in oklab, var(--sky) 40%, white); }
+    .pd-holds .pa-entry.pa-open { background: color-mix(in oklab, var(--sky) 72%, white); color: var(--band-ink); box-shadow: inset 3px 0 0 var(--band-ink); }
     .pd-holds .pa-entry.pa-open .pd-icon { color: var(--band-ink); }
     .pd-holds .pa-number { font-size: 10.5px; color: color-mix(in oklch, var(--foot-ink) 48%, white); font-variant-numeric: tabular-nums; }
     .pd-holds .pd-file { display: flex; align-items: center; gap: 7px; width: 100%; height: 27px; padding: 0 14px 0 69px; text-align: left; font: 400 13px/27px var(--sans); color: #3a4452; transition: background var(--beat) ease, color var(--beat) ease; }
-    .pd-holds .pd-file:hover { background: color-mix(in oklab, var(--band) 28%, white); color: var(--text); }
-    .pd-holds .pd-file.pa-open { color: var(--band-ink); font-weight: 500; background: color-mix(in oklab, var(--band) 30%, white); }
+    .pd-holds .pd-file:hover { background: color-mix(in oklab, var(--sky) 40%, white); color: var(--text); }
+    .pd-holds .pd-file.pa-open { color: var(--sky-ink); font-weight: 500; background: color-mix(in oklab, var(--sky) 45%, white); }
     .pd-holds .pa-parenthetical { display: none; }
 
     /* ---- a glyph per piece of code: one of seven kinds, a shape and a colour each, so related code looks related ---- */
