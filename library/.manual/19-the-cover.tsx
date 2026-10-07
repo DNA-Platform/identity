@@ -42,12 +42,24 @@ export default () => (
                 that the same drawing is the same everywhere and a change to the file changes every place
                 it stands. <Means>$[[ The Bookshelf ]]( ./The Bookshelf )</Means> dresses both.
             </Paragraph>
+            <Paragraph>
+                The browser's tab wears the same mark. The tool beside this chapter makes the library's icon
+                from the catalogue's cover — the drawing's file, the scheme, the window — as the mark the bar
+                draws, and writes it into the binding's configuration, so the tab changes when the cover does.
+                It is run when the cover changes, before a bind.
+            </Paragraph>
         </Section>
         <Append
             identifier="code"
             type=".tsx"
         >
             ![[ code.tsx ]]
+        </Append>
+        <Append
+            identifier="icon"
+            type=".mjs"
+        >
+            ![[ icon.mjs ]]
         </Append>
     </Chapter>
 );
