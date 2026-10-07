@@ -177,6 +177,25 @@ So her Suite2P responses come from something other than the stored traces, or fr
 these reproduce. That agrees with the earlier finding that 33977's delivered activity behaves like a
 first-order kernel inversion. What it is, is Erin's to say.
 
+**Erin confirmed the method, 2026-10-06.** The response filter, window, offset, delay, soma units, trial
+order, behaviour drop and tiers *"match what I have on my end."* On neuropil: *"neuropil is implicitly
+accounted for in CaImAn's CNMF factorization, so we shouldn't need to remove it for the CaImAn traces."*
+That follows from the algorithm. CNMF models the movie as cell footprints plus a background term, and
+neuropil is the background. 33328's export is exactly the stored spike-5 traces with nothing added,
+so the pipeline adds no step either. **An exporter has no neuropil step of its own**: nexport carries
+whatever `Activity.Trace` holds, and neuropil is decided upstream, by segmentation, extraction and
+deconvolution.
+
+**Open, with Erin: what her Suite2P responses were deconvolved by.** The lab describes spike method 7
+(`nmf_filt_raw`) as *sparse* deconvolution, the only one stored for segmentation 19. Her exported
+responses behave like a linear, non-sparse inversion and run three times larger. Two candidates, from
+first principles and from her own code: Suite2P's own deconvolution (OASIS, an exponential kernel with
+no sparsity penalty, after subtracting 0.7 × the neuropil trace), or her Wiener deconvolution
+([`reimerlab/wiener_deconv`](https://github.com/reimerlab/wiener_deconv), Neyhart et al. 2024, *Cell
+Reports*), which is linear by construction. Segmentation 19 and spike method 7 are the Reimer lab's
+own additions (`cajal/pipeline` stops at spike method 6), so their code is the lab image's
+`pipeline` package.
+
 **Open:** `album` (`oracle`/`single`). Collection 1's oracle set is exactly the delivered oracle
 images, but album membership alone does not reproduce the per-trial labels. Nothing in the pipelines
 reads it. nexport's `area` and `layer` come from anatomy tables, and Erin's 33977 export carried
