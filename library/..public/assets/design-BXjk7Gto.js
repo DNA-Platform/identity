@@ -1,4 +1,4 @@
-var Ta=Object.defineProperty;var o=(C,e)=>Ta(C,"name",{value:e,configurable:!0});import{$ as v,i as Da,s as $a,k as z,l as A,m as za,n as M,o as F,j as a,p as La,q as S,r as q,t as qa,u as Ia,v as Ea,C as y,e as Ba,T as w,d as Ca,f as t,H as p,P as s,g as m,W as G,M as n,I as i,w as l,h as $}from"./index-BpI-HcKs.js";import{c as Fa,d as Pa,T as Na,D as Aa,L as Oa,e as Ra,a as Wa,b as Ha}from"./20-the-bookshelf~code-Dcv6brxr.js";import{C as Ja,S as Ga}from"./.synopsis-CmzIQipb.js";var Ua=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Qa=o((C,e,k,ja)=>{for(var f=Va(e,k),j=C.length-1,T;j>=0;j--)(T=C[j])&&(f=T(e,k,f)||f);return f&&Ua(e,k,f),f},"__decorateClass$2");const na=class na extends Da{constructor(){super(...arguments),this.specification=new P,this.themeProvider=!0,this.style=$a.div`
+var Ta=Object.defineProperty;var o=(C,e)=>Ta(C,"name",{value:e,configurable:!0});import{$ as v,i as Da,s as $a,k as z,l as A,m as za,n as M,o as F,j as a,p as La,q as S,r as q,t as qa,u as Ia,v as Ea,C as y,e as Ba,T as w,d as Ca,f as t,H as p,P as s,g as m,W as G,M as n,I as i,w as l,h as $}from"./index-D1l6OVEx.js";import{c as Fa,d as Pa,T as Na,D as Aa,L as Oa,e as Ra,a as Wa,b as Ha}from"./20-the-bookshelf~code-CHyEQ11F.js";import{C as Ja,S as Ga}from"./.synopsis-CwtBo2i7.js";var Ua=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Qa=o((C,e,k,ja)=>{for(var f=Va(e,k),j=C.length-1,T;j>=0;j--)(T=C[j])&&(f=T(e,k,f)||f);return f&&Ua(e,k,f),f},"__decorateClass$2");const na=class na extends Da{constructor(){super(...arguments),this.specification=new P,this.themeProvider=!0,this.style=$a.div`
         .pd-chapter.pa-gallery .pd-section {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(${({theme:e})=>e.card}, 1fr));
@@ -11898,7 +11898,7 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
 <meta name="idea" content="">
 <meta name="said" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Sans+3:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 <style>
     /* ---- the page's palette, the bookshelf's: slate text, never black; a faint cool tint; the manual's own scheme on the body.
        The manual's two colours do quiet work: gunmetal, the band, is structure — the open row's strip, the lockup's ink;
@@ -11908,7 +11908,7 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
         --paper: #fdfcfa; --text: #343c4a; --soft: #727d8c; --faint: #9ea8b5; --line: #e4e9f2; --tint: #f0f4fc; --bar-tint: #f8fafe;
         --side-tint: #f7f8fb; --read-tint: #fbfaf6;
         --sky: #e3edfb; --sky-ink: #4a6ea0; --wash: linear-gradient(135deg, #f1f5fd 0%, #fdfcfa 48%, #fdf5ee 100%);
-        --sans: 'Inter', system-ui, sans-serif; --serif: 'Source Serif 4', Georgia, serif; --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+        --sans: 'Inter', system-ui, sans-serif; --serif: 'Source Serif 4', Georgia, serif; --between: 'Source Sans 3', 'Inter', system-ui, sans-serif; --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
         --bar: 52px; --side: 272px; --space: 24px; --open: 184px; --radius: 6px;
         --beat: .22s;
     }
@@ -11941,13 +11941,15 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
     .pd-lockup .pa-reference { display: block; }
     .pd-lockup .pd-mark { transition: width var(--beat) ease, margin var(--beat) ease, opacity var(--beat) ease, border-width var(--beat) ease; }
     .pd-lockup .pd-mark.manual { margin-left: 4px; }
-    .pd-lockup:has(.pd-mark.library:hover) .pd-mark.manual { width: 0; margin-left: 0; border-width: 0; opacity: 0; }
+    .pd-lockup.subject .pd-mark.manual { width: 0; margin-left: 0; border-width: 0; opacity: 0; }
     .pd-names { display: grid; margin-left: 9px; }
     .pd-names .pd-name { grid-area: 1 / 1; font: 700 18px/1 var(--serif); letter-spacing: -0.015em; white-space: nowrap; transform: translateY(1px); transition: opacity var(--beat) ease, transform var(--beat) ease; }
-    .pd-names .pd-name.manual { color: #2b363c; }
+    .pd-names .pd-name.manual { color: #2b363c; font: 600 19px/1 var(--between); letter-spacing: -0.01em; }
     .pd-names .pd-name.library { color: #1c565c; opacity: 0; transform: translateY(7px); pointer-events: none; }
-    .pd-lockup:has(.pd-mark.library:hover) .pd-name.manual { opacity: 0; transform: translateY(-5px); }
-    .pd-lockup:has(.pd-mark.library:hover) .pd-name.library { opacity: 1; transform: translateY(1px); }
+    .pd-lockup.subject .pd-name.library { pointer-events: auto; }
+    .pd-lockup.subject .pd-name.manual { pointer-events: none; }
+    .pd-lockup.subject .pd-name.manual { opacity: 0; transform: translateY(-5px); }
+    .pd-lockup.subject .pd-name.library { opacity: 1; transform: translateY(1px); }
     .pd-logo, .pd-subjects { display: none; }
     .pd-me { grid-area: library; position: sticky; top: 0; z-index: 4; justify-self: end; align-self: center; display: flex; align-items: center; gap: 9px; margin-right: 18px; }
     .pd-me .pd-byline { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--soft); }
@@ -14357,6 +14359,9 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
         + '<span class="pd-names"><a href="/dougs-reference-manual/" class="pd-name manual">Dougs Reference Manual</a><a href="/dougs-library/" class="pd-name library">Dougs Library</a></span>'
         + '</div>');
     document.querySelector('.pd-me').insertAdjacentHTML('beforeend', '<span class="story">' + mark('story') + '</span>');
+    const lockup = document.querySelector('.pd-lockup');
+    lockup.querySelector('.pd-mark.library').addEventListener('mouseenter', () => lockup.classList.add('subject'));
+    lockup.addEventListener('mouseleave', () => lockup.classList.remove('subject'));
 
     // the code, highlighted by the file's language, every language the highlighter knows
     const highlight = (listing, file) => {
