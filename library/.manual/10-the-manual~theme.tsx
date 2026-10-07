@@ -89,7 +89,7 @@ export class $ManualTheme extends $LibraryBookTheme {
                 scrollbar-color: transparent transparent;
                 transition: scrollbar-color ${({ theme }) => theme.beat} ease;
             }
-            .pd-book .pd-holds:hover { scrollbar-color: color-mix(in oklch, var(--band) 62%, white) transparent; }
+            .pd-book .pd-holds:hover { scrollbar-color: color-mix(in oklab, var(--band) 62%, white) transparent; }
             .pd-book .pd-holds .pd-chapter { display: flex; flex-direction: column; min-height: 100%; margin: 0; color: ${({ theme }) => theme.sideInk}; }
             .pd-holds .pa-parenthetical { display: none; }
             .pd-holds .pd-section { margin: 0 0 calc(${({ theme }) => theme.space} / 3); }
@@ -109,7 +109,7 @@ export class $ManualTheme extends $LibraryBookTheme {
                 color: ${({ theme }) => theme.sideInk};
                 transition: background ${({ theme }) => theme.beat} ease;
             }
-            .pd-holds .pd-heading:hover { background: color-mix(in oklch, var(--band) 22%, white); }
+            .pd-holds .pd-heading:hover { background: color-mix(in oklab, var(--band) 22%, white); }
             .pd-holds .pd-heading .pa-reference { color: inherit; text-decoration: none; }
             .pd-holds .pd-twist {
                 display: grid;
@@ -162,8 +162,8 @@ export class $ManualTheme extends $LibraryBookTheme {
             .pd-holds .pa-entry .pd-twist.pd-blank { visibility: hidden; }
             .pd-holds .pa-entry .pd-icon { order: -1; }
             .pd-holds .pa-entry .pa-content { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-            .pd-book .pd-holds .pa-entry:hover { background: color-mix(in oklch, var(--band) 28%, white); }
-            .pd-book .pd-holds .pd-paragraph.pa-entry.pa-open { background: color-mix(in oklch, var(--band) 42%, white); color: var(--band-ink); font-weight: 400; box-shadow: inset 3px 0 0 var(--band-ink); }
+            .pd-book .pd-holds .pa-entry:hover { background: color-mix(in oklab, var(--band) 28%, white); }
+            .pd-book .pd-holds .pd-paragraph.pa-entry.pa-open { background: color-mix(in oklab, var(--band) 42%, white); color: var(--band-ink); font-weight: 400; box-shadow: inset 3px 0 0 var(--band-ink); }
             .pd-holds .pa-number { order: 1; margin: 0; font-size: calc(0.75 * ${({ theme }) => theme.size}); color: color-mix(in oklch, var(--foot-ink) 48%, white); font-variant-numeric: tabular-nums; }
             .pd-holds .pa-entry .pd-file {
                 order: 2;
@@ -190,7 +190,7 @@ export class $ManualTheme extends $LibraryBookTheme {
                 transition: background ${({ theme }) => theme.beat} ease, color ${({ theme }) => theme.beat} ease;
             }
             .pd-holds .pd-file .pd-drawing { flex: none; width: ${({ theme }) => theme.size}; height: ${({ theme }) => theme.size}; color: #a5aebb; transition: color ${({ theme }) => theme.beat} ease; }
-            .pd-book .pd-holds .pd-file:hover { background: color-mix(in oklch, var(--band) 28%, white); color: ${({ theme }) => theme.ink}; }
+            .pd-book .pd-holds .pd-file:hover { background: color-mix(in oklab, var(--band) 28%, white); color: ${({ theme }) => theme.ink}; }
             .pa-split .pd-holds .pd-file[aria-pressed='true'], .pa-code-forward .pd-holds .pd-file[aria-pressed='true'] { color: ${({ theme }) => theme.skyInk}; font-weight: 500; background: color-mix(in oklch, ${({ theme }) => theme.sky} 55%, white); }
             .pa-split .pd-holds .pd-file[aria-pressed='true'] .pd-drawing, .pa-code-forward .pd-holds .pd-file[aria-pressed='true'] .pd-drawing { color: var(--colour); }
             .pd-holds .pd-section.pa-appendix { margin: auto 0 0; padding-block-start: calc(${({ theme }) => theme.space} / 3); border-block-start: thin solid #e3e7ee; opacity: 1; }
