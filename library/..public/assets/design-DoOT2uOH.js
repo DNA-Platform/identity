@@ -1,4 +1,4 @@
-var Sa=Object.defineProperty;var o=(C,e)=>Sa(C,"name",{value:e,configurable:!0});import{$ as v,i as Da,s as $a,k as z,l as A,m as za,n as M,o as F,j as a,p as La,q as T,r as q,t as qa,u as Ia,v as Ea,C as y,e as Ba,T as w,d as Ca,f as t,H as p,P as s,g as m,W as G,M as n,I as i,w as l,h as $}from"./index-Cds4BIk7.js";import{c as Fa,d as Pa,T as Na,D as Aa,L as Oa,e as Ra,a as Wa,b as Ha}from"./20-the-bookshelf~code-bBXpwPFF.js";import{C as Ja,S as Ga}from"./.synopsis-BDDE35VA.js";var Ua=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Qa=o((C,e,k,ja)=>{for(var f=Va(e,k),j=C.length-1,S;j>=0;j--)(S=C[j])&&(f=S(e,k,f)||f);return f&&Ua(e,k,f),f},"__decorateClass$2");const na=class na extends Da{constructor(){super(...arguments),this.specification=new P,this.themeProvider=!0,this.style=$a.div`
+var Sa=Object.defineProperty;var o=(C,e)=>Sa(C,"name",{value:e,configurable:!0});import{$ as v,i as Da,s as $a,k as z,l as A,m as za,n as M,o as F,j as a,p as La,q as T,r as q,t as qa,u as Ia,v as Ea,C as y,e as Ba,T as w,d as Ca,f as t,H as p,P as s,g as m,W as G,M as n,I as i,w as l,h as $}from"./index-DRtXuIQM.js";import{c as Fa,d as Pa,T as Na,D as Aa,L as Oa,e as Ra,a as Wa,b as Ha}from"./20-the-bookshelf~code-BbPauqQo.js";import{C as Ja,S as Ga}from"./.synopsis-DO4Y3Zjt.js";var Ua=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Qa=o((C,e,k,ja)=>{for(var f=Va(e,k),j=C.length-1,S;j>=0;j--)(S=C[j])&&(f=S(e,k,f)||f);return f&&Ua(e,k,f),f},"__decorateClass$2");const na=class na extends Da{constructor(){super(...arguments),this.specification=new P,this.themeProvider=!0,this.style=$a.div`
         .pd-chapter.pa-gallery .pd-section {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(${({theme:e})=>e.card}, 1fr));
@@ -11960,24 +11960,25 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
     .pd-holds::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
     .pd-holds:hover::-webkit-scrollbar-thumb { background: #cfd6e0; }
     .pd-holds .pd-chapter { display: flex; flex-direction: column; min-height: 100%; }
-    .pd-holds .pd-section { margin: 0 0 12px; }
+    .pd-holds .pd-section { margin: 0 0 4px; }
     .pd-holds .pd-heading { display: none; }
-    .pd-holds .pd-folder { display: flex; align-items: center; gap: 7px; width: 100%; padding: 5px 12px 5px 10px; text-align: left; font: 600 12.5px/1.5 var(--sans); color: #4b5563; transition: color var(--beat) ease; }
-    .pd-holds .pd-folder::before { content: ''; flex: none; width: 0; height: 0; border: 4px solid transparent; border-left: 5px solid #a5aebb; border-right: 0; transform: rotate(90deg); transition: transform .18s ease, border-left-color var(--beat) ease; }
-    .pd-holds .pd-section.folded .pd-folder::before { transform: rotate(0deg); }
-    .pd-holds .pd-folder:hover { color: var(--text); }
-    .pd-holds .pd-folder:hover::before { border-left-color: var(--band-ink); }
+    .pd-holds .pd-folder { display: flex; align-items: center; gap: 6px; width: 100%; height: 24px; padding: 0 12px 0 6px; text-align: left; font: 400 13px/24px var(--sans); color: #3a4452; transition: color var(--beat) ease, background var(--beat) ease; }
+    .pd-holds .pd-twist { flex: none; display: grid; place-items: center; width: 16px; height: 16px; color: #a5aebb; transition: transform .18s ease, color var(--beat) ease; }
+    .pd-holds .pd-twist svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .pd-holds .pd-twist.open { transform: rotate(90deg); }
+    .pd-holds .pd-twist:hover { color: var(--text); }
+    .pd-holds .pd-folder:hover { background: color-mix(in oklch, var(--band) 22%, white); }
     .pd-holds .pd-section.folded .pd-container, .pd-holds .pd-section.folded .pd-file, .pd-holds .pd-section.folded .pd-key { display: none; }
-    .pd-holds .pa-entry { display: flex; align-items: center; gap: 7px; margin: 0; padding: 4px 12px 4px 27px; font-weight: 450; font-size: 12.5px; line-height: 1.5; color: #3a4452; cursor: pointer; box-shadow: inset 3px 0 0 transparent; transition: background var(--beat) ease, color var(--beat) ease, box-shadow var(--beat) ease; }
+    .pd-holds .pa-entry { display: flex; align-items: center; gap: 6px; margin: 0; height: 24px; padding: 0 12px 0 22px; font: 400 13px/24px var(--sans); color: #3a4452; cursor: pointer; box-shadow: inset 3px 0 0 transparent; transition: background var(--beat) ease, color var(--beat) ease, box-shadow var(--beat) ease; }
     .pd-holds .pd-icon { flex: none; width: 14px; height: 14px; color: #a5aebb; transition: color var(--beat) ease; }
     .pd-holds .pa-entry .pa-content { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .pd-holds .pa-entry:hover { background: color-mix(in oklch, var(--band) 28%, white); }
     .pd-holds .pa-entry.pa-open { background: color-mix(in oklch, var(--band) 42%, white); color: var(--band-ink); box-shadow: inset 3px 0 0 var(--band-ink); }
     .pd-holds .pa-entry.pa-open .pd-icon { color: var(--band-ink); }
     .pd-holds .pa-number { font-size: 10.5px; color: color-mix(in oklch, var(--foot-ink) 48%, white); font-variant-numeric: tabular-nums; }
-    .pd-holds .pd-file { display: flex; align-items: center; gap: 6px; width: 100%; padding: 2px 12px 2px 48px; text-align: left; font: 400 11.5px/1.6 var(--mono); color: #6b7684; transition: background var(--beat) ease, color var(--beat) ease; }
+    .pd-holds .pd-file { display: flex; align-items: center; gap: 6px; width: 100%; height: 24px; padding: 0 12px 0 60px; text-align: left; font: 400 13px/24px var(--sans); color: #3a4452; transition: background var(--beat) ease, color var(--beat) ease; }
     .pd-holds .pd-file:hover { background: color-mix(in oklch, var(--band) 28%, white); color: var(--text); }
-    .pd-holds .pd-file.pa-open { color: var(--foot-ink); font-weight: 500; }
+    .pd-holds .pd-file.pa-open { color: var(--band-ink); font-weight: 500; background: color-mix(in oklch, var(--band) 30%, white); }
     .pd-holds .pa-parenthetical { display: none; }
 
     /* ---- a glyph per piece of code: one of seven kinds, a shape and a colour each, so related code looks related ---- */
@@ -12005,7 +12006,7 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
     .pd-kinds .pd-kind-press { display: flex; align-items: center; gap: 5px; padding: 3px 8px 3px 5px; border: 1px solid var(--line); border-radius: 999px; background: #ffffff; font: 500 11px/1 var(--mono); color: #6b7684; transition: border-color var(--beat) ease, color var(--beat) ease, background var(--beat) ease; }
     .pd-kinds .pd-kind-press:hover { border-color: var(--kind-ink); color: var(--text); }
     .pd-kinds .pd-kind-press.pa-open { border-color: var(--kind-ink); background: var(--kind-fill); color: var(--kind-ink); }
-    .pd-holds .pd-key { display: flex; align-items: center; gap: 8px; padding: 2px 10px 2px 22px; font: 400 11.5px/1.6 var(--sans); color: #6b7684; }
+    .pd-holds .pd-key { display: flex; align-items: center; gap: 8px; height: 24px; padding: 0 12px 0 44px; font: 400 13px/24px var(--sans); color: #3a4452; }
     .pd-holds .pd-section.pd-key-section { margin-top: auto; padding-top: 8px; border-top: 1px solid #e3e7ee; }
 
     /* ---- the page in three states. Closed: the words run wide and the files are a rail at the right edge — a sliver of
@@ -14408,27 +14409,36 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
     }
 
     // the index as a tree: each group a folder that folds; each chapter a page; under a chapter whose leaf is on this page, its files
+    // one explorer: a chevron at every folder — each group, and each chapter that has files — and a row for everything
+    const twist = (open) => '<span class="pd-twist' + (open ? ' open' : '') + '"><svg viewBox="0 0 16 16"><path d="M6 3.5 10.5 8 6 12.5"/></svg></span>';
     const sections = Array.from(document.querySelectorAll('.pd-holds .pd-section'));
     for (const section of sections) {
         const heading = section.querySelector('.pd-heading');
         if (!heading) continue;
-        heading.closest('a').insertAdjacentHTML('beforebegin', '<button class="pd-folder">' + folder + '<span>' + heading.textContent + '</span></button>');
-        section.querySelector('.pd-folder').addEventListener('click', () => section.classList.toggle('folded'));
+        heading.closest('a').insertAdjacentHTML('beforebegin', '<button class="pd-folder">' + twist(true) + folder + '<span>' + heading.textContent + '</span></button>');
+        section.querySelector('.pd-folder').addEventListener('click', () => { section.classList.toggle('folded'); section.querySelector('.pd-twist').classList.toggle('open', !section.classList.contains('folded')); });
     }
     for (const row of document.querySelectorAll('.pd-holds .pa-entry')) {
         const anchor = row.closest('a');
         const name = (anchor?.getAttribute('href') ?? '').split('#')[1];
-        row.insertAdjacentHTML('afterbegin', name in chapters ? glyph(chapters[name]) : icons.page);
         const leaf = leaves.find(one => one.dataset.chapter === name);
+        row.insertAdjacentHTML('afterbegin', (leaf ? twist(true) : '<span class="pd-twist"></span>') + (name in chapters ? glyph(chapters[name]) : icons.page));
         if (!leaf) continue;
         anchor.insertAdjacentHTML('afterend', leaf.files.map((file, index) => '<button class="pd-file kind-' + kindOf(name, file) + '" data-chapter="' + name + '" data-file="' + index + '">' + fileIcon + file + '</button>').join(''));
+        row.querySelector('.pd-twist').addEventListener('click', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            const open = !row.querySelector('.pd-twist').classList.contains('open');
+            row.querySelector('.pd-twist').classList.toggle('open', open);
+            for (const file of document.querySelectorAll('.pd-holds .pd-file[data-chapter="' + name + '"]')) file.hidden = !open;
+        });
     }
     for (const file of document.querySelectorAll('.pd-holds .pd-file'))
         file.addEventListener('click', () => { show(file.dataset.chapter); leaves.find(one => one.dataset.chapter === file.dataset.chapter).open(Number(file.dataset.file), 'open'); });
     // the key, folded at the foot of the tree
-    document.querySelector('.pd-holds .pd-chapter').insertAdjacentHTML('beforeend', '<div class="pd-section pd-key-section folded"><button class="pd-folder">Key</button>' + Object.keys(glyphs).map(kind => '<div class="pd-key">' + glyph(kind) + names[kind] + '</div>').join('') + '</div>');
+    document.querySelector('.pd-holds .pd-chapter').insertAdjacentHTML('beforeend', '<div class="pd-section pd-key-section folded"><button class="pd-folder">' + twist(false) + folder + '<span>Key</span></button>' + Object.keys(glyphs).map(kind => '<div class="pd-key">' + glyph(kind) + names[kind] + '</div>').join('') + '</div>');
     const key = document.querySelector('.pd-key-section');
-    key.querySelector('.pd-folder').addEventListener('click', () => key.classList.toggle('folded'));
+    key.querySelector('.pd-folder').addEventListener('click', () => { key.classList.toggle('folded'); key.querySelector('.pd-twist').classList.toggle('open', !key.classList.contains('folded')); });
 
     const syncTree = (leaf) => {
         for (const file of document.querySelectorAll('.pd-holds .pd-file'))
