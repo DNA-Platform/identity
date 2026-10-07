@@ -2,8 +2,9 @@
 
 - **author:** [Nancy](../../../.claude/library/..teamsmanship/..team/nancy/nancy-or-the-weight-of-evidence/.cover.md)
 - **coauthor:** [Adam](../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md), [David](../../../.claude/library/..teamsmanship/..team/david/the-devops-journal/.cover.md), [Arthur](../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
-- **status:** `active`, **paused 2026-10-07 and waiting on access.** The lab box is offline, and Doug's
-  BCM VPN needs the ERC group assigned. Every lab step resumes from [Where things stand](#where-things-stand).
+- **status:** `active`. The box came back on the evening of 2026-10-07, and 33977 is now the lab's
+  CaImAn processing, as 33328 is. Its twins are training on the box. See
+  [Where things stand](#where-things-stand).
 
 ---
 
@@ -97,7 +98,40 @@ every grant, answer and measured fact. This chapter is the arc, the rulings, and
 
 ## Where things stand
 
-**Blocked, on access** (2026-10-07). Both routes into BCM are shut:
+**2026-10-07, evening: the box is back, and 33977 is CaImAn.** In order of what happened:
+- **The tool.** `container --out` gives a run a writable folder in doug's home on jr-compute003. The
+  container runs as doug, with HOME and its working directory in /tmp. `fetch` streams that folder
+  home through the box and checks it against a SHA-256 manifest.
+- **Erin ran nexport on 33977 12-1 under CaImAn the same hour** (`/mnt/lab/users/erin/nexport/`, about
+  three minutes). Doug, on duplicating her: *"I said I would duplicate her work to check that we know
+  how to do it ... She is going on maternity leave soon and we need to be independent."*
+- **Ours matches hers in every file.** `src/pipelines/export/nexport_in_the_lab_image.py` reproduced
+  her archive exactly: 60 metadata files, and 5,965 trials of responses, behaviour and pupil centre
+  (`runs/lab/20261007-222218-nexport-33977-12-1-1-6-5.*`). Two things were learned on the way:
+  - **coordinates:** her `cell_motor_coordinates` are the lab's stored `meso.StackCoordinates`, as
+    float64. 33328's older archive carries rounded motor positions instead.
+  - **album:** "oracle" exactly on the test tier.
+- **17-3 and the spontaneous 12-2 and 17-1 are ours, by the same procedure.**
+  - 17-3's trial, behaviour and pupil fields equal Erin's Suite2P 17-3 exactly. So whatever she
+    recovered of the behaviour is what the database holds now.
+  - The spontaneous recordings are on `stimulus.BehaviorSync`'s clock, which is where her timestamps
+    come from (`spontaneous_in_the_lab_image.py`).
+- **The switch** (Doug: *"put this new one in its place ... We absolutely want to use the version
+  processed the same as 33328"*, and *"clean and parallel 33328"*), commit 199188a0:
+  - `library/data/33977/` is laid out as 33328's, with archives and `unit_stack_coords.csv` in
+    `.archive/`;
+  - Suite2P went to `library/data/33977-suite2p/`, and every Suite2P result is at the tag
+    `33977-suite2p`;
+  - `.gitignore` covers both places, and the data manifest records the bulk by SHA-256.
+- **Matched:** 980 cells tracked pre to post (308 by chance), **393 in all four recordings**. Links:
+  699 (12-1 to 12-2), 892 (12-2 to 17-1), 1,023 (17-1 to 17-3).
+- **The box holds the same data.** Its Suite2P files were moved the same way and the new paths sent
+  and SHA-256-checked. Parity: 237,191 files, identical paths and sizes.
+- **Twins:** `run-20261007-2335-twins-33977-caiman`, from 0038550f. That commit first removed the
+  Suite2P-derived twin artifacts, including the noise-ceiling cache, which is reused whenever it
+  exists and never checks the data under it. **Next:** check the twins, then an MEI run on the 393.
+
+**Before that evening: blocked, on access.** Both routes into BCM were shut:
 - **The box** (`lipshutzlab-01`) has been off the tailnet since about 2026-10-06 23:00 (`tailscale
   status`: offline). Doug has messaged David.
 - **BCM's VPN.** Doug's Sponsored Guest Account `u267393` is active, with password and MFA set. The
