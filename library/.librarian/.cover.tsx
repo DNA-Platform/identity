@@ -15,8 +15,8 @@ export default () => (
             ink="#2f4a6a"
         />
         <Window
-            x="-44"
-            y="-22"
+            x="-54"
+            y="-33"
         />
         <Title>[[ Dougs Story ]]</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>

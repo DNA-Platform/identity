@@ -1,9 +1,13 @@
 import { ReactNode } from 'react';
-import { $ } from '@dna-platform/chemistry';
-import { $Author, $Chapter, $Referent, $Subject, $Synopsis, Reference as reference, Self, Theme, Word as word } from '@dna-platform/public';
-import { $LibraryBook, $Scheme, $Volume, Bookshelf, Jacket as jacket, Label as label, Light as light, Mark as mark, Switch as switchOf, Tone as tone } from '../.manual/.book';
-import { BookLink } from './o1-the-catalogue~booklink.tsx';
-import { Unfolded as unfolded } from './o1-the-catalogue~said.tsx';
+import { $, $check, inert } from '@dna-platform/chemistry';
+import { $Annotation, $Author, $Chapter, $Paragraph, $Referent, $SelfReference, $Subject, $Synopsis, $TableOfContents, $Word, $Writing, AnnotationSpecification, Reference as reference, Self, Theme, Word as word, specify } from '@dna-platform/public';
+import { $LibraryBook } from './1-the-book~code.tsx';
+import { OfABookSpecification } from './1-the-book~said.tsx';
+import { Label as label } from './8-the-author-and-the-subject~code.tsx';
+import { Switch as switchOf } from './9-the-switch~code.tsx';
+import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
+import { $Scheme, $Volume, Jacket as jacket, Mark as mark } from './19-the-cover~code.tsx';
+import { Bookshelf } from './20-the-bookshelf~theme.tsx';
 
 export class $Catalogue extends $LibraryBook {
     get books(): $Chapter[] {
@@ -44,12 +48,15 @@ export class $Catalogue extends $LibraryBook {
 
     override library(): ReactNode {
         const Mark = $(mark);
+        const subject = this.coverOf(this.subject?.means?.identifier);
         return (
             <>
-                <div className="pd-filed">
-                    <Mark cover={this.coverOf(this.subject?.means?.identifier)} />
-                    {this.filed()}
-                </div>
+                {subject === undefined || subject === this.cover ? undefined : this.painted(subject, (
+                    <div className="pd-filed">
+                        <Mark cover={subject} />
+                        {this.filed()}
+                    </div>
+                ))}
                 <div className="pd-logo">
                     <Mark cover={this.cover} />
                     {this.logo()}
@@ -117,39 +124,6 @@ export class $Catalogue extends $LibraryBook {
                 {this.line(this.cover)}
                 <Synopsis />
             </div>
-        );
-    }
-
-    line(cover: $Chapter | undefined): ReactNode {
-        if (cover === undefined) return undefined;
-        const Word = $(word);
-        const Said = $(label);
-        const Reference = $(reference);
-        const author = cover.annotations.expressed($Author);
-        const subject = cover.annotations.expressed($Subject);
-        return (
-            <>
-                <div className="pd-paragraph pd-byline">
-                    <Word>
-                        <Said />
-                        by
-                    </Word>
-                    <Word>
-                        <Reference>{author!.means!.identifier}</Reference>
-                        {author!.name}
-                    </Word>
-                </div>
-                <div className="pd-paragraph pd-filed-under">
-                    <Word>
-                        <Said />
-                        filed under
-                    </Word>
-                    <Word>
-                        <Reference>{subject!.means!.identifier}</Reference>
-                        {subject!.name}
-                    </Word>
-                </div>
-            </>
         );
     }
 
@@ -225,6 +199,39 @@ export class $Catalogue extends $LibraryBook {
         );
     }
 
+    line(cover: $Chapter | undefined): ReactNode {
+        if (cover === undefined) return undefined;
+        const Word = $(word);
+        const Said = $(label);
+        const Reference = $(reference);
+        const author = cover.annotations.expressed($Author);
+        const subject = cover.annotations.expressed($Subject);
+        return (
+            <>
+                <div className="pd-paragraph pd-byline">
+                    <Word>
+                        <Said />
+                        by
+                    </Word>
+                    <Word>
+                        <Reference>{author!.means!.identifier}</Reference>
+                        {author!.name}
+                    </Word>
+                </div>
+                <div className="pd-paragraph pd-filed-under">
+                    <Word>
+                        <Said />
+                        filed under
+                    </Word>
+                    <Word>
+                        <Reference>{subject!.means!.identifier}</Reference>
+                        {subject!.name}
+                    </Word>
+                </div>
+            </>
+        );
+    }
+
     reading(cover: $Chapter | undefined): ReactNode {
         if (cover === undefined) return undefined;
         const Word = $(word);
@@ -272,7 +279,73 @@ export class $Catalogue extends $LibraryBook {
     }
 }
 
+export class $BookLink extends $SelfReference {
+    @inert() protected _book?: string;
+    override get identifier(): string { return this._book ?? super.identifier; }
+
+    protected override $Bound(): void {
+        super.$Bound();
+        this._book = this.chapter?.annotations.expressed($Synopsis)?.means?.identifier;
+    }
+}
+
+export class $Caption extends $Annotation {
+    specification = new CaptionSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-caption');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class $Arrow extends $Annotation {
+    specification = new ArrowSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-arrow');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class $Unfolded extends $Annotation {
+    specification = new OfABookSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-unfolded');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class CaptionSpecification extends AnnotationSpecification {
+    @specify('a caption is said of a paragraph')
+    $saidOfAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Paragraph, 'a caption is said of a paragraph, and this is not one');
+    }
+}
+
+export class ArrowSpecification extends AnnotationSpecification {
+    @specify('an arrow is said of a word of a table of contents')
+    $saidOfAWord(writing: $Writing): void {
+        $check(writing instanceof $Word && writing.chapter?.is($TableOfContents) === true,
+            'an arrow is said of a word of a table of contents, and this is not one');
+    }
+}
+
 export const Catalogue = $($Catalogue);
+export const BookLink = $($BookLink);
+export const Caption = $($Caption);
+export const Arrow = $($Arrow);
+export const Unfolded = $($Unfolded);
+const unfolded = Unfolded;
 $(Catalogue, Self)(BookLink);
 $(Catalogue, Theme)(Bookshelf);
 $(Catalogue, tone)(light);

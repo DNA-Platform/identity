@@ -126,6 +126,31 @@ export default () => (
                 desk stacked with the jacket at the shelf's size, the shelf three across below it.
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>Three changes on seeing it built</Heading>
+            <Paragraph>
+                A book filed under itself, which only the library can be, draws no subject's mark: its own
+                mark and name are the whole lockup. On any other book the subject's mark stands first, and
+                resting on it unfolds the subject's name in the book's own formatting, in the book's place,
+                the book's lockup stepping aside; the marks and the name stand one gap apart, the same gap
+                three times. And the mark cut from my story's drawing was a poor crop, a page corner and some
+                lines; a mark wants a coherent, geometrically memorable segment of the drawing. Four windows
+                on it, each at four times its size, with the library's mark first for comparison:
+            </Paragraph>
+            <Paragraph>
+                <Image>![[ mark-library.png ]]</Image>
+                <Image>![[ mark-a.png ]]</Image>
+                <Image>![[ mark-b.png ]]</Image>
+                <Image>![[ mark-c.png ]]</Image>
+                <Image>![[ mark-d.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                In order: the nib on a ruled line, the pen crossing the gutter between the two pages, the old
+                crop, and the ruled page with the nib at its corner. The nib is the one set, as the window
+                at −54, −33 on the story's cover; the window is a thing said of the cover, two numbers, so
+                another choice is two numbers changed.
+            </Paragraph>
+        </Section>
         <Append
             identifier="034"
             type=".html"

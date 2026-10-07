@@ -1,5 +1,3 @@
-export { $Catalogue as default } from './o1-the-catalogue~code.tsx';
+import { $Catalogue } from '../.manual/.book';
 
-export * from './o1-the-catalogue~code.tsx';
-export * from './o1-the-catalogue~booklink.tsx';
-export * from './o1-the-catalogue~said.tsx';
+export default class $Library extends $Catalogue { }

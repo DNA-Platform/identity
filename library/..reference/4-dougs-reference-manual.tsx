@@ -1,6 +1,5 @@
 import { Chapter, Means, Paragraph, Synopsis, Title } from '@dna-platform/public';
-import { Volume } from '../.manual/.book';
-import { Caption } from './o1-the-catalogue~said.tsx';
+import { Caption, Volume } from '../.manual/.book';
 import ManualCover from '../.manual/.cover';
 import ManualSynopsis from '../.manual/.synopsis';
 

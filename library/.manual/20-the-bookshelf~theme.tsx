@@ -50,7 +50,7 @@ export class $Bookshelf extends $LibraryBookTheme {
 
     protected override library(): RuleSet {
         return css`
-            .pd-library { padding: 0 calc(${({ theme }) => theme.space} * 0.75); gap: calc(${({ theme }) => theme.space} / 6); }
+            .pd-library { padding: 0 calc(${({ theme }) => theme.space} * 0.75); gap: calc(${({ theme }) => theme.space} * 0.375); }
             .pd-library .pd-paragraph, .pd-me .pd-paragraph { margin-block: 0; }
             .pd-library .pa-reference, .pd-me .pa-reference { color: inherit; text-decoration: none; }
             .pd-subjects { display: none; }
@@ -216,7 +216,7 @@ export class $Bookshelf extends $LibraryBookTheme {
                 color: var(--band-ink, ${({ theme }) => theme.ink});
                 transform: translateY(1px);
             }
-            .pd-filed { display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} * 0.375); height: ${({ theme }) => theme.barHeight}; margin-inline-end: calc(${({ theme }) => theme.space} * 0.417); }
+            .pd-filed { display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} * 0.375); height: ${({ theme }) => theme.barHeight}; }
             .pd-filed .pd-paragraph { display: flex; align-items: center; }
             .pd-filed .pa-label { display: none; }
             .pd-filed .pd-word.pa-reference {
@@ -232,8 +232,18 @@ export class $Bookshelf extends $LibraryBookTheme {
                 color: ${({ theme }) => theme.soft};
                 transition: max-width 0.22s ease, padding 0.22s ease;
             }
-            .pd-filed:hover .pd-word.pa-reference { max-width: calc(${({ theme }) => theme.space} * 8); padding-inline: calc(${({ theme }) => theme.space} * 0.375) calc(${({ theme }) => theme.space} / 4); }
-            .pd-filed::after { content: ''; width: thin; border-inline-start: thin solid ${({ theme }) => theme.line}; height: calc(${({ theme }) => theme.space} * 0.75); margin-inline-start: calc(${({ theme }) => theme.space} * 0.417); }
+            .pd-filed:hover .pd-word.pa-reference {
+                max-width: calc(${({ theme }) => theme.space} * 10);
+                padding-inline: 0 calc(${({ theme }) => theme.space} / 4);
+                font-family: ${({ theme }) => theme.serif};
+                font-size: calc(1.29 * ${({ theme }) => theme.size});
+                font-weight: 700;
+                letter-spacing: -0.015em;
+                text-transform: none;
+                color: var(--band-ink, ${({ theme }) => theme.ink});
+                transform: translateY(1px);
+            }
+            .pd-library:has(.pd-filed:hover) .pd-logo { display: none; }
             .pd-me .pd-byline { display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} * 0.375); font-size: calc(0.93 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.soft}; }
             .pd-me .pd-word.pa-reference { color: ${({ theme }) => theme.ink}; font-weight: 500; }
             .pd-me { gap: calc(${({ theme }) => theme.space} * 0.375); }
