@@ -129,6 +129,31 @@
     .pd-leaf[data-panel="full"] .pd-files { grid-area: panel; box-shadow: none; }
     .pd-brief-bar .pd-brief-title { font: 600 15px/1.3 var(--sans); color: #1a1f36; }
     .pd-brief-bar .pd-brief-text { font: italic 400 13.5px/1.4 var(--serif); color: var(--soft); }
+    /* ---- a glyph per piece of code: one of seven kinds, a shape and a colour each, so related code looks related.
+       A file's kind is its name's word; the chapter's own code is the chapter's kind. The key is the last folder of the tree. ---- */
+    .kind-type { --kind-fill: #cfd6da; --kind-ink: #2b363c; }
+    .kind-theme { --kind-fill: #ebe0bc; --kind-ink: #5d4a16; }
+    .kind-annotation { --kind-fill: #c3e3e6; --kind-ink: #1c565c; }
+    .kind-noun { --kind-fill: #c9d6e6; --kind-ink: #2a4262; }
+    .kind-layout { --kind-fill: #dccbe0; --kind-ink: #5a3a66; }
+    .kind-face { --kind-fill: #e8cdc6; --kind-ink: #7d3429; }
+    .kind-tool { --kind-fill: #d2dece; --kind-ink: #3f5a3a; }
+    .pd-kind { flex: none; width: 15px; height: 15px; fill: none; stroke: var(--kind-ink); stroke-width: 1.3; stroke-linejoin: round; stroke-linecap: round; transition: transform var(--beat) ease; }
+    .pd-kind .k-fill { fill: var(--kind-fill); }
+    .pd-kind .k-dot { fill: var(--kind-ink); stroke: none; }
+    .pd-kind .k-hole { fill: #ffffff; stroke: none; }
+    .pd-holds .pd-file .pd-kind { width: 13px; height: 13px; }
+    .pd-holds .pd-file.pa-open .pd-kind .k-fill { fill: var(--kind-ink); }
+    .pd-holds .pd-file.pa-open .pd-kind .k-dot { fill: var(--kind-fill); }
+    .pd-kinds { display: flex; gap: 6px; margin: 0 0 8px; }
+    .pd-kinds .pd-kind-press { display: flex; align-items: center; gap: 5px; padding: 3px 8px 3px 5px; border: 1px solid var(--line); border-radius: 999px; background: #ffffff; font: 500 11px/1 var(--mono); color: #6b7684; transition: border-color var(--beat) ease, color var(--beat) ease, background var(--beat) ease; }
+    .pd-kinds .pd-kind-press:hover { border-color: var(--kind-ink); color: var(--text); }
+    .pd-kinds .pd-kind-press.pa-open { border-color: var(--kind-ink); background: var(--kind-fill); color: var(--kind-ink); }
+    .pd-rail .pd-tab { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .pd-rail .pd-tab .pd-kind { writing-mode: horizontal-tb; }
+    .pd-holds .pd-key { display: flex; align-items: center; gap: 8px; padding: 2px 10px 2px 22px; font: 400 11.5px/1.6 var(--sans); color: #6b7684; }
+    .pd-holds .pd-key .pd-kind { width: 13px; height: 13px; }
+    .pd-holds .pd-section.pd-key-section { margin-top: auto; padding-top: 8px; border-top: 1px solid #e3e7ee; }
 
 </style>
 </head>
@@ -2446,6 +2471,43 @@
             history.replaceState(null, '', '#' + name);
             show(name);
         });
+
+    // a glyph per piece of code: its kind is its name's word, and the chapter's own code is the chapter's kind
+    const glyphs = {
+        type: '<rect x="3" y="2.5" width="10" height="11" rx="1.5" class="k-fill"/><path d="M5.5 2.5v11"/>',
+        theme: '<circle cx="8" cy="8" r="5.5" class="k-fill"/><circle cx="6" cy="6.6" r="1" class="k-dot"/><circle cx="9.6" cy="5.8" r="1" class="k-dot"/><circle cx="10.2" cy="9.4" r="1" class="k-dot"/>',
+        annotation: '<path d="M2.5 3.5h6l5 5-4.5 4.5-6.5-6.5z" class="k-fill"/><circle cx="5.5" cy="6.5" r="1.1" class="k-hole"/>',
+        noun: '<path d="M3.5 12.5 10 6l2 2-6.5 6.5-2.5.5z" class="k-fill"/><path d="M10 6l1.5-1.5 2 2L12 8"/>',
+        layout: '<rect x="2.5" y="2.5" width="11" height="11" rx="1.5" class="k-fill"/><path d="M2.5 6.5h11M7 6.5v7"/>',
+        face: '<rect x="2.5" y="2.5" width="8.5" height="8.5" rx="1.5"/><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" class="k-fill"/>',
+        tool: '<circle cx="8" cy="8" r="3" class="k-fill"/><path d="M8 1.8v2M8 12.2v2M1.8 8h2M12.2 8h2M3.6 3.6l1.4 1.4M11 11l1.4 1.4M3.6 12.4l1.4-1.4M11 5l1.4-1.4"/>',
+    };
+    const names = { type: 'a type of book', theme: 'a theme', annotation: 'a thing said of a writing', noun: 'a thing the library draws', layout: 'a layout', face: 'a face', tool: 'a tool' };
+    const chapters = { 'the-book': 'type', 'the-theme': 'theme', 'the-cover': 'annotation', 'the-bookshelf': 'type', 'developing-a-library': 'tool', 'the-manual': 'type', 'the-layout': 'layout', 'the-turn': 'noun', 'the-switch': 'noun', 'the-listing': 'noun', 'the-author-and-the-subject': 'noun', 'the-entry': 'annotation', 'the-tone': 'annotation', 'the-first': 'annotation', 'the-colour': 'annotation', 'the-date': 'annotation', 'initializing-a-library': 'tool' };
+    const kindOf = (chapter, file) => {
+        const word = file.replace(/\..*$/u, '');
+        if (word === 'code') return chapters[chapter] ?? 'noun';
+        if (word in glyphs) return word;
+        return { said: 'annotation', entry: 'annotation', forward: 'annotation', faces: 'face', views: 'annotation', icon: 'tool', workbench: 'tool', subjects: 'annotation', booklink: 'annotation' }[word] ?? chapters[chapter] ?? 'noun';
+    };
+    const glyph = (kind) => '<svg class="pd-kind kind-' + kind + '" viewBox="0 0 16 16">' + glyphs[kind] + '</svg>';
+    for (const file of document.querySelectorAll('.pd-holds .pd-file')) {
+        const kind = kindOf(file.dataset.chapter, file.textContent.trim());
+        file.querySelector('.pd-icon').outerHTML = glyph(kind);
+    }
+    for (const leaf of leaves) {
+        const chapter = leaf.dataset.chapter;
+        leaf.querySelectorAll('.pd-tab').forEach((tab, index) => tab.insertAdjacentHTML('afterbegin', glyph(kindOf(chapter, tab.textContent.trim()))));
+        const presses = leaf.listings.map((listing, index) => { const file = listing.querySelector('.pd-word').textContent.trim(); const kind = kindOf(chapter, file); return '<button class="pd-kind-press kind-' + kind + '" data-file="' + index + '" title="' + names[kind] + '">' + glyph(kind) + file + '</button>'; }).join('');
+        leaf.querySelector('.pd-title').insertAdjacentHTML('afterend', '<div class="pd-kinds">' + presses + '</div>');
+        leaf.querySelectorAll('.pd-kind-press').forEach(press => press.addEventListener('click', () => leaf.open(Number(press.dataset.file))));
+        const syncPresses = () => leaf.querySelectorAll('.pd-kind-press').forEach(press => press.classList.toggle('pa-open', press.dataset.file === leaf.dataset.file && leaf.dataset.panel !== 'closed'));
+        new MutationObserver(syncPresses).observe(leaf, { attributes: true, attributeFilter: ['data-panel', 'data-file'] });
+    }
+    // the key, folded at the foot of the tree
+    document.querySelector('.pd-holds .pd-chapter').insertAdjacentHTML('beforeend', '<div class="pd-section pd-key-section folded"><button class="pd-folder">Key</button>' + Object.keys(glyphs).map(kind => '<div class="pd-key">' + glyph(kind) + names[kind] + '</div>').join('') + '</div>');
+    const key = document.querySelector('.pd-key-section');
+    key.querySelector('.pd-folder').addEventListener('click', () => key.classList.toggle('folded'));
 
 </script>
 </body>
