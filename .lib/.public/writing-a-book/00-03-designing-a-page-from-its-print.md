@@ -42,16 +42,18 @@ A library's words — subject, book, cover, synopsis, table of contents, *filed 
 
 | on the page | in `.public` | stands |
 |---|---|---|
-| the bar | the book's cover: subject mark, title, byline | built, from the cover alone |
-| the subject's mark | the subject's cover imported, drawn through its illustration by reference | to build |
-| the side bar | the table of contents; the open row's strip its `pa-open` | built |
-| the `▷` after a filed book | the table's second word, `[[ ▷ ]]( Dougs Story )**` | built |
-| the shelf | **the table of contents drawn as covers** — a face of `TableOfContents`, each row holding its book's imported cover through an annotation | to build; ends the duplicate-id problem, since an entry is drawn once and referred to once |
-| the desk | the open entry chapter, its synopsis imported as today | to build |
-| the cover's drawing | an `Svg` figure the cover appends, said `Illustration`; every mark a `use` of it | to build |
-| three colours | the scheme said on the cover, grown from `Coloured` — ground, band, foot, their inks — read by the theme, and by a catalogue through the imported cover | to build; said once, where today it is said twice |
+| the bar | the book's cover: the subject's mark, the book's mark and name, the byline with the author's mark | built, from the cover alone — `Mark` drawn from a cover the book can reach, `coverOf` |
+| the subject's mark | the subject's cover, drawn through its illustration | built where the subject is the book itself; a foreign subject's cover is held the same way a volume is, when a book is designed that needs it |
+| the side bar | the table of contents; the open row's strip its `pa-open`; each row's dot and strip the scheme of the cover it leads to, through `Entry` | built |
+| the `▷` after a filed book | the table's second word, `[[ ▷ ]]( Dougs Story )**`, said `Arrow` | built |
+| the shelf | **the table of contents drawn as jackets** — a `Jacket` per entry, drawn from the cover the entry holds as a `Volume`, with the name under it leading to the entry's place | built; no chapter is drawn twice, since a jacket is data drawn, not a chapter |
+| the desk | the open leaf: the jacket large beside the entry chapter's words, the *by · filed under* line from the held cover, the way to the book under them | built |
+| the cover's drawing | an `Svg` in a paragraph of the cover said `Illustration`, the file beside the cover inlined by the literal | built |
+| three colours | `Scheme`, said of the cover with its six values, set as custom properties wherever the cover's jacket, mark or row is drawn | built; said once, on the cover |
+| the mark's window | `Window`, said of the cover: where the mark is cut from the drawing | built |
 | the caption | `Caption`, said of the one line in an entry | built |
-| *read on*, the built view | classes on the book, as tones and papers are; the appendix heading's own place pressed | to build |
+| *read on* | `Unfolded`, said of the book by a switch on the desk | built |
+| the built view | `pa-built`, a class the layout adds when the open chapter is in the appendix; the press that opens one is the toggle | built, borrowing the manual's look until the manual is designed |
 | a phase | `Phase`, said of a chapter | planned |
 
 ## What is still the binder's
