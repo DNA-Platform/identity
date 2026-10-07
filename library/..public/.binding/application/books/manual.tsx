@@ -21,6 +21,14 @@ import TheFirst17 from '../../../../.manual/17-the-first';
 import TheColour18 from '../../../../.manual/18-the-colour';
 import TheCover19 from '../../../../.manual/19-the-cover';
 import TheBookshelf20 from '../../../../.manual/20-the-bookshelf';
+import TheKeyo1 from '../../../../.manual/o1-the-key';
+import ATypeOfBooko2 from '../../../../.manual/o2-a-type-of-book';
+import AThemeo3 from '../../../../.manual/o3-a-theme';
+import AnAnnotationo4 from '../../../../.manual/o4-an-annotation';
+import ANouno5 from '../../../../.manual/o5-a-noun';
+import ALayouto6 from '../../../../.manual/o6-a-layout';
+import AFaceo7 from '../../../../.manual/o7-a-face';
+import AToolo8 from '../../../../.manual/o8-a-tool';
 
 const Book = $($Book);
 
@@ -46,6 +54,14 @@ export const book = () => (
         {TheColour18()}
         {TheCover19()}
         {TheBookshelf20()}
+        {TheKeyo1()}
+        {ATypeOfBooko2()}
+        {AThemeo3()}
+        {AnAnnotationo4()}
+        {ANouno5()}
+        {ALayouto6()}
+        {AFaceo7()}
+        {AToolo8()}
     </Book>
 );
 

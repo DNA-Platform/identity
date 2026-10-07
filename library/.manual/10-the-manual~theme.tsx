@@ -25,13 +25,39 @@ export class $ManualTheme extends $LibraryBookTheme {
     dusk = '#17363f';
 
     protected override parts(): RuleSet[] {
-        return [...super.parts(), this.index(), this.words(), this.file(), this.fold(), this.small()];
+        return [...super.parts(), this.index(), this.words(), this.icons(), this.file(), this.fold(), this.small()];
+    }
+
+    protected icons(): RuleSet {
+        return css`
+            .pd-word.pd-icon {
+                display: inline-block;
+                flex: none;
+                width: calc(1.143 * ${({ theme }) => theme.size});
+                height: calc(1.143 * ${({ theme }) => theme.size});
+                color: var(--colour);
+            }
+            .pd-icon .pd-drawing, .pd-icon svg, .pd-svg svg { display: block; width: 100%; height: 100%; }
+            .pd-icon svg, .pd-svg svg { fill: none; stroke: var(--colour); stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+            .pd-icon .ground, .pd-svg .ground { fill: color-mix(in oklch, var(--colour) 24%, white); stroke: var(--colour); stroke-width: 1.5; }
+            .pd-icon .dot, .pd-svg .dot { fill: var(--colour); stroke: none; }
+            .pd-icon .over, .pd-svg .over { fill: color-mix(in oklch, var(--colour) 24%, white); }
+            .pd-icon .solid, .pd-svg .solid { fill: var(--colour); }
+            .pd-holds .pa-entry .pd-icon { order: -1; }
+            .pd-words .pd-icon {
+                float: inline-start;
+                width: calc(1.571 * ${({ theme }) => theme.size});
+                height: calc(1.571 * ${({ theme }) => theme.size});
+                margin: calc(${({ theme }) => theme.space} / 4) calc(${({ theme }) => theme.space} * 0.4167) 0 0;
+            }
+            .pd-words .pd-paragraph .pd-svg { display: block; width: calc(${({ theme }) => theme.space} * 4); height: calc(${({ theme }) => theme.space} * 4); }
+        `;
     }
 
     protected override holds(): RuleSet {
         return css`
             ${super.holds()}
-            .pd-holds .pd-paragraph.pa-entry { padding: calc(${({ theme }) => theme.space} / 4) calc(${({ theme }) => theme.space} / 3); }
+            .pd-holds .pd-paragraph.pa-entry { justify-content: flex-start; padding: calc(${({ theme }) => theme.space} / 4) calc(${({ theme }) => theme.space} / 3); }
             .pd-holds .pd-paragraph.pa-entry::before { content: none; }
         `;
     }

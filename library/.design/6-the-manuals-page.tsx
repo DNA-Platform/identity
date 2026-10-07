@@ -1,4 +1,4 @@
-import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Append, Chapter, Heading, Image, Means, Paragraph, Section, Title } from '@dna-platform/public';
 
 export default () => (
     <Chapter>
@@ -53,6 +53,33 @@ export default () => (
                 representation — slightly utilitarian, somewhat abstract, always at the left. The mark belongs to the
                 chapter as well as to its files. The groups of the contents no longer read as sentences foreign to a
                 tree: a folder's mark and its own words.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>The key, built</Heading>
+            <Paragraph>
+                <Image>![[ key-table.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                The marks were the first thing carried from the page into the manual, the same day, on my
+                word that there might be a pattern for them: a resource file in the appendix that a chapter
+                imports as a reference. There is, and it is the cover's pattern turned on kinds. The page's
+                seven glyphs and its lookup from a chapter's name to its kind became an appendix section of
+                the manual's table, the key, with one chapter per kind holding its drawing and its colour,
+                and a kind said in each chapter as a reference to its entry. It is built
+                in <Means>$[[ The Key ]]( Dougs Reference Manual / The Key )</Means>, with the code beside
+                that chapter, and the entries are its seven neighbours,
+                from <Means>$[[ A Type of Book ]]( Dougs Reference Manual / A Type of Book )</Means> to <Means>$[[ A Tool ]]( Dougs Reference Manual / A Tool )</Means>;
+                how a new chapter or a new kind joins is said there, under how the key scales.
+            </Paragraph>
+            <Paragraph>
+                <Image>![[ key-entry.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                An entry opened: the drawing large under its title, and the words for what the kind is. The
+                rest of the page, the tree with its chevrons, the rail and the split, the file's thin-line
+                icon and the kind on a file's press, waits on the port of the manual's look, and this chapter
+                is where the team reads what was decided and follows a mention to where it is built.
             </Paragraph>
         </Section>
         <Append

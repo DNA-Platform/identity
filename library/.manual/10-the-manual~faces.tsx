@@ -29,7 +29,6 @@ export class $ManualTableOfContents extends $TableOfContents {
         .pa-table-of-contents .pd-paragraph.pa-entry {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             margin-block: 0;
             padding: calc(${({ theme }) => theme.space} / 4) calc(${({ theme }) => theme.space} / 3);
             border-radius: calc(${({ theme }) => theme.space} / 4);
@@ -42,6 +41,7 @@ export class $ManualTableOfContents extends $TableOfContents {
         }
         .pa-table-of-contents .pa-reference { color: inherit; text-decoration: none; }
         .pa-table-of-contents .pa-number {
+            margin-inline-start: auto;
             font-size: calc(0.8571 * ${({ theme }) => theme.size});
             color: ${({ theme }) => theme.faint};
         }
