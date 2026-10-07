@@ -176,7 +176,7 @@ export class $ManualTheme extends $LibraryBookTheme {
             }
             .pd-holds .pd-file .pd-drawing { flex: none; width: calc(0.9286 * ${({ theme }) => theme.size}); height: calc(0.9286 * ${({ theme }) => theme.size}); color: #9aa4b3; }
             .pd-holds .pd-file:hover { color: ${({ theme }) => theme.ink}; }
-            .pd-holds .pd-file[aria-pressed='true'] { color: var(--band-ink); font-weight: 500; }
+            .pd-holds .pd-file[aria-pressed='true'] { color: var(--band-ink); font-weight: 500; background: none; border-color: transparent; }
             .pd-holds .pd-file[aria-pressed='true'] .pd-drawing { color: var(--colour); }
             .pd-holds .pd-section.pa-appendix { margin: auto 0 0; padding-block-start: calc(${({ theme }) => theme.space} / 3); border-block-start: thin solid #e3e7ee; opacity: 1; }
             .pd-holds .pd-section.pa-appendix .pd-heading { font-size: calc(0.9286 * ${({ theme }) => theme.size}); }
