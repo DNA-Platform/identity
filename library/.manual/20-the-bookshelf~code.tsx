@@ -1,10 +1,11 @@
 import { ReactNode } from 'react';
 import { $, $check, inert } from '@dna-platform/chemistry';
-import { $Annotation, $Author, $Chapter, $Paragraph, $Referent, $SelfReference, $Subject, $Synopsis, $TableOfContents, $Word, $Writing, AnnotationSpecification, Reference as reference, Self, Theme, Word as word, specify } from '@dna-platform/public';
+import { $Annotation, $Chapter, $Paragraph, $Referent, $SelfReference, $Synopsis, $TableOfContents, $Word, $Writing, AnnotationSpecification, Reference as reference, Self, Theme, Word as word, specify } from '@dna-platform/public';
 import { $LibraryBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
-import { Label as label } from './8-the-author-and-the-subject~code.tsx';
+import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Switch as switchOf } from './9-the-switch~code.tsx';
+import { $Index, leads } from './14-the-entry~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
 import { $Scheme, $Volume, Jacket as jacket, Mark as mark } from './19-the-cover~code.tsx';
 import { Bookshelf } from './20-the-bookshelf~theme.tsx';
@@ -108,7 +109,7 @@ export class $Catalogue extends $LibraryBook {
                 {this.reading(this.cover)}
                 <Switch
                     chapter={this.cover}
-                    of={unfolded}
+                    of={Unfolded}
                 >
                     read on
                 </Switch>
@@ -143,13 +144,17 @@ export class $Catalogue extends $LibraryBook {
                     <div className="pd-words">
                         {this.shelved(cover)}
                         <Chapter />
-                        {this.line(cover)}
                     </div>
+                    {cover === undefined ? undefined : (
+                        <div className="pd-line">
+                            {this.line(cover)}
+                        </div>
+                    )}
                     {this.reading(cover)}
                     {cover === undefined ? undefined : (
                         <Switch
                             chapter={chapter}
-                            of={unfolded}
+                            of={Unfolded}
                         >
                             read on
                         </Switch>
@@ -165,17 +170,21 @@ export class $Catalogue extends $LibraryBook {
     volumes(): ReactNode {
         const Word = $(word);
         const Reference = $(reference);
-        return [this.cover!, ...this.books].map((chapter, index) => {
-            const cover = this.jacketOf(chapter)!;
+        const rows = this.table?.annotations.expressed($Index)?.entries ?? [];
+        return rows.map((row, index) => {
+            const place = leads(row)!.identifier;
+            const chapter = this.named(place);
+            const cover = chapter === undefined ? this.coverOf(place) : this.jacketOf(chapter);
+            if (cover === undefined) return undefined;
             return (
                 <div
                     key={index}
                     className="pd-volume"
                 >
-                    {this.jacket(cover)}
+                    {this.jacket(cover, place)}
                     <div className="pd-paragraph pd-name">
                         <Word>
-                            <Reference>{chapter === this.cover ? this.means!.identifier : this.placeOf(chapter)}</Reference>
+                            <Reference>{place}</Reference>
                             {cover.title!.name}
                         </Word>
                     </div>
@@ -184,11 +193,16 @@ export class $Catalogue extends $LibraryBook {
         });
     }
 
-    jacket(cover: $Chapter | undefined): ReactNode {
+    jacket(cover: $Chapter | undefined, place?: string): ReactNode {
         if (cover === undefined) return undefined;
         const Jacket = $(jacket);
-        return (
+        const Reference = $(reference);
+        return place === undefined ? (
             <Jacket cover={cover} />
+        ) : (
+            <Jacket cover={cover}>
+                <Reference>{place}</Reference>
+            </Jacket>
         );
     }
 
@@ -203,33 +217,12 @@ export class $Catalogue extends $LibraryBook {
 
     line(cover: $Chapter | undefined): ReactNode {
         if (cover === undefined) return undefined;
-        const Word = $(word);
-        const Said = $(label);
-        const Reference = $(reference);
-        const author = cover.annotations.expressed($Author);
-        const subject = cover.annotations.expressed($Subject);
+        const Byline = $(byline);
+        const FiledUnder = $(filedUnder);
         return (
             <>
-                <div className="pd-paragraph pd-byline">
-                    <Word>
-                        <Said />
-                        by
-                    </Word>
-                    <Word>
-                        <Reference>{author!.means!.identifier}</Reference>
-                        {author!.name}
-                    </Word>
-                </div>
-                <div className="pd-paragraph pd-filed-under">
-                    <Word>
-                        <Said />
-                        filed under
-                    </Word>
-                    <Word>
-                        <Reference>{subject!.means!.identifier}</Reference>
-                        {subject!.name}
-                    </Word>
-                </div>
+                <Byline cover={cover} />
+                <FiledUnder cover={cover} />
             </>
         );
     }
@@ -249,12 +242,12 @@ export class $Catalogue extends $LibraryBook {
         );
     }
 
-    painted(cover: $Chapter | undefined, drawing: ReactNode, key?: number): ReactNode {
+    painted(cover: $Chapter | undefined, node: ReactNode, key?: number): ReactNode {
         const Painted = cover?.annotations.expressed($Scheme)?.painted;
-        if (Painted === undefined) return drawing;
+        if (Painted === undefined) return node;
         return (
             <Painted key={key}>
-                {drawing}
+                {node}
             </Painted>
         );
     }
@@ -347,7 +340,6 @@ export const BookLink = $($BookLink);
 export const Caption = $($Caption);
 export const Arrow = $($Arrow);
 export const Unfolded = $($Unfolded);
-const unfolded = Unfolded;
 $(Catalogue, Self)(BookLink);
 $(Catalogue, Theme)(Bookshelf);
 $(Catalogue, tone)(light);

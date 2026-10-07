@@ -116,7 +116,10 @@ export class $Jacket extends $Paragraph {
                 <Word>
                     {cover.name}
                 </Word>
-                <span dangerouslySetInnerHTML={{ __html: cover.drawing }} />
+                <span
+                    className="pd-drawing"
+                    dangerouslySetInnerHTML={{ __html: cover.drawing }}
+                />
                 <Word>
                     <Said />
                     {cover.author}
@@ -152,7 +155,12 @@ export class $Mark extends $Word {
     }
 
     override write(): ReactNode {
-        return <span dangerouslySetInnerHTML={{ __html: this.cover?.drawing ?? '' }} />;
+        return (
+            <span
+                className="pd-drawing"
+                dangerouslySetInnerHTML={{ __html: this.cover?.drawing ?? '' }}
+            />
+        );
     }
 
     protected override $Define(): void {

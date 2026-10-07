@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
-import { $Annotation, $Paragraph, $Word, $Writing, AnnotationSpecification, Reference as reference, Word as word, specify } from '@dna-platform/public';
+import { $Annotation, $Author, $Chapter, $Paragraph, $Subject, $Word, $Writing, AnnotationSpecification, Reference as reference, Word as word, specify } from '@dna-platform/public';
 
 export class $Label extends $Annotation {
     specification = new LabelSpecification();
@@ -24,8 +24,11 @@ export class LabelSpecification extends AnnotationSpecification {
 export const Label = $($Label);
 
 export class $Byline extends $Paragraph {
+    $cover?: $Chapter;
+    get cover(): $Chapter | undefined { return this.$cover ?? this.book?.cover; }
+
     override write(): ReactNode {
-        const author = this.book!.author!;
+        const author = this.cover!.annotations.expressed($Author)!;
         const Word = $(word);
         const Said = $(Label);
         const Reference = $(reference);
@@ -50,8 +53,11 @@ export class $Byline extends $Paragraph {
 }
 
 export class $FiledUnder extends $Paragraph {
+    $cover?: $Chapter;
+    get cover(): $Chapter | undefined { return this.$cover ?? this.book?.cover; }
+
     override write(): ReactNode {
-        const subject = this.book!.subject!;
+        const subject = this.cover!.annotations.expressed($Subject)!;
         const Word = $(word);
         const Said = $(Label);
         const Reference = $(reference);
