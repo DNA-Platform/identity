@@ -5,8 +5,12 @@
 #   bash $L check                              key logins to every compute server, the database through the box
 #   bash $L run <host> '<command>'             a command on a compute server (001, 003, 005), not recorded
 #   bash $L probe <name> <host> '<command>'    the same, RECORDED in runs/lab/ and committed, machines synced
-#   bash $L container <name> <host> <file.py>  a Python file in the lab's image on a compute server, the lab
-#                                              password on its stdin, RECORDED and committed
+#   bash $L container <name> <host> <file.py> [--out]
+#                                              a Python file in the lab's image on a compute server, the lab
+#                                              password on its stdin, RECORDED and committed; with --out it may
+#                                              write to /out, a folder of its own in doug's home on that server
+#   bash $L fetch <name> <host> <dir>          the newest --out folder of <name>, streamed here through the box
+#                                              into <dir>/, every file checked against its MANIFEST.sha256
 #   bash $L tunnel up|down|status              the lab database on 127.0.0.1:$LAB_PORT here, through the box
 #   bash $L kube <kubectl arguments>           kubectl on the lab's GPU cluster, namespace doug, through the box
 #
@@ -108,21 +112,50 @@ probe() {
 }
 
 container() {
-    local name=$1 host=$2 file=$3 stamp tag
+    local name=$1 host=$2 file=$3 out=${4:-} stamp tag prepare="" mounts="" where=""
     [[ $name =~ ^[A-Za-z0-9-]+$ ]] || { echo "a container run's name is letters, digits and hyphens"; return 2; }
     [ -f "$file" ] || { echo "no file $file"; return 2; }
     stamp=$(date +%Y%m%d-%H%M%S)
     tag=doug-$name-$stamp
+    if [ "$out" = "--out" ]; then
+        # A folder of its own in doug's home on that server, mounted at /out. The container runs as doug, so
+        # what it writes is his; the lab's storage stays read-only. `fetch` brings the folder here.
+        prepare="mkdir -p ~/doug-out/$tag && chmod 700 ~/doug-out ~/doug-out/$tag && "
+        mounts="-v \$HOME/doug-out/$tag:/out -w /out --user \$(id -u):\$(id -g) -e HOME=/out"
+        where=", writing to ~/doug-out/$tag"
+    elif [ -n "$out" ]; then
+        echo "the fourth argument is --out, or nothing"; return 2
+    fi
     mkdir -p "$RECORDS"
     cp "$file" "$RECORDS/$stamp-$name.py"
-    printf '# %s in %s on %s, --cpus %s --memory %s, %s\n' "$tag" "$IMAGE" "$(host_of "$host")" "$CPUS" "$MEMORY" \
-        "$(date -Iseconds)" > "$RECORDS/$stamp-$name.sh"
+    printf '# %s in %s on %s, --cpus %s --memory %s%s, %s\n' "$tag" "$IMAGE" "$(host_of "$host")" "$CPUS" "$MEMORY" \
+        "$where" "$(date -Iseconds)" > "$RECORDS/$stamp-$name.sh"
     # The password is line one of stdin; the file follows. Inside, PASSWORD is a variable the file uses.
     { secret REIMER_PASSWORD && printf '\n'; cat "$file"; } \
-        | ssh_lab "$(host_of "$host")" "docker run --rm -i --name $tag --cpus $CPUS --memory $MEMORY -v /mnt:/mnt:ro \
+        | ssh_lab "$(host_of "$host")" "${prepare}docker run --rm -i --name $tag --cpus $CPUS --memory $MEMORY \
+            -v /mnt:/mnt:ro $mounts \
             --entrypoint python3 $IMAGE -c 'import sys; PASSWORD = sys.stdin.readline().rstrip(chr(10)); exec(sys.stdin.read())'" \
         2>&1 | tee "$RECORDS/$stamp-$name.out"
     commit_record "$name" "$RECORDS/$stamp-$name.py" "$RECORDS/$stamp-$name.sh" "$RECORDS/$stamp-$name.out"
+}
+
+fetch() {    # the newest --out folder of a run, through the box, checked file by file against its manifest
+    local name=$1 host=$2 dest=$3 folder
+    [[ $name =~ ^[A-Za-z0-9-]+$ ]] || { echo "a run's name is letters, digits and hyphens"; return 2; }
+    folder=$(ssh_lab "$(host_of "$host")" "ls -1d ~/doug-out/doug-$name-* 2>/dev/null | sort | tail -1" | tr -d '\r')
+    [ -n "$folder" ] || { echo "no output of $name on $(host_of "$host")"; return 1; }
+    folder=$(basename "$folder")
+    mkdir -p "$dest"
+    ssh_lab "$(host_of "$host")" "tar -C ~/doug-out -cf - $folder" | tar -C "$dest" -xf - \
+        || { echo "the transfer of $folder failed"; return 1; }
+    (
+        cd "$dest/$folder" || exit 1
+        [ -f MANIFEST.sha256 ] || { echo "$folder has no MANIFEST.sha256 - nothing to check it against"; exit 1; }
+        sha256sum --quiet -c MANIFEST.sha256 || { echo "$folder: files differ from the manifest"; exit 1; }
+        listed=$(grep -c . MANIFEST.sha256); present=$(find . -type f ! -name MANIFEST.sha256 | wc -l)
+        [ "$listed" -eq "$present" ] || { echo "$folder: $present files, $listed in the manifest"; exit 1; }
+        echo "fetched $folder: $present files, every one matching the manifest"
+    )
 }
 
 listening() { (exec 3<>"/dev/tcp/127.0.0.1/$1") 2>/dev/null; }
@@ -171,9 +204,10 @@ main() {
         run)       run_cmd "$@" ;;
         probe)     probe "$@" ;;
         container) container "$@" ;;
+        fetch)     fetch "$@" ;;
         tunnel)    tunnel "$@" ;;
         kube)      kube "$@" ;;
-        *) sed -n '3,13p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; return 2 ;;
+        *) sed -n '3,17p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; return 2 ;;
     esac
 }
 main "$@"
