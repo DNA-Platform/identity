@@ -155,8 +155,7 @@ export class $ManualTheme extends $LibraryBookTheme {
                 line-height: calc(1.9286 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.sideInk};
                 cursor: pointer;
-                box-shadow: inset 3px 0 0 transparent;
-                transition: background ${({ theme }) => theme.beat} ease, color ${({ theme }) => theme.beat} ease, box-shadow ${({ theme }) => theme.beat} ease;
+                transition: color ${({ theme }) => theme.beat} ease;
             }
             .pd-holds .pa-entry .pd-twist { order: -2; position: static; }
             .pd-holds .pa-entry .pd-twist.pd-blank { visibility: hidden; }
