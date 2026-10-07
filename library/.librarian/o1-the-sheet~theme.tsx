@@ -13,7 +13,7 @@ export class $StoryTheme extends $LibraryBookTheme {
     sideLine = '#e9d8bd';
 
     protected override parts(): RuleSet[] {
-        return [...super.parts(), this.papers(), this.ground(), this.chips(), this.sheet(), this.masthead(), this.letterpress(), this.foot(), this.phone()];
+        return [...super.parts(), this.papers(), this.ground(), this.chips(), this.sheet(), this.top(), this.letterpress(), this.foot(), this.phone()];
     }
 
     protected papers(): RuleSet {
@@ -80,7 +80,7 @@ export class $StoryTheme extends $LibraryBookTheme {
                 border-radius: calc(${({ theme }) => theme.space} / 4);
                 box-shadow: ${({ theme }) => theme.shadow};
             }
-            .pa-sheet .pd-masthead { padding: calc(${({ theme }) => theme.space} * 2.8333) calc(${({ theme }) => theme.space} * 3.1667) calc(${({ theme }) => theme.space} * 1.8333); }
+            .pa-sheet .pd-top { padding: calc(${({ theme }) => theme.space} * 2.8333) calc(${({ theme }) => theme.space} * 3.1667) calc(${({ theme }) => theme.space} * 1.8333); }
             .pa-sheet .pd-leaf {
                 padding: 0 calc(${({ theme }) => theme.space} * 3.1667) calc(${({ theme }) => theme.space} * 2.3333);
                 font-size: calc(1.2286 *${({ theme }) => theme.size});
@@ -92,9 +92,9 @@ export class $StoryTheme extends $LibraryBookTheme {
         `;
     }
 
-    protected masthead(): RuleSet {
+    protected top(): RuleSet {
         return css`
-            .pa-sheet .pd-masthead {
+            .pa-sheet .pd-top {
                 font-family: ${({ theme }) => theme.mono};
                 font-size: calc(0.75 *${({ theme }) => theme.size});
                 line-height: 1.7;
@@ -102,24 +102,24 @@ export class $StoryTheme extends $LibraryBookTheme {
                 text-transform: uppercase;
                 color: var(--soft);
             }
-            .pa-sheet .pd-masthead .pd-paragraph.pd-byline {
+            .pa-sheet .pd-top .pd-paragraph.pd-byline {
                 display: flex;
                 align-items: baseline;
                 column-gap: calc(${({ theme }) => theme.space} * 0.4);
                 margin-block: 0;
             }
-            .pa-sheet .pd-masthead .pd-byline::before {
+            .pa-sheet .pd-top .pd-byline::before {
                 content: '·';
                 margin-inline: calc(${({ theme }) => theme.space} * 0.5) calc(${({ theme }) => theme.space} * 0.24);
             }
-            .pa-sheet .pd-masthead .pd-byline .pa-reference {
+            .pa-sheet .pd-top .pd-byline .pa-reference {
                 color: inherit;
                 text-decoration-color: ${({ theme }) => theme.me};
                 text-decoration-thickness: calc(${({ theme }) => theme.space} / 12);
                 text-underline-offset: calc(${({ theme }) => theme.space} / 6);
             }
-            .pa-sheet .pd-masthead .pd-word.pd-date { margin-block-start: calc(${({ theme }) => theme.space} * 0.25); }
-            .pa-sheet .pd-masthead::after {
+            .pa-sheet .pd-top .pd-word.pd-date { margin-block-start: calc(${({ theme }) => theme.space} * 0.25); }
+            .pa-sheet .pd-top::after {
                 content: '';
                 width: calc(${({ theme }) => theme.space} * 2.3333);
                 margin-block-start: calc(${({ theme }) => theme.space} * 0.6667);
@@ -215,7 +215,7 @@ export class $StoryTheme extends $LibraryBookTheme {
                     border-radius: 0;
                     box-shadow: none;
                 }
-                .pa-sheet .pd-masthead { padding: calc(${({ theme }) => theme.space} * 1.6667) calc(${({ theme }) => theme.space} * 1.0833) calc(${({ theme }) => theme.space} * 1.8333); }
+                .pa-sheet .pd-top { padding: calc(${({ theme }) => theme.space} * 1.6667) calc(${({ theme }) => theme.space} * 1.0833) calc(${({ theme }) => theme.space} * 1.8333); }
                 .pa-sheet .pd-leaf { padding: 0 calc(${({ theme }) => theme.space} * 1.0833) calc(${({ theme }) => theme.space} * 1.5); }
                 .pa-sheet .pd-leaf .pd-paragraph.pd-turn { grid-template-columns: 1fr 1fr; }
                 .pa-sheet .pd-turn .pd-word.pd-count {

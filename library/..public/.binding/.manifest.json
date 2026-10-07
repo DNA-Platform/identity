@@ -18,10 +18,10 @@
     "index.html"
   ],
   "bundled": [
-    "assets/.synopsis-BuCwrVr6.js",
-    "assets/.synopsis-C8YaYWlu.js",
-    "assets/.synopsis-D_caYELb.js",
-    "assets/20-the-bookshelf~code-NYWuZo4G.js",
+    "assets/.cover-BhXSc7HT.js",
+    "assets/.synopsis-B6Z98msM.js",
+    "assets/.synopsis-ByCIAgvd.js",
+    "assets/.synopsis-Tm_PY1CU.js",
     "assets/KaTeX_AMS-Regular-BQhdFMY1.woff2",
     "assets/KaTeX_AMS-Regular-DMm9YOAa.woff",
     "assets/KaTeX_AMS-Regular-DRggAlZN.ttf",
@@ -81,11 +81,11 @@
     "assets/KaTeX_Typewriter-Regular-C0xS9mPB.woff",
     "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
     "assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf",
-    "assets/design-CdKb3DYc.js",
+    "assets/design-PnO5TFDY.js",
+    "assets/index-BOi-UD83.js",
     "assets/index-BgQkainO.css",
-    "assets/index-u2hBzwNV.js",
-    "assets/librarian-iUMS5G_d.js",
-    "assets/manual-CdekbM5S.js",
-    "assets/reference-XtAx2Ycp.js"
+    "assets/librarian-CaP3XNkl.js",
+    "assets/manual--WK-nD9R.js",
+    "assets/reference-MbSeP7kI.js"
   ]
 }

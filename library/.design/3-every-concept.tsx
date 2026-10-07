@@ -143,7 +143,7 @@ export default () => (
                 <Paragraph>
                     The library opens like a front page: the conversation most recently kept leads with a
                     standfirst, what was kept lately runs down a column by day, notes and citations take the next,
-                    and the books and groupings stand in the masthead's index — movement is by reading and by the
+                    and the books and groupings stand in the bar's index — movement is by reading and by the
                     sections across the top.
                 </Paragraph>
                 <Paragraph>

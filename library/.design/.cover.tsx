@@ -1,10 +1,14 @@
 import { Author, Chapter, Paragraph, Subject, Svg, Title } from '@dna-platform/public';
-import { Illustration, Scheme, Window } from '../.manual/.book';
+import { Illustration, Scheme, Volume, Window } from '../.manual/.book';
 import { Cover } from './o5-the-frame~faces.tsx';
+import LibraryCover from '../..reference/.cover.tsx';
+import StoryCover from '../.librarian/.cover.tsx';
 
 export default () => (
     <Chapter>
         <Cover />
+        <Volume>{LibraryCover()}</Volume>
+        <Volume>{StoryCover()}</Volume>
         <Scheme
             ground="#edf2f9"
             band="#b3c6e4"

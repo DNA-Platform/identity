@@ -71,19 +71,6 @@ export class $ManualTheme extends $LibraryBookTheme {
                 scrollbar-width: thin;
                 scrollbar-color: ${({ theme }) => theme.line} transparent;
             }
-            .pd-library {
-                background: ${({ theme }) => theme.panel};
-                border-block-end: thin solid ${({ theme }) => theme.line};
-            }
-            .pd-logo .pd-paragraph, .pd-library .pd-byline {
-                margin-block: 0;
-                font-size: calc(0.83 * ${({ theme }) => theme.size});
-                color: ${({ theme }) => theme.faint};
-            }
-            .pd-logo .pa-reference, .pd-library .pd-byline .pa-reference {
-                color: ${({ theme }) => theme.soft};
-                text-decoration: none;
-            }
             .pd-head .pd-switches { margin-block-start: calc(${({ theme }) => theme.space} / 2); }
             .pd-head .pd-switch { font-size: calc(0.9 * ${({ theme }) => theme.size}); }
         `;

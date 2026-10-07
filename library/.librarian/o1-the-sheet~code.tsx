@@ -86,7 +86,7 @@ export class $Sheet extends $Format {
     }
 
     protected parts(): RuleSet[] {
-        return [this.tools(), this.sheet(), this.masthead(), this.phone()];
+        return [this.tools(), this.sheet(), this.top(), this.phone()];
     }
 
     protected tools(): RuleSet {
@@ -101,33 +101,33 @@ export class $Sheet extends $Format {
             .pa-sheet .pd-leaves {
                 display: grid;
                 grid-template-columns: min(calc(${({ theme }) => theme.measure} + ${({ theme }) => theme.space} * 6.3333), 100%);
-                grid-template-areas: 'masthead' 'leaf';
+                grid-template-areas: 'top' 'leaf';
                 justify-content: center;
                 align-content: start;
             }
             .pa-sheet .pd-leaves::before {
                 content: '';
                 grid-column: 1;
-                grid-row: masthead-start / leaf-end;
+                grid-row: top-start / leaf-end;
             }
-            .pa-sheet .pd-masthead { grid-area: masthead; }
+            .pa-sheet .pd-top { grid-area: top; }
             .pa-sheet .pd-leaf { grid-area: leaf; }
             .pd-book.pa-sheet .pd-words .pd-chapter { scroll-margin-block-start: calc(${({ theme }) => theme.space} * 10); }
         `;
     }
 
-    protected masthead(): RuleSet {
+    protected top(): RuleSet {
         return css`
-            .pa-sheet .pd-masthead {
+            .pa-sheet .pd-top {
                 display: grid;
                 grid-template-columns: auto auto;
                 grid-template-areas: 'cover byline' 'date date' 'rule rule';
                 justify-content: center;
                 align-items: baseline;
             }
-            .pa-sheet .pd-masthead .pd-paragraph.pd-byline { grid-area: byline; justify-self: start; }
-            .pa-sheet .pd-masthead .pd-word.pd-date { grid-area: date; justify-self: center; }
-            .pa-sheet .pd-masthead::after { grid-area: rule; justify-self: center; }
+            .pa-sheet .pd-top .pd-paragraph.pd-byline { grid-area: byline; justify-self: start; }
+            .pa-sheet .pd-top .pd-word.pd-date { grid-area: date; justify-self: center; }
+            .pa-sheet .pd-top::after { grid-area: rule; justify-self: center; }
             .pa-sheet .pd-leaf .pd-chapter.pa-dated .pd-word.pd-date { display: none; }
         `;
     }
@@ -173,14 +173,14 @@ export class $Story extends $LibraryBook {
     }
 
     override front(): ReactNode {
-        return this.masthead();
+        return this.top();
     }
 
-    masthead(): ReactNode {
+    top(): ReactNode {
         const Cover = $(this.cover!);
         const Day = $(ChapterDate);
         return (
-            <div className="pd-masthead">
+            <div className="pd-top">
                 <Cover />
                 {this.byline()}
                 <Day chapter={this.cover} />

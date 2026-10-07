@@ -282,16 +282,16 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Pain />
-                My story opens on a sheet carrying a masthead and the synopsis in italics, and a short chapter
+                My story opens on a sheet carrying its name and its byline at the top and the synopsis in italics, and a short chapter
                 leaves the sheet mostly empty. It does not look like a book. In 29 there is no synopsis page:
                 the first chapter is open on the sheet, its title at 39px, a drop cap on its first paragraph,
                 and at the foot the folio, chapter 1 of 3, with the next chapter's name.
             </Paragraph>
             <Paragraph>
                 <Solution />
-                The story opens on a chapter, dated in its masthead, with the folio and the turns at the foot.
+                The story opens on a chapter, dated at its top, with the folio and the turns at the foot.
                 A short entry is still a page when the title, the drop cap and the foot are there. Built the
-                same day: the latest dated entry opens, its date in the masthead, the folio chapter N of M.
+                same day: the latest dated entry opens, its date at the top, the folio chapter N of M.
             </Paragraph>
             <Paragraph>
                 <Pain />

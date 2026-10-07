@@ -1,11 +1,13 @@
 import { About, Author, Autobiography, Chapter, Paragraph, Subject, Svg, Title } from '@dna-platform/public';
-import { Illustration, Scheme, Window } from '../.manual/.book';
+import { Illustration, Scheme, Volume, Window } from '../.manual/.book';
 import { Cover } from './o1-the-sheet~faces.tsx';
+import LibraryCover from '../..reference/.cover.tsx';
 
 export default () => (
     <Chapter>
         <Cover />
         <Autobiography />
+        <Volume>{LibraryCover()}</Volume>
         <Scheme
             ground="#f5eedf"
             band="#d9c3a3"

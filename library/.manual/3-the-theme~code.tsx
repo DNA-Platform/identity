@@ -47,7 +47,8 @@ export class $LibraryBookTheme extends $Theme {
     line = '#dbe7ec';
     me = '#e8590c';
     wash = 'linear-gradient(105deg, #e2f6fb 0%, #ecf0fd 52%, #fae9f4 100%)';
-    serif = "'Cormorant Garamond', Georgia, serif";
+    serif = "'Source Serif 4', Georgia, serif";
+    between = "'Source Sans 3', 'Inter', system-ui, sans-serif";
     bookPaper = '#fbf9f3';
     bookInk = '#29251d';
     heading = '#10252c';
@@ -71,7 +72,6 @@ export class $LibraryBookTheme extends $Theme {
     binding = 'linear-gradient(160deg, #16303a, #0c1b1f)';
     spine = 'inset 5px 0 0 rgba(0, 0, 0, 0.14), inset 6px 0 0 rgba(255, 255, 255, 0.12), 0 10px 20px -10px rgba(0, 0, 0, 0.45)';
     shadow = '0 0.75rem 1.4rem -0.9rem rgba(12, 27, 31, 0.55)';
-    initial = "'D'";
     volume = '11.5rem';
     cover = '8.25rem';
     card = '18rem';
@@ -84,7 +84,7 @@ export class $LibraryBookTheme extends $Theme {
     style: ElementType = selection.div`${this.parts()}`;
 
     protected parts(): RuleSet[] {
-        return [this.page(), this.writing(), this.links(), this.figures(), this.listings(), this.switches(), this.turns(), this.library(), this.head(), this.holds(), this.tones()];
+        return [this.page(), this.writing(), this.links(), this.figures(), this.listings(), this.switches(), this.turns(), this.illustrations(), this.marks(), this.library(), this.head(), this.holds(), this.tones()];
     }
 
     protected page(): RuleSet {
@@ -188,66 +188,70 @@ export class $LibraryBookTheme extends $Theme {
         `;
     }
 
+    protected illustrations(): RuleSet {
+        return css`
+            .pd-illustration { fill: none; stroke: var(--ink); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+            .pd-illustration .fill { fill: var(--foot); stroke: var(--ink); }
+            .pd-illustration .light { fill: ${({ theme }) => theme.white}; stroke: none; }
+            .pd-drawing { display: grid; place-items: center; min-height: 0; }
+        `;
+    }
+
+    protected marks(): RuleSet {
+        return css`
+            .pd-word.pd-mark {
+                display: block;
+                position: relative;
+                flex: none;
+                box-sizing: border-box;
+                width: calc(2 * ${({ theme }) => theme.size});
+                height: calc(2 * ${({ theme }) => theme.size});
+                border: calc(${({ theme }) => theme.volume} * 0.54 / 64 * 1.7) solid var(--ink);
+                background: var(--band);
+                overflow: hidden;
+            }
+            .pd-mark .pd-drawing { display: block; }
+            .pd-mark .pd-illustration {
+                position: absolute;
+                width: calc(${({ theme }) => theme.volume} * 0.54);
+                height: calc(${({ theme }) => theme.volume} * 0.54);
+                left: var(--window-x);
+                top: var(--window-y);
+            }
+        `;
+    }
+
     protected library(): RuleSet {
         return css`
-            .pd-library { padding: calc(${({ theme }) => theme.space} * 0.375) calc(${({ theme }) => theme.space} * 0.75); }
+            .pd-book .pd-library { padding: 0 calc(${({ theme }) => theme.space} * 0.75); background: ${({ theme }) => theme.barTint}; border-block-end: thin solid ${({ theme }) => theme.line}; }
             .pd-library .pd-paragraph, .pd-me .pd-paragraph { margin-block: 0; }
-            .pd-me { padding: 0 calc(${({ theme }) => theme.space} * 0.75); }
-            .pd-logo .pd-paragraph, .pd-me .pd-byline {
-                display: flex;
-                align-items: center;
-                gap: calc(${({ theme }) => theme.space} * 0.4);
-                font-size: calc(0.83 * ${({ theme }) => theme.size});
-            }
-            .pd-logo { margin-inline-end: calc(${({ theme }) => theme.space} / 2); }
-            .pd-library .pd-word, .pd-me .pd-word { font-weight: 500; }
-            .pd-library .pd-word.pa-label, .pd-me .pd-word.pa-label { font-weight: 400; }
-            .pd-logo .pd-word {
-                font-family: ${({ theme }) => theme.serif};
-                font-size: calc(1.5 * ${({ theme }) => theme.size});
+            .pd-library .pa-reference, .pd-me .pa-reference { color: inherit; text-decoration: none; }
+            .pd-paragraph.pd-logo { display: flex; align-items: center; height: ${({ theme }) => theme.barHeight}; }
+            .pd-logo .pa-reference, .pd-me .pd-mark .pa-reference { display: block; }
+            .pd-logo .pd-filed, .pd-logo .pd-own { display: block; flex: none; overflow: hidden; transition: width ${({ theme }) => theme.beat} ease, margin ${({ theme }) => theme.beat} ease, opacity ${({ theme }) => theme.beat} ease; }
+            .pd-logo .pd-own { width: calc(2 * ${({ theme }) => theme.size}); }
+            .pd-logo .pd-filed + .pd-scheme .pd-own, .pd-logo .pd-filed + .pd-own { margin-inline-start: calc(${({ theme }) => theme.space} / 6); }
+            .pa-filed .pd-own { width: 0; margin-inline-start: 0; opacity: 0; }
+            .pd-names { display: grid; margin-inline-start: calc(${({ theme }) => theme.space} * 0.375); }
+            .pd-names .pd-scheme { grid-area: 1 / 1; }
+            .pd-names .pd-name {
+                display: block;
+                font-family: ${({ theme }) => theme.between};
+                font-size: calc(1.357 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 line-height: 1;
+                letter-spacing: -0.01em;
                 white-space: nowrap;
+                color: var(--band-ink, ${({ theme }) => theme.ink});
+                transform: translateY(1px);
+                transition: opacity ${({ theme }) => theme.beat} ease, transform ${({ theme }) => theme.beat} ease;
             }
-            .pd-library .pa-reference, .pd-me .pa-reference { color: inherit; text-decoration: none; }
-            .pd-logo .pd-paragraph::before, .pd-me .pd-byline::before {
-                content: ${({ theme }) => theme.initial};
-                display: grid;
-                place-items: center;
-                width: calc(${({ theme }) => theme.space} * 1.3);
-                height: calc(${({ theme }) => theme.space} * 1.3);
-                font-size: ${({ theme }) => theme.size};
-                font-weight: 600;
-            }
-            .pd-logo .pd-paragraph::before { border-radius: calc(${({ theme }) => theme.space} / 3); }
-            .pd-me .pd-byline::before {
-                border-radius: 50%;
-                background: ${({ theme }) => theme.me};
-                color: ${({ theme }) => theme.white};
-            }
-            .pd-subjects { min-width: 0; }
-            .pd-subjects .pd-section {
-                display: flex;
-                gap: calc(${({ theme }) => theme.space} / 12);
-                margin-block: 0;
-            }
-            .pd-subjects .pd-paragraph {
-                display: flex;
-                align-items: center;
-                gap: calc(${({ theme }) => theme.space} / 3);
-                padding: calc(${({ theme }) => theme.space} * 0.29) calc(${({ theme }) => theme.space} * 0.42);
-                border-radius: calc(${({ theme }) => theme.space} / 3);
-                font-size: calc(0.964 * ${({ theme }) => theme.size});
-                white-space: nowrap;
-            }
-            .pd-subjects .pd-paragraph::before {
-                content: '';
-                width: calc(${({ theme }) => theme.space} * 0.375);
-                height: calc(${({ theme }) => theme.space} * 0.375);
-                border-radius: 50%;
-                background: var(--colour, ${({ theme }) => theme.barDim});
-            }
-            .pd-subjects .pa-reference { color: inherit; text-decoration: none; }
+            .pd-names .pd-name.pd-under { font-family: ${({ theme }) => theme.serif}; font-size: calc(1.286 * ${({ theme }) => theme.size}); font-weight: 700; letter-spacing: -0.015em; opacity: 0; transform: translateY(7px); pointer-events: none; }
+            .pa-filed .pd-names .pd-name { opacity: 0; transform: translateY(-5px); pointer-events: none; }
+            .pa-filed .pd-names .pd-name.pd-under { opacity: 1; transform: translateY(1px); pointer-events: auto; }
+            .pd-me { gap: calc(${({ theme }) => theme.space} * 0.375); padding: 0 calc(${({ theme }) => theme.space} * 0.75); }
+            .pd-me .pd-byline { display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} * 0.375); font-size: calc(0.93 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.soft}; }
+            .pd-me .pd-word.pa-reference { color: ${({ theme }) => theme.ink}; font-weight: 500; }
         `;
     }
 
@@ -364,11 +368,7 @@ export class $LibraryBookTheme extends $Theme {
                 color: ${({ theme }) => theme.barInk};
             }
             .pa-dark .pd-library .pd-word, .pa-dark .pd-me .pd-word { color: ${({ theme }) => theme.barInk}; }
-            .pa-dark .pd-library .pa-label, .pa-dark .pd-me .pa-label, .pa-dark .pd-subjects .pd-paragraph { color: ${({ theme }) => theme.barDim}; }
-            .pa-dark .pd-logo .pd-paragraph::before {
-                background: ${({ theme }) => theme.mark};
-                color: ${({ theme }) => theme.bar};
-            }
+            .pa-dark .pd-library .pa-label, .pa-dark .pd-me .pa-label { color: ${({ theme }) => theme.barDim}; }
             .pa-dark .pd-holds, .pa-light .pd-holds {
                 background: ${({ theme }) => theme.side};
                 color: ${({ theme }) => theme.sideInk};
@@ -381,11 +381,7 @@ export class $LibraryBookTheme extends $Theme {
             }
             .pa-light .pd-library, .pa-white-over-black .pd-library { border-block-end: thin solid ${({ theme }) => theme.line}; }
             .pa-light .pd-library .pd-word, .pa-light .pd-me .pd-word, .pa-white-over-black .pd-library .pd-word, .pa-white-over-black .pd-me .pd-word { color: ${({ theme }) => theme.ink}; }
-            .pa-light .pd-library .pa-label, .pa-light .pd-me .pa-label, .pa-light .pd-subjects .pd-paragraph, .pa-white-over-black .pd-library .pa-label, .pa-white-over-black .pd-me .pa-label, .pa-white-over-black .pd-subjects .pd-paragraph { color: ${({ theme }) => theme.soft}; }
-            .pa-light .pd-logo .pd-paragraph::before, .pa-white-over-black .pd-logo .pd-paragraph::before {
-                background: ${({ theme }) => theme.bar};
-                color: ${({ theme }) => theme.barInk};
-            }
+            .pa-light .pd-library .pa-label, .pa-light .pd-me .pa-label, .pa-white-over-black .pd-library .pa-label, .pa-white-over-black .pd-me .pa-label { color: ${({ theme }) => theme.soft}; }
             .pa-white-over-black .pd-holds {
                 background: ${({ theme }) => theme.bar};
                 color: ${({ theme }) => theme.barInk};

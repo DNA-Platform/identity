@@ -1,17 +1,19 @@
 import { ReactNode } from 'react';
-import { $, $check } from '@dna-platform/chemistry';
-import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Section, BookSpecification, Given, Theme, specify } from '@dna-platform/public';
+import { $, $check, inert } from '@dna-platform/chemistry';
+import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Section, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
 import { $Appendix, leads } from './14-the-entry~code.tsx';
 import { Dark as dark, Light as light, Tone as tone, WhiteOverBlack as whiteOverBlack } from './16-the-tone~code.tsx';
-import { Logo, Subjects } from '../..reference/o1-the-catalogue~subjects.tsx';
+import { $Logo, $Volume, Logo as logo, Mark as mark, painted } from './19-the-cover~code.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
 
 export class $LibraryBook extends $Book {
     specification = new LibraryBookSpecification();
+    protected _logo?: $Logo;
+    @inert() protected _places?: Map<string, $Chapter>;
     get chapters(): $Chapter[] {
         return this.text.find($Chapter).filter(chapter => [...chapter.classes].includes('pd-canonical'));
     }
@@ -43,7 +45,7 @@ export class $LibraryBook extends $Book {
                     {this.library()}
                 </div>
                 <div className="pd-me">
-                    {this.byline()}
+                    {this.me()}
                 </div>
                 <div className="pd-holds">
                     {this.holds()}
@@ -60,28 +62,31 @@ export class $LibraryBook extends $Book {
     }
 
     library(): ReactNode {
+        if (this._logo === undefined) return undefined;
+        const Logo = $(this._logo);
+        return (
+            <Logo />
+        );
+    }
+
+    me(): ReactNode {
+        const Mark = $(mark);
+        const Reference = $(reference);
+        const author = this.coverOf(this.author?.means?.identifier);
         return (
             <>
-                {this.logo()}
-                {this.subjects()}
+                {this.byline()}
+                {author === undefined ? undefined : this.painted(author, (
+                    <Mark cover={author}>
+                        <Reference>{author.mention!.identifier}</Reference>
+                    </Mark>
+                ))}
             </>
         );
     }
 
-    logo(): ReactNode {
-        return (
-            <div className="pd-logo">
-                <Logo />
-            </div>
-        );
-    }
-
-    subjects(): ReactNode {
-        return (
-            <div className="pd-subjects">
-                <Subjects />
-            </div>
-        );
+    painted(cover: $Chapter | undefined, node: ReactNode, key?: number): ReactNode {
+        return painted(cover, node, key);
     }
 
     holds(): ReactNode {
@@ -141,12 +146,23 @@ export class $LibraryBook extends $Book {
     }
 
     named(place: string): $Chapter | undefined {
-        return this.chapters.find(chapter => chapter.mention?.identifier === place
-            || this.sections(chapter).some(section => section.mention?.identifier === place));
+        return (this._places ?? this.places()).get(place);
+    }
+
+    places(): Map<string, $Chapter> {
+        const places = new Map<string, $Chapter>();
+        for (const chapter of this.chapters)
+            for (const section of this.sections(chapter))
+                if (section.mention !== undefined && !places.has(section.mention.identifier)) places.set(section.mention.identifier, chapter);
+        for (const chapter of this.chapters)
+            if (chapter.mention !== undefined) places.set(chapter.mention.identifier, chapter);
+        return places;
     }
 
     coverOf(identifier: string | undefined): $Chapter | undefined {
-        return identifier !== undefined && this.means?.identifier === identifier ? this.cover : undefined;
+        if (identifier === undefined) return undefined;
+        if (this.means?.identifier === identifier) return this.cover;
+        return this.cover?.annotations.find($Volume).map(volume => volume.cover).find(cover => cover?.mention?.identifier === identifier);
     }
 
     byline(): ReactNode {
@@ -199,6 +215,14 @@ export class $LibraryBook extends $Book {
     }
 
     protected override $Bound(): void {
+        this._places = this.places();
+        const Logo = $(logo);
+        this._logo = reflection.chemical<$Logo>((
+            <Logo
+                cover={this.cover}
+                subject={this.coverOf(this.subject?.means?.identifier)}
+            />
+        ), this);
         const Turn = $(turn);
         for (const chapter of this.pages)
             chapter.text.add(this,

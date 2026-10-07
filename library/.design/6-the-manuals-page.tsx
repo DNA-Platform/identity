@@ -30,7 +30,7 @@ export default () => (
             <Heading>What I decided on the page, in order</Heading>
             <Paragraph>
                 The two marks stand next to each other, almost like characters, a small space between; resting on
-                the subject's mark shows the lockup of the page a press will go to — the library's mark alone and
+                the subject's mark shows the logo of the page a press will go to — the library's mark alone and
                 its name in its ink — with a transition worth watching. The form is utilitarian, a code
                 documentation platform's: the words run wide, the index is a file tree with collapsible levels and
                 marks that help a reader understand, tight enough to scale to a codebase, and the fonts blend the

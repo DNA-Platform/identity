@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import { $Annotation, $Author, $Chapter, $Paragraph, $Subject, $Word, $Writing, AnnotationSpecification, Reference as reference, Word as word, specify } from '@dna-platform/public';
-
 export class $Label extends $Annotation {
     specification = new LabelSpecification();
 

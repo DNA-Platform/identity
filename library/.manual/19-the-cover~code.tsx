@@ -1,7 +1,17 @@
-import { ElementType, ReactNode } from 'react';
+import { ElementType, ReactNode, useState } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Author, $Chapter, $Cover, $Format, $Paragraph, $Svg, $Synopsis, $Word, $Writing, AnnotationSpecification, CoverSpecification, Word as word, html, specify } from '@dna-platform/public';
+import { $Annotation, $Author, $Chapter, $Cover, $Format, $Paragraph, $Subject, $Svg, $Synopsis, $Word, $Writing, AnnotationSpecification, CoverSpecification, Reference as reference, Word as word, html, specify } from '@dna-platform/public';
 import { Label as label } from './8-the-author-and-the-subject~code.tsx';
+
+export const painted = (cover: $Chapter | undefined, node: ReactNode, key?: number): ReactNode => {
+    const Painted = cover?.annotations.expressed($Scheme)?.painted;
+    if (Painted === undefined) return node;
+    return (
+        <Painted key={key}>
+            {node}
+        </Painted>
+    );
+};
 
 export class $BookshelfCover extends $Cover {
     override specification = new BookshelfCoverSpecification();
@@ -38,7 +48,7 @@ export class $Scheme extends $Format {
     $foot = '';
     $footInk = '';
     $ink = '';
-    style: ElementType = selection.div<{ $scheme: string }>`
+    style: ElementType = selection.div.attrs({ className: 'pd-scheme' })<{ $scheme: string }>`
         ${props => props.$scheme}
     `;
     protected _painted!: ElementType;
@@ -134,6 +144,89 @@ export class $Jacket extends $Paragraph {
     }
 }
 
+export class $Logo extends $Paragraph {
+    $cover?: $Chapter;
+    $subject?: $Chapter;
+    protected _held!: ElementType;
+    get filedElsewhere(): boolean { return this.$subject !== undefined && this.$subject !== this.$cover; }
+
+    $Logo(...chemicals: $Chemical[]) {
+        this.$Writing(...chemicals);
+        this._held = ({ className, children, ...props }: { id?: string; className?: string; children?: ReactNode }) => {
+            const [filed, setFiled] = useState(false);
+            return (
+                <div
+                    className={filed ? `${className ?? ''} pa-filed`.trim() : className}
+                    onMouseOver={event => { if (event.target instanceof Element && event.target.closest('.pd-filed') !== null) setFiled(true); }}
+                    onMouseLeave={() => setFiled(false)}
+                    {...props}
+                >
+                    {children}
+                </div>
+            );
+        };
+        this.containers.add(this, this._held);
+    }
+
+    override write(): ReactNode {
+        const own = this.$cover;
+        const subject = this.$subject;
+        if (own === undefined) return undefined;
+        return (
+            <>
+                {this.filedElsewhere ? painted(subject, (
+                    <span className="pd-filed">
+                        {this.mark(subject!)}
+                    </span>
+                )) : undefined}
+                {painted(own, (
+                    <span className="pd-own">
+                        {this.mark(own)}
+                    </span>
+                ))}
+                <span className="pd-names">
+                    {painted(own, (
+                        <span className="pd-name">
+                            {this.name(own)}
+                        </span>
+                    ))}
+                    {this.filedElsewhere ? painted(subject, (
+                        <span className="pd-name pd-under">
+                            {this.name(subject!)}
+                        </span>
+                    )) : undefined}
+                </span>
+            </>
+        );
+    }
+
+    mark(cover: $Chapter): ReactNode {
+        const Mark = $(mark);
+        const Reference = $(reference);
+        return (
+            <Mark cover={cover}>
+                <Reference>{cover.mention!.identifier}</Reference>
+            </Mark>
+        );
+    }
+
+    name(cover: $Chapter): ReactNode {
+        const Word = $(word);
+        const Reference = $(reference);
+        return (
+            <Word>
+                <Reference>{cover.mention!.identifier}</Reference>
+                {cover.title!.name}
+            </Word>
+        );
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-logo');
+    }
+}
+
 export class $Mark extends $Word {
     $cover?: $Chapter;
     style: ElementType = selection.span<{ $vars: string }>`
@@ -224,18 +317,21 @@ export class WindowSpecification extends AnnotationSpecification {
 }
 
 export class VolumeSpecification extends AnnotationSpecification {
-    @specify('a volume is said of a chapter that is the synopsis of another book')
-    $saidOfASynopsis(writing: $Writing): void {
-        $check(writing instanceof $Chapter && writing.is($Synopsis),
-            'a volume is said of a chapter that is the synopsis of another book, and this is not one');
+    @specify('a volume is said of a chapter that stands for another book')
+    $saidOfAChapterStandingForABook(writing: $Writing): void {
+        $check(writing instanceof $Chapter && (writing.is($Synopsis) || writing.is($Cover)),
+            'a volume is said of a chapter that stands for another book, a synopsis of it or a cover filed under it, and this is neither');
     }
 
-    @specify('a volume holds the cover of the book its chapter is a synopsis of')
+    @specify('a volume holds the cover of a book its chapter stands for')
     $holdsTheCover(writing: $Writing): void {
-        const volume = writing.annotations.expressed($Volume);
-        const cover = volume?.cover;
-        $check(cover !== undefined && cover.is($Cover) && cover.mention?.identifier === writing.annotations.expressed($Synopsis)?.means?.identifier,
-            'a volume holds the cover of the book its chapter is a synopsis of, and this one holds something else');
+        const stoodFor = [
+            writing.annotations.expressed($Synopsis)?.means?.identifier,
+            writing.annotations.expressed($Subject)?.means?.identifier,
+            writing.annotations.expressed($Author)?.means?.identifier,
+        ];
+        $check(writing.annotations.find($Volume).every(volume => volume.cover?.is($Cover) === true && stoodFor.includes(volume.cover.mention?.identifier)),
+            'a volume holds the cover of a book its chapter stands for, the book a synopsis is of or the subject or author a cover is filed under, and one here holds something else');
     }
 }
 
@@ -245,4 +341,6 @@ export const Scheme = $($Scheme);
 export const Window = $($Window);
 export const Volume = $($Volume);
 export const Jacket = $($Jacket);
+export const Logo = $($Logo);
 export const Mark = $($Mark);
+const mark = Mark;

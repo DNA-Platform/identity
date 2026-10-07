@@ -37,7 +37,7 @@ export default () => (
                 itself, a bar of fifty-two pixels, a side bar of two hundred and thirty-two, a cover of a
                 hundred and thirty-two on the shelf and a hundred and eighty-four on the desk, all of it on
                 a body of fourteen. Its parts dress what the catalogue draws: the illustrations and the
-                marks, the lockups in the bar, the shelf, the jackets, the desk, the page unfolded to read
+                marks, the logos in the bar, the shelf, the jackets, the desk, the page unfolded to read
                 on, and the page in its built view.
             </Paragraph>
             <Paragraph>

@@ -7,7 +7,7 @@ import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-t
 import { Switch as switchOf } from './9-the-switch~code.tsx';
 import { $Index, leads } from './14-the-entry~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
-import { $Scheme, $Volume, Jacket as jacket, Mark as mark } from './19-the-cover~code.tsx';
+import { $Volume, Jacket as jacket } from './19-the-cover~code.tsx';
 import { Bookshelf } from './20-the-bookshelf~theme.tsx';
 
 export class $Catalogue extends $LibraryBook {
@@ -28,7 +28,7 @@ export class $Catalogue extends $LibraryBook {
                     {this.library()}
                 </div>
                 <div className="pd-me">
-                    {this.byline()}
+                    {this.me()}
                 </div>
                 <div className="pd-holds">
                     {this.holds()}
@@ -43,51 +43,6 @@ export class $Catalogue extends $LibraryBook {
                         {this.volumes()}
                     </div>
                 </div>
-            </>
-        );
-    }
-
-    override library(): ReactNode {
-        const Mark = $(mark);
-        const subject = this.coverOf(this.subject?.means?.identifier);
-        return (
-            <>
-                {subject === undefined || subject === this.cover ? undefined : this.painted(subject, (
-                    <div className="pd-filed">
-                        <Mark cover={subject} />
-                        {this.filed()}
-                    </div>
-                ))}
-                {this.painted(this.cover, (
-                    <div className="pd-logo">
-                        <Mark cover={this.cover} />
-                        {this.logo()}
-                    </div>
-                ))}
-            </>
-        );
-    }
-
-    override logo(): ReactNode {
-        const Word = $(word);
-        const Reference = $(reference);
-        return (
-            <div className="pd-paragraph">
-                <Word>
-                    <Reference>{this.means!.identifier}</Reference>
-                    {this.title!.name}
-                </Word>
-            </div>
-        );
-    }
-
-    override byline(): ReactNode {
-        const Mark = $(mark);
-        const cover = this.coverOf(this.author?.means?.identifier);
-        return (
-            <>
-                {super.byline()}
-                {cover === undefined ? undefined : <Mark cover={cover} />}
             </>
         );
     }
@@ -239,16 +194,6 @@ export class $Catalogue extends $LibraryBook {
                     {cover === this.cover ? 'This is the catalogue' : `Read ${cover.title!.name}`} →
                 </Word>
             </div>
-        );
-    }
-
-    painted(cover: $Chapter | undefined, node: ReactNode, key?: number): ReactNode {
-        const Painted = cover?.annotations.expressed($Scheme)?.painted;
-        if (Painted === undefined) return node;
-        return (
-            <Painted key={key}>
-                {node}
-            </Painted>
         );
     }
 

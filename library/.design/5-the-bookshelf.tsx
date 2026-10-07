@@ -130,9 +130,9 @@ export default () => (
             <Heading>Three changes on seeing it built</Heading>
             <Paragraph>
                 A book filed under itself, which only the library can be, draws no subject's mark: its own
-                mark and name are the whole lockup. On any other book the subject's mark stands first, and
+                mark and name are the whole logo. On any other book the subject's mark stands first, and
                 resting on it unfolds the subject's name in the book's own formatting, in the book's place,
-                the book's lockup stepping aside; the marks and the name stand one gap apart, the same gap
+                the book's logo stepping aside; the marks and the name stand one gap apart, the same gap
                 three times. And the mark cut from my story's drawing was a poor crop, a page corner and some
                 lines; a mark wants a coherent, geometrically memorable segment of the drawing. Four windows
                 on it, each at four times its size, with the library's mark first for comparison:
