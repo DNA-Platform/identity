@@ -46,6 +46,30 @@ export default () => (
                 kind.
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>How the page fits the library's words</Heading>
+            <Paragraph>
+                The library's semantics are as universal as the index and page semantics of a website, but they
+                have connections that emphasize things differently, and the art of making a library is adapting
+                that navigation to whatever view I like. So for every thing on this page I asked which of the
+                library's words it is. The bar is the cover, and nothing else. The side bar and the bookshelf are
+                two views of one table of contents; the desk is that table's open row showing its book's synopsis,
+                with read on to expand it. A row of the table carries three things: its reference to the book, the
+                book's cover imported from the book's own cover file, and the book's synopsis imported the same way
+                — so the catalogue knows a book's cover because it imported it, and nothing is drawn twice. The
+                mark in the bar is the cover's illustration by reference. Read on and the built view are classes
+                on the book. The triangle is the row's second reference. Nothing on the page was a seventh word.
+            </Paragraph>
+            <Paragraph>
+                What this takes to build is small: this catalogue as a type of book that places its table's kinds
+                in regions; a few annotations — a volume said of a row, holding the imported cover; the synopsis
+                said of a row as well as a chapter; an illustration said of a cover; the colour grown to a scheme;
+                and a custom cover in <Means>$[[ the manual ]]( Dougs Reference Manual )</Means> that exposes
+                what a cover says as properties, so the bar, the volume and the mark read one cover. The method —
+                the page from the print, a thing changed per round, comparables before invention — is the branch
+                library's; the tool that makes a page from a print is <Means>$[[ The Print ]]( ./The Print )</Means>.
+            </Paragraph>
+        </Section>
         <Append
             identifier="034"
             type=".html"

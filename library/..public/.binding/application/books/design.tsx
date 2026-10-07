@@ -14,6 +14,7 @@ import TheConcepto2 from '../../../../.design/o2-the-concept';
 import TheCamerao3 from '../../../../.design/o3-the-camera';
 import TheGalleryo4 from '../../../../.design/o4-the-gallery';
 import TheFrameo5 from '../../../../.design/o5-the-frame';
+import ThePrinto6 from '../../../../.design/o6-the-print';
 
 const Book = $($Book);
 
@@ -32,6 +33,7 @@ export const book = () => (
         {TheCamerao3()}
         {TheGalleryo4()}
         {TheFrameo5()}
+        {ThePrinto6()}
     </Book>
 );
 

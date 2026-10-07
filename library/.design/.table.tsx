@@ -82,6 +82,9 @@ export default () => (
             <Paragraph>
                 <Content>$[[ ./The Frame ]]</Content>
             </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Print ]]</Content>
+            </Paragraph>
         </Section>
     </Chapter>
 );
