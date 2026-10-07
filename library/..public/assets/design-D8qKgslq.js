@@ -1,4 +1,4 @@
-var Sa=Object.defineProperty;var o=(C,e)=>Sa(C,"name",{value:e,configurable:!0});import{$ as v,i as Da,s as $a,k as z,l as A,m as za,n as M,o as F,j as a,p as La,q as T,r as q,t as qa,u as Ia,v as Ea,C as y,e as Ba,T as w,d as Ca,f as p,H as i,P as s,g as m,W as G,M as n,I as t,w as l,h as $}from"./index-0A1jfFcY.js";import{c as Fa,d as Pa,T as Na,D as Aa,L as Oa,e as Ra,a as Wa,b as Ha}from"./20-the-bookshelf~code-DeG0KeqV.js";import{C as Ja,S as Ga}from"./.synopsis-B8dS0Omb.js";var Ua=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Qa=o((C,e,k,ja)=>{for(var f=Va(e,k),j=C.length-1,S;j>=0;j--)(S=C[j])&&(f=S(e,k,f)||f);return f&&Ua(e,k,f),f},"__decorateClass$2");const na=class na extends Da{constructor(){super(...arguments),this.specification=new P,this.themeProvider=!0,this.style=$a.div`
+var Sa=Object.defineProperty;var o=(C,e)=>Sa(C,"name",{value:e,configurable:!0});import{$ as v,i as Da,s as $a,k as z,l as A,m as za,n as M,o as F,j as a,p as La,q as T,r as q,t as qa,u as Ia,v as Ea,C as y,e as Ba,T as w,d as Ca,f as p,H as i,P as s,g as m,W as G,M as n,I as t,w as l,h as $}from"./index-2lgUBpQT.js";import{c as Fa,d as Pa,T as Na,D as Aa,L as Oa,e as Ra,a as Wa,b as Ha}from"./20-the-bookshelf~code-DDQVuyWl.js";import{C as Ja,S as Ga}from"./.synopsis-BKKtaEqU.js";var Ua=Object.defineProperty,Va=Object.getOwnPropertyDescriptor,Qa=o((C,e,k,ja)=>{for(var f=Va(e,k),j=C.length-1,S;j>=0;j--)(S=C[j])&&(f=S(e,k,f)||f);return f&&Ua(e,k,f),f},"__decorateClass$2");const na=class na extends Da{constructor(){super(...arguments),this.specification=new P,this.themeProvider=!0,this.style=$a.div`
         .pd-chapter.pa-gallery .pd-section {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(${({theme:e})=>e.card}, 1fr));
@@ -11951,7 +11951,7 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
     .pd-me .pd-word.pa-reference { color: var(--text); font-weight: 500; }
 
     /* ---- the index is a file tree: groups as folders that fold, chapters as pages, their files beneath them ---- */
-    .pd-holds { grid-area: holds; position: sticky; top: var(--bar); align-self: start; display: grid; grid-template-rows: minmax(0, 1fr); min-height: calc(100vh - var(--bar)); padding: 10px 0; background: #f7f8fb; border-right: 1px solid #e3e7ee; font-size: 12.5px; }
+    .pd-holds { grid-area: holds; position: sticky; top: var(--bar); align-self: start; display: grid; grid-template-rows: minmax(0, 1fr); height: calc(100vh - var(--bar)); padding: 10px 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #d5dbe4 transparent; background: #f7f8fb; border-right: 1px solid #e3e7ee; font-size: 12.5px; }
     .pd-holds .pd-chapter { display: flex; flex-direction: column; min-height: 100%; }
     .pd-holds .pd-section { margin: 0 0 6px; }
     .pd-holds .pd-heading { display: none; }
@@ -14387,7 +14387,7 @@ $(Manual, Theme)(ManualTheme);                       <span class="c">// register
         const chapter = leaf.dataset.chapter;
         leaf.querySelectorAll('.pd-tab').forEach((tab, index) => tab.insertAdjacentHTML('afterbegin', glyph(kindOf(chapter, tab.textContent.trim()))));
         const presses = leaf.listings.map((listing, index) => { const file = listing.querySelector('.pd-word').textContent.trim(); const kind = kindOf(chapter, file); return '<button class="pd-kind-press kind-' + kind + '" data-file="' + index + '" title="' + names[kind] + '">' + glyph(kind) + file + '</button>'; }).join('');
-        leaf.querySelector('.pd-title').insertAdjacentHTML('afterend', '<div class="pd-kinds">' + presses + '</div>');
+        (leaf.querySelector('.pd-title').closest('a') ?? leaf.querySelector('.pd-title')).insertAdjacentHTML('afterend', '<div class="pd-kinds">' + presses + '</div>');
         leaf.querySelectorAll('.pd-kind-press').forEach(press => press.addEventListener('click', () => leaf.open(Number(press.dataset.file))));
         const syncPresses = () => leaf.querySelectorAll('.pd-kind-press').forEach(press => press.classList.toggle('pa-open', press.dataset.file === leaf.dataset.file && leaf.dataset.panel !== 'closed'));
         new MutationObserver(syncPresses).observe(leaf, { attributes: true, attributeFilter: ['data-panel', 'data-file'] });
