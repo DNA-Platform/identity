@@ -57,10 +57,12 @@ export class $Catalogue extends $LibraryBook {
                         {this.filed()}
                     </div>
                 ))}
-                <div className="pd-logo">
-                    <Mark cover={this.cover} />
-                    {this.logo()}
-                </div>
+                {this.painted(this.cover, (
+                    <div className="pd-logo">
+                        <Mark cover={this.cover} />
+                        {this.logo()}
+                    </div>
+                ))}
             </>
         );
     }

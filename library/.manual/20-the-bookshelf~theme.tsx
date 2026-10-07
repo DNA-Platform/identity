@@ -204,7 +204,7 @@ export class $Bookshelf extends $LibraryBookTheme {
 
     protected lockups(): RuleSet {
         return css`
-            .pd-library { background: ${({ theme }) => theme.barTint}; }
+            .pd-book .pd-library { background: ${({ theme }) => theme.barTint}; }
             .pd-logo { display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} * 0.375); height: ${({ theme }) => theme.barHeight}; margin-inline-end: calc(${({ theme }) => theme.space} * 1.125); }
             .pd-logo .pd-word.pa-reference {
                 display: block;
