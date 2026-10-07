@@ -121,7 +121,9 @@ container() {
         # A folder of its own in doug's home on that server, mounted at /out. The container runs as doug, so
         # what it writes is his; the lab's storage stays read-only. `fetch` brings the folder here.
         prepare="mkdir -p ~/doug-out/$tag && chmod 700 ~/doug-out ~/doug-out/$tag && "
-        mounts="-v \$HOME/doug-out/$tag:/out -w /out --user \$(id -u):\$(id -g) -e HOME=/tmp"
+        # working directory and HOME in /tmp: the lab's `pipeline` writes pipeline_config.json where it runs,
+        # and libraries cache under HOME - only what a script writes to /out on purpose is fetched
+        mounts="-v \$HOME/doug-out/$tag:/out -w /tmp --user \$(id -u):\$(id -g) -e HOME=/tmp"
         where=", writing to ~/doug-out/$tag"
     elif [ -n "$out" ]; then
         echo "the fourth argument is --out, or nothing"; return 2
