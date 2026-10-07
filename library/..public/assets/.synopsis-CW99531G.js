@@ -1,4 +1,4 @@
-var f=Object.defineProperty;var t=(g,e)=>f(g,"name",{value:e,configurable:!0});import{$ as i,s as l,z as b,j as s,C as h,T as d,A as u,S as x,P as p,b as m,c as y,d as j,M as a}from"./index-CeI_r1tN.js";import{f as k,S as w,W as v,I as $}from"./20-the-bookshelf~code-B_9cOK0A.js";const n=class n extends k{constructor(){super(...arguments),this.style=l.header`
+var f=Object.defineProperty;var t=(g,e)=>f(g,"name",{value:e,configurable:!0});import{$ as i,s as l,z as b,j as s,C as h,T as d,A as u,S as x,P as p,b as m,c as y,d as j,M as a}from"./index-DZjGwJ_B.js";import{f as k,S as w,W as v,I as $}from"./20-the-bookshelf~code-BvzosNf5.js";const n=class n extends k{constructor(){super(...arguments),this.style=l.header`
         .pd-chapter.pa-cover { margin-block: 0; }
         .pa-cover .pd-title {
             font-size: calc(1.04 * ${({theme:e})=>e.size});

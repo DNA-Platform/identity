@@ -12,23 +12,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 <style>
-    /* ---- the page's palette, the bookshelf's: slate text, never black; a faint cool tint; the manual's own scheme on the body ---- */
+    /* ---- the page's palette, the bookshelf's: slate text, never black; a faint cool tint; the manual's own scheme on the body.
+       The manual's two colours do quiet work: gunmetal, the band, is structure — the open row's strip, the lockup's ink;
+       brass, the foot, is the code — a hairline under a heading, the numbers, the lit tab. ---- */
     :root {
         --paper: #fdfcfa; --text: #343c4a; --soft: #727d8c; --faint: #9ea8b5; --line: #e4e9f2; --tint: #f0f4fc; --bar-tint: #f8fafe;
         --sky: #e3edfb; --sky-ink: #4a6ea0; --wash: linear-gradient(135deg, #f2f6fd 0%, #fdfcfa 48%, #fdf6f1 100%);
         --sans: 'Inter', system-ui, sans-serif; --serif: 'Source Serif 4', Georgia, serif; --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
-        --bar: 52px; --side: 232px; --space: 24px; --open: 184px; --radius: 6px;
+        --bar: 52px; --side: 248px; --space: 24px; --open: 184px; --radius: 6px;
+        --beat: .22s;
     }
     /* each book's scheme, as its cover says it: the ground, the band and its ink, the foot and its ink, the drawing's ink */
     .library { --ground: #eef5f6; --band: #c3e3e6; --band-ink: #1c565c; --foot: #8db9bd; --foot-ink: #153e43; --ink: #1f5a60; }
     .story { --ground: #f5eedf; --band: #d9c3a3; --band-ink: #4a3626; --foot: #a3b6cc; --foot-ink: #2a4262; --ink: #2f4a6a; }
     .manual { --ground: #eef1f2; --band: #b6c1c6; --band-ink: #2b363c; --foot: #d8c48e; --foot-ink: #5d4a16; --ink: #4b3d14; }
+    /* the night of the code, blended toward the manual's gunmetal; the brass dimmed into it for the numbers */
+    body.manual { --night: color-mix(in oklch, #0f2a33 55%, #2b363c); --dusk: color-mix(in oklch, #17363f 55%, #343f45); --glow: #d6e1e3; --dim: color-mix(in oklch, #d8c48e 38%, #17363f); --brass: color-mix(in oklch, #d8c48e 72%, white); }
     * { box-sizing: border-box; margin: 0; }
     html, body { height: 100%; }
-    body { display: grid; grid-template: var(--bar) auto / var(--side) minmax(0, 1fr); grid-template-areas: 'library library' 'holds leaves'; align-items: start; min-height: 100%; background: var(--wash); color: var(--text); font: 400 14px/1.55 var(--sans); }
+    body { display: grid; grid-template: var(--bar) auto / var(--side) minmax(0, 1fr); grid-template-areas: 'library library' 'holds leaves'; align-items: start; min-height: 100%; background: var(--wash); color: var(--text); font: 400 14px/1.6 var(--sans); }
     a { color: inherit; text-decoration: none; }
     [hidden] { display: none !important; }
     .pd-paragraph { margin: 0; }
+    button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 
     /* ---- the drawings and the marks, as the bookshelf draws them ---- */
     .pd-illustration { fill: none; stroke: var(--ink); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
@@ -37,72 +43,92 @@
     .pd-mark { display: block; position: relative; flex: none; width: 28px; height: 28px; border: calc(var(--open) * 0.54 / 64 * 1.7) solid var(--ink); background: var(--band); overflow: hidden; }
     .pd-mark .pd-illustration { position: absolute; width: calc(var(--open) * 0.54); height: calc(var(--open) * 0.54); left: var(--window-x); top: var(--window-y); }
 
-    /* ---- the bar is the cover: the subject's mark unfolding to its name, the book's mark and name, the author with his mark ---- */
-    .pd-library { grid-area: library; position: sticky; top: 0; z-index: 3; display: flex; align-items: center; gap: 9px; height: var(--bar); padding: 0 18px; background: var(--bar-tint); border-bottom: 1px solid var(--line); }
-    .pd-filed { display: flex; align-items: center; gap: 9px; height: var(--bar); }
-    .pd-filed .pd-paragraph { display: flex; align-items: center; }
-    .pd-filed .pa-label { display: none; }
-    .pd-filed .pd-word.pa-reference { display: inline-block; max-width: 0; overflow: hidden; white-space: nowrap; font: 700 18px/1 var(--serif); letter-spacing: -0.015em; color: var(--band-ink); transform: translateY(1px); transition: max-width .22s ease, padding .22s ease; }
-    .pd-filed:hover .pd-word.pa-reference { max-width: 240px; padding-right: 6px; }
-    .pd-library:has(.pd-filed:hover) .pd-logo { display: none; }
-    .pd-logo { display: flex; align-items: center; gap: 9px; height: var(--bar); margin-right: 27px; }
-    .pd-logo .pd-word.pa-reference { display: block; font: 700 18px/1 var(--serif); letter-spacing: -0.015em; color: var(--band-ink); transform: translateY(1px); }
-    .pd-subjects { display: none; }
+    /* ---- the bar is the cover. The two marks stand like two characters, four pixels apart, then the name; resting on the
+       subject's mark turns the lockup into the subject's own — its mark alone, its name in its ink — and back. ---- */
+    .pd-library { grid-area: library; position: sticky; top: 0; z-index: 3; display: flex; align-items: center; height: var(--bar); padding: 0 18px; background: var(--bar-tint); border-bottom: 1px solid var(--line); box-shadow: 0 1px 0 rgba(43, 54, 60, .035); }
+    .pd-lockup { display: flex; align-items: center; height: var(--bar); }
+    .pd-lockup .pa-reference { display: block; }
+    .pd-lockup .pd-mark { transition: width var(--beat) ease, margin var(--beat) ease, opacity var(--beat) ease, border-width var(--beat) ease; }
+    .pd-lockup .pd-mark.manual { margin-left: 4px; }
+    .pd-lockup:has(.pd-mark.library:hover) .pd-mark.manual { width: 0; margin-left: 0; border-width: 0; opacity: 0; }
+    .pd-names { display: grid; margin-left: 9px; }
+    .pd-names .pd-name { grid-area: 1 / 1; font: 700 18px/1 var(--serif); letter-spacing: -0.015em; white-space: nowrap; transform: translateY(1px); transition: opacity var(--beat) ease, transform var(--beat) ease; }
+    .pd-names .pd-name.manual { color: #2b363c; }
+    .pd-names .pd-name.library { color: #1c565c; opacity: 0; transform: translateY(7px); pointer-events: none; }
+    .pd-lockup:has(.pd-mark.library:hover) .pd-name.manual { opacity: 0; transform: translateY(-5px); }
+    .pd-lockup:has(.pd-mark.library:hover) .pd-name.library { opacity: 1; transform: translateY(1px); }
+    .pd-logo, .pd-subjects { display: none; }
     .pd-me { grid-area: library; position: sticky; top: 0; z-index: 4; justify-self: end; align-self: center; display: flex; align-items: center; gap: 9px; margin-right: 18px; }
     .pd-me .pd-byline { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--soft); }
     .pd-me .pd-word.pa-reference { color: var(--text); font-weight: 500; }
 
-    /* ---- the side bar, the bookshelf's: a breath off white, the open row a strip of the book's ink, the number at the end ---- */
-    .pd-holds { grid-area: holds; position: sticky; top: var(--bar); align-self: start; display: grid; grid-template-rows: minmax(0, 1fr); min-height: calc(100vh - var(--bar)); padding: 18px 0; background: #f7f8fb; border-right: 1px solid #e3e7ee; }
+    /* ---- the index is a file tree: groups as folders that fold, chapters as pages, their files beneath them ---- */
+    .pd-holds { grid-area: holds; position: sticky; top: var(--bar); align-self: start; display: grid; grid-template-rows: minmax(0, 1fr); min-height: calc(100vh - var(--bar)); padding: 10px 0; background: #f7f8fb; border-right: 1px solid #e3e7ee; font-size: 12.5px; }
     .pd-holds .pd-chapter { display: flex; flex-direction: column; min-height: 100%; }
-    .pd-holds .pd-section { margin: 0 0 16px; }
-    .pd-holds .pd-heading { margin: 0 22px 6px; font: 600 10.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: #7f8a9b; }
-    .pd-holds .pa-entry { display: flex; align-items: center; justify-content: space-between; gap: 9px; margin: 0; padding: 4px 14px 4px 22px; font-weight: 500; font-size: 13px; line-height: 1.35; color: #3a4452; cursor: pointer; box-shadow: inset 3px 0 0 transparent; }
-    .pd-holds .pa-entry:hover { background: color-mix(in oklch, var(--band) 30%, white); }
-    .pd-holds .pa-entry.pa-open { background: color-mix(in oklch, var(--band) 45%, white); color: var(--band-ink); box-shadow: inset 3px 0 0 var(--band-ink); }
-    .pd-holds .pa-number { font-size: 11px; color: var(--faint); }
+    .pd-holds .pd-section { margin: 0 0 6px; }
+    .pd-holds .pd-heading { display: none; }
+    .pd-holds .pd-folder { display: flex; align-items: center; gap: 6px; width: 100%; padding: 4px 10px 4px 9px; text-align: left; font: 600 11px/1.3 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: #6b7684; transition: color var(--beat) ease; }
+    .pd-holds .pd-folder::before { content: ''; width: 0; height: 0; border: 4px solid transparent; border-left: 5px solid #a5aebb; border-right: 0; transform: rotate(90deg); transition: transform .18s ease, border-left-color var(--beat) ease; }
+    .pd-holds .pd-section.folded .pd-folder::before { transform: rotate(0deg); }
+    .pd-holds .pd-folder:hover { color: var(--text); }
+    .pd-holds .pd-folder:hover::before { border-left-color: var(--band-ink); }
+    .pd-holds .pd-section.folded .pd-container, .pd-holds .pd-section.folded .pd-file { display: none; }
+    .pd-holds .pa-entry { display: flex; align-items: center; gap: 6px; margin: 0; padding: 2px 10px 2px 22px; font-weight: 450; font-size: 12.5px; line-height: 1.5; color: #3a4452; cursor: pointer; box-shadow: inset 3px 0 0 transparent; transition: background var(--beat) ease, color var(--beat) ease, box-shadow var(--beat) ease; }
+    .pd-holds .pd-icon { flex: none; width: 14px; height: 14px; color: #a5aebb; transition: color var(--beat) ease; }
+    .pd-holds .pa-entry .pa-content { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .pd-holds .pa-entry:hover { background: color-mix(in oklch, var(--band) 28%, white); }
+    .pd-holds .pa-entry.pa-open { background: color-mix(in oklch, var(--band) 42%, white); color: var(--band-ink); box-shadow: inset 3px 0 0 var(--band-ink); }
+    .pd-holds .pa-entry.pa-open .pd-icon { color: var(--band-ink); }
+    .pd-holds .pa-number { font-size: 10.5px; color: color-mix(in oklch, var(--foot-ink) 48%, white); font-variant-numeric: tabular-nums; }
+    .pd-holds .pd-file { display: flex; align-items: center; gap: 6px; width: 100%; padding: 1px 10px 1px 40px; text-align: left; font: 400 11.5px/1.6 var(--mono); color: #6b7684; transition: background var(--beat) ease, color var(--beat) ease; }
+    .pd-holds .pd-file:hover { background: color-mix(in oklch, var(--band) 28%, white); color: var(--text); }
+    .pd-holds .pd-file.pa-open { color: var(--foot-ink); font-weight: 500; }
+    .pd-holds .pd-file.pa-open .pd-icon { color: var(--foot-ink); }
+    .pd-holds .pd-file .pd-icon { width: 12px; height: 12px; }
     .pd-holds .pa-parenthetical { display: none; }
 
-    /* ---- the page: one chapter at a time, read two ways; the switch between them at the top ---- */
+    /* ---- the page: one chapter, its words running wide, its files as a rail of tabs at the right edge. A tab opens its
+       file beside the words; a click on the code expands it to the page, and the words fold to the brief. ---- */
     .pd-leaves { grid-area: leaves; min-width: 0; }
-    .pd-desk { display: none; }
-    .pd-switches { display: flex; gap: 8px; padding: 18px 43px 0; }
-    .pd-switch { font: 500 12.5px/1 var(--sans); color: var(--soft); background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius); padding: 6px 12px; cursor: pointer; }
-    .pd-switch[aria-pressed="true"] { color: #ffffff; background: var(--band-ink); border-color: var(--band-ink); }
-
-    /* the manual as it looks today: the chapter's words beside its files, the files on a dark panel */
-    .pd-leaf { display: grid; grid-template-columns: minmax(0, 1fr) 34rem; grid-template-areas: 'words files'; min-height: calc(100vh - var(--bar) - 48px); }
-    .pd-words { grid-area: words; padding: 24px 43px 34px; font-size: 14.5px; }
-    .pd-words .pd-chapter { max-width: 58ch; }
-    .pd-words .pd-title { font: 600 30px/1.15 var(--sans); letter-spacing: -0.02em; margin-bottom: 10px; color: #1a1f36; }
-    .pd-words .pa-brief { font-size: 15px; color: var(--soft); margin-bottom: 8px; }
-    .pd-words .pd-section { margin-top: 30px; }
-    .pd-words .pd-heading { font: 600 13px/1.3 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--faint); padding-top: 22px; margin-bottom: 4px; border-top: 1px solid var(--line); }
-    .pd-words .pd-paragraph { margin: 10px 0; }
-    .pd-words .pd-paragraph .pa-reference { color: var(--band-ink); text-decoration: underline; text-decoration-color: color-mix(in oklch, var(--band-ink) 40%, white); }
+    .pd-desk, .pd-switches { display: none; }
+    .pd-leaf { display: grid; grid-template-columns: minmax(0, 1fr) 0 36px; grid-template-areas: 'words panel rail'; min-height: calc(100vh - var(--bar)); transition: grid-template-columns .28s ease; }
+    .pd-leaf[data-panel="open"] { grid-template-columns: minmax(380px, 1fr) min(44vw, 720px) 36px; }
+    .pd-leaf[data-panel="full"] { grid-template-areas: 'brief brief rail' 'panel panel rail'; grid-template-rows: auto minmax(0, 1fr); grid-template-columns: minmax(0, 1fr) 0 36px; }
+    .pd-words { grid-area: words; min-width: 0; padding: 22px 36px 40px; overflow: hidden; }
+    .pd-leaf[data-panel="open"] .pd-words { padding: 22px 28px 40px 32px; }
+    .pd-leaf[data-panel="full"] .pd-words { display: none; }
+    .pd-words .pd-chapter { max-width: 104ch; }
+    .pd-words .pd-title { font: 600 24px/1.2 var(--sans); letter-spacing: -0.02em; margin-bottom: 6px; color: #1a1f36; }
+    .pd-words .pa-brief { font: italic 400 15.5px/1.5 var(--serif); color: var(--soft); margin-bottom: 10px; max-width: 72ch; }
+    .pd-words .pd-section { margin-top: 26px; }
+    .pd-words .pd-heading { font: 600 11px/1.3 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: #6b7684; padding-bottom: 6px; margin-bottom: 8px; border-bottom: 1px solid var(--line); border-image: linear-gradient(90deg, var(--brass) 0 40px, var(--line) 40px) 1; }
+    .pd-words .pd-paragraph { margin: 8px 0; }
+    .pd-words .pd-paragraph .pa-reference { color: var(--band-ink); text-decoration: underline; text-decoration-color: color-mix(in oklch, var(--band-ink) 35%, white); text-underline-offset: 2px; transition: text-decoration-color var(--beat) ease; }
+    .pd-words .pd-paragraph .pa-reference:hover { text-decoration-color: var(--band-ink); }
     .pd-words .pa-self-reference { color: inherit; text-decoration: none; }
     .pd-words .pd-turn { display: flex; justify-content: space-between; gap: 24px; margin-top: 26px; font-size: 11px; }
     .pd-words .pd-turn .pd-count { color: var(--faint); }
-    .pd-files { grid-area: files; background: #0f2a33; color: #cfe6e3; overflow: auto; padding: 12px 14px; scrollbar-width: thin; scrollbar-color: #4f7672 transparent; }
-    .pd-listing { margin: 0 0 12px; }
-    .pd-listing .pd-word { display: inline-block; padding: 7px 12px; border-radius: 7px 7px 0 0; background: #17363f; color: #ffffff; font-size: 12px; }
-    .pd-listing .pd-code { margin: 0; padding: 16px 0; border-radius: 0 10px 10px 10px; background: #17363f; font: 400 11.8px/1.75 var(--mono); white-space: normal; overflow-x: auto; scrollbar-width: thin; }
+    .pd-rail { grid-area: rail; display: flex; flex-direction: column; align-items: stretch; gap: 2px; padding: 10px 0; border-left: 1px solid var(--line); background: #f7f8fb; }
+    .pd-rail .pd-tab { writing-mode: vertical-rl; padding: 10px 0; font: 500 11px/1 var(--mono); letter-spacing: .04em; color: #6b7684; border-left: 2px solid transparent; transition: background var(--beat) ease, color var(--beat) ease, border-color var(--beat) ease; }
+    .pd-rail .pd-tab:hover { color: var(--text); background: #ffffff; }
+    .pd-rail .pd-tab.pa-open { color: var(--foot-ink); border-left-color: var(--foot); background: #ffffff; }
+    .pd-files { grid-area: panel; min-width: 0; overflow: hidden; background: var(--night); color: var(--glow); box-shadow: -10px 0 18px -16px rgba(43, 54, 60, .5); }
+    .pd-listing { display: none; margin: 0; height: 100%; }
+    .pd-listing.pa-open { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+    .pd-listing .pd-word { display: flex; align-items: center; justify-content: space-between; padding: 9px 16px; background: var(--dusk); color: #ffffff; font: 500 12px/1 var(--mono); border-bottom: 1px solid color-mix(in oklch, var(--foot) 28%, var(--dusk)); cursor: pointer; transition: background var(--beat) ease; }
+    .pd-listing .pd-word:hover { background: color-mix(in oklch, var(--dusk) 86%, white); }
+    .pd-listing .pd-word::after { content: 'expand'; font: 500 10.5px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--brass); }
+    .pd-leaf[data-panel="full"] .pd-listing .pd-word::after { content: 'beside the words'; }
+    .pd-listing .pd-code { margin: 0; padding: 14px 0; font: 400 12px/1.7 var(--mono); white-space: normal; overflow: auto; cursor: zoom-in; scrollbar-width: thin; scrollbar-color: var(--dim) transparent; }
+    .pd-leaf[data-panel="full"] .pd-listing .pd-code { cursor: zoom-out; }
     .pd-code-line { display: block; padding-right: 18px; white-space: pre; }
-    .pd-code-line::before { content: attr(data-line); display: inline-block; width: 28px; padding-right: 14px; text-align: right; color: #4f7672; user-select: none; }
-
-    /* words forward: the files fold to a rail of their names */
-    body[data-reading="words"] .pd-leaf { grid-template-columns: minmax(0, 1fr) 56px; }
-    body[data-reading="words"] .pd-files { overflow: hidden; padding: 16px 0 0; }
-    body[data-reading="words"] .pd-listing { display: flex; justify-content: center; }
-    body[data-reading="words"] .pd-listing .pd-word { writing-mode: vertical-rl; padding: 10px 6px; border-radius: 0; background: none; font-size: 12px; letter-spacing: .08em; color: #9fc3bd; }
-    body[data-reading="words"] .pd-listing .pd-code { display: none; }
-
-    /* code forward: the file is the page and the chapter is its brief */
-    body[data-reading="code"] .pd-leaf { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'words' 'files'; min-height: 0; }
-    body[data-reading="code"] .pd-words { padding: 24px 44px 18px; }
-    body[data-reading="code"] .pd-words .pd-section, body[data-reading="code"] .pd-words .pd-turn { display: none; }
-    body[data-reading="code"] .pd-words .pa-brief { font-size: 16px; }
-    body[data-reading="code"] .pd-files { margin: 0 44px 40px; border-radius: 12px; min-height: 420px; }
+    .pd-code-line::before { content: attr(data-line); display: inline-block; width: 44px; padding-right: 14px; text-align: right; color: var(--dim); user-select: none; }
+    /* the words fold to the brief when the file is the page */
+    .pd-brief-bar { display: none; grid-area: brief; align-items: baseline; gap: 14px; padding: 12px 36px; border-bottom: 1px solid var(--line); border-image: linear-gradient(90deg, var(--brass) 0 40px, var(--line) 40px) 1; background: #ffffff; }
+    .pd-leaf[data-panel="full"] .pd-brief-bar { display: flex; }
+    .pd-leaf[data-panel="full"] .pd-files { grid-area: panel; box-shadow: none; }
+    .pd-brief-bar .pd-brief-title { font: 600 15px/1.3 var(--sans); color: #1a1f36; }
+    .pd-brief-bar .pd-brief-text { font: italic 400 13.5px/1.4 var(--serif); color: var(--soft); }
 
 </style>
 </head>
@@ -2336,19 +2362,78 @@
     };
     const windows = { library: [-46, -13], manual: [-23, -50], story: [-54, -33] };
     const mark = (key) => '<span class="pd-mark ' + key + '" style="--window-x: ' + windows[key][0] + 'px; --window-y: ' + windows[key][1] + 'px">' + drawings[key] + '</span>';
+    const icons = {
+        page: '<svg class="pd-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/><path d="M6 8h4M6 10.5h4" stroke-linecap="round"/></svg>',
+        file: '<svg class="pd-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.5 3.5 8 6 11.5M10 4.5 12.5 8 10 11.5"/></svg>',
+    };
     document.body.classList.add('manual');
 
-    // the bar is the cover: the library's mark as the subject this book is filed under, unfolding to its name; the manual's mark and name; the author with the mark of his book
+    // the bar is the cover: the two marks as two characters, the subject's first, then the book's name — and the subject's name
+    // in its own ink waiting underneath, for the rest on the subject's mark
     const logo = document.querySelector('.pd-logo');
-    logo.innerHTML = mark('manual') + '<div class="pd-paragraph"><a href="/dougs-reference-manual/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Reference Manual</span></a></div>';
-    logo.insertAdjacentHTML('beforebegin', '<div class="pd-filed library"><a href="/dougs-library/" class="pa-reference pd-container">' + mark('library') + '</a><div class="pd-paragraph"><span class="pd-word pa-label">filed under</span><a href="/dougs-library/" class="pa-reference pd-container"><span class="pd-word pa-reference">Dougs Library</span></a></div></div>');
+    logo.insertAdjacentHTML('beforebegin',
+        '<div class="pd-lockup">'
+        + '<a href="/dougs-library/" class="pa-reference pd-container">' + mark('library') + '</a>'
+        + '<a href="/dougs-reference-manual/" class="pa-reference pd-container">' + mark('manual') + '</a>'
+        + '<span class="pd-names"><a href="/dougs-reference-manual/" class="pd-name manual">Dougs Reference Manual</a><a href="/dougs-library/" class="pd-name library">Dougs Library</a></span>'
+        + '</div>');
     document.querySelector('.pd-me').insertAdjacentHTML('beforeend', '<span class="story">' + mark('story') + '</span>');
 
-    // one chapter at a time: the row in the contents opens its leaf, and the open row lights
+    // one chapter at a time; each leaf gets a rail of its files' tabs, and its files open beside the words or as the page
     const leaves = Array.from(document.querySelectorAll('.pd-leaf'));
+    for (const leaf of leaves) {
+        const listings = Array.from(leaf.querySelectorAll('.pd-listing'));
+        const title = leaf.querySelector('.pd-title')?.textContent ?? '';
+        const brief = leaf.querySelector('.pa-brief')?.textContent ?? '';
+        leaf.dataset.panel = 'closed';
+        leaf.insertAdjacentHTML('beforeend', '<div class="pd-rail">' + listings.map((listing, index) => '<button class="pd-tab" data-file="' + index + '">' + listing.querySelector('.pd-word').textContent + '</button>').join('') + '</div>');
+        leaf.insertAdjacentHTML('afterbegin', '<div class="pd-brief-bar"><span class="pd-brief-title">' + title + '</span><span class="pd-brief-text">' + brief + '</span></div>');
+        const open = (index, how) => {
+            const same = leaf.dataset.file === String(index);
+            leaf.dataset.file = String(index);
+            listings.forEach((listing, at) => listing.classList.toggle('pa-open', at === index));
+            leaf.querySelectorAll('.pd-tab').forEach((tab, at) => tab.classList.toggle('pa-open', at === index));
+            leaf.dataset.panel = how ?? (same && leaf.dataset.panel !== 'closed' ? 'closed' : 'open');
+            syncTree(leaf);
+        };
+        leaf.querySelectorAll('.pd-tab').forEach((tab, index) => tab.addEventListener('click', () => open(index)));
+        listings.forEach((listing, index) => {
+            listing.querySelector('.pd-code').addEventListener('click', () => open(index, leaf.dataset.panel === 'full' ? 'open' : 'full'));
+            listing.querySelector('.pd-word').addEventListener('click', () => open(index, leaf.dataset.panel === 'full' ? 'open' : 'full'));
+        });
+        leaf.open = open;
+        leaf.listings = listings;
+    }
+
+    // the index as a tree: each group a folder that folds; each chapter a page; under a chapter whose leaf is on this page, its files
+    const sections = Array.from(document.querySelectorAll('.pd-holds .pd-section'));
+    for (const section of sections) {
+        const heading = section.querySelector('.pd-heading');
+        if (!heading) continue;
+        heading.closest('a').insertAdjacentHTML('beforebegin', '<button class="pd-folder">' + heading.textContent + '</button>');
+        section.querySelector('.pd-folder').addEventListener('click', () => section.classList.toggle('folded'));
+    }
+    for (const row of document.querySelectorAll('.pd-holds .pa-entry')) {
+        row.insertAdjacentHTML('afterbegin', icons.page);
+        const anchor = row.closest('a');
+        const name = (anchor?.getAttribute('href') ?? '').split('#')[1];
+        const leaf = leaves.find(one => one.dataset.chapter === name);
+        if (!leaf) continue;
+        const container = anchor.closest('.pd-container') ?? anchor;
+        anchor.insertAdjacentHTML('afterend', leaf.listings.map((listing, index) => '<button class="pd-file" data-chapter="' + name + '" data-file="' + index + '">' + icons.file + listing.querySelector('.pd-word').textContent + '</button>').join(''));
+    }
+    for (const file of document.querySelectorAll('.pd-holds .pd-file'))
+        file.addEventListener('click', () => { show(file.dataset.chapter); leaves.find(one => one.dataset.chapter === file.dataset.chapter).open(Number(file.dataset.file), 'open'); });
+
+    const syncTree = (leaf) => {
+        for (const file of document.querySelectorAll('.pd-holds .pd-file'))
+            file.classList.toggle('pa-open', file.dataset.chapter === leaf.dataset.chapter && file.dataset.file === leaf.dataset.file && leaf.dataset.panel !== 'closed');
+    };
     const show = (name) => {
         for (const leaf of leaves) leaf.hidden = leaf.dataset.chapter !== name;
         for (const row of document.querySelectorAll('.pd-holds .pa-entry')) row.classList.toggle('pa-open', (row.closest('a')?.getAttribute('href') ?? '').endsWith('#' + name));
+        const leaf = leaves.find(one => one.dataset.chapter === name);
+        if (leaf) syncTree(leaf);
         window.scrollTo({ top: 0 });
     };
     const first = leaves.find(leaf => !leaf.hidden)?.dataset.chapter ?? leaves[0].dataset.chapter;
@@ -2361,14 +2446,6 @@
             history.replaceState(null, '', '#' + name);
             show(name);
         });
-
-    // the two readings: words forward, where the files fold to a rail; code forward, where the file is the page
-    document.body.dataset.reading = 'words';
-    document.querySelector('.pd-leaves').insertAdjacentHTML('afterbegin', '<div class="pd-switches"><button class="pd-switch" data-reading="code">code</button><button class="pd-switch" data-reading="words">words</button></div>');
-    const pressed = () => { for (const button of document.querySelectorAll('.pd-switch')) button.setAttribute('aria-pressed', String(button.dataset.reading === document.body.dataset.reading)); };
-    for (const button of document.querySelectorAll('.pd-switch'))
-        button.addEventListener('click', () => { document.body.dataset.reading = button.dataset.reading; pressed(); });
-    pressed();
 
 </script>
 </body>
