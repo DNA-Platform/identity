@@ -195,6 +195,10 @@ export class $LibraryBook extends $Book {
         ));
     }
 
+    filesOf(chapter: $Chapter): string[] {
+        return chapter.annotations.find($Append).reverse().map(append => `${append.$identifier}${append.$type}`);
+    }
+
     sections(composition: $Composition): $Section[] {
         return composition.text.find($Section).flatMap(section => [section, ...this.sections(section)]);
     }

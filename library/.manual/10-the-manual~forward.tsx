@@ -31,6 +31,49 @@ export class $WordsForward extends $Reading {
     }
 }
 
+export class $Split extends $Reading {
+    override defines(writing: $Writing): void {
+        super.defines(writing);
+        writing.classes.add(this, 'pa-split');
+    }
+}
+
+export class $LightCode extends $Annotation {
+    specification = new OfABookSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-light-code');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class $Wrapped extends $Annotation {
+    specification = new OfABookSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-wrapped');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class $Numbered extends $Annotation {
+    specification = new OfABookSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-numbered');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
 export class $Brief extends $Annotation {
     specification = new BriefSpecification();
 
@@ -53,4 +96,8 @@ export class BriefSpecification extends AnnotationSpecification {
 export const Reading = $($Reading);
 export const CodeForward = $($CodeForward);
 export const WordsForward = $($WordsForward);
+export const Split = $($Split);
+export const LightCode = $($LightCode);
+export const Wrapped = $($Wrapped);
+export const Numbered = $($Numbered);
 export const Brief = $($Brief);

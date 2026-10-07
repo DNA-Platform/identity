@@ -4,11 +4,13 @@ import { $, selection } from '@dna-platform/chemistry';
 import { $Chapter, $Paginated, $Writing } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
+import { $Scheme } from './19-the-cover~code.tsx';
 
 export class $Layout extends $Paginated {
     override specification = new OfABookSpecification();
     themeProvider = true;
-    style: ElementType = selection.div<{ $at?: string }>`
+    style: ElementType = selection.div<{ $at?: string; $scheme?: string }>`
+        ${props => props.$scheme ?? ''}
         ${this.parts()}
         .pa-dark .pd-subjects .pd-paragraph:has(> .pa-reference[href='${props => props.$at}']) {
             background: ${({ theme }) => theme.barOn};
@@ -26,7 +28,14 @@ export class $Layout extends $Paginated {
 
     protected override $Bound(): void {
         const Here = this.style;
-        this.style = (props: { children?: ReactNode }) => <Here $at={(this.book as $LibraryBook).means?.identifier} {...props} />;
+        const book = this.book as $LibraryBook;
+        this.style = (props: { children?: ReactNode }) => (
+            <Here
+                $at={book.means?.identifier}
+                $scheme={book.cover?.annotations.expressed($Scheme)?.declarations}
+                {...props}
+            />
+        );
         super.$Bound();
     }
 

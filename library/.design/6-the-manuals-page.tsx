@@ -56,6 +56,56 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Heading>The page, built</Heading>
+            <Paragraph>
+                <Image>![[ built-words.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                The manual on 4242 the same day, carried from this page in the order the page's own script does
+                things, each piece measured as it landed. The bar first, as every book's: a cover holds the cover
+                of the book it is filed under, and the base book draws the logo from the two, the subject's mark,
+                the book's own mark and the two names, one waiting under the other; it is
+                in <Means>$[[ The Cover ]]( Dougs Reference Manual / The Cover )</Means>, and the catalogue gave
+                back what it had drawn alone. Then the index as a tree: a folder is said of each section of the
+                table by the manual at bind, its layer drawing the twist and the folder's mark before the heading;
+                a twist is a switch whose press folds the section or the chapter's row it stands on, and the key
+                is said folded in the table itself; a chapter's files stand beneath it as presses, each a file,
+                which opens the chapter and the file in the split. All of that is
+                in <Means>$[[ The Entry ]]( Dougs Reference Manual / The Entry )</Means> and <Means>$[[ The Listing ]]( Dougs Reference Manual / The Listing )</Means>.
+            </Paragraph>
+            <Paragraph>
+                <Image>![[ built-split.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                The leaf's three states are the manual's three readings, words forward, split and code forward,
+                annotations of one kind on the book that a press switches, and the spread lays the leaf as a grid
+                in each: the words wide with the rail at the edge; the words beside the panel with the editor's
+                tab bar at its head, the file's tabs, the words tab, the dock and the options; and the panel across
+                the page with the grip at the edge. The open file is the book's, named by whichever press chose
+                it, and the opened listing wears it. The options, light code, wrapping and line numbers, are three
+                more things said of the book, each a switch. It is all
+                in <Means>$[[ The Manual ]]( Dougs Reference Manual / The Manual )</Means>, the type of book another
+                subject's manual extends in one line.
+            </Paragraph>
+            <Paragraph>
+                <Image>![[ built-full.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                What the port found, measured, and changed. A hover written as a state on the logo blocked the
+                page for 1,794 milliseconds, because a child's state redraws the whole book and the book's redraw
+                re-walked every chapter for every entry and icon; the book now indexes its places once at bind,
+                the redraw is 767 milliseconds, the same as any press, and the hover is the pointer's state in the
+                logo's own layer. A press that compared what an earlier press had put into the book with the reading
+                it had imported worked once and then never, because the imported component is a factory and the
+                component a press passes is the instance's own, one object per instance; so every press in the
+                manual is a noun that compares what came through its props with what came through its props, as
+                the tab always did, and the rule is written down. The names changed with the port: the marks and the name in the bar
+                are the logo, since a masthead is a part of a boat. What is not carried: the presses for a chapter's
+                files under its title, which wait on a face for the title. The chapters themselves did not change
+                beyond the one line that says their kind.
+            </Paragraph>
+        </Section>
+        <Section>
             <Heading>The key, built</Heading>
             <Paragraph>
                 <Image>![[ key-table.png ]]</Image>

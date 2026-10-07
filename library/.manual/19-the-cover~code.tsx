@@ -147,12 +147,12 @@ export class $Jacket extends $Paragraph {
 export class $Logo extends $Paragraph {
     $cover?: $Chapter;
     $subject?: $Chapter;
-    protected _held!: ElementType;
+    protected _layer!: ElementType;
     get filedElsewhere(): boolean { return this.$subject !== undefined && this.$subject !== this.$cover; }
 
     $Logo(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
-        this._held = ({ className, children, ...props }: { id?: string; className?: string; children?: ReactNode }) => {
+        this._layer = ({ className, children, ...props }: { id?: string; className?: string; children?: ReactNode }) => {
             const [filed, setFiled] = useState(false);
             return (
                 <div
@@ -165,13 +165,13 @@ export class $Logo extends $Paragraph {
                 </div>
             );
         };
-        this.containers.add(this, this._held);
+        this.containers.add(this, this._layer);
     }
 
     override write(): ReactNode {
-        const own = this.$cover;
+        const cover = this.$cover;
         const subject = this.$subject;
-        if (own === undefined) return undefined;
+        if (cover === undefined) return undefined;
         return (
             <>
                 {this.filedElsewhere ? painted(subject, (
@@ -179,15 +179,15 @@ export class $Logo extends $Paragraph {
                         {this.mark(subject!)}
                     </span>
                 )) : undefined}
-                {painted(own, (
+                {painted(cover, (
                     <span className="pd-own">
-                        {this.mark(own)}
+                        {this.mark(cover)}
                     </span>
                 ))}
                 <span className="pd-names">
-                    {painted(own, (
+                    {painted(cover, (
                         <span className="pd-name">
-                            {this.name(own)}
+                            {this.name(cover)}
                         </span>
                     ))}
                     {this.filedElsewhere ? painted(subject, (

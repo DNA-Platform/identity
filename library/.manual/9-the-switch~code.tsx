@@ -22,8 +22,8 @@ export class $Switch extends $Word {
 
     press(): void {
         const book = this.book!;
-        const given = [book.$is].flat();
-        book.$is = this.on ? given.filter(each => each !== this.$of) : [this.$of, ...given];
+        const annotations = [book.$is].flat();
+        book.$is = this.on ? annotations.filter(annotation => annotation !== this.$of) : [this.$of, ...annotations];
     }
 
     protected override $Define(): void {
@@ -37,8 +37,8 @@ export class $Tab extends $Switch {
 
     override press(): void {
         const book = this.book!;
-        const kept = [book.$is].flat().filter(each => !this.$among.includes(each));
-        book.$is = [this.$of, ...kept];
+        const annotations = [book.$is].flat().filter(annotation => !this.$among.includes(annotation));
+        book.$is = [this.$of, ...annotations];
     }
 }
 

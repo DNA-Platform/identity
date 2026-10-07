@@ -1,11 +1,13 @@
 import { ReactNode } from 'react';
 import { $, $check, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Chapter, $Format, $Paragraph, $Writing, Given, specify } from '@dna-platform/public';
+import { $Annotation, $Append, $Chapter, $Format, $Paragraph, $Section, $Writing, Given, html, specify } from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
-import { Tab as tab } from './9-the-switch~code.tsx';
+import { File as file, Listing as listing, Opened as opened } from './2-the-listing~code.tsx';
+import { Switch as switchOf, Tab as tab } from './9-the-switch~code.tsx';
+import { Folder as folder } from './14-the-entry~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
-import { $Brief, CodeForward as codeForward, Reading as reading, WordsForward as wordsForward } from './10-the-manual~forward.tsx';
+import { $Brief, CodeForward as codeForward, LightCode as lightCode, Numbered as numbered, Reading as reading, Split as split, WordsForward as wordsForward, Wrapped as wrapped } from './10-the-manual~forward.tsx';
 
 export class $Spread extends $Format {
     specification = new OfABookSpecification();
@@ -13,43 +15,28 @@ export class $Spread extends $Format {
     style = selection.div`
         .pa-spread .pd-leaf.pd-open {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) calc(2.2 * ${({ theme }) => theme.spreadColumn});
-            grid-template-areas: 'words files';
-            height: 100%;
-            transition: grid-template-columns ${({ theme }) => theme.beat};
+            grid-template-columns: minmax(0, 1fr) 0 calc(2 * ${({ theme }) => theme.space});
+            grid-template-areas: 'words panel rail';
+            min-height: calc(100vh - ${({ theme }) => theme.barHeight});
+            transition: grid-template-columns 0.28s ease;
         }
-        .pa-spread .pd-words { grid-area: words; overflow-y: auto; }
-        .pa-spread .pd-files { grid-area: files; overflow-y: auto; min-width: 0; }
-        .pa-spread .pd-files:empty { display: none; }
-        .pa-spread.pa-words-forward .pd-leaf.pd-open { grid-template-columns: minmax(0, 1fr) calc(2.33 * ${({ theme }) => theme.space}); }
-        .pa-spread.pa-words-forward .pd-files { overflow: hidden; }
-        .pa-spread.pa-words-forward .pd-paragraph.pd-listing {
-            display: flex;
-            justify-content: center;
-            padding: calc(${({ theme }) => theme.space} * 0.6667) 0 0;
-        }
-        .pa-spread.pa-words-forward .pd-listing .pd-word {
-            writing-mode: vertical-rl;
-            padding: 0;
-            border-radius: 0;
-        }
-        .pa-spread.pa-words-forward .pd-listing .pd-code { display: none; }
-        .pa-spread.pa-words-forward .pd-words .pd-paragraph.pa-brief { display: none; }
+        .pa-spread.pa-split .pd-leaf.pd-open { grid-template-columns: minmax(380px, 1fr) min(44vw, 720px) calc(2 * ${({ theme }) => theme.space}); }
         .pa-spread.pa-code-forward .pd-leaf.pd-open {
-            grid-template-columns: minmax(0, 1fr);
-            grid-template-areas: 'words' 'files';
-            height: auto;
+            grid-template-areas: 'panel panel grip';
+            grid-template-columns: minmax(0, 1fr) 0 calc(${({ theme }) => theme.space} * 0.75);
+            height: calc(100vh - ${({ theme }) => theme.barHeight});
         }
-        .pa-spread.pa-code-forward .pd-words, .pa-spread.pa-code-forward .pd-files { overflow: visible; }
-        .pa-spread.pa-code-forward .pd-files {
-            margin: 0 calc(${({ theme }) => theme.space} * 1.8333) calc(${({ theme }) => theme.space} * 1.6667);
-            border-radius: calc(${({ theme }) => theme.space} / 2);
-            min-height: calc(${({ theme }) => theme.space} * 17.5);
-        }
-        .pa-spread.pa-code-forward .pd-words .pd-section { display: none; }
+        .pa-spread .pd-words { grid-area: words; min-width: 0; overflow: hidden; }
+        .pa-spread.pa-code-forward .pd-words { display: none; }
+        .pa-spread .pd-files { grid-area: panel; display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; overflow: hidden; }
+        .pa-spread .pd-rail { grid-area: rail; }
+        .pa-spread.pa-code-forward .pd-rail { display: none; }
+        .pa-spread .pd-grip { grid-area: grip; display: none; }
+        .pa-spread.pa-code-forward .pd-grip { display: block; }
         @media (max-width: ${({ theme }) => theme.narrow}) {
-            .pa-spread .pd-leaf.pd-open { display: block; height: auto; }
-            .pa-spread.pa-words-forward .pd-listing .pd-word { writing-mode: horizontal-tb; }
+            .pa-spread .pd-leaf.pd-open, .pa-spread.pa-split .pd-leaf.pd-open, .pa-spread.pa-code-forward .pd-leaf.pd-open { display: block; height: auto; min-height: 0; }
+            .pa-spread .pd-rail, .pa-spread .pd-grip { display: none; }
+            .pa-spread.pa-code-forward .pd-words { display: block; }
         }
     `;
 
@@ -68,11 +55,25 @@ export const Spread = $($Spread);
 
 export class $Manual extends $LibraryBook {
     override specification = new ManualSpecification();
+    $file = '';
     get readings(): Given<$Annotation>[] {
-        return [codeForward, wordsForward];
+        return [wordsForward, split, codeForward];
     }
     override get open(): $Chapter | undefined {
         return super.open ?? this.pages[0];
+    }
+
+    fileOf(chapter: $Chapter): string | undefined {
+        const files = this.filesOf(chapter);
+        return files.includes(this.$file) ? this.$file : files[0];
+    }
+
+    show(chapter: $Chapter, name: string): void {
+        this.$file = name;
+    }
+
+    override head(): ReactNode {
+        return undefined;
     }
 
     override front(): ReactNode {
@@ -80,36 +81,150 @@ export class $Manual extends $LibraryBook {
     }
 
     override switches(): ReactNode {
+        return undefined;
+    }
+
+    override leaves(): ReactNode {
         const Tab = $(tab);
-        return (
-            <>
-                <Tab
-                    chapter={this.cover}
-                    of={codeForward}
-                    among={this.readings}
+        const Switch = $(switchOf);
+        const File = $(file);
+        const Listing = $(listing);
+        return this.chapters.map((chapter, index) => {
+            const Chapter = $(chapter);
+            const files = this.filesOf(chapter);
+            const file = this.fileOf(chapter);
+            const paragraphs = chapter.text.find($Section).flatMap(section => section.text.find($Paragraph)).slice(0, 16);
+            return (
+                <div
+                    key={index}
+                    className={chapter === this.open ? 'pd-leaf pd-open' : 'pd-leaf'}
                 >
-                    code
-                </Tab>
-                <Tab
-                    chapter={this.cover}
-                    of={wordsForward}
-                    among={this.readings}
-                >
-                    words
-                </Tab>
-                {super.switches()}
-            </>
-        );
+                    <div className="pd-words">
+                        <Chapter />
+                    </div>
+                    <div className="pd-files">
+                        <div className="pd-tabs">
+                            {files.map(name => (
+                                <File
+                                    key={name}
+                                    chapter={chapter}
+                                    name={name}
+                                />
+                            ))}
+                            <span className="pd-words-tab">
+                                <Tab
+                                    chapter={this.cover}
+                                    of={wordsForward}
+                                    among={this.readings}
+                                >
+                                    words
+                                </Tab>
+                            </span>
+                            <span className="pd-dock pd-to-full">
+                                <Tab
+                                    chapter={this.cover}
+                                    of={codeForward}
+                                    among={this.readings}
+                                >
+                                    full screen
+                                </Tab>
+                            </span>
+                            <span className="pd-dock pd-to-split">
+                                <Tab
+                                    chapter={this.cover}
+                                    of={split}
+                                    among={this.readings}
+                                >
+                                    split
+                                </Tab>
+                            </span>
+                            <span className="pd-options">
+                                <Switch
+                                    chapter={this.cover}
+                                    of={lightCode}
+                                >
+                                    light
+                                </Switch>
+                                <Switch
+                                    chapter={this.cover}
+                                    of={wrapped}
+                                >
+                                    wrap
+                                </Switch>
+                                <Switch
+                                    chapter={this.cover}
+                                    of={numbered}
+                                >
+                                    lines
+                                </Switch>
+                            </span>
+                        </div>
+                        <div className="pd-listings">
+                            {chapter.annotations.find($Append).reverse().map((append, index) => (
+                                <Listing
+                                    key={index}
+                                    chapter={chapter}
+                                    identifier={append.$identifier}
+                                    type={append.$type}
+                                    reading={codeForward}
+                                    among={this.readings}
+                                    is={`${append.$identifier}${append.$type}` === file ? opened : []}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <div className="pd-rail">
+                        {files.map(name => (
+                            <File
+                                key={name}
+                                chapter={chapter}
+                                name={name}
+                                of={split}
+                                among={this.readings}
+                                skeleton
+                            />
+                        ))}
+                    </div>
+                    <div className="pd-grip">
+                        <Tab
+                            chapter={this.cover}
+                            of={split}
+                            among={this.readings}
+                        >
+                            <span className="pd-skeleton">
+                                {paragraphs.map((paragraph, index) => (
+                                    <i
+                                        key={index}
+                                        style={{ width: `${Math.max(25, Math.min(100, html.copy(paragraph.text).length / 4))}%` }}
+                                    />
+                                ))}
+                            </span>
+                        </Tab>
+                    </div>
+                </div>
+            );
+        });
     }
 
     protected override $Define(): void {
         super.$Define();
         const Given = $(Spread);
         const Reading = $(reading);
+        const Numbered = $(numbered);
         this.annotations.add(this,
             <Given />,
-            <Reading />
+            <Reading />,
+            <Numbered />
         );
+    }
+
+    protected override $Bound(): void {
+        const Folder = $(folder);
+        for (const section of this.table?.text.find($Section) ?? [])
+            section.annotations.add(this,
+                <Folder />
+            );
+        super.$Bound();
     }
 }
 
