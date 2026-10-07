@@ -42,6 +42,32 @@ The value goes as the first line of stdin and is read into an *unexported* varia
 
 Known hosts for the lab's machines live in `.tools/known_hosts_reimer` inside [the folder](01-02-als-remote--the-folder.md), never in the shared home's `~/.ssh`. Every `ssh` is run with `-F /dev/null`, so the shared account's own SSH configuration is never read.
 
+## The route in: the box, or BCM's VPN
+
+Every command in the tool jumps through the box, so **when the box is down, the lab is out of reach**.
+That happened on 2026-10-06, around 23:00: Tailscale lists `lipshutzlab-01` as offline, and the box
+tool's `check` fails at the tailnet ping. Nothing on this side can bring it back; someone at BCM has
+to look at the machine. Doug messaged David.
+
+The second route is BCM's own VPN, through **Doug's Sponsored Guest Account**. Its Enterprise Computing
+Account is `u267393` (sign-in `u267393@bcm.edu`), sponsored by Veronica Monge at Jake's request. It
+was activated, with password and MFA set, on 2026-10-07.
+- **The gateway** is `vpn.bcm.edu`, a Cisco gateway ("BCM VPN Service") whose client is Cisco Secure
+  Client (formerly AnyConnect). Its groups are 10NET (the default), 10NETVENDOR, BCM-Default, DLDCC,
+  ERC, HNL and MEYER. BCM's orientation material: *"Only the ERC Option works for BCM resources."*
+- **The ERC group refused the account** with AADSTS50105: the application "Cisco AnyConnect - PRD - ERC"
+  admits only assigned users, and a new guest account is not assigned. BCM IT assigns it, usually at
+  the sponsor's request (Help Desk it-support@bcm.edu, 713-798-8737). Whether ERC routes to the lab's
+  10.x servers is not yet known; 10NET may be the group that does. Doug asked Ming and Cameron.
+- **ProtonVPN** on this machine has a kill switch that blocked Tailscale before. Expect it to fight the
+  BCM VPN too, and turn it off first.
+
+**On the VPN the tool needs a direct mode**, not yet built. The key is already in doug's
+`authorized_keys` on all three compute servers, the database answers on BCM's network, and the
+cluster's config names the API server's own address (`10.28.0.136`, which its pinned certificate
+names), so kubectl can connect without a tunnel. The change is to make the `-J` jump and the forwards
+optional.
+
 ## The GPU cluster
 
 Ming sent the config on 2026-10-05. It holds a client certificate and its private key for the user `doug`, so it is kept like the SSH key: `~/.kube/jr-k8s.yaml` on this machine only, outside the repo, and never on the box or in git, the library or memory. The API server, `10.28.0.136:6443`, is on BCM's network. So `kube` forwards it through the box to `127.0.0.1:16443` and runs kubectl here. That kubectl is v1.30.1, the server's version, installed in `~/.local/bin` and checked against its published SHA-256.
