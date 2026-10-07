@@ -19,9 +19,9 @@
     :root {
         --paper: #fdfcfa; --text: #343c4a; --soft: #727d8c; --faint: #9ea8b5; --line: #e4e9f2; --tint: #f0f4fc; --bar-tint: #f8fafe;
         --side-tint: #f7f8fb; --read-tint: #fbfaf6;
-        --sky: #e3edfb; --sky-ink: #4a6ea0; --wash: linear-gradient(135deg, #ecf2fc 0%, #fdfcfa 46%, #fbf1e9 100%);
+        --sky: #e3edfb; --sky-ink: #4a6ea0; --wash: linear-gradient(135deg, #f1f5fd 0%, #fdfcfa 48%, #fdf5ee 100%);
         --sans: 'Inter', system-ui, sans-serif; --serif: 'Source Serif 4', Georgia, serif; --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
-        --bar: 52px; --side: 248px; --space: 24px; --open: 184px; --radius: 6px;
+        --bar: 52px; --side: 272px; --space: 24px; --open: 184px; --radius: 6px;
         --beat: .22s;
     }
     /* each book's scheme, as its cover says it: the ground, the band and its ink, the foot and its ink, the drawing's ink */
@@ -66,29 +66,29 @@
     .pd-me .pd-word.pa-reference { color: var(--text); font-weight: 500; }
 
     /* ---- the index is a file tree: groups as folders that fold, chapters as pages, their files beneath them ---- */
-    .pd-holds { grid-area: holds; position: sticky; top: var(--bar); align-self: start; display: grid; grid-template-rows: minmax(0, 1fr); height: calc(100vh - var(--bar)); padding: 14px 0 16px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: transparent transparent; background: linear-gradient(90deg, #f8f9fc 0%, #f7f8fb 82%, #eef1f6 100%); border-right: 1px solid #dde2ea; font-size: 12.5px; transition: scrollbar-color var(--beat) ease; }
-    .pd-holds:hover { scrollbar-color: #cfd6e0 transparent; }
+    .pd-holds { grid-area: holds; position: sticky; top: var(--bar); align-self: start; display: grid; grid-template-rows: minmax(0, 1fr); height: calc(100vh - var(--bar)); padding: 14px 0 16px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: transparent transparent; background: linear-gradient(90deg, #f9fafc 0%, #f7f8fb 86%, #f2f4f8 100%); border-right: 1px solid #e0e4eb; font-size: 12.5px; transition: scrollbar-color var(--beat) ease; }
+    .pd-holds:hover { scrollbar-color: color-mix(in oklch, var(--band) 62%, white) transparent; }
     .pd-holds::-webkit-scrollbar { width: 7px; }
     .pd-holds::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
-    .pd-holds:hover::-webkit-scrollbar-thumb { background: #cfd6e0; }
+    .pd-holds:hover::-webkit-scrollbar-thumb { background: color-mix(in oklch, var(--band) 62%, white); }
     .pd-holds .pd-chapter { display: flex; flex-direction: column; min-height: 100%; }
-    .pd-holds .pd-section { margin: 0 0 4px; }
+    .pd-holds .pd-section { margin: 0 0 8px; }
     .pd-holds .pd-heading { display: none; }
-    .pd-holds .pd-folder { display: flex; align-items: center; gap: 6px; width: 100%; height: 24px; padding: 0 12px 0 6px; text-align: left; font: 400 13px/24px var(--sans); color: #3a4452; transition: color var(--beat) ease, background var(--beat) ease; }
+    .pd-holds .pd-folder { display: flex; align-items: center; gap: 7px; width: 100%; height: 27px; padding: 0 14px 0 10px; text-align: left; font: 400 13px/27px var(--sans); color: #3a4452; transition: color var(--beat) ease, background var(--beat) ease; }
     .pd-holds .pd-twist { flex: none; display: grid; place-items: center; width: 16px; height: 16px; color: #a5aebb; transition: transform .18s ease, color var(--beat) ease; }
     .pd-holds .pd-twist svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
     .pd-holds .pd-twist.open { transform: rotate(90deg); }
     .pd-holds .pd-twist:hover { color: var(--text); }
     .pd-holds .pd-folder:hover { background: color-mix(in oklch, var(--band) 22%, white); }
     .pd-holds .pd-section.folded .pd-container, .pd-holds .pd-section.folded .pd-file, .pd-holds .pd-section.folded .pd-key { display: none; }
-    .pd-holds .pa-entry { display: flex; align-items: center; gap: 6px; margin: 0; height: 24px; padding: 0 12px 0 22px; font: 400 13px/24px var(--sans); color: #3a4452; cursor: pointer; box-shadow: inset 3px 0 0 transparent; transition: background var(--beat) ease, color var(--beat) ease, box-shadow var(--beat) ease; }
+    .pd-holds .pa-entry { display: flex; align-items: center; gap: 7px; margin: 0; height: 27px; padding: 0 14px 0 28px; font: 400 13px/27px var(--sans); color: #3a4452; cursor: pointer; box-shadow: inset 3px 0 0 transparent; transition: background var(--beat) ease, color var(--beat) ease, box-shadow var(--beat) ease; }
     .pd-holds .pd-icon { flex: none; width: 14px; height: 14px; color: #a5aebb; transition: color var(--beat) ease; }
     .pd-holds .pa-entry .pa-content { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .pd-holds .pa-entry:hover { background: color-mix(in oklch, var(--band) 28%, white); }
     .pd-holds .pa-entry.pa-open { background: color-mix(in oklch, var(--band) 42%, white); color: var(--band-ink); box-shadow: inset 3px 0 0 var(--band-ink); }
     .pd-holds .pa-entry.pa-open .pd-icon { color: var(--band-ink); }
     .pd-holds .pa-number { font-size: 10.5px; color: color-mix(in oklch, var(--foot-ink) 48%, white); font-variant-numeric: tabular-nums; }
-    .pd-holds .pd-file { display: flex; align-items: center; gap: 6px; width: 100%; height: 24px; padding: 0 12px 0 60px; text-align: left; font: 400 13px/24px var(--sans); color: #3a4452; transition: background var(--beat) ease, color var(--beat) ease; }
+    .pd-holds .pd-file { display: flex; align-items: center; gap: 7px; width: 100%; height: 27px; padding: 0 14px 0 69px; text-align: left; font: 400 13px/27px var(--sans); color: #3a4452; transition: background var(--beat) ease, color var(--beat) ease; }
     .pd-holds .pd-file:hover { background: color-mix(in oklch, var(--band) 28%, white); color: var(--text); }
     .pd-holds .pd-file.pa-open { color: var(--band-ink); font-weight: 500; background: color-mix(in oklch, var(--band) 30%, white); }
     .pd-holds .pa-parenthetical { display: none; }
@@ -118,7 +118,7 @@
     .pd-kinds .pd-kind-press { display: flex; align-items: center; gap: 5px; padding: 3px 8px 3px 5px; border: 1px solid var(--line); border-radius: 999px; background: #ffffff; font: 500 11px/1 var(--mono); color: #6b7684; transition: border-color var(--beat) ease, color var(--beat) ease, background var(--beat) ease; }
     .pd-kinds .pd-kind-press:hover { border-color: var(--kind-ink); color: var(--text); }
     .pd-kinds .pd-kind-press.pa-open { border-color: var(--kind-ink); background: var(--kind-fill); color: var(--kind-ink); }
-    .pd-holds .pd-key { display: flex; align-items: center; gap: 8px; height: 24px; padding: 0 12px 0 44px; font: 400 13px/24px var(--sans); color: #3a4452; }
+    .pd-holds .pd-key { display: flex; align-items: center; gap: 8px; height: 27px; padding: 0 14px 0 51px; font: 400 13px/27px var(--sans); color: #3a4452; }
     .pd-holds .pd-section.pd-key-section { margin-top: auto; padding-top: 8px; border-top: 1px solid #e3e7ee; }
 
     /* ---- the page in three states. Closed: the words run wide and the files are a rail at the right edge — a sliver of
@@ -129,10 +129,15 @@
     .pd-desk, .pd-switches, .pd-brief-bar { display: none; }
     .pd-leaf { display: grid; grid-template-columns: minmax(0, 1fr) 0 48px; grid-template-areas: 'words panel rail'; min-height: calc(100vh - var(--bar)); transition: grid-template-columns .28s ease; }
     .pd-leaf[data-panel="open"] { grid-template-columns: minmax(380px, 1fr) min(44vw, 720px) 48px; }
-    .pd-leaf[data-panel="full"] { grid-template-areas: 'panel words'; grid-template-columns: minmax(0, 1fr) clamp(300px, 32vw, 460px); height: calc(100vh - var(--bar)); }
+    .pd-leaf[data-panel="full"] { grid-template-areas: 'panel panel grip'; grid-template-columns: minmax(0, 1fr) 0 18px; height: calc(100vh - var(--bar)); }
     .pd-words { grid-area: words; min-width: 0; padding: 22px 36px 40px; overflow: hidden; }
     .pd-leaf[data-panel="open"] .pd-words { padding: 22px 28px 40px 32px; }
-    .pd-leaf[data-panel="full"] .pd-words { background: linear-gradient(90deg, #f1efe8 0%, #fbfaf6 32px); border-left: 1px solid #e0ddd4; padding: 22px 28px 40px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #d5dbe4 transparent; }
+    .pd-leaf[data-panel="full"] .pd-words { display: none; }
+    .pd-grip { grid-area: grip; display: none; position: relative; background: linear-gradient(90deg, #f3f1eb 0%, #fbfaf6 10px); border-left: 1px solid #e6e2d8; cursor: pointer; transition: background var(--beat) ease; }
+    .pd-leaf[data-panel="full"] .pd-grip { display: block; }
+    .pd-grip:hover { background: linear-gradient(90deg, #ece9e1 0%, #ffffff 10px); }
+    .pd-grip .pd-skeleton { position: absolute; top: 14px; left: 5px; display: flex; flex-direction: column; gap: 3px; width: 8px; opacity: .7; }
+    .pd-grip .pd-skeleton i { display: block; height: 2px; border-radius: 1px; background: #cfcbc0; }
     .pd-words .pd-chapter { max-width: 104ch; }
     .pd-words .pd-title { font: 600 24px/1.2 var(--sans); letter-spacing: -0.02em; margin-bottom: 6px; color: #1a1f36; }
     .pd-leaf[data-panel="full"] .pd-words .pd-title { font-size: 19px; }
@@ -161,6 +166,9 @@
     /* the panel: the editor's tab bar at its head, the active file below; the options at the bar's end */
     .pd-files { grid-area: panel; display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; overflow: hidden; background: linear-gradient(90deg, color-mix(in oklch, var(--night) 90%, white) 0%, var(--night) 36px); color: var(--glow); box-shadow: -10px 0 18px -16px rgba(43, 54, 60, .5); transition: background var(--beat) ease, color var(--beat) ease; }
     .pd-leaf[data-panel="full"] .pd-files { box-shadow: none; }
+    .pd-tabs .pd-words-only { display: flex; align-items: center; gap: 6px; padding: 0 12px; font: 500 10.5px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: color-mix(in oklch, var(--glow) 62%, var(--night)); transition: color var(--beat) ease; }
+    .pd-tabs .pd-words-only:hover { color: var(--glow); }
+    .pd-leaf[data-panel="full"] .pd-tabs .pd-words-only { display: none; }
     .pd-tabs { display: flex; align-items: stretch; gap: 1px; background: linear-gradient(180deg, color-mix(in oklch, var(--dusk) 88%, white) 0%, var(--dusk) 100%); padding: 0 0 0 2px; border-bottom: 1px solid color-mix(in oklch, var(--foot) 28%, var(--dusk)); }
     .pd-tabs .pd-tab { display: flex; align-items: center; gap: 7px; padding: 9px 14px 8px 12px; font: 500 12px/1 var(--mono); color: color-mix(in oklch, var(--glow) 62%, var(--night)); border-top: 2px solid transparent; transition: background var(--beat) ease, color var(--beat) ease, border-color var(--beat) ease; }
     .pd-tabs .pd-tab:hover { color: var(--glow); }
@@ -2485,9 +2493,12 @@
         // the rail's hint of what a press opens: a skeleton of the file's own first lines, each bar as long as its line
         const skeleton = (listing) => '<span class="pd-skeleton">' + Array.from(listing.querySelectorAll('.pd-code-line')).slice(0, 14).map(line => '<i style="width:' + Math.max(12, Math.min(100, line.textContent.length * 2.2)) + '%"></i>').join('') + '</span>';
         leaf.insertAdjacentHTML('beforeend', '<div class="pd-rail">' + files.map((file, index) => '<button class="pd-tab kind-' + kindOf(chapter, file) + '" data-file="' + index + '">' + fileIcon + '<span class="pd-tab-name">' + file + '</span>' + skeleton(listings[index]) + '</button>').join('') + '</div>');
+        const paragraphs = Array.from(leaf.querySelectorAll('.pd-words .pd-paragraph')).slice(0, 16);
+        leaf.insertAdjacentHTML('beforeend', '<button class="pd-grip" title="the words"><span class="pd-skeleton">' + paragraphs.map(paragraph => '<i style="width:' + Math.max(25, Math.min(100, paragraph.textContent.length / 4)) + '%"></i>').join('') + '</span></button>');
         leaf.querySelector('.pd-files').insertAdjacentHTML('afterbegin',
             '<div class="pd-tabs">' + files.map((file, index) => '<button class="pd-tab kind-' + kindOf(chapter, file) + '" data-file="' + index + '">' + fileIcon + file + '</button>').join('')
-            + '<button class="pd-dock">dock</button>'
+            + '<button class="pd-words-only">words</button>'
+            + '<button class="pd-dock">full screen</button>'
             + '<span class="pd-options"><button class="pd-option" data-option="code" aria-pressed="false">light</button><button class="pd-option" data-option="wrap" aria-pressed="false">wrap</button><button class="pd-option" data-option="numbers" aria-pressed="true">lines</button></span>'
             + '</div>');
         const presses = files.map((file, index) => { const kind = kindOf(chapter, file); return '<button class="pd-kind-press kind-' + kind + '" data-file="' + index + '" title="' + names[kind] + '">' + fileIcon + file + '</button>'; }).join('');
@@ -2500,13 +2511,15 @@
             listings.forEach((listing, at) => listing.classList.toggle('pa-open', at === index));
             leaf.querySelectorAll('.pd-rail .pd-tab, .pd-tabs .pd-tab, .pd-kind-press').forEach(tab => tab.classList.toggle('pa-open', tab.dataset.file === String(index)));
             leaf.dataset.panel = how ?? (same && leaf.dataset.panel !== 'closed' ? 'closed' : leaf.dataset.panel === 'closed' ? 'open' : leaf.dataset.panel);
-            leaf.querySelector('.pd-dock').textContent = leaf.dataset.panel === 'full' ? 'beside the words' : 'dock';
+            leaf.querySelector('.pd-dock').textContent = leaf.dataset.panel === 'full' ? 'split' : 'full screen';
             syncTree(leaf);
         };
         leaf.querySelectorAll('.pd-rail .pd-tab').forEach(tab => tab.addEventListener('click', () => open(Number(tab.dataset.file))));
         leaf.querySelectorAll('.pd-tabs .pd-tab').forEach(tab => tab.addEventListener('click', () => open(Number(tab.dataset.file), leaf.dataset.panel === 'closed' ? 'open' : leaf.dataset.panel)));
         leaf.querySelectorAll('.pd-kind-press').forEach(press => press.addEventListener('click', () => open(Number(press.dataset.file))));
         leaf.querySelector('.pd-dock').addEventListener('click', () => open(Number(leaf.dataset.file ?? 0), leaf.dataset.panel === 'full' ? 'open' : 'full'));
+        leaf.querySelector('.pd-grip').addEventListener('click', () => open(Number(leaf.dataset.file ?? 0), 'open'));
+        leaf.querySelector('.pd-words-only').addEventListener('click', () => open(Number(leaf.dataset.file ?? 0), 'closed'));
         listings.forEach((listing, index) => listing.querySelector('.pd-code').addEventListener('click', () => { if (leaf.dataset.panel !== 'full') open(index, 'full'); }));
         for (const option of leaf.querySelectorAll('.pd-option'))
             option.addEventListener('click', () => {
