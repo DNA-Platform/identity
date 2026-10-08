@@ -26,6 +26,11 @@ export default () => (
                 the code that builds that book is kept, which is why the back of a book reads like a page of this
                 manual.
             </Paragraph>
+            <Paragraph>
+                In the manual a listing is also a press: pressing it opens its file in the split, and a file's
+                tab on the editor's bar is a switch in the file's colour that does the same. Both say what they
+                are in their container, as every switch does, and the design is in <Means>$[[ The Manual's Page ]]( Dougs Design / The Manual's Page )</Means>.
+            </Paragraph>
         </Section>
         <Section>
             <Heading>How a listing fits the library's patterns</Heading>

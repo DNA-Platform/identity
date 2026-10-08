@@ -110,7 +110,8 @@ export default () => (
                 folder's twist makes the whole book render again from its root, three seconds in the dev serve
                 and three quarters of one in the build, most of it React and the framework redrawing what did not
                 change and the code figure highlighting every file again. That is a finding about the framework,
-                written up for the pitch list, not something the page can fix. The names changed with the port: the marks and the name in the bar
+                written up for the pitch list, not something the page can fix, and the framework fixed it the next day; what that uncovered is
+                under the switch, below. The names changed with the port: the marks and the name in the bar
                 are the logo, since a masthead is a part of a boat. What is not carried: the presses for a chapter's
                 files under its title, which wait on a face for the title. The chapters themselves did not change
                 beyond the one line that says their kind.
@@ -141,6 +142,50 @@ export default () => (
                 rest of the page, the tree with its chevrons, the rail and the split, the file's thin-line
                 icon and the kind on a file's press, waits on the port of the manual's look, and this chapter
                 is where the team reads what was decided and follows a mention to where it is built.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>The switch, built</Heading>
+            <Paragraph>
+                The day after the key, the framework under the library changed: a piece of writing now draws
+                when its own state, its props, its theme or something it read while drawing changed, and
+                otherwise answers what it drew last. The fold that took three seconds in the dev serve fell to a
+                fifth of one, and every switch, tab, chevron and file press in the manual stopped reading its
+                pressed state. The reason was the container. A piece of writing chooses the element it draws
+                through inside its own draw and hands it an id, its classes and its children; React then calls
+                that element after the draw, with nothing watching, so an element that reads at draw time reads
+                something no one will answer. The switch's button had read the book's annotations through its
+                pressed attribute, and it had looked alive only because every write redrew the whole book. What
+                we had been relying on was the cascade.
+            </Paragraph>
+            <Paragraph>
+                The seam that fixes it is one method on every piece of writing, its container, which draws the
+                element with what the view hands it, and which a kind overrides to say its own attributes, typed
+                by the browser's own, and hand the rest through: a switch says it is a button with a click; a
+                chevron says a click that leaves the link under it alone; a file's press says its colour. The
+                element had been the only place an attribute could be said, so every kind that needed one had
+                made a component of its own and read outside the draw; now none does. It is built
+                in <Means>$[[ The Switch ]]( Dougs Reference Manual / The Switch )</Means>, and the chevrons
+                and the file presses that use it are
+                in <Means>$[[ The Entry ]]( Dougs Reference Manual / The Entry )</Means> and <Means>$[[ The Listing ]]( Dougs Reference Manual / The Listing )</Means>.
+            </Paragraph>
+            <Paragraph>
+                Two things found on the way. The folders in the manual's tree had stopped folding, and that was
+                the theme, not the framework: the row rule that says the book first, from the audit, weighed the
+                same as the fold's rule and came later in the sheet, so the fold's rules say the book first too.
+                And the logo's hover was a hook of React's, which this library does not use; it is a field on
+                the logo now, written by the logo's own methods from the handlers its container says, and said
+                as a class by an annotation, so the subject stays unfolded while the pointer crosses to its
+                name. That is in <Means>$[[ The Cover ]]( Dougs Reference Manual / The Cover )</Means>. What
+                was tried and refused on the way is kept where the team reads: an off switch for the framework's
+                memory, a lift of the button into a draw of its own, a hover held by the sheet alone, which
+                cannot remember, and a second note before a text, which would have walked the annotations twice.
+            </Paragraph>
+            <Paragraph>
+                What a press costs now, measured like with like: one task of about seven tenths of a second on a
+                page of twenty thousand nodes, the same for a tab, an option, a fold and the hover, and the
+                profile leads with the framework's own readings of the open chapter, each a walk of the book
+                re-run by every row that read it. That is the next thing, and it belongs to the framework.
             </Paragraph>
         </Section>
         <Append

@@ -20,6 +20,12 @@ export default () => (
                 switch for that: given its own thing and the set it belongs to, it says its own and takes back
                 the others, and pressing the one that already holds changes nothing.
             </Paragraph>
+            <Paragraph>
+                A switch says that it is a button in its container, the one method of a piece of writing that
+                draws its element, and reads whether it is pressed there, in the draw, so it redraws when the
+                book changes and nothing else does. How that seam was found, and what was tried before it, is
+                told in <Means>$[[ The Manual's Page ]]( Dougs Design / The Manual's Page )</Means>.
+            </Paragraph>
         </Section>
         <Section>
             <Heading>How a switch fits the library's patterns</Heading>

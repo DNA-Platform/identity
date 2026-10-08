@@ -18,10 +18,10 @@
     "index.html"
   ],
   "bundled": [
-    "assets/.cover-CgTcmG4z.js",
-    "assets/.synopsis-B8-FsO5E.js",
-    "assets/.synopsis-CAbdshWi.js",
-    "assets/.synopsis-CUBcuMjS.js",
+    "assets/.cover-DtAA9-F4.js",
+    "assets/.synopsis-BBPdlFHY.js",
+    "assets/.synopsis-CkljZx2k.js",
+    "assets/.synopsis-DtA4d4At.js",
     "assets/KaTeX_AMS-Regular-BQhdFMY1.woff2",
     "assets/KaTeX_AMS-Regular-DMm9YOAa.woff",
     "assets/KaTeX_AMS-Regular-DRggAlZN.ttf",
@@ -81,11 +81,11 @@
     "assets/KaTeX_Typewriter-Regular-C0xS9mPB.woff",
     "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
     "assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf",
-    "assets/design-d858515U.js",
-    "assets/index-B0qf1kAK.js",
+    "assets/design-Be2zMckw.js",
     "assets/index-BgQkainO.css",
-    "assets/librarian-y5NRZVjS.js",
-    "assets/manual-tN2epmHb.js",
-    "assets/reference-Cv65kIKR.js"
+    "assets/index-DPz94WAA.js",
+    "assets/librarian-DeV9lwVa.js",
+    "assets/manual-D6l9hZFl.js",
+    "assets/reference-DhojHiiX.js"
   ]
 }

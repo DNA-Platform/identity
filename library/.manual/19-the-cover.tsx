@@ -45,6 +45,13 @@ export default () => (
                 it stands. <Means>$[[ The Bookshelf ]]( ./The Bookshelf )</Means> dresses both.
             </Paragraph>
             <Paragraph>
+                The bar's logo is two marks and two names: the subject's mark first, the book's own beside it,
+                the book's name in the sans and the library's waiting under it. The pointer on the subject's
+                mark folds the book's mark away and brings the library's name up, and holds it while the pointer
+                crosses to the name, which is its link. The hold is a field on the logo, said as a class by an
+                annotation; how it came to be that is in <Means>$[[ The Manual's Page ]]( Dougs Design / The Manual's Page )</Means>.
+            </Paragraph>
+            <Paragraph>
                 The browser's tab wears the same mark. The tool beside this chapter makes the library's icon
                 from the catalogue's cover — the drawing's file, the scheme, the window — as the mark the bar
                 draws, and writes it into the binding's configuration, so the tab changes when the cover does.
