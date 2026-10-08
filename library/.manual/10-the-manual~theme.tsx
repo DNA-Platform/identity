@@ -139,7 +139,7 @@ export class $ManualTheme extends $LibraryBookTheme {
                 color: #8a94a3;
             }
             .pd-holds .pd-folder-mark .ground { fill: #f1f3f5; stroke: #8a94a3; stroke-width: 1.5; }
-            .pd-holds .pa-folded .pd-paragraph.pa-entry { display: none; }
+            .pd-book .pd-holds .pa-folded .pd-paragraph.pa-entry { display: none; }
             .pd-book .pd-holds .pd-paragraph.pa-entry {
                 display: flex;
                 flex-wrap: wrap;
@@ -175,7 +175,7 @@ export class $ManualTheme extends $LibraryBookTheme {
                 margin: 0 calc(${({ theme }) => theme.space} * -0.5833) 0 calc(${({ theme }) => theme.space} * -1.1667);
                 padding: 0 calc(${({ theme }) => theme.space} * 0.5833) 0 calc(${({ theme }) => theme.space} * 2.875);
             }
-            .pd-holds .pa-entry.pa-folded .pd-file { display: none; }
+            .pd-book .pd-holds .pa-entry.pa-folded .pd-file { display: none; }
             .pd-book .pd-holds .pd-file {
                 display: flex;
                 align-items: center;
