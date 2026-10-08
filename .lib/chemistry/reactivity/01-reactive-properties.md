@@ -47,6 +47,14 @@ set(value) {
 
 **Promises:** [`accessors.test.tsx`](../../package/tests/abstraction/accessors.test.tsx), six — *a set through a setter from outside a draw redraws, on the direct road and on the template road; an equal set is not news; a getter proxying to a plain instance's list, read in a handler and pushed in place, is seen; a set in the bond constructor composed in a parent is construction; a getter alone read in a handler is snapshotted.* **Commit `2ffbe4c`.**
 
+## <a id="a-field-initializer-is-the-class-constructor"></a>A field initializer is the class constructor — value types there, references in the bond constructor
+
+***Doug, 2026-10-08:*** *"property initializers are sadly the class constructor. If you are initializing reactive properties that aren't value types, they need to be assigned in the bond constructor. That's what it is for. But we need basic field initialization to work for value types like numbers and strings."*
+
+**A field initializer runs once, on the class's template, which the framework makes.** Every instance derived from it is **assigned** those fields — its own store, holding what the template held — and each is a reactive property of the instance. A string, a number, a boolean is then each instance's own. **A reference — an array, an object, a chemical — is the same one on every instance**, and that is the visible shape of the mistake, never a property gone quiet: *"I want the mistake to be that every instance has a singleton, not that every property assigned like that is silently nonreactive."* An instance that must own its reference assigns it in the bond constructor, which runs per mount and is what the bond constructor is for.
+
+*Counted the day it was ruled: 129 reference-typed reactive initializers in chemistry's promises and 53 in the Lab, 118 of them empty arrays; 50 in the public branch, every one a class-level declaration meant to be shared.* **A held chemical's own fields are live once it is activated** — lifted, bonded or cloned — and not before; *a held chemical activated with its holder is [a pitch](../projection/00-planning.md#pitch-held-activation).* The sprint is [The Instance Owns Its Fields](../projection/50-sprint-103--the-instance-owns-its-fields.md).
+
 ## <a id="construction-is-not-news"></a>Construction is not news
 
 ***A write made while a chemical is being SET UP stores its value and wakes nobody.*** **The flag is [`$rendering$`](../../package/src/implementation/symbols.ts), it lives on the chemical, and the setter tests it before it fans anything out.**

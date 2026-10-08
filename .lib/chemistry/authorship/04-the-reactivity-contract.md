@@ -60,6 +60,8 @@ Use descriptive names anyway — `$count`, `$name`, `$data` — but because they
 
 Reactive fields get a getter/setter installed. Writes are observed.
 
+**A field initializer is the class constructor** — Doug, 2026-10-08. It runs once, on the class's template, which the framework makes; every instance is then **assigned** those fields as its own reactive properties. **Initialize value types there** — strings, numbers, booleans — and they are each instance's own. **Assign references in the bond constructor** — an array, an object, a chemical — because an initializer's reference is the one instance every mount holds, reactive and shared, which is the honest shape of that mistake. [Reactive properties](../reactivity/01-reactive-properties.md#a-field-initializer-is-the-class-constructor) carries the rule and the count.
+
 ### 2. Mutations in handlers trigger re-render
 
 ```tsx
@@ -212,7 +214,7 @@ These are the honest boundaries of the framework:
   - **An inert member, a plain object or a module variable read in a view** is drawn when the chemical next draws for its own reasons; the cascade no longer refreshes it on the way past.
   - **A plain React component beneath a chemical that skipped** is not re-rendered, and its reads by closure are untracked — lifting the function with `$` does not track them either, measured.
   - **A function prop is compared by its source**, so a keyed child whose handler closed over a new loop variable, every other prop equal, keeps the old closure. Pass the variable as a prop.
-  - **A template write is silent to every derivative**, as five promises say; a held instance that is the first of its class is the template.
+  - **A template write is silent to every derivative**, as five promises say — and since 2026-10-08 trivially, because a derivative is assigned its fields and never reads the template; and no instance an author constructs is the template, so `$(this.held)` lifts the instance itself.
 - **Bound functions have opaque equality.** `this.handler.bind(this)` — two instances look identical to the diff. Use arrows (`() => this.handler()`) instead.
 - **The framework makes its state accessible as fields; deeply-nested non-chemical objects aren't tracked below the top level**, except via the read-snapshot + scope-finalize mechanism. In a scope, nested changes are caught. Outside, not.
 

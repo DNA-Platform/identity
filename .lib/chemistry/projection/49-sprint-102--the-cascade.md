@@ -85,9 +85,9 @@
 - **A way for a plain component beneath a skipped chemical** — *if the story is wanted.*
 - **The Lab's theme case** — *written against a template; by Doug's ruling.*
 
-## <a id="for-doug"></a>For Doug
+## <a id="for-doug"></a>For Doug — ruled the same day
 
-- **The Lab's case six writes its class's first instance.** `palette = new $Palette()` on the desk is the template of `$Palette`, `$(this.palette)` mounts a derivative, and the five promises keep the write silent; the case passed in Chrome only because the desk's own write cascaded. Three shapes: hold a non-template, decide that a held field is never a template, or change the promise.
-- **The closure compared by source** and **the plain component beneath a skipped chemical** — limits, or promises with a way built.
+- **The Lab's case six writes its class's first instance.** *Ruled and built as [The Instance Owns Its Fields](50-sprint-103--the-instance-owns-its-fields.md): the template is the framework's, an author's instance never is, and the case passes as written.*
+- **The closure compared by source** — *built: a function prop is compared by identity.* **The plain component beneath a skipped chemical** — *a documented limit.*
 
 **New names, proxies:** none exported; the six internal symbols. **Reverted on the suite's evidence:** `holder`.
