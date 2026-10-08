@@ -83,7 +83,7 @@ useEffect(() => {                                  // 506 — NO dependency arra
 
 ***And there is a fifth, which is what makes naive removal dangerous.*** **`substitute()` resolves an element's TYPE through `askedFor`, which walks `asker[$parent$]` outward** *([augment.ts:119](../../package/src/implementation/augment.ts) → `chemical.ts:1115` → `chemical.ts:1687`)*. **`$parent$` is threaded at mount — between the two passes.** *So the settle pass searches a strictly longer lineage than the render pass, and can resolve a registration the render pass could not. Different `element.type`, `diff` true, one more render — **permanently, on every first mount where an ancestor registered anything**.*
 
-***That is not a bug in the effect. It is the effect doing its job, and it is why the answer is not "delete it".***
+***That is not a bug in the effect. It is the effect doing its job, and it is why the answer is not "delete it".*** ***Since 2026-10-08 it runs once per mount and once per real draw:*** a render answered from the last draw — [the memo](04-lift.md#re-entry-on-re-render) — has nothing new to settle, and the pass is skipped for it; a write while unmounted shows on remount because the settle mark is forgotten with the cache. Pass A is unchanged, and a parent's render no longer reaches a child whose props stand.
 
 ## <a id="the-question"></a>The question that was actually asked
 

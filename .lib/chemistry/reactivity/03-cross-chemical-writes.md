@@ -35,6 +35,7 @@ A reader who expected scope-boundedness will be surprised by the propagation. A 
 
 - **In-scope writes** wait for `scope.finalize()`. The scope snapshots state on read; on finalize, it dirties each written chemical, each read chemical whose value is no longer [equivalent](04-collection-mutation.md#walked) to its snapshot, and every ancestor, then fires `react()` once each.
 - **No-scope writes** call `react()` and [diffuse](./05-diffuse.md) immediately.
+- **A reader is woken.** *Since 2026-10-08* a chemical that read another while drawing is subscribed to it, and a write to that other — by setter or at finalize — wakes it; before that a view's read was untracked and only the React cascade carried it. [The draw's reads](02-scope-tracking.md#the-draws-reads).
 - *An earlier version of these rules named a `$derivatives$` registry and an ownership gate. Neither is in the source; corrected 2026-09-22.*
 
 ## History

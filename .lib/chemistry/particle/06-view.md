@@ -72,7 +72,7 @@ If a render somehow triggered a write that fired `react()`, that would re-enter 
 
 ## `$viewCache$` — last-rendered output
 
-[`[$viewCache$]`][view-cache] stores the most recent `view()` output. It is read by the deferred-effect `useEffect` in `$lift`, which re-runs `view()` post-render and diffs against the cache: if the second view differs from the first, force a re-render. This is the mechanism that catches state changes that didn't go through bond setters (deferred async work resolving, for example).
+[`[$viewCache$]`][view-cache] stores the most recent `view()` output. It is read by the deferred-effect `useEffect` in `$lift`, which re-runs `view()` post-render and diffs against the cache: if the second view differs from the first, force a re-render. This is the mechanism that catches state changes that didn't go through bond setters (deferred async work resolving, for example). ***And since 2026-10-08 it is also the answer the component gives when nothing changed:*** the render body opens with [the memo](04-lift.md#re-entry-on-re-render), and a chemical whose state, props, handed theme and reads all stand answers `$viewCache$` without drawing — the sequence below runs only when one of them moved.
 
 The diff lives in [`reconcile.ts`][reconcile-src]; the cache mechanism only stores the previous output. The cache is also consulted by `chemical.view` semantics for identity-preserving mounts (this chapter does not cover those — see the chemical book).
 

@@ -154,17 +154,9 @@ view() {
 
 Non-deterministic reads (time, randomness) go in the **bond constructor**, where they run once per instance.
 
-### 7. The escape hatch: `react(chemical)`
+### 7. The escape hatch: the reaction
 
-If you mutate state from a context the framework can't observe, call `react`:
-
-```tsx
-import { react } from '@dna/chemistry';
-
-// Somewhere outside a handler/method:
-chemical.$state = newValue;
-react(chemical);  // tell the framework
-```
+If you mutate state from a context the framework can't observe, ask the chemical's reaction to react. ***Corrected 2026-10-08: no `react(chemical)` is exported under that name — `index.ts` exports none, and the section above it stood on a word that does not exist.*** The reaction is reached on the symbolic surface, `chemical[$reaction$].react()`, measured in a probe that day: an inert member written from a timeout drew nothing until the reaction was asked, and then drew. *An exported word is owed, or this section is the wrong promise — flagged for Doug in [The Cascade](../projection/49-sprint-102--the-cascade.md#what-the-cascade-carried).*
 
 This is the last-resort API. Most code never needs it.
 
@@ -216,7 +208,11 @@ These are the honest boundaries of the framework:
 
 - **In-place mutations outside any scope don't react.** The setter we install only fires on replacement writes. `this.$map.set(k, v)` outside a method or handler is a no-op for reactivity. Workaround: wrap in a method.
 - **Non-deterministic views cause infinite re-renders.** `new Date()` in view, `Math.random()` in view. Document, don't do.
-- **Chemicals reading each other's state outside a common React ancestor** stay stale. If A's view reads B's state, A and B need to share a React ancestor that re-renders on changes, or you explicitly re-render A after changes to B.
+- **A view's read of another chemical follows it** — *since 2026-10-08, and the limit that stood here is lifted: it said A and B needed a common React ancestor that re-renders, which was the cascade, and the cascade is gone.* A chemical draws when its own state, its props, its theme, or a chemical it read while drawing changed, and otherwise answers what it drew last — [the draw's reads](../reactivity/02-scope-tracking.md#the-draws-reads). What that costs, and the stories the cascade carried for free, are in [The Cascade](../projection/49-sprint-102--the-cascade.md#what-the-cascade-carried):
+  - **An inert member, a plain object or a module variable read in a view** is drawn when the chemical next draws for its own reasons; the cascade no longer refreshes it on the way past.
+  - **A plain React component beneath a chemical that skipped** is not re-rendered, and its reads by closure are untracked — lifting the function with `$` does not track them either, measured.
+  - **A function prop is compared by its source**, so a keyed child whose handler closed over a new loop variable, every other prop equal, keeps the old closure. Pass the variable as a prop.
+  - **A template write is silent to every derivative**, as five promises say; a held instance that is the first of its class is the template.
 - **Bound functions have opaque equality.** `this.handler.bind(this)` — two instances look identical to the diff. Use arrows (`() => this.handler()`) instead.
 - **The framework makes its state accessible as fields; deeply-nested non-chemical objects aren't tracked below the top level**, except via the read-snapshot + scope-finalize mechanism. In a scope, nested changes are caught. Outside, not.
 

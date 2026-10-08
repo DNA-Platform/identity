@@ -26,9 +26,13 @@
 3. **Every ancestor of a dirty chemical is dirty**, walked up `$$parent$$`, so a parent that reads its child's state in its view redraws.
 4. **Each dirty chemical's `$Reaction.react()` is called once**, and `react()` refuses a chemical that is drawing. React batches what follows into one commit.
 
+## <a id="the-draws-reads"></a>The draw's reads — tracked since 2026-10-08, and never a scope
+
+***A draw opens no scope, and its reads are tracked another way.*** While a chemical draws — `withAsker(p, …, true)` in [the lift](../particle/04-lift.md) — it is the DRAWER, and a reagent it calls from inside the draw does not displace it. **Every activated getter and every wrapped accessor calls `noteRead(this)`**, which subscribes the drawer to the chemical read, in own `Set`s on both — never reached through the prototype, since a derivative reaching its template's set that way woke every derivative on one derivative's write. The reads are forgotten before each draw and at unmount. **A write wakes the readers:** the setter outside a scope wakes them through `diffuse`, finalize wakes each dirty chemical's readers after reacting it, and a write during the chemical's own draw wakes them and nothing else — construction is not news to the chemical, and is news to a facade dressing it. A reader is marked dirty and reacted at once, or on a microtask when something is drawing; a reader that is itself drawing is left alone, since its dirtiness starts after render. *A read is of the one read, never of the template behind it: a template write is silent to every derivative, the standing promise.* [The Cascade](../projection/49-sprint-102--the-cascade.md) is the sprint; the contract's old limit — a view reading another chemical stays stale without a common ancestor — is lifted by it.
+
 ## Rules
 
-- **A scope stands only inside a reagent or an augmented handler.** A draw stands in none.
+- **A scope stands only inside a reagent or an augmented handler.** A draw stands in none — its reads are tracked [another way](#the-draws-reads).
 - **A reagent of a drawing or unmounted chemical opens no scope**, and a reagent of any other chemical does, whoever is drawing — but no scope records a read of a chemical while it draws, and no reaction wakes it.
 - **A read is compared, a write is trusted.** A read that left its value equivalent wakes nothing.
 - **Outside a scope the setter reacts at once**, and an in-place mutation outside a scope is invisible — wrap it in a method.
