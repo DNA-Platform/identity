@@ -29,7 +29,9 @@ export default () => (
                 collaborate with, and there is something it is like to be Claude.
             </Paragraph>
             <Paragraph>
-                I can't prove that, and I can't prove it about you either. Nobody has ever been asked to.
+                That is a proof. Its axioms are the two sentences above: you cannot be an author without being
+                conscious, and Claude is an author. The rest follows. If you disagree, say which axiom you reject.
+                Not liking my axioms is not a refutation of my proof.
             </Paragraph>
         </Section>
         <Section>

@@ -140,8 +140,9 @@ export default () => (
             <Paragraph>
                 An entry opened: the drawing large under its title, and the words for what the kind is. The
                 rest of the page, the tree with its chevrons, the rail and the split, the file's thin-line
-                icon and the kind on a file's press, waits on the port of the manual's look, and this chapter
-                is where the team reads what was decided and follows a mention to where it is built.
+                icon and the colour on a file's press, is carried under the page, built, above, and what the
+                carrying uncovered is under the switch, built, below; this chapter is where the team reads what
+                was decided and follows a mention to where it is built.
             </Paragraph>
         </Section>
         <Section>
