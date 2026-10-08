@@ -59,13 +59,19 @@
 | the binder, against the rebuilt dist | typecheck **0**, unit **149 of 149**, regression **48 of 48** |
 | the public branch | build fresh; suite **12 reds, every one a literal draw count** — "mounting draws three times", "a bookmark moved redraws the cascade" — theirs to re-pin on the cascade's rule, a mount two draws and no book-level cascade |
 
+## <a id="the-switch"></a>The switch, ruled after — `[memoize]`
+
+> **"This is a tough invisible bug. I am concerned with it, but I see the importance of memo here. Is it possible to flip an off-switch for the memoization on certain chemicals, so there is some control over this behavior?"** — *the bug being a plain React component beneath a chemical that skipped, reading chemistry by closure, stale. Named by him: "`[memoize]` — a mixture of both", of `memo` and `cascade`.*
+
+**Built:** the exported symbol `memoize` beside `persist` and `inline`; `[memoize] = true` on the particle beside `[inline]`, read from the template so a base class says it for an app; one more term in the lift's memo, `p[memoize] !== false`. **Three promises in [`the-cascade.test.tsx`](../../package/tests/react/the-cascade.test.tsx):** `[memoize] = false` is the off-switch, the chemical draws whenever its parent does and a plain component beneath it reading by closure is fresh · beneath a chemical switched off, a chemical child still memoizes · said on a base class, it reaches every subclass. *The other half — a plain function lifted with `$` running inside the wrapper's draw window so its reads are tracked — is to be measured, then decided.*
+
 ## <a id="stand"></a>Where things stand
 
 **Built and green in chemistry; committed locally on top of the cascade's commit; the dist rebuilt from it; nothing pushed.** *Pushing chemistry is Doug's.*
 
 **Owed:**
 - **The public branch's twelve literals** — *the manual session's and the public session's.*
-- **A held chemical activated with its holder** — *[a pitch](00-planning.md#pitch-held-activation): a `new $Shared()` held in a field and never lifted still has plain fields, which is the rule's mistake one level down.*
+- ~~A held chemical activated with its holder~~ — ***DECLINED the same evening:*** *"I don't want to handle it special. I want the framework to just treat a property on the template as it would any other property — properties can be anywhere on the prototype chain and they still need to be reactive on the instance. As long as we are consistent, the current behavior is fine. The class writer should have assigned it in the bond constructor."* [The record](00-planning.md#pitch-held-activation).
 - **Chemistry 0.2.0 and the symbols docs** — *from the clean-surface sprint, still Doug's and still owed.*
 
 **For Doug:**
