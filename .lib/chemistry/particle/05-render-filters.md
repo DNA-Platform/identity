@@ -59,7 +59,7 @@ It also keeps the `$Particle` class body clean. The class declares `$show` and `
 
 ## How `$Function$` and `$Html$` fit in
 
-The two passthrough wrappers (`$Function$`, `$Html$` — see [feature: render filters][feat-render-filters]) are *also* filter-shaped, in the conceptual sense: they wrap something React already understands and produce JSX that includes children verbatim. They are not registered as filters in `$$filters`; they are particle classes whose `view()` does the wrapping. The "filter" framing is wider than the `$$filters` chain — anywhere the framework consults something to short-circuit normal rendering, that is filter behavior.
+The two passthrough wrappers (`$Function$`, `$Html$` — see [feature: render filters][feat-render-filters]) are *also* filter-shaped, in the conceptual sense: they wrap something React already understands and produce JSX that includes children verbatim. They are not registered as filters in `$$filters`; they are particle classes whose `view()` does the wrapping. The "filter" framing is wider than the `$$filters` chain — anywhere the framework consults something to short-circuit normal rendering, that is filter behavior. ***Since 2026-10-08 `$Function$` no longer produces an element of its function: it CALLS the function inside its own draw***, so the function's reads are the draw's and it follows what it reads; its hooks belong to the wrapper's component, which is therefore always called (`[memoize] = false`) and never settled in an effect (`$hooks$`). [Composing with React](../authorship/05-composing-with-react.md#a-plain-component-beneath-a-chemical).
 
 ## See also
 

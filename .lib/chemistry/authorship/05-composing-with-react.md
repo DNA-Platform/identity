@@ -103,7 +103,17 @@ The decision table:
 | Pure render, no state, no lifecycle, no children-as-typed-args | **Function component** |
 | Stateful, lifecycle hooks, reactive props, typed JSX children | **Chemical** |
 
-A 5-line function that takes props and returns JSX is a function component. The moment you reach for `useState`, `useEffect`, or anything composing with the framework's reactive system — make it a chemical.
+A 5-line function that takes props and returns JSX is a function component. The moment it composes with the framework's reactive system — holds a chemical, is drawn as something, says where it belongs — make it a chemical. *A lifted function may use `useState` and `useEffect` since 2026-10-08, [below](#a-plain-component-beneath-a-chemical); it is still not a chemical.*
+
+## <a id="a-plain-component-beneath-a-chemical"></a>A plain component beneath a chemical — lifted, it follows what it reads · 2026-10-08
+
+**Since [the cascade sprint](../projection/49-sprint-102--the-cascade.md), a chemical draws when its own state, its props, its theme, or a chemical it read while drawing changed, and otherwise answers what it drew last** — so a parent's redraw is no longer its children's. A chemical beneath follows the same rule for itself. **A plain React component beneath a chemical that skipped is a different thing:** it is rendered by React only when something above it draws, and if it reads chemistry state by closure — `const Plain = () => <p>{desk.text}</p>` — nothing tracks that read. Under the cascade it was fresh by accident; now it is stale until its nearest chemical ancestor draws. Doug: *"This is a tough invisible bug."* There are two ways, and they compose.
+
+**Lift it with `$`.** `const Plain = $(() => <p>{desk.text}</p>)` makes it a chemical component whose wrapper, `$Function$`, **calls the function inside its own draw** rather than rendering it as an element of its own — so what the function reads is the draw's, and it follows what it reads: write `desk.text` anywhere and the lifted function draws, beneath a wrapper that skipped or not. **Its hooks work**, `useState` and `useEffect` among them, because they now belong to the wrapper's component; for that reason the wrapper is **always called** — a memo that answered the cached view would skip its hooks, and React counts them — and **never settled in an effect**, since a hook may not run there. *Measured before building, 2026-10-08: reads followed, 0:0 to 1:0; a hook written, 1:1, no React error; not called when its parent drew and the wrapper above it skipped; the suite 962 of 962.* **One limit, older than this and now visible:** a lifted function mounted at several sites is one instance with one update handle, so a read-driven wake reaches the last-mounted site until [the one-update-handle defect](../projection/00-planning.md#next) is closed; a function drawn once per page, which is the common case, has no such limit.
+
+**Or switch the memo off on the chemical that holds it.** `[memoize] = false` on that class — Doug's name — and it draws whenever its parent does, as every chemical did before the cascade sprint, so the plain components beneath it are fresh by the old mechanism; its chemical children still memoize. Read from the template, so a base class says it for a whole app. *The switch is for the plain components you did not lift; lifting is for the ones you can.*
+
+**The decision, then:** a plain component that reads nothing of the framework stays plain. One that reads a chemical by closure is lifted. A subtree of plain components you do not own, reading by closure, sits under a chemical that says `[memoize] = false`.
 
 ## Anti-pattern — "we eat our own dogfood"
 
