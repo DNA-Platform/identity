@@ -1,23 +1,18 @@
-import { ElementType, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { $, $Chemical } from '@dna-platform/chemistry';
-import { $Annotation, $Word, Given } from '@dna-platform/public';
+import { $Annotation, $Word, ContainerProps, Given } from '@dna-platform/public';
 
 export class $Switch extends $Word {
     $of!: Given<$Annotation>;
-    protected _button!: ElementType;
     get on(): boolean { return [this.book!.$is].flat().includes(this.$of); }
 
     $Switch(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
-        this._button = $((props: { children?: ReactNode }) => (
-            <button
-                type="button"
-                aria-pressed={this.on}
-                onClick={() => this.press()}
-                {...props}
-            />
-        ));
-        this.containers.replace(this, 'span', this._button);
+        this.containers.replace(this, 'span', 'button');
+    }
+
+    override container(props: ContainerProps): ReactNode {
+        return super.container({ type: 'button', 'aria-pressed': this.on, onClick: () => this.press(), ...props });
     }
 
     press(): void {

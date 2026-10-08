@@ -94,9 +94,10 @@ export default () => (
                 What the port found, measured, and changed. A hover written as a state on the logo blocked the
                 page for 1,794 milliseconds, because a child's state redraws the whole book and the book's redraw
                 re-walked every chapter for every entry and icon; the book now indexes its places once at bind,
-                the redraw is 767 milliseconds, the same as any press, and the hover is the pointer's, said by the theme while
-                the pointer is on the subject's mark, with nothing in the logo holding a state; keeping the subject
-                unfolded while the pointer crosses to its name is a memory, and waits on the container seam. A press that compared what an earlier press had put into the book with the reading
+                the redraw is 767 milliseconds, the same as any press, and the hover is a field on the logo, written true when the
+                pointer enters the subject's mark and false when it leaves the logo, by handlers the logo says in its
+                container, and said as a class by an annotation, so the subject stays unfolded while the pointer
+                crosses to its name and the name is its link, with nothing in the logo that is React's. A press that compared what an earlier press had put into the book with the reading
                 it had imported worked once and then never, because the imported component is a factory and the
                 component a press passes is the instance's own, one object per instance; so every press in the
                 manual is a noun that compares what came through its props with what came through its props, as

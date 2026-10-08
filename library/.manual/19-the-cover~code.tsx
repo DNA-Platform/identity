@@ -1,6 +1,6 @@
 import { ElementType, ReactNode } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Author, $Chapter, $Cover, $Format, $Paragraph, $Subject, $Svg, $Synopsis, $Word, $Writing, AnnotationSpecification, CoverSpecification, Reference as reference, Word as word, html, specify } from '@dna-platform/public';
+import { $Annotation, $Author, $Chapter, $Cover, $Format, $Paragraph, $Subject, $Svg, $Synopsis, $Word, $Writing, AnnotationSpecification, ContainerProps, CoverSpecification, Reference as reference, Word as word, html, specify } from '@dna-platform/public';
 import { Label as label } from './8-the-author-and-the-subject~code.tsx';
 
 export const painted = (cover: $Chapter | undefined, node: ReactNode, key?: number): ReactNode => {
@@ -147,7 +147,19 @@ export class $Jacket extends $Paragraph {
 export class $Logo extends $Paragraph {
     $cover?: $Chapter;
     $subject?: $Chapter;
+    unfolded = false;
     get filedElsewhere(): boolean { return this.$subject !== undefined && this.$subject !== this.$cover; }
+
+    override container(props: ContainerProps): ReactNode {
+        return super.container({
+            onMouseOver: event => { if (event.target instanceof Element && event.target.closest('.pd-filed') !== null) this.unfold(); },
+            onMouseLeave: () => this.fold(),
+            ...props,
+        });
+    }
+
+    unfold(): void { this.unfolded = true; }
+    fold(): void { this.unfolded = false; }
 
     override write(): ReactNode {
         const cover = this.$cover;
@@ -205,6 +217,29 @@ export class $Logo extends $Paragraph {
     protected override $Define(): void {
         super.$Define();
         this.classes.add(this, 'pd-logo');
+        const Unfolded = $(unfolded);
+        this.annotations.add(this,
+            <Unfolded />
+        );
+    }
+}
+
+export class $Unfolded extends $Annotation {
+    specification = new UnfoldedSpecification();
+
+    override defines(writing: $Writing): void {
+        if ((writing as $Logo).unfolded) writing.classes.add(this, 'pa-unfolded');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class UnfoldedSpecification extends AnnotationSpecification {
+    @specify('unfolded is said of a logo')
+    $saidOfALogo(writing: $Writing): void {
+        $check(writing instanceof $Logo, 'unfolded is said of a logo, and this is not one');
     }
 }
 
@@ -323,5 +358,7 @@ export const Window = $($Window);
 export const Volume = $($Volume);
 export const Jacket = $($Jacket);
 export const Logo = $($Logo);
+export const Unfolded = $($Unfolded);
 export const Mark = $($Mark);
 const mark = Mark;
+const unfolded = Unfolded;

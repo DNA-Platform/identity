@@ -1,6 +1,6 @@
 import { ElementType, ReactNode } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Chapter, $Content, $Format, $Paragraph, $Parenthetical, $Section, $TableOfContents, $Word, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
+import { $Annotation, $Chapter, $Content, $Format, $Paragraph, $Parenthetical, $Section, $TableOfContents, $Word, $Writing, AnnotationSpecification, ContainerProps, specify } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { $Switch } from './9-the-switch~code.tsx';
 import { $Coloured } from './18-the-colour~code.tsx';
@@ -113,18 +113,8 @@ export class $Twist extends $Switch {
     $target?: $Writing;
     override get on(): boolean { return this.$target !== undefined && [this.$target.$is].flat().includes(this.$of); }
 
-    $Twist(...chemicals: $Chemical[]) {
-        this.$Switch(...chemicals);
-        const button = this._button;
-        this._button = $((props: { children?: ReactNode }) => (
-            <button
-                type="button"
-                aria-pressed={this.on}
-                onClick={event => { event.preventDefault(); this.press(); }}
-                {...props}
-            />
-        ));
-        this.containers.replace(this, button, this._button);
+    override container(props: ContainerProps): ReactNode {
+        return super.container({ ...props, onClick: event => { event.preventDefault(); this.press(); } });
     }
 
     override press(): void {

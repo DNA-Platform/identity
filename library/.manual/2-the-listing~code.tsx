@@ -1,6 +1,6 @@
 import { ElementType, ReactNode } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Append, $Chapter, $Paragraph, $Writing, AnnotationSpecification, Code as code, Given, Word as word, html, specify } from '@dna-platform/public';
+import { $Annotation, $Append, $Chapter, $Paragraph, $Writing, AnnotationSpecification, Code as code, ContainerProps, Given, Word as word, html, specify } from '@dna-platform/public';
 import type { $Manual } from './10-the-manual~code.tsx';
 import { $Tab } from './9-the-switch~code.tsx';
 import { $Kind } from './o1-the-key~code.tsx';
@@ -19,19 +19,16 @@ export class $Listing extends $Paragraph {
     $type = '';
     $reading?: Given<$Annotation>;
     $among: Given<$Annotation>[] = [];
-    protected _layer!: ElementType;
     get name(): string { return `${this.$identifier}${this.$type}`; }
     get language(): string { return languages[this.$type.replace(/^\./u, '')] ?? ''; }
 
     $Listing(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
-        this._layer = (props: { children?: ReactNode }) => (
-            <div
-                onClick={() => this.press()}
-                {...props}
-            />
-        );
-        this.containers.add(this, this._layer);
+        this.containers.replace(this, 'span', 'div');
+    }
+
+    override container(props: ContainerProps): ReactNode {
+        return super.container({ onClick: () => this.press(), ...props });
     }
 
     press(): void {
@@ -100,18 +97,11 @@ export class $File extends $Tab {
 
     $File(...chemicals: $Chemical[]) {
         this.$Switch(...chemicals);
-        const Button = this.style;
-        const button = this._button;
-        this._button = $((props: { children?: ReactNode }) => (
-            <Button
-                type="button"
-                $colour={this.colour}
-                aria-pressed={this.on}
-                onClick={() => this.press()}
-                {...props}
-            />
-        ));
-        this.containers.replace(this, button, this._button);
+        this.containers.replace(this, 'button', this.style);
+    }
+
+    override container(props: ContainerProps): ReactNode {
+        return super.container({ $colour: this.colour, ...props });
     }
 
     override press(): void {

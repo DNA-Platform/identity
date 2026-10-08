@@ -231,7 +231,7 @@ export class $LibraryBookTheme extends $Theme {
             .pd-logo .pd-filed, .pd-logo .pd-own { display: block; flex: none; overflow: hidden; transition: width ${({ theme }) => theme.beat} ease, margin ${({ theme }) => theme.beat} ease, opacity ${({ theme }) => theme.beat} ease; }
             .pd-logo .pd-own { width: calc(2 * ${({ theme }) => theme.size}); }
             .pd-logo .pd-scheme + .pd-scheme .pd-own { margin-inline-start: calc(${({ theme }) => theme.space} / 6); }
-            .pd-logo:has(.pd-filed:hover) .pd-own { width: 0; margin-inline-start: 0; opacity: 0; }
+            .pd-logo.pa-unfolded .pd-own { width: 0; margin-inline-start: 0; opacity: 0; }
             .pd-names { display: grid; margin-inline-start: calc(${({ theme }) => theme.space} * 0.375); }
             .pd-names .pd-scheme { grid-area: 1 / 1; }
             .pd-names .pd-name {
@@ -247,8 +247,8 @@ export class $LibraryBookTheme extends $Theme {
                 transition: opacity ${({ theme }) => theme.beat} ease, transform ${({ theme }) => theme.beat} ease;
             }
             .pd-names .pd-name.pd-under { font-family: ${({ theme }) => theme.serif}; font-size: calc(1.286 * ${({ theme }) => theme.size}); font-weight: 700; letter-spacing: -0.015em; opacity: 0; transform: translateY(7px); pointer-events: none; }
-            .pd-logo:has(.pd-filed:hover) .pd-names .pd-name { opacity: 0; transform: translateY(-5px); pointer-events: none; }
-            .pd-logo:has(.pd-filed:hover) .pd-names .pd-name.pd-under { opacity: 1; transform: translateY(1px); pointer-events: auto; }
+            .pd-logo.pa-unfolded .pd-names .pd-name { opacity: 0; transform: translateY(-5px); pointer-events: none; }
+            .pd-logo.pa-unfolded .pd-names .pd-name.pd-under { opacity: 1; transform: translateY(1px); pointer-events: auto; }
             .pd-me { gap: calc(${({ theme }) => theme.space} * 0.375); padding: 0 calc(${({ theme }) => theme.space} * 0.75); }
             .pd-me .pd-byline { display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} * 0.375); font-size: calc(0.93 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.soft}; }
             .pd-me .pd-word.pa-reference { color: ${({ theme }) => theme.ink}; font-weight: 500; }
