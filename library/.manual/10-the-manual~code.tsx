@@ -5,9 +5,9 @@ import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 import { File as file, Listing as listing, Opened as opened } from './2-the-listing~code.tsx';
 import { Switch as switchOf, Tab as tab } from './9-the-switch~code.tsx';
-import { Folder as folder } from './14-the-entry~code.tsx';
+import { $Appendix, Folded as folded, Folder as folder } from './14-the-entry~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
-import { $Brief, CodeForward as codeForward, LightCode as lightCode, Numbered as numbered, Reading as reading, Split as split, WordsForward as wordsForward, Wrapped as wrapped } from './10-the-manual~forward.tsx';
+import { $Brief, CodeForward as codeForward, LightCode as lightCode, Numbered as numbered, Split as split, WordsForward as wordsForward, Wrapped as wrapped } from './10-the-manual~forward.tsx';
 
 export class $Spread extends $Format {
     specification = new OfABookSpecification();
@@ -209,21 +209,20 @@ export class $Manual extends $LibraryBook {
     protected override $Define(): void {
         super.$Define();
         const Given = $(Spread);
-        const Reading = $(reading);
-        const Numbered = $(numbered);
         this.annotations.add(this,
-            <Given />,
-            <Reading />,
-            <Numbered />
+            <Given />
         );
+        this.$is = [wordsForward, numbered];
     }
 
     protected override $Bound(): void {
         const Folder = $(folder);
-        for (const section of this.table?.text.find($Section) ?? [])
+        for (const section of this.table?.text.find($Section) ?? []) {
             section.annotations.add(this,
                 <Folder />
             );
+            if (section.is($Appendix)) section.$is = [folded];
+        }
         super.$Bound();
     }
 }
@@ -237,5 +236,4 @@ export class ManualSpecification extends LibraryBookSpecification {
 }
 
 export const Manual = $($Manual);
-$(Manual, reading)(wordsForward);
 $(Manual, tone)(light);

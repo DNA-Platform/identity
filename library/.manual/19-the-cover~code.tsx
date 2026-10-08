@@ -1,4 +1,4 @@
-import { ElementType, ReactNode, useState } from 'react';
+import { ElementType, ReactNode } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Author, $Chapter, $Cover, $Format, $Paragraph, $Subject, $Svg, $Synopsis, $Word, $Writing, AnnotationSpecification, CoverSpecification, Reference as reference, Word as word, html, specify } from '@dna-platform/public';
 import { Label as label } from './8-the-author-and-the-subject~code.tsx';
@@ -147,26 +147,7 @@ export class $Jacket extends $Paragraph {
 export class $Logo extends $Paragraph {
     $cover?: $Chapter;
     $subject?: $Chapter;
-    protected _layer!: ElementType;
     get filedElsewhere(): boolean { return this.$subject !== undefined && this.$subject !== this.$cover; }
-
-    $Logo(...chemicals: $Chemical[]) {
-        this.$Writing(...chemicals);
-        this._layer = ({ className, children, ...props }: { id?: string; className?: string; children?: ReactNode }) => {
-            const [filed, setFiled] = useState(false);
-            return (
-                <div
-                    className={filed ? `${className ?? ''} pa-filed`.trim() : className}
-                    onMouseOver={event => { if (event.target instanceof Element && event.target.closest('.pd-filed') !== null) setFiled(true); }}
-                    onMouseLeave={() => setFiled(false)}
-                    {...props}
-                >
-                    {children}
-                </div>
-            );
-        };
-        this.containers.add(this, this._layer);
-    }
 
     override write(): ReactNode {
         const cover = this.$cover;

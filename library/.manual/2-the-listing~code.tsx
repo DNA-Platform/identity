@@ -102,7 +102,7 @@ export class $File extends $Tab {
         this.$Switch(...chemicals);
         const Button = this.style;
         const button = this._button;
-        this._button = (props: { children?: ReactNode }) => (
+        this._button = $((props: { children?: ReactNode }) => (
             <Button
                 type="button"
                 $colour={this.colour}
@@ -110,7 +110,7 @@ export class $File extends $Tab {
                 onClick={() => this.press()}
                 {...props}
             />
-        );
+        ));
         this.containers.replace(this, button, this._button);
     }
 

@@ -1,5 +1,5 @@
 import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
-import { Appendix, Folded, Index } from './14-the-entry~code.tsx';
+import { Appendix, Index } from './14-the-entry~code.tsx';
 import { TableOfContents } from './10-the-manual~faces.tsx';
 
 export default () => (
@@ -93,7 +93,6 @@ export default () => (
         </Section>
         <Section>
             <Appendix />
-            <Folded />
             <Heading>Key</Heading>
             <Paragraph>
                 <Content>$[[ ./The Key ]]</Content>

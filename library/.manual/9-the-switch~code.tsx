@@ -5,18 +5,18 @@ import { $Annotation, $Word, Given } from '@dna-platform/public';
 export class $Switch extends $Word {
     $of!: Given<$Annotation>;
     protected _button!: ElementType;
-    get on(): boolean { return this.book!.is(this.$of); }
+    get on(): boolean { return [this.book!.$is].flat().includes(this.$of); }
 
     $Switch(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
-        this._button = (props: { children?: ReactNode }) => (
+        this._button = $((props: { children?: ReactNode }) => (
             <button
                 type="button"
                 aria-pressed={this.on}
                 onClick={() => this.press()}
                 {...props}
             />
-        );
+        ));
         this.containers.replace(this, 'span', this._button);
     }
 

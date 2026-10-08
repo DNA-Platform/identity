@@ -111,19 +111,19 @@ export class $Folded extends $Annotation {
 
 export class $Twist extends $Switch {
     $target?: $Writing;
-    override get on(): boolean { return this.$target?.is(this.$of) ?? false; }
+    override get on(): boolean { return this.$target !== undefined && [this.$target.$is].flat().includes(this.$of); }
 
     $Twist(...chemicals: $Chemical[]) {
         this.$Switch(...chemicals);
         const button = this._button;
-        this._button = (props: { children?: ReactNode }) => (
+        this._button = $((props: { children?: ReactNode }) => (
             <button
                 type="button"
                 aria-pressed={this.on}
                 onClick={event => { event.preventDefault(); this.press(); }}
                 {...props}
             />
-        );
+        ));
         this.containers.replace(this, button, this._button);
     }
 
