@@ -28,10 +28,6 @@ export class $Bookshelf extends $LibraryBookTheme {
     spine = 'inset 3px 0 0 rgba(0, 0, 0, 0.08), inset 4px 0 0 rgba(255, 255, 255, 0.35), 0 6px 12px -10px rgba(44, 52, 64, 0.3)';
     lift = 'inset 3px 0 0 rgba(0, 0, 0, 0.08), inset 4px 0 0 rgba(255, 255, 255, 0.35), 0 10px 16px -12px rgba(44, 52, 64, 0.35)';
     openSpine = 'inset 7px 0 0 rgba(0, 0, 0, 0.07), inset 9px 0 0 rgba(255, 255, 255, 0.45), 0 12px 22px -16px rgba(44, 52, 64, 0.35)';
-    keyword = '#5a4fa8';
-    string = '#2f7f6e';
-    type = '#23407a';
-    comment = '#8a94a3';
 
     protected override parts(): RuleSet[] {
         return [...super.parts(), this.shelf(), this.jackets(), this.desk(), this.unfolded(), this.small()];
@@ -275,15 +271,7 @@ export class $Bookshelf extends $LibraryBookTheme {
                 max-height: calc(${({ theme }) => theme.volume} * 1.5);
                 padding-block-start: calc(${({ theme }) => theme.space} / 4);
                 overflow: clip;
-            }
-            .pd-leaf.pd-desk.pd-open .pd-words::after {
-                content: '';
-                position: absolute;
-                inset-inline: 0;
-                top: calc(${({ theme }) => theme.volume} * 1.5 - ${({ theme }) => theme.space} * 3);
-                height: calc(${({ theme }) => theme.space} * 3);
-                background: linear-gradient(to bottom, transparent, color-mix(in oklch, var(--ground, ${({ theme }) => theme.tint}) 60%, white) 70%, color-mix(in oklch, var(--ground, ${({ theme }) => theme.tint}) 60%, white));
-                pointer-events: none;
+                mask-image: linear-gradient(to bottom, black calc(${({ theme }) => theme.volume} * 1.5 - ${({ theme }) => theme.space} * 3), transparent calc(${({ theme }) => theme.volume} * 1.5));
             }
             .pd-leaf.pd-desk.pd-open .pd-words .pd-chapter { margin-block: 0; max-width: none; scroll-margin-block-start: calc(${({ theme }) => theme.space} * 3.5); }
             .pd-leaf.pd-desk.pd-open .pd-words .pd-paragraph.pd-shelved {
@@ -397,8 +385,7 @@ export class $Bookshelf extends $LibraryBookTheme {
             .pa-unfolded .pd-shelf { display: none; }
             .pa-unfolded .pd-leaf.pd-desk.pd-open { margin-block-end: 0; }
             .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-paragraph.pd-jacket { position: sticky; top: calc(${({ theme }) => theme.space} * 0.833); }
-            .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-words { max-height: none; max-width: 60ch; overflow: visible; }
-            .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-words::after { display: none; }
+            .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-words { max-height: none; max-width: 60ch; overflow: visible; mask-image: none; }
             .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-words .pd-paragraph { font-size: calc(1.143 * ${({ theme }) => theme.size}); line-height: 1.6; }
             .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-word.pd-switch { top: calc(${({ theme }) => theme.space} * 0.667); right: ${({ theme }) => theme.space}; bottom: auto; }
             .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-word.pd-switch::after { transform: translateY(calc(${({ theme }) => theme.space} / 24)) rotate(180deg); }
@@ -433,8 +420,7 @@ export class $Bookshelf extends $LibraryBookTheme {
                 .pd-me .pd-word.pd-mark { display: block; }
                 .pd-leaf.pd-desk.pd-open { grid-template-columns: ${({ theme }) => theme.cover} minmax(0, 1fr); gap: calc(${({ theme }) => theme.space} * 0.667); padding: calc(${({ theme }) => theme.space} * 0.667); }
                 .pd-leaf.pd-desk.pd-open .pd-paragraph.pd-jacket { width: ${({ theme }) => theme.cover}; height: calc(${({ theme }) => theme.cover} * 1.5); font-size: calc(0.964 * ${({ theme }) => theme.size}); }
-                .pd-leaf.pd-desk.pd-open .pd-words { max-height: none; }
-                .pd-leaf.pd-desk.pd-open .pd-words::after { display: none; }
+                .pd-leaf.pd-desk.pd-open .pd-words { max-height: none; mask-image: none; }
                 .pd-leaf.pd-desk.pd-open .pd-word.pd-switch { display: none; }
                 .pd-shelf { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(${({ theme }) => theme.space} * 0.583) calc(${({ theme }) => theme.space} / 2); }
                 .pd-volume .pd-paragraph.pd-jacket { width: auto; height: auto; aspect-ratio: 2 / 3; }

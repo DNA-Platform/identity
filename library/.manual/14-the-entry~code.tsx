@@ -146,7 +146,6 @@ export class $Twist extends $Switch {
 
 export class $Folder extends $Format {
     specification = new FolderSpecification();
-    themeProvider = true;
     tree: ElementType = selection.div`
         .pd-book .pd-holds &.pd-folder .pd-twist, .pd-book .pd-holds &.pd-folder .pd-folder-mark, .pd-book .pd-holds &.pd-folder .pa-entry .pd-file { display: none; }
         .pd-book.pa-built .pd-holds &.pd-folder:not(.pa-open) { display: none; }

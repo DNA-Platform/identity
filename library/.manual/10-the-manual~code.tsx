@@ -9,7 +9,6 @@ import { CodeForward as codeForward, LightCode as lightCode, Numbered as numbere
 
 export class $Manual extends $Format {
     specification = new ManualSpecification();
-    themeProvider = true;
     $file = '';
     spread: ElementType = selection.div`
         --night: color-mix(in oklch, #0f2a33 55%, #2b363c);
