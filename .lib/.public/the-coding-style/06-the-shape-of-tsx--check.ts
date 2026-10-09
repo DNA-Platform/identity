@@ -62,28 +62,32 @@ for (const file of files) {
             if (ts.isJsxAttribute(attribute) && attribute.initializer !== undefined && ts.isJsxExpression(attribute.initializer) && attribute.initializer.expression !== undefined && ts.isStringLiteral(attribute.initializer.expression))
                 say(attribute, 'a string written as ={"…"}');
     };
-    const visit = (node: TS.Node): void => {
+    const visit = (node: TS.Node, inSentence: boolean): void => {
         if (ts.isJsxSelfClosingElement(node)) tag(node);
+        let sentence = inSentence;
         if (ts.isJsxElement(node)) {
             tag(node.openingElement);
             const children = node.children.filter(counted);
             const inner = children.filter(inline);
-            const prose = children.some(child => ts.isJsxText(child)) && inner.some(child => !ts.isJsxSelfClosingElement(child));
+            // A SENTENCE IS THE HAND'S: words beside an element make one, and no tree can tell a figure in a sentence
+            // from a mark at its head, so of a sentence the checker asks only that its element opens and closes alone,
+            // and asks nothing of what stands inside it, since a word in a sentence stays in its line whatever it holds.
+            sentence = children.some(child => ts.isJsxText(child));
             const spans = endLine(node.openingElement) > line(node.openingElement);
-            if (inner.length > 0 || (spans && children.length > 0)) {
+            if (!inSentence && (inner.length > 0 || (spans && children.length > 0))) {
                 const first = children[0];
                 const last = children[children.length - 1];
                 if (line(first) === endLine(node.openingElement)) say(first, "a child on the opening tag's line");
                 if (endLine(last) === line(node.closingElement)) say(node.closingElement, "the closing tag shares the last child's line");
                 for (let index = 1; index < children.length; index++) {
-                    if (!prose && line(children[index]) === endLine(children[index - 1])) { say(children[index], 'two children on a line'); break; }
+                    if (!sentence && line(children[index]) === endLine(children[index - 1])) { say(children[index], 'two children on a line'); break; }
                     if (/\n[ \t]*\n/u.test(text.slice(children[index - 1].getEnd(), children[index].getStart(source)))) { say(children[index], 'a blank line between children'); break; }
                 }
             }
         }
-        ts.forEachChild(node, visit);
+        ts.forEachChild(node, child => visit(child, sentence));
     };
-    visit(source);
+    visit(source, false);
 }
 
 const byRule = new Map<string, number>();
