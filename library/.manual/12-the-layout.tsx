@@ -10,15 +10,16 @@ export default () => (
         <Title>[[ The Layout ]]</Title>
         <Paragraph>
             <Brief />
-            Said of every book: each chapter on a page of its own, one open at a time, in the frame's grid.
+            Said of every book: each chapter a page, one open at a time, in the frame's grid.
         </Paragraph>
         <Section>
             <Heading>What the layout is</Heading>
             <Paragraph>
                 In printing, the layout is the arrangement of a book's parts on the sheet. Here it is said of a
                 book, once, and it does two things. It shows one chapter at a time: <Means>$[[ the book ]]( ./The Book )</Means> draws
-                each chapter on a page of its own and says which page is open, and the layout hides the rest —
-                every page stays in the document, so a link to any place in the book has somewhere to land. And
+                its synopsis and each chapter in the pages, the layout marks the open one on the chapter itself
+                with the framework's class and hides the rest — every chapter stays in the document, so a link to
+                any place in the book has somewhere to land. And
                 it carries the one grid of the frame — the library's bar across the top with me at its end, what
                 the book holds down the side, the head and the pages beside — which every book of mine wears,
                 because I want a top bar on every screen and a side bar on most.
@@ -28,12 +29,14 @@ export default () => (
             <Heading>How the layout fits the library's patterns</Heading>
             <Paragraph>
                 The layout is the framework's own Paginated extended: it answers the framework's two questions,
-                which chapters are pages and which is open, with the book's own pages — its chapters without
-                the appendix — and the book's own open, and keeps the framework's way of marking them. It is a
-                Format with a look, a styled component composed of parts — the paging, the regions, the grid, the
-                phone — and it is given to every book when the book is defined, so it is always there. It is
-                also the one thing on the page that knows the book's address, so it is the layout that lights
-                the library's subject that is this book, by a rule that names that address. That is why a tone, a reading and a
+                which chapters are pages and which is open, with the book's own pages — its synopsis and every
+                chapter — and the book's open, the synopsis when the book has nothing open, and keeps the
+                framework's way of marking them. It is a Format with a look, a styled component composed of
+                parts — the paging, the regions, the grid, the phone — and it is given to every book when the
+                book is defined, so it is always there. It is also the one thing on the page that knows the
+                book's address, so it is the layout that lights the library's subject that is this book, by a
+                rule that names that address; and it reads whether the open chapter is read as a manual and
+                wears the manual's class on the book while it is, which is the context the tree reads. That is why a tone, a reading and a
                 paper can be annotations that add a class and nothing else: the rules that read the class live
                 in a container that never leaves.
             </Paragraph>

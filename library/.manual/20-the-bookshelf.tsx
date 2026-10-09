@@ -21,11 +21,13 @@ export default () => (
                 book's synopsis, and holds that book's cover as a volume, is one of its books. The class finds
                 them by what they carry and draws the regions the base gives every book in its own way — the
                 bar as its cover, with the subject's mark first when the book is filed under another and no
-                mark when it is filed under itself, as only the library is; the side bar as its table; the
-                open page as the desk, the jacket large beside the chapter's words, and the shelf of jackets
-                after the pages. Three things are said in it: a caption, of the one line an entry says; an
-                arrow, of the word in a row that leads to the book; and unfolded, of the book, by the switch
-                that reads on. A title in a catalogue's entry refers to the book it stands for, by a reference
+                mark when it is filed under itself, as only the library is; the side bar as its table; each
+                book's synopsis, and its own, on a desk, and the shelf of jackets below the pages. Four things
+                are said in it: a desk, of a synopsis, which the class says of its own and of each book's at
+                bind, a Format whose card holds the jacket large beside the chapter's words, the line that says
+                by whom and where it is filed, the way into the book and read on, and which hides itself with
+                its page; a caption, of the one line an entry says; an arrow, of the word in a row that leads to
+                the book; and unfolded, of the book, by the switch that reads on. A title in a catalogue's entry refers to the book it stands for, by a reference
                 registered on the class. A library makes its catalogue by saying so in its book file, in one line,
                 and writing its entries.
             </Paragraph>
@@ -62,8 +64,8 @@ export default () => (
                 manual's tree with the book's name at its head, the shelf and the desk step aside, and the open
                 chapter is shown beside its file by <Means>$[[ the manual ]]( ./The Manual )</Means>, which the
                 chapter says it is read in, in this book's own colours; the name at the head of the tree leads
-                back. Which view stands is the class the manual puts on the book while one of its chapters is
-                open, and the shelf's own rules name the desk's pages and reach nothing of the manual's.
+                back. Which view stands is the class the layout puts on the book while a manual chapter is open,
+                and the shelf's own rules name the desk and reach nothing of the manual's.
             </Paragraph>
         </Section>
         <Append

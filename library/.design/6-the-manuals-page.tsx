@@ -258,8 +258,15 @@ export default () => (
                 same six things make every case. A part is a grouping of chapters, the framework's, and a chapter
                 says which part it is in at its head: <Means>$[[ The Part ]]( Dougs Reference Manual / The Part )</Means>.
                 The manual is a format said of a chapter, the one way a part is read here: a chapter beside its
-                files read three ways, its row in the tree given its presses, and a class on the book while one of
-                its chapters is open: <Means>$[[ The Manual ]]( Dougs Reference Manual / The Manual )</Means>.
+                files read three ways, the panel, the rail and the grip each a noun of its own around the
+                chapter's words, its row in the tree given its presses by the index, and a class the layout puts
+                on the book while one of its chapters is open: <Means>$[[ The Manual ]]( Dougs Reference Manual / The Manual )</Means>.
+                The chapter is the page, which the framework marks on the chapter's own element, and nothing is
+                drawn around it but what a Format said of it draws, the manual's spread here and the catalogue's
+                desk there; that is the one pattern, and a third presentation is made the same way. The spread
+                draws its panel, its rail and its grip only while its chapter is open, so the twenty manuals a
+                reader is not looking at cost the page nothing, and the document at load is a seventh of what it
+                was.
                 A folder is the tree's own piece, said of a section of the table, which the base book says of each
                 part whose chapters are manuals; it is open when the reader is in its part, and closed it draws
                 nothing of its own: <Means>$[[ The Entry ]]( Dougs Reference Manual / The Entry )</Means> and <Means>$[[ The Book ]]( Dougs Reference Manual / The Book )</Means>.

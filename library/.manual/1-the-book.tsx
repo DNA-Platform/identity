@@ -24,9 +24,13 @@ export default () => (
                 The class draws the frame that is on every screen, in five regions named as the frame's sketch
                 names them: the library's bar, with what the book is filed under and the library's own subjects;
                 me, who the book is by; what the book holds, its table of contents; the head, its cover and its
-                switches; and the pages, the front it opens on and then one page for each chapter, the chapter
-                with the files it appends. A region is a method, and a type of book overrides the method whose
-                region it fills differently, and nothing else.
+                switches; and the pages, the synopsis it opens on and then each chapter, one open at a time. The
+                chapter is the page: the framework's own Paginated marks the open one on the chapter's element
+                and hides the rest, so the book draws no box around a chapter, and whatever a chapter is shown
+                inside, the manual's spread or the catalogue's desk, is a Format said of that chapter. A region is
+                a method, and a type of book overrides the method whose region it fills differently, and nothing
+                else; above the pages and below them a type may draw something of its own, the story its top and
+                the catalogue its shelf.
             </Paragraph>
         </Section>
         <Section>
@@ -46,28 +50,29 @@ export default () => (
             <Heading>How the book is used</Heading>
             <Paragraph>
                 A type of book is a class under this one. <Means>$[[ The catalogue ]]( Dougs Library / The Catalogue )</Means> overrides
-                what the book opens on, to put its shelf under its synopsis with its own cover first, its head,
-                which it leaves to its switches, and its front, which is always open, and names its entries as
-                pages; <Means>$[[ the manual ]]( ./The Manual )</Means> overrides its switches and gives itself the
-                spread that sets a chapter beside its file; <Means>$[[ my story ]]( Dougs Story / The Sheet )</Means> overrides
-                its head and its front, and <Means>$[[ the design book ]]( Dougs Design / The Frame )</Means> says
+                its head, which it leaves to its switches, and what stands below the pages, its shelf, names its
+                entries as pages, and says a desk of its own synopsis and of each book's at bind; <Means>$[[ the manual ]]( ./The Manual )</Means> overrides
+                its switches and gives itself the spread that sets a chapter beside its file; <Means>$[[ my story ]]( Dougs Story / The Sheet )</Means> overrides
+                its head and what stands above the pages, and <Means>$[[ the design book ]]( Dougs Design / The Frame )</Means> says
                 which chapter opens when none is named. Each is a few lines, because the frame is this class's.
             </Paragraph>
         </Section>
         <Section>
             <Heading>What the book gives a type</Heading>
             <Paragraph>
-                What a type reads: its chapters, the ordinary ones; what it places, which its specification
-                counts; which chapter is open, the one the address names, whether the address names the chapter
-                or a heading inside it; the three tones it may offer as switches. What a
-                type overrides: the library's bar, the subjects, what the book holds, the head, the front, what the
-                book opens on, the pages, the switches, the listings a chapter's files are printed as. And what
-                the book does for every type: it draws a chapter read as <Means>$[[ a manual ]]( ./The Manual )</Means> inside
-                the page's box alone and lets the manual fill it; it says a folder of
+                What a type reads: its chapters, the ordinary ones; its pages, which are the synopsis and every
+                chapter, and its body, the chapters in reading order with the appendix left out, which the turn
+                walks and the numbered entry counts; what it places, which its specification counts; which
+                chapter is open, the one the address names, whether the address names the chapter or a heading
+                inside it; the three tones it may offer as switches. What a type overrides: the library's bar,
+                the subjects, what the book holds, the head, what stands above the pages and below them, what the
+                book opens on, the switches. And what the book does for every type: it draws each page as the
+                chapter it is and lets the Format the chapter says, <Means>$[[ a manual's ]]( ./The Manual )</Means> spread
+                or a catalogue's desk, stand around it; it says a folder of
                 each <Means>$[[ part's ]]( ./The Part )</Means> section at bind, and the root, the row at the head of
                 the tree that leads back out of a part, which a type may say it has none of; it refuses a part
-                read as a manual that no section is headed for; and it gives the layout the open chapter's manual
-                to put a class on the book.
+                read as a manual that no section is headed for; and its layout reads whether the open chapter is
+                a manual to put the class on the book that is the context.
             </Paragraph>
         </Section>
         <Section>

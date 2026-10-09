@@ -122,36 +122,6 @@ export class $LibraryBookTheme extends $Theme {
 
     protected listings(): RuleSet {
         return css`
-            .pd-files {
-                background: ${({ theme }) => theme.night};
-                color: ${({ theme }) => theme.glow};
-                scrollbar-width: thin;
-                scrollbar-color: ${({ theme }) => theme.dim} transparent;
-            }
-            .pd-paragraph.pd-listing {
-                margin-block: 0;
-                padding: calc(${({ theme }) => theme.space} / 2) calc(${({ theme }) => theme.space} * 0.6);
-            }
-            .pd-listing .pd-word {
-                display: inline-block;
-                padding: calc(${({ theme }) => theme.space} * 0.3) calc(${({ theme }) => theme.space} / 2);
-                border-start-start-radius: calc(${({ theme }) => theme.space} * 0.3);
-                border-start-end-radius: calc(${({ theme }) => theme.space} * 0.3);
-                background: ${({ theme }) => theme.dusk};
-                color: ${({ theme }) => theme.paper};
-                font-size: calc(0.86 * ${({ theme }) => theme.size});
-            }
-            .pd-listing .pd-code {
-                margin: 0;
-                padding-block: calc(${({ theme }) => theme.space} * 0.66);
-                border-radius: calc(${({ theme }) => theme.space} * 0.4);
-                border-start-start-radius: 0;
-                background: ${({ theme }) => theme.dusk};
-                font-size: calc(0.84 * ${({ theme }) => theme.size});
-                line-height: 1.75;
-                scrollbar-width: thin;
-                scrollbar-color: ${({ theme }) => theme.dim} transparent;
-            }
             .pd-code-line { padding-inline-end: calc(${({ theme }) => theme.space} * 0.75); }
             .pd-code-line::before {
                 content: attr(data-line);

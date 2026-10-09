@@ -78,6 +78,12 @@ export default () => (
             <Paragraph>
                 <Content>$[[ ./The Manual ]]</Content>
             </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Panel ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Rail ]]</Content>
+            </Paragraph>
         </Section>
         <Section>
             <Heading>The designs</Heading>

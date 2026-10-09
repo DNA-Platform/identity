@@ -10,9 +10,11 @@ import TheTheme3 from '../../../../.manual/3-the-theme';
 import TheDate4 from '../../../../.manual/4-the-date';
 import InitializingALibrary5 from '../../../../.manual/5-initializing-a-library';
 import DevelopingALibrary6 from '../../../../.manual/6-developing-a-library';
+import TheRail7 from '../../../../.manual/7-the-rail';
 import TheAuthorAndTheSubject8 from '../../../../.manual/8-the-author-and-the-subject';
 import TheSwitch9 from '../../../../.manual/9-the-switch';
 import TheManual10 from '../../../../.manual/10-the-manual';
+import ThePanel11 from '../../../../.manual/11-the-panel';
 import TheLayout12 from '../../../../.manual/12-the-layout';
 import TheTurn13 from '../../../../.manual/13-the-turn';
 import TheEntry14 from '../../../../.manual/14-the-entry';
@@ -44,9 +46,11 @@ export const book = () => (
         {TheDate4()}
         {InitializingALibrary5()}
         {DevelopingALibrary6()}
+        {TheRail7()}
         {TheAuthorAndTheSubject8()}
         {TheSwitch9()}
         {TheManual10()}
+        {ThePanel11()}
         {TheLayout12()}
         {TheTurn13()}
         {TheEntry14()}

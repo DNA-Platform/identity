@@ -34,7 +34,7 @@ export default () => (
                 row's look is the theme's holds part, in the colours of <Means>$[[ the tone ]]( ./The Tone )</Means>.
                 And a section of the table said to be the appendix — how this book is built — stands at the
                 foot of the contents in a smaller voice, and the chapters it leads to are left out of the book's
-                pages, so the folio and the turns never count the machinery.
+                body, so the count and the turns never count the machinery.
             </Paragraph>
         </Section>
         <Section>
@@ -48,16 +48,17 @@ export default () => (
             <Paragraph>
                 In the manual the entries stand as a tree. A folder is said of each section of the table, with a
                 chevron that folds it and a mark that leads to the section's first chapter, and a chapter's files
-                stand under its row as presses, which the manual gives the row at bind. The chevron is a switch
-                said of the section, and the key stands folded from the start. The tree's look is the folder's own,
+                stand under its row as presses, which the index gives the row at bind, where it says of each row
+                that it is an entry, reading whether the row's chapter is read as a manual and which files it
+                appends. The chevron is a switch said of the section, and the key stands folded from the start. The tree's look is the folder's own,
                 carried by its layer and read off the book's theme, so a section said to be a folder in any book of
                 mine folds and reads as the manual's tree does, in that book's colours: the base book says a folder
                 of each <Means>$[[ part's ]]( ./The Part )</Means> section at bind. A folder is open when the reader
                 is in its part, the open chapter's part being its own, and both none in this book; open, it is the
                 tree, and closed it draws nothing of its own, so its section reads as the theme draws any section,
-                and in a manual's context a folder that is not open is not drawn at all. The root is the one row the
-                base book adds to the table at bind, the book's own name leading back to the book, drawn in a
-                manual's context only; this book adds none. The design of the tree and how the chevron came to be
+                and in a manual's context a folder that is not open is not drawn at all. The root is the root of
+                the tree, the one row the base book adds to the table at bind, the book's own name leading back
+                to the book, drawn in a manual's context only; this book adds none. The design of the tree and how the chevron came to be
                 drawn is in <Means>$[[ The Manual's Page ]]( Dougs Design / The Manual's Page )</Means>.
             </Paragraph>
         </Section>

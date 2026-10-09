@@ -20,8 +20,8 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 A listing is how a book shows one such file: the name it was appended under, and under that the
-                file as it is on disk. <Means>$[[ The book ]]( ./The Book )</Means> decides where a listing
-                goes. Left to itself it prints each one under its chapter.
+                file as it is on disk. <Means>$[[ The panel ]]( ./The Panel )</Means> decides where a listing goes:
+                one for each file the chapter appends, the one in front shown and the rest kept.
             </Paragraph>
             <Paragraph>
                 This manual's chapters are of that sort. So are the chapters at the back of any other book, where
@@ -38,9 +38,12 @@ export default () => (
             <Heading>How a listing fits the library's patterns</Heading>
             <Paragraph>
                 A listing is a paragraph with content of its own: the file's name as a word, and the file as the
-                framework's own code figure, numbered and coloured. The book draws one for each file a chapter
-                appends, on the page beside the chapter, and <Means>$[[ the manual ]]( ./The Manual )</Means> sets
-                the two side by side or folds the listing to a strip, its name turned on its side.
+                framework's own code figure, numbered and coloured. It is given the file it stands for, an append
+                of its chapter, and reads its name, its type and its chapter off it; whether it is the one in
+                front it reads from <Means>$[[ the manual ]]( ./The Manual )</Means> said of that chapter, and the
+                press that puts a file in front is the same file press wherever it stands, in the panel's tabs,
+                in <Means>$[[ the rail ]]( ./The Rail )</Means> with the name turned on its side, or in the chapter's
+                row of the table.
             </Paragraph>
         </Section>
         <Append
