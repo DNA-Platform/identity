@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
 import { $, $check, inert } from '@dna-platform/chemistry';
-import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Section, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
+import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Section, $TableOfContents, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
-import { $Appendix, $View, leads } from './14-the-entry~code.tsx';
+import { $Appendix, $Folder, Folder as folder, leads } from './14-the-entry~code.tsx';
+import { $View } from './15-the-part~code.tsx';
 import { Dark as dark, Light as light, Tone as tone, WhiteOverBlack as whiteOverBlack } from './16-the-tone~code.tsx';
 import { $Logo, $Volume, Logo as logo, Mark as mark, painted } from './19-the-cover~code.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
@@ -214,6 +215,11 @@ export class $LibraryBook extends $Book {
         return composition.text.find($Section).flatMap(section => [section, ...this.sections(section)]);
     }
 
+    sectionOf(part: string): $Section | undefined {
+        const table = this.table;
+        return table === undefined ? undefined : this.sections(table).find(section => section.canonical?.name === part);
+    }
+
     protected override turn(): void {
         if (this.bookmark === this.cover) return;
         super.turn();
@@ -231,6 +237,15 @@ export class $LibraryBook extends $Book {
 
     protected override $Bound(): void {
         this._places = this.places();
+        const Folder = $(folder);
+        const table = this.table?.annotations.expressed($TableOfContents);
+        for (const part of table?.parts ?? []) {
+            const section = this.sectionOf(part);
+            if (section === undefined || section.is($Folder) || !table!.chaptersOf(part).some(chapter => chapter.is($View))) continue;
+            section.annotations.add(this,
+                <Folder />
+            );
+        }
         const Logo = $(logo);
         this._logo = reflection.chemical<$Logo>((
             <Logo

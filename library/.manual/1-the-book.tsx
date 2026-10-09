@@ -61,7 +61,11 @@ export default () => (
                 counts; which chapter is open, the one the address names, whether the address names the chapter
                 or a heading inside it; the three tones it may offer as switches. What a
                 type overrides: the library's bar, the subjects, what the book holds, the head, the front, what the
-                book opens on, the leaves, the switches, the listings a chapter's files are printed as.
+                book opens on, the leaves, the switches, the listings a chapter's files are printed as. And what
+                the book does for every type: it draws a chapter that has a view inside the page's box alone and
+                lets the view fill it, as <Means>$[[ the manual ]]( ./The Manual )</Means> does; it says a folder
+                of each <Means>$[[ part's ]]( ./The Part )</Means> section at bind; and it gives the layout the open
+                chapter's view to put a class on the book.
             </Paragraph>
         </Section>
         <Section>

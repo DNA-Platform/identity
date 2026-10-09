@@ -1,7 +1,8 @@
-import { Append, Chapter, Heading, Image, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Append, Chapter, Heading, Image, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
 
 export default () => (
     <Chapter>
+        <Part>The design</Part>
         <Title>[[ The Manual's Page ]]</Title>
         <Section>
             <Heading>What I come to the manual for</Heading>
@@ -187,6 +188,52 @@ export default () => (
                 page of twenty thousand nodes, the same for a tab, an option, a fold and the hover, and the
                 profile leads with the framework's own readings of the open chapter, each a walk of the book
                 re-run by every row that read it. That is the next thing, and it belongs to the framework.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>The part, built</Heading>
+            <Paragraph>
+                <Image>![[ built-part-catalogue.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                The manual's page in the catalogue, the day after the manual's own. I wanted an appendix that
+                might be, or have elements of, a reference manual, since almost every book ends up with an
+                appendix for the components used to make it, almost like the genome of the book. What came of
+                it is two things in the reference manual, a part and a view. A part is a grouping of chapters
+                and nothing more: a chapter says which part it is in at its head, with the part's name as its
+                words, and the table of contents answers the grouping. It requires no place, no anchor and no
+                form in the table, and the table is written however I write it; the part is the framework's
+                now, and I decided that the implementer is free to integrate parts as they like, with headings
+                in their table or without. How a part's chapters are shown is a view, a format said of each of
+                them, and the manual is the one view this library has, the same code the reference manual
+                itself is built on, so there is one way to write a reference manual and the catalogue's
+                chapter on how it is built says two lines at its head and is read as the manual reads a
+                chapter: beside its file, in the catalogue's own colours, with the tree for its part down the
+                side, the shelf and the desk stepping aside while it is open. The folder in the tree is the
+                part's place in the page, and its mark is a press to the part's first chapter, which is where
+                a part is reached, as a book is reached through its cover. It is all
+                in <Means>$[[ The Part ]]( Dougs Reference Manual / The Part )</Means> and <Means>$[[ The Manual ]]( Dougs Reference Manual / The Manual )</Means>,
+                with the tree's own piece in <Means>$[[ The Entry ]]( Dougs Reference Manual / The Entry )</Means> and
+                what the base does for every book in <Means>$[[ The Book ]]( Dougs Reference Manual / The Book )</Means>.
+            </Paragraph>
+            <Paragraph>
+                <Image>![[ built-part-design.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                <Image>![[ built-part-story.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                The same two lines in this book's six chapters on how it is built and in my story's one, and
+                each book keeps its own tone: the design book's cobalt bar and rose over the tree, the story's
+                serif on its paper with the files in the dark panel at the right. Nothing in the reference
+                manual changed in function, performance or style, which was the condition I set: measured on
+                the bound site, every one of a hundred and forty-four computed properties on its page the same
+                as before, its three states by their columns the same, its folders folding to the same heights,
+                and its seven presses between 463 and 759 milliseconds against the 635 to 718 before. What the
+                carrying taught is in the chapters: a part's heading in the table wears an id as every heading
+                does, so a part is named so that no chapter's title wears the same one; a view's rules stand
+                earlier in the sheet than a theme's, so each says the book first and its own class; and a book
+                whose chapters are in parts has every chapter in one, which is the framework's rule and mine.
             </Paragraph>
         </Section>
         <Append

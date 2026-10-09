@@ -4,7 +4,8 @@ import { $Annotation, $Append, $Chapter, $Paragraph, $Section, $Writing, Given, 
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
 import { File as file, Listing as listing } from './2-the-listing~code.tsx';
 import { Switch as switchOf, Tab as tab } from './9-the-switch~code.tsx';
-import { $Appendix, $Entry, $View, Folded as folded, Folder as folder, Twist as twist } from './14-the-entry~code.tsx';
+import { $Appendix, $Entry, Folded as folded, Folder as folder, Twist as twist } from './14-the-entry~code.tsx';
+import { $View } from './15-the-part~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
 import { $Brief, CodeForward as codeForward, LightCode as lightCode, Numbered as numbered, Split as split, WordsForward as wordsForward, Wrapped as wrapped } from './10-the-manual~forward.tsx';
 
@@ -263,6 +264,7 @@ export class $Manual extends $View {
     get readings(): Given<$Annotation>[] {
         return [wordsForward, split, codeForward];
     }
+    override get context(): string { return 'pa-built'; }
 
     $Manual(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);

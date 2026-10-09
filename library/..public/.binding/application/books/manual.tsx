@@ -16,6 +16,7 @@ import TheManual10 from '../../../../.manual/10-the-manual';
 import TheLayout12 from '../../../../.manual/12-the-layout';
 import TheTurn13 from '../../../../.manual/13-the-turn';
 import TheEntry14 from '../../../../.manual/14-the-entry';
+import ThePart15 from '../../../../.manual/15-the-part';
 import TheTone16 from '../../../../.manual/16-the-tone';
 import TheFirst17 from '../../../../.manual/17-the-first';
 import TheColour18 from '../../../../.manual/18-the-colour';
@@ -49,6 +50,7 @@ export const book = () => (
         {TheLayout12()}
         {TheTurn13()}
         {TheEntry14()}
+        {ThePart15()}
         {TheTone16()}
         {TheFirst17()}
         {TheColour18()}

@@ -57,11 +57,12 @@ export default () => (
             <Heading>The two views</Heading>
             <Paragraph>
                 The page has two views and one table of contents. Reading, the contents stand first and the
-                page is the desk and the shelf; built, the appendix stands first, the shelf and the desk step
-                aside, and the open chapter is shown with its files as the reference manual shows a chapter.
-                Which view stands is a class on the book that the layout adds when the open chapter is in
-                the appendix, so the toggle between them is a press on a row of the other group. The built
-                view borrows the manual's look for now; it is designed properly when the manual is.
+                page is the desk and the shelf; built, the part that says how this book is built stands first
+                as the manual's tree, the shelf and the desk step aside, and the open chapter is shown beside
+                its file by <Means>$[[ the manual ]]( ./The Manual )</Means>, which the chapter says it is read
+                in, in this book's own colours. Which view stands is the class the manual puts on the book
+                while one of its chapters is open, so the toggle between them is a press on a row of the other
+                group, and the shelf's own rules name the desk's pages and reach nothing of the manual's.
             </Paragraph>
         </Section>
         <Append

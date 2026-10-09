@@ -1,8 +1,9 @@
-import { Chapter, Date, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Chapter, Date, Heading, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
 import { Dated, First } from '../.manual/.book';
 
 export default () => (
     <Chapter>
+        <Part>The story</Part>
         <Dated>
             <Date>[2 October 2026](2026-10-02)</Date>
         </Dated>

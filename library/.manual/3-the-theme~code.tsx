@@ -334,6 +334,9 @@ export class $LibraryBookTheme extends $Theme {
             .pd-holds .pd-section.pa-appendix { opacity: 0.72; }
             .pd-holds .pd-section.pa-appendix .pd-heading { font-size: calc(0.66 * ${({ theme }) => theme.size}); }
             .pd-holds .pd-section.pa-appendix .pd-paragraph.pa-entry { font-size: calc(0.86 * ${({ theme }) => theme.size}); }
+            .pa-built .pd-holds .pd-section:not(.pa-folder) { opacity: 0.55; }
+            .pa-built .pd-holds .pd-section:not(.pa-folder) .pd-paragraph.pa-entry { display: none; }
+            .pa-built .pd-holds .pd-section.pa-folder { order: -1; }
             @media not all and (max-width: ${({ theme }) => theme.narrow}) {
                 .pd-holds > * { display: flex; flex-direction: column; min-height: 100%; }
                 .pd-holds .pd-chapter.pa-table-of-contents { flex: 1; display: flex; flex-direction: column; }

@@ -1,7 +1,10 @@
-import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Append, Chapter, Heading, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
+import { Manual } from '../.manual/.book';
 
 export default () => (
     <Chapter>
+        <Part>How this book is built</Part>
+        <Manual />
         <Title>[[ The Print ]]</Title>
         <Section>
             <Heading>A design is drawn on the book's own words</Heading>

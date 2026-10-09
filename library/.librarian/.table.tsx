@@ -11,7 +11,7 @@ export default () => (
             [[ Table of Contents ]]
         </Title>
         <Section>
-            <Heading>Contents</Heading>
+            <Heading>The story</Heading>
             <Paragraph>
                 <Content>$[[ ./Starting Over ]]</Content>
             </Paragraph>

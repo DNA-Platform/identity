@@ -69,6 +69,9 @@ export default () => (
             <Paragraph>
                 <Content>$[[ ./The Colour ]]</Content>
             </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Part ]]</Content>
+            </Paragraph>
         </Section>
         <Section>
             <Heading>The types of book</Heading>
