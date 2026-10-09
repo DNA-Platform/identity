@@ -34,7 +34,7 @@ export class $Bookshelf extends $LibraryBookTheme {
     comment = '#8a94a3';
 
     protected override parts(): RuleSet[] {
-        return [...super.parts(), this.shelf(), this.jackets(), this.desk(), this.unfolded(), this.built(), this.small()];
+        return [...super.parts(), this.shelf(), this.jackets(), this.desk(), this.unfolded(), this.small()];
     }
 
     protected override page(): RuleSet {
@@ -140,7 +140,6 @@ export class $Bookshelf extends $LibraryBookTheme {
             .pd-holds .pd-section.pa-appendix .pd-heading { font-size: calc(0.68 * ${({ theme }) => theme.size}); }
             .pd-holds .pd-section.pa-appendix .pa-entry { font-size: calc(0.893 * ${({ theme }) => theme.size}); font-weight: 400; }
             .pd-holds .pd-folder { margin-block-start: auto; }
-            .pd-holds .pd-section.pa-appendix.pa-folder { padding-block-start: 0; }
             @media (max-width: ${({ theme }) => theme.narrow}) {
                 .pd-holds { padding: calc(${({ theme }) => theme.space} * 0.42) calc(${({ theme }) => theme.space} * 0.667) calc(${({ theme }) => theme.space} / 2); }
                 .pd-holds .pd-chapter, .pd-holds .pd-section {
@@ -406,11 +405,11 @@ export class $Bookshelf extends $LibraryBookTheme {
         `;
     }
 
-    protected built(): RuleSet {
+    protected override built(): RuleSet {
         return css`
-            .pa-built .pd-holds .pd-section:not(.pa-appendix) { opacity: 0.55; }
-            .pa-built .pd-holds .pd-section:not(.pa-appendix) .pa-entry { display: none; }
-            .pa-built .pd-holds .pd-section.pa-appendix { order: -1; margin-block-start: 0; padding-block-start: 0; border-block-start: 0; opacity: 1; }
+            ${super.built()}
+            .pa-built .pd-holds .pd-folder { margin-block-start: 0; }
+            .pa-built .pd-holds .pd-section.pa-appendix { margin-block-start: 0; padding-block-start: 0; border-block-start: 0; opacity: 1; }
             .pa-built .pd-holds .pd-section.pa-appendix .pd-heading { font-size: calc(0.75 * ${({ theme }) => theme.size}); }
             .pa-built .pd-holds .pd-section.pa-appendix .pa-entry { font-size: calc(0.964 * ${({ theme }) => theme.size}); font-weight: 500; }
             .pa-built .pd-holds .pd-section.pa-appendix .pa-entry::before { background: ${({ theme }) => theme.skyInk}; }

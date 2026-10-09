@@ -257,15 +257,24 @@ export default () => (
                 This is the page I come back to when I want a manual, or an appendix read as one, because the
                 same six things make every case. A part is a grouping of chapters, the framework's, and a chapter
                 says which part it is in at its head: <Means>$[[ The Part ]]( Dougs Reference Manual / The Part )</Means>.
-                A view is a format said of a part's chapters that decides how they are shown, with a row for the
-                tree and a class for the book while one of them is open; the manual is the one view I have, a
-                chapter beside its files read three ways: <Means>$[[ The Manual ]]( Dougs Reference Manual / The Manual )</Means>.
+                The manual is a format said of a chapter, the one way a part is read here: a chapter beside its
+                files read three ways, its row in the tree given its presses, and a class on the book while one of
+                its chapters is open: <Means>$[[ The Manual ]]( Dougs Reference Manual / The Manual )</Means>.
                 A folder is the tree's own piece, said of a section of the table, which the base book says of each
-                part whose chapters have a view: <Means>$[[ The Entry ]]( Dougs Reference Manual / The Entry )</Means> and <Means>$[[ The Book ]]( Dougs Reference Manual / The Book )</Means>.
+                part whose chapters are manuals; it is open when the reader is in its part, and closed it draws
+                nothing of its own: <Means>$[[ The Entry ]]( Dougs Reference Manual / The Entry )</Means> and <Means>$[[ The Book ]]( Dougs Reference Manual / The Book )</Means>.
                 And the all-in-one book is the type of book whose every chapter is a manual, which the reference
                 manual is and another manual extends in a line. A book's own theme supplies the colours and says
                 in a few lines what steps aside while a manual chapter is open; nothing else knows the manual
                 exists.
+            </Paragraph>
+            <Paragraph>
+                A part read as a manual is a context of its own, and that is what makes the appendix feel like its
+                own reference manual inside another book. Reading the book, you do not see the manual's tree: the
+                part's section stands as any section of the table, a heading and its rows, and you press a row to
+                go in. In the context you see only the chapters of the part, as the manual's tree, with the book's
+                own name at the head of the tree, and you press it to get out. The reference manual is all one
+                manual, so its tree is always its tree and it has no way out.
             </Paragraph>
             <Paragraph>
                 An appendix read as a manual costs the chapter three lines and the table one. At the head of the
@@ -290,13 +299,13 @@ export default () => (
             <Paragraph>
                 What a maker has to know, each learned by breaking it. A part's heading in the table wears an id
                 as every heading does, so a part is named so that no chapter's title wears the same one. The
-                folder finds its section by the part's name, so the heading and the part say the same words, or
-                the chapter is drawn as a manual and nothing folds. The brief stands directly under the title,
-                before the sections. A view's rules enter the sheet before a theme's, so every rule of a view
-                says the book first and names the level's class beside the kind's, the paragraph with the entry,
-                the sentence with the heading, or it loses a tie to the theme; and a folder's layer stands between
-                its section and the column that placed it, so what a theme said of the section's place at the
-                foot it now says of the folder. When a page that should not have changed has, the proof is the
+                folder finds its section by the part's name, so the heading and the part say the same words, word
+                for word, or the bind refuses it in a sentence. The brief stands directly under the title, before
+                the sections. A format's rules enter the sheet before a theme's, so every rule of the tree says
+                the book first and the folder open, and names the level's class beside the kind's, the paragraph
+                with the entry, the sentence with the heading, or it loses a tie to the theme; and a folder's
+                layer stands between its section and the column that placed it, so what a theme said of the
+                section's place at the foot it now says of the folder. When a page that should not have changed has, the proof is the
                 library bound as it stood at the commit before, compared with the current one on every element
                 and every property in every view, which is what found the three faults of the evening this was
                 built.

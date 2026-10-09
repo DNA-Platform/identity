@@ -2,7 +2,7 @@ import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { Theme } from '@dna-platform/public';
 import { $LibraryBookTheme } from './3-the-theme~code.tsx';
-import { ManualBook } from './10-the-manual~code.tsx';
+import { ManualBook } from './10-the-manual~book.tsx';
 
 export class $ManualTheme extends $LibraryBookTheme {
     measure = '104ch';

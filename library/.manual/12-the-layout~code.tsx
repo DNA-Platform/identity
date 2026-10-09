@@ -4,7 +4,7 @@ import { $, selection } from '@dna-platform/chemistry';
 import { $Chapter, $Paginated, $Writing } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
-import { $View } from './15-the-part~code.tsx';
+import { $Manual } from './10-the-manual~code.tsx';
 import { $Scheme } from './19-the-cover~code.tsx';
 
 export class $Layout extends $Paginated {
@@ -48,7 +48,7 @@ export class $Layout extends $Paginated {
         writing.classes.add(this, 'pa-layout');
         const open = this.open;
         if (open !== undefined) writing.classes.add(this, 'pa-turned');
-        const context = open?.annotations.expressed($View)?.context;
+        const context = open?.annotations.expressed($Manual)?.context;
         if (context !== undefined) writing.classes.add(this, context);
     }
 

@@ -43,12 +43,14 @@ export default () => (
             <Heading>The two views</Heading>
             <Paragraph>
                 The page has two views and one table of contents. Reading, the contents stand first and the
-                page is the desk and the shelf. Built, which is where this chapter is read, the part that says
-                how this book is built stands first as a tree, the shelf and the desk step aside, and this
+                page is the desk and the shelf, with the part that says how this book is built at the foot of
+                the contents as a heading and a row. Built, which is where this chapter is read, that part stands
+                alone as a tree with the book's name at its head, the shelf and the desk step aside, and this
                 chapter is shown beside its file as the reference manual shows a chapter, because it says at its
                 head which part it is in and that it is read as a manual: <Means>$[[ the part ]]( Dougs Reference Manual / The Part )</Means> and <Means>$[[ the manual ]]( Dougs Reference Manual / The Manual )</Means> are
                 both the reference manual's. Which view stands is a class the manual puts on the book while
-                one of its chapters is open, so a press on a row of the other group is the toggle between them.
+                one of its chapters is open; this chapter's row is the way in, and the name at the head of the
+                tree the way out.
             </Paragraph>
         </Section>
         <Append

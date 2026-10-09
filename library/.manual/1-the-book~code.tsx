@@ -1,12 +1,12 @@
-import { ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { $, $check, inert } from '@dna-platform/chemistry';
 import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Part, $Section, $TableOfContents, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
-import { $Appendix, $Folder, Folder as folder, leads } from './14-the-entry~code.tsx';
-import { $View } from './15-the-part~code.tsx';
+import { $Manual } from './10-the-manual~code.tsx';
+import { $Appendix, $Folder, Folder as folder, Root as root, leads } from './14-the-entry~code.tsx';
 import { Dark as dark, Light as light, Tone as tone, WhiteOverBlack as whiteOverBlack } from './16-the-tone~code.tsx';
 import { $Logo, $Volume, Logo as logo, Mark as mark, painted } from './19-the-cover~code.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
@@ -134,7 +134,7 @@ export class $LibraryBook extends $Book {
     leaf(chapter: $Chapter, key: number): ReactNode {
         const Chapter = $(chapter);
         const className = chapter === this.open ? 'pd-leaf pd-open' : 'pd-leaf';
-        if (chapter.is($View)) return (
+        if (chapter.is($Manual)) return (
             <div
                 key={key}
                 className={className}
@@ -191,6 +191,13 @@ export class $LibraryBook extends $Book {
         );
     }
 
+    root(): ReactElement | undefined {
+        const Root = $(root);
+        return (
+            <Root cover={this.cover} />
+        );
+    }
+
     switches(): ReactNode {
         return undefined;
     }
@@ -241,11 +248,13 @@ export class $LibraryBook extends $Book {
         const table = this.table?.annotations.expressed($TableOfContents);
         for (const part of table?.parts ?? []) {
             const section = this.sectionOf(part);
-            if (section === undefined || section.is($Folder) || !part.chapters.some(chapter => chapter.is($View))) continue;
+            if (section === undefined || section.is($Folder) || !part.chapters.some(chapter => chapter.is($Manual))) continue;
             section.annotations.add(this,
                 <Folder />
             );
         }
+        const root = this.root();
+        if (root !== undefined) this.table?.text.add(this, root);
         const Logo = $(logo);
         this._logo = reflection.chemical<$Logo>((
             <Logo
@@ -279,6 +288,14 @@ export class LibraryBookSpecification extends BookSpecification {
     $onlyAChapterAppends(book: $LibraryBook): void {
         $check(book.text.find($Chapter).every(chapter => book.chapters.includes(chapter) || !chapter.is($Append)),
             'only an ordinary chapter appends a file, and here a cover, a synopsis or a table of contents appends one');
+    }
+
+    @specify('a part read as a manual is listed under a section headed with its name')
+    $listsEachManualPart(book: $LibraryBook): void {
+        const parts = book.table?.annotations.expressed($TableOfContents)?.parts ?? [];
+        const unlisted = parts.find(part => part.chapters.some(chapter => chapter.is($Manual)) && book.sectionOf(part) === undefined);
+        $check(unlisted === undefined,
+            `a part read as a manual is listed under a section headed with its name, and "${unlisted?.name}" has none`);
     }
 }
 

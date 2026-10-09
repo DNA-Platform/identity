@@ -56,13 +56,14 @@ export default () => (
         <Section>
             <Heading>The two views</Heading>
             <Paragraph>
-                The page has two views and one table of contents. Reading, the contents stand first and the
-                page is the desk and the shelf; built, the part that says how this book is built stands first
-                as the manual's tree, the shelf and the desk step aside, and the open chapter is shown beside
-                its file by <Means>$[[ the manual ]]( ./The Manual )</Means>, which the chapter says it is read
-                in, in this book's own colours. Which view stands is the class the manual puts on the book
-                while one of its chapters is open, so the toggle between them is a press on a row of the other
-                group, and the shelf's own rules name the desk's pages and reach nothing of the manual's.
+                The page has two views and one table of contents. Reading, the contents stand first, the page
+                is the desk and the shelf, and the part that says how this book is built stands at the foot as a
+                heading and a row. Built, once that row is pressed, the part's folder stands alone as the
+                manual's tree with the book's name at its head, the shelf and the desk step aside, and the open
+                chapter is shown beside its file by <Means>$[[ the manual ]]( ./The Manual )</Means>, which the
+                chapter says it is read in, in this book's own colours; the name at the head of the tree leads
+                back. Which view stands is the class the manual puts on the book while one of its chapters is
+                open, and the shelf's own rules name the desk's pages and reach nothing of the manual's.
             </Paragraph>
         </Section>
         <Append

@@ -84,7 +84,7 @@ export class $LibraryBookTheme extends $Theme {
     style: ElementType = selection.div`${this.parts()}`;
 
     protected parts(): RuleSet[] {
-        return [this.page(), this.writing(), this.links(), this.figures(), this.listings(), this.switches(), this.turns(), this.illustrations(), this.marks(), this.library(), this.head(), this.holds(), this.tones()];
+        return [this.page(), this.writing(), this.links(), this.figures(), this.listings(), this.switches(), this.turns(), this.illustrations(), this.marks(), this.library(), this.head(), this.holds(), this.built(), this.tones()];
     }
 
     protected page(): RuleSet {
@@ -325,18 +325,10 @@ export class $LibraryBookTheme extends $Theme {
                 background: var(--colour, ${({ theme }) => theme.colour});
             }
             .pd-holds .pd-paragraph.pa-entry.pa-open { background: ${({ theme }) => theme.sideOn}; color: ${({ theme }) => theme.accent}; }
-            .pd-holds .pd-paragraph.pa-entry .pd-word + .pd-word {
-                margin-inline-start: auto;
-                font-size: calc(0.83 * ${({ theme }) => theme.size});
-                opacity: 0.55;
-            }
             .pd-holds .pa-reference.pa-reference { color: inherit; text-decoration: none; }
             .pd-holds .pd-section.pa-appendix { opacity: 0.72; }
             .pd-holds .pd-section.pa-appendix .pd-heading { font-size: calc(0.66 * ${({ theme }) => theme.size}); }
             .pd-holds .pd-section.pa-appendix .pd-paragraph.pa-entry { font-size: calc(0.86 * ${({ theme }) => theme.size}); }
-            .pa-built .pd-holds .pd-section:not(.pa-folder) { opacity: 0.55; }
-            .pa-built .pd-holds .pd-section:not(.pa-folder) .pd-paragraph.pa-entry { display: none; }
-            .pa-built .pd-holds .pd-section.pa-folder { order: -1; }
             @media not all and (max-width: ${({ theme }) => theme.narrow}) {
                 .pd-holds > * { display: flex; flex-direction: column; min-height: 100%; }
                 .pd-holds .pd-chapter.pa-table-of-contents { flex: 1; display: flex; flex-direction: column; }
@@ -361,6 +353,30 @@ export class $LibraryBookTheme extends $Theme {
                 }
                 .pd-holds .pd-paragraph.pa-entry::before { display: none; }
             }
+        `;
+    }
+
+    protected built(): RuleSet {
+        return css`
+            .pd-holds .pd-paragraph.pd-root { display: none; }
+            .pa-built .pd-holds .pd-section:not(.pa-folder) { display: none; }
+            .pa-built .pd-holds .pd-folder { order: -1; }
+            .pa-built .pd-holds .pd-paragraph.pd-root {
+                display: flex;
+                order: -2;
+                align-items: center;
+                margin: 0 0 calc(${({ theme }) => theme.space} / 3);
+                padding: 0 calc(${({ theme }) => theme.space} * 0.5833) 0 calc(${({ theme }) => theme.space} * 0.4167);
+                font-size: calc(0.9286 * ${({ theme }) => theme.size});
+                font-weight: 500;
+                line-height: calc(1.9286 * ${({ theme }) => theme.size});
+                color: ${({ theme }) => theme.sideInk};
+            }
+            .pa-built .pd-holds .pd-root .pd-word { display: inline-flex; align-items: center; gap: calc(${({ theme }) => theme.space} * 0.2917); }
+            .pa-built .pd-holds .pd-root .pd-drawing { width: calc(0.7143 * ${({ theme }) => theme.size}); height: calc(0.7143 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.faint}; transform: rotate(180deg); }
+            .pa-built .pd-holds .pd-root svg { display: block; width: 100%; height: 100%; }
+            .pa-built .pd-holds .pd-root .pa-reference { color: inherit; text-decoration: none; }
+            .pa-built .pd-holds .pd-root:hover { color: ${({ theme }) => theme.ink}; }
         `;
     }
 

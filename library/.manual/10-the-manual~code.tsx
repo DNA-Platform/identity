@@ -1,15 +1,14 @@
 import { ElementType, ReactNode } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Append, $Chapter, $Paragraph, $Section, $Writing, Given, html, specify } from '@dna-platform/public';
-import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
+import { $Annotation, $Append, $Chapter, $Format, $Paragraph, $Section, $Writing, AnnotationSpecification, Given, html, specify } from '@dna-platform/public';
+import type { $LibraryBook } from './1-the-book~code.tsx';
 import { File as file, Listing as listing } from './2-the-listing~code.tsx';
 import { Switch as switchOf, Tab as tab } from './9-the-switch~code.tsx';
-import { $Appendix, $Entry, Folded as folded, Folder as folder, Twist as twist } from './14-the-entry~code.tsx';
-import { $View } from './15-the-part~code.tsx';
-import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
-import { $Brief, CodeForward as codeForward, LightCode as lightCode, Numbered as numbered, Split as split, WordsForward as wordsForward, Wrapped as wrapped } from './10-the-manual~forward.tsx';
+import { $Index, Folded as folded, Twist as twist, leads } from './14-the-entry~code.tsx';
+import { CodeForward as codeForward, LightCode as lightCode, Numbered as numbered, Split as split, WordsForward as wordsForward, Wrapped as wrapped } from './10-the-manual~forward.tsx';
 
-export class $Manual extends $View {
+export class $Manual extends $Format {
+    specification = new ManualSpecification();
     themeProvider = true;
     $file = '';
     spread: ElementType = selection.div`
@@ -264,7 +263,12 @@ export class $Manual extends $View {
     get readings(): Given<$Annotation>[] {
         return [wordsForward, split, codeForward];
     }
-    override get context(): string { return 'pa-built'; }
+    get context(): string { return 'pa-built'; }
+    get rows(): $Paragraph[] {
+        const chapter = this.parent as $Chapter;
+        const entries = this.book?.table?.annotations.expressed($Index)?.entries ?? [];
+        return entries.filter(paragraph => leads(paragraph)?.identifier === chapter.mention?.identifier);
+    }
 
     $Manual(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
@@ -393,35 +397,6 @@ export class $Manual extends $View {
         this.$file = name;
     }
 
-    override row(entry: $Entry): ReactNode {
-        const Twist = $(twist);
-        const File = $(file);
-        const chapter = this.parent as $Chapter;
-        const files = this.files;
-        return (
-            <>
-                {files.length === 0 ? (
-                    <span className="pd-twist pd-blank" />
-                ) : (
-                    <Twist
-                        target={entry.parent as $Writing}
-                        of={folded}
-                    />
-                )}
-                {files.map(name => (
-                    <File
-                        key={name}
-                        chapter={chapter}
-                        name={name}
-                        of={split}
-                        among={this.readings}
-                        manual={this}
-                    />
-                ))}
-            </>
-        );
-    }
-
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-manual');
@@ -431,51 +406,37 @@ export class $Manual extends $View {
         super.erase(writing);
         writing.classes.revert(this);
     }
-}
-
-export class $ManualBook extends $LibraryBook {
-    override specification = new ManualBookSpecification();
-    override get open(): $Chapter | undefined {
-        return super.open ?? this.pages[0];
-    }
-
-    override head(): ReactNode {
-        return undefined;
-    }
-
-    override front(): ReactNode {
-        return undefined;
-    }
-
-    override switches(): ReactNode {
-        return undefined;
-    }
-
-    protected override $Define(): void {
-        super.$Define();
-        this.$is = [wordsForward, numbered];
-    }
 
     protected override $Bound(): void {
-        const Folder = $(folder);
-        for (const section of this.table?.text.find($Section) ?? []) {
-            section.annotations.add(this,
-                <Folder />
+        const Twist = $(twist);
+        const File = $(file);
+        const chapter = this.parent as $Chapter;
+        const files = this.files;
+        for (const paragraph of this.rows)
+            paragraph.text.add(this,
+                <Twist
+                    target={files.length === 0 ? undefined : paragraph}
+                    of={folded}
+                />,
+                ...files.map(name => (
+                    <File
+                        chapter={chapter}
+                        name={name}
+                        of={split}
+                        among={this.readings}
+                        manual={this}
+                    />
+                ))
             );
-            if (section.is($Appendix)) section.$is = [folded];
-        }
         super.$Bound();
     }
 }
 
-export class ManualBookSpecification extends LibraryBookSpecification {
-    @specify('every chapter of a manual opens with a brief')
-    $everyChapterHasABrief(book: $ManualBook): void {
-        $check(book.chapters.every(chapter => chapter.text.find($Paragraph).some(paragraph => paragraph.is($Brief))),
-            'every chapter of a manual opens with a brief, and one here has none');
+export class ManualSpecification extends AnnotationSpecification {
+    @specify('a manual is said of a chapter')
+    $saidOfAChapter(writing: $Writing): void {
+        $check(writing instanceof $Chapter, 'a manual is said of a chapter, and this is not one');
     }
 }
 
 export const Manual = $($Manual);
-export const ManualBook = $($ManualBook);
-$(ManualBook, tone)(light);
