@@ -5,7 +5,10 @@
 // contains it — the same logic a markdown renderer uses.
 // Checks that the resolved path exists on disk.
 //
-// Usage: npx tsx ..environmentalism/05-on-validation--check-links.ts <root-dir> [--verbose]
+// Usage: npx tsx ..environmentalism/05-on-validation--check-links.ts <root-dir> [--verbose] [--all]
+//
+// --all lists every broken link; without it the list stops at 80 and says how many more.
+// Sprint 104 met 926 and read the shape of the other 846 only through a scratchpad copy.
 //
 // <root-dir> is the directory to scan. Pass the project root to check
 // everything: library files, compiled agent/rule files, and CLAUDE.md.
@@ -16,6 +19,7 @@ import { resolve, join, dirname, extname } from 'path';
 
 const rootArg = process.argv[2];
 const verbose = process.argv.includes('--verbose');
+const all = process.argv.includes('--all');
 
 if (!rootArg) {
   console.error('Usage: npx tsx 05-on-validation--check-links.ts <root-dir> [--verbose]');
@@ -154,15 +158,15 @@ for (const file of files) {
       broken++;
       const msg = `${relFile}:${link.line}  [${link.text}](${link.destination})  ->  ${resolved}`;
       problems.push(msg);
-      if (problems.length <= 80) console.log('BROKEN  ' + msg);
+      if (all || problems.length <= 80) console.log('BROKEN  ' + msg);
     } else if (verbose) {
       console.log('OK      ' + relFile + '  ' + link.destination);
     }
   }
 }
 
-if (problems.length > 80) {
-  console.log(`\n... and ${problems.length - 80} more`);
+if (!all && problems.length > 80) {
+  console.log(`\n... and ${problems.length - 80} more (--all lists them)`);
 }
 
 console.log('\n--- Link Check ---');
