@@ -58,7 +58,7 @@ export class $Catalogue extends $LibraryBook {
     override front(): ReactNode {
         const Switch = $(switchOf);
         return this.painted(this.cover, (
-            <div className={this.open === undefined ? 'pd-leaf pd-front pd-open' : 'pd-leaf pd-front'}>
+            <div className={this.open === undefined ? 'pd-leaf pd-front pd-desk pd-open' : 'pd-leaf pd-front pd-desk'}>
                 {this.jacket(this.cover)}
                 {this.opening()}
                 {this.reading(this.cover)}

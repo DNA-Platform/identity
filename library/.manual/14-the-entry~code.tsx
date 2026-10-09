@@ -154,7 +154,7 @@ export class $Folder extends $Format {
     tree: ElementType = selection.div`
         .pd-book .pd-holds &.pd-folder { position: relative; }
         .pd-book .pd-holds &.pd-folder .pd-section { margin: 0 0 calc(${({ theme }) => theme.space} / 3); }
-        .pd-book .pd-holds &.pd-folder .pd-heading {
+        .pd-book .pd-holds &.pd-folder .pd-sentence.pd-heading {
             display: flex;
             align-items: center;
             height: calc(1.9286 * ${({ theme }) => theme.size});
@@ -230,13 +230,14 @@ export class $Folder extends $Format {
             box-shadow: none;
         }
         .pd-book .pd-holds &.pd-folder .pa-number { order: 1; margin: 0; font-size: calc(0.75 * ${({ theme }) => theme.size}); color: color-mix(in oklch, var(--foot-ink) 48%, white); font-variant-numeric: tabular-nums; }
-        .pd-book .pd-holds &.pd-folder .pa-entry .pd-file {
+        .pd-book .pd-holds &.pd-folder .pd-paragraph.pa-entry .pd-file {
             order: 2;
             flex: 0 0 calc(100% + ${({ theme }) => theme.space} * 1.75);
             margin: 0 calc(${({ theme }) => theme.space} * -0.5833) 0 calc(${({ theme }) => theme.space} * -1.1667);
             padding: 0 calc(${({ theme }) => theme.space} * 0.5833) 0 calc(${({ theme }) => theme.space} * 2.875);
+            opacity: 1;
         }
-        .pd-book .pd-holds &.pd-folder .pa-entry.pa-folded .pd-file { display: none; }
+        .pd-book .pd-holds &.pd-folder .pd-paragraph.pa-entry.pa-folded .pd-file { display: none; }
         .pd-book .pd-holds &.pd-folder .pd-paragraph.pa-entry .pd-file {
             display: flex;
             align-items: center;

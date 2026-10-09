@@ -139,6 +139,8 @@ export class $Bookshelf extends $LibraryBookTheme {
             }
             .pd-holds .pd-section.pa-appendix .pd-heading { font-size: calc(0.68 * ${({ theme }) => theme.size}); }
             .pd-holds .pd-section.pa-appendix .pa-entry { font-size: calc(0.893 * ${({ theme }) => theme.size}); font-weight: 400; }
+            .pd-holds .pd-folder { margin-block-start: auto; }
+            .pd-holds .pd-section.pa-appendix.pa-folder { padding-block-start: 0; }
             @media (max-width: ${({ theme }) => theme.narrow}) {
                 .pd-holds { padding: calc(${({ theme }) => theme.space} * 0.42) calc(${({ theme }) => theme.space} * 0.667) calc(${({ theme }) => theme.space} / 2); }
                 .pd-holds .pd-chapter, .pd-holds .pd-section {
@@ -162,6 +164,7 @@ export class $Bookshelf extends $LibraryBookTheme {
                 .pd-holds .pd-paragraph.pa-entry::before { display: none; }
                 .pd-holds .pd-word.pa-arrow { display: none; }
                 .pd-holds .pd-section.pa-appendix { margin: 0; padding: 0; border: 0; }
+                .pd-holds .pd-folder { margin: 0; }
             }
         `;
     }
