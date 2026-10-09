@@ -16,8 +16,9 @@ export default () => (
             <Heading>What a part is</Heading>
             <Paragraph>
                 A part is a grouping of chapters, and the framework gives it. A chapter says which part it is in at
-                its head, with the part's name as its words, and the table of contents answers the grouping: the
-                parts of the book, the part a chapter is in, the chapters of a part. That is all a part confers. It
+                its head, with the part's name as its words, and the table of contents answers the grouping as
+                objects: the parts of the book, the part a chapter is in, and a part its chapters. That is all a part
+                confers. It
                 requires no place, no anchor and no form in the table, and the table is written however I write it.
                 A chapter need not be in a part; a book in which one chapter is has every chapter in one.
             </Paragraph>

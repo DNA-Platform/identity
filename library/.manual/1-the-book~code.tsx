@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { $, $check, inert } from '@dna-platform/chemistry';
-import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Section, $TableOfContents, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
+import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Part, $Section, $TableOfContents, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
 import { Listing as listing } from './2-the-listing~code.tsx';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
@@ -215,9 +215,9 @@ export class $LibraryBook extends $Book {
         return composition.text.find($Section).flatMap(section => [section, ...this.sections(section)]);
     }
 
-    sectionOf(part: string): $Section | undefined {
+    sectionOf(part: $Part): $Section | undefined {
         const table = this.table;
-        return table === undefined ? undefined : this.sections(table).find(section => section.canonical?.name === part);
+        return table === undefined ? undefined : this.sections(table).find(section => section.canonical?.name === part.name);
     }
 
     protected override turn(): void {
@@ -241,7 +241,7 @@ export class $LibraryBook extends $Book {
         const table = this.table?.annotations.expressed($TableOfContents);
         for (const part of table?.parts ?? []) {
             const section = this.sectionOf(part);
-            if (section === undefined || section.is($Folder) || !table!.chaptersOf(part).some(chapter => chapter.is($View))) continue;
+            if (section === undefined || section.is($Folder) || !part.chapters.some(chapter => chapter.is($View))) continue;
             section.annotations.add(this,
                 <Folder />
             );
