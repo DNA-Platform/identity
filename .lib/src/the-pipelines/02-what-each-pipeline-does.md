@@ -92,12 +92,12 @@ against the fixed 1x benchmark at three MEI blurs, the filter against June's - w
 ## `metamer` - the image that evokes a measured response
 
 [`src/pipelines/metamer/`](../../pipelines/metamer/.cover.md). Cobos 2022's inversion of the twin
-against a response the animal actually gave. The surface Doug set on 2026-09-27, all on the pair
-`mei` uses: one metamer per test stimulus (`--full`), one **unconditioned** metamer (every trial
-pooled), the **null** metamer (a spontaneous recording pooled), and the **spontaneous metameric
-moments** - every half-second bin, the intersection's pre twin reading the pre recording (pre-pre) and
-the post one (pre-post). Batched on the same fast path, held against the single-image recipe by
-`check.py`.
+against a response the animal actually gave. The surface, all on the pair `mei` uses: one metamer per
+test stimulus - each twin its own, and the pre twin reading the post responses - and the **spontaneous
+metameric moments**, every half-second bin, the pre twin reading the pre recording (pre-pre) and the
+post one (pre-post). The null and unconditioned metamers were retired on 2026-10-09 (*"we don't need the
+null and unconditioned at all"*). One fast path for all of it, 0.51 s a metamer on the 45-px twin, held
+against the single-image recipe by `check.py`; an inventory closes every run.
 
 ## Where the analyses sit
 
