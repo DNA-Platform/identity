@@ -404,7 +404,7 @@ library/.public/                  where a thing becomes public
 
 **4 — What a card hands back for a book not loaded. Nothing, until the shell hands it one.** A generated card carries its path and no book. When a route loads that book, **the shell fills the card's reference in** — so a card becomes readable once its book is present. *This is what a catalogue has always done: it tells you where the volume is, and once you have fetched it the card is standing beside it.*
 
-**And a fifth thing was found while resolving them, which changes how any gate must be written.** **Files beginning with a dot are invisible to pattern matching** — `include: ["src/**/*.ts"]` saw only the undotted file — **but an explicit import finds them and compiles clean.** *So the generated book module is the only door into every cover and synopsis, and **any check that walks by pattern will silently pass over half of every book.***
+**And a fifth thing was found while resolving them, which changes how any gate must be written.** **Files beginning with a dot are invisible to pattern matching** — `include: ["src/**/*.ts"]` saw only the undotted file — **but an explicit import finds them and compiles clean.** *So the generated book module is the only way into every cover and synopsis, and **any check that walks by pattern will silently pass over half of every book.***
 
 ### The last contract, written — and the figure that carried it found two defects in it
 
@@ -819,7 +819,7 @@ A file named `<chapter>--<resource>.<ext>` is **a resource of that chapter** —
 
 **Why it works, stated so nobody re-derives it.** **Constructing is not drawing** — the bond constructors run at import and fail six malformations before `valid()` is ever called, and nothing on that path paints. *This is the 58-of-62 measurement arriving as a working thing rather than as a feasibility case.*
 
-**And it enters through the generated door.** The runtime imports **one module** — the catalogue's book map — and reaches every cover and synopsis through it. ***A pattern would find none of them***, which is why the door is the mechanism and not a convenience.
+**And it enters through the generated module.** The runtime imports **one module** — the catalogue's book map — and reaches every cover and synopsis through it. ***A pattern would find none of them***, which is why the one module is the mechanism and not a convenience.
 
 **So CHECK is a phase, and it is the phase that runs the program.** It invents no rules; it opens the library somewhere the reader never goes and reports what the model fails, with the file named.
 
@@ -1752,7 +1752,7 @@ EMIT      18 carried · 6 generated · 1 removed
 
 *Distributed while the context was fresh.*
 
-**The dotfile finding went to [the green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) as its fourth appearance — EDITED, not created**, because that chapter already owns the mechanism: *the number was true and the scope was silent*. A glob does not match a dot-prefixed name, so a convention whose covers are `.cover.tsx` is **half invisible to an ordinary `include`** — measured at one file of three, with no warning and no count. An explicit import finds them and compiles clean, which is why **the generated book module is the only door**, and a gate must enter through it rather than walk a pattern.
+**The dotfile finding went to [the green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) as its fourth appearance — EDITED, not created**, because that chapter already owns the mechanism: *the number was true and the scope was silent*. A glob does not match a dot-prefixed name, so a convention whose covers are `.cover.tsx` is **half invisible to an ordinary `include`** — measured at one file of three, with no warning and no count. An explicit import finds them and compiles clean, which is why **the generated book module is the only way in**, and a gate must enter through it rather than walk a pattern.
 
 ***It is the first of the four appearances nobody paid for.*** The other three were found by something already broken; this one was found by testing the assumption before building on it.
 

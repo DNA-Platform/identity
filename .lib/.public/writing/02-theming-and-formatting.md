@@ -22,7 +22,7 @@
 
 renders as a span with `pa-parenthetical` on it, holding the text, then a span with `pd-annotation` on it holding *because it was late*, then Parenthetical's note, the global style that hides `pa-parenthetical`. The promise is in [`.tests/writing.test.tsx`](../../package/.tests/writing.test.tsx), and the member-by-member record is in [The Annotation System](07-the-annotation-system.md#the-powers-of-an-annotation).
 
-**This is the margin.** E9 puts commentary in the margin and types, references and meaning in the annotations; what an annotation renders, its hidden body and its note, is the margin of the writing it annotates, and no second collection is needed for it. A margin as a collection annotations inject elements into was explored on the day and is not built: the annotation's own rendering is the door, and an annotation that wants to render something at the writing's level says it in `note`.
+**This is the margin.** E9 puts commentary in the margin and types, references and meaning in the annotations; what an annotation renders, its hidden body and its note, is the margin of the writing it annotates, and no second collection is needed for it. A margin as a collection annotations inject elements into was explored on the day and is not built: the annotation's own rendering is the way in, and an annotation that wants to render something at the writing's level says it in `note`.
 
 ## The mechanisms, and the set that is necessary
 
@@ -34,7 +34,7 @@ renders as a span with `pa-parenthetical` on it, holding the text, then a span w
 
 | explored | reason it is not necessary | standing |
 |---|---|---|
-| a power on Annotation called at view time to put something around the writing's element | a second moment when an annotation acts | **BUILT AND STRUCK 2026-09-23.** *Doug named it `review` in the morning and struck it the same day: **"No more review."** A provider does have to be an ancestor of what it themes — but a [Format](11-format-and-theme.md)'s own styled component can BE that ancestor, so `container` was the door all along and no power was needed* |
+| a power on Annotation called at view time to put something around the writing's element | a second moment when an annotation acts | **BUILT AND STRUCK 2026-09-23.** *Doug named it `review` in the morning and struck it the same day: **"No more review."** A provider does have to be an ancestor of what it themes — but a [Format](11-format-and-theme.md)'s own styled component can BE that ancestor, so `container` was the way in all along and no power was needed* |
 | a `themes` map on Writing, and a `theme` property | state for one use case on the base; theming is a use case, not the mechanism | designed and tried, not taken |
 | a margin as a collection annotations inject into | the annotation's own rendering is the margin | not taken |
 | `$Define` standing defaults behind the written, and the walk from the back | the one called first has the power; overriding is inactivation, not acting last | withdrawn the same day |
@@ -60,7 +60,7 @@ renders as a span with `pa-parenthetical` on it, holding the text, then a span w
 **Four ways were tried or probed across 2026-09-22 and 23. The record, and why the other three lost:**
 
 - **A property on Writing** that a Theme sets, the writing returning its element inside one provider. *Works; holds one theme; state for one use case on the base.*
-- **A power on Annotation** folding each expressed annotation's wrapper around the container from the front. **Built in nine lines and named `review` by Doug, then struck by him the same day** — *"No more review"* — once it was clear a format's own component could carry the provider. *It was a member added where a door already stood.*
+- **A power on Annotation** folding each expressed annotation's wrapper around the container from the front. **Built in nine lines and named `review` by Doug, then struck by him the same day** — *"No more review"* — once it was clear a format's own component could carry the provider. *It was a member added where a way in already stood.*
 - **The annotation rendered as an ancestor** of its writing, the writing nesting its container inside each expressed annotation's component. *Probed and it works; it moves every annotation's note outside the container, which is the opposite of what the note abstraction settled.*
 - **A provider placed AS the container**, rather than wrapping one. **Measured, and it costs the box:** *the writing's element disappears and every class its annotations gave it goes with it, silently.* **Doug: "We WANT the container."**
 

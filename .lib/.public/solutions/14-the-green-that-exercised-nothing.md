@@ -96,7 +96,7 @@ include: ["src/**/*.ts"]                         →  all four files, 0 errors
 
 **Both halves matter.** A glob passes over them silently — no warning, no count, the same true-number-silent-scope disease as everything above. **An explicit import finds them and compiles clean**, which is why the convention survives at all.
 
-**The fix is structural rather than procedural, and that is what makes it hold.** The generated module that composes a book imports its cover, its synopsis and every chapter by name. **So that module is the only door into the dotted files** — and a gate must enter through it, never by walking a pattern. *A typecheck configured over `src/**` would report a confident zero across a library it had read half of.*
+**The fix is structural rather than procedural, and that is what makes it hold.** The generated module that composes a book imports its cover, its synopsis and every chapter by name. **So that module is the only way into the dotted files** — and a gate must enter through it, never by walking a pattern. *A typecheck configured over `src/**` would report a confident zero across a library it had read half of.*
 
 **Filed as the fourth appearance, and the first one nobody paid for.** *Three earlier entries were found by something already broken; this one was found by [testing the assumption before building on it](../projection/15-the-build.md). The cause is unchanged — **a number without its scope** — and the only thing that changed is when it was asked.*
 

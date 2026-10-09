@@ -69,7 +69,7 @@
 
 - **A table of contents is held to its links.** It must refer to every chapter of its book, itself among them, and to every book filed under it, or the bind refuses by name. The rule that a catalogue's row stand beside a synopsis reference is gone. Both libraries are written to it (U1 to U5).
 - **The performance suite is green and is a step.** Two of two.
-- **How a library is developed is measured, tooled and written at every door** a session comes in by: memory, the order of work, `/ce-work`, `/ce-handoff`, his manual, the Binder's design record.
+- **How a library is developed is measured, tooled and written at every place** a session comes in by: memory, the order of work, `/ce-work`, `/ce-handoff`, his manual, the Binder's design record.
 - **It is official.** The project's `main` is on GitHub at `aa6e151` — the sprint at `3422682`, the suite at `aa6e151`. The team's identity, this branch library and his library were synced with the commit tool at the close; the workbench was closed.
 
 **His rulings of the day, verbatim.**
@@ -114,4 +114,4 @@
 2. **`.me/.design/1-the-designs-i-am-going-with.tsx`**: the seven designs the build is of.
 3. **[How a Library Is Designed](../writing-a-book/01-01-how-a-library-is-designed.md)**: which thing in the library each element of a design is, views as ranks, and what the Binder knows.
 4. **[How a Library Is Developed](../writing-a-book/01-02-how-a-library-is-developed.md)**: before any edit.
-5. **His manual**, `.me/.manual/`: the door, the theme, and the parts built so far, each beside its chapter.
+5. **His manual**, `.me/.manual/`: the book file, the theme, and the parts built so far, each beside its chapter.

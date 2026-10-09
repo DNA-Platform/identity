@@ -590,7 +590,7 @@ $(Infobox, Theme)(InfoboxTheme);
 | | | |
 |---|---|---|
 | **kinds** | `$Description` · `$Caption` in `src/writing/Description.tsx` | a sentence that starts parenthetical and prints `[…]`; a caption shown as it is; *for an image a sentence is a description, for an illustration a caption* — two registrations, no member |
-| **the application door** | `src/application/` — `$Control`, `$Search`, `$Menu` + `$Summary`, `$Header`, `$Toolbar`, `$Appearance` | wired in the seven places a door is wired; `src/encyclopedia/` keeps Theme, Infobox, Box, Hatnote, Navbox, Talk |
+| **the application entry point** | `src/application/` — `$Control`, `$Search`, `$Menu` + `$Summary`, `$Header`, `$Toolbar`, `$Appearance` | wired in the seven places an entry point is wired; `src/encyclopedia/` keeps Theme, Infobox, Box, Hatnote, Navbox, Talk |
 | **native numbering** | `$Entry.view()` writes `data-number={this.number()}`; its key is its `id` on the `<p>` | the article theme's `counter(entry)` deleted; the paper draws the same numbers from the data — `verify:latex` green, 43 of 43 landing |
 | **the reader** | `.wiki/.public/read-page.mjs <page> <book>` | Notes and References as their own chapters, sub-headings nested as the page nests them, lists nested as deep as the page goes, hidden spans left hidden, the Turing page and the Manual of Style both read from it, no page-local code |
 | **the gate** | `verify-wiki.mjs` records the LOOK of 33 title-block elements off each real page | 130 failures at first light, 1 of 33 matching; **turing 31 of 33, article 26 of 33** green; 294 of 294 marks landing on 256 numbered entries |

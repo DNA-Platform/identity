@@ -116,9 +116,9 @@
 
 **Two causes, and neither is forgetfulness.** *The tool stood where a new face replaces it, and in no book.* **And every document a session follows said to bind:** [the order of work](07-the-development-policies.md#order) said *"Bind, and run the gates"* and *"Serve on 4242"*; every sprint's *to see it* said `npm run bind`; his own manual said the bind and the preview. The live loop was described once, as mechanism, in the binder's design record, and was a step nowhere. *A session that kept our documents faithfully did what that session did.*
 
-**What is different this time.** The tool is a resource of a chapter of his manual, so the compiler holds it to its chapter and a new face cannot remove it. And the protocol is said at every door a session comes in by:
+**What is different this time.** The tool is a resource of a chapter of his manual, so the compiler holds it to its chapter and a new face cannot remove it. And the protocol is said at every place a session comes in by:
 
-| the door | what it says |
+| the place | what it says |
 |---|---|
 | the session's memory, loaded every time | *develop-with-the-page-open*: the two commands, and never a bind to look |
 | [the order of work](07-the-development-policies.md#order) | its third step is the open page; the bind is the fourth |

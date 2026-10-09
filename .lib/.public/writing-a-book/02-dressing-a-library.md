@@ -14,9 +14,9 @@
 
 1. **A component owns its structure and reads its appearance from a theme.** Every box with a look is a class with a styled component in a field; it reads the theme's values through the provider and never carries a literal a theme would want to change.
 2. **A theme is a typed value object with a slot per component.** It is a place for the library's properties, grabbed by any component in code or in a template, and one styled component made from them, composed of parts a subclass overrides one at a time. It has only-one semantics: a book has one, and a new one stood in front replaces it.
-3. **A component is replaced by subclass.** What the framework stands for itself — the Theme on every book, the Self on every title — a library replaces by *registering* a subclass on its book class. What a chapter *writes* — a Cover, a Table — a library replaces by subclassing and exporting under the framework's name from its door, so a chapter writes the word it always wrote; Doug: *"subclass of Table exported as Table is the right answer. Preserves the semantics."*
+3. **A component is replaced by subclass.** What the framework stands for itself — the Theme on every book, the Self on every title — a library replaces by *registering* a subclass on its book class. What a chapter *writes* — a Cover, a Table — a library replaces by subclassing and exporting under the framework's name from its book file, so a chapter writes the word it always wrote; Doug: *"subclass of Table exported as Table is the right answer. Preserves the semantics."*
 
-The rest of this chapter is those sentences as the test library writes them, in the order a librarian writes a door.
+The rest of this chapter is those sentences as the test library writes them, in the order a librarian writes a book file.
 
 ## 1 · Your values — the theme's properties
 
@@ -96,15 +96,15 @@ export const Cover = $($LibraryCover);
 export const Table = $($LibraryTable);
 ```
 
-**Two ways to write the template.** `selection.header\`…\`` *rewrites* it — the element kept, the rules yours. `selection(this.style)\`…\`` *extends* it — the base's rules kept, yours after — which is right where the base's template is a mechanism you want, the Table's grid. A chapter then imports `Cover` and `Table` from the library's door, on the line it imports `Catchword`, and writes the words it always wrote; the subclass is still a Cover to the specification and to every `is`.
+**Two ways to write the template.** `selection.header\`…\`` *rewrites* it — the element kept, the rules yours. `selection(this.style)\`…\`` *extends* it — the base's rules kept, yours after — which is right where the base's template is a mechanism you want, the Table's grid. A chapter then imports `Cover` and `Table` from the library's book file, on the line it imports `Catchword`, and writes the words it always wrote; the subclass is still a Cover to the specification and to every `is`.
 
 **A face in a Format's context may dress the kinds beneath it** — `.pa-cover .pd-title` — because the marks stay on every element for exactly that; it may not dress anything outside its own writing.
 
 ## 4 · A look of your own — a Format from scratch
 
-What the framework has no word for is a Format of the library's own, imported from the door and written where it is wanted: `Framed`, a frame from the theme's values, stood on each of the persona's chapters at its bind; `Literary`, the persona's face, Palatino and indented paragraphs; `Typewritten`, the paper's. Each is a class with one `style`, and each *marks what it does* — `pa-framed` — so a face can stand down where a frame already stands: `.pa-cover:not(.pa-framed)`.
+What the framework has no word for is a Format of the library's own, imported from the book file and written where it is wanted: `Framed`, a frame from the theme's values, stood on each of the persona's chapters at its bind; `Literary`, the persona's face, Palatino and indented paragraphs; `Typewritten`, the paper's. Each is a class with one `style`, and each *marks what it does* — `pa-framed` — so a face can stand down where a frame already stands: `.pa-cover:not(.pa-framed)`.
 
-## 5 · The door — registration for what the framework stands
+## 5 · The book file — registration for what the framework stands
 
 The framework stands a Theme on every book in `Book.$Define`, and it *asks* for it — `$(theme)` — so a registration on your book class answers, and every book of your library, a subclass the compiler builds as `$($SomeProjects)`, inherits it — [`1-the-book.code.tsx`](../../package/.binding/.test/manual/1-the-book.code.tsx):
 
@@ -121,7 +121,7 @@ const Libby = $($Libby);
 $(Libby, Theme)(DarkTheme);
 ```
 
-**And a book that wants to show the base** registers the framework's own on its class, the nearest scope winning — [Some Projects' door](../../package/.binding/.test/projects/.book.tsx): `$(SomeProjects, Theme)(Theme)`. Its chapters write the framework's own `Cover`, `Synopsis` and `TableOfContents`, and the page is a browser-default book whose grid is a grid and whose pages turn: the base, seen. **Registration reaches what the framework stands and asks for — Theme, a title's Self — and nothing a chapter writes;** a written word is replaced by import, section 3.
+**And a book that wants to show the base** registers the framework's own on its class, the nearest scope winning — [Some Projects' book file](../../package/.binding/.test/projects/.book.tsx): `$(SomeProjects, Theme)(Theme)`. Its chapters write the framework's own `Cover`, `Synopsis` and `TableOfContents`, and the page is a browser-default book whose grid is a grid and whose pages turn: the base, seen. **Registration reaches what the framework stands and asks for — Theme, a title's Self — and nothing a chapter writes;** a written word is replaced by import, section 3.
 
 **A theme is switched at one paint** the same way a reader switches anything: `book.$is = Dark` stands a new theme in front, and the one behind it leaves expression. Nothing is merged.
 
@@ -141,7 +141,7 @@ Before the policy it rewrote fifteen of the library's rules inside a layer; now 
 
 ## 7 · A face names the kind with its mark — one author per property, in every order
 
-A theme's rule for a kind and a face's rule for its own element can land on one element: the cover is a chapter, so `.pd-chapter { margin }` and `.pa-cover { margin: 0 }` both apply to it, at equal specificity, and the tie breaks by the order the components were created — which a theme subclass in another book's door changes, so a page may win where another loses. **So a face's rule for its own element names the kind and its mark together — `.pd-chapter.pa-cover { margin-block: 0 }`, *the chapter that is a cover* — and wins by specificity on every page, in every order;** the theme's rule names the kind alone, `.pd-chapter { margin-block }`, for every chapter; and a face dressing the kinds beneath it, `.pa-table .pd-paragraph`, already has two marks and wins the same way. The marks an annotation takes off or puts on — `pd-canonical`, which Cover, Synopsis and TableOfContents take off their chapter; `pa-framed`, which Framed puts on — are read for what they *mean*, the chapters that are counted and labelled, the chapters that stand down, and never taken off to win. Doug, 2026-10-02: *"Why can't the implementer accommodate this? Can one suppress the other? Annotations can control expression for this reason."* The test library met this twice on the night it was dressed; the policy, applied to every face, left seven pages at 0 pixels — [The Development Policies](07-the-development-policies.md#1--a-face-names-the-kind-with-its-mark-a-theme-names-the-kind-alone) is the rule with its check.
+A theme's rule for a kind and a face's rule for its own element can land on one element: the cover is a chapter, so `.pd-chapter { margin }` and `.pa-cover { margin: 0 }` both apply to it, at equal specificity, and the tie breaks by the order the components were created — which a theme subclass in another book's file changes, so a page may win where another loses. **So a face's rule for its own element names the kind and its mark together — `.pd-chapter.pa-cover { margin-block: 0 }`, *the chapter that is a cover* — and wins by specificity on every page, in every order;** the theme's rule names the kind alone, `.pd-chapter { margin-block }`, for every chapter; and a face dressing the kinds beneath it, `.pa-table .pd-paragraph`, already has two marks and wins the same way. The marks an annotation takes off or puts on — `pd-canonical`, which Cover, Synopsis and TableOfContents take off their chapter; `pa-framed`, which Framed puts on — are read for what they *mean*, the chapters that are counted and labelled, the chapters that stand down, and never taken off to win. Doug, 2026-10-02: *"Why can't the implementer accommodate this? Can one suppress the other? Annotations can control expression for this reason."* The test library met this twice on the night it was dressed; the policy, applied to every face, left seven pages at 0 pixels — [The Development Policies](07-the-development-policies.md#1--a-face-names-the-kind-with-its-mark-a-theme-names-the-kind-alone) is the rule with its check.
 
 ## What you rely on, and what to know before it bites
 
@@ -153,6 +153,6 @@ A theme's rule for a kind and a face's rule for its own element can land on one 
 
 ## The honest report
 
-**Is it easy?** A theme is a class of values and a component of parts, about a hundred and fifty lines for the test library's whole look. A face is four lines and a template. A door is one registration. The manual's theme is one overridden part and one added. What was hard before and is gone: extending a base sheet that said everything, through a cast, with a helper reading values through fallbacks, inside a layer so your rules would tie with your own faces. What was still a fight at the sprint's grade, and what became of each, is in [the sprint's grade](../projection/102-sprint-97--formats-are-the-unit-of-styled-components.md#the-grade-of-97).
+**Is it easy?** A theme is a class of values and a component of parts, about a hundred and fifty lines for the test library's whole look. A face is four lines and a template. A book file is one registration. The manual's theme is one overridden part and one added. What was hard before and is gone: extending a base sheet that said everything, through a cast, with a helper reading values through fallbacks, inside a layer so your rules would tie with your own faces. What was still a fight at the sprint's grade, and what became of each, is in [the sprint's grade](../projection/102-sprint-97--formats-are-the-unit-of-styled-components.md#the-grade-of-97).
 
 **Names.** Doug's: *theme*, *format*, *face* is the test library's own word for a Format with a look; *the base sheet* for a library's theme component; *replace*, *export your own*, *register*. Ours, flagged: `values`, `parts` and the six parts' names, `LibraryValues`, this chapter's title.

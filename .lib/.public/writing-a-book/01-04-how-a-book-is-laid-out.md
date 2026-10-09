@@ -63,7 +63,7 @@
 | the rule says | its home | cited |
 |---|---|---|
 | **where a part is** — a grid, a column, what scrolls, a gap | the book class's one styled component, its rules naming the book's own elements by their classes. *A parent places its children and never paints them.* | [the CSS shapes](../the-coding-style/07-what-natural-means.md#the-css-shapes) |
-| **how the cover, the synopsis or the table of contents looks in this book** | that book's own subclass of it, with one `style`, exported from the book's door under the framework's name, and imported there by the chapter | [policy 3](07-the-development-policies.md); [Dressing a Library](02-dressing-a-library.md) §3 |
+| **how the cover, the synopsis or the table of contents looks in this book** | that book's own subclass of it, with one `style`, exported from the book's file under the framework's name, and imported there by the chapter | [policy 3](07-the-development-policies.md); [Dressing a Library](02-dressing-a-library.md) §3 |
 | **a box, an arrangement or a view said of a writing** — a shelf, a spread | a Format with its own styled component, so the look goes wherever the Format is given. Said of a book and reading the theme's values, it says `themeProvider = true` | [What Is Marked and What Is Replaced](06-what-is-marked-and-what-is-replaced.md); [Format and Theme](../writing/11-format-and-theme.md#evolution) |
 | **how ordinary writing looks, and the library's own paragraphs; every value** | the theme: fields, and one component of parts | [policies 4 and 5](07-the-development-policies.md) |
 
@@ -125,7 +125,7 @@
 
 - **A part of a theme or a Format must not take the name of a value, of a member the class has, or of a part the base already has unless it says `override` and spreads the base's in.** `side`, `frame`, `cards`, `head` — each broke the page somewhere else without a word; `npx tsc --noEmit` in the binder's copy names the first two kinds, not the third. *Third and fifth builds.*
 - **A press lands by itself after the draw; the router scrolls nothing** — the three-part change of Sprint 101's U9, approved and applied, after which an address loaded directly opens and turns. *Second build pitched it; fifth applied it.* **And what a press goes to stands at the top of what it opens** — [Solutions 104](../solutions/104-the-card-that-opened-out-of-sight.md).
-- **A module cycle through a book's door loads half a module.** The catalogue's table imports the manual's door; the base imports the catalogue's subjects from a file beside that chapter that imports only the framework. *Fifth build.*
+- **A module cycle through a book's file loads half a module.** The catalogue's table imports the manual's book file; the base imports the catalogue's subjects from a file beside that chapter that imports only the framework. *Fifth build.*
 - **A font named in `.pubconfig` reaches the live page only after a bind.** *Third build.* **The live server answers a picture's address since Sprint 100.**
 - **Two reviewers that write nothing run beside a build and find what the builder does not.** *Third build; the helper session's control measurements on the papers settled the switch rule in the fifth.*
 

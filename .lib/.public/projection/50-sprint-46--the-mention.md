@@ -630,7 +630,7 @@ $TypeOfReference
 | ***what `$Reference` becomes*** | **the thing between a piece of writing and what it means** — *narrow, and essentially a path with the ability to read* |
 | ***what writing becomes*** | ***referential by having a meaning***, which is universal and needs no lineage |
 | ***what the UI sees*** | *"any writing is like a reference"* — **and this is already true: [`$Writing.view()`](../../package/src/writing/Writing.tsx) draws an anchor whenever `meaning()` answers** |
-| ***the use/mention pair, closed*** | *"you can pass around other pieces of writing to get references"* — **hand someone a piece of writing and they may USE it or MENTION it; `meaning()` is the second door** |
+| ***the use/mention pair, closed*** | *"you can pass around other pieces of writing to get references"* — **hand someone a piece of writing and they may USE it or MENTION it; `meaning()` is the second way in** |
 
 ### <a id="d-m-coherence"></a>The coherence check he asked for — ***and it found a real fault in this chapter***
 

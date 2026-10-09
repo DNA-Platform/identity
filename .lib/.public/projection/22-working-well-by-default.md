@@ -550,7 +550,7 @@
 | **[U158](#u158)** | a compile leaves the tree as it found it | **29 phantom modifications → 0.** *`git diff` was already empty; `.gitattributes` declares what the compiler writes* |
 | **[U159](#u159)** | `shelf()` deleted | ***`data-entries` = 0 on every chapter of `/physics`***, where it was 2 on all five |
 | **[U160](#u160)** | a turning names what it reaches | `next → The Standard Model` · `next → Gauge Theory` — **three of five labels were wrong** |
-| **[U161](#u161)** | the cover is a door, and there is a folio | **one click moves the standing chapter; the folio reads 0 → 1** |
+| **[U161](#u161)** | the cover is a way in, and there is a folio | **one click moves the standing chapter; the folio reads 0 → 1** |
 | **[U163](#u163)** | the cards carry their own text | **6/6 promises** that each literal equals its living book's own answer |
 | **[U164](#u164)** | the books arrive through doors | ***shelf chunk 284 kB → 74 kB*** · **and every spine still standing**, which the reverted attempt could not do |
 | **[U165](#u165)** | the demonstration can be built | ***73 nodes, 0 errors, minified*** — where it threw `Cannot read properties of undefined (reading 'chapters')` |

@@ -15,16 +15,16 @@
 | where | what is there |
 |---|---|
 | ***`src/encyclopedia/`*** | **four files: `Theme` (164 lines), `Infobox` (51), `Hatnote` (22), `Talk` (56)** |
-| ***the door*** | exports **Theme, Infobox, Hatnote** — ***`$Talk` is not exported and nothing imports it*** |
+| ***the entry point*** | exports **Theme, Infobox, Hatnote** — ***`$Talk` is not exported and nothing imports it*** |
 | ***the demo*** | **declares its own chrome** in `.wiki/.public/.document.tsx`: `$Header`, `$Footer`, `$Wordmark`, four `$Ref` subclasses, two `$Format`s |
 
 ### <a id="review-findings"></a>Six findings, and each is a unit below
 
 1. ***THE TABLE OF CONTENTS IS GONE AND THE COLUMN IT LIVED IN IS EMPTY.*** **Wikipedia's contents is the page's spine — sticky, numbered, nested, in the left margin** — and `$Book.listed()`, which built it, was deleted in [Sprint 55](61-sprint-55--the-two-ladders.md) along with the four workaround lines it was made of. *The paper got its contents back as ten literal `<Chapter/>` uses; the encyclopedia has not.* **This is the largest visible gap and the whole left column is white.**
 2. ***`$Wordmark` HAND-WRITES AN `<img>` AND CARRIES `$src` AND `$width`*** — *which is now exactly `$Image`, produced last sprint.* **It also overrides `view()`, which is the shape this codebase has removed everywhere else.** *This is the literal case of Doug's instruction: consume what we produce.*
-3. ***`$Talk` IS DEAD.*** **56 lines, no door export, no importer.** *Either Wikipedia's talk page is a thing we are building — in which case it is reachable — or it is not, and it goes.*
+3. ***`$Talk` IS DEAD.*** **56 lines, no export from the entry point, no importer.** *Either Wikipedia's talk page is a thing we are building — in which case it is reachable — or it is not, and it goes.*
 4. ***THE CHROME IS THE DEMO'S AND `$Book` NOW HAS SEAMS FOR IT.*** **`header()` and `footer()` on `$Book` are the places a book type says what stands above and below** — the demo's `$Header`/`$Footer` predate them and are wired another way. *Whether Wikipedia's masthead belongs to the BOOK or to the APPLICATION is a real question, and `src/encyclopedia.ts` already answers it once: "a website has a header, a book does not."* **That answer should be re-read, not assumed.**
-5. ***WHAT WIKIPEDIA HAS THAT WE HAVE NOT DRAWN.*** Read off the real page: **the article/talk pair and the read/edit/view-history tabs · "From Wikipedia, the free encyclopedia" · the per-section edit link · the categories bar at the foot · the sidebar navigation · search.** *Each is a component question — which of these is an ENCYCLOPEDIA's and which is a website's — and the answer decides whether it lives in the door or in the demo.*
+5. ***WHAT WIKIPEDIA HAS THAT WE HAVE NOT DRAWN.*** Read off the real page: **the article/talk pair and the read/edit/view-history tabs · "From Wikipedia, the free encyclopedia" · the per-section edit link · the categories bar at the foot · the sidebar navigation · search.** *Each is a component question — which of these is an ENCYCLOPEDIA's and which is a website's — and the answer decides whether it lives in the entry point or in the demo.*
 6. ***`$Line` IS A LABELLED PARAGRAPH AND THE FILE SAYS IT MAY BE WRONG.*** Infobox.tsx carries its own open question: *whether it should be an `$IndexCard` instead.* **An infobox row has a label and a value, which is what an index card is.**
 
 ## <a id="carried"></a>CARRIED FROM SPRINT 55 — ***two blockers, both measured***
@@ -38,7 +38,7 @@
 
 ***Doug: "making a proper theme with components."*** **A theme holds VALUES and a component holds a DRAWING** — that line is already written in [Format.tsx](../../package/src/writing/Format.tsx). *So anything Wikipedia draws that a book does not — a tab strip, an edit link, a categories bar — is a KIND in `src/encyclopedia/`, and the theme dresses it.* **Not a `@select` group standing in for a thing that has a name.**
 
-### <a id="d2"></a>D2 · A component enters the door only if EVERY encyclopedia has it
+### <a id="d2"></a>D2 · A component enters the entry point only if EVERY encyclopedia has it
 
 **The existing rule, kept:** *"What stays is what ANY encyclopedia has and no other book type does."* **Wikipedia's wordmark is Wikipedia's; an infobox is any encyclopedia's.** *Applied honestly, this sends some of finding 5 to the demo.*
 
@@ -85,7 +85,7 @@
 ## <a id="risks"></a>Risks
 
 - ***The Turing page is 57,136 characters and clean today.*** **Every unit is measured against that number and against 0 panels**; a unit that moves either without saying so has broken something.
-- ***D2 is the hard one.*** *The pull is to put everything in the door because it is convenient.* **`src/encyclopedia.ts` has already had Header, Footer and Logo removed from it once for exactly this reason** — that deletion is the precedent and the warning.
+- ***D2 is the hard one.*** *The pull is to put everything in the entry point because it is convenient.* **`src/encyclopedia.ts` has already had Header, Footer and Logo removed from it once for exactly this reason** — that deletion is the precedent and the warning.
 - ***U1 touches `$Writing.book`***, which every kind uses. *It is a base-class change and needs Doug's yes before it is made.*
 
 ## <a id="order"></a>Order
@@ -102,7 +102,7 @@
 
 ### <a id="landed-two"></a>Two findings, and one of them stopped the unit
 
-***`Image` IS A DOM GLOBAL.*** **Where the import is missing, TypeScript resolves `new Image()`** — *"Its type 'new (width?: number, height?: number) => HTMLImageElement' is not a valid JSX element type"* — **which is exactly what `document` did in Sprint 55**, and the door exported `documented` because of it. *The export name may owe the same treatment; that is Doug's to rule.*
+***`Image` IS A DOM GLOBAL.*** **Where the import is missing, TypeScript resolves `new Image()`** — *"Its type 'new (width?: number, height?: number) => HTMLImageElement' is not a valid JSX element type"* — **which is exactly what `document` did in Sprint 55**, and the entry point exported `documented` because of it. *The export name may owe the same treatment; that is Doug's to rule.*
 
 ***THE PORTAL'S LANGUAGE RING IS BROKEN AND IT PREDATES TODAY.*** **All ten `.pd-language` elements compute `position: static` at 305,140 — the same point.** *It was measured with the change in and again with the change reverted: **identical**, so it is not U2's doing.* **The `$Logo` → `$Image` swap was reverted on the portal for that reason** — churning a broken layout while it is broken teaches nothing, and the portal is not this sprint's target.
 

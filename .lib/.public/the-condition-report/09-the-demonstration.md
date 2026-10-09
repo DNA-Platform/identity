@@ -24,7 +24,7 @@
 
 ***The counts were IDENTICAL across every route, which is the whole diagnosis*** — **a page of four headings fetched the same 169 modules as everything else.** *Grouped, on `/title`: **67 framework · 55 the demonstration's books** · 30 other · 11 node_modules · 1 chemistry.*
 
-**The cause was `sections/index.ts` importing all three sections at module scope**, *and a section imports its books.* ***Only two numbers and a flag are needed eagerly*** — the header's case count and the sidebar's filter — **so the catalogue stays and the component arrives by dynamic import**, which is the one-door-per-book shape the compiler already emits (`build/stages/catalogue.ts`).
+**The cause was `sections/index.ts` importing all three sections at module scope**, *and a section imports its books.* ***Only two numbers and a flag are needed eagerly*** — the header's case count and the sidebar's filter — **so the catalogue stays and the component arrives by dynamic import**, which is the one-module-per-book shape the compiler already emits (`build/stages/catalogue.ts`).
 
 ***The metadata now lives once.*** *Each section's `sectionData` block was a second home for the same three fields and is deleted.*
 

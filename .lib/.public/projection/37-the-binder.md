@@ -398,7 +398,7 @@ The router beyond `read()` following its path. The parse above word — *a sente
 | **U61** ⛔ | **`read()` follows its path** through `$Catalogue.follow` | [R72](#r72) | Cathy |
 | **U62** | **the router** — an internal reference travels by it, without a page load | [R89](#r89) | Phillip |
 | **U63** ⛔ | **address codes for list and table**, so a reference can name one | [R69](#r69) | Cathy |
-| **U64** | **the binder** — config first, then the eight tools, each with its own door | [R74](#r74)–[R80](#r80) | Arthur |
+| **U64** | **the binder** — config first, then the eight tools, each with its own entry point | [R74](#r74)–[R80](#r80) | Arthur |
 | **U65** | **the corpus and the demo** — Wikimedia as a library, the app in `.demo` | [R81](#r81)–[R84](#r84) | Phillip |
 
 **Two names are owed before any of it:** [the two `Link`s](#r90) and [the two `Cell`s](#the-motif). *Both sit inside the units that need them, so neither can be deferred past U54.*

@@ -134,7 +134,7 @@ The two-pass reading of 2026-09-30, 45 documents and every file of `src`, with m
 
 ## Out of scope
 
-Chemistry's cascade on a bookmark write and the render's memory release, both chemistry's and pitched. A book under two subjects. The door between libraries. The highlighter's grammar set, still his open ruling.
+Chemistry's cascade on a bookmark write and the render's memory release, both chemistry's and pitched. A book under two subjects. The passage between libraries. The highlighter's grammar set, still his open ruling.
 
 ## The demo — a stub
 
@@ -154,7 +154,7 @@ Chemistry's cascade on a bookmark write and the render's memory release, both ch
 
 **Dressing it.** A wrapper wears no class of its annotation, READ — *the trials: the mark stays on the writing, and a Format's writer gives its box a class with `attrs`*. The base theme comprehends every folder's classes and highlight.js's, READ — *the four rules stay by his ruling*. `pd-line` two things, SEEN — *fixed*. No class for the ordinary chapter, READ — *`pd-canonical`*. A consumer extends the sheet through a cast, READ — *a field, once per class*. Figures hand-write `pre`, `img` and a span with no classes, READ — *`pd-code-line`; the rest open*. Svg's write is two shapes by sniffing, READ — *open*. A subtree theme owed its declarations, DOCUMENTED — *open*. `:first-child` where a class exists, `style` naming two things, `pa-append` where `pd-` belongs, Format's providing seam overridden to identity, READ — *open*.
 
-**Keeping it whole.** One subject per book, DOCUMENTED. No door between libraries, DOCUMENTED. A book representing a subject it is not named for, unbuilt, DOCUMENTED. The writing folder importing Chapter, READ — *open*.
+**Keeping it whole.** One subject per book, DOCUMENTED. No passage between libraries, DOCUMENTED. A book representing a subject it is not named for, unbuilt, DOCUMENTED. The writing folder importing Chapter, READ — *open*.
 
 **Consistency.** The eleven rows of F1, READ — *built*.
 

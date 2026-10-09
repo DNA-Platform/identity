@@ -28,13 +28,13 @@
 
 **Next action: Doug's audit of the five kinds, then [R7](#r7) — the transcript imported.** *Nothing below R6 has been attempted.*
 
-**BUILT:** [U0](#u0), [U1](#u1), [U2](#u2). *Five kinds behind one door, ten promises, and the recovered design back on disk.* **NOT STARTED:** [U3](#u3), [U4](#u4), [U5](#u5).
+**BUILT:** [U0](#u0), [U1](#u1), [U2](#u2). *Five kinds behind one entry point, ten promises, and the recovered design back on disk.* **NOT STARTED:** [U3](#u3), [U4](#u4), [U5](#u5).
 
 | | measured |
 |---|---|
 | package suite | **125 of 125**, up from 115 — the ten new promises are `.tests/conversation.test.tsx` |
 | `tsc -p src` | **3** — and **3 without our files too**, measured by moving them aside and running again. ***The delta is zero and the three are HEAD's*** ([below](#heads-three)) |
-| the door | `dist/conversation.js`, `.cjs` and `.d.ts` all emit |
+| the entry point | `dist/conversation.js`, `.cjs` and `.d.ts` all emit |
 
 ### <a id="corrected"></a>What the building got wrong, and what Doug corrected
 
@@ -336,8 +336,8 @@ Quote   holds [Paragraph | Aside]             ← nor this
 
 ## <a id="traps"></a>The traps, each one measured here
 
-- ***A PROMISE CANNOT PASS A `$TypeOf` CLASS THROUGH THE DOOR.*** **`tsc -p src` compiles `src` from SOURCE and `.tests` against `dist` — two type programs — so a class reached through the published name is not nominally the class `src` declares**, whatever it is at runtime. *It cost two rounds of red. The promises ask structurally instead: what a part's kind is CALLED and what class it WEARS, which is the reading a reader makes and the one the dress selects on.* **This is [`split-emission`](../solutions/.cover.md) meeting the test boundary.**
-- ***`build:quick` EMITS NO `.d.ts`.*** *So a new door typechecks against declarations that are not there until a FULL `npm run build` has run once.* **Quick for the suite; full before trusting `tsc`.**
+- ***A PROMISE CANNOT PASS A `$TypeOf` CLASS THROUGH THE ENTRY POINT.*** **`tsc -p src` compiles `src` from SOURCE and `.tests` against `dist` — two type programs — so a class reached through the published name is not nominally the class `src` declares**, whatever it is at runtime. *It cost two rounds of red. The promises ask structurally instead: what a part's kind is CALLED and what class it WEARS, which is the reading a reader makes and the one the dress selects on.* **This is [`split-emission`](../solutions/.cover.md) meeting the test boundary.**
+- ***`build:quick` EMITS NO `.d.ts`.*** *So a new entry point typechecks against declarations that are not there until a FULL `npm run build` has run once.* **Quick for the suite; full before trusting `tsc`.**
 - ***A HEREDOC IN A BASH CALL HANGS.*** *Cost one killed task this session. Files come from the editor; scripts are run with one plain `bash <file>`.*
 
 ## <a id="reading"></a>Read first
@@ -346,4 +346,4 @@ Quote   holds [Paragraph | Aside]             ← nor this
 
 ## <a id="names"></a>Names — proxies flagged
 
-**Doug's:** *conversation as a folder*, `Exchange`, `Turn`, `Participant`, `Topic`, *movements*. **Proxies, his to rename:** the folder and door name `conversation` — ***his word was "the conversations folder"***; `$Conversation`; `$ConversationTheme`; and every member [U1](#u1) declares.
+**Doug's:** *conversation as a folder*, `Exchange`, `Turn`, `Participant`, `Topic`, *movements*. **Proxies, his to rename:** the folder and entry point name `conversation` — ***his word was "the conversations folder"***; `$Conversation`; `$ConversationTheme`; and every member [U1](#u1) declares.

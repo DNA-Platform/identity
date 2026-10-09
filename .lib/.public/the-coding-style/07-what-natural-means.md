@@ -17,7 +17,7 @@
 
 | locally, in the code | conceptually, in the head |
 |---|---|
-| **saying a thing twice** — a tag in `definition` and again in `selector`; a heading synthesised in three bonds; a value in a theme and again in a format | **two names for one thing** — a header that is a strip in one door and a bar in another; `$Article` a chapter type in `src` and a book in the demo |
+| **saying a thing twice** — a tag in `definition` and again in `selector`; a heading synthesised in three bonds; a value in a theme and again in a format | **two names for one thing** — a header that is a strip in one entry point and a bar in another; `$Article` a chapter type in `src` and a book in the demo |
 | **dodging a base seam** — overriding `view()` to add one attribute the base `view()` could not take; overriding `specifically()` to nothing because the base judged what it should not | **two grammars for one apparatus** — a table of contents written as mentions in one demo and as menus with hand-written anchors in the other |
 | **waiving in two places** — a rule returned `false` on the specification and its supply returned unchanged on the type, because the demand is stated twice | **a record that says one thing and code that says another** — a style chapter claiming one `view()` override remains while eleven stand |
 | **reaching through** — `(this.$of ?? this).parent as $Image`, a format finding the writing it is worn by through a cast | **a control that promises and does nothing** — a panel whose choices are written and read by nobody |

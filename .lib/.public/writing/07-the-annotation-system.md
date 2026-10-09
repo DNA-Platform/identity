@@ -32,14 +32,14 @@ When a writing must be told what it is from outside, `$is` takes one or many —
 <Writing is={Narrative}>drawn after all <Parenthetical /></Writing>
 ```
 
-At runtime, from a button, that same door and no other — an annotation that takes a trait out of expression, given and then taken away again:
+At runtime, from a button, that same way in and no other — an annotation that takes a trait out of expression, given and then taken away again:
 
 ```ts
 writing.$is = Narrative;
 writing.$is = [];
 ```
 
-There is no third door and no property on Writing for any of it. `expressed` is not a door: it is what a define computes, and a hand outside a define does nothing. *"Let's not have sugar… One can specify the annotation as a child or through `is`. That should be enough."* And on two boolean fields a draft had put on Writing to hold what the annotations meant: *"How could these be there?"* — a type question turned into a flag, and the base carrying its annotations' vocabulary. The writing asks its collection instead.
+There is no third way in and no property on Writing for any of it. `expressed` is not a way in: it is what a define computes, and a hand outside a define does nothing. *"Let's not have sugar… One can specify the annotation as a child or through `is`. That should be enough."* And on two boolean fields a draft had put on Writing to hold what the annotations meant: *"How could these be there?"* — a type question turned into a flag, and the base carrying its annotations' vocabulary. The writing asks its collection instead.
 
 ## The genetics, said once and plainly
 
@@ -75,7 +75,7 @@ There is no third door and no property on Writing for any of it. `expressed` is 
 
 **Two things follow, both measured.** Expression is the collection's and not the annotation's: an annotation holds no flag and nothing in a define changes an annotation, which is what Doug's *"enforcement is moved to the collection not on the annotation"* asked. And the genome's code is membership alone — the collection's `toString` is its live membership, so a method that adds or removes an annotation wakes the writing and the define that establishes the change is quiet; while the code carried each member's expression, the string changed inside the very pass that computed it and the rendered promises measured a render loop.
 
-**What an author's switch is, then.** Not `expressed`, which is the network's. An author writes the annotation or does not; a class stands one in `$Define`; a page gives an annotation that takes another out of expression through `$is` and takes it away. That is the door, and it round-trips.
+**What an author's switch is, then.** Not `expressed`, which is the network's. An author writes the annotation or does not; a class stands one in `$Define`; a page gives an annotation that takes another out of expression through `$is` and takes it away. That is the way in, and it round-trips.
 
 ## <a id="two-guides"></a>Two guides, and the overlap is the test
 
@@ -102,7 +102,7 @@ There is no third door and no property on Writing for any of it. `expressed` is 
 
 ## The powers of an annotation
 
-**FOUR, and two that stood here on 2026-09-23 were struck the same day.** `inactivates` was a member invented out of a word Doug used to explain the idea — *"can't they cancel each other out, like certain genes, by inactivating the others?"* — and he struck it: ***"I didn't invent inactivates. NO NEW MEMBERS. You set expressed to false."*** Suppression is a gene reaching its family in `defines` and setting a property, which is the same act by which it reads or augments them, so it never needed a door of its own. `review` went with it: ***"No more review."***
+**FOUR, and two that stood here on 2026-09-23 were struck the same day.** `inactivates` was a member invented out of a word Doug used to explain the idea — *"can't they cancel each other out, like certain genes, by inactivating the others?"* — and he struck it: ***"I didn't invent inactivates. NO NEW MEMBERS. You set expressed to false."*** Suppression is a gene reaching its family in `defines` and setting a property, which is the same act by which it reads or augments them, so it never needed a way in of its own. `review` went with it: ***"No more review."***
 
 **An annotation supplies its own machinery, in the places it already stands.** Doug: *"The annotation itself should supply the machinery to do something. What can it do in defines. What can it do when rendered? Look at where defines is called and where it lives in view — it is hidden in the annotation part of the markdown. But it is there. Do you get it? Genetics. We add features."*
 
@@ -221,7 +221,7 @@ Forty-nine across four files at the end of 2026-09-22. Writing's thirty in `.tes
 
 **The gate, 2026-09-23:** typecheck 0 errors; quick build fresh; 77 of 77 promises across the eight files against the rebuilt dist.
 
-**At C4, 2026-09-24, Annotations on the core:** 159 across eleven files. Eight are the define's own, in `.tests/writing.test.tsx`: it erases what ran last time, last first, and then runs from the first; it is a stack, the last added first and most powerful; it holds a change until the next define, so a read is what the last define established; it is the one place an annotation acts, a removal waiting for the define that erases what the removed one did; it takes back what an annotation did however it left; an annotation that leaves and comes back draws where it drew before; the edits of `$is` stand in front at every define and `revert(this)` takes back exactly them; and `expressed` answers an annotation or a type while a hand outside a define does nothing. Every promise that flipped expression by hand was rewritten to give an annotation that takes another out of expression, since a hand is not a door. All 159 pass against chemistry at ab97399, every render count unchanged; before that fix, the seventeen drawn ones looped.
+**At C4, 2026-09-24, Annotations on the core:** 159 across eleven files. Eight are the define's own, in `.tests/writing.test.tsx`: it erases what ran last time, last first, and then runs from the first; it is a stack, the last added first and most powerful; it holds a change until the next define, so a read is what the last define established; it is the one place an annotation acts, a removal waiting for the define that erases what the removed one did; it takes back what an annotation did however it left; an annotation that leaves and comes back draws where it drew before; the edits of `$is` stand in front at every define and `revert(this)` takes back exactly them; and `expressed` answers an annotation or a type while a hand outside a define does nothing. Every promise that flipped expression by hand was rewritten to give an annotation that takes another out of expression, since a hand is not a way in. All 159 pass against chemistry at ab97399, every render count unchanged; before that fix, the seventeen drawn ones looped.
 
 ## New names, for Doug
 

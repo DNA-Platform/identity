@@ -41,7 +41,7 @@ resolve: { dedupe: ['react', 'react-dom', 'styled-components', '@dna-platform/ch
 
 ## The mechanism: one class, seven programs
 
-**`rollup.config.js` built the package's types with SEVEN separate `dts` rollups, one per door.** A separate rollup is a separate program, and a separate program **emits its own copy of every type it reaches**. So `$Book` was declared in `lib.d.ts` and declared again in `encyclopedia.d.ts`, and a book written against the encyclopedia door was not a `$Book` to anything typed through the main one — nominally different classes with identical source.
+**`rollup.config.js` built the package's types with SEVEN separate `dts` rollups, one per entry point.** A separate rollup is a separate program, and a separate program **emits its own copy of every type it reaches**. So `$Book` was declared in `lib.d.ts` and declared again in `encyclopedia.d.ts`, and a book written against the encyclopedia entry point was not a `$Book` to anything typed through the main one — nominally different classes with identical source.
 
 ***And the file already knew.*** Twelve lines above, the CODE build carries the fix and the reason, written by an earlier sprint that had paid for it:
 
@@ -77,6 +77,6 @@ grep -c "declare class \$Book\b" dist/lib.d.ts dist/encyclopedia.d.ts   →  0  
 
 - **A gate that is scoped is scoped in the report.** *"tsc 0 in the package and the master binding"* was honest and precise, and precisely because it was honest it made the unmeasured place easy to leave unmeasured. **Where a number excludes something, say what it excludes and why** — otherwise the exclusion becomes the habit.
 - **When a config solves a problem for one artifact, ask what the SIBLING artifact does.** Runtime resolution and type resolution are the same question asked of two tools; so are a code bundle and a type bundle. *The tell here was literal adjacency — the answer was twelve lines above the bug, in the same file, with the reasoning written out.*
-- **A package with several doors has a duplicate-class hazard by construction**, and it is silent in both registers: at runtime a registration keyed on the class object is dead, at compile a subclass of one door's base is not the other door's base. **One emission, shared chunks, every door importing them** is the single answer to both.
+- **A package with several entry points has a duplicate-class hazard by construction**, and it is silent in both registers: at runtime a registration keyed on the class object is dead, at compile a subclass of one entry point's base is not the other book file's base. **One emission, shared chunks, every entry point importing them** is the single answer to both.
 
 *Found and fixed 2026-09-15 in [Sprint 72](../projection/78-sprint-72--the-compilation-audit.md), while chasing something else entirely.*

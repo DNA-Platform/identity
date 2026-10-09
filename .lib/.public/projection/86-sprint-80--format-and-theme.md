@@ -207,7 +207,7 @@ ThemeProvider = function (props) {
 |---|---|---|
 | **1 · the invented power removed** | `inactivates` off Annotation and off the five classes that used it; the regulation phase folded into `defines` | 86 of 86 |
 | **2 · the wrapping power removed** | `review` off Annotation and off the collection; `view` returns its container plainly | 86 of 86 |
-| **3 · expression named** | `enforced` → `expressed`, get-only; `enforce` → `express(value = true)`, the one door the genome and a family share | 86 of 86 |
+| **3 · expression named** | `enforced` → `expressed`, get-only; `enforce` → `express(value = true)`, the one way in the genome and a family share | 86 of 86 |
 | **4 · the collection made whole** | `remove` erases what leaves, through one protected `leave`; `same` moved to Reflection; the bare function gone from Writing | 86 of 86 |
 | **5 · Format rebuilt** | one class, `theme` and `style` and a protected `envelope`, with `defines`, `erase` and `apply` | 90 of 90 |
 | **6 · the classes marked** | `pa-` for a class an annotation put on a writing, `pd-` for what the writing is | 90 of 90 |
@@ -215,7 +215,7 @@ ThemeProvider = function (props) {
 
 ## What was struck, and why
 
-***Four mechanisms were built for this unit and every one came out the same day.*** **Each was a member added where the system already had a door**, which is the fault this sprint is really a record of.
+***Four mechanisms were built for this unit and every one came out the same day.*** **Each was a member added where the system already had a way in**, which is the fault this sprint is really a record of.
 
 | struck | what it was | why |
 |---|---|---|
@@ -234,7 +234,7 @@ Typecheck 0 errors, quick build fresh, **98 of 98 across ten files** on 2026-09-
 
 **What exists.** One class, `$Format`, with `theme`, `style` and a protected `envelope`, and three methods: `defines` takes every other Format out of expression and then applies; `apply` halts when the writing already wears its style, takes the envelope only when holding nothing, and sets its own; `erase` gives the envelope back only when it still finds its own style there. `theme = true` composes the style with a provider in the bond, once per mount, which is the one place it cannot double. There is no Theme class.
 
-**What the annotation system looks like now.** Four powers — `defines`, `erase`, `specifies`, `note` — and one door, `express(value = true)`, which the genome uses to start every pass and a family uses with `false` to say another does not apply. `expressed` is get-only. The pass is two phases: express everything, then act or undo front to back. Regulation happens inside `defines`, so a family member must stand in front of what it takes out of expression, which is the fixed point being the author's job.
+**What the annotation system looks like now.** Four powers — `defines`, `erase`, `specifies`, `note` — and one way in, `express(value = true)`, which the genome uses to start every pass and a family uses with `false` to say another does not apply. `expressed` is get-only. The pass is two phases: express everything, then act or undo front to back. Regulation happens inside `defines`, so a family member must stand in front of what it takes out of expression, which is the fixed point being the author's job.
 
 **The counts are under promise.** A change costs one paint. Mounting draws three times and paints once, and the three are named: the render, React's development double, and chemistry's post-commit diff against the cached view. A writing nobody touched is not drawn again when a sibling changes. Those live in [`.tests/renders.test.tsx`](../../package/.tests/renders.test.tsx), and a pass that stops settling shows up there first.
 

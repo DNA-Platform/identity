@@ -46,11 +46,11 @@
 
 **And the loading is what costs.** A process costs 2.0–3.1s before it reads anything, and the first book pays the package's load; the rest are a fraction. So books are read a **batch** at a time — `specification.batch` in `.pubconfig` — and a book whose digest still holds is not read again. *A pass that DRAWS keeps one process per page, because a book registers its theme on the shared class when its module loads; a pass that only READS draws nothing and may share.*
 
-## <a id="the-door"></a>The one door into the books
+## <a id="the-door"></a>The one way into the books
 
 **`application/books.ts` is the import of all the books**, written at assemble and keyed by **folder** — which is what a book has before anything has read it. Everything reaches a book through it: the specification that reads them, the prerender that draws them, the browser.
 
-**`application/routes.ts` is the addressing**, written at resolve and keyed by **name** — which a running book answers, so it cannot exist any earlier. Each route reaches its book through the one door.
+**`application/routes.ts` is the addressing**, written at resolve and keyed by **name** — which a running book answers, so it cannot exist any earlier. Each route reaches its book through the one way in.
 
 ***They are two jobs, not two indexes.*** *Sprint 72 collapsed them once and immediately had to reach around the result, loading books by path in the one pass that ran before the addressing existed.*
 

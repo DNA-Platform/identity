@@ -62,7 +62,7 @@ So the line was **redundant as well as fatal**. `$Letter`, the model it was copi
 
 ## The part worth keeping
 
-**A green number was never the thing that lied here — an ordinary word was.** "Slow" is what a stalled process looks like from outside, and it sent the diagnosis to the toolchain and kept it there for hours. In order, the causes proposed and abandoned: vite's module runner; the six `.d.ts` rollups; `@rollup/plugin-typescript` type-checking twice; the door files at the root of `src`; the size of chemistry's source; Windows Defender. Each was measured. **Each measurement was true and none of them was the cause**, because the thing being measured was never reaching the work.
+**A green number was never the thing that lied here — an ordinary word was.** "Slow" is what a stalled process looks like from outside, and it sent the diagnosis to the toolchain and kept it there for hours. In order, the causes proposed and abandoned: vite's module runner; the six `.d.ts` rollups; `@rollup/plugin-typescript` type-checking twice; the entry files at the root of `src`; the size of chemistry's source; Windows Defender. Each was measured. **Each measurement was true and none of them was the cause**, because the thing being measured was never reaching the work.
 
 Two things would have found it in minutes:
 

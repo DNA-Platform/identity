@@ -162,7 +162,7 @@
 | | |
 |---|---|
 | ***[U1](#u1) — WITHDRAWN, and the design is better for it*** | **Reflection needs nothing new.** *`parser.sentences(parser.tokens(writing))[0]` already reads the opening sentence and `parser.elements` already turns a token run into content, so the derivation had nowhere to live but the specification — which is where the demand already lived* |
-| ***[U2](#u2) — DONE*** | **`Specification.supplies(writing, parts)`**, answering the parts unchanged by default. **`$Annotation.supplies`** is the door beside `specifically`. *Two members, both validation, which is the one exception [R5](#requirements) allows; no kind gained a data member* |
+| ***[U2](#u2) — DONE*** | **`Specification.supplies(writing, parts)`**, answering the parts unchanged by default. **`$Annotation.supplies`** is the way in beside `specifically`. *Two members, both validation, which is the one exception [R5](#requirements) allows; no kind gained a data member* |
 | ***[U3](#u3) — DONE*** | **`parse()` (`package/src/utilities/Parser.tsx`) takes an optional supply and applies it BEFORE the memo** — [the risk this chapter named](#risks) — and `$Composition.parts()` asks its own kind. **`SectionSpecification` reads a heading out of its opening sentence, elided, and answers it first.** *Its own rule now asks the reading and falls back to what is written* |
 
 ***Measured, whole suite, fresh:*** **`tsc` 0 · build clean · 65 passed / 3 failed of 68.** *Five promises added and green; **the three red are the same three that were red before this sprint began**, so nothing was broken to get here.*

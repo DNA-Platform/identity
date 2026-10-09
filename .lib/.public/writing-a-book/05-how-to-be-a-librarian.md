@@ -40,7 +40,7 @@
 
 **A test library is a librarian's library, or it is not a library.** The one the binder is proved against is a library kept by a librarian named Libby: her autobiography grounds it, The Library is filed under Libraries and about itself, a persona is filed under her, a paper is by the persona, and the manual is her book of the tools her library is built with. Built as a fixture it went wrong twice — an autobiography called a Log, and a librarian filed under herself — and [What a Library Is](01-what-a-library-is.md) records both. What it teaches: every book the compiler is tested against must be a book somebody could have written, filed where they would file it, or the compiler is being proved against a shape no library has.
 
-**A library's tools are its own books.** Code for one's library lives in one's library, as files beside the chapters that document them, printed by figures and imported through a manual's door — [The Reference Manual](04-the-reference-manual.md). A library that reaches outside itself for its tools has an outside, and the closure is gone. Doug: *"a library whose inside contains its own outside, at least in printed form."*
+**A library's tools are its own books.** Code for one's library lives in one's library, as files beside the chapters that document them, printed by figures and imported through a manual's book file — [The Reference Manual](04-the-reference-manual.md). A library that reaches outside itself for its tools has an outside, and the closure is gone. Doug: *"a library whose inside contains its own outside, at least in printed form."*
 
 ## How to conceptualize one — the questions, in order
 

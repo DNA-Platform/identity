@@ -75,7 +75,7 @@
 
 ## <a id="see-also"></a>See also
 
-- **[Using the Public Library](01-using-the-public-library.md)** — *what a consumer imports and through which door*
+- **[Using the Public Library](01-using-the-public-library.md)** — *what a consumer imports and through which entry point*
 - **[The Book's Little Framework](04-the-book-s-little-framework.md)** — *what a book declares for itself*
 - **[The Coding Style](../the-coding-style/03-the-coding-style.md#book-and-chapter)** — *the anchor, and every other rule in force*
 - **[Sprint 67](../projection/73-sprint-67--the-flow-the-book-holds.md)** — *the sprint this was learned in, with what was cut on the way*
