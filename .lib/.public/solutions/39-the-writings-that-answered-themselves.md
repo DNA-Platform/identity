@@ -18,7 +18,7 @@
 
 ## The fix — FOUR SEATS, ONE PRINCIPLE
 
-Doug's sentence closed all of them: ***"if you are created in an `<X>` you are a child of X."*** The eval form of [`$`](../../../chemistry/package/src/abstraction/chemical.ts) now reads the **asker** — the dynamic scope the framework already raises around the bond constructor, the view, and a handler — and parents what it evaluates to the chemical whose code is running; the asker is raised at the `_bondConstructor.apply` itself, so the eval path is covered without `$lift`. [The parse adopts](../../package/src/utilities/Parser.tsx) what it reduce-builds where no `$Writing` parent stands; [the bound stand-in pulls its document through `inside`](../../package/src/writing/Writing.tsx); and `append` adopts what arrives parentless.
+Doug's sentence closed all of them: ***"if you are created in an `<X>` you are a child of X."*** The eval form of [`$`](../../../chemistry/package/src/abstraction/chemical.ts) now reads the **asker** — the dynamic scope the framework already raises around the bond constructor, the view, and a handler — and parents what it evaluates to the chemical whose code is running; the asker is raised at the `_bondConstructor.apply` itself, so the eval path is covered without `$lift`. The parse adopts (`package/src/utilities/Parser.tsx`) what it reduce-builds where no `$Writing` parent stands; [the bound stand-in pulls its document through `inside`](../../package/src/writing/Writing.tsx); and `append` adopts what arrives parentless.
 
 ## The lesson
 

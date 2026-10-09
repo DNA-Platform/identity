@@ -95,7 +95,7 @@
 
 ## <a id="g-encyclopedia"></a>The encyclopedia, measured — and three corrections to the record
 
-**Eleven files, thirteen exports, ~109 lines** ([src/encyclopedia/](../../package/src/encyclopedia/)), thirteen import sites across eleven consumers. `read`
+**Eleven files, thirteen exports, ~109 lines** (src/encyclopedia/), thirteen import sites across eleven consumers. `read`
 
 | dress | tag | flat CSS fields | shape | consumers | grain |
 |---|---|---|---|---|---|

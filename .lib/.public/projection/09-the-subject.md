@@ -53,9 +53,9 @@
 
 ## The starting condition, verified 2026-08-07
 
-- [`Subject.tsx`](../../package/src/book/Subject.tsx) and **`Literature.tsx`** were **zero bytes** — the files existed and nothing was in them.
+- `Subject.tsx` and **`Literature.tsx`** were **zero bytes** — the files existed and nothing was in them.
 - The word *subject* appeared **nowhere in the package source** (`grep -i subject src/` — no matches). No cover carried one, no card carried one, no book read one.
-- What The Author left standing: the card family ([`IndexCard`](../../package/src/reference/IndexCard.tsx), `LibraryCard` *(deleted; the demo declares its own card)*, `LibraryCatalogue` *(deleted)*), the [author resolving through a card](../../package/src/book/Author.tsx), [four hand-built cards](../../.archive/app/src/sections/book/library/the-team/card.tsx), and the loop closed in the model.
+- What The Author left standing: the card family (`IndexCard`, `LibraryCard` *(deleted; the demo declares its own card)*, `LibraryCatalogue` *(deleted)*), the author resolving through a card, four hand-built cards, and the loop closed in the model.
 - **[The Author's R13](08-the-author.md#the-author-and-the-loop) was never built:** a book whose author link points at a book that does not author itself is not caught — no author validation existed at all.
 
 ## Rulings from the interview, 2026-08-07
@@ -161,8 +161,8 @@
 
 ## What the research read, and what it changed
 
-- **The book already spliced in a table of contents from nowhere** — [`$Book.$Book`](../../package/src/book/Book.tsx) inserted one when none was authored. The ruling kills exactly this line; the rows' derivation survives it.
-- **The author's syntax is an element found in the cover's writing** — [`$Cover.author`](../../package/src/book/Cover.tsx) scans its sections' elements. The subject reuses the scan, the element shape, and both authoring forms: bare `<Author>Name</Author>` pointed in a second act, and `<Author for={card}>Name</Author>` direct.
+- **The book already spliced in a table of contents from nowhere** — `$Book.$Book` inserted one when none was authored. The ruling kills exactly this line; the rows' derivation survives it.
+- **The author's syntax is an element found in the cover's writing** — `$Cover.author` scans its sections' elements. The subject reuses the scan, the element shape, and both authoring forms: bare `<Author>Name</Author>` pointed in a second act, and `<Author for={card}>Name</Author>` direct.
 - **The self-subject must card-before-book.** A cover cannot import its own card without cycling through the books the catalogue holds — the author self-loop's shipped pattern, reused for The Shelf.
 - **The migration, COUNTED (R3):** **ten construction sites in the suites** — `book.test.tsx` builds through **one factory** plus six direct specimens (three deliberately invalid, which keep their errors and re-assert the new messages), `author.test.tsx` one, `card.test.tsx` one — **plus the four demo books.** The factory carries the bulk.
 
@@ -373,6 +373,6 @@ The blocked name (opened the catalogue-is-not-writing ground, recorded); the car
 
 **Open, each with its owner:** the types sprint — Doug's, at sprint planning · `file()` stands as proxy for his `index(…)`, blocked by the writing's own `index`, and his thought that the catalogue may not be writing at all is recorded, not acted on · canonical reciprocity answers through `valid()`, and where that check runs (books loading their subjects, or build-time in `.public`) is open design · `$` as the container, recorded since The Author.
 
-**Read these, and they are sufficient:** (1) this chapter's Requirements — R26–R33 are the review's rulings in Doug's words; (2) the [Solutions cover](../solutions/.cover.md) — five chapters filed this sprint, indexed by symptom; (3) chapter zero's [Types section](00-planning.md#types--a-whole-sprint-ruled-2026-08-07--and-it-now-waits-behind-writing-2026-08-10); (4) the three self-viewing books — [the shelf](../../.archive/app/src/sections/book/library/the-shelf/book.tsx) with [its contents](../../.archive/app/src/sections/book/library/the-shelf/contents.tsx), [the team](../../.archive/app/src/sections/book/library/the-team/book.tsx), [the manifold](../../.archive/app/src/sections/the-manifold.tsx).
+**Read these, and they are sufficient:** (1) this chapter's Requirements — R26–R33 are the review's rulings in Doug's words; (2) the [Solutions cover](../solutions/.cover.md) — five chapters filed this sprint, indexed by symptom; (3) chapter zero's [Types section](00-planning.md#types--a-whole-sprint-ruled-2026-08-07--and-it-now-waits-behind-writing-2026-08-10); (4) the three self-viewing books — the shelf (`.archive/app/src/sections/book/library/the-shelf/book.tsx`) with its contents, the team (`.archive/app/src/sections/book/library/the-team/book.tsx`), the manifold (`.archive/app/src/sections/the-manifold.tsx`).
 
 **Wrong turns, the four that cost most:** speak Doug's words — *fail*, *make*, and invented vocabulary are not domain terms, and he reads neither our identifiers nor our conversations · a stopped push is a session boundary — secure the branch library before any reconcile · when three theories each fit some of the evidence, print the actual shape instead of forming a fourth · a `$Book` subclass lives in its book's name space — check every state name against the model's members.

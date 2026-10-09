@@ -175,7 +175,7 @@
 | | it rules | dated to |
 |---|---|---|
 | ***the unknown-cast reach is NEVER okay*** | **Doug: *"Get rid of this, we need to move things around. I hate this pattern and you can make that it is never okay"*** — *of a helper reading a protected member through `as unknown as { … }`. A member the machinery must read is a member on the wrong object, or machinery in the wrong place: **move things around** — the reader was moved into the owning class (the composition computes its own tokens; annotations override where the edits live; the law became `append`'s door-check) and the reach deleted.* | ***2026-09-02*** |
-| ***no cast on a strongly-typed assignment*** | **Doug: *"The property is strongly typed. No reason not to drop that"*** — `this._type = $(<TypeOfBook />)` and never `as $TypeOfBook` after it. **`npm run clean` in the package enforces this and the `$Block` spelling mechanically** — [`clean.ts`](../../package/clean.ts). | ***2026-09-02*** |
+| ***no cast on a strongly-typed assignment*** | **Doug: *"The property is strongly typed. No reason not to drop that"*** — `this._type = $(<TypeOfBook />)` and never `as $TypeOfBook` after it. **`npm run clean` in the package enforces this and the `$Block` spelling mechanically** — `clean.ts`. | ***2026-09-02*** |
 
 ### <a id="seen"></a>The third rung is mandatory for chemistry features
 
@@ -317,7 +317,7 @@
 | what depends on a runtime name | where |
 |---|---|
 | ***every type's `name`*** | `$Type` derives it from `this.constructor.name` — `$TypeOfCode` answers `Code` — **so no type writes its name by hand.** Sixty-two `override name = '…'` lines were deleted the day this was given |
-| ***every `pd-` class*** | [`reflection.classNames`](../../package/src/utilities/Reflection.tsx) reads `writing.constructor.name` for kinds a consumer declares without a type of their own |
+| ***every `pd-` class*** | `reflection.classNames` reads `writing.constructor.name` for kinds a consumer declares without a type of their own |
 | ***`authored()`*** | already strips a bundler's decoration — `_$Editions2` and `$Editions` name the same kind — **which handles rollup's rewriting but NOT a minifier's renaming** |
 
 ***The requirement, stated plainly: a production build of anything consuming `@dna-platform/public` must keep class names.*** *In terser that is `keep_classnames`; in esbuild, `--keep-names`.* **Nothing in the repository enforces it and no promise fails without it** — the pages simply draw `pd-a` where they meant `pd-appendix`, and every sheet stops matching.

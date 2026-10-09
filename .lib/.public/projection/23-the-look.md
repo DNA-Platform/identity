@@ -33,7 +33,7 @@
 | [The Reactivity Contract](../../../chemistry/.lib/authorship/04-the-reactivity-contract.md) · [View](../../../chemistry/.lib/particle/06-view.md) | why the cursor had to be scope-tracked, and why it no longer does |
 | [The Condition Report](../the-condition-report/.cover.md) — [How to Read This](../the-condition-report/01-how-to-read-this.md), [The Three Codebases](../the-condition-report/07-the-three-codebases.md), [The Compiler](../the-condition-report/08-the-compiler.md), [The Demonstration](../the-condition-report/09-the-demonstration.md) | the standard a fault is judged against, and **C7's rebuild-chain condition**, which governs any `$Chemistry` change |
 | [The Canonical Echo](../the-semantics-of-books/06-the-canonical-echo-and-views.md) | a claim in the **theory** book that dies with the mechanism, and would otherwise be missed |
-| [`Book.tsx`](../../package/src/book/Book.tsx) · [`sheet.tsx`](../../.archive/app/src/sections/page/sheet.tsx) · [`the-page.tsx`](../../.archive/app/src/sections/the-page.tsx) | the framework's whole drawing, and the five live lenses that have to survive the change unchanged on screen |
+| `Book.tsx` · `sheet.tsx` · `the-page.tsx` | the framework's whole drawing, and the five live lenses that have to survive the change unchanged on screen |
 
 ---
 
@@ -71,7 +71,7 @@
 | **the promises that move** | `look.test.tsx` **10** · `perspectives.test.tsx` **8** · `particle-perspectives.test.tsx` **6** = **24**; `frame.test.tsx` **11 survive** | counted per file |
 | **`Perspective` is a PUBLIC export** | [`index.ts:17`](../../../chemistry/package/src/index.ts) — exactly **one** consumer imports it, `sheet.tsx` | grep for the import |
 | **one symbol is already dead** | `$perspective$` (singular) — declared at [`symbols.ts:51`](../../../chemistry/package/src/implementation/symbols.ts), **0 uses in `src`** | grep, `src` only |
-| **`$i` was taken, and by the busiest reference class** | `$Location.$i` (v1, `.archive/reference/Location.tsx`, deleted) — **6 sites**, plus `<Location i={…}/>` from [`Book.tsx:186`](../../package/src/book/Book.tsx), `CardCatalogue.tsx:41` (v1, `.archive/reference/CardCatalogue.tsx`, deleted), [`Writing.tsx:101`](../../package/src/writing/Writing.tsx) | grep — **this is why the prop is `look`** |
+| **`$i` was taken, and by the busiest reference class** | `$Location.$i` (v1, `.archive/reference/Location.tsx`, deleted) — **6 sites**, plus `<Location i={…}/>` from `Book.tsx:186`, `CardCatalogue.tsx:41` (v1, `.archive/reference/CardCatalogue.tsx`, deleted), [`Writing.tsx:101`](../../package/src/writing/Writing.tsx) | grep — **this is why the prop is `look`** |
 | **`$look` is free** | **0 occurrences** anywhere in the repository | grep across both packages and both apps |
 | **`$$view` is ALREADY excluded from props** | [`$Properties<T>`](../../../chemistry/package/src/implementation/types.ts) maps `` K extends `$${infer First}${infer Rest}` `` and returns `never` when `First extends '$'` | read |
 | **framework `$`-fields are excluded too — including ones meant to be props** | `$show`/`$hide` are `keyof $Chemical`, so `<X show={false}/>` does not typecheck; **every Lab site writes `this.x.$show = …` instead** | read + grep, 6 sites |

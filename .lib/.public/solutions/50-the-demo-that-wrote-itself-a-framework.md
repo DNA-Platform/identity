@@ -33,7 +33,7 @@
 
 ## The mechanism
 
-***Nothing in a file says which surface it is on.*** **[`.wiki/.encyclopedia/.chapter.tsx`](../../package/.wiki/.encyclopedia/.chapter.tsx) and [`src/book/Chapter.tsx`](../../package/src/book/Chapter.tsx) are the same TypeScript, in the same repository, importing the same `$`, following the same four-declaration template.** *There is no import, no header, no directory name that reads as "you are in the demo now."*
+***Nothing in a file says which surface it is on.*** **`.wiki/.encyclopedia/.chapter.tsx` and `src/book/Chapter.tsx` are the same TypeScript, in the same repository, importing the same `$`, following the same four-declaration template.** *There is no import, no header, no directory name that reads as "you are in the demo now."*
 
 **So the one decision that actually distinguishes the two surfaces — *add a kind, or override one* — got made from LOCAL CODE QUALITY.** ***And local code quality always votes for the new class***, because a new class is cleaner in the file you are looking at *and its whole cost lands in files you are not.*
 

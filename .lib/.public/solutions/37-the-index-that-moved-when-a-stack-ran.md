@@ -22,7 +22,7 @@
 
 ## The mechanism — ONE FIELD, TWO COMPOSITIONS, LAST WALK WINS
 
-**[`Parser.parse`](../../package/src/utilities/Parser.tsx) assigned `part.index = at` to every part of every parse, universally.** *`concatenate` takes parts WHOLE into a bare composition — deliberately, they are the same objects — and the first `parts()` on that composition runs its own walk over them.* ***So the shared parts were renumbered to their positions in the STACK, and the original parent's memoized parts array — same objects, same array — now carried foreign indices.*** **`index` is one field on the part; a part standing in two compositions can only keep one container's fact, and the last processor wrote it.**
+**`Parser.parse` assigned `part.index = at` to every part of every parse, universally.** *`concatenate` takes parts WHOLE into a bare composition — deliberately, they are the same objects — and the first `parts()` on that composition runs its own walk over them.* ***So the shared parts were renumbered to their positions in the STACK, and the original parent's memoized parts array — same objects, same array — now carried foreign indices.*** **`index` is one field on the part; a part standing in two compositions can only keep one container's fact, and the last processor wrote it.**
 
 *This is the one-field shape [The chapter that wrote its sections twice](13-the-chapter-that-wrote-its-sections-twice.md) called two populations of one object, arrived at a single member: not two objects for one writing, but one member for two containers.*
 

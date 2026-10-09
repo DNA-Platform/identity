@@ -34,11 +34,11 @@
 
 | | |
 |---|---|
-| ***generation from below*** | **[`parse()`](../../package/src/utilities/Parser.tsx) gathers any token its `accept` refuses and hands the run to `reduce`**, which asks [`reflection.template(beneath).makes(tokens)`](../../package/src/utilities/Reflection.tsx). *A section handed a sentence ALREADY answers a paragraph holding it* |
+| ***generation from below*** | **`parse()` (`package/src/utilities/Parser.tsx`) gathers any token its `accept` refuses and hands the run to `reduce`**, which asks `reflection.template(beneath).makes(tokens)`. *A section handed a sentence ALREADY answers a paragraph holding it* |
 | ***"asking twice gives the same answer"*** | **`parse` memoises into a `WeakMap` keyed by the writing.** *Free, and already true* |
 | ***"tells it that it is"*** | **[`$Writing.addType`](../../package/src/writing/Writing.tsx) adds a type a writing does not carry**, and a piece of writing may carry many — *`$Trait` was deleted in Sprint 41 for exactly this* |
-| ***the direction rule*** | **[`reflection.beneath(holding, held)`](../../package/src/utilities/Reflection.tsx) answers at-or-below**, and `$composesWhatItHolds` now reads *"a piece of writing holds nothing above its own level"* |
-| ***the move itself, done imperatively*** | ***[`$Book.placed()`](../../package/src/book/Book.tsx) ALREADY generates a cover, synopsis, index or footer when absent*** — *but in the bond, and it **splices the made thing into `_block`** through `following()`* |
+| ***the direction rule*** | **`reflection.beneath(holding, held)` answers at-or-below**, and `$composesWhatItHolds` now reads *"a piece of writing holds nothing above its own level"* |
+| ***the move itself, done imperatively*** | ***`$Book.placed()` ALREADY generates a cover, synopsis, index or footer when absent*** — *but in the bond, and it **splices the made thing into `_block`** through `following()`* |
 
 > ***So the gap is not levels. It is a REQUIRED KIND that is absent*** — a section's heading, a book's cover — **and one place already solves it by mutating what the author wrote.**
 
@@ -71,7 +71,7 @@
 | | |
 |---|---|
 | **mechanism** | *reflection gains the derivation: given a writing and a required kind, answer a writing of that kind **made from what the writing already holds** — `template(kind).makes(tokens)` is the existing engine, and the tokens come from the parser. Answers nothing when the writing holds nothing beneath the kind* |
-| **files** | [`src/utilities/Reflection.tsx`](../../package/src/utilities/Reflection.tsx) · [`src/utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx) *if the token run needs a reading it does not have* |
+| **files** | `src/utilities/Reflection.tsx` · `src/utilities/Parser.tsx` *if the token run needs a reading it does not have* |
 | **depends on** | *nothing* |
 | ***visible end*** | *a section written as one paragraph draws a heading it was never given, and the paragraph is still there under it* |
 
@@ -80,7 +80,7 @@
 | | |
 |---|---|
 | **mechanism** | *the rules that demand a kind — `$opensWithHeading`, `$opensWithCover`, `$synopsisStandsSecond`, `$tableStandsThird`, `$endsWithFooter` — say **which kind** rather than only refusing its absence, so the same statement can be read by the check and by the derivation. **This is the exception R5 allows: validation may gain members*** |
-| **files** | [`src/writing/Section.tsx`](../../package/src/writing/Section.tsx) · [`src/book/Book.tsx`](../../package/src/book/Book.tsx) · [`src/utilities/Specification.ts`](../../package/src/utilities/Specification.ts) |
+| **files** | [`src/writing/Section.tsx`](../../package/src/writing/Section.tsx) · `src/book/Book.tsx` · [`src/utilities/Specification.ts`](../../package/src/utilities/Specification.ts) |
 | **depends on** | [U1](#u1) |
 | ***visible end*** | *a rule and its remedy read as one sentence in the file, and no kind carries a new member* |
 
@@ -98,7 +98,7 @@
 | | |
 |---|---|
 | **mechanism** | *`placed()` and `following()` go; the four regions read from `parts()`. The `cover`/`synopsis`/`table`/`index`/`footer` members stay — they are the book's declared interface — but they **answer** rather than **hold**, so what the author wrote is what `_block` holds* |
-| **files** | [`src/book/Book.tsx`](../../package/src/book/Book.tsx) |
+| **files** | `src/book/Book.tsx` |
 | **depends on** | [U3](#u3) |
 | ***visible end*** | ***the first region draws the cover*** — *the failure standing today* — *and `_block` after construction is what was written, in order* |
 
@@ -107,7 +107,7 @@
 | | |
 |---|---|
 | **mechanism** | *`$Title`'s bond makes a `<Heading>` from its copy and filters the strings out of its own block. Under [U3](#u3) it derives the heading and keeps the copy* |
-| **files** | [`src/book/Title.tsx`](../../package/src/book/Title.tsx) |
+| **files** | `src/book/Title.tsx` |
 | **depends on** | [U3](#u3) |
 | ***visible end*** | *a title written as copy still draws its heading, and still holds its copy* |
 
@@ -163,7 +163,7 @@
 |---|---|
 | ***[U1](#u1) — WITHDRAWN, and the design is better for it*** | **Reflection needs nothing new.** *`parser.sentences(parser.tokens(writing))[0]` already reads the opening sentence and `parser.elements` already turns a token run into content, so the derivation had nowhere to live but the specification — which is where the demand already lived* |
 | ***[U2](#u2) — DONE*** | **`Specification.supplies(writing, parts)`**, answering the parts unchanged by default. **`$Annotation.supplies`** is the door beside `specifically`. *Two members, both validation, which is the one exception [R5](#requirements) allows; no kind gained a data member* |
-| ***[U3](#u3) — DONE*** | **[`parse()`](../../package/src/utilities/Parser.tsx) takes an optional supply and applies it BEFORE the memo** — [the risk this chapter named](#risks) — and `$Composition.parts()` asks its own kind. **`SectionSpecification` reads a heading out of its opening sentence, elided, and answers it first.** *Its own rule now asks the reading and falls back to what is written* |
+| ***[U3](#u3) — DONE*** | **`parse()` (`package/src/utilities/Parser.tsx`) takes an optional supply and applies it BEFORE the memo** — [the risk this chapter named](#risks) — and `$Composition.parts()` asks its own kind. **`SectionSpecification` reads a heading out of its opening sentence, elided, and answers it first.** *Its own rule now asks the reading and falls back to what is written* |
 
 ***Measured, whole suite, fresh:*** **`tsc` 0 · build clean · 65 passed / 3 failed of 68.** *Five promises added and green; **the three red are the same three that were red before this sprint began**, so nothing was broken to get here.*
 
@@ -228,7 +228,7 @@
 
 > ***"what if you give chapter the semantics — each thing elevated to section. And section too, each elevated to paragraph. Why not"*** · ***"when the tokens are in strings, that is different than not"***
 
-**[`parse()`](../../package/src/utilities/Parser.tsx) GATHERED a run of unaccepted tokens and reduced the whole run into ONE** — *which is why twelve `$Project` cards became a single generated section and the demo collapsed.* ***Now a token that is a WRITING flushes the run and is elevated alone; only COPY still gathers, because prose is continuous and genuinely composes.*** **Three sentences are three paragraphs, not one.**
+**`parse()` (`package/src/utilities/Parser.tsx`) GATHERED a run of unaccepted tokens and reduced the whole run into ONE** — *which is why twelve `$Project` cards became a single generated section and the demo collapsed.* ***Now a token that is a WRITING flushes the run and is elevated alone; only COPY still gathers, because prose is continuous and genuinely composes.*** **Three sentences are three paragraphs, not one.**
 
 ***And the first of them becomes the title rather than a copy of it.*** *With more than one part the section **tells the first that it is** the heading — `addType`, Doug's own mechanism — and nothing is derived. With exactly ONE part there is nothing to spare, so the heading is read from its opening sentence and elided, and the paragraph stands whole.* **Two statements of his, reconciled by the count.**
 
@@ -245,7 +245,7 @@
 | | |
 |---|---|
 | ***FAULT 1 — the mention*** | **`$TypeOf$Chapter extends $TypeOfReference`, so a mention inherits `a reference carries a path`** — *which asks `writing.searchFor($TypeOfPath)`, and **`searchFor` is SHALLOW BY DESIGN** ([`Writing.tsx:73`](../../package/src/writing/Writing.tsx), one level, no recursion).* ***A mention HOLDS a `$Reference` and the `$Path` sits inside it, one level deeper*** — so the inherited rule can never be satisfied by a mention that holds its reference rather than being one. **Measured: `check $Reference paths=1` · `check $$Chapter paths=0`** |
-| ***FAULT 2 — both book promises*** | ***`THREW: a title means what it titles, and this one means nothing`***, at `TitleSpecification`. *[`Title.tsx:34`](../../package/src/book/Title.tsx) requires `writing.meaning !== undefined` and the fixture writes a bare `<Title>`.* **This is session 7e's finding from hours earlier and it is ALREADY an open ruling with Doug** — *either the rule is compiler-time and must not run at construction, or every title carries a reference.* ***Nine suite sites and both demo covers write a bare title today*** |
+| ***FAULT 2 — both book promises*** | ***`THREW: a title means what it titles, and this one means nothing`***, at `TitleSpecification`. *`Title.tsx:34` requires `writing.meaning !== undefined` and the fixture writes a bare `<Title>`.* **This is session 7e's finding from hours earlier and it is ALREADY an open ruling with Doug** — *either the rule is compiler-time and must not run at construction, or every title carries a reference.* ***Nine suite sites and both demo covers write a bare title today*** |
 
 ***NEITHER IS CHEMISTRY, and the handoff that said so has been withdrawn.*** *`$Reference`'s bond runs **exactly once, at build**, with the right text — it is never re-run at draw, so [the remaking](../solutions/52-the-pieces-a-writing-remade-each-time-it-drew.md) is a real defect but not this one.*
 
@@ -332,7 +332,7 @@ a reference carries a path, and this one carries none
 
 ### <a id="three-ways"></a>***FIXED: a reference carries a path, MEANS one, or STANDS FOR what it holds***
 
-***The rule was stated for one of three things and refused the other two.*** *[`ReferenceSpecification.$carriesPath`](../../package/src/reference/Reference.tsx) asked only whether the writing carries a `$Path` — and `$TypeOf$X extends $TypeOfReference`, so **every mention inherited it**.*
+***The rule was stated for one of three things and refused the other two.*** *`ReferenceSpecification.$carriesPath` asked only whether the writing carries a `$Path` — and `$TypeOf$X extends $TypeOfReference`, so **every mention inherited it**.*
 
 | | |
 |---|---|

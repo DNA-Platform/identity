@@ -385,7 +385,7 @@ an element  →  is it one of my parts?
 
 **3 — A PROMISE WAS GREEN BY COINCIDENCE.** The parallel text's two sides have **titles differing by one word**, and the written side's `<Link>` was **dissolving into two plain words**, cancelling it exactly. The link survives now, so the accident showed. *It compares the bodies, because the titles deliberately label the sides.*
 
-**4 — THE PARSE RUNS IN THE DRAW PATH, WITH NO CACHE.** *Doug: "I hope the only reason parse is happening is in a validation layer and not natively in the app."* **It is not.** [`$Book.view()`](../../package/src/book/Book.tsx) calls `parts()`, and the application's reader-or-catalogue test calls `book.chapters`, which is `parts()`. **Nothing memoises**, so drawing a page re-derives every paragraph, sentence, word and letter, repeatedly. ***A separate problem from this one, recorded rather than touched.***
+**4 — THE PARSE RUNS IN THE DRAW PATH, WITH NO CACHE.** *Doug: "I hope the only reason parse is happening is in a validation layer and not natively in the app."* **It is not.** `$Book.view()` calls `parts()`, and the application's reader-or-catalogue test calls `book.chapters`, which is `parts()`. **Nothing memoises**, so drawing a page re-derives every paragraph, sentence, word and letter, repeatedly. ***A separate problem from this one, recorded rather than touched.***
 
 ## Verified — every gate, with its scope, run fresh
 
@@ -481,7 +481,7 @@ an element  →  is it one of my parts?
 
 ## THE MACHINE, as it actually stands
 
-**The compiler is four phases in one command** — reading, resolving, emitting, validating — and it turns 21 authored files into 30. **[`index.ts`](../../build/index.ts) wires them; [`library.ts`](../../build/library.ts) is the seam, and it is a TYPE rather than a file on disk.**
+**The compiler is four phases in one command** — reading, resolving, emitting, validating — and it turns 21 authored files into 30. **`index.ts` wires them; `library.ts` is the seam, and it is a TYPE rather than a file on disk.**
 
 **Emitting runs twice on purpose**: cards are read off *living books*, so the books must be built before the catalogue can be written, and the covers cannot carry their cards until the catalogue exists to import them from. **Validating runs in its own process**, because the process that wrote the files holds the pass-one modules in its cache and would judge writing that is no longer on disk.
 
@@ -542,7 +542,7 @@ an element  →  is it one of my parts?
 *[Named, not claimed sufficient](../../../../.claude/library/our-skillset/32-ce-handoff.md#9-sufficient-is-a-claim-and-it-was-wrong) — a short list is a starting point rather than a boundary.*
 
 1. **This section, and then [the candidates](#the-candidates-for-a-solid-v1--and-none-of-them-is-chosen).** Load-bearing because the brainstorm's whole first move is putting that list in front of Doug and taking his cut.
-2. **[`build/library.ts`](../../build/library.ts) and [`build/index.ts`](../../build/index.ts).** Load-bearing because between them they say what the compiler *is*: the seam every phase reads, and the four phases in the order that is forced. **About 210 lines, and they are the whole shape.**
+2. **`build/library.ts` and `build/index.ts`.** Load-bearing because between them they say what the compiler *is*: the seam every phase reads, and the four phases in the order that is forced. **About 210 lines, and they are the whole shape.**
 3. **[The suite that passed against a stale build](../solutions/05-the-suite-that-passed-against-a-stale-build.md).** Load-bearing because candidate 1 is its unpaid half, and because any measurement taken next session is wrong unless it stays inside one realm.
 
 *If the cut lands on the parse or the model rather than the machine, add [this sprint's own account of what a level is](#the-design-principle-and-it-is-why-this-is-a-defect-rather-than-a-preference) — but read it after his answer, not before.*

@@ -36,7 +36,7 @@
 |---|---|---|---|
 | **`lib`** | ***a class*** | **58 lines** | ***yes*** — 51 files, 51 classes |
 | **`$Chemistry`** | ***a concern*** | **215 lines** | **no** — [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) holds **10 classes in 1,407 lines** |
-| **the compiler** | ***a phase*** | **107 lines** | **no classes at all** — 18 files, **1 class**, everything else a pure function over [one shared type](../../build/library.ts) |
+| **the compiler** | ***a phase*** | **107 lines** | **no classes at all** — 18 files, **1 class**, everything else a pure function over one shared type (`build/library.ts`) |
 
 **All three are defensible on their own terms.** *A framework of book semantics wants one class per book word. A reactive substrate wants its machinery together where the invariants are. A four-phase compiler wants functions over a seam.*
 

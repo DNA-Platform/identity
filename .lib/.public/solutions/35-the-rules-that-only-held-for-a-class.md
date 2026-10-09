@@ -28,7 +28,7 @@ Two rules raised their own sentences at examples that were plainly valid, and bo
 
 Neither of these did, and they failed for different reasons.
 
-**`$carriesPath` read a member.** *It asked `(writing as { path?: unknown }).path`* — **and `path` is declared on [`$Reference`](../../package/src/reference/Reference.tsx), nowhere else.** *So a `$Reference` satisfied it and a `$Paragraph` carrying `<Type>Reference</Type>` could not, however many paths were written inside it.* ***A rule on a type may not consult a member of that type's class***, because the writing being checked is frequently not one.
+**`$carriesPath` read a member.** *It asked `(writing as { path?: unknown }).path`* — **and `path` is declared on `$Reference`, nowhere else.** *So a `$Reference` satisfied it and a `$Paragraph` carrying `<Type>Reference</Type>` could not, however many paths were written inside it.* ***A rule on a type may not consult a member of that type's class***, because the writing being checked is frequently not one.
 
 **`$oneKind` counted a category that had just been re-cut.** *When `$Attribute` became [a kind of type](../../package/src/writing/Writing.tsx) — `export class $Attribute extends $Type { }` — the question "is this a type?" stopped being one test and became two: **a type, and not an attribute.*** **That distinction is made in FOUR places** in [`Writing.tsx`](../../package/src/writing/Writing.tsx):
 

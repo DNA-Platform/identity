@@ -19,7 +19,7 @@
 
 | it would show | asked as | where it already lives |
 |---|---|---|
-| how much writing | `sections` · `paragraphs` · `sentences` · `words` · `letters` | [`$Book`](../../package/src/book/Book.tsx), five getters |
+| how much writing | `sections` · `paragraphs` · `sentences` · `words` · `letters` | `$Book`, five getters |
 | the subject spine | a book's subject, and its subject's | the cards |
 | the attributes | `author` · `subject` · `canonical` | `$Cover`, already |
 | the links | `words.filter(w => w instanceof $Link)` | once [`$Link` is phrasal](../the-condition-report/04-semantics.md#s18) |

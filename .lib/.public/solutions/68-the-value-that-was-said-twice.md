@@ -19,7 +19,7 @@
 
 | | |
 |---|---|
-| ***two prefixes on one selector*** | **the base theme sizes `h2.pd-heading` under `h2_`**, *and the article theme sizes the same selector under `head_`.* **A subclass that overrides `head_fontSize` answers ONE of them and loses the tie to the other** — [markdown declared `1.25em` and drew `1.5em`](../../package/src/markdown/Theme.tsx) |
+| ***two prefixes on one selector*** | **the base theme sizes `h2.pd-heading` under `h2_`**, *and the article theme sizes the same selector under `head_`.* **A subclass that overrides `head_fontSize` answers ONE of them and loses the tie to the other** — markdown declared `1.25em` and drew `1.5em` (`package/src/markdown/Theme.tsx`) |
 | ***one prefix, twice*** | **`abstracted_marginBottom` was declared at line 218 and again at line 222** of the article theme. *TypeScript reports this — `TS2300: Duplicate identifier` — but only once the file is typechecked, and a theme edit is normally judged by looking at the page* |
 
 ***Neither is a cascade problem in the ordinary sense.*** **The specificities are EQUAL, so the winner is source order, and source order across a base and its subclass is not something the person editing the subclass can see.**

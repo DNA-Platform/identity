@@ -16,9 +16,9 @@
 
 **2 · A TITLE IS ALREADY A DOCUMENT MENTION.** *[`Title.tsx`](../../package/src/libraries/Title.tsx): `override get meaning() { return super.meaning ?? this.document; }`, and `document` returns the mention class.* ***So a document's card is produced by its title, and "mentions get assembled into a catalogue" is a walk over titles rather than a mechanism to invent.*** **This is the largest piece of good news in the session.**
 
-**3 · A CARD IS ALREADY A MENTION PLUS WHAT STANDS WITH IT.** *[`CatalogueCard.tsx`](../../package/src/libraries/CatalogueCard.tsx) specifies `a catalogue card carries the title of a book` — a composition holding a title.*
+**3 · A CARD IS ALREADY A MENTION PLUS WHAT STANDS WITH IT.** *`CatalogueCard.tsx` specifies `a catalogue card carries the title of a book` — a composition holding a title.*
 
-**4 · THE PARSER IS OURS AND SAID SO IN ADVANCE.** *[`Parser.tsx`](../../package/src/utilities/Parser.tsx): "it's not markdown, WE should be parsing that… One expression, and the syntax is free to move without asking another language's permission."* **One catch: `link()` is anchored `^…$`, so it only reads a link when the WHOLE writing is one.** *Mentions stand inline, so they must be found inside a string and split out — the shape `parse` already performs at every level, but new work at each.*
+**4 · THE PARSER IS OURS AND SAID SO IN ADVANCE.** *`Parser.tsx`: "it's not markdown, WE should be parsing that… One expression, and the syntax is free to move without asking another language's permission."* **One catch: `link()` is anchored `^…$`, so it only reads a link when the WHOLE writing is one.** *Mentions stand inline, so they must be found inside a string and split out — the shape `parse` already performs at every level, but new work at each.*
 
 **5 · NON-MEMBERSHIP DOES NOT REFUSE. IT GUESSES.** *One line, in `$Book`, `$Subject`, `$Author`, `$Canonical` and `$Participant`:*
 

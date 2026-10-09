@@ -29,7 +29,7 @@ And the getters stop reaching through a parent they may not have: `summary` and 
 
 ## The fix
 
-[`TableOfContents.tsx`](../../package/src/book/TableOfContents.tsx) — guarded `summary`/`cover`, the try-catch bond with the rethrow-when-it-has-one, and `valid()` answering for itself. `read()` throws honestly — *"stands outside any book"* — instead of crashing.
+`TableOfContents.tsx` — guarded `summary`/`cover`, the try-catch bond with the rethrow-when-it-has-one, and `valid()` answering for itself. `read()` throws honestly — *"stands outside any book"* — instead of crashing.
 
 ## The lesson
 

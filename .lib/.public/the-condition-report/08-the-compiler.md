@@ -13,7 +13,7 @@
 
 ## <a id="i23"></a>I23 — `forward` is copied into three modules
 
-**[`walk.ts:13`](../../build/stages/walk.ts) · [`refer.ts:17`](../../build/stages/refer.ts) · [`emit.ts:13`](../../build/stages/emit.ts)** — *the same line three times:*
+**`walk.ts:13` · `refer.ts:17` · `emit.ts:13`** — *the same line three times:*
 
 ```ts
 const forward = (p: string): string => p.split(sep).join('/');
@@ -21,7 +21,7 @@ const forward = (p: string): string => p.split(sep).join('/');
 
 ***Byte-identical, and the one difference is a lie about the difference:*** **`walk.ts` annotates the return as `Path` and the other two as `string`**, *and `Path` IS `string`* — so the three agree completely while appearing not to.
 
-**It is the compiler's most load-bearing convention** — *a path is forward-slashed, always, because the identity of an entry is its path and a Windows separator would make two names for one book* — **and a convention that important living in three private consts is a convention with no home.** [`utilities/where.ts`](../../build/utilities/where.ts) *is that home, and it holds one function today.*
+**It is the compiler's most load-bearing convention** — *a path is forward-slashed, always, because the identity of an entry is its path and a Windows separator would make two names for one book* — **and a convention that important living in three private consts is a convention with no home.** `utilities/where.ts` *is that home, and it holds one function today.*
 
 **Should be different:** ***one exported `forward` in `utilities/`, imported three times.***
 
@@ -31,9 +31,9 @@ const forward = (p: string): string => p.split(sep).join('/');
 
 | where | how it is said | what checks it |
 |---|---|---|
-| [`library.ts`](../../build/library.ts) | ***a doc comment*** on `Reference.as`, whose type is `string` | ***nothing*** |
-| [`refer.ts:19`](../../build/stages/refer.ts) | `const kinds = new Set(['Author', 'Subject', 'Canonical'])` | ***nothing*** |
-| [`emit.ts:46`](../../build/stages/emit.ts) | `const kinds = new Set(['Author', 'Subject', 'Canonical'])` — **capitalised, again, in a second module** | ***nothing*** |
+| `library.ts` | ***a doc comment*** on `Reference.as`, whose type is `string` | ***nothing*** |
+| `refer.ts:19` | `const kinds = new Set(['Author', 'Subject', 'Canonical'])` | ***nothing*** |
+| `emit.ts:46` | `const kinds = new Set(['Author', 'Subject', 'Canonical'])` — **capitalised, again, in a second module** | ***nothing*** |
 
 **The seam declares `Kind` and `Role` as unions and then declares `as` as `string`** — *so the one field naming a closed set is the one field that is not a union,* **and the union it should be is sitting in the comment above it.** *A fourth kind of annotation added tomorrow compiles everywhere and works nowhere.*
 
@@ -41,9 +41,9 @@ const forward = (p: string): string => p.split(sep).join('/');
 
 ## <a id="i24"></a>I24 — A path becomes a URL twice, two different ways, and Node has the function
 
-**[`validate.ts:25`](../../build/stages/validate.ts)** — a named helper that splits on a backslash and joins on a slash.
+**`validate.ts:25`** — a named helper that splits on a backslash and joins on a slash.
 
-**[`catalogue.ts:36`](../../build/stages/catalogue.ts)** — the same conversion inline in a template, written as a regex replace.
+**`catalogue.ts:36`** — the same conversion inline in a template, written as a regex replace.
 
 ***Same job, same phase of the same compile, two spellings*** — **and `node:url` exports `pathToFileURL`, which handles the cases neither of these does**: *a drive letter, a UNC path, a space in a folder name.* **The library this compiles lives under a drive letter**, *so the first of those three is already in play* **and only happens to work.**
 
@@ -51,17 +51,17 @@ const forward = (p: string): string => p.split(sep).join('/');
 
 ## <a id="s21"></a>S21 — The compiler's one contact with the framework it compiles for is `any`
 
-**Two modules load a living book and neither has a type for one** — [`catalogue.ts:36`](../../build/stages/catalogue.ts) casts the import to `{ book: any }`, and [`validate.ts`](../../build/stages/validate.ts) takes `live: any` and holds them in a `Map<string, any>`.
+**Two modules load a living book and neither has a type for one** — `catalogue.ts:36` casts the import to `{ book: any }`, and `validate.ts` takes `live: any` and holds them in a `Map<string, any>`.
 
-***`@dna-platform/lib` is a dependency of `build`.*** **`$Book` is exported from it.** *So the type exists, is reachable, and is not used* — **and the consequence is not stylistic: [`catalogue.ts`](../../build/stages/catalogue.ts) asks a live book for `contents.chapters`, `title.copy`, `subtitle.copy` and `synopsis.summary`, and NOT ONE of those four is checked against the class that answers them.** *Rename `contents` in the framework and the compiler keeps compiling and starts emitting empty cards.*
+***`@dna-platform/lib` is a dependency of `build`.*** **`$Book` is exported from it.** *So the type exists, is reachable, and is not used* — **and the consequence is not stylistic: `catalogue.ts` asks a live book for `contents.chapters`, `title.copy`, `subtitle.copy` and `synopsis.summary`, and NOT ONE of those four is checked against the class that answers them.** *Rename `contents` in the framework and the compiler keeps compiling and starts emitting empty cards.*
 
-***This is the seam where a silent zero is most expensive.*** **A card read off a book that answered `undefined` is a thin card and [thin cards are reported](../../build/index.ts)** — *a card read off a book that answered nothing at all is a card the compiler never knew to doubt.*
+***This is the seam where a silent zero is most expensive.*** **A card read off a book that answered `undefined` is a thin card and thin cards are reported (`build/index.ts`)** — *a card read off a book that answered nothing at all is a card the compiler never knew to doubt.*
 
 **Should be different:** ***the import cast to `{ book: $Book }`, and the level walk taking a `$Book`.***
 
 ## <a id="i25"></a>I25 — Two recursive directory walks in one file, for opposite purposes
 
-**[`emit.ts`](../../build/stages/emit.ts)** — `sweep(dir, keep)` *deletes what a run did not write*; `gather(dir)` *collects what was there before it.* **Both recurse the same tree the same way**, *and the only difference is what happens when the walk reaches a file.*
+**`emit.ts`** — `sweep(dir, keep)` *deletes what a run did not write*; `gather(dir)` *collects what was there before it.* **Both recurse the same tree the same way**, *and the only difference is what happens when the walk reaches a file.*
 
 ***And they are called in an order that makes the repetition literal:*** **`gather` runs, `removed` is computed from what it found, and then `sweep` recurses the identical tree a second time** — *two full traversals of the output to answer one question about it.*
 
@@ -69,15 +69,15 @@ const forward = (p: string): string => p.split(sep).join('/');
 
 ## <a id="i26"></a>I26 — A card's three links are written as three near-identical blocks, two of them the same
 
-**[`catalogue.ts`](../../build/stages/catalogue.ts)** — `authors`, `subjects` and `entries` are built one after another, and **`authors` and `subjects` are the same eight lines under a different field name.** *Each looks up a book's link, finds the card for the book it points at, and writes an assignment.*
+**`catalogue.ts`** — `authors`, `subjects` and `entries` are built one after another, and **`authors` and `subjects` are the same eight lines under a different field name.** *Each looks up a book's link, finds the card for the book it points at, and writes an assignment.*
 
-***This is the same fault [`$Author`, `$Subject` and `$Canonical` had in the framework](04-semantics.md) and it is here for the same reason***: **the three are one relation — a book naming another book — and nothing in the compiler says so**, *so each one gets written out again.* **[`author`, `subject` and `canonical` are all the same optional link type on `Book`](../../build/library.ts)** — *the seam already agrees they are one thing.*
+***This is the same fault [`$Author`, `$Subject` and `$Canonical` had in the framework](04-semantics.md) and it is here for the same reason***: **the three are one relation — a book naming another book — and nothing in the compiler says so**, *so each one gets written out again.* **`author`, `subject` and `canonical` are all the same optional link type on `Book` (`build/library.ts`)** — *the seam already agrees they are one thing.*
 
 **Should be different:** ***one function over the two link names*** — which is [N34](#n34)'s union, *arriving with something to do.*
 
 ## <a id="i27"></a>I27 — The six levels are declared twice in one file
 
-**[`validate.ts`](../../build/stages/validate.ts)** declares `Levels` as a type of six numbers, and then eleven lines later declares the same six as data — **paired by hand with the singular of each word**, so a fault message can name a grade.
+**`validate.ts`** declares `Levels` as a type of six numbers, and then eleven lines later declares the same six as data — **paired by hand with the singular of each word**, so a fault message can name a grade.
 
 **A seventh level added to the framework has to be added here twice**, *and the compiler will report six levels and a correct-looking total if it is added once.* ***The array is the real declaration*** — **the type can be derived from it** — *and the singular is only ever used to write a message.*
 
@@ -85,13 +85,13 @@ const forward = (p: string): string => p.split(sep).join('/');
 
 ## <a id="o14"></a>O14 — `CHECK` is a phase of the compile that lives in `commands/`
 
-***[The reorganization](../projection/21-semantics-then-drawing.md#u133) put four kinds of file in four places and got three of them right.*** **[`check.ts`](../../build/verify.ts) is filed as a command**, *alongside `see` which reports and the two `verify-*` scripts which gate* — **and it is not one.** *It is the fourth phase of the compile*, **spawned by [`index.ts`](../../build/index.ts) on every run, with the compile failing when it fails.**
+***[The reorganization](../projection/21-semantics-then-drawing.md#u133) put four kinds of file in four places and got three of them right.*** **`check.ts` is filed as a command**, *alongside `see` which reports and the two `verify-*` scripts which gate* — **and it is not one.** *It is the fourth phase of the compile*, **spawned by `index.ts` on every run, with the compile failing when it fails.**
 
-***It sits in `commands/` for a real reason, and the reason is not what the folder means.*** **It runs in its own process because [emitting imports every book and then rewrites those same files](../../build/stages/validate.ts), so a validator in the emitting process would judge a copy that is no longer on disk** — *the program is checked by something that did not write it.* **That is a fact about PROCESS, and the folder is a claim about ROLE**, *and this is the one place the two were confused.*
+***It sits in `commands/` for a real reason, and the reason is not what the folder means.*** **It runs in its own process because emitting imports every book and then rewrites those same files (`build/stages/validate.ts`), so a validator in the emitting process would judge a copy that is no longer on disk** — *the program is checked by something that did not write it.* **That is a fact about PROCESS, and the folder is a claim about ROLE**, *and this is the one place the two were confused.*
 
-***[`stages/validate.ts`](../../build/stages/validate.ts) is already the stage.*** **[`commands/check.ts`](../../build/verify.ts) is thirty-three lines that give it a process** — *which makes it neither a command nor a stage, but an entry point for one.*
+***`stages/validate.ts` is already the stage.*** **`commands/check.ts` is thirty-three lines that give it a process** — *which makes it neither a command nor a stage, but an entry point for one.*
 
-**Should be different:** ***named for what it is — the stage's entry point — or filed beside the stage it runs.*** *[The taxonomy is the compiler's own](../../build/verify.ts), written in that file's own header, and this is the one file that header does not describe.*
+**Should be different:** ***named for what it is — the stage's entry point — or filed beside the stage it runs.*** *The taxonomy is the compiler's own (`build/verify.ts`), written in that file's own header, and this is the one file that header does not describe.*
 
 ## <a id="s22"></a>S22 — RESOLVED · The emitter wrote the one construct the framework had purged
 
@@ -131,7 +131,7 @@ const forward = (p: string): string => p.split(sep).join('/');
 
 ***`see.ts` read `Link.from`, a field deliberately deleted from the seam*** — *whose own comment says "HOW it was arrived at is deliberately not here."* **It printed `declared` on every row above a summary reading `0 declaring · 0 supplied · 0 standing for nobody`.** *It compiled only because of [O16](#o16).*
 
-**Closed: it is [`dump`](../../build/dump.ts) now** — *the compiler's word for putting its intermediate representation on a screen* — **and it prints what the seam can actually answer: `17 links · 13 pointing · 4 standing for a name`.**
+**Closed: it is `dump` now** — *the compiler's word for putting its intermediate representation on a screen* — **and it prints what the seam can actually answer: `17 links · 13 pointing · 4 standing for a name`.**
 
 ### <a id="i31"></a>I31 — RESOLVED · A wrong corpus produced a stack trace, not a diagnostic
 
@@ -143,5 +143,5 @@ const forward = (p: string): string => p.split(sep).join('/');
 | **a file that will not parse** | reported as *"exports nothing a book can compose"* — **the wrong cause** | *"…would not parse", naming the file* |
 | **a chapter exporting anything at all** | ***0 diagnostics***; `export const nothing = 1` emitted as `<nothing />` | *failed before the emitter* |
 
-***The root of the first was two non-null assertions in [`resolve.ts`](../../build/stages/resolve.ts) with only one guard behind them*** — **the walk complained about a missing cover and never about a missing synopsis.** *A book that cannot be built is now ABSENT from the model rather than present and broken.*
+***The root of the first was two non-null assertions in `resolve.ts` with only one guard behind them*** — **the walk complained about a missing cover and never about a missing synopsis.** *A book that cannot be built is now ABSENT from the model rather than present and broken.*
 

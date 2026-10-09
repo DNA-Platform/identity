@@ -13,7 +13,7 @@
 |---|---|---|---|
 | **[`lib`](../../package/src/)** | ***a WORD*** | **58 lines** | *v1: **51 files, 51 classes**, one each · v2: **three classes to a word*** |
 | **[`$Chemistry`](../../../chemistry/package/src/)** | ***a concern*** | **215 lines** | **10 classes in one 1,400-line file** |
-| **[the compiler](../../build/)** | ***a phase*** | **107 lines** | ***17 files, 1 class*** |
+| **the compiler (`build/`)** | ***a phase*** | **107 lines** | ***17 files, 1 class*** |
 
 **All three are defensible and none is a compromise.** *What follows is why each is right for the program it is in* — **and then the one rule that decides all three**, which is the part worth remembering.
 
@@ -57,11 +57,11 @@
 
 ## <a id="compiler"></a>The compiler — the unit is a phase, because an invariant is stated over a SEAM
 
-**A compile is a pipeline and its promises are about what each stage takes and returns.** *[`library.ts`](../../build/library.ts) is the whole of the shared vocabulary — a type, not a file on disk, with prose on every field —* **and every stage is a function from it to it:**
+**A compile is a pipeline and its promises are about what each stage takes and returns.** *`library.ts` is the whole of the shared vocabulary — a type, not a file on disk, with prose on every field —* **and every stage is a function from it to it:**
 
 > *the walk fills the entries · refer fills their references · resolve fills the books · emitting writes the program · check makes it a verdict*
 
-***So a phase is a file and there are almost no classes at all.*** **A stage can be built and tested alone**, *and two people can build two stages at once,* **because neither one can see anything the seam does not carry.** *That is why [the seam is documented more heavily than any code in the repository](../../build/library.ts): it is the only thing the phases share, so it is the only place their agreement can live.*
+***So a phase is a file and there are almost no classes at all.*** **A stage can be built and tested alone**, *and two people can build two stages at once,* **because neither one can see anything the seam does not carry.** *That is why the seam is documented more heavily than any code in the repository (`build/library.ts`): it is the only thing the phases share, so it is the only place their agreement can live.*
 
 ***The one place the rule was broken is registered as [O14](../the-condition-report/08-the-compiler.md#o14).*** **`CHECK` is a phase of the compile filed as a command**, *because it needs its own process* — **and a fact about process got confused with a claim about role.**
 

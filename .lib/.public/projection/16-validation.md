@@ -17,7 +17,7 @@
 
 ## How this sprint came to be
 
-**The Build's phase table names four machine phases and the one command runs three.** Reading, resolving and emitting are built; the compiler turns 18 authored files into 26 and the application draws every one of them. **Checking is the phase that was never wired in** — `valid.mts` opens every book in bare Node and answers *6/6 books stand, 214 parts constructed and asked*, but it lives in the application, is run by the application's own gate, and [`index.ts`](../../build/index.ts) never calls it.
+**The Build's phase table names four machine phases and the one command runs three.** Reading, resolving and emitting are built; the compiler turns 18 authored files into 26 and the application draws every one of them. **Checking is the phase that was never wired in** — `valid.mts` opens every book in bare Node and answers *6/6 books stand, 214 parts constructed and asked*, but it lives in the application, is run by the application's own gate, and `index.ts` never calls it.
 
 **So the book's own account of the machine is a claim the machine does not honour**, and closing that is what Doug chose out of four candidate shapes for a v1: *"Close the machine — checking."* The three he did not choose are named in [Out of scope](#out-of-scope-named-so-it-is-not-drifted-into) rather than dropped.
 
@@ -46,12 +46,12 @@
 *Chosen rather than habitual, and every claim in this chapter was checked against the source in this session rather than recalled.*
 
 - **[The Build](15-the-build.md), end to end** — 1,829 lines. It is the design, the record of four sessions, and the only place the phase table and the shared contracts are written down. *Read whole because the requirements below continue its numbering and contradict none of it.*
-- **The compiler, every module** — [`index.ts`](../../build/index.ts), [`library.ts`](../../build/library.ts), [`walk.ts`](../../build/stages/walk.ts), [`refer.ts`](../../build/stages/refer.ts), [`resolve.ts`](../../build/stages/resolve.ts), [`emit.ts`](../../build/stages/emit.ts), [`catalogue.ts`](../../build/stages/catalogue.ts), [`where.ts`](../../build/utilities/where.ts), [`verify-build.ts`](../../build/tests/building.ts). *The sprint adds a phase to this program; a requirement written without reading it would be a guess about what the phase can reach.*
+- **The compiler, every module** — `index.ts`, `library.ts`, `walk.ts`, `refer.ts`, `resolve.ts`, `emit.ts`, `catalogue.ts`, `where.ts`, `verify-build.ts`. *The sprint adds a phase to this program; a requirement written without reading it would be a guess about what the phase can reach.*
 - **`valid.mts`** — the runtime that is about to move. *It is the thing being relocated, and reading it is what showed the level walk stops at paragraph.*
-- **[`app.tsx`](../../app/src/app.tsx) and [`catalogue.tsx`](../../app/src/catalogue.tsx)** — where a card is handed its book by `fetch()`. *Load-bearing: this is the only place in the tree that wires a card, and checking has to do the same thing for every book at once.*
-- **The framework's link classes** — [`Author.tsx`](../../package/src/book/Author.tsx), `Canonical.tsx` (v1, `.archive/book/Canonical.tsx`, deleted), [`Book.tsx`](../../package/src/book/Book.tsx), [`Synopsis.tsx`](../../package/src/book/Synopsis.tsx). *This is where the new rules land, and reading them found a defect the sprint now owes a fix for.*
-- **The corpus and its emitted twin** — `library/.test-library/` against [`app/src/libraries/`](../../app/src/libraries/), cover by cover. *What an author writes versus what a compiler makes, which is the only honest picture of what the machine does.*
-- **[The Process](../../.archive/app/src/sections/book/library/the-build/05-the-process.tsx)** — the demo's own account of the phases, and the chapter this sprint has to edit. *Its owed row currently names the resolving gap; checking's account is what this sprint adds beside it.*
+- **`app.tsx` and `catalogue.tsx`** — where a card is handed its book by `fetch()`. *Load-bearing: this is the only place in the tree that wires a card, and checking has to do the same thing for every book at once.*
+- **The framework's link classes** — `Author.tsx`, `Canonical.tsx` (v1, `.archive/book/Canonical.tsx`, deleted), `Book.tsx`, `Synopsis.tsx`. *This is where the new rules land, and reading them found a defect the sprint now owes a fix for.*
+- **The corpus and its emitted twin** — `library/.test-library/` against `app/src/libraries/`, cover by cover. *What an author writes versus what a compiler makes, which is the only honest picture of what the machine does.*
+- **The Process (`.archive/app/src/sections/book/library/the-build/05-the-process.tsx`)** — the demo's own account of the phases, and the chapter this sprint has to edit. *Its owed row currently names the resolving gap; checking's account is what this sprint adds beside it.*
 - **[The green that exercised nothing](../solutions/14-the-green-that-exercised-nothing.md) and [the three things that only worked here](../solutions/21-the-three-things-that-only-worked-here.md)** — five and three appearances between them, both about a number whose scope was silent. *A sprint whose entire product is a gate has to read the branch's two chapters about gates that lied.*
 - **[Chapter zero](00-planning.md)'s Sprint 50** — the roadmap's own version of this work, whose recorded risk is exactly this sprint's: *"a compiler that fails often gets bypassed… failure messages must name the fix, or the specification breeds the disease it prevents."*
 
@@ -97,7 +97,7 @@
 
 ### R38 — `$Canonical` gains the `valid()` it never had
 
-**Measured, not suspected — and the measurement CORRECTED THE RECORD.** [`$Author`](../../package/src/book/Author.tsx) and `$Subject` each answer `super.valid() || this.$for !== undefined` — text **or** a card. **`$Canonical` (v1, `.archive/book/Canonical.tsx`, deleted) declares no `valid()` at all**, so it inherits `$Phrase`'s, which requires non-empty copy.
+**Measured, not suspected — and the measurement CORRECTED THE RECORD.** `$Author` and `$Subject` each answer `super.valid() || this.$for !== undefined` — text **or** a card. **`$Canonical` (v1, `.archive/book/Canonical.tsx`, deleted) declares no `valid()` at all**, so it inherits `$Phrase`'s, which requires non-empty copy.
 
 ***The defect points the OTHER WAY from how it was filed.*** [C22](15-the-build.md#c22) recorded that *a canonical carrying neither text nor card is valid where an author in that state is not*, and this requirement inherited that sentence. **Driven, all nine cases:**
 
@@ -119,7 +119,7 @@
 
 **A book whose subject reads home IS the library.** Every other book's library is **its subject's library**, which makes the answer a computation rather than a stored fact.
 
-***And the rule already exists one grade below where it belongs.*** The generated [`cards.tsx`](../../app/src/libraries/cards.tsx) declares it today:
+***And the rule already exists one grade below where it belongs.*** The generated `cards.tsx` declares it today:
 
 ```ts
 get library(): $Card | undefined {
@@ -143,17 +143,17 @@ get library(): $Card | undefined {
 
 *Doug: **"I reject failure. Validation. Invalid. That's the semantics."*** **Validation says a book is invalid**, naming the file and what would make it valid. **The word he struck appears in this chapter only inside his own sentence.**
 
-**And the correction goes everywhere, ruled rather than assumed.** The word is printed today by [the resolving stage](../../build/index.ts) (`INVALID <path> — <says>`), by `valid.mts`, and stands inside the framework's own error strings — *"A book requires exactly one cover"* and its siblings read as failures. **All of it is this sprint's.**
+**And the correction goes everywhere, ruled rather than assumed.** The word is printed today by the resolving stage (`build/index.ts`) (`INVALID <path> — <says>`), by `valid.mts`, and stands inside the framework's own error strings — *"A book requires exactly one cover"* and its siblings read as failures. **All of it is this sprint's.**
 
 **Seen:** the word absent from the compiler's output and from the framework's validity messages, **stated as a count of zero** rather than as an impression.
 
 ### R42 — The books runtime is part of the compiler
 
-*Doug: **"We need a runtime for the books as part of the compiler."*** **`valid.mts` leaves the application** and becomes the **fourth phase of the one command** — it is [`validate.ts`](../../build/stages/validate.ts) now, with [`check.ts`](../../build/verify.ts) as its command.
+*Doug: **"We need a runtime for the books as part of the compiler."*** **`valid.mts` leaves the application** and becomes the **fourth phase of the one command** — it is `validate.ts` now, with `check.ts` as its command.
 
-**It wires every card to its book first, and that is forced rather than chosen.** [`$Author.read()`](../../package/src/book/Author.tsx) throws when its card never pointed, and the compiler's emitted covers carry cards that **nothing has filled** — [`fetch()`](../../app/src/catalogue.tsx) does that in the application, one book at a time, at load. **So a link cannot be followed at build time until checking loads every book and fills every card**, which is exactly the thing the build is allowed to do and the page is not.
+**It wires every card to its book first, and that is forced rather than chosen.** `$Author.read()` throws when its card never pointed, and the compiler's emitted covers carry cards that **nothing has filled** — `fetch()` (`app/src/catalogue.tsx`) does that in the application, one book at a time, at load. **So a link cannot be followed at build time until checking loads every book and fills every card**, which is exactly the thing the build is allowed to do and the page is not.
 
-*The mechanism is already half-built and this is worth stating so nobody designs a second one: **[`catalogue.ts`](../../build/stages/catalogue.ts) already imports every emitted book** to read its cards off a constructed one. Checking is that same act asking a different question.*
+*The mechanism is already half-built and this is worth stating so nobody designs a second one: **`catalogue.ts` already imports every emitted book** to read its cards off a constructed one. Checking is that same act asking a different question.*
 
 **Seen:** one command printing **four** phases; the application's `package.json` declaring **no validation script**; and a run over the corpus reporting validity with its scope.
 
@@ -161,7 +161,7 @@ get library(): $Card | undefined {
 
 *Doug: **"we should be unit testing the compiler. Queenie should be involved in that."***
 
-**Measured: the compiler has no suite.** It has **64 assertions across two hand-rolled scripts** — [`verify-walk.ts`](../../build/tests/walking.ts) at 28 and [`verify-build.ts`](../../build/tests/building.ts) at 36 — which are driver-shaped: a counter, a list of `check(says, held)` calls, and a printed total. *Chemistry runs **674** and lib **239**, both as suites of promises.*
+**Measured: the compiler has no suite.** It has **64 assertions across two hand-rolled scripts** — `verify-walk.ts` at 28 and `verify-build.ts` at 36 — which are driver-shaped: a counter, a list of `check(says, held)` calls, and a printed total. *Chemistry runs **674** and lib **239**, both as suites of promises.*
 
 **Seen:** a suite with a number, each of the compiler's rules stated as a promise; and **the two scripts either become it or stand beside it as drivers — stated either way**, never left ambiguous. *An artifact whose role nobody wrote down is the shape of half the defects on this branch.*
 
@@ -170,7 +170,7 @@ get library(): $Card | undefined {
 **Two gaps, and both are gaps in coverage rather than in size.**
 
 1. **No book in the corpus authors itself**, so `<Author>The Team</Author>` resolves to nothing and **the author rule has nothing to run against even positively.** *[Named at The Build's close](15-the-build.md#open--and-none-of-it-blocks-a-session-starting) and still standing.* **The corpus gains a book that authors itself.**
-2. **Invalid content cannot live in the corpus**, because the ordinary run must come out valid. **So invalid cases are constructed by the test** — the way [`verify-build.ts`](../../build/tests/building.ts) already clones a description and mutates it to drive the one complaint it can.
+2. **Invalid content cannot live in the corpus**, because the ordinary run must come out valid. **So invalid cases are constructed by the test** — the way `verify-build.ts` already clones a description and mutates it to drive the one complaint it can.
 
 ***Nothing here is committed.*** `library/.test-library/` is gitignored, so adding to it adds nothing to the repository — which is [consistent with the ruling](#out-of-scope-named-so-it-is-not-drifted-into) that we do not want to commit the test code.
 
@@ -186,9 +186,9 @@ get library(): $Card | undefined {
 
 *Doug: **"The demo should track the project… the demo plays a documentation capacity."***
 
-**[The Build](../../.archive/app/src/sections/book/library/the-build) gains its chapter on the validating**, and **its figure runs the rules over real books rather than illustrating them** — the pattern [the showing chapter](../../.archive/app/src/sections/book/library/the-build/08-the-showing.tsx) already uses, where the figure computes consulted-versus-read from live books and **the page changes when the rule does.**
+**The Build (`.archive/app/src/sections/book/library/the-build`) gains its chapter on the validating**, and **its figure runs the rules over real books rather than illustrating them** — the pattern the showing chapter (`.archive/app/src/sections/book/library/the-build/08-the-showing.tsx`) already uses, where the figure computes consulted-versus-read from live books and **the page changes when the rule does.**
 
-**And [The Process](../../.archive/app/src/sections/book/library/the-build/05-the-process.tsx)'s phase table gains checking's account.** Its `owed` column currently carries the resolving gap; that row stays true and checking's row gains what it makes.
+**And The Process (`.archive/app/src/sections/book/library/the-build/05-the-process.tsx`)'s phase table gains checking's account.** Its `owed` column currently carries the resolving gap; that row stays true and checking's row gains what it makes.
 
 *This is [R26](15-the-build.md#r26--the-demo-moves-with-the-design-in-the-same-act) as a standing commitment rather than a one-time debt: a rule that changed and a figure that did not is a page that lies.*
 
@@ -218,7 +218,7 @@ get library(): $Card | undefined {
 
 - **Validation**, as the sprint's name — **Doug's own word**, from the sentence that ruled the semantics.
 - **Whether the phase stays *checking* or becomes *validating*.** He named the phases himself — *reading, resolving, emitting, checking, showing* — and then ruled that the semantics of what it finds are validation. **Flagged rather than renamed.**
-- **What the phase makes.** [The phase table](../../.archive/app/src/sections/book/library/the-build/05-the-process.tsx) says *a verdict*; under this ruling *validity* may be the truer word.
+- **What the phase makes.** The phase table (`.archive/app/src/sections/book/library/the-build/05-the-process.tsx`) says *a verdict*; under this ruling *validity* may be the truer word.
 - **The three proxies still standing from The Build** are unchanged: *The Build* twice, and *fixture*.
 
 ---
@@ -233,9 +233,9 @@ get library(): $Card | undefined {
 
 ## What was measured with the code open, and one of it amends a requirement
 
-**1 — A LINK CANNOT REACH THE BOOK IT STANDS ON.** `$in` is declared on [`$Chapter`](../../package/src/book/Chapter.tsx) alone; writing below chapter grade has no upward link at all. **Two of the three rules are answerable from the link by itself** — *does the book I point at author itself; does it catalogue* — **and the canonical rule is not**, because *a book its own subject holds* is a claim about the owner as much as the target.
+**1 — A LINK CANNOT REACH THE BOOK IT STANDS ON.** `$in` is declared on `$Chapter` alone; writing below chapter grade has no upward link at all. **Two of the three rules are answerable from the link by itself** — *does the book I point at author itself; does it catalogue* — **and the canonical rule is not**, because *a book its own subject holds* is a claim about the owner as much as the target.
 
-**2 — `$Card.library` HAS NO CONSUMERS.** Measured across the application: [`app.tsx`](../../app/src/app.tsx) builds its trail by computing `card.subject`, and [`bookmark.tsx`](../../app/src/bookmark.tsx) does the same. **Nothing reads `library`.** ***This amends [R39](#r39--a-subject-carries-a-library-reference), which said the card would inherit the rule: the card does not need it, so the generated rule is DELETED rather than inherited.*** *Raised rather than built around, because [a guardrail that turns out wrong is raised](../../../../.claude/library/teamspeak/03-discussion.md).*
+**2 — `$Card.library` HAS NO CONSUMERS.** Measured across the application: `app.tsx` builds its trail by computing `card.subject`, and `bookmark.tsx` does the same. **Nothing reads `library`.** ***This amends [R39](#r39--a-subject-carries-a-library-reference), which said the card would inherit the rule: the card does not need it, so the generated rule is DELETED rather than inherited.*** *Raised rather than built around, because [a guardrail that turns out wrong is raised](../../../../.claude/library/teamspeak/03-discussion.md).*
 
 **3 — `$Book` ALREADY WALKS EVERY LEVEL.** It declares `sentences`, `words` and `letters` as getters flattening down from paragraphs. **[R40](#r40--validity-is-asked-at-every-level) is four more counts, not new machinery** — which is why it is folded into the phase's unit rather than being one of its own.
 
@@ -243,7 +243,7 @@ get library(): $Card | undefined {
 
 **D18 — The three link-kind rules live on `$Book.valid()`, in one place.** *Chosen over splitting them two-and-one across `$Author`, `$Subject` and `$Canonical`, which the measurement above makes the only alternative. Three rules in two homes reads as two rules and an exception, and the thing being judged is a book.* **`$Book.valid()` is a valid function**, so Doug's ruling is met literally.
 
-**D19 — A kind rule applies WHEN THERE IS A CARD.** A link carrying only text names somebody without pointing at them, and [that is already valid](../../package/src/book/Author.tsx) — this sprint does not change it. **What the rules judge is where a card points.** *Otherwise the first thing validation would do is declare most of the corpus invalid for a reason nobody asked about.*
+**D19 — A kind rule applies WHEN THERE IS A CARD.** A link carrying only text names somebody without pointing at them, and that is already valid (`package/src/book/Author.tsx`) — this sprint does not change it. **What the rules judge is where a card points.** *Otherwise the first thing validation would do is declare most of the corpus invalid for a reason nobody asked about.*
 
 **D20 — `library` lands on `$Book`.** *Chosen over `$IndexCard`, which has no subject of its own and whose own comment says which fields a library's cards carry is that library's business. A book has a subject; the computation belongs where the subject is.*
 
@@ -271,7 +271,7 @@ get library(): $Card | undefined {
 ### <a id="u36"></a>U36 — The three link-kind rules, on the book
 
 **Mechanism:** `$Book.valid()` gains three questions, each asked only where a card is present ([D19](#the-decisions)): the author's card reaches a book that **authors itself**; the subject's card reaches a book that **catalogues**; the canonical's card reaches a book whose **subject is this book**. **Realizes [R37](#r37--the-link-rules-are-valid-functions-in-the-framework).**
-**Files:** [`package/src/book/Book.tsx`](../../package/src/book/Book.tsx) · promises in the book and subject test files.
+**Files:** `package/src/book/Book.tsx` · promises in the book and subject test files.
 **Depends on:** [U35](#u35) by subject matter, not by code.
 **Visible end:** [AE21](#acceptance-examples) and [AE25](#acceptance-examples) — a book whose author does not author itself comes back invalid, and each rule has a promise.
 
@@ -280,7 +280,7 @@ get library(): $Card | undefined {
 ### <a id="u37"></a>U37 — `library`, on the book, and the generated rule deleted
 
 **Mechanism:** a book is its own library when its subject reads home; otherwise its library is its subject's library. The compiler stops emitting the duplicate. **Realizes [R39](#r39--a-subject-carries-a-library-reference), as amended above.**
-**Files:** [`package/src/book/Book.tsx`](../../package/src/book/Book.tsx) · [`build/catalogue.ts`](../../build/stages/catalogue.ts) · the regenerated `cards.tsx` · a promise.
+**Files:** `package/src/book/Book.tsx` · `build/catalogue.ts` · the regenerated `cards.tsx` · a promise.
 **Depends on:** nothing in code; the deletion half wants [U38](#u38)'s run to prove it regenerates.
 **Visible end:** [AE24](#acceptance-examples) — the library's own book answers itself, a book two folders down answers the library, and the generated module contains no library rule.
 
@@ -289,7 +289,7 @@ get library(): $Card | undefined {
 ### <a id="u38"></a>U38 — Validating, as the compiler's fourth phase
 
 **Mechanism:** after emitting, the compiler opens every emitted book, **fills every card with its book** — which is what makes a link followable, and which nothing does at build time today — then asks validity of each book and counts parts **at every level down to letters**. One line for the phase; a non-zero exit when a book is invalid, naming the file and what would make it valid. **Realizes [R42](#r42--the-books-runtime-is-part-of-the-compiler) and [R40](#r40--validity-is-asked-at-every-level).**
-**Files:** a new module in [`build/`](../../build/) · [`build/index.ts`](../../build/index.ts) · `app/valid.mts` deleted · [`app/package.json`](../../app/package.json).
+**Files:** a new module in `build/` · `build/index.ts` · `app/valid.mts` deleted · `app/package.json`.
 **Depends on:** [U35](#u35), [U36](#u36), [U37](#u37) — it asks what they answer — and [U39](#u39) for a corpus that exercises the author rule.
 **Visible end:** [AE20](#acceptance-examples) and [AE22](#acceptance-examples) — four phase lines, and a parts count whose number below paragraph is not zero.
 
@@ -307,7 +307,7 @@ get library(): $Card | undefined {
 ### <a id="u40"></a>U40 — The word goes
 
 **Mechanism:** every occurrence of *fail* in any form, across the compiler's output, the framework's error strings and the application, replaced with the validation vocabulary — and the result stated as a count of zero. **Realizes [R41](#r41--the-semantics-are-validation-and-a-book-is-invalid).**
-**Files:** [`build/index.ts`](../../build/index.ts) · [`build/resolve.ts`](../../build/stages/resolve.ts) · [`build/verify-build.ts`](../../build/tests/building.ts) · [`package/src/book/`](../../package/src/book/) · [`app/src/app.tsx`](../../app/src/app.tsx).
+**Files:** `build/index.ts` · `build/resolve.ts` · `build/verify-build.ts` · `package/src/book/` · `app/src/app.tsx`.
 **Depends on:** everything, which is why it runs late.
 **Visible end:** [AE27](#acceptance-examples) — the count, stated.
 
@@ -316,7 +316,7 @@ get library(): $Card | undefined {
 ### <a id="u41"></a>U41 — The compiler's suite · **Queenie's**
 
 **Mechanism:** vitest in the compiler workspace, each of its rules stated as a promise — the walk's kinds and complaints, the resolution's defaults and orderings, the emission's carrying and sweeping, the validating's verdicts. **Realizes [R43](#r43--the-compiler-is-unit-tested-and-queenie-holds-it).**
-**Files:** [`build/`](../../build/) — a vitest config, test files, and `package.json`.
+**Files:** `build/` — a vitest config, test files, and `package.json`.
 **Depends on:** [U38](#u38), so the fourth phase is among what it promises.
 **Visible end:** [AE25](#acceptance-examples) — a suite with a number, beside chemistry's 674 and lib's 239.
 
@@ -325,7 +325,7 @@ get library(): $Card | undefined {
 ### <a id="u42"></a>U42 — The demo tracks the project
 
 **Mechanism:** The Build gains a chapter on the validating whose figure **opens real books and asks them**, printing what they answer — so a rule that changed and a figure that did not is a visible contradiction. The Process chapter's phase table gains checking's account. **Realizes [R46](#r46--the-demo-tracks-the-project).**
-**Files:** [`the-build/`](../../.archive/app/src/sections/book/library/the-build) — a new chapter, its figure, `book.tsx`, and [`05-the-process.tsx`](../../.archive/app/src/sections/book/library/the-build/05-the-process.tsx).
+**Files:** `the-build/` — a new chapter, its figure, `book.tsx`, and `05-the-process.tsx`.
 **Depends on:** [U38](#u38), because the figure asks what the phase asks.
 **Visible end:** [AE26](#acceptance-examples) — the chapter on screen, its figure computing validity from live books, both demo drivers green with their counts stated.
 
@@ -423,7 +423,7 @@ exit 1
 ## What the measurements said that the plan did not
 
 - **A link cannot reach the book it stands on.** `$in` is on `$Chapter` alone, so all three rules went onto `$Book.valid()` as local conditions — **no new named member on the framework**, which also keeps clear of the naming specification.
-- **`$Card.library` had no consumers.** [`app.tsx`](../../app/src/app.tsx) and [`bookmark.tsx`](../../app/src/bookmark.tsx) compute `card.subject`. **Deleted rather than inherited**, amending R39.
+- **`$Card.library` had no consumers.** `app.tsx` and `bookmark.tsx` compute `card.subject`. **Deleted rather than inherited**, amending R39.
 - **The framework source never contained the word.** R41 said it stood in the framework's error strings; that was about how they *read*. **Only the compiler had it — 16 occurrences, now 0.**
 - **The demo exercises ALL THREE rules live on five books and passes.** *An earlier reading of this said only the subject rule ran; it was measured with the demo's catalogue imported and its books not, which is a probe reporting on itself.* **The Team authors itself, every subject reaches The Shelf, and the shelf's canonical belongs to it.**
 
@@ -476,7 +476,7 @@ CHECK     7/7 books stand · 34 chapters · 67 sections · 143 paragraphs ·
           218 sentences · 1278 words · 5727 letters
 ```
 
-**A DEFECT THE NEW CONTENT EXPOSED IMMEDIATELY.** The supplied author emitted as **`<Author for={theTeam}>TheTeam</Author>`** — an unsplit identifier — because [`spaced()`](../../build/stages/emit.ts) was applied to authored aliases and not to supplied ones. *It could not have been seen before: the library's author had always been a bare name, so the supplied display was already prose.* **Fixed; it reads `The Team`.**
+**A DEFECT THE NEW CONTENT EXPOSED IMMEDIATELY.** The supplied author emitted as **`<Author for={theTeam}>TheTeam</Author>`** — an unsplit identifier — because `spaced()` (`build/stages/emit.ts`) was applied to authored aliases and not to supplied ones. *It could not have been seen before: the library's author had always been a bare name, so the supplied display was already prose.* **Fixed; it reads `The Team`.**
 
 **FIVE ASSERTIONS MOVED AND EACH CARRIES ITS REASON**, per [D25](#the-decisions): three in `verify-build` (files carried 18→21, modules 6→7, the library's entries gaining a third), one rewritten to assert **where the author link points** rather than its display, and one in `verify-library` (the front door catalogues 3). **A sixth was added**: *that author is a book that authors ITSELF*.
 

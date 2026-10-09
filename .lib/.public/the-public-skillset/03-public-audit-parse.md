@@ -30,11 +30,11 @@
 
 ## Why calling it is the thing that matters
 
-**[`$Composition.parts()`](../../package/src/writing/Composition.tsx) is where the descent happens.** It asks its kind for `below()` and hands the tokens to [`reflection.template(beneath).makes(tokens)`](../../package/src/utilities/Reflection.tsx) — so **a level that is asked for its parts BUILDS the level under it.** Each `makes()` also builds a second chemical beside every piece it makes, its `mention`, so **one call costs two objects per piece**.
+**[`$Composition.parts()`](../../package/src/writing/Composition.tsx) is where the descent happens.** It asks its kind for `below()` and hands the tokens to `reflection.template(beneath).makes(tokens)` — so **a level that is asked for its parts BUILDS the level under it.** Each `makes()` also builds a second chemical beside every piece it makes, its `mention`, so **one call costs two objects per piece**.
 
 **And the descent is one call deep at a time, which is what makes it stoppable.** [`$Section`](../../package/src/writing/Section.tsx) is the only level that overrides `reading()` to go through `reflection.wrapped(this)` — that is the one place a draw reaches `parts()`. Nothing below Section does, and **nothing below Section should start.**
 
-**The memo does not save you.** [`Parser.parse`](../../package/src/utilities/Parser.tsx) memoises per writing in a `WeakMap`, so the *second* call is cheap — but the first one already built the level beneath, and it is the building that is the cost.
+**The memo does not save you.** `Parser.parse` memoises per writing in a `WeakMap`, so the *second* call is cheap — but the first one already built the level beneath, and it is the building that is the cost.
 
 ## Run it
 
@@ -92,6 +92,6 @@ node library/.public/.lib/the-public-skillset/03-public-audit-parse--probe.cjs r
 ## Reading, if the count comes back wrong
 
 - **[Composition](../../package/src/writing/Composition.tsx)** — `parts()`, and the `accept` closure that decides whether a token is kept or reduced
-- **[Parser](../../package/src/utilities/Parser.tsx)** — `parse`, the per-writing memo, and `sentences`/`words`/`letters`
+- **Parser** — `parse`, the per-writing memo, and `sentences`/`words`/`letters`
 - **[Section](../../package/src/writing/Section.tsx)** — `reading()`, the one override that puts `parts()` on the draw path
 - **[The Three Passes](../../../chemistry/.lib/particle/12-the-three-passes.md)** — why anything on the draw path costs three times what you think it does

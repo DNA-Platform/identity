@@ -21,7 +21,7 @@
 
 **`$Book`'s is [D49](../projection/19-the-binding.md#d49) and correct** — a book is in charge of its own reading environment. **The other five are not decisions; they are five classes written before the template existed and not brought to it.** *`$Document` re-implements `gathered` inline, twelve lines below the one it inherits.*
 
-***And there is a second, undeclared drawing entry point.*** [`$Author`, `$Subject` and `$Canonical`](../../package/src/book/Author.tsx) each define **`named(theme)`**, called only from [`$Cover.byline`](../../package/src/book/Cover.tsx) — **while their `set()` returns `null`.** *So a subclass overriding `set()` on an author changes nothing on screen, because the cover calls the other method.* **Two rendering surfaces, one invisible to the template and to the theme.**
+***And there is a second, undeclared drawing entry point.*** `$Author`, `$Subject` and `$Canonical` each define **`named(theme)`**, called only from `$Cover.byline` — **while their `set()` returns `null`.** *So a subclass overriding `set()` on an author changes nothing on screen, because the cover calls the other method.* **Two rendering surfaces, one invisible to the template and to the theme.**
 
 ## <a id="i2"></a>I2 — Thirty-three inline style objects hold aesthetics no theme can reach
 
@@ -86,7 +86,7 @@ declare module 'styled-components' {
 
 > **TREAT** · *step 7* — one statement, two readers. **The drifted pair is reconciled in the same edit.**
 
-**[`Book.tsx:203-213`](../../package/src/book/Book.tsx) throws six errors from the bond constructor. [`Book.tsx:304-320`](../../package/src/book/Book.tsx) states the same six as `$valid` calls.** *Same conditions, different sentences.*
+**`Book.tsx:203-213` throws six errors from the bond constructor. `Book.tsx:304-320` states the same six as `$valid` calls.** *Same conditions, different sentences.*
 
 ***The drift is already visible:*** the constructor says *"A book requires a synopsis OF ITSELF — one whose reference comes home"*; `valid()` says *"and this one accounts only for other books."*
 
@@ -131,7 +131,7 @@ get document(): $Document {                                            // $Denot
 get canonical(): $Cover { return this.cover; }
 get ref(): $Cover { return this.cover; }
 ```
-— [`Book.tsx:113,144`](../../package/src/book/Book.tsx), thirty lines apart.
+— `Book.tsx:113,144`, thirty lines apart.
 
 ***They ARE the same thing*** — [the canonical projection upward is the cover](../the-semantics-of-books/06-the-canonical-echo-and-views.md) — **and that is a theorem the code should state once, not a coincidence it satisfies twice.** *`contents`/`tableOfContents` is [the same fault one member over](03-names.md#n32).*
 
@@ -193,7 +193,7 @@ if (sections.length) this.$view = $Document.prototype.view;
 >
 > ***So a reflective card is the design, not a compromise.*** *What the entry got right is smaller and stays: the heuristic — stop at a prototype owning `properties` or carrying any `$`-prefixed accessor — is a guess about how the class was written, and [`$$Book` reflecting `$Book`'s interface](04-semantics.md#s20) is a better rule than reflecting its prototype chain.*
 
-[`$IndexCard.properties()`](../../package/src/reference/IndexCard.tsx) walks the prototype chain, collects getters that do **not** begin with `$`, and stops when a prototype owns `properties` or carries any `$`-prefixed accessor.
+`$IndexCard.properties()` walks the prototype chain, collects getters that do **not** begin with `$`, and stops when a prototype owns `properties` or carries any `$`-prefixed accessor.
 
 ***A card's contents are inferred from an accidental property of the source.*** **Add a computed getter to a card subclass and it silently joins the card's copy.** *This is the least mathematically precise mechanism in the package, and it is on the class that carries a book's identity into the catalogue.*
 
@@ -214,7 +214,7 @@ find(query: string): $IndexCard<T> {
 
 > ***SPLIT*** · *step 7 and MONITOR* — ***the two that make an invariant conditional are TREATED*** — `$Cover` and `$TableOfContents` state their own specification instead of swallowing their parent's. ***The other seven are MONITORED***, and [F6](../projection/19-the-binding.md#f6) is the standing warning.
 
-[`Book.tsx` ×3](../../package/src/book/Book.tsx) · [`Cover.tsx`](../../package/src/book/Cover.tsx) · [`TableOfContents.tsx`](../../package/src/book/TableOfContents.tsx) · `Denote.tsx` ×2 (v1, `.archive/document/Denote.tsx`, deleted) · `Cite.tsx` (v1, `.archive/document/Cite.tsx`, deleted) · `Formula.tsx` (v1, `.archive/writing/Formula.tsx`, deleted)
+`Book.tsx` ×3 · `Cover.tsx` · `TableOfContents.tsx` · `Denote.tsx` ×2 (v1, `.archive/document/Denote.tsx`, deleted) · `Cite.tsx` (v1, `.archive/document/Cite.tsx`, deleted) · `Formula.tsx` (v1, `.archive/writing/Formula.tsx`, deleted)
 
 ***`$Cover` and `$TableOfContents` both catch their own parent's constructor and rethrow only sometimes***, to make *"a chapter requires a summary"* apply to them conditionally. **An invariant with a `catch` around it is not an invariant.**
 
@@ -232,7 +232,7 @@ find(query: string): $IndexCard<T> {
 > | **the model** — a contents, a title, a subtitle, a caption, a reference form | ***no*** | ***yes*** — a book raises if its contents is absent; a contents raises if its form is wrong | |
 > | **the compiler** | | | ***yes*** — it fills in every inferable part before the model sees it |
 >
-> ***What it dissolves rather than fixes:*** **the getters that construct on every read stop constructing**, so there is nothing to cache and [the hand-rolled `WeakMap`](../../package/src/writing/Writing.tsx) goes with them; **[`$TableOfContents.parts()` stops deriving its entries from the book](../../package/src/book/TableOfContents.tsx)**; and *"some really nasty code"* is Doug's own estimate of the size — which matches [I7](#i7), [I9](#i9) and [I12](#i12) all being symptoms of one thing.
+> ***What it dissolves rather than fixes:*** **the getters that construct on every read stop constructing**, so there is nothing to cache and [the hand-rolled `WeakMap`](../../package/src/writing/Writing.tsx) goes with them; **`$TableOfContents.parts()` stops deriving its entries from the book**; and *"some really nasty code"* is Doug's own estimate of the size — which matches [I7](#i7), [I9](#i9) and [I12](#i12) all being symptoms of one thing.
 >
 > ***A design session, not a step of this cleaning.*** **It reshapes the compiler and the model together and it is the largest thing this report has turned up.**
 >
@@ -240,7 +240,7 @@ find(query: string): $IndexCard<T> {
 >
 > *Doug: **"Lowering would be code insertion. The compiler moves files. It should EDIT them. It can CREATE them. It is static analysis. Use the TypeScript compiler tools."***
 >
-> ***That is not a new capability — it is [`emit.ts`](../../build/stages/emit.ts) doing more of what it already does.*** **The compiler already opens every cover with ts-morph, computes edits from node positions and splices them back to front**, which is how a reference gains its card:
+> ***That is not a new capability — it is `emit.ts` doing more of what it already does.*** **The compiler already opens every cover with ts-morph, computes edits from node positions and splices them back to front**, which is how a reference gains its card:
 >
 > ```ts
 > edits.push({ at: open.getEnd() - 1, to: open.getEnd() - 1, text: ` for={${card}}` });
@@ -250,7 +250,7 @@ find(query: string): $IndexCard<T> {
 
 *He asked for an audit rather than a decision: **"Just imagine that the library is lifted, moved, and then each file is edited, additional files are perhaps added if we need a table of contents that isn't there — though I am not sure we need to add anything, just INSTANTIATE one — and then the files that contain the generated code for books are added too. That's how it should work, so audit whether or not that is happening."***
 
-**Measured against [`emit.ts`](../../build/stages/emit.ts), four for four:**
+**Measured against `emit.ts`, four for four:**
 
 | he described | it does | where |
 |---|---|---|
@@ -259,13 +259,13 @@ find(query: string): $IndexCard<T> {
 | ***a contents INSTANTIATED, not added*** | ***exactly that*** — the generated module writes `<TableOfContents />` and no file is created for it | `assemble()` |
 | **the generated book files added** | one `book.tsx` per book, plus `cards.tsx` and `books.tsx` | `put(join(into, book.path, 'book.tsx'), assemble(…))` |
 
-***So nothing needs deciding and my question presupposed something that was never ruled.*** **The phrase "the file its author left" is [the compiler's own comment](../../build/stages/emit.ts) dramatising an incidental fact — that the corpus directory is not written to — as though it were a principle somebody agreed.** *Doug: **"No clue what an author's file is. I never consented to such a thing."*** **The comment goes with [O8's harvest](02-organization.md#o8).**
+***So nothing needs deciding and my question presupposed something that was never ruled.*** **The phrase "the file its author left" is the compiler's own comment (`build/stages/emit.ts`) dramatising an incidental fact — that the corpus directory is not written to — as though it were a principle somebody agreed.** *Doug: **"No clue what an author's file is. I never consented to such a thing."*** **The comment goes with [O8's harvest](02-organization.md#o8).**
 
 ***What lowering adds is therefore MORE EDITING IN THE MOVED COPY***, by the mechanism already in the file — **not a new target, not a new tool, and not a reversal of anything.**
 
 ***[Finding 12 of the member audit, held for "the framework sprint" and still open](../projection/04-the-member-audit.md).***
 
-[`$Section.subtitle`](../../package/src/writing/Section.tsx) · `$Section.tagline` · `$Document.title` (v1, `.archive/document/Document.tsx`, deleted) · [`$TableOfContents.title`](../../package/src/book/TableOfContents.tsx) · `$Figure.caption` (v1, `.archive/writing/Figure.tsx`, deleted) · **every `ref` getter** — *all construct chemicals inside a getter, on every read.*
+[`$Section.subtitle`](../../package/src/writing/Section.tsx) · `$Section.tagline` · `$Document.title` (v1, `.archive/document/Document.tsx`, deleted) · `$TableOfContents.title` · `$Figure.caption` (v1, `.archive/writing/Figure.tsx`, deleted) · **every `ref` getter** — *all construct chemicals inside a getter, on every read.*
 
 **The boundary was never stated:** ***what may a reading evaluate?*** *And the cost is now visible* — [F2's heap exhaustion](../projection/18-the-theme.md#risks), and [a module-level `WeakMap` in `Writing.tsx`](../../package/src/writing/Writing.tsx) **keyed on object identity and invalidated by comparing `of.text`** — ***a hand-rolled memo standing outside the framework's own reactivity, in the framework.***
 
@@ -278,7 +278,7 @@ find(query: string): $IndexCard<T> {
 | | |
 |---|---|
 | [`shown(theme, of, parts, uniform, page)`](../../package/src/writing/Writing.tsx) | **both call sites pass `0`** — the sprint that struck `page` from the model left it in the one function that would have used it |
-| [`$Book.stands(theme)`](../../package/src/book/Book.tsx) | takes a theme and **never reads it** |
+| `$Book.stands(theme)` | takes a theme and **never reads it** |
 | [`$Theme.lay(of, uniform)`](../../package/src/writing/Theme.tsx) | takes `of` and **answers from `uniform` alone** — *the parameter exists for subclasses, and the base signature promises a distinction it never makes* |
 
 ---
@@ -341,10 +341,10 @@ find(query: string): $IndexCard<T> {
 ```ts
 const own = live.chapters.slice(2, 3 + book.chapters.length);
 ```
-— [`catalogue.ts:39`](../../build/stages/catalogue.ts).
+— `catalogue.ts:39`.
 
 ***The defect this produces is [a bug and is filed as one](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md)*** — every card in the corpus lists a chapter its own book's contents excludes.
 
-**What belongs in THIS book is the mechanism rather than the miscount.** *The compiler's own comment states the assumption out loud* — *"the compiler wrote this composition, so it knows its shape"* — **and knowing the shape is precisely what [the compiler's best principle says not to rely on](../../build/stages/resolve.ts):** *what a subject holds is not a list the subject keeps; it falls out of where its books sit, **which is why nothing has to be maintained in two places***.
+**What belongs in THIS book is the mechanism rather than the miscount.** *The compiler's own comment states the assumption out loud* — *"the compiler wrote this composition, so it knows its shape"* — **and knowing the shape is precisely what the compiler's best principle says not to rely on (`build/stages/resolve.ts`):** *what a subject holds is not a list the subject keeps; it falls out of where its books sit, **which is why nothing has to be maintained in two places***.
 
 ***A book can be asked what its chapters are. It was counted instead, and the two answers drifted immediately.***

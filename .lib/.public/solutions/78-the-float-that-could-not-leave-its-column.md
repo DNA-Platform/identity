@@ -12,7 +12,7 @@ On `/article` the section after the lead would not wrap beside the Manual of Sty
 
 ## What it was
 
-**Every prose document was its own grid item, and a float cannot cross from one grid item to another.** The encyclopedia theme makes `main` a `display: grid`; `.pd-book` and `.pd-book > .pd-chapter` are `display: contents`, so each **document** became the grid child, placed by one rule in [`src/encyclopedia/Theme.tsx`](../../package/src/encyclopedia/Theme.tsx):
+**Every prose document was its own grid item, and a float cannot cross from one grid item to another.** The encyclopedia theme makes `main` a `display: grid`; `.pd-book` and `.pd-book > .pd-chapter` are `display: contents`, so each **document** became the grid child, placed by one rule in `src/encyclopedia/Theme.tsx`:
 
 ```
 .pd-book > .pd-chapter > .pd-document:not(.pd-cover):not(.pd-table-of-contents):not(.pd-chapter):not(.pd-footer),
@@ -31,7 +31,7 @@ A grid item establishes an independent formatting context. **So the defect was n
 
 ## What fixed it
 
-**The book was given a part to put the article's chapters in.** [`$Encyclopedia`](../../package/src/encyclopedia/Encyclopedia.tsx) draws them into one box, the theme places **that box** in the text column, and the `:not()` roster is gone. One formatting context now holds every chapter of the article, so a format that says `float: right` reaches the prose that follows it — *and neither format changed.*
+**The book was given a part to put the article's chapters in.** `$Encyclopedia` draws them into one box, the theme places **that box** in the text column, and the `:not()` roster is gone. One formatting context now holds every chapter of the article, so a format that says `float: right` reaches the prose that follows it — *and neither format changed.*
 
 **Measured, red by construction and green by probe:** a line put into the chapter after the manual comes out **374 wide, ending at x638** against the float's left edge at **682**, and **676** wide below the float. Before, each document reported `grid-column: 2` at `x264 w728` and no float could shorten anything outside its own.
 

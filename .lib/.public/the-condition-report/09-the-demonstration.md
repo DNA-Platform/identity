@@ -24,7 +24,7 @@
 
 ***The counts were IDENTICAL across every route, which is the whole diagnosis*** — **a page of four headings fetched the same 169 modules as everything else.** *Grouped, on `/title`: **67 framework · 55 the demonstration's books** · 30 other · 11 node_modules · 1 chemistry.*
 
-**The cause was [`sections/index.ts`](../../.archive/app/src/sections/index.ts) importing all three sections at module scope**, *and a section imports its books.* ***Only two numbers and a flag are needed eagerly*** — the header's case count and the sidebar's filter — **so the catalogue stays and the component arrives by dynamic import**, which is [the one-door-per-book shape the compiler already emits](../../build/stages/catalogue.ts).
+**The cause was `sections/index.ts` importing all three sections at module scope**, *and a section imports its books.* ***Only two numbers and a flag are needed eagerly*** — the header's case count and the sidebar's filter — **so the catalogue stays and the component arrives by dynamic import**, which is the one-door-per-book shape the compiler already emits (`build/stages/catalogue.ts`).
 
 ***The metadata now lives once.*** *Each section's `sectionData` block was a second home for the same three fields and is deleted.*
 
@@ -32,7 +32,7 @@
 
 ***THIS IS THE ONE THAT MATTERS, and it is a design fault rather than a wiring one.***
 
-**[`the-team/card.tsx`](../../.archive/app/src/sections/book/library/the-team/card.tsx) builds every card by reading it off the LIVING BOOK:**
+**`the-team/card.tsx` builds every card by reading it off the LIVING BOOK:**
 
 ```tsx
 $(<LibraryCard name="The Algebra of Perspective" … synopsis={line(algebra)} chapters={titles(algebra)} />)
@@ -46,7 +46,7 @@ $(<LibraryCard name="The Algebra of Perspective" … synopsis={line(algebra)} ch
 
 **The compiler reads its cards off living books at BUILD time and emits literals.** *The demonstration has no build step, so it does the same reading at LOAD time and pays for it on every visit.* ***That is the same fault as [I28](#i28), one grade deeper: not a stray import but the card's DEFINITION reaching for the thing it stands in for.***
 
-**Making the four books dynamic was tried and reverted, with the attempt recorded [in the file](../../.archive/app/src/sections/the-books.tsx):** *requests fell 156 → 84 **and every spine vanished***, because the cards went with them.
+**Making the four books dynamic was tried and reverted, with the attempt recorded in the file (`.archive/app/src/sections/the-books.tsx`):** *requests fell 156 → 84 **and every spine vanished***, because the cards went with them.
 
 ***The shape of the fix is already in that same file*** — **`The Team`'s card carries its chapters as literals and takes its book from a `written` slot filled later.** *Four cards need what one already has.*
 
@@ -63,7 +63,7 @@ class $Word extends $Writing {
 
 ***Every line of that is now false.*** **[`Word.tsx`](../../package/src/writing/Word.tsx) reads `export class $Word extends $Writing<$Letter> implements $Composition<$Letter>`, with a `parts()` that returns letters** — *and the floor is [`$Letter`](../../package/src/writing/Letter.tsx), whose `parts()` returns `[this]`.* **[The floor moved down a grade this sprint](../projection/21-semantics-then-drawing.md#the-floor-closes), by Doug's own ruling, and the drawer was not told.**
 
-***The drawer is a TRANSCRIPTION of source rather than a reading of it***, **which is the demonstration committing [the fault the whole compiler exists to prevent](../../build/stages/catalogue.ts):** *a second reading that can disagree with the first.* **And it is the worst place for it to happen** — *a drawer labelled "the classes" is read as authoritative, so [every place the code says something the theory does not is a place a reader learns the theory wrong](.cover.md).*
+***The drawer is a TRANSCRIPTION of source rather than a reading of it***, **which is the demonstration committing the fault the whole compiler exists to prevent (`build/stages/catalogue.ts`):** *a second reading that can disagree with the first.* **And it is the worst place for it to happen** — *a drawer labelled "the classes" is read as authoritative, so [every place the code says something the theory does not is a place a reader learns the theory wrong](.cover.md).*
 
 **Doug found it by eye:** *"I don't think 'the classes' works in algebra in the demo."* ***The mechanism works in all five lenses — measured — and what it SAYS is wrong***, which is why no gate caught it.
 
@@ -87,7 +87,7 @@ class $Word extends $Writing {
 | entry | ruling |
 |---|---|
 | **[I28](#i28)** | ***DONE.*** *Sections load on demand and the landing page no longer waits on the library* |
-| **[I29](#i29)** | ***DONE, and the mechanism was not what this chapter said.*** **Profiled: last byte at 351 ms, first paint at 2,412 — 2,061 ms with NOTHING LEFT TO FETCH.** *It was never loading; it was CONSTRUCTION, which is why neither bundling nor lazy loading could have fixed it.* **The cards carry their own text with [a promise asserting it against the living books](../../.archive/app/src/sections/book/library/the-team/card.tsx), and only then could the imports go dynamic** — *the reverted attempt did those in the other order.* ***3,520 ms → 1,638; construction 2,061 → 1,028; the shelf's chunk 284 kB → 74; five spines still standing*** |
+| **[I29](#i29)** | ***DONE, and the mechanism was not what this chapter said.*** **Profiled: last byte at 351 ms, first paint at 2,412 — 2,061 ms with NOTHING LEFT TO FETCH.** *It was never loading; it was CONSTRUCTION, which is why neither bundling nor lazy loading could have fixed it.* **The cards carry their own text with a promise asserting it against the living books (`.archive/app/src/sections/book/library/the-team/card.tsx`), and only then could the imports go dynamic** — *the reverted attempt did those in the other order.* ***3,520 ms → 1,638; construction 2,061 → 1,028; the shelf's chunk 284 kB → 74; five spines still standing*** |
 | **[S23](#s23)** | ***STILL OPEN.*** *The classes drawer still transcribes source rather than reading it* |
 | **[O15](#o15)** | ***STILL OPEN.*** *Which control pairs are legal is a design statement nobody has made* |
 
@@ -95,7 +95,7 @@ class $Word extends $Writing {
 
 ### <a id="i34"></a>I34 — RESOLVED · The demonstration could not be built at all
 
-***Built and served, `/books` threw `Cannot read properties of undefined (reading 'chapters')` and rendered 21 nodes.*** **Built UNMINIFIED and served, it was 73 nodes, 1,179 characters, 0 errors — identical to the dev server.** *The mechanism is the one [already fixed in the sibling application a sprint earlier](../../app/vite.config.ts): a bond constructor is found by the class's NAME, and a minifier renames it.*
+***Built and served, `/books` threw `Cannot read properties of undefined (reading 'chapters')` and rendered 21 nodes.*** **Built UNMINIFIED and served, it was 73 nodes, 1,179 characters, 0 errors — identical to the dev server.** *The mechanism is the one already fixed in the sibling application a sprint earlier (`app/vite.config.ts`): a bond constructor is found by the class's NAME, and a minifier renames it.*
 
 **Nothing ships the demonstration, so nobody had ever found out.** ***Closed with the one line the sibling config already carried, plus a build script so it can be run at all.***
 

@@ -42,7 +42,7 @@ view(): ReactNode {
 
 **Bare text.** So a title, an author's name and a sentence of prose emit indistinguishable output, and the model's distinctions never reach the page.
 
-***The counter-example is on the same screen.*** [`$TableOfContents`](../../package/src/book/TableOfContents.tsx) does override `view()` and draws a heading and an `<ol>` — and it is the one thing on that page a reader can identify. **The class that draws itself is the class you can see.**
+***The counter-example is on the same screen.*** `$TableOfContents` does override `view()` and draws a heading and an `<ol>` — and it is the one thing on that page a reader can identify. **The class that draws itself is the class you can see.**
 
 ## <a id="m2"></a>M2 — Writing draws its SOURCE, never its parts
 
@@ -209,8 +209,8 @@ ON THE BOOK  titles: 5   of them substituted: 1
 | | lines of drawing |
 |---|---|
 | **the framework, all of it** | **108** |
-| [`the-team`](../../.archive/app/src/sections/book/library/the-team/book.tsx), **one book** | **166**, plus **337** styled |
-| [`the-manifold`](../../.archive/app/src/sections/the-manifold.tsx), **one book** | **705** |
+| `the-team` (`.archive/app/src/sections/book/library/the-team/book.tsx`), **one book** | **166**, plus **337** styled |
+| `the-manifold`, **one book** | **705** |
 
 ***Two demo books spend 1,208 lines drawing. The framework they stand on spends 108 — and not one of those 1,208 is reachable by anything else.*** **That is [the brittleness](#where-the-brittleness-actually-is) as a number rather than a worry**, and it is also why this sprint is small: **the surface being changed is 108 lines, not 1,648.**
 
@@ -231,7 +231,7 @@ ON THE BOOK  titles: 5   of them substituted: 1
 
 **1 — THE FRAMEWORK ALREADY HAS A VOCABULARY, and it is ad hoc.** Eight `className` strings across seven files: `chapter`, `section`, `figure`, `legend`, `mark`, `table-of-contents`, `contents-title`. ***So naming what a thing is on the page is the incumbent practice rather than a proposal*** — what is missing is that it is unsystematic, partial, and unreachable from outside.
 
-**2 — THE DEMO'S BOOKS RESTYLE BY SUBCLASSING THE BOOK ENTIRELY.** [`$TheTeam extends $Book`](../../.archive/app/src/sections/book/library/the-team/book.tsx) overrides drawing wholesale and imports fourteen styled-components of its own — `Manuscript`, `Masthead`, `Spread`, `Margin`, `Folio`, `Turn`, `Leaf`. **That route must keep working untouched**, and it is the reason the default has to sit *beneath* the demo rather than beside it.
+**2 — THE DEMO'S BOOKS RESTYLE BY SUBCLASSING THE BOOK ENTIRELY.** `$TheTeam extends $Book` overrides drawing wholesale and imports fourteen styled-components of its own — `Manuscript`, `Masthead`, `Spread`, `Margin`, `Folio`, `Turn`, `Leaf`. **That route must keep working untouched**, and it is the reason the default has to sit *beneath* the demo rather than beside it.
 
 **3 — `$Section.view()` ANSWERS `null` FOR A PARENTHETICAL SECTION.** A summary is written and deliberately not drawn. ***Any change to how a section draws has to keep that***, and it is the kind of thing a rewrite loses silently.
 
@@ -249,7 +249,7 @@ ON THE BOOK  titles: 5   of them substituted: 1
 
 *Doug, 2026-08-20: **"Come up with 20 different ways one might want to extend the interface of a book. Look at the code and ask yourself how that might be done with the system you are creating. Look for the most fundamental ways… I am worried that you are making a fundamentally brittle system."*** **He was right to worry, and this section is the check.**
 
-***The first design was a stylesheet in an object*** — colours and families — **and it would not have helped the one unusual book this repository already has.** [`$TheTeam`](../../.archive/app/src/sections/book/library/the-team/book.tsx) hand-writes **pagination, a masthead, a contents margin, a card slip and a facing-page spread** across roughly 150 lines of `view()`, and **not one line of it is reachable by any other book.** *A colour theme would have changed nothing about that page.*
+***The first design was a stylesheet in an object*** — colours and families — **and it would not have helped the one unusual book this repository already has.** `$TheTeam` (`.archive/app/src/sections/book/library/the-team/book.tsx`) hand-writes **pagination, a masthead, a contents margin, a card slip and a facing-page spread** across roughly 150 lines of `view()`, and **not one line of it is reachable by any other book.** *A colour theme would have changed nothing about that page.*
 
 **So the twenty are written against the code, and each names what it would actually take.**
 
@@ -270,7 +270,7 @@ ON THE BOOK  titles: 5   of them substituted: 1
 | 13 | **a reader's annotations** layered over the writing | something accompanies a *word or a sentence*, not a chapter | **apparatus**, at any grade |
 | 14 | **a two-column academic paper** | arrangement, plus a frame that knows about a printed page | **arrangement** · **frame** |
 | 15 | **a timeline** — chapters placed by date | arrangement that **reads a value off each part** rather than ordering them by position | **arrangement** |
-| 16 | **an atlas** — chapters as nodes, references as edges | ***already built*** — [`$TheManifold extends $Book`](../../.archive/app/src/sections/the-manifold.tsx), wholesale | *(exists)* |
+| 16 | **an atlas** — chapters as nodes, references as edges | ***already built*** — `$TheManifold extends $Book` (`.archive/app/src/sections/the-manifold.tsx`), wholesale | *(exists)* |
 | 17 | **two books compared side by side** | two scopes, arranged across | **arrangement** · registration |
 | 18 | **a reading ribbon** — where you left off, always visible | something accompanies the whole, and reads state | **apparatus** · **frame** |
 | 19 | **dark, or printed** | the same structure, different values | **values** |
@@ -312,7 +312,7 @@ draw:   my parts  →  SELECT which are present  →  ARRANGE them  →  each dr
 - **Fourteen** are a theme subclass — selection, arrangement, apparatus, values.
 - **Eight** are a class registered on a scope, which is [already built and measured](#m3).
 - **Two already exist**, and both took the wholesale route.
-- ***And the wholesale route survives untouched***: [`$TheManifold`](../../.archive/app/src/sections/the-manifold.tsx) and [`$TheTeam`](../../.archive/app/src/sections/book/library/the-team/book.tsx) override `view()` entirely and must keep working. **The theme is the shortcut for what is cross-cutting; the escape hatch is not removed.**
+- ***And the wholesale route survives untouched***: `$TheManifold` (`.archive/app/src/sections/the-manifold.tsx`) and `$TheTeam` (`.archive/app/src/sections/book/library/the-team/book.tsx`) override `view()` entirely and must keep working. **The theme is the shortcut for what is cross-cutting; the escape hatch is not removed.**
 
 ***What this design deliberately does NOT do is support any of the twenty.*** *Doug: "You don't need to support these. You shouldn't. But you need to see a route to implementing them."* **The route is the deliverable; the base theme is the smallest thing that makes the route real.**
 
@@ -360,7 +360,7 @@ draw:   my parts  →  SELECT which are present  →  ARRANGE them  →  each dr
 
 ***Axes 1, 2 and 3 are already sound, and this was worth checking rather than assuming.*** A subclass may change what a class composes, what it draws and where it stands, and a registration puts it in a scope — **all measured this session**.
 
-***The brittleness is that Axis 3 is unreachable in practice.*** **A view has nothing structured to extend**: [`$Section.view()` returns its source block](#m2), so somebody overriding it does not adjust a drawing — **they write one from nothing.** ***And there is proof rather than argument:*** [`$TheTeam`](../../.archive/app/src/sections/book/library/the-team/book.tsx) spends **about 150 lines** hand-writing pagination, a masthead, a contents margin, a card slip and a spread, and **shares none of it with any other book**, because there was nothing to share it through.
+***The brittleness is that Axis 3 is unreachable in practice.*** **A view has nothing structured to extend**: [`$Section.view()` returns its source block](#m2), so somebody overriding it does not adjust a drawing — **they write one from nothing.** ***And there is proof rather than argument:*** `$TheTeam` (`.archive/app/src/sections/book/library/the-team/book.tsx`) spends **about 150 lines** hand-writing pagination, a masthead, a contents margin, a card slip and a spread, and **shares none of it with any other book**, because there was nothing to share it through.
 
 **So the sprint is smaller and better aimed than it was an hour ago:**
 
@@ -447,9 +447,9 @@ draw:   my parts  →  SELECT which are present  →  ARRANGE them  →  each dr
 
 | | the values in use |
 |---|---|
-| [`.public/app/theme.ts`](../../app/src/theme.ts) | `ink · faint · rule · ground · mark`, and a serif |
+| `.public/app/theme.ts` | `ink · faint · rule · ground · mark`, and a serif |
 | the demo's apparatus | `ink · faded · rust · serif · mono` |
-| [`the-team.styled.ts`](../../.archive/app/src/sections/the-team.styled.ts) | the same five, plus an ad-hoc size scale — `10px · 11.5px · 13.5px · 14px · 15px` |
+| `the-team.styled.ts` | the same five, plus an ad-hoc size scale — `10px · 11.5px · 13.5px · 14px · 15px` |
 
 **A few colours, two or three families, a small size scale.** *The ad-hoc scale in the last row is [D41](#d41)'s argument stated by the thing that needed it.*
 
@@ -525,7 +525,7 @@ class $Discussion extends $Section {
 }
 ```
 
-**Roughly ten lines, and nothing in the framework moves.** ***And it is not a hypothetical shape:*** [`$Cover`](../../package/src/book/Cover.tsx) and [`$Synopsis`](../../package/src/book/Synopsis.tsx) are this exact pattern, shipped in [U54](#u54) — a section subclass that overrides one method and inherits its parse, its validity and its parts.
+**Roughly ten lines, and nothing in the framework moves.** ***And it is not a hypothetical shape:*** `$Cover` and `$Synopsis` are this exact pattern, shipped in [U54](#u54) — a section subclass that overrides one method and inherits its parse, its validity and its parts.
 
 *If the discussion is fetched rather than written, it is a `$Chapter` subclass whose `emit` puts a panel after its sections. Same shape, same size, and it reads the theme for its rule the way everything else does.*
 
@@ -571,7 +571,7 @@ VIA $(Book)    class: $Book   instanceof $Mine: false      the resolve form had 
 
 | | what it costs |
 |---|---|
-| **the compiler emits a resolvable book** — the module asks for its book class instead of naming it, and constructs inside a scope | ***one line in [`emit.ts`](../../build/stages/emit.ts)*** plus somewhere for the scope to come from |
+| **the compiler emits a resolvable book** — the module asks for its book class instead of naming it, and constructs inside a scope | ***one line in `emit.ts`*** plus somewhere for the scope to come from |
 | **the app draws the tree around the book** — which is what the application already does with its breadcrumb and entries | no framework change, and the tree is then the app's rather than the library's |
 
 ***And the honest reading of that second row is the finding underneath the finding:*** **the library's own shape — its entries, its chrome — lives in the application, not in the model.** A theme reaches their colours ([U55](#u55) put both sides on one object) and **not their arrangement.** *The route to closing it is that a synopsis carrying a card draws itself as an entry; then a theme reaches the whole library by the path it already reaches a book. **Named, not taken.***
@@ -650,7 +650,7 @@ cd library/.public/package && npx vite app             # the demonstration
 
 **Open `http://localhost:5299/inexplicable-phenomena/` and then `/physics/the-standard-model`.** *What should be visible: a title as a heading, the cover ruled off, the author and subject on their own lines in the accent, a derived table of contents, the synopsis set off by a left rule, and chapters spaced apart.* ***Before this sprint every one of those was an identical grey paragraph.***
 
-**To see the theme reach everything at once**, change a value in [`app/src/dressing.tsx`](../../app/src/dressing.tsx) — *`$ground` to a dark colour and `$ink` to a light one* — and the chrome and the books both move, because they read one object.
+**To see the theme reach everything at once**, change a value in `app/src/dressing.tsx` — *`$ground` to a dark colour and `$ink` to a light one* — and the chrome and the books both move, because they read one object.
 
 ## Rulings carried forward — Doug's words, verbatim
 
@@ -667,7 +667,7 @@ cd library/.public/package && npx vite app             # the demonstration
 ## What is owed, largest first
 
 1. **THE APPLICATION NEVER RENDERS THE BOOK** — [F4](#f4). It draws the chapters itself, so `$Book.view()` never runs there and ***a paginating theme would not paginate the public app.*** **The biggest thing this sprint found and did not fix**, because the app's loop carries the identifiers its bookmark reads and 29 checkpoints assert on them.
-2. **A compiled book cannot be a subclass** — [F3](#f3) and [route C](#routes). **One line in [`emit.ts`](../../build/stages/emit.ts)**, plus a scope to construct inside.
+2. **A compiled book cannot be a subclass** — [F3](#f3) and [route C](#routes). **One line in `emit.ts`**, plus a scope to construct inside.
 3. **Four findings still undistributed** — [F1](#f1), [F3](#f3), [F4](#f4), [F5](#f5). *One `/ce-compound` run each; F3 and F4 are one chapter from two sides.*
 4. **The compiler audit** — architecture, organization and naming at parity with $Chemistry and lib. **Doug's, ruled and deferred behind seeing something legible.** *He has now seen it.*
 5. **Two proxy names** — [how parts lay out, and whether unread matter is read](#names-owed-plan). And `page` is declared twice.
@@ -694,7 +694,7 @@ cd library/.public/package && npx vite app             # the demonstration
 *[Named, not claimed sufficient](../../../../.claude/library/our-skillset/32-ce-handoff.md#9-sufficient-is-a-claim-and-it-was-wrong) — a short list is a starting point, not a boundary.*
 
 1. **[The standing instruction above](#in-the-open), then [`/ce-review`](../../../../.claude/library/our-skillset/33-ce-review.md).** Load-bearing because the review's whole shape — batches rather than a report, questions cheap to answer, a demo shown rather than described — is what the next session *is*.
-2. **[`app/src/dressing.tsx`](../../app/src/dressing.tsx) and [`package/src/writing/Theme.tsx`](../../package/src/writing/Theme.tsx).** Load-bearing because between them they are the whole configurable surface — **the three answers a theme gives, and the one file in the application that registers anything.** *Under sixty lines each.*
+2. **`app/src/dressing.tsx` and [`package/src/writing/Theme.tsx`](../../package/src/writing/Theme.tsx).** Load-bearing because between them they are the whole configurable surface — **the three answers a theme gives, and the one file in the application that registers anything.** *Under sixty lines each.*
 3. **[F4](#f4) and [route C](#routes) in this chapter.** Load-bearing because they are the two places the abstraction does **not** reach, and Doug's feedback will land on them first: **the app's own chrome, and any book that wants to be a different kind of book.**
 
 *If his feedback turns to what the framework's defaults look like rather than what they reach, add [the twenty](#twenty) and [the responsibility split](#responsibilities) — but read them after his answer, not before.*
@@ -744,7 +744,7 @@ FATAL ERROR: Reached heap limit Allocation failed — JavaScript heap out of mem
 
 ## <a id="f4"></a>F4 — THE APPLICATION NEVER RENDERS THE BOOK, so `$Book.view()` never runs in it
 
-***Found by driving the built artifact and asking for an `<article>` that was not there.*** [`app.tsx`](../../app/src/app.tsx) filters the book's chapters and draws each one itself, in both its reading and its consulting paths.
+***Found by driving the built artifact and asking for an `<article>` that was not there.*** `app.tsx` filters the book's chapters and draws each one itself, in both its reading and its consulting paths.
 
 **Three consequences, and the third is the one that matters:**
 
@@ -780,7 +780,7 @@ the page it renders:                  91 nodes
 ## Owed, and named rather than omitted
 
 - **[F4](#f4)** — the application renders chapters rather than the book. ***The largest thing this sprint found and did not fix.***
-- **[Route C](#routes)** — a compiled book cannot be a subclass. **One line in [`emit.ts`](../../build/stages/emit.ts)**, plus a scope to construct inside.
+- **[Route C](#routes)** — a compiled book cannot be a subclass. **One line in `emit.ts`**, plus a scope to construct inside.
 - **The consumer's cast** — `this.theme` is typed `$Theme`, so a theme's own new members need one.
 - **Two proxy names** — [how parts lay out, and whether unread matter is read](#names-owed-plan).
 - **`page` is declared twice** — on `$Writing` and on `$Book`, which share no ancestor that draws.

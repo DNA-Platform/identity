@@ -72,7 +72,7 @@ src/$Section        !==        dist/$Section
 
 A book imported from the emitted tree carries the `dist` classes; a test importing `@/writing/Section` holds the `src` one. **Every `instanceof` across that line is false**, and it is false silently — there is no error, only a zero where a one belonged.
 
-***And the framework leans on `instanceof` everywhere***: [`$Book`'s bond constructor](../../package/src/book/Book.tsx), `accounts()`, the application's reader-or-catalogue predicate, and — since [Custom Elements](../projection/17-custom-elements.md) — **the parse itself at every level**.
+***And the framework leans on `instanceof` everywhere***: `$Book`'s bond constructor, `accounts()`, the application's reader-or-catalogue predicate, and — since [Custom Elements](../projection/17-custom-elements.md) — **the parse itself at every level**.
 
 ## The fix, and it is not the same fix
 
@@ -120,7 +120,7 @@ A book imported from the emitted tree carries the `dist` classes; a test importi
 | | resolves `lib` through | so a source edit is |
 |---|---|---|
 | the **demonstration** — [`package/app`](../../../chemistry/package/app/vite.config.ts) | `resolve.alias` → `../src` | **visible immediately** |
-| the **public library** — [`app`](../../app/vite.config.ts) | no alias; `node_modules` → `dist` | **invisible until rebuilt** |
+| the **public library** — `app` (`app/vite.config.ts`) | no alias; `node_modules` → `dist` | **invisible until rebuilt** |
 
 *So the same edit, in the same session, appeared to work in one application and to do nothing in the other* — **and the one where it did nothing was the one being debugged.**
 

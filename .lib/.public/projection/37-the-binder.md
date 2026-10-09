@@ -65,11 +65,11 @@ The folder is **`binding`**. The command is **`bind`**. Both are his.
 
 | | it already exists | v1 does instead |
 |---|---|---|
-| [`$Catalogue`](../../package/src/reference/Catalogue.tsx) | `follow('Bk:0/Cr:1/Sn:0')`, `address(of)`, spans, `where`/`select`/`single` | nothing — it has no addresses |
-| [`$$Book`](../../package/src/book/Book.tsx) | a reference to a book, `read(): Promise<$Book>`, `prints.set('Bk', ...)` | **generates** a `$Card extends $$Book` class into `cards.tsx` |
+| `$Catalogue` | `follow('Bk:0/Cr:1/Sn:0')`, `address(of)`, spans, `where`/`select`/`single` | nothing — it has no addresses |
+| `$$Book` | a reference to a book, `read(): Promise<$Book>`, `prints.set('Bk', ...)` | **generates** a `$Card extends $$Book` class into `cards.tsx` |
 | `$Type.code` | `Fe`, `Bk`, `Cr`, `Sn`, `Ph`, `Se`, `Wd` — the address grammar | strings and route paths |
 | [`specify()`](../../package/src/utilities/Specification.ts) | every rule collected through the chain, **all failures reported together** | a hand-rolled `valid()` walk with grade counts |
-| [`PathSpecification`](../../package/src/reference/Path.tsx) | `URL.canParse(copy, 'https://library')` — **a path is a URL against a library origin** | — |
+| `PathSpecification` | `URL.canParse(copy, 'https://library')` — **a path is a URL against a library origin** | — |
 | `$Writing.view()` | any writing whose `means` carries a path renders as an `<Anchor>` | — |
 
 **THE INTEROP MECHANISM IS ALREADY SPECIFIED AND NOBODY WROTE IT DOWN.** Because a path is a URL against `https://library`, an internal link is relative and an external Wikipedia link is absolute — **through the same class, with no new mechanism.** That is what makes *"take links from wikipedia and have it interoperate"* a corpus problem rather than a framework problem.
@@ -102,7 +102,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 | `prints.set(code, $$X)` | **code to reference class**, so a path step can print itself |
 | `this[cache]('X')` | **name to type**, which is what makes `<Type>X</Type>` resolve — *and it resolves only once PAINTED* |
 
-**Two mechanisms carry the flexibility, and neither is a special case.** **`$$(writing)(Kind)`** asks whether writing STANDS as a kind — by instance, by carried type, or by a worn trait — and `$$(writing, Kind)` binds it so the writing is *read as* that kind without being one. And [`$Trait`](../../package/src/writing/Writing.tsx) is a type you may wear many of: [`$Card`](../../package/src/reference/ReferenceCard.tsx) is a trait whose `canonicalForm` is `$ReferenceCard`, so a reference wearing it is readable as a card while keeping the one type it has.
+**Two mechanisms carry the flexibility, and neither is a special case.** **`$$(writing)(Kind)`** asks whether writing STANDS as a kind — by instance, by carried type, or by a worn trait — and `$$(writing, Kind)` binds it so the writing is *read as* that kind without being one. And [`$Trait`](../../package/src/writing/Writing.tsx) is a type you may wear many of: `$Card` (`package/src/reference/ReferenceCard.tsx`) is a trait whose `canonicalForm` is `$ReferenceCard`, so a reference wearing it is readable as a card while keeping the one type it has.
 
 **A rule returning `false` is the whole flexibility story.** **`ReferencesSpecification`** switches off four inherited rules — a references section needs no title, says nothing of its own, may stand empty, and holds nothing but references — and that is the entire mechanism by which a kind departs from its parent.
 
@@ -119,8 +119,8 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 *He said to look at the old version, and it is holding two of the answers.*
 
 - **`.archive/reference/Link.tsx` (v1, `.archive/reference/Link.tsx`, deleted): `$Link extends $Phrase`**, carrying a `$url` and framing its surface in an anchor. **His instinct that a phrase belongs at the level a link needs is a shape v1 already had.**
-- **`.archive/reference/Location.tsx` (v1, `.archive/reference/Location.tsx`, deleted) and `Path.tsx` (v1, `.archive/reference/Path.tsx`, deleted): a path was a COMPOSITION** — a `$Location` was an index into a composition and a `$Path` was `first` + `onward`, a cons of steps that read by following each. **v2 flattened that into a string** and [`$Catalogue.follow`](../../package/src/reference/Catalogue.tsx) parses the structure back out of it.
-- **There is already a router test** — [`tests/reference/link.test.tsx`](../../package/.tests/reference/link.test.tsx) renders `<Link url="/books/moby">` inside a `MemoryRouter` and asserts the anchor. It is in the archived suite, off by default.
+- **`.archive/reference/Location.tsx` (v1, `.archive/reference/Location.tsx`, deleted) and `Path.tsx` (v1, `.archive/reference/Path.tsx`, deleted): a path was a COMPOSITION** — a `$Location` was an index into a composition and a `$Path` was `first` + `onward`, a cons of steps that read by following each. **v2 flattened that into a string** and `$Catalogue.follow` parses the structure back out of it.
+- **There is already a router test** — `tests/reference/link.test.tsx` renders `<Link url="/books/moby">` inside a `MemoryRouter` and asserts the anchor. It is in the archived suite, off by default.
 - **The markdown parser has precedent too:** `.archive/writing/Section.tsx` (v1, `.archive/writing/Section.tsx`, deleted) imports `marked`'s `lexer`, and **`marked` is still a dependency of the package**, so *"maybe we use a markdown parser"* costs nothing to try.
 
 ## The shape proposed
@@ -129,7 +129,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 **`$Path` becomes a non-canonical word.** *And this fixes a defect measured this session rather than merely relocating a class.* Today `$Path.parenthetical = true`, so a reference holding only a path has an **empty copy** and fails *"a piece of writing has characters"* — the Bond Constructor Failed panel that appeared inside the anchor. **A path that is a non-canonical WORD is the copy**, which is at the same time his *"a raw reference should work as a word, and it should show its url or whatever verbatim in a way that is clickable."* One change, one defect closed, one requirement met.
 
-**`$Link` is a path that points outside.** `$Link extends $Path`, and its specification is exactly the externality: measured against the library origin the [`PathSpecification`](../../package/src/reference/Path.tsx) already uses, a link's URL resolves to a different origin. **Reading is where the kinds part company** — an internal path reads through the catalogue and the router; a link reads to nothing inside the library and says so.
+**`$Link` is a path that points outside.** `$Link extends $Path`, and its specification is exactly the externality: measured against the library origin the `PathSpecification` already uses, a link's URL resolves to a different origin. **Reading is where the kinds part company** — an internal path reads through the catalogue and the router; a link reads to nothing inside the library and says so.
 
 **`<Ref>` is a type of phrase, and it lives in the reference file.** It accepts `<Ref>[text](reference)</Ref>`, parses that with the markdown parser, composes a phrase from the text, and **assembles the reference** — a `$Path` when the target is internal, a `$Link` when it is external, decided by the same origin test and by nothing hand-written.
 
@@ -171,7 +171,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 ***His ruling, 2026-09-02:*** *"Theirs should be encapsulated in our Ref which should do both. Why not drop link entirely, try to get reference to be able to do either, and then handle it maybe through parsing in Ref?"* — and then, deciding it: *"This: `/physics/gauge-theory` **Or a full url** can be in Ref and it should know how to handle each. **Make that the implementation and then we don't need link.**"*
 
-**It is not a stretch; it is strictly smaller.** The internal/external distinction is **computable from the path** — `new URL(copy, 'https://library')`, which [`PathSpecification`](../../package/src/reference/Path.tsx) already runs to decide a path is a url at all. So a reference keeps ONE path, `read()` branches on where it points, and `<Ref>` draws react-router's `Link` when the target is internal and a plain anchor when it is not.
+**It is not a stretch; it is strictly smaller.** The internal/external distinction is **computable from the path** — `new URL(copy, 'https://library')`, which `PathSpecification` already runs to decide a path is a url at all. So a reference keeps ONE path, `read()` branches on where it points, and `<Ref>` draws react-router's `Link` when the target is internal and a plain anchor when it is not.
 
 ***THIS DISSOLVES [R90](#r90) BY DELETION RATHER THAN RENAMING.*** *There is no `Link` of ours left to collide with react-router's, and the router ends up encapsulated inside `Ref` exactly as he asked.* **One fewer class, in a sprint where [classes are the expensive thing](#the-boundary).**
 
@@ -179,7 +179,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 <a id="r95"></a>**R95** — **a reference in the router is a ROUTE plus a FRAGMENT**, and both sides of that already exist.
 
-*His question: "How do you specify a reference in the router? Point to a page?"* **Yes — point to a page, and carry the address inside it.** The route names the BOOK and [the binder already computes exactly those routes](#the-toolset) — `/physics/gauge-theory` appears in its own dump. The place *within* the book is the hash — `/physics/gauge-theory#Cr:1/Sn:0` — read back through the router's location and handed to [`$Catalogue.follow`](../../package/src/reference/Catalogue.tsx), which already understands that grammar. **Nothing is invented on either side; they are joined.**
+*His question: "How do you specify a reference in the router? Point to a page?"* **Yes — point to a page, and carry the address inside it.** The route names the BOOK and [the binder already computes exactly those routes](#the-toolset) — `/physics/gauge-theory` appears in its own dump. The place *within* the book is the hash — `/physics/gauge-theory#Cr:1/Sn:0` — read back through the router's location and handed to `$Catalogue.follow`, which already understands that grammar. **Nothing is invented on either side; they are joined.**
 
 *And his open door is kept open: "maybe we need more from router that we can do too" — the router's fuller surface is worth a look before the fragment convention is wired in, and that is [U62](#units).*
 
@@ -189,13 +189,13 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 **A prop is typed because chemistry computes it.** [`$Properties<T>`](../../../chemistry/package/src/implementation/types.ts) maps a chemical's `$`-prefixed members to props with the `$` stripped — so a class declaring `$to?: $Book` **has a typed `to` prop by construction**, and a non-book will not compile. *The archived `$Link` (v1, `.archive/reference/Link.tsx`, deleted) already used this shape with `$url?: string`.*
 
-**Interpolation is typed because the alias is a real import.** `<Subject>{Math}</Subject>` on a cover fails to compile the moment the file is renamed or the export dropped, and [`refer.ts`](../../build/stages/refer.ts) already reads both `{Alias}` and `<Alias />`.
+**Interpolation is typed because the alias is a real import.** `<Subject>{Math}</Subject>` on a cover fails to compile the moment the file is renamed or the export dropped, and `refer.ts` already reads both `{Alias}` and `<Alias />`.
 
 ***The three forms are not variants of one idea — they are the three things Wikipedia authors actually write.***
 
 | written | typed | Wikipedia |
 |---|---|---|
-| `<Ref>{GaugeTheory}</Ref>` | **the import** | `[[Gauge theory]]` — the alias IS the label, and [`spaced()`](../../build/stages/emit.ts) already turns it into one |
+| `<Ref>{GaugeTheory}</Ref>` | **the import** | `[[Gauge theory]]` — the alias IS the label, and `spaced()` (`build/stages/emit.ts`) already turns it into one |
 | `<Ref to={GaugeTheory}>the gauge principle</Ref>` | **the prop** | `[[Gauge theory\|the gauge principle]]` |
 | `<Ref>[text](https://en.wikipedia.org/…)</Ref>` | no — **correctly** | an external link: there is no module to check against |
 
@@ -256,7 +256,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 - **A type is PER-INSTANCE.** Two tables hold different type objects (`same: false`), and redefining `writtenAs` on one does not reach the other. ***So a varying level costs nothing structurally.***
 - **A CARRIED TYPE CANNOT RETYPE A CLASS.** `<Table><Type>Paragraph</Type>…</Table>` measured `$TypeOfTable` / `writtenAs $Paragraph` — unchanged — because `$Table`'s bond constructor assigns `_type` *after* `super`, so the class always wins over what was carried. **The level cannot come from carrying a type on a subclass**, and any design that assumed it could is dead.
 
-**What is left is the elegant one, and it is already in the framework: a TRAIT.** *A writing keeps the one type it has and may wear as many traits as it likes* — so **the type carries the level** (Section, Paragraph, Sentence, whatever was written) and **the trait says table**. The cell is then that type's `writtenAs`, which is *one down* by computation rather than by declaration, and `<Sentence><Trait>Table</Trait>…</Sentence>` is his word-table with nothing special-cased. [`$Card`](../../package/src/reference/ReferenceCard.tsx) is the standing precedent: a `$Trait` conferring a canonical form beside the type.
+**What is left is the elegant one, and it is already in the framework: a TRAIT.** *A writing keeps the one type it has and may wear as many traits as it likes* — so **the type carries the level** (Section, Paragraph, Sentence, whatever was written) and **the trait says table**. The cell is then that type's `writtenAs`, which is *one down* by computation rather than by declaration, and `<Sentence><Trait>Table</Trait>…</Sentence>` is his word-table with nothing special-cased. `$Card` (`package/src/reference/ReferenceCard.tsx`) is the standing precedent: a `$Trait` conferring a canonical form beside the type.
 
 ***ONE LINE MAKES IT WORK, AND IT IS THE RULING SPELLED AS MECHANISM.*** When a trait binds, [`$Composition.parts()`](../../package/src/writing/Composition.tsx) reads `writtenAs` from the **made** `$Table` rather than from the writing it bound — so the level would snap back to paragraph. **It must read it from the host.** *That is "have cell reach up, and be one down", and it is the whole change.*
 
@@ -288,7 +288,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 <a id="r79"></a>**R79** — **the binder ships with the package and is lent with it.** *Observed:* a library outside this repository can bind itself with `@dna-platform/lib` installed and nothing else.
 
-<a id="r80"></a>**R80** — **the emitted cover is not rewritten.** *Doug: "We will do some rewriting" — so this is the ONE requirement stated as a question rather than a promise, and it is his to close.* The React environment removes the constraint [`emit.ts`](../../build/stages/emit.ts) records — that a scope cannot be given a catalogue under Node — so the rewriting may no longer be forced. *Observed if it holds:* an emitted cover is byte-identical to the authored one.
+<a id="r80"></a>**R80** — **the emitted cover is not rewritten.** *Doug: "We will do some rewriting" — so this is the ONE requirement stated as a question rather than a promise, and it is his to close.* The React environment removes the constraint `emit.ts` records — that a scope cannot be given a catalogue under Node — so the rewriting may no longer be forced. *Observed if it holds:* an emitted cover is byte-identical to the authored one.
 
 ## The corpus and the app
 
@@ -332,7 +332,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 **His, kept:** binding · binder · bind · libconfig · `$Link` · `.demo`. **Proxies, his to strike:** none taken this round — two were offered and struck by him at first reading.
 
-**One collision, flagged rather than quietly worked around:** **`configure` already means giving a composition its type** in the framework, so *"configuring the binder"* would be a second sense of a word that has one. And **`catalogue`** names both the binder's tool and [`$Catalogue`](../../package/src/reference/Catalogue.tsx), which is a catalogue of a composition's PARTS — the right English word twice at two levels, told rather than replaced with a worse one.
+**One collision, flagged rather than quietly worked around:** **`configure` already means giving a composition its type** in the framework, so *"configuring the binder"* would be a second sense of a word that has one. And **`catalogue`** names both the binder's tool and `$Catalogue`, which is a catalogue of a composition's PARTS — the right English word twice at two levels, told rather than replaced with a worse one.
 
 **Proxies taken 2026-09-02, all his to strike:** `seated` (the `$Type` flag a cell's type wears — "my level comes from my seat"), `carried` (`$Writing`'s protected getter for the written type), `former` and `seat` (the two protected members `parts()` gained), `$TableTrait` (the trait class; its cache name is his `Table`), and the `dress.*` namespace idiom for importing a collided dress. **And one surface decision taken under his rename, his to redo:** the encyclopedia table module is no longer star-exported.
 
@@ -355,11 +355,11 @@ The router beyond `read()` following its path. The parse above word — *a sente
 ***Measured 2026-09-02, four ways, and each is checkable.***
 
 - **`require.resolve('@dna-platform/lib')` from the binder answers [`package/dist/lib.cjs`](../../package/dist).**
-- **[`rollup.config.js`](../../package/rollup.config.js) has ONE input: `.archive/index.ts`** — v1.
+- **`rollup.config.js` has ONE input: `.archive/index.ts`** — v1.
 - **`dist/lib.d.ts` mentions `References` ZERO times** and v1's `Theme`/`Location` **136 times**.
 - **`src` has no `index.ts`.** v2 is reached only through a path alias in a test config. ***It is never built and never exported.***
 
-**So everything this sprint is about is invisible to the binder.** [`$Catalogue`](../../package/src/reference/Catalogue.tsx), [`$$Book`](../../package/src/book/Book.tsx), `$References`, `$Index`, the address codes, the whole reference layer — **none of it is in the package the compiler imports.** The [`.test-library`](../../../.test-library) corpus imports `$Cover, Section, Title, Author, Subject` from v1, and ***`Author` and `Subject` do not exist in v2 at all.***
+**So everything this sprint is about is invisible to the binder.** `$Catalogue`, `$$Book`, `$References`, `$Index`, the address codes, the whole reference layer — **none of it is in the package the compiler imports.** The `.test-library` corpus imports `$Cover, Section, Title, Author, Subject` from v1, and ***`Author` and `Subject` do not exist in v2 at all.***
 
 ***AND IT PUTS A SCOPE ON A NUMBER THIS CHAPTER ALREADY QUOTED.*** The binder's `CHECK 7/7 books stand · 34 chapters · … · 17240 letters` **was measured against v1**, so it is a baseline for the binder's own machinery and NOT for the model. *A suite that does not state which source it ran against is a number without its scope — [the package's own vitest config says exactly that](../../package/vitest.config.ts), about this very split.*
 
@@ -375,7 +375,7 @@ The router beyond `read()` following its path. The parse above word — *a sente
 
 <a id="d32"></a>**D32** — **the trait stands beside the class rather than replacing it.** A class is how an author WRITES a list; a trait is how an existing composition is DRAWN as one without being retyped. Both reach the same reading through `$$`.
 
-<a id="d33"></a>**D33** — **a link is a path that points outside**, told from an internal one by the library origin the [`PathSpecification`](../../package/src/reference/Path.tsx) already measures against. **Reading is where they differ** — nothing else does.
+<a id="d33"></a>**D33** — **a link is a path that points outside**, told from an internal one by the library origin the `PathSpecification` already measures against. **Reading is where they differ** — nothing else does.
 
 <a id="d34"></a>**D34** — **`<Ref>` assembles its own reference** from `[text](target)` through the markdown parser already in the package, and chooses path or link from the target alone. Nothing hand-written decides which.
 

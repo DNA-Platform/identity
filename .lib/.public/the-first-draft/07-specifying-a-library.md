@@ -42,7 +42,7 @@
 
 **That file is [`.binding/.graph.json`](../../package/.binding/manifest/graph.ts), written by the `specify` task and read by everything after it and by the next build.** Per book: its folder, what was read off the running book, a digest of what it is made of, and how many writings its specification reached.
 
-**What is read off a book is a member, not a list.** [`specification/reading.ts`](../../package/.binding/specification/reading.ts) holds one member per fact — name, title, author, subject — gathered through the prototype chain, and each reaches through the framework's `reflection` **by type and never by class**, because a library writes its own cover and its own title and both must still answer. ***Another fact about every book costs one member and no second pass, because the book is already loaded.***
+**What is read off a book is a member, not a list.** `specification/reading.ts` holds one member per fact — name, title, author, subject — gathered through the prototype chain, and each reaches through the framework's `reflection` **by type and never by class**, because a library writes its own cover and its own title and both must still answer. ***Another fact about every book costs one member and no second pass, because the book is already loaded.***
 
 **And the loading is what costs.** A process costs 2.0–3.1s before it reads anything, and the first book pays the package's load; the rest are a fraction. So books are read a **batch** at a time — `specification.batch` in `.pubconfig` — and a book whose digest still holds is not read again. *A pass that DRAWS keeps one process per page, because a book registers its theme on the shared class when its module loads; a pass that only READS draws nothing and may share.*
 

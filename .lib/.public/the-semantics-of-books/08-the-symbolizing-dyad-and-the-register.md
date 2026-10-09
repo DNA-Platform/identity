@@ -43,7 +43,7 @@ Recorded as a **conjecture to track**, in Doug's own hedge — *"seems like it w
 | **`$Footer` · `$Footnote` · `$Denote` · `$Bibliography` · `$Citation` · `$Cite` · `$Legend` · `$Key`** | ***built*** | ***0 of the eight*** |
 | **`$Writing` as an interface floor of `{ copy }`** | interface | ***a concrete class*** — [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx) |
 | **`$Character`** | built | ***renamed `$Letter`*** |
-| **the inline levels "each parsing its own level out of `copy`"** | true | ***false*** — one block per bond, one shared [parser](../../package/src/utilities/Parser.tsx) |
+| **the inline levels "each parsing its own level out of `copy`"** | true | ***false*** — one block per bond, one shared parser |
 | **`$Composition<T>` = `parts` + `canonical`** | true | ***[`$Composition$`](../../package/src/writing/Composition.tsx), six members***, and `canonical` is not one of them |
 
 ***So the register is a faithful account of a framework that has been archived, and nothing in it may be read as the state of the code.*** **It is left standing rather than gutted** — *it is still the only complete list of what the derivation has named, and the names are what the next design has to answer to.* ***What is corrected in place is the one row a reference design would lean on hardest, and it is marked.***

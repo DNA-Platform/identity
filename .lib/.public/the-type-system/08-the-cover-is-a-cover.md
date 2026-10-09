@@ -20,7 +20,7 @@
 
 ## <a id="what-stood"></a>What stood in the plan
 
-[Sprint 66's D3](../projection/72-sprint-66--themes-and-formats.md#d3), the rule that assigned every rule group in five theme files to a book format or a document format, carried one sentence in bold: **"Cover, synopsis and contents stay with the frame until they are typed."** So the cover's look — [`.pd-cover > .pd-title`, its underline, its language menu](../../package/src/encyclopedia/Theme.tsx) in the encyclopedia; [`.pd-cover .pd-heading`, `.pd-cover .pd-title .pd-heading`, the author and the subject](../../package/src/writing/Theme.tsx) in the base — was assigned to the frame. The frame would reach into the cover with descendant selectors and dress it.
+[Sprint 66's D3](../projection/72-sprint-66--themes-and-formats.md#d3), the rule that assigned every rule group in five theme files to a book format or a document format, carried one sentence in bold: **"Cover, synopsis and contents stay with the frame until they are typed."** So the cover's look — `.pd-cover > .pd-title`, its underline, its language menu (`package/src/encyclopedia/Theme.tsx`) in the encyclopedia; [`.pd-cover .pd-heading`, `.pd-cover .pd-title .pd-heading`, the author and the subject](../../package/src/writing/Theme.tsx) in the base — was assigned to the frame. The frame would reach into the cover with descendant selectors and dress it.
 
 ## <a id="why-a-wart"></a>Why that is a wart, in the framework's own terms
 

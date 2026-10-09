@@ -39,7 +39,7 @@ error SPEC: .article — 1:Synopsis › a chapter is titled, and this one is tit
 
 ***Nothing that ran asked the question.*** The suite drew books and specified writings; **no promise asked a chapter its name**, because until this sprint a chapter had no name to ask for. The defect was therefore not a regression — **it had always been true**, and it became visible the moment something depended on it, which is the ordinary way a reading this old surfaces.
 
-***And the first fix made it worse before it made it better.*** Reading the parts for the written title too broke the one place it must not: inside a table of contents, `$(TableOfContents, TypeOfSection)(TypeOfRow)` substitutes every section for a **row**, and [`$Row.heading()`](../../package/src/libraries/Row.tsx) answers `undefined` by design. *So a contents can never be titled by its first section and must write its title — which is why the block is asked first and the parts second, and not the other way round.*
+***And the first fix made it worse before it made it better.*** Reading the parts for the written title too broke the one place it must not: inside a table of contents, `$(TableOfContents, TypeOfSection)(TypeOfRow)` substitutes every section for a **row**, and `$Row.heading()` answers `undefined` by design. *So a contents can never be titled by its first section and must write its title — which is why the block is asked first and the parts second, and not the other way round.*
 
 ## The fix
 

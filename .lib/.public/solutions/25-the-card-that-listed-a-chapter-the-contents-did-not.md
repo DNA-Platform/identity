@@ -10,7 +10,7 @@
 
 - **A book's card and the same book's table of contents disagree about its chapters.** On **all seven books** in the corpus.
 - ***The Standard Model's card says*** `["Synopsis", "Symmetry"]`. ***Its contents says*** `["Symmetry"]`.
-- **Every card in the generated catalogue begins with the entry `"Synopsis"`** — [`app/src/libraries/cards.tsx`](../../app/src/libraries/cards.tsx), seven of seven.
+- **Every card in the generated catalogue begins with the entry `"Synopsis"`** — `app/src/libraries/cards.tsx`, seven of seven.
 - ***And every gate is green.*** The compiler's four phases pass, `CHECK` reports 7/7 books standing, the framework suite is 336/336, the driver's checkpoints hold. **Nothing anywhere reports a fault.**
 
 ## What did not work
@@ -21,7 +21,7 @@
 
 ## The mechanism — a positional slice standing in for a question the model answers
 
-[`catalogue.ts:39`](../../build/stages/catalogue.ts) reads a book's own chapters off the living book by **counting**:
+`catalogue.ts:39` reads a book's own chapters off the living book by **counting**:
 
 ```ts
 // The compiler wrote this composition, so it knows its shape: the cover,
@@ -32,9 +32,9 @@ const own = live.chapters.slice(2, 3 + book.chapters.length);
 
 **For The Standard Model, `live.chapters` is `[Cover, TableOfContents, Synopsis, Symmetry]` and `book.chapters.length` is `1`, so `slice(2, 4)` takes two where it wants one.** ***The extra one is the book's own synopsis.***
 
-**And the model excludes it deliberately.** [`$Synopsis.parenthetical`](../../package/src/book/Synopsis.tsx) answers `!standsFor`, so a book's own account is parenthetical; [`$TableOfContents.parts()`](../../package/src/book/TableOfContents.tsx) filters parenthetical chapters out. ***Two rules, both correct, and the compiler knows neither of them.***
+**And the model excludes it deliberately.** `$Synopsis.parenthetical` answers `!standsFor`, so a book's own account is parenthetical; `$TableOfContents.parts()` filters parenthetical chapters out. ***Two rules, both correct, and the compiler knows neither of them.***
 
-***The off-by-one is not the defect.*** **The defect is in the comment**: *"the compiler wrote this composition, so it knows its shape."* **Knowing the shape is exactly what the compiler's own best principle says not to rely on** — [`resolve.ts`](../../build/stages/resolve.ts):
+***The off-by-one is not the defect.*** **The defect is in the comment**: *"the compiler wrote this composition, so it knows its shape."* **Knowing the shape is exactly what the compiler's own best principle says not to rely on** — `resolve.ts`:
 
 > *"What a subject holds is **not a list the subject keeps**. It falls out of where its books sit, **which is why nothing has to be maintained in two places**."*
 
@@ -60,6 +60,6 @@ for every book:   card.chapters  ===  book.contents.parts().map(name)
 
 ***Two things computed the same fact and only one of them was asked.*** **A card exists to carry what a reader is shown before opening anything** — *that is a reading of the book, and a reading is asked, never counted.*
 
-**The general rule, and it is [already written one folder over](../../build/stages/resolve.ts):** ***when a fact can be derived from the model, deriving it anywhere else is maintaining it in two places*** — **and the second place will be wrong within a sprint, silently, because both numbers are internally consistent.**
+**The general rule, and it is already written one folder over (`build/stages/resolve.ts`):** ***when a fact can be derived from the model, deriving it anywhere else is maintaining it in two places*** — **and the second place will be wrong within a sprint, silently, because both numbers are internally consistent.**
 
 *Doug's own classification is worth keeping, because it is what sent this here rather than into [the Condition Report](../the-condition-report/.cover.md):* **"it's a bug. And a good one. But it's not a wart in the framework."** ***A defect gets fixed; a wart gets designed away. Filing them together loses both.***

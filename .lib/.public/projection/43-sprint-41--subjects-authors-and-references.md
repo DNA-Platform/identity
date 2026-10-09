@@ -69,7 +69,7 @@ A class whose `formula` member is truthy gets a catalogue of its own, built lazi
 
 `[$formula$]` is reached only from `augment`, and `augment` is called from exactly two places, both on a chemical's view output ([particle.ts:490](../../../chemistry/package/src/abstraction/particle.ts) and [:510](../../../chemistry/package/src/abstraction/particle.ts)). Chemistry's own suite has a section named *the boundary* pinning both halves: a formula rendered as a React root is not swapped, and **a formula evaluated outside a drawing is not swapped either** ([formula.test.tsx:396-405](../../../chemistry/package/tests/abstraction/formula.test.tsx)). `read`
 
-Every book file in the test corpus is `$(<Chapter>…)` at module scope ([02-symmetry.tsx:5](../../.wiki/corpus/gauge-theory/02-symmetry.tsx)), and the compiler emits the same shape ([emit.ts:14-27](../../binding/emit.ts)). **So a formula written directly in a book's prose would stand as a bare word, silently.** `read`
+Every book file in the test corpus is `$(<Chapter>…)` at module scope (02-symmetry.tsx:5), and the compiler emits the same shape (emit.ts:14-27). **So a formula written directly in a book's prose would stand as a bare word, silently.** `read`
 
 ***RUN, WITH A CONTROL, AGAINST BOTH PACKAGES' SOURCE.*** Doug asked for this to be proved rather than argued — *"If every book creates its subject author registration, and I think every book should be in somewhere, we shouldn't have to worry too much about references actually. Let's prove that."* **It was proved, and it does not hold.** `probe`
 
@@ -82,7 +82,7 @@ Every book file in the test corpus is `$(<Chapter>…)` at module scope ([02-sym
 
 ***So registered classes alone are not enough while book files are built at module scope.*** Two ways to close it, and the cheap one is a template string: **the compiler emits each chapter as a class with its prose in `view()`**, after which every formula resolves and no references wiring is involved at all — which is what Doug's instinct wanted. The other is for the compiler to write the resolved class in at emit time, so nothing resolves at runtime.
 
-***This is why the compiler emits the declarations rather than the book registering itself*** — Doug's own ruling, and the reason `$TypeOfBook.specifically` is not the place. There is a second reason: `books.ts` is one dynamic import per route ([emit.ts:30-35](../../binding/emit.ts)), so a book that is only mentioned is never loaded, and a registrar living in it would never run. `read`
+***This is why the compiler emits the declarations rather than the book registering itself*** — Doug's own ruling, and the reason `$TypeOfBook.specifically` is not the place. There is a second reason: `books.ts` is one dynamic import per route (emit.ts:30-35), so a book that is only mentioned is never loaded, and a registrar living in it would never run. `read`
 
 ## The shared references section already exists
 
@@ -90,7 +90,7 @@ Every book file in the test corpus is `$(<Chapter>…)` at module scope ([02-sym
 
 `reassemble()` (**References.tsx:41-62**) turns each stored path string back into a reference object by reading its two-letter code and looking the class up in `prints` — so `Bk:algebra` already becomes a `$$Book` with no new machinery. `read`
 
-`$TypeOfBook.specifically` already appends a parenthetical `$Index` holding a `$References` to every book ([Book.tsx:52-59](../../package/src/book/Book.tsx)), and `$TypeOfChapter.specifically` does the same with a `$References` at chapter grade ([Chapter.tsx:51-57](../../package/src/book/Chapter.tsx)). `read`
+`$TypeOfBook.specifically` already appends a parenthetical `$Index` holding a `$References` to every book (Book.tsx:52-59), and `$TypeOfChapter.specifically` does the same with a `$References` at chapter grade (Chapter.tsx:51-57). `read`
 
 ## The collision that forces the framework change
 
@@ -178,7 +178,7 @@ Two silent consequences. A subject named `Cover` would never register at all, be
 | written and never resolved | `$Type` | `true` |
 | resolved through the formula | `$TypeOfCover` | `false` |
 
-> **Observed:** a book whose subject never resolved fails `book.specify()` with `a subject names a book this library catalogues, and this one names none`. The existing check in [`binding/specify.ts`](../../binding/specify.ts) — which imports each book and asserts `specify()` does not throw, and never renders — catches it with no change to how the check runs.
+> **Observed:** a book whose subject never resolved fails `book.specify()` with `a subject names a book this library catalogues, and this one names none`. The existing check in `binding/specify.ts` — which imports each book and asserts `specify()` does not throw, and never renders — catches it with no change to how the check runs.
 
 **R9b — a misspelling is red in the editor, before any build.** The compiler emits the declared names as a union type and a narrowed alias beside the classes. `Component<T>` is `React.FC<$Properties<T>>` ([element.ts:23](../../../chemistry/package/src/abstraction/element.ts)) and JSX children are checked against the props type, so narrowing `children` is enough.
 > **Observed:** in the emitted output, `export type SubjectName = 'Abstract Algebra' | 'Group Theory' | 'Math'` and a narrowed `Subject`. `<Subject>Chemsitry</Subject>` is a `tsc` error naming the three valid names. **This is R-A22's static rail, delivered by a generated line rather than a framework change.**
@@ -186,7 +186,7 @@ Two silent consequences. A subject named `Cover` would never register at all, be
 **R10 — an author is declared and mentioned exactly as a subject is.** `<Author>of: Eirian</Author>` on an autobiography's cover; `<Author>Eirian</Author>` anywhere else. Its catalogue is separate from `$Subject`'s, so a subject and an author may share a name.
 > **Observed:** a corpus with a subject `Eirian` and an author `Eirian` binds clean, and the two mentions link to different books.
 
-**R11 — one route per book, the subject stands in the route, and a mention carries a `$$Book`.** *Doug: "for now, we need to stick to one route per book"* and *"the subjects will likely be in the paths for the books, so we can use the references to construct `$$Book` links too."* A book has one route; that route carries its subject as a step in front of it. The reference path is written with the book step **last** — `Sb:math/Bk:abstract-algebra` — so `$BookSpecification.$landsOnIt`, which reads `path.copy.split('/').pop()` and demands it start with `Bk:` ([Book.tsx:104-107](../../package/src/book/Book.tsx)), **passes with no edit to a shipped specification.**
+**R11 — one route per book, the subject stands in the route, and a mention carries a `$$Book`.** *Doug: "for now, we need to stick to one route per book"* and *"the subjects will likely be in the paths for the books, so we can use the references to construct `$$Book` links too."* A book has one route; that route carries its subject as a step in front of it. The reference path is written with the book step **last** — `Sb:math/Bk:abstract-algebra` — so `$BookSpecification.$landsOnIt`, which reads `path.copy.split('/').pop()` and demands it start with `Bk:` (Book.tsx:104-107), **passes with no edit to a shipped specification.**
 > **Observed:** the mention's `means` answers a `$$Book` whose `path.copy` is `Sb:math/Bk:abstract-algebra`, and `book.specify()` does not throw. The app's route for that book is `/math/abstract-algebra`. **`read()` across books is NOT delivered and stays owed where [the binder chapter](37-the-binder.md) already records it.**
 
 **R11a — the app's route pattern takes more than one segment.** `main.tsx` matches `:route` and looks up `books['/' + route]`, which only ever matches a single segment.
@@ -205,7 +205,7 @@ Two silent consequences. A subject named `Cover` would never register at all, be
 
 **R14b — the subject on a cover points UP, and its reference is a card that keeps going up.** Doug's design, verbatim: *"I think the subject on the cover will go up, and the reference there should provide a card that keeps going up."*
 
-***This needs no new class.*** [`$ReferenceCard`](../../package/src/reference/ReferenceCard.tsx) is already a reference holding a list of references where **the first is canonical and the rest are the others** — `first`, `rest`, `path` falling back to `first.path`, and `read()` delegating to `first`. So the spine is exactly that shape: **first is the book immediately above, rest is the remaining ancestors in order.** A cover's `<Subject>Math</Subject>` links to Math by default, and the whole spine is available in `references` without another lookup.
+***This needs no new class.*** `$ReferenceCard` is already a reference holding a list of references where **the first is canonical and the rest are the others** — `first`, `rest`, `path` falling back to `first.path`, and `read()` delegating to `first`. So the spine is exactly that shape: **first is the book immediately above, rest is the remaining ancestors in order.** A cover's `<Subject>Math</Subject>` links to Math by default, and the whole spine is available in `references` without another lookup.
 
 The compiler builds the card, because it is the only thing that has the whole tree at once. Nothing walks at runtime.
 > **Observed:** on a book at `/math/abstract-algebra`, the cover's subject reference is a card whose `first` is Math and whose `rest` is the library root. A breadcrumb built from `references` shows `Library › Math › Abstract Algebra` with each step a working link. On the root book, the card has no ancestors.
@@ -222,7 +222,7 @@ The compiler builds the card, because it is the only thing that has the whole tr
 **R16 — the compiler emits two things, not four.** The references section carries what exists, where it lives, and what it is called; the import map carries the loaders. `routes.ts` and `cards.ts` stop being separate generated modules and become readings of the references section.
 > **Observed:** after bind, the generated output is the references section plus the import map. The home page's list of books is built from the references section. `grep` finds no hand-kept list of routes anywhere.
 
-**R17 — the import map stays generated, and this is the one part that cannot move.** *Doug: "The compiler can wire up the router I think, but you can advise if there is another way. I prefer not to do it like that if the references section might be able to be where that lives."* **Advice given and recorded:** it can, except for the loaders. `main.tsx` calls `lazy()` on the function held in [`books.ts`](../../.wiki/app/src/libraries/books.ts), and a bundler splits a chunk only on an `import('./algebra/book')` specifier it can read at build time. A route string read out of the references section at runtime cannot become a module. **So the router takes its routes from the references section and touches the import map only when it actually opens a book.**
+**R17 — the import map stays generated, and this is the one part that cannot move.** *Doug: "The compiler can wire up the router I think, but you can advise if there is another way. I prefer not to do it like that if the references section might be able to be where that lives."* **Advice given and recorded:** it can, except for the loaders. `main.tsx` calls `lazy()` on the function held in `books.ts`, and a bundler splits a chunk only on an `import('./algebra/book')` specifier it can read at build time. A route string read out of the references section at runtime cannot become a module. **So the router takes its routes from the references section and touches the import map only when it actually opens a book.**
 > **Observed:** the router's route table comes from the references section; `books.ts` holds nothing but loaders; and each book still arrives as its own chunk rather than everything in one bundle.
 
 # <a id="flows"></a>Key flows
@@ -298,7 +298,7 @@ function branch(cls: any): any[] {
 
 # <a id="size"></a>The size, measured before dividing
 
-**The chemistry half is about fifteen lines across three files.** `formula`'s type, a four-line helper, one line inside `branch()`, one exported symbol, one assignment. **The lib half is four new files** of roughly thirty lines each, on the shape `book/Cover.tsx` already has. **The compiler half is one reader, one emitter and one template string** — the emitter has [`assemble`, `doors` and `routed` beside it](../../binding/emit.ts) as the pattern to copy, and the declaration read copies [`read.ts`](../../binding/read.ts)'s existing regex over carried source.
+**The chemistry half is about fifteen lines across three files.** `formula`'s type, a four-line helper, one line inside `branch()`, one exported symbol, one assignment. **The lib half is four new files** of roughly thirty lines each, on the shape `book/Cover.tsx` already has. **The compiler half is one reader, one emitter and one template string** — the emitter has `assemble`, `doors` and `routed` beside it (`binding/emit.ts`) as the pattern to copy, and the declaration read copies `read.ts`'s existing regex over carried source.
 
 ***One session's work, and it is not divided.***
 

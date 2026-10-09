@@ -116,7 +116,7 @@
 `, and the demonstration and the test library stop separating paragraphs with it.** *Where a view wants a paragraph it asks `$` for one* | ***Doug, at the plan:*** *"Remove `
 
 ` from the entire framework everywhere. This is still a web app. We do not format with newlines. Use a paragraph tag or something!! … That is the equivalent of `<br>` in html."* and *"If basic JSX doesn't give you newlines in your text, it just shows you should be asking `$` for Paragraph, and using that in the view"* · [D76](#d76) |
-| <a id="r133"></a>**R133** | ***One question is asked by one name: `follow()` drops and `read()` takes it*** — **[`$Catalogue$` declares both with the identical signature](../../package/src/reference/Catalogue.tsx), and [`$Book.read()` is literally `return this.follow()`](../../package/src/book/Book.tsx)** | ***Doug, at the plan:*** *"The follow was probably supposed to be read… I think it's a relic of an older abstraction"*, then *"Unless follow is tied to an abstraction — and I don't think that it is or should be — drop follow and let it be read"* · [D72](#d72) |
+| <a id="r133"></a>**R133** | ***One question is asked by one name: `follow()` drops and `read()` takes it*** — **`$Catalogue$` declares both with the identical signature, and `$Book.read()` is literally `return this.follow()`** | ***Doug, at the plan:*** *"The follow was probably supposed to be read… I think it's a relic of an older abstraction"*, then *"Unless follow is tied to an abstraction — and I don't think that it is or should be — drop follow and let it be read"* · [D72](#d72) |
 
 ## Who takes what — proposed, because territory does not reach these paths
 
@@ -161,9 +161,9 @@
 | <a id="d67"></a>**D67** | ***The fourteen owed words gate a unit and not the plan.*** [U131](#u131) is the only unit that cannot start without them, and the names group is fourth of five | *asking now.* [It is one conversation rather than fourteen questions](../the-condition-report/06-the-cleaning.md#the-words-owed), and it can happen at any point before the group opens |
 | <a id="d68"></a>**D68** | ***`$Chemistry`'s rename runs LAST and alone*** — [U137](#u137), after `lib`'s suite is green | *doing it first, or anywhere in the middle.* **The rebuild chain invalidates every measurement taken before it** — [`instanceof` is already false across the two copies of the framework](../solutions/05-the-suite-that-passed-against-a-stale-build.md), *and that line already cost four wrong measurements in two days* |
 | <a id="d69"></a>**D69** | ***The demo is a unit with its own identifier*** — [U138](#u138) — **and the drawing group does not close without it** | *a closing flourish.* [ce-review fails a demo described rather than shown](../../../../.claude/library/our-skillset/33-ce-review.md), and [one `$Title` drawn three ways](../the-condition-report/06-the-cleaning.md#the-test) is the first of the four things a count cannot fake |
-| <a id="d70"></a>**D70** | ***[R118](#r118) takes SIX English strings, not two.*** **Re-measured this session** — [N33](../the-condition-report/03-names.md#n33) counted `'Table of Contents'` and `'Open '`; four more stand: **`'by '` and `'in '` in [`Cover.byline`](../../package/src/book/Cover.tsx), `'previous'` and `'next'` in [`Book.turning`](../../package/src/book/Book.tsx)** | *taking the entry's count.* **Same fault, same fix, and the entry undercounted by four** — *recorded as a correction with the number on both sides, because [a tally kept beside the register it describes drifts](../the-condition-report/05-implementation.md#i6)* |
+| <a id="d70"></a>**D70** | ***[R118](#r118) takes SIX English strings, not two.*** **Re-measured this session** — [N33](../the-condition-report/03-names.md#n33) counted `'Table of Contents'` and `'Open '`; four more stand: **`'by '` and `'in '` in `Cover.byline`, `'previous'` and `'next'` in `Book.turning`** | *taking the entry's count.* **Same fault, same fix, and the entry undercounted by four** — *recorded as a correction with the number on both sides, because [a tally kept beside the register it describes drifts](../the-condition-report/05-implementation.md#i6)* |
 | <a id="d71"></a>**D71** | ***[R117](#r117) delivers two flags of three, and the third is recorded as NOT A DUPLICATE.*** *`isCover` has exactly two sites — **Doug at the plan: "No isCover. You can answer that with an instanceof"** — and `$display` is provably dead* — **but `$strong` is composed as a boolean at [`Sentence.tsx:69`](../../package/src/writing/Sentence.tsx), `strong={open.length > 1}`, and the `**` that decided it is consumed by `stressed()` and discarded** | *forcing it, and also renaming it.* ***The entry's premise fails rather than the fix being hard*** — **nothing else in the system knows strong-ness, so the flag duplicates nothing** — and [S16's mentioned part](../the-condition-report/04-semantics.md#s16) is the answer Doug already ruled, so *anything built now is built to be deleted.* **Recorded as a correction to [S12](../the-condition-report/04-semantics.md#s12), standing for his objection** |
-| <a id="d72"></a>**D72** | ***`follow()` drops and `read()` takes it — Doug's ruling at the plan, and the evidence was already in the interface.*** **[`$Catalogue$` declares `read(): $Composition$<T>` and `follow(): $Composition$<T>`](../../package/src/reference/Catalogue.tsx) — the same signature, twice** — and [`$Book.read()`](../../package/src/book/Book.tsx) is `return this.follow()`. *A promise already asserts they agree:* **[`cataloguing.test.tsx:151`](../../package/.tests/book/cataloguing.test.tsx)** | *finding `follow()` a home.* **The question was never where a static should live — it was that one question wore two names**, and [the report files that exact fault three times one altitude down](../the-condition-report/05-implementation.md#i9) |
+| <a id="d72"></a>**D72** | ***`follow()` drops and `read()` takes it — Doug's ruling at the plan, and the evidence was already in the interface.*** **`$Catalogue$` declares `read(): $Composition$<T>` and `follow(): $Composition$<T>` — the same signature, twice** — and `$Book.read()` is `return this.follow()`. *A promise already asserts they agree:* **`cataloguing.test.tsx:151`** | *finding `follow()` a home.* **The question was never where a static should live — it was that one question wore two names**, and [the report files that exact fault three times one altitude down](../the-condition-report/05-implementation.md#i9) |
 | <a id="d73"></a>**D73** | ***The trailing `$` goes from every abstraction — and the collision sweep is what licensed it.*** **The only bare `$Reference` and `$Catalogue` anywhere are in [`chemistry/package/src/implementation/`](../../../chemistry/package/src/implementation/), NEITHER IS EXPORTED, and `$Reference` appears ZERO times in every `.d.ts` in chemistry's `dist`** — *[which is C5's ruling confirmed from the other side](../the-condition-report/07-the-three-codebases.md#c5)* | *keeping it.* ***And there is a second argument the instruction did not have:*** **in `$Chemistry` the trailing `$` already means SYMBOL KEY** — `$template$`, `$parent$`, `$type$`, `$activeView$`, **38 uses of `$type$` alone** — *so `lib` spelling* interface *with the mark its own substrate spells* symbol key *is [one word carrying two meanings](../the-condition-report/03-names.md), across two packages that ship together* |
 | <a id="d74"></a>**D74** | ***The theme stops deciding what is drawn.*** **[`$Particle` carries `$show`/`$hide` universally](../../../chemistry/package/src/abstraction/particle.ts) with a registered render filter, shipped in [`chemistry.d.ts:346`](../../../chemistry/package/dist/) — so `lib` never needed a visibility member.** *Doug: **"showing / hiding parentheticals isn't part of a theme. Remove it. Hide parentheticals."*** | *renaming `draws()` to `reads()`, which is what [U129](#u129) planned.* ***The member does not get a better name — it stops existing***, and one owed word dissolves with it: *"whether unread matter is read"* |
 | <a id="d75"></a>**D75** | ***A property does not need a `$` to be reactive, and this was CHECKED rather than assumed.*** **[`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts): `if (!property.startsWith("$")) return true;` — a plain property is reactive BY DEFAULT**, `$x` is reactive by `isSpecial`, and [`@inert()`/`@reactive()`](../../../chemistry/.lib/reactivity/06-decorators.md) ship as the overrides | *my own assumption, which was backwards.* ***So in `lib` the `$` marks EXTRINSIC CONTEXT and not reactivity*** — **which makes [Doug's "don't make anything a prop unless it needs to be"](../the-condition-report/03-names.md#n2) free to obey: [`$Bookmark.$for` → `place`](#u126) loses the prop and keeps the reactivity.** *Doug, at the plan: "Parenthetical isn't a constant. And it doesn't need a `$` to be reactive. Check. It was fine as is"* || <a id="d76"></a>**D76** | ***A newline is a division said twice.*** **The division is `parts()`** — joining a reading with `
@@ -220,7 +220,7 @@
 | | why it is dead |
 |---|---|
 | [`shown(theme, of, parts, uniform, page)`](../../package/src/writing/Writing.tsx) | **both call sites pass `0`** — [the sprint that struck `page` from the model left it in the one function that would have used it](../the-condition-report/05-implementation.md#i17) |
-| [`$Book.stands(theme)`](../../package/src/book/Book.tsx) | takes a theme and **never reads it** |
+| `$Book.stands(theme)` | takes a theme and **never reads it** |
 | [`$Theme.lay(of, uniform)`](../../package/src/writing/Theme.tsx) | answers from `uniform` alone; *the base signature promises a distinction it never makes* |
 
 > ***The third is a judgement and is flagged rather than assumed.*** **`lay(of, uniform)`'s `of` is an extension point** — a subclass may lay out differently *for a particular composition* — **so removing it narrows what a consumer can override.** *The unit removes the two that are dead and states the third as a question, because **a parameter a subclass could use is not the same as a parameter nothing passes**.*
@@ -229,13 +229,13 @@
 
 ### <a id="u112"></a>U112 — The card asks the book for its chapters · [R105](#r105)
 
-**Mechanism.** [`catalogue.ts:39`](../../build/stages/catalogue.ts) slices a live book's chapters by position — `live.chapters.slice(2, 3 + book.chapters.length)` — **where the book answers the question directly.**
+**Mechanism.** `catalogue.ts:39` slices a live book's chapters by position — `live.chapters.slice(2, 3 + book.chapters.length)` — **where the book answers the question directly.**
 
-***The compiler's own comment states the assumption out loud*** — *"the compiler wrote this composition, so it knows its shape"* — **and [its own best principle says not to rely on that](../../build/stages/resolve.ts):** *what a subject holds falls out of where its books sit,* ***which is why nothing has to be maintained in two places.***
+***The compiler's own comment states the assumption out loud*** — *"the compiler wrote this composition, so it knows its shape"* — **and its own best principle says not to rely on that (`build/stages/resolve.ts`):** *what a subject holds falls out of where its books sit,* ***which is why nothing has to be maintained in two places.***
 
 ***A book can be asked what its chapters are. It was counted instead, and the two answers drifted immediately.*** **The model already excludes the cover, the contents and the catalogued synopses**, so the reading the card wants is the book's own — *and where they disagree today, [the model is right and the count is wrong](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md).*
 
-**Files.** [`build/catalogue.ts`](../../build/stages/catalogue.ts). **Depends on** nothing. ***It sits in hygiene rather than in the compiler group because it is a one-line correction of a shipping fault***, not part of the compiler's unread pass.
+**Files.** `build/catalogue.ts`. **Depends on** nothing. ***It sits in hygiene rather than in the compiler group because it is a one-line correction of a shipping fault***, not part of the compiler's unread pass.
 
 **Numeric end:** ***cards whose chapter list disagrees with their own book's contents → 7 → 0.***
 
@@ -259,9 +259,9 @@ $Link         inherits $Phrase's     once U114 re-parents it
 
 **Every child calls `super.valid()`. Every narrowing is one named method. Nothing is silently repealed.** *The fault was never the hierarchy and never the silence — it is that `valid()` is a monolith, so a subclass with one part to narrow replaces the whole method.*
 
-***And the ruling carries its own diagnostic, which this unit runs:*** *"if a child doesn't call the parent `valid`, it suggests that perhaps IT IS NOT A SUBCLASS."* **Run against the package today it names [`$IndexCard`](../../package/src/reference/IndexCard.tsx) and [`$Bookmark`](../../package/src/book/Bookmark.tsx)** — ***which is [U114](#u114) reached by a second instrument, and the strongest evidence in the report that those two re-parents are real.***
+***And the ruling carries its own diagnostic, which this unit runs:*** *"if a child doesn't call the parent `valid`, it suggests that perhaps IT IS NOT A SUBCLASS."* **Run against the package today it names `$IndexCard` and `$Bookmark`** — ***which is [U114](#u114) reached by a second instrument, and the strongest evidence in the report that those two re-parents are real.***
 
-**Files.** [`Word.tsx`](../../package/src/writing/Word.tsx) · [`Phrase.tsx`](../../package/src/writing/Phrase.tsx) · `Punctuation.tsx` (v1, `.archive/writing/Punctuation.tsx`, deleted) · [`Writing.tsx`](../../package/src/writing/Writing.tsx) · `Legend.tsx` (v1, `.archive/document/Legend.tsx`, deleted), **and every `valid()` the diagnostic names.** *36 implementations exist in `src`; the unit reads all of them and changes the ones that repeal.*
+**Files.** [`Word.tsx`](../../package/src/writing/Word.tsx) · `Phrase.tsx` · `Punctuation.tsx` (v1, `.archive/writing/Punctuation.tsx`, deleted) · [`Writing.tsx`](../../package/src/writing/Writing.tsx) · `Legend.tsx` (v1, `.archive/document/Legend.tsx`, deleted), **and every `valid()` the diagnostic names.** *36 implementations exist in `src`; the unit reads all of them and changes the ones that repeal.*
 
 **Depends on** nothing. ***FORCED FIRST in its group by [D63](#d63).***
 
@@ -275,8 +275,8 @@ $Link         inherits $Phrase's     once U114 re-parents it
 |---|---|---|---|
 | `$Code` (v1, `.archive/writing/Code.tsx`, deleted) | `extends $Figure` | ***`extends $Paragraph`*** | ***Doug: "Code is not a Figure… CODE IS WRITING."*** [S3](../the-condition-report/04-semantics.md#s3). **`$caption` leaves with the inheritance**, taking `caption={asFence[1].trim() \|\| 'code'}` — *a fence captioned with the literal word `code`* — out of [`Section.compose()`](../../package/src/writing/Section.tsx) |
 | `$Link` (v1, `.archive/reference/Link.tsx`, deleted) | `extends $Word` | ***`extends $Phrase`*** | ***Doug: "Links too should be phrasal."*** [S18](../the-condition-report/04-semantics.md#s18) — **every multi-word link is currently a `$Word` carrying whitespace, passing only because the subclass repeals its parent.** *A `$Phrase` is still a `$Word`, so links stay enumerable among a sentence's words* |
-| [`$IndexCard`](../../package/src/reference/IndexCard.tsx) | `extends $Writing` | ***off writing*** | **sixteen inherited members, zero used** — [S5](../the-condition-report/04-semantics.md#s5). *It extends `$Writing` for one constructor line: `this.inline = false`* |
-| [`$Bookmark`](../../package/src/book/Bookmark.tsx) | `extends $Sentence` | ***off writing*** | **it inherits the sentence parse and uses none of it** — [S6](../the-condition-report/04-semantics.md#s6). *Right folder by [the stated rule](04-the-member-audit.md), wrong parent* |
+| `$IndexCard` | `extends $Writing` | ***off writing*** | **sixteen inherited members, zero used** — [S5](../the-condition-report/04-semantics.md#s5). *It extends `$Writing` for one constructor line: `this.inline = false`* |
+| `$Bookmark` | `extends $Sentence` | ***off writing*** | **it inherits the sentence parse and uses none of it** — [S6](../the-condition-report/04-semantics.md#s6). *Right folder by [the stated rule](04-the-member-audit.md), wrong parent* |
 
 ***The two that leave writing need a destination, and it is `$Referent` (v1, `.archive/reference/Referent.tsx`, deleted)*** — **the base of the hierarchy, declaring `valid()`, which both already override outright.** *That is a move rather than a design: `$Referent` is a class, both already implement `$Reference$<T>` on their own, and neither reads a writing member.*
 
@@ -300,9 +300,9 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 **`$Book` is `$Composition$<$Chapter>` and `$Catalogue$<$Book>`, and its reference form mirrors that.** ***The members the annotation rules need — `canonical`, `entries`, `parts()` — are not omissions to argue with: they are `$Catalogue$`, unimplemented***, and implementing the second interface closes [S17](../the-condition-report/04-semantics.md#s17)'s two gaps by construction with no member invented.
 
-***And the discipline that governs how it pays is [S20](../the-condition-report/04-semantics.md#s20)'s:*** **`$of` is not in any interface.** *[`$Reference$`](../../package/src/reference/Reference.tsx) requires `copy`, `parenthetical`, `read()` and `then()`; the field that answers `read()` is the class's own business.* ***Ask what a class OWES, then ask how it pays.***
+***And the discipline that governs how it pays is [S20](../the-condition-report/04-semantics.md#s20)'s:*** **`$of` is not in any interface.** *`$Reference$` requires `copy`, `parenthetical`, `read()` and `then()`; the field that answers `read()` is the class's own business.* ***Ask what a class OWES, then ask how it pays.***
 
-**Files.** [`Book.tsx`](../../package/src/book/Book.tsx) — ***`$$Book` lives beside `$Book`, [as ruled](../the-condition-report/04-semantics.md#s19)*** — · [`IndexCard.tsx`](../../package/src/reference/IndexCard.tsx) · `CardCatalogue.tsx` (v1, `.archive/reference/CardCatalogue.tsx`, deleted), which **satisfies `$Catalogue$<$Book>` in the same act** *([S9](../the-condition-report/04-semantics.md#s9), and [chapter zero specified it that way eleven weeks ago](00-planning.md))* · `index.ts` · the generated `$Card` in [`build/catalogue.ts`](../../build/stages/catalogue.ts).
+**Files.** `Book.tsx` — ***`$$Book` lives beside `$Book`, [as ruled](../the-condition-report/04-semantics.md#s19)*** — · `IndexCard.tsx` · `CardCatalogue.tsx` (v1, `.archive/reference/CardCatalogue.tsx`, deleted), which **satisfies `$Catalogue$<$Book>` in the same act** *([S9](../the-condition-report/04-semantics.md#s9), and [chapter zero specified it that way eleven weeks ago](00-planning.md))* · `index.ts` · the generated `$Card` in `build/catalogue.ts`.
 
 **Depends on** [U113](#u113). ***FORCED BEFORE [U117](#u117) by [D64](#d64).***
 
@@ -316,16 +316,16 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 **Mechanism.** ***Four steps, [each a member rather than a mechanism](../the-condition-report/04-semantics.md#s17-lifting), and all four are Doug's own.***
 
-1. ***`$Writing.annotations: $Annotation[]`*** — **the base member.** *Today [`$Cover.author`](../../package/src/book/Cover.tsx) finds one with `this.words.find(w => w instanceof $Author)`; that becomes the general form at every level.*
+1. ***`$Writing.annotations: $Annotation[]`*** — **the base member.** *Today `$Cover.author` finds one with `this.words.find(w => w instanceof $Author)`; that becomes the general form at every level.*
 2. ***`$Book.annotations` overrides it to lift from its cover*** — *"LIFT the subject and author annotations — if not all annotations — from the cover to the book."* **The overriding IS how lifting evolves**, rather than a rule the framework fixes.
 3. ***`$Type` is an annotation whose content is its name*** — `<Type>Autobiography</Type>` — **one shape for every annotation**, and what `Autobiography` MEANS is written in the books rather than encoded in a class. *[Ruled 2026-08-23](../the-condition-report/04-semantics.md#s17-type), replacing the inheritance answer of the day before, and **the inheritance question is explicitly deferred***.
 4. ***`library` is a property of `$Book`, computed recursively*** — *itself where it catalogues itself, otherwise its subject's* — **and `$$Book` gets it because its interface mirrors the book's.** *"Yes it should be recursive."*
 
 ***A letter has no annotations, and the reason is structural rather than a rule:*** **an annotation is phrasal, and a letter cannot contain a phrase.**
 
-***And the recursion opens nothing***, which is the point: **a card's subject is another card**, and [the generated catalogue already writes the fixed point](../../build/stages/catalogue.ts) — `library.$subject = library`. *That is [the auto-categorical summit](../the-semantics-of-books/07-the-subjective-subject-and-the-library.md) already true in the emitted file, so the computation terminates by construction rather than by a guard.*
+***And the recursion opens nothing***, which is the point: **a card's subject is another card**, and the generated catalogue already writes the fixed point — `library.$subject = library`. *That is [the auto-categorical summit](../the-semantics-of-books/07-the-subjective-subject-and-the-library.md) already true in the emitted file, so the computation terminates by construction rather than by a guard.*
 
-***One thing this unit REMOVES, and it is worth naming.*** **[`$Book.library`](../../package/src/book/Book.tsx)'s current climb calls `pointed()`, which calls `card.read()` — and `read()` LOADS THE BOOK.** *Validating through books opens every book on the path; [a card compute opens none](../the-condition-report/04-semantics.md#s17), which is what makes the rule affordable at 95 books and at 95,000.*
+***One thing this unit REMOVES, and it is worth naming.*** **`$Book.library`'s current climb calls `pointed()`, which calls `card.read()` — and `read()` LOADS THE BOOK.** *Validating through books opens every book on the path; [a card compute opens none](../the-condition-report/04-semantics.md#s17), which is what makes the rule affordable at 95 books and at 95,000.*
 
 **Files.** `Writing.tsx` · `Book.tsx` · `Cover.tsx` · **a new `$Type`** beside the other annotations · `index.ts` · `build/catalogue.ts`. **Depends on** [U115](#u115).
 
@@ -337,7 +337,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 **Mechanism.** ***Doug's, ruled 2026-08-22:*** *"You can make a base class called an **`$Annotation`** and have all three come from that. An annotation would probably be at the `$Phrase` level… **Figure out how to implement that based on the library card they have access to.**"*
 
-**Measured: [`$Author`](../../package/src/book/Author.tsx), [`$Subject`](../../package/src/book/Subject.tsx) and `$Canonical` (v1, `.archive/book/Canonical.tsx`, deleted) are byte-identical under name substitution** — *every member, and the only differences are the class name and one word inside an error string.* **[Datable to one commit](../the-condition-report/01-how-to-read-this.md#the-rushes): `b91944e`, 2026-08-10.** ***Not three classes designed alike — one class copied twice in a sitting.***
+**Measured: `$Author`, `$Subject` and `$Canonical` (v1, `.archive/book/Canonical.tsx`, deleted) are byte-identical under name substitution** — *every member, and the only differences are the class name and one word inside an error string.* **[Datable to one commit](../the-condition-report/01-how-to-read-this.md#the-rushes): `b91944e`, 2026-08-10.** ***Not three classes designed alike — one class copied twice in a sitting.***
 
 **The three rules, and each is one compute and one comparison that opens no book:**
 
@@ -351,7 +351,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 **Files.** ***a new `Annotation.tsx`*** · `Author.tsx` · `Subject.tsx` · `Canonical.tsx` · `index.ts`. **Depends on** [U113](#u113), [U115](#u115), [U116](#u116).
 
-***Where the rules RUN, and it must remain a caller rather than a home.*** **[`validate.ts`](../../build/stages/validate.ts) is already the phase that holds every book at once and already says *"it invents no rules."*** *But [a rule that lives in the compiler is a rule the browser cannot ask](../ways-of-reading/05-the-live-library.md), and a library people write into needs the same rule at the moment writing arrives.*
+***Where the rules RUN, and it must remain a caller rather than a home.*** **`validate.ts` is already the phase that holds every book at once and already says *"it invents no rules."*** *But [a rule that lives in the compiler is a rule the browser cannot ask](../ways-of-reading/05-the-live-library.md), and a library people write into needs the same rule at the moment writing arrives.*
 
 **Numeric end:** ***156 lines → about 75***, and **three `valid()` bodies that differ.** *The three files stop matching under name substitution, which is the fault stated as a measurement.*
 
@@ -364,7 +364,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 | | the question | the fix |
 |---|---|---|
 | [I6](../the-condition-report/05-implementation.md#i6) | ***the book's invariants*** — six errors thrown from the bond constructor at `Book.tsx:203-213`, the same six stated as `$valid` calls at `304-320` | **one statement, two readers.** ***The drift is already visible*** — the constructor says *"one whose reference comes home"*, `valid()` says *"and this one accounts only for other books"* |
-| [I7](../the-condition-report/05-implementation.md#i7) | ***`title`*** — three answers, one reimplementing half of `canonical` inline | **[`$TableOfContents`](../../package/src/book/TableOfContents.tsx) delegates to `canonical`** instead of copying one of its three clauses and dropping the other two |
+| [I7](../the-condition-report/05-implementation.md#i7) | ***`title`*** — three answers, one reimplementing half of `canonical` inline | **`$TableOfContents` delegates to `canonical`** instead of copying one of its three clauses and dropping the other two |
 | [I8](../the-condition-report/05-implementation.md#i8) | ***"what document am I in"*** — a bounded careful walk that throws with a reason, and a bare cast | **[`$Section`](../../package/src/writing/Section.tsx) adopts `$Denote` (v1, `.archive/document/Denote.tsx`, deleted)'s walk**, which was written for exactly this and has been sitting two files away |
 | [I9](../the-condition-report/05-implementation.md#i9) · [N32](../the-condition-report/03-names.md#n32) | ***`canonical`/`ref`, and `contents`/`tableOfContents`*** — one member under two names, twice | **one member each** — ***and it says that a book's reference IS its canonical***, a theorem rather than a coincidence it satisfies twice |
 | [S7](../the-condition-report/04-semantics.md#s7) | ***`copy` and parenthetical matter*** — the two ends skip it, the middle includes it, and nothing says why | **`$Document` (v1, `.archive/document/Document.tsx`, deleted) joins the specification [the settled account states once](../the-semantics-of-books/15-the-levels-of-writing.md)** |
@@ -383,7 +383,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 | | where | becomes |
 |---|---|---|
-| `canonicals(cover)` | [`Book.tsx`](../../package/src/book/Book.tsx) | a member of the thing it takes as its first argument |
+| `canonicals(cover)` | `Book.tsx` | a member of the thing it takes as its first argument |
 | `pointed(reference)` | `Book.tsx` | ***dissolves with [U116](#u116)*** — the library computation that needed it stops opening books |
 | `blocks(prose)` | [`Section.tsx`](../../package/src/writing/Section.tsx) | a member of `$Section` |
 | `reading(of)` + the module-level `WeakMap` | [`Writing.tsx`](../../package/src/writing/Writing.tsx) | ***a hand-rolled memo standing outside the framework's own reactivity, in the framework.*** **[I16](../the-condition-report/05-implementation.md#i16) is the design that dissolves it and is NOT this sprint**, so the unit moves it onto the class and leaves the mechanism alone |
@@ -407,7 +407,7 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 | receiver | why the static goes | how |
 |---|---|---|
 | `$Writing` and everything under it — `$Sentence` · `$Paragraph` · `$Section` · `$Chapter` · `$TableOfContents` and the `$$` forms | ***they already inherit `canonical`, `where`, `select`, `selectMany`, `single`, `at` from [`$Writing`](../../package/src/writing/Writing.tsx)*** — **the static is a redundant override, not a mechanism** | **delete the override; the member answers** |
-| [`$Book`](../../package/src/book/Book.tsx) | **extends `$Referent`, not `$Writing`** | **implements the same six itself** — *three lines each, no static, no mixin* |
+| `$Book` | **extends `$Referent`, not `$Writing`** | **implements the same six itself** — *three lines each, no static, no mixin* |
 | ***`follow()`*** | ***it stops existing*** — **[U141](#u141)** | *`read()` answers it* |
 
 ***This unit originally carried `follow()` as a referral to Doug. He ruled it at the plan and [it became its own unit](#u141)***, so **R114 now has no residue at all**: every one of the seven statics has a home or a deletion.
@@ -420,32 +420,32 @@ $$Book       ::  $Reference$<$Book>       ,  $Catalogue$<$Book>        ← what 
 
 ### <a id="u141"></a>U141 — `follow()` drops and `read()` takes it · [R133](#r133)
 
-**Mechanism.** ***Doug's ruling at the plan, and the evidence was already sitting in the interface.*** **[`$Catalogue$`](../../package/src/reference/Catalogue.tsx) declares two members with the identical signature:**
+**Mechanism.** ***Doug's ruling at the plan, and the evidence was already sitting in the interface.*** **`$Catalogue$` declares two members with the identical signature:**
 
 ```ts
 read(): $Composition$<T>;
 follow(): $Composition$<T>;
 ```
 
-**And [`$Book`](../../package/src/book/Book.tsx) settles which is real:** `read()` is `return this.follow();`. ***One question under two names — [the fault this report files three times one altitude down](../the-condition-report/05-implementation.md#i9), sitting in an interface where it propagates to every implementor.***
+**And `$Book` settles which is real:** `read()` is `return this.follow();`. ***One question under two names — [the fault this report files three times one altitude down](../the-condition-report/05-implementation.md#i9), sitting in an interface where it propagates to every implementor.***
 
 ***Traced through all six declarations before it was taken:***
 
 | | `read()` returns | `follow()` returns | |
 |---|---|---|---|
-| [`$Book`](../../package/src/book/Book.tsx) | *delegates to `follow()`* | the books it catalogues | ***pure duplication*** |
+| `$Book` | *delegates to `follow()`* | the books it catalogues | ***pure duplication*** |
 | `$$Paragraph` · `$$Section` · `$$Chapter` · `$$Sentence` | the thing — ***and the thing IS the composition*** | the dereferenced parts | ***`read().parts()` === `follow().parts()`*** |
-| [`$TableOfContents`](../../package/src/book/TableOfContents.tsx) | the whole book | its LISTED chapters | ***the only real difference*** |
+| `$TableOfContents` | the whole book | its LISTED chapters | ***the only real difference*** |
 
 ***The `$$` case is the one worth stating:*** **`$$Paragraph.read()` returns a `$Paragraph`, and a `$Paragraph` already IS a `$Composition$<$Sentence>`.** *So the real object answers what the synthetic reading was built to answer, and `follow()` constructs a fake composition standing next to a real one.*
 
-***And a promise already asserts the duplication.*** **[`cataloguing.test.tsx:151`](../../package/.tests/book/cataloguing.test.tsx) checks `shelf.read().parts()` on the line after checking `shelf.follow().parts()`, and expects the same answer.**
+***And a promise already asserts the duplication.*** **`cataloguing.test.tsx:151` checks `shelf.read().parts()` on the line after checking `shelf.follow().parts()`, and expects the same answer.**
 
 > ***The contents is the one that changes, and the library already ruled it.*** **[S19](../the-condition-report/04-semantics.md#s19): *"`$TableOfContents` — NOT a reference form of a book — a catalogue of CHAPTERS, because it holds chapter references."*** *So its `read()` answers its listed chapters and stops returning the book.*
 >
-> ***That will collide with [`$Chapter.read(): $Book`](../../package/src/book/Chapter.tsx), which the contents inherits — and the collision is written here rather than restructured around.*** **It is the design saying that a contents inherits a reference obligation S19 says it does not have**, and the implementer meets it with that sentence in hand.
+> ***That will collide with `$Chapter.read(): $Book`, which the contents inherits — and the collision is written here rather than restructured around.*** **It is the design saying that a contents inherits a reference obligation S19 says it does not have**, and the implementer meets it with that sentence in hand.
 
-**Files.** [`Catalogue.tsx`](../../package/src/reference/Catalogue.tsx) — *the interface stops declaring one question twice* — · `Book.tsx` · `Chapter.tsx` · `TableOfContents.tsx` · `Paragraph.tsx` · `Section.tsx` · `Sentence.tsx` · `Composition.tsx`, **and 15 call sites across three test files.**
+**Files.** `Catalogue.tsx` — *the interface stops declaring one question twice* — · `Book.tsx` · `Chapter.tsx` · `TableOfContents.tsx` · `Paragraph.tsx` · `Section.tsx` · `Sentence.tsx` · `Composition.tsx`, **and 15 call sites across three test files.**
 
 **Depends on** [U113](#u113), [U115](#u115).
 
@@ -467,7 +467,7 @@ declare module 'styled-components' {
 
 ***Shipped inside the package, so every consumer of `lib` who uses styled-components with their own theme has a type error.*** **The demonstration IS that consumer** — *its 30-key design-token object is rejected by its own `ThemeProvider`, and that is two of the six errors currently failing its typecheck.*
 
-***And the framework still writes `theme={theme as never}` at 25 call sites, so the augmentation does not even satisfy its own uses.*** **Measured: there is no `ThemeProvider` anywhere in `package/src`, and transient `$`-props are already incumbent** — `$side` on [`Step`](../../package/src/book/Book.tsx), `$open` on [`Row`](../../package/src/book/TableOfContents.tsx). *So the augmentation does one job a transient prop does without reaching into anyone else's module.*
+***And the framework still writes `theme={theme as never}` at 25 call sites, so the augmentation does not even satisfy its own uses.*** **Measured: there is no `ThemeProvider` anywhere in `package/src`, and transient `$`-props are already incumbent** — `$side` on `Step` (`package/src/book/Book.tsx`), `$open` on `Row` (`package/src/book/TableOfContents.tsx`). *So the augmentation does one job a transient prop does without reaching into anyone else's module.*
 
 ***Deleting the augmentation and the casts in the SAME act is the whole point:*** **every later missed theme becomes a type error rather than a page that renders wrong.**
 
@@ -514,7 +514,7 @@ declare module 'styled-components' {
 - ***The five classes that skip the drawing template join it*** — `$Figure` · `$Legend` · `$Denote` · `$Document` · `$TableOfContents` override `view()` outright and never reach `gathered()`/`set()`. *`$Document` re-implements `gathered` inline, twelve lines below the one it inherits.* **[`$Book`'s override is D49 and correct](19-the-binding.md#d49)** — *a book is in charge of its own reading environment* — **and stays.**
 - ***`named()` dissolves into `set()`*** — [a second, undeclared drawing entry point](../the-condition-report/05-implementation.md#i1) on the three annotations, called only from `$Cover.byline` while their own `set()` returns `null`. ***So a subclass overriding `set()` on an author changes nothing on screen today.***
 - ***The hex branch goes*** — `background: theme.ground === '#ffffff' ? '#f6f7f9' : theme.rule` at `Code.tsx:25` (v1, `.archive/writing/Code.tsx`, deleted). **This breaks [D40](18-the-theme.md#d40) exactly**: *a theme's values are OPAQUE to the framework*, and **a theme answering `var(--ink)` takes the wrong side of that ternary silently.**
-- ***[`Row`](../../package/src/book/TableOfContents.tsx) is a DELETION, not a rename*** — [N13](../the-condition-report/03-names.md#n13): **[B1 already ruled it](19-the-binding.md#the-board), a reference draws its own row.**
+- ***`Row` (`package/src/book/TableOfContents.tsx`) is a DELETION, not a rename*** — [N13](../the-condition-report/03-names.md#n13): **[B1 already ruled it](19-the-binding.md#the-board), a reference draws its own row.**
 
 **Files.** ***19 files carrying 33 style objects, counted this session:*** `Author` **2** · `Canonical` **2** · `Subject` **2** · `Synopsis` **5** · `Document` **1** · `Footer` **2** · `Footnote` **1** · `Legend` **3** · `Highlight` **1** · `Link` **1** · `Code` **1** · `Emphasis` **2** · `Figure` **2** · `Formula` **1** · `Section` **1** · `Snippet` **1** · `Subtitle` **1** · `Tagline` **1** · `Title` **3**.
 
@@ -531,7 +531,7 @@ declare module 'styled-components' {
 | | today | verified this session | becomes |
 |---|---|---|---|
 | ***`$Cover.isCover`*** | a `readonly` boolean | ***exactly two sites*** — the declaration, and `Title.opening`'s eight-step walk (v1, `.archive/writing/Title.tsx`, deleted) | **`instanceof $Cover`**, ***which deletes the walk with it*** |
-| ***`$Formula.$display`*** | a prop | ***DEAD*** — **nothing in `lib`, the demonstration, the application or the corpus sets it.** *The only other `$display` is [the demonstration's own `latex.tsx`](../../.archive/app/src/sections/page/latex.tsx), a different class* | **deleted**, *and both display branches of `set()` go with it because they are unreachable* |
+| ***`$Formula.$display`*** | a prop | ***DEAD*** — **nothing in `lib`, the demonstration, the application or the corpus sets it.** *The only other `$display` is the demonstration's own `latex.tsx`, a different class* | **deleted**, *and both display branches of `set()` go with it because they are unreachable* |
 | ***`$Emphasis.$strong`*** | a boolean prop | ***composed at [`Sentence.tsx:69`](../../package/src/writing/Sentence.tsx) — `strong={open.length > 1}` — and the `**` that decided it is consumed by `stressed()` and discarded*** | ***STAYS*** — *[D71](#d71)* |
 
 > ***The eight-step walk is worth its own sentence, because [F11 records what its unbounded version cost](19-the-binding.md#f11):*** **twenty promises reported as *zero run* rather than as failures, and `Worker exited unexpectedly`.** *Two assumed hops, a magic bound of eight, and a duck-typed flag — for a question `instanceof $Cover` answers.*
@@ -550,10 +550,10 @@ declare module 'styled-components' {
 
 | | where |
 |---|---|
-| `'Table of Contents'` | [`TableOfContents.tsx:61`](../../package/src/book/TableOfContents.tsx) — *a fallback when no section names it* |
-| `'Open ' + named` | [`Synopsis.tsx:38`](../../package/src/book/Synopsis.tsx) |
-| ***`'by '` · `'in '`*** | [`Cover.tsx:76,78`](../../package/src/book/Cover.tsx) — **the byline** |
-| ***`'previous'` · `'next'`*** | [`Book.tsx:284-285`](../../package/src/book/Book.tsx) — **the turning nav**, *and [`$Book.turning`'s `mark` parameter goes with them](../the-condition-report/04-semantics.md#s16): it is a word and it should say so* |
+| `'Table of Contents'` | `TableOfContents.tsx:61` — *a fallback when no section names it* |
+| `'Open ' + named` | `Synopsis.tsx:38` |
+| ***`'by '` · `'in '`*** | `Cover.tsx:76,78` — **the byline** |
+| ***`'previous'` · `'next'`*** | `Book.tsx:284-285` — **the turning nav**, *and [`$Book.turning`'s `mark` parameter goes with them](../the-condition-report/04-semantics.md#s16): it is a word and it should say so* |
 
 ***Each becomes a member a book can answer***, by the same mechanism [U123](#u123) installs for components — *a property a subclass, a prop, or a scope can replace.* **One line each.**
 
@@ -574,11 +574,11 @@ declare module 'styled-components' {
 | | becomes | prop? | why |
 |---|---|---|---|
 | `$Denote` · `$Footnote` · `$Citation` · `$Cite` | ***`$key`*** | **yes** | *a person writes `<Footnote for="arrow">` today, and it is a **key**, a string* |
-| [`$Bookmark`](../../package/src/book/Bookmark.tsx) | ***`place`*** | ***NO*** | ***nothing authors a bookmark*** — `left.$for = where`, in code, never JSX |
+| `$Bookmark` | ***`place`*** | ***NO*** | ***nothing authors a bookmark*** — `left.$for = where`, in code, never JSX |
 | `$Highlight` (v1, `.archive/reference/Highlight.tsx`, deleted) | ***`$from` / `$to`*** | yes | *and it takes [`$first`](../the-condition-report/03-names.md#n3) with it — **a path's `$first` is a step**, which is what the word means. Both are typed `number \| string` because props arrive from JSX as strings, **the only place in the package that admits that in a type*** |
 | ***the annotations*** | ***the card*** | ***— and that is [U127](#u127)*** | |
 
-***And the discipline underneath is [S20](../the-condition-report/04-semantics.md#s20)'s: the collision is not in the interface.*** **[`$Reference$`](../../package/src/reference/Reference.tsx) asks for `read()` and `then()` and for NO FIELD AT ALL — every one of these already satisfies it.** *The fault is that three classes named their backing field the same, and the payments differ.*
+***And the discipline underneath is [S20](../the-condition-report/04-semantics.md#s20)'s: the collision is not in the interface.*** **`$Reference$` asks for `read()` and `then()` and for NO FIELD AT ALL — every one of these already satisfies it.** *The fault is that three classes named their backing field the same, and the payments differ.*
 
 > ***And dropping a `$` costs no reactivity, which is what makes "not a prop" obeyable.*** **[`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts): a plain property is reactive BY DEFAULT** — `if (!property.startsWith("$")) return true` — *so [`place`](#u126) is reactive the moment the `$` comes off.* **In `lib` the `$` marks extrinsic context, not reactivity** — [D75](#d75), *checked rather than assumed.*
 
@@ -590,13 +590,13 @@ declare module 'styled-components' {
 
 **Mechanism.** ***Doug: "`<Author>The Team</Author>` is what we want author to be. I think you understand the problem. **I want you to clean it up.**"***
 
-**Today [`emit.ts`](../../build/stages/emit.ts) inserts `for={theTeam}` into an element a person authored** — `edits.push({ at: open.getEnd() - 1, …, text: ' for={' + card + '}' })` — ***precisely because the annotation cannot find its own card.***
+**Today `emit.ts` inserts `for={theTeam}` into an element a person authored** — `edits.push({ at: open.getEnd() - 1, …, text: ' for={' + card + '}' })` — ***precisely because the annotation cannot find its own card.***
 
 ***The route that removes the prop needs no new mechanism:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md).* **`$CardCatalogue.file(key, keyword, card)` and `find(query)` (v1, `.archive/reference/CardCatalogue.tsx`, deleted) already exist for exactly a lookup by name.**
 
 ***And they are the same two members [I14](../the-condition-report/05-implementation.md#i14) calls a string micro-language, so the two entries are ONE piece of work.*** **`find(query)` splits a colon-separated string at call time and throws when it misses, while `file(key, keyword, card)` directly above it takes the two halves as parameters.** *The class knows the shape and asks a caller to spell it.*
 
-**Files.** `CardCatalogue.tsx` · `Annotation.tsx` and the three annotations · [`build/emit.ts`](../../build/stages/emit.ts), ***where the injection stops.*** **Depends on** [U115](#u115), [U116](#u116), [U117](#u117), [U126](#u126).
+**Files.** `CardCatalogue.tsx` · `Annotation.tsx` and the three annotations · `build/emit.ts`, ***where the injection stops.*** **Depends on** [U115](#u115), [U116](#u116), [U117](#u117), [U126](#u126).
 
 > ***This is the sprint's second seam***, and the same rule applies: **if the emitter cannot stop injecting as specified, believe the emitter.**
 
@@ -686,7 +686,7 @@ declare module 'styled-components' {
 
 ### <a id="u133"></a>U133 — `stages/` and `commands/` · [R125](#r125)
 
-**Mechanism.** ***Thirteen modules of five kinds in one directory, where both siblings put one entry file at the root and everything else in folders.*** **And [`check.ts`](../../build/verify.ts) already states the taxonomy in prose, in its own header:** *"the folder's own convention — `see.ts` reports, the `verify-*` scripts gate, `index.ts` compiles, and none of them is also a module."* ***The compiler wrote down the distinction between a command and a module and then filed them together.***
+**Mechanism.** ***Thirteen modules of five kinds in one directory, where both siblings put one entry file at the root and everything else in folders.*** **And `check.ts` already states the taxonomy in prose, in its own header:** *"the folder's own convention — `see.ts` reports, the `verify-*` scripts gate, `index.ts` compiles, and none of them is also a module."* ***The compiler wrote down the distinction between a command and a module and then filed them together.***
 
 ```
 build/
@@ -706,11 +706,11 @@ build/
 
 ### <a id="u134"></a>U134 — `Source` is deleted and emitting becomes idempotent · [R126](#r126)
 
-**Mechanism.** ***Traced to every use, and there is one.*** **`declared | supplied | unresolved` is read in six places and FIVE OF THEM ARE PRINTING or counting** — [`index.ts:30-32`](../../build/index.ts)'s `from(kind)` tally. ***The single functional use is [`emit.ts:104`](../../build/stages/emit.ts):*** *if a link was **supplied**, write it into the emitted cover, because the author did not.*
+**Mechanism.** ***Traced to every use, and there is one.*** **`declared | supplied | unresolved` is read in six places and FIVE OF THEM ARE PRINTING or counting** — `index.ts:30-32`'s `from(kind)` tally. ***The single functional use is `emit.ts:104`:*** *if a link was **supplied**, write it into the emitted cover, because the author did not.*
 
-> ***So make emitting IDEMPOTENT — write the annotation where it is absent, leave it where it is present — and nothing needs to know how the answer was arrived at.*** **`Source` is deleted**, and `unresolved` — *a reference that points at nothing* — **becomes a [`Complaint`](../../build/library.ts), which the compiler already has and which already travels.**
+> ***So make emitting IDEMPOTENT — write the annotation where it is absent, leave it where it is present — and nothing needs to know how the answer was arrived at.*** **`Source` is deleted**, and `unresolved` — *a reference that points at nothing* — **becomes a `Complaint` (`build/library.ts`), which the compiler already has and which already travels.**
 
-***And a complaint is the right home for it***, because [complaints TRAVEL rather than stop the walk](../../build/library.ts): *one pass tells an author everything that is wrong, because a build that reports one fault at a time is a build somebody runs many times.*
+***And a complaint is the right home for it***, because complaints TRAVEL rather than stop the walk (`build/library.ts`): *one pass tells an author everything that is wrong, because a build that reports one fault at a time is a build somebody runs many times.*
 
 **Files.** `library.ts` · `emit.ts` · `resolve.ts` · `index.ts`. **Depends on** [U132](#u132), [U133](#u133).
 
@@ -722,8 +722,8 @@ build/
 
 | | the alternate |
 |---|---|
-| ***`Resolved`*** | ***ONE seam that each stage enriches.*** [`Library`](../../build/library.ts) is the seam every stage reads; `Resolved` is a second, narrower one that drops `entries` and adds `books`. **So `walk` fills the entries, `refer` fills the references, `resolve` fills the books — a stage takes a `Library` and returns a `Library`, and the tense disappears because there is no second state to name** |
-| ***`Named`*** | ***it is a card, and [the file says so](../../build/stages/catalogue.ts)*** — its own header calls them cards throughout, and the type is a book plus the fields a card carries. **With [`$$Book` replacing `$IndexCard`](#u115), the compiler's type is the data for a `$$Book`** — *so it is named for what it makes* |
+| ***`Resolved`*** | ***ONE seam that each stage enriches.*** `Library` is the seam every stage reads; `Resolved` is a second, narrower one that drops `entries` and adds `books`. **So `walk` fills the entries, `refer` fills the references, `resolve` fills the books — a stage takes a `Library` and returns a `Library`, and the tense disappears because there is no second state to name** |
+| ***`Named`*** | ***it is a card, and the file says so (`build/stages/catalogue.ts`)*** — its own header calls them cards throughout, and the type is a book plus the fields a card carries. **With [`$$Book` replacing `$IndexCard`](#u115), the compiler's type is the data for a `$$Book`** — *so it is named for what it makes* |
 
 **Files.** `library.ts` · `walk.ts` · `refer.ts` · `resolve.ts` · `emit.ts` · `catalogue.ts` · `validate.ts` · `index.ts` · `check.ts`. **Depends on** [U115](#u115), [U132](#u132), [U134](#u134).
 
@@ -772,13 +772,13 @@ build/
 
 ***The fourth is the load-bearing one.*** **It proves nobody edited the default to make the demo work**, and *the other three prove the same class answered differently for three different reasons.* **A hand-authored page cannot fake that.**
 
-**Files.** **a new section in [the demonstration](../../.archive/app/src/sections)**, registered the way [`the-page.tsx`](../../.archive/app/src/sections/the-page.tsx) and its siblings are. **Depends on** [U123](#u123).
+**Files.** **a new section in the demonstration (`.archive/app/src/sections`)**, registered the way `the-page.tsx` and its siblings are. **Depends on** [U123](#u123).
 
 ***The demonstration's aesthetics are governed by [R13](15-the-build.md) and are not this unit's to invent.***
 
 **Numeric end.** ***None, deliberately.*** **This is the unit that exists because every gate this branch runs is a count, and [every entry in the report was true while all of them were green](../the-condition-report/01-how-to-read-this.md#why-no-gate).**
 
-***DONE — [`the-title.tsx`](../../.archive/app/src/sections/the-title.tsx), with [eight promises](../../.archive/app/src/sections/the-title.test.tsx) beside it.*** **Four `h2`s, four distinct generated classes, three reasons, and the fourth still the default.**
+***DONE — `the-title.tsx`, with eight promises (`.archive/app/src/sections/the-title.test.tsx`) beside it.*** **Four `h2`s, four distinct generated classes, three reasons, and the fourth still the default.**
 
 #### <a id="what-the-demo-found"></a>What building it found — ***five things every count was green through***
 
@@ -794,7 +794,7 @@ build/
 
 ***Three of the five are silent and one hangs.*** **That is [the two arms](#the-two-arms) measured from the outside**: *the framework complains precisely where it has been taught to and says nothing everywhere else,* **and a page is the only instrument that finds the difference.**
 
-***One name yielded.*** [`$TheManifold.head()`](../../.archive/app/src/sections/the-manifold.tsx) — *the demo's scroll-to-top — collided with `$Book.head(theme)`, which draws a book's head.* **The framework member wins and the demonstration yields**, renamed `turned()` from *the file's own comment*: **"a turned page opens at its head."** ***Proxy, flagged for Doug.***
+***One name yielded.*** `$TheManifold.head()` (`.archive/app/src/sections/the-manifold.tsx`) — *the demo's scroll-to-top — collided with `$Book.head(theme)`, which draws a book's head.* **The framework member wins and the demonstration yields**, renamed `turned()` from *the file's own comment*: **"a turned page opens at its head."** ***Proxy, flagged for Doug.***
 
 ***And the app's type debt went to zero.*** `0/0 baselined type-debt errors [$LibraryCard·$IndexCard<$Referent>]` — **the baseline this sprint inherited is empty**, closed by [U129](#u129)'s merge of the card into the book.
 
@@ -828,7 +828,7 @@ build/
 | goes | and its readers stop asking |
 |---|---|
 | **`$Theme.$reads`** and `get reads()` | — |
-| **`$Theme.draws(part)`** | [`$Book.reading`](../../package/src/book/Book.tsx) · [`$Section.view()`](../../package/src/writing/Section.tsx) · `$Document.view()` (v1, `.archive/document/Document.tsx`, deleted) |
+| **`$Theme.draws(part)`** | `$Book.reading` · [`$Section.view()`](../../package/src/writing/Section.tsx) · `$Document.view()` (v1, `.archive/document/Document.tsx`, deleted) |
 
 ***A parenthetical thing hides itself.*** **`$parenthetical === false` means visible** — *Doug's own correction at the plan* — **so the polarity is already right and nothing is inverted.**
 
@@ -836,7 +836,7 @@ build/
 
 ***This CANCELS a rename.*** **[U129](#u129) was going to turn `draws` into `reads`; the member does not get a better name, it goes.**
 
-**Files.** `Theme.tsx` · `Book.tsx` · `Section.tsx` · `Document.tsx` · [`theme.test.tsx`](../../package/.tests/writing/theme.test.tsx). **Depends on** [U122](#u122), [U123](#u123).
+**Files.** `Theme.tsx` · `Book.tsx` · `Section.tsx` · `Document.tsx` · `theme.test.tsx`. **Depends on** [U122](#u122), [U123](#u123).
 
 **Numeric end:** ***visibility members in `lib` → 2 → 0*** · **the framework draws the same page**, *and where it does not, the difference is a parenthetical that used to be revealed by a theme flag and is now revealed by `$show` on the instance.*
 
@@ -874,9 +874,9 @@ build/
 Prose.'}`.** *The leading blank line exists only to make [`$Section.parts()`](../../package/src/writing/Section.tsx) close the previous paragraph — **which being a separate JSX child already does***, since a `$Paragraph` element child closes and stands alone |
 | ***the demonstration*** | **22 files, the same shape** |
 
-***And the notations are the constraint, stated so nobody sweeps them by accident.*** **A block beginning `#`, `>`, `-`, `$$` or a fence is not prose** — wrapping it in `<Paragraph>` would leave the notation on the page as literal text. *Each maps to the element the parse would have built:* `<Title>` · `<Paragraph mark=">">` · `<Paragraph mark="-">` · `<Paragraph mark="$$">` · `<Code language source />`. **All of them are already authorable, which is what [the parallel text](../../.archive/app/src/markdown/parallel.tsx) demonstrates.**
+***And the notations are the constraint, stated so nobody sweeps them by accident.*** **A block beginning `#`, `>`, `-`, `$$` or a fence is not prose** — wrapping it in `<Paragraph>` would leave the notation on the page as literal text. *Each maps to the element the parse would have built:* `<Title>` · `<Paragraph mark=">">` · `<Paragraph mark="-">` · `<Paragraph mark="$$">` · `<Code language source />`. **All of them are already authorable, which is what the parallel text demonstrates.**
 
-**Files.** `Book.tsx` · `Document.tsx` · `IndexCard.tsx` *(done)* · **14 files in [`library/.test-library`](../../../.test-library/)** · **22 in [the demonstration](../../.archive/app/src/sections)**.
+**Files.** `Book.tsx` · `Document.tsx` · `IndexCard.tsx` *(done)* · **14 files in `library/.test-library`** · **22 in the demonstration (`.archive/app/src/sections`)**.
 
 **Numeric end:** ***`
 
@@ -1042,10 +1042,10 @@ Prose.'}`.** *The leading blank line exists only to make [`$Section.parts()`](..
 | ***`$Theme.setting` was a MONOLITH and is gone*** | **It returned all four values at once, so a theme wanting different tracking replaced weight, size and leading with it.** ***That is the fault [U113](#u113) removed from `valid()` three units earlier, rebuilt in the same sprint.*** *Doug: "There's no ability to evolve."* **Now `weight(at)` · `tracking(at)` · `leading(at)` over `$weight` · `$tracking` · `$leading`, each overridable alone — the shape `step(at)` already had over `$size` and `$ratio`.** *And every call site had been asking for ONE field of the four, so the object bought nothing* |
 | ***[S13](../the-condition-report/04-semantics.md#s13) IS WITHDRAWN — the entry was wrong and the promises said so*** | **It called `letters` "one name, two quantities" and named the SENTENCE as the deviation.** *The sentence was the correct reading:* **it split `copy` into graphemes, which tiles LOSSLESSLY — and the other five levels flatMapped over `words`, which filters `role === 'use'` and so DROPPED EVERY SPACE.** ***Doug, at the plan: "isn't a space parsed as a mention 'space'? Wouldn't that be at the word level?" — it is, a `$Punctuation` at word grade, present in `parts()` and absent from `words`.*** **So every level now tiles through `parts()`, and the promise that already said this — *"letters tile losslessly, words are a lossy parse, the space is a letter no word claims"* — is what caught the mistake.** ***`CHECK` letters 10,692 → 17,240, words unchanged at 2,359*** |
 | ***a `try`/`catch` [I15](../the-condition-report/05-implementation.md#i15) called load-bearing WAS, for a reason the entry did not give*** | **The contents' catch was swallowing `$Document.declaration()` calling `view()` at bond time** — *a contents' view asks its book for chapters, and it has no book yet.* **The summary the entry named was never the reason.** ***The fix is not a catch: a contents DECLARES NO SECTIONS of its own, so it is not harvested for any*** |
-| ***A GATE WAS PINNING THE DEFECT*** | **[`verify-build.ts`](../../build/tests/building.ts) asserted a card carried `["Synopsis", "What Physics Is"]`** — *"Synopsis" being exactly the chapter a book's own contents excludes, which is [the filed bug](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md).* **The promise's TITLE was right and its expectation was the bug written down**, so [U112](#u112) turned the gate red rather than green |
+| ***A GATE WAS PINNING THE DEFECT*** | **`verify-build.ts` asserted a card carried `["Synopsis", "What Physics Is"]`** — *"Synopsis" being exactly the chapter a book's own contents excludes, which is [the filed bug](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md).* **The promise's TITLE was right and its expectation was the bug written down**, so [U112](#u112) turned the gate red rather than green |
 | ***`unresolved` is NOT a fault, and turning it into a Complaint broke four books*** | *Doug's ruling was "`unresolved` becomes a `Complaint`" — and applied literally it failed the build.* **A cover may name its author as a NAME rather than as an import — `<Author>The Team</Author>` — and the corpus does exactly that.** ***So a link with no book is an empty book with a display, and nothing complains.*** *The ruling was right that `Source` goes; it was the reading of `unresolved` that was wrong, and the corpus said so in one run* |
 | ***the notation is not formatting, and the two are one character apart*** | **`$Section.compose()` splits on `
-` to strip a `> ` marker, and [`parallel.tsx`](../../.archive/app/src/markdown/parallel.tsx)'s found side writes markdown on purpose.** *Those newlines are read, not written* — **the rule is that the framework never PRODUCES one**, and the converter that could not tell the difference broke the parallel text until it was repaired by hand |
+` to strip a `> ` marker, and `parallel.tsx`'s found side writes markdown on purpose.** *Those newlines are read, not written* — **the rule is that the framework never PRODUCES one**, and the converter that could not tell the difference broke the parallel text until it was repaired by hand |
 
 
 ## <a id="the-floor-closes"></a>THE FLOOR CLOSES ON ITSELF — Doug's, at the plan, and it is the sprint's deepest change
@@ -1229,7 +1229,7 @@ read(parts)  =  { c.read() | c in chapters }
 
 ***The sprint's visible end is [U138](#u138): one `$Title` drawn three ways on one page, with a fourth left untouched and still the default.*** **It is a unit rather than a closing flourish, and [the drawing group does not close without it](#d69).**
 
-`npm run dev` in [`library/.public/package`](../../package/) serves the framework's own app — **where [U138](#u138) lands** — and `npm run dev` in [`library/.public/app`](../../app/) serves the public library. **The gates are `npm test` in the package** — `tsc --noEmit`, the app typecheck, and `vitest run` — **and `npm test` in the app**, which is the typecheck and the library driver.
+`npm run dev` in [`library/.public/package`](../../package/) serves the framework's own app — **where [U138](#u138) lands** — and `npm run dev` in `library/.public/app` serves the public library. **The gates are `npm test` in the package** — `tsc --noEmit`, the app typecheck, and `vitest run` — **and `npm test` in the app**, which is the typecheck and the library driver.
 
 ***And the gates are not the test.*** **[Four things a count cannot fake](../the-condition-report/06-the-cleaning.md#the-test)**, and the fourth cannot be automated at all: *a class opened at random reads as book semantics plus one held component.*
 
@@ -1241,7 +1241,7 @@ read(parts)  =  { c.read() | c in chapters }
 
 | | |
 |---|---|
-| ***the symptom*** | **[`verify-demo.mjs`](../../.archive/app/verify-demo.mjs) stalled at checkpoint 1** and **[`verify-book.mjs`](../../.archive/app/verify-book.mjs) stalled at 5, then at 50** — *different places on different runs, always at a step that LEAVES A BOOK AND COMES BACK TO THE SHELF* |
+| ***the symptom*** | **`verify-demo.mjs` stalled at checkpoint 1** and **`verify-book.mjs` stalled at 5, then at 50** — *different places on different runs, always at a step that LEAVES A BOOK AND COMES BACK TO THE SHELF* |
 | ***the first cause*** | ***`networkidle0` / `networkidle2`.*** **A cold vite compiles 170 modules on the first hit and network idle is never reached inside the timeout** — *so a driver's first checkpoint fails on a working app* |
 | ***the second cause*** | ***`waitForSelector` is bound to an execution context that a full page load DESTROYS.*** **Opening the algebra book sets `window.location.href = '/page'`, and following a subject link is an `<a href>`** — *both are full navigations, and the wait dies on precisely the steps it exists for, reporting a missing selector rather than a swapped context* |
 | ***the evidence it was ours already*** | **[the chemistry harness](../../../chemistry/package/app/verify-all.mjs) has never had this problem**, *because it navigates on `domcontentloaded` and then settles.* ***The team's own working pattern, in the repository, unread*** |
@@ -1266,9 +1266,9 @@ read(parts)  =  { c.read() | c in chapters }
 
 **Against the committed output it scored 2 of 9 checkpoints with two console errors** — *`$IndexCard` no longer exported, which is [U129](#u129)'s merge of the card into the book.* **Against the recompiled output it scored 6 of 9 with none**, *and then stalled: nothing to click for the physics entry.* ***A subject was drawing none of the books it catalogues.***
 
-**The cause is this sprint's own derivation, and it is worth stating as theory rather than as a fix.** *[A book is a composition of chapters and a chapter is a reference to a book, therefore a book is a catalogue of books](#cataloguing-is-derived)* — **so a subject's entries ARE chapters.** *And [a book is read a chapter at a time](../../app/verify-library.mjs), which is the promise the whole reading surface turns on.* ***Put those two together and a subject can show at most ONE of the books it catalogues.***
+**The cause is this sprint's own derivation, and it is worth stating as theory rather than as a fix.** *[A book is a composition of chapters and a chapter is a reference to a book, therefore a book is a catalogue of books](#cataloguing-is-derived)* — **so a subject's entries ARE chapters.** *And a book is read a chapter at a time (`app/verify-library.mjs`), which is the promise the whole reading surface turns on.* ***Put those two together and a subject can show at most ONE of the books it catalogues.***
 
-> ***A CATALOGUE IS CONSULTED, NOT READ.*** **That is the distinction the two promises were missing between them.** *A book is read a chapter at a time because reading is sequential and a reader holds a place. A catalogue has all of its cards out at once, because the whole point of consulting one is that you do not handle the items* — **which is the same reason [the generated catalogue imports no book at all](../../build/stages/catalogue.ts).**
+> ***A CATALOGUE IS CONSULTED, NOT READ.*** **That is the distinction the two promises were missing between them.** *A book is read a chapter at a time because reading is sequential and a reader holds a place. A catalogue has all of its cards out at once, because the whole point of consulting one is that you do not handle the items* — **which is the same reason the generated catalogue imports no book at all.**
 
 **So `$Book` draws a shelf** — *every entry, always, outside the reading* — **and a book that catalogues nothing draws none, which is how a reader says it is a reader.** ***The styled component was still in the file.*** *Only its method had been deleted, one commit earlier, as [a drawing that never reached the page](../solutions/.cover.md)* — **and the reason it never reached the page is the paragraph above.**
 
@@ -1356,14 +1356,14 @@ read(parts)  =  { c.read() | c in chapters }
 
 ***Doug, 2026-08-24:*** **"Initial load for the demo is very very very slow."** · **"the demo needs to be zippy."** · **"We don't want to load the whole library at once and we do care about performance in general to a degree."**
 
-***`/books` IS THE DEFAULT ROUTE.*** **[`catalogue.ts`](../../.archive/app/src/data/catalogue.ts) — `defaultSectionId = 'books'`** — *so the shelf is what `/` serves, what an unknown route falls back to, and what every visitor meets first.* **It is the slowest page in the demonstration at 8.3 seconds to visible, and it is the only one nobody can avoid.**
+***`/books` IS THE DEFAULT ROUTE.*** **`catalogue.ts` — `defaultSectionId = 'books'`** — *so the shelf is what `/` serves, what an unknown route falls back to, and what every visitor meets first.* **It is the slowest page in the demonstration at 8.3 seconds to visible, and it is the only one nobody can avoid.**
 
 **A first measured pass is [The Demonstration](../the-condition-report/09-the-demonstration.md), four entries.** *What is NOT decided is everything below.*
 
 | | the question | why it might matter |
 |---|---|---|
 | ***A*** | ***Should the demonstration have a BUILD STEP?*** | **[I29](../the-condition-report/09-the-demonstration.md#i29) is the whole of the load cost, and the compiler already solves it** — *it reads cards off living books at build time and emits literals.* ***The demonstration is a library too***, and the question is whether it should be compiled by the thing that compiles libraries rather than hand-wired |
-| ***B*** | **If not, do the cards carry their own text?** | *That is what [`The Team`'s card already does](../../.archive/app/src/sections/book/library/the-team/card.tsx) and what the other four do not.* **Cheap, and it drifts** — which is [S23](../the-condition-report/09-the-demonstration.md#s23) waiting to happen again |
+| ***B*** | **If not, do the cards carry their own text?** | *That is what `The Team`'s card already does and what the other four do not.* **Cheap, and it drifts** — which is [S23](../the-condition-report/09-the-demonstration.md#s23) waiting to happen again |
 | ***C*** | ***What should a page COST?*** | **There is no number to fail against.** *A gate that counted modules per route would have caught [I28](../the-condition-report/09-the-demonstration.md#i28) the day it arrived — 169 on a page of four headings — and [every gate this branch runs is a count that cannot see this one](../the-condition-report/01-how-to-read-this.md#why-no-gate)* |
 | ***D*** | **Which controls are legal in which state?** | ***[O15](../the-condition-report/09-the-demonstration.md#o15) — Doug's: "I am not sure all of them should be available to click in all states. You have a state machine. Be careful."*** *Eight controls of three kinds, nothing disabled, nothing marked, and no statement to check against* |
 | ***E*** | ***Should the demonstration READ the framework rather than quote it?*** | **[S23](../the-condition-report/09-the-demonstration.md#s23): the classes drawer prints `class $Word extends $Writing` and "a word is the floor", and both went false this sprint.** *The source is on disk. A drawer that read it could not drift* |
@@ -1438,8 +1438,8 @@ read(parts)  =  { c.read() | c in chapters }
 | **[The Compiler](../the-condition-report/08-the-compiler.md)** | ***the only reading the compiler has ever had.*** **Eight entries, and the shape of them — every one a thing said twice — is what the next audit has to get past** |
 | **[The letter](20-the-audit.md#the-letter-and-what-it-asked-for)** | ***Doug's six asks and the frame that governs them.*** **The compiler has been asked one of the six** |
 | **[The cleaning](../the-condition-report/06-the-cleaning.md#actionable)** | ***the problems list, and the coverage ledger beneath it.*** **Where each of the hundred-and-one entries went, and what is held rather than fixed** |
-| **[`build/library.ts`](../../build/library.ts)** | ***the compiler's entire shared vocabulary, with prose on every field.*** **A stage cannot see what the seam does not carry, so [question C](#the-compiler-audit) is answered here or nowhere** |
-| **[The Demonstration](../the-condition-report/09-the-demonstration.md)** | ***the demonstration's first measured pass, and the load cost with numbers on both sides.*** **[I29](../the-condition-report/09-the-demonstration.md#i29) is the 8.3 seconds** — *read it beside [`the-team/card.tsx`](../../.archive/app/src/sections/book/library/the-team/card.tsx), which is where a card reaches for its book* |
+| **`build/library.ts`** | ***the compiler's entire shared vocabulary, with prose on every field.*** **A stage cannot see what the seam does not carry, so [question C](#the-compiler-audit) is answered here or nowhere** |
+| **[The Demonstration](../the-condition-report/09-the-demonstration.md)** | ***the demonstration's first measured pass, and the load cost with numbers on both sides.*** **[I29](../the-condition-report/09-the-demonstration.md#i29) is the 8.3 seconds** — *read it beside `the-team/card.tsx`, which is where a card reaches for its book* |
 
 ## Wrong turns already taken — ***do not retry these***
 
@@ -1456,5 +1456,5 @@ read(parts)  =  { c.read() | c in chapters }
 | | |
 |---|---|
 | **the demonstration** | `npm run dev` in [`library/.public/package`](../../package/) → ***http://localhost:5199/*** — **the shelf and four books.** *`/title` is [one `$Title` drawn four ways](#u138), the sprint's stop condition and the thing to look at first, and it is now the fastest page at 885 ms.* **`/books` is the DEFAULT — it is what `/` serves and where an unknown route lands — and it takes 8.3 seconds**, *which is [I29](../the-condition-report/09-the-demonstration.md#i29)* |
-| **the public library** | `npm run dev` in [`library/.public/app`](../../app/) → ***http://localhost:5299/*** — **the compiled test library**, *the front door catalogues three books and [the shelf is back](#the-shelf)* |
+| **the public library** | `npm run dev` in `library/.public/app` → ***http://localhost:5299/*** — **the compiled test library**, *the front door catalogues three books and [the shelf is back](#the-shelf)* |
 | **driving them** | `npm run verify` in the package — ***92 checkpoints*** · `npm test` in the app — ***39 checkpoints.*** **[Start the server yourself first](../solutions/14-the-green-that-exercised-nothing.md)**, and *a short count is a stall rather than a number* |

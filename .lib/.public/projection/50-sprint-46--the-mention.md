@@ -38,9 +38,9 @@
 
 ## <a id="the-literature"></a>The literature — read before a word of this was written
 
-**All 47 files of [`package/src`](../../package/src/) and all of [`.wiki`](../../package/.wiki/), end to end.** Then the nine chapters that say how code here is written: [The Unit of Code](../the-coding-style/01-the-unit-of-code.md), [The Order of a Class](../the-coding-style/02-the-order-of-a-class.md), [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md), [The Coding Style](../the-coding-style/03-the-coding-style.md), [The Closeness Rule](../the-coding-style/04-the-closeness-rule.md), [The Default Dress](../the-motif/01-the-default-dress.md), [Shells Over Types](../the-type-system/03-shells-over-types.md), [The Spelling of a Kind](../the-coding-style/05-the-spelling-of-a-kind.md), [The Shape of TSX](../the-coding-style/06-the-shape-of-tsx.md), [The Interface Type System](../the-type-system/04-the-interface-type-system.md), [What We Believe](../the-type-system/05-what-we-believe.md), [Using the Public Library](../the-first-draft/01-using-the-public-library.md).
+**All 47 files of [`package/src`](../../package/src/) and all of `.wiki`, end to end.** Then the nine chapters that say how code here is written: [The Unit of Code](../the-coding-style/01-the-unit-of-code.md), [The Order of a Class](../the-coding-style/02-the-order-of-a-class.md), [The Type and the Instance](../the-type-system/02-the-type-and-the-instance.md), [The Coding Style](../the-coding-style/03-the-coding-style.md), [The Closeness Rule](../the-coding-style/04-the-closeness-rule.md), [The Default Dress](../the-motif/01-the-default-dress.md), [Shells Over Types](../the-type-system/03-shells-over-types.md), [The Spelling of a Kind](../the-coding-style/05-the-spelling-of-a-kind.md), [The Shape of TSX](../the-coding-style/06-the-shape-of-tsx.md), [The Interface Type System](../the-type-system/04-the-interface-type-system.md), [What We Believe](../the-type-system/05-what-we-believe.md), [Using the Public Library](../the-first-draft/01-using-the-public-library.md).
 
-**Then the reference machinery**, on Doug's own catchup: [the v1 compiler's route model](../../build/library.ts), [`walk.ts`'s `routeOf`](../../build/stages/walk.ts), the archived `$Location` (v1, `.archive/reference/Location.tsx`, deleted), and [The Reference and its Locator](../the-semantics-of-books/16-the-reference-and-its-locator.md).
+**Then the reference machinery**, on Doug's own catchup: the v1 compiler's route model (`build/library.ts`), `walk.ts`'s `routeOf`, the archived `$Location` (v1, `.archive/reference/Location.tsx`, deleted), and [The Reference and its Locator](../the-semantics-of-books/16-the-reference-and-its-locator.md).
 
 
 ## <a id="the-second-literature"></a>The second reading, 2026-09-07 — ***what it corrected***
@@ -80,7 +80,7 @@
 
 ### <a id="cu4"></a>CU4 · ***The slug is written TWICE, and one of the two is already being deleted***
 
-***Measured across `src`:*** **the `\s+ → _` transform appears at [`Heading.tsx:23`](../../package/src/writing/Heading.tsx) and [`Book.tsx:97`](../../package/src/book/Book.tsx), and nowhere else.** *`reflection.kebab()` is a **third and different** transform — kebab-case for `pd-` class names — and is not the same thing.*
+***Measured across `src`:*** **the `\s+ → _` transform appears at [`Heading.tsx:23`](../../package/src/writing/Heading.tsx) and `Book.tsx:97`, and nowhere else.** *`reflection.kebab()` is a **third and different** transform — kebab-case for `pd-` class names — and is not the same thing.*
 
 ***`Book.tsx:97` sits inside `contents()`, which [P2/P6](#the-plan) delete.*** **So the duplication resolves itself, and the url step makes it two again.** *[P8](#p4) is therefore not a tidy-up: it is one invariant — **the url step and the anchor id must be the same string** — stated over two sites, which is exactly what [The Unit of Code](../the-coding-style/01-the-unit-of-code.md#what-this-forbids) forbids leaving apart.*
 
@@ -100,7 +100,7 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 
 **All fourteen files diffed: `.wiki/` and `.wiki/.public/` are identical.** *Session 41 kept them in step by hand. **[P21](#p8) must not assume that stays true** — the build is what keeps it so.*
 
-**And [`clean.ts`](../../package/clean.ts) rewrites `src` mechanically:** *`$Html<'block'>` → `$Block`, and it strips a cast from a strongly-typed type assignment, and it maintains the `@dna-platform/chemistry` import list.* ***Every phase's code must survive it***, and running it is part of a phase closing rather than a separate act.
+**And `clean.ts` rewrites `src` mechanically:** *`$Html<'block'>` → `$Block`, and it strips a cast from a strongly-typed type assignment, and it maintains the `@dna-platform/chemistry` import list.* ***Every phase's code must survive it***, and running it is part of a phase closing rather than a separate act.
 
 
 ## <a id="the-finding"></a>THE FINDING — the mention already exists, and it stops halfway up
@@ -131,7 +131,7 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 | ***`Author.tsx` and `Subject.tsx`*** | ***byte-identical after renaming — zero diff.*** `Title.tsx` is the same file plus one rule |
 | ***`Synopsis.tsx` and `Abstract.tsx`*** | ***byte-identical after renaming — zero diff*** |
 | **files drawing `<Anchor href>`** | **8** — five re-implement what [`$Writing.view()`](../../package/src/writing/Writing.tsx) already does, because they look for their reference INSIDE THE HEADING |
-| **[`$Catalogue`](../../package/src/reference/Catalogue.tsx)** | **142 lines, ONE caller** (`$Ref.read()`); `address()` has none. *It also declares `$Catalogue$ extends $Composition$` over a class extending `$Writing`, and hand-copies four `$Composition` members* |
+| **`$Catalogue`** | **142 lines, ONE caller** (`$Ref.read()`); `address()` has none. *It also declares `$Catalogue$ extends $Composition$` over a class extending `$Writing`, and hand-copies four `$Composition` members* |
 | **specifications** | **38, of which 11 are EMPTY** |
 | **the eleven duplicating files** | **586 lines of `src`'s 2,727 — 21%** |
 | **the four addressing systems** | *the address (`Cr:1`) · the route (`/article`, computed in the **v1 compiler**, and `src` says "route" **zero** times) · the page anchor (`#Order_of_article_elements`) · the url.* ***A `$Path` holding `Cr:1` and one holding `#Order_of_article_elements` pass the IDENTICAL rule*** |
@@ -141,7 +141,7 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 
 ### The mention at every level
 
-- **R1** — `$$Book`, `$$Chapter` and `$$Section` are declared on the template the four lower levels already carry: the class, a `$TypeOf$X extends $TypeOfReference`, and a specification. ***Observed:*** each passes its own specification; [`loading.test`](../../package/.tests/loading.test.tsx) still imports every module standalone.
+- **R1** — `$$Book`, `$$Chapter` and `$$Section` are declared on the template the four lower levels already carry: the class, a `$TypeOf$X extends $TypeOfReference`, and a specification. ***Observed:*** each passes its own specification; `loading.test` still imports every module standalone.
 - **R2** — a mention takes **the level beneath its container**, defaulting to Paragraph. ***Observed:*** a mention in a table passes `$writtenInParagraphs`; the table passes `$writtenInSections` as a chapter's part.
 - **R3** — a mention carries a `$Path` that is the **library address** of what it mentions. ***Observed:*** `$landsOnIt` holds — the second chapter's mention lands on `Cr:1`.
 - **R4** — every level exports its mention **lowercase**: `book`, `chapter`, `section`, `paragraph`, `sentence`, `word`, `letter`. ***Observed:*** a consumer writes `import { chapter as Chapter }` and `<Chapter>` draws. *JSX reads a lowercase tag as an HTML element, so a mention cannot be used un-cased — the convention enforces itself.*
@@ -161,7 +161,7 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 
 - **R10** — a table of contents is **a chapter holding a title and a table**, and the table's cells are the book's chapters, mentioned. **No row kind and no card kind is introduced.**
 - **R11** — a table's composition type is **derived from its cells**. ***Design owed — [U14](#u14).***
-- **R12** — [`$Book.contents()`](../../package/src/book/Book.tsx) leaves `$Book`. ***Observed:*** `Book.tsx` no longer imports `Heading`, `Paragraph`, `Ref` or `Section`.
+- **R12** — `$Book.contents()` leaves `$Book`. ***Observed:*** `Book.tsx` no longer imports `Heading`, `Paragraph`, `Ref` or `Section`.
 - **R13** — a chapter mention has **three forms** — empty, with a title, with a title and a summary — and costs **zero props and zero members**. A book wanting summaries throughout **registers a different chapter mention for its own scope.**
 
 ### Find or make
@@ -171,7 +171,7 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 
 ### Validation — the half Doug asked for three times
 
-- **R16** — `TableOfContentsSpecification` stops being empty: ***a table of contents lists every chapter of its book*** — the NUMBERED chapters, which is what [`$Book.chapters`](../../package/src/book/Book.tsx) already answers.
+- **R16** — `TableOfContentsSpecification` stops being empty: ***a table of contents lists every chapter of its book*** — the NUMBERED chapters, which is what `$Book.chapters` already answers.
 - **R17** — *a table of contents titles itself.*
 - **R18** — *a mentioned chapter stands where its container composes* — the derivation checked, not trusted.
 - **R19** — *a mentioned chapter carries a title and a summary and nothing else.*
@@ -211,8 +211,8 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 | **W7** | ***`theme()` read the block by hand*** — `(this._block.$elements ?? []).find(part => part instanceof $Theme)` — where `searchForOne($TypeOfTheme)` is the ask, now that a theme carries a type | ***FIXED*** — asks by type |
 | **W2** | ***FIXED — the cast became a TYPE PREDICATE***, which is [the cure the library already names](../the-type-system/05-what-we-believe.md) for exactly this fault: *"the one my own memory names as the canonical fault, a cast asserting what a check verifies, died when `reflection.writing()` became a type predicate."* **`themed(one): one is $Writing$`** — *and it names an interface `$Writing$` ALREADY PROMISES, so no new declaration was needed.* ~~It read: `$Format.theme` reaches through a duck-type and then casts what the check just verified~~ — `'theme' in at && typeof at.theme === 'function'`, then `(at.theme as () => $Theme)()`. **This is the canonical fault by my own record**, and Doug's rule is *"the unknown-cast reach is NEVER okay — a member the machinery must read is a member on the wrong object, or machinery in the wrong place."* *It exists solely to keep `Format.tsx` from importing `$Writing` as a value, which would re-form the cycle.* | ***STANDING.*** **Closed by moving `$Format` into `Writing.tsx`, which is [what ch13 rules and nobody has done](#w-ch13)** |
 | **W3** | ***FIXED.*** *Both deleted, and the promise that forced them with it: **`$IndexCard$` no longer extends `$Section$`**, because a card is ruled to stand WITHOUT a heading and an interface promising one was the wrong promise. The card's TYPE still descends from `$TypeOfSection` — the interface and the type are separate axes.* ~~It read: heading() survives only to satisfy an inherited obligation~~ *`$Section$` promises `heading()`; a card waives `$opensWithHeading` and never uses one.* **Nothing calls either** | ***STANDING*** — they go when a card becomes a reference ([D-F](#d-f)), which is unbuilt |
-| **W4** | ***ACCEPTED, not a defect.*** *A card has a title, so the dependency is real; [`loading.test`](../../package/.tests/loading.test.tsx) proves it costs no cycle. **It becomes a question only when [U6](#u6) moves `$TypeOfTitle` under `$TypeOf$Book`**, which is unbuilt.* ~~It read: reference/IndexCard.tsx now imports book/Title.tsx — a direction that did not exist before, `reference` reaching into `book`. *It loads standalone and there is no cycle, but it asks whether `$Title` is a book word or a reference word* | ***STANDING*** — a design question, not a defect |
-| **W5** | ***THE RULE IS GONE, AND MY FIRST ANSWER TO THIS WART WAS WRONG.*** *I found that [`$landsOnIt`](../../package/src/reference/Reference.tsx) read the composition type where a mention's target kind lives in its reference type, **fixed it, and wrote two promises enshrining `Cr:1`** — a form [D-K](#d-k) deletes.* **Doug: *"Weren't we removing this? Cr:1 specifies clean, Sn:0"*** — *and he was right: a fixed-order path already says the level, so there are no codes to land on.* ***So the codes are DELETED*** — `reflection.codes` and `reflection.code()`, `$landsOnIt` and its one override in `$Bookmark`, `$Catalogue`'s `code()` helper and every `kind:position` step, and `$Ref.read`'s uppercase pattern. **An address is a POSITION and nothing else.** *Net −35 lines across four files; the demo drew identically because it never used them.* **The lesson is the one this sprint keeps relearning: I fixed a mechanism instead of asking whether the design still wanted it** |
+| **W4** | ***ACCEPTED, not a defect.*** *A card has a title, so the dependency is real; `loading.test` proves it costs no cycle. **It becomes a question only when [U6](#u6) moves `$TypeOfTitle` under `$TypeOf$Book`**, which is unbuilt.* ~~It read: reference/IndexCard.tsx now imports book/Title.tsx — a direction that did not exist before, `reference` reaching into `book`. *It loads standalone and there is no cycle, but it asks whether `$Title` is a book word or a reference word* | ***STANDING*** — a design question, not a defect |
+| **W5** | ***THE RULE IS GONE, AND MY FIRST ANSWER TO THIS WART WAS WRONG.*** *I found that `$landsOnIt` (`package/src/reference/Reference.tsx`) read the composition type where a mention's target kind lives in its reference type, **fixed it, and wrote two promises enshrining `Cr:1`** — a form [D-K](#d-k) deletes.* **Doug: *"Weren't we removing this? Cr:1 specifies clean, Sn:0"*** — *and he was right: a fixed-order path already says the level, so there are no codes to land on.* ***So the codes are DELETED*** — `reflection.codes` and `reflection.code()`, `$landsOnIt` and its one override in `$Bookmark`, `$Catalogue`'s `code()` helper and every `kind:position` step, and `$Ref.read`'s uppercase pattern. **An address is a POSITION and nothing else.** *Net −35 lines across four files; the demo drew identically because it never used them.* **The lesson is the one this sprint keeps relearning: I fixed a mechanism instead of asking whether the design still wanted it** |
 | **W6** | ***FIXED, and the fix was forced by a measurement I could not have made.*** *I had recorded it as a wart with a micro-benchmark. **Session inexplicable-phenomena-7e profiled the real browser and found the walk at 21.3%, 22.3% and 26.0% of the demo's busy CPU across three runs — comparable to all of React's `createElement` on the same page.*** **Their mechanism sentence was exact: the cost was not the walk's DEPTH, it was that every step asks a reactive `$Block.$elements` and the scope CLONES on read** — four clones per getter, per Format, per render. ***The fix holds the answer instead of re-walking it:*** `$Format.theme` keeps its walked theme in an inert `_theme`, so a Format walks **once per mount rather than once per getter per render**; and `$Writing.theme()` holds its resolve the same way, so the reactive `searchForOne` and the recursion up the parents happen **once**. *Both fields are `_`-prefixed, so [`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts) treats them as inert and neither adds a reactive bond; **no new public member and no interface change**.* ***MEASURED AFTER, twice: 242 µs → 0.73 µs from a book and 0.20 µs from a chapter in the suite, and [22% → 0.6% of busy CPU in the real browser](#the-after)*** — *three hundred to twelve hundred times, with all three theme promises green by name.* **The one narrowing, recorded rather than hidden: a theme resolved before a later registration would now be stale. Nothing does that today, because a theme is written in markup rather than swapped at runtime** |
 | **W6b** | ***AND THE INSTRUMENT LESSON IS WORTH MORE THAN THE NUMBER.*** *7e's first profiling pass reported `theme` at **0.0%** and they caught it themselves before sending it: they were matching an **anchored** frame pattern against `functionName + ' ' + url`, so `/^theme$/` could never match, and only an unanchored pattern survived.* ***`searchFor`, `clone`, `selectProperties` and `bond` all read 0 ms in that same pass*** — **four plausible frames at exactly zero is not a result, it is a broken matcher.** *Recorded here beside the measurement because [a claim is measured or it is not made](../the-type-system/05-what-we-believe.md), and this is what checking the instrument looks like* |
 | **W8** | ***CLOSED BY A PROMISE.*** *A bare `$Format` worn by nothing that has a theme throws with the spoken error, and [writing.test](../../package/.tests/writing.test.tsx) holds it.* ~~It read: $Format.theme now throws where it used to fall back, on a path no promise covers~~ — **the path is covered now.** ~~ *A Format drawn outside any writing has no theme and says so. Every suite and both demo pages pass, so nothing does that today* — **but it is a behaviour change on a path no promise covers** | ***STANDING*** — deliberate, per *types express expectations*, and recorded rather than assumed safe |
@@ -262,7 +262,7 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 
 | | |
 |---|---|
-| ***the mechanism, and it is the durable finding*** | **[`$Block.$elements`](../../../chemistry/package/src/abstraction/block.ts) is a `$`-prefixed REACTIVE read and the scope DEEP-CLONES a collection on read**, so any per-render `searchFor` pays a clone per element. ***A bond assignment costs neither — which is exactly why Doug's shape is both cheaper and simpler than mine.*** *Expect `theme` to leave the profile entirely rather than fall to 0.6%, because it will not be called during a render at all* |
+| ***the mechanism, and it is the durable finding*** | **`$Block.$elements` is a `$`-prefixed REACTIVE read and the scope DEEP-CLONES a collection on read**, so any per-render `searchFor` pays a clone per element. ***A bond assignment costs neither — which is exactly why Doug's shape is both cheaper and simpler than mine.*** *Expect `theme` to leave the profile entirely rather than fall to 0.6%, because it will not be called during a render at all* |
 | ***a caution for the rule half*** | *`specify()` must be derivable from the same inputs every time.* **[Solutions 52](../solutions/52-the-pieces-a-writing-remade-each-time-it-drew.md): a bond is SKIPPED when its arguments are identical, and the pieces a writing holds are remade on every re-render while the writing keeps its identity.** *The bond is the right seat; a mutation in `specify()` is unsound where a find-or-make is fine* |
 | ***and the narrowing DIES WITH THE CACHE*** | *[7e correctly refused to call the staleness safe](#the-narrowing) — their sweep could not exercise it.* **Once the resolve happens at the bond rather than at first read, the case stops existing.** *A limit removed by someone else's design being better than mine* |
 
@@ -318,16 +318,16 @@ src/tests/book.test.tsx:33   describe('a book carries its furniture, and each st
 
 ***A mention is named for WHAT IT REPRESENTS. Its copy is HOW IT IS FOUND.*** **`$$Chapter` holding `Body sections` is a reference to a chapter, found by that title.**
 
-**And the framework's existing rules already enforce the separation this needs.** *[`PathSpecification.$readsAsUrl`](../../package/src/reference/Path.tsx) rejects **any whitespace**, so `Body sections` **cannot be a `$Path`.*** ***Measured.*** **Therefore:**
+**And the framework's existing rules already enforce the separation this needs.** *`PathSpecification.$readsAsUrl` rejects **any whitespace**, so `Body sections` **cannot be a `$Path`.*** ***Measured.*** **Therefore:**
 
 | | |
 |---|---|
 | ***what is written*** | **the mention's COPY**, as the author wrote it — a name, a position, a kind |
 | ***the address*** | **a `$Path` beside it**, `Cr:1`, put there by resolution |
-| ***before resolution*** | *no path, and [`$landsOnIt`](../../package/src/reference/Reference.tsx) has nothing to check* |
+| ***before resolution*** | *no path, and `$landsOnIt` (`package/src/reference/Reference.tsx`) has nothing to check* |
 | ***after resolution*** | *the path stands and `$landsOnIt` holds* |
 
-***The same class serves both states, which is why this is one design and not two.*** **[`$Reference`'s bond](../../package/src/reference/Reference.tsx) already makes a `$Path` only when the copy is url-shaped and otherwise leaves none** — ***measured*** — *so an unresolved mention is a legal object today, not a special case to be added.*
+***The same class serves both states, which is why this is one design and not two.*** **`$Reference`'s bond already makes a `$Path` only when the copy is url-shaped and otherwise leaves none** — ***measured*** — *so an unresolved mention is a legal object today, not a special case to be added.*
 
 ### <a id="d-a-grammar"></a>The grammar — and it is the address grammar in names
 
@@ -351,7 +351,7 @@ title                                  by NAME, nearest scope
 
 ***So `Bk:0/Cr:1` and `Physics / Gauge theory` are the same sentence in two registers.*** **Nothing is invented: the missing coordinate was BY NAME, which is the only one a person can write.** *`$Catalogue.follow()` already parses `kind:position` steps split on `/`; **the authored form differs only in what fills a step**.*
 
-**The bracketed form is already parsed.** *[`$Ref.link()`](../../package/src/reference/Ref.tsx) reads `[text](url)` out of copy through marked's lexer — **measured** — and a mention wants exactly that reading with the href taken as what to find rather than as a url.* ***PROPOSED: the reading moves to the parser, which is a utility and holds no kind***, so `$Ref` and every mention share one implementation rather than two.
+**The bracketed form is already parsed.** *`$Ref.link()` reads `[text](url)` out of copy through marked's lexer — **measured** — and a mention wants exactly that reading with the href taken as what to find rather than as a url.* ***PROPOSED: the reading moves to the parser, which is a utility and holds no kind***, so `$Ref` and every mention share one implementation rather than two.
 
 ### <a id="d-a-open"></a>The scoping syntax was open — ***CLOSED by [D-K](#d-k)'s url, which uses the slash throughout***
 
@@ -394,7 +394,7 @@ title                                  by NAME, nearest scope
 
 > ***Doug:*** **"We should be able to configure a resolver by hand in the framework, but it can be arbitrarily hard. Maybe it's in the props that it gets configured. Then we can use our route based thing, and we can even change what kind of reference it is — a link to a page or local router etc..."**
 
-***This was treated as a convenience when he first said it. It is not: the framework CANNOT know how modules are found.*** **`.public` is bundled with rollup; the demo with vite** — ***measured***, [`rollup.config.js`](../../package/rollup.config.js) and [`.wiki/.public/vite.config.ts`](../../package/.wiki/.public/vite.config.ts). *Vite has `import.meta.glob` and can build a whole book manifest with no build step of ours; rollup does not.* ***So the framework declares the seam and the application supplies the mechanism, and there is no third option.***
+***This was treated as a convenience when he first said it. It is not: the framework CANNOT know how modules are found.*** **`.public` is bundled with rollup; the demo with vite** — ***measured***, `rollup.config.js` and `.wiki/.public/vite.config.ts`. *Vite has `import.meta.glob` and can build a whole book manifest with no build step of ours; rollup does not.* ***So the framework declares the seam and the application supplies the mechanism, and there is no third option.***
 
 ***PROPOSED — the resolver has one job:*** **given what an author wrote and the scope it was written in, answer a REFERENCE.** *The reference it answers carries both where to land and what kind of link it is, which is the whole of Doug's "we can even change what kind of reference it is."*
 
@@ -416,7 +416,7 @@ title                                  by NAME, nearest scope
 
 > ***AND THE FRAMEWORK WAS BUILT FOR IT BEFORE ANYTHING NEEDED IT.*** **`read()` is declared `Promise<$Writing>` on `$Reference`, `$Ref`, `$Bookmark` and `$ReferenceCard`** — ***measured, all four*** — *and nothing in the library is async today. **An async read with no async source is a seam waiting for a manifest.***
 
-***So "can we just point at the book file" is YES, and it is how the compiler does it*** — *v1 already did, and the evidence is in the working tree: the deleted `books.ts` and `routes.ts` were exactly that manifest, and [`build/library.ts`](../../build/library.ts) still carries `Book.route` and `Book.path` for it.*
+***So "can we just point at the book file" is YES, and it is how the compiler does it*** — *v1 already did, and the evidence is in the working tree: the deleted `books.ts` and `routes.ts` were exactly that manifest, and `build/library.ts` still carries `Book.route` and `Book.path` for it.*
 
 ## <a id="d-h"></a>D-H · The url, and the `#` is the module boundary
 
@@ -426,7 +426,7 @@ title                                  by NAME, nearest scope
 
 | | what already computes it | where it lives today |
 |---|---|---|
-| ***`subject/subject/book-name`*** | [`routeOf(path, spoken)`](../../build/stages/walk.ts) — strips the dots, collapses a subject onto its own book | ***the v1 compiler***; `src` says "route" **zero** times |
+| ***`subject/subject/book-name`*** | `routeOf(path, spoken)` (`build/stages/walk.ts`) — strips the dots, collapses a subject onto its own book | ***the v1 compiler***; `src` says "route" **zero** times |
 | ***`#...`*** | [`$Heading.view()`](../../package/src/writing/Heading.tsx) draws `id="Order_of_article_elements"` — Wikipedia's own spelling | ***`src`***, drawn every render, checked by nothing |
 
 ***AND THE `#` IS NOT PUNCTUATION — IT IS THE MODULE BOUNDARY.*** **Everything before it says WHICH MODULE; everything after it says WHERE INSIDE IT.** *That is exactly the split [D-D](#d-d) arrives at from the other direction:*
@@ -434,9 +434,9 @@ title                                  by NAME, nearest scope
 | | | mechanism |
 |---|---|---|
 | ***across books*** | the part before `#` | **the manifest** — `{ 'physics/gauge-theory': () => import(…) }`, async, a loader |
-| ***within a book*** | the part after `#` | **[`$Catalogue.follow()`](../../package/src/reference/Catalogue.tsx)** — synchronous, built, and already parses `/`-separated steps |
+| ***within a book*** | the part after `#` | **`$Catalogue.follow()`** — synchronous, built, and already parses `/`-separated steps |
 
-***So Doug's url format and the manifest are the same design reached twice.*** **PROPOSED**, and it is the answer to *"can we configure the router to recognize that"*: ***the manifest IS the router.*** *One emitted module from route to loader; the application matches `location.pathname` against it. **No router library** — [`main.tsx`](../../package/.wiki/.public/main.tsx) already does a crude version with `location.pathname.startsWith('/article')`, and react-router was deleted in [sprint 45](47-sprint-45--the-second-writing.md).*
+***So Doug's url format and the manifest are the same design reached twice.*** **PROPOSED**, and it is the answer to *"can we configure the router to recognize that"*: ***the manifest IS the router.*** *One emitted module from route to loader; the application matches `location.pathname` against it. **No router library** — `main.tsx` already does a crude version with `location.pathname.startsWith('/article')`, and react-router was deleted in [sprint 45](47-sprint-45--the-second-writing.md).*
 
 **And "maybe chapters and sections because they have titles can be in route too" follows, with one thing said plainly:** *a chapter is not a module, so putting it in the path moves the `#` rightward without moving the boundary — the app translates `/physics/gauge-theory/history` into the same manifest key plus the same fragment.* ***That translation IS the router configuration he asked for, and it belongs to the application rather than to `.public`.***
 
@@ -446,9 +446,9 @@ title                                  by NAME, nearest scope
 
 > ***Doug:*** **"I would do lowercase codes (switch to that — `sn`, `lr`)."**
 
-***[`reflection.codes`](../../package/src/utilities/Reflection.tsx) reads `['Bk','Cr','Sn','Ph','Se','Wd','Lr']` today*** — **measured** — *and becomes `['bk','cr','sn','ph','se','wd','lr']`.* **One line, and it is the right change: a url is lowercase by convention, and these are url steps now rather than internal codes.**
+***`reflection.codes` reads `['Bk','Cr','Sn','Ph','Se','Wd','Lr']` today*** — **measured** — *and becomes `['bk','cr','sn','ph','se','wd','lr']`.* **One line, and it is the right change: a url is lowercase by convention, and these are url steps now rather than internal codes.**
 
-***What breaks, and it must be checked rather than assumed:*** **[`ReferenceSpecification.$landsOnIt`](../../package/src/reference/Reference.tsx) compares `step.startsWith(\`${code}:\`)`, and [`$Ref.read()`](../../package/src/reference/Ref.tsx) tests `/^(?:[A-Z][a-z]?:)?\d/` — an EXPLICITLY UPPERCASE pattern.** *Both are measured, both must move together, and the second is the one a mechanical rename would miss.*
+***What breaks, and it must be checked rather than assumed:*** **`ReferenceSpecification.$landsOnIt` compares `step.startsWith(\`${code}:\`)`, and `$Ref.read()` tests `/^(?:[A-Z][a-z]?:)?\d/` — an EXPLICITLY UPPERCASE pattern.** *Both are measured, both must move together, and the second is the one a mechanical rename would miss.*
 
 ### <a id="d-h-names"></a>Names where there are names, codes where there are not
 
@@ -477,7 +477,7 @@ physics/gauge-theory#history/se:3
 
 ### <a id="d-i-measured"></a>And it is decidable by counting — ***ROAD B, measured***
 
-***What ROAD A actually costs was not counted when the roads were drawn, and counting it settles them.*** **[`$Reference$`](../../package/src/reference/Reference.tsx) promises `$focused`, `path()`, `focus()`, `unfocus()` and `read()`, and it extends `$Annotation$`, which adds `specifically()`.** ***Six members — measured, read off the interface.***
+***What ROAD A actually costs was not counted when the roads were drawn, and counting it settles them.*** **`$Reference$` promises `$focused`, `path()`, `focus()`, `unfocus()` and `read()`, and it extends `$Annotation$`, which adds `specifically()`.** ***Six members — measured, read off the interface.***
 
 **Five kinds want card-hood** — `$Title`, `$Author`, `$Subject`, `$IndexCard`, `$CatalogueCard`. ***Road A is therefore up to THIRTY members***, *or five one-line delegations each if every one forwards to what its meaning answers, which is twenty-five.* **Against a budget Doug set at ZERO new members, and against "we don't want to pollute."**
 
@@ -546,7 +546,7 @@ $TypeOfReference
             $TypeOfCatalogueCard    + the name is a book's TITLE
 ```
 
-***`$IndexCard` is already in [`reference/`](../../package/src/reference/), so "put IndexCard in reference" costs nothing*** — *and [`$ReferenceCard`](../../package/src/reference/ReferenceCard.tsx) is already **half of his sentence**: a reference holding references with the first canonical. **What it lacks is a name.*** **So the chain is derivation, not duplication, and all three of his names survive coupled — which is what he asked for.**
+***`$IndexCard` is already in `reference/`, so "put IndexCard in reference" costs nothing*** — *and `$ReferenceCard` is already **half of his sentence**: a reference holding references with the first canonical. **What it lacks is a name.*** **So the chain is derivation, not duplication, and all three of his names survive coupled — which is what he asked for.**
 
 ***It also answers his own earlier objection.*** **"The card isn't in the book, it's in the library. The library that's closed under books has the card as annotative. It isn't real."** *A reference IS an annotation, so a card is not composed into the book:* **[`composed()`](../../package/src/writing/Writing.tsx) filters to the seven levels and a card is not one — measured.** *It rides along.*
 
@@ -556,7 +556,7 @@ $TypeOfReference
 
 **A cover today is *written in sections*, and its title, author and subject ARE those sections.** *If they become references, a cover composes nothing and `$writtenInSections` passes **vacuously rather than truthfully** — a rule that cannot fail is not a rule.* ***Owed: either a rule of the cover's own, or the cover keeps something compositional.***
 
-**[`Parser.tokens()`](../../package/src/utilities/Parser.tsx) filters `$Annotation` out of the parse — measured.** *For a card in a catalogue that is correct: it is not part of what holds it.* ***For `<Title>` on a cover it may not be, and that is Doug's to rule.***
+**`Parser.tokens()` filters `$Annotation` out of the parse — measured.** *For a card in a catalogue that is correct: it is not part of what holds it.* ***For `<Title>` on a cover it may not be, and that is Doug's to rule.***
 
 ## <a id="d-g"></a>D-G · What the binder does, and what it may never do
 
@@ -581,13 +581,13 @@ $TypeOfReference
 
 | the claim | state |
 |---|---|
-| ***the fragment is bare indices, no labels*** | ***MEASURED — it already parses.*** [`$Catalogue.follow()`](../../package/src/reference/Catalogue.tsx) reads a step as `kind:position` **or a bare position**: `step.includes(':') ? step.split(':') : [undefined, step]`. **`#0/2/1` follows today with no change to anything** |
+| ***the fragment is bare indices, no labels*** | ***MEASURED — it already parses.*** `$Catalogue.follow()` reads a step as `kind:position` **or a bare position**: `step.includes(':') ? step.split(':') : [undefined, step]`. **`#0/2/1` follows today with no change to anything** |
 | ***the order is fixed, so labels are unnecessary*** | **true, and it DELETES the codes rather than lowercasing them** — *which supersedes the lowercase-codes ruling of an hour earlier, and [the reason is his own](#evolution): a fixed-order path already says the level* |
 | ***chapters and sections are optional*** | *that is the router's registration, and it is [D-C](#d-c)'s injected resolver deciding how deep the path goes* |
 
 ### <a id="d-k-slug"></a>The one thing the spec needs and does not have — ***a slug, with ONE home***
 
-***A title becomes a url step by some transformation, and the codebase already has that transformation twice.*** **[`$Heading.view()`](../../package/src/writing/Heading.tsx) draws `id` from the copy with whitespace replaced by underscores, and [`$Book.contents()`](../../package/src/book/Book.tsx) writes the same expression again — measured, two sites.** *Meanwhile [`routeOf`](../../build/stages/walk.ts)'s `bare()` only strips leading dots, because folder names have no spaces.*
+***A title becomes a url step by some transformation, and the codebase already has that transformation twice.*** **[`$Heading.view()`](../../package/src/writing/Heading.tsx) draws `id` from the copy with whitespace replaced by underscores, and `$Book.contents()` writes the same expression again — measured, two sites.** *Meanwhile `routeOf` (`build/stages/walk.ts`)'s `bare()` only strips leading dots, because folder names have no spaces.*
 
 > ***So the url and the anchor MUST share one slug or they disagree by construction*** — *a chapter reachable at `/article/Order_of_article_elements` whose heading draws that same id agrees; anything else is two spellings of one name, which is [the fault this branch has already paid for](../the-condition-report/08-the-compiler.md#n34).* **PROPOSED: one slug, in a utility, used by the heading, the url step and the contents alike. It is a MOVE of an expression that exists twice, not a new member.**
 
@@ -619,7 +619,7 @@ $TypeOfReference
 >
 > **`tsc` verifies the file exists and its shape; the emitted JavaScript carries no trace of it.** ***So a mention can be statically checked against a file and still hold nothing but a url at runtime*** — **the check without the variable, and both rulings stand.**
 
-***And "the book reference can point to the cover since we have no book component" is a structural fact rather than a workaround:*** **there is no `book.tsx` in a source book — the binder emits one — but every book has a `.cover.tsx`.** *So a book's file, for the purpose of pointing at it, **is its cover** — which is what the v1 compiler already assumed: [`resolve.ts`](../../build/stages/resolve.ts) takes a reference's target as the cover file and derives the book as that path without its filename.*
+***And "the book reference can point to the cover since we have no book component" is a structural fact rather than a workaround:*** **there is no `book.tsx` in a source book — the binder emits one — but every book has a `.cover.tsx`.** *So a book's file, for the purpose of pointing at it, **is its cover** — which is what the v1 compiler already assumed: `resolve.ts` takes a reference's target as the cover file and derives the book as that path without its filename.*
 
 ## <a id="d-m"></a>D-M · What ROAD B does to `$Reference` — ***it telescopes out***
 
@@ -665,7 +665,7 @@ $TypeOfReference
 |---|---|---|
 | **1** | ***a reference has meaning*** | `ReferenceSpecification` — *and it can only be written now that meaning stopped falling through* |
 | **2** | ***a card's title has meaning*** | `IndexCardSpecification` |
-| **3** | ***a card's canonical line has meaning*** | `IndexCardSpecification` — **"the canonical" is the FIRST, following [`$ReferenceCard`](../../package/src/reference/ReferenceCard.tsx)'s existing "a list of references, the first canonical"** |
+| **3** | ***a card's canonical line has meaning*** | `IndexCardSpecification` — **"the canonical" is the FIRST, following `$ReferenceCard`'s existing "a list of references, the first canonical"** |
 
 ***One caution about where `$Line` lives.*** **[The file is the WORD](../the-coding-style/01-the-unit-of-code.md)**, so `$Line` in `IndexCard.tsx` is right *only if a line is always a card's line*. **If a line is general writing, it earns its own file.** *He wrote "perhaps", so it is recorded as his to settle rather than assumed.*
 
@@ -752,7 +752,7 @@ $TypeOfReference
 
 ## <a id="p4"></a>Phase 4 — the url and its slug
 **P8** · ***One slug, one home.*** The expression `$Heading` and `$Book.contents()` each write today moves to a utility and is used by the heading's id, the contents' links and the url step alike — *so the url and the anchor agree by construction rather than by luck.*
-**P9** · `$Path` accepts `/subject/.../book/chapter?/section?#index/...`; **the seven codes come out of the url.** *The uppercase pattern in [`$Ref.read()`](../../package/src/reference/Ref.tsx) moves with them — it is the site a mechanical rename would miss.*
+**P9** · `$Path` accepts `/subject/.../book/chapter?/section?#index/...`; **the seven codes come out of the url.** *The uppercase pattern in `$Ref.read()` moves with them — it is the site a mechanical rename would miss.*
 **P10** · ***Names where unique, indices where not.*** A step that is a plain number is an index; a name that matches two things **fails the build naming both**, and the index is how the ambiguous one is reached. ***This is what makes Doug's book-with-every-chapter-named-the-same expressible.***
 
 ***VISIBLE:*** a book whose chapters share one title, every one of them addressable and drawn.
@@ -929,7 +929,7 @@ $TypeOfReference
 - **files:** `.wiki/.article/.table.tsx` · `.wiki/.article/.chapter.tsx`
 - **depends on:** U9, U11
 - ***NOT `.wiki/.encyclopedia/` — that book is session 41's.*** *See [the seams](#seams).*
-- ***THE DEMO HAS TWO TREES AND AN EDIT TO ONE IS INVISIBLE.*** **`.wiki/` is the source and `.wiki/.public/` is the served copy — the vite root — and they mirror file for file** (session 41, measured 2026-09-06, having edited both by hand). *[`build.mjs`](../../package/.wiki/.public/build.mjs) is what lifts one into the other, and it **refuses to run outside `.wiki/.public`** because it once ran from `.wiki` and deleted the whole untracked demo.* **Run the build; never hand-edit one tree and believe the page.**
+- ***THE DEMO HAS TWO TREES AND AN EDIT TO ONE IS INVISIBLE.*** **`.wiki/` is the source and `.wiki/.public/` is the served copy — the vite root — and they mirror file for file** (session 41, measured 2026-09-06, having edited both by hand). *`build.mjs` is what lifts one into the other, and it **refuses to run outside `.wiki/.public`** because it once ran from `.wiki` and deleted the whole untracked demo.* **Run the build; never hand-edit one tree and believe the page.**
 - **demo contribution:** ***the whole sprint, seen.*** [No feature ships unseen](../the-coding-style/03-the-coding-style.md#seen)
 - **realizes:** R7, R13
 
@@ -948,7 +948,7 @@ $TypeOfReference
 
 **The candidate readings, none chosen:** *(a) it stays a `$Composition` at section level; (b) it becomes an `$Annotation`; (c) it becomes a kind of `$Type`; (d) it becomes a kind of `$Reference`; (e) it stays a `$Composition` that CARRIES a mention type.*
 
-***One finding may decide it and must be checked against the line:*** **[`Parser.tokens()`](../../package/src/utilities/Parser.tsx) filters `$Annotation` out of the parse.** *If a card becomes an annotation it stops being parsed and stops being found by `searchFor` — which would settle "don't we want them to be annotations?" against itself.*
+***One finding may decide it and must be checked against the line:*** **`Parser.tokens()` filters `$Annotation` out of the parse.** *If a card becomes an annotation it stops being parsed and stops being found by `searchFor` — which would settle "don't we want them to be annotations?" against itself.*
 
 **Also owed here:** whether `$IndexCard` and `$Card` are two kinds, and how one book is filed three ways.
 

@@ -25,9 +25,9 @@
 
 **`html.text` flattens a `$Ref`'s copy as it was WRITTEN, and a `$Ref` is written in markdown.** [`html.text`](../../package/src/utilities/Html.ts) answers `''` for anything holding a `specifically` method — every `$Annotation` — and otherwise concatenates. **A `$Ref` is a `$Phrase`, not an annotation**, so its whole `[text](url)` copy is concatenated verbatim, brackets and URL included.
 
-***The reading that answers correctly already exists and nothing asked it.*** [`$Ref.written()`](../../package/src/reference/Ref.tsx) is `this.link()?.text ?? html.text(this._block)` — the words half of the link — and `$Ref.view()` draws exactly that. **So the page is right and the name is wrong**, which is why no promise and no eye caught it: the reader sees *Manual of Style*, and only a token made from the same copy sees the URL.
+***The reading that answers correctly already exists and nothing asked it.*** `$Ref.written()` is `this.link()?.text ?? html.text(this._block)` — the words half of the link — and `$Ref.view()` draws exactly that. **So the page is right and the name is wrong**, which is why no promise and no eye caught it: the reader sees *Manual of Style*, and only a token made from the same copy sees the URL.
 
-**And `link()` is `protected` on `$Ref` and calls `marked`'s `lexer` directly**, rather than through [`parser`](../../package/src/utilities/Parser.tsx), which is the utility that owns marked. So the one correct reading of a markdown link in the package is both private and in the wrong room.
+**And `link()` is `protected` on `$Ref` and calls `marked`'s `lexer` directly**, rather than through `parser`, which is the utility that owns marked. So the one correct reading of a markdown link in the package is both private and in the wrong room.
 
 ## Where it bites beyond a name
 

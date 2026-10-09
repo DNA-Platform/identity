@@ -14,7 +14,7 @@
 
 ## What the room held, and the approach taken
 
-*Compacted 2026-09-30; the brainstorm's full reading and its three approaches are in this chapter's history.* The brainstorm read [Paginated](../library/08-paginated.md), whose own extension story sketched an app-like book and never built it; [Book](../library/05-book.md); the router of [Sprint 85](91-sprint-85--headings-and-routes.md); [Append](../figures/01-append.md); and Some Projects' drawn table. It held to the rule that binds it: *"the ability to achieve what you need has to be configurable in a book, not by adding features to the compiler."* Nothing new entered the model; the app is a way of seeing the manual's book. Of three approaches, the first was taken: annotations on the manual's book under Paginated, the furniture drawn by the book itself, over a stateless Format alone and over a second book.
+*Compacted 2026-09-30; the brainstorm's full reading and its three approaches are in this chapter's history.* The brainstorm read [Paginated](../library/08-paginated.md), whose own extension story sketched an app-like book and never built it; [Book](../library/05-book.md); the router of [Sprint 85](91-sprint-85--headings-and-routes.md); [Append](../writing/19-append.md); and Some Projects' drawn table. It held to the rule that binds it: *"the ability to achieve what you need has to be configurable in a book, not by adding features to the compiler."* Nothing new entered the model; the app is a way of seeing the manual's book. Of three approaches, the first was taken: annotations on the manual's book under Paginated, the furniture drawn by the book itself, over a stateless Format alone and over a second book.
 
 ## Requirements — a register
 

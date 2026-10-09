@@ -27,7 +27,7 @@ Each reads the other's values, so an infobox's format can use the same `quiet` a
 
 ## <a id="worked"></a>The worked example is the infobox
 
-The group that provoked the ruling, [in the encyclopedia theme](../../package/src/encyclopedia/Theme.tsx): float, width, margin, padding, background from `quiet`, border from `shade`, a labelled row. Every one is a rule about the infobox and nothing else, so it is the infobox's theme, one per infobox type, and the encyclopedia sheet keeps only what is about the page.
+The group that provoked the ruling, in the encyclopedia theme: float, width, margin, padding, background from `quiet`, border from `shade`, a labelled row. Every one is a rule about the infobox and nothing else, so it is the infobox's theme, one per infobox type, and the encyclopedia sheet keeps only what is about the page.
 
 **Placed after LaTeX closes** by Doug's word, as the next brainstorm's first thread; the mechanism is chemistry's [representative](../../../chemistry/.lib/composition/11-the-representative.md) and the seam is [`$Format`](../../package/src/writing/Format.tsx), and both exist. Recorded in [Sprint 58](../projection/64-sprint-58--the-chapter-that-is-its-view.md) as what the sprint owes forward.
 

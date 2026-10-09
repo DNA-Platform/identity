@@ -71,7 +71,7 @@
 
 ### <a id="r140"></a>R140 — The compiler's contact with the framework is typed, and the type is the framework's
 
-***Question 1, and the highest priority he gave.*** **[S21](../the-condition-report/08-the-compiler.md#s21): the compiler's one contact with the framework it compiles for is `any`** — [`catalogue.ts`](../../build/stages/catalogue.ts) casts an imported book to `{ book: any }`, [`validate.ts`](../../build/stages/validate.ts) takes `live: any` and holds a `Map<string, any>`.
+***Question 1, and the highest priority he gave.*** **[S21](../the-condition-report/08-the-compiler.md#s21): the compiler's one contact with the framework it compiles for is `any`** — `catalogue.ts` casts an imported book to `{ book: any }`, `validate.ts` takes `live: any` and holds a `Map<string, any>`.
 
 **Four members are read off a living book — `contents.chapters`, `title.copy`, `subtitle.copy`, `synopsis.summary` — and not one is checked against the class that answers them.** *`@dna-platform/lib` is already a dependency of `build`; `$Book` is already exported from it.*
 
@@ -79,7 +79,7 @@
 
 ### <a id="r141"></a>R141 — The seam carries what its consumers read, and a consumer is told when it changes
 
-***Question 2.*** **[The seam is the only thing the phases share](../../build/library.ts), so it is the only place their agreement can live** — and it changed without its consumer knowing. **`Link.from` was deliberately deleted; [`see.ts`](../../build/dump.ts) still reads it four times.**
+***Question 2.*** **The seam is the only thing the phases share (`build/library.ts`), so it is the only place their agreement can live** — and it changed without its consumer knowing. **`Link.from` was deliberately deleted; `see.ts` still reads it four times.**
 
 **Two things are required and they are different.** *The first is that the seam's consumers are all inside the typecheck ([O16](#o16)). The second is that the seam can say **not yet computed*** — today `File.declares` is `''` before `refer` fills it, `Entry.references` is `[]`, `Library.books` is `[]`, **and none of those is distinguishable from a genuine empty**, so a stage run out of order returns a plausible wrong answer rather than an error.
 
@@ -87,7 +87,7 @@
 
 ### <a id="r142"></a>R142 — A wrong corpus produces a diagnostic, never a stack trace
 
-***Question 3, and the brainstorm found three faults in one sitting.*** **[The design is stated in the seam's own words](../../build/library.ts):** *"Complaints TRAVEL rather than stop the walk: one pass tells an author everything that is wrong, because a build that reports one fault at a time is a build somebody runs many times."*
+***Question 3, and the brainstorm found three faults in one sitting.*** **The design is stated in the seam's own words (`build/library.ts`):** *"Complaints TRAVEL rather than stop the walk: one pass tells an author everything that is wrong, because a build that reports one fault at a time is a build somebody runs many times."*
 
 | the fault | what happens today | entry |
 |---|---|---|
@@ -95,7 +95,7 @@
 | **a file that will not parse** | reported as *"exports nothing a book can compose"* — **the wrong cause** | <a id="i32"></a>[I32](#i32) |
 | **a chapter exporting anything at all** | ***0 complaints***; `export const nothing = 1` is emitted as `<nothing />` | <a id="i33"></a>[I33](#i33) |
 
-**The root of the first is two non-null assertions in [`resolve.ts`](../../build/stages/resolve.ts) with only one guard behind them** — *[`walk.ts`](../../build/stages/walk.ts) complains about a missing cover and never about a missing synopsis.*
+**The root of the first is two non-null assertions in `resolve.ts` with only one guard behind them** — *`walk.ts` complains about a missing cover and never about a missing synopsis.*
 
 > ***OBSERVED:*** **a corpus broken each of those three ways compiles to a NAMED diagnostic and a non-zero exit, and never to a stack trace.** *Three promises, each breaking a fixture corpus one way. This is the requirement a hand-authored page cannot fake — a stack trace is visibly not a diagnostic.*
 
@@ -122,7 +122,7 @@
 
 **<a id="o16"></a>O16 — `tsconfig.json`'s `include` is `["*.ts", "tests/*.ts"]`.** *`stages/` and `utilities/` are reached only because `index.ts` imports them; **nothing imports the four commands**, and `check.ts` is spawned by a path string.* **`tsc --listFiles` names fourteen files and none of the commands** — so `npm run test`, which begins `tsc --noEmit`, has been reporting zero over four unchecked modules.
 
-**<a id="i30"></a>I30 — and this is what was hiding there.** *[`see.ts`](../../build/dump.ts) reads `Link.from` at four sites; the field was deleted from the seam, whose own comment says* ***"HOW it was arrived at is deliberately not here."*** **The command runs, prints `declared` on every row, and prints `0 declaring · 0 supplied · 0 standing for nobody` underneath — a report that contradicts itself on one screen.**
+**<a id="i30"></a>I30 — and this is what was hiding there.** *`see.ts` reads `Link.from` at four sites; the field was deleted from the seam, whose own comment says* ***"HOW it was arrived at is deliberately not here."*** **The command runs, prints `declared` on every row, and prints `0 declaring · 0 supplied · 0 standing for nobody` underneath — a report that contradicts itself on one screen.**
 
 > ***OBSERVED:*** **the typecheck's file count is printed with its scope and includes the commands**, the four errors are real and then gone, **and the report's rows and its summary agree.**
 
@@ -152,7 +152,7 @@
 
 ***Doug's ruling:*** **"The links to catalogued books belongs in the table of contents."** *And on the mechanism, after being asked:* **"If not in reading then not in the contents. But if the synopsis is placed from a different book, parenthetical should be ignored. Book can set all such synopses to not being parenthetical in the bond constructor if that's the most elegant way."*
 
-**That is what [`$Book()`](../../package/src/book/Book.tsx) already does** — `chapter.parenthetical = !chapter.card || this.accounts(chapter)` — *so a catalogued book's synopsis is already non-parenthetical, already in the reading, and already listed in the contents with an arrow.* ***The redundant thing is `shelf()`.***
+**That is what `$Book()` already does** — `chapter.parenthetical = !chapter.card || this.accounts(chapter)` — *so a catalogued book's synopsis is already non-parenthetical, already in the reading, and already listed in the contents with an arrow.* ***The redundant thing is `shelf()`.***
 
 **<a id="s24"></a>S24 — `$Book.shelf()` draws the entries beside whatever chapter is standing, on every chapter.** *Measured: `data-entries=2` on all five chapters of `/physics`, including a two-paragraph chapter that **the shelf is larger than**.* **So a catalogue is drawn once in the contents and again under every page of the book.**
 
@@ -160,7 +160,7 @@
 
 ### <a id="r149"></a>R149 — A turning names the chapter it turns to
 
-**<a id="i30b"></a>I36 — [`turning()`](../../package/src/book/Book.tsx) reads `chapter.title?.copy` while the standing chapter renders its card's title**, *so `next → Synopsis` leads to a page headed **The Standard Model**, and two different chapters both offer `next → Synopsis`.*
+**<a id="i30b"></a>I36 — `turning()` (`package/src/book/Book.tsx`) reads `chapter.title?.copy` while the standing chapter renders its card's title**, *so `next → Synopsis` leads to a page headed **The Standard Model**, and two different chapters both offer `next → Synopsis`.*
 
 > ***OBSERVED:*** ***for every chapter of every book, the name in the turning equals the heading on the page it reaches*** — *which is a promise a driver can walk and a hand-authored page cannot fake.*
 
@@ -168,7 +168,7 @@
 
 ***Doug named the reference:*** **"use manifold in the demo as a good example for the network — what clicking where should do approximately"** · **"you have a cover which presents some organized information, provides a way of navigating when you click anywhere, and then you can move around in the way manifold guides you to do"** · **"The base doesn't have to be as fancy but we want it to be like that and extensible."**
 
-**[The Manifold's network, read off its code](../../.archive/app/src/sections/the-manifold.tsx), and what the framework has of it today:**
+**The Manifold's network, read off its code (`.archive/app/src/sections/the-manifold.tsx`), and what the framework has of it today:**
 
 | the Manifold does | `$Book` today |
 |---|---|
@@ -197,15 +197,15 @@
 
 ### <a id="r152"></a>R152 — The demonstration's landing page paints without constructing a book
 
-**<a id="i35"></a>I35 — the profile, and it settles the question:** *last byte at **351 ms**, first paint at **2,412 ms**.* ***2,061 ms — 85% of the wall clock — with nothing left to fetch.*** **It is not loading. It is five book models being constructed at module scope while [`card.tsx`](../../.archive/app/src/sections/book/library/the-team/card.tsx) reads them at module scope too.**
+**<a id="i35"></a>I35 — the profile, and it settles the question:** *last byte at **351 ms**, first paint at **2,412 ms**.* ***2,061 ms — 85% of the wall clock — with nothing left to fetch.*** **It is not loading. It is five book models being constructed at module scope while `card.tsx` reads them at module scope too.**
 
-**The fix chain is forced and its order is the whole of it:** *cards carry literals → `card.tsx` stops importing the books → [`the-books.tsx`](../../.archive/app/src/sections/the-books.tsx) imports them dynamically.* **[The attempt that was tried and reverted](../the-condition-report/09-the-demonstration.md#i29) did step three without step one**, *which is why "requests fell 156 → 84 and every spine vanished."*
+**The fix chain is forced and its order is the whole of it:** *cards carry literals → `card.tsx` stops importing the books → `the-books.tsx` imports them dynamically.* **[The attempt that was tried and reverted](../the-condition-report/09-the-demonstration.md#i29) did step three without step one**, *which is why "requests fell 156 → 84 and every spine vanished."*
 
 > ***OBSERVED:*** ***first paint under a stated budget with zero books constructed***, measured the same way it was measured here, **and every spine still on the shelf.** *This is a stopgap and is written down as one — it drifts, which is [S23](../the-condition-report/09-the-demonstration.md#s23) waiting to happen again, and it ends when the demonstration becomes a compiled library.*
 
 ### <a id="r153"></a>R153 — The demonstration can be built
 
-**<a id="i34"></a>I34 — built and served, `/books` throws `Cannot read properties of undefined (reading 'chapters')`.** *Built unminified and served, it is **73 nodes, 1,179 characters, 0 errors — identical to dev.*** **The mechanism is the one already fixed next door: a bond constructor is found by the class's name, and [the sibling application's config carries `esbuild: { keepNames: true }` with a comment naming this exact defect](../../app/vite.config.ts).** *The demonstration's config does not, and nothing ships it, so nobody found out.*
+**<a id="i34"></a>I34 — built and served, `/books` throws `Cannot read properties of undefined (reading 'chapters')`.** *Built unminified and served, it is **73 nodes, 1,179 characters, 0 errors — identical to dev.*** **The mechanism is the one already fixed next door: a bond constructor is found by the class's name, and the sibling application's config carries `esbuild: { keepNames: true }` with a comment naming this exact defect (`app/vite.config.ts`).** *The demonstration's config does not, and nothing ships it, so nobody found out.*
 
 > ***OBSERVED:*** ***the built demonstration draws what the dev server draws***, asserted as a node count and a character count on both, **and the build is a script somebody can run.**
 
@@ -304,7 +304,7 @@
 
 ### <a id="d81"></a>D81 — The seam is edited ONCE, carrying three requirements
 
-**[R141](#r141)'s honesty, [R143](#r143)'s `Diagnostic`, and [R145](#r145)'s union all live in [`library.ts`](../../build/library.ts).** *Done separately that is three passes over every stage.* ***Chosen over three tidy commits*** — **[K11](#the-risks) says a blanket rename has bitten twice on this branch**, *and the mitigation is one rename with the typecheck from [D80](#d80) already standing, not three.*
+**[R141](#r141)'s honesty, [R143](#r143)'s `Diagnostic`, and [R145](#r145)'s union all live in `library.ts`.** *Done separately that is three passes over every stage.* ***Chosen over three tidy commits*** — **[K11](#the-risks) says a blanket rename has bitten twice on this branch**, *and the mitigation is one rename with the typecheck from [D80](#d80) already standing, not three.*
 
 ### <a id="d82"></a>D82 — "Not yet computed" is said per FIELD, never per phase — the seam keeps having no tense
 
@@ -322,11 +322,11 @@
 |---|---|---|
 | ***`Complaint`*** | ***`Diagnostic`*** | **what every compiler calls the thing it reports.** *Doug: "complaint: that seems like a bad word"* |
 | ***`see`*** | ***`dump`*** | **GCC `-fdump-tree-*` · Clang `-ast-dump` · LLVM `-emit-llvm`.** *It dumps the intermediate representation between passes; the name should say the output is the compiler's internals rather than a reader's report* |
-| ***`check`*** | ***the verifier*** | **the JVM and the CLR both verify emitted code in a context that did not emit it** — *which is [the exact reason `check.ts` is a spawn](../../build/index.ts), so the name and the mechanism finally agree* |
+| ***`check`*** | ***the verifier*** | **the JVM and the CLR both verify emitted code in a context that did not emit it** — *which is the exact reason `check.ts` is a spawn, so the name and the mechanism finally agree* |
 
 ### <a id="d84"></a>D84 — The default view is one file, and the deletion comes first inside it
 
-**[R148](#r148) deletes `shelf()`, [R149](#r149) repairs `turning()`, [R150](#r150) adds the cover click and the folio — all in [`Book.tsx`](../../package/src/book/Book.tsx).** ***The deletion goes first*** *because it removes a whole rendering path, and repairing a turning that sits under a shelf nobody will keep is work done twice.* **[`Synopsis.tsx`](../../package/src/book/Synopsis.tsx) is touched only where the entry draws**, *and only if the deletion leaves it drawing something no caller wants.*
+**[R148](#r148) deletes `shelf()`, [R149](#r149) repairs `turning()`, [R150](#r150) adds the cover click and the folio — all in `Book.tsx`.** ***The deletion goes first*** *because it removes a whole rendering path, and repairing a turning that sits under a shelf nobody will keep is work done twice.* **`Synopsis.tsx` is touched only where the entry draws**, *and only if the deletion leaves it drawing something no caller wants.*
 
 ### <a id="d85"></a>D85 — The demo's literals are GENERATED ONCE by a script that is kept
 
@@ -354,7 +354,7 @@
 
 ### <a id="u151"></a>U151 · `R141` `R143` `R145` · **The seam says three things it could not say**
 
-**Mechanism:** *one edit to [`library.ts`](../../build/library.ts) —* **`Complaint` → `Diagnostic`** ([D83](#d83)); **`Reference.as` becomes a union of the three kinds** it is a doc comment about today; **`File.declares`, `Entry.references` and `Library.books` become able to say *not yet computed*** per [D82](#d82). **Files:** `build/library.ts`. **Depends on:** [U150](#u150).
+**Mechanism:** *one edit to `library.ts` —* **`Complaint` → `Diagnostic`** ([D83](#d83)); **`Reference.as` becomes a union of the three kinds** it is a doc comment about today; **`File.declares`, `Entry.references` and `Library.books` become able to say *not yet computed*** per [D82](#d82). **Files:** `build/library.ts`. **Depends on:** [U150](#u150).
 
 > ***VISIBLE:*** **the seam compiles and every stage goes red at once**, *which is the point — [K11](#the-risks)'s mitigation is that the breakage is total and immediate rather than partial and silent.*
 
@@ -368,13 +368,13 @@
 
 ### <a id="u153"></a>U153 · `R143` `R144` · **`see` becomes `dump`, and it stops contradicting itself**
 
-**Mechanism:** *the file is repaired and renamed in one act, because [D80](#d80) put it inside the typecheck and it is being opened anyway.* **The four `Link.from` reads go**; *what replaces them is what the seam can actually answer — [`Link` carries `book` and `display`](../../build/library.ts) and nothing about how it was arrived at.* **Files:** `build/commands/see.ts` → `dump.ts`, `build/package.json`, and the ~17 references in the library. **Depends on:** [U152](#u152).
+**Mechanism:** *the file is repaired and renamed in one act, because [D80](#d80) put it inside the typecheck and it is being opened anyway.* **The four `Link.from` reads go**; *what replaces them is what the seam can actually answer — `Link` carries `book` and `display` (`build/library.ts`) and nothing about how it was arrived at.* **Files:** `build/commands/see.ts` → `dump.ts`, `build/package.json`, and the ~17 references in the library. **Depends on:** [U152](#u152).
 
 > ***VISIBLE:*** ***`npm run dump` prints rows and a summary that agree*** — **where today seven books print `declared` three times each above `0 declaring · 0 supplied · 0 standing for nobody`.** *A hand-authored page cannot fake this: the contradiction is on screen and then it is not.*
 
 ### <a id="u154"></a>U154 · `R143` · **`CHECK` is named for what it is and filed where it belongs**
 
-**Mechanism:** *[`check.ts`](../../build/verify.ts) is the entry point for [`stages/validate.ts`](../../build/stages/validate.ts), spawned because emitting rewrites the files it imported.* **It becomes the verifier, filed with its stage**, and *the folder header that already states the taxonomy is corrected to describe every file in it.* **Files:** `build/commands/check.ts`, `build/index.ts`, `build/package.json`, ~19 references. **Depends on:** [U150](#u150).
+**Mechanism:** *`check.ts` is the entry point for `stages/validate.ts`, spawned because emitting rewrites the files it imported.* **It becomes the verifier, filed with its stage**, and *the folder header that already states the taxonomy is corrected to describe every file in it.* **Files:** `build/commands/check.ts`, `build/index.ts`, `build/package.json`, ~19 references. **Depends on:** [U150](#u150).
 
 > ***VISIBLE:*** ***every folder in `build/` holds one kind of thing***, and the header in each says which — *including the one file [that header does not describe today](../the-condition-report/08-the-compiler.md#o14).*
 
@@ -384,8 +384,8 @@
 
 | fault | mechanism |
 |---|---|
-| **no synopsis → raw `TypeError`** | ***[`walk.ts`](../../build/stages/walk.ts) gains a sixth diagnostic beside its cover check***, and [`resolve.ts:47-48`](../../build/stages/resolve.ts)'s two non-null assertions stop being the only thing holding it up |
-| **syntax error → wrong cause** | **[`refer.ts`](../../build/stages/refer.ts) asks whether the file PARSED before asking what it exports** — *ts-morph knows; nothing currently asks* |
+| **no synopsis → raw `TypeError`** | ***`walk.ts` gains a sixth diagnostic beside its cover check***, and `resolve.ts:47-48`'s two non-null assertions stop being the only thing holding it up |
+| **syntax error → wrong cause** | **`refer.ts` asks whether the file PARSED before asking what it exports** — *ts-morph knows; nothing currently asks* |
 | **any export passes** | *`declaredBy` accepts `export const nothing = 1`.* **The check becomes what its own diagnostic already claims** — *something a book can compose* |
 
 **Files:** `build/stages/walk.ts` `refer.ts` `resolve.ts`. **Depends on:** [U152](#u152).
@@ -394,7 +394,7 @@
 
 ### <a id="u156"></a>U156 · `R140` · **The compiler's contact with the framework is `$Book`**
 
-**Mechanism:** *[`catalogue.ts`](../../build/stages/catalogue.ts)'s `{ book: any }` becomes `{ book: $Book }`; [`validate.ts`](../../build/stages/validate.ts)'s `live: any` and `Map<string, any>` take the class.* ***Measured as reachable***: every member the compiler reads is typed in `lib`'s `dist`. **Files:** `build/stages/catalogue.ts` `validate.ts`. **Depends on:** [U152](#u152).
+**Mechanism:** *`catalogue.ts`'s `{ book: any }` becomes `{ book: $Book }`; `validate.ts`'s `live: any` and `Map<string, any>` take the class.* ***Measured as reachable***: every member the compiler reads is typed in `lib`'s `dist`. **Files:** `build/stages/catalogue.ts` `validate.ts`. **Depends on:** [U152](#u152).
 
 > ***VISIBLE:*** ***rename `contents` in the framework and the compiler fails to compile*** — **where today it compiles and emits empty cards.** *Demonstrated by doing it, watching red, and putting it back.*
 
@@ -414,13 +414,13 @@
 
 ### <a id="u159"></a>U159 · `R148` · **`shelf()` is deleted** — the entries live in the contents alone
 
-**Mechanism:** *[Doug's ruling](#r148): the links to catalogued books belong in the table of contents, which [already lists them with an arrow](../../package/src/book/TableOfContents.tsx).* **`$Book.shelf()`, `$Book.$shelf` and the `Shelf` styled component go.** *Measured: 7 references, 2 files.* **Files:** `package/src/book/Book.tsx`, `Synopsis.tsx`. **Depends on:** nothing — **and it is scheduled first inside its file** per [D84](#d84).
+**Mechanism:** *[Doug's ruling](#r148): the links to catalogued books belong in the table of contents, which already lists them with an arrow (`package/src/book/TableOfContents.tsx`).* **`$Book.shelf()`, `$Book.$shelf` and the `Shelf` styled component go.** *Measured: 7 references, 2 files.* **Files:** `package/src/book/Book.tsx`, `Synopsis.tsx`. **Depends on:** nothing — **and it is scheduled first inside its file** per [D84](#d84).
 
 > ***VISIBLE:*** ***`data-entries` appears zero times on every route***, the contents still lists every catalogued book with its arrow, **and a two-paragraph chapter is no longer smaller than the catalogue hanging under it.**
 
 ### <a id="u160"></a>U160 · `R149` · **A turning names the chapter it reaches**
 
-**Mechanism:** *`turning()` reads `chapter.title?.copy` while the standing chapter draws its card's title, so `next → Synopsis` leads to a page headed **The Standard Model**.* **The turning asks the chapter what a reader will see**, *which is what [`$$Synopsis.copy`](../../package/src/book/Synopsis.tsx) already answers for the contents.* **Files:** `package/src/book/Book.tsx`. **Depends on:** [U159](#u159).
+**Mechanism:** *`turning()` reads `chapter.title?.copy` while the standing chapter draws its card's title, so `next → Synopsis` leads to a page headed **The Standard Model**.* **The turning asks the chapter what a reader will see**, *which is what `$$Synopsis.copy` already answers for the contents.* **Files:** `package/src/book/Book.tsx`. **Depends on:** [U159](#u159).
 
 > ***VISIBLE:*** ***for every chapter of every book, the forward label equals the heading of the page it reaches*** — **walked by a driver, and today it fails on `/physics` at two chapters out of five.**
 
@@ -440,19 +440,19 @@
 
 ### <a id="u163"></a>U163 · `R152` · **The cards carry their own text**
 
-**Mechanism:** *[D85](#d85) — a script reads the four books once and prints their card declarations; the output is pasted into [`card.tsx`](../../.archive/app/src/sections/book/library/the-team/card.tsx); the script is kept.* **4 taglines, 26 chapter titles.** *`line(book)` and `titles(book)` go, and `of` becomes a loader — which is what `The Team`'s card in that same file already does.* **Files:** `package/app/src/sections/book/library/the-team/card.tsx`, one new script. **Depends on:** nothing.
+**Mechanism:** *[D85](#d85) — a script reads the four books once and prints their card declarations; the output is pasted into `card.tsx`; the script is kept.* **4 taglines, 26 chapter titles.** *`line(book)` and `titles(book)` go, and `of` becomes a loader — which is what `The Team`'s card in that same file already does.* **Files:** `package/app/src/sections/book/library/the-team/card.tsx`, one new script. **Depends on:** nothing.
 
 > ***VISIBLE:*** ***five spines on the shelf with zero book modules requested***, **and the profile taken the same way it was taken here** — *first paint against a last-byte of 351 ms, rather than 2,412 ms against it.*
 
 ### <a id="u164"></a>U164 · `R152` · **The books arrive dynamically**
 
-**Mechanism:** *[`the-books.tsx`](../../.archive/app/src/sections/the-books.tsx)'s four static imports become dynamic, **which [U163](#u163) is what makes possible**.* **[The attempt recorded in that file did this step without the previous one](../the-condition-report/09-the-demonstration.md#i29)** — *requests fell 156 → 84 and every spine vanished.* **Files:** `package/app/src/sections/the-books.tsx`. **Depends on:** [U163](#u163) — ***and the order is [K10](#the-risks), which has already fired once.***
+**Mechanism:** *`the-books.tsx`'s four static imports become dynamic, **which [U163](#u163) is what makes possible**.* **[The attempt recorded in that file did this step without the previous one](../the-condition-report/09-the-demonstration.md#i29)** — *requests fell 156 → 84 and every spine vanished.* **Files:** `package/app/src/sections/the-books.tsx`. **Depends on:** [U163](#u163) — ***and the order is [K10](#the-risks), which has already fired once.***
 
 > ***VISIBLE:*** **request count on `/books` measured before and after, and the spines still standing** — *the exact pairing the reverted attempt failed.*
 
 ### <a id="u165"></a>U165 · `R153` · **The demonstration can be built**
 
-**Mechanism:** *[the sibling application's config carries `esbuild: { keepNames: true }` with a comment naming this defect](../../app/vite.config.ts); the demonstration's does not.* **A build script is added so the thing can be run at all.** **Files:** `package/app/vite.config.ts`, `package/package.json`. **Depends on:** nothing.
+**Mechanism:** *the sibling application's config carries `esbuild: { keepNames: true }` with a comment naming this defect (`app/vite.config.ts`); the demonstration's does not.* **A build script is added so the thing can be run at all.** **Files:** `package/app/vite.config.ts`, `package/package.json`. **Depends on:** nothing.
 
 > ***VISIBLE:*** ***the built demonstration draws what the dev server draws*** — **73 nodes and 0 errors, against today's `Cannot read properties of undefined (reading 'chapters')`.** *Both sides already measured.*
 
@@ -588,7 +588,7 @@
 
 ***Doug: "Deleting the shelf????? Who decided that… something I do not and did not consent to."*** **He is right and the correction is mine.**
 
-**What was deleted was [`$Book.shelf()`](../../package/src/book/Book.tsx), a method in the framework** — *not the demonstration's shelf, which was never touched and drove green throughout.* **It was removed on his own sentence, "the links to catalogued books belongs in the table of contents," and the fault was not the reading — it was that [a drawing was removed before anyone was shown the screen without it](18-the-theme.md).** *The screen without it is a subject rendering its own name and nothing else.*
+**What was deleted was `$Book.shelf()`, a method in the framework** — *not the demonstration's shelf, which was never touched and drove green throughout.* **It was removed on his own sentence, "the links to catalogued books belongs in the table of contents," and the fault was not the reading — it was that [a drawing was removed before anyone was shown the screen without it](18-the-theme.md).** *The screen without it is a subject rendering its own name and nothing else.*
 
 ***RESTORED, and better placed than before:*** **the shelf draws when the COVER is the standing chapter**, *rather than beside whatever chapter happens to stand* — **so the entries appear once, on the face a reader arrives at**, and the duplication that [S24](#s24) measured is still gone. `verify-library` **39/39**.
 
@@ -608,7 +608,7 @@
 
 ***`Promise<$Book>` now typechecks.*** **Proven by writing the thing that was impossible an hour earlier** — *the demonstration's book doors, which had to hand back `Promise<{ book: $Book }>` and now hand back the book.*
 
-**And the workaround was already written down in two places without being recognised as one.** *[`catalogue.tsx`](../../app/src/catalogue.tsx) said it in its own words — "IT HANDS BACK A HOLDER RATHER THAN THE BOOK, and that is forced: `$Book` declares `then()`… so a promise resolving to one would call it and never settle" — and the compiler's emitted `books.tsx` wraps every book the same way and says nothing.* ***Two workarounds, one cause, no entry.*** **Both are simplified now.**
+**And the workaround was already written down in two places without being recognised as one.** *`catalogue.tsx` said it in its own words — "IT HANDS BACK A HOLDER RATHER THAN THE BOOK, and that is forced: `$Book` declares `then()`… so a promise resolving to one would call it and never settle" — and the compiler's emitted `books.tsx` wraps every book the same way and says nothing.* ***Two workarounds, one cause, no entry.*** **Both are simplified now.**
 
 ## The gates, run fresh
 
@@ -640,7 +640,7 @@
 
 ### THE CONTENTS NAMED ITSELF AFTER ITS FIRST CHAPTER
 
-***Found by [U160](#u160) going red in a way I had caused.*** **[`$TableOfContents`](../../package/src/book/TableOfContents.tsx) overrides `parts()` to mean its ENTRIES, so `canonical` is the first CHAPTER** — *and `$$Chapter.copy` read a heading off it.* **Fixed at the root: a chapter's reference form asks the chapter's TITLE**, which is right for a contents and identical for every ordinary chapter.
+***Found by [U160](#u160) going red in a way I had caused.*** **`$TableOfContents` overrides `parts()` to mean its ENTRIES, so `canonical` is the first CHAPTER** — *and `$$Chapter.copy` read a heading off it.* **Fixed at the root: a chapter's reference form asks the chapter's TITLE**, which is right for a contents and identical for every ordinary chapter.
 
 ---
 
@@ -652,9 +652,9 @@
 
 ***Doug chose it over the two alternatives.*** **Measured before starting: 18 declarations and 145 call sites across four programs** — *32 in the framework and its consumers, 113 in the suite.* **That is large but ordinary.**
 
-***What is NOT ordinary is this:*** **[`$Book.tsx:270`](../../package/src/book/Book.tsx) calls `accounts(chapter)` from inside `$Book()`, the BOND CONSTRUCTOR, and [`accounts` at :256 calls `chapter.read()`](../../package/src/book/Book.tsx).** *A bond constructor runs during construction and cannot be async.* **The same path reaches `valid()` through `structure()`.**
+***What is NOT ordinary is this:*** **`$Book.tsx:270` calls `accounts(chapter)` from inside `$Book()`, the BOND CONSTRUCTOR, and `accounts` at :256 calls `chapter.read()` (`package/src/book/Book.tsx`).** *A bond constructor runs during construction and cannot be async.* **The same path reaches `valid()` through `structure()`.**
 
-> ***So `read()` cannot become a promise while validation dereferences books.*** **The way through is one the branch already found for a different reason** — *["A CARD COMPUTE OPENS NONE… asking a leaf for its library opened every book on the path, which is the one thing a catalogue exists to make unnecessary"](../../package/src/book/Book.tsx)* — **validation asks CARDS rather than books, and then nothing synchronous needs to open anything.** *[`$Author.valid()`](../../package/src/book/Author.tsx) already works that way.*
+> ***So `read()` cannot become a promise while validation dereferences books.*** **The way through is one the branch already found for a different reason** — *"A CARD COMPUTE OPENS NONE… asking a leaf for its library opened every book on the path, which is the one thing a catalogue exists to make unnecessary"* — **validation asks CARDS rather than books, and then nothing synchronous needs to open anything.** *`$Author.valid()` already works that way.*
 
 ***That is the design, and it is a sprint rather than a unit.***
 
@@ -750,11 +750,11 @@
 | `$$Chapter` | `$Section` | `$Chapter` |
 | ***`$$Book`*** | ***`$IndexCard` — outside the writing hierarchy altogether*** | `$Book` |
 
-***One grade below a BOOK is a CHAPTER.*** **So a card is a chapter, and a chapter is exactly what Doug described:** *[`$Chapter`](../../package/src/book/Chapter.tsx) carries a **title**, and its `requires()` demands a **summary — a parenthetical section that describes it***. **"A title? A whole section that describes something." That is a chapter, stated in the code before the question was asked.**
+***One grade below a BOOK is a CHAPTER.*** **So a card is a chapter, and a chapter is exactly what Doug described:** *`$Chapter` carries a **title**, and its `requires()` demands a **summary — a parenthetical section that describes it***. **"A title? A whole section that describes something." That is a chapter, stated in the code before the question was asked.**
 
 ## And `$Synopsis` is already the thing
 
-***[`$Synopsis extends $Chapter` and carries `$for?: $$Book`](../../package/src/book/Synopsis.tsx).*** **It is a chapter, standing in one book, giving an account of another** — *which is an index card in everything but the name.* **The demonstration's shelf already composes four of them as chapters and calls the result a catalogue.**
+***`$Synopsis extends $Chapter` and carries `$for?: $$Book`.*** **It is a chapter, standing in one book, giving an account of another** — *which is an index card in everything but the name.* **The demonstration's shelf already composes four of them as chapters and calls the result a catalogue.**
 
 > ***So the framework has TWO representations of one idea:*** **a card as WRITING (`$Synopsis`, a chapter that stands elsewhere) and a card as a RECORD (`$$Book`, a bag of strings with a reflection mechanism).** *The second is the one Doug says is carrying too much, and the first is the one that was right.*
 
@@ -778,7 +778,7 @@
 
 ## <a id="the-blocker-is-gone"></a>THE BLOCKER IS GONE — and that is built, not proposed
 
-***[`$Book()` no longer dereferences anything.](../../package/src/book/Book.tsx)*** **`accounts()` asked whether a synopsis's reference came home by CALLING `read()` — from inside the bond constructor — which is what made an async read impossible.** *It asks the cards now: a synopsis carrying no card accounts for the book it stands in, and one carrying a card accounts only when it is that book's own.*
+***`$Book()` no longer dereferences anything.*** **`accounts()` asked whether a synopsis's reference came home by CALLING `read()` — from inside the bond constructor — which is what made an async read impossible.** *It asks the cards now: a synopsis carrying no card accounts for the book it stands in, and one carrying a card accounts only when it is that book's own.*
 
 **Nothing is opened, the constructor is free, and `lib` is 352/352 with `tsc` 0.** ***Whatever shape the card takes, that wall is down.***
 
@@ -791,7 +791,7 @@
 | **`$IndexCard extends $Chapter`** | *one grade below the book it stands for, which is what every reference form already was* |
 | **a card WRITES ITSELF** | *given no writing it declares a **title section** and a **summary** — a chapter's minimum and a card's whole surface. Probed: `parts()` = 2, stable across calls* |
 | ***the catalogue half is gone from `$$Book`*** | **it was overriding `canonical` to mean "the first entry" while `$Document.canonical` means "the first section"** — *a composition of cards and a composition of sections at once, which is the overload Doug named* |
-| ***the reflection is gone from the framework*** | `properties()` · `written()` · `printed()` — **a card that IS writing prints itself as writing.** *[The demonstration's own card declares them now](../../.archive/app/src/sections/book/library/the-team/librarycard.tsx), which keeps the signed "four cards printing their own fields" demonstration and puts it where a library's extras belong* |
+| ***the reflection is gone from the framework*** | `properties()` · `written()` · `printed()` — **a card that IS writing prints itself as writing.** *The demonstration's own card declares them now (`.archive/app/src/sections/book/library/the-team/librarycard.tsx`), which keeps the signed "four cards printing their own fields" demonstration and puts it where a library's extras belong* |
 | **`title` and `subtitle` stopped being strings** | *they are the card's WRITING; `name` remains its identity, and the two were being conflated* |
 
 ***277 type errors → 0, in five measured steps.*** **And `tsc` earned its keep**: it caught every place a `$Title` object would have been rendered as text, which is [U156](#u156)'s whole argument arriving somewhere nobody planned it.
@@ -818,7 +818,7 @@
 
 ***It barely moved, and that is the finding.*** **The cascade was never about views** — *it is `$Composition<$Reference<T>>` structural typing, amplified by chemistry's contravariance, which is [the variance wrong turn already recorded](21-semantics-then-drawing.md#wrong-turns-already-taken).*
 
-> ***AND IT IS NO LONGER NEEDED.*** **A card carries its own writing, so no view reads one to draw it.** *The only thing that reads a card is NAVIGATION — and navigation already awaits, in [the demonstration's `follow`](../../.archive/app/src/sections/book/library/the-team/card.tsx) and [the application's `fetch`](../../app/src/catalogue.tsx).* **Making the interface async costs 602 errors and buys what the card already bought.**
+> ***AND IT IS NO LONGER NEEDED.*** **A card carries its own writing, so no view reads one to draw it.** *The only thing that reads a card is NAVIGATION — and navigation already awaits, in the demonstration's `follow` (`.archive/app/src/sections/book/library/the-team/card.tsx`) and the application's `fetch` (`app/src/catalogue.tsx`).* **Making the interface async costs 602 errors and buys what the card already bought.**
 
 # Where things stand
 
@@ -901,8 +901,8 @@
 | | what is load-bearing in it |
 |---|---|
 | **[What an index card is](#what-a-card-is)** | ***the reference chain, and why a card is a chapter.*** *The UI question and the model question turn out to be one question* |
-| **[`$Book.view()`](../../package/src/book/Book.tsx)** | **the framework's ENTIRE drawing, in four members** — *a running head, one standing chapter, the shelf, the turns. Everything a UI sprint would change is in that one method* |
-| **[The Manifold](../../.archive/app/src/sections/the-manifold.tsx)** | ***Doug named it as the reference for navigation*** — a closed cover you click anywhere, a running head that steps up a level, turns with a folio, lenses, ribbons, and addresses that resolve through the model |
+| **`$Book.view()`** | **the framework's ENTIRE drawing, in four members** — *a running head, one standing chapter, the shelf, the turns. Everything a UI sprint would change is in that one method* |
+| **The Manifold (`.archive/app/src/sections/the-manifold.tsx`)** | ***Doug named it as the reference for navigation*** — a closed cover you click anywhere, a running head that steps up a level, turns with a folio, lenses, ribbons, and addresses that resolve through the model |
 | **[The Theme](18-the-theme.md)** | **DEVELOP IN THE OPEN** — *six rules from the last sprint that drew, and [this session broke the first of them](#the-shelf-i-should-not-have-deleted)* |
 
 ## How to see it
@@ -910,6 +910,6 @@
 | | |
 |---|---|
 | **the demonstration** | `npm run dev` in [`library/.public/package`](../../package/) → ***http://localhost:5199/*** — **the shelf, five spines, three books behind doors.** *`/books` is the landing page and the one that was halved* |
-| **the public library** | `npm run dev` in [`library/.public/app`](../../app/) → ***http://localhost:5299/*** — **the compiled test library.** *The cover carries its shelf; `/physics` shows a subject with its two books* |
+| **the public library** | `npm run dev` in `library/.public/app` → ***http://localhost:5299/*** — **the compiled test library.** *The cover carries its shelf; `/physics` shows a subject with its two books* |
 | **driving them** | `npm run verify` in the package — ***92 checkpoints*** · `npm run drive` in the app — ***39 checkpoints.*** **Start the server yourself first**, and *a short count is a stall rather than a number* |
 | **the compiler** | `npm run dump ../../.test-library` prints the intermediate representation · `npm test` runs all four gates |

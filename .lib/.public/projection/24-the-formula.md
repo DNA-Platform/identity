@@ -31,7 +31,7 @@
 | [Identity](../../../chemistry/.lib/particle/01-identity.md) | `$$template$$` — *the framework's existing commitment to one canonical instance per class, which this sprint makes plural* |
 | [`reflection.ts`](../../../chemistry/package/src/implementation/reflection.ts) · [`types.ts`](../../../chemistry/package/src/implementation/types.ts) | the dormant `$Rep` layer — **1,063 lines used by nothing but its own test** — checked so this does not rebuild it |
 | [The Condition Report](../the-condition-report/.cover.md) — [S1](../the-condition-report/04-semantics.md#s1) · [S17](../the-condition-report/04-semantics.md#s17) · [I11](../the-condition-report/05-implementation.md#i11) · [I22](../the-condition-report/05-implementation.md#i22) · [The Cleaning](../the-condition-report/06-the-cleaning.md#actionable) | ***the register of what is already owed***, and where `$Type` was ruled and then explicitly deferred |
-| `Type.tsx` (v1, `.archive/book/Type.tsx`, deleted) · `Annotation.tsx` (v1, `.archive/book/Annotation.tsx`, deleted) · [`Author.tsx`](../../package/src/book/Author.tsx) · [`Book.tsx`](../../package/src/book/Book.tsx) | **the consumer this was designed for**, and the state it is actually in |
+| `Type.tsx` (v1, `.archive/book/Type.tsx`, deleted) · `Annotation.tsx` (v1, `.archive/book/Annotation.tsx`, deleted) · `Author.tsx` · `Book.tsx` | **the consumer this was designed for**, and the state it is actually in |
 | [The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md) · [Inheritance and Composition](../the-semantics-of-books/03-inheritance-and-composition.md) · [The Category](../the-semantics-of-books/12-the-category-and-what-escapes-it.md) | **what a type means in the theory**, and the dynamic-layering question this partly answers |
 | [The parse that woke its own parents](../solutions/16-the-parse-that-woke-its-own-parents.md) | ***the specification that governs any work on the render path*** — it has recurred three times |
 | [Graph databases and recursive hierarchies](../../../../../dna-library/library/claude-dna/conversations/2026-06-17-graph-databases-and-recursive-hierarchies.md) | **the primary source on ancestor resolution and its two hazards** — conflict policy, and termination under self-reference |
@@ -88,7 +88,7 @@
 | **the framework hand-walks the prototype chain in 27 places** | `bond.ts` 4 · `chemical.ts` 10 · `molecule.ts` 2 · `particle.ts` 6 · `reconcile.ts` 2 · `reflection.ts` 2 · `scope.ts` 1 | grep, `src` only |
 | **three parallel module-level registries already keyed by prototype** | `inertDecorators` · `reactiveDecorators` · `lookDecorators`, each with its own recursive lookup, in [`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts) | read |
 | ***the `$Rep` reflection layer is dormant*** | [`reflection.ts`](../../../chemistry/package/src/implementation/reflection.ts) — 1,063 lines; **zero callers outside `tests/implementation/reflection.test.ts`** | grep |
-| **the consumer this was designed for waits on nothing else** | `$Type.valid()` (v1, `.archive/book/Type.tsx`, deleted) checks only that its copy is non-empty; [`$Author.valid()`](../../package/src/book/Author.tsx) checks the loop and **never the type**; `<Type>` appears **0 times** in the demonstration | read + grep |
+| **the consumer this was designed for waits on nothing else** | `$Type.valid()` (v1, `.archive/book/Type.tsx`, deleted) checks only that its copy is non-empty; `$Author.valid()` checks the loop and **never the type**; `<Type>` appears **0 times** in the demonstration | read + grep |
 | **the Lab has ~35 case sections** | [`app/src/sections`](../../../chemistry/package/app/src/sections/) | listed |
 
 ---
@@ -277,7 +277,7 @@ $Type  >  $Book  >  $Dictionary
 |---|---|
 | ***`$Type`, `$Biography`, `$Autobiography` in `lib`*** | ***Doug, this session: "Just the mechanism. The work in `$Chemistry`, and a demo."*** *The consumer is a later sprint, and it is the one [S17](../the-condition-report/04-semantics.md#s17-type) has been waiting for since 2026-08-23.* **The same names appear in [R205](#r205) as chemistry TEST SPECIMENS, which is a different thing and deliberately so.** |
 | ***`valid(writing?: $Writing)`*** | **Doug's own sketch** — *"someone can use the type to validate the piece of writing"* — **and it needs `$Writing`, which is `lib` rather than chemistry.** ***Recorded rather than dropped, because an unwritten deferral is one somebody re-invents.*** |
-| ***the author specification's type half*** | [`$Author.valid()`](../../package/src/book/Author.tsx) checks the loop and never the type, **and the card carries no type to check.** *Both are the consumer sprint's, not this one's.* |
+| ***the author specification's type half*** | `$Author.valid()` checks the loop and never the type, **and the card carries no type to check.** *Both are the consumer sprint's, not this one's.* |
 | **the 27 hand-written prototype walks** | *A formula catalogue could carry several of them — three decorator registries and `$views$` among them — **and consolidating them is not what was asked.*** **Named so a later sprint can find it.** |
 | **the dormant `$Rep` reflection layer** | **1,063 lines with no caller outside its own test.** *This sprint does not build on it and does not delete it.* |
 

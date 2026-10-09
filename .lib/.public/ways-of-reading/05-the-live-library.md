@@ -22,7 +22,7 @@
 | **where a book comes from** | a `.tsx` module the compiler emitted, imported at page load | **the same, plus writing fetched from a branch through the GitHub API** |
 | **who writes** | an author, in the corpus, ahead of a build | **a reader, in their own section, at any time** |
 | **what they write** | chapters | ***comments · a journal*** — Doug's two examples |
-| **when it is checked** | ***the build*** — [`validate.ts`](../../build/stages/validate.ts) holds every book at once and asks each one | **at the moment it arrives** |
+| **when it is checked** | ***the build*** — `validate.ts` holds every book at once and asks each one | **at the moment it arrives** |
 
 ## The one thing this changes now, and it is why the aside earns a chapter
 
@@ -30,9 +30,9 @@
 
 ***This aside says: build-time is where it RUNS, and it must not be where it LIVES.***
 
-- **A rule that lives in [`validate.ts`](../../build/stages/validate.ts) is a rule the browser cannot ask.** *The compiler is node-side and renders nothing.*
+- **A rule that lives in `validate.ts` is a rule the browser cannot ask.** *The compiler is node-side and renders nothing.*
 - **A rule that lives in `valid()` on the class can be asked from either side** — the build calls it over the whole corpus, and a page can call it over one arriving comment.
-- ***That is already the shape the framework has***, and [`validate.ts` says so in its own words](../../build/stages/validate.ts): *"It invents no rules. The bond constructors already require a cover… and `valid()` answers the softer questions."*
+- ***That is already the shape the framework has***, and `validate.ts` says so in its own words: *"It invents no rules. The bond constructors already require a cover… and `valid()` answers the softer questions."*
 
 **So the constraint is one sentence: *the rules are the model's; the build is one caller.*** *Nothing needs building for that to be true, and it costs nothing to keep true. Losing it costs a rewrite.*
 
@@ -41,7 +41,7 @@
 *Named so the size is visible, and **none of it is proposed**.*
 
 - **A write path.** *A limited API token against one branch* — Doug's own framing. **A public site cannot hold a token that can write**, so this is a function somewhere, or an app, or a form that opens a pull request. ***Unanswered.***
-- **A fetch path that is not a module import.** [`books.tsx`](../../app/src/libraries/books.tsx) is a map of dynamic imports the compiler wrote; **a comment arrives as data and has to become writing at runtime.** *The framework can do that — a `$Section` composes from a block — but nothing today builds writing from anything but a module.*
+- **A fetch path that is not a module import.** `books.tsx` is a map of dynamic imports the compiler wrote; **a comment arrives as data and has to become writing at runtime.** *The framework can do that — a `$Section` composes from a block — but nothing today builds writing from anything but a module.*
 - ***Live validation, which is the same `valid()` and a different caller.***
 - **A section that belongs to a reader.** *Doug: "their section of it."* **The model has no notion of who may write where**, and [the library's own summit is a single autobiographical subject](../the-semantics-of-books/07-the-subjective-subject-and-the-library.md) — *a library of many journals is a shape the derivation has not been asked about.*
 

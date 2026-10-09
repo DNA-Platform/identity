@@ -24,7 +24,7 @@
 
 ## <a id="the-literature"></a>What was read
 
-**The demo end to end** — `.encyclopedia/.cover.tsx`, `.book.tsx`, `.chapter.tsx`, `1-the-languages.tsx`, `.public/main.tsx` — **and the framework it stands on**: [`$Index`](../../package/src/book/Index.tsx), [`$Book`](../../package/src/book/Book.tsx), [`$ColumnsFormat`](../../package/src/encyclopedia/ColumnsFormat.tsx), [`$Writing.searchForOne`](../../package/src/writing/Writing.tsx).
+**The demo end to end** — `.encyclopedia/.cover.tsx`, `.book.tsx`, `.chapter.tsx`, `1-the-languages.tsx`, `.public/main.tsx` — **and the framework it stands on**: `$Index`, `$Book`, `$ColumnsFormat`, [`$Writing.searchForOne`](../../package/src/writing/Writing.tsx).
 
 ***And wikipedia.org itself, pulled and read*** — 120 KB of the real page, 2026-09-07. **Every measurement below is off that file, not off a memory of it.**
 
@@ -42,7 +42,7 @@
 </ul></div>
 ```
 
-**A heading and the writing beneath it is a SECTION.** *Five bands are five sections. A chapter of sections whose parts are all references, set in columns, is exactly what [`$Index`](../../package/src/book/Index.tsx) is — and `$Index` already wears [`$ColumnsFormat`](../../package/src/encyclopedia/ColumnsFormat.tsx) at three columns, which is what `langlist` is.*
+**A heading and the writing beneath it is a SECTION.** *Five bands are five sections. A chapter of sections whose parts are all references, set in columns, is exactly what `$Index` is — and `$Index` already wears `$ColumnsFormat` at three columns, which is what `langlist` is.*
 
 > ***AND WIKIPEDIA'S OWN CLASS FOR A BAND IS `bookshelf`.*** **Their markup reaches for the library metaphor at precisely the place we would call an index band.** *That is not decoration on our part — it is the strongest evidence in this branch that [the public library](../the-coding-style/03-the-coding-style.md#the-anchors) is describing something real about how encyclopedias are already organised.*
 
@@ -59,7 +59,7 @@
 
 ## <a id="not-absent"></a>The language component is NOT absent — it is hidden by one line
 
-***This corrects the premise of ask 2.*** **[`.book.tsx:69`](../../package/.wiki/.encyclopedia/.book.tsx) reads `@select('article:first-of-type p') prose_display = 'none'`** — *which hides **every paragraph** in the first article, and the first article is the chapter holding the five bands.*
+***This corrects the premise of ask 2.*** **`.book.tsx:69` reads `@select('article:first-of-type p') prose_display = 'none'`** — *which hides **every paragraph** in the first article, and the first article is the chapter holding the five bands.*
 
 **They are written, they draw, and each is already a `SubjectLink` pointing at `meta.wikimedia.org/wiki/List_of_Wikipedias`:**
 
@@ -92,13 +92,13 @@
 | **the button** | carries `aria-expanded` and `aria-controls`, and is `.lang-list-button` |
 | ***the trick that looks impossible*** | ***`.lang-list-button` has `outline: 1.6rem solid var(--background-color-base)`*** sitting over a separate `.lang-list-border` div. **The outline paints the page's own background around the pill, punching the gap in the rule behind it** — *which is why the line appears to stop on either side* |
 
-***So the whole control is one `$`-prefixed reactive field driving one class name, and CSS does the rest.*** **The pattern already stands in the same file:** [`$Search`](../../package/.wiki/.chapter.tsx) holds `$language` and writes it from an `onChange`. *A toggle is that, smaller.*
+***So the whole control is one `$`-prefixed reactive field driving one class name, and CSS does the rest.*** **The pattern already stands in the same file:** `$Search` (`package/.wiki/.chapter.tsx`) holds `$language` and writes it from an `onChange`. *A toggle is that, smaller.*
 
 ## <a id="consequences"></a>THREE FRAMEWORK CONSEQUENCES — and Doug named one of them
 
 ### <a id="c1"></a>C1 · A book cannot hold two indices today
 
-**[`searchForOne`](../../package/src/writing/Writing.tsx) throws — `writing holds one of a kind, and this one holds ${n}` — and [`$Book`'s bond](../../package/src/book/Book.tsx) reaches for its index through it.** ***So a locale index beside a wiki index fails at construction***, before anything draws.
+**[`searchForOne`](../../package/src/writing/Writing.tsx) throws — `writing holds one of a kind, and this one holds ${n}` — and `$Book`'s bond reaches for its index through it.** ***So a locale index beside a wiki index fails at construction***, before anything draws.
 
 > ***THE FIX IS ONE LINE AND NO MEMBER:*** **`$Book.index` answers the FIRST index rather than demanding the only one** — `searchFor($TypeOfIndex)[0] ?? placed(…)`. *That is what Doug's "it can be the main one" means in code: **the main index is the first one written**, and the rest are ordinary chapters of the book.* **`searchForOne` keeps its meaning for the things that genuinely must be unique — a cover, a synopsis, a table of contents.**
 
@@ -106,11 +106,11 @@
 
 > ***Doug:*** **"it teaches us that an index doesn't seem to be a chapter that we can assume is at the end, so let's just assume one is there for now"**
 
-**[`BookSpecification.$endsWithIndex`](../../package/src/book/Book.tsx) demands the LAST composed part BE the index.** *On wikipedia.org the last thing on the page is the footer, and the language index sits in the middle.* ***The rule becomes "a book carries an index" — a waiver of the position half, keeping the presence half, which is exactly what he asked for.***
+**`BookSpecification.$endsWithIndex` demands the LAST composed part BE the index.** *On wikipedia.org the last thing on the page is the footer, and the language index sits in the middle.* ***The rule becomes "a book carries an index" — a waiver of the position half, keeping the presence half, which is exactly what he asked for.***
 
 ### <a id="c3"></a>C3 · THE BOTTOM OF THE PAGE IS SPOKEN FOR BY THE INDEX — and this is the one that unblocks the others
 
-**There is a [`$FooterFormat`](../../package/src/encyclopedia/FooterFormat.tsx) — a REGION — and no `$Footer` KIND.** *[`$Book.view()`](../../package/src/book/Book.tsx) draws `<Footer><Closing /></Footer>`, and `_closing` is **the reading of the index**.*
+**There is a `$FooterFormat` — a REGION — and no `$Footer` KIND.** *`$Book.view()` draws `<Footer><Closing /></Footer>`, and `_closing` is **the reading of the index**.*
 
 > ***So today the footer region can only ever contain the index.*** **Wikipedia's real footer is not an index — it is the Wikimedia sidebar, the app badges, the sister projects and the licence.** *And [C1](#c1) and [C2](#c2) both fall out of the same confusion: the index was made to carry the bottom of the page because nothing else could.*
 
@@ -182,7 +182,7 @@
 | | |
 |---|---|
 | **[C1](#c1) a book cannot hold two indices** | *open. The index now draws where it was written rather than being assumed last, which was the half that blocked the others* |
-| **[C2](#c2) an index is not at the end** | ***DONE.*** `$endsWithIndex` became `$endsWithFooter` in [`Book.tsx`](../../package/src/book/Book.tsx) |
+| **[C2](#c2) an index is not at the end** | ***DONE.*** `$endsWithIndex` became `$endsWithFooter` in `Book.tsx` |
 | **[C3](#c3) the bottom of the page is spoken for** | ***DONE.*** `$Footer` written, exported, placed after the index, and `_closing` holds it. `pd-footer` draws |
 | **[U1](#u1-closed) where `specify()` runs** | ***ANSWERED, and it was never a bond at all.*** `$Writing.valid()` — a hook chemistry already calls right after the whole bond chain returns. 39 scattered calls deleted from 32 files. It is what took `book.test.tsx` from a 277-second heap death to reporting in under two seconds |
 | **the cover measurements, the toggle, the language list** | *handed to session 99, who matched wikipedia.org across thirteen widths* |

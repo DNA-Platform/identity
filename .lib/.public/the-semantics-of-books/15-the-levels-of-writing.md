@@ -17,7 +17,7 @@
 >
 > | this chapter says | v1 | v2 | |
 > |---|---|---|---|
-> | **six levels, and a book is not writing** | six | ***seven*** — `$File` joined, and **[`$Book extends $File`](../../package/src/book/Book.tsx)**, so a book **is** writing now | *the load-bearing one* |
+> | **six levels, and a book is not writing** | six | ***seven*** — `$File` joined, and **`$Book extends $File`**, so a book **is** writing now | *the load-bearing one* |
 > | **`role`, and use vs. mention** | 9 files | ***0 files*** | *the whole idea is absent* |
 > | **a figure is a caption** | 3 files | ***0 files*** | `$Figure`, `$Caption` both gone |
 > | **`valid()` / `$valid(condition, reason)`** | 37 files | ***0 files*** | *replaced by `specify()` and a [`$Specification`](../../package/src/utilities/Specification.ts) of `$`-prefixed rules* |
@@ -26,7 +26,7 @@
 >
 > ***Two claims in this chapter were never true of EITHER tree, and [K40](../projection/29-the-bind.md#k40) is where that was caught.*** **There has never been a `level` getter anywhere** — *grep, both trees, zero* — **so *"LEVEL ALONE DECIDES"* has always been an intention.** *And "too high → it throws" is not what happens: [U219](../projection/29-the-bind.md#u219) ruled everything not-at-my-level to be **below**, and [R345](../projection/29-the-bind.md#r345) then found the failure happening one grade earlier still, at the section's own specification.*
 >
-> ***One thing this chapter asked for and did not have, it now has.*** **[*"One walk, written once, and it is a tool"*](#the-parse) is true for the first time** — *[`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx), with all seven levels calling `parser.parse`.* **It divides by `accept`, which each level supplies, rather than by level.**
+> ***One thing this chapter asked for and did not have, it now has.*** **[*"One walk, written once, and it is a tool"*](#the-parse) is true for the first time** — *`utilities/Parser.tsx`, with all seven levels calling `parser.parse`.* **It divides by `accept`, which each level supplies, rather than by level.**
 >
 > ***This block is a marker, not a rewrite.*** *A settled account is rewritten when the thing it accounts for settles, and v2 is mid-sprint. **[The Bind](../projection/29-the-bind.md) is the current state of the model**; read it for the code and this chapter for the reasoning.*
 

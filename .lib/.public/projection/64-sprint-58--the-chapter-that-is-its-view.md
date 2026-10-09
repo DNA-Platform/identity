@@ -56,7 +56,7 @@
 
 ### <a id="d2"></a>D2 · ***A chapter overrides `view()`, and that is the one place a kind does***
 
-**B4 — a kind may not override `view()` — was given for kinds of WRITING, "in the library where most implementations are terminal", and Doug called it "a rule meant to be broken someday."** *A chapter is on the other hierarchy; its view IS the chapter.* ***Written down here so the convention's one exception has a reason at the line and [The Coding Style](11-the-coding-style.md#the-drawing-conventions) can carry it.***
+**B4 — a kind may not override `view()` — was given for kinds of WRITING, "in the library where most implementations are terminal", and Doug called it "a rule meant to be broken someday."** *A chapter is on the other hierarchy; its view IS the chapter.* ***Written down here so the convention's one exception has a reason at the line and [The Coding Style](../the-coding-style/03-the-coding-style.md#the-drawing-conventions) can carry it.***
 
 ### <a id="d3"></a>D3 · ***The contents is derived from the book's chapters, and `.table.tsx` is deleted in both demos***
 

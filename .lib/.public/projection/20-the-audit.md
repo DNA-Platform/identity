@@ -63,7 +63,7 @@
 
 **<a id="p4"></a>P4 — A DEPENDENCY IS ASKED FOR AT RENDER, NEVER STORED.** *"A field initializer runs once, on the template, before any scope exists"* ([M5](18-the-theme.md#m5)). So `theme` is a getter that resolves, [`Writing.tsx:89-91`](../../package/src/writing/Writing.tsx), and **never a member holding a value.** *This is the specification that makes a theme swappable at all.*
 
-**<a id="p5"></a>P5 — THE DEFAULT IS THE ARGUMENT, NOT SOMETHING STORED.** *A framework that configured itself could not be re-dressed from outside* — [`dressing.tsx:8-10`](../../app/src/dressing.tsx) says it in the one file that registers anything. **Remove the registration and the page returns exactly to the default**, which is [what the theme sprint made its unfakeable proof](18-the-theme.md#what-a-hand-authored-page-could-fake-and-what-it-could-not).
+**<a id="p5"></a>P5 — THE DEFAULT IS THE ARGUMENT, NOT SOMETHING STORED.** *A framework that configured itself could not be re-dressed from outside* — `dressing.tsx:8-10` says it in the one file that registers anything. **Remove the registration and the page returns exactly to the default**, which is [what the theme sprint made its unfakeable proof](18-the-theme.md#what-a-hand-authored-page-could-fake-and-what-it-could-not).
 
 **<a id="p6"></a>P6 — LEVEL ALONE DECIDES; NO CLASS NAME APPEARS IN THE WALK.** `level` is a getter, so it is inherited, and *a kind the model has never heard of is handled without the walk being told anything about it* ([The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md#the-parse)). **Inheritance is not a case.** *This is the principle [W4](#w4) breaks.*
 
@@ -75,17 +75,17 @@
 
 **<a id="p10"></a>P10 — A READING IS POST-HOC AND PURE; IT WRITES NOTHING.** *"The parse writes nothing. Not a number, not a role."* Numbers belong to **references** — that is what a `$Location` **is** — never to parts. `parts()` returns a **fresh reading, never held, always compared by value** ([finding 4, closed as specification](04-the-member-audit.md)).
 
-**<a id="p11"></a>P11 — EVERYTHING IS SAID IN BOOKS. THE VOCABULARY IS CLOSED.** *"We don't talk about human beings, putting sets and other sets in set theory"* (Doug). **Authorship is computed off catalogue structure, never imported** — which is why `$Book.library` walks subject cards to a fixed point, [`Book.tsx:122-133`](../../package/src/book/Book.tsx), instead of asking anything outside. ***This is the principle every naming wart violates.***
+**<a id="p11"></a>P11 — EVERYTHING IS SAID IN BOOKS. THE VOCABULARY IS CLOSED.** *"We don't talk about human beings, putting sets and other sets in set theory"* (Doug). **Authorship is computed off catalogue structure, never imported** — which is why `$Book.library` walks subject cards to a fixed point, `Book.tsx:122-133`, instead of asking anything outside. ***This is the principle every naming wart violates.***
 
 **<a id="p12"></a>P12 — VALIDATION SAYS WHY, IN THE SAME PLACE `$check` SAYS A PARAMETER WAS WRONG.** `$valid(condition, reason)` returns its condition and records the reason, so **no call site moved**. And the rule that comes with it: **never short-circuit in front of a `$valid` call**.
 
-**<a id="p13"></a>P13 — A COMPLAINT TRAVELS; IT DOES NOT STOP THE WALK.** *"A build that reports one fault at a time is a build somebody runs many times"* — [`library.ts:78-84`](../../build/library.ts). **The same instinct as P12, one program over.**
+**<a id="p13"></a>P13 — A COMPLAINT TRAVELS; IT DOES NOT STOP THE WALK.** *"A build that reports one fault at a time is a build somebody runs many times"* — `library.ts:78-84`. **The same instinct as P12, one program over.**
 
-**<a id="p14"></a>P14 — THE SEAM IS A TYPE, NOT A FILE.** Every compiler stage reads [`library.ts`](../../build/library.ts) and never the filesystem, *"which is what lets them be built by different people at the same time."* **There is no serialized intermediate.** ***The single cleanest piece of architecture in the repository.***
+**<a id="p14"></a>P14 — THE SEAM IS A TYPE, NOT A FILE.** Every compiler stage reads `library.ts` and never the filesystem, *"which is what lets them be built by different people at the same time."* **There is no serialized intermediate.** ***The single cleanest piece of architecture in the repository.***
 
-**<a id="p15"></a>P15 — A NAME BECOMES A REFERENCE, AND A SILENCE IS FILLED WHERE IT IS KNOWN.** *"A word cannot be followed"* — [`resolve.ts:3-13`](../../build/stages/resolve.ts). **Nothing is written back to the author's file**; the answer lands in the model, and only the generated copy carries it. *This is the compiler obeying [P11](#p11) at build time.*
+**<a id="p15"></a>P15 — A NAME BECOMES A REFERENCE, AND A SILENCE IS FILLED WHERE IT IS KNOWN.** *"A word cannot be followed"* — `resolve.ts:3-13`. **Nothing is written back to the author's file**; the answer lands in the model, and only the generated copy carries it. *This is the compiler obeying [P11](#p11) at build time.*
 
-**<a id="p16"></a>P16 — POSITION ANSWERS FIRST; A DECLARATION ONLY CONFIRMS IT.** What a book belongs to falls out of **where it sits**, and a `.book` declaration overrides. **What a subject holds is not a list the subject keeps** — [`resolve.ts:81-83`](../../build/stages/resolve.ts) — *"which is why nothing has to be maintained in two places."*
+**<a id="p16"></a>P16 — POSITION ANSWERS FIRST; A DECLARATION ONLY CONFIRMS IT.** What a book belongs to falls out of **where it sits**, and a `.book` declaration overrides. **What a subject holds is not a list the subject keeps** — `resolve.ts:81-83` — *"which is why nothing has to be maintained in two places."*
 
 **<a id="p17"></a>P17 — ONE DECLARATION PER FILE, AND THE PAIR IS THE CONVENTION.** Every file in `package/src` carries **one class plus its `export const Name = $($Name)`**. *Checked: 51 classes, no violations* — [finding 11, still holding](04-the-member-audit.md).
 
@@ -189,13 +189,13 @@
 
 ### <a id="w30"></a>W30 — a book's card and a book's contents disagree about its chapters
 
-***Measured on the standing corpus:*** the card says `["Synopsis", "Symmetry"]`, the contents says `["Symmetry"]`, **on all seven books.** *A book's own synopsis is parenthetical and the contents filters it out; [`catalogue.ts`](../../build/stages/catalogue.ts) counts by position instead — `live.chapters.slice(2, 3 + book.chapters.length)` takes two where it wants one.*
+***Measured on the standing corpus:*** the card says `["Synopsis", "Symmetry"]`, the contents says `["Symmetry"]`, **on all seven books.** *A book's own synopsis is parenthetical and the contents filters it out; `catalogue.ts` counts by position instead — `live.chapters.slice(2, 3 + book.chapters.length)` takes two where it wants one.*
 
 ***Doug ruled it a BUG rather than a wart*** — *"it's a bug. And a good one. But it's not a wart in the framework"* — **and it is [filed as one](../solutions/25-the-card-that-listed-a-chapter-the-contents-did-not.md).** *The mechanism, which belongs to the design, is [I21 in the report](../the-condition-report/05-implementation.md#i21).*
 
 ### <a id="w43"></a>W43 — CORRECTED: the claim written here first was wrong
 
-***This entry first said [`sections/the-manifold.tsx`](../../.archive/app/src/sections/the-manifold.tsx) was a 705-line orphan imported by nothing, and called it the audit's worst finding. It is not an orphan.*** *`sections/book/library/the-manifold/book.tsx:4` imports `$TheManifold` from `'../../../the-manifold'`.*
+***This entry first said `sections/the-manifold.tsx` was a 705-line orphan imported by nothing, and called it the audit's worst finding. It is not an orphan.*** *`sections/book/library/the-manifold/book.tsx:4` imports `$TheManifold` from `'../../../the-manifold'`.*
 
 **The search that produced the wrong claim looked for `'./the-manifold'` and `'../the-manifold'` and never for three levels up** — ***a grep written from a guess about the specifier, reported as a measurement***, and [filed as its own defect](../solutions/24-the-orphan-that-was-not-an-orphan.md). **The real fault is placement and it is [O5 in the report](../the-condition-report/02-organization.md#o5).**
 

@@ -344,7 +344,7 @@ libraryOf(book):
 ## Writing
 
 - **R21.** A **sentence is a composition of words.** `$$Sentence` **is not a sentence** — it is the sentence's canonical reference, which also catalogues references to its words. That was intentional; use it.
-- **R22. `book.ref` is its cover** — semantically, we see the cover of a book first. The **table of contents is a reference for the book and a catalogue of its chapters, and it references the book through the cover.** *Verified: [`$TableOfContents.read()`](../../package/src/book/TableOfContents.tsx) already reads through `this.cover`. No change.*
+- **R22. `book.ref` is its cover** — semantically, we see the cover of a book first. The **table of contents is a reference for the book and a catalogue of its chapters, and it references the book through the cover.** *Verified: `$TableOfContents.read()` already reads through `this.cover`. No change.*
 - **R23. `role` is a property of writing itself**, values `use | mention`, **`use` the default**. *Doug's word, ruled 2026-08-06 over the reported population — "it has more to do with quotation."* Prose is used: words mean things. **Mention is the marked case** — *"'Cat' has three letters"* mentions the word — and quotation is what marks it.
 - **R24.** **Syntax is a typed word.** The word's **copy stays faithful to the sentence** — the mark itself, which is being **used**, doing syntactic work — and the **type carries the name** *Period*. Doug's own test settles it: *"it's not actually in the sentence"* — what is in the sentence is the mark, not its name, so naming belongs to the type (R16), which is where names live. *Verified as genuinely blocked today: [`$Word.valid()`](../../package/src/writing/Word.tsx) admits letters, numbers and apostrophes only, and [`$Sentence.parts()`](../../package/src/writing/Sentence.tsx) finds words with a regex that steps over punctuation. Syntax is not missing by oversight — it is discarded by the parse.*
 
@@ -530,7 +530,7 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 **THE DEMO, specified by Doug (2026-08-06) — this is the brief, not a menu.**
 
 1. **The bookshelf view of the demo app becomes a view of the library.** The shelf stops being a page that lists demos and *is* the library, seen one way.
-2. **The library catalogue is NOT on the shelf** — *"in the way that the table of contents isn't an option in the table of contents."* **The precedent is already in code**: [`$TableOfContents.parts()`](../../package/src/book/TableOfContents.tsx) filters out itself and the cover. A catalogue omitting itself is shipped behaviour, not a special case.
+2. **The library catalogue is NOT on the shelf** — *"in the way that the table of contents isn't an option in the table of contents."* **The precedent is already in code**: `$TableOfContents.parts()` filters out itself and the cover. A catalogue omitting itself is shipped behaviour, not a special case.
 3. **A cataloguing book is made for the existing two demos.** Real entries, real books, not placeholders.
 4. **A second way to view the bookshelf**, where you **interact with the library catalogue** — a writing-based view of the library, against the shelf's visual one.
 5. **"Please do a good job designing the library catalogue"** — the catalogue's own design is part of the brief, not incidental apparatus.

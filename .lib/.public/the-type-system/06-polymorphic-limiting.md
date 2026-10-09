@@ -43,7 +43,7 @@
 | | |
 |---|---|
 | ***`$Book` holds four blocks to get parts into four regions*** | **`_opening`, `_contents`, `_body`, `_closing` in [Book.tsx](../../package/src/libraries/Book.tsx)** — *filtered out of `_block` in the bond and read only by `view()`.* **There is no mechanism for "this part stands at the bottom", so a book keeps four lists and a hand-written view to place them.** *Doug's ruling the same day: "We do NOT cache lots of blocks. We don't cache anything in a composition but our parts because we have NO CONTROL of what is below us."* **And it has a shipped symptom** — the book decides what is a chapter by subtracting five instances it has not finished assigning, so a book that authors its footer last lists that footer in its own table of contents |
-| ***`$Bookmark` hand-rolls an ancestor walk*** | **`chapter()` in [Bookmark.tsx](../../package/src/libraries/Bookmark.tsx) asks `instanceof $Chapter` up the parents**, *because `$Writing` has exactly one ancestor walk and it is hard-coded to one kind — `get book()`.* **There is no way to ask for the nearest ancestor carrying a given type**, so the kind that needed one wrote its own |
+| ***`$Bookmark` hand-rolls an ancestor walk*** | **`chapter()` in Bookmark.tsx asks `instanceof $Chapter` up the parents**, *because `$Writing` has exactly one ancestor walk and it is hard-coded to one kind — `get book()`.* **There is no way to ask for the nearest ancestor carrying a given type**, so the kind that needed one wrote its own |
 | ***six classes declare the same `heading()`*** | **byte-identical in [Section.tsx](../../package/src/writing/Section.tsx), `$Table`, `$Summary`, `$Title`, `$Author`, `$Subject`.** *[Shells Over Types](03-shells-over-types.md) says the TYPE confers the powers — and it does, at runtime.* **An `implements` clause cannot be satisfied by a type conferring anything**, so the member is copied into every kind by hand |
 
 ***THE THIRD ROW SETTLES THE ARGUMENT.*** **The framework's own central claim is true when the code runs and unsayable when the code is written**, *and six identical lines are what that costs.* **That is not six authors being lazy. That is one gap, paid six times.**
@@ -56,7 +56,7 @@
 
 > ***THE SECOND FACE MOVES THE MEMBER TO A UTILITY AND PASSES THE RECEIVER AS AN ARGUMENT, and it looks like good engineering.*** **`reflection.indent(writing)` IS `writing.indent()` with the receiver demoted to a parameter.** *It reads as sharing, as DRY, as a well-factored helper — and it is the same member with nowhere to live, hidden better.*
 
-***THE TELL IS ONE LINE AND IT IS MECHANICAL: a utility method whose FIRST PARAMETER is the thing the method is about.*** **Measured in [`Reflection`](../../package/src/utilities/Reflection.tsx) on 2026-09-09:**
+***THE TELL IS ONE LINE AND IT IS MECHANICAL: a utility method whose FIRST PARAMETER is the thing the method is about.*** **Measured in `Reflection` on 2026-09-09:**
 
 | | |
 |---|---|
@@ -69,7 +69,7 @@
 
 ## <a id="the-defence"></a>And the defence is written at the top of the file, which is how you know it is the finding
 
-**[`Reflection.tsx`](../../package/src/utilities/Reflection.tsx) opens by explaining itself:** *"A utility that must ask `instanceof` cannot IMPORT what imports it: `$Writing` reaches for reflection in its own methods, so a value import here closes a ring."* **True, and it is a module cycle, and a module cycle is a fact about the world rather than a missing feature.**
+**`Reflection.tsx` opens by explaining itself:** *"A utility that must ask `instanceof` cannot IMPORT what imports it: `$Writing` reaches for reflection in its own methods, so a value import here closes a ring."* **True, and it is a module cycle, and a module cycle is a fact about the world rather than a missing feature.**
 
 ***BUT IT DOES NOT JUSTIFY WHAT IT IS USED TO JUSTIFY.*** **The cycle is ALREADY BROKEN, in this same file** — `knows()` takes the four kinds by injection at the composition root, so nothing here imports what imports it. *The registry answers the ASKING.* **It says nothing about where the METHODS live.** *A member on `$Writing` could ask the same injected registry and never import a class either.*
 

@@ -937,7 +937,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="k40"></a>**K40 — the settled account is wrong in two places and this plan reads against it.** *[No `level` getter, no single walk.](#v1)* **Anything in [U219](#u219) that cites ch. 15 is citing an intention.**
 
-***HALF DISCHARGED, and the half that closed did so inside this sprint.*** **The single shared walk now exists** — *[`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx), and all seven levels call `parser.parse`; the seven copies of `filter($$(one)(X)).map($$(one, X))` are gone.* **So ch. 15's *"one walk, written once, and it is a tool"* is a report rather than an intention, for the first time.**
+***HALF DISCHARGED, and the half that closed did so inside this sprint.*** **The single shared walk now exists** — *`utilities/Parser.tsx`, and all seven levels call `parser.parse`; the seven copies of `filter($$(one)(X)).map($$(one, X))` are gone.* **So ch. 15's *"one walk, written once, and it is a tool"* is a report rather than an intention, for the first time.**
 
 ***The other half stands: there is still no `level` getter, and the walk does not decide by level.*** *It decides by `accept`, which each level supplies* — **so ch. 15's *"LEVEL ALONE DECIDES"* remains an intention**, and so does its *"too high — it throws, naming both levels"*, which [U219](#u219) ruled away and [R345](#r345) then found failed one grade earlier, at the section's own specification. ***[The correction is owed to ch. 15](../the-semantics-of-books/15-the-levels-of-writing.md) and is filed there.***
 
@@ -1068,7 +1068,7 @@ ASKED $Letter | carried [ [ '$TypeOfLetter', 'bound', false, 'object' ] ]
 
 *Doug, on the first draft: **"Not crazy about those names. First of all, why doesn't it take $Writing or strings? Weird that it takes a block. Let's assume $Writing. Don't like written as a name. Here parts would be parse right? This is a parser... Please make this a standard parser."***
 
-**[`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx) — a class of methods with no fields**, beside `Html` and used the same way. ***It takes a `$Writing` and its names are shift-reduce's own.***
+**`utilities/Parser.tsx` — a class of methods with no fields**, beside `Html` and used the same way. ***It takes a `$Writing` and its names are shift-reduce's own.***
 
 | member | what a parser calls it |
 |---|---|
@@ -1267,7 +1267,7 @@ return parser.parse(from,
 | **vitest** | ***50 files, 552 tests, all passing*** |
 | **at session open** | *45 files, 461 tests* |
 
-***The index landed.*** **`get index(): number` on `$Writing` satisfies [`$Composition$`](../../package/src/writing/Composition.tsx) for all nine**, and *[the parse numbers what it composes](../../package/src/utilities/Parser.tsx) as a final pass* — **which is where Doug said to put it.**
+***The index landed.*** **`get index(): number` on `$Writing` satisfies [`$Composition$`](../../package/src/writing/Composition.tsx) for all nine**, and *the parse numbers what it composes (`package/src/utilities/Parser.tsx`) as a final pass* — **which is where Doug said to put it.**
 
 ## <a id="handoff-index"></a>The index — ***and the obvious implementation is FORBIDDEN***
 
@@ -1346,4 +1346,4 @@ return parser.parse(from,
 
 ***Scope, attached, because [a number without it is not evidence](../solutions/14-the-green-that-exercised-nothing.md):*** **`@dna-platform/chemistry` resolves by symlink into the working copy**, *which stands 867 lines ahead of `HEAD`* — **so that green is against uncommitted framework code**, and a clone at `HEAD` would not reproduce it.
 
-***THE WHOLE SPRINT IS UNCOMMITTED.*** **23 modified and 46 untracked files under [`package/`](../../package/)** — *[`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx), both specification classes, the entire 29-example **`.spec/`** folder and fourteen test files* — **plus 20 modified and 12 untracked in [chemistry](../../../chemistry/package/).** *Everything this handoff describes exists on disk and nowhere else.* ***That is the first thing to settle, and it is Doug's call.***
+***THE WHOLE SPRINT IS UNCOMMITTED.*** **23 modified and 46 untracked files under [`package/`](../../package/)** — *`utilities/Parser.tsx`, both specification classes, the entire 29-example **`.spec/`** folder and fourteen test files* — **plus 20 modified and 12 untracked in [chemistry](../../../chemistry/package/).** *Everything this handoff describes exists on disk and nowhere else.* ***That is the first thing to settle, and it is Doug's call.***

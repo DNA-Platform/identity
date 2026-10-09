@@ -66,7 +66,7 @@
 
 ## <a id="drawn"></a>WHERE A WRITING IS DRAWN — ***the one design owed***
 
-**`parenthetical` says "present and not drawn here" and nothing draws it there instead**, so `$Footnote` draws nothing. [`Note.tsx`](../../package/src/writing/Note.tsx) already names this as the mixing rule it waits for: WHERE A WRITING IS DRAWN is a dimension spelled three ways — `parenthetical`, `$Book.placed`, and a format that moves a drawing — and named none. ***Doug, 2026-09-09, granted the use of it in the other direction:*** *"You can not print parenthetical things if you need them in the schema but not on the page."*
+**`parenthetical` says "present and not drawn here" and nothing draws it there instead**, so `$Footnote` draws nothing. `Note.tsx` already names this as the mixing rule it waits for: WHERE A WRITING IS DRAWN is a dimension spelled three ways — `parenthetical`, `$Book.placed`, and a format that moves a drawing — and named none. ***Doug, 2026-09-09, granted the use of it in the other direction:*** *"You can not print parenthetical things if you need them in the schema but not on the page."*
 
 ## <a id="gap"></a>A HEADING NAMED IN MATH HAS NO NAME — ***the second gap***
 

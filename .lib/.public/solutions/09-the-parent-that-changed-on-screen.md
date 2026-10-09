@@ -23,7 +23,7 @@ So any member that reaches through `parent` tells the truth at binding and can l
 
 ## The fix
 
-[`$TableOfContents.book`](../../package/src/book/TableOfContents.tsx) computes to the **nearest `$Book`** — the same guarded walk `$Canonical` uses: follow `parent` upward, stop at a book, give up safely on a cycle or a dead end. And `parts()` now says plainly, when it stands under something that is not a book, what it found instead — an error that names the wrong parent beats a property access exploding two reads later.
+`$TableOfContents.book` computes to the **nearest `$Book`** — the same guarded walk `$Canonical` uses: follow `parent` upward, stop at a book, give up safely on a cycle or a dead end. And `parts()` now says plainly, when it stands under something that is not a book, what it found instead — an error that names the wrong parent beats a property access exploding two reads later.
 
 ## The lesson
 

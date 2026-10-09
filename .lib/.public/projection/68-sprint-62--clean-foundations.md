@@ -117,6 +117,6 @@ Where the reason is already a chapter, the comment goes; where it is not, one li
 
 ## <a id="stand"></a>Where things stand — ***2026-09-11, begun; [U4](#u4) landed***
 
-**[U4](#u4), the gate:** [verify-latex.mjs](../../package/.latex/.public/verify-latex.mjs) as `npm run verify:latex` — waits for the server, drives both readings through the strip's own choice, asserts the title's formula, the Abstract, 0 KaTeX errors, 0 panels, every citation a number, every row and citation landing below the strip after a plain jump, and names what failed. **Green at the head on both readings:** 82,582 chars · 66 rows landing 66 · 43 citations landing 43 · 335 entries. **Red for the right reason:** one fold key broken and the gate said *a citation draws its key — cook1971*, 42 of 43 landing; restored.
+**[U4](#u4), the gate:** verify-latex.mjs as `npm run verify:latex` — waits for the server, drives both readings through the strip's own choice, asserts the title's formula, the Abstract, 0 KaTeX errors, 0 panels, every citation a number, every row and citation landing below the strip after a plain jump, and names what failed. **Green at the head on both readings:** 82,582 chars · 66 rows landing 66 · 43 citations landing 43 · 335 entries. **Red for the right reason:** one fold key broken and the gate said *a citation draws its key — cook1971*, 42 of 43 landing; restored.
 
 **Next in the order:** [U3](#u3)'s selectors to classes with the fingerprint before and after, then [U1](#u1) file by file with [U2](#u2) riding each, then [U5](#u5).

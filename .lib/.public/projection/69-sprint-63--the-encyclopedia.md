@@ -41,7 +41,7 @@
 
 **The article column is 752 wide at x 264; the body is 16px sans; the infobox 14.08px; the h2 24px Linux Libertine.** *Wikipedia's own API serves the article as clean HTML — 1,086,131 bytes, 33 sections, 14 thumbnails, 14 quotations, 5 hatnotes, the infobox, 6 navboxes, 4 sister boxes, 848 citation marks over two reference lists, 1,093 internal links, the categories as page properties — saved to the session's scratchpad and to be saved beside the book as the paper's data was.*
 
-**The guide, [`src/article/`](../../package/src/article/):** four kinds in the four-declaration shape, one theme keeping the page, and one chrome chemical, `$Header`, which its own record calls *chrome, not writing* — a `$Chemical` so it is not parsed, not listed, not stripped. **The encyclopedia folder takes that shape.** *What is new is the per-component format beside a kind whose look is its own.*
+**The guide, `src/article/`:** four kinds in the four-declaration shape, one theme keeping the page, and one chrome chemical, `$Header`, which its own record calls *chrome, not writing* — a `$Chemical` so it is not parsed, not listed, not stripped. **The encyclopedia folder takes that shape.** *What is new is the per-component format beside a kind whose look is its own.*
 
 ## <a id="actors"></a>Actors
 
@@ -109,7 +109,7 @@ $(Infobox, Theme)(InfoboxTheme);
 
 **The ring — chosen: the seam.** *`$Language`'s bond writes `<LanguageFormat at={this.$at} />` in place of an empty one, and `$LanguageFormat.handed()` answers `{ at: this.$at }`; the same for the globe.* **Chosen over a ring that positions its own children, which is a framework-shaped change for a demo's page.** *The gap it exposes — a worn format cannot read the writing it clothes, so a prop crosses twice — is pitched to chemistry, not built here.*
 
-**The article — chosen: read the source.** *Parsoid's HTML is semantic and licensed CC BY-SA, the same licence the footer already carries.* **A script maps its sections to chapter files, its thumbnails to `<Figure>`, its blockquotes to `<Quote>`, its hatnotes to `<Hatnote>`, its infobox cells to `<Infobox>` lines, its two reference groups to `<References>` and `<Notes>` of keyed entries, its citation marks to `<Citation>` by key, its navboxes and categories to the new kinds.** *The script is kept beside the book, as [`.paper/`](../../package/.latex/.public/.paper/) is kept beside the paper; [Reading the Source](../the-first-draft/02-reading-the-source.md) is the rule.*
+**The article — chosen: read the source.** *Parsoid's HTML is semantic and licensed CC BY-SA, the same licence the footer already carries.* **A script maps its sections to chapter files, its thumbnails to `<Figure>`, its blockquotes to `<Quote>`, its hatnotes to `<Hatnote>`, its infobox cells to `<Infobox>` lines, its two reference groups to `<References>` and `<Notes>` of keyed entries, its citation marks to `<Citation>` by key, its navboxes and categories to the new kinds.** *The script is kept beside the book, as `.paper/` is kept beside the paper; [Reading the Source](../the-first-draft/02-reading-the-source.md) is the rule.*
 
 ## <a id="acceptance"></a>Acceptance examples
 
@@ -276,9 +276,9 @@ $(Infobox, Theme)(InfoboxTheme);
 
 ## <a id="stand"></a>Where things stand — ***2026-09-11, [U1](#u1) and [U2](#u2) landed***
 
-**[U1](#u1), the compiler — DONE.** [`.wiki/.public/build.mjs`](../../package/.wiki/.public/build.mjs) is now the syncing compiler on `.latex`'s body, with one change: the served tree's own tools are skipped by a RULE rather than a name — `verify-*.mjs` — so the wiki's gate does not have to be listed before it exists. *Run twice: **37 files synced, 3 books bound, 0 removed, both runs identical.*** **The probe scenario ran and was removed in the same command:** a file added to the source appeared in the served tree, and when it left the source the compiler **removed 1 and nothing else moved**. *One served file changed on the first run — `alan-turing/book.tsx`, which was stale against its own generator and now binds `$Contents` where it bound `$Table`, the same `.table` file in the same position.* **And the three generated `book.tsx` files left the source tree**, as Sprint 61 made them leave `.latex/aaronson/`; the compiler never read them. `tsc` on `.wiki` 0.
+**[U1](#u1), the compiler — DONE.** `.wiki/.public/build.mjs` is now the syncing compiler on `.latex`'s body, with one change: the served tree's own tools are skipped by a RULE rather than a name — `verify-*.mjs` — so the wiki's gate does not have to be listed before it exists. *Run twice: **37 files synced, 3 books bound, 0 removed, both runs identical.*** **The probe scenario ran and was removed in the same command:** a file added to the source appeared in the served tree, and when it left the source the compiler **removed 1 and nothing else moved**. *One served file changed on the first run — `alan-turing/book.tsx`, which was stale against its own generator and now binds `$Contents` where it bound `$Table`, the same `.table` file in the same position.* **And the three generated `book.tsx` files left the source tree**, as Sprint 61 made them leave `.latex/aaronson/`; the compiler never read them. `tsc` on `.wiki` 0.
 
-**[U2](#u2), the ring — DONE, and [D2](#d2) held.** Two `handed()` overrides in [`.wiki/.encyclopedia/.document.tsx`](../../package/.wiki/.encyclopedia/.chapter.tsx), nothing else touched; `$Language` and `$Languages` unchanged. **Measured in the browser at 1280 before and after:**
+**[U2](#u2), the ring — DONE, and [D2](#d2) held.** Two `handed()` overrides in `.wiki/.encyclopedia/.document.tsx`, nothing else touched; `$Language` and `$Languages` unchanged. **Measured in the browser at 1280 before and after:**
 
 | | before | after |
 |---|---|---|
@@ -354,7 +354,7 @@ $(Infobox, Theme)(InfoboxTheme);
 | **3** | is it a ***name with rules*** and no look? | a `$TypeOfX` in `.chapter.tsx`, written in as `<TypeOfX />` |
 | **4** | both a kind ***and*** a look of its own? | a class — and only then |
 
-***The rule under it is the framework's own, read off [`multiple.test.tsx`](../../package/.tests/multiple.test.tsx) and [The Spelling of a Kind](../the-coding-style/05-the-spelling-of-a-kind.md):*** **a consumer kind is a Specification and a `$TypeOfX` with a name — nothing in the framework is touched — and THE CLASS ROW IS ADDED ONLY WHEN THE KIND HOLDS A LOOK OF ITS OWN.** *The demo has it inverted: 35 classes, 0 types, 0 specifications.*
+***The rule under it is the framework's own, read off `multiple.test.tsx` and [The Spelling of a Kind](../the-coding-style/05-the-spelling-of-a-kind.md):*** **a consumer kind is a Specification and a `$TypeOfX` with a name — nothing in the framework is touched — and THE CLASS ROW IS ADDED ONLY WHEN THE KIND HOLDS A LOOK OF ITS OWN.** *The demo has it inverted: 35 classes, 0 types, 0 specifications.*
 
 ### <a id="d7"></a>D7 · ***The LaTeX test, applied: two normal pages declare NOTHING***
 

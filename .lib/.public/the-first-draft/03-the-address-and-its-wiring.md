@@ -24,9 +24,9 @@
 
 ## <a id="in-the-code"></a>Where the code already has it
 
-- **[`$Catalogue.follow(fragment)`](../../package/src/reference/Catalogue.tsx)** walks parts by position — `0/2`, and a span `0-2` in the last step — and **`$Catalogue.parts()` answers the held writing's parts' MENTIONS**, so a catalogue tree mirrors the composition tree one level at a time, lazily. ***That is Doug's "parts reads recursively… you can get the innards more easily than you think."***
-- **[`$Ref.read()`](../../package/src/reference/Ref.tsx)** follows a numeric fragment through `book.catalogue().follow(fragment)` — *the anchor in the query string, half built.*
-- **[`$Reference`'s bond](../../package/src/reference/Reference.tsx)** makes a `$Path` from its copy when the copy reads as a url, and **[`$Fold`](../../package/src/reference/Fold.tsx)** gives a writing a KEY that `$Writing.view()` writes as the anchor's `id`.
+- **`$Catalogue.follow(fragment)`** walks parts by position — `0/2`, and a span `0-2` in the last step — and **`$Catalogue.parts()` answers the held writing's parts' MENTIONS**, so a catalogue tree mirrors the composition tree one level at a time, lazily. ***That is Doug's "parts reads recursively… you can get the innards more easily than you think."***
+- **`$Ref.read()`** follows a numeric fragment through `book.catalogue().follow(fragment)` — *the anchor in the query string, half built.*
+- **`$Reference`'s bond** makes a `$Path` from its copy when the copy reads as a url, and **`$Fold`** gives a writing a KEY that `$Writing.view()` writes as the anchor's `id`.
 - **Mentions are made** for [words](../../package/src/writing/Word.tsx), [sentences](../../package/src/writing/Sentence.tsx), [paragraphs](../../package/src/writing/Paragraph.tsx), and [a section's paragraphs](../../package/src/writing/Section.tsx) — *in the bond of the level that holds them, as `$$X` mentions — references, pointers — holding the writing they stand for.*
 
 ## <a id="unwired"></a>Where it was never wired — measured 2026-09-10
@@ -36,8 +36,8 @@
 | ***no mention above a section*** | `grep 'mention ='` in `src`: **four sites** — Word, Sentence, Paragraph, Section. **A book, a chapter and a document have none**, so `book.catalogue()` is `undefined` and `$Ref.read('#3/0')` falls through to *"this route is the application to follow."* **The scheme is dormant on the whole library ladder.** |
 | ***no `$$Chapter`*** | [Chapter.tsx](../../package/src/libraries/Chapter.tsx) declares `$Chapter`, `$TypeOfChapter`, `ChapterSpecification` — three of the four, and the one Sprint 46 named is the missing one. |
 | ***ids are made from text*** | [`$Heading.print`](../../package/src/writing/Heading.tsx) writes `id={text with underscores}` — **a string where R10 says a number** — so two headings with the same words collide (`/turing` carries one twice) and the contents links by title rather than by address. |
-| ***the word is mangled*** | `adstyle` / `adstyles` in [Catalogue.tsx](../../package/src/reference/Catalogue.tsx) and [Url.ts](../../package/src/utilities/Url.ts) **is `address`**, struck by the sweep that removed "dress" — first seen at commit `06a4d0a`. *It reads as jargon and is a casualty, not a name.* |
-| ***nothing leverages a writing's document*** | *Doug, 2026-09-10:* **"I don't think anything leverages the document reference on writing. If you make it a reference, everyone can refer to their document, and for the book, it's the cover."** [`$Bookmark.document()`](../../package/src/libraries/Bookmark.tsx) walks parents to the nearest document by hand — *the seam is on the base and one kind wrote its own.* |
+| ***the word is mangled*** | `adstyle` / `adstyles` in Catalogue.tsx and Url.ts **is `address`**, struck by the sweep that removed "dress" — first seen at commit `06a4d0a`. *It reads as jargon and is a casualty, not a name.* |
+| ***nothing leverages a writing's document*** | *Doug, 2026-09-10:* **"I don't think anything leverages the document reference on writing. If you make it a reference, everyone can refer to their document, and for the book, it's the cover."** `$Bookmark.document()` walks parents to the nearest document by hand — *the seam is on the base and one kind wrote its own.* |
 
 ## <a id="convention"></a>The anchor convention, in his words
 

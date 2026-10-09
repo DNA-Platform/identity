@@ -23,9 +23,9 @@
 1. ***THE TABLE OF CONTENTS IS GONE AND THE COLUMN IT LIVED IN IS EMPTY.*** **Wikipedia's contents is the page's spine — sticky, numbered, nested, in the left margin** — and `$Book.listed()`, which built it, was deleted in [Sprint 55](61-sprint-55--the-two-ladders.md) along with the four workaround lines it was made of. *The paper got its contents back as ten literal `<Chapter/>` uses; the encyclopedia has not.* **This is the largest visible gap and the whole left column is white.**
 2. ***`$Wordmark` HAND-WRITES AN `<img>` AND CARRIES `$src` AND `$width`*** — *which is now exactly `$Image`, produced last sprint.* **It also overrides `view()`, which is the shape this codebase has removed everywhere else.** *This is the literal case of Doug's instruction: consume what we produce.*
 3. ***`$Talk` IS DEAD.*** **56 lines, no door export, no importer.** *Either Wikipedia's talk page is a thing we are building — in which case it is reachable — or it is not, and it goes.*
-4. ***THE CHROME IS THE DEMO'S AND `$Book` NOW HAS SEAMS FOR IT.*** **`header()` and `footer()` on `$Book` are the places a book type says what stands above and below** — the demo's `$Header`/`$Footer` predate them and are wired another way. *Whether Wikipedia's masthead belongs to the BOOK or to the APPLICATION is a real question, and [`src/encyclopedia.ts`](../../package/src/encyclopedia.ts) already answers it once: "a website has a header, a book does not."* **That answer should be re-read, not assumed.**
+4. ***THE CHROME IS THE DEMO'S AND `$Book` NOW HAS SEAMS FOR IT.*** **`header()` and `footer()` on `$Book` are the places a book type says what stands above and below** — the demo's `$Header`/`$Footer` predate them and are wired another way. *Whether Wikipedia's masthead belongs to the BOOK or to the APPLICATION is a real question, and `src/encyclopedia.ts` already answers it once: "a website has a header, a book does not."* **That answer should be re-read, not assumed.**
 5. ***WHAT WIKIPEDIA HAS THAT WE HAVE NOT DRAWN.*** Read off the real page: **the article/talk pair and the read/edit/view-history tabs · "From Wikipedia, the free encyclopedia" · the per-section edit link · the categories bar at the foot · the sidebar navigation · search.** *Each is a component question — which of these is an ENCYCLOPEDIA's and which is a website's — and the answer decides whether it lives in the door or in the demo.*
-6. ***`$Line` IS A LABELLED PARAGRAPH AND THE FILE SAYS IT MAY BE WRONG.*** [Infobox.tsx](../../package/src/encyclopedia/Infobox.tsx) carries its own open question: *whether it should be an `$IndexCard` instead.* **An infobox row has a label and a value, which is what an index card is.**
+6. ***`$Line` IS A LABELLED PARAGRAPH AND THE FILE SAYS IT MAY BE WRONG.*** Infobox.tsx carries its own open question: *whether it should be an `$IndexCard` instead.* **An infobox row has a label and a value, which is what an index card is.**
 
 ## <a id="carried"></a>CARRIED FROM SPRINT 55 — ***two blockers, both measured***
 
@@ -188,7 +188,7 @@
 | ***build*** | `node ../../../node_modules/rollup/dist/bin/rollup -c --environment QUICK` — **1.4s**, esbuild transpile, ES only, no `.d.ts`. The full `rollup -c` is for shipping |
 | ***suite*** | `node ../../../node_modules/vitest/vitest.mjs run` — **~2.8s** |
 | ***typecheck*** | `node ../../../node_modules/typescript/bin/tsc --noEmit -p src/tsconfig.json` |
-| ***serve*** | [`serve.sh`](../../package/serve.sh) — restarts both vite servers; **run it after every build or the browser serves a stale `dist`** |
+| ***serve*** | `serve.sh` — restarts both vite servers; **run it after every build or the browser serves a stale `dist`** |
 | ***see*** | puppeteer resolved as `file:///…/node_modules/puppeteer/lib/esm/puppeteer/puppeteer.js`; drivers live in the session scratchpad and are written fresh |
 
 ### <a id="stand-files"></a>The files this sprint touched, and what each now says
@@ -196,17 +196,17 @@
 | file | what it holds |
 |---|---|
 | [`src/writing/Writing.tsx`](../../package/src/writing/Writing.tsx) | `book` is an `@inert()` member SET at bond time, not derived · `parenthetical` + `$print` live here and `view()` reads `parenthetical` · `classes`/`addClass`/`removeClass`/`addType` |
-| [`src/utilities/Reflection.tsx`](../../package/src/utilities/Reflection.tsx) | **`is<T>()` is the ONE asking** — `instanceOf` deleted · `writing()`, `annotation()`, `composition()` · `level()` walks `hierarchies` · **no name-based validation left** |
-| [`src/writing/Type.tsx`](../../package/src/writing/Type.tsx) | `name` derives from the class in its FIELD INITIALISER — *not the bond, because `reflection.names()` reads a template built with `new`* · a type written as content takes its own name |
+| `src/utilities/Reflection.tsx` | **`is<T>()` is the ONE asking** — `instanceOf` deleted · `writing()`, `annotation()`, `composition()` · `level()` walks `hierarchies` · **no name-based validation left** |
+| `src/writing/Type.tsx` | `name` derives from the class in its FIELD INITIALISER — *not the bond, because `reflection.names()` reads a template built with `new`* · a type written as content takes its own name |
 | [`src/libraries/Book.tsx`](../../package/src/libraries/Book.tsx) | 65 lines · `cover`/`synopsis`/`table`/`chapters` as get-only properties · sets `book` on everything beneath · `$register` hands over the two hierarchy tops |
 | [`src/libraries/Chapter.tsx`](../../package/src/libraries/Chapter.tsx) | a `$Composition` whose TYPE is a `$TypeOfReference` · holds sub-chapters · prints a row and an anchor · ***carries wart W2, the per-read search*** |
-| [`src/reference/Fold.tsx`](../../package/src/reference/Fold.tsx) | the annotation that gives its holder a KEY; `$PageFold`, `$Bookmark`, `$Highlight` extend it |
-| [`src/writing/Image.tsx`](../../package/src/writing/Image.tsx) | `$source`, `$width`, `$height` — the base of `$Illustration` and `$Figure` |
-| [`src/formatting/Theme.tsx`](../../package/src/formatting/Theme.tsx) | the base sheet, the contents row group, `leader`/`place`/`spacing` |
-| [`src/article/Theme.tsx`](../../package/src/article/Theme.tsx) | LaTeX's values · contents numbering `listed1/2/3` by child depth · `link = '#000000'` |
-| [`src/markdown/Theme.tsx`](../../package/src/markdown/Theme.tsx) | one rung down GitHub's scale · blanks all three contents numbers |
-| [`.latex/.public/aaronson/.table.tsx`](../../package/.latex/.public/aaronson/.table.tsx) | **65 `<Chapter title="…"/>` uses, nested three deep**, generated from the chapters' own headings |
-| [`.wiki/.public/alan-turing/.table.tsx`](../../package/.wiki/.public/alan-turing/.table.tsx) | ten flat entries — ***still owes the nesting the paper has*** |
+| `src/reference/Fold.tsx` | the annotation that gives its holder a KEY; `$PageFold`, `$Bookmark`, `$Highlight` extend it |
+| `src/writing/Image.tsx` | `$source`, `$width`, `$height` — the base of `$Illustration` and `$Figure` |
+| `src/formatting/Theme.tsx` | the base sheet, the contents row group, `leader`/`place`/`spacing` |
+| `src/article/Theme.tsx` | LaTeX's values · contents numbering `listed1/2/3` by child depth · `link = '#000000'` |
+| `src/markdown/Theme.tsx` | one rung down GitHub's scale · blanks all three contents numbers |
+| `.latex/.public/aaronson/.table.tsx` | **65 `<Chapter title="…"/>` uses, nested three deep**, generated from the chapters' own headings |
+| `.wiki/.public/alan-turing/.table.tsx` | ten flat entries — ***still owes the nesting the paper has*** |
 
 ### <a id="stand-backlog"></a>The backlog the next sprint exists to clear
 

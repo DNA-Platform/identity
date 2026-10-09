@@ -112,7 +112,7 @@ override view(): ReactNode {
 
 ***Rule 1 is already the package's habit*** — [`$Letter.build`](../../package/src/writing/Letter.tsx) and [`$Writing.found`](../../package/src/writing/Writing.tsx) both write bracketless one-line bodies. **Rules 2 and 3 are not yet applied anywhere.**
 
-***Rule 2, unapplied, eight times.*** **The guard inside `single` is a four-line branch in every one of the seven levels and again in [`$Book`](../../package/src/book/Book.tsx):**
+***Rule 2, unapplied, eight times.*** **The guard inside `single` is a four-line branch in every one of the seven levels and again in `$Book`:**
 
 ```
         if (found.length !== 1)
@@ -123,7 +123,7 @@ override view(): ReactNode {
 
 ### <a id="is-it-a-filter"></a>And when a loop IS filter-shaped — ***the test, which is now a warning label***
 
-***[`Parser.tokens`](../../package/src/utilities/Parser.tsx) was the worked example and it is now the cautionary one.*** **Fourteen lines of loop with two `continue`s, doing what a filter and a map would have done** — *Doug's own words almost exactly: "loops through and removes something technical."* **It was rewritten into three chained calls, and [the rewrite failed](#brevity).** *Verified 2026-09-03: the chain STANDS in the file, and that is not the chapter contradicting itself — [Sprint 31's record](../projection/31-organization.md) says nothing was reverted because Doug said "minimise rewriting," not "undo"; the failure was of the KIND of act, the code was kept by his word. The example is historical; the law is unchanged.*
+***`Parser.tokens` was the worked example and it is now the cautionary one.*** **Fourteen lines of loop with two `continue`s, doing what a filter and a map would have done** — *Doug's own words almost exactly: "loops through and removes something technical."* **It was rewritten into three chained calls, and [the rewrite failed](#brevity).** *Verified 2026-09-03: the chain STANDS in the file, and that is not the chapter contradicting itself — [Sprint 31's record](../projection/31-organization.md) says nothing was reverted because Doug said "minimise rewriting," not "undo"; the failure was of the KIND of act, the code was kept by his word. The example is historical; the law is unchanged.*
 
 ***The analysis still stands and is worth keeping, because a suite written against an OUTCOME cannot catch a MECHANISM change.*** **A loop is genuinely filter-shaped only if all three hold:**
 

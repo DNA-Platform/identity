@@ -102,7 +102,7 @@ $Section(block: $Block) {
 
 > ***THE MECHANISM, and it is [P11](#the-class)'s shadow: `print` is inherited by CLASS while the hierarchy rides the TYPE.*** **So a kind can say it is a chapter and draw like nothing**, and no compiler, promise or rule will mention it.
 
-***The repair needed no machinery, which is how you know it was the right one:*** **each extends the class its type already extends** — the [`$ReferenceCard extends $Reference`](../../package/src/reference/ReferenceCard.tsx) precedent. *P11 is untouched: it forbids a class extending the level ABOVE it, and a synopsis is not above a chapter, it IS one.* **Measured after: `<span>` fell to ONE per page, against 11 `<article>`, 36 `<section>`, 138 `<p>` and one `<aside>` on `/turing`.**
+***The repair needed no machinery, which is how you know it was the right one:*** **each extends the class its type already extends** — the `$ReferenceCard extends $Reference` precedent. *P11 is untouched: it forbids a class extending the level ABOVE it, and a synopsis is not above a chapter, it IS one.* **Measured after: `<span>` fell to ONE per page, against 11 `<article>`, 36 `<section>`, 138 `<p>` and one `<aside>` on `/turing`.**
 
 **P25 · A TYPE DRAWS NOTHING AND FRAMES NOTHING.** *Before this, every type left an empty `<div class="">` in the DOM — found by probing, not by reading.*
 
@@ -142,7 +142,7 @@ $Section(block: $Block) {
 
 **P38 · A WAIVER IS `return false`, AND IT IS STILL A RULE.** *So it still carries `@specify`, in the library's own words.*
 
-**P39 · EVERY MODULE MUST LOAD FIRST, STANDALONE.** ***Doug:*** *"I don't want any weird module loadings or weird solutions to get things in different files. We deal with problems by looking at the design! Not patching."* **[`loading.test.tsx`](../../package/.tests/loading.test.tsx) imports each module into a fresh graph** — *and it caught the fatal one the moment `Writing.tsx` reached for an anchor, which is what sent `$Theme` out of writing.*
+**P39 · EVERY MODULE MUST LOAD FIRST, STANDALONE.** ***Doug:*** *"I don't want any weird module loadings or weird solutions to get things in different files. We deal with problems by looking at the design! Not patching."* **`loading.test.tsx` imports each module into a fresh graph** — *and it caught the fatal one the moment `Writing.tsx` reached for an anchor, which is what sent `$Theme` out of writing.*
 
 ---
 

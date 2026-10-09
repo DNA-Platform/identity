@@ -53,7 +53,7 @@
 
 **Unit 3 — compactness.** *The `single` guard collapsed to one line in **eight** classes; `$Writing.found`'s skip and `$Lib.$$`'s type guard likewise; [`$Letter.build`](../../package/src/writing/Letter.tsx) gained its one paragraph break, between deciding a kind and deciding a case.*
 
-**Unit 4 — [`Parser.tokens`](../../package/src/utilities/Parser.tsx), and it is the one change Doug FAILED.** *Fourteen lines of loop with two `continue`s became a three-step filter · map · filter.*
+**Unit 4 — `Parser.tokens`, and it is the one change Doug FAILED.** *Fourteen lines of loop with two `continue`s became a three-step filter · map · filter.*
 
 > ***FAILED 2026-08-30, and the chapter records it rather than claiming the unit as clean work.*** **Doug: "Okay well really really minimize rewriting. I don't think I even approved of that. This was about formatting…"**
 >
@@ -73,7 +73,7 @@
 | ***215 comment lines in the archive*** | **[O8](../the-condition-report/02-organization.md#o8) says commentary moves to the branch library and the book links back.** *That is a HARVEST, not a strip — and [What Carries Over](../the-type-system/01-what-carries-over.md) is explicit that you read before you delete.* ***A ruling, flagged, not taken.*** |
 | ***comments in **`.spec/`***** | *Those 29 files exist TO BE READ, and each opens with one line saying what its example demonstrates.* **Stripping them would move 29 sentences into the library and make the examples harder to read.** ***Also flagged.*** |
 | ***the archive's member order*** | **46 classes in code that still ships and is scheduled to stop.** *The mechanical pass is done; the reorder is risk against value and is Doug's call.* |
-| ***the compiler's 402 comments*** | ***O8 never ruled the compiler.*** *Doug named `$Chemistry`, `lib` and "the apps"; [`library.ts`](../../build/library.ts) is the seam and is documented heavily **on purpose**.* |
+| ***the compiler's 402 comments*** | ***O8 never ruled the compiler.*** *Doug named `$Chemistry`, `lib` and "the apps"; `library.ts` is the seam and is documented heavily **on purpose**.* |
 
 ---
 
@@ -133,12 +133,12 @@
 
 | | the change | |
 |---|---|---|
-| **1** | ***[`Parser.tokens`](../../package/src/utilities/Parser.tsx)*** — the loop became filter · map · filter | ***the failed one, and the clearest case*** |
+| **1** | ***`Parser.tokens`*** — the loop became filter · map · filter | ***the failed one, and the clearest case*** |
 | **2** | ***`Parser.parse`*** — `forEach((part, at) => { part.index = at; })` lost its braces | **ARGUABLE and listed because it is** — *the arrow went from a statement body to an expression body, so it now returns the assigned value and `forEach` discards it. No behaviour change, but it is not respacing, and it sits one line from the change that failed* |
 | **3** | ***the nine import repoints*** — `$TypedSpecification` now names a different module, one line deleted from each file | **structural: a symbol names a different module.** *Stated as fact and not as defence — it was required to fix a build [Doug's own in-flight fold had left broken](#done), 21 errors and 18 files not loading, and he had already given the fold as his intent* |
 | **4** | ***`Document.tsx` (v1, `.archive/document/Document.tsx`, deleted)*** — the dead `createElement` import deleted | **ARGUABLE** — *a line removed rather than moved* |
 
-***And three that are layout by the definition but that nobody asked for***, listed at the same weight rather than tucked away: **two blank lines added inside [`$Specification.rules()`](../../package/src/utilities/Specification.ts)**, applying the paragraphs rule to a method Doug never looked at; **import ORDER rearranged in [`Book.tsx`](../../package/src/book/Book.tsx) and [`Chapter.tsx`](../../package/src/book/Chapter.tsx)**, which is the author's own notion of consistency and no rule of his; and **`$Writing.build()` going from `{ }` to a two-line empty body.**
+***And three that are layout by the definition but that nobody asked for***, listed at the same weight rather than tucked away: **two blank lines added inside [`$Specification.rules()`](../../package/src/utilities/Specification.ts)**, applying the paragraphs rule to a method Doug never looked at; **import ORDER rearranged in `Book.tsx` and `Chapter.tsx`**, which is the author's own notion of consistency and no rule of his; and **`$Writing.build()` going from `{ }` to a two-line empty body.**
 
 > ***Everything else is plain layout and the line is firm:*** **the member regrouping, the eight `single` guards collapsed to one line — [his rule 2 verbatim](../the-coding-style/04-the-closeness-rule.md#brevity) — the two other guards likewise, the paragraph break in `$Letter.build`, `rules()` moving above `check()`, the whitespace collapse, and end-of-file normalisation.**
 
@@ -161,7 +161,7 @@
 | | count | verdict |
 |---|---|---|
 | ***truly dynamic — the ALLOWED exception*** | **~6** | ***keep*** — `{ left: this.x, top: this.y }` from a drag · `{ color: colors[this.$priority] }` · and three in chemistry tests where **the inline style IS the thing under test**, proving reactivity reaches the DOM |
-| ***styling decisions in [`the-manifold.tsx`](../../.archive/app/src/sections/the-manifold.tsx)*** | **15** | ***fix*** — *and it is one file, already recorded as known-bad by [Ways of Reading](../ways-of-reading/04-ways-of-reading.md)* |
+| ***styling decisions in `the-manifold.tsx`*** | **15** | ***fix*** — *and it is one file, already recorded as known-bad by [Ways of Reading](../ways-of-reading/04-ways-of-reading.md)* |
 | ***styling decisions elsewhere*** | **~10** | ***fix*** — *spread across the two demonstrations, one or two to a file* |
 
 ***Two of the manifold's carry HARD-CODED HEX*** — `#b3a37f` and `#eef3ea` — **which is the precise drift the rule names**: *"theme values inaccessible, drift inevitable."* ***Those two are the worst of the thirty-one and the cheapest to argue about.***

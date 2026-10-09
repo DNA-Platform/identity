@@ -46,13 +46,13 @@
 
 **Four words, and the distinctions between them are exact:** a type **specifies**; a thing **satisfies** a specification; checking one against the other is **validation**.
 
-<a id="r206"></a>**R206** — ***the domain word is `specification`, and "specification" is struck from the corpus.*** **329 occurrences in this branch library, 4 in chemistry's, 7 in code** — *measured this session.* **The only survivors are the demonstration corpus's own physics prose** — *"conservation specifications" in [`symmetry.tsx`](../../app/src/libraries/.physics/the-standard-model/symmetry.tsx), which is a book's content rather than our vocabulary.*
+<a id="r206"></a>**R206** — ***the domain word is `specification`, and "specification" is struck from the corpus.*** **329 occurrences in this branch library, 4 in chemistry's, 7 in code** — *measured this session.* **The only survivors are the demonstration corpus's own physics prose** — *"conservation specifications" in `symmetry.tsx`, which is a book's content rather than our vocabulary.*
 
 <a id="r207"></a>**R207** — ***`valid()` is renamed `specify()`.*** **86 call sites across 39 files in `lib`, 3 in `$Chemistry`** — *measured.* **The replacement reaches the comments as well as the code**, which is Doug's own note on the shape of this work.
 
 <a id="r208"></a>**R208** — ***`$valid(condition, reason)` keeps its name.*** **It is doing validation**, which is one of the four words, and it is exported from `$Chemistry` — so renaming it crosses a package boundary for no gain. ***Stated so the pair reads deliberate rather than half-done.***
 
-<a id="r209"></a>**R209** — **the compiler's [`validate.ts`](../../build/stages/validate.ts) stage keeps its name** — *29 mentions in `build/`* — **because it is a phase of validation, and the compiler [may have compiler words](../the-condition-report/06-the-cleaning.md#actionable).**
+<a id="r209"></a>**R209** — **the compiler's `validate.ts` stage keeps its name** — *29 mentions in `build/`* — **because it is a phase of validation, and the compiler [may have compiler words](../the-condition-report/06-the-cleaning.md#actionable).**
 
 <a id="r210"></a>**R210** — ***the same sweep takes the other struck words, because a vocabulary pass that leaves two of them behind is one nobody trusts.*** **"Failure" — 8 in code, 54 in the branch libraries** — *including a styled component named `Failure` in [last sprint's own demonstration](../../../chemistry/package/app/src/sections/formula/case-2.tsx), written after the ban.* **"Make" — 33 occurrences after three separate bans**, *8 of them in test files and one in [sprint 22's chapter](22-working-well-by-default.md).*
 
@@ -74,7 +74,7 @@
 
 <a id="r213"></a>**R213** — ***a specification says what it means for the thing to be what it is.*** *It is not a description of the thing and not a schema over it — it is the answer to* **what would make this an autobiography.**
 
-<a id="r214"></a>**R214** — ***a thing may have SEVERAL types, and each of them specifies.*** **[`$Book.type`](../../package/src/book/Book.tsx) is already `$Type[]`** — *plural in the code today* — **so "a lot of types weighing in" is the model's own word rather than a new idea.**
+<a id="r214"></a>**R214** — ***a thing may have SEVERAL types, and each of them specifies.*** **`$Book.type` is already `$Type[]`** — *plural in the code today* — **so "a lot of types weighing in" is the model's own word rather than a new idea.**
 
 <a id="r215"></a>**R215** — ***a type acts like a word and inherits the default machinery; nothing is built specially for it.*** *Doug: "We don't really care about cataloguing types. We don't need a `$$Type`… It acts like a word. We shouldn't have to change the default machinery. It should inherit the catalogue."* **Answered from the code: there is no `$$Phrase` and none is needed** — *the forms are `$$Word`, `$$Sentence`, `$$Paragraph`, `$$Section`, `$$Chapter`, `$$Synopsis`, `$$Book`, each **one grade below** what it stands for; `$Phrase extends $Word`, so **`$$Word` already stands for a phrase** and catalogues its letters, and the phrase's `copy` is **the name of the type**.*
 
@@ -82,7 +82,7 @@
 
 <a id="r217"></a>**R217** — ***a subject may provide a DIFFERENT specification for the same written word, in its own scope, with no change to any catalogue.*** **The mechanism exists and is [already demonstrated](../../../chemistry/package/app/src/sections/formula/case-3.tsx)** — *`$(Stricter, Autobiography)(Strict)`* — **and it is the direct answer to [the problem](#the-problem)**: *a new subject provides its own specification instead of subclassing four classes.*
 
-<a id="r218"></a>**R218** — ***what a book must be stops being written inside `$Book`.*** **[`$Book.structure()`](../../package/src/book/Book.tsx) holds seven statements today** — *a cover at position zero, exactly one cover, a synopsis of itself, exactly one table of contents, an author, a subject, at most one canonical* — **and they become what types specify, so a subject can add an eighth without touching the class.**
+<a id="r218"></a>**R218** — ***what a book must be stops being written inside `$Book`.*** **`$Book.structure()` holds seven statements today** — *a cover at position zero, exactly one cover, a synopsis of itself, exactly one table of contents, an author, a subject, at most one canonical* — **and they become what types specify, so a subject can add an eighth without touching the class.**
 
 ---
 
@@ -90,9 +90,9 @@
 
 > ***Doug, 2026-08-25:*** *"I realize that we did something wrong. **Let us create a `$File` which is a composition of documents**, and let's **move as much of `$Book` into `$File`**, and then let's make **`$Book` a subclass of `$File`**, with **`$Chapter` a subclass of `$Document`**, and see if we can **retype the properties to get book to be a composition of chapter even though file is a composition of document. It should be possible with specification.** Add this to the sprint."*
 
-<a id="r219"></a>**R219** — ***`$File` is a composition of documents***, and **as much of [`$Book`](../../package/src/book/Book.tsx) as is not specifically about books moves into it.**
+<a id="r219"></a>**R219** — ***`$File` is a composition of documents***, and **as much of `$Book` as is not specifically about books moves into it.**
 
-<a id="r220"></a>**R220** — ***`$Book extends $File`.*** **`$Chapter extends $Document` is already true** — *measured, [`Chapter.tsx:15`](../../package/src/book/Chapter.tsx)* — **so half the relation stands already and this sprint states the other half.**
+<a id="r220"></a>**R220** — ***`$Book extends $File`.*** **`$Chapter extends $Document` is already true** — *measured, `Chapter.tsx:15`* — **so half the relation stands already and this sprint states the other half.**
 
 <a id="r221"></a>**R221** — ***a book is a composition of chapters while a file is a composition of documents.*** **The narrowing rides a type parameter, which is a shape the framework already uses** — *[`$Writing<P extends $Writing>`](../../package/src/writing/Writing.tsx), narrowed by `$Document extends $Writing<$Section>`* — **and what the compiler cannot carry at runtime is carried by specification**, which is Doug's own sentence: *"It should be possible with specification."*
 
@@ -110,13 +110,13 @@
 | **composition** | **10** — `parts` `at` `where` `select` `selectMany` `single` `located` `canonical` `copy` `reading` | *the `$Composition` surface, identical to what every other composing class carries* |
 | **cataloguing** | **8** — `card` `entries` `read` `follow` `ref` `library` `pointed` `canonicals` | *a book as a thing pointed at and a thing that holds others* |
 | **annotation** | **6** — `annotations` `author` `subject` `type` `title` `subtitle` | *lifted from the cover* |
-| ***book structure*** | **7 statements in one method** — [`structure()`](../../package/src/book/Book.tsx) | ***the only part that is genuinely about being a book***, and it is [what becomes a specification](#r218) |
+| ***book structure*** | **7 statements in one method** — `structure()` (`package/src/book/Book.tsx`) | ***the only part that is genuinely about being a book***, and it is [what becomes a specification](#r218) |
 
 <a id="r223"></a>**R223** — ***the split above is the decomposition, and `$File` takes the first two groups.*** **Drawing and composition are what a file of documents does**; *cataloguing, annotation and structure are what a book does with one.*
 
 <a id="r224"></a>**R224** — ***`$Chapter` is read in the same act, and it is the smaller half.*** **105 lines, six members over `$Document`** — *`$in` `book` `address` `ref` `read` `follow`, plus the bond and `requires()`.*
 
-<a id="r226"></a>**R226** — ***`requires()` IS a specification, under an older name, and it is already in the code.*** **[`$Chapter.requires()`](../../package/src/book/Chapter.tsx) is called by the bond and overridden twice** — *[`$Cover`](../../package/src/book/Cover.tsx) narrows it to demand a title;* ***[`$TableOfContents`](../../package/src/book/TableOfContents.tsx) EMPTIES IT*** — `protected override requires(): void {}`. **That is [S8's diagnostic](../the-condition-report/04-semantics.md#s8) firing on this exact method**: *a child that does not call its parent is evidence it is not a subclass.* ***So the rename is not cosmetic here — it lands on a member that is already being repealed in silence, and [R216](#r216) is what stops that.***
+<a id="r226"></a>**R226** — ***`requires()` IS a specification, under an older name, and it is already in the code.*** **`$Chapter.requires()` is called by the bond and overridden twice** — *`$Cover` narrows it to demand a title;* ***`$TableOfContents` EMPTIES IT*** — `protected override requires(): void {}`. **That is [S8's diagnostic](../the-condition-report/04-semantics.md#s8) firing on this exact method**: *a child that does not call its parent is evidence it is not a subclass.* ***So the rename is not cosmetic here — it lands on a member that is already being repealed in silence, and [R216](#r216) is what stops that.***
 
 <a id="r225"></a>**R225** — ***the sprint is judged on `$Book` and `$Chapter` carrying less, not on `$File` and `$Type` existing.*** **A number is owed at review: members before, members after.**
 
@@ -219,7 +219,7 @@
 
 <a id="r231"></a>**R231** — ***a specification is a piece of writing, carried by the thing it specifies.***
 
-<a id="r233"></a>**R233** — ***and this is [closure under books](../the-semantics-of-books/10-closure-under-books.md) applied to the RULES rather than to the content.*** **[`$Book.structure()`](../../package/src/book/Book.tsx)'s seven statements are TypeScript today** — *a specification whose home is outside the library it governs* — **and [The Live Library](../ways-of-reading/05-the-live-library.md) already names that as the fault:** *"a rule that lives in the compiler is a rule the browser cannot ask."* ***If a specification is writing, a book carries its own and the browser can ask it.***
+<a id="r233"></a>**R233** — ***and this is [closure under books](../the-semantics-of-books/10-closure-under-books.md) applied to the RULES rather than to the content.*** **`$Book.structure()`'s seven statements are TypeScript today** — *a specification whose home is outside the library it governs* — **and [The Live Library](../ways-of-reading/05-the-live-library.md) already names that as the fault:** *"a rule that lives in the compiler is a rule the browser cannot ask."* ***If a specification is writing, a book carries its own and the browser can ask it.***
 
 <a id="r234"></a>**R234** — ***and it answers Doug's opening framing.*** *"Consider defining them by spec rather than by type"* — **a Cover is not a class something extends; it is a specification some writing satisfies, and the specification is itself written.**
 
@@ -232,7 +232,7 @@
 | ***imprint*** | ***Doug's own, twice in [chapter zero](00-planning.md)***: *"the imprint page (**metadata as cover parentheticals**; publisher → team)"* and *"which parentheticals on the cover are metadata (publisher, date — **the imprint's content**)… and whether the imprint page derives from a metadata reading **the way the table of contents derives from chapters**"* | ***the closest, and it is already his word for this exact thing*** |
 | **colophon** | **taken, and narrower** — [Ways of Reading](../ways-of-reading/04-ways-of-reading.md): *"the production record: when, by whom, in what hands"* — and it is a styled component in the demonstration | *a kind of imprint, not the general idea* |
 | ***cataloguing-in-publication*** | **the librarian's actual term for the catalogue record printed inside the book** — *and [already tried in the demonstration](09-the-subject.md) as "the Cataloguing-in-Publication experiment"* | ***exactly the definition Doug asked for***, and long |
-| **the card** | **already built** — [`$$Book`](../../package/src/book/Book.tsx), and [S17 already ruled it *"a REFLECTION of the book — the same property names, with references replaced by cards"*](../the-condition-report/04-semantics.md#s17-ruled) | ***the OUTSIDE form of the same information*** |
+| **the card** | **already built** — `$$Book`, and [S17 already ruled it *"a REFLECTION of the book — the same property names, with references replaced by cards"*](../the-condition-report/04-semantics.md#s17-ruled) | ***the OUTSIDE form of the same information*** |
 
 ***The observation worth more than the word:*** **the card is what the catalogue holds about a book; what Doug is reaching for is what the BOOK holds about itself** — *and in a real library those are the same record in two places, which is precisely what cataloguing-in-publication is.* **So this is not a new idea to invent; it is [the card's inside face](#open), and the framework already has one half of it.**
 
@@ -248,7 +248,7 @@
 |---|---|---|
 | ***the diamond is already in the corpus*** | **21 generated classes** — one per cover, synopsis and chapter file, across 7 books | grep |
 | **and a subject-styled cover would need two supertypes** | `$Cover extends $Chapter`, so a physics cover must be **both** a `$Cover` and a `$PhysicsChapter` — ***which single inheritance forbids*** | read |
-| ***a scope cannot re-dress a chapter its book holds*** | [`$Book.place()`](../../package/src/book/Book.tsx) draws with `$(chapter)`, and **the instance branch is taken at [`chemical.ts:1337`](../../../chemistry/package/src/abstraction/chemical.ts) before the representative is consulted** | read |
+| ***a scope cannot re-dress a chapter its book holds*** | `$Book.place()` draws with `$(chapter)`, and **the instance branch is taken at [`chemical.ts:1337`](../../../chemistry/package/src/abstraction/chemical.ts) before the representative is consulted** | read |
 | **and the class is pinned earlier still** | generated books write `<PhysicsCover />` and `<TableOfContents />` as ordinary JSX — *"React's own path, and it is **not** resolved"* | read |
 | ***a formula resolution DOES go through the representative*** | [`formula.ts`](../../../chemistry/package/src/abstraction/formula.ts) passes its asker in and calls `$(component)` — **which is the whole mechanical difference between the two routes** | read |
 | ***but a book is built outside a drawing*** | generated books are `$(<Book>…</Book>)` at **module scope**, and [R202](24-the-formula.md#r202) says a formula reached outside a chemical's drawing is **not** swapped | read |
@@ -257,7 +257,7 @@
 | **the reference forms, and their grade rule** | `$$Word` `$$Sentence` `$$Paragraph` `$$Section` `$$Chapter` `$$Synopsis` `$$Book` — **each one grade below what it stands for, and there is no `$$Phrase`** | grep |
 | **the rename surface** | `valid(` **86** across **39 files** in `lib`, `$valid(` **19**; `$Chemistry` **3** and **1**; `build/` **29** | grep |
 | **the struck words** | *specification* **329** here · **4** in chemistry's library · **7** in code · **2** legitimate in the physics corpus. *failure* **8** in code · **54** in the libraries. *make* **33** | grep |
-| **what a book states about itself today** | [`$Book.structure()`](../../package/src/book/Book.tsx) — **seven statements, hardcoded in the class**, read twice: once by the bond and once by `valid()` | read |
+| **what a book states about itself today** | `$Book.structure()` — **seven statements, hardcoded in the class**, read twice: once by the bond and once by `valid()` | read |
 | ***the levels are siblings, not a chain*** | `$Word` `$Sentence` `$Paragraph` `$Section` each extend **`$Writing<P>` directly**; `$Document extends $Writing<$Section>`; `$Letter extends $Writing<$Letter>`. **Only the refinements stack** | read |
 | ***there is no `level` getter*** | **one comment in `Writing.tsx` contains the word** — nothing declares it, nothing reads it | grep |
 | ***and the walk names classes, five times*** | `$Paragraph.parts()` `instanceof $Sentence` · `$Section.parts()` `instanceof $Paragraph` · `$Document` `instanceof $Section` ×2, `$Footer`, `$Bibliography` | grep |
@@ -292,7 +292,7 @@
 
 <a id="k20"></a>**K20 — a rename across 39 files touches every specification in the package at once.** *`specify()` is called from bond constructors, from `$Document`'s harvest, and from the compiler's validation stage.* **A silent miss is a specification that stops being asked.**
 
-<a id="k21"></a>**K21 — `$File` moves the largest class in `lib`.** *[`Book.tsx`](../../package/src/book/Book.tsx) is 463 lines and the compiler reads its members through `any`* — **[S21](../the-condition-report/08-the-compiler.md#s21): "rename `contents` in the framework and the compiler keeps compiling and starts emitting empty cards."**
+<a id="k21"></a>**K21 — `$File` moves the largest class in `lib`.** *`Book.tsx` is 463 lines and the compiler reads its members through `any`* — **[S21](../the-condition-report/08-the-compiler.md#s21): "rename `contents` in the framework and the compiler keeps compiling and starts emitting empty cards."**
 
 <a id="k22"></a>**K22 — two classes named `$Formula`.** *`lib` exports one from `writing/`; `$Chemistry` exports another.* **They meet in `index.ts` the moment `lib` imports the mechanism.**
 

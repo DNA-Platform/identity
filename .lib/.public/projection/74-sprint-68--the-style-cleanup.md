@@ -29,13 +29,13 @@
 
 **How to see it:** `sh serve.sh` at the package root; `http://localhost:5311/turing`, `/article`; `node .wiki/.public/verify-wiki.mjs --only=turing` and `--only=article`.
 
-**Read first, next time:** [the constraint](#constraint) · [Sprint 65 U6](71-sprint-65--the-encyclopedia-finished.md#u6) · [Solutions 74](../solutions/74-the-gate-that-was-green-while-the-eye-saw-the-drop.md), [77](../solutions/77-the-prefix-that-took-the-base-s-rule.md), [69](../solutions/69-the-class-that-every-kind-beneath-it-wears.md) · [`verify-wiki.mjs`](../../package/.wiki/.public/verify-wiki.mjs).
+**Read first, next time:** [the constraint](#constraint) · [Sprint 65 U6](71-sprint-65--the-encyclopedia-finished.md#u6) · [Solutions 74](../solutions/74-the-gate-that-was-green-while-the-eye-saw-the-drop.md), [77](../solutions/77-the-prefix-that-took-the-base-s-rule.md), [69](../solutions/69-the-class-that-every-kind-beneath-it-wears.md) · `verify-wiki.mjs`.
 
 ## <a id="constraint"></a>The constraint, in Doug's words — ***read before any line***
 
 > **"You will be finishing up the work for encyclopedia. This will polish what is there. You are not at liberty to change structural things. You are not at liberty to move things around for polish. You are to use the themes and formats correctly with no purview to redesign this framework."**
 
-*So: no new kind, no new member, no file moved or renamed, no reader shape changed, no change under `src/writing` or `src/library` that is not a theme value. Every fix is a value or a rule group in [`$EncyclopediaTheme`](../../package/src/encyclopedia/Theme.tsx) or in the format the kind already wears — [`$ManualFormat`](../../package/src/encyclopedia/Manual.tsx), [`$InfoboxFormat`](../../package/src/encyclopedia/Infobox.tsx), [`$MenuFormat`](../../package/src/application/Menu.tsx), [`$Appearance`](../../package/src/application/Appearance.tsx) — or a pair in the gate. A fix that needs anything else is [flagged](#flagged), never built.*
+*So: no new kind, no new member, no file moved or renamed, no reader shape changed, no change under `src/writing` or `src/library` that is not a theme value. Every fix is a value or a rule group in `$EncyclopediaTheme` or in the format the kind already wears — `$ManualFormat`, `$InfoboxFormat`, `$MenuFormat`, `$Appearance` — or a pair in the gate. A fix that needs anything else is [flagged](#flagged), never built.*
 
 ## <a id="brief"></a>The brief, in Doug's words
 

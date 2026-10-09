@@ -79,7 +79,7 @@
 
 ### <a id="u1"></a>U1 · ***The citations reach the encyclopedia*** — B3
 
-**Mechanism:** *the machinery exists and the demo does not use it.* **A `<PageFold>` in a reference entry gives that paragraph a key; a `<Citation>[n](key)</Citation>` anywhere in the book reaches it** — [`src/reference/Fold.tsx`](../../package/src/reference/Fold.tsx) makes the key, and the paper proves the resolution at 7 entries and 12 marks.
+**Mechanism:** *the machinery exists and the demo does not use it.* **A `<PageFold>` in a reference entry gives that paragraph a key; a `<Citation>[n](key)</Citation>` anywhere in the book reaches it** — `src/reference/Fold.tsx` makes the key, and the paper proves the resolution at 7 entries and 12 marks.
 
 **Files:** `.wiki/.public/alan-turing/9-references.tsx` and its mirror in `.wiki/` · the body chapters that carry a claim worth citing · `src/encyclopedia/Theme.tsx` *only if the mark needs Wikipedia's superscript form.*
 
@@ -307,7 +307,7 @@
 | | |
 |---|---|
 | ***what I measured*** | **12 of 12 citations resolve on `/turing`, 7 of 7 on the paper** — *the mark's `href` matches an `id` in the DOM* |
-| ***what that could not see*** | **whether a citation LOOKS like a citation.** *`.pd-citation` has ZERO rules in [the base sheet](../../package/src/formatting/Theme.tsx)* — the article theme writes the brackets, the encyclopedia writes the superscript, **and the framework's own look draws a plain number.** *Doug was looking at the probe, which wears the base.* |
+| ***what that could not see*** | **whether a citation LOOKS like a citation.** *`.pd-citation` has ZERO rules in the base sheet (`package/src/formatting/Theme.tsx`)* — the article theme writes the brackets, the encyclopedia writes the superscript, **and the framework's own look draws a plain number.** *Doug was looking at the probe, which wears the base.* |
 | ***the lesson, and it is one this branch keeps relearning*** | ***a resolving link is a downstream number.*** **"It resolves" is not "a reader sees a citation."** *[Look at the artifact](../the-public-skillset/06-public-audit-against-the-page.md) — and look at it in EVERY reading, not the one that flatters.* |
 
 ***WHAT ELSE WAS MISSED — asked and answered rather than apologised for.*** **Driven on the probe: nine kinds are drawn that NO rule anywhere names.**

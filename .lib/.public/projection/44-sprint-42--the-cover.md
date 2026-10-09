@@ -66,13 +66,13 @@ The string `Title` appears nowhere in the machinery — only its own file, the e
 
 **The Lab renders because it only ever decorates METHODS** — every `@look` in [the Lab's own figures](../../../chemistry/package/app/src/sections/formula/figures.tsx) sits on `view()` or `$view()`. **`@dna-platform/public` decorates class PROPERTIES** — `@select('td, th') padding = '0.2em 0.4em'` and a dozen more across the encyclopedia dresses. `read`
 
-**The wiki application is the only application that loads `public`**, and its [vite config](../../.wiki/app/vite.config.ts) carries `@babel/plugin-proposal-decorators` with **no class-properties transform after it** — which is precisely the pairing Babel's legacy decorators require. The Lab's config carries the same comment about decorators reaching the browser through Babel rather than through `tsconfig`, and it was written before any property decorator existed to catch it.
+**The wiki application is the only application that loads `public`**, and its vite config (`.wiki/app/vite.config.ts`) carries `@babel/plugin-proposal-decorators` with **no class-properties transform after it** — which is precisely the pairing Babel's legacy decorators require. The Lab's config carries the same comment about decorators reaching the browser through Babel rather than through `tsconfig`, and it was written before any property decorator existed to catch it.
 
 ***The fix is two lines of application config plus one devDependency*** — `@babel/plugin-transform-class-properties` with `loose: true`, listed after the decorators plugin. **Neither the plugin nor its predecessor resolves anywhere in the tree today.** `probe`
 
 ## The resolve rule cannot be generalized, and the CHECK is why
 
-Generalizing `$typesResolve` from types to annotations was tried and **reverted the same hour**. [`binding/specify.ts`](../../binding/specify.ts) imports each book and calls `book.specify()` with **no render**, and a formula only resolves inside a drawing — so every book carrying a title would have failed the CHECK. **The failure-by-name stays where it already works: the formula machinery, at render.** `read`
+Generalizing `$typesResolve` from types to annotations was tried and **reverted the same hour**. `binding/specify.ts` imports each book and calls `book.specify()` with **no render**, and a formula only resolves inside a drawing — so every book carrying a title would have failed the CHECK. **The failure-by-name stays where it already works: the formula machinery, at render.** `read`
 
 # <a id="requirements"></a>Requirements
 

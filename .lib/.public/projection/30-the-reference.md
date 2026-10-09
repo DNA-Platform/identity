@@ -368,7 +368,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 ***No files, no scenarios, no dependencies, [by the rule that a unit with no mechanism is not a unit](../../../../.claude/skills/ce-plan/SKILL.md).***
 
-**[R4](#r4) says a reference serializes to a URL and [R5](#r5) says the grammar is stated once — and [the compiler already owns that grammar](../../build/library.ts), computing a `route` for every book.** ***What is undesigned is the join:*** *whether the framework imports the compiler's grammar, the compiler adopts the framework's, or a third module owns it and both call in.* **[The compiler is bound to v1 through a 21-July `dist/`](#v2-has-nothing)**, *so this cannot be settled by building against it today.*
+**[R4](#r4) says a reference serializes to a URL and [R5](#r5) says the grammar is stated once — and the compiler already owns that grammar (`build/library.ts`), computing a `route` for every book.** ***What is undesigned is the join:*** *whether the framework imports the compiler's grammar, the compiler adopts the framework's, or a third module owns it and both call in.* **[The compiler is bound to v1 through a 21-July `dist/`](#v2-has-nothing)**, *so this cannot be settled by building against it today.*
 
 ***[U3](#u3)'s path is a segment chain, not a URL.*** **Sprint one ends with an address the model wrote and a person can read**; *turning it into something a browser will take is the first thing sprint two must design.*
 
@@ -422,7 +422,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 | | what this chapter claims | why it can move |
 |---|---|---|
-| [`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx) | ***line 45 assigns the index***, and [U2](#u2)/[U4](#u4) build on it | **it is [the cleanup's own worked example](../the-coding-style/04-the-closeness-rule.md#brevity) for rewriting a housekeeping loop** — *and that is the one layout rule that can change behaviour, since a loop with two early exits is not always a filter* |
+| `utilities/Parser.tsx` | ***line 45 assigns the index***, and [U2](#u2)/[U4](#u4) build on it | **it is [the cleanup's own worked example](../the-coding-style/04-the-closeness-rule.md#brevity) for rewriting a housekeeping loop** — *and that is the one layout rule that can change behaviour, since a loop with two early exits is not always a filter* |
 | [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx) | *[U2](#u2) and [U5](#u5) add members here* | ***already reordered once today***, and the member order it is being reordered under [changed the same day](../the-coding-style/02-the-order-of-a-class.md#what-moved) |
 | [`writing/Composition.tsx`](../../package/src/writing/Composition.tsx) | *[U1](#u1) must keep this interface satisfied* | *[the last member added to it put the suite at 15 errors](00-planning.md#canonical-collision)* |
 | `reference/Referent.tsx` (v1, `.archive/reference/Referent.tsx`, deleted) | *[U6](#u6) decides its fate* | *it is [listed for deletion](29-the-bind.md#r340) and nothing depends on it* |
@@ -477,7 +477,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 | | what happened | so |
 |---|---|---|
-| [`utilities/Parser.tsx`](../../package/src/utilities/Parser.tsx) | ***`tokens()` rewritten*** from a fourteen-line loop to filter · map · filter. **The index assignment survives verbatim and only lost its braces** — *`parsed.forEach((part, at) => part.index = at)`, now line 35.* | ***[U2](#u2) and [U4](#u4) stand.*** *The line number in this chapter moved; the statement did not.* |
+| `utilities/Parser.tsx` | ***`tokens()` rewritten*** from a fourteen-line loop to filter · map · filter. **The index assignment survives verbatim and only lost its braces** — *`parsed.forEach((part, at) => part.index = at)`, now line 35.* | ***[U2](#u2) and [U4](#u4) stand.*** *The line number in this chapter moved; the statement did not.* |
 | [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx) | *layout only — fields joined the field block, the protected getter joined the property block.* ***No member added, removed or renamed.*** | ***[U2](#u2) and [U5](#u5) stand***, *and the two members they add now have a group to go in.* |
 | [`writing/Composition.tsx`](../../package/src/writing/Composition.tsx) | ***byte-intact*** but for end-of-file. *Verified: `get index(): number` is still the first member.* | ***[U1](#u1)'s contract is unchanged.*** |
 | `reference/Referent.tsx` (v1, `.archive/reference/Referent.tsx`, deleted) | ***unchanged.*** *Still `export interface $Referent$ extends $Chemical { }` — empty.* | ***[U6](#u6) finds the seat exactly as it was.*** |
@@ -543,7 +543,7 @@ getSpecification(): $Specification<$Writing> { return new $TypedSpecification<$W
 
 ### <a id="the-compiler-has-it"></a>1. The compiler already has the anatomy — and it is the right one
 
-**[`build/library.ts`](../../build/library.ts) models a reference as exactly what [the source settles](../the-semantics-of-books/16-the-reference-and-its-locator.md#the-correction):**
+**`build/library.ts` models a reference as exactly what [the source settles](../the-semantics-of-books/16-the-reference-and-its-locator.md#the-correction):**
 
 ```ts
 export type Reference = {
@@ -577,7 +577,7 @@ export type Reference = {
 
 ### 3. The app already routes, and already draws a link
 
-**[`app/src/main.tsx`](../../.archive/app/src/main.tsx) runs `createBrowserRouter`. [`markdown/reading.tsx:129`](../../.archive/app/src/markdown/reading.tsx) already draws a `$Link` as an anchor and detects external targets by protocol.** *And [`the-books.tsx`](../../.archive/app/src/sections/the-books.tsx) states the division Doug is asking for, in a comment, working:*
+**`app/src/main.tsx` runs `createBrowserRouter`. `markdown/reading.tsx:129` already draws a `$Link` as an anchor and detects external targets by protocol.** *And `the-books.tsx` states the division Doug is asking for, in a comment, working:*
 
 > *"travelling between them is following a card — **the router does the travelling, the model does the pointing**."*
 
@@ -626,9 +626,9 @@ export type Reference = {
 
 <a id="r10"></a>**R10 · Doug.** ***A NUMBER means: take the parts and work down by position***, ending in *"an anchor tag that we can put in the query string."* ***A STRING means: append it to the path.***
 
-<a id="r11"></a>**R11 · derived, and this is the sharpest constraint in the chapter.** ***Numbers are FOUND by the parse; strings must be AUTHORED.*** **[`Parser.parse`](../../package/src/utilities/Parser.tsx) assigns `$index = at` as a final pass — it can count, but it cannot invent a name.** *And this library's own settled practice is that [the creator of a paragraph does not specify its sentences](../the-semantics-of-books/15-the-levels-of-writing.md).* ***So a string index enters from somewhere the parse is not***, **and where it comes from is unruled.** *The 1,427 hand-written `<a id=…>` anchors in this corpus are that same decision, already made 1,427 times by people.*
+<a id="r11"></a>**R11 · derived, and this is the sharpest constraint in the chapter.** ***Numbers are FOUND by the parse; strings must be AUTHORED.*** **`Parser.parse` assigns `$index = at` as a final pass — it can count, but it cannot invent a name.** *And this library's own settled practice is that [the creator of a paragraph does not specify its sentences](../the-semantics-of-books/15-the-levels-of-writing.md).* ***So a string index enters from somewhere the parse is not***, **and where it comes from is unruled.** *The 1,427 hand-written `<a id=…>` anchors in this corpus are that same decision, already made 1,427 times by people.*
 
-***AND THERE IS A PRIOR QUESTION UNDERNEATH IT, raised by the cleanup session and verified here: is the locator a PROP AT ALL?*** **[`$Writing`](../../package/src/writing/Writing.tsx) declares `$index = 0`, and in `lib` the `$` marks [EXTRINSIC CONTEXT rather than reactivity](21-semantics-then-drawing.md#d75)** — *a plain property is already reactive by default, which [D75 checked rather than assumed](21-semantics-then-drawing.md#d75).* **So `$index` is declaring the number to be something a caller passes in** — *and nobody passes it; [the parse assigns it](../../package/src/utilities/Parser.tsx).*
+***AND THERE IS A PRIOR QUESTION UNDERNEATH IT, raised by the cleanup session and verified here: is the locator a PROP AT ALL?*** **[`$Writing`](../../package/src/writing/Writing.tsx) declares `$index = 0`, and in `lib` the `$` marks [EXTRINSIC CONTEXT rather than reactivity](21-semantics-then-drawing.md#d75)** — *a plain property is already reactive by default, which [D75 checked rather than assumed](21-semantics-then-drawing.md#d75).* **So `$index` is declaring the number to be something a caller passes in** — *and nobody passes it; the parse assigns it (`package/src/utilities/Parser.tsx`).*
 
 ***Doug's own standing rule fails that shape:*** **[N2](../the-condition-report/03-names.md#n2), recorded at [R119](21-semantics-then-drawing.md#r119) and open as [P15](../the-condition-report/06-the-cleaning.md#actionable):** *"Don't make anything a prop unless it needs to be."* ***So the register question ([R9](#r9)) sits on top of an unasked one: the locator is currently typed as authored-from-outside, while everything about how it is filled says found-from-within.***
 

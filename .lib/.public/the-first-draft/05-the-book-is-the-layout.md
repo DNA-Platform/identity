@@ -38,13 +38,13 @@
 
 ***The reason is the anchor again:*** **the file is named for the book, and the book is the layout.** *A reader opening `.book.tsx` is opening it to find out what this book IS; the parts it is written with are what it is made of, and they come after.*
 
-***The one file that breaks it, named so it is not mistaken for the convention:*** [`.wiki/.encyclopedia/.book.tsx`](../../package/.wiki/.encyclopedia/.book.tsx) **is 536 lines and its book class stands at line 477** — last, after six painted-icon helpers, an eighty-line table of language editions and a dozen component classes. **It is the inverse of the rule and it is owed a reordering.**
+***The one file that breaks it, named so it is not mistaken for the convention:*** `.wiki/.encyclopedia/.book.tsx` **is 536 lines and its book class stands at line 477** — last, after six painted-icon helpers, an eighty-line table of language editions and a dozen component classes. **It is the inverse of the rule and it is owed a reordering.**
 
 ## <a id="the-type"></a>How the book FINDS a chapter — ***its type, never its position and never its name***
 
 > ***Doug:*** **"chapter types are how it finds certain chapters."** · **"You should have different types. Just enumerate them in view!"**
 
-**A chapter carries a type, exactly as every other kind does** — `addType(block, $TypeOfX)` in its bond — **and the book asks `reflection.is(chapter, $TypeOfX)`.** *[`$Article`](../../package/src/encyclopedia/Article.tsx) is the first of these: it says a chapter is a logical part of the article rather than apparatus.*
+**A chapter carries a type, exactly as every other kind does** — `addType(block, $TypeOfX)` in its bond — **and the book asks `reflection.is(chapter, $TypeOfX)`.** *`$Article` is the first of these: it says a chapter is a logical part of the article rather than apparatus.*
 
 ***And this is why the type is the only answer.*** **A chapter writes its document in `print()`, which runs AFTER the book draws** — so the book cannot see what a chapter will write. **What the book must know, the chapter says by its TYPE.** *An afternoon was spent designing a mount-phase find, a registry on the book's scratchpad, and an article held invisible until a placement landed — all of it machinery for a question the type answers before the first paint.*
 
@@ -52,7 +52,7 @@
 
 > ***Doug:*** **"Why isn't this the same as header and footer. I want to hear: the chapters are put in the right groups in view. There is a template method for each of the parts in Encyclopedia. The chapters go where put."**
 
-**`$Book` already has the shape:** `header()` and `footer()` answer nothing by default and its drawing composes them around its writing. **A book kind adds a member per part and the view hands each part its group** — [`$Encyclopedia.body(held)`](../../package/src/encyclopedia/Encyclopedia.tsx) is one.
+**`$Book` already has the shape:** `header()` and `footer()` answer nothing by default and its drawing composes them around its writing. **A book kind adds a member per part and the view hands each part its group** — `$Encyclopedia.body(held)` is one.
 
 ***The fault to avoid is the one that was committed first:*** **inlining a part's drawing in the view.** *It works and it is wrong, because it is the one thing a consumer of the book kind cannot override — which is the whole point of the other two being members.*
 

@@ -12,7 +12,7 @@
 
 ## <a id="read"></a>What the code says, read before the requirements
 
-- **A theme is found today by a walk.** [`reflection.theme`](../../package/src/utilities/Reflection.tsx) walks a writing's parents for a `$Theme` annotation and falls back to the base template; a parent whose bond has not run has no block, so the first draw of anything beneath it falls back. **That fallback is the blue first paint.**
+- **A theme is found today by a walk.** `reflection.theme` walks a writing's parents for a `$Theme` annotation and falls back to the base template; a parent whose bond has not run has no block, so the first draw of anything beneath it falls back. **That fallback is the blue first paint.**
 - **The theme is worn by concatenation.** [`$Book`](../../package/src/libraries/Book.tsx)'s bond concatenates `Theme` into its block when none was written; DI swaps in the registered sheet. The LaTeX book's `wears()` re-registers and then **filters its own block by hand** to swap the annotation — the file itself says those lines belong in `$Book` and cannot live there. **That is the hack to delete.**
 - **Registration already has scope, reach and asker**, the later of equals wins, and as of chemistry `249758a` a registration may say `'single'`: *for A, a B is THIS ONE C.* The base theme's `static $register(within)` is already `$(within, Theme)($(this))`.
 - **A book is not a lineage parent.** Chapters' documents are made by chapter components; nothing beneath a document reaches the book by chemistry's lineage. Scope is the document's, or global.
@@ -139,4 +139,4 @@ Measured in U1 by identity: if a chapter's document does not find the book's reg
 
 **Wrong turns, so they are not retried:** registering a paragraph kind on a menu; reaching a theme by walk at draw; a declared-only field as a store; a field initialised from reflection at module load; a separate sheet chemical handed the same book, which kept its last drawing; and a package rebuild without re-binding the demo, which served last hour's switch for an hour — [Solutions 72](../solutions/72-the-mirror-with-two-directions.md) to [77](../solutions/77-the-prefix-that-took-the-base-s-rule.md).
 
-**Pointers:** [Solutions 73](../solutions/73-the-theme-that-arrived-on-the-second-paint.md) — the defect and the design in one place; [the motif on themes](../the-motif/04-themes-per-type-formats-per-instance.md#built) — what stands and what is not built; the paper's [`.book.tsx`](../../package/.latex/aaronson/.book.tsx) — the shape the wiki copies.
+**Pointers:** [Solutions 73](../solutions/73-the-theme-that-arrived-on-the-second-paint.md) — the defect and the design in one place; [the motif on themes](../the-motif/04-themes-per-type-formats-per-instance.md#built) — what stands and what is not built; the paper's `.book.tsx` — the shape the wiki copies.

@@ -44,7 +44,7 @@
 
 **RULING** — *"Like horizontal gene transfer, it's a piece of writing that isn't created in the DOM."* And: *"We want DI and bond construction to happen at render… based on the cached DOM."*
 
-**LANDS ON** — [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx), whose bond constructor `$Writing(block)` is what every writing is built through; and [`library/CatalogueCard.tsx`](../../package/src/libraries/CatalogueCard.tsx), which today is a `$Composition` built the ordinary way.
+**LANDS ON** — [`writing/Writing.tsx`](../../package/src/writing/Writing.tsx), whose bond constructor `$Writing(block)` is what every writing is built through; and `library/CatalogueCard.tsx`, which today is a `$Composition` built the ordinary way.
 
 **RULED** — *"Yes let's make it like that, and if it's a problem, we'll add some ability to bind in the code."* **Doug, 2026-09-17, on two construction modes.**
 
@@ -143,7 +143,7 @@
 
 **RULING** — *"Mentions will be annotative, and annotations are associated with writing. A piece of writing is approximately a sequence of strings or other pieces of writing followed by a sequence of annotations and we should make that more explicit."*
 
-**LANDS ON** — [`writing/Annotation.tsx`](../../package/src/writing/Annotation.tsx).
+**LANDS ON** — `writing/Annotation.tsx`.
 
 **RESTS ON**
 - `verified` — **annotations are already first-class and the seam already exists.** *`$Annotation` is a `$Writing` with `parenthetical = true`, carrying a specification, able to `supplies(writing, parts)`. `$Type` IS an `$Annotation`.*
@@ -165,7 +165,7 @@
 
 **RULING** — *"No that's the title. Book titles have to be unique in the library. If it gets more complicated, in the future we can do the subject and the title, but for now, globally unique titles."* And: *"Catalogue keys are not dynamic. Freeze the thing."*
 
-**LANDS ON** — [`.binding/resolution/addresses.ts`](../../package/.binding/resolution/addresses.ts) and `$Catalogue.shelve` in [`reference/Catalogue.tsx`](../../package/src/reference/Catalogue.tsx).
+**LANDS ON** — [`.binding/resolution/addresses.ts`](../../package/.binding/resolution/addresses.ts) and `$Catalogue.shelve` in `reference/Catalogue.tsx`.
 
 **RESTS ON**
 - `verified` — **a shelf already exists and is already generated.** *`assembly/routes.ts` emits `$$Book.shelve([{name, address}])` on every bind.*
@@ -208,7 +208,7 @@
 
 **RULING** — *"The catalogue would have subject, title, author queries because each one has a unique book… And then from those you should be able to query chapter and mention, from chapter to section. This is a comprehensive catalogue. I would say it should provide a tagline for each thing."*
 
-**LANDS ON** — [`.binding/specification/reading.ts`](../../package/.binding/specification/reading.ts).
+**LANDS ON** — `.binding/specification/reading.ts`.
 
 **RESTS ON**
 - `verified` — ***the catalogue is half-built already.*** *`Reading` reads off a live book — name, title, author, subject, types, chapters, catalogued, shelves — **one member per fact**, gathered through the prototype chain so a library extends it. Its own comment: "Loading a book is what costs; once it is loaded, another fact costs a member here and nothing else."*
@@ -308,7 +308,7 @@ EDIT, ask only for it    transforms re-run: ["chapter-3.ts"]    7 ms
 
   ***What is left is what was already built:*** **`createSourceFile` plus a persisted table**, *which is the digest-skipping store this binder has kept since it was written.* **The unknown collapsed into the answer.** *What remains worth measuring is narrow — `createSourceFile` with and without parent pointers, and whether reading the file ourselves beats letting TypeScript read it.*
 
-- `verified` — ***AND THE PARSE MUST REPLICATE JSX'S WHITESPACE RULE, which is the first hazard found in the real corpus rather than reasoned about.*** **The evaluated catalogue reads VALUES; a parsed one reads SOURCE; and JSX's own normalisation sits between them.** *Found 2026-09-18 in [`.claude-and-our-projects/..reference/0-lead.tsx`](../../../../.me/.claude-and-our-projects/..reference/0-lead.tsx), where a book is mentioned across a line break:*
+- `verified` — ***AND THE PARSE MUST REPLICATE JSX'S WHITESPACE RULE, which is the first hazard found in the real corpus rather than reasoned about.*** **The evaluated catalogue reads VALUES; a parsed one reads SOURCE; and JSX's own normalisation sits between them.** *Found 2026-09-18 in `.claude-and-our-projects/..reference/0-lead.tsx`, where a book is mentioned across a line break:*
 
 ```tsx
 <Book>Semantic Reference
@@ -447,7 +447,7 @@ $[ X ]*       no allocation, just stand in         → an address
 
 **RESTS ON**
 - `verified` — ***one file changed, one transform re-runs.*** *Measured on a real dev server: editing one chapter re-transformed that chapter and nothing else, in 7–23 ms, with a twelve-chapter book cold at 153 ms.* **We do not build that; we plug into it.**
-- `verified` — **the plugin shape is already in production here.** *[`binding:resources`](../../package/.binding/assembly/resources.ts) is `enforce: 'pre'`, transforms `.tsx` source, and throws by name and by chapter when it cannot resolve. The reference transform is that plugin with a different pattern and a table.*
+- `verified` — **the plugin shape is already in production here.** *`binding:resources` is `enforce: 'pre'`, transforms `.tsx` source, and throws by name and by chapter when it cannot resolve. The reference transform is that plugin with a different pattern and a table.*
 - `verified` — ***the ONE artifact that must become virtual is the book assembly***, because it is the only one whose **inputs are a directory**. *[`assembly/book.ts`](../../package/.binding/assembly/book.ts) writes the module to disk, and a file on disk has no edge back to the folder it was assembled from —* **so adding a thirteenth chapter invalidates nothing.** *It is already disciplined about rewriting (`WRITTEN ONLY WHEN IT CHANGED`, because "a thousand books rewritten identically every build is a thousand writes vite must then decide are new"), but discipline cannot supply an edge that does not exist.* ***AND `addWatchFile` DOES NOT SUPPLY IT EITHER — corrected 2026-09-17, before a line was written.***
 
   **Vite's `addWatchFile` does not honour Rollup's contract.** *Rollup promises that a file watched from inside `transform` re-runs that transform when it changes; Vite, in its own long-standing tracker,* **"does nothing special in this case and just tracks the new file independently."** *So it notices the directory changed and does **not** re-run the virtual module's `load()`.* ***The edge this unit was counting on does not exist.***

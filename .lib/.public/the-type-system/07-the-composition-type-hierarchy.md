@@ -18,7 +18,7 @@
 
 ## <a id="rung"></a>The rung below a kind, by type inheritance
 
-**A kind's level is the first level its type is an instance of, read up the class chain** — a List is a paragraph because `$TypeOfList extends $TypeOfParagraph`, a Row is a section, a Cover is a document. **The rung below is the next level down.** Three functions in [Reflection](../../package/src/utilities/Reflection.tsx) and no member anywhere else:
+**A kind's level is the first level its type is an instance of, read up the class chain** — a List is a paragraph because `$TypeOfList extends $TypeOfParagraph`, a Row is a section, a Cover is a document. **The rung below is the next level down.** Three functions in Reflection and no member anywhere else:
 
 | function | answers |
 |---|---|

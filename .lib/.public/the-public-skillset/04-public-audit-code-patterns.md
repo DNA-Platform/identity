@@ -114,7 +114,7 @@ super.$Composition($check(block, $Block).concat($check($TypeOfSection, '!')));
 
 ## Run it
 
-**There is no tool.** *This audit is a reading, and a script that could run it would only be checking the rules that are mechanical — which the [clean tool](../../package/clean.ts) and `tsc` already do.* **What it needs is the style documents open beside the code**, and the discipline to route each finding to the register that already holds its kind.
+**There is no tool.** *This audit is a reading, and a script that could run it would only be checking the rules that are mechanical — which the clean tool and `tsc` already do.* **What it needs is the style documents open beside the code**, and the discipline to route each finding to the register that already holds its kind.
 
 ## The documents in force — read these, do not re-derive them
 

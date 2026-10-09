@@ -352,7 +352,7 @@ export interface $Composition$<T extends $Writing> {
 
 ### the original entry
 
-[`validity.test.tsx`](../../package/.tests/book/validity.test.tsx)'s *"outside one they do not judge"* and *"the three no longer answer alike"*. **They assert a verdict the throw stops reaching**, so rewriting them changes what v1 promises rather than how a test says it.
+`validity.test.tsx`'s *"outside one they do not judge"* and *"the three no longer answer alike"*. **They assert a verdict the throw stops reaching**, so rewriting them changes what v1 promises rather than how a test says it.
 
 ## <a id="s5"></a>S5 — WITHDRAWN as far away
 

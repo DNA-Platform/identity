@@ -22,7 +22,7 @@ $Composition<T>  multiplication; flows down
 
 **Neither is a class in the package.**
 
-- ***`$Reference` is an interface*** with `read()` and `then()` — [`Reference.tsx`](../../package/src/reference/Reference.tsx). **No `$for`, no `lookup()`, and no base anything can specialize.**
+- ***`$Reference` is an interface*** with `read()` and `then()` — `Reference.tsx`. **No `$for`, no `lookup()`, and no base anything can specialize.**
 - ***`$Composition` is an interface plus a bag of statics*** — `$Composition$` and `$Composible$`, [`Composition.tsx`](../../package/src/writing/Composition.tsx). **[The member audit's own resolution promised a class](../projection/04-the-member-audit.md)** — *"`$Chapter`/`$Book` implement a self-contained `$Composition` directly on `$Referent`"* — **and what shipped is a static helper.**
 
 ***A framework built to exemplify a formalism, whose two Level-One primitives have no class in it.*** **That is the muddiness Doug's letter named, at its source.**
@@ -57,7 +57,7 @@ $Composition<T>  multiplication; flows down
 
 > **TREAT** · *step 5* — ***RULED 2026-08-22: the base is `$Annotation` and each of the three gets its own `valid()`.*** **The design, and the two rules the card cannot answer yet, are [S17](#s17).**
 
-**[`$Author`](../../package/src/book/Author.tsx), [`$Subject`](../../package/src/book/Subject.tsx) and `$Canonical` (v1, `.archive/book/Canonical.tsx`, deleted) produce the same md5 under name substitution.** *Every member — `$for`, `$parenthetical`, `name`, `card`, `read()`, `then()`, `set()`, `named()`, `valid()`. **The only differences are the class name and one word inside an error string.***
+**`$Author`, `$Subject` and `$Canonical` (v1, `.archive/book/Canonical.tsx`, deleted) produce the same md5 under name substitution.** *Every member — `$for`, `$parenthetical`, `name`, `card`, `read()`, `then()`, `set()`, `named()`, `valid()`. **The only differences are the class name and one word inside an error string.***
 
 ***And it is datable to one commit.*** **`b91944e`, 2026-08-10:** `$Subject` was a zero-byte stub from July; that commit fills it with **36 lines** and creates `$Canonical` with **46**, both from `$Author`. **Not three classes designed alike — one class copied twice in a sitting.**
 
@@ -91,7 +91,7 @@ physicsTheStandardModel.$subject = physics;
 
 *That is [the auto-categorical summit](../the-semantics-of-books/07-the-subjective-subject-and-the-library.md) — the one self-cataloguing member a well-ordered library is forced to have — **already true in the emitted file**, so the computation terminates by construction rather than by a guard.*
 
-***And it belongs on [`$IndexCard`](../../package/src/reference/IndexCard.tsx) — the framework class — not on the generated `$Card`.*** **That answers the objection that moved it off the card in the first place**, which the generated file still states in its own comment:
+***And it belongs on `$IndexCard` — the framework class — not on the generated `$Card`.*** **That answers the objection that moved it off the card in the first place**, which the generated file still states in its own comment:
 
 > *"**AND NO LIBRARY COMPUTATION.** It used to live here, and a rule about books that lives in generated code is a rule with two homes that can disagree. It is `$Book.library` now."*
 
@@ -99,7 +99,7 @@ physicsTheStandardModel.$subject = physics;
 
 ### Why the card and not the book, stated as a cost
 
-[`$Book.library`](../../package/src/book/Book.tsx) computes through `pointed()`, **which calls `card.read()` — and `read()` loads the book.**
+`$Book.library` computes through `pointed()`, **which calls `card.read()` — and `read()` loads the book.**
 
 ```tsx
 const pointed = (reference?: { card?: $IndexCard<$Book> }): $Book | undefined => {
@@ -127,7 +127,7 @@ const pointed = (reference?: { card?: $IndexCard<$Book> }): $Book | undefined =>
 
 ***So the card was trimmed to "a book present without the book", and the two rules Doug wants are precisely the questions a CATALOGUE answers.*** **A card catalogue that cannot say what a subject holds, or which book speaks for it, is not a catalogue — it is a shelf of title pages.**
 
-*And the model already knows both facts.* [`resolve.ts`](../../build/stages/resolve.ts) computes `canonical` and `entries` for every book, **and the emitter writes neither onto the cards.**
+*And the model already knows both facts.* `resolve.ts` computes `canonical` and `entries` for every book, **and the emitter writes neither onto the cards.**
 
 ### What the rules become once the card carries them
 
@@ -141,7 +141,7 @@ const pointed = (reference?: { card?: $IndexCard<$Book> }): $Book | undefined =>
 
 ### When it runs
 
-*Doug: **"perhaps that validation will only be run when the library checks itself as part of the build."*** **[`validate.ts`](../../build/stages/validate.ts) is already that phase** — it holds every book at once, it already imports the cards, and it already says *"it invents no rules."*
+*Doug: **"perhaps that validation will only be run when the library checks itself as part of the build."*** **`validate.ts` is already that phase** — it holds every book at once, it already imports the cards, and it already says *"it invents no rules."*
 
 ***And it must remain a caller rather than a home*** — [The Live Library](../ways-of-reading/05-the-live-library.md), out of Doug's own aside in the same message: **a rule that lives in the compiler is a rule the browser cannot ask**, and a library people write into needs the same rule at the moment writing arrives.
 
@@ -176,7 +176,7 @@ const pointed = (reference?: { card?: $IndexCard<$Book> }): $Book | undefined =>
 </Cover>
 ```
 
-***One shape for every annotation.*** **A `$Type` is a phrase whose copy is the name of the type, exactly as [`$Author`](../../package/src/book/Author.tsx) is a phrase whose copy is the name of the author** — and what an author IS gets specified elsewhere, which is the same answer for what a type is.
+***One shape for every annotation.*** **A `$Type` is a phrase whose copy is the name of the type, exactly as `$Author` is a phrase whose copy is the name of the author** — and what an author IS gets specified elsewhere, which is the same answer for what a type is.
 
 ***And where "elsewhere" is, is the books.*** **What `Autobiography` means is written in the library**, not encoded in a class — *which is [the closure the derivation already insists on](../the-semantics-of-books/07-the-subjective-subject-and-the-library.md): everything is said in books, and authorship is read off the catalogue rather than imported into it.*
 
@@ -235,7 +235,7 @@ $Author.valid()   the book it names is of type Autobiography
 
 > *"As for an attribute, this is the kind of thing where we might want to **reveal metadata**, and the attributes will do that. So how about that process?"*
 
-***My reading, and it is a reading:*** **an annotation is metadata about a book** — who wrote it, what it is about, which book speaks for its subject — **and it draws nothing today** (`set()` returns `null`). *So the question is how an annotation SURFACES the fact it carries: as an attribute on the element its container draws, the way `$Link` already puts `data-link` on its anchor (v1, `.archive/reference/Link.tsx`, deleted) and [`$Book.place` puts `data-chapter` on a leaf](../../package/src/book/Book.tsx).*
+***My reading, and it is a reading:*** **an annotation is metadata about a book** — who wrote it, what it is about, which book speaks for its subject — **and it draws nothing today** (`set()` returns `null`). *So the question is how an annotation SURFACES the fact it carries: as an attribute on the element its container draws, the way `$Link` already puts `data-link` on its anchor (v1, `.archive/reference/Link.tsx`, deleted) and `$Book.place` puts `data-chapter` on a leaf.*
 
 ***If that is the reading, it is a real and separate mechanism*** — **a writing that is not read but is still declared** — and it is the same family as [S16's mentioned syntax](#s16): *present in the writing, absent from the reading, and still able to reach the page.* ***Flagged as not confirmed.***
 
@@ -260,7 +260,7 @@ valid(): boolean {
 
 ***So every link whose text is more than one word is a `$Word` carrying whitespace*** — which the base forbids — **and it passes only because the subclass silently overrides the specification.** *`[The Gauge Principle](…)` is three words claiming to be one.*
 
-***And the class that exists for precisely this is one folder away.*** [`$Phrase`](../../package/src/writing/Phrase.tsx) is **a word that admits what a name contains, spaces among them** — written because [an author's name was claiming to be a sentence](../the-semantics-of-books/15-the-levels-of-writing.md#a-figure-and-a-name). **A link's text is a name for where it points.**
+***And the class that exists for precisely this is one folder away.*** `$Phrase` is **a word that admits what a name contains, spaces among them** — written because [an author's name was claiming to be a sentence](../the-semantics-of-books/15-the-levels-of-writing.md#a-figure-and-a-name). **A link's text is a name for where it points.**
 
 **`$Link extends $Phrase` costs one word and deletes the repeal**, and *a `$Phrase` is still a `$Word`, so links stay enumerable among a sentence's words* — **which is the second half of Doug's sentence**: *"and easily enumerable as words."*
 
@@ -306,13 +306,13 @@ valid(): boolean {
 
 **A card inherits `text`, `copy`, `parts()`, `canonical`, `at`, `where`, `select`, `selectMany`, `single`, `role`, `parenthetical`, `theme`, `view`, `uniform`, `gathered`, `set` — *sixteen members of writing semantics*. Grepped: it uses none of them.** It overrides `copy`, `view` and `valid` to mean something else, and inherits the rest as dead surface.
 
-***A card is not writing.*** **It is what stands in a catalogue where a book is not** — *"a book present without the book,"* [in the compiler's own words](../../build/stages/catalogue.ts). **It extends `$Writing` for one line in a constructor:** `this.inline = false`.
+***A card is not writing.*** **It is what stands in a catalogue where a book is not** — *"a book present without the book,"* in the compiler's own words (`build/stages/catalogue.ts`). **It extends `$Writing` for one line in a constructor:** `this.inline = false`.
 
 ## <a id="s6"></a>S6 — `$Bookmark extends $Sentence`, and would parse itself into words
 
 > **TREAT** · *step 5* — a re-parent. **A bookmark is a reference, and it is in the right folder under the wrong parent.**
 
-**Same shape, worse.** [`$Bookmark`](../../package/src/book/Bookmark.tsx) holds a reference and answers `read()`. ***It inherits the sentence parse*** — `parts()` splitting it into words, `stressed()`, `wordFor()`, `letters` — **and uses none of it.**
+**Same shape, worse.** `$Bookmark` holds a reference and answers `read()`. ***It inherits the sentence parse*** — `parts()` splitting it into words, `stressed()`, `wordFor()`, `letters` — **and uses none of it.**
 
 **A bookmark is a reference, not a sentence.** *It is in the right FOLDER by [the stated rule](../projection/04-the-member-audit.md) — a reference kind lives with the level it points into — and under the wrong PARENT*, **which is a distinction the [naming register](03-names.md) could not see, because the name is perfect.**
 
@@ -356,14 +356,14 @@ valid(): boolean {
 >
 > | replaces `valid()` outright | and | |
 > |---|---|---|
-> | [`$IndexCard`](../../package/src/reference/IndexCard.tsx) | uses **zero** of `$Writing`'s sixteen members | [S5](#s5) |
-> | [`$Bookmark`](../../package/src/book/Bookmark.tsx) | uses **zero** of `$Sentence`'s | [S6](#s6) |
+> | `$IndexCard` | uses **zero** of `$Writing`'s sixteen members | [S5](#s5) |
+> | `$Bookmark` | uses **zero** of `$Sentence`'s | [S6](#s6) |
 >
 > ***Two instruments, arrived at independently, naming the same two classes.*** **That is the strongest evidence in this report that S5 and S6 are real.**
 
 **[`$Word.valid()`](../../package/src/writing/Word.tsx) — *a word is one unbroken stretch*, and *a word has a letter or number*.**
 
-- [`$Phrase`](../../package/src/writing/Phrase.tsx) overrides `valid()` **to permit spaces**.
+- `$Phrase` overrides `valid()` **to permit spaces**.
 - `$Punctuation` (v1, `.archive/writing/Punctuation.tsx`, deleted) overrides `valid()` **to permit no letters**.
 
 ***So the base specifies two things and each child overrides a different one.*** **The honest reading is that both belong to a subclass — a *plain* word — and the base holds only what all three share.**
@@ -416,7 +416,7 @@ valid(): boolean {
 > | | |
 > |---|---|
 > | ***`$$Book`*** | **replaces `$IndexCard`** — in `Book.tsx`, beside the class whose members it emulates |
-> | **where they live** | on a [`$Synopsis`](../../package/src/book/Synopsis.tsx), and held by the [`$Author`](../../package/src/book/Author.tsx), `$Subject` and `$Canonical` annotations |
+> | **where they live** | on a `$Synopsis`, and held by the `$Author`, `$Subject` and `$Canonical` annotations |
 > | ***`$TableOfContents`*** | ***not*** a reference form of a book — **a catalogue of CHAPTERS**, because it holds chapter references |
 >
 > ***And that supersedes [chapter zero's sentence](../projection/00-planning.md)*** — *"a book's reference form is the table of contents when you are reading it, and the library card when you are at the catalogue."* **The contents catalogues chapters; only the card stands for the book.**
@@ -439,7 +439,7 @@ $$Word       ::  $Reference$<$Word>                                    ← the f
 
 ### So `$$Book` is determined, and it is Doug's sentence exactly
 
-**[`$Book`](../../package/src/book/Book.tsx) is `$Composition$<$Chapter>` and `$Catalogue$<$Book>`** — *its chapters are what it contains; the books it catalogues are what it references.* **Reflected onto its reference form:**
+**`$Book` is `$Composition$<$Chapter>` and `$Catalogue$<$Book>`** — *its chapters are what it contains; the books it catalogues are what it references.* **Reflected onto its reference form:**
 
 ```
 $$Book  ::  $Reference$<$Book>  ,  $Catalogue$<$Book>
@@ -449,13 +449,13 @@ $$Book  ::  $Reference$<$Book>  ,  $Catalogue$<$Book>
 
 ### And that is what [S17](#s17)'s two gaps actually were
 
-***[`$IndexCard`](../../package/src/reference/IndexCard.tsx) implements `$Reference$<T>` and nothing else.*** **The members the annotation rules needed — `canonical`, `entries`, `parts()` — are not arbitrary omissions. They are `$Catalogue$`, unimplemented.**
+***`$IndexCard` implements `$Reference$<T>` and nothing else.*** **The members the annotation rules needed — `canonical`, `entries`, `parts()` — are not arbitrary omissions. They are `$Catalogue$`, unimplemented.**
 
 **So the earlier framing was wrong twice over.** *It read the generated comment — "a card catalogues nothing" — as a design decision to argue with, when the plain fact is that **the card was written against one interface and its book satisfies two**.* ***Implement the second and the gaps close by construction, with no member invented.***
 
 ### The discipline, which is the part worth keeping
 
-***`$of` is not in any interface.*** **[`$Reference$`](../../package/src/reference/Reference.tsx) requires `copy`, `parenthetical`, `read()` and `then()`; the field that answers `read()` is the class's own business** — *a thunk today, a name and a catalogue tomorrow, and neither is an interface question.*
+***`$of` is not in any interface.*** **`$Reference$` requires `copy`, `parenthetical`, `read()` and `then()`; the field that answers `read()` is the class's own business** — *a thunk today, a name and a catalogue tomorrow, and neither is an interface question.*
 
 > ***Ask what a class OWES, then ask how it pays.*** **This audit asked the second question in place of the first, and reached for deleting an obligation because it did not like the field behind it.**
 
@@ -519,7 +519,7 @@ $$Book  ::  $Reference$<$Book>  ,  $Catalogue$<$Book>
 | [`$Paragraph.mark`](../../package/src/writing/Paragraph.tsx) | the notation that built it | ***gone*** — the notation is a mentioned part |
 | [`$Theme.mark`](../../package/src/writing/Theme.tsx) | the accent colour of what can be followed | ***word [owed](06-the-cleaning.md#the-words-owed)*** — my proxy is **`rubric`**, the colour a manuscript uses for what must be noticed |
 | `$Denote.view` (v1, `.archive/document/Denote.tsx`, deleted) | a local style object | a held component, by [I2](05-implementation.md#i2) |
-| [`$Book.turning`](../../package/src/book/Book.tsx) | a parameter holding *"previous"* / *"next"* | ***gone*** — it is a word, and it should say so |
+| `$Book.turning` | a parameter holding *"previous"* / *"next"* | ***gone*** — it is a word, and it should say so |
 | `$Highlight` (v1, `.archive/reference/Highlight.tsx`, deleted) | the HTML `<mark>` element | **stays** — that is the platform's word, not ours |
 
 ***This supersedes [N1](03-names.md#n1), which proposed renaming one side of a collision.*** **Both sides move, and one of them dissolves.**
@@ -566,7 +566,7 @@ $$Book  ::  $Reference$<$Book>  ,  $Catalogue$<$Book>
 
 > *"a subject viewing all its books that way sees a list of title-sections — **the Table of Contents**, with **the cover legitimately among the entries**, and the ToC free to contain even itself."*
 
-**[`$TableOfContents.parts()`](../../package/src/book/TableOfContents.tsx) filters out `this`, `$Cover`, and everything parenthetical.** ***Two of those three are the theory's own examples of what belongs.*** *Probably a presentation choice; **it is made in the model**, which is where the theory lives.*
+**`$TableOfContents.parts()` filters out `this`, `$Cover`, and everything parenthetical.** ***Two of those three are the theory's own examples of what belongs.*** *Probably a presentation choice; **it is made in the model**, which is where the theory lives.*
 
 ## <a id="s15"></a>S15 — Nothing in the framework cites the theory it exists to realize
 

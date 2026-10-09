@@ -200,7 +200,7 @@
 
 ## <a id="v2-measured"></a>v2 — nothing, and that is the opportunity
 
-**[`src/reference/`](../../package/src/reference/) holds one file and its whole content is:**
+**`src/reference/` holds one file and its whole content is:**
 
 ```
 export interface $Referent$ extends $Chemical { }

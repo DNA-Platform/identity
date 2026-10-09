@@ -28,7 +28,7 @@
 
 ## <a id="b6"></a>B6 — Two suites repeating each other's setup — **TREATED 2026-09-19**
 
-*`bound()` and `read()` in [`staging.ts`](../../package/.binding/.test/staging.ts).*
+*`bound()` and `read()` in `staging.ts`.*
 
 ## <a id="b7"></a>B7 — The test library read with the host's `.pubconfig` — **TREATED 2026-09-19**
 
