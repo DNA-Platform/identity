@@ -62,6 +62,12 @@ export default () => (
                 is a new chapter beside its file, listed in the table under its group. In a book that has parts the
                 chapter says its part too, and the table lists it under the part's section.
             </Paragraph>
+            <Paragraph>
+                Another manual is a book of its own whose class extends this one's in one line, with a cover, a
+                synopsis and a table as any book here has, its chapters written as this manual's are, and a chapter
+                and a row in the catalogue. The second one made, to prove it, is
+                in <Means>$[[ the design book ]]( Dougs Design / The Manual's Page )</Means>.
+            </Paragraph>
         </Section>
         <Section>
             <Heading>Where a manual bites</Heading>

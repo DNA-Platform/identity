@@ -235,6 +235,20 @@ export default () => (
                 earlier in the sheet than a theme's, so each says the book first and its own class; and a book
                 whose chapters are in parts has every chapter in one, which is the framework's rule and mine.
             </Paragraph>
+            <Paragraph>
+                <Image>![[ built-second-manual.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                And the other way round, a second reference manual, made to prove the abstraction holds in both
+                cases and not only in the one it was carried from. A galley of this library was pulled aside and a
+                manual of my story's two parts, the sheet and the papers, written into it as an author would write
+                it: a book whose class extends the manual's in one line, a cover, a synopsis and a table as any
+                book here has, each of its two chapters saying it is a manual and opening with a brief, its code
+                beside it, a chapter and a row in the catalogue. Bound, it is this page in every part, the bar,
+                the tree with its folder and its numbered rows and file presses, the brief, the turn and the rail,
+                and the catalogue shelves it as a fifth jacket. The galley was then thrown away; what it proved
+                stays here.
+            </Paragraph>
         </Section>
         <Append
             identifier="035"
