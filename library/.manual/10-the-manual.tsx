@@ -28,10 +28,10 @@ export default () => (
             <Heading>How a manual fits the library's patterns</Heading>
             <Paragraph>
                 A manual is a format said of a chapter, and the one way <Means>$[[ a part ]]( ./The Part )</Means> is
-                read here. Its layer is the spread: the words
-                holding the chapter, the files with the tab bar at their head, the file tabs, the words tab, the
-                dock and the three options, the listings with the chosen one opened, the rail of file presses with
-                their skeletons, and the grip. The spread's rules are the layer's own styled component, read off the
+                read here. Its layer is the spread: the words holding the chapter, and four regions each written by
+                a method of its own that another manual may override, the tabs, the file tabs, the words tab, the
+                dock and the three options; the listings, with the chosen file opened; the rail of file presses
+                with their skeletons; and the grip. The spread's rules are the layer's own styled component, read off the
                 book's theme, so the design book's manual wears rose, my story's its paper, and this book its light.
                 Which file is shown is the manual's own state, set by a press and read by the tabs and the listings
                 through the manual they are given. The readings are three annotations on the book, one in front at

@@ -272,124 +272,150 @@ export class $Manual extends $Format {
     $Manual(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
         const Spread = this.spread;
+        this.style = ({ className, children }: { className?: string; children?: ReactNode }) => (
+            <Spread className={className}>
+                <div className="pd-words">
+                    {children}
+                </div>
+                <div className="pd-files">
+                    {this.tabs()}
+                    {this.listings()}
+                </div>
+                {this.rail()}
+                {this.grip()}
+            </Spread>
+        );
+    }
+
+    tabs(): ReactNode {
+        const File = $(file);
         const Tab = $(tab);
         const Switch = $(switchOf);
-        const File = $(file);
+        const chapter = this.parent as $Chapter;
+        const cover = this.book!.cover;
+        return (
+            <div className="pd-tabs">
+                {this.files.map(name => (
+                    <File
+                        key={name}
+                        chapter={chapter}
+                        name={name}
+                        manual={this}
+                    />
+                ))}
+                <span className="pd-words-tab">
+                    <Tab
+                        chapter={cover}
+                        of={wordsForward}
+                        among={this.readings}
+                    >
+                        words
+                    </Tab>
+                </span>
+                <span className="pd-dock pd-to-full">
+                    <Tab
+                        chapter={cover}
+                        of={codeForward}
+                        among={this.readings}
+                    >
+                        full screen
+                    </Tab>
+                </span>
+                <span className="pd-dock pd-to-split">
+                    <Tab
+                        chapter={cover}
+                        of={split}
+                        among={this.readings}
+                    >
+                        split
+                    </Tab>
+                </span>
+                <span className="pd-options">
+                    <Switch
+                        chapter={cover}
+                        of={lightCode}
+                    >
+                        light
+                    </Switch>
+                    <Switch
+                        chapter={cover}
+                        of={wrapped}
+                    >
+                        wrap
+                    </Switch>
+                    <Switch
+                        chapter={cover}
+                        of={numbered}
+                    >
+                        lines
+                    </Switch>
+                </span>
+            </div>
+        );
+    }
+
+    listings(): ReactNode {
         const Listing = $(listing);
-        this.style = ({ className, children }: { className?: string; children?: ReactNode }) => {
-            const chapter = this.parent as $Chapter;
-            const book = this.book as $LibraryBook;
-            const files = this.files;
-            const paragraphs = chapter.text.find($Section).flatMap(section => section.text.find($Paragraph)).slice(0, 16);
-            return (
-                <Spread className={className}>
-                    <div className="pd-words">
-                        {children}
-                    </div>
-                    <div className="pd-files">
-                        <div className="pd-tabs">
-                            {files.map(name => (
-                                <File
-                                    key={name}
-                                    chapter={chapter}
-                                    name={name}
-                                    manual={this}
-                                />
-                            ))}
-                            <span className="pd-words-tab">
-                                <Tab
-                                    chapter={book.cover}
-                                    of={wordsForward}
-                                    among={this.readings}
-                                >
-                                    words
-                                </Tab>
-                            </span>
-                            <span className="pd-dock pd-to-full">
-                                <Tab
-                                    chapter={book.cover}
-                                    of={codeForward}
-                                    among={this.readings}
-                                >
-                                    full screen
-                                </Tab>
-                            </span>
-                            <span className="pd-dock pd-to-split">
-                                <Tab
-                                    chapter={book.cover}
-                                    of={split}
-                                    among={this.readings}
-                                >
-                                    split
-                                </Tab>
-                            </span>
-                            <span className="pd-options">
-                                <Switch
-                                    chapter={book.cover}
-                                    of={lightCode}
-                                >
-                                    light
-                                </Switch>
-                                <Switch
-                                    chapter={book.cover}
-                                    of={wrapped}
-                                >
-                                    wrap
-                                </Switch>
-                                <Switch
-                                    chapter={book.cover}
-                                    of={numbered}
-                                >
-                                    lines
-                                </Switch>
-                            </span>
-                        </div>
-                        <div className="pd-listings">
-                            {chapter.annotations.find($Append).reverse().map((append, index) => (
-                                <Listing
-                                    key={index}
-                                    chapter={chapter}
-                                    identifier={append.$identifier}
-                                    type={append.$type}
-                                    reading={codeForward}
-                                    among={this.readings}
-                                    manual={this}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                    <div className="pd-rail">
-                        {files.map(name => (
-                            <File
-                                key={name}
-                                chapter={chapter}
-                                name={name}
-                                of={split}
-                                among={this.readings}
-                                manual={this}
-                                skeleton
+        const chapter = this.parent as $Chapter;
+        return (
+            <div className="pd-listings">
+                {chapter.annotations.find($Append).reverse().map((append, index) => (
+                    <Listing
+                        key={index}
+                        chapter={chapter}
+                        identifier={append.$identifier}
+                        type={append.$type}
+                        reading={codeForward}
+                        among={this.readings}
+                        manual={this}
+                    />
+                ))}
+            </div>
+        );
+    }
+
+    rail(): ReactNode {
+        const File = $(file);
+        const chapter = this.parent as $Chapter;
+        return (
+            <div className="pd-rail">
+                {this.files.map(name => (
+                    <File
+                        key={name}
+                        chapter={chapter}
+                        name={name}
+                        of={split}
+                        among={this.readings}
+                        manual={this}
+                        skeleton
+                    />
+                ))}
+            </div>
+        );
+    }
+
+    grip(): ReactNode {
+        const Tab = $(tab);
+        const chapter = this.parent as $Chapter;
+        const paragraphs = chapter.text.find($Section).flatMap(section => section.text.find($Paragraph)).slice(0, 16);
+        return (
+            <div className="pd-grip">
+                <Tab
+                    chapter={this.book!.cover}
+                    of={split}
+                    among={this.readings}
+                >
+                    <span className="pd-skeleton">
+                        {paragraphs.map((paragraph, index) => (
+                            <i
+                                key={index}
+                                style={{ width: `${Math.max(25, Math.min(100, html.copy(paragraph.text).length / 4))}%` }}
                             />
                         ))}
-                    </div>
-                    <div className="pd-grip">
-                        <Tab
-                            chapter={book.cover}
-                            of={split}
-                            among={this.readings}
-                        >
-                            <span className="pd-skeleton">
-                                {paragraphs.map((paragraph, index) => (
-                                    <i
-                                        key={index}
-                                        style={{ width: `${Math.max(25, Math.min(100, html.copy(paragraph.text).length / 4))}%` }}
-                                    />
-                                ))}
-                            </span>
-                        </Tab>
-                    </div>
-                </Spread>
-            );
-        };
+                    </span>
+                </Tab>
+            </div>
+        );
     }
 
     show(name: string): void {
