@@ -8,7 +8,7 @@ import { $Keyed, Icon as icon } from './o1-the-key~code.tsx';
 export class $NumberedEntry extends $Entry {
     label = selection.span.attrs({ className: 'pa-number' })``;
     get number(): number {
-        return (this.book as $LibraryBook).pages.indexOf(this.leads!) + 1;
+        return (this.book as $LibraryBook).body.indexOf(this.leads!) + 1;
     }
     get keyed(): $Keyed | undefined {
         return this.leads?.annotations.expressed($Keyed);

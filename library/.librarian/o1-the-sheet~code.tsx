@@ -54,7 +54,7 @@ export class $ChapterDate extends $Date {
 
 export class $StoryCount extends $Count {
     override write(): ReactNode {
-        const chapters = (this.book as $LibraryBook).pages;
+        const chapters = (this.book as $LibraryBook).body;
         const Word = $(word);
         return (
             <>
@@ -111,8 +111,8 @@ export class $Sheet extends $Format {
                 grid-row: top-start / page-end;
             }
             .pa-sheet .pd-top { grid-area: top; }
-            .pa-sheet .pd-page { grid-area: page; }
-            .pd-book.pa-sheet .pd-words .pd-chapter { scroll-margin-block-start: calc(${({ theme }) => theme.space} * 10); }
+            .pa-sheet .pa-page { grid-area: page; }
+            .pd-book.pa-sheet .pa-page { scroll-margin-block-start: calc(${({ theme }) => theme.space} * 10); }
         `;
     }
 
@@ -128,7 +128,7 @@ export class $Sheet extends $Format {
             .pa-sheet .pd-top .pd-paragraph.pd-byline { grid-area: byline; justify-self: start; }
             .pa-sheet .pd-top .pd-word.pd-date { grid-area: date; justify-self: center; }
             .pa-sheet .pd-top::after { grid-area: rule; justify-self: center; }
-            .pa-sheet .pd-page .pd-chapter.pa-dated .pd-word.pd-date { display: none; }
+            .pa-sheet .pd-chapter.pa-page.pa-dated .pd-word.pd-date { display: none; }
         `;
     }
 
@@ -158,7 +158,7 @@ export class $Story extends $LibraryBook {
     }
     get latest(): $Chapter | undefined {
         const day = (chapter: $Chapter): string => chapter.annotations.expressed($Dated)?.date?.date ?? '';
-        return this.pages.reduce<$Chapter | undefined>((latest, chapter) => (latest === undefined || day(chapter) > day(latest) ? chapter : latest), undefined);
+        return this.body.reduce<$Chapter | undefined>((latest, chapter) => (latest === undefined || day(chapter) > day(latest) ? chapter : latest), undefined);
     }
     override get open(): $Chapter | undefined {
         return super.open ?? this.latest;
@@ -172,11 +172,7 @@ export class $Story extends $LibraryBook {
         );
     }
 
-    override front(): ReactNode {
-        return this.top();
-    }
-
-    top(): ReactNode {
+    override top(): ReactNode {
         const Cover = $(this.cover!);
         const Day = $(ChapterDate);
         return (

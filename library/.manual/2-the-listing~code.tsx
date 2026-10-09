@@ -3,30 +3,29 @@ import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Append, $Chapter, $Paragraph, $Writing, AnnotationSpecification, Code as code, ContainerProps, Given, Word as word, html, specify } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { $Tab } from './9-the-switch~code.tsx';
+import { $Manual } from './10-the-manual~code.tsx';
 import { $Keyed } from './o1-the-key~code.tsx';
 
 export const languages: Record<string, string> = { tsx: 'typescript', ts: 'typescript', mjs: 'javascript', js: 'javascript', css: 'css', html: 'xml', svg: 'xml', json: 'json', md: 'markdown' };
 
 const fileMark = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.5 3.5 8 6 11.5M10 4.5 12.5 8 10 11.5"/></svg>';
 
-interface Manual {
-    readonly file: string;
-    show(name: string): void;
-}
+export const nameOf = (append: $Append): string => `${append.$identifier}${append.$type}`;
 
-export const linesOf = (chapter: $Chapter | undefined, name: string): string[] => {
-    const append = chapter?.annotations.find($Append).find(each => `${each.$identifier}${each.$type}` === name);
-    return append === undefined ? [] : html.copy(append.text).split('\n');
-};
+export const linesOf = (append: $Append | undefined): string[] =>
+    append === undefined ? [] : html.copy(append.text).split('\n');
+
+export const manualOf = (append: $Append | undefined): $Manual | undefined =>
+    append?.chapter?.annotations.expressed($Manual);
 
 export class $Listing extends $Paragraph {
-    $identifier = '';
-    $type = '';
+    $append?: $Append;
     $reading?: Given<$Annotation>;
     $among: Given<$Annotation>[] = [];
-    $manual?: Manual;
-    get name(): string { return `${this.$identifier}${this.$type}`; }
-    get language(): string { return languages[this.$type.replace(/^\./u, '')] ?? ''; }
+    get name(): string { return this.$append === undefined ? '' : nameOf(this.$append); }
+    get language(): string { return languages[(this.$append?.$type ?? '').replace(/^\./u, '')] ?? ''; }
+    get manual(): $Manual | undefined { return manualOf(this.$append); }
+    override get chapter(): $Chapter | undefined { return this.$append?.chapter ?? super.chapter; }
 
     $Listing(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
@@ -53,8 +52,8 @@ export class $Listing extends $Paragraph {
                     {this.name}
                 </Word>
                 <Code
-                    identifier={this.$identifier}
-                    type={this.$type}
+                    identifier={this.$append?.$identifier}
+                    type={this.$append?.$type}
                     language={this.language}
                     numbered
                 />
@@ -77,7 +76,7 @@ export class $Opened extends $Annotation {
 
     override defines(writing: $Writing): void {
         const listing = writing as $Listing;
-        if (listing.$manual !== undefined && listing.$manual.file === listing.name) writing.classes.add(this, 'pa-opened');
+        if (listing.$append !== undefined && listing.manual?.shown === listing.$append) writing.classes.add(this, 'pa-opened');
     }
 
     override erase(writing: $Writing): void {
@@ -93,19 +92,20 @@ export class OpenedSpecification extends AnnotationSpecification {
 }
 
 export class $File extends $Tab {
-    $name = '';
-    $chapter?: $Chapter;
-    $manual?: Manual;
+    $append?: $Append;
     $skeleton = false;
     style: ElementType = selection.button<{ $colour: string }>`
         --colour: ${props => props.$colour};
     `;
     override get on(): boolean {
-        const book = this.book as $LibraryBook;
-        return this.$chapter !== undefined && this.$chapter === book.open && this.$manual?.file === this.$name;
+        const chapter = this.$append?.chapter;
+        return chapter !== undefined && chapter === (this.book as $LibraryBook).open && this.manual?.shown === this.$append;
     }
-    get colour(): string { return this.$chapter?.annotations.expressed($Keyed)?.colour ?? ''; }
-    get lines(): string[] { return linesOf(this.$chapter, this.$name); }
+    get name(): string { return this.$append === undefined ? '' : nameOf(this.$append); }
+    get manual(): $Manual | undefined { return manualOf(this.$append); }
+    get colour(): string { return this.$append?.chapter?.annotations.expressed($Keyed)?.colour ?? ''; }
+    get lines(): string[] { return linesOf(this.$append); }
+    override get chapter(): $Chapter | undefined { return this.$append?.chapter ?? super.chapter; }
 
     $File(...chemicals: $Chemical[]) {
         this.$Switch(...chemicals);
@@ -117,7 +117,8 @@ export class $File extends $Tab {
     }
 
     override press(): void {
-        this.$manual?.show(this.$name);
+        const manual = this.manual;
+        if (manual !== undefined) manual.$shown = this.$append;
         if (this.$of !== undefined) super.press();
     }
 
@@ -129,7 +130,7 @@ export class $File extends $Tab {
                     dangerouslySetInnerHTML={{ __html: fileMark }}
                 />
                 <span className="pd-file-name">
-                    {this.$name}
+                    {this.name}
                 </span>
                 {this.$skeleton ? (
                     <span className="pd-skeleton">

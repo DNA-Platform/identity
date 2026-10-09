@@ -2,7 +2,10 @@ import { ElementType, ReactNode } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Content, $Format, $Paragraph, $Parenthetical, $Part, $Section, $TableOfContents, $Word, $Writing, AnnotationSpecification, ContainerProps, Reference as reference, Word as word, specify } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
+import { File as file, nameOf } from './2-the-listing~code.tsx';
 import { $Switch } from './9-the-switch~code.tsx';
+import { $Manual } from './10-the-manual~code.tsx';
+import { Split as split } from './10-the-manual~forward.tsx';
 import { $Coloured } from './18-the-colour~code.tsx';
 import { $Scheme, $Volume } from './19-the-cover~code.tsx';
 
@@ -71,10 +74,31 @@ export class $Index extends $Annotation {
 
     protected override $Bound(): void {
         const Entry = $(entry);
-        for (const paragraph of this.entries)
+        const Chevron = $(chevron);
+        const File = $(file);
+        const book = this.book as $LibraryBook;
+        for (const paragraph of this.entries) {
             paragraph.annotations.add(this,
                 <Entry />
             );
+            const manual = book.named(leads(paragraph)!.identifier)?.annotations.expressed($Manual);
+            if (manual === undefined) continue;
+            const appends = manual.appends;
+            paragraph.text.add(this,
+                <Chevron
+                    target={appends.length === 0 ? undefined : paragraph}
+                    of={folded}
+                />,
+                ...appends.map(append => (
+                    <File
+                        key={nameOf(append)}
+                        append={append}
+                        of={split}
+                        among={manual.readings}
+                    />
+                ))
+            );
+        }
         super.$Bound();
     }
 }
@@ -148,7 +172,7 @@ export class $Folder extends $Format {
     specification = new FolderSpecification();
     tree: ElementType = selection.div`
         .pd-book .pd-holds &.pd-folder .pd-chevron, .pd-book .pd-holds &.pd-folder .pd-folder-mark, .pd-book .pd-holds &.pd-folder .pa-entry .pd-file { display: none; }
-        .pd-book.pa-built .pd-holds &.pd-folder:not(.pa-open) { display: none; }
+        .pd-book.pa-manual .pd-holds &.pd-folder:not(.pa-open) { display: none; }
         .pd-book .pd-holds &.pd-folder.pa-open { position: relative; }
         .pd-book .pd-holds &.pd-folder.pa-open .pd-section { margin: 0 0 calc(${({ theme }) => theme.space} / 3); }
         .pd-book .pd-holds &.pd-folder.pa-open .pd-sentence.pd-heading {

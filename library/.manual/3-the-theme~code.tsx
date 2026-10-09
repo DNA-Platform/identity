@@ -84,7 +84,7 @@ export class $LibraryBookTheme extends $Theme {
     style: ElementType = selection.div`${this.parts()}`;
 
     protected parts(): RuleSet[] {
-        return [this.page(), this.writing(), this.links(), this.figures(), this.listings(), this.switches(), this.turns(), this.illustrations(), this.marks(), this.library(), this.head(), this.holds(), this.built(), this.tones()];
+        return [this.page(), this.writing(), this.links(), this.figures(), this.listings(), this.switches(), this.turns(), this.illustrations(), this.marks(), this.library(), this.head(), this.holds(), this.context(), this.tones()];
     }
 
     protected page(): RuleSet {
@@ -356,12 +356,12 @@ export class $LibraryBookTheme extends $Theme {
         `;
     }
 
-    protected built(): RuleSet {
+    protected context(): RuleSet {
         return css`
             .pd-holds .pd-paragraph.pd-root { display: none; }
-            .pa-built .pd-holds .pd-section:not(.pa-folder) { display: none; }
-            .pa-built .pd-holds .pd-folder { order: -1; }
-            .pa-built .pd-holds .pd-paragraph.pd-root {
+            .pd-book.pa-manual .pd-holds .pd-section:not(.pa-folder) { display: none; }
+            .pd-book.pa-manual .pd-holds .pd-folder { order: -1; }
+            .pd-book.pa-manual .pd-holds .pd-paragraph.pd-root {
                 display: flex;
                 order: -2;
                 align-items: center;
@@ -372,11 +372,11 @@ export class $LibraryBookTheme extends $Theme {
                 line-height: calc(1.9286 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.sideInk};
             }
-            .pa-built .pd-holds .pd-root .pd-word { display: inline-flex; align-items: center; gap: calc(${({ theme }) => theme.space} * 0.2917); }
-            .pa-built .pd-holds .pd-root .pd-drawing { width: calc(0.7143 * ${({ theme }) => theme.size}); height: calc(0.7143 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.faint}; transform: rotate(180deg); }
-            .pa-built .pd-holds .pd-root svg { display: block; width: 100%; height: 100%; }
-            .pa-built .pd-holds .pd-root .pa-reference { color: inherit; text-decoration: none; }
-            .pa-built .pd-holds .pd-root:hover { color: ${({ theme }) => theme.ink}; }
+            .pd-book.pa-manual .pd-holds .pd-root .pd-word { display: inline-flex; align-items: center; gap: calc(${({ theme }) => theme.space} * 0.2917); }
+            .pd-book.pa-manual .pd-holds .pd-root .pd-drawing { width: calc(0.7143 * ${({ theme }) => theme.size}); height: calc(0.7143 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.faint}; transform: rotate(180deg); }
+            .pd-book.pa-manual .pd-holds .pd-root svg { display: block; width: 100%; height: 100%; }
+            .pd-book.pa-manual .pd-holds .pd-root .pa-reference { color: inherit; text-decoration: none; }
+            .pd-book.pa-manual .pd-holds .pd-root:hover { color: ${({ theme }) => theme.ink}; }
         `;
     }
 

@@ -1,15 +1,13 @@
 import { ElementType, ReactNode } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Append, $Chapter, $Format, $Paragraph, $Section, $Writing, AnnotationSpecification, Given, html, specify } from '@dna-platform/public';
-import type { $LibraryBook } from './1-the-book~code.tsx';
-import { File as file, Listing as listing } from './2-the-listing~code.tsx';
+import { File as file, Listing as listing, nameOf } from './2-the-listing~code.tsx';
 import { Switch as switchOf, Tab as tab } from './9-the-switch~code.tsx';
-import { $Index, Folded as folded, Chevron as chevron, leads } from './14-the-entry~code.tsx';
 import { CodeForward as codeForward, LightCode as lightCode, Numbered as numbered, Split as split, WordsForward as wordsForward, Wrapped as wrapped } from './10-the-manual~forward.tsx';
 
 export class $Manual extends $Format {
     specification = new ManualSpecification();
-    $file = '';
+    $shown: $Append | undefined = undefined;
     spread: ElementType = selection.div`
         --night: color-mix(in oklch, #0f2a33 55%, #2b363c);
         --dusk: color-mix(in oklch, #17363f 55%, #343f45);
@@ -25,15 +23,16 @@ export class $Manual extends $Format {
             --dim: color-mix(in oklch, #5d4a16 45%, white);
             --brass: #5d4a16;
         }
-        .pd-book .pd-page.pd-open & {
+        .pd-book &.pd-container:not(.pa-open) { display: none; }
+        .pd-book &.pd-container.pa-open {
             display: grid;
             grid-template-columns: minmax(0, 1fr) 0 calc(2 * ${({ theme }) => theme.space});
             grid-template-areas: 'words panel rail';
             min-height: calc(100vh - ${({ theme }) => theme.barHeight});
             transition: grid-template-columns 0.28s ease;
         }
-        .pd-book.pa-split .pd-page.pd-open & { grid-template-columns: minmax(380px, 1fr) min(44vw, 720px) calc(2 * ${({ theme }) => theme.space}); }
-        .pd-book.pa-code-forward .pd-page.pd-open & {
+        .pd-book.pa-split &.pd-container.pa-open { grid-template-columns: minmax(380px, 1fr) min(44vw, 720px) calc(2 * ${({ theme }) => theme.space}); }
+        .pd-book.pa-code-forward &.pd-container.pa-open {
             grid-template-areas: 'panel panel grip';
             grid-template-columns: minmax(0, 1fr) 0 calc(${({ theme }) => theme.space} * 0.75);
             height: calc(100vh - ${({ theme }) => theme.barHeight});
@@ -246,7 +245,7 @@ export class $Manual extends $Format {
         .pd-book.pa-light-code & .hljs-title, .pa-light-code & .hljs-type, .pa-light-code & .hljs-tag, .pa-light-code & .hljs-name, .pa-light-code & .hljs-attr { color: #23407a; }
         .pd-book.pa-light-code & .hljs-comment, .pa-light-code & .hljs-meta { color: #8a94a3; }
         @media (max-width: ${({ theme }) => theme.narrow}) {
-            .pd-book .pd-page.pd-open &, .pd-book.pa-split .pd-page.pd-open &, .pd-book.pa-code-forward .pd-page.pd-open & { display: block; height: auto; min-height: 0; }
+            .pd-book &.pd-container.pa-open, .pd-book.pa-split &.pd-container.pa-open, .pd-book.pa-code-forward &.pd-container.pa-open { display: block; height: auto; min-height: 0; }
             .pd-book & .pd-rail, .pd-book & .pd-grip { display: none; }
             .pd-book.pa-code-forward & .pd-words { display: block; }
             .pd-book & .pd-words { padding: calc(${({ theme }) => theme.space} * 0.83) calc(${({ theme }) => theme.space} * 0.67) calc(${({ theme }) => theme.space} / 3); }
@@ -254,53 +253,44 @@ export class $Manual extends $Format {
             .pd-book & .pd-files { box-shadow: none; }
         }
     `;
-    get files(): string[] { return (this.book as $LibraryBook).filesOf(this.parent as $Chapter); }
-    get file(): string {
-        const files = this.files;
-        return files.includes(this.$file) ? this.$file : files[0] ?? '';
-    }
+    get appends(): $Append[] { return (this.parent as $Chapter).annotations.find($Append).reverse(); }
+    get shown(): $Append | undefined { return this.$shown ?? this.appends[0]; }
     get readings(): Given<$Annotation>[] {
         return [wordsForward, split, codeForward];
-    }
-    get context(): string { return 'pa-built'; }
-    get rows(): $Paragraph[] {
-        const chapter = this.parent as $Chapter;
-        const entries = this.book?.table?.annotations.expressed($Index)?.entries ?? [];
-        return entries.filter(paragraph => leads(paragraph)?.identifier === chapter.mention?.identifier);
     }
 
     $Manual(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
         const Spread = this.spread;
-        this.style = ({ className, children }: { className?: string; children?: ReactNode }) => (
-            <Spread className={className}>
-                <div className="pd-words">
-                    {children}
-                </div>
-                <div className="pd-files">
-                    {this.tabs()}
-                    {this.listings()}
-                </div>
-                {this.rail()}
-                {this.grip()}
-            </Spread>
-        );
+        this.style = ({ className, children }: { className?: string; children?: ReactNode }) => {
+            const open = [...(this.parent as $Chapter).classes].includes('pa-open');
+            return (
+                <Spread className={`${className ?? ''}${open ? ' pa-open' : ''}`.trim()}>
+                    <div className="pd-words">
+                        {children}
+                    </div>
+                    <div className="pd-files">
+                        {this.tabs()}
+                        {this.listings()}
+                    </div>
+                    {this.rail()}
+                    {this.grip()}
+                </Spread>
+            );
+        };
     }
 
     tabs(): ReactNode {
         const File = $(file);
         const Tab = $(tab);
         const Switch = $(switchOf);
-        const chapter = this.parent as $Chapter;
         const cover = this.book!.cover;
         return (
             <div className="pd-tabs">
-                {this.files.map(name => (
+                {this.appends.map(append => (
                     <File
-                        key={name}
-                        chapter={chapter}
-                        name={name}
-                        manual={this}
+                        key={nameOf(append)}
+                        append={append}
                     />
                 ))}
                 <span className="pd-words-tab">
@@ -356,18 +346,14 @@ export class $Manual extends $Format {
 
     listings(): ReactNode {
         const Listing = $(listing);
-        const chapter = this.parent as $Chapter;
         return (
             <div className="pd-listings">
-                {chapter.annotations.find($Append).reverse().map((append, index) => (
+                {this.appends.map(append => (
                     <Listing
-                        key={index}
-                        chapter={chapter}
-                        identifier={append.$identifier}
-                        type={append.$type}
+                        key={nameOf(append)}
+                        append={append}
                         reading={codeForward}
                         among={this.readings}
-                        manual={this}
                     />
                 ))}
             </div>
@@ -376,17 +362,14 @@ export class $Manual extends $Format {
 
     rail(): ReactNode {
         const File = $(file);
-        const chapter = this.parent as $Chapter;
         return (
             <div className="pd-rail">
-                {this.files.map(name => (
+                {this.appends.map(append => (
                     <File
-                        key={name}
-                        chapter={chapter}
-                        name={name}
+                        key={nameOf(append)}
+                        append={append}
                         of={split}
                         among={this.readings}
-                        manual={this}
                         skeleton
                     />
                 ))}
@@ -418,10 +401,6 @@ export class $Manual extends $Format {
         );
     }
 
-    show(name: string): void {
-        this.$file = name;
-    }
-
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-manual');
@@ -430,30 +409,6 @@ export class $Manual extends $Format {
     override erase(writing: $Writing): void {
         super.erase(writing);
         writing.classes.revert(this);
-    }
-
-    protected override $Bound(): void {
-        const Chevron = $(chevron);
-        const File = $(file);
-        const chapter = this.parent as $Chapter;
-        const files = this.files;
-        for (const paragraph of this.rows)
-            paragraph.text.add(this,
-                <Chevron
-                    target={files.length === 0 ? undefined : paragraph}
-                    of={folded}
-                />,
-                ...files.map(name => (
-                    <File
-                        chapter={chapter}
-                        name={name}
-                        of={split}
-                        among={this.readings}
-                        manual={this}
-                    />
-                ))
-            );
-        super.$Bound();
     }
 }
 

@@ -25,7 +25,10 @@ export class $Layout extends $Paginated {
         }
     `;
     override get pages(): $Chapter[] { return (this.book as $LibraryBook).pages; }
-    override get open(): $Chapter | undefined { return (this.book as $LibraryBook).open; }
+    override get open(): $Chapter | undefined {
+        const book = this.book as $LibraryBook;
+        return book.open ?? book.synopsis;
+    }
 
     protected override $Bound(): void {
         const Here = this.style;
@@ -46,10 +49,9 @@ export class $Layout extends $Paginated {
                 writing.annotations.express(annotation, false);
         super.defines(writing);
         writing.classes.add(this, 'pa-layout');
-        const open = this.open;
+        const open = (this.book as $LibraryBook).open;
         if (open !== undefined) writing.classes.add(this, 'pa-turned');
-        const context = open?.annotations.expressed($Manual)?.context;
-        if (context !== undefined) writing.classes.add(this, context);
+        if (open?.is($Manual)) writing.classes.add(this, 'pa-manual');
     }
 
     override erase(writing: $Writing): void {
@@ -63,7 +65,7 @@ export class $Layout extends $Paginated {
 
     protected paging(): RuleSet {
         return css`
-            .pd-page:not(.pd-open) { display: none; }
+            .pa-page:not(.pa-open) { display: none; }
         `;
     }
 
@@ -101,7 +103,7 @@ export class $Layout extends $Paginated {
                 gap: calc(${({ theme }) => theme.space} / 3);
             }
             .pa-layout .pd-pages { grid-area: pages; min-width: 0; overflow-y: auto; }
-            .pa-layout .pd-words .pd-chapter { scroll-margin-block-start: ${({ theme }) => theme.space}; }
+            .pa-layout .pd-chapter.pa-page { scroll-margin-block-start: ${({ theme }) => theme.space}; }
         `;
     }
 
@@ -151,7 +153,7 @@ export class $Layout extends $Paginated {
                 .pa-layout .pd-switches { justify-content: flex-start; }
                 .pa-layout .pd-holds { order: 2; overflow: auto hidden; white-space: nowrap; scrollbar-width: none; }
                 .pa-layout .pd-pages { order: 3; overflow: visible; }
-                .pa-layout .pd-words .pd-chapter { scroll-margin-block-start: calc(${({ theme }) => theme.barHeight} + ${({ theme }) => theme.space} / 2); }
+                .pa-layout .pd-chapter.pa-page { scroll-margin-block-start: calc(${({ theme }) => theme.barHeight} + ${({ theme }) => theme.space} / 2); }
             }
         `;
     }

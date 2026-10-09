@@ -1,4 +1,4 @@
-var za=Object.defineProperty;var o=(C,e)=>za(C,"name",{value:e,configurable:!0});import{$ as v,f as La,s as Ta,g as z,h as A,i as qa,k as T,l as N,j as a,m as Ia,n as M,o as q,p as Ea,q as Ba,r as Fa,C as y,b as Pa,T as w,P as Aa,c as p,H as i,a as s,d as m,W as V,M as n,I as t,t as l,A as $,e as I}from"./index-CACzSe8E.js";import{d as Na,e as Ra,T as Oa,D as Ma,L as Wa,f as Ha,I as Ja,a as Ga,M as E}from"./.cover-Bd0_uJqw.js";import{C as Ua,S as Va}from"./.synopsis-Dw4b3Mwh.js";var Qa=Object.defineProperty,Ka=Object.getOwnPropertyDescriptor,_a=o((C,e,k,$a)=>{for(var f=Ka(e,k),j=C.length-1,S;j>=0;j--)(S=C[j])&&(f=S(e,k,f)||f);return f&&Qa(e,k,f),f},"__decorateClass$2");const pa=class pa extends La{constructor(){super(...arguments),this.specification=new R,this.themeProvider=!0,this.style=Ta.div`
+var za=Object.defineProperty;var o=(C,e)=>za(C,"name",{value:e,configurable:!0});import{$ as v,f as La,s as Ta,g as z,h as A,i as qa,k as T,l as N,j as a,m as Ia,n as M,o as q,p as Ea,q as Ba,r as Fa,C as y,b as Pa,T as w,P as Aa,c as p,H as i,a as s,d as m,W as V,M as n,I as t,t as l,A as $,e as I}from"./index-BnlsVDFI.js";import{d as Na,e as Ra,T as Oa,D as Ma,L as Wa,f as Ha,I as Ja,a as Ga,M as E}from"./.cover-CbWFyiz3.js";import{C as Ua,S as Va}from"./.synopsis-D16hWDUV.js";var Qa=Object.defineProperty,Ka=Object.getOwnPropertyDescriptor,_a=o((C,e,k,$a)=>{for(var f=Ka(e,k),j=C.length-1,S;j>=0;j--)(S=C[j])&&(f=S(e,k,f)||f);return f&&Qa(e,k,f),f},"__decorateClass$2");const pa=class pa extends La{constructor(){super(...arguments),this.specification=new R,this.themeProvider=!0,this.style=Ta.div`
         .pd-chapter.pa-gallery .pd-section {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(${({theme:e})=>e.card}, 1fr));
@@ -64,12 +64,12 @@ var za=Object.defineProperty;var o=(C,e)=>za(C,"name",{value:e,configurable:!0})
             }
         `}words(){return N`
             .pd-pages { padding: calc(${({theme:e})=>e.space} * 0.83) calc(${({theme:e})=>e.space} * 1.17) calc(${({theme:e})=>e.space} * 1.67); }
-            .pd-words .pd-chapter { margin-block: 0; max-width: none; }
+            .pd-pages .pd-chapter { margin-block: 0; max-width: none; }
             .pd-head .pd-title {
                 font-size: calc(2 * ${({theme:e})=>e.size});
                 letter-spacing: -0.02em;
             }
-            .pd-words .pd-title {
+            .pd-pages .pd-title {
                 font-family: ${({theme:e})=>e.serif};
                 font-size: calc(2 * ${({theme:e})=>e.size});
                 font-weight: 600;
@@ -77,15 +77,15 @@ var za=Object.defineProperty;var o=(C,e)=>za(C,"name",{value:e,configurable:!0})
                 line-height: 1.1;
                 color: ${({theme:e})=>e.heading};
             }
-            .pd-words .pd-heading {
+            .pd-pages .pd-heading {
                 font-size: calc(0.76 * ${({theme:e})=>e.size});
                 font-weight: 600;
                 letter-spacing: 0.12em;
                 text-transform: uppercase;
                 color: ${({theme:e})=>e.soft};
             }
-            .pd-words .pd-paragraph { max-width: ${({theme:e})=>e.measure}; }
-            .pd-front .pd-words .pd-paragraph {
+            .pd-pages .pd-paragraph { max-width: ${({theme:e})=>e.measure}; }
+            .pd-pages .pd-chapter.pa-synopsis .pd-paragraph {
                 font-size: calc(1.14 * ${({theme:e})=>e.size});
                 line-height: 1.6;
                 color: ${({theme:e})=>e.soft};
@@ -14885,12 +14885,12 @@ export class $DesignTheme extends $LibraryBookTheme {
     protected words(): RuleSet {
         return css\`
             .pd-pages { padding: calc(\${({ theme }) => theme.space} * 0.83) calc(\${({ theme }) => theme.space} * 1.17) calc(\${({ theme }) => theme.space} * 1.67); }
-            .pd-words .pd-chapter { margin-block: 0; max-width: none; }
+            .pd-pages .pd-chapter { margin-block: 0; max-width: none; }
             .pd-head .pd-title {
                 font-size: calc(2 * \${({ theme }) => theme.size});
                 letter-spacing: -0.02em;
             }
-            .pd-words .pd-title {
+            .pd-pages .pd-title {
                 font-family: \${({ theme }) => theme.serif};
                 font-size: calc(2 * \${({ theme }) => theme.size});
                 font-weight: 600;
@@ -14898,15 +14898,15 @@ export class $DesignTheme extends $LibraryBookTheme {
                 line-height: 1.1;
                 color: \${({ theme }) => theme.heading};
             }
-            .pd-words .pd-heading {
+            .pd-pages .pd-heading {
                 font-size: calc(0.76 * \${({ theme }) => theme.size});
                 font-weight: 600;
                 letter-spacing: 0.12em;
                 text-transform: uppercase;
                 color: \${({ theme }) => theme.soft};
             }
-            .pd-words .pd-paragraph { max-width: \${({ theme }) => theme.measure}; }
-            .pd-front .pd-words .pd-paragraph {
+            .pd-pages .pd-paragraph { max-width: \${({ theme }) => theme.measure}; }
+            .pd-pages .pd-chapter.pa-synopsis .pd-paragraph {
                 font-size: calc(1.14 * \${({ theme }) => theme.size});
                 line-height: 1.6;
                 color: \${({ theme }) => theme.soft};

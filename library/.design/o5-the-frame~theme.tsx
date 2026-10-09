@@ -38,12 +38,12 @@ export class $DesignTheme extends $LibraryBookTheme {
     protected words(): RuleSet {
         return css`
             .pd-pages { padding: calc(${({ theme }) => theme.space} * 0.83) calc(${({ theme }) => theme.space} * 1.17) calc(${({ theme }) => theme.space} * 1.67); }
-            .pd-words .pd-chapter { margin-block: 0; max-width: none; }
+            .pd-pages .pd-chapter { margin-block: 0; max-width: none; }
             .pd-head .pd-title {
                 font-size: calc(2 * ${({ theme }) => theme.size});
                 letter-spacing: -0.02em;
             }
-            .pd-words .pd-title {
+            .pd-pages .pd-title {
                 font-family: ${({ theme }) => theme.serif};
                 font-size: calc(2 * ${({ theme }) => theme.size});
                 font-weight: 600;
@@ -51,15 +51,15 @@ export class $DesignTheme extends $LibraryBookTheme {
                 line-height: 1.1;
                 color: ${({ theme }) => theme.heading};
             }
-            .pd-words .pd-heading {
+            .pd-pages .pd-heading {
                 font-size: calc(0.76 * ${({ theme }) => theme.size});
                 font-weight: 600;
                 letter-spacing: 0.12em;
                 text-transform: uppercase;
                 color: ${({ theme }) => theme.soft};
             }
-            .pd-words .pd-paragraph { max-width: ${({ theme }) => theme.measure}; }
-            .pd-front .pd-words .pd-paragraph {
+            .pd-pages .pd-paragraph { max-width: ${({ theme }) => theme.measure}; }
+            .pd-pages .pd-chapter.pa-synopsis .pd-paragraph {
                 font-size: calc(1.14 * ${({ theme }) => theme.size});
                 line-height: 1.6;
                 color: ${({ theme }) => theme.soft};

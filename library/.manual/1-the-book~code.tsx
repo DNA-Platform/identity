@@ -1,7 +1,6 @@
 import { ReactElement, ReactNode } from 'react';
 import { $, $check, inert } from '@dna-platform/chemistry';
 import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Part, $Section, $TableOfContents, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
-import { Listing as listing } from './2-the-listing~code.tsx';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
@@ -22,6 +21,9 @@ export class $LibraryBook extends $Book {
         return [this.cover, this.synopsis, this.table, ...this.chapters];
     }
     get pages(): $Chapter[] {
+        return [this.synopsis, ...this.chapters].filter((chapter): chapter is $Chapter => chapter !== undefined);
+    }
+    get body(): $Chapter[] {
         const appendix = this.appendix;
         return this.chapters.filter(chapter => !appendix.includes(chapter));
     }
@@ -55,8 +57,14 @@ export class $LibraryBook extends $Book {
                     {this.head()}
                 </div>
                 <div className="pd-pages">
-                    {this.front()}
-                    {this.chapters.map((chapter, index) => this.page(chapter, index))}
+                    {this.top()}
+                    {this.pages.map((chapter, index) => {
+                        const Chapter = $(chapter);
+                        return (
+                            <Chapter key={index} />
+                        );
+                    })}
+                    {this.bottom()}
                 </div>
             </>
         );
@@ -110,47 +118,12 @@ export class $LibraryBook extends $Book {
         );
     }
 
-    front(): ReactNode {
-        return (
-            <div className={this.open === undefined ? 'pd-page pd-front pd-open' : 'pd-page pd-front'}>
-                {this.opening()}
-            </div>
-        );
+    top(): ReactNode {
+        return undefined;
     }
 
-    opening(): ReactNode {
-        const Synopsis = $(this.synopsis!);
-        return (
-            <div className="pd-words">
-                <Synopsis />
-            </div>
-        );
-    }
-
-    page(chapter: $Chapter, key: number): ReactNode {
-        const Chapter = $(chapter);
-        const className = chapter === this.open ? 'pd-page pd-open' : 'pd-page';
-        if (chapter.is($Manual)) return (
-            <div
-                key={key}
-                className={className}
-            >
-                <Chapter />
-            </div>
-        );
-        return (
-            <div
-                key={key}
-                className={className}
-            >
-                <div className="pd-words">
-                    <Chapter />
-                </div>
-                <div className="pd-files">
-                    {this.listings(chapter)}
-                </div>
-            </div>
-        );
+    bottom(): ReactNode {
+        return undefined;
     }
 
     named(place: string): $Chapter | undefined {
@@ -198,22 +171,6 @@ export class $LibraryBook extends $Book {
         return undefined;
     }
 
-    listings(chapter: $Chapter): ReactNode {
-        const Listing = $(listing);
-        return chapter.annotations.find($Append).reverse().map((append, index) => (
-            <Listing
-                key={index}
-                chapter={chapter}
-                identifier={append.$identifier}
-                type={append.$type}
-            />
-        ));
-    }
-
-    filesOf(chapter: $Chapter): string[] {
-        return chapter.annotations.find($Append).reverse().map(append => `${append.$identifier}${append.$type}`);
-    }
-
     sections(composition: $Composition): $Section[] {
         return composition.text.find($Section).flatMap(section => [section, ...this.sections(section)]);
     }
@@ -259,7 +216,7 @@ export class $LibraryBook extends $Book {
             />
         ), this);
         const Turn = $(turn);
-        for (const chapter of this.pages)
+        for (const chapter of this.body)
             chapter.text.add(this,
                 <Turn />
             );

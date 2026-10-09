@@ -81,7 +81,7 @@ export class $StoryTheme extends $LibraryBookTheme {
                 box-shadow: ${({ theme }) => theme.shadow};
             }
             .pa-sheet .pd-top { padding: calc(${({ theme }) => theme.space} * 2.8333) calc(${({ theme }) => theme.space} * 3.1667) calc(${({ theme }) => theme.space} * 1.8333); }
-            .pa-sheet .pd-page {
+            .pa-sheet .pa-page {
                 padding: 0 calc(${({ theme }) => theme.space} * 3.1667) calc(${({ theme }) => theme.space} * 2.3333);
                 font-size: calc(1.2286 *${({ theme }) => theme.size});
                 line-height: 1.8;
@@ -130,7 +130,7 @@ export class $StoryTheme extends $LibraryBookTheme {
 
     protected letterpress(): RuleSet {
         return css`
-            .pa-sheet .pd-page .pd-title {
+            .pa-sheet .pa-page .pd-title {
                 margin-block: 0 calc(${({ theme }) => theme.space} * 1.25);
                 font-size: calc(2.7857 *${({ theme }) => theme.size});
                 font-weight: 700;
@@ -138,7 +138,7 @@ export class $StoryTheme extends $LibraryBookTheme {
                 letter-spacing: -0.01em;
                 text-align: center;
             }
-            .pa-sheet .pd-page .pd-heading {
+            .pa-sheet .pa-page .pd-heading {
                 margin-block: calc(${({ theme }) => theme.space} * 1.3333) calc(${({ theme }) => theme.space} * 0.5);
                 font-size: calc(1.5 *${({ theme }) => theme.size});
                 font-weight: 700;
@@ -146,18 +146,18 @@ export class $StoryTheme extends $LibraryBookTheme {
                 letter-spacing: -0.01em;
                 text-align: center;
             }
-            .pa-sheet .pd-page .pd-paragraph {
+            .pa-sheet .pa-page .pd-paragraph {
                 text-align: justify;
                 hyphens: auto;
             }
-            .pa-sheet .pd-page .pd-paragraph.pa-first::first-letter {
+            .pa-sheet .pa-page .pd-paragraph.pa-first::first-letter {
                 float: left;
                 padding: calc(${({ theme }) => theme.space} * 0.25) calc(${({ theme }) => theme.space} * 0.4167) 0 0;
                 font-size: calc(4.0714 *${({ theme }) => theme.size});
                 line-height: 0.85;
                 color: var(--accent);
             }
-            .pa-sheet .pd-page .pd-paragraph .pa-reference {
+            .pa-sheet .pa-page .pd-paragraph .pa-reference {
                 text-underline-offset: calc(${({ theme }) => theme.space} / 12);
                 color: var(--accent);
             }
@@ -166,7 +166,7 @@ export class $StoryTheme extends $LibraryBookTheme {
 
     protected foot(): RuleSet {
         return css`
-            .pa-sheet .pd-page .pd-paragraph.pd-turn {
+            .pa-sheet .pa-page .pd-paragraph.pd-turn {
                 display: grid;
                 grid-template-columns: 1fr auto 1fr;
                 align-items: baseline;
@@ -183,7 +183,7 @@ export class $StoryTheme extends $LibraryBookTheme {
                 hyphens: manual;
                 color: var(--soft);
             }
-            .pa-sheet .pd-page .pd-paragraph.pd-turn .pa-reference {
+            .pa-sheet .pa-page .pd-paragraph.pd-turn .pa-reference {
                 font-size: calc(0.8929 *${({ theme }) => theme.size});
                 font-weight: 700;
                 letter-spacing: 0.02em;
@@ -216,8 +216,8 @@ export class $StoryTheme extends $LibraryBookTheme {
                     box-shadow: none;
                 }
                 .pa-sheet .pd-top { padding: calc(${({ theme }) => theme.space} * 1.6667) calc(${({ theme }) => theme.space} * 1.0833) calc(${({ theme }) => theme.space} * 1.8333); }
-                .pa-sheet .pd-page { padding: 0 calc(${({ theme }) => theme.space} * 1.0833) calc(${({ theme }) => theme.space} * 1.5); }
-                .pa-sheet .pd-page .pd-paragraph.pd-turn { grid-template-columns: 1fr 1fr; }
+                .pa-sheet .pa-page { padding: 0 calc(${({ theme }) => theme.space} * 1.0833) calc(${({ theme }) => theme.space} * 1.5); }
+                .pa-sheet .pa-page .pd-paragraph.pd-turn { grid-template-columns: 1fr 1fr; }
                 .pa-sheet .pd-turn .pd-word.pd-count {
                     grid-column: 1 / -1;
                     grid-row: 1;

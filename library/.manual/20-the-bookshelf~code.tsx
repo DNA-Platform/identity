@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
-import { $, $check, inert } from '@dna-platform/chemistry';
-import { $Annotation, $Chapter, $Paragraph, $Referent, $SelfReference, $Synopsis, $TableOfContents, $Word, $Writing, AnnotationSpecification, Reference as reference, Self, Theme, Word as word, specify } from '@dna-platform/public';
+import { ElementType, ReactNode } from 'react';
+import { $, $check, $Chemical, inert, selection } from '@dna-platform/chemistry';
+import { $Annotation, $Chapter, $Format, $Paragraph, $Referent, $SelfReference, $Synopsis, $TableOfContents, $Word, $Writing, AnnotationSpecification, Reference as reference, Self, Theme, Word as word, specify } from '@dna-platform/public';
 import { $LibraryBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
@@ -18,34 +18,7 @@ export class $Catalogue extends $LibraryBook {
         return [...super.placed, ...this.books];
     }
     override get pages(): $Chapter[] {
-        return [...this.books, ...super.pages];
-    }
-
-    override write(): ReactNode {
-        return (
-            <>
-                <div className="pd-library">
-                    {this.library()}
-                </div>
-                <div className="pd-me">
-                    {this.me()}
-                </div>
-                <div className="pd-holds">
-                    {this.holds()}
-                </div>
-                <div className="pd-head">
-                    {this.head()}
-                </div>
-                <div className="pd-pages">
-                    {this.front()}
-                    {this.books.map((chapter, index) => this.desk(chapter, index))}
-                    {this.chapters.map((chapter, index) => this.page(chapter, this.books.length + index))}
-                    <div className="pd-shelf">
-                        {this.volumes()}
-                    </div>
-                </div>
-            </>
-        );
+        return [this.synopsis!, ...this.books, ...this.chapters];
     }
 
     override head(): ReactNode {
@@ -56,69 +29,12 @@ export class $Catalogue extends $LibraryBook {
         );
     }
 
-    override front(): ReactNode {
-        const Switch = $(switchOf);
-        return this.painted(this.cover, (
-            <div className={this.open === undefined ? 'pd-page pd-front pd-desk pd-open' : 'pd-page pd-front pd-desk'}>
-                {this.jacket(this.cover)}
-                {this.opening()}
-                {this.reading(this.cover)}
-                <Switch
-                    chapter={this.cover}
-                    of={Unfolded}
-                >
-                    read on
-                </Switch>
-            </div>
-        ));
-    }
-
-    override opening(): ReactNode {
-        const Title = $(this.title!);
-        const Synopsis = $(this.synopsis!);
+    override bottom(): ReactNode {
         return (
-            <div className="pd-words">
-                {this.shelved(this.cover)}
-                <Title />
-                {this.line(this.cover)}
-                <Synopsis />
+            <div className="pd-shelf">
+                {this.volumes()}
             </div>
         );
-    }
-
-    desk(chapter: $Chapter, index: number): ReactNode {
-        const Switch = $(switchOf);
-        const Chapter = $(chapter);
-        const cover = this.jacketOf(chapter);
-        return this.painted(cover, (
-            <div
-                key={index}
-                className={chapter === this.open ? 'pd-page pd-desk pd-open' : 'pd-page pd-desk'}
-            >
-                {this.jacket(cover)}
-                <div className="pd-words">
-                    {this.shelved(cover)}
-                    <Chapter />
-                </div>
-                {cover === undefined ? undefined : (
-                    <div className="pd-line">
-                        {this.line(cover)}
-                    </div>
-                )}
-                {this.reading(cover)}
-                {cover === undefined ? undefined : (
-                    <Switch
-                        chapter={chapter}
-                        of={Unfolded}
-                    >
-                        read on
-                    </Switch>
-                )}
-                <div className="pd-files">
-                    {this.listings(chapter)}
-                </div>
-            </div>
-        ), index);
     }
 
     volumes(): ReactNode {
@@ -197,6 +113,7 @@ export class $Catalogue extends $LibraryBook {
     }
 
     jacketOf(chapter: $Chapter): $Chapter | undefined {
+        if (chapter === this.synopsis) return this.cover;
         return chapter.annotations.expressed($Volume)?.cover ?? (this.appendix.includes(chapter) ? undefined : this.cover);
     }
 
@@ -215,6 +132,82 @@ export class $Catalogue extends $LibraryBook {
         const address = this.means?.identifier;
         if (slug === undefined || address === undefined) return undefined;
         return `${address.replace(/\/+$/u, '')}/#${slug}`;
+    }
+
+    protected override $Bound(): void {
+        const Desk = $(desk);
+        for (const chapter of [this.synopsis, ...this.books])
+            chapter?.annotations.add(this,
+                <Desk />
+            );
+        super.$Bound();
+    }
+}
+
+export class $Desk extends $Format {
+    specification = new DeskSpecification();
+    card: ElementType = selection.div`
+        &:not(.pa-open) { display: none; }
+    `;
+    get chapter(): $Chapter { return this.parent as $Chapter; }
+    get catalogue(): $Catalogue { return this.book as $Catalogue; }
+    get own(): boolean { return this.chapter === this.catalogue.synopsis; }
+    get cover(): $Chapter | undefined { return this.catalogue.jacketOf(this.chapter); }
+
+    $Desk(...chemicals: $Chemical[]) {
+        this.$Format(...chemicals);
+        const Switch = $(switchOf);
+        const Card = this.card;
+        this.style = ({ className, children }: { className?: string; children?: ReactNode }) => {
+            const catalogue = this.catalogue;
+            const cover = this.cover;
+            const open = [...this.chapter.classes].includes('pa-open');
+            const Title = this.own ? $(catalogue.title!) : undefined;
+            return catalogue.painted(cover, (
+                <Card className={`${className ?? ''} pd-desk${open ? ' pa-open' : ''}`.trim()}>
+                    {catalogue.jacket(cover)}
+                    <div className="pd-words">
+                        {catalogue.shelved(cover)}
+                        {Title === undefined ? undefined : (
+                            <Title />
+                        )}
+                        {this.own ? catalogue.line(cover) : undefined}
+                        {children}
+                    </div>
+                    {this.own || cover === undefined ? undefined : (
+                        <div className="pd-line">
+                            {catalogue.line(cover)}
+                        </div>
+                    )}
+                    {catalogue.reading(cover)}
+                    {cover === undefined ? undefined : (
+                        <Switch
+                            chapter={this.chapter}
+                            of={Unfolded}
+                        >
+                            read on
+                        </Switch>
+                    )}
+                </Card>
+            ));
+        };
+    }
+
+    override defines(writing: $Writing): void {
+        super.defines(writing);
+        writing.classes.add(this, 'pa-desk');
+    }
+
+    override erase(writing: $Writing): void {
+        super.erase(writing);
+        writing.classes.revert(this);
+    }
+}
+
+export class DeskSpecification extends AnnotationSpecification {
+    @specify('a desk is said of a synopsis')
+    $saidOfASynopsis(writing: $Writing): void {
+        $check(writing instanceof $Chapter && writing.is($Synopsis), 'a desk is said of a synopsis, and this is not one');
     }
 }
 
@@ -280,10 +273,12 @@ export class ArrowSpecification extends AnnotationSpecification {
 }
 
 export const Catalogue = $($Catalogue);
+export const Desk = $($Desk);
 export const BookLink = $($BookLink);
 export const Caption = $($Caption);
 export const Arrow = $($Arrow);
 export const Unfolded = $($Unfolded);
+const desk = Desk;
 $(Catalogue, Self)(BookLink);
 $(Catalogue, Theme)(Bookshelf);
 $(Catalogue, tone)(light);

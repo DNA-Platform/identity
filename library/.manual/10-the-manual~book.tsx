@@ -9,14 +9,10 @@ import { $Brief, Numbered as numbered, WordsForward as wordsForward } from './10
 export class $ManualBook extends $LibraryBook {
     override specification = new ManualBookSpecification();
     override get open(): $Chapter | undefined {
-        return super.open ?? this.pages[0];
+        return super.open ?? this.body[0];
     }
 
     override head(): ReactNode {
-        return undefined;
-    }
-
-    override front(): ReactNode {
         return undefined;
     }
 
