@@ -1,5 +1,5 @@
-import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Manual, Part } from '../.manual/.book';
+import { Append, Chapter, Heading, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
+import { Manual } from '../.manual/.book';
 
 export default () => (
     <Chapter>
