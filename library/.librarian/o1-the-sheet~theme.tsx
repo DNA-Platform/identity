@@ -73,22 +73,22 @@ export class $StoryTheme extends $LibraryBookTheme {
 
     protected sheet(): RuleSet {
         return css`
-            .pa-sheet .pd-leaves { padding: 0 calc(${({ theme }) => theme.space} * 0.8333) calc(${({ theme }) => theme.space} * 4); }
-            .pa-sheet .pd-leaves::before {
+            .pa-sheet .pd-pages { padding: 0 calc(${({ theme }) => theme.space} * 0.8333) calc(${({ theme }) => theme.space} * 4); }
+            .pa-sheet .pd-pages::before {
                 background: var(--paper);
                 border: thin solid var(--line);
                 border-radius: calc(${({ theme }) => theme.space} / 4);
                 box-shadow: ${({ theme }) => theme.shadow};
             }
             .pa-sheet .pd-top { padding: calc(${({ theme }) => theme.space} * 2.8333) calc(${({ theme }) => theme.space} * 3.1667) calc(${({ theme }) => theme.space} * 1.8333); }
-            .pa-sheet .pd-leaf {
+            .pa-sheet .pd-page {
                 padding: 0 calc(${({ theme }) => theme.space} * 3.1667) calc(${({ theme }) => theme.space} * 2.3333);
                 font-size: calc(1.2286 *${({ theme }) => theme.size});
                 line-height: 1.8;
                 color: var(--ink);
             }
-            .pa-sheet .pd-leaves .pd-chapter, .pa-sheet .pd-leaves .pd-section { margin-block: 0; }
-            .pa-sheet .pd-leaves .pd-paragraph { margin-block: 0 calc(${({ theme }) => theme.space} * 0.75); }
+            .pa-sheet .pd-pages .pd-chapter, .pa-sheet .pd-pages .pd-section { margin-block: 0; }
+            .pa-sheet .pd-pages .pd-paragraph { margin-block: 0 calc(${({ theme }) => theme.space} * 0.75); }
         `;
     }
 
@@ -130,7 +130,7 @@ export class $StoryTheme extends $LibraryBookTheme {
 
     protected letterpress(): RuleSet {
         return css`
-            .pa-sheet .pd-leaf .pd-title {
+            .pa-sheet .pd-page .pd-title {
                 margin-block: 0 calc(${({ theme }) => theme.space} * 1.25);
                 font-size: calc(2.7857 *${({ theme }) => theme.size});
                 font-weight: 700;
@@ -138,7 +138,7 @@ export class $StoryTheme extends $LibraryBookTheme {
                 letter-spacing: -0.01em;
                 text-align: center;
             }
-            .pa-sheet .pd-leaf .pd-heading {
+            .pa-sheet .pd-page .pd-heading {
                 margin-block: calc(${({ theme }) => theme.space} * 1.3333) calc(${({ theme }) => theme.space} * 0.5);
                 font-size: calc(1.5 *${({ theme }) => theme.size});
                 font-weight: 700;
@@ -146,18 +146,18 @@ export class $StoryTheme extends $LibraryBookTheme {
                 letter-spacing: -0.01em;
                 text-align: center;
             }
-            .pa-sheet .pd-leaf .pd-paragraph {
+            .pa-sheet .pd-page .pd-paragraph {
                 text-align: justify;
                 hyphens: auto;
             }
-            .pa-sheet .pd-leaf .pd-paragraph.pa-first::first-letter {
+            .pa-sheet .pd-page .pd-paragraph.pa-first::first-letter {
                 float: left;
                 padding: calc(${({ theme }) => theme.space} * 0.25) calc(${({ theme }) => theme.space} * 0.4167) 0 0;
                 font-size: calc(4.0714 *${({ theme }) => theme.size});
                 line-height: 0.85;
                 color: var(--accent);
             }
-            .pa-sheet .pd-leaf .pd-paragraph .pa-reference {
+            .pa-sheet .pd-page .pd-paragraph .pa-reference {
                 text-underline-offset: calc(${({ theme }) => theme.space} / 12);
                 color: var(--accent);
             }
@@ -166,7 +166,7 @@ export class $StoryTheme extends $LibraryBookTheme {
 
     protected foot(): RuleSet {
         return css`
-            .pa-sheet .pd-leaf .pd-paragraph.pd-turn {
+            .pa-sheet .pd-page .pd-paragraph.pd-turn {
                 display: grid;
                 grid-template-columns: 1fr auto 1fr;
                 align-items: baseline;
@@ -183,7 +183,7 @@ export class $StoryTheme extends $LibraryBookTheme {
                 hyphens: manual;
                 color: var(--soft);
             }
-            .pa-sheet .pd-leaf .pd-paragraph.pd-turn .pa-reference {
+            .pa-sheet .pd-page .pd-paragraph.pd-turn .pa-reference {
                 font-size: calc(0.8929 *${({ theme }) => theme.size});
                 font-weight: 700;
                 letter-spacing: 0.02em;
@@ -208,16 +208,16 @@ export class $StoryTheme extends $LibraryBookTheme {
             @media (max-width: ${({ theme }) => theme.narrow}) {
                 .pa-sheet .pd-head { padding: calc(${({ theme }) => theme.space} * 0.5833) calc(${({ theme }) => theme.space} * 0.6667); }
                 .pa-sheet .pd-word.pd-switch { padding: calc(${({ theme }) => theme.space} * 0.25) calc(${({ theme }) => theme.space} * 0.5); }
-                .pa-sheet .pd-leaves { padding: 0; }
-                .pd-book.pa-sheet .pd-leaves::before {
+                .pa-sheet .pd-pages { padding: 0; }
+                .pd-book.pa-sheet .pd-pages::before {
                     border-inline: none;
                     border-block-end: none;
                     border-radius: 0;
                     box-shadow: none;
                 }
                 .pa-sheet .pd-top { padding: calc(${({ theme }) => theme.space} * 1.6667) calc(${({ theme }) => theme.space} * 1.0833) calc(${({ theme }) => theme.space} * 1.8333); }
-                .pa-sheet .pd-leaf { padding: 0 calc(${({ theme }) => theme.space} * 1.0833) calc(${({ theme }) => theme.space} * 1.5); }
-                .pa-sheet .pd-leaf .pd-paragraph.pd-turn { grid-template-columns: 1fr 1fr; }
+                .pa-sheet .pd-page { padding: 0 calc(${({ theme }) => theme.space} * 1.0833) calc(${({ theme }) => theme.space} * 1.5); }
+                .pa-sheet .pd-page .pd-paragraph.pd-turn { grid-template-columns: 1fr 1fr; }
                 .pa-sheet .pd-turn .pd-word.pd-count {
                     grid-column: 1 / -1;
                     grid-row: 1;

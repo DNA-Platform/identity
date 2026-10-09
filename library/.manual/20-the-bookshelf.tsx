@@ -1,12 +1,12 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~forward.tsx';
 import { Manual } from './10-the-manual~code.tsx';
-import { Kind } from './o1-the-key~code.tsx';
+import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
         <Manual />
-        <Kind>$[[ ./A Type of Book ]]</Kind>
+        <Keyed>$[[ ./A Type of Book ]]</Keyed>
         <Title>[[ The Bookshelf ]]</Title>
         <Paragraph>
             <Brief />
@@ -22,8 +22,8 @@ export default () => (
                 them by what they carry and draws the regions the base gives every book in its own way — the
                 bar as its cover, with the subject's mark first when the book is filed under another and no
                 mark when it is filed under itself, as only the library is; the side bar as its table; the
-                open leaf as the desk, the jacket large beside the chapter's words, and the shelf of jackets
-                after the leaves. Three things are said in it: a caption, of the one line an entry says; an
+                open page as the desk, the jacket large beside the chapter's words, and the shelf of jackets
+                after the pages. Three things are said in it: a caption, of the one line an entry says; an
                 arrow, of the word in a row that leads to the book; and unfolded, of the book, by the switch
                 that reads on. A title in a catalogue's entry refers to the book it stands for, by a reference
                 registered on the class. A library makes its catalogue by saying so in its book file, in one line,

@@ -47,7 +47,7 @@ export default () => (
                 languages as possible, and options for how code is viewed.
             </Paragraph>
             <Paragraph>
-                Every piece of code has a mark that grounds it in a design and a colour: one of seven kinds, each a
+                Every piece of code has a mark that grounds it in a design and a colour: one of seven sorts, each a
                 shape and a colour, so related code looks related, with a key. The marks have the same square feel as
                 the site's, as if of a type — a statement about what it means for something to have a visual
                 representation — slightly utilitarian, somewhat abstract, always at the left. The mark belongs to the
@@ -67,8 +67,8 @@ export default () => (
                 the book's own mark and the two names, one waiting under the other; it is
                 in <Means>$[[ The Cover ]]( Dougs Reference Manual / The Cover )</Means>, and the catalogue gave
                 back what it had drawn alone. Then the index as a tree: a folder is said of each section of the
-                table by the manual at bind, its layer drawing the twist and the folder's mark before the heading;
-                a twist is a switch whose press folds the section or the chapter's row it stands on, and the key
+                table by the manual at bind, its layer drawing the chevron and the folder's mark before the heading;
+                a chevron is a switch whose press folds the section or the chapter's row it stands on, and the key
                 is said folded in the table itself; a chapter's files stand beneath it as presses, each a file,
                 which opens the chapter and the file in the split. All of that is
                 in <Means>$[[ The Entry ]]( Dougs Reference Manual / The Entry )</Means> and <Means>$[[ The Listing ]]( Dougs Reference Manual / The Listing )</Means>.
@@ -77,8 +77,8 @@ export default () => (
                 <Image>![[ built-split.png ]]</Image>
             </Paragraph>
             <Paragraph>
-                The leaf's three states are the manual's three readings, words forward, split and code forward,
-                annotations of one kind on the book that a press switches, and the spread lays the leaf as a grid
+                The page's three states are the manual's three readings, words forward, split and code forward,
+                annotations of one family on the book that a press switches, and the spread lays the page as a grid
                 in each: the words wide with the rail at the edge; the words beside the panel with the editor's
                 tab bar at its head, the file's tabs, the words tab, the dock and the options; and the panel across
                 the page with the grip at the edge. The open file is the book's, named by whichever press chose
@@ -107,14 +107,14 @@ export default () => (
                 sheet, a rule of the port losing to a base rule that came later or bound tighter, a selector
                 naming the wrong sibling, the wash on the page's body and on nothing of the book; mended, the bar,
                 the side bar and the words measure as the page's. And the fold's slowness, profiled: a press on a
-                folder's twist makes the whole book render again from its root, three seconds in the dev serve
+                folder's chevron makes the whole book render again from its root, three seconds in the dev serve
                 and three quarters of one in the build, most of it React and the framework redrawing what did not
                 change and the code figure highlighting every file again. That is a finding about the framework,
                 written up for the pitch list, not something the page can fix, and the framework fixed it the next day; what that uncovered is
                 under the switch, below. The names changed with the port: the marks and the name in the bar
                 are the logo, since a masthead is a part of a boat. What is not carried: the presses for a chapter's
                 files under its title, which wait on a face for the title. The chapters themselves did not change
-                beyond the one line that says their kind.
+                beyond the one line that keys them.
             </Paragraph>
         </Section>
         <Section>
@@ -125,20 +125,20 @@ export default () => (
             <Paragraph>
                 The marks were the first thing carried from the page into the manual, the same day, on my
                 word that there might be a pattern for them: a resource file in the appendix that a chapter
-                imports as a reference. There is, and it is the cover's pattern turned on kinds. The page's
-                seven glyphs and its lookup from a chapter's name to its kind became an appendix section of
-                the manual's table, the key, with one chapter per kind holding its drawing and its colour,
-                and a kind said in each chapter as a reference to its entry. It is built
+                imports as a reference. There is, and it is the cover's pattern turned on the key's entries. The page's
+                seven glyphs and its lookup from a chapter's name to its entry became an appendix section of
+                the manual's table, the key, with one chapter per entry holding its drawing and its colour,
+                and each chapter keyed to its entry by a reference. It is built
                 in <Means>$[[ The Key ]]( Dougs Reference Manual / The Key )</Means>, with the code beside
                 that chapter, and the entries are its seven neighbours,
                 from <Means>$[[ A Type of Book ]]( Dougs Reference Manual / A Type of Book )</Means> to <Means>$[[ A Tool ]]( Dougs Reference Manual / A Tool )</Means>;
-                how a new chapter or a new kind joins is said there, under how the key scales.
+                how a new chapter or a new entry joins is said there, under how the key scales.
             </Paragraph>
             <Paragraph>
                 <Image>![[ key-entry.png ]]</Image>
             </Paragraph>
             <Paragraph>
-                An entry opened: the drawing large under its title, and the words for what the kind is. The
+                An entry opened: the drawing large under its title, and the words for what the entry is. The
                 rest of the page, the tree with its chevrons, the rail and the split, the file's thin-line
                 icon and the colour on a file's press, is carried under the page, built, above, and what the
                 carrying uncovered is under the switch, built, below; this chapter is where the team reads what
@@ -161,10 +161,10 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 The seam that fixes it is one method on every piece of writing, its container, which draws the
-                element with what the view hands it, and which a kind overrides to say its own attributes, typed
+                element with what the view hands it, and which a subclass overrides to say its own attributes, typed
                 by the browser's own, and hand the rest through: a switch says it is a button with a click; a
                 chevron says a click that leaves the link under it alone; a file's press says its colour. The
-                element had been the only place an attribute could be said, so every kind that needed one had
+                element had been the only place an attribute could be said, so every subclass that needed one had
                 made a component of its own and read outside the draw; now none does. It is built
                 in <Means>$[[ The Switch ]]( Dougs Reference Manual / The Switch )</Means>, and the chevrons
                 and the file presses that use it are
@@ -302,7 +302,7 @@ export default () => (
                 folder finds its section by the part's name, so the heading and the part say the same words, word
                 for word, or the bind refuses it in a sentence. The brief stands directly under the title, before
                 the sections. A format's rules enter the sheet before a theme's, so every rule of the tree says
-                the book first and the folder open, and names the level's class beside the kind's, the paragraph
+                the book first and the folder open, and names the level's class beside the subclass's, the paragraph
                 with the entry, the sentence with the heading, or it loses a tie to the theme; and a folder's
                 layer stands between its section and the column that placed it, so what a theme said of the
                 section's place at the foot it now says of the folder. When a page that should not have changed has, the proof is the

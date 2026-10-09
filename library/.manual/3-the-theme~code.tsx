@@ -100,7 +100,7 @@ export class $LibraryBookTheme extends $Theme {
 
     protected writing(): RuleSet {
         return css`
-            .pd-leaves { font-family: ${({ theme }) => theme.prose}; }
+            .pd-pages { font-family: ${({ theme }) => theme.prose}; }
             .pd-chapter, .pd-section, .pd-paragraph { margin-block: ${({ theme }) => theme.space}; }
             .pd-chapter { max-width: ${({ theme }) => theme.measure}; }
         `;

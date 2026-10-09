@@ -1,12 +1,12 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~forward.tsx';
 import { Manual } from './10-the-manual~code.tsx';
-import { Kind } from './o1-the-key~code.tsx';
+import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
         <Manual />
-        <Kind>$[[ ./A Type of Book ]]</Kind>
+        <Keyed>$[[ ./A Type of Book ]]</Keyed>
         <Title>[[ The Manual ]]</Title>
         <Paragraph>
             <Brief />
@@ -36,7 +36,7 @@ export default () => (
                 Which file is shown is the manual's own state, set by a press and read by the tabs and the listings
                 through the manual they are given. The readings are three annotations on the book, one in front at
                 a time, and the options three more, each a switch. At bind the manual gives each row of the table
-                that leads to its chapter its twist and its file presses, and while a manual chapter is open the
+                that leads to its chapter its chevron and its file presses, and while a manual chapter is open the
                 book wears the manual's class, which is the context: the side bar shows the part's folder alone as
                 a tree, with the book's own name at its head as the way out, and the rest of the table steps aside.
                 In this book every chapter is a manual and none says a part, so every folder is always open and
@@ -57,7 +57,7 @@ export default () => (
                 of the tool for the code reading, where the words that teach are put away. This book's own
                 specification refuses a chapter that has none. Its cover and its table of contents are the
                 framework's with a look, the table being <Means>$[[ the index ]]( ./The Entry )</Means> with its own
-                kind of entry registered, which shows the type of the file a chapter appends.
+                type of entry registered, which shows the type of the file a chapter appends.
             </Paragraph>
         </Section>
         <Section>

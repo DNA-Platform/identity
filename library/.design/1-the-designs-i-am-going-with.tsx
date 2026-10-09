@@ -5,10 +5,10 @@ export default () => (
     <Chapter>
         <Title>[[ The Designs I Am Going With ]]</Title>
         <Section>
-            <Heading>One for each kind of book</Heading>
+            <Heading>One for each type of book</Heading>
             <Paragraph>
-                This is where the design of each kind of book in my library is decided, this book among them.
-                Under each kind is what I come to the book to do, the concepts that could be its design, what I
+                This is where the design of each type of book in my library is decided, this book among them.
+                Under each type is what I come to the book to do, the concepts that could be its design, what I
                 have said, and the decision. A press on a concept opens its card
                 across <Means>$[[ the gallery ]]( ./Every Concept )</Means>, with both of its photographs and
                 its code. The two days of choosing are told
@@ -207,7 +207,7 @@ export default () => (
             <Paragraph>
                 <Answer />
                 9 under white and opal. The white and then opal of 20 looks really good, and it made me think I may
-                not want quite so much of the dark. The opal is to be used carefully, as a kind of annotation, and
+                not want quite so much of the dark. The opal is to be used carefully, as a sort of annotation, and
                 a splash of the Claude theme says that this view is Claude's projects.
             </Paragraph>
             <Paragraph>

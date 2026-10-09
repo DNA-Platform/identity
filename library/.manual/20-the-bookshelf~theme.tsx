@@ -166,7 +166,7 @@ export class $Bookshelf extends $LibraryBookTheme {
 
     protected shelf(): RuleSet {
         return css`
-            .pd-leaves { padding: calc(${({ theme }) => theme.space} * 1.167) calc(${({ theme }) => theme.space} * 1.5) calc(${({ theme }) => theme.space} * 2); }
+            .pd-pages { padding: calc(${({ theme }) => theme.space} * 1.167) calc(${({ theme }) => theme.space} * 1.5) calc(${({ theme }) => theme.space} * 2); }
             .pd-shelf {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, ${({ theme }) => theme.cover});
@@ -236,7 +236,7 @@ export class $Bookshelf extends $LibraryBookTheme {
 
     protected desk(): RuleSet {
         return css`
-            .pd-leaf.pd-desk.pd-open {
+            .pd-page.pd-desk.pd-open {
                 position: relative;
                 display: grid;
                 grid-template-columns: ${({ theme }) => theme.volume} minmax(0, 1fr);
@@ -249,32 +249,32 @@ export class $Bookshelf extends $LibraryBookTheme {
                 background: linear-gradient(135deg, color-mix(in oklch, var(--band, ${({ theme }) => theme.sky}) 45%, white), color-mix(in oklch, var(--ground, ${({ theme }) => theme.tint}) 60%, white) 55%, ${({ theme }) => theme.white});
                 box-shadow: 0 calc(${({ theme }) => theme.space} / 3) calc(${({ theme }) => theme.space} * 0.833) calc(${({ theme }) => theme.space} * -0.75) color-mix(in oklch, var(--band-ink, ${({ theme }) => theme.skyInk}) 45%, transparent);
             }
-            .pd-leaf.pd-desk.pd-open .pd-paragraph.pd-jacket {
+            .pd-page.pd-desk.pd-open .pd-paragraph.pd-jacket {
                 width: ${({ theme }) => theme.volume};
                 height: calc(${({ theme }) => theme.volume} * 1.5);
                 font-size: calc(1.357 * ${({ theme }) => theme.size});
                 box-shadow: ${({ theme }) => theme.openSpine};
                 cursor: default;
             }
-            .pd-leaf.pd-desk.pd-open .pd-jacket .pd-word {
+            .pd-page.pd-desk.pd-open .pd-jacket .pd-word {
                 padding: calc(${({ theme }) => theme.space} / 2) calc(${({ theme }) => theme.space} * 0.833) calc(${({ theme }) => theme.space} / 2) calc(${({ theme }) => theme.space} * 0.958);
                 box-shadow: 0 calc(${({ theme }) => theme.space} / 8) 0 ${({ theme }) => theme.white};
             }
-            .pd-leaf.pd-desk.pd-open .pd-jacket .pd-word.pa-label {
+            .pd-page.pd-desk.pd-open .pd-jacket .pd-word.pa-label {
                 padding: 0 calc(${({ theme }) => theme.space} * 0.75) 0 calc(${({ theme }) => theme.space} * 0.875);
                 font-size: calc(0.75 * ${({ theme }) => theme.size});
                 letter-spacing: 0.18em;
                 box-shadow: 0 calc(${({ theme }) => theme.space} / -8) 0 ${({ theme }) => theme.white};
             }
-            .pd-leaf.pd-desk.pd-open .pd-words {
+            .pd-page.pd-desk.pd-open .pd-words {
                 position: relative;
                 max-height: calc(${({ theme }) => theme.volume} * 1.5);
                 padding-block-start: calc(${({ theme }) => theme.space} / 4);
                 overflow: clip;
                 mask-image: linear-gradient(to bottom, black calc(${({ theme }) => theme.volume} * 1.5 - ${({ theme }) => theme.space} * 3), transparent calc(${({ theme }) => theme.volume} * 1.5));
             }
-            .pd-leaf.pd-desk.pd-open .pd-words .pd-chapter { margin-block: 0; max-width: none; scroll-margin-block-start: calc(${({ theme }) => theme.space} * 3.5); }
-            .pd-leaf.pd-desk.pd-open .pd-words .pd-paragraph.pd-shelved {
+            .pd-page.pd-desk.pd-open .pd-words .pd-chapter { margin-block: 0; max-width: none; scroll-margin-block-start: calc(${({ theme }) => theme.space} * 3.5); }
+            .pd-page.pd-desk.pd-open .pd-words .pd-paragraph.pd-shelved {
                 display: flex;
                 align-items: center;
                 gap: calc(${({ theme }) => theme.space} / 3);
@@ -286,14 +286,14 @@ export class $Bookshelf extends $LibraryBookTheme {
                 text-transform: uppercase;
                 color: var(--foot-ink, ${({ theme }) => theme.soft});
             }
-            .pd-leaf.pd-desk.pd-open .pd-paragraph.pd-shelved::before {
+            .pd-page.pd-desk.pd-open .pd-paragraph.pd-shelved::before {
                 content: '';
                 width: calc(${({ theme }) => theme.space} / 3);
                 height: calc(${({ theme }) => theme.space} / 3);
                 border-radius: 50%;
                 background: var(--foot, ${({ theme }) => theme.sky});
             }
-            .pd-leaf.pd-desk.pd-open .pd-words .pd-title {
+            .pd-page.pd-desk.pd-open .pd-words .pd-title {
                 margin: 0 0 calc(${({ theme }) => theme.space} / 6);
                 font-family: ${({ theme }) => theme.serif};
                 font-size: calc(1.714 * ${({ theme }) => theme.size});
@@ -302,7 +302,7 @@ export class $Bookshelf extends $LibraryBookTheme {
                 letter-spacing: -0.01em;
                 color: var(--band-ink, ${({ theme }) => theme.ink});
             }
-            .pd-leaf.pd-desk.pd-open .pd-words .pd-paragraph {
+            .pd-page.pd-desk.pd-open .pd-words .pd-paragraph {
                 display: block;
                 max-width: 56ch;
                 margin: 0 0 calc(${({ theme }) => theme.space} * 0.417);
@@ -312,17 +312,17 @@ export class $Bookshelf extends $LibraryBookTheme {
                 line-height: 1.55;
                 color: ${({ theme }) => theme.ink};
             }
-            .pd-leaf.pd-desk.pd-open .pd-words .pd-paragraph.pd-turn { display: none; }
-            .pd-leaf.pd-desk.pd-open .pd-words .pd-paragraph.pa-caption {
+            .pd-page.pd-desk.pd-open .pd-words .pd-paragraph.pd-turn { display: none; }
+            .pd-page.pd-desk.pd-open .pd-words .pd-paragraph.pa-caption {
                 font-family: ${({ theme }) => theme.font};
                 font-size: ${({ theme }) => theme.size};
                 font-weight: 500;
                 line-height: 1.5;
                 color: var(--band-ink, ${({ theme }) => theme.ink});
             }
-            .pd-leaf.pd-desk.pd-open .pd-words .pd-paragraph .pa-reference { color: var(--band-ink, ${({ theme }) => theme.skyInk}); }
-            .pd-leaf.pd-desk.pd-open .pd-line { grid-column: 2; display: flex; flex-wrap: wrap; gap: 0 calc(${({ theme }) => theme.space} / 2); }
-            .pd-leaf.pd-desk.pd-open .pd-paragraph.pd-byline, .pd-leaf.pd-desk.pd-open .pd-paragraph.pd-filed-under {
+            .pd-page.pd-desk.pd-open .pd-words .pd-paragraph .pa-reference { color: var(--band-ink, ${({ theme }) => theme.skyInk}); }
+            .pd-page.pd-desk.pd-open .pd-line { grid-column: 2; display: flex; flex-wrap: wrap; gap: 0 calc(${({ theme }) => theme.space} / 2); }
+            .pd-page.pd-desk.pd-open .pd-paragraph.pd-byline, .pd-page.pd-desk.pd-open .pd-paragraph.pd-filed-under {
                 display: inline-flex;
                 gap: calc(${({ theme }) => theme.space} / 6);
                 max-width: none;
@@ -332,10 +332,10 @@ export class $Bookshelf extends $LibraryBookTheme {
                 line-height: 1.55;
                 color: ${({ theme }) => theme.soft};
             }
-            .pd-leaf.pd-desk.pd-open .pd-line .pd-paragraph { margin-block-end: 0; }
-            .pd-leaf.pd-desk.pd-open .pd-byline .pa-reference, .pd-leaf.pd-desk.pd-open .pd-filed-under .pa-reference { color: var(--band-ink, ${({ theme }) => theme.skyInk}); font-weight: 500; text-decoration: none; }
-            .pd-leaf.pd-desk.pd-open .pd-paragraph.pd-read { grid-column: 2; margin: 0; }
-            .pd-leaf.pd-desk.pd-open .pd-read .pd-word {
+            .pd-page.pd-desk.pd-open .pd-line .pd-paragraph { margin-block-end: 0; }
+            .pd-page.pd-desk.pd-open .pd-byline .pa-reference, .pd-page.pd-desk.pd-open .pd-filed-under .pa-reference { color: var(--band-ink, ${({ theme }) => theme.skyInk}); font-weight: 500; text-decoration: none; }
+            .pd-page.pd-desk.pd-open .pd-paragraph.pd-read { grid-column: 2; margin: 0; }
+            .pd-page.pd-desk.pd-open .pd-read .pd-word {
                 display: inline-flex;
                 align-items: center;
                 gap: calc(${({ theme }) => theme.space} / 3);
@@ -348,8 +348,8 @@ export class $Bookshelf extends $LibraryBookTheme {
                 font-weight: 600;
                 text-decoration: none;
             }
-            .pd-leaf.pd-desk.pd-open .pd-read .pd-word:hover { background: var(--foot, ${({ theme }) => theme.tint}); color: var(--foot-ink, ${({ theme }) => theme.ink}); }
-            .pd-leaf.pd-desk.pd-open .pd-word.pd-switch {
+            .pd-page.pd-desk.pd-open .pd-read .pd-word:hover { background: var(--foot, ${({ theme }) => theme.tint}); color: var(--foot-ink, ${({ theme }) => theme.ink}); }
+            .pd-page.pd-desk.pd-open .pd-word.pd-switch {
                 position: absolute;
                 right: ${({ theme }) => theme.space};
                 bottom: calc(${({ theme }) => theme.space} * 0.917);
@@ -367,7 +367,7 @@ export class $Bookshelf extends $LibraryBookTheme {
                 line-height: 1;
                 cursor: pointer;
             }
-            .pd-leaf.pd-desk.pd-open .pd-word.pd-switch::after {
+            .pd-page.pd-desk.pd-open .pd-word.pd-switch::after {
                 content: '';
                 width: calc(${({ theme }) => theme.space} * 0.375);
                 height: calc(${({ theme }) => theme.space} * 0.375);
@@ -375,20 +375,20 @@ export class $Bookshelf extends $LibraryBookTheme {
                 border-block-start: calc(${({ theme }) => theme.space} / 16) solid currentColor;
                 transform: translateY(calc(${({ theme }) => theme.space} / 24));
             }
-            .pd-leaf.pd-desk.pd-open .pd-word.pd-switch:hover { background: var(--band, ${({ theme }) => theme.sky}); }
-            .pd-leaf.pd-desk.pd-open .pd-files { display: none; }
+            .pd-page.pd-desk.pd-open .pd-word.pd-switch:hover { background: var(--band, ${({ theme }) => theme.sky}); }
+            .pd-page.pd-desk.pd-open .pd-files { display: none; }
         `;
     }
 
     protected unfolded(): RuleSet {
         return css`
             .pa-unfolded .pd-shelf { display: none; }
-            .pa-unfolded .pd-leaf.pd-desk.pd-open { margin-block-end: 0; }
-            .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-paragraph.pd-jacket { position: sticky; top: calc(${({ theme }) => theme.space} * 0.833); }
-            .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-words { max-height: none; max-width: 60ch; overflow: visible; mask-image: none; }
-            .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-words .pd-paragraph { font-size: calc(1.143 * ${({ theme }) => theme.size}); line-height: 1.6; }
-            .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-word.pd-switch { top: calc(${({ theme }) => theme.space} * 0.667); right: ${({ theme }) => theme.space}; bottom: auto; }
-            .pa-unfolded .pd-leaf.pd-desk.pd-open .pd-word.pd-switch::after { transform: translateY(calc(${({ theme }) => theme.space} / 24)) rotate(180deg); }
+            .pa-unfolded .pd-page.pd-desk.pd-open { margin-block-end: 0; }
+            .pa-unfolded .pd-page.pd-desk.pd-open .pd-paragraph.pd-jacket { position: sticky; top: calc(${({ theme }) => theme.space} * 0.833); }
+            .pa-unfolded .pd-page.pd-desk.pd-open .pd-words { max-height: none; max-width: 60ch; overflow: visible; mask-image: none; }
+            .pa-unfolded .pd-page.pd-desk.pd-open .pd-words .pd-paragraph { font-size: calc(1.143 * ${({ theme }) => theme.size}); line-height: 1.6; }
+            .pa-unfolded .pd-page.pd-desk.pd-open .pd-word.pd-switch { top: calc(${({ theme }) => theme.space} * 0.667); right: ${({ theme }) => theme.space}; bottom: auto; }
+            .pa-unfolded .pd-page.pd-desk.pd-open .pd-word.pd-switch::after { transform: translateY(calc(${({ theme }) => theme.space} / 24)) rotate(180deg); }
         `;
     }
 
@@ -401,7 +401,7 @@ export class $Bookshelf extends $LibraryBookTheme {
             .pa-built .pd-holds .pd-section.pa-appendix .pa-entry { font-size: calc(0.964 * ${({ theme }) => theme.size}); font-weight: 500; }
             .pa-built .pd-holds .pd-section.pa-appendix .pa-entry::before { background: ${({ theme }) => theme.skyInk}; }
             .pa-built .pd-front, .pa-built .pd-shelf { display: none; }
-            .pa-built .pd-leaf.pd-open {
+            .pa-built .pd-page.pd-open {
                 grid-template-columns: minmax(0, 1fr);
                 padding: 0;
                 border: 0;
@@ -415,13 +415,13 @@ export class $Bookshelf extends $LibraryBookTheme {
     protected small(): RuleSet {
         return css`
             @media (max-width: ${({ theme }) => theme.narrow}) {
-                .pd-leaves { padding: calc(${({ theme }) => theme.space} * 0.667); }
+                .pd-pages { padding: calc(${({ theme }) => theme.space} * 0.667); }
                 .pd-logo { margin-inline-end: calc(${({ theme }) => theme.space} / 2); }
                 .pd-me .pd-word.pd-mark { display: block; }
-                .pd-leaf.pd-desk.pd-open { grid-template-columns: ${({ theme }) => theme.cover} minmax(0, 1fr); gap: calc(${({ theme }) => theme.space} * 0.667); padding: calc(${({ theme }) => theme.space} * 0.667); }
-                .pd-leaf.pd-desk.pd-open .pd-paragraph.pd-jacket { width: ${({ theme }) => theme.cover}; height: calc(${({ theme }) => theme.cover} * 1.5); font-size: calc(0.964 * ${({ theme }) => theme.size}); }
-                .pd-leaf.pd-desk.pd-open .pd-words { max-height: none; mask-image: none; }
-                .pd-leaf.pd-desk.pd-open .pd-word.pd-switch { display: none; }
+                .pd-page.pd-desk.pd-open { grid-template-columns: ${({ theme }) => theme.cover} minmax(0, 1fr); gap: calc(${({ theme }) => theme.space} * 0.667); padding: calc(${({ theme }) => theme.space} * 0.667); }
+                .pd-page.pd-desk.pd-open .pd-paragraph.pd-jacket { width: ${({ theme }) => theme.cover}; height: calc(${({ theme }) => theme.cover} * 1.5); font-size: calc(0.964 * ${({ theme }) => theme.size}); }
+                .pd-page.pd-desk.pd-open .pd-words { max-height: none; mask-image: none; }
+                .pd-page.pd-desk.pd-open .pd-word.pd-switch { display: none; }
                 .pd-shelf { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(${({ theme }) => theme.space} * 0.583) calc(${({ theme }) => theme.space} / 2); }
                 .pd-volume .pd-paragraph.pd-jacket { width: auto; height: auto; aspect-ratio: 2 / 3; }
             }

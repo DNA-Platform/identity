@@ -4,8 +4,8 @@ import { $Chapter, $Format, $Paragraph, $Svg, $Word, $Writing, AnnotationSpecifi
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { $Coloured } from './18-the-colour~code.tsx';
 
-export class $Kind extends $Format {
-    specification = new KindSpecification();
+export class $Keyed extends $Format {
+    specification = new KeyedSpecification();
     protected _layer!: ElementType;
     get identifier(): string { return binder.reference(html.copy(this.text))?.identifier ?? ''; }
     get name(): string { return binder.reference(html.copy(this.text))?.name ?? ''; }
@@ -16,19 +16,19 @@ export class $Kind extends $Format {
     }
     get colour(): string { return this.entry?.annotations.expressed($Coloured)?.colour ?? ''; }
 
-    $Kind(...chemicals: $Chemical[]) {
+    $Keyed(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
         const Icon = $(icon);
         this._layer = (props: { children?: ReactNode }) => (
             <div {...props}>
-                <Icon kind={this} />
+                <Icon of={this} />
                 {props.children}
             </div>
         );
     }
 
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-kind');
+        writing.classes.add(this, 'pa-keyed');
         writing.containers.add(this, this._layer);
     }
 
@@ -39,7 +39,7 @@ export class $Kind extends $Format {
 }
 
 export class $Icon extends $Word {
-    $kind?: $Kind;
+    $of?: $Keyed;
     style: ElementType = selection.span<{ $colour: string }>`
         --colour: ${props => props.$colour};
     `;
@@ -50,7 +50,7 @@ export class $Icon extends $Word {
         const Painted = this.style;
         this._painted = (props: { children?: ReactNode }) => (
             <Painted
-                $colour={this.$kind?.colour ?? ''}
+                $colour={this.$of?.colour ?? ''}
                 {...props}
             />
         );
@@ -62,8 +62,8 @@ export class $Icon extends $Word {
             <span
                 className="pd-drawing"
                 role="img"
-                aria-label={this.$kind?.name}
-                dangerouslySetInnerHTML={{ __html: this.$kind?.drawing ?? '' }}
+                aria-label={this.$of?.name}
+                dangerouslySetInnerHTML={{ __html: this.$of?.drawing ?? '' }}
             />
         );
     }
@@ -74,28 +74,28 @@ export class $Icon extends $Word {
     }
 }
 
-export class KindSpecification extends AnnotationSpecification {
-    @specify('a kind is said of a chapter')
+export class KeyedSpecification extends AnnotationSpecification {
+    @specify('keyed is said of a chapter')
     $saidOfAChapter(writing: $Writing): void {
-        $check(writing instanceof $Chapter, 'a kind is said of a chapter, and this is not one');
+        $check(writing instanceof $Chapter, 'keyed is said of a chapter, and this is not one');
     }
 
-    @specify('a kind names an entry of the key')
+    @specify('keyed names an entry of the key')
     $namesAnEntry(writing: $Writing): void {
-        const entry = writing.annotations.expressed($Kind)?.entry;
-        $check(entry !== undefined && entry.annotations.expressed($Kind)?.entry === entry,
-            'a kind names an entry of the key, a chapter of this book whose kind is itself, and this one names something else');
+        const entry = writing.annotations.expressed($Keyed)?.entry;
+        $check(entry !== undefined && entry.annotations.expressed($Keyed)?.entry === entry,
+            'keyed names an entry of the key, a chapter of this book keyed as itself, and this one names something else');
     }
 
     @specify('an entry of the key holds one drawing and its colour')
     $entryHoldsItsDrawingAndColour(writing: $Writing): void {
-        const entry = writing.annotations.expressed($Kind)?.entry;
+        const entry = writing.annotations.expressed($Keyed)?.entry;
         if (entry === undefined) return;
         $check(entry.text.find($Paragraph).flatMap(paragraph => paragraph.text.find($Svg)).length === 1 && entry.is($Coloured),
             'an entry of the key holds one drawing and its colour, and this one holds something else');
     }
 }
 
-export const Kind = $($Kind);
+export const Keyed = $($Keyed);
 export const Icon = $($Icon);
 const icon = Icon;

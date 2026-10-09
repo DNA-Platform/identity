@@ -9,7 +9,7 @@ export default () => (
         <Section>
             <Heading>What a paragraph may be</Heading>
             <Paragraph>
-                Most of this book is ordinary paragraphs. Five kinds are not. One is a question I am asked. One is
+                Most of this book is ordinary paragraphs. Five sorts are not. One is a question I am asked. One is
                 what I said, in my own words. One is a design I chose. One is a pain a person met using what was
                 built. One is what I think solves it.
             </Paragraph>

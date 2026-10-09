@@ -1,12 +1,12 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~forward.tsx';
 import { Manual } from './10-the-manual~code.tsx';
-import { Kind } from './o1-the-key~code.tsx';
+import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
         <Manual />
-        <Kind>$[[ ./A Noun ]]</Kind>
+        <Keyed>$[[ ./A Noun ]]</Keyed>
         <Title>[[ The Listing ]]</Title>
         <Paragraph>
             <Brief />
@@ -24,7 +24,7 @@ export default () => (
                 goes. Left to itself it prints each one under its chapter.
             </Paragraph>
             <Paragraph>
-                This manual's chapters are of that kind. So are the chapters at the back of any other book, where
+                This manual's chapters are of that sort. So are the chapters at the back of any other book, where
                 the code that builds that book is kept, which is why the back of a book reads like a page of this
                 manual.
             </Paragraph>
@@ -39,7 +39,7 @@ export default () => (
             <Paragraph>
                 A listing is a paragraph with content of its own: the file's name as a word, and the file as the
                 framework's own code figure, numbered and coloured. The book draws one for each file a chapter
-                appends, in the leaf beside the chapter, and <Means>$[[ the manual ]]( ./The Manual )</Means> sets
+                appends, on the page beside the chapter, and <Means>$[[ the manual ]]( ./The Manual )</Means> sets
                 the two side by side or folds the listing to a strip, its name turned on its side.
             </Paragraph>
         </Section>

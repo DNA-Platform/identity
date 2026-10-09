@@ -1,26 +1,26 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~forward.tsx';
 import { Manual } from './10-the-manual~code.tsx';
-import { Kind } from './o1-the-key~code.tsx';
+import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
         <Manual />
-        <Kind>$[[ ./A Layout ]]</Kind>
+        <Keyed>$[[ ./A Layout ]]</Keyed>
         <Title>[[ The Layout ]]</Title>
         <Paragraph>
             <Brief />
-            Said of every book: each chapter on a leaf of its own, one open at a time, in the frame's grid.
+            Said of every book: each chapter on a page of its own, one open at a time, in the frame's grid.
         </Paragraph>
         <Section>
             <Heading>What the layout is</Heading>
             <Paragraph>
                 In printing, the layout is the arrangement of a book's parts on the sheet. Here it is said of a
                 book, once, and it does two things. It shows one chapter at a time: <Means>$[[ the book ]]( ./The Book )</Means> draws
-                each chapter on a leaf of its own and says which leaf is open, and the layout hides the rest —
-                every leaf stays in the document, so a link to any place in the book has somewhere to land. And
+                each chapter on a page of its own and says which page is open, and the layout hides the rest —
+                every page stays in the document, so a link to any place in the book has somewhere to land. And
                 it carries the one grid of the frame — the library's bar across the top with me at its end, what
-                the book holds down the side, the head and the leaves beside — which every book of mine wears,
+                the book holds down the side, the head and the pages beside — which every book of mine wears,
                 because I want a top bar on every screen and a side bar on most.
             </Paragraph>
         </Section>
@@ -51,8 +51,8 @@ export default () => (
         <Section>
             <Heading>The parts of the layout</Heading>
             <Paragraph>
-                The paging, which hides every leaf but the open one. The regions: what each of the five does
-                inside its area — the library's bar a row, the head a row that wraps, the holds and the leaves
+                The paging, which hides every page but the open one. The regions: what each of the five does
+                inside its area — the library's bar a row, the head a row that wraps, the holds and the pages
                 scrolling on their own. The areas: the frame's one grid, the side bar's width from the theme. The
                 phone: one column, the library's bar stuck at the top at the bar's height, me fixed at the
                 right, the table of contents a row of pills under the head.

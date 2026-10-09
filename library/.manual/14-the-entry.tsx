@@ -1,12 +1,12 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~forward.tsx';
 import { Manual } from './10-the-manual~code.tsx';
-import { Kind } from './o1-the-key~code.tsx';
+import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
         <Manual />
-        <Kind>$[[ ./An Annotation ]]</Kind>
+        <Keyed>$[[ ./An Annotation ]]</Keyed>
         <Title>[[ The Entry ]]</Title>
         <Paragraph>
             <Brief />
@@ -40,7 +40,7 @@ export default () => (
         <Section>
             <Heading>How an entry is used</Heading>
             <Paragraph>
-                A type of book may have its own kind of entry, registered on its class, and the index uses it:
+                A type of book may have its own type of entry, registered on its class, and the index uses it:
                 the one in <Means>$[[ the manual ]]( ./The Manual )</Means> also shows the type of the file its
                 chapter appends. The catalogue's rows that stand for books open the book's entry on the
                 catalogue's page, and end in an arrow that leads to the book itself.

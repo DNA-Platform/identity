@@ -188,7 +188,7 @@ export default () => (
             <Paragraph>
                 <Question />
                 Where does the library's frame go: a side bar as in 11, a top bar as in 13, both as in 15, a narrow
-                rail as in 17, two top bars as in 19, or none as in 21? More than one may stay, if different kinds
+                rail as in 17, two top bars as in 19, or none as in 21? More than one may stay, if different sorts
                 of page want different frames.
             </Paragraph>
             <Paragraph>

@@ -28,9 +28,9 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>One design for each kind of book</Heading>
+            <Heading>One design for each type of book</Heading>
             <Paragraph>
-                What came of it is one design for each kind of book, kept
+                What came of it is one design for each type of book, kept
                 in <Means>$[[ The Designs I Am Going With ]]( Dougs Design / The Designs I Am Going With )</Means> with
                 the story of how each came to be.
             </Paragraph>

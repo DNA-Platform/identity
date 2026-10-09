@@ -36,9 +36,10 @@ export class $Catalogue extends $LibraryBook {
                 <div className="pd-head">
                     {this.head()}
                 </div>
-                <div className="pd-leaves">
+                <div className="pd-pages">
                     {this.front()}
-                    {this.leaves()}
+                    {this.books.map((chapter, index) => this.desk(chapter, index))}
+                    {this.chapters.map((chapter, index) => this.page(chapter, this.books.length + index))}
                     <div className="pd-shelf">
                         {this.volumes()}
                     </div>
@@ -58,7 +59,7 @@ export class $Catalogue extends $LibraryBook {
     override front(): ReactNode {
         const Switch = $(switchOf);
         return this.painted(this.cover, (
-            <div className={this.open === undefined ? 'pd-leaf pd-front pd-desk pd-open' : 'pd-leaf pd-front pd-desk'}>
+            <div className={this.open === undefined ? 'pd-page pd-front pd-desk pd-open' : 'pd-page pd-front pd-desk'}>
                 {this.jacket(this.cover)}
                 {this.opening()}
                 {this.reading(this.cover)}
@@ -85,49 +86,39 @@ export class $Catalogue extends $LibraryBook {
         );
     }
 
-    override leaves(): ReactNode {
-        const books = this.books;
-        return [
-            ...books.map((chapter, index) => this.desk(chapter, index)),
-            ...this.chapters.map((chapter, index) => this.leaf(chapter, books.length + index)),
-        ];
-    }
-
     desk(chapter: $Chapter, index: number): ReactNode {
         const Switch = $(switchOf);
-        {
-            const Chapter = $(chapter);
-            const cover = this.jacketOf(chapter);
-            return this.painted(cover, (
-                <div
-                    key={index}
-                    className={chapter === this.open ? 'pd-leaf pd-desk pd-open' : 'pd-leaf pd-desk'}
-                >
-                    {this.jacket(cover)}
-                    <div className="pd-words">
-                        {this.shelved(cover)}
-                        <Chapter />
-                    </div>
-                    {cover === undefined ? undefined : (
-                        <div className="pd-line">
-                            {this.line(cover)}
-                        </div>
-                    )}
-                    {this.reading(cover)}
-                    {cover === undefined ? undefined : (
-                        <Switch
-                            chapter={chapter}
-                            of={Unfolded}
-                        >
-                            read on
-                        </Switch>
-                    )}
-                    <div className="pd-files">
-                        {this.listings(chapter)}
-                    </div>
+        const Chapter = $(chapter);
+        const cover = this.jacketOf(chapter);
+        return this.painted(cover, (
+            <div
+                key={index}
+                className={chapter === this.open ? 'pd-page pd-desk pd-open' : 'pd-page pd-desk'}
+            >
+                {this.jacket(cover)}
+                <div className="pd-words">
+                    {this.shelved(cover)}
+                    <Chapter />
                 </div>
-            ), index);
-        }
+                {cover === undefined ? undefined : (
+                    <div className="pd-line">
+                        {this.line(cover)}
+                    </div>
+                )}
+                {this.reading(cover)}
+                {cover === undefined ? undefined : (
+                    <Switch
+                        chapter={chapter}
+                        of={Unfolded}
+                    >
+                        read on
+                    </Switch>
+                )}
+                <div className="pd-files">
+                    {this.listings(chapter)}
+                </div>
+            </div>
+        ), index);
     }
 
     volumes(): ReactNode {

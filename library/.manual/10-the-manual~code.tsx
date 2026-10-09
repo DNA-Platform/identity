@@ -4,7 +4,7 @@ import { $Annotation, $Append, $Chapter, $Format, $Paragraph, $Section, $Writing
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { File as file, Listing as listing } from './2-the-listing~code.tsx';
 import { Switch as switchOf, Tab as tab } from './9-the-switch~code.tsx';
-import { $Index, Folded as folded, Twist as twist, leads } from './14-the-entry~code.tsx';
+import { $Index, Folded as folded, Chevron as chevron, leads } from './14-the-entry~code.tsx';
 import { CodeForward as codeForward, LightCode as lightCode, Numbered as numbered, Split as split, WordsForward as wordsForward, Wrapped as wrapped } from './10-the-manual~forward.tsx';
 
 export class $Manual extends $Format {
@@ -25,15 +25,15 @@ export class $Manual extends $Format {
             --dim: color-mix(in oklch, #5d4a16 45%, white);
             --brass: #5d4a16;
         }
-        .pd-book .pd-leaf.pd-open & {
+        .pd-book .pd-page.pd-open & {
             display: grid;
             grid-template-columns: minmax(0, 1fr) 0 calc(2 * ${({ theme }) => theme.space});
             grid-template-areas: 'words panel rail';
             min-height: calc(100vh - ${({ theme }) => theme.barHeight});
             transition: grid-template-columns 0.28s ease;
         }
-        .pd-book.pa-split .pd-leaf.pd-open & { grid-template-columns: minmax(380px, 1fr) min(44vw, 720px) calc(2 * ${({ theme }) => theme.space}); }
-        .pd-book.pa-code-forward .pd-leaf.pd-open & {
+        .pd-book.pa-split .pd-page.pd-open & { grid-template-columns: minmax(380px, 1fr) min(44vw, 720px) calc(2 * ${({ theme }) => theme.space}); }
+        .pd-book.pa-code-forward .pd-page.pd-open & {
             grid-template-areas: 'panel panel grip';
             grid-template-columns: minmax(0, 1fr) 0 calc(${({ theme }) => theme.space} * 0.75);
             height: calc(100vh - ${({ theme }) => theme.barHeight});
@@ -246,7 +246,7 @@ export class $Manual extends $Format {
         .pd-book.pa-light-code & .hljs-title, .pa-light-code & .hljs-type, .pa-light-code & .hljs-tag, .pa-light-code & .hljs-name, .pa-light-code & .hljs-attr { color: #23407a; }
         .pd-book.pa-light-code & .hljs-comment, .pa-light-code & .hljs-meta { color: #8a94a3; }
         @media (max-width: ${({ theme }) => theme.narrow}) {
-            .pd-book .pd-leaf.pd-open &, .pd-book.pa-split .pd-leaf.pd-open &, .pd-book.pa-code-forward .pd-leaf.pd-open & { display: block; height: auto; min-height: 0; }
+            .pd-book .pd-page.pd-open &, .pd-book.pa-split .pd-page.pd-open &, .pd-book.pa-code-forward .pd-page.pd-open & { display: block; height: auto; min-height: 0; }
             .pd-book & .pd-rail, .pd-book & .pd-grip { display: none; }
             .pd-book.pa-code-forward & .pd-words { display: block; }
             .pd-book & .pd-words { padding: calc(${({ theme }) => theme.space} * 0.83) calc(${({ theme }) => theme.space} * 0.67) calc(${({ theme }) => theme.space} / 3); }
@@ -407,13 +407,13 @@ export class $Manual extends $Format {
     }
 
     protected override $Bound(): void {
-        const Twist = $(twist);
+        const Chevron = $(chevron);
         const File = $(file);
         const chapter = this.parent as $Chapter;
         const files = this.files;
         for (const paragraph of this.rows)
             paragraph.text.add(this,
-                <Twist
+                <Chevron
                     target={files.length === 0 ? undefined : paragraph}
                     of={folded}
                 />,

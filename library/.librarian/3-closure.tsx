@@ -98,7 +98,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 An appendix reads like a page of the reference manual, because a chapter that carries its file is
-                the same kind of chapter wherever it is. So it can spin off into a book of its own when its
+                the same sort of chapter wherever it is. So it can spin off into a book of its own when its
                 book grows too large, and nothing in it is rewritten.
             </Paragraph>
         </Section>

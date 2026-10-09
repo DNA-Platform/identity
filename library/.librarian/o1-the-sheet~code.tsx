@@ -98,20 +98,20 @@ export class $Sheet extends $Format {
 
     protected sheet(): RuleSet {
         return css`
-            .pa-sheet .pd-leaves {
+            .pa-sheet .pd-pages {
                 display: grid;
                 grid-template-columns: min(calc(${({ theme }) => theme.measure} + ${({ theme }) => theme.space} * 6.3333), 100%);
-                grid-template-areas: 'top' 'leaf';
+                grid-template-areas: 'top' 'page';
                 justify-content: center;
                 align-content: start;
             }
-            .pa-sheet .pd-leaves::before {
+            .pa-sheet .pd-pages::before {
                 content: '';
                 grid-column: 1;
-                grid-row: top-start / leaf-end;
+                grid-row: top-start / page-end;
             }
             .pa-sheet .pd-top { grid-area: top; }
-            .pa-sheet .pd-leaf { grid-area: leaf; }
+            .pa-sheet .pd-page { grid-area: page; }
             .pd-book.pa-sheet .pd-words .pd-chapter { scroll-margin-block-start: calc(${({ theme }) => theme.space} * 10); }
         `;
     }
@@ -128,7 +128,7 @@ export class $Sheet extends $Format {
             .pa-sheet .pd-top .pd-paragraph.pd-byline { grid-area: byline; justify-self: start; }
             .pa-sheet .pd-top .pd-word.pd-date { grid-area: date; justify-self: center; }
             .pa-sheet .pd-top::after { grid-area: rule; justify-self: center; }
-            .pa-sheet .pd-leaf .pd-chapter.pa-dated .pd-word.pd-date { display: none; }
+            .pa-sheet .pd-page .pd-chapter.pa-dated .pd-word.pd-date { display: none; }
         `;
     }
 
@@ -139,7 +139,7 @@ export class $Sheet extends $Format {
                 .pd-book.pa-sheet .pd-head { order: 2; }
                 .pd-book.pa-sheet .pd-switches { gap: calc(${({ theme }) => theme.space} / 4); }
                 .pd-book.pa-sheet { min-height: 100vh; }
-                .pd-book.pa-sheet .pd-leaves {
+                .pd-book.pa-sheet .pd-pages {
                     flex: 1;
                     grid-template-columns: minmax(0, 1fr);
                     grid-template-rows: auto 1fr;

@@ -54,9 +54,9 @@ export class $LibraryBook extends $Book {
                 <div className="pd-head">
                     {this.head()}
                 </div>
-                <div className="pd-leaves">
+                <div className="pd-pages">
                     {this.front()}
-                    {this.leaves()}
+                    {this.chapters.map((chapter, index) => this.page(chapter, index))}
                 </div>
             </>
         );
@@ -112,7 +112,7 @@ export class $LibraryBook extends $Book {
 
     front(): ReactNode {
         return (
-            <div className={this.open === undefined ? 'pd-leaf pd-front pd-open' : 'pd-leaf pd-front'}>
+            <div className={this.open === undefined ? 'pd-page pd-front pd-open' : 'pd-page pd-front'}>
                 {this.opening()}
             </div>
         );
@@ -127,13 +127,9 @@ export class $LibraryBook extends $Book {
         );
     }
 
-    leaves(): ReactNode {
-        return this.chapters.map((chapter, index) => this.leaf(chapter, index));
-    }
-
-    leaf(chapter: $Chapter, key: number): ReactNode {
+    page(chapter: $Chapter, key: number): ReactNode {
         const Chapter = $(chapter);
-        const className = chapter === this.open ? 'pd-leaf pd-open' : 'pd-leaf';
+        const className = chapter === this.open ? 'pd-page pd-open' : 'pd-page';
         if (chapter.is($Manual)) return (
             <div
                 key={key}

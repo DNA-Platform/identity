@@ -3,13 +3,13 @@ import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Append, $Chapter, $Paragraph, $Writing, AnnotationSpecification, Code as code, ContainerProps, Given, Word as word, html, specify } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { $Tab } from './9-the-switch~code.tsx';
-import { $Kind } from './o1-the-key~code.tsx';
+import { $Keyed } from './o1-the-key~code.tsx';
 
 export const languages: Record<string, string> = { tsx: 'typescript', ts: 'typescript', mjs: 'javascript', js: 'javascript', css: 'css', html: 'xml', svg: 'xml', json: 'json', md: 'markdown' };
 
 const fileMark = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.5 3.5 8 6 11.5M10 4.5 12.5 8 10 11.5"/></svg>';
 
-export interface Shows {
+interface Manual {
     readonly file: string;
     show(name: string): void;
 }
@@ -24,7 +24,7 @@ export class $Listing extends $Paragraph {
     $type = '';
     $reading?: Given<$Annotation>;
     $among: Given<$Annotation>[] = [];
-    $manual?: Shows;
+    $manual?: Manual;
     get name(): string { return `${this.$identifier}${this.$type}`; }
     get language(): string { return languages[this.$type.replace(/^\./u, '')] ?? ''; }
 
@@ -95,7 +95,7 @@ export class OpenedSpecification extends AnnotationSpecification {
 export class $File extends $Tab {
     $name = '';
     $chapter?: $Chapter;
-    $manual?: Shows;
+    $manual?: Manual;
     $skeleton = false;
     style: ElementType = selection.button<{ $colour: string }>`
         --colour: ${props => props.$colour};
@@ -104,7 +104,7 @@ export class $File extends $Tab {
         const book = this.book as $LibraryBook;
         return this.$chapter !== undefined && this.$chapter === book.open && this.$manual?.file === this.$name;
     }
-    get colour(): string { return this.$chapter?.annotations.expressed($Kind)?.colour ?? ''; }
+    get colour(): string { return this.$chapter?.annotations.expressed($Keyed)?.colour ?? ''; }
     get lines(): string[] { return linesOf(this.$chapter, this.$name); }
 
     $File(...chemicals: $Chemical[]) {

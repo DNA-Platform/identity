@@ -6,8 +6,8 @@ import { $Switch } from './9-the-switch~code.tsx';
 import { $Coloured } from './18-the-colour~code.tsx';
 import { $Scheme, $Volume } from './19-the-cover~code.tsx';
 
-const chevron = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5 10.5 8 6 12.5"/></svg>';
-const folder = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round"><rect class="ground" x="0.75" y="0.75" width="14.5" height="14.5"/><path d="M3.5 5.5h3l1.5 1.5h4.5v5h-9z"/></svg>';
+const chevronSvg = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5 10.5 8 6 12.5"/></svg>';
+const folderSvg = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round"><rect class="ground" x="0.75" y="0.75" width="14.5" height="14.5"/><path d="M3.5 5.5h3l1.5 1.5h4.5v5h-9z"/></svg>';
 
 export class $Entry extends $Format {
     specification = new EntrySpecification();
@@ -70,10 +70,10 @@ export class $Index extends $Annotation {
     }
 
     protected override $Bound(): void {
-        const Kind = $(Entry);
+        const Entry = $(entry);
         for (const paragraph of this.entries)
             paragraph.annotations.add(this,
-                <Kind />
+                <Entry />
             );
         super.$Bound();
     }
@@ -114,7 +114,7 @@ export class $Folded extends $Annotation {
     }
 }
 
-export class $Twist extends $Switch {
+export class $Chevron extends $Switch {
     $target?: $Writing;
     override get on(): boolean { return this.$target !== undefined && [this.$target.$is].flat().includes(this.$of); }
 
@@ -133,21 +133,21 @@ export class $Twist extends $Switch {
         return (
             <span
                 className="pd-drawing"
-                dangerouslySetInnerHTML={{ __html: chevron }}
+                dangerouslySetInnerHTML={{ __html: chevronSvg }}
             />
         );
     }
 
     protected override $Define(): void {
         super.$Define();
-        this.classes.add(this, 'pd-twist');
+        this.classes.add(this, 'pd-chevron');
     }
 }
 
 export class $Folder extends $Format {
     specification = new FolderSpecification();
     tree: ElementType = selection.div`
-        .pd-book .pd-holds &.pd-folder .pd-twist, .pd-book .pd-holds &.pd-folder .pd-folder-mark, .pd-book .pd-holds &.pd-folder .pa-entry .pd-file { display: none; }
+        .pd-book .pd-holds &.pd-folder .pd-chevron, .pd-book .pd-holds &.pd-folder .pd-folder-mark, .pd-book .pd-holds &.pd-folder .pa-entry .pd-file { display: none; }
         .pd-book.pa-built .pd-holds &.pd-folder:not(.pa-open) { display: none; }
         .pd-book .pd-holds &.pd-folder.pa-open { position: relative; }
         .pd-book .pd-holds &.pd-folder.pa-open .pd-section { margin: 0 0 calc(${({ theme }) => theme.space} / 3); }
@@ -168,7 +168,7 @@ export class $Folder extends $Format {
         }
         .pd-book .pd-holds &.pd-folder.pa-open .pd-heading:hover { background: color-mix(in oklab, ${({ theme }) => theme.sky} 30%, white); }
         .pd-book .pd-holds &.pd-folder.pa-open .pd-heading .pa-reference { color: inherit; text-decoration: none; }
-        .pd-book .pd-holds &.pd-folder.pa-open .pd-twist {
+        .pd-book .pd-holds &.pd-folder.pa-open .pd-chevron {
             display: grid;
             place-items: center;
             width: calc(1.1429 * ${({ theme }) => theme.size});
@@ -181,12 +181,12 @@ export class $Folder extends $Format {
             cursor: pointer;
             transition: transform 0.18s ease, color ${({ theme }) => theme.beat} ease;
         }
-        .pd-book .pd-holds &.pd-folder.pa-open .pd-twist .pd-drawing { display: block; width: calc(0.7143 * ${({ theme }) => theme.size}); height: calc(0.7143 * ${({ theme }) => theme.size}); }
-        .pd-book .pd-holds &.pd-folder.pa-open .pd-twist svg, .pd-book .pd-holds &.pd-folder.pa-open .pd-folder-mark svg, .pd-book .pd-holds &.pd-folder.pa-open .pd-file svg { display: block; width: 100%; height: 100%; }
-        .pd-book .pd-holds &.pd-folder.pa-open .pd-word.pd-twist[aria-pressed='true'] { color: #a5aebb; background: none; border-color: transparent; }
-        .pd-book .pd-holds &.pd-folder.pa-open .pd-twist[aria-pressed='false'] { transform: rotate(90deg); }
-        .pd-book .pd-holds &.pd-folder.pa-open .pd-twist:hover { color: ${({ theme }) => theme.ink}; }
-        .pd-book .pd-holds &.pd-folder.pa-open .pd-twist { position: absolute; top: calc(${({ theme }) => theme.space} * 0.2292); left: calc(${({ theme }) => theme.space} * 0.4167); }
+        .pd-book .pd-holds &.pd-folder.pa-open .pd-chevron .pd-drawing { display: block; width: calc(0.7143 * ${({ theme }) => theme.size}); height: calc(0.7143 * ${({ theme }) => theme.size}); }
+        .pd-book .pd-holds &.pd-folder.pa-open .pd-chevron svg, .pd-book .pd-holds &.pd-folder.pa-open .pd-folder-mark svg, .pd-book .pd-holds &.pd-folder.pa-open .pd-file svg { display: block; width: 100%; height: 100%; }
+        .pd-book .pd-holds &.pd-folder.pa-open .pd-word.pd-chevron[aria-pressed='true'] { color: #a5aebb; background: none; border-color: transparent; }
+        .pd-book .pd-holds &.pd-folder.pa-open .pd-chevron[aria-pressed='false'] { transform: rotate(90deg); }
+        .pd-book .pd-holds &.pd-folder.pa-open .pd-chevron:hover { color: ${({ theme }) => theme.ink}; }
+        .pd-book .pd-holds &.pd-folder.pa-open .pd-chevron { position: absolute; top: calc(${({ theme }) => theme.space} * 0.2292); left: calc(${({ theme }) => theme.space} * 0.4167); }
         .pd-book .pd-holds &.pd-folder.pa-open .pd-folder-mark {
             display: block;
             position: absolute;
@@ -216,8 +216,8 @@ export class $Folder extends $Format {
             transition: color ${({ theme }) => theme.beat} ease;
         }
         .pd-book .pd-holds &.pd-folder.pa-open .pd-paragraph.pa-entry::before { content: none; }
-        .pd-book .pd-holds &.pd-folder.pa-open .pa-entry .pd-twist { order: -2; position: static; }
-        .pd-book .pd-holds &.pd-folder.pa-open .pa-entry .pd-twist[disabled] { visibility: hidden; }
+        .pd-book .pd-holds &.pd-folder.pa-open .pa-entry .pd-chevron { order: -2; position: static; }
+        .pd-book .pd-holds &.pd-folder.pa-open .pa-entry .pd-chevron[disabled] { visibility: hidden; }
         .pd-book .pd-holds &.pd-folder.pa-open .pa-entry .pd-icon { order: -1; }
         .pd-book .pd-holds &.pd-folder.pa-open .pa-entry .pa-content { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .pd-book .pd-holds &.pd-folder.pa-open .pa-entry:hover { background: linear-gradient(color-mix(in oklab, ${({ theme }) => theme.sky} 40%, white), color-mix(in oklab, ${({ theme }) => theme.sky} 40%, white)) left top / 100% calc(1.9286 * ${({ theme }) => theme.size}) no-repeat; }
@@ -257,7 +257,7 @@ export class $Folder extends $Format {
         .pd-book.pa-split .pd-holds &.pd-folder.pa-open .pd-paragraph.pa-entry .pd-file[aria-pressed='true'], .pd-book.pa-code-forward .pd-holds &.pd-folder.pa-open .pd-paragraph.pa-entry .pd-file[aria-pressed='true'] { color: ${({ theme }) => theme.skyInk}; font-weight: 500; background: color-mix(in oklab, ${({ theme }) => theme.sky} 45%, white); }
         .pd-book.pa-split .pd-holds &.pd-folder.pa-open .pd-paragraph.pa-entry .pd-file[aria-pressed='true'] .pd-drawing, .pd-book.pa-code-forward .pd-holds &.pd-folder.pa-open .pd-paragraph.pa-entry .pd-file[aria-pressed='true'] .pd-drawing { color: var(--colour); }
         @media (max-width: ${({ theme }) => theme.narrow}) {
-            .pd-book .pd-holds &.pd-folder.pa-open .pd-twist, .pd-book .pd-holds &.pd-folder.pa-open .pd-folder-mark, .pd-book .pd-holds &.pd-folder.pa-open .pa-entry .pd-file { display: none; }
+            .pd-book .pd-holds &.pd-folder.pa-open .pd-chevron, .pd-book .pd-holds &.pd-folder.pa-open .pd-folder-mark, .pd-book .pd-holds &.pd-folder.pa-open .pa-entry .pd-file { display: none; }
             .pd-book .pd-holds &.pd-folder.pa-open .pd-sentence.pd-heading { height: auto; padding: 0 calc(${({ theme }) => theme.space} / 2); }
         }
     `;
@@ -277,7 +277,7 @@ export class $Folder extends $Format {
     $Folder(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
         const Tree = this.tree;
-        const Twist = $(twist);
+        const Chevron = $(chevron);
         const Word = $(word);
         const Reference = $(reference);
         this.style = ({ className, children }: { className?: string; children?: ReactNode }) => {
@@ -286,12 +286,12 @@ export class $Folder extends $Format {
             const mark = (
                 <span
                     className="pd-drawing pd-folder-mark"
-                    dangerouslySetInnerHTML={{ __html: folder }}
+                    dangerouslySetInnerHTML={{ __html: folderSvg }}
                 />
             );
             return (
                 <Tree className={`${className ?? ''} pd-folder${open ? ' pa-open' : ''}`.trim()}>
-                    <Twist
+                    <Chevron
                         target={this.section}
                         of={folded}
                     />
@@ -348,7 +348,7 @@ export class $Root extends $Paragraph {
                 <Reference>{cover.mention!.identifier}</Reference>
                 <span
                     className="pd-drawing"
-                    dangerouslySetInnerHTML={{ __html: chevron }}
+                    dangerouslySetInnerHTML={{ __html: chevronSvg }}
                 />
                 {cover.title!.name}
             </Word>
@@ -368,8 +368,9 @@ export const Entry = $($Entry);
 export const Index = $($Index);
 export const Appendix = $($Appendix);
 export const Folded = $($Folded);
-export const Twist = $($Twist);
+export const Chevron = $($Chevron);
 export const Folder = $($Folder);
 export const Root = $($Root);
+const entry = Entry;
 const folded = Folded;
-const twist = Twist;
+const chevron = Chevron;

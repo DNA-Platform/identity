@@ -1,12 +1,12 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~forward.tsx';
 import { Manual } from './10-the-manual~code.tsx';
-import { Kind } from './o1-the-key~code.tsx';
+import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
         <Manual />
-        <Kind>$[[ ./A Type of Book ]]</Kind>
+        <Keyed>$[[ ./A Type of Book ]]</Keyed>
         <Title>[[ The Book ]]</Title>
         <Paragraph>
             <Brief />
@@ -24,7 +24,7 @@ export default () => (
                 The class draws the frame that is on every screen, in five regions named as the frame's sketch
                 names them: the library's bar, with what the book is filed under and the library's own subjects;
                 me, who the book is by; what the book holds, its table of contents; the head, its cover and its
-                switches; and the leaves, the front it opens on and then one leaf for each chapter, the chapter
+                switches; and the pages, the front it opens on and then one page for each chapter, the chapter
                 with the files it appends. A region is a method, and a type of book overrides the method whose
                 region it fills differently, and nothing else.
             </Paragraph>
@@ -61,7 +61,7 @@ export default () => (
                 counts; which chapter is open, the one the address names, whether the address names the chapter
                 or a heading inside it; the three tones it may offer as switches. What a
                 type overrides: the library's bar, the subjects, what the book holds, the head, the front, what the
-                book opens on, the leaves, the switches, the listings a chapter's files are printed as. And what
+                book opens on, the pages, the switches, the listings a chapter's files are printed as. And what
                 the book does for every type: it draws a chapter read as <Means>$[[ a manual ]]( ./The Manual )</Means> inside
                 the page's box alone and lets the manual fill it; it says a folder of
                 each <Means>$[[ part's ]]( ./The Part )</Means> section at bind, and the root, the row at the head of

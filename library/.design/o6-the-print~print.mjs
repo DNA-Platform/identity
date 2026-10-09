@@ -4,7 +4,7 @@
 //
 // The first argument is the book's folder in the last bind, .me/..public/<book>/; the second is the page to write,
 // beside the chapter that designs it. The page holds what the print holds — the bar, me, the table of contents, the front
-// and every leaf, hidden — with the framework's class names kept and the styled components' hashes dropped, so every
+// and every page, hidden — with the framework's class names kept and the styled components' hashes dropped, so every
 // rule the page needs can be written against the names the live book wears. A page that already exists keeps its
 // <style> and its <script>: only the print between them is refreshed. Bind first; the print is read, never the source.
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
@@ -32,20 +32,20 @@ const balanced = (at) => {
     return '';
 };
 const region = (cls) => { const at = root.indexOf(`<div class="${cls}">`); return at < 0 ? '' : clean(balanced(at)); };
-const leaves = [];
-for (let at = root.indexOf('<div class="pd-leaf'); at >= 0; at = root.indexOf('<div class="pd-leaf', at + 1)) {
-    const leaf = balanced(at);
-    if (leaf.startsWith('<div class="pd-leaf pd-front')) continue;
-    const id = leaf.match(/<div id="([^"]+)" class="pd-sentence pd-title/u)?.[1] ?? `leaf-${leaves.length + 1}`;
-    leaves.push(clean(leaf).replace(/^<div class="pd-leaf[^"]*"/u, `<div class="pd-leaf" data-chapter="${id}" hidden`));
+const pages = [];
+for (let at = root.indexOf('<div class="pd-page'); at >= 0; at = root.indexOf('<div class="pd-page', at + 1)) {
+    const page = balanced(at);
+    if (page.startsWith('<div class="pd-page pd-front')) continue;
+    const id = page.match(/<div id="([^"]+)" class="pd-sentence pd-title/u)?.[1] ?? `page-${pages.length + 1}`;
+    pages.push(clean(page).replace(/^<div class="pd-page[^"]*"/u, `<div class="pd-page" data-chapter="${id}" hidden`));
 }
 const regions = {
     library: region('pd-library'),
     me: region('pd-me'),
     holds: region('pd-holds'),
-    front: region('pd-leaf pd-front pd-open'),
+    front: region('pd-page pd-front pd-open'),
 };
-const printed = `${regions.library}\n${regions.me}\n${regions.holds}\n<div class="pd-leaves">\n<section class="pd-desk"></section>\n${regions.front}\n${leaves.join('\n')}\n</div>`;
+const printed = `${regions.library}\n${regions.me}\n${regions.holds}\n<div class="pd-pages">\n<section class="pd-desk"></section>\n${regions.front}\n${pages.join('\n')}\n</div>`;
 
 const name = basename(page).replace(/~\d+\.html$/u, '').replace(/^\d+-/u, '').split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
 const number = basename(page).match(/~(\d+)\.html$/u)?.[1] ?? '';
@@ -61,4 +61,4 @@ if (existsSync(page)) {
 const fonts = `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">`;
 const written = `<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n${head}\n${fonts}\n${style}\n</head>\n<body>\n<!-- the print of ${book}, as bound; refreshed by o6-the-print~print.mjs -->\n${printed}\n${script}\n</body>\n</html>\n`;
 writeFileSync(page, written);
-console.log(`${page}: the print of ${book} — ${Object.values(regions).filter(Boolean).length} regions, ${leaves.length} leaves hidden${script ? ', the page\'s style and script kept' : ''}`);
+console.log(`${page}: the print of ${book} — ${Object.values(regions).filter(Boolean).length} regions, ${pages.length} pages hidden${script ? ', the page\'s style and script kept' : ''}`);

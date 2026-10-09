@@ -21,7 +21,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 The two paragraphs the card places are said to be what they are in the chapter: the one holding
-                the photographs is the pictures, and the one holding the code is the source. Both are kinds
+                the photographs is the pictures, and the one holding the code is the source. Both are sorts
                 of <Means>$[[ a concept's ]]( ./The Concept )</Means> paragraph.
             </Paragraph>
         </Section>

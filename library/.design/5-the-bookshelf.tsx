@@ -42,8 +42,8 @@ export default () => (
                 the contents comes down onto the desk above the shelf, the shelf untouched; the desk keeps its
                 shape, a long entry fades, and read on holds while I browse the contents. The contents open
                 the entry; the small triangle after a filed book leads to the book. How this book is built
-                turns the page into the manual's view of itself, the one table of contents rendering its other
-                kind.
+                turns the page into the manual's view of itself, the one table of contents drawn the other
+                way.
             </Paragraph>
         </Section>
         <Section>
@@ -61,8 +61,8 @@ export default () => (
                 on the book. The triangle is the row's second reference. Nothing on the page was a seventh word.
             </Paragraph>
             <Paragraph>
-                What this takes to build is small: this catalogue as a type of book that places its table's kinds
-                in regions; a few annotations — a volume said of a row, holding the imported cover; the synopsis
+                What this takes to build is small: this catalogue as a type of book that places its table's rows
+                in regions by what each is; a few annotations — a volume said of a row, holding the imported cover; the synopsis
                 said of a row as well as a chapter; an illustration said of a cover; the colour grown to a scheme;
                 and a custom cover in <Means>$[[ the manual ]]( Dougs Reference Manual )</Means> that exposes
                 what a cover says as properties, so the bar, the volume and the mark read one cover. The cover is

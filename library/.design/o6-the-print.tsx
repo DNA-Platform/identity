@@ -11,7 +11,7 @@ export default () => (
             <Paragraph>
                 In the design phase I do not sketch a page; I design the page itself. The tool beside this chapter
                 takes a book's print — the page the binder wrote, exactly as the site serves it — and makes a design
-                page from it: the bar, me, the table of contents, the front and every chapter's leaf, hidden, with the
+                page from it: the bar, me, the table of contents, the front and every chapter's page, hidden, with the
                 framework's class names kept on every element and nothing else. The page gets a style of its own
                 in place of the printed sheet, and I open it from the file in a browser. Because every element wears
                 the name the live book wears, every rule written on the page can be carried into the book's theme

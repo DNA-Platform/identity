@@ -1,12 +1,12 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~forward.tsx';
 import { Manual } from './10-the-manual~code.tsx';
-import { Kind } from './o1-the-key~code.tsx';
+import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
         <Manual />
-        <Kind>$[[ ./An Annotation ]]</Kind>
+        <Keyed>$[[ ./An Annotation ]]</Keyed>
         <Title>[[ The Tone ]]</Title>
         <Paragraph>
             <Brief />
@@ -22,7 +22,7 @@ export default () => (
                 bar. White over black is the white bar over the dark side, which
                 is <Means>$[[ the frame of 26 ]]( Dougs Design / A White Top Bar and a Black Side Bar )</Means> and
                 the frame my story wears. Black is on one bar, relative to the pale side bar beside it and the
-                white page under it; it is never everywhere. A tone is one of a kind — saying a second one stands the first down —
+                white page under it; it is never everywhere. A tone stands alone — saying a second one stands the first down —
                 and every book wears the dark tone unless it says otherwise, because the dark side bar is the
                 thing that makes the library memorable.
             </Paragraph>

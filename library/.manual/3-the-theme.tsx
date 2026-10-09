@@ -1,12 +1,12 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~forward.tsx';
 import { Manual } from './10-the-manual~code.tsx';
-import { Kind } from './o1-the-key~code.tsx';
+import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
         <Manual />
-        <Kind>$[[ ./A Theme ]]</Kind>
+        <Keyed>$[[ ./A Theme ]]</Keyed>
         <Title>[[ The Theme ]]</Title>
         <Paragraph>
             <Brief />
@@ -57,7 +57,7 @@ export default () => (
                 class has, nor of a part the base already has unless it says it overrides and spreads the base's
                 into its own: each of these happened once — a part named side, a part named frame, a part named
                 cards, a part named head — and each broke the page somewhere else without a word. The typecheck
-                in the binder's folder names the first two kinds; the third it does not, so the base's part
+                in the binder's folder names the first two sorts; the third it does not, so the base's part
                 names are listed in each book's chapter. A value that would be computed from another is computed
                 in the template, never in a field, or a book that changes the first never reaches the second.
             </Paragraph>

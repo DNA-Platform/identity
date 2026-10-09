@@ -37,7 +37,7 @@ export class $DesignTheme extends $LibraryBookTheme {
 
     protected words(): RuleSet {
         return css`
-            .pd-leaves { padding: calc(${({ theme }) => theme.space} * 0.83) calc(${({ theme }) => theme.space} * 1.17) calc(${({ theme }) => theme.space} * 1.67); }
+            .pd-pages { padding: calc(${({ theme }) => theme.space} * 0.83) calc(${({ theme }) => theme.space} * 1.17) calc(${({ theme }) => theme.space} * 1.67); }
             .pd-words .pd-chapter { margin-block: 0; max-width: none; }
             .pd-head .pd-title {
                 font-size: calc(2 * ${({ theme }) => theme.size});
@@ -107,7 +107,7 @@ export class $DesignTheme extends $LibraryBookTheme {
         return css`
             @media (max-width: ${({ theme }) => theme.narrow}) {
                 .pd-holds, .pd-library { border-inline-end: none; }
-                .pd-leaves { padding: calc(${({ theme }) => theme.space} * 0.67); }
+                .pd-pages { padding: calc(${({ theme }) => theme.space} * 0.67); }
             }
         `;
     }
