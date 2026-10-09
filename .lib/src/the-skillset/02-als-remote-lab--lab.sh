@@ -5,7 +5,7 @@
 #   bash $L check                              key logins to every compute server, the database through the box
 #   bash $L run <host> '<command>'             a command on a compute server (001, 003, 005), not recorded
 #   bash $L probe <name> <host> '<command>'    the same, RECORDED in runs/lab/ and committed, machines synced
-#   bash $L container <name> <host> <file.py> [--out]
+#   [LAB_IN="<run> ..."] bash $L container <name> <host> <file.py> [--out]
 #                                              a Python file in the lab's image on a compute server, the lab
 #                                              password on its stdin, RECORDED and committed; with --out it may
 #                                              write to /out, a folder of its own in doug's home on that server
@@ -128,6 +128,15 @@ container() {
     elif [ -n "$out" ]; then
         echo "the fourth argument is --out, or nothing"; return 2
     fi
+    # LAB_IN="<run> ...": each named run's newest --out folder on that server, read-only at /in/<run>, so one stage
+    # reads what an earlier one wrote (segmentation per field, then the scan's units, then its exports)
+    local earlier
+    for earlier in ${LAB_IN:-}; do
+        [[ $earlier =~ ^[A-Za-z0-9-]+$ ]] || { echo "LAB_IN names runs: letters, digits and hyphens"; return 2; }
+        prepare="${prepare}test -d \"\$(ls -d \$HOME/doug-out/doug-$earlier-20[0-9]*-[0-9]* 2>/dev/null | tail -1)\" || { echo 'no --out folder of $earlier here'; exit 2; }; "
+        mounts="$mounts -v \"\$(ls -d \$HOME/doug-out/doug-$earlier-20[0-9]*-[0-9]* | tail -1)\":/in/$earlier:ro"
+        where="$where, reading /in/$earlier"
+    done
     mkdir -p "$RECORDS"
     cp "$file" "$RECORDS/$stamp-$name.py"
     printf '# %s in %s on %s, --cpus %s --memory %s%s, %s\n' "$tag" "$IMAGE" "$(host_of "$host")" "$CPUS" "$MEMORY" \
