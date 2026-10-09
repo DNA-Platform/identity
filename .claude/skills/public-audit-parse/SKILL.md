@@ -36,11 +36,11 @@ description: confirm nothing renders all the way down: parts() is never called b
 
 ## Why calling it is the thing that matters
 
-**[`$Composition.parts()`](../../../library/.public/package/src/writing/Composition.tsx) is where the descent happens.** It asks its kind for `below()` and hands the tokens to [`reflection.template(beneath).makes(tokens)`](../../../library/.public/package/src/utilities/Reflection.tsx) — so **a level that is asked for its parts BUILDS the level under it.** Each `makes()` also builds a second chemical beside every piece it makes, its `mention`, so **one call costs two objects per piece**.
+**[`$Composition.parts()`](../../../library/.public/package/src/writing/Composition.tsx) is where the descent happens.** It asks its type for `below()` and hands the tokens to `reflection.template(beneath).makes(tokens)` — so **a level that is asked for its parts BUILDS the level under it.** Each `makes()` also builds a second chemical beside every piece it makes, its `mention`, so **one call costs two objects per piece**.
 
 **And the descent is one call deep at a time, which is what makes it stoppable.** [`$Section`](../../../library/.public/package/src/writing/Section.tsx) is the only level that overrides `reading()` to go through `reflection.wrapped(this)` — that is the one place a draw reaches `parts()`. Nothing below Section does, and **nothing below Section should start.**
 
-**The memo does not save you.** [`Parser.parse`](../../../library/.public/package/src/utilities/Parser.tsx) memoises per writing in a `WeakMap`, so the *second* call is cheap — but the first one already built the level beneath, and it is the building that is the cost.
+**The memo does not save you.** `Parser.parse` memoises per writing in a `WeakMap`, so the *second* call is cheap — but the first one already built the level beneath, and it is the building that is the cost.
 
 ## Run it
 
@@ -86,7 +86,7 @@ node library/.public/.lib/the-public-skillset/03-public-audit-parse--probe.cjs r
 
 **And the specification count agreed from the other side:** on `/article`, **7,665 rule executions across 21 specification classes, and not one of them was `Word`, `Sentence` or `Letter`.**
 
-> ***SO THE 10,000 IS NOT PARSE DEPTH.*** *That was the first hypothesis and it was wrong.* **The population is `$Eval` and `$Block`, and both come from one idiom that every bond constructor in this library writes** — `super.$X($check(block, $Block).concat($check($TypeOfX, '!')))`. *`$check(Type, '!')` costs a throwaway chemical; `.concat` costs a block; and it runs once per level of the class chain per element.* **Two objects per level per element, to say what kind something is.**
+> ***SO THE 10,000 IS NOT PARSE DEPTH.*** *That was the first hypothesis and it was wrong.* **The population is `$Eval` and `$Block`, and both come from one idiom that every bond constructor in this library writes** — `super.$X($check(block, $Block).concat($check($TypeOfX, '!')))`. *`$check(Type, '!')` costs a throwaway chemical; `.concat` costs a block; and it runs once per level of the class chain per element.* **Two objects per level per element, to say what type something is.**
 
 ## The two numbers that also fell out, and both are findings
 
@@ -98,7 +98,7 @@ node library/.public/.lib/the-public-skillset/03-public-audit-parse--probe.cjs r
 ## Reading, if the count comes back wrong
 
 - **[Composition](../../../library/.public/package/src/writing/Composition.tsx)** — `parts()`, and the `accept` closure that decides whether a token is kept or reduced
-- **[Parser](../../../library/.public/package/src/utilities/Parser.tsx)** — `parse`, the per-writing memo, and `sentences`/`words`/`letters`
+- **Parser** — `parse`, the per-writing memo, and `sentences`/`words`/`letters`
 - **[Section](../../../library/.public/package/src/writing/Section.tsx)** — `reading()`, the one override that puts `parts()` on the draw path
 - **[The Three Passes](../../../library/chemistry/.lib/particle/12-the-three-passes.md)** — why anything on the draw path costs three times what you think it does
 

@@ -18,9 +18,9 @@ It runs [public-audit-parse](../../../library/.public/.lib/the-public-skillset/0
 
 **Two facts about this branch will waste an hour each if you do not know them.**
 
-***The demo does not read `.public/package/src`.*** [The wiki's vite config](../../../library/.public/package/.wiki/.public/vite.config.ts) aliases `@dna-platform/public` to `../../dist/lib.js` — **the rollup output**. A probe added to `src/` and then measured shows *nothing*, silently. Run `npm run build` in `library/.public/package` first. **`@dna-platform/chemistry` is aliased to source**, so chemistry probes take effect immediately; the asymmetry is the trap.
+***The demo does not read `.public/package/src`.*** The wiki's vite config (`package/.wiki/.public/vite.config.ts`) aliases `@dna-platform/public` to `../../dist/lib.js` — **the rollup output**. A probe added to `src/` and then measured shows *nothing*, silently. Run `npm run build` in `library/.public/package` first. **`@dna-platform/chemistry` is aliased to source**, so chemistry probes take effect immediately; the asymmetry is the trap.
 
-***Every route builds every book.*** [main.tsx](../../../library/.public/package/.wiki/.public/main.tsx) imports the encyclopedia, the article and the Turing books at module scope, and `$<$Book>(…)` constructs eagerly. Measured 2026-09-08: **9,587 chemicals constructed before any render, identical on `/` and on `/turing`** — 1,009 characters of text against 57,286. So a per-route number is not a per-book number, and a change that only moves one route has probably moved nothing.
+***Every route builds every book.*** main.tsx imports the encyclopedia, the article and the Turing books at module scope, and `$<$Book>(…)` constructs eagerly. Measured 2026-09-08: **9,587 chemicals constructed before any render, identical on `/` and on `/turing`** — 1,009 characters of text against 57,286. So a per-route number is not a per-book number, and a change that only moves one route has probably moved nothing.
 
 ## Run it — and it MUST be one command
 

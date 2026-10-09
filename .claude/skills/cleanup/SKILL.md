@@ -82,7 +82,7 @@ Clean the code a sprint touched, and refactor its neighbours where the sprint ma
 
 - ***A member added to a fundamental class is nearly always wrong.*** *Ask what the framework already has before adding anything — [What Natural Means](../../../library/.public/.lib/the-coding-style/07-what-natural-means.md). **Adding is the tell.***
 - ***Brevity is earned by being canonical.*** *Only a thing at the centre of the domain gets one word; a short name on a mechanical thing falsely promotes it.*
-- ***Never self-name a framework thing.*** *Use a proxy and flag it. [The Spelling of a Kind](../../../library/.public/.lib/the-coding-style/05-the-spelling-of-a-kind.md) and [The Semantics of Books](../../../library/.public/.lib/the-semantics-of-books/01-levels-of-closure.md) govern what a name may even mean — **a library closed under books does not mint, does not have rooms, and does not borrow a metaphor to explain another metaphor.***
+- ***Never self-name a framework thing.*** *Use a proxy and flag it. [The Spelling of a Kind](../../../library/.public/.lib/the-coding-style/05-the-spelling-of-a-type.md) and [The Semantics of Books](../../../library/.public/.lib/the-semantics-of-books/01-levels-of-closure.md) govern what a name may even mean — **a library closed under books does not mint, does not have rooms, and does not borrow a metaphor to explain another metaphor.***
 - **Comments stay** *until `src` has a manual of its own.* ***The convention is that a reference document LINKS to the code, never the reverse*** — [The Coding Style](../../../library/.public/.lib/the-coding-style/03-the-coding-style.md).
 - ***Every change needs Doug's explicit yes, members and classes alike.***
 
