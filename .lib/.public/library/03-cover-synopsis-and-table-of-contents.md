@@ -47,6 +47,38 @@ export default () => (
 
 **The compiler knows the three by their files**, `.cover.tsx`, `.synopsis.tsx` and `.table.tsx`, and never by the annotation — so what it checks of a table it checks off the notation in that file: **a table answers in its own table for what its book catalogues** (`NOT-LISTED`, `NOT-IN-THE-TABLE`), and **refers to every chapter of its own book, itself among them** (`CHAPTER-NOT-LISTED`) — the table is the link aggregator, Doug, 2026-10-05: *"The table needs to refer to all chapters including itself… And it should refer to all books."* *The chapter rule was struck on 2026-09-26, when a table could be drawn from what the chapters mention ([Sprint 84](../projection/90-sprint-84--means-and-the-table.md#u5)), and restored with [Sprint 99](../projection/104-sprint-99--the-link-aggregator.md); a drawn table writes its links now, unshown, and draws them too. And a table no longer has to refer beside each answer to that book's own synopsis, `NO-SYNOPSIS` until that sprint: every book holds a synopsis and its own table refers to it.* *Doug: "No! The compiler should enforce as much as possible based on what it gives."* A table of contents need not be shown — *"They still need to put everything on the page the right way even if it's all invisible"* (R27) — so the test library's tables hide their apparatus entries in a parenthetical paragraph, and the compiler reads them exactly as it reads the shown ones.
 
+## <a id="part"></a>Part — a chapter says which part of its book it is in · added 2026-10-09
+
+**Doug, 2026-10-09, in [Sprint 104](../projection/109-sprint-104--parts-and-the-manual.md#d10):** *"Yes Part should be in .public, in the folder with TableOfContents. It needs to be written with the same coding standards and naming conventions, it must be audited by me. and it needs to interface with table of contents to provide, in some way, an annotation-based object model for the structure of the book."* And the rules, his: *"A chapter shouldn't require a part. But maybe if a book chapter has one, all chapters in the book must have one."* Part is E31 of the Genesis — *"Part is the Book that goes in a book, for nested tables of contents"* — out of scope since [Sprint 82](../projection/88-sprint-82--chapter-and-book.md) on *"The core alone"*, and arriving as a trait.
+
+**A part is an annotation a chapter carries, written at the chapter's head with the part's name as its words, `<Part>Appendix</Part>`, and the part is the section of the book's table of contents headed with that name.** So the table of contents is where the book's structure is read: its sections are its parts where chapters say so, and the table answers which of its sections are parts, which part a chapter is in, and which chapters a part holds — the annotation-based object model of the book's structure, the chapters the data the references are built from. A book need not have parts; a book that has one has every chapter in one.
+
+| member | what it is | cited |
+|---|---|---|
+| `Part` | an annotation said of a chapter, in [`Part.tsx`](../../package/src/libraries/Part.tsx) beside TableOfContents; marks its chapter `pa-part` and takes it back | his, above |
+| `Part.name` | the words written in it, the name of the part, read every time and kept nowhere, as [a Level reads its number](../writing/10-developing-an-annotation.md#the-argument-is-content-and-a-property-reads-it) | *"The Name of the part is the manual name effectively"* |
+| `Part.section` | the section of its book's table of contents, at any depth, whose heading has that name; none when no section does | the part is the section |
+| `Part.specification` | `new PartSpecification()`: **a part is said of a chapter**; **a part names a section of its book's table of contents**, the refusal naming the name | his rules |
+| `TableOfContents.parts` | the sections of the table, in table order, that some chapter of the book names as its part; empty in a book with no parts | the table's object model |
+| `TableOfContents.partOf(chapter)` | the chapter's part's section, or none | |
+| `TableOfContents.chaptersOf(section)` | the chapters of the book whose part is that section, in book order | |
+| `TableOfContentsSpecification`, two rules more | **a table of contents whose book has a part lists every chapter in one** — the cover, the synopsis and the table itself aside, since they are the book's apparatus and never in a part — the refusal naming the chapter in none; **a chapter in a part is listed under its part's section**, the refusal naming the chapter and the section | *"if a book chapter has one, all chapters in the book must have one"*; a misfiling is the fault the table can see |
+
+### In use
+
+```tsx
+// the-folio/4-the-tempest.tsx
+export default () => (
+    <Chapter>
+        <Part>Comedies</Part>
+        <Title>[[ The Tempest ]]</Title>
+        …
+    </Chapter>
+);
+```
+
+*The table lists The Tempest under a section headed Comedies, as it would anyway; the chapter says so at its head; and the book, the table and a library's own kinds read it: a library's own format said of the part's chapters, a view of a part, a tree in a side bar that folds a part, a sequence the turn walks within a part. What a library builds on parts is the library's — [Sprint 104](../projection/109-sprint-104--parts-and-the-manual.md#the-object-model-concretely) carries Doug's library's: a manual that shows a part's chapters beside their files.*
+
 ## How they are extended
 
 - **A library's own look** is a subclass giving its own `style` — *"a library's own cover draws its own element and is still a cover"* is a promise — and the book still finds it, since the collection finds by `instanceof`.
