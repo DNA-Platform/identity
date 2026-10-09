@@ -1,6 +1,6 @@
 import { ElementType, ReactNode } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Chapter, $Content, $Format, $Paragraph, $Parenthetical, $Section, $TableOfContents, $Word, $Writing, AnnotationSpecification, ContainerProps, specify } from '@dna-platform/public';
+import { $Annotation, $Chapter, $Content, $Format, $Heading, $Paragraph, $Parenthetical, $Section, $TableOfContents, $Word, $Writing, AnnotationSpecification, ContainerProps, html, specify } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { $Switch } from './9-the-switch~code.tsx';
 import { $Coloured } from './18-the-colour~code.tsx';
@@ -30,7 +30,12 @@ export class $Entry extends $Format {
     $Entry(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
         const Painted = this.style;
-        this._painted = (props: { children?: ReactNode }) => <Painted $vars={this.vars} {...props} />;
+        this._painted = (props: { children?: ReactNode }) => (
+            <Painted
+                $vars={this.vars}
+                {...props}
+            />
+        );
     }
 
     override defines(writing: $Writing): void {
@@ -43,6 +48,10 @@ export class $Entry extends $Format {
         writing.classes.revert(this);
         writing.containers.revert(this);
     }
+
+    override note(): ReactNode {
+        return this.leads?.annotations.expressed($View)?.row(this);
+    }
 }
 
 export class $Appendix extends $Annotation {
@@ -54,6 +63,53 @@ export class $Appendix extends $Annotation {
 
     override erase(writing: $Writing): void {
         writing.classes.revert(this);
+    }
+}
+
+export class $Part extends $Annotation {
+    specification = new PartSpecification();
+    get name(): string { return html.copy(this.text).trim(); }
+    get section(): $Section | undefined {
+        const book = this.book as $LibraryBook | undefined;
+        const table = book?.table;
+        return book === undefined || table === undefined ? undefined : book.sections(table).find(section => (section.canonical as $Heading | undefined)?.name === this.name);
+    }
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-part');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class $View extends $Format {
+    specification = new ViewSpecification();
+
+    row(entry: $Entry): ReactNode {
+        return entry === undefined ? undefined : undefined;
+    }
+}
+
+export class PartSpecification extends AnnotationSpecification {
+    @specify('a part is said of a chapter')
+    $saidOfAChapter(writing: $Writing): void {
+        $check(writing instanceof $Chapter, 'a part is said of a chapter, and this is not one');
+    }
+
+    @specify("a part names a section of its book's table of contents")
+    $namesASection(writing: $Writing): void {
+        const part = writing.annotations.expressed($Part);
+        $check(part !== undefined && part.section !== undefined,
+            `a part names a section of its book's table of contents, and "${part?.name ?? ''}" heads none`);
+    }
+}
+
+export class ViewSpecification extends AnnotationSpecification {
+    @specify('a view is said of a chapter')
+    $saidOfAChapter(writing: $Writing): void {
+        $check(writing instanceof $Chapter, 'a view is said of a chapter, and this is not one');
     }
 }
 
@@ -196,6 +252,8 @@ export const leads = (paragraph: $Writing): $Content | undefined =>
 export const Entry = $($Entry);
 export const Index = $($Index);
 export const Appendix = $($Appendix);
+export const Part = $($Part);
+export const View = $($View);
 export const Folded = $($Folded);
 export const Twist = $($Twist);
 export const Folder = $($Folder);

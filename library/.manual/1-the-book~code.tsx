@@ -5,7 +5,7 @@ import { Listing as listing } from './2-the-listing~code.tsx';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
-import { $Appendix, leads } from './14-the-entry~code.tsx';
+import { $Appendix, $View, leads } from './14-the-entry~code.tsx';
 import { Dark as dark, Light as light, Tone as tone, WhiteOverBlack as whiteOverBlack } from './16-the-tone~code.tsx';
 import { $Logo, $Volume, Logo as logo, Mark as mark, painted } from './19-the-cover~code.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
@@ -127,22 +127,33 @@ export class $LibraryBook extends $Book {
     }
 
     leaves(): ReactNode {
-        return this.chapters.map((chapter, index) => {
-            const Chapter = $(chapter);
-            return (
-                <div
-                    key={index}
-                    className={chapter === this.open ? 'pd-leaf pd-open' : 'pd-leaf'}
-                >
-                    <div className="pd-words">
-                        <Chapter />
-                    </div>
-                    <div className="pd-files">
-                        {this.listings(chapter)}
-                    </div>
+        return this.chapters.map((chapter, index) => this.leaf(chapter, index));
+    }
+
+    leaf(chapter: $Chapter, key: number): ReactNode {
+        const Chapter = $(chapter);
+        const className = chapter === this.open ? 'pd-leaf pd-open' : 'pd-leaf';
+        if (chapter.is($View)) return (
+            <div
+                key={key}
+                className={className}
+            >
+                <Chapter />
+            </div>
+        );
+        return (
+            <div
+                key={key}
+                className={className}
+            >
+                <div className="pd-words">
+                    <Chapter />
                 </div>
-            );
-        });
+                <div className="pd-files">
+                    {this.listings(chapter)}
+                </div>
+            </div>
+        );
     }
 
     named(place: string): $Chapter | undefined {

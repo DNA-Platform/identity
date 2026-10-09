@@ -48,7 +48,12 @@ export class $Icon extends $Word {
     $Icon(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
         const Painted = this.style;
-        this._painted = (props: { children?: ReactNode }) => <Painted $colour={this.$kind?.colour ?? ''} {...props} />;
+        this._painted = (props: { children?: ReactNode }) => (
+            <Painted
+                $colour={this.$kind?.colour ?? ''}
+                {...props}
+            />
+        );
         this.containers.replace(this, 'span', this._painted);
     }
 

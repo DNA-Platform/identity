@@ -86,14 +86,22 @@ export class $Catalogue extends $LibraryBook {
     }
 
     override leaves(): ReactNode {
+        const books = this.books;
+        return [
+            ...books.map((chapter, index) => this.desk(chapter, index)),
+            ...this.chapters.map((chapter, index) => this.leaf(chapter, books.length + index)),
+        ];
+    }
+
+    desk(chapter: $Chapter, index: number): ReactNode {
         const Switch = $(switchOf);
-        return [...this.books, ...this.chapters].map((chapter, index) => {
+        {
             const Chapter = $(chapter);
             const cover = this.jacketOf(chapter);
             return this.painted(cover, (
                 <div
                     key={index}
-                    className={chapter === this.open ? 'pd-leaf pd-open' : 'pd-leaf'}
+                    className={chapter === this.open ? 'pd-leaf pd-desk pd-open' : 'pd-leaf pd-desk'}
                 >
                     {this.jacket(cover)}
                     <div className="pd-words">
@@ -119,7 +127,7 @@ export class $Catalogue extends $LibraryBook {
                     </div>
                 </div>
             ), index);
-        });
+        }
     }
 
     volumes(): ReactNode {

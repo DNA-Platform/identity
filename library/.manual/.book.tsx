@@ -1,6 +1,6 @@
-import { $Manual } from './10-the-manual~code.tsx';
+import { $ManualBook } from './10-the-manual~code.tsx';
 
-export default class $ReferenceManual extends $Manual { }
+export default class $ReferenceManual extends $ManualBook { }
 
 export * from './1-the-book~code.tsx';
 export * from './1-the-book~said.tsx';

@@ -1,9 +1,11 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~forward.tsx';
+import { Manual } from './10-the-manual~code.tsx';
 import { Kind } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
+        <Manual />
         <Kind>$[[ ./A Noun ]]</Kind>
         <Title>[[ The Switch ]]</Title>
         <Paragraph>

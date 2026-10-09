@@ -1,7 +1,10 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Manual, Part } from '../.manual/.book';
 
 export default () => (
     <Chapter>
+        <Part>How this book is built</Part>
+        <Manual />
         <Title>[[ The Catalogue ]]</Title>
         <Section>
             <Heading>How this book is laid out</Heading>

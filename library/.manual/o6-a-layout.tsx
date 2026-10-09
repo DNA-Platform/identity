@@ -1,10 +1,12 @@
 import { Chapter, Heading, Paragraph, Section, Svg, Title } from '@dna-platform/public';
 import { Coloured } from './18-the-colour~code.tsx';
 import { Brief } from './10-the-manual~forward.tsx';
+import { Manual } from './10-the-manual~code.tsx';
 import { Kind } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
+        <Manual />
         <Kind>$[[ ./A Layout ]]</Kind>
         <Coloured>#553561</Coloured>
         <Title>[[ A Layout ]]</Title>

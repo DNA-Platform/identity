@@ -13,7 +13,12 @@ export class $Coloured extends $Format {
     $Coloured(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
         const Painted = this.style;
-        this._painted = (props: { children?: ReactNode }) => <Painted $colour={this.colour} {...props} />;
+        this._painted = (props: { children?: ReactNode }) => (
+            <Painted
+                $colour={this.colour}
+                {...props}
+            />
+        );
     }
 
     override defines(writing: $Writing): void {

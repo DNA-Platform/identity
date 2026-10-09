@@ -61,7 +61,12 @@ export class $Scheme extends $Format {
     $Scheme(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
         const Painted = this.style;
-        this._painted = (props: { children?: ReactNode }) => <Painted $scheme={this.declarations} {...props} />;
+        this._painted = (props: { children?: ReactNode }) => (
+            <Painted
+                $scheme={this.declarations}
+                {...props}
+            />
+        );
     }
 
     override defines(writing: $Writing): void {
