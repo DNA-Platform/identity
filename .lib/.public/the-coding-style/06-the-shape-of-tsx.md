@@ -60,7 +60,20 @@
 </Paragraph>
 ```
 
-***Owed, and recorded as debt rather than exemption:*** *the test library's tables and its promises still carry `<Paragraph><Content>…</Content></Paragraph>` and `<Word><Content>…</Content></Word>` on one line. They were written before this ruling and are wrong by it.*
+### <a id="the-tools"></a>The tools beside this chapter, and what the sweep proved — ***Sprint 104***
+
+> ***"We don't use compressed formatting for TSX just as we don't for classes… Elevate these rules and, in this sprint, figure out how to broadly apply them. We need readable TSX."*** — **Doug, 2026-10-09**
+
+**[The checker](06-the-shape-of-tsx--check.ts) reads the rules above off every `.tsx` file under the roots it is given, on the TypeScript parser, so a rule is judged against the tree and never a regular expression.** It counts the elements it saw and prints each fault with the rule it breaks: a child on the opening tag's line, a closing tag sharing its last child's line, two children on a line, a blank line between children, attributes not stacked, the `>` sharing the last attribute's line, a string written as `={"…"}`. **[The opener](06-the-shape-of-tsx--open.ts) gives the shape:** from the innermost fault outward it stacks an element's children, stacks a tag's attributes, and stands the text of an element whose tag spans lines on a line of its own, keeping every child's and every attribute's text exactly and a file's line ending.
+
+```bash
+npx tsx library/.public/.lib/the-coding-style/06-the-shape-of-tsx--check.ts .me library/.public/package/src
+npx tsx library/.public/.lib/the-coding-style/06-the-shape-of-tsx--open.ts library/.public/package/.binding/.test
+```
+
+***The rule the first sweep broke, and the gate that caught it:*** **an inline element in a running sentence stays in the sentence.** *The first opener stacked a `<Means>` out of `<Line><Means>…</Means> is the book that writes the others.</Line>`, and the bound shelf read "Libbyis" in the browser — JSX drops the whitespace at the head of a line, so a sentence stacked one child to a line loses its spaces, and so does a space between two `<Word>`s on one line, which is text.* **So both tools read prose as prose:** *an element whose children are words and an inline element — a text child beside an element that holds something, never a self-closing mark — opens, and its sentence is laid inside it whole, wrapped as the author wrapped it, each inline element shifted as a piece; a `<Title>` holding `<Parenthetical />` and its words is not prose and stacks.* **And a sweep is proved, never trusted:** *each file is transpiled at HEAD and in the working tree, and the two, with their line breaks removed, must be the same string — JSX's whitespace rules are applied at transpile, so a lost space shows as a differing string literal. The test library's 56 files opened out with that difference at zero, and its tables and promises no longer carry a `<Paragraph><Content>…</Content></Paragraph>` on one line.*
+
+***Still owed, and recorded as debt rather than exemption:*** *the package's own source carries four tags whose attributes are not stacked, and its promises in `.tests` a thousand faults, nearly all one-line elements holding elements; both are under `library/.public/package` and wait on Doug's yes.*
 
 ## <a id="the-shape"></a>The shape
 
